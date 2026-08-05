@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { Link, type Href } from "expo-router";
@@ -17,55 +18,48 @@ interface Props {
 export default function NavigationCard({ tag, color, name, description, playable, navigationUrl }: Props) {
     return (
         <Link href={navigationUrl} asChild>
-            <Pressable style={styles.card}>
-                <View style={styles.top}>
-                    <View style={styles.heading}>
-                        <View style={styles.tagRow}>
-                            <Tag text={tag} />
+            <Pressable>
+                <Card triggerOnHoverAnimation>
+                    <View style={styles.top}>
+                        <View style={styles.heading}>
+                            <View style={styles.tagRow}>
+                                <Tag text={tag} />
+                            </View>
+
+                            <AppText style={styles.name}>{name}</AppText>
+                            <AppText style={styles.description}>{description}</AppText>
                         </View>
 
-                        <AppText style={styles.name}>{name}</AppText>
-                        <AppText style={styles.description}>{description}</AppText>
+                        <View style={[styles.badge, { backgroundColor: color }]}>
+                            <AppText style={styles.badgeText}>{name[0]}</AppText>
+                        </View>
                     </View>
 
-                    <View style={[styles.badge, { backgroundColor: color }]}>
-                        <AppText style={styles.badgeText}>{name[0]}</AppText>
-                    </View>
-                </View>
+                    <View style={styles.footer}>
+                        <View style={styles.status}>
+                            <View
+                                style={[
+                                    styles.dot,
+                                    { backgroundColor: playable ? Colors.light.available : Colors.light.textSecondary }
+                                ]}
+                            />
 
-                <View style={styles.footer}>
-                    <View style={styles.status}>
-                        <View
-                            style={[
-                                styles.dot,
-                                { backgroundColor: playable ? Colors.light.available : Colors.light.textSecondary }
-                            ]}
-                        />
+                            <AppText style={styles.statusText}>
+                                {playable ? 'Speelbaar' : 'In de maak'}
+                            </AppText>
+                        </View>
 
-                        <AppText style={styles.statusText}>
-                            {playable ? 'Speelbaar' : 'In de maak'}
+                        <AppText style={styles.action}>
+                            {playable ? 'Spelen' : 'Bekijk'} ↗
                         </AppText>
                     </View>
-
-                    <AppText style={styles.action}>
-                        {playable ? 'Spelen' : 'Bekijk'} ↗
-                    </AppText>
-                </View>
+                </Card>
             </Pressable>
         </Link>
     )
 }
 
 const styles = StyleSheet.create({
-    card: {
-        backgroundColor: Colors.light.backgroundSecondary,
-        borderRadius: 16,
-        borderWidth: 2,
-        borderColor: Colors.light.border,
-        padding: Spacing.four,
-        width: '100%',
-        ...Shadows.hardLarge
-    },
     top: {
         flexDirection: 'row',
         alignItems: 'flex-start',

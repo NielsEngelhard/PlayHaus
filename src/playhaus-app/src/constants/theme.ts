@@ -14,6 +14,8 @@ export const Colors = {
     backgroundSecondary: '#FEFCF4',
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
+    /** A shade under the canvas, for sunken surfaces like text inputs. */
+    backgroundInput: '#F7EBD8',
     textSecondary: '#4B4C58',
     textOnAccent: '#FEFBF8',
     border: "#0F0D12",
@@ -39,6 +41,7 @@ export const FontSizes = {
   lg: 18,
   xl: 24,
   xxl: 30,
+  xxxl: 36,
   huge: 48
 }
 

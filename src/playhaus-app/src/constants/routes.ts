@@ -3,5 +3,8 @@
 export const ROUTES = {
     home: "/",
     leagueOfLettersIndex: "/games/league-of-letters",
+    leagueOfLettersSolo: "/games/league-of-letters/solo",
+    leagueOfLettersCreateRoom: "/games/league-of-letters/room",
+    leagueOfLettersRoom: (code: string) => `/games/league-of-letters/room/${code}`,
     quizzerIndex: "/games/quizzer"
 } as const
