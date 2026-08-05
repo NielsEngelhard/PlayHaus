@@ -1,0 +1,10 @@
+appel
+boter
+groen
+licht
+regen
+stoel
+tafel
+vogel
+water
+zomer

@@ -1,0 +1,10 @@
+bird
+fish
+gold
+lamp
+milk
+rain
+sand
+ship
+tree
+word

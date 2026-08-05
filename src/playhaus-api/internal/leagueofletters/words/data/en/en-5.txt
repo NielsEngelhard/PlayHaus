@@ -1,0 +1,10 @@
+bread
+chair
+cloud
+green
+house
+music
+plant
+stone
+table
+water
