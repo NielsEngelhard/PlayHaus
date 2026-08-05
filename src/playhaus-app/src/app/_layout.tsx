@@ -3,8 +3,10 @@ import { DarkTheme, DefaultTheme, Slot, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { Platform, ScrollView, StyleSheet, useColorScheme, View } from 'react-native';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import BottomBar from '@/components/layout/BottomBar';
 import Header from '@/components/layout/Header';
-import { PageBackground, Spacing } from '@/constants/theme';
+import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,21 +42,28 @@ export default function TabLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <View style={styles.page}>
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.content}>
-            <Header />
+    // Nothing else provides this: the layout renders a bare `Slot` rather than a
+    // navigator, so `BottomBar` would have no insets to read without it.
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <View style={styles.page}>
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.content}>
+              <Header />
 
-            <Slot />
-          </View>
-        </ScrollView>
-      </View>
-    </ThemeProvider>
+              <Slot />
+            </View>
+          </ScrollView>
+
+          {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
+          <BottomBar />
+        </View>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
@@ -72,7 +81,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
-    paddingBottom: Spacing.six,
+    // Clears the floating BottomBar, which overlays the page rather than sitting in it.
+    paddingBottom: BottomBarHeight + Spacing.six,
   },
   content: {
     maxWidth: 600,

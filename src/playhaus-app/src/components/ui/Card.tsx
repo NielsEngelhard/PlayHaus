@@ -1,13 +1,15 @@
 import { Colors, hardShadow, Shadows, Spacing } from "@/constants/theme";
 import React, { useState } from "react";
-import { Platform, StyleSheet, View, type ViewStyle } from "react-native";
+import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     children: React.ReactNode
     triggerOnHoverAnimation?: boolean
+    /** For layout only — how the card sits among its siblings. The look lives here. */
+    style?: StyleProp<ViewStyle>
 }
 
-export default function Card({ children, triggerOnHoverAnimation = false }: Props) {
+export default function Card({ children, triggerOnHoverAnimation = false, style }: Props) {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -15,7 +17,8 @@ export default function Card({ children, triggerOnHoverAnimation = false }: Prop
             style={[
                 styles.container,
                 triggerOnHoverAnimation && hoverTransition,
-                triggerOnHoverAnimation && hovered && styles.hovered
+                triggerOnHoverAnimation && hovered && styles.hovered,
+                style
             ]}
             onPointerEnter={triggerOnHoverAnimation ? () => setHovered(true) : undefined}
             onPointerLeave={triggerOnHoverAnimation ? () => setHovered(false) : undefined}

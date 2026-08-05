@@ -119,5 +119,9 @@ export const PageBackground = {
   }),
 } as ViewStyle;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
+/**
+ * Height of the floating bottom bar. It overlays the page rather than shrinking it,
+ * so any scrollable content has to pad past this to stay reachable.
+ */
+export const BottomBarHeight = 64;
 export const MaxContentWidth = 800;

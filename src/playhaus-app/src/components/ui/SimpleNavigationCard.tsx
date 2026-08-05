@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
@@ -29,27 +30,29 @@ export default function SimpleNavigationCard({
 }: Props) {
     return (
         <Link href={navigationUrl} asChild>
-            <Pressable style={styles.card}>
-                <View style={[styles.iconTile, { backgroundColor: color }]}>
-                    <Feather name={icon} size={24} color={iconColor} />
-                </View>
+            <Pressable style={styles.pressable}>
+                <Card triggerOnHoverAnimation style={styles.card}>
+                    <View style={[styles.iconTile, { backgroundColor: color }]}>
+                        <Feather name={icon} size={24} color={iconColor} />
+                    </View>
 
-                <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.description}>{description}</AppText>
+                    <AppText style={styles.title}>{title}</AppText>
+                    <AppText style={styles.description}>{description}</AppText>
+                </Card>
             </Pressable>
         </Link>
     )
 }
 
 const styles = StyleSheet.create({
+    // `asChild` means this Pressable *is* the flex child of the row, so it claims an
+    // equal share of the width; the Card then fills it, keeping side-by-side cards
+    // the same height however their text wraps.
+    pressable: {
+        flex: 1
+    },
     card: {
-        flex: 1,
-        backgroundColor: Colors.light.backgroundSecondary,
-        borderRadius: 16,
-        borderWidth: 2,
-        borderColor: Colors.light.border,
-        padding: Spacing.three,
-        ...Shadows.hardLarge
+        flex: 1
     },
     iconTile: {
         width: 48,
