@@ -1,5 +1,7 @@
+import AppText from "@/components/text/AppText";
+import { Colors, Shadows, Spacing } from "@/constants/theme";
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 interface Props {
     children: React.ReactNode
@@ -7,10 +9,23 @@ interface Props {
 
 export default function Card({ children }: Props) {
     return (
-        <View>
-            <Text>
+        <View style={styles.container}>
+            <AppText>
                 {children}
-            </Text>
+            </AppText>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.light.backgroundSecondary,
+        borderRadius: 14,
+        flexDirection: 'column',
+        borderWidth: 2,
+        borderColor: Colors.light.border,
+        padding: Spacing.three,
+        width: '100%',
+        ...Shadows.hard        
+    }
+})

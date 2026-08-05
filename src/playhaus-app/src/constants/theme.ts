@@ -5,18 +5,19 @@
 
 import '@/global.css';
 
-import { Platform, type ViewStyle } from 'react-native';
+import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 export const Colors = {
   light: {
     text: '#0F0D12',
     background: '#ffffff',
+    backgroundSecondary: '#FEFCF4',
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
     border: "#0F0D12",
     
-    lemon: "#FFE538",      
+    lemon: "#FFE538",
   },
   dark: {
     text: '#ffffff',
@@ -31,35 +32,50 @@ export const FontSizes = {
   sm: 14,
   md: 16,
   lg: 18,
-  xl: 24
+  xl: 24,
+  huge: 48
 }
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+/**
+ * Outfit ships as one static file per weight (there is no variable cut), so each
+ * weight registers as its own font family. That means `fontWeight` on its own does
+ * nothing once a custom `fontFamily` is set — the family name has to carry the
+ * weight. Use `fontFamilyForWeight()`, or just render text through the `AppText`
+ * component, which applies this for you.
+ *
+ * Only the weights listed here are loaded in `src/app/_layout.tsx`. To add one,
+ * add it in both places — an unloaded family silently falls back to the system font.
+ */
+export const Fonts = {
+  400: 'Outfit_400Regular',
+  500: 'Outfit_500Medium',
+  700: 'Outfit_700Bold',
+  900: 'Outfit_900Black',
+} as const;
+
+export type FontWeight = keyof typeof Fonts;
+
+const LoadedWeights = Object.keys(Fonts).map(Number) as FontWeight[];
+
+/**
+ * Resolve any React Native `fontWeight` to a loaded Outfit family, snapping to the
+ * nearest available weight (600 -> 700, 300 -> 400, ...).
+ */
+export function fontFamilyForWeight(weight: TextStyle['fontWeight']): string {
+  if (weight == null) return Fonts[400];
+  if (weight === 'normal') return Fonts[400];
+  if (weight === 'bold') return Fonts[700];
+
+  const numeric = typeof weight === 'number' ? weight : Number(weight);
+  if (!Number.isFinite(numeric)) return Fonts[400];
+
+  const nearest = LoadedWeights.reduce((best, candidate) =>
+    Math.abs(candidate - numeric) < Math.abs(best - numeric) ? candidate : best
+  );
+  return Fonts[nearest];
+}
 
 export const Spacing = {
   half: 2,
@@ -71,26 +87,8 @@ export const Spacing = {
   six: 64,
 } as const;
 
-/**
- * Hard (neo-brutalist) offset shadows, equivalent to the Tailwind utility
- * `--tw-shadow: 3px 3px 0 0 var(--tw-shadow-color, var(--ink))`.
- *
- * These use the CSS-compatible `boxShadow` style prop instead of the legacy
- * `shadow*` / `elevation` props, so one value renders identically everywhere:
- * - iOS + Android: supported natively on the New Architecture (default in Expo SDK 54+).
- * - Web: react-native-web passes the string through to CSS `box-shadow`
- *   (it also deprecates the `shadow*` props in favour of this one).
- *
- * Notes:
- * - Android draws outset shadows from the view's outline, so the view needs a
- *   `backgroundColor` (and a matching `borderRadius`) for the shadow to show.
- * - Android 9+ (API 28) is required; older devices simply render no shadow
- *   rather than the blurred, non-offset `elevation` shadow.
- */
-const Ink = Colors.light.border;
-
 /** Build a hard shadow: `<offset>px <offset>px 0 0 <color>`. */
-export const hardShadow = (offset: number = 3, color: string = Ink): ViewStyle => ({
+export const hardShadow = (offset: number = 3, color: string = Colors.light.border): ViewStyle => ({
   boxShadow: `${offset}px ${offset}px 0 0 ${color}`,
 });
 

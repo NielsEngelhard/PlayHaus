@@ -1,13 +1,22 @@
+import AppText from '@/components/text/AppText';
+import BigIntroText from '@/components/text/BigIntroText';
 import Card from '@/components/ui/Card';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 
 export default function HomeScreen() {
   return (
-    <Text>
-      <Card>
-        yehes
-      </Card>
-    </Text>
+    <View style={{ width: '100%' }}>
+      <BigIntroText
+        title='Tiny games,'
+        accent='big fun.'
+      />
+
+      <AppText>
+        <Card>
+          yehes
+        </Card>
+      </AppText>
+    </View>
   );
 }

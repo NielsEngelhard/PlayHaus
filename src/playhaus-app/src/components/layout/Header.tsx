@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Logo from "./Logo";
+import Tag from "../ui/Tag";
+import { APP_VERSION } from "@/constants/global-constants";
 
 export default function Card() {
     return (
@@ -12,9 +14,7 @@ export default function Card() {
 
             {/* Right */}
             <View>
-                <Text>
-                    Right
-                </Text>
+                <Tag text={APP_VERSION} />
             </View>
         </View>
     )
