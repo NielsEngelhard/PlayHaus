@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
 import { Colors, FontSizes, Spacing } from "@/constants/theme";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 interface Props {
     text: string
@@ -8,18 +8,28 @@ interface Props {
 
 export default function Tag({ text }: Props) {
     return (
-        <View>
-            <AppText style={{
-                borderWidth: 2,
-                borderColor: Colors.light.border,
-                borderRadius: 14,
-                paddingVertical: 2,
-                paddingHorizontal: Spacing.three,
-                backgroundColor: Colors.light.backgroundSecondary,
-                fontWeight: 500
-            }}>
+        <View style={styles.container}>
+            <AppText style={styles.text}>
                 {text}
             </AppText>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignSelf: 'flex-start'
+    },
+    text: {
+        borderWidth: 2,
+        borderColor: Colors.light.border,
+        borderRadius: 999,
+        paddingVertical: Spacing.one,
+        paddingHorizontal: Spacing.two + 2,
+        backgroundColor: Colors.light.backgroundSecondary,
+        fontSize: FontSizes.xs,
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+    }
+})

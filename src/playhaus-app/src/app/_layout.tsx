@@ -2,8 +2,9 @@ import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, Slot, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, useColorScheme, View } from 'react-native';
 import Header from '@/components/layout/Header';
+import { PageBackground, Spacing } from '@/constants/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,11 +42,17 @@ export default function TabLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <View style={styles.page}>
-        <View style={styles.content}>
-          <Header />
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.content}>
+            <Header />
 
-          <Slot />
-        </View>        
+            <Slot />
+          </View>
+        </ScrollView>
       </View>
     </ThemeProvider>
   );
@@ -55,13 +62,21 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
+    ...PageBackground,
+  },
+  scroll: {
+    width: '100%',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingHorizontal: Spacing.four,
+    paddingBottom: Spacing.six,
   },
   content: {
     maxWidth: 600,
     width: '100%',
-    flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',    
   }
 })

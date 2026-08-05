@@ -10,14 +10,18 @@ import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 export const Colors = {
   light: {
     text: '#0F0D12',
-    background: '#ffffff',
+    background: '#FEF5E6',
     backgroundSecondary: '#FEFCF4',
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    textSecondary: '#4B4C58',
+    textOnAccent: '#FEFBF8',
     border: "#0F0D12",
-    
+
+    primary: "#FE5A1D",
+    secondary: "#3B4DF0",
     lemon: "#FFE538",
+    available: "#31AA40",
   },
   dark: {
     text: '#ffffff',
@@ -29,10 +33,12 @@ export const Colors = {
 } as const;
 
 export const FontSizes = {
+  xs: 12,
   sm: 14,
   md: 16,
   lg: 18,
   xl: 24,
+  xxl: 30,
   huge: 48
 }
 
@@ -97,6 +103,18 @@ export const Shadows = {
   hardSmall: hardShadow(2),
   hardLarge: hardShadow(5),
 } as const;
+
+const pageGradient =
+  'radial-gradient(circle at 12% 18%, rgba(254, 90, 29, 0.14) 0%, transparent 38%), ' +
+  'radial-gradient(circle at 88% 82%, rgba(59, 77, 240, 0.12) 0%, transparent 42%)';
+
+export const PageBackground = {
+  backgroundColor: Colors.light.background,
+  ...Platform.select({
+    web: { backgroundImage: pageGradient },
+    default: { experimental_backgroundImage: pageGradient },
+  }),
+} as ViewStyle;
 
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
