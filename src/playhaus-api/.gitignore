@@ -27,6 +27,12 @@ go.work.sum
 # env file
 .env
 
+# sqlite database and its WAL sidecar files. Narrow on purpose -- a broad
+# data/ rule would swallow the tracked word lists.
+*.db
+*.db-wal
+*.db-shm
+
 # Editor/IDE
 # .idea/
 # .vscode/

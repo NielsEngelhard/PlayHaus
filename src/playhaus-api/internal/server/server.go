@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strings"
 
+	"gorm.io/gorm"
+
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/leagueofletters"
 	"playhaus-api/internal/pubquizr"
@@ -12,10 +14,11 @@ import (
 
 type Server struct {
 	logger *slog.Logger
+	db     *gorm.DB
 }
 
-func New(logger *slog.Logger) *Server {
-	return &Server{logger: logger}
+func New(logger *slog.Logger, db *gorm.DB) *Server {
+	return &Server{logger: logger, db: db}
 }
 
 // Handler wires every domain onto one mux. This is the only file that
@@ -27,9 +30,7 @@ func (s *Server) Handler() http.Handler {
 	mount(mux, "/api/v1/league-of-letters/", (&leagueofletters.Handlers{}).Routes())
 	mount(mux, "/api/v1/pubquizr/", (&pubquizr.Handlers{}).Routes())
 
-	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-	})
+	mux.HandleFunc("GET /healthz", s.handleHealthz)
 
 	return s.withMiddleware(mux)
 }
