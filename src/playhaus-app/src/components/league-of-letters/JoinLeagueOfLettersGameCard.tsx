@@ -1,10 +1,11 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
+import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, FontSizes, Shadows, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { Colors, FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { RelativePathString, useRouter } from "expo-router";
 import { useState } from "react";
-import { LayoutChangeEvent, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { LayoutChangeEvent, StyleSheet, TextInput, View } from "react-native";
 
 const CODE_LENGTH = 6;
 
@@ -65,13 +66,7 @@ export default function JoinLeagueOfLettersGameCard() {
                     style={[styles.input, { fontSize, letterSpacing: fontSize * TRACKING_RATIO }]}
                 />
 
-                <Pressable
-                    onPress={join}
-                    disabled={!canJoin}
-                    style={[styles.button, !canJoin && styles.buttonDisabled]}
-                >
-                    <AppText style={styles.buttonText}>Go</AppText>
-                </Pressable>
+                <TextButton text='Go' onPress={join} disabled={!canJoin} style={styles.button} />
             </View>
         </Card>
     )
@@ -109,23 +104,8 @@ const styles = StyleSheet.create({
         color: Colors.light.text
     },
     button: {
-        // The field absorbs every bit of the shrinking; "Go" stays whole.
-        flexShrink: 0,
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Colors.light.border,
-        borderRadius: 14,
-        backgroundColor: Colors.light.secondary,
-        paddingHorizontal: Spacing.four,
-        ...Shadows.hard
-    },
-    buttonDisabled: {
-        opacity: 0.5
-    },
-    buttonText: {
-        fontSize: FontSizes.md,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        color: Colors.light.textOnAccent
+        // Overrides the button's own `fitText` alignment so it keeps matching the height
+        // of the field beside it, whatever type size the field settles on.
+        alignSelf: 'stretch'
     }
 })

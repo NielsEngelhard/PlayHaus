@@ -28,8 +28,8 @@ export default function LeagueOfLettersIndexPage() {
                         icon='cpu'
                         color={Colors.light.lemon}
                         title='Solo'
-                        description='Random woord, 6 pogingen. Snel een potje.'
-                        navigationUrl={ROUTES.leagueOfLettersSolo}
+                        description='Random woord, jij kiest lengte en taal.'
+                        navigationUrl={ROUTES.leagueOfLettersSoloSettings}
                     />
 
                     <SimpleNavigationCard
