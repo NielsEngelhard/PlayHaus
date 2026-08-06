@@ -23,7 +23,13 @@ export const Colors = {
     primary: "#FE5A1D",
     secondary: "#3B4DF0",
     lemon: "#FFE538",
+    mint: "#73ECBC",
+    blush: "#FFBEB8",
     available: "#31AA40",
+    /** Warnings and irreversible actions. Loud on purpose — use it sparingly. */
+    destructive: "#E31029",
+    /** Flat fill for the "off" half of a control, where nothing is happening yet. */
+    muted: "#EEE7DB",
   },
   dark: {
     text: '#ffffff',
