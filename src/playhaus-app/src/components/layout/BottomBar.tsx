@@ -38,7 +38,7 @@ function isActive(tab: Tab, pathname: string): boolean {
 
 /**
  * The app's primary navigation: a floating pill fixed to the bottom of every screen.
- * Where `Header` is the identity row and `BackBar` walks back up one page, this is how
+ * Where `Header` is the identity row and `BackButton` walks back up one page, this is how
  * you move between the app's four sections.
  *
  * It overlays the page instead of sitting in the layout flow, so anything scrollable

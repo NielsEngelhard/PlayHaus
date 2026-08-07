@@ -10,6 +10,7 @@ import (
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/leagueofletters"
 	"playhaus-api/internal/pubquizr"
+	"playhaus-api/internal/user"
 )
 
 type Server struct {
@@ -21,12 +22,12 @@ func New(logger *slog.Logger, db *gorm.DB) *Server {
 	return &Server{logger: logger, db: db}
 }
 
-// Handler wires every domain onto one mux. This is the only file that
-// changes when a new domain is added.
+// Handler wires every domain onto one mux.
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
 
 	mount(mux, "/api/v1/auth/", (&auth.Handlers{}).Routes())
+	mount(mux, "/api/v1/users/", auth.RequireUser(user.NewHandlers(s.db, s.logger).Routes()))
 	mount(mux, "/api/v1/league-of-letters/", (&leagueofletters.Handlers{}).Routes())
 	mount(mux, "/api/v1/pubquizr/", (&pubquizr.Handlers{}).Routes())
 

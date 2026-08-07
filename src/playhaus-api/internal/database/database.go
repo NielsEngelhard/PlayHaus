@@ -26,6 +26,11 @@ func Open(path string) (*gorm.DB, error) {
 	// themselves via slog.
 	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Silent),
+
+		// Turn driver-specific constraint failures into gorm's own sentinels,
+		// so services can test for gorm.ErrDuplicatedKey instead of matching
+		// sqlite error strings.
+		TranslateError: true,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("open sqlite at %s: %w", path, err)

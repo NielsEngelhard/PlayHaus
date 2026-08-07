@@ -1,8 +1,10 @@
-import BackBar from "@/components/layout/BackBar";
+import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import JoinLeagueOfLettersGameCard from "@/components/league-of-letters/JoinLeagueOfLettersGameCard";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
+import BackButton from "@/components/ui/BackButton";
 import SimpleNavigationCard from "@/components/ui/SimpleNavigationCard";
 import ValueCard from "@/components/ui/ValueCard";
+import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
 import { StyleSheet, View } from "react-native";
@@ -11,13 +13,15 @@ import { StyleSheet, View } from "react-native";
 const PLAYER_NAME = 'Magpie54';
 
 export default function LeagueOfLettersIndexPage() {
+    useHeaderTag(LEAGUE_OF_LETTERS_NAME);
+
     return (
         <View style={styles.container}>
-            <BackBar href={ROUTES.home} tag='League of Letters' />
+            <BackButton href={ROUTES.home} />
 
             <View style={styles.body}>
                 <SimpleTextHero
-                    title='League of Letters'
+                    title={LEAGUE_OF_LETTERS_NAME}
                     description='Raad het 5-letter woord in 6 beurten. Groen = goed, oranje = juiste letter verkeerde plek.'
                 />
 

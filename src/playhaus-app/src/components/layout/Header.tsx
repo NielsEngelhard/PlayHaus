@@ -2,11 +2,13 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import Logo from "./Logo";
 import Tag from "../ui/Tag";
-import { APP_VERSION } from "@/constants/global-constants";
+import { useHeaderTagValue } from "./HeaderTagContext";
 import { Link, RelativePathString } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 
-export default function Card() {
+export default function Header() {
+    const tag = useHeaderTagValue();
+
     return (
         <View style={styles.container}>
             {/* Left */}
@@ -16,9 +18,9 @@ export default function Card() {
                 </Link>
             </View>
 
-            {/* Right */}
+            {/* Right — whatever the current page claimed, or the app version. */}
             <View>
-                <Tag text={APP_VERSION} />
+                <Tag text={tag} />
             </View>
         </View>
     )
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
         height: 75,
         flexDirection: 'row',
         justifyContent: "space-between",
-        alignItems: 'center',        
+        alignItems: 'center',
         width: '100%'
     }
 })

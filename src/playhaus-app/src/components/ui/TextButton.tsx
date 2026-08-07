@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { Colors, FontSizes, SolidButton } from "@/constants/theme";
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
@@ -42,17 +42,7 @@ export default function TextButton({
 }
 
 const styles = StyleSheet.create({
-    button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Colors.light.border,
-        borderRadius: 14,
-        backgroundColor: Colors.light.secondary,
-        paddingHorizontal: Spacing.four,
-        paddingVertical: Spacing.two + Spacing.one,
-        ...Shadows.hard
-    },
+    button: SolidButton,
     // A column parent stretches its children by default, so fitting the label means
     // opting out of that rather than doing nothing.
     fitText: {

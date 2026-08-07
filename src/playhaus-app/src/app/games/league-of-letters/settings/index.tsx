@@ -1,13 +1,15 @@
-import BackBar from "@/components/layout/BackBar";
+import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
+import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import SelectInput from "@/components/ui/SelectInput";
 import TextButton from "@/components/ui/TextButton";
+import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
-import LanguageCard from "@/features/league-of-letters/components/LanguageCard";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { createSoloGame } from "@/features/league-of-letters/mock-solo-game";
-import { DEFAULT_SOLO_SETTINGS } from "@/features/league-of-letters/solo-settings";
+import { DEFAULT_SOLO_SETTINGS, LANGUAGES } from "@/features/league-of-letters/solo-settings";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -15,12 +17,22 @@ import { StyleSheet, View } from "react-native";
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 
+// Built once: the list never changes, and a fresh array every render would be a new
+// prop every render.
+const LANGUAGE_OPTIONS = LANGUAGES.map(({ code, label, description }) => ({
+    value: code,
+    label,
+    description
+}));
+
 /**
  * Set up a solo game, then start it. Nothing is saved: the settings live here until
  * `Start` hands them to the game screen, so backing out and returning gives you the
  * defaults again.
  */
 export default function LeagueOfLettersSettingsPage() {
+    useHeaderTag(LEAGUE_OF_LETTERS_NAME);
+
     const router = useRouter();
     const [settings, setSettings] = useState(DEFAULT_SOLO_SETTINGS);
     const [starting, setStarting] = useState(false);
@@ -48,7 +60,7 @@ export default function LeagueOfLettersSettingsPage() {
 
     return (
         <View style={styles.container}>
-            <BackBar href={ROUTES.leagueOfLettersIndex} tag='Solo' />
+            <BackButton href={ROUTES.leagueOfLettersIndex} />
 
             <View style={styles.body}>
                 <SimpleTextHero
@@ -64,8 +76,10 @@ export default function LeagueOfLettersSettingsPage() {
                 </View>
 
                 <View style={tilt('0.4deg')}>
-                    <LanguageCard
+                    <SelectInput
+                        label='Taal'
                         value={settings.language}
+                        options={LANGUAGE_OPTIONS}
                         onChange={language => setSettings(current => ({ ...current, language }))}
                     />
                 </View>

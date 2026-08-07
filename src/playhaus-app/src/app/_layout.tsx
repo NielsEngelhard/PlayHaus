@@ -6,6 +6,7 @@ import { Platform, ScrollView, StyleSheet, useColorScheme, View } from 'react-na
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
 import Header from '@/components/layout/Header';
+import { HeaderTagProvider } from '@/components/layout/HeaderTagContext';
 import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
 
 SplashScreen.preventAutoHideAsync();
@@ -46,22 +47,25 @@ export default function TabLayout() {
     // navigator, so `BottomBar` would have no insets to read without it.
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <View style={styles.page}>
-          <ScrollView
-            style={styles.scroll}
-            contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
-          >
-            <View style={styles.content}>
-              <Header />
+        {/* Wraps both, so the page inside `Slot` can set the chip `Header` renders. */}
+        <HeaderTagProvider>
+          <View style={styles.page}>
+            <ScrollView
+              style={styles.scroll}
+              contentContainerStyle={styles.scrollContent}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.content}>
+                <Header />
 
-              <Slot />
-            </View>
-          </ScrollView>
+                <Slot />
+              </View>
+            </ScrollView>
 
-          {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
-          <BottomBar />
-        </View>
+            {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
+            <BottomBar />
+          </View>
+        </HeaderTagProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

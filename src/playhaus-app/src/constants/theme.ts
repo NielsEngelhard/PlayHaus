@@ -113,6 +113,23 @@ export const Shadows = {
   hardLarge: hardShadow(5),
 } as const;
 
+/**
+ * The chrome shared by the app's solid buttons: hard border, hard shadow, accent fill.
+ * Lives here rather than in `TextButton` because `BackButton` wears the same look and
+ * the two have to stay identical.
+ */
+export const SolidButton = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderWidth: 2,
+  borderColor: Colors.light.border,
+  borderRadius: 14,
+  backgroundColor: Colors.light.secondary,
+  paddingHorizontal: Spacing.four,
+  paddingVertical: Spacing.two + Spacing.one,
+  ...Shadows.hard,
+} as ViewStyle;
+
 const pageGradient =
   'radial-gradient(circle at 12% 18%, rgba(254, 90, 29, 0.14) 0%, transparent 38%), ' +
   'radial-gradient(circle at 88% 82%, rgba(59, 77, 240, 0.12) 0%, transparent 42%)';
