@@ -16,13 +16,11 @@ export default function LeagueOfLettersIndexPage() {
     useHeaderTag(LEAGUE_OF_LETTERS_NAME);
 
     return (
-        <View style={styles.container}>
-            <BackButton href={ROUTES.home} />
-
+        <View style={styles.container}>            
             <View style={styles.body}>
                 <SimpleTextHero
                     title={LEAGUE_OF_LETTERS_NAME}
-                    description='Raad het 5-letter woord in 6 beurten. Groen = goed, oranje = juiste letter verkeerde plek.'
+                    description='Raad het woord. Groen = goed, oranje = juiste letter verkeerde plek.'
                 />
 
                 <ValueCard label='Je naam' value={PLAYER_NAME} icon='user' />
@@ -48,6 +46,8 @@ export default function LeagueOfLettersIndexPage() {
 
                 <JoinLeagueOfLettersGameCard />
             </View>
+
+            <BackButton href={ROUTES.home} />
         </View>
     )
 }
