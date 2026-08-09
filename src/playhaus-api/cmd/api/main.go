@@ -60,6 +60,8 @@ func addUserHandlers(mux *http.ServeMux, h *app_user.Handler, a *auth.Handler) {
 
 func addLeagueOfLettersHandlers(mux *http.ServeMux, h *leagueofletters.Handler, a *auth.Handler) {
 	mux.HandleFunc("POST /api/v1/league-of-letters/games", a.RequireAuth(h.CreateGameHandler))
+	mux.HandleFunc("GET /api/v1/league-of-letters/games/{id}", a.RequireAuth(h.GetGameHandler))
+	mux.HandleFunc("POST /api/v1/league-of-letters/games/{id}/guesses", a.RequireAuth(h.CreateGuessHandler))
 }
 
 func initDatabase() (*gorm.DB, error) {

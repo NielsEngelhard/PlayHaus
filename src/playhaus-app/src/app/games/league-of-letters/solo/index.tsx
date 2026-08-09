@@ -1,60 +1,67 @@
 import { useFullScreen } from "@/components/layout/FullScreenContext";
 import { useHeaderTag } from "@/components/layout/HeaderTagContext";
+import LoadingPage from "@/components/layout/LoadingPage";
+import BackButton from "@/components/ui/BackButton";
+import InlineNotification from "@/components/ui/InlineNotification";
+import TextButton from "@/components/ui/TextButton";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
-import { Spacing } from "@/constants/theme";
-import MockStateSwitcher from "@/features/league-of-letters/components/MockStateSwitcher";
+import { ROUTES } from "@/constants/routes";
+import { Colors, Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
-import {
-    DEFAULT_SOLO_SNAPSHOT,
-    MOCK_SOLO_GAMES,
-    MOCK_USER_ID,
-    parseWordLength,
-    snapshotById,
-    withSettings
-} from "@/features/league-of-letters/mock-games";
-import type { LanguageCode } from "@/features/league-of-letters/solo-settings";
+import { useGame } from "@/features/league-of-letters/useGame";
 import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 /**
- * A solo game in progress. No clock and nobody else on screen — that is the whole of
- * what makes it solo; the board and keyboard are the same ones multiplayer uses.
+ * A solo game in progress.
  *
- * TODO: the game is a fixture. `gameId` is handed over by the settings screen but cannot
- * be used for anything until `GET /api/v1/league-of-letters/games/{id}` exists.
+ * No clock and nobody else on screen — that is the whole of what makes it solo.
+ * The board and keyboard are the same ones a multiplayer room uses.
+ *
+ * The word length and language are not read from the route: the game is fetched
+ * by id and carries its own, which are what the server actually made rather than
+ * what the settings screen asked for.
  */
 export default function LeagueOfLettersSoloPage() {
     useHeaderTag(LEAGUE_OF_LETTERS_NAME);
     useFullScreen();
 
-    const { lang, length } = useLocalSearchParams<{
-        gameId: string,
-        lang: string,
-        length: string
-    }>();
+    const { user } = useAuth();
+    const { gameId } = useLocalSearchParams<{ gameId: string }>();
+    const { game, loading, error, reload, guess } = useGame(gameId);
 
-    const [snapshotId, setSnapshotId] = useState(DEFAULT_SOLO_SNAPSHOT);
+    if (loading) {
+        return <LoadingPage message='Spel laden…' />;
+    }
 
-    const game = withSettings(
-        snapshotById(MOCK_SOLO_GAMES, snapshotId).game,
-        parseWordLength(length),
-        lang as LanguageCode | undefined
-    );
+    if (game === null || user === null) {
+        return (
+            <View style={styles.failed}>
+                <InlineNotification
+                    icon='alert-triangle'
+                    color={Colors.light.blush}
+                    title='Mislukt'
+                    message={error ?? 'Dit spel kon niet worden geladen.'}
+                />
 
-    return (
-        <View style={styles.page}>
-            <MockStateSwitcher snapshots={MOCK_SOLO_GAMES} value={snapshotId} onChange={setSnapshotId} />
+                <TextButton text='Opnieuw' onPress={reload} variant='primary' fullWidth />
 
-            <PlayingGame game={game} userId={MOCK_USER_ID} />
-        </View>
-    )
+                <BackButton href={ROUTES.leagueOfLettersIndex} />
+            </View>
+        );
+    }
+
+    return <PlayingGame game={game} userId={user.id} onGuess={guess} />;
 }
 
 const styles = StyleSheet.create({
-    page: {
-        flex: 1,
+    failed: {
         width: '100%',
-        gap: Spacing.two
+        gap: Spacing.four,
+        // Sits below the header rather than filling the screen: there is no board
+        // to centre, and a lone message floating mid-page reads as a crash.
+        paddingTop: Spacing.four,
+        alignItems: 'flex-start'
     }
 })

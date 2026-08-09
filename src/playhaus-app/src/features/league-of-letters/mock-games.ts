@@ -1,14 +1,13 @@
 import type { Game, GameGuess, GamePlayer, Mark } from "@/api/calls/league-of-letters";
-import { WORD_LENGTHS, type LanguageCode, type WordLength } from "@/features/league-of-letters/solo-settings";
 
 /**
- * Hand-written games, for building the playing screen against.
+ * Hand-written multiplayer games, for building the room screen against.
  *
- * TODO: replace with the real thing. The backend only registers `POST .../games` today —
- * there is no `GET /api/v1/league-of-letters/games/{id}` to read a game back from and no
- * endpoint to submit a guess to, so nothing here can be fetched yet. Everything is typed
- * as the real `Game`, so when those land the screens swap this module for a fetch and a
- * poll on `version` and the components below it do not change.
+ * TODO: delete once multiplayer is served by the API. Solo has stopped needing this —
+ * it reads a real game through `useGame` — but a room still has no endpoints behind it:
+ * nothing joins by code, nothing starts a lobby, and a guess in a shared round has
+ * nowhere to go. Everything here is typed as the real `Game`, so the room screen swaps
+ * this module for a fetch and a poll on `version` and nothing below it changes.
  *
  * These are snapshots, not a simulation: the answers are never in this file, the marks
  * are written out by hand exactly as the server would have scored them, and playing a
@@ -53,19 +52,6 @@ const KARIG = guess(5, 'KARIG', ['correct', 'correct', 'present', 'absent', 'abs
 const KAPER = guess(6, 'KAPER', ['correct', 'correct', 'absent', 'absent', 'present']);
 const KAARS = guess(4, 'KAARS', ['correct', 'correct', 'correct', 'correct', 'correct']);
 
-const soloBase = {
-    id: 'game-solo-mock',
-    mode: 'solo',
-    hostUserId: MOCK_USER_ID,
-    language: 'nl',
-    wordLength: 5,
-    maxGuesses: MAX_GUESSES,
-    startedAt: CREATED_AT,
-    version: 1,
-    players: [you],
-    createdAt: CREATED_AT
-} as const satisfies Partial<Game>;
-
 const multiplayerBase = {
     id: 'game-room-mock',
     code: 'KP7XQ2',
@@ -92,53 +78,6 @@ export interface MockSnapshot {
  * the round is still winnable, so the snapshots that reveal it are exactly the finished
  * ones. Nothing in the UI needs a separate "is it over" flag.
  */
-export const MOCK_SOLO_GAMES: MockSnapshot[] = [
-    {
-        id: 'solo-fresh',
-        label: 'Vers',
-        game: {
-            ...soloBase,
-            status: 'active',
-            round: { number: 1, startedAt: CREATED_AT, endsAt: inMinutes(5), guesses: [] }
-        }
-    },
-    {
-        id: 'solo-midgame',
-        label: 'Bezig',
-        game: {
-            ...soloBase,
-            status: 'active',
-            round: { number: 1, startedAt: CREATED_AT, endsAt: inMinutes(5), guesses: [SCHIP, TAKEN, KAMER] }
-        }
-    },
-    {
-        id: 'solo-won',
-        label: 'Gewonnen',
-        game: {
-            ...soloBase,
-            status: 'finished',
-            endsAt: CREATED_AT,
-            round: {
-                number: 1, startedAt: CREATED_AT, endsAt: CREATED_AT, word: 'KAARS',
-                guesses: [SCHIP, TAKEN, KAMER, KAARS]
-            }
-        }
-    },
-    {
-        id: 'solo-lost',
-        label: 'Verloren',
-        game: {
-            ...soloBase,
-            status: 'finished',
-            endsAt: CREATED_AT,
-            round: {
-                number: 1, startedAt: CREATED_AT, endsAt: CREATED_AT, word: 'KAARS',
-                guesses: [SCHIP, TAKEN, KAMER, KLAAR, KARIG, KAPER]
-            }
-        }
-    }
-];
-
 export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
     {
         id: 'room-midgame',
@@ -169,8 +108,22 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
         }
     },
     {
+        id: 'room-won',
+        label: 'Gewonnen',
+        game: {
+            ...multiplayerBase,
+            status: 'finished',
+            endsAt: CREATED_AT,
+            players: [{ ...you, score: 8 }, ...others],
+            round: {
+                number: 2, startedAt: CREATED_AT, endsAt: CREATED_AT, word: 'KAARS',
+                guesses: [SCHIP, TAKEN, KAMER, KAARS]
+            }
+        }
+    },
+    {
         id: 'room-finished',
-        label: 'Afgelopen',
+        label: 'Verloren',
         game: {
             ...multiplayerBase,
             status: 'finished',
@@ -183,39 +136,9 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
     }
 ];
 
-/** What each route opens on: a game already under way, which shows the most at once. */
-export const DEFAULT_SOLO_SNAPSHOT = 'solo-midgame';
+/** What the room opens on: a game already under way, which shows the most at once. */
 export const DEFAULT_MULTIPLAYER_SNAPSHOT = 'room-midgame';
 
 export function snapshotById(snapshots: MockSnapshot[], id: string): MockSnapshot {
     return snapshots.find(snapshot => snapshot.id === id) ?? snapshots[0];
-}
-
-/** Narrow a route param back to a `WordLength`; they arrive as strings. */
-export function parseWordLength(value: string | undefined): WordLength | undefined {
-    const length = Number(value);
-
-    return WORD_LENGTHS.find(candidate => candidate === length);
-}
-
-/**
- * Bend a snapshot to the settings the player actually chose, so the board they get is
- * the width they asked for rather than the fixture's five.
- *
- * Changing the length empties the round: every guess here was hand-scored against a
- * five-letter answer and there is nothing that could honestly re-mark them against a
- * word of another length — that is the server's job, and this is a fixture.
- */
-export function withSettings(game: Game, wordLength?: WordLength, language?: LanguageCode): Game {
-    const resized = wordLength !== undefined && wordLength !== game.wordLength;
-
-    return {
-        ...game,
-        language: language ?? game.language,
-        wordLength: wordLength ?? game.wordLength,
-        status: resized ? 'active' : game.status,
-        round: game.round && (resized
-            ? { ...game.round, guesses: [], word: undefined }
-            : game.round)
-    };
 }

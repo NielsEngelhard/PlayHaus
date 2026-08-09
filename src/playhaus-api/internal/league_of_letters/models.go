@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	wordlists "playhausapi/internal/league_of_letters/words"
 
@@ -121,7 +122,11 @@ type Round struct {
 	Word string `gorm:"type:text;not null" json:"-"`
 
 	StartedAt time.Time
-	EndsAt    time.Time
+
+	// Nil when the round is untimed, which is every solo round: a solo player
+	// is racing nobody, and the app shows them no clock. Only a shared game
+	// needs a deadline, because there the clock is what makes it a race.
+	EndsAt *time.Time
 }
 
 func (Round) TableName() string { return "lol_rounds" }
@@ -207,6 +212,48 @@ func Evaluate(guess, target string) []Mark {
 	return marks
 }
 
+// NormalizeGuess puts a submitted word in the shape everything else here works
+// in: trimmed and lower case. The words in the lists are stored that way and
+// Evaluate lowers its arguments anyway, so normalizing once on the way in means
+// nothing downstream has to think about it.
+func NormalizeGuess(word string) string {
+	return strings.ToLower(strings.TrimSpace(word))
+}
+
+// ValidGuess reports whether a normalized guess is the right shape for a game.
+//
+// Shape only — it does not ask whether the word exists. The embedded lists are
+// still ten-word placeholders, so a dictionary check against them would reject
+// very nearly every real word a player typed, which is worse than not checking.
+//
+// TODO: once the lists are real, require the guess to be in one and give the
+// app a distinct error for it, so "not a word" can be told from "wrong length".
+func ValidGuess(word string, length int) bool {
+	if utf8.RuneCountInString(word) != length {
+		return false
+	}
+
+	for _, r := range word {
+		if r < 'a' || r > 'z' {
+			return false
+		}
+	}
+
+	return true
+}
+
+// GuessScore is what solving a round on your nth guess is worth: six points for
+// finding it first time, down to one for scraping it on the last.
+//
+// The only thing being rewarded is getting there in fewer guesses, so the scale
+// is simply how many guesses were left when it fell.
+func GuessScore(number int) int {
+	if score := MaxGuesses - number + 1; score > 1 {
+		return score
+	}
+	return 1
+}
+
 // Room codes are read aloud and typed in by hand, so the alphabet leaves out
 // the pairs that get misheard or mistyped: no O/0, no I/1. What is left is
 // exactly 32 characters, which is a power of two — so a random byte masked to
@@ -236,7 +283,9 @@ func NewRoomCode() (string, error) {
 
 // NewRound builds the next round of a game, drawing a word from the embedded
 // lists. It does not save; the caller decides which transaction it belongs to.
-func NewRound(game Game, number int, endsAt time.Time) (Round, error) {
+//
+// A nil endsAt makes the round untimed.
+func NewRound(game Game, number int, endsAt *time.Time) (Round, error) {
 	lang, err := wordlists.ParseLanguage(game.Language)
 	if err != nil {
 		return Round{}, err

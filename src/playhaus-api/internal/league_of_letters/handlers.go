@@ -30,8 +30,6 @@ const codeAttempts = 5
 // deadline set. A multiplayer game is created in the lobby with a room code and
 // no round at all — the word is drawn when the host starts it, so a code that
 // sits unused for an hour hasn't burned a word or quietly run out its clock.
-//
-// Must be wrapped in RequireAuth.
 func (h *Handler) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 	userID, ok := authctx.UserID(r.Context())
 	if !ok {
@@ -108,10 +106,12 @@ func (h *Handler) createGame(ctx context.Context, userID string, mode Mode, lang
 		}
 		game.Code = &code
 	} else {
-		endsAt := now.Add(GameDuration)
+		// Active immediately, and with no deadline. GameDuration is a rule about
+		// racing other people; a solo player is racing nobody and the app shows
+		// them no clock, so a deadline here would only mean their game stopped
+		// taking guesses for a reason nothing on screen ever explained.
 		game.Status = StatusActive
 		game.StartedAt = &now
-		game.EndsAt = &endsAt
 	}
 
 	err := h.DB.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
@@ -127,7 +127,7 @@ func (h *Handler) createGame(ctx context.Context, userID string, mode Mode, lang
 			return nil
 		}
 
-		round, err := NewRound(game, 1, *game.EndsAt)
+		round, err := NewRound(game, 1, game.EndsAt)
 		if err != nil {
 			return err
 		}
@@ -138,6 +138,260 @@ func (h *Handler) createGame(ctx context.Context, userID string, mode Mode, lang
 	}
 
 	return game, nil
+}
+
+// Why a game read or a guess was refused. Handlers turn these into statuses in
+// writeGameError; nothing outside this package needs to tell them apart.
+var (
+	errGameNotFound   = errors.New("game not found")
+	errGameNotActive  = errors.New("game is not accepting guesses")
+	errBadGuess       = errors.New("guess does not fit this game")
+	errAlreadyGuessed = errors.New("word already guessed this round")
+	errOutOfGuesses   = errors.New("no guesses left")
+)
+
+// GetGameHandler reads a game back.
+//
+// This is what the app polls: the response is the same shape every other read
+// returns, so a client that can render a created game can render this one.
+//
+// Must be wrapped in RequireAuth.
+func (h *Handler) GetGameHandler(w http.ResponseWriter, r *http.Request) {
+	userID, ok := authctx.UserID(r.Context())
+	if !ok {
+		http.Error(w, "Authentication required", http.StatusUnauthorized)
+		return
+	}
+
+	game, err := h.loadGameForPlayer(r.Context(), r.PathValue("id"), userID)
+	if err != nil {
+		writeGameError(w, err)
+		return
+	}
+
+	game, err = h.finishIfExpired(r.Context(), game)
+	if err != nil {
+		http.Error(w, "Could not load game", http.StatusInternalServerError)
+		return
+	}
+
+	response, err := h.gameResponse(r.Context(), game)
+	if err != nil {
+		http.Error(w, "Could not load game", http.StatusInternalServerError)
+		return
+	}
+
+	json_utils.WriteJSON(w, http.StatusOK, response)
+}
+
+// CreateGuessHandler records a guess and hands back the whole game.
+//
+// The whole game rather than just the new guess: the guess is not the only
+// thing that changed — it may have ended the round, moved a score, or revealed
+// the answer — and a client that re-renders from one response can never hold a
+// half-updated board.
+//
+// Must be wrapped in RequireAuth.
+func (h *Handler) CreateGuessHandler(w http.ResponseWriter, r *http.Request) {
+	userID, ok := authctx.UserID(r.Context())
+	if !ok {
+		http.Error(w, "Authentication required", http.StatusUnauthorized)
+		return
+	}
+
+	var req createGuessRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	game, err := h.loadGameForPlayer(r.Context(), r.PathValue("id"), userID)
+	if err != nil {
+		writeGameError(w, err)
+		return
+	}
+
+	// Settled before the guess is looked at, so a game whose clock ran out while
+	// the player was typing refuses the word rather than accepting a late one.
+	game, err = h.finishIfExpired(r.Context(), game)
+	if err != nil {
+		http.Error(w, "Could not load game", http.StatusInternalServerError)
+		return
+	}
+
+	game, err = h.createGuess(r.Context(), game, userID, NormalizeGuess(req.Word))
+	if err != nil {
+		writeGameError(w, err)
+		return
+	}
+
+	response, err := h.gameResponse(r.Context(), game)
+	if err != nil {
+		http.Error(w, "Could not load game", http.StatusInternalServerError)
+		return
+	}
+
+	json_utils.WriteJSON(w, http.StatusCreated, response)
+}
+
+// createGuess writes the guess, the score it earned, and the game's new state
+// as one transaction, then re-reads the game.
+//
+// Everything it needs to decide is read inside the transaction rather than
+// passed in: how many guesses the player has already had is exactly the kind of
+// thing two requests in flight at once would both read as five.
+func (h *Handler) createGuess(ctx context.Context, game Game, userID, word string) (Game, error) {
+	if game.Status != StatusActive {
+		return Game{}, errGameNotActive
+	}
+	if !ValidGuess(word, game.WordLength) {
+		return Game{}, errBadGuess
+	}
+
+	err := h.DB.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var round Round
+		err := tx.Where("game_id = ?", game.ID).Order("number DESC").First(&round).Error
+		switch {
+		case errors.Is(err, gorm.ErrRecordNotFound):
+			// An active game always has a round. If it somehow doesn't, there is
+			// nothing to guess against, which is the same answer as a finished one.
+			return errGameNotActive
+		case err != nil:
+			return err
+		}
+
+		var mine []Guess
+		if err := tx.Where("round_id = ? AND user_id = ?", round.ID, userID).
+			Order("number").Find(&mine).Error; err != nil {
+			return err
+		}
+
+		if len(mine) >= MaxGuesses {
+			return errOutOfGuesses
+		}
+		for _, previous := range mine {
+			if previous.Word == round.Word {
+				// Already found it. The round is over for this player whatever the
+				// game as a whole is still doing.
+				return errGameNotActive
+			}
+			if previous.Word == word {
+				return errAlreadyGuessed
+			}
+		}
+
+		number := len(mine) + 1
+		if err := tx.Create(&Guess{
+			RoundID: round.ID,
+			UserID:  userID,
+			Number:  number,
+			Word:    word,
+		}).Error; err != nil {
+			return err
+		}
+
+		solved := word == round.Word
+		if solved {
+			if err := tx.Model(&Player{}).
+				Where("game_id = ? AND user_id = ?", game.ID, userID).
+				Update("score", gorm.Expr("score + ?", GuessScore(number))).Error; err != nil {
+				return err
+			}
+		}
+
+		updates := map[string]any{"version": gorm.Expr("version + 1")}
+		// A solo game is over the moment its only player is: they found the word,
+		// or they have just spent the last guess. A multiplayer game is not —
+		// everyone else is still playing — so it stays open on its own clock.
+		if game.Mode == ModeSolo && (solved || number >= MaxGuesses) {
+			updates["status"] = StatusFinished
+		}
+
+		return tx.Model(&Game{}).Where("id = ?", game.ID).Updates(updates).Error
+	})
+	if err != nil {
+		return Game{}, err
+	}
+
+	return h.loadGame(ctx, game.ID)
+}
+
+// finishIfExpired closes a game whose clock has run out.
+//
+// Nothing sweeps games in the background, so expiry is settled on read: whoever
+// looks next is the one who writes it down. Solo games have no deadline, so for
+// them this never fires.
+func (h *Handler) finishIfExpired(ctx context.Context, game Game) (Game, error) {
+	if game.Status != StatusActive || !game.HasExpired(time.Now()) {
+		return game, nil
+	}
+
+	err := h.DB.WithContext(ctx).Model(&Game{}).
+		Where("id = ? AND status = ?", game.ID, StatusActive).
+		Updates(map[string]any{
+			"status":  StatusFinished,
+			"version": gorm.Expr("version + 1"),
+		}).Error
+	if err != nil {
+		return Game{}, err
+	}
+
+	return h.loadGame(ctx, game.ID)
+}
+
+func (h *Handler) loadGame(ctx context.Context, gameID string) (Game, error) {
+	var game Game
+	err := h.DB.WithContext(ctx).Where("id = ?", gameID).First(&game).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return Game{}, errGameNotFound
+	}
+	return game, err
+}
+
+// loadGameForPlayer reads a game the caller is actually in.
+//
+// Being in it is the whole of the permission model: there is nothing to see in
+// a game you are not playing, and a solo game has exactly one player.
+func (h *Handler) loadGameForPlayer(ctx context.Context, gameID, userID string) (Game, error) {
+	if gameID == "" {
+		return Game{}, errGameNotFound
+	}
+
+	game, err := h.loadGame(ctx, gameID)
+	if err != nil {
+		return Game{}, err
+	}
+
+	var players int64
+	if err := h.DB.WithContext(ctx).Model(&Player{}).
+		Where("game_id = ? AND user_id = ?", gameID, userID).
+		Count(&players).Error; err != nil {
+		return Game{}, err
+	}
+	if players == 0 {
+		// Deliberately the same answer as a game that does not exist: whether an
+		// id is real is not something a stranger gets to find out by asking.
+		return Game{}, errGameNotFound
+	}
+
+	return game, nil
+}
+
+func writeGameError(w http.ResponseWriter, err error) {
+	switch {
+	case errors.Is(err, errGameNotFound):
+		http.Error(w, "Game not found", http.StatusNotFound)
+	case errors.Is(err, errBadGuess):
+		http.Error(w, "Guess does not fit this game", http.StatusBadRequest)
+	case errors.Is(err, errGameNotActive):
+		http.Error(w, "Game is not accepting guesses", http.StatusConflict)
+	case errors.Is(err, errAlreadyGuessed):
+		http.Error(w, "Word already guessed this round", http.StatusConflict)
+	case errors.Is(err, errOutOfGuesses):
+		http.Error(w, "No guesses left", http.StatusConflict)
+	default:
+		http.Error(w, "Could not load game", http.StatusInternalServerError)
+	}
 }
 
 // gameResponse assembles the client's view of a game: the game itself, who is
@@ -303,10 +557,12 @@ type PlayerResponse struct {
 }
 
 type RoundResponse struct {
-	Number    int             `json:"number"`
-	StartedAt time.Time       `json:"startedAt"`
-	EndsAt    time.Time       `json:"endsAt"`
-	Guesses   []GuessResponse `json:"guesses"`
+	Number    int       `json:"number"`
+	StartedAt time.Time `json:"startedAt"`
+
+	// Absent on an untimed round, which is every solo one.
+	EndsAt  *time.Time      `json:"endsAt,omitempty"`
+	Guesses []GuessResponse `json:"guesses"`
 
 	// Empty while the round is still winnable. See roundResponse.
 	Word string `json:"word,omitempty"`
@@ -325,4 +581,8 @@ type createGameRequest struct {
 	Mode       string `json:"mode"`
 	Language   string `json:"language"`
 	WordLength int    `json:"wordLength"`
+}
+
+type createGuessRequest struct {
+	Word string `json:"word"`
 }

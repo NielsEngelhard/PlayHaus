@@ -8,6 +8,7 @@ import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
+import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -15,7 +16,15 @@ import { StyleSheet, View } from "react-native";
 interface Props {
     game: Game,
     /** Whose board this is. Matched against `GameGuess.userId`. */
-    userId: string
+    userId: string,
+    /**
+     * Sends a complete word. Rejecting is how a refusal is reported — whatever it
+     * throws is turned into a line for the player by `guessErrorMessage`.
+     *
+     * Left out on a board that cannot be played, which is how the multiplayer room
+     * still renders while it has no endpoint to send to.
+     */
+    onGuess?: (word: string) => Promise<void>
 }
 
 /** How long a nudge like "Te kort." stays up before it stops being useful. */
@@ -29,8 +38,9 @@ const NOTICE_MS = 2500;
  * above the board. Everything that makes the screen a game is identical, and a solo game
  * is really a multiplayer one with nobody else in it and no deadline.
  */
-export default function PlayingGame({ game, userId }: Props) {
+export default function PlayingGame({ game, userId, onGuess }: Props) {
     const [draft, setDraft] = useState('');
+    const [sending, setSending] = useState(false);
     /**
      * Wrapped in an object rather than held as a bare string so that saying the same
      * thing twice is still a new notice: two `'Te kort.'`s in a row are equal as strings,
@@ -76,17 +86,38 @@ export default function PlayingGame({ game, userId }: Props) {
         setDraft(current => current.slice(0, -1));
     }
 
-    function submit() {
+    async function submit() {
+        if (sending) return;
+
+        if (onGuess === undefined) {
+            setNotice({ text: 'Raden kan zodra de server dit ondersteunt.' });
+            return;
+        }
+
         if (draft.length < game.wordLength) {
             setNotice({ text: 'Te kort.' });
             return;
         }
 
-        // TODO: POST the guess and re-read the game. There is no guess endpoint yet, and
-        // marks are scored server-side, so there is nothing this can honestly do with a
-        // finished word — see `mock-games.ts`.
-        setNotice({ text: 'Raden kan zodra de server het ondersteunt.' });
-        setDraft('');
+        // Checked here as well as on the server. The board already knows every word
+        // this player has tried, so a repeat can be answered in Dutch and instantly
+        // rather than being sent off to come back as an English 409.
+        if (myGuesses.some(guess => guess.word.toUpperCase() === draft)) {
+            setNotice({ text: 'Die had je al.' });
+            return;
+        }
+
+        setSending(true);
+        try {
+            await onGuess(draft);
+            // Cleared only on success: a guess the server refused is still the word
+            // the player meant, and retyping it would be a punishment for a hiccup.
+            setDraft('');
+        } catch (failure) {
+            setNotice({ text: guessErrorMessage(failure) });
+        } finally {
+            setSending(false);
+        }
     }
 
     return (
@@ -95,7 +126,8 @@ export default function PlayingGame({ game, userId }: Props) {
                 {/* The bottom bar is hidden while a game is on screen, so this is the way out. */}
                 <BackButton href={ROUTES.leagueOfLettersIndex} />
 
-                {multiplayer && game.round && (
+                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
+                {multiplayer && game.round?.endsAt && (
                     <GameTimer endsAt={game.round.endsAt} style={styles.timer} />
                 )}
             </View>
@@ -132,7 +164,10 @@ export default function PlayingGame({ game, userId }: Props) {
                 onKey={type}
                 onEnter={submit}
                 onBackspace={backspace}
-                disabled={finished}
+                // Locked while a guess is in flight: the response replaces the whole
+                // board, so a second word typed over the top of it would land on rows
+                // that are about to be renumbered.
+                disabled={finished || sending}
             />
         </View>
     )

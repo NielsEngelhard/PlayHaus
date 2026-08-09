@@ -36,7 +36,11 @@ export interface GameGuess {
 export interface GameRound {
     number: number
     startedAt: string
-    endsAt: string
+    /**
+     * Absent on an untimed round, which is every solo one — a solo player is
+     * racing nobody and gets no clock.
+     */
+    endsAt?: string
     guesses: GameGuess[]
     /**
      * The answer. Absent while the round is still winnable — the backend only
@@ -57,8 +61,9 @@ export interface Game {
     wordLength: WordLength
     /** Guesses each player gets per round. */
     maxGuesses: number
-    /** Both absent until the game starts, which for solo is the moment it is created. */
+    /** Absent until the game starts, which for solo is the moment it is created. */
     startedAt?: string
+    /** The deadline. Absent on solo games, which run without one. */
     endsAt?: string
     /**
      * Bumped by the server on every change. Poll with the version you last saw and
@@ -91,5 +96,30 @@ export function createGame(game: NewGame): Promise<Game> {
     return request<Game>('/api/v1/league-of-letters/games', {
         method: 'POST',
         body: JSON.stringify(game)
+    });
+}
+
+/**
+ * Reads a game back. Answers 404 for a game you are not playing as well as one
+ * that does not exist — being in it is the whole of the permission model.
+ */
+export function getGame(gameId: string): Promise<Game> {
+    return request<Game>(`/api/v1/league-of-letters/games/${gameId}`);
+}
+
+/**
+ * Submits a guess and returns the game as it stands afterwards.
+ *
+ * The whole game comes back rather than just the new guess, because the guess is
+ * rarely the only thing that changed: it may have ended the round, moved a score
+ * or revealed the answer. Rendering from this one response is what keeps the
+ * board from ever being half updated.
+ *
+ * The word is scored server-side. Marks never come from here.
+ */
+export function submitGuess(gameId: string, word: string): Promise<Game> {
+    return request<Game>(`/api/v1/league-of-letters/games/${gameId}/guesses`, {
+        method: 'POST',
+        body: JSON.stringify({ word })
     });
 }
