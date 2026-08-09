@@ -2,6 +2,21 @@ import AppText from "@/components/text/AppText";
 import { Colors, FontSizes, SolidButton } from "@/constants/theme";
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
+/**
+ * Which fill the button wears. Only the colour changes — every variant keeps the
+ * same border, shadow and label treatment, so a row of them still reads as one
+ * family. Use `muted` for the option someone should be able to find but not be
+ * pushed towards.
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'muted';
+
+const Variants: Record<ButtonVariant, { fill: string, label: string }> = {
+    primary: { fill: Colors.light.primary, label: Colors.light.textOnAccent },
+    secondary: { fill: Colors.light.secondary, label: Colors.light.textOnAccent },
+    // The pale fill can't carry light text, so this one flips to the normal colour.
+    muted: { fill: Colors.light.muted, label: Colors.light.text }
+};
+
 interface Props {
     text: string
     onPress: () => void
@@ -11,6 +26,8 @@ interface Props {
      */
     fullWidth?: boolean
     disabled?: boolean
+    /** Defaults to `secondary`, the fill `SolidButton` already carries. */
+    variant?: ButtonVariant
     /** For layout only — how the button sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
@@ -21,8 +38,11 @@ export default function TextButton({
     onPress,
     fullWidth = false,
     disabled = false,
+    variant = 'secondary',
     style
 }: Props) {
+    const { fill, label } = Variants[variant];
+
     return (
         <Pressable
             onPress={onPress}
@@ -31,12 +51,13 @@ export default function TextButton({
             accessibilityState={{ disabled }}
             style={[
                 styles.button,
+                { backgroundColor: fill },
                 fullWidth ? styles.fullWidth : styles.fitText,
                 disabled && styles.disabled,
                 style
             ]}
         >
-            <AppText style={styles.text}>{text}</AppText>
+            <AppText style={[styles.text, { color: label }]}>{text}</AppText>
         </Pressable>
     )
 }
@@ -59,7 +80,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: FontSizes.md,
         fontWeight: 900,
-        textTransform: 'uppercase',
-        color: Colors.light.textOnAccent
+        textTransform: 'uppercase'
     }
 })

@@ -11,9 +11,7 @@ func Open(path string) (*gorm.DB, error) {
 
 	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Warn),
-		// Without this, driver errors arrive as raw SQLite strings and checks like
-		// errors.Is(err, gorm.ErrDuplicatedKey) never match — a duplicate email
-		// would surface as a 500 instead of the 409 the signup handler intends.
+		// Without this, driver errors arrive as raw SQLite strings
 		TranslateError: true,
 	})
 	if err != nil {

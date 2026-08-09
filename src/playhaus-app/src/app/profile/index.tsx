@@ -5,6 +5,7 @@ import ProfileAvatarColorPickerCard from "@/features/settings/components/Profile
 import ProfileCard from "@/features/settings/components/ProfileCard";
 import ProfileNameCard from "@/features/settings/components/ProfileNameCard";
 import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsCard";
+import { useAuth } from "@/features/auth/useAuth";
 import { MOCK_PROFILE, type SettingKey } from "@/features/settings/mock-profile";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -13,11 +14,23 @@ import { StyleSheet, View } from "react-native";
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 
 /**
- * Your name, avatar and preferences. Everything here runs on `MOCK_PROFILE` and lives in
- * component state — there are no accounts yet, so nothing is persisted or sent anywhere.
+ * Your name, avatar and preferences.
+ *
+ * Logging out is real. Everything else still runs on `MOCK_PROFILE` in component
+ * state: the name arrives from the session so the page doesn't greet you as
+ * somebody else, but saving it only updates this screen — there is no endpoint
+ * behind it yet.
  */
 export default function ProfilePage() {
+    const { user, logout } = useAuth();
     const [profile, setProfile] = useState(MOCK_PROFILE);
+
+    // `null` means "not edited on this screen yet", which lets the session's name
+    // take over the moment it lands. Seeding state from `user` instead would stick
+    // on the mock name forever: this page can mount while the session is still
+    // being restored, and an initial value is only read once.
+    const [editedName, setEditedName] = useState<string | null>(null);
+    const name = editedName ?? user?.name ?? MOCK_PROFILE.name;
 
     function setSetting(key: SettingKey, value: boolean) {
         setProfile(current => ({
@@ -29,12 +42,15 @@ export default function ProfilePage() {
     return (
         <View style={styles.container}>
             <View style={tilt('-0.5deg')}>
-                <ProfileCard name={profile.name} avatarColorId={profile.avatarColorId} />
+                <ProfileCard name={name} avatarColorId={profile.avatarColorId} />
             </View>
 
+            {/* Keyed on the name so the card's internal draft restarts from it when
+                the session arrives after this page has already mounted. */}
             <ProfileNameCard
-                name={profile.name}
-                onSave={name => setProfile(current => ({ ...current, name }))}
+                key={name}
+                name={name}
+                onSave={setEditedName}
             />
 
             <View style={tilt('0.4deg')}>
@@ -47,8 +63,9 @@ export default function ProfilePage() {
             <ProfileSettingsCard values={profile.settings} onChange={setSetting} />
 
             <View style={tilt('-0.3deg')}>
-                {/* No account to end yet, so logging out has nowhere to go. */}
-                <LogoutCard onLogout={() => { }} />
+                {/* Revokes the session and drops the stored token, which brings the
+                    auth gate straight back up over this page. */}
+                <LogoutCard onLogout={() => { void logout(); }} />
             </View>
 
             <AppText style={styles.footer}>Playhaus · alles blijft op je eigen apparaat</AppText>

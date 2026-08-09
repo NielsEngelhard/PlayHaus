@@ -8,6 +8,8 @@ import BottomBar from '@/components/layout/BottomBar';
 import Header from '@/components/layout/Header';
 import { HeaderTagProvider } from '@/components/layout/HeaderTagContext';
 import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
+import AuthGate from '@/features/auth/components/AuthGate';
+import { AuthProvider } from '@/features/auth/useAuth';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,25 +49,31 @@ export default function TabLayout() {
     // navigator, so `BottomBar` would have no insets to read without it.
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {/* Wraps both, so the page inside `Slot` can set the chip `Header` renders. */}
-        <HeaderTagProvider>
-          <View style={styles.page}>
-            <ScrollView
-              style={styles.scroll}
-              contentContainerStyle={styles.scrollContent}
-              showsVerticalScrollIndicator={false}
-            >
-              <View style={styles.content}>
-                <Header />
+        {/* Outside everything it gates, so the popup can cover the chrome too. */}
+        <AuthProvider>
+          {/* Wraps both, so the page inside `Slot` can set the chip `Header` renders. */}
+          <HeaderTagProvider>
+            <View style={styles.page}>
+              <ScrollView
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+              >
+                <View style={styles.content}>
+                  <Header />
 
-                <Slot />
-              </View>
-            </ScrollView>
+                  <Slot />
+                </View>
+              </ScrollView>
 
-            {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
-            <BottomBar />
-          </View>
-        </HeaderTagProvider>
+              {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
+              <BottomBar />
+            </View>
+
+            {/* Renders nothing at all while signed in. */}
+            <AuthGate />
+          </HeaderTagProvider>
+        </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
