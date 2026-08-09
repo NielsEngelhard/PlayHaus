@@ -2,6 +2,7 @@ import type { Game } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
@@ -219,6 +220,13 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
                 // that are about to be renumbered.
                 disabled={finished || sending}
             />
+
+            <TextButton
+                text="Submit"
+                fullWidth={true}
+                onPress={submit}
+            >
+            </TextButton>
 
             <BackButton href={ROUTES.leagueOfLettersIndex} />
         </View>
