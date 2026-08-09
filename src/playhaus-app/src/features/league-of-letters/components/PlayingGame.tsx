@@ -5,7 +5,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import { ROUTES } from "@/constants/routes";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
-import GuessGrid from "@/features/league-of-letters/components/GuessGrid";
+import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
@@ -39,7 +39,19 @@ const NOTICE_MS = 2500;
  * is really a multiplayer one with nobody else in it and no deadline.
  */
 export default function PlayingGame({ game, userId, onGuess }: Props) {
-    const [draft, setDraft] = useState('');
+    /**
+     * The letter the round opens with. Given away rather than guessed: the server sends
+     * it alongside the round, so it is the one thing about the answer the app is allowed
+     * to know while the round is still winnable.
+     *
+     * Uppercased once here, which is the case the board, the keyboard and the draft all
+     * work in. Empty on a board with no round behind it — the mock multiplayer ones — and
+     * everything below then behaves exactly as it did before there was a hint.
+     */
+    const firstLetter = game.round?.firstLetter?.toUpperCase() ?? '';
+
+    /** Never empty: every row starts with the hint already down in its first tile. */
+    const [draft, setDraft] = useState(firstLetter);
     const [sending, setSending] = useState(false);
     /**
      * Wrapped in an object rather than held as a bare string so that saying the same
@@ -47,6 +59,15 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
      * which would leave the first one's dismissal timer running and blink the second away.
      */
     const [notice, setNotice] = useState<{ text: string } | null>(null);
+    /**
+     * The board is still turning its last row over. Nothing that knows the answer may be
+     * shown while it is, or the keyboard and the end-of-round line spoil the tiles that
+     * have not been dealt yet.
+     */
+    const [revealing, setRevealing] = useState(false);
+    /** Bumped per guess, so a word sent while the board is mid-reveal restarts the wait
+     * instead of inheriting the tail of the previous one's. */
+    const [revealed, setRevealed] = useState(0);
 
     const multiplayer = game.mode === 'multiplayer';
     const guesses = game.round?.guesses ?? [];
@@ -60,14 +81,24 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
 
     // A new board is a new draft — otherwise moving to the next round leaves half a word
     // behind in a row that now belongs to a different puzzle. Adjusted during render, so
-    // the stale letters never get painted once.
-    const round = `${game.id}:${game.round?.number ?? 0}`;
+    // the stale letters never get painted once. The hint is part of the key because it is
+    // part of the draft: a new opening letter has to replace the one already typed in.
+    const round = `${game.id}:${game.round?.number ?? 0}:${firstLetter}`;
     const [drafted, setDrafted] = useState(round);
     if (drafted !== round) {
         setDrafted(round);
-        setDraft('');
+        setDraft(firstLetter);
         setNotice(null);
+        setRevealing(false);
     }
+
+    useEffect(() => {
+        if (!revealing) return;
+
+        const done = setTimeout(() => setRevealing(false), revealDurationMs(game.wordLength));
+        return () => clearTimeout(done);
+        // `revealed` is in here to restart the clock on a guess that lands mid-reveal.
+    }, [revealing, revealed, game.wordLength]);
 
     useEffect(() => {
         if (notice === null) return;
@@ -83,7 +114,10 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
 
     function backspace() {
         setNotice(null);
-        setDraft(current => current.slice(0, -1));
+        // The hint is not the player's to delete. Wiping the row and having to put the
+        // same letter back by hand is busywork, and a row that starts with anything else
+        // is a word that cannot be the answer.
+        setDraft(current => (current.length > firstLetter.length ? current.slice(0, -1) : current));
     }
 
     async function submit() {
@@ -112,7 +146,10 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
             await onGuess(draft);
             // Cleared only on success: a guess the server refused is still the word
             // the player meant, and retyping it would be a punishment for a hiccup.
-            setDraft('');
+            // Cleared back to the hint, not to nothing — the next row opens the same way.
+            setDraft(firstLetter);
+            setRevealing(true);
+            setRevealed(count => count + 1);
         } catch (failure) {
             setNotice({ text: guessErrorMessage(failure) });
         } finally {
@@ -123,8 +160,17 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
     return (
         <View style={styles.screen}>
             <View style={styles.topRow}>
-                {/* The bottom bar is hidden while a game is on screen, so this is the way out. */}
-                <BackButton href={ROUTES.leagueOfLettersIndex} />
+
+                {/* First letter */}
+                {firstLetter !== '' && (
+                    <View
+                        style={styles.hint}
+                        accessibilityRole='text'
+                        accessibilityLabel={`Hint: het woord begint met de ${firstLetter}`}
+                    >
+                        <AppText style={styles.hintLetter}>{firstLetter}</AppText>
+                    </View>
+                )}
 
                 {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
                 {multiplayer && game.round?.endsAt && (
@@ -144,7 +190,9 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
                 draft={finished ? '' : draft}
             />
 
-            {finished ? (
+            {/* The verdict waits for the board: being told you won while the last two
+                tiles are still face down reads the result out before the reveal does. */}
+            {finished && !revealing ? (
                 <InlineNotification
                     icon={won ? 'check' : 'x'}
                     color={won ? Colors.light.mint : Colors.light.blush}
@@ -160,7 +208,9 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
             )}
 
             <LetterKeyboard
-                marks={keyboardMarks(myGuesses, userId)}
+                // The newest guess is left out until the board has finished showing it —
+                // the keys would otherwise colour in before the tiles they belong to.
+                marks={keyboardMarks(revealing ? myGuesses.slice(0, -1) : myGuesses, userId)}
                 onKey={type}
                 onEnter={submit}
                 onBackspace={backspace}
@@ -169,6 +219,8 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
                 // that are about to be renumbered.
                 disabled={finished || sending}
             />
+
+            <BackButton href={ROUTES.leagueOfLettersIndex} />
         </View>
     )
 }
@@ -186,6 +238,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.three
+    },
+    hint: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        // Holds its size against the timer, which is the flexible one in this row.
+        flexShrink: 0,
+        gap: Spacing.two,
+        borderWidth: 2,
+        borderColor: Colors.light.border,
+        borderRadius: 11,
+        paddingVertical: Spacing.one,
+        paddingHorizontal: Spacing.two,
+        backgroundColor: Colors.light.backgroundSecondary,
+        ...Shadows.hardSmall
+    },
+    hintLabel: {
+        fontSize: FontSizes.xs,
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: 1.5,
+        color: Colors.light.text
+    },
+    hintLetter: {
+        fontSize: FontSizes.md,
+        fontWeight: 900,
+        // Matches the board's tiles: Outfit Black is wide enough to need pulling in.
+        letterSpacing: -0.5,
+        color: Colors.light.text
     },
     timer: {
         flex: 1,

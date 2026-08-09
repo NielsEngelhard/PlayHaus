@@ -453,11 +453,14 @@ func (h *Handler) roundResponse(ctx context.Context, game Game, round Round) (Ro
 		return RoundResponse{}, err
 	}
 
+	firstLetter := round.Word[0]
+
 	out := RoundResponse{
-		Number:    round.Number,
-		StartedAt: round.StartedAt,
-		EndsAt:    round.EndsAt,
-		Guesses:   make([]GuessResponse, 0, len(guesses)),
+		Number:      round.Number,
+		StartedAt:   round.StartedAt,
+		EndsAt:      round.EndsAt,
+		Guesses:     make([]GuessResponse, 0, len(guesses)),
+		FirstLetter: string(firstLetter),
 	}
 
 	for _, guess := range guesses {
@@ -565,7 +568,8 @@ type RoundResponse struct {
 	Guesses []GuessResponse `json:"guesses"`
 
 	// Empty while the round is still winnable. See roundResponse.
-	Word string `json:"word,omitempty"`
+	Word        string `json:"word,omitempty"`
+	FirstLetter string `json:"firstLetter"`
 }
 
 type GuessResponse struct {

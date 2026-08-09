@@ -7,13 +7,13 @@ import ValueCard from "@/components/ui/ValueCard";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import { StyleSheet, View } from "react-native";
-
-// TODO: replace with the player's real name once accounts/profiles exist.
-const PLAYER_NAME = 'Magpie54';
 
 export default function LeagueOfLettersIndexPage() {
     useHeaderTag(LEAGUE_OF_LETTERS_NAME);
+
+    const { user } = useAuth()
 
     return (
         <View style={styles.container}>            
@@ -23,7 +23,7 @@ export default function LeagueOfLettersIndexPage() {
                     description='Raad het woord. Groen = goed, oranje = juiste letter verkeerde plek.'
                 />
 
-                <ValueCard label='Je naam' value={PLAYER_NAME} icon='user' />
+                <ValueCard label='Je naam' value={user?.name ?? "..."} icon='user' />
 
                 <View style={styles.options}>
                     <SimpleNavigationCard

@@ -2,8 +2,8 @@ import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { MARK_STYLES } from "@/features/league-of-letters/marks";
-import { useState } from "react";
-import { LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
 interface Props {
     wordLength: number,
@@ -24,6 +24,28 @@ const GAP = Spacing.two;
  */
 const MIN_TILE = 26;
 const MAX_TILE = 64;
+
+/** A letter dropping into an empty slot. Short enough to keep up with fast typing. */
+const FILL_MS = 160;
+/** Half a turn: down to the edge, then back up on the other side. */
+const FLIP_MS = 110;
+/** Gap between one tile starting to turn over and the next. */
+const REVEAL_STEP_MS = 300;
+
+// react-native-web has no native animation module, so asking for one there is a
+// console warning and nothing else. Transforms are driver-safe everywhere else.
+const useNativeDriver = Platform.OS !== 'web';
+
+/**
+ * How long a freshly scored row takes to finish turning over.
+ *
+ * Exported because the reveal is a moment the rest of the screen has to respect: the
+ * keyboard colours and the end-of-round line would otherwise give away the last tiles
+ * while they are still face down. The timing lives here, with the animation it belongs to.
+ */
+export function revealDurationMs(wordLength: number): number {
+    return Math.max(0, wordLength - 1) * REVEAL_STEP_MS + FLIP_MS * 2;
+}
 
 /**
  * The largest tile that fits the board on both axes at once.
@@ -83,6 +105,7 @@ interface GuessRowProps {
 
 function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
     const word = (guess?.word ?? draft).toUpperCase();
+    const revealed = useReveal(guess?.word, wordLength);
 
     return (
         <View style={[styles.row, { gap: GAP }]}>
@@ -90,12 +113,43 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
                 <LetterTile
                     key={column}
                     letter={word[column] ?? ''}
-                    mark={guess?.marks[column]}
+                    // Held back until this tile's turn comes round. Until then it is
+                    // indistinguishable from the letter the player typed a moment ago.
+                    mark={column < revealed ? guess?.marks[column] : undefined}
                     size={size}
                 />
             ))}
         </View>
     )
+}
+
+/**
+ * How many of this row's marks are face up yet.
+ *
+ * A word that was already on the board when the row mounted is shown whole: coming back
+ * to a game in progress should not replay every turn of it. Only a word that lands while
+ * the row is watching gets dealt out a tile at a time.
+ */
+function useReveal(word: string | undefined, wordLength: number): number {
+    const [dealt, setDealt] = useState(word);
+    const [revealed, setRevealed] = useState(word ? wordLength : 0);
+
+    // Adjusted during render rather than in an effect, so a scored row never gets painted
+    // face up for a frame before the reveal takes it back. A word going missing is the next
+    // round starting, which puts the row back to an empty draft.
+    if (dealt !== word) {
+        setDealt(word);
+        setRevealed(word ? 1 : 0);
+    }
+
+    useEffect(() => {
+        if (word === undefined || revealed >= wordLength) return;
+
+        const next = setTimeout(() => setRevealed(count => count + 1), REVEAL_STEP_MS);
+        return () => clearTimeout(next);
+    }, [word, revealed, wordLength]);
+
+    return revealed;
 }
 
 interface LetterTileProps {
@@ -106,17 +160,98 @@ interface LetterTileProps {
 }
 
 function LetterTile({ letter, mark, size }: LetterTileProps) {
-    const marked = mark ? MARK_STYLES[mark] : undefined;
+    const filled = letter !== '';
+
+    /**
+     * The colour trails the prop by half a turn. The tile has to be edge-on before it can
+     * come back a different colour, or the answer is readable through the flip.
+     */
+    const [shownMark, setShownMark] = useState(mark);
+    const marked = shownMark ? MARK_STYLES[shownMark] : undefined;
+
+    // Built once by the lazy initialiser — a fresh value on every render would drop a tile
+    // mid-flip. A tile that mounts already filled or already scored starts settled, which
+    // is what keeps a reloaded board from animating itself in.
+    const [landing] = useState(() => new Animated.Value(filled ? 1 : 0));
+    const [turn] = useState(() => new Animated.Value(1));
+
+    const wasFilled = useRef(filled);
+    const wasMarked = useRef(mark);
+
+    useEffect(() => {
+        if (wasFilled.current === filled) return;
+        wasFilled.current = filled;
+
+        // Backspaced: nothing to play, just be ready for the next letter to land.
+        if (!filled) {
+            landing.setValue(0);
+            return;
+        }
+
+        landing.setValue(0);
+        const drop = Animated.timing(landing, {
+            toValue: 1,
+            duration: FILL_MS,
+            // Overshoots a hair past full size on the way in, so the letter arrives with
+            // a knock rather than growing into place.
+            easing: Easing.out(Easing.back(2)),
+            useNativeDriver
+        });
+
+        drop.start();
+        return () => drop.stop();
+    }, [filled, landing]);
+
+    useEffect(() => {
+        if (wasMarked.current === mark) return;
+        wasMarked.current = mark;
+
+        // The round moved on and took the marks with it. No turn to play backwards.
+        if (mark === undefined) {
+            setShownMark(undefined);
+            turn.setValue(1);
+            return;
+        }
+
+        const flip = Animated.sequence([
+            Animated.timing(turn, {
+                toValue: 0,
+                duration: FLIP_MS,
+                easing: Easing.in(Easing.quad),
+                useNativeDriver
+            }),
+            Animated.timing(turn, {
+                toValue: 1,
+                duration: FLIP_MS,
+                easing: Easing.out(Easing.quad),
+                useNativeDriver
+            })
+        ]);
+        // Swapped at the turn, while there is no face to see.
+        const swap = setTimeout(() => setShownMark(mark), FLIP_MS);
+
+        flip.start();
+        return () => {
+            clearTimeout(swap);
+            flip.stop();
+        };
+    }, [mark, turn]);
 
     return (
-        <View
+        <Animated.View
             style={[
                 styles.tile,
                 {
                     width: size,
                     height: size,
                     // Scales with the tile so a 26dp tile doesn't end up a lozenge.
-                    borderRadius: Math.min(14, Math.round(size * 0.28))
+                    borderRadius: Math.min(14, Math.round(size * 0.28)),
+                    transform: [
+                        { scale: filled ? landing.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) : 1 },
+                        // Never quite zero: a tile with no height at all blinks out of
+                        // existence on web instead of turning edge-on.
+                        { scaleY: turn.interpolate({ inputRange: [0, 1], outputRange: [0.04, 1] }) }
+                    ]
                 },
                 marked
                     ? [{ backgroundColor: marked.fill }, Shadows.hardLarge]
@@ -138,7 +273,7 @@ function LetterTile({ letter, mark, size }: LetterTileProps) {
             >
                 {letter}
             </AppText>
-        </View>
+        </Animated.View>
     )
 }
 

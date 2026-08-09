@@ -34,7 +34,7 @@ export interface GameGuess {
 }
 
 export interface GameRound {
-    number: number
+    number: number    
     startedAt: string
     /**
      * Absent on an untimed round, which is every solo one — a solo player is
@@ -48,6 +48,12 @@ export interface GameRound {
      * there is no point in the app where it could be read off the response early.
      */
     word?: string
+    /**
+     * The letter the answer starts with, in the same lower case as `word`. Unlike
+     * `word` this is sent from the moment the round is drawn — it is a hint, not
+     * the solution, and the board opens every row with it already filled in.
+     */
+    firstLetter?: string
 }
 
 export interface Game {
