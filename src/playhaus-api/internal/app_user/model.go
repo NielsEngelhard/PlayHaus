@@ -11,8 +11,8 @@ type AppUser struct {
 	ID             string  `gorm:"type:text;primaryKey"`
 	Name           string  `gorm:"not null"`
 	Email          *string `gorm:"uniqueIndex"`
-	PasswordHash   *string
-	IsGuestAccount bool `gorm:"not null;default:false"`
+	PasswordHash   *string `json:"-"`
+	IsGuestAccount bool    `gorm:"not null;default:false"`
 
 	CreatedAt time.Time
 	UpdatedAt time.Time
