@@ -17,7 +17,8 @@ var (
 	ErrPasswordTooLong = errors.New("password must not exceed 72 bytes")
 )
 
-func hashPassword(pwRaw string) (string, error) {
+// HashPassword returns a bcrypt hash of pwRaw.
+func HashPassword(pwRaw string) (string, error) {
 	if pwRaw == "" {
 		return "", ErrEmptyPassword
 	}
@@ -32,7 +33,8 @@ func hashPassword(pwRaw string) (string, error) {
 	return string(hash), nil
 }
 
-func verifyPassword(pwRaw string, pwHash string) bool {
+// VerifyPassword reports whether pwRaw matches pwHash.
+func VerifyPassword(pwRaw string, pwHash string) bool {
 	// CompareHashAndPassword is constant-time and parses cost + salt from pwHash.
 	return bcrypt.CompareHashAndPassword([]byte(pwHash), []byte(pwRaw)) == nil
 }

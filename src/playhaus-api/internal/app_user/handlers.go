@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	hash_utils "playhausapi/internal/util/hash"
 	json_utils "playhausapi/internal/util/json"
 
 	"gorm.io/gorm"
@@ -24,17 +25,20 @@ func (h *Handler) CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	hashedPassword, err := hash_utils.hashPassword(req.Password)
-	if err != nil {
-		http.Error(w, "Error trying to hash the password", http.StatusInternalServerError)
-		return
-	}
-
 	user := AppUser{
 		Name:           req.Name,
 		Email:          req.Email,
 		IsGuestAccount: req.IsGuest,
-		PasswordHash:   hashedPassword,
+	}
+
+	// Guest accounts have no password, so PasswordHash stays nil for them.
+	if !req.IsGuest {
+		hashedPassword, err := hash_utils.HashPassword(req.Password)
+		if err != nil {
+			http.Error(w, "Error trying to hash the password", http.StatusInternalServerError)
+			return
+		}
+		user.PasswordHash = &hashedPassword
 	}
 
 	if err := h.DB.WithContext(r.Context()).Create(&user).Error; err != nil {
@@ -46,8 +50,7 @@ func (h *Handler) CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	json_utils.WriteJSON(w, http.StatusCreated, nil)
 }
 
 func (h *Handler) UpdateUsernameHandler(w http.ResponseWriter, r *http.Request) {
