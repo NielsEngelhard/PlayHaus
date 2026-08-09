@@ -1,0 +1,10 @@
+bicycle
+blanket
+captain
+diamond
+evening
+holiday
+kitchen
+morning
+picture
+weather

@@ -8,6 +8,7 @@ import (
 	app_user "playhausapi/internal/app_user"
 	"playhausapi/internal/auth"
 	"playhausapi/internal/database"
+	leagueofletters "playhausapi/internal/league_of_letters"
 
 	"gorm.io/gorm"
 )
@@ -24,6 +25,7 @@ func main() {
 	// Handlers
 	addUserHandlers(mux, app_user.New(db), authHandler)
 	addAuthHandlers(mux, authHandler)
+	addLeagueOfLettersHandlers(mux, leagueofletters.New(db), authHandler)
 
 	log.Printf("listening on %s", listenAddr())
 	log.Fatal(http.ListenAndServe(listenAddr(), withCORS(mux)))
@@ -54,6 +56,10 @@ func addUserHandlers(mux *http.ServeMux, h *app_user.Handler, a *auth.Handler) {
 	// Sits beside `GET /api/v1/me`, which the auth handler owns: same resource,
 	// read there and written here.
 	mux.HandleFunc("PUT /api/v1/me", a.RequireAuth(h.UpdateProfileHandler))
+}
+
+func addLeagueOfLettersHandlers(mux *http.ServeMux, h *leagueofletters.Handler, a *auth.Handler) {
+	mux.HandleFunc("POST /api/v1/league-of-letters/games", a.RequireAuth(h.CreateGameHandler))
 }
 
 func initDatabase() (*gorm.DB, error) {

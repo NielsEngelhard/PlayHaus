@@ -1,0 +1,10 @@
+box
+cat
+cup
+dog
+ice
+key
+map
+pen
+sky
+sun

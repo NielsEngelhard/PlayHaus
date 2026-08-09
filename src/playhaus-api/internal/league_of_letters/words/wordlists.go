@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"strconv"
 	"strings"
-	"time"
 )
 
 // The word lists are embedded so callers can live in any directory --
@@ -58,8 +57,5 @@ func getRandomLine(lines []string) string {
 		return ""
 	}
 
-	var rng = rand.New(rand.NewSource(time.Now().UnixNano()))
-	rngIndex := rng.Intn(nLines)
-
-	return lines[rngIndex]
+	return lines[rand.Intn(nLines)]
 }
