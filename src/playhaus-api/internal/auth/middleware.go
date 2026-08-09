@@ -17,20 +17,20 @@ import (
 //	mux.HandleFunc("GET /api/v1/users", a.RequireAuth(h.GetUsersHandler))
 func (h *Handler) RequireAuth(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		cookie, err := r.Cookie(sessionCookieName)
-		if err != nil || cookie.Value == "" {
+		token := sessionToken(r)
+		if token == "" {
 			unauthenticated(w)
 			return
 		}
 
 		var session Session
-		err = h.DB.WithContext(r.Context()).
-			Where("token_hash = ?", hashToken(cookie.Value)).
+		err := h.DB.WithContext(r.Context()).
+			Where("token_hash = ?", hashToken(token)).
 			First(&session).Error
 
 		switch {
 		case errors.Is(err, gorm.ErrRecordNotFound):
-			// Cookie references a session that no longer exists, e.g. after
+			// The token references a session that no longer exists, e.g. after
 			// logging out on another device. Clear the stale cookie.
 			h.clearSessionCookie(w)
 			unauthenticated(w)

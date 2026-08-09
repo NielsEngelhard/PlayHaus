@@ -50,7 +50,7 @@ func (h *Handler) CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json_utils.WriteJSON(w, http.StatusCreated, nil)
+	json_utils.WriteJSON(w, http.StatusCreated, NewUserResponse(user))
 }
 
 func (h *Handler) UpdateUsernameHandler(w http.ResponseWriter, r *http.Request) {
@@ -77,16 +77,16 @@ func (h *Handler) GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	out := make([]userResponse, 0, len(users))
+	out := make([]UserResponse, 0, len(users))
 	for _, u := range users {
-		out = append(out, newUserResponse(u))
+		out = append(out, NewUserResponse(u))
 	}
 
-	json_utils.WriteJSON(w, http.StatusOK, listResponse[userResponse]{Data: out})
+	json_utils.WriteJSON(w, http.StatusOK, listResponse[UserResponse]{Data: out})
 }
 
-func newUserResponse(u AppUser) userResponse {
-	return userResponse{
+func NewUserResponse(u AppUser) UserResponse {
+	return UserResponse{
 		ID:             u.ID,
 		Name:           u.Name,
 		Email:          u.Email,
@@ -95,7 +95,7 @@ func newUserResponse(u AppUser) userResponse {
 	}
 }
 
-type userResponse struct {
+type UserResponse struct {
 	ID             string    `json:"id"`
 	Name           string    `json:"name"`
 	Email          *string   `json:"email,omitempty"`

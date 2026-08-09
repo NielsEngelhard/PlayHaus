@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+
 	app_user "playhausapi/internal/app_user"
 	"playhausapi/internal/auth"
 	"playhausapi/internal/database"
@@ -23,12 +25,23 @@ func main() {
 	addUserHandlers(mux, app_user.New(db), authHandler)
 	addAuthHandlers(mux, authHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	log.Printf("listening on %s", listenAddr())
+	log.Fatal(http.ListenAndServe(listenAddr(), withCORS(mux)))
+}
+
+func listenAddr() string {
+	if port := os.Getenv("PORT"); port != "" {
+		return ":" + port
+	}
+	return ":8080"
 }
 
 func addAuthHandlers(mux *http.ServeMux, h *auth.Handler) {
 	mux.HandleFunc("POST /api/v1/login", h.Login)
+	mux.HandleFunc("POST /api/v1/guest", h.Guest)
 	mux.HandleFunc("POST /api/v1/logout", h.Logout)
+
+	mux.HandleFunc("GET /api/v1/me", h.RequireAuth(h.Me))
 }
 
 func addUserHandlers(mux *http.ServeMux, h *app_user.Handler, a *auth.Handler) {
