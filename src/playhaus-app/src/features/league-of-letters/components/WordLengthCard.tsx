@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { WORD_LENGTHS, type WordLength } from "@/features/league-of-letters/solo-settings";
+import { intoRows } from "@/utils/rows";
 import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
@@ -9,20 +10,7 @@ interface Props {
     onChange: (wordLength: WordLength) => void
 }
 
-// Three across rather than all six: on a 360dp phone a single row leaves each tile
-// under 40dp, which is below a comfortable thumb.
 const COLUMNS = 6
-
-/** Split a flat list into fixed-width rows — React Native has no CSS grid to lean on. */
-function intoRows<T>(items: readonly T[], perRow: number): T[][] {
-    const rows: T[][] = [];
-
-    for (let index = 0; index < items.length; index += perRow) {
-        rows.push(items.slice(index, index + perRow));
-    }
-
-    return rows;
-}
 
 /** How long the word is. The chosen tile is the one standing proudest. */
 export default function WordLengthCard({ value, onChange }: Props) {

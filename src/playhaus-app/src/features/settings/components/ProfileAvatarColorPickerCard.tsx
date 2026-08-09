@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
+import { intoRows } from "@/utils/rows";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, StyleSheet, View } from "react-native";
 
@@ -11,17 +12,6 @@ interface Props {
 }
 
 const COLUMNS = 6;
-
-/** Split a flat list into fixed-width rows — React Native has no CSS grid to lean on. */
-function intoRows<T>(items: T[], perRow: number): T[][] {
-    const rows: T[][] = [];
-
-    for (let index = 0; index < items.length; index += perRow) {
-        rows.push(items.slice(index, index + perRow));
-    }
-
-    return rows;
-}
 
 /** Pick the fill behind your initials. The chosen swatch is the one wearing the check. */
 export default function ProfileAvatarColorPickerCard({ value, onChange }: Props) {

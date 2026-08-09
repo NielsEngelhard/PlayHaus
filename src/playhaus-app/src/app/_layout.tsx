@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Platform, ScrollView, StyleSheet, useColorScheme, View } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
+import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
 import { HeaderTagProvider } from '@/components/layout/HeaderTagContext';
 import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
@@ -53,29 +54,57 @@ export default function TabLayout() {
         <AuthProvider>
           {/* Wraps both, so the page inside `Slot` can set the chip `Header` renders. */}
           <HeaderTagProvider>
-            <View style={styles.page}>
-              <ScrollView
-                style={styles.scroll}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-              >
-                <View style={styles.content}>
-                  <Header />
+            {/* Same idea for the chrome itself: a game page claims the whole viewport. */}
+            <FullScreenProvider>
+              <Chrome />
 
-                  <Slot />
-                </View>
-              </ScrollView>
-
-              {/* Sibling of the ScrollView, not a child: it stays put while the page moves. */}
-              <BottomBar />
-            </View>
-
-            {/* Renders nothing at all while signed in. */}
-            <AuthGate />
+              {/* Renders nothing at all while signed in. */}
+              <AuthGate />
+            </FullScreenProvider>
           </HeaderTagProvider>
         </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>
+  );
+}
+
+/**
+ * The page frame. Split out of the layout because it reads `useFullScreenValue()`, and
+ * the provider that answers that is rendered by the layout itself.
+ */
+function Chrome() {
+  const fullScreen = useFullScreenValue();
+
+  const body = (
+    <View style={[styles.content, fullScreen && styles.contentFullScreen]}>
+      <Header />
+
+      <Slot />
+    </View>
+  );
+
+  return (
+    <View style={styles.page}>
+      {fullScreen ? (
+        // A plain View rather than the ScrollView with scrolling switched off. A scroll
+        // container's height is a *minimum*: content that wants more simply makes it
+        // taller. A page that has to fit the window needs a ceiling to size down against,
+        // and only a non-scrolling parent gives it one — otherwise the game's board grows
+        // and pushes its own keyboard off the bottom edge.
+        <View style={styles.fullScreenBody}>{body}</View>
+      ) : (
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {body}
+        </ScrollView>
+      )}
+
+      {/* Sibling of the scroller, not a child: it stays put while the page moves. */}
+      {!fullScreen && <BottomBar />}
+    </View>
   );
 }
 
@@ -96,9 +125,22 @@ const styles = StyleSheet.create({
     // Clears the floating BottomBar, which overlays the page rather than sitting in it.
     paddingBottom: BottomBarHeight + Spacing.six,
   },
+  fullScreenBody: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.four,
+    // Nothing floats over the page in this mode, so it may use the bottom edge.
+    paddingBottom: Spacing.four,
+  },
   content: {
     maxWidth: 600,
     width: '100%',
     flexDirection: 'column',
+  },
+  // Passes the window's height down, which is what lets a page claim the room left
+  // under `Header` with a plain `flex: 1`.
+  contentFullScreen: {
+    flex: 1,
   }
 })

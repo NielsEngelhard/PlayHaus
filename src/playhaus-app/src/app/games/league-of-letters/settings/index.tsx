@@ -7,8 +7,9 @@ import TextButton from "@/components/ui/TextButton";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
+import { createGame } from "@/api/calls/league-of-letters";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
-import { createSoloGame } from "@/features/league-of-letters/mock-solo-game";
+import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_SOLO_SETTINGS, LANGUAGES } from "@/features/league-of-letters/solo-settings";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -26,9 +27,9 @@ const LANGUAGE_OPTIONS = LANGUAGES.map(({ code, label, description }) => ({
 }));
 
 /**
- * Set up a solo game, then start it. Nothing is saved: the settings live here until
- * `Start` hands them to the game screen, so backing out and returning gives you the
- * defaults again.
+ * Set up a solo game, then start it. The settings are local until `Start`, which is
+ * what creates the game on the server — so backing out and returning gives you the
+ * defaults again, and nothing exists until you commit.
  */
 export default function LeagueOfLettersSettingsPage() {
     useHeaderTag(LEAGUE_OF_LETTERS_NAME);
@@ -36,23 +37,26 @@ export default function LeagueOfLettersSettingsPage() {
     const router = useRouter();
     const [settings, setSettings] = useState(DEFAULT_SOLO_SETTINGS);
     const [starting, setStarting] = useState(false);
-    const [failed, setFailed] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     async function start() {
         if (starting) return;
 
         setStarting(true);
-        setFailed(false);
+        setError(null);
 
         try {
-            const { gameId } = await createSoloGame(settings);
+            const game = await createGame({ mode: 'solo', ...settings });
 
+            // Handed on from the game the server made, not from `settings`. They
+            // agree today, but the server is what decides what was actually
+            // created, and the screen we're pushing to should read that.
             router.push({
                 pathname: ROUTES.leagueOfLettersSolo,
-                params: { gameId, lang: settings.language, length: settings.wordLength }
+                params: { gameId: game.id, lang: game.language, length: game.wordLength }
             });
-        } catch {
-            setFailed(true);
+        } catch (failure) {
+            setError(gameErrorMessage(failure));
         } finally {
             setStarting(false);
         }
@@ -84,12 +88,12 @@ export default function LeagueOfLettersSettingsPage() {
                     />
                 </View>
 
-                {failed && (
+                {error && (
                     <InlineNotification
                         icon='alert-triangle'
                         color={Colors.light.blush}
                         title='Mislukt'
-                        message='Het spel kon niet gestart worden. Probeer het nog een keer.'
+                        message={error}
                     />
                 )}
 
