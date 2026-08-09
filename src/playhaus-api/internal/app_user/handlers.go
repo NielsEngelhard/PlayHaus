@@ -3,9 +3,10 @@ package app_user
 import (
 	"encoding/json"
 	"errors"
-	"log"
 	"net/http"
 	"time"
+
+	json_utils "playhausapi/internal/util/json"
 
 	"gorm.io/gorm"
 )
@@ -23,10 +24,17 @@ func (h *Handler) CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	hashedPassword, err := hash_utils.hashPassword(req.Password)
+	if err != nil {
+		http.Error(w, "Error trying to hash the password", http.StatusInternalServerError)
+		return
+	}
+
 	user := AppUser{
 		Name:           req.Name,
 		Email:          req.Email,
 		IsGuestAccount: req.IsGuest,
+		PasswordHash:   hashedPassword,
 	}
 
 	if err := h.DB.WithContext(r.Context()).Create(&user).Error; err != nil {
@@ -71,7 +79,7 @@ func (h *Handler) GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 		out = append(out, newUserResponse(u))
 	}
 
-	writeJSON(w, http.StatusOK, listResponse[userResponse]{Data: out})
+	json_utils.WriteJSON(w, http.StatusOK, listResponse[userResponse]{Data: out})
 }
 
 func newUserResponse(u AppUser) userResponse {
@@ -96,19 +104,12 @@ type listResponse[T any] struct {
 	Data []T `json:"data"`
 }
 
-func writeJSON(w http.ResponseWriter, status int, v any) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(status)
-	if err := json.NewEncoder(w).Encode(v); err != nil {
-		log.Printf("write json: %v", err)
-	}
-}
-
 // Request data
 type createUserRequest struct {
-	Name    string  `json:"name"`
-	Email   *string `json:"email"`
-	IsGuest bool    `json:"isGuestAccount"`
+	Name     string  `json:"name"`
+	Email    *string `json:"email"`
+	IsGuest  bool    `json:"isGuestAccount"`
+	Password string  `json:"password"`
 }
 
 type updateUsernameRequest struct {

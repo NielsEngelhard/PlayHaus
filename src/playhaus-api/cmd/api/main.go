@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	app_user "playhausapi/internal/app_user"
+	"playhausapi/internal/auth"
 	"playhausapi/internal/database"
 
 	"gorm.io/gorm"
@@ -18,11 +19,17 @@ func main() {
 
 	// Handlers
 	addUserHandlers(mux, app_user.New(db))
+	addAuthHandlers(mux, auth.New(db))
 
 	// Database
 	initDatabase()
 
 	log.Fatal(http.ListenAndServe(":8080", mux))
+}
+
+func addAuthHandlers(mux *http.ServeMux, h *auth.Handler) {
+	mux.HandleFunc("POST /api/v1/login", h.Login)
+	mux.HandleFunc("POST /api/v1/logout", h.Logout)
 }
 
 func addUserHandlers(mux *http.ServeMux, h *app_user.Handler) {
