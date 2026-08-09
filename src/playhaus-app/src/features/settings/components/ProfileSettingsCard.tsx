@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Toggle from "@/components/ui/Toggle";
 import { Colors, FontSizes, Spacing } from "@/constants/theme";
-import { SETTINGS, type SettingKey } from "@/features/settings/mock-profile";
+import { SETTINGS, type SettingKey } from "@/features/settings/profile";
 import Feather from "@expo/vector-icons/Feather";
 import { StyleSheet, View } from "react-native";
 

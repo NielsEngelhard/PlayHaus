@@ -7,6 +7,10 @@ export interface User {
     email?: string
     name: string
     isGuestAccount: boolean
+    /** Which swatch in `AVATAR_COLORS`, not a colour — the hex lives in the app. */
+    avatarColorId: string
+    soundEnabled: boolean
+    vibrationEnabled: boolean
     createdAt: string
 }
 

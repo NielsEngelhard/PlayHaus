@@ -56,7 +56,7 @@ export default function SignupForm({ onBack }: Props) {
 
     return (
         <View>
-            <AuthFormHeader title='Create Account' onBack={onBack} disabled={busy} />
+            <AuthFormHeader title='Sign Up' onBack={onBack} disabled={busy} />
 
             <TextField
                 label='Player name'

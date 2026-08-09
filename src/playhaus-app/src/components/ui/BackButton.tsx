@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         flexShrink: 0,
         flexDirection: 'row',
-        gap: Spacing.two
+        gap: Spacing.two,
+        marginVertical: Spacing.four
     },
     text: {
         fontSize: FontSizes.md,

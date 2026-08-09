@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
-import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/mock-profile";
+import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, StyleSheet, View } from "react-native";
 

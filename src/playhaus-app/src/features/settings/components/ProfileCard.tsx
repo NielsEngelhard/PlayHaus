@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
-import { avatarColorById } from "@/features/settings/mock-profile";
+import { avatarColorById } from "@/features/settings/profile";
 import { StyleSheet, View } from "react-native";
 
 interface Props {

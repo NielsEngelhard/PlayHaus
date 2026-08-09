@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing, fontFamilyForWeight } from "@/constants/theme";
-import { NAME_MAX_LENGTH, randomName } from "@/features/settings/mock-profile";
+import { NAME_MAX_LENGTH, randomName } from "@/features/settings/profile";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";

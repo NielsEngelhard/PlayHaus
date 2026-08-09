@@ -38,8 +38,8 @@ export default function LeagueOfLettersIndexPage() {
                         icon='users'
                         color={Colors.light.primary}
                         iconColor={Colors.light.textOnAccent}
-                        title='Maak een kamer'
-                        description='Live race tegen een vriend. Deel de code en gaan.'
+                        title='Multiplayer'
+                        description='Play against your friends (or foes)'
                         navigationUrl={ROUTES.leagueOfLettersCreateRoom}
                     />
                 </View>

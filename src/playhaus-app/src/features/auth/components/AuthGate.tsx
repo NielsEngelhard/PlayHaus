@@ -1,5 +1,6 @@
 import Card from "@/components/ui/Card";
 import { Spacing } from "@/constants/theme";
+import AccountChoice from "@/features/auth/components/AccountChoice";
 import AuthChoice from "@/features/auth/components/AuthChoice";
 import LoginForm from "@/features/auth/components/LoginForm";
 import SignupForm from "@/features/auth/components/SignupForm";
@@ -7,7 +8,7 @@ import { useAuth } from "@/features/auth/useAuth";
 import { useState } from "react";
 import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, View } from "react-native";
 
-type GateView = 'choice' | 'login' | 'signup';
+type GateView = 'choice' | 'account' | 'login' | 'signup';
 
 /**
  * The popup that stands in front of the app until you are signed in.
@@ -17,7 +18,7 @@ type GateView = 'choice' | 'login' | 'signup';
  * `Slot` means it survives navigation and covers the `Header` and `BottomBar`
  * that sit outside the routed content.
  *
- * The three steps are views inside this one modal rather than routes. The root
+ * The steps are views inside this one modal rather than routes. The root
  * layout renders a bare `Slot` instead of a navigator, so there is no stack to
  * push onto — and keeping them here means the gate can't be escaped by
  * navigating, which a route-based form could be.
@@ -58,15 +59,22 @@ export default function AuthGate() {
                     <View style={styles.sheet}>
                         <Card>
                             {view === 'choice' && (
-                                <AuthChoice
+                                <AuthChoice onAccount={() => setView('account')} />
+                            )}
+
+                            {view === 'account' && (
+                                <AccountChoice
                                     onLogin={() => setView('login')}
                                     onCreateAccount={() => setView('signup')}
+                                    onBack={() => setView('choice')}
                                 />
                             )}
 
-                            {view === 'login' && <LoginForm onBack={() => setView('choice')} />}
+                            {/* Back goes to the account fork, not all the way out: it undoes
+                                the last choice made rather than the whole trip. */}
+                            {view === 'login' && <LoginForm onBack={() => setView('account')} />}
 
-                            {view === 'signup' && <SignupForm onBack={() => setView('choice')} />}
+                            {view === 'signup' && <SignupForm onBack={() => setView('account')} />}
                         </Card>
                     </View>
                 </ScrollView>

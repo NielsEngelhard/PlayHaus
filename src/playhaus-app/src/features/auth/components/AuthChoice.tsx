@@ -8,18 +8,17 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
-    onLogin: () => void
-    onCreateAccount: () => void
+    onAccount: () => void
 }
 
 /**
- * The gate's first screen: the three ways into the app, stacked.
+ * The gate's first screen: the two ways into the app, stacked.
  *
- * Two of them only switch the view, but "Continue as Guest" signs you in from
- * here — there is no form to fill in — so this is the one screen of the three
- * that owns a request and its failure.
+ * "Account" only switches the view — the choice between logging in and signing
+ * up is a step further on — but "As Guest" signs you in from here, since there
+ * is no form to fill in, so this screen owns a request and its failure.
  */
-export default function AuthChoice({ onLogin, onCreateAccount }: Props) {
+export default function AuthChoice({ onAccount }: Props) {
     const { continueAsGuest } = useAuth();
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -51,16 +50,8 @@ export default function AuthChoice({ onLogin, onCreateAccount }: Props) {
 
             <View style={styles.buttons}>
                 <TextButton
-                    text='Login'
-                    onPress={onLogin}
-                    variant='secondary'
-                    fullWidth
-                    disabled={busy}
-                />
-
-                <TextButton
-                    text='Create Account'
-                    onPress={onCreateAccount}
+                    text='Account'
+                    onPress={onAccount}
                     variant='primary'
                     fullWidth
                     disabled={busy}
@@ -68,7 +59,7 @@ export default function AuthChoice({ onLogin, onCreateAccount }: Props) {
 
                 {/* Muted on purpose: available, but not the road being recommended. */}
                 <TextButton
-                    text={busy ? 'One moment…' : 'Continue as Guest'}
+                    text={busy ? 'One moment…' : 'As Guest'}
                     onPress={guest}
                     variant='muted'
                     fullWidth
@@ -96,7 +87,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
         marginTop: Spacing.four,
-        // The three sit under each other, not in a row: they are alternatives, and a
+        // The two sit under each other, not in a row: they are alternatives, and a
         // column gives each one a full-width tap target.
         flexDirection: 'column',
         gap: Spacing.three

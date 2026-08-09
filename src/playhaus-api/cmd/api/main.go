@@ -50,7 +50,10 @@ func addUserHandlers(mux *http.ServeMux, h *app_user.Handler, a *auth.Handler) {
 
 	// Authenticated.
 	mux.HandleFunc("GET /api/v1/users", a.RequireAuth(h.GetUsersHandler))
-	mux.HandleFunc("PUT /api/v1/user/username", a.RequireAuth(h.UpdateUsernameHandler))
+
+	// Sits beside `GET /api/v1/me`, which the auth handler owns: same resource,
+	// read there and written here.
+	mux.HandleFunc("PUT /api/v1/me", a.RequireAuth(h.UpdateProfileHandler))
 }
 
 func initDatabase() (*gorm.DB, error) {

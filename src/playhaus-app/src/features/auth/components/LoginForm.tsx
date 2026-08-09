@@ -12,7 +12,7 @@ interface Props {
     onBack: () => void
 }
 
-/** Signs an existing account in. Reached from the gate's choice screen. */
+/** Signs an existing account in. Reached from the gate's account screen. */
 export default function LoginForm({ onBack }: Props) {
     const { login } = useAuth();
 
