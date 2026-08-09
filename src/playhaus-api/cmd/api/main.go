@@ -17,12 +17,11 @@ func main() {
 		log.Fatalf("Error initializing the database %v", err)
 	}
 
-	// Handlers
-	addUserHandlers(mux, app_user.New(db))
-	addAuthHandlers(mux, auth.New(db))
+	authHandler := auth.New(db)
 
-	// Database
-	initDatabase()
+	// Handlers
+	addUserHandlers(mux, app_user.New(db), authHandler)
+	addAuthHandlers(mux, authHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
@@ -32,10 +31,13 @@ func addAuthHandlers(mux *http.ServeMux, h *auth.Handler) {
 	mux.HandleFunc("POST /api/v1/logout", h.Logout)
 }
 
-func addUserHandlers(mux *http.ServeMux, h *app_user.Handler) {
-	mux.HandleFunc("GET /api/v1/users", h.GetUsersHandler)
+func addUserHandlers(mux *http.ServeMux, h *app_user.Handler, a *auth.Handler) {
+	// Public: signup is how you get an account in the first place.
 	mux.HandleFunc("POST /api/v1/user", h.CreateUserHandler)
-	mux.HandleFunc("PUT /api/v1/user/username", h.UpdateUsernameHandler)
+
+	// Authenticated.
+	mux.HandleFunc("GET /api/v1/users", a.RequireAuth(h.GetUsersHandler))
+	mux.HandleFunc("PUT /api/v1/user/username", a.RequireAuth(h.UpdateUsernameHandler))
 }
 
 func initDatabase() (*gorm.DB, error) {
