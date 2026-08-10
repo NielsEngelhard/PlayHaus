@@ -130,6 +130,28 @@ export const SolidButton = {
   ...Shadows.hard,
 } as ViewStyle;
 
+/**
+ * Which fill a solid button wears. Only the colour changes — every variant keeps the
+ * border, shadow and label treatment `SolidButton` lays down, so a row of them still
+ * reads as one family.
+ *
+ * Lives here next to `SolidButton`, and for the same reason: `TextButton` and
+ * `BackButton` both wear these and the two have to stay identical.
+ *
+ * `muted` is for the option someone should be able to find but not be pushed towards.
+ * `neutral` steps back further still — it takes no accent colour at all, for a control
+ * that has to be present on a page it is not the point of.
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'muted' | 'neutral';
+
+export const ButtonVariants: Record<ButtonVariant, { fill: string, label: string }> = {
+  primary: { fill: Colors.light.primary, label: Colors.light.textOnAccent },
+  secondary: { fill: Colors.light.secondary, label: Colors.light.textOnAccent },
+  // The pale fills can't carry light text, so these flip to the normal colour.
+  muted: { fill: Colors.light.muted, label: Colors.light.text },
+  neutral: { fill: Colors.light.backgroundSecondary, label: Colors.light.text }
+};
+
 const pageGradient =
   'radial-gradient(circle at 12% 18%, rgba(254, 90, 29, 0.14) 0%, transparent 38%), ' +
   'radial-gradient(circle at 88% 82%, rgba(59, 77, 240, 0.12) 0%, transparent 42%)';

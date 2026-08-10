@@ -103,20 +103,59 @@ func TestValidGuess(t *testing.T) {
 	}
 }
 
-func TestGuessScore(t *testing.T) {
-	// Solving sooner is worth more, and the last guess is still worth something.
-	want := map[int]int{1: 6, 2: 5, 3: 4, 4: 3, 5: 2, 6: 1}
-
-	for number, expected := range want {
-		if got := GuessScore(number); got != expected {
-			t.Errorf("GuessScore(%d) = %d, want %d", number, got, expected)
-		}
+func TestScoreGuess(t *testing.T) {
+	cases := []struct {
+		name string
+		// The player's earlier guesses this round, oldest first.
+		previous []string
+		guess    string
+		target   string
+		want     int
+	}{
+		{
+			// The letter was on the board before the player touched it.
+			name: "the free first letter is worth nothing", guess: "kzzzz", target: "krant", want: 0,
+		},
+		{
+			// r placed, and t and a shown to be in there somewhere.
+			name: "placings and near misses", guess: "kreta", target: "krant", want: 5 + 2 + 2,
+		},
+		{
+			// Same three facts, rearranged. Rearranging is not finding out.
+			name: "nothing already known pays twice", previous: []string{"kreta"}, guess: "krtae", target: "krant", want: 0,
+		},
+		{
+			// Knowing a is in there is not knowing where a goes.
+			name: "a near miss that gets placed still pays", previous: []string{"kreta"}, guess: "kranz", target: "krant", want: 5 + 5,
+		},
+		{
+			// Four positions found, minus the free one, plus the word.
+			name: "solving cold", guess: "krant", target: "krant", want: 5 + 5 + 5 + 5 + PointsSolved,
+		},
+		{
+			// r was already pinned, so only the other three positions, plus the word.
+			name: "solving late pays only for what was left", previous: []string{"kreta"}, guess: "krant", target: "krant", want: 5 + 5 + 5 + PointsSolved,
+		},
+		{
+			// Both e's are separate positions worth finding, and so is the n.
+			name: "repeated letters are scored per position", guess: "geven", target: "regen", want: 5 + 5 + 5,
+		},
+		{
+			// The e placed at 1 makes the e adrift at 2 old news, in the same guess.
+			name: "placing a letter kills its own near miss", guess: "zeezr", target: "regen", want: 5 + 2,
+		},
+		{
+			// Two of the same letter adrift is still just "there is an e in it".
+			name: "one near miss per letter per guess", guess: "zzeez", target: "eerst", want: 2,
+		},
 	}
 
-	// MaxGuesses caps how many a player gets, but a score of zero or less would
-	// be a worse reward for solving than for not solving at all.
-	if got := GuessScore(MaxGuesses + 3); got != 1 {
-		t.Errorf("GuessScore past the last guess = %d, want 1", got)
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			if got := ScoreGuess(c.guess, c.target, c.previous); got != c.want {
+				t.Errorf("ScoreGuess(%q, %q, %v) = %d, want %d", c.guess, c.target, c.previous, got, c.want)
+			}
+		})
 	}
 }
 

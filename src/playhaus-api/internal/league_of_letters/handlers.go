@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"sort"
 	"time"
 
 	"playhausapi/internal/authctx"
@@ -291,10 +292,14 @@ func (h *Handler) createGuess(ctx context.Context, game Game, userID, word strin
 		}
 
 		solved := word == round.Word
-		if solved {
+
+		// Scored against what this player already knew, which is why `mine` had to
+		// be read inside the transaction: the same guess is worth more or less
+		// depending on which guess of theirs it is.
+		if points := ScoreGuess(word, round.Word, guessWords(mine)); points > 0 {
 			if err := tx.Model(&Player{}).
 				Where("game_id = ? AND user_id = ?", game.ID, userID).
-				Update("score", gorm.Expr("score + ?", GuessScore(number))).Error; err != nil {
+				Update("score", gorm.Expr("score + ?", points)).Error; err != nil {
 				return err
 			}
 		}
@@ -453,15 +458,25 @@ func (h *Handler) roundResponse(ctx context.Context, game Game, round Round) (Ro
 		return RoundResponse{}, err
 	}
 
-	firstLetter := round.Word[0]
+	// Given away from the moment the round is drawn, unlike Word below: knowing the
+	// letter it starts with is a head start, not the answer. Slicing a byte is safe
+	// here — every word in the lists is plain a-z, the same shape ValidGuess demands —
+	// and the empty check is only so a round with no word behind it cannot panic a
+	// read of the game.
+	firstLetter := ""
+	if round.Word != "" {
+		firstLetter = round.Word[:1]
+	}
 
 	out := RoundResponse{
 		Number:      round.Number,
 		StartedAt:   round.StartedAt,
 		EndsAt:      round.EndsAt,
 		Guesses:     make([]GuessResponse, 0, len(guesses)),
-		FirstLetter: string(firstLetter),
+		FirstLetter: firstLetter,
 	}
+
+	points := guessPoints(guesses, round.Word)
 
 	for _, guess := range guesses {
 		out.Guesses = append(out.Guesses, GuessResponse{
@@ -469,6 +484,7 @@ func (h *Handler) roundResponse(ctx context.Context, game Game, round Round) (Ro
 			Number:    guess.Number,
 			Word:      guess.Word,
 			Marks:     Evaluate(guess.Word, round.Word),
+			Points:    points[guess.ID],
 			CreatedAt: guess.CreatedAt,
 		})
 	}
@@ -480,6 +496,45 @@ func (h *Handler) roundResponse(ctx context.Context, game Game, round Round) (Ro
 	}
 
 	return out, nil
+}
+
+// guessWords pulls just the words out, in the order given, for the scorer.
+func guessWords(guesses []Guess) []string {
+	words := make([]string, 0, len(guesses))
+	for _, guess := range guesses {
+		words = append(words, guess.Word)
+	}
+	return words
+}
+
+// guessPoints works out what each guess in a round was worth, keyed by guess ID.
+//
+// Like marks, points are derived on read rather than stored: a guess is worth
+// what it revealed, and what it revealed is fully determined by the word and the
+// guesses that player had already made. Replaying it here means the running
+// total on the scoreboard and the per-guess figures on the board can never drift
+// apart, and a change to the scale needs no migration.
+//
+// The rows arrive in board order, which is not necessarily one player's own
+// order, so each player's guesses are replayed in their own numbering.
+func guessPoints(guesses []Guess, word string) map[string]int {
+	byPlayer := make(map[string][]Guess)
+	for _, guess := range guesses {
+		byPlayer[guess.UserID] = append(byPlayer[guess.UserID], guess)
+	}
+
+	points := make(map[string]int, len(guesses))
+	for _, mine := range byPlayer {
+		sort.Slice(mine, func(i, j int) bool { return mine[i].Number < mine[j].Number })
+
+		previous := make([]string, 0, len(mine))
+		for _, guess := range mine {
+			points[guess.ID] = ScoreGuess(guess.Word, word, previous)
+			previous = append(previous, guess.Word)
+		}
+	}
+
+	return points
 }
 
 func containsSolution(guesses []GuessResponse, word string) bool {
@@ -573,10 +628,14 @@ type RoundResponse struct {
 }
 
 type GuessResponse struct {
-	UserID    string    `json:"userId"`
-	Number    int       `json:"number"`
-	Word      string    `json:"word"`
-	Marks     []Mark    `json:"marks"`
+	UserID string `json:"userId"`
+	Number int    `json:"number"`
+	Word   string `json:"word"`
+	Marks  []Mark `json:"marks"`
+
+	// What this guess added to its player's score. Derived, never stored — see
+	// guessPoints.
+	Points    int       `json:"points"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 

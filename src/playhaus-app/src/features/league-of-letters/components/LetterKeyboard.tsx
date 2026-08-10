@@ -1,5 +1,6 @@
 import type { Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
+import PopPressable from "@/components/ui/PopPressable";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { MARK_STYLES } from "@/features/league-of-letters/marks";
 import Feather from "@expo/vector-icons/Feather";
@@ -87,7 +88,7 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
     const marked = mark ? MARK_STYLES[mark] : undefined;
 
     return (
-        <Pressable
+        <PopPressable
             onPress={() => onPress(letter)}
             disabled={disabled}
             accessibilityRole='button'
@@ -103,7 +104,7 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
             <AppText style={[styles.keyText, { color: marked?.foreground ?? Colors.light.text }]}>
                 {letter}
             </AppText>
-        </Pressable>
+        </PopPressable>
     )
 }
 

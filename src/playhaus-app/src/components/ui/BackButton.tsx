@@ -1,13 +1,21 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, SolidButton, Spacing } from "@/constants/theme";
+import { ButtonVariants, FontSizes, SolidButton, Spacing, type ButtonVariant } from "@/constants/theme";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     /** Where the back link goes. */
     href: Href,
-    label?: string
+    label?: string,
+    /**
+     * Defaults to `secondary`, the accent fill `SolidButton` already carries. Pass
+     * `neutral` where going back is not what the page is for and the accent would be
+     * competing with the thing that is.
+     */
+    variant?: ButtonVariant,
+    /** For layout only — how the button sits among its siblings. The look lives here. */
+    style?: StyleProp<ViewStyle>
 }
 
 /**
@@ -18,16 +26,20 @@ interface Props {
  * where the back link should be a real anchor you can middle-click, and where history
  * can hold pages that aren't ours.
  */
-export default function BackButton({ href, label = 'Terug' }: Props) {
+export default function BackButton({ href, label = 'Terug', variant = 'secondary', style }: Props) {
+    const { fill, label: ink } = ButtonVariants[variant];
+
     return (
         <Link href={href} asChild>
             <Pressable
                 accessibilityRole='link'
                 accessibilityLabel={label}
-                style={styles.button}
+                // `style` comes last so a caller can trim the standing margin below
+                // without having to reach into this file for the rest of the look.
+                style={StyleSheet.flatten([styles.button, { backgroundColor: fill }, style])}
             >
-                <Feather name='arrow-left' size={18} color={Colors.light.textOnAccent} />
-                <AppText style={styles.text}>{label}</AppText>
+                <Feather name='arrow-left' size={18} color={ink} />
+                <AppText style={[styles.text, { color: ink }]}>{label}</AppText>
             </Pressable>
         </Link>
     )
@@ -47,7 +59,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: FontSizes.md,
         fontWeight: 900,
-        textTransform: 'uppercase',
-        color: Colors.light.textOnAccent
+        textTransform: 'uppercase'
     }
 })

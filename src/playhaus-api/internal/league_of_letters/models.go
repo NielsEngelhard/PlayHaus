@@ -242,16 +242,85 @@ func ValidGuess(word string, length int) bool {
 	return true
 }
 
-// GuessScore is what solving a round on your nth guess is worth: six points for
-// finding it first time, down to one for scraping it on the last.
+// What a guess can earn. The scale rewards information: a letter is only worth
+// something the first time the player finds it, so the way to score is to keep
+// turning up things about the word nobody had yet.
+const (
+	// A letter pinned to a position that was still unknown.
+	PointsCorrectSpot = 5
+	// A letter shown to be in the word, but not yet where.
+	PointsPresentLetter = 2
+	// On top of the letters, for the guess that actually lands the word.
+	PointsSolved = 5
+)
+
+// ScoreGuess is what one guess earns the player who made it, given the earlier
+// guesses they made in the same round.
 //
-// The only thing being rewarded is getting there in fewer guesses, so the scale
-// is simply how many guesses were left when it fell.
-func GuessScore(number int) int {
-	if score := MaxGuesses - number + 1; score > 1 {
-		return score
+// Only new information pays. Re-guessing a letter you have already placed, or
+// re-parking one you already know is in there, is worth nothing — otherwise the
+// cheapest strategy would be to guess the same near-miss six times over.
+//
+// "New" is measured two different ways on purpose. A correct letter is scored
+// per position, because a word with two E's has two separate positions worth
+// finding. A misplaced letter is scored per letter, because all it tells you is
+// that the letter is in there somewhere, and it can only tell you that once.
+//
+// The first position is never scored. Its letter is on the board from the
+// moment the round is drawn, so putting it there is not a guess. That exemption
+// is the position's alone: the same letter turning up again elsewhere is a real
+// find and pays like any other.
+func ScoreGuess(guess, target string, previous []string) int {
+	// Positions already pinned, and letters already known to be in the word.
+	pinned := make(map[int]bool)
+	known := make(map[rune]bool)
+
+	for _, earlier := range previous {
+		letters := []rune(strings.ToLower(earlier))
+		for i, mark := range Evaluate(earlier, target) {
+			switch mark {
+			case MarkCorrect:
+				pinned[i] = true
+				known[letters[i]] = true
+			case MarkPresent:
+				known[letters[i]] = true
+			}
+		}
 	}
-	return 1
+
+	letters := []rune(strings.ToLower(guess))
+	marks := Evaluate(guess, target)
+
+	points := 0
+
+	// Placings first, so that a letter this guess pins down cannot also be paid
+	// for as a near miss somewhere else in the same guess.
+	for i, mark := range marks {
+		if i == 0 || mark != MarkCorrect {
+			continue
+		}
+		if !pinned[i] {
+			points += PointsCorrectSpot
+		}
+		known[letters[i]] = true
+	}
+
+	for i, mark := range marks {
+		if i == 0 || mark != MarkPresent {
+			continue
+		}
+		if !known[letters[i]] {
+			points += PointsPresentLetter
+			// Two of the same letter adrift in one guess is still the one fact.
+			known[letters[i]] = true
+		}
+	}
+
+	if NormalizeGuess(guess) == NormalizeGuess(target) {
+		points += PointsSolved
+	}
+
+	return points
 }
 
 // Room codes are read aloud and typed in by hand, so the alphabet leaves out

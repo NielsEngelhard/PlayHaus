@@ -28,7 +28,7 @@ interface Props {
     onGuess?: (word: string) => Promise<void>
 }
 
-/** How long a nudge like "Te kort." stays up before it stops being useful. */
+/** How long a nudge like "Die had je al." stays up before it stops being useful. */
 const NOTICE_MS = 2500;
 
 /**
@@ -56,7 +56,7 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
     const [sending, setSending] = useState(false);
     /**
      * Wrapped in an object rather than held as a bare string so that saying the same
-     * thing twice is still a new notice: two `'Te kort.'`s in a row are equal as strings,
+     * thing twice is still a new notice: two `'Die had je al.'`s in a row are equal as strings,
      * which would leave the first one's dismissal timer running and blink the second away.
      */
     const [notice, setNotice] = useState<{ text: string } | null>(null);
@@ -129,10 +129,10 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
             return;
         }
 
-        if (draft.length < game.wordLength) {
-            setNotice({ text: 'Te kort.' });
-            return;
-        }
+        // Silently refused. A half-typed row is not a mistake worth interrupting anyone
+        // over — the empty tiles already say the word is not finished, and a line of text
+        // repeating that is noise on every stray press of Raden.
+        if (draft.length < game.wordLength) return;
 
         // Checked here as well as on the server. The board already knows every word
         // this player has tried, so a repeat can be answered in Dutch and instantly
@@ -161,6 +161,19 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
     return (
         <View style={styles.screen}>
             <View style={styles.topRow}>
+                {/* The bottom bar is hidden while a game is on screen, so this is the way
+                    out. Neutral rather than the app's accent: the way out of a game is not
+                    what the page is for, and the board should be the loudest thing on it. */}
+                <BackButton
+                    href={ROUTES.leagueOfLettersIndex}
+                    variant='neutral'
+                    style={styles.back}
+                />
+
+                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
+                {multiplayer && game.round?.endsAt && (
+                    <GameTimer endsAt={game.round.endsAt} style={styles.timer} />
+                )}
 
                 {/* First letter */}
                 {firstLetter !== '' && (
@@ -171,11 +184,6 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
                     >
                         <AppText style={styles.hintLetter}>{firstLetter}</AppText>
                     </View>
-                )}
-
-                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
-                {multiplayer && game.round?.endsAt && (
-                    <GameTimer endsAt={game.round.endsAt} style={styles.timer} />
                 )}
             </View>
 
@@ -227,8 +235,6 @@ export default function PlayingGame({ game, userId, onGuess }: Props) {
                 onPress={submit}
             >
             </TextButton>
-
-            <BackButton href={ROUTES.leagueOfLettersIndex} />
         </View>
     )
 }
@@ -247,9 +253,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: Spacing.three
     },
+    // Trimmed back from the margin the button stands in on pages where it is the last
+    // thing on them: every point of height it takes here is a point the board loses,
+    // and the board has a keyboard under it that cannot move.
+    back: {
+        marginVertical: Spacing.two
+    },
     hint: {
         flexDirection: 'row',
         alignItems: 'center',
+        // Pinned to the right-hand end of the row whether or not a clock is sharing it —
+        // with no timer to take up the slack there is nothing else pushing it over.
+        marginLeft: 'auto',
         // Holds its size against the timer, which is the flexible one in this row.
         flexShrink: 0,
         gap: Spacing.two,
@@ -260,13 +275,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.two,
         backgroundColor: Colors.light.backgroundSecondary,
         ...Shadows.hardSmall
-    },
-    hintLabel: {
-        fontSize: FontSizes.xs,
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 1.5,
-        color: Colors.light.text
     },
     hintLetter: {
         fontSize: FontSizes.md,

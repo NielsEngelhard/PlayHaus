@@ -30,6 +30,13 @@ export interface GameGuess {
     word: string
     /** One mark per letter, scored server-side. Never computed in the app. */
     marks: Mark[]
+    /**
+     * What this guess added to its player's score: five for every letter it
+     * pinned to a spot nobody had yet, two for every letter it first showed to
+     * be in the word, five more for landing the word itself. The given first
+     * letter is never worth anything, and nothing is paid for twice.
+     */
+    points: number
     createdAt: string
 }
 

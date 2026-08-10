@@ -1,21 +1,7 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, SolidButton } from "@/constants/theme";
-import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
-
-/**
- * Which fill the button wears. Only the colour changes — every variant keeps the
- * same border, shadow and label treatment, so a row of them still reads as one
- * family. Use `muted` for the option someone should be able to find but not be
- * pushed towards.
- */
-export type ButtonVariant = 'primary' | 'secondary' | 'muted';
-
-const Variants: Record<ButtonVariant, { fill: string, label: string }> = {
-    primary: { fill: Colors.light.primary, label: Colors.light.textOnAccent },
-    secondary: { fill: Colors.light.secondary, label: Colors.light.textOnAccent },
-    // The pale fill can't carry light text, so this one flips to the normal colour.
-    muted: { fill: Colors.light.muted, label: Colors.light.text }
-};
+import PopPressable from "@/components/ui/PopPressable";
+import { ButtonVariants, FontSizes, SolidButton, type ButtonVariant } from "@/constants/theme";
+import { StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     text: string
@@ -41,10 +27,10 @@ export default function TextButton({
     variant = 'secondary',
     style
 }: Props) {
-    const { fill, label } = Variants[variant];
+    const { fill, label } = ButtonVariants[variant];
 
     return (
-        <Pressable
+        <PopPressable
             onPress={onPress}
             disabled={disabled}
             accessibilityRole='button'
@@ -58,7 +44,7 @@ export default function TextButton({
             ]}
         >
             <AppText style={[styles.text, { color: label }]}>{text}</AppText>
-        </Pressable>
+        </PopPressable>
     )
 }
 
