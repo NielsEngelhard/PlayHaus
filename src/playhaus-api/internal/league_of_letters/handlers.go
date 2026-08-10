@@ -107,10 +107,6 @@ func (h *Handler) createGame(ctx context.Context, userID string, mode Mode, lang
 		}
 		game.Code = &code
 	} else {
-		// Active immediately, and with no deadline. GameDuration is a rule about
-		// racing other people; a solo player is racing nobody and the app shows
-		// them no clock, so a deadline here would only mean their game stopped
-		// taking guesses for a reason nothing on screen ever explained.
 		game.Status = StatusActive
 		game.StartedAt = &now
 	}
@@ -396,6 +392,19 @@ func writeGameError(w http.ResponseWriter, err error) {
 		http.Error(w, "No guesses left", http.StatusConflict)
 	default:
 		http.Error(w, "Could not load game", http.StatusInternalServerError)
+	}
+}
+
+func determineTotalRounds(nPlayers uint8) uint8 {
+	switch {
+	case nPlayers <= 1:
+		return 4
+	case nPlayers == 2 || nPlayers == 3:
+		return 6
+	case nPlayers > 3 && nPlayers < 5:
+		return nPlayers * 2
+	default:
+		return nPlayers * 1 // 1 per player
 	}
 }
 

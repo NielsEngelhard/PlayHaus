@@ -30,7 +30,7 @@ const FILL_MS = 160;
 /** Half a turn: down to the edge, then back up on the other side. */
 const FLIP_MS = 110;
 /** Gap between one tile starting to turn over and the next. */
-const REVEAL_STEP_MS = 300;
+const REVEAL_STEP_MS = 200;
 
 // react-native-web has no native animation module, so asking for one there is a
 // console warning and nothing else. Transforms are driver-safe everywhere else.
