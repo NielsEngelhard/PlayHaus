@@ -1,4 +1,6 @@
-package app_user
+// Package user owns accounts: the row, the rules about what a valid profile
+// is, and the endpoints that read and write one.
+package user
 
 import (
 	"time"
@@ -33,9 +35,13 @@ func IsAvatarColorID(id string) bool {
 }
 
 type AppUser struct {
-	ID             string  `gorm:"type:text;primaryKey"`
-	Name           string  `gorm:"not null"`
-	Email          *string `gorm:"uniqueIndex"`
+	ID   string `gorm:"type:text;primaryKey"`
+	Name string `gorm:"not null"`
+
+	// Nil for guests, who have no second way back into their account. Unique
+	// among the accounts that do have one — NULLs do not collide in SQLite.
+	Email *string `gorm:"uniqueIndex"`
+
 	PasswordHash   *string `json:"-"`
 	IsGuestAccount bool    `gorm:"not null;default:false"`
 
@@ -51,7 +57,13 @@ type AppUser struct {
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
-// Fills in what every account starts with, so no caller has to remember it.
+// TableName pins the table to app_users. Without it the name is derived from
+// the struct, so renaming the type in Go would silently rename the table — and
+// the game package joins against this name by hand.
+func (AppUser) TableName() string { return "app_users" }
+
+// BeforeCreate fills in what every account starts with, so no caller has to
+// remember it.
 //
 // The two booleans are set unconditionally rather than only when unset: a bool
 // has no "unset" to test for, and nothing creates an account that wants either

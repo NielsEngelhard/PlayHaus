@@ -31,6 +31,11 @@ const (
 	Length8 WordLength = 8
 )
 
+// Lengths is every supported word length. loadLists walks it to find the files
+// it must embed, so a length added here without a matching data file fails at
+// startup rather than at the first round that asks for it.
+var Lengths = []WordLength{Length3, Length4, Length5, Length6, Length7, Length8}
+
 func ParseLength(n int) (WordLength, error) {
 	switch WordLength(n) {
 	case Length3, Length4, Length5, Length6, Length7, Length8:

@@ -1,98 +1,100 @@
+// Package auth turns credentials into sessions, and sessions back into a user
+// ID on the request context.
 package auth
 
 import (
-	"context"
-	"crypto/rand"
-	"crypto/sha256"
-	"encoding/base64"
-	"encoding/hex"
-	"encoding/json"
 	"errors"
-	"io"
 	"net/http"
 	"strings"
+	"sync"
 	"time"
 
-	app_user "playhausapi/internal/app_user"
 	"playhausapi/internal/authctx"
-	hash_utils "playhausapi/internal/util/hash"
-	json_utils "playhausapi/internal/util/json"
-
-	"gorm.io/gorm"
-)
-
-const (
-	sessionCookieName = "playhaus_session"
-	sessionTTL        = 7 * 24 * time.Hour
+	"playhausapi/internal/database"
+	"playhausapi/internal/httpjson"
+	"playhausapi/internal/password"
+	"playhausapi/internal/user"
 )
 
 // dummyHash is compared against when no account matches, so a wrong email
 // costs the same time as a wrong password. Without it, response timing
 // reveals which email addresses are registered.
-var dummyHash string
-
-func init() {
-	h, err := hash_utils.HashPassword("not-a-real-password")
+//
+// Computed on first use rather than in an init(): bcrypt at cost 12 takes about
+// a quarter of a second, and a package that spends that before main() has even
+// started is a surprise nobody needs. sync.OnceValue also keeps the failure
+// where it can be handled instead of panicking at load time.
+var dummyHash = sync.OnceValue(func() string {
+	h, err := password.Hash("not-a-real-password-just-for-timing")
 	if err != nil {
+		// Only reachable if the password rules above reject a literal this file
+		// controls, which is a programming error rather than a runtime one.
 		panic("auth: could not build dummy hash: " + err.Error())
 	}
-	dummyHash = h
-}
+	return h
+})
 
 type Handler struct {
-	DB *gorm.DB
+	sessions *Store
+	users    *user.Store
 
-	// SecureCookies marks session cookies HTTPS-only. Leave false for local
-	// development over plain HTTP; set it to true in production.
-	SecureCookies bool
+	// secureCookies marks session cookies HTTPS-only. False only for local
+	// development over plain HTTP, where a Secure cookie would never be stored.
+	secureCookies bool
 }
 
-func New(db *gorm.DB) *Handler { return &Handler{DB: db} }
+func NewHandler(sessions *Store, users *user.Store, secureCookies bool) *Handler {
+	return &Handler{sessions: sessions, users: users, secureCookies: secureCookies}
+}
+
+func New(db *database.DB, secureCookies bool) *Handler {
+	return NewHandler(NewStore(db), user.NewStore(db), secureCookies)
+}
 
 func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	var req loginRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid JSON body", http.StatusBadRequest)
+	if err := httpjson.Decode(w, r, &req); err != nil {
+		httpjson.WriteDecodeError(w, err)
 		return
 	}
 
-	if req.Email == "" || req.Password == "" {
-		unauthorized(w)
+	// Normalized the same way signup stored it, so the address someone typed
+	// with a capital letter still finds their account.
+	email, err := user.NormalizeEmail(req.Email)
+	if err != nil || req.Password == "" {
+		password.Verify(req.Password, dummyHash())
+		writeInvalidCredentials(w)
 		return
 	}
 
-	var user app_user.AppUser
-	err := h.DB.WithContext(r.Context()).
-		Where("email = ?", req.Email).
-		First(&user).Error
-
+	account, err := h.users.ByEmail(r.Context(), email)
 	switch {
-	case errors.Is(err, gorm.ErrRecordNotFound):
-		hash_utils.VerifyPassword(req.Password, dummyHash)
-		unauthorized(w)
+	case errors.Is(err, user.ErrNotFound):
+		password.Verify(req.Password, dummyHash())
+		writeInvalidCredentials(w)
 		return
 	case err != nil:
-		http.Error(w, "Could not log in", http.StatusInternalServerError)
+		httpjson.WriteInternal(w, r, err, "Could not log in")
 		return
 	}
 
 	// Guest accounts have no password and so can never log in.
-	if user.PasswordHash == nil || !hash_utils.VerifyPassword(req.Password, *user.PasswordHash) {
-		unauthorized(w)
+	if account.PasswordHash == nil || !password.Verify(req.Password, *account.PasswordHash) {
+		writeInvalidCredentials(w)
 		return
 	}
 
-	session, token, err := h.issueSession(r.Context(), user.ID)
+	session, token, err := h.issueSession(r.Context(), account.ID)
 	if err != nil {
-		http.Error(w, "Could not log in", http.StatusInternalServerError)
+		httpjson.WriteInternal(w, r, err, "Could not log in")
 		return
 	}
 
 	h.setSessionCookie(w, token, session.ExpiresAt)
-	json_utils.WriteJSON(w, http.StatusOK, authResponse{
+	httpjson.Write(w, http.StatusOK, authResponse{
 		Token:     token,
 		ExpiresAt: session.ExpiresAt,
-		User:      app_user.NewUserResponse(user),
+		User:      user.NewSelfResponse(account),
 	})
 }
 
@@ -101,45 +103,53 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 // It exists because signup plus login cannot express this: a guest has no
 // password, and Login rejects passwordless accounts by design. Without a
 // handler that mints the session itself, a guest could be created but never
-// authenticate as anyone.
+// authenticate as anyone. It is also the only way a guest account is ever
+// made — the signup endpoint deliberately cannot produce one.
 func (h *Handler) Guest(w http.ResponseWriter, r *http.Request) {
 	var req guestRequest
 	// An empty body is allowed — the name is optional — so only a malformed one
 	// is an error.
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil && !errors.Is(err, io.EOF) {
-		http.Error(w, "Invalid JSON body", http.StatusBadRequest)
+	if err := httpjson.DecodeOptional(w, r, &req); err != nil {
+		httpjson.WriteDecodeError(w, err)
 		return
 	}
 
-	name := strings.TrimSpace(req.Name)
-	if name == "" {
+	var name string
+	if strings.TrimSpace(req.Name) == "" {
 		generated, err := randomGuestName()
 		if err != nil {
-			http.Error(w, "Could not create guest", http.StatusInternalServerError)
+			httpjson.WriteInternal(w, r, err, "Could not create guest")
 			return
 		}
 		name = generated
+	} else {
+		validated, err := user.ValidateName(req.Name)
+		if err != nil {
+			httpjson.WriteError(w, http.StatusBadRequest, "INVALID_NAME", "Name is not valid")
+			return
+		}
+		name = validated
 	}
 
 	// Email and PasswordHash stay nil: there is no second way into this account.
 	// It lives exactly as long as the token we hand back.
-	user := app_user.AppUser{Name: name, IsGuestAccount: true}
-	if err := h.DB.WithContext(r.Context()).Create(&user).Error; err != nil {
-		http.Error(w, "Could not create guest", http.StatusInternalServerError)
+	account := user.AppUser{Name: name, IsGuestAccount: true}
+	if err := h.users.Create(r.Context(), &account); err != nil {
+		httpjson.WriteInternal(w, r, err, "Could not create guest")
 		return
 	}
 
-	session, token, err := h.issueSession(r.Context(), user.ID)
+	session, token, err := h.issueSession(r.Context(), account.ID)
 	if err != nil {
-		http.Error(w, "Could not create guest", http.StatusInternalServerError)
+		httpjson.WriteInternal(w, r, err, "Could not create guest")
 		return
 	}
 
 	h.setSessionCookie(w, token, session.ExpiresAt)
-	json_utils.WriteJSON(w, http.StatusCreated, authResponse{
+	httpjson.Write(w, http.StatusCreated, authResponse{
 		Token:     token,
 		ExpiresAt: session.ExpiresAt,
-		User:      app_user.NewUserResponse(user),
+		User:      user.NewSelfResponse(account),
 	})
 }
 
@@ -151,36 +161,29 @@ func (h *Handler) Guest(w http.ResponseWriter, r *http.Request) {
 func (h *Handler) Me(w http.ResponseWriter, r *http.Request) {
 	userID, ok := authctx.UserID(r.Context())
 	if !ok {
-		unauthenticated(w)
+		httpjson.WriteUnauthorized(w)
 		return
 	}
 
-	var user app_user.AppUser
-	err := h.DB.WithContext(r.Context()).
-		Where("id = ?", userID).
-		First(&user).Error
-
+	account, err := h.users.ByID(r.Context(), userID)
 	switch {
-	case errors.Is(err, gorm.ErrRecordNotFound):
+	case errors.Is(err, user.ErrNotFound):
 		// The session outlived the account it points at. Treat it as signed out
 		// rather than as a server fault.
-		unauthenticated(w)
+		httpjson.WriteUnauthorized(w)
 		return
 	case err != nil:
-		http.Error(w, "Could not load user", http.StatusInternalServerError)
+		httpjson.WriteInternal(w, r, err, "Could not load user")
 		return
 	}
 
-	json_utils.WriteJSON(w, http.StatusOK, app_user.NewUserResponse(user))
+	httpjson.Write(w, http.StatusOK, user.NewSelfResponse(account))
 }
 
 func (h *Handler) Logout(w http.ResponseWriter, r *http.Request) {
 	if token := sessionToken(r); token != "" {
-		// Hard delete: Session has no DeletedAt, so the row is really gone.
-		if err := h.DB.WithContext(r.Context()).
-			Where("token_hash = ?", hashToken(token)).
-			Delete(&Session{}).Error; err != nil {
-			http.Error(w, "Could not log out", http.StatusInternalServerError)
+		if err := h.sessions.DeleteByTokenHash(r.Context(), hashToken(token)); err != nil {
+			httpjson.WriteInternal(w, r, err, "Could not log out")
 			return
 		}
 	}
@@ -191,105 +194,10 @@ func (h *Handler) Logout(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// issueSession mints a token and stores its hash. The returned token is the
-// only copy that is ever readable; everything after this compares hashes.
-func (h *Handler) issueSession(ctx context.Context, userID string) (Session, string, error) {
-	token, err := newSessionToken()
-	if err != nil {
-		return Session{}, "", err
-	}
-
-	session := Session{
-		UserID:    userID,
-		TokenHash: hashToken(token),
-		ExpiresAt: time.Now().Add(sessionTTL),
-	}
-	if err := h.DB.WithContext(ctx).Create(&session).Error; err != nil {
-		return Session{}, "", err
-	}
-
-	return session, token, nil
-}
-
-// sessionToken pulls the caller's session token out of the request, preferring
-// the Authorization header over the cookie.
-//
-// Both are supported because the two clients differ: a browser gets the cookie
-// set for it and cannot read it back, while the React Native app stores the
-// token itself — it has no shared cookie jar with the web build, and on Expo
-// web the API is a different origin, where a cookie would need CORS
-// credentials to travel at all.
-func sessionToken(r *http.Request) string {
-	const prefix = "Bearer "
-
-	if header := r.Header.Get("Authorization"); len(header) > len(prefix) &&
-		strings.EqualFold(header[:len(prefix)], prefix) {
-		return strings.TrimSpace(header[len(prefix):])
-	}
-
-	if cookie, err := r.Cookie(sessionCookieName); err == nil {
-		return cookie.Value
-	}
-
-	return ""
-}
-
-// randomGuestName labels a guest with something a person can recognise in a
-// player list. The suffix is random rather than sequential so it doesn't leak
-// how many accounts exist.
-func randomGuestName() (string, error) {
-	b := make([]byte, 2)
-	if _, err := rand.Read(b); err != nil {
-		return "", err
-	}
-	return "Guest-" + strings.ToUpper(hex.EncodeToString(b)), nil
-}
-
-func (h *Handler) setSessionCookie(w http.ResponseWriter, token string, expires time.Time) {
-	http.SetCookie(w, &http.Cookie{
-		Name:     sessionCookieName,
-		Value:    token,
-		Path:     "/",
-		Expires:  expires,
-		HttpOnly: true,
-		Secure:   h.SecureCookies,
-		SameSite: http.SameSiteLaxMode,
-	})
-}
-
-func (h *Handler) clearSessionCookie(w http.ResponseWriter) {
-	http.SetCookie(w, &http.Cookie{
-		Name:     sessionCookieName,
-		Value:    "",
-		Path:     "/",
-		MaxAge:   -1,
-		HttpOnly: true,
-		Secure:   h.SecureCookies,
-		SameSite: http.SameSiteLaxMode,
-	})
-}
-
-// newSessionToken returns 256 bits of cryptographically random data. This is
-// the value handed to the client; it is never stored as-is.
-func newSessionToken() (string, error) {
-	b := make([]byte, 32)
-	if _, err := rand.Read(b); err != nil {
-		return "", err
-	}
-	return base64.RawURLEncoding.EncodeToString(b), nil
-}
-
-// hashToken is plain SHA-256 rather than bcrypt: the token is already high
-// entropy, so it needs no stretching, and lookups must stay indexable.
-func hashToken(token string) string {
-	sum := sha256.Sum256([]byte(token))
-	return base64.RawURLEncoding.EncodeToString(sum[:])
-}
-
-// unauthorized keeps the message identical for every failure reason so the
-// response body cannot be used to tell which emails exist.
-func unauthorized(w http.ResponseWriter) {
-	http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+// writeInvalidCredentials keeps the response identical for every failure reason
+// so neither the body nor the status can be used to tell which emails exist.
+func writeInvalidCredentials(w http.ResponseWriter) {
+	httpjson.WriteError(w, http.StatusUnauthorized, "INVALID_CREDENTIALS", "Invalid email or password")
 }
 
 // Request data
@@ -307,7 +215,7 @@ type guestRequest struct {
 // authResponse is what every route that starts a session returns, so a client
 // can treat login and guest sign-in through one code path.
 type authResponse struct {
-	Token     string                `json:"token"`
-	ExpiresAt time.Time             `json:"expiresAt"`
-	User      app_user.UserResponse `json:"user"`
+	Token     string            `json:"token"`
+	ExpiresAt time.Time         `json:"expiresAt"`
+	User      user.SelfResponse `json:"user"`
 }
