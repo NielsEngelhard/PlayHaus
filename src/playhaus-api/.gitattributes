@@ -1,0 +1,17 @@
+# Go tooling assumes LF. gofmt -l reports every CRLF file as unformatted, which
+# on a Windows checkout means "all of them" and makes the check useless.
+* text=auto eol=lf
+
+*.go     text eol=lf
+*.mod    text eol=lf
+*.sum    text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+
+# Word lists are read line by line; a stray \r would make every word one rune
+# too long and fail the length check.
+*.txt    text eol=lf
+
+*.db     binary
+*.exe    binary

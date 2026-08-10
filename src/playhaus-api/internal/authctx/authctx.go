@@ -1,9 +1,9 @@
 // Package authctx carries the authenticated user's ID on a request context.
 //
 // It deliberately holds only the ID and imports no other internal package.
-// The auth package already imports app_user, so if this stored a full
-// app_user.AppUser then app_user could not read it back without creating an
-// import cycle. Handlers that need the whole record load it from the DB.
+// The auth package already imports user, so if this stored a full
+// user.AppUser then user could not read it back without creating an import
+// cycle. Handlers that need the whole record load it from the DB.
 package authctx
 
 import "context"
