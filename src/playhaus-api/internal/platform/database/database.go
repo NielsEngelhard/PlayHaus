@@ -37,3 +37,12 @@ func Open(path string) (*gorm.DB, error) {
 
 	return db, nil
 }
+
+// Migrate brings the schema up to date for the given models. The models are
+// passed in rather than imported so this package stays free of domain types.
+func Migrate(db *gorm.DB, models ...any) error {
+	if err := db.AutoMigrate(models...); err != nil {
+		return fmt.Errorf("auto migrate: %w", err)
+	}
+	return nil
+}

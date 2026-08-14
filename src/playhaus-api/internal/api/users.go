@@ -13,6 +13,12 @@ type createUserRequest struct {
 	Password string `json:"password"`
 }
 
+type userResponse struct {
+	ID    int64  `json:"id"`
+	Email string `json:"email"`
+	Name  string `json:"name"`
+}
+
 func (r createUserRequest) Validate() map[string]string {
 	problems := map[string]string{}
 	if !strings.Contains(r.Email, "@") {
@@ -38,7 +44,7 @@ func (s *Server) handleCreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	u, err := s.users.Create(r.Context(), user.CreateInput{
+	u, err := s.users.CreateUser(r.Context(), &user.CreateUserInput{
 		Email: req.Email, Name: req.Name, Password: req.Password,
 	})
 	if err != nil {

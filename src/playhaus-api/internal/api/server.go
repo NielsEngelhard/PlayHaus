@@ -15,5 +15,6 @@ type Server struct {
 func NewServer(users *user.Service, log *slog.Logger) http.Handler {
 	s := &Server{mux: http.NewServeMux(), users: users, log: log}
 	s.mux.HandleFunc("POST /v1/users", s.handleCreateUser)
-	return chain(s.mux, recoverPanic(log), requestID, logRequests(log))
+	// requestID goes first so the id is in the context for the two below it.
+	return chain(s.mux, requestID, recoverPanic(log), logRequests(log))
 }

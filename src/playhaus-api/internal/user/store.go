@@ -20,10 +20,6 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
-func ExistsByEmail(ctx context.Context, email string) (bool, error) {
-	return false, nil
-}
-
 func (s *GormStore) ExistsByEmail(ctx context.Context, email string) (bool, error) {
 	var count int64
 	err := s.db.WithContext(ctx).

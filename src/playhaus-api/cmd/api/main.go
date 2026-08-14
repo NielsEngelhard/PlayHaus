@@ -12,13 +12,16 @@ import (
 	"syscall"
 	"time"
 
-	"yourmodule/internal/api"
-	"yourmodule/internal/platform/database"
-	"yourmodule/internal/user"
+	"playhaus-api/internal/api"
+	"playhaus-api/internal/config"
+	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/user"
 )
 
-const DEFAULT_PORT = ":8080"
-const DEFAULT_DB_PATH = "data/app.db"
+const (
+	defaultAddr   = ":8080"
+	defaultDBPath = "data/app.db"
+)
 
 func main() {
 	if err := run(); err != nil {
@@ -29,10 +32,10 @@ func main() {
 
 func run() error {
 	// --- config -------------------------------------------------------
-	var (
-		addr   = env("ADDR", DEFAULT_PORT)
-		dbPath = env("DB_PATH", DEFAULT_DB_PATH)
-	)
+	cfg, err := config.Load()
+	if err != nil {
+		return fmt.Errorf("error loading config: %w", err)
+	}
 
 	// --- logging ------------------------------------------------------
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
@@ -41,11 +44,11 @@ func run() error {
 	slog.SetDefault(logger)
 
 	// --- database -----------------------------------------------------
-	if err := os.MkdirAll(filepath.Dir(dbPath), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(cfg.DBPath), 0o755); err != nil {
 		return fmt.Errorf("create data dir: %w", err)
 	}
 
-	db, err := database.Open(dbPath)
+	db, err := database.Open(cfg.DBPath)
 	if err != nil {
 		return fmt.Errorf("open database: %w", err)
 	}
@@ -55,10 +58,10 @@ func run() error {
 		}
 	}()
 
-	if err := database.Migrate(db); err != nil {
+	if err := database.Migrate(db, &user.User{}); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
-	logger.Info("database ready", "path", dbPath)
+	logger.Info("database ready", "path", cfg.DBPath)
 
 	// --- wiring -------------------------------------------------------
 	userStore := user.NewGormStore(db)
@@ -67,7 +70,7 @@ func run() error {
 
 	// --- http server --------------------------------------------------
 	srv := &http.Server{
-		Addr:              addr,
+		Addr:              cfg.Addr,
 		Handler:           handler,
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       15 * time.Second,
@@ -80,13 +83,15 @@ func run() error {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
+	// Buffered so the goroutine can exit even if nobody is receiving.
+	// Never closed: a closed channel would make the select below fire with a
+	// nil error and report a clean shutdown as a failure.
 	serverErr := make(chan error, 1)
 	go func() {
-		logger.Info("server listening", "addr", addr)
+		logger.Info("server listening", "addr", cfg.Addr)
 		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			serverErr <- err
 		}
-		close(serverErr)
 	}()
 
 	// --- wait for shutdown or a fatal server error ----------------------
@@ -108,11 +113,4 @@ func run() error {
 		logger.Info("shutdown complete")
 		return nil
 	}
-}
-
-func env(key, fallback string) string {
-	if v := os.Getenv(key); v != "" {
-		return v
-	}
-	return fallback
 }
