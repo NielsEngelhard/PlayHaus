@@ -18,11 +18,6 @@ import (
 	"playhaus-api/internal/user"
 )
 
-const (
-	defaultAddr   = ":8080"
-	defaultDBPath = "data/app.db"
-)
-
 func main() {
 	if err := run(); err != nil {
 		fmt.Fprintf(os.Stderr, "startup failed: %v\n", err)
@@ -38,8 +33,12 @@ func run() error {
 	}
 
 	// --- logging ------------------------------------------------------
+	level := slog.LevelInfo
+	if cfg.Debug {
+		level = slog.LevelDebug
+	}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: slog.LevelInfo,
+		Level: level,
 	}))
 	slog.SetDefault(logger)
 
@@ -102,7 +101,7 @@ func run() error {
 	case <-ctx.Done():
 		logger.Info("shutdown signal received")
 
-		shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), cfg.ShutdownTimeout)
 		defer cancel()
 
 		if err := srv.Shutdown(shutdownCtx); err != nil {
