@@ -36,12 +36,11 @@ type CreateGuestUserInput struct {
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
 	id := uuid.NewString()
-	locale := i18n.Default
 
-	name := generateUsername(locale)
+	name := generateUsername(in.Locale)
 	email := id + "@guest.turingsolutions.com"
 
-	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", Locale: locale, CreatedAt: time.Now().UTC()}
+	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", Locale: in.Locale, CreatedAt: time.Now().UTC()}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert (guest) user: %w", err)
 	}

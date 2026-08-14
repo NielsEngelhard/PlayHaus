@@ -21,5 +21,4 @@ func (User) TableName() string { return "users" }
 
 var (
 	ErrEmailTaken = errors.New("email already in use")
-	ErrNotFound   = errors.New("user not found")
 )
