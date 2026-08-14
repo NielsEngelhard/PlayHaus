@@ -33,6 +33,27 @@ func (r createUserRequest) Validate() map[string]string {
 	return problems
 }
 
+func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
+	req, problems, err := decode[createUserRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	u, err := s.users.CreateGuestUser(r.Context())
+	if err != nil {
+		s.log.Error("create guest user", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusCreated, userResponse{ID: u.ID, Email: u.Email, Name: u.Name})
+}
+
 func (s *Server) handleCreateUser(w http.ResponseWriter, r *http.Request) {
 	req, problems, err := decode[createUserRequest](r)
 	if err != nil {

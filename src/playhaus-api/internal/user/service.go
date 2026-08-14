@@ -6,6 +6,9 @@ import (
 	"strings"
 	"time"
 
+	"playhaus-api/internal/i18n"
+
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -26,6 +29,22 @@ type CreateUserInput struct {
 	Email, Name, Password string
 }
 
+type CreateGuestUserInput struct {
+	locale i18n.Locale
+}
+
+func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
+	id := uuid.NewString()
+	name := generateUsername(in.locale)
+	email := id + "@guest.turingsolutions.com"
+
+	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", CreatedAt: time.Now().UTC()}
+	if err := s.store.Create(ctx, u); err != nil {
+		return nil, fmt.Errorf("insert (guest) user: %w", err)
+	}
+	return u, nil
+}
+
 func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, error) {
 	email := strings.ToLower(strings.TrimSpace(in.Email))
 
@@ -42,7 +61,9 @@ func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, e
 		return nil, fmt.Errorf("hash password: %w", err)
 	}
 
-	u := &User{Email: email, Name: in.Name, PasswordHash: string(hash), CreatedAt: time.Now().UTC()}
+	id := uuid.NewString()
+
+	u := &User{ID: id, Email: email, Name: in.Name, PasswordHash: string(hash), CreatedAt: time.Now().UTC()}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert user: %w", err)
 	}

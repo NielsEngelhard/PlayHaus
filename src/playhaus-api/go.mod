@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/glebarez/sqlite v1.11.0
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.6.0
 	golang.org/x/crypto v0.55.0
 	gorm.io/gorm v1.31.2
 )

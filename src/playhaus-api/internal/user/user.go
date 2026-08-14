@@ -6,10 +6,11 @@ import (
 )
 
 type User struct {
-	ID           int64     `gorm:"primaryKey;autoIncrement"`
+	ID           string    `gorm:"primaryKey;"`
 	Email        string    `gorm:"uniqueIndex;not null"`
 	Name         string    `gorm:"not null"`
 	PasswordHash string    `gorm:"not null"`
+	language     string    `gorm:"not null"`
 	CreatedAt    time.Time `gorm:"not null"`
 	UpdatedAt    time.Time
 }
