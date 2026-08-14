@@ -27,18 +27,21 @@ func NewService(store Store) *Service {
 
 type CreateUserInput struct {
 	Email, Name, Password string
+	Locale                i18n.Locale
 }
 
 type CreateGuestUserInput struct {
-	locale i18n.Locale
+	Locale i18n.Locale
 }
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
 	id := uuid.NewString()
-	name := generateUsername(in.locale)
+	locale := i18n.Default
+
+	name := generateUsername(locale)
 	email := id + "@guest.turingsolutions.com"
 
-	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", CreatedAt: time.Now().UTC()}
+	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", Locale: locale, CreatedAt: time.Now().UTC()}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert (guest) user: %w", err)
 	}
@@ -62,8 +65,12 @@ func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, e
 	}
 
 	id := uuid.NewString()
+	locale := in.Locale
+	if !locale.Valid() {
+		locale = i18n.Default
+	}
 
-	u := &User{ID: id, Email: email, Name: in.Name, PasswordHash: string(hash), CreatedAt: time.Now().UTC()}
+	u := &User{ID: id, Email: email, Name: in.Name, PasswordHash: string(hash), Locale: locale, CreatedAt: time.Now().UTC()}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert user: %w", err)
 	}

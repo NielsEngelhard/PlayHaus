@@ -3,15 +3,17 @@ package user
 import (
 	"errors"
 	"time"
+
+	"playhaus-api/internal/i18n"
 )
 
 type User struct {
-	ID           string    `gorm:"primaryKey;"`
-	Email        string    `gorm:"uniqueIndex;not null"`
-	Name         string    `gorm:"not null"`
-	PasswordHash string    `gorm:"not null"`
-	language     string    `gorm:"not null"`
-	CreatedAt    time.Time `gorm:"not null"`
+	ID           string      `gorm:"primaryKey;"`
+	Email        string      `gorm:"uniqueIndex;not null"`
+	Name         string      `gorm:"not null"`
+	PasswordHash string      `gorm:"not null"`
+	Locale       i18n.Locale `gorm:"not null"`
+	CreatedAt    time.Time   `gorm:"not null"`
 	UpdatedAt    time.Time
 }
 
