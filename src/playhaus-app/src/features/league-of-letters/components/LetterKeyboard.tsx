@@ -64,7 +64,7 @@ export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, dis
             </View>
 
             <View style={styles.row}>
-                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} />
+                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} accent />
 
                 {ROWS[2].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
@@ -113,10 +113,12 @@ interface ActionKeyProps {
     label: string,
     height: number,
     disabled: boolean,
-    onPress: () => void
+    onPress: () => void,
+    /** Wears the app's blue, for the one action key that submits rather than edits. */
+    accent?: boolean
 }
 
-function ActionKey({ icon, label, height, disabled, onPress }: ActionKeyProps) {
+function ActionKey({ icon, label, height, disabled, onPress, accent = false }: ActionKeyProps) {
     return (
         <Pressable
             onPress={onPress}
@@ -124,9 +126,9 @@ function ActionKey({ icon, label, height, disabled, onPress }: ActionKeyProps) {
             accessibilityRole='button'
             accessibilityLabel={label}
             accessibilityState={{ disabled }}
-            style={[styles.key, styles.actionKey, { height }, disabled && styles.keyDisabled]}
+            style={[styles.key, styles.actionKey, accent && styles.actionKeyAccent, { height }, disabled && styles.keyDisabled]}
         >
-            <Feather name={icon} size={18} color={Colors.light.text} />
+            <Feather name={icon} size={18} color={accent ? Colors.light.textOnAccent : Colors.light.text} />
         </Pressable>
     )
 }
@@ -161,6 +163,9 @@ const styles = StyleSheet.create({
     actionKey: {
         flex: ACTION_FLEX,
         backgroundColor: Colors.light.muted
+    },
+    actionKeyAccent: {
+        backgroundColor: Colors.light.secondary
     },
     keyDisabled: {
         opacity: 0.5
