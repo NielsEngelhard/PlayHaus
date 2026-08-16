@@ -1,36 +1,12 @@
 import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
-import { useHeaderTag } from '@/components/layout/HeaderTagContext';
 import NavigationCard from '@/components/ui/NavigationCard';
-import { LEAGUE_OF_LETTERS_NAME, PUBQUIZR_NAME } from '@/constants/games';
-import { APP_VERSION } from '@/constants/global-constants';
-import { ROUTES } from '@/constants/routes';
+import { GAMES } from '@/constants/games';
 import { Colors, FontSizes, Spacing } from '@/constants/theme';
 import { RelativePathString } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
-const GAMES = [
-  {
-    tag: 'Word · 1-4 players',
-    color: Colors.light.primary,
-    name: LEAGUE_OF_LETTERS_NAME,
-    description: 'Domineer met jouw Vocabulair, solo of tegen je vrienden.',
-    playable: true,
-    navigationUrl: ROUTES.leagueOfLettersIndex,
-  },
-  {
-    tag: 'Trivia · 2-10 players',
-    color: Colors.light.secondary,
-    name: PUBQUIZR_NAME,
-    description: 'Snelle pubquiz rondes. Nog even geduld, de vragen worden geslepen.',
-    playable: false,
-    navigationUrl: ROUTES.quizzerIndex,
-  },
-];
-
 export default function HomeScreen() {
-  useHeaderTag(APP_VERSION);
-
   return (
     <View style={styles.container}>
       <View style={styles.intro}>

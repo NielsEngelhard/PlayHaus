@@ -1,4 +1,3 @@
-import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import JoinLeagueOfLettersGameCard from "@/components/league-of-letters/JoinLeagueOfLettersGameCard";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import BackButton from "@/components/ui/BackButton";
@@ -11,8 +10,6 @@ import { useAuth } from "@/features/auth/useAuth";
 import { StyleSheet, View } from "react-native";
 
 export default function LeagueOfLettersIndexPage() {
-    useHeaderTag(LEAGUE_OF_LETTERS_NAME);
-
     const { user } = useAuth()
 
     return (

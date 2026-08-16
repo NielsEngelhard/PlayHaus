@@ -53,6 +53,7 @@ func (s *Server) AddAuthHandlers() {
 func (s *Server) AddLeagueOfLettersHandlers() {
 	// Solo specific
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo", s.requireAuth(s.handleCreateSoloGame))
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/current", s.requireAuth(s.handleGetCurrentSoloGame))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleGetSoloGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
 

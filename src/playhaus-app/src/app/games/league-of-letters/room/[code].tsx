@@ -1,7 +1,5 @@
 import { roundOf } from "@/api/calls/league-of-letters";
 import { useFullScreen } from "@/components/layout/FullScreenContext";
-import { useHeaderTag } from "@/components/layout/HeaderTagContext";
-import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { Spacing } from "@/constants/theme";
 import MockStateSwitcher from "@/features/league-of-letters/components/MockStateSwitcher";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
@@ -23,7 +21,6 @@ import { StyleSheet, View } from "react-native";
  * to fall back to, so this opens straight onto a round already under way.
  */
 export default function LeagueOfLettersRoomPage() {
-    useHeaderTag(LEAGUE_OF_LETTERS_NAME);
     useFullScreen();
 
     // The code in the route is not read yet: there is no join endpoint to hand it

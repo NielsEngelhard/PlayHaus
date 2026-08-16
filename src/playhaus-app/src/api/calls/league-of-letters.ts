@@ -175,6 +175,11 @@ export async function getGame(gameId: string): Promise<Game> {
     return checked(await request<Game>(`/api/v1/league-of-letters/solo/${gameId}`));
 }
 
+export async function getCurrentGame(): Promise<Game | null> {
+    const game = await request<Game | null>('/api/v1/league-of-letters/solo/current');
+    return game === null ? null : checked(game);
+}
+
 /**
  * Submits a guess against the game's current round.
  *

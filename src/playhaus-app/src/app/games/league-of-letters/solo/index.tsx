@@ -1,10 +1,8 @@
 import { useFullScreen } from "@/components/layout/FullScreenContext";
-import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
-import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
@@ -24,7 +22,6 @@ import { StyleSheet, View } from "react-native";
  * what the settings screen asked for.
  */
 export default function LeagueOfLettersSoloPage() {
-    useHeaderTag(LEAGUE_OF_LETTERS_NAME);
     useFullScreen();
 
     const { user } = useAuth();

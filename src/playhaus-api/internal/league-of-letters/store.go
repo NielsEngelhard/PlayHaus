@@ -28,10 +28,10 @@ func (s *GormStore) CreateSoloGame(ctx context.Context, g *SoloLeagueOfLettersGa
 	return nil
 }
 
-func (s *GormStore) SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error) {
-	var game SoloLeagueOfLettersGame
-
-	err := s.db.WithContext(ctx).
+// withBoard preloads the whole tree a game is played on, each level in the order
+// it is played in, so a caller never has to sort it back afterwards.
+func withBoard(db *gorm.DB) *gorm.DB {
+	return db.
 		Preload("Rounds", func(db *gorm.DB) *gorm.DB {
 			return db.Order("round_number ASC")
 		}).
@@ -40,7 +40,13 @@ func (s *GormStore) SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeague
 		}).
 		Preload("Rounds.Guesses.Letters", func(db *gorm.DB) *gorm.DB {
 			return db.Order("position ASC")
-		}).
+		})
+}
+
+func (s *GormStore) SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error) {
+	var game SoloLeagueOfLettersGame
+
+	err := withBoard(s.db.WithContext(ctx)).
 		Where("id = ?", id).
 		First(&game).Error
 
@@ -49,6 +55,23 @@ func (s *GormStore) SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeague
 	}
 	if err != nil {
 		return nil, fmt.Errorf("select solo league of letters game: %w", err)
+	}
+	return &game, nil
+}
+
+func (s *GormStore) CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error) {
+	var game SoloLeagueOfLettersGame
+
+	err := withBoard(s.db.WithContext(ctx)).
+		Where("owner_id = ? AND status = ?", userID, GameInProgress).
+		Order("created_at DESC").
+		First(&game).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrGameNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select current solo league of letters game: %w", err)
 	}
 	return &game, nil
 }
@@ -66,6 +89,64 @@ func (s *GormStore) GetSoloGamesByUserId(ctx context.Context, userID string) ([]
 	}
 
 	return games, nil
+}
+
+func (s *GormStore) DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var gameIDs []uuid.UUID
+		err := tx.Model(&SoloLeagueOfLettersGame{}).
+			Where("owner_id = ? AND id <> ?", userID, except).
+			Pluck("id", &gameIDs).Error
+		if err != nil {
+			return fmt.Errorf("select games: %w", err)
+		}
+		if len(gameIDs) == 0 {
+			return nil
+		}
+
+		var roundIDs []uuid.UUID
+		err = tx.Model(&LeagueOfLettersRound{}).
+			Where("game_id IN ?", gameIDs).
+			Pluck("id", &roundIDs).Error
+		if err != nil {
+			return fmt.Errorf("select rounds: %w", err)
+		}
+
+		var guessIDs []uuid.UUID
+		if len(roundIDs) > 0 {
+			err = tx.Model(&LeagueOfLettersGuess{}).
+				Where("round_id IN ?", roundIDs).
+				Pluck("id", &guessIDs).Error
+			if err != nil {
+				return fmt.Errorf("select guesses: %w", err)
+			}
+		}
+
+		// Deepest first, so no row is ever orphaned mid-transaction.
+		if len(guessIDs) > 0 {
+			if err := tx.Where("guess_id IN ?", guessIDs).Delete(&LeagueOfLettersValidatedLetter{}).Error; err != nil {
+				return fmt.Errorf("delete letters: %w", err)
+			}
+			if err := tx.Where("id IN ?", guessIDs).Delete(&LeagueOfLettersGuess{}).Error; err != nil {
+				return fmt.Errorf("delete guesses: %w", err)
+			}
+		}
+		if len(roundIDs) > 0 {
+			if err := tx.Where("id IN ?", roundIDs).Delete(&LeagueOfLettersRound{}).Error; err != nil {
+				return fmt.Errorf("delete rounds: %w", err)
+			}
+		}
+		if err := tx.Where("id IN ?", gameIDs).Delete(&SoloLeagueOfLettersGame{}).Error; err != nil {
+			return fmt.Errorf("delete games: %w", err)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return fmt.Errorf("delete solo games for user: %w", err)
+	}
+	return nil
 }
 
 // RecordGuess stores a guess and the game state it moved.

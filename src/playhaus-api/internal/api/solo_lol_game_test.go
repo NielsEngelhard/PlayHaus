@@ -7,6 +7,7 @@ import (
 )
 
 const soloPath = "/api/v1/league-of-letters/solo"
+const currentSoloPath = soloPath + "/current"
 const soloRounds = 3
 
 func createSoloGame(t *testing.T, h http.Handler, token, body string) soloGameResponse {
@@ -69,6 +70,84 @@ func TestCreateSoloGame(t *testing.T) {
 		if r.RoundNumber != i+1 {
 			t.Errorf("round %d: RoundNumber = %d, want %d", i, r.RoundNumber, i+1)
 		}
+	}
+}
+
+// A player holds one solo game at a time: starting a new one throws the old
+// ones away, so the reconnect screen cannot offer a board that was abandoned.
+func TestCreateSoloGameDeletesTheCallersOtherGames(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	token := newGuestSession(t, srv).Token
+
+	first := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
+	// Play a guess, so the replaced game has rounds, guesses and letters to
+	// clean up rather than just an empty board.
+	if rec := submitGuess(t, srv, token, first.ID, answerFor(t, db, first.ID, 1)); rec.Code != http.StatusCreated {
+		t.Fatalf("submit guess: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	other := newGuestSession(t, srv).Token
+	othersGame := createSoloGame(t, srv, other, `{"wordLength":5,"locale":"en"}`)
+
+	second := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
+	if second.ID == first.ID {
+		t.Fatal("the second create returned the first game")
+	}
+
+	if rec := do(t, srv, http.MethodGet, soloPath+"/"+first.ID, "", token); rec.Code != http.StatusNotFound {
+		t.Errorf("get replaced game: status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
+	}
+	if rec := do(t, srv, http.MethodGet, soloPath+"/"+second.ID, "", token); rec.Code != http.StatusOK {
+		t.Errorf("get new game: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+	// Another player's game is none of this caller's business.
+	if rec := do(t, srv, http.MethodGet, soloPath+"/"+othersGame.ID, "", other); rec.Code != http.StatusOK {
+		t.Errorf("get other player's game: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	// The rows underneath went with it, rather than being left pointing at a
+	// game that no longer exists.
+	var rounds int64
+	if err := db.Raw(`SELECT count(*) FROM solo_lol_rounds WHERE game_id = ?`, first.ID).Scan(&rounds).Error; err != nil {
+		t.Fatalf("count rounds: %v", err)
+	}
+	if rounds != 0 {
+		t.Errorf("replaced game left %d rounds behind", rounds)
+	}
+
+	var guesses int64
+	err := db.Raw(`
+		SELECT count(*) FROM solo_lol_guesses g
+		LEFT JOIN solo_lol_rounds r ON r.id = g.round_id
+		WHERE r.id IS NULL`).Scan(&guesses).Error
+	if err != nil {
+		t.Fatalf("count orphaned guesses: %v", err)
+	}
+	if guesses != 0 {
+		t.Errorf("%d guesses point at a round that is gone", guesses)
+	}
+}
+
+// The reconnect list is the reason the cleanup exists, so it has to show the
+// new game on its own.
+func TestCreateSoloGameLeavesOneGameToReconnectTo(t *testing.T) {
+	srv := newTestServer(t)
+	session := newGuestSession(t, srv)
+
+	createSoloGame(t, srv, session.Token, `{"wordLength":5,"locale":"nl"}`)
+	game := createSoloGame(t, srv, session.Token, `{"wordLength":6,"locale":"nl"}`)
+
+	rec := do(t, srv, http.MethodGet, reconnectPath, "", session.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	games := decodeBody[[]ReconnectableGame](t, rec)
+	if len(games) != 1 {
+		t.Fatalf("got %d games, want 1 (body: %s)", len(games), rec.Body)
+	}
+	if games[0].ID != game.ID {
+		t.Errorf("id = %q, want %q", games[0].ID, game.ID)
 	}
 }
 
@@ -231,6 +310,125 @@ func TestGetSoloGameUnknownID(t *testing.T) {
 				t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
 			}
 		})
+	}
+}
+
+func TestGetCurrentSoloGameRequiresAuth(t *testing.T) {
+	srv := newTestServer(t)
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", "")
+	if rec.Code != http.StatusUnauthorized {
+		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnauthorized, rec.Body)
+	}
+}
+
+// The point of the endpoint: the game the player walked away from, board and
+// all, without the caller having to have kept its id.
+func TestGetCurrentSoloGameReturnsTheRunningGame(t *testing.T) {
+	srv := newTestServer(t)
+	token := newGuestSession(t, srv).Token
+	created := createSoloGame(t, srv, token, `{"wordLength":6,"locale":"nl"}`)
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	got := decodeBody[soloGameResponse](t, rec)
+	if got.ID != created.ID {
+		t.Errorf("ID = %q, want %q", got.ID, created.ID)
+	}
+	if got.WordLength != 6 {
+		t.Errorf("WordLength = %d, want 6", got.WordLength)
+	}
+	if len(got.Rounds) != soloRounds {
+		t.Errorf("got %d rounds, want %d", len(got.Rounds), soloRounds)
+	}
+}
+
+// "current" is a literal segment, so it must not be routed to the handler that
+// reads a game by id -- which would answer 404 for a player who has a game.
+func TestGetCurrentSoloGameIsNotReadAsAGameID(t *testing.T) {
+	srv := newTestServer(t)
+	token := newGuestSession(t, srv).Token
+	createSoloGame(t, srv, token, `{"wordLength":5,"locale":"nl"}`)
+
+	rec := do(t, srv, http.MethodGet, soloPath+"/current", "", token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+}
+
+// Nothing running is 204 with an empty body, not an error: the caller asked a
+// question and got an answer.
+func TestGetCurrentSoloGameWithNoGame(t *testing.T) {
+	srv := newTestServer(t)
+	token := newGuestSession(t, srv).Token
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", token)
+	if rec.Code != http.StatusNoContent {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+	}
+	if rec.Body.Len() != 0 {
+		t.Errorf("body = %s, want empty", rec.Body)
+	}
+}
+
+// A finished game is not one to drop back into.
+func TestGetCurrentSoloGameIgnoresFinishedGames(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	token := newGuestSession(t, srv).Token
+	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"nl"}`)
+
+	err := db.Exec(`UPDATE solo_lol_games SET status = ? WHERE id = ?`, "completed", game.ID).Error
+	if err != nil {
+		t.Fatalf("finish game: %v", err)
+	}
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", token)
+	if rec.Code != http.StatusNoContent {
+		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+	}
+}
+
+// Whose game it is comes from the session, so one player's board can never come
+// back to another.
+func TestGetCurrentSoloGameIsPerPlayer(t *testing.T) {
+	srv := newTestServer(t)
+
+	ownerToken := newGuestSession(t, srv).Token
+	game := createSoloGame(t, srv, ownerToken, `{"wordLength":5}`)
+
+	otherToken := newGuestSession(t, srv).Token
+	if rec := do(t, srv, http.MethodGet, currentSoloPath, "", otherToken); rec.Code != http.StatusNoContent {
+		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+	}
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", ownerToken)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("owner: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+	if got := decodeBody[soloGameResponse](t, rec).ID; got != game.ID {
+		t.Errorf("ID = %q, want %q", got, game.ID)
+	}
+}
+
+// The unplayed rounds are still unplayed, so the answers stay on the server.
+func TestGetCurrentSoloGameDoesNotLeakAnswers(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	token := newGuestSession(t, srv).Token
+	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
+
+	var words []string
+	if err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
+		t.Fatalf("read words: %v", err)
+	}
+
+	rec := do(t, srv, http.MethodGet, currentSoloPath, "", token)
+	for _, word := range words {
+		if strings.Contains(strings.ToLower(rec.Body.String()), strings.ToLower(word)) {
+			t.Errorf("response leaked the answer %q", word)
+		}
 	}
 }
 

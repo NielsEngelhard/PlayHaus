@@ -7,7 +7,6 @@ import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-c
 import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
-import { HeaderTagProvider } from '@/components/layout/HeaderTagContext';
 import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
 import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
@@ -52,16 +51,13 @@ export default function TabLayout() {
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         {/* Outside everything it gates, so the popup can cover the chrome too. */}
         <AuthProvider>
-          {/* Wraps both, so the page inside `Slot` can set the chip `Header` renders. */}
-          <HeaderTagProvider>
-            {/* Same idea for the chrome itself: a game page claims the whole viewport. */}
-            <FullScreenProvider>
-              <Chrome />
+          {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
+          <FullScreenProvider>
+            <Chrome />
 
-              {/* Renders nothing at all while signed in. */}
-              <AuthGate />
-            </FullScreenProvider>
-          </HeaderTagProvider>
+            {/* Renders nothing at all while signed in. */}
+            <AuthGate />
+          </FullScreenProvider>
         </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>

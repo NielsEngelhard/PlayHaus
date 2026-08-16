@@ -261,7 +261,10 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound 
                 />
             )}
 
-            {(!finished && revealing) && (
+            {/* Up for exactly as long as there is a word to type. It goes the moment the
+                round is decided — including while the winning row is still turning over,
+                so the keys are not left hanging under a board that is done with them. */}
+            {!finished && (
                 <LetterKeyboard
                     // The newest guess is left out until the board has finished showing it —
                     // the keys would otherwise colour in before the tiles they belong to.

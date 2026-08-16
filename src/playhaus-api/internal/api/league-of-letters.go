@@ -165,6 +165,28 @@ func (s *Server) handleGetSoloGame(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, newSoloGameResponse(game))
 }
 
+func (s *Server) handleGetCurrentSoloGame(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleGetCurrentSoloGame reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	game, err := s.leagueOfLetters.CurrentSoloGame(r.Context(), userID)
+	if err != nil {
+		if errors.Is(err, league_of_letters.ErrGameNotFound) {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+		s.log.Error("get current solo game", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, newSoloGameResponse(game))
+}
+
 type submitGuessRequest struct {
 	Word string `json:"word"`
 }

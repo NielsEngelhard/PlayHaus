@@ -1,33 +1,36 @@
+import { gameForPathname } from "@/constants/games";
+import { APP_VERSION } from "@/constants/global-constants";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
-import { useAuth } from "@/features/auth/useAuth";
-import { Link, RelativePathString } from "expo-router";
+import { Colors, Spacing } from "@/constants/theme";
+import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import Tag from "../ui/Tag";
-import { useHeaderTagValue } from "./HeaderTagContext";
+import HeaderStatus from "./HeaderStatus";
 import Logo from "./Logo";
 
 export default function Header() {
-    const tag = useHeaderTagValue();
+    const pathname = usePathname();
 
-    const auth = useAuth()
+    // Read off the route rather than pushed up by each page: the header already knows
+    // where it is, and a page that forgot to say so used to leave the previous page's
+    // name sitting in the chrome.
+    const game = gameForPathname(pathname);
 
     return (
         <View style={styles.container}>
-            {/* Left */}
-            <View>
+            {/* Left. Inside a game the wordmark steps back to just the mark — the game
+                is the headline there, and it's what leaves the capsule room to breathe
+                on a narrow phone. */}
+            <View style={styles.logo}>
                 <Link href={ROUTES.home as RelativePathString}>
-                    <Logo includeAppName={true} />
+                    <Logo includeAppName={game === null} />
                 </Link>
             </View>
 
-            {/* Right — whatever the current page claimed, or the app version. */}
-            <View style={styles.tagsContainer}>                
-                {(auth && auth.user)  && (
-                    <Tag text={auth.user?.name} />
-                )}
-                <Tag text={tag} />
-            </View>
+            {/* Right — the game you're inside, or the app version. */}
+            <HeaderStatus
+                label={game?.name ?? APP_VERSION}
+                accent={game?.color ?? Colors.light.available}
+            />
         </View>
     )
 }
@@ -38,10 +41,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: 'center',
-        width: '100%'
-    },
-    tagsContainer: {
-        flexDirection: 'row',
+        width: '100%',
         gap: Spacing.two
+    },
+    logo: {
+        flexShrink: 0
     }
 })

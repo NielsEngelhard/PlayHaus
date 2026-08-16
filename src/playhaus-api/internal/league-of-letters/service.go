@@ -14,6 +14,8 @@ type Store interface {
 	CreateSoloGame(ctx context.Context, soloGame *SoloLeagueOfLettersGame) error
 	SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error)
 	GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error)
+	CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error)
+	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
 }
 
@@ -75,6 +77,11 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		return nil, nil, fmt.Errorf("insert solo game: %w", err)
 	}
 
+	// A player keeps one solo game at a time: the new one replaces whatever was
+	if err := s.store.DeleteSoloGamesByUserId(ctx, in.OwnerID, game.ID); err != nil {
+		return nil, nil, fmt.Errorf("delete previous solo games: %w", err)
+	}
+
 	return game, nil, nil
 }
 
@@ -91,6 +98,14 @@ func (s *Service) SoloGameForOwner(ctx context.Context, id uuid.UUID, ownerID st
 
 func (s *Service) GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error) {
 	return s.store.GetSoloGamesByUserId(ctx, userID)
+}
+
+// CurrentSoloGame is the unfinished solo game the player owns
+func (s *Service) CurrentSoloGame(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error) {
+	if userID == "" {
+		return nil, ErrGameNotFound
+	}
+	return s.store.CurrentSoloGameByUserID(ctx, userID)
 }
 
 type SubmitGuessInput struct {
