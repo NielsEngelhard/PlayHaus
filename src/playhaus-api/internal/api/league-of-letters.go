@@ -12,7 +12,6 @@ import (
 type createSoloGameRequest struct {
 	Locale     *string `json:"locale"`
 	WordLength int     `json:"wordLength"`
-	NRounds    int     `json:"nRounds"`
 }
 
 func (createSoloGameRequest) Validate() map[string]string { return nil }
@@ -101,7 +100,6 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 	game, problems, err := s.leagueOfLetters.CreateSoloGame(r.Context(), league_of_letters.CreateSoloGameInput{
 		OwnerID:    ownerID,
 		WordLength: req.WordLength,
-		NRounds:    req.NRounds,
 		Locale:     localeFrom(Deref(req.Locale, ""), r),
 	})
 	if err != nil {

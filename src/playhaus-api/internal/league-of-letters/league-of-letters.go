@@ -28,8 +28,6 @@ const (
 const (
 	MinWordLength = 4
 	MaxWordLength = 8
-	MinRounds     = 1
-	MaxRounds     = 5
 )
 
 var (

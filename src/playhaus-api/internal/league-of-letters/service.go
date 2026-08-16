@@ -18,7 +18,6 @@ type Store interface {
 type CreateSoloGameInput struct {
 	OwnerID    string
 	WordLength int
-	NRounds    int
 	Locale     i18n.Locale
 }
 
@@ -27,9 +26,7 @@ func (in CreateSoloGameInput) validate() map[string]string {
 	if in.WordLength < MinWordLength || in.WordLength > MaxWordLength {
 		problems["wordLength"] = fmt.Sprintf("must be between %d and %d", MinWordLength, MaxWordLength)
 	}
-	if in.NRounds < MinRounds || in.NRounds > MaxRounds {
-		problems["nRounds"] = fmt.Sprintf("must be between %d and %d", MinRounds, MaxRounds)
-	}
+
 	return problems
 }
 
@@ -66,7 +63,7 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		CreatedAt:       time.Now().UTC(),
 	}
 
-	rounds, err := generateRounds(game.ID, in.NRounds, in.WordLength, locale)
+	rounds, err := generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -107,4 +104,15 @@ func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Lo
 	}
 
 	return rounds, nil
+}
+
+func determineNumberOfRounds(nPlayers int) int {
+	switch {
+	case nPlayers == 1:
+		return 3
+	case nPlayers <= 3:
+		return nPlayers * 2
+	default:
+		return nPlayers * 3
+	}
 }
