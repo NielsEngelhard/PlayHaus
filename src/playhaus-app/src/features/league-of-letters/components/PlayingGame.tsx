@@ -10,6 +10,7 @@ import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
+import RoundCounter from "@/features/league-of-letters/components/RoundCounter";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { useRouter } from "expo-router";
@@ -38,7 +39,13 @@ interface Props {
      * Moves on from a finished round. Left out when there is nowhere to move on to,
      * which is what makes the last round's verdict the end of the game.
      */
-    onNextRound?: () => void
+    onNextRound?: () => void,
+    /**
+     * Leaves a game that has no rounds left. Left out on a board with nowhere to send
+     * anyone afterwards — the mocked multiplayer room — which falls back to the way
+     * out of the game entirely.
+     */
+    onFinish?: () => void
 }
 
 /** How long a nudge like "Die had je al." stays up before it stops being useful. */
@@ -52,7 +59,7 @@ const NOTICE_MS = 2500;
  * above the board. Everything that makes the screen a game is identical, and a solo game
  * is really a multiplayer one with nobody else in it and no deadline.
  */
-export default function PlayingGame({ game, round, userId, onGuess, onNextRound }: Props) {
+export default function PlayingGame({ game, round, userId, onGuess, onNextRound, onFinish }: Props) {
     const router = useRouter();
 
     /**
@@ -200,9 +207,11 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound 
                 {/* Which puzzle of how many. A solo game is three of them, and knowing
                     where you are in the set is the difference between "one more round"
                     and not knowing whether the game just ended. */}
-                <AppText style={styles.roundCount}>
-                    Ronde {round.roundNumber}/{game.totalRounds}
-                </AppText>
+                <RoundCounter
+                    round={round.roundNumber}
+                    total={game.totalRounds}
+                    style={styles.roundCount}
+                />
 
                 {/* First letter */}
                 {firstLetter !== '' && (
@@ -285,9 +294,13 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound 
             {finished && !revealing && (
                 gameOver ? (
                     <TextButton
-                        text='Terug naar de spellen'
+                        // The uitslag is where a finished game goes when there is one to
+                        // go to. A board without it has only the way out to offer.
+                        text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
                         fullWidth
-                        onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
+                        onPress={() => onFinish === undefined
+                            ? router.replace(ROUTES.leagueOfLettersIndex)
+                            : onFinish()}
                         style={styles.advance}
                     />
                 ) : (
@@ -346,10 +359,11 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.light.backgroundSecondary,
         ...Shadows.hardSmall
     },
+    // Takes the row's slack, which puts the counter and the hint together at the right-hand
+    // end when there is no clock between them. With one, the timer has already taken it.
     roundCount: {
-        fontSize: FontSizes.sm,
-        fontWeight: 700,
-        color: Colors.light.textSecondary
+        marginLeft: 'auto',
+        flexShrink: 0
     },
     advance: {
         backgroundColor: Colors.light.primary

@@ -117,6 +117,7 @@ export function useGame(gameId: string | undefined): GameState {
             return {
                 ...current,
                 currentRound: result.currentRound,
+                score: result.score ?? current.score,
                 status: result.gameOver ? 'completed' : current.status,
                 rounds: current.rounds.map(round => round.roundNumber === played
                     ? {

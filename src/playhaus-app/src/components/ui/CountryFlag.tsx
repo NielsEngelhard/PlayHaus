@@ -1,47 +1,67 @@
-import { StyleSheet, Text } from "react-native";
+import { Colors } from "@/constants/theme";
+import GB from "country-flag-icons/string/3x2/GB";
+import NL from "country-flag-icons/string/3x2/NL";
+import { Image } from "expo-image";
+import { StyleSheet, View } from "react-native";
+
+/**
+ * The flags the app can draw, by ISO 3166-1 alpha-2 country code.
+ *
+ * Listed one by one on purpose. `country-flag-icons` ships a barrel that pulls all
+ * 250-odd flags into the bundle; importing the per-country files keeps it to the
+ * ~230 bytes each of these actually costs. Add a country here to support it.
+ */
+const FLAGS: Record<string, string> = {
+    nl: NL,
+    gb: GB
+};
+
+/** 3:2 is the aspect the icons are drawn at, so height follows from width. */
+const ASPECT = 2 / 3;
 
 interface Props {
     /** ISO 3166-1 alpha-2 country code, e.g. `nl`. Case-insensitive. */
     code: string,
-    size?: number
-}
-
-/** `a` -> `🇦`. The regional indicators sit 0x1F1E6 above lowercase `a` in Unicode. */
-const REGIONAL_INDICATOR_A = 0x1F1E6;
-const LOWERCASE_A = 'a'.charCodeAt(0);
-
-function toFlagEmoji(code: string): string {
-    return code
-        .toLowerCase()
-        .split('')
-        .map(letter => String.fromCodePoint(letter.charCodeAt(0) - LOWERCASE_A + REGIONAL_INDICATOR_A))
-        .join('');
+    width?: number
 }
 
 /**
- * A country's flag, from its ISO code.
+ * A country's flag.
  *
- * Every flag in the app goes through here rather than through a literal emoji, so the
- * day this needs real artwork it is one file that changes. Worth knowing before then:
- * the emoji renders as a flag on iOS and Android, but Chrome on Windows has no glyph
- * for the pair and falls back to two boxed letters — legible, just not a flag.
+ * Drawn from the SVG rather than from the flag emoji: the emoji has no glyph on
+ * Chrome for Windows, which silently falls back to rendering the country's two
+ * letters instead of a flag.
+ *
+ * `expo-image` decodes SVG on all three platforms, which is what lets this stay a
+ * plain dependency — no native module, so no rebuild of the dev client.
  */
-export default function CountryFlag({ code, size = 16 }: Props) {
-    // Deliberately React Native's `Text` and not `AppText`, the one place in the app
-    // that exception is right: `AppText` pins `fontFamily` to a cut of Outfit, which
-    // has no emoji glyphs, and Android does not reliably fall back per-glyph from a
-    // named family. Leaving the family unset lets the platform pick its emoji font.
+export default function CountryFlag({ code, width = 24 }: Props) {
+    const svg = FLAGS[code.toLowerCase()];
+    if (svg === undefined) return null;
+
+    const height = Math.round(width * ASPECT);
+
     return (
-        <Text style={[styles.flag, { fontSize: size, lineHeight: size * 1.35 }]}>
-            {toFlagEmoji(code)}
-        </Text>
+        <View style={[styles.frame, { width, height }]}>
+            <Image
+                source={{ uri: `data:image/svg+xml;utf8,${encodeURIComponent(svg)}` }}
+                style={styles.flag}
+                contentFit="cover"
+            />
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    frame: {
+        borderRadius: 3,
+        borderWidth: 1.5,
+        borderColor: Colors.light.border,
+        // The flag is a rectangle; this is what rounds its corners to the frame.
+        overflow: 'hidden'
+    },
     flag: {
-        // The glyph is wider than its advance on some platforms; this keeps the pair
-        // from being clipped by a tight parent.
-        includeFontPadding: false
+        width: '100%',
+        height: '100%'
     }
 })

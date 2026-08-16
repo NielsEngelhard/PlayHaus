@@ -121,6 +121,7 @@ type GuessOutcome struct {
 	GameOver     bool
 	Word         string
 	CurrentRound int
+	Score        int
 }
 
 // SubmitGuess plays one word against the game's current round.
@@ -169,11 +170,14 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	solved := guess.Correct()
 	roundOver := solved || guess.GuessNumber >= MaxGuesses
 
+	game.Score += DetermineScore(*guess, round.Guesses)
+
 	outcome := &GuessOutcome{
 		Guess:        guess,
 		Solved:       solved,
 		RoundOver:    roundOver,
 		CurrentRound: game.CurrentRound,
+		Score:        game.Score,
 	}
 
 	if roundOver {

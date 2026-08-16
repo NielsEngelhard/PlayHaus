@@ -105,8 +105,8 @@ export interface GuessResult {
     gameOver: boolean
     /** The answer, present only once `roundOver`. */
     word?: string
-    /** The round to play next, already advanced if this guess ended one. */
     currentRound: number
+    score: number
 }
 
 /**

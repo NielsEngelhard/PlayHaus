@@ -199,13 +199,13 @@ func (req submitGuessRequest) Validate() map[string]string {
 }
 
 type submitGuessResponse struct {
-	Guess     soloGuessResponse `json:"guess"`
-	Solved    bool              `json:"solved"`
-	RoundOver bool              `json:"roundOver"`
-	GameOver  bool              `json:"gameOver"`
-	// Word is the answer, present only once the round is over.
-	Word         string `json:"word,omitempty"`
-	CurrentRound int    `json:"currentRound"`
+	Guess        soloGuessResponse `json:"guess"`
+	Solved       bool              `json:"solved"`
+	RoundOver    bool              `json:"roundOver"`
+	GameOver     bool              `json:"gameOver"`
+	Word         string            `json:"word,omitempty"`
+	CurrentRound int               `json:"currentRound"`
+	Score        int               `json:"score"`
 }
 
 func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
@@ -249,6 +249,7 @@ func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
 		GameOver:     outcome.GameOver,
 		Word:         outcome.Word,
 		CurrentRound: outcome.CurrentRound,
+		Score:        outcome.Score,
 	})
 }
 

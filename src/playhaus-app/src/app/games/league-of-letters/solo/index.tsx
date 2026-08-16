@@ -8,7 +8,7 @@ import { Colors, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
 import { useGame } from "@/features/league-of-letters/useGame";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 /**
@@ -24,6 +24,7 @@ import { StyleSheet, View } from "react-native";
 export default function LeagueOfLettersSoloPage() {
     useFullScreen();
 
+    const router = useRouter();
     const { user } = useAuth();
     const { gameId } = useLocalSearchParams<{ gameId: string }>();
     const { game, round, loading, error, reload, guess, nextRound } = useGame(gameId);
@@ -61,7 +62,11 @@ export default function LeagueOfLettersSoloPage() {
                 userId={user.id}
                 onGuess={guess}
                 onNextRound={nextRound}
-            />            
+                onFinish={() => router.replace({
+                    pathname: ROUTES.leagueOfLettersSoloResults,
+                    params: { gameId: game.id }
+                })}
+            />
         )
     );
 }
