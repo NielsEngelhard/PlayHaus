@@ -34,7 +34,7 @@ export default function ProfileCard({ name, avatarColorId }: Props) {
 
                 <View style={styles.body}>
                     <AppText numberOfLines={1} style={styles.name}>{name}</AppText>
-                    <AppText style={styles.subtitle}>Lokaal opgeslagen. Geen account, geen gedoe.</AppText>
+                    <AppText style={styles.subtitle}>Dit ben jij!</AppText>
                 </View>
             </View>
         </Card>

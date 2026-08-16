@@ -1,8 +1,11 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 	"testing"
+
+	"playhaus-api/internal/user"
 )
 
 // The whole rename: send a new name, and /me -- which is what the app re-reads
@@ -77,6 +80,206 @@ func TestUpdateUsernameStoresTrimmed(t *testing.T) {
 	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
 	if got := decodeBody[userResponse](t, me).Name; got != "Bobby" {
 		t.Errorf("name = %q, want %q", got, "Bobby")
+	}
+}
+
+// A swatch is picked, and /me reports it back.
+func TestUpdateColor(t *testing.T) {
+	srv := newTestServer(t)
+	session := newGuestSession(t, srv)
+
+	rec := do(t, srv, http.MethodPut, "/api/v1/user/color", `{"color":"cobalt"}`, session.Token)
+	if rec.Code != http.StatusNoContent {
+		t.Fatalf("update status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+	}
+
+	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+	if got := decodeBody[userResponse](t, me).Color; got != "cobalt" {
+		t.Errorf("color = %q, want %q", got, "cobalt")
+	}
+}
+
+func TestUpdateColor_Validation(t *testing.T) {
+	tests := []struct {
+		name string
+		body string
+		want int
+	}{
+		{"valid", `{"color":"fire"}`, http.StatusNoContent},
+		{"unknown swatch", `{"color":"chartreuse"}`, http.StatusUnprocessableEntity},
+		{"empty", `{"color":""}`, http.StatusUnprocessableEntity},
+		{"a hex value is not an id", `{"color":"#ff0000"}`, http.StatusUnprocessableEntity},
+		{"missing field", `{}`, http.StatusUnprocessableEntity},
+		{"malformed json", `{"color":`, http.StatusBadRequest},
+		{"unknown field", `{"color":"fire","admin":true}`, http.StatusBadRequest},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			srv := newTestServer(t) // fresh db per subtest
+			session := newGuestSession(t, srv)
+
+			rec := do(t, srv, http.MethodPut, "/api/v1/user/color", tt.body, session.Token)
+			if rec.Code != tt.want {
+				t.Errorf("status = %d, want %d (body: %s)", rec.Code, tt.want, rec.Body)
+			}
+		})
+	}
+}
+
+// Every swatch the app offers has to be one the backend takes, or the picker
+// has a dead square in it.
+func TestUpdateColorAcceptsEverySwatch(t *testing.T) {
+	for _, color := range user.Colors {
+		t.Run(color, func(t *testing.T) {
+			srv := newTestServer(t)
+			session := newGuestSession(t, srv)
+
+			rec := do(t, srv, http.MethodPut, "/api/v1/user/color", `{"color":"`+color+`"}`, session.Token)
+			if rec.Code != http.StatusNoContent {
+				t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+			}
+		})
+	}
+}
+
+// The three toggles behave alike, so they are tested alike: turning one off has
+// to survive the round trip, which is the case a default of "on" could mask.
+func TestUpdateToggles(t *testing.T) {
+	tests := []struct {
+		name  string
+		path  string
+		field string
+		read  func(userResponse) bool
+	}{
+		{"sounds", "/api/v1/user/enable-sounds", "enableSounds", func(u userResponse) bool { return u.EnableSounds }},
+		{"music", "/api/v1/user/enable-music", "enableMusic", func(u userResponse) bool { return u.EnableMusic }},
+		{"vibration", "/api/v1/user/enable-vibration", "enableVibration", func(u userResponse) bool { return u.EnableVibration }},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			for _, want := range []bool{false, true} {
+				srv := newTestServer(t)
+				session := newGuestSession(t, srv)
+
+				// A fresh account starts with every toggle on, so setting one to
+				// true only proves anything once it has been off first.
+				seed := fmt.Sprintf(`{"%s":%t}`, tt.field, !want)
+				if rec := do(t, srv, http.MethodPut, tt.path, seed, session.Token); rec.Code != http.StatusNoContent {
+					t.Fatalf("seed status = %d (body: %s)", rec.Code, rec.Body)
+				}
+
+				body := fmt.Sprintf(`{"%s":%t}`, tt.field, want)
+				rec := do(t, srv, http.MethodPut, tt.path, body, session.Token)
+				if rec.Code != http.StatusNoContent {
+					t.Fatalf("update status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+				}
+
+				me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+				if got := tt.read(decodeBody[userResponse](t, me)); got != want {
+					t.Errorf("%s = %t, want %t", tt.field, got, want)
+				}
+			}
+		})
+	}
+}
+
+// A toggle only ever means what the caller sent, so a body that says nothing is
+// a complaint rather than an "off".
+func TestUpdateToggle_Validation(t *testing.T) {
+	tests := []struct {
+		name string
+		body string
+		want int
+	}{
+		{"on", `{"enableSounds":true}`, http.StatusNoContent},
+		{"off", `{"enableSounds":false}`, http.StatusNoContent},
+		{"missing field", `{}`, http.StatusUnprocessableEntity},
+		{"null", `{"enableSounds":null}`, http.StatusUnprocessableEntity},
+		{"not a bool", `{"enableSounds":"yes"}`, http.StatusBadRequest},
+		{"malformed json", `{"enableSounds":`, http.StatusBadRequest},
+		{"unknown field", `{"enableSounds":true,"admin":true}`, http.StatusBadRequest},
+		{"the wrong toggle's field", `{"enableMusic":true}`, http.StatusBadRequest},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			srv := newTestServer(t) // fresh db per subtest
+			session := newGuestSession(t, srv)
+
+			rec := do(t, srv, http.MethodPut, "/api/v1/user/enable-sounds", tt.body, session.Token)
+			if rec.Code != tt.want {
+				t.Errorf("status = %d, want %d (body: %s)", rec.Code, tt.want, rec.Body)
+			}
+		})
+	}
+}
+
+// None of these routes may be reachable without a session: each one edits an
+// account, and the only account it may edit is the caller's.
+func TestUpdateUserFieldsRequireAuth(t *testing.T) {
+	tests := map[string]string{
+		"/api/v1/user/color":            `{"color":"fire"}`,
+		"/api/v1/user/enable-sounds":    `{"enableSounds":false}`,
+		"/api/v1/user/enable-music":     `{"enableMusic":false}`,
+		"/api/v1/user/enable-vibration": `{"enableVibration":false}`,
+	}
+
+	for path, body := range tests {
+		t.Run(path, func(t *testing.T) {
+			srv := newTestServer(t)
+
+			rec := do(t, srv, http.MethodPut, path, body, "")
+			if rec.Code != http.StatusUnauthorized {
+				t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnauthorized, rec.Body)
+			}
+		})
+	}
+}
+
+// A new account has to arrive usable: a swatch the picker can highlight, and
+// sound on rather than a game that seems broken.
+func TestNewUserDefaults(t *testing.T) {
+	srv := newTestServer(t)
+	session := newGuestSession(t, srv)
+
+	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+	got := decodeBody[userResponse](t, me)
+
+	if got.Color != user.DefaultColor {
+		t.Errorf("color = %q, want %q", got.Color, user.DefaultColor)
+	}
+	if !got.EnableSounds || !got.EnableMusic || !got.EnableVibration {
+		t.Errorf("toggles = sounds:%t music:%t vibration:%t, want all true",
+			got.EnableSounds, got.EnableMusic, got.EnableVibration)
+	}
+}
+
+// One field per route, so editing one must leave the others where they were.
+func TestUpdateUserFieldsAreIndependent(t *testing.T) {
+	srv := newTestServer(t)
+	session := newGuestSession(t, srv)
+
+	if rec := do(t, srv, http.MethodPut, "/api/v1/user/enable-music", `{"enableMusic":false}`, session.Token); rec.Code != http.StatusNoContent {
+		t.Fatalf("update music status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	if rec := do(t, srv, http.MethodPut, "/api/v1/user/color", `{"color":"ink"}`, session.Token); rec.Code != http.StatusNoContent {
+		t.Fatalf("update color status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+	got := decodeBody[userResponse](t, me)
+
+	if got.Color != "ink" {
+		t.Errorf("color = %q, want %q", got.Color, "ink")
+	}
+	if got.EnableMusic {
+		t.Error("music came back on after being turned off")
+	}
+	if !got.EnableSounds || !got.EnableVibration {
+		t.Errorf("untouched toggles changed: sounds:%t vibration:%t, want both true",
+			got.EnableSounds, got.EnableVibration)
 	}
 }
 

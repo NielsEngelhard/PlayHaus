@@ -62,7 +62,9 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("POST /api/v1/user", s.handleCreateUser)
 	s.mux.HandleFunc("POST /api/v1/user/guest", s.handleCreateGuestUser)
-	// Renaming touches the caller's own account, so who is calling has to come
-	// from the session rather than the body.
 	s.mux.HandleFunc("PUT /api/v1/user/username", s.requireAuth(s.handleUpdateUserUsername))
+	s.mux.HandleFunc("PUT /api/v1/user/color", s.requireAuth(s.handleUpdateUserColor))
+	s.mux.HandleFunc("PUT /api/v1/user/enable-sounds", s.requireAuth(s.handleUpdateUserEnableSounds))
+	s.mux.HandleFunc("PUT /api/v1/user/enable-music", s.requireAuth(s.handleUpdateUserEnableMusic))
+	s.mux.HandleFunc("PUT /api/v1/user/enable-vibration", s.requireAuth(s.handleUpdateUserEnableVibration))
 }

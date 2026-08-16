@@ -18,6 +18,10 @@ type Store interface {
 	ByEmail(ctx context.Context, email string) (*User, error)
 	ByID(ctx context.Context, id string) (*User, error)
 	UpdateUsername(ctx context.Context, username string, userId string) error
+	UpdateColor(ctx context.Context, color string, userId string) error
+	UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error
+	UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error
+	UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error
 }
 
 type Service struct {
@@ -55,6 +59,22 @@ func (s *Service) UpdateUsername(ctx context.Context, username string, userId st
 	return s.store.UpdateUsername(ctx, strings.TrimSpace(username), userId)
 }
 
+func (s *Service) UpdateColor(ctx context.Context, color string, userId string) error {
+	return s.store.UpdateColor(ctx, color, userId)
+}
+
+func (s *Service) UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error {
+	return s.store.UpdateEnableSounds(ctx, enabled, userId)
+}
+
+func (s *Service) UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error {
+	return s.store.UpdateEnableMusic(ctx, enabled, userId)
+}
+
+func (s *Service) UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error {
+	return s.store.UpdateEnableVibration(ctx, enabled, userId)
+}
+
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
 	id := uuid.NewString()
 
@@ -67,12 +87,16 @@ func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput)
 	}
 
 	u := &User{
-		ID:        id,
-		Email:     email,
-		Name:      name,
-		IsGuest:   true,
-		Locale:    locale,
-		CreatedAt: time.Now().UTC(),
+		ID:              id,
+		Email:           email,
+		Name:            name,
+		IsGuest:         true,
+		Locale:          locale,
+		Color:           DefaultColor,
+		EnableSounds:    true,
+		EnableMusic:     true,
+		EnableVibration: true,
+		CreatedAt:       time.Now().UTC(),
 	}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert (guest) user: %w", err)
@@ -104,12 +128,16 @@ func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, e
 	}
 
 	u := &User{
-		ID:           id,
-		Email:        email,
-		Name:         in.Name,
-		PasswordHash: &passwordHash,
-		Locale:       locale,
-		CreatedAt:    time.Now().UTC(),
+		ID:              id,
+		Email:           email,
+		Name:            in.Name,
+		PasswordHash:    &passwordHash,
+		Locale:          locale,
+		Color:           DefaultColor,
+		EnableSounds:    true,
+		EnableMusic:     true,
+		EnableVibration: true,
+		CreatedAt:       time.Now().UTC(),
 	}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert user: %w", err)

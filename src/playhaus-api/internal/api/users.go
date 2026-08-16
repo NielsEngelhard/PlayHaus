@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"net/http"
@@ -52,23 +53,78 @@ func (r updateUserUsernameRequest) Validate() map[string]string {
 	return problems
 }
 
+type updateUserColorRequest struct {
+	Color string `json:"color"`
+}
+
+func (r updateUserColorRequest) Validate() map[string]string {
+	if !user.ValidColor(r.Color) {
+		return map[string]string{
+			"color": fmt.Sprintf("must be one of: %s", strings.Join(user.Colors, ", ")),
+		}
+	}
+	return nil
+}
+
+// The three toggles take a pointer so a body that leaves the field out is a
+// complaint rather than a silent "off" -- the two are easy to confuse on the
+// wire, and only one of them is what the player asked for.
+type updateUserEnableSoundsRequest struct {
+	EnableSounds *bool `json:"enableSounds"`
+}
+
+func (r updateUserEnableSoundsRequest) Validate() map[string]string {
+	return required("enableSounds", r.EnableSounds)
+}
+
+type updateUserEnableMusicRequest struct {
+	EnableMusic *bool `json:"enableMusic"`
+}
+
+func (r updateUserEnableMusicRequest) Validate() map[string]string {
+	return required("enableMusic", r.EnableMusic)
+}
+
+type updateUserEnableVibrationRequest struct {
+	EnableVibration *bool `json:"enableVibration"`
+}
+
+func (r updateUserEnableVibrationRequest) Validate() map[string]string {
+	return required("enableVibration", r.EnableVibration)
+}
+
+func required[T any](field string, value *T) map[string]string {
+	if value == nil {
+		return map[string]string{field: "is required"}
+	}
+	return nil
+}
+
 type userResponse struct {
-	ID        string      `json:"id"`
-	Email     string      `json:"email"`
-	Name      string      `json:"name"`
-	IsGuest   bool        `json:"isGuest"`
-	Locale    i18n.Locale `json:"locale"`
-	CreatedAt string      `json:"createdAt"`
+	ID              string      `json:"id"`
+	Email           string      `json:"email"`
+	Name            string      `json:"name"`
+	IsGuest         bool        `json:"isGuest"`
+	Locale          i18n.Locale `json:"locale"`
+	Color           string      `json:"color"`
+	EnableSounds    bool        `json:"enableSounds"`
+	EnableMusic     bool        `json:"enableMusic"`
+	EnableVibration bool        `json:"enableVibration"`
+	CreatedAt       string      `json:"createdAt"`
 }
 
 func newUserResponse(u *user.User) userResponse {
 	return userResponse{
-		ID:        u.ID,
-		Email:     u.Email,
-		Name:      u.Name,
-		IsGuest:   u.IsGuest,
-		Locale:    u.Locale,
-		CreatedAt: u.CreatedAt.Format(timeFormat),
+		ID:              u.ID,
+		Email:           u.Email,
+		Name:            u.Name,
+		IsGuest:         u.IsGuest,
+		Locale:          u.Locale,
+		Color:           u.Color,
+		EnableSounds:    u.EnableSounds,
+		EnableMusic:     u.EnableMusic,
+		EnableVibration: u.EnableVibration,
+		CreatedAt:       u.CreatedAt.Format(timeFormat),
 	}
 }
 
@@ -95,14 +151,20 @@ func (r createUserRequest) Validate() map[string]string {
 	return problems
 }
 
-func (s *Server) handleUpdateUserUsername(w http.ResponseWriter, r *http.Request) {
+func updateUserField[T Validator](
+	s *Server,
+	w http.ResponseWriter,
+	r *http.Request,
+	what string,
+	apply func(ctx context.Context, req T, userID string) error,
+) {
 	userID, ok := UserIDFrom(r.Context())
 	if ok == false {
 		writeError(w, http.StatusUnauthorized, "could not determine user id")
 		return
 	}
 
-	req, problems, err := decode[updateUserUsernameRequest](r)
+	req, problems, err := decode[T](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
@@ -112,19 +174,54 @@ func (s *Server) handleUpdateUserUsername(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	if err := s.users.UpdateUsername(r.Context(), req.Username, userID); err != nil {
+	if err := apply(r.Context(), req, userID); err != nil {
 		if errors.Is(err, user.ErrNotFound) {
 			writeError(w, http.StatusUnauthorized, "invalid or expired session")
 			return
 		}
-		s.log.Error("update username", "err", err)
+		s.log.Error(what, "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}
 
-	// Nothing to say back: the client already knows the name it sent, and /me is
+	// Nothing to say back: the client already knows the value it sent, and /me is
 	// where it re-reads the account.
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (s *Server) handleUpdateUserUsername(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update username",
+		func(ctx context.Context, req updateUserUsernameRequest, userID string) error {
+			return s.users.UpdateUsername(ctx, req.Username, userID)
+		})
+}
+
+func (s *Server) handleUpdateUserColor(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update color",
+		func(ctx context.Context, req updateUserColorRequest, userID string) error {
+			return s.users.UpdateColor(ctx, req.Color, userID)
+		})
+}
+
+func (s *Server) handleUpdateUserEnableSounds(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update enable sounds",
+		func(ctx context.Context, req updateUserEnableSoundsRequest, userID string) error {
+			return s.users.UpdateEnableSounds(ctx, *req.EnableSounds, userID)
+		})
+}
+
+func (s *Server) handleUpdateUserEnableMusic(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update enable music",
+		func(ctx context.Context, req updateUserEnableMusicRequest, userID string) error {
+			return s.users.UpdateEnableMusic(ctx, *req.EnableMusic, userID)
+		})
+}
+
+func (s *Server) handleUpdateUserEnableVibration(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update enable vibration",
+		func(ctx context.Context, req updateUserEnableVibrationRequest, userID string) error {
+			return s.users.UpdateEnableVibration(ctx, *req.EnableVibration, userID)
+		})
 }
 
 func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {

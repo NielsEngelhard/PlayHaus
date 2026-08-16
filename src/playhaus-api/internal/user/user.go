@@ -15,9 +15,17 @@ type User struct {
 	// PasswordHash is nil for guests
 	PasswordHash *string
 
-	IsGuest   bool        `gorm:"not null"`
-	Locale    i18n.Locale `gorm:"not null"`
-	CreatedAt time.Time   `gorm:"not null"`
+	IsGuest bool        `gorm:"not null"`
+	Locale  i18n.Locale `gorm:"not null"`
+
+	// HexColor e.g. #FFE538
+	Color string `gorm:"not null;default:#FFE538"`
+
+	EnableSounds    bool `gorm:"not null;default:true"`
+	EnableMusic     bool `gorm:"not null;default:true"`
+	EnableVibration bool `gorm:"not null;default:true"`
+
+	CreatedAt time.Time `gorm:"not null"`
 	UpdatedAt time.Time
 }
 

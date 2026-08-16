@@ -20,24 +20,42 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
-// UpdateUsername writes the display name. The column is "name" -- what the app
-// calls a username is User.Name, and there is no separate username column.
-func (s *GormStore) UpdateUsername(ctx context.Context, username string, userId string) error {
+func (s *GormStore) updateColumn(ctx context.Context, userId string, column string, value any) error {
 	result := s.db.WithContext(ctx).
 		Model(&User{}).
 		Where("id = ?", userId).
-		Update("name", username)
+		Update(column, value)
 
 	if result.Error != nil {
-		return fmt.Errorf("update username: %w", result.Error)
+		return fmt.Errorf("update %s: %w", column, result.Error)
 	}
 	// No row matched, so there is no such user. A row that matched but held this
-	// name already still counts as updated -- gorm reports it as affected.
+	// value already still counts as updated -- gorm reports it as affected.
 	if result.RowsAffected == 0 {
 		return ErrNotFound
 	}
 
 	return nil
+}
+
+func (s *GormStore) UpdateUsername(ctx context.Context, username string, userId string) error {
+	return s.updateColumn(ctx, userId, "name", username)
+}
+
+func (s *GormStore) UpdateColor(ctx context.Context, color string, userId string) error {
+	return s.updateColumn(ctx, userId, "color", color)
+}
+
+func (s *GormStore) UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error {
+	return s.updateColumn(ctx, userId, "enable_sounds", enabled)
+}
+
+func (s *GormStore) UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error {
+	return s.updateColumn(ctx, userId, "enable_music", enabled)
+}
+
+func (s *GormStore) UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error {
+	return s.updateColumn(ctx, userId, "enable_vibration", enabled)
 }
 
 func (s *GormStore) ExistsByEmail(ctx context.Context, email string) (bool, error) {
