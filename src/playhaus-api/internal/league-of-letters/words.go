@@ -7,10 +7,67 @@ import (
 	"playhaus-api/internal/i18n"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 //go:embed data
 var wordFiles embed.FS
+
+// allowedLists caches each parsed guessable list. Splitting a full dictionary
+// on every guess would be waste, and the files never change under a running
+// process -- they are compiled in.
+var allowedLists sync.Map // string -> map[string]struct{}
+
+// IsAllowedWord reports whether a normalized word may be played in this locale
+// and length.
+//
+// The guessable list is deliberately separate from the answer list: the answers
+// are a short curated pool, while a player must be able to guess any real word.
+//
+// While a length has no guessable list -- which today is all of them, the
+// shipped files being ten-word placeholders -- this answers true and leaves the
+// shape checks in ValidGuess as the only rule. A membership test against ten
+// words would reject very nearly every real word a player typed, which is worse
+// than not checking. Dropping a real list in at the path below turns the check
+// on with no code change.
+func IsAllowedWord(lang i18n.Locale, size int, word string) bool {
+	allowed := allowedWords(lang, size)
+	if len(allowed) == 0 {
+		return true
+	}
+
+	_, ok := allowed[word]
+	return ok
+}
+
+func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
+	key := buildAllowedFilePath(lang, size)
+
+	if cached, ok := allowedLists.Load(key); ok {
+		return cached.(map[string]struct{})
+	}
+
+	// A missing file is not an error -- it is the "no list yet" case, and it
+	// caches as an empty set so the read is not retried on every guess.
+	words := map[string]struct{}{}
+	if data, err := wordFiles.ReadFile(key); err == nil {
+		for line := range strings.SplitSeq(string(data), "\n") {
+			if line = strings.ToLower(strings.TrimSpace(line)); line != "" {
+				words[line] = struct{}{}
+			}
+		}
+	}
+
+	allowedLists.Store(key, words)
+	return words
+}
+
+func buildAllowedFilePath(lang i18n.Locale, size int) string {
+	const base = "data/[LANGUAGE]/[LANGUAGE]-[SIZE]-allowed.txt"
+
+	path := strings.ReplaceAll(base, "[LANGUAGE]", string(lang))
+	return strings.ReplaceAll(path, "[SIZE]", strconv.Itoa(size))
+}
 
 func GetRandomWord(lang i18n.Locale, size int) (string, error) {
 	words, err := GetRandomWords(lang, size, 1)

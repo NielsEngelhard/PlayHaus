@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 )
@@ -9,7 +8,7 @@ import (
 type ReconnectableGame struct {
 	ID        string   `json:"id"`
 	Type      GameType `json:"type"`
-	CreatedAt string   `json:"created_at"`
+	CreatedAt string   `json:"createdAt"`
 }
 
 func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +24,7 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 	// GET solo games
 	soloGames, err := s.leagueOfLetters.GetSoloGamesByUserId(r.Context(), userID)
 	if err != nil {
-		fmt.Println("Error getting reconnectable games: %v", err)
+		s.log.Error("get solo games to reconnect to", "err", err)
 	} else {
 		allGames = append(allGames, mapSoloGamesToReconnectableGame(soloGames)...)
 	}
@@ -44,7 +43,7 @@ func mapSoloGamesToReconnectableGame(soloGames []*league_of_letters.SoloLeagueOf
 		mappedGames[i] = ReconnectableGame{
 			ID:        soloGame.ID.String(),
 			Type:      LeagueOfLettersSolo,
-			CreatedAt: soloGame.CreatedAt.String(),
+			CreatedAt: soloGame.CreatedAt.Format(timeFormat),
 		}
 	}
 

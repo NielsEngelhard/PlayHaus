@@ -1,11 +1,17 @@
 /**
- * The knobs a solo game is set up with. These mirror `WordLanguage` and `WordLength`
- * in the API (`internal/league_of_letters/words/wordlist-types.go`) — keep the two in
- * step, since the values travel to the backend as-is.
+ * The knobs a solo game is set up with. These mirror `MinWordLength`/`MaxWordLength`
+ * and `i18n.Locale` in the API (`internal/league-of-letters/league-of-letters.go`) —
+ * keep the two in step, since the values travel to the backend as-is.
  */
 
-/** All six have word lists behind them, in both languages. */
-export const WORD_LENGTHS = [3, 4, 5, 6, 7, 8] as const;
+/**
+ * All five have word lists behind them, in both languages.
+ *
+ * Three is not among them: the backend enforces four to eight and ships no
+ * three-letter lists, and with the opening letter given away a three-letter word
+ * would be a two-letter puzzle anyway.
+ */
+export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
 
 export type WordLength = typeof WORD_LENGTHS[number];
 
@@ -22,13 +28,17 @@ export const LANGUAGES: Language[] = [
     { code: 'en', label: 'Engels', description: 'Woorden uit de Engelse lijst.' }
 ];
 
+/**
+ * Named to match the create-game body exactly, so the settings can be sent as
+ * they stand. The backend rejects unknown fields, so a spare key here is a 400.
+ */
 export interface SoloSettings {
-    language: LanguageCode,
+    locale: LanguageCode,
     wordLength: WordLength
 }
 
 /** Classic League of Letters: five letters, Dutch. */
 export const DEFAULT_SOLO_SETTINGS: SoloSettings = {
-    language: 'nl',
+    locale: 'nl',
     wordLength: 5
 };

@@ -7,6 +7,7 @@ import (
 )
 
 const soloPath = "/api/v1/league-of-letters/solo"
+const soloRounds = 3
 
 func createSoloGame(t *testing.T, h http.Handler, token, body string) soloGameResponse {
 	t.Helper()
@@ -23,7 +24,7 @@ func createSoloGame(t *testing.T, h http.Handler, token, body string) soloGameRe
 func TestCreateSoloGameRequiresAuth(t *testing.T) {
 	srv := newTestServer(t)
 
-	rec := do(t, srv, http.MethodPost, soloPath, `{"wordLength":5,"nRounds":3}`, "")
+	rec := do(t, srv, http.MethodPost, soloPath, `{"wordLength":5}`, "")
 	if rec.Code != http.StatusUnauthorized {
 		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnauthorized, rec.Body)
 	}
@@ -32,7 +33,7 @@ func TestCreateSoloGameRequiresAuth(t *testing.T) {
 func TestGetSoloGameRequiresAuth(t *testing.T) {
 	srv := newTestServer(t)
 	token := newGuestSession(t, srv).Token
-	game := createSoloGame(t, srv, token, `{"wordLength":5,"nRounds":3}`)
+	game := createSoloGame(t, srv, token, `{"wordLength":5}`)
 
 	rec := do(t, srv, http.MethodGet, soloPath+"/"+game.ID, "", "")
 	if rec.Code != http.StatusUnauthorized {
@@ -44,7 +45,7 @@ func TestCreateSoloGame(t *testing.T) {
 	srv := newTestServer(t)
 	token := newGuestSession(t, srv).Token
 
-	game := createSoloGame(t, srv, token, `{"wordLength":5,"nRounds":3,"locale":"en"}`)
+	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	if game.ID == "" {
 		t.Error("no game id returned")
@@ -77,7 +78,7 @@ func TestCreateSoloGameDoesNotLeakAnswers(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
 	token := newGuestSession(t, srv).Token
 
-	rec := do(t, srv, http.MethodPost, soloPath, `{"wordLength":5,"nRounds":3,"locale":"en"}`, token)
+	rec := do(t, srv, http.MethodPost, soloPath, `{"wordLength":5,"locale":"en"}`, token)
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
 	}
@@ -113,17 +114,14 @@ func TestCreateSoloGameValidation(t *testing.T) {
 		body string
 		want int
 	}{
-		{"valid", `{"wordLength":5,"nRounds":3}`, http.StatusCreated},
-		{"smallest allowed", `{"wordLength":4,"nRounds":1}`, http.StatusCreated},
-		{"largest allowed", `{"wordLength":8,"nRounds":5}`, http.StatusCreated},
-		{"word too short", `{"wordLength":3,"nRounds":3}`, http.StatusUnprocessableEntity},
-		{"word too long", `{"wordLength":9,"nRounds":3}`, http.StatusUnprocessableEntity},
-		{"no rounds", `{"wordLength":5,"nRounds":0}`, http.StatusUnprocessableEntity},
-		{"too many rounds", `{"wordLength":5,"nRounds":99}`, http.StatusUnprocessableEntity},
-		{"negative rounds", `{"wordLength":5,"nRounds":-1}`, http.StatusUnprocessableEntity},
+		{"valid", `{"wordLength":5}`, http.StatusCreated},
+		{"smallest allowed", `{"wordLength":4}`, http.StatusCreated},
+		{"largest allowed", `{"wordLength":8}`, http.StatusCreated},
+		{"word too short", `{"wordLength":3}`, http.StatusUnprocessableEntity},
+		{"word too long", `{"wordLength":9}`, http.StatusUnprocessableEntity},
 		{"empty body defaults to zero", `{}`, http.StatusUnprocessableEntity},
 		{"malformed json", `{"wordLength":`, http.StatusBadRequest},
-		{"unknown field", `{"wordLength":5,"nRounds":3,"cheat":true}`, http.StatusBadRequest},
+		{"unknown field", `{"wordLength":5,"cheat":true}`, http.StatusBadRequest},
 	}
 
 	for _, tt := range tests {
@@ -147,11 +145,11 @@ func TestCreateSoloGameLocale(t *testing.T) {
 		acceptLanguage string
 		want           string
 	}{
-		{"from body", `{"wordLength":5,"nRounds":2,"locale":"en"}`, "", "en"},
-		{"body beats header", `{"wordLength":5,"nRounds":2,"locale":"en"}`, "nl-NL", "en"},
-		{"from header", `{"wordLength":5,"nRounds":2}`, "en-GB", "en"},
-		{"unsupported falls back", `{"wordLength":5,"nRounds":2,"locale":"de"}`, "", "nl"},
-		{"nothing supplied", `{"wordLength":5,"nRounds":2}`, "", "nl"},
+		{"from body", `{"wordLength":5,"locale":"en"}`, "", "en"},
+		{"body beats header", `{"wordLength":5,"locale":"en"}`, "nl-NL", "en"},
+		{"from header", `{"wordLength":5}`, "en-GB", "en"},
+		{"unsupported falls back", `{"wordLength":5,"locale":"de"}`, "", "nl"},
+		{"nothing supplied", `{"wordLength":5}`, "", "nl"},
 	}
 
 	for _, tt := range tests {
@@ -179,7 +177,7 @@ func TestCreateSoloGameLocale(t *testing.T) {
 func TestGetSoloGameReturnsTheGame(t *testing.T) {
 	srv := newTestServer(t)
 	token := newGuestSession(t, srv).Token
-	created := createSoloGame(t, srv, token, `{"wordLength":6,"nRounds":2,"locale":"nl"}`)
+	created := createSoloGame(t, srv, token, `{"wordLength":6,"locale":"nl"}`)
 
 	rec := do(t, srv, http.MethodGet, soloPath+"/"+created.ID, "", token)
 	if rec.Code != http.StatusOK {
@@ -193,8 +191,8 @@ func TestGetSoloGameReturnsTheGame(t *testing.T) {
 	if got.WordLength != 6 {
 		t.Errorf("WordLength = %d, want 6", got.WordLength)
 	}
-	if len(got.Rounds) != 2 {
-		t.Errorf("got %d rounds, want 2", len(got.Rounds))
+	if len(got.Rounds) != soloRounds {
+		t.Errorf("got %d rounds, want %d", len(got.Rounds), soloRounds)
 	}
 }
 
@@ -204,7 +202,7 @@ func TestGetSoloGameHidesOtherPlayersGames(t *testing.T) {
 	srv := newTestServer(t)
 
 	ownerToken := newGuestSession(t, srv).Token
-	game := createSoloGame(t, srv, ownerToken, `{"wordLength":5,"nRounds":2}`)
+	game := createSoloGame(t, srv, ownerToken, `{"wordLength":5}`)
 
 	intruderToken := newGuestSession(t, srv).Token
 	if intruderToken == ownerToken {
@@ -240,14 +238,14 @@ func TestGetSoloGameUnknownID(t *testing.T) {
 func TestSoloGameWordsArePersistedAndDistinct(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
 	token := newGuestSession(t, srv).Token
-	game := createSoloGame(t, srv, token, `{"wordLength":5,"nRounds":5,"locale":"en"}`)
+	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	var words []string
 	if err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
 		t.Fatalf("read words: %v", err)
 	}
-	if len(words) != 5 {
-		t.Fatalf("stored %d words, want 5", len(words))
+	if len(words) != soloRounds {
+		t.Fatalf("stored %d words, want %d", len(words), soloRounds)
 	}
 
 	seen := map[string]bool{}
@@ -267,7 +265,7 @@ func TestSoloGameWordsArePersistedAndDistinct(t *testing.T) {
 func TestSoloGameIsOwnedByTheCaller(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
 	session := newGuestSession(t, srv)
-	game := createSoloGame(t, srv, session.Token, `{"wordLength":5,"nRounds":2}`)
+	game := createSoloGame(t, srv, session.Token, `{"wordLength":5}`)
 
 	var ownerID string
 	if err := db.Raw(`SELECT owner_id FROM solo_lol_games WHERE id = ?`, game.ID).Scan(&ownerID).Error; err != nil {

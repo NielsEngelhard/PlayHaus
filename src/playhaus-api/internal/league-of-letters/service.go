@@ -14,6 +14,7 @@ type Store interface {
 	CreateSoloGame(ctx context.Context, soloGame *SoloLeagueOfLettersGame) error
 	SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error)
 	GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error)
+	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
 }
 
 type CreateSoloGameInput struct {
@@ -90,6 +91,119 @@ func (s *Service) SoloGameForOwner(ctx context.Context, id uuid.UUID, ownerID st
 
 func (s *Service) GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error) {
 	return s.store.GetSoloGamesByUserId(ctx, userID)
+}
+
+type SubmitGuessInput struct {
+	GameID  uuid.UUID
+	OwnerID string
+	Word    string
+}
+
+type GuessOutcome struct {
+	Guess        *LeagueOfLettersGuess
+	Solved       bool
+	RoundOver    bool
+	GameOver     bool
+	Word         string
+	CurrentRound int
+}
+
+// SubmitGuess plays one word against the game's current round.
+func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessOutcome, error) {
+	game, err := s.SoloGameForOwner(ctx, in.GameID, in.OwnerID)
+	if err != nil {
+		return nil, err
+	}
+	if game.Status != GameInProgress {
+		return nil, ErrGameFinished
+	}
+
+	round := game.round(game.CurrentRound)
+	if round == nil {
+		// The game points at a round it does not have. Nothing the player can do
+		// about it, so it is not a refusal -- it is a broken game.
+		return nil, fmt.Errorf("game %s has no round %d", game.ID, game.CurrentRound)
+	}
+	if round.IsOver() {
+		return nil, ErrRoundClosed
+	}
+
+	word := NormalizeGuess(in.Word)
+	if !ValidGuess(word, game.WordLength, round.FirstLetter()) {
+		return nil, ErrInvalidGuess
+	}
+	if !IsAllowedWord(game.Locale, game.WordLength, word) {
+		return nil, ErrInvalidGuess
+	}
+	for _, played := range round.Guesses {
+		if played.Word == word {
+			return nil, ErrDuplicateGuess
+		}
+	}
+
+	guess := &LeagueOfLettersGuess{
+		ID:          uuid.New(),
+		RoundID:     round.ID,
+		OwnerID:     in.OwnerID,
+		Word:        word,
+		GuessNumber: len(round.Guesses) + 1,
+		Letters:     validatedLetters(word, round.Word),
+		CreatedAt:   time.Now().UTC(),
+	}
+
+	solved := guess.Correct()
+	roundOver := solved || guess.GuessNumber >= MaxGuesses
+
+	outcome := &GuessOutcome{
+		Guess:        guess,
+		Solved:       solved,
+		RoundOver:    roundOver,
+		CurrentRound: game.CurrentRound,
+	}
+
+	if roundOver {
+		outcome.Word = round.Word
+
+		if game.CurrentRound >= len(game.Rounds) {
+			game.Status = GameCompleted
+			outcome.GameOver = true
+		} else {
+			game.CurrentRound++
+		}
+		outcome.CurrentRound = game.CurrentRound
+	}
+
+	if err := s.store.RecordGuess(ctx, guess, game); err != nil {
+		return nil, err
+	}
+
+	return outcome, nil
+}
+
+func (g *SoloLeagueOfLettersGame) round(number int) *LeagueOfLettersRound {
+	for i := range g.Rounds {
+		if g.Rounds[i].RoundNumber == number {
+			return &g.Rounds[i]
+		}
+	}
+	return nil
+}
+
+func validatedLetters(word, target string) []LeagueOfLettersValidatedLetter {
+	marks := Evaluate(word, target)
+	runes := []rune(word)
+
+	letters := make([]LeagueOfLettersValidatedLetter, len(runes))
+	for i, r := range runes {
+		letters[i] = LeagueOfLettersValidatedLetter{
+			ID:       uuid.New(),
+			Position: i,
+			Letter:   string(r),
+			Status:   marks[i],
+		}
+	}
+
+	return letters
 }
 
 func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale) ([]LeagueOfLettersRound, error) {

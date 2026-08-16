@@ -54,6 +54,7 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	// Solo specific
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo", s.requireAuth(s.handleCreateSoloGame))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleGetSoloGame))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
 
 	// Multiplayer specific
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/create-multiplayer-lobby", s.requireAuth(s.handleCreateMultiplayerLobby))
@@ -71,5 +72,5 @@ func (s *Server) AddUserHandlers() {
 }
 
 func (s *Server) AddReconnectHandlers() {
-	s.mux.HandleFunc("GET /api/v1/reconnect-games", s.handleGetReconnectableGames)
+	s.mux.HandleFunc("GET /api/v1/reconnect-games", s.requireAuth(s.handleGetReconnectableGames))
 }

@@ -57,7 +57,8 @@ func (s *GormStore) GetSoloGamesByUserId(ctx context.Context, userID string) ([]
 	var games []*SoloLeagueOfLettersGame
 
 	err := s.db.WithContext(ctx).
-		Where("OwnerID = ?", userID).
+		Where("owner_id = ? AND status = ?", userID, GameInProgress).
+		Order("created_at DESC").
 		Find(&games).Error
 
 	if err != nil {
@@ -65,4 +66,34 @@ func (s *GormStore) GetSoloGamesByUserId(ctx context.Context, userID string) ([]
 	}
 
 	return games, nil
+}
+
+// RecordGuess stores a guess and the game state it moved.
+func (s *GormStore) RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		// Creates the letters too, through the association.
+		if err := tx.Create(guess).Error; err != nil {
+			return fmt.Errorf("insert guess: %w", err)
+		}
+
+		// Named columns rather than Save: the game was loaded with its rounds
+		// preloaded, and saving the struct whole would write the whole tree back.
+		err := tx.Model(&SoloLeagueOfLettersGame{}).
+			Where("id = ?", game.ID).
+			Updates(map[string]any{
+				"current_round": game.CurrentRound,
+				"status":        game.Status,
+				"score":         game.Score,
+			}).Error
+		if err != nil {
+			return fmt.Errorf("update game: %w", err)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return fmt.Errorf("record guess: %w", err)
+	}
+	return nil
 }

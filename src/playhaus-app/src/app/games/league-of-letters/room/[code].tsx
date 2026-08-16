@@ -1,3 +1,4 @@
+import { roundOf } from "@/api/calls/league-of-letters";
 import { useFullScreen } from "@/components/layout/FullScreenContext";
 import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
@@ -10,7 +11,6 @@ import {
     MOCK_USER_ID,
     snapshotById
 } from "@/features/league-of-letters/mock-games";
-import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -26,19 +26,26 @@ export default function LeagueOfLettersRoomPage() {
     useHeaderTag(LEAGUE_OF_LETTERS_NAME);
     useFullScreen();
 
-    const { code } = useLocalSearchParams<{ code: string }>();
-
+    // The code in the route is not read yet: there is no join endpoint to hand it
+    // to, and the fixtures below are the same game whichever room you asked for.
     const [snapshotId, setSnapshotId] = useState(DEFAULT_MULTIPLAYER_SNAPSHOT);
 
     const snapshot = snapshotById(MOCK_MULTIPLAYER_GAMES, snapshotId);
-    // The typed code is the one thing on this screen that is really the player's.
-    const game = { ...snapshot.game, code: code ?? snapshot.game.code };
+    const game = snapshot.game;
+    const round = roundOf(game, game.currentRound);
+
+    // Every fixture carries the round it is a snapshot of, so this is unreachable —
+    // but the board cannot draw without one, and narrowing here is cheaper than
+    // teaching it to.
+    if (round === undefined) return null;
 
     return (
         <View style={styles.page}>
+            {/* The typed code is the one thing on this screen that is really the
+                player's. Nothing is fetched with it yet. */}
             <MockStateSwitcher snapshots={MOCK_MULTIPLAYER_GAMES} value={snapshotId} onChange={setSnapshotId} />
 
-            <PlayingGame game={game} userId={MOCK_USER_ID} />
+            <PlayingGame game={game} round={round} userId={MOCK_USER_ID} />
         </View>
     )
 }

@@ -46,14 +46,15 @@ export default function LeagueOfLettersSettingsPage() {
         setError(null);
 
         try {
-            const game = await createGame({ mode: 'solo', ...settings });
+            const game = await createGame(settings);
 
-            // Handed on from the game the server made, not from `settings`. They
-            // agree today, but the server is what decides what was actually
-            // created, and the screen we're pushing to should read that.
+            // Only the id travels. Everything else about the game — its length, its
+            // language, how many rounds it drew — is the server's answer, and the
+            // play screen reads it off the game it fetches rather than off what
+            // this screen happened to ask for.
             router.push({
                 pathname: ROUTES.leagueOfLettersSolo,
-                params: { gameId: game.id, lang: game.language, length: game.wordLength }
+                params: { gameId: game.id }
             });
         } catch (failure) {
             setError(gameErrorMessage(failure));
@@ -82,9 +83,9 @@ export default function LeagueOfLettersSettingsPage() {
                 <View style={tilt('0.4deg')}>
                     <SelectInput
                         label='Taal'
-                        value={settings.language}
+                        value={settings.locale}
                         options={LANGUAGE_OPTIONS}
-                        onChange={language => setSettings(current => ({ ...current, language }))}
+                        onChange={locale => setSettings(current => ({ ...current, locale }))}
                     />
                 </View>
 

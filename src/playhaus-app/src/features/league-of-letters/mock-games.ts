@@ -1,4 +1,4 @@
-import type { Game, GameGuess, GamePlayer, Mark } from "@/api/calls/league-of-letters";
+import type { Game, GameGuess, GamePlayer, GameRound, Mark } from "@/api/calls/league-of-letters";
 
 /**
  * Hand-written multiplayer games, for building the room screen against.
@@ -17,7 +17,7 @@ import type { Game, GameGuess, GamePlayer, Mark } from "@/api/calls/league-of-le
 /** The "you" every fixture is written from — what `GameGuess.userId` is matched against. */
 export const MOCK_USER_ID = 'user-you';
 
-/** Mirrors `MaxGuesses` in the Go backend's `internal/league_of_letters/models.go`. */
+/** Mirrors `MaxGuesses` in the Go backend's `internal/league-of-letters/league-of-letters.go`. */
 const MAX_GUESSES = 6;
 
 /** Fixed so the guess timestamps don't drift between snapshots on every reload. */
@@ -26,8 +26,8 @@ const CREATED_AT = '2026-08-09T12:00:00.000Z';
 /** A round deadline far enough out that the multiplayer countdown has something to count. */
 const inMinutes = (minutes: number) => new Date(Date.now() + minutes * 60_000).toISOString();
 
-function guess(number: number, word: string, marks: Mark[], userId: string = MOCK_USER_ID): GameGuess {
-    return { userId, number, word, marks, createdAt: CREATED_AT };
+function guess(guessNumber: number, word: string, marks: Mark[], userId: string = MOCK_USER_ID): GameGuess {
+    return { id: `${userId}-${word}-${guessNumber}`, userId, guessNumber, word, marks, createdAt: CREATED_AT };
 }
 
 const you: GamePlayer = {
@@ -54,17 +54,29 @@ const KAARS = guess(4, 'KAARS', ['correct', 'correct', 'correct', 'correct', 'co
 
 const multiplayerBase = {
     id: 'game-room-mock',
-    code: 'KP7XQ2',
+    ownerId: 'user-sam',
     mode: 'multiplayer',
-    hostUserId: 'user-sam',
-    language: 'nl',
+    locale: 'nl',
     wordLength: 5,
     maxGuesses: MAX_GUESSES,
-    startedAt: CREATED_AT,
-    version: 1,
+    totalRounds: 2,
+    score: 3,
     players: [you, ...others],
     createdAt: CREATED_AT
 } as const satisfies Partial<Game>;
+
+/**
+ * The rounds before the one a snapshot is showing. The real API sends every round
+ * of a game, played or not, so a fixture that jumps straight to round two needs a
+ * round one behind it for the board to be reading the same shape.
+ */
+const finishedRound1: GameRound = {
+    id: 'round-1',
+    roundNumber: 1,
+    firstLetter: 'v',
+    word: 'VOGEL',
+    guesses: []
+};
 
 /** One state of one game, with a label for the temporary state switcher. */
 export interface MockSnapshot {
@@ -84,14 +96,17 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
         label: 'Bezig',
         game: {
             ...multiplayerBase,
-            status: 'active',
-            endsAt: inMinutes(4),
-            round: {
-                number: 1, startedAt: CREATED_AT, endsAt: inMinutes(4),
-                // Other players' guesses ride along on the same round. The board only ever
-                // draws your own; they are here so the scoreboard has something behind it.
-                guesses: [SCHIP, TAKEN, guess(1, 'KRANT', ['correct', 'present', 'correct', 'absent', 'absent'], 'user-sam')]
-            }
+            status: 'in_progress',
+            currentRound: 1,
+            rounds: [
+                {
+                    id: 'round-1', roundNumber: 1, firstLetter: 'k', endsAt: inMinutes(4),
+                    // Other players' guesses ride along on the same round. The board only ever
+                    // draws your own; they are here so the scoreboard has something behind it.
+                    guesses: [SCHIP, TAKEN, guess(1, 'KRANT', ['correct', 'present', 'correct', 'absent', 'absent'], 'user-sam')]
+                },
+                { id: 'round-2', roundNumber: 2, firstLetter: 'k', guesses: [] }
+            ]
         }
     },
     {
@@ -99,12 +114,15 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
         label: 'Laatste seconden',
         game: {
             ...multiplayerBase,
-            status: 'active',
-            endsAt: inMinutes(0.4),
-            round: {
-                number: 2, startedAt: CREATED_AT, endsAt: inMinutes(0.4),
-                guesses: [SCHIP, TAKEN, KAMER, KLAAR]
-            }
+            status: 'in_progress',
+            currentRound: 2,
+            rounds: [
+                finishedRound1,
+                {
+                    id: 'round-2', roundNumber: 2, firstLetter: 'k', endsAt: inMinutes(0.4),
+                    guesses: [SCHIP, TAKEN, KAMER, KLAAR]
+                }
+            ]
         }
     },
     {
@@ -112,13 +130,16 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
         label: 'Gewonnen',
         game: {
             ...multiplayerBase,
-            status: 'finished',
-            endsAt: CREATED_AT,
+            status: 'completed',
+            currentRound: 2,
             players: [{ ...you, score: 8 }, ...others],
-            round: {
-                number: 2, startedAt: CREATED_AT, endsAt: CREATED_AT, word: 'KAARS',
-                guesses: [SCHIP, TAKEN, KAMER, KAARS]
-            }
+            rounds: [
+                finishedRound1,
+                {
+                    id: 'round-2', roundNumber: 2, firstLetter: 'k', endsAt: CREATED_AT, word: 'KAARS',
+                    guesses: [SCHIP, TAKEN, KAMER, KAARS]
+                }
+            ]
         }
     },
     {
@@ -126,12 +147,15 @@ export const MOCK_MULTIPLAYER_GAMES: MockSnapshot[] = [
         label: 'Verloren',
         game: {
             ...multiplayerBase,
-            status: 'finished',
-            endsAt: CREATED_AT,
-            round: {
-                number: 2, startedAt: CREATED_AT, endsAt: CREATED_AT, word: 'KAARS',
-                guesses: [SCHIP, TAKEN, KAMER, KLAAR, KARIG, KAPER]
-            }
+            status: 'completed',
+            currentRound: 2,
+            rounds: [
+                finishedRound1,
+                {
+                    id: 'round-2', roundNumber: 2, firstLetter: 'k', endsAt: CREATED_AT, word: 'KAARS',
+                    guesses: [SCHIP, TAKEN, KAMER, KLAAR, KARIG, KAPER]
+                }
+            ]
         }
     }
 ];

@@ -1,40 +1,54 @@
-import { getGame, submitGuess, type Game } from '@/api/calls/league-of-letters';
+import { getGame, roundOf, submitGuess, type Game, type GameRound } from '@/api/calls/league-of-letters';
 import { useAuth } from '@/features/auth/useAuth';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface GameState {
     game: Game | null
+    /** The round on screen. Not always the one the server is on — see `viewing` below. */
+    round: GameRound | null
     /** True until the first load settles, one way or the other. */
     loading: boolean
     /** The initial load failed. There is no board to show, so the page offers a retry. */
     error: string | null
     reload: () => void
     /**
-     * Sends a guess and swaps in the game the server answers with.
+     * Sends a guess and folds the result into the game in hand.
      *
      * Rejects rather than storing the failure: whether a refused guess is worth
      * interrupting the player over is the board's call, not this hook's, and the
      * board is the thing that knows a word is still sitting in the current row.
      */
     guess: (word: string) => Promise<void>
+    /** The viewed round is finished — solved, or out of guesses. */
+    roundOver: boolean
+    /** Every round is done. */
+    gameOver: boolean
+    /** Moves on from a finished round to the one the server is now on. */
+    nextRound: () => void
 }
 
 /**
  * Loads one game and plays it.
  *
- * There is no polling. Solo is the only mode this drives today, and a solo game
- * only ever changes because its one player did something — so the response to a
- * guess is already the newest state there is, and a timer asking the server for
- * it again would find nothing new every time.
- *
- * A shared game is the opposite and will need one: `Game.version` exists for
- * exactly that, so a room screen can poll with the version it last saw.
+ * There is no polling. Solo is the only mode this drives, and a solo game only
+ * ever changes because its one player did something — so the answer to a guess is
+ * already the newest state there is, and a timer asking the server again would
+ * find nothing new every time.
  */
 export function useGame(gameId: string | undefined): GameState {
     const { user, status } = useAuth();
     const [game, setGame] = useState<Game | null>(null);
     const [error, setError] = useState<string | null>(null);
+    /**
+     * Which round the board is showing.
+     *
+     * It lags `game.currentRound` on purpose. Ending a round advances the server
+     * immediately, but the player has not seen the verdict yet — swapping the
+     * board to a fresh puzzle at that moment would take the answer away in the
+     * same frame it was revealed. `nextRound` is what catches it up.
+     */
+    const [viewing, setViewing] = useState(1);
 
     // Nothing may touch state after unmount, and `reload` can fire again while an
     // earlier load is still in the air.
@@ -58,6 +72,8 @@ export function useGame(gameId: string | undefined): GameState {
 
             setError(null);
             setGame(fresh);
+            // A game picked up again opens on the round it left off at.
+            setViewing(fresh.currentRound);
         } catch (failure) {
             if (!mounted.current) return;
 
@@ -66,8 +82,8 @@ export function useGame(gameId: string | undefined): GameState {
     }, [gameId]);
 
     // Only a signed-in session can read a game: the API answers 404 for a game you
-    // are not a player in, and while signed out the auth gate is standing over this
-    // page anyway.
+    // do not own, and while signed out the auth gate is standing over this page
+    // anyway.
     const signedIn = status === 'signedIn';
     const userId = user?.id ?? null;
 
@@ -85,12 +101,34 @@ export function useGame(gameId: string | undefined): GameState {
     const guess = useCallback(async (word: string) => {
         if (!gameId) return;
 
-        // The response is the whole game after the guess — status, scores, and the
-        // answer if it has just been revealed — so there is nothing left to re-read.
-        const updated = await submitGuess(gameId, word);
+        const result = await submitGuess(gameId, word);
         if (!mounted.current) return;
 
-        setGame(updated);
+        // Applied rather than refetched. The response carries the guess and the
+        // little around it that moved, and the rest of the game is already here —
+        // asking for all of it again would send back what we just sent up.
+        setGame(current => {
+            if (current === null || current.id !== gameId) return current;
+
+            // The guess was played against whichever round the game was on when it
+            // was sent, which is the one it has not advanced past yet.
+            const played = current.currentRound;
+
+            return {
+                ...current,
+                currentRound: result.currentRound,
+                status: result.gameOver ? 'completed' : current.status,
+                rounds: current.rounds.map(round => round.roundNumber === played
+                    ? {
+                        ...round,
+                        guesses: [...round.guesses, result.guess],
+                        // Arrives only when the round is over, and its presence is
+                        // what the board reads as "this one is done".
+                        word: result.word ?? round.word
+                    }
+                    : round)
+            };
+        });
     }, [gameId]);
 
     const reload = useCallback(() => {
@@ -107,12 +145,21 @@ export function useGame(gameId: string | undefined): GameState {
     // otherwise the previous game would flash on screen while the new one loads.
     const current = game?.id === gameId ? game : null;
     const visibleError = signedIn ? error : null;
+    const round = current === null ? null : roundOf(current, viewing) ?? null;
+
+    const nextRound = useCallback(() => {
+        setViewing(showing => (game === null ? showing : game.currentRound));
+    }, [game]);
 
     return {
         game: current,
+        round,
         loading: current === null && visibleError === null,
         error: visibleError,
         reload,
-        guess
+        guess,
+        roundOver: round?.word !== undefined,
+        gameOver: current?.status === 'completed',
+        nextRound
     };
 }

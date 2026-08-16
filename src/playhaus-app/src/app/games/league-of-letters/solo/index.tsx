@@ -29,13 +29,15 @@ export default function LeagueOfLettersSoloPage() {
 
     const { user } = useAuth();
     const { gameId } = useLocalSearchParams<{ gameId: string }>();
-    const { game, loading, error, reload, guess } = useGame(gameId);
+    const { game, round, loading, error, reload, guess, nextRound } = useGame(gameId);
 
     if (loading) {
         return <LoadingPage message='Spel laden…' />;
     }
 
-    if (game === null || user === null) {
+    // A game with no round to show is as unplayable as one that would not load, so
+    // it gets the same page rather than a board with nothing on it.
+    if (game === null || round === null || user === null) {
         return (
             <View style={styles.failed}>
                 <InlineNotification
@@ -52,7 +54,19 @@ export default function LeagueOfLettersSoloPage() {
         );
     }
 
-    return <PlayingGame game={game} userId={user.id} onGuess={guess} />;
+    return (
+        (!game || !round || loading) ? (
+            <LoadingPage />
+        ) : (
+            <PlayingGame
+                game={game}
+                round={round}
+                userId={user.id}
+                onGuess={guess}
+                onNextRound={nextRound}
+            />            
+        )
+    );
 }
 
 const styles = StyleSheet.create({

@@ -1,3 +1,4 @@
+import { GameContractError } from '@/api/calls/league-of-letters';
 import { ApiError } from '@/api/client';
 
 /**
@@ -14,12 +15,25 @@ import { ApiError } from '@/api/client';
  * say. The status is what the network tab is for.
  */
 export function gameErrorMessage(error: unknown): string {
+    // The one failure whose cause is not on the player's side of the screen at
+    // all, and the only one worth naming plainly: the API is running an older
+    // build than the app. "Probeer opnieuw" would be a lie — it will fail the
+    // same way until the server is restarted.
+    if (error instanceof GameContractError) {
+        return 'De server draait een oudere versie van dit spel. Herstart de API en probeer opnieuw.';
+    }
+
     if (error instanceof ApiError) {
         switch (error.status) {
             case 401:
                 return 'Je sessie is verlopen. Log opnieuw in.';
             case 404:
                 return 'Dit spel bestaat niet meer.';
+            // The server refused the settings themselves — a word length it has no
+            // list for, most likely. Worth its own line, because "probeer opnieuw"
+            // is bad advice for something that will be refused again.
+            case 422:
+                return 'Deze instellingen kloppen niet. Kies een andere woordlengte.';
             default:
                 return 'Er ging iets mis. Probeer het opnieuw.';
         }

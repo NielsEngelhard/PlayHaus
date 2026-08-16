@@ -30,9 +30,16 @@ const (
 	MaxWordLength = 8
 )
 
+const MaxGuesses = 6
+
 var (
 	ErrGameNotFound = errors.New("game not found")
 	ErrInvalidInput = errors.New("invalid game settings")
+
+	ErrInvalidGuess   = errors.New("invalid guess")
+	ErrDuplicateGuess = errors.New("word already guessed this round")
+	ErrRoundClosed    = errors.New("round takes no more guesses")
+	ErrGameFinished   = errors.New("game is over")
 )
 
 type SoloLeagueOfLettersGame struct {
@@ -62,14 +69,59 @@ type LeagueOfLettersRound struct {
 
 func (LeagueOfLettersRound) TableName() string { return "solo_lol_rounds" }
 
-type LeagueOfLettersGuess struct {
-	ID      uuid.UUID `gorm:"primaryKey;type:text"`
-	RoundID uuid.UUID `gorm:"index;not null;type:text"`
-	OwnerID string    `gorm:"index;not null"`
+// Solved reports whether some guess in this round landed the word.
+func (r LeagueOfLettersRound) Solved() bool {
+	for _, guess := range r.Guesses {
+		if guess.Correct() {
+			return true
+		}
+	}
+	return false
+}
 
-	GuessNumber int                              `gorm:"not null"`
+// IsOver reports whether this round can still take a guess.
+func (r LeagueOfLettersRound) IsOver() bool {
+	return r.Solved() || len(r.Guesses) >= MaxGuesses
+}
+
+// FirstLetter is the hint the round opens with
+func (r LeagueOfLettersRound) FirstLetter() string {
+	if r.Word == "" {
+		return ""
+	}
+	return string([]rune(r.Word)[0])
+}
+
+type LeagueOfLettersGuess struct {
+	ID          uuid.UUID                        `gorm:"primaryKey;type:text"`
+	RoundID     uuid.UUID                        `gorm:"index;not null;uniqueIndex:idx_lol_guess_slot;type:text"`
+	OwnerID     string                           `gorm:"index;not null"`
+	Word        string                           `gorm:"not null"`
+	GuessNumber int                              `gorm:"not null;uniqueIndex:idx_lol_guess_slot"`
 	Letters     []LeagueOfLettersValidatedLetter `gorm:"foreignKey:GuessID;constraint:OnDelete:CASCADE"`
 	CreatedAt   time.Time                        `gorm:"not null"`
+}
+
+// Correct reports whether this guess was the answer.
+func (g LeagueOfLettersGuess) Correct() bool {
+	if len(g.Letters) == 0 {
+		return false
+	}
+	for _, letter := range g.Letters {
+		if letter.Status != LetterCorrect {
+			return false
+		}
+	}
+	return true
+}
+
+// Marks are this guess's letter statuses in playing order.
+func (g LeagueOfLettersGuess) Marks() []LetterStatus {
+	marks := make([]LetterStatus, 0, len(g.Letters))
+	for _, letter := range g.Letters {
+		marks = append(marks, letter.Status)
+	}
+	return marks
 }
 
 func (LeagueOfLettersGuess) TableName() string { return "solo_lol_guesses" }

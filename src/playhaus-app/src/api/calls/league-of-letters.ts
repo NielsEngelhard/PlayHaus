@@ -3,13 +3,13 @@ import type { LanguageCode, WordLength } from '@/features/league-of-letters/solo
 
 /**
  * A League of Letters game as the API describes it. Mirrors the response types in
- * the Go backend's `internal/league_of_letters/handlers.go` — keep the two in step.
+ * the Go backend's `internal/api/league-of-letters.go` — keep the two in step.
  */
 
 export type GameMode = 'solo' | 'multiplayer';
 
-/** `lobby` is a multiplayer game waiting for players; a solo game starts `active`. */
-export type GameStatus = 'lobby' | 'active' | 'finished';
+/** Straight off the Go `GameStatus`. A solo game is created `in_progress`. */
+export type GameStatus = 'in_progress' | 'completed' | 'abandoned';
 
 /** What one letter of a guess turned out to be worth. Green, orange, grey. */
 export type Mark = 'correct' | 'present' | 'absent';
@@ -24,115 +24,170 @@ export interface GamePlayer {
 }
 
 export interface GameGuess {
+    id: string
     userId: string
     /** This player's nth guess in the round, counting from 1. */
-    number: number
+    guessNumber: number
     word: string
-    /** One mark per letter, scored server-side. Never computed in the app. */
+    /** One mark per letter, in the word's own order. Scored server-side, never here. */
     marks: Mark[]
-    /**
-     * What this guess added to its player's score: five for every letter it
-     * pinned to a spot nobody had yet, two for every letter it first showed to
-     * be in the word, five more for landing the word itself. The given first
-     * letter is never worth anything, and nothing is paid for twice.
-     */
-    points: number
     createdAt: string
 }
 
 export interface GameRound {
-    number: number    
-    startedAt: string
+    id: string
+    roundNumber: number
     /**
-     * Absent on an untimed round, which is every solo one — a solo player is
-     * racing nobody and gets no clock.
+     * The letter the answer starts with. Sent from the moment the round is drawn —
+     * it is a hint, not the solution, and the board opens every row with it already
+     * filled in.
      */
-    endsAt?: string
+    firstLetter: string
     guesses: GameGuess[]
     /**
-     * The answer. Absent while the round is still winnable — the backend only
-     * sends it once the clock has run out or somebody has already found it, so
-     * there is no point in the app where it could be read off the response early.
+     * The answer. Absent while the round is still winnable — the server only sends
+     * it once the round has been solved or run out of guesses, so there is no point
+     * in the app where it could be read off the response early. Its presence is
+     * therefore what tells the board the round is over.
      */
     word?: string
     /**
-     * The letter the answer starts with, in the same lower case as `word`. Unlike
-     * `word` this is sent from the moment the round is drawn — it is a hint, not
-     * the solution, and the board opens every row with it already filled in.
+     * The deadline. Never sent for solo, which runs without one; the mocked
+     * multiplayer room sets it so the timer has something to count down.
      */
-    firstLetter?: string
+    endsAt?: string
 }
 
 export interface Game {
     id: string
-    /** The room code others type to join. Absent on solo games, which have none. */
-    code?: string
-    mode: GameMode
-    status: GameStatus
-    hostUserId: string
-    language: LanguageCode
+    ownerId: string
+    locale: LanguageCode
     wordLength: WordLength
-    /** Guesses each player gets per round. */
+    /** Guesses the player gets per round. */
     maxGuesses: number
-    /** Absent until the game starts, which for solo is the moment it is created. */
-    startedAt?: string
-    /** The deadline. Absent on solo games, which run without one. */
-    endsAt?: string
-    /**
-     * Bumped by the server on every change. Poll with the version you last saw and
-     * the server can answer "nothing happened" without resending the state.
-     */
-    version: number
-    players: GamePlayer[]
-    /** Absent in the lobby, where no word has been drawn yet. */
-    round?: GameRound
+    /** Which round is being played, counting from 1. */
+    currentRound: number
+    totalRounds: number
+    score: number
+    status: GameStatus
     createdAt: string
+    /** Every round of the game, drawn up front and ordered by `roundNumber`. */
+    rounds: GameRound[]
+    /**
+     * Absent on anything the API served, which is only ever solo today. The mocked
+     * multiplayer room sets it, and the board reads it to decide whether to show a
+     * clock and the other players.
+     */
+    mode?: GameMode
+    /** Multiplayer only, and so mock-only for now. */
+    players?: GamePlayer[]
 }
 
 export interface NewGame {
-    mode: GameMode
-    language: LanguageCode
+    locale: LanguageCode
     wordLength: WordLength
 }
 
 /**
- * Starts a game and returns it as the server created it.
+ * What one guess did.
  *
- * A solo game comes back `active` with its first round already drawn and its
- * five-minute deadline set; a multiplayer one comes back in the lobby with a room
- * code and no round. Who owns it comes from the session, so there is no id to pass.
+ * Deliberately not the whole game: the caller already holds every earlier round
+ * and guess, and resending them on every word would make the response grow with
+ * the game. What the caller cannot know is what this guess revealed, which is
+ * all of what is here.
+ */
+export interface GuessResult {
+    guess: GameGuess
+    /** This guess was the answer. */
+    solved: boolean
+    /** The round takes no further guesses — solved, or out of tries. */
+    roundOver: boolean
+    gameOver: boolean
+    /** The answer, present only once `roundOver`. */
+    word?: string
+    /** The round to play next, already advanced if this guess ended one. */
+    currentRound: number
+}
+
+/**
+ * The server answered, but not with a game this app can draw.
+ *
+ * In practice this is one thing: a server older than the app calling it. The
+ * types above say `firstLetter` and `marks` are always there, so the board reads
+ * them without guarding — and against a server that predates them the first
+ * `undefined.toUpperCase()` takes the whole screen down, several components deep,
+ * with a message naming none of the above.
+ *
+ * Caught once here instead, at the only place that knows what the wire is
+ * supposed to look like, so the page can say what is actually wrong.
+ */
+export class GameContractError extends Error {
+    constructor(public readonly missing: string) {
+        super(`game response is missing ${missing}`);
+        this.name = 'GameContractError';
+    }
+}
+
+/**
+ * Checks the fields the board dereferences unguarded, and nothing else. This is
+ * not schema validation — it is a version check written as one.
+ */
+function checked(game: Game): Game {
+    const missing = (field: string) => { throw new GameContractError(field); };
+
+    if (!Array.isArray(game.rounds)) missing('rounds');
+    if (typeof game.maxGuesses !== 'number') missing('maxGuesses');
+    if (typeof game.totalRounds !== 'number') missing('totalRounds');
+
+    for (const round of game.rounds) {
+        if (typeof round.firstLetter !== 'string') missing(`rounds[${round.roundNumber}].firstLetter`);
+
+        for (const guess of round.guesses ?? []) {
+            if (typeof guess.word !== 'string') missing(`guess ${guess.guessNumber}.word`);
+            if (!Array.isArray(guess.marks)) missing(`guess ${guess.guessNumber}.marks`);
+        }
+    }
+
+    return game;
+}
+
+/**
+ * Starts a solo game and returns it as the server created it, with every round
+ * already drawn. Who owns it comes from the session, so there is no id to pass.
  *
  * The response is the whole game rather than an id, which is what lets the caller
- * navigate on what the server actually made rather than on what it asked for.
+ * navigate on what the server actually made rather than on what it asked for —
+ * and what lets the settings screen find out the server is too old to play
+ * against before it pushes anyone at a board.
  */
-export function createGame(game: NewGame): Promise<Game> {
-    return request<Game>('/api/v1/league-of-letters/games', {
+export async function createGame(game: NewGame): Promise<Game> {
+    return checked(await request<Game>('/api/v1/league-of-letters/solo', {
         method: 'POST',
         body: JSON.stringify(game)
-    });
+    }));
 }
 
 /**
- * Reads a game back. Answers 404 for a game you are not playing as well as one
- * that does not exist — being in it is the whole of the permission model.
+ * Reads a game back. Answers 404 for a game that is not yours as well as one that
+ * does not exist — owning it is the whole of the permission model.
  */
-export function getGame(gameId: string): Promise<Game> {
-    return request<Game>(`/api/v1/league-of-letters/games/${gameId}`);
+export async function getGame(gameId: string): Promise<Game> {
+    return checked(await request<Game>(`/api/v1/league-of-letters/solo/${gameId}`));
 }
 
 /**
- * Submits a guess and returns the game as it stands afterwards.
- *
- * The whole game comes back rather than just the new guess, because the guess is
- * rarely the only thing that changed: it may have ended the round, moved a score
- * or revealed the answer. Rendering from this one response is what keeps the
- * board from ever being half updated.
+ * Submits a guess against the game's current round.
  *
  * The word is scored server-side. Marks never come from here.
  */
-export function submitGuess(gameId: string, word: string): Promise<Game> {
-    return request<Game>(`/api/v1/league-of-letters/games/${gameId}/guesses`, {
+export function submitGuess(gameId: string, word: string): Promise<GuessResult> {
+    return request<GuessResult>(`/api/v1/league-of-letters/solo/${gameId}/guesses`, {
         method: 'POST',
         body: JSON.stringify({ word })
     });
+}
+
+/** The round being played, or undefined on a game whose rounds are all done. */
+export function roundOf(game: Game, roundNumber: number): GameRound | undefined {
+    return game.rounds.find(round => round.roundNumber === roundNumber);
 }

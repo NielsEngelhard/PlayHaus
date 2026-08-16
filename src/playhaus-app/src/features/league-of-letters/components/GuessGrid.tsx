@@ -32,6 +32,12 @@ const FLIP_MS = 110;
 /** Gap between one tile starting to turn over and the next. */
 const REVEAL_STEP_MS = 200;
 
+/** Up, and back down onto the board. */
+const HOP_UP_MS = 190;
+const HOP_DOWN_MS = 380;
+/** Gap between one tile hopping and the next, which is what makes it a wave. */
+const HOP_STEP_MS = 55;
+
 // react-native-web has no native animation module, so asking for one there is a
 // console warning and nothing else. Transforms are driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
@@ -105,7 +111,15 @@ interface GuessRowProps {
 
 function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
     const word = (guess?.word ?? draft).toUpperCase();
-    const revealed = useReveal(guess?.word, wordLength);
+    const { revealed, live } = useReveal(guess?.word, wordLength);
+
+    // The row that won it, once the last tile is face up. Only for a word that landed
+    // while the row was watching: coming back to a finished game should not throw a
+    // party over a result the player already knows.
+    const winning = guess !== undefined
+        && guess.marks.length === wordLength
+        && guess.marks.every(mark => mark === 'correct');
+    const celebrate = winning && live && revealed >= wordLength;
 
     return (
         <View style={[styles.row, { gap: GAP }]}>
@@ -117,6 +131,8 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
                     // indistinguishable from the letter the player typed a moment ago.
                     mark={column < revealed ? guess?.marks[column] : undefined}
                     size={size}
+                    celebrate={celebrate}
+                    column={column}
                 />
             ))}
         </View>
@@ -124,15 +140,17 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
 }
 
 /**
- * How many of this row's marks are face up yet.
+ * How many of this row's marks are face up yet, and whether the row watched them land.
  *
  * A word that was already on the board when the row mounted is shown whole: coming back
  * to a game in progress should not replay every turn of it. Only a word that lands while
- * the row is watching gets dealt out a tile at a time.
+ * the row is watching gets dealt out a tile at a time — `live` is that distinction, which
+ * the celebration needs for the same reason the reveal does.
  */
-function useReveal(word: string | undefined, wordLength: number): number {
+function useReveal(word: string | undefined, wordLength: number): { revealed: number, live: boolean } {
     const [dealt, setDealt] = useState(word);
     const [revealed, setRevealed] = useState(word ? wordLength : 0);
+    const [live, setLive] = useState(false);
 
     // Adjusted during render rather than in an effect, so a scored row never gets painted
     // face up for a frame before the reveal takes it back. A word going missing is the next
@@ -140,6 +158,7 @@ function useReveal(word: string | undefined, wordLength: number): number {
     if (dealt !== word) {
         setDealt(word);
         setRevealed(word ? 1 : 0);
+        setLive(word !== undefined);
     }
 
     useEffect(() => {
@@ -149,17 +168,21 @@ function useReveal(word: string | undefined, wordLength: number): number {
         return () => clearTimeout(next);
     }, [word, revealed, wordLength]);
 
-    return revealed;
+    return { revealed, live };
 }
 
 interface LetterTileProps {
     letter: string,
     /** Absent while the guess is still being typed — the server has not scored it yet. */
     mark?: Mark,
-    size: number
+    size: number,
+    /** This tile is part of the row that won the round, and its turn is done. */
+    celebrate?: boolean,
+    /** Where in the row it sits, which is its place in the wave. */
+    column: number
 }
 
-function LetterTile({ letter, mark, size }: LetterTileProps) {
+function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTileProps) {
     const filled = letter !== '';
 
     /**
@@ -174,6 +197,8 @@ function LetterTile({ letter, mark, size }: LetterTileProps) {
     // is what keeps a reloaded board from animating itself in.
     const [landing] = useState(() => new Animated.Value(filled ? 1 : 0));
     const [turn] = useState(() => new Animated.Value(1));
+    /** 0 on the board, 1 at the top of the hop. */
+    const [hop] = useState(() => new Animated.Value(0));
 
     const wasFilled = useRef(filled);
     const wasMarked = useRef(mark);
@@ -237,6 +262,36 @@ function LetterTile({ letter, mark, size }: LetterTileProps) {
         };
     }, [mark, turn]);
 
+    useEffect(() => {
+        if (!celebrate) return;
+
+        const dance = Animated.sequence([
+            // The last tile is still finishing its turn when the row is declared won, and
+            // one that jumped mid-flip would land before its own colour did.
+            Animated.delay(FLIP_MS * 2 + column * HOP_STEP_MS),
+            Animated.timing(hop, {
+                toValue: 1,
+                duration: HOP_UP_MS,
+                easing: Easing.out(Easing.quad),
+                useNativeDriver
+            }),
+            Animated.timing(hop, {
+                toValue: 0,
+                duration: HOP_DOWN_MS,
+                // Settles with a knock rather than easing down, which is the same note the
+                // letters arrive on.
+                easing: Easing.bounce,
+                useNativeDriver
+            })
+        ]);
+
+        dance.start();
+        return () => {
+            dance.stop();
+            hop.setValue(0);
+        };
+    }, [celebrate, column, hop]);
+
     return (
         <Animated.View
             style={[
@@ -247,6 +302,10 @@ function LetterTile({ letter, mark, size }: LetterTileProps) {
                     // Scales with the tile so a 26dp tile doesn't end up a lozenge.
                     borderRadius: Math.min(14, Math.round(size * 0.28)),
                     transform: [
+                        // Scaled with the tile so the wave is the same shape on a phone as
+                        // it is on a tablet.
+                        { translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.3] }) },
+                        { scale: hop.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] }) },
                         { scale: filled ? landing.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) : 1 },
                         // Never quite zero: a tile with no height at all blinks out of
                         // existence on web instead of turning edge-on.
