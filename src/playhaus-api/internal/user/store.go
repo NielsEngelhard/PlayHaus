@@ -20,6 +20,25 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
+func (s *GormStore) UpdateUsername(ctx context.Context, username string, userId string) error {
+	var count int64
+
+	err := s.db.WithContext(ctx).
+		Model(&User{}).
+		Where("ID = ?", userId).
+		Update("username", username).
+		Count(&count).Error
+
+	if err != nil {
+		return fmt.Errorf("count users by email: %w", err)
+	}
+	if count == 0 {
+		return fmt.Errorf("user %s not found", username)
+	}
+
+	return nil
+}
+
 func (s *GormStore) ExistsByEmail(ctx context.Context, email string) (bool, error) {
 	var count int64
 	err := s.db.WithContext(ctx).

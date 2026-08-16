@@ -17,6 +17,7 @@ type Store interface {
 	ExistsByEmail(ctx context.Context, email string) (bool, error)
 	ByEmail(ctx context.Context, email string) (*User, error)
 	ByID(ctx context.Context, id string) (*User, error)
+	UpdateUsername(ctx context.Context, username string, userId string) error
 }
 
 type Service struct {
@@ -46,6 +47,15 @@ func (s *Service) ByID(ctx context.Context, id string) (*User, error) {
 
 func (s *Service) ByEmail(ctx context.Context, email string) (*User, error) {
 	return s.store.ByEmail(ctx, NormalizeEmail(email))
+}
+
+func (s *Service) UpdateUsername(ctx context.Context, username string, userId string) error {
+	err := s.store.UpdateUsername(ctx, username, userId)
+	if err != nil {
+		return err
+	}
+
+	return err
 }
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {

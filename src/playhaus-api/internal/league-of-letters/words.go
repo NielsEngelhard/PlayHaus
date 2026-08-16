@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+//go:embed data
 var wordFiles embed.FS
 
 func GetRandomWord(lang i18n.Locale, size int) (string, error) {
@@ -53,7 +54,7 @@ func readFileAndGetLines(lang i18n.Locale, size int) ([]string, error) {
 	}
 
 	var lines []string
-	for _, line := range strings.Split(string(data), "\n") {
+	for line := range strings.SplitSeq(string(data), "\n") {
 		line = strings.TrimSpace(line)
 		if line != "" {
 			lines = append(lines, line)

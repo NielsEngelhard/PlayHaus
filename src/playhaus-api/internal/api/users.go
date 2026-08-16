@@ -23,6 +23,20 @@ type createGuestUserRequest struct {
 
 func (createGuestUserRequest) Validate() map[string]string { return nil }
 
+type updateUserUsernameRequest struct {
+	Username string `json:"username"`
+}
+
+func (r updateUserUsernameRequest) Validate() map[string]string {
+	problems := map[string]string{}
+
+	if len(r.Username) < 4 {
+		problems["username"] = "Username must be at least 4 characters long"
+	}
+
+	return problems
+}
+
 type userResponse struct {
 	ID        string      `json:"id"`
 	Email     string      `json:"email"`
@@ -64,6 +78,28 @@ func (r createUserRequest) Validate() map[string]string {
 		problems["name"] = "is required"
 	}
 	return problems
+}
+
+func (s *Server) handleUpdateUserUsername(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if ok == false {
+		writeError(w, http.StatusUnauthorized, "could not determine user id")
+		return
+	}
+
+	req, _, err := decode[updateUserUsernameRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+
+	err = s.users.UpdateUsername(r.Context(), req.Username, userID)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+
+	writeJSON(w, http.StatusNoContent, nil)
 }
 
 func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {

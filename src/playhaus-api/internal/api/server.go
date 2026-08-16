@@ -59,8 +59,8 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/join-multiplayer-lobby", s.requireAuth(s.handleJoinMultiplayerLobby))
 }
 
-/
 func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("POST /api/v1/user", s.handleCreateUser)
 	s.mux.HandleFunc("POST /api/v1/user/guest", s.handleCreateGuestUser)
+	s.mux.HandleFunc("PUT /api/v1/user/username", s.handleUpdateUserUsername)
 }

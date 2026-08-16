@@ -97,7 +97,7 @@ func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Lo
 	}
 
 	rounds := make([]LeagueOfLettersRound, amount)
-	for i := 0; i < amount; i++ {
+	for i := range amount {
 		rounds[i] = LeagueOfLettersRound{
 			ID:          uuid.New(),
 			GameID:      gameID,

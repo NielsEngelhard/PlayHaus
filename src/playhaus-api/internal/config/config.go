@@ -64,7 +64,7 @@ func envList(key string, fallback []string) []string {
 	}
 
 	var values []string
-	for _, part := range strings.Split(raw, ",") {
+	for part := range strings.SplitSeq(raw, ",") {
 		if trimmed := strings.TrimSpace(part); trimmed != "" {
 			values = append(values, trimmed)
 		}
