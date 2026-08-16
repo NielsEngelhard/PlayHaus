@@ -62,7 +62,6 @@ func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	locale := Deref(req.Locale, "")
-
 	parsedLocale := i18n.Parse(locale)
 
 	u, err := s.users.CreateGuestUser(r.Context(), &user.CreateGuestUserInput{

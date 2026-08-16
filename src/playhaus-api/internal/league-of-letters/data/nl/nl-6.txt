@@ -1,0 +1,10 @@
+bakker
+jongen
+keuken
+konijn
+meisje
+muziek
+oranje
+straat
+winkel
+zilver

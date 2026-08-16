@@ -23,7 +23,7 @@ func TestCreateUser_Validation(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			srv := newTestServer(t) // fresh db per subtest
-			rec := post(t, srv, "/v1/user", tt.body)
+			rec := post(t, srv, "/api/v1/user", tt.body)
 			if rec.Code != tt.want {
 				t.Errorf("status = %d, want %d (body: %s)", rec.Code, tt.want, rec.Body)
 			}
