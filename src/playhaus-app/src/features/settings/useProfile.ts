@@ -1,5 +1,5 @@
 import { me } from '@/api/calls/auth';
-import { updateProfile, type Profile as UserProfile, type ProfileUpdate } from '@/api/calls/profile';
+import { updateUsername, type Profile as UserProfile } from '@/api/calls/profile';
 import { ApiError } from '@/api/client';
 import { useAuth } from '@/features/auth/useAuth';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -13,7 +13,7 @@ interface Profile {
     /** A save failed and was rolled back. The page keeps working. */
     saveError: string | null
     reload: () => void
-    save: (update: ProfileUpdate) => void
+    updateUsername: (newUsername: string) => void
 }
 
 /** The profile page's copy is Dutch, so its failures are too. */
@@ -120,35 +120,10 @@ export function useProfile(): Profile {
     // Nothing to show and nothing has failed, so something is still on its way.
     const loading = profile === null && visibleError === null;
 
-    const save = useCallback((update: ProfileUpdate) => {
+    const save = useCallback((newUsername: string) => {
         setSaveError(null);
-        // Show the edit now. The request below either confirms it or takes it back.
-        setLoaded(current => (current ? { ...current, ...update } : current));
 
-        queue.current = queue.current.then(async () => {
-            try {
-                const saved = await updateProfile(update);
-                if (!mounted.current) return;
-
-                setLoaded(saved);
-            } catch (failure) {
-                if (!mounted.current) return;
-
-                setSaveError(profileErrorMessage(failure));
-
-                // Re-read instead of restoring a snapshot taken before the edit:
-                // by now other saves may have succeeded, and rolling back to a
-                // pre-edit copy would quietly undo those too.
-                try {
-                    const truth = await me();
-                    if (mounted.current) setLoaded(truth);
-                } catch {
-                    // The server is unreachable rather than refusing the edit.
-                    // Leaving the optimistic value on screen is the better of two
-                    // bad options — it is what the next save will send anyway.
-                }
-            }
-        });
+        updateUsername(newUsername)
     }, []);
 
     const reload = useCallback(() => {
@@ -167,6 +142,6 @@ export function useProfile(): Profile {
         error: visibleError,
         saveError: signedIn ? saveError : null,
         reload,
-        save
+        updateUsername
     };
 }

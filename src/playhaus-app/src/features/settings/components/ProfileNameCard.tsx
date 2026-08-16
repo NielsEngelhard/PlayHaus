@@ -18,15 +18,10 @@ interface Props {
 export default function ProfileNameCard({ name, onSave }: Props) {
     const [draft, setDraft] = useState(name);
 
-    const trimmed = draft.trim();
-    // Only an empty field is refused. Re-saving the name you already have is harmless,
-    // and greying the button out on arrival reads as broken rather than as "no changes".
-    const canSave = trimmed.length > 0;
-
     function save() {
-        if (!canSave) return;
+        if (draft == name) return;
 
-        onSave(trimmed);
+        onSave(draft);
     }
 
     return (
@@ -49,8 +44,7 @@ export default function ProfileNameCard({ name, onSave }: Props) {
                 <View style={styles.buttons}>
                     <Pressable
                         onPress={save}
-                        disabled={!canSave}
-                        style={[styles.saveButton, !canSave && styles.buttonDisabled]}
+                        style={[styles.saveButton && styles.buttonDisabled]}
                     >
                         <AppText style={styles.saveText}>Opslaan</AppText>
                     </Pressable>

@@ -1,14 +1,14 @@
-import AppText from "@/components/text/AppText";
 import LoadingPage from "@/components/layout/LoadingPage";
+import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import LogoutCard from "@/features/settings/components/LogoutCard";
 import ProfileAvatarColorPickerCard from "@/features/settings/components/ProfileAvatarColorPickerCard";
 import ProfileCard from "@/features/settings/components/ProfileCard";
 import ProfileNameCard from "@/features/settings/components/ProfileNameCard";
 import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsCard";
 import { PROFILE_DEFAULTS } from "@/features/settings/profile";
-import { useAuth } from "@/features/auth/useAuth";
 import { useProfile } from "@/features/settings/useProfile";
 import { Pressable, StyleSheet, View } from "react-native";
 
@@ -25,7 +25,7 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  */
 export default function ProfilePage() {
     const { logout } = useAuth();
-    const { profile, loading, error, saveError, reload, save } = useProfile();
+    const { profile, loading, error, saveError, reload, updateUsername } = useProfile();
 
     if (loading) {
         return <LoadingPage message='Profiel laden…' />;
@@ -51,13 +51,13 @@ export default function ProfilePage() {
             <ProfileNameCard
                 key={profile.name}
                 name={profile.name}
-                onSave={name => save({ name })}
+                onSave={updateUsername}
             />
 
             <View style={tilt('0.4deg')}>
                 <ProfileAvatarColorPickerCard
                     value={profile.avatarColorId ?? PROFILE_DEFAULTS.avatarColorId}
-                    onChange={avatarColorId => save({ avatarColorId })}
+                    onChange={() => {}}
                 />
             </View>
 
@@ -66,7 +66,7 @@ export default function ProfilePage() {
                     soundEnabled: profile.soundEnabled ?? PROFILE_DEFAULTS.soundEnabled,
                     vibrationEnabled: profile.vibrationEnabled ?? PROFILE_DEFAULTS.vibrationEnabled
                 }}
-                onChange={(key, value) => save({ [key]: value })}
+                onChange={() => {}}
             />
 
             {/* Only after a rollback: the control has already snapped back, and this
