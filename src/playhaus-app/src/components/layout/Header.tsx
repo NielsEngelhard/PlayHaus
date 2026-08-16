@@ -1,13 +1,16 @@
-import React from "react";
+import { ROUTES } from "@/constants/routes";
+import { Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
+import { Link, RelativePathString } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import Logo from "./Logo";
 import Tag from "../ui/Tag";
 import { useHeaderTagValue } from "./HeaderTagContext";
-import { Link, RelativePathString } from "expo-router";
-import { ROUTES } from "@/constants/routes";
+import Logo from "./Logo";
 
 export default function Header() {
     const tag = useHeaderTagValue();
+
+    const auth = useAuth()
 
     return (
         <View style={styles.container}>
@@ -19,7 +22,10 @@ export default function Header() {
             </View>
 
             {/* Right — whatever the current page claimed, or the app version. */}
-            <View>
+            <View style={styles.tagsContainer}>                
+                {(auth && auth.user)  && (
+                    <Tag text={auth.user?.name} />
+                )}
                 <Tag text={tag} />
             </View>
         </View>
@@ -33,5 +39,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: 'center',
         width: '100%'
+    },
+    tagsContainer: {
+        flexDirection: 'row',
+        gap: Spacing.two
     }
 })
