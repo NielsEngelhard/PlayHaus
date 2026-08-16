@@ -1,3 +1,4 @@
+import { createGame } from "@/api/calls/league-of-letters";
 import { useHeaderTag } from "@/components/layout/HeaderTagContext";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import BackButton from "@/components/ui/BackButton";
@@ -7,7 +8,6 @@ import TextButton from "@/components/ui/TextButton";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
-import { createGame } from "@/api/calls/league-of-letters";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_SOLO_SETTINGS, LANGUAGES } from "@/features/league-of-letters/solo-settings";
@@ -69,7 +69,7 @@ export default function LeagueOfLettersSettingsPage() {
             <View style={styles.body}>
                 <SimpleTextHero
                     title='Solo instellen'
-                    description='Kies je woordlengte en taal. Daarna gaan we los.'
+                    description='Stel je spel samen [SOLO].'
                 />
 
                 <View style={tilt('-0.5deg')}>

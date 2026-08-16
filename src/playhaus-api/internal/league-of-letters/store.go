@@ -52,3 +52,17 @@ func (s *GormStore) SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeague
 	}
 	return &game, nil
 }
+
+func (s *GormStore) GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error) {
+	var games []*SoloLeagueOfLettersGame
+
+	err := s.db.WithContext(ctx).
+		Where("OwnerID = ?", userID).
+		Find(&games).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return games, nil
+}

@@ -35,6 +35,7 @@ func NewServer(
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
 	s.AddLeagueOfLettersHandlers()
+	s.AddReconnectHandlers()
 
 	// cors sits innermost so a preflight -- which it answers itself, without
 	// reaching the mux -- still gets a request id and still shows up in the log.
@@ -67,4 +68,8 @@ func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("PUT /api/v1/user/enable-sounds", s.requireAuth(s.handleUpdateUserEnableSounds))
 	s.mux.HandleFunc("PUT /api/v1/user/enable-music", s.requireAuth(s.handleUpdateUserEnableMusic))
 	s.mux.HandleFunc("PUT /api/v1/user/enable-vibration", s.requireAuth(s.handleUpdateUserEnableVibration))
+}
+
+func (s *Server) AddReconnectHandlers() {
+	s.mux.HandleFunc("GET /api/v1/reconnect-games", s.handleGetReconnectableGames)
 }

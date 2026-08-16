@@ -20,12 +20,17 @@ interface Auth {
     continueAsGuest: () => Promise<void>
     logout: () => Promise<void>
     /**
-     * Re-reads the account and returns it. Anything that edits the user has to
-     * call this: the session's copy is what the header and every other `useAuth`
-     * consumer render from, so a saved change that skipped it would be on the
-     * server and nowhere on screen.
+     * Writes fields onto the session's copy of the user. Anything that edits the
+     * account has to call this: the session's copy is what the header and every
+     * other `useAuth` consumer render from, so a saved change that skipped it
+     * would be on the server and nowhere on screen.
+     *
+     * Local, not a re-read. The update endpoints answer 204 and change exactly
+     * the one field they were sent, so what the account now holds is already
+     * known here — a `/me` round trip afterwards would only spend a request
+     * confirming it.
      */
-    refreshUser: () => Promise<User>
+    patchUser: (fields: Partial<User>) => void
 }
 
 /**
@@ -119,14 +124,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, [adopt]);
 
     /**
-     * Only the user is replaced, never the status: this runs inside a session
-     * that is already signed in, and a failure here is the caller's to report —
-     * a rename that could not be re-read is not a reason to sign anybody out.
+     * Only the user is touched, never the status: this runs inside a session
+     * that is already signed in, and editing a name is not a reason to move
+     * anybody in or out of one.
+     *
+     * A no-op when there is no session. Signing out mid-save is the case: the
+     * reply lands on an account nobody is in any more, and reviving it here
+     * would put a stale user behind the auth gate.
      */
-    const refreshUser = useCallback(async () => {
-        const fresh = await authApi.me();
-        setUser(fresh);
-        return fresh;
+    const patchUser = useCallback((fields: Partial<User>) => {
+        setUser(current => current === null ? null : { ...current, ...fields });
     }, []);
 
     const logout = useCallback(async () => {
@@ -146,8 +153,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const value = useMemo(
-        () => ({ user, status, login, signup, continueAsGuest, logout, refreshUser }),
-        [user, status, login, signup, continueAsGuest, logout, refreshUser]
+        () => ({ user, status, login, signup, continueAsGuest, logout, patchUser }),
+        [user, status, login, signup, continueAsGuest, logout, patchUser]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

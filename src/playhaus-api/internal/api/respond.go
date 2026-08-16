@@ -8,6 +8,13 @@ import (
 	"time"
 )
 
+type GameType string
+
+const (
+	LeagueOfLettersSolo        GameType = "lol_solo"
+	LeagueOfLettersMultiplayer GameType = "lol_multiplayer"
+)
+
 // timeFormat is the one wire format for timestamps: RFC 3339 with UTC written
 // as "Z", which is what JavaScript's Date parses without surprises.
 const timeFormat = time.RFC3339

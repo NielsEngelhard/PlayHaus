@@ -8,11 +8,13 @@ import { StyleSheet, View } from "react-native";
 
 interface Props {
     values: Record<SettingKey, boolean>,
-    onChange: (key: SettingKey, value: boolean) => void
+    onChange: (key: SettingKey, value: boolean) => void,
+    /** A save is in the air, so no switch takes a second one until it lands. */
+    disabled?: boolean
 }
 
 /** The switch list: one row per preference, divided the way the design divides them. */
-export default function ProfileSettingsCard({ values, onChange }: Props) {
+export default function ProfileSettingsCard({ values, onChange, disabled = false }: Props) {
     return (
         <Card>
             <AppText style={styles.label}>Instellingen</AppText>
@@ -38,6 +40,7 @@ export default function ProfileSettingsCard({ values, onChange }: Props) {
                             value={values[setting.key]}
                             onValueChange={value => onChange(setting.key, value)}
                             label={setting.title}
+                            disabled={disabled}
                         />
                     </View>
                 ))}

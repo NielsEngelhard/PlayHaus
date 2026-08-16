@@ -5,7 +5,9 @@ interface Props {
     value: boolean,
     onValueChange: (value: boolean) => void,
     /** The switch is unlabelled to the eye — the row next to it carries the name. */
-    label: string
+    label: string,
+    /** Greyed out and unpressable, e.g. while a save is in the air. */
+    disabled?: boolean
 }
 
 const TRACK_WIDTH = 56;
@@ -23,14 +25,19 @@ const KNOB_TRAVEL_END = TRACK_WIDTH - TRACK_BORDER * 2 - KNOB_SIZE - KNOB_INSET;
  * React Native's `Switch` renders as the OS draws it, which sits oddly next to the rest
  * of the UI, so this is drawn from scratch.
  */
-export default function Toggle({ value, onValueChange, label }: Props) {
+export default function Toggle({ value, onValueChange, label, disabled = false }: Props) {
     return (
         <Pressable
             onPress={() => onValueChange(!value)}
+            disabled={disabled}
             accessibilityRole='switch'
             accessibilityLabel={label}
-            accessibilityState={{ checked: value }}
-            style={[styles.track, value ? styles.trackOn : styles.trackOff]}
+            accessibilityState={{ checked: value, disabled }}
+            style={[
+                styles.track,
+                value ? styles.trackOn : styles.trackOff,
+                disabled && styles.trackDisabled
+            ]}
         >
             <View
                 style={[
@@ -57,6 +64,11 @@ const styles = StyleSheet.create({
     },
     trackOff: {
         backgroundColor: Colors.light.muted
+    },
+    // The same half-strength the buttons use, so a blocked control reads the
+    // same way wherever it sits.
+    trackDisabled: {
+        opacity: 0.5
     },
     knob: {
         position: 'absolute',

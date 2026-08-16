@@ -42,20 +42,12 @@ export function avatarColorById(id: string): AvatarColor {
 }
 
 /**
- * What a preference is worth before the account has one.
- *
- * The API does not carry these yet — see `Profile` in `api/calls/profile.ts` —
- * so the page renders from here rather than from nothing. Both toggles start on
- * because a game that arrives silent reads as broken rather than as considerate.
+ * Named after the field on the user, so a row reads its value straight off the
+ * profile and writes back through the endpoint of the same name. There are no
+ * defaults to fall back on: `/me` carries all three, and a fresh account starts
+ * with every one of them on.
  */
-export const PROFILE_DEFAULTS = {
-    avatarColorId: AVATAR_COLORS[0].id,
-    soundEnabled: true,
-    vibrationEnabled: true
-};
-
-/** Named after the field on the user, so a row reads its value straight off the profile. */
-export type SettingKey = 'soundEnabled' | 'vibrationEnabled';
+export type SettingKey = 'enableSounds' | 'enableMusic' | 'enableVibration';
 
 export interface Setting {
     key: SettingKey,
@@ -65,8 +57,9 @@ export interface Setting {
 }
 
 export const SETTINGS: Setting[] = [
-    { key: 'soundEnabled',     icon: 'volume-2',   title: 'Geluid', description: 'Kleine bliepjes bij een goede letter.' },
-    { key: 'vibrationEnabled', icon: 'smartphone', title: 'Trillen', description: 'Korte haptic feedback op mobiel.' }
+    { key: 'enableSounds',    icon: 'volume-2',   title: 'Geluid', description: 'Kleine bliepjes bij een goede letter.' },
+    { key: 'enableMusic',     icon: 'music',      title: 'Muziek', description: 'Achtergrondmuziek tijdens het spelen.' },
+    { key: 'enableVibration', icon: 'smartphone', title: 'Trillen', description: 'Korte haptic feedback op mobiel.' }
 ];
 
 const RANDOM_NAME_PARTS = {

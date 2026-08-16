@@ -8,13 +8,15 @@ import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
     value: string,
-    onChange: (avatarColorId: string) => void
+    onChange: (color: string) => void,
+    /** A save is in the air, so no swatch takes a second one until it lands. */
+    disabled?: boolean
 }
 
 const COLUMNS = 6;
 
 /** Pick the fill behind your initials. The chosen swatch is the one wearing the check. */
-export default function ProfileAvatarColorPickerCard({ value, onChange }: Props) {
+export default function ProfileAvatarColorPickerCard({ value, onChange, disabled = false }: Props) {
     return (
         <Card>
             <AppText style={styles.label}>Avatarkleur</AppText>
@@ -27,6 +29,7 @@ export default function ProfileAvatarColorPickerCard({ value, onChange }: Props)
                                 key={avatar.id}
                                 avatar={avatar}
                                 selected={avatar.id === value}
+                                disabled={disabled}
                                 onPress={() => onChange(avatar.id)}
                             />
                         ))}
@@ -40,20 +43,23 @@ export default function ProfileAvatarColorPickerCard({ value, onChange }: Props)
 interface SwatchProps {
     avatar: AvatarColor,
     selected: boolean,
+    disabled: boolean,
     onPress: () => void
 }
 
-function Swatch({ avatar, selected, onPress }: SwatchProps) {
+function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
     return (
         <Pressable
             onPress={onPress}
+            disabled={disabled}
             accessibilityRole='radio'
             accessibilityLabel={avatar.label}
-            accessibilityState={{ selected }}
+            accessibilityState={{ selected, disabled }}
             style={[
                 styles.swatch,
                 { backgroundColor: avatar.color },
-                selected ? styles.swatchSelected : styles.swatchUnselected
+                selected ? styles.swatchSelected : styles.swatchUnselected,
+                disabled && styles.swatchDisabled
             ]}
         >
             {selected && (
@@ -96,5 +102,9 @@ const styles = StyleSheet.create({
     swatchUnselected: {
         opacity: 0.8,
         ...Shadows.hardSmall
+    },
+    // Applied last, so it wins the opacity over `swatchUnselected` above.
+    swatchDisabled: {
+        opacity: 0.5
     }
 })

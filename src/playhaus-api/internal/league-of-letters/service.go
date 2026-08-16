@@ -13,6 +13,7 @@ import (
 type Store interface {
 	CreateSoloGame(ctx context.Context, soloGame *SoloLeagueOfLettersGame) error
 	SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error)
+	GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error)
 }
 
 type CreateSoloGameInput struct {
@@ -85,6 +86,10 @@ func (s *Service) SoloGameForOwner(ctx context.Context, id uuid.UUID, ownerID st
 		return nil, ErrGameNotFound
 	}
 	return game, nil
+}
+
+func (s *Service) GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error) {
+	return s.store.GetSoloGamesByUserId(ctx, userID)
 }
 
 func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale) ([]LeagueOfLettersRound, error) {

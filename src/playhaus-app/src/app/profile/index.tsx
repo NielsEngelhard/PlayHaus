@@ -1,16 +1,15 @@
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
-import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { Colors, FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LogoutCard from "@/features/settings/components/LogoutCard";
 import ProfileAvatarColorPickerCard from "@/features/settings/components/ProfileAvatarColorPickerCard";
 import ProfileCard from "@/features/settings/components/ProfileCard";
 import ProfileNameCard from "@/features/settings/components/ProfileNameCard";
 import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsCard";
-import { PROFILE_DEFAULTS } from "@/features/settings/profile";
+import type { SettingKey } from "@/features/settings/profile";
 import { useProfile } from "@/features/settings/useProfile";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
@@ -19,31 +18,41 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * Your name, avatar and preferences, as the account actually holds them.
  *
  * Every edit on this page is a write: the name on `Opslaan`, the colour and the
- * toggles the moment they move. The name waits for the server and says so on the
- * button; the controls with no confirm step move first and are undone if the
- * server refuses, so a tap never feels like it went nowhere.
+ * toggles the moment they move. All of them wait for the server before the
+ * control moves, and while one is in the air the rest are greyed out — a
+ * profile is small enough that a second write on top of the first is a mistake
+ * rather than something to queue up.
  */
 export default function ProfilePage() {
     const { logout } = useAuth();
-    const { profile, loading, error, saveError, saving, reload, updateUsername } = useProfile();
+    const {
+        profile,
+        saving,
+        saveError,
+        updateUsername,
+        updateColor,
+        updateEnableSounds,
+        updateEnableMusic,
+        updateEnableVibration
+    } = useProfile();
 
-    if (loading) {
+    // Only while the session is being restored, or once it has ended — the auth
+    // gate is already standing over the page in the second case, so this is just
+    // what sits behind it rather than a failure worth reporting.
+    if (!profile) {
         return <LoadingPage message='Profiel laden…' />;
     }
 
-    // No profile and not loading means the fetch failed — there is nothing to
-    // render the cards from, so the page offers the one useful action instead.
-    if (!profile) {
-        return <ProfileLoadFailed message={error} onRetry={reload} />;
-    }
+    const toggle: Record<SettingKey, (value: boolean) => void> = {
+        enableSounds: updateEnableSounds,
+        enableMusic: updateEnableMusic,
+        enableVibration: updateEnableVibration
+    };
 
     return (
         <View style={styles.container}>
             <View style={tilt('-0.5deg')}>
-                <ProfileCard
-                    name={profile.name}
-                    avatarColorId={profile.avatarColorId ?? PROFILE_DEFAULTS.avatarColorId}
-                />
+                <ProfileCard name={profile.name} color={profile.color} />
             </View>
 
             {/* Keyed on the name so the card's internal draft restarts from it once a
@@ -58,21 +67,24 @@ export default function ProfilePage() {
 
             <View style={tilt('0.4deg')}>
                 <ProfileAvatarColorPickerCard
-                    value={profile.avatarColorId ?? PROFILE_DEFAULTS.avatarColorId}
-                    onChange={() => {}}
+                    value={profile.color}
+                    onChange={updateColor}
+                    disabled={saving}
                 />
             </View>
 
             <ProfileSettingsCard
                 values={{
-                    soundEnabled: profile.soundEnabled ?? PROFILE_DEFAULTS.soundEnabled,
-                    vibrationEnabled: profile.vibrationEnabled ?? PROFILE_DEFAULTS.vibrationEnabled
+                    enableSounds: profile.enableSounds,
+                    enableMusic: profile.enableMusic,
+                    enableVibration: profile.enableVibration
                 }}
-                onChange={() => {}}
+                onChange={(key, value) => toggle[key](value)}
+                disabled={saving}
             />
 
-            {/* Only after a rollback: the control has already snapped back, and this
-                says why rather than leaving it looking like a missed tap. */}
+            {/* Nothing moved, so this is what says why — otherwise a refused save
+                looks like a missed tap. */}
             {saveError && <AppText style={styles.saveError}>{saveError}</AppText>}
 
             <View style={tilt('-0.3deg')}>
@@ -86,25 +98,6 @@ export default function ProfilePage() {
     )
 }
 
-function ProfileLoadFailed({ message, onRetry }: { message: string | null, onRetry: () => void }) {
-    return (
-        <View style={styles.container}>
-            <View style={tilt('-0.5deg')}>
-                <Card>
-                    <AppText style={styles.failedTitle}>Profiel laden lukt niet</AppText>
-                    <AppText style={styles.failedBody}>
-                        {message ?? 'Er ging iets mis. Probeer het opnieuw.'}
-                    </AppText>
-
-                    <Pressable onPress={onRetry} style={styles.retryButton}>
-                        <AppText style={styles.retryText}>Opnieuw proberen</AppText>
-                    </Pressable>
-                </Card>
-            </View>
-        </View>
-    )
-}
-
 const styles = StyleSheet.create({
     container: {
         width: '100%',
@@ -114,37 +107,6 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.4,
         color: Colors.light.destructive
-    },
-    failedTitle: {
-        fontSize: FontSizes.xl,
-        fontWeight: 900,
-        lineHeight: FontSizes.xl * 1.1,
-        letterSpacing: -0.7,
-        color: Colors.light.text
-    },
-    failedBody: {
-        marginTop: Spacing.two,
-        fontSize: FontSizes.sm,
-        lineHeight: FontSizes.sm * 1.4,
-        color: Colors.light.textSecondary
-    },
-    retryButton: {
-        marginTop: Spacing.four,
-        height: 46,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Colors.light.border,
-        borderRadius: 14,
-        backgroundColor: Colors.light.primary,
-        ...Shadows.hard
-    },
-    retryText: {
-        fontSize: FontSizes.sm,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 0.6,
-        color: Colors.light.textOnAccent
     },
     footer: {
         marginTop: Spacing.four,

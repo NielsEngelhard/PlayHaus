@@ -7,7 +7,8 @@ import { StyleSheet, View } from "react-native";
 
 interface Props {
     name: string,
-    avatarColorId: string
+    /** A swatch id from `AVATAR_COLORS`, the way the account stores it. */
+    color: string
 }
 
 /** First two letters of the name, which is all the avatar tile has room for. */
@@ -16,8 +17,8 @@ function initials(name: string): string {
 }
 
 /** The identity card at the top of the profile page: avatar, name, and what that means. */
-export default function ProfileCard({ name, avatarColorId }: Props) {
-    const avatar = avatarColorById(avatarColorId);
+export default function ProfileCard({ name, color }: Props) {
+    const avatar = avatarColorById(color);
 
     return (
         <Card>

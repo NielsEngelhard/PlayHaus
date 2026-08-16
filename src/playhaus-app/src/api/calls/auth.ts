@@ -16,6 +16,14 @@ export interface User {
     isGuest: boolean
     /** The language the account plays in, e.g. `nl`. Chosen by the backend. */
     locale: string
+    /**
+     * Which swatch in `AVATAR_COLORS`, not a hex — what `lemon` looks like is the
+     * app's business. The backend validates against the same list of ids.
+     */
+    color: string
+    enableSounds: boolean
+    enableMusic: boolean
+    enableVibration: boolean
     createdAt: string
 }
 
