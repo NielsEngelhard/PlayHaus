@@ -49,13 +49,10 @@ func (s *Service) ByEmail(ctx context.Context, email string) (*User, error) {
 	return s.store.ByEmail(ctx, NormalizeEmail(email))
 }
 
+// UpdateUsername renames an account. The name is stored trimmed, so the padding
+// a mobile keyboard adds never becomes part of what other players see.
 func (s *Service) UpdateUsername(ctx context.Context, username string, userId string) error {
-	err := s.store.UpdateUsername(ctx, username, userId)
-	if err != nil {
-		return err
-	}
-
-	return err
+	return s.store.UpdateUsername(ctx, strings.TrimSpace(username), userId)
 }
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {

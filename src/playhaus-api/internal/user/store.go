@@ -20,20 +20,21 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
+// UpdateUsername writes the display name. The column is "name" -- what the app
+// calls a username is User.Name, and there is no separate username column.
 func (s *GormStore) UpdateUsername(ctx context.Context, username string, userId string) error {
-	var count int64
-
-	err := s.db.WithContext(ctx).
+	result := s.db.WithContext(ctx).
 		Model(&User{}).
-		Where("ID = ?", userId).
-		Update("username", username).
-		Count(&count).Error
+		Where("id = ?", userId).
+		Update("name", username)
 
-	if err != nil {
-		return fmt.Errorf("count users by email: %w", err)
+	if result.Error != nil {
+		return fmt.Errorf("update username: %w", result.Error)
 	}
-	if count == 0 {
-		return fmt.Errorf("user %s not found", username)
+	// No row matched, so there is no such user. A row that matched but held this
+	// name already still counts as updated -- gorm reports it as affected.
+	if result.RowsAffected == 0 {
+		return ErrNotFound
 	}
 
 	return nil

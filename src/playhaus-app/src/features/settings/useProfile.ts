@@ -10,8 +10,10 @@ interface Profile {
     loading: boolean
     /** The initial load failed. There is nothing to show, so the page offers a retry. */
     error: string | null
-    /** A save failed and was rolled back. The page keeps working. */
+    /** A save failed. Nothing was changed, and the page keeps working. */
     saveError: string | null
+    /** A save is in the air. The control that started it says so and stays put. */
+    saving: boolean
     reload: () => void
     updateUsername: (newUsername: string) => void
 }
@@ -35,15 +37,18 @@ function profileErrorMessage(error: unknown): string {
  * is whatever `/me` returned at launch, which may be hours old and may have been
  * edited on another device since.
  *
- * Saves are optimistic. A colour swatch and a toggle have no confirm step, so
- * waiting for a round trip before moving them would make the controls feel
- * broken; the change lands immediately and is undone if the server refuses it.
+ * The name is saved on `Opslaan` and confirmed before it moves: the button
+ * waits, and the new name only appears once the server has taken it. A colour
+ * swatch and a toggle have no confirm step, so those will move first and be
+ * undone on refusal — but a rename is a deliberate act with a button to show
+ * progress on, and a name that snapped back later would just look broken.
  */
 export function useProfile(): Profile {
-    const { user, status } = useAuth();
+    const { user, status, refreshUser } = useAuth();
     const [loaded, setLoaded] = useState<UserProfile | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [saveError, setSaveError] = useState<string | null>(null);
+    const [saving, setSaving] = useState(false);
 
     // Nothing may touch state after unmount, and `reload` can be fired again
     // while an earlier load is still in the air.
@@ -120,11 +125,34 @@ export function useProfile(): Profile {
     // Nothing to show and nothing has failed, so something is still on its way.
     const loading = profile === null && visibleError === null;
 
+    /**
+     * Renames the account, then re-reads it.
+     *
+     * The re-read goes through `refreshUser` rather than `me` so the session's
+     * copy is updated too — the header renders the name from there, and leaving
+     * it behind is what makes a save look like it did nothing. Its result is
+     * this page's profile as well, so one round trip settles both.
+     */
     const save = useCallback((newUsername: string) => {
         setSaveError(null);
+        setSaving(true);
 
-        updateUsername(newUsername)
-    }, []);
+        queue.current = queue.current
+            .then(async () => {
+                await updateUsername(newUsername);
+
+                const fresh = await refreshUser();
+                if (mounted.current) setLoaded(fresh);
+            })
+            .catch((failure: unknown) => {
+                // Nothing was changed on screen, so there is nothing to roll
+                // back — the draft in the card is still there to try again with.
+                if (mounted.current) setSaveError(profileErrorMessage(failure));
+            })
+            .finally(() => {
+                if (mounted.current) setSaving(false);
+            });
+    }, [refreshUser]);
 
     const reload = useCallback(() => {
         if (!signedIn) return;
@@ -141,7 +169,8 @@ export function useProfile(): Profile {
         loading,
         error: visibleError,
         saveError: signedIn ? saveError : null,
+        saving,
         reload,
-        updateUsername
+        updateUsername: save
     };
 }

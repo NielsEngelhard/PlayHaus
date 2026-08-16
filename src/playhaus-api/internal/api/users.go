@@ -2,6 +2,7 @@ package api
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -23,6 +24,13 @@ type createGuestUserRequest struct {
 
 func (createGuestUserRequest) Validate() map[string]string { return nil }
 
+// NameMinLength and NameMaxLength bound a display name. The app enforces the
+// same numbers in features/settings/profile.ts -- keep the two in step.
+const (
+	NameMinLength = 4
+	NameMaxLength = 16
+)
+
 type updateUserUsernameRequest struct {
 	Username string `json:"username"`
 }
@@ -30,8 +38,15 @@ type updateUserUsernameRequest struct {
 func (r updateUserUsernameRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
-	if len(r.Username) < 4 {
-		problems["username"] = "Username must be at least 4 characters long"
+	// Measured on the trimmed name, since that is what gets stored: padding is
+	// not length, and " " is not a three character name.
+	name := strings.TrimSpace(r.Username)
+
+	switch {
+	case len([]rune(name)) < NameMinLength:
+		problems["username"] = fmt.Sprintf("must be at least %d characters", NameMinLength)
+	case len([]rune(name)) > NameMaxLength:
+		problems["username"] = fmt.Sprintf("must be at most %d characters", NameMaxLength)
 	}
 
 	return problems
@@ -87,19 +102,29 @@ func (s *Server) handleUpdateUserUsername(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	req, _, err := decode[updateUserUsernameRequest](r)
+	req, problems, err := decode[updateUserUsernameRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
-
-	err = s.users.UpdateUsername(r.Context(), req.Username, userID)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
 		return
 	}
 
-	writeJSON(w, http.StatusNoContent, nil)
+	if err := s.users.UpdateUsername(r.Context(), req.Username, userID); err != nil {
+		if errors.Is(err, user.ErrNotFound) {
+			writeError(w, http.StatusUnauthorized, "invalid or expired session")
+			return
+		}
+		s.log.Error("update username", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	// Nothing to say back: the client already knows the name it sent, and /me is
+	// where it re-reads the account.
+	w.WriteHeader(http.StatusNoContent)
 }
 
 func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {

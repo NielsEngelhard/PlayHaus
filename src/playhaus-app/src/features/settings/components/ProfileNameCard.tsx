@@ -1,27 +1,37 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing, fontFamilyForWeight } from "@/constants/theme";
-import { NAME_MAX_LENGTH, randomName } from "@/features/settings/profile";
+import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, randomName } from "@/features/settings/profile";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, TextInput, View } from "react-native";
 
 interface Props {
     name: string,
-    onSave: (name: string) => void
+    onSave: (name: string) => void,
+    /** The save this card started is still in the air. */
+    saving?: boolean
 }
 
 /**
  * Edit the name other players see. The field holds a draft so a half-typed name never
  * reaches the rest of the page — only `Opslaan` commits it.
+ *
+ * A save is a round trip, so the button waits it out with a spinner rather than
+ * snapping back to normal and leaving you unsure whether the tap registered.
  */
-export default function ProfileNameCard({ name, onSave }: Props) {
+export default function ProfileNameCard({ name, onSave, saving = false }: Props) {
     const [draft, setDraft] = useState(name);
 
-    function save() {
-        if (draft == name) return;
+    // Trimmed, because that is what the backend stores and validates against —
+    // padding is not a name, and " Bob " is not a change to "Bob".
+    const trimmed = draft.trim();
+    const canSave = !saving && trimmed !== name && trimmed.length >= NAME_MIN_LENGTH;
 
-        onSave(draft);
+    function save() {
+        if (!canSave) return;
+
+        onSave(trimmed);
     }
 
     return (
@@ -36,6 +46,7 @@ export default function ProfileNameCard({ name, onSave }: Props) {
                     placeholder='Jouw naam'
                     placeholderTextColor={Colors.light.textSecondary}
                     autoCorrect={false}
+                    editable={!saving}
                     maxLength={NAME_MAX_LENGTH}
                     returnKeyType='done'
                     style={styles.input}
@@ -44,16 +55,22 @@ export default function ProfileNameCard({ name, onSave }: Props) {
                 <View style={styles.buttons}>
                     <Pressable
                         onPress={save}
-                        style={[styles.saveButton && styles.buttonDisabled]}
+                        disabled={!canSave}
+                        accessibilityRole='button'
+                        accessibilityState={{ disabled: !canSave, busy: saving }}
+                        style={[styles.saveButton, !canSave && styles.buttonDisabled]}
                     >
-                        <AppText style={styles.saveText}>Opslaan</AppText>
+                        {saving
+                            ? <ActivityIndicator size='small' color={Colors.light.textOnAccent} />
+                            : <AppText style={styles.saveText}>Opslaan</AppText>}
                     </Pressable>
 
                     <Pressable
                         onPress={() => setDraft(randomName())}
+                        disabled={saving}
                         accessibilityRole='button'
                         accessibilityLabel='Willekeurige naam'
-                        style={styles.diceButton}
+                        style={[styles.diceButton, saving && styles.buttonDisabled]}
                     >
                         <Feather name='shuffle' size={20} color={Colors.light.text} />
                     </Pressable>
@@ -61,7 +78,7 @@ export default function ProfileNameCard({ name, onSave }: Props) {
             </View>
 
             <AppText style={styles.hint}>
-                Max {NAME_MAX_LENGTH} tekens. Dit is wat medespelers zien in een room.
+                Min {NAME_MIN_LENGTH}, max {NAME_MAX_LENGTH} tekens. Dit is wat medespelers zien in een room.
             </AppText>
         </Card>
     )

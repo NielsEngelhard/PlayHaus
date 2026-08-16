@@ -19,6 +19,13 @@ interface Auth {
     signup: (name: string, email: string, password: string) => Promise<void>
     continueAsGuest: () => Promise<void>
     logout: () => Promise<void>
+    /**
+     * Re-reads the account and returns it. Anything that edits the user has to
+     * call this: the session's copy is what the header and every other `useAuth`
+     * consumer render from, so a saved change that skipped it would be on the
+     * server and nowhere on screen.
+     */
+    refreshUser: () => Promise<User>
 }
 
 /**
@@ -111,6 +118,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await adopt(await authApi.createGuest());
     }, [adopt]);
 
+    /**
+     * Only the user is replaced, never the status: this runs inside a session
+     * that is already signed in, and a failure here is the caller's to report —
+     * a rename that could not be re-read is not a reason to sign anybody out.
+     */
+    const refreshUser = useCallback(async () => {
+        const fresh = await authApi.me();
+        setUser(fresh);
+        return fresh;
+    }, []);
+
     const logout = useCallback(async () => {
         try {
             await authApi.logout();
@@ -128,8 +146,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const value = useMemo(
-        () => ({ user, status, login, signup, continueAsGuest, logout }),
-        [user, status, login, signup, continueAsGuest, logout]
+        () => ({ user, status, login, signup, continueAsGuest, logout, refreshUser }),
+        [user, status, login, signup, continueAsGuest, logout, refreshUser]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

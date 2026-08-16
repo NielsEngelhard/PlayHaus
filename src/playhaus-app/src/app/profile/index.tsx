@@ -19,13 +19,13 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * Your name, avatar and preferences, as the account actually holds them.
  *
  * Every edit on this page is a write: the name on `Opslaan`, the colour and the
- * toggles the moment they move. `useProfile` puts each change on screen straight
- * away and undoes it if the server refuses, so nothing here has to wait on a
- * round trip.
+ * toggles the moment they move. The name waits for the server and says so on the
+ * button; the controls with no confirm step move first and are undone if the
+ * server refuses, so a tap never feels like it went nowhere.
  */
 export default function ProfilePage() {
     const { logout } = useAuth();
-    const { profile, loading, error, saveError, reload, updateUsername } = useProfile();
+    const { profile, loading, error, saveError, saving, reload, updateUsername } = useProfile();
 
     if (loading) {
         return <LoadingPage message='Profiel laden…' />;
@@ -46,12 +46,14 @@ export default function ProfilePage() {
                 />
             </View>
 
-            {/* Keyed on the name so the card's internal draft restarts from it after a
-                save lands, or after a refused one is rolled back. */}
+            {/* Keyed on the name so the card's internal draft restarts from it once a
+                save lands. A refused one keeps its draft — the key has not moved —
+                so you can fix the name rather than retype it. */}
             <ProfileNameCard
                 key={profile.name}
                 name={profile.name}
                 onSave={updateUsername}
+                saving={saving}
             />
 
             <View style={tilt('0.4deg')}>

@@ -10,7 +10,12 @@ import Feather from "@expo/vector-icons/Feather";
  * preference row. Restyling the palette is a change to this file alone.
  */
 
-/** Kept in step with `NameMaxLength` in the Go backend, which refuses anything longer. */
+/**
+ * Kept in step with `NameMinLength` and `NameMaxLength` in the Go backend, which
+ * refuses anything outside them. Enforced here as well so the common mistake is
+ * a greyed-out button rather than a round trip that comes back with a complaint.
+ */
+export const NAME_MIN_LENGTH = 4;
 export const NAME_MAX_LENGTH = 16;
 
 export interface AvatarColor {
