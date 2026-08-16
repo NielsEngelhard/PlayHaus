@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -12,6 +13,11 @@ type Config struct {
 	DBPath          string
 	ShutdownTimeout time.Duration
 	Debug           bool
+
+	// AllowedOrigins are the browser origins allowed to call this API
+	// cross-origin. Only the Expo web build needs them -- a native build sends
+	// no Origin header and is unaffected. Empty turns CORS off.
+	AllowedOrigins []string
 }
 
 func Load() (Config, error) {
@@ -32,7 +38,13 @@ func Load() (Config, error) {
 		DBPath:          env("DB_PATH", "data/app.db"),
 		ShutdownTimeout: shutdownTimeout,
 		Debug:           debug,
+		AllowedOrigins:  envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
 	}, nil
+}
+
+var defaultAllowedOrigins = []string{
+	"http://localhost:8081",
+	"http://127.0.0.1:8081",
 }
 
 func env(key, fallback string) string {
@@ -40,6 +52,24 @@ func env(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+// envList reads a comma-separated variable. Setting it to an empty string is
+// how you ask for none at all -- the fallback applies only when it is unset,
+// so "no origins, on purpose" stays expressible.
+func envList(key string, fallback []string) []string {
+	raw, ok := os.LookupEnv(key)
+	if !ok {
+		return fallback
+	}
+
+	var values []string
+	for _, part := range strings.Split(raw, ",") {
+		if trimmed := strings.TrimSpace(part); trimmed != "" {
+			values = append(values, trimmed)
+		}
+	}
+	return values
 }
 
 // envBool and envDuration fall back only when the variable is unset. A value

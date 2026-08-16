@@ -17,7 +17,7 @@ interface Auth {
     status: AuthStatus
     login: (email: string, password: string) => Promise<void>
     signup: (name: string, email: string, password: string) => Promise<void>
-    continueAsGuest: (name?: string) => Promise<void>
+    continueAsGuest: () => Promise<void>
     logout: () => Promise<void>
 }
 
@@ -97,17 +97,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, [adopt]);
 
     /**
-     * Signup creates the account but deliberately does not start a session, so the
-     * login that follows is what actually signs you in. Errors from either call
-     * reach the form unchanged — it needs the message to show you.
+     * Signing up signs you in: the backend answers with a session rather than
+     * just the new account, so there is no second call and no moment where the
+     * account exists but nobody is logged into it. Errors reach the form
+     * unchanged — it needs the message to show you.
      */
     const signup = useCallback(async (name: string, email: string, password: string) => {
-        await authApi.signup(name, email, password);
-        await adopt(await authApi.login(email, password));
+        await adopt(await authApi.signup(name, email, password));
     }, [adopt]);
 
-    const continueAsGuest = useCallback(async (name?: string) => {
-        await adopt(await authApi.createGuest(name));
+    /** A guest is named by the backend, so there is nothing to pass. */
+    const continueAsGuest = useCallback(async () => {
+        await adopt(await authApi.createGuest());
     }, [adopt]);
 
     const logout = useCallback(async () => {

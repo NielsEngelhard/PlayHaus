@@ -7,6 +7,7 @@ import ProfileAvatarColorPickerCard from "@/features/settings/components/Profile
 import ProfileCard from "@/features/settings/components/ProfileCard";
 import ProfileNameCard from "@/features/settings/components/ProfileNameCard";
 import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsCard";
+import { PROFILE_DEFAULTS } from "@/features/settings/profile";
 import { useAuth } from "@/features/auth/useAuth";
 import { useProfile } from "@/features/settings/useProfile";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -39,7 +40,10 @@ export default function ProfilePage() {
     return (
         <View style={styles.container}>
             <View style={tilt('-0.5deg')}>
-                <ProfileCard name={profile.name} avatarColorId={profile.avatarColorId} />
+                <ProfileCard
+                    name={profile.name}
+                    avatarColorId={profile.avatarColorId ?? PROFILE_DEFAULTS.avatarColorId}
+                />
             </View>
 
             {/* Keyed on the name so the card's internal draft restarts from it after a
@@ -52,15 +56,15 @@ export default function ProfilePage() {
 
             <View style={tilt('0.4deg')}>
                 <ProfileAvatarColorPickerCard
-                    value={profile.avatarColorId}
+                    value={profile.avatarColorId ?? PROFILE_DEFAULTS.avatarColorId}
                     onChange={avatarColorId => save({ avatarColorId })}
                 />
             </View>
 
             <ProfileSettingsCard
                 values={{
-                    soundEnabled: profile.soundEnabled,
-                    vibrationEnabled: profile.vibrationEnabled
+                    soundEnabled: profile.soundEnabled ?? PROFILE_DEFAULTS.soundEnabled,
+                    vibrationEnabled: profile.vibrationEnabled ?? PROFILE_DEFAULTS.vibrationEnabled
                 }}
                 onChange={(key, value) => save({ [key]: value })}
             />

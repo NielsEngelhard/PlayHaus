@@ -43,6 +43,30 @@ func (s *GormStore) Create(ctx context.Context, u *User) error {
 	return nil
 }
 
+func (s *GormStore) ByEmail(ctx context.Context, email string) (*User, error) {
+	var u User
+	err := s.db.WithContext(ctx).Where("email = ?", email).First(&u).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select user by email: %w", err)
+	}
+	return &u, nil
+}
+
+func (s *GormStore) ByID(ctx context.Context, id string) (*User, error) {
+	var u User
+	err := s.db.WithContext(ctx).Where("id = ?", id).First(&u).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select user by id: %w", err)
+	}
+	return &u, nil
+}
+
 func isUniqueViolation(err error) bool {
 	if err == nil {
 		return false

@@ -3,10 +3,11 @@ import { ApiError } from '@/api/client';
 /**
  * Turns whatever a call threw into a line worth showing a person.
  *
- * The backend answers failures with `http.Error`, so its messages are already
- * plain sentences and mostly fine to surface as-is. The two cases handled by
- * status are the ones where the raw text is either deliberately vague or reads
- * like a server log rather than an instruction.
+ * The backend writes its failures as plain sentences and `request` has already
+ * pulled them out of the JSON they arrive in, so most are fine to surface
+ * as-is. The two cases handled by status are the ones where the server's own
+ * wording is either deliberately vague or reads like a log line rather than an
+ * instruction.
  */
 export function authErrorMessage(error: unknown): string {
     if (error instanceof ApiError) {

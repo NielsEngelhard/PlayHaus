@@ -33,11 +33,12 @@ func newTestDB(t *testing.T) *gorm.DB {
 }
 
 func testUser(locale i18n.Locale) *User {
+	hash := "x"
 	return &User{
 		ID:           "u1",
 		Email:        "a@b.com",
 		Name:         "A",
-		PasswordHash: "x",
+		PasswordHash: &hash,
 		Locale:       locale,
 		CreatedAt:    time.Now().UTC(),
 	}

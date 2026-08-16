@@ -15,6 +15,8 @@ import (
 type Store interface {
 	Create(ctx context.Context, user *User) error
 	ExistsByEmail(ctx context.Context, email string) (bool, error)
+	ByEmail(ctx context.Context, email string) (*User, error)
+	ByID(ctx context.Context, id string) (*User, error)
 }
 
 type Service struct {
@@ -34,13 +36,37 @@ type CreateGuestUserInput struct {
 	Locale i18n.Locale
 }
 
+func NormalizeEmail(email string) string {
+	return strings.ToLower(strings.TrimSpace(email))
+}
+
+func (s *Service) ByID(ctx context.Context, id string) (*User, error) {
+	return s.store.ByID(ctx, id)
+}
+
+func (s *Service) ByEmail(ctx context.Context, email string) (*User, error) {
+	return s.store.ByEmail(ctx, NormalizeEmail(email))
+}
+
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
 	id := uuid.NewString()
 
 	name := generateUsername(in.Locale)
 	email := id + "@guest.turingsolutions.com"
 
-	u := &User{ID: id, Email: email, Name: name, PasswordHash: "cheese", Locale: in.Locale, CreatedAt: time.Now().UTC()}
+	locale := in.Locale
+	if !locale.Valid() {
+		locale = i18n.Default
+	}
+
+	u := &User{
+		ID:        id,
+		Email:     email,
+		Name:      name,
+		IsGuest:   true,
+		Locale:    locale,
+		CreatedAt: time.Now().UTC(),
+	}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert (guest) user: %w", err)
 	}
@@ -48,7 +74,7 @@ func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput)
 }
 
 func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, error) {
-	email := strings.ToLower(strings.TrimSpace(in.Email))
+	email := NormalizeEmail(in.Email)
 
 	taken, err := s.store.ExistsByEmail(ctx, email)
 	if err != nil {
@@ -62,6 +88,7 @@ func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, e
 	if err != nil {
 		return nil, fmt.Errorf("hash password: %w", err)
 	}
+	passwordHash := string(hash)
 
 	id := uuid.NewString()
 	locale := in.Locale
@@ -69,7 +96,14 @@ func (s *Service) CreateUser(ctx context.Context, in *CreateUserInput) (*User, e
 		locale = i18n.Default
 	}
 
-	u := &User{ID: id, Email: email, Name: in.Name, PasswordHash: string(hash), Locale: locale, CreatedAt: time.Now().UTC()}
+	u := &User{
+		ID:           id,
+		Email:        email,
+		Name:         in.Name,
+		PasswordHash: &passwordHash,
+		Locale:       locale,
+		CreatedAt:    time.Now().UTC(),
+	}
 	if err := s.store.Create(ctx, u); err != nil {
 		return nil, fmt.Errorf("insert user: %w", err)
 	}

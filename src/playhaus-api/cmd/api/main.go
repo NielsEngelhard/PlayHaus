@@ -13,7 +13,9 @@ import (
 	"time"
 
 	"playhaus-api/internal/api"
+	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
+	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/user"
 )
@@ -57,15 +59,19 @@ func run() error {
 		}
 	}()
 
-	if err := database.Migrate(db, &user.User{}); err != nil {
+	models := append([]any{&user.User{}, &auth.Session{}}, league_of_letters.Models()...)
+	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
 	logger.Info("database ready", "path", cfg.DBPath)
 
 	// --- wiring -------------------------------------------------------
-	userStore := user.NewGormStore(db)
-	userService := user.NewService(userStore)
-	handler := api.NewServer(userService, logger)
+	userService := user.NewService(user.NewGormStore(db))
+	authService := auth.NewService(auth.NewGormStore(db), userService)
+	lolService := league_of_letters.NewService(league_of_letters.NewGormStore(db))
+
+	handler := api.NewServer(userService, authService, lolService, logger, cfg.AllowedOrigins)
+	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------
 	srv := &http.Server{
@@ -81,6 +87,10 @@ func run() error {
 	// Listen for SIGINT/SIGTERM; ctx is cancelled on the first one.
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
+
+	// Expired sessions are already rejected on every request; this only keeps
+	// the table from growing forever. It stops when ctx is cancelled.
+	go authService.SweepExpired(ctx, time.Hour, logger)
 
 	// Buffered so the goroutine can exit even if nobody is receiving.
 	// Never closed: a closed channel would make the select below fire with a

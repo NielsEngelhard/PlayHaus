@@ -36,6 +36,19 @@ export function avatarColorById(id: string): AvatarColor {
     return AVATAR_COLORS.find(color => color.id === id) ?? AVATAR_COLORS[0];
 }
 
+/**
+ * What a preference is worth before the account has one.
+ *
+ * The API does not carry these yet — see `Profile` in `api/calls/profile.ts` —
+ * so the page renders from here rather than from nothing. Both toggles start on
+ * because a game that arrives silent reads as broken rather than as considerate.
+ */
+export const PROFILE_DEFAULTS = {
+    avatarColorId: AVATAR_COLORS[0].id,
+    soundEnabled: true,
+    vibrationEnabled: true
+};
+
 /** Named after the field on the user, so a row reads its value straight off the profile. */
 export type SettingKey = 'soundEnabled' | 'vibrationEnabled';
 

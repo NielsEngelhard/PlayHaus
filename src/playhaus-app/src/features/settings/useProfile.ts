@@ -1,11 +1,11 @@
-import { me, type User } from '@/api/calls/auth';
-import { updateProfile, type ProfileUpdate } from '@/api/calls/profile';
+import { me } from '@/api/calls/auth';
+import { updateProfile, type Profile as UserProfile, type ProfileUpdate } from '@/api/calls/profile';
 import { ApiError } from '@/api/client';
 import { useAuth } from '@/features/auth/useAuth';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface Profile {
-    profile: User | null
+    profile: UserProfile | null
     /** True until the first load settles, one way or the other. */
     loading: boolean
     /** The initial load failed. There is nothing to show, so the page offers a retry. */
@@ -41,7 +41,7 @@ function profileErrorMessage(error: unknown): string {
  */
 export function useProfile(): Profile {
     const { user, status } = useAuth();
-    const [loaded, setLoaded] = useState<User | null>(null);
+    const [loaded, setLoaded] = useState<UserProfile | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [saveError, setSaveError] = useState<string | null>(null);
 

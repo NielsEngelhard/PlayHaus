@@ -25,15 +25,23 @@ type GateView = 'choice' | 'account' | 'login' | 'signup';
  */
 export default function AuthGate() {
     const { status } = useAuth();
-    const [view, setView] = useState<GateView>('choice');
 
     // Gone entirely rather than merely hidden, for two reasons. `restoring` must
     // not open it: on launch we may hold a token and not yet know whether the
     // server still honours it, and showing the popup there would flash it at
-    // people who turn out to be signed in already. And unmounting takes the step
-    // state with it, so a later logout always reopens on the choice screen
-    // instead of half-way through a form somebody walked away from.
+    // people who turn out to be signed in already. And the step state lives one
+    // component further in, so signing in unmounts it along with the sheet and a
+    // later logout always reopens on the choice screen rather than half-way
+    // through a form somebody walked away from. Returning null from up here
+    // would not do that — React keeps a component that renders nothing, and its
+    // state with it.
     if (status !== 'signedOut') return null;
+
+    return <AuthGateSheet />;
+}
+
+function AuthGateSheet() {
+    const [view, setView] = useState<GateView>('choice');
 
     return (
         <Modal

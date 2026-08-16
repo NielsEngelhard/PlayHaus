@@ -14,8 +14,8 @@ interface Props {
 }
 
 /**
- * Creates an account and signs straight into it — `useAuth().signup` does both,
- * because the API deliberately keeps them as two calls.
+ * Creates an account and signs straight into it — one call, since the API
+ * answers a signup with a session.
  */
 export default function SignupForm({ onBack }: Props) {
     const { signup } = useAuth();

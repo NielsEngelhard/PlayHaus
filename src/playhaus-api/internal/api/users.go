@@ -24,10 +24,23 @@ type createGuestUserRequest struct {
 func (createGuestUserRequest) Validate() map[string]string { return nil }
 
 type userResponse struct {
-	ID     string      `json:"id"`
-	Email  string      `json:"email"`
-	Name   string      `json:"name"`
-	Locale i18n.Locale `json:"locale"`
+	ID        string      `json:"id"`
+	Email     string      `json:"email"`
+	Name      string      `json:"name"`
+	IsGuest   bool        `json:"isGuest"`
+	Locale    i18n.Locale `json:"locale"`
+	CreatedAt string      `json:"createdAt"`
+}
+
+func newUserResponse(u *user.User) userResponse {
+	return userResponse{
+		ID:        u.ID,
+		Email:     u.Email,
+		Name:      u.Name,
+		IsGuest:   u.IsGuest,
+		Locale:    u.Locale,
+		CreatedAt: u.CreatedAt.Format(timeFormat),
+	}
 }
 
 // localeFrom prefers an explicit locale in the request body and falls back to
@@ -61,11 +74,10 @@ func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	locale := Deref(req.Locale, "")
-	parsedLocale := i18n.Parse(locale)
+	locale := localeFrom(Deref(req.Locale, ""), r)
 
 	u, err := s.users.CreateGuestUser(r.Context(), &user.CreateGuestUserInput{
-		Locale: parsedLocale,
+		Locale: locale,
 	})
 	if err != nil {
 		s.log.Error("create guest user", "err", err)
@@ -73,7 +85,17 @@ func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, http.StatusCreated, userResponse{ID: u.ID, Email: u.Email, Name: u.Name, Locale: u.Locale})
+	// A guest has no password, so Login could never let them back in. The token
+	// minted here is the only way into the account -- lose it and the account
+	// is gone.
+	session, token, err := s.auth.StartSession(r.Context(), u.ID)
+	if err != nil {
+		s.log.Error("start guest session", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusCreated, newSessionResponse(u, session, token))
 }
 
 func (s *Server) handleCreateUser(w http.ResponseWriter, r *http.Request) {
@@ -102,5 +124,14 @@ func (s *Server) handleCreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, http.StatusCreated, userResponse{ID: u.ID, Email: u.Email, Name: u.Name, Locale: u.Locale})
+	// Signing up logs you in, so the client does not have to immediately replay
+	// the password it just sent.
+	session, token, err := s.auth.StartSession(r.Context(), u.ID)
+	if err != nil {
+		s.log.Error("start session after signup", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusCreated, newSessionResponse(u, session, token))
 }

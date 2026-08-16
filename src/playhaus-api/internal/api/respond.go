@@ -5,7 +5,12 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
+	"time"
 )
+
+// timeFormat is the one wire format for timestamps: RFC 3339 with UTC written
+// as "Z", which is what JavaScript's Date parses without surprises.
+const timeFormat = time.RFC3339
 
 type Validator interface {
 	Validate() map[string]string

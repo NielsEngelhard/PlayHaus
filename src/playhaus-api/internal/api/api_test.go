@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"io"
 	"log/slog"
 	"net/http"
@@ -9,11 +10,23 @@ import (
 	"strings"
 	"testing"
 
+	"playhaus-api/internal/auth"
+	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/user"
+
+	"gorm.io/gorm"
 )
 
 func newTestServer(t *testing.T) http.Handler {
+	t.Helper()
+	h, _ := newTestServerWithDB(t)
+	return h
+}
+
+// newTestServerWithDB also hands back the database, for the few tests that
+// assert on what was actually written rather than on the response.
+func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	t.Helper()
 
 	db, err := database.Open(filepath.Join(t.TempDir(), "test.db"))
@@ -28,19 +41,78 @@ func newTestServer(t *testing.T) http.Handler {
 		}
 	})
 
-	if err := database.Migrate(db, &user.User{}); err != nil {
+	models := append([]any{&user.User{}, &auth.Session{}}, league_of_letters.Models()...)
+	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		t.Fatalf("migrate: %v", err)
 	}
 
-	svc := user.NewService(user.NewGormStore(db))
-	return NewServer(svc, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	users := user.NewService(user.NewGormStore(db))
+	authSvc := auth.NewService(auth.NewGormStore(db), users)
+	lol := league_of_letters.NewService(league_of_letters.NewGormStore(db))
+
+	handler := NewServer(users, authSvc, lol, slog.New(slog.NewTextHandler(io.Discard, nil)), testOrigins)
+	return handler, db
+}
+
+func newRequest(t *testing.T, method, path, body string) *http.Request {
+	t.Helper()
+
+	var reader io.Reader
+	if body != "" {
+		reader = strings.NewReader(body)
+	}
+	req := httptest.NewRequest(method, path, reader)
+	req.Header.Set("Content-Type", "application/json")
+	return req
+}
+
+func serve(h http.Handler, req *http.Request) *httptest.ResponseRecorder {
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, req)
+	return rec
+}
+
+// do drives one request through the whole handler, middleware included.
+// token may be empty, which is how the unauthenticated cases are written.
+func do(t *testing.T, h http.Handler, method, path, body, token string) *httptest.ResponseRecorder {
+	t.Helper()
+
+	req := newRequest(t, method, path, body)
+	if token != "" {
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
+	return serve(h, req)
 }
 
 func post(t *testing.T, h http.Handler, path, body string) *httptest.ResponseRecorder {
 	t.Helper()
-	req := httptest.NewRequest(http.MethodPost, path, strings.NewReader(body))
-	req.Header.Set("Content-Type", "application/json")
-	rec := httptest.NewRecorder()
-	h.ServeHTTP(rec, req)
-	return rec
+	return do(t, h, http.MethodPost, path, body, "")
+}
+
+// decodeBody unmarshals a recorded response, failing the test if it is not the
+// JSON the handler is supposed to produce.
+func decodeBody[T any](t *testing.T, rec *httptest.ResponseRecorder) T {
+	t.Helper()
+	var v T
+	if err := json.Unmarshal(rec.Body.Bytes(), &v); err != nil {
+		t.Fatalf("decode response: %v (body: %s)", err, rec.Body)
+	}
+	return v
+}
+
+// newGuestSession creates a guest and returns its token. Guests are the
+// cheapest way to get an authenticated caller: no password, one request.
+func newGuestSession(t *testing.T, h http.Handler) sessionResponse {
+	t.Helper()
+
+	rec := post(t, h, "/api/v1/user/guest", `{}`)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create guest: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
+	}
+
+	session := decodeBody[sessionResponse](t, rec)
+	if session.Token == "" {
+		t.Fatal("create guest returned an empty token")
+	}
+	return session
 }
