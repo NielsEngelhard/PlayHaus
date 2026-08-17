@@ -100,7 +100,6 @@ export async function createLobby(settings: LobbySettings): Promise<Lobby> {
     };
 
     rooms.set(code, { lobby, openedAt: now, script: arrivals(now, 1) });
-    trace('createLobby', { code, me: identity.userId, rooms: [...rooms.keys()] });
 
     return read(code);
 }
@@ -117,10 +116,8 @@ export async function createLobby(settings: LobbySettings): Promise<Lobby> {
 export async function joinLobby(code: string): Promise<Lobby> {
     await latency(260);
 
-    const known = rooms.has(code);
     const room = rooms.get(code) ?? openMockRoom(code);
     const present = roster(room);
-    trace('joinLobby', { code, known, me: identity.userId, present: present.map(p => p.userId), rooms: [...rooms.keys()] });
 
     // Already in, which is the common case: the host lands here again the moment the
     // game starts, and so does anyone who backgrounded the app and came back.
@@ -179,7 +176,6 @@ export async function startLobby(code: string): Promise<Lobby> {
     room.lobby.players = roster(room);
     room.lobby.status = 'started';
     room.lobby.gameId ??= `game-${room.lobby.code}`;
-    trace('startLobby', { code, rooms: [...rooms.keys()] });
 
     return read(code);
 }
@@ -195,7 +191,6 @@ export async function startLobby(code: string): Promise<Lobby> {
  * TODO: `DELETE /api/v1/league-of-letters/lobby/{code}`.
  */
 export async function deleteLobby(code: string): Promise<void> {
-    trace('deleteLobby', { code, stack: new Error().stack?.split('\n').slice(1, 6) });
     await latency(120);
 
     rooms.delete(code);
@@ -208,7 +203,6 @@ export async function deleteLobby(code: string): Promise<void> {
  * TODO: `DELETE /api/v1/league-of-letters/lobby/{code}/players/me`.
  */
 export async function leaveLobby(code: string): Promise<void> {
-    trace('leaveLobby', { code, me: identity.userId, stack: new Error().stack?.split('\n').slice(1, 6) });
     await latency(120);
 
     const room = rooms.get(code);
@@ -338,11 +332,6 @@ function read(code: string): Lobby {
 
 /** Enough of a wait that the screen's loading and saving states are real. */
 const latency = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
-
-/** TEMP DEBUG */
-export function trace(what: string, detail: unknown) {
-    console.log(`[LOBBY] ${what}`, JSON.stringify(detail));
-}
 
 /** Unambiguous alphabet: no O or 0, no I or 1 — codes get read out loud. */
 const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
