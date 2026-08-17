@@ -43,6 +43,14 @@ var (
 	ErrGameFinished                = errors.New("game is over")
 )
 
+type MultiplayerLeagueOfLettersLobby struct {
+	ID        string    `gorm:"primaryKey;type:text"`
+	OwnerID   string    `gorm:"index;not null"`
+	CreatedAt time.Time `gorm:"not null"`
+}
+
+func (MultiplayerLeagueOfLettersLobby) TableName() string { return "mp_lol_lobby" }
+
 type SoloLeagueOfLettersGame struct {
 	ID         uuid.UUID   `gorm:"primaryKey;type:text"`
 	OwnerID    string      `gorm:"index;not null"`

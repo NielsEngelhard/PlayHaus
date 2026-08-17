@@ -296,8 +296,26 @@ func (s *Server) writeGuessError(w http.ResponseWriter, err error) {
 	}
 }
 
+type createLobbyResponse struct {
+	ID string `json:"id"`
+}
+
 func (s *Server) handleCreateMultiplayerLobby(w http.ResponseWriter, r *http.Request) {
-	writeError(w, http.StatusNotImplemented, "not implemented yet")
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	joinCode, err := s.leagueOfLetters.CreateMultiplayerLobby(userID)
+	if err != nil {
+		s.log.Error("Error creating multiplayer lobby err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, &createLobbyResponse{ID: joinCode})
 }
 
 func (s *Server) handleJoinMultiplayerLobby(w http.ResponseWriter, r *http.Request) {

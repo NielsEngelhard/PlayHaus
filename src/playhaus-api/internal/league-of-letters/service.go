@@ -2,7 +2,9 @@ package league_of_letters
 
 import (
 	"context"
+	"crypto/rand"
 	"fmt"
+	"math/big"
 	"playhaus-api/internal/config"
 	"time"
 
@@ -19,6 +21,7 @@ type Store interface {
 	CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error)
 	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
+	CreateMpLobby(ctx context.Context, g *MultiplayerLeagueOfLettersLobby) error
 }
 
 type CreateSoloGameInput struct {
@@ -43,6 +46,25 @@ type Service struct {
 
 func NewService(store Store) *Service {
 	return &Service{store: store}
+}
+
+func (s *Service) CreateMultiplayerLobby(ctx context.Context, userID string) (string, error) {
+	lobbyID, err := generateRandomString(4)
+	if err != nil {
+		return "", fmt.Errorf("CreateMultiplayerLobby: %w", err)
+	}
+
+	lobby := &MultiplayerLeagueOfLettersLobby{
+		ID:        lobbyID,
+		OwnerID:   userID,
+		CreatedAt: time.Time{},
+	}
+
+	if err := s.store.CreateMpLobby(ctx, lobby); err != nil {
+		return "", fmt.Errorf("delete previous solo games: %w", err)
+	}
+
+	return lobbyID, nil
 }
 
 func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*SoloLeagueOfLettersGame, map[string]string, error) {
@@ -270,4 +292,20 @@ func determineNumberOfRounds(nPlayers int) int {
 	default:
 		return nPlayers * 3
 	}
+}
+
+func generateRandomString(length int) (string, error) {
+	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+	result := make([]byte, length)
+
+	for i := range result {
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(chars))))
+		if err != nil {
+			return "", err
+		}
+		result[i] = chars[n.Int64()]
+	}
+
+	return string(result), nil
 }
