@@ -14,6 +14,7 @@ type Store interface {
 	CreateSoloGame(ctx context.Context, soloGame *SoloLeagueOfLettersGame) error
 	SoloGameByID(ctx context.Context, id uuid.UUID) (*SoloLeagueOfLettersGame, error)
 	GetSoloGamesByUserId(ctx context.Context, userID string) ([]*SoloLeagueOfLettersGame, error)
+	DeleteSoloGameByID(ctx context.Context, soloGameID string, userID string) error
 	CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error)
 	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
@@ -84,6 +85,10 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 	}
 
 	return game, nil, nil
+}
+
+func (s *Service) DeleteSoloGameByID(ctx context.Context, soloGameID string, userID string) error {
+	return s.store.DeleteSoloGameByID(ctx, soloGameID, userID)
 }
 
 func (s *Service) SoloGameForOwner(ctx context.Context, id uuid.UUID, ownerID string) (*SoloLeagueOfLettersGame, error) {

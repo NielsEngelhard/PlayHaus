@@ -23,6 +23,21 @@ export const MARK_STYLES: Record<Mark, MarkStyle> = {
     absent: { fill: Colors.light.textSecondary, foreground: Colors.light.textOnAccent }
 };
 
+/**
+ * The colours the last tile riffles through when the row is one letter from solved.
+ *
+ * Not marks, despite three of them borrowing a mark's fill: the red is a result the server
+ * can never hand back, and it is in here precisely because a reel made only of real answers
+ * would let a player read the ending off it a beat early. Ordered dullest to best so each
+ * pass builds, and so the two passes run into each other as a cycle rather than a list.
+ */
+export const TEASE_REEL: MarkStyle[] = [
+    MARK_STYLES.absent,
+    MARK_STYLES.present,
+    { fill: Colors.light.destructive, foreground: Colors.light.textOnAccent },
+    MARK_STYLES.correct
+];
+
 /** Best first — a letter that has ever been `correct` never falls back to `present`. */
 const MARK_RANK: Record<Mark, number> = { correct: 3, present: 2, absent: 1 };
 
