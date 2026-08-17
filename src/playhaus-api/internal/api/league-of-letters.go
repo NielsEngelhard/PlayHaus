@@ -11,8 +11,9 @@ import (
 )
 
 type createSoloGameRequest struct {
-	Locale     *string `json:"locale"`
-	WordLength int     `json:"wordLength"`
+	WordLength          int     `json:"wordLength"`
+	Locale              *string `json:"locale"`
+	OnlyPickCommonWords *bool   `json:"onlyPickCommonWords"`
 }
 
 func (createSoloGameRequest) Validate() map[string]string { return nil }
@@ -117,10 +118,13 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	onlyPickCommonWords := req.OnlyPickCommonWords != nil && *req.OnlyPickCommonWords != false
+
 	game, problems, err := s.leagueOfLetters.CreateSoloGame(r.Context(), league_of_letters.CreateSoloGameInput{
-		OwnerID:    ownerID,
-		WordLength: req.WordLength,
-		Locale:     localeFrom(Deref(req.Locale, ""), r),
+		OwnerID:             ownerID,
+		WordLength:          req.WordLength,
+		Locale:              localeFrom(Deref(req.Locale, ""), r),
+		OnlyPickCommonWords: onlyPickCommonWords,
 	})
 	if err != nil {
 		s.log.Error("create solo game", "err", err)

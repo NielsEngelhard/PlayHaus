@@ -20,9 +20,10 @@ type Store interface {
 }
 
 type CreateSoloGameInput struct {
-	OwnerID    string
-	WordLength int
-	Locale     i18n.Locale
+	OwnerID             string
+	WordLength          int
+	Locale              i18n.Locale
+	OnlyPickCommonWords bool
 }
 
 func (in CreateSoloGameInput) validate() map[string]string {
@@ -67,7 +68,7 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		CreatedAt:       time.Now().UTC(),
 	}
 
-	rounds, err := generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale)
+	rounds, err := generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale, in.OnlyPickCommonWords)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -146,10 +147,10 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 
 	word := NormalizeGuess(in.Word)
 	if !ValidGuess(word, game.WordLength, round.FirstLetter()) {
-		return nil, ErrInvalidGuess
+		return nil, ErrInvalidGuessCharacters
 	}
 	if !IsAllowedWord(game.Locale, game.WordLength, word) {
-		return nil, ErrInvalidGuess
+		return nil, ErrInvalidGuessWordNonExisting
 	}
 	for _, played := range round.Guesses {
 		if played.Word == word {
@@ -225,8 +226,8 @@ func validatedLetters(word, target string) []LeagueOfLettersValidatedLetter {
 	return letters
 }
 
-func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale) ([]LeagueOfLettersRound, error) {
-	words, err := GetRandomWords(locale, wordLength, amount)
+func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale, onlyPickCommonWords bool) ([]LeagueOfLettersRound, error) {
+	words, err := GetRandomWords(locale, wordLength, amount, onlyPickCommonWords)
 	if err != nil {
 		return nil, err
 	}
