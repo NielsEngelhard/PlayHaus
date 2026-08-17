@@ -1,7 +1,7 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
-import { MARK_STYLES } from "@/features/league-of-letters/marks";
+import { MARK_STYLES, TEASE_REEL, type MarkStyle } from "@/features/league-of-letters/marks";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 
@@ -32,6 +32,15 @@ const FLIP_MS = 110;
 /** Gap between one tile starting to turn over and the next. */
 const REVEAL_STEP_MS = 200;
 
+/** One colour on the reel. Fast enough to blur into a spin, slow enough to be read. */
+const TEASE_STEP_MS = 95;
+/** Twice round the reel: once is a glitch, three times outstays the moment. */
+const TEASE_SPINS = 2;
+/** A beat on the real colour before the rest of the screen is allowed to react to it. */
+const TEASE_SETTLE_MS = 140;
+/** Everything after the tile turns face up: the spin, then that beat. */
+const TEASE_MS = TEASE_REEL.length * TEASE_SPINS * TEASE_STEP_MS + TEASE_SETTLE_MS;
+
 /** Up, and back down onto the board. */
 const HOP_UP_MS = 190;
 const HOP_DOWN_MS = 380;
@@ -43,14 +52,35 @@ const HOP_STEP_MS = 55;
 const useNativeDriver = Platform.OS !== 'web';
 
 /**
+ * Every letter but the last came back `correct`: the word is one tile from solved.
+ *
+ * The one moment in a round worth drawing out, so the last tile spins through colours
+ * before committing to its own. Worked out from the marks alone rather than from what the
+ * player has learned across the board, because it is this row's own near-miss that is the
+ * drama — four greens and a hole, sitting there while the fifth tile makes up its mind.
+ */
+function oneAway(marks: Mark[] | undefined, wordLength: number): boolean {
+    // A one-letter word has no run of greens leading up to anything.
+    if (marks === undefined || marks.length !== wordLength || wordLength < 2) return false;
+
+    return marks.slice(0, -1).every(mark => mark === 'correct');
+}
+
+/**
  * How long a freshly scored row takes to finish turning over.
  *
  * Exported because the reveal is a moment the rest of the screen has to respect: the
  * keyboard colours and the end-of-round line would otherwise give away the last tiles
  * while they are still face down. The timing lives here, with the animation it belongs to.
+ *
+ * `marks` is optional only for callers with nothing scored to hand over; leaving them out
+ * of a row that is one away will cut the spin off and leak the answer under it.
  */
-export function revealDurationMs(wordLength: number): number {
-    return Math.max(0, wordLength - 1) * REVEAL_STEP_MS + FLIP_MS * 2;
+export function revealDurationMs(wordLength: number, marks?: Mark[]): number {
+    // The last tile either turns over like the rest of them, or turns over and then spins.
+    const lastTile = oneAway(marks, wordLength) ? FLIP_MS + TEASE_MS : FLIP_MS * 2;
+
+    return Math.max(0, wordLength - 1) * REVEAL_STEP_MS + lastTile;
 }
 
 /**
@@ -121,6 +151,11 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
         && guess.marks.every(mark => mark === 'correct');
     const celebrate = winning && live && revealed >= wordLength;
 
+    // Same reasoning as the celebration: a board reopened on a round that was already one
+    // away has nothing left to be tense about, so only a row that watched the marks land
+    // gets the spin.
+    const teasing = live && oneAway(guess?.marks, wordLength);
+
     return (
         <View style={[styles.row, { gap: GAP }]}>
             {Array.from({ length: wordLength }, (_, column) => (
@@ -132,6 +167,10 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
                     mark={column < revealed ? guess?.marks[column] : undefined}
                     size={size}
                     celebrate={celebrate}
+                    // The row is only ever one away by its *last* letter, so that is the
+                    // tile with something left to say.
+                    tease={teasing && column === wordLength - 1}
+                    settledAfter={teasing ? FLIP_MS + TEASE_MS : FLIP_MS * 2}
                     column={column}
                 />
             ))}
@@ -178,19 +217,24 @@ interface LetterTileProps {
     size: number,
     /** This tile is part of the row that won the round, and its turn is done. */
     celebrate?: boolean,
+    /** Spin the reel before showing the real colour: the row is one letter from solved. */
+    tease?: boolean,
+    /** How long after its mark arrives the row is done animating, spin included. */
+    settledAfter: number,
     /** Where in the row it sits, which is its place in the wave. */
     column: number
 }
 
-function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTileProps) {
+function LetterTile({ letter, mark, size, celebrate = false, tease = false, settledAfter, column }: LetterTileProps) {
     const filled = letter !== '';
 
     /**
-     * The colour trails the prop by half a turn. The tile has to be edge-on before it can
-     * come back a different colour, or the answer is readable through the flip.
+     * The face trails the prop by half a turn — the tile has to be edge-on before it can
+     * come back a different colour, or the answer is readable through the flip — and on a
+     * teasing tile by the whole spin. Held as the style rather than the mark because most
+     * of what a spin shows is not a mark at all.
      */
-    const [shownMark, setShownMark] = useState(mark);
-    const marked = shownMark ? MARK_STYLES[shownMark] : undefined;
+    const [face, setFace] = useState<MarkStyle | undefined>(mark && MARK_STYLES[mark]);
 
     // Built once by the lazy initialiser — a fresh value on every render would drop a tile
     // mid-flip. A tile that mounts already filled or already scored starts settled, which
@@ -199,6 +243,8 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
     const [turn] = useState(() => new Animated.Value(1));
     /** 0 on the board, 1 at the top of the hop. */
     const [hop] = useState(() => new Animated.Value(0));
+    /** -1 and 1 are the ends of the judder the reel spins under. */
+    const [jitter] = useState(() => new Animated.Value(0));
 
     const wasFilled = useRef(filled);
     const wasMarked = useRef(mark);
@@ -233,8 +279,9 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
 
         // The round moved on and took the marks with it. No turn to play backwards.
         if (mark === undefined) {
-            setShownMark(undefined);
+            setFace(undefined);
             turn.setValue(1);
+            jitter.setValue(0);
             return;
         }
 
@@ -252,23 +299,75 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
                 useNativeDriver
             })
         ]);
-        // Swapped at the turn, while there is no face to see.
-        const swap = setTimeout(() => setShownMark(mark), FLIP_MS);
+        /**
+         * When each face goes on, measured from the moment the mark arrived. A plain tile
+         * has one, swapped at the turn while there is nothing to see. A teasing tile comes
+         * back up on the head of the reel and keeps changing in the open, its real colour
+         * arriving last and looking, until it stops, like one more colour on the way past.
+         */
+        const script = tease
+            ? [
+                ...Array.from({ length: TEASE_REEL.length * TEASE_SPINS }, (_, step) => ({
+                    face: TEASE_REEL[step % TEASE_REEL.length],
+                    at: FLIP_MS + step * TEASE_STEP_MS
+                })),
+                { face: MARK_STYLES[mark], at: FLIP_MS + TEASE_REEL.length * TEASE_SPINS * TEASE_STEP_MS }
+            ]
+            : [{ face: MARK_STYLES[mark], at: FLIP_MS }];
+
+        const swaps = script.map(({ face: next, at }) => setTimeout(() => setFace(next), at));
+
+        // Held off until the tile is face up: a judder while it is edge-on is invisible,
+        // and the point of it is to make the colours look unsettled rather than chosen.
+        const shake = tease
+            ? Animated.sequence([
+                Animated.delay(FLIP_MS),
+                Animated.loop(
+                    Animated.sequence([
+                        Animated.timing(jitter, {
+                            toValue: 1,
+                            duration: TEASE_STEP_MS / 2,
+                            easing: Easing.linear,
+                            useNativeDriver
+                        }),
+                        Animated.timing(jitter, {
+                            toValue: -1,
+                            duration: TEASE_STEP_MS / 2,
+                            easing: Easing.linear,
+                            useNativeDriver
+                        })
+                    ]),
+                    // Left to run on from wherever it is, or every lap would start with a
+                    // snap back through centre. One lap per colour, so it stops when they do.
+                    { iterations: TEASE_REEL.length * TEASE_SPINS, resetBeforeIteration: false }
+                ),
+                Animated.timing(jitter, {
+                    toValue: 0,
+                    duration: TEASE_SETTLE_MS,
+                    easing: Easing.out(Easing.quad),
+                    useNativeDriver
+                })
+            ])
+            : undefined;
 
         flip.start();
+        shake?.start();
         return () => {
-            clearTimeout(swap);
+            swaps.forEach(clearTimeout);
             flip.stop();
+            shake?.stop();
+            jitter.setValue(0);
         };
-    }, [mark, turn]);
+    }, [mark, tease, turn, jitter]);
 
     useEffect(() => {
         if (!celebrate) return;
 
         const dance = Animated.sequence([
             // The last tile is still finishing its turn when the row is declared won, and
-            // one that jumped mid-flip would land before its own colour did.
-            Animated.delay(FLIP_MS * 2 + column * HOP_STEP_MS),
+            // one that jumped mid-flip would land before its own colour did. A won row that
+            // was one away is still spinning at that point, which is what stretches the wait.
+            Animated.delay(settledAfter + column * HOP_STEP_MS),
             Animated.timing(hop, {
                 toValue: 1,
                 duration: HOP_UP_MS,
@@ -290,7 +389,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
             dance.stop();
             hop.setValue(0);
         };
-    }, [celebrate, column, hop]);
+    }, [celebrate, column, hop, settledAfter]);
 
     return (
         <Animated.View
@@ -305,6 +404,9 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
                         // Scaled with the tile so the wave is the same shape on a phone as
                         // it is on a tablet.
                         { translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.3] }) },
+                        // Scaled with the tile for the same reason the hop is, and kept
+                        // small: the tile has to stay inside its own gap or the row rocks.
+                        { translateX: jitter.interpolate({ inputRange: [-1, 1], outputRange: [-size * 0.06, size * 0.06] }) },
                         { scale: hop.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] }) },
                         { scale: filled ? landing.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) : 1 },
                         // Never quite zero: a tile with no height at all blinks out of
@@ -312,8 +414,8 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
                         { scaleY: turn.interpolate({ inputRange: [0, 1], outputRange: [0.04, 1] }) }
                     ]
                 },
-                marked
-                    ? [{ backgroundColor: marked.fill }, Shadows.hardLarge]
+                face
+                    ? [{ backgroundColor: face.fill }, Shadows.hardLarge]
                     // A typed-but-unsubmitted letter stands up off the page; an empty slot
                     // sits back, the same way `WordLengthCard` separates chosen from not.
                     : letter
@@ -326,7 +428,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column }: LetterTil
                     styles.letter,
                     {
                         fontSize: Math.max(FontSizes.md, Math.min(FontSizes.xxl, Math.round(size * 0.5))),
-                        color: marked?.foreground ?? Colors.light.text
+                        color: face?.foreground ?? Colors.light.text
                     }
                 ]}
             >

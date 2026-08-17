@@ -127,13 +127,20 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
         setRevealing(false);
     }
 
+    /**
+     * How long to sit on the answer. The row being turned over is the newest one, and its
+     * marks are what decide whether the board is going to draw the last tile out or not —
+     * a near-miss spins, and the verdict has to wait out the spin like everything else.
+     */
+    const revealWait = revealDurationMs(game.wordLength, myGuesses[myGuesses.length - 1]?.marks);
+
     useEffect(() => {
         if (!revealing) return;
 
-        const done = setTimeout(() => setRevealing(false), revealDurationMs(game.wordLength));
+        const done = setTimeout(() => setRevealing(false), revealWait);
         return () => clearTimeout(done);
         // `revealed` is in here to restart the clock on a guess that lands mid-reveal.
-    }, [revealing, revealed, game.wordLength]);
+    }, [revealing, revealed, revealWait]);
 
     useEffect(() => {
         if (notice === null) return;
