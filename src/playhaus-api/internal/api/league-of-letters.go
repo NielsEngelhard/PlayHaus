@@ -139,6 +139,25 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusCreated, newSoloGameResponse(game))
 }
 
+func (s *Server) handleDeleteSoloGame(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleDeleteSoloGame reached without an authenticated user")
+		writeError(w, http.StatusUnauthorized, "unauthorized")
+		return
+	}
+
+	gameID := r.PathValue("gameID")
+
+	err := s.leagueOfLetters.DeleteSoloGameByID(r.Context(), gameID, userID)
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, "game not found")
+		return
+	}
+
+	writeJSON(w, http.StatusNoContent, nil)
+}
+
 func (s *Server) handleGetSoloGame(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
