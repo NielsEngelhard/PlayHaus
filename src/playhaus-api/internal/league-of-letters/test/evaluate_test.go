@@ -1,10 +1,9 @@
 package league_of_letters
 
 import (
+	"playhaus-api/internal/i18n"
 	"strings"
 	"testing"
-
-	"playhaus-api/internal/i18n"
 )
 
 // marks writes an expected result compactly: "cpa" is correct, present, absent.

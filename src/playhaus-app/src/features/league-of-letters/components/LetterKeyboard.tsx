@@ -64,13 +64,13 @@ export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, dis
             </View>
 
             <View style={styles.row}>
-                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} accent />
+                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} applyAccentStyle />
 
                 {ROWS[2].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
                 ))}
 
-                <ActionKey icon='delete' label='Wissen' height={keyHeight} disabled={disabled} onPress={onBackspace} />
+                <ActionKey icon='delete' label='Wissen' height={keyHeight} disabled={disabled} onPress={onBackspace} applyDeleteStyle />
             </View>
         </View>
     )
@@ -114,11 +114,11 @@ interface ActionKeyProps {
     height: number,
     disabled: boolean,
     onPress: () => void,
-    /** Wears the app's blue, for the one action key that submits rather than edits. */
-    accent?: boolean
+    applyAccentStyle?: boolean
+    applyDeleteStyle?: boolean
 }
 
-function ActionKey({ icon, label, height, disabled, onPress, accent = false }: ActionKeyProps) {
+function ActionKey({ icon, label, height, disabled, onPress, applyAccentStyle = false, applyDeleteStyle = false }: ActionKeyProps) {
     return (
         <Pressable
             onPress={onPress}
@@ -126,9 +126,9 @@ function ActionKey({ icon, label, height, disabled, onPress, accent = false }: A
             accessibilityRole='button'
             accessibilityLabel={label}
             accessibilityState={{ disabled }}
-            style={[styles.key, styles.actionKey, accent && styles.actionKeyAccent, { height }, disabled && styles.keyDisabled]}
+            style={[styles.key, styles.actionKey, applyAccentStyle && styles.actionKeyAccent, applyDeleteStyle && styles.deleteKeyAccent, { height }, disabled && styles.keyDisabled]}
         >
-            <Feather name={icon} size={18} color={accent ? Colors.light.textOnAccent : Colors.light.text} />
+            <Feather name={icon} size={18} color={(applyAccentStyle || applyDeleteStyle) ? Colors.light.textOnAccent : Colors.light.text} />
         </Pressable>
     )
 }
@@ -166,6 +166,9 @@ const styles = StyleSheet.create({
     },
     actionKeyAccent: {
         backgroundColor: Colors.light.secondary
+    },
+    deleteKeyAccent: {
+        backgroundColor: Colors.light.destructive
     },
     keyDisabled: {
         opacity: 0.5

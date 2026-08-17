@@ -108,6 +108,11 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
      * has finished turning the word over, the same way the losing line waits.
      */
     const celebrating = finished && won && !revealing && revealed > 0;
+    /**
+     * The round is lost and the board has finished saying so. It takes the notice's place
+     * on screen: a nudge about the word you just typed is stale once the answer is out.
+     */
+    const verdict = finished && !revealing && !won;
 
     // A new board is a new draft — otherwise moving to the next round leaves half a word
     // behind in a row that now belongs to a different puzzle. Adjusted during render, so
@@ -229,13 +234,28 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                 <PlayerScoreRow players={game.players} userId={userId} />
             )}
 
-            <GuessGrid
-                wordLength={game.wordLength}
-                maxGuesses={game.maxGuesses}
-                guesses={myGuesses}
-                // The row being typed only exists while the round can still be won.
-                draft={finished ? '' : draft}
-            />
+            <View style={styles.board}>
+                <GuessGrid
+                    wordLength={game.wordLength}
+                    maxGuesses={game.maxGuesses}
+                    guesses={myGuesses}
+                    // The row being typed only exists while the round can still be won.
+                    draft={finished ? '' : draft}
+                />
+
+                {/* Laid over the foot of the board rather than placed under it. A nudge
+                    that took a line of its own would come out of the board's height, and
+                    the grid sizes itself to whatever room it is left — so every notice
+                    would shrink the tiles and put them back again two seconds later.
+                    Takes no touches, so the keyboard keeps working underneath. */}
+                {!verdict && notice && (
+                    <View style={styles.noticeLayer} pointerEvents='none'>
+                        <View style={styles.notice}>
+                            <AppText style={styles.noticeText}>{notice.text}</AppText>
+                        </View>
+                    </View>
+                )}
+            </View>
 
             {/* Only the bad news gets a line. A win is already spelled out across the
                 board in green, and the row's own celebration says the rest — a box
@@ -243,7 +263,7 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                 The verdict waits for the board either way: being told the round is over
                 while the last two tiles are still face down reads the result out before
                 the reveal does. */}
-            {finished && !revealing && !won ? (
+            {verdict && (
                 <InlineNotification
                     icon='x'
                     color={Colors.light.blush}
@@ -252,10 +272,6 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                         ? `Het woord was ${answer.toUpperCase()}.`
                         : 'Deze ronde zit erop.'}
                 />
-            ) : notice && (
-                <View style={styles.notice}>
-                    <AppText style={styles.noticeText}>{notice.text}</AppText>
-                </View>
             )}
 
             {/* The way out of a finished round. Held back until the reveal is done for
@@ -378,6 +394,22 @@ const styles = StyleSheet.create({
     timer: {
         flex: 1,
         justifyContent: 'flex-end'
+    },
+    // Takes the room the grid used to have to itself, so the grid still measures the same
+    // box whether or not there is a notice up.
+    board: {
+        flex: 1,
+        width: '100%'
+    },
+    // Across the foot of the board, over the rows that have not been played yet. Pinned
+    // rather than stacked: a layer with no height of its own cannot move the grid it
+    // covers, which is the whole point of putting the notice here.
+    noticeLayer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        alignItems: 'center'
     },
     notice: {
         alignSelf: 'center',

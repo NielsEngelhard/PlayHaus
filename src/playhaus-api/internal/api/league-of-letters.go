@@ -261,8 +261,10 @@ func (s *Server) writeGuessError(w http.ResponseWriter, err error) {
 	switch {
 	case errors.Is(err, league_of_letters.ErrGameNotFound):
 		writeError(w, http.StatusNotFound, "game not found")
-	case errors.Is(err, league_of_letters.ErrInvalidGuess):
-		writeError(w, http.StatusBadRequest, "that word cannot be played here")
+	case errors.Is(err, league_of_letters.ErrInvalidGuessCharacters):
+		writeError(w, http.StatusBadRequest, "invalid characters in guess (or too short)")
+	case errors.Is(err, league_of_letters.ErrInvalidGuessWordNonExisting):
+		writeError(w, http.StatusBadRequest, "that word does not exist")
 	case errors.Is(err, league_of_letters.ErrDuplicateGuess):
 		writeError(w, http.StatusConflict, "you already guessed that word")
 	case errors.Is(err, league_of_letters.ErrRoundClosed):

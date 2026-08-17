@@ -57,7 +57,7 @@ export function guessErrorMessage(error: unknown): string {
     if (error instanceof ApiError) {
         switch (error.status) {
             case 400:
-                return 'Dat woord past niet in dit spel.';
+                return 'Ongeldig woord.';
             case 404:
                 return 'Dit spel bestaat niet meer.';
             case 409:
