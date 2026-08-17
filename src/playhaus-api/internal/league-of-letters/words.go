@@ -10,6 +10,13 @@ import (
 	"sync"
 )
 
+type WordListType string
+
+const (
+	All    WordListType = "all"
+	Common WordListType = "common"
+)
+
 //go:embed data
 var wordFiles embed.FS
 
@@ -18,18 +25,7 @@ var wordFiles embed.FS
 // process -- they are compiled in.
 var allowedLists sync.Map // string -> map[string]struct{}
 
-// IsAllowedWord reports whether a normalized word may be played in this locale
-// and length.
-//
-// The guessable list is deliberately separate from the answer list: the answers
-// are a short curated pool, while a player must be able to guess any real word.
-//
-// While a length has no guessable list -- which today is all of them, the
-// shipped files being ten-word placeholders -- this answers true and leaves the
-// shape checks in ValidGuess as the only rule. A membership test against ten
-// words would reject very nearly every real word a player typed, which is worse
-// than not checking. Dropping a real list in at the path below turns the check
-// on with no code change.
+// IsAllowedWord reports whether a word appears in the word list for that language
 func IsAllowedWord(lang i18n.Locale, size int, word string) bool {
 	allowed := allowedWords(lang, size)
 	if len(allowed) == 0 {
@@ -41,7 +37,7 @@ func IsAllowedWord(lang i18n.Locale, size int, word string) bool {
 }
 
 func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
-	key := buildAllowedFilePath(lang, size)
+	key := buildWordFilePath(lang, size, All)
 
 	if cached, ok := allowedLists.Load(key); ok {
 		return cached.(map[string]struct{})
@@ -62,27 +58,25 @@ func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
 	return words
 }
 
-func buildAllowedFilePath(lang i18n.Locale, size int) string {
-	const base = "data/[LANGUAGE]/[LANGUAGE]-[SIZE]-allowed.txt"
-
-	path := strings.ReplaceAll(base, "[LANGUAGE]", string(lang))
-	return strings.ReplaceAll(path, "[SIZE]", strconv.Itoa(size))
-}
-
-func GetRandomWord(lang i18n.Locale, size int) (string, error) {
-	words, err := GetRandomWords(lang, size, 1)
+func GetRandomWord(lang i18n.Locale, size int, onlyPickCommonWords bool) (string, error) {
+	words, err := GetRandomWords(lang, size, 1, onlyPickCommonWords)
 	if err != nil {
 		return "", err
 	}
 	return words[0], nil
 }
 
-func GetRandomWords(lang i18n.Locale, size int, amount int) ([]string, error) {
+func GetRandomWords(lang i18n.Locale, size int, amount int, onlyPickCommonWords bool) ([]string, error) {
 	if amount <= 0 {
 		return nil, fmt.Errorf("wordlists: amount must be positive, got %d", amount)
 	}
 
-	lines, err := readFileAndGetLines(lang, size)
+	wordListType := Common
+	if !onlyPickCommonWords {
+		wordListType = All
+	}
+
+	lines, err := readFileAndGetLines(lang, size, wordListType)
 	if err != nil {
 		return nil, err
 	}
@@ -102,8 +96,8 @@ func GetRandomWords(lang i18n.Locale, size int, amount int) ([]string, error) {
 	return words, nil
 }
 
-func readFileAndGetLines(lang i18n.Locale, size int) ([]string, error) {
-	filePath := buildWordFilePath(lang, size)
+func readFileAndGetLines(lang i18n.Locale, size int, wlt WordListType) ([]string, error) {
+	filePath := buildWordFilePath(lang, size, wlt)
 
 	data, err := wordFiles.ReadFile(filePath)
 	if err != nil {
@@ -121,10 +115,11 @@ func readFileAndGetLines(lang i18n.Locale, size int) ([]string, error) {
 	return lines, nil
 }
 
-func buildWordFilePath(lang i18n.Locale, size int) string {
-	const base = "data/[LANGUAGE]/[LANGUAGE]-[SIZE].txt"
+func buildWordFilePath(lang i18n.Locale, size int, wlt WordListType) string {
+	const base = "data/[LANGUAGE]/[LANGUAGE]-[SIZE]-[LIST_TYPE].txt"
 
 	path := strings.ReplaceAll(base, "[LANGUAGE]", string(lang))
+	path = strings.ReplaceAll(path, "[LIST_TYPE]", string(wlt))
 	path = strings.ReplaceAll(path, "[SIZE]", strconv.Itoa(int(size)))
 
 	return path

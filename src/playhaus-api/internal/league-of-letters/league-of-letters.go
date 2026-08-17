@@ -36,10 +36,11 @@ var (
 	ErrGameNotFound = errors.New("game not found")
 	ErrInvalidInput = errors.New("invalid game settings")
 
-	ErrInvalidGuess   = errors.New("invalid guess")
-	ErrDuplicateGuess = errors.New("word already guessed this round")
-	ErrRoundClosed    = errors.New("round takes no more guesses")
-	ErrGameFinished   = errors.New("game is over")
+	ErrInvalidGuessCharacters      = errors.New("invalid guess")
+	ErrInvalidGuessWordNonExisting = errors.New("invalid guess")
+	ErrDuplicateGuess              = errors.New("word already guessed this round")
+	ErrRoundClosed                 = errors.New("round takes no more guesses")
+	ErrGameFinished                = errors.New("game is over")
 )
 
 type SoloLeagueOfLettersGame struct {
