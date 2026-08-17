@@ -1,4 +1,5 @@
 import type { Lobby } from "@/api/calls/league-of-letters-lobby";
+import { useFullScreen } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import BackButton from "@/components/ui/BackButton";
@@ -10,14 +11,14 @@ import ValueCard from "@/components/ui/ValueCard";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
-import LobbyCodeCard from "@/features/league-of-letters/components/LobbyCodeCard";
 import LobbyPlayerList from "@/features/league-of-letters/components/LobbyPlayerList";
+import LobbyTopBar from "@/features/league-of-letters/components/LobbyTopBar";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { LANGUAGES } from "@/features/league-of-letters/solo-settings";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 interface Props {
     /** Everything `useLobby` returned. The screen drives the room entirely through it. */
@@ -52,20 +53,26 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * sees the same settings as values and a line saying who they are waiting on. Splitting
  * it would mean keeping two copies of the code, the player list and the way out in step.
  *
- * The code is the point of the screen and sits at the top of it. Everything below is
- * either a thing to look at while waiting or, for the host, a thing to decide.
+ * The code is the point of the screen, so it does not scroll: `LobbyTopBar` is pinned and
+ * everything else moves past it. That is also why this page claims the whole viewport —
+ * inside the root layout's shared scroller there is nothing a page can pin against.
  */
 export default function LobbyView({ state, onStarted }: Props) {
     const router = useRouter();
     const { user } = useAuth();
-    const { lobby, isHost, full, saving, starting, closing } = state;
+    const { lobby, isHost, saving, starting, closing } = state;
+
+    // Claimed before the early returns below, because a hook cannot be called for one
+    // branch and not another. The waiting and failed states are the same page as the room
+    // — they just have less on them.
+    useFullScreen();
 
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
 
     if (state.error !== null) {
         return (
-            <View style={styles.container}>
+            <View style={styles.screen}>
                 <BackButton href={ROUTES.leagueOfLettersIndex} />
 
                 <InlineNotification
@@ -99,121 +106,112 @@ export default function LobbyView({ state, onStarted }: Props) {
     }
 
     return (
-        <View style={styles.container}>
-            {/*
-              * Not a `BackButton`: everywhere else in the app going back is free, and here
-              * it throws the room away. A link that does that without asking would be the
-              * one link in the app you cannot middle-click safely.
-              */}
-            <TextButton
-                text='Terug'
-                variant='neutral'
-                onPress={() => setLeaving(true)}
-                style={styles.leave}
-            />
+        <View style={styles.screen}>
+            {/* Outside the scroller, which is what keeps it still while the room moves. */}
+            <LobbyTopBar code={lobby.code} players={lobby.players.length} />
 
-            <View style={styles.body}>
-                <SimpleTextHero
-                    title='Kamer'
-                    description={isHost
-                        ? 'Deel de code, stel het spel in en start zodra iedereen binnen is.'
-                        : 'Je zit in de kamer. De host bepaalt de instellingen en start het spel.'}
+            <ScrollView
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+            >
+                {/*
+                  * Not a `BackButton`: everywhere else in the app going back is free, and
+                  * here it throws the room away. A link that does that without asking
+                  * would be the one link in the app you cannot middle-click safely.
+                  */}
+                <TextButton
+                    text='Terug'
+                    variant='neutral'
+                    onPress={() => setLeaving(true)}
+                    style={styles.leave}
                 />
 
-                <View style={tilt('-0.5deg')}>
-                    <LobbyCodeCard
-                        code={lobby.code}
-                        hint={isHost
-                            ? 'Je vrienden vullen deze code in bij "Of join een kamer".'
-                            : undefined}
+                <View style={styles.body}>
+                    <SimpleTextHero
+                        title='Kamer'
+                        description={isHost
+                            ? 'Deel de code hierboven — je vrienden vullen hem in bij "Of join een kamer".'
+                            : 'Je zit in de kamer. De host bepaalt de instellingen en start het spel.'}
                     />
-                </View>
 
-                <LobbyPlayerList
-                    players={lobby.players}
-                    hostId={lobby.hostId}
-                    userId={user?.id}
-                />
-
-                {/* The room is full: worth saying out loud, because the empty seats are
-                    what the player has been watching and there are none left to watch. */}
-                {full && (
-                    <InlineNotification
-                        icon='users'
-                        message='De kamer zit vol. Er kan niemand meer bij.'
+                    <LobbyPlayerList
+                        players={lobby.players}
+                        hostId={lobby.hostId}
+                        userId={user?.id}
                     />
-                )}
 
-                {isHost ? (
-                    <>
-                        <View style={tilt('0.4deg')}>
-                            <WordLengthCard
-                                value={lobby.settings.wordLength}
-                                onChange={wordLength => state.updateSettings({ ...lobby.settings, wordLength })}
+                    {isHost ? (
+                        <>
+                            <View style={tilt('0.4deg')}>
+                                <WordLengthCard
+                                    value={lobby.settings.wordLength}
+                                    onChange={wordLength => state.updateSettings({ ...lobby.settings, wordLength })}
+                                />
+                            </View>
+
+                            <View style={tilt('-0.3deg')}>
+                                <SelectInput
+                                    label='Taal'
+                                    value={lobby.settings.locale}
+                                    options={LANGUAGE_OPTIONS}
+                                    onChange={locale => state.updateSettings({ ...lobby.settings, locale })}
+                                />
+                            </View>
+                        </>
+                    ) : (
+                        // The same two settings, as values. A guest has to know what they
+                        // are about to play; they just do not get to change it.
+                        <>
+                            <ValueCard
+                                label='Woordlengte'
+                                value={`${lobby.settings.wordLength} letters`}
+                                icon='type'
                             />
-                        </View>
 
-                        <View style={tilt('-0.3deg')}>
-                            <SelectInput
+                            <ValueCard
                                 label='Taal'
-                                value={lobby.settings.locale}
-                                options={LANGUAGE_OPTIONS}
-                                onChange={locale => state.updateSettings({ ...lobby.settings, locale })}
+                                value={language?.label ?? '—'}
+                                icon='globe'
                             />
-                        </View>
-                    </>
-                ) : (
-                    // The same two settings, as values. A guest has to know what they are
-                    // about to play; they just do not get to change it.
-                    <>
-                        <ValueCard
-                            label='Woordlengte'
-                            value={`${lobby.settings.wordLength} letters`}
-                            icon='type'
+                        </>
+                    )}
+
+                    {state.actionError !== null && (
+                        <InlineNotification
+                            icon='alert-triangle'
+                            color={Colors.light.blush}
+                            title='Mislukt'
+                            message={state.actionError}
                         />
+                    )}
 
-                        <ValueCard
-                            label='Taal'
-                            value={language?.label ?? '—'}
-                            icon='globe'
+                    {isHost ? (
+                        <TextButton
+                            text={starting ? 'Bezig…' : 'Start het spel'}
+                            onPress={() => void start()}
+                            // A room of one has nobody to play against, and a save in the
+                            // air means the game could start on settings that did not stick.
+                            disabled={starting || saving || !enough}
+                            fullWidth
+                            style={styles.start}
                         />
-                    </>
-                )}
+                    ) : (
+                        <InlineNotification
+                            icon='clock'
+                            title='Wachten'
+                            message='De host start het spel. Blijf op dit scherm.'
+                        />
+                    )}
 
-                {state.actionError !== null && (
-                    <InlineNotification
-                        icon='alert-triangle'
-                        color={Colors.light.blush}
-                        title='Mislukt'
-                        message={state.actionError}
-                    />
-                )}
-
-                {isHost ? (
-                    <TextButton
-                        text={starting ? 'Bezig…' : 'Start het spel'}
-                        onPress={() => void start()}
-                        // A room of one has nobody to play against, and a save in the air
-                        // means the game could start on settings that did not stick.
-                        disabled={starting || saving || !enough}
-                        fullWidth
-                        style={styles.start}
-                    />
-                ) : (
-                    <InlineNotification
-                        icon='clock'
-                        title='Wachten'
-                        message='De host start het spel. Blijf op dit scherm.'
-                    />
-                )}
-
-                {isHost && !enough && (
-                    <InlineNotification
-                        icon='user-plus'
-                        message='Je hebt minstens één medespeler nodig voordat je kunt starten.'
-                    />
-                )}
-            </View>
+                    {isHost && !enough && (
+                        <InlineNotification
+                            icon='user-plus'
+                            message='Je hebt minstens één medespeler nodig voordat je kunt starten.'
+                        />
+                    )}
+                </View>
+            </ScrollView>
 
             {/*
               * The one thing on this screen that cannot be undone, so it is asked rather
@@ -251,13 +249,29 @@ export default function LobbyView({ state, onStarted }: Props) {
 const START_BUTTON_HEIGHT = 60;
 
 const styles = StyleSheet.create({
-    container: {
+    // Fills the height the root layout leaves under `Header`, which is what lets the bar
+    // sit still while the scroller under it moves.
+    screen: {
+        flex: 1,
         width: '100%'
     },
+    scroll: {
+        width: '100%',
+        // Clears the bar's hard shadow, which paints outside its own box and would
+        // otherwise be cropped by the scroller's top edge.
+        marginTop: Spacing.one + 2
+    },
+    scrollContent: {
+        // Nothing floats over this page — the bottom bar is hidden in full-screen mode —
+        // so the last card may use the bottom edge, give or take a card's own breathing room.
+        paddingBottom: Spacing.four
+    },
     // Stands where a `BackButton` would, so the way out is in the place the rest of the
-    // app has taught people to look for it.
+    // app has taught people to look for it. Trimmed at the top: the bar above it is
+    // already holding the page off the header.
     leave: {
-        marginVertical: Spacing.four
+        marginTop: Spacing.three,
+        marginBottom: Spacing.four
     },
     body: {
         gap: Spacing.four

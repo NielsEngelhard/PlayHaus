@@ -5,7 +5,6 @@ import {
     isHostOf,
     joinLobby,
     leaveLobby,
-    MAX_LOBBY_PLAYERS,
     setLobbyIdentity,
     startLobby,
     updateLobbySettings,
@@ -27,8 +26,6 @@ export interface LobbyState {
     actionError: string | null
     /** This player owns the room: the settings and the start button are theirs. */
     isHost: boolean
-    /** Every seat is taken. Nobody else is getting in. */
-    full: boolean
     /** A settings change is in the air. */
     saving: boolean
     /** Host only. Applied on screen at once, then sent. */
@@ -200,7 +197,6 @@ export function useLobby(code?: string): LobbyState {
     }, [waiting, lobby]);
 
     const isHost = lobby !== null && isHostOf(lobby, userId);
-    const full = lobby !== null && lobby.players.length >= MAX_LOBBY_PLAYERS;
 
     const updateSettings = useCallback((settings: LobbySettings) => {
         if (lobby === null || !isHost) return;
@@ -305,7 +301,6 @@ export function useLobby(code?: string): LobbyState {
         error,
         actionError,
         isHost,
-        full,
         saving,
         updateSettings,
         starting,

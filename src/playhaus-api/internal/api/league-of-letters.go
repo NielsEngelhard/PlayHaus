@@ -308,7 +308,7 @@ func (s *Server) handleCreateMultiplayerLobby(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	joinCode, err := s.leagueOfLetters.CreateMultiplayerLobby(userID)
+	joinCode, err := s.leagueOfLetters.CreateMultiplayerLobby(r.Context(), userID)
 	if err != nil {
 		s.log.Error("Error creating multiplayer lobby err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
