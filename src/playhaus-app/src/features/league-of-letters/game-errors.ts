@@ -1,3 +1,4 @@
+import { LobbyFullError } from '@/api/calls/league-of-letters-lobby';
 import { GameContractError } from '@/api/calls/league-of-letters';
 import { ApiError } from '@/api/client';
 
@@ -62,6 +63,33 @@ export function guessErrorMessage(error: unknown): string {
                 return 'Dit spel bestaat niet meer.';
             case 409:
                 return 'Deze ronde neemt geen gokken meer aan.';
+        }
+    }
+
+    return gameErrorMessage(error);
+}
+
+/**
+ * The same, for the multiplayer lobby.
+ *
+ * A room fails in ways a game does not — the code was mistyped, the host closed it
+ * while it was being joined, the six seats went — and every one of those is a sentence
+ * about a room rather than about a spel. `gameErrorMessage`'s 404 line in particular
+ * would be wrong here in the case that matters most: a code that never existed.
+ */
+export function lobbyErrorMessage(error: unknown): string {
+    if (error instanceof LobbyFullError) {
+        return 'Deze kamer zit vol.';
+    }
+
+    if (error instanceof ApiError) {
+        switch (error.status) {
+            // A code that is gone and a code that was never right are the same answer
+            // from the server, and the player is far more likely to have mistyped one.
+            case 404:
+                return 'Deze kamer bestaat niet (meer). Check de code.';
+            case 409:
+                return 'Dit spel is al begonnen.';
         }
     }
 

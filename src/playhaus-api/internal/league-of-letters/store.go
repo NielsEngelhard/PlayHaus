@@ -28,6 +28,14 @@ func (s *GormStore) CreateSoloGame(ctx context.Context, g *SoloLeagueOfLettersGa
 	return nil
 }
 
+func (s *GormStore) CreateMpLobby(ctx context.Context, g *MultiplayerLeagueOfLettersLobby) error {
+	err := s.db.WithContext(ctx).Create(g).Error
+	if err != nil {
+		return fmt.Errorf("insert mp lobby: %w", err)
+	}
+	return nil
+}
+
 // withBoard preloads the whole tree a game is played on, each level in the order
 // it is played in, so a caller never has to sort it back afterwards.
 func withBoard(db *gorm.DB) *gorm.DB {
