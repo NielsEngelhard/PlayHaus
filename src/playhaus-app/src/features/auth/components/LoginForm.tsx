@@ -10,10 +10,16 @@ import { StyleSheet, View } from "react-native";
 
 interface Props {
     onBack: () => void
+    /**
+     * Only needed where signing in does not take this form off screen with it.
+     * The gate unmounts on its own the moment the session starts; a sheet opened
+     * from inside a session — a guest trading up — has to be told to close.
+     */
+    onSuccess?: () => void
 }
 
 /** Signs an existing account in. Reached from the gate's account screen. */
-export default function LoginForm({ onBack }: Props) {
+export default function LoginForm({ onBack, onSuccess }: Props) {
     const { login } = useAuth();
 
     const [email, setEmail] = useState('');
@@ -34,7 +40,9 @@ export default function LoginForm({ onBack }: Props) {
 
         try {
             await login(email.trim(), password);
-            // Success unmounts this form along with the gate, so nothing to reset.
+            // Nothing to reset either way: in the gate success unmounts this form,
+            // and everywhere else `onSuccess` is what closes the sheet around it.
+            onSuccess?.();
         } catch (failure) {
             setError(authErrorMessage(failure));
             setBusy(false);

@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import Feather from "@expo/vector-icons/Feather";
+import type { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
@@ -11,6 +12,12 @@ interface Props {
     icon?: keyof typeof Feather.glyphMap,
     /** Fill behind the icon tile. */
     color?: string
+    /**
+     * Anything to do about it, under the message — usually a single button. A
+     * notification that only says something needs none, which is why this is
+     * optional rather than a second required half.
+     */
+    children?: ReactNode
 }
 
 /**
@@ -21,7 +28,8 @@ export default function InlineNotification({
     title,
     message,
     icon = 'info',
-    color = Colors.light.lemon
+    color = Colors.light.lemon,
+    children
 }: Props) {
     return (
         <Card>
@@ -36,6 +44,8 @@ export default function InlineNotification({
                     )}
 
                     <AppText style={styles.message}>{message}</AppText>
+
+                    {children && <View style={styles.actions}>{children}</View>}
                 </View>
             </View>
         </Card>
@@ -76,5 +86,13 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: Colors.light.text
+    },
+    // A row, so a button inside hugs its label instead of being stretched across
+    // the text column the way a column parent would stretch it.
+    actions: {
+        marginTop: Spacing.three,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: Spacing.two
     }
 })

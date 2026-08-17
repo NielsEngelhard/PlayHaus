@@ -45,7 +45,7 @@ func withBoard(db *gorm.DB) *gorm.DB {
 
 func (s *GormStore) DeleteSoloGameByID(ctx context.Context, soloGameID string, userID string) error {
 	result := s.db.WithContext(ctx).
-		Where("id = ? AND user_id = ?", soloGameID, userID).
+		Where("id = ? AND owner_id = ?", soloGameID, userID).
 		Delete(&SoloLeagueOfLettersGame{})
 
 	if result.Error != nil {

@@ -11,13 +11,19 @@ import { StyleSheet, View } from "react-native";
 
 interface Props {
     onBack: () => void
+    /**
+     * Only needed where signing up does not take this form off screen with it.
+     * The gate unmounts on its own the moment the session starts; a sheet opened
+     * from inside a session — a guest trading up — has to be told to close.
+     */
+    onSuccess?: () => void
 }
 
 /**
  * Creates an account and signs straight into it — one call, since the API
  * answers a signup with a session.
  */
-export default function SignupForm({ onBack }: Props) {
+export default function SignupForm({ onBack, onSuccess }: Props) {
     const { signup } = useAuth();
 
     const [name, setName] = useState('');
@@ -48,6 +54,7 @@ export default function SignupForm({ onBack }: Props) {
 
         try {
             await signup(name.trim(), trimmedEmail, password);
+            onSuccess?.();
         } catch (failure) {
             setError(authErrorMessage(failure));
             setBusy(false);
