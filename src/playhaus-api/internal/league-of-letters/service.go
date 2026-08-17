@@ -3,6 +3,7 @@ package league_of_letters
 import (
 	"context"
 	"fmt"
+	"playhaus-api/internal/config"
 	"time"
 
 	"playhaus-api/internal/i18n"
@@ -237,13 +238,23 @@ func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Lo
 		return nil, err
 	}
 
+	cfg, err := config.Load()
+	if err != nil {
+		return nil, fmt.Errorf("error loading config: %w", err)
+	}
+
 	rounds := make([]LeagueOfLettersRound, amount)
 	for i := range amount {
+		word := words[i]
+		if cfg.LeagueOfLettersDevMode == true {
+			word = "lepel"
+		}
+
 		rounds[i] = LeagueOfLettersRound{
 			ID:          uuid.New(),
 			GameID:      gameID,
 			RoundNumber: i + 1,
-			Word:        words[i],
+			Word:        word,
 		}
 	}
 

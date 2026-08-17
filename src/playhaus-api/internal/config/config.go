@@ -9,15 +9,12 @@ import (
 )
 
 type Config struct {
-	Addr            string
-	DBPath          string
-	ShutdownTimeout time.Duration
-	Debug           bool
-
-	// AllowedOrigins are the browser origins allowed to call this API
-	// cross-origin. Only the Expo web build needs them -- a native build sends
-	// no Origin header and is unaffected. Empty turns CORS off.
-	AllowedOrigins []string
+	Addr                   string
+	DBPath                 string
+	ShutdownTimeout        time.Duration
+	Debug                  bool
+	AllowedOrigins         []string
+	LeagueOfLettersDevMode bool // Always pick the first word of the list for all rounds (easy testing)
 }
 
 func Load() (Config, error) {
@@ -28,17 +25,13 @@ func Load() (Config, error) {
 		return Config{}, err
 	}
 
-	debug, err := envBool("DEBUG", false)
-	if err != nil {
-		return Config{}, err
-	}
-
 	return Config{
-		Addr:            env("ADDR", ":8080"),
-		DBPath:          env("DB_PATH", "data/app.db"),
-		ShutdownTimeout: shutdownTimeout,
-		Debug:           debug,
-		AllowedOrigins:  envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
+		Addr:                   env("ADDR", ":8080"),
+		DBPath:                 env("DB_PATH", "data/app.db"),
+		ShutdownTimeout:        shutdownTimeout,
+		Debug:                  envBool("DEBUG", false),
+		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
+		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", true),
 	}, nil
 }
 
@@ -51,6 +44,8 @@ func env(key, fallback string) string {
 	if v := os.Getenv(key); v != "" {
 		return v
 	}
+
+	fmt.Println("Missing environment variable: " + key)
 	return fallback
 }
 
@@ -60,6 +55,7 @@ func env(key, fallback string) string {
 func envList(key string, fallback []string) []string {
 	raw, ok := os.LookupEnv(key)
 	if !ok {
+		fmt.Println("Missing environment variable: " + key)
 		return fallback
 	}
 
@@ -75,16 +71,14 @@ func envList(key string, fallback []string) []string {
 // envBool and envDuration fall back only when the variable is unset. A value
 // that is set but unparseable is a typo in someone's deploy config, so it is
 // reported rather than quietly ignored.
-func envBool(key string, fallback bool) (bool, error) {
+func envBool(key string, fallback bool) bool {
 	raw := os.Getenv(key)
-	if raw == "" {
-		return fallback, nil
-	}
 	v, err := strconv.ParseBool(raw)
 	if err != nil {
-		return false, fmt.Errorf("%s=%q is not a boolean: %w", key, raw, err)
+		fmt.Println("Missing environment variable: " + key)
+		return fallback
 	}
-	return v, nil
+	return v
 }
 
 func envDuration(key string, fallback time.Duration) (time.Duration, error) {

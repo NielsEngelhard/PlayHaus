@@ -181,6 +181,19 @@ export async function getCurrentGame(): Promise<Game | null> {
 }
 
 /**
+ * Gives up on a game, for good: the server deletes the row rather than moving it
+ * to `abandoned`, so there is nothing to read back afterwards and no undo to
+ * offer. Ask before calling it.
+ *
+ * Owning it is the whole of the permission model, as with `getGame` — the delete
+ * is scoped to the caller, so someone else's game is a no-op rather than a
+ * refusal. Answers 204 with no body.
+ */
+export async function abandonGame(gameId: string): Promise<void> {
+    await request<void>(`/api/v1/league-of-letters/solo/${gameId}`, { method: 'DELETE' });
+}
+
+/**
  * Submits a guess against the game's current round.
  *
  * The word is scored server-side. Marks never come from here.

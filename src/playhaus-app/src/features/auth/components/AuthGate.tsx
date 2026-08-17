@@ -1,12 +1,10 @@
-import Card from "@/components/ui/Card";
-import { Spacing } from "@/constants/theme";
 import AccountChoice from "@/features/auth/components/AccountChoice";
 import AuthChoice from "@/features/auth/components/AuthChoice";
+import AuthSheet from "@/features/auth/components/AuthSheet";
 import LoginForm from "@/features/auth/components/LoginForm";
 import SignupForm from "@/features/auth/components/SignupForm";
 import { useAuth } from "@/features/auth/useAuth";
 import { useState } from "react";
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, View } from "react-native";
 
 type GateView = 'choice' | 'account' | 'login' | 'signup';
 
@@ -44,68 +42,27 @@ function AuthGateSheet() {
     const [view, setView] = useState<GateView>('choice');
 
     return (
-        <Modal
-            visible
-            transparent
-            animationType='fade'
-            statusBarTranslucent
-            // Android's hardware back would otherwise dismiss the gate and leave the
-            // app running with no session. There is deliberately no way past this.
-            onRequestClose={() => { }}
-        >
-            <KeyboardAvoidingView
-                style={styles.backdrop}
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            >
-                {/* The signup form plus an on-screen keyboard outgrows a short phone,
-                    so the card scrolls rather than clipping its submit button. */}
-                <ScrollView
-                    contentContainerStyle={styles.scrollContent}
-                    keyboardShouldPersistTaps='handled'
-                    showsVerticalScrollIndicator={false}
-                >
-                    <View style={styles.sheet}>
-                        <Card>
-                            {view === 'choice' && (
-                                <AuthChoice onAccount={() => setView('account')} />
-                            )}
+        // No `onRequestClose`: Android's hardware back would otherwise dismiss the
+        // gate and leave the app running with no session. There is deliberately no
+        // way past this one.
+        <AuthSheet>
+            {view === 'choice' && (
+                <AuthChoice onAccount={() => setView('account')} />
+            )}
 
-                            {view === 'account' && (
-                                <AccountChoice
-                                    onLogin={() => setView('login')}
-                                    onCreateAccount={() => setView('signup')}
-                                    onBack={() => setView('choice')}
-                                />
-                            )}
+            {view === 'account' && (
+                <AccountChoice
+                    onLogin={() => setView('login')}
+                    onCreateAccount={() => setView('signup')}
+                    onBack={() => setView('choice')}
+                />
+            )}
 
-                            {/* Back goes to the account fork, not all the way out: it undoes
-                                the last choice made rather than the whole trip. */}
-                            {view === 'login' && <LoginForm onBack={() => setView('account')} />}
+            {/* Back goes to the account fork, not all the way out: it undoes
+                the last choice made rather than the whole trip. */}
+            {view === 'login' && <LoginForm onBack={() => setView('account')} />}
 
-                            {view === 'signup' && <SignupForm onBack={() => setView('account')} />}
-                        </Card>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </Modal>
+            {view === 'signup' && <SignupForm onBack={() => setView('account')} />}
+        </AuthSheet>
     )
 }
-
-const styles = StyleSheet.create({
-    backdrop: {
-        flex: 1,
-        // Dimmed rather than opaque: the app stays visible behind the gate, so it
-        // reads as "not yet" rather than as a different app.
-        backgroundColor: 'rgba(15, 13, 18, 0.6)'
-    },
-    scrollContent: {
-        flexGrow: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: Spacing.four
-    },
-    sheet: {
-        width: '100%',
-        maxWidth: 420
-    }
-})
