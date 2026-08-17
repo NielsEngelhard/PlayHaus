@@ -286,10 +286,7 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                 />
             )}
 
-            {/* Up for exactly as long as there is a word to type. It goes the moment the
-                round is decided — including while the winning row is still turning over,
-                so the keys are not left hanging under a board that is done with them. */}
-            {!finished && (
+            {(!finished || revealing) && (
                 <LetterKeyboard
                     // The newest guess is left out until the board has finished showing it —
                     // the keys would otherwise colour in before the tiles they belong to.
@@ -297,10 +294,7 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                     onKey={type}
                     onEnter={submit}
                     onBackspace={backspace}
-                    // Locked while a guess is in flight: a second word typed over the top of
-                    // one still in the air would land in a row that is about to be filled by
-                    // the first.
-                    disabled={finished || sending}
+                    disabled={finished || sending || revealing}
                 />
             )}
 
