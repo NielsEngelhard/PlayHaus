@@ -1,17 +1,14 @@
 import AppText from "@/components/text/AppText";
-import { FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
+    /** Newlines are honoured, for a title the design breaks at a chosen word. */
     title: string,
     description?: string
 }
 
-/**
- * A page's opening title and blurb. Smaller than `BigIntroText` — that one is for the
- * home page's statement, this one heads up an ordinary page.
- */
+/** A page's headline and the line under it. */
 export default function SimpleTextHero({ title, description }: Props) {
     const styles = useStyles();
 
@@ -28,21 +25,20 @@ export default function SimpleTextHero({ title, description }: Props) {
 
 const useStyles = createThemedStyles(theme => ({
     container: {
-        paddingHorizontal: Spacing.one,
         width: '100%'
     },
     title: {
-        fontSize: FontSizes.xxxl,
+        fontSize: 32,
         fontWeight: 900,
-        lineHeight: FontSizes.xxxl * 1.1,
-        letterSpacing: -0.7,
+        lineHeight: 32 * 1.04,
+        letterSpacing: -1.2,
         color: theme.colors.text
     },
     description: {
-        marginTop: Spacing.two,
-        maxWidth: 448,
-        fontSize: FontSizes.md,
-        lineHeight: FontSizes.md * 1.5,
+        marginTop: 10,
+        maxWidth: 300,
+        fontSize: 14,
+        lineHeight: 14 * 1.5,
         color: theme.colors.textSecondary
     }
 }))

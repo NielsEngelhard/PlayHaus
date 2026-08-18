@@ -1,11 +1,11 @@
 import AppText from "@/components/text/AppText";
 import { tagChips } from "@/constants/games";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, Spacing, linearGradient } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Platform, Pressable, StyleSheet, View, type ViewStyle } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
     tag: string,
@@ -56,7 +56,7 @@ export default function NavigationCard({
                     playable ? theme.popShadow(color) : styles.cardDim
                 ])}
             >
-                <View style={[styles.tile, tileGradient(gradient)]}>
+                <View style={[styles.tile, linearGradient(gradient)]}>
                     <AppText style={[styles.glyph, { color: glyphInk }]}>{name[0]}</AppText>
                 </View>
 
@@ -103,19 +103,6 @@ export default function NavigationCard({
             </Pressable>
         </Link>
     )
-}
-
-/**
- * The tile's fill. `experimental_backgroundImage` is React Native 0.86's own gradient
- * support, so this needs no library — only the web prefix stripped off.
- */
-function tileGradient(stops: readonly [string, string, string]): ViewStyle {
-    const gradient = `linear-gradient(160deg, ${stops[0]}, ${stops[1]} 55%, ${stops[2]})`;
-
-    return Platform.select<ViewStyle>({
-        web: { backgroundImage: gradient } as ViewStyle,
-        default: { experimental_backgroundImage: gradient } as ViewStyle
-    })!;
 }
 
 const useStyles = createThemedStyles(theme => ({

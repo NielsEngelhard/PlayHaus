@@ -1,70 +1,78 @@
-import JoinLeagueOfLettersGameCard from "@/components/league-of-letters/JoinLeagueOfLettersGameCard";
+import { MAX_LOBBY_PLAYERS } from "@/api/calls/league-of-letters-lobby";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
-import BackButton from "@/components/ui/BackButton";
-import SimpleNavigationCard from "@/components/ui/SimpleNavigationCard";
-import ValueCard from "@/components/ui/ValueCard";
-import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
-import { useAuth } from "@/features/auth/useAuth";
-import { useTheme } from "@/features/theme/ThemeContext";
+import { Brand, Gradients, Spacing } from "@/constants/theme";
+import ModeCard from "@/features/league-of-letters/components/ModeCard";
+import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
+import RoomCodeCard from "@/features/league-of-letters/components/RoomCodeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
 
 export default function LeagueOfLettersIndexPage() {
     const theme = useTheme();
     const styles = useStyles();
 
-    const { user } = useAuth()
-
     return (
-        <View style={styles.container}>            
-            <View style={styles.body}>
-                <SimpleTextHero
-                    title={LEAGUE_OF_LETTERS_NAME}
-                    description='Raad het woord. Groen = goed, oranje = juiste letter verkeerde plek.'
-                />
+        <View style={styles.container}>
+            {/* Broken by hand rather than left to wrap: the design sets the two words on
+                their own lines, and letting the column decide would move the break as the
+                viewport changes. */}
+            <SimpleTextHero
+                title={'League of\nLetters'}
+                description='Raad het woord. Groen = goed, oranje = juiste letter verkeerde plek.'
+            />
 
-                <ValueCard label='Je naam' value={user?.name ?? "..."} icon='user' />
-
-                <View style={styles.options}>
-                    <SimpleNavigationCard
-                        icon='cpu'
-                        color={theme.colors.lemon}
-                        title='Solo'
-                        description='Random woord, jij kiest lengte en taal.'
-                        navigationUrl={ROUTES.leagueOfLettersSoloSettings}
-                    />
-
-                    <SimpleNavigationCard
-                        icon='users'
-                        color={theme.colors.primary}
-                        iconColor={theme.colors.textOnAccent}
-                        title='Multiplayer'
-                        description='Play against your friends (or foes)'
-                        navigationUrl={ROUTES.leagueOfLettersCreateRoom}
-                    />
-                </View>
-
-                <JoinLeagueOfLettersGameCard />
+            <View style={styles.playingAs}>
+                <PlayingAsCard />
             </View>
 
-            <BackButton href={ROUTES.home} />
+            <View style={styles.modes}>
+                <ModeCard
+                    icon='cpu'
+                    gradient={Gradients.lemon}
+                    // Ink in both schemes: the lemon tile is the palest thing on the page
+                    // and paper would vanish into it.
+                    iconInk={Brand.ink}
+                    highlight={0.5}
+                    title='Solo'
+                    description='Drie rondes tegen jezelf. Jij kiest lengte en taal.'
+                    navigationUrl={ROUTES.leagueOfLettersSoloSettings}
+                />
+
+                <ModeCard
+                    icon='users'
+                    gradient={Gradients.primary}
+                    // The warm tile takes ink in dark, the way every bright fill does
+                    // there, and paper in light.
+                    iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
+                    highlight={0.35}
+                    title='Multiplayer'
+                    chip={`2-${MAX_LOBBY_PLAYERS}`}
+                    description='Open een kamer, deel de code, race tegen je vrienden.'
+                    navigationUrl={ROUTES.leagueOfLettersCreateRoom}
+                />
+            </View>
+
+            <View style={styles.join}>
+                <RoomCodeCard />
+            </View>
         </View>
     )
 }
 
-const useStyles = createThemedStyles(theme => ({
+const useStyles = createThemedStyles(() => ({
     container: {
         width: '100%'
     },
-    body: {
-        marginTop: Spacing.three,
-        gap: Spacing.four
+    playingAs: {
+        marginTop: Spacing.three
     },
-    options: {
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        gap: Spacing.three
+    modes: {
+        marginTop: Spacing.three,
+        gap: Spacing.three - 4
+    },
+    join: {
+        marginTop: Spacing.three
     }
 }))
