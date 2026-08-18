@@ -1,4 +1,5 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
+import type { Theme } from "@/constants/theme";
 import { Brand } from "@/constants/theme";
 
 /**
@@ -12,16 +13,56 @@ import { Brand } from "@/constants/theme";
 export interface MarkStyle {
     fill: string,
     /** Ink or paper, whichever stays readable on top of `fill`. */
-    foreground: string
+    foreground: string,
+    /**
+     * The tile's outline.
+     *
+     * Light draws every tile in ink, so a mark is a fill inside a constant frame. Dark has
+     * no ink to draw with, so each mark outlines itself in its own colour and the frame
+     * disappears — which is what stops six bright tiles reading as six buttons.
+     */
+    border: string
 }
 
-export const MARK_STYLES: Record<Mark, MarkStyle> = {
-    correct: { fill: Brand.mint, foreground: Brand.ink },
-    present: { fill: Brand.lemon, foreground: Brand.ink },
-    // Deliberately the darkest of the three rather than a pale grey: an empty tile is
-    // already the pale one, and "not in the word" has to read as struck out, not as blank.
-    absent: { fill: Brand.slate, foreground: Brand.textOnAccent }
-};
+/**
+ * What each mark looks like in the scheme currently on.
+ *
+ * A function of the theme rather than a constant, because `absent` is not a brand hue: on
+ * paper it is the darkest thing on the board, and on the dark canvas it is the flattest.
+ * Cheap to call — it builds one small object and every caller is already inside a render
+ * that has the theme in hand.
+ */
+export function markStyles(theme: Theme): Record<Mark, MarkStyle> {
+    const dark = theme.scheme === 'dark';
+
+    return {
+        correct: {
+            fill: theme.colors.mint,
+            foreground: Brand.ink,
+            border: dark ? theme.colors.mint : theme.colors.border
+        },
+        present: {
+            fill: theme.colors.lemon,
+            foreground: Brand.ink,
+            border: dark ? theme.colors.lemon : theme.colors.border
+        },
+        // Deliberately not a pale grey: an empty tile is already the pale one, and "not in
+        // the word" has to read as struck out, not as blank.
+        absent: {
+            fill: theme.colors.markAbsent,
+            foreground: dark ? theme.colors.textFaint : Brand.textOnAccent,
+            border: dark ? theme.colors.borderSubtle : theme.colors.border
+        }
+    };
+}
+
+/**
+ * How many faces the reel below has.
+ *
+ * Stated as a constant as well, because `GuessGrid` works the spin's total duration out at
+ * module scope — before there is a theme to build the reel with. Change one, change both.
+ */
+export const TEASE_REEL_LENGTH = 4;
 
 /**
  * The colours the last tile riffles through when the row is one letter from solved.
@@ -31,12 +72,20 @@ export const MARK_STYLES: Record<Mark, MarkStyle> = {
  * would let a player read the ending off it a beat early. Ordered dullest to best so each
  * pass builds, and so the two passes run into each other as a cycle rather than a list.
  */
-export const TEASE_REEL: MarkStyle[] = [
-    MARK_STYLES.absent,
-    MARK_STYLES.present,
-    { fill: Brand.destructive, foreground: Brand.textOnAccent },
-    MARK_STYLES.correct
-];
+export function teaseReel(theme: Theme): MarkStyle[] {
+    const marks = markStyles(theme);
+
+    return [
+        marks.absent,
+        marks.present,
+        {
+            fill: theme.colors.destructive,
+            foreground: Brand.textOnAccent,
+            border: theme.scheme === 'dark' ? theme.colors.destructive : theme.colors.border
+        },
+        marks.correct
+    ];
+}
 
 /** Best first — a letter that has ever been `correct` never falls back to `present`. */
 const MARK_RANK: Record<Mark, number> = { correct: 3, present: 2, absent: 1 };

@@ -15,6 +15,11 @@ interface Props {
     /** Fill behind the icon tile. */
     color?: string
     /**
+     * The glyph on that fill. Only worth passing for a fill dark enough that the
+     * ink default disappears into it — a saturated one wants paper instead.
+     */
+    iconColor?: string
+    /**
      * Anything to do about it, under the message — usually a single button. A
      * notification that only says something needs none, which is why this is
      * optional rather than a second required half.
@@ -31,6 +36,7 @@ export default function InlineNotification({
     message,
     icon = 'info',
     color,
+    iconColor,
     children
 }: Props) {
     const theme = useTheme();
@@ -44,7 +50,7 @@ export default function InlineNotification({
         <Card>
             <View style={styles.row}>
                 <View style={[styles.iconTile, { backgroundColor: fill }]}>
-                    <Feather name={icon} size={18} color={theme.colors.text} />
+                    <Feather name={icon} size={18} color={iconColor ?? theme.colors.text} />
                 </View>
 
                 <View style={styles.body}>

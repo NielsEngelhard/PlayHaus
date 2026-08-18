@@ -10,6 +10,10 @@ import type Feather from '@expo/vector-icons/Feather';
  * announce itself is a page that can forget to, and the symptom of forgetting is the
  * *previous* page's name sitting in the chrome — which is exactly the bug this used to
  * have. The route always knows.
+ *
+ * `headerContextFor` answers `null` for a screen that should have no header at all. A
+ * board is the whole screen: the wordmark and the theme toggle are not what anyone needs
+ * mid-round, and the round bar it draws for itself already carries the way out.
  */
 export interface HeaderContext {
     /** Where the back chip goes, or `null` to show the wordmark in its place. */
@@ -35,7 +39,10 @@ function isGameHub(pathname: string): boolean {
     return /^\/games\/[^/]+$/.test(pathname);
 }
 
-export function headerContextFor(pathname: string): HeaderContext {
+export function headerContextFor(pathname: string): HeaderContext | null {
+    // A board in progress. See `HeaderContext` above for why it goes bare.
+    if (pathname === ROUTES.leagueOfLettersSolo) return null;
+
     // Setting up a solo game. Loud lemon rather than the game's own accent: this screen
     // is about one mode of one game, and the pill is the only thing on it that says
     // which mode.

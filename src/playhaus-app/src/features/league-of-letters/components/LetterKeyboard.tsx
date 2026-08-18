@@ -1,8 +1,8 @@
 import type { Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
-import { FontSizes, Spacing } from "@/constants/theme";
-import { MARK_STYLES } from "@/features/league-of-letters/marks";
+import { Brand } from "@/constants/theme";
+import { markStyles } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -25,10 +25,10 @@ interface Props {
  */
 const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'] as const;
 
-const GAP = Spacing.one;
+const GAP = 5;
 
 /** How much wider the two action keys are than a letter. */
-const ACTION_FLEX = 1.5;
+const ACTION_FLEX = 1.6;
 
 /**
  * The keyboard is the one thing on the screen that must never scroll off, so it gives up
@@ -38,7 +38,7 @@ const ACTION_FLEX = 1.5;
 function keyHeightFor(windowHeight: number): number {
     if (windowHeight < 640) return 40;
     if (windowHeight < 780) return 44;
-    return 48;
+    return 47;
 }
 
 /** The on-screen keyboard. Fills the width of whatever it is put in. */
@@ -56,25 +56,23 @@ export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, dis
                 ))}
             </View>
 
+            {/* No half-key spacers at the ends, unlike a phone keyboard: the design lets
+                the nine keys share the full width, so they come out a little wider than
+                the ten above rather than sitting in a narrower block. */}
             <View style={styles.row}>
-                {/* Half a key at each end, so the nine keys stay centred under the ten above. */}
-                <View style={styles.spacer} />
-
                 {ROWS[1].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
                 ))}
-
-                <View style={styles.spacer} />
             </View>
 
             <View style={styles.row}>
-                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} applyAccentStyle />
+                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} variant='enter' />
 
                 {ROWS[2].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
                 ))}
 
-                <ActionKey icon='delete' label='Wissen' height={keyHeight} disabled={disabled} onPress={onBackspace} applyDeleteStyle />
+                <ActionKey icon='delete' label='Wissen' height={keyHeight} disabled={disabled} onPress={onBackspace} variant='delete' />
             </View>
         </View>
     )
@@ -92,7 +90,7 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
     const theme = useTheme();
     const styles = useStyles();
 
-    const marked = mark ? MARK_STYLES[mark] : undefined;
+    const marked = mark ? markStyles(theme)[mark] : undefined;
 
     return (
         <PopPressable
@@ -104,7 +102,9 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
             style={[
                 styles.key,
                 { height },
-                marked ? { backgroundColor: marked.fill } : styles.keyUnknown,
+                marked
+                    ? { backgroundColor: marked.fill, borderColor: marked.border }
+                    : styles.keyUnknown,
                 disabled && styles.keyDisabled
             ]}
         >
@@ -121,13 +121,18 @@ interface ActionKeyProps {
     height: number,
     disabled: boolean,
     onPress: () => void,
-    applyAccentStyle?: boolean
-    applyDeleteStyle?: boolean
+    variant: 'enter' | 'delete'
 }
 
-function ActionKey({ icon, label, height, disabled, onPress, applyAccentStyle = false, applyDeleteStyle = false }: ActionKeyProps) {
+function ActionKey({ icon, label, height, disabled, onPress, variant }: ActionKeyProps) {
     const theme = useTheme();
     const styles = useStyles();
+
+    // Enter is the loud one and takes ink on paper, lemon on ink. Delete only ever
+    // colours its glyph — a full red key beside nine plain ones reads as a warning.
+    const ink = variant === 'enter'
+        ? (theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent)
+        : theme.colors.destructiveText;
 
     return (
         <Pressable
@@ -136,55 +141,67 @@ function ActionKey({ icon, label, height, disabled, onPress, applyAccentStyle = 
             accessibilityRole='button'
             accessibilityLabel={label}
             accessibilityState={{ disabled }}
-            style={[styles.key, styles.actionKey, applyAccentStyle && styles.actionKeyAccent, applyDeleteStyle && styles.deleteKeyAccent, { height }, disabled && styles.keyDisabled]}
+            style={[
+                styles.key,
+                styles.actionKey,
+                variant === 'enter' ? styles.enterKey : styles.deleteKey,
+                { height },
+                disabled && styles.keyDisabled
+            ]}
         >
-            <Feather name={icon} size={18} color={(applyAccentStyle || applyDeleteStyle) ? theme.colors.textOnAccent : theme.colors.text} />
+            <Feather name={icon} size={18} color={ink} />
         </Pressable>
     )
 }
 
-const useStyles = createThemedStyles(theme => ({
-    keyboard: {
-        width: '100%',
-        gap: GAP
-    },
-    row: {
-        flexDirection: 'row',
-        gap: GAP
-    },
-    spacer: {
-        flex: 0.5
-    },
-    key: {
-        // Every key shares the row evenly, so one layout covers a 360dp phone and a
-        // 600dp content column without a breakpoint anywhere.
-        flex: 1,
-        minWidth: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        borderRadius: 10,
-        ...theme.shadows.hardSmall
-    },
-    keyUnknown: {
-        backgroundColor: theme.colors.backgroundSecondary
-    },
-    actionKey: {
-        flex: ACTION_FLEX,
-        backgroundColor: theme.colors.muted
-    },
-    actionKeyAccent: {
-        backgroundColor: theme.colors.secondary
-    },
-    deleteKeyAccent: {
-        backgroundColor: theme.colors.destructive
-    },
-    keyDisabled: {
-        opacity: 0.5
-    },
-    keyText: {
-        fontSize: FontSizes.md,
-        fontWeight: 900
-    }
-}))
+const useStyles = createThemedStyles(theme => {
+    const dark = theme.scheme === 'dark';
+
+    return {
+        keyboard: {
+            flexShrink: 0,
+            width: '100%',
+            gap: 6
+        },
+        row: {
+            flexDirection: 'row',
+            gap: GAP
+        },
+        key: {
+            // Every key shares the row evenly, so one layout covers a 360dp phone and a
+            // 600dp content column without a breakpoint anywhere.
+            flex: 1,
+            minWidth: 0,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 12,
+            borderWidth: theme.borderWidth,
+            borderColor: theme.colors.border,
+            // Seated rather than floating: the shadow is directly underneath, so a key
+            // reads as something pressed down into the board instead of hanging off it.
+            ...(dark ? {} : { boxShadow: '0 2px 0 0 rgba(15, 13, 18, 0.85)' })
+        },
+        keyUnknown: {
+            borderColor: theme.colors.border,
+            backgroundColor: dark ? theme.colors.backgroundFocus : theme.colors.backgroundSecondary
+        },
+        actionKey: {
+            flex: ACTION_FLEX
+        },
+        enterKey: {
+            borderColor: dark ? theme.colors.lemon : theme.colors.border,
+            backgroundColor: dark ? theme.colors.lemon : theme.colors.text
+        },
+        deleteKey: {
+            borderColor: dark ? theme.colors.borderStrong : theme.colors.border,
+            backgroundColor: dark ? theme.colors.markAbsent : theme.colors.backgroundSecondary
+        },
+        keyDisabled: {
+            opacity: 0.5
+        },
+        keyText: {
+            fontSize: 15,
+            fontWeight: 800
+        }
+    };
+})

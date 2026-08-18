@@ -1,6 +1,7 @@
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import LanguageSelect from "@/components/ui/LanguageSelect";
+import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import AccountModal from "@/features/auth/components/AccountModal";
 import { useAuth } from "@/features/auth/useAuth";
@@ -12,7 +13,6 @@ import ProfileNameCard from "@/features/settings/components/ProfileNameCard";
 import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsCard";
 import type { SettingKey } from "@/features/settings/profile";
 import { useProfile } from "@/features/settings/useProfile";
-import { ROUTES } from "@/constants/routes";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -125,8 +125,6 @@ export default function ProfilePage() {
                     profile page belongs to the account you just left. */}
                 <LogoutCard onLogout={() => { void logout().then(() => router.replace(ROUTES.home)); }} />
             </View>
-
-            <AppText style={styles.footer}>Playhaus · alles blijft op je eigen apparaat</AppText>
 
             {/* Rendered from here rather than from the notice, so it is not the
                 notice's own disappearance that tears it off screen on success. */}
