@@ -14,6 +14,13 @@ interface ReconnectableGames {
     refreshing: boolean
     /** The load failed. There is no list to show, so the page offers the refresh. */
     error: string | null
+    /**
+     * When the list on screen came back, as an ISO timestamp, or `null` while there
+     * has never been one. The page prints it as "bijgewerkt zojuist"; it is deliberately
+     * the *successful* load, so a failed refresh does not claim to be fresher than the
+     * list it just threw away.
+     */
+    loadedAt: string | null
     refresh: () => void
 }
 
@@ -55,6 +62,7 @@ function playable(games: ReconnectableGame[]): ReconnectableGame[] {
 export function useReconnectableGames(): ReconnectableGames {
     const { status } = useAuth();
     const [games, setGames] = useState<ReconnectableGame[] | null>(null);
+    const [loadedAt, setLoadedAt] = useState<string | null>(null);
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -78,6 +86,7 @@ export function useReconnectableGames(): ReconnectableGames {
 
             setError(null);
             setGames(playable(fresh));
+            setLoadedAt(new Date().toISOString());
         } catch (failure) {
             if (!mounted.current) return;
 
@@ -85,6 +94,7 @@ export function useReconnectableGames(): ReconnectableGames {
             // we no longer know what is still running, and leaving stale rows up
             // under an error would offer games that may already be over.
             setGames(null);
+            setLoadedAt(null);
             setError(reconnectErrorMessage(failure));
         } finally {
             if (mounted.current) setRefreshing(false);
@@ -133,6 +143,7 @@ export function useReconnectableGames(): ReconnectableGames {
         loading: status !== 'signedOut' && games === null && error === null,
         refreshing,
         error: signedIn ? error : null,
+        loadedAt,
         refresh
     };
 }
