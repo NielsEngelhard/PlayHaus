@@ -1,9 +1,12 @@
 package api
 
 import (
+	"bufio"
 	"context"
 	"errors"
+	"fmt"
 	"log/slog"
+	"net"
 	"net/http"
 	"slices"
 	"time"
@@ -89,6 +92,13 @@ func (s *Server) requireAuth(next http.HandlerFunc) http.HandlerFunc {
 }
 
 // statusRecorder remembers the status code so logRequests can report it.
+//
+// Wrapping a ResponseWriter hides everything about it the interface does not name,
+// and a websocket upgrade needs two of those things: Hijack, to take the connection
+// over, and the deadline setters, which http.ResponseController finds by unwrapping.
+// Embedding the interface promotes neither -- only the methods the interface itself
+// declares -- so both are handed through by name below. Without them every request
+// through this middleware is un-upgradeable, which is to say all of them.
 type statusRecorder struct {
 	http.ResponseWriter
 	status int
@@ -107,6 +117,34 @@ func (rec *statusRecorder) Write(b []byte) (int, error) {
 	n, err := rec.ResponseWriter.Write(b)
 	rec.bytes += n
 	return n, err
+}
+
+// Unwrap is what http.NewResponseController follows to reach the real writer, and
+// so is how a handler clears the server's read and write deadlines before taking a
+// connection over for a socket.
+func (rec *statusRecorder) Unwrap() http.ResponseWriter { return rec.ResponseWriter }
+
+// Hijack hands the raw connection over for a protocol switch.
+//
+// A hijacked request never comes back through Write or WriteHeader, so the status
+// this recorder is for is never set. 101 is recorded by hand rather than left at
+// zero, which logRequests would otherwise report as a 200.
+func (rec *statusRecorder) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+	hijacker, ok := rec.ResponseWriter.(http.Hijacker)
+	if !ok {
+		return nil, nil, fmt.Errorf("api: %T does not support hijacking", rec.ResponseWriter)
+	}
+
+	rec.status = http.StatusSwitchingProtocols
+	return hijacker.Hijack()
+}
+
+// Flush passes a flush through, for the same reason Hijack is here: some writers
+// downstream need one and cannot be reached through the interface this embeds.
+func (rec *statusRecorder) Flush() {
+	if flusher, ok := rec.ResponseWriter.(http.Flusher); ok {
+		flusher.Flush()
+	}
 }
 
 func logRequests(log *slog.Logger) middleware {

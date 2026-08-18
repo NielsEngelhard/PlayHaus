@@ -1,5 +1,6 @@
 import { request } from '@/api/client';
-import type { LanguageCode, WordLength } from '@/features/league-of-letters/solo-settings';
+import type { LanguageCode } from '@/constants/languages';
+import type { WordLength } from '@/features/league-of-letters/solo-settings';
 
 /**
  * A League of Letters game as the API describes it. Mirrors the response types in
@@ -26,12 +27,21 @@ export interface GamePlayer {
 export interface GameGuess {
     id: string
     userId: string
-    /** This player's nth guess in the round, counting from 1. */
+    /**
+     * Which row this is, counting from 1. In solo that is your nth guess; on a
+     * multiplayer board the rows are shared, so it is the nth row of the round
+     * whoever played it.
+     */
     guessNumber: number
     word: string
     /** One mark per letter, in the word's own order. Scored server-side, never here. */
     marks: Mark[]
     createdAt: string
+    /**
+     * A row the clock filled in rather than a player: their turn ran out. It has no
+     * word and no marks, and `userId` is whoever ran out of time. Multiplayer only.
+     */
+    skipped?: boolean
 }
 
 export interface GameRound {
@@ -52,8 +62,9 @@ export interface GameRound {
      */
     word?: string
     /**
-     * The deadline. Never sent for solo, which runs without one; the mocked
-     * multiplayer room sets it so the timer has something to count down.
+     * The deadline. Never sent for solo, which runs without one. On multiplayer it
+     * is the current turn's deadline and is set on the round being played and no
+     * other, so the board's countdown reads it without knowing about turns.
      */
     endsAt?: string
 }
@@ -74,13 +85,17 @@ export interface Game {
     /** Every round of the game, drawn up front and ordered by `roundNumber`. */
     rounds: GameRound[]
     /**
-     * Absent on anything the API served, which is only ever solo today. The mocked
-     * multiplayer room sets it, and the board reads it to decide whether to show a
-     * clock and the other players.
+     * Which sort of game this is. Absent on a solo game, where there is nobody else
+     * and no clock; the board reads it to decide whether to draw either.
      */
     mode?: GameMode
-    /** Multiplayer only, and so mock-only for now. */
+    /** Everyone at the table, with their scores. Multiplayer only. */
     players?: GamePlayer[]
+    /**
+     * Who may play right now, and until when. Multiplayer only — a solo board is
+     * always yours and never on a clock.
+     */
+    turn?: Turn
 }
 
 export interface NewGame {
@@ -208,4 +223,77 @@ export function submitGuess(gameId: string, word: string): Promise<GuessResult> 
 /** The round being played, or undefined on a game whose rounds are all done. */
 export function roundOf(game: Game, roundNumber: number): GameRound | undefined {
     return game.rounds.find(round => round.roundNumber === roundNumber);
+}
+
+// ---------------------------------------------------------------------------
+// Multiplayer
+//
+// The board is the same board and the rules are the same rules; what differs is
+// that the rows are shared and only one player may add one at a time. Both of
+// those live on the two calls below and on `turn`.
+//
+// The two types here are also what the socket carries — `socket.ts` imports them
+// rather than declaring its own, because a guess that arrived over the socket and
+// one that came back from the request are the same guess and have to stay so.
+// ---------------------------------------------------------------------------
+
+/** Whose turn it is, and until when. The clock is the server's throughout. */
+export interface Turn {
+    userId: string
+    endsAt: string
+    roundNumber?: number
+}
+
+/**
+ * What one row did.
+ *
+ * Not the whole game, for the same reason `GuessResult` is not: every client already
+ * holds the board. What it cannot know is what this row revealed, what it did to the
+ * scores, and whose turn it is now.
+ */
+export interface MultiplayerGuessResult {
+    guess: GameGuess
+    roundNumber: number
+    solved: boolean
+    roundOver: boolean
+    gameOver: boolean
+    /** The answer, present only once `roundOver`. */
+    word?: string
+    currentRound: number
+    players: GamePlayer[]
+    turn: Turn
+    /**
+     * The round this guess opened, when it ended the one before it. Carries the hint
+     * letter, so the next board can be drawn without refetching the game.
+     */
+    nextRound?: GameRound
+}
+
+/**
+ * Reads a multiplayer game back. Answers 404 for a game you are not at the table
+ * for as well as one that does not exist — being at it is the whole of the
+ * permission model, the same way owning it is for solo.
+ *
+ * This is the snapshot the board opens on. Every change after it arrives over the
+ * socket, so there is nothing to poll.
+ */
+export async function getMultiplayerGame(gameId: string): Promise<Game> {
+    return checked(await request<Game>(`/api/v1/league-of-letters/multiplayer/${gameId}`));
+}
+
+/**
+ * Plays one word into the shared round.
+ *
+ * Refused with 409 if it is not your turn, which the board already prevents — the
+ * keyboard is disabled — so in practice this only fires when the turn moved between
+ * the key going down and the request going out.
+ *
+ * The answer is also broadcast to everybody else as a `guess` event, in exactly this
+ * shape, so the player who guessed and the players watching apply the same update.
+ */
+export function submitMultiplayerGuess(gameId: string, word: string): Promise<MultiplayerGuessResult> {
+    return request<MultiplayerGuessResult>(`/api/v1/league-of-letters/multiplayer/${gameId}/guesses`, {
+        method: 'POST',
+        body: JSON.stringify({ word })
+    });
 }

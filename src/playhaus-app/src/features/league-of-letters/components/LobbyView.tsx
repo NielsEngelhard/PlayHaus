@@ -5,16 +5,16 @@ import SimpleTextHero from "@/components/text/SimpleTextHero";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
-import SelectInput from "@/components/ui/SelectInput";
+import LanguageSelect from "@/components/ui/LanguageSelect";
 import TextButton from "@/components/ui/TextButton";
 import ValueCard from "@/components/ui/ValueCard";
+import { languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyPlayerList from "@/features/league-of-letters/components/LobbyPlayerList";
 import LobbyTopBar from "@/features/league-of-letters/components/LobbyTopBar";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
-import { LANGUAGES } from "@/features/league-of-letters/solo-settings";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -33,14 +33,6 @@ interface Props {
 
 /** A game with one player in it is a solo game with extra steps. */
 const MIN_PLAYERS_TO_START = 2;
-
-// Built once: the list never changes, and a fresh array every render would be a new prop
-// every render. Same as on the solo settings screen.
-const LANGUAGE_OPTIONS = LANGUAGES.map(({ code, label, description }) => ({
-    value: code,
-    label,
-    description
-}));
 
 // The cards sit a hair off-square, the way they do everywhere else in this game.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
@@ -70,6 +62,29 @@ export default function LobbyView({ state, onStarted }: Props) {
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
 
+    // The host shut the room while this player was sitting in it. The code no longer
+    // works, so there is nothing to offer but the way out -- a retry would only find
+    // the same 404.
+    if (state.closed) {
+        return (
+            <View style={styles.screen}>
+                <BackButton href={ROUTES.leagueOfLettersIndex} />
+
+                <InlineNotification
+                    icon='x'
+                    color={Colors.light.blush}
+                    title='Kamer gesloten'
+                    message='De host heeft de kamer gesloten. Vraag om een nieuwe code.'
+                >
+                    <TextButton
+                        text='Terug naar de spellen'
+                        onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
+                    />
+                </InlineNotification>
+            </View>
+        )
+    }
+
     if (state.error !== null) {
         return (
             <View style={styles.screen}>
@@ -92,7 +107,7 @@ export default function LobbyView({ state, onStarted }: Props) {
     }
 
     const enough = lobby.players.length >= MIN_PLAYERS_TO_START;
-    const language = LANGUAGES.find(option => option.code === lobby.settings.locale);
+    const language = languageByCode(lobby.settings.locale);
 
     /** Hand the room back, then go. Both halves matter, so the modal waits for the first. */
     async function leave() {
@@ -139,6 +154,7 @@ export default function LobbyView({ state, onStarted }: Props) {
                         players={lobby.players}
                         hostId={lobby.hostId}
                         userId={user?.id}
+                        online={state.online}
                     />
 
                     {isHost ? (
@@ -151,10 +167,8 @@ export default function LobbyView({ state, onStarted }: Props) {
                             </View>
 
                             <View style={tilt('-0.3deg')}>
-                                <SelectInput
-                                    label='Taal'
+                                <LanguageSelect
                                     value={lobby.settings.locale}
-                                    options={LANGUAGE_OPTIONS}
                                     onChange={locale => state.updateSettings({ ...lobby.settings, locale })}
                                 />
                             </View>
@@ -171,7 +185,7 @@ export default function LobbyView({ state, onStarted }: Props) {
 
                             <ValueCard
                                 label='Taal'
-                                value={language?.label ?? '—'}
+                                value={language.label}
                                 icon='globe'
                             />
                         </>

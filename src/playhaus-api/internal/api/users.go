@@ -66,6 +66,19 @@ func (r updateUserColorRequest) Validate() map[string]string {
 	return nil
 }
 
+type updateUserLocaleRequest struct {
+	Locale i18n.Locale `json:"locale"`
+}
+
+func (r updateUserLocaleRequest) Validate() map[string]string {
+	if !r.Locale.Valid() {
+		return map[string]string{
+			"locale": fmt.Sprintf("must be one of: %s", strings.Join(i18n.Names(), ", ")),
+		}
+	}
+	return nil
+}
+
 // The three toggles take a pointer so a body that leaves the field out is a
 // complaint rather than a silent "off" -- the two are easy to confuse on the
 // wire, and only one of them is what the player asked for.
@@ -200,6 +213,13 @@ func (s *Server) handleUpdateUserColor(w http.ResponseWriter, r *http.Request) {
 	updateUserField(s, w, r, "update color",
 		func(ctx context.Context, req updateUserColorRequest, userID string) error {
 			return s.users.UpdateColor(ctx, req.Color, userID)
+		})
+}
+
+func (s *Server) handleUpdateUserLocale(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update locale",
+		func(ctx context.Context, req updateUserLocaleRequest, userID string) error {
+			return s.users.UpdateLocale(ctx, req.Locale, userID)
 		})
 }
 

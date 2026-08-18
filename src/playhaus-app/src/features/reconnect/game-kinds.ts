@@ -40,6 +40,15 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         // screen reads the length, the language and the round it left off at off
         // the game it fetches.
         href: game => ({ pathname: ROUTES.leagueOfLettersSolo, params: { gameId: game.id } })
+    },
+    lol_multiplayer: {
+        title: LEAGUE_OF_LETTERS_NAME,
+        mode: 'Kamer',
+        icon: 'users',
+        color: Colors.light.secondary,
+        // The join code, not the game id: a room is reached by its code, and the room
+        // screen works out for itself whether that means a lobby or a board.
+        href: game => ROUTES.leagueOfLettersRoom(game.id) as Href
     }
 };
 

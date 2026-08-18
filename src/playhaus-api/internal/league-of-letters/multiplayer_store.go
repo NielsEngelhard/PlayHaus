@@ -1,0 +1,245 @@
+package league_of_letters
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"time"
+
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
+
+// Compile-time check that the multiplayer half is implemented too.
+var _ MultiplayerStore = (*GormStore)(nil)
+
+// withRoster preloads a lobby's players in the order they arrived, which is the
+// order the room list draws them in and the order the turns are dealt in.
+//
+// By seat rather than by joined_at: the timestamps can tie, and a turn order that
+// depends on which of two equal timestamps the database returns first is not one.
+func withRoster(db *gorm.DB) *gorm.DB {
+	return db.Preload("Players", func(db *gorm.DB) *gorm.DB {
+		return db.Order("seat ASC")
+	})
+}
+
+// withTable preloads everything a multiplayer game is played on: the same board
+// tree as a solo game, plus the scoreboard.
+func withTable(db *gorm.DB) *gorm.DB {
+	return withBoard(db).Preload("Players", func(db *gorm.DB) *gorm.DB {
+		return db.Order("turn_order ASC")
+	})
+}
+
+func (s *GormStore) CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error {
+	// Creates the host's row through the association.
+	if err := s.db.WithContext(ctx).Create(lobby).Error; err != nil {
+		return fmt.Errorf("insert lobby: %w", err)
+	}
+	return nil
+}
+
+func (s *GormStore) LobbyByCode(ctx context.Context, code string) (*MultiplayerLeagueOfLettersLobby, error) {
+	var lobby MultiplayerLeagueOfLettersLobby
+
+	err := withRoster(s.db.WithContext(ctx)).
+		Where("id = ?", code).
+		First(&lobby).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrLobbyNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select lobby: %w", err)
+	}
+	return &lobby, nil
+}
+
+func (s *GormStore) LobbyCodeTaken(ctx context.Context, code string) (bool, error) {
+	var count int64
+
+	err := s.db.WithContext(ctx).
+		Model(&MultiplayerLeagueOfLettersLobby{}).
+		Where("id = ?", code).
+		Count(&count).Error
+	if err != nil {
+		return false, fmt.Errorf("count lobbies by code: %w", err)
+	}
+
+	return count > 0, nil
+}
+
+func (s *GormStore) AddLobbyPlayer(ctx context.Context, player *MultiplayerLobbyPlayer) error {
+	if err := s.db.WithContext(ctx).Create(player).Error; err != nil {
+		return fmt.Errorf("insert lobby player: %w", err)
+	}
+	return nil
+}
+
+func (s *GormStore) RemoveLobbyPlayer(ctx context.Context, code, userID string) error {
+	err := s.db.WithContext(ctx).
+		Where("lobby_id = ? AND user_id = ?", code, userID).
+		Delete(&MultiplayerLobbyPlayer{}).Error
+	if err != nil {
+		return fmt.Errorf("delete lobby player: %w", err)
+	}
+	return nil
+}
+
+func (s *GormStore) SaveLobbySettings(ctx context.Context, code string, in LobbySettings) error {
+	err := s.db.WithContext(ctx).
+		Model(&MultiplayerLeagueOfLettersLobby{}).
+		Where("id = ?", code).
+		Updates(map[string]any{"locale": in.Locale, "word_length": in.WordLength}).Error
+	if err != nil {
+		return fmt.Errorf("update lobby settings: %w", err)
+	}
+	return nil
+}
+
+// DeleteLobby drops the room and its seats. The game a started room left behind is
+// deliberately not touched: people are still playing it, and the room was only ever
+// the door they came in through.
+func (s *GormStore) DeleteLobby(ctx context.Context, code string) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := tx.Where("lobby_id = ?", code).Delete(&MultiplayerLobbyPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete lobby players: %w", err)
+		}
+		if err := tx.Where("id = ?", code).Delete(&MultiplayerLeagueOfLettersLobby{}).Error; err != nil {
+			return fmt.Errorf("delete lobby: %w", err)
+		}
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("delete lobby: %w", err)
+	}
+	return nil
+}
+
+// StartLobby writes the game and points the lobby at it, together.
+//
+// One transaction because the two halves are meaningless apart: a lobby marked
+// started with no game is a room whose players are sent to a board that is not
+// there, and a game no lobby points at is one nobody can find.
+func (s *GormStore) StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby, game *MultiplayerLeagueOfLettersGame) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		// Creates the rounds and the scoreboard through their associations.
+		if err := tx.Create(game).Error; err != nil {
+			return fmt.Errorf("insert multiplayer game: %w", err)
+		}
+
+		// Named columns rather than Save: the lobby was loaded with its players
+		// preloaded, and saving it whole would write the roster back too.
+		res := tx.Model(&MultiplayerLeagueOfLettersLobby{}).
+			Where("id = ? AND status = ?", lobby.ID, LobbyWaiting).
+			Updates(map[string]any{"status": LobbyStarted, "game_id": game.ID})
+		if res.Error != nil {
+			return fmt.Errorf("mark lobby started: %w", res.Error)
+		}
+		if res.RowsAffected == 0 {
+			// Somebody else started it between the read and here.
+			return ErrLobbyStarted
+		}
+
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *GormStore) MultiplayerGameByID(ctx context.Context, id uuid.UUID) (*MultiplayerLeagueOfLettersGame, error) {
+	var game MultiplayerLeagueOfLettersGame
+
+	err := withTable(s.db.WithContext(ctx)).
+		Where("id = ?", id).
+		First(&game).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrGameNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select multiplayer game: %w", err)
+	}
+	return &game, nil
+}
+
+// MultiplayerGamesByUserID is every unfinished game this player has a seat at.
+// Used by the reconnect list, so the board is not loaded -- only the row is.
+func (s *GormStore) MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error) {
+	var games []*MultiplayerLeagueOfLettersGame
+
+	err := s.db.WithContext(ctx).
+		Joins("JOIN mp_lol_game_players ON mp_lol_game_players.game_id = mp_lol_games.id").
+		Where("mp_lol_game_players.user_id = ? AND mp_lol_games.status = ?", userID, GameInProgress).
+		Order("mp_lol_games.created_at DESC").
+		Find(&games).Error
+	if err != nil {
+		return nil, fmt.Errorf("select multiplayer games for user: %w", err)
+	}
+
+	return games, nil
+}
+
+// RecordMultiplayerGuess writes one row and the game state it moved -- but only if
+// the game is still where the caller found it.
+//
+// The conditional update goes first, before anything is inserted, so a guess that
+// lost a race to the turn timeout is refused rather than half-applied. With SQLite
+// on a single connection this is belt and braces; with anything else it is the
+// thing that makes two players pressing Raden at once safe.
+func (s *GormStore) RecordMultiplayerGuess(ctx context.Context, in RecordMultiplayerGuessInput) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		res := tx.Model(&MultiplayerLeagueOfLettersGame{}).
+			Where("id = ? AND turn_user_id = ? AND current_round = ? AND status = ?",
+				in.Game.ID, in.ExpectTurnUserID, in.ExpectRound, GameInProgress).
+			Updates(map[string]any{
+				"turn_user_id":  in.Game.TurnUserID,
+				"turn_ends_at":  in.Game.TurnEndsAt,
+				"current_round": in.Game.CurrentRound,
+				"status":        in.Game.Status,
+			})
+		if res.Error != nil {
+			return fmt.Errorf("update multiplayer game: %w", res.Error)
+		}
+		if res.RowsAffected == 0 {
+			return ErrNotYourTurn
+		}
+
+		// Creates the letters too, through the association. A skipped row has none,
+		// which is what makes it draw as an empty row rather than a scored one.
+		if err := tx.Create(in.Guess).Error; err != nil {
+			return fmt.Errorf("insert guess: %w", err)
+		}
+
+		if in.ScoreFor != "" && in.Score != 0 {
+			err := tx.Model(&MultiplayerGamePlayer{}).
+				Where("game_id = ? AND user_id = ?", in.Game.ID, in.ScoreFor).
+				UpdateColumn("score", gorm.Expr("score + ?", in.Score)).Error
+			if err != nil {
+				return fmt.Errorf("add score: %w", err)
+			}
+		}
+
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// RestartTurn gives the current player their clock back. Conditional on it still
+// being their turn, so a resume that raced a real guess does nothing.
+func (s *GormStore) RestartTurn(ctx context.Context, gameID uuid.UUID, expectTurnUserID string, endsAt time.Time) error {
+	err := s.db.WithContext(ctx).
+		Model(&MultiplayerLeagueOfLettersGame{}).
+		Where("id = ? AND turn_user_id = ? AND status = ?", gameID, expectTurnUserID, GameInProgress).
+		Update("turn_ends_at", endsAt).Error
+	if err != nil {
+		return fmt.Errorf("restart turn: %w", err)
+	}
+	return nil
+}

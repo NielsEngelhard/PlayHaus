@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"strings"
 
+	"playhaus-api/internal/i18n"
+
 	"gorm.io/gorm"
 )
 
@@ -44,6 +46,9 @@ func (s *GormStore) UpdateUsername(ctx context.Context, username string, userId 
 
 func (s *GormStore) UpdateColor(ctx context.Context, color string, userId string) error {
 	return s.updateColumn(ctx, userId, "color", color)
+}
+func (s *GormStore) UpdateLocale(ctx context.Context, locale i18n.Locale, userId string) error {
+	return s.updateColumn(ctx, userId, "locale", locale)
 }
 
 func (s *GormStore) UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error {
@@ -103,6 +108,19 @@ func (s *GormStore) ByID(ctx context.Context, id string) (*User, error) {
 		return nil, fmt.Errorf("select user by id: %w", err)
 	}
 	return &u, nil
+}
+
+// ByIDs reads several accounts at once.
+func (s *GormStore) ByIDs(ctx context.Context, ids []string) ([]*User, error) {
+	if len(ids) == 0 {
+		return nil, nil
+	}
+
+	var users []*User
+	if err := s.db.WithContext(ctx).Where("id IN ?", ids).Find(&users).Error; err != nil {
+		return nil, fmt.Errorf("select users by id: %w", err)
+	}
+	return users, nil
 }
 
 func isUniqueViolation(err error) bool {

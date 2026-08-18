@@ -18,8 +18,7 @@ type User struct {
 	IsGuest bool        `gorm:"not null"`
 	Locale  i18n.Locale `gorm:"not null"`
 
-	// HexColor e.g. #FFE538
-	Color string `gorm:"not null;default:#FFE538"`
+	Color string `gorm:"not null;default:lemon"`
 
 	EnableSounds    bool `gorm:"not null;default:true"`
 	EnableMusic     bool `gorm:"not null;default:true"`

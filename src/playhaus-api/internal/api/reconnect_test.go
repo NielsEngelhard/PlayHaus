@@ -2,7 +2,6 @@ package api
 
 import (
 	"net/http"
-	api2 "playhaus-api/internal/api"
 	"testing"
 )
 
@@ -32,7 +31,7 @@ func TestGetReconnectableGamesListsTheCallersSoloGames(t *testing.T) {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
 	}
 
-	games := decodeBody[[]api2.ReconnectableGame](t, rec)
+	games := decodeBody[[]ReconnectableGame](t, rec)
 	if len(games) != 1 {
 		t.Fatalf("got %d games, want 1 (body: %s)", len(games), rec.Body)
 	}
@@ -40,8 +39,8 @@ func TestGetReconnectableGamesListsTheCallersSoloGames(t *testing.T) {
 	if games[0].ID != game.ID {
 		t.Errorf("id = %q, want %q", games[0].ID, game.ID)
 	}
-	if games[0].Type != api2.LeagueOfLettersSolo {
-		t.Errorf("type = %q, want %q", games[0].Type, api2.LeagueOfLettersSolo)
+	if games[0].Type != LeagueOfLettersSolo {
+		t.Errorf("type = %q, want %q", games[0].Type, LeagueOfLettersSolo)
 	}
 	// The app formats this into "gestart 3 uur geleden", so an empty or
 	// unparseable timestamp is a line it cannot draw.
@@ -61,7 +60,7 @@ func TestGetReconnectableGamesWithNothingRunning(t *testing.T) {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
 	}
 
-	games := decodeBody[[]api2.ReconnectableGame](t, rec)
+	games := decodeBody[[]ReconnectableGame](t, rec)
 	if len(games) != 0 {
 		t.Fatalf("got %d games, want none (body: %s)", len(games), rec.Body)
 	}

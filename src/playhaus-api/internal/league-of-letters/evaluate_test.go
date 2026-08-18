@@ -151,35 +151,40 @@ func TestValidGuess(t *testing.T) {
 // spot check reports once a fortnight. This caught six 8-letter words filed in
 // nl-7.txt, plus a stray nine in each of nl-8 and en-8.
 func TestEveryListedWordIsAValidGuess(t *testing.T) {
-	for _, locale := range []i18n.Locale{i18n.NL, i18n.EN} {
-		for size := MinWordLength; size <= MaxWordLength; size++ {
-			words, err := readFileAndGetLines(locale, size)
-			if err != nil {
-				t.Fatalf("%s-%d: %v", locale, size, err)
-			}
-
-			// generateRounds asks for one distinct word per round, so a list
-			// shorter than the rounds a game draws fails at creation.
-			if len(words) < determineNumberOfRounds(1) {
-				t.Errorf("%s-%d: holds %d words, need at least %d",
-					locale, size, len(words), determineNumberOfRounds(1))
-			}
-
-			seen := map[string]bool{}
-			for _, word := range words {
-				word = strings.ToLower(word)
-
-				if !ValidGuess(word, size, string([]rune(word)[0])) {
-					t.Errorf("%s-%d: %q is not a valid guess (%d runes)",
-						locale, size, word, len([]rune(word)))
+	// Both lists, because both are drawn from: a game asks for common words when
+	// the player wants an easier round and for the full list otherwise, so a bad
+	// word in either one is a round that cannot be won.
+	for _, listType := range []WordListType{All, Common} {
+		for _, locale := range []i18n.Locale{i18n.NL, i18n.EN} {
+			for size := MinWordLength; size <= MaxWordLength; size++ {
+				words, err := readFileAndGetLines(locale, size, listType)
+				if err != nil {
+					t.Fatalf("%s-%d-%s: %v", locale, size, listType, err)
 				}
-				if !IsAllowedWord(locale, size, word) {
-					t.Errorf("%s-%d: answer %q is not an allowed guess", locale, size, word)
+
+				// generateRounds asks for one distinct word per round, so a list
+				// shorter than the rounds a game draws fails at creation.
+				if len(words) < determineNumberOfRounds(1) {
+					t.Errorf("%s-%d-%s: holds %d words, need at least %d",
+						locale, size, listType, len(words), determineNumberOfRounds(1))
 				}
-				if seen[word] {
-					t.Errorf("%s-%d: %q is listed twice", locale, size, word)
+
+				seen := map[string]bool{}
+				for _, word := range words {
+					word = strings.ToLower(word)
+
+					if !ValidGuess(word, size, string([]rune(word)[0])) {
+						t.Errorf("%s-%d-%s: %q is not a valid guess (%d runes)",
+							locale, size, listType, word, len([]rune(word)))
+					}
+					if !IsAllowedWord(locale, size, word) {
+						t.Errorf("%s-%d-%s: answer %q is not an allowed guess", locale, size, listType, word)
+					}
+					if seen[word] {
+						t.Errorf("%s-%d-%s: %q is listed twice", locale, size, listType, word)
+					}
+					seen[word] = true
 				}
-				seen[word] = true
 			}
 		}
 	}

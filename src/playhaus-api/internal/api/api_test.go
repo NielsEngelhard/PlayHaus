@@ -13,6 +13,7 @@ import (
 	"playhaus-api/internal/auth"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 
 	"gorm.io/gorm"
@@ -50,7 +51,12 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	authSvc := auth.NewService(auth.NewGormStore(db), users)
 	lol := league_of_letters.NewService(league_of_letters.NewGormStore(db))
 
-	handler := NewServer(users, authSvc, lol, slog.New(slog.NewTextHandler(io.Discard, nil)), testOrigins)
+	log := slog.New(slog.NewTextHandler(io.Discard, nil))
+
+	hub := realtime.NewHub(log)
+	t.Cleanup(hub.Close)
+
+	handler := NewServer(users, authSvc, lol, hub, log, testOrigins)
 	return handler, db
 }
 

@@ -44,6 +44,20 @@ let currentToken: string | null = null;
 
 setTokenGetter(async () => currentToken);
 
+/**
+ * The session token, for callers that are not `request`.
+ *
+ * There is exactly one: the socket. A browser's `WebSocket` takes a URL and
+ * nothing else — no headers — so the token has to be put in the query string, and
+ * that means something outside the API client has to be able to read it.
+ *
+ * Returns null when nobody is signed in, which is a socket that must not be opened
+ * rather than one to open anonymously.
+ */
+export function sessionToken(): string | null {
+    return currentToken;
+}
+
 const AuthContext = createContext<Auth | undefined>(undefined);
 
 /**

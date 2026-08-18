@@ -163,9 +163,9 @@ func TestDeleteSoloGamesByUserId(t *testing.T) {
 		}
 	}
 
-	assertRowCount(t, db, "solo_lol_rounds", 2)
-	assertRowCount(t, db, "solo_lol_guesses", 2)
-	assertRowCount(t, db, "solo_lol_letters", 2)
+	assertRowCount(t, db, "lol_rounds", 2)
+	assertRowCount(t, db, "lol_guesses", 2)
+	assertRowCount(t, db, "lol_letters", 2)
 
 	// And the rows that survived belong to the games that survived.
 	var roundIDs []uuid.UUID

@@ -5,28 +5,20 @@ import AppText from "@/components/text/AppText";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
-import SelectInput from "@/components/ui/SelectInput";
+import LanguageSelect from "@/components/ui/LanguageSelect";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Colors, FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { DEFAULT_SOLO_SETTINGS, LANGUAGES } from "@/features/league-of-letters/solo-settings";
+import { DEFAULT_SOLO_SETTINGS } from "@/features/league-of-letters/solo-settings";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
-
-// Built once: the list never changes, and a fresh array every render would be a new
-// prop every render.
-const LANGUAGE_OPTIONS = LANGUAGES.map(({ code, label, description }) => ({
-    value: code,
-    label,
-    description
-}));
 
 /**
  * Set up a solo game, then start it. The settings are local until `Start`, which is
@@ -40,7 +32,7 @@ const LANGUAGE_OPTIONS = LANGUAGES.map(({ code, label, description }) => ({
  */
 export default function LeagueOfLettersSettingsPage() {
     const router = useRouter();
-    const { status } = useAuth();
+    const { status, user } = useAuth();
     const [settings, setSettings] = useState(DEFAULT_SOLO_SETTINGS);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -59,6 +51,23 @@ export default function LeagueOfLettersSettingsPage() {
         mounted.current = true;
         return () => { mounted.current = false; };
     }, []);
+
+    /**
+     * The account's language is where this form starts, once the session has one.
+     *
+     * Seeded rather than read straight off the user, and only the once: after that
+     * the picker below owns the value, so choosing English here is a choice about
+     * this game and changing the account's language in another tab cannot reach in
+     * and move a knob the player has already set. Nothing is written back either —
+     * the profile screen is where the account's own language is changed.
+     */
+    const seeded = useRef(false);
+    useEffect(() => {
+        if (seeded.current || user === null) return;
+
+        seeded.current = true;
+        setSettings(current => ({ ...current, locale: user.locale }));
+    }, [user]);
 
     // Only a signed-in session has a game to find; while the session is being
     // restored there is nothing to ask about yet.
@@ -178,10 +187,8 @@ export default function LeagueOfLettersSettingsPage() {
                 </View>
 
                 <View style={tilt('0.4deg')}>
-                    <SelectInput
-                        label='Taal'
+                    <LanguageSelect
                         value={settings.locale}
-                        options={LANGUAGE_OPTIONS}
                         onChange={locale => setSettings(current => ({ ...current, locale }))}
                     />
                 </View>

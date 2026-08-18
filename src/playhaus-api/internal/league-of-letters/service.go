@@ -21,7 +21,8 @@ type Store interface {
 	CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error)
 	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
-	CreateMpLobby(ctx context.Context, g *MultiplayerLeagueOfLettersLobby) error
+
+	MultiplayerStore
 }
 
 type CreateSoloGameInput struct {
@@ -46,25 +47,6 @@ type Service struct {
 
 func NewService(store Store) *Service {
 	return &Service{store: store}
-}
-
-func (s *Service) CreateMultiplayerLobby(ctx context.Context, userID string) (string, error) {
-	lobbyID, err := generateRandomString(4)
-	if err != nil {
-		return "", fmt.Errorf("CreateMultiplayerLobby: %w", err)
-	}
-
-	lobby := &MultiplayerLeagueOfLettersLobby{
-		ID:        lobbyID,
-		OwnerID:   userID,
-		CreatedAt: time.Time{},
-	}
-
-	if err := s.store.CreateMpLobby(ctx, lobby); err != nil {
-		return "", fmt.Errorf("delete previous solo games: %w", err)
-	}
-
-	return lobbyID, nil
 }
 
 func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*SoloLeagueOfLettersGame, map[string]string, error) {

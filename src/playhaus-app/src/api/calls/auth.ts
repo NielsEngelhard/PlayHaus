@@ -1,4 +1,5 @@
 import { request } from '@/api/client';
+import type { LanguageCode } from '@/constants/languages';
 
 /**
  * A user as the API describes it. Mirrors `userResponse` in the Go backend's
@@ -14,8 +15,15 @@ export interface User {
     email: string
     name: string
     isGuest: boolean
-    /** The language the account plays in, e.g. `nl`. Chosen by the backend. */
-    locale: string
+    /**
+     * The language the account plays in. Set from `Accept-Language` when the
+     * account is created, and changed from the profile screen after that.
+     *
+     * Narrower than the `string` the wire carries, because the backend validates
+     * against the same closed list `LANGUAGES` mirrors — anything else would be a
+     * value it refused to store.
+     */
+    locale: LanguageCode
     /**
      * Which swatch in `AVATAR_COLORS`, not a hex — what `lemon` looks like is the
      * app's business. The backend validates against the same list of ids.

@@ -108,7 +108,7 @@ func TestCreateSoloGameDeletesTheCallersOtherGames(t *testing.T) {
 	// The rows underneath went with it, rather than being left pointing at a
 	// game that no longer exists.
 	var rounds int64
-	if err := db.Raw(`SELECT count(*) FROM solo_lol_rounds WHERE game_id = ?`, first.ID).Scan(&rounds).Error; err != nil {
+	if err := db.Raw(`SELECT count(*) FROM lol_rounds WHERE game_id = ?`, first.ID).Scan(&rounds).Error; err != nil {
 		t.Fatalf("count rounds: %v", err)
 	}
 	if rounds != 0 {
@@ -117,8 +117,8 @@ func TestCreateSoloGameDeletesTheCallersOtherGames(t *testing.T) {
 
 	var guesses int64
 	err := db.Raw(`
-		SELECT count(*) FROM solo_lol_guesses g
-		LEFT JOIN solo_lol_rounds r ON r.id = g.round_id
+		SELECT count(*) FROM lol_guesses g
+		LEFT JOIN lol_rounds r ON r.id = g.round_id
 		WHERE r.id IS NULL`).Scan(&guesses).Error
 	if err != nil {
 		t.Fatalf("count orphaned guesses: %v", err)
@@ -164,7 +164,7 @@ func TestCreateSoloGameDoesNotLeakAnswers(t *testing.T) {
 	game := decodeBody[soloGameResponse](t, rec)
 
 	var words []string
-	if err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
+	if err := db.Raw(`SELECT word FROM lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
 		t.Fatalf("read words: %v", err)
 	}
 	if len(words) != 3 {
@@ -420,7 +420,7 @@ func TestGetCurrentSoloGameDoesNotLeakAnswers(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	var words []string
-	if err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
+	if err := db.Raw(`SELECT word FROM lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
 		t.Fatalf("read words: %v", err)
 	}
 
@@ -439,7 +439,7 @@ func TestSoloGameWordsArePersistedAndDistinct(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	var words []string
-	if err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
+	if err := db.Raw(`SELECT word FROM lol_rounds WHERE game_id = ?`, game.ID).Scan(&words).Error; err != nil {
 		t.Fatalf("read words: %v", err)
 	}
 	if len(words) != soloRounds {

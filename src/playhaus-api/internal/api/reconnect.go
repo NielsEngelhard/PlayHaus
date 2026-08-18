@@ -29,9 +29,33 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapSoloGamesToReconnectableGame(soloGames)...)
 	}
 
-	// GET multiplayer GAMES
+	// GET multiplayer games
+	multiplayerGames, err := s.leagueOfLetters.MultiplayerGamesByUserID(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get multiplayer games to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapMultiplayerGamesToReconnectableGame(multiplayerGames)...)
+	}
 
 	writeJSON(w, http.StatusOK, allGames)
+}
+
+func mapMultiplayerGamesToReconnectableGame(games []*league_of_letters.MultiplayerLeagueOfLettersGame) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(games))
+
+	for i := range games {
+		game := games[i]
+
+		mappedGames[i] = ReconnectableGame{
+			// The join code, not the game id: a room is reached by its code, and
+			// that is the one screen that knows how to draw a game like this.
+			ID:        game.LobbyID,
+			Type:      LeagueOfLettersMultiplayer,
+			CreatedAt: game.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
 }
 
 func mapSoloGamesToReconnectableGame(soloGames []*league_of_letters.SoloLeagueOfLettersGame) []ReconnectableGame {

@@ -42,17 +42,26 @@ export const TEASE_REEL: MarkStyle[] = [
 const MARK_RANK: Record<Mark, number> = { correct: 3, present: 2, absent: 1 };
 
 /**
- * What the keyboard knows about each letter, from every guess this player has made.
+ * What the keyboard knows about each letter.
  *
  * A letter can pick up different marks in different guesses — guess it in the wrong
  * place and it is `present`, guess it in the right one and it is `correct` — so the
  * keyboard shows the best news it has heard about that letter so far.
+ *
+ * `userId` narrows it to one player's guesses, which is what a solo board wants:
+ * there is only ever one player, and the filter is really a guard. Pass undefined
+ * for a shared board, where the rows belong to the table and what the table has
+ * learned is what every player at it knows — greying out a letter for the person who
+ * happened to type it and nobody else would be showing five people five different
+ * keyboards for one puzzle.
  */
-export function keyboardMarks(guesses: GameGuess[], userId: string): Record<string, Mark> {
+export function keyboardMarks(guesses: GameGuess[], userId: string | undefined): Record<string, Mark> {
     const best: Record<string, Mark> = {};
 
     for (const guess of guesses) {
-        if (guess.userId !== userId) continue;
+        if (userId !== undefined && guess.userId !== userId) continue;
+        // A turn that ran out taught nobody anything.
+        if (guess.skipped === true) continue;
 
         guess.word.toUpperCase().split('').forEach((letter, index) => {
             const mark = guess.marks[index];
