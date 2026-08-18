@@ -1,10 +1,11 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { intoRows } from "@/utils/rows";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     value: string,
@@ -17,6 +18,8 @@ const COLUMNS = 6;
 
 /** Pick the fill behind your initials. The chosen swatch is the one wearing the check. */
 export default function ProfileAvatarColorPickerCard({ value, onChange, disabled = false }: Props) {
+    const styles = useStyles();
+
     return (
         <Card>
             <AppText style={styles.label}>Avatarkleur</AppText>
@@ -48,6 +51,8 @@ interface SwatchProps {
 }
 
 function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
+    const styles = useStyles();
+
     return (
         <Pressable
             onPress={onPress}
@@ -69,13 +74,13 @@ function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     grid: {
         marginTop: Spacing.three,
@@ -92,19 +97,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14
     },
     swatchSelected: {
-        ...Shadows.hardLarge
+        ...theme.shadows.hardLarge
     },
     // The unselected ones sit back a step: shallower shadow, a touch of the page showing through.
     swatchUnselected: {
         opacity: 0.8,
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     // Applied last, so it wins the opacity over `swatchUnselected` above.
     swatchDisabled: {
         opacity: 0.5
     }
-})
+}))

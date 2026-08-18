@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Toggle from "@/components/ui/Toggle";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { SETTINGS, type SettingKey } from "@/features/settings/profile";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     values: Record<SettingKey, boolean>,
@@ -15,6 +17,9 @@ interface Props {
 
 /** The switch list: one row per preference, divided the way the design divides them. */
 export default function ProfileSettingsCard({ values, onChange, disabled = false }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <Card>
             <AppText style={styles.label}>Instellingen</AppText>
@@ -27,7 +32,7 @@ export default function ProfileSettingsCard({ values, onChange, disabled = false
                     >
                         <View style={styles.info}>
                             <View style={styles.iconTile}>
-                                <Feather name={setting.icon} size={16} color={Colors.light.text} />
+                                <Feather name={setting.icon} size={16} color={theme.colors.text} />
                             </View>
 
                             <View style={styles.text}>
@@ -49,13 +54,13 @@ export default function ProfileSettingsCard({ values, onChange, disabled = false
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     rows: {
         marginTop: Spacing.three
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     // Only between rows — the card's own padding does the work at the two ends.
     rowDivided: {
         borderTopWidth: 2,
-        borderTopColor: Colors.light.border
+        borderTopColor: theme.colors.border
     },
     info: {
         flex: 1,
@@ -86,9 +91,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 10,
-        backgroundColor: Colors.light.backgroundInput
+        backgroundColor: theme.colors.backgroundInput
     },
     text: {
         flex: 1,
@@ -98,12 +103,12 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.md,
         lineHeight: FontSizes.md * 1.2,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     description: {
         marginTop: Spacing.half,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.4,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

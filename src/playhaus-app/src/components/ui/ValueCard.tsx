@@ -1,8 +1,10 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     label: string,
@@ -12,6 +14,9 @@ interface Props {
 
 /** A card that shows one labelled, read-only value. */
 export default function ValueCard({ label, value, icon }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <Card>
             <AppText style={styles.label}>{label}</AppText>
@@ -21,7 +26,7 @@ export default function ValueCard({ label, value, icon }: Props) {
                     <Feather
                         name={icon}
                         size={20}
-                        color={Colors.light.textSecondary}
+                        color={theme.colors.textSecondary}
                     />
                 )}
 
@@ -31,13 +36,13 @@ export default function ValueCard({ label, value, icon }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     row: {
         marginTop: Spacing.two,
@@ -49,6 +54,6 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: FontSizes.lg,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))

@@ -4,12 +4,14 @@ import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
 import { useGame } from "@/features/league-of-letters/useGame";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 /**
  * A solo game in progress.
@@ -22,6 +24,9 @@ import { StyleSheet, View } from "react-native";
  * what the settings screen asked for.
  */
 export default function LeagueOfLettersSoloPage() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     useFullScreen();
 
     const router = useRouter();
@@ -40,7 +45,7 @@ export default function LeagueOfLettersSoloPage() {
             <View style={styles.failed}>
                 <InlineNotification
                     icon='alert-triangle'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Mislukt'
                     message={error ?? 'Dit spel kon niet worden geladen.'}
                 />
@@ -71,7 +76,7 @@ export default function LeagueOfLettersSoloPage() {
     );
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     failed: {
         width: '100%',
         gap: Spacing.four,
@@ -80,4 +85,4 @@ const styles = StyleSheet.create({
         paddingTop: Spacing.four,
         alignItems: 'flex-start'
     }
-})
+}))

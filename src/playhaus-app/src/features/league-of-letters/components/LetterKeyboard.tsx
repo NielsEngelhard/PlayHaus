@@ -1,10 +1,12 @@
 import type { Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { MARK_STYLES } from "@/features/league-of-letters/marks";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, StyleProp, StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
+import { Pressable, StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
 
 interface Props {
     /** The best mark each letter has earned so far, from `keyboardMarks`. */
@@ -41,6 +43,8 @@ function keyHeightFor(windowHeight: number): number {
 
 /** The on-screen keyboard. Fills the width of whatever it is put in. */
 export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, disabled = false, style }: Props) {
+    const styles = useStyles();
+
     const { height } = useWindowDimensions();
     const keyHeight = keyHeightFor(height);
 
@@ -85,6 +89,9 @@ interface LetterKeyProps {
 }
 
 function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const marked = mark ? MARK_STYLES[mark] : undefined;
 
     return (
@@ -101,7 +108,7 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
                 disabled && styles.keyDisabled
             ]}
         >
-            <AppText style={[styles.keyText, { color: marked?.foreground ?? Colors.light.text }]}>
+            <AppText style={[styles.keyText, { color: marked?.foreground ?? theme.colors.text }]}>
                 {letter}
             </AppText>
         </PopPressable>
@@ -119,6 +126,9 @@ interface ActionKeyProps {
 }
 
 function ActionKey({ icon, label, height, disabled, onPress, applyAccentStyle = false, applyDeleteStyle = false }: ActionKeyProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <Pressable
             onPress={onPress}
@@ -128,12 +138,12 @@ function ActionKey({ icon, label, height, disabled, onPress, applyAccentStyle = 
             accessibilityState={{ disabled }}
             style={[styles.key, styles.actionKey, applyAccentStyle && styles.actionKeyAccent, applyDeleteStyle && styles.deleteKeyAccent, { height }, disabled && styles.keyDisabled]}
         >
-            <Feather name={icon} size={18} color={(applyAccentStyle || applyDeleteStyle) ? Colors.light.textOnAccent : Colors.light.text} />
+            <Feather name={icon} size={18} color={(applyAccentStyle || applyDeleteStyle) ? theme.colors.textOnAccent : theme.colors.text} />
         </Pressable>
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     keyboard: {
         width: '100%',
         gap: GAP
@@ -153,22 +163,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 10,
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     keyUnknown: {
-        backgroundColor: Colors.light.backgroundSecondary
+        backgroundColor: theme.colors.backgroundSecondary
     },
     actionKey: {
         flex: ACTION_FLEX,
-        backgroundColor: Colors.light.muted
+        backgroundColor: theme.colors.muted
     },
     actionKeyAccent: {
-        backgroundColor: Colors.light.secondary
+        backgroundColor: theme.colors.secondary
     },
     deleteKeyAccent: {
-        backgroundColor: Colors.light.destructive
+        backgroundColor: theme.colors.destructive
     },
     keyDisabled: {
         opacity: 0.5
@@ -177,4 +187,4 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.md,
         fontWeight: 900
     }
-})
+}))

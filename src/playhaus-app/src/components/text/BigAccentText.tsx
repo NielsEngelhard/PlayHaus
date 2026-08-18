@@ -1,5 +1,5 @@
-import { Colors, FontSizes, Spacing } from "@/constants/theme"
-import { StyleSheet } from "react-native"
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { FontSizes, Spacing } from "@/constants/theme"
 import AppText from "./AppText"
 
 interface Props {
@@ -7,19 +7,21 @@ interface Props {
 }
 
 export default function BigAccentText({ text }: Props ) {
+    const styles = useStyles();
+
     return (
         <AppText style={styles.accent}>{text}</AppText>
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     accent: {
         fontSize: FontSizes.huge,
         fontWeight: 900,
         lineHeight: FontSizes.huge * 1.1,
-        color: Colors.light.backgroundSecondary,
-        backgroundColor: Colors.light.text,
+        color: theme.colors.backgroundSecondary,
+        backgroundColor: theme.colors.text,
         alignSelf: "flex-start",
         paddingHorizontal: Spacing.one,
     }
-})
+}))

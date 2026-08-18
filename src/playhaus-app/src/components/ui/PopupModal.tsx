@@ -1,8 +1,9 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, MaxContentWidth, Spacing } from "@/constants/theme";
+import { FontSizes, MaxContentWidth, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useState, type ReactNode } from "react";
-import { Animated, Easing, Modal, Platform, StyleSheet, View } from "react-native";
+import { Animated, Easing, Modal, Platform, View } from "react-native";
 
 // react-native-web has no native animation module, so asking for one there is a
 // console warning and nothing else. Transforms and opacity are driver-safe elsewhere.
@@ -44,6 +45,8 @@ interface Props {
  * the rest of the app; all this adds is the backdrop and the way it arrives.
  */
 export default function PopupModal({ visible, title, message, children, onRequestClose }: Props) {
+    const styles = useStyles();
+
     /**
      * The modal has to outlive `visible`, or closing it would tear the panel off screen
      * with the animation that was meant to see it out still to play. Raised during render
@@ -121,7 +124,7 @@ export default function PopupModal({ visible, title, message, children, onReques
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     stage: {
         flex: 1,
         alignItems: 'center',
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
         left: 0,
         // The page behind stays legible through it: the panel is a question about that
         // page, and blacking it out would make it a question about nothing.
-        backgroundColor: 'rgba(15, 13, 18, 0.45)'
+        backgroundColor: theme.colors.scrim
     },
     panel: {
         width: '100%',
@@ -152,10 +155,10 @@ const styles = StyleSheet.create({
         marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.5,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     actions: {
         marginTop: Spacing.four,
         gap: Spacing.two
     }
-})
+}))

@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes } from "@/constants/theme";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { FontSizes } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
     /** Straight off `GameRound.roundNumber`. */
@@ -20,6 +21,8 @@ interface Props {
  * Outfit Black figure — so the two sit together as one row instead of two ideas.
  */
 export default function RoundCounter({ round, total, style }: Props) {
+    const styles = useStyles();
+
     return (
         <View
             style={[styles.block, style]}
@@ -39,7 +42,7 @@ export default function RoundCounter({ round, total, style }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     block: {
         alignItems: 'center',
         // Holds its size against the timer, which is the flexible one in this row.
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     figures: {
         flexDirection: 'row',
@@ -64,12 +67,12 @@ const styles = StyleSheet.create({
         letterSpacing: -0.5,
         // A two-digit round would otherwise shift the block as it arrives.
         fontVariant: ['tabular-nums'],
-        color: Colors.light.primary
+        color: theme.colors.primary
     },
     total: {
         fontSize: FontSizes.sm,
         fontWeight: 900,
         fontVariant: ['tabular-nums'],
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

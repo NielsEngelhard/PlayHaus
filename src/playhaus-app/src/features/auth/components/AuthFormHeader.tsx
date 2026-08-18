@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     title: string
@@ -18,6 +20,9 @@ interface Props {
  * are views inside a modal that has no route of its own.
  */
 export default function AuthFormHeader({ title, onBack, disabled = false }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <View style={styles.row}>
             <Pressable
@@ -27,7 +32,7 @@ export default function AuthFormHeader({ title, onBack, disabled = false }: Prop
                 accessibilityLabel='Back'
                 style={[styles.backButton, disabled && styles.disabled]}
             >
-                <Feather name='arrow-left' size={18} color={Colors.light.text} />
+                <Feather name='arrow-left' size={18} color={theme.colors.text} />
             </Pressable>
 
             <AppText style={styles.title}>{title}</AppText>
@@ -35,7 +40,7 @@ export default function AuthFormHeader({ title, onBack, disabled = false }: Prop
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -48,10 +53,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 12,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
     },
     disabled: {
         opacity: 0.5
@@ -62,4 +67,4 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.xl,
         fontWeight: 900
     }
-})
+}))

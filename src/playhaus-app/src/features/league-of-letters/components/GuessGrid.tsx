@@ -1,9 +1,11 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { MARK_STYLES, TEASE_REEL, type MarkStyle } from "@/features/league-of-letters/marks";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useRef, useState } from "react";
-import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
     wordLength: number,
@@ -117,6 +119,8 @@ function fittedTileSize(width: number, height: number, columns: number, rows: nu
 
 /** The board: one row per guess you get, one tile per letter of the word. */
 export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, ownerColorOf, style }: Props) {
+    const styles = useStyles();
+
     const [box, setBox] = useState({ width: 0, height: 0 });
 
     const size = fittedTileSize(box.width, box.height, wordLength, maxGuesses);
@@ -158,6 +162,8 @@ interface GuessRowProps {
 }
 
 function GuessRow({ wordLength, size, guess, draft, ownerColor }: GuessRowProps) {
+    const styles = useStyles();
+
     // A row the clock filled in. It has no word and no marks, so there is nothing to
     // reveal and nothing to colour — it is a turn that went by, drawn as one.
     const skipped = guess?.skipped === true;
@@ -266,6 +272,9 @@ interface LetterTileProps {
 }
 
 function LetterTile({ letter, mark, size, celebrate = false, tease = false, settledAfter, column, spent = false }: LetterTileProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const filled = letter !== '';
 
     /**
@@ -455,7 +464,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                     ]
                 },
                 face
-                    ? [{ backgroundColor: face.fill }, Shadows.hardLarge]
+                    ? [{ backgroundColor: face.fill }, theme.shadows.hardLarge]
                     // A turn that ran out. Drawn broken rather than blank so it reads as
                     // a row that was spent, not one still waiting to be played.
                     : spent
@@ -464,7 +473,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                         // slot sits back, the same way `WordLengthCard` separates chosen
                         // from not.
                         : letter
-                            ? [styles.tileFilled, Shadows.hardLarge]
+                            ? [styles.tileFilled, theme.shadows.hardLarge]
                             : styles.tileEmpty
             ]}
         >
@@ -473,7 +482,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                     styles.letter,
                     {
                         fontSize: Math.max(FontSizes.md, Math.min(FontSizes.xxl, Math.round(size * 0.5))),
-                        color: face?.foreground ?? Colors.light.text
+                        color: face?.foreground ?? theme.colors.text
                     }
                 ]}
             >
@@ -483,7 +492,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     board: {
         flex: 1,
         alignItems: 'center',
@@ -500,15 +509,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     tileFilled: {
-        backgroundColor: Colors.light.backgroundSecondary
+        backgroundColor: theme.colors.backgroundSecondary
     },
     tileEmpty: {
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         opacity: 0.8,
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     // A row the clock filled in: no fill, no shadow, a broken outline. The same
     // vocabulary `LobbyPlayerList` uses for a seat nobody has taken, because it means
@@ -526,11 +535,11 @@ const styles = StyleSheet.create({
         width: OWNER_BAR_WIDTH,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     letter: {
         fontWeight: 900,
         // Outfit Black is wide; without pulling it in, a full tile touches its own border.
         letterSpacing: -0.5
     }
-})
+}))

@@ -1,8 +1,9 @@
 import AppText from "@/components/text/AppText";
 import CountryFlag from "@/components/ui/CountryFlag";
 import type { Language } from "@/constants/languages";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
-import { StyleSheet, View } from "react-native";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     /** What the app is showing right now: the version, or the game you're inside. */
@@ -25,6 +26,8 @@ interface Props {
  * tags read as debug output next to them.
  */
 export default function HeaderStatus({ label, accent, language }: Props) {
+    const styles = useStyles();
+
     return (
         <View style={styles.capsule}>
             <View
@@ -45,15 +48,15 @@ export default function HeaderStatus({ label, accent, language }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     capsule: {
         flexDirection: 'row',
         alignItems: 'stretch',
         minHeight: 34,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
-        backgroundColor: Colors.light.backgroundSecondary,
+        backgroundColor: theme.colors.backgroundSecondary,
         // Clips the lemon segment to the pill's left curve. The hard shadow is a
         // `boxShadow`, so it still paints outside this.
         overflow: 'hidden',
@@ -61,14 +64,14 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         // The house tilt: everything in this app sits a hair off-square.
         transform: [{ rotate: '0.5deg' }],
-        ...Shadows.hard
+        ...theme.shadows.hard
     },
     flagSegment: {
         justifyContent: 'center',
         paddingHorizontal: Spacing.two,
-        backgroundColor: Colors.light.lemon,
+        backgroundColor: theme.colors.lemon,
         borderRightWidth: 2,
-        borderRightColor: Colors.light.border
+        borderRightColor: theme.colors.border
     },
     contextSegment: {
         flexDirection: 'row',
@@ -88,6 +91,6 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 0.6,
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))

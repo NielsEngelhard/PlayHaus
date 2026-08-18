@@ -1,13 +1,14 @@
 import AppText from "@/components/text/AppText";
 import TextButton from "@/components/ui/TextButton";
 import TextField from "@/components/ui/TextField";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { authErrorMessage } from "@/features/auth/auth-errors";
 import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { useAuth } from "@/features/auth/useAuth";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     onBack: () => void
@@ -24,6 +25,8 @@ interface Props {
  * answers a signup with a session.
  */
 export default function SignupForm({ onBack, onSuccess }: Props) {
+    const styles = useStyles();
+
     const { signup } = useAuth();
 
     const [name, setName] = useState('');
@@ -125,7 +128,7 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     field: {
         marginTop: Spacing.four
     },
@@ -136,6 +139,6 @@ const styles = StyleSheet.create({
         marginTop: Spacing.three,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

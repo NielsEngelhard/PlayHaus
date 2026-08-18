@@ -1,9 +1,11 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     icon: keyof typeof Feather.glyphMap,
@@ -23,17 +25,24 @@ interface Props {
 export default function SimpleNavigationCard({
     icon,
     color,
-    iconColor = Colors.light.text,
+    iconColor,
     title,
     description,
     navigationUrl
 }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
+    // Defaulted here rather than in the parameter list: the resting colour comes from
+    // the theme now, and a parameter default is evaluated too early to read a hook.
+    const ink = iconColor ?? theme.colors.text;
+
     return (
         <Link href={navigationUrl} asChild>
             <Pressable style={styles.pressable}>
                 <Card triggerOnHoverAnimation style={styles.card}>
                     <View style={[styles.iconTile, { backgroundColor: color }]}>
-                        <Feather name={icon} size={24} color={iconColor} />
+                        <Feather name={icon} size={24} color={ink} />
                     </View>
 
                     <AppText style={styles.title}>{title}</AppText>
@@ -44,7 +53,7 @@ export default function SimpleNavigationCard({
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // `asChild` means this Pressable *is* the flex child of the row, so it claims an
     // equal share of the width; the Card then fills it, keeping side-by-side cards
     // the same height however their text wraps.
@@ -60,20 +69,20 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.three,
         borderRadius: 16,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        ...Shadows.hard
+        ...theme.shadows.hard
     },
     title: {
         fontSize: FontSizes.lg,
         fontWeight: 900,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     description: {
         marginTop: Spacing.one,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

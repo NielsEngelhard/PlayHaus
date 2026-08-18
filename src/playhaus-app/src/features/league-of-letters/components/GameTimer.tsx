@@ -1,8 +1,10 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
     /** ISO deadline, straight off `GameRound.endsAt`. */
@@ -32,6 +34,9 @@ function formatted(milliseconds: number): string {
  * that is thirty seconds behind everybody else's.
  */
 export default function GameTimer({ endsAt, style }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const [remaining, setRemaining] = useState(() => remainingMs(endsAt));
 
     // Re-read during render rather than from an effect: a new deadline has to show the
@@ -55,7 +60,7 @@ export default function GameTimer({ endsAt, style }: Props) {
             <Feather
                 name='clock'
                 size={14}
-                color={hurry ? Colors.light.destructive : Colors.light.textSecondary}
+                color={hurry ? theme.colors.destructive : theme.colors.textSecondary}
             />
 
             <AppText style={styles.label}>Resterende tijd</AppText>
@@ -67,7 +72,7 @@ export default function GameTimer({ endsAt, style }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -79,16 +84,16 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     time: {
         fontSize: FontSizes.lg,
         fontWeight: 900,
         // Digits change every second; without this the whole row twitches as they do.
         fontVariant: ['tabular-nums'],
-        color: Colors.light.text
+        color: theme.colors.text
     },
     timeHurry: {
-        color: Colors.light.destructive
+        color: theme.colors.destructive
     }
-})
+}))

@@ -1,7 +1,7 @@
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import LanguageSelect from "@/components/ui/LanguageSelect";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import AccountModal from "@/features/auth/components/AccountModal";
 import { useAuth } from "@/features/auth/useAuth";
 import GuestAccountNotice from "@/features/settings/components/GuestAccountNotice";
@@ -13,9 +13,10 @@ import ProfileSettingsCard from "@/features/settings/components/ProfileSettingsC
 import type { SettingKey } from "@/features/settings/profile";
 import { useProfile } from "@/features/settings/useProfile";
 import { ROUTES } from "@/constants/routes";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
@@ -30,6 +31,8 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * rather than something to queue up.
  */
 export default function ProfilePage() {
+    const styles = useStyles();
+
     const { logout } = useAuth();
     const {
         profile,
@@ -132,7 +135,7 @@ export default function ProfilePage() {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%',
         gap: Spacing.four
@@ -140,12 +143,12 @@ const styles = StyleSheet.create({
     saveError: {
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.4,
-        color: Colors.light.destructive
+        color: theme.colors.destructive
     },
     footer: {
         marginTop: Spacing.four,
         textAlign: 'center',
         fontSize: FontSizes.xs,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

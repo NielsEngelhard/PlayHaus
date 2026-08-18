@@ -1,6 +1,8 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
-import { StyleSheet, TextInput, View, type StyleProp, type TextInputProps, type ViewStyle } from "react-native";
+import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { TextInput, View, type StyleProp, type TextInputProps, type ViewStyle } from "react-native";
 
 interface Props {
     /** Uppercase micro-label above the field. Also names the field for screen readers. */
@@ -44,6 +46,9 @@ export default function TextField({
     editable = true,
     style
 }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <View style={style}>
             <AppText style={styles.label}>{label}</AppText>
@@ -52,7 +57,7 @@ export default function TextField({
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
-                placeholderTextColor={Colors.light.textSecondary}
+                placeholderTextColor={theme.colors.textSecondary}
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
                 autoCapitalize={autoCapitalize}
@@ -70,28 +75,28 @@ export default function TextField({
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     input: {
         marginTop: Spacing.two,
         height: 46,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         paddingHorizontal: Spacing.three,
         fontSize: FontSizes.lg,
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(700),
-        color: Colors.light.text
+        color: theme.colors.text
     },
     disabled: {
         opacity: 0.5
     }
-})
+}))

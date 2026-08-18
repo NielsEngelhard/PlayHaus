@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/routes';
-import { Colors } from '@/constants/theme';
+import { Brand } from '@/constants/theme';
 
 /**
  * The games' display names. Shared rather than per-feature: the home list, the game
@@ -12,7 +12,7 @@ export interface Game {
     /** The `/games/{slug}` path segment. What the header matches a route on. */
     slug: string,
     name: string,
-    /** Accent from `Colors.light`. The home card and the header dot share it. */
+    /** Accent from `Brand` — fixed, so a game looks the same in either scheme. */
     color: string,
     tag: string,
     description: string,
@@ -29,7 +29,7 @@ export const GAMES: Game[] = [
     {
         slug: 'league-of-letters',
         name: LEAGUE_OF_LETTERS_NAME,
-        color: Colors.light.primary,
+        color: Brand.primary,
         tag: 'Word · 1-4 players',
         description: 'Domineer met jouw Vocabulair, solo of tegen je vrienden.',
         playable: true,
@@ -38,7 +38,7 @@ export const GAMES: Game[] = [
     {
         slug: 'quizzer',
         name: PUBQUIZR_NAME,
-        color: Colors.light.secondary,
+        color: Brand.secondary,
         tag: 'Trivia · 2-10 players',
         description: 'Snelle pubquiz rondes. Nog even geduld, de vragen worden geslepen.',
         playable: false,

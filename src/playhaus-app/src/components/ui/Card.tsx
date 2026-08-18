@@ -1,6 +1,7 @@
-import { Colors, hardShadow, Shadows, Spacing } from "@/constants/theme";
+import { hardShadow, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import React, { useState } from "react";
-import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+import { Platform, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     children: React.ReactNode
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function Card({ children, triggerOnHoverAnimation = false, style }: Props) {
+    const styles = useStyles();
+
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -33,19 +36,19 @@ const hoverTransition = Platform.select({
     default: undefined
 });
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
-        backgroundColor: Colors.light.backgroundSecondary,
+        backgroundColor: theme.colors.backgroundSecondary,
         borderRadius: 16,
         flexDirection: 'column',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         padding: Spacing.four,
         width: '100%',
-        ...Shadows.hardLarge
+        ...theme.shadows.hardLarge
     },
     hovered: {
         transform: [{ translateX: -2 }, { translateY: -2 }],
-        ...hardShadow(7)
+        ...hardShadow(7, theme.colors.border)
     }
-})
+}))

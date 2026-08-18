@@ -1,4 +1,5 @@
-import { Colors } from "@/constants/theme";
+import { Brand } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, StyleSheet, useWindowDimensions, View, ViewStyle } from "react-native";
 
@@ -30,13 +31,18 @@ const SPREAD_MS = 900;
 // warning and nothing else. Transforms and opacity are driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/** The app's accents. Anything outside the palette makes the fall look bolted on. */
+/**
+ * The app's accents. Anything outside the palette makes the fall look bolted on.
+ *
+ * Read from `Brand` at module scope rather than through the theme: paper confetti is
+ * the same paper confetti in either scheme, and the pieces are rolled once per mount.
+ */
 const PIECE_COLORS = [
-    Colors.light.primary,
-    Colors.light.secondary,
-    Colors.light.lemon,
-    Colors.light.mint,
-    Colors.light.blush
+    Brand.primary,
+    Brand.secondary,
+    Brand.lemon,
+    Brand.mint,
+    Brand.blush
 ];
 
 interface Piece {
@@ -98,6 +104,8 @@ function makePieces(): Piece[] {
  * can be laid across a live screen — the keyboard underneath keeps working while it falls.
  */
 export default function Confetti({ active, style }: Props) {
+    const styles = useStyles();
+
     const window = useWindowDimensions();
     const [pieces] = useState(makePieces);
     /**
@@ -202,13 +210,13 @@ export default function Confetti({ active, style }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     piece: {
         position: 'absolute',
         top: 0,
         // The hairline the rest of the app draws around everything. At this size it reads as
         // weight rather than as an outline, and without it the pale pieces vanish on the canvas.
         borderWidth: 1,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     }
-})
+}))

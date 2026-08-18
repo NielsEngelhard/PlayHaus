@@ -1,6 +1,8 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
@@ -10,7 +12,6 @@ import {
     Platform,
     Pressable,
     ScrollView,
-    StyleSheet,
     useWindowDimensions,
     View
 } from "react-native";
@@ -89,6 +90,9 @@ export default function SelectInput<T extends string>({
     onChange,
     disabled = false
 }: Props<T>) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const field = useRef<View>(null);
     const [anchor, setAnchor] = useState<Anchor | null>(null);
     const [open, setOpen] = useState(false);
@@ -184,7 +188,7 @@ export default function SelectInput<T extends string>({
                 <Feather
                     name={open ? 'chevron-up' : 'chevron-down'}
                     size={20}
-                    color={disabled ? Colors.light.textSecondary : Colors.light.text}
+                    color={disabled ? theme.colors.textSecondary : theme.colors.text}
                 />
             </Pressable>
 
@@ -269,6 +273,9 @@ interface OptionRowProps<T extends string> {
 }
 
 function OptionRow<T extends string>({ option, selected, divided, withIcon, onPress }: OptionRowProps<T>) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -297,7 +304,7 @@ function OptionRow<T extends string>({ option, selected, divided, withIcon, onPr
 
             <View style={[styles.check, selected ? styles.checkOn : styles.checkOff]}>
                 {selected && (
-                    <Feather name='check' size={16} color={Colors.light.textOnAccent} />
+                    <Feather name='check' size={16} color={theme.colors.textOnAccent} />
                 )}
             </View>
         </Pressable>
@@ -309,13 +316,13 @@ const CHECK_SIZE = 28;
 /** Wide enough for a 24px flag, which is the widest thing that goes in the slot. */
 const ICON_SLOT = 24;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     // Sunken, the way a text input reads — this is somewhere you put a value, not a
     // button that does something.
@@ -327,14 +334,14 @@ const styles = StyleSheet.create({
         gap: Spacing.three,
         paddingHorizontal: Spacing.three,
         paddingVertical: Spacing.three,
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     fieldDisabled: {
-        backgroundColor: Colors.light.muted
+        backgroundColor: theme.colors.muted
     },
     dimmed: {
         opacity: 0.5
@@ -349,7 +356,7 @@ const styles = StyleSheet.create({
         minWidth: 0,
         fontSize: FontSizes.md,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     // Catches the tap that closes the list, and nothing else. Transparent on
     // purpose — see the note where it is rendered.
@@ -364,13 +371,13 @@ const styles = StyleSheet.create({
     // lives here.
     list: {
         position: 'absolute',
-        backgroundColor: Colors.light.backgroundSecondary,
+        backgroundColor: theme.colors.backgroundSecondary,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
         // Clips the first and last rows to the rounded corners.
         overflow: 'hidden',
-        ...Shadows.hardLarge
+        ...theme.shadows.hardLarge
     },
     listScroll: {
         // Not `flex: 1`, which would stretch a two-row list to the full ceiling.
@@ -386,10 +393,10 @@ const styles = StyleSheet.create({
     // Only between rows — the list's own border does the work at the two ends.
     rowDivided: {
         borderTopWidth: 2,
-        borderTopColor: Colors.light.border
+        borderTopColor: theme.colors.border
     },
     rowHovered: {
-        backgroundColor: Colors.light.backgroundSelected
+        backgroundColor: theme.colors.backgroundSelected
     },
     rowIcon: {
         width: ICON_SLOT,
@@ -404,13 +411,13 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.md,
         lineHeight: FontSizes.md * 1.2,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     rowDescription: {
         marginTop: Spacing.half,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.4,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     check: {
         width: CHECK_SIZE,
@@ -419,13 +426,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999
     },
     checkOn: {
-        backgroundColor: Colors.light.primary
+        backgroundColor: theme.colors.primary
     },
     checkOff: {
-        backgroundColor: Colors.light.muted
+        backgroundColor: theme.colors.muted
     }
-})
+}))

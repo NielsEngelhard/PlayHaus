@@ -1,13 +1,16 @@
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { APP_NAME } from "@/constants/global-constants"
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme"
+import { FontSizes, Spacing } from "@/constants/theme"
 import AppText from "@/components/text/AppText"
-import { StyleSheet, View } from "react-native"
+import { View } from "react-native"
 
 interface Props {
     includeAppName: boolean
 }
 
 export default function Logo({ includeAppName }: Props) {
+    const styles = useStyles();
+
     return (
         <View style={styles.container}>
             <View style={styles.iconBubble}>
@@ -21,22 +24,22 @@ export default function Logo({ includeAppName }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.two
     },
     iconBubble: {
-        backgroundColor: Colors.light.lemon,
+        backgroundColor: theme.colors.lemon,
         width: 35,
         height: 35,
         borderRadius: 14,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
-        ...Shadows.hard
+        borderColor: theme.colors.border,
+        ...theme.shadows.hard
     },
     iconText: {
         fontWeight: 900,
@@ -46,4 +49,4 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         fontSize: FontSizes.lg
     }
-})
+}))

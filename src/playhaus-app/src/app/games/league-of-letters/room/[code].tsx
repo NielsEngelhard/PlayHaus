@@ -4,14 +4,16 @@ import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
 import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useMultiplayerGame } from "@/features/league-of-letters/useMultiplayerGame";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useLocalSearchParams } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 /**
  * A room, joined by its code.
@@ -50,6 +52,9 @@ interface RoomGameProps {
 
 /** The multiplayer board: the same one solo plays on, plus a clock and a scoreboard. */
 function RoomGame({ code, gameId }: RoomGameProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     useFullScreen();
 
     const { user } = useAuth();
@@ -76,7 +81,7 @@ function RoomGame({ code, gameId }: RoomGameProps) {
 
                 <InlineNotification
                     icon='alert-triangle'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Geen spel'
                     message={error}
                 >
@@ -109,10 +114,10 @@ function RoomGame({ code, gameId }: RoomGameProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     page: {
         flex: 1,
         width: '100%',
         gap: Spacing.two
     }
-})
+}))

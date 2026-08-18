@@ -5,7 +5,7 @@ import Confetti from "@/components/ui/Confetti";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
@@ -14,9 +14,11 @@ import RoundCounter from "@/features/league-of-letters/components/RoundCounter";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { avatarColorById } from "@/features/settings/profile";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     game: Game,
@@ -95,6 +97,9 @@ export default function PlayingGame({
     onNextRound,
     onFinish
 }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
 
     /**
@@ -364,7 +369,7 @@ export default function PlayingGame({
             {verdict && (
                 <InlineNotification
                     icon='x'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Helaas'
                     message={answer
                         ? `Het woord was ${answer.toUpperCase()}.`
@@ -378,7 +383,7 @@ export default function PlayingGame({
             {finished && !revealing && gameOver && (
                 <InlineNotification
                     icon='flag'
-                    color={Colors.light.lemon}
+                    color={theme.colors.lemon}
                     title='Klaar'
                     message={`Alle ${game.totalRounds} rondes gespeeld.`}
                 />
@@ -454,7 +459,7 @@ export default function PlayingGame({
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // Fills the height the root layout leaves under `Header`, which is what keeps the
     // keyboard on the bottom edge and the board off the fold.
     screen: {
@@ -484,12 +489,12 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         gap: Spacing.two,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 11,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
     },
     // Takes the row's slack, which puts the counter and the hint together at the right-hand
     // end when there is no clock between them. With one, the timer has already taken it.
@@ -498,14 +503,14 @@ const styles = StyleSheet.create({
         flexShrink: 0
     },
     advance: {
-        backgroundColor: Colors.light.primary
+        backgroundColor: theme.colors.primary
     },
     hintLetter: {
         fontSize: FontSizes.md,
         fontWeight: 900,
         // Matches the board's tiles: Outfit Black is wide enough to need pulling in.
         letterSpacing: -0.5,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     timer: {
         flex: 1,
@@ -530,16 +535,16 @@ const styles = StyleSheet.create({
     notice: {
         alignSelf: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.three,
-        backgroundColor: Colors.light.lemon,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.lemon,
+        ...theme.shadows.hardSmall
     },
     noticeText: {
         fontSize: FontSizes.sm,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))

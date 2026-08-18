@@ -3,12 +3,14 @@ import SimpleTextHero from "@/components/text/SimpleTextHero";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import ReconnectableGameCard from "@/features/reconnect/components/ReconnectableGameCard";
 import { kindOf } from "@/features/reconnect/game-kinds";
 import { useReconnectableGames } from "@/features/reconnect/useReconnectableGames";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 /**
  * The games this player walked away from, and the way back into each.
@@ -19,6 +21,9 @@ import { StyleSheet, View } from "react-native";
  * goes is `GAME_KINDS`' business, not this page's.
  */
 export default function ReconnectPage() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
     const { games, loading, refreshing, error, refresh } = useReconnectableGames();
 
@@ -41,7 +46,7 @@ export default function ReconnectPage() {
             ) : error !== null ? (
                 <InlineNotification
                     icon='alert-triangle'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Mislukt'
                     message={error}
                 />
@@ -78,7 +83,7 @@ export default function ReconnectPage() {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%',
         gap: Spacing.four
@@ -90,4 +95,4 @@ const styles = StyleSheet.create({
     list: {
         gap: Spacing.three
     }
-})
+}))

@@ -8,14 +8,16 @@ import PopupModal from "@/components/ui/PopupModal";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_SOLO_SETTINGS } from "@/features/league-of-letters/solo-settings";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
@@ -31,6 +33,9 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * the question can quietly destroy it.
  */
 export default function LeagueOfLettersSettingsPage() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
     const { status, user } = useAuth();
     const [settings, setSettings] = useState(DEFAULT_SOLO_SETTINGS);
@@ -196,7 +201,7 @@ export default function LeagueOfLettersSettingsPage() {
                 {error && (
                     <InlineNotification
                         icon='alert-triangle'
-                        color={Colors.light.blush}
+                        color={theme.colors.blush}
                         title='Mislukt'
                         message={error}
                     />
@@ -249,7 +254,7 @@ export default function LeagueOfLettersSettingsPage() {
 
 const START_BUTTON_HEIGHT = 60;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%'
     },
@@ -264,7 +269,7 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
-        color: Colors.light.destructive
+        color: theme.colors.destructive
     },
     startButton: {
         // A little air above it, so it reads as the end of the page rather than as
@@ -274,6 +279,6 @@ const styles = StyleSheet.create({
         // This is the one thing the page is for, so it wears the primary fill rather
         // than `TextButton`'s default. Worth a proper variant prop on the button if a
         // second screen ever needs the same thing.
-        backgroundColor: Colors.light.primary
+        backgroundColor: theme.colors.primary
     }
-})
+}))

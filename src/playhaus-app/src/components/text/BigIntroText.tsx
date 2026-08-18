@@ -1,5 +1,6 @@
-import { Colors, FontSizes } from "@/constants/theme"
-import { StyleSheet, View } from "react-native"
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { FontSizes } from "@/constants/theme"
+import { View } from "react-native"
 import AppText from "./AppText"
 import BigAccentText from "./BigAccentText"
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export default function BigIntroText({ title, accent }: Props ) {
+    const styles = useStyles();
+
     return (
         <View style={styles.container}>
             <AppText style={styles.title}>{title}</AppText>
@@ -20,7 +23,7 @@ export default function BigIntroText({ title, accent }: Props ) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: 'auto'
     },
@@ -28,13 +31,13 @@ const styles = StyleSheet.create({
         fontSize: FontSizes.huge,
         fontWeight: 900,
         lineHeight: FontSizes.huge * 1.1,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     accent: {
         fontSize: FontSizes.huge,
         fontWeight: 900,
         lineHeight: FontSizes.huge * 1.1,
-        color: Colors.light.backgroundSecondary,
-        backgroundColor: Colors.light.background
+        color: theme.colors.backgroundSecondary,
+        backgroundColor: theme.colors.background
     }
-})
+}))

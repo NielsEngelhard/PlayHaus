@@ -2,11 +2,14 @@ import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
 import NavigationCard from '@/components/ui/NavigationCard';
 import { GAMES } from '@/constants/games';
-import { Colors, FontSizes, Spacing } from '@/constants/theme';
+import { FontSizes, Spacing } from '@/constants/theme';
+import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { RelativePathString } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function HomeScreen() {
+  const styles = useStyles();
+
   return (
     <View style={styles.container}>
       <View style={styles.intro}>
@@ -47,7 +50,7 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
   container: {
     width: '100%'
   },
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     maxWidth: 448,
     fontSize: FontSizes.md,
     lineHeight: FontSizes.md * 1.6,
-    color: Colors.light.textSecondary
+    color: theme.colors.textSecondary
   },
   games: {
     gap: Spacing.four
@@ -70,12 +73,12 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     textTransform: 'uppercase',
     letterSpacing: 2.2,
-    color: Colors.light.textSecondary
+    color: theme.colors.textSecondary
   },
   footer: {
     marginTop: Spacing.six,
     textAlign: 'center',
     fontSize: FontSizes.xs,
-    color: Colors.light.textSecondary
+    color: theme.colors.textSecondary
   }
-});
+}));

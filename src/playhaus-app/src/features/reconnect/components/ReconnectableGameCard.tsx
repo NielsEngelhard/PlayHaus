@@ -2,11 +2,13 @@ import type { ReconnectableGame } from "@/api/calls/reconnect";
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import TextButton from "@/components/ui/TextButton";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { startedAgo, type GameKind } from "@/features/reconnect/game-kinds";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     game: ReconnectableGame
@@ -23,6 +25,9 @@ interface Props {
  * one button, and it is the loudest thing on the row.
  */
 export default function ReconnectableGameCard({ game, kind }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
     const started = startedAgo(game.createdAt);
 
@@ -30,7 +35,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
         <Card style={styles.card}>
             <View style={styles.row}>
                 <View style={[styles.iconTile, { backgroundColor: kind.color }]}>
-                    <Feather name={kind.icon} size={20} color={Colors.light.text} />
+                    <Feather name={kind.icon} size={20} color={theme.colors.text} />
                 </View>
 
                 <View style={styles.body}>
@@ -52,7 +57,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     card: {
         // Tighter than a `Card`'s default: this is a row in a list, not a panel,
         // and the button already carries its own height.
@@ -69,10 +74,10 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     body: {
         // Without this the text column refuses to shrink and pushes the button off
@@ -83,12 +88,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: FontSizes.md,
         fontWeight: 900,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     meta: {
         marginTop: Spacing.half,
         fontSize: FontSizes.sm,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     button: {
         // `TextButton` sizes a label-width button by pinning itself to the start of
@@ -99,4 +104,4 @@ const styles = StyleSheet.create({
         minWidth: 108,
         paddingHorizontal: Spacing.three
     }
-})
+}))

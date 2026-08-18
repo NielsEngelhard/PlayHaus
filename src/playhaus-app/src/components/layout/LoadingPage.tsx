@@ -1,7 +1,8 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useState } from "react";
-import { Animated, Easing, Platform, StyleSheet, View } from "react-native";
+import { Animated, Easing, Platform, View } from "react-native";
 
 interface Props {
     /** The line under the tiles. Say what is being waited for, not that waiting is happening. */
@@ -17,10 +18,10 @@ interface Props {
  * than like a widget borrowed from somewhere else.
  */
 const TILES = [
-    { letter: 'P', color: Colors.light.lemon,     foreground: Colors.light.text,        tilt: -4 },
-    { letter: 'L', color: Colors.light.primary,   foreground: Colors.light.textOnAccent, tilt: 5 },
-    { letter: 'A', color: Colors.light.mint,      foreground: Colors.light.text,        tilt: -3 },
-    { letter: 'Y', color: Colors.light.secondary, foreground: Colors.light.textOnAccent, tilt: 4 }
+    { letter: 'P', color: Brand.lemon,     foreground: Brand.ink,          tilt: -4 },
+    { letter: 'L', color: Brand.primary,   foreground: Brand.textOnAccent, tilt: 5 },
+    { letter: 'A', color: Brand.mint,      foreground: Brand.ink,          tilt: -3 },
+    { letter: 'Y', color: Brand.secondary, foreground: Brand.textOnAccent, tilt: 4 }
 ];
 
 const TILE_SIZE = 56;
@@ -42,6 +43,8 @@ const CYCLE_MS = 1200;
 const useNativeDriver = Platform.OS !== 'web';
 
 export default function LoadingPage({ message = 'Even geduld…' }: Props) {
+    const styles = useStyles();
+
     // One value per tile, built once by the lazy initialiser: re-creating them on
     // a render would drop the wave back to the floor mid-hop. State rather than a
     // ref because these are read while rendering, to build the transforms.
@@ -126,7 +129,7 @@ export default function LoadingPage({ message = 'Even geduld…' }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%',
         alignItems: 'center',
@@ -148,9 +151,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        ...Shadows.hardLarge
+        ...theme.shadows.hardLarge
     },
     letter: {
         fontSize: FontSizes.xl,
@@ -162,6 +165,6 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

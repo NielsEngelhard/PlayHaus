@@ -1,9 +1,10 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { WORD_LENGTHS, type WordLength } from "@/features/league-of-letters/solo-settings";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { intoRows } from "@/utils/rows";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     value: WordLength,
@@ -14,6 +15,8 @@ const COLUMNS = 6
 
 /** How long the word is. The chosen tile is the one standing proudest. */
 export default function WordLengthCard({ value, onChange }: Props) {
+    const styles = useStyles();
+
     return (
         <Card>
             <AppText style={styles.label}>Woordlengte</AppText>
@@ -45,6 +48,8 @@ interface LengthTileProps {
 }
 
 function LengthTile({ length, selected, onPress }: LengthTileProps) {
+    const styles = useStyles();
+
     return (
         <Pressable
             onPress={onPress}
@@ -63,13 +68,13 @@ function LengthTile({ length, selected, onPress }: LengthTileProps) {
 
 const TILE_HEIGHT = 56;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     grid: {
         marginTop: Spacing.three,
@@ -85,29 +90,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14
     },
     // Lemon is the colour the Solo card already wears on the game's index page.
     tileSelected: {
-        backgroundColor: Colors.light.lemon,
-        ...Shadows.hardLarge
+        backgroundColor: theme.colors.lemon,
+        ...theme.shadows.hardLarge
     },
     // The rest sit back a step: shallower shadow, a touch of the page showing through.
     tileUnselected: {
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         opacity: 0.8,
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     tileText: {
         fontSize: FontSizes.xl,
         fontWeight: 900,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     hint: {
         marginTop: Spacing.three,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))
