@@ -1,139 +1,241 @@
 import AppText from "@/components/text/AppText";
-import Card from "@/components/ui/Card";
-import Tag from "@/components/ui/Tag";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { tagChips } from "@/constants/games";
+import { Brand, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, View } from "react-native";
+import { Platform, Pressable, StyleSheet, View, type ViewStyle } from "react-native";
 
 interface Props {
     tag: string,
-    /** Fill for the badge in the upper right corner. */
+    /** The game's accent. Colours the shadow this card throws in dark mode. */
     color: string,
+    /** Three stops for the glyph tile, lightest first. */
+    gradient: readonly [string, string, string],
+    /** Ink for the glyph, already resolved for the current scheme by the caller. */
+    glyphInk: string,
     name: string,
     description: string,
     playable: boolean,
     navigationUrl: Href
 }
 
-export default function NavigationCard({ tag, color, name, description, playable, navigationUrl }: Props) {
+const TILE_SIZE = 78;
+
+/**
+ * One game, as it appears on the home page: glyph tile, name, its facts as chips, and
+ * either a play button or a SOON badge.
+ *
+ * A game that can't be played yet is not hidden — it is dimmed. Light does that by
+ * fading the whole card, dark by sinking it below the canvas onto a darker surface and
+ * taking its shadow away, because fading something that is already near-black just
+ * makes it disappear.
+ */
+export default function NavigationCard({
+    tag,
+    color,
+    gradient,
+    glyphInk,
+    name,
+    description,
+    playable,
+    navigationUrl
+}: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
     return (
         <Link href={navigationUrl} asChild>
-            <Pressable>
-                <Card triggerOnHoverAnimation>
-                    <View style={styles.top}>
-                        <View style={styles.heading}>
-                            <View style={styles.tagRow}>
-                                <Tag text={tag} />
-                            </View>
+            <Pressable
+                // Flattened, not an array. `Link asChild` clones this onto the anchor it
+                // renders, and a style array survives that trip as `{0: …, 1: …}` — which
+                // stringifies into nothing and drops the card's whole appearance.
+                style={StyleSheet.flatten([
+                    styles.card,
+                    playable ? theme.popShadow(color) : styles.cardDim
+                ])}
+            >
+                <View style={[styles.tile, tileGradient(gradient)]}>
+                    <AppText style={[styles.glyph, { color: glyphInk }]}>{name[0]}</AppText>
+                </View>
 
-                            <AppText style={styles.name}>{name}</AppText>
-                            <AppText style={styles.description}>{description}</AppText>
+                <View style={styles.body}>
+                    <AppText style={styles.name} numberOfLines={1}>{name}</AppText>
+
+                    {playable ? (
+                        <View style={styles.chips}>
+                            {tagChips(tag).map(chip => (
+                                <View key={chip} style={styles.chip}>
+                                    <AppText style={styles.chipText}>{chip}</AppText>
+                                </View>
+                            ))}
                         </View>
-
-                        <View style={[styles.badge, { backgroundColor: color }]}>
-                            <AppText style={styles.badgeText}>{name[0]}</AppText>
-                        </View>
-                    </View>
-
-                    <View style={styles.footer}>
-                        <View style={styles.status}>
-                            <View
-                                style={[
-                                    styles.dot,
-                                    { backgroundColor: playable ? theme.colors.available : theme.colors.textSecondary }
-                                ]}
-                            />
-
-                            <AppText style={styles.statusText}>
-                                {playable ? 'Speelbaar' : 'In de maak'}
-                            </AppText>
-                        </View>
-
-                        <AppText style={styles.action}>
-                            {playable ? 'Spelen' : 'Bekijk'} ↗
+                    ) : (
+                        <AppText style={styles.description} numberOfLines={2}>
+                            {description}
                         </AppText>
+                    )}
+
+                    {playable && (
+                        <View style={styles.status}>
+                            <View style={styles.statusDot} />
+                            <AppText style={styles.statusText}>Speelbaar</AppText>
+                        </View>
+                    )}
+                </View>
+
+                {playable ? (
+                    <View style={styles.play}>
+                        {/* The button's fill flips between the two schemes, so its ink
+                            has to flip the other way with it. */}
+                        <Feather
+                            name='play'
+                            size={16}
+                            color={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
+                        />
                     </View>
-                </Card>
+                ) : (
+                    <View style={styles.soon}>
+                        <AppText style={styles.soonText}>SOON</AppText>
+                    </View>
+                )}
             </Pressable>
         </Link>
     )
 }
 
+/**
+ * The tile's fill. `experimental_backgroundImage` is React Native 0.86's own gradient
+ * support, so this needs no library — only the web prefix stripped off.
+ */
+function tileGradient(stops: readonly [string, string, string]): ViewStyle {
+    const gradient = `linear-gradient(160deg, ${stops[0]}, ${stops[1]} 55%, ${stops[2]})`;
+
+    return Platform.select<ViewStyle>({
+        web: { backgroundImage: gradient } as ViewStyle,
+        default: { experimental_backgroundImage: gradient } as ViewStyle
+    })!;
+}
+
 const useStyles = createThemedStyles(theme => ({
-    top: {
+    card: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        gap: Spacing.three
+        alignItems: 'center',
+        gap: Spacing.three - 2,
+        padding: Spacing.three - 2,
+        borderRadius: 22,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderStrong,
+        backgroundColor: theme.colors.backgroundSecondary
     },
-    heading: {
+    cardDim: theme.scheme === 'dark'
+        ? {
+            backgroundColor: theme.colors.backgroundElement,
+            borderColor: theme.colors.borderSubtle
+        }
+        : {
+            opacity: 0.85,
+            ...theme.popShadow(theme.colors.border)
+        },
+    tile: {
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+        flexShrink: 0,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // Only light outlines the tile. In dark the gradient is the brightest thing on
+        // the card already, and a grey line around it would only mute it.
+        borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
+        borderColor: theme.colors.border,
+        // A lit top edge, so the tile reads as domed rather than printed.
+        boxShadow: 'inset 0 2px 0 rgba(255, 255, 255, 0.35)'
+    },
+    glyph: {
+        fontSize: 34,
+        fontWeight: 900
+    },
+    body: {
         flex: 1,
         minWidth: 0
     },
-    tagRow: {
-        marginBottom: Spacing.three
-    },
     name: {
-        fontSize: FontSizes.xxl,
+        fontSize: 19,
         fontWeight: 900,
-        lineHeight: FontSizes.xxl * 1.1,
+        lineHeight: 19 * 1.1,
         letterSpacing: -0.6,
         color: theme.colors.text
     },
-    description: {
-        marginTop: Spacing.two,
-        maxWidth: 384,
-        fontSize: FontSizes.md,
-        lineHeight: FontSizes.md * 1.4,
+    chips: {
+        marginTop: 7,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 5
+    },
+    chip: {
+        borderWidth: 1.5,
+        borderColor: theme.colors.borderSubtle,
+        borderRadius: 999,
+        paddingVertical: 2,
+        paddingHorizontal: Spacing.two
+    },
+    chipText: {
+        fontSize: 11,
+        fontWeight: 700,
         color: theme.colors.textSecondary
     },
-    badge: {
-        width: 56,
-        height: 56,
-        flexShrink: 0,
-        borderRadius: 20,
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...theme.shadows.hard
-    },
-    badgeText: {
-        fontSize: FontSizes.xl,
-        fontWeight: 900,
-        color: theme.colors.textOnAccent
-    },
-    footer: {
-        marginTop: Spacing.four,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+    description: {
+        marginTop: Spacing.two,
+        fontSize: 11.5,
+        fontWeight: 700,
+        color: theme.colors.textSecondary
     },
     status: {
+        marginTop: Spacing.two,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: Spacing.two
+        gap: 6
     },
-    dot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4
+    statusDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 999,
+        // Light picks the green out against paper; on the dark canvas the mint carries
+        // further, which is the swap the design makes.
+        backgroundColor: theme.scheme === 'dark' ? theme.colors.mint : theme.colors.available
     },
     statusText: {
-        fontSize: FontSizes.xs,
+        fontSize: 11.5,
         fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 0.6,
-        color: theme.colors.text
+        color: theme.colors.textSecondary
     },
-    action: {
-        fontSize: FontSizes.sm,
-        fontWeight: 700,
-        color: theme.colors.text
+    play: {
+        width: 38,
+        height: 38,
+        flexShrink: 0,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
+        borderColor: theme.colors.border,
+        // Ink on paper, lemon on ink: whichever of the two is the louder note in the
+        // scheme it sits in.
+        backgroundColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text
+    },
+    soon: {
+        flexShrink: 0,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.border,
+        backgroundColor: theme.colors.lemon,
+        paddingVertical: Spacing.one,
+        paddingHorizontal: Spacing.two + 2
+    },
+    soonText: {
+        fontSize: 10.5,
+        fontWeight: 900,
+        letterSpacing: 0.6,
+        color: Brand.ink
     }
 }))

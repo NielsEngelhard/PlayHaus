@@ -14,10 +14,30 @@ export interface Game {
     name: string,
     /** Accent from `Brand` — fixed, so a game looks the same in either scheme. */
     color: string,
+    /**
+     * The fill behind the game's glyph on its home card: three stops on a 160° axis,
+     * lightest first. A flat accent looks pasted on at 78px; the gradient is what makes
+     * the tile read as an object.
+     */
+    gradient: readonly [string, string, string],
+    /**
+     * Ink for the glyph sitting on that gradient, per scheme.
+     *
+     * Two entries rather than one because the schemes take opposite decisions on the
+     * warm tile: dark puts ink on it, the way it does on every bright fill it uses,
+     * while light keeps paper. On the cooler, darker fills both schemes use paper.
+     */
+    glyphInk: Record<'light' | 'dark', string>,
+    /** Facts about the game, separated by `·`. Split into chips on the home card. */
     tag: string,
     description: string,
     playable: boolean,
     navigationUrl: string
+}
+
+/** The `tag` string as the individual chips the home card renders. */
+export function tagChips(tag: string): string[] {
+    return tag.split('·').map(part => part.trim()).filter(part => part.length > 0);
 }
 
 /**
@@ -30,6 +50,8 @@ export const GAMES: Game[] = [
         slug: 'league-of-letters',
         name: LEAGUE_OF_LETTERS_NAME,
         color: Brand.primary,
+        gradient: ['#FF7A45', Brand.primary, '#E04407'],
+        glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
         tag: 'Word · 1-4 players',
         description: 'Domineer met jouw Vocabulair, solo of tegen je vrienden.',
         playable: true,
@@ -39,6 +61,8 @@ export const GAMES: Game[] = [
         slug: 'quizzer',
         name: PUBQUIZR_NAME,
         color: Brand.secondary,
+        gradient: ['#6C7BFF', Brand.secondary, '#2634C4'],
+        glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
         tag: 'Trivia · 2-10 players',
         description: 'Snelle pubquiz rondes. Nog even geduld, de vragen worden geslepen.',
         playable: false,

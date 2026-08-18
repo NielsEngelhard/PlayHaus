@@ -1,14 +1,14 @@
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { FontSizes } from "@/constants/theme"
 import { View } from "react-native"
 import AppText from "./AppText"
-import BigAccentText from "./BigAccentText"
+import BigAccentText, { HeadingLineHeight, HeadingSize } from "./BigAccentText"
 
 interface Props {
     title: string,
     accent?: string
 }
 
+/** The home page's headline: a plain first line, then the inverted block underneath. */
 export default function BigIntroText({ title, accent }: Props ) {
     const styles = useStyles();
 
@@ -25,19 +25,14 @@ export default function BigIntroText({ title, accent }: Props ) {
 
 const useStyles = createThemedStyles(theme => ({
     container: {
-        width: 'auto'
+        width: 'auto',
+        alignItems: 'flex-start'
     },
     title: {
-        fontSize: FontSizes.huge,
+        fontSize: HeadingSize,
         fontWeight: 900,
-        lineHeight: FontSizes.huge * 1.1,
+        lineHeight: HeadingLineHeight,
+        letterSpacing: -1.3,
         color: theme.colors.text
-    },
-    accent: {
-        fontSize: FontSizes.huge,
-        fontWeight: 900,
-        lineHeight: FontSizes.huge * 1.1,
-        color: theme.colors.backgroundSecondary,
-        backgroundColor: theme.colors.background
     }
 }))
