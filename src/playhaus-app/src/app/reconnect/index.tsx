@@ -1,16 +1,26 @@
 import LoadingPage from "@/components/layout/LoadingPage";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
+import AppText from "@/components/text/AppText";
+import BigIntroText from "@/components/text/BigIntroText";
 import InlineNotification from "@/components/ui/InlineNotification";
-import TextButton from "@/components/ui/TextButton";
-import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
+import NoGamesCard from "@/features/reconnect/components/NoGamesCard";
 import ReconnectableGameCard from "@/features/reconnect/components/ReconnectableGameCard";
-import { kindOf } from "@/features/reconnect/game-kinds";
+import RefreshBar from "@/features/reconnect/components/RefreshBar";
+import { kindOf, startedAgo } from "@/features/reconnect/game-kinds";
 import { useReconnectableGames } from "@/features/reconnect/useReconnectableGames";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useRouter } from "expo-router";
+import { useCooldown } from "@/hooks/useCooldown";
+import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
+
+/**
+ * How long the refresh stays down after a press.
+ *
+ * The list only changes when this player starts or finishes a game somewhere else,
+ * which is not something that happens twice in a breath — this is here to stop the
+ * button being leaned on, not to pace anything.
+ */
+const REFRESH_COOLDOWN_MS = 5000;
 
 /**
  * The games this player walked away from, and the way back into each.
@@ -24,22 +34,42 @@ export default function ReconnectPage() {
     const theme = useTheme();
     const styles = useStyles();
 
-    const router = useRouter();
-    const { games, loading, refreshing, error, refresh } = useReconnectableGames();
+    const { games, loading, refreshing, error, loadedAt, refresh } = useReconnectableGames();
+    const [coolingDown, startCooldown] = useCooldown(REFRESH_COOLDOWN_MS);
+
+    // The heading answers the page rather than naming it, which it can only do once
+    // there is an answer. Until then — the first load, or a load that failed — it asks
+    // the question instead, rather than claiming nothing is running and taking it back
+    // a moment later.
+    const settled = !loading && error === null;
+    const waiting = games.length > 0;
 
     return (
         <View style={styles.container}>
-            <SimpleTextHero
-                title='Reconnect'
-                description='Sprong je eruit? Pak de draad weer op waar je gebleven was.'
-            />
+            <View style={styles.hero}>
+                <BigIntroText
+                    title={!settled ? 'Waar was je' : waiting ? 'Nog midden in' : 'Er loopt'}
+                    accent={!settled ? 'gebleven?' : waiting ? 'het spel.' : 'niets.'}
+                />
 
-            <TextButton
-                fullWidth={true}
-                text={refreshing ? 'Bezig…' : 'Refresh'}
-                onPress={refresh}
-                disabled={loading || refreshing}
-            />
+                <AppText style={styles.description}>
+                    {!settled
+                        ? 'We kijken even welke spellen er nog voor je openstaan.'
+                        : waiting
+                            ? 'Je hebt spellen openstaan. Pak er een op waar je gebleven was.'
+                            : 'Start een spel en loop weg — hij staat hier nog als je terugkomt.'}
+                </AppText>
+
+                {loadedAt !== null && (
+                    <View style={styles.updated}>
+                        <Feather name='refresh-cw' size={12} color={theme.colors.textMuted} />
+
+                        <AppText style={styles.updatedText}>
+                            Bijgewerkt {startedAgo(loadedAt)}
+                        </AppText>
+                    </View>
+                )}
+            </View>
 
             {loading ? (
                 <LoadingPage message='Spellen zoeken…' />
@@ -51,19 +81,7 @@ export default function ReconnectPage() {
                     message={error}
                 />
             ) : games.length === 0 ? (
-                <View style={styles.empty}>
-                    <InlineNotification
-                        icon='coffee'
-                        title='Niets gevonden'
-                        message='Je hebt geen spellen lopen. Zodra je er een start en wegloopt, staat hij hier op je te wachten.'
-                    />
-
-                    <TextButton
-                        text='Kies een spel'
-                        variant='muted'
-                        onPress={() => router.push(ROUTES.home)}
-                    />
-                </View>
+                <NoGamesCard />
             ) : (
                 // A plain map rather than a list component: the whole page already
                 // sits in the layout's ScrollView, and nesting a virtualised list in
@@ -79,6 +97,17 @@ export default function ReconnectPage() {
                     })}
                 </View>
             )}
+
+            {/* Under whatever the page turned out to be, because it is about the page
+                rather than about any one row on it. */}
+            <RefreshBar
+                onPress={() => {
+                    refresh();
+                    startCooldown();
+                }}
+                busy={refreshing}
+                disabled={loading || refreshing || coolingDown}
+            />
         </View>
     )
 }
@@ -86,13 +115,30 @@ export default function ReconnectPage() {
 const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%',
-        gap: Spacing.four
+        gap: 20
     },
-    empty: {
-        gap: Spacing.three,
-        alignItems: 'flex-start'
+    hero: {
+        marginTop: 8
+    },
+    description: {
+        marginTop: 10,
+        maxWidth: 290,
+        fontSize: 14,
+        lineHeight: 14 * 1.5,
+        color: theme.colors.textSecondary
+    },
+    updated: {
+        marginTop: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 7
+    },
+    updatedText: {
+        fontSize: 11.5,
+        fontWeight: 700,
+        color: theme.colors.textMuted
     },
     list: {
-        gap: Spacing.three
+        gap: 12
     }
 }))

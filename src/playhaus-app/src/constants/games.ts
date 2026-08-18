@@ -82,3 +82,15 @@ export function gameForPathname(pathname: string): Game | null {
 
     return GAMES.find(game => game.slug === slug) ?? null;
 }
+
+/**
+ * A game by its `/games/{slug}` segment, or `null` for a slug this build has no
+ * entry for.
+ *
+ * The reconnect rows use this: the wire tells them which *type* of game they are
+ * drawing, and this turns that into the same glyph, gradient and accent the home
+ * card wears — so one game has one face wherever it turns up.
+ */
+export function gameBySlug(slug: string): Game | null {
+    return GAMES.find(game => game.slug === slug) ?? null;
+}
