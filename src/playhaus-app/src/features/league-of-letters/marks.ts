@@ -1,5 +1,5 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
-import { Colors } from "@/constants/theme";
+import { Brand } from "@/constants/theme";
 
 /**
  * The presentational half of a `Mark`.
@@ -16,11 +16,11 @@ export interface MarkStyle {
 }
 
 export const MARK_STYLES: Record<Mark, MarkStyle> = {
-    correct: { fill: Colors.light.mint, foreground: Colors.light.text },
-    present: { fill: Colors.light.lemon, foreground: Colors.light.text },
+    correct: { fill: Brand.mint, foreground: Brand.ink },
+    present: { fill: Brand.lemon, foreground: Brand.ink },
     // Deliberately the darkest of the three rather than a pale grey: an empty tile is
     // already the pale one, and "not in the word" has to read as struck out, not as blank.
-    absent: { fill: Colors.light.textSecondary, foreground: Colors.light.textOnAccent }
+    absent: { fill: Brand.slate, foreground: Brand.textOnAccent }
 };
 
 /**
@@ -34,7 +34,7 @@ export const MARK_STYLES: Record<Mark, MarkStyle> = {
 export const TEASE_REEL: MarkStyle[] = [
     MARK_STYLES.absent,
     MARK_STYLES.present,
-    { fill: Colors.light.destructive, foreground: Colors.light.textOnAccent },
+    { fill: Brand.destructive, foreground: Brand.textOnAccent },
     MARK_STYLES.correct
 ];
 

@@ -1,5 +1,5 @@
-import { Colors, Shadows } from "@/constants/theme";
-import { Pressable, StyleSheet, View } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { Pressable, View } from "react-native";
 
 interface Props {
     value: boolean,
@@ -26,6 +26,8 @@ const KNOB_TRAVEL_END = TRACK_WIDTH - TRACK_BORDER * 2 - KNOB_SIZE - KNOB_INSET;
  * of the UI, so this is drawn from scratch.
  */
 export default function Toggle({ value, onValueChange, label, disabled = false }: Props) {
+    const styles = useStyles();
+
     return (
         <Pressable
             onPress={() => onValueChange(!value)}
@@ -49,7 +51,7 @@ export default function Toggle({ value, onValueChange, label, disabled = false }
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     track: {
         width: TRACK_WIDTH,
         height: TRACK_HEIGHT,
@@ -57,13 +59,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 999,
         borderWidth: TRACK_BORDER,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     trackOn: {
-        backgroundColor: Colors.light.primary
+        backgroundColor: theme.colors.primary
     },
     trackOff: {
-        backgroundColor: Colors.light.muted
+        backgroundColor: theme.colors.muted
     },
     // The same half-strength the buttons use, so a blocked control reads the
     // same way wherever it sits.
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
         height: KNOB_SIZE,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hardSmall
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
     }
-})
+}))

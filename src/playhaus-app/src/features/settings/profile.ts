@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/theme";
+import { Brand } from "@/constants/theme";
 import Feather from "@expo/vector-icons/Feather";
 
 /**
@@ -29,12 +29,12 @@ export interface AvatarColor {
 
 /** The ids here are the ones the backend accepts — adding one means adding it there too. */
 export const AVATAR_COLORS: AvatarColor[] = [
-    { id: 'lemon',  label: 'Citroen', color: Colors.light.lemon,     foreground: Colors.light.text },
-    { id: 'fire',   label: 'Vuur',    color: Colors.light.primary,   foreground: Colors.light.textOnAccent },
-    { id: 'cobalt', label: 'Kobalt',  color: Colors.light.secondary, foreground: Colors.light.textOnAccent },
-    { id: 'mint',   label: 'Mint',    color: Colors.light.mint,      foreground: Colors.light.text },
-    { id: 'blush',  label: 'Blush',   color: Colors.light.blush,     foreground: Colors.light.text },
-    { id: 'ink',    label: 'Inkt',    color: Colors.light.text,      foreground: Colors.light.textOnAccent }
+    { id: 'lemon',  label: 'Citroen', color: Brand.lemon,     foreground: Brand.ink },
+    { id: 'fire',   label: 'Vuur',    color: Brand.primary,   foreground: Brand.textOnAccent },
+    { id: 'cobalt', label: 'Kobalt',  color: Brand.secondary, foreground: Brand.textOnAccent },
+    { id: 'mint',   label: 'Mint',    color: Brand.mint,      foreground: Brand.ink },
+    { id: 'blush',  label: 'Blush',   color: Brand.blush,     foreground: Brand.ink },
+    { id: 'ink',    label: 'Inkt',    color: Brand.ink,       foreground: Brand.textOnAccent }
 ];
 
 export function avatarColorById(id: string): AvatarColor {

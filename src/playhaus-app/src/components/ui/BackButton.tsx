@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
-import { ButtonVariants, FontSizes, SolidButton, Spacing, type ButtonVariant } from "@/constants/theme";
+import { FontSizes, Spacing, type ButtonVariant } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
@@ -9,7 +11,7 @@ interface Props {
     href: Href,
     label?: string,
     /**
-     * Defaults to `secondary`, the accent fill `SolidButton` already carries. Pass
+     * Defaults to `secondary`, the accent fill `theme.solidButton` already carries. Pass
      * `neutral` where going back is not what the page is for and the accent would be
      * competing with the thing that is.
      */
@@ -27,7 +29,10 @@ interface Props {
  * can hold pages that aren't ours.
  */
 export default function BackButton({ href, label = 'Terug', variant = 'secondary', style }: Props) {
-    const { fill, label: ink } = ButtonVariants[variant];
+    const theme = useTheme();
+    const styles = useStyles();
+
+    const { fill, label: ink } = theme.buttonVariants[variant];
 
     return (
         <Link href={href} asChild>
@@ -45,9 +50,9 @@ export default function BackButton({ href, label = 'Terug', variant = 'secondary
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     button: {
-        ...SolidButton,
+        ...theme.solidButton,
         // A column parent stretches its children by default, so sizing to the label
         // means opting out of that rather than doing nothing.
         alignSelf: 'flex-start',
@@ -61,4 +66,4 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         textTransform: 'uppercase'
     }
-})
+}))

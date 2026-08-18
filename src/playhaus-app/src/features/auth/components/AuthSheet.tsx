@@ -1,7 +1,8 @@
 import Card from "@/components/ui/Card";
 import { Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { ReactNode } from "react";
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, View } from "react-native";
 
 const noop = () => { };
 
@@ -26,6 +27,8 @@ interface Props {
  * are full forms that bring their own header.
  */
 export default function AuthSheet({ children, onRequestClose }: Props) {
+    const styles = useStyles();
+
     return (
         <Modal
             visible
@@ -54,12 +57,12 @@ export default function AuthSheet({ children, onRequestClose }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     backdrop: {
         flex: 1,
         // Dimmed rather than opaque: the app stays visible behind the sheet, so it
         // reads as "not yet" rather than as a different app.
-        backgroundColor: 'rgba(15, 13, 18, 0.6)'
+        backgroundColor: theme.colors.scrimStrong
     },
     scrollContent: {
         flexGrow: 1,
@@ -71,4 +74,4 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: 420
     }
-})
+}))

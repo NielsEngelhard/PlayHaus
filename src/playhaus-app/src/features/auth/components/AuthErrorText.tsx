@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
-import { StyleSheet } from "react-native";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 
 /**
  * Why the last attempt failed, said in one line above the submit button.
@@ -9,6 +9,8 @@ import { StyleSheet } from "react-native";
  * these already sit inside the gate's card.
  */
 export default function AuthErrorText({ message }: { message: string }) {
+    const styles = useStyles();
+
     return (
         <AppText accessibilityRole='alert' style={styles.message}>
             {message}
@@ -16,12 +18,12 @@ export default function AuthErrorText({ message }: { message: string }) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     message: {
         marginTop: Spacing.three,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         fontWeight: 500,
-        color: Colors.light.destructive
+        color: theme.colors.destructive
     }
-})
+}))

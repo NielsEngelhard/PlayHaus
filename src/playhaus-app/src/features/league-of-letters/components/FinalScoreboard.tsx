@@ -1,9 +1,10 @@
 import type { GamePlayer } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
-import { StyleSheet, View } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     players: GamePlayer[],
@@ -23,6 +24,8 @@ interface Props {
  * the API serves today, and a table of one still says what the game was worth.
  */
 export default function FinalScoreboard({ players, userId }: Props) {
+    const styles = useStyles();
+
     // Ranked here rather than trusted from the caller: the API orders players by when
     // they joined, and the winner is not usually the first to arrive.
     const ranked = [...players].sort((a, b) => b.score - a.score);
@@ -52,6 +55,8 @@ interface ScoreLineProps {
 }
 
 function ScoreLine({ player, place, you, divided }: ScoreLineProps) {
+    const styles = useStyles();
+
     const avatar = avatarColorById(player.avatarColorId);
 
     return (
@@ -71,7 +76,7 @@ function ScoreLine({ player, place, you, divided }: ScoreLineProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // The rows carry their own padding so a divider can run the full width of the
     // card rather than stopping short of its edges.
     card: {
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
     },
     divided: {
         borderTopWidth: 2,
-        borderTopColor: Colors.light.border
+        borderTopColor: theme.colors.border
     },
     place: {
         alignItems: 'center',
@@ -95,26 +100,26 @@ const styles = StyleSheet.create({
         width: 28,
         height: 28,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
-        backgroundColor: Colors.light.muted,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.muted,
+        ...theme.shadows.hardSmall
     },
     // The winner's number is the one thing on the page worth a colour.
     placeFirst: {
-        backgroundColor: Colors.light.lemon
+        backgroundColor: theme.colors.lemon
     },
     placeText: {
         fontSize: FontSizes.xs,
         fontWeight: 900,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     dot: {
         width: 16,
         height: 16,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     name: {
         // Takes the slack, so the score stays pinned to the right-hand edge however
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: FontSizes.md,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     nameYou: {
         fontWeight: 900
@@ -132,6 +137,6 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         // Outfit Black is wide enough to need pulling in, the same as the board's tiles.
         letterSpacing: -0.5,
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))

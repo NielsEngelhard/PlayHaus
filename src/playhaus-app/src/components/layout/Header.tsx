@@ -2,12 +2,13 @@ import { gameForPathname } from "@/constants/games";
 import { APP_VERSION } from "@/constants/global-constants";
 import { DEFAULT_LANGUAGE, languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import HeaderStatus from "./HeaderStatus";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
     const pathname = usePathname();
@@ -34,12 +35,16 @@ export default function Header() {
                 </Link>
             </View>
 
-            {/* Right — the game you're inside, or the app version. */}
-            <HeaderStatus
-                label={game?.name ?? APP_VERSION}
-                accent={game?.color ?? Colors.light.available}
-                language={language}
-            />
+            {/* Right — where you are, then the one control that is on every page. */}
+            <View style={styles.right}>
+                <HeaderStatus
+                    label={game?.name ?? APP_VERSION}
+                    accent={game?.color ?? Brand.available}
+                    language={language}
+                />
+
+                <ThemeToggle />
+            </View>
         </View>
     )
 }
@@ -55,5 +60,13 @@ const styles = StyleSheet.create({
     },
     logo: {
         flexShrink: 0
+    },
+    right: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two,
+        // The capsule inside this is the only thing on the row that gives ground, so
+        // this has to be shrinkable for it to have anything to shrink into.
+        flexShrink: 1
     }
 })

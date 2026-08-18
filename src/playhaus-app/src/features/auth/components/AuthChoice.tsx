@@ -1,11 +1,12 @@
 import AppText from "@/components/text/AppText";
 import TextButton from "@/components/ui/TextButton";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { authErrorMessage } from "@/features/auth/auth-errors";
 import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import { useAuth } from "@/features/auth/useAuth";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     onAccount: () => void
@@ -19,6 +20,8 @@ interface Props {
  * is no form to fill in, so this screen owns a request and its failure.
  */
 export default function AuthChoice({ onAccount }: Props) {
+    const styles = useStyles();
+
     const { continueAsGuest } = useAuth();
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -74,7 +77,7 @@ export default function AuthChoice({ onAccount }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     title: {
         fontSize: FontSizes.xxl,
         fontWeight: 900
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     buttons: {
         marginTop: Spacing.four,
@@ -96,6 +99,6 @@ const styles = StyleSheet.create({
         marginTop: Spacing.four,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

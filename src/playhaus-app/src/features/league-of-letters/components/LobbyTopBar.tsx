@@ -1,10 +1,12 @@
 import { MAX_LOBBY_PLAYERS } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 
 interface Props {
     /** The join code, as the server issued it. Drawn one character to a tile. */
@@ -44,6 +46,9 @@ function fittedTileSize(width: number, characters: number): number {
  * than as the style.
  */
 export default function LobbyTopBar({ code, players }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const [width, setWidth] = useState(0);
 
     const characters = [...code];
@@ -99,7 +104,7 @@ export default function LobbyTopBar({ code, players }: Props) {
                     accessibilityRole='text'
                     accessibilityLabel={`${players} van ${MAX_LOBBY_PLAYERS} spelers`}
                 >
-                    <Feather name='users' size={16} color={Colors.light.text} />
+                    <Feather name='users' size={16} color={theme.colors.text} />
 
                     <AppText style={styles.count}>{players}/{MAX_LOBBY_PLAYERS}</AppText>
                 </View>
@@ -108,7 +113,7 @@ export default function LobbyTopBar({ code, players }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // Tighter than a `Card`'s standing padding: this is chrome the page scrolls under,
     // and every point of height it takes is a point the room below it loses.
     card: {
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     row: {
         marginTop: Spacing.two,
@@ -139,16 +144,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         // Lemon, the colour a chosen tile wears everywhere else in this game.
-        backgroundColor: Colors.light.lemon,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.lemon,
+        ...theme.shadows.hardSmall
     },
     character: {
         fontWeight: 900,
         // Outfit Black is wide; without pulling it in, a full tile touches its own border.
         letterSpacing: -0.5,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     // The app's chrome is made of hard-bordered pills; this is one more of them.
     players: {
@@ -157,18 +162,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: Spacing.two,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two + 2,
-        backgroundColor: Colors.light.background,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.background,
+        ...theme.shadows.hardSmall
     },
     count: {
         fontSize: FontSizes.sm,
         fontWeight: 900,
         // The left-hand digit changes as people arrive; without this the pill twitches.
         fontVariant: ['tabular-nums'],
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))

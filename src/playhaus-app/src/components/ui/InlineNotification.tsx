@@ -1,9 +1,11 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import type { ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     /** Optional uppercase micro-label above the message. */
@@ -28,14 +30,21 @@ export default function InlineNotification({
     title,
     message,
     icon = 'info',
-    color = Colors.light.lemon,
+    color,
     children
 }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
+    // Defaulted here rather than in the parameter list: the resting colour comes from
+    // the theme now, and a parameter default is evaluated too early to read a hook.
+    const fill = color ?? theme.colors.lemon;
+
     return (
         <Card>
             <View style={styles.row}>
-                <View style={[styles.iconTile, { backgroundColor: color }]}>
-                    <Feather name={icon} size={18} color={Colors.light.text} />
+                <View style={[styles.iconTile, { backgroundColor: fill }]}>
+                    <Feather name={icon} size={18} color={theme.colors.text} />
                 </View>
 
                 <View style={styles.body}>
@@ -52,7 +61,7 @@ export default function InlineNotification({
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // The wrapper is a `Card`, which lays its children out in a column — the icon and
     // the text sit side by side inside it.
     row: {
@@ -65,10 +74,10 @@ const styles = StyleSheet.create({
         height: 36,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        ...Shadows.hardSmall
+        ...theme.shadows.hardSmall
     },
     body: {
         // Without this the text column refuses to wrap and pushes the tile off the card.
@@ -79,13 +88,13 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     message: {
         marginTop: Spacing.one,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     // A row, so a button inside hugs its label instead of being stretched across
     // the text column the way a column parent would stretch it.
@@ -95,4 +104,4 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         gap: Spacing.two
     }
-})
+}))

@@ -2,10 +2,12 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Colors, FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { RelativePathString, useRouter } from "expo-router";
 import { useState } from "react";
-import { LayoutChangeEvent, StyleSheet, TextInput, View } from "react-native";
+import { LayoutChangeEvent, TextInput, View } from "react-native";
 
 const CODE_LENGTH = 6;
 
@@ -32,6 +34,9 @@ function codeFontSize(width: number): number {
 
 /** Enter a room code and join someone else's League of Letters game. */
 export default function JoinLeagueOfLettersGameCard() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
     const [code, setCode] = useState('');
     const [fieldWidth, setFieldWidth] = useState(0);
@@ -57,7 +62,7 @@ export default function JoinLeagueOfLettersGameCard() {
                     onChangeText={(text) => setCode(text.toUpperCase().trim())}
                     onSubmitEditing={join}
                     placeholder='CODE'
-                    placeholderTextColor={Colors.light.textSecondary}
+                    placeholderTextColor={theme.colors.textSecondary}
                     autoCapitalize='characters'
                     autoCorrect={false}
                     maxLength={CODE_LENGTH}
@@ -72,13 +77,13 @@ export default function JoinLeagueOfLettersGameCard() {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     row: {
         marginTop: Spacing.three,
@@ -93,19 +98,19 @@ const styles = StyleSheet.create({
         // `letterSpacing` are measured per render, so they live on the element.
         minWidth: 0,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         paddingHorizontal: Spacing.three,
         paddingVertical: Spacing.two + Spacing.one,
         textAlign: 'center',
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(900),
-        color: Colors.light.text
+        color: theme.colors.text
     },
     button: {
         // Overrides the button's own `fitText` alignment so it keeps matching the height
         // of the field beside it, whatever type size the field settles on.
         alignSelf: 'stretch'
     }
-})
+}))

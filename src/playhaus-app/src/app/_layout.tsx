@@ -1,20 +1,42 @@
 import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Slot, ThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, Slot, ThemeProvider as NavigationThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Platform, ScrollView, StyleSheet, useColorScheme, View } from 'react-native';
+import { Platform, ScrollView, View } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
-import { BottomBarHeight, PageBackground, Spacing } from '@/constants/theme';
+import { BottomBarHeight, Spacing } from '@/constants/theme';
 import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
+import { createThemedStyles } from '@/features/theme/createThemedStyles';
+import { ThemeProvider, useThemeMode, useThemeReady } from '@/features/theme/ThemeContext';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
+  return (
+    // Nothing else provides this: the layout renders a bare `Slot` rather than a
+    // navigator, so `BottomBar` would have no insets to read without it.
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      {/* Outermost of the app's own providers, because everything below it — the
+          navigator's own theme included — is drawn in whichever scheme it resolves. */}
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </SafeAreaProvider>
+  );
+}
+
+/**
+ * Everything that needs to know the scheme. Split from the layout above only because a
+ * component cannot read a context its own render puts in place.
+ */
+function App() {
+  const { scheme } = useThemeMode();
+  const themeReady = useThemeReady();
 
   // Loaded at runtime rather than through the expo-font config plugin, because the
   // plugin only covers native and this app also ships to web.
@@ -29,38 +51,43 @@ export default function TabLayout() {
     Outfit_900Black: require('@expo-google-fonts/outfit/900Black/Outfit_900Black.ttf'),
   });
 
+  // Covers the font error case on purpose: if a font fails to load we'd rather show
+  // the app in the system font than strand the user on the splash screen.
+  const fontsSettled = fontsLoaded || fontError !== null;
+
   useEffect(() => {
-    // Covers the error case on purpose: if a font fails to load we'd rather show
-    // the app in the system font than strand the user on the splash screen.
-    if (fontsLoaded || fontError) {
+    // Held for the stored theme as well, which is read back asynchronously. Letting
+    // the app appear first would mean anyone who chose dark watches it paint light
+    // and then correct itself.
+    if (fontsSettled && themeReady) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError]);
+  }, [fontsSettled, themeReady]);
 
   // Native only. `output: "static"` pre-renders these routes in Node, where fonts
   // never resolve, so gating on web would export blank HTML for every page. Web
   // instead paints immediately and swaps the font in — a normal FOUT.
-  if (!fontsLoaded && !fontError && Platform.OS !== 'web') {
+  if (!fontsSettled && Platform.OS !== 'web') {
     return null;
   }
 
   return (
-    // Nothing else provides this: the layout renders a bare `Slot` rather than a
-    // navigator, so `BottomBar` would have no insets to read without it.
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {/* Outside everything it gates, so the popup can cover the chrome too. */}
-        <AuthProvider>
-          {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
-          <FullScreenProvider>
-            <Chrome />
+    <NavigationThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {/* The clock and battery sit on the app's own canvas, so they take the
+          opposite ink to it rather than the device's. */}
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
 
-            {/* Renders nothing at all while signed in. */}
-            <AuthGate />
-          </FullScreenProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+      {/* Outside everything it gates, so the popup can cover the chrome too. */}
+      <AuthProvider>
+        {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
+        <FullScreenProvider>
+          <Chrome />
+
+          {/* Renders nothing at all while signed in. */}
+          <AuthGate />
+        </FullScreenProvider>
+      </AuthProvider>
+    </NavigationThemeProvider>
   );
 }
 
@@ -70,6 +97,7 @@ export default function TabLayout() {
  */
 function Chrome() {
   const fullScreen = useFullScreenValue();
+  const styles = useStyles();
 
   const body = (
     <View style={[styles.content, fullScreen && styles.contentFullScreen]}>
@@ -104,12 +132,12 @@ function Chrome() {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
   page: {
     flex: 1,
     alignItems: 'center',
     width: '100%',
-    ...PageBackground,
+    ...theme.pageBackground,
   },
   scroll: {
     width: '100%',
@@ -139,4 +167,4 @@ const styles = StyleSheet.create({
   contentFullScreen: {
     flex: 1,
   }
-})
+}));

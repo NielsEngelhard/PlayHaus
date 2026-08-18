@@ -10,15 +10,17 @@ import TextButton from "@/components/ui/TextButton";
 import ValueCard from "@/components/ui/ValueCard";
 import { languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyPlayerList from "@/features/league-of-letters/components/LobbyPlayerList";
 import LobbyTopBar from "@/features/league-of-letters/components/LobbyTopBar";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface Props {
     /** Everything `useLobby` returned. The screen drives the room entirely through it. */
@@ -50,6 +52,9 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  * inside the root layout's shared scroller there is nothing a page can pin against.
  */
 export default function LobbyView({ state, onStarted }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const router = useRouter();
     const { user } = useAuth();
     const { lobby, isHost, saving, starting, closing } = state;
@@ -72,7 +77,7 @@ export default function LobbyView({ state, onStarted }: Props) {
 
                 <InlineNotification
                     icon='x'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Kamer gesloten'
                     message='De host heeft de kamer gesloten. Vraag om een nieuwe code.'
                 >
@@ -92,7 +97,7 @@ export default function LobbyView({ state, onStarted }: Props) {
 
                 <InlineNotification
                     icon='alert-triangle'
-                    color={Colors.light.blush}
+                    color={theme.colors.blush}
                     title='Geen kamer'
                     message={state.error}
                 >
@@ -194,7 +199,7 @@ export default function LobbyView({ state, onStarted }: Props) {
                     {state.actionError !== null && (
                         <InlineNotification
                             icon='alert-triangle'
-                            color={Colors.light.blush}
+                            color={theme.colors.blush}
                             title='Mislukt'
                             message={state.actionError}
                         />
@@ -262,7 +267,7 @@ export default function LobbyView({ state, onStarted }: Props) {
 
 const START_BUTTON_HEIGHT = 60;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     // Fills the height the root layout leaves under `Header`, which is what lets the bar
     // sit still while the scroller under it moves.
     screen: {
@@ -295,6 +300,6 @@ const styles = StyleSheet.create({
         height: START_BUTTON_HEIGHT,
         // This is the one thing the page is for, so it wears the primary fill rather than
         // `TextButton`'s default — same as `Start` on the solo settings screen.
-        backgroundColor: Colors.light.primary
+        backgroundColor: theme.colors.primary
     }
-})
+}))

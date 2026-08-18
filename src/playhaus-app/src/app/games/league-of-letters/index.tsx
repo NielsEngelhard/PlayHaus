@@ -5,11 +5,16 @@ import SimpleNavigationCard from "@/components/ui/SimpleNavigationCard";
 import ValueCard from "@/components/ui/ValueCard";
 import { LEAGUE_OF_LETTERS_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
-import { StyleSheet, View } from "react-native";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 export default function LeagueOfLettersIndexPage() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const { user } = useAuth()
 
     return (
@@ -25,7 +30,7 @@ export default function LeagueOfLettersIndexPage() {
                 <View style={styles.options}>
                     <SimpleNavigationCard
                         icon='cpu'
-                        color={Colors.light.lemon}
+                        color={theme.colors.lemon}
                         title='Solo'
                         description='Random woord, jij kiest lengte en taal.'
                         navigationUrl={ROUTES.leagueOfLettersSoloSettings}
@@ -33,8 +38,8 @@ export default function LeagueOfLettersIndexPage() {
 
                     <SimpleNavigationCard
                         icon='users'
-                        color={Colors.light.primary}
-                        iconColor={Colors.light.textOnAccent}
+                        color={theme.colors.primary}
+                        iconColor={theme.colors.textOnAccent}
                         title='Multiplayer'
                         description='Play against your friends (or foes)'
                         navigationUrl={ROUTES.leagueOfLettersCreateRoom}
@@ -49,7 +54,7 @@ export default function LeagueOfLettersIndexPage() {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%'
     },
@@ -62,4 +67,4 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         gap: Spacing.three
     }
-})
+}))

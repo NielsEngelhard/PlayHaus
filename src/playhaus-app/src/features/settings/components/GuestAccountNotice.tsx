@@ -1,6 +1,6 @@
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
-import { Colors } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
 
 interface Props {
     onCreateAccount: () => void
@@ -23,11 +23,13 @@ const MESSAGE = 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en
  * and the page underneath is perfectly usable as it is.
  */
 export default function GuestAccountNotice({ onCreateAccount }: Props) {
+    const theme = useTheme();
+
     return (
         <InlineNotification
             title='Gastaccount'
             icon='alert-triangle'
-            color={Colors.light.blush}
+            color={theme.colors.blush}
             message={MESSAGE}
         >
             <TextButton

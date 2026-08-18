@@ -1,8 +1,9 @@
 import type { GamePlayer } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
-import { ScrollView, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
     players: GamePlayer[],
@@ -31,6 +32,8 @@ interface Props {
  * its way. It scrolls sideways, so a full room never squeezes the grid.
  */
 export default function PlayerScoreRow({ players, userId, online, turnUserId, typingUserId, style }: Props) {
+    const styles = useStyles();
+
     // The server orders players by when they joined; a scoreboard wants the leader first.
     const ranked = [...players].sort((a, b) => b.score - a.score);
 
@@ -66,6 +69,8 @@ interface PlayerChipProps {
 }
 
 function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
+    const styles = useStyles();
+
     const avatar = avatarColorById(player.avatarColorId);
 
     return (
@@ -91,7 +96,7 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     scroll: {
         // A horizontal ScrollView stretches to its content's height otherwise, which in a
         // column parent means it tries to take the whole board.
@@ -110,56 +115,56 @@ const styles = StyleSheet.create({
         gap: Spacing.two,
         maxWidth: 160,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two + 2,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
     },
     // Your own chip stands a step proud of the rest, the way a selected tile does.
     chipYou: {
-        backgroundColor: Colors.light.background,
-        ...Shadows.hard
+        backgroundColor: theme.colors.background,
+        ...theme.shadows.hard
     },
     // Whoever the board is waiting on. Outlined in the app's accent rather than
     // filled with it: the chip still has to read as the same chip it was a moment ago.
     chipUp: {
-        borderColor: Colors.light.primary
+        borderColor: theme.colors.primary
     },
     dot: {
         width: 12,
         height: 12,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     // Here. The ring is what carries it, so the swatch underneath stays the player's
     // own colour and the two facts do not fight over one dot.
     dotLive: {
-        borderColor: Colors.light.mint
+        borderColor: theme.colors.mint
     },
     // Gone. Dimmed as well as ringed, because a colour alone is a poor thing to
     // hang "this person cannot see the board" on.
     dotAway: {
-        borderColor: Colors.light.destructive,
+        borderColor: theme.colors.destructive,
         opacity: 0.55
     },
     name: {
         flexShrink: 1,
         fontSize: FontSizes.xs,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     score: {
         fontSize: FontSizes.sm,
         fontWeight: 900,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     typing: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         fontStyle: 'italic',
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

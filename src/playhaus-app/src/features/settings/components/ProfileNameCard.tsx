@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, randomName } from "@/features/settings/profile";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { ActivityIndicator, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { ActivityIndicator, Pressable, TextInput, View } from "react-native";
 
 interface Props {
     name: string,
@@ -21,6 +23,9 @@ interface Props {
  * snapping back to normal and leaving you unsure whether the tap registered.
  */
 export default function ProfileNameCard({ name, onSave, saving = false }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const [draft, setDraft] = useState(name);
 
     // Trimmed, because that is what the backend stores and validates against —
@@ -44,7 +49,7 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
                     onChangeText={setDraft}
                     onSubmitEditing={save}
                     placeholder='Jouw naam'
-                    placeholderTextColor={Colors.light.textSecondary}
+                    placeholderTextColor={theme.colors.textSecondary}
                     autoCorrect={false}
                     editable={!saving}
                     maxLength={NAME_MAX_LENGTH}
@@ -61,7 +66,7 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
                         style={[styles.saveButton, !canSave && styles.buttonDisabled]}
                     >
                         {saving
-                            ? <ActivityIndicator size='small' color={Colors.light.textOnAccent} />
+                            ? <ActivityIndicator size='small' color={theme.colors.textOnAccent} />
                             : <AppText style={styles.saveText}>Opslaan</AppText>}
                     </Pressable>
 
@@ -72,7 +77,7 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
                         accessibilityLabel='Willekeurige naam'
                         style={[styles.diceButton, saving && styles.buttonDisabled]}
                     >
-                        <Feather name='shuffle' size={20} color={Colors.light.text} />
+                        <Feather name='shuffle' size={20} color={theme.colors.text} />
                     </Pressable>
                 </View>
             </View>
@@ -86,13 +91,13 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
 
 const BUTTON_HEIGHT = 46;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     field: {
         marginTop: Spacing.three,
@@ -101,14 +106,14 @@ const styles = StyleSheet.create({
     input: {
         height: BUTTON_HEIGHT,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.backgroundInput,
+        backgroundColor: theme.colors.backgroundInput,
         paddingHorizontal: Spacing.three,
         fontSize: FontSizes.lg,
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(700),
-        color: Colors.light.text
+        color: theme.colors.text
     },
     buttons: {
         flexDirection: 'row',
@@ -120,10 +125,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.primary,
-        ...Shadows.hard
+        backgroundColor: theme.colors.primary,
+        ...theme.shadows.hard
     },
     buttonDisabled: {
         opacity: 0.5
@@ -133,7 +138,7 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         textTransform: 'uppercase',
         letterSpacing: 0.6,
-        color: Colors.light.textOnAccent
+        color: theme.colors.textOnAccent
     },
     diceButton: {
         width: BUTTON_HEIGHT,
@@ -142,15 +147,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hard
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hard
     },
     hint: {
         marginTop: Spacing.three,
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

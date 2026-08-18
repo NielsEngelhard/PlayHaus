@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
-import { ButtonVariants, FontSizes, SolidButton, type ButtonVariant } from "@/constants/theme";
-import { StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { FontSizes, type ButtonVariant } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     text: string
@@ -12,7 +14,7 @@ interface Props {
      */
     fullWidth?: boolean
     disabled?: boolean
-    /** Defaults to `secondary`, the fill `SolidButton` already carries. */
+    /** Defaults to `secondary`, the fill `theme.solidButton` already carries. */
     variant?: ButtonVariant
     /** For layout only — how the button sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
@@ -27,7 +29,10 @@ export default function TextButton({
     variant = 'secondary',
     style
 }: Props) {
-    const { fill, label } = ButtonVariants[variant];
+    const theme = useTheme();
+    const styles = useStyles();
+
+    const { fill, label } = theme.buttonVariants[variant];
 
     return (
         <PopPressable
@@ -48,8 +53,8 @@ export default function TextButton({
     )
 }
 
-const styles = StyleSheet.create({
-    button: SolidButton,
+const useStyles = createThemedStyles(theme => ({
+    button: theme.solidButton,
     // A column parent stretches its children by default, so fitting the label means
     // opting out of that rather than doing nothing.
     fitText: {
@@ -68,4 +73,4 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         textTransform: 'uppercase'
     }
-})
+}))

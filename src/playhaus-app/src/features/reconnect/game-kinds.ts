@@ -1,7 +1,7 @@
 import type { GameType, ReconnectableGame } from '@/api/calls/reconnect';
 import { LEAGUE_OF_LETTERS_NAME } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
-import { Colors } from '@/constants/theme';
+import { Brand } from '@/constants/theme';
 import Feather from '@expo/vector-icons/Feather';
 import type { Href } from 'expo-router';
 
@@ -35,7 +35,7 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         title: LEAGUE_OF_LETTERS_NAME,
         mode: 'Solo',
         icon: 'type',
-        color: Colors.light.lemon,
+        color: Brand.lemon,
         // Only the id travels, the same as when the game was started: the play
         // screen reads the length, the language and the round it left off at off
         // the game it fetches.
@@ -45,7 +45,7 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         title: LEAGUE_OF_LETTERS_NAME,
         mode: 'Kamer',
         icon: 'users',
-        color: Colors.light.secondary,
+        color: Brand.secondary,
         // The join code, not the game id: a room is reached by its code, and the room
         // screen works out for itself whether that means a lobby or a board.
         href: game => ROUTES.leagueOfLettersRoom(game.id) as Href

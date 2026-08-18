@@ -1,8 +1,10 @@
 import { ROUTES } from "@/constants/routes";
-import { BottomBarHeight, Colors, Shadows, Spacing } from "@/constants/theme";
+import { BottomBarHeight, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, RelativePathString, usePathname, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Tab {
@@ -45,6 +47,9 @@ function isActive(tab: Tab, pathname: string): boolean {
  * has to pad past `BottomBarHeight` — the root layout does this for the shared ScrollView.
  */
 export default function BottomBar() {
+    const theme = useTheme();
+    const styles = useStyles();
+
     const insets = useSafeAreaInsets()
     const pathname = usePathname()
 
@@ -71,7 +76,7 @@ export default function BottomBar() {
                                     <Feather
                                         name={tab.icon}
                                         size={22}
-                                        color={active ? Colors.light.textOnAccent : Colors.light.textSecondary}
+                                        color={active ? theme.colors.textOnAccent : theme.colors.textSecondary}
                                     />
                                 </View>
                             </Pressable>
@@ -83,7 +88,7 @@ export default function BottomBar() {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     wrapper: {
         position: 'absolute',
         left: 0,
@@ -103,9 +108,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.two,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border,
-        backgroundColor: Colors.light.backgroundSecondary,
-        ...Shadows.hardLarge
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardLarge
     },
     item: {
         flex: 1,
@@ -121,9 +126,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     iconActive: {
-        backgroundColor: Colors.light.primary,
+        backgroundColor: theme.colors.primary,
         borderWidth: 2,
-        borderColor: Colors.light.border,
-        ...Shadows.hard
+        borderColor: theme.colors.border,
+        ...theme.shadows.hard
     }
-})
+}))

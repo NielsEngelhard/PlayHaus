@@ -1,9 +1,10 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
-import { StyleSheet, View } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     name: string,
@@ -18,6 +19,8 @@ function initials(name: string): string {
 
 /** The identity card at the top of the profile page: avatar, name, and what that means. */
 export default function ProfileCard({ name, color }: Props) {
+    const styles = useStyles();
+
     const avatar = avatarColorById(color);
 
     return (
@@ -42,7 +45,7 @@ export default function ProfileCard({ name, color }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     tagRow: {
         marginBottom: Spacing.three
     },
@@ -57,10 +60,10 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         borderRadius: 24,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        ...Shadows.hardLarge
+        ...theme.shadows.hardLarge
     },
     initials: {
         fontSize: FontSizes.xl,
@@ -76,12 +79,12 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         lineHeight: FontSizes.xxxl * 1.1,
         letterSpacing: -0.7,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     subtitle: {
         marginTop: Spacing.one,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.4,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

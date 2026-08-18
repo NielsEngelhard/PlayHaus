@@ -1,14 +1,19 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     onLogout: () => void
 }
 
 export default function LogoutCard({ onLogout }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <Card>
             <AppText style={styles.label}>Logout</AppText>
@@ -20,7 +25,7 @@ export default function LogoutCard({ onLogout }: Props) {
                     accessibilityLabel='Logout'
                     style={styles.button}
                 >
-                    <Feather name='log-out' size={16} color={Colors.light.textOnAccent} />
+                    <Feather name='log-out' size={16} color={theme.colors.textOnAccent} />
                     <AppText style={styles.buttonText}>Logout</AppText>
                 </Pressable>
             </View>
@@ -28,13 +33,13 @@ export default function LogoutCard({ onLogout }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     label: {
         fontSize: FontSizes.xs,
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     // The button hugs its text rather than filling the card, so it needs a row to sit
     // at the start of.
@@ -49,16 +54,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.four,
         paddingVertical: Spacing.two + Spacing.one,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: Colors.light.destructive,
-        ...Shadows.hard
+        backgroundColor: theme.colors.destructive,
+        ...theme.shadows.hard
     },
     buttonText: {
         fontSize: FontSizes.sm,
         fontWeight: 900,
         textTransform: 'uppercase',
         letterSpacing: 0.6,
-        color: Colors.light.textOnAccent
+        color: theme.colors.textOnAccent
     }
-})
+}))

@@ -2,9 +2,10 @@ import { MAX_LOBBY_PLAYERS, type LobbyPlayer } from "@/api/calls/league-of-lette
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
-import { StyleSheet, View } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     players: LobbyPlayer[],
@@ -31,6 +32,8 @@ interface Props {
  * plainly than a number going from two to three.
  */
 export default function LobbyPlayerList({ players, hostId, userId, online }: Props) {
+    const styles = useStyles();
+
     const free = Math.max(0, MAX_LOBBY_PLAYERS - players.length);
 
     return (
@@ -68,6 +71,8 @@ interface PlayerRowProps {
 }
 
 function PlayerRow({ player, host, you, live }: PlayerRowProps) {
+    const styles = useStyles();
+
     const avatar = avatarColorById(player.avatarColorId);
 
     // Spread rather than sliced: a name starting with an emoji or an accented pair would
@@ -102,6 +107,8 @@ function PlayerRow({ player, host, you, live }: PlayerRowProps) {
 
 /** A seat nobody has taken. Drawn open, so the room reads as unfinished. */
 function EmptySeat() {
+    const styles = useStyles();
+
     return (
         <View style={[styles.row, styles.rowEmpty]} accessibilityRole='text' accessibilityLabel='Vrije plek'>
             <View style={styles.avatarEmpty} />
@@ -116,7 +123,7 @@ const AVATAR_SIZE = 36;
 /** The live dot. Big enough to read at a glance, small enough not to crop the initial. */
 const STATUS_SIZE = 13;
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -128,14 +135,14 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     count: {
         fontSize: FontSizes.sm,
         fontWeight: 900,
         // The left-hand digit changes as people arrive; without this the label twitches.
         fontVariant: ['tabular-nums'],
-        color: Colors.light.text
+        color: theme.colors.text
     },
     list: {
         marginTop: Spacing.three,
@@ -148,13 +155,13 @@ const styles = StyleSheet.create({
         paddingVertical: Spacing.two,
         paddingHorizontal: Spacing.two + Spacing.one,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 14
     },
     // Somebody is here: stands up off the card the way a chosen tile does.
     rowTaken: {
-        backgroundColor: Colors.light.background,
-        ...Shadows.hardSmall
+        backgroundColor: theme.colors.background,
+        ...theme.shadows.hardSmall
     },
     // A seat sits back instead: no shadow, no fill of its own, and a broken outline so it
     // does not read as a person with a blank name. The shadow is added by `rowTaken`
@@ -171,7 +178,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     // On the avatar's corner, overhanging it slightly so it reads as a badge on the
     // person rather than a hole punched in them.
@@ -183,13 +190,13 @@ const styles = StyleSheet.create({
         height: STATUS_SIZE,
         borderRadius: 999,
         borderWidth: 2,
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     statusLive: {
-        backgroundColor: Colors.light.mint
+        backgroundColor: theme.colors.mint
     },
     statusAway: {
-        backgroundColor: Colors.light.destructive
+        backgroundColor: theme.colors.destructive
     },
     avatarEmpty: {
         width: AVATAR_SIZE,
@@ -198,7 +205,7 @@ const styles = StyleSheet.create({
         borderRadius: 999,
         borderWidth: 2,
         borderStyle: 'dashed',
-        borderColor: Colors.light.border
+        borderColor: theme.colors.border
     },
     initial: {
         fontSize: FontSizes.md,
@@ -210,12 +217,12 @@ const styles = StyleSheet.create({
         minWidth: 0,
         fontSize: FontSizes.md,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     waiting: {
         flex: 1,
         minWidth: 0,
         fontSize: FontSizes.sm,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     }
-})
+}))

@@ -1,8 +1,9 @@
 import AppText from "@/components/text/AppText";
 import TextButton from "@/components/ui/TextButton";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
-import { StyleSheet, View } from "react-native";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     onLogin: () => void
@@ -18,6 +19,8 @@ interface Props {
  * of its own.
  */
 export default function AccountChoice({ onLogin, onCreateAccount, onBack }: Props) {
+    const styles = useStyles();
+
     return (
         <View>
             <AuthFormHeader title='Account' onBack={onBack} />
@@ -45,16 +48,16 @@ export default function AccountChoice({ onLogin, onCreateAccount, onBack }: Prop
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     subtitle: {
         marginTop: Spacing.four,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     buttons: {
         marginTop: Spacing.four,
         flexDirection: 'column',
         gap: Spacing.three
     }
-})
+}))

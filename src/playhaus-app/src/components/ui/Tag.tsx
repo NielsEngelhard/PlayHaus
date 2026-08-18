@@ -1,12 +1,15 @@
 import AppText from "@/components/text/AppText";
-import { Colors, FontSizes, Spacing } from "@/constants/theme";
-import { StyleSheet, View } from "react-native";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { View } from "react-native";
 
 interface Props {
     text: string
 }
 
 export default function Tag({ text }: Props) {
+    const styles = useStyles();
+
     return (
         <View style={styles.container}>
             <AppText style={styles.text}>
@@ -16,20 +19,20 @@ export default function Tag({ text }: Props) {
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     container: {
         alignSelf: 'flex-start'
     },
     text: {
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         borderRadius: 999,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two + 2,
-        backgroundColor: Colors.light.backgroundSecondary,
+        backgroundColor: theme.colors.backgroundSecondary,
         fontSize: FontSizes.xs,
         fontWeight: 600,
         textTransform: 'uppercase',
         letterSpacing: 0.5,
     }
-})
+}))

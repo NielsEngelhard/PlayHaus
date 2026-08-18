@@ -1,9 +1,11 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
-import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 interface Props {
     tag: string,
@@ -16,6 +18,9 @@ interface Props {
 }
 
 export default function NavigationCard({ tag, color, name, description, playable, navigationUrl }: Props) {
+    const theme = useTheme();
+    const styles = useStyles();
+
     return (
         <Link href={navigationUrl} asChild>
             <Pressable>
@@ -40,7 +45,7 @@ export default function NavigationCard({ tag, color, name, description, playable
                             <View
                                 style={[
                                     styles.dot,
-                                    { backgroundColor: playable ? Colors.light.available : Colors.light.textSecondary }
+                                    { backgroundColor: playable ? theme.colors.available : theme.colors.textSecondary }
                                 ]}
                             />
 
@@ -59,7 +64,7 @@ export default function NavigationCard({ tag, color, name, description, playable
     )
 }
 
-const styles = StyleSheet.create({
+const useStyles = createThemedStyles(theme => ({
     top: {
         flexDirection: 'row',
         alignItems: 'flex-start',
@@ -78,14 +83,14 @@ const styles = StyleSheet.create({
         fontWeight: 900,
         lineHeight: FontSizes.xxl * 1.1,
         letterSpacing: -0.6,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     description: {
         marginTop: Spacing.two,
         maxWidth: 384,
         fontSize: FontSizes.md,
         lineHeight: FontSizes.md * 1.4,
-        color: Colors.light.textSecondary
+        color: theme.colors.textSecondary
     },
     badge: {
         width: 56,
@@ -93,15 +98,15 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: Colors.light.border,
+        borderColor: theme.colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        ...Shadows.hard
+        ...theme.shadows.hard
     },
     badgeText: {
         fontSize: FontSizes.xl,
         fontWeight: 900,
-        color: Colors.light.textOnAccent
+        color: theme.colors.textOnAccent
     },
     footer: {
         marginTop: Spacing.four,
@@ -124,11 +129,11 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         textTransform: 'uppercase',
         letterSpacing: 0.6,
-        color: Colors.light.text
+        color: theme.colors.text
     },
     action: {
         fontSize: FontSizes.sm,
         fontWeight: 700,
-        color: Colors.light.text
+        color: theme.colors.text
     }
-})
+}))
