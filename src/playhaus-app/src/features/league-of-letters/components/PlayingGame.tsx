@@ -1,4 +1,4 @@
-import type { Game, GameRound } from "@/api/calls/league-of-letters";
+import type { Game, GameGuess, GameRound } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import BackButton from "@/components/ui/BackButton";
 import Confetti from "@/components/ui/Confetti";
@@ -13,8 +13,9 @@ import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreR
 import RoundCounter from "@/features/league-of-letters/components/RoundCounter";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
+import { avatarColorById } from "@/features/settings/profile";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
@@ -31,10 +32,33 @@ interface Props {
      * Sends a complete word. Rejecting is how a refusal is reported — whatever it
      * throws is turned into a line for the player by `guessErrorMessage`.
      *
-     * Left out on a board that cannot be played, which is how the multiplayer room
-     * still renders while it has no endpoint to send to.
+     * Left out on a board that cannot be played.
      */
     onGuess?: (word: string) => Promise<void>,
+    /**
+     * Multiplayer only. Whether the keyboard belongs to this player right now: on a
+     * shared board only one person may add a row at a time.
+     *
+     * Left undefined on solo, where the board is always yours.
+     */
+    myTurn?: boolean,
+    /**
+     * Multiplayer only. What the player whose turn it is has typed so far, shown in
+     * the row they are typing it into so the table can watch them think. Never your
+     * own letters — those are already on screen as `draft`.
+     */
+    typing?: string | null,
+    /**
+     * Multiplayer only. Relays this player's draft to the rest of the table. Called
+     * on every keystroke; the throttling is the caller's.
+     */
+    onTyping?: (letters: string) => void,
+    /**
+     * Multiplayer only. Who is connected, for the scoreboard's live dots. On a
+     * turn-based board this is the difference between waiting on somebody who is
+     * looking at the screen and waiting on somebody whose phone locked.
+     */
+    online?: Set<string>,
     /**
      * Moves on from a finished round. Left out when there is nowhere to move on to,
      * which is what makes the last round's verdict the end of the game.
@@ -59,7 +83,18 @@ const NOTICE_MS = 2500;
  * above the board. Everything that makes the screen a game is identical, and a solo game
  * is really a multiplayer one with nobody else in it and no deadline.
  */
-export default function PlayingGame({ game, round, userId, onGuess, onNextRound, onFinish }: Props) {
+export default function PlayingGame({
+    game,
+    round,
+    userId,
+    onGuess,
+    myTurn,
+    typing,
+    onTyping,
+    online,
+    onNextRound,
+    onFinish
+}: Props) {
     const router = useRouter();
 
     /**
@@ -92,7 +127,32 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
     const [revealed, setRevealed] = useState(0);
 
     const multiplayer = game.mode === 'multiplayer';
+
+    /**
+     * The rows on the board.
+     *
+     * In solo they are yours and only yours — the filter is really a guard, since
+     * nobody else can play into a solo game. On a multiplayer board the six rows
+     * belong to the table: everyone plays into the same grid, in turn, and drawing
+     * only your own would leave five of them looking blank to five different people.
+     */
+    const rows = multiplayer ? round.guesses : round.guesses.filter(guess => guess.userId === userId);
+
+    /** Yours specifically, which is still what a win and the duplicate check are about. */
     const myGuesses = round.guesses.filter(guess => guess.userId === userId);
+
+    /** On a shared board the keyboard is only live when the turn is yours. */
+    const canPlay = !multiplayer || myTurn === true;
+
+    /** The swatch of whoever played a row, so a shared board says whose is whose. */
+    const colorOf = useCallback((guess: GameGuess) => (
+        avatarColorById(
+            game.players?.find(player => player.userId === guess.userId)?.avatarColorId ?? ''
+        ).color
+    ), [game.players]);
+
+    /** Who the board is waiting on, when it is not you. */
+    const waitingOn = canPlay ? undefined : game.players?.find(player => player.userId === game.turn?.userId);
 
     // The backend withholds the answer while the round is still winnable, so being told it
     // at all is what tells us the round is over. No separate flag needed.
@@ -151,7 +211,13 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
 
     function type(letter: string) {
         setNotice(null);
-        setDraft(current => (current.length < game.wordLength ? current + letter : current));
+        setDraft(current => {
+            const next = current.length < game.wordLength ? current + letter : current;
+            // Relayed from here rather than from an effect on `draft`, so the table sees
+            // the letter on the same press that put it there.
+            if (next !== current) onTyping?.(next);
+            return next;
+        });
     }
 
     function backspace() {
@@ -159,7 +225,11 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
         // The hint is not the player's to delete. Wiping the row and having to put the
         // same letter back by hand is busywork, and a row that starts with anything else
         // is a word that cannot be the answer.
-        setDraft(current => (current.length > firstLetter.length ? current.slice(0, -1) : current));
+        setDraft(current => {
+            const next = current.length > firstLetter.length ? current.slice(0, -1) : current;
+            if (next !== current) onTyping?.(next);
+            return next;
+        });
     }
 
     async function submit() {
@@ -176,10 +246,15 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
         if (draft.length < game.wordLength) return;
 
         // Checked here as well as on the server. The board already knows every word
-        // this player has tried, so a repeat can be answered in Dutch and instantly
+        // that has been tried, so a repeat can be answered in Dutch and instantly
         // rather than being sent off to come back as an English 409.
-        if (myGuesses.some(guess => guess.word.toUpperCase() === draft)) {
-            setNotice({ text: 'Die had je al.' });
+        //
+        // Against the whole board on multiplayer: on a shared grid somebody else
+        // having tried a word is exactly as much of a repeat as you having tried it,
+        // and the answer is a different sentence.
+        const played = rows.find(guess => !guess.skipped && guess.word.toUpperCase() === draft);
+        if (played !== undefined) {
+            setNotice({ text: played.userId === userId ? 'Die had je al.' : 'Die is al geprobeerd.' });
             return;
         }
 
@@ -190,6 +265,8 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
             // the player meant, and retyping it would be a punishment for a hiccup.
             // Cleared back to the hint, not to nothing — the next row opens the same way.
             setDraft(firstLetter);
+            // And the table stops seeing the word that has now landed as a row.
+            onTyping?.('');
             setRevealing(true);
             setRevealed(count => count + 1);
         } catch (failure) {
@@ -238,16 +315,30 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
             </View>
 
             {multiplayer && game.players && (
-                <PlayerScoreRow players={game.players} userId={userId} />
+                <PlayerScoreRow
+                    players={game.players}
+                    userId={userId}
+                    online={online}
+                    turnUserId={game.turn?.userId}
+                    typingUserId={typing === null || typing === undefined ? undefined : game.turn?.userId}
+                />
             )}
 
             <View style={styles.board}>
                 <GuessGrid
                     wordLength={game.wordLength}
                     maxGuesses={game.maxGuesses}
-                    guesses={myGuesses}
-                    // The row being typed only exists while the round can still be won.
-                    draft={finished ? '' : draft}
+                    guesses={rows}
+                    /*
+                     * The row being typed only exists while the round can still be won,
+                     * and on a shared board it belongs to whoever is up: your own draft
+                     * when that is you, and the letters relayed from their keyboard when
+                     * it is not. One row, whoever is filling it.
+                     */
+                    draft={finished ? '' : canPlay ? draft : typing ?? ''}
+                    // Solo rows are all the same player's, so a marker would be six
+                    // copies of one colour.
+                    ownerColorOf={multiplayer ? colorOf : undefined}
                 />
 
                 {/* Laid over the foot of the board rather than placed under it. A nudge
@@ -293,15 +384,39 @@ export default function PlayingGame({ game, round, userId, onGuess, onNextRound,
                 />
             )}
 
+            {/*
+              * Whose turn it is, when it is not yours. The keyboard below is dead in
+              * that state, and a dead keyboard with nothing saying why reads as a
+              * broken one.
+              */}
+            {multiplayer && !finished && !canPlay && (
+                <InlineNotification
+                    icon='clock'
+                    title={waitingOn === undefined ? 'Wachten' : `${waitingOn.name} is aan de beurt`}
+                    message={typing ? 'Ze zijn aan het typen…' : 'Kijk mee — jij bent zo.'}
+                />
+            )}
+
             {(!finished || revealing) && (
                 <LetterKeyboard
-                    // The newest guess is left out until the board has finished showing it —
-                    // the keys would otherwise colour in before the tiles they belong to.
-                    marks={keyboardMarks(revealing ? myGuesses.slice(0, -1) : myGuesses, userId)}
+                    /*
+                     * On a shared board the keys show what the *table* has learned:
+                     * everybody is looking at the same six rows, so a letter greyed out
+                     * for whoever happened to type it and nobody else would be five
+                     * keyboards for one puzzle.
+                     *
+                     * The newest guess is left out until the board has finished showing
+                     * it — the keys would otherwise colour in before the tiles they
+                     * belong to.
+                     */
+                    marks={keyboardMarks(
+                        revealing ? rows.slice(0, -1) : rows,
+                        multiplayer ? undefined : userId
+                    )}
                     onKey={type}
                     onEnter={submit}
                     onBackspace={backspace}
-                    disabled={finished || sending || revealing}
+                    disabled={finished || sending || revealing || !canPlay}
                 />
             )}
 

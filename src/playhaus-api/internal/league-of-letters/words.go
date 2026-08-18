@@ -32,7 +32,7 @@ func IsAllowedWord(lang i18n.Locale, size int, word string) bool {
 		return true
 	}
 
-	_, ok := allowed[word]
+	_, ok := allowed[strings.ToLower(word)]
 	return ok
 }
 

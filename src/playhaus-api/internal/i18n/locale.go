@@ -3,6 +3,7 @@ package i18n
 import (
 	"database/sql/driver"
 	"fmt"
+	"slices"
 	"strings"
 )
 
@@ -14,10 +15,21 @@ const (
 	Default        = NL
 )
 
-var supported = map[Locale]bool{EN: true, NL: true}
+// Every language/locale the API accepts
+var Locales = []Locale{NL, EN}
 
-func (l Locale) Valid() bool    { return supported[l] }
+func (l Locale) Valid() bool    { return slices.Contains(Locales, l) }
 func (l Locale) String() string { return string(l) }
+
+// Names lists the supported locales as plain strings, for a validation message
+// that has to spell out the alternatives.
+func Names() []string {
+	names := make([]string, len(Locales))
+	for i, l := range Locales {
+		names[i] = l.String()
+	}
+	return names
+}
 
 // Parse normalises a locale string. "nl-NL", "NL", "nl" all yield NL.
 // Unsupported or empty input yields Default.

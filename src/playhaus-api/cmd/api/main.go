@@ -17,6 +17,7 @@ import (
 	"playhaus-api/internal/config"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 )
 
@@ -70,7 +71,12 @@ func run() error {
 	authService := auth.NewService(auth.NewGormStore(db), userService)
 	lolService := league_of_letters.NewService(league_of_letters.NewGormStore(db))
 
-	handler := api.NewServer(userService, authService, lolService, logger, cfg.AllowedOrigins)
+	// Every live socket room in the process. Game-agnostic: the games claim their
+	// namespaces inside NewServer.
+	hub := realtime.NewHub(logger)
+	defer hub.Close()
+
+	handler := api.NewServer(userService, authService, lolService, hub, logger, cfg.AllowedOrigins)
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------
@@ -110,6 +116,12 @@ func run() error {
 
 	case <-ctx.Done():
 		logger.Info("shutdown signal received")
+
+		// Sockets first. http.Server.Shutdown neither closes nor waits for
+		// hijacked connections, so without this every open room would be cut
+		// rather than hung up on -- and every client would treat that as a
+		// connection to retry rather than a server that has gone.
+		hub.Close()
 
 		shutdownCtx, cancel := context.WithTimeout(context.Background(), cfg.ShutdownTimeout)
 		defer cancel()

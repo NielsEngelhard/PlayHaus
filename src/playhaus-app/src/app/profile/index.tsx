@@ -1,5 +1,6 @@
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
+import LanguageSelect from "@/components/ui/LanguageSelect";
 import { Colors, FontSizes, Spacing } from "@/constants/theme";
 import AccountModal from "@/features/auth/components/AccountModal";
 import { useAuth } from "@/features/auth/useAuth";
@@ -36,6 +37,7 @@ export default function ProfilePage() {
         saveError,
         updateUsername,
         updateColor,
+        updateLocale,
         updateEnableSounds,
         updateEnableMusic,
         updateEnableVibration
@@ -84,6 +86,18 @@ export default function ProfilePage() {
                 <ProfileAvatarColorPickerCard
                     value={profile.color}
                     onChange={updateColor}
+                    disabled={saving}
+                />
+            </View>
+
+            {/* Saved the moment it moves, like the swatches above it. The flag in
+                the header renders off the same `locale`, so it follows along
+                without this page telling it to. */}
+            <View style={tilt('-0.2deg')}>
+                <LanguageSelect
+                    label='Taal'
+                    value={profile.locale}
+                    onChange={updateLocale}
                     disabled={saving}
                 />
             </View>

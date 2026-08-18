@@ -47,6 +47,11 @@ func writeError(w http.ResponseWriter, status int, msg string) {
 	writeJSON(w, status, map[string]string{"error": msg})
 }
 
+// writeErrorCode is writeError plus a stable machine-readable tag.
+func writeErrorCode(w http.ResponseWriter, status int, code, msg string) {
+	writeJSON(w, status, map[string]string{"error": msg, "code": code})
+}
+
 func Deref[T any](p *T, fallback T) T {
 	if p == nil {
 		return fallback

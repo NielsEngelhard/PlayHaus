@@ -7,6 +7,7 @@ import (
 	"strings"
 	"testing"
 
+	"playhaus-api/internal/i18n"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 
 	"gorm.io/gorm"
@@ -23,7 +24,7 @@ func answerFor(t *testing.T, db *gorm.DB, gameID string, roundNumber int) string
 	t.Helper()
 
 	var word string
-	err := db.Raw(`SELECT word FROM solo_lol_rounds WHERE game_id = ? AND round_number = ?`,
+	err := db.Raw(`SELECT word FROM lol_rounds WHERE game_id = ? AND round_number = ?`,
 		gameID, roundNumber).Scan(&word).Error
 	if err != nil {
 		t.Fatalf("read answer: %v", err)
@@ -36,17 +37,50 @@ func answerFor(t *testing.T, db *gorm.DB, gameID string, roundNumber int) string
 
 // wrongGuess is a word of the right shape that is not the answer: same length,
 // same opening letter, so only the answer check can reject it.
-func wrongGuess(answer string) string {
-	runes := []rune(answer)
+func wrongGuess(t *testing.T, answer string) string {
+	t.Helper()
+	return wrongGuesses(t, answer, 1)[0]
+}
 
-	// Walk the tail letters on until the word differs from the answer.
-	for i := 1; i < len(runes); i++ {
-		if runes[i] != 'x' {
-			runes[i] = 'x'
-			return string(runes)
+// wrongGuesses is n distinct real words the round will accept, none of them the
+// answer.
+//
+// They cannot be built by bending a letter of the answer, which is what this used
+// to do: the server checks the guess is a word the list actually holds *and* that
+// it opens with the round's hint letter, so "lepxl" fails the first and "xepel"
+// the second. Drawn from the same list the answer came from instead.
+func wrongGuesses(t *testing.T, answer string, n int) []string {
+	t.Helper()
+
+	size := len([]rune(answer))
+	first := string([]rune(answer)[0])
+
+	found := make([]string, 0, n)
+	seen := map[string]bool{answer: true}
+
+	// Sampling rather than reading the list: the word files are the game package's
+	// own business, and GetRandomWords is the door it already opens. Bounded so a
+	// list with too few words starting with the hint letter fails the test rather
+	// than hanging it.
+	for range 2000 {
+		if len(found) == n {
+			return found
 		}
+
+		word, err := league_of_letters.GetRandomWord(i18n.EN, size, false)
+		if err != nil {
+			t.Fatalf("draw a word: %v", err)
+		}
+		if seen[word] || !strings.HasPrefix(word, first) {
+			continue
+		}
+
+		seen[word] = true
+		found = append(found, word)
 	}
-	return string(runes)
+
+	t.Fatalf("could not find %d %d-letter words starting with %q that are not %q", n, size, first, answer)
+	return nil
 }
 
 func submitGuess(t *testing.T, h http.Handler, token, gameID, word string) *httptest.ResponseRecorder {
@@ -81,7 +115,7 @@ func TestSubmitGuessScoresTheWord(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	answer := answerFor(t, db, game.ID, 1)
-	rec := submitGuess(t, srv, token, game.ID, wrongGuess(answer))
+	rec := submitGuess(t, srv, token, game.ID, wrongGuess(t, answer))
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
 	}
@@ -116,7 +150,7 @@ func TestSubmitGuessDoesNotReturnTheWholeGame(t *testing.T) {
 	token := newGuestSession(t, srv).Token
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
-	rec := submitGuess(t, srv, token, game.ID, wrongGuess(answerFor(t, db, game.ID, 1)))
+	rec := submitGuess(t, srv, token, game.ID, wrongGuess(t, answerFor(t, db, game.ID, 1)))
 	body := rec.Body.String()
 
 	for _, absent := range []string{`"rounds"`, `"wordLength"`, `"maxGuesses"`, `"totalRounds"`} {
@@ -177,22 +211,9 @@ func TestSubmitGuessRunsOutOfGuesses(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	answer := answerFor(t, db, game.ID, 1)
-	first := string([]rune(answer)[0])
 
 	var last submitGuessResponse
-	for i := range league_of_letters.MaxGuesses {
-		// Distinct wrong words: same opening letter, then a run of the same
-		// letter with one position moved along each time.
-		word := first + strings.Repeat("x", 3)
-		if i == 0 {
-			word += "y"
-		} else {
-			word += string(rune('a' + i))
-		}
-		if word == answer {
-			t.Fatalf("test word %q collided with the answer", word)
-		}
-
+	for i, word := range wrongGuesses(t, answer, league_of_letters.MaxGuesses) {
 		rec := submitGuess(t, srv, token, game.ID, word)
 		if rec.Code != http.StatusCreated {
 			t.Fatalf("guess %d: status = %d, want %d (body: %s)", i+1, rec.Code, http.StatusCreated, rec.Body)
@@ -218,7 +239,7 @@ func TestSubmitGuessRunsOutOfGuesses(t *testing.T) {
 	// A seventh guess is not refused -- it lands in round 2, which has its own
 	// word and so its own opening letter.
 	next := answerFor(t, db, game.ID, 2)
-	rec := submitGuess(t, srv, token, game.ID, wrongGuess(next))
+	rec := submitGuess(t, srv, token, game.ID, wrongGuess(t, next))
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("the next round should accept a guess: status = %d (body: %s)", rec.Code, rec.Body)
 	}
@@ -276,7 +297,7 @@ func TestSubmitGuessRefusals(t *testing.T) {
 		{"too short", func(a string) string { return string([]rune(a)[:len([]rune(a))-1]) }, http.StatusBadRequest},
 		{"too long", func(a string) string { return a + "s" }, http.StatusBadRequest},
 		{"wrong opening letter", func(a string) string {
-			runes := []rune(wrongGuess(a))
+			runes := []rune(wrongGuess(t, a))
 			if runes[0] == 'q' {
 				runes[0] = 'z'
 			} else {
@@ -310,7 +331,7 @@ func TestSubmitGuessRejectsDuplicates(t *testing.T) {
 	token := newGuestSession(t, srv).Token
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
-	word := wrongGuess(answerFor(t, db, game.ID, 1))
+	word := wrongGuess(t, answerFor(t, db, game.ID, 1))
 	if rec := submitGuess(t, srv, token, game.ID, word); rec.Code != http.StatusCreated {
 		t.Fatalf("first guess: status = %d (body: %s)", rec.Code, rec.Body)
 	}
@@ -372,7 +393,7 @@ func TestGetSoloGameReturnsPlayedGuesses(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	answer := answerFor(t, db, game.ID, 1)
-	word := wrongGuess(answer)
+	word := wrongGuess(t, answer)
 	if rec := submitGuess(t, srv, token, game.ID, word); rec.Code != http.StatusCreated {
 		t.Fatalf("guess: status = %d (body: %s)", rec.Code, rec.Body)
 	}
@@ -414,7 +435,7 @@ func TestSubmitGuessDoesNotLeakUnfinishedAnswers(t *testing.T) {
 	game := createSoloGame(t, srv, token, `{"wordLength":5,"locale":"en"}`)
 
 	answer := answerFor(t, db, game.ID, 1)
-	rec := submitGuess(t, srv, token, game.ID, wrongGuess(answer))
+	rec := submitGuess(t, srv, token, game.ID, wrongGuess(t, answer))
 
 	if strings.Contains(strings.ToLower(rec.Body.String()), strings.ToLower(answer)) {
 		t.Errorf("guess response leaked the answer %q: %s", answer, rec.Body)

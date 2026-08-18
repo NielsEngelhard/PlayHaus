@@ -8,15 +8,30 @@ import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, StyleSheet, V
 interface Props {
     wordLength: number,
     maxGuesses: number,
-    /** This player's guesses only, oldest first, already scored by the server. */
+    /**
+     * The rows on the board, oldest first, already scored by the server.
+     *
+     * In solo these are all yours. On a multiplayer board they belong to whoever
+     * played them — the six rows are the table's, not one player's — which is what
+     * `ownerColorOf` is for.
+     */
     guesses: GameGuess[],
     /** The row being typed. Empty once the round is decided. */
     draft: string,
+    /**
+     * The swatch of whoever played a row, drawn as a marker beside it. Left out on a
+     * solo board, where every row is the same person's and a marker would be six
+     * copies of the same colour.
+     */
+    ownerColorOf?: (guess: GameGuess) => string | undefined,
     /** For layout only — how the grid sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 
 const GAP = Spacing.two;
+
+/** The bar marking whose row it is. Narrow enough to live in the grid's margin. */
+const OWNER_BAR_WIDTH = 6;
 
 /**
  * A tile any smaller than this stops being readable; any larger and a three-letter game
@@ -101,7 +116,7 @@ function fittedTileSize(width: number, height: number, columns: number, rows: nu
 }
 
 /** The board: one row per guess you get, one tile per letter of the word. */
-export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, style }: Props) {
+export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, ownerColorOf, style }: Props) {
     const [box, setBox] = useState({ width: 0, height: 0 });
 
     const size = fittedTileSize(box.width, box.height, wordLength, maxGuesses);
@@ -124,6 +139,7 @@ export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, styl
                             guess={guesses[row]}
                             // Exactly one row is being typed: the first one with no guess in it.
                             draft={row === guesses.length ? draft : ''}
+                            ownerColor={guesses[row] === undefined ? undefined : ownerColorOf?.(guesses[row])}
                         />
                     ))}
                 </View>
@@ -136,12 +152,18 @@ interface GuessRowProps {
     wordLength: number,
     size: number,
     guess?: GameGuess,
-    draft: string
+    draft: string,
+    /** The swatch of whoever played this row. Absent on solo and on unplayed rows. */
+    ownerColor?: string
 }
 
-function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
-    const word = (guess?.word ?? draft).toUpperCase();
-    const { revealed, live } = useReveal(guess?.word, wordLength);
+function GuessRow({ wordLength, size, guess, draft, ownerColor }: GuessRowProps) {
+    // A row the clock filled in. It has no word and no marks, so there is nothing to
+    // reveal and nothing to colour — it is a turn that went by, drawn as one.
+    const skipped = guess?.skipped === true;
+
+    const word = skipped ? '' : (guess?.word ?? draft).toUpperCase();
+    const { revealed, live } = useReveal(skipped ? undefined : guess?.word, wordLength);
 
     // The row that won it, once the last tile is face up. Only for a word that landed
     // while the row was watching: coming back to a finished game should not throw a
@@ -158,13 +180,28 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
 
     return (
         <View style={[styles.row, { gap: GAP }]}>
+            {/*
+              * Whose row this is, as a bar in their swatch.
+              *
+              * Absolutely positioned in the slack either side of the grid rather than
+              * placed in the row, because the tiles are sized by dividing the measured
+              * box between them — anything taking width here would come out of every
+              * tile on every row.
+              */}
+            {ownerColor !== undefined && (
+                <View
+                    style={[styles.owner, { backgroundColor: ownerColor, height: size }]}
+                    pointerEvents='none'
+                />
+            )}
+
             {Array.from({ length: wordLength }, (_, column) => (
                 <LetterTile
                     key={column}
                     letter={word[column] ?? ''}
                     // Held back until this tile's turn comes round. Until then it is
                     // indistinguishable from the letter the player typed a moment ago.
-                    mark={column < revealed ? guess?.marks[column] : undefined}
+                    mark={skipped ? undefined : column < revealed ? guess?.marks[column] : undefined}
                     size={size}
                     celebrate={celebrate}
                     // The row is only ever one away by its *last* letter, so that is the
@@ -172,6 +209,7 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
                     tease={teasing && column === wordLength - 1}
                     settledAfter={teasing ? FLIP_MS + TEASE_MS : FLIP_MS * 2}
                     column={column}
+                    spent={skipped}
                 />
             ))}
         </View>
@@ -222,10 +260,12 @@ interface LetterTileProps {
     /** How long after its mark arrives the row is done animating, spin included. */
     settledAfter: number,
     /** Where in the row it sits, which is its place in the wave. */
-    column: number
+    column: number,
+    /** Part of a row nobody played: the turn ran out. Drawn struck through rather than empty. */
+    spent?: boolean
 }
 
-function LetterTile({ letter, mark, size, celebrate = false, tease = false, settledAfter, column }: LetterTileProps) {
+function LetterTile({ letter, mark, size, celebrate = false, tease = false, settledAfter, column, spent = false }: LetterTileProps) {
     const filled = letter !== '';
 
     /**
@@ -416,11 +456,16 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                 },
                 face
                     ? [{ backgroundColor: face.fill }, Shadows.hardLarge]
-                    // A typed-but-unsubmitted letter stands up off the page; an empty slot
-                    // sits back, the same way `WordLengthCard` separates chosen from not.
-                    : letter
-                        ? [styles.tileFilled, Shadows.hardLarge]
-                        : styles.tileEmpty
+                    // A turn that ran out. Drawn broken rather than blank so it reads as
+                    // a row that was spent, not one still waiting to be played.
+                    : spent
+                        ? styles.tileSpent
+                        // A typed-but-unsubmitted letter stands up off the page; an empty
+                        // slot sits back, the same way `WordLengthCard` separates chosen
+                        // from not.
+                        : letter
+                            ? [styles.tileFilled, Shadows.hardLarge]
+                            : styles.tileEmpty
             ]}
         >
             <AppText
@@ -464,6 +509,24 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.light.backgroundInput,
         opacity: 0.8,
         ...Shadows.hardSmall
+    },
+    // A row the clock filled in: no fill, no shadow, a broken outline. The same
+    // vocabulary `LobbyPlayerList` uses for a seat nobody has taken, because it means
+    // the same thing -- a place that stayed empty.
+    tileSpent: {
+        backgroundColor: 'transparent',
+        borderStyle: 'dashed',
+        opacity: 0.45
+    },
+    // In the slack beside the grid, so it costs the tiles no width. Sized off the
+    // tile so it stays in proportion on every board.
+    owner: {
+        position: 'absolute',
+        left: -OWNER_BAR_WIDTH - GAP,
+        width: OWNER_BAR_WIDTH,
+        borderRadius: 999,
+        borderWidth: 2,
+        borderColor: Colors.light.border
     },
     letter: {
         fontWeight: 900,

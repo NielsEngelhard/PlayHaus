@@ -1,5 +1,6 @@
 import type { User } from '@/api/calls/auth';
 import { ApiError, request } from '@/api/client';
+import type { LanguageCode } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
 import { useCallback, useRef, useState } from 'react';
 
@@ -12,6 +13,7 @@ interface Profile {
     saveError: string | null
     updateUsername: (username: string) => void
     updateColor: (color: string) => void
+    updateLocale: (locale: LanguageCode) => void
     updateEnableSounds: (enabled: boolean) => void
     updateEnableMusic: (enabled: boolean) => void
     updateEnableVibration: (enabled: boolean) => void
@@ -103,6 +105,15 @@ export function useProfile(): Profile {
         void save('/api/v1/user/color', { color }, { color });
     }, [save]);
 
+    /**
+     * The flag in the header renders off the session's `locale`, so `patchUser` is
+     * what moves it — the same round trip that saves the language changes the
+     * chrome, without the header having to know this page exists.
+     */
+    const updateLocale = useCallback((locale: LanguageCode) => {
+        void save('/api/v1/user/locale', { locale }, { locale });
+    }, [save]);
+
     const updateEnableSounds = useCallback((enableSounds: boolean) => {
         void save('/api/v1/user/enable-sounds', { enableSounds }, { enableSounds });
     }, [save]);
@@ -121,6 +132,7 @@ export function useProfile(): Profile {
         saveError,
         updateUsername,
         updateColor,
+        updateLocale,
         updateEnableSounds,
         updateEnableMusic,
         updateEnableVibration

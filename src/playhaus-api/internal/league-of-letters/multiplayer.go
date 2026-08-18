@@ -1,0 +1,642 @@
+package league_of_letters
+
+import (
+	"context"
+	"crypto/rand"
+	"fmt"
+	"math/big"
+	"slices"
+	"time"
+
+	"playhaus-api/internal/i18n"
+
+	"github.com/google/uuid"
+)
+
+// LobbySettings is what the host gets to decide -- the same two knobs a solo game
+// is set up with, so the room can reuse the app's word-length card and language
+// list rather than growing its own.
+type LobbySettings struct {
+	Locale     i18n.Locale
+	WordLength int
+}
+
+func (in LobbySettings) validate() map[string]string {
+	problems := map[string]string{}
+	if in.WordLength < MinWordLength || in.WordLength > MaxWordLength {
+		problems["wordLength"] = fmt.Sprintf("must be between %d and %d", MinWordLength, MaxWordLength)
+	}
+	return problems
+}
+
+func (in LobbySettings) normalised() LobbySettings {
+	if !in.Locale.Valid() {
+		in.Locale = i18n.Default
+	}
+	return in
+}
+
+type MultiplayerStore interface {
+	CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error
+	LobbyByCode(ctx context.Context, code string) (*MultiplayerLeagueOfLettersLobby, error)
+	LobbyCodeTaken(ctx context.Context, code string) (bool, error)
+	AddLobbyPlayer(ctx context.Context, player *MultiplayerLobbyPlayer) error
+	RemoveLobbyPlayer(ctx context.Context, code, userID string) error
+	SaveLobbySettings(ctx context.Context, code string, in LobbySettings) error
+	DeleteLobby(ctx context.Context, code string) error
+	StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby, game *MultiplayerLeagueOfLettersGame) error
+	MultiplayerGameByID(ctx context.Context, id uuid.UUID) (*MultiplayerLeagueOfLettersGame, error)
+	MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error)
+	RecordMultiplayerGuess(ctx context.Context, in RecordMultiplayerGuessInput) error
+	RestartTurn(ctx context.Context, gameID uuid.UUID, expectTurnUserID string, endsAt time.Time) error
+}
+
+// RecordMultiplayerGuessInput is one row going down, plus the game state it moved.
+//
+// The Expect fields are what the game looked like when the caller read it. The
+// write is conditional on them still being true, which is what stops a guess and
+// the turn timeout that raced it from both being applied.
+type RecordMultiplayerGuessInput struct {
+	Guess *LeagueOfLettersGuess
+	Game  *MultiplayerLeagueOfLettersGame
+
+	ExpectTurnUserID string
+	ExpectRound      int
+
+	// ScoreFor and Score are who earned what. Zero for a turn that ran out.
+	ScoreFor string
+	Score    int
+}
+
+// ---------------------------------------------------------------------------
+// Lobbies
+// ---------------------------------------------------------------------------
+
+// CreateLobby opens a room and puts the caller in it as the host.
+//
+// Answers the whole lobby rather than just a code: the screen needs the code to
+// show, the player list to draw and its own id back to know it is the host, and one
+// of the three arriving later than the others would be a room that appears in
+// pieces.
+func (s *Service) CreateLobby(ctx context.Context, ownerID string, in LobbySettings) (*MultiplayerLeagueOfLettersLobby, map[string]string, error) {
+	if ownerID == "" {
+		return nil, nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
+	}
+	if problems := in.validate(); len(problems) > 0 {
+		return nil, problems, nil
+	}
+	in = in.normalised()
+
+	code, err := s.freeJoinCode(ctx)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	now := time.Now().UTC()
+	lobby := &MultiplayerLeagueOfLettersLobby{
+		ID:         code,
+		OwnerID:    ownerID,
+		Locale:     in.Locale,
+		WordLength: in.WordLength,
+		Status:     LobbyWaiting,
+		CreatedAt:  now,
+		// The host is a player like any other, and the first one -- which is what
+		// makes them the top row of the list and the first to play.
+		Players: []MultiplayerLobbyPlayer{{LobbyID: code, UserID: ownerID, Seat: 0, JoinedAt: now}},
+	}
+
+	if err := s.store.CreateLobby(ctx, lobby); err != nil {
+		return nil, nil, fmt.Errorf("create lobby: %w", err)
+	}
+
+	return lobby, nil, nil
+}
+
+// freeJoinCode draws codes until it finds one nobody is using.
+//
+// Thirty-two characters to the sixth is a billion codes and a room lives for
+// minutes, so the first draw is almost always free -- but "almost always" is not a
+// primary key, and a collision would hand two rooms the same door.
+func (s *Service) freeJoinCode(ctx context.Context) (string, error) {
+	for range 10 {
+		code, err := newJoinCode()
+		if err != nil {
+			return "", fmt.Errorf("generate join code: %w", err)
+		}
+
+		taken, err := s.store.LobbyCodeTaken(ctx, code)
+		if err != nil {
+			return "", fmt.Errorf("check join code: %w", err)
+		}
+		if !taken {
+			return code, nil
+		}
+	}
+
+	return "", fmt.Errorf("could not find a free join code")
+}
+
+func newJoinCode() (string, error) {
+	code := make([]byte, JoinCodeLength)
+
+	for i := range code {
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(joinCodeAlphabet))))
+		if err != nil {
+			return "", err
+		}
+		code[i] = joinCodeAlphabet[n.Int64()]
+	}
+
+	return string(code), nil
+}
+
+// Lobby reads a room back by its code.
+func (s *Service) Lobby(ctx context.Context, code string) (*MultiplayerLeagueOfLettersLobby, error) {
+	return s.store.LobbyByCode(ctx, code)
+}
+
+// JoinLobby steps into somebody else's room, and is safe to call again on a room
+// you are already in -- reopening the screen must not be a second seat.
+func (s *Service) JoinLobby(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		return nil, err
+	}
+
+	// Already in, which is the common case: anyone who backgrounded the app and
+	// came back lands here, and so does the host arriving on the room screen.
+	if lobby.Has(userID) {
+		return lobby, nil
+	}
+
+	// Checked after the membership test on purpose -- somebody already in a started
+	// game is coming back to it, not trying to join one.
+	if lobby.Status != LobbyWaiting {
+		return nil, ErrLobbyStarted
+	}
+	if lobby.Full() {
+		return nil, ErrLobbyFull
+	}
+
+	player := &MultiplayerLobbyPlayer{
+		LobbyID:  lobby.ID,
+		UserID:   userID,
+		Seat:     lobby.NextSeat(),
+		JoinedAt: time.Now().UTC(),
+	}
+	if err := s.store.AddLobbyPlayer(ctx, player); err != nil {
+		return nil, fmt.Errorf("join lobby: %w", err)
+	}
+	lobby.Players = append(lobby.Players, *player)
+
+	return lobby, nil
+}
+
+// UpdateLobbySettings changes what the room is going to play. Host only.
+func (s *Service) UpdateLobbySettings(ctx context.Context, code, userID string, in LobbySettings) (*MultiplayerLeagueOfLettersLobby, map[string]string, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		return nil, nil, err
+	}
+	if lobby.OwnerID != userID {
+		return nil, nil, ErrNotHost
+	}
+	if lobby.Status != LobbyWaiting {
+		return nil, nil, ErrLobbyStarted
+	}
+	if problems := in.validate(); len(problems) > 0 {
+		return nil, problems, nil
+	}
+	in = in.normalised()
+
+	if err := s.store.SaveLobbySettings(ctx, code, in); err != nil {
+		return nil, nil, fmt.Errorf("save lobby settings: %w", err)
+	}
+
+	lobby.Locale = in.Locale
+	lobby.WordLength = in.WordLength
+
+	return lobby, nil, nil
+}
+
+// LeaveLobby gives a seat back without closing the room. A room that is already
+// gone is a no-op rather than a refusal: the screen fires this on its way out,
+// where there is nobody left to tell.
+func (s *Service) LeaveLobby(ctx context.Context, code, userID string) error {
+	return s.store.RemoveLobbyPlayer(ctx, code, userID)
+}
+
+// DeleteLobby closes a room for good. Host only, and a code that is already gone
+// is a no-op for the same reason LeaveLobby is.
+func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		if err == ErrLobbyNotFound {
+			return nil
+		}
+		return err
+	}
+	if lobby.OwnerID != userID {
+		return ErrNotHost
+	}
+
+	return s.store.DeleteLobby(ctx, code)
+}
+
+// StartLobby turns a room into a game. Host only.
+//
+// Membership is settled here: whoever is in the room at this moment is who plays,
+// in the order they arrived, and that order is the turn order for the whole game.
+func (s *Service) StartLobby(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		return nil, nil, err
+	}
+	if lobby.OwnerID != userID {
+		return nil, nil, ErrNotHost
+	}
+	if lobby.Status != LobbyWaiting {
+		return nil, nil, ErrLobbyStarted
+	}
+	if len(lobby.Players) < MinLobbyPlayers {
+		return nil, nil, ErrNotEnoughPlayers
+	}
+
+	// By seat, so the turn order is the order people walked in and the host -- who
+	// has seat nought by construction -- is always up first.
+	seated := slices.Clone(lobby.Players)
+	slices.SortFunc(seated, func(a, b MultiplayerLobbyPlayer) int { return a.Seat - b.Seat })
+
+	now := time.Now().UTC()
+	game := &MultiplayerLeagueOfLettersGame{
+		ID:           uuid.New(),
+		LobbyID:      lobby.ID,
+		OwnerID:      lobby.OwnerID,
+		Locale:       lobby.Locale,
+		WordLength:   lobby.WordLength,
+		CurrentRound: 1,
+		Status:       GameInProgress,
+		CreatedAt:    now,
+		TurnUserID:   seated[0].UserID,
+		TurnEndsAt:   now.Add(SecondsPerTurn * time.Second),
+	}
+
+	game.Players = make([]MultiplayerGamePlayer, len(seated))
+	for i, player := range seated {
+		game.Players[i] = MultiplayerGamePlayer{
+			GameID:    game.ID,
+			UserID:    player.UserID,
+			TurnOrder: i,
+			Score:     0,
+		}
+	}
+
+	rounds, err := generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, false)
+	if err != nil {
+		return nil, nil, err
+	}
+	game.Rounds = rounds
+
+	if err := s.store.StartLobby(ctx, lobby, game); err != nil {
+		return nil, nil, fmt.Errorf("start lobby: %w", err)
+	}
+
+	lobby.Status = LobbyStarted
+	lobby.GameID = &game.ID
+
+	return lobby, game, nil
+}
+
+// ---------------------------------------------------------------------------
+// The game
+// ---------------------------------------------------------------------------
+
+// MultiplayerGame reads a game back for one of its players. Somebody who is not in
+// it gets the same answer as somebody asking about a game that does not exist --
+// being at the table is the whole of the permission model.
+func (s *Service) MultiplayerGame(ctx context.Context, id uuid.UUID, userID string) (*MultiplayerLeagueOfLettersGame, error) {
+	game, err := s.store.MultiplayerGameByID(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	if !game.Has(userID) {
+		return nil, ErrGameNotFound
+	}
+	return game, nil
+}
+
+// MultiplayerGamesByUserID is every unfinished game this player is at a table for.
+func (s *Service) MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error) {
+	return s.store.MultiplayerGamesByUserID(ctx, userID)
+}
+
+type SubmitMultiplayerGuessInput struct {
+	GameID uuid.UUID
+	UserID string
+	Word   string
+}
+
+// MultiplayerGuessOutcome is what one row did, and where it left the game.
+type MultiplayerGuessOutcome struct {
+	Game  *MultiplayerLeagueOfLettersGame
+	Guess *LeagueOfLettersGuess
+
+	Solved    bool
+	RoundOver bool
+	GameOver  bool
+
+	// Word is the answer, told only once the round it belonged to is over.
+	Word string
+	// RoundNumber is the round the guess was played into, which is not the round
+	// the game is on afterwards if this guess ended it.
+	RoundNumber int
+}
+
+// SubmitMultiplayerGuess plays one word into the game's current round.
+//
+// The solo path checks you own the game; this one checks it is your turn. From the
+// validation down they are the same rules, scored by the same functions -- a board
+// is a board.
+func (s *Service) SubmitMultiplayerGuess(ctx context.Context, in SubmitMultiplayerGuessInput) (*MultiplayerGuessOutcome, error) {
+	game, err := s.MultiplayerGame(ctx, in.GameID, in.UserID)
+	if err != nil {
+		return nil, err
+	}
+	if game.Status != GameInProgress {
+		return nil, ErrGameFinished
+	}
+	if game.TurnUserID != in.UserID {
+		return nil, ErrNotYourTurn
+	}
+
+	round := game.round(game.CurrentRound)
+	if round == nil {
+		return nil, fmt.Errorf("game %s has no round %d", game.ID, game.CurrentRound)
+	}
+	if round.IsOver() {
+		return nil, ErrRoundClosed
+	}
+
+	word := NormalizeGuess(in.Word)
+	if !ValidGuess(word, game.WordLength, round.FirstLetter()) {
+		return nil, ErrInvalidGuessCharacters
+	}
+	if !IsAllowedWord(game.Locale, game.WordLength, word) {
+		return nil, ErrInvalidGuessWordNonExisting
+	}
+	// Across the whole table, not just your own rows: on a shared board somebody
+	// else having tried a word is exactly as much of a repeat as you having tried it.
+	for _, played := range round.Guesses {
+		if !played.Skipped && played.Word == word {
+			return nil, ErrDuplicateGuess
+		}
+	}
+
+	guess := &LeagueOfLettersGuess{
+		ID:          uuid.New(),
+		RoundID:     round.ID,
+		OwnerID:     in.UserID,
+		Word:        word,
+		GuessNumber: len(round.Guesses) + 1,
+		Letters:     validatedLetters(word, round.Word),
+		CreatedAt:   time.Now().UTC(),
+	}
+
+	// Scored against what the round had revealed before this row, which on a shared
+	// board is what the whole table already knew. Same function as solo: the scale
+	// pays for information, and information here is public.
+	score := DetermineScore(*guess, round.Guesses)
+
+	return s.recordTurn(ctx, game, round, guess, in.UserID, score)
+}
+
+// SkipTurn is what the clock calls: the row goes down blank and play moves on.
+//
+// Takes no user id -- whoever's turn it was is on the game -- so a timeout cannot
+// be attributed to the wrong player, and a caller cannot skip somebody else.
+func (s *Service) SkipTurn(ctx context.Context, gameID uuid.UUID) (*MultiplayerGuessOutcome, error) {
+	game, err := s.store.MultiplayerGameByID(ctx, gameID)
+	if err != nil {
+		return nil, err
+	}
+	if game.Status != GameInProgress {
+		return nil, ErrGameFinished
+	}
+
+	round := game.round(game.CurrentRound)
+	if round == nil {
+		return nil, fmt.Errorf("game %s has no round %d", game.ID, game.CurrentRound)
+	}
+	if round.IsOver() {
+		return nil, ErrRoundClosed
+	}
+
+	guess := &LeagueOfLettersGuess{
+		ID:          uuid.New(),
+		RoundID:     round.ID,
+		OwnerID:     game.TurnUserID,
+		Word:        "",
+		GuessNumber: len(round.Guesses) + 1,
+		Skipped:     true,
+		CreatedAt:   time.Now().UTC(),
+	}
+
+	// No score, and no scorer: nothing was learned, so there is nothing to pay for.
+	return s.recordTurn(ctx, game, round, guess, "", 0)
+}
+
+// recordTurn is the half a guess and a timeout have in common: lay the row down,
+// move the game on, write both.
+//
+// One function rather than two so the two paths cannot drift -- a rule about when a
+// round ends that held for a guess but not for a timeout would be a game that ends
+// differently depending on whether anybody was paying attention.
+func (s *Service) recordTurn(
+	ctx context.Context,
+	game *MultiplayerLeagueOfLettersGame,
+	round *LeagueOfLettersRound,
+	guess *LeagueOfLettersGuess,
+	scoreFor string,
+	score int,
+) (*MultiplayerGuessOutcome, error) {
+	expectTurn, expectRound := game.TurnUserID, game.CurrentRound
+
+	// Appended before advance is asked anything: whether the round is over is a
+	// question about the board with this row already on it.
+	round.Guesses = append(round.Guesses, *guess)
+
+	solved := guess.Correct()
+	roundOver := round.IsOver()
+
+	outcome := &MultiplayerGuessOutcome{
+		Game:        game,
+		Guess:       guess,
+		Solved:      solved,
+		RoundOver:   roundOver,
+		RoundNumber: game.CurrentRound,
+	}
+	if roundOver {
+		outcome.Word = round.Word
+	}
+
+	game.advance(time.Now().UTC())
+	outcome.GameOver = game.Status == GameCompleted
+
+	if scoreFor != "" && score != 0 {
+		game.addScore(scoreFor, score)
+	}
+
+	err := s.store.RecordMultiplayerGuess(ctx, RecordMultiplayerGuessInput{
+		Guess:            guess,
+		Game:             game,
+		ExpectTurnUserID: expectTurn,
+		ExpectRound:      expectRound,
+		ScoreFor:         scoreFor,
+		Score:            score,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return outcome, nil
+}
+
+// ResumeTurn restarts the clock on a game whose deadline passed while nobody was
+// connected, and reports when the current turn now runs out.
+//
+// The turn timer lives on a socket room, and a room with nobody in it is reaped --
+// so a table that all got up and walked away comes back to a deadline in the past.
+// Replaying it would burn every turn between then and now at once, which is a
+// punishment for the server having had nothing to do. The turn is given back
+// instead, whole.
+func (s *Service) ResumeTurn(ctx context.Context, gameID uuid.UUID) (time.Time, error) {
+	game, err := s.store.MultiplayerGameByID(ctx, gameID)
+	if err != nil {
+		return time.Time{}, err
+	}
+	if game.Status != GameInProgress {
+		return time.Time{}, ErrGameFinished
+	}
+
+	now := time.Now().UTC()
+	if game.TurnEndsAt.After(now) {
+		return game.TurnEndsAt, nil
+	}
+
+	endsAt := now.Add(SecondsPerTurn * time.Second)
+	if err := s.store.RestartTurn(ctx, game.ID, game.TurnUserID, endsAt); err != nil {
+		return time.Time{}, err
+	}
+
+	return endsAt, nil
+}
+
+// ---------------------------------------------------------------------------
+// Turn order
+// ---------------------------------------------------------------------------
+
+// advance moves the game on after a row has been laid down.
+//
+// Three outcomes, in order: the game ends, the round ends and the next one opens,
+// or the same round carries on with the next player up. Whichever it is, the clock
+// is reset -- a turn is thirty-five seconds from the moment it becomes yours.
+func (g *MultiplayerLeagueOfLettersGame) advance(now time.Time) {
+	round := g.round(g.CurrentRound)
+
+	if round != nil && round.IsOver() {
+		if g.CurrentRound >= len(g.Rounds) {
+			g.Status = GameCompleted
+			g.TurnEndsAt = now
+			return
+		}
+
+		g.CurrentRound++
+		g.TurnUserID = g.opener(g.CurrentRound)
+	} else {
+		g.TurnUserID = g.playerAfter(g.TurnUserID)
+	}
+
+	g.TurnEndsAt = now.Add(SecondsPerTurn * time.Second)
+}
+
+// seats is the table in turn order.
+func (g *MultiplayerLeagueOfLettersGame) seats() []MultiplayerGamePlayer {
+	seated := slices.Clone(g.Players)
+	slices.SortFunc(seated, func(a, b MultiplayerGamePlayer) int { return a.TurnOrder - b.TurnOrder })
+	return seated
+}
+
+// opener is who goes first in a round.
+//
+// Rotated by round rather than fixed, so that going first -- which on a fresh board
+// is the turn that learns the least -- is shared out instead of always landing on
+// the host.
+func (g *MultiplayerLeagueOfLettersGame) opener(roundNumber int) string {
+	seated := g.seats()
+	if len(seated) == 0 {
+		return ""
+	}
+	return seated[(roundNumber-1)%len(seated)].UserID
+}
+
+// playerAfter is whose turn it is once userID has had theirs.
+func (g *MultiplayerLeagueOfLettersGame) playerAfter(userID string) string {
+	seated := g.seats()
+	if len(seated) == 0 {
+		return ""
+	}
+
+	for i, player := range seated {
+		if player.UserID == userID {
+			return seated[(i+1)%len(seated)].UserID
+		}
+	}
+
+	// The player whose turn it was is no longer at the table. Cannot happen today
+	// -- membership is frozen at kickoff -- but falling back to the opener keeps a
+	// game playable rather than stuck on a turn nobody can take.
+	return seated[0].UserID
+}
+
+// Has reports whether someone is at this table.
+func (g *MultiplayerLeagueOfLettersGame) Has(userID string) bool {
+	for _, player := range g.Players {
+		if player.UserID == userID {
+			return true
+		}
+	}
+	return false
+}
+
+// Score is what one player has earned.
+func (g *MultiplayerLeagueOfLettersGame) Score(userID string) int {
+	for _, player := range g.Players {
+		if player.UserID == userID {
+			return player.Score
+		}
+	}
+	return 0
+}
+
+func (g *MultiplayerLeagueOfLettersGame) addScore(userID string, score int) {
+	for i := range g.Players {
+		if g.Players[i].UserID == userID {
+			g.Players[i].Score += score
+			return
+		}
+	}
+}
+
+func (g *MultiplayerLeagueOfLettersGame) round(number int) *LeagueOfLettersRound {
+	for i := range g.Rounds {
+		if g.Rounds[i].RoundNumber == number {
+			return &g.Rounds[i]
+		}
+	}
+	return nil
+}
+
+// Round is the round being played, or nil on a game that has none left.
+func (g *MultiplayerLeagueOfLettersGame) Round(number int) *LeagueOfLettersRound {
+	return g.round(number)
+}

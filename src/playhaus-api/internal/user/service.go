@@ -17,8 +17,10 @@ type Store interface {
 	ExistsByEmail(ctx context.Context, email string) (bool, error)
 	ByEmail(ctx context.Context, email string) (*User, error)
 	ByID(ctx context.Context, id string) (*User, error)
+	ByIDs(ctx context.Context, ids []string) ([]*User, error)
 	UpdateUsername(ctx context.Context, username string, userId string) error
 	UpdateColor(ctx context.Context, color string, userId string) error
+	UpdateLocale(ctx context.Context, locale i18n.Locale, userId string) error
 	UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error
@@ -49,6 +51,19 @@ func (s *Service) ByID(ctx context.Context, id string) (*User, error) {
 	return s.store.ByID(ctx, id)
 }
 
+func (s *Service) ByIDs(ctx context.Context, ids []string) (map[string]*User, error) {
+	found, err := s.store.ByIDs(ctx, ids)
+	if err != nil {
+		return nil, err
+	}
+
+	byID := make(map[string]*User, len(found))
+	for _, u := range found {
+		byID[u.ID] = u
+	}
+	return byID, nil
+}
+
 func (s *Service) ByEmail(ctx context.Context, email string) (*User, error) {
 	return s.store.ByEmail(ctx, NormalizeEmail(email))
 }
@@ -61,6 +76,10 @@ func (s *Service) UpdateUsername(ctx context.Context, username string, userId st
 
 func (s *Service) UpdateColor(ctx context.Context, color string, userId string) error {
 	return s.store.UpdateColor(ctx, color, userId)
+}
+
+func (s *Service) UpdateLocale(ctx context.Context, locale i18n.Locale, userId string) error {
+	return s.store.UpdateLocale(ctx, locale, userId)
 }
 
 func (s *Service) UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error {

@@ -1,7 +1,9 @@
 import { gameForPathname } from "@/constants/games";
 import { APP_VERSION } from "@/constants/global-constants";
+import { DEFAULT_LANGUAGE, languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
 import { Colors, Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import HeaderStatus from "./HeaderStatus";
@@ -9,11 +11,17 @@ import Logo from "./Logo";
 
 export default function Header() {
     const pathname = usePathname();
+    const { user } = useAuth();
 
     // Read off the route rather than pushed up by each page: the header already knows
     // where it is, and a page that forgot to say so used to leave the previous page's
     // name sitting in the chrome.
     const game = gameForPathname(pathname);
+
+    // The account's language, or the default while the session is still being
+    // restored — the header is on screen before anyone is signed in, and a capsule
+    // with a hole where the flag goes would be a worse way to say so.
+    const language = languageByCode(user?.locale ?? DEFAULT_LANGUAGE);
 
     return (
         <View style={styles.container}>
@@ -30,6 +38,7 @@ export default function Header() {
             <HeaderStatus
                 label={game?.name ?? APP_VERSION}
                 accent={game?.color ?? Colors.light.available}
+                language={language}
             />
         </View>
     )

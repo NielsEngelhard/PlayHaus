@@ -19,63 +19,68 @@ type createSoloGameRequest struct {
 func (createSoloGameRequest) Validate() map[string]string { return nil }
 
 type soloGameResponse struct {
-	ID           string              `json:"id"`
-	OwnerID      string              `json:"ownerId"`
-	Locale       string              `json:"locale"`
-	WordLength   int                 `json:"wordLength"`
-	MaxGuesses   int                 `json:"maxGuesses"`
-	CurrentRound int                 `json:"currentRound"`
-	TotalRounds  int                 `json:"totalRounds"`
-	Score        int                 `json:"score"`
-	Status       string              `json:"status"`
-	CreatedAt    string              `json:"createdAt"`
-	Rounds       []soloRoundResponse `json:"rounds"`
+	ID           string          `json:"id"`
+	OwnerID      string          `json:"ownerId"`
+	Locale       string          `json:"locale"`
+	WordLength   int             `json:"wordLength"`
+	MaxGuesses   int             `json:"maxGuesses"`
+	CurrentRound int             `json:"currentRound"`
+	TotalRounds  int             `json:"totalRounds"`
+	Score        int             `json:"score"`
+	Status       string          `json:"status"`
+	CreatedAt    string          `json:"createdAt"`
+	Rounds       []roundResponse `json:"rounds"`
 }
 
-type soloRoundResponse struct {
+type roundResponse struct {
 	ID          string `json:"id"`
 	RoundNumber int    `json:"roundNumber"`
 	// FirstLetter is the hint, sent from the moment the round is drawn.
 	FirstLetter string `json:"firstLetter"`
 	// Word is the answer, and is only ever set on a round that is already over.
-	Word    string              `json:"word,omitempty"`
-	Guesses []soloGuessResponse `json:"guesses"`
+	Word    string          `json:"word,omitempty"`
+	Guesses []guessResponse `json:"guesses"`
+	// EndsAt is the deadline on the round being played.
+	EndsAt string `json:"endsAt,omitempty"`
 }
 
-type soloGuessResponse struct {
+type guessResponse struct {
 	ID          string   `json:"id"`
 	UserID      string   `json:"userId"`
 	GuessNumber int      `json:"guessNumber"`
 	Word        string   `json:"word"`
 	Marks       []string `json:"marks"`
 	CreatedAt   string   `json:"createdAt"`
+	// Skipped is a row the clock filled in rather than a player (run out of time so skipped)
+	Skipped bool `json:"skipped,omitempty"`
 }
 
-func newSoloGuessResponse(g league_of_letters.LeagueOfLettersGuess) soloGuessResponse {
+func newGuessResponse(g league_of_letters.LeagueOfLettersGuess) guessResponse {
 	marks := make([]string, 0, len(g.Letters))
 	for _, mark := range g.Marks() {
 		marks = append(marks, string(mark))
 	}
 
-	return soloGuessResponse{
+	return guessResponse{
 		ID:          g.ID.String(),
 		UserID:      g.OwnerID,
 		GuessNumber: g.GuessNumber,
 		Word:        g.Word,
 		Marks:       marks,
 		CreatedAt:   g.CreatedAt.Format(timeFormat),
+		Skipped:     g.Skipped,
 	}
 }
 
 func newSoloGameResponse(g *league_of_letters.SoloLeagueOfLettersGame) soloGameResponse {
-	rounds := make([]soloRoundResponse, 0, len(g.Rounds))
+	rounds := make([]roundResponse, 0, len(g.Rounds))
 	for _, r := range g.Rounds {
-		guesses := make([]soloGuessResponse, 0, len(r.Guesses))
+		guesses := make([]guessResponse, 0, len(r.Guesses))
 		for _, gu := range r.Guesses {
-			guesses = append(guesses, newSoloGuessResponse(gu))
+			guesses = append(guesses, newGuessResponse(gu))
 		}
 
-		round := soloRoundResponse{
+		round := roundResponse{
 			ID:          r.ID.String(),
 			RoundNumber: r.RoundNumber,
 			FirstLetter: r.FirstLetter(),
@@ -222,13 +227,13 @@ func (req submitGuessRequest) Validate() map[string]string {
 }
 
 type submitGuessResponse struct {
-	Guess        soloGuessResponse `json:"guess"`
-	Solved       bool              `json:"solved"`
-	RoundOver    bool              `json:"roundOver"`
-	GameOver     bool              `json:"gameOver"`
-	Word         string            `json:"word,omitempty"`
-	CurrentRound int               `json:"currentRound"`
-	Score        int               `json:"score"`
+	Guess        guessResponse `json:"guess"`
+	Solved       bool          `json:"solved"`
+	RoundOver    bool          `json:"roundOver"`
+	GameOver     bool          `json:"gameOver"`
+	Word         string        `json:"word,omitempty"`
+	CurrentRound int           `json:"currentRound"`
+	Score        int           `json:"score"`
 }
 
 func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
@@ -266,7 +271,7 @@ func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
 	}
 
 	writeJSON(w, http.StatusCreated, submitGuessResponse{
-		Guess:        newSoloGuessResponse(*outcome.Guess),
+		Guess:        newGuessResponse(*outcome.Guess),
 		Solved:       outcome.Solved,
 		RoundOver:    outcome.RoundOver,
 		GameOver:     outcome.GameOver,
@@ -294,30 +299,4 @@ func (s *Server) writeGuessError(w http.ResponseWriter, err error) {
 		s.log.Error("submit guess", "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 	}
-}
-
-type createLobbyResponse struct {
-	ID string `json:"id"`
-}
-
-func (s *Server) handleCreateMultiplayerLobby(w http.ResponseWriter, r *http.Request) {
-	userID, ok := UserIDFrom(r.Context())
-	if !ok {
-		s.log.Error("handleSubmitGuess reached without an authenticated user")
-		writeError(w, http.StatusInternalServerError, "something went wrong")
-		return
-	}
-
-	joinCode, err := s.leagueOfLetters.CreateMultiplayerLobby(r.Context(), userID)
-	if err != nil {
-		s.log.Error("Error creating multiplayer lobby err", err)
-		writeError(w, http.StatusInternalServerError, "something went wrong")
-		return
-	}
-
-	writeJSON(w, http.StatusOK, &createLobbyResponse{ID: joinCode})
-}
-
-func (s *Server) handleJoinMultiplayerLobby(w http.ResponseWriter, r *http.Request) {
-	writeError(w, http.StatusNotImplemented, "not implemented yet")
 }

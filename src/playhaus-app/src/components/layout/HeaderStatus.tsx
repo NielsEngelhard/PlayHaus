@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import CountryFlag from "@/components/ui/CountryFlag";
+import type { Language } from "@/constants/languages";
 import { Colors, FontSizes, Shadows, Spacing } from "@/constants/theme";
 import { StyleSheet, View } from "react-native";
 
@@ -7,14 +8,13 @@ interface Props {
     /** What the app is showing right now: the version, or the game you're inside. */
     label: string,
     /** Fill for the status dot. The current game's accent, or a resting colour. */
-    accent: string
+    accent: string,
+    /**
+     * The account's language, from `Header`. Passed in rather than read from the
+     * session here, so this stays a component that renders what it is given.
+     */
+    language: Language
 }
-
-/**
- * Mocked until the language picker exists. `CountryFlag` takes any ISO code, so
- * wiring this to `user.locale` is a one-line change here.
- */
-const LOCALE = { code: 'nl', label: 'Nederlands' };
 
 /**
  * The right-hand half of the app `Header`: one capsule split into a flag and the
@@ -24,14 +24,14 @@ const LOCALE = { code: 'nl', label: 'Nederlands' };
  * is made of hard-bordered pills (`BottomBar`, `Logo`'s bubble) and two free-floating
  * tags read as debug output next to them.
  */
-export default function HeaderStatus({ label, accent }: Props) {
+export default function HeaderStatus({ label, accent, language }: Props) {
     return (
         <View style={styles.capsule}>
             <View
                 style={styles.flagSegment}
-                accessibilityLabel={`Taal: ${LOCALE.label}`}
+                accessibilityLabel={`Taal: ${language.label}`}
             >
-                <CountryFlag code={LOCALE.code} />
+                <CountryFlag code={language.flag} />
             </View>
 
             <View style={styles.contextSegment}>

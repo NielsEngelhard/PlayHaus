@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"testing"
 
+	"playhaus-api/internal/i18n"
 	"playhaus-api/internal/user"
 )
 
@@ -143,6 +144,81 @@ func TestUpdateColorAcceptsEverySwatch(t *testing.T) {
 	}
 }
 
+// A guest starts in i18n.Default, so switching away from it is the only change
+// that proves anything: a new locale has to survive the round trip and come back
+// out of /me, which is where the app re-reads the flag in its header from.
+func TestUpdateLocale(t *testing.T) {
+	srv := newTestServer(t)
+	session := newGuestSession(t, srv)
+
+	rec := do(t, srv, http.MethodPut, "/api/v1/user/locale", `{"locale":"en"}`, session.Token)
+	if rec.Code != http.StatusNoContent {
+		t.Fatalf("update status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+	}
+
+	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+	if got := decodeBody[userResponse](t, me).Locale; got != i18n.EN {
+		t.Errorf("locale = %q, want %q", got, i18n.EN)
+	}
+}
+
+// Unlike the game routes, this one does not run its input through i18n.Parse:
+// an account setting that quietly stored Dutch when English was picked would
+// leave the picker and the account disagreeing. So a region tag and an
+// unsupported language are both refused rather than coerced.
+func TestUpdateLocale_Validation(t *testing.T) {
+	tests := []struct {
+		name string
+		body string
+		want int
+	}{
+		{"valid", `{"locale":"en"}`, http.StatusNoContent},
+		{"the default is still a choice", `{"locale":"nl"}`, http.StatusNoContent},
+		{"unsupported language", `{"locale":"fr"}`, http.StatusUnprocessableEntity},
+		{"region tags are not parsed here", `{"locale":"nl-NL"}`, http.StatusUnprocessableEntity},
+		{"uppercase", `{"locale":"EN"}`, http.StatusUnprocessableEntity},
+		{"empty", `{"locale":""}`, http.StatusUnprocessableEntity},
+		{"missing field", `{}`, http.StatusUnprocessableEntity},
+		{"not a string", `{"locale":5}`, http.StatusBadRequest},
+		{"malformed json", `{"locale":`, http.StatusBadRequest},
+		{"unknown field", `{"locale":"en","admin":true}`, http.StatusBadRequest},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			srv := newTestServer(t) // fresh db per subtest
+			session := newGuestSession(t, srv)
+
+			rec := do(t, srv, http.MethodPut, "/api/v1/user/locale", tt.body, session.Token)
+			if rec.Code != tt.want {
+				t.Errorf("status = %d, want %d (body: %s)", rec.Code, tt.want, rec.Body)
+			}
+		})
+	}
+}
+
+// Every language the app offers has to be one the backend takes, or the picker
+// has a dead row in it.
+func TestUpdateLocaleAcceptsEveryLanguage(t *testing.T) {
+	for _, locale := range i18n.Locales {
+		t.Run(locale.String(), func(t *testing.T) {
+			srv := newTestServer(t)
+			session := newGuestSession(t, srv)
+
+			body := fmt.Sprintf(`{"locale":%q}`, locale)
+			rec := do(t, srv, http.MethodPut, "/api/v1/user/locale", body, session.Token)
+			if rec.Code != http.StatusNoContent {
+				t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
+			}
+
+			me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
+			if got := decodeBody[userResponse](t, me).Locale; got != locale {
+				t.Errorf("locale = %q, want %q", got, locale)
+			}
+		})
+	}
+}
+
 // The three toggles behave alike, so they are tested alike: turning one off has
 // to survive the round trip, which is the case a default of "on" could mask.
 func TestUpdateToggles(t *testing.T) {
@@ -221,6 +297,7 @@ func TestUpdateToggle_Validation(t *testing.T) {
 func TestUpdateUserFieldsRequireAuth(t *testing.T) {
 	tests := map[string]string{
 		"/api/v1/user/color":            `{"color":"fire"}`,
+		"/api/v1/user/locale":           `{"locale":"en"}`,
 		"/api/v1/user/enable-sounds":    `{"enableSounds":false}`,
 		"/api/v1/user/enable-music":     `{"enableMusic":false}`,
 		"/api/v1/user/enable-vibration": `{"enableVibration":false}`,
@@ -267,12 +344,18 @@ func TestUpdateUserFieldsAreIndependent(t *testing.T) {
 	if rec := do(t, srv, http.MethodPut, "/api/v1/user/color", `{"color":"ink"}`, session.Token); rec.Code != http.StatusNoContent {
 		t.Fatalf("update color status = %d (body: %s)", rec.Code, rec.Body)
 	}
+	if rec := do(t, srv, http.MethodPut, "/api/v1/user/locale", `{"locale":"en"}`, session.Token); rec.Code != http.StatusNoContent {
+		t.Fatalf("update locale status = %d (body: %s)", rec.Code, rec.Body)
+	}
 
 	me := do(t, srv, http.MethodGet, "/api/v1/auth/me", "", session.Token)
 	got := decodeBody[userResponse](t, me)
 
 	if got.Color != "ink" {
 		t.Errorf("color = %q, want %q", got.Color, "ink")
+	}
+	if got.Locale != i18n.EN {
+		t.Errorf("locale = %q, want %q", got.Locale, i18n.EN)
 	}
 	if got.EnableMusic {
 		t.Error("music came back on after being turned off")

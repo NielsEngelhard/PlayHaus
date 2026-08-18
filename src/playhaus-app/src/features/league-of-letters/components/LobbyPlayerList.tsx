@@ -11,7 +11,16 @@ interface Props {
     /** Whose room this is, so one row can be marked as the one that runs it. */
     hostId: string,
     /** Whose screen this is, so one row can read as yours. */
-    userId: string | undefined
+    userId: string | undefined,
+    /**
+     * Who has the room open right now, by user id.
+     *
+     * A seat and a person are different things: somebody can be in the room —
+     * holding a seat, counted in the total, about to be dealt turns — while their
+     * phone is locked and they cannot see a word of it. The host is about to start a
+     * game on these people, so which of them are actually there is worth a mark.
+     */
+    online: Set<string>
 }
 
 /**
@@ -21,7 +30,7 @@ interface Props {
  * and a row appearing in a gap that was already there says "someone arrived" far more
  * plainly than a number going from two to three.
  */
-export default function LobbyPlayerList({ players, hostId, userId }: Props) {
+export default function LobbyPlayerList({ players, hostId, userId, online }: Props) {
     const free = Math.max(0, MAX_LOBBY_PLAYERS - players.length);
 
     return (
@@ -39,6 +48,7 @@ export default function LobbyPlayerList({ players, hostId, userId }: Props) {
                         player={player}
                         host={player.userId === hostId}
                         you={player.userId === userId}
+                        live={online.has(player.userId)}
                     />
                 ))}
 
@@ -53,10 +63,11 @@ export default function LobbyPlayerList({ players, hostId, userId }: Props) {
 interface PlayerRowProps {
     player: LobbyPlayer,
     host: boolean,
-    you: boolean
+    you: boolean,
+    live: boolean
 }
 
-function PlayerRow({ player, host, you }: PlayerRowProps) {
+function PlayerRow({ player, host, you, live }: PlayerRowProps) {
     const avatar = avatarColorById(player.avatarColorId);
 
     // Spread rather than sliced: a name starting with an emoji or an accented pair would
@@ -67,6 +78,17 @@ function PlayerRow({ player, host, you }: PlayerRowProps) {
         <View style={[styles.row, styles.rowTaken]}>
             <View style={[styles.avatar, { backgroundColor: avatar.color }]}>
                 <AppText style={[styles.initial, { color: avatar.foreground }]}>{initial}</AppText>
+
+                {/*
+                  * Whether they are actually here. Sat on the corner of the avatar
+                  * rather than given a column of its own, which is where a status
+                  * light goes everywhere else people are listed.
+                  */}
+                <View
+                    style={[styles.status, live ? styles.statusLive : styles.statusAway]}
+                    accessibilityRole='text'
+                    accessibilityLabel={live ? 'Online' : 'Offline'}
+                />
             </View>
 
             <AppText style={styles.name} numberOfLines={1}>{player.name}</AppText>
@@ -90,6 +112,9 @@ function EmptySeat() {
 }
 
 const AVATAR_SIZE = 36;
+
+/** The live dot. Big enough to read at a glance, small enough not to crop the initial. */
+const STATUS_SIZE = 13;
 
 const styles = StyleSheet.create({
     header: {
@@ -147,6 +172,24 @@ const styles = StyleSheet.create({
         borderRadius: 999,
         borderWidth: 2,
         borderColor: Colors.light.border
+    },
+    // On the avatar's corner, overhanging it slightly so it reads as a badge on the
+    // person rather than a hole punched in them.
+    status: {
+        position: 'absolute',
+        right: -3,
+        bottom: -3,
+        width: STATUS_SIZE,
+        height: STATUS_SIZE,
+        borderRadius: 999,
+        borderWidth: 2,
+        borderColor: Colors.light.border
+    },
+    statusLive: {
+        backgroundColor: Colors.light.mint
+    },
+    statusAway: {
+        backgroundColor: Colors.light.destructive
     },
     avatarEmpty: {
         width: AVATAR_SIZE,

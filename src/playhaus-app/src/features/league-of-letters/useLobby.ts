@@ -1,19 +1,19 @@
 import {
     createLobby,
     deleteLobby,
-    getLobby,
     isHostOf,
     joinLobby,
     leaveLobby,
-    setLobbyIdentity,
     startLobby,
     updateLobbySettings,
     type Lobby,
     type LobbySettings
 } from '@/api/calls/league-of-letters-lobby';
+import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
 import { useAuth } from '@/features/auth/useAuth';
 import { lobbyErrorMessage } from '@/features/league-of-letters/game-errors';
 import { DEFAULT_SOLO_SETTINGS } from '@/features/league-of-letters/solo-settings';
+import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface LobbyState {
@@ -26,6 +26,12 @@ export interface LobbyState {
     actionError: string | null
     /** This player owns the room: the settings and the start button are theirs. */
     isHost: boolean
+    /** Who is connected right now, by user id. What the live dots are drawn from. */
+    online: Set<string>
+    /** Whether this device is live. Your own dot. */
+    connection: SocketStatus
+    /** The host closed the room while you were in it. The code no longer works. */
+    closed: boolean
     /** A settings change is in the air. */
     saving: boolean
     /** Host only. Applied on screen at once, then sent. */
@@ -43,29 +49,21 @@ export interface LobbyState {
 }
 
 /**
- * How often the room asks the server what changed.
- *
- * Solo deliberately does not poll — a game only moves because its one player moved it.
- * A lobby is the opposite: everything interesting about it (someone joining, the host
- * changing the word length, the game starting) happens on somebody else's phone, and
- * there is no socket here to be told over. A second is fast enough that a player
- * arriving feels immediate and slow enough to be nothing on a screen nobody stays on.
- *
- * TODO: drop to a socket when there is one. The room screen reads state off `lobby`
- * only, so what fills it in is this hook's business alone.
- */
-const POLL_MS = 1000;
-
-/**
  * Opens or joins one multiplayer room and keeps it up to date.
  *
  * Pass a `code` to join somebody else's room; pass nothing to open your own, which
- * makes you its host. Both end in the same place — a `Lobby` that polls itself — so the
- * two room screens differ only in what they are allowed to do to it.
+ * makes you its host. Both end in the same place — a `Lobby` kept live by a socket —
+ * so the two room screens differ only in what they are allowed to do to it.
+ *
+ * There used to be a poll here, a second at a time, because everything interesting
+ * about a lobby happens on somebody else's phone and there was no socket to be told
+ * over. Now there is: a player arriving, the host changing the word length and the
+ * game starting all arrive as events, and the only read left is the one that opens
+ * the screen.
  *
  * Leaving matters here in a way it does not on other screens: an abandoned room is a
- * code that still works and a game that will never start. So the room is given back on
- * unmount, whatever caused it — the confirm dialog, a tab in the bottom bar, the
+ * code that still works and a game that will never start. So the room is given back
+ * on unmount, whatever caused it — the confirm dialog, a tab in the bottom bar, the
  * browser's back button — and the one exit that must *not* give it back, starting the
  * game, says so explicitly.
  */
@@ -74,6 +72,7 @@ export function useLobby(code?: string): LobbyState {
     const [lobby, setLobby] = useState<Lobby | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [actionError, setActionError] = useState<string | null>(null);
+    const [closed, setClosed] = useState(false);
     const [saving, setSaving] = useState(false);
     const [starting, setStarting] = useState(false);
     const [closing, setClosing] = useState(false);
@@ -93,35 +92,33 @@ export function useLobby(code?: string): LobbyState {
      */
     const owed = useRef<{ code: string, host: boolean } | null>(null);
 
-    /** A write is in the air; the poll must not land an older room on top of it. */
+    /** A write is in the air; an event must not land an older room on top of it. */
     const writing = useRef(false);
 
     const signedIn = status === 'signedIn';
     const userId = user?.id;
 
     /**
-     * The name and swatch to go into the room under. Held in a ref rather than closed
-     * over, so that renaming yourself in another tab cannot change the identity of
-     * `load` and open a second room on top of the one already on screen.
+     * The language a room opens in: the host's own, so a room starts where its host
+     * plays rather than always in Dutch. Only the opening value — the host is free
+     * to change it below, and doing so does not touch their account.
+     *
+     * Held in a ref rather than closed over, so that changing your language on the
+     * profile screen cannot change the identity of `load` and open a second room on
+     * top of the one already on screen. Declared above the load effect, so it has
+     * already run by the time the room is opened on mount.
      */
-    const profile = useRef({ name: '', avatarColorId: '' });
-
-    // Declared above the load effect, so it has already run by the time the room is
-    // opened on mount.
+    const locale = useRef(DEFAULT_SOLO_SETTINGS.locale);
     useEffect(() => {
-        profile.current = { name: user?.name ?? '', avatarColorId: user?.color ?? '' };
+        locale.current = user?.locale ?? DEFAULT_SOLO_SETTINGS.locale;
     }, [user]);
 
     const load = useCallback(async () => {
         if (!signedIn || userId === undefined) return;
 
-        // The real endpoints read the player off the bearer token. The mock has no
-        // token to read, so it is told who is asking.
-        setLobbyIdentity({ userId, ...profile.current });
-
         try {
             const opened = code === undefined
-                ? await createLobby(DEFAULT_SOLO_SETTINGS)
+                ? await createLobby({ ...DEFAULT_SOLO_SETTINGS, locale: locale.current })
                 : await joinLobby(code);
 
             if (!mounted.current) {
@@ -158,40 +155,61 @@ export function useLobby(code?: string): LobbyState {
         void load();
     }, [signedIn, load]);
 
-    // Keyed on the two things the poll actually depends on rather than on `lobby`, which
-    // is a new object every time the poll answers and would restart its own timer.
+    /** The room the socket is on. Undefined until there is one to be on. */
     const openCode = lobby?.code;
-    const waiting = lobby?.status === 'waiting';
 
-    useEffect(() => {
-        if (openCode === undefined || !waiting) return;
+    const onEvent = useCallback((event: ServerEvent) => {
+        if (!mounted.current) return;
 
-        const tick = setInterval(() => {
-            if (writing.current) return;
+        switch (event.type) {
+            case 'state':
+            case 'lobby': {
+                // Not while a write of our own is settling: the optimistic value on
+                // screen is newer than anything that was already in flight.
+                if (writing.current) return;
 
-            void (async () => {
-                try {
-                    const fresh = await getLobby(openCode);
-                    if (!mounted.current || writing.current) return;
+                const fresh = event.data.lobby;
+                // Only if it is still the room on screen. `close` and a re-join can both
+                // land between a frame being sent and being handled.
+                setLobby(current => (current?.code === fresh.code ? fresh : current));
+                return;
+            }
 
-                    // Only if it is still the room on screen: `close` and a re-join can
-                    // both land between the request going out and coming back.
-                    setLobby(current => (current?.code === openCode ? fresh : current));
-                } catch {
-                    // A poll that misses is not worth putting in front of anyone: the
-                    // next one is a second away, and the room on screen is still the
-                    // best answer there is. A room that is really gone shows up as the
-                    // host closing it, which the screen finds out about by other means.
-                }
-            })();
-        }, POLL_MS);
+            case 'game_started': {
+                // How a guest finds out. The host already knows — `start` set it.
+                setLobby(current => (
+                    current === null ? current : { ...current, status: 'started', gameId: event.data.gameId }
+                ));
+                return;
+            }
 
-        return () => clearInterval(tick);
-    }, [openCode, waiting]);
+            case 'lobby_closed': {
+                // The host shut the room. There is nothing left to hand back, and the
+                // screen is expected to show the way out rather than a dead code.
+                owed.current = null;
+                setClosed(true);
+                return;
+            }
+
+            default:
+                // Everything else on this socket belongs to the board, which reads the
+                // same room through `useMultiplayerGame`.
+                return;
+        }
+    }, []);
+
+    // The lobby only listens. The one thing a client sends -- live typing -- belongs
+    // to the board, which is on this same room through `useMultiplayerGame`.
+    const { status: connection, online } = useRoomSocket({
+        room: openCode === undefined ? undefined : lolRoom(openCode),
+        enabled: signedIn,
+        onEvent
+    });
 
     // The host clears this inside `start`, before it can be raced. This is the other
-    // half: a guest finds out through the poll, and from that moment leaving the board
-    // is leaving a game rather than walking out of a room.
+    // half: a guest finds out through the socket, and from that moment leaving the
+    // board is leaving a game rather than walking out of a room.
+    const waiting = lobby?.status === 'waiting';
     useEffect(() => {
         if (!waiting && lobby !== null) owed.current = null;
     }, [waiting, lobby]);
@@ -292,6 +310,7 @@ export function useLobby(code?: string): LobbyState {
 
     const reload = useCallback(() => {
         setError(null);
+        setClosed(false);
         void load();
     }, [load]);
 
@@ -301,6 +320,9 @@ export function useLobby(code?: string): LobbyState {
         error,
         actionError,
         isHost,
+        online,
+        connection,
+        closed,
         saving,
         updateSettings,
         starting,

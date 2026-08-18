@@ -28,14 +28,6 @@ func (s *GormStore) CreateSoloGame(ctx context.Context, g *SoloLeagueOfLettersGa
 	return nil
 }
 
-func (s *GormStore) CreateMpLobby(ctx context.Context, g *MultiplayerLeagueOfLettersLobby) error {
-	err := s.db.WithContext(ctx).Create(g).Error
-	if err != nil {
-		return fmt.Errorf("insert mp lobby: %w", err)
-	}
-	return nil
-}
-
 // withBoard preloads the whole tree a game is played on, each level in the order
 // it is played in, so a caller never has to sort it back afterwards.
 func withBoard(db *gorm.DB) *gorm.DB {
@@ -51,13 +43,26 @@ func withBoard(db *gorm.DB) *gorm.DB {
 		})
 }
 
+// DeleteSoloGameByID drops a game and the board it was played on.
 func (s *GormStore) DeleteSoloGameByID(ctx context.Context, soloGameID string, userID string) error {
-	result := s.db.WithContext(ctx).
-		Where("id = ? AND owner_id = ?", soloGameID, userID).
-		Delete(&SoloLeagueOfLettersGame{})
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		result := tx.Where("id = ? AND owner_id = ?", soloGameID, userID).
+			Delete(&SoloLeagueOfLettersGame{})
+		if result.Error != nil {
+			return fmt.Errorf("delete game: %w", result.Error)
+		}
+		if result.RowsAffected == 0 {
+			return nil
+		}
 
-	if result.Error != nil {
-		return fmt.Errorf("delete solo league of letters game: %w", result.Error)
+		if err := tx.Where("game_id = ?", soloGameID).Delete(&LeagueOfLettersRound{}).Error; err != nil {
+			return fmt.Errorf("delete rounds: %w", err)
+		}
+
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("delete solo league of letters game: %w", err)
 	}
 
 	return nil

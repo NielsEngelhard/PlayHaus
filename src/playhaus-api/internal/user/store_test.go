@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"errors"
 	"path/filepath"
 	"testing"
 	"time"
@@ -64,6 +65,65 @@ func TestLocaleRoundTrip(t *testing.T) {
 				t.Errorf("Locale %q came back invalid", got.Locale)
 			}
 		})
+	}
+}
+
+// Changing the language on an existing account, which is what the profile
+// screen's picker does. Read back through gorm rather than raw, so Scan() has
+// to accept what Update wrote.
+func TestUpdateLocale(t *testing.T) {
+	db := newTestDB(t)
+	store := NewGormStore(db)
+	ctx := context.Background()
+
+	if err := store.Create(ctx, testUser(i18n.NL)); err != nil {
+		t.Fatalf("create: %v", err)
+	}
+
+	if err := store.UpdateLocale(ctx, i18n.EN, "u1"); err != nil {
+		t.Fatalf("update locale: %v", err)
+	}
+
+	var got User
+	if err := db.First(&got, "id = ?", "u1").Error; err != nil {
+		t.Fatalf("read back: %v", err)
+	}
+	if got.Locale != i18n.EN {
+		t.Errorf("Locale = %q, want %q", got.Locale, i18n.EN)
+	}
+}
+
+// No row, no user -- the same answer every other update gives, which is what
+// lets the handler turn it into a 401 rather than a silent success.
+func TestUpdateLocaleUnknownUser(t *testing.T) {
+	store := NewGormStore(newTestDB(t))
+
+	if err := store.UpdateLocale(context.Background(), i18n.EN, "nobody"); !errors.Is(err, ErrNotFound) {
+		t.Errorf("err = %v, want %v", err, ErrNotFound)
+	}
+}
+
+// The Valuer guards this path too: an unsupported locale that got past the
+// handler fails at the write rather than landing in the column.
+func TestUpdateLocaleRejectsUnsupported(t *testing.T) {
+	db := newTestDB(t)
+	store := NewGormStore(db)
+	ctx := context.Background()
+
+	if err := store.Create(ctx, testUser(i18n.NL)); err != nil {
+		t.Fatalf("create: %v", err)
+	}
+
+	if err := store.UpdateLocale(ctx, i18n.Locale("de"), "u1"); err == nil {
+		t.Fatal("stored an unsupported locale without an error")
+	}
+
+	var raw string
+	if err := db.Raw("SELECT locale FROM users WHERE id = ?", "u1").Scan(&raw).Error; err != nil {
+		t.Fatalf("raw read: %v", err)
+	}
+	if raw != "nl" {
+		t.Errorf("stored value = %q, want the original %q", raw, "nl")
 	}
 }
 
