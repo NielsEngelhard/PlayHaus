@@ -1,20 +1,19 @@
 import type { Game, GameGuess, GameRound } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
-import BackButton from "@/components/ui/BackButton";
+import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
 import InlineNotification from "@/components/ui/InlineNotification";
-import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
-import RoundCounter from "@/features/league-of-letters/components/RoundCounter";
+import RoundBar from "@/features/league-of-letters/components/RoundBar";
+import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { avatarColorById } from "@/features/settings/profile";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -97,7 +96,6 @@ export default function PlayingGame({
     onNextRound,
     onFinish
 }: Props) {
-    const theme = useTheme();
     const styles = useStyles();
 
     const router = useRouter();
@@ -178,6 +176,12 @@ export default function PlayingGame({
      * on screen: a nudge about the word you just typed is stale once the answer is out.
      */
     const verdict = finished && !revealing && !won;
+    /**
+     * The round is over *and* the board has stopped talking about it. Everything that
+     * would spoil the reveal — the verdict, the result panel, the way on — waits for this
+     * rather than for `finished` alone.
+     */
+    const decided = finished && !revealing;
 
     // A new board is a new draft — otherwise moving to the next round leaves half a word
     // behind in a row that now belongs to a different puzzle. Adjusted during render, so
@@ -283,41 +287,22 @@ export default function PlayingGame({
 
     return (
         <View style={styles.screen}>
-            <View style={styles.topRow}>
-                {/* The bottom bar is hidden while a game is on screen, so this is the way
-                    out. Neutral rather than the app's accent: the way out of a game is not
-                    what the page is for, and the board should be the loudest thing on it. */}
-                <BackButton
-                    href={ROUTES.leagueOfLettersIndex}
-                    variant='neutral'
-                    style={styles.back}
-                />
+            {/* The whole of the chrome on this screen: the way out, where you are in the
+                game, and the hint — which becomes the round's verdict once it has one.
+                The app header is not rendered on a board, so this is it. */}
+            <RoundBar
+                round={round.roundNumber}
+                total={game.totalRounds}
+                outcome={decided ? (won ? 'won' : 'lost') : 'playing'}
+                firstLetter={firstLetter}
+                tries={myGuesses.length}
+                onLeave={() => router.replace(ROUTES.leagueOfLettersIndex)}
+            />
 
-                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
-                {multiplayer && round.endsAt && (
-                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
-                )}
-
-                {/* Which puzzle of how many. A solo game is three of them, and knowing
-                    where you are in the set is the difference between "one more round"
-                    and not knowing whether the game just ended. */}
-                <RoundCounter
-                    round={round.roundNumber}
-                    total={game.totalRounds}
-                    style={styles.roundCount}
-                />
-
-                {/* First letter */}
-                {firstLetter !== '' && (
-                    <View
-                        style={styles.hint}
-                        accessibilityRole='text'
-                        accessibilityLabel={`Hint: het woord begint met de ${firstLetter}`}
-                    >
-                        <AppText style={styles.hintLetter}>{firstLetter}</AppText>
-                    </View>
-                )}
-            </View>
+            {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
+            {multiplayer && round.endsAt && !finished && (
+                <GameTimer endsAt={round.endsAt} style={styles.timer} />
+            )}
 
             {multiplayer && game.players && (
                 <PlayerScoreRow
@@ -360,35 +345,6 @@ export default function PlayingGame({
                 )}
             </View>
 
-            {/* Only the bad news gets a line. A win is already spelled out across the
-                board in green, and the row's own celebration says the rest — a box
-                repeating the word back is the least of the ways to be told you were right.
-                The verdict waits for the board either way: being told the round is over
-                while the last two tiles are still face down reads the result out before
-                the reveal does. */}
-            {verdict && (
-                <InlineNotification
-                    icon='x'
-                    color={theme.colors.blush}
-                    title='Helaas'
-                    message={answer
-                        ? `Het woord was ${answer.toUpperCase()}.`
-                        : 'Deze ronde zit erop.'}
-                />
-            )}
-
-            {/* The way out of a finished round. Held back until the reveal is done for
-                the same reason the verdict is: a button offering the next puzzle is
-                itself a spoiler while tiles are still turning over. */}
-            {finished && !revealing && gameOver && (
-                <InlineNotification
-                    icon='flag'
-                    color={theme.colors.lemon}
-                    title='Klaar'
-                    message={`Alle ${game.totalRounds} rondes gespeeld.`}
-                />
-            )}
-
             {/*
               * Whose turn it is, when it is not yours. The keyboard below is dead in
               * that state, and a dead keyboard with nothing saying why reads as a
@@ -402,7 +358,40 @@ export default function PlayingGame({
                 />
             )}
 
-            {(!finished || revealing) && (
+            {/* The keyboard until there is nothing left to type, then the verdict in the
+                same place. Swapped rather than stacked: a dead keyboard under a result is
+                a control that looks broken, and the room it takes is exactly the room the
+                result needs. Both wait out the reveal — a panel naming the word while the
+                last tiles are still face down reads the answer out early. */}
+            {decided ? (
+                <View style={styles.outcome}>
+                    <RoundResultCard
+                        word={answer ?? ''}
+                        tries={myGuesses.length}
+                        maxGuesses={game.maxGuesses}
+                        won={won}
+                    />
+
+                    {gameOver ? (
+                        <ActionButton
+                            // The uitslag is where a finished game goes when there is one
+                            // to go to. A board without it has only the way out to offer.
+                            text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
+                            size='large'
+                            onPress={() => onFinish === undefined
+                                ? router.replace(ROUTES.leagueOfLettersIndex)
+                                : onFinish()}
+                        />
+                    ) : (
+                        <ActionButton
+                            text='Volgende ronde'
+                            size='large'
+                            onPress={() => onNextRound?.()}
+                            disabled={onNextRound === undefined}
+                        />
+                    )}
+                </View>
+            ) : (
                 <LetterKeyboard
                     /*
                      * On a shared board the keys show what the *table* has learned:
@@ -425,32 +414,6 @@ export default function PlayingGame({
                 />
             )}
 
-            {/* The way on from a decided round. Held back until the reveal has finished
-                for the same reason the verdict is — a button offering the next puzzle
-                announces the result while tiles are still turning over. */}
-            {finished && !revealing && (
-                gameOver ? (
-                    <TextButton
-                        // The uitslag is where a finished game goes when there is one to
-                        // go to. A board without it has only the way out to offer.
-                        text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
-                        fullWidth
-                        onPress={() => onFinish === undefined
-                            ? router.replace(ROUTES.leagueOfLettersIndex)
-                            : onFinish()}
-                        style={styles.advance}
-                    />
-                ) : (
-                    <TextButton
-                        text='Volgende ronde'
-                        fullWidth
-                        onPress={() => onNextRound?.()}
-                        disabled={onNextRound === undefined}
-                        style={styles.advance}
-                    />
-                )
-            )}
-
             {/* Last, so it falls in front of everything. It takes no room and no touches,
                 so the board underneath keeps its size and the buttons keep working while
                 the paper comes down. */}
@@ -460,60 +423,17 @@ export default function PlayingGame({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the height the root layout leaves under `Header`, which is what keeps the
-    // keyboard on the bottom edge and the board off the fold.
+    // Fills the viewport, which is what keeps the keyboard on the bottom edge and the
+    // board off the fold. No app header on this route, so the top padding is its own.
     screen: {
         flex: 1,
         width: '100%',
-        gap: Spacing.three,
+        gap: Spacing.three - 4,
+        paddingTop: 14,
         paddingBottom: Spacing.two
     },
-    topRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.three
-    },
-    // Trimmed back from the margin the button stands in on pages where it is the last
-    // thing on them: every point of height it takes here is a point the board loses,
-    // and the board has a keyboard under it that cannot move.
-    back: {
-        marginVertical: Spacing.two
-    },
-    hint: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        // Pinned to the right-hand end of the row whether or not a clock is sharing it —
-        // with no timer to take up the slack there is nothing else pushing it over.
-        marginLeft: 'auto',
-        // Holds its size against the timer, which is the flexible one in this row.
-        flexShrink: 0,
-        gap: Spacing.two,
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        borderRadius: 11,
-        paddingVertical: Spacing.one,
-        paddingHorizontal: Spacing.two,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-    // Takes the row's slack, which puts the counter and the hint together at the right-hand
-    // end when there is no clock between them. With one, the timer has already taken it.
-    roundCount: {
-        marginLeft: 'auto',
-        flexShrink: 0
-    },
-    advance: {
-        backgroundColor: theme.colors.primary
-    },
-    hintLetter: {
-        fontSize: FontSizes.md,
-        fontWeight: 900,
-        // Matches the board's tiles: Outfit Black is wide enough to need pulling in.
-        letterSpacing: -0.5,
-        color: theme.colors.text
-    },
     timer: {
-        flex: 1,
+        flexShrink: 0,
         justifyContent: 'flex-end'
     },
     // Takes the room the grid used to have to itself, so the grid still measures the same
@@ -534,17 +454,23 @@ const useStyles = createThemedStyles(theme => ({
     },
     notice: {
         alignSelf: 'center',
-        borderWidth: 2,
-        borderColor: theme.colors.border,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.border,
         borderRadius: 999,
-        paddingVertical: Spacing.one,
-        paddingHorizontal: Spacing.three,
+        paddingVertical: 5,
+        paddingHorizontal: 14,
         backgroundColor: theme.colors.lemon,
-        ...theme.shadows.hardSmall
+        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
     },
     noticeText: {
-        fontSize: FontSizes.sm,
-        fontWeight: 700,
-        color: theme.colors.text
+        fontSize: 13,
+        fontWeight: 800,
+        color: Brand.ink
+    },
+    // Stands where the keyboard was, and is spaced like it: the result and the way on
+    // are one block, not two things that happen to be near each other.
+    outcome: {
+        flexShrink: 0,
+        gap: Spacing.three - 4
     }
 }))

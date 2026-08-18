@@ -30,6 +30,9 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two + 2,
         backgroundColor: theme.colors.backgroundSecondary,
+        // Spelled out rather than inherited: `Text` falls back to black, which is
+        // invisible on the dark scheme's card.
+        color: theme.colors.text,
         fontSize: FontSizes.xs,
         fontWeight: 600,
         textTransform: 'uppercase',

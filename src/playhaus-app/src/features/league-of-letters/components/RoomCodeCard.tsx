@@ -1,10 +1,9 @@
 import { LOBBY_CODE_LENGTH } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
+import ActionButton from "@/components/ui/ActionButton";
 import { ROUTES } from "@/constants/routes";
-import { Brand, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
-import Feather from "@expo/vector-icons/Feather";
 import { RelativePathString, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, Pressable, TextInput, View } from "react-native";
@@ -24,7 +23,6 @@ const SLOTS = Array.from({ length: LOBBY_CODE_LENGTH }, (_, index) => index);
  * across six inputs that hand focus to each other.
  */
 export default function RoomCodeCard() {
-    const theme = useTheme();
     const styles = useStyles();
 
     const router = useRouter();
@@ -87,21 +85,7 @@ export default function RoomCodeCard() {
                 />
             </Pressable>
 
-            <Pressable
-                onPress={join}
-                disabled={!complete}
-                accessibilityRole='button'
-                accessibilityState={{ disabled: !complete }}
-                style={[styles.join, !complete && styles.joinDisabled]}
-            >
-                <AppText style={styles.joinText}>Join kamer</AppText>
-
-                <Feather
-                    name='arrow-right'
-                    size={17}
-                    color={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
-                />
-            </Pressable>
+            <ActionButton text='Join kamer' onPress={join} disabled={!complete} style={styles.join} />
         </View>
     )
 }
@@ -234,30 +218,6 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
     join: {
-        marginTop: Spacing.three - 4,
-        height: 50,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 9,
-        borderRadius: 14,
-        borderWidth: theme.borderWidth,
-        // The one filled button on the page, so it takes the scheme's loudest note:
-        // ink on paper, lemon on ink.
-        borderColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text,
-        backgroundColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text,
-        boxShadow: theme.scheme === 'dark'
-            ? '0 16px 26px -16px rgba(255, 229, 56, 0.6)'
-            : '3px 3px 0 0 rgba(15, 13, 18, 0.25), 0 16px 26px -16px rgba(15, 13, 18, 0.8)'
-    },
-    // The same half-strength every other blocked control in the app wears.
-    joinDisabled: {
-        opacity: 0.5
-    },
-    joinText: {
-        fontSize: 15,
-        fontWeight: 900,
-        letterSpacing: 0.3,
-        color: theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent
+        marginTop: Spacing.three - 4
     }
 }))

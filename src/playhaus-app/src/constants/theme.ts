@@ -88,6 +88,27 @@ export interface Palette {
     borderMuted: string,
     textFaint: string,
     /**
+     * The board's own two surfaces: a tile nobody has typed into yet, and the outline
+     * around it. Quieter than any card — six rows of empty tiles should read as ruled
+     * paper, not as a stack of controls.
+     */
+    boardEmpty: string,
+    boardEmptyBorder: string,
+    /**
+     * The fill of a letter the word does not contain.
+     *
+     * The one mark that is not a brand hue: `correct` and `present` are mint and lemon in
+     * both schemes, but "not in the word" has to be the darkest thing on a light board and
+     * the flattest on a dark one, which are opposite instructions.
+     */
+    markAbsent: string,
+    /**
+     * Destructive as *text*, which is not the same red as destructive as a fill.
+     * `#E31029` on a near-black canvas vibrates; dark lightens it until it reads as a
+     * warning rather than an alarm.
+     */
+    destructiveText: string,
+    /**
      * The colour the app answers a cursor with, and the halo around whatever holds it.
      *
      * Not the same accent in both schemes: on paper the blue is the one that reads as
@@ -145,6 +166,10 @@ const Colors: Record<Scheme, Palette> = {
         borderDashed: 'rgba(15, 13, 18, 0.3)',
         borderMuted: 'rgba(15, 13, 18, 0.2)',
         textFaint: 'rgba(15, 13, 18, 0.45)',
+        boardEmpty: 'rgba(15, 13, 18, 0.045)',
+        boardEmptyBorder: 'rgba(15, 13, 18, 0.16)',
+        markAbsent: Brand.slate,
+        destructiveText: Brand.destructive,
         focus: Brand.secondary,
         focusRing: 'rgba(59, 77, 240, 0.25)',
         backgroundFocus: '#FFFFFF',
@@ -170,6 +195,10 @@ const Colors: Record<Scheme, Palette> = {
         borderDashed: '#33333F',
         borderMuted: '#33333F',
         textFaint: '#7C7A88',
+        boardEmpty: '#15151C',
+        boardEmptyBorder: '#26262F',
+        markAbsent: '#26262F',
+        destructiveText: '#FF7A6E',
         focus: Brand.lemon,
         focusRing: 'rgba(255, 229, 56, 0.25)',
         backgroundFocus: '#1D1D26',

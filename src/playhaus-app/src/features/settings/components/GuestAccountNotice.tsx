@@ -17,10 +17,10 @@ const MESSAGE = 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en
  * What a guest sees at the top of their profile: that this account is temporary,
  * and the one button that fixes it.
  *
- * `blush` rather than the default `lemon` — this is a warning about something
- * that can go wrong, not a note about how the page works — but it stays an
- * `InlineNotification` rather than becoming a red alarm. Nothing is broken yet,
- * and the page underneath is perfectly usable as it is.
+ * `destructive` rather than the default `lemon` — this is a warning about
+ * something that can go wrong, and the pale `blush` it used to wear read as
+ * decoration rather than as a warning. It stays an `InlineNotification` all the
+ * same: nothing is broken yet, and the page underneath is perfectly usable.
  */
 export default function GuestAccountNotice({ onCreateAccount }: Props) {
     const theme = useTheme();
@@ -29,7 +29,8 @@ export default function GuestAccountNotice({ onCreateAccount }: Props) {
         <InlineNotification
             title='Gastaccount'
             icon='alert-triangle'
-            color={theme.colors.blush}
+            color={theme.colors.destructive}
+            iconColor={theme.colors.textOnAccent}
             message={MESSAGE}
         >
             <TextButton

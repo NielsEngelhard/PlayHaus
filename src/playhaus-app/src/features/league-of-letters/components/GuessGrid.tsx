@@ -1,7 +1,7 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
-import { MARK_STYLES, TEASE_REEL, type MarkStyle } from "@/features/league-of-letters/marks";
+import { TEASE_REEL_LENGTH, markStyles, teaseReel, type MarkStyle } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useRef, useState } from "react";
@@ -40,7 +40,7 @@ const OWNER_BAR_WIDTH = 6;
  * on a tablet turns into four enormous slabs. Between them the grid simply fits.
  */
 const MIN_TILE = 26;
-const MAX_TILE = 64;
+const MAX_TILE = 58;
 
 /** A letter dropping into an empty slot. Short enough to keep up with fast typing. */
 const FILL_MS = 160;
@@ -56,7 +56,7 @@ const TEASE_SPINS = 2;
 /** A beat on the real colour before the rest of the screen is allowed to react to it. */
 const TEASE_SETTLE_MS = 140;
 /** Everything after the tile turns face up: the spin, then that beat. */
-const TEASE_MS = TEASE_REEL.length * TEASE_SPINS * TEASE_STEP_MS + TEASE_SETTLE_MS;
+const TEASE_MS = TEASE_REEL_LENGTH * TEASE_SPINS * TEASE_STEP_MS + TEASE_SETTLE_MS;
 
 /** Up, and back down onto the board. */
 const HOP_UP_MS = 190;
@@ -283,7 +283,10 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
      * teasing tile by the whole spin. Held as the style rather than the mark because most
      * of what a spin shows is not a mark at all.
      */
-    const [face, setFace] = useState<MarkStyle | undefined>(mark && MARK_STYLES[mark]);
+    const marks = markStyles(theme);
+    const reel = teaseReel(theme);
+
+    const [face, setFace] = useState<MarkStyle | undefined>(mark && marks[mark]);
 
     // Built once by the lazy initialiser — a fresh value on every render would drop a tile
     // mid-flip. A tile that mounts already filled or already scored starts settled, which
@@ -356,13 +359,13 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
          */
         const script = tease
             ? [
-                ...Array.from({ length: TEASE_REEL.length * TEASE_SPINS }, (_, step) => ({
-                    face: TEASE_REEL[step % TEASE_REEL.length],
+                ...Array.from({ length: reel.length * TEASE_SPINS }, (_, step) => ({
+                    face: reel[step % reel.length],
                     at: FLIP_MS + step * TEASE_STEP_MS
                 })),
-                { face: MARK_STYLES[mark], at: FLIP_MS + TEASE_REEL.length * TEASE_SPINS * TEASE_STEP_MS }
+                { face: marks[mark], at: FLIP_MS + reel.length * TEASE_SPINS * TEASE_STEP_MS }
             ]
-            : [{ face: MARK_STYLES[mark], at: FLIP_MS }];
+            : [{ face: marks[mark], at: FLIP_MS }];
 
         const swaps = script.map(({ face: next, at }) => setTimeout(() => setFace(next), at));
 
@@ -388,7 +391,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                     ]),
                     // Left to run on from wherever it is, or every lap would start with a
                     // snap back through centre. One lap per colour, so it stops when they do.
-                    { iterations: TEASE_REEL.length * TEASE_SPINS, resetBeforeIteration: false }
+                    { iterations: reel.length * TEASE_SPINS, resetBeforeIteration: false }
                 ),
                 Animated.timing(jitter, {
                     toValue: 0,
@@ -407,7 +410,11 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
             shake?.stop();
             jitter.setValue(0);
         };
-    }, [mark, tease, turn, jitter]);
+        // `theme.scheme` rather than `marks`/`reel`: those are rebuilt on every render, and
+        // depending on them would restart the flip mid-turn. The scheme is what actually
+        // changes what a face looks like.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mark, tease, turn, jitter, theme.scheme]);
 
     useEffect(() => {
         if (!celebrate) return;
@@ -447,8 +454,9 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                 {
                     width: size,
                     height: size,
-                    // Scales with the tile so a 26dp tile doesn't end up a lozenge.
-                    borderRadius: Math.min(14, Math.round(size * 0.28)),
+                    // Scales with the tile so a 26dp tile doesn't end up a lozenge, and
+                    // lands on the design's 16 at the full 58.
+                    borderRadius: Math.min(16, Math.round(size * 0.28)),
                     transform: [
                         // Scaled with the tile so the wave is the same shape on a phone as
                         // it is on a tablet.
@@ -464,7 +472,9 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                     ]
                 },
                 face
-                    ? [{ backgroundColor: face.fill }, theme.shadows.hardLarge]
+                    // A scored tile takes the mark's own outline, which in dark is the
+                    // mark's colour — there is no ink there to frame it with.
+                    ? [{ backgroundColor: face.fill, borderColor: face.border }, styles.tileScored]
                     // A turn that ran out. Drawn broken rather than blank so it reads as
                     // a row that was spent, not one still waiting to be played.
                     : spent
@@ -473,7 +483,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                         // slot sits back, the same way `WordLengthCard` separates chosen
                         // from not.
                         : letter
-                            ? [styles.tileFilled, theme.shadows.hardLarge]
+                            ? styles.tileFilled
                             : styles.tileEmpty
             ]}
         >
@@ -481,7 +491,7 @@ function LetterTile({ letter, mark, size, celebrate = false, tease = false, sett
                 style={[
                     styles.letter,
                     {
-                        fontSize: Math.max(FontSizes.md, Math.min(FontSizes.xxl, Math.round(size * 0.5))),
+                        fontSize: Math.max(FontSizes.md, Math.min(27, Math.round(size * 0.47))),
                         color: face?.foreground ?? theme.colors.text
                     }
                 ]}
@@ -508,16 +518,24 @@ const useStyles = createThemedStyles(theme => ({
     tile: {
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
+        borderWidth: theme.borderWidth,
         borderColor: theme.colors.border
     },
+    // Only light lifts a scored tile. Dark says the same thing with the mark's colour,
+    // and a shadow under every tile on a dark board reads as grime rather than depth.
+    tileScored: theme.scheme === 'dark'
+        ? {}
+        : { boxShadow: '2px 2px 0 0 #0F0D12, 0 8px 14px -10px rgba(15, 13, 18, 0.6)' },
     tileFilled: {
-        backgroundColor: theme.colors.backgroundSecondary
+        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
+        backgroundColor: theme.scheme === 'dark'
+            ? theme.colors.backgroundFocus
+            : theme.colors.backgroundSecondary,
+        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
     },
     tileEmpty: {
-        backgroundColor: theme.colors.backgroundInput,
-        opacity: 0.8,
-        ...theme.shadows.hardSmall
+        borderColor: theme.colors.boardEmptyBorder,
+        backgroundColor: theme.colors.boardEmpty
     },
     // A row the clock filled in: no fill, no shadow, a broken outline. The same
     // vocabulary `LobbyPlayerList` uses for a seat nobody has taken, because it means
