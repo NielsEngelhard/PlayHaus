@@ -1,38 +1,45 @@
 import { gameForPathname } from "@/constants/games";
-import { DEFAULT_LANGUAGE, languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
-import { useAuth } from "@/features/auth/useAuth";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import HeaderStatus from "./HeaderStatus";
+import BackChip from "./BackChip";
+import ContextPill from "./ContextPill";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import UserPill from "./UserPill";
 
+/**
+ * A game's own front page — `/games/{slug}` exactly, not the screens under it.
+ *
+ * That page is the one the design gives a back chip to, because it is the only one whose
+ * way out is the home list. The screens below it already carry their own way back, and a
+ * second one in the chrome would be two answers to the same question.
+ */
+function isGameHub(pathname: string): boolean {
+    return /^\/games\/[^/]+$/.test(pathname);
+}
+
 export default function Header() {
     const pathname = usePathname();
-    const { user } = useAuth();
 
     // Read off the route rather than pushed up by each page: the header already knows
     // where it is, and a page that forgot to say so used to leave the previous page's
     // name sitting in the chrome.
     const game = gameForPathname(pathname);
 
-    // The account's language, or the default while the session is still being
-    // restored — the header is on screen before anyone is signed in, and a capsule
-    // with a hole where the flag goes would be a worse way to say so.
-    const language = languageByCode(user?.locale ?? DEFAULT_LANGUAGE);
-
     return (
         <View style={styles.container}>
-            {/* Left. Inside a game the wordmark steps back to just the mark — the game
-                is the headline there, and it's what leaves the right-hand side room to
-                breathe on a narrow phone. */}
-            <View style={styles.logo}>
-                <Link href={ROUTES.home as RelativePathString}>
-                    <Logo includeAppName={game === null} />
-                </Link>
+            {/* Left. A game's front page swaps the wordmark for the way out of it —
+                inside a game the app's name is not the thing you need. */}
+            <View style={styles.left}>
+                {game !== null && isGameHub(pathname) ? (
+                    <BackChip href={ROUTES.home as RelativePathString} />
+                ) : (
+                    <Link href={ROUTES.home as RelativePathString}>
+                        <Logo includeAppName={game === null} />
+                    </Link>
+                )}
             </View>
 
             <View style={styles.right}>
@@ -42,11 +49,7 @@ export default function Header() {
                 {game === null ? (
                     <UserPill />
                 ) : (
-                    <HeaderStatus
-                        label={game.name}
-                        accent={game.color}
-                        language={language}
-                    />
+                    <ContextPill accent={game.color} label={game.name} />
                 )}
 
                 <ThemeToggle />
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
         width: '100%',
         gap: Spacing.two
     },
-    logo: {
+    left: {
         flexShrink: 0
     },
     right: {
