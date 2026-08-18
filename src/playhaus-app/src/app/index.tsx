@@ -2,13 +2,16 @@ import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
 import NavigationCard from '@/components/ui/NavigationCard';
 import { GAMES } from '@/constants/games';
-import { FontSizes, Spacing } from '@/constants/theme';
+import { Spacing } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
+import { useTheme } from '@/features/theme/ThemeContext';
 import { RelativePathString } from 'expo-router';
 import { View } from 'react-native';
 
 export default function HomeScreen() {
+  const theme = useTheme();
   const styles = useStyles();
+
 
   return (
     <View style={styles.container}>
@@ -24,28 +27,20 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.games}>
-        <AppText style={styles.sectionTitle}>Games</AppText>
-
-        {GAMES.map((game, index) => (
-          // The cards sit a hair off-square, alternating direction, the way they do
-          // in the design.
-          <View
-            key={game.name}
-            style={{ transform: [{ rotate: index % 2 === 0 ? '-0.6deg' : '0.5deg' }] }}
-          >
-            <NavigationCard
-              tag={game.tag}
-              color={game.color}
-              name={game.name}
-              description={game.description}
-              playable={game.playable}
-              navigationUrl={game.navigationUrl as RelativePathString}
-            />
-          </View>
+        {GAMES.map(game => (
+          <NavigationCard
+            key={game.slug}
+            tag={game.tag}
+            color={game.color}
+            gradient={game.gradient}
+            glyphInk={game.glyphInk[theme.scheme]}
+            name={game.name}
+            description={game.description}
+            playable={game.playable}
+            navigationUrl={game.navigationUrl as RelativePathString}
+          />
         ))}
       </View>
-
-      <AppText style={styles.footer}>Veel speelplezier</AppText>
     </View>
   );
 }
@@ -55,30 +50,17 @@ const useStyles = createThemedStyles(theme => ({
     width: '100%'
   },
   intro: {
-    marginBottom: Spacing.five
+    marginTop: Spacing.two
   },
   introText: {
-    marginTop: Spacing.four,
-    maxWidth: 448,
-    fontSize: FontSizes.md,
-    lineHeight: FontSizes.md * 1.6,
+    marginTop: 10,
+    maxWidth: 290,
+    fontSize: 14,
+    lineHeight: 14 * 1.5,
     color: theme.colors.textSecondary
   },
   games: {
-    gap: Spacing.four
-  },
-  sectionTitle: {
-    paddingHorizontal: Spacing.one,
-    fontSize: FontSizes.xs,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: 2.2,
-    color: theme.colors.textSecondary
-  },
-  footer: {
-    marginTop: Spacing.six,
-    textAlign: 'center',
-    fontSize: FontSizes.xs,
-    color: theme.colors.textSecondary
+    marginTop: 20,
+    gap: 14
   }
 }));

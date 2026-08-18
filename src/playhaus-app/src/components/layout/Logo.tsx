@@ -1,52 +1,77 @@
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { APP_NAME } from "@/constants/global-constants"
-import { FontSizes, Spacing } from "@/constants/theme"
 import AppText from "@/components/text/AppText"
+import { APP_NAME } from "@/constants/global-constants"
+import { Brand, Spacing } from "@/constants/theme"
+import { createThemedStyles } from "@/features/theme/createThemedStyles"
 import { View } from "react-native"
 
 interface Props {
     includeAppName: boolean
 }
 
+/**
+ * The wordmark, as a pill: a lemon initial tile followed by the app name in caps.
+ *
+ * Sits at the left of the header on every page. Inside a game the name drops away and
+ * only the tile is left — the game is the headline there.
+ */
 export default function Logo({ includeAppName }: Props) {
     const styles = useStyles();
 
     return (
-        <View style={styles.container}>
-            <View style={styles.iconBubble}>
+        <View style={[styles.pill, !includeAppName && styles.pillTight]}>
+            <View style={styles.iconTile}>
                 <AppText style={styles.iconText}>{APP_NAME[0]}</AppText>
             </View>
 
-            {(includeAppName == true) && (
-                <AppText style={styles.fullAppName}>{APP_NAME}</AppText>
+            {includeAppName && (
+                <AppText style={styles.appName}>{APP_NAME}</AppText>
             )}
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    container: {
+    pill: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: Spacing.two
-    },
-    iconBubble: {
-        backgroundColor: theme.colors.lemon,
-        width: 35,
-        height: 35,
-        borderRadius: 14,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
+        gap: Spacing.two,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
-        ...theme.shadows.hard
+        backgroundColor: theme.colors.backgroundSecondary,
+        paddingLeft: 6,
+        paddingRight: Spacing.three - 4,
+        paddingVertical: 5,
+        // Light lifts the pill off the page; dark leaves the chrome flat and saves the
+        // shadows for the content.
+        ...(theme.scheme === 'dark'
+            ? {}
+            : { boxShadow: '2px 2px 0 0 #0F0D12, 0 6px 14px -8px rgba(15, 13, 18, 0.5)' })
+    },
+    // With no name beside it the tile would be sitting in a lopsided capsule.
+    pillTight: {
+        paddingRight: 6
+    },
+    iconTile: {
+        width: 22,
+        height: 22,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.lemon
     },
     iconText: {
+        fontSize: 12,
         fontWeight: 900,
-        fontSize: FontSizes.lg
+        color: Brand.ink
     },
-    fullAppName: {
+    appName: {
+        fontSize: 13,
         fontWeight: 900,
-        fontSize: FontSizes.lg
+        letterSpacing: 1,
+        textTransform: 'uppercase',
+        color: theme.colors.text
     }
 }))

@@ -3,7 +3,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme, useThemeMode } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 
-const SIZE = 34;
+const SIZE = 32;
 
 /**
  * Flips the app between light and dark. Lives at the right-hand end of the `Header`,
@@ -30,7 +30,7 @@ export default function ThemeToggle() {
         >
             <Feather
                 name={goingDark ? 'moon' : 'sun'}
-                size={17}
+                size={16}
                 color={colors.text}
             />
         </PopPressable>
@@ -41,18 +41,17 @@ const useStyles = createThemedStyles(theme => ({
     button: {
         width: SIZE,
         height: SIZE,
-        // The header gives ground on its right-hand side when things don't fit, and the
-        // capsule next door is what should be doing the shrinking, not this.
+        // The pill next door is what should shrink when the header runs out of room.
         flexShrink: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
+        borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         borderRadius: 999,
         backgroundColor: theme.colors.backgroundSecondary,
-        // No house tilt here, unlike the capsule next door: this one is a circle, so a
-        // rotation would cost a transform — the one `PopPressable` needs for its press —
-        // and show nothing for it.
-        ...theme.shadows.hardSmall
+        // No house tilt here, unlike the cards: this one is a circle, so a rotation
+        // would cost a transform — the one `PopPressable` needs for its press — and
+        // show nothing for it.
+        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
     }
 }));

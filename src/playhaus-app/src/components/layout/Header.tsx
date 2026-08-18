@@ -1,14 +1,14 @@
 import { gameForPathname } from "@/constants/games";
-import { APP_VERSION } from "@/constants/global-constants";
 import { DEFAULT_LANGUAGE, languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
-import { Brand, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import HeaderStatus from "./HeaderStatus";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+import UserPill from "./UserPill";
 
 export default function Header() {
     const pathname = usePathname();
@@ -27,21 +27,27 @@ export default function Header() {
     return (
         <View style={styles.container}>
             {/* Left. Inside a game the wordmark steps back to just the mark — the game
-                is the headline there, and it's what leaves the capsule room to breathe
-                on a narrow phone. */}
+                is the headline there, and it's what leaves the right-hand side room to
+                breathe on a narrow phone. */}
             <View style={styles.logo}>
                 <Link href={ROUTES.home as RelativePathString}>
                     <Logo includeAppName={game === null} />
                 </Link>
             </View>
 
-            {/* Right — where you are, then the one control that is on every page. */}
             <View style={styles.right}>
-                <HeaderStatus
-                    label={game?.name ?? APP_VERSION}
-                    accent={game?.color ?? Brand.available}
-                    language={language}
-                />
+                {/* Outside a game the corner is about you; inside one it is about the
+                    game you are in. Both wear the same pill, so the slot doesn't jump
+                    as you move between them. */}
+                {game === null ? (
+                    <UserPill />
+                ) : (
+                    <HeaderStatus
+                        label={game.name}
+                        accent={game.color}
+                        language={language}
+                    />
+                )}
 
                 <ThemeToggle />
             </View>
@@ -51,7 +57,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 75,
+        height: 66,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: 'center',
@@ -65,8 +71,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.two,
-        // The capsule inside this is the only thing on the row that gives ground, so
-        // this has to be shrinkable for it to have anything to shrink into.
+        // The pill inside this is the only thing on the row that gives ground, so this
+        // has to be shrinkable for it to have anything to shrink into.
         flexShrink: 1
     }
 })
