@@ -1,30 +1,49 @@
 import AppText from "@/components/text/AppText";
+import { Brand } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 interface Props {
-    /** Fill for the dot. Whatever the pill is about: a game's accent, your own swatch. */
+    /** Fill for the dot — or for the whole pill when `filled`. */
     accent: string,
-    label: string
+    label: string,
+    /** Shown instead of the dot, for a pill naming a mode rather than a place. */
+    icon?: keyof typeof Feather.glyphMap,
+    /**
+     * Fills the pill with `accent` and drops its contents to ink.
+     *
+     * For the one pill on a screen that is the screen's own subject. An outlined pill
+     * reports where you are; a filled one is part of what you came for.
+     */
+    filled?: boolean
 }
 
 /**
- * The pill at the right of the header: a coloured dot, then one line of uppercase.
+ * The pill at the right of the header: a dot or an icon, then one line of uppercase.
  *
- * Says what the corner is about — which game you are inside, or who you are when you are
- * not inside one. Both wear this so the slot doesn't change shape as you move between
- * them; only the dot and the words change.
+ * Says what the corner is about — which game you are inside, which mode you are setting
+ * up, or who you are when you are not inside either. They all wear this so the slot
+ * doesn't change shape as you move between them.
  *
  * Presentational on purpose. Anything that needs the pill to be tappable wraps it.
  */
-export default function ContextPill({ accent, label }: Props) {
+export default function ContextPill({ accent, label, icon, filled = false }: Props) {
     const styles = useStyles();
 
-    return (
-        <View style={styles.pill}>
-            <View style={[styles.dot, { backgroundColor: accent }]} />
+    const ink = filled ? Brand.ink : undefined;
 
-            <AppText style={styles.label} numberOfLines={1}>{label}</AppText>
+    return (
+        <View style={[styles.pill, filled && { backgroundColor: accent, borderColor: accent }]}>
+            {icon === undefined ? (
+                <View style={[styles.dot, { backgroundColor: accent }]} />
+            ) : (
+                <Feather name={icon} size={13} color={ink ?? accent} />
+            )}
+
+            <AppText style={[styles.label, ink !== undefined && { color: ink }]} numberOfLines={1}>
+                {label}
+            </AppText>
         </View>
     )
 }

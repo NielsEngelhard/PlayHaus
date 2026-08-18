@@ -180,7 +180,8 @@ const useStyles = createThemedStyles(theme => ({
     slots: {
         marginTop: Spacing.three - 4,
         flexDirection: 'row',
-        gap: 7
+        gap: 7,
+        justifyContent: 'center'    
     },
     slot: {
         flex: 1,
@@ -190,7 +191,8 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 13,
         borderWidth: theme.borderWidth,
         borderStyle: 'dashed',
-        borderColor: theme.colors.borderDashed
+        borderColor: theme.colors.borderDashed,
+        maxWidth: 60
     },
     slotFilled: {
         borderStyle: 'solid',

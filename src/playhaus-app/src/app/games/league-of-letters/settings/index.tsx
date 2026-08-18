@@ -1,26 +1,25 @@
 import { abandonGame, createGame, getCurrentGame, type Game } from "@/api/calls/league-of-letters";
+import { useFullScreen } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
 import AppText from "@/components/text/AppText";
-import BackButton from "@/components/ui/BackButton";
+import SimpleTextHero from "@/components/text/SimpleTextHero";
 import InlineNotification from "@/components/ui/InlineNotification";
-import PopupModal from "@/components/ui/PopupModal";
 import LanguageSelect from "@/components/ui/LanguageSelect";
+import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
+import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { DEFAULT_SOLO_SETTINGS } from "@/features/league-of-letters/solo-settings";
+import { DEFAULT_SOLO_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
-
-// The cards sit a hair off-square, the way they do in the design.
-const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 
 /**
  * Set up a solo game, then start it. The settings are local until `Start`, which is
@@ -35,6 +34,10 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 export default function LeagueOfLettersSettingsPage() {
     const theme = useTheme();
     const styles = useStyles();
+
+    // Claims the viewport: no bottom bar, and the footer can sit on the bottom edge.
+    // Called before every early return below, so the hook order never changes.
+    useFullScreen();
 
     const router = useRouter();
     const { status, user } = useAuth();
@@ -143,13 +146,6 @@ export default function LeagueOfLettersSettingsPage() {
         }
     }
 
-    // Held back until the answer is in. A form that appears on its own and then has a
-    // panel drop over it a moment later reads as a misfire, and for the length of that
-    // moment it is a form whose only outcome would be destroying a game.
-    if (!checked) {
-        return <LoadingPage message='Spel zoeken…' />;
-    }
-
     async function start() {
         if (starting) return;
 
@@ -174,45 +170,63 @@ export default function LeagueOfLettersSettingsPage() {
         }
     }
 
+    // Held back until the answer is in. A form that appears on its own and then has a
+    // panel drop over it a moment later reads as a misfire, and for the length of that
+    // moment it is a form whose only outcome would be destroying a game.
+    if (!checked) {
+        return <LoadingPage message='Spel zoeken…' />;
+    }
+
     return (
         <View style={styles.container}>
-            <BackButton href={ROUTES.leagueOfLettersIndex} />
+            {/* Broken by hand rather than left to wrap: the design sets the heading on
+                two lines, and letting the column decide would move the break as the
+                viewport changes. */}
+            <SimpleTextHero
+                title={'Zet je spel\nklaar'}
+                description='Er wordt niets aangemaakt tot je op start drukt.'
+            />
 
-            <View style={styles.body}>
-                <SimpleTextHero
-                    title='Solo instellen'
-                    description='Stel je spel samen [SOLO].'
+            <View style={styles.wordLength}>
+                <WordLengthCard
+                    value={settings.wordLength}
+                    onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
                 />
+            </View>
 
-                <View style={tilt('-0.5deg')}>
-                    <WordLengthCard
-                        value={settings.wordLength}
-                        onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                    />
-                </View>
+            <View style={styles.language}>
+                <LanguageSelect
+                    value={settings.locale}
+                    onChange={locale => setSettings(current => ({ ...current, locale }))}
+                />
+            </View>
 
-                <View style={tilt('0.4deg')}>
-                    <LanguageSelect
-                        value={settings.locale}
-                        onChange={locale => setSettings(current => ({ ...current, locale }))}
-                    />
-                </View>
-
-                {error && (
+            {error && (
+                <View style={styles.error}>
                     <InlineNotification
                         icon='alert-triangle'
                         color={theme.colors.blush}
                         title='Mislukt'
                         message={error}
                     />
-                )}
+                </View>
+            )}
 
-                <TextButton
-                    text={starting ? 'Bezig…' : 'Start'}
+            {/* `marginTop: auto` is what pins this to the bottom edge, which only works
+                because `useFullScreen` gives the column a height to push against. */}
+            <View style={styles.footer}>
+                <View style={styles.facts}>
+                    <Feather name='info' size={14} color={theme.colors.textMuted} />
+
+                    <AppText style={styles.factsText}>
+                        {SOLO_ROUNDS} rondes · {SOLO_MAX_GUESSES} pogingen per ronde · eerste letter gegeven
+                    </AppText>
+                </View>
+
+                <StartGameButton
+                    text={starting ? 'Bezig…' : 'Start met spelen'}
                     onPress={start}
                     disabled={starting}
-                    fullWidth
-                    style={styles.startButton}
                 />
             </View>
 
@@ -252,15 +266,39 @@ export default function LeagueOfLettersSettingsPage() {
     )
 }
 
-const START_BUTTON_HEIGHT = 60;
-
 const useStyles = createThemedStyles(theme => ({
     container: {
+        flex: 1,
         width: '100%'
     },
-    body: {
-        marginTop: Spacing.three,
-        gap: Spacing.four
+    wordLength: {
+        marginTop: 20
+    },
+    language: {
+        marginTop: 14
+    },
+    error: {
+        marginTop: 14
+    },
+    footer: {
+        marginTop: 'auto',
+        // Only a floor, for the case where the cards above already fill the screen and
+        // `marginTop: auto` has no slack left to give. The gap under the button is the
+        // layout's `fullScreenBody` padding — one owner for the bottom edge, so every
+        // full-screen page ends the same distance off it.
+        paddingTop: Spacing.four
+    },
+    facts: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: Spacing.two,
+        marginBottom: Spacing.three - 4
+    },
+    factsText: {
+        fontSize: 12,
+        fontWeight: 600,
+        color: theme.colors.textMuted
     },
     abandonError: {
         // Inside the modal, where the form's own `InlineNotification` would be a card
@@ -270,15 +308,5 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive
-    },
-    startButton: {
-        // A little air above it, so it reads as the end of the page rather than as
-        // one more card in the stack.
-        marginTop: Spacing.two,
-        height: START_BUTTON_HEIGHT,
-        // This is the one thing the page is for, so it wears the primary fill rather
-        // than `TextButton`'s default. Worth a proper variant prop on the button if a
-        // second screen ever needs the same thing.
-        backgroundColor: theme.colors.primary
     }
 }))

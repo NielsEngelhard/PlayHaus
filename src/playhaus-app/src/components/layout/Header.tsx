@@ -1,4 +1,4 @@
-import { gameForPathname } from "@/constants/games";
+import { headerContextFor } from "@/constants/header-context";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { Link, RelativePathString, usePathname } from "expo-router";
@@ -9,47 +9,38 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import UserPill from "./UserPill";
 
-/**
- * A game's own front page — `/games/{slug}` exactly, not the screens under it.
- *
- * That page is the one the design gives a back chip to, because it is the only one whose
- * way out is the home list. The screens below it already carry their own way back, and a
- * second one in the chrome would be two answers to the same question.
- */
-function isGameHub(pathname: string): boolean {
-    return /^\/games\/[^/]+$/.test(pathname);
-}
-
 export default function Header() {
     const pathname = usePathname();
 
-    // Read off the route rather than pushed up by each page: the header already knows
-    // where it is, and a page that forgot to say so used to leave the previous page's
-    // name sitting in the chrome.
-    const game = gameForPathname(pathname);
+    // Everything the header knows about where it is, worked out from the route. See
+    // `header-context.ts` for why it is read rather than pushed.
+    const { back, pill } = headerContextFor(pathname);
 
     return (
         <View style={styles.container}>
-            {/* Left. A game's front page swaps the wordmark for the way out of it —
-                inside a game the app's name is not the thing you need. */}
+            {/* Left. A screen with a way out swaps the wordmark for it — once you are
+                inside something, the app's name is not what you need. */}
             <View style={styles.left}>
-                {game !== null && isGameHub(pathname) ? (
-                    <BackChip href={ROUTES.home as RelativePathString} />
-                ) : (
+                {back === null ? (
                     <Link href={ROUTES.home as RelativePathString}>
-                        <Logo includeAppName={game === null} />
+                        <Logo includeAppName={pill === null} />
                     </Link>
+                ) : (
+                    <BackChip href={back as RelativePathString} />
                 )}
             </View>
 
             <View style={styles.right}>
-                {/* Outside a game the corner is about you; inside one it is about the
-                    game you are in. Both wear the same pill, so the slot doesn't jump
-                    as you move between them. */}
-                {game === null ? (
+                {/* Inside something the corner is about that; outside it, about you. */}
+                {pill === null ? (
                     <UserPill />
                 ) : (
-                    <ContextPill accent={game.color} label={game.name} />
+                    <ContextPill
+                        accent={pill.accent}
+                        label={pill.label}
+                        icon={pill.icon}
+                        filled={pill.filled}
+                    />
                 )}
 
                 <ThemeToggle />
