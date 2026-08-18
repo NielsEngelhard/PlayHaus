@@ -81,6 +81,13 @@ export interface Palette {
     /** The dashed outline of a slot waiting to be filled. */
     borderDashed: string,
     /**
+     * The two tones an option you have *not* picked wears: its outline and its glyph.
+     * Both quieter than the chosen one beside them, which is the whole job — a picker
+     * has to make the answer obvious without hiding the alternatives.
+     */
+    borderMuted: string,
+    textFaint: string,
+    /**
      * The colour the app answers a cursor with, and the halo around whatever holds it.
      *
      * Not the same accent in both schemes: on paper the blue is the one that reads as
@@ -136,6 +143,8 @@ const Colors: Record<Scheme, Palette> = {
         borderStrong: '#0F0D12',
         borderSubtle: 'rgba(15, 13, 18, 0.25)',
         borderDashed: 'rgba(15, 13, 18, 0.3)',
+        borderMuted: 'rgba(15, 13, 18, 0.2)',
+        textFaint: 'rgba(15, 13, 18, 0.45)',
         focus: Brand.secondary,
         focusRing: 'rgba(59, 77, 240, 0.25)',
         backgroundFocus: '#FFFFFF',
@@ -159,6 +168,8 @@ const Colors: Record<Scheme, Palette> = {
         borderStrong: '#3A3A47',
         borderSubtle: '#2C2C37',
         borderDashed: '#33333F',
+        borderMuted: '#33333F',
+        textFaint: '#7C7A88',
         focus: Brand.lemon,
         focusRing: 'rgba(255, 229, 56, 0.25)',
         backgroundFocus: '#1D1D26',
@@ -251,11 +262,14 @@ export interface Shadows {
  * Every icon tile in the app wears one: a flat accent looks pasted on at 60px and above,
  * and the shading is what makes a tile read as an object rather than a swatch.
  *
+ * `midpoint` is where the middle stop lands. The default is the house 55%; the selected
+ * word-length tile sits it at 60%, which holds the lemon a beat longer before it turns.
+ *
  * `experimental_backgroundImage` is React Native 0.86's own gradient support, so this
  * needs no library — only the web prefix stripped off.
  */
-export function linearGradient(stops: readonly [string, string, string]): ViewStyle {
-    const gradient = `linear-gradient(160deg, ${stops[0]}, ${stops[1]} 55%, ${stops[2]})`;
+export function linearGradient(stops: readonly [string, string, string], midpoint: number = 55): ViewStyle {
+    const gradient = `linear-gradient(160deg, ${stops[0]}, ${stops[1]} ${midpoint}%, ${stops[2]})`;
 
     return Platform.select<ViewStyle>({
         web: { backgroundImage: gradient } as ViewStyle,

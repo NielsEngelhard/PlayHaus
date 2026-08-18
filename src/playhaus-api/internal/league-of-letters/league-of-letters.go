@@ -44,7 +44,7 @@ const (
 	// MinLobbyPlayers -- a game with one player in it is a solo game with extra steps.
 	MinLobbyPlayers = 2
 	// JoinCodeLength matches LOBBY_CODE_LENGTH, and the join card's input.
-	JoinCodeLength = 6
+	JoinCodeLength = 4
 	// SecondsPerTurn is how long you get. Run it out and the row is filled in blank
 	// and the next player is up.
 	SecondsPerTurn = 35

@@ -17,7 +17,7 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
 export const MAX_LOBBY_PLAYERS = 6;
 
 /** Join codes are six characters, which is what `JoinLeagueOfLettersGameCard` accepts. */
-export const LOBBY_CODE_LENGTH = 6;
+export const LOBBY_CODE_LENGTH = 4;
 
 /**
  * `waiting` is the lobby proper. `started` means the host has committed: `gameId` is

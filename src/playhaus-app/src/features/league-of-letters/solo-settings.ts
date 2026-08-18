@@ -21,6 +21,22 @@ export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
 export type WordLength = typeof WORD_LENGTHS[number];
 
 /**
+ * The shape of a solo game, for the setup screen to promise before one exists.
+ *
+ * Mirrors the backend, which is where these are actually decided: `MaxGuesses` in
+ * `internal/league-of-letters/league-of-letters.go`, and `determineNumberOfRounds(1)`
+ * in `internal/league-of-letters/service.go`. Keep the two in step.
+ *
+ * Duplicated here rather than read off the game because the setup screen shows them
+ * *before* it creates anything — the server's `Game` carries `totalRounds` and
+ * `maxGuesses`, but only once there is a game to carry them, which is after the one
+ * button on this screen has already been pressed. Every screen that has a real `Game`
+ * reads them off it instead of using these.
+ */
+export const SOLO_ROUNDS = 3;
+export const SOLO_MAX_GUESSES = 6;
+
+/**
  * Named to match the create-game body exactly, so the settings can be sent as
  * they stand. The backend rejects unknown fields, so a spare key here is a 400.
  */
