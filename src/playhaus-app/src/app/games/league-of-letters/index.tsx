@@ -1,4 +1,4 @@
-import { MAX_LOBBY_PLAYERS } from "@/api/calls/league-of-letters-lobby";
+import { MAX_LOBBY_PLAYERS, MIN_LOBBY_PLAYERS } from "@/api/calls/league-of-letters-lobby";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
@@ -27,6 +27,8 @@ export default function LeagueOfLettersIndexPage() {
                 <PlayingAsCard />
             </View>
 
+            {/* The two modes side by side rather than stacked. They are alternatives, not
+                a first choice and a second one, and a column reads as a ranking. */}
             <View style={styles.modes}>
                 <ModeCard
                     icon='cpu'
@@ -36,7 +38,8 @@ export default function LeagueOfLettersIndexPage() {
                     iconInk={Brand.ink}
                     highlight={0.5}
                     title='Solo'
-                    description='Drie rondes tegen jezelf. Jij kiest lengte en taal.'
+                    description='Drie rondes, jouw regels.'
+                    action='Instellen'
                     navigationUrl={ROUTES.leagueOfLettersSoloSettings}
                 />
 
@@ -47,9 +50,10 @@ export default function LeagueOfLettersIndexPage() {
                     // there, and paper in light.
                     iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
                     highlight={0.35}
-                    title='Multiplayer'
-                    chip={`2-${MAX_LOBBY_PLAYERS}`}
-                    description='Open een kamer, deel de code, race tegen je vrienden.'
+                    title='Kamer'
+                    chip={`${MIN_LOBBY_PLAYERS}-${MAX_LOBBY_PLAYERS}`}
+                    description='Race tegen je vrienden.'
+                    action='Openen'
                     navigationUrl={ROUTES.leagueOfLettersCreateRoom}
                 />
             </View>
@@ -69,7 +73,9 @@ const useStyles = createThemedStyles(() => ({
         marginTop: Spacing.three
     },
     modes: {
-        marginTop: Spacing.three,
+        marginTop: Spacing.three + 2,
+        flexDirection: 'row',
+        alignItems: 'stretch',
         gap: Spacing.three - 4
     },
     join: {

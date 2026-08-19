@@ -1,15 +1,19 @@
 import AppText from "@/components/text/AppText";
+import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { Link, RelativePathString } from "expo-router";
 import { View } from "react-native";
 
 /**
  * Who is about to play, above the mode list.
  *
- * Read-only. It is here to confirm the name that will show up on the board, not to send
- * anyone off to change it mid-decision — the profile tab is where that happens.
+ * Mostly here to confirm the name that will show up on the board, with a quiet way out to
+ * the profile for when it is the wrong one. The link is deliberately the smallest thing on
+ * the row: changing your name is not what this page is for, but finding out here that it
+ * is wrong and having to go looking for the profile tab is worse.
  *
  * Renders nothing while signed out, like `UserPill`: there is no name to confirm yet and
  * the auth popup is already saying so.
@@ -35,6 +39,10 @@ export default function PlayingAsCard() {
                     Speelt als {user.name}
                 </AppText>
             </View>
+
+            <Link href={ROUTES.profile as RelativePathString} accessibilityLabel='Profiel wijzigen'>
+                <AppText style={styles.change}>Wijzig</AppText>
+            </Link>
         </View>
     )
 }
@@ -84,5 +92,10 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 13.5,
         fontWeight: 800,
         color: theme.colors.text
+    },
+    change: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: theme.colors.focus
     }
 }))

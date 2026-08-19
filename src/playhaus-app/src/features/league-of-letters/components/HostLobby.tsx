@@ -1,4 +1,4 @@
-import type { Lobby } from "@/api/calls/league-of-letters-lobby";
+import { MIN_LOBBY_PLAYERS, type Lobby } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
@@ -22,9 +22,6 @@ interface Props {
     onStart: () => void
 }
 
-/** A game with one player in it is a solo game with extra steps. */
-const MIN_PLAYERS_TO_START = 2;
-
 /**
  * The room, on the screen of whoever opened it.
  *
@@ -39,7 +36,7 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
 
     const { user } = useAuth();
 
-    const enough = lobby.players.length >= MIN_PLAYERS_TO_START;
+    const enough = lobby.players.length >= MIN_LOBBY_PLAYERS;
 
     return (
         <View style={styles.screen}>

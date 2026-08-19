@@ -5,6 +5,7 @@ import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import BackChip from "./BackChip";
 import ContextPill from "./ContextPill";
+import GameMark from "./GameMark";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import UserPill from "./UserPill";
@@ -20,7 +21,7 @@ export default function Header() {
     // so the page starts at the top of the viewport rather than 66pt down it.
     if (context === null) return null;
 
-    const { back, pill } = context;
+    const { back, pill, mark } = context;
 
     return (
         <View style={styles.container}>
@@ -37,8 +38,11 @@ export default function Header() {
             </View>
 
             <View style={styles.right}>
-                {/* Inside something the corner is about that; outside it, about you. */}
-                {pill === null ? (
+                {/* On a game's own front page the corner is the game's mark; inside
+                    something else it is about that; outside either, about you. */}
+                {mark !== undefined ? (
+                    <GameMark letter={mark.letter} accent={mark.accent} label={mark.label} />
+                ) : pill === null ? (
                     <UserPill />
                 ) : (
                     <ContextPill

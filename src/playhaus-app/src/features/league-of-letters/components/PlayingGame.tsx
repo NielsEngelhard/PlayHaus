@@ -1,8 +1,9 @@
-import type { Game, GameGuess, GameRound } from "@/api/calls/league-of-letters";
+import type { Game, GameRound } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
 import InlineNotification from "@/components/ui/InlineNotification";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
@@ -13,10 +14,9 @@ import RoundBar from "@/features/league-of-letters/components/RoundBar";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
-import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 interface Props {
@@ -75,6 +75,33 @@ interface Props {
 
 /** How long a nudge like "Die had je al." stays up before it stops being useful. */
 const NOTICE_MS = 2500;
+
+/**
+ * The room kept free for a nudge, whether or not there is one up.
+ *
+ * Tall enough for the pill and no taller. Stated as a height rather than left to the
+ * pill, because the point of the lane is that it is the same size when it is empty.
+ */
+const NOTICE_LANE_HEIGHT = 30;
+
+/**
+ * How a new round arrives: the board and the controls under it lift into place.
+ *
+ * Rising rather than sliding sideways, which is the app's movement for going somewhere
+ * else. A new round is not a new page — it is the same board with the next puzzle on
+ * it — so it gets an axis of its own, and the round bar above stays put to say so.
+ */
+const RISE_MS = 260;
+/**
+ * How far they lift. Small, because the board is the largest thing on the screen and a
+ * surface that size travelling any real distance reads as a lurch rather than a lift.
+ */
+const RISE_PX = 14;
+/**
+ * The controls follow the board rather than moving with it. Just enough to be read as
+ * one gesture settling in order, instead of the whole screen blinking at once.
+ */
+const RISE_STAGGER_MS = 60;
 
 /**
  * A game being played: the board, the keyboard, and — for multiplayer — a clock and the
@@ -146,13 +173,6 @@ export default function PlayingGame({
 
     /** On a shared board the keyboard is only live when the turn is yours. */
     const canPlay = !multiplayer || myTurn === true;
-
-    /** The swatch of whoever played a row, so a shared board says whose is whose. */
-    const colorOf = useCallback((guess: GameGuess) => (
-        avatarColorById(
-            game.players?.find(player => player.userId === guess.userId)?.avatarColorId ?? ''
-        ).color
-    ), [game.players]);
 
     /** Who the board is waiting on, when it is not you. */
     const waitingOn = canPlay ? undefined : game.players?.find(player => player.userId === game.turn?.userId);
@@ -299,6 +319,18 @@ export default function PlayingGame({
                 onLeave={() => router.replace(ROUTES.leagueOfLettersIndex)}
             />
 
+            {/* A lane of its own, held open whether or not there is anything in it. The
+                grid sizes itself to whatever room it is left, so a line that came and
+                went would resize every tile on the board twice per nudge. Takes no
+                touches, so nothing underneath it stops working. */}
+            <View style={styles.noticeLane} pointerEvents='none'>
+                {!verdict && notice && (
+                    <View style={styles.notice}>
+                        <AppText style={styles.noticeText}>{notice.text}</AppText>
+                    </View>
+                )}
+            </View>
+
             {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
             {multiplayer && round.endsAt && !finished && (
                 <GameTimer endsAt={round.endsAt} style={styles.timer} />
@@ -314,7 +346,16 @@ export default function PlayingGame({
                 />
             )}
 
-            <View style={styles.board}>
+            {/* Keyed on the round number, which is what replays the lift: a new round is
+                a new board, and remounting it is what clears the last one's tiles as
+                well as what starts the animation. Not `boardKey` — that also carries
+                the hint letter, and a changed hint is not a new round. */}
+            <SlideFadeIn
+                key={round.roundNumber}
+                offsetY={RISE_PX}
+                durationMs={RISE_MS}
+                style={styles.board}
+            >
                 <GuessGrid
                     wordLength={game.wordLength}
                     maxGuesses={game.maxGuesses}
@@ -326,24 +367,8 @@ export default function PlayingGame({
                      * it is not. One row, whoever is filling it.
                      */
                     draft={finished ? '' : canPlay ? draft : typing ?? ''}
-                    // Solo rows are all the same player's, so a marker would be six
-                    // copies of one colour.
-                    ownerColorOf={multiplayer ? colorOf : undefined}
                 />
-
-                {/* Laid over the foot of the board rather than placed under it. A nudge
-                    that took a line of its own would come out of the board's height, and
-                    the grid sizes itself to whatever room it is left — so every notice
-                    would shrink the tiles and put them back again two seconds later.
-                    Takes no touches, so the keyboard keeps working underneath. */}
-                {!verdict && notice && (
-                    <View style={styles.noticeLayer} pointerEvents='none'>
-                        <View style={styles.notice}>
-                            <AppText style={styles.noticeText}>{notice.text}</AppText>
-                        </View>
-                    </View>
-                )}
-            </View>
+            </SlideFadeIn>
 
             {/*
               * Whose turn it is, when it is not yours. The keyboard below is dead in
@@ -363,56 +388,64 @@ export default function PlayingGame({
                 a control that looks broken, and the room it takes is exactly the room the
                 result needs. Both wait out the reveal — a panel naming the word while the
                 last tiles are still face down reads the answer out early. */}
-            {decided ? (
-                <View style={styles.outcome}>
-                    <RoundResultCard
-                        word={answer ?? ''}
-                        tries={myGuesses.length}
-                        maxGuesses={game.maxGuesses}
-                        won={won}
-                    />
+            <SlideFadeIn
+                key={round.roundNumber}
+                offsetY={RISE_PX}
+                durationMs={RISE_MS}
+                delayMs={RISE_STAGGER_MS}
+                style={styles.controls}
+            >
+                {decided ? (
+                    <View style={styles.outcome}>
+                        <RoundResultCard
+                            word={answer ?? ''}
+                            tries={myGuesses.length}
+                            maxGuesses={game.maxGuesses}
+                            won={won}
+                        />
 
-                    {gameOver ? (
-                        <ActionButton
-                            // The uitslag is where a finished game goes when there is one
-                            // to go to. A board without it has only the way out to offer.
-                            text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
-                            size='large'
-                            onPress={() => onFinish === undefined
-                                ? router.replace(ROUTES.leagueOfLettersIndex)
-                                : onFinish()}
-                        />
-                    ) : (
-                        <ActionButton
-                            text='Volgende ronde'
-                            size='large'
-                            onPress={() => onNextRound?.()}
-                            disabled={onNextRound === undefined}
-                        />
-                    )}
-                </View>
-            ) : (
-                <LetterKeyboard
-                    /*
-                     * On a shared board the keys show what the *table* has learned:
-                     * everybody is looking at the same six rows, so a letter greyed out
-                     * for whoever happened to type it and nobody else would be five
-                     * keyboards for one puzzle.
-                     *
-                     * The newest guess is left out until the board has finished showing
-                     * it — the keys would otherwise colour in before the tiles they
-                     * belong to.
-                     */
-                    marks={keyboardMarks(
-                        revealing ? rows.slice(0, -1) : rows,
-                        multiplayer ? undefined : userId
-                    )}
-                    onKey={type}
-                    onEnter={submit}
-                    onBackspace={backspace}
-                    disabled={finished || sending || revealing || !canPlay}
-                />
-            )}
+                        {gameOver ? (
+                            <ActionButton
+                                // The uitslag is where a finished game goes when there is one
+                                // to go to. A board without it has only the way out to offer.
+                                text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
+                                size='large'
+                                onPress={() => onFinish === undefined
+                                    ? router.replace(ROUTES.leagueOfLettersIndex)
+                                    : onFinish()}
+                            />
+                        ) : (
+                            <ActionButton
+                                text='Volgende ronde'
+                                size='large'
+                                onPress={() => onNextRound?.()}
+                                disabled={onNextRound === undefined}
+                            />
+                        )}
+                    </View>
+                ) : (
+                    <LetterKeyboard
+                        /*
+                         * On a shared board the keys show what the *table* has learned:
+                         * everybody is looking at the same six rows, so a letter greyed out
+                         * for whoever happened to type it and nobody else would be five
+                         * keyboards for one puzzle.
+                         *
+                         * The newest guess is left out until the board has finished showing
+                         * it — the keys would otherwise colour in before the tiles they
+                         * belong to.
+                         */
+                        marks={keyboardMarks(
+                            revealing ? rows.slice(0, -1) : rows,
+                            multiplayer ? undefined : userId
+                        )}
+                        onKey={type}
+                        onEnter={submit}
+                        onBackspace={backspace}
+                        disabled={finished || sending || revealing || !canPlay}
+                    />
+                )}
+            </SlideFadeIn>
 
             {/* Last, so it falls in front of everything. It takes no room and no touches,
                 so the board underneath keeps its size and the buttons keep working while
@@ -436,24 +469,21 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         justifyContent: 'flex-end'
     },
-    // Takes the room the grid used to have to itself, so the grid still measures the same
-    // box whether or not there is a notice up.
+    // All the room left over once everything around it has been laid out, which is what
+    // the grid measures itself against.
     board: {
         flex: 1,
         width: '100%'
     },
-    // Across the foot of the board, over the rows that have not been played yet. Pinned
-    // rather than stacked: a layer with no height of its own cannot move the grid it
-    // covers, which is the whole point of putting the notice here.
-    noticeLayer: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        alignItems: 'center'
+    // Fixed height rather than a minimum: a message long enough to wrap should spill into
+    // the gap around the lane, not push the board down and shrink every tile.
+    noticeLane: {
+        flexShrink: 0,
+        height: NOTICE_LANE_HEIGHT,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     notice: {
-        alignSelf: 'center',
         borderWidth: theme.borderWidth,
         borderColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.border,
         borderRadius: 999,
@@ -472,5 +502,11 @@ const useStyles = createThemedStyles(theme => ({
     outcome: {
         flexShrink: 0,
         gap: Spacing.three - 4
+    },
+    // Wraps whichever of the keyboard and the result is up, so the two of them lift in
+    // as one. Holds its size for the same reason they do: the board above is the only
+    // thing on this screen that gives room away.
+    controls: {
+        flexShrink: 0
     }
 }))

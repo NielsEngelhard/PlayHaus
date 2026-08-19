@@ -114,7 +114,7 @@ func (s *Service) CreateLobby(ctx context.Context, ownerID string, in LobbySetti
 
 // freeJoinCode draws codes until it finds one nobody is using.
 //
-// Thirty-two characters to the sixth is a billion codes and a room lives for
+// Thirty-two characters to the fourth is about a million codes and a room lives for
 // minutes, so the first draw is almost always free -- but "almost always" is not a
 // primary key, and a collision would hand two rooms the same door.
 func (s *Service) freeJoinCode(ctx context.Context) (string, error) {

@@ -21,12 +21,22 @@ interface Props {
     /** A short fact beside the title, like a player count. Optional. */
     chip?: string,
     description: string,
+    /** What tapping this does, as two or three words. Sits under the description. */
+    action: string,
     navigationUrl: Href
 }
 
-const TILE_SIZE = 60;
+const TILE_SIZE = 56;
 
-/** One way to play a game: icon tile, name, a line about it, and a chevron. */
+/**
+ * One way to play a game: a gradient icon tile at the top, and the name, a line about it
+ * and its action pinned to the bottom.
+ *
+ * Built to stand beside its twin rather than above it. Two of these share a row, so the
+ * card is sized by the row and not by its own contents — which is why the body is pushed
+ * down by `marginTop: 'auto'` and the card carries a floor height. Whichever of the pair
+ * has the longer description sets the height, and both baselines still line up.
+ */
 export default function ModeCard({
     icon,
     gradient,
@@ -35,6 +45,7 @@ export default function ModeCard({
     title,
     chip,
     description,
+    action,
     navigationUrl
 }: Props) {
     const theme = useTheme();
@@ -61,17 +72,22 @@ export default function ModeCard({
                     <View style={styles.titleRow}>
                         <AppText style={styles.title}>{title}</AppText>
 
+                        {/* No pill around it here. At this width a bordered chip beside a
+                            20pt title crowds the corner, and the count is a footnote to
+                            the name rather than a label of its own. */}
                         {chip !== undefined && (
-                            <View style={styles.chip}>
-                                <AppText style={styles.chipText}>{chip}</AppText>
-                            </View>
+                            <AppText style={styles.chip}>{chip}</AppText>
                         )}
                     </View>
 
                     <AppText style={styles.description}>{description}</AppText>
-                </View>
 
-                <Feather name='chevron-right' size={20} color={theme.colors.text} />
+                    <View style={styles.actionRow}>
+                        <AppText style={styles.action}>{action}</AppText>
+
+                        <Feather name='arrow-right' size={14} color={theme.colors.text} />
+                    </View>
+                </View>
             </Pressable>
         </Link>
     )
@@ -79,10 +95,15 @@ export default function ModeCard({
 
 const useStyles = createThemedStyles(theme => ({
     card: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.three - 2,
-        padding: Spacing.three - 2,
+        flex: 1,
+        // `flex: 1` pins the basis to zero, so without this the pair would be sized by
+        // nothing and both cards would collapse to their padding.
+        flexBasis: 0,
+        minWidth: 0,
+        // A floor rather than a fixed height: the taller of the two still wins, and this
+        // stops a short pair from reading as a pair of buttons.
+        minHeight: 186,
+        padding: Spacing.three,
         borderRadius: 22,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
@@ -103,37 +124,43 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderColor: theme.colors.border
     },
+    // Everything below the tile, held to the bottom of whatever height the row settles on.
     body: {
-        flex: 1,
-        minWidth: 0
+        marginTop: 'auto'
     },
     titleRow: {
         flexDirection: 'row',
-        alignItems: 'center',
-        gap: 7
+        // Baselines rather than centres: the chip is much smaller type, and centring it
+        // would float it above the word it belongs to.
+        alignItems: 'baseline',
+        gap: 6
     },
     title: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 900,
-        letterSpacing: -0.5,
+        letterSpacing: -0.6,
         color: theme.colors.text
     },
     chip: {
-        borderWidth: 1.5,
-        borderColor: theme.colors.borderSubtle,
-        borderRadius: 999,
-        paddingVertical: 2,
-        paddingHorizontal: Spacing.two
-    },
-    chipText: {
-        fontSize: 11,
-        fontWeight: 700,
-        color: theme.colors.textSecondary
+        fontSize: 11.5,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
     description: {
-        marginTop: Spacing.one,
-        fontSize: 13,
-        lineHeight: 13 * 1.4,
+        marginTop: 5,
+        fontSize: 12.5,
+        lineHeight: 12.5 * 1.4,
         color: theme.colors.textSecondary
+    },
+    actionRow: {
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6
+    },
+    action: {
+        fontSize: 12,
+        fontWeight: 900,
+        color: theme.colors.text
     }
 }))
