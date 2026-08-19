@@ -22,7 +22,9 @@ interface Props {
      * since there it belongs to the account rather than to the game in front of you.
      */
     label?: string,
-    disabled?: boolean
+    disabled?: boolean,
+    /** Passed straight through. See `SelectInput` for what `inline` drops. */
+    variant?: 'card' | 'inline'
 }
 
 /**
@@ -34,7 +36,13 @@ interface Props {
  * had to grow the flag independently. Everything about how a language looks lives
  * here and in `@/constants/languages`; a screen only says which one is picked.
  */
-export default function LanguageSelect({ value, onChange, label = 'Taal', disabled = false }: Props) {
+export default function LanguageSelect({
+    value,
+    onChange,
+    label = 'Taal',
+    disabled = false,
+    variant = 'card'
+}: Props) {
     return (
         <SelectInput
             label={label}
@@ -42,6 +50,7 @@ export default function LanguageSelect({ value, onChange, label = 'Taal', disabl
             options={OPTIONS}
             onChange={onChange}
             disabled={disabled}
+            variant={variant}
         />
     )
 }

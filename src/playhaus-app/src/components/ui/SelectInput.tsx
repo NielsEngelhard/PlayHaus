@@ -38,7 +38,17 @@ interface Props<T extends string> {
     options: readonly SelectOption<T>[],
     onChange: (value: T) => void,
     /** Greyed out and unopenable — for a field whose save is still in the air. */
-    disabled?: boolean
+    disabled?: boolean,
+    /**
+     * `card` (the default) is the standing shape: a `Card` of its own, its label above
+     * the field. `inline` drops both — the card *and* the label — leaving just the
+     * field, for a caller that is already a card and has already named this row.
+     *
+     * The lobby's settings card is the one caller: it holds the same two knobs the solo
+     * setup screen does, in a fraction of the height, and a card inside a card with two
+     * labels stacked on top of each other is what that would otherwise be.
+     */
+    variant?: 'card' | 'inline'
 }
 
 /** Where the field is on screen, so the list can be put under it. */
@@ -88,7 +98,8 @@ export default function SelectInput<T extends string>({
     value,
     options,
     onChange,
-    disabled = false
+    disabled = false,
+    variant = 'card'
 }: Props<T>) {
     const theme = useTheme();
     const styles = useStyles();
@@ -159,9 +170,13 @@ export default function SelectInput<T extends string>({
     const above = anchor === null ? 0 : anchor.y - GAP - SCREEN_MARGIN;
     const dropUp = below < MIN_ROOM && above > below;
 
-    return (
-        <Card>
-            <AppText style={[styles.label, disabled && styles.dimmed]}>{label}</AppText>
+    const body = (
+        <>
+            {/* The label belongs to the frame, so `inline` — which has no frame of its
+                own — leaves naming this row to whoever is holding it. */}
+            {variant === 'card' && (
+                <AppText style={[styles.label, disabled && styles.dimmed]}>{label}</AppText>
+            )}
 
             <Pressable
                 ref={field}
@@ -173,7 +188,11 @@ export default function SelectInput<T extends string>({
                 // latter never reaches the DOM in this version, so the field would open
                 // without announcing that it had.
                 aria-expanded={open}
-                style={[styles.field, disabled && styles.fieldDisabled]}
+                style={[
+                    styles.field,
+                    variant === 'inline' && styles.fieldInline,
+                    disabled && styles.fieldDisabled
+                ]}
             >
                 {withIcons && (
                     <View style={styles.fieldIcon}>{selected?.icon}</View>
@@ -258,8 +277,10 @@ export default function SelectInput<T extends string>({
                     </Animated.View>
                 </Modal>
             )}
-        </Card>
-    )
+        </>
+    );
+
+    return variant === 'inline' ? <View>{body}</View> : <Card>{body}</Card>;
 }
 
 interface OptionRowProps<T extends string> {
@@ -339,6 +360,13 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.border,
         borderRadius: 14,
         ...theme.shadows.hardSmall
+    },
+    // No label above it to be spaced off, and a shorter field: this one sits inside a
+    // card that is already tight, where the standing 16pt of padding reads as slack.
+    fieldInline: {
+        marginTop: 0,
+        paddingVertical: Spacing.two + 2,
+        paddingHorizontal: Spacing.two + Spacing.one
     },
     fieldDisabled: {
         backgroundColor: theme.colors.muted

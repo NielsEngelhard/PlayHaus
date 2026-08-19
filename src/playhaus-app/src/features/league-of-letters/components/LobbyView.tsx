@@ -1,26 +1,19 @@
 import type { Lobby } from "@/api/calls/league-of-letters-lobby";
 import { useFullScreen } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
-import LanguageSelect from "@/components/ui/LanguageSelect";
 import TextButton from "@/components/ui/TextButton";
-import ValueCard from "@/components/ui/ValueCard";
-import { languageByCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
-import { useAuth } from "@/features/auth/useAuth";
-import LobbyPlayerList from "@/features/league-of-letters/components/LobbyPlayerList";
-import LobbyTopBar from "@/features/league-of-letters/components/LobbyTopBar";
-import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
+import GuestLobby from "@/features/league-of-letters/components/GuestLobby";
+import HostLobby from "@/features/league-of-letters/components/HostLobby";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     /** Everything `useLobby` returned. The screen drives the room entirely through it. */
@@ -33,31 +26,26 @@ interface Props {
     onStarted: (lobby: Lobby) => void
 }
 
-/** A game with one player in it is a solo game with extra steps. */
-const MIN_PLAYERS_TO_START = 2;
-
-// The cards sit a hair off-square, the way they do everywhere else in this game.
-const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
-
 /**
- * The waiting room, for both the player who opened it and the players who joined it.
+ * The waiting room: everything both people in it have in common, and then which of the
+ * two screens they get.
  *
- * One component rather than two because the difference is small and entirely about
- * permission: the host sees the settings as controls and a Start button, everyone else
- * sees the same settings as values and a line saying who they are waiting on. Splitting
- * it would mean keeping two copies of the code, the player list and the way out in step.
+ * The host and the guest used to be one component branching on `isHost`, on the grounds
+ * that the difference was only permission. It is not: a host is setting something up and
+ * a guest is waiting for something to happen, and those want opposite screens — one is a
+ * code, a roster and a big green light, the other is a held breath. So this keeps what is
+ * genuinely shared (the three states where there is no room to show, and the question
+ * asked on the way out) and hands the room itself to `HostLobby` or `GuestLobby`.
  *
- * The code is the point of the screen, so it does not scroll: `LobbyTopBar` is pinned and
- * everything else moves past it. That is also why this page claims the whole viewport —
- * inside the root layout's shared scroller there is nothing a page can pin against.
+ * The page claims the whole viewport. Both halves pin something top and bottom, and inside
+ * the root layout's shared scroller there is nothing for a page to pin against.
  */
 export default function LobbyView({ state, onStarted }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
     const router = useRouter();
-    const { user } = useAuth();
-    const { lobby, isHost, saving, starting, closing } = state;
+    const { lobby, isHost, closing } = state;
 
     // Claimed before the early returns below, because a hook cannot be called for one
     // branch and not another. The waiting and failed states are the same page as the room
@@ -111,9 +99,6 @@ export default function LobbyView({ state, onStarted }: Props) {
         return <LoadingPage message='Kamer openen…' />;
     }
 
-    const enough = lobby.players.length >= MIN_PLAYERS_TO_START;
-    const language = languageByCode(lobby.settings.locale);
-
     /** Hand the room back, then go. Both halves matter, so the modal waits for the first. */
     async function leave() {
         await state.close();
@@ -127,115 +112,28 @@ export default function LobbyView({ state, onStarted }: Props) {
 
     return (
         <View style={styles.screen}>
-            {/* Outside the scroller, which is what keeps it still while the room moves. */}
-            <LobbyTopBar code={lobby.code} players={lobby.players.length} />
-
-            <ScrollView
-                style={styles.scroll}
-                contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-            >
-                {/*
-                  * Not a `BackButton`: everywhere else in the app going back is free, and
-                  * here it throws the room away. A link that does that without asking
-                  * would be the one link in the app you cannot middle-click safely.
-                  */}
-                <TextButton
-                    text='Terug'
-                    variant='neutral'
-                    onPress={() => setLeaving(true)}
-                    style={styles.leave}
+            {isHost ? (
+                <HostLobby
+                    state={state}
+                    lobby={lobby}
+                    onBack={() => setLeaving(true)}
+                    onStart={() => void start()}
                 />
-
-                <View style={styles.body}>
-                    <SimpleTextHero
-                        title='Kamer'
-                        description={isHost
-                            ? 'Deel de code hierboven — je vrienden vullen hem in bij "Of join een kamer".'
-                            : 'Je zit in de kamer. De host bepaalt de instellingen en start het spel.'}
-                    />
-
-                    <LobbyPlayerList
-                        players={lobby.players}
-                        hostId={lobby.hostId}
-                        userId={user?.id}
-                        online={state.online}
-                    />
-
-                    {isHost ? (
-                        <>
-                            <View style={tilt('0.4deg')}>
-                                <WordLengthCard
-                                    value={lobby.settings.wordLength}
-                                    onChange={wordLength => state.updateSettings({ ...lobby.settings, wordLength })}
-                                />
-                            </View>
-
-                            <View style={tilt('-0.3deg')}>
-                                <LanguageSelect
-                                    value={lobby.settings.locale}
-                                    onChange={locale => state.updateSettings({ ...lobby.settings, locale })}
-                                />
-                            </View>
-                        </>
-                    ) : (
-                        // The same two settings, as values. A guest has to know what they
-                        // are about to play; they just do not get to change it.
-                        <>
-                            <ValueCard
-                                label='Woordlengte'
-                                value={`${lobby.settings.wordLength} letters`}
-                                icon='type'
-                            />
-
-                            <ValueCard
-                                label='Taal'
-                                value={language.label}
-                                icon='globe'
-                            />
-                        </>
-                    )}
-
-                    {state.actionError !== null && (
-                        <InlineNotification
-                            icon='alert-triangle'
-                            color={theme.colors.blush}
-                            title='Mislukt'
-                            message={state.actionError}
-                        />
-                    )}
-
-                    {isHost ? (
-                        <TextButton
-                            text={starting ? 'Bezig…' : 'Start het spel'}
-                            onPress={() => void start()}
-                            // A room of one has nobody to play against, and a save in the
-                            // air means the game could start on settings that did not stick.
-                            disabled={starting || saving || !enough}
-                            fullWidth
-                            style={styles.start}
-                        />
-                    ) : (
-                        <InlineNotification
-                            icon='clock'
-                            title='Wachten'
-                            message='De host start het spel. Blijf op dit scherm.'
-                        />
-                    )}
-
-                    {isHost && !enough && (
-                        <InlineNotification
-                            icon='user-plus'
-                            message='Je hebt minstens één medespeler nodig voordat je kunt starten.'
-                        />
-                    )}
-                </View>
-            </ScrollView>
+            ) : (
+                <GuestLobby
+                    state={state}
+                    lobby={lobby}
+                    onBack={() => setLeaving(true)}
+                />
+            )}
 
             {/*
               * The one thing on this screen that cannot be undone, so it is asked rather
-              * than done. Dismissable, unlike the solo screen's panel: staying is a
-              * perfectly good answer here, and the room behind it still works.
+              * than done. Both screens' back chips lead here — which is the reason they
+              * are buttons and the global header is switched off for these routes.
+              *
+              * Dismissable, unlike the solo screen's panel: staying is a perfectly good
+              * answer here, and the room behind it still works.
               */}
             <PopupModal
                 visible={leaving}
@@ -265,41 +163,11 @@ export default function LobbyView({ state, onStarted }: Props) {
     )
 }
 
-const START_BUTTON_HEIGHT = 60;
-
 const useStyles = createThemedStyles(theme => ({
-    // Fills the height the root layout leaves under `Header`, which is what lets the bar
-    // sit still while the scroller under it moves.
+    // Fills the height the root layout leaves, which the two room screens divide up
+    // between their own pinned rows and the scroller between them.
     screen: {
         flex: 1,
         width: '100%'
-    },
-    scroll: {
-        width: '100%',
-        // Clears the bar's hard shadow, which paints outside its own box and would
-        // otherwise be cropped by the scroller's top edge.
-        marginTop: Spacing.one + 2
-    },
-    scrollContent: {
-        // Nothing floats over this page — the bottom bar is hidden in full-screen mode —
-        // so the last card may use the bottom edge, give or take a card's own breathing room.
-        paddingBottom: Spacing.four
-    },
-    // Stands where a `BackButton` would, so the way out is in the place the rest of the
-    // app has taught people to look for it. Trimmed at the top: the bar above it is
-    // already holding the page off the header.
-    leave: {
-        marginTop: Spacing.three,
-        marginBottom: Spacing.four
-    },
-    body: {
-        gap: Spacing.four
-    },
-    start: {
-        marginTop: Spacing.two,
-        height: START_BUTTON_HEIGHT,
-        // This is the one thing the page is for, so it wears the primary fill rather than
-        // `TextButton`'s default — same as `Start` on the solo settings screen.
-        backgroundColor: theme.colors.primary
     }
 }))

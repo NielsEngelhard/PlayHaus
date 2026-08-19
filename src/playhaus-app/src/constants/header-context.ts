@@ -43,6 +43,14 @@ export function headerContextFor(pathname: string): HeaderContext | null {
     // A board in progress. See `HeaderContext` above for why it goes bare.
     if (pathname === ROUTES.leagueOfLettersSolo) return null;
 
+    // A multiplayer room: `/room` and `/room/{code}`, lobby and board alike.
+    //
+    // Bare for a reason of its own, on top of the board's. The chip in this header is a
+    // `Link`, and on a lobby screen going back deletes the room — so the way out has to
+    // be a button that asks first, which means the lobby has to draw its own top row.
+    // Two back arrows would be one too many, and the wrong one would be the quiet one.
+    if (pathname.startsWith(ROUTES.leagueOfLettersCreateRoom)) return null;
+
     // Setting up a solo game. Loud lemon rather than the game's own accent: this screen
     // is about one mode of one game, and the pill is the only thing on it that says
     // which mode.

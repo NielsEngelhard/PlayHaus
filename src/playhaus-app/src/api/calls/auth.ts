@@ -73,13 +73,20 @@ export function signup(name: string, email: string, password: string): Promise<A
  * Creates a throwaway account and logs straight into it. A guest has no
  * password, so this token is the only way back in — losing it loses the account.
  *
- * There is nothing to send: the name is generated server-side, and the locale
- * comes from `Accept-Language` when the body does not name one.
+ * The locale is the one thing worth sending. It is not only the account's
+ * setting: the backend generates the guest's display name from the word list for
+ * that language, so a guest asked in Dutch and a guest asked in English are
+ * named differently. Leave it out and the backend falls back to
+ * `Accept-Language`, which this client does not send either — so every guest
+ * would be Dutch by default.
  */
-export function createGuest(): Promise<AuthSession> {
+export function createGuest(locale?: LanguageCode): Promise<AuthSession> {
     return request<AuthSession>('/api/v1/user/guest', {
         method: 'POST',
-        body: JSON.stringify({})
+        // `locale` and nothing else: the backend decodes with
+        // `DisallowUnknownFields`, so an extra key is a 400 rather than
+        // something quietly ignored.
+        body: JSON.stringify(locale === undefined ? {} : { locale })
     });
 }
 
