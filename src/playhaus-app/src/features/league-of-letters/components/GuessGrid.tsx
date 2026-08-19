@@ -538,7 +538,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.boardEmpty
     },
     // A row the clock filled in: no fill, no shadow, a broken outline. The same
-    // vocabulary `LobbyPlayerList` uses for a seat nobody has taken, because it means
+    // vocabulary `LobbyPlayerGrid` uses for a seat nobody has taken, because it means
     // the same thing -- a place that stayed empty.
     tileSpent: {
         backgroundColor: 'transparent',

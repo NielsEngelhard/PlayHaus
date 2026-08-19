@@ -1,6 +1,7 @@
 import * as authApi from '@/api/calls/auth';
 import type { AuthSession, User } from '@/api/calls/auth';
 import { setTokenGetter } from '@/api/client';
+import type { LanguageCode } from '@/constants/languages';
 import { clearToken, readToken, writeToken } from '@/features/auth/token-store';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
@@ -17,7 +18,13 @@ interface Auth {
     status: AuthStatus
     login: (email: string, password: string) => Promise<void>
     signup: (name: string, email: string, password: string) => Promise<void>
-    continueAsGuest: () => Promise<void>
+    /**
+     * The language is the only thing a guest chooses, and it is asked for before
+     * the account exists rather than corrected in the profile afterwards — the
+     * backend names the guest from that language's word list, so a name picked
+     * under the wrong one sticks.
+     */
+    continueAsGuest: (locale: LanguageCode) => Promise<void>
     logout: () => Promise<void>
     /**
      * Writes fields onto the session's copy of the user. Anything that edits the
@@ -132,9 +139,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await adopt(await authApi.signup(name, email, password));
     }, [adopt]);
 
-    /** A guest is named by the backend, so there is nothing to pass. */
-    const continueAsGuest = useCallback(async () => {
-        await adopt(await authApi.createGuest());
+    /** A guest is named by the backend, from the language passed in here. */
+    const continueAsGuest = useCallback(async (locale: LanguageCode) => {
+        await adopt(await authApi.createGuest(locale));
     }, [adopt]);
 
     /**

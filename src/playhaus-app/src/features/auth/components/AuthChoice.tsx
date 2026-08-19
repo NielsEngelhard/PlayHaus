@@ -1,44 +1,24 @@
 import AppText from "@/components/text/AppText";
 import TextButton from "@/components/ui/TextButton";
 import { FontSizes, Spacing } from "@/constants/theme";
-import { authErrorMessage } from "@/features/auth/auth-errors";
-import AuthErrorText from "@/features/auth/components/AuthErrorText";
-import { useAuth } from "@/features/auth/useAuth";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
     onAccount: () => void
+    onGuest: () => void
 }
 
 /**
  * The gate's first screen: the two ways into the app, stacked.
  *
- * "Account" only switches the view — the choice between logging in and signing
- * up is a step further on — but "As Guest" signs you in from here, since there
- * is no form to fill in, so this screen owns a request and its failure.
+ * Purely a fork — both buttons only switch the view. Guest used to sign you in
+ * from here, back when there was nothing to ask a guest; it now leads to the
+ * language step, which owns that request and its failure the same way the login
+ * and signup forms own theirs.
  */
-export default function AuthChoice({ onAccount }: Props) {
+export default function AuthChoice({ onAccount, onGuest }: Props) {
     const styles = useStyles();
-
-    const { continueAsGuest } = useAuth();
-    const [busy, setBusy] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    async function guest() {
-        setBusy(true);
-        setError(null);
-
-        try {
-            await continueAsGuest();
-            // No `setBusy(false)` on success: signing in closes the gate and unmounts
-            // this view, and the button should stay disabled for the moment in between.
-        } catch (failure) {
-            setError(authErrorMessage(failure));
-            setBusy(false);
-        }
-    }
 
     return (
         <View>
@@ -49,24 +29,20 @@ export default function AuthChoice({ onAccount }: Props) {
                 straight in as a guest.
             </AppText>
 
-            {error && <AuthErrorText message={error} />}
-
             <View style={styles.buttons}>
                 <TextButton
                     text='Account'
                     onPress={onAccount}
                     variant='primary'
                     fullWidth
-                    disabled={busy}
                 />
 
                 {/* Muted on purpose: available, but not the road being recommended. */}
                 <TextButton
-                    text={busy ? 'One moment…' : 'As Guest'}
-                    onPress={guest}
+                    text='As Guest'
+                    onPress={onGuest}
                     variant='muted'
                     fullWidth
-                    disabled={busy}
                 />
             </View>
 
@@ -80,7 +56,8 @@ export default function AuthChoice({ onAccount }: Props) {
 const useStyles = createThemedStyles(theme => ({
     title: {
         fontSize: FontSizes.xxl,
-        fontWeight: 900
+        fontWeight: 900,
+        color: theme.colors.text
     },
     subtitle: {
         marginTop: Spacing.two,

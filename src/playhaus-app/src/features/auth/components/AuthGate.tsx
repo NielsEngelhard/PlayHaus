@@ -1,12 +1,13 @@
 import AccountChoice from "@/features/auth/components/AccountChoice";
 import AuthChoice from "@/features/auth/components/AuthChoice";
 import AuthSheet from "@/features/auth/components/AuthSheet";
+import GuestLanguageChoice from "@/features/auth/components/GuestLanguageChoice";
 import LoginForm from "@/features/auth/components/LoginForm";
 import SignupForm from "@/features/auth/components/SignupForm";
 import { useAuth } from "@/features/auth/useAuth";
 import { useState } from "react";
 
-type GateView = 'choice' | 'account' | 'login' | 'signup';
+type GateView = 'choice' | 'account' | 'login' | 'signup' | 'guest';
 
 /**
  * The popup that stands in front of the app until you are signed in.
@@ -47,8 +48,15 @@ function AuthGateSheet() {
         // way past this one.
         <AuthSheet>
             {view === 'choice' && (
-                <AuthChoice onAccount={() => setView('account')} />
+                <AuthChoice
+                    onAccount={() => setView('account')}
+                    onGuest={() => setView('guest')}
+                />
             )}
+
+            {/* Both forks are a step now — neither button on the first screen
+                signs anybody in by itself. */}
+            {view === 'guest' && <GuestLanguageChoice onBack={() => setView('choice')} />}
 
             {view === 'account' && (
                 <AccountChoice
