@@ -16,7 +16,18 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
 /** A room holds six. Fixed here rather than per-lobby — there is nothing to configure. */
 export const MAX_LOBBY_PLAYERS = 6;
 
-/** Join codes are six characters, which is what `JoinLeagueOfLettersGameCard` accepts. */
+/**
+ * And it needs two. A game with one player in it is a solo game with extra steps, which is
+ * what `StartLobby` in the Go `multiplayer.go` refuses on — mirrored here so the host's
+ * start button can say no first.
+ */
+export const MIN_LOBBY_PLAYERS = 2;
+
+/**
+ * Join codes are four characters, which is what `RoomCodeCard` draws slots for. Mirrors
+ * `JoinCodeLength` in the Go `league-of-letters.go`; the API does not report it, so the
+ * two have to be changed together.
+ */
 export const LOBBY_CODE_LENGTH = 4;
 
 /**

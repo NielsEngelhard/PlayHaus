@@ -52,7 +52,7 @@ export const GAMES: Game[] = [
         color: Brand.primary,
         gradient: ['#FF7A45', Brand.primary, '#E04407'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
-        tag: 'Word · 1-4 players',
+        tag: 'Word · 1-6 players',
         description: 'Domineer met jouw Vocabulair, solo of tegen je vrienden.',
         playable: true,
         navigationUrl: ROUTES.leagueOfLettersIndex

@@ -20,6 +20,22 @@ export interface HeaderContext {
     back: string | null
     /** The right-hand pill, or `null` to fall back to whoever is signed in. */
     pill: HeaderPill | null
+    /**
+     * A game's square mark, drawn in the pill's place rather than next to it.
+     *
+     * Only a game's own front page sets this. The hero underneath it is the game's name
+     * at 32pt, and a pill spelling that out again in 11pt caps is the same word twice.
+     */
+    mark?: HeaderMark
+}
+
+export interface HeaderMark {
+    /** The game's initial. */
+    letter: string
+    /** The notch in the tile's corner. */
+    accent: string
+    /** What the tile is, for anyone who cannot see the letter. */
+    label: string
 }
 
 export interface HeaderPill {
@@ -68,8 +84,19 @@ export function headerContextFor(pathname: string): HeaderContext | null {
         return { back: null, pill: null };
     }
 
+    // A game's front page: out to the games list, and the corner wears the game's mark.
+    // Anywhere deeper the mark would be competing with whatever that screen is about, so
+    // those keep the name pill.
+    if (isGameHub(pathname)) {
+        return {
+            back: ROUTES.home,
+            pill: null,
+            mark: { letter: game.name[0], accent: game.color, label: game.name }
+        };
+    }
+
     return {
-        back: isGameHub(pathname) ? ROUTES.home : null,
+        back: null,
         pill: { label: game.name, accent: game.color }
     };
 }

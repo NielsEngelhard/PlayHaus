@@ -14,26 +14,16 @@ interface Props {
      * The rows on the board, oldest first, already scored by the server.
      *
      * In solo these are all yours. On a multiplayer board they belong to whoever
-     * played them — the six rows are the table's, not one player's — which is what
-     * `ownerColorOf` is for.
+     * played them — the six rows are the table's, not one player's.
      */
     guesses: GameGuess[],
     /** The row being typed. Empty once the round is decided. */
     draft: string,
-    /**
-     * The swatch of whoever played a row, drawn as a marker beside it. Left out on a
-     * solo board, where every row is the same person's and a marker would be six
-     * copies of the same colour.
-     */
-    ownerColorOf?: (guess: GameGuess) => string | undefined,
     /** For layout only — how the grid sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 
 const GAP = Spacing.two;
-
-/** The bar marking whose row it is. Narrow enough to live in the grid's margin. */
-const OWNER_BAR_WIDTH = 6;
 
 /**
  * A tile any smaller than this stops being readable; any larger and a three-letter game
@@ -118,7 +108,7 @@ function fittedTileSize(width: number, height: number, columns: number, rows: nu
 }
 
 /** The board: one row per guess you get, one tile per letter of the word. */
-export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, ownerColorOf, style }: Props) {
+export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, style }: Props) {
     const styles = useStyles();
 
     const [box, setBox] = useState({ width: 0, height: 0 });
@@ -143,7 +133,6 @@ export default function GuessGrid({ wordLength, maxGuesses, guesses, draft, owne
                             guess={guesses[row]}
                             // Exactly one row is being typed: the first one with no guess in it.
                             draft={row === guesses.length ? draft : ''}
-                            ownerColor={guesses[row] === undefined ? undefined : ownerColorOf?.(guesses[row])}
                         />
                     ))}
                 </View>
@@ -156,12 +145,10 @@ interface GuessRowProps {
     wordLength: number,
     size: number,
     guess?: GameGuess,
-    draft: string,
-    /** The swatch of whoever played this row. Absent on solo and on unplayed rows. */
-    ownerColor?: string
+    draft: string
 }
 
-function GuessRow({ wordLength, size, guess, draft, ownerColor }: GuessRowProps) {
+function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
     const styles = useStyles();
 
     // A row the clock filled in. It has no word and no marks, so there is nothing to
@@ -186,21 +173,6 @@ function GuessRow({ wordLength, size, guess, draft, ownerColor }: GuessRowProps)
 
     return (
         <View style={[styles.row, { gap: GAP }]}>
-            {/*
-              * Whose row this is, as a bar in their swatch.
-              *
-              * Absolutely positioned in the slack either side of the grid rather than
-              * placed in the row, because the tiles are sized by dividing the measured
-              * box between them — anything taking width here would come out of every
-              * tile on every row.
-              */}
-            {ownerColor !== undefined && (
-                <View
-                    style={[styles.owner, { backgroundColor: ownerColor, height: size }]}
-                    pointerEvents='none'
-                />
-            )}
-
             {Array.from({ length: wordLength }, (_, column) => (
                 <LetterTile
                     key={column}
@@ -544,16 +516,6 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: 'transparent',
         borderStyle: 'dashed',
         opacity: 0.45
-    },
-    // In the slack beside the grid, so it costs the tiles no width. Sized off the
-    // tile so it stays in proportion on every board.
-    owner: {
-        position: 'absolute',
-        left: -OWNER_BAR_WIDTH - GAP,
-        width: OWNER_BAR_WIDTH,
-        borderRadius: 999,
-        borderWidth: 2,
-        borderColor: theme.colors.border
     },
     letter: {
         fontWeight: 900,

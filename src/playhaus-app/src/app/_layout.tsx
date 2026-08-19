@@ -1,13 +1,14 @@
 import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Slot, ThemeProvider as NavigationThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, Slot, ThemeProvider as NavigationThemeProvider, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, ScrollView, View } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
+import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { BottomBarHeight, Spacing } from '@/constants/theme';
 import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
@@ -15,6 +16,23 @@ import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { ThemeProvider, useThemeMode, useThemeReady } from '@/features/theme/ThemeContext';
 
 SplashScreen.preventAutoHideAsync();
+
+/**
+ * How long a page takes to arrive. Long enough to be read as a turn of the page, short
+ * enough that somebody moving quickly through the app never waits on it.
+ */
+const PAGE_MS = 220;
+/**
+ * How far it travels on the way in. A hint of sideways movement rather than a full
+ * sweep: at this size the animation says which direction you went without the page
+ * having to cross the screen to say it, and it stays quiet on a wide web window.
+ */
+const PAGE_SLIDE = 28;
+
+/** How deep a route sits, which is what tells forward from back. See `Chrome`. */
+function depthOf(pathname: string): number {
+  return pathname.split('/').filter(Boolean).length;
+}
 
 export default function RootLayout() {
   return (
@@ -98,12 +116,52 @@ function App() {
 function Chrome() {
   const fullScreen = useFullScreenValue();
   const styles = useStyles();
+  const pathname = usePathname();
+
+  /*
+   * Which way the next page comes in from.
+   *
+   * Worked out from the route's depth rather than from history, because there is no
+   * history here to read: going back is a `Link` to a parent href (see `BackChip`)
+   * rather than a pop, and the game flow moves with `router.replace`. Depth is what
+   * actually matches the shape of the app — deeper is further in, shallower is on the
+   * way out — and a sideways move between two screens at the same depth is a step
+   * onwards, which is what the settings-to-board hop is.
+   *
+   * Adjusted during render rather than in an effect, so the incoming page is already
+   * offset on the commit that mounts it. Set from an effect it would paint once at its
+   * resting place and then jump back to start the slide.
+   */
+  const [seen, setSeen] = useState(() => ({ path: pathname, from: 0 }));
+  if (seen.path !== pathname) {
+    setSeen({
+      path: pathname,
+      from: depthOf(pathname) < depthOf(seen.path) ? -PAGE_SLIDE : PAGE_SLIDE
+    });
+  }
+  // Nothing to slide in from on the very first paint: opening the app is not a
+  // navigation, and animating it would put a stutter right after the splash screen.
+  const enterFrom = seen.path === pathname ? seen.from : 0;
 
   const body = (
     <View style={[styles.content, fullScreen && styles.contentFullScreen]}>
+      {/* Outside the animation: the header is the app's chrome rather than part of the
+          page, and a wordmark sliding in on every route would be the one thing on
+          screen insisting it had changed too. */}
       <Header />
 
-      <Slot />
+      <SlideFadeIn
+        // What replays the entrance. The router already unmounts the old page and
+        // mounts the new one in a single commit, so keying on the path draws the same
+        // boundary the page itself has — and keeping to one mounted page at a time is
+        // what lets `FullScreenContext` go on relying on that ordering.
+        key={pathname}
+        offsetX={enterFrom}
+        durationMs={PAGE_MS}
+        style={fullScreen ? styles.pageSlotFullScreen : styles.pageSlot}
+      >
+        <Slot />
+      </SlideFadeIn>
     </View>
   );
 
@@ -166,5 +224,19 @@ const useStyles = createThemedStyles(theme => ({
   // under `Header` with a plain `flex: 1`.
   contentFullScreen: {
     flex: 1,
+  },
+  // The transition wrapper stands between `content` and the page, so it has to pass
+  // both of those down untouched — it is only supposed to be moving the page, not
+  // changing what size it gets.
+  pageSlot: {
+    width: '100%',
+  },
+  // Carries the height ceiling through in full-screen mode. Without the `flex: 1` the
+  // wrapper would size to its content instead of to the window, and a board that
+  // measures itself against its parent would grow until it pushed its own keyboard off
+  // the bottom edge.
+  pageSlotFullScreen: {
+    flex: 1,
+    width: '100%',
   }
 }));

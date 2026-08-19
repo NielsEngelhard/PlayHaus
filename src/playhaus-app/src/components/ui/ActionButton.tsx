@@ -8,9 +8,9 @@ import { Pressable, type StyleProp, type ViewStyle } from "react-native";
 /**
  * How much room the button is given.
  *
- * `regular` is the one that closes a card — the join button under a room code. `large` is
- * the one that closes a screen, and everything about it scales up together: a 62pt button
- * with 15pt type on it reads as a mistake rather than as emphasis.
+ * `regular` is the one that closes a card — the resume button on a reconnect row. `large`
+ * is the one that closes a screen, and everything about it scales up together: a 62pt
+ * button with 15pt type on it reads as a mistake rather than as emphasis.
  */
 type Size = 'regular' | 'large';
 

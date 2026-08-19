@@ -41,7 +41,8 @@ const MaxGuesses = 6
 const (
 	// MaxLobbyPlayers matches MAX_LOBBY_PLAYERS in the app's lobby module.
 	MaxLobbyPlayers = 6
-	// MinLobbyPlayers -- a game with one player in it is a solo game with extra steps.
+	// MinLobbyPlayers -- a game with one player in it is a solo game with extra
+	// steps. Matches MIN_LOBBY_PLAYERS in the app's lobby module.
 	MinLobbyPlayers = 2
 	// JoinCodeLength matches LOBBY_CODE_LENGTH, and the join card's input.
 	JoinCodeLength = 4
