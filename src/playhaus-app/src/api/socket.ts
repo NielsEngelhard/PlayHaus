@@ -112,6 +112,16 @@ export function openSocket({ room, token, onEvent, onStatus }: Options): Socket 
         const ws = new WebSocket(socketUrl(room, token));
         socket = ws;
 
+        /**
+         * The last frame was a refusal — the room does not exist, or this player is not
+         * in it. The server says so and then hangs up, so a close that follows one is an
+         * answer rather than a hiccup, and asking again every few seconds for as long as
+         * the screen is open would only get the same answer. Cleared by any other frame,
+         * because a refusal the server keeps the connection open after (a frame it could
+         * not read) is not one to give up over.
+         */
+        let refused = false;
+
         ws.onopen = () => {
             if (closed) return;
 
@@ -134,6 +144,8 @@ export function openSocket({ room, token, onEvent, onStatus }: Options): Socket 
                 return;
             }
 
+            refused = parsed.type === 'error';
+
             onEvent(parsed);
         };
 
@@ -146,6 +158,9 @@ export function openSocket({ room, token, onEvent, onStatus }: Options): Socket 
 
             socket = null;
             onStatus('closed');
+
+            if (refused) return;
+
             schedule();
         };
     }

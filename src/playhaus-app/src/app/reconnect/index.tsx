@@ -48,8 +48,8 @@ export default function ReconnectPage() {
         <View style={styles.container}>
             <View style={styles.hero}>
                 <BigIntroText
-                    title={!settled ? 'Waar was je' : waiting ? 'Nog midden in' : 'Er loopt'}
-                    accent={!settled ? 'gebleven?' : waiting ? 'het spel.' : 'niets.'}
+                    title={!settled ? 'Waar was je' : waiting ? 'Opnieuw' : 'Er loopt'}
+                    accent={!settled ? 'gebleven?' : waiting ? 'Verbinden' : 'niets.'}
                 />
 
                 <AppText style={styles.description}>

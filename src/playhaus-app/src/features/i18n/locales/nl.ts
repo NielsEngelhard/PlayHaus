@@ -11,7 +11,7 @@ export const nl: Catalog = {
     home: {
         headline: {
             title: 'Kleine spelletjes,',
-            accent: 'groot gelach.'
+            accent: 'groot plezier.'
         },
         subtitle: 'Snelle spelletjes voor trage ochtenden, lange middagen en avonden die uit de hand lopen.'
     },
@@ -21,7 +21,7 @@ export const nl: Catalog = {
             tag: { category: 'Woord', players: '1-6 spelers' }
         },
         quizzer: {
-            description: 'Pubquiz rondes, zonder de kroeg. De vragen worden nog geslepen.',
+            description: 'Ontdek wie de slimste is (en wie niet).',
             tag: { category: 'Trivia', players: '2-10 spelers' }
         }
     },

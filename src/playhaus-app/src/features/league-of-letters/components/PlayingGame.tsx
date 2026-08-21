@@ -356,9 +356,14 @@ export default function PlayingGame({
             {/* Keyed on the round number, which is what replays the lift: a new round is
                 a new board, and remounting it is what clears the last one's tiles as
                 well as what starts the animation. Not `boardKey` — that also carries
-                the hint letter, and a changed hint is not a new round. */}
+                the hint letter, and a changed hint is not a new round.
+
+                Prefixed because the controls below rise on the same round number: two
+                siblings under one parent sharing a key is a key collision, and React
+                answers it by matching the second element to the first one's fiber —
+                the board drawn twice, and the keyboard nowhere. */}
             <SlideFadeIn
-                key={round.roundNumber}
+                key={`board-${round.roundNumber}`}
                 offsetY={RISE_PX}
                 durationMs={RISE_MS}
                 style={styles.board}
@@ -396,7 +401,7 @@ export default function PlayingGame({
                 result needs. Both wait out the reveal — a panel naming the word while the
                 last tiles are still face down reads the answer out early. */}
             <SlideFadeIn
-                key={round.roundNumber}
+                key={`controls-${round.roundNumber}`}
                 offsetY={RISE_PX}
                 durationMs={RISE_MS}
                 delayMs={RISE_STAGGER_MS}
