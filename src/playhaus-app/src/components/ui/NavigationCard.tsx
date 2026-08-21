@@ -1,6 +1,5 @@
 import AppText from "@/components/text/AppText";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
-import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -41,11 +40,10 @@ export default function NavigationCard({
     name,
     description,
     playable,
-    navigationUrl
+    navigationUrl,
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
-    const t = useT();
 
     return (
         <Link href={navigationUrl} asChild>
@@ -65,43 +63,28 @@ export default function NavigationCard({
                 <View style={styles.body}>
                     <AppText style={styles.name} numberOfLines={1}>{name}</AppText>
 
-                    {playable ? (
-                        <View style={styles.chips}>
-                            {tags.map(chip => (
-                                <View key={chip} style={styles.chip}>
-                                    <AppText style={styles.chipText}>{chip}</AppText>
-                                </View>
-                            ))}
-                        </View>
-                    ) : (
-                        <AppText style={styles.description} numberOfLines={2}>
-                            {description}
-                        </AppText>
-                    )}
+                    <View style={styles.chips}>
+                        {tags.map(chip => (
+                            <View key={chip} style={styles.chip}>
+                                <AppText style={styles.chipText}>{chip}</AppText>
+                            </View>
+                        ))}
+                    </View>
 
-                    {playable && (
+                    {description && (
                         <View style={styles.status}>
-                            <View style={styles.statusDot} />
-                            <AppText style={styles.statusText}>{t('gameCard.playable')}</AppText>
+                            <AppText style={styles.statusText}>{description}</AppText>
                         </View>
                     )}
                 </View>
 
-                {playable ? (
-                    <View style={styles.play}>
-                        {/* The button's fill flips between the two schemes, so its ink
-                            has to flip the other way with it. */}
-                        <Feather
-                            name='play'
-                            size={16}
-                            color={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
-                        />
-                    </View>
-                ) : (
-                    <View style={styles.soon}>
-                        <AppText style={styles.soonText} numberOfLines={1}>{t('gameCard.soon')}</AppText>
-                    </View>
-                )}
+                <View style={styles.play}>
+                    <Feather
+                        name='play'
+                        size={16}
+                        color={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
+                    />
+                </View>
             </Pressable>
         </Link>
     )

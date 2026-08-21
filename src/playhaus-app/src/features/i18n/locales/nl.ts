@@ -17,17 +17,12 @@ export const nl: Catalog = {
     },
     games: {
         leagueOfLetters: {
-            description: 'Jaag op het verborgen woord. Solo, of kijken wie het eerst is.',
+            description: 'Jaag op het verborgen woord. Solo, of verneder je vrienden.',
             tag: { category: 'Woord', players: '1-6 spelers' }
         },
         quizzer: {
             description: 'Ontdek wie de slimste is (en wie niet).',
-            tag: { category: 'Trivia', players: '2-10 spelers' }
+            tag: { category: 'Trivia', players: '2-20 spelers' }
         }
-    },
-    gameCard: {
-        playable: 'Klaar voor de start',
-        /** `BINNENKORT` is too wide for the badge — see the note in `en.ts`. */
-        soon: 'BROEIT'
     }
 };
