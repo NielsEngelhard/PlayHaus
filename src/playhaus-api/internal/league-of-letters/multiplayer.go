@@ -249,12 +249,12 @@ func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
 // So are the settings. The room's word length has been sitting on the lobby since it
 // opened, moving under the host's finger; this is the first and only moment anything
 // reads it, because it is the moment the words are drawn.
-func (s *Service) StartLobby(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
-	lobby, err := s.store.LobbyByCode(ctx, code)
+func (s *Service) StartLobby(ctx context.Context, in StartLobbyInput) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
+	lobby, err := s.store.LobbyByCode(ctx, in.GameID)
 	if err != nil {
 		return nil, nil, err
 	}
-	if lobby.OwnerID != userID {
+	if lobby.OwnerID != in.UserID {
 		return nil, nil, ErrNotHost
 	}
 	if lobby.Status != LobbyWaiting {
@@ -274,8 +274,8 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 		ID:           uuid.New(),
 		LobbyID:      lobby.ID,
 		OwnerID:      lobby.OwnerID,
-		Locale:       lobby.Locale,
-		WordLength:   lobby.WordLength,
+		Locale:       in.Locale,
+		WordLength:   in.WordLength,
 		CurrentRound: 1,
 		Status:       GameInProgress,
 		CreatedAt:    now,
@@ -293,7 +293,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 		}
 	}
 
-	rounds, err := generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, false)
+	rounds, err := generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, in.OnlyPickCommonWords)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -407,6 +407,14 @@ func (s *Service) MultiplayerGame(ctx context.Context, id uuid.UUID, userID stri
 // MultiplayerGamesByUserID is every unfinished game this player is at a table for.
 func (s *Service) MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error) {
 	return s.store.MultiplayerGamesByUserID(ctx, userID)
+}
+
+type StartLobbyInput struct {
+	GameID              string
+	UserID              string
+	WordLength          int
+	OnlyPickCommonWords bool
+	Locale              i18n.Locale
 }
 
 type SubmitMultiplayerGuessInput struct {
