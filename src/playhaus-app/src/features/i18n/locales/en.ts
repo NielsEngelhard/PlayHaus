@@ -28,23 +28,12 @@ export const en = {
      */
     games: {
         leagueOfLetters: {
-            description: 'Hunt the hidden word. Solo, or see who gets there first.',
-            /** One entry per chip on the home card. See `Game.tagKeys`. */
-            tag: { category: 'Word', players: '1-6 players' }
+            description: 'Hunt the hidden word. Solo, or humiliate your friends.',
+            tag: { category: 'Word guessing', players: '1-6 players' }
         },
         quizzer: {
-            description: 'Pub quiz rounds, minus the pub. The questions are still being sharpened.',
-            tag: { category: 'Trivia', players: '2-10 players' }
+            description: 'Your own mini pub quiz. Who knows it all?.',
+            tag: { category: 'Trivia', players: '2-20 players' }
         }
-    },
-    gameCard: {
-        playable: 'Ready to play',
-        /**
-         * Keep this to one short word in every language. The badge is `flexShrink: 0`
-         * beside a `flex: 1` body, so a long one doesn't wrap — it squeezes the card and
-         * truncates the game's name on a narrow phone. Dutch `BINNENKORT` is already too
-         * wide, which is why the Dutch catalog says `BROEIT` instead.
-         */
-        soon: 'BREWING'
     }
 } as const;
