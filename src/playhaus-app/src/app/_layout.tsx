@@ -169,11 +169,16 @@ function Chrome() {
       <Header />
 
       <SlideFadeIn
-        // What replays the entrance. The router already unmounts the old page and
-        // mounts the new one in a single commit, so keying on the path draws the same
-        // boundary the page itself has — and keeping to one mounted page at a time is
-        // what lets `FullScreenContext` go on relying on that ordering.
-        key={pathname}
+        // What replays the entrance — and deliberately not a `key`.
+        //
+        // The router mounts the new page in a commit of its own, which `usePathname`
+        // only catches up with on the next one. A key taken from the path therefore
+        // arrives a render too late: it threw away the page that had already mounted and
+        // built it again, so every screen ran its opening request twice. `replayKey`
+        // replays the animation without touching what is inside it, which leaves one
+        // mounted page at a time — the thing `FullScreenContext` relies on — to the
+        // router, where it belongs.
+        replayKey={pathname}
         offsetX={enterFrom}
         durationMs={PAGE_MS}
         style={fullScreen ? styles.pageSlotFullScreen : styles.pageSlot}
@@ -185,22 +190,31 @@ function Chrome() {
 
   return (
     <View style={styles.page}>
-      {fullScreen ? (
-        // A plain View rather than the ScrollView with scrolling switched off. A scroll
-        // container's height is a *minimum*: content that wants more simply makes it
-        // taller. A page that has to fit the window needs a ceiling to size down against,
-        // and only a non-scrolling parent gives it one — otherwise the game's board grows
-        // and pushes its own keyboard off the bottom edge.
-        <View style={styles.fullScreenBody}>{body}</View>
-      ) : (
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {body}
-        </ScrollView>
-      )}
+      {/*
+        * One scroller for both modes, switched rather than swapped.
+        *
+        * This used to be a `ScrollView` or a plain `View` depending on `fullScreen`, and
+        * that is a different element in the same position — so React tore the whole page
+        * down and built it again the moment a page claimed the viewport. Every page that
+        * claims it does so from an effect, i.e. just after it has mounted, so every
+        * full-screen page mounted twice and ran its opening request twice. In the room
+        * that was fatal: the first mount's join landed after the second mount had already
+        * joined, and its tidy-up handed the seat straight back.
+        *
+        * `flex: 1` on the content container rather than the usual `flexGrow: 1` is what
+        * keeps the ceiling the full-screen mode needs. `flexGrow` makes the height a
+        * minimum, which a board would grow past until it pushed its own keyboard off the
+        * bottom edge; `flex` pins it to the scroller's own height, exactly as the plain
+        * `View` did.
+        */}
+      <ScrollView
+        style={[styles.scroll, fullScreen && styles.scrollFullScreen]}
+        contentContainerStyle={fullScreen ? styles.fullScreenContent : styles.scrollContent}
+        scrollEnabled={!fullScreen}
+        showsVerticalScrollIndicator={false}
+      >
+        {body}
+      </ScrollView>
 
       {/* Sibling of the scroller, not a child: it stays put while the page moves. */}
       {!fullScreen && <BottomBar />}
@@ -218,6 +232,11 @@ const useStyles = createThemedStyles(theme => ({
   scroll: {
     width: '100%',
   },
+  // Passes the window's height into the scroller, so the content container below has
+  // something to pin itself to.
+  scrollFullScreen: {
+    flex: 1,
+  },
   scrollContent: {
     flexGrow: 1,
     alignItems: 'center',
@@ -225,9 +244,8 @@ const useStyles = createThemedStyles(theme => ({
     // Clears the floating BottomBar, which overlays the page rather than sitting in it.
     paddingBottom: BottomBarHeight + Spacing.six,
   },
-  fullScreenBody: {
+  fullScreenContent: {
     flex: 1,
-    width: '100%',
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
     // Nothing floats over the page in this mode, so it may use the bottom edge.

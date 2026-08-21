@@ -49,6 +49,40 @@ export interface LobbyState {
 }
 
 /**
+ * How many screens on this device are sitting in each room, by join code.
+ *
+ * A room is handed back when the screen showing it goes — but "this screen went" and
+ * "the player left" are not the same thing. A page that is torn down and built again
+ * while it is opening a room (the root layout used to do exactly that, and fast refresh
+ * still does) leaves two screens overlapping: the outgoing one's join is still in the
+ * air when the incoming one starts its own. Firing the give-back per screen then hands
+ * back the seat the live screen is using — the host watches the player arrive and
+ * vanish again, and the player is left looking at a room the server has taken them out
+ * of.
+ *
+ * So the give-back is counted rather than fired per screen, and counted at module scope
+ * because the two screens involved are, by definition, two different instances of this
+ * hook.
+ */
+const holders = new Map<string, number>();
+
+function hold(code: string): void {
+    holders.set(code, (holders.get(code) ?? 0) + 1);
+}
+
+/** Lets go of one hold. True when it was the last, so the room is nobody's now. */
+function release(code: string): boolean {
+    const left = (holders.get(code) ?? 1) - 1;
+    if (left > 0) {
+        holders.set(code, left);
+        return false;
+    }
+
+    holders.delete(code);
+    return true;
+}
+
+/**
  * Opens or joins one multiplayer room and keeps it up to date.
  *
  * Pass a `code` to join somebody else's room; pass nothing to open your own, which
@@ -92,6 +126,33 @@ export function useLobby(code?: string): LobbyState {
      */
     const owed = useRef<{ code: string, host: boolean } | null>(null);
 
+    /**
+     * The room this screen is counted into `holders` under, or null once it has let go.
+     * Every way out of this hook goes through `letGo` or `close`, exactly once.
+     */
+    const held = useRef<string | null>(null);
+
+    /**
+     * Stops holding the room, and hands it back if this was the last screen in it.
+     *
+     * `giveBack` is null for the cases where there is nothing to hand back: a join that
+     * never landed, and a room that has since become a game.
+     */
+    const letGo = useCallback((giveBack: { host: boolean } | null) => {
+        const code = held.current;
+        if (code === null) return;
+
+        held.current = null;
+        owed.current = null;
+
+        // Somebody else on this device still has the room open — the screen that
+        // replaced this one. Handing it back now would take them out of it.
+        if (!release(code)) return;
+        if (giveBack === null) return;
+
+        void (giveBack.host ? deleteLobby(code) : leaveLobby(code));
+    }, []);
+
     /** A write is in the air; an event must not land an older room on top of it. */
     const writing = useRef(false);
 
@@ -116,15 +177,40 @@ export function useLobby(code?: string): LobbyState {
     const load = useCallback(async () => {
         if (!signedIn || userId === undefined) return;
 
+        // A reload starts over, so whatever this screen was holding is dropped first.
+        // Nothing is handed back on the way: it is about to be taken again.
+        letGo(null);
+
+        // Counted *before* the request, not after it, and this is the whole of the fix
+        // for the overlapping-screens race: the screen replacing this one starts its own
+        // join while this one's is still in the air, so a room counted only once the
+        // server answers would look unheld at exactly the moment it matters.
+        //
+        // A room being opened rather than joined has no code to count under yet — that
+        // arrives with the answer, below.
+        if (code !== undefined) {
+            held.current = code;
+            hold(code);
+        }
+
         try {
             const opened = code === undefined
                 ? await createLobby({ ...DEFAULT_SOLO_SETTINGS, locale: locale.current })
                 : await joinLobby(code);
 
+            if (held.current === null) {
+                held.current = opened.code;
+                hold(opened.code);
+            }
+
             if (!mounted.current) {
-                // The screen went while the room was being opened. Nobody is going to
-                // see it, and the unmount cleanup has already run with nothing to undo.
-                void (isHostOf(opened, userId) ? deleteLobby(opened.code) : leaveLobby(opened.code));
+                // The screen went while the room was being opened. Give it back — unless
+                // the screen that replaced this one is sitting in the same room, which is
+                // what `letGo` checks.
+                //
+                // A room that has already started is a game rather than a room, and there
+                // is nothing to hand back: see the same rule on `owed` below.
+                letGo(opened.status === 'waiting' ? { host: isHostOf(opened, userId) } : null);
                 return;
             }
 
@@ -138,11 +224,15 @@ export function useLobby(code?: string): LobbyState {
             setError(null);
             setLobby(opened);
         } catch (failure) {
+            // Never got in, so there is nothing to hand back — but the hold taken before
+            // the request still has to come off.
+            letGo(null);
+
             if (!mounted.current) return;
 
             setError(lobbyErrorMessage(failure));
         }
-    }, [signedIn, userId, code]);
+    }, [signedIn, userId, code, letGo]);
 
     useEffect(() => {
         if (!signedIn) return;
@@ -283,6 +373,15 @@ export function useLobby(code?: string): LobbyState {
         // Cleared up front, so the unmount that follows this on its way out of the
         // screen does not send the same request a second time.
         owed.current = null;
+
+        // Dropped rather than handed to `letGo`, because the request below goes out
+        // whatever the count says: this is the player themselves asking to leave, not a
+        // screen being tidied up after.
+        if (held.current !== null) {
+            release(held.current);
+            held.current = null;
+        }
+
         setClosing(true);
 
         try {
@@ -297,16 +396,13 @@ export function useLobby(code?: string): LobbyState {
         }
     }, [closing]);
 
-    // The room is given back however the screen is left. Mounted once with no
-    // dependencies on purpose: this has to run on unmount and at no other time, so
-    // everything it needs is read off `owed` rather than closed over.
+    // The room is given back however the screen is left. Mounted once, so everything it
+    // needs is read off the refs rather than closed over — and it runs even with nothing
+    // owed, because the hold this screen took still has to come off the count.
     useEffect(() => () => {
         const leaving = owed.current;
-        if (leaving === null) return;
-
-        owed.current = null;
-        void (leaving.host ? deleteLobby(leaving.code) : leaveLobby(leaving.code));
-    }, []);
+        letGo(leaving === null ? null : { host: leaving.host });
+    }, [letGo]);
 
     const reload = useCallback(() => {
         setError(null);

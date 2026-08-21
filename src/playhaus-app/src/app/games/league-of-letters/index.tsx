@@ -50,7 +50,7 @@ export default function LeagueOfLettersIndexPage() {
                     // there, and paper in light.
                     iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
                     highlight={0.35}
-                    title='Kamer'
+                    title='Multiplayer'
                     chip={`${MIN_LOBBY_PLAYERS}-${MAX_LOBBY_PLAYERS}`}
                     description='Race tegen je vrienden.'
                     action='Openen'
