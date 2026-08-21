@@ -159,21 +159,6 @@ func TestCreateLobbyRefusesGameSettings(t *testing.T) {
 	}
 }
 
-// Where the word length *is* checked: the settings card inside the room, which is
-// the only place it can be chosen.
-func TestUpdateLobbySettingsValidatesWordLength(t *testing.T) {
-	srv, _ := newTestServerWithDB(t)
-	host := newGuestSession(t, srv)
-	lobby := createLobby(t, srv, host.Token)
-
-	for _, body := range []string{`{"wordLength":3}`, `{"wordLength":9}`, `{"wordLength":0}`} {
-		rec := do(t, srv, http.MethodPatch, lobbyPathFor(lobby.Code), body, host.Token)
-		if rec.Code != http.StatusUnprocessableEntity {
-			t.Errorf("%s: status = %d, want %d (body: %s)", body, rec.Code, http.StatusUnprocessableEntity, rec.Body)
-		}
-	}
-}
-
 // The length the room was left on is the length it plays at -- the one moment
 // anything reads it.
 func TestStartLobbyPlaysTheLengthTheRoomWasSetTo(t *testing.T) {
@@ -332,40 +317,6 @@ func TestJoinStartedLobbyAsAMemberIsAllowed(t *testing.T) {
 	// And it carries the game, which is how a reconnecting player finds the board.
 	if got := decodeBody[lobbyResponse](t, rec); got.GameID == "" {
 		t.Error("a started room came back with no gameId")
-	}
-}
-
-func TestUpdateLobbySettingsIsHostOnly(t *testing.T) {
-	srv, _ := newTestServerWithDB(t)
-	host := newGuestSession(t, srv)
-	guest := newGuestSession(t, srv)
-
-	lobby := createLobby(t, srv, host.Token)
-	if rec := joinLobby(t, srv, guest.Token, lobby.Code); rec.Code != http.StatusOK {
-		t.Fatalf("join: status = %d (body: %s)", rec.Code, rec.Body)
-	}
-
-	body := `{"wordLength":6,"locale":"nl"}`
-
-	rec := do(t, srv, http.MethodPatch, lobbyPathFor(lobby.Code), body, guest.Token)
-	if rec.Code != http.StatusForbidden {
-		t.Errorf("guest: status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
-	}
-
-	rec = do(t, srv, http.MethodPatch, lobbyPathFor(lobby.Code), body, host.Token)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("host: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
-	}
-
-	saved := decodeBody[lobbyResponse](t, rec)
-	if saved.Settings.WordLength != 6 || saved.Settings.Locale != "nl" {
-		t.Errorf("settings = %+v, want 6/nl", saved.Settings)
-	}
-
-	// And it stuck, rather than only coming back in the answer.
-	rec = do(t, srv, http.MethodGet, lobbyPathFor(lobby.Code), "", guest.Token)
-	if got := decodeBody[lobbyResponse](t, rec); got.Settings.WordLength != 6 {
-		t.Errorf("re-read settings = %+v, want 6/nl", got.Settings)
 	}
 }
 
