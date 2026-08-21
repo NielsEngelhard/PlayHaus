@@ -286,9 +286,23 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
     const current = game?.id === gameId ? game : null;
     const round = current === null ? null : roundOf(current, viewing) ?? null;
 
-    const nextRound = useCallback(() => {
-        setViewing(showing => (game === null ? showing : game.currentRound));
+    /**
+     * The round the game is actually on, kept somewhere a callback can read it without
+     * having to be rebuilt to do so.
+     *
+     * `nextRound` has to be stable: in multiplayer the board hangs the between-rounds
+     * wait off it, and a callback that changed identity every time the room delivered a
+     * frame — a turn moving, a score landing — would restart that wait on every frame and
+     * never move anybody on.
+     */
+    const currentRound = useRef(1);
+    useEffect(() => {
+        currentRound.current = game?.currentRound ?? 1;
     }, [game]);
+
+    const nextRound = useCallback(() => {
+        setViewing(currentRound.current);
+    }, []);
 
     return {
         game: current,
