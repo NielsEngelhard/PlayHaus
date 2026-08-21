@@ -328,7 +328,8 @@ export function useLobby(code?: string): LobbyState {
                 lobbyId: lobby.code,
                 locale: lobby.settings.locale,
                 wordLength: lobby.settings.wordLength,
-                hardMode: lobby.settings.hardMode
+                hardMode: lobby.settings.hardMode,
+                secondsPerGuess: lobby.settings.secondsPerGuess
             });
 
             // Before anything else: the caller navigates to the board the moment this

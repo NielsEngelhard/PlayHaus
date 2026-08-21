@@ -8,7 +8,7 @@ interface Props {
     variant?: "card" | "inline";
 }
 
-export default function TimePerRoundSelect({
+export default function SecondsPerGuessSelect({
     value,
     onChange,
     variant = "card"

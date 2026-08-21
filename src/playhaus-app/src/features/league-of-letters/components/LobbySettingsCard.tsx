@@ -6,7 +6,7 @@ import { Spacing } from "@/constants/theme";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
-import TimePerRoundSelect from "./TimePerRoundSelect";
+import SecondsPerGuessSelect from "./TimePerRoundSelect";
 
 interface Props {
     settings: LobbySettings,
@@ -26,10 +26,10 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                 onChange={wordLength => onChange({ ...settings, wordLength })}
             />
 
-            <TimePerRoundSelect
+            <SecondsPerGuessSelect
                 variant='inline'
-                value={settings.timePerRound}
-                onChange={timePerRound => onChange({ ...settings, timePerRound })}                
+                value={settings.secondsPerGuess}
+                onChange={secondsPerGuess => onChange({ ...settings, secondsPerGuess })}                
             />
 
             <ToggleRow
