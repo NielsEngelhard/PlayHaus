@@ -4,11 +4,10 @@ import {
     isHostOf,
     joinLobby,
     leaveLobby,
+    LobbySettings,
     rematchLobby,
     startLobby,
-    updateLobbySettings,
-    type Lobby,
-    type LobbySettings
+    type Lobby
 } from '@/api/calls/league-of-letters-lobby';
 import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
 import { DEFAULT_LANGUAGE } from '@/constants/languages';
@@ -35,8 +34,7 @@ export interface LobbyState {
     closed: boolean
     /** A settings change is in the air. */
     saving: boolean
-    /** Host only. Applied on screen at once, then sent. */
-    updateSettings: (settings: LobbySettings) => void
+
     starting: boolean
     /** Host only. Resolves to the started lobby, or null if it could not start. */
     start: () => Promise<Lobby | null>
@@ -55,6 +53,7 @@ export interface LobbyState {
     /** Host only. Opens the next room on the same settings; everybody else is told. */
     rematch: () => Promise<void>
     reload: () => void
+    updateSettings: (s: LobbySettings) => void
 }
 
 /**
@@ -91,25 +90,6 @@ function release(code: string): boolean {
     return true;
 }
 
-/**
- * Opens or joins one multiplayer room and keeps it up to date.
- *
- * Pass a `code` to join somebody else's room; pass nothing to open your own, which
- * makes you its host. Both end in the same place — a `Lobby` kept live by a socket —
- * so the two room screens differ only in what they are allowed to do to it.
- *
- * There used to be a poll here, a second at a time, because everything interesting
- * about a lobby happens on somebody else's phone and there was no socket to be told
- * over. Now there is: a player arriving, the host changing the word length and the
- * game starting all arrive as events, and the only read left is the one that opens
- * the screen.
- *
- * Leaving matters here in a way it does not on other screens: an abandoned room is a
- * code that still works and a game that will never start. So the room is given back
- * on unmount, whatever caused it — the confirm dialog, a tab in the bottom bar, the
- * browser's back button — and the one exit that must *not* give it back, starting the
- * game, says so explicitly.
- */
 export function useLobby(code?: string): LobbyState {
     const { user, status } = useAuth();
     const [lobby, setLobby] = useState<Lobby | null>(null);
@@ -336,38 +316,6 @@ export function useLobby(code?: string): LobbyState {
 
     const isHost = lobby !== null && isHostOf(lobby, userId);
 
-    const updateSettings = useCallback((settings: LobbySettings) => {
-        if (lobby === null || !isHost) return;
-
-        const target = lobby.code;
-
-        // On screen first. The host is turning a knob they are looking at, and a tile
-        // that waits for a round trip before it moves reads as a tile that did not take.
-        setLobby(current => (current?.code === target ? { ...current, settings } : current));
-        setActionError(null);
-        setSaving(true);
-        writing.current = true;
-
-        void (async () => {
-            try {
-                const saved = await updateLobbySettings(target, settings);
-                if (!mounted.current) return;
-
-                setLobby(current => (current?.code === target ? saved : current));
-            } catch (failure) {
-                if (!mounted.current) return;
-
-                // The optimistic value stays put. Reverting it would move the control
-                // back under the host's finger, and the line below already says the
-                // room did not take the change.
-                setActionError(lobbyErrorMessage(failure));
-            } finally {
-                writing.current = false;
-                if (mounted.current) setSaving(false);
-            }
-        })();
-    }, [lobby, isHost]);
-
     const start = useCallback(async (): Promise<Lobby | null> => {
         if (lobby === null || !isHost || starting) return null;
 
@@ -420,6 +368,17 @@ export function useLobby(code?: string): LobbyState {
             if (mounted.current) setRematching(false);
         }
     }, [lobby, isHost, rematching]);
+
+    const updateSettings = (s: LobbySettings) => {
+        setLobby(prev => {
+            if (!prev) return null
+
+            return {
+                ...prev,
+                settings: s,
+            }
+        })
+    }
 
     const close = useCallback(async () => {
         const leaving = owed.current;
@@ -476,7 +435,6 @@ export function useLobby(code?: string): LobbyState {
         connection,
         closed,
         saving,
-        updateSettings,
         starting,
         start,
         closing,
@@ -484,6 +442,7 @@ export function useLobby(code?: string): LobbyState {
         rematchCode,
         rematching,
         rematch,
-        reload
+        reload,
+        updateSettings
     };
 }

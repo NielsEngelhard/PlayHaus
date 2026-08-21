@@ -180,12 +180,9 @@ export default function LeagueOfLettersSettingsPage() {
 
     return (
         <View style={styles.container}>
-            {/* Broken by hand rather than left to wrap: the design sets the heading on
-                two lines, and letting the column decide would move the break as the
-                viewport changes. */}
             <SimpleTextHero
                 title={'Zet je spel\nklaar'}
-                description='Er wordt niets aangemaakt tot je op start drukt.'
+                description='Set up your game and you can play!'
             />
 
             <View style={styles.wordLength}>
