@@ -15,6 +15,7 @@ import {
     useWindowDimensions,
     View
 } from "react-native";
+import Label from "../text/Label";
 
 export interface SelectOption<T extends string> {
     value: T,
@@ -171,11 +172,9 @@ export default function SelectInput<T extends string>({
     const dropUp = below < MIN_ROOM && above > below;
 
     const body = (
-        <>
-            {/* The label belongs to the frame, so `inline` — which has no frame of its
-                own — leaves naming this row to whoever is holding it. */}
-            {variant === 'card' && (
-                <AppText style={[styles.label, disabled && styles.dimmed]}>{label}</AppText>
+        <View>
+            {label && (
+                <Label label={label} />                
             )}
 
             <Pressable
@@ -190,7 +189,6 @@ export default function SelectInput<T extends string>({
                 aria-expanded={open}
                 style={[
                     styles.field,
-                    variant === 'inline' && styles.fieldInline,
                     disabled && styles.fieldDisabled
                 ]}
             >
@@ -277,7 +275,7 @@ export default function SelectInput<T extends string>({
                     </Animated.View>
                 </Modal>
             )}
-        </>
+        </View>
     );
 
     return variant === 'inline' ? <View>{body}</View> : <Card>{body}</Card>;
@@ -304,11 +302,7 @@ function OptionRow<T extends string>({ option, selected, divided, withIcon, onPr
             onPress={onPress}
             accessibilityRole='radio'
             accessibilityLabel={option.label}
-            // Same reason as the field above: `accessibilityState={{ checked }}` would
-            // leave the chosen row looking selected but not announcing as selected.
             aria-checked={selected}
-            // The pointer events do nothing on a touch screen, where there is no
-            // pointer to be under a row that has not been tapped yet.
             onPointerEnter={() => setHovered(true)}
             onPointerLeave={() => setHovered(false)}
             style={[styles.row, divided && styles.rowDivided, hovered && styles.rowHovered]}
@@ -348,7 +342,6 @@ const useStyles = createThemedStyles(theme => ({
     // Sunken, the way a text input reads — this is somewhere you put a value, not a
     // button that does something.
     field: {
-        marginTop: Spacing.three,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -360,13 +353,6 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.border,
         borderRadius: 14,
         ...theme.shadows.hardSmall
-    },
-    // No label above it to be spaced off, and a shorter field: this one sits inside a
-    // card that is already tight, where the standing 16pt of padding reads as slack.
-    fieldInline: {
-        marginTop: 0,
-        paddingVertical: Spacing.two + 2,
-        paddingHorizontal: Spacing.two + Spacing.one
     },
     fieldDisabled: {
         backgroundColor: theme.colors.muted
@@ -416,7 +402,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: Spacing.three,
         paddingHorizontal: Spacing.three,
-        paddingVertical: Spacing.three
+        paddingVertical: Spacing.three,
     },
     // Only between rows — the list's own border does the work at the two ends.
     rowDivided: {

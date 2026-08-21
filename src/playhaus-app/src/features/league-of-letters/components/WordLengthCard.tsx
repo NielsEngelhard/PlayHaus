@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import Label from "@/components/text/Label";
 import { Brand, Gradients, Spacing, linearGradient } from "@/constants/theme";
 import { WORD_LENGTHS, type WordLength } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -31,15 +32,7 @@ export default function WordLengthCard({ value, onChange, variant = 'card' }: Pr
 
     return (
         <View style={inline ? undefined : styles.card}>
-            {/* Baseline-aligned, so the small hint sits on the same line as the label
-                rather than floating in the middle of it. */}
-            {!inline && (
-                <View style={styles.header}>
-                    <AppText style={styles.label}>Woordlengte</AppText>
-
-                    <AppText style={styles.hint}>Klassiek is 5</AppText>
-                </View>
-            )}
+            <Label label="Woordlengte" />
 
             <View style={[styles.row, inline && styles.rowInline]}>
                 {WORD_LENGTHS.map(length => (
@@ -114,20 +107,12 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'baseline',
         justifyContent: 'space-between'
     },
-    label: {
-        fontSize: 11,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.8,
-        color: theme.colors.textMuted
-    },
     hint: {
         fontSize: 12,
         fontWeight: 700,
         color: theme.colors.textSecondary
     },
     row: {
-        marginTop: Spacing.three - 4,
         flexDirection: 'row',
         gap: Spacing.two
     },

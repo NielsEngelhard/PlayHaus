@@ -61,6 +61,7 @@ export interface LobbyPlayer {
 export interface LobbySettings {
     locale: LanguageCode
     wordLength: WordLength
+    hardMode: boolean
 }
 
 export interface Lobby {
@@ -136,59 +137,20 @@ export async function getLobby(code: string): Promise<Lobby> {
     return request<Lobby>(lobbyPath(code));
 }
 
-/**
- * Changes what the room is going to play. Host only — the server is what enforces that,
- * and the screen only hides the controls.
- */
-export async function updateLobbySettings(code: string, settings: LobbySettings): Promise<Lobby> {
-    return request<Lobby>(lobbyPath(code), {
-        method: 'PATCH',
-        body: JSON.stringify(settings)
-    });
-}
-
-/**
- * Starts the game the room was set up for. Host only.
- *
- * The answer is the lobby rather than the game: what everyone else is watching is the
- * lobby, and `gameId` appearing on it is how they find out. The board is fetched from
- * the game endpoints afterwards, by id, the same way solo does it.
- */
 export async function startLobby(code: string): Promise<Lobby> {
     return request<Lobby>(`${lobbyPath(code)}/start`, { method: 'POST' });
 }
 
-/**
- * Closes the room for good. The host's way out, and what the room screen calls when it
- * is navigated away from — a lobby nobody is looking at is a code that still works and
- * a game that will never start.
- *
- * Answers 204, and a code that is already gone is a no-op rather than a 404: the screen
- * fires this on its way out, where there is nobody left to tell.
- */
 export async function deleteLobby(code: string): Promise<void> {
     await request<void>(lobbyPath(code), { method: 'DELETE' });
 }
 
-/**
- * Steps out of somebody else's room without closing it. The guest half of
- * `deleteLobby`, and a no-op on a room that is already gone for the same reason.
- */
 export async function leaveLobby(code: string): Promise<void> {
     await request<void>(`${lobbyPath(code)}/players/me`, { method: 'DELETE' });
 }
 
 /**
- * Opens a fresh room for the table that just finished a game, and answers it. Host only.
- *
- * A new room with a new code rather than the old one wound back, and the difference is
- * who ends up in it: a room that was reset would still be holding everybody who was at
- * the table when the last word went down, including whoever shut the app on it. The
- * settings come across from the previous game — this button exists to skip the setup,
- * not to do it again — so nothing is sent.
- *
- * Everybody still connected to the old room is told the new code over the socket, which
- * is what carries them along. See `useLobby`.
+ * Opens a fresh room for the table that just finished a game, and answers it. Host only. Bring players who are still connected to the new lobby.
  */
 export async function rematchLobby(code: string): Promise<Lobby> {
     return request<Lobby>(`${lobbyPath(code)}/rematch`, { method: 'POST' });
