@@ -324,7 +324,12 @@ export function useLobby(code?: string): LobbyState {
         writing.current = true;
 
         try {
-            const started = await startLobby(lobby.code);
+            const started = await startLobby({
+                lobbyId: lobby.code,
+                locale: lobby.settings.locale,
+                wordLength: lobby.settings.wordLength,
+                hardMode: lobby.settings.hardMode
+            });
 
             // Before anything else: the caller navigates to the board the moment this
             // resolves, and this screen unmounting on the way there must not take the
