@@ -32,13 +32,13 @@ const useNativeDriver = Platform.OS !== 'web';
 const PULSE_MS = 1000;
 
 /**
- * The room's own top row, drawn by the page rather than by `Header`.
+ * The room's own top row, drawn by the page and sitting under `Header`.
  *
- * The global header is hidden on these routes (see `header-context.ts`) for one reason:
- * its back chip is a `Link`, and here going back deletes a room. A link that did that
- * without asking would be the one control in the app you cannot middle-click safely, so
- * the way out has to be a `Pressable` that opens a question — which means it cannot live
- * in the shared chrome. The cost is the theme toggle, which these two screens do without.
+ * The way out lives here rather than in the shared chrome for one reason: the header's back
+ * chip is a `Link`, and here going back deletes a room. A link that did that without asking
+ * would be the one control in the app you cannot middle-click safely, so the way out has to
+ * be a `Pressable` that opens a question. The header keeps the left slot on these routes for
+ * the wordmark (see `header-context.ts`), so there is only ever one arrow on screen.
  *
  * The chip is a copy of `BackChip`'s look for the same reason it is not `BackChip`.
  */

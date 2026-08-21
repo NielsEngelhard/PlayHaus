@@ -5,6 +5,8 @@ import { Brand } from "@/constants/theme";
 import { markStyles } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { playBubble } from "@/utils/bubble-sound";
+import { haptic } from "@/utils/haptics";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
 
@@ -95,6 +97,11 @@ function LetterKey({ letter, mark, height, disabled, onPress }: LetterKeyProps) 
     return (
         <PopPressable
             onPress={() => onPress(letter)}
+            // The bubble comes from `PopPressable`; the buzz under it is the keyboard's own.
+            // Typing is the one place in the app where a touch is worth feeling, so this is
+            // the lightest tap the phone has — twenty-six keys' worth of anything stronger
+            // would be a massage.
+            onPressIn={() => haptic('tap')}
             disabled={disabled}
             accessibilityRole='button'
             accessibilityLabel={letter}
@@ -124,6 +131,11 @@ interface ActionKeyProps {
     variant: 'enter' | 'delete'
 }
 
+/**
+ * Raden and Wissen. A plain `Pressable` rather than a `PopPressable`, so unlike every
+ * letter beside them these two make their noise without moving — worth tidying up, but a
+ * change to how the keyboard looks rather than how it sounds, so not made here.
+ */
 function ActionKey({ icon, label, height, disabled, onPress, variant }: ActionKeyProps) {
     const theme = useTheme();
     const styles = useStyles();
@@ -137,6 +149,10 @@ function ActionKey({ icon, label, height, disabled, onPress, variant }: ActionKe
     return (
         <Pressable
             onPress={onPress}
+            // Raden and Wissen are keys too, so they answer a touch like the other
+            // twenty-six. Asked for by hand rather than inherited, because this is a bare
+            // `Pressable` — see the note on the component above.
+            onPressIn={() => { playBubble(); haptic('tap'); }}
             disabled={disabled}
             accessibilityRole='button'
             accessibilityLabel={label}

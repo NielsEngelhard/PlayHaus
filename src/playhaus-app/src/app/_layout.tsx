@@ -10,8 +10,11 @@ import { FullScreenProvider, useFullScreenValue } from '@/components/layout/Full
 import Header from '@/components/layout/Header';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { BottomBarHeight, Spacing } from '@/constants/theme';
+import { MusicProvider } from '@/features/audio/MusicContext';
 import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
+import FeedbackPreferencesSync from '@/features/feedback/FeedbackPreferencesSync';
+import { LanguageProvider } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { ThemeProvider, useThemeMode, useThemeReady } from '@/features/theme/ThemeContext';
 
@@ -97,13 +100,28 @@ function App() {
 
       {/* Outside everything it gates, so the popup can cover the chrome too. */}
       <AuthProvider>
-        {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
-        <FullScreenProvider>
-          <Chrome />
+        {/* Draws nothing. Copies the account's sound and vibration switches out to where
+            the code that plays a sound can read them — see `features/feedback`. */}
+        <FeedbackPreferencesSync />
 
-          {/* Renders nothing at all while signed in. */}
-          <AuthGate />
-        </FullScreenProvider>
+        {/* Inside `AuthProvider` because the account's `locale` is what it resolves, and
+            outside `FullScreenProvider` so the gate is translated along with the page it
+            covers. Adds no gate to the splash screen above: the catalogs are bundled and
+            the device's language is read synchronously, so there is nothing to wait for. */}
+        <LanguageProvider>
+          {/* Above `Slot`, because the point of it is that the music does not restart
+              every time the page does. A board inside claims the action track with
+              `useGameMusic`; everywhere else hears the zen one. */}
+          <MusicProvider>
+            {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
+            <FullScreenProvider>
+              <Chrome />
+
+              {/* Renders nothing at all while signed in. */}
+              <AuthGate />
+            </FullScreenProvider>
+          </MusicProvider>
+        </LanguageProvider>
       </AuthProvider>
     </NavigationThemeProvider>
   );

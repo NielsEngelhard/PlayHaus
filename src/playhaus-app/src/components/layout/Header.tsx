@@ -15,13 +15,7 @@ export default function Header() {
 
     // Everything the header knows about where it is, worked out from the route. See
     // `header-context.ts` for why it is read rather than pushed.
-    const context = headerContextFor(pathname);
-
-    // A screen that draws its own chrome, like a board mid-round. Nothing here at all,
-    // so the page starts at the top of the viewport rather than 66pt down it.
-    if (context === null) return null;
-
-    const { back, pill, mark } = context;
+    const { back, pill, mark } = headerContextFor(pathname);
 
     return (
         <View style={styles.container}>

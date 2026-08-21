@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
-import { tagChips } from "@/constants/games";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -8,7 +8,8 @@ import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
-    tag: string,
+    /** The facts chips, already translated. Drawn in order, wrapping as needed. */
+    tags: readonly string[],
     /** The game's accent. Colours the shadow this card throws in dark mode. */
     color: string,
     /** Three stops for the glyph tile, lightest first. */
@@ -25,7 +26,7 @@ const TILE_SIZE = 78;
 
 /**
  * One game, as it appears on the home page: glyph tile, name, its facts as chips, and
- * either a play button or a SOON badge.
+ * either a play button or a "not yet" badge.
  *
  * A game that can't be played yet is not hidden — it is dimmed. Light does that by
  * fading the whole card, dark by sinking it below the canvas onto a darker surface and
@@ -33,7 +34,7 @@ const TILE_SIZE = 78;
  * makes it disappear.
  */
 export default function NavigationCard({
-    tag,
+    tags,
     color,
     gradient,
     glyphInk,
@@ -44,6 +45,7 @@ export default function NavigationCard({
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Link href={navigationUrl} asChild>
@@ -65,7 +67,7 @@ export default function NavigationCard({
 
                     {playable ? (
                         <View style={styles.chips}>
-                            {tagChips(tag).map(chip => (
+                            {tags.map(chip => (
                                 <View key={chip} style={styles.chip}>
                                     <AppText style={styles.chipText}>{chip}</AppText>
                                 </View>
@@ -80,7 +82,7 @@ export default function NavigationCard({
                     {playable && (
                         <View style={styles.status}>
                             <View style={styles.statusDot} />
-                            <AppText style={styles.statusText}>Speelbaar</AppText>
+                            <AppText style={styles.statusText}>{t('gameCard.playable')}</AppText>
                         </View>
                     )}
                 </View>
@@ -97,7 +99,7 @@ export default function NavigationCard({
                     </View>
                 ) : (
                     <View style={styles.soon}>
-                        <AppText style={styles.soonText}>SOON</AppText>
+                        <AppText style={styles.soonText} numberOfLines={1}>{t('gameCard.soon')}</AppText>
                     </View>
                 )}
             </Pressable>

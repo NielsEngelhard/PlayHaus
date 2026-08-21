@@ -11,9 +11,12 @@ import type Feather from '@expo/vector-icons/Feather';
  * *previous* page's name sitting in the chrome — which is exactly the bug this used to
  * have. The route always knows.
  *
- * `headerContextFor` answers `null` for a screen that should have no header at all. A
- * board is the whole screen: the wordmark and the theme toggle are not what anyone needs
- * mid-round, and the round bar it draws for itself already carries the way out.
+ * Every route gets one, boards and lobbies included. Those screens draw a top row of
+ * their own underneath this, and that row is where the way out lives: leaving one of them
+ * either abandons a round or deletes a room, and the chip in this header is a plain
+ * `Link` that cannot ask first. So they get the wordmark in the left slot rather than a
+ * back chip — the header is here to say which game you are in and to keep the theme
+ * toggle reachable, and the page's own row carries the leaving.
  */
 export interface HeaderContext {
     /** Where the back chip goes, or `null` to show the wordmark in its place. */
@@ -55,18 +58,7 @@ function isGameHub(pathname: string): boolean {
     return /^\/games\/[^/]+$/.test(pathname);
 }
 
-export function headerContextFor(pathname: string): HeaderContext | null {
-    // A board in progress. See `HeaderContext` above for why it goes bare.
-    if (pathname === ROUTES.leagueOfLettersSolo) return null;
-
-    // A multiplayer room: `/room` and `/room/{code}`, lobby and board alike.
-    //
-    // Bare for a reason of its own, on top of the board's. The chip in this header is a
-    // `Link`, and on a lobby screen going back deletes the room — so the way out has to
-    // be a button that asks first, which means the lobby has to draw its own top row.
-    // Two back arrows would be one too many, and the wrong one would be the quiet one.
-    if (pathname.startsWith(ROUTES.leagueOfLettersCreateRoom)) return null;
-
+export function headerContextFor(pathname: string): HeaderContext {
     // Setting up a solo game. Loud lemon rather than the game's own accent: this screen
     // is about one mode of one game, and the pill is the only thing on it that says
     // which mode.

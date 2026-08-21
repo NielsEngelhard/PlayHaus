@@ -6,6 +6,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
+import { useGameMusic } from "@/features/audio/MusicContext";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
@@ -126,6 +127,12 @@ export default function PlayingGame({
     const styles = useStyles();
 
     const router = useRouter();
+
+    // The one screen in the app that is not a menu, so the one screen that swaps the zen
+    // loop out for something with a pulse. Claimed by the board rather than by a route,
+    // because the multiplayer room serves the lobby and the board off the same href —
+    // and claiming it here covers solo and multiplayer in the one place they agree.
+    useGameMusic('action');
 
     /**
      * The letter the round opens with. Given away rather than guessed: the server sends
@@ -307,9 +314,9 @@ export default function PlayingGame({
 
     return (
         <View style={styles.screen}>
-            {/* The whole of the chrome on this screen: the way out, where you are in the
-                game, and the hint — which becomes the round's verdict once it has one.
-                The app header is not rendered on a board, so this is it. */}
+            {/* Everything about the round itself: the way out, where you are in the game,
+                and the hint — which becomes the round's verdict once it has one. The app
+                header sits above this and stays out of the round's business. */}
             <RoundBar
                 round={round.roundNumber}
                 total={game.totalRounds}
@@ -456,13 +463,13 @@ export default function PlayingGame({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the viewport, which is what keeps the keyboard on the bottom edge and the
-    // board off the fold. No app header on this route, so the top padding is its own.
+    // Fills the room the header leaves, which is what keeps the keyboard on the bottom
+    // edge and the board off the fold. No top padding of its own: the header above ends in
+    // enough slack to stand as the gap, and the board is short enough on height already.
     screen: {
         flex: 1,
         width: '100%',
         gap: Spacing.three - 4,
-        paddingTop: 14,
         paddingBottom: Spacing.two
     },
     timer: {

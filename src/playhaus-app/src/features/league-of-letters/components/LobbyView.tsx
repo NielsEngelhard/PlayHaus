@@ -130,7 +130,7 @@ export default function LobbyView({ state, onStarted }: Props) {
             {/*
               * The one thing on this screen that cannot be undone, so it is asked rather
               * than done. Both screens' back chips lead here — which is the reason they
-              * are buttons and the global header is switched off for these routes.
+              * are buttons of their own rather than the header's link.
               *
               * Dismissable, unlike the solo screen's panel: staying is a perfectly good
               * answer here, and the room behind it still works.

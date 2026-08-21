@@ -9,6 +9,7 @@ import {
 import { lolRoom, type ServerEvent } from '@/api/socket';
 import { useAuth } from '@/features/auth/useAuth';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
+import { guessLandedHaptic } from '@/features/league-of-letters/guess-feedback';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -237,6 +238,10 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
 
         const result = await submitMultiplayerGuess(gameId, word);
         if (!mounted.current) return;
+
+        // Here rather than in `applyGuess`, which also runs for rows the room broadcasts:
+        // somebody else's word landing is not something your phone should announce.
+        guessLandedHaptic(result);
 
         // Applied here as well as when the broadcast arrives, so the player who
         // guessed sees their row land at once rather than after a round trip through

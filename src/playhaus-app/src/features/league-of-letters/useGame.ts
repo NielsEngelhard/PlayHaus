@@ -1,6 +1,7 @@
 import { getGame, roundOf, submitGuess, type Game, type GameRound } from '@/api/calls/league-of-letters';
 import { useAuth } from '@/features/auth/useAuth';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
+import { guessLandedHaptic } from '@/features/league-of-letters/guess-feedback';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface GameState {
@@ -103,6 +104,8 @@ export function useGame(gameId: string | undefined): GameState {
 
         const result = await submitGuess(gameId, word);
         if (!mounted.current) return;
+
+        guessLandedHaptic(result);
 
         // Applied rather than refetched. The response carries the guess and the
         // little around it that moved, and the rest of the game is already here —

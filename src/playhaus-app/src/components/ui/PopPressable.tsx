@@ -1,4 +1,4 @@
-import { playClick } from "@/utils/click-sound";
+import { playBubble } from "@/utils/bubble-sound";
 import { useEffect, useState, type ReactNode } from "react";
 import { Animated, Easing, Platform, Pressable, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
 
@@ -29,7 +29,7 @@ interface Props extends Omit<PressableProps, 'style' | 'children'> {
 
 /**
  * A `Pressable` that squashes under the finger and pops back out a hair proud of where
- * it started, with a click to go with it. Everything else is a plain `Pressable`: props
+ * it started, with a bubble to go with it. Everything else is a plain `Pressable`: props
  * pass straight through, so callers keep their own accessibility and disabled handling.
  *
  * The whole point is that a key and a button feel identical to press, so both go through
@@ -48,7 +48,7 @@ export default function PopPressable({ children, style, onPressIn, onPressOut, .
         <AnimatedPressable
             {...rest}
             onPressIn={event => {
-                playClick();
+                playBubble();
 
                 Animated.timing(push, {
                     toValue: 1,

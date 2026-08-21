@@ -125,3 +125,22 @@ export function keyboardMarks(guesses: GameGuess[], userId: string | undefined):
 
     return best;
 }
+
+/**
+ * Every letter but the last came back `correct`: the word is one tile from solved.
+ *
+ * Worked out from this row's marks alone rather than from what the player has learned
+ * across the board, because it is the row's own near-miss that is the drama — four greens
+ * and a hole, sitting there while the fifth tile makes up its mind.
+ *
+ * Two things read it. `GuessGrid` draws it out, spinning the last tile through colours
+ * before it commits, and the buzz that answers a scored row leans on it to tell a near-miss
+ * from an ordinary guess. Both have to agree on what "one away" means, so it lives here
+ * with the other facts about a set of marks.
+ */
+export function oneAway(marks: Mark[] | undefined, wordLength: number): boolean {
+    // A one-letter word has no run of greens leading up to anything.
+    if (marks === undefined || marks.length !== wordLength || wordLength < 2) return false;
+
+    return marks.slice(0, -1).every(mark => mark === 'correct');
+}
