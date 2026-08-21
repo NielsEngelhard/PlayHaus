@@ -76,6 +76,18 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
     return (
         <View style={[styles.chip, you && styles.chipYou, up && styles.chipUp]}>
             {/*
+              * Whose turn it is, said in words rather than left to the outline alone.
+              * Sits on the chip's own top edge instead of inside it: the chips are a
+              * scoreboard, and a label that pushed the name and the score around would
+              * make the row jump every time the turn moved.
+              */}
+            {up && (
+                <View style={styles.turnBadge}>
+                    <AppText style={styles.turnBadgeText}>AAN ZET</AppText>
+                </View>
+            )}
+
+            {/*
               * Two marks in one place: the swatch says who, the ring around it says
               * whether they are here. Stacked rather than set side by side, because a
               * second dot on a chip this size reads as a second person.
@@ -96,6 +108,14 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
     )
 }
 
+/**
+ * How far the turn badge stands above its chip, and how far past its right edge. Named
+ * because the row has to leave exactly this much room around the chips — the badge is
+ * positioned outside its parent, and a ScrollView clips whatever leaves its content box.
+ */
+const TURN_BADGE_RISE = 9;
+const TURN_BADGE_REACH = 4;
+
 const useStyles = createThemedStyles(theme => ({
     scroll: {
         // A horizontal ScrollView stretches to its content's height otherwise, which in a
@@ -105,9 +125,13 @@ const useStyles = createThemedStyles(theme => ({
     row: {
         flexDirection: 'row',
         gap: Spacing.two,
-        // Room for the hard shadow, which sits outside the chip's own box.
+        // Room for the hard shadow, which sits outside the chip's own box, and — above
+        // and to the right — for the turn badge, which sits outside it the same way.
+        // Held whether or not there is a badge up, so the row does not shift the moment
+        // somebody's turn starts.
+        paddingTop: TURN_BADGE_RISE,
         paddingBottom: Spacing.half + 2,
-        paddingRight: Spacing.half + 2
+        paddingRight: Spacing.half + 2 + TURN_BADGE_REACH
     },
     chip: {
         flexDirection: 'row',
@@ -131,6 +155,26 @@ const useStyles = createThemedStyles(theme => ({
     // filled with it: the chip still has to read as the same chip it was a moment ago.
     chipUp: {
         borderColor: theme.colors.primary
+    },
+    // The same accent as the outline it sits on, filled this time — an outline alone is
+    // hard to pick out of a row of five chips. Straddles the top-right edge rather than
+    // clearing it, so it reads as part of the chip and not as a sixth player.
+    turnBadge: {
+        position: 'absolute',
+        top: -TURN_BADGE_RISE,
+        right: -TURN_BADGE_REACH,
+        borderWidth: 2,
+        borderColor: theme.colors.border,
+        borderRadius: 999,
+        paddingVertical: 1,
+        paddingHorizontal: Spacing.one + 1,
+        backgroundColor: theme.colors.primary
+    },
+    turnBadgeText: {
+        fontSize: 9,
+        fontWeight: 900,
+        letterSpacing: 0.5,
+        color: theme.colors.textOnAccent
     },
     dot: {
         width: 12,
