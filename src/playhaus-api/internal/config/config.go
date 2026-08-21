@@ -31,7 +31,7 @@ func Load() (Config, error) {
 		ShutdownTimeout:        shutdownTimeout,
 		Debug:                  envBool("DEBUG", false),
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
-		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", false), // Same word every round
+		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", true), // Same word every round
 	}, nil
 }
 
