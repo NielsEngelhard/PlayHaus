@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import Label from "@/components/text/Label";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -75,7 +76,7 @@ export default function LobbyCodeHero({ code }: Props) {
 
     return (
         <View>
-            <AppText style={styles.label}>Kamercode</AppText>
+            <Label label="Kamercode" />
 
             <View
                 style={styles.tiles}
@@ -88,7 +89,7 @@ export default function LobbyCodeHero({ code }: Props) {
                     const last = index === characters.length - 1;
 
                     return (
-                        <View key={index} style={[styles.tile, last && styles.tileAccent]}>
+                        <View key={index} style={[styles.tile]}>
                             <AppText style={[styles.character, last && styles.characterAccent]}>
                                 {character}
                             </AppText>
@@ -137,9 +138,9 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
     tiles: {
-        marginTop: 10,
         flexDirection: 'row',
-        gap: 6
+        gap: 6,
+        paddingRight: 3
     },
     tile: {
         flex: 1,
@@ -155,11 +156,6 @@ const useStyles = createThemedStyles(theme => ({
         boxShadow: theme.scheme === 'dark'
             ? '0 0 22px -8px rgba(255, 229, 56, 0.3)'
             : '3px 3px 0 0 #0F0D12, 0 14px 24px -16px rgba(15, 13, 18, 0.55)'
-    },
-    // The row ends on the game's accent. Lemon is the colour a chosen tile wears
-    // everywhere else in League of Letters, and this is the whole screen's answer.
-    tileAccent: {
-        backgroundColor: theme.colors.lemon
     },
     character: {
         fontSize: 30,
