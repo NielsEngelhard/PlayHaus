@@ -271,16 +271,17 @@ func (s *Service) StartLobby(ctx context.Context, in *StartLobbyInput) (*Multipl
 
 	now := time.Now().UTC()
 	game := &MultiplayerLeagueOfLettersGame{
-		ID:           uuid.New(),
-		LobbyID:      lobby.ID,
-		OwnerID:      lobby.OwnerID,
-		Locale:       in.Locale,
-		WordLength:   in.WordLength,
-		CurrentRound: 1,
-		Status:       GameInProgress,
-		CreatedAt:    now,
-		TurnUserID:   seated[0].UserID,
-		TurnEndsAt:   now.Add(SecondsPerTurn * time.Second),
+		ID:              uuid.New(),
+		LobbyID:         lobby.ID,
+		OwnerID:         lobby.OwnerID,
+		Locale:          in.Locale,
+		WordLength:      in.WordLength,
+		CurrentRound:    1,
+		Status:          GameInProgress,
+		CreatedAt:       now,
+		TurnUserID:      seated[0].UserID,
+		TurnEndsAt:      now.Add(time.Duration(in.SecondsPerGuess) * time.Second),
+		SecondsPerGuess: in.SecondsPerGuess,
 	}
 
 	game.Players = make([]MultiplayerGamePlayer, len(seated))
@@ -415,6 +416,7 @@ type StartLobbyInput struct {
 	WordLength          int
 	OnlyPickCommonWords bool
 	Locale              i18n.Locale
+	SecondsPerGuess     int
 }
 
 type SubmitMultiplayerGuessInput struct {
@@ -610,7 +612,7 @@ func (s *Service) ResumeTurn(ctx context.Context, gameID uuid.UUID) (time.Time, 
 		return game.TurnEndsAt, nil
 	}
 
-	endsAt := now.Add(SecondsPerTurn * time.Second)
+	endsAt := now.Add(time.Duration(game.SecondsPerGuess) * time.Second)
 	if err := s.store.RestartTurn(ctx, game.ID, game.TurnUserID, endsAt); err != nil {
 		return time.Time{}, err
 	}
@@ -643,7 +645,7 @@ func (g *MultiplayerLeagueOfLettersGame) advance(now time.Time) {
 		g.TurnUserID = g.playerAfter(g.TurnUserID)
 	}
 
-	g.TurnEndsAt = now.Add(SecondsPerTurn * time.Second)
+	g.TurnEndsAt = now.Add(time.Duration(g.SecondsPerGuess) * time.Second)
 }
 
 // seats is the table in turn order.

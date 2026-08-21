@@ -20,7 +20,7 @@ export default function SecondsPerGuessSelect({
             onChange={onChange}
             getLabel={seconds => `${seconds}s`}
             getAccessibilityLabel={seconds => `${seconds} seconds`}
-            label="Tijd per ronde"
+            label="Tijd per beurt"
             variant={variant}
             compact={variant === "inline"}
         />

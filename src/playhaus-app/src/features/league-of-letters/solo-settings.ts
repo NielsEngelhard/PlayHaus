@@ -43,7 +43,8 @@ export const SOLO_MAX_GUESSES = 6;
 export interface SoloSettings {
     locale: LanguageCode,
     wordLength: WordLength,
-    hardMode: boolean
+    hardMode: boolean,
+    secondsPerGuess: number
 }
 
 /**
@@ -53,8 +54,9 @@ export interface SoloSettings {
  * is — both the solo settings screen and the lobby replace it with the account's
  * own language as soon as the session has one.
  */
-export const DEFAULT_SOLO_SETTINGS: SoloSettings = {
+export const DEFAULT_LOL_SETTINGS: SoloSettings = {
     locale: DEFAULT_LANGUAGE,
     wordLength: 5,
-    hardMode: false
+    hardMode: false,
+    secondsPerGuess: 35
 };
