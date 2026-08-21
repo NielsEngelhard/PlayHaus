@@ -62,6 +62,7 @@ export interface LobbySettings {
     locale: LanguageCode
     wordLength: WordLength
     hardMode: boolean
+    timePerRound: number
 }
 
 export interface StartLobbyRequestData {
