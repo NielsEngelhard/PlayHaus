@@ -80,7 +80,6 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	// Multiplayer
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby", s.requireAuth(s.handleCreateLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleGetLobby))
-	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleUpdateLobbySettings))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleDeleteLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", s.requireAuth(s.handleJoinLobby))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", s.requireAuth(s.handleLeaveLobby))

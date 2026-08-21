@@ -84,7 +84,6 @@ type RecordMultiplayerGuessInput struct {
 // the screen -- there has to be a code before there is anything to share -- which is
 // well before anybody has been asked what to play. So the room starts at
 // DefaultWordLength and the host moves it from the settings card, through
-// UpdateLobbySettings, while the room fills up; nothing reads the length until
 // StartLobby draws the words with it.
 //
 // The language is not much of a decision here either: it is the host's own, and it is
@@ -216,33 +215,6 @@ func (s *Service) JoinLobby(ctx context.Context, code, userID string) (*Multipla
 	lobby.Players = append(lobby.Players, *player)
 
 	return lobby, nil
-}
-
-// UpdateLobbySettings changes what the room is going to play. Host only.
-func (s *Service) UpdateLobbySettings(ctx context.Context, code, userID string, in LobbySettings) (*MultiplayerLeagueOfLettersLobby, map[string]string, error) {
-	lobby, err := s.store.LobbyByCode(ctx, code)
-	if err != nil {
-		return nil, nil, err
-	}
-	if lobby.OwnerID != userID {
-		return nil, nil, ErrNotHost
-	}
-	if lobby.Status != LobbyWaiting {
-		return nil, nil, ErrLobbyStarted
-	}
-	if problems := in.validate(); len(problems) > 0 {
-		return nil, problems, nil
-	}
-	in = in.normalised()
-
-	if err := s.store.SaveLobbySettings(ctx, code, in); err != nil {
-		return nil, nil, fmt.Errorf("save lobby settings: %w", err)
-	}
-
-	lobby.Locale = in.Locale
-	lobby.WordLength = in.WordLength
-
-	return lobby, nil, nil
 }
 
 // LeaveLobby gives a seat back without closing the room. A room that is already
