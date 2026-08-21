@@ -2,7 +2,6 @@ import type { Game, GameRound } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
-import InlineNotification from "@/components/ui/InlineNotification";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
@@ -180,9 +179,6 @@ export default function PlayingGame({
 
     /** On a shared board the keyboard is only live when the turn is yours. */
     const canPlay = !multiplayer || myTurn === true;
-
-    /** Who the board is waiting on, when it is not you. */
-    const waitingOn = canPlay ? undefined : game.players?.find(player => player.userId === game.turn?.userId);
 
     // The backend withholds the answer while the round is still winnable, so being told it
     // at all is what tells us the round is over. No separate flag needed.
@@ -381,19 +377,6 @@ export default function PlayingGame({
                     draft={finished ? '' : canPlay ? draft : typing ?? ''}
                 />
             </SlideFadeIn>
-
-            {/*
-              * Whose turn it is, when it is not yours. The keyboard below is dead in
-              * that state, and a dead keyboard with nothing saying why reads as a
-              * broken one.
-              */}
-            {multiplayer && !finished && !canPlay && (
-                <InlineNotification
-                    icon='clock'
-                    title={waitingOn === undefined ? 'Wachten' : `${waitingOn.name} is aan de beurt`}
-                    message={typing ? 'Ze zijn aan het typen…' : 'Kijk mee — jij bent zo.'}
-                />
-            )}
 
             {/* The keyboard until there is nothing left to type, then the verdict in the
                 same place. Swapped rather than stacked: a dead keyboard under a result is
