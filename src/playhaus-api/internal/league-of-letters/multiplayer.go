@@ -249,7 +249,7 @@ func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
 // So are the settings. The room's word length has been sitting on the lobby since it
 // opened, moving under the host's finger; this is the first and only moment anything
 // reads it, because it is the moment the words are drawn.
-func (s *Service) StartLobby(ctx context.Context, in StartLobbyInput) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
+func (s *Service) StartLobby(ctx context.Context, in *StartLobbyInput) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
 	lobby, err := s.store.LobbyByCode(ctx, in.GameID)
 	if err != nil {
 		return nil, nil, err
