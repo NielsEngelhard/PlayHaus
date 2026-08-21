@@ -469,9 +469,6 @@ export default function PlayingGame({
                         />
 
                         {finishing ? (
-                            /* Nobody presses on to the uitslag on a shared board either:
-                               the table arrives there together, or the ones who did not
-                               press cannot be taken to the next room. */
                             <NextRoundCountdown durationMs={NEXT_ROUND_MS} label='Uitslag' />
                         ) : gameOver ? (
                             <ActionButton
