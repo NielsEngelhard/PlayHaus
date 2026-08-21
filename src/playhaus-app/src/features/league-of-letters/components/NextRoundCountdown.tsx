@@ -7,6 +7,8 @@ import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, View, ViewSty
 interface Props {
     /** How long the wait is, so the bar drains over exactly it. */
     durationMs: number,
+    /** What is being waited for. The last round of all is waiting for the uitslag. */
+    label?: string,
     /** For layout only — how the countdown sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
@@ -30,7 +32,7 @@ const useNativeDriver = Platform.OS !== 'web';
  * is how long the answer stays up. A bar rather than a number — three and a half seconds
  * counted out in digits reads as a deadline, and this is a breath, not a deadline.
  */
-export default function NextRoundCountdown({ durationMs, style }: Props) {
+export default function NextRoundCountdown({ durationMs, label = 'Volgende ronde', style }: Props) {
     const styles = useStyles();
 
     /** The track's width, which is how far the fill has to travel to leave it. */
@@ -73,7 +75,7 @@ export default function NextRoundCountdown({ durationMs, style }: Props) {
 
     return (
         <View style={[styles.wrap, style]}>
-            <AppText style={styles.label}>Volgende ronde</AppText>
+            <AppText style={styles.label}>{label}</AppText>
 
             <View style={styles.track} onLayout={measure}>
                 <Animated.View style={[styles.fill, { transform: [{ translateX }] }]} />

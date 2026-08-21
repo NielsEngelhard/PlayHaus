@@ -70,15 +70,14 @@ func (s *Server) AddAuthHandlers() {
 }
 
 func (s *Server) AddLeagueOfLettersHandlers() {
-	// Solo specific
+	// Solo
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo", s.requireAuth(s.handleCreateSoloGame))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/current", s.requireAuth(s.handleGetCurrentSoloGame))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleGetSoloGame))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleDeleteSoloGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
 
-	// The room a multiplayer game is set up in. Keyed by the join code throughout
-	// -- there is nothing else anybody ever looks a lobby up by.
+	// Multiplayer
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby", s.requireAuth(s.handleCreateLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleGetLobby))
 	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleUpdateLobbySettings))
@@ -86,8 +85,7 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", s.requireAuth(s.handleJoinLobby))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", s.requireAuth(s.handleLeaveLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/start", s.requireAuth(s.handleStartLobby))
-
-	// The game the room became.
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/rematch", s.requireAuth(s.handleRematchLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/multiplayer/{gameID}", s.requireAuth(s.handleGetMultiplayerGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))
 }

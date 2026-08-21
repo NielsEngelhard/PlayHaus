@@ -1,5 +1,6 @@
 import { LOBBY_CODE_LENGTH } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
+import PopPressable from "@/components/ui/PopPressable";
 import { ROUTES } from "@/constants/routes";
 import { Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -8,12 +9,97 @@ import Feather from "@expo/vector-icons/Feather";
 import * as Clipboard from "expo-clipboard";
 import { RelativePathString, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { Animated, Easing, Pressable, TextInput, View } from "react-native";
+import { Animated, Easing, Pressable, TextInput, useWindowDimensions, View } from "react-native";
 
 /** Half a blink. The caret is on for this long, then off for this long. */
 const BLINK_MS = 550;
 
 const SLOTS = Array.from({ length: LOBBY_CODE_LENGTH }, (_, index) => index);
+
+/**
+ * The page's own shape, repeated here.
+ *
+ * `app/_layout.tsx` centres every page in a 600pt column with 24pt of gutter either
+ * side, which fixes the card's width exactly — so the window is as good an answer as the
+ * card itself could give, a frame earlier and without a layout pass that would flash the
+ * wrong arrangement onto the first paint. `BottomBar` repeats the same figure for the
+ * same reason.
+ */
+const PAGE_COLUMN = 600;
+const PAGE_GUTTER = Spacing.four;
+
+/** The card's own padding in the row arrangement, and the gap between its two columns. */
+const CARD_PADDING = Spacing.three + 4;
+const COLUMN_GAP = Spacing.four;
+
+/**
+ * The least the copy column may be given before the row is not worth having.
+ *
+ * Under this the label starts breaking across lines and the hint turns into a column of
+ * two-word rows, which is worse than the stack it was supposed to improve on.
+ */
+const COPY_MIN = 200;
+
+/**
+ * How big a slot may get, and the least it may keep.
+ *
+ * The cap is what stops a short code stretching into letterboxes across a wide card; the
+ * floor is the point below which a capital stops being readable. Between them the row
+ * simply fits, which is why a six-character code needs no second layout — only smaller
+ * boxes. The floor is low enough that six of them still fit a 320pt phone, the narrowest
+ * screen the app runs on.
+ */
+const MIN_SLOT = 30;
+const MAX_SLOT = 60;
+
+const SLOT_GAP = Spacing.two;
+
+/**
+ * How much room the whole row of slots needs at full size.
+ *
+ * This is what decides the arrangement: a four-character code leaves a browser column
+ * enough width for copy beside it, and a six-character one does not — so the same test
+ * that splits the card today keeps it stacked the day codes get longer, with nobody
+ * having to remember to come back here. See `isWide`.
+ */
+const CLUSTER_WIDTH = LOBBY_CODE_LENGTH * MAX_SLOT + (LOBBY_CODE_LENGTH - 1) * SLOT_GAP;
+
+/**
+ * Whether the card has the width to stand its two halves side by side.
+ *
+ * Asked of the window, answered about the card: the page column is a fixed shape, so one
+ * follows from the other. The card takes the column's width or the window's, whichever
+ * runs out first.
+ */
+function isWide(window: number): boolean {
+    const card = Math.min(PAGE_COLUMN, window - PAGE_GUTTER * 2);
+
+    return card - CARD_PADDING * 2 >= CLUSTER_WIDTH + COLUMN_GAP + COPY_MIN;
+}
+
+/**
+ * A slot is a little taller than it is wide — the proportion of a key rather than a
+ * square. Height follows width through `aspectRatio`, so a row that has to shrink stays
+ * the same shape instead of turning into a rank of tall thin panels.
+ */
+const SLOT_ASPECT = 0.86;
+
+/**
+ * Type size is the one thing that cannot follow the box, so it follows the code length
+ * instead — a constant, known here at module load. Six slots on a narrow phone are tight
+ * enough that the four-character size would sit on its own borders.
+ */
+const SLOT_FONT = LOBBY_CODE_LENGTH > 4 ? 21 : 26;
+
+/** Dutch for the lengths a code can be, with the numeral as the way out. */
+const LENGTH_WORDS: Record<number, string> = { 4: 'Vier', 5: 'Vijf', 6: 'Zes' };
+
+/**
+ * Written from the length rather than around it. The card used to say "Vier tekens" in
+ * prose, which is a second place for the code length to live and the one that would go
+ * quietly wrong the day the server issues six.
+ */
+const HINT = `${LENGTH_WORDS[LOBBY_CODE_LENGTH] ?? LOBBY_CODE_LENGTH} tekens — je gaat er automatisch in`;
 
 /**
  * Everything a code is allowed to be. Anything else is dropped as it arrives, which is
@@ -27,19 +113,29 @@ function sanitize(text: string): string {
  * Enter a room code and join someone else's game.
  *
  * The code is drawn as one box per character, but it is typed into a single `TextInput`
- * laid over the whole row at zero opacity. One field rather than four is what makes the
- * platform's own behaviour work — paste drops a whole code in, backspace walks back
+ * laid over the whole row at zero opacity. One field rather than several is what makes
+ * the platform's own behaviour work — paste drops a whole code in, backspace walks back
  * through it, autofill from a message can fill it — none of which survives being split
- * across four inputs that hand focus to each other.
+ * across inputs that hand focus to each other.
  *
- * There is no submit button. A code is a fixed four characters, so the last one someone
- * types is unambiguously the end of it, and a button underneath would only be a second way
- * to say what the field already knows. The line under the row admits that it acts on its
- * own, because a form that does had better say so before it does it.
+ * The card is a stack on a phone and a row on anything wider: what this is for on one
+ * side, the boxes on the other. Stacked at full width the row is the widest thing on the
+ * card and reads as the point of it — but the same arrangement in a 550pt browser column
+ * leaves a small cluster of boxes marooned in the middle of a lot of nothing, with its
+ * label and its footnote pinned to opposite corners. Two columns hand the spare width to
+ * the copy, which is the half that can use it.
+ *
+ * There is no submit button. A code is a fixed number of characters, so the last one
+ * someone types is unambiguously the end of it, and a button would only be a second way
+ * to say what the field already knows. The hint admits that it acts on its own, because
+ * a form that does had better say so before it does it.
  */
 export default function RoomCodeCard() {
     const theme = useTheme();
     const styles = useStyles();
+
+    const { width } = useWindowDimensions();
+    const wide = isWide(width);
 
     const router = useRouter();
     const field = useRef<TextInput>(null);
@@ -91,62 +187,86 @@ export default function RoomCodeCard() {
         }
     }
 
+    // Held in variables rather than written twice, because the two arrangements move
+    // these between columns rather than changing what they say.
+    const hint = <AppText style={[styles.hint, wide && styles.hintWide]}>{HINT}</AppText>;
+
+    const pasteChip = (
+        <PopPressable
+            style={styles.paste}
+            onPress={() => void paste()}
+            accessibilityRole='button'
+            accessibilityLabel='Code plakken'
+        >
+            <Feather name='clipboard' size={13} color={theme.colors.focus} />
+
+            <AppText style={styles.pasteText}>Plakken</AppText>
+        </PopPressable>
+    );
+
     return (
-        <View style={styles.card}>
-            <View style={styles.head}>
+        <View style={[styles.card, wide && styles.cardWide]}>
+            {/* The half that says what this is, and the half that gets the leftover
+                width — the boxes are already as big as they should ever be. */}
+            <View style={[styles.copy, wide && styles.copyWide]}>
                 <AppText style={styles.label}>Of join een kamer</AppText>
 
-                <Pressable
-                    style={styles.paste}
-                    onPress={paste}
-                    accessibilityRole='button'
-                    accessibilityLabel='Code plakken'
-                >
-                    <Feather name='clipboard' size={13} color={theme.colors.focus} />
-
-                    <AppText style={styles.pasteText}>Plakken</AppText>
-                </Pressable>
+                {wide && hint}
             </View>
 
-            <Pressable
-                style={styles.slots}
-                onPress={() => field.current?.focus()}
-                accessibilityRole='none'
-            >
-                {SLOTS.map(index => (
-                    <Slot
-                        key={index}
-                        character={code[index]}
-                        active={index === cursor}
+            {/* Nothing wraps the boxes when stacked — the row already fills the card —
+                so this only takes a style in the row arrangement. */}
+            <View style={wide && styles.entryWide}>
+                <Pressable
+                    style={styles.slots}
+                    onPress={() => field.current?.focus()}
+                    accessibilityRole='none'
+                >
+                    {SLOTS.map(index => (
+                        <Slot
+                            key={index}
+                            character={code[index]}
+                            active={index === cursor}
+                            wide={wide}
+                        />
+                    ))}
+
+                    {/* Invisible, and on top so it takes the taps. Kept at the row's own size
+                        rather than shrunk to nothing: a zero-height field is one some
+                        browsers refuse to focus, and a small font size makes iOS Safari zoom
+                        the page on focus. */}
+                    <TextInput
+                        ref={field}
+                        value={code}
+                        // Codes read as one block of capitals, so the field owns that rather
+                        // than trusting every keyboard to honour `autoCapitalize`.
+                        onChangeText={change}
+                        onFocus={() => setFocused(true)}
+                        onBlur={() => setFocused(false)}
+                        onSubmitEditing={() => join(code)}
+                        maxLength={LOBBY_CODE_LENGTH}
+                        autoCapitalize='characters'
+                        autoCorrect={false}
+                        returnKeyType='go'
+                        accessibilityLabel='Kamercode'
+                        // `caretHidden` because the boxes draw their own, and the real one
+                        // would be sitting at the far left of an invisible field.
+                        caretHidden
+                        style={styles.input}
                     />
-                ))}
+                </Pressable>
 
-                {/* Invisible, and on top so it takes the taps. Kept at the row's own size
-                    rather than shrunk to nothing: a zero-height field is one some
-                    browsers refuse to focus, and a small font size makes iOS Safari zoom
-                    the page on focus. */}
-                <TextInput
-                    ref={field}
-                    value={code}
-                    // Codes read as one block of capitals, so the field owns that rather
-                    // than trusting every keyboard to honour `autoCapitalize`.
-                    onChangeText={change}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    onSubmitEditing={() => join(code)}
-                    maxLength={LOBBY_CODE_LENGTH}
-                    autoCapitalize='characters'
-                    autoCorrect={false}
-                    returnKeyType='go'
-                    accessibilityLabel='Kamercode'
-                    // `caretHidden` because the boxes draw their own, and the real one
-                    // would be sitting at the far left of an invisible field.
-                    caretHidden
-                    style={styles.input}
-                />
-            </Pressable>
+                {/* Stacked, the footnote and the paste control share the line under the
+                    boxes and hold the card's two edges. In a row the footnote has already
+                    been said on the other side, so only the chip is left — tucked under
+                    the boxes rather than under the card, where it stays part of the field
+                    instead of becoming a corner of its own. */}
+                <View style={[styles.foot, wide && styles.footWide]}>
+                    {!wide && hint}
 
-            <AppText style={styles.hint}>Vier tekens — je gaat er automatisch in</AppText>
+                    {pasteChip}
+                </View>
+            </View>
         </View>
     )
 }
@@ -154,16 +274,25 @@ export default function RoomCodeCard() {
 interface SlotProps {
     character: string | undefined,
     /** Whether this is the slot the next character lands in. */
-    active: boolean
+    active: boolean,
+    /** In a row the slots are a fixed cluster; stacked they share out the card's width. */
+    wide: boolean
 }
 
 /** One character of the code: filled, waiting with a caret, or an empty box. */
-function Slot({ character, active }: SlotProps) {
+function Slot({ character, active, wide }: SlotProps) {
     const styles = useStyles();
     const filled = character !== undefined;
 
     return (
-        <View style={[styles.slot, filled && styles.slotFilled, active && styles.slotActive]}>
+        <View
+            style={[
+                styles.slot,
+                wide ? styles.slotFixed : styles.slotFluid,
+                filled && styles.slotFilled,
+                active && styles.slotActive
+            ]}
+        >
             {filled
                 ? <AppText style={styles.slotText}>{character}</AppText>
                 : active && <Caret />}
@@ -215,13 +344,27 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         ...(theme.scheme === 'dark' ? {} : theme.popShadow(theme.colors.border))
     },
-    head: {
+    cardWide: {
         flexDirection: 'row',
-        // The label is uppercase micro-type and the paste chip is not, so it is their
-        // baselines that should agree rather than their boxes.
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
-        gap: Spacing.two
+        // Centres rather than tops: two short lines of copy against a cluster of boxes
+        // half again as tall, and hanging them from the top leaves them floating.
+        alignItems: 'center',
+        // The same two figures `isWide` measures with, so what it allowed for is what
+        // actually gets drawn.
+        gap: COLUMN_GAP,
+        padding: CARD_PADDING
+    },
+    copy: {
+        // Stacked, the label is a caption on the boxes below it and sits close on them.
+        marginBottom: Spacing.three - 4
+    },
+    copyWide: {
+        // Takes whatever the boxes do not. `flexBasis: 0` because `flex: 1` alone would
+        // let this be sized by its own text and leave the row's spare width unclaimed.
+        flex: 1,
+        flexBasis: 0,
+        minWidth: 0,
+        marginBottom: 0
     },
     label: {
         fontSize: 11,
@@ -230,36 +373,41 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 1.8,
         color: theme.colors.textMuted
     },
-    paste: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    entryWide: {
+        // The boxes are drawn at full size here, so this column takes exactly the width
+        // they need and gives the rest away.
         flexShrink: 0,
-        gap: 5
-    },
-    pasteText: {
-        fontSize: 12,
-        fontWeight: 800,
-        color: theme.colors.focus
+        alignItems: 'flex-end'
     },
     slots: {
-        marginTop: Spacing.three - 4,
         flexDirection: 'row',
-        gap: 6,
-        justifyContent: 'center'
+        gap: SLOT_GAP
     },
     slot: {
-        flex: 1,
-        height: 52,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 13,
+        // Height follows width, so six slots on a narrow phone become smaller boxes
+        // rather than tall thin letterboxes.
+        aspectRatio: SLOT_ASPECT,
+        borderRadius: 14,
         borderWidth: theme.borderWidth,
-        // A quiet solid line rather than a dashed one. Four boxes is few enough to read as
-        // a code at a glance, and dashes at this size turned the row into a dotted band.
+        // A quiet solid line rather than a dashed one. Few enough boxes to read as a code
+        // at a glance, and dashes at this size turn the row into a dotted band.
         borderColor: theme.colors.boardEmptyBorder,
-        backgroundColor: theme.colors.background,
-        // Four slots in a 600pt column would otherwise stretch into letterboxes.
-        maxWidth: 66
+        backgroundColor: theme.colors.background
+    },
+    // Stacked: the row shares out the card's width, up to the point where a slot stops
+    // being a key and starts being a panel.
+    slotFluid: {
+        flex: 1,
+        flexBasis: 0,
+        minWidth: MIN_SLOT,
+        maxWidth: MAX_SLOT
+    },
+    // In a row: a fixed cluster, because a stretched one would be sized by whatever the
+    // copy beside it happened to leave over.
+    slotFixed: {
+        width: MAX_SLOT
     },
     slotFilled: {
         // A slot that has been answered climbs back to the card's own surface and takes a
@@ -274,13 +422,15 @@ const useStyles = createThemedStyles(theme => ({
         boxShadow: `0 0 0 3px ${theme.colors.focusRing}`
     },
     slotText: {
-        fontSize: 24,
+        fontSize: SLOT_FONT,
         fontWeight: 900,
+        // Outfit Black is wide; without pulling it in, a full slot touches its own border.
+        letterSpacing: -0.5,
         color: theme.colors.text
     },
     caret: {
         width: 2,
-        height: 22,
+        height: Math.round(SLOT_FONT * 0.85),
         backgroundColor: theme.colors.focus
     },
     input: {
@@ -292,14 +442,51 @@ const useStyles = createThemedStyles(theme => ({
         opacity: 0,
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(900),
-        fontSize: 24,
+        fontSize: SLOT_FONT,
         textAlign: 'center',
         color: theme.colors.text
     },
+    foot: {
+        marginTop: 10,
+        flexDirection: 'row',
+        // The footnote is body copy and the chip is a control, so it is their centres
+        // that should agree rather than their baselines.
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: Spacing.two
+    },
+    footWide: {
+        justifyContent: 'flex-end'
+    },
     hint: {
-        marginTop: 11,
+        flexShrink: 1,
         fontSize: 12,
         fontWeight: 500,
         color: theme.colors.textMuted
+    },
+    hintWide: {
+        marginTop: 6,
+        fontSize: 13,
+        lineHeight: 13 * 1.45,
+        color: theme.colors.textSecondary
+    },
+    paste: {
+        flexShrink: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingVertical: 6,
+        paddingHorizontal: 11,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        // A quiet outline: this is the second way to fill the field, and a full-strength
+        // line would have it competing with the boxes it belongs to.
+        borderColor: theme.colors.borderSubtle,
+        backgroundColor: theme.colors.backgroundElement
+    },
+    pasteText: {
+        fontSize: 12,
+        fontWeight: 800,
+        color: theme.colors.text
     }
 }))

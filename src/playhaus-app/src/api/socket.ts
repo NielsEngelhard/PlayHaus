@@ -38,6 +38,8 @@ export type ServerEvent =
     | { type: 'typing', data: { userId: string, letters: string } }
     | { type: 'guess', data: MultiplayerGuessResult }
     | { type: 'game_over', data: { players: GamePlayer[] } }
+    /** The host opened a fresh room for the same table. Everybody still here follows the code. */
+    | { type: 'rematch', data: { code: string } }
     | { type: 'error', data: { message: string } };
 
 /** The one thing a client says. Everything else is a request. */

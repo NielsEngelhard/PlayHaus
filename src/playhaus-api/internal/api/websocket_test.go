@@ -489,3 +489,31 @@ func TestSocketSnapshotCarriesTheGame(t *testing.T) {
 		t.Error("the game came through with no board")
 	}
 }
+
+// The guests are told where the table has moved to, in the room they are still sitting
+// in. It is the only place they can be reached: nobody can be listening to a code they
+// have not been given yet.
+func TestRematchIsAnnouncedInTheOldRoom(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	live := liveServer(t, srv)
+
+	host := newGuestSession(t, srv)
+	guest := newGuestSession(t, srv)
+
+	game := startedGame(t, srv, host, guest)
+	finishGame(t, db, game.ID)
+
+	conn := dialRoom(t, live, game.lobbyCode, guest.Token)
+	conn.await(typeState)
+
+	rec := do(t, srv, http.MethodPost, lobbyRematchPath(game.lobbyCode), "", host.Token)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("rematch: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	next := decodeBody[lobbyResponse](t, rec)
+
+	announced := into[rematchPayload](t, conn.await(typeRematch))
+	if announced.Code != next.Code {
+		t.Errorf("announced %q, want the room the host opened %q", announced.Code, next.Code)
+	}
+}

@@ -9,7 +9,18 @@ import { View } from "react-native";
 interface Props {
     players: GamePlayer[],
     /** Whose game this is, so one row can read `Jij` instead of a name. */
-    userId: string
+    userId: string,
+    /**
+     * Who is connected right now, drawn as the ring around the swatch — the same mark
+     * `PlayerScoreRow` puts on a chip.
+     *
+     * It earns its place on a result because of what happens next: the host decides from
+     * this screen whether to play again with the same people, and who is still on the
+     * other end is exactly what that decision is about.
+     *
+     * Left out where there is nobody to be connected, which is every solo game.
+     */
+    online?: Set<string>
 }
 
 /**
@@ -23,7 +34,7 @@ interface Props {
  * One player is a legitimate scoreboard, not a degenerate one: solo is the only mode
  * the API serves today, and a table of one still says what the game was worth.
  */
-export default function FinalScoreboard({ players, userId }: Props) {
+export default function FinalScoreboard({ players, userId, online }: Props) {
     const styles = useStyles();
 
     // Ranked here rather than trusted from the caller: the API orders players by when
@@ -38,6 +49,9 @@ export default function FinalScoreboard({ players, userId }: Props) {
                     player={player}
                     place={index + 1}
                     you={player.userId === userId}
+                    // Undefined means nobody is tracking presence, which is not the same
+                    // as "away" — that would put every light out on a solo result.
+                    live={online === undefined ? undefined : online.has(player.userId)}
                     // Every row but the first is fenced off from the one above it. The
                     // last row keeps a clean bottom edge against the card.
                     divided={index > 0}
@@ -51,10 +65,11 @@ interface ScoreLineProps {
     player: GamePlayer,
     place: number,
     you: boolean,
+    live?: boolean,
     divided: boolean
 }
 
-function ScoreLine({ player, place, you, divided }: ScoreLineProps) {
+function ScoreLine({ player, place, you, live, divided }: ScoreLineProps) {
     const styles = useStyles();
 
     const avatar = avatarColorById(player.avatarColorId);
@@ -65,7 +80,9 @@ function ScoreLine({ player, place, you, divided }: ScoreLineProps) {
                 <AppText style={styles.placeText}>{place}</AppText>
             </View>
 
-            <View style={[styles.dot, { backgroundColor: avatar.color }]} />
+            <View style={[styles.dot, { backgroundColor: avatar.color }, live !== undefined && (
+                live ? styles.dotLive : styles.dotAway
+            )]} />
 
             <AppText style={[styles.name, you && styles.nameYou]} numberOfLines={1}>
                 {you ? 'Jij' : player.name}
@@ -120,6 +137,15 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         borderWidth: 2,
         borderColor: theme.colors.border
+    },
+    // Still here. Same two marks as the board's chips, so a light means the same thing
+    // on the result as it did while the game was on.
+    dotLive: {
+        borderColor: theme.colors.mint
+    },
+    dotAway: {
+        borderColor: theme.colors.destructive,
+        opacity: 0.55
     },
     name: {
         // Takes the slack, so the score stays pinned to the right-hand edge however
