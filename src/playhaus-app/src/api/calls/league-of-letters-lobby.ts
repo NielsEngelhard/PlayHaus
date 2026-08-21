@@ -64,6 +64,13 @@ export interface LobbySettings {
     hardMode: boolean
 }
 
+export interface StartLobbyRequestData {
+    lobbyId: string,
+    locale: LanguageCode
+    wordLength: WordLength
+    hardMode: boolean    
+}
+
 export interface Lobby {
     id: string
     /** What players type in to get here. Uppercase, `LOBBY_CODE_LENGTH` characters. */
@@ -137,8 +144,8 @@ export async function getLobby(code: string): Promise<Lobby> {
     return request<Lobby>(lobbyPath(code));
 }
 
-export async function startLobby(code: string): Promise<Lobby> {
-    return request<Lobby>(`${lobbyPath(code)}/start`, { method: 'POST' });
+export async function startLobby(data: StartLobbyRequestData): Promise<Lobby> {
+    return request<Lobby>(`${lobbyPath(data.lobbyId)}/start`, { method: 'POST', body: JSON.stringify(data) });
 }
 
 export async function deleteLobby(code: string): Promise<void> {
