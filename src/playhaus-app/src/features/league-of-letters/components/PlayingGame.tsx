@@ -9,6 +9,7 @@ import { useGameMusic } from "@/features/audio/MusicContext";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
+import NextRoundCountdown from "@/features/league-of-letters/components/NextRoundCountdown";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
 import RoundBar from "@/features/league-of-letters/components/RoundBar";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
@@ -104,6 +105,15 @@ const RISE_PX = 14;
 const RISE_STAGGER_MS = 60;
 
 /**
+ * How long a shared board sits on the answer before it moves itself on.
+ *
+ * Long enough to read a word and take in whether anybody got it, short enough that four
+ * people are not left waiting on the fifth to look up from their phone. Counted from the
+ * end of the reveal rather than from the end of the round, so the word is up for all of it.
+ */
+const NEXT_ROUND_MS = 3500;
+
+/**
  * A game being played: the board, the keyboard, and — for multiplayer — a clock and the
  * other players.
  *
@@ -158,8 +168,8 @@ export default function PlayingGame({
      * have not been dealt yet.
      */
     const [revealing, setRevealing] = useState(false);
-    /** Bumped per guess, so a word sent while the board is mid-reveal restarts the wait
-     * instead of inheriting the tail of the previous one's. */
+    /** Bumped per row that lands, so a word arriving while the board is mid-reveal
+     * restarts the wait instead of inheriting the tail of the previous one's. */
     const [revealed, setRevealed] = useState(0);
 
     const multiplayer = game.mode === 'multiplayer';
@@ -212,7 +222,8 @@ export default function PlayingGame({
     // part of the draft: a new opening letter has to replace the one already typed in.
     const boardKey = `${game.id}:${round.roundNumber}:${firstLetter}`;
     const [drafted, setDrafted] = useState(boardKey);
-    if (drafted !== boardKey) {
+    const newBoard = drafted !== boardKey;
+    if (newBoard) {
         setDrafted(boardKey);
         setDraft(firstLetter);
         setNotice(null);
@@ -220,11 +231,29 @@ export default function PlayingGame({
     }
 
     /**
-     * How long to sit on the answer. The row being turned over is the newest one, and its
-     * marks are what decide whether the board is going to draw the last tile out or not —
-     * a near-miss spins, and the verdict has to wait out the spin like everything else.
+     * The newest row on the board — the one that may still be turning over.
+     *
+     * A row landing is what starts the reveal, whoever played it. On a shared board
+     * everybody is watching the same tiles turn, so the answer has to wait them out on
+     * every screen and not only on the screen of whoever typed the word: otherwise the
+     * rest of the table reads the result off a card while their own board is still face
+     * down. Adjusted during render, so nothing that knows the answer is painted for a
+     * frame before the reveal takes it back.
      */
-    const revealWait = revealDurationMs(game.wordLength, myGuesses[myGuesses.length - 1]?.marks);
+    const newest = rows[rows.length - 1];
+    const [dealt, setDealt] = useState(newest?.id);
+    if (dealt !== newest?.id) {
+        setDealt(newest?.id);
+        // A new round arrives with rows this screen never watched land, and a row the
+        // clock filled in has no marks to turn over. Neither of them is a reveal.
+        if (!newBoard && newest !== undefined && !newest.skipped) {
+            setRevealing(true);
+            setRevealed(count => count + 1);
+        }
+    }
+
+    /** How long to sit on the answer: as long as the board takes to turn the row over. */
+    const revealWait = revealDurationMs(game.wordLength);
 
     useEffect(() => {
         if (!revealing) return;
@@ -240,6 +269,27 @@ export default function PlayingGame({
         const clear = setTimeout(() => setNotice(null), NOTICE_MS);
         return () => clearTimeout(clear);
     }, [notice]);
+
+    /**
+     * On a shared board the round moves itself on.
+     *
+     * Nobody presses Volgende ronde in multiplayer: five people each waiting for the
+     * other four is a game that pauses between every round, and one of them putting their
+     * phone in a pocket is a game that stops for good. So the answer gets its beat and
+     * the whole table goes on together — timed from the end of the reveal, which is the
+     * same moment on every screen because it is the same row scored the same way.
+     *
+     * `onNextRound` is stable, which is what makes this one wait rather than a wait that
+     * starts again every time the room delivers a frame.
+     */
+    const movingOn = multiplayer && decided && !gameOver && onNextRound !== undefined;
+
+    useEffect(() => {
+        if (!movingOn) return;
+
+        const move = setTimeout(() => onNextRound?.(), NEXT_ROUND_MS);
+        return () => clearTimeout(move);
+    }, [movingOn, onNextRound]);
 
     function type(letter: string) {
         setNotice(null);
@@ -299,8 +349,8 @@ export default function PlayingGame({
             setDraft(firstLetter);
             // And the table stops seeing the word that has now landed as a row.
             onTyping?.('');
-            setRevealing(true);
-            setRevealed(count => count + 1);
+            // The reveal is not started here. The row this guess just put on the board is
+            // what starts it, on this screen by the same rule as on everybody else's.
         } catch (failure) {
             setNotice({ text: guessErrorMessage(failure) });
         } finally {
@@ -409,6 +459,10 @@ export default function PlayingGame({
                                     ? router.replace(ROUTES.leagueOfLettersIndex)
                                     : onFinish()}
                             />
+                        ) : movingOn ? (
+                            /* No button on a shared board: the table moves on by itself,
+                               and all that is left to say is how long the word stays up. */
+                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} />
                         ) : (
                             <ActionButton
                                 text='Volgende ronde'
