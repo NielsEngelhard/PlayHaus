@@ -164,8 +164,6 @@ export default function LobbyView({ state, onStarted }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the height the root layout leaves, which the two room screens divide up
-    // between their own pinned rows and the scroller between them.
     screen: {
         flex: 1,
         width: '100%'

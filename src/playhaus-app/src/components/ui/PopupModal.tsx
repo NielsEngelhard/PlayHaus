@@ -149,7 +149,8 @@ const useStyles = createThemedStyles(theme => ({
     },
     title: {
         fontSize: FontSizes.xl,
-        fontWeight: 900
+        fontWeight: 900,
+        color: theme.colors.text
     },
     message: {
         marginTop: Spacing.two,

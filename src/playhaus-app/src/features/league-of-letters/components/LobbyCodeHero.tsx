@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import { ROUTES } from "@/constants/routes";
-import { Brand, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { shareLink, type ShareOutcome } from "@/utils/share";
@@ -81,16 +81,12 @@ export default function LobbyCodeHero({ code }: Props) {
             <View
                 style={styles.tiles}
                 accessibilityRole='text'
-                // Spelled out one character at a time: read as a word, a code comes out
-                // of a screen reader as noise.
                 accessibilityLabel={`Kamercode: ${characters.join(' ')}`}
             >
                 {characters.map((character, index) => {
-                    const last = index === characters.length - 1;
-
                     return (
                         <View key={index} style={[styles.tile]}>
-                            <AppText style={[styles.character, last && styles.characterAccent]}>
+                            <AppText style={[styles.character]}>
                                 {character}
                             </AppText>
                         </View>
@@ -163,10 +159,6 @@ const useStyles = createThemedStyles(theme => ({
         // Outfit Black is wide; without pulling it in, a full tile touches its own border.
         letterSpacing: -1,
         color: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text
-    },
-    characterAccent: {
-        // Ink in both schemes: this one is sitting on the lemon now, not beside it.
-        color: Brand.ink
     },
     row: {
         marginTop: 11,

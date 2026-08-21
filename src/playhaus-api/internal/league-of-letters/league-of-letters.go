@@ -45,18 +45,16 @@ const DefaultWordLength = 5
 // everybody something.
 const MaxGuesses = 6
 
-// The shape of a multiplayer room, all of it fixed rather than configurable.
 const (
-	// MaxLobbyPlayers matches MAX_LOBBY_PLAYERS in the app's lobby module.
-	MaxLobbyPlayers = 6
-	// MinLobbyPlayers -- a game with one player in it is a solo game with extra
-	// steps. Matches MIN_LOBBY_PLAYERS in the app's lobby module.
-	MinLobbyPlayers = 2
-	// JoinCodeLength matches LOBBY_CODE_LENGTH, and the join card's input.
-	JoinCodeLength = 4
-	// SecondsPerTurn is how long you get. Run it out and the row is filled in blank
-	// and the next player is up.
-	SecondsPerTurn = 35
+	MaxLobbyPlayers   = 6
+	MinLobbyPlayers   = 2
+	JoinCodeLength    = 4
+	MinSecondsPerTurn = 10
+	MaxSecondsPerTurn = 100
+)
+
+const (
+	DefaultSecondsPerTurn = 35
 )
 
 // joinCodeAlphabet leaves out O/0 and I/1. Codes get read out loud across a room,
@@ -181,6 +179,8 @@ type MultiplayerLeagueOfLettersGame struct {
 
 	Status    GameStatus `gorm:"not null"`
 	CreatedAt time.Time  `gorm:"not null"`
+
+	SecondsPerGuess int `gorm:"not null;default:35"`
 }
 
 func (MultiplayerLeagueOfLettersGame) TableName() string { return "mp_lol_games" }

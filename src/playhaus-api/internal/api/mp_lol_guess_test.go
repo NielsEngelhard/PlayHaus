@@ -124,8 +124,8 @@ func TestStartLobbyDealsTheFirstTurn(t *testing.T) {
 	if err != nil {
 		t.Fatalf("turn endsAt = %q: %v", game.Turn.EndsAt, err)
 	}
-	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.SecondsPerTurn*time.Second {
-		t.Errorf("turn has %s left, want up to %ds", left, league_of_letters.SecondsPerTurn)
+	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.DefaultSecondsPerTurn*time.Second {
+		t.Errorf("turn has %s left, want up to %ds", left, league_of_letters.DefaultSecondsPerTurn)
 	}
 
 	// The board's countdown reads the round it is drawing, so the deadline has to
@@ -220,8 +220,8 @@ func TestSubmitMultiplayerGuessScoresAndPassesTheTurn(t *testing.T) {
 	if err != nil {
 		t.Fatalf("turn endsAt = %q: %v", got.Turn.EndsAt, err)
 	}
-	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.SecondsPerTurn*time.Second {
-		t.Errorf("the new turn has %s left, want a full %ds", left, league_of_letters.SecondsPerTurn)
+	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.DefaultSecondsPerTurn*time.Second {
+		t.Errorf("the new turn has %s left, want a full %ds", left, league_of_letters.DefaultSecondsPerTurn)
 	}
 
 	// And the score went to the player who earned it, not to the table.

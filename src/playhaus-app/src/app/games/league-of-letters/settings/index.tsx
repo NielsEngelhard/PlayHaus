@@ -14,7 +14,7 @@ import { useAuth } from "@/features/auth/useAuth";
 import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { DEFAULT_SOLO_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
+import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -42,7 +42,7 @@ export default function LeagueOfLettersSettingsPage() {
 
     const router = useRouter();
     const { status, user } = useAuth();
-    const [settings, setSettings] = useState(DEFAULT_SOLO_SETTINGS);
+    const [settings, setSettings] = useState(DEFAULT_LOL_SETTINGS);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     /** False until the server has said whether a game is already running. */
