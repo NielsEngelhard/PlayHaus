@@ -7,6 +7,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
+import ToggleRow from "@/components/ui/ToggleRow";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
@@ -191,7 +192,7 @@ export default function LeagueOfLettersSettingsPage() {
                 <WordLengthCard
                     value={settings.wordLength}
                     onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                />
+                />           
             </View>
 
             <View style={styles.language}>
@@ -200,6 +201,15 @@ export default function LeagueOfLettersSettingsPage() {
                     onChange={locale => setSettings(current => ({ ...current, locale }))}
                 />
             </View>
+
+            <ToggleRow
+                value={settings.hardMode}
+                onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
+                label="Hard mode"
+                description="Pick random word that can be ANY existing word in the language. When disabled an easier set of words will be used."
+                icon="zap"
+                key="hardmode"
+            />
 
             {error && (
                 <View style={styles.error}>

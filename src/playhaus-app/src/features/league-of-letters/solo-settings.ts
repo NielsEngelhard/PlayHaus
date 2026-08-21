@@ -42,7 +42,8 @@ export const SOLO_MAX_GUESSES = 6;
  */
 export interface SoloSettings {
     locale: LanguageCode,
-    wordLength: WordLength
+    wordLength: WordLength,
+    hardMode: boolean
 }
 
 /**
@@ -54,5 +55,6 @@ export interface SoloSettings {
  */
 export const DEFAULT_SOLO_SETTINGS: SoloSettings = {
     locale: DEFAULT_LANGUAGE,
-    wordLength: 5
+    wordLength: 5,
+    hardMode: false
 };
