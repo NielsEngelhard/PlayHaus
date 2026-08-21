@@ -208,7 +208,6 @@ export default function LeagueOfLettersSettingsPage() {
                 label="Hard mode"
                 description="Pick random word that can be ANY existing word in the language. When disabled an easier set of words will be used."
                 icon="zap"
-                key="hardmode"
             />
 
             {error && (

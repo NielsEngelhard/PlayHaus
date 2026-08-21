@@ -1,19 +1,12 @@
 import type { Catalog } from '@/features/i18n/catalog';
 
-/**
- * The Dutch catalog.
- *
- * Typed as `Catalog` rather than inferred: that is what turns a key English has and
- * Dutch forgot — or a key Dutch invented — into a compile error rather than a string
- * that quietly falls back to English at runtime.
- */
 export const nl: Catalog = {
     home: {
         headline: {
             title: 'Kleine spelletjes,',
             accent: 'groot plezier.'
         },
-        subtitle: 'Snelle spelletjes voor trage ochtenden, lange middagen en avonden die uit de hand lopen.'
+        subtitle: 'Partygames voor jou en je vrienden. Kies er eentje en spelen maar!'
     },
     games: {
         leagueOfLetters: {

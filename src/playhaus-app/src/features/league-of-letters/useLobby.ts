@@ -4,15 +4,16 @@ import {
     isHostOf,
     joinLobby,
     leaveLobby,
+    rematchLobby,
     startLobby,
     updateLobbySettings,
     type Lobby,
     type LobbySettings
 } from '@/api/calls/league-of-letters-lobby';
 import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
+import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
 import { lobbyErrorMessage } from '@/features/league-of-letters/game-errors';
-import { DEFAULT_SOLO_SETTINGS } from '@/features/league-of-letters/solo-settings';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -45,6 +46,14 @@ export interface LobbyState {
      * call once — afterwards the screen is expected to navigate away.
      */
     close: () => Promise<void>
+    /**
+     * The room this table has moved on to, once the game is over and the host has opened
+     * another. The screen's cue to take everybody there — host and guest alike.
+     */
+    rematchCode: string | null
+    rematching: boolean
+    /** Host only. Opens the next room on the same settings; everybody else is told. */
+    rematch: () => Promise<void>
     reload: () => void
 }
 
@@ -110,6 +119,16 @@ export function useLobby(code?: string): LobbyState {
     const [saving, setSaving] = useState(false);
     const [starting, setStarting] = useState(false);
     const [closing, setClosing] = useState(false);
+    const [rematching, setRematching] = useState(false);
+
+    /**
+     * Where the table has gone next, or null while this is still the only room.
+     *
+     * Set from three places on purpose — the announcement, every lobby the room sends,
+     * and the read that opens the screen — because missing it is being stranded on a
+     * result while everybody else is in the next room.
+     */
+    const [rematchCode, setRematchCode] = useState<string | null>(null);
 
     // Nothing may touch state after unmount, and the room is exactly the screen people
     // leave while a request is still settling.
@@ -169,9 +188,9 @@ export function useLobby(code?: string): LobbyState {
      * top of the one already on screen. Declared above the load effect, so it has
      * already run by the time the room is opened on mount.
      */
-    const locale = useRef(DEFAULT_SOLO_SETTINGS.locale);
+    const locale = useRef(DEFAULT_LANGUAGE);
     useEffect(() => {
-        locale.current = user?.locale ?? DEFAULT_SOLO_SETTINGS.locale;
+        locale.current = user?.locale ?? DEFAULT_LANGUAGE;
     }, [user]);
 
     const load = useCallback(async () => {
@@ -195,7 +214,7 @@ export function useLobby(code?: string): LobbyState {
 
         try {
             const opened = code === undefined
-                ? await createLobby({ ...DEFAULT_SOLO_SETTINGS, locale: locale.current })
+                ? await createLobby(locale.current)
                 : await joinLobby(code);
 
             if (held.current === null) {
@@ -223,6 +242,7 @@ export function useLobby(code?: string): LobbyState {
 
             setError(null);
             setLobby(opened);
+            setRematchCode(opened.rematchCode ?? null);
         } catch (failure) {
             // Never got in, so there is nothing to hand back — but the hold taken before
             // the request still has to come off.
@@ -262,6 +282,9 @@ export function useLobby(code?: string): LobbyState {
                 // Only if it is still the room on screen. `close` and a re-join can both
                 // land between a frame being sent and being handled.
                 setLobby(current => (current?.code === fresh.code ? fresh : current));
+                // Never cleared from here: a room only ever gains one of these, and a
+                // frame that predates the announcement must not undo it.
+                if (fresh.rematchCode !== undefined) setRematchCode(fresh.rematchCode);
                 return;
             }
 
@@ -270,6 +293,13 @@ export function useLobby(code?: string): LobbyState {
                 setLobby(current => (
                     current === null ? current : { ...current, status: 'started', gameId: event.data.gameId }
                 ));
+                return;
+            }
+
+            case 'rematch': {
+                // The host opened the next room. Everybody still here follows, which the
+                // screen does — this hook only knows where.
+                setRematchCode(event.data.code);
                 return;
             }
 
@@ -366,6 +396,31 @@ export function useLobby(code?: string): LobbyState {
         }
     }, [lobby, isHost, starting]);
 
+    /**
+     * Opens the next room. Host only, and only once the game behind this one is over.
+     *
+     * Answers nothing: what the caller needs is `rematchCode`, and that is set here as
+     * well as by the announcement so the host does not have to wait for their own
+     * broadcast to come back round.
+     */
+    const rematch = useCallback(async () => {
+        if (lobby === null || !isHost || rematching) return;
+
+        setRematching(true);
+        setActionError(null);
+
+        try {
+            const next = await rematchLobby(lobby.code);
+            if (!mounted.current) return;
+
+            setRematchCode(next.code);
+        } catch (failure) {
+            if (mounted.current) setActionError(lobbyErrorMessage(failure));
+        } finally {
+            if (mounted.current) setRematching(false);
+        }
+    }, [lobby, isHost, rematching]);
+
     const close = useCallback(async () => {
         const leaving = owed.current;
         if (leaving === null || closing) return;
@@ -407,6 +462,7 @@ export function useLobby(code?: string): LobbyState {
     const reload = useCallback(() => {
         setError(null);
         setClosed(false);
+        setRematchCode(null);
         void load();
     }, [load]);
 
@@ -425,6 +481,9 @@ export function useLobby(code?: string): LobbyState {
         start,
         closing,
         close,
+        rematchCode,
+        rematching,
+        rematch,
         reload
     };
 }

@@ -10,18 +10,16 @@ interface Props {
     value: boolean,
     label: string,
     description: string
-    key: string
     onChange: (value: boolean) => void,
     icon: keyof typeof Feather.glyphMap
 }
 
-export default function ToggleRow({ value, label, description, key, icon, onChange }: Props) {
+export default function ToggleRow({ value, label, description, icon, onChange }: Props) {
     const styles = useStyles();
     const theme = useTheme();
 
     return (
         <View
-            key={key}
             style={[styles.row]}
         >
             <View style={styles.info}>

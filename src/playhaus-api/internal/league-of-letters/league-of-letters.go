@@ -30,6 +30,14 @@ const (
 	MaxWordLength = 8
 )
 
+// DefaultWordLength is what a room plays at until its host says otherwise.
+//
+// A lobby is opened before anybody has been asked anything -- the code has to exist
+// to be shared -- so it needs a length to sit at while the room fills up. Classic
+// League of Letters, and the same figure DEFAULT_SOLO_SETTINGS starts the solo
+// screen on.
+const DefaultWordLength = 5
+
 // MaxGuesses is how many rows a round has.
 //
 // In solo they are all yours. In multiplayer the table shares them -- six rows
@@ -71,6 +79,12 @@ var (
 	ErrNotHost          = errors.New("only the host may do that")
 	ErrNotEnoughPlayers = errors.New("not enough players to start")
 	ErrNotYourTurn      = errors.New("it is not your turn")
+
+	// ErrGameNotOver is a rematch asked for while the table is still playing. Its own
+	// error rather than ErrGameFinished inverted, because the two are asked by
+	// different screens about different things: one is a guess arriving too late, this
+	// is a room being reopened too early.
+	ErrGameNotOver = errors.New("game is not over yet")
 )
 
 type LobbyStatus string
@@ -89,6 +103,15 @@ type MultiplayerLeagueOfLettersLobby struct {
 	GameID     *uuid.UUID               `gorm:"type:text"`
 	Players    []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
 	CreatedAt  time.Time                `gorm:"not null"`
+
+	// RematchCode is the room this one's table moved on to, once the game was over and
+	// the host opened another.
+	//
+	// Written once and never cleared, which is what makes a second press of play again
+	// answer with the room that already exists rather than opening a third and splitting
+	// the table between two codes. It is also how somebody whose connection blipped over
+	// the announcement still finds out: it rides along on every lobby the room sends.
+	RematchCode *string `gorm:"type:text"`
 }
 
 func (MultiplayerLeagueOfLettersLobby) TableName() string { return "mp_lol_lobbies" }

@@ -98,6 +98,25 @@ func (s *GormStore) SaveLobbySettings(ctx context.Context, code string, in Lobby
 	return nil
 }
 
+// SaveRematchCode points a finished room at the one its table moved on to, and reports
+// whether this caller was the one that got to set it.
+//
+// Conditional on the slot still being empty, the same way StartLobby's write is
+// conditional on the room still waiting: the host pressing the button twice is two
+// rooms opened and only one of them anybody is told about, so the loser has to find out
+// that it lost.
+func (s *GormStore) SaveRematchCode(ctx context.Context, code, rematchCode string) (bool, error) {
+	res := s.db.WithContext(ctx).
+		Model(&MultiplayerLeagueOfLettersLobby{}).
+		Where("id = ? AND rematch_code IS NULL", code).
+		Update("rematch_code", rematchCode)
+	if res.Error != nil {
+		return false, fmt.Errorf("update lobby rematch code: %w", res.Error)
+	}
+
+	return res.RowsAffected == 1, nil
+}
+
 // DeleteLobby drops the room and its seats. The game a started room left behind is
 // deliberately not touched: people are still playing it, and the room was only ever
 // the door they came in through.

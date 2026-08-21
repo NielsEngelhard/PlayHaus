@@ -50,8 +50,13 @@ export interface LobbyPlayer {
 }
 
 /**
- * What the host gets to decide. The same two knobs a solo game is set up with, so the
- * lobby can reuse `WordLengthCard` and the language list rather than growing its own.
+ * What the host gets to decide once the room exists. The same two knobs a solo game is
+ * set up with, so the lobby can reuse `WordLengthCard` and the language list rather
+ * than growing its own.
+ *
+ * Not what a room is opened with — see `createLobby`. Opening a room and deciding what
+ * it plays are two different moments, and only the second one has a host sitting in
+ * front of the settings card.
  */
 export interface LobbySettings {
     locale: LanguageCode
@@ -71,6 +76,15 @@ export interface Lobby {
     createdAt: string
     /** The game to open, present only once `status` is `started`. */
     gameId?: string
+    /**
+     * The room this one's table has moved on to, present only once the game is over and
+     * the host has opened another.
+     *
+     * On every lobby rather than only announced over the socket, so a player whose
+     * connection blipped over the announcement is still carried across by the next
+     * snapshot instead of being left on a result nobody is coming back to.
+     */
+    rematchCode?: string
 }
 
 /** The room is full. Its own error so the join screen can say so rather than apologise. */
@@ -98,28 +112,13 @@ function errorCode(failure: unknown): string | undefined {
 
 const lobbyPath = (code: string) => `/api/v1/league-of-letters/lobby/${encodeURIComponent(code)}`;
 
-/**
- * Opens a room and puts you in it as the host.
- *
- * Answers the whole lobby rather than just a code: the caller needs the code to show,
- * the player list to draw, and its own id back to know it is the host — and one of the
- * three arriving later than the others would be a room that pops into existence in
- * pieces.
- */
-export async function createLobby(settings: LobbySettings): Promise<Lobby> {
+export async function createLobby(locale?: LanguageCode): Promise<Lobby> {
     return request<Lobby>('/api/v1/league-of-letters/lobby', {
         method: 'POST',
-        body: JSON.stringify(settings)
+        body: JSON.stringify({ locale })
     });
 }
 
-/**
- * Steps into somebody else's room by its code, and is safe to call again on a room you
- * are already in — reopening the screen must not be a second membership.
- *
- * Throws `LobbyFullError` rather than an `ApiError`, because being turned away from a
- * full room is not a failure the player did anything wrong to cause.
- */
 export async function joinLobby(code: string): Promise<Lobby> {
     try {
         return await request<Lobby>(`${lobbyPath(code)}/players`, { method: 'POST' });
@@ -177,6 +176,22 @@ export async function deleteLobby(code: string): Promise<void> {
  */
 export async function leaveLobby(code: string): Promise<void> {
     await request<void>(`${lobbyPath(code)}/players/me`, { method: 'DELETE' });
+}
+
+/**
+ * Opens a fresh room for the table that just finished a game, and answers it. Host only.
+ *
+ * A new room with a new code rather than the old one wound back, and the difference is
+ * who ends up in it: a room that was reset would still be holding everybody who was at
+ * the table when the last word went down, including whoever shut the app on it. The
+ * settings come across from the previous game — this button exists to skip the setup,
+ * not to do it again — so nothing is sent.
+ *
+ * Everybody still connected to the old room is told the new code over the socket, which
+ * is what carries them along. See `useLobby`.
+ */
+export async function rematchLobby(code: string): Promise<Lobby> {
+    return request<Lobby>(`${lobbyPath(code)}/rematch`, { method: 'POST' });
 }
 
 /** Whether this player owns the room, which is the whole of the permission model. */

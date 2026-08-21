@@ -3,6 +3,7 @@ package league_of_letters
 import (
 	"context"
 	"crypto/rand"
+	"errors"
 	"fmt"
 	"math/big"
 	"slices"
@@ -13,9 +14,13 @@ import (
 	"github.com/google/uuid"
 )
 
-// LobbySettings is what the host gets to decide -- the same two knobs a solo game
-// is set up with, so the room can reuse the app's word-length card and language
-// list rather than growing its own.
+// LobbySettings is what the host gets to decide once the room exists -- the same two
+// knobs a solo game is set up with, so the room can reuse the app's word-length card
+// and language list rather than growing its own.
+//
+// Not what a room is opened with: see CreateLobby. Opening a room and deciding what
+// it plays are two different moments, and only the second one has a host sitting in
+// front of the settings card.
 type LobbySettings struct {
 	Locale     i18n.Locale
 	WordLength int
@@ -43,6 +48,7 @@ type MultiplayerStore interface {
 	AddLobbyPlayer(ctx context.Context, player *MultiplayerLobbyPlayer) error
 	RemoveLobbyPlayer(ctx context.Context, code, userID string) error
 	SaveLobbySettings(ctx context.Context, code string, in LobbySettings) error
+	SaveRematchCode(ctx context.Context, code, rematchCode string) (bool, error)
 	DeleteLobby(ctx context.Context, code string) error
 	StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby, game *MultiplayerLeagueOfLettersGame) error
 	MultiplayerGameByID(ctx context.Context, id uuid.UUID) (*MultiplayerLeagueOfLettersGame, error)
@@ -74,30 +80,50 @@ type RecordMultiplayerGuessInput struct {
 
 // CreateLobby opens a room and puts the caller in it as the host.
 //
+// Takes a language and nothing else. A room is opened the moment its host walks onto
+// the screen -- there has to be a code before there is anything to share -- which is
+// well before anybody has been asked what to play. So the room starts at
+// DefaultWordLength and the host moves it from the settings card, through
+// UpdateLobbySettings, while the room fills up; nothing reads the length until
+// StartLobby draws the words with it.
+//
+// The language is not much of a decision here either: it is the host's own, and it is
+// asked for at all only so a room opens in the language its host plays in rather than
+// always in Dutch.
+//
 // Answers the whole lobby rather than just a code: the screen needs the code to
 // show, the player list to draw and its own id back to know it is the host, and one
 // of the three arriving later than the others would be a room that appears in
 // pieces.
-func (s *Service) CreateLobby(ctx context.Context, ownerID string, in LobbySettings) (*MultiplayerLeagueOfLettersLobby, map[string]string, error) {
+func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*MultiplayerLeagueOfLettersLobby, error) {
+	return s.openLobby(ctx, ownerID, locale, DefaultWordLength)
+}
+
+// openLobby is the room itself: a free code, a host in seat nought, and a length to
+// sit at until somebody moves it.
+//
+// Shared with Rematch, which opens a room exactly this way but carries the last one's
+// length in rather than starting over at the default -- that table has already agreed
+// what it is playing, and asking again is the setup the button exists to skip.
+func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, wordLength int) (*MultiplayerLeagueOfLettersLobby, error) {
 	if ownerID == "" {
-		return nil, nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
+		return nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
 	}
-	if problems := in.validate(); len(problems) > 0 {
-		return nil, problems, nil
+	if !locale.Valid() {
+		locale = i18n.Default
 	}
-	in = in.normalised()
 
 	code, err := s.freeJoinCode(ctx)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	now := time.Now().UTC()
 	lobby := &MultiplayerLeagueOfLettersLobby{
 		ID:         code,
 		OwnerID:    ownerID,
-		Locale:     in.Locale,
-		WordLength: in.WordLength,
+		Locale:     locale,
+		WordLength: wordLength,
 		Status:     LobbyWaiting,
 		CreatedAt:  now,
 		// The host is a player like any other, and the first one -- which is what
@@ -106,10 +132,10 @@ func (s *Service) CreateLobby(ctx context.Context, ownerID string, in LobbySetti
 	}
 
 	if err := s.store.CreateLobby(ctx, lobby); err != nil {
-		return nil, nil, fmt.Errorf("create lobby: %w", err)
+		return nil, fmt.Errorf("create lobby: %w", err)
 	}
 
-	return lobby, nil, nil
+	return lobby, nil
 }
 
 // freeJoinCode draws codes until it finds one nobody is using.
@@ -247,6 +273,10 @@ func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
 //
 // Membership is settled here: whoever is in the room at this moment is who plays,
 // in the order they arrived, and that order is the turn order for the whole game.
+//
+// So are the settings. The room's word length has been sitting on the lobby since it
+// opened, moving under the host's finger; this is the first and only moment anything
+// reads it, because it is the moment the words are drawn.
 func (s *Service) StartLobby(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
 	lobby, err := s.store.LobbyByCode(ctx, code)
 	if err != nil {
@@ -305,6 +335,83 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 	lobby.GameID = &game.ID
 
 	return lobby, game, nil
+}
+
+// Rematch opens a fresh room for the table that just finished a game, and answers it.
+//
+// A new room rather than the old one wound back, and the difference is who ends up in
+// it. A room that was reset would still be holding everybody who was at the table when
+// the last word went down, including whoever shut the app on it -- so the host would be
+// looking at a roster of people who are not coming back, and a start button that needs
+// them. A new code is joined by whoever actually turns up.
+//
+// The settings are read off the old room rather than taken from the caller. This table
+// has already agreed what it is playing; the whole point of the button is to skip the
+// part where they decide.
+func (s *Service) Rematch(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		return nil, err
+	}
+	if lobby.OwnerID != userID {
+		return nil, ErrNotHost
+	}
+
+	// Already opened, which is what a double-tapped button looks like from here: answer
+	// with the room the rest of the table has been sent to rather than opening a second
+	// one beside it and splitting them between two codes.
+	if lobby.RematchCode != nil {
+		next, err := s.store.LobbyByCode(ctx, *lobby.RematchCode)
+		if err == nil {
+			return next, nil
+		}
+		if !errors.Is(err, ErrLobbyNotFound) {
+			return nil, err
+		}
+		// The room it pointed at has since been closed. Falling through opens another,
+		// because the alternative is a table that can never play again.
+	}
+
+	// There has to be a game, and it has to be over. Reopening a room mid-game would be
+	// the host inviting players elsewhere while they are still sitting at the board.
+	if lobby.GameID == nil {
+		return nil, ErrGameNotOver
+	}
+	game, err := s.store.MultiplayerGameByID(ctx, *lobby.GameID)
+	if err != nil {
+		return nil, err
+	}
+	if game.Status == GameInProgress {
+		return nil, ErrGameNotOver
+	}
+
+	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.WordLength)
+	if err != nil {
+		return nil, err
+	}
+
+	claimed, err := s.store.SaveRematchCode(ctx, lobby.ID, next.ID)
+	if err != nil {
+		return nil, fmt.Errorf("save rematch code: %w", err)
+	}
+	if !claimed {
+		// Two presses that both got past the check above. The room this one just opened
+		// has nobody in it and nobody has been told about it, so it goes straight back
+		// and the winner is answered with instead.
+		_ = s.store.DeleteLobby(ctx, next.ID)
+
+		settled, err := s.store.LobbyByCode(ctx, lobby.ID)
+		if err != nil {
+			return nil, err
+		}
+		if settled.RematchCode == nil {
+			return nil, fmt.Errorf("rematch for lobby %s was claimed but is not recorded", lobby.ID)
+		}
+
+		return s.store.LobbyByCode(ctx, *settled.RematchCode)
+	}
+
+	return next, nil
 }
 
 // ---------------------------------------------------------------------------

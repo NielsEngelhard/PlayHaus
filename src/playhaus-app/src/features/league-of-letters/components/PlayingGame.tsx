@@ -68,8 +68,10 @@ interface Props {
     onNextRound?: () => void,
     /**
      * Leaves a game that has no rounds left. Left out on a board with nowhere to send
-     * anyone afterwards — the mocked multiplayer room — which falls back to the way
-     * out of the game entirely.
+     * anyone afterwards, which falls back to the way out of the game entirely.
+     *
+     * On a shared board this is called by the clock rather than by a press, so it has to
+     * be stable for the same reason `onNextRound` does.
      */
     onFinish?: () => void
 }
@@ -291,6 +293,23 @@ export default function PlayingGame({
         return () => clearTimeout(move);
     }, [movingOn, onNextRound]);
 
+    /**
+     * And the last round moves on to the uitslag, by the same clock.
+     *
+     * The end of the game is where the table most has to arrive together: the result is
+     * the screen the host opens the next room from, and anybody who never pressed
+     * through to it is somebody the room cannot carry along. So the final verdict gets
+     * the same beat as every other one and then takes everybody with it.
+     */
+    const finishing = multiplayer && decided && gameOver && onFinish !== undefined;
+
+    useEffect(() => {
+        if (!finishing) return;
+
+        const finish = setTimeout(() => onFinish?.(), NEXT_ROUND_MS);
+        return () => clearTimeout(finish);
+    }, [finishing, onFinish]);
+
     function type(letter: string) {
         setNotice(null);
         setDraft(current => {
@@ -444,12 +463,17 @@ export default function PlayingGame({
                     <View style={styles.outcome}>
                         <RoundResultCard
                             word={answer ?? ''}
-                            tries={myGuesses.length}
+                            tries={round.guesses.length}
                             maxGuesses={game.maxGuesses}
                             won={won}
                         />
 
-                        {gameOver ? (
+                        {finishing ? (
+                            /* Nobody presses on to the uitslag on a shared board either:
+                               the table arrives there together, or the ones who did not
+                               press cannot be taken to the next room. */
+                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} label='Uitslag' />
+                        ) : gameOver ? (
                             <ActionButton
                                 // The uitslag is where a finished game goes when there is one
                                 // to go to. A board without it has only the way out to offer.

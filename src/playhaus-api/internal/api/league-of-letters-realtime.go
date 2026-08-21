@@ -51,6 +51,9 @@ const (
 	typeGuess = "guess"
 	// typeGameOver is the last round having been decided.
 	typeGameOver = "game_over"
+	// typeRematch is the host having opened a fresh room for the same table. The code
+	// is where everybody still sitting on the result is going.
+	typeRematch = "rematch"
 )
 
 // ---------------------------------------------------------------------------
@@ -91,6 +94,14 @@ type typingPayload struct {
 
 type gameOverPayload struct {
 	Players []gamePlayerResponse `json:"players"`
+}
+
+// rematchPayload is the door out of a finished room: the code of the one that replaced
+// it. Just the code -- the room behind it is read the ordinary way on arrival, and a
+// lobby sent here would be one every client had to tell apart from the room it is
+// currently in.
+type rematchPayload struct {
+	Code string `json:"code"`
 }
 
 // ---------------------------------------------------------------------------
@@ -340,6 +351,16 @@ func (s *Server) publishLobby(code string, body lobbyResponse) {
 func (s *Server) publishLobbyClosed(code string) {
 	s.rt.In(lolRoom(code), func(room *realtime.Room) {
 		room.Broadcast(realtime.Message(typeLobbyClosed, nil))
+	})
+}
+
+// publishRematch tells a finished room where its table has gone.
+//
+// Broadcast into the *old* room, which is the one everybody is still connected to:
+// nobody can be listening to a code they have not been given yet.
+func (s *Server) publishRematch(code, next string) {
+	s.rt.In(lolRoom(code), func(room *realtime.Room) {
+		room.Broadcast(realtime.Message(typeRematch, rematchPayload{Code: next}))
 	})
 }
 
