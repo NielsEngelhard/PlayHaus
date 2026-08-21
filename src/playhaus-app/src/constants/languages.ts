@@ -47,3 +47,29 @@ export function languageByCode(code: string): Language {
     return LANGUAGES.find(language => language.code === code)
         ?? LANGUAGES.find(language => language.code === DEFAULT_LANGUAGE)!;
 }
+
+/**
+ * The language the *interface* speaks when nobody has said which to speak — before a
+ * session is restored, and for anyone whose device asks for a language this app has no
+ * catalog for.
+ *
+ * Deliberately not `DEFAULT_LANGUAGE`. That one is Dutch because the backend's word
+ * lists default to Dutch, and it is a value that travels to the API; this one never
+ * leaves the app and only decides which words this app paints. They answer different
+ * questions and are allowed to disagree — collapsing them into one would mean either an
+ * English speaker reading a Dutch home page, or a guest created without a choice getting
+ * English word lists.
+ */
+export const FALLBACK_UI_LANGUAGE: LanguageCode = 'en';
+
+/**
+ * Narrows anything — a device locale, a value off the wire — to a language this build
+ * ships a catalog for.
+ *
+ * A type guard rather than `languageByCode`'s "always answers with something": the
+ * callers here need to tell "the device asked for Dutch" apart from "the device asked
+ * for something we don't have", because those two lead to different fallbacks.
+ */
+export function isLanguageCode(value: string | null | undefined): value is LanguageCode {
+    return LANGUAGES.some(language => language.code === value);
+}

@@ -57,8 +57,8 @@ export interface Setting {
 }
 
 export const SETTINGS: Setting[] = [
-    { key: 'enableSounds',    icon: 'volume-2',   title: 'Geluid', description: 'Kleine bliepjes bij een goede letter.' },
-    { key: 'enableMusic',     icon: 'music',      title: 'Muziek', description: 'Achtergrondmuziek tijdens het spelen.' },
+    { key: 'enableSounds',    icon: 'volume-2',   title: 'Geluid', description: 'Een zacht plopje bij elke tik.' },
+    { key: 'enableMusic',     icon: 'music',      title: 'Muziek', description: 'Rustige achtergrondmuziek, wat sneller tijdens het spelen.' },
     { key: 'enableVibration', icon: 'smartphone', title: 'Trillen', description: 'Korte haptic feedback op mobiel.' }
 ];
 

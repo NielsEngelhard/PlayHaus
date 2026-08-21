@@ -1,7 +1,7 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
-import { TEASE_REEL_LENGTH, markStyles, teaseReel, type MarkStyle } from "@/features/league-of-letters/marks";
+import { TEASE_REEL_LENGTH, markStyles, oneAway, teaseReel, type MarkStyle } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useRef, useState } from "react";
@@ -57,21 +57,6 @@ const HOP_STEP_MS = 55;
 // react-native-web has no native animation module, so asking for one there is a
 // console warning and nothing else. Transforms are driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
-
-/**
- * Every letter but the last came back `correct`: the word is one tile from solved.
- *
- * The one moment in a round worth drawing out, so the last tile spins through colours
- * before committing to its own. Worked out from the marks alone rather than from what the
- * player has learned across the board, because it is this row's own near-miss that is the
- * drama — four greens and a hole, sitting there while the fifth tile makes up its mind.
- */
-function oneAway(marks: Mark[] | undefined, wordLength: number): boolean {
-    // A one-letter word has no run of greens leading up to anything.
-    if (marks === undefined || marks.length !== wordLength || wordLength < 2) return false;
-
-    return marks.slice(0, -1).every(mark => mark === 'correct');
-}
 
 /**
  * How long a freshly scored row takes to finish turning over.

@@ -23,10 +23,11 @@ interface Props {
  * The bar across the top of a board: the way out, where you are in the game, and one chip
  * that changes meaning as the round does.
  *
- * This replaces the app header on a board — a game is the whole screen, and the wordmark
- * and theme toggle are not what anyone needs mid-round. So the way out lives here instead,
- * and turns from an arrow into a cross once the round is over: leaving a round in progress
- * is backing out of something, leaving a finished one is closing it.
+ * Sits under the app header rather than in place of it, and carries the way out even so:
+ * the header's chip is a `Link` and leaving a board mid-round is not a thing to do on a
+ * middle-click, so the header shows the wordmark on these routes and the leaving is this
+ * button's. It turns from an arrow into a cross once the round is over — leaving a round in
+ * progress is backing out of something, leaving a finished one is closing it.
  */
 export default function RoundBar({ round, total, outcome, firstLetter, tries, onLeave }: Props) {
     const theme = useTheme();

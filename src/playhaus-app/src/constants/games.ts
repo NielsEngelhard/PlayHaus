@@ -1,5 +1,6 @@
 import { ROUTES } from '@/constants/routes';
 import { Brand } from '@/constants/theme';
+import type { TranslationKey } from '@/features/i18n/keys';
 
 /**
  * The games' display names. Shared rather than per-feature: the home list, the game
@@ -11,6 +12,7 @@ export const PUBQUIZR_NAME: string = "PubquizR";
 export interface Game {
     /** The `/games/{slug}` path segment. What the header matches a route on. */
     slug: string,
+    /** A brand, so it reads the same in every language and is never translated. */
     name: string,
     /** Accent from `Brand` — fixed, so a game looks the same in either scheme. */
     color: string,
@@ -28,16 +30,21 @@ export interface Game {
      * while light keeps paper. On the cooler, darker fills both schemes use paper.
      */
     glyphInk: Record<'light' | 'dark', string>,
-    /** Facts about the game, separated by `·`. Split into chips on the home card. */
-    tag: string,
-    description: string,
+    /**
+     * The facts chips on the home card, one catalogue key per chip.
+     *
+     * A list of keys rather than the single `'Word · 1-4 players'` this used to be. That
+     * separator was a formatting rule a translator had to know about but was not free to
+     * change, buried in a string they were otherwise free to rewrite — and it left the
+     * number of chips in the hands of whoever typed the translation. A list puts the
+     * shape in the registry and the wording in the catalogue, which is the split the rest
+     * of this file already makes.
+     */
+    tagKeys: readonly TranslationKey[],
+    /** Resolved at render — see `tagKeys` for why this is a key and not a string. */
+    descriptionKey: TranslationKey,
     playable: boolean,
     navigationUrl: string
-}
-
-/** The `tag` string as the individual chips the home card renders. */
-export function tagChips(tag: string): string[] {
-    return tag.split('·').map(part => part.trim()).filter(part => part.length > 0);
 }
 
 /**
@@ -52,8 +59,8 @@ export const GAMES: Game[] = [
         color: Brand.primary,
         gradient: ['#FF7A45', Brand.primary, '#E04407'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
-        tag: 'Word · 1-6 players',
-        description: 'Domineer met jouw Vocabulair, solo of tegen je vrienden.',
+        tagKeys: ['games.leagueOfLetters.tag.category', 'games.leagueOfLetters.tag.players'],
+        descriptionKey: 'games.leagueOfLetters.description',
         playable: true,
         navigationUrl: ROUTES.leagueOfLettersIndex
     },
@@ -63,8 +70,8 @@ export const GAMES: Game[] = [
         color: Brand.secondary,
         gradient: ['#6C7BFF', Brand.secondary, '#2634C4'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
-        tag: 'Trivia · 2-10 players',
-        description: 'Snelle pubquiz rondes. Nog even geduld, de vragen worden geslepen.',
+        tagKeys: ['games.quizzer.tag.category', 'games.quizzer.tag.players'],
+        descriptionKey: 'games.quizzer.description',
         playable: false,
         navigationUrl: ROUTES.quizzerIndex
     }
