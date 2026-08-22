@@ -77,6 +77,13 @@ export function headerContextFor(pathname: string, t: TFunction): HeaderContext 
         };
     }
 
+    // Trading a guest account in for a real one. The only page off a game with a way
+    // back, and it needs one: it is reached from the profile rather than from the tab
+    // bar, so the bottom bar cannot say where it came from.
+    if (pathname === ROUTES.upgradeAccount) {
+        return { back: ROUTES.profile, pill: null };
+    }
+
     const game = gameForPathname(pathname);
 
     if (game === null) {

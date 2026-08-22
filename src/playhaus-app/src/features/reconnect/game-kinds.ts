@@ -12,58 +12,26 @@ import type { Href } from 'expo-router';
  * type to the wire, add it here, and the list draws it without any other change.
  */
 export interface GameKind {
-    /** The game itself. The same name the home list and the header chip use. */
     title: string
-    /**
-     * Which flavour of it: solo, a lobby, a tournament later on.
-     *
-     * A catalogue key rather than a word, because this table is built at module load
-     * where no hook can reach. The row resolves it at render, the same way the home
-     * page resolves a game's description.
-     */
     modeKey: TranslationKey
-    /**
-     * The `/games/{slug}` segment, so a row can look the game up in `GAMES` and wear
-     * its real glyph tile. One registry, so a game's face cannot drift between the
-     * card you tapped on the home page and the row that offers it back to you.
-     */
     slug: string
-    /**
-     * The code this game is reached by, for the kinds that have one — a room is a
-     * place with a name, and its row is headed by that name rather than by the
-     * game's. Absent on the kinds you simply walk back into.
-     */
     code?: (game: ReconnectableGame) => string
-    /** Where the reconnect button goes. */
     href: (game: ReconnectableGame) => Href
 }
 
-/**
- * Partial on purpose: a build knows about the types it has screens for, and the
- * server is free to be newer than the app. A type missing from here has nowhere
- * to send anyone, so the list leaves it out rather than offering a row whose
- * button cannot do anything.
- */
 export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
     lol_solo: {
         title: LEAGUE_OF_LETTERS_NAME,
         modeKey: 'reconnect.mode.solo',
         slug: 'league-of-letters',
-        // Only the id travels, the same as when the game was started: the play
-        // screen reads the length, the language and the round it left off at off
-        // the game it fetches.
-        href: game => ({ pathname: ROUTES.leagueOfLettersSolo, params: { gameId: game.id } })
+        href: game => ({ pathname: ROUTES.leagueOfLettersSolo, params: { gameId: game.id } }),
     },
     lol_multiplayer: {
         title: LEAGUE_OF_LETTERS_NAME,
         modeKey: 'reconnect.mode.lobby',
         slug: 'league-of-letters',
-        // The backend sends a room's join code as its id, which is the same thing
-        // the row shows and the same thing the link travels on.
         code: game => game.id,
-        // The join code, not the game id: a room is reached by its code, and the room
-        // screen works out for itself whether that means a lobby or a board.
-        href: game => ROUTES.leagueOfLettersRoom(game.id) as Href
+        href: game => ROUTES.leagueOfLettersRoom(game.id) as Href,
     }
 };
 
@@ -90,20 +58,7 @@ const MONTH_KEYS = [
     'common.time.months.oct', 'common.time.months.nov', 'common.time.months.dec'
 ] as const satisfies readonly TranslationKey[];
 
-/**
- * How long ago a game was started, as the phrase that follows "Bijgewerkt".
- *
- * Returns the key and its count rather than a sentence: choosing *which* phrase a
- * timestamp deserves is arithmetic and belongs here, while the words belong to the
- * catalogue and the language belongs to whoever is looking at the screen.
- *
- * None of the phrases it picks depend on a plural form. Minutes and hours read the
- * same at any number in both catalogues, and the one count that would inflect, a single
- * day, is answered by "yesterday" before `daysAgo` ever sees it.
- *
- * Answers `null` for a timestamp that will not parse, so the row can leave the
- * line out instead of printing "Invalid Date" at someone.
- */
+
 export function startedAgo(createdAt: string, now: number = Date.now()): Phrase | null {
     const started = new Date(createdAt).getTime();
     if (Number.isNaN(started)) return null;

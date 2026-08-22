@@ -25,6 +25,12 @@ interface Auth {
      * under the wrong one sticks.
      */
     continueAsGuest: (locale: LanguageCode) => Promise<void>
+    /**
+     * Turns the guest you are already signed in as into a real account, keeping the
+     * name, the colour and the games. This is how accounts are made now — `signup`
+     * survives only for somebody who has one already and wants a second.
+     */
+    upgradeGuest: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     /**
      * Writes fields onto the session's copy of the user. Anything that edits the
@@ -157,6 +163,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(current => current === null ? null : { ...current, ...fields });
     }, []);
 
+    /**
+     * Not `adopt`, unlike everything above it: the account changes kind but the
+     * session does not change at all. The row is updated in place, so the token that
+     * made this request is still the token for the same account — minting a new one
+     * would be a round trip to arrive back where we started.
+     *
+     * So this is a write like the profile screen's, and it ends the way those do: a
+     * `204`-shaped reply means the server now holds what was sent, and `patchUser`
+     * puts it on screen without a `/me`.
+     *
+     * The email is normalised the way the backend normalises it before storing. Patch
+     * the raw draft instead and the session sits one capital letter out of step with
+     * the account until the next launch re-reads it.
+     */
+    const upgradeGuest = useCallback(async (email: string, password: string) => {
+        const normalized = email.trim().toLowerCase();
+
+        await authApi.upgradeGuest(normalized, password);
+        patchUser({ isGuest: false, email: normalized });
+    }, [patchUser]);
+
     const logout = useCallback(async () => {
         try {
             await authApi.logout();
@@ -174,8 +201,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     const value = useMemo(
-        () => ({ user, status, login, signup, continueAsGuest, logout, patchUser }),
-        [user, status, login, signup, continueAsGuest, logout, patchUser]
+        () => ({ user, status, login, signup, continueAsGuest, upgradeGuest, logout, patchUser }),
+        [user, status, login, signup, continueAsGuest, upgradeGuest, logout, patchUser]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

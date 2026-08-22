@@ -22,17 +22,24 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
-func (s *GormStore) UpdateEmailAndPassword(ctx context.Context, userId string, email string, hashedPassword *string) error {
+// UpgradeToFullAccount gives a guest row the email and password that make it a
+// real account, and clears the guest flag in the same write.
+//
+// A map rather than `Updates(User{...})`, and that is the whole point of it: gorm
+// skips a struct's zero values, so `IsGuest: false` -- the one column that decides
+// whether this ever stops being a guest -- would be silently dropped.
+func (s *GormStore) UpgradeToFullAccount(ctx context.Context, userId string, email string, hashedPassword *string) error {
 	result := s.db.WithContext(ctx).
 		Model(&User{}).
 		Where("id = ?", userId).
-		Updates(User{
-			Email:        email,
-			PasswordHash: hashedPassword,
+		Updates(map[string]any{
+			"email":         email,
+			"password_hash": hashedPassword,
+			"is_guest":      false,
 		})
 
 	if result.Error != nil {
-		return fmt.Errorf("update %s: %w", "username & password", result.Error)
+		return fmt.Errorf("update %s: %w", "email, password & guest flag", result.Error)
 	}
 	if result.RowsAffected == 0 {
 		return ErrNotFound

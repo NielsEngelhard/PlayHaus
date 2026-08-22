@@ -15,6 +15,7 @@ export const en = {
         /** `SelectInput` reads its closed state out as one line. */
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'nothing selected',
+        players: 'players',
         /**
          * Relative time, worded so it reads correctly at every number.
          *
@@ -73,21 +74,21 @@ export const en = {
          * and two games played the same way should say it with the same words.
          */
         device: {
-            perPlayer: '1 device per player',
-            shared: '1 device for everyone',
-            perPlayerOrOneDevice: '1 device or 1 device per player'
+            perPlayer: '1 per player',
+            oneDevice: '1 total',
+            perPlayerOrOneDevice: 'choice'
         },
         leagueOfLetters: {
             description: 'Hunt the hidden word. Solo, or humiliate your friends.',
-            tag: { category: 'Word guessing', players: '1-6 players' }
+            mainCategory: 'Word guessing',
         },
         quizzer: {
             description: 'Your own mini pub quiz. Who knows it all?.',
-            tag: { category: 'Trivia', players: '2-20 players' }
+            mainCategory: 'Trivia'
         },
         imposter: {
             description: 'Unravel who the imposter is.',
-            tag: { category: 'Bluf', players: '3-10 players' }
+            mainCategory: 'Bluf'
         }            
     },
     /**
@@ -100,19 +101,6 @@ export const en = {
         en: { description: 'Words from the English list.' }
     },
     auth: {
-        choice: {
-            title: 'Welcome to Playhaus',
-            description: 'Sign in to keep your name, your friends and your games. Or jump straight in as a guest.',
-            account: 'Account',
-            guest: 'As guest',
-            guestNote: 'A guest account is temporary'
-        },
-        account: {
-            title: 'Account',
-            description: 'Log in if you already have an account, or sign up to make one.',
-            login: 'Log in',
-            signup: 'Sign up'
-        },
         login: {
             title: 'Log in',
             email: 'Email',
@@ -120,7 +108,8 @@ export const en = {
             password: 'Password',
             passwordPlaceholder: 'Your password',
             submit: 'Log in',
-            submitting: 'Signing in…'
+            submitting: 'Signing in…',
+            signupPrompt: 'No account yet? Sign up'
         },
         signup: {
             title: 'Sign up',
@@ -136,9 +125,10 @@ export const en = {
             invalidEmail: 'That does not look like an email address.'
         },
         guestLanguage: {
-            title: 'Your language',
-            description: 'The language your games are played in. Pick one to jump straight in as a guest.',
-            note: 'A guest account is temporary. You can change the language later from your profile.'
+            title: 'Welcome to Playhaus',
+            description: 'Pick the language you want to play in. That is all we need — one tap and you are in.',
+            note: 'You start as a guest. Add an email later from your profile to keep the account for good.',
+            login: 'Already have an account? Log in'
         },
         errors: {
             invalidCredentials: 'That email and password do not match an account.',
@@ -173,8 +163,21 @@ export const en = {
         },
         guest: {
             title: 'Guest account',
-            message: 'You are playing as a guest. This account is temporary: your name, colour and played games can be lost once this session ends. Create an account to keep them.',
-            action: 'Create an account'
+            message: 'You are playing as a guest. This account is temporary: your name, colour and played games can be lost once this session ends. Add an email and a password to keep them for good.',
+            action: 'Make it permanent'
+        },
+        upgrade: {
+            title: 'Keep your account',
+            description: 'Add an email and a password and this account becomes permanent. Your name, colour and games all stay exactly as they are.',
+            email: 'Email',
+            emailPlaceholder: 'you@example.com',
+            password: 'Password',
+            passwordPlaceholder: 'Pick a password',
+            submit: 'Make it permanent',
+            submitting: 'Saving…',
+            note: 'From then on you log in with this email and password on any device.',
+            invalidEmail: 'That does not look like an email address.',
+            shortPassword: 'Your password needs at least 8 characters.'
         },
         logout: 'Log out',
         errors: {

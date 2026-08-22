@@ -13,15 +13,21 @@ import { StyleSheet, View } from "react-native";
 interface Props {
     onBack: () => void
     /**
+     * The way on to `SignupForm`, for somebody who came looking for a login and does
+     * not have one. Optional because it is the *only* remaining door to signing up
+     * from scratch, and a caller that does not want that door open should not have to
+     * hide it afterwards.
+     */
+    onSignup?: () => void
+    /**
      * Only needed where signing in does not take this form off screen with it.
-     * The gate unmounts on its own the moment the session starts; a sheet opened
-     * from inside a session — a guest trading up — has to be told to close.
+     * The gate unmounts on its own the moment the session starts.
      */
     onSuccess?: () => void
 }
 
-/** Signs an existing account in. Reached from the gate's account screen. */
-export default function LoginForm({ onBack, onSuccess }: Props) {
+/** Signs an existing account in. Reached from the gate's language screen. */
+export default function LoginForm({ onBack, onSignup, onSuccess }: Props) {
     const { login } = useAuth();
     const t = useT();
 
@@ -94,6 +100,20 @@ export default function LoginForm({ onBack, onSuccess }: Props) {
                 disabled={!canSubmit}
                 style={styles.submit}
             />
+
+            {/* Under the submit and muted with it: creating an account from nothing is
+                the rarer road now — the usual one is playing as a guest first and
+                trading up from the profile — so it is offered rather than proposed. */}
+            {onSignup !== undefined && (
+                <TextButton
+                    text={t('auth.login.signupPrompt')}
+                    onPress={onSignup}
+                    variant='muted'
+                    fullWidth
+                    disabled={busy}
+                    style={styles.signup}
+                />
+            )}
         </View>
     )
 }
@@ -104,5 +124,8 @@ const styles = StyleSheet.create({
     },
     submit: {
         marginTop: Spacing.four
+    },
+    signup: {
+        marginTop: Spacing.three
     }
 })

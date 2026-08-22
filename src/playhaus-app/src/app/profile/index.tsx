@@ -3,7 +3,6 @@ import AppText from "@/components/text/AppText";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
-import AccountModal from "@/features/auth/components/AccountModal";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import GuestAccountNotice from "@/features/settings/components/GuestAccountNotice";
@@ -16,7 +15,6 @@ import type { SettingKey } from "@/features/settings/profile";
 import { useProfile } from "@/features/settings/useProfile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { router } from "expo-router";
-import { useState } from "react";
 import { View } from "react-native";
 
 // The cards sit a hair off-square, the way they do in the design.
@@ -48,9 +46,6 @@ export default function ProfilePage() {
         updateEnableVibration
     } = useProfile();
 
-    // Above the early return, or the hook would come and go with the profile.
-    const [accountOpen, setAccountOpen] = useState(false);
-
     // Only while the session is being restored, or once it has ended — the auth
     // gate is already standing over the page in the second case, so this is just
     // what sits behind it rather than a failure worth reporting.
@@ -67,10 +62,11 @@ export default function ProfilePage() {
     return (
         <View style={styles.container}>
             {/* First on the page, before the profile it is a warning about. Gone
-                the moment the account stops being a guest one — signing up from
-                the modal swaps the session's user, so this re-renders without it. */}
+                the moment the account stops being a guest one — the upgrade page
+                patches the session's user on its way out, so coming back here
+                re-renders without it. */}
             {profile.isGuest && (
-                <GuestAccountNotice onCreateAccount={() => setAccountOpen(true)} />
+                <GuestAccountNotice onUpgrade={() => router.push(ROUTES.upgradeAccount)} />
             )}
 
             <View style={tilt('-0.5deg')}>
@@ -127,10 +123,6 @@ export default function ProfilePage() {
                     profile page belongs to the account you just left. */}
                 <LogoutCard onLogout={() => { void logout().then(() => router.replace(ROUTES.home)); }} />
             </View>
-
-            {/* Rendered from here rather than from the notice, so it is not the
-                notice's own disappearance that tears it off screen on success. */}
-            <AccountModal visible={accountOpen} onClose={() => setAccountOpen(false)} />
         </View>
     )
 }

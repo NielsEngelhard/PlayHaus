@@ -30,16 +30,13 @@ export default function HomeScreen() {
         {GAMES.map(game => (
           <GameTeaserCard
             key={game.slug}
-            /* Resolved here rather than inside the card: mapping the registry onto
-               the catalogue is the page's business, and a `components/ui` card has none
-               knowing what a translation key is. */
-            tags={game.tagKeys.map(key => t(key))}
             color={game.color}
             gradient={game.gradient}
             glyphInk={game.glyphInk[theme.scheme]}
             name={game.name}
             description={t(game.descriptionKey)}
             deviceMode={game.deviceMode}
+            minMaxPlayers={game.minMaxPlayersIndicator}
             playable={game.playable}
             navigationUrl={game.navigationUrl as RelativePathString}
           />

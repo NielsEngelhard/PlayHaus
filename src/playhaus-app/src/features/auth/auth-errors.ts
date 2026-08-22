@@ -29,3 +29,29 @@ export function authErrorMessage(error: unknown): TranslationKey {
     // isn't running.
     return 'auth.errors.network';
 }
+
+/**
+ * The same job for the upgrade page, which cannot reuse the mapper above.
+ *
+ * A 401 there means opposite things. Logging in, it is "those credentials are wrong";
+ * upgrading, the credentials being sent are new ones nobody has judged yet — a 401 can
+ * only be the session that carried the request having died underneath it.
+ *
+ * 409 keeps its meaning: the backend answers it both for an email already in use and
+ * for an account that is not a guest, and the second is unreachable from a page that
+ * only a guest can see.
+ */
+export function upgradeErrorMessage(error: unknown): TranslationKey {
+    if (error instanceof ApiError) {
+        switch (error.status) {
+            case 401:
+                return 'profile.errors.expired';
+            case 409:
+                return 'auth.errors.emailInUse';
+            default:
+                return 'auth.errors.generic';
+        }
+    }
+
+    return 'auth.errors.network';
+}
