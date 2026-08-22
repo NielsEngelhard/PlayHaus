@@ -427,6 +427,7 @@ function buildTheme(scheme: Scheme): Theme {
         solidButton: {
             alignItems: 'center',
             justifyContent: 'center',
+            alignContent: 'center',
             borderWidth,
             borderColor: colors.border,
             borderRadius: 14,

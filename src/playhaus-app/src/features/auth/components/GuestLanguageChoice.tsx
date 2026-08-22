@@ -7,9 +7,9 @@ import { authErrorMessage } from "@/features/auth/auth-errors";
 import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { useAuth } from "@/features/auth/useAuth";
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
 import { View } from "react-native";
 
@@ -99,7 +99,7 @@ export default function GuestLanguageChoice({ onBack, onLogin }: Props) {
             <TextButton
                 text={t('auth.guestLanguage.login')}
                 onPress={onLogin}
-                variant='muted'
+                variant='primary'
                 fullWidth
                 disabled={pending !== null}
                 style={styles.login}

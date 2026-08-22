@@ -126,8 +126,8 @@ export const en = {
         },
         guestLanguage: {
             title: 'Welcome to Playhaus',
-            description: 'Pick the language you want to play in. That is all we need — one tap and you are in.',
-            note: 'You start as a guest. Add an email later from your profile to keep the account for good.',
+            description: 'Pick the language you want to play in.',
+            note: 'Picking a language will sign you up as a guest user. You can later upgrade your account for free to a regular user.',
             login: 'Already have an account? Log in'
         },
         errors: {
