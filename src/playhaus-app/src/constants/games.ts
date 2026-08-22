@@ -8,6 +8,7 @@ import type { TranslationKey } from '@/features/i18n/keys';
  */
 export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "PubquizR";
+export const THE_IMPOSTER_NAME: string = "The Imposter";
 
 /**
  * How many devices a group needs to play.
@@ -15,7 +16,7 @@ export const PUBQUIZR_NAME: string = "PubquizR";
  * `perPlayer` — everyone plays on their own screen. `shared` — one screen the whole
  * table plays around, passed or propped up between them.
  */
-export type DeviceMode = 'perPlayer' | 'shared';
+export type DeviceMode = 'perPlayer' | 'oneDevice' | 'perPlayerOrOneDevice';
 
 /**
  * The catalogue line for each mode. Here rather than in the card because this is the
@@ -23,7 +24,8 @@ export type DeviceMode = 'perPlayer' | 'shared';
  */
 export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayer: 'games.device.perPlayer',
-    shared: 'games.device.shared'
+    oneDevice: 'games.device.shared',
+    perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
 export interface Game {
@@ -95,10 +97,22 @@ export const GAMES: Game[] = [
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
         tagKeys: ['games.quizzer.tag.category', 'games.quizzer.tag.players'],
         descriptionKey: 'games.quizzer.description',
-        deviceMode: 'shared',
-        playable: false,
+        deviceMode: 'perPlayerOrOneDevice',
+        playable: true,
         navigationUrl: ROUTES.quizzerIndex
-    }
+    },
+    {
+        slug: 'imposter',
+        name: THE_IMPOSTER_NAME,
+        color: Brand.mint,
+        gradient: ['#A8F5D6', Brand.mint, '#35C99A'],
+        glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
+        tagKeys: ['games.imposter.tag.category', 'games.imposter.tag.players'],
+        descriptionKey: 'games.imposter.description',
+        deviceMode: 'oneDevice',
+        playable: true,
+        navigationUrl: ROUTES.imposterIndex
+    }    
 ];
 
 /**

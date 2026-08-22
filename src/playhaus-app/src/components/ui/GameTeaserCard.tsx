@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
+import { type DeviceMode } from "@/constants/games";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -9,22 +9,12 @@ import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
-    /** The facts chips, already translated. Drawn in order, wrapping as needed. */
     tags: readonly string[],
-    /** The game's accent. Colours the shadow this card throws in dark mode. */
     color: string,
-    /** Three stops for the glyph tile, lightest first. */
     gradient: readonly [string, string, string],
-    /** Ink for the glyph, already resolved for the current scheme by the caller. */
     glyphInk: string,
     name: string,
     description: string,
-    /**
-     * How many devices the group needs, or nothing for a card that is not a game.
-     *
-     * The mode rather than the sentence: every game that plays this way says it with the
-     * same words, so the card owns the wording and the caller only owns the fact.
-     */
     deviceMode?: DeviceMode,
     playable: boolean,
     navigationUrl: Href
@@ -41,7 +31,7 @@ const TILE_SIZE = 78;
  * taking its shadow away, because fading something that is already near-black just
  * makes it disappear.
  */
-export default function NavigationCard({
+export default function GameTeaserCard({
     tags,
     color,
     gradient,
@@ -85,19 +75,6 @@ export default function NavigationCard({
                     {description && (
                         <View style={styles.status}>
                             <AppText style={styles.statusText}>{description}</AppText>
-                        </View>
-                    )}
-
-                    {deviceMode && (
-                        <View style={styles.device}>
-                            <Feather
-                                name='smartphone'
-                                size={12}
-                                color={theme.colors.textMuted}
-                            />
-                            <AppText style={styles.deviceText}>
-                                {t(DEVICE_MODE_KEYS[deviceMode])}
-                            </AppText>
                         </View>
                     )}
                 </View>

@@ -73,8 +73,9 @@ export const en = {
          * and two games played the same way should say it with the same words.
          */
         device: {
-            perPlayer: 'One device per player',
-            shared: 'One device for everyone'
+            perPlayer: '1 device per player',
+            shared: '1 device for everyone',
+            perPlayerOrOneDevice: '1 device or 1 device per player'
         },
         leagueOfLetters: {
             description: 'Hunt the hidden word. Solo, or humiliate your friends.',
@@ -83,7 +84,11 @@ export const en = {
         quizzer: {
             description: 'Your own mini pub quiz. Who knows it all?.',
             tag: { category: 'Trivia', players: '2-20 players' }
-        }
+        },
+        imposter: {
+            description: 'Unravel who the imposter is.',
+            tag: { category: 'Bluf', players: '3-10 players' }
+        }            
     },
     /**
      * Only the descriptions. The names themselves stay endonyms in `LANGUAGES` and are

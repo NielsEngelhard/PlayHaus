@@ -1,6 +1,6 @@
 import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
-import NavigationCard from '@/components/ui/NavigationCard';
+import GameTeaserCard from '@/components/ui/GameTeaserCard';
 import { GAMES } from '@/constants/games';
 import { Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
@@ -28,7 +28,7 @@ export default function HomeScreen() {
 
       <View style={styles.games}>
         {GAMES.map(game => (
-          <NavigationCard
+          <GameTeaserCard
             key={game.slug}
             /* Resolved here rather than inside the card: mapping the registry onto
                the catalogue is the page's business, and a `components/ui` card has none
