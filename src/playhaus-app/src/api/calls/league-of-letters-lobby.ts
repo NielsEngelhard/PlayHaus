@@ -4,60 +4,20 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
 
 /**
  * The waiting room a multiplayer League of Letters game is set up in.
- *
- * Mirrors the response types in the Go backend's
- * `internal/api/multiplayer-league-of-letters.go` — keep the two in step.
- *
- * Nothing here polls. The room is kept up to date over the socket instead: joins,
- * settings and the game starting all arrive as events, and these calls are only how
- * a player *changes* something plus the one read that opens the screen.
  */
 
-/** A room holds six. Fixed here rather than per-lobby — there is nothing to configure. */
 export const MAX_LOBBY_PLAYERS = 6;
-
-/**
- * And it needs two. A game with one player in it is a solo game with extra steps, which is
- * what `StartLobby` in the Go `multiplayer.go` refuses on — mirrored here so the host's
- * start button can say no first.
- */
 export const MIN_LOBBY_PLAYERS = 2;
-
-/**
- * Join codes are four characters, which is what `RoomCodeCard` draws slots for. Mirrors
- * `JoinCodeLength` in the Go `league-of-letters.go`; the API does not report it, so the
- * two have to be changed together.
- */
 export const LOBBY_CODE_LENGTH = 4;
-
-/**
- * `waiting` is the lobby proper. `started` means the host has committed: `gameId` is
- * filled in and everybody still on the screen moves to the board.
- */
 export type LobbyStatus = 'waiting' | 'started';
 
-/**
- * Someone in the room. Deliberately the front half of `GamePlayer` from
- * `./league-of-letters` — same ids, same swatch field — so a lobby player and the
- * scoreboard player they turn into are the same person to every component that draws one.
- */
 export interface LobbyPlayer {
     userId: string
     name: string
-    /** Which swatch in `AVATAR_COLORS`, not a colour — same as on `User`. */
     avatarColorId: string
     joinedAt: string
 }
 
-/**
- * What the host gets to decide once the room exists. The same two knobs a solo game is
- * set up with, so the lobby can reuse `WordLengthCard` and the language list rather
- * than growing its own.
- *
- * Not what a room is opened with — see `createLobby`. Opening a room and deciding what
- * it plays are two different moments, and only the second one has a host sitting in
- * front of the settings card.
- */
 export interface LobbySettings {
     locale: LanguageCode
     wordLength: WordLength

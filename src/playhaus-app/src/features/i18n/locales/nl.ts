@@ -163,22 +163,12 @@ export const nl: Catalog = {
     },
     reconnect: {
         hero: {
-            checking: { title: 'Waar was je', accent: 'gebleven?' },
-            waiting: { title: 'Pak het', accent: 'weer op.' },
-            empty: { title: 'Er loopt', accent: 'niets.' }
-        },
-        description: {
-            checking: 'We kijken even welke spellen er nog voor je openstaan.',
-            waiting: 'Je hebt spellen openstaan. Pak er een op waar je gebleven was.',
-            empty: 'Start een spel en loop weg. Hij staat hier nog als je terugkomt.'
+            title: 'Een spel joinen', accent: 'of herverbinden',
+            description: "Verbind opnieuw met een bestaand spel of join een nieuw spel."
         },
         loading: 'Spellen zoeken…',
         updated: 'Bijgewerkt {{time}}',
-        noGames: {
-            title: 'Geen spellen open',
-            message: 'Alles wat je half gespeeld achterlaat komt hier terug te staan, solo of in een lobby.',
-            action: 'Kies een spel'
-        },
+        noGames: 'Geen spellen gevonden om mee te herverbinden',
         resume: 'Verder spelen',
         refresh: { label: 'Ververs de lijst', action: 'Ververs' },
         mode: { solo: 'Solo', lobby: 'Lobby' },
@@ -197,8 +187,7 @@ export const nl: Catalog = {
             solo: { title: 'Solo', description: 'Drie rondes, jouw regels.', action: 'Instellen' },
             multiplayer: { title: 'Multiplayer', description: 'Race tegen je vrienden.', action: 'Openen' },
             join: {
-                label: 'Of join een lobby',
-                hint: '{{length}} tekens, daarna ga je er automatisch in',
+                label: 'JOIN EEN GAME',
                 paste: 'Plakken',
                 pasteLabel: 'Code plakken',
                 codeLabel: 'Lobbycode'

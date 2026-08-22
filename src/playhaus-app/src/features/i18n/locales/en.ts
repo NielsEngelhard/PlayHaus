@@ -188,22 +188,12 @@ export const en = {
     },
     reconnect: {
         hero: {
-            checking: { title: 'Where did you', accent: 'leave off?' },
-            waiting: { title: 'Jump back', accent: 'in.' },
-            empty: { title: 'Nothing is', accent: 'running.' }
-        },
-        description: {
-            checking: 'We are checking which games are still open for you.',
-            waiting: 'You have games open. Pick one up where you left off.',
-            empty: 'Start a game and walk away. It is still here when you come back.'
-        },
+            title: 'Join a Game', accent: 'or Reconnect',
+            description: "Reconnect to an existing game or join a new one."
+        },        
         loading: 'Looking for your games…',
         updated: 'Updated {{time}}',
-        noGames: {
-            title: 'No games open',
-            message: 'Anything you leave half played turns up here, solo or in a lobby.',
-            action: 'Pick a game'
-        },
+        noGames: 'Found no games to reconnect to.',
         resume: 'Continue playing',
         refresh: { label: 'Refresh the list', action: 'Refresh' },
         mode: { solo: 'Solo', lobby: 'Lobby' },
@@ -222,8 +212,7 @@ export const en = {
             solo: { title: 'Solo', description: 'Three rounds, your rules.', action: 'Set up' },
             multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' },
             join: {
-                label: 'Or join a lobby',
-                hint: '{{length}} characters, then you are in automatically',
+                label: 'JOIN A LOBBY',
                 paste: 'Paste',
                 pasteLabel: 'Paste code',
                 codeLabel: 'Lobby code'
