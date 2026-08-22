@@ -139,7 +139,7 @@ export const en = {
     },
     profile: {
         loading: 'Loading your profile…',
-        card: { action: 'My profile', caption: 'This is you!' },
+        card: { action: 'My profile', caption: 'This is you, handsome!' },
         name: {
             label: 'Player name',
             placeholder: 'Your name',
