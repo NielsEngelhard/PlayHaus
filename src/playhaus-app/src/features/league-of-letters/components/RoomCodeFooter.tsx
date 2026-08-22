@@ -3,6 +3,7 @@ import { useCooldown } from "@/hooks/useCooldown";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { copyText } from "@/utils/share";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable } from "react-native";
 
@@ -23,6 +24,7 @@ const CONFIRMED_MS = 1600;
  * rather than something that has happened.
  */
 export default function RoomCodeFooter({ code }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
@@ -38,10 +40,10 @@ export default function RoomCodeFooter({ code }: Props) {
         <Pressable
             onPress={() => void copy()}
             accessibilityRole='button'
-            accessibilityLabel={`Kamercode ${[...code].join(' ')} kopiëren`}
+            accessibilityLabel={t('lol.lobby.copyCode', { characters: [...code].join(' ') })}
             style={styles.footer}
         >
-            <AppText style={styles.label}>{confirmed ? 'Gekopieerd' : 'Kamercode'}</AppText>
+            <AppText style={styles.label}>{confirmed ? t('lol.lobby.copied') : t('lol.lobby.code')}</AppText>
 
             <AppText style={styles.code}>{code}</AppText>
 

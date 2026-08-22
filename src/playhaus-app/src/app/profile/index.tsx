@@ -5,6 +5,7 @@ import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import AccountModal from "@/features/auth/components/AccountModal";
 import { useAuth } from "@/features/auth/useAuth";
+import { useT } from "@/features/i18n/LanguageContext";
 import GuestAccountNotice from "@/features/settings/components/GuestAccountNotice";
 import LogoutCard from "@/features/settings/components/LogoutCard";
 import ProfileAvatarColorPickerCard from "@/features/settings/components/ProfileAvatarColorPickerCard";
@@ -24,7 +25,7 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 /**
  * Your name, avatar and preferences, as the account actually holds them.
  *
- * Every edit on this page is a write: the name on `Opslaan`, the colour and the
+ * Every edit on this page is a write: the name on save, the colour and the
  * toggles the moment they move. All of them wait for the server before the
  * control moves, and while one is in the air the rest are greyed out — a
  * profile is small enough that a second write on top of the first is a mistake
@@ -32,6 +33,7 @@ const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
  */
 export default function ProfilePage() {
     const styles = useStyles();
+    const t = useT();
 
     const { logout } = useAuth();
     const {
@@ -53,7 +55,7 @@ export default function ProfilePage() {
     // gate is already standing over the page in the second case, so this is just
     // what sits behind it rather than a failure worth reporting.
     if (!profile) {
-        return <LoadingPage message='Profiel laden…' />;
+        return <LoadingPage message={t('profile.loading')} />;
     }
 
     const toggle: Record<SettingKey, (value: boolean) => void> = {
@@ -98,7 +100,7 @@ export default function ProfilePage() {
                 without this page telling it to. */}
             <View style={tilt('-0.2deg')}>
                 <LanguageSelect
-                    label='Taal'
+                    label={t('common.language')}
                     value={profile.locale}
                     onChange={updateLocale}
                     disabled={saving}
@@ -117,7 +119,7 @@ export default function ProfilePage() {
 
             {/* Nothing moved, so this is what says why — otherwise a refused save
                 looks like a missed tap. */}
-            {saveError && <AppText style={styles.saveError}>{saveError}</AppText>}
+            {saveError && <AppText style={styles.saveError}>{t(saveError)}</AppText>}
 
             <View style={tilt('-0.3deg')}>
                 {/* Revokes the session and drops the stored token, which brings the

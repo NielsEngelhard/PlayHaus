@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, View } from "react-native";
 
@@ -22,6 +23,7 @@ interface Props {
 export default function AuthFormHeader({ title, onBack, disabled = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View style={styles.row}>
@@ -29,7 +31,7 @@ export default function AuthFormHeader({ title, onBack, disabled = false }: Prop
                 onPress={onBack}
                 disabled={disabled}
                 accessibilityRole='button'
-                accessibilityLabel='Back'
+                accessibilityLabel={t('common.back')}
                 style={[styles.backButton, disabled && styles.disabled]}
             >
                 <Feather name='arrow-left' size={18} color={theme.colors.text} />

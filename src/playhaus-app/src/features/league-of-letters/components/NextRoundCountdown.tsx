@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useEffect, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, View, ViewStyle } from "react-native";
 
@@ -32,8 +33,11 @@ const useNativeDriver = Platform.OS !== 'web';
  * is how long the answer stays up. A bar rather than a number — three and a half seconds
  * counted out in digits reads as a deadline, and this is a breath, not a deadline.
  */
-export default function NextRoundCountdown({ durationMs, label = 'Volgende ronde', style }: Props) {
+export default function NextRoundCountdown({ durationMs, label, style }: Props) {
     const styles = useStyles();
+    const t = useT();
+
+    const text = label ?? t('lol.game.nextRound');
 
     /** The track's width, which is how far the fill has to travel to leave it. */
     const [width, setWidth] = useState(0);
@@ -75,7 +79,7 @@ export default function NextRoundCountdown({ durationMs, label = 'Volgende ronde
 
     return (
         <View style={[styles.wrap, style]}>
-            <AppText style={styles.label}>{label}</AppText>
+            <AppText style={styles.label}>{text}</AppText>
 
             <View style={styles.track} onLayout={measure}>
                 <Animated.View style={[styles.fill, { transform: [{ translateX }] }]} />

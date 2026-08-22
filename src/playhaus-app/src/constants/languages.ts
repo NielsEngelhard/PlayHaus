@@ -11,13 +11,28 @@
  * has no business importing from a game to find out what languages exist.
  */
 
+import type { TranslationKey } from '@/features/i18n/keys';
+
 export type LanguageCode = 'nl' | 'en';
 
 export interface Language {
     code: LanguageCode,
+    /**
+     * The language's name in its own language, and never translated.
+     *
+     * A picker is the one screen someone reads *before* the interface speaks their
+     * language, so "Nederlands" has to stay "Nederlands" even to a reader who is
+     * currently being shown English. Not a catalogue key for the same reason.
+     */
     label: string,
-    /** The second line in the picker, saying what choosing this actually changes. */
-    description: string,
+    /**
+     * The second line in the picker, saying what choosing this actually changes.
+     *
+     * This half *is* translated, so a key: it is a sentence about the language rather
+     * than the name of one. Stored rather than resolved because `LANGUAGES` is built at
+     * module load, where no hook can reach.
+     */
+    descriptionKey: TranslationKey,
     /**
      * ISO 3166-1 alpha-2 country code for `CountryFlag` — a different thing from
      * the language code, since English is drawn with the flag of Great Britain.
@@ -28,8 +43,8 @@ export interface Language {
 }
 
 export const LANGUAGES: Language[] = [
-    { code: 'nl', label: 'Nederlands', description: 'Woorden uit de Nederlandse lijst.', flag: 'nl' },
-    { code: 'en', label: 'Engels', description: 'Woorden uit de Engelse lijst.', flag: 'gb' }
+    { code: 'nl', label: 'Nederlands', descriptionKey: 'languages.nl.description', flag: 'nl' },
+    { code: 'en', label: 'English', descriptionKey: 'languages.en.description', flag: 'gb' }
 ];
 
 /** Dutch, matching `i18n.Default` in the backend. */

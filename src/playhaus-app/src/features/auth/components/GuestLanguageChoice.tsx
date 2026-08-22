@@ -7,6 +7,8 @@ import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { useAuth } from "@/features/auth/useAuth";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import type { TranslationKey } from "@/features/i18n/keys";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useState } from "react";
 import { View } from "react-native";
 
@@ -28,6 +30,7 @@ interface Props {
  */
 export default function GuestLanguageChoice({ onBack }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const { continueAsGuest } = useAuth();
 
@@ -37,7 +40,7 @@ export default function GuestLanguageChoice({ onBack }: Props) {
      * account is being made. Back to null on failure, so the choice is re-tappable.
      */
     const [pending, setPending] = useState<LanguageCode | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
 
     async function choose(locale: LanguageCode) {
         setPending(locale);
@@ -55,14 +58,13 @@ export default function GuestLanguageChoice({ onBack }: Props) {
 
     return (
         <View>
-            <AuthFormHeader title='Your language' onBack={onBack} disabled={pending !== null} />
+            <AuthFormHeader title={t('auth.guestLanguage.title')} onBack={onBack} disabled={pending !== null} />
 
             <AppText style={styles.subtitle}>
-                The language your games are played in. Pick one to jump straight
-                in as a guest.
+                {t('auth.guestLanguage.description')}
             </AppText>
 
-            {error && <AuthErrorText message={error} />}
+            {error && <AuthErrorText message={t(error)} />}
 
             <View style={styles.grid}>
                 <LanguageGrid
@@ -73,8 +75,7 @@ export default function GuestLanguageChoice({ onBack }: Props) {
             </View>
 
             <AppText style={styles.hint}>
-                A guest account is temporary. You can change the language later
-                from your profile.
+                {t('auth.guestLanguage.note')}
             </AppText>
         </View>
     )

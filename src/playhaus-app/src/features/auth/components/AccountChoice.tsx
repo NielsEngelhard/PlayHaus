@@ -3,6 +3,7 @@ import TextButton from "@/components/ui/TextButton";
 import { FontSizes, Spacing } from "@/constants/theme";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { View } from "react-native";
 
 interface Props {
@@ -20,25 +21,26 @@ interface Props {
  */
 export default function AccountChoice({ onLogin, onCreateAccount, onBack }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View>
-            <AuthFormHeader title='Account' onBack={onBack} />
+            <AuthFormHeader title={t('auth.account.title')} onBack={onBack} />
 
             <AppText style={styles.subtitle}>
-                Login if you already have an account, or sign up to make one.
+                {t('auth.account.description')}
             </AppText>
 
             <View style={styles.buttons}>
                 <TextButton
-                    text='Login'
+                    text={t('auth.account.login')}
                     onPress={onLogin}
                     variant='secondary'
                     fullWidth
                 />
 
                 <TextButton
-                    text='Sign Up'
+                    text={t('auth.account.signup')}
                     onPress={onCreateAccount}
                     variant='primary'
                     fullWidth

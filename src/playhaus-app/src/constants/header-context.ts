@@ -2,6 +2,7 @@ import { gameForPathname } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import { Brand } from '@/constants/theme';
 import type Feather from '@expo/vector-icons/Feather';
+import type { TFunction } from 'i18next';
 
 /**
  * What the header says about where you are.
@@ -58,14 +59,21 @@ function isGameHub(pathname: string): boolean {
     return /^\/games\/[^/]+$/.test(pathname);
 }
 
-export function headerContextFor(pathname: string): HeaderContext {
+/**
+ * Takes the translator rather than storing a key, unlike the registries next door.
+ *
+ * There is exactly one word here that comes out of the catalogue, and one caller to
+ * hand it in: a `labelKey` on `HeaderPill` would mean every other label, all of which
+ * are brand names that must never be translated, having to say so.
+ */
+export function headerContextFor(pathname: string, t: TFunction): HeaderContext {
     // Setting up a solo game. Loud lemon rather than the game's own accent: this screen
     // is about one mode of one game, and the pill is the only thing on it that says
     // which mode.
     if (pathname === ROUTES.leagueOfLettersSoloSettings) {
         return {
             back: ROUTES.leagueOfLettersIndex,
-            pill: { label: 'Solo', accent: Brand.lemon, icon: 'cpu', filled: true }
+            pill: { label: t('reconnect.mode.solo'), accent: Brand.lemon, icon: 'cpu', filled: true }
         };
     }
 

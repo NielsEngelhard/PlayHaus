@@ -1,6 +1,7 @@
 import { getReconnectableGames, type ReconnectableGame } from '@/api/calls/reconnect';
 import { ApiError } from '@/api/client';
 import { useAuth } from '@/features/auth/useAuth';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { kindOf } from '@/features/reconnect/game-kinds';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -12,8 +13,13 @@ interface ReconnectableGames {
     loading: boolean
     /** A reload over a list that is already up. */
     refreshing: boolean
-    /** The load failed. There is no list to show, so the page offers the refresh. */
-    error: string | null
+    /**
+     * The load failed. There is no list to show, so the page offers the refresh.
+     *
+     * A catalogue key, resolved at render, so it is in the language on screen now
+     * rather than the one that was on screen when the call failed.
+     */
+    error: TranslationKey | null
     /**
      * When the list on screen came back, as an ISO timestamp, or `null` while there
      * has never been one. The page prints it as "bijgewerkt zojuist"; it is deliberately
@@ -24,16 +30,16 @@ interface ReconnectableGames {
     refresh: () => void
 }
 
-/** The reconnect page's copy is Dutch, so its failures are too. */
-function reconnectErrorMessage(error: unknown): string {
+/** Which line a failed load deserves, as a catalogue key. */
+function reconnectErrorMessage(error: unknown): TranslationKey {
     if (error instanceof ApiError) {
-        if (error.status === 401) return 'Je sessie is verlopen. Log opnieuw in.';
-        return 'Er ging iets mis bij het ophalen van je spellen. Probeer het opnieuw.';
+        if (error.status === 401) return 'reconnect.errors.expired';
+        return 'reconnect.errors.generic';
     }
 
     // `fetch` rejects with a TypeError when it cannot reach the host at all —
     // in development usually a wrong EXPO_PUBLIC_API_URL or an API that isn't up.
-    return 'Geen verbinding met de server. Check je verbinding en probeer opnieuw.';
+    return 'reconnect.errors.network';
 }
 
 /**
@@ -64,7 +70,7 @@ export function useReconnectableGames(): ReconnectableGames {
     const [games, setGames] = useState<ReconnectableGame[] | null>(null);
     const [loadedAt, setLoadedAt] = useState<string | null>(null);
     const [refreshing, setRefreshing] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
 
     // Nothing may touch state after unmount, and `refresh` can fire again while an
     // earlier load is still in the air.

@@ -1,6 +1,7 @@
 import type { ReconnectableGame } from "@/api/calls/reconnect";
 import AppText from "@/components/text/AppText";
 import { Brand, Spacing } from "@/constants/theme";
+import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { startedAgo, type GameKind } from "@/features/reconnect/game-kinds";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -16,12 +17,14 @@ interface Props {
 /**
  * The one-line reminder that a game is still open, sitting under the game list.
  *
- * Deliberately quieter than a game card — no gradient, no shadow in either scheme. It is
+ * Deliberately quieter than a game card: no gradient, no shadow in either scheme. It is
  * a way back into something already started, not another thing to start.
  */
 export default function StillRunningCard({ game, kind }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
+    const phrase = usePhrase();
 
     const started = startedAgo(game.createdAt);
 
@@ -33,10 +36,16 @@ export default function StillRunningCard({ game, kind }: Props) {
                 </View>
 
                 <View style={styles.body}>
-                    <AppText style={styles.label}>Nog bezig</AppText>
+                    <AppText style={styles.label}>{t('home.stillRunning.label')}</AppText>
 
                     <AppText style={styles.title} numberOfLines={1}>
-                        {started === null ? kind.title : `${kind.title} · ${kind.mode} ${started}`}
+                        {started === null
+                            ? kind.title
+                            : t('home.stillRunning.line', {
+                                title: kind.title,
+                                mode: t(kind.modeKey),
+                                time: phrase(started)
+                            })}
                     </AppText>
                 </View>
 

@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Toggle from "@/components/ui/Toggle";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { SETTINGS, type SettingKey } from "@/features/settings/profile";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -19,10 +20,11 @@ interface Props {
 export default function ProfileSettingsCard({ values, onChange, disabled = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Card>
-            <AppText style={styles.label}>Instellingen</AppText>
+            <AppText style={styles.label}>{t('profile.settings.title')}</AppText>
 
             <View style={styles.rows}>
                 {SETTINGS.map((setting, index) => (
@@ -36,15 +38,15 @@ export default function ProfileSettingsCard({ values, onChange, disabled = false
                             </View>
 
                             <View style={styles.text}>
-                                <AppText style={styles.title}>{setting.title}</AppText>
-                                <AppText style={styles.description}>{setting.description}</AppText>
+                                <AppText style={styles.title}>{t(setting.titleKey)}</AppText>
+                                <AppText style={styles.description}>{t(setting.descriptionKey)}</AppText>
                             </View>
                         </View>
 
                         <Toggle
                             value={values[setting.key]}
                             onValueChange={value => onChange(setting.key, value)}
-                            label={setting.title}
+                            label={t(setting.titleKey)}
                             disabled={disabled}
                         />
                     </View>

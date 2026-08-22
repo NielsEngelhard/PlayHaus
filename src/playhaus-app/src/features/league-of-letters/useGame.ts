@@ -2,6 +2,7 @@ import { getGame, roundOf, submitGuess, type Game, type GameRound } from '@/api/
 import { useAuth } from '@/features/auth/useAuth';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
 import { guessLandedHaptic } from '@/features/league-of-letters/guess-feedback';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface GameState {
@@ -11,7 +12,7 @@ interface GameState {
     /** True until the first load settles, one way or the other. */
     loading: boolean
     /** The initial load failed. There is no board to show, so the page offers a retry. */
-    error: string | null
+    error: TranslationKey | null
     reload: () => void
     /**
      * Sends a guess and folds the result into the game in hand.
@@ -40,7 +41,7 @@ interface GameState {
 export function useGame(gameId: string | undefined): GameState {
     const { user, status } = useAuth();
     const [game, setGame] = useState<Game | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
     /**
      * Which round the board is showing.
      *

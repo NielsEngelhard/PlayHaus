@@ -3,6 +3,7 @@ import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import { gameBySlug } from "@/constants/games";
 import { Brand, Gradients, linearGradient } from "@/constants/theme";
+import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { startedAgo, type GameKind } from "@/features/reconnect/game-kinds";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -43,18 +44,22 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
     const styles = useStyles();
 
     const router = useRouter();
+    const t = useT();
+    const phrase = usePhrase();
 
     const registered = gameBySlug(kind.slug);
     const look = registered ?? UNKNOWN_GAME;
 
-    // A room is headed by its own name — "Kamer K2V8" — and says which game it is
-    // in the chips underneath. A solo game has no name but the game's, so it leads
-    // with that and the chips carry the mode instead.
+    // A lobby is headed by its own name, "Lobby K2V8", and says which game it is in
+    // the chips underneath. A solo game has no name but the game's, so it leads with
+    // that and the chips carry the mode instead.
     const code = kind.code?.(game);
     const started = startedAgo(game.createdAt);
 
-    const chips = [code === undefined ? kind.mode : kind.title, started]
-        .filter((chip): chip is string => chip !== null);
+    const chips = [
+        code === undefined ? t(kind.modeKey) : kind.title,
+        started === null ? null : phrase(started)
+    ].filter((chip): chip is string => chip !== null);
 
     return (
         <View style={[styles.card, theme.popShadow(look.color)]}>
@@ -67,7 +72,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
 
                 <View style={styles.body}>
                     <AppText style={styles.title} numberOfLines={1}>
-                        {code === undefined ? kind.title : `${kind.mode} ${code}`}
+                        {code === undefined ? kind.title : t('lol.lobby.named', { code })}
                     </AppText>
 
                     <View style={styles.chips}>
@@ -81,7 +86,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
             </View>
 
             <ActionButton
-                text='Verder spelen'
+                text={t('reconnect.resume')}
                 onPress={() => router.push(kind.href(game))}
                 style={styles.button}
             />

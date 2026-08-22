@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import { Brand, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { View } from "react-native";
 
 interface Props {
@@ -22,24 +23,25 @@ interface Props {
  */
 export default function RoundResultCard({ word, tries, maxGuesses, won }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View style={styles.card}>
             {/* Tilted and hung over the card's own edge, the way the FAVOURITE flag sits
                 on a game card — a sticker on the result rather than a heading in it. */}
             <View style={[styles.badge, won ? styles.badgeWon : styles.badgeLost]}>
-                <AppText style={styles.badgeText}>{won ? 'OPGELOST' : 'HELAAS'}</AppText>
+                <AppText style={styles.badgeText}>{won ? t('lol.game.solved') : t('lol.game.lost')}</AppText>
             </View>
 
             <View style={styles.row}>
                 <View>
-                    <AppText style={styles.label}>Het woord</AppText>
+                    <AppText style={styles.label}>{t('lol.game.theWord')}</AppText>
 
                     <AppText style={styles.word}>{word.toUpperCase()}</AppText>
                 </View>
 
                 <View style={styles.tries}>
-                    <AppText style={styles.label}>Pogingen</AppText>
+                    <AppText style={styles.label}>{t('lol.game.attempts')}</AppText>
 
                     <AppText style={styles.count}>
                         {won ? tries : '—'}

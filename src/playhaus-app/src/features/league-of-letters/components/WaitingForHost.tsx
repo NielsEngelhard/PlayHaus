@@ -3,6 +3,7 @@ import { gameBySlug } from "@/constants/games";
 import { Brand, Gradients, Spacing, linearGradient } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, View } from "react-native";
 
@@ -46,6 +47,7 @@ const DOTS = [0, 1, 2];
  * still connected, which is the one question anybody staring at it actually has.
  */
 export default function WaitingForHost({ hostName }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
@@ -117,13 +119,13 @@ export default function WaitingForHost({ hostName }: Props) {
                 </View>
             </View>
 
-            <AppText style={styles.title}>Wachten op de host</AppText>
+            <AppText style={styles.title}>{t('lol.lobby.waitingForHost')}</AppText>
 
             <AppText style={styles.body}>
-                {hostName} zet het spel klaar. Blijf op dit scherm — het start hier meteen mee.
+                {t('lol.lobby.waitingForHostMessage', { name: hostName })}
             </AppText>
 
-            <View style={styles.dots} accessibilityRole='progressbar' accessibilityLabel='Wachten'>
+            <View style={styles.dots} accessibilityRole='progressbar' accessibilityLabel={t('lol.lobby.waitingLabel')}>
                 {DOTS.map(index => <BouncingDot key={index} index={index} />)}
             </View>
         </View>

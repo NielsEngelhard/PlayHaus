@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
@@ -20,13 +21,14 @@ function initials(name: string): string {
 /** The identity card at the top of the profile page: avatar, name, and what that means. */
 export default function ProfileCard({ name, color }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const avatar = avatarColorById(color);
 
     return (
         <Card>
             <View style={styles.tagRow}>
-                <Tag text='Mijn profiel' />
+                <Tag text={t('profile.card.action')} />
             </View>
 
             <View style={styles.row}>
@@ -38,7 +40,7 @@ export default function ProfileCard({ name, color }: Props) {
 
                 <View style={styles.body}>
                     <AppText numberOfLines={1} style={styles.name}>{name}</AppText>
-                    <AppText style={styles.subtitle}>Dit ben jij!</AppText>
+                    <AppText style={styles.subtitle}>{t('profile.card.caption')}</AppText>
                 </View>
             </View>
         </Card>

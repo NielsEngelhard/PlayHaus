@@ -3,6 +3,7 @@ import AppText from "@/components/text/AppText";
 import { Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, Pressable, View } from "react-native";
@@ -35,7 +36,7 @@ const PULSE_MS = 1000;
  * The room's own top row, drawn by the page and sitting under `Header`.
  *
  * The way out lives here rather than in the shared chrome for one reason: the header's back
- * chip is a `Link`, and here going back deletes a room. A link that did that without asking
+ * chip is a `Link`, and here going back deletes a lobby. A link that did that without asking
  * would be the one control in the app you cannot middle-click safely, so the way out has to
  * be a `Pressable` that opens a question. The header keeps the left slot on these routes for
  * the wordmark (see `header-context.ts`), so there is only ever one arrow on screen.
@@ -45,6 +46,7 @@ const PULSE_MS = 1000;
 export default function LobbyBar({ onBack, isHost, code, live }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
     const pill = usePillStyles();
 
     return (
@@ -52,7 +54,7 @@ export default function LobbyBar({ onBack, isHost, code, live }: Props) {
             <Pressable
                 onPress={onBack}
                 accessibilityRole='button'
-                accessibilityLabel={isHost ? 'Kamer sluiten' : 'Kamer verlaten'}
+                accessibilityLabel={isHost ? t('lol.lobby.close') : t('lol.lobby.leave')}
                 style={styles.chip}
             >
                 <Feather name='arrow-left' size={17} color={theme.colors.text} />
@@ -62,15 +64,15 @@ export default function LobbyBar({ onBack, isHost, code, live }: Props) {
 
             {isHost ? (
                 // Filled, which the app saves for the pill that *is* the screen's
-                // subject: this room is yours, and everything on the page follows from it.
-                <ContextPill accent={theme.colors.lemon} label='Jij host' icon='star' filled />
+                // subject: this lobby is yours, and everything on the page follows from it.
+                <ContextPill accent={theme.colors.lemon} label={t('lol.lobby.youHost')} icon='star' filled />
             ) : (
                 <View
                     style={pill.pill}
                     accessibilityRole='text'
                     accessibilityLabel={live
-                        ? `Verbonden met kamer ${[...code].join(' ')}`
-                        : 'Verbinding met de kamer kwijt'}
+                        ? t('lol.lobby.connected', { code: [...code].join(' ') })
+                        : t('lol.lobby.disconnected')}
                 >
                     {/*
                       * A guest's own dot. Worth a pill of its own here in a way it is not
@@ -80,7 +82,7 @@ export default function LobbyBar({ onBack, isHost, code, live }: Props) {
                       */}
                     <PulseDot live={live} />
 
-                    <AppText style={pill.label} numberOfLines={1}>Kamer {code}</AppText>
+                    <AppText style={pill.label} numberOfLines={1}>{t('lol.lobby.named', { code })}</AppText>
                 </View>
             )}
         </View>

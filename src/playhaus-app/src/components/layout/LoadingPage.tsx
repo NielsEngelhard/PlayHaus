@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, View } from "react-native";
 
@@ -42,8 +43,11 @@ const CYCLE_MS = 1200;
 // console warning and nothing else. Transforms are driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
 
-export default function LoadingPage({ message = 'Even geduld…' }: Props) {
+export default function LoadingPage({ message }: Props) {
     const styles = useStyles();
+    const t = useT();
+
+    const text = message ?? t('common.loading');
 
     // One value per tile, built once by the lazy initialiser: re-creating them on
     // a render would drop the wave back to the floor mid-hop. State rather than a
@@ -83,7 +87,7 @@ export default function LoadingPage({ message = 'Even geduld…' }: Props) {
     }, [hops]);
 
     return (
-        <View style={styles.container} accessibilityRole='progressbar' accessibilityLabel={message}>
+        <View style={styles.container} accessibilityRole='progressbar' accessibilityLabel={text}>
             <View style={styles.row}>
                 {TILES.map((tile, index) => (
                     <Animated.View
@@ -124,7 +128,7 @@ export default function LoadingPage({ message = 'Even geduld…' }: Props) {
                 ))}
             </View>
 
-            <AppText style={styles.message}>{message}</AppText>
+            <AppText style={styles.message}>{text}</AppText>
         </View>
     )
 }

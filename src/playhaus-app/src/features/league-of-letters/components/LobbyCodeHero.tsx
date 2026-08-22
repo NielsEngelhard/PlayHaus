@@ -5,6 +5,8 @@ import { Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { shareLink, type ShareOutcome } from "@/utils/share";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import Feather from "@expo/vector-icons/Feather";
 import * as Linking from "expo-linking";
 import { useEffect, useState } from "react";
@@ -41,6 +43,7 @@ const TILE_HEIGHT = 76;
 export default function LobbyCodeHero({ code }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const link = theme.scheme === 'dark' ? LINK_DARK : theme.colors.secondary;
 
@@ -51,7 +54,7 @@ export default function LobbyCodeHero({ code }: Props) {
      * different things to say here — the phone shared, the browser copied, or neither
      * worked. The text is the state, so the text is what is held.
      */
-    const [note, setNote] = useState<string | null>(null);
+    const [note, setNote] = useState<TranslationKey | null>(null);
 
     useEffect(() => {
         if (note === null) return;
@@ -71,17 +74,17 @@ export default function LobbyCodeHero({ code }: Props) {
          */
         const url = Linking.createURL(ROUTES.leagueOfLettersRoom(code));
 
-        setNote(noteFor(await shareLink(url, 'Kom in mijn kamer')));
+        setNote(noteFor(await shareLink(url, t('lol.lobby.shareTitle'))));
     }
 
     return (
         <View>
-            <Label label="Kamercode" />
+            <Label label={t('lol.lobby.code')} />
 
             <View
                 style={styles.tiles}
                 accessibilityRole='text'
-                accessibilityLabel={`Kamercode: ${characters.join(' ')}`}
+                accessibilityLabel={t('lol.lobby.codeSpoken', { characters: characters.join(' ') })}
             >
                 {characters.map((character, index) => {
                     return (
@@ -95,17 +98,17 @@ export default function LobbyCodeHero({ code }: Props) {
             </View>
 
             <View style={styles.row}>
-                <AppText style={styles.aside}>{note ?? 'Lees hem voor, of'}</AppText>
+                <AppText style={styles.aside}>{note === null ? t('lol.lobby.readAloud') : t(note)}</AppText>
 
                 <Pressable
                     onPress={() => void share()}
                     accessibilityRole='button'
-                    accessibilityLabel='Deel de link naar deze kamer'
+                    accessibilityLabel={t('lol.lobby.shareLinkLabel')}
                     style={styles.share}
                 >
                     <Feather name='share-2' size={15} color={link} />
 
-                    <AppText style={styles.shareLabel}>Deel de link</AppText>
+                    <AppText style={styles.shareLabel}>{t('lol.lobby.shareLink')}</AppText>
                 </Pressable>
             </View>
         </View>
@@ -115,12 +118,12 @@ export default function LobbyCodeHero({ code }: Props) {
 /**
  * The one line that says what happened, or nothing when the platform already has.
  *
- * A share sheet that was opened and closed again is not a failure and gets no message —
+ * A share sheet that was opened and closed again is not a failure and gets no message:
  * the player saw it and decided. A copy has nothing to show for itself, so it says so.
  */
-function noteFor(outcome: ShareOutcome): string | null {
-    if (outcome === 'copied') return 'Link gekopieerd';
-    if (outcome === 'failed') return 'Delen lukte niet';
+function noteFor(outcome: ShareOutcome): TranslationKey | null {
+    if (outcome === 'copied') return 'lol.lobby.linkCopied';
+    if (outcome === 'failed') return 'lol.lobby.shareFailed';
 
     return null;
 }

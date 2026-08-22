@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { intoRows } from "@/utils/rows";
@@ -19,10 +20,11 @@ const COLUMNS = 6;
 /** Pick the fill behind your initials. The chosen swatch is the one wearing the check. */
 export default function ProfileAvatarColorPickerCard({ value, onChange, disabled = false }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Card>
-            <AppText style={styles.label}>Avatarkleur</AppText>
+            <AppText style={styles.label}>{t('profile.avatar.title')}</AppText>
 
             <View style={styles.grid}>
                 {intoRows(AVATAR_COLORS, COLUMNS).map((row, rowIndex) => (
@@ -52,13 +54,14 @@ interface SwatchProps {
 
 function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Pressable
             onPress={onPress}
             disabled={disabled}
             accessibilityRole='radio'
-            accessibilityLabel={avatar.label}
+            accessibilityLabel={t(avatar.labelKey)}
             accessibilityState={{ selected, disabled }}
             style={[
                 styles.swatch,

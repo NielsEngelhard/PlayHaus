@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, randomName } from "@/features/settings/profile";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -17,7 +18,7 @@ interface Props {
 
 /**
  * Edit the name other players see. The field holds a draft so a half-typed name never
- * reaches the rest of the page — only `Opslaan` commits it.
+ * reaches the rest of the page: only the save button commits it.
  *
  * A save is a round trip, so the button waits it out with a spinner rather than
  * snapping back to normal and leaving you unsure whether the tap registered.
@@ -25,6 +26,8 @@ interface Props {
 export default function ProfileNameCard({ name, onSave, saving = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
+    const language = useUiLanguage();
 
     const [draft, setDraft] = useState(name);
 
@@ -41,14 +44,14 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
 
     return (
         <Card>
-            <AppText style={styles.label}>Speelnaam</AppText>
+            <AppText style={styles.label}>{t('profile.name.label')}</AppText>
 
             <View style={styles.field}>
                 <TextInput
                     value={draft}
                     onChangeText={setDraft}
                     onSubmitEditing={save}
-                    placeholder='Jouw naam'
+                    placeholder={t('profile.name.placeholder')}
                     placeholderTextColor={theme.colors.textSecondary}
                     autoCorrect={false}
                     editable={!saving}
@@ -67,14 +70,14 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
                     >
                         {saving
                             ? <ActivityIndicator size='small' color={theme.colors.textOnAccent} />
-                            : <AppText style={styles.saveText}>Opslaan</AppText>}
+                            : <AppText style={styles.saveText}>{t('common.save')}</AppText>}
                     </Pressable>
 
                     <Pressable
-                        onPress={() => setDraft(randomName())}
+                        onPress={() => setDraft(randomName(language))}
                         disabled={saving}
                         accessibilityRole='button'
-                        accessibilityLabel='Willekeurige naam'
+                        accessibilityLabel={t('profile.name.random')}
                         style={[styles.diceButton, saving && styles.buttonDisabled]}
                     >
                         <Feather name='shuffle' size={20} color={theme.colors.text} />
@@ -83,7 +86,7 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
             </View>
 
             <AppText style={styles.hint}>
-                Min {NAME_MIN_LENGTH}, max {NAME_MAX_LENGTH} tekens. Dit is wat medespelers zien in een room.
+                {t('profile.name.note', { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH })}
             </AppText>
         </Card>
     )

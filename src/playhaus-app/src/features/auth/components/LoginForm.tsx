@@ -5,6 +5,8 @@ import { authErrorMessage } from "@/features/auth/auth-errors";
 import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { useAuth } from "@/features/auth/useAuth";
+import type { TranslationKey } from "@/features/i18n/keys";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -21,11 +23,12 @@ interface Props {
 /** Signs an existing account in. Reached from the gate's account screen. */
 export default function LoginForm({ onBack, onSuccess }: Props) {
     const { login } = useAuth();
+    const t = useT();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [busy, setBusy] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
 
     // Only emptiness is refused here. Whether the credentials are right is the
     // server's answer to give, and guessing at it locally just adds a second
@@ -51,13 +54,13 @@ export default function LoginForm({ onBack, onSuccess }: Props) {
 
     return (
         <View>
-            <AuthFormHeader title='Login' onBack={onBack} disabled={busy} />
+            <AuthFormHeader title={t('auth.login.title')} onBack={onBack} disabled={busy} />
 
             <TextField
-                label='Email'
+                label={t('auth.login.email')}
                 value={email}
                 onChangeText={setEmail}
-                placeholder='you@example.com'
+                placeholder={t('auth.login.emailPlaceholder')}
                 keyboardType='email-address'
                 autoComplete='email'
                 textContentType='emailAddress'
@@ -68,10 +71,10 @@ export default function LoginForm({ onBack, onSuccess }: Props) {
             />
 
             <TextField
-                label='Password'
+                label={t('auth.login.password')}
                 value={password}
                 onChangeText={setPassword}
-                placeholder='Your password'
+                placeholder={t('auth.login.passwordPlaceholder')}
                 secureTextEntry
                 autoComplete='current-password'
                 textContentType='password'
@@ -81,10 +84,10 @@ export default function LoginForm({ onBack, onSuccess }: Props) {
                 style={styles.field}
             />
 
-            {error && <AuthErrorText message={error} />}
+            {error && <AuthErrorText message={t(error)} />}
 
             <TextButton
-                text={busy ? 'Signing in…' : 'Login'}
+                text={busy ? t('auth.login.submitting') : t('auth.login.submit')}
                 onPress={submit}
                 variant='secondary'
                 fullWidth

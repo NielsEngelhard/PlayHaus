@@ -3,6 +3,7 @@ import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
@@ -70,6 +71,7 @@ interface PlayerChipProps {
 
 function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
     const styles = useStyles();
+    const t = useT();
 
     const avatar = avatarColorById(player.avatarColorId);
 
@@ -83,7 +85,7 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
               */}
             {up && (
                 <View style={styles.turnBadge}>
-                    <AppText style={styles.turnBadgeText}>AAN ZET</AppText>
+                    <AppText style={styles.turnBadgeText}>{t('lol.game.yourTurn')}</AppText>
                 </View>
             )}
 
@@ -97,12 +99,12 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
             )]} />
 
             <AppText style={styles.name} numberOfLines={1}>
-                {you ? 'Jij' : player.name}
+                {you ? t('common.you') : player.name}
             </AppText>
 
             {/* While somebody is typing, what they are doing is more use than their score. */}
             {typing
-                ? <AppText style={styles.typing}>typt…</AppText>
+                ? <AppText style={styles.typing}>{t('lol.game.typing')}</AppText>
                 : <AppText style={styles.score}>{player.score}</AppText>}
         </View>
     )

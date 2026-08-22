@@ -1,5 +1,6 @@
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
@@ -21,12 +22,13 @@ const SIZE = 36;
 export default function BackChip({ href }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Link href={href} asChild>
             <Pressable
                 accessibilityRole='link'
-                accessibilityLabel='Terug'
+                accessibilityLabel={t('common.back')}
                 // Flattened: `Link asChild` clones this onto the anchor it renders, and a
                 // style array does not survive that trip.
                 style={StyleSheet.flatten([styles.chip])}

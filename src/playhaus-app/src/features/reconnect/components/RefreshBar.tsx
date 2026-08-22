@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -25,20 +26,21 @@ interface Props {
 export default function RefreshBar({ onPress, busy = false, disabled = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <PopPressable
             onPress={onPress}
             disabled={disabled}
             accessibilityRole='button'
-            accessibilityLabel='Ververs de lijst'
+            accessibilityLabel={t('reconnect.refresh.label')}
             accessibilityState={{ disabled, busy }}
             style={[styles.bar, disabled && styles.disabled]}
         >
             <View style={styles.row}>
                 <Feather name='refresh-cw' size={16} color={theme.colors.text} />
 
-                <AppText style={styles.label}>{busy ? 'Bezig…' : 'Ververs'}</AppText>
+                <AppText style={styles.label}>{busy ? t('common.busy') : t('reconnect.refresh.action')}</AppText>
             </View>
         </PopPressable>
     )

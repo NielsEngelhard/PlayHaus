@@ -9,6 +9,23 @@ import type { TranslationKey } from '@/features/i18n/keys';
 export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "PubquizR";
 
+/**
+ * How many devices a group needs to play.
+ *
+ * `perPlayer` — everyone plays on their own screen. `shared` — one screen the whole
+ * table plays around, passed or propped up between them.
+ */
+export type DeviceMode = 'perPlayer' | 'shared';
+
+/**
+ * The catalogue line for each mode. Here rather than in the card because this is the
+ * registry meeting the catalogue, which is what the rest of this file is for.
+ */
+export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
+    perPlayer: 'games.device.perPlayer',
+    shared: 'games.device.shared'
+};
+
 export interface Game {
     /** The `/games/{slug}` path segment. What the header matches a route on. */
     slug: string,
@@ -43,6 +60,11 @@ export interface Game {
     tagKeys: readonly TranslationKey[],
     /** Resolved at render — see `tagKeys` for why this is a key and not a string. */
     descriptionKey: TranslationKey,
+    /**
+     * How many devices the group needs. An enum, not a key: the wording is the same for
+     * every game that plays this way, so only the card should have to know it.
+     */
+    deviceMode: DeviceMode,
     playable: boolean,
     navigationUrl: string
 }
@@ -61,6 +83,7 @@ export const GAMES: Game[] = [
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
         tagKeys: ['games.leagueOfLetters.tag.category', 'games.leagueOfLetters.tag.players'],
         descriptionKey: 'games.leagueOfLetters.description',
+        deviceMode: 'perPlayer',
         playable: true,
         navigationUrl: ROUTES.leagueOfLettersIndex
     },
@@ -72,6 +95,7 @@ export const GAMES: Game[] = [
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
         tagKeys: ['games.quizzer.tag.category', 'games.quizzer.tag.players'],
         descriptionKey: 'games.quizzer.description',
+        deviceMode: 'shared',
         playable: false,
         navigationUrl: ROUTES.quizzerIndex
     }

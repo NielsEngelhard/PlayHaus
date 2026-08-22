@@ -3,6 +3,7 @@ import CountryFlag from "@/components/ui/CountryFlag";
 import PopPressable from "@/components/ui/PopPressable";
 import { LANGUAGES, type Language, type LanguageCode } from "@/constants/languages";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { intoRows } from "@/utils/rows";
@@ -86,6 +87,7 @@ interface TileProps {
 function Tile({ language, selected, disabled, onPress }: TileProps) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <PopPressable
@@ -114,7 +116,7 @@ function Tile({ language, selected, disabled, onPress }: TileProps) {
             </View>
 
             <AppText style={styles.tileLabel}>{language.label}</AppText>
-            <AppText style={styles.tileDescription}>{language.description}</AppText>
+            <AppText style={styles.tileDescription}>{t(language.descriptionKey)}</AppText>
         </PopPressable>
     )
 }

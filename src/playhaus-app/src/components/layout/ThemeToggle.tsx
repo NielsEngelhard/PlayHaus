@@ -1,6 +1,7 @@
 import PopPressable from "@/components/ui/PopPressable";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme, useThemeMode } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 
 const SIZE = 32;
@@ -18,6 +19,7 @@ export default function ThemeToggle() {
     const { scheme, toggle } = useThemeMode();
     const { colors } = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const goingDark = scheme === 'light';
 
@@ -25,7 +27,7 @@ export default function ThemeToggle() {
         <PopPressable
             onPress={toggle}
             accessibilityRole='button'
-            accessibilityLabel={goingDark ? 'Schakel over naar donkere modus' : 'Schakel over naar lichte modus'}
+            accessibilityLabel={goingDark ? t('chrome.toDarkMode') : t('chrome.toLightMode')}
             style={styles.button}
         >
             <Feather

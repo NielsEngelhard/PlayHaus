@@ -4,6 +4,7 @@ import { Brand, Spacing } from "@/constants/theme";
 import { initialsFor } from "@/features/league-of-letters/components/lobby-player";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { View } from "react-native";
 
 interface Props {
@@ -24,14 +25,15 @@ const AVATAR_SIZE = 32;
  * do want is the roll call — that the people they came in with are actually here.
  */
 export default function LobbyRoster({ players, hostId, userId }: Props) {
+    const t = useT();
     const styles = useStyles();
 
     return (
         <View>
             <View style={styles.header}>
-                <AppText style={styles.label}>In de kamer</AppText>
+                <AppText style={styles.label}>{t('lol.lobby.inLobby')}</AppText>
 
-                <AppText style={styles.count}>{players.length} van {MAX_LOBBY_PLAYERS}</AppText>
+                <AppText style={styles.count}>{t('lol.lobby.playerCount', { taken: players.length, max: MAX_LOBBY_PLAYERS })}</AppText>
             </View>
 
             <View style={styles.list}>
@@ -56,6 +58,7 @@ interface PlayerRowProps {
 
 /** One name, and at most one word about it. */
 function PlayerRow({ player, host, you }: PlayerRowProps) {
+    const t = useT();
     const styles = useStyles();
 
     const avatar = avatarColorById(player.avatarColorId);
@@ -76,13 +79,13 @@ function PlayerRow({ player, host, you }: PlayerRowProps) {
               */}
             {host && (
                 <View style={styles.hostTag}>
-                    <AppText style={styles.hostTagText}>Host</AppText>
+                    <AppText style={styles.hostTagText}>{t('common.host')}</AppText>
                 </View>
             )}
 
             {you && !host && (
                 <View style={styles.youTag}>
-                    <AppText style={styles.youTagText}>Jij</AppText>
+                    <AppText style={styles.youTagText}>{t('common.you')}</AppText>
                 </View>
             )}
         </View>

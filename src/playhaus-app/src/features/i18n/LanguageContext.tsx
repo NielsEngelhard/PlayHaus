@@ -2,8 +2,9 @@ import { FALLBACK_UI_LANGUAGE, isLanguageCode, type LanguageCode } from '@/const
 import { useAuth } from '@/features/auth/useAuth';
 import { deviceLanguage } from '@/features/i18n/device-language';
 import i18n from '@/features/i18n/i18n';
+import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { TFunction } from 'i18next';
-import { createContext, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface LanguageState {
@@ -131,4 +132,32 @@ export function useT(): TFunction {
     const { t } = useTranslation(undefined, options);
 
     return t;
+}
+
+/**
+ * The translator, for a `Phrase` — a key that was chosen somewhere no hook could reach
+ * and carried here with the values it interpolates.
+ *
+ * `startedAgo` is the one that produces them. The `keyValues` pass is what lets a phrase
+ * hold a word that is itself in the catalogue, which is how "op 3 mrt 2026" gets its
+ * month without the function that picked the date knowing what language it is in.
+ */
+export function usePhrase(): (phrase: Phrase) => string {
+    const t = useT();
+
+    /**
+     * `t`'s own overloads cannot see that a `Phrase`'s key and its values belong
+     * together: with the key widened to the whole union, TypeScript reaches for the
+     * `(key, defaultValue)` overload and complains that an options object is not a
+     * string. Narrowing the signature here says what is actually being called.
+     */
+    const translate = t as (key: TranslationKey, values?: Record<string, string | number>) => string;
+
+    return useCallback((phrase: Phrase) => {
+        const translated = phrase.keyValues
+            ? Object.fromEntries(Object.entries(phrase.keyValues).map(([name, key]) => [name, translate(key)]))
+            : undefined;
+
+        return translate(phrase.key, { ...phrase.values, ...translated });
+    }, [translate]);
 }

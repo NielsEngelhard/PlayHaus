@@ -1,20 +1,23 @@
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { StyleSheet, View } from "react-native";
 
 export default function FriendsPage() {
+    const t = useT();
+
     return (
         <View style={styles.container}>
             <SimpleTextHero
-                title='Vrienden'
-                description='Speel samen, houd bij wie er wint en daag elkaar uit.'
+                title={t('friends.title')}
+                description={t('friends.description')}
             />
 
             <InlineNotification
-                title='Binnenkort'
+                title={t('friends.soon.title')}
                 icon='clock'
-                message='Vriendenlijsten, uitnodigingen en onderlinge standen komen eraan. Voor nu speel je samen via een roomcode.'
+                message={t('friends.soon.message')}
             />
         </View>
     )

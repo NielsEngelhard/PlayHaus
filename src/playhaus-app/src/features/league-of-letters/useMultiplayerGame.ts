@@ -11,6 +11,7 @@ import { useAuth } from '@/features/auth/useAuth';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
 import { guessLandedHaptic } from '@/features/league-of-letters/guess-feedback';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface MultiplayerGameState {
@@ -20,7 +21,7 @@ export interface MultiplayerGameState {
     /** The round on screen. Lags `game.currentRound` while a verdict is being read. */
     round: GameRound | null
     loading: boolean
-    error: string | null
+    error: TranslationKey | null
     /** It is this player's turn: the keyboard is live and a guess will be taken. */
     myTurn: boolean
     /**
@@ -66,7 +67,7 @@ const TYPING_THROTTLE_MS = 80;
 export function useMultiplayerGame(gameId: string | undefined, code: string): MultiplayerGameState {
     const { user, status } = useAuth();
     const [game, setGame] = useState<Game | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
     const [typing, setTyping] = useState<string | null>(null);
 
     /**

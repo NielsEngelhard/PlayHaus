@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { View } from "react-native";
 
 interface Props {
@@ -71,6 +72,7 @@ interface ScoreLineProps {
 
 function ScoreLine({ player, place, you, live, divided }: ScoreLineProps) {
     const styles = useStyles();
+    const t = useT();
 
     const avatar = avatarColorById(player.avatarColorId);
 
@@ -85,7 +87,7 @@ function ScoreLine({ player, place, you, live, divided }: ScoreLineProps) {
             )]} />
 
             <AppText style={[styles.name, you && styles.nameYou]} numberOfLines={1}>
-                {you ? 'Jij' : player.name}
+                {you ? t('common.you') : player.name}
             </AppText>
 
             <AppText style={styles.score}>{player.score}</AppText>

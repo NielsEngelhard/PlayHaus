@@ -1,17 +1,11 @@
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 
 interface Props {
     onCreateAccount: () => void
 }
-
-// Out here rather than inline: a JSX attribute keeps every newline and every space
-// of indentation it is written with, which a wrapped sentence would then carry
-// onto the screen.
-const MESSAGE = 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en '
-    + 'gespeelde games kunnen verloren gaan zodra deze sessie eindigt. Maak een '
-    + 'account aan om ze te bewaren.';
 
 /**
  * What a guest sees at the top of their profile: that this account is temporary,
@@ -24,17 +18,18 @@ const MESSAGE = 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en
  */
 export default function GuestAccountNotice({ onCreateAccount }: Props) {
     const theme = useTheme();
+    const t = useT();
 
     return (
         <InlineNotification
-            title='Gastaccount'
+            title={t('profile.guest.title')}
             icon='alert-triangle'
             color={theme.colors.destructive}
             iconColor={theme.colors.textOnAccent}
-            message={MESSAGE}
+            message={t('profile.guest.message')}
         >
             <TextButton
-                text='Account aanmaken'
+                text={t('profile.guest.action')}
                 onPress={onCreateAccount}
                 variant='primary'
             />
