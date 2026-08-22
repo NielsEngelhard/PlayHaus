@@ -59,7 +59,7 @@ export default function ReconnectPage() {
                 />
             ) : games.length === 0 ? (
                 // <NoGamesCard />
-                <AppText>{t('reconnect.noGames')}</AppText>
+                <AppText style={styles.noReconnectGamesText}>{t('reconnect.noGames')}</AppText>
             ) : (
                 <View style={styles.list}>
                     {games.map(game => {
@@ -112,5 +112,8 @@ const useStyles = createThemedStyles(theme => ({
     },
     list: {
         gap: 12
+    },
+    noReconnectGamesText: {
+        color: theme.colors.textSecondary
     }
 }))
