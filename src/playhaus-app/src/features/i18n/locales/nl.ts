@@ -186,9 +186,25 @@ export const nl: Catalog = {
             multiplayer: { title: 'Multiplayer', description: 'Race tegen je vrienden.', action: 'Openen' },
             join: {
                 label: 'JOIN EEN GAME',
+                /**
+                 * Dezelfde kaart, op een breed scherm in tweeën: de vakjes zijn daar maar
+                 * de helft, dus het label noemt zijn eigen helft in plaats van de kaart.
+                 */
+                labelWide: 'TYP DE CODE',
                 paste: 'Plakken',
                 pasteLabel: 'Code plakken',
-                codeLabel: 'Lobbycode'
+                codeLabel: 'Lobbycode',
+                scanRowTitle: 'Of scan zijn scherm',
+                scanRowHint: 'Je zit er meteen in',
+                scanAction: 'Scan liever',
+                scanCopy: 'Richt je telefoon op de code van de host',
+                scanTitle: 'Scannen om te joinen',
+                scanLabel: 'Scan een QR-code om een lobby te joinen',
+                scanCancel: 'Annuleren',
+                permissionAsk: 'De camera is nodig om de code van de host te lezen. Er wordt niets opgenomen of verstuurd.',
+                permissionGrant: 'Camera toestaan',
+                /** Hier geen knop onder: dit antwoord verander je in de instellingen. */
+                permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de vier tekens gewoon in.'
             }
         },
         settings: {
@@ -288,6 +304,9 @@ export const nl: Catalog = {
             shareLink: 'Deel de link',
             linkCopied: 'Link gekopieerd',
             shareFailed: 'Delen lukte niet',
+            qrLabel: 'Toon een QR-code om deze lobby te joinen',
+            qrTitle: 'Scannen om te joinen',
+            qrCopy: 'Houd er een andere telefoon voor en die komt meteen in de lobby.',
             players: 'Spelers',
             playerCount: '{{taken}} van {{max}}',
             inLobby: 'In de lobby',

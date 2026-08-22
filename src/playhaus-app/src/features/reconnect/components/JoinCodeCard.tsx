@@ -2,8 +2,10 @@ import { LOBBY_CODE_LENGTH } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
 import { ROUTES } from "@/constants/routes";
-import { fontFamilyForWeight, Spacing } from "@/constants/theme";
+import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import { codeFromScan, sanitize } from "@/features/league-of-letters/join-link";
+import ScanToJoin from "@/features/league-of-letters/components/ScanToJoin";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -29,17 +31,22 @@ const SLOTS = Array.from({ length: LOBBY_CODE_LENGTH }, (_, index) => index);
 const PAGE_COLUMN = 600;
 const PAGE_GUTTER = Spacing.four;
 
-/** The card's own padding in the row arrangement, and the gap between its two columns. */
-const CARD_PADDING = Spacing.three + 4;
-const COLUMN_GAP = Spacing.four;
+/**
+ * The padding each half wears in the row arrangement.
+ *
+ * Carried by the columns rather than the card, because the rule between them runs the
+ * full height and a card with its own padding would hold it off both ends.
+ */
+const COLUMN_PADDING = Spacing.three + 4;
 
 /**
- * The least the copy column may be given before the row is not worth having.
+ * The least the scan half may be given before the row is not worth having.
  *
- * Under this the label starts breaking across lines and the hint turns into a column of
- * two-word rows, which is worse than the stack it was supposed to improve on.
+ * Under this the tile and its two lines of copy stop reading as a panel you could aim a
+ * phone at and start reading as a squeezed afterthought — at which point the stacked
+ * arrangement, where scanning gets a whole row to itself, is the better one.
  */
-const COPY_MIN = 200;
+const SCAN_MIN = 170;
 
 /**
  * How big a slot may get, and the least it may keep.
@@ -59,9 +66,9 @@ const SLOT_GAP = Spacing.two;
  * How much room the whole row of slots needs at full size.
  *
  * This is what decides the arrangement: a four-character code leaves a browser column
- * enough width for copy beside it, and a six-character one does not — so the same test
- * that splits the card today keeps it stacked the day codes get longer, with nobody
- * having to remember to come back here. See `isWide`.
+ * enough width for the scan panel beside it, and a six-character one does not — so the
+ * same test that splits the card today keeps it stacked the day codes get longer, with
+ * nobody having to remember to come back here. See `isWide`.
  */
 const CLUSTER_WIDTH = LOBBY_CODE_LENGTH * MAX_SLOT + (LOBBY_CODE_LENGTH - 1) * SLOT_GAP;
 
@@ -75,7 +82,7 @@ const CLUSTER_WIDTH = LOBBY_CODE_LENGTH * MAX_SLOT + (LOBBY_CODE_LENGTH - 1) * S
 function isWide(window: number): boolean {
     const card = Math.min(PAGE_COLUMN, window - PAGE_GUTTER * 2);
 
-    return card - CARD_PADDING * 2 >= CLUSTER_WIDTH + COLUMN_GAP + COPY_MIN;
+    return card >= COLUMN_PADDING * 2 + CLUSTER_WIDTH + SCAN_MIN;
 }
 
 /**
@@ -92,16 +99,17 @@ const SLOT_ASPECT = 0.86;
  */
 const SLOT_FONT = LOBBY_CODE_LENGTH > 4 ? 21 : 26;
 
-/**
- * Everything a code is allowed to be. Anything else is dropped as it arrives, which is
- * what lets a pasted "code: ab-cd" become `ABCD` rather than being refused.
- */
-function sanitize(text: string): string {
-    return text.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, LOBBY_CODE_LENGTH);
-}
+/** The scan tile, in each arrangement. Big enough on the wide one to be the panel's subject. */
+const SCAN_TILE_SMALL = 44;
+const SCAN_TILE_LARGE = 88;
+
+/** How far the sweep travels either side of centre, as a share of the tile. */
+const SWEEP_REACH = 0.3;
+const SWEEP_MS = 2400;
 
 /**
- * Enter a lobby code and join someone else's game.
+ * Enter a lobby code and join someone else's game — by typing it, or by pointing the
+ * camera at the host's screen.
  *
  * The code is drawn as one box per character, but it is typed into a single `TextInput`
  * laid over the whole row at zero opacity. One field rather than several is what makes
@@ -109,20 +117,17 @@ function sanitize(text: string): string {
  * through it, autofill from a message can fill it — none of which survives being split
  * across inputs that hand focus to each other.
  *
- * The card is a stack on a phone and a row on anything wider: what this is for on one
- * side, the boxes on the other. Stacked at full width the row is the widest thing on the
- * card and reads as the point of it — but the same arrangement in a 550pt browser column
- * leaves a small cluster of boxes marooned in the middle of a lot of nothing, with its
- * label and its footnote pinned to opposite corners. Two columns hand the spare width to
- * the copy, which is the half that can use it.
+ * The card is a stack on a phone and a row on anything wider, and the two halves are the
+ * two ways in: the boxes, and the camera. Stacked, scanning is a row under the code with
+ * a rule above it; in a row it is a column of its own behind a full-height rule. The
+ * width goes to the second way in rather than to air around the first, which on a laptop
+ * beside a host holding their phone is often the faster of the two.
  *
  * There is no submit button. A code is a fixed number of characters, so the last one
  * someone types is unambiguously the end of it, and a button would only be a second way
- * to say what the field already knows. The hint admits that it acts on its own, because
- * a form that does had better say so before it does it.
+ * to say what the field already knows. A scanned code takes the identical path.
  */
 export default function JoinCodeCard() {
-    const theme = useTheme();
     const styles = useStyles();
     const t = useT();
 
@@ -134,6 +139,7 @@ export default function JoinCodeCard() {
 
     const [code, setCode] = useState('');
     const [focused, setFocused] = useState(false);
+    const [scanning, setScanning] = useState(false);
 
     /**
      * Whether this card has already sent someone off with the code it holds.
@@ -169,9 +175,41 @@ export default function JoinCodeCard() {
         join(next);
     }
 
+    /**
+     * A whole code, arriving at once: read off a QR, or lifted out of a pasted link.
+     *
+     * The latch is cleared first rather than trusted. A player who typed a dead code, came
+     * back to this card and then aimed the camera at a QR instead would otherwise be
+     * holding a phone at something this card has already decided not to act on — and
+     * reaching for the camera, or for paste, is a fresh attempt by definition.
+     *
+     * The slots are filled on the way past so the card shows what arrived, which is the
+     * only feedback there is between the panel closing and the room opening.
+     */
+    function acceptCode(value: string) {
+        sent.current = false;
+
+        setCode(value);
+        join(value);
+    }
+
     async function paste() {
         try {
-            change(await Clipboard.getStringAsync());
+            const clipboard = await Clipboard.getStringAsync();
+
+            // A whole join link is the likeliest thing on the clipboard now that the host's
+            // screen offers one to share, and `sanitize` alone makes a nonsense of it —
+            // it keeps the first four code characters it sees, which for a URL is `HTTP`.
+            // `codeFromScan` is the rule that understands a link, so it gets first refusal
+            // and the lenient path only handles what it turns down.
+            const linked = codeFromScan(clipboard);
+
+            if (linked !== null) {
+                acceptCode(linked);
+                return;
+            }
+
+            change(clipboard);
         } catch {
             // Web can refuse the read outright, and a clipboard that says no is not worth
             // a message — the field is still sitting there to type into.
@@ -186,71 +224,222 @@ export default function JoinCodeCard() {
             accessibilityRole='button'
             accessibilityLabel={t('lol.index.join.pasteLabel')}
         >
-            <Feather name='clipboard' size={13} color={theme.colors.focus} />
+            <Feather name='clipboard' size={13} color={Brand.secondary} />
 
             <AppText style={styles.pasteText}>{t('lol.index.join.paste')}</AppText>
         </PopPressable>
     );
 
+    const slots = (
+        <Pressable
+            style={styles.slots}
+            onPress={() => field.current?.focus()}
+            accessibilityRole='none'
+        >
+            {SLOTS.map(index => (
+                <Slot
+                    key={index}
+                    character={code[index]}
+                    active={index === cursor}
+                    wide={wide}
+                />
+            ))}
+
+            {/* Invisible, and on top so it takes the taps. Kept at the row's own size
+                rather than shrunk to nothing: a zero-height field is one some browsers
+                refuse to focus, and a small font size makes iOS Safari zoom the page on
+                focus. */}
+            <TextInput
+                ref={field}
+                value={code}
+                // Codes read as one block of capitals, so the field owns that rather than
+                // trusting every keyboard to honour `autoCapitalize`.
+                onChangeText={change}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
+                onSubmitEditing={() => join(code)}
+                maxLength={LOBBY_CODE_LENGTH}
+                autoCapitalize='characters'
+                autoCorrect={false}
+                returnKeyType='go'
+                accessibilityLabel={t('lol.index.join.codeLabel')}
+                // `caretHidden` because the boxes draw their own, and the real one would
+                // be sitting at the far left of an invisible field.
+                caretHidden
+                style={styles.input}
+            />
+        </Pressable>
+    );
+
     return (
-        <View style={[styles.card, wide && styles.cardWide]}>
-            {/* The half that says what this is, and the half that gets the leftover
-                width — the boxes are already as big as they should ever be. */}
-            <View style={[styles.copy, wide && styles.copyWide]}>
-                <AppText style={styles.label}>{t('lol.index.join.label')}</AppText>
+        <>
+            <View style={[styles.card, wide ? styles.cardWide : styles.cardStacked]}>
+                {wide
+                    ? (
+                        <>
+                            <View style={styles.typeColumn}>
+                                <AppText style={styles.label}>{t('lol.index.join.labelWide')}</AppText>
+
+                                <View style={styles.slotsWide}>{slots}</View>
+
+                                <View style={styles.footWide}>{pasteChip}</View>
+                            </View>
+
+                            <ScanPanel onPress={() => setScanning(true)} />
+                        </>
+                    )
+                    : (
+                        <>
+                            {/* The paste chip rides the label's line rather than sitting
+                                under the boxes: stacked, the space under them belongs to
+                                the scan row, and two controls on that line would make the
+                                second way in compete with a shortcut to the first. */}
+                            <View style={styles.head}>
+                                <AppText style={styles.label}>{t('lol.index.join.label')}</AppText>
+
+                                {pasteChip}
+                            </View>
+
+                            {slots}
+
+                            <ScanRow onPress={() => setScanning(true)} />
+                        </>
+                    )}
             </View>
 
-            {/* Nothing wraps the boxes when stacked — the row already fills the card —
-                so this only takes a style in the row arrangement. */}
-            <View style={wide && styles.entryWide}>
-                <Pressable
-                    style={styles.slots}
-                    onPress={() => field.current?.focus()}
-                    accessibilityRole='none'
-                >
-                    {SLOTS.map(index => (
-                        <Slot
-                            key={index}
-                            character={code[index]}
-                            active={index === cursor}
-                            wide={wide}
-                        />
-                    ))}
+            <ScanToJoin
+                visible={scanning}
+                onCode={acceptCode}
+                onClose={() => setScanning(false)}
+            />
+        </>
+    )
+}
 
-                    {/* Invisible, and on top so it takes the taps. Kept at the row's own size
-                        rather than shrunk to nothing: a zero-height field is one some
-                        browsers refuse to focus, and a small font size makes iOS Safari zoom
-                        the page on focus. */}
-                    <TextInput
-                        ref={field}
-                        value={code}
-                        // Codes read as one block of capitals, so the field owns that rather
-                        // than trusting every keyboard to honour `autoCapitalize`.
-                        onChangeText={change}
-                        onFocus={() => setFocused(true)}
-                        onBlur={() => setFocused(false)}
-                        onSubmitEditing={() => join(code)}
-                        maxLength={LOBBY_CODE_LENGTH}
-                        autoCapitalize='characters'
-                        autoCorrect={false}
-                        returnKeyType='go'
-                        accessibilityLabel={t('lol.index.join.codeLabel')}
-                        // `caretHidden` because the boxes draw their own, and the real one
-                        // would be sitting at the far left of an invisible field.
-                        caretHidden
-                        style={styles.input}
-                    />
-                </Pressable>
+interface ScanProps {
+    onPress: () => void
+}
 
-                {/* Stacked, the footnote and the paste control share the line under the
-                    boxes and hold the card's two edges. In a row the footnote has already
-                    been said on the other side, so only the chip is left — tucked under
-                    the boxes rather than under the card, where it stays part of the field
-                    instead of becoming a corner of its own. */}
-                <View style={[styles.foot, wide && styles.footWide]}>
-                    {pasteChip}
-                </View>
+/**
+ * The scan half, stacked: a quiet row under the code with a rule above it.
+ *
+ * A row rather than a second card, because there is only one card here and scanning is
+ * the other half of it. The rule is what says so — the same device the design uses to
+ * split the wide arrangement, laid on its side.
+ */
+function ScanRow({ onPress }: ScanProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+    const t = useT();
+
+    return (
+        <PopPressable
+            style={styles.scanRow}
+            onPress={onPress}
+            accessibilityRole='button'
+            accessibilityLabel={t('lol.index.join.scanLabel')}
+        >
+            <ScanTile size={SCAN_TILE_SMALL} />
+
+            <View style={styles.scanRowCopy}>
+                <AppText style={styles.scanRowTitle}>{t('lol.index.join.scanRowTitle')}</AppText>
+
+                <AppText style={styles.scanRowHint}>{t('lol.index.join.scanRowHint')}</AppText>
             </View>
+
+            <Feather name='chevron-right' size={17} color={theme.colors.text} />
+        </PopPressable>
+    )
+}
+
+/**
+ * The scan half, in a row: its own column behind a full-height rule.
+ *
+ * Tinted a step off the card so the split reads as two surfaces rather than one surface
+ * with a line drawn on it, which is what makes the arrangement look deliberate at widths
+ * where the boxes alone would leave the card half empty.
+ */
+function ScanPanel({ onPress }: ScanProps) {
+    const styles = useStyles();
+    const t = useT();
+
+    return (
+        // A plain `Pressable`, unlike every other control on this card. `PopPressable`
+        // scales what it wraps, and this column reaches all four of the card's edges
+        // inside `overflow: 'hidden'` — so the pop would be clipped on the way out and
+        // would open a gap onto the card behind it on the way in. The pressed opacity is
+        // the feedback instead, which is the right weight for a panel this size anyway.
+        <Pressable
+            style={({ pressed }) => [styles.scanColumn, pressed && styles.scanColumnHeld]}
+            onPress={onPress}
+            accessibilityRole='button'
+            accessibilityLabel={t('lol.index.join.scanLabel')}
+        >
+            <ScanTile size={SCAN_TILE_LARGE} />
+
+            <AppText style={styles.scanPanelTitle}>{t('lol.index.join.scanAction')}</AppText>
+
+            <AppText style={styles.scanPanelCopy}>{t('lol.index.join.scanCopy')}</AppText>
+        </Pressable>
+    )
+}
+
+/**
+ * The dark tile with a line sweeping across it.
+ *
+ * The sweep is the whole reason this is not just an icon: a viewfinder reticle is a
+ * static shape that could be anything, and the one thing that reads instantly as
+ * *scanning* is something moving across it. Small, slow and looping, so it sits in the
+ * corner of the eye rather than pulling at it.
+ */
+function ScanTile({ size }: { size: number }) {
+    const styles = useStyles();
+    const [sweep] = useState(() => new Animated.Value(0));
+
+    useEffect(() => {
+        const loop = Animated.loop(
+            Animated.sequence([
+                Animated.timing(sweep, {
+                    toValue: 1,
+                    duration: SWEEP_MS / 2,
+                    // Eased at both ends: a linear sweep bounces off the edges like a
+                    // pong ball, where this one settles and turns.
+                    easing: Easing.inOut(Easing.quad),
+                    useNativeDriver: true
+                }),
+                Animated.timing(sweep, {
+                    toValue: 0,
+                    duration: SWEEP_MS / 2,
+                    easing: Easing.inOut(Easing.quad),
+                    useNativeDriver: true
+                })
+            ])
+        );
+
+        loop.start();
+
+        return () => loop.stop();
+    }, [sweep]);
+
+    const reach = size * SWEEP_REACH;
+
+    return (
+        <View style={[styles.scanTile, { width: size, height: size, borderRadius: size * 0.3 }]}>
+            <Feather name='maximize' size={Math.round(size * 0.42)} color={Brand.lemon} />
+
+            <Animated.View
+                style={[
+                    styles.sweep,
+                    {
+                        transform: [{
+                            translateY: sweep.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [-reach, reach]
+                            })
+                        }]
+                    }
+                ]}
+            />
         </View>
     )
 }
@@ -321,34 +510,35 @@ function Caret() {
 
 const useStyles = createThemedStyles(theme => ({
     card: {
-        padding: Spacing.three,
         borderRadius: 22,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary,
         ...(theme.scheme === 'dark' ? {} : theme.popShadow(theme.colors.border))
     },
+    cardStacked: {
+        padding: Spacing.three
+    },
     cardWide: {
         flexDirection: 'row',
-        // Centres rather than tops: two short lines of copy against a cluster of boxes
-        // half again as tall, and hanging them from the top leaves them floating.
+        // Stretch rather than centre: the rule between the halves is the scan column's
+        // own left border, and it only runs the full height if that column does.
+        alignItems: 'stretch',
+        // The rule and the tint both reach the card's edge, so the corners have to clip.
+        overflow: 'hidden'
+    },
+    typeColumn: {
+        // The boxes are drawn at full size here, so this column takes exactly the width
+        // they need and hands the rest to the scan panel.
+        flexShrink: 0,
+        padding: COLUMN_PADDING
+    },
+    head: {
+        flexDirection: 'row',
         alignItems: 'center',
-        // The same two figures `isWide` measures with, so what it allowed for is what
-        // actually gets drawn.
-        gap: COLUMN_GAP,
-        padding: CARD_PADDING
-    },
-    copy: {
-        // Stacked, the label is a caption on the boxes below it and sits close on them.
+        justifyContent: 'space-between',
+        gap: Spacing.two,
         marginBottom: Spacing.three - 4
-    },
-    copyWide: {
-        // Takes whatever the boxes do not. `flexBasis: 0` because `flex: 1` alone would
-        // let this be sized by its own text and leave the row's spare width unclaimed.
-        flex: 1,
-        flexBasis: 0,
-        minWidth: 0,
-        marginBottom: 0
     },
     label: {
         fontSize: 11,
@@ -357,11 +547,8 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 1.8,
         color: theme.colors.textMuted
     },
-    entryWide: {
-        // The boxes are drawn at full size here, so this column takes exactly the width
-        // they need and gives the rest away.
-        flexShrink: 0,
-        alignItems: 'flex-end'
+    slotsWide: {
+        marginTop: Spacing.three - 2
     },
     slots: {
         flexDirection: 'row',
@@ -389,7 +576,7 @@ const useStyles = createThemedStyles(theme => ({
         maxWidth: MAX_SLOT
     },
     // In a row: a fixed cluster, because a stretched one would be sized by whatever the
-    // copy beside it happened to leave over.
+    // scan panel beside it happened to leave over.
     slotFixed: {
         width: MAX_SLOT
     },
@@ -430,29 +617,10 @@ const useStyles = createThemedStyles(theme => ({
         textAlign: 'center',
         color: theme.colors.text
     },
-    foot: {
-        marginTop: 10,
-        flexDirection: 'row',
-        // The footnote is body copy and the chip is a control, so it is their centres
-        // that should agree rather than their baselines.
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: Spacing.two
-    },
     footWide: {
-        justifyContent: 'flex-end'
-    },
-    hint: {
-        flexShrink: 1,
-        fontSize: 12,
-        fontWeight: 500,
-        color: theme.colors.textMuted
-    },
-    hintWide: {
-        marginTop: 6,
-        fontSize: 13,
-        lineHeight: 13 * 1.45,
-        color: theme.colors.textSecondary
+        marginTop: Spacing.three - 2,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
     },
     paste: {
         flexShrink: 0,
@@ -472,5 +640,87 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12,
         fontWeight: 800,
         color: theme.colors.text
+    },
+    scanRow: {
+        marginTop: Spacing.three - 2,
+        paddingTop: Spacing.three - 2,
+        // The rule, stacked. Subtle because it is dividing one card rather than joining
+        // two, and a full-strength line here would read as the edge of something.
+        borderTopWidth: theme.borderWidth,
+        borderTopColor: theme.colors.borderSubtle,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.three - 4
+    },
+    scanRowCopy: {
+        flex: 1,
+        minWidth: 0
+    },
+    scanRowTitle: {
+        fontSize: 13.5,
+        fontWeight: 900,
+        color: theme.colors.text
+    },
+    scanRowHint: {
+        marginTop: 2,
+        fontSize: 11.5,
+        fontWeight: 500,
+        color: theme.colors.textMuted
+    },
+    scanColumn: {
+        // Takes whatever the boxes do not — they are already as big as they should ever
+        // be. `flexBasis: 0` because `flex: 1` alone would let this be sized by its own
+        // text and leave the row's spare width unclaimed.
+        flex: 1,
+        flexBasis: 0,
+        minWidth: 0,
+        padding: COLUMN_PADDING,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // The rule, in a row. Full height because the column reaches both edges of the
+        // card, which is what `alignItems: 'stretch'` above is for.
+        borderLeftWidth: theme.borderWidth,
+        borderLeftColor: theme.colors.borderSubtle,
+        backgroundColor: theme.colors.backgroundElement
+    },
+    scanColumnHeld: {
+        backgroundColor: theme.colors.backgroundSelected
+    },
+    scanPanelTitle: {
+        marginTop: 13,
+        fontSize: 14.5,
+        fontWeight: 900,
+        letterSpacing: -0.2,
+        color: theme.colors.text
+    },
+    scanPanelCopy: {
+        marginTop: 5,
+        textAlign: 'center',
+        fontSize: 12,
+        lineHeight: 12 * 1.4,
+        fontWeight: 500,
+        color: theme.colors.textSecondary
+    },
+    scanTile: {
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        // Clips the sweep to the tile, which is the only thing keeping it from running
+        // out across the card.
+        overflow: 'hidden',
+        borderWidth: theme.borderWidth,
+        // Ink in both schemes: the tile is a lens, and a lens is dark. In light that is
+        // the page's own hard line around it; in dark the tile would otherwise dissolve
+        // into the canvas, so the border is what holds its shape.
+        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
+        backgroundColor: Brand.ink
+    },
+    sweep: {
+        position: 'absolute',
+        left: '14%',
+        right: '14%',
+        height: 2,
+        borderRadius: 2,
+        backgroundColor: Brand.primary
     }
 }))

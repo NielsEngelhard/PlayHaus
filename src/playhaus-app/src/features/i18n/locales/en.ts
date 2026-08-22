@@ -211,9 +211,25 @@ export const en = {
             multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' },
             join: {
                 label: 'JOIN A LOBBY',
+                /**
+                 * The same card, split in two on a wide screen: the boxes are only half
+                 * of it there, so the label names its own half rather than the card.
+                 */
+                labelWide: 'TYPE THE CODE',
                 paste: 'Paste',
                 pasteLabel: 'Paste code',
-                codeLabel: 'Lobby code'
+                codeLabel: 'Lobby code',
+                scanRowTitle: 'Or scan their screen',
+                scanRowHint: 'Joins instantly',
+                scanAction: 'Scan instead',
+                scanCopy: "Point your phone at the host's code",
+                scanTitle: 'Scan to join',
+                scanLabel: 'Scan a QR code to join a lobby',
+                scanCancel: 'Cancel',
+                permissionAsk: 'The camera is needed to read the host’s code. Nothing is recorded or sent anywhere.',
+                permissionGrant: 'Allow the camera',
+                /** No button under this one: the answer has to be changed in settings. */
+                permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the four characters instead.'
             }
         },
         settings: {
@@ -313,6 +329,9 @@ export const en = {
             shareLink: 'Share the link',
             linkCopied: 'Link copied',
             shareFailed: 'Sharing did not work',
+            qrLabel: 'Show a QR code to join this lobby',
+            qrTitle: 'Scan to join',
+            qrCopy: 'Hold another phone up to this and it lands straight in the lobby.',
             players: 'Players',
             playerCount: '{{taken}} of {{max}}',
             inLobby: 'In the lobby',
