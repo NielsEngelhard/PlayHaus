@@ -1,85 +1,80 @@
-import { playMusic, stopMusic, type MusicTrack } from "@/features/audio/music-player";
+import { playScene, stopMusic } from "@/features/audio/music-player";
+import type { MusicScene } from "@/features/audio/music-tracks";
 import { useAuth } from "@/features/auth/useAuth";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 /**
- * What the app sounds like when nobody has asked for anything else. Every menu, list and
- * settings page shares one calm loop, so moving around the app is continuous rather than a
- * series of tracks starting and stopping.
+ * Claims the soundtrack for as long as the claiming component is mounted, or hands it back with
+ * `null`. Stable across renders — it is `useState`'s own setter.
  */
-const DEFAULT_TRACK: MusicTrack = 'zen';
+const MusicContext = createContext<(scene: MusicScene | null) => void>(() => { });
 
 /**
- * Claims the soundtrack for as long as the claiming component is mounted, or hands it back
- * with `null`. Stable across renders — it is `useState`'s own setter.
- */
-const MusicContext = createContext<(track: MusicTrack | null) => void>(() => { });
-
-/**
- * Decides which loop is playing, for the whole app.
+ * Decides what is playing, for the whole app.
  *
- * A claim rather than a table of routes, because "the board" is not a route: the solo game
- * and the multiplayer room draw the same board, and the room's path serves the lobby too —
- * one page that is a menu until the game starts. The board itself is the only thing that
- * knows, so the board is what says so, the same way a game page claims the viewport with
- * `useFullScreen`.
+ * Nothing, most of the time. Music belongs to the two places worth scoring — a room waiting to
+ * start, and a game being played — and every menu, list and settings page is silent. A loop
+ * running under someone reading their profile is a loop nobody asked for, and the app is not so
+ * large that arriving anywhere feels like the music dropped out.
  *
- * One claim slot, no counting. The root layout renders a bare `Slot`, so exactly one page
- * is mounted at a time and React runs every effect cleanup before any new effect — the
- * page handing the claim back and the page taking it always land in the same commit, and
- * both updates batch into one render at the final value. Nothing hears the gap.
+ * A claim rather than a table of routes, because neither place is a route: the solo game and the
+ * multiplayer room draw the same board, and the room's path serves its lobby too — one page that
+ * is a menu until the game starts. The components themselves are the only things that know, so
+ * they are what say so, the same way a game page claims the viewport with `useFullScreen`.
+ *
+ * One claim slot, no counting. The root layout renders a bare `Slot`, so exactly one page is
+ * mounted at a time and React runs every effect cleanup before any new effect — the page handing
+ * the claim back and the page taking it always land in the same commit, and both updates batch
+ * into one render at the final value. Nothing hears the gap.
  *
  * Must sit inside `AuthProvider`: whether music plays at all is an account setting.
  */
 export function MusicProvider({ children }: { children: ReactNode }) {
     const { status, user } = useAuth();
-    const [claimed, setClaimed] = useState<MusicTrack | null>(null);
+    const [scene, setScene] = useState<MusicScene | null>(null);
 
     /*
-     * Gated on the session rather than on the splash screen. Music needs the stored token
-     * read back and `/me` answered before it knows whether it is wanted, which in practice
-     * lands well after the fonts and the theme have settled — so there is nothing to hold
-     * it back from, and no reason for the audio feature to know `SplashScreen` exists.
+     * Gated on the session rather than on the splash screen. Music needs the stored token read
+     * back and `/me` answered before it knows whether it is wanted, which in practice lands well
+     * before anybody has tapped their way into a lobby.
      *
-     * It also means nothing plays behind the auth gate, and that a guest's music starts the
-     * moment they tap through it: after a real gesture.
+     * It also means nothing plays behind the auth gate.
      */
     const enabled = status === 'signedIn' && user?.enableMusic === true;
 
-    const track = claimed ?? DEFAULT_TRACK;
-
     useEffect(() => {
-        // Keyed on `enabled` as well as the track, which is what makes the switch on the
-        // profile page take effect where you flipped it rather than at the next navigation.
-        if (!enabled) {
+        // Keyed on `enabled` as well as the scene, which is what makes the switch on the profile
+        // page take effect on the spot rather than at the next navigation.
+        if (!enabled || scene === null) {
             stopMusic();
 
             return;
         }
 
-        playMusic(track);
-    }, [enabled, track]);
+        playScene(scene);
+    }, [enabled, scene]);
 
     return (
-        <MusicContext.Provider value={setClaimed}>
+        <MusicContext.Provider value={setScene}>
             {children}
         </MusicContext.Provider>
     )
 }
 
 /**
- * Play `track` instead of the app's default loop for as long as this component is mounted.
+ * Play something suitable for `scene` for as long as this component is mounted, and hand the
+ * soundtrack back when it goes.
  *
- * Called by the board, not by a screen: both the solo page and the multiplayer room render
- * the same board, and putting the claim in it covers both — and covers the room's lobby
- * being a menu on the same path as a game.
+ * Which track that is, is not the caller's business — the scene has a handful of loops and one
+ * of them is picked per claim, so the same lobby twice running rarely sounds the same. See
+ * `music-tracks.ts`.
  */
-export function useGameMusic(track: MusicTrack) {
+export function useMusic(scene: MusicScene) {
     const claim = useContext(MusicContext);
 
     useEffect(() => {
-        claim(track);
+        claim(scene);
 
         return () => claim(null);
-    }, [claim, track]);
+    }, [claim, scene]);
 }

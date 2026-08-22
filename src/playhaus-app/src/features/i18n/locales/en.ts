@@ -158,7 +158,7 @@ export const en = {
         settings: {
             title: 'Settings',
             sounds: { title: 'Sound', description: 'A soft pop on every tap.' },
-            music: { title: 'Music', description: 'Calm background music, a little faster while you play.' },
+            music: { title: 'Music', description: 'Background music in the lobby and while you play.' },
             vibration: { title: 'Vibration', description: 'Short haptic feedback on mobile.' }
         },
         guest: {

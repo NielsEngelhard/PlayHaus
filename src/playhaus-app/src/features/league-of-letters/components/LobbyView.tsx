@@ -6,6 +6,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
+import { useMusic } from "@/features/audio/MusicContext";
 import GuestLobby from "@/features/league-of-letters/components/GuestLobby";
 import HostLobby from "@/features/league-of-letters/components/HostLobby";
 import RoomClosedNotice from "@/features/league-of-letters/components/RoomClosedNotice";
@@ -50,10 +51,15 @@ export default function LobbyView({ state, onStarted }: Props) {
     const router = useRouter();
     const { lobby, isHost, closing } = state;
 
-    // Claimed before the early returns below, because a hook cannot be called for one
+    // Both claimed before the early returns below, because a hook cannot be called for one
     // branch and not another. The waiting and failed states are the same page as the room
     // — they just have less on them.
     useFullScreen();
+
+    // The other half of the room's soundtrack. This one component is both ways into a lobby
+    // — `/room` reaches it through `OpenRoom`, `/room/[code]` renders it directly — so the
+    // claim belongs here rather than on either page.
+    useMusic('lobby');
 
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
