@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/routes';
-import { Brand } from '@/constants/theme';
+import { Brand, Gradients } from '@/constants/theme';
 import type { TranslationKey } from '@/features/i18n/keys';
 
 /**
@@ -44,7 +44,7 @@ export const GAMES: Game[] = [
         slug: 'league-of-letters',
         name: LEAGUE_OF_LETTERS_NAME,
         color: Brand.primary,
-        gradient: ['#FF7A45', Brand.primary, '#E04407'],
+        gradient: Gradients.primary,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
         mainCategoryIndicatorKey: 'games.leagueOfLetters.mainCategory',
         descriptionKey: 'games.leagueOfLetters.description',
@@ -57,7 +57,7 @@ export const GAMES: Game[] = [
         slug: 'quizzer',
         name: PUBQUIZR_NAME,
         color: Brand.secondary,
-        gradient: ['#6C7BFF', Brand.secondary, '#2634C4'],
+        gradient: Gradients.secondary,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
         mainCategoryIndicatorKey: 'games.quizzer.mainCategory',
         descriptionKey: 'games.quizzer.description',
@@ -70,7 +70,7 @@ export const GAMES: Game[] = [
         slug: 'imposter',
         name: THE_IMPOSTER_NAME,
         color: Brand.mint,
-        gradient: ['#A8F5D6', Brand.mint, '#35C99A'],
+        gradient: Gradients.mint,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
         mainCategoryIndicatorKey: 'games.imposter.mainCategory',
         descriptionKey: 'games.imposter.description',

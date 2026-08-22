@@ -13,6 +13,7 @@ export const ROUTES = {
     
     // PubquizR
     quizzerIndex: "/games/quizzer",
+    quizzerOneDeviceGameSettings: "/games/quizzer/one-device",
 
     // The imposter
     imposterIndex: "/games/imposter",
