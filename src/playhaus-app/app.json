@@ -48,7 +48,14 @@
       ],
       "expo-secure-store",
       "expo-audio",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to scan a host's QR code so you can join their lobby.",
+          "barcodeScannerEnabled": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
