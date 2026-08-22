@@ -77,9 +77,9 @@ const useStyles = createThemedStyles(theme => ({
         minWidth: 0
     },
     name: {
-        fontSize: FontSizes.xxxl,
+        fontSize: FontSizes.xl,
         fontWeight: 900,
-        lineHeight: FontSizes.xxxl * 1.1,
+        lineHeight: FontSizes.xl * 1.1,
         letterSpacing: -0.7,
         color: theme.colors.text
     },

@@ -114,7 +114,7 @@ export const nl: Catalog = {
     },
     profile: {
         loading: 'Profiel laden…',
-        card: { action: 'Mijn profiel', caption: 'Dit ben jij!' },
+        card: { action: 'Mijn profiel', caption: 'Dit ben jij, knapperd!' },
         name: {
             label: 'Speelnaam',
             placeholder: 'Jouw naam',
