@@ -45,6 +45,8 @@ type MultiplayerStore interface {
 	CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error
 	LobbyByCode(ctx context.Context, code string) (*MultiplayerLeagueOfLettersLobby, error)
 	LobbyCodeTaken(ctx context.Context, code string) (bool, error)
+	WaitingLobbyByOwnerID(ctx context.Context, userID string) (*MultiplayerLeagueOfLettersLobby, error)
+	AbandonMultiplayerGame(ctx context.Context, gameID uuid.UUID) error
 	AddLobbyPlayer(ctx context.Context, player *MultiplayerLobbyPlayer) error
 	RemoveLobbyPlayer(ctx context.Context, code, userID string) error
 	SaveLobbySettings(ctx context.Context, code string, in LobbySettings) error
@@ -236,6 +238,81 @@ func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
 	}
 	if lobby.OwnerID != userID {
 		return ErrNotHost
+	}
+
+	return s.store.DeleteLobby(ctx, code)
+}
+
+// CurrentLobby is the room this player is still on the hook for: one whose game is
+// being played, or failing that one they opened and nobody has started.
+//
+// The multiplayer half of CurrentSoloGame, and it exists for the same reason -- the
+// room screen opens a fresh lobby the moment its host walks onto it, so without this
+// a host who still has something running is given a second room rather than asked
+// about the first.
+//
+// The game is preferred over the waiting room when a host somehow has both: other
+// people are sitting at it, which an empty room nobody has joined cannot say.
+//
+// Answers ErrLobbyNotFound when there is nothing to come back to, which is the
+// ordinary case.
+func (s *Service) CurrentLobby(ctx context.Context, userID string) (*MultiplayerLeagueOfLettersLobby, error) {
+	games, err := s.store.MultiplayerGamesByUserID(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	// Newest first, and only the ones this player owns: being at somebody else's
+	// table is not something opening a room of your own would disturb.
+	for _, game := range games {
+		if game.OwnerID != userID {
+			continue
+		}
+
+		lobby, err := s.store.LobbyByCode(ctx, game.LobbyID)
+		if err != nil {
+			// A game whose room has been deleted is not one anybody can be sent back
+			// to -- the board is reached by its join code. Keep looking.
+			if errors.Is(err, ErrLobbyNotFound) {
+				continue
+			}
+			return nil, err
+		}
+
+		return lobby, nil
+	}
+
+	return s.store.WaitingLobbyByOwnerID(ctx, userID)
+}
+
+// AbandonLobby throws a room away for good, game and all. Host only.
+//
+// The difference from DeleteLobby is the game: that one deliberately leaves a started
+// room's game alone, because it is only ever the host stepping out of a room they are
+// finished with. This is the host saying they are finished with the game itself, so
+// the table is told and the board stops being something anybody can play.
+//
+// A code that is already gone is a no-op rather than a refusal, for the same reason
+// it is on DeleteLobby: the screen that calls this has just been told the room exists,
+// and being right a moment too late is not an error worth showing anybody.
+func (s *Service) AbandonLobby(ctx context.Context, code, userID string) error {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		if errors.Is(err, ErrLobbyNotFound) {
+			return nil
+		}
+		return err
+	}
+	if lobby.OwnerID != userID {
+		return ErrNotHost
+	}
+
+	// The game first: a room deleted before its game was ended would leave a board
+	// running with no way for this call to find it again.
+	if lobby.GameID != nil {
+		if err := s.store.AbandonMultiplayerGame(ctx, *lobby.GameID); err != nil {
+			return err
+		}
 	}
 
 	return s.store.DeleteLobby(ctx, code)

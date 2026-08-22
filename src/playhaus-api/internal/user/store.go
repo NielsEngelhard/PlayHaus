@@ -22,6 +22,25 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
+func (s *GormStore) UpdateEmailAndPassword(ctx context.Context, userId string, email string, hashedPassword *string) error {
+	result := s.db.WithContext(ctx).
+		Model(&User{}).
+		Where("id = ?", userId).
+		Updates(User{
+			Email:        email,
+			PasswordHash: hashedPassword,
+		})
+
+	if result.Error != nil {
+		return fmt.Errorf("update %s: %w", "username & password", result.Error)
+	}
+	if result.RowsAffected == 0 {
+		return ErrNotFound
+	}
+
+	return nil
+}
+
 func (s *GormStore) updateColumn(ctx context.Context, userId string, column string, value any) error {
 	result := s.db.WithContext(ctx).
 		Model(&User{}).

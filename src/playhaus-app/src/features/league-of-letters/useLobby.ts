@@ -78,6 +78,44 @@ function hold(code: string): void {
     holders.set(code, (holders.get(code) ?? 0) + 1);
 }
 
+/**
+ * The give-backs still in the air.
+ *
+ * Handing a room back happens on unmount, where nothing can be awaited — the screen is
+ * already gone. That is fine for the room itself, but not for whoever asks the server
+ * what this player still has open a moment later: the room screen does exactly that on
+ * mount, so a host who left `/room` and came back would race their own delete and be
+ * asked about the room they just closed.
+ *
+ * So the requests are kept here until they settle, and `settleGiveBacks` is how a caller
+ * waits for them instead of racing them. Module scope for the same reason `holders` is:
+ * the screen that fired the request is not the screen that needs to know about it.
+ */
+const giveBacks = new Set<Promise<void>>();
+
+function track(work: Promise<unknown>): void {
+    // Swallowed rather than handled: a give-back is best-effort, and a room that failed
+    // to close is the server's to time out. What matters here is only that it is over.
+    const settled = work.then(() => { }, () => { });
+
+    giveBacks.add(settled);
+    void settled.then(() => giveBacks.delete(settled));
+}
+
+/**
+ * Waits for every room this device is in the middle of handing back.
+ *
+ * Answers at once when there are none, which is the ordinary case — this only has
+ * anything to wait for in the seconds after a room screen was left.
+ */
+export async function settleGiveBacks(): Promise<void> {
+    // A loop rather than one `Promise.all`: a give-back can be fired while this is
+    // already waiting, and finishing before it would be finishing early.
+    while (giveBacks.size > 0) {
+        await Promise.all([...giveBacks]);
+    }
+}
+
 /** Lets go of one hold. True when it was the last, so the room is nobody's now. */
 function release(code: string): boolean {
     const left = (holders.get(code) ?? 1) - 1;
@@ -149,7 +187,7 @@ export function useLobby(code?: string): LobbyState {
         if (!release(code)) return;
         if (giveBack === null) return;
 
-        void (giveBack.host ? deleteLobby(code) : leaveLobby(code));
+        track(giveBack.host ? deleteLobby(code) : leaveLobby(code));
     }, []);
 
     /** A write is in the air; an event must not land an older room on top of it. */

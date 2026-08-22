@@ -56,6 +56,48 @@ func (s *GormStore) LobbyByCode(ctx context.Context, code string) (*MultiplayerL
 	return &lobby, nil
 }
 
+// WaitingLobbyByOwnerID is the newest room this player opened that nobody has
+// started yet, and nothing else: a room that has become a game is a game, and the
+// question this answers is "is there still a door standing open with my name on it".
+//
+// Rooms are handed back when their host leaves the screen, so in practice this only
+// finds one the give-back never reached -- an app that was killed, a connection that
+// died on the way out. Which is exactly the room the host has forgotten about and
+// would otherwise strand.
+func (s *GormStore) WaitingLobbyByOwnerID(ctx context.Context, userID string) (*MultiplayerLeagueOfLettersLobby, error) {
+	var lobby MultiplayerLeagueOfLettersLobby
+
+	err := withRoster(s.db.WithContext(ctx)).
+		Where("owner_id = ? AND status = ?", userID, LobbyWaiting).
+		Order("created_at DESC").
+		First(&lobby).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrLobbyNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select waiting lobby by owner: %w", err)
+	}
+	return &lobby, nil
+}
+
+// AbandonMultiplayerGame ends a game for the whole table.
+//
+// Conditional on it still being in progress, so a host pressing this while the last
+// round is being decided does not overwrite a game that finished properly -- a
+// completed game is a result people are looking at, and this is not a way to take it
+// off them.
+func (s *GormStore) AbandonMultiplayerGame(ctx context.Context, gameID uuid.UUID) error {
+	err := s.db.WithContext(ctx).
+		Model(&MultiplayerLeagueOfLettersGame{}).
+		Where("id = ? AND status = ?", gameID, GameInProgress).
+		Update("status", GameAbandoned).Error
+	if err != nil {
+		return fmt.Errorf("abandon multiplayer game: %w", err)
+	}
+	return nil
+}
+
 func (s *GormStore) LobbyCodeTaken(ctx context.Context, code string) (bool, error) {
 	var count int64
 
