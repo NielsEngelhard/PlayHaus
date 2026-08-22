@@ -9,6 +9,7 @@ import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import MultiplayerResults from "@/features/league-of-letters/components/MultiplayerResults";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
+import RoomClosedNotice from "@/features/league-of-letters/components/RoomClosedNotice";
 import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useMultiplayerGame, type MultiplayerGameState } from "@/features/league-of-letters/useMultiplayerGame";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -74,6 +75,20 @@ export default function LeagueOfLettersRoomPage() {
 
         router.replace(ROUTES.leagueOfLettersRoom(rematchCode) as RelativePathString);
     }, [rematchCode, code, router]);
+
+    // The host stopped the game, or shut the room out from under everybody waiting in
+    // it. Checked ahead of the board, because that is where the people who need telling
+    // are sitting: the board reads the same room but has no lobby of its own, so without
+    // this a stopped game is a grid that quietly stops answering.
+    if (state.closed) {
+        return (
+            <RoomClosedNotice
+                message={gameId !== undefined
+                    ? 'De host heeft het spel gestopt. Vraag om een nieuwe code voor een volgend potje.'
+                    : 'De host heeft de kamer gesloten. Vraag om een nieuwe code.'}
+            />
+        )
+    }
 
     if (gameId !== undefined) {
         return finished

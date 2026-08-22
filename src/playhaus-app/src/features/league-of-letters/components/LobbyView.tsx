@@ -8,6 +8,7 @@ import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import GuestLobby from "@/features/league-of-letters/components/GuestLobby";
 import HostLobby from "@/features/league-of-letters/components/HostLobby";
+import RoomClosedNotice from "@/features/league-of-letters/components/RoomClosedNotice";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -59,23 +60,7 @@ export default function LobbyView({ state, onStarted }: Props) {
     // works, so there is nothing to offer but the way out -- a retry would only find
     // the same 404.
     if (state.closed) {
-        return (
-            <View style={styles.screen}>
-                <BackButton href={ROUTES.leagueOfLettersIndex} />
-
-                <InlineNotification
-                    icon='x'
-                    color={theme.colors.blush}
-                    title='Kamer gesloten'
-                    message='De host heeft de kamer gesloten. Vraag om een nieuwe code.'
-                >
-                    <TextButton
-                        text='Terug naar de spellen'
-                        onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
-                    />
-                </InlineNotification>
-            </View>
-        )
+        return <RoomClosedNotice message='De host heeft de kamer gesloten. Vraag om een nieuwe code.' />;
     }
 
     if (state.error !== null) {

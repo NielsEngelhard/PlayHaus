@@ -79,12 +79,16 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 
 	// Multiplayer
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby", s.requireAuth(s.handleCreateLobby))
+	// Before {code}, so the literal wins: this is the room you are already in, not a
+	// room called "current".
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/current", s.requireAuth(s.handleGetCurrentLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleGetLobby))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleDeleteLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", s.requireAuth(s.handleJoinLobby))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", s.requireAuth(s.handleLeaveLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/start", s.requireAuth(s.handleStartLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/rematch", s.requireAuth(s.handleRematchLobby))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/abandon", s.requireAuth(s.handleAbandonLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/multiplayer/{gameID}", s.requireAuth(s.handleGetMultiplayerGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))
 }
@@ -99,6 +103,7 @@ func (s *Server) AddRealtimeHandlers() {
 func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("POST /api/v1/user", s.handleCreateUser)
 	s.mux.HandleFunc("POST /api/v1/user/guest", s.handleCreateGuestUser)
+	s.mux.HandleFunc("POST /api/v1/user/upgrade", s.handleUpgradeGuestUser)
 	s.mux.HandleFunc("PUT /api/v1/user/username", s.requireAuth(s.handleUpdateUserUsername))
 	s.mux.HandleFunc("PUT /api/v1/user/color", s.requireAuth(s.handleUpdateUserColor))
 	s.mux.HandleFunc("PUT /api/v1/user/locale", s.requireAuth(s.handleUpdateUserLocale))

@@ -44,7 +44,6 @@ export interface SoloSettings {
     locale: LanguageCode,
     wordLength: WordLength,
     hardMode: boolean,
-    secondsPerGuess: number
 }
 
 /**
@@ -58,5 +57,4 @@ export const DEFAULT_LOL_SETTINGS: SoloSettings = {
     locale: DEFAULT_LANGUAGE,
     wordLength: 5,
     hardMode: false,
-    secondsPerGuess: 35
 };

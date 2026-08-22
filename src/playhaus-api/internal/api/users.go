@@ -25,6 +25,24 @@ type createGuestUserRequest struct {
 
 func (createGuestUserRequest) Validate() map[string]string { return nil }
 
+type upgradeGuestUserRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+func (r *upgradeGuestUserRequest) Validate() map[string]string {
+	problems := map[string]string{}
+
+	if !strings.Contains(r.Email, "@") {
+		problems["email"] = "must be a valid email address"
+	}
+	if len(r.Password) < 8 {
+		problems["password"] = "must be at least 8 characters"
+	}
+
+	return problems
+}
+
 // NameMinLength and NameMaxLength bound a display name. The app enforces the
 // same numbers in features/settings/profile.ts -- keep the two in step.
 const (
@@ -242,6 +260,32 @@ func (s *Server) handleUpdateUserEnableVibration(w http.ResponseWriter, r *http.
 		func(ctx context.Context, req updateUserEnableVibrationRequest, userID string) error {
 			return s.users.UpdateEnableVibration(ctx, *req.EnableVibration, userID)
 		})
+}
+
+func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if ok == false {
+		writeError(w, http.StatusUnauthorized, "could not determine user id")
+	}
+
+	req, problems, err := decode[upgradeGuestUserRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+	}
+
+	err = s.users.UpgradeGuestAccount(r.Context(), userID, req.Email, req.Password)
+	if err != nil {
+		s.log.Error("create guest user", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusCreated, nil)
 }
 
 func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {

@@ -129,6 +129,19 @@ export async function createLobby(locale?: LanguageCode): Promise<Lobby> {
     });
 }
 
+/**
+ * The room this player is still on the hook for, or null when there is none.
+ *
+ * The multiplayer twin of `getCurrentGame`, and it exists for the same reason: the
+ * room screen opens a lobby the moment its host arrives, so without asking this first
+ * a host with something already running is handed a second room rather than asked
+ * about the first. `status` says which sort it is — a room nobody has started, or one
+ * whose game is being played.
+ */
+export async function getCurrentLobby(): Promise<Lobby | null> {
+    return request<Lobby | null>('/api/v1/league-of-letters/lobby/current');
+}
+
 export async function joinLobby(code: string): Promise<Lobby> {
     try {
         return await request<Lobby>(`${lobbyPath(code)}/players`, { method: 'POST' });
@@ -156,6 +169,18 @@ export async function deleteLobby(code: string): Promise<void> {
 
 export async function leaveLobby(code: string): Promise<void> {
     await request<void>(`${lobbyPath(code)}/players/me`, { method: 'DELETE' });
+}
+
+/**
+ * Throws a room away for good, game and all. Host only.
+ *
+ * Not `deleteLobby`: that one deliberately leaves a started room's game alone, because
+ * it is only ever a host stepping out of a room they are done with. This is the host
+ * saying they are done with the *game*, so the table is told and the board stops being
+ * something anybody can play. Ask before calling it.
+ */
+export async function abandonLobby(code: string): Promise<void> {
+    await request<void>(`${lobbyPath(code)}/abandon`, { method: 'POST' });
 }
 
 /**

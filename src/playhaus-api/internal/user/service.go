@@ -24,6 +24,7 @@ type Store interface {
 	UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error
+	UpdateEmailAndPassword(ctx context.Context, userId string, email string, password *string) error
 }
 
 type Service struct {
@@ -92,6 +93,31 @@ func (s *Service) UpdateEnableMusic(ctx context.Context, enabled bool, userId st
 
 func (s *Service) UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error {
 	return s.store.UpdateEnableVibration(ctx, enabled, userId)
+}
+
+func (s *Service) UpgradeGuestAccount(ctx context.Context, userID string, rawEmail string, rawPw string) error {
+	normalizedEmail := NormalizeEmail(rawEmail)
+
+	taken, err := s.store.ExistsByEmail(ctx, normalizedEmail)
+	if err != nil {
+		return fmt.Errorf("check email: %w", err)
+	}
+	if taken {
+		return ErrEmailTaken
+	}
+
+	hash, err := bcrypt.GenerateFromPassword([]byte(rawPw), bcrypt.DefaultCost)
+	if err != nil {
+		return fmt.Errorf("hash password: %w", err)
+	}
+	passwordHash := string(hash)
+
+	err = s.store.UpdateEmailAndPassword(ctx, userID, normalizedEmail, &passwordHash)
+	if err != nil {
+		return fmt.Errorf("update UpgradeGuestAccount: %w", err)
+	}
+
+	return nil
 }
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
