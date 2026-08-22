@@ -1,6 +1,7 @@
 import type { ReconnectableGame } from "@/api/calls/reconnect";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import Chip from "@/components/ui/Chip";
 import { gameBySlug } from "@/constants/games";
 import { Brand, Gradients, linearGradient } from "@/constants/theme";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
@@ -18,27 +19,12 @@ interface Props {
 
 const TILE_SIZE = 58;
 
-/**
- * The look a row falls back on when its slug is not in the game registry — which
- * only happens if the two ever drift apart. A card with no tile at all would read
- * as broken; one in the house orange reads as a game.
- */
 const UNKNOWN_GAME = {
     color: Brand.primary,
     gradient: Gradients.primary,
     glyphInk: { light: Brand.textOnAccent, dark: Brand.ink }
 };
 
-/**
- * One game you can drop back into: what it is on top, the way back in underneath.
- *
- * The card itself is not tappable. Every row here is a jump straight back into a
- * game in progress, which is not something to do by brushing a card — so there is
- * one button, and it is the loudest thing on the row.
- *
- * The tile is the game's own, read out of `GAMES`: the thing you are being offered
- * back should look like the thing you started.
- */
 export default function ReconnectableGameCard({ game, kind }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -50,9 +36,6 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
     const registered = gameBySlug(kind.slug);
     const look = registered ?? UNKNOWN_GAME;
 
-    // A lobby is headed by its own name, "Lobby K2V8", and says which game it is in
-    // the chips underneath. A solo game has no name but the game's, so it leads with
-    // that and the chips carry the mode instead.
     const code = kind.code?.(game);
     const started = startedAgo(game.createdAt);
 
@@ -77,9 +60,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
 
                     <View style={styles.chips}>
                         {chips.map(chip => (
-                            <View key={chip} style={styles.chip}>
-                                <AppText style={styles.chipText}>{chip}</AppText>
-                            </View>
+                            <Chip key={chip} text={chip} />
                         ))}
                     </View>
                 </View>
@@ -142,18 +123,6 @@ const useStyles = createThemedStyles(theme => ({
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 5
-    },
-    chip: {
-        borderWidth: 1.5,
-        borderColor: theme.colors.borderSubtle,
-        borderRadius: 999,
-        paddingVertical: 2,
-        paddingHorizontal: 8
-    },
-    chipText: {
-        fontSize: 11,
-        fontWeight: 700,
-        color: theme.colors.textSecondary
     },
     button: {
         marginTop: 13,

@@ -2,10 +2,10 @@ import { LOBBY_CODE_LENGTH } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
 import { ROUTES } from "@/constants/routes";
-import { Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { fontFamilyForWeight, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import * as Clipboard from "expo-clipboard";
 import { RelativePathString, useRouter } from "expo-router";
@@ -121,7 +121,7 @@ function sanitize(text: string): string {
  * to say what the field already knows. The hint admits that it acts on its own, because
  * a form that does had better say so before it does it.
  */
-export default function RoomCodeCard() {
+export default function JoinCodeCard() {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
@@ -179,18 +179,6 @@ export default function RoomCodeCard() {
         }
     }
 
-    // Held in variables rather than written twice, because the two arrangements move
-    // these between columns rather than changing what they say.
-    // Written from the length rather than around it, and with the numeral rather than
-    // the word for it: the card used to spell out "Vier tekens", which is a second place
-    // for the code length to live and the one that would go quietly wrong the day the
-    // server issues six.
-    const hint = (
-        <AppText style={[styles.hint, wide && styles.hintWide]}>
-            {t('lol.index.join.hint', { length: LOBBY_CODE_LENGTH })}
-        </AppText>
-    );
-
     const pasteChip = (
         <PopPressable
             style={styles.paste}
@@ -210,8 +198,6 @@ export default function RoomCodeCard() {
                 width — the boxes are already as big as they should ever be. */}
             <View style={[styles.copy, wide && styles.copyWide]}>
                 <AppText style={styles.label}>{t('lol.index.join.label')}</AppText>
-
-                {wide && hint}
             </View>
 
             {/* Nothing wraps the boxes when stacked — the row already fills the card —
@@ -262,8 +248,6 @@ export default function RoomCodeCard() {
                     the boxes rather than under the card, where it stays part of the field
                     instead of becoming a corner of its own. */}
                 <View style={[styles.foot, wide && styles.footWide]}>
-                    {!wide && hint}
-
                     {pasteChip}
                 </View>
             </View>

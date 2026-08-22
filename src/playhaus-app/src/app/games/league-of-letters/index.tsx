@@ -5,7 +5,7 @@ import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
-import RoomCodeCard from "@/features/league-of-letters/components/RoomCodeCard";
+import JoinCodeCard from "@/features/reconnect/components/JoinCodeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -55,7 +55,7 @@ export default function LeagueOfLettersIndexPage() {
             </View>
 
             <View style={styles.join}>
-                <RoomCodeCard />
+                <JoinCodeCard />
             </View>
         </View>
     )
