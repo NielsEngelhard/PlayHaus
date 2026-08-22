@@ -15,6 +15,7 @@ export const nl: Catalog = {
         language: 'Taal',
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'niets gekozen',
+        players: 'spelers',
         time: {
             justNow: 'zojuist',
             minutesAgo: '{{minutes}} min geleden',
@@ -53,21 +54,21 @@ export const nl: Catalog = {
     },
     games: {
         device: {
-            perPlayer: '1 mobiel per speler',
-            shared: '1 mobiel voor iedereen',
-            perPlayerOrOneDevice: '1 mobiel of 1 mobiel per speler'
+            perPlayer: '1 per speler',
+            oneDevice: '1 totaal',
+            perPlayerOrOneDevice: 'keuze'
         },
         leagueOfLetters: {
             description: 'Test je woordenschat. Solo, of tegen je vrienden.',
-            tag: { category: 'Woord', players: '1-6 spelers' }
+            mainCategory: 'Woord raden',
         },
         quizzer: {
             description: 'Stel je algemene kennis op de proef.',
-            tag: { category: 'Trivia', players: '2-10 spelers' }
+            mainCategory: 'Trivia',
         },
         imposter: {
             description: 'Ontraadsel wie de bedrieger is.',
-            tag: { category: 'Bluf', players: '3-10 spelers' }
+            mainCategory: 'Bluf',
         }        
     },
     languages: {
@@ -75,19 +76,6 @@ export const nl: Catalog = {
         en: { description: 'Woorden uit de Engelse lijst.' }
     },
     auth: {
-        choice: {
-            title: 'Welkom bij Playhaus',
-            description: 'Log in en houd je naam, je vrienden en je spellen. Of stap er meteen in als gast.',
-            account: 'Account',
-            guest: 'Als gast',
-            guestNote: 'Een gastaccount is tijdelijk'
-        },
-        account: {
-            title: 'Account',
-            description: 'Log in als je al een account hebt, of maak er een aan.',
-            login: 'Inloggen',
-            signup: 'Account aanmaken'
-        },
         login: {
             title: 'Inloggen',
             email: 'E-mail',
@@ -95,7 +83,8 @@ export const nl: Catalog = {
             password: 'Wachtwoord',
             passwordPlaceholder: 'Je wachtwoord',
             submit: 'Inloggen',
-            submitting: 'Bezig met inloggen…'
+            submitting: 'Bezig met inloggen…',
+            signupPrompt: 'Nog geen account? Maak er een aan'
         },
         signup: {
             title: 'Account aanmaken',
@@ -111,9 +100,10 @@ export const nl: Catalog = {
             invalidEmail: 'Dit lijkt geen e-mailadres te zijn.'
         },
         guestLanguage: {
-            title: 'Jouw taal',
-            description: 'De taal waarin je spellen gespeeld worden. Kies er een en stap meteen in als gast.',
-            note: 'Een gastaccount is tijdelijk. Je kunt de taal later aanpassen in je profiel.'
+            title: 'Welkom bij Playhaus',
+            description: 'Kies de taal waarin je wilt spelen. Meer hebben we niet nodig — één tik en je speelt.',
+            note: 'Je begint als gast. Voeg later vanuit je profiel een e-mailadres toe om het account te houden.',
+            login: 'Heb je al een account? Log in'
         },
         errors: {
             invalidCredentials: 'Dit e-mailadres en wachtwoord horen niet bij een account.',
@@ -148,8 +138,21 @@ export const nl: Catalog = {
         },
         guest: {
             title: 'Gastaccount',
-            message: 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en gespeelde games kunnen verloren gaan zodra deze sessie eindigt. Maak een account aan om ze te bewaren.',
-            action: 'Account aanmaken'
+            message: 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en gespeelde games kunnen verloren gaan zodra deze sessie eindigt. Voeg een e-mailadres en wachtwoord toe om ze te bewaren.',
+            action: 'Maak het definitief'
+        },
+        upgrade: {
+            title: 'Houd je account',
+            description: 'Voeg een e-mailadres en een wachtwoord toe en dit account wordt definitief. Je naam, kleur en games blijven precies zoals ze zijn.',
+            email: 'E-mail',
+            emailPlaceholder: 'jij@voorbeeld.nl',
+            password: 'Wachtwoord',
+            passwordPlaceholder: 'Kies een wachtwoord',
+            submit: 'Maak het definitief',
+            submitting: 'Bezig met opslaan…',
+            note: 'Vanaf dan log je op elk apparaat in met dit e-mailadres en wachtwoord.',
+            invalidEmail: 'Dit lijkt geen e-mailadres te zijn.',
+            shortPassword: 'Je wachtwoord heeft minstens 8 tekens nodig.'
         },
         logout: 'Uitloggen',
         errors: {

@@ -33,4 +33,8 @@ func (User) TableName() string { return "users" }
 var (
 	ErrEmailTaken = errors.New("email already in use")
 	ErrNotFound   = errors.New("user not found")
+	// ErrNotGuest guards the upgrade route. Only a guest may trade its account in
+	// for a real one; for anybody else the same call would be a way to change an
+	// email and a password without ever being asked for the old one.
+	ErrNotGuest = errors.New("account is not a guest")
 )

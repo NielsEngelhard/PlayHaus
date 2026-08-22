@@ -9,8 +9,8 @@ const noop = () => { };
 interface Props {
     children: ReactNode
     /**
-     * Android's hardware back. Leave it out for a sheet there is deliberately no
-     * way past — the gate — and pass the close for one that is an offer.
+     * Android's hardware back. Left out by the gate, which there is deliberately no
+     * way past; kept as a prop for any sheet that is an offer rather than a barrier.
      */
     onRequestClose?: () => void
 }
@@ -18,10 +18,8 @@ interface Props {
 /**
  * The card-over-a-dimmed-app the auth forms live in.
  *
- * Shared by the gate, which stands in front of the app until there is a session,
- * and by the account modal a guest opens from their profile. The forms inside
- * are the same either way, so the chrome around them has to be too — a second
- * hand-rolled copy would drift the moment one of them was touched.
+ * The gate's chrome, kept a component of its own so the three steps inside it — the
+ * language grid, login, signup — share one card rather than each drawing their own.
  *
  * Not `PopupModal`: that one is a titled panel with an actions row, and these
  * are full forms that bring their own header.

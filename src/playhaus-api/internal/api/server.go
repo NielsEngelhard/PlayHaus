@@ -103,7 +103,7 @@ func (s *Server) AddRealtimeHandlers() {
 func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("POST /api/v1/user", s.handleCreateUser)
 	s.mux.HandleFunc("POST /api/v1/user/guest", s.handleCreateGuestUser)
-	s.mux.HandleFunc("POST /api/v1/user/upgrade", s.handleUpgradeGuestUser)
+	s.mux.HandleFunc("POST /api/v1/user/upgrade", s.requireAuth(s.handleUpgradeGuestUser))
 	s.mux.HandleFunc("PUT /api/v1/user/username", s.requireAuth(s.handleUpdateUserUsername))
 	s.mux.HandleFunc("PUT /api/v1/user/color", s.requireAuth(s.handleUpdateUserColor))
 	s.mux.HandleFunc("PUT /api/v1/user/locale", s.requireAuth(s.handleUpdateUserLocale))

@@ -24,7 +24,7 @@ type Store interface {
 	UpdateEnableSounds(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableMusic(ctx context.Context, enabled bool, userId string) error
 	UpdateEnableVibration(ctx context.Context, enabled bool, userId string) error
-	UpdateEmailAndPassword(ctx context.Context, userId string, email string, password *string) error
+	UpgradeToFullAccount(ctx context.Context, userId string, email string, password *string) error
 }
 
 type Service struct {
@@ -95,7 +95,22 @@ func (s *Service) UpdateEnableVibration(ctx context.Context, enabled bool, userI
 	return s.store.UpdateEnableVibration(ctx, enabled, userId)
 }
 
+// UpgradeGuestAccount turns the guest somebody is already signed in as into a real
+// account, in place. The row keeps its id, so the name, the colour and every game
+// played as a guest come along -- which is the whole reason this exists rather than
+// CreateUser.
 func (s *Service) UpgradeGuestAccount(ctx context.Context, userID string, rawEmail string, rawPw string) error {
+	// Checked before anything is written, and not only for the caller's sake: for a
+	// full account this endpoint would otherwise be a way to replace an email and a
+	// password without ever being asked for the current one.
+	u, err := s.store.ByID(ctx, userID)
+	if err != nil {
+		return fmt.Errorf("load user: %w", err)
+	}
+	if !u.IsGuest {
+		return ErrNotGuest
+	}
+
 	normalizedEmail := NormalizeEmail(rawEmail)
 
 	taken, err := s.store.ExistsByEmail(ctx, normalizedEmail)
@@ -112,9 +127,8 @@ func (s *Service) UpgradeGuestAccount(ctx context.Context, userID string, rawEma
 	}
 	passwordHash := string(hash)
 
-	err = s.store.UpdateEmailAndPassword(ctx, userID, normalizedEmail, &passwordHash)
-	if err != nil {
-		return fmt.Errorf("update UpgradeGuestAccount: %w", err)
+	if err := s.store.UpgradeToFullAccount(ctx, userID, normalizedEmail, &passwordHash); err != nil {
+		return fmt.Errorf("upgrade guest account: %w", err)
 	}
 
 	return nil

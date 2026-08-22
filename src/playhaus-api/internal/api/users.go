@@ -262,10 +262,15 @@ func (s *Server) handleUpdateUserEnableVibration(w http.ResponseWriter, r *http.
 		})
 }
 
+// handleUpgradeGuestUser turns the guest whose token this request carries into a
+// real account. Nothing is said back: the session token is unchanged -- the row was
+// updated in place -- so the client already holds everything it needs, and /me is
+// where it re-reads the account.
 func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if ok == false {
 		writeError(w, http.StatusUnauthorized, "could not determine user id")
+		return
 	}
 
 	req, problems, err := decode[upgradeGuestUserRequest](r)
@@ -273,15 +278,26 @@ func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) 
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
-
 	if len(problems) > 0 {
 		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
 	}
 
-	err = s.users.UpgradeGuestAccount(r.Context(), userID, req.Email, req.Password)
-	if err != nil {
-		s.log.Error("create guest user", "err", err)
-		writeError(w, http.StatusInternalServerError, "something went wrong")
+	if err := s.users.UpgradeGuestAccount(r.Context(), userID, req.Email, req.Password); err != nil {
+		switch {
+		case errors.Is(err, user.ErrEmailTaken):
+			writeError(w, http.StatusConflict, "email already in use")
+		// Already a real account, so there is nothing here to upgrade. A refusal
+		// rather than a quiet success: letting it through would make this a way to
+		// change an email and a password without being asked for the old one.
+		case errors.Is(err, user.ErrNotGuest):
+			writeError(w, http.StatusConflict, "account is not a guest")
+		case errors.Is(err, user.ErrNotFound):
+			writeError(w, http.StatusUnauthorized, "invalid or expired session")
+		default:
+			s.log.Error("upgrade guest user", "err", err)
+			writeError(w, http.StatusInternalServerError, "something went wrong")
+		}
 		return
 	}
 

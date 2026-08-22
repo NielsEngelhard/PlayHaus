@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { type DeviceMode } from "@/constants/games";
+import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -7,38 +7,30 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
+import Chip from "./Chip";
 
 interface Props {
-    tags: readonly string[],
     color: string,
     gradient: readonly [string, string, string],
     glyphInk: string,
     name: string,
     description: string,
-    deviceMode?: DeviceMode,
+    deviceMode: DeviceMode,
+    minMaxPlayers: string,
     playable: boolean,
     navigationUrl: Href
 }
 
 const TILE_SIZE = 78;
 
-/**
- * One game, as it appears on the home page: glyph tile, name, its facts as chips, and
- * either a play button or a "not yet" badge.
- *
- * A game that can't be played yet is not hidden — it is dimmed. Light does that by
- * fading the whole card, dark by sinking it below the canvas onto a darker surface and
- * taking its shadow away, because fading something that is already near-black just
- * makes it disappear.
- */
 export default function GameTeaserCard({
-    tags,
     color,
     gradient,
     glyphInk,
     name,
     description,
     deviceMode,
+    minMaxPlayers,
     playable,
     navigationUrl,
 }: Props) {
@@ -65,11 +57,14 @@ export default function GameTeaserCard({
                     <AppText style={styles.name} numberOfLines={1}>{name}</AppText>
 
                     <View style={styles.chips}>
-                        {tags.map(chip => (
-                            <View key={chip} style={styles.chip}>
-                                <AppText style={styles.chipText}>{chip}</AppText>
-                            </View>
-                        ))}
+                        <Chip 
+                            text={`${minMaxPlayers} ${t('common.players')}`}
+                            icon="user"
+                        />
+                        <Chip 
+                            text={t(DEVICE_MODE_KEYS[deviceMode])}
+                            icon="smartphone"
+                        />                        
                     </View>
 
                     {description && (

@@ -15,16 +15,19 @@ import { View } from "react-native";
 interface Props {
     onBack: () => void
     /**
-     * Only needed where signing up does not take this form off screen with it.
-     * The gate unmounts on its own the moment the session starts; a sheet opened
-     * from inside a session — a guest trading up — has to be told to close.
+     * Only needed where signing up does not take this form off screen with it. The
+     * gate, its one caller today, unmounts on its own the moment the session starts.
      */
     onSuccess?: () => void
 }
 
 /**
- * Creates an account and signs straight into it — one call, since the API
+ * Creates an account from nothing and signs straight into it — one call, since the API
  * answers a signup with a session.
+ *
+ * The uncommon road. Everybody starts as a guest and trades up from their profile,
+ * which keeps the games; this is here for somebody who came to the login form without
+ * an account and wants a fresh one rather than the guest they are not signed into.
  */
 export default function SignupForm({ onBack, onSuccess }: Props) {
     const styles = useStyles();

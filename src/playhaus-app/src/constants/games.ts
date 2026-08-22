@@ -12,63 +12,26 @@ export const THE_IMPOSTER_NAME: string = "The Imposter";
 
 /**
  * How many devices a group needs to play.
- *
- * `perPlayer` — everyone plays on their own screen. `shared` — one screen the whole
- * table plays around, passed or propped up between them.
  */
 export type DeviceMode = 'perPlayer' | 'oneDevice' | 'perPlayerOrOneDevice';
-
-/**
- * The catalogue line for each mode. Here rather than in the card because this is the
- * registry meeting the catalogue, which is what the rest of this file is for.
- */
 export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayer: 'games.device.perPlayer',
-    oneDevice: 'games.device.shared',
+    oneDevice: 'games.device.oneDevice',
     perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
 export interface Game {
-    /** The `/games/{slug}` path segment. What the header matches a route on. */
     slug: string,
-    /** A brand, so it reads the same in every language and is never translated. */
     name: string,
-    /** Accent from `Brand` — fixed, so a game looks the same in either scheme. */
     color: string,
-    /**
-     * The fill behind the game's glyph on its home card: three stops on a 160° axis,
-     * lightest first. A flat accent looks pasted on at 78px; the gradient is what makes
-     * the tile read as an object.
-     */
     gradient: readonly [string, string, string],
-    /**
-     * Ink for the glyph sitting on that gradient, per scheme.
-     *
-     * Two entries rather than one because the schemes take opposite decisions on the
-     * warm tile: dark puts ink on it, the way it does on every bright fill it uses,
-     * while light keeps paper. On the cooler, darker fills both schemes use paper.
-     */
     glyphInk: Record<'light' | 'dark', string>,
-    /**
-     * The facts chips on the home card, one catalogue key per chip.
-     *
-     * A list of keys rather than the single `'Word · 1-4 players'` this used to be. That
-     * separator was a formatting rule a translator had to know about but was not free to
-     * change, buried in a string they were otherwise free to rewrite — and it left the
-     * number of chips in the hands of whoever typed the translation. A list puts the
-     * shape in the registry and the wording in the catalogue, which is the split the rest
-     * of this file already makes.
-     */
-    tagKeys: readonly TranslationKey[],
-    /** Resolved at render — see `tagKeys` for why this is a key and not a string. */
     descriptionKey: TranslationKey,
-    /**
-     * How many devices the group needs. An enum, not a key: the wording is the same for
-     * every game that plays this way, so only the card should have to know it.
-     */
-    deviceMode: DeviceMode,
+    mainCategoryIndicatorKey: TranslationKey,
     playable: boolean,
-    navigationUrl: string
+    navigationUrl: string,
+    deviceMode: DeviceMode,
+    minMaxPlayersIndicator: string
 }
 
 /**
@@ -83,11 +46,12 @@ export const GAMES: Game[] = [
         color: Brand.primary,
         gradient: ['#FF7A45', Brand.primary, '#E04407'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
-        tagKeys: ['games.leagueOfLetters.tag.category', 'games.leagueOfLetters.tag.players'],
+        mainCategoryIndicatorKey: 'games.leagueOfLetters.mainCategory',
         descriptionKey: 'games.leagueOfLetters.description',
         deviceMode: 'perPlayer',
         playable: true,
-        navigationUrl: ROUTES.leagueOfLettersIndex
+        navigationUrl: ROUTES.leagueOfLettersIndex,
+        minMaxPlayersIndicator: "1-6"
     },
     {
         slug: 'quizzer',
@@ -95,11 +59,12 @@ export const GAMES: Game[] = [
         color: Brand.secondary,
         gradient: ['#6C7BFF', Brand.secondary, '#2634C4'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
-        tagKeys: ['games.quizzer.tag.category', 'games.quizzer.tag.players'],
+        mainCategoryIndicatorKey: 'games.quizzer.mainCategory',
         descriptionKey: 'games.quizzer.description',
-        deviceMode: 'perPlayerOrOneDevice',
+        deviceMode: 'oneDevice',
         playable: true,
-        navigationUrl: ROUTES.quizzerIndex
+        navigationUrl: ROUTES.quizzerIndex,
+        minMaxPlayersIndicator: "2-10"
     },
     {
         slug: 'imposter',
@@ -107,11 +72,12 @@ export const GAMES: Game[] = [
         color: Brand.mint,
         gradient: ['#A8F5D6', Brand.mint, '#35C99A'],
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
-        tagKeys: ['games.imposter.tag.category', 'games.imposter.tag.players'],
+        mainCategoryIndicatorKey: 'games.imposter.mainCategory',
         descriptionKey: 'games.imposter.description',
         deviceMode: 'oneDevice',
         playable: true,
-        navigationUrl: ROUTES.imposterIndex
+        navigationUrl: ROUTES.imposterIndex,
+        minMaxPlayersIndicator: "3-10"
     }    
 ];
 

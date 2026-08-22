@@ -90,6 +90,27 @@ export function createGuest(locale?: LanguageCode): Promise<AuthSession> {
     });
 }
 
+/**
+ * Turns the guest this token belongs to into a real account, in place.
+ *
+ * The row keeps its id, so the name, the colour and every game played as a guest come
+ * along — which is what makes this different from `signup`, and why signing up from
+ * scratch is no longer how anybody gets an account.
+ *
+ * Answers `201` with a body of `null`: the session token is untouched, so there is
+ * nothing to adopt and nothing to re-read. `useAuth` patches the account's kind onto
+ * the session itself.
+ */
+export function upgradeGuest(email: string, password: string): Promise<void> {
+    return request<void>('/api/v1/user/upgrade', {
+        method: 'POST',
+        // `email` and `password` and nothing else: the backend decodes with
+        // `DisallowUnknownFields`, so an extra key is a 400 rather than something
+        // quietly ignored.
+        body: JSON.stringify({ email, password })
+    });
+}
+
 /** Resolves a stored token back into its user. Throws a 401 if it is no longer valid. */
 export function me(): Promise<User> {
     return request<User>('/api/v1/auth/me');
