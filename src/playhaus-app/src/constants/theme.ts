@@ -308,9 +308,10 @@ export function linearGradient(stops: readonly [string, string, string], midpoin
 
 /** The gradients the app's own icon tiles use, keyed by the accent they are built on. */
 export const Gradients = {
-    lemon: ['#FFF07A', Brand.lemon, '#EFCE00'],
     primary: ['#FF7A45', Brand.primary, '#E04407'],
-    secondary: ['#6C7BFF', Brand.secondary, '#2634C4']
+    secondary: ['#6C7BFF', Brand.secondary, '#2634C4'],    
+    lemon: ['#FFF07A', Brand.lemon, '#EFCE00'],
+    mint: ['#A8F5D6', Brand.mint, '#35C99A'],
 } as const satisfies Record<string, readonly [string, string, string]>;
 
 /**

@@ -23,7 +23,10 @@ interface Props {
     description: string,
     /** What tapping this does, as two or three words. Sits under the description. */
     action: string,
-    navigationUrl: Href
+    /** Where tapping this navigates. Optional when the card is not navigable. */
+    navigationUrl?: Href,
+    /** Whether the card is disabled. Defaults to false. */
+    isDisabled?: boolean
 }
 
 const TILE_SIZE = 56;
@@ -46,121 +49,158 @@ export default function ModeCard({
     chip,
     description,
     action,
-    navigationUrl
+    navigationUrl,
+    isDisabled = false
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
+    const card = (
+        <Pressable
+            disabled={isDisabled}
+            // Flattened: `Link asChild` clones this onto the anchor it renders, and a
+            // style array does not survive that trip.
+            style={StyleSheet.flatten([
+                styles.card,
+                isDisabled && styles.cardDisabled
+            ])}
+        >
+            <View
+                style={[
+                    styles.tile,
+                    linearGradient(gradient),
+                    isDisabled && styles.tileDisabled,
+                    {
+                        boxShadow: `inset 0 2px 0 rgba(255, 255, 255, ${highlight})`
+                    }
+                ]}
+            >
+                <Feather
+                    name={icon}
+                    size={24}
+                    color={isDisabled ? theme.colors.textMuted : iconInk}
+                />
+            </View>
+
+            <View style={styles.body}>
+                <View style={styles.titleRow}>
+                    <AppText style={[styles.title, isDisabled && styles.textDisabled]}>
+                        {title}
+                    </AppText>
+
+                    {chip !== undefined && (
+                        <AppText style={styles.chip}>{chip}</AppText>
+                    )}
+                </View>
+
+                <AppText style={[styles.description, isDisabled && styles.textDisabled]}>
+                    {description}
+                </AppText>
+
+                <View style={styles.actionRow}>
+                    <AppText style={[styles.action, isDisabled && styles.textDisabled]}>
+                        {action}
+                    </AppText>
+
+                    <Feather
+                        name="arrow-right"
+                        size={14}
+                        color={isDisabled ? theme.colors.textMuted : theme.colors.text}
+                    />
+                </View>
+            </View>
+        </Pressable>
+    );
+
+    // A disabled card should not be wrapped in Link.
+    if (isDisabled || navigationUrl === undefined) {
+        return card;
+    }
+
     return (
         <Link href={navigationUrl} asChild>
-            <Pressable
-                // Flattened: `Link asChild` clones this onto the anchor it renders, and a
-                // style array does not survive that trip.
-                style={StyleSheet.flatten([styles.card])}
-            >
-                <View
-                    style={[
-                        styles.tile,
-                        linearGradient(gradient),
-                        { boxShadow: `inset 0 2px 0 rgba(255, 255, 255, ${highlight})` }
-                    ]}
-                >
-                    <Feather name={icon} size={24} color={iconInk} />
-                </View>
-
-                <View style={styles.body}>
-                    <View style={styles.titleRow}>
-                        <AppText style={styles.title}>{title}</AppText>
-
-                        {/* No pill around it here. At this width a bordered chip beside a
-                            20pt title crowds the corner, and the count is a footnote to
-                            the name rather than a label of its own. */}
-                        {chip !== undefined && (
-                            <AppText style={styles.chip}>{chip}</AppText>
-                        )}
-                    </View>
-
-                    <AppText style={styles.description}>{description}</AppText>
-
-                    <View style={styles.actionRow}>
-                        <AppText style={styles.action}>{action}</AppText>
-
-                        <Feather name='arrow-right' size={14} color={theme.colors.text} />
-                    </View>
-                </View>
-            </Pressable>
+            {card}
         </Link>
-    )
+    );
 }
 
 const useStyles = createThemedStyles(theme => ({
     card: {
         flex: 1,
-        // `flex: 1` pins the basis to zero, so without this the pair would be sized by
-        // nothing and both cards would collapse to their padding.
         flexBasis: 0,
         minWidth: 0,
-        // A floor rather than a fixed height: the taller of the two still wins, and this
-        // stops a short pair from reading as a pair of buttons.
         minHeight: 186,
         padding: Spacing.three,
         borderRadius: 22,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary,
-        // Dark leaves these flat. Every card on this page is equally a way in, so none
-        // of them gets the coloured shadow that marks something out.
-        ...(theme.scheme === 'dark' ? {} : theme.popShadow(theme.colors.border))
+        ...(theme.scheme === "dark" ? {} : theme.popShadow(theme.colors.border))
     },
+
+    cardDisabled: {
+        opacity: 0.7
+    },
+
     tile: {
         width: TILE_SIZE,
         height: TILE_SIZE,
         flexShrink: 0,
         borderRadius: 18,
-        alignItems: 'center',
-        justifyContent: 'center',
-        // Only light outlines the tile. In dark the gradient is the brightest thing on
-        // the card already, and a grey line around it would only mute it.
-        borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: theme.scheme === "dark" ? 0 : theme.borderWidth,
         borderColor: theme.colors.border
     },
-    // Everything below the tile, held to the bottom of whatever height the row settles on.
-    body: {
-        marginTop: 'auto'
+
+    tileDisabled: {
+        opacity: 0.7
     },
+
+    body: {
+        marginTop: "auto"
+    },
+
     titleRow: {
-        flexDirection: 'row',
-        // Baselines rather than centres: the chip is much smaller type, and centring it
-        // would float it above the word it belongs to.
-        alignItems: 'baseline',
+        flexDirection: "row",
+        alignItems: "baseline",
         gap: 6
     },
+
     title: {
         fontSize: 20,
         fontWeight: 900,
         letterSpacing: -0.6,
         color: theme.colors.text
     },
+
     chip: {
         fontSize: 11.5,
         fontWeight: 800,
         color: theme.colors.textMuted
     },
+
     description: {
         marginTop: 5,
         fontSize: 12.5,
         lineHeight: 12.5 * 1.4,
         color: theme.colors.textSecondary
     },
+
     actionRow: {
         marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         gap: 6
     },
+
     action: {
         fontSize: 12,
         fontWeight: 900,
         color: theme.colors.text
+    },
+
+    textDisabled: {
+        color: theme.colors.textMuted
     }
-}))
+}));

@@ -182,8 +182,6 @@ export const nl: Catalog = {
         index: {
             description: 'Test je woordenschat, daag je vrienden uit en probeer het geheime woord te raden voordat je kansen op zijn. Alleen of tegen je vijanden.',
             playingAs: 'Speelt als {{name}}',
-            changeProfile: 'Profiel wijzigen',
-            change: 'Wijzig',
             solo: { title: 'Solo', description: 'Drie rondes, jouw regels.', action: 'Instellen' },
             multiplayer: { title: 'Multiplayer', description: 'Race tegen je vrienden.', action: 'Openen' },
             join: {
@@ -330,6 +328,17 @@ export const nl: Catalog = {
             lobbyGone: 'Deze lobby bestaat niet (meer). Check de code.',
             alreadyStarted: 'Dit spel is al begonnen.'
         }
+    },
+    pubquizr: {
+        index: {
+            description: 'Een klassiek potje trivia in een speels jasje.',
+            oneDevice: { title: '1 telefoon', description: 'Speel met 1 telefoon (met meerdere spelers).', action: 'Instellen' },
+            multiDevice: { title: 'Multi-device', description: 'Iedere speler speelt met zijn eigen device.', action: 'Coming soon...' },
+            create: {
+                label: 'Maak zelf een quiz',
+                paste: 'Coming soon...',
+            }
+        },
     },
     friends: {
         title: 'Vrienden',

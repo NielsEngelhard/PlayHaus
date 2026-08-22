@@ -207,8 +207,6 @@ export const en = {
         index: {
             description: 'Test your vocabulary, challenge your friends, and try to guess the secret word before you run out of chances. Play solo or against your enemies.',
             playingAs: 'Playing as {{name}}',
-            changeProfile: 'Change profile',
-            change: 'Change',
             solo: { title: 'Solo', description: 'Three rounds, your rules.', action: 'Set up' },
             multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' },
             join: {
@@ -356,6 +354,17 @@ export const en = {
             alreadyStarted: 'This game has already started.'
         }
     },
+    pubquizr: {
+        index: {
+            description: 'A classic game of trivia with some fun twist to keep you entertained.',
+            oneDevice: { title: '1 device', description: 'Play with 1 device (with multiple people).', action: 'Play' },
+            multiDevice: { title: 'Multi-device', description: 'Each player plays with their own device.', action: 'Coming soon...' },
+            create: {
+                label: 'Create a quiz yourself',
+                paste: 'Coming soon...',
+            }
+        },
+    },    
     friends: {
         title: 'Friends',
         description: 'Play together, keep track of who wins and challenge each other.',
