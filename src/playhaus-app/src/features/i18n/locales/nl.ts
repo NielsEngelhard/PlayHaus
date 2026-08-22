@@ -53,17 +53,22 @@ export const nl: Catalog = {
     },
     games: {
         device: {
-            perPlayer: 'Eén apparaat per speler',
-            shared: 'Eén apparaat voor iedereen'
+            perPlayer: '1 mobiel per speler',
+            shared: '1 mobiel voor iedereen',
+            perPlayerOrOneDevice: '1 mobiel of 1 mobiel per speler'
         },
         leagueOfLetters: {
-            description: 'Test je woordenschat. Solo, of verneder je vrienden.',
+            description: 'Test je woordenschat. Solo, of tegen je vrienden.',
             tag: { category: 'Woord', players: '1-6 spelers' }
         },
         quizzer: {
-            description: 'Ontdek wie de slimste is (en wie niet).',
-            tag: { category: 'Trivia', players: '2-20 spelers' }
-        }
+            description: 'Stel je algemene kennis op de proef.',
+            tag: { category: 'Trivia', players: '2-10 spelers' }
+        },
+        imposter: {
+            description: 'Ontraadsel wie de bedrieger is.',
+            tag: { category: 'Bluf', players: '3-10 spelers' }
+        }        
     },
     languages: {
         nl: { description: 'Woorden uit de Nederlandse lijst.' },
