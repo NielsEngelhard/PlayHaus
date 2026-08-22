@@ -133,7 +133,7 @@ export const nl: Catalog = {
         settings: {
             title: 'Instellingen',
             sounds: { title: 'Geluid', description: 'Een zacht plopje bij elke tik.' },
-            music: { title: 'Muziek', description: 'Rustige achtergrondmuziek, wat sneller tijdens het spelen.' },
+            music: { title: 'Muziek', description: 'Achtergrondmuziek in de lobby en tijdens het spelen.' },
             vibration: { title: 'Trillen', description: 'Korte haptic feedback op mobiel.' }
         },
         guest: {

@@ -5,7 +5,7 @@ import Confetti from "@/components/ui/Confetti";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
-import { useGameMusic } from "@/features/audio/MusicContext";
+import { useMusic } from "@/features/audio/MusicContext";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
@@ -142,11 +142,11 @@ export default function PlayingGame({
 
     const router = useRouter();
 
-    // The one screen in the app that is not a menu, so the one screen that swaps the zen
-    // loop out for something with a pulse. Claimed by the board rather than by a route,
-    // because the multiplayer room serves the lobby and the board off the same href —
-    // and claiming it here covers solo and multiplayer in the one place they agree.
-    useGameMusic('action');
+    // Something with a pulse, rather than the loop a room waits on. Claimed by the board
+    // rather than by a route, because the multiplayer room serves the lobby and the board
+    // off the same href — and claiming it here covers solo and multiplayer in the one
+    // place they agree.
+    useMusic('playing');
 
     /**
      * The letter the round opens with. Given away rather than guessed: the server sends

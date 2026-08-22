@@ -109,9 +109,10 @@ function App() {
             covers. Adds no gate to the splash screen above: the catalogs are bundled and
             the device's language is read synchronously, so there is nothing to wait for. */}
         <LanguageProvider>
-          {/* Above `Slot`, because the point of it is that the music does not restart
-              every time the page does. A board inside claims the action track with
-              `useGameMusic`; everywhere else hears the zen one. */}
+          {/* Above `Slot`, so the one claim slot outlives the page handing it over: a
+              lobby starting a game swaps the loop without the music stopping in between.
+              A lobby and a board inside claim their scene with `useMusic`; everywhere
+              else is silent. */}
           <MusicProvider>
             {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
             <FullScreenProvider>
