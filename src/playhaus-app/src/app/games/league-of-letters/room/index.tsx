@@ -10,6 +10,8 @@ import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import { lobbyErrorMessage } from "@/features/league-of-letters/game-errors";
 import { settleGiveBacks, useLobby } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import type { TranslationKey } from "@/features/i18n/keys";
+import { useT } from "@/features/i18n/LanguageContext";
 import { RelativePathString, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
@@ -30,6 +32,7 @@ import { View } from "react-native";
 export default function LeagueOfLettersCreateRoomPage() {
     const router = useRouter();
     const styles = useStyles();
+    const t = useT();
 
     const { status } = useAuth();
 
@@ -38,7 +41,7 @@ export default function LeagueOfLettersCreateRoomPage() {
     /** The room that was already open, until the host has said what to do with it. */
     const [running, setRunning] = useState<Lobby | null>(null);
     const [abandoning, setAbandoning] = useState(false);
-    const [abandonError, setAbandonError] = useState<string | null>(null);
+    const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
     // Nothing may touch state after unmount — both ways out of the panel below navigate
     // away while the request that caused it may still be settling.
@@ -114,37 +117,37 @@ export default function LeagueOfLettersCreateRoomPage() {
         }
     }
 
-    // Held back until the answer is in. `OpenRoom` creates a room as soon as it is
+    // Held back until the answer is in. `OpenRoom` creates a lobby as soon as it is
     // mounted, so mounting it before the answer would be the very thing this asks about.
     if (!checked) {
-        return <LoadingPage message='Kamer zoeken…' />;
+        return <LoadingPage message={t('lol.lobby.loading')} />;
     }
 
     if (running !== null) {
-        // A room that has started is a game with people sitting at it; one that has not is
+        // A lobby that has started is a game with people sitting at it; one that has not is
         // a door standing open. Worth saying which, because the two cost different things
         // to throw away.
         const playing = running.status === 'started';
 
         return (
-            // Nothing behind the panel: the room this screen exists to open is exactly what
+            // Nothing behind the panel: the lobby this screen exists to open is exactly what
             // must not be made until the question is answered. So the way out is on the
-            // panel too — unlike the solo screen, where the form behind it is still a page
+            // panel too, unlike the solo screen, where the form behind it is still a page
             // you can be on.
             <View style={styles.screen}>
                 <PopupModal
                     visible
-                    title={playing ? 'Je speelt al een spel' : 'Je hebt nog een kamer open'}
+                    title={playing ? t('lol.lobby.running.gameTitle') : t('lol.lobby.running.lobbyTitle')}
                     message={playing
-                        ? `Je bent nog bezig met een multiplayerspel in kamer ${running.code}. Ga verder, of stop het spel en open een nieuwe kamer.`
-                        : `Kamer ${running.code} staat nog open op jouw naam. Ga terug naar die kamer, of sluit hem en open een nieuwe.`}
+                        ? t('lol.lobby.running.gameMessage', { code: running.code })
+                        : t('lol.lobby.running.lobbyMessage', { code: running.code })}
                 >
                     {abandonError && (
-                        <AppText style={styles.abandonError}>{abandonError}</AppText>
+                        <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                     )}
 
                     <TextButton
-                        text={playing ? 'Verder spelen' : 'Terug naar de kamer'}
+                        text={playing ? t('lol.lobby.running.resumeGame') : t('lol.lobby.running.resumeLobby')}
                         variant='primary'
                         fullWidth
                         disabled={abandoning}
@@ -152,7 +155,7 @@ export default function LeagueOfLettersCreateRoomPage() {
                     />
 
                     <TextButton
-                        text={abandoning ? 'Bezig…' : playing ? 'Spel stoppen' : 'Kamer sluiten'}
+                        text={abandoning ? t('common.busy') : playing ? t('lol.lobby.running.stopGame') : t('lol.lobby.running.closeLobby')}
                         variant='muted'
                         fullWidth
                         disabled={abandoning}
@@ -160,7 +163,7 @@ export default function LeagueOfLettersCreateRoomPage() {
                     />
 
                     <TextButton
-                        text='Terug naar de spellen'
+                        text={t('common.backToGames')}
                         variant='muted'
                         fullWidth
                         disabled={abandoning}

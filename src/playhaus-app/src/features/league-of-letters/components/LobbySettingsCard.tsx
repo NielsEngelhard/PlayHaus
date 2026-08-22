@@ -3,6 +3,7 @@ import TitleText from "@/components/text/TitleText";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import ToggleRow from "@/components/ui/ToggleRow";
 import { Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
@@ -15,10 +16,11 @@ interface Props {
 
 export default function LobbySettingsCard({ settings, onChange }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View style={styles.card}>
-            <TitleText title="Spelinstellingen" />
+            <TitleText title={t('lol.lobby.settingsTitle')} />
 
             <WordLengthCard
                 variant='inline'
@@ -35,8 +37,8 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
             <ToggleRow
                 value={settings.hardMode}
                 onChange={value => onChange({ ...settings, hardMode: value })}
-                label="Hard mode"
-                description="Pick random word that can be ANY existing word in the language. When disabled an easier set of words will be used."
+                label={t('lol.settings.hardMode.label')}
+                description={t('lol.settings.hardMode.description')}
                 icon="zap"
             />            
 

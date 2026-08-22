@@ -5,6 +5,7 @@ import { ROUTES } from "@/constants/routes";
 import { Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import * as Clipboard from "expo-clipboard";
 import { RelativePathString, useRouter } from "expo-router";
@@ -91,16 +92,6 @@ const SLOT_ASPECT = 0.86;
  */
 const SLOT_FONT = LOBBY_CODE_LENGTH > 4 ? 21 : 26;
 
-/** Dutch for the lengths a code can be, with the numeral as the way out. */
-const LENGTH_WORDS: Record<number, string> = { 4: 'Vier', 5: 'Vijf', 6: 'Zes' };
-
-/**
- * Written from the length rather than around it. The card used to say "Vier tekens" in
- * prose, which is a second place for the code length to live and the one that would go
- * quietly wrong the day the server issues six.
- */
-const HINT = `${LENGTH_WORDS[LOBBY_CODE_LENGTH] ?? LOBBY_CODE_LENGTH} tekens — je gaat er automatisch in`;
-
 /**
  * Everything a code is allowed to be. Anything else is dropped as it arrives, which is
  * what lets a pasted "code: ab-cd" become `ABCD` rather than being refused.
@@ -110,7 +101,7 @@ function sanitize(text: string): string {
 }
 
 /**
- * Enter a room code and join someone else's game.
+ * Enter a lobby code and join someone else's game.
  *
  * The code is drawn as one box per character, but it is typed into a single `TextInput`
  * laid over the whole row at zero opacity. One field rather than several is what makes
@@ -133,6 +124,7 @@ function sanitize(text: string): string {
 export default function RoomCodeCard() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const { width } = useWindowDimensions();
     const wide = isWide(width);
@@ -189,18 +181,26 @@ export default function RoomCodeCard() {
 
     // Held in variables rather than written twice, because the two arrangements move
     // these between columns rather than changing what they say.
-    const hint = <AppText style={[styles.hint, wide && styles.hintWide]}>{HINT}</AppText>;
+    // Written from the length rather than around it, and with the numeral rather than
+    // the word for it: the card used to spell out "Vier tekens", which is a second place
+    // for the code length to live and the one that would go quietly wrong the day the
+    // server issues six.
+    const hint = (
+        <AppText style={[styles.hint, wide && styles.hintWide]}>
+            {t('lol.index.join.hint', { length: LOBBY_CODE_LENGTH })}
+        </AppText>
+    );
 
     const pasteChip = (
         <PopPressable
             style={styles.paste}
             onPress={() => void paste()}
             accessibilityRole='button'
-            accessibilityLabel='Code plakken'
+            accessibilityLabel={t('lol.index.join.pasteLabel')}
         >
             <Feather name='clipboard' size={13} color={theme.colors.focus} />
 
-            <AppText style={styles.pasteText}>Plakken</AppText>
+            <AppText style={styles.pasteText}>{t('lol.index.join.paste')}</AppText>
         </PopPressable>
     );
 
@@ -209,7 +209,7 @@ export default function RoomCodeCard() {
             {/* The half that says what this is, and the half that gets the leftover
                 width — the boxes are already as big as they should ever be. */}
             <View style={[styles.copy, wide && styles.copyWide]}>
-                <AppText style={styles.label}>Of join een kamer</AppText>
+                <AppText style={styles.label}>{t('lol.index.join.label')}</AppText>
 
                 {wide && hint}
             </View>
@@ -248,7 +248,7 @@ export default function RoomCodeCard() {
                         autoCapitalize='characters'
                         autoCorrect={false}
                         returnKeyType='go'
-                        accessibilityLabel='Kamercode'
+                        accessibilityLabel={t('lol.index.join.codeLabel')}
                         // `caretHidden` because the boxes draw their own, and the real one
                         // would be sitting at the far left of an invisible field.
                         caretHidden

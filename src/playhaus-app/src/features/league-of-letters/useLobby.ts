@@ -14,6 +14,7 @@ import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
 import { lobbyErrorMessage } from '@/features/league-of-letters/game-errors';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface LobbyState {
@@ -21,9 +22,9 @@ export interface LobbyState {
     /** True until the room has been opened or joined, one way or the other. */
     loading: boolean
     /** The room could not be opened or joined. There is nothing to show. */
-    error: string | null
+    error: TranslationKey | null
     /** Something went wrong with a room that is still on screen — a save, a start. */
-    actionError: string | null
+    actionError: TranslationKey | null
     /** This player owns the room: the settings and the start button are theirs. */
     isHost: boolean
     /** Who is connected right now, by user id. What the live dots are drawn from. */
@@ -131,8 +132,8 @@ function release(code: string): boolean {
 export function useLobby(code?: string): LobbyState {
     const { user, status } = useAuth();
     const [lobby, setLobby] = useState<Lobby | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [actionError, setActionError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
+    const [actionError, setActionError] = useState<TranslationKey | null>(null);
     const [closed, setClosed] = useState(false);
     const [saving, setSaving] = useState(false);
     const [starting, setStarting] = useState(false);

@@ -13,10 +13,12 @@ import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
+import { useT } from "@/features/i18n/LanguageContext";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import type { TranslationKey } from "@/features/i18n/keys";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -35,6 +37,7 @@ import { View } from "react-native";
 export default function LeagueOfLettersSettingsPage() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     // Claims the viewport: no bottom bar, and the footer can sit on the bottom edge.
     // Called before every early return below, so the hook order never changes.
@@ -44,14 +47,14 @@ export default function LeagueOfLettersSettingsPage() {
     const { status, user } = useAuth();
     const [settings, setSettings] = useState(DEFAULT_LOL_SETTINGS);
     const [starting, setStarting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
     /** False until the server has said whether a game is already running. */
     const [checked, setChecked] = useState(false);
     /** The game that was already running, until the player has said what to do with it. */
     const [running, setRunning] = useState<Game | null>(null);
     const [abandoning, setAbandoning] = useState(false);
     /** Kept apart from `error`, which belongs to the form the modal is sitting on top of. */
-    const [abandonError, setAbandonError] = useState<string | null>(null);
+    const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
     // Nothing may touch state after unmount — the redirect below unmounts this
     // screen while the request that caused it may still be settling.
@@ -175,14 +178,14 @@ export default function LeagueOfLettersSettingsPage() {
     // panel drop over it a moment later reads as a misfire, and for the length of that
     // moment it is a form whose only outcome would be destroying a game.
     if (!checked) {
-        return <LoadingPage message='Spel zoeken…' />;
+        return <LoadingPage message={t('lol.settings.loading')} />;
     }
 
     return (
         <View style={styles.container}>
             <SimpleTextHero
-                title={'Zet je spel\nklaar'}
-                description='Set up your game and you can play!'
+                title={t('lol.settings.title')}
+                description={t('lol.settings.description')}
             />
 
             <View style={styles.wordLength}>
@@ -202,8 +205,8 @@ export default function LeagueOfLettersSettingsPage() {
             <ToggleRow
                 value={settings.hardMode}
                 onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
-                label="Hard mode"
-                description="Pick random word that can be ANY existing word in the language. When disabled an easier set of words will be used."
+                label={t('lol.settings.hardMode.label')}
+                description={t('lol.settings.hardMode.description')}
                 icon="zap"
             />
 
@@ -212,8 +215,8 @@ export default function LeagueOfLettersSettingsPage() {
                     <InlineNotification
                         icon='alert-triangle'
                         color={theme.colors.blush}
-                        title='Mislukt'
-                        message={error}
+                        title={t('common.failed')}
+                        message={t(error)}
                     />
                 </View>
             )}
@@ -225,12 +228,12 @@ export default function LeagueOfLettersSettingsPage() {
                     <Feather name='info' size={14} color={theme.colors.textMuted} />
 
                     <AppText style={styles.factsText}>
-                        {SOLO_ROUNDS} rondes · {SOLO_MAX_GUESSES} pogingen per ronde · eerste letter gegeven
+                        {t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
                     </AppText>
                 </View>
 
                 <StartGameButton
-                    text={starting ? 'Bezig…' : 'Start met spelen'}
+                    text={starting ? t('common.busy') : t('lol.settings.start')}
                     onPress={start}
                     disabled={starting}
                 />
@@ -243,15 +246,15 @@ export default function LeagueOfLettersSettingsPage() {
               */}
             <PopupModal
                 visible={running !== null}
-                title='Je speelt al een spel'
-                message='Er staat nog een solospel open. Ga verder waar je gebleven was, of gooi het weg en stel een nieuw spel in.'
+                title={t('lol.settings.running.title')}
+                message={t('lol.settings.running.message')}
             >
                 {abandonError && (
-                    <AppText style={styles.abandonError}>{abandonError}</AppText>
+                    <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                 )}
 
                 <TextButton
-                    text='Verder spelen'
+                    text={t('lol.settings.running.resume')}
                     variant='primary'
                     fullWidth
                     disabled={abandoning}
@@ -261,7 +264,7 @@ export default function LeagueOfLettersSettingsPage() {
                 />
 
                 <TextButton
-                    text={abandoning ? 'Bezig…' : 'Weggooien'}
+                    text={abandoning ? t('common.busy') : t('lol.settings.running.discard')}
                     variant='muted'
                     fullWidth
                     disabled={abandoning}

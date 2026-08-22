@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
+import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -17,6 +19,13 @@ interface Props {
     glyphInk: string,
     name: string,
     description: string,
+    /**
+     * How many devices the group needs, or nothing for a card that is not a game.
+     *
+     * The mode rather than the sentence: every game that plays this way says it with the
+     * same words, so the card owns the wording and the caller only owns the fact.
+     */
+    deviceMode?: DeviceMode,
     playable: boolean,
     navigationUrl: Href
 }
@@ -39,11 +48,13 @@ export default function NavigationCard({
     glyphInk,
     name,
     description,
+    deviceMode,
     playable,
     navigationUrl,
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Link href={navigationUrl} asChild>
@@ -74,6 +85,19 @@ export default function NavigationCard({
                     {description && (
                         <View style={styles.status}>
                             <AppText style={styles.statusText}>{description}</AppText>
+                        </View>
+                    )}
+
+                    {deviceMode && (
+                        <View style={styles.device}>
+                            <Feather
+                                name='smartphone'
+                                size={12}
+                                color={theme.colors.textMuted}
+                            />
+                            <AppText style={styles.deviceText}>
+                                {t(DEVICE_MODE_KEYS[deviceMode])}
+                            </AppText>
                         </View>
                     )}
                 </View>
@@ -181,6 +205,20 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 11.5,
         fontWeight: 700,
         color: theme.colors.textSecondary
+    },
+    device: {
+        marginTop: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 5
+    },
+    deviceText: {
+        flexShrink: 1,
+        fontSize: 11,
+        fontWeight: 700,
+        // A step quieter than the description above it: how many phones to bring is a
+        // practical note you read once, not part of the pitch.
+        color: theme.colors.textMuted
     },
     play: {
         width: 38,

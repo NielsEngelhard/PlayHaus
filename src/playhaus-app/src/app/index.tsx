@@ -39,6 +39,7 @@ export default function HomeScreen() {
             glyphInk={game.glyphInk[theme.scheme]}
             name={game.name}
             description={t(game.descriptionKey)}
+            deviceMode={game.deviceMode}
             playable={game.playable}
             navigationUrl={game.navigationUrl as RelativePathString}
           />

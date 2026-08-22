@@ -10,6 +10,7 @@ import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
 import { useGame } from "@/features/league-of-letters/useGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { View } from "react-native";
 
@@ -30,12 +31,13 @@ export default function LeagueOfLettersSoloPage() {
     useFullScreen();
 
     const router = useRouter();
+    const t = useT();
     const { user } = useAuth();
     const { gameId } = useLocalSearchParams<{ gameId: string }>();
     const { game, round, loading, error, reload, guess, nextRound } = useGame(gameId);
 
     if (loading) {
-        return <LoadingPage message='Spel laden…' />;
+        return <LoadingPage message={t('lol.game.loading')} />;
     }
 
     // A game with no round to show is as unplayable as one that would not load, so
@@ -46,11 +48,11 @@ export default function LeagueOfLettersSoloPage() {
                 <InlineNotification
                     icon='alert-triangle'
                     color={theme.colors.blush}
-                    title='Mislukt'
-                    message={error ?? 'Dit spel kon niet worden geladen.'}
+                    title={t('common.failed')}
+                    message={error === null ? t('lol.game.loadFailed') : t(error)}
                 />
 
-                <TextButton text='Opnieuw' onPress={reload} variant='primary' fullWidth />
+                <TextButton text={t('common.retry')} onPress={reload} variant='primary' fullWidth />
 
                 <BackButton href={ROUTES.leagueOfLettersIndex} />
             </View>

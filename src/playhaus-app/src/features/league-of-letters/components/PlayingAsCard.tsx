@@ -4,6 +4,7 @@ import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString } from "expo-router";
 import { View } from "react-native";
 
@@ -21,6 +22,7 @@ import { View } from "react-native";
 export default function PlayingAsCard() {
     const { user } = useAuth();
     const styles = useStyles();
+    const t = useT();
 
     if (user === null) return null;
 
@@ -36,12 +38,12 @@ export default function PlayingAsCard() {
 
             <View style={styles.body}>
                 <AppText style={styles.name} numberOfLines={1}>
-                    Speelt als {user.name}
+                    {t('lol.index.playingAs', { name: user.name })}
                 </AppText>
             </View>
 
-            <Link href={ROUTES.profile as RelativePathString} accessibilityLabel='Profiel wijzigen'>
-                <AppText style={styles.change}>Wijzig</AppText>
+            <Link href={ROUTES.profile as RelativePathString} accessibilityLabel={t('lol.index.changeProfile')}>
+                <AppText style={styles.change}>{t('lol.index.change')}</AppText>
             </Link>
         </View>
     )

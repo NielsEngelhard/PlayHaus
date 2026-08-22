@@ -11,6 +11,7 @@ import StartGameButton from "@/features/league-of-letters/components/StartGameBu
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import { ScrollView, View } from "react-native";
 
 interface Props {
@@ -31,6 +32,7 @@ interface Props {
  * seats, the settings — moves, because on a short phone with six seats drawn it has to.
  */
 export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
@@ -70,15 +72,15 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                     <InlineNotification
                         icon='alert-triangle'
                         color={theme.colors.blush}
-                        title='Mislukt'
-                        message={state.actionError}
+                        title={t('common.failed')}
+                        message={t(state.actionError)}
                     />
                 )}
             </ScrollView>
 
             <View style={styles.footer}>
                 <StartGameButton
-                    text={state.starting ? 'Bezig…' : 'Start het spel'}
+                    text={state.starting ? t('common.busy') : t('lol.lobby.start')}
                     onPress={onStart}
                     // A room of one has nobody to play against, and a save still in the air
                     // means the game could start on settings that did not stick.

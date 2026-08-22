@@ -12,6 +12,7 @@ import FinalScoreboard from "@/features/league-of-letters/components/FinalScoreb
 import { useGame } from "@/features/league-of-letters/useGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMemo } from "react";
 import { View } from "react-native";
@@ -32,6 +33,7 @@ import { View } from "react-native";
 export default function LeagueOfLettersResultsPage() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const router = useRouter();
     const { user } = useAuth();
@@ -65,7 +67,7 @@ export default function LeagueOfLettersResultsPage() {
     }, [game, user]);
 
     if (loading) {
-        return <LoadingPage message='Uitslag laden…' />;
+        return <LoadingPage message={t('lol.results.loading')} />;
     }
 
     // No game and no players are the same dead end: there is no result to show, so
@@ -76,18 +78,16 @@ export default function LeagueOfLettersResultsPage() {
                 <InlineNotification
                     icon='alert-triangle'
                     color={theme.colors.blush}
-                    title='Mislukt'
-                    message={error ?? 'De uitslag kon niet worden geladen.'}
+                    title={t('common.failed')}
+                    message={error === null ? t('lol.results.loadFailed') : t(error)}
                 />
 
-                <TextButton text='Opnieuw' onPress={reload} variant='primary' fullWidth />
+                <TextButton text={t('common.retry')} onPress={reload} variant='primary' fullWidth />
 
                 <BackButton href={ROUTES.leagueOfLettersIndex} />
             </View>
         );
     }
-
-    const rounds = game.totalRounds === 1 ? '1 ronde' : `${game.totalRounds} rondes`;
 
     /**
      * Something went right. Paper for every game regardless of how it went would be
@@ -101,8 +101,14 @@ export default function LeagueOfLettersResultsPage() {
         <View style={styles.page}>
             <View style={styles.body}>
                 <SimpleTextHero
-                    title='Spel afgelopen'
-                    description={`${rounds} van ${game.wordLength} letters gespeeld.`}
+                    title={t('lol.results.title')}
+                    /* Label and value rather than a counted noun: "1 rondes" is what the
+                       sentence version said at the low end, and there are no plural forms
+                       to lean on here. */
+                    description={t('lol.results.summary', {
+                        rounds: game.totalRounds,
+                        length: game.wordLength
+                    })}
                 />
 
                 <FinalScoreboard players={players} userId={user?.id ?? ''} />
@@ -112,7 +118,7 @@ export default function LeagueOfLettersResultsPage() {
                     end of one is the natural moment to change them. `replace`, so the
                     finished game is not left behind the next one. */}
                 <TextButton
-                    text='Nog een keer'
+                    text={t('lol.results.again')}
                     fullWidth
                     onPress={() => router.replace(ROUTES.leagueOfLettersSoloSettings)}
                     style={styles.again}
@@ -122,7 +128,7 @@ export default function LeagueOfLettersResultsPage() {
                     that does not start another game. */}
                 <BackButton
                     href={ROUTES.leagueOfLettersIndex}
-                    label='Terug naar de spellen'
+                    label={t('common.backToGames')}
                     variant='neutral'
                     style={styles.back}
                 />

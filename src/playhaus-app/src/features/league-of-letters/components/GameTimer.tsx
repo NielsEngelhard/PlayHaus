@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
@@ -36,6 +37,7 @@ function formatted(milliseconds: number): string {
 export default function GameTimer({ endsAt, style }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const [remaining, setRemaining] = useState(() => remainingMs(endsAt));
 
@@ -63,7 +65,7 @@ export default function GameTimer({ endsAt, style }: Props) {
                 color={hurry ? theme.colors.destructive : theme.colors.textSecondary}
             />
 
-            <AppText style={styles.label}>Resterende tijd</AppText>
+            <AppText style={styles.label}>{t('lol.game.timeLeft')}</AppText>
 
             <AppText style={[styles.time, hurry && styles.timeHurry]}>
                 {formatted(remaining)}

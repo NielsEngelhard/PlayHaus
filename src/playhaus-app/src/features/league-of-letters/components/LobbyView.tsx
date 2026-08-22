@@ -12,6 +12,7 @@ import RoomClosedNotice from "@/features/league-of-letters/components/RoomClosed
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
@@ -44,6 +45,7 @@ interface Props {
 export default function LobbyView({ state, onStarted }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const router = useRouter();
     const { lobby, isHost, closing } = state;
@@ -56,11 +58,11 @@ export default function LobbyView({ state, onStarted }: Props) {
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
 
-    // The host shut the room while this player was sitting in it. The code no longer
-    // works, so there is nothing to offer but the way out -- a retry would only find
+    // The host shut the lobby while this player was sitting in it. The code no longer
+    // works, so there is nothing to offer but the way out: a retry would only find
     // the same 404.
     if (state.closed) {
-        return <RoomClosedNotice message='De host heeft de kamer gesloten. Vraag om een nieuwe code.' />;
+        return <RoomClosedNotice message={t('lol.lobby.hostClosedLobby')} />;
     }
 
     if (state.error !== null) {
@@ -71,20 +73,20 @@ export default function LobbyView({ state, onStarted }: Props) {
                 <InlineNotification
                     icon='alert-triangle'
                     color={theme.colors.blush}
-                    title='Geen kamer'
-                    message={state.error}
+                    title={t('lol.lobby.noLobby')}
+                    message={t(state.error)}
                 >
-                    <TextButton text='Opnieuw' onPress={state.reload} />
+                    <TextButton text={t('common.retry')} onPress={state.reload} />
                 </InlineNotification>
             </View>
         )
     }
 
     if (lobby === null) {
-        return <LoadingPage message='Kamer openen…' />;
+        return <LoadingPage message={t('lol.lobby.opening')} />;
     }
 
-    /** Hand the room back, then go. Both halves matter, so the modal waits for the first. */
+    /** Hand the lobby back, then go. Both halves matter, so the modal waits for the first. */
     async function leave() {
         await state.close();
         router.replace(ROUTES.leagueOfLettersIndex);
@@ -114,22 +116,22 @@ export default function LobbyView({ state, onStarted }: Props) {
 
             {/*
               * The one thing on this screen that cannot be undone, so it is asked rather
-              * than done. Both screens' back chips lead here — which is the reason they
+              * than done. Both screens' back chips lead here, which is the reason they
               * are buttons of their own rather than the header's link.
               *
               * Dismissable, unlike the solo screen's panel: staying is a perfectly good
-              * answer here, and the room behind it still works.
+              * answer here, and the lobby behind it still works.
               */}
             <PopupModal
                 visible={leaving}
-                title={isHost ? 'Kamer sluiten?' : 'Kamer verlaten?'}
+                title={isHost ? t('lol.lobby.confirmClose.title') : t('lol.lobby.confirmLeave.title')}
                 message={isHost
-                    ? 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die al binnen is, vliegt eruit.'
-                    : 'Je gaat terug naar het spelmenu. Je kunt later opnieuw joinen met dezelfde code.'}
+                    ? t('lol.lobby.confirmClose.message')
+                    : t('lol.lobby.confirmLeave.message')}
                 onRequestClose={() => setLeaving(false)}
             >
                 <TextButton
-                    text={closing ? 'Bezig…' : isHost ? 'Sluiten' : 'Verlaten'}
+                    text={closing ? t('common.busy') : isHost ? t('lol.lobby.confirmClose.action') : t('lol.lobby.confirmLeave.action')}
                     variant='primary'
                     fullWidth
                     disabled={closing}
@@ -137,7 +139,7 @@ export default function LobbyView({ state, onStarted }: Props) {
                 />
 
                 <TextButton
-                    text='Blijf hier'
+                    text={t('lol.lobby.stay')}
                     variant='muted'
                     fullWidth
                     disabled={closing}

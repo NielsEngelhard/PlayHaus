@@ -7,6 +7,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { playBubble } from "@/utils/bubble-sound";
 import { haptic } from "@/utils/haptics";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
 
@@ -46,6 +47,7 @@ function keyHeightFor(windowHeight: number): number {
 /** The on-screen keyboard. Fills the width of whatever it is put in. */
 export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, disabled = false, style }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const { height } = useWindowDimensions();
     const keyHeight = keyHeightFor(height);
@@ -68,13 +70,13 @@ export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, dis
             </View>
 
             <View style={styles.row}>
-                <ActionKey icon='corner-down-left' label='Raden' height={keyHeight} disabled={disabled} onPress={onEnter} variant='enter' />
+                <ActionKey icon='corner-down-left' label={t('lol.game.guess')} height={keyHeight} disabled={disabled} onPress={onEnter} variant='enter' />
 
                 {ROWS[2].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
                 ))}
 
-                <ActionKey icon='delete' label='Wissen' height={keyHeight} disabled={disabled} onPress={onBackspace} variant='delete' />
+                <ActionKey icon='delete' label={t('lol.game.clear')} height={keyHeight} disabled={disabled} onPress={onBackspace} variant='delete' />
             </View>
         </View>
     )

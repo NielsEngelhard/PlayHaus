@@ -7,6 +7,8 @@ import AuthErrorText from "@/features/auth/components/AuthErrorText";
 import AuthFormHeader from "@/features/auth/components/AuthFormHeader";
 import { useAuth } from "@/features/auth/useAuth";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import type { TranslationKey } from "@/features/i18n/keys";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useState } from "react";
 import { View } from "react-native";
 
@@ -26,6 +28,7 @@ interface Props {
  */
 export default function SignupForm({ onBack, onSuccess }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const { signup } = useAuth();
 
@@ -33,7 +36,7 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [busy, setBusy] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<TranslationKey | null>(null);
 
     const canSubmit = name.trim().length > 0
         && email.trim().length > 0
@@ -48,7 +51,7 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
         // Checked on submit rather than folded into `canSubmit`: a button that
         // stays greyed out until you happen to type an `@` explains nothing.
         if (!trimmedEmail.includes('@')) {
-            setError('That doesn’t look like an email address.');
+            setError('auth.signup.invalidEmail');
             return;
         }
 
@@ -66,13 +69,13 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
 
     return (
         <View>
-            <AuthFormHeader title='Sign Up' onBack={onBack} disabled={busy} />
+            <AuthFormHeader title={t('auth.signup.title')} onBack={onBack} disabled={busy} />
 
             <TextField
-                label='Player name'
+                label={t('auth.signup.name')}
                 value={name}
                 onChangeText={setName}
-                placeholder='Your name'
+                placeholder={t('auth.signup.namePlaceholder')}
                 autoCapitalize='words'
                 autoComplete='name'
                 textContentType='name'
@@ -83,10 +86,10 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
             />
 
             <TextField
-                label='Email'
+                label={t('auth.signup.email')}
                 value={email}
                 onChangeText={setEmail}
-                placeholder='you@example.com'
+                placeholder={t('auth.signup.emailPlaceholder')}
                 keyboardType='email-address'
                 autoComplete='email'
                 textContentType='emailAddress'
@@ -96,10 +99,10 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
             />
 
             <TextField
-                label='Password'
+                label={t('auth.signup.password')}
                 value={password}
                 onChangeText={setPassword}
-                placeholder='Pick a password'
+                placeholder={t('auth.signup.passwordPlaceholder')}
                 secureTextEntry
                 autoComplete='new-password'
                 textContentType='newPassword'
@@ -109,10 +112,10 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
                 style={styles.field}
             />
 
-            {error && <AuthErrorText message={error} />}
+            {error && <AuthErrorText message={t(error)} />}
 
             <TextButton
-                text={busy ? 'Creating…' : 'Create Account'}
+                text={busy ? t('auth.signup.submitting') : t('auth.signup.submit')}
                 onPress={submit}
                 variant='primary'
                 fullWidth
@@ -121,8 +124,7 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
             />
 
             <AppText style={styles.hint}>
-                This is the name other players see in a room. You can change it
-                later in your profile.
+                {t('auth.signup.nameNote')}
             </AppText>
         </View>
     )

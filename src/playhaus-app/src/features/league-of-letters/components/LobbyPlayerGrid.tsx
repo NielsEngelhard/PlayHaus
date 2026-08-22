@@ -5,6 +5,7 @@ import { initialsFor } from "@/features/league-of-letters/components/lobby-playe
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
@@ -42,6 +43,7 @@ const AVATAR_SIZE = 36;
  * 10pt between them come to more than the row, so they end up one to a line.
  */
 export default function LobbyPlayerGrid({ players, hostId, userId, online }: Props) {
+    const t = useT();
     const styles = useStyles();
 
     /**
@@ -61,9 +63,9 @@ export default function LobbyPlayerGrid({ players, hostId, userId, online }: Pro
     return (
         <View>
             <View style={styles.header}>
-                <AppText style={styles.label}>Spelers</AppText>
+                <AppText style={styles.label}>{t('lol.lobby.players')}</AppText>
 
-                <AppText style={styles.count}>{players.length} van {MAX_LOBBY_PLAYERS}</AppText>
+                <AppText style={styles.count}>{t('lol.lobby.playerCount', { taken: players.length, max: MAX_LOBBY_PLAYERS })}</AppText>
             </View>
 
             <View style={styles.rows}>
@@ -97,6 +99,7 @@ interface PlayerCardProps {
 /** One person: their swatch, their name, and one word about them under it. */
 function PlayerCard({ player, host, you, live }: PlayerCardProps) {
     const styles = useStyles();
+    const t = useT();
 
     const avatar = avatarColorById(player.avatarColorId);
 
@@ -112,14 +115,14 @@ function PlayerCard({ player, host, you, live }: PlayerCardProps) {
                 <AppText style={styles.name} numberOfLines={1}>{player.name}</AppText>
 
                 {/*
-                  * One line, in the order the host needs it: who runs the room, and for
+                  * One line, in the order the host needs it: who runs the lobby, and for
                   * everybody else whether they are actually looking at their screen.
                   */}
                 {host ? (
-                    <AppText style={styles.host}>{you ? 'HOST · JIJ' : 'HOST'}</AppText>
+                    <AppText style={styles.host}>{you ? t('lol.lobby.hostYou') : t('lol.lobby.hostTag')}</AppText>
                 ) : (
                     <AppText style={[styles.status, !live && styles.statusAway]}>
-                        {live ? 'Klaar' : 'Weg'}
+                        {live ? t('lol.lobby.ready') : t('lol.lobby.away')}
                     </AppText>
                 )}
             </View>
@@ -127,22 +130,23 @@ function PlayerCard({ player, host, you, live }: PlayerCardProps) {
     )
 }
 
-/** A seat nobody has taken. Drawn open, so the room reads as unfinished. */
+/** A seat nobody has taken. Drawn open, so the lobby reads as unfinished. */
 function EmptySeat() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View
             style={[styles.card, styles.cardEmpty]}
             accessibilityRole='text'
-            accessibilityLabel='Vrije plek'
+            accessibilityLabel={t('lol.lobby.freeSeat')}
         >
             <View style={styles.avatarEmpty}>
                 <Feather name='plus' size={15} color={theme.colors.textFaint} />
             </View>
 
-            <AppText style={styles.waiting} numberOfLines={1}>Wachten…</AppText>
+            <AppText style={styles.waiting} numberOfLines={1}>{t('lol.lobby.waiting')}</AppText>
         </View>
     )
 }

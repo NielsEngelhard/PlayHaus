@@ -9,6 +9,7 @@ import WaitingForHost from "@/features/league-of-letters/components/WaitingForHo
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import { ScrollView, View } from "react-native";
 
 interface Props {
@@ -28,6 +29,7 @@ interface Props {
  * thing they need to know (that the room is still there, and who they are waiting for).
  */
 export default function GuestLobby({ state, lobby, onBack }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
@@ -51,7 +53,7 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
             >
-                <WaitingForHost hostName={host?.name ?? 'De host'} />
+                <WaitingForHost hostName={host?.name ?? t('lol.lobby.hostFallback')} />
 
                 <LobbyRoster
                     players={lobby.players}
@@ -63,8 +65,8 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
                     <InlineNotification
                         icon='alert-triangle'
                         color={theme.colors.blush}
-                        title='Mislukt'
-                        message={state.actionError}
+                        title={t('common.failed')}
+                        message={t(state.actionError)}
                     />
                 )}
             </ScrollView>

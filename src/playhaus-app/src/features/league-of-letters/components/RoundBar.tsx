@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import { Brand, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, View } from "react-native";
 
@@ -32,6 +33,7 @@ interface Props {
 export default function RoundBar({ round, total, outcome, firstLetter, tries, onLeave }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const finished = outcome !== 'playing';
 
@@ -40,14 +42,14 @@ export default function RoundBar({ round, total, outcome, firstLetter, tries, on
             <Pressable
                 onPress={onLeave}
                 accessibilityRole='button'
-                accessibilityLabel={finished ? 'Sluiten' : 'Terug'}
+                accessibilityLabel={finished ? t('common.close') : t('common.back')}
                 style={styles.leave}
             >
                 <Feather name={finished ? 'x' : 'arrow-left'} size={16} color={theme.colors.text} />
             </Pressable>
 
             <View style={styles.body}>
-                <AppText style={styles.label}>Ronde {round} van {total}</AppText>
+                <AppText style={styles.label}>{t('lol.game.roundOf', { round, total })}</AppText>
 
                 {/* One segment per round. The one you are on only turns green when it is
                     won — which is why the bar is worth having over a plain "2 of 3": it
@@ -79,16 +81,16 @@ export default function RoundBar({ round, total, outcome, firstLetter, tries, on
                     />
 
                     <AppText style={styles.tries}>
-                        {tries} {tries === 1 ? 'poging' : 'pogingen'}
+                        {t('lol.game.guesses', { guesses: tries })}
                     </AppText>
                 </View>
             ) : firstLetter !== '' && (
                 <View
                     style={[styles.chip, styles.chipHint]}
                     accessibilityRole='text'
-                    accessibilityLabel={`Hint: het woord begint met de ${firstLetter}`}
+                    accessibilityLabel={t('lol.game.hintLabel', { letter: firstLetter })}
                 >
-                    <AppText style={styles.hintLabel}>Hint</AppText>
+                    <AppText style={styles.hintLabel}>{t('lol.game.hint')}</AppText>
 
                     <AppText style={styles.hintLetter}>{firstLetter}</AppText>
                 </View>

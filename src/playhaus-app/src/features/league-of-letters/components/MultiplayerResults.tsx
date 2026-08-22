@@ -9,6 +9,8 @@ import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import FinalScoreboard from "@/features/league-of-letters/components/FinalScoreboard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import { View } from "react-native";
 
 interface Props {
@@ -25,7 +27,7 @@ interface Props {
     /** The next room is being opened. */
     playingAgain: boolean,
     /** It could not be opened. Said under the button, which stays pressable. */
-    error: string | null
+    error: TranslationKey | null
 }
 
 /**
@@ -50,10 +52,11 @@ export default function MultiplayerResults({
     error
 }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const players = game.players ?? [];
 
-    // Ranked the same way `FinalScoreboard` ranks the list it draws — this is only for
+    // Ranked the same way `FinalScoreboard` ranks the list it draws. This is only for
     // the line above it, which needs to name the top of that list.
     const ranked = [...players].sort((a, b) => b.score - a.score);
     const best = ranked[0];
@@ -65,15 +68,15 @@ export default function MultiplayerResults({
     const outcome = best === undefined
         ? undefined
         : drawn
-            ? `Gelijkspel op ${best.score} punten.`
+            ? t('lol.lobby.results.tie', { score: best.score })
             : youWon
-                ? `Jij wint met ${best.score} punten.`
-                : `${best.name} wint met ${best.score} punten.`;
+                ? t('lol.lobby.results.youWin', { score: best.score })
+                : t('lol.lobby.results.playerWins', { name: best.name, score: best.score });
 
     return (
         <View style={styles.page}>
             <View style={styles.body}>
-                <SimpleTextHero title='Spel afgelopen' description={outcome} />
+                <SimpleTextHero title={t('lol.lobby.results.title')} description={outcome} />
 
                 {/* The live rings matter here in a way they do not on a solo result: the
                     host is about to decide whether to play again with the same people,
@@ -83,31 +86,29 @@ export default function MultiplayerResults({
                 {isHost ? (
                     <View style={styles.again}>
                         <ActionButton
-                            text={playingAgain ? 'Kamer openen…' : 'Nog een keer, zelfde spelers'}
+                            text={playingAgain ? t('lol.lobby.opening') : t('lol.lobby.results.againSamePlayers')}
                             size='large'
                             icon='refresh-cw'
                             disabled={playingAgain}
                             onPress={onPlayAgain}
                         />
 
-                        {/* Under the button rather than in its place: the room is still
+                        {/* Under the button rather than in its place: the lobby is still
                             there and pressing again is a perfectly good next move. */}
                         {error !== null && (
-                            <AppText style={styles.error}>{error}</AppText>
+                            <AppText style={styles.error}>{t(error)}</AppText>
                         )}
 
                         <AppText style={styles.hint}>
-                            Iedereen die nog op dit scherm zit, gaat automatisch mee naar de
-                            nieuwe kamer.
+                            {t('lol.lobby.results.autoJoin')}
                         </AppText>
                     </View>
                 ) : (
                     <Card style={styles.waiting}>
-                        <AppText style={styles.waitingTitle}>Nog een potje?</AppText>
+                        <AppText style={styles.waitingTitle}>{t('lol.lobby.results.anotherRound')}</AppText>
 
                         <AppText style={styles.waitingText}>
-                            Het spel zit erop. De host kan een nieuwe kamer openen — blijf hier,
-                            dan word je er vanzelf in meegenomen.
+                            {t('lol.lobby.results.hostCanOpen')}
                         </AppText>
                     </Card>
                 )}
@@ -115,7 +116,7 @@ export default function MultiplayerResults({
                 {/* The only way out that does not wait for the host. */}
                 <BackButton
                     href={ROUTES.leagueOfLettersIndex}
-                    label='Terug naar de spellen'
+                    label={t('common.backToGames')}
                     variant='neutral'
                     style={styles.back}
                 />

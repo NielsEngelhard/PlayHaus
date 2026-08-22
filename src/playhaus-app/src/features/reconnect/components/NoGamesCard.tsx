@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import { ROUTES } from "@/constants/routes";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -17,6 +18,7 @@ import { View } from "react-native";
 export default function NoGamesCard() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const router = useRouter();
 
@@ -26,14 +28,14 @@ export default function NoGamesCard() {
                 <Feather name='coffee' size={20} color={theme.colors.lemon} />
             </View>
 
-            <AppText style={styles.title}>Geen spellen open</AppText>
+            <AppText style={styles.title}>{t('reconnect.noGames.title')}</AppText>
 
             <AppText style={styles.message}>
-                Alles wat je half gespeeld achterlaat komt hier terug te staan, solo of in een kamer.
+                {t('reconnect.noGames.message')}
             </AppText>
 
             <ActionButton
-                text='Kies een spel'
+                text={t('reconnect.noGames.action')}
                 onPress={() => router.push(ROUTES.home)}
                 style={styles.button}
             />

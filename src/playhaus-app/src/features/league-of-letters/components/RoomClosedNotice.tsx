@@ -4,6 +4,7 @@ import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 
@@ -24,6 +25,7 @@ interface Props {
  * way out. A retry would find the same 404.
  */
 export default function RoomClosedNotice({ message }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
@@ -36,11 +38,11 @@ export default function RoomClosedNotice({ message }: Props) {
             <InlineNotification
                 icon='x'
                 color={theme.colors.blush}
-                title='Kamer gesloten'
+                title={t('lol.lobby.closedTitle')}
                 message={message}
             >
                 <TextButton
-                    text='Terug naar de spellen'
+                    text={t('common.backToGames')}
                     onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
                 />
             </InlineNotification>

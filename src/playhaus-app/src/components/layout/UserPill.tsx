@@ -3,6 +3,7 @@ import { useContextPillStyles } from "@/components/layout/ContextPill";
 import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/features/auth/useAuth";
 import { avatarColorById } from "@/features/settings/profile";
+import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 
@@ -21,6 +22,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 export default function UserPill() {
     const { user } = useAuth();
     const styles = useContextPillStyles();
+    const t = useT();
 
     if (user === null) return null;
 
@@ -35,7 +37,7 @@ export default function UserPill() {
                 // style array does not survive that trip.
                 style={StyleSheet.flatten([styles.pill])}
                 accessibilityRole='link'
-                accessibilityLabel={`Ingelogd als ${user.name}. Ga naar je profiel.`}
+                accessibilityLabel={t('chrome.signedInAs', { name: user.name })}
             >
                 <View style={[styles.dot, { backgroundColor: avatar.color }]} />
 

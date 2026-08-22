@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import TextButton from "@/components/ui/TextButton";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import { View } from "react-native";
 
 interface Props {
@@ -19,19 +20,19 @@ interface Props {
  */
 export default function AuthChoice({ onAccount, onGuest }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View>
-            <AppText style={styles.title}>Welcome to Playhaus</AppText>
+            <AppText style={styles.title}>{t('auth.choice.title')}</AppText>
 
             <AppText style={styles.subtitle}>
-                Sign in to keep your name, your friends and your games. Or jump
-                straight in as a guest.
+                {t('auth.choice.description')}
             </AppText>
 
             <View style={styles.buttons}>
                 <TextButton
-                    text='Account'
+                    text={t('auth.choice.account')}
                     onPress={onAccount}
                     variant='primary'
                     fullWidth
@@ -39,7 +40,7 @@ export default function AuthChoice({ onAccount, onGuest }: Props) {
 
                 {/* Muted on purpose: available, but not the road being recommended. */}
                 <TextButton
-                    text='As Guest'
+                    text={t('auth.choice.guest')}
                     onPress={onGuest}
                     variant='muted'
                     fullWidth
@@ -47,7 +48,7 @@ export default function AuthChoice({ onAccount, onGuest }: Props) {
             </View>
 
             <AppText style={styles.hint}>
-                A guest account is temporary
+                {t('auth.choice.guestNote')}
             </AppText>
         </View>
     )

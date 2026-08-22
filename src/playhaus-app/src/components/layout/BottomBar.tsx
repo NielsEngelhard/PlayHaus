@@ -3,6 +3,8 @@ import { ROUTES } from "@/constants/routes";
 import { Brand, BottomBarHeight, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, RelativePathString, usePathname, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -15,7 +17,12 @@ interface Tab {
      * that tab's label is the word the eye should see rather than the fuller phrase a
      * screen reader would like.
      */
-    label: string,
+    /**
+     * A catalogue key, because this list is built at module load where no hook can
+     * reach. The bar resolves it at render, the same way the home list resolves a
+     * game's description.
+     */
+    labelKey: TranslationKey,
     href: Href,
     /** Extra path prefixes that should also light this tab up. */
     alsoMatches?: string[],
@@ -30,10 +37,10 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-    { icon: 'grid', label: 'Games', href: ROUTES.home as RelativePathString, alsoMatches: ['/games'], prominent: true },
-    { icon: 'wifi', label: 'Reconnect', href: ROUTES.reconnect as RelativePathString },
-    { icon: 'users', label: 'Vrienden', href: ROUTES.friends as RelativePathString },
-    { icon: 'settings', label: 'Profiel', href: ROUTES.profile as RelativePathString }
+    { icon: 'grid', labelKey: 'nav.games', href: ROUTES.home as RelativePathString, alsoMatches: ['/games'], prominent: true },
+    { icon: 'wifi', labelKey: 'nav.reconnect', href: ROUTES.reconnect as RelativePathString },
+    { icon: 'users', labelKey: 'nav.friends', href: ROUTES.friends as RelativePathString },
+    { icon: 'settings', labelKey: 'nav.profile', href: ROUTES.profile as RelativePathString }
 ]
 
 function isUnder(pathname: string, prefix: string): boolean {
@@ -52,6 +59,7 @@ export default function BottomBar() {
     const styles = useStyles();
     const insets = useSafeAreaInsets()
     const pathname = usePathname()
+    const t = useT();
 
     // The active tab is the one bright fill down here, so its contents take whichever ink
     // stays readable on orange in this scheme.
@@ -74,13 +82,13 @@ export default function BottomBar() {
                         : tab.prominent ? theme.colors.text : theme.colors.textMuted
 
                     return (
-                        <Link key={tab.label} href={tab.href} asChild>
+                        <Link key={tab.labelKey} href={tab.href} asChild>
                             <Pressable
                                 // Flattened: `Link asChild` clones this onto the anchor it renders, and a
                                 // style array does not survive that merge.
                                 style={StyleSheet.flatten([styles.item, tab.prominent && styles.itemProminent])}
                                 accessibilityRole='link'
-                                accessibilityLabel={tab.label}
+                                accessibilityLabel={t(tab.labelKey)}
                                 accessibilityState={{ selected: active }}
                             >
                                 {tab.prominent ? (
@@ -88,7 +96,7 @@ export default function BottomBar() {
                                         <Feather name={tab.icon} size={19} color={ink} />
 
                                         <AppText style={[styles.pillLabel, { color: ink }]} numberOfLines={1}>
-                                            {tab.label}
+                                            {t(tab.labelKey)}
                                         </AppText>
                                     </View>
                                 ) : (

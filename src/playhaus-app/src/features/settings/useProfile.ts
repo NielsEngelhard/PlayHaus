@@ -2,6 +2,7 @@ import type { User } from '@/api/calls/auth';
 import { ApiError, request } from '@/api/client';
 import type { LanguageCode } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useRef, useState } from 'react';
 
 interface Profile {
@@ -9,8 +10,13 @@ interface Profile {
     profile: User | null
     /** A save is in the air. Every control says so and stays put until it lands. */
     saving: boolean
-    /** A save failed. Nothing was changed, and the page keeps working. */
-    saveError: string | null
+    /**
+     * A save failed. Nothing was changed, and the page keeps working.
+     *
+     * The catalogue key rather than the sentence, so the line is resolved at render and
+     * follows the account when its language changes underneath it.
+     */
+    saveError: TranslationKey | null
     updateUsername: (username: string) => void
     updateColor: (color: string) => void
     updateLocale: (locale: LanguageCode) => void
@@ -19,16 +25,21 @@ interface Profile {
     updateEnableVibration: (enabled: boolean) => void
 }
 
-/** The profile page's copy is Dutch, so its failures are too. */
-function profileErrorMessage(error: unknown): string {
+/**
+ * Which line a failed save deserves, as a catalogue key.
+ *
+ * The server's own `message` is not passed through: it is English whatever the
+ * interface is speaking, and it is written for whoever is reading the logs.
+ */
+function profileErrorMessage(error: unknown): TranslationKey {
     if (error instanceof ApiError) {
-        if (error.status === 401) return 'Je sessie is verlopen. Log opnieuw in.';
-        return error.message || 'Er ging iets mis. Probeer het opnieuw.';
+        if (error.status === 401) return 'profile.errors.expired';
+        return 'profile.errors.generic';
     }
 
     // `fetch` rejects with a TypeError when it cannot reach the host at all —
     // in development usually a wrong EXPO_PUBLIC_API_URL or an API that isn't up.
-    return 'Geen verbinding met de server. Check je verbinding en probeer opnieuw.';
+    return 'profile.errors.network';
 }
 
 /**
@@ -51,7 +62,7 @@ function profileErrorMessage(error: unknown): string {
 export function useProfile(): Profile {
     const { user, patchUser } = useAuth();
     const [saving, setSaving] = useState(false);
-    const [saveError, setSaveError] = useState<string | null>(null);
+    const [saveError, setSaveError] = useState<TranslationKey | null>(null);
 
     /**
      * One save at a time, across the whole page.

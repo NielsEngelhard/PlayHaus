@@ -1,6 +1,7 @@
 import type { GameType, ReconnectableGame } from '@/api/calls/reconnect';
 import { LEAGUE_OF_LETTERS_NAME } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
+import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { Href } from 'expo-router';
 
 /**
@@ -13,8 +14,14 @@ import type { Href } from 'expo-router';
 export interface GameKind {
     /** The game itself. The same name the home list and the header chip use. */
     title: string
-    /** Which flavour of it — solo, a room, a tournament later on. */
-    mode: string
+    /**
+     * Which flavour of it: solo, a lobby, a tournament later on.
+     *
+     * A catalogue key rather than a word, because this table is built at module load
+     * where no hook can reach. The row resolves it at render, the same way the home
+     * page resolves a game's description.
+     */
+    modeKey: TranslationKey
     /**
      * The `/games/{slug}` segment, so a row can look the game up in `GAMES` and wear
      * its real glyph tile. One registry, so a game's face cannot drift between the
@@ -40,7 +47,7 @@ export interface GameKind {
 export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
     lol_solo: {
         title: LEAGUE_OF_LETTERS_NAME,
-        mode: 'Solo',
+        modeKey: 'reconnect.mode.solo',
         slug: 'league-of-letters',
         // Only the id travels, the same as when the game was started: the play
         // screen reads the length, the language and the round it left off at off
@@ -49,7 +56,7 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
     },
     lol_multiplayer: {
         title: LEAGUE_OF_LETTERS_NAME,
-        mode: 'Kamer',
+        modeKey: 'reconnect.mode.lobby',
         slug: 'league-of-letters',
         // The backend sends a room's join code as its id, which is the same thing
         // the row shows and the same thing the link travels on.
@@ -69,38 +76,61 @@ const MINUTE = 60 * 1000;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-const MONTHS = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+/**
+ * The month names, as catalogue keys in calendar order.
+ *
+ * `Intl` is still not what formats this: it is not something every runtime this app
+ * ships to can be relied on for, and the abbreviations the design wants are three
+ * letters in both languages, which is a thing the catalogue can simply say.
+ */
+const MONTH_KEYS = [
+    'common.time.months.jan', 'common.time.months.feb', 'common.time.months.mar',
+    'common.time.months.apr', 'common.time.months.may', 'common.time.months.jun',
+    'common.time.months.jul', 'common.time.months.aug', 'common.time.months.sep',
+    'common.time.months.oct', 'common.time.months.nov', 'common.time.months.dec'
+] as const satisfies readonly TranslationKey[];
 
 /**
- * How long ago a game was started, as a phrase that follows "Gestart".
+ * How long ago a game was started, as the phrase that follows "Bijgewerkt".
  *
- * Written out by hand rather than handed to `Intl`, which is not something every
- * runtime this app ships to can be relied on for, and which would want a locale
- * passed in anyway — this app is Dutch throughout.
+ * Returns the key and its count rather than a sentence: choosing *which* phrase a
+ * timestamp deserves is arithmetic and belongs here, while the words belong to the
+ * catalogue and the language belongs to whoever is looking at the screen.
+ *
+ * None of the phrases it picks depend on a plural form. Minutes and hours read the
+ * same at any number in both catalogues, and the one count that would inflect, a single
+ * day, is answered by "yesterday" before `daysAgo` ever sees it.
  *
  * Answers `null` for a timestamp that will not parse, so the row can leave the
  * line out instead of printing "Invalid Date" at someone.
  */
-export function startedAgo(createdAt: string, now: number = Date.now()): string | null {
+export function startedAgo(createdAt: string, now: number = Date.now()): Phrase | null {
     const started = new Date(createdAt).getTime();
     if (Number.isNaN(started)) return null;
 
     const elapsed = now - started;
 
     // A clock a little behind the server's would otherwise read as a game started
-    // in the future, which is a stranger thing to show than "zojuist".
-    if (elapsed < MINUTE) return 'zojuist';
-    if (elapsed < HOUR) return `${Math.floor(elapsed / MINUTE)} min geleden`;
+    // in the future, which is a stranger thing to show than "just now".
+    if (elapsed < MINUTE) return { key: 'common.time.justNow' };
+    if (elapsed < HOUR) {
+        return { key: 'common.time.minutesAgo', values: { minutes: Math.floor(elapsed / MINUTE) } };
+    }
     if (elapsed < DAY) {
-        const hours = Math.floor(elapsed / HOUR);
-        return `${hours} uur geleden`;
+        return { key: 'common.time.hoursAgo', values: { hours: Math.floor(elapsed / HOUR) } };
     }
     if (elapsed < 7 * DAY) {
         const days = Math.floor(elapsed / DAY);
-        return days === 1 ? 'gisteren' : `${days} dagen geleden`;
+        return days === 1
+            ? { key: 'common.time.yesterday' }
+            : { key: 'common.time.daysAgo', values: { days } };
     }
 
-    // Past a week "34 dagen geleden" stops meaning anything, so it becomes a date.
+    // Past a week "34 days ago" stops meaning anything, so it becomes a date.
     const date = new Date(started);
-    return `op ${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+    return {
+        key: 'common.time.onDate',
+        values: { day: date.getDate(), year: date.getFullYear() },
+        keyValues: { month: MONTH_KEYS[date.getMonth()] }
+    };
 }

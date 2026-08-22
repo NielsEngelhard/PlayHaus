@@ -16,6 +16,8 @@ import RoundResultCard from "@/features/league-of-letters/components/RoundResult
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
@@ -136,6 +138,7 @@ export default function PlayingGame({
     onFinish
 }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const router = useRouter();
 
@@ -159,11 +162,12 @@ export default function PlayingGame({
     const [draft, setDraft] = useState(firstLetter);
     const [sending, setSending] = useState(false);
     /**
-     * Wrapped in an object rather than held as a bare string so that saying the same
-     * thing twice is still a new notice: two `'Die had je al.'`s in a row are equal as strings,
-     * which would leave the first one's dismissal timer running and blink the second away.
+     * The catalogue key of the line, wrapped in an object rather than held bare so that
+     * saying the same thing twice is still a new notice: two identical keys in a row are
+     * equal as strings, which would leave the first one's dismissal timer running and
+     * blink the second away.
      */
-    const [notice, setNotice] = useState<{ text: string } | null>(null);
+    const [notice, setNotice] = useState<{ key: TranslationKey } | null>(null);
     /**
      * The board is still turning its last row over. Nothing that knows the answer may be
      * shown while it is, or the keyboard and the end-of-round line spoil the tiles that
@@ -337,25 +341,25 @@ export default function PlayingGame({
         if (sending) return;
 
         if (onGuess === undefined) {
-            setNotice({ text: 'Raden kan zodra de server dit ondersteunt.' });
+            setNotice({ key: 'lol.game.guessUnsupported' });
             return;
         }
 
         // Silently refused. A half-typed row is not a mistake worth interrupting anyone
         // over — the empty tiles already say the word is not finished, and a line of text
-        // repeating that is noise on every stray press of Raden.
+        // repeating that is noise on every stray press of the guess key.
         if (draft.length < game.wordLength) return;
 
         // Checked here as well as on the server. The board already knows every word
-        // that has been tried, so a repeat can be answered in Dutch and instantly
-        // rather than being sent off to come back as an English 409.
+        // that has been tried, so a repeat can be answered instantly, and in the
+        // player's own language, rather than being sent off to come back as a 409.
         //
         // Against the whole board on multiplayer: on a shared grid somebody else
         // having tried a word is exactly as much of a repeat as you having tried it,
         // and the answer is a different sentence.
         const played = rows.find(guess => !guess.skipped && guess.word.toUpperCase() === draft);
         if (played !== undefined) {
-            setNotice({ text: played.userId === userId ? 'Die had je al.' : 'Die is al geprobeerd.' });
+            setNotice({ key: played.userId === userId ? 'lol.game.alreadyGuessedYou' : 'lol.game.alreadyGuessed' });
             return;
         }
 
@@ -371,7 +375,7 @@ export default function PlayingGame({
             // The reveal is not started here. The row this guess just put on the board is
             // what starts it, on this screen by the same rule as on everybody else's.
         } catch (failure) {
-            setNotice({ text: guessErrorMessage(failure) });
+            setNotice({ key: guessErrorMessage(failure) });
         } finally {
             setSending(false);
         }
@@ -398,7 +402,7 @@ export default function PlayingGame({
             <View style={styles.noticeLane} pointerEvents='none'>
                 {!verdict && notice && (
                     <View style={styles.notice}>
-                        <AppText style={styles.noticeText}>{notice.text}</AppText>
+                        <AppText style={styles.noticeText}>{t(notice.key)}</AppText>
                     </View>
                 )}
             </View>
@@ -469,12 +473,12 @@ export default function PlayingGame({
                         />
 
                         {finishing ? (
-                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} label='Uitslag' />
+                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} label={t('lol.game.resultLabel')} />
                         ) : gameOver ? (
                             <ActionButton
-                                // The uitslag is where a finished game goes when there is one
+                                // The result is where a finished game goes when there is one
                                 // to go to. A board without it has only the way out to offer.
-                                text={onFinish === undefined ? 'Terug naar de spellen' : 'Bekijk de uitslag'}
+                                text={onFinish === undefined ? t('common.backToGames') : t('lol.game.viewResult')}
                                 size='large'
                                 onPress={() => onFinish === undefined
                                     ? router.replace(ROUTES.leagueOfLettersIndex)
@@ -486,7 +490,7 @@ export default function PlayingGame({
                             <NextRoundCountdown durationMs={NEXT_ROUND_MS} />
                         ) : (
                             <ActionButton
-                                text='Volgende ronde'
+                                text={t('lol.game.nextRound')}
                                 size='large'
                                 onPress={() => onNextRound?.()}
                                 disabled={onNextRound === undefined}

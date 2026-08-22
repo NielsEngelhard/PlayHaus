@@ -5,6 +5,7 @@ import { Brand, Gradients, Spacing } from "@/constants/theme";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
 import RoomCodeCard from "@/features/league-of-letters/components/RoomCodeCard";
+import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -12,6 +13,7 @@ import { View } from "react-native";
 export default function LeagueOfLettersIndexPage() {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <View style={styles.container}>
@@ -20,7 +22,7 @@ export default function LeagueOfLettersIndexPage() {
                 viewport changes. */}
             <SimpleTextHero
                 title={'League of\nLetters'}
-                description='Raad het woord. Groen = goed, oranje = juiste letter verkeerde plek.'
+                description={t('lol.index.description')}
             />
 
             <View style={styles.playingAs}>
@@ -37,9 +39,9 @@ export default function LeagueOfLettersIndexPage() {
                     // and paper would vanish into it.
                     iconInk={Brand.ink}
                     highlight={0.5}
-                    title='Solo'
-                    description='Drie rondes, jouw regels.'
-                    action='Instellen'
+                    title={t('lol.index.solo.title')}
+                    description={t('lol.index.solo.description')}
+                    action={t('lol.index.solo.action')}
                     navigationUrl={ROUTES.leagueOfLettersSoloSettings}
                 />
 
@@ -50,10 +52,10 @@ export default function LeagueOfLettersIndexPage() {
                     // there, and paper in light.
                     iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
                     highlight={0.35}
-                    title='Multiplayer'
+                    title={t('lol.index.multiplayer.title')}
                     chip={`${MIN_LOBBY_PLAYERS}-${MAX_LOBBY_PLAYERS}`}
-                    description='Race tegen je vrienden.'
-                    action='Openen'
+                    description={t('lol.index.multiplayer.description')}
+                    action={t('lol.index.multiplayer.action')}
                     navigationUrl={ROUTES.leagueOfLettersCreateRoom}
                 />
             </View>

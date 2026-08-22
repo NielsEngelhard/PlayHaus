@@ -14,6 +14,8 @@ import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useMultiplayerGame, type MultiplayerGameState } from "@/features/league-of-letters/useMultiplayerGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
@@ -33,12 +35,13 @@ import { View } from "react-native";
  * up on the one connection that can deliver the new code.
  *
  * The board is owned here rather than inside `RoomGame` for the same sort of reason — it
- * outlives the board. Fetching it again for the uitslag would be a loading page between
+ * outlives the board. Fetching it again for the result would be a loading page between
  * the last word and the scoreboard, over a game whose every score is already on screen.
  */
 export default function LeagueOfLettersRoomPage() {
     const { code } = useLocalSearchParams<{ code: string }>();
     const router = useRouter();
+    const t = useT();
 
     const state = useLobby(code);
 
@@ -78,14 +81,14 @@ export default function LeagueOfLettersRoomPage() {
 
     // The host stopped the game, or shut the room out from under everybody waiting in
     // it. Checked ahead of the board, because that is where the people who need telling
-    // are sitting: the board reads the same room but has no lobby of its own, so without
-    // this a stopped game is a grid that quietly stops answering.
+    // are sitting: the board reads the same lobby but has no lobby screen of its own, so
+    // without this a stopped game is a grid that quietly stops answering.
     if (state.closed) {
         return (
             <RoomClosedNotice
                 message={gameId !== undefined
-                    ? 'De host heeft het spel gestopt. Vraag om een nieuwe code voor een volgend potje.'
-                    : 'De host heeft de kamer gesloten. Vraag om een nieuwe code.'}
+                    ? t('lol.lobby.hostStoppedGame')
+                    : t('lol.lobby.hostClosedLobby')}
             />
         )
     }
@@ -116,6 +119,7 @@ interface RoomGameProps {
 function RoomGame({ table, onFinish }: RoomGameProps) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     // `useFullScreen` lives here rather than on the page: a board has to fit the window
     // exactly, and neither the lobby nor the uitslag does — they are columns of cards that
@@ -135,17 +139,17 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
                 <InlineNotification
                     icon='alert-triangle'
                     color={theme.colors.blush}
-                    title='Geen spel'
-                    message={error}
+                    title={t('lol.lobby.noGame')}
+                    message={t(error)}
                 >
-                    <TextButton text='Opnieuw' onPress={reload} />
+                    <TextButton text={t('common.retry')} onPress={reload} />
                 </InlineNotification>
             </View>
         )
     }
 
     if (loading || game === null || round === null) {
-        return <LoadingPage message='Spel laden…' />;
+        return <LoadingPage message={t('lol.game.loading')} />;
     }
 
     return (
@@ -173,7 +177,7 @@ interface RoomResultsProps {
     isHost: boolean,
     onPlayAgain: () => void,
     playingAgain: boolean,
-    error: string | null
+    error: TranslationKey | null
 }
 
 /**
@@ -184,13 +188,14 @@ interface RoomResultsProps {
  */
 function RoomResults({ table, isHost, onPlayAgain, playingAgain, error }: RoomResultsProps) {
     const { user } = useAuth();
+    const t = useT();
 
     const { game, online } = table;
 
-    // Only while the board is still loading, which by this point it is not — the room
-    // does not reach the uitslag without having played a game on screen first.
+    // Only while the board is still loading, which by this point it is not: the lobby
+    // does not reach the result without having played a game on screen first.
     if (game === null) {
-        return <LoadingPage message='Uitslag laden…' />;
+        return <LoadingPage message={t('lol.results.loading')} />;
     }
 
     return (

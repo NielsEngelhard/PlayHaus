@@ -30,7 +30,7 @@ type upgradeGuestUserRequest struct {
 	Password string `json:"password"`
 }
 
-func (r *upgradeGuestUserRequest) Validate() map[string]string {
+func (r upgradeGuestUserRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
 	if !strings.Contains(r.Email, "@") {

@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -13,20 +14,21 @@ interface Props {
 export default function LogoutCard({ onLogout }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     return (
         <Card>
-            <AppText style={styles.label}>Logout</AppText>
+            <AppText style={styles.label}>{t('profile.logout')}</AppText>
 
             <View style={styles.buttonRow}>
                 <Pressable
                     onPress={onLogout}
                     accessibilityRole='button'
-                    accessibilityLabel='Logout'
+                    accessibilityLabel={t('profile.logout')}
                     style={styles.button}
                 >
                     <Feather name='log-out' size={16} color={theme.colors.textOnAccent} />
-                    <AppText style={styles.buttonText}>Logout</AppText>
+                    <AppText style={styles.buttonText}>{t('profile.logout')}</AppText>
                 </Pressable>
             </View>
         </Card>

@@ -3,6 +3,7 @@ import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
@@ -104,6 +105,7 @@ export default function SelectInput<T extends string>({
 }: Props<T>) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     const field = useRef<View>(null);
     const [anchor, setAnchor] = useState<Anchor | null>(null);
@@ -182,7 +184,7 @@ export default function SelectInput<T extends string>({
                 onPress={show}
                 disabled={disabled}
                 accessibilityRole='button'
-                accessibilityLabel={`${label}: ${selected?.label ?? 'niets gekozen'}`}
+                accessibilityLabel={t('common.selectValue', { label, value: selected?.label ?? t('common.nothingSelected') })}
                 // `aria-expanded` rather than `accessibilityState={{ expanded }}`: the
                 // latter never reaches the DOM in this version, so the field would open
                 // without announcing that it had.
@@ -230,7 +232,7 @@ export default function SelectInput<T extends string>({
                         style={styles.backdrop}
                         onPress={() => setOpen(false)}
                         accessibilityRole='button'
-                        accessibilityLabel='Sluiten'
+                        accessibilityLabel={t('common.close')}
                     />
 
                     <Animated.View
