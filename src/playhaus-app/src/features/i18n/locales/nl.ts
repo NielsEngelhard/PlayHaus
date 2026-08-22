@@ -101,8 +101,8 @@ export const nl: Catalog = {
         },
         guestLanguage: {
             title: 'Welkom bij Playhaus',
-            description: 'Kies de taal waarin je wilt spelen. Meer hebben we niet nodig — één tik en je speelt.',
-            note: 'Je begint als gast. Voeg later vanuit je profiel een e-mailadres toe om het account te houden.',
+            description: 'Kies de taal waarin je wilt spelen.',
+            note: 'Als je een taal kiest wordt je aangemeld met een gastaccount. Je kan dit account later gratis upgraden naar een normaal account.',
             login: 'Heb je al een account? Log in'
         },
         errors: {

@@ -71,6 +71,7 @@ const useStyles = createThemedStyles(theme => ({
     text: {
         fontSize: FontSizes.md,
         fontWeight: 900,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        textAlign: 'center',
     }
 }))
