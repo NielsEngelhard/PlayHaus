@@ -1,5 +1,5 @@
 import type { GameType, ReconnectableGame } from '@/api/calls/reconnect';
-import { LEAGUE_OF_LETTERS_NAME } from '@/constants/games';
+import { LEAGUE_OF_LETTERS_NAME, PUBQUIZR_NAME } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { Href } from 'expo-router';
@@ -32,6 +32,14 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         slug: 'league-of-letters',
         code: game => game.id,
         href: game => ROUTES.leagueOfLettersRoom(game.id) as Href,
+    },
+    pq_single_device: {
+        title: PUBQUIZR_NAME,
+        modeKey: 'reconnect.mode.oneDevice',
+        slug: 'quizzer',
+        // No `code`: there is no room to be let into, because there is no second
+        // device to let in. The whole table is already round this phone.
+        href: game => ROUTES.quizzerOneDeviceSession(game.id) as Href,
     }
 };
 

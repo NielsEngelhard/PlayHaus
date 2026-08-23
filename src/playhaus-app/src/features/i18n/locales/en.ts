@@ -203,7 +203,7 @@ export const en = {
         noGames: 'Found no games to reconnect to.',
         resume: 'Continue playing',
         refresh: { label: 'Refresh the list', action: 'Refresh' },
-        mode: { solo: 'Solo', lobby: 'Lobby' },
+        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: 'One device' },
         errors: {
             expired: 'Your session has expired. Log in again.',
             generic: 'Something went wrong while fetching your games. Please try again.',

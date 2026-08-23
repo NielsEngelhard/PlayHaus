@@ -10,11 +10,11 @@ import { request } from '@/api/client';
  * under one of these, whatever mode it is — which is what lets one endpoint list
  * all of them.
  *
- * Only `lol_solo` is actually served today; the rest are declared here because
- * the wire already names them, and an app that only knows one of them would have
- * to be changed to even parse the others.
+ * Naming a type here is only half of it: `GAME_KINDS` is what decides whether a
+ * row can be drawn for it, and anything missing from that lookup is dropped from
+ * the list rather than shown as a game nobody can open.
  */
-export type GameType = 'lol_solo' | 'lol_multiplayer';
+export type GameType = 'lol_solo' | 'lol_multiplayer' | 'pq_single_device';
 
 /**
  * One entry in the list. Deliberately thin: enough to say what the game is and

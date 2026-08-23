@@ -38,7 +38,7 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapMultiplayerGamesToReconnectableGame(multiplayerGames)...)
 	}
 
-	// GET pub quizzes still on the table
+	// GET pub quizzes
 	quizzes, err := s.pubquizr.SessionsInProgress(r.Context(), userID)
 	if err != nil {
 		s.log.Error("get pub quiz sessions to reconnect to", "err", err)

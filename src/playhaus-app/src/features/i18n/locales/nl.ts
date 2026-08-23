@@ -178,7 +178,7 @@ export const nl: Catalog = {
         noGames: 'Geen spellen gevonden om mee te herverbinden',
         resume: 'Verder spelen',
         refresh: { label: 'Ververs de lijst', action: 'Ververs' },
-        mode: { solo: 'Solo', lobby: 'Lobby' },
+        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: '1 telefoon' },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             generic: 'Er ging iets mis bij het ophalen van je spellen. Probeer het opnieuw.',
