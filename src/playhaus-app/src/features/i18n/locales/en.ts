@@ -16,6 +16,7 @@ export const en = {
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'nothing selected',
         players: 'players',
+        change: 'change',
         /**
          * Relative time, worded so it reads correctly at every number.
          *
@@ -52,6 +53,8 @@ export const en = {
     chrome: {
         toDarkMode: 'Switch to dark mode',
         toLightMode: 'Switch to light mode',
+        muteMusic: 'Turn the music off',
+        unmuteMusic: 'Turn the music on',
         signedInAs: 'Signed in as {{name}}. Go to your profile.'
     },
     home: {

@@ -64,7 +64,7 @@ export const GAMES: Game[] = [
         deviceMode: 'oneDevice',
         playable: true,
         navigationUrl: ROUTES.quizzerIndex,
-        minMaxPlayersIndicator: "2-10"
+        minMaxPlayersIndicator: "3-8"
     },
     {
         slug: 'imposter',
@@ -77,8 +77,8 @@ export const GAMES: Game[] = [
         deviceMode: 'oneDevice',
         playable: true,
         navigationUrl: ROUTES.imposterIndex,
-        minMaxPlayersIndicator: "3-10"
-    }    
+        minMaxPlayersIndicator: "3-7"
+    }
 ];
 
 /**

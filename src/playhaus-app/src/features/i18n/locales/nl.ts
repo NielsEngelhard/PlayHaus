@@ -16,6 +16,7 @@ export const nl: Catalog = {
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'niets gekozen',
         players: 'spelers',
+        change: 'verander',
         time: {
             justNow: 'zojuist',
             minutesAgo: '{{minutes}} min geleden',
@@ -39,6 +40,8 @@ export const nl: Catalog = {
     chrome: {
         toDarkMode: 'Schakel over naar donkere modus',
         toLightMode: 'Schakel over naar lichte modus',
+        muteMusic: 'Zet de muziek uit',
+        unmuteMusic: 'Zet de muziek aan',
         signedInAs: 'Ingelogd als {{name}}. Ga naar je profiel.'
     },
     home: {

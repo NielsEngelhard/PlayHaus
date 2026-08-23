@@ -8,6 +8,7 @@ import BackChip from "./BackChip";
 import ContextPill from "./ContextPill";
 import GameMark from "./GameMark";
 import Logo from "./Logo";
+import MusicToggle from "./MusicToggle";
 import ThemeToggle from "./ThemeToggle";
 import UserPill from "./UserPill";
 
@@ -48,6 +49,10 @@ export default function Header() {
                         filled={pill.filled}
                     />
                 )}
+
+                {/* Renders nothing unless there is music to silence, so on most pages the
+                    corner is the theme button alone, exactly as it was. */}
+                <MusicToggle />
 
                 <ThemeToggle />
             </View>

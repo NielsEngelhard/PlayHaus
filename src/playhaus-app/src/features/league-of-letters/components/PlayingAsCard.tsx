@@ -2,9 +2,9 @@ import AppText from "@/components/text/AppText";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
+import { useT } from "@/features/i18n/LanguageContext";
 import { avatarColorById } from "@/features/settings/profile";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString } from "expo-router";
 import { View } from "react-native";
 
@@ -42,8 +42,8 @@ export default function PlayingAsCard() {
                 </AppText>
             </View>
 
-            <Link href={ROUTES.profile as RelativePathString} accessibilityLabel={t('lol.index.changeProfile')}>
-                <AppText style={styles.change}>{t('lol.index.change')}</AppText>
+            <Link href={ROUTES.profile as RelativePathString} accessibilityLabel={t('common.change')}>
+                <AppText style={styles.change}>{t('common.change')}</AppText>
             </Link>
         </View>
     )

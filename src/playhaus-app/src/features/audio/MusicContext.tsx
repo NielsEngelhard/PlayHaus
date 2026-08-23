@@ -10,6 +10,14 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 const MusicContext = createContext<(scene: MusicScene | null) => void>(() => { });
 
 /**
+ * Which scene currently holds the soundtrack, or `null` where the app is silent.
+ *
+ * Separate from the setter above so that claiming music and *knowing about* music stay
+ * independent: the lobby and the board only ever write, and the header only ever reads.
+ */
+const MusicSceneContext = createContext<MusicScene | null>(null);
+
+/**
  * Decides what is playing, for the whole app.
  *
  * Nothing, most of the time. Music belongs to the two places worth scoring — a room waiting to
@@ -56,9 +64,22 @@ export function MusicProvider({ children }: { children: ReactNode }) {
 
     return (
         <MusicContext.Provider value={setScene}>
-            {children}
+            <MusicSceneContext.Provider value={scene}>
+                {children}
+            </MusicSceneContext.Provider>
         </MusicContext.Provider>
     )
+}
+
+/**
+ * Which scene has the soundtrack right now, or `null` where the app is silent.
+ *
+ * Note this says nothing about whether music is *audible* — a scene stays claimed while the
+ * account has music switched off, which is exactly what lets the header offer to switch it
+ * back on rather than vanishing the moment it is used.
+ */
+export function useMusicScene(): MusicScene | null {
+    return useContext(MusicSceneContext);
 }
 
 /**
