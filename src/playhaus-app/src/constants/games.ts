@@ -8,7 +8,7 @@ import type { TranslationKey } from '@/features/i18n/keys';
  */
 export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "PubquizR";
-export const THE_IMPOSTER_NAME: string = "The Imposter";
+export const ONE_OF_US_NAME: string = "One of Us";
 
 /**
  * How many devices a group needs to play.
@@ -67,16 +67,16 @@ export const GAMES: Game[] = [
         minMaxPlayersIndicator: "3-8"
     },
     {
-        slug: 'imposter',
-        name: THE_IMPOSTER_NAME,
+        slug: 'one-of-us',
+        name: ONE_OF_US_NAME,
         color: Brand.mint,
         gradient: Gradients.mint,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
-        mainCategoryIndicatorKey: 'games.imposter.mainCategory',
-        descriptionKey: 'games.imposter.description',
-        deviceMode: 'oneDevice',
+        mainCategoryIndicatorKey: 'games.oneOfUs.mainCategory',
+        descriptionKey: 'games.oneOfUs.description',
+        deviceMode: 'perPlayer',
         playable: true,
-        navigationUrl: ROUTES.imposterIndex,
+        navigationUrl: ROUTES.oneOfUsIndex,
         minMaxPlayersIndicator: "3-7"
     }
 ];

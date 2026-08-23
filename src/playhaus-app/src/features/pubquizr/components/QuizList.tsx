@@ -8,7 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
-import { QUIZ_CATEGORIES, type QuizCategory } from "../pubquizr-quizzes";
+import { QUIZ_CATEGORIES, type QuizCategory, type QuizListItem } from "../pubquizr-quizzes";
 import { useQuizzes } from "../useQuizzes";
 import QuizRow from "./QuizRow";
 
@@ -24,6 +24,22 @@ const COMING_SOON: QuizCategory = 'community';
 /** How many placeholder rows stand in for the first page while it is on its way. */
 const SKELETON_ROWS = 3;
 
+interface Props {
+    /**
+     * Turns the rows from links into a choice. Without it this is the shelf on the
+     * index page, and tapping a quiz goes to the setup screen.
+     */
+    onSelect?: (quiz: QuizListItem) => void,
+    /**
+     * A quiz to leave out of the rows.
+     *
+     * For the setup screen, where the chosen quiz is already drawn above the list — it
+     * would otherwise appear twice on one screen, once as the answer and once as an
+     * option, which reads as two different quizzes with the same name.
+     */
+    omitQuizId?: string
+}
+
 /**
  * Every quiz there is, one shelf at a time, newest first.
  *
@@ -32,12 +48,16 @@ const SKELETON_ROWS = 3;
  * one of which swallows the other. The pages come in on a button instead, which is what
  * "load older" is for.
  */
-export default function QuizList() {
+export default function QuizList({ onSelect, omitQuizId }: Props) {
     const t = useT();
     const styles = useStyles();
 
     const [category, setCategory] = useState<QuizCategory>('weekly');
     const quizzes = useQuizzes(category);
+
+    const rows = omitQuizId === undefined
+        ? quizzes.items
+        : quizzes.items.filter(quiz => quiz.id !== omitQuizId);
 
     return (
         <View style={styles.container}>
@@ -70,8 +90,8 @@ export default function QuizList() {
                     />
                 ) : (
                     <>
-                        {quizzes.items.map(quiz => (
-                            <QuizRow key={quiz.id} quiz={quiz} />
+                        {rows.map(quiz => (
+                            <QuizRow key={quiz.id} quiz={quiz} onSelect={onSelect} />
                         ))}
 
                         {quizzes.hasMore && (

@@ -73,7 +73,7 @@ export const nl: Catalog = {
             description: 'Stel je algemene kennis op de proef.',
             mainCategory: 'Trivia',
         },
-        imposter: {
+        oneOfUs: {
             description: 'Ontraadsel wie de bedrieger is.',
             mainCategory: 'Bluf',
         }        
@@ -374,6 +374,57 @@ export const nl: Catalog = {
                 comingSoon: 'Coming soon...'
             }
         },
+        oneDevice: {
+            title: '1 telefoon',
+            description: 'Eén telefoon voor de hele tafel. Zet iedereen op een stoel, kies een quiz en geef hem door.',
+            order: {
+                title: 'Op volgorde',
+                message: 'Vul de namen in de volgorde waarin je zit, van links naar rechts. De rol van quizmaster schuift namelijk door.'
+            },
+            players: {
+                label: 'Wie doen er mee',
+                seat: 'Speler {{seat}}',
+                placeholder: 'Naam',
+                add: 'Speler toevoegen',
+                count: '{{seats}} / {{max}}',
+                remove: 'Speler {{seat}} verwijderen',
+                tooFew: 'Een quiz heeft minstens drie spelers nodig.',
+                tooMany: 'Acht spelers is het maximum rond één telefoon.',
+                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.'
+            },
+            quiz: {
+                selected: 'Jullie spelen',
+                pick: 'Kies een quiz',
+                pickAnother: 'Of kies een andere'
+            },
+            start: 'Start de quiz'
+        },
+        errors: {
+            expired: 'Je bent uitgelogd. Log opnieuw in om een quiz te starten.',
+            quizGone: 'Die quiz bestaat niet meer. Kies een andere.',
+            badTable: 'De tafel werd geweigerd. Check de namen en probeer het opnieuw.',
+            tooFewPlayers: 'Een quiz heeft minstens drie spelers nodig.',
+            tooManyPlayers: 'Acht spelers is het maximum rond één telefoon.',
+            duplicateName: 'Twee spelers kunnen niet dezelfde naam hebben.',
+            quizTooSmall: 'Deze quiz heeft niet genoeg vragen voor zoveel spelers. Kies een andere quiz, of speel met minder mensen.',
+            generic: 'De quiz kon niet gestart worden. Probeer het opnieuw.',
+            network: 'Geen verbinding met de server. Check je internet.'
+        }
+    },
+    oneOfUs: { 
+        index: { 
+            description: "Iedereen krijgt een vraag/woord, bijvoorbeeld: “Wat zou je doen als je onzichtbaar werd?” Iedereen antwoordt anoniem, behalve één speler die een iets andere vraag/woord krijgt.", 
+            oneDevice: { 
+                title: "1 telefoon", 
+                description: "Speel met 1 telefoon die wordt doorgegeven", 
+                action: "Spelen" 
+            }, 
+            multiDevice: { 
+                title: "1 telefoon per persoon", 
+                description: "Maak een lobby en nodig andere spelers uit", 
+                action: "Lobby maken" 
+            } 
+        } 
     },
     friends: {
         title: 'Vrienden',

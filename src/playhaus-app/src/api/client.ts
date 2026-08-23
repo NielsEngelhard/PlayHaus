@@ -69,3 +69,19 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
 
   return body as T;
 }
+
+/**
+ * The machine-readable tag on a refusal, when the API attached one.
+ *
+ * Some statuses cover more than one situation — the pubquizr start endpoint answers
+ * 409 to four different problems — and the app says something different about each.
+ * Branching on this rather than on the prose means the server can reword its messages
+ * without breaking what a player is told.
+ */
+export function apiErrorCode(error: unknown): string | undefined {
+  if (!(error instanceof ApiError)) return undefined;
+  if (error.body === null || typeof error.body !== 'object') return undefined;
+
+  const { code } = error.body as { code?: unknown };
+  return typeof code === 'string' ? code : undefined;
+}

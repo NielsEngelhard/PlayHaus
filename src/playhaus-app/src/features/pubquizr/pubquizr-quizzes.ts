@@ -52,3 +52,19 @@ export async function getQuizzesRequest(
 
     return request<QuizListResponse>(`/api/v1/pubquizr/quizzes?${query}`);
 }
+
+/**
+ * One quiz, by id.
+ *
+ * Only ever asked when a quiz arrives as a route parameter rather than off a shelf —
+ * tapping a row on the index hands its id to the setup screen, which has to be able to
+ * name the quiz even when it sits on a tab that screen does not open on.
+ *
+ * The endpoint answers with the whole quiz, rounds and answers included, and everything
+ * past the summary is dropped on the floor here. That is the wrong trade for a list and
+ * the right one for a single row: the alternative is threading a title, a description
+ * and a date through the URL, where they would be a copy of the quiz that can go stale.
+ */
+export async function getQuizRequest(quizId: string): Promise<QuizListItem> {
+    return request<QuizListItem>(`/api/v1/pubquizr/quizzes/${encodeURIComponent(quizId)}`);
+}

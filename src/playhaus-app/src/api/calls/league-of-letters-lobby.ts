@@ -1,4 +1,4 @@
-import { ApiError, request } from '@/api/client';
+import { apiErrorCode, request } from '@/api/client';
 import type { LanguageCode } from '@/constants/languages';
 import type { WordLength } from '@/features/league-of-letters/solo-settings';
 
@@ -65,21 +65,6 @@ export class LobbyFullError extends Error {
     }
 }
 
-/**
- * The machine-readable tag on a refusal.
- *
- * A full room and a room that has already started are both 409, and the app says
- * something quite different about each. Branching on the tag rather than the prose
- * means the server can reword its messages without breaking this.
- */
-function errorCode(failure: unknown): string | undefined {
-    if (!(failure instanceof ApiError)) return undefined;
-    if (failure.body === null || typeof failure.body !== 'object') return undefined;
-
-    const { code } = failure.body as { code?: unknown };
-    return typeof code === 'string' ? code : undefined;
-}
-
 const lobbyPath = (code: string) => `/api/v1/league-of-letters/lobby/${encodeURIComponent(code)}`;
 
 export async function createLobby(locale?: LanguageCode): Promise<Lobby> {
@@ -106,7 +91,7 @@ export async function joinLobby(code: string): Promise<Lobby> {
     try {
         return await request<Lobby>(`${lobbyPath(code)}/players`, { method: 'POST' });
     } catch (failure) {
-        if (errorCode(failure) === 'lobby_full') throw new LobbyFullError();
+        if (apiErrorCode(failure) === 'lobby_full') throw new LobbyFullError();
         throw failure;
     }
 }

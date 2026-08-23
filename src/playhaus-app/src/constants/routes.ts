@@ -14,9 +14,12 @@ export const ROUTES = {
     // PubquizR
     quizzerIndex: "/games/quizzer",
     quizzerOneDeviceGameSettings: "/games/quizzer/one-device",
+    quizzerOneDeviceSession: (sessionId: string) => `/games/quizzer/one-device/${sessionId}`,
 
-    // The imposter
-    imposterIndex: "/games/imposter",
+    // One of us
+    oneOfUsIndex: "/games/one-of-us",
+    oneOfUsSetupSingleDevice: "/games/one-of-us/single-device",
+    oneOfUsSetupLobby: "/games/one-of-us/lobby",
 
     // User
     reconnect: "/reconnect",

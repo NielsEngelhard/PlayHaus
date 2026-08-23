@@ -1,7 +1,45 @@
-2. De Bedrieger (Spyfall / imposter word)
+1. 🕵️ One of Us
 
-Everyone secretly gets the same word ("beach"), except one player who gets nothing or a near-miss word. You take turns saying one related word out loud, then everyone votes for the imposter. The imposter wins by guessing the real word.
-Reuses: the room/presence layer and your existing word corpus. The game happens out loud in the park — the phones only deal roles and hold the vote. Effort: low, and it's the single best "sitting in a circle" fit in this list.
+Everyone gets a question/word, e.g. “What would you do if you became invisible?” Everyone answers anonymously, except one player gets a slightly different question/word.
+
+Example:
+
+Everyone: “What would you steal if you were invisible?”
+Spy: “What would you do if you were invisible?”
+
+Answers appear on the big screen. Players discuss and vote on who got the different question.
+---------------------------------------------------------------------------------------------
+13. 🥸 Imposter Expert
+
+One person secretly doesn't know the topic.
+
+Everyone else gets:
+
+Topic: IKEA furniture
+
+Players take turns giving one-word clues.
+
+For example:
+
+Player 1: “Swedish”
+Player 2: “Flatpack”
+Player 3: “Allen”
+Player 4: “Horse”
+
+The imposter has to bluff their way through.
+
+Then everyone votes on the imposter.
+
+The fun: The imposter can sometimes accidentally give the best clue because they're guessing what the topic is.
+
+
+
+
+
+
+
+
+
 
 
 
