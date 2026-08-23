@@ -30,7 +30,7 @@ export default function OneOfUsIndexPage() {
                     title={t('oneOfUs.index.oneDevice.title')}
                     description={t('oneOfUs.index.oneDevice.description')}
                     action={t('oneOfUs.index.oneDevice.action')}
-                    navigationUrl={ROUTES.oneOfUsSetupSingleDevice}
+                    navigationUrl={ROUTES.oneOfUsSetupSingleDevice}                    
                 />
 
                 <ModeCard

@@ -39,6 +39,7 @@ export default function HomeScreen() {
             minMaxPlayers={game.minMaxPlayersIndicator}
             playable={game.playable}
             navigationUrl={game.navigationUrl as RelativePathString}
+            durationInMinutes={game.minutesAverage}
           />
         ))}
       </View>

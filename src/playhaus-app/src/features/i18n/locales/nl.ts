@@ -17,6 +17,7 @@ export const nl: Catalog = {
         nothingSelected: 'niets gekozen',
         players: 'spelers',
         change: 'verander',
+        minutes: 'min',
         time: {
             justNow: 'zojuist',
             minutesAgo: '{{minutes}} min geleden',

@@ -17,6 +17,7 @@ interface Props {
     description: string,
     deviceMode: DeviceMode,
     minMaxPlayers: string,
+    durationInMinutes?: number,
     playable: boolean,
     navigationUrl: Href
 }
@@ -31,6 +32,7 @@ export default function GameTeaserCard({
     description,
     deviceMode,
     minMaxPlayers,
+    durationInMinutes,
     playable,
     navigationUrl,
 }: Props) {
@@ -50,33 +52,50 @@ export default function GameTeaserCard({
                 ])}
             >
                 <View style={[styles.tile, linearGradient(gradient)]}>
-                    <AppText style={[styles.glyph, { color: glyphInk }]}>{name[0]}</AppText>
+                    <AppText style={[styles.glyph, { color: glyphInk }]}>
+                        {name[0]}
+                    </AppText>
                 </View>
 
                 <View style={styles.body}>
-                    <AppText style={styles.name} numberOfLines={1}>{name}</AppText>
+                    <AppText style={styles.name} numberOfLines={1}>
+                        {name}
+                    </AppText>
 
                     <View style={styles.chips}>
-                        <Chip 
+                        <Chip
                             text={`${minMaxPlayers} ${t('common.players')}`}
                             icon="user"
                         />
-                        <Chip 
+                        <Chip
                             text={t(DEVICE_MODE_KEYS[deviceMode])}
                             icon="smartphone"
-                        />                        
+                        />
                     </View>
+
+                        <View style={styles.duration}>
+                            <Feather
+                                name="clock"
+                                size={13}
+                                color={theme.colors.textMuted}
+                            />
+                            <AppText style={styles.durationText}>
+                                +-{durationInMinutes} {t("common.minutes")}
+                            </AppText>
+                        </View>
 
                     {description && (
                         <View style={styles.status}>
-                            <AppText style={styles.statusText}>{description}</AppText>
+                            <AppText style={styles.statusText}>
+                                {description}
+                            </AppText>
                         </View>
                     )}
                 </View>
 
                 <View style={styles.play}>
                     <Feather
-                        name='play'
+                        name="play"
                         size={16}
                         color={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
                     />
@@ -153,6 +172,17 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 700,
         color: theme.colors.textSecondary
     },
+    duration: {
+        marginTop: Spacing.two,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 5
+    },
+    durationText: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: theme.colors.textMuted
+    },
     description: {
         marginTop: Spacing.two,
         fontSize: 11.5,
@@ -171,7 +201,9 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         // Light picks the green out against paper; on the dark canvas the mint carries
         // further, which is the swap the design makes.
-        backgroundColor: theme.scheme === 'dark' ? theme.colors.mint : theme.colors.available
+        backgroundColor: theme.scheme === 'dark'
+            ? theme.colors.mint
+            : theme.colors.available
     },
     statusText: {
         fontSize: 11.5,
@@ -203,13 +235,17 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.border,
         // Ink on paper, lemon on ink: whichever of the two is the louder note in the
         // scheme it sits in.
-        backgroundColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text
+        backgroundColor: theme.scheme === 'dark'
+            ? theme.colors.lemon
+            : theme.colors.text
     },
     soon: {
         flexShrink: 0,
         borderRadius: 999,
         borderWidth: theme.borderWidth,
-        borderColor: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.border,
+        borderColor: theme.scheme === 'dark'
+            ? theme.colors.lemon
+            : theme.colors.border,
         backgroundColor: theme.colors.lemon,
         paddingVertical: Spacing.one,
         paddingHorizontal: Spacing.two + 2

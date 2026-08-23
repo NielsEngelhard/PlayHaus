@@ -12,24 +12,11 @@ export const en = {
         host: 'Host',
         loading: 'One moment…',
         language: 'Language',
-        /** `SelectInput` reads its closed state out as one line. */
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'nothing selected',
         players: 'players',
         change: 'change',
-        /**
-         * Relative time, worded so it reads correctly at every number.
-         *
-         * There are no i18next plural forms here on purpose: Hermes ships no
-         * `Intl.PluralRules`, so a Dutch count would resolve to the wrong form. `hoursAgo`
-         * says "hr" rather than "hour" for the same reason, and `daysAgo` never sees 1
-         * because `yesterday` answers for that day.
-         *
-         * Note the variables are named for what they count rather than `count`, here and
-         * everywhere else in this file. `count` is the one option name i18next treats as
-         * a plural trigger, and a trigger with no plural forms behind it is a lookup
-         * relying on a fallback rather than one that simply resolves.
-         */
+        minutes: 'min',
         time: {
             justNow: 'just now',
             minutesAgo: '{{minutes}} min ago',

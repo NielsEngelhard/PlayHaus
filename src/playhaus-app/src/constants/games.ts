@@ -32,6 +32,7 @@ export interface Game {
     navigationUrl: string,
     deviceMode: DeviceMode,
     minMaxPlayersIndicator: string
+    minutesAverage: number
 }
 
 /**
@@ -51,7 +52,8 @@ export const GAMES: Game[] = [
         deviceMode: 'perPlayer',
         playable: true,
         navigationUrl: ROUTES.leagueOfLettersIndex,
-        minMaxPlayersIndicator: "1-6"
+        minMaxPlayersIndicator: "1-6",
+        minutesAverage: 10
     },
     {
         slug: 'quizzer',
@@ -64,7 +66,8 @@ export const GAMES: Game[] = [
         deviceMode: 'oneDevice',
         playable: true,
         navigationUrl: ROUTES.quizzerIndex,
-        minMaxPlayersIndicator: "3-8"
+        minMaxPlayersIndicator: "3-8",
+        minutesAverage: 25
     },
     {
         slug: 'one-of-us',
@@ -77,7 +80,8 @@ export const GAMES: Game[] = [
         deviceMode: 'perPlayer',
         playable: true,
         navigationUrl: ROUTES.oneOfUsIndex,
-        minMaxPlayersIndicator: "3-7"
+        minMaxPlayersIndicator: "3-7",
+        minutesAverage: 10
     }
 ];
 
