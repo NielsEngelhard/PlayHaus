@@ -1,4 +1,17 @@
 import { request } from "@/api/client"
+import type { LanguageCode } from "@/constants/languages"
+
+/**
+ * The shelves a quiz can sit on, in the order the tabs show them.
+ *
+ * Kept in step with `Category` in the Go backend (`internal/pubquizr/pubquizr.go`),
+ * which refuses anything not on its own list — it quietly drops an unknown one and
+ * answers with every shelf at once, so a typo here reads as "the filter stopped
+ * working" rather than as an error.
+ */
+export const QUIZ_CATEGORIES = ['weekly', 'official', 'community'] as const;
+
+export type QuizCategory = typeof QUIZ_CATEGORIES[number];
 
 export interface QuizListResponse {
     items: QuizListItem[]
@@ -15,9 +28,27 @@ export interface QuizListItem {
     description: string
     category: string
     locale: string
-    publishedAt: string
+    /** RFC 3339, and absent on a quiz that has not been published yet. */
+    publishedAt?: string
 }
 
-export async function getQuizzesRequest(category: string): Promise<QuizListResponse> {
-    return request<QuizListResponse>("/api/v1/pubquizr/quizzes");
+/**
+ * One page of a shelf, newest first.
+ *
+ * The locale travels explicitly rather than being left to `Accept-Language`. A quiz is
+ * written in one language, so a list that ignored it would be offering most people
+ * questions they cannot play — and the app's own language is a setting someone chose,
+ * which is not necessarily the one their device asks for.
+ */
+export async function getQuizzesRequest(
+    category: QuizCategory,
+    locale: LanguageCode,
+    page: number = 1
+): Promise<QuizListResponse> {
+    // Built by hand rather than with `URLSearchParams`: React Native ships its own
+    // partial polyfill of that, and three known-safe values are not worth finding out
+    // which parts of it are implemented on which platform.
+    const query = `category=${category}&locale=${locale}&page=${page}`;
+
+    return request<QuizListResponse>(`/api/v1/pubquizr/quizzes?${query}`);
 }

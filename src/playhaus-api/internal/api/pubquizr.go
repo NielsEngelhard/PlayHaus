@@ -273,9 +273,7 @@ func (s *Server) handleGetQuiz(w http.ResponseWriter, r *http.Request) {
 }
 
 type startSingleDeviceRequest struct {
-	QuizID string `json:"quizId"`
-	// PlayerNames are in seating order, left to right, because the phone gets
-	// turned round the table as the quiz master role moves.
+	QuizID      string   `json:"quizId"`
 	PlayerNames []string `json:"playerNames"`
 }
 

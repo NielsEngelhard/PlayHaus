@@ -28,6 +28,10 @@ export const nl: Catalog = {
                 jan: 'jan', feb: 'feb', mar: 'mrt', apr: 'apr',
                 may: 'mei', jun: 'jun', jul: 'jul', aug: 'aug',
                 sep: 'sep', oct: 'okt', nov: 'nov', dec: 'dec'
+            },
+            days: {
+                mon: 'ma', tue: 'di', wed: 'wo', thu: 'do',
+                fri: 'vr', sat: 'za', sun: 'zo'
             }
         }
     },
@@ -354,11 +358,20 @@ export const nl: Catalog = {
     pubquizr: {
         index: {
             description: 'Een klassiek potje trivia in een speels jasje.',
-            oneDevice: { title: '1 telefoon', description: 'Speel met 1 telefoon (met meerdere spelers).', action: 'Instellen' },
-            multiDevice: { title: 'Multi-device', description: 'Iedere speler speelt met zijn eigen device.', action: 'Coming soon...' },
-            create: {
-                label: 'Maak zelf een quiz',
-                paste: 'Coming soon...',
+            oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
+            multiDevice: { title: 'Multi-device', description: 'Iedereen op zijn eigen scherm.', action: 'Coming soon...' },
+            weekly: {
+                weekday: 'WOE',
+                promise: 'ELKE WEEK EEN\nNIEUWE QUIZ'
+            },
+            list: {
+                label: 'Alle quizzen · nieuwste eerst',
+                tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
+                published: '{{weekday}} {{day}} {{month}} · {{time}}',
+                loadOlder: 'Ouder laden',
+                empty: 'Hier staat nog niks. Probeer een ander tabblad.',
+                failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
+                comingSoon: 'Coming soon...'
             }
         },
     },

@@ -88,7 +88,6 @@ func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int
 	// disagree about what they are counting.
 	query := func() *gorm.DB {
 		q := s.db.WithContext(ctx).Model(&Quiz{}).
-			Where("status = ?", QuizPublished).
 			Where("locale = ?", f.Locale)
 		if f.Category != "" {
 			q = q.Where("category = ?", f.Category)
@@ -106,7 +105,6 @@ func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int
 		// A weekly quiz is placed by the Wednesday it belongs to and everything
 		// else by when it went up; COALESCE puts both on one ordering so the
 		// shelves can also be listed together.
-		Order("COALESCE(week_of, published_at, created_at) DESC").
 		Order("id DESC"). // a stable tiebreak, so page 2 cannot repeat page 1
 		Limit(f.PageSize).
 		Offset(f.Offset()).

@@ -41,6 +41,10 @@ export const en = {
                 jan: 'Jan', feb: 'Feb', mar: 'Mar', apr: 'Apr',
                 may: 'May', jun: 'Jun', jul: 'Jul', aug: 'Aug',
                 sep: 'Sep', oct: 'Oct', nov: 'Nov', dec: 'Dec'
+            },
+            days: {
+                mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu',
+                fri: 'Fri', sat: 'Sat', sun: 'Sun'
             }
         }
     },
@@ -379,14 +383,30 @@ export const en = {
     pubquizr: {
         index: {
             description: 'A classic game of trivia with some fun twist to keep you entertained.',
-            oneDevice: { title: '1 device', description: 'Play with 1 device (with multiple people).', action: 'Play' },
-            multiDevice: { title: 'Multi-device', description: 'Each player plays with their own device.', action: 'Coming soon...' },
-            create: {
-                label: 'Create a quiz yourself',
-                paste: 'Coming soon...',
+            oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Play' },
+            multiDevice: { title: 'Multi-device', description: 'Everyone on their own.', action: 'Coming soon...' },
+            /**
+             * The sticker on the corner of the page. `weekday` is spelled one letter to
+             * a tile, so a translation of it has to stay short enough to fit three or
+             * four of them beside the headline.
+             */
+            weekly: {
+                weekday: 'WED',
+                /** Broken by hand: the design sets it on two lines. */
+                promise: 'NEW GENERAL\nQUIZ WEEKLY'
+            },
+            list: {
+                label: 'All quizzes · newest first',
+                tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
+                /** A quiz's publication date, as the row shows it: "Wed 19 Aug · 09:00". */
+                published: '{{weekday}} {{day}} {{month}} · {{time}}',
+                loadOlder: 'Load older',
+                empty: 'No quizzes on this shelf yet. Try another tab.',
+                failed: 'The quizzes could not be loaded. Check your connection.',
+                comingSoon: 'Coming soon...'
             }
         },
-    },    
+    },
     friends: {
         title: 'Friends',
         description: 'Play together, keep track of who wins and challenge each other.',

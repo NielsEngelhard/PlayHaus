@@ -40,13 +40,6 @@ func (c Category) Valid() bool {
 
 func (c Category) String() string { return string(c) }
 
-type QuizStatus string
-
-const (
-	QuizDraft     QuizStatus = "draft"
-	QuizPublished QuizStatus = "published"
-)
-
 // QuestionKind is what a question wants back, which is what decides how the screen
 // draws it and how the answer rows underneath it are read.
 type QuestionKind string
