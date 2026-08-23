@@ -66,8 +66,8 @@ func run() error {
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
-	logger.Info("database ready", "path", cfg.DBPath)'
-	'
+	logger.Info("database ready", "path", cfg.DBPath)
+
 	pubquizrStore := pubquizr.NewGormStore(db)
 	if err := pubquizr.Seed(context.Background(), pubquizrStore); err != nil {
 		return fmt.Errorf("seed quizzes: %w", err)

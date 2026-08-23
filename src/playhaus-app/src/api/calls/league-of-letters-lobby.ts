@@ -131,21 +131,10 @@ export async function leaveLobby(code: string): Promise<void> {
     await request<void>(`${lobbyPath(code)}/players/me`, { method: 'DELETE' });
 }
 
-/**
- * Throws a room away for good, game and all. Host only.
- *
- * Not `deleteLobby`: that one deliberately leaves a started room's game alone, because
- * it is only ever a host stepping out of a room they are done with. This is the host
- * saying they are done with the *game*, so the table is told and the board stops being
- * something anybody can play. Ask before calling it.
- */
 export async function abandonLobby(code: string): Promise<void> {
     await request<void>(`${lobbyPath(code)}/abandon`, { method: 'POST' });
 }
 
-/**
- * Opens a fresh room for the table that just finished a game, and answers it. Host only. Bring players who are still connected to the new lobby.
- */
 export async function rematchLobby(code: string): Promise<Lobby> {
     return request<Lobby>(`${lobbyPath(code)}/rematch`, { method: 'POST' });
 }

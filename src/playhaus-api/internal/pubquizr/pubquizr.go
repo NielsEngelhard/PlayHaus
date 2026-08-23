@@ -122,22 +122,8 @@ type Quiz struct {
 	Title       string   `gorm:"not null"`
 	Description string   `gorm:"not null"`
 
-	// AuthorID is nil for everything that ships with the app. A community quiz
-	// carries the user who wrote it.
-	AuthorID *string `gorm:"index"`
-
-	Status      QuizStatus `gorm:"not null"`
 	PublishedAt *time.Time
-	// WeekOf is the Wednesday a weekly quiz belongs to, and what the weekly shelf
-	// sorts by. Nil on every other category.
-	WeekOf *time.Time
 
-	// Seeded marks a quiz the loader owns. It is the line between what ships with
-	// the app and what players wrote: the seeder replaces its own rows on every
-	// change and never looks at anybody elses.
-	Seeded bool `gorm:"not null;default:false"`
-	// ContentHash is the digest of the file this quiz was loaded from, so a boot
-	// that changed nothing rewrites nothing.
 	ContentHash string `gorm:"not null;default:''"`
 
 	Questions []Question `gorm:"foreignKey:QuizID;constraint:OnDelete:CASCADE"`

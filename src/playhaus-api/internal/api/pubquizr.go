@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"playhaus-api/internal/pubquizr"
 
@@ -16,15 +17,13 @@ import (
 // quizSummaryResponse is a quiz on a shelf: enough to draw a card, and nothing
 // anybody could play from.
 type quizSummaryResponse struct {
-	ID            string `json:"id"`
-	Slug          string `json:"slug"`
-	Title         string `json:"title"`
-	Description   string `json:"description"`
-	Category      string `json:"category"`
-	Locale        string `json:"locale"`
-	QuestionCount int    `json:"questionCount"`
-	WeekOf        string `json:"weekOf,omitempty"`
-	PublishedAt   string `json:"publishedAt,omitempty"`
+	ID          string `json:"id"`
+	Slug        string `json:"slug"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Category    string `json:"category"`
+	Locale      string `json:"locale"`
+	PublishedAt string `json:"publishedAt,omitempty"`
 }
 
 type quizListResponse struct {
@@ -75,17 +74,15 @@ type quizAnswerResponse struct {
 
 func newQuizSummaryResponse(q *pubquizr.Quiz, questionCount int) quizSummaryResponse {
 	summary := quizSummaryResponse{
-		ID:            q.ID.String(),
-		Slug:          q.Slug,
-		Title:         q.Title,
-		Description:   q.Description,
-		Category:      q.Category.String(),
-		Locale:        q.Locale.String(),
-		QuestionCount: questionCount,
+		ID:          q.ID.String(),
+		Slug:        q.Slug,
+		Title:       q.Title,
+		Description: q.Description,
+		Category:    q.Category.String(),
+		Locale:      q.Locale.String(),
+		PublishedAt: q.CreatedAt.Format(time.RFC3339),
 	}
-	if q.WeekOf != nil {
-		summary.WeekOf = q.WeekOf.Format(timeFormat)
-	}
+
 	if q.PublishedAt != nil {
 		summary.PublishedAt = q.PublishedAt.Format(timeFormat)
 	}

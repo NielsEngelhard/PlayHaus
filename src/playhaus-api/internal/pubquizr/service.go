@@ -87,21 +87,12 @@ func NewService(store Store) *Service {
 	return &Service{store: store}
 }
 
-// Quiz is one quiz, whole: every round, every question, and the answers.
-//
-// The answers come too. This is the quiz master's own phone -- they are about to
-// read the answers out loud -- and sending them once means the evening survives the
-// pub's wifi.
 func (s *Service) Quiz(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 	quiz, err := s.store.QuizByID(ctx, id)
 	if err != nil {
 		return nil, err
 	}
-	if quiz.Status != QuizPublished {
-		// A draft is not a quiz anybody may play, and saying so would be telling
-		// people what is coming on Wednesday.
-		return nil, ErrQuizNotFound
-	}
+
 	return quiz, nil
 }
 

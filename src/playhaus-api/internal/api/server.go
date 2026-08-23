@@ -99,10 +99,6 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))
 }
 
-// AddPubquizRHandlers registers the quiz routes. Browsing the shelf and starting a
-// game on one phone is all of it for now: the rounds are played out on the device
-// that started them, and the endpoints that record answers arrive with the screens
-// that submit them.
 func (s *Server) AddPubquizRHandlers() {
 	// Quizzes
 	s.mux.HandleFunc("GET /api/v1/pubquizr/quizzes", s.requireAuth(s.handleListQuizzes))

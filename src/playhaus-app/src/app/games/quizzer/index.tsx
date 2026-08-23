@@ -1,9 +1,11 @@
+import Label from "@/components/text/Label";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import { PUBQUIZR_NAME } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
+import QuizList from "@/features/pubquizr/components/QuizList";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -43,13 +45,17 @@ export default function QuizzerIndexPage() {
                     isDisabled={true}
                 />
             </View>
+
+            <Label label="ALL QUIZZES" />
+            <QuizList />
         </View>
     )
 }
 
 const useStyles = createThemedStyles(() => ({
     container: {
-        width: '100%'
+        width: '100%',
+        gap: Spacing.three
     },
     playingAs: {
         marginTop: Spacing.three

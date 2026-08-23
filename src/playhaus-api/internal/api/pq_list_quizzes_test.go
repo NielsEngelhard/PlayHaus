@@ -54,9 +54,6 @@ func TestListQuizzesFiltersByCategory(t *testing.T) {
 		if item.Category != string(pubquizr.CategoryWeekly) {
 			t.Errorf("category = %q, want %q", item.Category, pubquizr.CategoryWeekly)
 		}
-		if item.WeekOf == "" {
-			t.Errorf("weekly quiz %q came back without the week it belongs to", item.Slug)
-		}
 	}
 
 	official := listQuizzes(t, h, session.Token, "locale=nl&category=official")
@@ -82,10 +79,6 @@ func TestListQuizzesSendsSummariesWithoutContent(t *testing.T) {
 		if item.Title == "" {
 			t.Errorf("quiz %q came back without a title", item.Slug)
 		}
-		// The count is the one thing a card still needs to know about the content.
-		if item.QuestionCount == 0 {
-			t.Errorf("quiz %q reports no questions", item.Slug)
-		}
 	}
 }
 
@@ -106,9 +99,7 @@ func insertQuizzes(t *testing.T, db *gorm.DB, n int) {
 			Category:    pubquizr.CategoryOfficial,
 			Title:       fmt.Sprintf("Paging quiz %d", i),
 			Description: "",
-			Status:      pubquizr.QuizPublished,
 			PublishedAt: &published,
-			Seeded:      false,
 			CreatedAt:   published,
 			UpdatedAt:   published,
 		}

@@ -34,14 +34,10 @@ const seedRoot = "data"
 
 // quizFile is the shape of one file on disk.
 type quizFile struct {
-	Slug        string `json:"slug"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	// WeekOf is the Wednesday a weekly quiz belongs to, written as 2006-01-02. Only
-	// weekly quizzes carry it.
-	WeekOf string `json:"weekOf,omitempty"`
-
-	Rounds []roundFile `json:"rounds"`
+	Slug        string      `json:"slug"`
+	Title       string      `json:"title"`
+	Description string      `json:"description"`
+	Rounds      []roundFile `json:"rounds"`
 }
 
 type roundFile struct {
@@ -50,17 +46,13 @@ type roundFile struct {
 }
 
 type questionFile struct {
-	Prompt      string  `json:"prompt"`
-	Category    string  `json:"category,omitempty"`
-	Explanation string  `json:"explanation,omitempty"`
-	Unit        string  `json:"unit,omitempty"`
-	Answer      float64 `json:"answer,omitempty"` // closest-guess questions
-
-	// Options are round 2's A, B, C, D. Exactly one carries correct.
-	Options []optionFile `json:"options,omitempty"`
-	// Answers are what round 5 is searching for, and the single answer an open
-	// question wants.
-	Answers []answerFile `json:"answers,omitempty"`
+	Prompt      string       `json:"prompt"`
+	Category    string       `json:"category,omitempty"`
+	Explanation string       `json:"explanation,omitempty"`
+	Unit        string       `json:"unit,omitempty"`
+	Answer      float64      `json:"answer,omitempty"` // closest-guess questions
+	Options     []optionFile `json:"options,omitempty"`
+	Answers     []answerFile `json:"answers,omitempty"`
 }
 
 type optionFile struct {
@@ -132,10 +124,6 @@ func seedOne(ctx context.Context, store Store, file string) error {
 		// New quiz -- write it.
 	case err != nil:
 		return err
-	case !existing.Seeded:
-		// Somebody wrote a quiz that happens to share this slug. It is theirs, and
-		// the loader does not get to overwrite it.
-		return fmt.Errorf("slug %q in %s is already taken by a quiz the loader does not own", quiz.Slug, quiz.Locale)
 	case existing.ContentHash == quiz.ContentHash:
 		// Unchanged since the last boot. Rewriting it would churn the ids under
 		// anybody halfway through a game.
@@ -186,25 +174,9 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 		Category:    category,
 		Title:       f.Title,
 		Description: f.Description,
-		Status:      QuizPublished,
 		PublishedAt: &now,
-		Seeded:      true,
 		CreatedAt:   now,
 		UpdatedAt:   now,
-	}
-
-	if f.WeekOf != "" {
-		weekOf, err := time.Parse(time.DateOnly, f.WeekOf)
-		if err != nil {
-			return nil, fmt.Errorf("weekOf %q is not a date (want 2006-01-02): %w", f.WeekOf, err)
-		}
-		quiz.WeekOf = &weekOf
-		// The week it belongs to is also when it went up, so the two shelves sort
-		// the same way.
-		quiz.PublishedAt = &weekOf
-	}
-	if category == CategoryWeekly && quiz.WeekOf == nil {
-		return nil, fmt.Errorf("a weekly quiz needs a weekOf")
 	}
 
 	for _, round := range f.Rounds {
