@@ -31,7 +31,7 @@ export default function LeagueOfLettersIndexPage() {
 
             <View style={styles.modes}>
                 <ModeCard
-                    icon='cpu'
+                    icon='user'
                     gradient={Gradients.lemon}
                     iconInk={Brand.ink}
                     highlight={0.5}

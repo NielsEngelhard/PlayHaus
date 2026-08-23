@@ -21,9 +21,12 @@ const MusicSceneContext = createContext<MusicScene | null>(null);
  * Decides what is playing, for the whole app.
  *
  * Nothing, most of the time. Music belongs to the two places worth scoring — a room waiting to
- * start, and a game being played — and every menu, list and settings page is silent. A loop
- * running under someone reading their profile is a loop nobody asked for, and the app is not so
- * large that arriving anywhere feels like the music dropped out.
+ * start, and a game being played — and the home screen, every menu, list and settings page is
+ * silent. A loop running under someone reading their profile is a loop nobody asked for, and the
+ * app is not so large that arriving anywhere feels like the music dropped out.
+ *
+ * League of Letters is the only game that claims it so far. The other two are welcome to, and
+ * the scenes are named for what a place *is* rather than for that game, so they can.
  *
  * A claim rather than a table of routes, because neither place is a route: the solo game and the
  * multiplayer room draw the same board, and the room's path serves its lobby too — one page that
@@ -85,6 +88,9 @@ export function useMusicScene(): MusicScene | null {
 /**
  * Play something suitable for `scene` for as long as this component is mounted, and hand the
  * soundtrack back when it goes.
+ *
+ * Nothing about this is abrupt: a claim fades its loop up from silence, dropping one fades it
+ * out, and one claim landing on another crossfades between the two. See `fade.ts`.
  *
  * Which track that is, is not the caller's business — the scene has a handful of loops and one
  * of them is picked per claim, so the same lobby twice running rarely sounds the same. See

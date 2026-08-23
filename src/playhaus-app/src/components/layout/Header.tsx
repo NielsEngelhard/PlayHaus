@@ -1,6 +1,6 @@
 import { headerContextFor } from "@/constants/header-context";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
+import { HeaderHeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
@@ -62,7 +62,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 66,
+        height: HeaderHeight,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: 'center',

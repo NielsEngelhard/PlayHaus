@@ -203,9 +203,23 @@ type Session struct {
 	CurrentRound    int `gorm:"not null"`
 	CurrentPosition int `gorm:"not null"`
 
-	// QuizMasterSeat is who is reading right now. It rotates: the person to your
-	// right always asks you, so the seat that just answered reads next.
+	// QuizMasterSeat is who is reading right now.
+	//
+	// It stays put for as long as the table keeps answering: a correct answer buys
+	// the answerer another question rather than the reading. It only moves on when a
+	// question dies unanswered, and then by one seat.
 	QuizMasterSeat int `gorm:"not null"`
+
+	// HotSeat is who the current question is asked to first.
+	//
+	// Not the seat left of the reader any more, which is why it has to be kept:
+	// taking a question keeps you in the seat, so where a question starts depends on
+	// who took the last one rather than on who is reading.
+	//
+	// -1 is a session dealt before this column existed. HotSeatOrFirst reads that as
+	// the old rule, so a game left open across the deploy carries on making sense
+	// instead of asking whoever happens to sit in seat 0.
+	HotSeat int `gorm:"not null;default:-1"`
 
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`

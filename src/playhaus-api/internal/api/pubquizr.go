@@ -176,6 +176,10 @@ type quizSessionResponse struct {
 	// build cannot play yet. Worked out here rather than by the app: it depends on
 	// how many seats have already had a go, which only the server counts.
 	AnsweringSeat *int `json:"answeringSeat"`
+	// HotSeat is the seat the current question was first asked to. Sent so the app
+	// can say who a wrong answer would pass it to: with the question able to start
+	// anywhere, "has it been all the way round" is the distance back to here.
+	HotSeat int `json:"hotSeat"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
 	Questions []quizSessionQuestionResponse `json:"questions"`
@@ -226,6 +230,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		QuizMasterSeat:  s.QuizMasterSeat,
 		TotalRounds:     pubquizr.Rounds,
 		AnsweringSeat:   asked,
+		HotSeat:         s.HotSeatOrFirst(),
 		Players:         players,
 		Questions:       questions,
 		CreatedAt:       s.CreatedAt.Format(timeFormat),

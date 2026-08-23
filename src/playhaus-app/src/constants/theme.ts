@@ -472,4 +472,14 @@ export const Themes: Record<Scheme, Theme> = {
  * so any scrollable content has to pad past this to stay reachable.
  */
 export const BottomBarHeight = 60;
+
+/**
+ * Height of the app header.
+ *
+ * Exported because one screen has to know it: the pubquizR hand-off paints over the
+ * header, and it can only line the two up by pulling back exactly this far. `Header`
+ * itself reads it from here, so the two cannot drift apart.
+ */
+export const HeaderHeight = 66;
+
 export const MaxContentWidth = 800;

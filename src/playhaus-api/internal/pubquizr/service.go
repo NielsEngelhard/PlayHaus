@@ -216,10 +216,11 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 
 		CurrentRound:    RoundOpen,
 		CurrentPosition: 0,
-		// Player 1 opens as quiz master and asks player 2. From there the role
-		// follows whoever just answered, so the person to your right always asks
-		// you.
+		// Player 1 opens as quiz master and asks player 2. The reading then stays
+		// with player 1 for as long as the table keeps answering, and only moves on
+		// when a question goes all the way round unanswered.
 		QuizMasterSeat: 0,
+		HotSeat:        1,
 
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -380,12 +381,13 @@ type VerdictInput struct {
 
 // RecordOpenVerdict scores one go at a round 1 question and moves the game on.
 //
-// Three things can happen. A correct answer takes the point, ends the question and
-// hands the reading to whoever got it. A wrong answer with somebody left to ask
-// passes it along and changes nothing else. A wrong answer with nobody left ends the
-// question for no points, and the reading moves one seat on, because the alternative
-// -- leaving it with the seat who just failed to get an answer out of anybody -- is
-// the one case where "the seat that just answered reads next" has no seat to name.
+// Three things can happen. A correct answer ends the question and keeps the seat:
+// the reading does not move, and the next question is asked to whoever just took
+// this one. It is worth a point only on every second question -- see OpenPointsAt --
+// so most of them buy nothing but the seat they keep you in. A wrong answer with
+// somebody left to ask passes it along and changes nothing else. A wrong answer with
+// nobody left ends the question for no points, and is the only thing that moves the
+// reading: it goes one seat on, and the next question starts on that seat's left.
 func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -412,7 +414,9 @@ func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Sess
 		return nil, err
 	}
 
-	seat := AnsweringSeat(session.QuizMasterSeat, attempts, len(session.Players))
+	hot := session.HotSeatOrFirst()
+
+	seat := AnsweringSeat(session.QuizMasterSeat, hot, attempts, len(session.Players))
 	if seat < 0 {
 		// The question has already been round the whole table. Nobody is being
 		// asked anything, so there is no verdict to give.
@@ -443,25 +447,35 @@ func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Sess
 
 	switch {
 	case in.Correct:
-		attempt.Points = OpenQuestionPoints
+		// Most round 1 questions are worth nothing. Left as a zero rather than
+		// skipped so the attempt row still says what it was worth at the time, which
+		// is what the table will want when it argues about the score later.
+		points := OpenPointsAt(question.Position)
+		attempt.Points = points
 
-		player.Score += OpenQuestionPoints
-		scored = player
+		if points > 0 {
+			player.Score += points
+			scored = player
+		}
 
 		question.Status = QuestionDone
-		question.Points = OpenQuestionPoints
+		question.Points = points
 		closed = question
 
-		// Whoever took it reads the next one.
-		session.QuizMasterSeat = seat
+		// They keep it. The reading stays where it is and so does the seat: taking a
+		// question is what buys you the next one.
+		session.HotSeat = seat
 		s.advance(session)
 
-	case AnsweringSeat(session.QuizMasterSeat, attempts+1, len(session.Players)) < 0:
-		// Wrong, and that was the last seat with a go left.
+	case AnsweringSeat(session.QuizMasterSeat, hot, attempts+1, len(session.Players)) < 0:
+		// Wrong, and that was the last seat with a go left. The only branch that
+		// moves the reading, so it is also the only one that has to put the hot seat
+		// back: nobody earned it, and the seat it named is behind the new reader.
 		question.Status = QuestionDone
 		closed = question
 
 		session.QuizMasterSeat = (session.QuizMasterSeat + 1) % len(session.Players)
+		session.HotSeat = (session.QuizMasterSeat + 1) % len(session.Players)
 		s.advance(session)
 
 	default:

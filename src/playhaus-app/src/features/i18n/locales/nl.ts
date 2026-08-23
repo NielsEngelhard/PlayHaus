@@ -403,26 +403,40 @@ export const nl: Catalog = {
         play: {
             loading: 'De tafel klaarzetten…',
             close: 'Quiz verlaten',
-            youAreQuizmaster: 'Jij bent quizmaster',
             roundLabel: 'Ronde {{round}} · {{kind}}',
             rounds: { open: 'Open' },
             questionNumber: 'Vraag {{number}}',
             questionTotal: ' van {{total}}',
+            turn: {
+                asking: 'vraagt',
+                answering: 'antwoordt',
+                spoken: '{{master}} vraagt het aan {{player}}'
+            },
             readAloud: 'Lees dit hardop voor',
             scoresThisRound: 'Stand deze ronde',
             onlyYouSeeThis: 'Alleen jij ziet dit',
             alsoAccept: 'Ook goed: {{answers}}',
-            isAnswering: '{{name}} is aan de beurt',
+            answer: {
+                reveal: 'Tik om het antwoord te zien',
+                revealHint: 'Houd het scherm voor jezelf'
+            },
+            validate: 'Beoordeel het antwoord van {{name}}',
+            validateHint: 'Reken het daarna goed of fout',
+            validateLocked: 'Laat eerst het antwoord zien',
             wrong: 'Fout',
             correct: 'Goed',
             markWrong: 'Reken {{name}} fout',
             markCorrect: 'Reken {{name}} goed',
             wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
             wrongEndsQuestion: 'Niemand meer over — fout beëindigt deze vraag',
+            correctKeepsTurn: 'Goed houdt {{name}} aan de beurt',
+            worthPoint: 'Levert een punt op',
+            noPoint: 'Geen punt — overleef hem',
             handoff: {
                 step: 'Ronde {{round}} · vraag {{number}} van {{total}}',
                 title: 'Geef de telefoon aan {{name}}',
-                body: '{{name}} is deze beurt quizmaster — de rest niet meekijken.',
+                body: '{{name}} leest voor tot een vraag de tafel verslaat',
+                rule: 'Goed antwoord? Dan blijf je zitten. Elke tweede vraag levert een punt op.',
                 action: 'Ik ben {{name}} — laat de vraag zien'
             },
             standings: {

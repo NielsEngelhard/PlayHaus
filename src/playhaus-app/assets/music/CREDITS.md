@@ -6,13 +6,11 @@ guess.
 
 | File | Scene | Track | Author | Source |
 |---|---|---|---|---|
-| `chill.m4a` | lobby | Menu Chill Music | etrock | https://opengameart.org/content/menu-chill-music |
-| `lofi.m4a` | lobby | Funky Hip Hop Lofi Jam (lowpass cut) | omfgdude | https://opengameart.org/content/funky-hip-hop-lofi-jam |
+| `chill.m4a` | playing | Menu Chill Music | etrock | https://opengameart.org/content/menu-chill-music |
 | `bossa.m4a` | lobby | Bossa Shop Theme (Lo-Fi cut) | SpringySpringo | https://opengameart.org/content/bossa-shop-theme-in-low-fi-and-hd |
-| `zen.m4a` | lobby | — (predates this file) | — | — |
+| `zen.m4a` | playing | — (predates this file) | — | — |
 | `sunny.m4a` | playing | Sunny Side Up | Pro Sensory (Alex McCulloch) | https://opengameart.org/content/sunny-side-up-updated-version |
 | `adventure.m4a` | playing | Happy Adventure (Loop) | TinyWorlds | https://opengameart.org/content/happy-adventure-loop |
-| `puzzle.m4a` | playing | krank soundtrack — `summer/atmo` | legoluft | https://opengameart.org/content/atmospheric-puzzles |
 | `action.m4a` | playing | — (predates this file) | — | — |
 
 ## What was done to them
@@ -29,7 +27,7 @@ a loop the same way:
 3. **A 5 ms fade at each edge.** AAC's encoder delay means a decoder's idea of "the first sample"
    is not exact; landing on true zero gives the imprecision nothing to click on.
 4. **Normalised to −18.8 LUFS** (two-pass, linear — a constant gain, so each loop keeps its own
-   dynamics). One `VOLUME` constant covers all eight, so they have to agree on loudness.
+   dynamics). One `VOLUME` constant covers all six, so they have to agree on loudness.
 5. **Encoded AAC 64 kbps / 44.1 kHz**, for the reason in `src/features/audio/music-player.ts`:
    `loop` is not gapless and mp3's encoder padding widens the seam into something audible.
 

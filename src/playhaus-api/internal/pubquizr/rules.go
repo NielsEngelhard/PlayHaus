@@ -22,10 +22,19 @@ const (
 )
 
 const (
-	// OpenQuestionPoints is what a round 1 question is worth. Flat, however far
-	// down the table it had to travel before somebody took it: at a pub table the
-	// score has to be explainable out loud, and "one each" is.
+	// OpenQuestionPoints is what a scoring round 1 question is worth. Flat, however
+	// far down the table it had to travel before somebody took it: at a pub table
+	// the score has to be explainable out loud, and "one each" is.
 	OpenQuestionPoints = 1
+
+	// OpenScoresEvery is how often a round 1 question is worth anything: every
+	// second one.
+	//
+	// Taking a question keeps you in the hot seat, so without this the round is a
+	// player who knows the first answer holding the seat for nothing in particular.
+	// The odd questions are the ones you have to survive to reach a paying one,
+	// which is what makes staying in a thing worth wanting.
+	OpenScoresEvery = 2
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions = 4
@@ -42,6 +51,21 @@ const (
 	// turn moves on to the next person -- who can still claim whatever is left.
 	ListSecondsPerTurn = 25
 )
+
+// OpenPointsAt is what the round 1 question in one slot is worth.
+//
+// position is 0-based, so this pays out on the even-numbered questions -- 2, 4, 6 --
+// and the ones in between are worth nothing but the seat.
+func OpenPointsAt(position int) int {
+	if position < 0 {
+		return 0
+	}
+	if (position+1)%OpenScoresEvery != 0 {
+		return 0
+	}
+
+	return OpenQuestionPoints
+}
 
 // ChoiceQuestionsFor is how many round 2 questions a table of n needs.
 //

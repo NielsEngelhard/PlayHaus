@@ -1,3 +1,4 @@
+import { Brand } from "@/constants/theme";
 import { avatarColorById, type AvatarColor } from "@/features/settings/profile";
 import type { QuizDetail, QuizQuestion } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionPlayer, QuizSessionQuestion } from "./pubquizr-sessions";
@@ -10,10 +11,31 @@ import type { QuizSession, QuizSessionPlayer, QuizSessionQuestion } from "./pubq
  * `questionId` and no words, and the quiz has no idea whose turn it is — so everything
  * here is the join between the two, worked out once and handed to the components as
  * things they can draw without knowing where any of it came from.
+ *
+ * The round itself is a hot seat: taking a question keeps you in it for the next one,
+ * the reading only moves when a question beats the whole table, and only every second
+ * question is worth a point. None of that is decided here — it all comes back from the
+ * server — but two of the three have to be *said* on screen before a button is pressed,
+ * which is what `scoresAt` and `nextUpAfter` below are for.
  */
 
 /** The round the whole of this file is about. Kept in step with `RoundOpen` in Go. */
 export const ROUND_OPEN = 1;
+
+/**
+ * How often a question in this round is worth a point: every second one.
+ *
+ * Kept in step with `OpenScoresEvery` in `rules.go`, and duplicated here for the same
+ * reason `nextUpAfter` below duplicates the pass-along arithmetic — this is only ever
+ * used to *say* what the question on screen is worth. The server still decides, and
+ * the score comes back from it.
+ */
+export const OPEN_SCORES_EVERY = 2;
+
+/** Whether this question pays out, given its 1-based number in the round. */
+export function scoresAt(questionNumber: number): boolean {
+    return questionNumber % OPEN_SCORES_EVERY === 0;
+}
 
 export interface Seat {
     seat: number
@@ -42,6 +64,8 @@ export interface RoundOneTurn {
     /** 1-based, for "question 3 of 20". */
     number: number
     total: number
+    /** Whether taking this one is worth a point, or only worth staying in for. */
+    scoring: boolean
 }
 
 /**
@@ -120,7 +144,8 @@ export function turnOf(session: QuizSession, quiz: QuizDetail): RoundOneTurn | n
         answering,
         nextUp: nextUpAfter(session, seats),
         number: session.currentPosition + 1,
-        total: session.questions.filter(candidate => candidate.round === ROUND_OPEN).length
+        total: session.questions.filter(candidate => candidate.round === ROUND_OPEN).length,
+        scoring: scoresAt(session.currentPosition + 1)
     };
 }
 
@@ -132,14 +157,72 @@ export function turnOf(session: QuizSession, quiz: QuizDetail): RoundOneTurn | n
  * pressed. The server is still the one that decides, and the next screen comes back
  * from it — so a disagreement here is a misleading line of small print rather than a
  * point going to the wrong person.
+ *
+ * The reader is stepped over rather than stopped at. A question no longer has to start
+ * on their left, so landing on them says nothing about how much of the table is left;
+ * what ends the question is arriving back at the seat it opened on, which is the point
+ * at which everybody but the reader has had their one go.
  */
 function nextUpAfter(session: QuizSession, seats: Seat[]): Seat | null {
     if (session.answeringSeat === null) return null;
+    if (seats.length <= 1) return null;
 
-    const next = (session.answeringSeat + 1) % seats.length;
+    let next = (session.answeringSeat + 1) % seats.length;
+    if (next === session.quizMasterSeat) {
+        next = (next + 1) % seats.length;
+    }
 
-    // Back at the reader means the question has been all the way round.
-    if (next === session.quizMasterSeat) return null;
+    // All the way round to where it started: everybody else has already said no.
+    if (next === session.hotSeat) return null;
 
     return seats.find(seat => seat.seat === next) ?? null;
+}
+
+/** How a hand-off screen is painted: one fill, and the ink that stays readable on it. */
+export interface HandoffTone {
+    fill: string
+    /** Headline text. */
+    ink: string
+    /** The same ink stepped back, for the step label and the explanation line. */
+    muted: string
+}
+
+/**
+ * The five fills a hand-off can wear, in the order they come round.
+ *
+ * Lemon alone was a screen you stop seeing: the hand-off looks the same every time, so
+ * after a few questions it stops registering as a new one. A different colour each turn
+ * is the cheapest way to make "this is a new screen, stop and read it" land, which is
+ * the only job that screen has.
+ *
+ * Black on every fill but the blue, which is the one that cannot carry it: ink on
+ * #3B4DF0 is 3.2:1, so the 38px name would just about pass and the 15px line under it
+ * would not come close, and a hand-off whose instructions cannot be read is the one
+ * thing this screen cannot afford. Orange looks like it wants paper and does not —
+ * ink on it is 6.2:1 against paper's 3.0:1.
+ *
+ * The muted alphas are the weakest each fill can carry and still clear 4.5:1 for body
+ * text, rounded up: 0.76 on orange and 0.88 on the blue are doing real work, and the
+ * three light fills are held at 0.7 for the sake of looking like one family.
+ */
+const HANDOFF_TONES: HandoffTone[] = [
+    { fill: Brand.primary,   ink: Brand.ink,          muted: 'rgba(15, 13, 18, 0.78)' },
+    { fill: Brand.lemon,     ink: Brand.ink,          muted: 'rgba(15, 13, 18, 0.7)' },
+    { fill: Brand.mint,      ink: Brand.ink,          muted: 'rgba(15, 13, 18, 0.7)' },
+    { fill: Brand.blush,     ink: Brand.ink,          muted: 'rgba(15, 13, 18, 0.7)' },
+    { fill: Brand.secondary, ink: Brand.textOnAccent, muted: 'rgba(254, 251, 248, 0.88)' }
+];
+
+/**
+ * Which fill this turn's hand-off wears.
+ *
+ * Keyed off the question number rather than off who is taking the phone, so the colour
+ * means "the screen changed" rather than "this person". Two hand-offs in a row are
+ * always different, which is the whole point.
+ */
+export function handoffToneFor(questionNumber: number): HandoffTone {
+    // 1-based, so the first question of the round gets the first tone.
+    const index = (questionNumber - 1) % HANDOFF_TONES.length;
+
+    return HANDOFF_TONES[(index + HANDOFF_TONES.length) % HANDOFF_TONES.length];
 }

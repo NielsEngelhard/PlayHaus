@@ -12,6 +12,8 @@ interface Props {
     answering: Seat
     /** Who a wrong answer passes it to, or null when this is the last seat to try. */
     nextUp: Seat | null
+    /** Whether taking this question is worth a point as well as the seat. */
+    scoring: boolean
     onVerdict: (correct: boolean) => void
     /** A verdict is already in the air. */
     busy?: boolean
@@ -26,29 +28,30 @@ interface Props {
  * marking somebody wrong. Weighting the layout is what makes the common press the easy
  * one to hit without looking.
  *
- * The line underneath says what Wrong will actually do before it is pressed, because
- * "wrong" means two quite different things depending on whether there is anybody left
- * to ask.
+ * Reached only through `ValidateButton`, which is what stops a thumb finding either of
+ * these while the phone is being handed over. Who is answering is said at the top of
+ * the board by `TurnBanner` rather than again here — the buttons name them too, but
+ * only to a screen reader, where there is no banner overhead to have read it from.
+ *
+ * The two lines underneath say what each button will actually do before it is pressed.
+ * "Wrong" means two quite different things depending on whether there is anybody left
+ * to ask, and "correct" is no longer only "score it" — most questions in this round buy
+ * nothing but the seat, and which sort this one is has to be readable from here rather
+ * than worked out from the number at the top of the board.
  */
-export default function VerdictButtons({ answering, nextUp, onVerdict, busy = false }: Props) {
+export default function VerdictButtons({
+    answering,
+    nextUp,
+    scoring,
+    onVerdict,
+    busy = false
+}: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
     return (
         <View style={styles.container}>
-            <View style={styles.who}>
-                <View style={[styles.avatar, { backgroundColor: answering.swatch.color }]}>
-                    <AppText style={[styles.initials, { color: answering.swatch.foreground }]}>
-                        {answering.initials}
-                    </AppText>
-                </View>
-
-                <AppText style={styles.whoText}>
-                    {t('pubquizr.play.isAnswering', { name: answering.name })}
-                </AppText>
-            </View>
-
             <View style={styles.buttons}>
                 <Pressable
                     onPress={() => onVerdict(false)}
@@ -77,6 +80,11 @@ export default function VerdictButtons({ answering, nextUp, onVerdict, busy = fa
                 </Pressable>
             </View>
 
+            <AppText style={[styles.hint, scoring && styles.hintScoring]}>
+                {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
+                {scoring ? ` · ${t('pubquizr.play.worthPoint')}` : ''}
+            </AppText>
+
             <AppText style={styles.hint}>
                 {nextUp === null
                     ? t('pubquizr.play.wrongEndsQuestion')
@@ -89,36 +97,6 @@ export default function VerdictButtons({ answering, nextUp, onVerdict, busy = fa
 const useStyles = createThemedStyles(theme => ({
     container: {
         flexShrink: 0
-    },
-
-    who: {
-        marginBottom: 12,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 9
-    },
-
-    avatar: {
-        width: 32,
-        height: 32,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: theme.borderWidth,
-        borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink
-    },
-
-    initials: {
-        fontSize: 11,
-        fontWeight: 900
-    },
-
-    whoText: {
-        flexShrink: 1,
-        fontSize: 15,
-        fontWeight: 800,
-        color: theme.colors.text
     },
 
     buttons: {
@@ -171,6 +149,13 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 11.5,
         fontWeight: 600,
         color: theme.colors.textMuted
+    },
+
+    // A question that pays says so in the scheme's own accent rather than in the grey
+    // the other line wears, because it is the one of the two worth reading twice.
+    hintScoring: {
+        fontWeight: 800,
+        color: theme.colors.text
     },
 
     // The same half-strength every other blocked control in the app wears.

@@ -304,6 +304,7 @@ func (s *GormStore) RecordAttempt(
 				"current_round":    session.CurrentRound,
 				"current_position": session.CurrentPosition,
 				"quiz_master_seat": session.QuizMasterSeat,
+				"hot_seat":         session.HotSeat,
 				"status":           session.Status,
 				"completed_at":     session.CompletedAt,
 				"updated_at":       session.UpdatedAt,

@@ -24,9 +24,13 @@ The 2 persons with the most points will battle each other in the finale.
 # Modes explained
 
 ## Single device mode:
-Flow: click single device -> Fill in names of the players you play with. Should be in order from left to right as how you are sitting because the phone has to rotate. Player 1 begins as quiz master. He reads the question and player 2 has to guess. Then if player 2 has a wrong answer the turn goes to player 3 untill someone has it correct or there are no other players except the game master. Then go to next question and the game master will be the person the question is asked to. The person the the right of you (before you) always begins with asking the question to you.
+Flow: click single device -> Fill in names of the players you play with. Should be in order from left to right as how you are sitting because the phone has to rotate. Player 1 begins as quiz master. He reads the question and player 2 has to guess. Then if player 2 has a wrong answer the turn goes to player 3 untill someone has it correct or there are no other players except the game master.
 
-So the quiz master role rotates.  
+Round 1 is a hot seat. If you answer correctly you *stay*: the next question is asked to you again, and the quiz master keeps reading. The only thing that moves the quiz master role is a question that goes all the way round without anybody getting it — then the role moves one seat on, and the next question opens on that person's left.
+
+Only every second question is worth a point. Questions 2, 4, 6 and so on score; the ones in between are worth nothing but the seat they keep you in. So holding the hot seat is the whole game: you have to survive an odd question to reach the one that pays.
+
+So the quiz master role rotates, but slowly — it is a reward for beating the table rather than a turn everyone takes.  
 
 ## Multi-device mode:
 - Will not be implemented in the initial version. Is a version where everybody plays with their own phone.

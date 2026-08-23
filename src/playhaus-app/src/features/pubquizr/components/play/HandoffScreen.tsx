@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
-import { Brand } from "@/constants/theme";
+import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/round-one";
+import { handoffToneFor, type Seat } from "@/features/pubquizr/round-one";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
@@ -29,10 +29,20 @@ const useNativeDriver = Platform.OS !== 'web';
 /**
  * The screen between two turns: stop, give the phone to somebody else.
  *
- * A whole screen rather than a banner, and lemon rather than the page's own canvas,
- * because it has one job — to be impossible to read past. The next screen has the
- * answers on it, so the moment the phone changes hands is the moment the game can be
- * spoiled, and a notice that could be scrolled past would eventually be scrolled past.
+ * A whole screen rather than a banner, and a colour of its own rather than the page's
+ * canvas, because it has one job — to be impossible to read past. The next screen has
+ * the answers on it, so the moment the phone changes hands is the moment the game can
+ * be spoiled, and a notice that could be scrolled past would eventually be scrolled
+ * past. The fill changes every question (see `handoffToneFor`) so that the tenth
+ * hand-off still registers as a new screen rather than as the one you just dismissed.
+ *
+ * It paints past the page's own gutters and up over the app header. Everything else in
+ * the app is a card inside a 24dp inset under a 66dp header, and a stop sign framed by
+ * both reads as another card — see the note on `screen` for how it escapes.
+ *
+ * Covering the header does mean its controls stop being tappable for as long as this is
+ * up, which is the intended reading of a screen whose whole point is "stop here". The
+ * board behind it still has its own way out.
  *
  * The button says the new quizmaster's own name rather than "continue". Pressing it is
  * a claim about who is holding the phone, and phrasing it as one is what makes handing
@@ -48,6 +58,8 @@ export default function HandoffScreen({
 }: Props) {
     const t = useT();
     const styles = useStyles();
+
+    const tone = handoffToneFor(number);
 
     // Built once by the lazy initialiser: rebuilding it on a render would drop the
     // nudge back to its start mid-swing.
@@ -77,10 +89,10 @@ export default function HandoffScreen({
     }, [nudge]);
 
     return (
-        <View style={styles.screen}>
+        <View style={[styles.screen, { backgroundColor: tone.fill }]}>
             <View style={styles.header} />
 
-            <AppText style={styles.step}>
+            <AppText style={[styles.step, { color: tone.muted }]}>
                 {t('pubquizr.play.handoff.step', { round, number, total })}
             </AppText>
 
@@ -90,12 +102,21 @@ export default function HandoffScreen({
                 </AppText>
             </View>
 
-            <AppText style={styles.title}>
+            <AppText style={[styles.title, { color: tone.ink }]}>
                 {t('pubquizr.play.handoff.title', { name: quizmaster.name })}
             </AppText>
 
-            <AppText style={styles.body}>
+            <AppText style={[styles.body, { color: tone.muted }]}>
                 {t('pubquizr.play.handoff.body', { name: quizmaster.name })}
+            </AppText>
+
+            {/* The round's rule, on the one screen with room to say it properly. The
+                hand-off only comes up when a question has beaten the whole table, so
+                it is rare enough to be read rather than skimmed past — and whoever is
+                about to take the phone is exactly who needs to know how the next few
+                questions score. */}
+            <AppText style={[styles.rule, { color: tone.ink }]}>
+                {t('pubquizr.play.handoff.rule')}
             </AppText>
 
             {/* Only when there is somebody to hand over *from*. On the first question
@@ -123,7 +144,7 @@ export default function HandoffScreen({
                         </AppText>
                     </View>
 
-                    <Feather name="arrow-right" size={20} color={Brand.ink} />
+                    <Feather name="arrow-right" size={20} color={tone.ink} />
 
                     <View style={[styles.small, styles.smallTo, { backgroundColor: quizmaster.swatch.color }]}>
                         <AppText style={[styles.smallText, { color: quizmaster.swatch.foreground }]}>
@@ -146,16 +167,39 @@ export default function HandoffScreen({
     )
 }
 
-const useStyles = createThemedStyles(theme => ({
-    // Lemon in both schemes. This screen is a stop sign, and a stop sign that changed
-    // colour with the theme would be a weaker one.
+const useStyles = createThemedStyles(() => ({
+    /**
+     * Painted past the page's gutters, and up over the header.
+     *
+     * The 24dp inset and the 24dp bottom pad belong to the one scroller in
+     * `app/_layout.tsx`, and the header above is a sibling of the whole page slot —
+     * three things every page shares and no page can reach. So this pulls back out of
+     * all of them with negative margins and lays its own padding down inside, which is
+     * what lets the fill cover the strip while everything below stays where it was.
+     *
+     * `paddingTop` matching `marginTop` is the whole trick: the background grows into
+     * the header's 66dp, the content does not move into it.
+     *
+     * Sideways the result is edge-to-edge on a phone and edge-to-edge within the app's
+     * 600dp column on a wide window, which is the right answer there — a colour running
+     * wider than the app itself would look like the page had broken rather than like a
+     * deliberate full-bleed.
+     *
+     * One seam is left, and it is not worth chasing: `SlideFadeIn` fades the page slot
+     * in over ~130ms on entrance, so the header shows through this for that long the
+     * first time the screen opens. It replays on the pathname only, and every hand-off
+     * after the first is a frame swap inside one mounted route, so it happens once on
+     * arrival rather than every turn.
+     */
     screen: {
         flex: 1,
-        width: '100%',
         alignItems: 'center',
-        paddingHorizontal: 4,
-        paddingBottom: 26,
-        backgroundColor: theme.colors.lemon
+        marginTop: -HeaderHeight,
+        marginHorizontal: -Spacing.four,
+        marginBottom: -Spacing.four,
+        paddingTop: HeaderHeight,
+        paddingHorizontal: Spacing.four + 4,
+        paddingBottom: 26
     },
 
     // Stands in for the header the play screen has, so the two frames start their
@@ -172,10 +216,12 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900,
         textTransform: 'uppercase',
         letterSpacing: 2.2,
-        textAlign: 'center',
-        color: 'rgba(15, 13, 18, 0.55)'
+        textAlign: 'center'
     },
 
+    // The portrait keeps the player's own swatch rather than the screen's tone, so it
+    // still says who even when the two happen to be the same colour — the hard ink
+    // line round it is what keeps it legible in that case.
     portrait: {
         marginTop: 26,
         width: 132,
@@ -184,7 +230,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: theme.borderWidth,
+        borderWidth: 2,
         borderColor: Brand.ink,
         boxShadow: '4px 4px 0 0 rgba(15, 13, 18, 1)'
     },
@@ -201,8 +247,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900,
         lineHeight: 38 * 1.02,
         letterSpacing: -1.5,
-        textAlign: 'center',
-        color: Brand.ink
+        textAlign: 'center'
     },
 
     body: {
@@ -212,8 +257,20 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 15,
         fontWeight: 600,
         lineHeight: 15 * 1.5,
-        textAlign: 'center',
-        color: 'rgba(15, 13, 18, 0.7)'
+        textAlign: 'center'
+    },
+
+    // Full-strength ink where the line above it is muted: this is the rule of the
+    // round rather than a caption about the hand-off, and the two should not read as
+    // the same kind of sentence.
+    rule: {
+        marginTop: 12,
+        maxWidth: 270,
+        flexShrink: 0,
+        fontSize: 13.5,
+        fontWeight: 800,
+        lineHeight: 13.5 * 1.45,
+        textAlign: 'center'
     },
 
     pair: {
@@ -230,7 +287,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: theme.borderWidth,
+        borderWidth: 2,
         borderColor: Brand.ink
     },
 
@@ -244,8 +301,10 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // `marginTop: auto` pins this to the bottom edge, which works because the screen
-    // is inside a page that claimed the whole viewport.
+    // Ink fill in every tone. It is the one control on the screen, and a button that
+    // changed colour with the background would stop being obviously the way out.
+    // `marginTop: auto` pins it to the bottom edge, which works because the page has
+    // claimed the whole viewport.
     button: {
         marginTop: 'auto',
         width: '100%',
@@ -256,7 +315,7 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center',
         gap: 10,
         borderRadius: 20,
-        borderWidth: theme.borderWidth,
+        borderWidth: 2,
         borderColor: Brand.ink,
         backgroundColor: Brand.ink,
         boxShadow: '4px 4px 0 0 rgba(15, 13, 18, 0.2)'

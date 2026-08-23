@@ -55,7 +55,37 @@ interface Auth {
  */
 let currentToken: string | null = null;
 
-setTokenGetter(async () => currentToken);
+/**
+ * The stored token being read back into `currentToken`, started at import rather
+ * than from the provider's effect below and awaited by the getter.
+ *
+ * A screen can fire its first request before the restore has landed. Opening a game
+ * on its own URL — a reconnect link, a refresh mid-game — mounts that page inside
+ * `Slot`, and React runs a child's effects before its parents', so the page asks
+ * for the session before the provider has so much as opened the store. Those
+ * requests used to go out with no `Authorization` header at all: a session that was
+ * perfectly valid came back 401, and the screen told the player to log in again.
+ *
+ * Waiting here rather than making every caller wait on `status` keeps that in the
+ * one place the token actually lives, and costs a single store read on the first
+ * request of the launch and nothing after it.
+ *
+ * Resolves rather than rejects, and only fills the slot if nothing else has claimed
+ * it, so a slow store can never overwrite a fresher session.
+ */
+const tokenRestored: Promise<void> = readToken()
+    .then(stored => {
+        if (stored !== null && currentToken === null) currentToken = stored;
+    })
+    .catch(() => {
+        // A store that will not open is a session that cannot be restored, which is
+        // the signed-out path in the provider rather than an error to report.
+    });
+
+setTokenGetter(async () => {
+    await tokenRestored;
+    return currentToken;
+});
 
 /**
  * The session token, for callers that are not `request`.
@@ -90,21 +120,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         let cancelled = false;
 
         (async () => {
-            const stored = await readToken();
-            if (!stored) {
+            // The read is already in flight from module scope, and installing what it
+            // finds is its job rather than this one's — `me` goes out through
+            // `request` like every other call, so it carries the token by the time
+            // it is sent.
+            await tokenRestored;
+
+            if (currentToken === null) {
                 if (!cancelled) setStatus('signedOut');
                 return;
             }
 
-            // Set before the call: `me` is what validates it, and it can only be
-            // sent as a bearer token.
-            currentToken = stored;
-
             try {
-                const restored = await authApi.me();
+                const account = await authApi.me();
                 if (cancelled) return;
 
-                setUser(restored);
+                setUser(account);
                 setStatus('signedIn');
             } catch {
                 // Expired, revoked, or the account is gone. Any of those mean the

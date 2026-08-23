@@ -39,8 +39,22 @@ export interface QuizSession {
 
     currentRound: number
     currentPosition: number
-    /** Whose turn it is to read the questions out. Moves round the table as it goes. */
+    /**
+     * Whose turn it is to read the questions out.
+     *
+     * Stays put while the table keeps answering — taking a question buys the answerer
+     * another one, not the reading — and moves one seat on when a question dies with
+     * nobody having got it.
+     */
     quizMasterSeat: number
+    /**
+     * The seat the current question was asked to first.
+     *
+     * Not the seat left of the reader: a correct answer keeps you in it, so where a
+     * question starts depends on who took the last one. Needed here only to say who a
+     * wrong answer would pass to — see `nextUpAfter`.
+     */
+    hotSeat: number
     totalRounds: number
     /**
      * Whose turn it is to answer the question on screen, and null when nobody is being

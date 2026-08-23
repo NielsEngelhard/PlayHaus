@@ -1,3 +1,4 @@
+import { useAuth } from "@/features/auth/useAuth";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getQuizRequest, type QuizDetail } from "./pubquizr-quizzes";
@@ -43,6 +44,7 @@ export interface PlayableSession {
  * thing that can change the session.
  */
 export function useQuizSession(sessionId: string): PlayableSession {
+    const { status: auth } = useAuth();
     const [session, setSession] = useState<QuizSession | null>(null);
     const [quiz, setQuiz] = useState<QuizDetail | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
@@ -58,7 +60,20 @@ export function useQuizSession(sessionId: string): PlayableSession {
         return () => { mounted.current = false; };
     }, []);
 
+    /*
+     * Only a signed-in session may ask for this one: the endpoint is behind auth.
+     *
+     * Restoring is not signed in yet and signed out has the gate standing over this
+     * page, and asking in either state answers 401 — which this screen reads as an
+     * expired session and says so, to somebody whose session is perfectly good.
+     * Waiting means the board loads itself the moment there is somebody to load it
+     * for, including straight after a sign-in on the gate.
+     */
+    const signedIn = auth === 'signedIn';
+
     useEffect(() => {
+        if (!signedIn) return;
+
         let current = true;
 
         void (async () => {
@@ -83,7 +98,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
         // Nothing to abort — `request` has no signal — so dropping the answer is the
         // whole of the tidy-up, the same as `useQuizzes` next door.
         return () => { current = false; };
-    }, [sessionId, attempt]);
+    }, [sessionId, attempt, signedIn]);
 
     const rule = useCallback((correct: boolean) => {
         if (ruling || session === null) return;

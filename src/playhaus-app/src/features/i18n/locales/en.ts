@@ -430,7 +430,6 @@ export const en = {
         play: {
             loading: 'Setting up the table…',
             close: 'Leave the quiz',
-            youAreQuizmaster: "You're quizmaster",
             /** "Round 1 · Open" — the round, and what kind of round it is. */
             roundLabel: 'Round {{round}} · {{kind}}',
             rounds: { open: 'Open' },
@@ -441,11 +440,29 @@ export const en = {
              */
             questionNumber: 'Question {{number}}',
             questionTotal: ' of {{total}}',
+            /** The two people the turn is about, above the question. */
+            turn: {
+                asking: 'asking',
+                answering: 'answering',
+                /** The banner read out as the one sentence it is. */
+                spoken: '{{master}} is asking {{player}}'
+            },
             readAloud: 'Read this out loud',
             scoresThisRound: 'Scores this round',
             onlyYouSeeThis: 'Only you see this',
             alsoAccept: 'Also accept: {{answers}}',
-            isAnswering: '{{name}} is answering',
+            /** The covered panel, before the quizmaster has asked to see the answer. */
+            answer: {
+                reveal: 'Tap to see the answer',
+                revealHint: 'Keep the screen to yourself'
+            },
+            /**
+             * The gate in front of the verdict. Named after the person so a stray tap
+             * during a hand-over reads as obviously about somebody else's turn.
+             */
+            validate: "Check {{name}}'s answer",
+            validateHint: 'Then mark it right or wrong',
+            validateLocked: 'Show the answer first',
             wrong: 'Wrong',
             correct: 'Correct',
             /** Read out for the buttons, which are two words on their own. */
@@ -454,11 +471,34 @@ export const en = {
             wrongPassesTo: 'Wrong passes the turn to {{name}}',
             /** Nobody left to ask: the question dies here rather than passing on. */
             wrongEndsQuestion: 'Nobody else to ask — wrong ends this question',
+            /**
+             * What Correct does, which is no longer only "score it". Said beside the
+             * Wrong line because the two together are the round's whole rule, and the
+             * moment to read it is with a thumb over the buttons.
+             */
+            correctKeepsTurn: 'Correct keeps {{name}} answering',
+            /**
+             * Whether the question on screen pays out. Every second one does — see
+             * `scoresAt` — and the other half are worth nothing but the seat, which is
+             * a thing the table will not forgive being told only after the fact.
+             */
+            worthPoint: 'Worth a point',
+            noPoint: 'No point — survive it',
             handoff: {
                 step: 'Round {{round}} · question {{number}} of {{total}}',
                 /** Broken over two lines by the design, which the app does not force. */
                 title: 'Pass the phone to {{name}}',
-                body: '{{name}} is quizmaster this turn — everyone else, no peeking at the screen.',
+                /**
+                 * Not "this turn" any more: the reading stays put until a question goes
+                 * all the way round unanswered, which can be a good while.
+                 */
+                body: '{{name}} reads until a question beats the table',
+                /**
+                 * The round's rule, said on the one screen with room for it. The
+                 * hand-off is rare now, so this is where it can be read rather than
+                 * skimmed past.
+                 */
+                rule: 'Get one right and you stay in. Every second question scores.',
                 action: "I'm {{name}} — show the question"
             },
             standings: {
