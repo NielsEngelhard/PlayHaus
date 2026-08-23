@@ -13,6 +13,7 @@ type GameType string
 const (
 	LeagueOfLettersSolo        GameType = "lol_solo"
 	LeagueOfLettersMultiplayer GameType = "lol_multiplayer"
+	PubquizRSingleDevice       GameType = "pq_single_device"
 )
 
 // timeFormat is the one wire format for timestamps: RFC 3339 with UTC written

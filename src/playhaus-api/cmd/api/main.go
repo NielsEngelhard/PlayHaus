@@ -17,6 +17,7 @@ import (
 	"playhaus-api/internal/config"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 )
@@ -61,22 +62,29 @@ func run() error {
 	}()
 
 	models := append([]any{&user.User{}, &auth.Session{}}, league_of_letters.Models()...)
+	models = append(models, pubquizr.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
-	logger.Info("database ready", "path", cfg.DBPath)
+	logger.Info("database ready", "path", cfg.DBPath)'
+	'
+	pubquizrStore := pubquizr.NewGormStore(db)
+	if err := pubquizr.Seed(context.Background(), pubquizrStore); err != nil {
+		return fmt.Errorf("seed quizzes: %w", err)
+	}
 
 	// --- wiring -------------------------------------------------------
 	userService := user.NewService(user.NewGormStore(db))
 	authService := auth.NewService(auth.NewGormStore(db), userService)
 	lolService := league_of_letters.NewService(league_of_letters.NewGormStore(db))
+	pubquizrService := pubquizr.NewService(pubquizrStore)
 
 	// Every live socket room in the process. Game-agnostic: the games claim their
 	// namespaces inside NewServer.
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, hub, logger, cfg.AllowedOrigins)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, hub, logger, cfg.AllowedOrigins)
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------

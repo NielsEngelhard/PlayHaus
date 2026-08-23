@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/pubquizr"
 )
 
 type ReconnectableGame struct {
@@ -37,7 +38,31 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapMultiplayerGamesToReconnectableGame(multiplayerGames)...)
 	}
 
+	// GET pub quizzes still on the table
+	quizzes, err := s.pubquizr.SessionsInProgress(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get pub quiz sessions to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapQuizSessionsToReconnectableGame(quizzes)...)
+	}
+
 	writeJSON(w, http.StatusOK, allGames)
+}
+
+func mapQuizSessionsToReconnectableGame(sessions []*pubquizr.Session) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(sessions))
+
+	for i := range sessions {
+		session := sessions[i]
+
+		mappedGames[i] = ReconnectableGame{
+			ID:        session.ID.String(),
+			Type:      PubquizRSingleDevice,
+			CreatedAt: session.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
 }
 
 func mapMultiplayerGamesToReconnectableGame(games []*league_of_letters.MultiplayerLeagueOfLettersGame) []ReconnectableGame {

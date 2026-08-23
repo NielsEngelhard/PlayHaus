@@ -1,0 +1,104 @@
+{
+  "slug": "2026-w34",
+  "title": "Weekquiz week 34",
+  "description": "De wekelijkse quiz van woensdag 19 augustus 2026.",
+  "weekOf": "2026-08-19",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Hoeveel provincies telt Nederland?", "category": "Nederland", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "Welk dier is het grootste zoogdier ter wereld?", "category": "Natuur", "answers": [{ "text": "Blauwe vinvis", "aliases": ["blauwe walvis"] }] },
+        { "prompt": "Wie schilderde De Nachtwacht?", "category": "Kunst", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Hoeveel spelers staan er bij voetbal per team op het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welk chemisch element heeft het symbool Au?", "category": "Wetenschap", "answers": [{ "text": "Goud" }] },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "category": "Geschiedenis", "answers": [{ "text": "1989" }] },
+        { "prompt": "Wat is de langste rivier van Europa?", "category": "Aardrijkskunde", "answers": [{ "text": "Wolga", "aliases": ["Volga"] }] },
+        { "prompt": "Hoe heet de grootste planeet van ons zonnestelsel?", "category": "Ruimte", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Welke Nederlandse stad staat bekend om de Cuypers-architectuur van het Centraal Station?", "category": "Nederland", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Hoeveel graden heeft een rechte hoek?", "category": "Wiskunde", "answers": [{ "text": "Negentig", "aliases": ["90"] }] },
+        { "prompt": "Wie schreef het Achterhuis?", "category": "Literatuur", "answers": [{ "text": "Anne Frank" }] },
+        { "prompt": "Welk land won het WK voetbal van 2010?", "category": "Sport", "answers": [{ "text": "Spanje" }] },
+        { "prompt": "Wat is de kleinste zelfstandige staat ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Vaticaanstad" }] },
+        { "prompt": "Hoeveel botten heeft een volwassen mens ongeveer?", "category": "Biologie", "answers": [{ "text": "206" }] },
+        { "prompt": "Welke zee ligt tussen Nederland en Engeland?", "category": "Aardrijkskunde", "answers": [{ "text": "Noordzee" }] },
+        { "prompt": "Hoe heet de munteenheid van Japan?", "category": "Economie", "answers": [{ "text": "Yen" }] },
+        { "prompt": "Welk orgaan pompt bloed door het lichaam?", "category": "Biologie", "answers": [{ "text": "Hart" }] },
+        { "prompt": "In welk land staat Machu Picchu?", "category": "Aardrijkskunde", "answers": [{ "text": "Peru" }] },
+        { "prompt": "Hoeveel kleuren telt een regenboog volgens de klassieke indeling?", "category": "Natuur", "answers": [{ "text": "Zeven", "aliases": ["7"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft de meeste tijdzones?", "options": [{ "text": "Rusland" }, { "text": "Frankrijk", "correct": true }, { "text": "Verenigde Staten" }, { "text": "China" }] },
+        { "prompt": "Wat is het diepste punt van de oceaan?", "options": [{ "text": "Puerto Rico Trog" }, { "text": "Java Trog" }, { "text": "Marianentrog", "correct": true }, { "text": "Tonga Trog" }] },
+        { "prompt": "Hoeveel hartkamers heeft een octopus?", "options": [{ "text": "Een" }, { "text": "Twee" }, { "text": "Drie", "correct": true }, { "text": "Vier" }] },
+        { "prompt": "Welke Nederlandse provincie is qua oppervlakte het grootst?", "options": [{ "text": "Friesland" }, { "text": "Gelderland", "correct": true }, { "text": "Noord-Brabant" }, { "text": "Groningen" }] },
+        { "prompt": "In welk jaar werd de euro als contant geld ingevoerd?", "options": [{ "text": "1999" }, { "text": "2002", "correct": true }, { "text": "2000" }, { "text": "2004" }] },
+        { "prompt": "Welke planeet draait als enige met de klok mee om zijn as?", "options": [{ "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Neptunus" }, { "text": "Mercurius" }] },
+        { "prompt": "Wie was de eerste secretaris-generaal van de Verenigde Naties?", "options": [{ "text": "Dag Hammarskjold" }, { "text": "Trygve Lie", "correct": true }, { "text": "U Thant" }, { "text": "Kurt Waldheim" }] },
+        { "prompt": "Hoeveel toetsen heeft een standaard QWERTY-toetsenbord ongeveer?", "options": [{ "text": "104", "correct": true }, { "text": "88" }, { "text": "120" }, { "text": "96" }] },
+        { "prompt": "Welk element is het meest voorkomend in het heelal?", "options": [{ "text": "Helium" }, { "text": "Waterstof", "correct": true }, { "text": "Zuurstof" }, { "text": "Koolstof" }] },
+        { "prompt": "Welke stad was in 1928 gastheer van de Olympische Zomerspelen?", "options": [{ "text": "Antwerpen" }, { "text": "Parijs" }, { "text": "Amsterdam", "correct": true }, { "text": "Berlijn" }] },
+        { "prompt": "Hoeveel talen worden er wereldwijd ongeveer gesproken?", "options": [{ "text": "Ongeveer 700" }, { "text": "Ongeveer 7000", "correct": true }, { "text": "Ongeveer 70000" }, { "text": "Ongeveer 200" }] },
+        { "prompt": "Wat is de wetenschappelijke naam voor het strottenhoofd?", "options": [{ "text": "Farynx" }, { "text": "Larynx", "correct": true }, { "text": "Trachea" }, { "text": "Bronchus" }] },
+        { "prompt": "Welk dier heeft de langste draagtijd?", "options": [{ "text": "Blauwe vinvis" }, { "text": "Neushoorn" }, { "text": "Olifant", "correct": true }, { "text": "Giraffe" }] },
+        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2006" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel botten heeft het menselijk lichaam bij de geboorte?", "answer": 270, "unit": "botten", "explanation": "Er groeien botten aan elkaar, dus een volwassene houdt er 206 over." },
+        { "prompt": "Hoeveel kilometer is de Afsluitdijk lang?", "answer": 32, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Stroopwafel" },
+        { "prompt": "Max Verstappen" },
+        { "prompt": "Wolkenkrabber" },
+        { "prompt": "Wasmachine" },
+        { "prompt": "Sinterklaas" },
+        { "prompt": "Zwaartekracht" },
+        { "prompt": "Fietsenstalling" },
+        { "prompt": "Pinguin" },
+        { "prompt": "Verjaardagskalender" },
+        { "prompt": "Rembrandt" },
+        { "prompt": "Onweer" },
+        { "prompt": "Draaimolen" },
+        { "prompt": "Kaasschaaf" },
+        { "prompt": "Marathon" },
+        { "prompt": "Poolster" },
+        { "prompt": "Kruidnoten" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Duitsland grenzen.", "answers": [{ "text": "Nederland" }, { "text": "Belgie" }, { "text": "Frankrijk" }, { "text": "Polen" }] },
+        { "prompt": "Wat weet je van Vincent van Gogh? Vier kernwoorden.", "answers": [{ "text": "Nederlands" }, { "text": "Schilder" }, { "text": "Zonnebloemen" }, { "text": "Oor" }] },
+        { "prompt": "Noem vier planeten uit ons zonnestelsel.", "answers": [{ "text": "Mercurius" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Saturnus" }] },
+        { "prompt": "Noem vier Nederlandse steden met meer dan 200.000 inwoners.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
+        { "prompt": "Noem vier Olympische sporten die op het water worden beoefend.", "answers": [{ "text": "Roeien" }, { "text": "Zeilen" }, { "text": "Kanoslalom" }, { "text": "Waterpolo" }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog in Nederland? Vier kernwoorden.", "answers": [{ "text": "1940" }, { "text": "Bezetting" }, { "text": "Hongerwinter" }, { "text": "Bevrijding" }] },
+        { "prompt": "Noem vier merken die luxe handtassen maken.", "answers": [{ "text": "Gucci" }, { "text": "Chanel" }, { "text": "Louis Vuitton" }, { "text": "Hermes" }] },
+        { "prompt": "Noem vier dieren die in de Nederlandse duinen leven.", "answers": [{ "text": "Konijn" }, { "text": "Vos" }, { "text": "Ree" }, { "text": "Zandhagedis" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel minuten duurt een halve voetbalwedstrijd?", "answers": [{ "text": "Vijfenveertig", "aliases": ["45"] }] },
+        { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
+        { "prompt": "Hoeveel zijden heeft een dodecaeder?", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "Welke Nederlandse schaatser won drie keer olympisch goud op de 1500 meter?", "answers": [{ "text": "Kjeld Nuis" }] },
+        { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] }
+      ]
+    }
+  ]
+}

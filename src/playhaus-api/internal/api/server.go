@@ -7,6 +7,7 @@ import (
 
 	"playhaus-api/internal/auth"
 	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 )
@@ -16,6 +17,7 @@ type Server struct {
 	users           *user.Service
 	auth            *auth.Service
 	leagueOfLetters *league_of_letters.Service
+	pubquizr        *pubquizr.Service
 	// rt is every live socket room. Handlers publish into it after a write; they
 	// never read game state out of it.
 	rt  *realtime.Hub
@@ -31,6 +33,7 @@ func NewServer(
 	users *user.Service,
 	authSvc *auth.Service,
 	leagueOfLetters *league_of_letters.Service,
+	pubquizrSvc *pubquizr.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
@@ -40,6 +43,7 @@ func NewServer(
 		users:            users,
 		auth:             authSvc,
 		leagueOfLetters:  leagueOfLetters,
+		pubquizr:         pubquizrSvc,
 		rt:               hub,
 		log:              log,
 		allowedOrigins:   allowedOrigins,
@@ -47,12 +51,14 @@ func NewServer(
 	}
 
 	// The socket layer knows nothing about any game; this is where League of
-	// Letters claims its namespace. PubquizR registers its own here later.
+	// Letters claims its namespace. PubquizR claims one when it learns to play
+	// across several phones -- a table sharing one device has nobody to notify.
 	hub.Register(lolNamespace, lolRealtime{server: s})
 
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
 	s.AddLeagueOfLettersHandlers()
+	s.AddPubquizRHandlers()
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 
@@ -91,6 +97,20 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/abandon", s.requireAuth(s.handleAbandonLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/multiplayer/{gameID}", s.requireAuth(s.handleGetMultiplayerGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))
+}
+
+// AddPubquizRHandlers registers the quiz routes. Browsing the shelf and starting a
+// game on one phone is all of it for now: the rounds are played out on the device
+// that started them, and the endpoints that record answers arrive with the screens
+// that submit them.
+func (s *Server) AddPubquizRHandlers() {
+	// Quizzes
+	s.mux.HandleFunc("GET /api/v1/pubquizr/quizzes", s.requireAuth(s.handleListQuizzes))
+	s.mux.HandleFunc("GET /api/v1/pubquizr/quizzes/{quizID}", s.requireAuth(s.handleGetQuiz))
+
+	// Single device -- one phone passed round the table
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device", s.requireAuth(s.handleStartSingleDeviceQuiz))
+	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleGetSingleDeviceSession))
 }
 
 // AddRealtimeHandlers registers the one socket route every game shares. It is not

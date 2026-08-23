@@ -1,0 +1,103 @@
+{
+  "slug": "movies",
+  "title": "At the Movies",
+  "description": "A night at the cinema, from silent film to the streaming era.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which 1975 Steven Spielberg film is widely credited with inventing the summer blockbuster?", "category": "Classics", "answers": [{ "text": "Jaws" }] },
+        { "prompt": "Who directed Pulp Fiction?", "category": "Directors", "answers": [{ "text": "Quentin Tarantino", "aliases": ["Tarantino"] }] },
+        { "prompt": "In The Wizard of Oz, what colour are Dorothy's slippers in the film?", "category": "Classics", "answers": [{ "text": "Ruby red", "aliases": ["red", "ruby"] }] },
+        { "prompt": "Which actor played Jack Dawson in Titanic?", "category": "Actors", "answers": [{ "text": "Leonardo DiCaprio", "aliases": ["DiCaprio"] }] },
+        { "prompt": "What is the name of the fictional African nation in Black Panther?", "category": "Superheroes", "answers": [{ "text": "Wakanda" }] },
+        { "prompt": "Which 1994 film features a character named Forrest?", "category": "Nineties", "answers": [{ "text": "Forrest Gump" }] },
+        { "prompt": "Who composed the scores for Star Wars, Jaws and Jurassic Park?", "category": "Music", "answers": [{ "text": "John Williams" }] },
+        { "prompt": "In The Matrix, which colour pill does Neo take?", "category": "Sci-fi", "answers": [{ "text": "Red" }] },
+        { "prompt": "Which studio produced Toy Story, the first fully computer-animated feature film?", "category": "Animation", "answers": [{ "text": "Pixar" }] },
+        { "prompt": "What is the highest-grossing film of all time, not adjusted for inflation?", "category": "Box office", "answers": [{ "text": "Avatar" }] },
+        { "prompt": "Which actress played Clarice Starling in The Silence of the Lambs?", "category": "Actors", "answers": [{ "text": "Jodie Foster" }] },
+        { "prompt": "In which city is Lost in Translation set?", "category": "Settings", "answers": [{ "text": "Tokyo" }] },
+        { "prompt": "Who directed Parasite, the first non-English film to win Best Picture?", "category": "Directors", "answers": [{ "text": "Bong Joon-ho", "aliases": ["Bong Joon Ho"] }] },
+        { "prompt": "What is the name of the hotel in The Shining?", "category": "Horror", "answers": [{ "text": "The Overlook Hotel", "aliases": ["Overlook"] }] },
+        { "prompt": "Which film features the line 'Here's looking at you, kid'?", "category": "Classics", "answers": [{ "text": "Casablanca" }] },
+        { "prompt": "How many Lord of the Rings films did Peter Jackson direct in the original trilogy?", "category": "Fantasy", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "Which animated film features a rat who wants to be a chef?", "category": "Animation", "answers": [{ "text": "Ratatouille" }] },
+        { "prompt": "Who played the Joker in The Dark Knight?", "category": "Superheroes", "answers": [{ "text": "Heath Ledger" }] },
+        { "prompt": "In Back to the Future, what car is converted into a time machine?", "category": "Sci-fi", "answers": [{ "text": "DeLorean", "aliases": ["DeLorean DMC-12"] }] },
+        { "prompt": "Which director is known for cameo appearances in nearly all of his own films, including Psycho and The Birds?", "category": "Directors", "answers": [{ "text": "Alfred Hitchcock", "aliases": ["Hitchcock"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which film won the very first Academy Award for Best Picture?", "options": [{ "text": "Wings", "correct": true }, { "text": "Sunrise" }, { "text": "The Jazz Singer" }, { "text": "Metropolis" }] },
+        { "prompt": "How long is the theatrical cut of Lawrence of Arabia, roughly?", "options": [{ "text": "2 hours 10 minutes" }, { "text": "3 hours 47 minutes", "correct": true }, { "text": "4 hours 30 minutes" }, { "text": "2 hours 45 minutes" }] },
+        { "prompt": "Which of these actors has never won an acting Oscar?", "options": [{ "text": "Glenn Close", "correct": true }, { "text": "Frances McDormand" }, { "text": "Daniel Day-Lewis" }, { "text": "Meryl Streep" }] },
+        { "prompt": "In Alien, what is the name of the ship?", "options": [{ "text": "Sulaco" }, { "text": "Nostromo", "correct": true }, { "text": "Prometheus" }, { "text": "Serenity" }] },
+        { "prompt": "Which country produced the film Rashomon?", "options": [{ "text": "China" }, { "text": "South Korea" }, { "text": "Japan", "correct": true }, { "text": "Taiwan" }] },
+        { "prompt": "What was the budget of The Blair Witch Project, roughly?", "options": [{ "text": "$60,000", "correct": true }, { "text": "$600,000" }, { "text": "$6 million" }, { "text": "$1.2 million" }] },
+        { "prompt": "Who wrote the screenplay for Chinatown?", "options": [{ "text": "Robert Towne", "correct": true }, { "text": "William Goldman" }, { "text": "Paul Schrader" }, { "text": "Roman Polanski" }] },
+        { "prompt": "Which film is NOT directed by Christopher Nolan?", "options": [{ "text": "Memento" }, { "text": "Prisoners", "correct": true }, { "text": "Insomnia" }, { "text": "Following" }] },
+        { "prompt": "In what year was the first Cannes Film Festival actually held?", "options": [{ "text": "1939" }, { "text": "1946", "correct": true }, { "text": "1952" }, { "text": "1929" }] },
+        { "prompt": "Which actor turned down the lead role in Die Hard before Bruce Willis took it?", "options": [{ "text": "Burt Reynolds" }, { "text": "Sylvester Stallone" }, { "text": "Frank Sinatra", "correct": true }, { "text": "Harrison Ford" }] },
+        { "prompt": "What is the aspect ratio commonly called 'CinemaScope'?", "options": [{ "text": "1.85:1" }, { "text": "2.35:1", "correct": true }, { "text": "1.33:1" }, { "text": "1.66:1" }] },
+        { "prompt": "Which Studio Ghibli film won the Academy Award for Best Animated Feature?", "options": [{ "text": "Princess Mononoke" }, { "text": "Spirited Away", "correct": true }, { "text": "My Neighbour Totoro" }, { "text": "Howl's Moving Castle" }] },
+        { "prompt": "Who was the first woman to win the Academy Award for Best Director?", "options": [{ "text": "Sofia Coppola" }, { "text": "Jane Campion" }, { "text": "Kathryn Bigelow", "correct": true }, { "text": "Chloe Zhao" }] },
+        { "prompt": "In Citizen Kane, what does 'Rosebud' turn out to be?", "options": [{ "text": "A sledge", "correct": true }, { "text": "A racehorse" }, { "text": "A garden" }, { "text": "A woman" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many minutes long is the theatrical cut of The Godfather?", "answer": 175, "unit": "minutes", "explanation": "Two hours and fifty-five minutes." },
+        { "prompt": "In what year was the first feature-length film with synchronised dialogue, The Jazz Singer, released?", "answer": 1927, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Popcorn" },
+        { "prompt": "Meryl Streep" },
+        { "prompt": "Lightsaber" },
+        { "prompt": "Red carpet" },
+        { "prompt": "Godzilla" },
+        { "prompt": "Cliffhanger" },
+        { "prompt": "Stunt double" },
+        { "prompt": "Charlie Chaplin" },
+        { "prompt": "Sequel" },
+        { "prompt": "Green screen" },
+        { "prompt": "Popcorn machine" },
+        { "prompt": "James Bond" },
+        { "prompt": "Subtitles" },
+        { "prompt": "Zombie" },
+        { "prompt": "Oscar statuette" },
+        { "prompt": "Time travel" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four films in the original Star Wars trilogy plus its first prequel.", "answers": [{ "text": "A New Hope" }, { "text": "The Empire Strikes Back" }, { "text": "Return of the Jedi" }, { "text": "The Phantom Menace" }] },
+        { "prompt": "What are the four films Alfred Hitchcock made starring James Stewart?", "answers": [{ "text": "Rope" }, { "text": "Rear Window" }, { "text": "The Man Who Knew Too Much" }, { "text": "Vertigo" }] },
+        { "prompt": "Name four actors who have played James Bond.", "answers": [{ "text": "Sean Connery" }, { "text": "Roger Moore" }, { "text": "Pierce Brosnan" }, { "text": "Daniel Craig" }] },
+        { "prompt": "What do you know about Alfred Hitchcock? Four keywords.", "answers": [{ "text": "British" }, { "text": "Director" }, { "text": "Suspense" }, { "text": "Cameos" }] },
+        { "prompt": "Name four Pixar films released before 2010.", "answers": [{ "text": "Toy Story" }, { "text": "Finding Nemo" }, { "text": "The Incredibles" }, { "text": "WALL-E" }] },
+        { "prompt": "Name four films that have won Best Picture in the 2010s.", "answers": [{ "text": "The Artist" }, { "text": "12 Years a Slave" }, { "text": "Moonlight" }, { "text": "Parasite" }] },
+        { "prompt": "What are four of the highest-grossing animated films of all time?", "answers": [{ "text": "The Lion King" }, { "text": "Frozen II" }, { "text": "Ne Zha 2" }, { "text": "Inside Out 2" }] },
+        { "prompt": "Name four countries whose films have won Best International Feature in the last two decades.", "answers": [{ "text": "South Korea" }, { "text": "Japan" }, { "text": "Chile" }, { "text": "Denmark" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Who directed 2001: A Space Odyssey?", "answers": [{ "text": "Stanley Kubrick", "aliases": ["Kubrick"] }] },
+        { "prompt": "Which film features a shark called Bruce behind the scenes?", "answers": [{ "text": "Jaws" }] },
+        { "prompt": "What is the name of the robot in WALL-E who arrives on Earth looking for plant life?", "answers": [{ "text": "EVE" }] },
+        { "prompt": "Which actor has won the most Best Actor Oscars, with three?", "answers": [{ "text": "Daniel Day-Lewis" }] },
+        { "prompt": "In which film would you find the Bates Motel?", "answers": [{ "text": "Psycho" }] },
+        { "prompt": "Who played Ellen Ripley in the Alien films?", "answers": [{ "text": "Sigourney Weaver" }] }
+      ]
+    }
+  ]
+}

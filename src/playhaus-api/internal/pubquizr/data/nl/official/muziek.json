@@ -1,0 +1,103 @@
+{
+  "slug": "muziek",
+  "title": "Muziek door de jaren heen",
+  "description": "Van klassiek tot de hitlijsten van vorige week.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Nederlandse band bracht het nummer Radar Love uit?", "category": "Nederpop", "answers": [{ "text": "Golden Earring" }] },
+        { "prompt": "Hoeveel snaren heeft een standaard gitaar?", "category": "Instrumenten", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welke componist schreef de Negende Symfonie met het Ode an die Freude?", "category": "Klassiek", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] },
+        { "prompt": "Uit welke stad komt de band The Beatles?", "category": "Popgeschiedenis", "answers": [{ "text": "Liverpool" }] },
+        { "prompt": "Welke artiest staat bekend als de King of Pop?", "category": "Popgeschiedenis", "answers": [{ "text": "Michael Jackson" }] },
+        { "prompt": "Welk Nederlands songfestivalduo won in 2019 met Arcade?", "category": "Songfestival", "answers": [{ "text": "Duncan Laurence" }] },
+        { "prompt": "Hoe heet het bekendste festival dat elk jaar in Biddinghuizen wordt gehouden?", "category": "Festivals", "answers": [{ "text": "Lowlands" }] },
+        { "prompt": "Welk instrument bespeelde Miles Davis?", "category": "Jazz", "answers": [{ "text": "Trompet" }] },
+        { "prompt": "Welke band bracht het album The Dark Side of the Moon uit?", "category": "Rock", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Wie zong het origineel van Ik Neem Je Mee?", "category": "Nederpop", "answers": [{ "text": "Gers Pardoel" }] },
+        { "prompt": "Hoeveel toetsen heeft een standaard piano?", "category": "Instrumenten", "answers": [{ "text": "88" }] },
+        { "prompt": "Welke Zweedse groep won het songfestival in 1974 met Waterloo?", "category": "Songfestival", "answers": [{ "text": "ABBA" }] },
+        { "prompt": "Welke zangeres bracht het album 21 uit?", "category": "Hitlijsten", "answers": [{ "text": "Adele" }] },
+        { "prompt": "Welk muziekgenre ontstond in de jaren zeventig in de Bronx in New York?", "category": "Genres", "answers": [{ "text": "Hiphop" }] },
+        { "prompt": "Hoe heet de vaste dirigent van een orkest in het Engels?", "category": "Klassiek", "answers": [{ "text": "Conductor" }] },
+        { "prompt": "Welke Nederlandse dj stond jarenlang bovenaan de DJ Mag Top 100 met tracks als Animals?", "category": "Dance", "answers": [{ "text": "Martin Garrix" }] },
+        { "prompt": "Welke groep zong Bohemian Rhapsody?", "category": "Rock", "answers": [{ "text": "Queen" }] },
+        { "prompt": "In welk jaar overleed Elvis Presley?", "category": "Popgeschiedenis", "answers": [{ "text": "1977" }] },
+        { "prompt": "Welk Nederlands lied wordt traditioneel op Koningsdag gedraaid en begint met de regel over oranje boven?", "category": "Nederpop", "answers": [{ "text": "Oranje Boven" }] },
+        { "prompt": "Welke Amerikaanse zangeres bracht het album Folklore uit tijdens de pandemie?", "category": "Hitlijsten", "answers": [{ "text": "Taylor Swift" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke toonsoort heeft geen kruisen of mollen?", "options": [{ "text": "C majeur", "correct": true }, { "text": "G majeur" }, { "text": "F majeur" }, { "text": "D majeur" }] },
+        { "prompt": "Hoeveel symfonieen schreef Gustav Mahler die hij zelf voltooide?", "options": [{ "text": "Zeven" }, { "text": "Negen", "correct": true }, { "text": "Elf" }, { "text": "Vijf" }] },
+        { "prompt": "Welk instrument speelde John Coltrane?", "options": [{ "text": "Piano" }, { "text": "Contrabas" }, { "text": "Saxofoon", "correct": true }, { "text": "Drums" }] },
+        { "prompt": "In welk jaar werd het eerste Eurovisie Songfestival gehouden?", "options": [{ "text": "1956", "correct": true }, { "text": "1961" }, { "text": "1949" }, { "text": "1965" }] },
+        { "prompt": "Welk album van Pink Floyd stond het langst in de Amerikaanse albumlijst?", "options": [{ "text": "The Wall" }, { "text": "Wish You Were Here" }, { "text": "The Dark Side of the Moon", "correct": true }, { "text": "Animals" }] },
+        { "prompt": "Wie schreef de opera Der Ring des Nibelungen?", "options": [{ "text": "Richard Strauss" }, { "text": "Richard Wagner", "correct": true }, { "text": "Giuseppe Verdi" }, { "text": "Giacomo Puccini" }] },
+        { "prompt": "Hoeveel Grammy Awards won Beyonce in totaal in haar carriere, bij benadering?", "options": [{ "text": "Meer dan 30", "correct": true }, { "text": "Tussen de 10 en 20" }, { "text": "Minder dan 10" }, { "text": "Precies 25" }] },
+        { "prompt": "Welke Nederlandse band scoorde een wereldhit met Venus?", "options": [{ "text": "Focus" }, { "text": "Shocking Blue", "correct": true }, { "text": "Golden Earring" }, { "text": "The Cats" }] },
+        { "prompt": "Wat betekent de muziekterm 'allegro'?", "options": [{ "text": "Langzaam" }, { "text": "Snel en levendig", "correct": true }, { "text": "Zacht" }, { "text": "Plechtig" }] },
+        { "prompt": "Welk instrument is GEEN koperblazer?", "options": [{ "text": "Trombone" }, { "text": "Hoorn" }, { "text": "Klarinet", "correct": true }, { "text": "Tuba" }] },
+        { "prompt": "In welk jaar viel de band The Beatles officieel uit elkaar?", "options": [{ "text": "1968" }, { "text": "1970", "correct": true }, { "text": "1972" }, { "text": "1969" }] },
+        { "prompt": "Welke stad geldt als de bakermat van techno?", "options": [{ "text": "Berlijn" }, { "text": "Detroit", "correct": true }, { "text": "Chicago" }, { "text": "Rotterdam" }] },
+        { "prompt": "Hoeveel muzikanten telt een standaard strijkkwartet?", "options": [{ "text": "Vier", "correct": true }, { "text": "Vijf" }, { "text": "Drie" }, { "text": "Zes" }] },
+        { "prompt": "Welke artiest bracht het album Nevermind uit?", "options": [{ "text": "Pearl Jam" }, { "text": "Soundgarden" }, { "text": "Nirvana", "correct": true }, { "text": "Alice in Chains" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel seconden duurt Bohemian Rhapsody van Queen?", "answer": 355, "unit": "seconden", "explanation": "Vijf minuten en 55 seconden." },
+        { "prompt": "Hoeveel bezoekers trekt Lowlands ongeveer per editie?", "answer": 55000, "unit": "bezoekers" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Drumstel" },
+        { "prompt": "Andre Rieu" },
+        { "prompt": "Karaoke" },
+        { "prompt": "Vinylplaat" },
+        { "prompt": "Beyonce" },
+        { "prompt": "Oordopjes" },
+        { "prompt": "Fanfare" },
+        { "prompt": "Songfestival" },
+        { "prompt": "Mondharmonica" },
+        { "prompt": "Koptelefoon" },
+        { "prompt": "Bladmuziek" },
+        { "prompt": "Rapper" },
+        { "prompt": "Kerkorgel" },
+        { "prompt": "Tourbus" },
+        { "prompt": "Metronoom" },
+        { "prompt": "Playback" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier leden van The Beatles.", "answers": [{ "text": "John Lennon" }, { "text": "Paul McCartney" }, { "text": "George Harrison" }, { "text": "Ringo Starr" }] },
+        { "prompt": "Wat weet je van Wolfgang Amadeus Mozart? Vier kernwoorden.", "answers": [{ "text": "Oostenrijks" }, { "text": "Componist" }, { "text": "Wonderkind" }, { "text": "Requiem" }] },
+        { "prompt": "Noem vier instrumenten uit een symfonieorkest.", "answers": [{ "text": "Viool" }, { "text": "Cello" }, { "text": "Hobo" }, { "text": "Pauken" }] },
+        { "prompt": "Noem vier Nederlandse acts die het songfestival wonnen of in de top drie eindigden.", "answers": [{ "text": "Duncan Laurence" }, { "text": "Teach-In" }, { "text": "Anouk" }, { "text": "The Common Linnets" }] },
+        { "prompt": "Noem vier muziekgenres die in de jaren tachtig ontstonden of doorbraken.", "answers": [{ "text": "House" }, { "text": "Hiphop" }, { "text": "Synthpop" }, { "text": "Thrash metal" }] },
+        { "prompt": "Noem vier albums van David Bowie.", "answers": [{ "text": "Ziggy Stardust" }, { "text": "Heroes" }, { "text": "Let's Dance" }, { "text": "Blackstar" }] },
+        { "prompt": "Wat weet je van het Concertgebouw in Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Amsterdam" }, { "text": "Akoestiek" }, { "text": "1888" }, { "text": "Orkest" }] },
+        { "prompt": "Noem vier Nederlandse dj's die internationaal doorbraken.", "answers": [{ "text": "Tiesto" }, { "text": "Armin van Buuren" }, { "text": "Martin Garrix" }, { "text": "Hardwell" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke componist werd doof en bleef toch componeren?", "answers": [{ "text": "Beethoven" }] },
+        { "prompt": "Welke band zong Stairway to Heaven?", "answers": [{ "text": "Led Zeppelin" }] },
+        { "prompt": "Hoeveel lijnen heeft een muzikale notenbalk?", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welke Nederlandse zanger stond bekend als de Zangeres Zonder Naam haar mannelijke tegenhanger en zong Het Kleine Cafe aan de Haven?", "answers": [{ "text": "Vader Abraham" }] },
+        { "prompt": "Welke stad organiseert jaarlijks het Sziget-festival?", "answers": [{ "text": "Boedapest" }] },
+        { "prompt": "Wie schreef De Vier Jaargetijden?", "answers": [{ "text": "Vivaldi", "aliases": ["Antonio Vivaldi"] }] }
+      ]
+    }
+  ]
+}

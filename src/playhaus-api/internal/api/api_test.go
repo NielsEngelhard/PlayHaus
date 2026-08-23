@@ -13,6 +13,7 @@ import (
 	"playhaus-api/internal/auth"
 	league_of_letters "playhaus-api/internal/league-of-letters"
 	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 
@@ -43,6 +44,7 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	})
 
 	models := append([]any{&user.User{}, &auth.Session{}}, league_of_letters.Models()...)
+	models = append(models, pubquizr.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		t.Fatalf("migrate: %v", err)
 	}
@@ -50,13 +52,14 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	users := user.NewService(user.NewGormStore(db))
 	authSvc := auth.NewService(auth.NewGormStore(db), users)
 	lol := league_of_letters.NewService(league_of_letters.NewGormStore(db))
+	quizzes := pubquizr.NewService(pubquizr.NewGormStore(db))
 
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))
 
 	hub := realtime.NewHub(log)
 	t.Cleanup(hub.Close)
 
-	handler := NewServer(users, authSvc, lol, hub, log, testOrigins)
+	handler := NewServer(users, authSvc, lol, quizzes, hub, log, testOrigins)
 	return handler, db
 }
 
