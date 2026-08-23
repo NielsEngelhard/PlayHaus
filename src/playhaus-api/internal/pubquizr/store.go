@@ -239,3 +239,84 @@ func (s *GormStore) SessionsInProgressByUserID(ctx context.Context, userID strin
 
 	return sessions, nil
 }
+
+// AttemptsOn is how many seats have already had a go at one dealt question.
+//
+// Counted rather than stored on the question, because the rows are already there:
+// round 1 writes one per seat that tried, which is exactly what "how far down the
+// line has this passed" means. See the note on SessionAnswer.
+func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error) {
+	var count int64
+
+	err := s.db.WithContext(ctx).
+		Model(&SessionAnswer{}).
+		Where("session_question_id = ?", sessionQuestionID).
+		Count(&count).Error
+	if err != nil {
+		return 0, fmt.Errorf("count attempts: %w", err)
+	}
+
+	return int(count), nil
+}
+
+// RecordAttempt writes one go at a question and whatever it changed, together.
+//
+// One transaction because the four writes are one fact. A score raised without the
+// answer row beside it would be a point nobody can account for, and a question moved
+// on without the session's position following it would leave the table reading a
+// question the session no longer thinks it is on.
+//
+// player and question may be nil -- a wrong answer that still leaves the question
+// open changes neither.
+func (s *GormStore) RecordAttempt(
+	ctx context.Context,
+	session *Session,
+	question *SessionQuestion,
+	player *SessionPlayer,
+	attempt *SessionAnswer,
+) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := tx.Create(attempt).Error; err != nil {
+			return fmt.Errorf("insert attempt: %w", err)
+		}
+
+		if question != nil {
+			err := tx.Model(&SessionQuestion{}).
+				Where("id = ?", question.ID).
+				Updates(map[string]any{"status": question.Status, "points": question.Points}).Error
+			if err != nil {
+				return fmt.Errorf("update question: %w", err)
+			}
+		}
+
+		if player != nil {
+			err := tx.Model(&SessionPlayer{}).
+				Where("session_id = ? AND seat = ?", session.ID, player.Seat).
+				Update("score", player.Score).Error
+			if err != nil {
+				return fmt.Errorf("update score: %w", err)
+			}
+		}
+
+		err := tx.Model(&Session{}).
+			Where("id = ?", session.ID).
+			Updates(map[string]any{
+				"current_round":    session.CurrentRound,
+				"current_position": session.CurrentPosition,
+				"quiz_master_seat": session.QuizMasterSeat,
+				"status":           session.Status,
+				"completed_at":     session.CompletedAt,
+				"updated_at":       session.UpdatedAt,
+			}).Error
+		if err != nil {
+			return fmt.Errorf("update session: %w", err)
+		}
+
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("record attempt: %w", err)
+	}
+
+	return nil
+}

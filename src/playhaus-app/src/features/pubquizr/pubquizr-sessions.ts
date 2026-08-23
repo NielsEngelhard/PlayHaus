@@ -42,6 +42,14 @@ export interface QuizSession {
     /** Whose turn it is to read the questions out. Moves round the table as it goes. */
     quizMasterSeat: number
     totalRounds: number
+    /**
+     * Whose turn it is to answer the question on screen, and null when nobody is being
+     * asked anything — a finished quiz, or a round this build cannot play yet.
+     *
+     * The server's answer, not the app's. It depends on how many seats have already had
+     * a go at this question, which only the server counts.
+     */
+    answeringSeat: number | null
 
     players: QuizSessionPlayer[]
     questions: QuizSessionQuestion[]
@@ -68,4 +76,31 @@ export async function startSingleDeviceQuizRequest(
         method: 'POST',
         body: JSON.stringify({ quizId, playerNames })
     });
+}
+
+/** Reads a session back — the snapshot the play screen opens on. */
+export async function getSingleDeviceSessionRequest(sessionId: string): Promise<QuizSession> {
+    return request<QuizSession>(`/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}`);
+}
+
+/**
+ * The quizmaster's ruling on what they just heard, and the game one step further on.
+ *
+ * Says which question and whether it was right, and nothing else. Who was answering,
+ * what it was worth and who reads next are all worked out by the server — a client that
+ * got to name the seat could hand a point to whoever it liked.
+ *
+ * `sessionQuestionId` is the guard against a screen left open and against a second tap
+ * on the same button: a verdict naming a question the table has moved past is refused
+ * with `stale_turn` rather than quietly scoring the question after it.
+ */
+export async function recordOpenVerdictRequest(
+    sessionId: string,
+    sessionQuestionId: string,
+    correct: boolean
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/verdict`,
+        { method: 'POST', body: JSON.stringify({ sessionQuestionId, correct }) }
+    );
 }

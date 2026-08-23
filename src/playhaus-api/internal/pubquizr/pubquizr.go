@@ -84,45 +84,30 @@ const (
 )
 
 var (
-	ErrQuizNotFound    = errors.New("quiz not found")
-	ErrSessionNotFound = errors.New("session not found")
-	ErrInvalidInput    = errors.New("invalid input")
-
+	ErrQuizNotFound        = errors.New("quiz not found")
+	ErrSessionNotFound     = errors.New("session not found")
+	ErrInvalidInput        = errors.New("invalid input")
 	ErrTooFewPlayers       = errors.New("not enough players")
 	ErrTooManyPlayers      = errors.New("too many players")
 	ErrDuplicatePlayerName = errors.New("two players share a name")
-
-	// ErrQuizTooSmall is a quiz that cannot seat the table that asked for it: round 2
-	// hands every player their own question and round 4 hands every player two words,
-	// so how much content a quiz needs depends on how many of you there are.
-	ErrQuizTooSmall = errors.New("quiz does not have enough questions for this many players")
+	ErrQuizTooSmall        = errors.New("quiz does not have enough questions for this many players")
+	ErrSessionOver         = errors.New("session is not in progress")
+	ErrWrongRound          = errors.New("that round is not playable yet")
+	ErrStaleTurn           = errors.New("that question is no longer the current one")
 )
 
-// --- content -------------------------------------------------------------
-
-// Quiz is one authored quiz, written for one language.
-//
-// A quiz belongs to a locale rather than carrying translations: the jokes, the
-// wordplay and the words you have to describe do not survive being moved between
-// languages, so a Dutch quiz and an English quiz are two quizzes that may happen to
-// share a slug.
 type Quiz struct {
-	ID     uuid.UUID   `gorm:"primaryKey;type:text"`
-	Slug   string      `gorm:"not null;uniqueIndex:idx_pq_quiz_slug,priority:2;index:idx_pq_quiz_shelf,priority:3"`
-	Locale i18n.Locale `gorm:"not null;uniqueIndex:idx_pq_quiz_slug,priority:1;index:idx_pq_quiz_shelf,priority:1"`
-
-	Category    Category `gorm:"not null;index:idx_pq_quiz_shelf,priority:2"`
-	Title       string   `gorm:"not null"`
-	Description string   `gorm:"not null"`
-
+	ID          uuid.UUID   `gorm:"primaryKey;type:text"`
+	Slug        string      `gorm:"not null;uniqueIndex:idx_pq_quiz_slug,priority:2;index:idx_pq_quiz_shelf,priority:3"`
+	Locale      i18n.Locale `gorm:"not null;uniqueIndex:idx_pq_quiz_slug,priority:1;index:idx_pq_quiz_shelf,priority:1"`
+	Category    Category    `gorm:"not null;index:idx_pq_quiz_shelf,priority:2"`
+	Title       string      `gorm:"not null"`
+	Description string      `gorm:"not null"`
 	PublishedAt *time.Time
-
-	ContentHash string `gorm:"not null;default:''"`
-
-	Questions []Question `gorm:"foreignKey:QuizID;constraint:OnDelete:CASCADE"`
-
-	CreatedAt time.Time `gorm:"not null"`
-	UpdatedAt time.Time `gorm:"not null"`
+	ContentHash string     `gorm:"not null;default:''"`
+	Questions   []Question `gorm:"foreignKey:QuizID;constraint:OnDelete:CASCADE"`
+	CreatedAt   time.Time  `gorm:"not null"`
+	UpdatedAt   time.Time  `gorm:"not null"`
 }
 
 func (Quiz) TableName() string { return "pq_quizzes" }
@@ -239,16 +224,10 @@ func (Session) TableName() string { return "pq_sessions" }
 // other player in this codebase is a users row; this is the first that is not.
 type SessionPlayer struct {
 	SessionID uuid.UUID `gorm:"primaryKey;type:text"`
-	// Seat is where they are sitting, left to right, because the phone gets turned
-	// round the table and the turn order has to match the room.
-	Seat int `gorm:"primaryKey"`
-
-	Name  string `gorm:"not null"`
-	Score int    `gorm:"not null;default:0"`
-	// Color is one of user.Colors, so a seat is drawn with the same six swatches
-	// the rest of the app uses.
-	Color string `gorm:"not null"`
-
+	Seat      int       `gorm:"primaryKey"` // Seat is where they are sitting, left to right, because the phone gets turned round the table
+	Name      string    `gorm:"not null"`
+	Score     int       `gorm:"not null;default:0"`
+	Color     string    `gorm:"not null"`
 	CreatedAt time.Time `gorm:"not null"`
 }
 

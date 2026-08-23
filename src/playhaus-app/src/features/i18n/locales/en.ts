@@ -427,6 +427,46 @@ export const en = {
             },
             start: 'Start quiz'
         },
+        play: {
+            loading: 'Setting up the table…',
+            close: 'Leave the quiz',
+            youAreQuizmaster: "You're quizmaster",
+            /** "Round 1 · Open" — the round, and what kind of round it is. */
+            roundLabel: 'Round {{round}} · {{kind}}',
+            rounds: { open: 'Open' },
+            /**
+             * Split in two so the total can be greyed out beside the number. Never
+             * `count`: that is the one option name i18next treats as a plural trigger,
+             * and there are no plural forms behind it. See `common.time`.
+             */
+            questionNumber: 'Question {{number}}',
+            questionTotal: ' of {{total}}',
+            readAloud: 'Read this out loud',
+            scoresThisRound: 'Scores this round',
+            onlyYouSeeThis: 'Only you see this',
+            alsoAccept: 'Also accept: {{answers}}',
+            isAnswering: '{{name}} is answering',
+            wrong: 'Wrong',
+            correct: 'Correct',
+            /** Read out for the buttons, which are two words on their own. */
+            markWrong: 'Mark {{name}} wrong',
+            markCorrect: 'Mark {{name}} correct',
+            wrongPassesTo: 'Wrong passes the turn to {{name}}',
+            /** Nobody left to ask: the question dies here rather than passing on. */
+            wrongEndsQuestion: 'Nobody else to ask — wrong ends this question',
+            handoff: {
+                step: 'Round {{round}} · question {{number}} of {{total}}',
+                /** Broken over two lines by the design, which the app does not force. */
+                title: 'Pass the phone to {{name}}',
+                body: '{{name}} is quizmaster this turn — everyone else, no peeking at the screen.',
+                action: "I'm {{name}} — show the question"
+            },
+            standings: {
+                title: 'Round {{round}} done',
+                description: 'How the table stands with the first round behind you.',
+                nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved — the quiz is waiting where you left it.'
+            }
+        },
         /**
          * Written here rather than passed through from the API, for the reason
          * `lol.errors` spells out: the server's own wording is English, and some of it

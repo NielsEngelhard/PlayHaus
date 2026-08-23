@@ -400,6 +400,37 @@ export const nl: Catalog = {
             },
             start: 'Start de quiz'
         },
+        play: {
+            loading: 'De tafel klaarzetten…',
+            close: 'Quiz verlaten',
+            youAreQuizmaster: 'Jij bent quizmaster',
+            roundLabel: 'Ronde {{round}} · {{kind}}',
+            rounds: { open: 'Open' },
+            questionNumber: 'Vraag {{number}}',
+            questionTotal: ' van {{total}}',
+            readAloud: 'Lees dit hardop voor',
+            scoresThisRound: 'Stand deze ronde',
+            onlyYouSeeThis: 'Alleen jij ziet dit',
+            alsoAccept: 'Ook goed: {{answers}}',
+            isAnswering: '{{name}} is aan de beurt',
+            wrong: 'Fout',
+            correct: 'Goed',
+            markWrong: 'Reken {{name}} fout',
+            markCorrect: 'Reken {{name}} goed',
+            wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
+            wrongEndsQuestion: 'Niemand meer over — fout beëindigt deze vraag',
+            handoff: {
+                step: 'Ronde {{round}} · vraag {{number}} van {{total}}',
+                title: 'Geef de telefoon aan {{name}}',
+                body: '{{name}} is deze beurt quizmaster — de rest niet meekijken.',
+                action: 'Ik ben {{name}} — laat de vraag zien'
+            },
+            standings: {
+                title: 'Ronde {{round}} klaar',
+                description: 'Zo staat de tafel ervoor na de eerste ronde.',
+                nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard — de quiz wacht waar jullie gebleven waren.'
+            }
+        },
         errors: {
             expired: 'Je bent uitgelogd. Log opnieuw in om een quiz te starten.',
             quizGone: 'Die quiz bestaat niet meer. Kies een andere.',

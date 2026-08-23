@@ -22,6 +22,8 @@ type Store interface {
 	CreateSession(ctx context.Context, session *Session) error
 	SessionByID(ctx context.Context, id uuid.UUID) (*Session, error)
 	SessionsInProgressByUserID(ctx context.Context, userID string) ([]*Session, error)
+	AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error)
+	RecordAttempt(ctx context.Context, session *Session, question *SessionQuestion, player *SessionPlayer, attempt *SessionAnswer) error
 }
 
 // Pagination defaults for the quiz shelf. PageSize is clamped rather than refused:
@@ -356,4 +358,168 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 	}
 
 	return deal, nil
+}
+
+// VerdictInput is the quizmaster's ruling on what they just heard.
+//
+// Deliberately not carrying the seat. Who is answering is the game's own business --
+// it falls out of who is reading and how many people have already had a go -- and a
+// client that got to name it could hand a point to whoever it liked.
+type VerdictInput struct {
+	SessionID uuid.UUID
+	OwnerID   string
+	// SessionQuestionID is the question the verdict was given for. It has to be
+	// named so a screen left open, or a second tap on the same button, is refused
+	// rather than silently scoring the question after it.
+	SessionQuestionID uuid.UUID
+	Correct           bool
+	// Said is what the player actually answered, if the quizmaster typed it in.
+	// Kept only so the table can argue about it afterwards.
+	Said string
+}
+
+// RecordOpenVerdict scores one go at a round 1 question and moves the game on.
+//
+// Three things can happen. A correct answer takes the point, ends the question and
+// hands the reading to whoever got it. A wrong answer with somebody left to ask
+// passes it along and changes nothing else. A wrong answer with nobody left ends the
+// question for no points, and the reading moves one seat on, because the alternative
+// -- leaving it with the seat who just failed to get an answer out of anybody -- is
+// the one case where "the seat that just answered reads next" has no seat to name.
+func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
+	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundOpen {
+		return nil, ErrWrongRound
+	}
+
+	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
+	if question == nil {
+		return nil, ErrStaleTurn
+	}
+	if question.ID != in.SessionQuestionID {
+		return nil, ErrStaleTurn
+	}
+
+	attempts, err := s.store.AttemptsOn(ctx, question.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	seat := AnsweringSeat(session.QuizMasterSeat, attempts, len(session.Players))
+	if seat < 0 {
+		// The question has already been round the whole table. Nobody is being
+		// asked anything, so there is no verdict to give.
+		return nil, ErrStaleTurn
+	}
+
+	player := session.PlayerAt(seat)
+	if player == nil {
+		return nil, fmt.Errorf("record verdict: no player in seat %d", seat)
+	}
+
+	attempt := &SessionAnswer{
+		ID:                uuid.New(),
+		SessionID:         session.ID,
+		SessionQuestionID: question.ID,
+		Seat:              &seat,
+		Correct:           in.Correct,
+		CreatedAt:         time.Now().UTC(),
+	}
+	if said := strings.TrimSpace(in.Said); said != "" {
+		attempt.Text = &said
+	}
+
+	// Only set on the rows that actually changed. `RecordAttempt` writes what it is
+	// given and leaves the rest alone, so a wrong answer mid-question is one insert.
+	var scored *SessionPlayer
+	var closed *SessionQuestion
+
+	switch {
+	case in.Correct:
+		attempt.Points = OpenQuestionPoints
+
+		player.Score += OpenQuestionPoints
+		scored = player
+
+		question.Status = QuestionDone
+		question.Points = OpenQuestionPoints
+		closed = question
+
+		// Whoever took it reads the next one.
+		session.QuizMasterSeat = seat
+		s.advance(session)
+
+	case AnsweringSeat(session.QuizMasterSeat, attempts+1, len(session.Players)) < 0:
+		// Wrong, and that was the last seat with a go left.
+		question.Status = QuestionDone
+		closed = question
+
+		session.QuizMasterSeat = (session.QuizMasterSeat + 1) % len(session.Players)
+		s.advance(session)
+
+	default:
+		// Wrong, but the question is still alive: it simply passes along. Nothing
+		// about the session moves -- the next answering seat falls out of the extra
+		// attempt row this writes.
+	}
+
+	session.UpdatedAt = time.Now().UTC()
+
+	if err := s.store.RecordAttempt(ctx, session, closed, scored, attempt); err != nil {
+		return nil, err
+	}
+
+	// Read back rather than returned from memory: the caller is about to draw a
+	// screen off this, and the row the database now holds is the one that matters.
+	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+}
+
+// advance moves the session on to the next slot, and off the end of the round when
+// there is no next slot.
+//
+// Rounds past the first are not playable yet, so the session stops at the top of
+// round 2 rather than being marked complete -- there is more of this evening to
+// play, and saying otherwise would take the game off the reconnect list.
+func (s *Service) advance(session *Session) {
+	session.CurrentPosition++
+
+	if session.CurrentPosition < session.QuestionsInRound(session.CurrentRound) {
+		return
+	}
+
+	session.CurrentRound++
+	session.CurrentPosition = 0
+
+	if session.CurrentRound > Rounds {
+		session.Status = SessionCompleted
+		finished := time.Now().UTC()
+		session.CompletedAt = &finished
+	}
+}
+
+// AnsweringSeatFor is whose turn it is to answer in this session right now, or -1
+// when nobody is being asked anything.
+//
+// On the service rather than on Session because it needs the attempt count, and
+// counting rows is the store's job. Everything it does with that count is the
+// arithmetic in round_one.go.
+func (s *Service) AnsweringSeatFor(ctx context.Context, session *Session) (int, error) {
+	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
+	if session.Status != SessionInProgress || session.CurrentRound != RoundOpen || question == nil {
+		return -1, nil
+	}
+
+	attempts, err := s.store.AttemptsOn(ctx, question.ID)
+	if err != nil {
+		return -1, err
+	}
+
+	return session.CurrentAnsweringSeat(attempts), nil
 }

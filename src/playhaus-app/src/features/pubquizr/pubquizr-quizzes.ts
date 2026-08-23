@@ -54,17 +54,60 @@ export async function getQuizzesRequest(
 }
 
 /**
+ * A quiz with its questions in it, which is what the endpoint below answers with.
+ *
+ * The answers ride along on purpose, correct flags and all. This is the quizmaster's
+ * own phone and they are about to read them out loud anyway, so one call means the
+ * evening survives the pub's wifi — the Go side says the same thing about the same
+ * response.
+ */
+export interface QuizDetail extends QuizListItem {
+    rounds: QuizRound[]
+}
+
+export interface QuizRound {
+    round: number
+    /** `open`, `multiple_choice`, `closest`, `describe`, `list`. */
+    kind: string
+    questions: QuizQuestion[]
+}
+
+export interface QuizQuestion {
+    id: string
+    position: number
+    prompt: string
+    category?: string
+    numericAnswer?: number
+    unit?: string
+    explanation?: string
+    answers: QuizAnswer[]
+}
+
+export interface QuizAnswer {
+    id: string
+    position: number
+    text: string
+    correct: boolean
+    /**
+     * An accepted alternative wording rather than an answer of its own. Never the
+     * headline answer on screen — it is there so a quizmaster can see that
+     * "Tarantino" also counts.
+     */
+    alias?: boolean
+}
+
+/**
  * One quiz, by id.
  *
  * Only ever asked when a quiz arrives as a route parameter rather than off a shelf —
  * tapping a row on the index hands its id to the setup screen, which has to be able to
  * name the quiz even when it sits on a tab that screen does not open on.
  *
- * The endpoint answers with the whole quiz, rounds and answers included, and everything
- * past the summary is dropped on the floor here. That is the wrong trade for a list and
- * the right one for a single row: the alternative is threading a title, a description
- * and a date through the URL, where they would be a copy of the quiz that can go stale.
+ * The endpoint answers with the whole quiz, rounds and answers included. The setup
+ * screen only wants the summary half of that; the play screen wants all of it, and
+ * asks through the same call rather than a second one, because the questions are what
+ * it is about to read out.
  */
-export async function getQuizRequest(quizId: string): Promise<QuizListItem> {
-    return request<QuizListItem>(`/api/v1/pubquizr/quizzes/${encodeURIComponent(quizId)}`);
+export async function getQuizRequest(quizId: string): Promise<QuizDetail> {
+    return request<QuizDetail>(`/api/v1/pubquizr/quizzes/${encodeURIComponent(quizId)}`);
 }

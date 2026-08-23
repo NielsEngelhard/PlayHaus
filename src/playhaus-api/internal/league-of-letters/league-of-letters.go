@@ -93,23 +93,15 @@ const (
 )
 
 type MultiplayerLeagueOfLettersLobby struct {
-	ID         string                   `gorm:"primaryKey;type:text"`
-	OwnerID    string                   `gorm:"index;not null"`
-	Locale     i18n.Locale              `gorm:"not null"`
-	WordLength int                      `gorm:"not null"`
-	Status     LobbyStatus              `gorm:"not null"`
-	GameID     *uuid.UUID               `gorm:"type:text"`
-	Players    []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
-	CreatedAt  time.Time                `gorm:"not null"`
-
-	// RematchCode is the room this one's table moved on to, once the game was over and
-	// the host opened another.
-	//
-	// Written once and never cleared, which is what makes a second press of play again
-	// answer with the room that already exists rather than opening a third and splitting
-	// the table between two codes. It is also how somebody whose connection blipped over
-	// the announcement still finds out: it rides along on every lobby the room sends.
-	RematchCode *string `gorm:"type:text"`
+	ID          string                   `gorm:"primaryKey;type:text"`
+	OwnerID     string                   `gorm:"index;not null"`
+	Locale      i18n.Locale              `gorm:"not null"`
+	WordLength  int                      `gorm:"not null"`
+	Status      LobbyStatus              `gorm:"not null"`
+	GameID      *uuid.UUID               `gorm:"type:text"`
+	Players     []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
+	CreatedAt   time.Time                `gorm:"not null"`
+	RematchCode *string                  `gorm:"type:text"` // RematchCode is the room this one's table moved on to, once the game was over and
 }
 
 func (MultiplayerLeagueOfLettersLobby) TableName() string { return "mp_lol_lobbies" }

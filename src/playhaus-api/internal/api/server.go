@@ -3,6 +3,7 @@ package api
 import (
 	"log/slog"
 	"net/http"
+	one_of_us "playhaus-api/internal/one-of-us"
 	"slices"
 
 	"playhaus-api/internal/auth"
@@ -18,6 +19,7 @@ type Server struct {
 	auth            *auth.Service
 	leagueOfLetters *league_of_letters.Service
 	pubquizr        *pubquizr.Service
+	oneOfUs         *one_of_us.Service
 	// rt is every live socket room. Handlers publish into it after a write; they
 	// never read game state out of it.
 	rt  *realtime.Hub
@@ -107,6 +109,12 @@ func (s *Server) AddPubquizRHandlers() {
 	// Single device -- one phone passed round the table
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device", s.requireAuth(s.handleStartSingleDeviceQuiz))
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleGetSingleDeviceSession))
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/verdict", s.requireAuth(s.handleOpenVerdict))
+}
+
+func (s *Server) AddOneOfUsHandlers() {
+	// Single device game
+	s.mux.HandleFunc("POST /api/v1/one-of-us/single-device", s.requireAuth(s.handleCreateOneOfUsOneDeviceGame))
 }
 
 // AddRealtimeHandlers registers the one socket route every game shares. It is not

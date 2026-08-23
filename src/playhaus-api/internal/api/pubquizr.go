@@ -171,6 +171,11 @@ type quizSessionResponse struct {
 	CurrentPosition int `json:"currentPosition"`
 	QuizMasterSeat  int `json:"quizMasterSeat"`
 	TotalRounds     int `json:"totalRounds"`
+	// AnsweringSeat is whose turn it is to answer the current question, and null
+	// when nobody is being asked anything -- a finished session, or a round this
+	// build cannot play yet. Worked out here rather than by the app: it depends on
+	// how many seats have already had a go, which only the server counts.
+	AnsweringSeat *int `json:"answeringSeat"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
 	Questions []quizSessionQuestionResponse `json:"questions"`
@@ -178,7 +183,10 @@ type quizSessionResponse struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-func newQuizSessionResponse(s *pubquizr.Session) quizSessionResponse {
+// newQuizSessionResponse draws a session for the app. answeringSeat is passed in
+// rather than worked out here because it needs the attempt count, which lives in the
+// store; -1 means nobody is being asked.
+func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionResponse {
 	players := make([]quizSessionPlayerResponse, 0, len(s.Players))
 	for _, player := range s.Players {
 		players = append(players, quizSessionPlayerResponse{
@@ -202,6 +210,11 @@ func newQuizSessionResponse(s *pubquizr.Session) quizSessionResponse {
 		})
 	}
 
+	var asked *int
+	if answeringSeat >= 0 {
+		asked = &answeringSeat
+	}
+
 	return quizSessionResponse{
 		ID:              s.ID.String(),
 		QuizID:          s.QuizID.String(),
@@ -212,6 +225,7 @@ func newQuizSessionResponse(s *pubquizr.Session) quizSessionResponse {
 		CurrentPosition: s.CurrentPosition,
 		QuizMasterSeat:  s.QuizMasterSeat,
 		TotalRounds:     pubquizr.Rounds,
+		AnsweringSeat:   asked,
 		Players:         players,
 		Questions:       questions,
 		CreatedAt:       s.CreatedAt.Format(timeFormat),
@@ -338,7 +352,7 @@ func (s *Server) handleStartSingleDeviceQuiz(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	writeJSON(w, http.StatusCreated, newQuizSessionResponse(session))
+	s.writeSession(w, r, session, http.StatusCreated)
 }
 
 func (s *Server) handleGetSingleDeviceSession(w http.ResponseWriter, r *http.Request) {
@@ -361,7 +375,89 @@ func (s *Server) handleGetSingleDeviceSession(w http.ResponseWriter, r *http.Req
 		return
 	}
 
-	writeJSON(w, http.StatusOK, newQuizSessionResponse(session))
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+type openVerdictRequest struct {
+	SessionQuestionID string `json:"sessionQuestionId"`
+	Correct           bool   `json:"correct"`
+	// Said is what the player actually answered, if the quizmaster bothered to type
+	// it in. Optional everywhere -- the verdict is the quizmaster's, not the text's.
+	Said string `json:"said,omitempty"`
+}
+
+func (req openVerdictRequest) Validate() map[string]string {
+	problems := map[string]string{}
+
+	if strings.TrimSpace(req.SessionQuestionID) == "" {
+		problems["sessionQuestionId"] = "is required"
+	}
+
+	return problems
+}
+
+// handleOpenVerdict is the quizmaster ruling on a round 1 answer.
+//
+// The body says which question and whether it was right, and nothing else. Who was
+// answering, what it is worth and who reads next are all the game's own business --
+// see VerdictInput.
+func (s *Server) handleOpenVerdict(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleOpenVerdict reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	req, problems, err := decode[openVerdictRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		// An unparseable id cannot name the current question, which is the same
+		// answer as naming one the table has moved past.
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return
+	}
+
+	session, err := s.pubquizr.RecordOpenVerdict(r.Context(), pubquizr.VerdictInput{
+		SessionID:         sessionID,
+		OwnerID:           ownerID,
+		SessionQuestionID: questionID,
+		Correct:           req.Correct,
+		Said:              req.Said,
+	})
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+// writeSession answers with a session, and with whoever it is currently waiting on.
+func (s *Server) writeSession(w http.ResponseWriter, r *http.Request, session *pubquizr.Session, status int) {
+	answering, err := s.pubquizr.AnsweringSeatFor(r.Context(), session)
+	if err != nil {
+		s.log.Error("answering seat", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, status, newQuizSessionResponse(session, answering))
 }
 
 func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
@@ -378,6 +474,12 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 		writeErrorCode(w, http.StatusConflict, "duplicate_player_name", "two players cannot share a name")
 	case errors.Is(err, pubquizr.ErrQuizTooSmall):
 		writeErrorCode(w, http.StatusConflict, "quiz_too_small", "this quiz does not have enough questions for that many players")
+	case errors.Is(err, pubquizr.ErrSessionOver):
+		writeErrorCode(w, http.StatusConflict, "session_over", "this quiz has already finished")
+	case errors.Is(err, pubquizr.ErrWrongRound):
+		writeErrorCode(w, http.StatusConflict, "wrong_round", "that round cannot be played yet")
+	case errors.Is(err, pubquizr.ErrStaleTurn):
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
 	default:
 		s.log.Error("pubquizr", "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")

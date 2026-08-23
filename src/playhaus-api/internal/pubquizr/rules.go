@@ -9,9 +9,7 @@ package pubquizr
 const (
 	MinPlayers = 3
 	MaxPlayers = 8
-
-	// Rounds is the five rounds plus the finale the top two play out.
-	Rounds = 6
+	Rounds     = 6
 )
 
 const (
@@ -24,6 +22,11 @@ const (
 )
 
 const (
+	// OpenQuestionPoints is what a round 1 question is worth. Flat, however far
+	// down the table it had to travel before somebody took it: at a pub table the
+	// score has to be explainable out loud, and "one each" is.
+	OpenQuestionPoints = 1
+
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions = 4
 	// ListAnswersPerQuestion is how many answers round 5 is searching for.
