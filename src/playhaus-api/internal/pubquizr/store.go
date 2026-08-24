@@ -321,3 +321,101 @@ func (s *GormStore) RecordAttempt(
 
 	return nil
 }
+
+// CurrentSessionByOwnerID is the evening this player could still walk back into.
+//
+// Newest first, and only one of them. A player keeps one game at a time -- opening a
+// new one throws the rest away, see DeleteSessionsByOwnerID -- so in practice there
+// is never a second row to choose between. The ordering is what makes that true
+// rather than assumed: a row left behind by an older build must not outrank the game
+// somebody is actually sitting at.
+func (s *GormStore) CurrentSessionByOwnerID(ctx context.Context, ownerID string) (*Session, error) {
+	var session Session
+
+	err := withTable(s.db.WithContext(ctx)).
+		Where("owner_id = ? AND status = ?", ownerID, SessionInProgress).
+		Order("created_at DESC").
+		First(&session).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrSessionNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select current session: %w", err)
+	}
+	return &session, nil
+}
+
+// DeleteSessionByID throws one evening away, for good.
+//
+// Scoped to the owner, so somebody else's session is a no-op rather than a refusal --
+// owning it is the whole of the permission model here, the same way it is for a solo
+// League of Letters game.
+func (s *GormStore) DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, ownerID string) error {
+	_, err := s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
+		return tx.Where("id = ? AND owner_id = ?", sessionID, ownerID)
+	})
+	if err != nil {
+		return fmt.Errorf("delete session %s: %w", sessionID, err)
+	}
+	return nil
+}
+
+// DeleteSessionsByOwnerID throws away every evening this player owns but one.
+//
+// What "a table plays one quiz at a time" costs. Written as "all of them except this
+// id" rather than "all of them, then create" on purpose: the new session is already
+// in the database when this runs, so a failure here leaves a player with one game too
+// many rather than with none at all.
+func (s *GormStore) DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error {
+	_, err := s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
+		return tx.Where("owner_id = ? AND id <> ?", ownerID, except)
+	})
+	if err != nil {
+		return fmt.Errorf("delete previous sessions for %s: %w", ownerID, err)
+	}
+	return nil
+}
+
+// deleteSessions removes whichever sessions the scope names, and everything hanging
+// off them.
+//
+// The child rows are cleared by hand rather than left to the OnDelete:CASCADE tags on
+// Session: those are only honoured where the database enforces foreign keys, and this
+// game is played on SQLite. Deepest first, so no row is ever orphaned mid-transaction.
+func (s *GormStore) deleteSessions(ctx context.Context, scope func(*gorm.DB) *gorm.DB) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var sessionIDs []uuid.UUID
+		if err := scope(tx.Model(&Session{})).Pluck("id", &sessionIDs).Error; err != nil {
+			return fmt.Errorf("select sessions: %w", err)
+		}
+		if len(sessionIDs) == 0 {
+			return nil
+		}
+
+		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionAnswer{}).Error; err != nil {
+			return fmt.Errorf("delete attempts: %w", err)
+		}
+		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionQuestion{}).Error; err != nil {
+			return fmt.Errorf("delete dealt questions: %w", err)
+		}
+		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete players: %w", err)
+		}
+
+		result := tx.Where("id IN ?", sessionIDs).Delete(&Session{})
+		if result.Error != nil {
+			return fmt.Errorf("delete sessions: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+	if err != nil {
+		return 0, err
+	}
+
+	return deleted, nil
+}

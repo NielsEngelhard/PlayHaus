@@ -98,6 +98,31 @@ export async function getSingleDeviceSessionRequest(sessionId: string): Promise<
 }
 
 /**
+ * The evening this phone left running, or `null` when there is none.
+ *
+ * There is at most one: starting a quiz throws every other session away, which is what
+ * makes this worth asking before the setup form is drawn. The server answers 204 for
+ * "none", which `request` reads back as `null`.
+ */
+export async function getCurrentSingleDeviceSessionRequest(): Promise<QuizSession | null> {
+    return request<QuizSession | null>('/api/v1/pubquizr/single-device/current');
+}
+
+/**
+ * Gives up on an evening, for good: the server deletes the rows rather than moving the
+ * session to `abandoned`, so there is nothing to read back afterwards and no undo to
+ * offer. Ask before calling it.
+ *
+ * Owning it is the whole of the permission model — the delete is scoped to the caller,
+ * so someone else's session is a no-op rather than a refusal. Answers 204 with no body.
+ */
+export async function abandonSingleDeviceSessionRequest(sessionId: string): Promise<void> {
+    await request<void>(`/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}`, {
+        method: 'DELETE'
+    });
+}
+
+/**
  * The quizmaster's ruling on what they just heard, and the game one step further on.
  *
  * Says which question and whether it was right, and nothing else. Who was answering,

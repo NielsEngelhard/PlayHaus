@@ -58,7 +58,8 @@ export const en = {
             label: 'Still going',
             /** Punctuation only, so the separator is the translator's to change. */
             line: '{{title}} · {{mode}} {{time}}'
-        }
+        },
+        bottomTeaser: "More party games coming soon...",
     },
     games: {
         /**
@@ -425,7 +426,15 @@ export const en = {
                 pick: 'Pick a quiz',
                 pickAnother: 'Or pick another'
             },
-            start: 'Start quiz'
+            start: 'Start quiz',
+            /** While the server is being asked whether a quiz is already running. */
+            loading: 'Checking for an open quiz…',
+            running: {
+                title: 'A quiz is still open',
+                message: 'You already have a quiz going. Carry on where the table left off, or throw it away and set a new one up.',
+                resume: 'Carry on',
+                discard: 'Throw it away'
+            }
         },
         play: {
             loading: 'Setting up the table…',

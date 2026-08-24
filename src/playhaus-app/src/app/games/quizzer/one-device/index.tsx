@@ -1,17 +1,26 @@
+import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import PopupModal from "@/components/ui/PopupModal";
+import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import PlayerSeats from "@/features/pubquizr/components/PlayerSeats";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
 import { MIN_PLAYERS, seatedNames, tableProblem } from "@/features/pubquizr/one-device-table";
 import { quizErrorMessage } from "@/features/pubquizr/pubquizr-errors";
-import { startSingleDeviceQuizRequest } from "@/features/pubquizr/pubquizr-sessions";
+import {
+    abandonSingleDeviceSessionRequest,
+    getCurrentSingleDeviceSessionRequest,
+    startSingleDeviceQuizRequest,
+    type QuizSession
+} from "@/features/pubquizr/pubquizr-sessions";
 import { readTable, writeTable } from "@/features/pubquizr/table-store";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -28,9 +37,13 @@ const EMPTY_TABLE: string[] = Array.from({ length: MIN_PLAYERS }, () => '');
  *
  * Everything on this screen is local until `Start`, which is what creates the session on
  * the server — so backing out and coming back gives you the form again, and nothing
- * exists until you commit. Same shape as the League of Letters settings screen, minus
- * its question about a game already running: a pubquizr session is not exclusive, so
- * there is nothing here that could quietly destroy one.
+ * exists until you commit.
+ *
+ * Except when there is already a quiz. A table keeps one evening at a time, and starting
+ * one throws every other session away — so this screen asks the server first, and a
+ * table that left a quiz running is asked what to do about it before the form behind the
+ * question can quietly destroy it. Same shape, and the same reasoning, as the League of
+ * Letters settings screen.
  *
  * Two things are being asked for, and only one of them is obvious. The quiz is a choice
  * off a shelf. The players are a *seating order*: the phone is passed round the table as
@@ -52,9 +65,17 @@ export default function OneDeviceQuizerSetup() {
     const { quizId } = useLocalSearchParams<{ quizId?: string }>();
     const selected = useSelectedQuiz(quizId);
 
+    const { status } = useAuth();
     const [names, setNames] = useState<string[]>(EMPTY_TABLE);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
+    /** False until the server has said whether a quiz is already running. */
+    const [checked, setChecked] = useState(false);
+    /** The quiz that was already running, until the table has said what to do with it. */
+    const [running, setRunning] = useState<QuizSession | null>(null);
+    const [abandoning, setAbandoning] = useState(false);
+    /** Kept apart from `error`, which belongs to the form the modal is sitting on top of. */
+    const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
     // Nothing may touch state after unmount — starting the quiz navigates away while
     // the request that caused it may still be settling.
@@ -83,6 +104,70 @@ export default function OneDeviceQuizerSetup() {
                 : padToMinimum(remembered));
         })();
     }, []);
+
+    // Only a signed-in session has a quiz to find; while the session is being restored
+    // there is nothing to ask about yet.
+    const signedIn = status === 'signedIn';
+
+    useEffect(() => {
+        if (!signedIn) return;
+
+        // Asking on mount and acting on the answer is the whole job. Every state change
+        // happens after the `await`, never on the way in, so nothing cascades in the
+        // render this effect belongs to.
+        void (async () => {
+            let found: QuizSession | null = null;
+            try {
+                found = await getCurrentSingleDeviceSessionRequest();
+            } catch {
+                // The check failing is not worth stopping on: the form below still works,
+                // and starting a quiz from it replaces whatever was there — which is what
+                // would have happened before this screen ever asked.
+            }
+
+            if (!mounted.current) return;
+
+            // Both outcomes end the wait. A quiz that was found is put to the table as a
+            // question over the form rather than acted on for them: an evening halfway
+            // through is a lot to lose to a screen somebody only meant to look at.
+            setRunning(found);
+            setChecked(true);
+        })();
+    }, [signedIn]);
+
+    /** Back to the table they left. */
+    function resume(session: QuizSession) {
+        // `replace`, not `push`: this screen would send the quizmaster straight back to
+        // the game they just left, so it must not be behind it.
+        router.replace(ROUTES.quizzerOneDeviceSession(session.id) as RelativePathString);
+    }
+
+    /**
+     * Throw the running quiz away and stay here. What is left behind the closing modal is
+     * the form, which is now free to seat a new table out of nothing.
+     */
+    async function abandon(session: QuizSession) {
+        if (abandoning) return;
+
+        setAbandoning(true);
+        setAbandonError(null);
+
+        try {
+            await abandonSingleDeviceSessionRequest(session.id);
+            if (!mounted.current) return;
+
+            setRunning(null);
+        } catch (failure) {
+            if (!mounted.current) return;
+
+            // Kept open on failure. Closing it would leave the table looking at a form
+            // that still cannot be used without destroying the quiz they just failed to
+            // destroy, with nothing on screen saying so.
+            setAbandonError(quizErrorMessage(failure));
+        } finally {
+            if (mounted.current) setAbandoning(false);
+        }
+    }
 
     function editNames(next: string[]) {
         // Any edit at all takes the form out of the running for the remembered table
@@ -135,6 +220,13 @@ export default function OneDeviceQuizerSetup() {
         }
     }
 
+    // Held back until the answer is in. A form that appears on its own and then has a
+    // panel drop over it a moment later reads as a misfire, and for the length of that
+    // moment it is a form whose only outcome would be destroying a quiz.
+    if (!checked) {
+        return <LoadingPage message={t('pubquizr.oneDevice.loading')} />;
+    }
+
     return (
         <View style={styles.container}>
             <SimpleTextHero
@@ -181,6 +273,39 @@ export default function OneDeviceQuizerSetup() {
                 onPress={() => void start()}
                 disabled={!canStart}
             />
+
+            {/*
+              * Sits over the form until the running quiz has been dealt with one way or
+              * the other. No dismissal: both ways out are on it, and a third that just put
+              * the table back on a form they cannot safely use would not be one.
+              */}
+            <PopupModal
+                visible={running !== null}
+                title={t('pubquizr.oneDevice.running.title')}
+                message={t('pubquizr.oneDevice.running.message')}
+            >
+                {abandonError !== null && (
+                    <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
+                )}
+
+                <TextButton
+                    text={t('pubquizr.oneDevice.running.resume')}
+                    variant='primary'
+                    fullWidth
+                    disabled={abandoning}
+                    // `running` cannot be null while the modal is up, but the close
+                    // animation outlives it — so the buttons have to survive it too.
+                    onPress={() => running && resume(running)}
+                />
+
+                <TextButton
+                    text={abandoning ? t('common.busy') : t('pubquizr.oneDevice.running.discard')}
+                    variant='muted'
+                    fullWidth
+                    disabled={abandoning}
+                    onPress={() => running && void abandon(running)}
+                />
+            </PopupModal>
         </View>
     )
 }
@@ -213,5 +338,15 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: FontSizes.sm * 1.45,
         fontWeight: 700,
         color: theme.colors.textMuted
+    },
+
+    abandonError: {
+        // Inside the modal, where the form's own `InlineNotification` would be a card
+        // within a card. The panel is already the thing being looked at, so the line only
+        // has to be readable and the wrong colour for good news.
+        marginBottom: Spacing.two,
+        fontSize: FontSizes.sm,
+        lineHeight: FontSizes.sm * 1.45,
+        color: theme.colors.destructive
     }
 }))

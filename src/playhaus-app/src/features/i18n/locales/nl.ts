@@ -58,7 +58,8 @@ export const nl: Catalog = {
         stillRunning: {
             label: 'Nog bezig',
             line: '{{title}} · {{mode}} {{time}}'
-        }
+        },
+        bottomTeaser: "Meer spellen in de maak...",
     },
     games: {
         device: {
@@ -398,7 +399,14 @@ export const nl: Catalog = {
                 pick: 'Kies een quiz',
                 pickAnother: 'Of kies een andere'
             },
-            start: 'Start de quiz'
+            start: 'Start de quiz',
+            loading: 'Kijken of er nog een quiz openstaat…',
+            running: {
+                title: 'Er staat nog een quiz open',
+                message: 'Je hebt al een quiz lopen. Ga verder waar de tafel gebleven was, of gooi hem weg en stel een nieuwe in.',
+                resume: 'Verder spelen',
+                discard: 'Weggooien'
+            }
         },
         play: {
             loading: 'De tafel klaarzetten…',

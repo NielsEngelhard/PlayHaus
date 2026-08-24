@@ -108,7 +108,11 @@ func (s *Server) AddPubquizRHandlers() {
 
 	// Single device -- one phone passed round the table
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device", s.requireAuth(s.handleStartSingleDeviceQuiz))
+	// Before {sessionID}, so the literal wins: this is the game you left running, not
+	// a session called "current".
+	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/current", s.requireAuth(s.handleGetCurrentSingleDeviceSession))
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleGetSingleDeviceSession))
+	s.mux.HandleFunc("DELETE /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleDeleteSingleDeviceSession))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/verdict", s.requireAuth(s.handleOpenVerdict))
 }
 

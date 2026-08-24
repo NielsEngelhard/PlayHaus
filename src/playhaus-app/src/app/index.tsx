@@ -1,5 +1,6 @@
 import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
+import TextHint from '@/components/text/TextHint';
 import GameTeaserCard from '@/components/ui/GameTeaserCard';
 import { GAMES } from '@/constants/games';
 import { Spacing } from '@/constants/theme';
@@ -43,6 +44,8 @@ export default function HomeScreen() {
           />
         ))}
       </View>
+
+      <TextHint text={t("home.bottomTeaser")} />
     </View>
   );
 }

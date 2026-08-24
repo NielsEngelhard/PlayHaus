@@ -22,6 +22,9 @@ type Store interface {
 	CreateSession(ctx context.Context, session *Session) error
 	SessionByID(ctx context.Context, id uuid.UUID) (*Session, error)
 	SessionsInProgressByUserID(ctx context.Context, userID string) ([]*Session, error)
+	CurrentSessionByOwnerID(ctx context.Context, ownerID string) (*Session, error)
+	DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, ownerID string) error
+	DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error
 	AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error)
 	RecordAttempt(ctx context.Context, session *Session, question *SessionQuestion, player *SessionPlayer, attempt *SessionAnswer) error
 }
@@ -148,6 +151,32 @@ func (s *Service) SessionsInProgress(ctx context.Context, userID string) ([]*Ses
 	return s.store.SessionsInProgressByUserID(ctx, userID)
 }
 
+// CurrentSession is the unfinished evening this player owns, or ErrSessionNotFound
+// when there is none.
+//
+// There is at most one: starting a game throws the rest away. What it is for is the
+// question the setup screen asks before it starts another -- see
+// StartSingleDeviceSession, where the throwing away actually happens.
+func (s *Service) CurrentSession(ctx context.Context, ownerID string) (*Session, error) {
+	if ownerID == "" {
+		return nil, ErrSessionNotFound
+	}
+	return s.store.CurrentSessionByOwnerID(ctx, ownerID)
+}
+
+// DeleteSession throws one evening away, for good: the rows go rather than the status
+// moving to abandoned, so there is nothing to read back afterwards and no undo to
+// offer. Ask before calling it.
+//
+// Owning it is the whole of the permission model, so somebody else's session is a
+// no-op rather than a refusal.
+func (s *Service) DeleteSession(ctx context.Context, sessionID uuid.UUID, ownerID string) error {
+	if ownerID == "" {
+		return fmt.Errorf("delete session: %w: missing owner", ErrInvalidInput)
+	}
+	return s.store.DeleteSessionByID(ctx, sessionID, ownerID)
+}
+
 type StartSingleDeviceInput struct {
 	QuizID  uuid.UUID
 	OwnerID string
@@ -257,6 +286,15 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 
 	if err := s.store.CreateSession(ctx, session); err != nil {
 		return nil, nil, err
+	}
+
+	// A table plays one evening at a time: this one replaces whatever was still
+	// open, however far into it the last lot got. Deleted after the insert rather
+	// than before it, so the only thing a failure here can leave behind is a game
+	// too many -- and the screen that starts a game asks about a running one first,
+	// which is where a person gets to say no to this.
+	if err := s.store.DeleteSessionsByOwnerID(ctx, in.OwnerID, session.ID); err != nil {
+		return nil, nil, fmt.Errorf("delete previous sessions: %w", err)
 	}
 
 	return session, nil, nil

@@ -66,6 +66,13 @@ func (s *verdictStore) CreateSession(context.Context, *Session) error    { retur
 func (s *verdictStore) SessionsInProgressByUserID(context.Context, string) ([]*Session, error) {
 	return nil, nil
 }
+func (s *verdictStore) CurrentSessionByOwnerID(context.Context, string) (*Session, error) {
+	return s.session, nil
+}
+func (s *verdictStore) DeleteSessionByID(context.Context, uuid.UUID, string) error { return nil }
+func (s *verdictStore) DeleteSessionsByOwnerID(context.Context, string, uuid.UUID) error {
+	return nil
+}
 
 const verdictOwner = "owner"
 

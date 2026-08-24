@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import TextHint from "@/components/text/TextHint";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -56,11 +57,7 @@ export default function ValidateButton({ answering, unlocked, onPress }: Props) 
                 </AppText>
             </PopPressable>
 
-            <AppText style={styles.hint}>
-                {unlocked
-                    ? t('pubquizr.play.validateHint')
-                    : t('pubquizr.play.validateLocked')}
-            </AppText>
+            <TextHint text={unlocked ? t('pubquizr.play.validateHint') : t('pubquizr.play.validateLocked')} />
         </View>
     )
 }
@@ -106,12 +103,4 @@ const useStyles = createThemedStyles(theme => ({
     lockedLabel: {
         color: theme.colors.textMuted
     },
-
-    hint: {
-        marginTop: 9,
-        textAlign: 'center',
-        fontSize: 11.5,
-        fontWeight: 600,
-        color: theme.colors.textMuted
-    }
 }))

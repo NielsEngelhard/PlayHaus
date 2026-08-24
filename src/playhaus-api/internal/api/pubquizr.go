@@ -383,6 +383,64 @@ func (s *Server) handleGetSingleDeviceSession(w http.ResponseWriter, r *http.Req
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
+// handleGetCurrentSingleDeviceSession answers with the evening this player left
+// running, and 204 when there is none.
+//
+// The setup screen asks this before it draws a form whose only outcome would be
+// destroying a game -- starting one throws every other session away. Same shape as
+// League of Letters' /solo/current, so the two screens can ask their question the
+// same way.
+func (s *Server) handleGetCurrentSingleDeviceSession(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleGetCurrentSingleDeviceSession reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	session, err := s.pubquizr.CurrentSession(r.Context(), ownerID)
+	if err != nil {
+		if errors.Is(err, pubquizr.ErrSessionNotFound) {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+// handleDeleteSingleDeviceSession gives up on an evening, for good.
+//
+// The rows go rather than the status moving to abandoned, so there is nothing to read
+// back afterwards. Answers 204 whether or not there was anything to delete: a session
+// that is not this player's is the same answer as one that never existed.
+func (s *Server) handleDeleteSingleDeviceSession(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleDeleteSingleDeviceSession reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		// An unparseable id cannot name a session, which is the same answer as one
+		// that is already gone.
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	if err := s.pubquizr.DeleteSession(r.Context(), sessionID, ownerID); err != nil {
+		s.log.Error("delete single device session", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
+
 type openVerdictRequest struct {
 	SessionQuestionID string `json:"sessionQuestionId"`
 	Correct           bool   `json:"correct"`
