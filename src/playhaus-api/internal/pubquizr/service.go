@@ -3,6 +3,7 @@ package pubquizr
 import (
 	"context"
 	"fmt"
+	"math/rand/v2"
 	"strings"
 	"time"
 
@@ -234,6 +235,13 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		return nil, nil, err
 	}
 
+	// Round 1 opens on a seat drawn out of the hat. It used to open on seat 0 every
+	// time, which handed the first go as quiz master to whoever happened to type their
+	// name into the setup form first -- a decision about the game being made by the
+	// order of a list of text fields. Whoever it lands on is read to by the seat on
+	// their right, which is the rule every question after it follows too.
+	opening := rand.IntN(len(names))
+
 	now := time.Now().UTC()
 	session := &Session{
 		ID:      uuid.New(),
@@ -245,11 +253,8 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 
 		CurrentRound:    RoundOpen,
 		CurrentPosition: 0,
-		// Player 1 opens as quiz master and asks player 2. The reading then stays
-		// with player 1 for as long as the table keeps answering, and only moves on
-		// when a question goes all the way round unanswered.
-		QuizMasterSeat: 0,
-		HotSeat:        1,
+		QuizMasterSeat:  ReaderFor(opening, len(names)),
+		HotSeat:         opening,
 
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -419,13 +424,13 @@ type VerdictInput struct {
 
 // RecordOpenVerdict scores one go at a round 1 question and moves the game on.
 //
-// Three things can happen. A correct answer ends the question and keeps the seat:
-// the reading does not move, and the next question is asked to whoever just took
-// this one. It is worth a point only on every second question -- see OpenPointsAt --
-// so most of them buy nothing but the seat they keep you in. A wrong answer with
-// somebody left to ask passes it along and changes nothing else. A wrong answer with
-// nobody left ends the question for no points, and is the only thing that moves the
-// reading: it goes one seat on, and the next question starts on that seat's left.
+// Three things can happen. A correct answer ends the question and keeps the seat: the
+// next question is asked to whoever just took this one, and the reading comes round
+// with them, because a question is always read by the seat on the answerer's right.
+// It is worth a point only on every second question -- see OpenPointsAt -- so most of
+// them buy nothing but the seat they keep you in. A wrong answer with somebody left to
+// ask passes it along and changes nothing else. A wrong answer with nobody left ends
+// the question for no points and moves the whole thing one seat on.
 func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -500,20 +505,32 @@ func (s *Service) RecordOpenVerdict(ctx context.Context, in VerdictInput) (*Sess
 		question.Points = points
 		closed = question
 
-		// They keep it. The reading stays where it is and so does the seat: taking a
-		// question is what buys you the next one.
-		session.HotSeat = seat
+		// They keep it, and the reading comes round to their own neighbour. Taking a
+		// question is what buys you the next one, and the next one is read by the seat
+		// on your right -- so a player taking a question from three seats down the
+		// table takes the reading with them. Leaving the reading where it was is what
+		// used to strand it on whoever opened the round while somebody else was being
+		// asked everything.
+		if seat == hot {
+			session.HotSeatRun++
+		} else {
+			// They have taken it off whoever was holding the seat, so the run they are
+			// starting is their own and one question long.
+			session.HotSeatRun = 1
+		}
+
+		session.OpenOn(seat)
 		s.advance(session)
 
 	case AnsweringSeat(session.QuizMasterSeat, hot, attempts+1, len(session.Players)) < 0:
-		// Wrong, and that was the last seat with a go left. The only branch that
-		// moves the reading, so it is also the only one that has to put the hot seat
-		// back: nobody earned it, and the seat it named is behind the new reader.
+		// Wrong, and that was the last seat with a go left. Nobody earned the seat, so
+		// it simply shuffles one along from where this question opened -- and the
+		// reading follows it, the way it always does.
 		question.Status = QuestionDone
 		closed = question
 
-		session.QuizMasterSeat = (session.QuizMasterSeat + 1) % len(session.Players)
-		session.HotSeat = (session.QuizMasterSeat + 1) % len(session.Players)
+		session.HotSeatRun = 0
+		session.OpenOn(hot + 1)
 		s.advance(session)
 
 	default:
@@ -553,6 +570,19 @@ func (s *Service) advance(session *Session) {
 		session.Status = SessionCompleted
 		finished := time.Now().UTC()
 		session.CompletedAt = &finished
+		return
+	}
+
+	// A run is a round 1 thing -- it counts questions asked to one seat in a row -- so
+	// nothing carries it over a round boundary.
+	session.HotSeatRun = 0
+
+	// Every round but the first opens on whoever is furthest behind, which is the one
+	// place a score decides anything about the order. The finale is left alone: it is
+	// only the top two, and who starts it is that round's own business rather than
+	// this one's.
+	if session.CurrentRound != RoundFinale {
+		session.OpenOn(session.LowestScoringSeat())
 	}
 }
 

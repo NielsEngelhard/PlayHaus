@@ -205,9 +205,13 @@ type Session struct {
 
 	// QuizMasterSeat is who is reading right now.
 	//
-	// It stays put for as long as the table keeps answering: a correct answer buys
-	// the answerer another question rather than the reading. It only moves on when a
-	// question dies unanswered, and then by one seat.
+	// Always the seat to the right of the hot seat -- whoever the next question opens
+	// on is read to by the person before them. So it moves whenever the hot seat does:
+	// a player taking a question from further down the table takes the reading round
+	// to their own neighbour with it, and a question nobody gets moves both on one.
+	//
+	// Stored rather than derived from HotSeat so a row written by an older build still
+	// says what that build meant by it.
 	QuizMasterSeat int `gorm:"not null"`
 
 	// HotSeat is who the current question is asked to first.
@@ -220,6 +224,18 @@ type Session struct {
 	// the old rule, so a game left open across the deploy carries on making sense
 	// instead of asking whoever happens to sit in seat 0.
 	HotSeat int `gorm:"not null;default:-1"`
+
+	// HotSeatRun is how many questions in a row whoever is in the hot seat has taken.
+	//
+	// Kept rather than counted because it is only ever shown: the board says "on a run
+	// of three" so that the rule holding the round together -- take one and you are
+	// asked the next -- is legible from the screen instead of having to be explained by
+	// whoever read the box. Counting it off the attempt rows would be a join per
+	// verdict for a number nothing decides.
+	//
+	// Reset to nothing when a question beats the table, because the seat it was
+	// counting has just been given up.
+	HotSeatRun int `gorm:"not null;default:0"`
 
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`

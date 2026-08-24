@@ -111,10 +111,9 @@ export default function HandoffScreen({
             </AppText>
 
             {/* The round's rule, on the one screen with room to say it properly. The
-                hand-off only comes up when a question has beaten the whole table, so
-                it is rare enough to be read rather than skimmed past — and whoever is
-                about to take the phone is exactly who needs to know how the next few
-                questions score. */}
+                board says the short version every turn; this is where the whole of it
+                fits — and whoever is about to take the phone is exactly who needs to
+                know how the next few questions score. */}
             <AppText style={[styles.rule, { color: tone.ink }]}>
                 {t('pubquizr.play.handoff.rule')}
             </AppText>

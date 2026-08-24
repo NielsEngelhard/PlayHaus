@@ -180,6 +180,10 @@ type quizSessionResponse struct {
 	// can say who a wrong answer would pass it to: with the question able to start
 	// anywhere, "has it been all the way round" is the distance back to here.
 	HotSeat int `json:"hotSeat"`
+	// HotSeatRun is how many questions in a row the hot seat has taken. Sent so the
+	// board can put a number on the rule the round is built round -- take one and you
+	// are asked the next -- rather than leaving it to be explained out loud.
+	HotSeatRun int `json:"hotSeatRun"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
 	Questions []quizSessionQuestionResponse `json:"questions"`
@@ -231,6 +235,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		TotalRounds:     pubquizr.Rounds,
 		AnsweringSeat:   asked,
 		HotSeat:         s.HotSeatOrFirst(),
+		HotSeatRun:      s.HotSeatRun,
 		Players:         players,
 		Questions:       questions,
 		CreatedAt:       s.CreatedAt.Format(timeFormat),

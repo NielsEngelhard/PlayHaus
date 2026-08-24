@@ -70,9 +70,17 @@ func TestStartSingleDeviceQuizSeatsTheTableInOrder(t *testing.T) {
 	if got, want := started.CurrentRound, pubquizr.RoundOpen; got != want {
 		t.Errorf("currentRound = %d, want %d", got, want)
 	}
-	// Player 1 opens as quiz master and asks player 2.
-	if got, want := started.QuizMasterSeat, 0; got != want {
-		t.Errorf("quizMasterSeat = %d, want %d", got, want)
+	// The round opens on a seat drawn at random, so all this can say is that it is a
+	// real seat and that the reading sits to its right. Which seat it landed on is
+	// TestStartSingleDeviceQuizOpensOnARandomSeat's problem.
+	if got := started.HotSeat; got < 0 || got >= len(names) {
+		t.Errorf("hotSeat = %d, want a seat at a table of %d", got, len(names))
+	}
+	if got, want := started.QuizMasterSeat, pubquizr.ReaderFor(started.HotSeat, len(names)); got != want {
+		t.Errorf("quizMasterSeat = %d, want %d -- the hot seat is read to from its right", got, want)
+	}
+	if got, want := started.HotSeatRun, 0; got != want {
+		t.Errorf("hotSeatRun = %d, want %d -- nobody has taken anything yet", got, want)
 	}
 
 	if got, want := len(started.Players), len(names); got != want {
@@ -322,4 +330,28 @@ func tableOf(n int) []string {
 		names[i] = fmt.Sprintf("Player %d", i+1)
 	}
 	return names
+}
+
+// Round 1 no longer always opens on seat 0. It used to, which meant whoever typed
+// their name into the setup form first was quiz master for the first question of every
+// game they ever hosted.
+//
+// Started enough times that a table of four staying on one seat throughout is a one in
+// four-to-the-twelfth coincidence rather than a flaky test.
+func TestStartSingleDeviceQuizOpensOnARandomSeat(t *testing.T) {
+	h, _ := newQuizServer(t)
+	session := newGuestSession(t, h)
+	quiz := aQuiz(t, h, session.Token, "locale=nl")
+
+	names := []string{"Niels", "Sanne", "Tom", "Eva"}
+	seen := map[int]bool{}
+
+	for i := 0; i < 12; i++ {
+		started := startedQuiz(t, h, session.Token, quiz.ID, names...)
+		seen[started.HotSeat] = true
+	}
+
+	if len(seen) < 2 {
+		t.Errorf("twelve games all opened on seat %v -- the opening seat is not being drawn", seen)
+	}
 }

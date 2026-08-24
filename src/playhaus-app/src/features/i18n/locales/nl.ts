@@ -418,7 +418,10 @@ export const nl: Catalog = {
             turn: {
                 asking: 'vraagt',
                 answering: 'antwoordt',
-                spoken: '{{master}} vraagt het aan {{player}}'
+                spoken: '{{master}} vraagt het aan {{player}}',
+                spokenRun: '{{master}} vraagt het aan {{player}}, die er {{run}} op rij goed heeft',
+                run: '{{run}} op rij',
+                staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat'
             },
             readAloud: 'Lees dit hardop voor',
             scoresThisRound: 'Stand deze ronde',
@@ -437,14 +440,14 @@ export const nl: Catalog = {
             markCorrect: 'Reken {{name}} goed',
             wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
             wrongEndsQuestion: 'Niemand meer over — fout beëindigt deze vraag',
-            correctKeepsTurn: 'Goed houdt {{name}} aan de beurt',
+            correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoint: 'Levert een punt op',
             noPoint: 'Geen punt — overleef hem',
             handoff: {
                 step: 'Ronde {{round}} · vraag {{number}} van {{total}}',
                 title: 'Geef de telefoon aan {{name}}',
-                body: '{{name}} leest voor tot een vraag de tafel verslaat',
-                rule: 'Goed antwoord? Dan blijf je zitten. Elke tweede vraag levert een punt op.',
+                body: '{{name}} leest voor aan de speler links van zich',
+                rule: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 action: 'Ik ben {{name}} — laat de vraag zien'
             },
             standings: {

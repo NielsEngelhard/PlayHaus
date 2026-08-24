@@ -42,9 +42,9 @@ export interface QuizSession {
     /**
      * Whose turn it is to read the questions out.
      *
-     * Stays put while the table keeps answering — taking a question buys the answerer
-     * another one, not the reading — and moves one seat on when a question dies with
-     * nobody having got it.
+     * Always the seat to the right of `hotSeat` — you are read to by the person before
+     * you — so it follows the seat wherever it goes. A player taking a question from
+     * three seats down the table takes the reading round with them.
      */
     quizMasterSeat: number
     /**
@@ -55,6 +55,14 @@ export interface QuizSession {
      * wrong answer would pass to — see `nextUpAfter`.
      */
     hotSeat: number
+    /**
+     * How many questions in a row the hot seat has taken.
+     *
+     * Only ever drawn, never decided from — see `TurnBanner`. It is what lets the board
+     * say "on a run of three" instead of leaving the rule that holds the round together
+     * to be explained out loud by whoever read the box.
+     */
+    hotSeatRun: number
     totalRounds: number
     /**
      * Whose turn it is to answer the question on screen, and null when nobody is being

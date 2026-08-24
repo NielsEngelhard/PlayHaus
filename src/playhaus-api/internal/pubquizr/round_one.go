@@ -128,3 +128,52 @@ func (s *Session) CurrentAnsweringSeat(attempts int) int {
 
 	return AnsweringSeat(s.QuizMasterSeat, s.HotSeatOrFirst(), attempts, len(s.Players))
 }
+
+// ReaderFor is who reads to one seat: the player on their right, which is the seat
+// before them in table order.
+//
+// The round's whole ordering, in one line. A question is read by the neighbour of
+// whoever it opens on, so naming the seat that starts names the reader too -- and
+// every way the game moves on works by moving the start and letting the reading
+// follow it.
+func ReaderFor(seat, players int) int {
+	if players <= 0 {
+		return -1
+	}
+
+	return wrap(seat-1, players)
+}
+
+// OpenOn puts the next question on one seat and the reading on the seat to its
+// right.
+//
+// The only thing that should ever write either of the two columns, because they are
+// one fact: a hot seat with somebody other than its right-hand neighbour reading to
+// it is a table nobody at it could describe.
+func (s *Session) OpenOn(seat int) {
+	players := len(s.Players)
+	if players == 0 {
+		return
+	}
+
+	s.HotSeat = wrap(seat, players)
+	s.QuizMasterSeat = ReaderFor(s.HotSeat, players)
+}
+
+// LowestScoringSeat is whoever has the fewest points, ties going to whoever sits
+// nearest the head of the table.
+//
+// Every round but the first and the finale opens on them: the round starts with the
+// person who most needs it to. Ties break on the seat rather than at random so the
+// answer is the same one twice, which is what lets a table argue with it.
+func (s *Session) LowestScoringSeat() int {
+	seat, score := -1, 0
+
+	for _, player := range s.Players {
+		if seat < 0 || player.Score < score || (player.Score == score && player.Seat < seat) {
+			seat, score = player.Seat, player.Score
+		}
+	}
+
+	return seat
+}

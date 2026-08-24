@@ -127,8 +127,11 @@ func TestHotSeatSurvivesTheRoundTrip(t *testing.T) {
 	if got, want := moved.HotSeat, 3; got != want {
 		t.Errorf("HotSeat = %d, want %d -- the seat that took it did not stick", got, want)
 	}
-	if got, want := moved.QuizMasterSeat, 0; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d -- taking a question moved the reading", got, want)
+	if got, want := moved.QuizMasterSeat, 2; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- the reading did not follow the seat round", got, want)
+	}
+	if got, want := moved.HotSeatRun, 1; got != want {
+		t.Errorf("HotSeatRun = %d, want %d -- the run did not survive the round trip", got, want)
 	}
 	if got, want := moved.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)

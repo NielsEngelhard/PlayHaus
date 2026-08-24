@@ -182,7 +182,11 @@ export default function OneDeviceQuizPage() {
             />
 
             <View style={styles.turn}>
-                <TurnBanner quizmaster={turn.quizmaster} answering={turn.answering} />
+                <TurnBanner
+                    quizmaster={turn.quizmaster}
+                    answering={turn.answering}
+                    run={turn.run}
+                />
 
                 <ScriptCard prompt={turn.question.prompt} seats={seatsOf(session)} />
 

@@ -9,9 +9,15 @@ import (
 	"github.com/google/uuid"
 )
 
-// Round 1 is a hot seat, and these are the four things that has to mean: taking a
-// question keeps you in it, taking one does not move the reading, only every second
-// question is worth anything, and a question nobody gets moves both.
+// Round 1 is a hot seat, and these are the things that has to mean: taking a question
+// keeps you in it, the reading follows the seat round the table, only every second
+// question is worth anything, and a question nobody gets moves the whole thing one
+// along.
+//
+// The reading following the seat is the one worth stating twice. A question is read by
+// the player on the answerer's right, always -- so a player who takes a question from
+// three seats down the table takes the reading with them, and whoever opened the round
+// stops being quiz master the moment somebody past their neighbour answers.
 //
 // Driven through a stub store rather than a database. What is being tested is the
 // decision -- which seat, whose point, who reads next -- and every input to it is
@@ -125,24 +131,27 @@ func rule(t *testing.T, store *verdictStore, correct bool) {
 	}
 }
 
-func TestCorrectAnswerKeepsTheSeatAndTheReading(t *testing.T) {
+func TestCorrectAnswerKeepsTheSeat(t *testing.T) {
 	// Question 1 (position 0), master 0 reading to seat 1.
 	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6)}
 
 	rule(t, store, true)
 
-	if got, want := store.session.QuizMasterSeat, 0; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d -- taking a question must not move the reading", got, want)
-	}
 	if got, want := store.session.HotSeat, 1; got != want {
 		t.Errorf("HotSeat = %d, want %d -- whoever took it stays in", got, want)
+	}
+	if got, want := store.session.QuizMasterSeat, 0; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- seat 1 is still read to by seat 0", got, want)
 	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)
 	}
 }
 
-func TestCorrectAnswerDeepInTheTableTakesTheSeat(t *testing.T) {
+// The bug this exists to keep fixed. Seat 0 opened the round, seat 1 missed, seat 2
+// took it -- and seat 0 used to carry on reading, so seat 1 sat between the reader and
+// the person being asked and never got a turn at either job.
+func TestTakingAQuestionFromDownTheTableTakesTheReadingWithIt(t *testing.T) {
 	// Question 1 has already been round to seats 1 and 2 and missed; seat 3 takes it.
 	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6), attempts: 2}
 
@@ -151,8 +160,86 @@ func TestCorrectAnswerDeepInTheTableTakesTheSeat(t *testing.T) {
 	if got, want := store.session.HotSeat, 3; got != want {
 		t.Errorf("HotSeat = %d, want %d -- the seat that took it holds it next", got, want)
 	}
-	if got, want := store.session.QuizMasterSeat, 0; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d", got, want)
+	if got, want := store.session.QuizMasterSeat, 2; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- seat 3 is read to by the seat on their right", got, want)
+	}
+}
+
+// Whoever is being asked is always read to by their right-hand neighbour, wherever the
+// question started and however far down the table it had to go first.
+func TestTheReaderIsAlwaysTheSeatToTheHotSeatsRight(t *testing.T) {
+	for attempts, want := range map[int]int{0: 0, 1: 1, 2: 2} {
+		store := &verdictStore{session: newVerdictSession(0, 1, 0, 6), attempts: attempts}
+
+		rule(t, store, true)
+
+		session := store.session
+		if got := session.QuizMasterSeat; got != want {
+			t.Errorf("after %d misses: QuizMasterSeat = %d, want %d", attempts, got, want)
+		}
+		if got, want := session.QuizMasterSeat, ReaderFor(session.HotSeat, len(session.Players)); got != want {
+			t.Errorf("after %d misses: QuizMasterSeat = %d, want %d", attempts, got, want)
+		}
+	}
+}
+
+// The number the board puts on the rule: how many questions in a row this seat has
+// taken. It only counts a player holding their own seat, so a question taken off
+// somebody else starts again at one.
+func TestHotSeatRunCountsQuestionsTakenInARow(t *testing.T) {
+	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6)}
+
+	rule(t, store, true) // seat 1 takes question 1
+	if got, want := store.session.HotSeatRun, 1; got != want {
+		t.Errorf("HotSeatRun = %d, want %d after one taken question", got, want)
+	}
+
+	rule(t, store, true) // seat 1 takes question 2 as well
+	if got, want := store.session.HotSeatRun, 2; got != want {
+		t.Errorf("HotSeatRun = %d, want %d after two in a row", got, want)
+	}
+
+	// Question 3 goes past seat 2 and is taken by seat 3, whose run is their own.
+	store.attempts = 2
+	rule(t, store, true)
+	if got, want := store.session.HotSeatRun, 1; got != want {
+		t.Errorf("HotSeatRun = %d, want %d -- a seat taken off somebody else starts again", got, want)
+	}
+
+	// Question 4 beats the table, so there is no run left to count.
+	store.attempts = 2
+	rule(t, store, false)
+	if got, want := store.session.HotSeatRun, 0; got != want {
+		t.Errorf("HotSeatRun = %d, want %d after a question nobody got", got, want)
+	}
+}
+
+// Round 1 is the only round that opens where it likes. Every round after it starts on
+// whoever is furthest behind -- and that seat's right-hand neighbour reads to them,
+// same as everywhere else.
+func TestTheNextRoundOpensOnTheLowestScore(t *testing.T) {
+	// The last question of a six question round, so taking it rolls the session over.
+	session := newVerdictSession(0, 1, 5, 6)
+	session.Players[0].Score = 3
+	session.Players[1].Score = 2
+	session.Players[2].Score = 5
+	session.Players[3].Score = 1
+
+	store := &verdictStore{session: session}
+
+	rule(t, store, true) // seat 1 takes it, and question 6 pays: 2 -> 3
+
+	if got, want := store.session.CurrentRound, RoundChoice; got != want {
+		t.Fatalf("CurrentRound = %d, want %d", got, want)
+	}
+	if got, want := store.session.HotSeat, 3; got != want {
+		t.Errorf("HotSeat = %d, want %d -- the round opens on the lowest score", got, want)
+	}
+	if got, want := store.session.QuizMasterSeat, 2; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- read to by the seat on their right", got, want)
+	}
+	if got, want := store.session.HotSeatRun, 0; got != want {
+		t.Errorf("HotSeatRun = %d, want %d -- a run does not cross a round", got, want)
 	}
 }
 
@@ -227,7 +314,7 @@ func TestQuestionNobodyGetsMovesTheReadingOn(t *testing.T) {
 		t.Errorf("QuizMasterSeat = %d, want %d -- a dead question moves the reading one on", got, want)
 	}
 	if got, want := store.session.HotSeat, 2; got != want {
-		t.Errorf("HotSeat = %d, want %d -- nobody earned it, so it goes back to the new reader's left", got, want)
+		t.Errorf("HotSeat = %d, want %d -- nobody earned it, so it shuffles one along", got, want)
 	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)

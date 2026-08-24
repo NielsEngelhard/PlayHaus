@@ -13,10 +13,11 @@ import type { QuizSession, QuizSessionPlayer, QuizSessionQuestion } from "./pubq
  * things they can draw without knowing where any of it came from.
  *
  * The round itself is a hot seat: taking a question keeps you in it for the next one,
- * the reading only moves when a question beats the whole table, and only every second
- * question is worth a point. None of that is decided here — it all comes back from the
- * server — but two of the three have to be *said* on screen before a button is pressed,
- * which is what `scoresAt` and `nextUpAfter` below are for.
+ * the reading follows the seat round the table — you are always read to by the player
+ * on your right — and only every second question is worth a point. None of that is
+ * decided here; it all comes back from the server. But it has to be *said* on screen
+ * before a button is pressed, which is what `scoresAt`, `nextUpAfter` and the run on
+ * `RoundOneTurn` below are for.
  */
 
 /** The round the whole of this file is about. Kept in step with `RoundOpen` in Go. */
@@ -59,6 +60,14 @@ export interface RoundOneTurn {
     quizmaster: Seat
     /** Whoever is being asked right now. */
     answering: Seat
+    /**
+     * How many questions in a row `answering` has taken, and 0 when they have taken
+     * none — a question that has passed on to them is a fresh start.
+     *
+     * The number behind the rule the round is built on: get it right and you are asked
+     * the next one too. Straight off the server, which counts it.
+     */
+    run: number
     /** Who gets it if this one is wrong, or null when the question is on its last seat. */
     nextUp: Seat | null
     /** 1-based, for "question 3 of 20". */
@@ -142,6 +151,10 @@ export function turnOf(session: QuizSession, quiz: QuizDetail): RoundOneTurn | n
         aliases: aliases.map(answer => answer.text),
         quizmaster,
         answering,
+        // A run belongs to whoever is *holding* the seat. Once a question has passed
+        // along, the person now being asked has taken nothing yet, so there is no run
+        // of theirs to put on the board.
+        run: session.answeringSeat === session.hotSeat ? session.hotSeatRun : 0,
         nextUp: nextUpAfter(session, seats),
         number: session.currentPosition + 1,
         total: session.questions.filter(candidate => candidate.round === ROUND_OPEN).length,

@@ -454,7 +454,26 @@ export const en = {
                 asking: 'asking',
                 answering: 'answering',
                 /** The banner read out as the one sentence it is. */
-                spoken: '{{master}} is asking {{player}}'
+                spoken: '{{master}} is asking {{player}}',
+                /**
+                 * The same, once there is a run worth saying. The pill that carries it
+                 * on screen sits inside a labelled banner, so a screen reader would
+                 * never reach it otherwise.
+                 */
+                spokenRun: '{{master}} is asking {{player}}, who has taken {{run}} in a row',
+                /**
+                 * The pill beside the name. Never `count`: that is the one option name
+                 * i18next treats as a plural trigger, and there are no plural forms
+                 * behind it. See `common.time`.
+                 */
+                run: 'Run of {{run}}',
+                /**
+                 * The round's rule, on screen every turn rather than only on the
+                 * hand-off. It is the thing a table gets wrong: the questions do not go
+                 * round like a deal of cards, they come straight back to whoever just
+                 * took one.
+                 */
+                staysWhileRight: '{{name}} keeps being asked until they get one wrong'
             },
             readAloud: 'Read this out loud',
             scoresThisRound: 'Scores this round',
@@ -485,7 +504,7 @@ export const en = {
              * Wrong line because the two together are the round's whole rule, and the
              * moment to read it is with a thumb over the buttons.
              */
-            correctKeepsTurn: 'Correct keeps {{name}} answering',
+            correctKeepsTurn: 'Correct and the next question is {{name}} again',
             /**
              * Whether the question on screen pays out. Every second one does — see
              * `scoresAt` — and the other half are worth nothing but the seat, which is
@@ -498,16 +517,16 @@ export const en = {
                 /** Broken over two lines by the design, which the app does not force. */
                 title: 'Pass the phone to {{name}}',
                 /**
-                 * Not "this turn" any more: the reading stays put until a question goes
-                 * all the way round unanswered, which can be a good while.
+                 * You read to the person on your left, and you keep reading until they
+                 * lose the seat — so this says the job rather than how long it lasts.
                  */
-                body: '{{name}} reads until a question beats the table',
+                body: '{{name}} reads to the player on their left',
                 /**
-                 * The round's rule, said on the one screen with room for it. The
-                 * hand-off is rare now, so this is where it can be read rather than
-                 * skimmed past.
+                 * The round's rule, said on the one screen with room to say it properly.
+                 * The banner on the board says it in one line every turn; this is the
+                 * version with room for the second half of it.
                  */
-                rule: 'Get one right and you stay in. Every second question scores.',
+                rule: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
                 action: "I'm {{name}} — show the question"
             },
             standings: {
