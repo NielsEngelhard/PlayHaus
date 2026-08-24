@@ -15,9 +15,7 @@
  */
 export type MusicScene = 'lobby' | 'playing';
 
-export type TrackId =
-    | 'bossa'
-    | 'adventure' | 'action' | 'chill' | 'sunny' | 'zen';
+export type TrackId = | 'upBeat' | 'funkyJazz' | 'softJazz' | 'lobby' | 'softHouse';
 
 /**
  * `require` at module scope is safe on every platform — Metro resolves these to asset
@@ -28,12 +26,11 @@ export type TrackId =
  * where each one came from and what was done to make it loop.
  */
 export const SOURCES: Record<TrackId, number> = {
-    bossa: require('@/assets/music/bossa.m4a'),
-    adventure: require('@/assets/music/adventure.m4a'),
-    action: require('@/assets/music/action.m4a'),
-    chill: require('@/assets/music/chill.m4a'),
-    sunny: require('@/assets/music/sunny.m4a'),
-    zen: require('@/assets/music/zen.m4a')
+    upBeat: require('@/assets/music/beatje.mp3'),
+    funkyJazz: require('@/assets/music/funky-lol.mp3'),
+    softJazz: require('@/assets/music/jazzy.mp3'),
+    lobby: require('@/assets/music/lobby.mp3'),
+    softHouse: require('@/assets/music/soft-house.mp3'),
 };
 
 /**
@@ -44,8 +41,8 @@ export const SOURCES: Record<TrackId, number> = {
  * five picks, so the same session twice running rarely sounds the same.
  */
 export const PLAYLISTS: Record<MusicScene, readonly TrackId[]> = {
-    lobby: ['bossa'],
-    playing: ['adventure', 'action', 'chill', 'sunny', 'zen']
+    lobby: ['lobby'],
+    playing: ['upBeat', 'funkyJazz', 'softJazz', 'softHouse']
 };
 
 /** What each scene played last, so the next pick can avoid it. */

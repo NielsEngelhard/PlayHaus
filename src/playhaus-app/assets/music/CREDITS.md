@@ -4,14 +4,6 @@ Every loop here is **CC0 1.0** (public domain). No attribution is legally requir
 records where each file came from, and what was done to it, so the next person does not have to
 guess.
 
-| File | Scene | Track | Author | Source |
-|---|---|---|---|---|
-| `chill.m4a` | playing | Menu Chill Music | etrock | https://opengameart.org/content/menu-chill-music |
-| `bossa.m4a` | lobby | Bossa Shop Theme (Lo-Fi cut) | SpringySpringo | https://opengameart.org/content/bossa-shop-theme-in-low-fi-and-hd |
-| `zen.m4a` | playing | — (predates this file) | — | — |
-| `sunny.m4a` | playing | Sunny Side Up | Pro Sensory (Alex McCulloch) | https://opengameart.org/content/sunny-side-up-updated-version |
-| `adventure.m4a` | playing | Happy Adventure (Loop) | TinyWorlds | https://opengameart.org/content/happy-adventure-loop |
-| `action.m4a` | playing | — (predates this file) | — | — |
 
 ## What was done to them
 
