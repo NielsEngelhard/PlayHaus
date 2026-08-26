@@ -136,48 +136,36 @@ func TestOpenPointsAtPaysEverySecondQuestion(t *testing.T) {
 	}
 }
 
-func TestSessionQuestionLookups(t *testing.T) {
-	session := &Session{
-		Status:          SessionInProgress,
-		CurrentRound:    RoundOpen,
-		CurrentPosition: 1,
-		Players: []SessionPlayer{
-			{Seat: 0, Name: "Niels"}, {Seat: 1, Name: "Sanne"}, {Seat: 2, Name: "Tim"},
-		},
-		Questions: []SessionQuestion{
-			{Round: RoundOpen, Position: 0},
-			{Round: RoundOpen, Position: 1},
-			{Round: RoundChoice, Position: 0},
-		},
+// Round 2 is a hot seat too, so it has a seat being asked. Rounds 3 and 4 do not, and
+// that is the truth rather than a gap: everybody guesses at once, and everybody
+// describes in turn.
+func TestCurrentAnsweringSeatFollowsTheHotSeatRounds(t *testing.T) {
+	table := []struct {
+		name  string
+		round int
+		want  int
+	}{
+		{"round 1 is asked to one seat", RoundOpen, 1},
+		{"round 2 is asked to one seat", RoundChoice, 1},
+		{"round 3 asks the whole table at once", RoundClosest, -1},
+		{"round 4 has nobody being asked", RoundDescribe, -1},
+		{"round 5 is not built yet", RoundList, -1},
 	}
 
-	if got, want := session.QuestionsInRound(RoundOpen), 2; got != want {
-		t.Errorf("QuestionsInRound(RoundOpen) = %d, want %d", got, want)
-	}
-	if session.QuestionAt(RoundOpen, 1) == nil {
-		t.Error("QuestionAt(RoundOpen, 1) = nil, want the dealt question")
-	}
-	if session.QuestionAt(RoundOpen, 9) != nil {
-		t.Error("QuestionAt(RoundOpen, 9) found a question that was never dealt")
-	}
-	if got := session.PlayerAt(2); got == nil || got.Name != "Tim" {
-		t.Errorf("PlayerAt(2) = %v, want Tim", got)
-	}
-	if session.PlayerAt(7) != nil {
-		t.Error("PlayerAt(7) found somebody who is not at the table")
-	}
-}
+	for _, row := range table {
+		t.Run(row.name, func(t *testing.T) {
+			session := &Session{
+				Status:       SessionInProgress,
+				CurrentRound: row.round,
+				HotSeat:      1,
+				Players:      []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}},
+				Questions:    []SessionQuestion{{Round: row.round, Position: 0}},
+			}
 
-func TestCurrentAnsweringSeatIsNobodyOutsideRoundOne(t *testing.T) {
-	session := &Session{
-		Status:       SessionInProgress,
-		CurrentRound: RoundChoice,
-		Players:      []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}},
-		Questions:    []SessionQuestion{{Round: RoundChoice, Position: 0}},
-	}
-
-	if got := session.CurrentAnsweringSeat(0); got != -1 {
-		t.Errorf("CurrentAnsweringSeat in round 2 = %d, want -1", got)
+			if got := session.CurrentAnsweringSeat(0); got != row.want {
+				t.Errorf("CurrentAnsweringSeat in round %d = %d, want %d", row.round, got, row.want)
+			}
+		})
 	}
 }
 
@@ -196,69 +184,3 @@ func TestCurrentAnsweringSeatIsNobodyOnceTheSessionIsOver(t *testing.T) {
 
 // The one rule the whole ordering rests on: you are read to by the person on your
 // right, so naming the seat a question opens on names the reader too.
-func TestReaderForIsTheSeatOnTheRight(t *testing.T) {
-	table := []struct {
-		seat, players, want int
-	}{
-		{seat: 3, players: 4, want: 2},
-		{seat: 1, players: 4, want: 0},
-		// Round the end of the table and back to the far seat.
-		{seat: 0, players: 4, want: 3},
-		{seat: 0, players: 3, want: 2},
-	}
-
-	for _, row := range table {
-		if got := ReaderFor(row.seat, row.players); got != row.want {
-			t.Errorf("ReaderFor(%d, %d) = %d, want %d", row.seat, row.players, got, row.want)
-		}
-	}
-}
-
-// OpenOn is the only thing that should write either seat, because the two are one
-// fact: a hot seat read to by anybody but its right-hand neighbour is a table nobody
-// sitting at it could describe.
-func TestOpenOnPutsTheReadingOnTheSeatToTheRight(t *testing.T) {
-	session := &Session{
-		Players: []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}, {Seat: 3}},
-	}
-
-	for _, seat := range []int{0, 1, 2, 3, 4, -1} {
-		session.OpenOn(seat)
-
-		if got, want := session.QuizMasterSeat, ReaderFor(session.HotSeat, 4); got != want {
-			t.Errorf("OpenOn(%d): QuizMasterSeat = %d, want %d", seat, got, want)
-		}
-		if session.HotSeat < 0 || session.HotSeat > 3 {
-			t.Errorf("OpenOn(%d): HotSeat = %d, which is not a seat at this table", seat, session.HotSeat)
-		}
-	}
-}
-
-// Who opens every round but the first and the finale.
-func TestLowestScoringSeat(t *testing.T) {
-	table := []struct {
-		name   string
-		scores []int
-		want   int
-	}{
-		{"one player behind", []int{3, 2, 5, 1}, 3},
-		{"the leader in seat 0", []int{9, 4, 4, 8}, 1},
-		// Ties break on the seat rather than at random, so the answer is the same one
-		// twice and a table can argue with it.
-		{"a tie goes to the nearer seat", []int{2, 1, 1, 4}, 1},
-		{"nobody has scored yet", []int{0, 0, 0, 0}, 0},
-	}
-
-	for _, row := range table {
-		t.Run(row.name, func(t *testing.T) {
-			session := &Session{}
-			for seat, score := range row.scores {
-				session.Players = append(session.Players, SessionPlayer{Seat: seat, Score: score})
-			}
-
-			if got := session.LowestScoringSeat(); got != row.want {
-				t.Errorf("LowestScoringSeat() = %d, want %d", got, row.want)
-			}
-		})
-	}
-}

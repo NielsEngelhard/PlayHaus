@@ -103,9 +103,13 @@ func TestStartSingleDeviceQuizSeatsTheTableInOrder(t *testing.T) {
 	}
 }
 
-// TestStartSingleDeviceQuizDealsRoundTwoPerPlayer is the rule that everybody gets
-// their own ABCD question -- one each at a full table, two each below that.
-func TestStartSingleDeviceQuizDealsRoundTwoPerPlayer(t *testing.T) {
+// TestStartSingleDeviceQuizDealsOneChoiceQuestionEach is the length of round 2: one
+// question per player at the table.
+//
+// They are dealt to nobody in particular, which is the part worth asserting. Round 2
+// used to hand every player their own ABCD question; it now runs on the hot seat like
+// round 1, where the reading moves round the table and the questions belong to it.
+func TestStartSingleDeviceQuizDealsOneChoiceQuestionEach(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
 	quiz := aQuiz(t, h, session.Token, "locale=nl")
@@ -115,30 +119,29 @@ func TestStartSingleDeviceQuizDealsRoundTwoPerPlayer(t *testing.T) {
 			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
 
 			dealt := questionsIn(started, pubquizr.RoundChoice)
-			if got, want := len(dealt), pubquizr.ChoiceQuestionsFor(players); got != want {
+			if got, want := len(dealt), players; got != want {
 				t.Fatalf("round 2 questions = %d, want %d", got, want)
 			}
 
-			perSeat := make([]int, players)
 			for _, question := range dealt {
-				if question.AssignedSeat == nil {
-					t.Fatal("a round 2 question was dealt to nobody")
-				}
-				perSeat[*question.AssignedSeat]++
-			}
-			want := pubquizr.ChoiceQuestionsFor(players) / players
-			for seat, got := range perSeat {
-				if got != want {
-					t.Errorf("seat %d got %d round 2 questions, want %d", seat, got, want)
+				if question.AssignedSeat != nil {
+					t.Errorf("round 2 question %d was dealt to seat %d -- the round belongs to the table",
+						question.Position, *question.AssignedSeat)
 				}
 			}
 		})
 	}
 }
 
-// TestStartSingleDeviceQuizDealsTwoWordsPerPlayer covers round 4: you describe both
-// of yours inside the same thirty seconds, so the pair has to land on one seat.
-func TestStartSingleDeviceQuizDealsTwoWordsPerPlayer(t *testing.T) {
+// TestStartSingleDeviceQuizDealsTheWordsTheQuizHas covers round 4: you describe all of
+// yours inside the same thirty seconds, so a player's words have to land on one seat --
+// and everybody has to get the same number of them.
+//
+// How many that is depends on what the quiz carries. The round wants four each and
+// settles for fewer rather than leaving the last seats with nothing, so what is asserted
+// here is the shape: an equal share, somewhere in range. The clamp itself is arithmetic
+// and tested as arithmetic in round_four_test.go.
+func TestStartSingleDeviceQuizDealsTheWordsTheQuizHas(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
 	quiz := aQuiz(t, h, session.Token, "locale=nl")
@@ -148,9 +151,6 @@ func TestStartSingleDeviceQuizDealsTwoWordsPerPlayer(t *testing.T) {
 			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
 
 			dealt := questionsIn(started, pubquizr.RoundDescribe)
-			if got, want := len(dealt), pubquizr.DescribeWordsFor(players); got != want {
-				t.Fatalf("round 4 words = %d, want %d", got, want)
-			}
 
 			perSeat := make([]int, players)
 			for _, question := range dealt {
@@ -159,10 +159,19 @@ func TestStartSingleDeviceQuizDealsTwoWordsPerPlayer(t *testing.T) {
 				}
 				perSeat[*question.AssignedSeat]++
 			}
+
+			each := perSeat[0]
+			if each < pubquizr.MinDescribeWordsPerTurn || each > pubquizr.DescribeWordsPerTurn {
+				t.Fatalf("seat 0 got %d words, want between %d and %d",
+					each, pubquizr.MinDescribeWordsPerTurn, pubquizr.DescribeWordsPerTurn)
+			}
 			for seat, got := range perSeat {
-				if got != pubquizr.DescribeWordsPerPlayer {
-					t.Errorf("seat %d got %d words, want %d", seat, got, pubquizr.DescribeWordsPerPlayer)
+				if got != each {
+					t.Errorf("seat %d got %d words, want %d -- everybody describes the same number", seat, got, each)
 				}
+			}
+			if got, want := len(dealt), players*each; got != want {
+				t.Errorf("round 4 words = %d, want %d", got, want)
 			}
 		})
 	}

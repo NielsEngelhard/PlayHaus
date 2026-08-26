@@ -240,7 +240,13 @@ func (s *GormStore) SessionsInProgressByUserID(ctx context.Context, userID strin
 	return sessions, nil
 }
 
-// AttemptsOn is how many seats have already had a go at one dealt question.
+// AttemptsOn is how many answer rows one dealt question has collected.
+//
+// Which is how many seats have had a go at it -- but only in the hot seat rounds, where
+// and only where it is one row per seat that tried. Round 3 writes a row per guess and
+// round 4 writes up to two rows per word, so anything reading this as a seat count has to
+// have asked IsHotSeatRound first. Rounds 3 and 4 settle a whole turn in one request and
+// never ask at all, which is the real containment.
 //
 // Counted rather than stored on the question, because the rows are already there:
 // round 1 writes one per seat that tried, which is exactly what "how far down the
@@ -259,28 +265,48 @@ func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID)
 	return int(count), nil
 }
 
-// RecordAttempt writes one go at a question and whatever it changed, together.
+// TurnOutcome is everything one settled turn changed.
 //
-// One transaction because the four writes are one fact. A score raised without the
-// answer row beside it would be a point nobody can account for, and a question moved
-// on without the session's position following it would leave the table reading a
-// question the session no longer thinks it is on.
+// Rounds 3 and 4 settle several things at once -- five guesses, four words, three scores
+// -- and every one of them is the same fact as the session moving on. A score raised
+// without its answer row beside it is a point nobody can account for afterwards, and that
+// stays true whether there is one of them or six. So there is one writer, and it takes
+// however many of each there are.
+type TurnOutcome struct {
+	// Answers are the attempt rows to insert. One per seat that had a go in the hot
+	// seat rounds; one per guess in round 3; one per word and one for the describer
+	// beside it in round 4.
+	Answers []*SessionAnswer
+	// Questions are the dealt questions whose status or points moved.
+	Questions []*SessionQuestion
+	// Players are the seats whose score moved, at most once each. The score written is
+	// absolute rather than an increment, worked out in memory off the session that was
+	// just read -- which is safe because a single device session has exactly one
+	// writer: the phone on the table.
+	Players []*SessionPlayer
+}
+
+// RecordTurn writes one settled turn and the session it moved, together.
 //
-// player and question may be nil -- a wrong answer that still leaves the question
-// open changes neither.
-func (s *GormStore) RecordAttempt(
-	ctx context.Context,
-	session *Session,
-	question *SessionQuestion,
-	player *SessionPlayer,
-	attempt *SessionAnswer,
-) error {
+// One transaction because all of it is one fact: a question moved on without the
+// session's position following it would leave the table reading a question the session no
+// longer thinks it is on. Every slice may be empty -- a wrong answer that leaves the
+// question open changes nothing but the attempt row.
+//
+// The session columns written here are the whole of how a game remembers where it is, and
+// a missing key in that map would leave every ordering test in this package passing and
+// every real game losing its place on the next reload.
+func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOutcome) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(attempt).Error; err != nil {
-			return fmt.Errorf("insert attempt: %w", err)
+		// GORM refuses an empty slice, and a turn with nothing to say about who
+		// answered is a legitimate one -- see the wrong-with-seats-left branch.
+		if len(out.Answers) > 0 {
+			if err := tx.Create(out.Answers).Error; err != nil {
+				return fmt.Errorf("insert attempts: %w", err)
+			}
 		}
 
-		if question != nil {
+		for _, question := range out.Questions {
 			err := tx.Model(&SessionQuestion{}).
 				Where("id = ?", question.ID).
 				Updates(map[string]any{"status": question.Status, "points": question.Points}).Error
@@ -289,7 +315,7 @@ func (s *GormStore) RecordAttempt(
 			}
 		}
 
-		if player != nil {
+		for _, player := range out.Players {
 			err := tx.Model(&SessionPlayer{}).
 				Where("session_id = ? AND seat = ?", session.ID, player.Seat).
 				Update("score", player.Score).Error
@@ -317,7 +343,7 @@ func (s *GormStore) RecordAttempt(
 		return nil
 	})
 	if err != nil {
-		return fmt.Errorf("record attempt: %w", err)
+		return fmt.Errorf("record turn: %w", err)
 	}
 
 	return nil

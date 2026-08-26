@@ -3,11 +3,12 @@ import { DarkTheme, DefaultTheme, Slot, ThemeProvider as NavigationThemeProvider
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Platform, ScrollView, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
+import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { BottomBarHeight, Spacing } from '@/constants/theme';
 import { MusicProvider } from '@/features/audio/MusicContext';
@@ -116,10 +117,13 @@ function App() {
           <MusicProvider>
             {/* Wraps the chrome, so a game page inside `Slot` can claim the whole viewport. */}
             <FullScreenProvider>
-              <Chrome />
+              {/* And the whole window's colour with it — see `PageToneContext`. */}
+              <PageToneProvider>
+                <Chrome />
 
-              {/* Renders nothing at all while signed in. */}
-              <AuthGate />
+                {/* Renders nothing at all while signed in. */}
+                <AuthGate />
+              </PageToneProvider>
             </FullScreenProvider>
           </MusicProvider>
         </LanguageProvider>
@@ -134,6 +138,7 @@ function App() {
  */
 function Chrome() {
   const fullScreen = useFullScreenValue();
+  const tone = usePageToneValue();
   const styles = useStyles();
   const pathname = usePathname();
 
@@ -191,6 +196,18 @@ function Chrome() {
 
   return (
     <View style={styles.page}>
+      {/*
+        * A page's own colour, taken all the way out to the window's edges.
+        *
+        * A layer rather than a background on `page` itself: the canvas underneath is a
+        * tiled image as well as a colour, and covering it is a great deal simpler than
+        * unsetting it on two platforms. First child, so everything else draws over it,
+        * and `pointerEvents="none"` so it never stands between a press and the page.
+        */}
+      {tone !== null && (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: tone }]} />
+      )}
+
       {/*
         * One scroller for both modes, switched rather than swapped.
         *

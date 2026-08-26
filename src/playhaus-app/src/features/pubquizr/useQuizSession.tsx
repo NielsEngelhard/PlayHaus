@@ -5,8 +5,12 @@ import { getQuizRequest, type QuizDetail } from "./pubquizr-quizzes";
 import { quizErrorMessage } from "./pubquizr-errors";
 import {
     getSingleDeviceSessionRequest,
+    recordClosestGuessesRequest,
+    recordDescribeAwardsRequest,
     recordOpenVerdictRequest,
-    type QuizSession
+    type QuizSession,
+    type SeatGuess,
+    type WordAward
 } from "./pubquizr-sessions";
 
 export type QuizSessionStatus = 'loading' | 'ready' | 'failed';
@@ -19,14 +23,22 @@ export interface PlayableSession {
     quiz: QuizDetail | null
     /** The load failed, as a catalogue key resolved at render. */
     error: TranslationKey | null
-    /** A verdict is in the air. The buttons lock rather than disappear. */
+    /** A ruling is in the air. The buttons lock rather than disappear. */
     ruling: boolean
     /**
-     * A verdict was refused. Kept apart from `error`, which means there is nothing on
+     * A ruling was refused. Kept apart from `error`, which means there is nothing on
      * screen at all — this one sits over a board that is still perfectly good.
      */
     rulingError: TranslationKey | null
+    /** Rounds 1 and 2: was that right? */
     rule: (correct: boolean) => void
+    /**
+     * Round 3: whose number was nearest. Either every guess, and the server settles it,
+     * or the winners outright when nobody wrote the numbers down.
+     */
+    settleClosest: (settled: { guesses: SeatGuess[] } | { winningSeats: number[] }) => void
+    /** Round 4: what became of each of the describer's words. */
+    settleDescribe: (awards: WordAward[]) => void
     reload: () => void
 }
 
@@ -100,21 +112,23 @@ export function useQuizSession(sessionId: string): PlayableSession {
         return () => { current = false; };
     }, [sessionId, attempt, signedIn]);
 
-    const rule = useCallback((correct: boolean) => {
+    /**
+     * One way to move the game on, whichever round is doing it.
+     *
+     * Every round posts something different and gets the same thing back — the whole new
+     * session, replacing this one wholesale rather than being patched in. So the locking,
+     * the refusal handling and the unmount guard are the same three lines every time, and
+     * they live here rather than three times over.
+     */
+    const submit = useCallback((move: (session: QuizSession) => Promise<QuizSession>) => {
         if (ruling || session === null) return;
-
-        const dealt = session.questions.find(
-            question => question.round === session.currentRound
-                && question.position === session.currentPosition
-        );
-        if (dealt === undefined) return;
 
         setRuling(true);
         setRulingError(null);
 
         void (async () => {
             try {
-                const moved = await recordOpenVerdictRequest(sessionId, dealt.id, correct);
+                const moved = await move(session);
                 if (!mounted.current) return;
 
                 setSession(moved);
@@ -122,14 +136,53 @@ export function useQuizSession(sessionId: string): PlayableSession {
                 if (!mounted.current) return;
 
                 // The board stays up. What is on it is still what the server thinks is
-                // happening, and a refused verdict is a thing to try again rather than
-                // a reason to throw the game away.
+                // happening, and a refused ruling is a thing to try again rather than a
+                // reason to throw the game away.
                 setRulingError(quizErrorMessage(failure));
             } finally {
                 if (mounted.current) setRuling(false);
             }
         })();
-    }, [ruling, session, sessionId]);
+    }, [ruling, session]);
+
+    /*
+     * Which question a ruling is about comes off `turnQuestionIds` rather than being
+     * looked up by round and position.
+     *
+     * Those two stopped being enough at round 4, where one turn covers several words and
+     * the position counts turns rather than slots — looking a question up by it there
+     * finds a word out of somebody else's thirty seconds. The server already knows what
+     * it will accept, so it says.
+     */
+    const rule = useCallback((correct: boolean) => {
+        submit(current => {
+            const [dealt] = current.turnQuestionIds;
+            if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
+
+            return recordOpenVerdictRequest(sessionId, dealt, correct);
+        });
+    }, [submit, sessionId]);
+
+    const settleClosest = useCallback((
+        settled: { guesses: SeatGuess[] } | { winningSeats: number[] }
+    ) => {
+        submit(current => {
+            const [dealt] = current.turnQuestionIds;
+            if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
+
+            return recordClosestGuessesRequest(sessionId, dealt, settled);
+        });
+    }, [submit, sessionId]);
+
+    const settleDescribe = useCallback((awards: WordAward[]) => {
+        submit(current => {
+            if (current.describerSeat === null) {
+                return Promise.reject(new Error('nobody is describing'));
+            }
+
+            return recordDescribeAwardsRequest(sessionId, current.describerSeat, awards);
+        });
+    }, [submit, sessionId]);
 
     const reload = useCallback(() => setAttempt(previous => previous + 1), []);
 
@@ -141,6 +194,8 @@ export function useQuizSession(sessionId: string): PlayableSession {
         ruling,
         rulingError,
         rule,
+        settleClosest,
+        settleDescribe,
         reload
     };
 }

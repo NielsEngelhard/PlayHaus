@@ -4,7 +4,7 @@ import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/round-one";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -12,23 +12,39 @@ import { View } from "react-native";
 interface Props {
     /** Best first. Ties keep their seating order. */
     standings: Seat[]
+    /** The round just finished. */
     round: number
+    /**
+     * Starts the next one, or null when there is no next one this build can play.
+     *
+     * Null is what turns this from a breather into an ending: the notice appears, the
+     * action becomes the way out, and nobody is left waiting for a question that is
+     * never coming.
+     */
+    onNext: (() => void) | null
     onLeave: () => void
 }
 
 /**
  * Where everyone stands with a round behind them.
  *
- * The round has to end with something, and a scoreboard is the thing a pub quiz ends
- * rounds with. It is also the honest place to say that the next round is not built
- * yet: the session really has moved on to round 2, so the alternative is a screen that
- * either pretends the game is over or leaves the table waiting for a question that is
- * never coming.
+ * A round has to end with something, and a scoreboard is the thing a pub quiz ends rounds
+ * with. It is also the beat the table needs: the phone changes hands, somebody reads the
+ * scores out, and the next round starts when everybody is ready rather than the instant
+ * the last answer is marked.
+ *
+ * The same screen is the honest place to stop, too. When there is no next round to start
+ * it says so, because the session really has moved on — and the alternative is a screen
+ * that either pretends the game is over or leaves the table waiting.
  */
-export default function RoundStandings({ standings, round, onLeave }: Props) {
+export default function RoundStandings({ standings, round, onNext, onLeave }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+
+    const description = onNext === null
+        ? t('pubquizr.play.standings.description')
+        : t('pubquizr.play.standings.breather', { round: round + 1 });
 
     // Only the outright leader gets the lemon row. On a tie nobody is winning, and two
     // highlighted rows would say otherwise.
@@ -39,7 +55,7 @@ export default function RoundStandings({ standings, round, onLeave }: Props) {
         <View style={styles.screen}>
             <SimpleTextHero
                 title={t('pubquizr.play.standings.title', { round })}
-                description={t('pubquizr.play.standings.description')}
+                description={description}
             />
 
             <View style={styles.list}>
@@ -74,18 +90,29 @@ export default function RoundStandings({ standings, round, onLeave }: Props) {
             </View>
 
             <View style={styles.footer}>
-                <InlineNotification
-                    icon="tool"
-                    color={theme.colors.blush}
-                    message={t('pubquizr.play.standings.nextRoundWip', { round: round + 1 })}
-                />
+                {onNext === null ? (
+                    <>
+                        <InlineNotification
+                            icon="tool"
+                            color={theme.colors.blush}
+                            message={t('pubquizr.play.standings.nextRoundWip', { round: round + 1 })}
+                        />
 
-                <ActionButton
-                    size="large"
-                    icon="home"
-                    text={t('common.backToGames')}
-                    onPress={onLeave}
-                />
+                        <ActionButton
+                            size="large"
+                            icon="home"
+                            text={t('common.backToGames')}
+                            onPress={onLeave}
+                        />
+                    </>
+                ) : (
+                    <ActionButton
+                        size="large"
+                        icon="arrow-right"
+                        text={t('pubquizr.play.standings.startNext', { round: round + 1 })}
+                        onPress={onNext}
+                    />
+                )}
             </View>
         </View>
     )
@@ -96,7 +123,6 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%',
         paddingTop: Spacing.three,
-        paddingBottom: 26,
         gap: Spacing.four
     },
 

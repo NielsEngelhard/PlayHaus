@@ -63,6 +63,30 @@ export interface QuizSession {
      * to be explained out loud by whoever read the box.
      */
     hotSeatRun: number
+    /**
+     * How many goes this round holds.
+     *
+     * Not the same as counting `questions` for this round: round 4 is one turn per
+     * player and several words inside each, so "word 5 of 8" would be the wrong thing
+     * to put on the progress bar.
+     */
+    turnsInRound: number
+    /**
+     * Who is describing in round 4, and null in every other round.
+     *
+     * The same seat as `quizMasterSeat` — the describer holds the phone, because the
+     * words are on it and they are the only person who may see them — but the server
+     * names it so the app does not have to know that trick.
+     */
+    describerSeat: number | null
+    /**
+     * The dealt questions this turn is about: one in rounds 1 to 3, and the describer's
+     * whole set of words in round 4.
+     *
+     * The server saying what it will accept a ruling on, rather than the app working it
+     * out from `assignedSeat` and hoping the two agree.
+     */
+    turnQuestionIds: string[]
     totalRounds: number
     /**
      * Whose turn it is to answer the question on screen, and null when nobody is being
@@ -149,5 +173,59 @@ export async function recordOpenVerdictRequest(
     return request<QuizSession>(
         `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/verdict`,
         { method: 'POST', body: JSON.stringify({ sessionQuestionId, correct }) }
+    );
+}
+
+/** One player's number in round 3. */
+export interface SeatGuess {
+    seat: number
+    value: number
+}
+
+/**
+ * The quizmaster settling one round 3 question, and the game one step further on.
+ *
+ * Two ways in, and exactly one of them per call. Either every number was typed in and
+ * the server works out who was nearest — which is the honest way, because it writes the
+ * guesses down for the table to argue about later — or nobody typed anything and the
+ * quizmaster simply names who won. Sending both is refused rather than guessed at.
+ */
+export async function recordClosestGuessesRequest(
+    sessionId: string,
+    sessionQuestionId: string,
+    settled: { guesses: SeatGuess[] } | { winningSeats: number[] }
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/closest`,
+        { method: 'POST', body: JSON.stringify({ sessionQuestionId, ...settled }) }
+    );
+}
+
+/** What became of one round 4 word. A null seat is a word nobody got. */
+export interface WordAward {
+    sessionQuestionId: string
+    seat: number | null
+}
+
+/**
+ * The quizmaster settling one thirty second turn, and the game one step further on.
+ *
+ * `describerSeat` is what makes the turn nameable: it covers several words, so there is
+ * no single question to point at, but there is always exactly one person describing. It
+ * is the staleness guard too — a phone still showing the last turn names the last
+ * describer and is refused.
+ *
+ * Every word of the turn has to be ruled on, including the ones nobody got. The screen
+ * has a row per word already, so that costs it nothing and stops a half-written body
+ * quietly scoring a word as missed.
+ */
+export async function recordDescribeAwardsRequest(
+    sessionId: string,
+    describerSeat: number,
+    awards: WordAward[]
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/describe`,
+        { method: 'POST', body: JSON.stringify({ describerSeat, awards }) }
     );
 }

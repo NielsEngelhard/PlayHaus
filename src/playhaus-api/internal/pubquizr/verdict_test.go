@@ -29,10 +29,21 @@ import (
 type verdictStore struct {
 	session  *Session
 	attempts int
+	// quiz is what QuizByID answers with, for the one path that needs content: round
+	// 3 has to know the number before it can say who was nearest to it.
+	quiz *Quiz
 
-	recordedAttempt  *SessionAnswer
-	recordedQuestion *SessionQuestion
-	recordedPlayer   *SessionPlayer
+	recorded TurnOutcome
+}
+
+// only is the one thing of its kind the hot seat rounds ever write, or nil. A turn that
+// settles several at once is round 3 and round 4's business, and those tests read the
+// slices directly.
+func only[T any](rows []*T) *T {
+	if len(rows) != 1 {
+		return nil
+	}
+	return rows[0]
 }
 
 func (s *verdictStore) SessionByID(context.Context, uuid.UUID) (*Session, error) {
@@ -43,21 +54,13 @@ func (s *verdictStore) AttemptsOn(context.Context, uuid.UUID) (int, error) {
 	return s.attempts, nil
 }
 
-func (s *verdictStore) RecordAttempt(
-	_ context.Context,
-	_ *Session,
-	question *SessionQuestion,
-	player *SessionPlayer,
-	attempt *SessionAnswer,
-) error {
-	s.recordedAttempt = attempt
-	s.recordedQuestion = question
-	s.recordedPlayer = player
+func (s *verdictStore) RecordTurn(_ context.Context, _ *Session, out TurnOutcome) error {
+	s.recorded = out
 
 	return nil
 }
 
-func (s *verdictStore) QuizByID(context.Context, uuid.UUID) (*Quiz, error) { return nil, nil }
+func (s *verdictStore) QuizByID(context.Context, uuid.UUID) (*Quiz, error) { return s.quiz, nil }
 func (s *verdictStore) QuizBySlug(context.Context, string, i18n.Locale) (*Quiz, error) {
 	return nil, nil
 }
@@ -120,14 +123,14 @@ func rule(t *testing.T, store *verdictStore, correct bool) {
 		t.Fatal("no question dealt in the current slot")
 	}
 
-	_, err := NewService(store).RecordOpenVerdict(context.Background(), VerdictInput{
+	_, err := NewService(store).RecordHotSeatVerdict(context.Background(), VerdictInput{
 		SessionID:         session.ID,
 		OwnerID:           verdictOwner,
 		SessionQuestionID: question.ID,
 		Correct:           correct,
 	})
 	if err != nil {
-		t.Fatalf("RecordOpenVerdict: %v", err)
+		t.Fatalf("RecordHotSeatVerdict: %v", err)
 	}
 }
 
@@ -265,19 +268,19 @@ func TestOnlyEverySecondQuestionScores(t *testing.T) {
 			if got := player.Score; got != row.want {
 				t.Errorf("score = %d, want %d", got, row.want)
 			}
-			if got := store.recordedAttempt.Points; got != row.want {
+			if got := only(store.recorded.Answers).Points; got != row.want {
 				t.Errorf("attempt points = %d, want %d", got, row.want)
 			}
-			if got := store.recordedQuestion.Points; got != row.want {
+			if got := only(store.recorded.Questions).Points; got != row.want {
 				t.Errorf("question points = %d, want %d", got, row.want)
 			}
 
 			// A scoreless question has no score to write, so the store is handed no
 			// player to update.
-			if row.want == 0 && store.recordedPlayer != nil {
+			if row.want == 0 && len(store.recorded.Players) > 0 {
 				t.Error("a scoreless question still asked for a score update")
 			}
-			if row.want > 0 && store.recordedPlayer == nil {
+			if row.want > 0 && len(store.recorded.Players) == 0 {
 				t.Error("a scoring question did not ask for a score update")
 			}
 		})
@@ -298,7 +301,7 @@ func TestWrongAnswerWithSeatsLeftMovesNothing(t *testing.T) {
 	if got, want := store.session.CurrentPosition, 0; got != want {
 		t.Errorf("CurrentPosition = %d, want %d -- the question has not been answered yet", got, want)
 	}
-	if store.recordedQuestion != nil {
+	if len(store.recorded.Questions) > 0 {
 		t.Error("a question still being passed round was closed")
 	}
 }
@@ -319,7 +322,7 @@ func TestQuestionNobodyGetsMovesTheReadingOn(t *testing.T) {
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)
 	}
-	if got := store.recordedQuestion; got == nil || got.Points != 0 {
+	if got := only(store.recorded.Questions); got == nil || got.Points != 0 {
 		t.Error("a question nobody got should be closed for no points")
 	}
 }

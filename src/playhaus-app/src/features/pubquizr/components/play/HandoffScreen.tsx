@@ -1,18 +1,27 @@
+import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
 import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { handoffToneFor, type Seat } from "@/features/pubquizr/round-one";
+import { handoffToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, Pressable, View } from "react-native";
 
 interface Props {
-    /** Who has to take the phone. */
+    /**
+     * Who has to take the phone: whoever is reading the questions out, and in round 4
+     * whoever is about to describe — the words are on the screen, so it can only be
+     * theirs.
+     */
     quizmaster: Seat
-    /** Who is handing it over, or null on the very first question of the round. */
+    /** Who is handing it over, or null on the very first turn of the round. */
     from: Seat | null
     round: number
+    /** What that person is about to do, in one line. */
+    job: string
+    /** The round's rule, on the one screen with room to say it properly. */
+    rule: string
     number: number
     total: number
     onReady: () => void
@@ -36,9 +45,11 @@ const useNativeDriver = Platform.OS !== 'web';
  * past. The fill changes every question (see `handoffToneFor`) so that the tenth
  * hand-off still registers as a new screen rather than as the one you just dismissed.
  *
- * It paints past the page's own gutters and up over the app header. Everything else in
- * the app is a card inside a 24dp inset under a 66dp header, and a stop sign framed by
- * both reads as another card — see the note on `screen` for how it escapes.
+ * It paints past the page's own gutters, up over the app header, and — on a window wide
+ * enough for the app's column to leave room beside it — out to the window's own edges.
+ * Everything else in the app is a card inside a 24dp inset under a 66dp header, and a
+ * stop sign framed by both reads as another card. See the note on `screen` for how it
+ * escapes the first two and `usePageTone` below for the third.
  *
  * Covering the header does mean its controls stop being tappable for as long as this is
  * up, which is the intended reading of a screen whose whole point is "stop here". The
@@ -52,6 +63,8 @@ export default function HandoffScreen({
     quizmaster,
     from,
     round,
+    job,
+    rule,
     number,
     total,
     onReady
@@ -60,6 +73,13 @@ export default function HandoffScreen({
     const styles = useStyles();
 
     const tone = handoffToneFor(number);
+
+    // The window's colour, not just this page's. The screen fills the column it is
+    // drawn in on its own (see `screen`), and on a phone the column is the window — but
+    // on a desktop window the column is 600dp in the middle of it, and a wall that stops
+    // 600dp short reads as a page that has broken rather than as a stop sign. This asks
+    // the root layout, which does own the window, to paint the rest in the same colour.
+    usePageTone(tone.fill);
 
     // Built once by the lazy initialiser: rebuilding it on a render would drop the
     // nudge back to its start mid-swing.
@@ -107,15 +127,20 @@ export default function HandoffScreen({
             </AppText>
 
             <AppText style={[styles.body, { color: tone.muted }]}>
-                {t('pubquizr.play.handoff.body', { name: quizmaster.name })}
+                {job}
             </AppText>
 
             {/* The round's rule, on the one screen with room to say it properly. The
                 board says the short version every turn; this is where the whole of it
                 fits — and whoever is about to take the phone is exactly who needs to
-                know how the next few questions score. */}
+                know how the next few turns score.
+
+                Passed in rather than looked up here, because it is the one line on this
+                screen that changes completely from round to round: the hot seat rounds
+                are about staying in, round 3 is about who guesses, and round 4 is a
+                stopwatch. */}
             <AppText style={[styles.rule, { color: tone.ink }]}>
-                {t('pubquizr.play.handoff.rule')}
+                {rule}
             </AppText>
 
             {/* Only when there is somebody to hand over *from*. On the first question
@@ -179,10 +204,10 @@ const useStyles = createThemedStyles(() => ({
      * `paddingTop` matching `marginTop` is the whole trick: the background grows into
      * the header's 66dp, the content does not move into it.
      *
-     * Sideways the result is edge-to-edge on a phone and edge-to-edge within the app's
-     * 600dp column on a wide window, which is the right answer there — a colour running
-     * wider than the app itself would look like the page had broken rather than like a
-     * deliberate full-bleed.
+     * Sideways this reaches the app's own column and no further; the rest of a wide
+     * window is painted by the root layout, which is the only thing that can reach it —
+     * see `usePageTone` above. The fill stays here as well as there so the two never
+     * disagree about which colour this turn is.
      *
      * One seam is left, and it is not worth chasing: `SlideFadeIn` fades the page slot
      * in over ~130ms on entrance, so the header shows through this for that long the

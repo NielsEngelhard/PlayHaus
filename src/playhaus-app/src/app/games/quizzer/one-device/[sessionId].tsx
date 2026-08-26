@@ -5,16 +5,17 @@ import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import BackstagePanel from "@/features/pubquizr/components/play/BackstagePanel";
+import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
+import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
+import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
 import RoundProgress from "@/features/pubquizr/components/play/RoundProgress";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
-import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
-import TurnBanner from "@/features/pubquizr/components/play/TurnBanner";
-import ValidateButton from "@/features/pubquizr/components/play/ValidateButton";
-import VerdictButtons from "@/features/pubquizr/components/play/VerdictButtons";
-import { ROUND_OPEN, seatsOf, standingsOf, turnOf } from "@/features/pubquizr/round-one";
+import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
+import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
+import { closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
+import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -22,32 +23,76 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 
-/**
- * How far through one question's ritual the quizmaster is.
- *
- * Three steps rather than two buttons, and every one of them is a guard. `covered` is
- * the answer still hidden from the rest of the table; `revealed` is the quizmaster
- * having read it; `judging` is the only state in which a tap can score anything. A
- * phone being turned round a table cannot fall through all three by accident.
- */
-type Stage = 'covered' | 'revealed' | 'judging';
+/** The rounds this build can play. Past the last of them the evening stops on a board. */
+const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE];
+
+/** What a round is called, what its phone-holder does, and the rule they need first. */
+interface RoundCopy {
+    kind: string
+    job: string
+    rule: string
+}
 
 /**
- * Round 1, played on one phone.
+ * The three lines that change from round to round, written out per round.
  *
- * The screen is two frames and the rules for moving between them. The hand-off is a
- * full-bleed stop sign naming whoever has to take the phone; the board behind it has
- * the question, the covered answer and the verdict. You get the hand-off when the
- * reading changes hands and the board once the new quizmaster has said they are
- * holding it.
+ * A switch rather than a lookup table, and the `t` calls are inline rather than the keys
+ * being stored: an interpolated key has to be a literal at the call site for the
+ * catalogue's own types to check that `{{name}}` is a thing that line takes. Stored in a
+ * map they widen to "some key or other" and the check goes away, which is the check worth
+ * having here — `job` is the only one of the three that interpolates.
  *
- * That gate is the whole reason the hand-off exists, and the stage machine above is the
- * same idea one level down: this screen carries the answers, so every step towards
- * showing or scoring one is a thing somebody has to mean to do.
+ * Together in one function because they are read together, on the hand-off screen one
+ * under the other. A round whose label says "multiple choice" while its rule still talks
+ * about staying in the seat is the sort of thing nobody notices until a table is arguing.
+ */
+function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): RoundCopy {
+    switch (round) {
+        case ROUND_CHOICE:
+            return {
+                kind: t('pubquizr.play.rounds.choice'),
+                job: t('pubquizr.play.handoff.jobChoice', { name }),
+                rule: t('pubquizr.play.handoff.ruleChoice')
+            };
+        case ROUND_CLOSEST:
+            return {
+                kind: t('pubquizr.play.rounds.closest'),
+                job: t('pubquizr.play.handoff.jobClosest', { name }),
+                rule: t('pubquizr.play.handoff.ruleClosest')
+            };
+        case ROUND_DESCRIBE:
+            return {
+                kind: t('pubquizr.play.rounds.describe'),
+                job: t('pubquizr.play.handoff.jobDescribe', { name }),
+                rule: t('pubquizr.play.handoff.ruleDescribe')
+            };
+        default:
+            return {
+                kind: t('pubquizr.play.rounds.open'),
+                job: t('pubquizr.play.handoff.jobOpen', { name }),
+                rule: t('pubquizr.play.handoff.ruleOpen')
+            };
+    }
+}
+
+/**
+ * A pub quiz, played on one phone.
  *
- * Nothing here decides anything about the game. Whose turn it is, what a question is
- * worth and who reads next all come back from the server on every verdict; this file
- * chooses which frame to draw and when to ask.
+ * This file is the router and the two gates every round goes through; the rounds
+ * themselves are three boards next door. Nothing here decides anything about the game —
+ * whose turn it is, what a turn is worth and who reads next all come back from the server
+ * on every ruling — it chooses which frame to draw and when to stop and ask.
+ *
+ * The two gates are the whole reason this is not simply a board:
+ *
+ * The **scoreboard** stands between every round. A round has to end with something, and
+ * the table needs the beat: the phone changes hands, the scores get read out, and the
+ * next round starts when everybody is ready rather than the instant the last answer is
+ * marked.
+ *
+ * The **hand-off** stands wherever the phone changes hands. This screen carries the
+ * answers, so the moment it moves is the moment the game can be spoiled, and a notice
+ * that could be scrolled past would eventually be scrolled past.
  */
 export default function OneDeviceQuizPage() {
     const t = useT();
@@ -64,35 +109,40 @@ export default function OneDeviceQuizPage() {
     const game = useQuizSession(sessionId);
 
     /**
-     * Whether the person holding the phone has said they are the quizmaster.
+     * Whether the person holding the phone has said so.
      *
      * Keyed by seat rather than a boolean, and that is what makes it work without any
-     * bookkeeping: the hand-off is showing exactly when this does not match whoever is
-     * reading, so the reading changing hands puts it back up on its own. It starts
-     * unset, so the round opens on a hand-off — the first quizmaster has to be handed
-     * the phone too.
+     * bookkeeping: the hand-off is showing exactly when this does not match whoever the
+     * turn belongs to, so the phone changing hands puts it back up on its own. It starts
+     * unset, so a round opens on a hand-off — the first quizmaster has to be handed the
+     * phone too.
      */
     const [claimedBy, setClaimedBy] = useState<number | null>(null);
     /** Who last held it, for the two avatars on the hand-off. */
     const [handedFrom, setHandedFrom] = useState<number | null>(null);
-
     /**
-     * How far through the current question we are, and which question that was.
+     * The last round the table said it was ready for.
      *
-     * The id travels with the stage so the ritual resets itself: a new question is a
-     * different id, which is a covered answer again. Holding the two apart would mean
-     * remembering to reset one from wherever the other changes, and the one place that
-     * would eventually be forgotten is the one that leaves the next question's answer
-     * already on screen.
+     * Same shape as `claimedBy` and for the same reason: the scoreboard is showing
+     * exactly when this does not match the round the session is on, so a round ending
+     * puts it up without anything having to remember to.
      */
-    const [progress, setProgress] = useState<{ questionId: string | null, stage: Stage }>(
-        { questionId: null, stage: 'covered' }
-    );
+    const [startedRound, setStartedRound] = useState<number | null>(null);
 
     function leave() {
         // `replace`, not `back`: this screen is reached from the setup form, and going
         // back to it would offer to start a second game of the one just left.
         router.replace(ROUTES.quizzerIndex);
+    }
+
+    /** The table says it has read the scores and is ready for what comes next. */
+    function startRound(next: number) {
+        setStartedRound(next);
+        // A new round is a new person holding the phone, always: it opens on whoever is
+        // furthest behind. Clearing this puts the hand-off up rather than dropping the
+        // table straight onto a board somebody else should be holding.
+        setClaimedBy(null);
+        setHandedFrom(null);
     }
 
     if (game.status === 'loading') {
@@ -120,52 +170,69 @@ export default function OneDeviceQuizPage() {
     }
 
     const { session, quiz } = game;
-    const turn = turnOf(session, quiz);
-
-    // No turn means round 1 is behind them. The session has moved on to round 2, which
-    // is not built yet, so the round ends on its own scoreboard rather than on a
-    // question that is never coming.
-    if (turn === null) {
-        return <RoundStandings standings={standingsOf(session)} round={ROUND_OPEN} onLeave={leave} />;
-    }
+    const seats = seatsOf(session);
+    const round = session.currentRound;
+    const playable = PLAYABLE.includes(round);
 
     /*
-     * Reset during render rather than from an effect.
+     * The scoreboard between rounds.
      *
-     * A new question has to arrive with its answer already covered, in the same commit
-     * that brings it. Cleared afterwards, the board paints once showing the last
-     * question's revealed panel over the new question's prompt — which is the answer to
-     * a question nobody has been asked yet, in front of the whole table. Same reason
-     * `useQuizzes` empties its shelf during render.
+     * Only at the top of one — a reload halfway through a round should put the table back
+     * where it was, not make them sit through the standings again. Round 1 is exempt
+     * because there is nothing behind it to stand on.
      */
-    if (progress.questionId !== turn.dealt.id) {
-        setProgress({ questionId: turn.dealt.id, stage: 'covered' });
+    const between = round > ROUND_OPEN
+        && session.currentPosition === 0
+        && startedRound !== round;
+
+    if (between || !playable) {
+        return (
+            <RoundStandings
+                standings={standingsOf(session)}
+                round={round - 1}
+                onNext={playable ? () => startRound(round) : null}
+                onLeave={leave}
+            />
+        )
     }
 
-    // What this render is actually drawing. React restarts the render on the setState
-    // above, so this only stands in for one discarded pass.
-    const stage: Stage = progress.questionId === turn.dealt.id ? progress.stage : 'covered';
+    const hotSeat = hotSeatTurnOf(session, quiz);
+    const closest = closestTurnOf(session, quiz);
+    const describe = describeTurnOf(session, quiz);
 
-    // Captured rather than read off `turn` inside the callback: this is a hoisted
-    // function, so TypeScript cannot see that the null check above still holds by the
-    // time it runs.
-    const questionId = turn.dealt.id;
+    // Whoever is holding the phone this turn, and how far into the round they are. Every
+    // round has all three; only which board draws them changes.
+    const holder = hotSeat?.quizmaster ?? closest?.quizmaster ?? describe?.describer ?? null;
+    const number = hotSeat?.number ?? closest?.number ?? describe?.number ?? 0;
+    const worth = hotSeat?.worth ?? closest?.worth ?? describe?.worth ?? 0;
 
-    function moveTo(next: Stage) {
-        setProgress({ questionId, stage: next });
+    // A round the session says it is on but no board can draw is a deal this build does
+    // not understand — a game dealt before these rounds existed, most likely. The
+    // scoreboard is the honest place to stop, the same as when the rounds run out.
+    if (holder === null) {
+        return (
+            <RoundStandings
+                standings={standingsOf(session)}
+                round={round - 1}
+                onNext={null}
+                onLeave={leave}
+            />
+        )
     }
 
-    if (claimedBy !== turn.quizmaster.seat) {
+    const copy = roundCopy(t, round, holder.name);
+
+    if (claimedBy !== holder.seat) {
         return (
             <HandoffScreen
-                quizmaster={turn.quizmaster}
-                from={handedFrom === null
-                    ? null
-                    : seatsOf(session).find(seat => seat.seat === handedFrom) ?? null}
-                round={session.currentRound}
-                number={turn.number}
-                total={turn.total}
-                onReady={() => setClaimedBy(turn.quizmaster.seat)}
+                quizmaster={holder}
+                from={seatAt(seats, handedFrom)}
+                round={round}
+                job={copy.job}
+                rule={copy.rule}
+                number={number}
+                total={session.turnsInRound}
+                onReady={() => setClaimedBy(holder.seat)}
             />
         )
     }
@@ -175,58 +242,53 @@ export default function OneDeviceQuizPage() {
             <PlayHeader onClose={leave} />
 
             <RoundProgress
-                round={session.currentRound}
-                number={turn.number}
-                total={turn.total}
-                scoring={turn.scoring}
+                round={round}
+                kind={copy.kind}
+                number={number}
+                total={session.turnsInRound}
+                worth={worth}
             />
 
-            <View style={styles.turn}>
-                <TurnBanner
-                    quizmaster={turn.quizmaster}
-                    answering={turn.answering}
-                    run={turn.run}
+            {hotSeat !== null && (
+                <HotSeatBoard
+                    turn={hotSeat}
+                    seats={seats}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    onVerdict={(correct, from) => {
+                        // Remembered before the ruling goes out, because the session that
+                        // comes back may well have moved the phone on — and the hand-off
+                        // then wants to say who it is coming *from*.
+                        setHandedFrom(from);
+                        game.rule(correct);
+                    }}
                 />
+            )}
 
-                <ScriptCard prompt={turn.question.prompt} seats={seatsOf(session)} />
-
-                <BackstagePanel
-                    answer={turn.answer}
-                    aliases={turn.aliases}
-                    revealed={stage !== 'covered'}
-                    onReveal={() => moveTo('revealed')}
+            {closest !== null && (
+                <ClosestBoard
+                    turn={closest}
+                    seats={seats}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    onSettle={settled => {
+                        setHandedFrom(closest.quizmaster.seat);
+                        game.settleClosest(settled);
+                    }}
                 />
+            )}
 
-                {game.rulingError !== null && (
-                    <InlineNotification
-                        icon="alert-triangle"
-                        color={theme.colors.blush}
-                        message={t(game.rulingError)}
-                    />
-                )}
-
-                {stage === 'judging' ? (
-                    <VerdictButtons
-                        answering={turn.answering}
-                        nextUp={turn.nextUp}
-                        scoring={turn.scoring}
-                        busy={game.ruling}
-                        onVerdict={correct => {
-                            // Remembered before the verdict goes out, because the answer
-                            // that comes back may well have moved the reading on — and
-                            // the hand-off then wants to say who it is coming *from*.
-                            setHandedFrom(turn.quizmaster.seat);
-                            game.rule(correct);
-                        }}
-                    />
-                ) : (
-                    <ValidateButton
-                        answering={turn.answering}
-                        unlocked={stage === 'revealed'}
-                        onPress={() => moveTo('judging')}
-                    />
-                )}
-            </View>
+            {describe !== null && (
+                <DescribeBoard
+                    turn={describe}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    onSettle={awards => {
+                        setHandedFrom(describe.describer.seat);
+                        game.settleDescribe(awards);
+                    }}
+                />
+            )}
         </View>
     )
 }
@@ -235,16 +297,6 @@ const useStyles = createThemedStyles(() => ({
     board: {
         flex: 1,
         width: '100%',
-        paddingBottom: 26
-    },
-
-    // The middle of the board grows and everything else does not, so a long question
-    // takes the slack rather than pushing the buttons off the bottom edge.
-    turn: {
-        marginTop: 14,
-        flex: 1,
-        minHeight: 0,
-        gap: 14
     },
 
     message: {

@@ -412,7 +412,12 @@ export const nl: Catalog = {
             loading: 'De tafel klaarzetten…',
             close: 'Quiz verlaten',
             roundLabel: 'Ronde {{round}} · {{kind}}',
-            rounds: { open: 'Open' },
+            rounds: {
+                open: 'Open',
+                choice: 'Meerkeuze',
+                closest: 'Wie zit er het dichtst bij',
+                describe: 'Omschrijven'
+            },
             questionNumber: 'Vraag {{number}}',
             questionTotal: ' van {{total}}',
             turn: {
@@ -424,7 +429,6 @@ export const nl: Catalog = {
                 staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat'
             },
             readAloud: 'Lees dit hardop voor',
-            scoresThisRound: 'Stand deze ronde',
             onlyYouSeeThis: 'Alleen jij ziet dit',
             alsoAccept: 'Ook goed: {{answers}}',
             answer: {
@@ -441,18 +445,56 @@ export const nl: Catalog = {
             wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
             wrongEndsQuestion: 'Niemand meer over — fout beëindigt deze vraag',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
-            worthPoint: 'Levert een punt op',
-            noPoint: 'Geen punt — overleef hem',
+            worthPoints: 'Voor {{worth}}',
+            noPoint: 'Geen punt',
+            scores: 'Stand',
+            choice: {
+                options: 'De vier opties',
+                readThemOut: 'Lees alle vier voor voordat iemand antwoordt',
+                spoken: '{{letter}}. {{text}}',
+                spokenCorrect: '{{letter}}. {{text}} — dit is de goede'
+            },
+            closest: {
+                answer: '{{answer}} {{unit}}',
+                placeholder: 'Gok',
+                entry: 'De gok van {{name}}',
+                duplicate: 'Twee spelers hebben hetzelfde getal. Vraag er een om een ander.',
+                unreadable: 'Daar staat geen getal.',
+                settle: 'Dichtstbij pakt {{worth}}',
+                pickInstead: 'Sla de getallen over — tik gewoon wie won',
+                typeInstead: 'Vul de gokken toch in',
+                award: 'Geef ze de punten'
+            },
+            describe: {
+                readyTitle: 'Jouw woorden, {{name}}',
+                readyBody: '{{words}} woorden in {{seconds}} seconden. Omschrijf ze zonder ze te zeggen — de rest roept.',
+                start: 'Laat mijn woorden zien en start',
+                dontSayIt: 'Zeg het woord zelf nooit',
+                scoringTitle: 'Wie had ze?',
+                whoGotIt: 'Wie raadde {{word}}',
+                nobody: 'Niemand had hem',
+                standing: '{{name}} pakt {{points}} uit deze beurt',
+                stillToRule: 'Nog {{left}} te gaan',
+                settle: 'Deel de punten uit'
+            },
             handoff: {
-                step: 'Ronde {{round}} · vraag {{number}} van {{total}}',
+                step: 'Ronde {{round}} · {{number}} van {{total}}',
                 title: 'Geef de telefoon aan {{name}}',
-                body: '{{name}} leest voor aan de speler links van zich',
-                rule: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
+                jobOpen: '{{name}} leest voor aan de speler links van zich',
+                jobChoice: '{{name}} leest de vraag en alle vier de opties voor',
+                jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
+                jobDescribe: '{{name}} omschrijft zijn eigen woorden. Niemand anders mag meekijken.',
+                ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
+                ruleChoice: 'Net als hiervoor — goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
+                ruleClosest: 'Iedereen behalve de voorlezer gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
+                ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep — dus laat ze roepen.',
                 action: 'Ik ben {{name}} — laat de vraag zien'
             },
             standings: {
                 title: 'Ronde {{round}} klaar',
                 description: 'Zo staat de tafel ervoor na de eerste ronde.',
+                breather: 'Lees de stand voor en begin dan aan ronde {{round}}.',
+                startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard — de quiz wacht waar jullie gebleven waren.'
             }
         },
@@ -465,7 +507,11 @@ export const nl: Catalog = {
             duplicateName: 'Twee spelers kunnen niet dezelfde naam hebben.',
             quizTooSmall: 'Deze quiz heeft niet genoeg vragen voor zoveel spelers. Kies een andere quiz, of speel met minder mensen.',
             generic: 'De quiz kon niet gestart worden. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je internet.'
+            network: 'Geen verbinding met de server. Check je internet.',
+            staleTurn: 'De tafel is al verder. Het bord hieronder is waar de quiz echt staat.',
+            duplicateGuess: 'Twee spelers kunnen niet hetzelfde getal gokken. Vraag er een om een ander.',
+            quizmasterCannotGuess: 'Wie de vraag voorleest, mag er zelf niet naar gokken.',
+            describerCannotGuess: 'Je kunt geen punt krijgen voor een woord dat je zelf omschreef.'
         }
     },
     oneOfUs: { 

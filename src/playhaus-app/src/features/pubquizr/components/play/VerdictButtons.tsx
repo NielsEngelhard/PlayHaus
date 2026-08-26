@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/round-one";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -12,8 +12,8 @@ interface Props {
     answering: Seat
     /** Who a wrong answer passes it to, or null when this is the last seat to try. */
     nextUp: Seat | null
-    /** Whether taking this question is worth a point as well as the seat. */
-    scoring: boolean
+    /** What taking this question pays, on top of the seat it keeps you in. */
+    worth: number
     onVerdict: (correct: boolean) => void
     /** A verdict is already in the air. */
     busy?: boolean
@@ -42,13 +42,15 @@ interface Props {
 export default function VerdictButtons({
     answering,
     nextUp,
-    scoring,
+    worth,
     onVerdict,
     busy = false
 }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+
+    const scoring = worth > 0;
 
     return (
         <View style={styles.container}>
@@ -82,7 +84,7 @@ export default function VerdictButtons({
 
             <AppText style={[styles.hint, scoring && styles.hintScoring]}>
                 {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
-                {scoring ? ` · ${t('pubquizr.play.worthPoint')}` : ''}
+                {scoring ? ` · ${t('pubquizr.play.worthPoints', { worth })}` : ''}
             </AppText>
 
             <AppText style={styles.hint}>

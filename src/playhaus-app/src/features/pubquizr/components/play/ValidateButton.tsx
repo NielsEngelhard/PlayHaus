@@ -3,7 +3,7 @@ import TextHint from "@/components/text/TextHint";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/round-one";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";

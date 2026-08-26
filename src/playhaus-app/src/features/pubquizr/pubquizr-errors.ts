@@ -9,10 +9,11 @@ import type { TranslationKey } from '@/features/i18n/keys';
  * not, and none of the server's own wording — all of it English, some of it Go's own
  * router apologising — is ever put in front of a player.
  *
- * The 409s are the interesting ones. Four quite different problems come back under that
- * one status, so the machine-readable `code` decides rather than the prose. Three of
- * them are about the table and the fourth is about the quiz, and telling somebody to
- * "try again" would be bad advice for every one of them.
+ * The 409s are the interesting ones. A dozen quite different problems come back under
+ * that one status, so the machine-readable `code` decides rather than the prose. Some are
+ * about the table, one is about the quiz, and the rest are a screen and a server
+ * disagreeing about whose turn it is — and telling somebody to "try again" would be bad
+ * advice for every one of them.
  */
 export function quizErrorMessage(error: unknown): TranslationKey {
     if (error instanceof ApiError) {
@@ -26,6 +27,20 @@ export function quizErrorMessage(error: unknown): TranslationKey {
                     return 'pubquizr.errors.duplicateName';
                 case 'quiz_too_small':
                     return 'pubquizr.errors.quizTooSmall';
+                // The turn moved under the screen: a second tap on the same button, or
+                // a phone left open on a turn the table has already played. Naming a
+                // seat or a word this turn does not hold is the same thing seen from a
+                // different angle, so it gets the same line.
+                case 'stale_turn':
+                case 'unknown_seat':
+                case 'unknown_word':
+                    return 'pubquizr.errors.staleTurn';
+                case 'duplicate_guess':
+                    return 'pubquizr.errors.duplicateGuess';
+                case 'quizmaster_cannot_guess':
+                    return 'pubquizr.errors.quizmasterCannotGuess';
+                case 'describer_cannot_guess':
+                    return 'pubquizr.errors.describerCannotGuess';
             }
         }
 
@@ -37,8 +52,10 @@ export function quizErrorMessage(error: unknown): TranslationKey {
             // a link somebody mistyped.
             case 404:
                 return 'pubquizr.errors.quizGone';
-            // The server refused the table itself. The form checks the same three rules
-            // before it sends anything, so reaching this means the two disagree.
+            // The server refused what it was told. On the setup form that is the table
+            // itself, which the form checks first — so reaching it there means the two
+            // disagree. In a round it is a turn ruled on half-way, which the boards also
+            // check first, so the same holds.
             case 422:
                 return 'pubquizr.errors.badTable';
             default:

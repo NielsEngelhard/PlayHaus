@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/round-one";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -11,10 +11,11 @@ interface Props {
     /**
      * Everybody at the table, in seating order, for the score strip along the bottom.
      *
-     * Their running totals, which in round 1 is the same number as "this round" —
-     * there has not been another round to score in yet. The moment round 2 lands this
-     * needs a per-round breakdown from the server, because a total and a round score
-     * stop being the same thing on the very first question of it.
+     * Their running totals, and labelled as such. It used to say "scores this round",
+     * which was true for exactly as long as round 1 was the only round there was. A
+     * per-round breakdown would mean the server totting up each seat's points per round
+     * and sending them along; the scoreboard between rounds tells that story well enough
+     * for now, and a label that lies is worse than a strip that only says the total.
      */
     seats: Seat[]
 }
@@ -58,7 +59,7 @@ export default function ScriptCard({ prompt, seats }: Props) {
 
                 <View style={styles.scores}>
                     <AppText style={styles.scoresLabel}>
-                        {t('pubquizr.play.scoresThisRound')}
+                        {t('pubquizr.play.scores')}
                     </AppText>
 
                     <View style={styles.scoreRow}>

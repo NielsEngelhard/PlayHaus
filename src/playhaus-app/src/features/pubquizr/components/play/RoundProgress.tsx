@@ -1,17 +1,19 @@
 import AppText from "@/components/text/AppText";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { scoresAt } from "@/features/pubquizr/round-one";
+import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
     round: number
+    /** What kind of round it is, for the label: "Round 2 · Multiple choice". */
+    kind: string
     /** 1-based: question 3 of 20. */
     number: number
     total: number
-    /** Whether this question pays out, or is only there to be survived. */
-    scoring: boolean
+    /** What this turn pays whoever takes it. Zero is a question worth only the seat. */
+    worth: number
 }
 
 /**
@@ -22,24 +24,30 @@ interface Props {
  * and a row of filled and empty bars is the same fact you can take in without looking
  * at it — which matters on a phone being passed round a noisy table.
  *
- * They carry the scoring rhythm too. Every second question is worth a point, and a row
- * where the paying ones stand taller says that in a way no sentence does: you can see
- * the next point coming from two questions away, which is the whole tension of holding
- * the seat. The badge beside the count is the same fact for whoever is not going to
- * read a bar chart, and the only one of the two a screen reader gets.
+ * In round 1 they carry the scoring rhythm too. Every second question is worth a point,
+ * and a row where the paying ones stand taller says that in a way no sentence does: you
+ * can see the next point coming from two questions away, which is the whole tension of
+ * holding the seat. No other round has a rhythm — every turn of them is worth the same —
+ * so the pips there are one height, because a pattern that meant nothing would still be
+ * read as meaning something.
+ *
+ * The badge beside the count says what this turn pays, which is the same fact for whoever
+ * is not going to read a bar chart, and the only one of the two a screen reader gets.
  */
-export default function RoundProgress({ round, number, total, scoring }: Props) {
+export default function RoundProgress({ round, kind, number, total, worth }: Props) {
     const t = useT();
     const styles = useStyles();
+
+    // Only round 1 alternates. Everywhere else every turn pays, so a taller pip would be
+    // drawing a distinction the round does not make.
+    const rhythmic = round === ROUND_OPEN;
+    const scoring = worth > 0;
 
     return (
         <View style={styles.card}>
             <View style={styles.top}>
                 <AppText style={styles.label}>
-                    {t('pubquizr.play.roundLabel', {
-                        round,
-                        kind: t('pubquizr.play.rounds.open')
-                    })}
+                    {t('pubquizr.play.roundLabel', { round, kind })}
                 </AppText>
 
                 <AppText style={styles.count}>
@@ -63,8 +71,8 @@ export default function RoundProgress({ round, number, total, scoring }: Props) 
                             key={index}
                             style={[
                                 styles.pip,
-                                // index is 0-based; the pips count questions.
-                                scoresAt(index + 1) && styles.pipScoring,
+                                // index is 0-based; the pips count turns.
+                                rhythmic && scoresAt(index + 1) && styles.pipScoring,
                                 index < number && styles.pipDone
                             ]}
                         />
@@ -74,7 +82,7 @@ export default function RoundProgress({ round, number, total, scoring }: Props) 
                 <View style={[styles.badge, scoring && styles.badgeScoring]}>
                     <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
                         {scoring
-                            ? t('pubquizr.play.worthPoint')
+                            ? t('pubquizr.play.worthPoints', { worth })
                             : t('pubquizr.play.noPoint')}
                     </AppText>
                 </View>

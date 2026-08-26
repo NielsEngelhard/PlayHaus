@@ -113,7 +113,13 @@ func (s *Server) AddPubquizRHandlers() {
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/current", s.requireAuth(s.handleGetCurrentSingleDeviceSession))
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleGetSingleDeviceSession))
 	s.mux.HandleFunc("DELETE /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleDeleteSingleDeviceSession))
-	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/verdict", s.requireAuth(s.handleOpenVerdict))
+	// One endpoint for rounds 1 and 2: the body never named the round, and the two are
+	// the same game with different sums.
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/verdict", s.requireAuth(s.handleHotSeatVerdict))
+	// A round that settles in one piece gets an endpoint of its own, because what it
+	// has to be told is nothing like a verdict.
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/closest", s.requireAuth(s.handleClosestGuesses))
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/describe", s.requireAuth(s.handleDescribeAwards))
 }
 
 func (s *Server) AddOneOfUsHandlers() {

@@ -16,7 +16,7 @@ import (
 // The hot seat only works if it survives the round trip. Everything else about the
 // round is arithmetic that verdict_test.go covers without a database, but "the seat
 // you kept is still yours on the next request" is a claim about a column, and a
-// missing key in the RecordAttempt updates map would leave every one of those tests
+// missing key in the RecordTurn updates map would leave every one of those tests
 // passing while the game quietly reset the seat between questions.
 
 func newHotSeatStore(t *testing.T) (*GormStore, *gorm.DB) {
@@ -108,19 +108,19 @@ func TestHotSeatSurvivesTheRoundTrip(t *testing.T) {
 			Correct:           false,
 			CreatedAt:         time.Now().UTC(),
 		}
-		if err := store.RecordAttempt(ctx, session, nil, nil, attempt); err != nil {
+		if err := store.RecordTurn(ctx, session, TurnOutcome{Answers: []*SessionAnswer{attempt}}); err != nil {
 			t.Fatalf("record miss: %v", err)
 		}
 	}
 
-	moved, err := service.RecordOpenVerdict(ctx, VerdictInput{
+	moved, err := service.RecordHotSeatVerdict(ctx, VerdictInput{
 		SessionID:         session.ID,
 		OwnerID:           "owner",
 		SessionQuestionID: question.ID,
 		Correct:           true,
 	})
 	if err != nil {
-		t.Fatalf("RecordOpenVerdict: %v", err)
+		t.Fatalf("RecordHotSeatVerdict: %v", err)
 	}
 
 	// Read back off the database, not out of the pointer we just mutated.
@@ -179,14 +179,14 @@ func TestSessionFromBeforeTheHotSeatColumnStillPlays(t *testing.T) {
 	}
 
 	// And a verdict on it repairs the column rather than tripping over it.
-	moved, err := service.RecordOpenVerdict(ctx, VerdictInput{
+	moved, err := service.RecordHotSeatVerdict(ctx, VerdictInput{
 		SessionID:         session.ID,
 		OwnerID:           "owner",
 		SessionQuestionID: stale.QuestionAt(RoundOpen, 0).ID,
 		Correct:           true,
 	})
 	if err != nil {
-		t.Fatalf("RecordOpenVerdict: %v", err)
+		t.Fatalf("RecordHotSeatVerdict: %v", err)
 	}
 	if got, want := moved.HotSeat, 3; got != want {
 		t.Errorf("HotSeat = %d, want %d", got, want)

@@ -441,7 +441,13 @@ export const en = {
             close: 'Leave the quiz',
             /** "Round 1 · Open" — the round, and what kind of round it is. */
             roundLabel: 'Round {{round}} · {{kind}}',
-            rounds: { open: 'Open' },
+            /** What kind of round it is, for the label beside its number. */
+            rounds: {
+                open: 'Open',
+                choice: 'Multiple choice',
+                closest: 'Closest guess',
+                describe: 'Describe it'
+            },
             /**
              * Split in two so the total can be greyed out beside the number. Never
              * `count`: that is the one option name i18next treats as a plural trigger,
@@ -476,7 +482,6 @@ export const en = {
                 staysWhileRight: '{{name}} keeps being asked until they get one wrong'
             },
             readAloud: 'Read this out loud',
-            scoresThisRound: 'Scores this round',
             onlyYouSeeThis: 'Only you see this',
             alsoAccept: 'Also accept: {{answers}}',
             /** The covered panel, before the quizmaster has asked to see the answer. */
@@ -506,32 +511,88 @@ export const en = {
              */
             correctKeepsTurn: 'Correct and the next question is {{name}} again',
             /**
-             * Whether the question on screen pays out. Every second one does — see
-             * `scoresAt` — and the other half are worth nothing but the seat, which is
-             * a thing the table will not forgive being told only after the fact.
+             * What the turn on screen pays. In round 1 every second question does — see
+             * `scoresAt` — and the other half are worth nothing but the seat, which is a
+             * thing the table will not forgive being told only after the fact. Every
+             * other round pays on all of them.
+             *
+             * Never `count`: that is the one option name i18next treats as a plural
+             * trigger, and there are no plural forms behind this. See `common.time`.
              */
-            worthPoint: 'Worth a point',
-            noPoint: 'No point — survive it',
+            worthPoints: 'For {{worth}}',
+            noPoint: 'No point',
+            /** The score strip on the question card. A running total, not this round's. */
+            scores: 'Scores',
+            /** Round 2: the four options, read out loud. */
+            choice: {
+                options: 'The four options',
+                readThemOut: 'Read all four out before anybody answers',
+                spoken: '{{letter}}. {{text}}',
+                spokenCorrect: '{{letter}}. {{text}} — this is the right one'
+            },
+            /** Round 3: everybody guesses a number, nearest takes it. */
+            closest: {
+                /** The number on the back of the card, with what it counts. */
+                answer: '{{answer}} {{unit}}',
+                placeholder: 'Guess',
+                entry: "{{name}}'s guess",
+                /**
+                 * Copying is not guessing, so the second person to say a number has to
+                 * pick another one. Said as the thing to do rather than as a complaint.
+                 */
+                duplicate: 'Two players have the same number. Ask one of them for another.',
+                unreadable: 'One of those is not a number.',
+                settle: 'Nearest takes {{worth}}',
+                /** The way out for a table that has already agreed out loud. */
+                pickInstead: 'Skip the numbers — just tap who won',
+                typeInstead: 'Type the guesses instead',
+                award: 'Give them the points'
+            },
+            /** Round 4: thirty seconds to describe your own words. */
+            describe: {
+                readyTitle: 'Your words, {{name}}',
+                readyBody: '{{words}} words in {{seconds}} seconds. Describe them without saying them — everybody else shouts.',
+                start: 'Show my words and start',
+                dontSayIt: 'Never say the word itself',
+                scoringTitle: 'Who got them?',
+                whoGotIt: 'Who guessed {{word}}',
+                nobody: 'Nobody got it',
+                /** What the turn is about to be worth to the person who described it. */
+                standing: '{{name}} takes {{points}} from this turn',
+                stillToRule: '{{left}} still to go',
+                settle: 'Hand out the points'
+            },
             handoff: {
-                step: 'Round {{round}} · question {{number}} of {{total}}',
+                /** Not "question": in round 4 a turn is thirty seconds and four words. */
+                step: 'Round {{round}} · {{number}} of {{total}}',
                 /** Broken over two lines by the design, which the app does not force. */
                 title: 'Pass the phone to {{name}}',
                 /**
-                 * You read to the person on your left, and you keep reading until they
-                 * lose the seat — so this says the job rather than how long it lasts.
+                 * What the person taking the phone is about to do. One line per round,
+                 * because "reads to the player on their left" is true of the first three
+                 * and completely wrong for the fourth.
                  */
-                body: '{{name}} reads to the player on their left',
+                jobOpen: '{{name}} reads to the player on their left',
+                jobChoice: '{{name}} reads the question and all four options',
+                jobClosest: '{{name}} reads the question and collects everyone else’s number',
+                jobDescribe: '{{name}} describes their own words. Nobody else may look at the screen.',
                 /**
                  * The round's rule, said on the one screen with room to say it properly.
-                 * The banner on the board says it in one line every turn; this is the
-                 * version with room for the second half of it.
+                 * The board says the short version every turn; this is the version with
+                 * room for the second half of it.
                  */
-                rule: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
+                ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
+                ruleChoice: 'Same as before — get one right and the next is yours too. Every question is worth 2 here.',
+                ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
+                ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it — so make them shout.',
                 action: "I'm {{name}} — show the question"
             },
             standings: {
                 title: 'Round {{round}} done',
                 description: 'How the table stands with the first round behind you.',
+                /** The between-rounds version: a breather, not an ending. */
+                breather: 'Read the scores out, then get round {{round}} started.',
+                startNext: 'Start round {{round}}',
                 nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved — the quiz is waiting where you left it.'
             }
         },
@@ -549,7 +610,16 @@ export const en = {
             duplicateName: 'Two players cannot share a name.',
             quizTooSmall: 'This quiz does not have enough questions for that many players. Pick another quiz, or play with fewer people.',
             generic: 'The quiz could not be started. Try again.',
-            network: 'No connection to the server. Check your internet.'
+            network: 'No connection to the server. Check your internet.',
+            /**
+             * The turn moved under the screen — a second tap, or a phone left open on
+             * something the table has already played. The board stays up, so the line
+             * says what to do rather than apologising.
+             */
+            staleTurn: 'The table has already moved on. The board below is where the quiz actually is.',
+            duplicateGuess: 'Two players cannot guess the same number. Ask one of them for another.',
+            quizmasterCannotGuess: 'Whoever is reading the question out does not get to guess at it.',
+            describerCannotGuess: 'You cannot be credited with a word you were describing.'
         }
     },
     oneOfUs: { 

@@ -94,6 +94,12 @@ var (
 	ErrSessionOver         = errors.New("session is not in progress")
 	ErrWrongRound          = errors.New("that round is not playable yet")
 	ErrStaleTurn           = errors.New("that question is no longer the current one")
+
+	ErrUnknownSeat           = errors.New("that seat is not at this table")
+	ErrDuplicateGuess        = errors.New("two players guessed the same number")
+	ErrQuizmasterCannotGuess = errors.New("the quizmaster is reading this one out")
+	ErrDescriberCannotGuess  = errors.New("you cannot guess your own word")
+	ErrUnknownWord           = errors.New("that word is not part of this turn")
 )
 
 type Quiz struct {
