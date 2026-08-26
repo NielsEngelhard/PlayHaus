@@ -2,6 +2,8 @@ import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
+import PopupModal from "@/components/ui/PopupModal";
+import TextButton from "@/components/ui/TextButton";
 import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -91,6 +93,8 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     /** Dropped out of typing and picking the winner by hand instead. */
     const [byHand, setByHand] = useState(false);
     const [picked, setPicked] = useState<number | null>(null);
+    /** Standing in front of a settle that would leave somebody's row blank. */
+    const [confirming, setConfirming] = useState(false);
 
     /*
      * Reset during render, the same way the hot seat board resets its ritual: a new
@@ -107,6 +111,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         setFocused(null);
         setByHand(false);
         setPicked(null);
+        setConfirming(false);
     }
 
     const review = reviewGuesses(
@@ -132,6 +137,10 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
 
     const winner = turn.guessing.find(seat => seat.seat === marked[0]) ?? null;
 
+    /** Everybody whose row is still empty, and how many are not. */
+    const blank = turn.guessing.filter(seat => (typed[seat.seat] ?? '').trim() === '');
+    const filled = turn.guessing.length - blank.length;
+
     function settle() {
         if (!ready || busy) return;
 
@@ -140,6 +149,35 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             onSettle({ winningSeats: [picked] });
             return;
         }
+
+        /*
+         * A blank row is legal — `reviewGuesses` drops it rather than complaining,
+         * because somebody is always at the bar and a rule insisting on everybody would
+         * be a screen the quizmaster cannot get off. But it is far likelier to mean the
+         * quizmaster has not got to that person yet, and settling is the one thing on
+         * this screen that cannot be taken back: the turn goes to the server, the points
+         * are paid, and the phone moves on. So it asks first rather than either refusing
+         * or quietly leaving somebody out of a round they were playing in.
+         */
+        if (blank.length > 0) {
+            setConfirming(true);
+            return;
+        }
+
+        send();
+    }
+
+    /**
+     * The settle itself, past whatever stood in front of it.
+     *
+     * Guarded again rather than trusting the caller: this is reachable from the panel as
+     * well as from the button, and the panel is on screen for as long as somebody takes
+     * to read it — long enough for a ruling to have gone out from a double tap on the
+     * button behind it.
+     */
+    function send() {
+        setConfirming(false);
+        if (!ready || busy) return;
 
         onSettle({ guesses: review.guesses });
     }
@@ -244,8 +282,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             </View>
         )
     }
-
-    const filled = turn.guessing.filter(seat => (typed[seat.seat] ?? '').trim() !== '').length;
 
     return (
         <View style={styles.screen}>
@@ -466,6 +502,37 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     style={styles.pad}
                 />
             )}
+
+            {/*
+              * Dismissable, unlike the panels that stand in front of something dangerous:
+              * backing out of this one lands on the form with everything still typed in,
+              * which is the outcome it is recommending anyway.
+              */}
+            <PopupModal
+                visible={confirming}
+                title={t('pubquizr.play.closest.missingTitle')}
+                message={blank.length === 1
+                    ? t('pubquizr.play.closest.missingOne', { names: blank[0].name })
+                    : t('pubquizr.play.closest.missingMany', {
+                        names: blank.map(seat => seat.name).join(', ')
+                    })}
+                onRequestClose={() => setConfirming(false)}
+            >
+                <TextButton
+                    text={t('pubquizr.play.closest.missingBack')}
+                    variant="primary"
+                    fullWidth
+                    onPress={() => setConfirming(false)}
+                />
+
+                <TextButton
+                    text={t('pubquizr.play.closest.missingAnyway')}
+                    variant="muted"
+                    fullWidth
+                    disabled={busy}
+                    onPress={send}
+                />
+            </PopupModal>
         </View>
     )
 }

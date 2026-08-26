@@ -607,7 +607,24 @@ export const en = {
                 off: '{{off}} off',
                 nearestOff: 'nearest · {{off}} off',
                 /** The settling button, naming whoever it would pay as it stands. */
-                awardTo: 'Award {{worth}} to {{name}}'
+                awardTo: 'Award {{worth}} to {{name}}',
+                /**
+                 * The check on the way out, when a row is still blank.
+                 *
+                 * Not a rule — a blank row is legal, and `reviewGuesses` drops it on
+                 * purpose, because somebody is always at the bar. But the far commoner
+                 * reason for a blank row is that the quizmaster has not got to it yet,
+                 * and the turn cannot be taken back once it is settled. So it asks.
+                 *
+                 * Two wordings rather than a `count`: that is the one option name
+                 * i18next treats as a plural trigger, and there are no plural forms
+                 * behind these. See `common.time`.
+                 */
+                missingTitle: 'Not everybody has a number',
+                missingOne: '{{names}} has nothing written down, so they cannot win this one.',
+                missingMany: '{{names}} have nothing written down, so they cannot win this one.',
+                missingBack: 'Go back and fill them in',
+                missingAnyway: 'Settle it anyway'
             },
             /** The in-app number pad, which is only ever read out. */
             pad: {

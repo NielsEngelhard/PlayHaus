@@ -460,7 +460,7 @@ export const nl: Catalog = {
             scores: 'Stand',
             choice: {
                 options: 'De vier opties',
-                readAll: 'Lees hardop voor — de vraag en alle vier',
+                readAll: 'Lees de vraag hardop voor en daarna de opties',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}} — dit is de goede'
             },
@@ -485,7 +485,12 @@ export const nl: Catalog = {
                 filled: '{{filled}} van {{total}} ingevuld',
                 off: '{{off}} ernaast',
                 nearestOff: 'dichtstbij · {{off}} ernaast',
-                awardTo: 'Geef {{worth}} aan {{name}}'
+                awardTo: 'Geef {{worth}} aan {{name}}',
+                missingTitle: 'Niet iedereen heeft een getal',
+                missingOne: 'Bij {{names}} staat niets ingevuld, dus die kan deze niet winnen.',
+                missingMany: 'Bij {{names}} staat niets ingevuld, dus die kunnen deze niet winnen.',
+                missingBack: 'Terug om ze in te vullen',
+                missingAnyway: 'Toch afronden'
             },
             pad: {
                 minus: 'Min',
