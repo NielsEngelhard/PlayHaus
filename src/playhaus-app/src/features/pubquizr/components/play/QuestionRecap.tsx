@@ -39,7 +39,7 @@ export default function QuestionRecap({ prompt, icon, hint, expanded = false, on
         <Pressable
             onPress={onPress}
             accessibilityRole="button"
-            accessibilityLabel={`${prompt} — ${hint}`}
+            accessibilityLabel={`${prompt}, ${hint}`}
             style={styles.row}
         >
             <Feather name={icon} size={14} color={theme.colors.textMuted} />

@@ -522,7 +522,7 @@ export const en = {
              * a stray press during a hand-over has to read as obviously somebody else's
              * turn.
              */
-            gate: '{{name}} answered — check it',
+            gate: '{{name}} answered, check it',
             gateHint: "Nothing to tap until they've picked a letter",
             /** The one-line question recap, and what tapping it does. */
             reread: 'tap to reread',
@@ -533,7 +533,7 @@ export const en = {
             markCorrect: 'Mark {{name}} correct',
             wrongPassesTo: 'Wrong passes the turn to {{name}}',
             /** Nobody left to ask: the question dies here rather than passing on. */
-            wrongEndsQuestion: 'Nobody else to ask — wrong ends this question',
+            wrongEndsQuestion: 'Nobody else to ask, wrong ends this question',
             /**
              * What Correct does, which is no longer only "score it". Said beside the
              * Wrong line because the two together are the round's whole rule, and the
@@ -562,9 +562,9 @@ export const en = {
                  * anybody may answer, and a quizmaster who reads the question and stops
                  * is the mistake this line exists to prevent.
                  */
-                readAll: 'Read out loud — question and all four',
+                readAll: 'Read out loud: question and all four',
                 spoken: '{{letter}}. {{text}}',
-                spokenCorrect: '{{letter}}. {{text}} — this is the right one'
+                spokenCorrect: '{{letter}}. {{text}}, this is the right one'
             },
             /** Round 3: everybody guesses a number, nearest takes it. */
             closest: {
@@ -580,14 +580,14 @@ export const en = {
                 unreadable: 'One of those is not a number.',
                 settle: 'Nearest takes {{worth}}',
                 /** The way out for a table that has already agreed out loud. */
-                pickInstead: 'Skip the numbers — just tap who won',
+                pickInstead: 'Skip the numbers, just tap who won',
                 typeInstead: 'Type the guesses instead',
                 award: 'Give them the points',
                 /** The reading screen: what is at stake, and who is playing for it. */
                 nearestTakes: 'Nearest number takes {{worth}}',
                 guessingOrder: 'Guessing, in table order',
                 collect: 'Write down the guesses',
-                collectHint: 'Let them all say a number first — no two the same',
+                collectHint: 'Let them all say a number first, no two the same',
                 /** Back off the form to the question, for a table that wants it again. */
                 backToQuestion: 'Back to the question',
                 /** The ink bar at the top of the form, and the way to cover it again. */
@@ -634,7 +634,7 @@ export const en = {
             /** Round 4: thirty seconds to describe your own words. */
             describe: {
                 readyTitle: 'Your words, {{name}}',
-                readyBody: '{{words}} words in {{seconds}} seconds. Describe them without saying them — everybody else shouts.',
+                readyBody: '{{words}} words in {{seconds}} seconds. Describe them without saying them. Everybody else shouts.',
                 start: 'Show my words and start',
                 dontSayIt: 'Never say the word itself',
                 scoringTitle: 'Who got them?',
@@ -665,10 +665,10 @@ export const en = {
                  * room for the second half of it.
                  */
                 ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
-                ruleChoice: 'Same as before — get one right and the next is yours too. Every question is worth 2 here.',
+                ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
-                ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it — so make them shout.',
-                action: "I'm {{name}} — show the question"
+                ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it, so make them shout.',
+                action: "I'm {{name}}, show the question"
             },
             standings: {
                 title: 'Round {{round}} done',
@@ -676,7 +676,7 @@ export const en = {
                 /** The between-rounds version: a breather, not an ending. */
                 breather: 'Read the scores out, then get round {{round}} started.',
                 startNext: 'Start round {{round}}',
-                nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved — the quiz is waiting where you left it.'
+                nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved. The quiz is waiting where you left it.'
             }
         },
         /**

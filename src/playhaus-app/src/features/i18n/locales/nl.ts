@@ -445,7 +445,7 @@ export const nl: Catalog = {
             validate: 'Beoordeel het antwoord van {{name}}',
             validateHint: 'Reken het daarna goed of fout',
             validateLocked: 'Laat eerst het antwoord zien',
-            gate: '{{name}} heeft geantwoord — check het',
+            gate: '{{name}} heeft geantwoord, check het',
             gateHint: 'Niets te tikken tot er een letter genoemd is',
             reread: 'tik om terug te lezen',
             wrong: 'Fout',
@@ -453,7 +453,7 @@ export const nl: Catalog = {
             markWrong: 'Reken {{name}} fout',
             markCorrect: 'Reken {{name}} goed',
             wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
-            wrongEndsQuestion: 'Niemand meer over — fout beëindigt deze vraag',
+            wrongEndsQuestion: 'Niemand meer over, fout beëindigt deze vraag',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoints: 'Voor {{worth}}',
             noPoint: 'Geen punt',
@@ -462,7 +462,7 @@ export const nl: Catalog = {
                 options: 'De vier opties',
                 readAll: 'Lees de vraag hardop voor en daarna de opties',
                 spoken: '{{letter}}. {{text}}',
-                spokenCorrect: '{{letter}}. {{text}} — dit is de goede'
+                spokenCorrect: '{{letter}}. {{text}}, dit is de goede'
             },
             closest: {
                 answer: '{{answer}} {{unit}}',
@@ -471,13 +471,13 @@ export const nl: Catalog = {
                 duplicate: 'Twee spelers hebben hetzelfde getal. Vraag er een om een ander.',
                 unreadable: 'Daar staat geen getal.',
                 settle: 'Dichtstbij pakt {{worth}}',
-                pickInstead: 'Sla de getallen over — tik gewoon wie won',
+                pickInstead: 'Sla de getallen over, tik gewoon wie won',
                 typeInstead: 'Vul de gokken toch in',
                 award: 'Geef ze de punten',
                 nearestTakes: 'Dichtstbij pakt {{worth}}',
                 guessingOrder: 'Wie gokt, op tafelvolgorde',
                 collect: 'Schrijf de gokken op',
-                collectHint: 'Laat ze eerst allemaal een getal noemen — geen twee dezelfde',
+                collectHint: 'Laat ze eerst allemaal een getal noemen, geen twee dezelfde',
                 backToQuestion: 'Terug naar de vraag',
                 answerLabel: 'Antwoord · alleen jij',
                 hide: 'Verberg',
@@ -498,7 +498,7 @@ export const nl: Catalog = {
             },
             describe: {
                 readyTitle: 'Jouw woorden, {{name}}',
-                readyBody: '{{words}} woorden in {{seconds}} seconden. Omschrijf ze zonder ze te zeggen — de rest roept.',
+                readyBody: '{{words}} woorden in {{seconds}} seconden. Omschrijf ze zonder ze te zeggen. De rest roept.',
                 start: 'Laat mijn woorden zien en start',
                 dontSayIt: 'Zeg het woord zelf nooit',
                 scoringTitle: 'Wie had ze?',
@@ -516,17 +516,17 @@ export const nl: Catalog = {
                 jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
                 jobDescribe: '{{name}} omschrijft zijn eigen woorden. Niemand anders mag meekijken.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
-                ruleChoice: 'Net als hiervoor — goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
+                ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de voorlezer gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
-                ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep — dus laat ze roepen.',
-                action: 'Ik ben {{name}} — laat de vraag zien'
+                ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep, dus laat ze roepen.',
+                action: 'Ik ben {{name}}, laat de vraag zien'
             },
             standings: {
                 title: 'Ronde {{round}} klaar',
                 description: 'Zo staat de tafel ervoor na de eerste ronde.',
                 breather: 'Lees de stand voor en begin dan aan ronde {{round}}.',
                 startNext: 'Start ronde {{round}}',
-                nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard — de quiz wacht waar jullie gebleven waren.'
+                nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
             }
         },
         errors: {
