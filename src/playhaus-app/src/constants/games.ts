@@ -36,6 +36,11 @@ export interface Game {
     descriptionKey: TranslationKey,
     mainCategoryIndicatorKey: TranslationKey,
     playable: boolean,
+    /**
+     * Wears the "new" badge on its home card. At most one game should carry this — the
+     * badge is a pointer at the newest thing, and two of them point nowhere.
+     */
+    isNew?: boolean,
     navigationUrl: string,
     deviceMode: DeviceMode,
     minMaxPlayersIndicator: string
@@ -78,6 +83,7 @@ export const PUBQUIZR: Game = {
     descriptionKey: 'games.quizzer.description',
     deviceMode: 'oneDevice',
     playable: true,
+    isNew: true,
     navigationUrl: ROUTES.quizzerIndex,
     minMaxPlayersIndicator: "3-8",
     minutesAverage: 25

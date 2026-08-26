@@ -1,9 +1,11 @@
 import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
+import Label from '@/components/text/Label';
 import TextHint from '@/components/text/TextHint';
 import GameTeaserCard from '@/components/ui/GameTeaserCard';
 import { GAMES } from '@/constants/games';
 import { Spacing } from '@/constants/theme';
+import JoinCodeRow from '@/features/home/components/JoinCodeRow';
 import { useT } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
@@ -27,6 +29,16 @@ export default function HomeScreen() {
         <AppText style={styles.introText}>{t('home.subtitle')}</AppText>
       </View>
 
+      {/* Above the list rather than under it: someone opening the app with four
+          characters in hand is here to use them, not to read the menu. */}
+      <View style={styles.join}>
+        <JoinCodeRow />
+      </View>
+
+      <View style={styles.startNew}>
+        <Label label={t('home.startNew')} rule />
+      </View>
+
       <View style={styles.games}>
         {GAMES.map(game => (
           <GameTeaserCard
@@ -39,6 +51,7 @@ export default function HomeScreen() {
             description={t(game.descriptionKey)}
             deviceMode={game.deviceMode}
             minMaxPlayers={game.minMaxPlayersIndicator}
+            isNew={game.isNew}
             playable={game.playable}
             navigationUrl={game.navigationUrl as RelativePathString}
             durationInMinutes={game.minutesAverage}
@@ -65,8 +78,13 @@ const useStyles = createThemedStyles(theme => ({
     lineHeight: 14 * 1.5,
     color: theme.colors.textSecondary
   },
+  join: {
+    marginTop: Spacing.three
+  },
+  startNew: {
+    marginTop: 18
+  },
   games: {
-    marginTop: 20,
     gap: 14
   }
 }));

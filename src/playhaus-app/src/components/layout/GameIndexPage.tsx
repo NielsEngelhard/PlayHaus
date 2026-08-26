@@ -1,12 +1,12 @@
 import AppText from "@/components/text/AppText";
 import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
-import { Brand, HeaderHeight, Spacing, linearGradient, type AccentInk } from "@/constants/theme";
+import { Brand, ContentWidth, HeaderHeight, linearGradient, Spacing, type AccentInk } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Image, type ImageSource } from "expo-image";
 import { Children, useState, type ReactNode } from "react";
-import { View, type LayoutChangeEvent } from "react-native";
+import { Platform, useWindowDimensions, View, type LayoutChangeEvent } from "react-native";
 
 interface Props {
     /**
@@ -90,6 +90,24 @@ const OVERLAP_FRACTION = 0.5;
 const ASSUMED_ROW_HEIGHT = 160;
 
 /**
+ * The window width the hero turns sideways at.
+ *
+ * Past a tablet held upright (768) and short of the narrow laptop windows people put
+ * side by side, which are better off with the phone's stacked hero.
+ *
+ * Deliberately not the width the band starts reaching out at, which is simply the point
+ * there is any canvas beside it to reach into — see `bleed`. Between the two the hero
+ * stacks as it does on a phone under a band that is already the whole window.
+ */
+const WIDE_BREAKPOINT = 900;
+
+/**
+ * How wide the hero already is: the app's one column, plus the two gutters it has
+ * reached back out into — see `hero`.
+ */
+const HERO_WIDTH = ContentWidth + Spacing.four * 2;
+
+/**
  * Every game's front page: an accent slab carrying the game's mark, name, pitch and
  * facts, and under it whatever that game offers.
  *
@@ -103,6 +121,11 @@ const ASSUMED_ROW_HEIGHT = 160;
  * two-line title carries the band down with it and a translation that runs long cannot
  * push the facts out of their own colour, and it then runs on past that into the first
  * row of cards — see `OVERLAP_FRACTION`.
+ *
+ * On a desktop window it turns sideways — see `WIDE_BREAKPOINT`. The band takes the
+ * whole width rather than the column's, and the pitch and facts move up beside the
+ * title instead of under it, which is what keeps a full-bleed band from being a third
+ * of a laptop screen tall.
  */
 export default function GameIndexPage({
     name,
@@ -118,8 +141,31 @@ export default function GameIndexPage({
 }: Props) {
     const styles = useStyles();
     const t = useT();
+    const { width: windowWidth } = useWindowDimensions();
 
     const on = ON_ACCENT[accentInk];
+
+    /*
+     * How far past its own edges the band has to reach to make the window, and so also
+     * whether it is reaching at all.
+     *
+     * Anything left over is worth taking. A band that stops short of the window is a
+     * coloured rectangle laid on the page rather than the top of it, which is the whole
+     * thing this is here to avoid.
+     *
+     * Web only, for two reasons: the band reaches outside its own parent, which iOS
+     * allows and Android clips; and the clipping that keeps it from turning into
+     * sideways scroll is the `overflow-x: hidden` a vertical `ScrollView` only has on
+     * web. `useWindowDimensions` answers 0 with no DOM to measure, so the pre-rendered
+     * export ships the narrow layout and hydration widens it — the same trade the row
+     * measurement below already makes, and for the same reason.
+     */
+    const bleed = Platform.OS === 'web'
+        ? Math.max(0, Math.ceil((windowWidth - HERO_WIDTH) / 2))
+        : 0;
+
+    /** Whether the hero turns sideways under it — see `WIDE_BREAKPOINT`. */
+    const wide = Platform.OS === 'web' && windowWidth >= WIDE_BREAKPOINT;
 
     // The row the band is cut around, held apart from the rest so it can be measured.
     const [cards, ...rest] = Children.toArray(children);
@@ -136,6 +182,84 @@ export default function GameIndexPage({
         if (height !== rowHeight) setRowHeight(height);
     };
 
+    // The hero's pieces, built here rather than inline: the narrow layout stacks them
+    // and the wide one deals them into two columns, and they are the same pieces either
+    // way.
+    const mark = (
+        <Image
+            source={icon}
+            style={styles.mark}
+            accessibilityRole="image"
+            accessibilityLabel={name}
+        />
+    );
+
+    /*
+     * The row above the hero proper.
+     *
+     * It carries the mark when the hero is stacked, and only the stamp when it is not —
+     * a sticker slapped on the corner of the band, with nothing under it. Where the wide
+     * layout has neither it is not rendered at all, rather than left as an empty 58dp of
+     * colour.
+     */
+    const topRow = (!wide || stamp !== undefined) && (
+        <View style={styles.markRow}>
+            {!wide && mark}
+
+            {stamp !== undefined && (
+                <View style={styles.stamp}>{stamp}</View>
+            )}
+        </View>
+    );
+
+    const title = (
+        <AppText
+            style={[
+                styles.title,
+                // Only where the stamp is actually in the way. On a wide window it is
+                // off at the far end of the band and the title is in its own column.
+                !wide && stamp !== undefined && styles.textPastStamp,
+                wide && styles.titleWide,
+                { color: on.text }
+            ]}
+        >
+            {name}
+        </AppText>
+    );
+
+    const pitch = (
+        <>
+            <AppText
+                style={[
+                    styles.description,
+                    !wide && stamp !== undefined && styles.textPastStamp,
+                    wide && styles.descriptionWide,
+                    { color: on.muted }
+                ]}
+            >
+                {description}
+            </AppText>
+
+            <View style={styles.facts}>
+                <Fact
+                    icon="user"
+                    text={`${minMaxPlayers} ${t('common.players')}`}
+                    on={on}
+                />
+                <Fact
+                    icon="smartphone"
+                    text={t(DEVICE_MODE_KEYS[deviceMode])}
+                    on={on}
+                />
+                <Fact
+                    icon="clock"
+                    text={`±${durationInMinutes} ${t('common.minutes')}`}
+                    on={on}
+                />
+            </View>
+        </>
+    );
+
     return (
         <View style={styles.container}>
             <View style={styles.hero}>
@@ -151,61 +275,42 @@ export default function GameIndexPage({
                   */}
                 <View
                     pointerEvents="none"
-                    style={[styles.slab, { bottom: -overlap }, linearGradient(gradient)]}
+                    style={[
+                        styles.slab,
+                        // Square once it runs off the sides of the window: a corner
+                        // rounded against an edge it never touches reads as a mistake.
+                        bleed > 0 && styles.slabWide,
+                        { bottom: -overlap, left: -bleed, right: -bleed },
+                        linearGradient(gradient)
+                    ]}
                 />
 
-                {/* Its own row rather than the first thing in the column, so the stamp
-                    has something to hang off the right-hand end of. */}
-                <View style={styles.markRow}>
-                    <Image
-                        source={icon}
-                        style={styles.mark}
-                        accessibilityRole="image"
-                        accessibilityLabel={name}
-                    />
+                {topRow}
 
-                    {stamp !== undefined && (
-                        <View style={styles.stamp}>{stamp}</View>
-                    )}
-                </View>
+                {wide ? (
+                    // Bottom-aligned rather than top: the title is the tall thing and
+                    // the facts are the low one, and sitting them on the same line is
+                    // what makes the two columns read as one block.
+                    <View style={[styles.wideRow, topRow === false && styles.wideRowFlush]}>
+                        {/* Mark and name as one lockup, the way they sit together
+                            everywhere else in the app — the stacked layout only pulls
+                            them apart because a phone has no width to keep them on one
+                            line. */}
+                        <View style={styles.wideLead}>
+                            {mark}
 
-                <AppText
-                    style={[
-                        styles.title,
-                        stamp !== undefined && styles.textPastStamp,
-                        { color: on.text }
-                    ]}
-                >
-                    {name}
-                </AppText>
+                            {title}
+                        </View>
 
-                <AppText
-                    style={[
-                        styles.description,
-                        stamp !== undefined && styles.textPastStamp,
-                        { color: on.muted }
-                    ]}
-                >
-                    {description}
-                </AppText>
+                        <View style={styles.widePitch}>{pitch}</View>
+                    </View>
+                ) : (
+                    <>
+                        {title}
 
-                <View style={styles.facts}>
-                    <Fact
-                        icon="user"
-                        text={`${minMaxPlayers} ${t('common.players')}`}
-                        on={on}
-                    />
-                    <Fact
-                        icon="smartphone"
-                        text={t(DEVICE_MODE_KEYS[deviceMode])}
-                        on={on}
-                    />
-                    <Fact
-                        icon="clock"
-                        text={`±${durationInMinutes} ${t('common.minutes')}`}
-                        on={on}
-                    />
-                </View>
+                        {pitch}
+                    </>
+                )}
             </View>
 
             {/* A wrapper only to hold `onLayout`. It is a plain full-width box — the
@@ -292,6 +397,53 @@ const useStyles = createThemedStyles(theme => ({
         borderBottomColor: theme.colors.border
     },
 
+    slabWide: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+    },
+
+    /**
+     * The two columns the hero splits into on a desktop window.
+     *
+     * The gap under the mark is the title's own `marginTop` moved out here, so it
+     * belongs to the row rather than to whichever of the two columns happens to be
+     * taller — see `titleWide`.
+     */
+    wideRow: {
+        marginTop: 14,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        gap: Spacing.four
+    },
+
+    // No mark row above to space away from.
+    wideRowFlush: {
+        marginTop: 0
+    },
+
+    // Sized by its contents rather than by a share of the row: the name is the thing
+    // being set, and the pitch beside it takes what is left.
+    wideLead: {
+        flexDirection: 'row',
+        // Centred rather than topped, because the two names are not the same shape —
+        // one breaks over two lines and the others do not — and this is the one
+        // alignment that reads as a lockup in both cases.
+        alignItems: 'center',
+        gap: Spacing.three - 4,
+        flexShrink: 1
+    },
+
+    /**
+     * Short of half the column even where there is room for more. A pitch is a line
+     * under a name, and one running the full width of the band would be a paragraph
+     * competing with the title for the eye.
+     */
+    widePitch: {
+        flex: 1,
+        minWidth: 0,
+        maxWidth: 320
+    },
+
     markRow: {
         height: MARK_SIZE,
         // The stamp is taller than the mark and hangs past this row on both sides, so
@@ -322,6 +474,13 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -2
     },
 
+    // The gap above belongs to `wideRow` there, and a margin left on the title would be
+    // measured into a column the row then bottom-aligns — i.e. would move nothing but
+    // the row's height.
+    titleWide: {
+        marginTop: 0
+    },
+
     description: {
         marginTop: 12,
         // Short of the full width even on a wide window, where a pitch running the whole
@@ -332,11 +491,18 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: 14 * 1.5
     },
 
+    // Both caps come off in the wide layout: the column it is in is the width now, and
+    // the top gap is the row's.
+    descriptionWide: {
+        marginTop: 0,
+        maxWidth: '100%'
+    },
+
     // The copy stops where the sticker starts. Held here rather than by the stamp
     // because the text is what has to give way: it is drawn after the stamp, so a line
     // long enough to reach it would be laid over it rather than pushed aside.
     textPastStamp: {
-        maxWidth: 250
+        maxWidth: 300
     },
 
     facts: {

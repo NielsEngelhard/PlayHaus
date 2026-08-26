@@ -59,6 +59,12 @@ export const nl: Catalog = {
             label: 'Nog bezig',
             line: '{{title}} · {{mode}} {{time}}'
         },
+        join: {
+            placeholder: 'CODE',
+            action: 'Join',
+            label: 'Lobbycode'
+        },
+        startNew: 'Begin iets nieuws',
         bottomTeaser: "Meer spellen in de maak...",
     },
     games: {
@@ -78,7 +84,8 @@ export const nl: Catalog = {
         oneOfUs: {
             description: 'Ontraadsel wie de bedrieger is.',
             mainCategory: 'Bluf',
-        }        
+        },
+        newBadge: 'Nieuw'
     },
     languages: {
         nl: { description: 'Woorden uit de Nederlandse lijst.' },
@@ -189,7 +196,7 @@ export const nl: Catalog = {
     },
     lol: {
         index: {
-            description: 'Test je woordenschat, daag je vrienden uit en probeer het geheime woord te raden voordat je kansen op zijn. Alleen of tegen je vijanden.',
+            description: 'Test je woordenschat en probeer het geheime woord te raden.',
             playingAs: 'Speelt als {{name}}',
             solo: { title: 'Solo', description: 'Drie rondes, jouw regels.', action: 'Instellen' },
             multiplayer: { title: 'Multiplayer', description: 'Race tegen je vrienden.', action: 'Openen' },

@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import { Badge } from "@/components/ui/Badge";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -204,15 +205,19 @@ export default function ModeCard({
                     )}
                 </View>
 
-                <AppText
-                    style={[
-                        solid ? styles.descriptionSolid : styles.description,
-                        solid && { color: on.muted },
-                        isDisabled && !solid && styles.textDisabled
-                    ]}
-                >
-                    {description}
-                </AppText>
+                {isDisabled ? (
+                    <Badge text="Coming soon..." />          
+                ) : (
+                    <AppText
+                        style={[
+                            solid ? styles.descriptionSolid : styles.description,
+                            solid && { color: on.muted },
+                            isDisabled && !solid && styles.textDisabled
+                        ]}
+                    >
+                        {description}
+                    </AppText>                    
+                )}
 
                 {!solid && (
                     <View style={styles.actionRow}>
@@ -267,7 +272,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     cardDisabled: {
-        opacity: 0.7
+        // opacity: 0.7
     },
 
     watermark: {
@@ -307,7 +312,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     tileDisabled: {
-        opacity: 0.7
+        // opacity: 0.7
     },
 
     body: {

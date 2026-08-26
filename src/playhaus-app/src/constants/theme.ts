@@ -499,3 +499,12 @@ export const BottomBarHeight = 60;
 export const HeaderHeight = 66;
 
 export const MaxContentWidth = 800;
+
+/**
+ * The width of the one column every page is drawn in.
+ *
+ * The root layout centres it and the app never goes wider, so on a desktop window the
+ * whole app is this column with canvas either side. Exported because a page that wants
+ * to reach past it has to know how far past it is — see the band in `GameIndexPage`.
+ */
+export const ContentWidth = 600;

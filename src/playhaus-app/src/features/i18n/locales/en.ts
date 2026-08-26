@@ -59,6 +59,15 @@ export const en = {
             /** Punctuation only, so the separator is the translator's to change. */
             line: '{{title}} · {{mode}} {{time}}'
         },
+        join: {
+            /** Sits in the empty field. The word for a lobby code, in caps. */
+            placeholder: 'CODE',
+            action: 'Join',
+            /** Names the field for anyone who cannot see the placeholder. */
+            label: 'Lobby code'
+        },
+        /** Heads the list of games, under the ways back into one you already have. */
+        startNew: 'Start something new',
         bottomTeaser: "More party games coming soon...",
     },
     games: {
@@ -84,7 +93,9 @@ export const en = {
         oneOfUs: {
             description: 'Unravel who the imposter is.',
             mainCategory: 'Bluf'
-        }
+        },
+        /** The badge on the newest game's card. Set in caps by the card itself. */
+        newBadge: 'New'
     },
     /**
      * Only the descriptions. The names themselves stay endonyms in `LANGUAGES` and are

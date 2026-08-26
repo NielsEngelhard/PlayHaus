@@ -11,7 +11,7 @@ import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { headerOverAccent } from '@/constants/header-context';
-import { BottomBarHeight, Spacing } from '@/constants/theme';
+import { BottomBarHeight, ContentWidth, Spacing } from '@/constants/theme';
 import { MusicProvider } from '@/features/audio/MusicContext';
 import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
@@ -273,7 +273,7 @@ const useStyles = createThemedStyles(theme => ({
     paddingBottom: Spacing.four,
   },
   content: {
-    maxWidth: 600,
+    maxWidth: ContentWidth,
     width: '100%',
     flexDirection: 'column',
   },
