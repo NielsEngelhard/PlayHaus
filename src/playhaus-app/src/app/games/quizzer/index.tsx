@@ -1,6 +1,6 @@
+import GameIndexPage from "@/components/layout/GameIndexPage";
 import Label from "@/components/text/Label";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
-import { PUBQUIZR_NAME } from "@/constants/games";
+import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -15,25 +15,24 @@ export default function QuizzerIndexPage() {
     const t = useT();
 
     return (
-        <View style={styles.container}>
-            {/* The stamp is laid over the hero rather than set beside it, so it can
-                hang past the top edge the way a sticker would. The text is held to a
-                column narrow enough to pass underneath it. */}
-            <View style={styles.hero}>
-                <View style={styles.heroText}>
-                    <SimpleTextHero
-                        title={PUBQUIZR_NAME}
-                        description={t('pubquizr.index.description')}
-                    />
-                </View>
-
+        <GameIndexPage
+            name={PUBQUIZR.name}
+            icon={PUBQUIZR.icon}
+            gradient={PUBQUIZR.gradient}
+            accentInk={PUBQUIZR.accentInk}
+            description={t('pubquizr.index.description')}
+            minMaxPlayers={PUBQUIZR.minMaxPlayersIndicator}
+            deviceMode={PUBQUIZR.deviceMode}
+            durationInMinutes={PUBQUIZR.minutesAverage}
+            // Laid over the slab rather than set beside the mark, so it can hang past
+            // the corner the way a sticker would.
+            stamp={
                 <WeeklyStamp
                     letters={t('pubquizr.index.weekly.weekday')}
                     caption={t('pubquizr.index.weekly.promise')}
-                    style={styles.stamp}
                 />
-            </View>
-
+            }
+        >
             <View style={styles.modes}>
                 <ModeCard
                     solid
@@ -53,7 +52,7 @@ export default function QuizzerIndexPage() {
                     solid
                     watermark="10"
                     icon='users'
-                    gradient={Gradients.secondary}
+                    gradient={PUBQUIZR.gradient}
                     iconInk={Brand.ink}
                     highlight={0.35}
                     onFill="paper"
@@ -66,36 +65,21 @@ export default function QuizzerIndexPage() {
                 />
             </View>
 
-            <View>
+            <View style={styles.list}>
                 <Label label={t('pubquizr.index.list.label')} />
                 <QuizList />
             </View>
-        </View>
+        </GameIndexPage>
     )
 }
 
 const useStyles = createThemedStyles(() => ({
-    container: {
-        width: '100%',
-        gap: Spacing.three
-    },
-    hero: {
-        width: '100%'
-    },
-    // The stamp is roughly 100 wide and the design lets the copy run right up to it,
-    // so the column stops where the sticker starts.
-    heroText: {
-        maxWidth: 240
-    },
-    stamp: {
-        position: 'absolute',
-        right: 0,
-        top: -4
-    },
     modes: {
-        marginTop: 2,
         flexDirection: 'row',
         alignItems: 'stretch',
         gap: 11
+    },
+    list: {
+        marginTop: Spacing.three
     }
 }))

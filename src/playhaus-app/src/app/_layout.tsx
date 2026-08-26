@@ -10,6 +10,7 @@ import { FullScreenProvider, useFullScreenValue } from '@/components/layout/Full
 import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
+import { headerOverAccent } from '@/constants/header-context';
 import { BottomBarHeight, Spacing } from '@/constants/theme';
 import { MusicProvider } from '@/features/audio/MusicContext';
 import AuthGate from '@/features/auth/components/AuthGate';
@@ -172,7 +173,9 @@ function Chrome() {
       {/* Outside the animation: the header is the app's chrome rather than part of the
           page, and a wordmark sliding in on every route would be the one thing on
           screen insisting it had changed too. */}
-      <Header />
+      <View style={headerOverAccent(pathname) && styles.headerAbove}>
+        <Header />
+      </View>
 
       <SlideFadeIn
         // What replays the entrance — and deliberately not a `key`.
@@ -273,6 +276,18 @@ const useStyles = createThemedStyles(theme => ({
     maxWidth: 600,
     width: '100%',
     flexDirection: 'column',
+  },
+  /*
+   * Lifts the header over the page below it, for the routes whose page paints up into
+   * the header's 66dp — see `headerOverAccent`.
+   *
+   * Only where it is asked for. The page slot is drawn after the header, so raising it
+   * everywhere would put the chrome on top of the one screen that is supposed to cover
+   * it: the pubquizR hand-off is a wall you must not be able to read past, and a back
+   * chip floating on it is a way past.
+   */
+  headerAbove: {
+    zIndex: 1,
   },
   // Passes the window's height down, which is what lets a page claim the room left
   // under `Header` with a plain `flex: 1`.

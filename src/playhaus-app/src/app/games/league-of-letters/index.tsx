@@ -1,5 +1,6 @@
 import { MAX_LOBBY_PLAYERS, MIN_LOBBY_PLAYERS } from "@/api/calls/league-of-letters-lobby";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
+import GameIndexPage from "@/components/layout/GameIndexPage";
+import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -16,19 +17,19 @@ export default function LeagueOfLettersIndexPage() {
     const t = useT();
 
     return (
-        <View style={styles.container}>
-            {/* Broken by hand rather than left to wrap: the design sets the two words on
-                their own lines, and letting the column decide would move the break as the
-                viewport changes. */}
-            <SimpleTextHero
-                title={'League of\nLetters'}
-                description={t('lol.index.description')}
-            />
-
-            <View style={styles.playingAs}>
-                <PlayingAsCard />
-            </View>
-
+        <GameIndexPage
+            // Broken by hand rather than left to wrap: the design sets the two words on
+            // their own lines, and letting the column decide would move the break as the
+            // viewport changes.
+            name={'League of\nLetters'}
+            icon={LEAGUE_OF_LETTERS.icon}
+            gradient={LEAGUE_OF_LETTERS.gradient}
+            accentInk={LEAGUE_OF_LETTERS.accentInk}
+            description={t('lol.index.description')}
+            minMaxPlayers={LEAGUE_OF_LETTERS.minMaxPlayersIndicator}
+            deviceMode={LEAGUE_OF_LETTERS.deviceMode}
+            durationInMinutes={LEAGUE_OF_LETTERS.minutesAverage}
+        >
             <View style={styles.modes}>
                 <ModeCard
                     icon='user'
@@ -43,7 +44,7 @@ export default function LeagueOfLettersIndexPage() {
 
                 <ModeCard
                     icon='users'
-                    gradient={Gradients.primary}
+                    gradient={LEAGUE_OF_LETTERS.gradient}
                     iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
                     highlight={0.35}
                     title={t('lol.index.multiplayer.title')}
@@ -54,25 +55,25 @@ export default function LeagueOfLettersIndexPage() {
                 />
             </View>
 
+            <View style={styles.playingAs}>
+                <PlayingAsCard />
+            </View>
+
             <View style={styles.join}>
                 <JoinCodeCard />
             </View>
-        </View>
+        </GameIndexPage>
     )
 }
 
 const useStyles = createThemedStyles(() => ({
-    container: {
-        width: '100%'
-    },
-    playingAs: {
-        marginTop: Spacing.three
-    },
     modes: {
-        marginTop: Spacing.three + 2,
         flexDirection: 'row',
         alignItems: 'stretch',
         gap: Spacing.three - 4
+    },
+    playingAs: {
+        marginTop: Spacing.three
     },
     join: {
         marginTop: Spacing.three

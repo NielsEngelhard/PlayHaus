@@ -59,6 +59,23 @@ function isGameHub(pathname: string): boolean {
 }
 
 /**
+ * Whether the page at this route paints its own colour up behind the header.
+ *
+ * A game's front page does: its accent slab reaches past the gutters and up over the
+ * header's 66dp (see `GameIndexPage`), and a band drawn from inside the page slot would
+ * otherwise be laid over the chrome — the way out and the theme switch included. The
+ * layout answers this by drawing the header *above* the page slot on these routes, which
+ * is the one arrangement the slab needs and the one `HandoffScreen` must not have: that
+ * screen covers the header on purpose.
+ *
+ * Read off the route rather than pushed up by the page, for the same reason as
+ * everything else in this file.
+ */
+export function headerOverAccent(pathname: string): boolean {
+    return isGameHub(pathname);
+}
+
+/**
  * Takes the translator rather than storing a key, unlike the registries next door.
  *
  * There is exactly one word here that comes out of the catalogue, and one caller to

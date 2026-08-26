@@ -32,6 +32,11 @@ export const Brand = {
     secondary: '#3B4DF0',
     lemon: '#FFE538',
     mint: '#73ECBC',
+    /**
+     * Pale enough that it is the one accent in the set that cannot carry paper text.
+     * Anything filled with it wears ink instead — see `AccentInk`.
+     */
+    violet: '#C7B9FF',
     blush: '#FFBEB8',
     available: '#31AA40',
     /** Warnings and irreversible actions. Loud on purpose — use it sparingly. */
@@ -134,6 +139,7 @@ export interface Palette {
     secondary: string,
     lemon: string,
     mint: string,
+    violet: string,
     blush: string,
     available: string,
     destructive: string,
@@ -312,7 +318,17 @@ export const Gradients = {
     secondary: ['#6C7BFF', Brand.secondary, '#2634C4'],    
     lemon: ['#FFF07A', Brand.lemon, '#EFCE00'],
     mint: ['#A8F5D6', Brand.mint, '#35C99A'],
+    violet: ['#DCD2FF', Brand.violet, '#9B85F5'],
 } as const satisfies Record<string, readonly [string, string, string]>;
+
+/**
+ * Which of the two inks stays readable on top of an accent: paper for the saturated
+ * fills, ink for the pale ones.
+ *
+ * A property of the fill rather than of the scheme — a gradient is the same gradient at
+ * midnight, so this does not flip with the canvas the way `Palette` does.
+ */
+export type AccentInk = 'ink' | 'paper';
 
 /**
  * Which fill a solid button wears. Only the colour changes — every variant keeps the

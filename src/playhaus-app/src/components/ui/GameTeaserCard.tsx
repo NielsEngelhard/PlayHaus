@@ -88,7 +88,7 @@ export default function GameTeaserCard({
                                 color={theme.colors.textMuted}
                             />
                             <AppText style={styles.durationText}>
-                                +-{durationInMinutes} {t("common.minutes")}
+                                ±{durationInMinutes} {t("common.minutes")}
                             </AppText>
                         </View>
 

@@ -1,26 +1,28 @@
-import SimpleTextHero from "@/components/text/SimpleTextHero";
-import { ONE_OF_US_NAME } from "@/constants/games";
+import GameIndexPage from "@/components/layout/GameIndexPage";
+import { ONE_OF_US } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import JoinCodeCard from "@/features/reconnect/components/JoinCodeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
 
 export default function OneOfUsIndexPage() {
-    const theme = useTheme();
     const styles = useStyles();
     const t = useT();
 
     return (
-        <View style={styles.container}>
-            <SimpleTextHero
-                title={ONE_OF_US_NAME}
-                description={t('oneOfUs.index.description')}
-            />
-
+        <GameIndexPage
+            name={ONE_OF_US.name}
+            icon={ONE_OF_US.icon}
+            gradient={ONE_OF_US.gradient}
+            accentInk={ONE_OF_US.accentInk}
+            description={t('oneOfUs.index.description')}
+            minMaxPlayers={ONE_OF_US.minMaxPlayersIndicator}
+            deviceMode={ONE_OF_US.deviceMode}
+            durationInMinutes={ONE_OF_US.minutesAverage}
+        >
             <View style={styles.modes}>
                 <ModeCard
                     icon='smartphone'
@@ -30,14 +32,18 @@ export default function OneOfUsIndexPage() {
                     title={t('oneOfUs.index.oneDevice.title')}
                     description={t('oneOfUs.index.oneDevice.description')}
                     action={t('oneOfUs.index.oneDevice.action')}
-                    navigationUrl={ROUTES.oneOfUsSetupSingleDevice}                    
+                    navigationUrl={ROUTES.oneOfUsSetupSingleDevice}
                 />
 
+                {/* The game's own violet rather than the house orange this used to
+                    default to — the pair should say which game they belong to. It is the
+                    palest accent in the set, so the glyph on it stays ink in both
+                    schemes and the lit top edge has to work that much harder. */}
                 <ModeCard
                     icon='users'
-                    gradient={Gradients.primary}
-                    iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
-                    highlight={0.35}
+                    gradient={ONE_OF_US.gradient}
+                    iconInk={Brand.ink}
+                    highlight={0.5}
                     title={t('oneOfUs.index.multiDevice.title')}
                     description={t('oneOfUs.index.multiDevice.description')}
                     action={t('oneOfUs.index.multiDevice.action')}
@@ -48,19 +54,12 @@ export default function OneOfUsIndexPage() {
             <View style={styles.join}>
                 <JoinCodeCard />
             </View>
-        </View>
+        </GameIndexPage>
     )
 }
 
 const useStyles = createThemedStyles(() => ({
-    container: {
-        width: '100%'
-    },
-    playingAs: {
-        marginTop: Spacing.three
-    },
     modes: {
-        marginTop: Spacing.three + 2,
         flexDirection: 'row',
         alignItems: 'stretch',
         gap: Spacing.three - 4
