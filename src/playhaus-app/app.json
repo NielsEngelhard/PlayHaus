@@ -9,9 +9,9 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": {
-        "light": "./assets/images/icon.png",
-        "dark": "./assets/images/icon-dark.png",
-        "tinted": "./assets/images/icon-tinted.png"
+        "light": "./assets/images/icon.svg",
+        "dark": "./assets/images/icon-dark.svg",
+        "tinted": "./assets/images/icon-tinted.svg"
       },
       "bundleIdentifier": "com.nielsengelhard.playhausapp",
       "infoPlist": {
@@ -22,14 +22,14 @@
       "package": "com.nielsengelhard.playhausapp",
       "adaptiveIcon": {
         "backgroundColor": "#FEFCF4",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/android-icon-foreground.svg",
+        "monochromeImage": "./assets/images/android-icon-monochrome.svg"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.svg"
     },
     "plugins": [
       "expo-router",
@@ -37,11 +37,11 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FBF7F0",
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/playhaus-lockup-light.svg",
           "imageWidth": 240,
           "resizeMode": "contain",
           "dark": {
-            "image": "./assets/images/splash-icon-dark.png",
+            "image": "./assets/images/playhaus-lockup-light.svg",
             "backgroundColor": "#0E0E13"
           }
         }

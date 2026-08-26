@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100" role="img" aria-label="Playhaus lockup"><title>Playhaus lockup</title>
+<rect width="340" height="100" rx="20" fill="#0E0E13"></rect>
+<g transform="translate(6 6) scale(0.88)"><rect x="1.75" y="1.75" width="96.5" height="96.5" rx="23" fill="#1D1D26" stroke="#3A3A47" stroke-width="3.5"></rect><circle cx="53" cy="53" r="33" fill="#FE5A1D"></circle><circle cx="47" cy="47" r="33" fill="#FFE538"></circle><text x="47" y="68" text-anchor="middle" font-family="Outfit,sans-serif" font-size="58" font-weight="900" fill="#0F0D12">P</text></g>
+<text x="112" y="66" font-family="Outfit,sans-serif" font-size="42" font-weight="900" letter-spacing="-1.9" fill="#F5F3EF">Playhaus</text>
+</svg>
