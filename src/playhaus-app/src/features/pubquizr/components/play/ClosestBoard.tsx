@@ -7,7 +7,7 @@ import TextButton from "@/components/ui/TextButton";
 import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import { reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
+import { offBy, reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -53,7 +53,7 @@ interface Props {
      * `winners` travels alongside the request body because it is the one thing the
      * server's reply will not hand back on its own: by the time the new session comes
      * back, this question has moved on and there is nothing left to compute it from.
-     * Whoever renders a "who won this round" screen off the settle needs it now.
+     * `ClosestResultScreen`, which is what the settle leads to, needs it now.
      */
     onSettle: (
         settled: { guesses: { seat: number, value: number }[] } | { winningSeats: number[] },
@@ -547,16 +547,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             </PopupModal>
         </View>
     )
-}
-
-/**
- * How far a guess landed from the answer, as something to put in a sentence.
- *
- * Rounded to two places and stripped of trailing zeros, because the arithmetic is
- * floating point and "6.000000000000001 off" is not a thing anybody says.
- */
-function offBy(value: number, answer: number): string {
-    return String(Math.round(Math.abs(value - answer) * 100) / 100);
 }
 
 const useStyles = createThemedStyles(theme => ({

@@ -445,7 +445,9 @@ type VerdictInput struct {
 // round with them, because a question is always read by the seat on the answerer's
 // right. Round 2 never keeps it -- see the round 2 note below. A wrong answer with
 // somebody left to ask passes it along and changes nothing else. A wrong answer with
-// nobody left ends the question for no points and moves the whole thing one seat on.
+// nobody left ends the question for no points and moves the seat on by itself -- in
+// round 1 onto the reader, the one seat the dead question never reached, and in round 2
+// one along from where it opened.
 //
 // The two rounds also differ in what a question pays -- round 1 on every second one,
 // round 2 on all of them and double, see HotSeatPointsAt.
@@ -558,13 +560,23 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 
 	case AnsweringSeat(session.QuizMasterSeat, hot, attempts+1, len(session.Players)) < 0:
 		// Wrong, and that was the last seat with a go left. Nobody earned the seat, so
-		// it simply shuffles one along from where this question opened -- and the
-		// reading follows it, the way it always does.
+		// it moves by itself -- and the two rounds move it opposite ways.
+		//
+		// Round 1 hands it to the reader: a question that beat the table went round
+		// everybody except them, so they are the one seat left that was never asked it,
+		// and the reading falls back to the seat on their right the way it always does.
+		// Round 2 shuffles one along from where the question opened instead, exactly as
+		// a question somebody got does, because its one question per player only comes
+		// out even if the table keeps moving the one way.
 		question.Status = QuestionDone
 		out.Questions = append(out.Questions, question)
 
 		session.HotSeatRun = 0
-		session.OpenOn(hot + 1)
+		if session.CurrentRound == RoundChoice {
+			session.OpenOn(hot + 1)
+		} else {
+			session.OpenOn(session.QuizMasterSeat)
+		}
 		s.advance(session)
 
 	default:

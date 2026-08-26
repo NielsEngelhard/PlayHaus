@@ -214,7 +214,8 @@ type Session struct {
 	// Always the seat to the right of the hot seat -- whoever the next question opens
 	// on is read to by the person before them. So it moves whenever the hot seat does:
 	// a player taking a question from further down the table takes the reading round
-	// to their own neighbour with it, and a question nobody gets moves both on one.
+	// to their own neighbour with it, and a round 1 question nobody gets puts the reader
+	// themselves in the seat.
 	//
 	// Stored rather than derived from HotSeat so a row written by an older build still
 	// says what that build meant by it.

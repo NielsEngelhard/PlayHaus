@@ -11,8 +11,8 @@ import (
 
 // Round 1 is a hot seat, and these are the things that has to mean: taking a question
 // keeps you in it, the reading follows the seat round the table, only every second
-// question is worth anything, and a question nobody gets moves the whole thing one
-// along.
+// question is worth anything, and a question nobody gets hands the seat to whoever was
+// reading it out.
 //
 // The reading following the seat is the one worth stating twice. A question is read by
 // the player on the answerer's right, always -- so a player who takes a question from
@@ -306,18 +306,22 @@ func TestWrongAnswerWithSeatsLeftMovesNothing(t *testing.T) {
 	}
 }
 
-func TestQuestionNobodyGetsMovesTheReadingOn(t *testing.T) {
+// A question that beat the whole table hands the seat to whoever was reading it out.
+// They are the one player it was never put to -- it went round everybody else on its way
+// to dying -- so they get the next one, and the reading drops back to the seat on their
+// right the way it does everywhere else.
+func TestQuestionNobodyGetsPutsTheReaderInTheSeat(t *testing.T) {
 	// Master 0, question opened on seat 1 and already missed by seats 1 and 2. Seat 3
 	// is the last go there is.
 	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6), attempts: 2}
 
 	rule(t, store, false)
 
-	if got, want := store.session.QuizMasterSeat, 1; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d -- a dead question moves the reading one on", got, want)
+	if got, want := store.session.HotSeat, 0; got != want {
+		t.Errorf("HotSeat = %d, want %d -- the reader is asked the next one", got, want)
 	}
-	if got, want := store.session.HotSeat, 2; got != want {
-		t.Errorf("HotSeat = %d, want %d -- nobody earned it, so it shuffles one along", got, want)
+	if got, want := store.session.QuizMasterSeat, 3; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- read to by the seat on their right", got, want)
 	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)

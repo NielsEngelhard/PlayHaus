@@ -6,17 +6,17 @@ import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
+import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
-import RoundResultScreen from "@/features/pubquizr/components/play/RoundResultScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
-import { closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
-import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
+import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
+import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -71,12 +71,16 @@ function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): Rou
 /**
  * A pub quiz, played on one phone.
  *
- * This file is the router and the two gates every round goes through; the rounds
+ * This file is the router and the gates every round goes through; the rounds
  * themselves are three boards next door. Nothing here decides anything about the game —
  * whose turn it is, what a turn is worth and who reads next all come back from the server
  * on every ruling — it chooses which frame to draw and when to stop and ask.
  *
- * The two gates are the whole reason this is not simply a board:
+ * The three gates are the whole reason this is not simply a board:
+ *
+ * The **result** stands after every round 3 settle. The answer, the numbers and the
+ * ruling would otherwise all leave the screen in the frame the phone starts moving in,
+ * which leaves the table to relay what happened from memory over the next hand-off.
  *
  * The **scoreboard** stands between every round. A round has to end with something, and
  * the table needs the beat: the phone changes hands, the scores get read out, and the
@@ -122,12 +126,16 @@ export default function OneDeviceQuizPage() {
      */
     const [startedRound, setStartedRound] = useState<number | null>(null);
     /**
-     * Round 3's winner, captured off the settle that ends the round — by the time the
-     * standings screen would otherwise show up, this question has moved on and there is
-     * nothing left to compute it from. Cleared once shown, so a reload or the next
-     * round starting never turns it up stale.
+     * Round 3's last settled question, captured off the settle itself — by the time the
+     * screen that shows it paints, the table has moved on and neither the numbers that
+     * were typed in nor who was nearest could be worked out again.
+     *
+     * Cleared by the screen's own button, which is what lets the turn carry on to the
+     * hand-off. Held across the settle rather than shown straight away: it goes up once
+     * the session stops naming that question, so a refused settle leaves the board where
+     * it was, with its error, rather than announcing a result that never happened.
      */
-    const [roundResult, setRoundResult] = useState<{ round: number, winners: Seat[], worth: number } | null>(null);
+    const [closestResult, setClosestResult] = useState<ClosestResult | null>(null);
 
     function leave() {
         // `replace`, not `back`: this screen is reached from the setup form, and going
@@ -175,6 +183,26 @@ export default function OneDeviceQuizPage() {
     const playable = PLAYABLE.includes(round);
 
     /*
+     * Round 3 stops on its result before it moves anywhere else.
+     *
+     * In front of the scoreboard as well as the hand-off, because the question that ends
+     * the round is a question like any other: the table gets told who was right, and only
+     * then does the round get counted up.
+     *
+     * `turnQuestionIds` is what says the settle landed — the server naming a different
+     * question is the table having moved on. A refused one leaves this closed and the
+     * board up, which is where the error belongs.
+     */
+    if (closestResult !== null && !session.turnQuestionIds.includes(closestResult.dealtId)) {
+        return (
+            <ClosestResultScreen
+                result={closestResult}
+                onContinue={() => setClosestResult(null)}
+            />
+        )
+    }
+
+    /*
      * The scoreboard between rounds.
      *
      * Only at the top of one — a reload halfway through a round should put the table back
@@ -186,19 +214,6 @@ export default function OneDeviceQuizPage() {
         && startedRound !== round;
 
     if (between || !playable) {
-        // Round 3's winner, said plainly, before the scoreboard moves on to the bigger
-        // question of who is ahead overall.
-        if (roundResult !== null && roundResult.round === round - 1) {
-            return (
-                <RoundResultScreen
-                    round={roundResult.round}
-                    winners={roundResult.winners}
-                    worth={roundResult.worth}
-                    onContinue={() => setRoundResult(null)}
-                />
-            )
-        }
-
         return (
             <RoundStandings
                 standings={standingsOf(session)}
@@ -294,7 +309,7 @@ export default function OneDeviceQuizPage() {
                     error={game.rulingError}
                     onSettle={(settled, winners) => {
                         setHandedFrom(closest.quizmaster.seat);
-                        setRoundResult({ round, winners, worth: closest.worth });
+                        setClosestResult(closestResultOf(closest, settled, winners));
                         game.settleClosest(settled);
                     }}
                 />

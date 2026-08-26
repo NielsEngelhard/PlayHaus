@@ -501,7 +501,7 @@ export const en = {
                 staysWhileRight: '{{name}} keeps being asked until they get one wrong',
                 /** The strip's own two halves: "NI reads → SA  Sanne answers". */
                 reads: 'reads',
-                answers: '{{name}} answers'
+                answers: 'to {{name}}'
             },
             /**
              * The strip's one-line variant, for the rounds where nobody in particular is
@@ -641,7 +641,29 @@ export const en = {
                 missingOne: '{{names}} has nothing written down, so they cannot win this one.',
                 missingMany: '{{names}} have nothing written down, so they cannot win this one.',
                 missingBack: 'Go back and fill them in',
-                missingAnyway: 'Settle it anyway'
+                missingAnyway: 'Settle it anyway',
+                /**
+                 * The screen after the settle: who was right, before the phone moves on.
+                 *
+                 * Two wordings wherever a tie changes the verb, rather than a `count`:
+                 * that is the one option name i18next treats as a plural trigger, and
+                 * there are no plural forms behind these. See `common.time`.
+                 */
+                result: {
+                    nearestOne: '{{names}} was nearest',
+                    nearestMany: '{{names}} were nearest',
+                    /** A by-hand settle with the tie waved off leaves nobody at all. */
+                    nobody: 'Nobody was nearest',
+                    paidOne: '{{worth}} points',
+                    /** Each: a tie pays both of them in full rather than splitting it. */
+                    paidMany: '{{worth}} points each',
+                    paidNobody: 'Nothing on the board for this one',
+                    /** The panel that finally says it out loud to the whole table. */
+                    answerLabel: 'The answer',
+                    guessesLabel: 'What everybody said',
+                    /** Deliberately not "next question": the last one leads to the scores. */
+                    continue: 'Carry on'
+                }
             },
             /** The in-app number pad, which is only ever read out. */
             pad: {
@@ -698,14 +720,6 @@ export const en = {
                 description: 'How the table stands with the first round behind you.',
                 startNext: 'Start round {{round}}',
                 nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved. The quiz is waiting where you left it.'
-            },
-            /** The interstitial between a round ending and the standings screen. */
-            roundResult: {
-                title: 'Round {{round}} done',
-                wonBy: '{{names}} · {{worth}} points',
-                /** No winner at all is a legal outcome for a by-hand settle with a tie waved off. */
-                nobody: 'Nobody was nearest this time',
-                continue: 'See the standings'
             }
         },
         /**

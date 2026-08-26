@@ -436,7 +436,7 @@ export const nl: Catalog = {
                 run: '{{run}} op rij',
                 staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat',
                 reads: 'leest voor',
-                answers: '{{name}} antwoordt'
+                answers: 'aan {{name}}'
             },
             leadOpen: '{{name}} leest voor aan de speler links',
             leadChoice: '{{name}} leest voor · vier opties',
@@ -498,7 +498,18 @@ export const nl: Catalog = {
                 missingOne: 'Bij {{names}} staat niets ingevuld, dus die kan deze niet winnen.',
                 missingMany: 'Bij {{names}} staat niets ingevuld, dus die kunnen deze niet winnen.',
                 missingBack: 'Terug om ze in te vullen',
-                missingAnyway: 'Toch afronden'
+                missingAnyway: 'Toch afronden',
+                result: {
+                    nearestOne: '{{names}} zat er het dichtstbij',
+                    nearestMany: '{{names}} zaten er het dichtstbij',
+                    nobody: 'Niemand zat er het dichtstbij',
+                    paidOne: '{{worth}} punten',
+                    paidMany: '{{worth}} punten elk',
+                    paidNobody: 'Deze levert niemand iets op',
+                    answerLabel: 'Het antwoord',
+                    guessesLabel: 'Wat iedereen zei',
+                    continue: 'Ga verder'
+                }
             },
             pad: {
                 minus: 'Min',
@@ -538,12 +549,6 @@ export const nl: Catalog = {
                 description: 'Zo staat de tafel ervoor na de eerste ronde.',
                 startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
-            },
-            roundResult: {
-                title: 'Ronde {{round}} klaar',
-                wonBy: '{{names}} · {{worth}} punten',
-                nobody: 'Deze keer was niemand het dichtstbij',
-                continue: 'Bekijk de stand'
             }
         },
         errors: {

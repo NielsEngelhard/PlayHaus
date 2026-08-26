@@ -180,3 +180,75 @@ export function closestWinners(answer: number, guesses: { seat: number, value: n
         .map(guess => guess.seat)
         .sort((a, b) => a - b);
 }
+
+/**
+ * How far a guess landed from the answer, as something to put in a sentence.
+ *
+ * Rounded to two places and stripped of trailing zeros, because the arithmetic is
+ * floating point and "6.000000000000001 off" is not a thing anybody says.
+ */
+export function offBy(value: number, answer: number): string {
+    return String(Math.round(Math.abs(value - answer) * 100) / 100);
+}
+
+/**
+ * A settled turn, kept for the screen that says who was right.
+ *
+ * Captured at the moment the button is pressed rather than read back off the session,
+ * because the ruling the server sends back has already moved the table on: the question
+ * is spent, the phone belongs to somebody else, and the numbers that were typed in were
+ * never on the session in the first place. If the screen after the settle is going to
+ * show them, this is the only moment they exist.
+ */
+export interface ClosestResult {
+    /**
+     * The dealt question this settles.
+     *
+     * What makes the screen safe to put up optimistically: it is shown once the session
+     * has stopped naming this question in `turnQuestionIds`, which is to say once the
+     * settle has actually landed. A refused one leaves the board up with its error.
+     */
+    dealtId: string
+    /** What was asked, for the table that wants it read out once more. */
+    prompt: string
+    answer: number
+    unit: string
+    explanation: string
+    /**
+     * What everybody said, in the order the table said it.
+     *
+     * Empty when the winner was tapped by hand — that way out of the form writes no
+     * numbers down, so there are none to show.
+     */
+    guesses: { seat: Seat, value: number }[]
+    /** Whoever was nearest. More than one is a tie, and both won in full. */
+    winners: Seat[]
+    /** What being nearest paid. */
+    worth: number
+}
+
+/** Everything the result screen needs, off the turn that just ended and its settle. */
+export function closestResultOf(
+    turn: ClosestTurn,
+    settled: { guesses: { seat: number, value: number }[] } | { winningSeats: number[] },
+    winners: Seat[]
+): ClosestResult {
+    const said = 'guesses' in settled ? settled.guesses : [];
+
+    return {
+        dealtId: turn.dealt.id,
+        prompt: turn.question.prompt,
+        answer: turn.answer,
+        unit: turn.unit,
+        explanation: turn.explanation,
+        // Walked from the turn rather than from the guesses, so the rows come out in the
+        // order the table answered in rather than the order the fields were filled.
+        guesses: turn.guessing.flatMap(seat => {
+            const guess = said.find(entry => entry.seat === seat.seat);
+
+            return guess === undefined ? [] : [{ seat, value: guess.value }];
+        }),
+        winners,
+        worth: turn.worth
+    };
+}
