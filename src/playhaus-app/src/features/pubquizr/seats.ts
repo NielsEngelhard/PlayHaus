@@ -111,3 +111,16 @@ export function handoffToneFor(turnNumber: number): HandoffTone {
 
     return HANDOFF_TONES[(index + HANDOFF_TONES.length) % HANDOFF_TONES.length];
 }
+
+/**
+ * Which fill a round's intro screen wears.
+ *
+ * Offset by one so it can never land on the tone the first hand-off of the round is
+ * about to wear: the intro is followed immediately by `handoffToneFor(1)`, and two
+ * full-bleed screens in the same colour read as one screen that did not respond to the
+ * button. The offset also gives each round its own colour, which is the next best thing
+ * a round can have to a name.
+ */
+export function roundIntroToneFor(round: number): HandoffTone {
+    return handoffToneFor(round + 1);
+}

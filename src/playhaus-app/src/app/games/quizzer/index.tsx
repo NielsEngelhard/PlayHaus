@@ -59,8 +59,6 @@ export default function QuizzerIndexPage() {
                     title={t('pubquizr.index.multiDevice.title')}
                     description={t('pubquizr.index.multiDevice.description')}
                     action={t('pubquizr.index.multiDevice.action')}
-                    // Nothing to navigate to yet, and a card that answers a press with
-                    // nothing at all is worse than one that says it is not ready.
                     isDisabled={true}
                 />
             </View>

@@ -11,6 +11,7 @@ import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
+import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
@@ -34,6 +35,8 @@ interface RoundCopy {
     lead: string
     job: string
     rule: string
+    /** The two or three sentence version, for the screen that opens the round. */
+    brief: string
 }
 
 /**
@@ -54,17 +57,17 @@ interface RoundCopy {
  * — and only the round knows what that is.
  */
 function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): RoundCopy {
-    const { kind, rule } = roundKindAndRule(t, round);
+    const { kind, rule, brief } = roundKindAndRule(t, round);
 
     switch (round) {
         case ROUND_CHOICE:
-            return { kind, rule, lead: t('pubquizr.play.leadChoice', { name }), job: t('pubquizr.play.handoff.jobChoice', { name }) };
+            return { kind, rule, brief, lead: t('pubquizr.play.leadChoice', { name }), job: t('pubquizr.play.handoff.jobChoice', { name }) };
         case ROUND_CLOSEST:
-            return { kind, rule, lead: t('pubquizr.play.leadClosest', { name }), job: t('pubquizr.play.handoff.jobClosest', { name }) };
+            return { kind, rule, brief, lead: t('pubquizr.play.leadClosest', { name }), job: t('pubquizr.play.handoff.jobClosest', { name }) };
         case ROUND_DESCRIBE:
-            return { kind, rule, lead: t('pubquizr.play.leadDescribe', { name }), job: t('pubquizr.play.handoff.jobDescribe', { name }) };
+            return { kind, rule, brief, lead: t('pubquizr.play.leadDescribe', { name }), job: t('pubquizr.play.handoff.jobDescribe', { name }) };
         default:
-            return { kind, rule, lead: t('pubquizr.play.leadOpen', { name }), job: t('pubquizr.play.handoff.jobOpen', { name }) };
+            return { kind, rule, brief, lead: t('pubquizr.play.leadOpen', { name }), job: t('pubquizr.play.handoff.jobOpen', { name }) };
     }
 }
 
@@ -76,7 +79,7 @@ function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): Rou
  * whose turn it is, what a turn is worth and who reads next all come back from the server
  * on every ruling — it chooses which frame to draw and when to stop and ask.
  *
- * The three gates are the whole reason this is not simply a board:
+ * The four gates are the whole reason this is not simply a board:
  *
  * The **result** stands after every round 3 settle. The answer, the numbers and the
  * ruling would otherwise all leave the screen in the frame the phone starts moving in,
@@ -86,6 +89,11 @@ function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): Rou
  * the table needs the beat: the phone changes hands, the scores get read out, and the
  * next round starts when everybody is ready rather than the instant the last answer is
  * marked.
+ *
+ * The **intro** stands at the top of every round, the scoreboard included and round 1
+ * especially. Every round changes the game — a hot seat becomes four options, then a
+ * number everybody guesses, then a stopwatch — and the hand-off behind it is read by
+ * one person with the phone already in their hand. The table needs to be told too.
  *
  * The **hand-off** stands wherever the phone changes hands. This screen carries the
  * answers, so the moment it moves is the moment the game can be spoiled, and a notice
@@ -125,6 +133,15 @@ export default function OneDeviceQuizPage() {
      * puts it up without anything having to remember to.
      */
     const [startedRound, setStartedRound] = useState<number | null>(null);
+    /**
+     * The last round the table has been told what it is about to play.
+     *
+     * A third of the same shape, and it has to be its own rather than reusing
+     * `startedRound`: round 1 has no scoreboard in front of it, so nothing ever sets
+     * that one at the top of the first round, and the intro is exactly the screen round
+     * 1 needs most.
+     */
+    const [introducedRound, setIntroducedRound] = useState<number | null>(null);
     /**
      * Round 3's last settled question, captured off the settle itself — by the time the
      * screen that shows it paints, the table has moved on and neither the numbers that
@@ -218,7 +235,6 @@ export default function OneDeviceQuizPage() {
             <RoundStandings
                 standings={standingsOf(session)}
                 round={round - 1}
-                upcomingRound={playable ? round : null}
                 onNext={playable ? () => startRound(round) : null}
                 onLeave={leave}
             />
@@ -244,7 +260,6 @@ export default function OneDeviceQuizPage() {
             <RoundStandings
                 standings={standingsOf(session)}
                 round={round - 1}
-                upcomingRound={null}
                 onNext={null}
                 onLeave={leave}
             />
@@ -252,6 +267,30 @@ export default function OneDeviceQuizPage() {
     }
 
     const copy = roundCopy(t, round, holder.name);
+
+    /*
+     * The round explains itself before anybody is handed the phone.
+     *
+     * Only at the top of a round, the same `currentPosition === 0` the scoreboard uses
+     * and for the same reason: a reload halfway through should put the table back where
+     * it was rather than start the round over with a lecture. After the scoreboard
+     * rather than in front of it — the scores are the end of the round just played, and
+     * this is the start of the next one.
+     *
+     * Behind the `holder === null` fallback above on purpose, so a round this build
+     * cannot draw is never introduced and then abandoned.
+     */
+    if (introducedRound !== round && session.currentPosition === 0) {
+        return (
+            <RoundIntroScreen
+                round={round}
+                totalRounds={session.totalRounds}
+                kind={copy.kind}
+                brief={copy.brief}
+                onStart={() => setIntroducedRound(round)}
+            />
+        )
+    }
 
     if (claimedBy !== holder.seat) {
         return (

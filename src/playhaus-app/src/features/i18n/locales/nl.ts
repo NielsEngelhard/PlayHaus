@@ -64,7 +64,7 @@ export const nl: Catalog = {
             action: 'Join',
             label: 'Lobbycode'
         },
-        startNew: 'Begin iets nieuws',
+        startNew: 'Alle spellen',
         bottomTeaser: "Meer spellen in de maak...",
     },
     games: {
@@ -154,8 +154,8 @@ export const nl: Catalog = {
         },
         guest: {
             title: 'Gastaccount',
-            message: 'Je speelt als gast. Dit account is tijdelijk: je naam, kleur en gespeelde games kunnen verloren gaan zodra deze sessie eindigt. Voeg een e-mailadres en wachtwoord toe om ze te bewaren.',
-            action: 'Maak het definitief'
+            message: 'Je speelt als gast. Dit account is tijdelijk: statistieken en progressiegaan verloren wanneer ik ga opruimen. Voeg een e-mailadres en wachtwoord toe om een echt account te maken.',
+            action: 'Upgrade account (gratis)'
         },
         upgrade: {
             title: 'Houd je account',
@@ -197,9 +197,9 @@ export const nl: Catalog = {
     lol: {
         index: {
             description: 'Test je woordenschat en probeer het geheime woord te raden.',
-            playingAs: 'Speelt als {{name}}',
-            solo: { title: 'Solo', description: 'Drie rondes, jouw regels.', action: 'Instellen' },
-            multiplayer: { title: 'Multiplayer', description: 'Race tegen je vrienden.', action: 'Openen' },
+            playingAs: 'Jij bent {{name}}',
+            solo: { title: 'Solo', description: 'Speel alleen, lekker rustig.', action: 'Instellen' },
+            multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' },
             join: {
                 label: 'JOIN EEN GAME',
                 /**
@@ -234,7 +234,7 @@ export const nl: Catalog = {
                 description: 'Het woord kan elk bestaand woord in de taal zijn. Zet dit uit om met een makkelijkere woordenlijst te spelen.'
             },
             facts: '{{rounds}} rondes · {{guesses}} pogingen per ronde · eerste letter gegeven',
-            start: 'Start met spelen',
+            start: 'Starten',
             running: {
                 title: 'Je speelt al een spel',
                 message: 'Er staat nog een solospel open. Ga verder waar je gebleven was, of gooi het weg en stel een nieuw spel in.',
@@ -315,7 +315,7 @@ export const nl: Catalog = {
             codeSpoken: 'Lobbycode: {{characters}}',
             copyCode: 'Lobbycode {{characters}} kopiëren',
             copied: 'Gekopieerd',
-            readAloud: 'Lees hem voor, of',
+            readAloud: ' Met deze code kunnen andere spelers jouw lobby joinen',
             shareLinkLabel: 'Deel de link naar deze lobby',
             shareLink: 'Deel de link',
             linkCopied: 'Link gekopieerd',
@@ -385,7 +385,7 @@ export const nl: Catalog = {
         },
         oneDevice: {
             title: '1 telefoon',
-            description: 'Eén telefoon voor de hele tafel. Zet iedereen op een stoel, kies een quiz en geef hem door.',
+            description: 'Eén telefoon om het spel te spelen. De telefoon wordt doorgegeven.',
             order: {
                 title: 'Op volgorde',
                 message: 'Vul de namen in de volgorde waarin je zit, van links naar rechts. De rol van quizmaster schuift namelijk door.'
@@ -531,6 +531,15 @@ export const nl: Catalog = {
                 stillToRule: 'Nog {{left}} te gaan',
                 settle: 'Deel de punten uit'
             },
+            intro: {
+                of: 'van {{total}}',
+                round: 'Ronde {{round}}',
+                briefOpen: 'Twintig open vragen, en ze kunnen overal over gaan. De voorlezer vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout en hij schuift door langs de tafel. Alleen elke tweede vraag levert een punt op.',
+                briefChoice: 'Moeilijke vragen, nu met vier antwoorden om uit te kiezen. Eén vraag per speler, met alle vier de opties erbij voorgelezen — en elke vraag is twee punten waard.',
+                briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de voorlezer noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
+                briefDescribe: 'Dertig seconden om je eigen woorden aan de tafel te omschrijven zonder ze ooit te zeggen. Elk woord dat iemand roept is een punt voor jou en een punt voor wie het riep.',
+                action: 'Start ronde {{round}}'
+            },
             handoff: {
                 step: 'Ronde {{round}} · {{number}} van {{total}}',
                 title: 'Geef de telefoon aan {{name}}',
@@ -546,7 +555,7 @@ export const nl: Catalog = {
             },
             standings: {
                 title: 'Ronde {{round}} klaar',
-                description: 'Zo staat de tafel ervoor na de eerste ronde.',
+                description: 'Zo staat de tafel ervoor met die ronde achter de rug.',
                 startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
             }

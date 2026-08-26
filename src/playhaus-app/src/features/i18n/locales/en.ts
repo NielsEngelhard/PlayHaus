@@ -690,6 +690,25 @@ export const en = {
                 stillToRule: '{{left}} still to go',
                 settle: 'Hand out the points'
             },
+            /**
+             * The screen that opens every round, before the phone is handed to anybody.
+             *
+             * `rounds.*` names a round in the two words a label has room for and
+             * `handoff.rule*` states its rule at whoever is holding the phone; these are
+             * the versions written at the table, which has not seen this round before and
+             * needs to know what is about to be asked of it.
+             */
+            intro: {
+                /** Under the number: "of 6". */
+                of: 'of {{total}}',
+                /** The headline. The table calls rounds by their number, so it is the number. */
+                round: 'Round {{round}}',
+                briefOpen: 'Twenty open questions, and they can be about anything. The reader asks the player on their left; get it right and the next one is yours as well, miss it and it moves on round the table. Only every second question is worth a point.',
+                briefChoice: 'Hard questions, this time with four answers to choose from. One question each, read out with all four options — and every single one of them is worth two points.',
+                briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
+                briefDescribe: 'Thirty seconds each to describe your own words to the table without ever saying them. Every word somebody shouts out is a point for you and a point for whoever got it.',
+                action: 'Start round {{round}}'
+            },
             handoff: {
                 /** Not "question": in round 4 a turn is thirty seconds and four words. */
                 step: 'Round {{round}} · {{number}} of {{total}}',
@@ -717,7 +736,7 @@ export const en = {
             },
             standings: {
                 title: 'Round {{round}} done',
-                description: 'How the table stands with the first round behind you.',
+                description: 'How the table stands with that round behind you.',
                 startNext: 'Start round {{round}}',
                 nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved. The quiz is waiting where you left it.'
             }
