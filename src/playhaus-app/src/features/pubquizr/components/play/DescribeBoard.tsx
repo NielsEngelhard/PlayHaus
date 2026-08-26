@@ -17,9 +17,14 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 import DescribeTimer from "./DescribeTimer";
+import TurnStrip from "./TurnStrip";
 
 interface Props {
     turn: DescribeTurn
+    /** Which round this is, for the strip's pips. */
+    round: number
+    /** What the strip says: this round asks nobody in particular. */
+    lead: string
     busy: boolean
     error: TranslationKey | null
     onSettle: (awards: WordAward[]) => void
@@ -44,7 +49,7 @@ const NOBODY = 'nobody';
  * a row left blank and a row marked "nobody" look the same on a phone being passed round,
  * and the difference between them is a point.
  */
-export default function DescribeBoard({ turn, busy, error, onSettle }: Props) {
+export default function DescribeBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -87,9 +92,29 @@ export default function DescribeBoard({ turn, busy, error, onSettle }: Props) {
         }
     ];
 
+    /*
+     * The same strip every other round wears, minus the two-person half of it — nobody is
+     * being asked here. On the stopwatch screen it is left off along with everything else:
+     * that screen is thirty seconds with nothing to press.
+     */
+    const strip = (
+        <TurnStrip
+            quizmaster={turn.describer}
+            answering={null}
+            lead={lead}
+            run={0}
+            round={round}
+            number={turn.number}
+            total={turn.total}
+            worth={turn.worth}
+        />
+    );
+
     if (stage === 'ready') {
         return (
             <View style={styles.turn}>
+                {strip}
+
                 <View style={styles.centre}>
                     <Feather name="eye-off" size={34} color={theme.colors.textMuted} />
 
@@ -137,6 +162,8 @@ export default function DescribeBoard({ turn, busy, error, onSettle }: Props) {
 
     return (
         <View style={styles.turn}>
+            {strip}
+
             <AppText style={styles.title}>
                 {t('pubquizr.play.describe.scoringTitle')}
             </AppText>

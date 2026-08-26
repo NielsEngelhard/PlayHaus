@@ -3,9 +3,8 @@ import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { ChoiceOption } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
-import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
+import Feather from "@expo/vector-icons/Feather";
 
 interface Props {
     options: ChoiceOption[]
@@ -25,13 +24,15 @@ interface Props {
  * Which is why the letters are set as hard as they are — the letter is the thing being
  * said out loud, and it has to be findable at a glance while somebody is arguing.
  *
- * The right one is marked once the answer is uncovered, and not a moment before. The
- * covered panel underneath says it in words; this says it in place, so a quizmaster who
+ * The two densities are the round's two beats. While the question is being read, all four
+ * are equals at full size, because at that moment they are four things to say. Once a
+ * letter has been shouted and the answer is up, three of them are over: they fall back to
+ * 38-point ghosts and the right one keeps its full row. That is not decoration either —
+ * it hands about 90 points to the answer panel underneath, and it means a quizmaster who
  * has just read four options aloud does not have to match a sentence back to a row.
  */
 export default function ChoiceCard({ options, revealed }: Props) {
     const t = useT();
-    const theme = useTheme();
     const styles = useStyles();
 
     return (
@@ -42,11 +43,15 @@ export default function ChoiceCard({ options, revealed }: Props) {
         >
             {options.map(option => {
                 const right = revealed && option.correct;
+                // Only the ones that are over. The right one keeps its full row even
+                // after the reveal, so the row the quizmaster is looking for is the one
+                // that has not moved.
+                const spent = revealed && !option.correct;
 
                 return (
                     <View
                         key={option.id}
-                        style={[styles.option, right && styles.right]}
+                        style={[styles.option, right && styles.right, spent && styles.spent]}
                         accessibilityRole="text"
                         accessibilityLabel={right
                             ? t('pubquizr.play.choice.spokenCorrect', {
@@ -58,64 +63,96 @@ export default function ChoiceCard({ options, revealed }: Props) {
                                 text: option.text
                             })}
                     >
-                        <View style={[styles.letter, right && styles.letterRight]}>
-                            <AppText style={[styles.letterText, right && styles.onMint]}>
+                        <View
+                            style={[
+                                styles.letter,
+                                right && styles.letterRight,
+                                spent && styles.letterSpent
+                            ]}
+                        >
+                            <AppText
+                                style={[
+                                    styles.letterText,
+                                    right && styles.onMint,
+                                    spent && styles.letterTextSpent
+                                ]}
+                            >
                                 {option.letter}
                             </AppText>
                         </View>
 
-                        <AppText style={[styles.text, right && styles.onMint]}>
+                        <AppText
+                            style={[
+                                styles.text,
+                                right && styles.textRight,
+                                right && styles.onMint,
+                                spent && styles.textSpent
+                            ]}
+                        >
                             {option.text}
                         </AppText>
 
                         {/* Only ever on the right one, so the row does not reserve space
                             for a tick that is never coming. */}
                         {right && (
-                            <Feather name="check" size={16} color={Brand.ink} />
+                            <Feather name="check" size={18} color={Brand.ink} />
                         )}
                     </View>
                 )
             })}
-
-            {!revealed && (
-                <AppText style={[styles.hint, { color: theme.colors.textMuted }]}>
-                    {t('pubquizr.play.choice.readThemOut')}
-                </AppText>
-            )}
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // No padding and no fill of its own: this sits inside `ScriptCard`, under the same
+    // rule as the question, because the question and its four options are one thing to
+    // say and should not be two blocks competing for the same height.
     card: {
         flexShrink: 0,
-        gap: 7
+        gap: 8
     },
 
     option: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
-        paddingVertical: 9,
+        gap: 11,
+        minHeight: 46,
+        paddingVertical: 7,
         paddingHorizontal: 10,
         borderRadius: 14,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundSecondary
+        // The canvas rather than the card's own fill: these sit *on* a card, and a white
+        // row on a white card is an outline with nothing inside it.
+        backgroundColor: theme.colors.background
     },
 
     // Mint in both schemes, the same "yes, this one" the Correct button wears, so the
     // two agree about what a right answer looks like.
     right: {
         borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
+        backgroundColor: theme.colors.mint,
+        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+    },
+
+    // Answered and over. Height as well as opacity: fading four full rows would still
+    // leave four full rows' worth of the screen spoken for.
+    spent: {
+        minHeight: 38,
+        height: 38,
+        paddingVertical: 0,
+        borderRadius: 12,
+        borderColor: theme.colors.boardEmptyBorder,
+        backgroundColor: 'transparent',
+        opacity: 0.45
     },
 
     letter: {
-        width: 26,
-        height: 26,
+        width: 28,
+        height: 28,
         flexShrink: 0,
-        borderRadius: 8,
+        borderRadius: 9,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: theme.borderWidth,
@@ -128,10 +165,22 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: 'rgba(15, 13, 18, 0.08)'
     },
 
+    letterSpent: {
+        width: 24,
+        height: 24,
+        borderRadius: 8,
+        borderColor: theme.colors.borderSubtle,
+        backgroundColor: 'transparent'
+    },
+
     letterText: {
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: 900,
         color: theme.colors.text
+    },
+
+    letterTextSpent: {
+        fontSize: 11.5
     },
 
     // `minWidth: 0` so a long option wraps inside the row instead of pushing the tick
@@ -139,21 +188,24 @@ const useStyles = createThemedStyles(theme => ({
     text: {
         flex: 1,
         minWidth: 0,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: 700,
-        lineHeight: 14 * 1.35,
+        lineHeight: 15 * 1.3,
         color: theme.colors.text
+    },
+
+    textRight: {
+        fontSize: 15.5,
+        fontWeight: 900
+    },
+
+    textSpent: {
+        fontSize: 13.5,
+        lineHeight: 13.5 * 1.3
     },
 
     // Ink on mint in both schemes, because the fill is mint in both.
     onMint: {
         color: Brand.ink
-    },
-
-    hint: {
-        marginTop: 1,
-        textAlign: 'center',
-        fontSize: 11.5,
-        fontWeight: 600
     }
 }))

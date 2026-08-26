@@ -420,14 +420,21 @@ export const nl: Catalog = {
             },
             questionNumber: 'Vraag {{number}}',
             questionTotal: ' van {{total}}',
+            questionOutOf: '/{{total}}',
             turn: {
                 asking: 'vraagt',
                 answering: 'antwoordt',
                 spoken: '{{master}} vraagt het aan {{player}}',
                 spokenRun: '{{master}} vraagt het aan {{player}}, die er {{run}} op rij goed heeft',
                 run: '{{run}} op rij',
-                staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat'
+                staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat',
+                reads: 'leest voor',
+                answers: '{{name}} antwoordt'
             },
+            leadOpen: '{{name}} leest voor aan de speler links',
+            leadChoice: '{{name}} leest voor · vier opties',
+            leadClosest: '{{name}} leest voor · de rest gokt',
+            leadDescribe: '{{name}} omschrijft zijn eigen woorden',
             readAloud: 'Lees dit hardop voor',
             onlyYouSeeThis: 'Alleen jij ziet dit',
             alsoAccept: 'Ook goed: {{answers}}',
@@ -438,6 +445,9 @@ export const nl: Catalog = {
             validate: 'Beoordeel het antwoord van {{name}}',
             validateHint: 'Reken het daarna goed of fout',
             validateLocked: 'Laat eerst het antwoord zien',
+            gate: '{{name}} heeft geantwoord — check het',
+            gateHint: 'Niets te tikken tot er een letter genoemd is',
+            reread: 'tik om terug te lezen',
             wrong: 'Fout',
             correct: 'Goed',
             markWrong: 'Reken {{name}} fout',
@@ -450,7 +460,7 @@ export const nl: Catalog = {
             scores: 'Stand',
             choice: {
                 options: 'De vier opties',
-                readThemOut: 'Lees alle vier voor voordat iemand antwoordt',
+                readAll: 'Lees hardop voor — de vraag en alle vier',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}} — dit is de goede'
             },
@@ -463,7 +473,23 @@ export const nl: Catalog = {
                 settle: 'Dichtstbij pakt {{worth}}',
                 pickInstead: 'Sla de getallen over — tik gewoon wie won',
                 typeInstead: 'Vul de gokken toch in',
-                award: 'Geef ze de punten'
+                award: 'Geef ze de punten',
+                nearestTakes: 'Dichtstbij pakt {{worth}}',
+                guessingOrder: 'Wie gokt, op tafelvolgorde',
+                collect: 'Schrijf de gokken op',
+                collectHint: 'Laat ze eerst allemaal een getal noemen — geen twee dezelfde',
+                backToQuestion: 'Terug naar de vraag',
+                answerLabel: 'Antwoord · alleen jij',
+                hide: 'Verberg',
+                theirNumbers: 'Hun getallen',
+                filled: '{{filled}} van {{total}} ingevuld',
+                off: '{{off}} ernaast',
+                nearestOff: 'dichtstbij · {{off}} ernaast',
+                awardTo: 'Geef {{worth}} aan {{name}}'
+            },
+            pad: {
+                minus: 'Min',
+                backspace: 'Wissen'
             },
             describe: {
                 readyTitle: 'Jouw woorden, {{name}}',

@@ -30,7 +30,7 @@ interface Props {
  *
  * Reached only through `ValidateButton`, which is what stops a thumb finding either of
  * these while the phone is being handed over. Who is answering is said at the top of
- * the board by `TurnBanner` rather than again here — the buttons name them too, but
+ * the board by `TurnStrip` rather than again here — the buttons name them too, but
  * only to a screen reader, where there is no banner overhead to have read it from.
  *
  * The two lines underneath say what each button will actually do before it is pressed.

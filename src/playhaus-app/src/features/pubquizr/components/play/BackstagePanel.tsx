@@ -4,15 +4,34 @@ import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     answer: string
+    /**
+     * The letter it came in on, in round 2. Set beside the answer rather than only in
+     * the row above, because the letter is what the table shouted and the words are what
+     * the quizmaster is checking against — reading "B  Amsterdam" answers both at once.
+     */
+    letter?: string
     /** Wordings that also count. "Tarantino" for "Quentin Tarantino". */
     aliases: string[]
     /** Whether the quizmaster has asked to see it. */
     revealed: boolean
     onReveal: () => void
+    /**
+     * How to cover it again, where that is offered. Round 3 is the one place it is: its
+     * form stays on screen for as long as it takes four people to say a number, and an
+     * answer sitting open above it for that whole time will be read by somebody.
+     */
+    onHide?: () => void
+    /**
+     * The short version: one row, no room given to the answer, for a screen where the
+     * slab is a reference rather than the subject.
+     */
+    compact?: boolean
+    /** For layout only — how the panel sits among its siblings. The look lives here. */
+    style?: StyleProp<ViewStyle>
 }
 
 /**
@@ -33,7 +52,16 @@ interface Props {
  * The aliases matter more than they look. A quizmaster who cannot see that "the Meuse"
  * also counts will wave off a right answer, and the table will argue about it.
  */
-export default function BackstagePanel({ answer, aliases, revealed, onReveal }: Props) {
+export default function BackstagePanel({
+    answer,
+    letter,
+    aliases,
+    revealed,
+    onReveal,
+    onHide,
+    compact = false,
+    style
+}: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -43,7 +71,7 @@ export default function BackstagePanel({ answer, aliases, revealed, onReveal }: 
                 onPress={onReveal}
                 accessibilityRole="button"
                 accessibilityLabel={t('pubquizr.play.answer.reveal')}
-                style={styles.panel}
+                style={[styles.panel, compact && styles.compactPanel, style]}
             >
                 <View style={styles.covered}>
                     <View style={styles.eye}>
@@ -65,22 +93,57 @@ export default function BackstagePanel({ answer, aliases, revealed, onReveal }: 
     }
 
     return (
-        <View style={styles.panel}>
-            <View style={styles.warning}>
-                <Feather name="eye-off" size={14} color={Brand.lemon} />
+        <View style={[styles.panel, compact && styles.compactPanel, style]}>
+            <View style={styles.open}>
+                <View style={styles.said}>
+                    <View style={styles.warning}>
+                        <Feather name="eye-off" size={14} color={Brand.lemon} />
 
-                <AppText style={styles.warningText}>
-                    {t('pubquizr.play.onlyYouSeeThis')}
-                </AppText>
+                        <AppText style={styles.warningText}>
+                            {compact
+                                ? t('pubquizr.play.closest.answerLabel')
+                                : t('pubquizr.play.onlyYouSeeThis')}
+                        </AppText>
+                    </View>
+
+                    <View style={styles.answerRow}>
+                        {letter !== undefined && (
+                            <AppText style={styles.letter}>{letter}</AppText>
+                        )}
+
+                        <AppText
+                            style={[styles.answer, compact && styles.compactAnswer]}
+                        >
+                            {answer}
+                        </AppText>
+                    </View>
+
+                    {aliases.length > 0 && !compact && (
+                        <AppText style={styles.aliases}>
+                            {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
+                        </AppText>
+                    )}
+                </View>
+
+                {onHide !== undefined && (
+                    <Pressable
+                        onPress={onHide}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('pubquizr.play.closest.hide')}
+                        // Hit slop rather than a taller pill: the control has to clear 44
+                        // points to be hittable and the bar it sits in is 46 tall, so the
+                        // room has to come from around it rather than from inside it.
+                        hitSlop={10}
+                        style={styles.hide}
+                    >
+                        <Feather name="eye-off" size={13} color="rgba(254, 251, 248, 0.7)" />
+
+                        <AppText style={styles.hideLabel}>
+                            {t('pubquizr.play.closest.hide')}
+                        </AppText>
+                    </Pressable>
+                )}
             </View>
-
-            <AppText style={styles.answer}>{answer}</AppText>
-
-            {aliases.length > 0 && (
-                <AppText style={styles.aliases}>
-                    {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
-                </AppText>
-            )}
         </View>
     )
 }
@@ -88,6 +151,7 @@ export default function BackstagePanel({ answer, aliases, revealed, onReveal }: 
 const useStyles = createThemedStyles(theme => ({
     panel: {
         flexShrink: 0,
+        justifyContent: 'center',
         padding: 15,
         borderRadius: 20,
         borderWidth: theme.borderWidth,
@@ -95,6 +159,12 @@ const useStyles = createThemedStyles(theme => ({
         // steps up to the scheme's own rather than staying the slab's colour.
         borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink,
         backgroundColor: Brand.ink
+    },
+
+    compactPanel: {
+        paddingVertical: 12,
+        paddingHorizontal: 14,
+        borderRadius: 16
     },
 
     covered: {
@@ -134,6 +204,17 @@ const useStyles = createThemedStyles(theme => ({
         color: 'rgba(254, 251, 248, 0.6)'
     },
 
+    open: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12
+    },
+
+    said: {
+        flex: 1,
+        minWidth: 0
+    },
+
     warning: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -148,13 +229,35 @@ const useStyles = createThemedStyles(theme => ({
         color: Brand.lemon
     },
 
+    answerRow: {
+        marginTop: 6,
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        gap: 10
+    },
+
+    // Lemon, and a good deal smaller than the words beside it. It is the index rather
+    // than the answer: the thing you find the row by, not the thing you read out.
+    letter: {
+        flexShrink: 0,
+        fontSize: 15,
+        fontWeight: 900,
+        color: Brand.lemon
+    },
+
     // Paper in both schemes: the slab under it is ink in both.
     answer: {
-        marginTop: 9,
+        flex: 1,
+        minWidth: 0,
         fontSize: 26,
         fontWeight: 900,
         letterSpacing: -0.7,
         color: Brand.textOnAccent
+    },
+
+    compactAnswer: {
+        fontSize: 24,
+        letterSpacing: -0.6
     },
 
     aliases: {
@@ -165,5 +268,23 @@ const useStyles = createThemedStyles(theme => ({
         // Quieter than the answer without being a second colour: the same paper,
         // stepped back, so the two read as one thing said twice.
         color: 'rgba(254, 251, 248, 0.6)'
+    },
+
+    hide: {
+        flexShrink: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 999,
+        borderWidth: 1.5,
+        borderColor: 'rgba(254, 251, 248, 0.3)'
+    },
+
+    hideLabel: {
+        fontSize: 11,
+        fontWeight: 800,
+        color: 'rgba(254, 251, 248, 0.7)'
     }
 }))

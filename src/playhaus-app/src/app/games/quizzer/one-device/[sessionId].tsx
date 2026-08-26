@@ -10,7 +10,6 @@ import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
-import RoundProgress from "@/features/pubquizr/components/play/RoundProgress";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
@@ -29,6 +28,8 @@ const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE];
 /** What a round is called, what its phone-holder does, and the rule they need first. */
 interface RoundCopy {
     kind: string
+    /** The one-line version, for the turn strip in the rounds that ask nobody. */
+    lead: string
     job: string
     rule: string
 }
@@ -45,30 +46,38 @@ interface RoundCopy {
  * Together in one function because they are read together, on the hand-off screen one
  * under the other. A round whose label says "multiple choice" while its rule still talks
  * about staying in the seat is the sort of thing nobody notices until a table is arguing.
+ *
+ * `lead` joined them when the turn banner became `TurnStrip`. Rounds 3 and 4 have nobody
+ * in the answering half of that strip, so the strip says what the round is doing instead
+ * — and only the round knows what that is.
  */
 function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): RoundCopy {
     switch (round) {
         case ROUND_CHOICE:
             return {
                 kind: t('pubquizr.play.rounds.choice'),
+                lead: t('pubquizr.play.leadChoice', { name }),
                 job: t('pubquizr.play.handoff.jobChoice', { name }),
                 rule: t('pubquizr.play.handoff.ruleChoice')
             };
         case ROUND_CLOSEST:
             return {
                 kind: t('pubquizr.play.rounds.closest'),
+                lead: t('pubquizr.play.leadClosest', { name }),
                 job: t('pubquizr.play.handoff.jobClosest', { name }),
                 rule: t('pubquizr.play.handoff.ruleClosest')
             };
         case ROUND_DESCRIBE:
             return {
                 kind: t('pubquizr.play.rounds.describe'),
+                lead: t('pubquizr.play.leadDescribe', { name }),
                 job: t('pubquizr.play.handoff.jobDescribe', { name }),
                 rule: t('pubquizr.play.handoff.ruleDescribe')
             };
         default:
             return {
                 kind: t('pubquizr.play.rounds.open'),
+                lead: t('pubquizr.play.leadOpen', { name }),
                 job: t('pubquizr.play.handoff.jobOpen', { name }),
                 rule: t('pubquizr.play.handoff.ruleOpen')
             };
@@ -201,10 +210,11 @@ export default function OneDeviceQuizPage() {
     const describe = describeTurnOf(session, quiz);
 
     // Whoever is holding the phone this turn, and how far into the round they are. Every
-    // round has all three; only which board draws them changes.
+    // round has both; only which board draws them changes. What the turn is worth used to
+    // be read here too, for the progress card this page no longer draws — each board now
+    // takes it off its own turn on the way into `TurnStrip`.
     const holder = hotSeat?.quizmaster ?? closest?.quizmaster ?? describe?.describer ?? null;
     const number = hotSeat?.number ?? closest?.number ?? describe?.number ?? 0;
-    const worth = hotSeat?.worth ?? closest?.worth ?? describe?.worth ?? 0;
 
     // A round the session says it is on but no board can draw is a deal this build does
     // not understand — a game dealt before these rounds existed, most likely. The
@@ -239,20 +249,24 @@ export default function OneDeviceQuizPage() {
 
     return (
         <View style={styles.board}>
-            <PlayHeader onClose={leave} />
-
-            <RoundProgress
-                round={round}
-                kind={copy.kind}
-                number={number}
-                total={session.turnsInRound}
-                worth={worth}
+            {/*
+              * The header carries the round's name and the boards carry everything else
+              * about the turn. `RoundProgress` used to sit here as a card of its own,
+              * under a banner of two person cards; both are now the one strip each board
+              * draws for itself — which is what lets round 3 swap it for the question
+              * recap once the form is up. See `TurnStrip`.
+              */}
+            <PlayHeader
+                onClose={leave}
+                label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
             />
 
             {hotSeat !== null && (
                 <HotSeatBoard
                     turn={hotSeat}
                     seats={seats}
+                    round={round}
+                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
                     onVerdict={(correct, from) => {
@@ -268,7 +282,8 @@ export default function OneDeviceQuizPage() {
             {closest !== null && (
                 <ClosestBoard
                     turn={closest}
-                    seats={seats}
+                    round={round}
+                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
                     onSettle={settled => {
@@ -281,6 +296,8 @@ export default function OneDeviceQuizPage() {
             {describe !== null && (
                 <DescribeBoard
                     turn={describe}
+                    round={round}
+                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
                     onSettle={awards => {

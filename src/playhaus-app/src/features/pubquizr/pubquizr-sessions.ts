@@ -58,7 +58,7 @@ export interface QuizSession {
     /**
      * How many questions in a row the hot seat has taken.
      *
-     * Only ever drawn, never decided from — see `TurnBanner`. It is what lets the board
+     * Only ever drawn, never decided from — see `TurnStrip`. It is what lets the board
      * say "on a run of three" instead of leaving the rule that holds the round together
      * to be explained out loud by whoever read the box.
      */

@@ -455,6 +455,14 @@ export const en = {
              */
             questionNumber: 'Question {{number}}',
             questionTotal: ' of {{total}}',
+            /**
+             * The same fact at strip size: "3/8", with the total greyed out beside the
+             * number. Two keys again for the same reason, and the number itself is left
+             * bare — there is nothing to translate about a digit. Whatever draws this
+             * owes a screen reader `questionNumber` + `questionTotal` as a label,
+             * because "3 slash 8" is not a sentence.
+             */
+            questionOutOf: '/{{total}}',
             /** The two people the turn is about, above the question. */
             turn: {
                 asking: 'asking',
@@ -479,8 +487,20 @@ export const en = {
                  * round like a deal of cards, they come straight back to whoever just
                  * took one.
                  */
-                staysWhileRight: '{{name}} keeps being asked until they get one wrong'
+                staysWhileRight: '{{name}} keeps being asked until they get one wrong',
+                /** The strip's own two halves: "NI reads → SA  Sanne answers". */
+                reads: 'reads',
+                answers: '{{name}} answers'
             },
+            /**
+             * The strip's one-line variant, for the rounds where nobody in particular is
+             * being asked. Said by the round rather than by the strip, because "reads"
+             * is only half the sentence and the other half is what the round is.
+             */
+            leadOpen: '{{name}} reads to the player on their left',
+            leadChoice: '{{name}} reads · four options',
+            leadClosest: '{{name}} reads · everyone else guesses',
+            leadDescribe: '{{name}} describes their own words',
             readAloud: 'Read this out loud',
             onlyYouSeeThis: 'Only you see this',
             alsoAccept: 'Also accept: {{answers}}',
@@ -496,6 +516,16 @@ export const en = {
             validate: "Check {{name}}'s answer",
             validateHint: 'Then mark it right or wrong',
             validateLocked: 'Show the answer first',
+            /**
+             * Round 2's gate, which is `validate` and the reveal in one tap — see
+             * `HotSeatBoard`. Named after the person for the same reason `validate` is:
+             * a stray press during a hand-over has to read as obviously somebody else's
+             * turn.
+             */
+            gate: '{{name}} answered — check it',
+            gateHint: "Nothing to tap until they've picked a letter",
+            /** The one-line question recap, and what tapping it does. */
+            reread: 'tap to reread',
             wrong: 'Wrong',
             correct: 'Correct',
             /** Read out for the buttons, which are two words on their own. */
@@ -526,7 +556,13 @@ export const en = {
             /** Round 2: the four options, read out loud. */
             choice: {
                 options: 'The four options',
-                readThemOut: 'Read all four out before anybody answers',
+                /**
+                 * The cue above the question while it is being read. Round 1's cue says
+                 * only "read this out loud"; round 2 has four more things to say before
+                 * anybody may answer, and a quizmaster who reads the question and stops
+                 * is the mistake this line exists to prevent.
+                 */
+                readAll: 'Read out loud — question and all four',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}} — this is the right one'
             },
@@ -546,7 +582,37 @@ export const en = {
                 /** The way out for a table that has already agreed out loud. */
                 pickInstead: 'Skip the numbers — just tap who won',
                 typeInstead: 'Type the guesses instead',
-                award: 'Give them the points'
+                award: 'Give them the points',
+                /** The reading screen: what is at stake, and who is playing for it. */
+                nearestTakes: 'Nearest number takes {{worth}}',
+                guessingOrder: 'Guessing, in table order',
+                collect: 'Write down the guesses',
+                collectHint: 'Let them all say a number first — no two the same',
+                /** Back off the form to the question, for a table that wants it again. */
+                backToQuestion: 'Back to the question',
+                /** The ink bar at the top of the form, and the way to cover it again. */
+                answerLabel: 'Answer · only you',
+                hide: 'Hide',
+                /** The rows, and how many of them have a number in them so far. */
+                theirNumbers: 'Their numbers',
+                filled: '{{filled}} of {{total}} in',
+                /**
+                 * How far off each guess landed, under the name. Only ever once the
+                 * answer is on screen — before that it would be the app telling the
+                 * table the answer sideways.
+                 *
+                 * Worth the two lines it costs: without them the quizmaster does four
+                 * subtractions out loud while five people check the arithmetic.
+                 */
+                off: '{{off}} off',
+                nearestOff: 'nearest · {{off}} off',
+                /** The settling button, naming whoever it would pay as it stands. */
+                awardTo: 'Award {{worth}} to {{name}}'
+            },
+            /** The in-app number pad, which is only ever read out. */
+            pad: {
+                minus: 'Minus',
+                backspace: 'Backspace'
             },
             /** Round 4: thirty seconds to describe your own words. */
             describe: {
