@@ -1,3 +1,4 @@
+import { DEV_MODE } from "@/constants/dev-mode";
 import type { QuizDetail } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
@@ -23,8 +24,15 @@ import { seatAt, seatsOf, type Seat } from "./seats";
 /** Kept in step with `RoundDescribe` in Go. */
 export const ROUND_DESCRIBE = 4;
 
-/** How long a turn lasts. Mirrors `DescribeSeconds` in `rules.go`. */
-export const DESCRIBE_SECONDS = 30;
+/**
+ * How long a turn lasts. Mirrors `DescribeSeconds` in `rules.go`.
+ *
+ * Under DEV_MODE it is three seconds, so that working on the round does not mean sitting
+ * out a full turn per player to reach the screen after it. Everything else about the
+ * round reads the seconds from here — the rules card on the ready screen included — so
+ * the shortened turn still describes itself honestly.
+ */
+export const DESCRIBE_SECONDS = DEV_MODE ? 3 : 30;
 
 /** What one guessed word pays the describer, and what it pays the guesser. */
 export const DESCRIBE_WORD_POINTS = 1;
