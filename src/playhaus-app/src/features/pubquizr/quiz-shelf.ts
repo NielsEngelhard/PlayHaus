@@ -61,22 +61,13 @@ export function initialsFor(title: string): string {
 }
 
 /**
- * The weekday and month names, as catalogue keys in calendar order.
+ * The month names, as catalogue keys in calendar order.
  *
  * `Intl` is still not what formats this — see `features/reconnect/game-kinds.ts`, which
  * says the same thing about the same problem: it is not something every runtime this
  * app ships to can be relied on for, and three-letter abbreviations are a thing the
  * catalogue can simply say.
- *
- * Indexed the way `Date` numbers them, so Sunday leads the week here even though no
- * calendar in either language draws it that way.
  */
-const DAY_KEYS = [
-    'common.time.days.sun', 'common.time.days.mon', 'common.time.days.tue',
-    'common.time.days.wed', 'common.time.days.thu', 'common.time.days.fri',
-    'common.time.days.sat'
-] as const satisfies readonly TranslationKey[];
-
 const MONTH_KEYS = [
     'common.time.months.jan', 'common.time.months.feb', 'common.time.months.mar',
     'common.time.months.apr', 'common.time.months.may', 'common.time.months.jun',
@@ -85,15 +76,16 @@ const MONTH_KEYS = [
 ] as const satisfies readonly TranslationKey[];
 
 /**
- * When a quiz went up, as the row shows it: "Wed 19 Aug · 09:00".
+ * When a quiz went up, as the row shows it: "19 Aug 2025".
  *
  * An absolute date rather than the relative wording the reconnect list uses. These are
- * shelves rather than sessions — a weekly quiz is *the Wednesday one*, and "3 days ago"
- * would take that away — and the list is sorted by this, so the dates have to line up
- * down the column to be worth reading at all.
+ * shelves rather than sessions — a weekly quiz is *the one from August* — and the list
+ * is sorted by this, so the dates have to line up down the column to be worth reading at
+ * all. The day is what a shelf is filed under; the hour it went up is not, so it is not
+ * shown.
  *
  * Returns `null` for a quiz with no publication date, or one whose date does not parse:
- * the row then draws no time line rather than the word "Invalid".
+ * the row then draws no date line rather than the word "Invalid".
  */
 export function publishedAtPhrase(publishedAt: string | undefined): Phrase | null {
     if (!publishedAt) return null;
@@ -101,15 +93,9 @@ export function publishedAtPhrase(publishedAt: string | undefined): Phrase | nul
     const date = new Date(publishedAt);
     if (Number.isNaN(date.getTime())) return null;
 
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-
     return {
         key: 'pubquizr.index.list.published',
-        values: { day: date.getDate(), time: `${hours}:${minutes}` },
-        keyValues: {
-            weekday: DAY_KEYS[date.getDay()],
-            month: MONTH_KEYS[date.getMonth()]
-        }
+        values: { day: date.getDate(), year: date.getFullYear() },
+        keyValues: { month: MONTH_KEYS[date.getMonth()] }
     };
 }

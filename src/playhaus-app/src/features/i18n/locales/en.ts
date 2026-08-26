@@ -397,8 +397,8 @@ export const en = {
             list: {
                 label: 'All quizzes · newest first',
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
-                /** A quiz's publication date, as the row shows it: "Wed 19 Aug · 09:00". */
-                published: '{{weekday}} {{day}} {{month}} · {{time}}',
+                /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
+                published: '{{day}} {{month}} {{year}}',
                 loadOlder: 'Load older',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
                 failed: 'The quizzes could not be loaded. Check your connection.',

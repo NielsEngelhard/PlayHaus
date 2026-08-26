@@ -288,9 +288,9 @@ export default function GameIndexPage({
                 {topRow}
 
                 {wide ? (
-                    // Bottom-aligned rather than top: the title is the tall thing and
-                    // the facts are the low one, and sitting them on the same line is
-                    // what makes the two columns read as one block.
+                    // Top-aligned: the pitch column is the taller of the two, so this
+                    // is what puts the name and the first line of the pitch on the same
+                    // line rather than leaving the lockup adrift halfway down the band.
                     <View style={[styles.wideRow, topRow === false && styles.wideRowFlush]}>
                         {/* Mark and name as one lockup, the way they sit together
                             everywhere else in the app — the stacked layout only pulls
@@ -412,7 +412,7 @@ const useStyles = createThemedStyles(theme => ({
     wideRow: {
         marginTop: 14,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
         gap: Spacing.four
     },
 
@@ -474,9 +474,8 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -2
     },
 
-    // The gap above belongs to `wideRow` there, and a margin left on the title would be
-    // measured into a column the row then bottom-aligns — i.e. would move nothing but
-    // the row's height.
+    // The gap above belongs to `wideRow` there, and a margin left on the title would sink
+    // the name inside its own lockup and off the line the row now tops it against.
     titleWide: {
         marginTop: 0
     },

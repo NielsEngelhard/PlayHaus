@@ -33,7 +33,7 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number): Rou
         case ROUND_CHOICE:
             return {
                 kind: t('pubquizr.play.rounds.choice'),
-                rule: t('pubquizr.play.handoff.ruleChoice'),
+                rule: '',
                 brief: t('pubquizr.play.intro.briefChoice')
             };
         case ROUND_CLOSEST:
@@ -51,7 +51,7 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number): Rou
         default:
             return {
                 kind: t('pubquizr.play.rounds.open'),
-                rule: t('pubquizr.play.handoff.ruleOpen'),
+                rule: '',
                 brief: t('pubquizr.play.intro.briefOpen')
             };
     }

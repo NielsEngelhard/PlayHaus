@@ -255,7 +255,7 @@ export const nl: Catalog = {
             roundOf: 'Ronde {{round}} van {{total}}',
             hint: 'Hint',
             hintLabel: 'Hint: het woord begint met de {{letter}}',
-            solved: 'OPGELOST',
+            solved: 'CORRECT',
             lost: 'HELAAS',
             theWord: 'Het woord',
             attempts: 'Pogingen',
@@ -376,7 +376,7 @@ export const nl: Catalog = {
             list: {
                 label: 'Alle quizzen · nieuwste eerst',
                 tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
-                published: '{{weekday}} {{day}} {{month}} · {{time}}',
+                published: '{{day}} {{month}} {{year}}',
                 loadOlder: 'Ouder laden',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
@@ -534,9 +534,9 @@ export const nl: Catalog = {
             intro: {
                 of: 'van {{total}}',
                 round: 'Ronde {{round}}',
-                briefOpen: 'Twintig open vragen, en ze kunnen overal over gaan. De voorlezer vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout en hij schuift door langs de tafel. Alleen elke tweede vraag levert een punt op.',
-                briefChoice: 'Moeilijke vragen, nu met vier antwoorden om uit te kiezen. Eén vraag per speler, met alle vier de opties erbij voorgelezen — en elke vraag is twee punten waard.',
-                briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de voorlezer noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
+                briefOpen: 'Twintig open vragen, en ze kunnen overal over gaan. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout en hij schuift door langs de tafel. Alleen elke tweede vraag levert een punt op.',
+                briefChoice: 'Pittige vragen, multiple choice. Eén vraag per speler, met alle vier de opties erbij voorgelezen. Elke vraag is twee punten waard.',
+                briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefDescribe: 'Dertig seconden om je eigen woorden aan de tafel te omschrijven zonder ze ooit te zeggen. Elk woord dat iemand roept is een punt voor jou en een punt voor wie het riep.',
                 action: 'Start ronde {{round}}'
             },
@@ -549,7 +549,7 @@ export const nl: Catalog = {
                 jobDescribe: '{{name}} omschrijft zijn eigen woorden. Niemand anders mag meekijken.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
-                ruleClosest: 'Iedereen behalve de voorlezer gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
+                ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
                 ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep, dus laat ze roepen.',
                 action: 'Ik ben {{name}}, laat de vraag zien'
             },
