@@ -234,6 +234,7 @@ export default function HotSeatBoard({
                 <VerdictButtons
                     answering={turn.answering}
                     nextUp={turn.nextUp}
+                    alwaysNextUp={turn.alwaysNextUp}
                     worth={turn.worth}
                     busy={busy}
                     onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}
@@ -261,6 +262,7 @@ export default function HotSeatBoard({
                 <VerdictButtons
                     answering={turn.answering}
                     nextUp={turn.nextUp}
+                    alwaysNextUp={turn.alwaysNextUp}
                     worth={turn.worth}
                     busy={busy}
                     onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}

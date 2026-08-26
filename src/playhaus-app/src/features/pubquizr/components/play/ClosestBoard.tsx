@@ -8,6 +8,7 @@ import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import { reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -48,7 +49,16 @@ interface Props {
     lead: string
     busy: boolean
     error: TranslationKey | null
-    onSettle: (settled: { guesses: { seat: number, value: number }[] } | { winningSeats: number[] }) => void
+    /**
+     * `winners` travels alongside the request body because it is the one thing the
+     * server's reply will not hand back on its own: by the time the new session comes
+     * back, this question has moved on and there is nothing left to compute it from.
+     * Whoever renders a "who won this round" screen off the settle needs it now.
+     */
+    onSettle: (
+        settled: { guesses: { seat: number, value: number }[] } | { winningSeats: number[] },
+        winners: Seat[]
+    ) => void
 }
 
 /**
@@ -146,7 +156,8 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
 
         if (byHand) {
             if (picked === null) return;
-            onSettle({ winningSeats: [picked] });
+            const seat = turn.guessing.find(candidate => candidate.seat === picked);
+            onSettle({ winningSeats: [picked] }, seat === undefined ? [] : [seat]);
             return;
         }
 
@@ -179,7 +190,8 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         setConfirming(false);
         if (!ready || busy) return;
 
-        onSettle({ guesses: review.guesses });
+        const winners = turn.guessing.filter(seat => review.winners.includes(seat.seat));
+        onSettle({ guesses: review.guesses }, winners);
     }
 
     /** Append what a pad key produced to whoever's field is in focus. */

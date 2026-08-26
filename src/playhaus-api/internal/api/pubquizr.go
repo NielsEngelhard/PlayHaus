@@ -643,11 +643,12 @@ func (s *Server) handleClosestGuesses(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// wordAwardRequest is what became of one round 4 word. A null seat is a word nobody got,
-// which is a thing worth saying rather than a row worth leaving out.
+// wordAwardRequest is what became of one round 4 word. Empty seats is a word nobody got,
+// which is a thing worth saying rather than a row worth leaving out. More than one seat
+// is a draw -- everybody named scores in full.
 type wordAwardRequest struct {
 	SessionQuestionID string `json:"sessionQuestionId"`
-	Seat              *int   `json:"seat"`
+	Seats             []int  `json:"seats"`
 }
 
 // describeAwardsRequest is the quizmaster settling one thirty second turn.
@@ -709,7 +710,7 @@ func (s *Server) handleDescribeAwards(w http.ResponseWriter, r *http.Request) {
 			writeErrorCode(w, http.StatusConflict, "stale_turn", "that word is no longer part of this turn")
 			return
 		}
-		awards = append(awards, pubquizr.WordAward{SessionQuestionID: wordID, Seat: awarded.Seat})
+		awards = append(awards, pubquizr.WordAward{SessionQuestionID: wordID, Seats: awarded.Seats})
 	}
 
 	session, err := s.pubquizr.RecordDescribeAwards(r.Context(), pubquizr.DescribeInput{

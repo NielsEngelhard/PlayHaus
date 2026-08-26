@@ -58,12 +58,11 @@ func TestAGuessedWordPaysBothOfThem(t *testing.T) {
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(2)
-	seatOne, seatThree := 1, 3
 
 	err := award(t, store, []WordAward{
-		{SessionQuestionID: words[0].ID, Seat: &seatOne},
-		{SessionQuestionID: words[1].ID, Seat: nil},
-		{SessionQuestionID: words[2].ID, Seat: &seatThree},
+		{SessionQuestionID: words[0].ID, Seats: []int{1}},
+		{SessionQuestionID: words[1].ID},
+		{SessionQuestionID: words[2].ID, Seats: []int{3}},
 	})
 	if err != nil {
 		t.Fatalf("RecordDescribeAwards: %v", err)
@@ -101,12 +100,11 @@ func TestAGuesserTakesOneForEachWordTheyGet(t *testing.T) {
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
-	loud := 2
 
 	err := award(t, store, []WordAward{
-		{SessionQuestionID: words[0].ID, Seat: &loud},
-		{SessionQuestionID: words[1].ID, Seat: &loud},
-		{SessionQuestionID: words[2].ID, Seat: &loud},
+		{SessionQuestionID: words[0].ID, Seats: []int{2}},
+		{SessionQuestionID: words[1].ID, Seats: []int{2}},
+		{SessionQuestionID: words[2].ID, Seats: []int{2}},
 	})
 	if err != nil {
 		t.Fatalf("RecordDescribeAwards: %v", err)
@@ -120,17 +118,52 @@ func TestAGuesserTakesOneForEachWordTheyGet(t *testing.T) {
 	}
 }
 
+// Two people can shout a word at the same instant, and neither should lose out over who
+// was half a second faster: both take the full guess points, the same way an equally
+// close round 3 guess does, and the describer still only takes their word point once.
+func TestTwoSimultaneousGuessesBothScore(t *testing.T) {
+	session := newDescribeSession(0, 2)
+	store := &verdictStore{session: session}
+
+	words := session.WordsFor(0)
+
+	err := award(t, store, []WordAward{
+		{SessionQuestionID: words[0].ID, Seats: []int{1, 2}},
+		{SessionQuestionID: words[1].ID},
+	})
+	if err != nil {
+		t.Fatalf("RecordDescribeAwards: %v", err)
+	}
+
+	for _, seat := range []int{1, 2} {
+		if got, want := store.session.PlayerAt(seat).Score, DescribeGuessPoints; got != want {
+			t.Errorf("seat %d scored %d, want %d -- a draw is not worth half", seat, got, want)
+		}
+	}
+	if got, want := store.session.PlayerAt(0).Score, DescribeWordPoints; got != want {
+		t.Errorf("the describer scored %d, want %d -- once for the word, not once per winner", got, want)
+	}
+
+	for _, word := range store.recorded.Questions {
+		if word.ID != words[0].ID {
+			continue
+		}
+		if got, want := word.Points, DescribeWordPoints+2*DescribeGuessPoints; got != want {
+			t.Errorf("the word closed for %d, want %d", got, want)
+		}
+	}
+}
+
 // Every point in this game is meant to be accountable to a row, the describer's included.
 func TestEveryWordLeavesItsOwnRecord(t *testing.T) {
 	session := newDescribeSession(1, 2)
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(1)
-	guesser := 3
 
 	err := award(t, store, []WordAward{
-		{SessionQuestionID: words[0].ID, Seat: &guesser},
-		{SessionQuestionID: words[1].ID, Seat: nil},
+		{SessionQuestionID: words[0].ID, Seats: []int{3}},
+		{SessionQuestionID: words[1].ID},
 	})
 	if err != nil {
 		t.Fatalf("RecordDescribeAwards: %v", err)
@@ -182,27 +215,32 @@ func TestDescribeRefusals(t *testing.T) {
 	}{
 		{
 			name:   "you cannot guess your own word",
-			awards: []WordAward{{SessionQuestionID: words[0].ID, Seat: &describer}, {SessionQuestionID: words[1].ID}},
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{describer}}, {SessionQuestionID: words[1].ID}},
 			want:   ErrDescriberCannotGuess,
 		},
 		{
 			name:   "a word out of somebody else's thirty seconds",
-			awards: []WordAward{{SessionQuestionID: otherTurn[0].ID, Seat: &guesser}, {SessionQuestionID: words[1].ID}},
+			awards: []WordAward{{SessionQuestionID: otherTurn[0].ID, Seats: []int{guesser}}, {SessionQuestionID: words[1].ID}},
 			want:   ErrUnknownWord,
 		},
 		{
 			name:   "a seat that is not at this table",
-			awards: []WordAward{{SessionQuestionID: words[0].ID, Seat: &stranger}, {SessionQuestionID: words[1].ID}},
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{stranger}}, {SessionQuestionID: words[1].ID}},
 			want:   ErrUnknownSeat,
 		},
 		{
 			name:   "a word left unruled",
-			awards: []WordAward{{SessionQuestionID: words[0].ID, Seat: &guesser}},
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser}}},
 			want:   ErrInvalidInput,
 		},
 		{
 			name:   "one word ruled on twice",
-			awards: []WordAward{{SessionQuestionID: words[0].ID, Seat: &guesser}, {SessionQuestionID: words[0].ID}},
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser}}, {SessionQuestionID: words[0].ID}},
+			want:   ErrInvalidInput,
+		},
+		{
+			name:   "the same seat named twice for one word",
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser, guesser}}, {SessionQuestionID: words[1].ID}},
 			want:   ErrInvalidInput,
 		},
 	}

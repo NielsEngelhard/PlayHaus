@@ -12,6 +12,12 @@ interface Props {
     answering: Seat
     /** Who a wrong answer passes it to, or null when this is the last seat to try. */
     nextUp: Seat | null
+    /**
+     * Round 2 only: who becomes the hot seat next no matter which button gets pressed.
+     * When this is set it replaces the two conditional lines below with one line that
+     * is true either way, because round 2 never lets a correct answer keep the seat.
+     */
+    alwaysNextUp?: Seat | null
     /** What taking this question pays, on top of the seat it keeps you in. */
     worth: number
     onVerdict: (correct: boolean) => void
@@ -42,6 +48,7 @@ interface Props {
 export default function VerdictButtons({
     answering,
     nextUp,
+    alwaysNextUp = null,
     worth,
     onVerdict,
     busy = false
@@ -82,16 +89,56 @@ export default function VerdictButtons({
                 </Pressable>
             </View>
 
-            <AppText style={[styles.hint, scoring && styles.hintScoring]}>
-                {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
-                {scoring ? ` · ${t('pubquizr.play.worthPoints', { worth })}` : ''}
-            </AppText>
+            {alwaysNextUp !== null ? (
+                // Round 2: one line, true either way, so there is nothing for the
+                // quizmaster to work out from which button they are about to press.
+                <HandoffHint
+                    text={t('pubquizr.play.choiceAlwaysPasses', { name: alwaysNextUp.name })}
+                    seat={alwaysNextUp}
+                />
+            ) : (
+                <>
+                    <AppText style={[styles.hint, scoring && styles.hintScoring]}>
+                        {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
+                        {scoring ? ` · ${t('pubquizr.play.worthPoints', { worth })}` : ''}
+                    </AppText>
 
-            <AppText style={styles.hint}>
-                {nextUp === null
-                    ? t('pubquizr.play.wrongEndsQuestion')
-                    : t('pubquizr.play.wrongPassesTo', { name: nextUp.name })}
-            </AppText>
+                    {nextUp === null ? (
+                        <AppText style={styles.hint}>
+                            {t('pubquizr.play.wrongEndsQuestion')}
+                        </AppText>
+                    ) : (
+                        <HandoffHint
+                            text={t('pubquizr.play.wrongPassesTo', { name: nextUp.name })}
+                            seat={nextUp}
+                        />
+                    )}
+                </>
+            )}
+        </View>
+    )
+}
+
+/**
+ * The one line a quizmaster cannot afford to miss: who this goes to next. Set apart
+ * from the plain caption above it with a bordered pill and the seat's own avatar, so a
+ * glance at the screen is enough — reading the sentence should not be the only way to
+ * find out.
+ */
+function HandoffHint({ text, seat }: { text: string, seat: Seat }) {
+    const styles = useStyles();
+
+    return (
+        <View style={styles.handoff}>
+            <Feather name="arrow-right" size={13} color={Brand.ink} />
+
+            <View style={[styles.handoffAvatar, { backgroundColor: seat.swatch.color }]}>
+                <AppText style={[styles.handoffInitials, { color: seat.swatch.foreground }]}>
+                    {seat.initials}
+                </AppText>
+            </View>
+
+            <AppText style={styles.handoffText}>{text}</AppText>
         </View>
     )
 }
@@ -158,6 +205,41 @@ const useStyles = createThemedStyles(theme => ({
     hintScoring: {
         fontWeight: 800,
         color: theme.colors.text
+    },
+
+    // Lemon, the same accent the gate button above this screen wears, because this is
+    // the other line a quizmaster cannot afford to skim past.
+    handoff: {
+        marginTop: 9,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 7,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderRadius: 14,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.lemon
+    },
+
+    handoffAvatar: {
+        width: 20,
+        height: 20,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    handoffInitials: {
+        fontSize: 9,
+        fontWeight: 900
+    },
+
+    handoffText: {
+        fontSize: 12.5,
+        fontWeight: 900,
+        color: Brand.ink
     },
 
     // The same half-strength every other blocked control in the app wears.

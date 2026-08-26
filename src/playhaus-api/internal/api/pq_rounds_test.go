@@ -360,8 +360,7 @@ func TestDescribeAwardsPayTheDescriberAndTheGuessers(t *testing.T) {
 	for i, word := range session.TurnQuestionIDs {
 		awarded := wordAwardRequest{SessionQuestionID: word}
 		if i == 0 {
-			seat := guesser
-			awarded.Seat = &seat
+			awarded.Seats = []int{guesser}
 		}
 		awards = append(awards, awarded)
 	}
@@ -471,9 +470,14 @@ func TestDescribeAwardsRefusals(t *testing.T) {
 // allWords rules on every word of the turn, crediting all of them to one seat (or to
 // nobody when it is nil).
 func allWords(session quizSessionResponse, seat *int) []wordAwardRequest {
+	var seats []int
+	if seat != nil {
+		seats = []int{*seat}
+	}
+
 	awards := make([]wordAwardRequest, 0, len(session.TurnQuestionIDs))
 	for _, word := range session.TurnQuestionIDs {
-		awards = append(awards, wordAwardRequest{SessionQuestionID: word, Seat: seat})
+		awards = append(awards, wordAwardRequest{SessionQuestionID: word, Seats: seats})
 	}
 	return awards
 }

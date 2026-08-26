@@ -2,6 +2,7 @@ import { gameForPathname } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import { Brand } from '@/constants/theme';
 import type Feather from '@expo/vector-icons/Feather';
+import type { ImageSource } from 'expo-image';
 import type { TFunction } from 'i18next';
 
 /**
@@ -34,11 +35,9 @@ export interface HeaderContext {
 }
 
 export interface HeaderMark {
-    /** The game's initial. */
-    letter: string
-    /** The notch in the tile's corner. */
-    accent: string
-    /** What the tile is, for anyone who cannot see the letter. */
+    /** The game's own icon. */
+    icon: ImageSource
+    /** What the tile is, for anyone who cannot see the icon. */
     label: string
 }
 
@@ -98,7 +97,7 @@ export function headerContextFor(pathname: string, t: TFunction): HeaderContext 
         return {
             back: ROUTES.home,
             pill: null,
-            mark: { letter: game.name[0], accent: game.color, label: game.name }
+            mark: { icon: game.icon, label: game.name }
         };
     }
 

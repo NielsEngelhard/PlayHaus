@@ -35,6 +35,7 @@ export default function HomeScreen() {
             gradient={game.gradient}
             glyphInk={game.glyphInk[theme.scheme]}
             name={game.name}
+            icon={game.icon}
             description={t(game.descriptionKey)}
             deviceMode={game.deviceMode}
             minMaxPlayers={game.minMaxPlayersIndicator}

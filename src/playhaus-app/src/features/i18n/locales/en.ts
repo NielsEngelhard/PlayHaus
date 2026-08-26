@@ -535,6 +535,12 @@ export const en = {
             /** Nobody left to ask: the question dies here rather than passing on. */
             wrongEndsQuestion: 'Nobody else to ask, wrong ends this question',
             /**
+             * Round 2 only, replacing both lines above it: round 2 never keeps the seat
+             * on a correct answer, so this one name is true no matter which button gets
+             * pressed.
+             */
+            choiceAlwaysPasses: 'Either way, next up: {{name}}',
+            /**
              * What Correct does, which is no longer only "score it". Said beside the
              * Wrong line because the two together are the round's whole rule, and the
              * moment to read it is with a thumb over the buttons.
@@ -634,11 +640,17 @@ export const en = {
             /** Round 4: thirty seconds to describe your own words. */
             describe: {
                 readyTitle: 'Your words, {{name}}',
-                readyBody: '{{words}} words in {{seconds}} seconds. Describe them without saying them. Everybody else shouts.',
+                /** The ready screen's rules list, one row each rather than one paragraph. */
+                readyRuleTime: '{{seconds}} seconds to get through as many of your {{words}} words as you can',
+                readyRuleNoSaying: 'Never say the word itself',
+                readyRuleBothScore: 'Whoever shouts it first scores, and so do you',
+                readyRuleTiming: 'Points are handed out after time is up, so keep moving instead of arguing over one word',
                 start: 'Show my words and start',
                 dontSayIt: 'Never say the word itself',
+                /** Shown again mid-timer, so it does not depend on being remembered. */
+                runningReminder: 'Both of you score if they guess it. Never say the word.',
                 scoringTitle: 'Who got them?',
-                whoGotIt: 'Who guessed {{word}}',
+                whoGotItHint: 'Tap everyone who shouted it at once',
                 nobody: 'Nobody got it',
                 /** What the turn is about to be worth to the person who described it. */
                 standing: '{{name}} takes {{points}} from this turn',
@@ -673,10 +685,16 @@ export const en = {
             standings: {
                 title: 'Round {{round}} done',
                 description: 'How the table stands with the first round behind you.',
-                /** The between-rounds version: a breather, not an ending. */
-                breather: 'Read the scores out, then get round {{round}} started.',
                 startNext: 'Start round {{round}}',
                 nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved. The quiz is waiting where you left it.'
+            },
+            /** The interstitial between a round ending and the standings screen. */
+            roundResult: {
+                title: 'Round {{round}} done',
+                wonBy: '{{names}} · {{worth}} points',
+                /** No winner at all is a legal outcome for a by-hand settle with a tie waved off. */
+                nobody: 'Nobody was nearest this time',
+                continue: 'See the standings'
             }
         },
         /**

@@ -10,11 +10,13 @@ import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
+import RoundResultScreen from "@/features/pubquizr/components/play/RoundResultScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
+import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
-import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
+import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -52,35 +54,17 @@ interface RoundCopy {
  * — and only the round knows what that is.
  */
 function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): RoundCopy {
+    const { kind, rule } = roundKindAndRule(t, round);
+
     switch (round) {
         case ROUND_CHOICE:
-            return {
-                kind: t('pubquizr.play.rounds.choice'),
-                lead: t('pubquizr.play.leadChoice', { name }),
-                job: t('pubquizr.play.handoff.jobChoice', { name }),
-                rule: t('pubquizr.play.handoff.ruleChoice')
-            };
+            return { kind, rule, lead: t('pubquizr.play.leadChoice', { name }), job: t('pubquizr.play.handoff.jobChoice', { name }) };
         case ROUND_CLOSEST:
-            return {
-                kind: t('pubquizr.play.rounds.closest'),
-                lead: t('pubquizr.play.leadClosest', { name }),
-                job: t('pubquizr.play.handoff.jobClosest', { name }),
-                rule: t('pubquizr.play.handoff.ruleClosest')
-            };
+            return { kind, rule, lead: t('pubquizr.play.leadClosest', { name }), job: t('pubquizr.play.handoff.jobClosest', { name }) };
         case ROUND_DESCRIBE:
-            return {
-                kind: t('pubquizr.play.rounds.describe'),
-                lead: t('pubquizr.play.leadDescribe', { name }),
-                job: t('pubquizr.play.handoff.jobDescribe', { name }),
-                rule: t('pubquizr.play.handoff.ruleDescribe')
-            };
+            return { kind, rule, lead: t('pubquizr.play.leadDescribe', { name }), job: t('pubquizr.play.handoff.jobDescribe', { name }) };
         default:
-            return {
-                kind: t('pubquizr.play.rounds.open'),
-                lead: t('pubquizr.play.leadOpen', { name }),
-                job: t('pubquizr.play.handoff.jobOpen', { name }),
-                rule: t('pubquizr.play.handoff.ruleOpen')
-            };
+            return { kind, rule, lead: t('pubquizr.play.leadOpen', { name }), job: t('pubquizr.play.handoff.jobOpen', { name }) };
     }
 }
 
@@ -137,6 +121,13 @@ export default function OneDeviceQuizPage() {
      * puts it up without anything having to remember to.
      */
     const [startedRound, setStartedRound] = useState<number | null>(null);
+    /**
+     * Round 3's winner, captured off the settle that ends the round — by the time the
+     * standings screen would otherwise show up, this question has moved on and there is
+     * nothing left to compute it from. Cleared once shown, so a reload or the next
+     * round starting never turns it up stale.
+     */
+    const [roundResult, setRoundResult] = useState<{ round: number, winners: Seat[], worth: number } | null>(null);
 
     function leave() {
         // `replace`, not `back`: this screen is reached from the setup form, and going
@@ -195,10 +186,24 @@ export default function OneDeviceQuizPage() {
         && startedRound !== round;
 
     if (between || !playable) {
+        // Round 3's winner, said plainly, before the scoreboard moves on to the bigger
+        // question of who is ahead overall.
+        if (roundResult !== null && roundResult.round === round - 1) {
+            return (
+                <RoundResultScreen
+                    round={roundResult.round}
+                    winners={roundResult.winners}
+                    worth={roundResult.worth}
+                    onContinue={() => setRoundResult(null)}
+                />
+            )
+        }
+
         return (
             <RoundStandings
                 standings={standingsOf(session)}
                 round={round - 1}
+                upcomingRound={playable ? round : null}
                 onNext={playable ? () => startRound(round) : null}
                 onLeave={leave}
             />
@@ -224,6 +229,7 @@ export default function OneDeviceQuizPage() {
             <RoundStandings
                 standings={standingsOf(session)}
                 round={round - 1}
+                upcomingRound={null}
                 onNext={null}
                 onLeave={leave}
             />
@@ -286,8 +292,9 @@ export default function OneDeviceQuizPage() {
                     lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    onSettle={settled => {
+                    onSettle={(settled, winners) => {
                         setHandedFrom(closest.quizmaster.seat);
+                        setRoundResult({ round, winners, worth: closest.worth });
                         game.settleClosest(settled);
                     }}
                 />

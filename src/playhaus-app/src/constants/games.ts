@@ -1,6 +1,7 @@
 import { ROUTES } from '@/constants/routes';
 import { Brand, Gradients } from '@/constants/theme';
 import type { TranslationKey } from '@/features/i18n/keys';
+import type { ImageSource } from 'expo-image';
 
 /**
  * The games' display names. Shared rather than per-feature: the home list, the game
@@ -26,6 +27,7 @@ export interface Game {
     color: string,
     gradient: readonly [string, string, string],
     glyphInk: Record<'light' | 'dark', string>,
+    icon: ImageSource,
     descriptionKey: TranslationKey,
     mainCategoryIndicatorKey: TranslationKey,
     playable: boolean,
@@ -47,6 +49,7 @@ export const GAMES: Game[] = [
         color: Brand.primary,
         gradient: Gradients.primary,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
+        icon: require('@/assets/icons/league-of-letters-icon.svg'),
         mainCategoryIndicatorKey: 'games.leagueOfLetters.mainCategory',
         descriptionKey: 'games.leagueOfLetters.description',
         deviceMode: 'perPlayer',
@@ -61,6 +64,7 @@ export const GAMES: Game[] = [
         color: Brand.secondary,
         gradient: Gradients.secondary,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
+        icon: require('@/assets/icons/pubquizr-icon.svg'),
         mainCategoryIndicatorKey: 'games.quizzer.mainCategory',
         descriptionKey: 'games.quizzer.description',
         deviceMode: 'oneDevice',
@@ -75,6 +79,7 @@ export const GAMES: Game[] = [
         color: Brand.mint,
         gradient: Gradients.mint,
         glyphInk: { light: Brand.textOnAccent, dark: Brand.textOnAccent },
+        icon: require('@/assets/icons/one-of-us-icon.svg'),
         mainCategoryIndicatorKey: 'games.oneOfUs.mainCategory',
         descriptionKey: 'games.oneOfUs.description',
         deviceMode: 'perPlayer',

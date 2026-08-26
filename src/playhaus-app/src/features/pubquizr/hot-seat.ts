@@ -11,11 +11,13 @@ import { seatAt, seatsOf, type Seat } from "./seats";
  * join between the two, worked out once and handed to the components as things they can
  * draw without knowing where any of it came from.
  *
- * Both rounds are the same game: a hot seat. Taking a question keeps you in it for the
- * next one, the reading follows the seat round the table — you are always read to by the
- * player on your right — and the round only ends when it runs out of questions. Round 2
- * adds four options to read aloud and pays double on every question instead of on every
- * second one. That is the whole of the difference, which is why it is the same file.
+ * Both rounds are a hot seat, and the reading always follows the seat round the table —
+ * you are always read to by the player on your right. Where they differ: round 1 lets a
+ * correct answer keep you in the seat for the next question, round 2 never does — it
+ * deals exactly one question per player, and shuffles the seat on by one regardless of
+ * correct or wrong, so that everybody is asked once and reads once. Round 2 also adds
+ * four options to read aloud and pays double on every question instead of on every
+ * second one.
  *
  * None of it is decided here; it all comes back from the server. But it has to be *said*
  * on screen before a button is pressed, which is what `worthOf`, `nextUpAfter` and the
@@ -97,6 +99,14 @@ export interface HotSeatTurn {
     run: number
     /** Who gets it if this one is wrong, or null when the question is on its last seat. */
     nextUp: Seat | null
+    /**
+     * Round 2 only: who becomes the hot seat next, regardless of whether this question
+     * is answered right or wrong. Round 2 never lets a correct answer keep the seat, so
+     * unlike `nextUp` this one name is true no matter which button gets pressed. Empty
+     * in round 1, where a correct answer keeps the seat and there is nothing fixed to
+     * say in advance.
+     */
+    alwaysNextUp: Seat | null
     /** 1-based, for "question 3 of 20". */
     number: number
     total: number
@@ -164,6 +174,9 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
         // of theirs to put on the board.
         run: session.answeringSeat === session.hotSeat ? session.hotSeatRun : 0,
         nextUp: nextUpAfter(session, seats),
+        alwaysNextUp: session.currentRound === ROUND_CHOICE
+            ? seatAt(seats, (session.hotSeat + 1) % seats.length)
+            : null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         worth: worthOf(session.currentRound, session.currentPosition + 1)

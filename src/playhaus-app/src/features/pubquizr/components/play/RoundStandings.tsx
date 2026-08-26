@@ -4,6 +4,7 @@ import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -14,6 +15,13 @@ interface Props {
     standings: Seat[]
     /** The round just finished. */
     round: number
+    /**
+     * The round about to start, or null when there is none — same condition as
+     * `onNext`, carried separately because it names a round rather than an action.
+     * When set, this is what the header headlines: the table needs to know what is
+     * coming more than it needs another look at the round that just ended.
+     */
+    upcomingRound: number | null
     /**
      * Starts the next one, or null when there is no next one this build can play.
      *
@@ -37,26 +45,43 @@ interface Props {
  * it says so, because the session really has moved on — and the alternative is a screen
  * that either pretends the game is over or leaves the table waiting.
  */
-export default function RoundStandings({ standings, round, onNext, onLeave }: Props) {
+export default function RoundStandings({ standings, round, upcomingRound, onNext, onLeave }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
-
-    const description = onNext === null
-        ? t('pubquizr.play.standings.description')
-        : t('pubquizr.play.standings.breather', { round: round + 1 });
 
     // Only the outright leader gets the lemon row. On a tie nobody is winning, and two
     // highlighted rows would say otherwise.
     const top = standings[0]?.score ?? 0;
     const outright = standings.filter(seat => seat.score === top).length === 1;
 
+    const upcoming = upcomingRound === null ? null : roundKindAndRule(t, upcomingRound);
+
     return (
         <View style={styles.screen}>
-            <SimpleTextHero
-                title={t('pubquizr.play.standings.title', { round })}
-                description={description}
-            />
+            {upcoming !== null && upcomingRound !== null ? (
+                // Headlines the round about to start rather than the one just finished:
+                // that is the round the table needs to understand before tapping the
+                // button below, and "done" on its own says nothing about what it means.
+                <View style={styles.header}>
+                    <AppText style={styles.kicker}>
+                        {t('pubquizr.play.standings.title', { round })}
+                    </AppText>
+
+                    <SimpleTextHero
+                        title={t('pubquizr.play.roundLabel', {
+                            round: upcomingRound,
+                            kind: upcoming.kind
+                        })}
+                        description={upcoming.rule}
+                    />
+                </View>
+            ) : (
+                <SimpleTextHero
+                    title={t('pubquizr.play.standings.title', { round })}
+                    description={t('pubquizr.play.standings.description')}
+                />
+            )}
 
             <View style={styles.list}>
                 {standings.map((seat, index) => {
@@ -124,6 +149,18 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%',
         paddingTop: Spacing.three,
         gap: Spacing.four
+    },
+
+    header: {
+        gap: 6
+    },
+
+    kicker: {
+        fontSize: 11,
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: 1.4,
+        color: theme.colors.textMuted
     },
 
     list: {

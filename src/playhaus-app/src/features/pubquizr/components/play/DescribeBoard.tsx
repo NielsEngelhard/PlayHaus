@@ -1,7 +1,6 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import SelectInput, { type SelectOption } from "@/components/ui/SelectInput";
 import { Brand } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -11,11 +10,12 @@ import {
     type DescribeTurn
 } from "@/features/pubquizr/round-four";
 import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import DescribeTimer from "./DescribeTimer";
 import TurnStrip from "./TurnStrip";
 
@@ -32,9 +32,6 @@ interface Props {
 
 /** Where in the turn we are. Three screens, because they cannot share a phone. */
 type Stage = 'ready' | 'running' | 'scoring';
-
-/** The option value meaning "nobody got this one". */
-const NOBODY = 'nobody';
 
 /**
  * The board for round 4: your words, thirty seconds, and then who got what.
@@ -55,7 +52,8 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     const styles = useStyles();
 
     const [stage, setStage] = useState<Stage>('ready');
-    const [awards, setAwards] = useState<Record<string, number | null>>({});
+    /** Every seat named for a word, or an empty array for a word ruled nobody got. */
+    const [awards, setAwards] = useState<Record<string, number[]>>({});
 
     /*
      * Reset during render, like every other board here: a new turn has to arrive with its
@@ -73,24 +71,23 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     const ready = ruled === turn.words.length;
     const standing = scoreOfAwards(turn, awards);
 
-    const options: SelectOption<string>[] = [
-        ...turn.guessers.map(seat => ({
-            value: String(seat.seat),
-            label: seat.name,
-            icon: (
-                <View style={[styles.swatch, { backgroundColor: seat.swatch.color }]}>
-                    <AppText style={[styles.swatchText, { color: seat.swatch.foreground }]}>
-                        {seat.initials}
-                    </AppText>
-                </View>
-            )
-        })),
-        {
-            value: NOBODY,
-            label: t('pubquizr.play.describe.nobody'),
-            icon: <Feather name="x" size={16} color={theme.colors.textMuted} />
-        }
-    ];
+    /** Add or drop one seat from a word's winners — a draw is more than one at once. */
+    function toggleGuesser(wordId: string, seat: number) {
+        setAwards(current => {
+            const named = current[wordId] ?? [];
+            return {
+                ...current,
+                [wordId]: named.includes(seat)
+                    ? named.filter(candidate => candidate !== seat)
+                    : [...named, seat]
+            };
+        });
+    }
+
+    /** Nobody got it — clears any names already on the word. */
+    function markNobody(wordId: string) {
+        setAwards(current => ({ ...current, [wordId]: [] }));
+    }
 
     /*
      * The same strip every other round wears, minus the two-person half of it — nobody is
@@ -111,23 +108,39 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     );
 
     if (stage === 'ready') {
+        const rules: { icon: keyof typeof Feather.glyphMap, text: string }[] = [
+            {
+                icon: 'clock',
+                text: t('pubquizr.play.describe.readyRuleTime', {
+                    seconds: DESCRIBE_SECONDS,
+                    words: turn.words.length
+                })
+            },
+            { icon: 'eye-off', text: t('pubquizr.play.describe.readyRuleNoSaying') },
+            { icon: 'users', text: t('pubquizr.play.describe.readyRuleBothScore') },
+            { icon: 'zap', text: t('pubquizr.play.describe.readyRuleTiming') }
+        ];
+
         return (
             <View style={styles.turn}>
                 {strip}
 
                 <View style={styles.centre}>
-                    <Feather name="eye-off" size={34} color={theme.colors.textMuted} />
-
                     <AppText style={styles.title}>
                         {t('pubquizr.play.describe.readyTitle', { name: turn.describer.name })}
                     </AppText>
 
-                    <AppText style={styles.body}>
-                        {t('pubquizr.play.describe.readyBody', {
-                            words: turn.words.length,
-                            seconds: DESCRIBE_SECONDS
-                        })}
-                    </AppText>
+                    <View style={styles.rules}>
+                        {rules.map((rule, index) => (
+                            <View key={index} style={styles.rule}>
+                                <View style={styles.ruleIcon}>
+                                    <Feather name={rule.icon} size={16} color={Brand.ink} />
+                                </View>
+
+                                <AppText style={styles.ruleText}>{rule.text}</AppText>
+                            </View>
+                        ))}
+                    </View>
                 </View>
 
                 <ActionButton
@@ -156,6 +169,13 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.describe.dontSayIt')}
                 </AppText>
+
+                {/* The one rule worth a reminder mid-timer: everything else on the ready
+                    screen is a decision made before this started, this is the one a
+                    describer's own excitement is most likely to make them forget. */}
+                <AppText style={styles.recap}>
+                    {t('pubquizr.play.describe.runningReminder')}
+                </AppText>
             </View>
         )
     }
@@ -168,15 +188,18 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 {t('pubquizr.play.describe.scoringTitle')}
             </AppText>
 
+            <AppText style={styles.recap}>
+                {t('pubquizr.play.describe.whoGotItHint')}
+            </AppText>
+
             <ScrollView
                 style={styles.rows}
                 contentContainerStyle={styles.rowsInner}
                 keyboardShouldPersistTaps="handled"
             >
                 {turn.words.map(word => {
-                    const chosen = word.dealt.id in awards
-                        ? (awards[word.dealt.id] === null ? NOBODY : String(awards[word.dealt.id]))
-                        : '';
+                    const named = awards[word.dealt.id] ?? [];
+                    const nobody = word.dealt.id in awards && named.length === 0;
 
                     return (
                         <View key={word.dealt.id} style={styles.row}>
@@ -184,17 +207,68 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                                 {word.word}
                             </AppText>
 
-                            <SelectInput
-                                variant="inline"
-                                label={t('pubquizr.play.describe.whoGotIt', { word: word.word })}
-                                value={chosen}
-                                options={options}
-                                disabled={busy}
-                                onChange={value => setAwards(current => ({
-                                    ...current,
-                                    [word.dealt.id]: value === NOBODY ? null : Number(value)
-                                }))}
-                            />
+                            <View style={styles.chips}>
+                                {turn.guessers.map(seat => {
+                                    const active = named.includes(seat.seat);
+
+                                    return (
+                                        <Pressable
+                                            key={seat.seat}
+                                            onPress={() => toggleGuesser(word.dealt.id, seat.seat)}
+                                            disabled={busy}
+                                            accessibilityRole="checkbox"
+                                            accessibilityState={{ checked: active, disabled: busy }}
+                                            accessibilityLabel={seat.name}
+                                            style={[
+                                                styles.chip,
+                                                active && styles.chipActive,
+                                                busy && styles.dimmed
+                                            ]}
+                                        >
+                                            <View style={[styles.chipAvatar, { backgroundColor: seat.swatch.color }]}>
+                                                <AppText style={[styles.chipInitials, { color: seat.swatch.foreground }]}>
+                                                    {seat.initials}
+                                                </AppText>
+                                            </View>
+
+                                            <AppText
+                                                style={[styles.chipText, active && styles.chipTextActive]}
+                                                numberOfLines={1}
+                                            >
+                                                {seat.name}
+                                            </AppText>
+
+                                            {active && (
+                                                <Feather name="check" size={13} color={Brand.ink} />
+                                            )}
+                                        </Pressable>
+                                    )
+                                })}
+
+                                <Pressable
+                                    onPress={() => markNobody(word.dealt.id)}
+                                    disabled={busy}
+                                    accessibilityRole="checkbox"
+                                    accessibilityState={{ checked: nobody, disabled: busy }}
+                                    accessibilityLabel={t('pubquizr.play.describe.nobody')}
+                                    style={[
+                                        styles.chip,
+                                        styles.chipNobody,
+                                        nobody && styles.chipNobodyActive,
+                                        busy && styles.dimmed
+                                    ]}
+                                >
+                                    <Feather
+                                        name="x"
+                                        size={14}
+                                        color={nobody ? theme.colors.destructiveText : theme.colors.textMuted}
+                                    />
+
+                                    <AppText style={[styles.chipText, nobody && styles.chipNobodyText]}>
+                                        {t('pubquizr.play.describe.nobody')}
+                                    </AppText>
+                                </Pressable>
+                            </View>
                         </View>
                     )
                 })}
@@ -234,7 +308,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
 
                     onSettle(turn.words.map(word => ({
                         sessionQuestionId: word.dealt.id,
-                        seat: awards[word.dealt.id] ?? null
+                        seats: awards[word.dealt.id] ?? []
                     })));
                 }}
             />
@@ -263,9 +337,10 @@ const useStyles = createThemedStyles(theme => ({
 
     centre: {
         flex: 1,
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 14
+        gap: 22
     },
 
     title: {
@@ -277,12 +352,50 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    body: {
-        maxWidth: 280,
-        fontSize: 14,
-        fontWeight: 600,
-        lineHeight: 14 * 1.5,
+    rules: {
+        width: '100%',
+        maxWidth: 320,
+        gap: 10
+    },
+
+    rule: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        padding: 12,
+        borderRadius: 16,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+    },
+
+    ruleIcon: {
+        width: 30,
+        height: 30,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 999,
+        backgroundColor: theme.colors.mint
+    },
+
+    ruleText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 13.5,
+        fontWeight: 700,
+        lineHeight: 13.5 * 1.4,
+        color: theme.colors.text
+    },
+
+    // The one line worth surfacing again once the timer starts, so it does not depend
+    // on being remembered from a screen already left behind.
+    recap: {
+        flexShrink: 0,
         textAlign: 'center',
+        fontSize: 11.5,
+        fontWeight: 700,
         color: theme.colors.textMuted
     },
 
@@ -353,18 +466,69 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    swatch: {
-        width: 22,
-        height: 22,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: theme.borderWidth,
-        borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink
+    chips: {
+        marginTop: 4,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8
     },
 
-    swatchText: {
-        fontSize: 9,
+    chip: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderMuted,
+        backgroundColor: theme.colors.backgroundInput
+    },
+
+    // Mint, the same "this one" every guess-scoring row in this app wears.
+    chipActive: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint
+    },
+
+    chipAvatar: {
+        width: 20,
+        height: 20,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    chipInitials: {
+        fontSize: 8.5,
         fontWeight: 900
+    },
+
+    chipText: {
+        fontSize: 12.5,
+        fontWeight: 700,
+        color: theme.colors.text
+    },
+
+    chipTextActive: {
+        color: Brand.ink
+    },
+
+    chipNobody: {
+        borderStyle: 'dashed'
+    },
+
+    chipNobodyActive: {
+        borderStyle: 'solid',
+        borderColor: theme.colors.destructive,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+
+    chipNobodyText: {
+        color: theme.colors.destructiveText
+    },
+
+    dimmed: {
+        opacity: 0.5
     }
 }))

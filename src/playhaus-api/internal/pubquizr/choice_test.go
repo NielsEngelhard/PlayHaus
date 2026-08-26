@@ -1,14 +1,18 @@
 package pubquizr
 
-import "testing"
+import (
+	"slices"
+	"sort"
+	"testing"
+)
 
-// Round 2 is round 1's hot seat with four options read out and a different sum.
-//
-// Which means the interesting tests are the differences, not the mechanics -- those are
-// verdict_test.go's, and they run against the same code. What is worth proving here is
-// that every question pays, that it pays double, and that the seat still moves the way
-// it does in round 1, because a shared implementation is only worth having if it really
-// is shared.
+// Round 2 is round 1's hot seat with four options read out, a different sum, and one
+// rule of its own: nobody keeps the seat. The round deals exactly one question per
+// player, and the only way that turns into everybody asked once and everybody reading
+// once is if landing a question never buys another go at the next one -- so what is
+// worth proving here is that every question pays, that it pays double, and that the
+// seat always shuffles on by exactly one, correct or not, regardless of who actually
+// answered it.
 
 // newChoiceSession is a table of four part way through round 2.
 func newChoiceSession(master, hot, position, positions int) *Session {
@@ -43,18 +47,48 @@ func TestEveryChoiceQuestionPays(t *testing.T) {
 	}
 }
 
-// The reading follows the seat in round 2 exactly as it does in round 1: seat 2 takes a
-// question seat 1 missed, and the reading comes round to seat 1.
-func TestChoiceTakingAQuestionTakesTheReading(t *testing.T) {
+// Unlike round 1, taking a question from down the table does not hand the taker the
+// seat: it shuffles on from where the question opened regardless of who ends up
+// answering it correctly, because round 2's fairness only holds if landing a question
+// never buys another go at the next one.
+func TestChoiceCorrectAnswerStillShufflesOn(t *testing.T) {
+	// Question opened on seat 1, already missed by seats 1 and 2; seat 3 takes it.
 	store := &verdictStore{session: newChoiceSession(0, 1, 0, 4), attempts: 2}
 
 	rule(t, store, true)
 
-	if got, want := store.session.HotSeat, 3; got != want {
-		t.Errorf("HotSeat = %d, want %d", got, want)
+	if got, want := store.session.HotSeat, 2; got != want {
+		t.Errorf("HotSeat = %d, want %d -- one along from where the question opened, not from who took it", got, want)
 	}
-	if got, want := store.session.QuizMasterSeat, 2; got != want {
+	if got, want := store.session.QuizMasterSeat, 1; got != want {
 		t.Errorf("QuizMasterSeat = %d, want %d -- read to by the seat on their right", got, want)
+	}
+}
+
+// Over the whole round, every seat is the hot seat exactly once and quizmaster exactly
+// once -- the round deals one question per player, and a correct answer never keeps the
+// seat, so the two rings walk the table exactly once each and never repeat.
+func TestRoundTwoGivesEverySeatOneTurnEachWay(t *testing.T) {
+	store := &verdictStore{session: newChoiceSession(0, 1, 0, 4)}
+
+	var hotSeats, quizMasters []int
+	for i := 0; i < 4; i++ {
+		hotSeats = append(hotSeats, store.session.HotSeat)
+		quizMasters = append(quizMasters, store.session.QuizMasterSeat)
+
+		store.attempts = 0
+		rule(t, store, true)
+	}
+
+	sort.Ints(hotSeats)
+	sort.Ints(quizMasters)
+
+	want := []int{0, 1, 2, 3}
+	if !slices.Equal(hotSeats, want) {
+		t.Errorf("hot seats over the round = %v, want each seat exactly once: %v", hotSeats, want)
+	}
+	if !slices.Equal(quizMasters, want) {
+		t.Errorf("quizmasters over the round = %v, want each seat exactly once: %v", quizMasters, want)
 	}
 }
 

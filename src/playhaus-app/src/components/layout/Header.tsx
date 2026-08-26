@@ -38,7 +38,7 @@ export default function Header() {
                 {/* On a game's own front page the corner is the game's mark; inside
                     something else it is about that; outside either, about you. */}
                 {mark !== undefined ? (
-                    <GameMark letter={mark.letter} accent={mark.accent} label={mark.label} />
+                    <GameMark icon={mark.icon} label={mark.label} />
                 ) : pill === null ? (
                     <UserPill />
                 ) : (

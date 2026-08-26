@@ -440,16 +440,21 @@ type VerdictInput struct {
 // RecordHotSeatVerdict scores one go at a round 1 or round 2 question and moves the
 // game on.
 //
-// Three things can happen. A correct answer ends the question and keeps the seat: the
-// next question is asked to whoever just took this one, and the reading comes round
-// with them, because a question is always read by the seat on the answerer's right. A
-// wrong answer with somebody left to ask passes it along and changes nothing else. A
-// wrong answer with nobody left ends the question for no points and moves the whole
-// thing one seat on.
+// Three things can happen. A correct answer ends the question. In round 1 it keeps the
+// seat: the next question is asked to whoever just took this one, and the reading comes
+// round with them, because a question is always read by the seat on the answerer's
+// right. Round 2 never keeps it -- see the round 2 note below. A wrong answer with
+// somebody left to ask passes it along and changes nothing else. A wrong answer with
+// nobody left ends the question for no points and moves the whole thing one seat on.
 //
-// The two rounds differ only in what a question pays -- round 1 on every second one,
-// round 2 on all of them and double, see HotSeatPointsAt. Everything else about them is
-// the same game, so they are the same code rather than the same code twice.
+// The two rounds also differ in what a question pays -- round 1 on every second one,
+// round 2 on all of them and double, see HotSeatPointsAt.
+//
+// Round 2 additionally always shuffles the seat on one, correct or not: it deals exactly
+// one question per player (ChoiceQuestionsFor), and the only way every seat ends up
+// asked once and reading once is if landing a question never lets anybody keep it. Round
+// 1 does not have this shape -- it deals more questions than there are players on
+// purpose, so a table that is bad at trivia does not run out before it is done.
 func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -523,21 +528,32 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 		question.Points = points
 		out.Questions = append(out.Questions, question)
 
-		// They keep it, and the reading comes round to their own neighbour. Taking a
-		// question is what buys you the next one, and the next one is read by the seat
-		// on your right -- so a player taking a question from three seats down the
-		// table takes the reading with them. Leaving the reading where it was is what
-		// used to strand it on whoever opened the round while somebody else was being
-		// asked everything.
-		if seat == hot {
-			session.HotSeatRun++
-		} else {
-			// They have taken it off whoever was holding the seat, so the run they are
-			// starting is their own and one question long.
+		if session.CurrentRound == RoundChoice {
+			// Round 2 never lets a correct answer keep the seat -- it shuffles on
+			// exactly the way a wrong-with-nobody-left question does, so that over the
+			// round's one question per player, every seat is asked exactly once and
+			// reads exactly once. There is no streak to track, since nobody holds the
+			// seat across two questions any more.
 			session.HotSeatRun = 1
+			session.OpenOn(hot + 1)
+		} else {
+			// They keep it, and the reading comes round to their own neighbour. Taking
+			// a question is what buys you the next one, and the next one is read by the
+			// seat on your right -- so a player taking a question from three seats down
+			// the table takes the reading with them. Leaving the reading where it was
+			// is what used to strand it on whoever opened the round while somebody else
+			// was being asked everything.
+			if seat == hot {
+				session.HotSeatRun++
+			} else {
+				// They have taken it off whoever was holding the seat, so the run they
+				// are starting is their own and one question long.
+				session.HotSeatRun = 1
+			}
+
+			session.OpenOn(seat)
 		}
 
-		session.OpenOn(seat)
 		s.advance(session)
 
 	case AnsweringSeat(session.QuizMasterSeat, hot, attempts+1, len(session.Players)) < 0:
@@ -751,11 +767,14 @@ func (s *Service) closestAnswer(ctx context.Context, session *Session, question 
 }
 
 
-// WordAward is what became of one word inside the thirty seconds. A nil Seat is a word
-// nobody got.
+// WordAward is what became of one word inside the thirty seconds. Empty Seats is a word
+// nobody got. More than one seat is a draw -- two people shouting it at the same
+// instant -- and every seat named scores in full, the same way a tied round 3 guess
+// does: splitting a point over an argument about who was half a second faster is not a
+// rule a pub table would accept either.
 type WordAward struct {
 	SessionQuestionID uuid.UUID
-	Seat              *int
+	Seats             []int
 }
 
 // DescribeInput is the quizmaster settling one thirty second turn.
@@ -776,8 +795,10 @@ type DescribeInput struct {
 
 // RecordDescribeAwards scores one round 4 turn and moves the game on.
 //
-// Every guessed word pays twice -- the describer for getting it across, the guesser for
-// shouting it -- so a word can put two points on the board and a turn can put on eight.
+// Every guessed word pays the describer once for getting it across, and every guesser
+// named for it once each for shouting it -- so a word with a single winner puts two
+// points on the board, same as before, and a word with a draw puts on one more for
+// every extra name.
 func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -827,37 +848,46 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 	}
 
 	for _, word := range words {
-		seat, guessed := awarded[word.ID]
+		winners := awarded[word.ID]
 
-		attempt := &SessionAnswer{
-			ID:                uuid.New(),
-			SessionID:         session.ID,
-			SessionQuestionID: word.ID,
-			Correct:           guessed,
-			CreatedAt:         now,
-		}
-
-		if !guessed {
-			// Seat stays nil: nobody got this one, which is a thing worth writing
+		if len(winners) == 0 {
+			// No seat rows at all: nobody got this one, which is a thing worth writing
 			// down rather than a row worth leaving out.
 			word.Status = QuestionDone
 			word.Points = 0
 			out.Questions = append(out.Questions, word)
-			out.Answers = append(out.Answers, attempt)
+			out.Answers = append(out.Answers, &SessionAnswer{
+				ID:                uuid.New(),
+				SessionID:         session.ID,
+				SessionQuestionID: word.ID,
+				Correct:           false,
+				CreatedAt:         now,
+			})
 			continue
 		}
 
-		guesser := seat
-		attempt.Seat = &guesser
-		attempt.Points = DescribeGuessPoints
-		score(guesser, DescribeGuessPoints)
+		// One row per winner, each a real point -- a draw is two (or more) people
+		// shouting it at once, not one person's win split between them.
+		for _, guesser := range winners {
+			guesser := guesser
+			out.Answers = append(out.Answers, &SessionAnswer{
+				ID:                uuid.New(),
+				SessionID:         session.ID,
+				SessionQuestionID: word.ID,
+				Seat:              &guesser,
+				Correct:           true,
+				Points:            DescribeGuessPoints,
+				CreatedAt:         now,
+			})
+			score(guesser, DescribeGuessPoints)
+		}
 
-		// A second row, for the describer's own point. Two rows because every point in
-		// this game is meant to be accountable to one, and the describer's is a real
-		// point. They are told apart by the seat: the row whose seat is the word's
-		// AssignedSeat is the describer's, and a guesser can never be that seat.
+		// And one more row for the describer's own point, earned once per word no
+		// matter how many people shouted it. They are told apart from the guesser rows
+		// by the seat: the row whose seat is the describer's is theirs, and a guesser
+		// can never be that seat.
 		describer := in.DescriberSeat
-		out.Answers = append(out.Answers, attempt, &SessionAnswer{
+		out.Answers = append(out.Answers, &SessionAnswer{
 			ID:                uuid.New(),
 			SessionID:         session.ID,
 			SessionQuestionID: word.ID,
@@ -869,7 +899,7 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 		score(describer, DescribeWordPoints)
 
 		word.Status = QuestionDone
-		word.Points = DescribeWordPoints + DescribeGuessPoints
+		word.Points = DescribeWordPoints + len(winners)*DescribeGuessPoints
 		out.Questions = append(out.Questions, word)
 	}
 
@@ -894,14 +924,15 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 // matchAwards pairs what the quizmaster said with the words the turn actually holds, and
 // refuses anything that does not line up exactly.
 //
-// The result is only the guessed ones: a word missing from it is a word nobody got.
-func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (map[uuid.UUID]int, error) {
+// The result is only the guessed ones: a word missing from it, or mapped to an empty
+// slice, is a word nobody got.
+func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (map[uuid.UUID][]int, error) {
 	thisTurn := make(map[uuid.UUID]struct{}, len(words))
 	for _, word := range words {
 		thisTurn[word.ID] = struct{}{}
 	}
 
-	guessed := map[uuid.UUID]int{}
+	guessed := map[uuid.UUID][]int{}
 	named := make(map[uuid.UUID]struct{}, len(in.Awards))
 
 	for _, award := range in.Awards {
@@ -914,17 +945,26 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 		}
 		named[award.SessionQuestionID] = struct{}{}
 
-		if award.Seat == nil {
+		if len(award.Seats) == 0 {
 			continue
 		}
-		if session.PlayerAt(*award.Seat) == nil {
-			return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, *award.Seat)
-		}
-		if *award.Seat == in.DescriberSeat {
-			return nil, fmt.Errorf("%w: seat %d", ErrDescriberCannotGuess, *award.Seat)
+
+		seen := make(map[int]struct{}, len(award.Seats))
+		for _, seat := range award.Seats {
+			if session.PlayerAt(seat) == nil {
+				return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
+			}
+			if seat == in.DescriberSeat {
+				return nil, fmt.Errorf("%w: seat %d", ErrDescriberCannotGuess, seat)
+			}
+			if _, twice := seen[seat]; twice {
+				return nil, fmt.Errorf("describe awards: %w: seat %d twice for word %s",
+					ErrInvalidInput, seat, award.SessionQuestionID)
+			}
+			seen[seat] = struct{}{}
 		}
 
-		guessed[award.SessionQuestionID] = *award.Seat
+		guessed[award.SessionQuestionID] = award.Seats
 	}
 
 	if len(named) != len(words) {

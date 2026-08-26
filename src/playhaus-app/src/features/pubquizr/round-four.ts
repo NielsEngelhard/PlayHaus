@@ -91,10 +91,17 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     };
 }
 
-/** How many points a set of awards is about to hand out, per seat. */
+/**
+ * How many points a set of awards is about to hand out, per seat.
+ *
+ * A word maps to every seat that gets it, not just one: a draw is two or more people
+ * shouting it at the same instant, and every one of them scores in full, the same way a
+ * tied round 3 guess does. The describer still earns their word point once per word no
+ * matter how many people it is split between.
+ */
 export function scoreOfAwards(
     turn: DescribeTurn,
-    awards: Record<string, number | null>
+    awards: Record<string, number[]>
 ): Map<number, number> {
     const scores = new Map<number, number>();
 
@@ -103,10 +110,12 @@ export function scoreOfAwards(
     };
 
     for (const word of turn.words) {
-        const guesser = awards[word.dealt.id];
-        if (guesser === null || guesser === undefined) continue;
+        const guessers = awards[word.dealt.id];
+        if (guessers === undefined || guessers.length === 0) continue;
 
-        add(guesser, DESCRIBE_GUESS_POINTS);
+        for (const guesser of guessers) {
+            add(guesser, DESCRIBE_GUESS_POINTS);
+        }
         add(turn.describer.seat, DESCRIBE_WORD_POINTS);
     }
 

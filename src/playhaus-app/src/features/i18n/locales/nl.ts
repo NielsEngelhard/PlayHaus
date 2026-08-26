@@ -454,6 +454,7 @@ export const nl: Catalog = {
             markCorrect: 'Reken {{name}} goed',
             wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
             wrongEndsQuestion: 'Niemand meer over, fout beëindigt deze vraag',
+            choiceAlwaysPasses: 'Hoe dan ook, nu aan de beurt: {{name}}',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoints: 'Voor {{worth}}',
             noPoint: 'Geen punt',
@@ -498,11 +499,15 @@ export const nl: Catalog = {
             },
             describe: {
                 readyTitle: 'Jouw woorden, {{name}}',
-                readyBody: '{{words}} woorden in {{seconds}} seconden. Omschrijf ze zonder ze te zeggen. De rest roept.',
+                readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te doen',
+                readyRuleNoSaying: 'Zeg het woord zelf nooit',
+                readyRuleBothScore: 'Wie het als eerste roept scoort, en jij ook',
+                readyRuleTiming: 'De punten worden pas verdeeld als de tijd om is, dus blijf doorgaan in plaats van over één woord te discussiëren',
                 start: 'Laat mijn woorden zien en start',
                 dontSayIt: 'Zeg het woord zelf nooit',
+                runningReminder: 'Jullie scoren allebei als iemand het raadt. Zeg het woord nooit.',
                 scoringTitle: 'Wie had ze?',
-                whoGotIt: 'Wie raadde {{word}}',
+                whoGotItHint: 'Tik iedereen aan die het tegelijk riep',
                 nobody: 'Niemand had hem',
                 standing: '{{name}} pakt {{points}} uit deze beurt',
                 stillToRule: 'Nog {{left}} te gaan',
@@ -524,9 +529,14 @@ export const nl: Catalog = {
             standings: {
                 title: 'Ronde {{round}} klaar',
                 description: 'Zo staat de tafel ervoor na de eerste ronde.',
-                breather: 'Lees de stand voor en begin dan aan ronde {{round}}.',
                 startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
+            },
+            roundResult: {
+                title: 'Ronde {{round}} klaar',
+                wonBy: '{{names}} · {{worth}} punten',
+                nobody: 'Deze keer was niemand het dichtstbij',
+                continue: 'Bekijk de stand'
             }
         },
         errors: {

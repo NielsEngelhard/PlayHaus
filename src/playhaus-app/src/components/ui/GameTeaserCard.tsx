@@ -5,6 +5,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
+import { Image, type ImageSource } from "expo-image";
 import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import Chip from "./Chip";
@@ -14,6 +15,8 @@ interface Props {
     gradient: readonly [string, string, string],
     glyphInk: string,
     name: string,
+    /** The game's own icon. Falls back to the name's initial when unset. */
+    icon?: ImageSource,
     description: string,
     deviceMode: DeviceMode,
     minMaxPlayers: string,
@@ -29,6 +32,7 @@ export default function GameTeaserCard({
     gradient,
     glyphInk,
     name,
+    icon,
     description,
     deviceMode,
     minMaxPlayers,
@@ -51,11 +55,15 @@ export default function GameTeaserCard({
                     playable ? theme.popShadow(color) : styles.cardDim
                 ])}
             >
-                <View style={[styles.tile, linearGradient(gradient)]}>
-                    <AppText style={[styles.glyph, { color: glyphInk }]}>
-                        {name[0]}
-                    </AppText>
-                </View>
+                {icon ? (
+                    <Image source={icon} style={styles.icon} />
+                ) : (
+                    <View style={[styles.tile, linearGradient(gradient)]}>
+                        <AppText style={[styles.glyph, { color: glyphInk }]}>
+                            {name[0]}
+                        </AppText>
+                    </View>
+                )}
 
                 <View style={styles.body}>
                     <AppText style={styles.name} numberOfLines={1}>
@@ -138,6 +146,14 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.border,
         // A lit top edge, so the tile reads as domed rather than printed.
         boxShadow: 'inset 0 2px 0 rgba(255, 255, 255, 0.35)'
+    },
+    // The SVG icons draw their own background, border and glyph, so this is sized and
+    // rounded to match `tile` without repeating either.
+    icon: {
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+        flexShrink: 0,
+        borderRadius: 20
     },
     glyph: {
         fontSize: 34,

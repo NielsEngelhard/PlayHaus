@@ -201,10 +201,14 @@ export async function recordClosestGuessesRequest(
     );
 }
 
-/** What became of one round 4 word. A null seat is a word nobody got. */
+/**
+ * What became of one round 4 word. Empty seats is a word nobody got. More than one seat
+ * is a draw — two people shouting it at the same instant — and every seat named scores
+ * in full.
+ */
 export interface WordAward {
     sessionQuestionId: string
-    seat: number | null
+    seats: number[]
 }
 
 /**
