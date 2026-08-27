@@ -616,7 +616,7 @@ export const nl: Catalog = {
     },
     oneOfUs: { 
         index: { 
-            description: "Iedereen krijgt een vraag/woord, bijvoorbeeld: “Wat zou je doen als je onzichtbaar werd?” Iedereen antwoordt anoniem, behalve één speler die een iets andere vraag/woord krijgt.", 
+            description: "De burgers krijgen allemaal hetzelfde woord, of dezelfde vraag. De imposters krijgen een net wat andere en moeten zich schuil houden.", 
             oneDevice: { 
                 title: "1 telefoon", 
                 description: "Speel met 1 telefoon die wordt doorgegeven", 

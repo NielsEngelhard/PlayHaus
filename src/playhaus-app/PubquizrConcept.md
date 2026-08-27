@@ -16,7 +16,7 @@ Round 4 - 30 Seconds
 - Each player gets 4 words that they should describe (e.g. Bradd Pitt and Milk). Then they have to describe that and the other people have to guess. If someones guesses a word the Quizmaster and the 
 
 Round 5:
-- 8 questions with 4 "answers we search". You get points for each correct answer. An example question might be "what are the top 4 luxurious hand bag brands) with answers (Gucci, Chanel, Lacoste and Louis Vuitton. Not sure if that really is the right answer but it is an example to understand the structure of the questions. Each player has to answer within 25 seconds. When not guessed the turn goes to the next person. E.g. is person 1 has 2 correct answers the next person can still guess the other items. Or what do you know about Vincent van Gogh and then 4 keywords we search for (e.g. Dutch, painer etc).
+Finale between 2 people with the highest score
 
 Round 5:
 The 2 persons with the most points will battle each other in the finale.
