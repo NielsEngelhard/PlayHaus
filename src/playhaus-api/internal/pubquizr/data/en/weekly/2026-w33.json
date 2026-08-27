@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w33",
+  "title": "Weekly quiz week 33",
+  "description": "The weekly quiz of Wednesday 12 August 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Denmark?", "category": "Geography", "answers": [{ "text": "Copenhagen" }] },
+        { "prompt": "Which gas do people need in order to breathe?", "category": "Science", "answers": [{ "text": "Oxygen", "aliases": ["O2"] }] },
+        { "prompt": "Which empire was ruled from Rome and fell in the west in 476?", "category": "History", "answers": [{ "text": "The Roman Empire", "aliases": ["Roman Empire"] }] },
+        { "prompt": "How many players does a football team have on the pitch?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which Irish band released the album The Joshua Tree?", "category": "Music", "answers": [{ "text": "U2" }] },
+        { "prompt": "Which director made the film Schindler's List?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
+        { "prompt": "Which animal is the largest land animal in the world?", "category": "Nature", "answers": [{ "text": "The elephant", "aliases": ["African elephant"] }] },
+        { "prompt": "Which Dutch city is the southernmost in the country?", "category": "The Netherlands", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "Which language is the official language of Egypt?", "category": "Language", "answers": [{ "text": "Arabic" }] },
+        { "prompt": "Which French sculptor made The Thinker?", "category": "Art", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
+        { "prompt": "How many faces does a cube have?", "category": "Science", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Which continent is the smallest?", "category": "Geography", "answers": [{ "text": "Oceania", "aliases": ["Australia"] }] },
+        { "prompt": "Which British prime minister led the country through the Second World War?", "category": "History", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
+        { "prompt": "Which Japanese dish is rice with raw fish?", "category": "Food", "answers": [{ "text": "Sushi" }] },
+        { "prompt": "How many minutes does one round of Olympic boxing last?", "category": "Sport", "answers": [{ "text": "Three minutes", "aliases": ["3"] }] },
+        { "prompt": "Which bird lays the largest eggs of all?", "category": "Nature", "answers": [{ "text": "The ostrich", "aliases": ["ostrich"] }] },
+        { "prompt": "What is the seat of the Dutch government called?", "category": "The Netherlands", "answers": [{ "text": "The Binnenhof", "aliases": ["Binnenhof"] }] },
+        { "prompt": "What is the unit of power?", "category": "Science", "answers": [{ "text": "The watt", "aliases": ["watt", "W"] }] },
+        { "prompt": "Which actor played Tony Stark in the Marvel films?", "category": "Film", "answers": [{ "text": "Robert Downey Jr.", "aliases": ["Downey"] }] },
+        { "prompt": "Which river flows through Cairo?", "category": "Geography", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country does NOT border Austria?", "options": [{ "text": "Slovenia" }, { "text": "Croatia", "correct": true }, { "text": "Slovakia" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Who wrote The Little Prince?", "options": [{ "text": "Saint-Exupery", "correct": true }, { "text": "Camus" }, { "text": "Gide" }, { "text": "Malraux" }] },
+        { "prompt": "Which element has the symbol Au?", "options": [{ "text": "Silver" }, { "text": "Gold", "correct": true }, { "text": "Copper" }, { "text": "Aluminium" }] },
+        { "prompt": "In what year was the first feature film with sound released?", "options": [{ "text": "1919" }, { "text": "1923" }, { "text": "1927", "correct": true }, { "text": "1931" }] },
+        { "prompt": "What is the capital of Finland?", "options": [{ "text": "Turku" }, { "text": "Tampere" }, { "text": "Helsinki", "correct": true }, { "text": "Espoo" }] },
+        { "prompt": "Which animal has the largest eyes of all animals?", "options": [{ "text": "Giant squid", "correct": true }, { "text": "Blue whale" }, { "text": "Ostrich" }, { "text": "Elephant" }] },
+        { "prompt": "How many players does a futsal team have on court?", "options": [{ "text": "Four" }, { "text": "Five", "correct": true }, { "text": "Six" }, { "text": "Seven" }] },
+        { "prompt": "Which planet has the most visible rings?", "options": [{ "text": "Jupiter" }, { "text": "Saturn", "correct": true }, { "text": "Uranus" }, { "text": "Neptune" }] },
+        { "prompt": "Which country lies between Spain and France in the Pyrenees?", "options": [{ "text": "Andorra", "correct": true }, { "text": "Monaco" }, { "text": "San Marino" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Which German writer wrote Faust?", "options": [{ "text": "Goethe", "correct": true }, { "text": "Schiller" }, { "text": "Lessing" }, { "text": "Heine" }] },
+        { "prompt": "Which part of the brain controls balance?", "options": [{ "text": "Cerebrum" }, { "text": "Cerebellum", "correct": true }, { "text": "Brain stem" }, { "text": "Hypothalamus" }] },
+        { "prompt": "Which Dutch city is called the City of Light?", "options": [{ "text": "Eindhoven", "correct": true }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "Helmond" }] },
+        { "prompt": "In what year was the first Nobel Prize awarded?", "options": [{ "text": "1895" }, { "text": "1901", "correct": true }, { "text": "1908" }, { "text": "1912" }] },
+        { "prompt": "Which part of an organ does the player use their feet on?", "options": [{ "text": "Manuals" }, { "text": "Pedals", "correct": true }, { "text": "Stops" }, { "text": "Bellows" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the Panama Canal?", "answer": 82, "unit": "kilometres", "explanation": "Eighty-two kilometres from the Atlantic to the Pacific." },
+        { "prompt": "In what year was Thorbecke's Dutch constitution introduced?", "answer": 1848, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Anchor" },
+        { "prompt": "Keyhole" },
+        { "prompt": "Bear" },
+        { "prompt": "Aeroplane" },
+        { "prompt": "Bunch of grapes" },
+        { "prompt": "King" },
+        { "prompt": "Hammer" },
+        { "prompt": "Accordion" },
+        { "prompt": "Thunderstorm" },
+        { "prompt": "Baker" },
+        { "prompt": "Tunnel" },
+        { "prompt": "Thermometer" },
+        { "prompt": "Button" },
+        { "prompt": "Fly" },
+        { "prompt": "Campsite" },
+        { "prompt": "Umbrella stand" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest cities of the United States.", "answers": [{ "text": "New York" }, { "text": "Los Angeles" }, { "text": "Chicago" }, { "text": "Houston" }] },
+        { "prompt": "Name the four members of Queen.", "answers": [{ "text": "Freddie Mercury" }, { "text": "Brian May" }, { "text": "Roger Taylor" }, { "text": "John Deacon" }] },
+        { "prompt": "Name four seas that border Europe besides the North Sea.", "answers": [{ "text": "Baltic Sea" }, { "text": "Mediterranean" }, { "text": "Black Sea" }, { "text": "Adriatic Sea" }] },
+        { "prompt": "Name the four evangelists.", "answers": [{ "text": "Matthew" }, { "text": "Mark" }, { "text": "Luke" }, { "text": "John" }] },
+        { "prompt": "Name the four largest islands of the Mediterranean.", "answers": [{ "text": "Sicily" }, { "text": "Sardinia" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
+        { "prompt": "Name four woodwind instruments of an orchestra.", "answers": [{ "text": "Oboe" }, { "text": "Clarinet" }, { "text": "Bassoon" }, { "text": "Flute" }] },
+        { "prompt": "Name the four official languages of Switzerland.", "answers": [{ "text": "German" }, { "text": "French" }, { "text": "Italian" }, { "text": "Romansh" }] },
+        { "prompt": "Name the four planets with a solid surface in our solar system.", "answers": [{ "text": "Mercury" }, { "text": "Venus" }, { "text": "Earth" }, { "text": "Mars" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch astronomer gave his name to the cloud of comets around our solar system?", "answers": [{ "text": "Jan Hendrik Oort", "aliases": ["Oort"] }] },
+        { "prompt": "What is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
+        { "prompt": "Which German composer wrote the opera cycle Der Ring des Nibelungen?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] },
+        { "prompt": "What is the capital of Nepal?", "answers": [{ "text": "Kathmandu" }] },
+        { "prompt": "Which British biologist wrote On the Origin of Species?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "In what year was the first Tour de France ridden?", "answers": [{ "text": "1903" }] }
+      ]
+    }
+  ]
+}

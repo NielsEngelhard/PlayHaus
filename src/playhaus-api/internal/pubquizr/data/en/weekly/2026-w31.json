@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w31",
+  "title": "Weekly quiz week 31",
+  "description": "The weekly quiz of Wednesday 29 July 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Ireland?", "category": "Geography", "answers": [{ "text": "Dublin" }] },
+        { "prompt": "Which metal is attracted by a magnet?", "category": "Science", "answers": [{ "text": "Iron" }] },
+        { "prompt": "Which explorer reached the American islands in 1492?", "category": "History", "answers": [{ "text": "Christoffel Columbus", "aliases": ["Christopher Columbus", "Columbus"] }] },
+        { "prompt": "How many metres is the sprint distance called the hundred metres?", "category": "Sport", "answers": [{ "text": "One hundred", "aliases": ["100"] }] },
+        { "prompt": "Which American singer is known as the Queen of Soul?", "category": "Music", "answers": [{ "text": "Aretha Franklin", "aliases": ["Aretha"] }] },
+        { "prompt": "Which Japanese studio made the animated film Spirited Away?", "category": "Film", "answers": [{ "text": "Studio Ghibli", "aliases": ["Ghibli"] }] },
+        { "prompt": "How many legs does an insect have?", "category": "Nature", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Which Dutch city has the largest port in Europe?", "category": "The Netherlands", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "What is the official language of Austria?", "category": "Language", "answers": [{ "text": "German" }] },
+        { "prompt": "Which Dutch graphic artist made prints of impossible stairs and waterfalls?", "category": "Art", "answers": [{ "text": "M.C. Escher", "aliases": ["Escher"] }] },
+        { "prompt": "How many faces does a dodecahedron have?", "category": "Science", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "Which mountain is the highest in the Alps?", "category": "Geography", "answers": [{ "text": "Mont Blanc", "aliases": ["Monte Bianco"] }] },
+        { "prompt": "Which American president issued the Emancipation Proclamation in 1863?", "category": "History", "answers": [{ "text": "Abraham Lincoln", "aliases": ["Lincoln"] }] },
+        { "prompt": "Which vegetable is orange and grows underground?", "category": "Food", "answers": [{ "text": "The carrot", "aliases": ["carrot"] }] },
+        { "prompt": "In which sport are the terms strike and gutter used?", "category": "Sport", "answers": [{ "text": "Bowling" }] },
+        { "prompt": "Which animal defends itself with spines and rolls into a ball?", "category": "Nature", "answers": [{ "text": "The hedgehog", "aliases": ["hedgehog"] }] },
+        { "prompt": "What is the Dutch parliament with both its chambers called?", "category": "The Netherlands", "answers": [{ "text": "The States General", "aliases": ["States General"] }] },
+        { "prompt": "What is the speed of light per second, in round numbers?", "category": "Science", "answers": [{ "text": "Three hundred thousand kilometres", "aliases": ["300000 km"] }] },
+        { "prompt": "Which director made the films Inception and Interstellar?", "category": "Film", "answers": [{ "text": "Christopher Nolan", "aliases": ["Nolan"] }] },
+        { "prompt": "Which country is entirely surrounded by South Africa?", "category": "Geography", "answers": [{ "text": "Lesotho" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these rivers does NOT flow through Germany?", "options": [{ "text": "Elbe" }, { "text": "Weser" }, { "text": "Loire", "correct": true }, { "text": "Main" }] },
+        { "prompt": "Who wrote Don Quixote?", "options": [{ "text": "Cervantes", "correct": true }, { "text": "Lope de Vega" }, { "text": "Calderon" }, { "text": "Quevedo" }] },
+        { "prompt": "Which gas smells of rotten eggs?", "options": [{ "text": "Methane" }, { "text": "Hydrogen sulphide", "correct": true }, { "text": "Ammonia" }, { "text": "Ozone" }] },
+        { "prompt": "In what year did the American Civil War begin?", "options": [{ "text": "1848" }, { "text": "1861", "correct": true }, { "text": "1865" }, { "text": "1870" }] },
+        { "prompt": "What is the capital of Argentina?", "options": [{ "text": "Cordoba" }, { "text": "Rosario" }, { "text": "Buenos Aires", "correct": true }, { "text": "Mendoza" }] },
+        { "prompt": "Which of these four animals lays the most eggs?", "options": [{ "text": "Chicken" }, { "text": "Sea turtle", "correct": true }, { "text": "Penguin" }, { "text": "Ostrich" }] },
+        { "prompt": "How many points is a shot inside the three point line worth in basketball?", "options": [{ "text": "One" }, { "text": "Two", "correct": true }, { "text": "Three" }, { "text": "Four" }] },
+        { "prompt": "Which planet has the shortest day?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Earth" }, { "text": "Mars" }, { "text": "Venus" }] },
+        { "prompt": "Which of these four countries has the most inhabitants?", "options": [{ "text": "Nigeria", "correct": true }, { "text": "Russia" }, { "text": "Japan" }, { "text": "Mexico" }] },
+        { "prompt": "Which writer wrote Pride and Prejudice?", "options": [{ "text": "Jane Austen", "correct": true }, { "text": "Emily Bronte" }, { "text": "George Eliot" }, { "text": "Elizabeth Gaskell" }] },
+        { "prompt": "Which vitamin deficiency causes scurvy?", "options": [{ "text": "Vitamin A" }, { "text": "Vitamin B12" }, { "text": "Vitamin C", "correct": true }, { "text": "Vitamin D" }] },
+        { "prompt": "Which river is the longest within Dutch borders?", "options": [{ "text": "Meuse", "correct": true }, { "text": "IJssel" }, { "text": "Waal" }, { "text": "Vecht" }] },
+        { "prompt": "In what year was the Eurovision Song Contest first held?", "options": [{ "text": "1950" }, { "text": "1956", "correct": true }, { "text": "1960" }, { "text": "1964" }] },
+        { "prompt": "Which of these is a brass instrument?", "options": [{ "text": "Oboe" }, { "text": "Trombone", "correct": true }, { "text": "Bassoon" }, { "text": "Flute" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres is the circumference of the earth at the equator?", "answer": 40075, "unit": "kilometres", "explanation": "Just over forty thousand kilometres, which is where the metre was derived from." },
+        { "prompt": "In what year was the Afsluitdijk closed?", "answer": 1932, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Mill" },
+        { "prompt": "Chessboard" },
+        { "prompt": "Dolphin" },
+        { "prompt": "Post office" },
+        { "prompt": "Peach" },
+        { "prompt": "Wizard" },
+        { "prompt": "Scaffold pole" },
+        { "prompt": "Xylophone" },
+        { "prompt": "Fog" },
+        { "prompt": "Beekeeper" },
+        { "prompt": "Submarine" },
+        { "prompt": "Solar panel" },
+        { "prompt": "Sock" },
+        { "prompt": "Butterfly" },
+        { "prompt": "Circus" },
+        { "prompt": "Toaster" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border the Netherlands or Belgium.", "answers": [{ "text": "Germany" }, { "text": "Belgium" }, { "text": "France" }, { "text": "Luxembourg" }] },
+        { "prompt": "Name the four largest cities of the United Kingdom.", "answers": [{ "text": "London" }, { "text": "Birmingham" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
+        { "prompt": "Name the four instruments of a classical string quartet.", "answers": [{ "text": "First violin" }, { "text": "Second violin" }, { "text": "Viola" }, { "text": "Cello" }] },
+        { "prompt": "Name four world religions.", "answers": [{ "text": "Christianity" }, { "text": "Islam" }, { "text": "Judaism" }, { "text": "Buddhism" }] },
+        { "prompt": "Name the four kinds of blood vessel besides capillaries.", "answers": [{ "text": "Artery" }, { "text": "Vein" }, { "text": "Arteriole" }, { "text": "Venule" }] },
+        { "prompt": "Name the four largest inhabited Dutch Wadden islands.", "answers": [{ "text": "Texel" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Vlieland" }] },
+        { "prompt": "Name the four main gases of the earth's atmosphere.", "answers": [{ "text": "Nitrogen" }, { "text": "Oxygen" }, { "text": "Argon" }, { "text": "Carbon dioxide" }] },
+        { "prompt": "Name four great Italian cities of the Renaissance.", "answers": [{ "text": "Florence" }, { "text": "Venice" }, { "text": "Rome" }, { "text": "Milan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch microscopist was the first to see bacteria through a lens he made himself?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
+        { "prompt": "What is the longest river in Asia?", "answers": [{ "text": "The Yangtze", "aliases": ["Yangtze River"] }] },
+        { "prompt": "Which German composer wrote the Brandenburg Concertos?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
+        { "prompt": "What is the capital of Vietnam?", "answers": [{ "text": "Hanoi" }] },
+        { "prompt": "Which Polish physicist won Nobel Prizes in two different fields?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "In what year did the Dutch Revolt against Spain begin?", "answers": [{ "text": "1568" }] }
+      ]
+    }
+  ]
+}

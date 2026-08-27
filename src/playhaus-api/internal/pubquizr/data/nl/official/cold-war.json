@@ -1,0 +1,104 @@
+{
+  "slug": "cold-war",
+  "title": "Koude Oorlog",
+  "description": "Een hele pubquiz over de Koude Oorlog: muren, raketten, spionnen en de ruimtewedloop.",
+  "publishedAt": "2026-01-21",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "category": "Geschiedenis", "answers": [{ "text": "1989" }] },
+        { "prompt": "Welke grootmacht stond in de Koude Oorlog tegenover de Verenigde Staten?", "category": "Landen", "answers": [{ "text": "De Sovjet-Unie", "aliases": ["Sovjet-Unie", "USSR"] }] },
+        { "prompt": "Welke satelliet lanceerde de Sovjet-Unie in 1957?", "category": "Ruimtevaart", "answers": [{ "text": "Spoetnik 1", "aliases": ["Spoetnik"] }] },
+        { "prompt": "Welk militair bondgenootschap richtten westerse landen in 1949 op?", "category": "Militair", "answers": [{ "text": "De NAVO", "aliases": ["NAVO"] }] },
+        { "prompt": "Hoe heette het bondgenootschap van de Sovjet-Unie en Oost-Europa uit 1955?", "category": "Militair", "answers": [{ "text": "Het Warschaupact", "aliases": ["Warschaupact"] }] },
+        { "prompt": "Op welk eiland speelde de rakettencrisis van 1962?", "category": "Crisis", "answers": [{ "text": "Cuba" }] },
+        { "prompt": "Welke Amerikaanse president was in functie tijdens de Cubacrisis?", "category": "Personen", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Welke Sovjetleider begon in 1985 met perestrojka en glasnost?", "category": "Personen", "answers": [{ "text": "Michail Gorbatsjov", "aliases": ["Gorbatsjov"] }] },
+        { "prompt": "In welk Aziatisch land vochten de Verenigde Staten van 1965 tot 1973 een oorlog?", "category": "Oorlogen", "answers": [{ "text": "Vietnam" }] },
+        { "prompt": "Welke oorlog werd van 1950 tot 1953 op een verdeeld schiereiland gevoerd?", "category": "Oorlogen", "answers": [{ "text": "De Koreaoorlog", "aliases": ["Koreaoorlog", "Korea"] }] },
+        { "prompt": "Welke term van Churchill beschreef de scheiding dwars door Europa?", "category": "Geografie", "answers": [{ "text": "Het IJzeren Gordijn", "aliases": ["IJzeren Gordijn"] }] },
+        { "prompt": "Wie was in 1961 de eerste mens in de ruimte?", "category": "Ruimtevaart", "answers": [{ "text": "Joeri Gagarin", "aliases": ["Gagarin"] }] },
+        { "prompt": "Welke Amerikaan zette in 1969 als eerste voet op de maan?", "category": "Ruimtevaart", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Welke stad werd in 1948 en 1949 door een luchtbrug bevoorraad?", "category": "Steden", "answers": [{ "text": "Berlijn", "aliases": ["West-Berlijn"] }] },
+        { "prompt": "Welk land werd in 1949 communistisch onder Mao Zedong?", "category": "Landen", "answers": [{ "text": "China" }] },
+        { "prompt": "Welke afkorting staat voor de gesprekken over strategische wapenbeperking uit 1972?", "category": "Wapens", "answers": [{ "text": "SALT" }] },
+        { "prompt": "Hoe heet de Amerikaanse inlichtingendienst die in 1947 werd opgericht?", "category": "Spionage", "answers": [{ "text": "De CIA", "aliases": ["CIA"] }] },
+        { "prompt": "Hoe heette de geheime dienst van de Sovjet-Unie?", "category": "Spionage", "answers": [{ "text": "De KGB", "aliases": ["KGB"] }] },
+        { "prompt": "In welk jaar werd de Sovjet-Unie ontbonden?", "category": "Geschiedenis", "answers": [{ "text": "1991" }] },
+        { "prompt": "Welke grensovergang tussen Oost- en West-Berlijn droeg een mannennaam?", "category": "Bouwwerken", "answers": [{ "text": "Checkpoint Charlie", "aliases": ["Charlie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land was GEEN lid van het Warschaupact?", "options": [{ "text": "Joegoslavie", "correct": true }, { "text": "Polen" }, { "text": "Hongarije" }, { "text": "Bulgarije" }] },
+        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "options": [{ "text": "1955" }, { "text": "1961", "correct": true }, { "text": "1968" }, { "text": "1972" }] },
+        { "prompt": "Welke Sovjetleider hield in 1956 zijn geheime rede tegen Stalin?", "options": [{ "text": "Nikita Chroesjtsjov", "correct": true }, { "text": "Leonid Brezjnev" }, { "text": "Joeri Andropov" }, { "text": "Aleksej Kosygin" }] },
+        { "prompt": "Hoe heette de mislukte invasie van Cuba in 1961?", "options": [{ "text": "De Varkensbaai", "correct": true }, { "text": "Guantanamo" }, { "text": "Santiago" }, { "text": "Matanzas" }] },
+        { "prompt": "In welk jaar vond de Praagse Lente plaats?", "options": [{ "text": "1953" }, { "text": "1956" }, { "text": "1968", "correct": true }, { "text": "1970" }] },
+        { "prompt": "Welke opstand werd in 1956 door Sovjettroepen neergeslagen?", "options": [{ "text": "De Hongaarse", "correct": true }, { "text": "De Poolse" }, { "text": "De Tsjechische" }, { "text": "De Roemeense" }] },
+        { "prompt": "Welke Amerikaanse president noemde de Sovjet-Unie het rijk van het kwaad?", "options": [{ "text": "Ronald Reagan", "correct": true }, { "text": "Jimmy Carter" }, { "text": "Richard Nixon" }, { "text": "Gerald Ford" }] },
+        { "prompt": "Welk hulpprogramma hielp West-Europa vanaf 1948 weer opbouwen?", "options": [{ "text": "Het Marshallplan", "correct": true }, { "text": "Het Trumanplan" }, { "text": "Het Dawesplan" }, { "text": "Het Schumanplan" }] },
+        { "prompt": "Welk Aziatisch land werd in 1954 gedeeld bij de zeventiende breedtegraad?", "options": [{ "text": "Vietnam", "correct": true }, { "text": "Korea" }, { "text": "Laos" }, { "text": "Cambodja" }] },
+        { "prompt": "Welke Amerikaanse senator leidde in de jaren vijftig de jacht op communisten?", "options": [{ "text": "Joseph McCarthy", "correct": true }, { "text": "Richard Nixon" }, { "text": "Robert Taft" }, { "text": "Estes Kefauver" }] },
+        { "prompt": "In welk jaar hield Kennedy zijn rede Ich bin ein Berliner?", "options": [{ "text": "1958" }, { "text": "1961" }, { "text": "1963", "correct": true }, { "text": "1969" }] },
+        { "prompt": "Welke Poolse vakbond werd in 1980 opgericht door Lech Walesa?", "options": [{ "text": "Solidarnosc", "correct": true }, { "text": "Charta 77" }, { "text": "Perestrojka" }, { "text": "Sejm" }] },
+        { "prompt": "Welk Amerikaans ruimtevaartprogramma bracht mensen naar de maan?", "options": [{ "text": "Apollo", "correct": true }, { "text": "Gemini" }, { "text": "Mercury" }, { "text": "Skylab" }] },
+        { "prompt": "Welk land verliet in 1966 de militaire structuur van de NAVO?", "options": [{ "text": "Frankrijk", "correct": true }, { "text": "Spanje" }, { "text": "Griekenland" }, { "text": "Turkije" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar sprak Churchill in Fulton over het IJzeren Gordijn?", "answer": 1946, "unit": "", "explanation": "Maart 1946, in Fulton in Missouri, met Truman naast hem op het podium." },
+        { "prompt": "Hoeveel kilometer lang was de grens tussen Oost- en West-Duitsland?", "answer": 1393, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Muur" },
+        { "prompt": "Raket" },
+        { "prompt": "Spion" },
+        { "prompt": "Onderzeeboot" },
+        { "prompt": "Satelliet" },
+        { "prompt": "Prikkeldraad" },
+        { "prompt": "Bunker" },
+        { "prompt": "Wachttoren" },
+        { "prompt": "Tank" },
+        { "prompt": "Paspoort" },
+        { "prompt": "Ruimtepak" },
+        { "prompt": "Propaganda" },
+        { "prompt": "Ambassade" },
+        { "prompt": "Grenswacht" },
+        { "prompt": "Kortegolfradio" },
+        { "prompt": "Geheimschrift" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen van het Warschaupact.", "answers": [{ "text": "Sovjet-Unie" }, { "text": "Polen" }, { "text": "Hongarije" }, { "text": "Bulgarije" }] },
+        { "prompt": "Noem de vier bezettingszones van Duitsland na 1945.", "answers": [{ "text": "Amerikaanse zone" }, { "text": "Britse zone" }, { "text": "Franse zone" }, { "text": "Sovjetzone" }] },
+        { "prompt": "Noem vier oprichtende landen van de NAVO.", "answers": [{ "text": "Verenigde Staten" }, { "text": "Verenigd Koninkrijk" }, { "text": "Frankrijk" }, { "text": "Nederland" }] },
+        { "prompt": "Noem vier leiders van de Sovjet-Unie.", "answers": [{ "text": "Stalin" }, { "text": "Chroesjtsjov" }, { "text": "Brezjnev" }, { "text": "Gorbatsjov" }] },
+        { "prompt": "Noem vier Amerikaanse presidenten uit de Koude Oorlog.", "answers": [{ "text": "Harry Truman" }, { "text": "Dwight Eisenhower" }, { "text": "John F. Kennedy" }, { "text": "Ronald Reagan" }] },
+        { "prompt": "Noem vier landen die in 1991 uit de Sovjet-Unie ontstonden.", "answers": [{ "text": "Rusland" }, { "text": "Oekraine" }, { "text": "Wit-Rusland" }, { "text": "Kazachstan" }] },
+        { "prompt": "Noem vier landen waar in 1989 de communistische regering viel.", "answers": [{ "text": "Polen" }, { "text": "Hongarije" }, { "text": "Tsjechoslowakije" }, { "text": "Roemenie" }] },
+        { "prompt": "Noem vier hoofdsteden achter het IJzeren Gordijn.", "answers": [{ "text": "Warschau" }, { "text": "Boedapest" }, { "text": "Praag" }, { "text": "Boekarest" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk Amerikaans spionagevliegtuig werd in 1960 boven de Sovjet-Unie neergehaald?", "answers": [{ "text": "De U-2", "aliases": ["U2", "U-2"] }] },
+        { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug"] }] },
+        { "prompt": "Hoe heette het Sovjetruimtestation dat in 1986 werd gelanceerd?", "answers": [{ "text": "Mir" }] },
+        { "prompt": "In welk jaar werd het Warschaupact ontbonden?", "answers": [{ "text": "1991" }] },
+        { "prompt": "Welke Amerikaanse minister van Buitenlandse Zaken voerde in de jaren zeventig de ontspanningspolitiek?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
+        { "prompt": "Welke Tsjechische toneelschrijver werd in 1989 president?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] }
+      ]
+    }
+  ]
+}

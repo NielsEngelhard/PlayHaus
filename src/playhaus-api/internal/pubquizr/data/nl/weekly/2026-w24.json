@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w24",
+  "title": "Weekquiz week 24",
+  "description": "De wekelijkse quiz van woensdag 10 juni 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de langste rivier van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Welk gas geven planten bij daglicht af?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof", "aliases": ["O2"] }] },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "category": "Geschiedenis", "answers": [{ "text": "1989" }] },
+        { "prompt": "Hoeveel spelers heeft een volleybalteam in het veld?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Wie schilderde de Mona Lisa?", "category": "Kunst", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci"] }] },
+        { "prompt": "Hoeveel poten heeft een spin?", "category": "Natuur", "answers": [{ "text": "Acht", "aliases": ["8"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft Assen als hoofdstad?", "category": "Nederland", "answers": [{ "text": "Drenthe" }] },
+        { "prompt": "Welk instrument bespeelde Louis Armstrong?", "category": "Muziek", "answers": [{ "text": "Trompet" }] },
+        { "prompt": "Welke acteur speelde Jack Dawson in Titanic?", "category": "Film", "answers": [{ "text": "Leonardo DiCaprio", "aliases": ["DiCaprio"] }] },
+        { "prompt": "Hoeveel letters telt het Nederlandse alfabet?", "category": "Taal", "answers": [{ "text": "Zesentwintig", "aliases": ["26"] }] },
+        { "prompt": "Welke planeet staat het dichtst bij de zon?", "category": "Wetenschap", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Op welk continent ligt de Sahara?", "category": "Aardrijkskunde", "answers": [{ "text": "Afrika" }] },
+        { "prompt": "Wie was de eerste president van de Verenigde Staten?", "category": "Geschiedenis", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }] },
+        { "prompt": "Van welke boon wordt chocolade gemaakt?", "category": "Eten", "answers": [{ "text": "De cacaoboon", "aliases": ["cacao"] }] },
+        { "prompt": "In welke sport slaat u een shuttle over het net?", "category": "Sport", "answers": [{ "text": "Badminton" }] },
+        { "prompt": "Welke boom draagt eikels?", "category": "Natuur", "answers": [{ "text": "De eik", "aliases": ["eik"] }] },
+        { "prompt": "In welke stad staat het Rijksmuseum?", "category": "Nederland", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Wat is de chemische formule van water?", "category": "Wetenschap", "answers": [{ "text": "H2O" }] },
+        { "prompt": "In welke film zingt Julie Andrews het lied Do-Re-Mi?", "category": "Film", "answers": [{ "text": "The Sound of Music" }] },
+        { "prompt": "Welke zee grenst aan de noordkust van Egypte?", "category": "Aardrijkskunde", "answers": [{ "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen grenst NIET aan Duitsland?", "options": [{ "text": "Belgie" }, { "text": "Tsjechie" }, { "text": "Hongarije", "correct": true }, { "text": "Denemarken" }] },
+        { "prompt": "Wie schreef de roman Misdaad en straf?", "options": [{ "text": "Dostojevski", "correct": true }, { "text": "Tolstoj" }, { "text": "Tsjechov" }, { "text": "Gogol" }] },
+        { "prompt": "Welk element heeft atoomnummer 1?", "options": [{ "text": "Helium" }, { "text": "Waterstof", "correct": true }, { "text": "Lithium" }, { "text": "Koolstof" }] },
+        { "prompt": "In welk jaar zonk de Titanic?", "options": [{ "text": "1905" }, { "text": "1912", "correct": true }, { "text": "1918" }, { "text": "1923" }] },
+        { "prompt": "Wat is de hoofdstad van Canada?", "options": [{ "text": "Toronto" }, { "text": "Vancouver" }, { "text": "Ottawa", "correct": true }, { "text": "Montreal" }] },
+        { "prompt": "Welk van deze dieren is een buideldier?", "options": [{ "text": "Otter" }, { "text": "Wombat", "correct": true }, { "text": "Lemming" }, { "text": "Fret" }] },
+        { "prompt": "Hoeveel snaren heeft een standaardviool?", "options": [{ "text": "Drie" }, { "text": "Vier", "correct": true }, { "text": "Vijf" }, { "text": "Zes" }] },
+        { "prompt": "Welke planeet staat bekend om zijn grote rode vlek?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Saturnus" }, { "text": "Mars" }, { "text": "Neptunus" }] },
+        { "prompt": "Welk land gaf het Vrijheidsbeeld aan de Verenigde Staten?", "options": [{ "text": "Engeland" }, { "text": "Frankrijk", "correct": true }, { "text": "Spanje" }, { "text": "Italie" }] },
+        { "prompt": "Welke Nederlandse schilder sneed een deel van zijn oor af?", "options": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Van Gogh", "correct": true }, { "text": "Mondriaan" }] },
+        { "prompt": "Wat is het langste bot in het menselijk lichaam?", "options": [{ "text": "Scheenbeen" }, { "text": "Dijbeen", "correct": true }, { "text": "Bovenarmbeen" }, { "text": "Kuitbeen" }] },
+        { "prompt": "Welke van deze zeeen is eigenlijk een meer?", "options": [{ "text": "Kaspische Zee", "correct": true }, { "text": "Zwarte Zee" }, { "text": "Rode Zee" }, { "text": "Adriatische Zee" }] },
+        { "prompt": "In welk jaar begon de Eerste Wereldoorlog?", "options": [{ "text": "1912" }, { "text": "1914", "correct": true }, { "text": "1916" }, { "text": "1918" }] },
+        { "prompt": "Welk instrument heeft 88 toetsen?", "options": [{ "text": "Orgel" }, { "text": "Piano", "correct": true }, { "text": "Klavecimbel" }, { "text": "Accordeon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoe hoog was de Eiffeltoren bij de opening in 1889, in meters?", "answer": 312, "unit": "meter", "explanation": "Ruim driehonderd meter, en daarmee veertig jaar lang het hoogste bouwwerk ter wereld." },
+        { "prompt": "In welk jaar werd de eerste mens de ruimte in gelanceerd?", "answer": 1961, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Paraplu" },
+        { "prompt": "Vuurtoren" },
+        { "prompt": "Kruiwagen" },
+        { "prompt": "Wasmachine" },
+        { "prompt": "Sneeuwpop" },
+        { "prompt": "Harmonica" },
+        { "prompt": "Zwembad" },
+        { "prompt": "Kompas" },
+        { "prompt": "Verjaardag" },
+        { "prompt": "Kameel" },
+        { "prompt": "Postbode" },
+        { "prompt": "Gletsjer" },
+        { "prompt": "Schaatsen" },
+        { "prompt": "Ziekenhuis" },
+        { "prompt": "Regenboog" },
+        { "prompt": "Tractor" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier seizoenen.", "answers": [{ "text": "Lente" }, { "text": "Zomer" }, { "text": "Herfst" }, { "text": "Winter" }] },
+        { "prompt": "Noem de vier Beatles.", "answers": [{ "text": "John Lennon" }, { "text": "Paul McCartney" }, { "text": "George Harrison" }, { "text": "Ringo Starr" }] },
+        { "prompt": "Noem de vier grootste steden van de Randstad.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
+        { "prompt": "Noem de vier hoofdwindrichtingen.", "answers": [{ "text": "Noord" }, { "text": "Oost" }, { "text": "Zuid" }, { "text": "West" }] },
+        { "prompt": "Noem de vier bloedgroepen van het ABO-systeem.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
+        { "prompt": "Noem de vier landen van het Verenigd Koninkrijk.", "answers": [{ "text": "Engeland" }, { "text": "Schotland" }, { "text": "Wales" }, { "text": "Noord-Ierland" }] },
+        { "prompt": "Noem de vier symbolen in een kaartspel.", "answers": [{ "text": "Harten" }, { "text": "Ruiten" }, { "text": "Klaveren" }, { "text": "Schoppen" }] },
+        { "prompt": "Noem de vier gasplaneten van ons zonnestelsel.", "answers": [{ "text": "Jupiter" }, { "text": "Saturnus" }, { "text": "Uranus" }, { "text": "Neptunus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse natuurkundige kreeg in 1913 de Nobelprijs voor zijn werk bij zeer lage temperaturen?", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
+        { "prompt": "Wat is de langste rivier van Zuid-Amerika?", "answers": [{ "text": "De Amazone", "aliases": ["Amazone"] }] },
+        { "prompt": "Welke componist schreef de opera De Toverfluit?", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
+        { "prompt": "Wat is de hoofdstad van Mongolie?", "answers": [{ "text": "Ulaanbaatar", "aliases": ["Ulan Bator"] }] },
+        { "prompt": "Op welk schip maakte Charles Darwin zijn reis rond de wereld?", "answers": [{ "text": "De Beagle", "aliases": ["Beagle"] }] },
+        { "prompt": "In welk jaar werden de Verenigde Naties opgericht?", "answers": [{ "text": "1945" }] }
+      ]
+    }
+  ]
+}

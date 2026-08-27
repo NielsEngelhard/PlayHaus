@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w29",
+  "title": "Weekquiz week 29",
+  "description": "De wekelijkse quiz van woensdag 15 juli 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Griekenland?", "category": "Aardrijkskunde", "answers": [{ "text": "Athene" }] },
+        { "prompt": "Welke ster staat het dichtst bij de aarde?", "category": "Wetenschap", "answers": [{ "text": "De zon", "aliases": ["zon"] }] },
+        { "prompt": "Welke Engelse koning had zes vrouwen?", "category": "Geschiedenis", "answers": [{ "text": "Hendrik VIII", "aliases": ["Hendrik de achtste"] }] },
+        { "prompt": "Hoeveel stukken heeft elke kleur bij het begin van een schaakpartij?", "category": "Sport", "answers": [{ "text": "Zestien", "aliases": ["16"] }] },
+        { "prompt": "Welk instrument heeft zwarte en witte toetsen en pedalen?", "category": "Muziek", "answers": [{ "text": "De piano", "aliases": ["piano", "vleugel"] }] },
+        { "prompt": "Welke film uit 1993 gaat over een park met levende dinosaurussen?", "category": "Film", "answers": [{ "text": "Jurassic Park" }] },
+        { "prompt": "Welk zoogdier legt eieren en leeft in Australie?", "category": "Natuur", "answers": [{ "text": "Het vogelbekdier", "aliases": ["vogelbekdier"] }] },
+        { "prompt": "Welke Nederlandse provincie bestaat uit een groot aantal ingepolderde stukken land en heeft Lelystad als hoofdstad?", "category": "Nederland", "answers": [{ "text": "Flevoland" }] },
+        { "prompt": "Uit welke taal komt het woord robot?", "category": "Taal", "answers": [{ "text": "Tsjechisch" }] },
+        { "prompt": "Welke Nederlandse kunstenaar maakte schilderijen met rechte lijnen in rood, geel en blauw?", "category": "Kunst", "answers": [{ "text": "Piet Mondriaan", "aliases": ["Mondriaan"] }] },
+        { "prompt": "Hoeveel chromosoomparen heeft een mens?", "category": "Wetenschap", "answers": [{ "text": "Drieentwintig", "aliases": ["23"] }] },
+        { "prompt": "Welk land heeft de langste kustlijn ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Canada" }] },
+        { "prompt": "Welke Franse keizer verloor in 1815 de slag bij Waterloo?", "category": "Geschiedenis", "answers": [{ "text": "Napoleon", "aliases": ["Napoleon Bonaparte"] }] },
+        { "prompt": "Welk zuivelproduct wordt gemaakt door melk te laten stremmen en te persen?", "category": "Eten", "answers": [{ "text": "Kaas" }] },
+        { "prompt": "Hoeveel punten is een touchdown in American football waard?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welk dier heeft strepen en leeft in de Afrikaanse savanne?", "category": "Natuur", "answers": [{ "text": "De zebra", "aliases": ["zebra"] }] },
+        { "prompt": "Welk Nederlands bouwwerk sluit de Zuiderzee af van de Waddenzee?", "category": "Nederland", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Welk apparaat meet de luchtdruk?", "category": "Wetenschap", "answers": [{ "text": "De barometer", "aliases": ["barometer"] }] },
+        { "prompt": "Welke acteur speelde Vito Corleone in The Godfather uit 1972?", "category": "Film", "answers": [{ "text": "Marlon Brando", "aliases": ["Brando"] }] },
+        { "prompt": "Welke stad ligt op twee continenten?", "category": "Aardrijkskunde", "answers": [{ "text": "Istanbul" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land was GEEN lid van het Warschaupact?", "options": [{ "text": "Hongarije" }, { "text": "Joegoslavie", "correct": true }, { "text": "Polen" }, { "text": "Bulgarije" }] },
+        { "prompt": "Wie schreef 1984?", "options": [{ "text": "George Orwell", "correct": true }, { "text": "Aldous Huxley" }, { "text": "Ray Bradbury" }, { "text": "H.G. Wells" }] },
+        { "prompt": "Welk gas gebruiken wij om ballonnen te laten zweven?", "options": [{ "text": "Waterstof" }, { "text": "Helium", "correct": true }, { "text": "Neon" }, { "text": "Methaan" }] },
+        { "prompt": "In welk jaar viel de Sovjet-Unie uiteen?", "options": [{ "text": "1989" }, { "text": "1990" }, { "text": "1991", "correct": true }, { "text": "1993" }] },
+        { "prompt": "Wat is de hoofdstad van Egypte?", "options": [{ "text": "Alexandrie" }, { "text": "Cairo", "correct": true }, { "text": "Luxor" }, { "text": "Aswan" }] },
+        { "prompt": "Welk dier is het hoogste ter wereld?", "options": [{ "text": "Olifant" }, { "text": "Giraf", "correct": true }, { "text": "Kameel" }, { "text": "Struisvogel" }] },
+        { "prompt": "Hoeveel vakken heeft een schaakbord?", "options": [{ "text": "36" }, { "text": "49" }, { "text": "64", "correct": true }, { "text": "81" }] },
+        { "prompt": "Welke planeet wordt de rode planeet genoemd?", "options": [{ "text": "Mercurius" }, { "text": "Mars", "correct": true }, { "text": "Venus" }, { "text": "Jupiter" }] },
+        { "prompt": "Welk land vierde in 1776 zijn onafhankelijkheidsverklaring?", "options": [{ "text": "Mexico" }, { "text": "Verenigde Staten", "correct": true }, { "text": "Brazilie" }, { "text": "Canada" }] },
+        { "prompt": "Welke schrijver bedacht Pippi Langkous?", "options": [{ "text": "Astrid Lindgren", "correct": true }, { "text": "Selma Lagerlof" }, { "text": "Tove Jansson" }, { "text": "Annie Schmidt" }] },
+        { "prompt": "Welke vitamine maakt het lichaam aan onder invloed van zonlicht?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine C" }, { "text": "Vitamine D", "correct": true }, { "text": "Vitamine K" }] },
+        { "prompt": "Welke Nederlandse schaatsster won op de Spelen van 1988 drie gouden medailles?", "options": [{ "text": "Yvonne van Gennip", "correct": true }, { "text": "Ria Visser" }, { "text": "Annie Borckink" }, { "text": "Atje Keulen-Deelstra" }] },
+        { "prompt": "In welk jaar werd het Verdrag van Rome ondertekend?", "options": [{ "text": "1949" }, { "text": "1951" }, { "text": "1957", "correct": true }, { "text": "1965" }] },
+        { "prompt": "Welk instrument bespeelt een percussionist niet?", "options": [{ "text": "Pauk" }, { "text": "Marimba" }, { "text": "Hobo", "correct": true }, { "text": "Triangel" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel liter bloed heeft een volwassen mens ongeveer in zijn lichaam?", "answer": 5, "unit": "liter", "explanation": "Ongeveer vijf liter, iets meer bij een grote man en iets minder bij een kleine vrouw." },
+        { "prompt": "In welk jaar werd de Nederlandse Oost-Indische Compagnie opgericht?", "answer": 1602, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Hooiberg" },
+        { "prompt": "Kurkentrekker" },
+        { "prompt": "Papegaai" },
+        { "prompt": "Museum" },
+        { "prompt": "Kokosnoot" },
+        { "prompt": "Zeemeermin" },
+        { "prompt": "Rolschaats" },
+        { "prompt": "Doedelzak" },
+        { "prompt": "Sneeuwketting" },
+        { "prompt": "Boswachter" },
+        { "prompt": "Kabelbaan" },
+        { "prompt": "Zonnebril" },
+        { "prompt": "Brievenbus" },
+        { "prompt": "Nijlpaard" },
+        { "prompt": "Tentstok" },
+        { "prompt": "Waterkoker" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste landen ter wereld naar oppervlakte.", "answers": [{ "text": "Rusland" }, { "text": "Canada" }, { "text": "China" }, { "text": "Verenigde Staten" }] },
+        { "prompt": "Noem de vier snaren van een viool van laag naar hoog.", "answers": [{ "text": "G" }, { "text": "D" }, { "text": "A" }, { "text": "E" }] },
+        { "prompt": "Noem de vier steden die van 1992 tot 2004 de Olympische Zomerspelen hielden.", "answers": [{ "text": "Barcelona" }, { "text": "Atlanta" }, { "text": "Sydney" }, { "text": "Athene" }] },
+        { "prompt": "Noem de vier randzeeen van de Middellandse Zee behalve de Egeische.", "answers": [{ "text": "Adriatische Zee" }, { "text": "Tyrreense Zee" }, { "text": "Ionische Zee" }, { "text": "Ligurische Zee" }] },
+        { "prompt": "Noem de vier delen van het spijsverteringskanaal naast de maag.", "answers": [{ "text": "Mond" }, { "text": "Slokdarm" }, { "text": "Dunne darm" }, { "text": "Dikke darm" }] },
+        { "prompt": "Noem de vier grootste steden van Frankrijk.", "answers": [{ "text": "Parijs" }, { "text": "Marseille" }, { "text": "Lyon" }, { "text": "Toulouse" }] },
+        { "prompt": "Noem de vier zwaarste stukken in het schaakspel naast de koning en de pion.", "answers": [{ "text": "Koningin" }, { "text": "Toren" }, { "text": "Paard" }, { "text": "Loper" }] },
+        { "prompt": "Noem de vier wielermonumenten behalve Milaan-Sanremo.", "answers": [{ "text": "Ronde van Vlaanderen" }, { "text": "Parijs-Roubaix" }, { "text": "Luik-Bastenaken-Luik" }, { "text": "Ronde van Lombardije" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse rechtsgeleerde schreef in 1625 Over het recht van oorlog en vrede?", "answers": [{ "text": "Hugo de Groot", "aliases": ["Grotius", "Hugo Grotius"] }] },
+        { "prompt": "Wat is de hoogste berg van Zuid-Amerika?", "answers": [{ "text": "De Aconcagua", "aliases": ["Aconcagua"] }] },
+        { "prompt": "Welke Oostenrijkse componist schreef meer dan honderd symfonieen en wordt de vader van de symfonie genoemd?", "answers": [{ "text": "Joseph Haydn", "aliases": ["Haydn"] }] },
+        { "prompt": "Wat is de hoofdstad van Kazachstan?", "answers": [{ "text": "Astana", "aliases": ["Nur-Sultan"] }] },
+        { "prompt": "Welke Engelse natuurkundige formuleerde de drie bewegingswetten?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
+        { "prompt": "In welk jaar viel Constantinopel in handen van de Ottomanen?", "answers": [{ "text": "1453" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "barbie",
+  "title": "Barbie World",
+  "description": "A whole pub quiz about Barbie: from the first doll in 1959 to the 2023 film.",
+  "publishedAt": "2026-02-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which toy company makes Barbie?", "category": "Brand", "answers": [{ "text": "Mattel" }] },
+        { "prompt": "In what year did the first Barbie doll go on sale?", "category": "History", "answers": [{ "text": "1959" }] },
+        { "prompt": "What is Barbie's full name?", "category": "Names", "answers": [{ "text": "Barbara Millicent Roberts", "aliases": ["Barbara Roberts"] }] },
+        { "prompt": "What is Barbie's boyfriend called?", "category": "Names", "answers": [{ "text": "Ken" }] },
+        { "prompt": "What is Ken's surname?", "category": "Names", "answers": [{ "text": "Carson" }] },
+        { "prompt": "What is the sister of Barbie who appeared in 1964 called?", "category": "Names", "answers": [{ "text": "Skipper" }] },
+        { "prompt": "In which fictional town in Wisconsin did Barbie grow up?", "category": "Places", "answers": [{ "text": "Willows" }] },
+        { "prompt": "Which actress played Barbie in the 2023 film?", "category": "Film", "answers": [{ "text": "Margot Robbie", "aliases": ["Robbie"] }] },
+        { "prompt": "Which actor played Ken in the 2023 film?", "category": "Film", "answers": [{ "text": "Ryan Gosling", "aliases": ["Gosling"] }] },
+        { "prompt": "Who directed the 2023 Barbie film?", "category": "Film", "answers": [{ "text": "Greta Gerwig", "aliases": ["Gerwig"] }] },
+        { "prompt": "Which colour is most strongly associated with Barbie?", "category": "Colours", "answers": [{ "text": "Pink" }] },
+        { "prompt": "Which co-founder of Mattel came up with the Barbie doll?", "category": "People", "answers": [{ "text": "Ruth Handler", "aliases": ["Handler"] }] },
+        { "prompt": "Who was Barbie named after?", "category": "Names", "answers": [{ "text": "The daughter of Ruth Handler", "aliases": ["Barbara"] }] },
+        { "prompt": "Who was Ken named after?", "category": "Names", "answers": [{ "text": "The son of Ruth Handler", "aliases": ["Kenneth"] }] },
+        { "prompt": "What is Barbie's famous house called?", "category": "Toys", "answers": [{ "text": "The Dreamhouse", "aliases": ["Dreamhouse"] }] },
+        { "prompt": "Which Danish-Norwegian group had a hit with Barbie Girl in 1997?", "category": "Music", "answers": [{ "text": "Aqua" }] },
+        { "prompt": "Which British singer sang Dance The Night for the 2023 film?", "category": "Music", "answers": [{ "text": "Dua Lipa" }] },
+        { "prompt": "In what year did Barbie first become an astronaut?", "category": "Careers", "answers": [{ "text": "1965" }] },
+        { "prompt": "What was the profession of the very first Barbie in 1959?", "category": "Careers", "answers": [{ "text": "Fashion model", "aliases": ["model"] }] },
+        { "prompt": "Which actor played the boss of Mattel in the 2023 film?", "category": "Film", "answers": [{ "text": "Will Ferrell", "aliases": ["Ferrell"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In what year was Ken introduced?", "options": [{ "text": "1959" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1970" }] },
+        { "prompt": "Which German doll was Barbie based on?", "options": [{ "text": "Bild Lilli", "correct": true }, { "text": "Kathe Kruse" }, { "text": "Steiff" }, { "text": "Schildkrot" }] },
+        { "prompt": "In which city was Barbie presented in 1959?", "options": [{ "text": "New York", "correct": true }, { "text": "Chicago" }, { "text": "Los Angeles" }, { "text": "Nuremberg" }] },
+        { "prompt": "Which American rapper sang Barbie World with Ice Spice?", "options": [{ "text": "Nicki Minaj", "correct": true }, { "text": "Doja Cat" }, { "text": "Cardi B" }, { "text": "Megan Thee Stallion" }] },
+        { "prompt": "What is the friend who appeared in 1968 as the first black doll of the line called?", "options": [{ "text": "Christie", "correct": true }, { "text": "Midge" }, { "text": "Teresa" }, { "text": "Nikki" }] },
+        { "prompt": "What is Barbie's friend introduced in 1963 called?", "options": [{ "text": "Midge", "correct": true }, { "text": "Teresa" }, { "text": "Nikki" }, { "text": "Summer" }] },
+        { "prompt": "In what year did Barbie first run for president?", "options": [{ "text": "1980" }, { "text": "1992", "correct": true }, { "text": "2000" }, { "text": "2008" }] },
+        { "prompt": "Which actress voiced the narrator in the 2023 film?", "options": [{ "text": "Helen Mirren", "correct": true }, { "text": "Judi Dench" }, { "text": "Meryl Streep" }, { "text": "Emma Thompson" }] },
+        { "prompt": "Which company launched the rival Bratz dolls in 2001?", "options": [{ "text": "MGA Entertainment", "correct": true }, { "text": "Hasbro" }, { "text": "Lego" }, { "text": "Playmobil" }] },
+        { "prompt": "What is Barbie's sister who appeared in 1992 called?", "options": [{ "text": "Stacie", "correct": true }, { "text": "Skipper" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
+        { "prompt": "Which singer won an Oscar for the song What Was I Made For?", "options": [{ "text": "Billie Eilish", "correct": true }, { "text": "Dua Lipa" }, { "text": "Lana Del Rey" }, { "text": "Olivia Rodrigo" }] },
+        { "prompt": "How many centimetres tall is a standard Barbie doll?", "options": [{ "text": "25" }, { "text": "29", "correct": true }, { "text": "33" }, { "text": "37" }] },
+        { "prompt": "Which profession did Barbie first take up in 1973?", "options": [{ "text": "Surgeon", "correct": true }, { "text": "Pilot" }, { "text": "Judge" }, { "text": "Firefighter" }] },
+        { "prompt": "In which American state is Mattel's head office?", "options": [{ "text": "California", "correct": true }, { "text": "New York" }, { "text": "Texas" }, { "text": "Illinois" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year was Mattel founded?", "answer": 1945, "unit": "", "explanation": "Ruth and Elliot Handler started out in 1945 with picture frames and doll furniture." },
+        { "prompt": "How many minutes does the 2023 Barbie film last?", "answer": 114, "unit": "minutes" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Doll" },
+        { "prompt": "Dream house" },
+        { "prompt": "Convertible" },
+        { "prompt": "High heels" },
+        { "prompt": "Handbag" },
+        { "prompt": "Sunglasses" },
+        { "prompt": "Swimming pool" },
+        { "prompt": "Glitter" },
+        { "prompt": "Doll house" },
+        { "prompt": "Horse" },
+        { "prompt": "Beach" },
+        { "prompt": "Dress" },
+        { "prompt": "Hairstyle" },
+        { "prompt": "Toy shop" },
+        { "prompt": "Roller skates" },
+        { "prompt": "Film premiere" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four actors from the 2023 Barbie film.", "answers": [{ "text": "Margot Robbie" }, { "text": "Ryan Gosling" }, { "text": "America Ferrera" }, { "text": "Will Ferrell" }] },
+        { "prompt": "Name the four sisters of Barbie.", "answers": [{ "text": "Skipper" }, { "text": "Stacie" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
+        { "prompt": "Name four professions Barbie has had.", "answers": [{ "text": "Astronaut" }, { "text": "Doctor" }, { "text": "Pilot" }, { "text": "President" }] },
+        { "prompt": "Name four friends of Barbie.", "answers": [{ "text": "Midge" }, { "text": "Christie" }, { "text": "Teresa" }, { "text": "Nikki" }] },
+        { "prompt": "Name four artists from the soundtrack of the 2023 Barbie film.", "answers": [{ "text": "Dua Lipa" }, { "text": "Billie Eilish" }, { "text": "Nicki Minaj" }, { "text": "Ice Spice" }] },
+        { "prompt": "Name four toy brands of Mattel.", "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Fisher-Price" }, { "text": "Uno" }] },
+        { "prompt": "Name four films starring Margot Robbie.", "answers": [{ "text": "Barbie" }, { "text": "The Wolf of Wall Street" }, { "text": "I, Tonya" }, { "text": "Suicide Squad" }] },
+        { "prompt": "Name four films starring Ryan Gosling.", "answers": [{ "text": "La La Land" }, { "text": "Drive" }, { "text": "The Notebook" }, { "text": "Blade Runner 2049" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many dollars did the first Barbie doll cost in 1959?", "answers": [{ "text": "Three dollars", "aliases": ["3"] }] },
+        { "prompt": "Who was Ruth Handler's husband and co-founder of Mattel?", "answers": [{ "text": "Elliot Handler", "aliases": ["Elliot"] }] },
+        { "prompt": "In what year did the first Barbie animated film, Barbie in the Nutcracker, appear?", "answers": [{ "text": "2001" }] },
+        { "prompt": "Which actress played the mother Gloria in the 2023 film?", "answers": [{ "text": "America Ferrera", "aliases": ["Ferrera"] }] },
+        { "prompt": "What is the fictional world Barbie lives in in the 2023 film called?", "answers": [{ "text": "Barbieland" }] },
+        { "prompt": "Which American pop artist painted a portrait of Barbie in the eighties?", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] }
+      ]
+    }
+  ]
+}

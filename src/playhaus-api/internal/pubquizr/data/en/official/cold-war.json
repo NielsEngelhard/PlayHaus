@@ -1,0 +1,104 @@
+{
+  "slug": "cold-war",
+  "title": "Cold War",
+  "description": "A whole pub quiz about the Cold War: walls, missiles, spies and the space race.",
+  "publishedAt": "2026-01-21",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In what year did the Berlin Wall fall?", "category": "History", "answers": [{ "text": "1989" }] },
+        { "prompt": "Which great power stood opposite the United States in the Cold War?", "category": "Countries", "answers": [{ "text": "The Soviet Union", "aliases": ["Soviet Union", "USSR"] }] },
+        { "prompt": "Which satellite did the Soviet Union launch in 1957?", "category": "Space", "answers": [{ "text": "Sputnik 1", "aliases": ["Sputnik"] }] },
+        { "prompt": "Which military alliance did western countries found in 1949?", "category": "Military", "answers": [{ "text": "NATO", "aliases": ["North Atlantic Treaty Organisation"] }] },
+        { "prompt": "What was the 1955 alliance of the Soviet Union and eastern Europe called?", "category": "Military", "answers": [{ "text": "The Warsaw Pact", "aliases": ["Warsaw Pact"] }] },
+        { "prompt": "On which island did the missile crisis of 1962 play out?", "category": "Crises", "answers": [{ "text": "Cuba" }] },
+        { "prompt": "Which American president was in office during the Cuban missile crisis?", "category": "People", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Which Soviet leader began perestroika and glasnost in 1985?", "category": "People", "answers": [{ "text": "Mikhail Gorbachev", "aliases": ["Gorbachev"] }] },
+        { "prompt": "In which Asian country did the United States fight a war from 1965 to 1973?", "category": "Wars", "answers": [{ "text": "Vietnam" }] },
+        { "prompt": "Which war was fought on a divided peninsula from 1950 to 1953?", "category": "Wars", "answers": [{ "text": "The Korean War", "aliases": ["Korean War", "Korea"] }] },
+        { "prompt": "Which phrase of Churchill's described the division across Europe?", "category": "Geography", "answers": [{ "text": "The Iron Curtain", "aliases": ["Iron Curtain"] }] },
+        { "prompt": "Who was the first human in space in 1961?", "category": "Space", "answers": [{ "text": "Yuri Gagarin", "aliases": ["Gagarin"] }] },
+        { "prompt": "Which American was the first to set foot on the moon in 1969?", "category": "Space", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Which city was supplied by an airlift in 1948 and 1949?", "category": "Cities", "answers": [{ "text": "Berlin", "aliases": ["West Berlin"] }] },
+        { "prompt": "Which country became communist under Mao Zedong in 1949?", "category": "Countries", "answers": [{ "text": "China" }] },
+        { "prompt": "Which acronym stands for the strategic arms limitation talks of 1972?", "category": "Weapons", "answers": [{ "text": "SALT" }] },
+        { "prompt": "What is the American intelligence agency founded in 1947 called?", "category": "Espionage", "answers": [{ "text": "The CIA", "aliases": ["CIA"] }] },
+        { "prompt": "What was the secret service of the Soviet Union called?", "category": "Espionage", "answers": [{ "text": "The KGB", "aliases": ["KGB"] }] },
+        { "prompt": "In what year was the Soviet Union dissolved?", "category": "History", "answers": [{ "text": "1991" }] },
+        { "prompt": "Which crossing point between East and West Berlin carried a man's name?", "category": "Buildings", "answers": [{ "text": "Checkpoint Charlie", "aliases": ["Charlie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country was NOT a member of the Warsaw Pact?", "options": [{ "text": "Yugoslavia", "correct": true }, { "text": "Poland" }, { "text": "Hungary" }, { "text": "Bulgaria" }] },
+        { "prompt": "In what year was the Berlin Wall built?", "options": [{ "text": "1955" }, { "text": "1961", "correct": true }, { "text": "1968" }, { "text": "1972" }] },
+        { "prompt": "Which Soviet leader gave his secret speech against Stalin in 1956?", "options": [{ "text": "Nikita Khrushchev", "correct": true }, { "text": "Leonid Brezhnev" }, { "text": "Yuri Andropov" }, { "text": "Alexei Kosygin" }] },
+        { "prompt": "What was the failed invasion of Cuba in 1961 called?", "options": [{ "text": "The Bay of Pigs", "correct": true }, { "text": "Guantanamo" }, { "text": "Santiago" }, { "text": "Matanzas" }] },
+        { "prompt": "In what year did the Prague Spring take place?", "options": [{ "text": "1953" }, { "text": "1956" }, { "text": "1968", "correct": true }, { "text": "1970" }] },
+        { "prompt": "Which uprising was crushed by Soviet troops in 1956?", "options": [{ "text": "The Hungarian one", "correct": true }, { "text": "The Polish one" }, { "text": "The Czech one" }, { "text": "The Romanian one" }] },
+        { "prompt": "Which American president called the Soviet Union the evil empire?", "options": [{ "text": "Ronald Reagan", "correct": true }, { "text": "Jimmy Carter" }, { "text": "Richard Nixon" }, { "text": "Gerald Ford" }] },
+        { "prompt": "Which aid programme helped rebuild western Europe from 1948?", "options": [{ "text": "The Marshall Plan", "correct": true }, { "text": "The Truman Plan" }, { "text": "The Dawes Plan" }, { "text": "The Schuman Plan" }] },
+        { "prompt": "Which Asian country was divided at the seventeenth parallel in 1954?", "options": [{ "text": "Vietnam", "correct": true }, { "text": "Korea" }, { "text": "Laos" }, { "text": "Cambodja" }] },
+        { "prompt": "Which American senator led the hunt for communists in the fifties?", "options": [{ "text": "Joseph McCarthy", "correct": true }, { "text": "Richard Nixon" }, { "text": "Robert Taft" }, { "text": "Estes Kefauver" }] },
+        { "prompt": "In what year did Kennedy give his Ich bin ein Berliner speech?", "options": [{ "text": "1958" }, { "text": "1961" }, { "text": "1963", "correct": true }, { "text": "1969" }] },
+        { "prompt": "Which Polish trade union was founded by Lech Walesa in 1980?", "options": [{ "text": "Solidarnosc", "correct": true }, { "text": "Charta 77" }, { "text": "Perestrojka" }, { "text": "Sejm" }] },
+        { "prompt": "Which American space programme took people to the moon?", "options": [{ "text": "Apollo", "correct": true }, { "text": "Gemini" }, { "text": "Mercury" }, { "text": "Skylab" }] },
+        { "prompt": "Which country left the military structure of NATO in 1966?", "options": [{ "text": "France", "correct": true }, { "text": "Spain" }, { "text": "Greece" }, { "text": "Turkey" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year did Churchill speak at Fulton about the Iron Curtain?", "answer": 1946, "unit": "", "explanation": "March 1946, at Fulton in Missouri, with Truman on the platform beside him." },
+        { "prompt": "How many kilometres long was the border between East and West Germany?", "answer": 1393, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Wall" },
+        { "prompt": "Missile" },
+        { "prompt": "Spy" },
+        { "prompt": "Submarine" },
+        { "prompt": "Satellite" },
+        { "prompt": "Barbed wire" },
+        { "prompt": "Bunker" },
+        { "prompt": "Watchtower" },
+        { "prompt": "Tank" },
+        { "prompt": "Passport" },
+        { "prompt": "Spacesuit" },
+        { "prompt": "Propaganda" },
+        { "prompt": "Embassy" },
+        { "prompt": "Border guard" },
+        { "prompt": "Shortwave radio" },
+        { "prompt": "Code" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries of the Warsaw Pact.", "answers": [{ "text": "Soviet Union" }, { "text": "Poland" }, { "text": "Hungary" }, { "text": "Bulgaria" }] },
+        { "prompt": "Name the four occupation zones of Germany after 1945.", "answers": [{ "text": "American zone" }, { "text": "British zone" }, { "text": "French zone" }, { "text": "Soviet zone" }] },
+        { "prompt": "Name four founding countries of NATO.", "answers": [{ "text": "United States" }, { "text": "United Kingdom" }, { "text": "France" }, { "text": "The Netherlands" }] },
+        { "prompt": "Name four leaders of the Soviet Union.", "answers": [{ "text": "Stalin" }, { "text": "Khrushchev" }, { "text": "Brezhnev" }, { "text": "Gorbachev" }] },
+        { "prompt": "Name four American presidents of the Cold War.", "answers": [{ "text": "Harry Truman" }, { "text": "Dwight Eisenhower" }, { "text": "John F. Kennedy" }, { "text": "Ronald Reagan" }] },
+        { "prompt": "Name four countries that emerged from the Soviet Union in 1991.", "answers": [{ "text": "Russia" }, { "text": "Ukraine" }, { "text": "Belarus" }, { "text": "Kazakhstan" }] },
+        { "prompt": "Name four countries where the communist government fell in 1989.", "answers": [{ "text": "Poland" }, { "text": "Hungary" }, { "text": "Czechoslovakia" }, { "text": "Romania" }] },
+        { "prompt": "Name four capitals behind the Iron Curtain.", "answers": [{ "text": "Warsaw" }, { "text": "Budapest" }, { "text": "Prague" }, { "text": "Bucharest" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which American spy plane was shot down over the Soviet Union in 1960?", "answers": [{ "text": "The U-2", "aliases": ["U2", "U-2"] }] },
+        { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge"] }] },
+        { "prompt": "What was the Soviet space station launched in 1986 called?", "answers": [{ "text": "Mir" }] },
+        { "prompt": "In what year was the Warsaw Pact dissolved?", "answers": [{ "text": "1991" }] },
+        { "prompt": "Which American secretary of state pursued detente in the seventies?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
+        { "prompt": "Which Czech playwright became president in 1989?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] }
+      ]
+    }
+  ]
+}

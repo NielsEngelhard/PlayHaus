@@ -1,0 +1,104 @@
+{
+  "slug": "royal-families",
+  "title": "Koninklijke Families",
+  "description": "Een hele pubquiz over koningshuizen: kronen, paleizen, dynastieen en troonsafstanden.",
+  "publishedAt": "2026-03-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe heet het Nederlandse vorstenhuis?", "category": "Nederland", "answers": [{ "text": "Oranje-Nassau", "aliases": ["Huis van Oranje"] }] },
+        { "prompt": "Welke Nederlandse koningin trad in 2013 af?", "category": "Nederland", "answers": [{ "text": "Beatrix" }] },
+        { "prompt": "Hoe heet de oudste dochter van koning Willem-Alexander?", "category": "Nederland", "answers": [{ "text": "Catharina-Amalia", "aliases": ["Amalia"] }] },
+        { "prompt": "Welke Britse koningin regeerde van 1952 tot 2022?", "category": "Verenigd Koninkrijk", "answers": [{ "text": "Elizabeth II", "aliases": ["Elizabeth", "Elisabeth II"] }] },
+        { "prompt": "Hoe heet het huis van de Britse koninklijke familie sinds 1917?", "category": "Verenigd Koninkrijk", "answers": [{ "text": "Windsor" }] },
+        { "prompt": "In welke kerk in Londen worden Britse vorsten gekroond?", "category": "Verenigd Koninkrijk", "answers": [{ "text": "Westminster Abbey", "aliases": ["Westminster"] }] },
+        { "prompt": "Welke Britse koningin regeerde van 1837 tot 1901?", "category": "Verenigd Koninkrijk", "answers": [{ "text": "Victoria" }] },
+        { "prompt": "Hoe heet het Spaanse vorstenhuis?", "category": "Spanje", "answers": [{ "text": "Bourbon", "aliases": ["Borbon"] }] },
+        { "prompt": "In welke stad staat het paleis van de Zweedse koninklijke familie?", "category": "Zweden", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Welke Amerikaanse actrice werd in 1956 vorstin van Monaco?", "category": "Monaco", "answers": [{ "text": "Grace Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "Hoe wordt de troon van de Japanse keizer genoemd?", "category": "Japan", "answers": [{ "text": "De Chrysantentroon", "aliases": ["Chrysantentroon"] }] },
+        { "prompt": "Welke Deense koningin trad in 2024 af?", "category": "Denemarken", "answers": [{ "text": "Margrethe II", "aliases": ["Margrethe"] }] },
+        { "prompt": "Wie was de eerste koning van Belgie?", "category": "Belgie", "answers": [{ "text": "Leopold I", "aliases": ["Leopold"] }] },
+        { "prompt": "Welke Franse koning werd in 1793 onthoofd?", "category": "Frankrijk", "answers": [{ "text": "Lodewijk XVI", "aliases": ["Louis XVI"] }] },
+        { "prompt": "Welke Franse koning liet Versailles bouwen en heette de Zonnekoning?", "category": "Frankrijk", "answers": [{ "text": "Lodewijk XIV", "aliases": ["Louis XIV"] }] },
+        { "prompt": "Welke titel droeg de keizer van Rusland?", "category": "Rusland", "answers": [{ "text": "Tsaar", "aliases": ["tsaar"] }] },
+        { "prompt": "Welke Russische dynastie regeerde van 1613 tot 1917?", "category": "Rusland", "answers": [{ "text": "De Romanovs", "aliases": ["Romanov"] }] },
+        { "prompt": "Welke titel draagt de echtgenote van een koning gewoonlijk?", "category": "Titels", "answers": [{ "text": "Koningin", "aliases": ["koningin-gemalin"] }] },
+        { "prompt": "Welke titel draagt de Britse troonopvolger traditioneel?", "category": "Titels", "answers": [{ "text": "Prins van Wales", "aliases": ["Wales"] }] },
+        { "prompt": "Welke plechtigheid maakt een troonopvolger in het Verenigd Koninkrijk officieel tot vorst?", "category": "Symbolen", "answers": [{ "text": "De kroning", "aliases": ["kroning"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar trouwde Willem-Alexander met Maxima?", "options": [{ "text": "1998" }, { "text": "2000" }, { "text": "2002", "correct": true }, { "text": "2004" }] },
+        { "prompt": "Hoe heet de residentie van de Britse vorst in Londen?", "options": [{ "text": "Buckingham Palace", "correct": true }, { "text": "Windsor Castle" }, { "text": "Kensington Palace" }, { "text": "Clarence House" }] },
+        { "prompt": "Welk Europees land is een groothertogdom?", "options": [{ "text": "Luxemburg", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Welke Britse koning deed in 1936 troonsafstand?", "options": [{ "text": "Edward VIII", "correct": true }, { "text": "George V" }, { "text": "George VI" }, { "text": "Edward VII" }] },
+        { "prompt": "Welke Engelse koning had zes vrouwen?", "options": [{ "text": "Hendrik VIII", "correct": true }, { "text": "Karel I" }, { "text": "Jacobus I" }, { "text": "Richard III" }] },
+        { "prompt": "Wie was de laatste tsaar van Rusland?", "options": [{ "text": "Nicolaas II", "correct": true }, { "text": "Alexander III" }, { "text": "Peter III" }, { "text": "Paul I" }] },
+        { "prompt": "Welk land heeft een keizer als staatshoofd?", "options": [{ "text": "Japan", "correct": true }, { "text": "China" }, { "text": "Thailand" }, { "text": "Marokko" }] },
+        { "prompt": "Welke Zweedse koning stichtte in 1818 het huidige vorstenhuis?", "options": [{ "text": "Karel XIV Johan", "correct": true }, { "text": "Gustaaf III" }, { "text": "Oscar I" }, { "text": "Karel XII" }] },
+        { "prompt": "Welke Franse koningin werd in 1793 samen met haar man onthoofd?", "options": [{ "text": "Marie-Antoinette", "correct": true }, { "text": "Madame de Pompadour" }, { "text": "Josephine" }, { "text": "Catharina de Medici" }] },
+        { "prompt": "Welke Britse koning regeerde tijdens de Amerikaanse Onafhankelijkheidsoorlog?", "options": [{ "text": "George III", "correct": true }, { "text": "George II" }, { "text": "George IV" }, { "text": "William IV" }] },
+        { "prompt": "Welke Oostenrijkse keizerin regeerde van 1740 tot 1780?", "options": [{ "text": "Maria Theresia", "correct": true }, { "text": "Maria Anna" }, { "text": "Maria Louise" }, { "text": "Zita" }] },
+        { "prompt": "Welk land wordt geregeerd door een koning uit het huis Al Saoed?", "options": [{ "text": "Saoedi-Arabie", "correct": true }, { "text": "Jordanie" }, { "text": "Marokko" }, { "text": "Oman" }] },
+        { "prompt": "Welke Britse prins trouwde in 2018 met Meghan Markle?", "options": [{ "text": "Harry", "correct": true }, { "text": "William" }, { "text": "Andrew" }, { "text": "Edward" }] },
+        { "prompt": "Welk kasteel is de residentie van de Britse vorst in Schotland?", "options": [{ "text": "Balmoral", "correct": true }, { "text": "Holyrood" }, { "text": "Stirling" }, { "text": "Edinburgh" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd Elizabeth II gekroond?", "answer": 1953, "unit": "", "explanation": "Ze volgde haar vader op in 1952 en werd in juni 1953 gekroond." },
+        { "prompt": "Hoeveel jaar regeerde de Franse koning Lodewijk XIV?", "answer": 72, "unit": "jaar" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Kroon" },
+        { "prompt": "Troon" },
+        { "prompt": "Paleis" },
+        { "prompt": "Scepter" },
+        { "prompt": "Rijksappel" },
+        { "prompt": "Koets" },
+        { "prompt": "Wapenschild" },
+        { "prompt": "Erfgenaam" },
+        { "prompt": "Bruiloft" },
+        { "prompt": "Balkon" },
+        { "prompt": "Lijfwacht" },
+        { "prompt": "Kasteel" },
+        { "prompt": "Tiara" },
+        { "prompt": "Portret" },
+        { "prompt": "Volkslied" },
+        { "prompt": "Staatsbezoek" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier Europese landen met een koning of koningin.", "answers": [{ "text": "Nederland" }, { "text": "Belgie" }, { "text": "Spanje" }, { "text": "Zweden" }] },
+        { "prompt": "Noem vier Britse koninklijke huizen.", "answers": [{ "text": "Tudor" }, { "text": "Stuart" }, { "text": "Hannover" }, { "text": "Windsor" }] },
+        { "prompt": "Noem de vier kinderen van Elizabeth II.", "answers": [{ "text": "Charles" }, { "text": "Anne" }, { "text": "Andrew" }, { "text": "Edward" }] },
+        { "prompt": "Noem de vier Nederlandse vorsten sinds 1890.", "answers": [{ "text": "Wilhelmina" }, { "text": "Juliana" }, { "text": "Beatrix" }, { "text": "Willem-Alexander" }] },
+        { "prompt": "Noem vier Franse koningen met de naam Lodewijk.", "answers": [{ "text": "Lodewijk XIII" }, { "text": "Lodewijk XIV" }, { "text": "Lodewijk XV" }, { "text": "Lodewijk XVI" }] },
+        { "prompt": "Noem vier onderdelen van kroonjuwelen.", "answers": [{ "text": "Kroon" }, { "text": "Scepter" }, { "text": "Rijksappel" }, { "text": "Zwaard" }] },
+        { "prompt": "Noem vier hoofdsteden van Europese monarchieen.", "answers": [{ "text": "Amsterdam" }, { "text": "Brussel" }, { "text": "Madrid" }, { "text": "Stockholm" }] },
+        { "prompt": "Noem vier adellijke titels.", "answers": [{ "text": "Hertog" }, { "text": "Graaf" }, { "text": "Baron" }, { "text": "Markies" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "In welk paleis in Den Haag werkt de Nederlandse koning?", "answers": [{ "text": "Paleis Noordeinde", "aliases": ["Noordeinde"] }] },
+        { "prompt": "Hoe heet de kroon die bij een Britse kroning op het hoofd wordt gezet?", "answers": [{ "text": "De kroon van Sint Edward", "aliases": ["Sint-Edwardkroon"] }] },
+        { "prompt": "Welke Oostenrijkse keizerin stond bekend als Sisi?", "answers": [{ "text": "Elisabeth van Oostenrijk", "aliases": ["Elisabeth"] }] },
+        { "prompt": "In welk jaar werd het Koninkrijk der Nederlanden gesticht?", "answers": [{ "text": "1815" }] },
+        { "prompt": "Welke Engelse koningin regeerde in 1553 negen dagen?", "answers": [{ "text": "Jane Grey", "aliases": ["Lady Jane Grey"] }] },
+        { "prompt": "Welk Japans keizerlijk tijdperk begon in 2019?", "answers": [{ "text": "Reiwa" }] }
+      ]
+    }
+  ]
+}

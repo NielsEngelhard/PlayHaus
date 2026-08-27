@@ -1,0 +1,104 @@
+{
+  "slug": "taylor-swift",
+  "title": "Taylor Swift",
+  "description": "Een hele pubquiz over Taylor Swift: albums, tournees, nummers en Taylor's Version.",
+  "publishedAt": "2026-02-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke Amerikaanse staat werd Taylor Swift geboren?", "category": "Personen", "answers": [{ "text": "Pennsylvania" }] },
+        { "prompt": "In welk jaar werd Taylor Swift geboren?", "category": "Personen", "answers": [{ "text": "1989" }] },
+        { "prompt": "Hoe heet haar debuutalbum uit 2006?", "category": "Albums", "answers": [{ "text": "Taylor Swift" }] },
+        { "prompt": "Welk album uit 2014 bracht haar van country naar pop?", "category": "Albums", "answers": [{ "text": "1989" }] },
+        { "prompt": "Welk album nam ze in 2020 tijdens de lockdown op?", "category": "Albums", "answers": [{ "text": "Folklore" }] },
+        { "prompt": "Welk album volgde in december 2020 op folklore?", "category": "Albums", "answers": [{ "text": "Evermore" }] },
+        { "prompt": "Hoe heet haar album uit 2019 met het titelnummer Lover?", "category": "Albums", "answers": [{ "text": "Lover" }] },
+        { "prompt": "Welk album uit 2017 opent met het nummer Ready For It?", "category": "Albums", "answers": [{ "text": "Reputation" }] },
+        { "prompt": "Welk album uit 2012 draagt de naam van een kleur?", "category": "Albums", "answers": [{ "text": "Red" }] },
+        { "prompt": "Hoe heet haar derde album uit 2010?", "category": "Albums", "answers": [{ "text": "Speak Now" }] },
+        { "prompt": "Hoe heet haar tweede album uit 2008?", "category": "Albums", "answers": [{ "text": "Fearless" }] },
+        { "prompt": "Welke single van 1989 gaat over je niets aantrekken van kritiek en heet naar een dansbeweging?", "category": "Nummers", "answers": [{ "text": "Shake It Off" }] },
+        { "prompt": "Welk nummer van Red bestaat in een versie van tien minuten?", "category": "Nummers", "answers": [{ "text": "All Too Well" }] },
+        { "prompt": "Hoe heette haar wereldtournee die in 2023 begon?", "category": "Tournees", "answers": [{ "text": "The Eras Tour", "aliases": ["Eras Tour"] }] },
+        { "prompt": "In welke Amerikaanse stad begon ze haar countrycarriere?", "category": "Steden", "answers": [{ "text": "Nashville" }] },
+        { "prompt": "Welk snaarinstrument speelt Taylor Swift op het podium het meest?", "category": "Instrumenten", "answers": [{ "text": "De gitaar", "aliases": ["gitaar"] }] },
+        { "prompt": "Welke Amerikaanse muziekprijs won ze in 2010 met Fearless als album van het jaar?", "category": "Prijzen", "answers": [{ "text": "De Grammy", "aliases": ["Grammy"] }] },
+        { "prompt": "In welke musicalfilm uit 2019 speelde ze een kat?", "category": "Films", "answers": [{ "text": "Cats" }] },
+        { "prompt": "Welk duet met Ed Sheeran staat op het album Red?", "category": "Nummers", "answers": [{ "text": "Everything Has Changed" }] },
+        { "prompt": "Hoe heet haar album uit 2024?", "category": "Albums", "answers": [{ "text": "The Tortured Poets Department", "aliases": ["Tortured Poets"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Op welke dag in december is Taylor Swift geboren?", "options": [{ "text": "13", "correct": true }, { "text": "17" }, { "text": "21" }, { "text": "25" }] },
+        { "prompt": "Op welk album staat het nummer Blank Space?", "options": [{ "text": "1989", "correct": true }, { "text": "Red" }, { "text": "Reputation" }, { "text": "Lover" }] },
+        { "prompt": "In welk genre begon Taylor Swift haar carriere?", "options": [{ "text": "Country", "correct": true }, { "text": "Pop" }, { "text": "Rock" }, { "text": "Jazz" }] },
+        { "prompt": "Welke platenmaatschappij bracht haar eerste album uit?", "options": [{ "text": "Big Machine", "correct": true }, { "text": "Republic" }, { "text": "Universal" }, { "text": "Sony" }] },
+        { "prompt": "Welke term gebruikt ze voor haar opnieuw opgenomen albums?", "options": [{ "text": "Taylor's Version", "correct": true }, { "text": "Deluxe" }, { "text": "Remaster" }, { "text": "Reissue" }] },
+        { "prompt": "Welk album nam ze in 2021 als eerste opnieuw op?", "options": [{ "text": "Fearless", "correct": true }, { "text": "Red" }, { "text": "Speak Now" }, { "text": "1989" }] },
+        { "prompt": "Welk nummer was de eerste single van folklore?", "options": [{ "text": "Cardigan", "correct": true }, { "text": "Willow" }, { "text": "Betty" }, { "text": "August" }] },
+        { "prompt": "Van welke Amerikaanse band is Aaron Dessner, medeproducer van folklore?", "options": [{ "text": "The National", "correct": true }, { "text": "Bon Iver" }, { "text": "Arcade Fire" }, { "text": "Vampire Weekend" }] },
+        { "prompt": "Hoeveel nummers staan er op de standaardversie van folklore?", "options": [{ "text": "13" }, { "text": "16", "correct": true }, { "text": "17" }, { "text": "19" }] },
+        { "prompt": "Welke rapper doet mee aan de remix van Bad Blood?", "options": [{ "text": "Kendrick Lamar", "correct": true }, { "text": "Drake" }, { "text": "Nicki Minaj" }, { "text": "Post Malone" }] },
+        { "prompt": "Welk nummer opent het album 1989?", "options": [{ "text": "Welcome To New York", "correct": true }, { "text": "Style" }, { "text": "Blank Space" }, { "text": "Shake It Off" }] },
+        { "prompt": "In welke film uit 2014 speelde Taylor Swift het personage Rosemary?", "options": [{ "text": "The Giver", "correct": true }, { "text": "Valentine's Day" }, { "text": "Cats" }, { "text": "Amsterdam" }] },
+        { "prompt": "Op welke leeftijd leerde Taylor Swift gitaar spelen?", "options": [{ "text": "Twaalf", "correct": true }, { "text": "Acht" }, { "text": "Vijftien" }, { "text": "Achttien" }] },
+        { "prompt": "Hoe worden de fans van Taylor Swift genoemd?", "options": [{ "text": "Swifties", "correct": true }, { "text": "Swifters" }, { "text": "Taylors" }, { "text": "Lovers" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel minuten duurt All Too Well in de lange versie?", "answer": 10, "unit": "minuten", "explanation": "De versie op Red (Taylor's Version) duurt tien minuten en dertien seconden." },
+        { "prompt": "Hoeveel nummers staan er op Red (Taylor's Version)?", "answer": 30, "unit": "nummers" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Gitaar" },
+        { "prompt": "Concert" },
+        { "prompt": "Vriendschapsbandje" },
+        { "prompt": "Cardigan" },
+        { "prompt": "Slang" },
+        { "prompt": "Rode lippenstift" },
+        { "prompt": "Kat" },
+        { "prompt": "Podium" },
+        { "prompt": "Sprookje" },
+        { "prompt": "Liefdesbrief" },
+        { "prompt": "Stadion" },
+        { "prompt": "Glitterjurk" },
+        { "prompt": "Dagboek" },
+        { "prompt": "Platenspeler" },
+        { "prompt": "Microfoon" },
+        { "prompt": "Herfst" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier albums van Taylor Swift.", "answers": [{ "text": "Fearless" }, { "text": "Red" }, { "text": "1989" }, { "text": "Lover" }] },
+        { "prompt": "Noem de vier albums die ze opnieuw opnam als Taylor's Version.", "answers": [{ "text": "Fearless" }, { "text": "Red" }, { "text": "Speak Now" }, { "text": "1989" }] },
+        { "prompt": "Noem vier nummers van het album 1989.", "answers": [{ "text": "Shake It Off" }, { "text": "Blank Space" }, { "text": "Style" }, { "text": "Bad Blood" }] },
+        { "prompt": "Noem vier nummers van het album Red.", "answers": [{ "text": "All Too Well" }, { "text": "I Knew You Were Trouble" }, { "text": "22" }, { "text": "We Are Never Ever Getting Back Together" }] },
+        { "prompt": "Noem vier artiesten met wie Taylor Swift heeft samengewerkt.", "answers": [{ "text": "Ed Sheeran" }, { "text": "Bon Iver" }, { "text": "Kendrick Lamar" }, { "text": "Post Malone" }] },
+        { "prompt": "Noem vier tournees van Taylor Swift.", "answers": [{ "text": "Fearless Tour" }, { "text": "Speak Now World Tour" }, { "text": "The Red Tour" }, { "text": "The Eras Tour" }] },
+        { "prompt": "Noem vier nummers van het album folklore.", "answers": [{ "text": "Cardigan" }, { "text": "Exile" }, { "text": "The 1" }, { "text": "August" }] },
+        { "prompt": "Noem vier steden buiten Amerika waar de Eras Tour speelde.", "answers": [{ "text": "Parijs" }, { "text": "Londen" }, { "text": "Amsterdam" }, { "text": "Tokio" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Op welk album staat het nummer The Man?", "answers": [{ "text": "Lover" }] },
+        { "prompt": "Hoe heet de documentaire over Taylor Swift die in 2020 uitkwam?", "answers": [{ "text": "Miss Americana" }] },
+        { "prompt": "Welk album van Taylor Swift won in 2021 de Grammy voor album van het jaar?", "answers": [{ "text": "Folklore" }] },
+        { "prompt": "In welke plaats in Pennsylvania werd Taylor Swift geboren?", "answers": [{ "text": "West Reading", "aliases": ["Reading"] }] },
+        { "prompt": "Welk nummer op folklore zong ze samen met Bon Iver?", "answers": [{ "text": "Exile" }] },
+        { "prompt": "Hoe heet haar album uit 2022 met het nummer Anti-Hero?", "answers": [{ "text": "Midnights" }] }
+      ]
+    }
+  ]
+}

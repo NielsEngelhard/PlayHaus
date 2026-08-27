@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w32",
+  "title": "Weekly quiz week 32",
+  "description": "The weekly quiz of Wednesday 5 August 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Sweden?", "category": "Geography", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "At how many degrees Celsius does ice melt?", "category": "Science", "answers": [{ "text": "Zero", "aliases": ["0"] }] },
+        { "prompt": "Which city was buried by Vesuvius in the year 79?", "category": "History", "answers": [{ "text": "Pompeii", "aliases": ["Pompeii"] }] },
+        { "prompt": "How many players does a cricket team have on the field?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which American singer was known as the King of Pop?", "category": "Music", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "Which 1972 film opens with the words I believe in America?", "category": "Film", "answers": [{ "text": "The Godfather", "aliases": ["The Godfather Part I"] }] },
+        { "prompt": "Which tree is recognisable by its white bark?", "category": "Nature", "answers": [{ "text": "The birch", "aliases": ["birch"] }] },
+        { "prompt": "Which of the Dutch Wadden islands is the largest?", "category": "The Netherlands", "answers": [{ "text": "Texel" }] },
+        { "prompt": "What is the first letter of the Greek alphabet called?", "category": "Language", "answers": [{ "text": "Alpha", "aliases": ["alfa"] }] },
+        { "prompt": "Which Flemish painter made the Ghent Altarpiece with his brother?", "category": "Art", "answers": [{ "text": "Jan van Eyck", "aliases": ["Van Eyck"] }] },
+        { "prompt": "What is the unit of force in the international system?", "category": "Science", "answers": [{ "text": "The newton", "aliases": ["newton", "N"] }] },
+        { "prompt": "Which country has Vienna as its capital?", "category": "Geography", "answers": [{ "text": "Austria" }] },
+        { "prompt": "Which South African president spent twenty-seven years in prison?", "category": "History", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }] },
+        { "prompt": "Which plant provides the leaves for tea?", "category": "Food", "answers": [{ "text": "The tea plant", "aliases": ["tea", "Camellia sinensis"] }] },
+        { "prompt": "How many kilometres long is a marathon?", "category": "Sport", "answers": [{ "text": "Just over forty-two kilometres", "aliases": ["42", "42.195"] }] },
+        { "prompt": "Which mammal is the slowest in the world?", "category": "Nature", "answers": [{ "text": "The sloth", "aliases": ["sloth"] }] },
+        { "prompt": "Which Dutch museum is devoted to the work of Vincent van Gogh?", "category": "The Netherlands", "answers": [{ "text": "The Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
+        { "prompt": "Which celestial body causes the tides on earth?", "category": "Science", "answers": [{ "text": "The moon", "aliases": ["moon"] }] },
+        { "prompt": "Which actress played Hermione Granger in the Harry Potter films?", "category": "Film", "answers": [{ "text": "Emma Watson", "aliases": ["Watson"] }] },
+        { "prompt": "Which city is the capital of the United States?", "category": "Geography", "answers": [{ "text": "Washington", "aliases": ["Washington D.C."] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country does NOT border France?", "options": [{ "text": "Andorra" }, { "text": "Monaco" }, { "text": "Portugal", "correct": true }, { "text": "Switzerland" }] },
+        { "prompt": "Who wrote War and Peace?", "options": [{ "text": "Tolstoy", "correct": true }, { "text": "Dostoevsky" }, { "text": "Turgenev" }, { "text": "Pushkin" }] },
+        { "prompt": "Which element is the most common in the universe?", "options": [{ "text": "Hydrogen", "correct": true }, { "text": "Helium" }, { "text": "Oxygen" }, { "text": "Carbon" }] },
+        { "prompt": "In what year did the United Nations replace the League of Nations?", "options": [{ "text": "1919" }, { "text": "1939" }, { "text": "1945", "correct": true }, { "text": "1949" }] },
+        { "prompt": "What is the capital of Peru?", "options": [{ "text": "Cusco" }, { "text": "Lima", "correct": true }, { "text": "Arequipa" }, { "text": "Trujillo" }] },
+        { "prompt": "Which animal has no stomach?", "options": [{ "text": "Seahorse", "correct": true }, { "text": "Shark" }, { "text": "Ray" }, { "text": "Salmon" }] },
+        { "prompt": "How many players does a baseball team have on the field?", "options": [{ "text": "Eight" }, { "text": "Nine", "correct": true }, { "text": "Ten" }, { "text": "Eleven" }] },
+        { "prompt": "Which planet is almost the same size as the earth?", "options": [{ "text": "Mars" }, { "text": "Venus", "correct": true }, { "text": "Mercury" }, { "text": "Neptune" }] },
+        { "prompt": "Which country uses the Swiss franc besides Switzerland?", "options": [{ "text": "Austria" }, { "text": "Liechtenstein", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }] },
+        { "prompt": "Which Irish writer wrote Ulysses?", "options": [{ "text": "James Joyce", "correct": true }, { "text": "Samuel Beckett" }, { "text": "Oscar Wilde" }, { "text": "W.B. Yeats" }] },
+        { "prompt": "Which hormone regulates blood sugar?", "options": [{ "text": "Adrenaline" }, { "text": "Insulin", "correct": true }, { "text": "Testosterone" }, { "text": "Cortisol" }] },
+        { "prompt": "Which Dutch province borders both Belgium and Germany?", "options": [{ "text": "Limburg", "correct": true }, { "text": "Zeeland" }, { "text": "North Brabant" }, { "text": "Gelderland" }] },
+        { "prompt": "In what year did a human first orbit the earth?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] },
+        { "prompt": "Which instrument has no strings?", "options": [{ "text": "Harp" }, { "text": "Cello" }, { "text": "Trumpet", "correct": true }, { "text": "Guitar" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the Dom Tower of Utrecht?", "answer": 112, "unit": "metres", "explanation": "Just over a hundred and ten metres, the tallest church tower in the Netherlands." },
+        { "prompt": "In what year was The Night Watch completed?", "answer": 1642, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Anchor chain" },
+        { "prompt": "Bicycle bell" },
+        { "prompt": "Wolf" },
+        { "prompt": "Police station" },
+        { "prompt": "Banana" },
+        { "prompt": "Detective" },
+        { "prompt": "Screwdriver" },
+        { "prompt": "Gong" },
+        { "prompt": "Lightning" },
+        { "prompt": "Sailor" },
+        { "prompt": "Roundabout" },
+        { "prompt": "Hourglass" },
+        { "prompt": "Pillow" },
+        { "prompt": "Snail" },
+        { "prompt": "Zoo" },
+        { "prompt": "Tin opener" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest countries in Europe by area after Russia.", "answers": [{ "text": "Ukraine" }, { "text": "France" }, { "text": "Spain" }, { "text": "Sweden" }] },
+        { "prompt": "Name the four members of ABBA.", "answers": [{ "text": "Agnetha" }, { "text": "Bjorn" }, { "text": "Benny" }, { "text": "Anni-Frid" }] },
+        { "prompt": "Name the four countries that have won the football World Cup most often up to 2022.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "Italy" }, { "text": "Argentina" }] },
+        { "prompt": "Name the four months from January to July that have thirty-one days.", "answers": [{ "text": "January" }, { "text": "March" }, { "text": "May" }, { "text": "July" }] },
+        { "prompt": "Name four art movements of the early twentieth century.", "answers": [{ "text": "Cubism" }, { "text": "Expressionism" }, { "text": "Surrealism" }, { "text": "Dadaism" }] },
+        { "prompt": "Name four glands of the human endocrine system.", "answers": [{ "text": "Thyroid" }, { "text": "Adrenal gland" }, { "text": "Pituitary gland" }, { "text": "Pancreas" }] },
+        { "prompt": "Name the four largest cities of Belgium.", "answers": [{ "text": "Brussels" }, { "text": "Antwerp" }, { "text": "Ghent" }, { "text": "Charleroi" }] },
+        { "prompt": "Name four classical epic poems.", "answers": [{ "text": "The Iliad" }, { "text": "The Odyssey" }, { "text": "The Aeneid" }, { "text": "Metamorphoses" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch philosopher wrote the Ethics and was expelled from the synagogue in 1656?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
+        { "prompt": "What is the largest island in the Mediterranean?", "answers": [{ "text": "Sicily" }] },
+        { "prompt": "Which Hungarian composer wrote the Hungarian Rhapsodies?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
+        { "prompt": "What is the capital of Ethiopia?", "answers": [{ "text": "Addis Abeba", "aliases": ["Addis Ababa"] }] },
+        { "prompt": "Which British physicist wrote A Brief History of Time?", "answers": [{ "text": "Stephen Hawking", "aliases": ["Hawking"] }] },
+        { "prompt": "In what year was the Peace of Munster signed?", "answers": [{ "text": "1648" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "royal-families",
+  "title": "Royal Families",
+  "description": "A whole pub quiz about royal families: crowns, palaces, dynasties and abdications.",
+  "publishedAt": "2026-03-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the Dutch royal house called?", "category": "The Netherlands", "answers": [{ "text": "Orange-Nassau", "aliases": ["House of Orange"] }] },
+        { "prompt": "Which Dutch queen abdicated in 2013?", "category": "The Netherlands", "answers": [{ "text": "Beatrix" }] },
+        { "prompt": "What is the eldest daughter of king Willem-Alexander called?", "category": "The Netherlands", "answers": [{ "text": "Catharina-Amalia", "aliases": ["Amalia"] }] },
+        { "prompt": "Which British queen reigned from 1952 to 2022?", "category": "United Kingdom", "answers": [{ "text": "Elizabeth II", "aliases": ["Elizabeth"] }] },
+        { "prompt": "What has the house of the British royal family been called since 1917?", "category": "United Kingdom", "answers": [{ "text": "Windsor" }] },
+        { "prompt": "In which church in London are British monarchs crowned?", "category": "United Kingdom", "answers": [{ "text": "Westminster Abbey", "aliases": ["Westminster"] }] },
+        { "prompt": "Which British queen reigned from 1837 to 1901?", "category": "United Kingdom", "answers": [{ "text": "Victoria" }] },
+        { "prompt": "What is the Spanish royal house called?", "category": "Spain", "answers": [{ "text": "Bourbon", "aliases": ["Borbon"] }] },
+        { "prompt": "In which city is the palace of the Swedish royal family?", "category": "Sweden", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Which American actress became princess of Monaco in 1956?", "category": "Monaco", "answers": [{ "text": "Grace Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "What is the throne of the Japanese emperor called?", "category": "Japan", "answers": [{ "text": "The Chrysanthemum Throne", "aliases": ["Chrysanthemum Throne"] }] },
+        { "prompt": "Which Danish queen abdicated in 2024?", "category": "Denmark", "answers": [{ "text": "Margrethe II", "aliases": ["Margrethe"] }] },
+        { "prompt": "Who was the first king of Belgium?", "category": "Belgium", "answers": [{ "text": "Leopold I", "aliases": ["Leopold"] }] },
+        { "prompt": "Which French king was beheaded in 1793?", "category": "France", "answers": [{ "text": "Louis XVI", "aliases": ["Lodewijk XVI"] }] },
+        { "prompt": "Which French king built Versailles and was called the Sun King?", "category": "France", "answers": [{ "text": "Louis XIV", "aliases": ["Lodewijk XIV"] }] },
+        { "prompt": "Which title did the emperor of Russia carry?", "category": "Russia", "answers": [{ "text": "Tsar", "aliases": ["czar", "tzar"] }] },
+        { "prompt": "Which Russian dynasty ruled from 1613 to 1917?", "category": "Russia", "answers": [{ "text": "The Romanovs", "aliases": ["Romanov"] }] },
+        { "prompt": "Which title does the wife of a king usually carry?", "category": "Titles", "answers": [{ "text": "Queen", "aliases": ["queen consort"] }] },
+        { "prompt": "Which title does the British heir to the throne traditionally carry?", "category": "Titles", "answers": [{ "text": "Prince of Wales", "aliases": ["Wales"] }] },
+        { "prompt": "Which ceremony officially makes an heir the monarch in the United Kingdom?", "category": "Symbols", "answers": [{ "text": "The coronation", "aliases": ["coronation"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In what year did Willem-Alexander marry Maxima?", "options": [{ "text": "1998" }, { "text": "2000" }, { "text": "2002", "correct": true }, { "text": "2004" }] },
+        { "prompt": "What is the residence of the British monarch in London called?", "options": [{ "text": "Buckingham Palace", "correct": true }, { "text": "Windsor Castle" }, { "text": "Kensington Palace" }, { "text": "Clarence House" }] },
+        { "prompt": "Which European country is a grand duchy?", "options": [{ "text": "Luxembourg", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Which British king abdicated in 1936?", "options": [{ "text": "Edward VIII", "correct": true }, { "text": "George V" }, { "text": "George VI" }, { "text": "Edward VII" }] },
+        { "prompt": "Which English king had six wives?", "options": [{ "text": "Henry VIII", "correct": true }, { "text": "Charles I" }, { "text": "James I" }, { "text": "Richard III" }] },
+        { "prompt": "Who was the last tsar of Russia?", "options": [{ "text": "Nicholas II", "correct": true }, { "text": "Alexander III" }, { "text": "Peter III" }, { "text": "Paul I" }] },
+        { "prompt": "Which country has an emperor as head of state?", "options": [{ "text": "Japan", "correct": true }, { "text": "China" }, { "text": "Thailand" }, { "text": "Morocco" }] },
+        { "prompt": "Which Swedish king founded the present royal house in 1818?", "options": [{ "text": "Charles XIV John", "correct": true }, { "text": "Gustav III" }, { "text": "Oscar I" }, { "text": "Charles XII" }] },
+        { "prompt": "Which French queen was beheaded together with her husband in 1793?", "options": [{ "text": "Marie Antoinette", "correct": true }, { "text": "Madame de Pompadour" }, { "text": "Josephine" }, { "text": "Catherine de Medici" }] },
+        { "prompt": "Which British king reigned during the American War of Independence?", "options": [{ "text": "George III", "correct": true }, { "text": "George II" }, { "text": "George IV" }, { "text": "William IV" }] },
+        { "prompt": "Which Austrian empress reigned from 1740 to 1780?", "options": [{ "text": "Maria Theresa", "correct": true }, { "text": "Maria Anna" }, { "text": "Marie Louise" }, { "text": "Zita" }] },
+        { "prompt": "Which country is ruled by a king of the house of Al Saud?", "options": [{ "text": "Saudi Arabia", "correct": true }, { "text": "Jordan" }, { "text": "Morocco" }, { "text": "Oman" }] },
+        { "prompt": "Which British prince married Meghan Markle in 2018?", "options": [{ "text": "Harry", "correct": true }, { "text": "William" }, { "text": "Andrew" }, { "text": "Edward" }] },
+        { "prompt": "Which castle is the residence of the British monarch in Scotland?", "options": [{ "text": "Balmoral", "correct": true }, { "text": "Holyrood" }, { "text": "Stirling" }, { "text": "Edinburgh" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year was Elizabeth II crowned?", "answer": 1953, "unit": "", "explanation": "She succeeded her father in 1952 and was crowned in June 1953." },
+        { "prompt": "For how many years did the French king Louis XIV reign?", "answer": 72, "unit": "years" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Crown" },
+        { "prompt": "Throne" },
+        { "prompt": "Palace" },
+        { "prompt": "Sceptre" },
+        { "prompt": "Orb" },
+        { "prompt": "Carriage" },
+        { "prompt": "Coat of arms" },
+        { "prompt": "Heir" },
+        { "prompt": "Wedding" },
+        { "prompt": "Balcony" },
+        { "prompt": "Bodyguard" },
+        { "prompt": "Castle" },
+        { "prompt": "Tiara" },
+        { "prompt": "Portrait" },
+        { "prompt": "Anthem" },
+        { "prompt": "State visit" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four European countries with a king or queen.", "answers": [{ "text": "The Netherlands" }, { "text": "Belgium" }, { "text": "Spain" }, { "text": "Sweden" }] },
+        { "prompt": "Name four British royal houses.", "answers": [{ "text": "Tudor" }, { "text": "Stuart" }, { "text": "Hanover" }, { "text": "Windsor" }] },
+        { "prompt": "Name the four children of Elizabeth II.", "answers": [{ "text": "Charles" }, { "text": "Anne" }, { "text": "Andrew" }, { "text": "Edward" }] },
+        { "prompt": "Name the four Dutch monarchs since 1890.", "answers": [{ "text": "Wilhelmina" }, { "text": "Juliana" }, { "text": "Beatrix" }, { "text": "Willem-Alexander" }] },
+        { "prompt": "Name four French kings named Louis.", "answers": [{ "text": "Louis XIII" }, { "text": "Louis XIV" }, { "text": "Louis XV" }, { "text": "Louis XVI" }] },
+        { "prompt": "Name four parts of a set of crown jewels.", "answers": [{ "text": "Crown" }, { "text": "Sceptre" }, { "text": "Orb" }, { "text": "Sword" }] },
+        { "prompt": "Name four capitals of European monarchies.", "answers": [{ "text": "Amsterdam" }, { "text": "Brussels" }, { "text": "Madrid" }, { "text": "Stockholm" }] },
+        { "prompt": "Name four titles of nobility.", "answers": [{ "text": "Duke" }, { "text": "Count" }, { "text": "Baron" }, { "text": "Marquess" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "In which palace in The Hague does the Dutch king work?", "answers": [{ "text": "Noordeinde Palace", "aliases": ["Noordeinde"] }] },
+        { "prompt": "What is the crown placed on the head at a British coronation called?", "answers": [{ "text": "St Edward's Crown", "aliases": ["St Edward"] }] },
+        { "prompt": "Which Austrian empress was known as Sisi?", "answers": [{ "text": "Elisabeth of Austria", "aliases": ["Elisabeth"] }] },
+        { "prompt": "In what year was the Kingdom of the Netherlands founded?", "answers": [{ "text": "1815" }] },
+        { "prompt": "Which English queen reigned for nine days in 1553?", "answers": [{ "text": "Jane Grey", "aliases": ["Lady Jane Grey"] }] },
+        { "prompt": "Which Japanese imperial era began in 2019?", "answers": [{ "text": "Reiwa" }] }
+      ]
+    }
+  ]
+}

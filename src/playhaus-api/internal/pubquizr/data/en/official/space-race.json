@@ -1,0 +1,104 @@
+{
+  "slug": "space-race",
+  "title": "The Space Race",
+  "description": "A whole pub quiz about the space race: rockets, cosmonauts, moon landings and probes.",
+  "publishedAt": "2026-03-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which satellite was the first to orbit the earth, in 1957?", "category": "Satellites", "answers": [{ "text": "Sputnik 1", "aliases": ["Sputnik"] }] },
+        { "prompt": "Which Soviet cosmonaut was the first human in space, in 1961?", "category": "Cosmonauts", "answers": [{ "text": "Yuri Gagarin", "aliases": ["Gagarin"] }] },
+        { "prompt": "Who was the first woman in space, in 1963?", "category": "Cosmonauts", "answers": [{ "text": "Valentina Tereshkova", "aliases": ["Tereshkova"] }] },
+        { "prompt": "Which mission brought the first people to the moon in 1969?", "category": "Moon landings", "answers": [{ "text": "Apollo 11" }] },
+        { "prompt": "Who was the second person to set foot on the moon?", "category": "Moon landings", "answers": [{ "text": "Buzz Aldrin", "aliases": ["Aldrin"] }] },
+        { "prompt": "Who stayed in the command module of Apollo 11 during the moon landing?", "category": "Moon landings", "answers": [{ "text": "Michael Collins", "aliases": ["Collins"] }] },
+        { "prompt": "What was the lunar module of Apollo 11 called?", "category": "Moon landings", "answers": [{ "text": "Eagle" }] },
+        { "prompt": "Which American space agency was founded in 1958?", "category": "Organisations", "answers": [{ "text": "NASA" }] },
+        { "prompt": "Which dog was the first animal to orbit the earth, in 1957?", "category": "Animals", "answers": [{ "text": "Laika" }] },
+        { "prompt": "Which American was the first to orbit the earth, in 1962?", "category": "Astronauts", "answers": [{ "text": "John Glenn", "aliases": ["Glenn"] }] },
+        { "prompt": "Which rocket took the Apollo missions to the moon?", "category": "Rockets", "answers": [{ "text": "The Saturn V", "aliases": ["Saturn 5"] }] },
+        { "prompt": "What is the Soviet spacecraft that has carried people into orbit since 1967 called?", "category": "Programmes", "answers": [{ "text": "Soyuz", "aliases": ["Sojoez"] }] },
+        { "prompt": "Which Apollo mission ran into trouble on its way to the moon in 1970?", "category": "Missions", "answers": [{ "text": "Apollo 13" }] },
+        { "prompt": "What was the first American space station, from 1973, called?", "category": "Space stations", "answers": [{ "text": "Skylab" }] },
+        { "prompt": "Which German-American rocket engineer led the Saturn programme?", "category": "Engineers", "answers": [{ "text": "Wernher von Braun", "aliases": ["Von Braun"] }] },
+        { "prompt": "Who was the first person to set foot on the moon?", "category": "Moon landings", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "On which lunar plain did Apollo 11 land?", "category": "Moon landings", "answers": [{ "text": "The Sea of Tranquillity", "aliases": ["Mare Tranquillitatis"] }] },
+        { "prompt": "Which American space shuttle flew first, in 1981?", "category": "Shuttles", "answers": [{ "text": "Columbia" }] },
+        { "prompt": "Which acronym stands for the international space station?", "category": "Space stations", "answers": [{ "text": "ISS" }] },
+        { "prompt": "Which planet was the target of the Viking landers in 1976?", "category": "Probes", "answers": [{ "text": "Mars" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which Apollo mission was the first to fly around the moon?", "options": [{ "text": "Apollo 8", "correct": true }, { "text": "Apollo 7" }, { "text": "Apollo 9" }, { "text": "Apollo 10" }] },
+        { "prompt": "Which Soviet probe was the first to reach the moon, in 1959?", "options": [{ "text": "Luna 2", "correct": true }, { "text": "Sputnik 2" }, { "text": "Vostok 1" }, { "text": "Zond 1" }] },
+        { "prompt": "In which spacecraft did Gagarin fly?", "options": [{ "text": "Vostok 1", "correct": true }, { "text": "Sojoez 1" }, { "text": "Loena 1" }, { "text": "Mercury 1" }] },
+        { "prompt": "How many Apollo missions landed on the moon?", "options": [{ "text": "Four" }, { "text": "Six", "correct": true }, { "text": "Eight" }, { "text": "Ten" }] },
+        { "prompt": "Which American president announced the moon mission in 1961?", "options": [{ "text": "John F. Kennedy", "correct": true }, { "text": "Dwight Eisenhower" }, { "text": "Lyndon Johnson" }, { "text": "Richard Nixon" }] },
+        { "prompt": "Which European space agency was founded in 1975?", "options": [{ "text": "ESA", "correct": true }, { "text": "NASA" }, { "text": "CNES" }, { "text": "DLR" }] },
+        { "prompt": "What was the joint American-Soviet mission of 1975 called?", "options": [{ "text": "Apollo-Soyuz", "correct": true }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "Gemini" }] },
+        { "prompt": "Which Soviet space station flew from 1986 to 2001?", "options": [{ "text": "Mir", "correct": true }, { "text": "Saljoet" }, { "text": "Skylab" }, { "text": "Tiangong" }] },
+        { "prompt": "Which probe sent the first images of Neptune, in 1989?", "options": [{ "text": "Voyager 2", "correct": true }, { "text": "Voyager 1" }, { "text": "Pioneer 11" }, { "text": "New Horizons" }] },
+        { "prompt": "Which space shuttle was lost shortly after launch in 1986?", "options": [{ "text": "Challenger", "correct": true }, { "text": "Columbia" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
+        { "prompt": "Which planet did the Cassini probe study?", "options": [{ "text": "Saturn", "correct": true }, { "text": "Jupiter" }, { "text": "Mars" }, { "text": "Venus" }] },
+        { "prompt": "About how long did the journey of Apollo 11 to the moon take?", "options": [{ "text": "Three days", "correct": true }, { "text": "One day" }, { "text": "One week" }, { "text": "One month" }] },
+        { "prompt": "Which country became the third to launch a human into space on its own, in 2003?", "options": [{ "text": "China", "correct": true }, { "text": "Japan" }, { "text": "India" }, { "text": "France" }] },
+        { "prompt": "Which Apollo mission was the first to carry a lunar rover?", "options": [{ "text": "Apollo 15", "correct": true }, { "text": "Apollo 11" }, { "text": "Apollo 13" }, { "text": "Apollo 12" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall was the Saturn V rocket?", "answer": 111, "unit": "metres", "explanation": "Over a hundred and ten metres, taller than the Statue of Liberty on its base." },
+        { "prompt": "How many days did the flight of Apollo 11 last?", "answer": 8, "unit": "days" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Rocket" },
+        { "prompt": "Moon" },
+        { "prompt": "Spacesuit" },
+        { "prompt": "Satellite" },
+        { "prompt": "Observatory" },
+        { "prompt": "Gravity" },
+        { "prompt": "Astronaut" },
+        { "prompt": "Telescope" },
+        { "prompt": "Lunar module" },
+        { "prompt": "Launch pad" },
+        { "prompt": "Comet" },
+        { "prompt": "Solar panel" },
+        { "prompt": "Countdown" },
+        { "prompt": "Weightlessness" },
+        { "prompt": "Orbit" },
+        { "prompt": "Meteorite" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four astronauts who walked on the moon.", "answers": [{ "text": "Neil Armstrong" }, { "text": "Buzz Aldrin" }, { "text": "Pete Conrad" }, { "text": "Alan Shepard" }] },
+        { "prompt": "Name four American space programmes.", "answers": [{ "text": "Mercury" }, { "text": "Gemini" }, { "text": "Apollo" }, { "text": "Space Shuttle" }] },
+        { "prompt": "Name four planets visited by space probes.", "answers": [{ "text": "Mars" }, { "text": "Venus" }, { "text": "Jupiter" }, { "text": "Saturn" }] },
+        { "prompt": "Name four space shuttles of NASA.", "answers": [{ "text": "Columbia" }, { "text": "Challenger" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
+        { "prompt": "Name four countries with their own space agency.", "answers": [{ "text": "United States" }, { "text": "Russia" }, { "text": "China" }, { "text": "India" }] },
+        { "prompt": "Name four bodies a probe has landed on.", "answers": [{ "text": "The moon" }, { "text": "Mars" }, { "text": "Venus" }, { "text": "Titan" }] },
+        { "prompt": "Name four parts of a rocket.", "answers": [{ "text": "Engine" }, { "text": "Fuel tank" }, { "text": "Nose cone" }, { "text": "Fins" }] },
+        { "prompt": "Name four space stations.", "answers": [{ "text": "Salyut" }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "ISS" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Soviet cosmonaut made the first spacewalk, in 1965?", "answers": [{ "text": "Alexei Leonov", "aliases": ["Leonov"] }] },
+        { "prompt": "Which Dutchman was the first to fly into space, in 1985?", "answers": [{ "text": "Wubbo Ockels", "aliases": ["Ockels"] }] },
+        { "prompt": "Which space telescope was put into orbit in 1990?", "answers": [{ "text": "The Hubble", "aliases": ["Hubble"] }] },
+        { "prompt": "Which Apollo mission was the last to land on the moon?", "answers": [{ "text": "Apollo 17" }] },
+        { "prompt": "What was the large Soviet moon rocket that never flew successfully called?", "answers": [{ "text": "The N1", "aliases": ["N1"] }] },
+        { "prompt": "Which probe landed on Saturn's moon Titan in 2005?", "answers": [{ "text": "Huygens" }] }
+      ]
+    }
+  ]
+}

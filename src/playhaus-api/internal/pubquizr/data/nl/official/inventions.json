@@ -1,0 +1,104 @@
+{
+  "slug": "inventions",
+  "title": "Grote Uitvindingen",
+  "description": "Een hele pubquiz over uitvindingen en de mensen erachter, van de drukpers tot de chip.",
+  "publishedAt": "2026-03-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Amerikaan maakte de gloeilamp bruikbaar voor het grote publiek?", "category": "Uitvinders", "answers": [{ "text": "Thomas Edison", "aliases": ["Edison"] }] },
+        { "prompt": "Wie vroeg in 1876 patent aan op de telefoon?", "category": "Uitvinders", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
+        { "prompt": "Welke Schot verbeterde de stoommachine ingrijpend?", "category": "Uitvinders", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },
+        { "prompt": "Wie bracht rond 1450 de boekdrukkunst met losse letters naar Europa?", "category": "Uitvinders", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
+        { "prompt": "Welke twee Amerikaanse broers maakten in 1903 de eerste gemotoriseerde vlucht?", "category": "Vervoer", "answers": [{ "text": "De broers Wright", "aliases": ["Wright"] }] },
+        { "prompt": "Welke Italiaan stuurde in 1901 een radiosignaal over de Atlantische Oceaan?", "category": "Communicatie", "answers": [{ "text": "Guglielmo Marconi", "aliases": ["Marconi"] }] },
+        { "prompt": "Wie ontdekte in 1928 penicilline?", "category": "Geneeskunde", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Welke Duitser bouwde in 1885 de eerste auto met benzinemotor?", "category": "Vervoer", "answers": [{ "text": "Carl Benz", "aliases": ["Benz"] }] },
+        { "prompt": "Welke Zweed vond het dynamiet uit en stichtte een prijs?", "category": "Uitvinders", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
+        { "prompt": "Welke Nederlander bekeek als eerste bacterien door zijn eigen microscoop?", "category": "Nederland", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
+        { "prompt": "Welke Nederlander bouwde in 1656 de eerste slingerklok?", "category": "Nederland", "answers": [{ "text": "Christiaan Huygens", "aliases": ["Huygens"] }] },
+        { "prompt": "Welke Brit bedacht het World Wide Web?", "category": "Computers", "answers": [{ "text": "Tim Berners-Lee", "aliases": ["Berners-Lee"] }] },
+        { "prompt": "Welk Japans bedrijf bracht in 1979 de Walkman uit?", "category": "Merken", "answers": [{ "text": "Sony" }] },
+        { "prompt": "Welke Fransman ontwikkelde in 1885 een vaccin tegen hondsdolheid?", "category": "Geneeskunde", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "Welke Servisch-Amerikaanse ingenieur werkte aan wisselstroom?", "category": "Elektriciteit", "answers": [{ "text": "Nikola Tesla", "aliases": ["Tesla"] }] },
+        { "prompt": "Welk tweewielig voertuig zonder trappers bedacht Karl Drais in 1817?", "category": "Vervoer", "answers": [{ "text": "De loopfiets", "aliases": ["draisine", "loopfiets"] }] },
+        { "prompt": "Welke Duitser bouwde in 1876 de eerste viertaktmotor?", "category": "Motoren", "answers": [{ "text": "Nikolaus Otto", "aliases": ["Otto"] }] },
+        { "prompt": "Welke Engelse wiskundige ontwierp in de negentiende eeuw de analytische machine?", "category": "Computers", "answers": [{ "text": "Charles Babbage", "aliases": ["Babbage"] }] },
+        { "prompt": "Welke Amerikaan vond de bliksemafleider uit?", "category": "Elektriciteit", "answers": [{ "text": "Benjamin Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Welke natuurkundige ontdekte samen met haar man het element radium?", "category": "Wetenschap", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Hoeveel seconden duurde de eerste vlucht van de broers Wright?", "options": [{ "text": "12", "correct": true }, { "text": "30" }, { "text": "59" }, { "text": "120" }] },
+        { "prompt": "Welke Engelsman bouwde de locomotief Rocket?", "options": [{ "text": "George Stephenson", "correct": true }, { "text": "James Watt" }, { "text": "Richard Trevithick" }, { "text": "Isambard Brunel" }] },
+        { "prompt": "Welk bedrijf bracht in 1888 de eerste rolfilmcamera voor het grote publiek?", "options": [{ "text": "Kodak", "correct": true }, { "text": "Zeiss" }, { "text": "Agfa" }, { "text": "Leica" }] },
+        { "prompt": "Wie bedacht het alfabet van punten en strepen voor de telegraaf?", "options": [{ "text": "Samuel Morse", "correct": true }, { "text": "Alexander Graham Bell" }, { "text": "Guglielmo Marconi" }, { "text": "Thomas Edison" }] },
+        { "prompt": "In welk jaar werd de eerste iPhone verkocht?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2011" }] },
+        { "prompt": "Welk schrijfgerei bracht de Hongaar Laszlo Biro op de markt?", "options": [{ "text": "De balpen", "correct": true }, { "text": "De vulpen" }, { "text": "Het potlood" }, { "text": "De viltstift" }] },
+        { "prompt": "Welke kunststof vond Leo Baekeland in 1907 uit?", "options": [{ "text": "Bakeliet", "correct": true }, { "text": "Nylon" }, { "text": "Teflon" }, { "text": "Pvc" }] },
+        { "prompt": "Wie vond in 1935 nylon uit bij DuPont?", "options": [{ "text": "Wallace Carothers", "correct": true }, { "text": "Leo Baekeland" }, { "text": "Charles Goodyear" }, { "text": "Roy Plunkett" }] },
+        { "prompt": "Welk medisch apparaat maakte de Nederlander Willem Einthoven beroemd?", "options": [{ "text": "Het elektrocardiogram", "correct": true }, { "text": "Het rontgenapparaat" }, { "text": "De microscoop" }, { "text": "De thermometer" }] },
+        { "prompt": "Welke Duitser bouwde in 1941 een programmeerbare rekenmachine?", "options": [{ "text": "Konrad Zuse", "correct": true }, { "text": "Alan Turing" }, { "text": "John von Neumann" }, { "text": "Charles Babbage" }] },
+        { "prompt": "Welk Nederlands bedrijf ontwikkelde samen met Sony de compact disc?", "options": [{ "text": "Philips", "correct": true }, { "text": "Grundig" }, { "text": "Siemens" }, { "text": "Bose" }] },
+        { "prompt": "Wie vond de motor uit die naar hem werd genoemd en op zware olie loopt?", "options": [{ "text": "Rudolf Diesel", "correct": true }, { "text": "Carl Benz" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
+        { "prompt": "Welke Engelse wiskundige beschreef in 1936 een theoretische rekenmachine?", "options": [{ "text": "Alan Turing", "correct": true }, { "text": "Charles Babbage" }, { "text": "George Boole" }, { "text": "John Napier" }] },
+        { "prompt": "Welke Amerikaanse uitvinder had meer dan duizend patenten op zijn naam?", "options": [{ "text": "Thomas Edison", "correct": true }, { "text": "Nikola Tesla" }, { "text": "Alexander Graham Bell" }, { "text": "Henry Ford" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer per uur haalde de locomotief Rocket in 1829 ongeveer?", "answer": 48, "unit": "km per uur", "explanation": "Ongeveer dertig mijl per uur, waarmee hij de proefritten bij Rainhill won." },
+        { "prompt": "In welk jaar werd het World Wide Web voor iedereen beschikbaar?", "answer": 1991, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Gloeilamp" },
+        { "prompt": "Wiel" },
+        { "prompt": "Drukpers" },
+        { "prompt": "Telefoon" },
+        { "prompt": "Stoommachine" },
+        { "prompt": "Microscoop" },
+        { "prompt": "Kompas" },
+        { "prompt": "Batterij" },
+        { "prompt": "Vliegtuig" },
+        { "prompt": "Koelkast" },
+        { "prompt": "Fiets" },
+        { "prompt": "Klok" },
+        { "prompt": "Schroef" },
+        { "prompt": "Magneet" },
+        { "prompt": "Patent" },
+        { "prompt": "Laboratorium" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier uitvindingen uit de negentiende eeuw.", "answers": [{ "text": "Telefoon" }, { "text": "Gloeilamp" }, { "text": "Fotografie" }, { "text": "Dynamiet" }] },
+        { "prompt": "Noem vier soorten motoren.", "answers": [{ "text": "Stoommachine" }, { "text": "Benzinemotor" }, { "text": "Dieselmotor" }, { "text": "Elektromotor" }] },
+        { "prompt": "Noem vier Amerikaanse uitvinders.", "answers": [{ "text": "Thomas Edison" }, { "text": "Alexander Graham Bell" }, { "text": "Benjamin Franklin" }, { "text": "Orville Wright" }] },
+        { "prompt": "Noem vier kunststoffen.", "answers": [{ "text": "Bakeliet" }, { "text": "Nylon" }, { "text": "Polyetheen" }, { "text": "Teflon" }] },
+        { "prompt": "Noem vier eenheden die naar een wetenschapper zijn genoemd.", "answers": [{ "text": "Watt" }, { "text": "Volt" }, { "text": "Newton" }, { "text": "Ampere" }] },
+        { "prompt": "Noem vier communicatiemiddelen uit de twintigste eeuw.", "answers": [{ "text": "Radio" }, { "text": "Televisie" }, { "text": "Fax" }, { "text": "Mobiele telefoon" }] },
+        { "prompt": "Noem vier Nederlandse wetenschappers of uitvinders.", "answers": [{ "text": "Antoni van Leeuwenhoek" }, { "text": "Christiaan Huygens" }, { "text": "Willem Einthoven" }, { "text": "Heike Kamerlingh Onnes" }] },
+        { "prompt": "Noem vier onderdelen van een fiets.", "answers": [{ "text": "Wiel" }, { "text": "Zadel" }, { "text": "Ketting" }, { "text": "Stuur" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Franse gebroeders toonden in 1895 als eersten een film aan publiek?", "answers": [{ "text": "De gebroeders Lumiere", "aliases": ["Lumiere"] }] },
+        { "prompt": "Welke Nederlandse natuurkundige kreeg in 1902 de Nobelprijs voor zijn werk aan elektronen?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz"] }] },
+        { "prompt": "In welk jaar werd de transistor uitgevonden?", "answers": [{ "text": "1947" }] },
+        { "prompt": "Welk Amerikaans bedrijf bouwde in 1971 de eerste microprocessor?", "answers": [{ "text": "Intel" }] },
+        { "prompt": "Welke Engelse natuurkundige formuleerde de drie bewegingswetten?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
+        { "prompt": "Welke Hongaar bedacht de kubus met gekleurde vlakken?", "answers": [{ "text": "Erno Rubik", "aliases": ["Rubik"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w29",
+  "title": "Weekly quiz week 29",
+  "description": "The weekly quiz of Wednesday 15 July 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Greece?", "category": "Geography", "answers": [{ "text": "Athens" }] },
+        { "prompt": "Which star is closest to the earth?", "category": "Science", "answers": [{ "text": "The sun", "aliases": ["sun"] }] },
+        { "prompt": "Which English king had six wives?", "category": "History", "answers": [{ "text": "Henry VIII", "aliases": ["Henry the Eighth"] }] },
+        { "prompt": "How many pieces does each side start with in chess?", "category": "Sport", "answers": [{ "text": "Sixteen", "aliases": ["16"] }] },
+        { "prompt": "Which instrument has black and white keys and pedals?", "category": "Music", "answers": [{ "text": "The piano", "aliases": ["piano", "grand piano"] }] },
+        { "prompt": "Which 1993 film is about a park with living dinosaurs?", "category": "Film", "answers": [{ "text": "Jurassic Park" }] },
+        { "prompt": "Which egg-laying mammal lives in Australia?", "category": "Nature", "answers": [{ "text": "The platypus", "aliases": ["platypus"] }] },
+        { "prompt": "Which Dutch province is made of reclaimed land with Lelystad as its capital?", "category": "The Netherlands", "answers": [{ "text": "Flevoland" }] },
+        { "prompt": "From which language does the word robot come?", "category": "Language", "answers": [{ "text": "Czech" }] },
+        { "prompt": "Which Dutch artist painted grids in red, yellow and blue?", "category": "Art", "answers": [{ "text": "Piet Mondrian", "aliases": ["Mondrian"] }] },
+        { "prompt": "How many pairs of chromosomes does a human have?", "category": "Science", "answers": [{ "text": "Twenty-three", "aliases": ["23"] }] },
+        { "prompt": "Which country has the longest coastline in the world?", "category": "Geography", "answers": [{ "text": "Canada" }] },
+        { "prompt": "Which French emperor lost the battle of Waterloo in 1815?", "category": "History", "answers": [{ "text": "Napoleon", "aliases": ["Napoleon Bonaparte"] }] },
+        { "prompt": "Which dairy product is made by curdling and pressing milk?", "category": "Food", "answers": [{ "text": "Cheese" }] },
+        { "prompt": "How many points is a touchdown worth in American football?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Which striped animal lives on the African savannah?", "category": "Nature", "answers": [{ "text": "The zebra", "aliases": ["zebra"] }] },
+        { "prompt": "Which Dutch structure closes the Zuiderzee off from the Wadden Sea?", "category": "The Netherlands", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Which instrument measures air pressure?", "category": "Science", "answers": [{ "text": "The barometer", "aliases": ["barometer"] }] },
+        { "prompt": "Which actor played Vito Corleone in the 1972 film The Godfather?", "category": "Film", "answers": [{ "text": "Marlon Brando", "aliases": ["Brando"] }] },
+        { "prompt": "Which city lies on two continents?", "category": "Geography", "answers": [{ "text": "Istanbul" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country was NOT a member of the Warsaw Pact?", "options": [{ "text": "Hungary" }, { "text": "Yugoslavia", "correct": true }, { "text": "Poland" }, { "text": "Bulgaria" }] },
+        { "prompt": "Who wrote 1984?", "options": [{ "text": "George Orwell", "correct": true }, { "text": "Aldous Huxley" }, { "text": "Ray Bradbury" }, { "text": "H.G. Wells" }] },
+        { "prompt": "Which gas is used to make balloons float?", "options": [{ "text": "Hydrogen" }, { "text": "Helium", "correct": true }, { "text": "Neon" }, { "text": "Methane" }] },
+        { "prompt": "In what year did the Soviet Union break up?", "options": [{ "text": "1989" }, { "text": "1990" }, { "text": "1991", "correct": true }, { "text": "1993" }] },
+        { "prompt": "What is the capital of Egypt?", "options": [{ "text": "Alexandria" }, { "text": "Cairo", "correct": true }, { "text": "Luxor" }, { "text": "Aswan" }] },
+        { "prompt": "Which animal is the tallest in the world?", "options": [{ "text": "Elephant" }, { "text": "Giraffe", "correct": true }, { "text": "Camel" }, { "text": "Ostrich" }] },
+        { "prompt": "How many squares does a chessboard have?", "options": [{ "text": "36" }, { "text": "49" }, { "text": "64", "correct": true }, { "text": "81" }] },
+        { "prompt": "Which planet is called the red planet?", "options": [{ "text": "Mercury" }, { "text": "Mars", "correct": true }, { "text": "Venus" }, { "text": "Jupiter" }] },
+        { "prompt": "Which country declared its independence in 1776?", "options": [{ "text": "Mexico" }, { "text": "United States", "correct": true }, { "text": "Brazil" }, { "text": "Canada" }] },
+        { "prompt": "Which writer created Pippi Longstocking?", "options": [{ "text": "Astrid Lindgren", "correct": true }, { "text": "Selma Lagerlof" }, { "text": "Tove Jansson" }, { "text": "Annie Schmidt" }] },
+        { "prompt": "Which vitamin does the body make from sunlight?", "options": [{ "text": "Vitamin A" }, { "text": "Vitamin C" }, { "text": "Vitamin D", "correct": true }, { "text": "Vitamin K" }] },
+        { "prompt": "Which Dutch speed skater won three gold medals at the 1988 Olympics?", "options": [{ "text": "Yvonne van Gennip", "correct": true }, { "text": "Ria Visser" }, { "text": "Annie Borckink" }, { "text": "Atje Keulen-Deelstra" }] },
+        { "prompt": "In what year was the Treaty of Rome signed?", "options": [{ "text": "1949" }, { "text": "1951" }, { "text": "1957", "correct": true }, { "text": "1965" }] },
+        { "prompt": "Which instrument does a percussionist NOT play?", "options": [{ "text": "Timpani" }, { "text": "Marimba" }, { "text": "Oboe", "correct": true }, { "text": "Triangle" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many litres of blood does an adult human body hold?", "answer": 5, "unit": "litres", "explanation": "Around five litres, a little more in a large man and less in a small woman." },
+        { "prompt": "In what year was the Dutch East India Company founded?", "answer": 1602, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Haystack" },
+        { "prompt": "Corkscrew" },
+        { "prompt": "Parrot" },
+        { "prompt": "Museum" },
+        { "prompt": "Coconut" },
+        { "prompt": "Mermaid" },
+        { "prompt": "Roller skate" },
+        { "prompt": "Bagpipes" },
+        { "prompt": "Snow chain" },
+        { "prompt": "Ranger" },
+        { "prompt": "Cable car" },
+        { "prompt": "Sunglasses" },
+        { "prompt": "Letterbox" },
+        { "prompt": "Hippopotamus" },
+        { "prompt": "Tent pole" },
+        { "prompt": "Kettle" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest countries in the world by area.", "answers": [{ "text": "Russia" }, { "text": "Canada" }, { "text": "China" }, { "text": "United States" }] },
+        { "prompt": "Name the four strings of a violin from low to high.", "answers": [{ "text": "G" }, { "text": "D" }, { "text": "A" }, { "text": "E" }] },
+        { "prompt": "Name the four cities that hosted the summer Olympics from 1992 to 2004.", "answers": [{ "text": "Barcelona" }, { "text": "Atlanta" }, { "text": "Sydney" }, { "text": "Athens" }] },
+        { "prompt": "Name the four side seas of the Mediterranean besides the Aegean.", "answers": [{ "text": "Adriatic Sea" }, { "text": "Tyrrhenian Sea" }, { "text": "Ionian Sea" }, { "text": "Ligurian Sea" }] },
+        { "prompt": "Name the four parts of the digestive tract besides the stomach.", "answers": [{ "text": "Mouth" }, { "text": "Oesophagus" }, { "text": "Small intestine" }, { "text": "Large intestine" }] },
+        { "prompt": "Name the four largest cities of France.", "answers": [{ "text": "Paris" }, { "text": "Marseille" }, { "text": "Lyon" }, { "text": "Toulouse" }] },
+        { "prompt": "Name the four chess pieces besides the king and the pawn.", "answers": [{ "text": "Queen" }, { "text": "Rook" }, { "text": "Knight" }, { "text": "Bishop" }] },
+        { "prompt": "Name the four cycling Monuments besides Milan-Sanremo.", "answers": [{ "text": "Tour of Flanders" }, { "text": "Paris-Roubaix" }, { "text": "Liege-Bastogne-Liege" }, { "text": "Tour of Lombardy" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch jurist wrote On the Law of War and Peace in 1625?", "answers": [{ "text": "Hugo de Groot", "aliases": ["Grotius", "Hugo Grotius"] }] },
+        { "prompt": "What is the highest mountain in South America?", "answers": [{ "text": "Aconcagua", "aliases": ["Mount Aconcagua"] }] },
+        { "prompt": "Which Austrian composer wrote over a hundred symphonies and is called the father of the symphony?", "answers": [{ "text": "Joseph Haydn", "aliases": ["Haydn"] }] },
+        { "prompt": "What is the capital of Kazakhstan?", "answers": [{ "text": "Astana", "aliases": ["Nur-Sultan"] }] },
+        { "prompt": "Which English physicist formulated the three laws of motion?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
+        { "prompt": "In what year did Constantinople fall to the Ottomans?", "answers": [{ "text": "1453" }] }
+      ]
+    }
+  ]
+}

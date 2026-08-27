@@ -1,0 +1,104 @@
+{
+  "slug": "fashion",
+  "title": "Fashion and Couture",
+  "description": "A whole pub quiz about fashion: houses, designers, fabrics and the catwalk.",
+  "publishedAt": "2026-02-25",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which French fashion house was founded by Coco Chanel?", "category": "Houses", "answers": [{ "text": "Chanel" }] },
+        { "prompt": "Which French designer introduced the New Look in 1947?", "category": "Designers", "answers": [{ "text": "Christian Dior", "aliases": ["Dior"] }] },
+        { "prompt": "Which Italian designer was murdered in Miami in 1997?", "category": "Designers", "answers": [{ "text": "Gianni Versace", "aliases": ["Versace"] }] },
+        { "prompt": "Which Dutch design duo makes conceptual couture?", "category": "Designers", "answers": [{ "text": "Viktor & Rolf", "aliases": ["Viktor and Rolf"] }] },
+        { "prompt": "Which city is called the capital of fashion?", "category": "Cities", "answers": [{ "text": "Paris" }] },
+        { "prompt": "In which Italian city is the country's most important fashion week held?", "category": "Cities", "answers": [{ "text": "Milan" }] },
+        { "prompt": "What is the short skirt that broke through in the sixties called?", "category": "Clothing", "answers": [{ "text": "The miniskirt", "aliases": ["miniskirt", "mini"] }] },
+        { "prompt": "Which garment of sturdy blue cotton did Levi Strauss make popular?", "category": "Clothing", "answers": [{ "text": "Jeans", "aliases": ["denim jeans", "blue jeans"] }] },
+        { "prompt": "Which French house has a monogram with the letters L and V?", "category": "Brands", "answers": [{ "text": "Louis Vuitton", "aliases": ["Vuitton"] }] },
+        { "prompt": "Which Italian brand uses a double G as its logo?", "category": "Brands", "answers": [{ "text": "Gucci" }] },
+        { "prompt": "Which fabric is made from the thread of a caterpillar?", "category": "Materials", "answers": [{ "text": "Silk" }] },
+        { "prompt": "Which fine wool comes from a goat from Kashmir?", "category": "Materials", "answers": [{ "text": "Cashmere", "aliases": ["kashmir"] }] },
+        { "prompt": "What is someone who shows clothes on the catwalk called?", "category": "Professions", "answers": [{ "text": "A model", "aliases": ["mannequin"] }] },
+        { "prompt": "Which French term stands for handmade made-to-measure clothing?", "category": "Terms", "answers": [{ "text": "Haute couture", "aliases": ["couture"] }] },
+        { "prompt": "What is the raised path models walk along called?", "category": "Terms", "answers": [{ "text": "The catwalk", "aliases": ["catwalk", "runway"] }] },
+        { "prompt": "Which British designer is called the queen of punk fashion?", "category": "Designers", "answers": [{ "text": "Vivienne Westwood", "aliases": ["Westwood"] }] },
+        { "prompt": "Which French designer brought out the trouser suit for women in 1966?", "category": "Designers", "answers": [{ "text": "Yves Saint Laurent", "aliases": ["Saint Laurent"] }] },
+        { "prompt": "Which fashion magazine was founded in New York in 1892?", "category": "Magazines", "answers": [{ "text": "Vogue" }] },
+        { "prompt": "Which French house makes the Birkin bag?", "category": "Accessories", "answers": [{ "text": "Hermes" }] },
+        { "prompt": "Which simple garment in a dark colour did Chanel turn into a classic?", "category": "Clothing", "answers": [{ "text": "The little black dress", "aliases": ["little black dress", "LBD"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In what year did Coco Chanel open her first fashion house?", "options": [{ "text": "1901" }, { "text": "1910", "correct": true }, { "text": "1921" }, { "text": "1930" }] },
+        { "prompt": "In what year did the perfume Chanel No. 5 go on sale?", "options": [{ "text": "1911" }, { "text": "1921", "correct": true }, { "text": "1931" }, { "text": "1941" }] },
+        { "prompt": "Which Spanish brand is known for fast fashion?", "options": [{ "text": "Zara", "correct": true }, { "text": "Mango" }, { "text": "Desigual" }, { "text": "Loewe" }] },
+        { "prompt": "Which designer led Chanel from 1983 to 2019?", "options": [{ "text": "Karl Lagerfeld", "correct": true }, { "text": "Tom Ford" }, { "text": "Marc Jacobs" }, { "text": "John Galliano" }] },
+        { "prompt": "Which country is the house of Prada from?", "options": [{ "text": "Italy", "correct": true }, { "text": "France" }, { "text": "Spain" }, { "text": "Germany" }] },
+        { "prompt": "Which brand uses a crocodile as its logo?", "options": [{ "text": "Lacoste", "correct": true }, { "text": "Fred Perry" }, { "text": "Ralph Lauren" }, { "text": "Puma" }] },
+        { "prompt": "What is the annual benefit gala of the costume institute in New York called?", "options": [{ "text": "Met Gala", "correct": true }, { "text": "Fashion Awards" }, { "text": "Costume Ball" }, { "text": "Style Night" }] },
+        { "prompt": "Which British designer was known for theatrical shows and died in 2010?", "options": [{ "text": "Alexander McQueen", "correct": true }, { "text": "Paul Smith" }, { "text": "Stella McCartney" }, { "text": "Ozwald Boateng" }] },
+        { "prompt": "Which British brand is known for its beige check pattern?", "options": [{ "text": "Burberry", "correct": true }, { "text": "Barbour" }, { "text": "Fred Perry" }, { "text": "Ben Sherman" }] },
+        { "prompt": "Which American designer uses a polo player as a logo?", "options": [{ "text": "Ralph Lauren", "correct": true }, { "text": "Tommy Hilfiger" }, { "text": "Calvin Klein" }, { "text": "Michael Kors" }] },
+        { "prompt": "Which French designer made the cone corset for Madonna?", "options": [{ "text": "Jean Paul Gaultier", "correct": true }, { "text": "Thierry Mugler" }, { "text": "Christian Lacroix" }, { "text": "Azzedine Alaia" }] },
+        { "prompt": "Which British designer made the miniskirt popular in London?", "options": [{ "text": "Mary Quant", "correct": true }, { "text": "Vivienne Westwood" }, { "text": "Zandra Rhodes" }, { "text": "Laura Ashley" }] },
+        { "prompt": "Which French term stands for ready-to-wear clothing?", "options": [{ "text": "Pret-a-porter", "correct": true }, { "text": "Haute couture" }, { "text": "Sur mesure" }, { "text": "Demi-couture" }] },
+        { "prompt": "Which designer became head of menswear at Louis Vuitton in 2018?", "options": [{ "text": "Virgil Abloh", "correct": true }, { "text": "Kim Jones" }, { "text": "Marc Jacobs" }, { "text": "Nicolas Ghesquiere" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year was the Levi Strauss company founded?", "answer": 1853, "unit": "", "explanation": "Levi Strauss started in San Francisco in 1853; the riveted trouser followed in 1873." },
+        { "prompt": "In what year was the first Met Gala held?", "answer": 1948, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Sewing machine" },
+        { "prompt": "Button" },
+        { "prompt": "Zip" },
+        { "prompt": "Needle" },
+        { "prompt": "Shop dummy" },
+        { "prompt": "Hat" },
+        { "prompt": "Scarf" },
+        { "prompt": "Glove" },
+        { "prompt": "Coat hanger" },
+        { "prompt": "Tape measure" },
+        { "prompt": "Catwalk" },
+        { "prompt": "Sunglasses" },
+        { "prompt": "Leather jacket" },
+        { "prompt": "Perfume" },
+        { "prompt": "Stiletto heel" },
+        { "prompt": "Mirror" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four French fashion houses.", "answers": [{ "text": "Chanel" }, { "text": "Dior" }, { "text": "Hermes" }, { "text": "Louis Vuitton" }] },
+        { "prompt": "Name four Italian fashion houses.", "answers": [{ "text": "Gucci" }, { "text": "Prada" }, { "text": "Versace" }, { "text": "Armani" }] },
+        { "prompt": "Name the four great fashion cities.", "answers": [{ "text": "Paris" }, { "text": "Milan" }, { "text": "London" }, { "text": "New York" }] },
+        { "prompt": "Name four natural textile fibres.", "answers": [{ "text": "Cotton" }, { "text": "Wool" }, { "text": "Silk" }, { "text": "Linen" }] },
+        { "prompt": "Name four kinds of hat.", "answers": [{ "text": "Top hat" }, { "text": "Cap" }, { "text": "Beret" }, { "text": "Sun hat" }] },
+        { "prompt": "Name four Belgian fashion designers.", "answers": [{ "text": "Dries Van Noten" }, { "text": "Ann Demeulemeester" }, { "text": "Martin Margiela" }, { "text": "Raf Simons" }] },
+        { "prompt": "Name four fashion magazines.", "answers": [{ "text": "Vogue" }, { "text": "Elle" }, { "text": "Harper's Bazaar" }, { "text": "Marie Claire" }] },
+        { "prompt": "Name four brands of trainers.", "answers": [{ "text": "Nike" }, { "text": "Adidas" }, { "text": "Puma" }, { "text": "New Balance" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Englishman opened the first fashion house in Paris in the nineteenth century?", "answers": [{ "text": "Charles Frederick Worth", "aliases": ["Worth"] }] },
+        { "prompt": "Which British actress and singer is the Birkin bag named after?", "answers": [{ "text": "Jane Birkin", "aliases": ["Birkin"] }] },
+        { "prompt": "Which Italian brand began in Milan in 1913 as a leather goods shop?", "answers": [{ "text": "Prada" }] },
+        { "prompt": "Which editor took charge of American Vogue in 1988?", "answers": [{ "text": "Anna Wintour", "aliases": ["Wintour"] }] },
+        { "prompt": "Which Japanese designer founded the label Comme des Garcons?", "answers": [{ "text": "Rei Kawakubo", "aliases": ["Kawakubo"] }] },
+        { "prompt": "Which Chanel bag is named after the month and year of its design?", "answers": [{ "text": "The 2.55", "aliases": ["2.55"] }] }
+      ]
+    }
+  ]
+}

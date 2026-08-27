@@ -1,0 +1,104 @@
+{
+  "slug": "ancient-egypt",
+  "title": "Het Oude Egypte",
+  "description": "Een hele pubquiz over het oude Egypte: piramides, farao's, goden en hierogliefen.",
+  "publishedAt": "2026-04-01",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Bij welke plaats staan de grote piramides van Egypte?", "category": "Bouwwerken", "answers": [{ "text": "Gizeh", "aliases": ["Giza"] }] },
+        { "prompt": "Hoe heet het beeld bij Gizeh met een leeuwenlichaam en een mensenhoofd?", "category": "Bouwwerken", "answers": [{ "text": "De Sfinx", "aliases": ["sfinx"] }] },
+        { "prompt": "Voor welke farao werd de grootste piramide gebouwd?", "category": "Bouwwerken", "answers": [{ "text": "Cheops", "aliases": ["Khufu"] }] },
+        { "prompt": "Van welke jonge farao werd in 1922 het graf gevonden?", "category": "Farao's", "answers": [{ "text": "Toetanchamon", "aliases": ["Tutankhamun"] }] },
+        { "prompt": "Welke Britse archeoloog vond dat graf?", "category": "Farao's", "answers": [{ "text": "Howard Carter", "aliases": ["Carter"] }] },
+        { "prompt": "Welke vrouw regeerde als farao rond 1470 voor Christus?", "category": "Farao's", "answers": [{ "text": "Hatsjepsoet", "aliases": ["Hatshepsut"] }] },
+        { "prompt": "Welke koningin was de laatste heerser van het oude Egypte?", "category": "Farao's", "answers": [{ "text": "Cleopatra", "aliases": ["Cleopatra VII"] }] },
+        { "prompt": "Welke farao liet de rotstempels van Aboe Simbel bouwen?", "category": "Farao's", "answers": [{ "text": "Ramses II", "aliases": ["Ramses"] }] },
+        { "prompt": "Hoe heet het Egyptische beeldschrift?", "category": "Schrift", "answers": [{ "text": "Hierogliefen", "aliases": ["hieroglyfen"] }] },
+        { "prompt": "Welke steen maakte het ontcijferen van dat schrift mogelijk?", "category": "Schrift", "answers": [{ "text": "De steen van Rosetta", "aliases": ["Rosetta"] }] },
+        { "prompt": "Welke Fransman ontcijferde het Egyptische schrift?", "category": "Schrift", "answers": [{ "text": "Jean-Francois Champollion", "aliases": ["Champollion"] }] },
+        { "prompt": "Welke Egyptische god werd afgebeeld met een jakhalskop?", "category": "Goden", "answers": [{ "text": "Anoebis", "aliases": ["Anubis"] }] },
+        { "prompt": "Welke god was de zonnegod van Egypte?", "category": "Goden", "answers": [{ "text": "Ra", "aliases": ["Re"] }] },
+        { "prompt": "Welke god werd afgebeeld met een valkenkop?", "category": "Goden", "answers": [{ "text": "Horus" }] },
+        { "prompt": "Welke godin was de vrouw van Osiris?", "category": "Goden", "answers": [{ "text": "Isis" }] },
+        { "prompt": "Welke rivier is de levensader van Egypte?", "category": "De Nijl", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Hoe heet het vruchtbare gebied waar die rivier in zee uitmondt?", "category": "De Nijl", "answers": [{ "text": "De Nijldelta", "aliases": ["delta"] }] },
+        { "prompt": "Hoe heet de stenen kist waarin een mummie werd gelegd?", "category": "Gebruiken", "answers": [{ "text": "Een sarcofaag", "aliases": ["sarcofaag"] }] },
+        { "prompt": "Welke kever was een heilig symbool in Egypte?", "category": "Gebruiken", "answers": [{ "text": "De scarabee", "aliases": ["scarabee"] }] },
+        { "prompt": "Welke Macedonische veroveraar stichtte in 331 voor Christus de stad Alexandrie?", "category": "Geschiedenis", "answers": [{ "text": "Alexander de Grote", "aliases": ["Alexander"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Waarop schreven de Egyptenaren hun teksten?", "options": [{ "text": "Papyrus", "correct": true }, { "text": "Perkament" }, { "text": "Klei" }, { "text": "Zijde" }] },
+        { "prompt": "Hoe heet het dal bij Luxor met de graven van farao's?", "options": [{ "text": "De Vallei der Koningen", "correct": true }, { "text": "De Vallei der Piramides" }, { "text": "De Vallei van de Nijl" }, { "text": "De Vallei der Goden" }] },
+        { "prompt": "Welk orgaan lieten de balsemers in het lichaam zitten?", "options": [{ "text": "Het hart", "correct": true }, { "text": "De lever" }, { "text": "De hersenen" }, { "text": "De longen" }] },
+        { "prompt": "Welke god heerste over de doden en de onderwereld?", "options": [{ "text": "Osiris", "correct": true }, { "text": "Ra" }, { "text": "Thoth" }, { "text": "Seth" }] },
+        { "prompt": "Hoeveel grote piramides staan er op het plateau van Gizeh?", "options": [{ "text": "Drie", "correct": true }, { "text": "Twee" }, { "text": "Vier" }, { "text": "Zes" }] },
+        { "prompt": "Hoe heette de hoogste ambtenaar onder een farao?", "options": [{ "text": "De vizier", "correct": true }, { "text": "De schrijver" }, { "text": "De nomarch" }, { "text": "De hogepriester" }] },
+        { "prompt": "In welke richting stroomt de Nijl?", "options": [{ "text": "Naar het noorden", "correct": true }, { "text": "Naar het zuiden" }, { "text": "Naar het oosten" }, { "text": "Naar het westen" }] },
+        { "prompt": "Welke stad was de hoofdstad tijdens het Nieuwe Rijk?", "options": [{ "text": "Thebe", "correct": true }, { "text": "Memphis" }, { "text": "Alexandrie" }, { "text": "Cairo" }] },
+        { "prompt": "Welk dier was heilig voor de godin Bastet?", "options": [{ "text": "De kat", "correct": true }, { "text": "De hond" }, { "text": "De koe" }, { "text": "De ibis" }] },
+        { "prompt": "Welke farao verplaatste de hoofdstad en vereerde alleen de zon?", "options": [{ "text": "Achnaton", "correct": true }, { "text": "Toetmoses III" }, { "text": "Ramses III" }, { "text": "Snofroe" }] },
+        { "prompt": "Hoeveel jaar duurde de bouw van de grootste piramide ongeveer?", "options": [{ "text": "Twintig", "correct": true }, { "text": "Vijf" }, { "text": "Vijftig" }, { "text": "Honderd" }] },
+        { "prompt": "Welke god met een ibiskop was de god van de wijsheid?", "options": [{ "text": "Thoth", "correct": true }, { "text": "Ptah" }, { "text": "Amon" }, { "text": "Sobek" }] },
+        { "prompt": "Wat betekent het woord farao oorspronkelijk?", "options": [{ "text": "Groot huis", "correct": true }, { "text": "Zonnekind" }, { "text": "Heer der aarde" }, { "text": "Levende god" }] },
+        { "prompt": "Welke zee ligt ten noorden van Egypte?", "options": [{ "text": "De Middellandse Zee", "correct": true }, { "text": "De Rode Zee" }, { "text": "De Zwarte Zee" }, { "text": "De Dode Zee" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog was de grootste piramide van Gizeh oorspronkelijk?", "answer": 147, "unit": "meter", "explanation": "Bijna honderdvijftig meter; erosie kostte haar een paar meter top." },
+        { "prompt": "Hoeveel kilometer lang is de Nijl ongeveer?", "answer": 6650, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Piramide" },
+        { "prompt": "Mummie" },
+        { "prompt": "Farao" },
+        { "prompt": "Woestijn" },
+        { "prompt": "Kameel" },
+        { "prompt": "Tempel" },
+        { "prompt": "Goud" },
+        { "prompt": "Sfinx" },
+        { "prompt": "Rivier" },
+        { "prompt": "Graf" },
+        { "prompt": "Masker" },
+        { "prompt": "Papyrus" },
+        { "prompt": "Schat" },
+        { "prompt": "Zon" },
+        { "prompt": "Slang" },
+        { "prompt": "Obelisk" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier Egyptische goden.", "answers": [{ "text": "Ra" }, { "text": "Osiris" }, { "text": "Isis" }, { "text": "Anoebis" }] },
+        { "prompt": "Noem vier voorwerpen uit het graf van Toetanchamon.", "answers": [{ "text": "Het gouden masker" }, { "text": "De sarcofaag" }, { "text": "Een strijdwagen" }, { "text": "Sieraden" }] },
+        { "prompt": "Noem vier landen waar de Nijl door of langs stroomt.", "answers": [{ "text": "Egypte" }, { "text": "Soedan" }, { "text": "Zuid-Soedan" }, { "text": "Oeganda" }] },
+        { "prompt": "Noem vier soorten bouwwerken uit het oude Egypte.", "answers": [{ "text": "Piramide" }, { "text": "Tempel" }, { "text": "Obelisk" }, { "text": "Rotsgraf" }] },
+        { "prompt": "Noem vier dieren die in Egypte heilig waren.", "answers": [{ "text": "De kat" }, { "text": "De krokodil" }, { "text": "De ibis" }, { "text": "De stier" }] },
+        { "prompt": "Noem vier stappen van het mummificeren.", "answers": [{ "text": "De organen verwijderen" }, { "text": "Drogen met zout" }, { "text": "Inwikkelen met linnen" }, { "text": "In een sarcofaag leggen" }] },
+        { "prompt": "Noem vier farao's.", "answers": [{ "text": "Cheops" }, { "text": "Ramses II" }, { "text": "Toetanchamon" }, { "text": "Hatsjepsoet" }] },
+        { "prompt": "Noem vier steden in het huidige Egypte.", "answers": [{ "text": "Cairo" }, { "text": "Alexandrie" }, { "text": "Luxor" }, { "text": "Aswan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heette de nieuwe hoofdstad die Achnaton liet bouwen?", "answers": [{ "text": "Achetaton", "aliases": ["Amarna"] }] },
+        { "prompt": "Hoe heten de vier kruiken waarin organen werden bewaard?", "answers": [{ "text": "Canopen", "aliases": ["canopische vazen"] }] },
+        { "prompt": "Welke Griekse geschiedschrijver noemde Egypte een geschenk van de Nijl?", "answers": [{ "text": "Herodotus" }] },
+        { "prompt": "Welke dynastie regeerde Egypte tussen Alexander en de Romeinen?", "answers": [{ "text": "De Ptolemaeen", "aliases": ["Ptolemaeen"] }] },
+        { "prompt": "Hoe heet het Egyptische teken van het leven?", "answers": [{ "text": "Het ankh-teken", "aliases": ["ankh"] }] },
+        { "prompt": "In welk jaar werd Egypte een provincie van Rome?", "answers": [{ "text": "30 voor Christus", "aliases": ["30 v.Chr."] }] }
+      ]
+    }
+  ]
+}

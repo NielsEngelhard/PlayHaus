@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w28",
+  "title": "Weekquiz week 28",
+  "description": "De wekelijkse quiz van woensdag 8 juli 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Noorwegen?", "category": "Aardrijkskunde", "answers": [{ "text": "Oslo" }] },
+        { "prompt": "Welk orgaan gebruikt de mens om te ademen?", "category": "Wetenschap", "answers": [{ "text": "De longen", "aliases": ["longen"] }] },
+        { "prompt": "Welke muur verdeelde Berlijn van 1961 tot 1989?", "category": "Geschiedenis", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
+        { "prompt": "Welke wielerronde eindigt traditioneel in Parijs?", "category": "Sport", "answers": [{ "text": "De Tour de France", "aliases": ["Tour de France"] }] },
+        { "prompt": "Welke Amerikaanse zanger wordt de King of Rock and Roll genoemd?", "category": "Muziek", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
+        { "prompt": "Welke groene figuur uit Star Wars leidt de Jedi-orde als grootmeester?", "category": "Film", "answers": [{ "text": "Yoda" }] },
+        { "prompt": "Hoeveel vleugels heeft een bij?", "category": "Natuur", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de oudste universiteit van het land?", "category": "Nederland", "answers": [{ "text": "Leiden" }] },
+        { "prompt": "Welk woord is het meervoud van kind in het Nederlands?", "category": "Taal", "answers": [{ "text": "Kinderen" }] },
+        { "prompt": "Welke Spaanse schilder maakte Guernica?", "category": "Kunst", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] },
+        { "prompt": "Wat is het lichtste element in het periodiek systeem?", "category": "Wetenschap", "answers": [{ "text": "Waterstof", "aliases": ["H"] }] },
+        { "prompt": "Welke woestijn ligt in Zuid-Amerika en is de droogste ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Atacama", "aliases": ["Atacama"] }] },
+        { "prompt": "Welke Griekse veldheer veroverde het Perzische Rijk?", "category": "Geschiedenis", "answers": [{ "text": "Alexander de Grote", "aliases": ["Alexander"] }] },
+        { "prompt": "Van welke plant komt rijst?", "category": "Eten", "answers": [{ "text": "De rijstplant", "aliases": ["rijst", "Oryza sativa"] }] },
+        { "prompt": "Hoeveel minuten duurt een reguliere voetbalwedstrijd?", "category": "Sport", "answers": [{ "text": "Negentig", "aliases": ["90"] }] },
+        { "prompt": "Welke boom wordt in Nederland vaak langs de dijk geplant en heeft hangende takken?", "category": "Natuur", "answers": [{ "text": "De wilg", "aliases": ["wilg", "treurwilg"] }] },
+        { "prompt": "Welk Nederlands dorp is beroemd om zijn tuinen met tulpen in het voorjaar?", "category": "Nederland", "answers": [{ "text": "Lisse", "aliases": ["Keukenhof"] }] },
+        { "prompt": "Hoeveel tanden heeft een volwassen mens meestal?", "category": "Wetenschap", "answers": [{ "text": "Tweeendertig", "aliases": ["32"] }] },
+        { "prompt": "Welke regisseur maakte Pulp Fiction?", "category": "Film", "answers": [{ "text": "Quentin Tarantino", "aliases": ["Tarantino"] }] },
+        { "prompt": "Welke rivier stroomt door Parijs?", "category": "Aardrijkskunde", "answers": [{ "text": "De Seine", "aliases": ["Seine"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land grenst NIET aan de Middellandse Zee?", "options": [{ "text": "Albanie" }, { "text": "Bulgarije", "correct": true }, { "text": "Libanon" }, { "text": "Tunesie" }] },
+        { "prompt": "Wie schreef het toneelstuk Hamlet?", "options": [{ "text": "Shakespeare", "correct": true }, { "text": "Marlowe" }, { "text": "Jonson" }, { "text": "Webster" }] },
+        { "prompt": "Welk metaal is het beste geleider van elektriciteit?", "options": [{ "text": "Koper" }, { "text": "Zilver", "correct": true }, { "text": "Goud" }, { "text": "Aluminium" }] },
+        { "prompt": "In welk jaar werd de Titanic gebouwd en te water gelaten?", "options": [{ "text": "1909" }, { "text": "1911", "correct": true }, { "text": "1912" }, { "text": "1914" }] },
+        { "prompt": "Wat is de hoofdstad van Zuid-Korea?", "options": [{ "text": "Busan" }, { "text": "Seoul", "correct": true }, { "text": "Incheon" }, { "text": "Daegu" }] },
+        { "prompt": "Welk dier draagt zijn jongen in een buidel en boksen kan?", "options": [{ "text": "Koala" }, { "text": "Kangoeroe", "correct": true }, { "text": "Opossum" }, { "text": "Wallaby" }] },
+        { "prompt": "Hoeveel spelers heeft een ijshockeyteam in het veld inclusief de keeper?", "options": [{ "text": "Vijf" }, { "text": "Zes", "correct": true }, { "text": "Zeven" }, { "text": "Acht" }] },
+        { "prompt": "Welke planeet is de buitenste van ons zonnestelsel?", "options": [{ "text": "Uranus" }, { "text": "Neptunus", "correct": true }, { "text": "Pluto" }, { "text": "Saturnus" }] },
+        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "options": [{ "text": "Engels" }, { "text": "Mandarijn", "correct": true }, { "text": "Spaans" }, { "text": "Hindi" }] },
+        { "prompt": "Wie leidde het Concertgebouworkest vanaf 1895 een halve eeuw lang?", "options": [{ "text": "Willem Mengelberg", "correct": true }, { "text": "Bernard Haitink" }, { "text": "Eduard van Beinum" }, { "text": "Riccardo Chailly" }] },
+        { "prompt": "Wat is het grootste orgaan van het menselijk lichaam?", "options": [{ "text": "Lever" }, { "text": "Huid", "correct": true }, { "text": "Longen" }, { "text": "Darm" }] },
+        { "prompt": "Welke stad staat bekend als de Stad van het Licht?", "options": [{ "text": "Parijs", "correct": true }, { "text": "Wenen" }, { "text": "Praag" }, { "text": "Venetie" }] },
+        { "prompt": "In welk jaar werd de eerste kunstmaan Spoetnik 1 gelanceerd?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] },
+        { "prompt": "Welke vrucht heet in het Latijn Citrus limon?", "options": [{ "text": "Limoen" }, { "text": "Citroen", "correct": true }, { "text": "Pomelo" }, { "text": "Mandarijn" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer is de afstand van de aarde tot de maan gemiddeld?", "answer": 384400, "unit": "kilometer", "explanation": "Bijna vierhonderdduizend kilometer, ongeveer dertig keer de diameter van de aarde." },
+        { "prompt": "In welk jaar werd de Eiffeltoren voltooid?", "answer": 1889, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Wandelstok" },
+        { "prompt": "Hoefijzer" },
+        { "prompt": "Zebra" },
+        { "prompt": "Bakkerij" },
+        { "prompt": "Watermeloen" },
+        { "prompt": "Cowboy" },
+        { "prompt": "Weegschaal" },
+        { "prompt": "Fluit" },
+        { "prompt": "Sneeuwschuiver" },
+        { "prompt": "Loodgieter" },
+        { "prompt": "Achtbaan" },
+        { "prompt": "Verrekijker" },
+        { "prompt": "Deurbel" },
+        { "prompt": "Struisvogel" },
+        { "prompt": "Rugzak" },
+        { "prompt": "Vuilnisbak" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste steden van Duitsland.", "answers": [{ "text": "Berlijn" }, { "text": "Hamburg" }, { "text": "Munchen" }, { "text": "Keulen" }] },
+        { "prompt": "Noem de vier oceanen behalve de Zuidelijke Oceaan.", "answers": [{ "text": "Stille Oceaan" }, { "text": "Atlantische Oceaan" }, { "text": "Indische Oceaan" }, { "text": "Noordelijke IJszee" }] },
+        { "prompt": "Noem de vier hoofdrolspelers van de Fantastic Four.", "answers": [{ "text": "Mister Fantastic" }, { "text": "Invisible Woman" }, { "text": "Human Torch" }, { "text": "The Thing" }] },
+        { "prompt": "Noem de vier grote Atheense toneeldichters behalve Menander.", "answers": [{ "text": "Aeschylus" }, { "text": "Sophocles" }, { "text": "Euripides" }, { "text": "Aristophanes" }] },
+        { "prompt": "Noem de vier buurlanden van Belgie.", "answers": [{ "text": "Nederland" }, { "text": "Duitsland" }, { "text": "Luxemburg" }, { "text": "Frankrijk" }] },
+        { "prompt": "Noem de vier soorten weefsel die het menselijk lichaam opbouwen.", "answers": [{ "text": "Spierweefsel" }, { "text": "Zenuwweefsel" }, { "text": "Epitheel" }, { "text": "Bindweefsel" }] },
+        { "prompt": "Noem de vier grootste eilanden van de Britse eilandengroep.", "answers": [{ "text": "Groot-Brittannie" }, { "text": "Ierland" }, { "text": "Lewis and Harris" }, { "text": "Skye" }] },
+        { "prompt": "Noem de vier concerten van De vier jaargetijden van Vivaldi.", "answers": [{ "text": "Lente" }, { "text": "Zomer" }, { "text": "Herfst" }, { "text": "Winter" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Poolse astronoom zette de zon in het midden van het zonnestelsel?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus", "Kopernikus"] }] },
+        { "prompt": "Wat is het grootste meer van Afrika?", "answers": [{ "text": "Het Victoriameer", "aliases": ["Victoriameer"] }] },
+        { "prompt": "Welke Russische componist schreef het ballet Het Zwanenmeer?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Pjotr Tsjaikovski"] }] },
+        { "prompt": "Wat is de hoofdstad van Turkije?", "answers": [{ "text": "Ankara" }] },
+        { "prompt": "Welke twee wetenschappers beschreven in 1953 de dubbele helix van DNA?", "answers": [{ "text": "Watson en Crick", "aliases": ["James Watson en Francis Crick"] }] },
+        { "prompt": "In welk jaar werd de Nederlandse Grondwet met het huidige stelsel van ministeriele verantwoordelijkheid ingevoerd?", "answers": [{ "text": "1848" }] }
+      ]
+    }
+  ]
+}

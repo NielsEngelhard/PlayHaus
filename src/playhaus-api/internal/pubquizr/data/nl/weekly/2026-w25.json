@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w25",
+  "title": "Weekquiz week 25",
+  "description": "De wekelijkse quiz van woensdag 17 juni 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk land is qua oppervlakte het grootste ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Rusland" }] },
+        { "prompt": "Hoeveel botten heeft een volwassen mens?", "category": "Wetenschap", "answers": [{ "text": "Tweehonderdzes", "aliases": ["206"] }] },
+        { "prompt": "Wie zette als eerste mens voet op de maan?", "category": "Geschiedenis", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Hoeveel ringen staan er in het olympische symbool?", "category": "Sport", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welke band bracht het album The Dark Side of the Moon uit?", "category": "Muziek", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Welke regisseur maakte de film Jaws?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
+        { "prompt": "Wat is het snelste landdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De jachtluipaard", "aliases": ["cheeta", "jachtluipaard"] }] },
+        { "prompt": "Welke rivier stroomt langs Rotterdam naar de zee?", "category": "Nederland", "answers": [{ "text": "De Maas", "aliases": ["Maas", "Nieuwe Maas"] }] },
+        { "prompt": "Wat betekent het Latijnse woord aqua?", "category": "Taal", "answers": [{ "text": "Water" }] },
+        { "prompt": "In welk New Yorks museum hangt De sterrennacht van Van Gogh?", "category": "Kunst", "answers": [{ "text": "Museum of Modern Art", "aliases": ["MoMA"] }] },
+        { "prompt": "Welk orgaan pompt het bloed door het lichaam?", "category": "Wetenschap", "answers": [{ "text": "Het hart", "aliases": ["hart"] }] },
+        { "prompt": "Wat is de hoogste berg van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "De Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
+        { "prompt": "Welke Egyptische koningin had een verhouding met Julius Caesar?", "category": "Geschiedenis", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "Welke specerij is per gram de duurste ter wereld?", "category": "Eten", "answers": [{ "text": "Saffraan" }] },
+        { "prompt": "Om de hoeveel jaar worden de Olympische Zomerspelen gehouden?", "category": "Sport", "answers": [{ "text": "Vier jaar", "aliases": ["4"] }] },
+        { "prompt": "Hoeveel harten heeft een octopus?", "category": "Natuur", "answers": [{ "text": "Drie", "aliases": ["3"] }] },
+        { "prompt": "Welke koning zit sinds 2013 op de Nederlandse troon?", "category": "Nederland", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
+        { "prompt": "Wat is het hardste natuurlijke materiaal op aarde?", "category": "Wetenschap", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Welke animatiestudio maakte Toy Story?", "category": "Film", "answers": [{ "text": "Pixar" }] },
+        { "prompt": "Welke stad wordt de Eeuwige Stad genoemd?", "category": "Aardrijkskunde", "answers": [{ "text": "Rome" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen heeft de euro NIET als munt?", "options": [{ "text": "Oostenrijk" }, { "text": "Finland" }, { "text": "Zweden", "correct": true }, { "text": "Portugal" }] },
+        { "prompt": "Wie schilderde Het meisje met de perl?", "options": [{ "text": "Rembrandt" }, { "text": "Vermeer", "correct": true }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
+        { "prompt": "Welke planeet draait vrijwel op zijn kant om de zon?", "options": [{ "text": "Uranus", "correct": true }, { "text": "Neptunus" }, { "text": "Saturnus" }, { "text": "Venus" }] },
+        { "prompt": "Wat is de hoofdstad van Australie?", "options": [{ "text": "Sydney" }, { "text": "Melbourne" }, { "text": "Canberra", "correct": true }, { "text": "Perth" }] },
+        { "prompt": "Welke vogel legt het grootste ei?", "options": [{ "text": "Struisvogel", "correct": true }, { "text": "Pelikaan" }, { "text": "Albatros" }, { "text": "Emoe" }] },
+        { "prompt": "In welk jaar begon de Franse Revolutie?", "options": [{ "text": "1776" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1804" }] },
+        { "prompt": "Welke rivier stroomt door Londen?", "options": [{ "text": "Severn" }, { "text": "Theems", "correct": true }, { "text": "Mersey" }, { "text": "Trent" }] },
+        { "prompt": "Hoeveel spelers heeft een basketbalteam in het veld?", "options": [{ "text": "Vier" }, { "text": "Vijf", "correct": true }, { "text": "Zes" }, { "text": "Zeven" }] },
+        { "prompt": "Welk bestanddeel van bloed vervoert zuurstof?", "options": [{ "text": "Bloedplaatjes" }, { "text": "Rode bloedcellen", "correct": true }, { "text": "Witte bloedcellen" }, { "text": "Plasma" }] },
+        { "prompt": "Welke schrijver bedacht Sherlock Holmes?", "options": [{ "text": "Agatha Christie" }, { "text": "Arthur Conan Doyle", "correct": true }, { "text": "Edgar Allan Poe" }, { "text": "Wilkie Collins" }] },
+        { "prompt": "Welke munteenheid wordt in Japan gebruikt?", "options": [{ "text": "Won" }, { "text": "Yen", "correct": true }, { "text": "Yuan" }, { "text": "Baht" }] },
+        { "prompt": "Welke Nederlandse stad heeft de bijnaam Mokum?", "options": [{ "text": "Rotterdam" }, { "text": "Amsterdam", "correct": true }, { "text": "Utrecht" }, { "text": "Den Haag" }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "options": [{ "text": "Lood" }, { "text": "Kwik", "correct": true }, { "text": "Tin" }, { "text": "Zink" }] },
+        { "prompt": "Welke oceaan is de diepste?", "options": [{ "text": "Atlantische Oceaan" }, { "text": "Stille Oceaan", "correct": true }, { "text": "Indische Oceaan" }, { "text": "Noordelijke IJszee" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Mount Everest?", "answer": 8849, "unit": "meter", "explanation": "De hoogte die China en Nepal in 2020 samen vaststelden." },
+        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "answer": 2007, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Windmolen" },
+        { "prompt": "Stofzuiger" },
+        { "prompt": "Krokodil" },
+        { "prompt": "Bibliotheek" },
+        { "prompt": "Sinaasappel" },
+        { "prompt": "Astronaut" },
+        { "prompt": "Spiegel" },
+        { "prompt": "Lawine" },
+        { "prompt": "Brandweerman" },
+        { "prompt": "Vulkaan" },
+        { "prompt": "Tandarts" },
+        { "prompt": "Hangmat" },
+        { "prompt": "Kaars" },
+        { "prompt": "Pinguin" },
+        { "prompt": "Zaklamp" },
+        { "prompt": "Treinstation" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grandslamtoernooien in het tennis.", "answers": [{ "text": "Australian Open" }, { "text": "Roland Garros" }, { "text": "Wimbledon" }, { "text": "US Open" }] },
+        { "prompt": "Noem de vier klassieke elementen van de oude Grieken.", "answers": [{ "text": "Aarde" }, { "text": "Water" }, { "text": "Lucht" }, { "text": "Vuur" }] },
+        { "prompt": "Noem de vier Teenage Mutant Ninja Turtles.", "answers": [{ "text": "Leonardo" }, { "text": "Donatello" }, { "text": "Raphael" }, { "text": "Michelangelo" }] },
+        { "prompt": "Noem de vier afdelingen van Zweinstein uit Harry Potter.", "answers": [{ "text": "Griffoendor" }, { "text": "Zwadderich" }, { "text": "Ravenklauw" }, { "text": "Huffelpuf" }] },
+        { "prompt": "Noem de vier grootste eilanden van Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
+        { "prompt": "Noem de vier stemsoorten in een gemengd koor.", "answers": [{ "text": "Sopraan" }, { "text": "Alt" }, { "text": "Tenor" }, { "text": "Bas" }] },
+        { "prompt": "Noem de vier basen van DNA.", "answers": [{ "text": "Adenine" }, { "text": "Thymine" }, { "text": "Guanine" }, { "text": "Cytosine" }] },
+        { "prompt": "Noem de vier musketiers uit het boek van Alexandre Dumas.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "d'Artagnan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wie schreef de roman Honderd jaar eenzaamheid?", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Marquez"] }] },
+        { "prompt": "Wat is de kleinste onafhankelijke staat ter wereld?", "answers": [{ "text": "Vaticaanstad", "aliases": ["het Vaticaan"] }] },
+        { "prompt": "Welk element heeft het symbool W?", "answers": [{ "text": "Wolfraam", "aliases": ["tungsteen"] }] },
+        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answers": [{ "text": "1961" }] },
+        { "prompt": "Welke Griekse wiskundige zou Eureka hebben geroepen in zijn bad?", "answers": [{ "text": "Archimedes" }] },
+        { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] }
+      ]
+    }
+  ]
+}

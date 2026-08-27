@@ -2,8 +2,11 @@ package pubquizr
 
 import (
 	"context"
+	"io/fs"
+	"path"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"playhaus-api/internal/platform/database"
 
@@ -49,6 +52,19 @@ func TestSeedLoadsEveryQuizThatShips(t *testing.T) {
 	}
 	if quizzes == 0 {
 		t.Fatal("seeding wrote no quizzes at all")
+	}
+
+	// One row per file, which is the only thing that notices two files claiming one
+	// slug. A quiz is keyed on (locale, slug) and the slug is read out of the file
+	// rather than off its name, so a copied file with its slug left behind does not
+	// fail: it replaces the quiz it was copied from, and the boot is silent about it.
+	files, err := fs.Glob(quizFiles, path.Join(seedRoot, "*", "*", "*.json"))
+	if err != nil {
+		t.Fatalf("glob quiz files: %v", err)
+	}
+	if int(quizzes) != len(files) {
+		t.Errorf("%d quiz files seeded %d quizzes -- two files share a locale and slug",
+			len(files), quizzes)
 	}
 
 	// Every quiz that made it in has to be dealable to a full table -- that is the
@@ -152,5 +168,58 @@ func TestValidateRefusesAChoiceQuestionWithoutExactlyOneCorrectOption(t *testing
 
 	if err := validateQuestion(question); err == nil {
 		t.Fatal("validateQuestion accepted a question with two right answers")
+	}
+}
+
+// A weekly quiz's slug is the only place its Wednesday is written down, so the shelf
+// order for the whole weekly category rests on this arithmetic. 2026-w34 is pinned
+// against the date its own description spells out in longhand.
+func TestPublishedAtForReadsTheWednesdayOutOfAWeeklySlug(t *testing.T) {
+	now := time.Date(2030, time.January, 1, 12, 0, 0, 0, time.UTC)
+
+	for _, tc := range []struct{ slug, want string }{
+		{"2026-w24", "2026-06-10"},
+		{"2026-w34", "2026-08-19"}, // "woensdag 19 augustus 2026", per the file itself
+		{"2026-w01", "2025-12-31"}, // ISO week 1 of 2026 opens in December
+		{"2027-w01", "2027-01-06"},
+	} {
+		got, err := publishedAtFor(tc.slug, "", now)
+		if err != nil {
+			t.Fatalf("publishedAtFor(%q): %v", tc.slug, err)
+		}
+		if stamp := got.Format(publishedAtLayout); stamp != tc.want {
+			t.Errorf("%s falls on %s, want %s", tc.slug, stamp, tc.want)
+		}
+		if got.Weekday() != time.Wednesday {
+			t.Errorf("%s falls on a %s", tc.slug, got.Weekday())
+		}
+	}
+}
+
+func TestPublishedAtForPrefersWhatTheFileSays(t *testing.T) {
+	now := time.Date(2030, time.January, 1, 12, 0, 0, 0, time.UTC)
+
+	// An official quiz has no date in its slug, so it declares one.
+	got, err := publishedAtFor("barbie", "2026-03-04", now)
+	if err != nil {
+		t.Fatalf("publishedAtFor: %v", err)
+	}
+	if stamp := got.Format(publishedAtLayout); stamp != "2026-03-04" {
+		t.Errorf("published %s, want 2026-03-04", stamp)
+	}
+
+	// A file that says nothing lands on this boot. Every quiz that does so shares one
+	// timestamp, which is why the content is expected to declare a date.
+	got, err = publishedAtFor("barbie", "", now)
+	if err != nil {
+		t.Fatalf("publishedAtFor: %v", err)
+	}
+	if !got.Equal(now) {
+		t.Errorf("published %s, want the boot at %s", got, now)
+	}
+
+	// A date nobody can read is a boot failure rather than a quiz quietly dated today.
+	if _, err := publishedAtFor("barbie", "4 March 2026", now); err == nil {
+		t.Error("a date in the wrong shape was accepted")
 	}
 }

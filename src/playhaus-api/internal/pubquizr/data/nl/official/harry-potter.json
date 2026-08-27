@@ -1,0 +1,104 @@
+{
+  "slug": "harry-potter",
+  "title": "Harry Potter",
+  "description": "Een hele pubquiz over Harry Potter: Zweinstein, spreuken, zwerkbal en de films.",
+  "publishedAt": "2026-04-08",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wie schreef de Harry Potterboeken?", "category": "Boeken", "answers": [{ "text": "J.K. Rowling", "aliases": ["Rowling", "Joanne Rowling"] }] },
+        { "prompt": "Hoeveel boeken staan er in de hoofdreeks?", "category": "Boeken", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Welke steen wordt in het eerste boek gezocht?", "category": "Boeken", "answers": [{ "text": "De Steen der Wijzen", "aliases": ["Steen der Wijzen"] }] },
+        { "prompt": "Hoe heet de school voor hekserij en toverkunst?", "category": "School", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }] },
+        { "prompt": "In welke afdeling zit Harry?", "category": "School", "answers": [{ "text": "Griffoendor", "aliases": ["Gryffindor"] }] },
+        { "prompt": "Hoe heet het schoolhoofd aan het begin van de reeks?", "category": "School", "answers": [{ "text": "Albus Perkamentus", "aliases": ["Perkamentus", "Dumbledore"] }] },
+        { "prompt": "Wie geeft er les in Toverdranken?", "category": "School", "answers": [{ "text": "Severus Sneep", "aliases": ["Sneep", "Snape"] }] },
+        { "prompt": "Hoe heet de halfreus die sleutelbewaarder van de school is?", "category": "School", "answers": [{ "text": "Rubeus Hagrid", "aliases": ["Hagrid"] }] },
+        { "prompt": "Hoe heten de twee beste vrienden van Harry?", "category": "Personages", "answers": [{ "text": "Ron Wemel en Hermelien Griffel", "aliases": ["Ron en Hermelien"] }] },
+        { "prompt": "Hoe heet de uil van Harry?", "category": "Personages", "answers": [{ "text": "Hedwig" }] },
+        { "prompt": "Welke tovenaar wordt Hij Die Niet Genoemd Mag Worden genoemd?", "category": "Personages", "answers": [{ "text": "Voldemort", "aliases": ["Marten Vilijn"] }] },
+        { "prompt": "Hoe heet de huiself die Harry helpt?", "category": "Personages", "answers": [{ "text": "Dobby" }] },
+        { "prompt": "Hoe heet de sport die op bezemstelen wordt gespeeld?", "category": "Sport", "answers": [{ "text": "Zwerkbal", "aliases": ["Quidditch"] }] },
+        { "prompt": "Hoe heet het kleine gouden balletje in die sport?", "category": "Sport", "answers": [{ "text": "De Snaai", "aliases": ["Snaai"] }] },
+        { "prompt": "Welke spreuk ontwapent een tegenstander?", "category": "Magie", "answers": [{ "text": "Expelliarmus" }] },
+        { "prompt": "Welke spreuk laat een toverstok licht geven?", "category": "Magie", "answers": [{ "text": "Lumos" }] },
+        { "prompt": "Van welk perron vertrekt de trein naar de school?", "category": "Magie", "answers": [{ "text": "Perron negen en driekwart", "aliases": ["9 3/4"] }] },
+        { "prompt": "Hoe heet de bank van de tovenaars?", "category": "Magie", "answers": [{ "text": "Goudgrijp", "aliases": ["Gringotts"] }] },
+        { "prompt": "Welke acteur speelde Harry Potter in de films?", "category": "Films", "answers": [{ "text": "Daniel Radcliffe", "aliases": ["Radcliffe"] }] },
+        { "prompt": "Welke Britse acteur speelde de leraar Toverdranken in de films?", "category": "Films", "answers": [{ "text": "Alan Rickman", "aliases": ["Rickman"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Hoeveel afdelingen heeft de school?", "options": [{ "text": "Vier", "correct": true }, { "text": "Drie" }, { "text": "Vijf" }, { "text": "Zes" }] },
+        { "prompt": "Welk dier is het symbool van Zwadderich?", "options": [{ "text": "De slang", "correct": true }, { "text": "De leeuw" }, { "text": "De adelaar" }, { "text": "De das" }] },
+        { "prompt": "Hoe heet de winkelstraat voor tovenaars in Londen?", "options": [{ "text": "De Wegisweg", "correct": true }, { "text": "De Toverlaan" }, { "text": "De Bezemstraat" }, { "text": "De Zijweg" }] },
+        { "prompt": "Welke positie speelde Harry in het zwerkbalteam?", "options": [{ "text": "Zoeker", "correct": true }, { "text": "Wachter" }, { "text": "Jager" }, { "text": "Drijver" }] },
+        { "prompt": "Hoe heet de krant van de toverwereld?", "options": [{ "text": "De Ochtendprofeet", "correct": true }, { "text": "De Kibbelaar" }, { "text": "De Toverkrant" }, { "text": "De Zweinsteinbode" }] },
+        { "prompt": "Welke leraar Verweer tegen de Zwarte Kunsten was een weerwolf?", "options": [{ "text": "Remus Lupos", "correct": true }, { "text": "Gladianus Smalhart" }, { "text": "Dolores Omber" }, { "text": "Sybilla Zwamdrift" }] },
+        { "prompt": "Hoe heet de gevangenis voor tovenaars?", "options": [{ "text": "Azkaban", "correct": true }, { "text": "Nurmengard" }, { "text": "Goudgrijp" }, { "text": "Het Departement van Mysterie" }] },
+        { "prompt": "Welke wezens bewaken die gevangenis?", "options": [{ "text": "Dementors", "correct": true }, { "text": "Trollen" }, { "text": "Reuzen" }, { "text": "Draken" }] },
+        { "prompt": "Welk voorwerp gebruikt Hermelien om meer lessen te volgen?", "options": [{ "text": "Een tijdverdrijver", "correct": true }, { "text": "Een bezem" }, { "text": "Een toverhoed" }, { "text": "Een kaart" }] },
+        { "prompt": "Wie is de peetvader van Harry?", "options": [{ "text": "Sirius Zwarts", "correct": true }, { "text": "Filius Banning" }, { "text": "Arthur Wemel" }, { "text": "Alastor Dwaaloog" }] },
+        { "prompt": "Welke boom op het schoolterrein slaat terug?", "options": [{ "text": "De Beukwilg", "correct": true }, { "text": "De Verboden Eik" }, { "text": "De Treurwilg" }, { "text": "De Zingende Linde" }] },
+        { "prompt": "Hoe heet de kaart die laat zien waar iedereen op school is?", "options": [{ "text": "De Sluipwegwijzer", "correct": true }, { "text": "De Zweinsteinkaart" }, { "text": "De Toverkaart" }, { "text": "De Spiekkaart" }] },
+        { "prompt": "In welk jaar kwam de eerste Harry Potterfilm uit?", "options": [{ "text": "1999" }, { "text": "2001", "correct": true }, { "text": "2003" }, { "text": "2005" }] },
+        { "prompt": "Hoeveel films werden er van de zeven boeken gemaakt?", "options": [{ "text": "Acht", "correct": true }, { "text": "Zeven" }, { "text": "Zes" }, { "text": "Negen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar verscheen het eerste Harry Potterboek?", "answer": 1997, "unit": "", "explanation": "Juni 1997, in een eerste oplage van vijfhonderd exemplaren." },
+        { "prompt": "Hoeveel minuten duurt de eerste Harry Potterfilm ongeveer?", "answer": 152, "unit": "minuten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Toverstok" },
+        { "prompt": "Bezem" },
+        { "prompt": "Uil" },
+        { "prompt": "Kasteel" },
+        { "prompt": "Trein" },
+        { "prompt": "Toverdrank" },
+        { "prompt": "Draak" },
+        { "prompt": "Spreuk" },
+        { "prompt": "Brief" },
+        { "prompt": "Bibliotheek" },
+        { "prompt": "Spiegel" },
+        { "prompt": "Hoed" },
+        { "prompt": "Kerstfeest" },
+        { "prompt": "Sleutel" },
+        { "prompt": "Ketel" },
+        { "prompt": "Trap" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier afdelingen van de school.", "answers": [{ "text": "Griffoendor" }, { "text": "Zwadderich" }, { "text": "Ravenklauw" }, { "text": "Huffelpuf" }] },
+        { "prompt": "Noem vier leden van de familie Wemel.", "answers": [{ "text": "Ron" }, { "text": "Ginny" }, { "text": "Fred" }, { "text": "George" }] },
+        { "prompt": "Noem vier spreuken uit de boeken.", "answers": [{ "text": "Expelliarmus" }, { "text": "Lumos" }, { "text": "Accio" }, { "text": "Wingardium Leviosa" }] },
+        { "prompt": "Noem vier leraren van de school.", "answers": [{ "text": "Perkamentus" }, { "text": "Sneep" }, { "text": "Anderling" }, { "text": "Hagrid" }] },
+        { "prompt": "Noem vier magische wezens uit de reeks.", "answers": [{ "text": "Draak" }, { "text": "Eenhoorn" }, { "text": "Huiself" }, { "text": "Reus" }] },
+        { "prompt": "Noem vier plekken op het schoolterrein.", "answers": [{ "text": "Het Verboden Bos" }, { "text": "Het zwerkbalveld" }, { "text": "Het meer" }, { "text": "De Grote Zaal" }] },
+        { "prompt": "Noem vier acteurs uit de Harry Potterfilms.", "answers": [{ "text": "Daniel Radcliffe" }, { "text": "Emma Watson" }, { "text": "Rupert Grint" }, { "text": "Maggie Smith" }] },
+        { "prompt": "Noem vier boeken uit de reeks.", "answers": [{ "text": "De Steen der Wijzen" }, { "text": "De Geheime Kamer" }, { "text": "De Gevangene van Azkaban" }, { "text": "De Relieken van de Dood" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het toernooi tussen drie toverscholen in het vierde boek?", "answers": [{ "text": "Het Toverschool Toernooi", "aliases": ["Toverschool Toernooi"] }] },
+        { "prompt": "Hoe heet het dorp bij de school dat leerlingen mogen bezoeken?", "answers": [{ "text": "Zweinsveld", "aliases": ["Hogsmeade"] }] },
+        { "prompt": "Welke alchemist maakte de steen uit het eerste boek?", "answers": [{ "text": "Nicolaas Vlamel", "aliases": ["Flamel"] }] },
+        { "prompt": "Welk wezen leeft in de Geheime Kamer?", "answers": [{ "text": "Een basilisk", "aliases": ["basilisk"] }] },
+        { "prompt": "Welk dier is de patronus van Harry?", "answers": [{ "text": "Een hert", "aliases": ["hert"] }] },
+        { "prompt": "Wie doodde de slang Nagini?", "answers": [{ "text": "Marcel Lubbermans", "aliases": ["Lubbermans", "Neville Longbottom"] }] }
+      ]
+    }
+  ]
+}

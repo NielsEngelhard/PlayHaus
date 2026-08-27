@@ -1,0 +1,104 @@
+{
+  "slug": "harry-potter",
+  "title": "Harry Potter",
+  "description": "A whole pub quiz about Harry Potter: Hogwarts, spells, quidditch and the films.",
+  "publishedAt": "2026-04-08",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Who wrote the Harry Potter books?", "category": "Books", "answers": [{ "text": "J.K. Rowling", "aliases": ["Rowling", "Joanne Rowling"] }] },
+        { "prompt": "How many books are there in the main series?", "category": "Books", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "Which stone is being sought in the first book?", "category": "Books", "answers": [{ "text": "The Philosopher's Stone", "aliases": ["Sorcerer's Stone", "Philosophers Stone"] }] },
+        { "prompt": "What is the school of witchcraft and wizardry called?", "category": "School", "answers": [{ "text": "Hogwarts", "aliases": ["Zweinstein"] }] },
+        { "prompt": "Which house is Harry in?", "category": "School", "answers": [{ "text": "Gryffindor", "aliases": ["Griffoendor"] }] },
+        { "prompt": "What is the headmaster at the start of the series called?", "category": "School", "answers": [{ "text": "Albus Dumbledore", "aliases": ["Dumbledore", "Perkamentus"] }] },
+        { "prompt": "Who teaches Potions?", "category": "School", "answers": [{ "text": "Severus Snape", "aliases": ["Snape", "Sneep"] }] },
+        { "prompt": "What is the half-giant keeper of the keys called?", "category": "School", "answers": [{ "text": "Rubeus Hagrid", "aliases": ["Hagrid"] }] },
+        { "prompt": "What are Harry's two best friends called?", "category": "Characters", "answers": [{ "text": "Ron Weasley and Hermione Granger", "aliases": ["Ron and Hermione"] }] },
+        { "prompt": "What is Harry's owl called?", "category": "Characters", "answers": [{ "text": "Hedwig" }] },
+        { "prompt": "Which wizard is called He Who Must Not Be Named?", "category": "Characters", "answers": [{ "text": "Voldemort", "aliases": ["Tom Riddle"] }] },
+        { "prompt": "What is the house-elf who helps Harry called?", "category": "Characters", "answers": [{ "text": "Dobby" }] },
+        { "prompt": "What is the sport played on broomsticks called?", "category": "Sport", "answers": [{ "text": "Quidditch", "aliases": ["Zwerkbal"] }] },
+        { "prompt": "What is the small golden ball in that sport called?", "category": "Sport", "answers": [{ "text": "The Golden Snitch", "aliases": ["Snitch"] }] },
+        { "prompt": "Which spell disarms an opponent?", "category": "Magic", "answers": [{ "text": "Expelliarmus" }] },
+        { "prompt": "Which spell makes a wand give light?", "category": "Magic", "answers": [{ "text": "Lumos" }] },
+        { "prompt": "From which platform does the train to the school leave?", "category": "Magic", "answers": [{ "text": "Platform nine and three-quarters", "aliases": ["9 3/4"] }] },
+        { "prompt": "What is the wizards' bank called?", "category": "Magic", "answers": [{ "text": "Gringotts", "aliases": ["Goudgrijp"] }] },
+        { "prompt": "Which actor played Harry Potter in the films?", "category": "Films", "answers": [{ "text": "Daniel Radcliffe", "aliases": ["Radcliffe"] }] },
+        { "prompt": "Which British actor played the Potions master in the films?", "category": "Films", "answers": [{ "text": "Alan Rickman", "aliases": ["Rickman"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "How many houses does the school have?", "options": [{ "text": "Four", "correct": true }, { "text": "Three" }, { "text": "Five" }, { "text": "Six" }] },
+        { "prompt": "Which animal is the symbol of Slytherin?", "options": [{ "text": "The snake", "correct": true }, { "text": "The lion" }, { "text": "The eagle" }, { "text": "The badger" }] },
+        { "prompt": "What is the wizards' shopping street in London called?", "options": [{ "text": "Diagon Alley", "correct": true }, { "text": "Wizard Lane" }, { "text": "Broom Street" }, { "text": "Sidelong Alley" }] },
+        { "prompt": "Which position did Harry play in the quidditch team?", "options": [{ "text": "Seeker", "correct": true }, { "text": "Keeper" }, { "text": "Chaser" }, { "text": "Beater" }] },
+        { "prompt": "What is the newspaper of the wizarding world called?", "options": [{ "text": "The Daily Prophet", "correct": true }, { "text": "The Quibbler" }, { "text": "The Wizard Herald" }, { "text": "The Hogwarts Post" }] },
+        { "prompt": "Which Defence Against the Dark Arts teacher was a werewolf?", "options": [{ "text": "Remus Lupin", "correct": true }, { "text": "Gilderoy Lockhart" }, { "text": "Dolores Umbridge" }, { "text": "Sybill Trelawney" }] },
+        { "prompt": "What is the wizard prison called?", "options": [{ "text": "Azkaban", "correct": true }, { "text": "Nurmengard" }, { "text": "Gringotts" }, { "text": "The Department of Mysteries" }] },
+        { "prompt": "Which creatures guard that prison?", "options": [{ "text": "Dementors", "correct": true }, { "text": "Trolls" }, { "text": "Giants" }, { "text": "Dragons" }] },
+        { "prompt": "Which object does Hermione use to attend more lessons?", "options": [{ "text": "A time-turner", "correct": true }, { "text": "A broom" }, { "text": "A magic hat" }, { "text": "A map" }] },
+        { "prompt": "Who is Harry's godfather?", "options": [{ "text": "Sirius Black", "correct": true }, { "text": "Filius Flitwick" }, { "text": "Arthur Weasley" }, { "text": "Alastor Moody" }] },
+        { "prompt": "Which tree on the school grounds hits back?", "options": [{ "text": "The Whomping Willow", "correct": true }, { "text": "The Forbidden Oak" }, { "text": "The Weeping Willow" }, { "text": "The Singing Lime" }] },
+        { "prompt": "What is the map that shows where everyone in the school is called?", "options": [{ "text": "The Marauder's Map", "correct": true }, { "text": "The Hogwarts Chart" }, { "text": "The Wizard Map" }, { "text": "The Cheat Map" }] },
+        { "prompt": "In what year did the first Harry Potter film come out?", "options": [{ "text": "1999" }, { "text": "2001", "correct": true }, { "text": "2003" }, { "text": "2005" }] },
+        { "prompt": "How many films were made from the seven books?", "options": [{ "text": "Eight", "correct": true }, { "text": "Seven" }, { "text": "Six" }, { "text": "Nine" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year did the first Harry Potter book appear?", "answer": 1997, "unit": "", "explanation": "June 1997, in a first print run of five hundred copies." },
+        { "prompt": "About how many minutes does the first Harry Potter film last?", "answer": 152, "unit": "minutes" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Wand" },
+        { "prompt": "Broom" },
+        { "prompt": "Owl" },
+        { "prompt": "Castle" },
+        { "prompt": "Train" },
+        { "prompt": "Potion" },
+        { "prompt": "Dragon" },
+        { "prompt": "Spell" },
+        { "prompt": "Letter" },
+        { "prompt": "Library" },
+        { "prompt": "Mirror" },
+        { "prompt": "Hat" },
+        { "prompt": "Christmas" },
+        { "prompt": "Key" },
+        { "prompt": "Cauldron" },
+        { "prompt": "Staircase" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four houses of the school.", "answers": [{ "text": "Gryffindor" }, { "text": "Slytherin" }, { "text": "Ravenclaw" }, { "text": "Hufflepuff" }] },
+        { "prompt": "Name four members of the Weasley family.", "answers": [{ "text": "Ron" }, { "text": "Ginny" }, { "text": "Fred" }, { "text": "George" }] },
+        { "prompt": "Name four spells from the books.", "answers": [{ "text": "Expelliarmus" }, { "text": "Lumos" }, { "text": "Accio" }, { "text": "Wingardium Leviosa" }] },
+        { "prompt": "Name four teachers of the school.", "answers": [{ "text": "Dumbledore" }, { "text": "Snape" }, { "text": "McGonagall" }, { "text": "Hagrid" }] },
+        { "prompt": "Name four magical creatures from the series.", "answers": [{ "text": "Dragon" }, { "text": "Unicorn" }, { "text": "House-elf" }, { "text": "Giant" }] },
+        { "prompt": "Name four places on the school grounds.", "answers": [{ "text": "The Forbidden Forest" }, { "text": "The quidditch pitch" }, { "text": "The lake" }, { "text": "The Great Hall" }] },
+        { "prompt": "Name four actors from the Harry Potter films.", "answers": [{ "text": "Daniel Radcliffe" }, { "text": "Emma Watson" }, { "text": "Rupert Grint" }, { "text": "Maggie Smith" }] },
+        { "prompt": "Name four books from the series.", "answers": [{ "text": "The Philosopher's Stone" }, { "text": "The Chamber of Secrets" }, { "text": "The Prisoner of Azkaban" }, { "text": "The Deathly Hallows" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the tournament between three wizarding schools in the fourth book called?", "answers": [{ "text": "The Triwizard Tournament", "aliases": ["Triwizard"] }] },
+        { "prompt": "What is the village near the school that pupils may visit called?", "answers": [{ "text": "Hogsmeade", "aliases": ["Zweinsveld"] }] },
+        { "prompt": "Which alchemist made the stone from the first book?", "answers": [{ "text": "Nicolas Flamel", "aliases": ["Flamel", "Vlamel"] }] },
+        { "prompt": "Which creature lives in the Chamber of Secrets?", "answers": [{ "text": "A basilisk", "aliases": ["basilisk"] }] },
+        { "prompt": "Which animal is Harry's patronus?", "answers": [{ "text": "A stag", "aliases": ["stag"] }] },
+        { "prompt": "Who killed the snake Nagini?", "answers": [{ "text": "Neville Longbottom", "aliases": ["Longbottom", "Marcel Lubbermans"] }] }
+      ]
+    }
+  ]
+}

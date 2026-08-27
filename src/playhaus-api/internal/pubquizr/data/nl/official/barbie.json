@@ -1,0 +1,104 @@
+{
+  "slug": "barbie",
+  "title": "Barbie Wereld",
+  "description": "Een hele pubquiz over Barbie: van de eerste pop uit 1959 tot de film uit 2023.",
+  "publishedAt": "2026-02-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk speelgoedbedrijf maakt Barbie?", "category": "Merk", "answers": [{ "text": "Mattel" }] },
+        { "prompt": "In welk jaar kwam de eerste Barbiepop op de markt?", "category": "Geschiedenis", "answers": [{ "text": "1959" }] },
+        { "prompt": "Wat is de volledige naam van Barbie?", "category": "Namen", "answers": [{ "text": "Barbara Millicent Roberts", "aliases": ["Barbara Roberts"] }] },
+        { "prompt": "Hoe heet het vriendje van Barbie?", "category": "Namen", "answers": [{ "text": "Ken" }] },
+        { "prompt": "Wat is de achternaam van Ken?", "category": "Namen", "answers": [{ "text": "Carson" }] },
+        { "prompt": "Hoe heet het zusje van Barbie dat in 1964 verscheen?", "category": "Namen", "answers": [{ "text": "Skipper" }] },
+        { "prompt": "In welke fictieve plaats in Wisconsin groeide Barbie op?", "category": "Plaatsen", "answers": [{ "text": "Willows" }] },
+        { "prompt": "Welke actrice speelde Barbie in de film uit 2023?", "category": "Film", "answers": [{ "text": "Margot Robbie", "aliases": ["Robbie"] }] },
+        { "prompt": "Welke acteur speelde Ken in de film uit 2023?", "category": "Film", "answers": [{ "text": "Ryan Gosling", "aliases": ["Gosling"] }] },
+        { "prompt": "Wie regisseerde de Barbiefilm uit 2023?", "category": "Film", "answers": [{ "text": "Greta Gerwig", "aliases": ["Gerwig"] }] },
+        { "prompt": "Welke kleur wordt het sterkst met Barbie geassocieerd?", "category": "Kleuren", "answers": [{ "text": "Roze" }] },
+        { "prompt": "Welke medeoprichter van Mattel bedacht de Barbiepop?", "category": "Personen", "answers": [{ "text": "Ruth Handler", "aliases": ["Handler"] }] },
+        { "prompt": "Naar wie werd Barbie vernoemd?", "category": "Namen", "answers": [{ "text": "De dochter van Ruth Handler", "aliases": ["Barbara"] }] },
+        { "prompt": "Naar wie werd Ken vernoemd?", "category": "Namen", "answers": [{ "text": "De zoon van Ruth Handler", "aliases": ["Kenneth"] }] },
+        { "prompt": "Hoe heet het beroemde huis van Barbie?", "category": "Speelgoed", "answers": [{ "text": "Het Droomhuis", "aliases": ["Droomhuis", "Dreamhouse"] }] },
+        { "prompt": "Welke Deens-Noorse groep had in 1997 een hit met Barbie Girl?", "category": "Muziek", "answers": [{ "text": "Aqua" }] },
+        { "prompt": "Welke Britse zangeres zong Dance The Night voor de film uit 2023?", "category": "Muziek", "answers": [{ "text": "Dua Lipa" }] },
+        { "prompt": "In welk jaar werd Barbie voor het eerst astronaut?", "category": "Beroepen", "answers": [{ "text": "1965" }] },
+        { "prompt": "Welk beroep had de allereerste Barbie uit 1959?", "category": "Beroepen", "answers": [{ "text": "Mannequin", "aliases": ["fotomodel", "model"] }] },
+        { "prompt": "Welke acteur speelde de baas van Mattel in de film uit 2023?", "category": "Film", "answers": [{ "text": "Will Ferrell", "aliases": ["Ferrell"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar werd Ken geintroduceerd?", "options": [{ "text": "1959" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1970" }] },
+        { "prompt": "Op welke Duitse pop was Barbie gebaseerd?", "options": [{ "text": "Bild Lilli", "correct": true }, { "text": "Kathe Kruse" }, { "text": "Steiff" }, { "text": "Schildkrot" }] },
+        { "prompt": "In welke stad werd Barbie in 1959 gepresenteerd?", "options": [{ "text": "New York", "correct": true }, { "text": "Chicago" }, { "text": "Los Angeles" }, { "text": "Neurenberg" }] },
+        { "prompt": "Welke Amerikaanse rapster zong Barbie World met Ice Spice?", "options": [{ "text": "Nicki Minaj", "correct": true }, { "text": "Doja Cat" }, { "text": "Cardi B" }, { "text": "Megan Thee Stallion" }] },
+        { "prompt": "Hoe heet de vriendin die in 1968 als eerste zwarte pop van de reeks verscheen?", "options": [{ "text": "Christie", "correct": true }, { "text": "Midge" }, { "text": "Teresa" }, { "text": "Nikki" }] },
+        { "prompt": "Hoe heet de vriendin van Barbie die in 1963 werd geintroduceerd?", "options": [{ "text": "Midge", "correct": true }, { "text": "Teresa" }, { "text": "Nikki" }, { "text": "Summer" }] },
+        { "prompt": "In welk jaar was Barbie voor het eerst presidentskandidaat?", "options": [{ "text": "1980" }, { "text": "1992", "correct": true }, { "text": "2000" }, { "text": "2008" }] },
+        { "prompt": "Welke actrice was de verteller in de film uit 2023?", "options": [{ "text": "Helen Mirren", "correct": true }, { "text": "Judi Dench" }, { "text": "Meryl Streep" }, { "text": "Emma Thompson" }] },
+        { "prompt": "Welk bedrijf bracht in 2001 de concurrerende Bratz-poppen uit?", "options": [{ "text": "MGA Entertainment", "correct": true }, { "text": "Hasbro" }, { "text": "Lego" }, { "text": "Playmobil" }] },
+        { "prompt": "Hoe heet het zusje van Barbie dat in 1992 verscheen?", "options": [{ "text": "Stacie", "correct": true }, { "text": "Skipper" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
+        { "prompt": "Welke zangeres won een Oscar voor het nummer What Was I Made For?", "options": [{ "text": "Billie Eilish", "correct": true }, { "text": "Dua Lipa" }, { "text": "Lana Del Rey" }, { "text": "Olivia Rodrigo" }] },
+        { "prompt": "Hoeveel centimeter lang is een standaard Barbiepop?", "options": [{ "text": "25" }, { "text": "29", "correct": true }, { "text": "33" }, { "text": "37" }] },
+        { "prompt": "Welk beroep kreeg Barbie voor het eerst in 1973?", "options": [{ "text": "Chirurg", "correct": true }, { "text": "Piloot" }, { "text": "Rechter" }, { "text": "Brandweervrouw" }] },
+        { "prompt": "In welke Amerikaanse staat staat het hoofdkantoor van Mattel?", "options": [{ "text": "Californie", "correct": true }, { "text": "New York" }, { "text": "Texas" }, { "text": "Illinois" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd Mattel opgericht?", "answer": 1945, "unit": "", "explanation": "Ruth en Elliot Handler begonnen in 1945 met lijstjes en poppenhuismeubels." },
+        { "prompt": "Hoeveel minuten duurt de Barbiefilm uit 2023?", "answer": 114, "unit": "minuten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Pop" },
+        { "prompt": "Droomhuis" },
+        { "prompt": "Cabriolet" },
+        { "prompt": "Hoge hakken" },
+        { "prompt": "Handtas" },
+        { "prompt": "Zonnebril" },
+        { "prompt": "Zwembad" },
+        { "prompt": "Glitter" },
+        { "prompt": "Poppenhuis" },
+        { "prompt": "Paard" },
+        { "prompt": "Strand" },
+        { "prompt": "Jurk" },
+        { "prompt": "Kapsel" },
+        { "prompt": "Speelgoedwinkel" },
+        { "prompt": "Rolschaatsen" },
+        { "prompt": "Filmpremiere" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier acteurs uit de Barbiefilm van 2023.", "answers": [{ "text": "Margot Robbie" }, { "text": "Ryan Gosling" }, { "text": "America Ferrera" }, { "text": "Will Ferrell" }] },
+        { "prompt": "Noem de vier zusjes van Barbie.", "answers": [{ "text": "Skipper" }, { "text": "Stacie" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
+        { "prompt": "Noem vier beroepen die Barbie heeft gehad.", "answers": [{ "text": "Astronaut" }, { "text": "Arts" }, { "text": "Piloot" }, { "text": "President" }] },
+        { "prompt": "Noem vier vriendinnen van Barbie.", "answers": [{ "text": "Midge" }, { "text": "Christie" }, { "text": "Teresa" }, { "text": "Nikki" }] },
+        { "prompt": "Noem vier artiesten van de soundtrack van de Barbiefilm uit 2023.", "answers": [{ "text": "Dua Lipa" }, { "text": "Billie Eilish" }, { "text": "Nicki Minaj" }, { "text": "Ice Spice" }] },
+        { "prompt": "Noem vier speelgoedmerken van Mattel.", "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Fisher-Price" }, { "text": "Uno" }] },
+        { "prompt": "Noem vier films met Margot Robbie.", "answers": [{ "text": "Barbie" }, { "text": "The Wolf of Wall Street" }, { "text": "I, Tonya" }, { "text": "Suicide Squad" }] },
+        { "prompt": "Noem vier films met Ryan Gosling.", "answers": [{ "text": "La La Land" }, { "text": "Drive" }, { "text": "The Notebook" }, { "text": "Blade Runner 2049" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel dollar kostte de eerste Barbiepop in 1959?", "answers": [{ "text": "Drie dollar", "aliases": ["3"] }] },
+        { "prompt": "Wie was de echtgenoot van Ruth Handler en medeoprichter van Mattel?", "answers": [{ "text": "Elliot Handler", "aliases": ["Elliot"] }] },
+        { "prompt": "In welk jaar verscheen de eerste animatiefilm van Barbie, Barbie in de Notenkraker?", "answers": [{ "text": "2001" }] },
+        { "prompt": "Welke actrice speelde de moeder Gloria in de film uit 2023?", "answers": [{ "text": "America Ferrera", "aliases": ["Ferrera"] }] },
+        { "prompt": "Hoe heet de fictieve wereld waarin Barbie in de film van 2023 woont?", "answers": [{ "text": "Barbieland" }] },
+        { "prompt": "Welke Amerikaanse popartkunstenaar schilderde in de jaren tachtig een portret van Barbie?", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] }
+      ]
+    }
+  ]
+}

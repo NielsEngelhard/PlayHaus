@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w27",
+  "title": "Weekquiz week 27",
+  "description": "De wekelijkse quiz van woensdag 1 juli 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Portugal?", "category": "Aardrijkskunde", "answers": [{ "text": "Lissabon" }] },
+        { "prompt": "Hoeveel planeten heeft ons zonnestelsel?", "category": "Wetenschap", "answers": [{ "text": "Acht", "aliases": ["8"] }] },
+        { "prompt": "Welk schip bracht in 1620 de Pilgrims naar Amerika?", "category": "Geschiedenis", "answers": [{ "text": "De Mayflower", "aliases": ["Mayflower"] }] },
+        { "prompt": "Hoeveel spelers heeft een rugbyteam in de vijftienmansvariant?", "category": "Sport", "answers": [{ "text": "Vijftien", "aliases": ["15"] }] },
+        { "prompt": "Welke Zweedse groep won in 1974 het Eurovisie Songfestival met Waterloo?", "category": "Muziek", "answers": [{ "text": "ABBA" }] },
+        { "prompt": "Welke film begint met de woorden Een lange tijd geleden in een verafgelegen melkwegstelsel?", "category": "Film", "answers": [{ "text": "Star Wars", "aliases": ["Oorlog der Sterren"] }] },
+        { "prompt": "Welk dier is het grootste ter wereld?", "category": "Natuur", "answers": [{ "text": "De blauwe vinvis", "aliases": ["blauwe vinvis"] }] },
+        { "prompt": "Welke Nederlandse provincie is de dunstbevolkte van het land?", "category": "Nederland", "answers": [{ "text": "Drenthe" }] },
+        { "prompt": "Welke taal wordt in Brazilie gesproken?", "category": "Taal", "answers": [{ "text": "Portugees" }] },
+        { "prompt": "Welke Nederlandse schilder maakte De Nachtwacht?", "category": "Kunst", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Hoeveel graden telt een volledige cirkel?", "category": "Wetenschap", "answers": [{ "text": "Driehonderdzestig", "aliases": ["360"] }] },
+        { "prompt": "Welke staat wordt volledig omsloten door de stad Rome?", "category": "Aardrijkskunde", "answers": [{ "text": "Vaticaanstad", "aliases": ["het Vaticaan"] }] },
+        { "prompt": "In welk jaar begon de Tweede Wereldoorlog in Europa?", "category": "Geschiedenis", "answers": [{ "text": "1939" }] },
+        { "prompt": "Welk Italiaans gerecht bestaat uit deeg met tomatensaus en kaas in de oven?", "category": "Eten", "answers": [{ "text": "Pizza" }] },
+        { "prompt": "In welk land werd het spel judo bedacht?", "category": "Sport", "answers": [{ "text": "Japan" }] },
+        { "prompt": "Welke diersoort verandert van rups in vlinder?", "category": "Natuur", "answers": [{ "text": "De vlinder", "aliases": ["vlinder"] }] },
+        { "prompt": "Hoe heet het hoogste punt van Nederland in Limburg?", "category": "Nederland", "answers": [{ "text": "De Vaalserberg", "aliases": ["Vaalserberg"] }] },
+        { "prompt": "Welke kracht houdt de planeten in hun baan om de zon?", "category": "Wetenschap", "answers": [{ "text": "De zwaartekracht", "aliases": ["zwaartekracht", "gravitatie"] }] },
+        { "prompt": "Welke acteur speelde de hoofdrol in Forrest Gump?", "category": "Film", "answers": [{ "text": "Tom Hanks", "aliases": ["Hanks"] }] },
+        { "prompt": "Welk gebergte scheidt Europa van Azie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt NIET in Duitsland?", "options": [{ "text": "Bremen" }, { "text": "Bazel", "correct": true }, { "text": "Kiel" }, { "text": "Erfurt" }] },
+        { "prompt": "Welk dier heeft de langste draagtijd?", "options": [{ "text": "Olifant", "correct": true }, { "text": "Walvis" }, { "text": "Giraf" }, { "text": "Neushoorn" }] },
+        { "prompt": "Welke schrijver bedacht Hobbits?", "options": [{ "text": "J.R.R. Tolkien", "correct": true }, { "text": "C.S. Lewis" }, { "text": "Ursula Le Guin" }, { "text": "Terry Pratchett" }] },
+        { "prompt": "Hoeveel graden Fahrenheit is het vriespunt van water?", "options": [{ "text": "0" }, { "text": "32", "correct": true }, { "text": "48" }, { "text": "64" }] },
+        { "prompt": "Welk land heeft de meeste tijdzones op zijn grondgebied?", "options": [{ "text": "Rusland" }, { "text": "Frankrijk", "correct": true }, { "text": "Verenigde Staten" }, { "text": "China" }] },
+        { "prompt": "Wie componeerde De vier jaargetijden?", "options": [{ "text": "Vivaldi", "correct": true }, { "text": "Bach" }, { "text": "Handel" }, { "text": "Corelli" }] },
+        { "prompt": "Welke stof geeft bloed zijn rode kleur?", "options": [{ "text": "Hemoglobine", "correct": true }, { "text": "Melanine" }, { "text": "Chlorofyl" }, { "text": "Keratine" }] },
+        { "prompt": "Welke Nederlandse voetballer wordt de Zwarte Tulp genoemd?", "options": [{ "text": "Ruud Gullit", "correct": true }, { "text": "Frank Rijkaard" }, { "text": "Clarence Seedorf" }, { "text": "Patrick Kluivert" }] },
+        { "prompt": "In welke stad staat het Colosseum?", "options": [{ "text": "Rome", "correct": true }, { "text": "Napels" }, { "text": "Athene" }, { "text": "Istanbul" }] },
+        { "prompt": "Welk orgaan filtert afvalstoffen uit het bloed?", "options": [{ "text": "Lever" }, { "text": "Nieren", "correct": true }, { "text": "Longen" }, { "text": "Darmen" }] },
+        { "prompt": "In welk jaar werd Nederland bevrijd?", "options": [{ "text": "1943" }, { "text": "1944" }, { "text": "1945", "correct": true }, { "text": "1946" }] },
+        { "prompt": "Welk instrument bespeelt een cellist?", "options": [{ "text": "Contrabas" }, { "text": "Cello", "correct": true }, { "text": "Viola" }, { "text": "Viool" }] },
+        { "prompt": "Welke planeet heeft de meeste bekende manen?", "options": [{ "text": "Saturnus", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
+        { "prompt": "Welke zee ligt tussen Nederland en Engeland?", "options": [{ "text": "Noordzee", "correct": true }, { "text": "Oostzee" }, { "text": "Waddenzee" }, { "text": "Ierse Zee" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel toetsen heeft een moderne concertvleugel?", "answer": 88, "unit": "toetsen", "explanation": "Ruim zeven octaven: 52 witte toetsen en 36 zwarte." },
+        { "prompt": "Hoeveel meter lang is een olympisch zwembad?", "answer": 50, "unit": "meter" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Molensteen" },
+        { "prompt": "Trampoline" },
+        { "prompt": "Egel" },
+        { "prompt": "Vliegveld" },
+        { "prompt": "Waterval" },
+        { "prompt": "Piraat" },
+        { "prompt": "Naaimachine" },
+        { "prompt": "Aardbei" },
+        { "prompt": "Iglo" },
+        { "prompt": "Slager" },
+        { "prompt": "Metro" },
+        { "prompt": "Microscoop" },
+        { "prompt": "Schommel" },
+        { "prompt": "Zeehond" },
+        { "prompt": "Kerstboom" },
+        { "prompt": "Sleutelbos" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier landen van Scandinavie en Finland samen behalve IJsland.", "answers": [{ "text": "Noorwegen" }, { "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Finland" }] },
+        { "prompt": "Noem de vier evangelisten uit het Nieuwe Testament.", "answers": [{ "text": "Mattheus" }, { "text": "Marcus" }, { "text": "Lucas" }, { "text": "Johannes" }] },
+        { "prompt": "Noem de vier grootste planeten van ons zonnestelsel.", "answers": [{ "text": "Jupiter" }, { "text": "Saturnus" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
+        { "prompt": "Noem de vier grootste steden van Italie.", "answers": [{ "text": "Rome" }, { "text": "Milaan" }, { "text": "Napels" }, { "text": "Turijn" }] },
+        { "prompt": "Noem de vier windrichtingen tussen noord, oost, zuid en west.", "answers": [{ "text": "Noordoost" }, { "text": "Zuidoost" }, { "text": "Zuidwest" }, { "text": "Noordwest" }] },
+        { "prompt": "Noem de vier kamers van het menselijk hart.", "answers": [{ "text": "Linkerboezem" }, { "text": "Rechterboezem" }, { "text": "Linkerkamer" }, { "text": "Rechterkamer" }] },
+        { "prompt": "Noem de vier grootste landen van Zuid-Amerika.", "answers": [{ "text": "Brazilie" }, { "text": "Argentinie" }, { "text": "Peru" }, { "text": "Colombia" }] },
+        { "prompt": "Noem de vier grootste steden van Spanje.", "answers": [{ "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }, { "text": "Sevilla" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Duitse uitvinder bouwde rond 1450 de boekdrukpers met losse letters?", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
+        { "prompt": "Wat is de diepste plek in de oceaan?", "answers": [{ "text": "De Marianentrog", "aliases": ["Marianentrog", "Challengerdiepte"] }] },
+        { "prompt": "Welke Franse schrijver schreef De drie musketiers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },
+        { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Welke wetenschapper ontdekte per ongeluk penicilline?", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "In welk jaar werd de eerste Olympische Spelen van de moderne tijd gehouden?", "answers": [{ "text": "1896" }] }
+      ]
+    }
+  ]
+}

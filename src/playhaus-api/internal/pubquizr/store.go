@@ -105,7 +105,11 @@ func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int
 		// A weekly quiz is placed by the Wednesday it belongs to and everything
 		// else by when it went up; COALESCE puts both on one ordering so the
 		// shelves can also be listed together.
-		Order("id DESC"). // a stable tiebreak, so page 2 cannot repeat page 1
+		//
+		// The id is only the tiebreak, so page 2 cannot repeat page 1. It used to be
+		// the whole ordering, which nobody noticed while there were three quizzes on
+		// the shelf and a uuid could pass for a date.
+		Order("COALESCE(published_at, created_at) DESC, id DESC").
 		Limit(f.PageSize).
 		Offset(f.Offset()).
 		Find(&quizzes).Error

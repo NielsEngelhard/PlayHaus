@@ -1,0 +1,104 @@
+{
+  "slug": "human-body",
+  "title": "The Human Body",
+  "description": "A whole pub quiz about the human body: bones, blood, organs and senses.",
+  "publishedAt": "2026-01-28",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which organ pumps the blood around the body?", "category": "Organs", "answers": [{ "text": "The heart", "aliases": ["heart"] }] },
+        { "prompt": "Which organs filter the blood and make urine?", "category": "Organs", "answers": [{ "text": "The kidneys", "aliases": ["kidneys"] }] },
+        { "prompt": "How many bones does an adult human have?", "category": "Bones", "answers": [{ "text": "Two hundred and six", "aliases": ["206"] }] },
+        { "prompt": "What is the longest bone in the human body?", "category": "Bones", "answers": [{ "text": "The femur", "aliases": ["femur", "thigh bone"] }] },
+        { "prompt": "How many senses are classically distinguished?", "category": "Senses", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "Which protein in red blood cells carries oxygen?", "category": "Blood", "answers": [{ "text": "Hemoglobine", "aliases": ["haemoglobin", "hemoglobin"] }] },
+        { "prompt": "Which organ is the largest internal organ of the body?", "category": "Organs", "answers": [{ "text": "The liver", "aliases": ["liver"] }] },
+        { "prompt": "What is the largest organ of the human body?", "category": "Skin", "answers": [{ "text": "The skin", "aliases": ["skin"] }] },
+        { "prompt": "What is the muscle at the front of the upper arm called?", "category": "Muscles", "answers": [{ "text": "The biceps", "aliases": ["biceps"] }] },
+        { "prompt": "Which organ is the centre of the nervous system?", "category": "Nervous system", "answers": [{ "text": "The brain", "aliases": ["brain"] }] },
+        { "prompt": "How many lungs does a person have?", "category": "Breathing", "answers": [{ "text": "Two", "aliases": ["2"] }] },
+        { "prompt": "Which muscle below the lungs drives breathing?", "category": "Breathing", "answers": [{ "text": "The diaphragm", "aliases": ["diaphragm"] }] },
+        { "prompt": "In which organ is food mixed with stomach acid?", "category": "Digestion", "answers": [{ "text": "The stomach", "aliases": ["stomach"] }] },
+        { "prompt": "How many teeth does an adult with wisdom teeth have?", "category": "Teeth", "answers": [{ "text": "Thirty-two", "aliases": ["32"] }] },
+        { "prompt": "Which coloured part of the eye controls the size of the pupil?", "category": "Senses", "answers": [{ "text": "The iris", "aliases": ["iris"] }] },
+        { "prompt": "How many chromosomes does a human body cell have?", "category": "Cells", "answers": [{ "text": "Forty-six", "aliases": ["46"] }] },
+        { "prompt": "How many chambers does the human heart have?", "category": "Blood", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "What is the cord of nerves running through the spine called?", "category": "Nervous system", "answers": [{ "text": "The spinal cord", "aliases": ["spinal cord"] }] },
+        { "prompt": "Which gland in the neck regulates the metabolism?", "category": "Glands", "answers": [{ "text": "The thyroid", "aliases": ["thyroid", "thyroid gland"] }] },
+        { "prompt": "Which organ produces insulin?", "category": "Digestion", "answers": [{ "text": "The pancreas", "aliases": ["pancreas"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the smallest bone in the human body?", "options": [{ "text": "Stirrup", "correct": true }, { "text": "Hammer" }, { "text": "Anvil" }, { "text": "Nasal bone" }] },
+        { "prompt": "About how many litres of blood does an adult have?", "options": [{ "text": "3" }, { "text": "5", "correct": true }, { "text": "8" }, { "text": "10" }] },
+        { "prompt": "Which blood type is the universal donor for red blood cells?", "options": [{ "text": "O negative", "correct": true }, { "text": "AB positive" }, { "text": "A positive" }, { "text": "B negative" }] },
+        { "prompt": "Which part of the brain controls breathing?", "options": [{ "text": "The brain stem", "correct": true }, { "text": "The cerebellum" }, { "text": "The cerebrum" }, { "text": "The pituitary" }] },
+        { "prompt": "How many ribs does a person usually have?", "options": [{ "text": "20" }, { "text": "22" }, { "text": "24", "correct": true }, { "text": "26" }] },
+        { "prompt": "Which organ stores bile?", "options": [{ "text": "The gall bladder", "correct": true }, { "text": "The liver" }, { "text": "The spleen" }, { "text": "The pancreas" }] },
+        { "prompt": "Which blood vessels carry blood away from the heart?", "options": [{ "text": "Arteries", "correct": true }, { "text": "Veins" }, { "text": "Capillaries" }, { "text": "Lymph vessels" }] },
+        { "prompt": "How many vertebrae does the neck have?", "options": [{ "text": "5" }, { "text": "7", "correct": true }, { "text": "9" }, { "text": "12" }] },
+        { "prompt": "Which substance gives skin its colour?", "options": [{ "text": "Melanin", "correct": true }, { "text": "Keratin" }, { "text": "Collagen" }, { "text": "Haemoglobin" }] },
+        { "prompt": "Which sense sits in the cochlea of the ear?", "options": [{ "text": "Hearing", "correct": true }, { "text": "Smell" }, { "text": "Taste" }, { "text": "Touch" }] },
+        { "prompt": "What is normal body temperature in degrees Celsius?", "options": [{ "text": "35" }, { "text": "36" }, { "text": "37", "correct": true }, { "text": "39" }] },
+        { "prompt": "Which organ sits behind the breastbone and shrinks after childhood?", "options": [{ "text": "The thymus", "correct": true }, { "text": "The spleen" }, { "text": "The thyroid" }, { "text": "The pancreas" }] },
+        { "prompt": "How many bones do the human hand and wrist have together?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] },
+        { "prompt": "Which vitamin does the body make under sunlight?", "options": [{ "text": "Vitamin A" }, { "text": "Vitamin C" }, { "text": "Vitamin D", "correct": true }, { "text": "Vitamin K" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many times does an adult heart beat per minute at rest?", "answer": 70, "unit": "beats", "explanation": "Sixty to eighty beats a minute is the ordinary resting range." },
+        { "prompt": "How many metres long is the small intestine of an adult?", "answer": 6, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Heart" },
+        { "prompt": "Skeleton" },
+        { "prompt": "Lungs" },
+        { "prompt": "Blood vessel" },
+        { "prompt": "Eye" },
+        { "prompt": "Ear" },
+        { "prompt": "Tooth" },
+        { "prompt": "Muscle" },
+        { "prompt": "Thumb" },
+        { "prompt": "Knee" },
+        { "prompt": "Brain" },
+        { "prompt": "Kidney" },
+        { "prompt": "Breathing" },
+        { "prompt": "Fingerprint" },
+        { "prompt": "Eyebrow" },
+        { "prompt": "Sneeze" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four chambers of the heart.", "answers": [{ "text": "Left atrium" }, { "text": "Right atrium" }, { "text": "Left ventricle" }, { "text": "Right ventricle" }] },
+        { "prompt": "Name the four basic tastes besides umami.", "answers": [{ "text": "Sweet" }, { "text": "Sour" }, { "text": "Salty" }, { "text": "Bitter" }] },
+        { "prompt": "Name the four senses besides sight.", "answers": [{ "text": "Hearing" }, { "text": "Smell" }, { "text": "Taste" }, { "text": "Touch" }] },
+        { "prompt": "Name the four blood groups of the ABO system.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
+        { "prompt": "Name four bones of the human body.", "answers": [{ "text": "Femur" }, { "text": "Skull" }, { "text": "Collarbone" }, { "text": "Shin bone" }] },
+        { "prompt": "Name four organs in the abdomen.", "answers": [{ "text": "Stomach" }, { "text": "Liver" }, { "text": "Kidneys" }, { "text": "Spleen" }] },
+        { "prompt": "Name the four kinds of teeth in the mouth.", "answers": [{ "text": "Incisors" }, { "text": "Canines" }, { "text": "Premolars" }, { "text": "Molars" }] },
+        { "prompt": "Name the four lobes of the cerebrum.", "answers": [{ "text": "Frontal lobe" }, { "text": "Parietal lobe" }, { "text": "Temporal lobe" }, { "text": "Occipital lobe" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the longest nerve in the human body called?", "answers": [{ "text": "The sciatic nerve", "aliases": ["sciatic nerve", "sciatic"] }] },
+        { "prompt": "Which bone in the neck connects to no other bone?", "answers": [{ "text": "The hyoid bone", "aliases": ["hyoid"] }] },
+        { "prompt": "Which English doctor described the circulation of the blood in 1628?", "answers": [{ "text": "William Harvey", "aliases": ["Harvey"] }] },
+        { "prompt": "What is the fluid that lubricates the joints called?", "answers": [{ "text": "Synovial fluid", "aliases": ["synovia"] }] },
+        { "prompt": "What is the outer layer of the skin called?", "answers": [{ "text": "The epidermis", "aliases": ["epidermis"] }] },
+        { "prompt": "Which part of the eye changes shape to focus?", "answers": [{ "text": "The lens", "aliases": ["lens"] }] }
+      ]
+    }
+  ]
+}

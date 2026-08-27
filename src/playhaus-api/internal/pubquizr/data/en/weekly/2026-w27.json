@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w27",
+  "title": "Weekly quiz week 27",
+  "description": "The weekly quiz of Wednesday 1 July 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Portugal?", "category": "Geography", "answers": [{ "text": "Lisbon" }] },
+        { "prompt": "How many planets does our solar system have?", "category": "Science", "answers": [{ "text": "Eight", "aliases": ["8"] }] },
+        { "prompt": "Which ship carried the Pilgrims to America in 1620?", "category": "History", "answers": [{ "text": "The Mayflower", "aliases": ["Mayflower"] }] },
+        { "prompt": "How many players does a rugby union team have on the field?", "category": "Sport", "answers": [{ "text": "Fifteen", "aliases": ["15"] }] },
+        { "prompt": "Which Swedish group won the 1974 Eurovision Song Contest with Waterloo?", "category": "Music", "answers": [{ "text": "ABBA" }] },
+        { "prompt": "Which film series opens with the words A long time ago in a galaxy far, far away?", "category": "Film", "answers": [{ "text": "Star Wars" }] },
+        { "prompt": "Which animal is the largest in the world?", "category": "Nature", "answers": [{ "text": "The blue whale", "aliases": ["blue whale"] }] },
+        { "prompt": "Which Dutch province is the least densely populated?", "category": "The Netherlands", "answers": [{ "text": "Drenthe" }] },
+        { "prompt": "Which language is spoken in Brazil?", "category": "Language", "answers": [{ "text": "Portuguese" }] },
+        { "prompt": "Which Dutch painter made The Night Watch?", "category": "Art", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "How many degrees are in a full circle?", "category": "Science", "answers": [{ "text": "Three hundred and sixty", "aliases": ["360"] }] },
+        { "prompt": "Which state is entirely surrounded by the city of Rome?", "category": "Geography", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
+        { "prompt": "In what year did the Second World War begin in Europe?", "category": "History", "answers": [{ "text": "1939" }] },
+        { "prompt": "Which Italian dish is dough with tomato sauce and cheese baked in an oven?", "category": "Food", "answers": [{ "text": "Pizza" }] },
+        { "prompt": "In which country was the sport of judo invented?", "category": "Sport", "answers": [{ "text": "Japan" }] },
+        { "prompt": "Which creature changes from caterpillar into butterfly?", "category": "Nature", "answers": [{ "text": "The butterfly", "aliases": ["butterfly"] }] },
+        { "prompt": "What is the name of the highest point of the Netherlands, in Limburg?", "category": "The Netherlands", "answers": [{ "text": "The Vaalserberg", "aliases": ["Vaalserberg"] }] },
+        { "prompt": "Which force keeps the planets in orbit around the sun?", "category": "Science", "answers": [{ "text": "Gravity", "aliases": ["gravitation"] }] },
+        { "prompt": "Which actor played the lead in Forrest Gump?", "category": "Film", "answers": [{ "text": "Tom Hanks", "aliases": ["Hanks"] }] },
+        { "prompt": "Which mountain range separates Europe from Asia?", "category": "Geography", "answers": [{ "text": "The Urals", "aliases": ["Ural", "Ural Mountains"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is NOT in Germany?", "options": [{ "text": "Bremen" }, { "text": "Basel", "correct": true }, { "text": "Kiel" }, { "text": "Erfurt" }] },
+        { "prompt": "Which animal has the longest pregnancy?", "options": [{ "text": "Elephant", "correct": true }, { "text": "Whale" }, { "text": "Giraffe" }, { "text": "Rhinoceros" }] },
+        { "prompt": "Which writer invented Hobbits?", "options": [{ "text": "J.R.R. Tolkien", "correct": true }, { "text": "C.S. Lewis" }, { "text": "Ursula Le Guin" }, { "text": "Terry Pratchett" }] },
+        { "prompt": "How many degrees Fahrenheit is the freezing point of water?", "options": [{ "text": "0" }, { "text": "32", "correct": true }, { "text": "48" }, { "text": "64" }] },
+        { "prompt": "Which country has the most time zones on its territory?", "options": [{ "text": "Russia" }, { "text": "France", "correct": true }, { "text": "United States" }, { "text": "China" }] },
+        { "prompt": "Who composed The Four Seasons?", "options": [{ "text": "Vivaldi", "correct": true }, { "text": "Bach" }, { "text": "Handel" }, { "text": "Corelli" }] },
+        { "prompt": "Which substance gives blood its red colour?", "options": [{ "text": "Haemoglobin", "correct": true }, { "text": "Melanin" }, { "text": "Chlorophyll" }, { "text": "Keratin" }] },
+        { "prompt": "Which Dutch footballer is nicknamed the Black Tulip?", "options": [{ "text": "Ruud Gullit", "correct": true }, { "text": "Frank Rijkaard" }, { "text": "Clarence Seedorf" }, { "text": "Patrick Kluivert" }] },
+        { "prompt": "In which city is the Colosseum?", "options": [{ "text": "Rome", "correct": true }, { "text": "Naples" }, { "text": "Athens" }, { "text": "Istanbul" }] },
+        { "prompt": "Which organ filters waste out of the blood?", "options": [{ "text": "Liver" }, { "text": "Kidneys", "correct": true }, { "text": "Lungs" }, { "text": "Intestines" }] },
+        { "prompt": "In what year were the Netherlands liberated?", "options": [{ "text": "1943" }, { "text": "1944" }, { "text": "1945", "correct": true }, { "text": "1946" }] },
+        { "prompt": "Which instrument does a cellist play?", "options": [{ "text": "Double bass" }, { "text": "Cello", "correct": true }, { "text": "Viola" }, { "text": "Violin" }] },
+        { "prompt": "Which planet has the most known moons?", "options": [{ "text": "Saturn", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] },
+        { "prompt": "Which sea lies between the Netherlands and England?", "options": [{ "text": "North Sea", "correct": true }, { "text": "Baltic Sea" }, { "text": "Wadden Sea" }, { "text": "Irish Sea" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many keys does a modern concert grand piano have?", "answer": 88, "unit": "keys", "explanation": "A little over seven octaves: 52 white keys and 36 black ones." },
+        { "prompt": "How many metres long is an Olympic swimming pool?", "answer": 50, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Millstone" },
+        { "prompt": "Trampoline" },
+        { "prompt": "Hedgehog" },
+        { "prompt": "Airport" },
+        { "prompt": "Waterfall" },
+        { "prompt": "Pirate" },
+        { "prompt": "Sewing machine" },
+        { "prompt": "Strawberry" },
+        { "prompt": "Igloo" },
+        { "prompt": "Butcher" },
+        { "prompt": "Subway" },
+        { "prompt": "Microscope" },
+        { "prompt": "Swing" },
+        { "prompt": "Seal" },
+        { "prompt": "Christmas tree" },
+        { "prompt": "Keyring" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Nordic mainland countries besides Iceland.", "answers": [{ "text": "Norway" }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
+        { "prompt": "Name the four evangelists of the New Testament.", "answers": [{ "text": "Matthew" }, { "text": "Mark" }, { "text": "Luke" }, { "text": "John" }] },
+        { "prompt": "Name the four largest planets in our solar system.", "answers": [{ "text": "Jupiter" }, { "text": "Saturn" }, { "text": "Uranus" }, { "text": "Neptune" }] },
+        { "prompt": "Name the four largest cities of Italy.", "answers": [{ "text": "Rome" }, { "text": "Milan" }, { "text": "Naples" }, { "text": "Turin" }] },
+        { "prompt": "Name the four directions between north, east, south and west.", "answers": [{ "text": "Northeast" }, { "text": "Southeast" }, { "text": "Southwest" }, { "text": "Northwest" }] },
+        { "prompt": "Name the four chambers of the human heart.", "answers": [{ "text": "Left atrium" }, { "text": "Right atrium" }, { "text": "Left ventricle" }, { "text": "Right ventricle" }] },
+        { "prompt": "Name the four largest countries in South America.", "answers": [{ "text": "Brazil" }, { "text": "Argentina" }, { "text": "Peru" }, { "text": "Colombia" }] },
+        { "prompt": "Name the four largest cities of Spain.", "answers": [{ "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }, { "text": "Seville" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which German inventor built the movable type printing press around 1450?", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
+        { "prompt": "What is the deepest place in the ocean?", "answers": [{ "text": "The Mariana Trench", "aliases": ["Mariana Trench", "Challenger Deep"] }] },
+        { "prompt": "Which French writer wrote The Three Musketeers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },
+        { "prompt": "What is the capital of Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Which scientist discovered penicillin by accident?", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "In what year were the first modern Olympic Games held?", "answers": [{ "text": "1896" }] }
+      ]
+    }
+  ]
+}

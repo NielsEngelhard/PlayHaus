@@ -1,0 +1,104 @@
+{
+  "slug": "netherlands",
+  "title": "Hollandse Glorie",
+  "description": "Een hele pubquiz over Nederland: provincies, polders, schilders en schaatsers.",
+  "publishedAt": "2026-01-07",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoeveel provincies heeft Nederland?", "category": "Provincies", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "Wat is de hoofdstad van Nederland?", "category": "Steden", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "In welke stad zit de Nederlandse regering?", "category": "Bestuur", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] },
+        { "prompt": "Welke dijk sluit het IJsselmeer af van de Waddenzee?", "category": "Water", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Welke Nederlandse schilder maakte De Nachtwacht?", "category": "Kunst", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Welke Nederlandse provincie is de grootste naar oppervlakte?", "category": "Provincies", "answers": [{ "text": "Friesland", "aliases": ["Fryslan"] }] },
+        { "prompt": "Welke handelscompagnie werd in 1602 in Amsterdam opgericht?", "category": "Geschiedenis", "answers": [{ "text": "De VOC", "aliases": ["Verenigde Oost-Indische Compagnie"] }] },
+        { "prompt": "Welke Nederlandse voetbalclub won in 1995 de Champions League?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
+        { "prompt": "Uit welke Nederlandse stad komt de bekendste stroopwafel?", "category": "Eten", "answers": [{ "text": "Gouda" }] },
+        { "prompt": "Welke taal is naast het Nederlands officieel erkend in Friesland?", "category": "Taal", "answers": [{ "text": "Fries", "aliases": ["Frysk"] }] },
+        { "prompt": "Welke grote rivier komt bij Lobith Nederland binnen?", "category": "Water", "answers": [{ "text": "De Rijn", "aliases": ["Rijn"] }] },
+        { "prompt": "Uit welk vorstenhuis komt de Nederlandse koning?", "category": "Koningshuis", "answers": [{ "text": "Oranje-Nassau", "aliases": ["Huis van Oranje"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de bijnaam Maasstad?", "category": "Steden", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Op welke datum wordt Koningsdag gevierd?", "category": "Feestdagen", "answers": [{ "text": "27 april", "aliases": ["zevenentwintig april"] }] },
+        { "prompt": "Hoe heet het laagste punt van Nederland bij Nieuwerkerk aan den IJssel?", "category": "Geografie", "answers": [{ "text": "De Zuidplaspolder", "aliases": ["Zuidplaspolder"] }] },
+        { "prompt": "Welke Nederlandse schilder schreef honderden brieven aan zijn broer Theo?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Welke schaatstocht wordt gereden langs elf Friese steden?", "category": "Sport", "answers": [{ "text": "De Elfstedentocht", "aliases": ["Elfstedentocht"] }] },
+        { "prompt": "Welke Nederlandse admiraal voer in 1667 de Medway op naar Chatham?", "category": "Geschiedenis", "answers": [{ "text": "Michiel de Ruyter", "aliases": ["De Ruyter"] }] },
+        { "prompt": "Welk verdedigingswerk van waterlinies en forten beschermde Amsterdam?", "category": "Bouwwerken", "answers": [{ "text": "De Stelling van Amsterdam", "aliases": ["Stelling van Amsterdam"] }] },
+        { "prompt": "Welke Nederlandse provincie werd in 1986 als laatste ingesteld?", "category": "Provincies", "answers": [{ "text": "Flevoland" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke provincie grenst NIET aan het IJsselmeer?", "options": [{ "text": "Friesland" }, { "text": "Noord-Holland" }, { "text": "Groningen", "correct": true }, { "text": "Flevoland" }] },
+        { "prompt": "Welke Nederlandse stad heeft de grootste zeehaven van Europa?", "options": [{ "text": "Rotterdam", "correct": true }, { "text": "Amsterdam" }, { "text": "Vlissingen" }, { "text": "Terneuzen" }] },
+        { "prompt": "Hoeveel zetels heeft de Tweede Kamer?", "options": [{ "text": "100" }, { "text": "125" }, { "text": "150", "correct": true }, { "text": "175" }] },
+        { "prompt": "In welk jaar werd de Deltawerken officieel afgerond met de Maeslantkering?", "options": [{ "text": "1986" }, { "text": "1993" }, { "text": "1997", "correct": true }, { "text": "2002" }] },
+        { "prompt": "Welke Nederlandse provincie heeft Arnhem als hoofdstad?", "options": [{ "text": "Gelderland", "correct": true }, { "text": "Overijssel" }, { "text": "Utrecht" }, { "text": "Limburg" }] },
+        { "prompt": "Welk Nederlands dier staat op het wapen van het Koninkrijk?", "options": [{ "text": "Adelaar" }, { "text": "Leeuw", "correct": true }, { "text": "Beer" }, { "text": "Hert" }] },
+        { "prompt": "Welke Nederlandse wielrenner won de Tour de France in 1980?", "options": [{ "text": "Joop Zoetemelk", "correct": true }, { "text": "Jan Janssen" }, { "text": "Hennie Kuiper" }, { "text": "Gerrie Knetemann" }] },
+        { "prompt": "Welke Nederlandse stad wordt om zijn universiteit sinds 1575 geroemd?", "options": [{ "text": "Leiden", "correct": true }, { "text": "Groningen" }, { "text": "Utrecht" }, { "text": "Amsterdam" }] },
+        { "prompt": "Welk Nederlands product wordt op de markt van Alkmaar verhandeld?", "options": [{ "text": "Bloemen" }, { "text": "Kaas", "correct": true }, { "text": "Vis" }, { "text": "Vee" }] },
+        { "prompt": "Wie was de eerste koning van Nederland?", "options": [{ "text": "Willem I", "correct": true }, { "text": "Willem II" }, { "text": "Willem III" }, { "text": "Willem-Alexander" }] },
+        { "prompt": "Welk Nederlands eiland hoort NIET bij de Waddeneilanden?", "options": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Goeree", "correct": true }, { "text": "Schiermonnikoog" }] },
+        { "prompt": "Welke Nederlandse rivier stroomt door Nijmegen?", "options": [{ "text": "Waal", "correct": true }, { "text": "IJssel" }, { "text": "Maas" }, { "text": "Lek" }] },
+        { "prompt": "In welk jaar werd het Rijksmuseum in zijn huidige gebouw geopend?", "options": [{ "text": "1800" }, { "text": "1863" }, { "text": "1885", "correct": true }, { "text": "1901" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef De avonden?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is de Afsluitdijk?", "answer": 32, "unit": "kilometer", "explanation": "Tweeendertig kilometer van Noord-Holland naar Friesland, in 1932 gesloten." },
+        { "prompt": "Hoeveel meter onder zeeniveau ligt het laagste punt van Nederland?", "answer": 7, "unit": "meter" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Klompen" },
+        { "prompt": "Stroopwafel" },
+        { "prompt": "Gracht" },
+        { "prompt": "Poffertjes" },
+        { "prompt": "Dijk" },
+        { "prompt": "Windmolen" },
+        { "prompt": "Tulp" },
+        { "prompt": "Fietspad" },
+        { "prompt": "Haring" },
+        { "prompt": "Sinterklaas" },
+        { "prompt": "Oliebol" },
+        { "prompt": "Elfstedentocht" },
+        { "prompt": "Kaasmarkt" },
+        { "prompt": "Deltawerken" },
+        { "prompt": "Koningsdag" },
+        { "prompt": "Waterschap" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste steden van Nederland.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
+        { "prompt": "Noem de vier bewoonde Waddeneilanden naast Schiermonnikoog.", "answers": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }] },
+        { "prompt": "Noem de vier grootste steden van Noord-Brabant.", "answers": [{ "text": "Eindhoven" }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "'s-Hertogenbosch" }] },
+        { "prompt": "Noem de vier grote rivieren van Nederland.", "answers": [{ "text": "Rijn" }, { "text": "Maas" }, { "text": "Waal" }, { "text": "IJssel" }] },
+        { "prompt": "Noem vier Nederlandse schilders uit de Gouden Eeuw.", "answers": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
+        { "prompt": "Noem de vier provincies die aan Duitsland grenzen behalve Limburg.", "answers": [{ "text": "Groningen" }, { "text": "Drenthe" }, { "text": "Overijssel" }, { "text": "Gelderland" }] },
+        { "prompt": "Noem vier Nederlandse kazen.", "answers": [{ "text": "Gouda" }, { "text": "Edam" }, { "text": "Leerdammer" }, { "text": "Maasdammer" }] },
+        { "prompt": "Noem de vier grootste provincies van Nederland naar oppervlakte.", "answers": [{ "text": "Friesland" }, { "text": "Gelderland" }, { "text": "Noord-Brabant" }, { "text": "Overijssel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse zeevaarder bereikte in 1642 Nieuw-Zeeland?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
+        { "prompt": "Hoe heet het Nederlandse volkslied?", "answers": [{ "text": "Het Wilhelmus", "aliases": ["Wilhelmus"] }] },
+        { "prompt": "Welke Nederlandse architect ontwierp de Rietveld Schroderhuis in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "In welk jaar werd de Republiek der Zeven Verenigde Nederlanden erkend door Spanje?", "answers": [{ "text": "1648" }] },
+        { "prompt": "Welke Nederlandse dichter schreef het toneelstuk Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
+        { "prompt": "Welk Nederlands eiland in de Caribische Zee is het grootste van het Koninkrijk?", "answers": [{ "text": "Curacao" }] }
+      ]
+    }
+  ]
+}

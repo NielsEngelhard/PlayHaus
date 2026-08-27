@@ -1,0 +1,104 @@
+{
+  "slug": "germany",
+  "title": "Duitse Degelijkheid",
+  "description": "Een hele pubquiz over Duitsland: deelstaten, dichters, auto's en bier.",
+  "publishedAt": "2026-01-14",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Duitsland?", "category": "Steden", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Hoeveel deelstaten heeft Duitsland?", "category": "Deelstaten", "answers": [{ "text": "Zestien", "aliases": ["16"] }] },
+        { "prompt": "In welk jaar werd Duitsland weer verenigd?", "category": "Geschiedenis", "answers": [{ "text": "1990" }] },
+        { "prompt": "Welke rivier stroomt door Keulen?", "category": "Rivieren", "answers": [{ "text": "De Rijn", "aliases": ["Rijn"] }] },
+        { "prompt": "In welke Duitse stad werd Johann Sebastian Bach begraven?", "category": "Muziek", "answers": [{ "text": "Leipzig" }] },
+        { "prompt": "In welke Duitse stad staat de hoofdfabriek van Volkswagen?", "category": "Auto's", "answers": [{ "text": "Wolfsburg" }] },
+        { "prompt": "Welk Duits feest wordt elk najaar in Munchen gehouden?", "category": "Eten", "answers": [{ "text": "Oktoberfest", "aliases": ["het Oktoberfest"] }] },
+        { "prompt": "Welke poort in Berlijn is het symbool van de stad?", "category": "Bouwwerken", "answers": [{ "text": "De Brandenburger Tor", "aliases": ["Brandenburger Tor"] }] },
+        { "prompt": "Welke Duitse schrijver schreef De toverberg?", "category": "Literatuur", "answers": [{ "text": "Thomas Mann", "aliases": ["Mann"] }] },
+        { "prompt": "Hoe heet de hoogste Duitse voetbalcompetitie?", "category": "Sport", "answers": [{ "text": "Bundesliga", "aliases": ["de Bundesliga"] }] },
+        { "prompt": "Welk bosgebied in het zuidwesten van Duitsland heet naar zijn donkere naaldbomen?", "category": "Geografie", "answers": [{ "text": "Het Zwarte Woud", "aliases": ["Zwarte Woud", "Schwarzwald"] }] },
+        { "prompt": "Welke Duitse monnik spijkerde in 1517 zijn stellingen op een kerkdeur in Wittenberg?", "category": "Geschiedenis", "answers": [{ "text": "Maarten Luther", "aliases": ["Luther"] }] },
+        { "prompt": "Welke Duitse deelstaat is de grootste naar oppervlakte?", "category": "Deelstaten", "answers": [{ "text": "Beieren", "aliases": ["Bayern"] }] },
+        { "prompt": "Welke Duitse natuurkundige ontdekte de rontgenstraling?", "category": "Wetenschap", "answers": [{ "text": "Wilhelm Rontgen", "aliases": ["Rontgen"] }] },
+        { "prompt": "Welke Duitse stad is na Berlijn de grootste?", "category": "Steden", "answers": [{ "text": "Hamburg" }] },
+        { "prompt": "In welke Duitse stad werd Ludwig van Beethoven geboren?", "category": "Muziek", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "Wat is de hoogste berg van Duitsland?", "category": "Geografie", "answers": [{ "text": "De Zugspitze", "aliases": ["Zugspitze"] }] },
+        { "prompt": "Welke Duitse wet uit 1516 schrijft voor wat er in bier mag?", "category": "Eten", "answers": [{ "text": "Het Reinheitsgebot", "aliases": ["Reinheitsgebot"] }] },
+        { "prompt": "Welke rivier vormt samen met de Neisse de grens tussen Duitsland en Polen?", "category": "Rivieren", "answers": [{ "text": "De Oder", "aliases": ["Oder"] }] },
+        { "prompt": "Welk Duits woord betekent leedvermaak?", "category": "Taal", "answers": [{ "text": "Schadenfreude" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land grenst NIET aan Duitsland?", "options": [{ "text": "Denemarken" }, { "text": "Tsjechie" }, { "text": "Slowakije", "correct": true }, { "text": "Polen" }] },
+        { "prompt": "Welke Duitse autofabrikant heeft vier ringen in zijn logo?", "options": [{ "text": "Audi", "correct": true }, { "text": "BMW" }, { "text": "Opel" }, { "text": "Mercedes-Benz" }] },
+        { "prompt": "In welke Duitse stad staat de Frauenkirche die na 1945 in puin lag en werd herbouwd?", "options": [{ "text": "Dresden", "correct": true }, { "text": "Leipzig" }, { "text": "Neurenberg" }, { "text": "Erfurt" }] },
+        { "prompt": "In welk jaar werd het Duitse Keizerrijk uitgeroepen in Versailles?", "options": [{ "text": "1848" }, { "text": "1866" }, { "text": "1871", "correct": true }, { "text": "1888" }] },
+        { "prompt": "Welke Duitse rivier stroomt van zuidwest naar oost en verder naar de Zwarte Zee?", "options": [{ "text": "Donau", "correct": true }, { "text": "Elbe" }, { "text": "Wezer" }, { "text": "Oder" }] },
+        { "prompt": "Welke Duitse deelstaat is een stadstaat?", "options": [{ "text": "Hessen" }, { "text": "Bremen", "correct": true }, { "text": "Saarland" }, { "text": "Thuringen" }] },
+        { "prompt": "Hoeveel keer heeft Duitsland het WK voetbal gewonnen tot en met 2022?", "options": [{ "text": "Twee" }, { "text": "Drie" }, { "text": "Vier", "correct": true }, { "text": "Vijf" }] },
+        { "prompt": "Welke Duitse filosoof schreef Kritiek van de zuivere rede?", "options": [{ "text": "Immanuel Kant", "correct": true }, { "text": "Georg Hegel" }, { "text": "Arthur Schopenhauer" }, { "text": "Friedrich Nietzsche" }] },
+        { "prompt": "Welk Duits kasteel in Beieren inspireerde tekenfilmkastelen?", "options": [{ "text": "Neuschwanstein", "correct": true }, { "text": "Hohenzollern" }, { "text": "Heidelberg" }, { "text": "Wartburg" }] },
+        { "prompt": "Welke Duitse uitvinder bouwde in 1885 een van de eerste auto's met benzinemotor?", "options": [{ "text": "Carl Benz", "correct": true }, { "text": "Rudolf Diesel" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
+        { "prompt": "Welke Duitse stad staat bekend om zijn kerstmarkt met peperkoek?", "options": [{ "text": "Neurenberg", "correct": true }, { "text": "Keulen" }, { "text": "Kiel" }, { "text": "Rostock" }] },
+        { "prompt": "Welke Duitse componist werd in 1685 in Halle geboren en werkte later in Londen?", "options": [{ "text": "Georg Friedrich Handel", "correct": true }, { "text": "Johann Sebastian Bach" }, { "text": "Georg Philipp Telemann" }, { "text": "Heinrich Schutz" }] },
+        { "prompt": "In welk jaar begonnen de Olympische Zomerspelen van Munchen?", "options": [{ "text": "1968" }, { "text": "1972", "correct": true }, { "text": "1976" }, { "text": "1980" }] },
+        { "prompt": "Welke Duitse deelstaat grenst aan Nederland en Belgie?", "options": [{ "text": "Nedersaksen" }, { "text": "Noordrijnland-Westfalen", "correct": true }, { "text": "Rijnland-Palts" }, { "text": "Saarland" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang was de Berlijnse Muur rond West-Berlijn?", "answer": 155, "unit": "kilometer", "explanation": "Ruim honderdvijftig kilometer beton en hek, waarvan ruim veertig door de stad zelf." },
+        { "prompt": "Hoeveel kilometer van de Rijn stroomt door Duitsland?", "answer": 865, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Bratwurst" },
+        { "prompt": "Autobahn" },
+        { "prompt": "Oktoberfest" },
+        { "prompt": "Lederhose" },
+        { "prompt": "Pretzel" },
+        { "prompt": "Kerstmarkt" },
+        { "prompt": "Koekoeksklok" },
+        { "prompt": "Kasteel" },
+        { "prompt": "Bierpul" },
+        { "prompt": "Zuurkool" },
+        { "prompt": "Sportwagen" },
+        { "prompt": "Blaaskapel" },
+        { "prompt": "Alpenweide" },
+        { "prompt": "Muur" },
+        { "prompt": "Sprookjesbos" },
+        { "prompt": "Wijngaard" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste steden van Duitsland.", "answers": [{ "text": "Berlijn" }, { "text": "Hamburg" }, { "text": "Munchen" }, { "text": "Keulen" }] },
+        { "prompt": "Noem vier Duitse autofabrikanten.", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Audi" }, { "text": "Mercedes-Benz" }] },
+        { "prompt": "Noem vier rivieren die door Duitsland stromen.", "answers": [{ "text": "Rijn" }, { "text": "Elbe" }, { "text": "Donau" }, { "text": "Main" }] },
+        { "prompt": "Noem vier landen die in het zuiden of oosten aan Duitsland grenzen.", "answers": [{ "text": "Oostenrijk" }, { "text": "Zwitserland" }, { "text": "Tsjechie" }, { "text": "Polen" }] },
+        { "prompt": "Noem vier Duitse componisten.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Beethoven" }, { "text": "Wagner" }] },
+        { "prompt": "Noem de vier kleinste Duitse deelstaten naar oppervlakte.", "answers": [{ "text": "Bremen" }, { "text": "Hamburg" }, { "text": "Berlijn" }, { "text": "Saarland" }] },
+        { "prompt": "Noem vier Duitse schrijvers.", "answers": [{ "text": "Goethe" }, { "text": "Schiller" }, { "text": "Thomas Mann" }, { "text": "Gunter Grass" }] },
+        { "prompt": "Noem de vier jaren waarin Duitsland het WK voetbal won.", "answers": [{ "text": "1954" }, { "text": "1974" }, { "text": "1990" }, { "text": "2014" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Duitse stad was tot 1990 de hoofdstad van West-Duitsland?", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "Welke Duitse dichter schreef samen met Schiller in Weimar en stierf in 1832?", "answers": [{ "text": "Johann Wolfgang von Goethe", "aliases": ["Goethe"] }] },
+        { "prompt": "Hoe heet de Duitse hogesnelheidstrein?", "answers": [{ "text": "ICE", "aliases": ["InterCityExpress"] }] },
+        { "prompt": "In welk jaar werd de Bondsrepubliek Duitsland gesticht?", "answers": [{ "text": "1949" }] },
+        { "prompt": "Welke Duitse wetenschapper formuleerde de speciale relativiteitstheorie in 1905?", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Welk Duits eiland in de Noordzee ligt het verst van de kust?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] }
+      ]
+    }
+  ]
+}

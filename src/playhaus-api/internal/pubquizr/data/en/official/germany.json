@@ -1,0 +1,104 @@
+{
+  "slug": "germany",
+  "title": "German Engineering",
+  "description": "A whole pub quiz about Germany: states, poets, cars and beer.",
+  "publishedAt": "2026-01-14",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Germany?", "category": "Cities", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "How many states does Germany have?", "category": "States", "answers": [{ "text": "Sixteen", "aliases": ["16"] }] },
+        { "prompt": "In what year was Germany reunified?", "category": "History", "answers": [{ "text": "1990" }] },
+        { "prompt": "Which river flows through Cologne?", "category": "Rivers", "answers": [{ "text": "The Rhine", "aliases": ["Rhine"] }] },
+        { "prompt": "In which German city was Johann Sebastian Bach buried?", "category": "Music", "answers": [{ "text": "Leipzig" }] },
+        { "prompt": "In which German city is the main Volkswagen factory?", "category": "Cars", "answers": [{ "text": "Wolfsburg" }] },
+        { "prompt": "Which German festival is held in Munich every autumn?", "category": "Food", "answers": [{ "text": "Oktoberfest", "aliases": ["the Oktoberfest"] }] },
+        { "prompt": "Which gate in Berlin is the symbol of the city?", "category": "Buildings", "answers": [{ "text": "The Brandenburg Gate", "aliases": ["Brandenburg Gate"] }] },
+        { "prompt": "Which German writer wrote The Magic Mountain?", "category": "Literature", "answers": [{ "text": "Thomas Mann", "aliases": ["Mann"] }] },
+        { "prompt": "What is the top German football league called?", "category": "Sport", "answers": [{ "text": "Bundesliga", "aliases": ["the Bundesliga"] }] },
+        { "prompt": "Which forest region in south west Germany is named for its dark conifers?", "category": "Geography", "answers": [{ "text": "The Black Forest", "aliases": ["Black Forest", "Schwarzwald"] }] },
+        { "prompt": "Which German monk nailed his theses to a church door in Wittenberg in 1517?", "category": "History", "answers": [{ "text": "Martin Luther", "aliases": ["Luther"] }] },
+        { "prompt": "Which German state is the largest by area?", "category": "States", "answers": [{ "text": "Bavaria", "aliases": ["Bayern"] }] },
+        { "prompt": "Which German physicist discovered X-rays?", "category": "Science", "answers": [{ "text": "Wilhelm Rontgen", "aliases": ["Rontgen"] }] },
+        { "prompt": "Which German city is the largest after Berlin?", "category": "Cities", "answers": [{ "text": "Hamburg" }] },
+        { "prompt": "In which German city was Ludwig van Beethoven born?", "category": "Music", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "What is the highest mountain in Germany?", "category": "Geography", "answers": [{ "text": "The Zugspitze", "aliases": ["Zugspitze"] }] },
+        { "prompt": "Which German law of 1516 prescribes what may go into beer?", "category": "Food", "answers": [{ "text": "The Reinheitsgebot", "aliases": ["Reinheitsgebot"] }] },
+        { "prompt": "Which river together with the Neisse forms the border between Germany and Poland?", "category": "Rivers", "answers": [{ "text": "The Oder", "aliases": ["Oder"] }] },
+        { "prompt": "Which German word means pleasure at another's misfortune?", "category": "Language", "answers": [{ "text": "Schadenfreude" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country does NOT border Germany?", "options": [{ "text": "Denmark" }, { "text": "Czechia" }, { "text": "Slovakia", "correct": true }, { "text": "Poland" }] },
+        { "prompt": "Which German car maker has four rings in its logo?", "options": [{ "text": "Audi", "correct": true }, { "text": "BMW" }, { "text": "Opel" }, { "text": "Mercedes-Benz" }] },
+        { "prompt": "In which German city was the Frauenkirche rebuilt from rubble after 1945?", "options": [{ "text": "Dresden", "correct": true }, { "text": "Leipzig" }, { "text": "Nuremberg" }, { "text": "Erfurt" }] },
+        { "prompt": "In what year was the German Empire proclaimed at Versailles?", "options": [{ "text": "1848" }, { "text": "1866" }, { "text": "1871", "correct": true }, { "text": "1888" }] },
+        { "prompt": "Which German river flows east towards the Black Sea?", "options": [{ "text": "Danube", "correct": true }, { "text": "Elbe" }, { "text": "Weser" }, { "text": "Oder" }] },
+        { "prompt": "Which German state is a city state?", "options": [{ "text": "Hesse" }, { "text": "Bremen", "correct": true }, { "text": "Saarland" }, { "text": "Thuringia" }] },
+        { "prompt": "How many times had Germany won the football World Cup up to 2022?", "options": [{ "text": "Two" }, { "text": "Three" }, { "text": "Four", "correct": true }, { "text": "Five" }] },
+        { "prompt": "Which German philosopher wrote Critique of Pure Reason?", "options": [{ "text": "Immanuel Kant", "correct": true }, { "text": "Georg Hegel" }, { "text": "Arthur Schopenhauer" }, { "text": "Friedrich Nietzsche" }] },
+        { "prompt": "Which Bavarian castle inspired cartoon castles?", "options": [{ "text": "Neuschwanstein", "correct": true }, { "text": "Hohenzollern" }, { "text": "Heidelberg" }, { "text": "Wartburg" }] },
+        { "prompt": "Which German inventor built one of the first petrol cars in 1885?", "options": [{ "text": "Carl Benz", "correct": true }, { "text": "Rudolf Diesel" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
+        { "prompt": "Which German city is known for its gingerbread Christmas market?", "options": [{ "text": "Nuremberg", "correct": true }, { "text": "Cologne" }, { "text": "Kiel" }, { "text": "Rostock" }] },
+        { "prompt": "Which German composer was born in Halle in 1685 and later worked in London?", "options": [{ "text": "Georg Friedrich Handel", "correct": true }, { "text": "Johann Sebastian Bach" }, { "text": "Georg Philipp Telemann" }, { "text": "Heinrich Schutz" }] },
+        { "prompt": "In what year were the Munich summer Olympics held?", "options": [{ "text": "1968" }, { "text": "1972", "correct": true }, { "text": "1976" }, { "text": "1980" }] },
+        { "prompt": "Which German state borders both the Netherlands and Belgium?", "options": [{ "text": "Lower Saxony" }, { "text": "North Rhine-Westphalia", "correct": true }, { "text": "Rhineland-Palatinate" }, { "text": "Saarland" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long was the Berlin Wall around West Berlin?", "answer": 155, "unit": "kilometres", "explanation": "Over a hundred and fifty kilometres of concrete and fence, forty of them through the city." },
+        { "prompt": "How many kilometres of the Rhine flow through Germany?", "answer": 865, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Bratwurst" },
+        { "prompt": "Autobahn" },
+        { "prompt": "Oktoberfest" },
+        { "prompt": "Lederhosen" },
+        { "prompt": "Pretzel" },
+        { "prompt": "Christmas market" },
+        { "prompt": "Cuckoo clock" },
+        { "prompt": "Castle" },
+        { "prompt": "Beer stein" },
+        { "prompt": "Sauerkraut" },
+        { "prompt": "Sports car" },
+        { "prompt": "Brass band" },
+        { "prompt": "Alpine meadow" },
+        { "prompt": "Wall" },
+        { "prompt": "Fairytale forest" },
+        { "prompt": "Vineyard" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest cities of Germany.", "answers": [{ "text": "Berlin" }, { "text": "Hamburg" }, { "text": "Munich" }, { "text": "Cologne" }] },
+        { "prompt": "Name four German car makers.", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Audi" }, { "text": "Mercedes-Benz" }] },
+        { "prompt": "Name four rivers that flow through Germany.", "answers": [{ "text": "Rhine" }, { "text": "Elbe" }, { "text": "Danube" }, { "text": "Main" }] },
+        { "prompt": "Name four countries that border Germany to the south or east.", "answers": [{ "text": "Austria" }, { "text": "Switzerland" }, { "text": "Czechia" }, { "text": "Poland" }] },
+        { "prompt": "Name four German composers.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Beethoven" }, { "text": "Wagner" }] },
+        { "prompt": "Name the four smallest German states by area.", "answers": [{ "text": "Bremen" }, { "text": "Hamburg" }, { "text": "Berlin" }, { "text": "Saarland" }] },
+        { "prompt": "Name four German writers.", "answers": [{ "text": "Goethe" }, { "text": "Schiller" }, { "text": "Thomas Mann" }, { "text": "Gunter Grass" }] },
+        { "prompt": "Name the four years in which Germany won the football World Cup.", "answers": [{ "text": "1954" }, { "text": "1974" }, { "text": "1990" }, { "text": "2014" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which German city was the capital of West Germany until 1990?", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "Which German poet worked with Schiller in Weimar and died in 1832?", "answers": [{ "text": "Johann Wolfgang von Goethe", "aliases": ["Goethe"] }] },
+        { "prompt": "What is the German high speed train called?", "answers": [{ "text": "ICE", "aliases": ["InterCityExpress"] }] },
+        { "prompt": "In what year was the Federal Republic of Germany founded?", "answers": [{ "text": "1949" }] },
+        { "prompt": "Which German scientist formulated special relativity in 1905?", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Which German North Sea island lies furthest from the coast?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] }
+      ]
+    }
+  ]
+}

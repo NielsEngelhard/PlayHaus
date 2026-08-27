@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w32",
+  "title": "Weekquiz week 32",
+  "description": "De wekelijkse quiz van woensdag 5 augustus 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Zweden?", "category": "Aardrijkskunde", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Hoeveel graden Celsius is het smeltpunt van ijs?", "category": "Wetenschap", "answers": [{ "text": "Nul", "aliases": ["0"] }] },
+        { "prompt": "Welke stad werd in het jaar 79 bedolven door de Vesuvius?", "category": "Geschiedenis", "answers": [{ "text": "Pompeii", "aliases": ["Pompeji"] }] },
+        { "prompt": "Hoeveel spelers heeft een cricketteam in het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welke Amerikaanse zanger stond bekend als de King of Pop?", "category": "Muziek", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "Welke film uit 1972 begint met de woorden I believe in America?", "category": "Film", "answers": [{ "text": "The Godfather", "aliases": ["De Godfather", "The Godfather deel 1"] }] },
+        { "prompt": "Welke boom is in Nederland herkenbaar aan zijn witte bast?", "category": "Natuur", "answers": [{ "text": "De berk", "aliases": ["berk"] }] },
+        { "prompt": "Welk Nederlands eiland is het grootste van de Waddeneilanden?", "category": "Nederland", "answers": [{ "text": "Texel" }] },
+        { "prompt": "Hoe heet de eerste letter van het Griekse alfabet?", "category": "Taal", "answers": [{ "text": "Alfa", "aliases": ["alpha"] }] },
+        { "prompt": "Welke Vlaamse schilder maakte het Lam Gods in Gent samen met zijn broer?", "category": "Kunst", "answers": [{ "text": "Jan van Eyck", "aliases": ["Van Eyck"] }] },
+        { "prompt": "Wat is de eenheid van kracht in het internationale stelsel?", "category": "Wetenschap", "answers": [{ "text": "De newton", "aliases": ["newton", "N"] }] },
+        { "prompt": "Welk land heeft Wenen als hoofdstad?", "category": "Aardrijkskunde", "answers": [{ "text": "Oostenrijk" }] },
+        { "prompt": "Welke Zuid-Afrikaanse president zat zevenentwintig jaar in de gevangenis?", "category": "Geschiedenis", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }] },
+        { "prompt": "Welke plant levert de bladeren voor thee?", "category": "Eten", "answers": [{ "text": "De theeplant", "aliases": ["thee", "Camellia sinensis"] }] },
+        { "prompt": "Hoeveel kilometer lang is een marathon?", "category": "Sport", "answers": [{ "text": "Ruim tweeenveertig kilometer", "aliases": ["42", "42,195"] }] },
+        { "prompt": "Welk dier is het traagste zoogdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De luiaard", "aliases": ["luiaard"] }] },
+        { "prompt": "Welk Nederlands museum is gewijd aan het werk van Vincent van Gogh?", "category": "Nederland", "answers": [{ "text": "Het Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
+        { "prompt": "Welk hemellichaam veroorzaakt eb en vloed op aarde?", "category": "Wetenschap", "answers": [{ "text": "De maan", "aliases": ["maan"] }] },
+        { "prompt": "Welke actrice speelde Hermelien Griffel in de Harry Potter-films?", "category": "Film", "answers": [{ "text": "Emma Watson", "aliases": ["Watson"] }] },
+        { "prompt": "Welke stad is de hoofdstad van de Verenigde Staten?", "category": "Aardrijkskunde", "answers": [{ "text": "Washington", "aliases": ["Washington D.C."] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land grenst NIET aan Frankrijk?", "options": [{ "text": "Andorra" }, { "text": "Monaco" }, { "text": "Portugal", "correct": true }, { "text": "Zwitserland" }] },
+        { "prompt": "Wie schreef Oorlog en vrede?", "options": [{ "text": "Tolstoj", "correct": true }, { "text": "Dostojevski" }, { "text": "Toergenjev" }, { "text": "Poesjkin" }] },
+        { "prompt": "Welk element is het meest voorkomende in het heelal?", "options": [{ "text": "Waterstof", "correct": true }, { "text": "Helium" }, { "text": "Zuurstof" }, { "text": "Koolstof" }] },
+        { "prompt": "In welk jaar werd de Verenigde Naties opvolger van de Volkenbond?", "options": [{ "text": "1919" }, { "text": "1939" }, { "text": "1945", "correct": true }, { "text": "1949" }] },
+        { "prompt": "Wat is de hoofdstad van Peru?", "options": [{ "text": "Cusco" }, { "text": "Lima", "correct": true }, { "text": "Arequipa" }, { "text": "Trujillo" }] },
+        { "prompt": "Welk dier heeft geen maag?", "options": [{ "text": "Zeepaardje", "correct": true }, { "text": "Haai" }, { "text": "Rog" }, { "text": "Zalm" }] },
+        { "prompt": "Hoeveel spelers heeft een honkbalteam in het veld?", "options": [{ "text": "Acht" }, { "text": "Negen", "correct": true }, { "text": "Tien" }, { "text": "Elf" }] },
+        { "prompt": "Welke planeet is bijna even groot als de aarde?", "options": [{ "text": "Mars" }, { "text": "Venus", "correct": true }, { "text": "Mercurius" }, { "text": "Neptunus" }] },
+        { "prompt": "Welk land gebruikt de Zwitserse frank naast Zwitserland?", "options": [{ "text": "Oostenrijk" }, { "text": "Liechtenstein", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }] },
+        { "prompt": "Welke Ierse schrijver schreef Ulysses?", "options": [{ "text": "James Joyce", "correct": true }, { "text": "Samuel Beckett" }, { "text": "Oscar Wilde" }, { "text": "W.B. Yeats" }] },
+        { "prompt": "Welk hormoon regelt de bloedsuikerspiegel?", "options": [{ "text": "Adrenaline" }, { "text": "Insuline", "correct": true }, { "text": "Testosteron" }, { "text": "Cortisol" }] },
+        { "prompt": "Welke Nederlandse provincie grenst aan Belgie en Duitsland tegelijk?", "options": [{ "text": "Limburg", "correct": true }, { "text": "Zeeland" }, { "text": "Noord-Brabant" }, { "text": "Gelderland" }] },
+        { "prompt": "In welk jaar werd de eerste mens in een ruimtevaartuig om de aarde gebracht?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] },
+        { "prompt": "Welk instrument heeft geen snaren?", "options": [{ "text": "Harp" }, { "text": "Cello" }, { "text": "Trompet", "correct": true }, { "text": "Gitaar" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Domtoren van Utrecht?", "answer": 112, "unit": "meter", "explanation": "Ruim honderdtien meter, en daarmee de hoogste kerktoren van Nederland." },
+        { "prompt": "In welk jaar werd het schilderij De Nachtwacht voltooid?", "answer": 1642, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Ankerketting" },
+        { "prompt": "Fietsbel" },
+        { "prompt": "Wolf" },
+        { "prompt": "Politiebureau" },
+        { "prompt": "Banaan" },
+        { "prompt": "Detective" },
+        { "prompt": "Schroevendraaier" },
+        { "prompt": "Gong" },
+        { "prompt": "Bliksem" },
+        { "prompt": "Zeeman" },
+        { "prompt": "Rotonde" },
+        { "prompt": "Zandloper" },
+        { "prompt": "Kussen" },
+        { "prompt": "Slak" },
+        { "prompt": "Dierentuin" },
+        { "prompt": "Blikopener" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste landen van Europa naar oppervlakte na Rusland.", "answers": [{ "text": "Oekraine" }, { "text": "Frankrijk" }, { "text": "Spanje" }, { "text": "Zweden" }] },
+        { "prompt": "Noem de vier leden van ABBA.", "answers": [{ "text": "Agnetha" }, { "text": "Bjorn" }, { "text": "Benny" }, { "text": "Anni-Frid" }] },
+        { "prompt": "Noem de vier landen die het WK voetbal het vaakst hebben gewonnen tot en met 2022.", "answers": [{ "text": "Brazilie" }, { "text": "Duitsland" }, { "text": "Italie" }, { "text": "Argentinie" }] },
+        { "prompt": "Noem de vier maanden van januari tot juli met eenendertig dagen.", "answers": [{ "text": "Januari" }, { "text": "Maart" }, { "text": "Mei" }, { "text": "Juli" }] },
+        { "prompt": "Noem vier kunststromingen uit het begin van de twintigste eeuw.", "answers": [{ "text": "Kubisme" }, { "text": "Expressionisme" }, { "text": "Surrealisme" }, { "text": "Dadaisme" }] },
+        { "prompt": "Noem vier klieren van het menselijk hormoonstelsel.", "answers": [{ "text": "Schildklier" }, { "text": "Bijnier" }, { "text": "Hypofyse" }, { "text": "Alvleesklier" }] },
+        { "prompt": "Noem de vier grootste steden van Belgie.", "answers": [{ "text": "Brussel" }, { "text": "Antwerpen" }, { "text": "Gent" }, { "text": "Charleroi" }] },
+        { "prompt": "Noem vier klassieke heldendichten.", "answers": [{ "text": "Ilias" }, { "text": "Odyssee" }, { "text": "Aeneis" }, { "text": "Metamorfosen" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse filosoof schreef de Ethica en werd in 1656 uit de synagoge gezet?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
+        { "prompt": "Wat is het grootste eiland van de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
+        { "prompt": "Welke Hongaarse componist schreef de Hongaarse rapsodieen?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
+        { "prompt": "Wat is de hoofdstad van Ethiopie?", "answers": [{ "text": "Addis Abeba", "aliases": ["Addis Ababa"] }] },
+        { "prompt": "Welke Britse natuurkundige schreef Een korte geschiedenis van de tijd?", "answers": [{ "text": "Stephen Hawking", "aliases": ["Hawking"] }] },
+        { "prompt": "In welk jaar werd de Vrede van Munster gesloten?", "answers": [{ "text": "1648" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "world-cup",
+  "title": "Het WK Voetbal",
+  "description": "Een hele pubquiz over het wereldkampioenschap voetbal: finales, spelers en gastlanden.",
+  "publishedAt": "2026-03-25",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welk jaar werd het eerste WK voetbal gehouden?", "category": "Geschiedenis", "answers": [{ "text": "1930" }] },
+        { "prompt": "Welk land won het eerste WK in 1930?", "category": "Geschiedenis", "answers": [{ "text": "Uruguay" }] },
+        { "prompt": "Hoe heette de trofee van het WK tot 1970?", "category": "Geschiedenis", "answers": [{ "text": "De Jules Rimet-beker", "aliases": ["Jules Rimet"] }] },
+        { "prompt": "Welk land werd het vaakst wereldkampioen?", "category": "Landen", "answers": [{ "text": "Brazilie" }] },
+        { "prompt": "Welk land werd in 2010 voor het eerst wereldkampioen?", "category": "Landen", "answers": [{ "text": "Spanje" }] },
+        { "prompt": "Welk land won het WK van 1966 in eigen land?", "category": "Landen", "answers": [{ "text": "Engeland" }] },
+        { "prompt": "Welk Afrikaans land bereikte in 2022 als eerste de halve finale?", "category": "Landen", "answers": [{ "text": "Marokko" }] },
+        { "prompt": "Welke Braziliaan werd in 1958 als zeventienjarige wereldkampioen?", "category": "Spelers", "answers": [{ "text": "Pele" }] },
+        { "prompt": "Welke Argentijn maakte in 1986 het doelpunt dat de hand van God wordt genoemd?", "category": "Spelers", "answers": [{ "text": "Diego Maradona", "aliases": ["Maradona"] }] },
+        { "prompt": "Welke Fransman gaf in de finale van 2006 een kopstoot en kreeg rood?", "category": "Spelers", "answers": [{ "text": "Zinedine Zidane", "aliases": ["Zidane"] }] },
+        { "prompt": "Welke aanvoerder werd in 2022 met Argentinie wereldkampioen?", "category": "Spelers", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Welke Duitser werd in 2014 recordhouder met zestien WK-doelpunten?", "category": "Spelers", "answers": [{ "text": "Miroslav Klose", "aliases": ["Klose"] }] },
+        { "prompt": "Welke Nederlandse aanvaller maakte in 1998 het beroemde doelpunt tegen Argentinie?", "category": "Nederland", "answers": [{ "text": "Dennis Bergkamp", "aliases": ["Bergkamp"] }] },
+        { "prompt": "Tegen welk land verloor Nederland de WK-finale van 1974?", "category": "Nederland", "answers": [{ "text": "West-Duitsland", "aliases": ["Duitsland"] }] },
+        { "prompt": "Welke bondscoach leidde Nederland naar de finale van 1974?", "category": "Nederland", "answers": [{ "text": "Rinus Michels", "aliases": ["Michels"] }] },
+        { "prompt": "Hoeveel landen deden er van 1998 tot en met 2022 aan een WK mee?", "category": "Toernooi", "answers": [{ "text": "Tweeendertig", "aliases": ["32"] }] },
+        { "prompt": "Hoeveel spelers heeft een voetbalteam op het veld?", "category": "Toernooi", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welk land was gastland van het WK van 2022?", "category": "Gastlanden", "answers": [{ "text": "Qatar" }] },
+        { "prompt": "Welke twee Aziatische landen organiseerden samen het WK van 2002?", "category": "Gastlanden", "answers": [{ "text": "Japan en Zuid-Korea", "aliases": ["Zuid-Korea en Japan"] }] },
+        { "prompt": "Hoe heet het beroemde voetbalstadion in Rio de Janeiro?", "category": "Stadions", "answers": [{ "text": "Het Maracana", "aliases": ["Maracana"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land won het WK van 1998?", "options": [{ "text": "Frankrijk", "correct": true }, { "text": "Brazilie" }, { "text": "Italie" }, { "text": "Duitsland" }] },
+        { "prompt": "Welk land won het WK van 2014?", "options": [{ "text": "Duitsland", "correct": true }, { "text": "Argentinie" }, { "text": "Brazilie" }, { "text": "Nederland" }] },
+        { "prompt": "In welk land werd het WK van 2014 gehouden?", "options": [{ "text": "Brazilie", "correct": true }, { "text": "Argentinie" }, { "text": "Mexico" }, { "text": "Chili" }] },
+        { "prompt": "Hoeveel keer won Italie het WK tot en met 2022?", "options": [{ "text": "Vier", "correct": true }, { "text": "Twee" }, { "text": "Drie" }, { "text": "Vijf" }] },
+        { "prompt": "Welke speler werd drie keer wereldkampioen?", "options": [{ "text": "Pele", "correct": true }, { "text": "Diego Maradona" }, { "text": "Franz Beckenbauer" }, { "text": "Mario Zagallo" }] },
+        { "prompt": "Welke Duitser werd wereldkampioen als speler en als bondscoach?", "options": [{ "text": "Franz Beckenbauer", "correct": true }, { "text": "Helmut Schon" }, { "text": "Jurgen Klinsmann" }, { "text": "Lothar Matthaus" }] },
+        { "prompt": "In welk jaar werd het WK voor de tweede keer in Duitsland gehouden?", "options": [{ "text": "1974" }, { "text": "1990" }, { "text": "2002" }, { "text": "2006", "correct": true }] },
+        { "prompt": "Welk land won in 1978 het WK op eigen grond?", "options": [{ "text": "Argentinie", "correct": true }, { "text": "Brazilie" }, { "text": "Uruguay" }, { "text": "Chili" }] },
+        { "prompt": "Hoeveel minuten duurt een wedstrijd zonder verlenging?", "options": [{ "text": "80" }, { "text": "90", "correct": true }, { "text": "100" }, { "text": "120" }] },
+        { "prompt": "Welke kaart betekent dat een speler het veld moet verlaten?", "options": [{ "text": "De rode kaart", "correct": true }, { "text": "De gele kaart" }, { "text": "De blauwe kaart" }, { "text": "De groene kaart" }] },
+        { "prompt": "Wie was de bondscoach van Duitsland bij de titel van 2014?", "options": [{ "text": "Joachim Low", "correct": true }, { "text": "Hansi Flick" }, { "text": "Rudi Voller" }, { "text": "Berti Vogts" }] },
+        { "prompt": "Welke prijs krijgt de topscorer van een WK?", "options": [{ "text": "De Gouden Schoen", "correct": true }, { "text": "De Gouden Bal" }, { "text": "De Gouden Handschoen" }, { "text": "De Gouden Beker" }] },
+        { "prompt": "Welk land was in 2010 gastland van het eerste WK in Afrika?", "options": [{ "text": "Zuid-Afrika", "correct": true }, { "text": "Nigeria" }, { "text": "Egypte" }, { "text": "Kenia" }] },
+        { "prompt": "Hoeveel doelpunten maakte Geoff Hurst in de finale van 1966?", "options": [{ "text": "Drie", "correct": true }, { "text": "Een" }, { "text": "Twee" }, { "text": "Vier" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel landen deden mee aan het eerste WK in 1930?", "answer": 13, "unit": "landen", "explanation": "Dertien, want de reis naar Uruguay duurde weken per boot." },
+        { "prompt": "Hoeveel WK-wedstrijden speelde de Duitser Lothar Matthaus in totaal?", "answer": 25, "unit": "wedstrijden" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Doelpunt" },
+        { "prompt": "Scheidsrechter" },
+        { "prompt": "Stadion" },
+        { "prompt": "Strafschop" },
+        { "prompt": "Keeper" },
+        { "prompt": "Aanvoerder" },
+        { "prompt": "Vlag" },
+        { "prompt": "Beker" },
+        { "prompt": "Verlenging" },
+        { "prompt": "Hoekschop" },
+        { "prompt": "Bondscoach" },
+        { "prompt": "Supporter" },
+        { "prompt": "Shirt" },
+        { "prompt": "Fluitje" },
+        { "prompt": "Groepsfase" },
+        { "prompt": "Hattrick" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die ooit wereldkampioen werden.", "answers": [{ "text": "Brazilie" }, { "text": "Duitsland" }, { "text": "Italie" }, { "text": "Argentinie" }] },
+        { "prompt": "Noem vier landen die ooit een WK organiseerden.", "answers": [{ "text": "Mexico" }, { "text": "Frankrijk" }, { "text": "Japan" }, { "text": "Zuid-Afrika" }] },
+        { "prompt": "Noem de vier posities in een voetbalelftal.", "answers": [{ "text": "Keeper" }, { "text": "Verdediger" }, { "text": "Middenvelder" }, { "text": "Aanvaller" }] },
+        { "prompt": "Noem vier Zuid-Amerikaanse landen die aan een WK meededen.", "answers": [{ "text": "Brazilie" }, { "text": "Argentinie" }, { "text": "Uruguay" }, { "text": "Chili" }] },
+        { "prompt": "Noem vier Nederlandse spelers die op een WK speelden.", "answers": [{ "text": "Johan Cruijff" }, { "text": "Dennis Bergkamp" }, { "text": "Arjen Robben" }, { "text": "Virgil van Dijk" }] },
+        { "prompt": "Noem vier Europese landen die ooit een WK-finale speelden.", "answers": [{ "text": "Nederland" }, { "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Duitsland" }] },
+        { "prompt": "Noem vier onderdelen van een voetbalveld.", "answers": [{ "text": "Middenlijn" }, { "text": "Strafschopgebied" }, { "text": "Doel" }, { "text": "Hoekvlag" }] },
+        { "prompt": "Noem vier beroemde voetbalstadions.", "answers": [{ "text": "Maracana" }, { "text": "Wembley" }, { "text": "Camp Nou" }, { "text": "Santiago Bernabeu" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk land werd wereldkampioen in 1934 en 1938?", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welke Braziliaan werd in 2002 topscorer van het WK?", "answers": [{ "text": "Ronaldo" }] },
+        { "prompt": "Welke Italiaan werd in 1982 topscorer van het WK?", "answers": [{ "text": "Paolo Rossi", "aliases": ["Rossi"] }] },
+        { "prompt": "Hoe heet de trofee die de wereldkampioen sinds 1974 krijgt?", "answers": [{ "text": "De FIFA-wereldbeker", "aliases": ["wereldbeker"] }] },
+        { "prompt": "Welk Aziatisch land bereikte in 2002 de halve finale?", "answers": [{ "text": "Zuid-Korea" }] },
+        { "prompt": "Hoe heette de hond die in 1966 de gestolen WK-beker terugvond?", "answers": [{ "text": "Pickles" }] }
+      ]
+    }
+  ]
+}

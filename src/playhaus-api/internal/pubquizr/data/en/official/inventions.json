@@ -1,0 +1,104 @@
+{
+  "slug": "inventions",
+  "title": "Great Inventions",
+  "description": "A whole pub quiz about inventions and the people behind them, from the press to the chip.",
+  "publishedAt": "2026-03-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which American made the light bulb practical for everyday use?", "category": "Inventors", "answers": [{ "text": "Thomas Edison", "aliases": ["Edison"] }] },
+        { "prompt": "Who filed the patent for the telephone in 1876?", "category": "Inventors", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
+        { "prompt": "Which Scot greatly improved the steam engine?", "category": "Inventors", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },
+        { "prompt": "Who brought printing with movable type to Europe around 1450?", "category": "Inventors", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
+        { "prompt": "Which two American brothers made the first powered flight in 1903?", "category": "Transport", "answers": [{ "text": "The Wright brothers", "aliases": ["Wright"] }] },
+        { "prompt": "Which Italian sent a radio signal across the Atlantic in 1901?", "category": "Communication", "answers": [{ "text": "Guglielmo Marconi", "aliases": ["Marconi"] }] },
+        { "prompt": "Who discovered penicillin in 1928?", "category": "Medicine", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Which German built the first car with a petrol engine in 1885?", "category": "Transport", "answers": [{ "text": "Carl Benz", "aliases": ["Benz"] }] },
+        { "prompt": "Which Swede invented dynamite and founded a prize?", "category": "Inventors", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
+        { "prompt": "Which Dutchman was the first to see bacteria through his own microscope?", "category": "The Netherlands", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
+        { "prompt": "Which Dutchman built the first pendulum clock in 1656?", "category": "The Netherlands", "answers": [{ "text": "Christiaan Huygens", "aliases": ["Huygens"] }] },
+        { "prompt": "Which Briton came up with the World Wide Web?", "category": "Computers", "answers": [{ "text": "Tim Berners-Lee", "aliases": ["Berners-Lee"] }] },
+        { "prompt": "Which Japanese company launched the Walkman in 1979?", "category": "Brands", "answers": [{ "text": "Sony" }] },
+        { "prompt": "Which Frenchman developed a rabies vaccine in 1885?", "category": "Medicine", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "Which Serbian-American engineer worked on alternating current?", "category": "Electricity", "answers": [{ "text": "Nikola Tesla", "aliases": ["Tesla"] }] },
+        { "prompt": "Which two-wheeled vehicle without pedals did Karl Drais devise in 1817?", "category": "Transport", "answers": [{ "text": "The running machine", "aliases": ["draisine", "hobby horse"] }] },
+        { "prompt": "Which German built the first four-stroke engine in 1876?", "category": "Engines", "answers": [{ "text": "Nikolaus Otto", "aliases": ["Otto"] }] },
+        { "prompt": "Which English mathematician designed the analytical engine in the nineteenth century?", "category": "Computers", "answers": [{ "text": "Charles Babbage", "aliases": ["Babbage"] }] },
+        { "prompt": "Which American invented the lightning rod?", "category": "Electricity", "answers": [{ "text": "Benjamin Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Which physicist discovered the element radium together with her husband?", "category": "Science", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "How many seconds did the first flight of the Wright brothers last?", "options": [{ "text": "12", "correct": true }, { "text": "30" }, { "text": "59" }, { "text": "120" }] },
+        { "prompt": "Which Englishman built the locomotive Rocket?", "options": [{ "text": "George Stephenson", "correct": true }, { "text": "James Watt" }, { "text": "Richard Trevithick" }, { "text": "Isambard Brunel" }] },
+        { "prompt": "Which company brought out the first roll film camera for the public in 1888?", "options": [{ "text": "Kodak", "correct": true }, { "text": "Zeiss" }, { "text": "Agfa" }, { "text": "Leica" }] },
+        { "prompt": "Who devised the alphabet of dots and dashes for the telegraph?", "options": [{ "text": "Samuel Morse", "correct": true }, { "text": "Alexander Graham Bell" }, { "text": "Guglielmo Marconi" }, { "text": "Thomas Edison" }] },
+        { "prompt": "In what year was the first iPhone sold?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2011" }] },
+        { "prompt": "Which writing implement did the Hungarian Laszlo Biro bring to market?", "options": [{ "text": "The ballpoint pen", "correct": true }, { "text": "The fountain pen" }, { "text": "The pencil" }, { "text": "The felt tip" }] },
+        { "prompt": "Which plastic did Leo Baekeland invent in 1907?", "options": [{ "text": "Bakelite", "correct": true }, { "text": "Nylon" }, { "text": "Teflon" }, { "text": "PVC" }] },
+        { "prompt": "Who invented nylon at DuPont in 1935?", "options": [{ "text": "Wallace Carothers", "correct": true }, { "text": "Leo Baekeland" }, { "text": "Charles Goodyear" }, { "text": "Roy Plunkett" }] },
+        { "prompt": "Which medical device made the Dutchman Willem Einthoven famous?", "options": [{ "text": "The electrocardiograph", "correct": true }, { "text": "The X-ray machine" }, { "text": "The microscope" }, { "text": "The thermometer" }] },
+        { "prompt": "Which German built a programmable computing machine in 1941?", "options": [{ "text": "Konrad Zuse", "correct": true }, { "text": "Alan Turing" }, { "text": "John von Neumann" }, { "text": "Charles Babbage" }] },
+        { "prompt": "Which Dutch company developed the compact disc together with Sony?", "options": [{ "text": "Philips", "correct": true }, { "text": "Grundig" }, { "text": "Siemens" }, { "text": "Bose" }] },
+        { "prompt": "Who invented the engine named after him that runs on heavy oil?", "options": [{ "text": "Rudolf Diesel", "correct": true }, { "text": "Carl Benz" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
+        { "prompt": "Which English mathematician described a theoretical computing machine in 1936?", "options": [{ "text": "Alan Turing", "correct": true }, { "text": "Charles Babbage" }, { "text": "George Boole" }, { "text": "John Napier" }] },
+        { "prompt": "Which American inventor held more than a thousand patents?", "options": [{ "text": "Thomas Edison", "correct": true }, { "text": "Nikola Tesla" }, { "text": "Alexander Graham Bell" }, { "text": "Henry Ford" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "About how many kilometres per hour did the locomotive Rocket reach in 1829?", "answer": 48, "unit": "km per hour", "explanation": "About thirty miles per hour, which won it the trials at Rainhill." },
+        { "prompt": "In what year did the World Wide Web become available to everyone?", "answer": 1991, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Light bulb" },
+        { "prompt": "Wheel" },
+        { "prompt": "Printing press" },
+        { "prompt": "Telephone" },
+        { "prompt": "Steam engine" },
+        { "prompt": "Microscope" },
+        { "prompt": "Compass" },
+        { "prompt": "Battery" },
+        { "prompt": "Aeroplane" },
+        { "prompt": "Refrigerator" },
+        { "prompt": "Bicycle" },
+        { "prompt": "Clock" },
+        { "prompt": "Screw" },
+        { "prompt": "Magnet" },
+        { "prompt": "Patent" },
+        { "prompt": "Laboratory" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four inventions of the nineteenth century.", "answers": [{ "text": "Telephone" }, { "text": "Light bulb" }, { "text": "Photography" }, { "text": "Dynamite" }] },
+        { "prompt": "Name four kinds of engine.", "answers": [{ "text": "Steam engine" }, { "text": "Petrol engine" }, { "text": "Diesel engine" }, { "text": "Electric motor" }] },
+        { "prompt": "Name four American inventors.", "answers": [{ "text": "Thomas Edison" }, { "text": "Alexander Graham Bell" }, { "text": "Benjamin Franklin" }, { "text": "Orville Wright" }] },
+        { "prompt": "Name four plastics.", "answers": [{ "text": "Bakelite" }, { "text": "Nylon" }, { "text": "Polyethylene" }, { "text": "Teflon" }] },
+        { "prompt": "Name four units named after a scientist.", "answers": [{ "text": "Watt" }, { "text": "Volt" }, { "text": "Newton" }, { "text": "Ampere" }] },
+        { "prompt": "Name four means of communication from the twentieth century.", "answers": [{ "text": "Radio" }, { "text": "Television" }, { "text": "Fax" }, { "text": "Mobile phone" }] },
+        { "prompt": "Name four Dutch scientists or inventors.", "answers": [{ "text": "Antoni van Leeuwenhoek" }, { "text": "Christiaan Huygens" }, { "text": "Willem Einthoven" }, { "text": "Heike Kamerlingh Onnes" }] },
+        { "prompt": "Name four parts of a bicycle.", "answers": [{ "text": "Wheel" }, { "text": "Saddle" }, { "text": "Chain" }, { "text": "Handlebars" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which French brothers first showed a film to an audience in 1895?", "answers": [{ "text": "The Lumiere brothers", "aliases": ["Lumiere"] }] },
+        { "prompt": "Which Dutch physicist won the 1902 Nobel Prize for his work on electrons?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz"] }] },
+        { "prompt": "In what year was the transistor invented?", "answers": [{ "text": "1947" }] },
+        { "prompt": "Which American company built the first microprocessor in 1971?", "answers": [{ "text": "Intel" }] },
+        { "prompt": "Which English physicist formulated the three laws of motion?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
+        { "prompt": "Which Hungarian devised the cube with coloured faces?", "answers": [{ "text": "Erno Rubik", "aliases": ["Rubik"] }] }
+      ]
+    }
+  ]
+}

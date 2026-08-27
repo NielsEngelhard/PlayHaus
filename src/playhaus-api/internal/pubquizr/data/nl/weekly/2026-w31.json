@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w31",
+  "title": "Weekquiz week 31",
+  "description": "De wekelijkse quiz van woensdag 29 juli 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Ierland?", "category": "Aardrijkskunde", "answers": [{ "text": "Dublin" }] },
+        { "prompt": "Welk metaal wordt aangetrokken door een magneet?", "category": "Wetenschap", "answers": [{ "text": "IJzer", "aliases": ["ijzer"] }] },
+        { "prompt": "Welke ontdekkingsreiziger bereikte in 1492 de Amerikaanse eilanden?", "category": "Geschiedenis", "answers": [{ "text": "Christoffel Columbus", "aliases": ["Columbus"] }] },
+        { "prompt": "Hoeveel meter is de afstand van de honderd meter sprint?", "category": "Sport", "answers": [{ "text": "Honderd", "aliases": ["100"] }] },
+        { "prompt": "Welke Amerikaanse zangeres staat bekend als de Queen of Soul?", "category": "Muziek", "answers": [{ "text": "Aretha Franklin", "aliases": ["Aretha"] }] },
+        { "prompt": "Welke Japanse studio maakte de animatiefilm Spirited Away?", "category": "Film", "answers": [{ "text": "Studio Ghibli", "aliases": ["Ghibli"] }] },
+        { "prompt": "Hoeveel poten heeft een insect?", "category": "Natuur", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de grootste haven van Europa?", "category": "Nederland", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Wat is de officiele taal van Oostenrijk?", "category": "Taal", "answers": [{ "text": "Duits" }] },
+        { "prompt": "Welke Nederlandse graficus maakte prenten met onmogelijke trappen en waterlopen?", "category": "Kunst", "answers": [{ "text": "M.C. Escher", "aliases": ["Escher"] }] },
+        { "prompt": "Hoeveel zijden heeft een dodecaeder?", "category": "Wetenschap", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "Welke berg is de hoogste van de Alpen?", "category": "Aardrijkskunde", "answers": [{ "text": "De Mont Blanc", "aliases": ["Mont Blanc"] }] },
+        { "prompt": "Welke Amerikaanse president schafte in 1863 de slavernij af met de Emancipatieproclamatie?", "category": "Geschiedenis", "answers": [{ "text": "Abraham Lincoln", "aliases": ["Lincoln"] }] },
+        { "prompt": "Welke groente is oranje en groeit onder de grond?", "category": "Eten", "answers": [{ "text": "De wortel", "aliases": ["wortel", "peen"] }] },
+        { "prompt": "In welke sport worden de termen strike en gutter gebruikt?", "category": "Sport", "answers": [{ "text": "Bowlen", "aliases": ["bowling"] }] },
+        { "prompt": "Welk dier staat bekend om zijn stekels als verdediging en rolt zich op?", "category": "Natuur", "answers": [{ "text": "De egel", "aliases": ["egel"] }] },
+        { "prompt": "Hoe heet het Nederlandse parlement met zijn twee kamers samen?", "category": "Nederland", "answers": [{ "text": "De Staten-Generaal", "aliases": ["Staten-Generaal"] }] },
+        { "prompt": "Wat is de snelheid van het licht in ronde getallen per seconde?", "category": "Wetenschap", "answers": [{ "text": "Driehonderdduizend kilometer", "aliases": ["300000 km"] }] },
+        { "prompt": "Welke regisseur maakte de films Inception en Interstellar?", "category": "Film", "answers": [{ "text": "Christopher Nolan", "aliases": ["Nolan"] }] },
+        { "prompt": "Welk land wordt volledig omsloten door Zuid-Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "Lesotho" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze rivieren stroomt NIET door Duitsland?", "options": [{ "text": "Elbe" }, { "text": "Wezer" }, { "text": "Loire", "correct": true }, { "text": "Main" }] },
+        { "prompt": "Wie schreef Don Quichot?", "options": [{ "text": "Cervantes", "correct": true }, { "text": "Lope de Vega" }, { "text": "Calderon" }, { "text": "Quevedo" }] },
+        { "prompt": "Welk gas ruikt naar rotte eieren?", "options": [{ "text": "Methaan" }, { "text": "Zwavelwaterstof", "correct": true }, { "text": "Ammoniak" }, { "text": "Ozon" }] },
+        { "prompt": "In welk jaar begon de Amerikaanse Burgeroorlog?", "options": [{ "text": "1848" }, { "text": "1861", "correct": true }, { "text": "1865" }, { "text": "1870" }] },
+        { "prompt": "Wat is de hoofdstad van Argentinie?", "options": [{ "text": "Cordoba" }, { "text": "Rosario" }, { "text": "Buenos Aires", "correct": true }, { "text": "Mendoza" }] },
+        { "prompt": "Welk dier legt de meeste eieren van deze vier?", "options": [{ "text": "Kip" }, { "text": "Zeeschildpad", "correct": true }, { "text": "Pinguin" }, { "text": "Struisvogel" }] },
+        { "prompt": "Hoeveel punten is een schot binnen de driepuntslijn waard in basketbal?", "options": [{ "text": "Een" }, { "text": "Twee", "correct": true }, { "text": "Drie" }, { "text": "Vier" }] },
+        { "prompt": "Welke planeet heeft de kortste dag?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Aarde" }, { "text": "Mars" }, { "text": "Venus" }] },
+        { "prompt": "Welk land heeft de meeste inwoners van deze vier?", "options": [{ "text": "Nigeria", "correct": true }, { "text": "Rusland" }, { "text": "Japan" }, { "text": "Mexico" }] },
+        { "prompt": "Welke schrijfster schreef Pride and Prejudice?", "options": [{ "text": "Jane Austen", "correct": true }, { "text": "Emily Bronte" }, { "text": "George Eliot" }, { "text": "Elizabeth Gaskell" }] },
+        { "prompt": "Welk vitaminegebrek veroorzaakt scheurbuik?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine B12" }, { "text": "Vitamine C", "correct": true }, { "text": "Vitamine D" }] },
+        { "prompt": "Welke Nederlandse rivier is de langste binnen de landsgrenzen?", "options": [{ "text": "Maas", "correct": true }, { "text": "IJssel" }, { "text": "Waal" }, { "text": "Vecht" }] },
+        { "prompt": "In welk jaar werd het Eurovisie Songfestival voor het eerst gehouden?", "options": [{ "text": "1950" }, { "text": "1956", "correct": true }, { "text": "1960" }, { "text": "1964" }] },
+        { "prompt": "Welk van deze instrumenten is een koperblazer?", "options": [{ "text": "Hobo" }, { "text": "Trombone", "correct": true }, { "text": "Fagot" }, { "text": "Dwarsfluit" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer is de omtrek van de aarde langs de evenaar?", "answer": 40075, "unit": "kilometer", "explanation": "Ruim veertigduizend kilometer, want de meter is oorspronkelijk uit die omtrek afgeleid." },
+        { "prompt": "In welk jaar werd de Afsluitdijk gesloten?", "answer": 1932, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Molen" },
+        { "prompt": "Schaakbord" },
+        { "prompt": "Dolfijn" },
+        { "prompt": "Postkantoor" },
+        { "prompt": "Perzik" },
+        { "prompt": "Tovenaar" },
+        { "prompt": "Steigerpijp" },
+        { "prompt": "Xylofoon" },
+        { "prompt": "Mist" },
+        { "prompt": "Imker" },
+        { "prompt": "Onderzeeboot" },
+        { "prompt": "Zonnepaneel" },
+        { "prompt": "Sok" },
+        { "prompt": "Vlinder" },
+        { "prompt": "Circus" },
+        { "prompt": "Broodrooster" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Nederland of Belgie grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Belgie" }, { "text": "Frankrijk" }, { "text": "Luxemburg" }] },
+        { "prompt": "Noem de vier grootste steden van het Verenigd Koninkrijk.", "answers": [{ "text": "Londen" }, { "text": "Birmingham" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
+        { "prompt": "Noem de vier instrumenten van een strijkkwartet.", "answers": [{ "text": "Eerste viool" }, { "text": "Tweede viool" }, { "text": "Viola" }, { "text": "Cello" }] },
+        { "prompt": "Noem vier wereldgodsdiensten.", "answers": [{ "text": "Christendom" }, { "text": "Islam" }, { "text": "Jodendom" }, { "text": "Boeddhisme" }] },
+        { "prompt": "Noem de vier bloedvatsoorten van het menselijk lichaam naast de haarvaten.", "answers": [{ "text": "Slagader" }, { "text": "Ader" }, { "text": "Arteriole" }, { "text": "Venule" }] },
+        { "prompt": "Noem de vier grootste eilanden van de Nederlandse Waddenzee.", "answers": [{ "text": "Texel" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Vlieland" }] },
+        { "prompt": "Noem de vier hoofdgassen van de atmosfeer van de aarde.", "answers": [{ "text": "Stikstof" }, { "text": "Zuurstof" }, { "text": "Argon" }, { "text": "Koolstofdioxide" }] },
+        { "prompt": "Noem vier Italiaanse steden van de Renaissance.", "answers": [{ "text": "Florence" }, { "text": "Venetie" }, { "text": "Rome" }, { "text": "Milaan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse microscopist zag als eerste bacterien door een zelfgemaakte lens?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
+        { "prompt": "Wat is de langste rivier van Azie?", "answers": [{ "text": "De Jangtsekiang", "aliases": ["Jangtse", "Yangtze"] }] },
+        { "prompt": "Welke Duitse componist schreef de Brandenburgse concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
+        { "prompt": "Wat is de hoofdstad van Vietnam?", "answers": [{ "text": "Hanoi" }] },
+        { "prompt": "Welke Poolse natuurkundige kreeg twee Nobelprijzen in twee verschillende vakgebieden?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "In welk jaar begon de Tachtigjarige Oorlog?", "answers": [{ "text": "1568" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "disney-princesses",
+  "title": "Disney Princesses",
+  "description": "A whole pub quiz about the Disney princesses: from Snow White in 1937 to Moana.",
+  "publishedAt": "2026-02-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which princess is the heroine of the 1937 animated film?", "category": "Films", "answers": [{ "text": "Snow White" }] },
+        { "prompt": "Which princess loses a glass slipper on the stairs?", "category": "Films", "answers": [{ "text": "Cinderella" }] },
+        { "prompt": "Which princess falls into a long sleep because of a spinning wheel?", "category": "Films", "answers": [{ "text": "Aurora", "aliases": ["Sleeping Beauty", "Briar Rose"] }] },
+        { "prompt": "Which princess is a mermaid?", "category": "Films", "answers": [{ "text": "Ariel" }] },
+        { "prompt": "Which princess loves books and lives with a beast?", "category": "Films", "answers": [{ "text": "Belle" }] },
+        { "prompt": "Which princess comes from the city of Agrabah?", "category": "Films", "answers": [{ "text": "Jasmine" }] },
+        { "prompt": "Which princess disguises herself as a soldier in China?", "category": "Films", "answers": [{ "text": "Mulan" }] },
+        { "prompt": "Which princess from 1995 is the daughter of a chief?", "category": "Films", "answers": [{ "text": "Pocahontas" }] },
+        { "prompt": "Which princess from New Orleans dreams of her own restaurant?", "category": "Films", "answers": [{ "text": "Tiana" }] },
+        { "prompt": "Which princess with very long hair lives in a tower?", "category": "Films", "answers": [{ "text": "Rapunzel" }] },
+        { "prompt": "Which Scottish princess from 2012 is an archer?", "category": "Films", "answers": [{ "text": "Merida" }] },
+        { "prompt": "Which heroine sails away from the island of Motunui in 2016?", "category": "Films", "answers": [{ "text": "Moana", "aliases": ["Vaiana"] }] },
+        { "prompt": "What is the crab who keeps an eye on Ariel called?", "category": "Characters", "answers": [{ "text": "Sebastian", "aliases": ["Sebastian"] }] },
+        { "prompt": "What is the candlestick in Beauty and the Beast called?", "category": "Characters", "answers": [{ "text": "Lumiere" }] },
+        { "prompt": "What comes out of the magic lamp in Aladdin?", "category": "Characters", "answers": [{ "text": "A genie", "aliases": ["genie", "djinn"] }] },
+        { "prompt": "What is the small dragon who helps Mulan called?", "category": "Characters", "answers": [{ "text": "Mushu" }] },
+        { "prompt": "What is Rapunzel's chameleon called?", "category": "Characters", "answers": [{ "text": "Pascal" }] },
+        { "prompt": "What is the rooster who sails along with Moana called?", "category": "Characters", "answers": [{ "text": "Hei Hei" }] },
+        { "prompt": "What is the teapot in Beauty and the Beast called?", "category": "Characters", "answers": [{ "text": "Mrs Potts", "aliases": ["Mrs Potts", "Potts"] }] },
+        { "prompt": "How many dwarfs live in Snow White's cottage?", "category": "Films", "answers": [{ "text": "Seven", "aliases": ["7"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In what year did Snow White and the Seven Dwarfs come out?", "options": [{ "text": "1928" }, { "text": "1937", "correct": true }, { "text": "1945" }, { "text": "1950" }] },
+        { "prompt": "What is the sea witch in The Little Mermaid called?", "options": [{ "text": "Ursula", "correct": true }, { "text": "Maleficent" }, { "text": "Cruella" }, { "text": "Yzma" }] },
+        { "prompt": "Who is the wicked fairy in Sleeping Beauty?", "options": [{ "text": "Maleficent", "correct": true }, { "text": "Ursula" }, { "text": "Yzma" }, { "text": "Gothel" }] },
+        { "prompt": "What is Ariel's father called?", "options": [{ "text": "Triton", "correct": true }, { "text": "Neptunus" }, { "text": "Poseidon" }, { "text": "Eric" }] },
+        { "prompt": "In which city does Tiana live?", "options": [{ "text": "New Orleans", "correct": true }, { "text": "Miami" }, { "text": "Savannah" }, { "text": "Charleston" }] },
+        { "prompt": "What is the thief who takes Rapunzel from her tower called?", "options": [{ "text": "Flynn Rider", "correct": true }, { "text": "Aladdin" }, { "text": "Kristoff" }, { "text": "Naveen" }] },
+        { "prompt": "Which Disney film is based on an old Chinese ballad?", "options": [{ "text": "Mulan", "correct": true }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Vaiana" }] },
+        { "prompt": "Which Disney film is the song Let It Go from?", "options": [{ "text": "Frozen", "correct": true }, { "text": "Moana" }, { "text": "Tangled" }, { "text": "Brave" }] },
+        { "prompt": "What is Elsa's sister in Frozen called?", "options": [{ "text": "Anna", "correct": true }, { "text": "Merida" }, { "text": "Rapunzel" }, { "text": "Belle" }] },
+        { "prompt": "What is the snowman in Frozen called?", "options": [{ "text": "Olaf", "correct": true }, { "text": "Sven" }, { "text": "Kristoff" }, { "text": "Marshmallow" }] },
+        { "prompt": "Which Disney princess ends her film without a prince?", "options": [{ "text": "Merida", "correct": true }, { "text": "Belle" }, { "text": "Ariel" }, { "text": "Tiana" }] },
+        { "prompt": "In what year did The Little Mermaid come out?", "options": [{ "text": "1985" }, { "text": "1989", "correct": true }, { "text": "1992" }, { "text": "1995" }] },
+        { "prompt": "What is Jasmine's tiger called?", "options": [{ "text": "Rajah", "correct": true }, { "text": "Shere Khan" }, { "text": "Nala" }, { "text": "Bagheera" }] },
+        { "prompt": "Which American actress sang Let It Go in the English version?", "options": [{ "text": "Idina Menzel", "correct": true }, { "text": "Kristen Bell" }, { "text": "Demi Lovato" }, { "text": "Julie Andrews" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year did Frozen come out?", "answer": 2013, "unit": "", "explanation": "The film came out in November 2013 and became the most watched animated film of its day." },
+        { "prompt": "How many minutes does Snow White and the Seven Dwarfs last?", "answer": 83, "unit": "minutes" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Crown" },
+        { "prompt": "Glass slipper" },
+        { "prompt": "Castle" },
+        { "prompt": "Mirror" },
+        { "prompt": "Apple" },
+        { "prompt": "Tower" },
+        { "prompt": "Mermaid" },
+        { "prompt": "Magic carpet" },
+        { "prompt": "Snowman" },
+        { "prompt": "Rose" },
+        { "prompt": "Spinning wheel" },
+        { "prompt": "Bow and arrow" },
+        { "prompt": "Frog" },
+        { "prompt": "Ball gown" },
+        { "prompt": "Lantern" },
+        { "prompt": "Canoe" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four Disney princesses.", "answers": [{ "text": "Snow White" }, { "text": "Cinderella" }, { "text": "Ariel" }, { "text": "Belle" }] },
+        { "prompt": "Name the four princesses from films made before 1990.", "answers": [{ "text": "Snow White" }, { "text": "Cinderella" }, { "text": "Aurora" }, { "text": "Ariel" }] },
+        { "prompt": "Name four villains from Disney films.", "answers": [{ "text": "Ursula" }, { "text": "Maleficent" }, { "text": "Jafar" }, { "text": "Gaston" }] },
+        { "prompt": "Name four animals that help a Disney princess.", "answers": [{ "text": "Sebastian" }, { "text": "Mushu" }, { "text": "Pascal" }, { "text": "Rajah" }] },
+        { "prompt": "Name four songs from Disney films.", "answers": [{ "text": "Let It Go" }, { "text": "Under The Sea" }, { "text": "A Whole New World" }, { "text": "Colors Of The Wind" }] },
+        { "prompt": "Name four Disney princesses without a European background.", "answers": [{ "text": "Jasmine" }, { "text": "Mulan" }, { "text": "Pocahontas" }, { "text": "Tiana" }] },
+        { "prompt": "Name four Disney films with a princess from the nineties.", "answers": [{ "text": "Beauty and the Beast" }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Mulan" }] },
+        { "prompt": "Name four characters from Frozen.", "answers": [{ "text": "Elsa" }, { "text": "Anna" }, { "text": "Olaf" }, { "text": "Kristoff" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the woman who locks Rapunzel in the tower called?", "answers": [{ "text": "Mother Gothel", "aliases": ["Gothel"] }] },
+        { "prompt": "What is Flynn Rider's real name?", "answers": [{ "text": "Eugene Fitzherbert", "aliases": ["Eugene"] }] },
+        { "prompt": "What is the kingdom of Elsa and Anna called?", "answers": [{ "text": "Arendelle" }] },
+        { "prompt": "What is Moana's grandmother called?", "answers": [{ "text": "Tala" }] },
+        { "prompt": "Which Hans Christian Andersen fairytale is Frozen loosely based on?", "answers": [{ "text": "The Snow Queen", "aliases": ["Snow Queen"] }] },
+        { "prompt": "What is the prince in The Princess and the Frog called?", "answers": [{ "text": "Naveen" }] }
+      ]
+    }
+  ]
+}

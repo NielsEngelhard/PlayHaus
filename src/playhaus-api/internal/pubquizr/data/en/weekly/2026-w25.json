@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w25",
+  "title": "Weekly quiz week 25",
+  "description": "The weekly quiz of Wednesday 17 June 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which country is the largest in the world by area?", "category": "Geography", "answers": [{ "text": "Russia" }] },
+        { "prompt": "How many bones does an adult human have?", "category": "Science", "answers": [{ "text": "Two hundred and six", "aliases": ["206"] }] },
+        { "prompt": "Who was the first human to set foot on the moon?", "category": "History", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "How many rings are in the Olympic symbol?", "category": "Sport", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "Which band released the album The Dark Side of the Moon?", "category": "Music", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Which director made the film Jaws?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
+        { "prompt": "What is the fastest land animal in the world?", "category": "Nature", "answers": [{ "text": "The cheetah", "aliases": ["cheetah"] }] },
+        { "prompt": "Which river flows past Rotterdam to the sea?", "category": "The Netherlands", "answers": [{ "text": "The Meuse", "aliases": ["Maas", "Meuse"] }] },
+        { "prompt": "What does the Latin word aqua mean?", "category": "Language", "answers": [{ "text": "Water" }] },
+        { "prompt": "In which New York museum hangs Van Gogh's The Starry Night?", "category": "Art", "answers": [{ "text": "Museum of Modern Art", "aliases": ["MoMA"] }] },
+        { "prompt": "Which organ pumps blood around the body?", "category": "Science", "answers": [{ "text": "The heart", "aliases": ["heart"] }] },
+        { "prompt": "What is the highest mountain in Africa?", "category": "Geography", "answers": [{ "text": "Mount Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
+        { "prompt": "Which Egyptian queen had an affair with Julius Caesar?", "category": "History", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "Which spice is the most expensive in the world per gram?", "category": "Food", "answers": [{ "text": "Saffron" }] },
+        { "prompt": "How many years apart are the summer Olympic Games held?", "category": "Sport", "answers": [{ "text": "Four years", "aliases": ["4"] }] },
+        { "prompt": "How many hearts does an octopus have?", "category": "Nature", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "Which king has been on the Dutch throne since 2013?", "category": "The Netherlands", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
+        { "prompt": "What is the hardest natural material on earth?", "category": "Science", "answers": [{ "text": "Diamond" }] },
+        { "prompt": "Which animation studio made Toy Story?", "category": "Film", "answers": [{ "text": "Pixar" }] },
+        { "prompt": "Which city is called the Eternal City?", "category": "Geography", "answers": [{ "text": "Rome" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries does NOT use the euro?", "options": [{ "text": "Austria" }, { "text": "Finland" }, { "text": "Sweden", "correct": true }, { "text": "Portugal" }] },
+        { "prompt": "Who painted Girl with a Pearl Earring?", "options": [{ "text": "Rembrandt" }, { "text": "Vermeer", "correct": true }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
+        { "prompt": "Which planet rolls around the sun almost on its side?", "options": [{ "text": "Uranus", "correct": true }, { "text": "Neptune" }, { "text": "Saturn" }, { "text": "Venus" }] },
+        { "prompt": "What is the capital of Australia?", "options": [{ "text": "Sydney" }, { "text": "Melbourne" }, { "text": "Canberra", "correct": true }, { "text": "Perth" }] },
+        { "prompt": "Which bird lays the largest egg?", "options": [{ "text": "Ostrich", "correct": true }, { "text": "Pelican" }, { "text": "Albatross" }, { "text": "Emu" }] },
+        { "prompt": "In what year did the French Revolution begin?", "options": [{ "text": "1776" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1804" }] },
+        { "prompt": "Which river flows through London?", "options": [{ "text": "Severn" }, { "text": "Thames", "correct": true }, { "text": "Mersey" }, { "text": "Trent" }] },
+        { "prompt": "How many players does a basketball team have on court?", "options": [{ "text": "Four" }, { "text": "Five", "correct": true }, { "text": "Six" }, { "text": "Seven" }] },
+        { "prompt": "Which component of blood carries oxygen?", "options": [{ "text": "Platelets" }, { "text": "Red blood cells", "correct": true }, { "text": "White blood cells" }, { "text": "Plasma" }] },
+        { "prompt": "Which writer created Sherlock Holmes?", "options": [{ "text": "Agatha Christie" }, { "text": "Arthur Conan Doyle", "correct": true }, { "text": "Edgar Allan Poe" }, { "text": "Wilkie Collins" }] },
+        { "prompt": "Which currency is used in Japan?", "options": [{ "text": "Won" }, { "text": "Yen", "correct": true }, { "text": "Yuan" }, { "text": "Baht" }] },
+        { "prompt": "Which Dutch city is nicknamed Mokum?", "options": [{ "text": "Rotterdam" }, { "text": "Amsterdam", "correct": true }, { "text": "Utrecht" }, { "text": "The Hague" }] },
+        { "prompt": "Which metal is liquid at room temperature?", "options": [{ "text": "Lead" }, { "text": "Mercury", "correct": true }, { "text": "Tin" }, { "text": "Zinc" }] },
+        { "prompt": "Which ocean is the deepest?", "options": [{ "text": "The Atlantic" }, { "text": "The Pacific", "correct": true }, { "text": "The Indian Ocean" }, { "text": "The Arctic Ocean" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Everest?", "answer": 8849, "unit": "metres", "explanation": "The height China and Nepal agreed on together in 2020." },
+        { "prompt": "In what year was the first iPhone unveiled?", "answer": 2007, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Windmill" },
+        { "prompt": "Vacuum cleaner" },
+        { "prompt": "Crocodile" },
+        { "prompt": "Library" },
+        { "prompt": "Orange" },
+        { "prompt": "Astronaut" },
+        { "prompt": "Mirror" },
+        { "prompt": "Avalanche" },
+        { "prompt": "Firefighter" },
+        { "prompt": "Volcano" },
+        { "prompt": "Dentist" },
+        { "prompt": "Hammock" },
+        { "prompt": "Candle" },
+        { "prompt": "Penguin" },
+        { "prompt": "Flashlight" },
+        { "prompt": "Train station" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four grand slam tournaments in tennis.", "answers": [{ "text": "Australian Open" }, { "text": "Roland Garros" }, { "text": "Wimbledon" }, { "text": "US Open" }] },
+        { "prompt": "Name the four classical elements of the ancient Greeks.", "answers": [{ "text": "Earth" }, { "text": "Water" }, { "text": "Air" }, { "text": "Fire" }] },
+        { "prompt": "Name the four Teenage Mutant Ninja Turtles.", "answers": [{ "text": "Leonardo" }, { "text": "Donatello" }, { "text": "Raphael" }, { "text": "Michelangelo" }] },
+        { "prompt": "Name the four houses of Hogwarts from Harry Potter.", "answers": [{ "text": "Gryffindor" }, { "text": "Slytherin" }, { "text": "Ravenclaw" }, { "text": "Hufflepuff" }] },
+        { "prompt": "Name the four largest islands of Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
+        { "prompt": "Name the four voice parts in a mixed choir.", "answers": [{ "text": "Soprano" }, { "text": "Alto" }, { "text": "Tenor" }, { "text": "Bass" }] },
+        { "prompt": "Name the four bases of DNA.", "answers": [{ "text": "Adenine" }, { "text": "Thymine" }, { "text": "Guanine" }, { "text": "Cytosine" }] },
+        { "prompt": "Name the four musketeers from Alexandre Dumas' novel.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "d'Artagnan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Who wrote the novel One Hundred Years of Solitude?", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Marquez"] }] },
+        { "prompt": "What is the smallest independent state in the world?", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
+        { "prompt": "Which element has the symbol W?", "answers": [{ "text": "Tungsten", "aliases": ["wolfram"] }] },
+        { "prompt": "In what year was the Berlin Wall built?", "answers": [{ "text": "1961" }] },
+        { "prompt": "Which Greek mathematician is said to have shouted Eureka in his bath?", "answers": [{ "text": "Archimedes" }] },
+        { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] }
+      ]
+    }
+  ]
+}

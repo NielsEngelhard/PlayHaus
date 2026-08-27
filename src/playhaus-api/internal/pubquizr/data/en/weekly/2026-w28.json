@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w28",
+  "title": "Weekly quiz week 28",
+  "description": "The weekly quiz of Wednesday 8 July 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Norway?", "category": "Geography", "answers": [{ "text": "Oslo" }] },
+        { "prompt": "Which organs does a human use to breathe?", "category": "Science", "answers": [{ "text": "The lungs", "aliases": ["lungs"] }] },
+        { "prompt": "Which wall divided Berlin from 1961 to 1989?", "category": "History", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
+        { "prompt": "Which cycling race traditionally finishes in Paris?", "category": "Sport", "answers": [{ "text": "The Tour de France", "aliases": ["Tour de France"] }] },
+        { "prompt": "Which American singer is called the King of Rock and Roll?", "category": "Music", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
+        { "prompt": "Which small green Star Wars character is grand master of the Jedi order?", "category": "Film", "answers": [{ "text": "Yoda" }] },
+        { "prompt": "How many wings does a bee have?", "category": "Nature", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "Which Dutch city has the oldest university in the country?", "category": "The Netherlands", "answers": [{ "text": "Leiden" }] },
+        { "prompt": "What is the plural of the English word child?", "category": "Language", "answers": [{ "text": "Children" }] },
+        { "prompt": "Which Spanish painter made Guernica?", "category": "Art", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] },
+        { "prompt": "What is the lightest element in the periodic table?", "category": "Science", "answers": [{ "text": "Hydrogen", "aliases": ["H"] }] },
+        { "prompt": "Which South American desert is the driest in the world?", "category": "Geography", "answers": [{ "text": "The Atacama", "aliases": ["Atacama"] }] },
+        { "prompt": "Which Greek commander conquered the Persian Empire?", "category": "History", "answers": [{ "text": "Alexander the Great", "aliases": ["Alexander"] }] },
+        { "prompt": "From which plant does rice come?", "category": "Food", "answers": [{ "text": "The rice plant", "aliases": ["rice", "Oryza sativa"] }] },
+        { "prompt": "How many minutes does a regular football match last?", "category": "Sport", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
+        { "prompt": "Which tree has long hanging branches and is often planted by water?", "category": "Nature", "answers": [{ "text": "The willow", "aliases": ["willow", "weeping willow"] }] },
+        { "prompt": "Which Dutch village is famous for its spring tulip gardens?", "category": "The Netherlands", "answers": [{ "text": "Lisse", "aliases": ["Keukenhof"] }] },
+        { "prompt": "How many teeth does an adult human usually have?", "category": "Science", "answers": [{ "text": "Thirty-two", "aliases": ["32"] }] },
+        { "prompt": "Which director made Pulp Fiction?", "category": "Film", "answers": [{ "text": "Quentin Tarantino", "aliases": ["Tarantino"] }] },
+        { "prompt": "Which river flows through Paris?", "category": "Geography", "answers": [{ "text": "The Seine", "aliases": ["Seine"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country does NOT border the Mediterranean?", "options": [{ "text": "Albania" }, { "text": "Bulgaria", "correct": true }, { "text": "Lebanon" }, { "text": "Tunisia" }] },
+        { "prompt": "Who wrote the play Hamlet?", "options": [{ "text": "Shakespeare", "correct": true }, { "text": "Marlowe" }, { "text": "Jonson" }, { "text": "Webster" }] },
+        { "prompt": "Which metal is the best conductor of electricity?", "options": [{ "text": "Copper" }, { "text": "Silver", "correct": true }, { "text": "Gold" }, { "text": "Aluminium" }] },
+        { "prompt": "In what year was the Titanic launched?", "options": [{ "text": "1909" }, { "text": "1911", "correct": true }, { "text": "1912" }, { "text": "1914" }] },
+        { "prompt": "What is the capital of South Korea?", "options": [{ "text": "Busan" }, { "text": "Seoul", "correct": true }, { "text": "Incheon" }, { "text": "Daegu" }] },
+        { "prompt": "Which animal carries its young in a pouch and can box?", "options": [{ "text": "Koala" }, { "text": "Kangaroo", "correct": true }, { "text": "Opossum" }, { "text": "Wallaby" }] },
+        { "prompt": "How many players does an ice hockey team have on the ice including the goalie?", "options": [{ "text": "Five" }, { "text": "Six", "correct": true }, { "text": "Seven" }, { "text": "Eight" }] },
+        { "prompt": "Which planet is the outermost of our solar system?", "options": [{ "text": "Uranus" }, { "text": "Neptune", "correct": true }, { "text": "Pluto" }, { "text": "Saturn" }] },
+        { "prompt": "Which language has the most native speakers worldwide?", "options": [{ "text": "English" }, { "text": "Mandarin", "correct": true }, { "text": "Spanish" }, { "text": "Hindi" }] },
+        { "prompt": "Who led the Concertgebouw Orchestra for half a century from 1895?", "options": [{ "text": "Willem Mengelberg", "correct": true }, { "text": "Bernard Haitink" }, { "text": "Eduard van Beinum" }, { "text": "Riccardo Chailly" }] },
+        { "prompt": "What is the largest organ of the human body?", "options": [{ "text": "Liver" }, { "text": "Skin", "correct": true }, { "text": "Lungs" }, { "text": "Intestine" }] },
+        { "prompt": "Which city is known as the City of Light?", "options": [{ "text": "Paris", "correct": true }, { "text": "Vienna" }, { "text": "Prague" }, { "text": "Venice" }] },
+        { "prompt": "In what year was the first satellite Sputnik 1 launched?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] },
+        { "prompt": "Which fruit is called Citrus limon in Latin?", "options": [{ "text": "Lime" }, { "text": "Lemon", "correct": true }, { "text": "Pomelo" }, { "text": "Mandarin" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres is the average distance from earth to the moon?", "answer": 384400, "unit": "kilometres", "explanation": "Nearly four hundred thousand kilometres, about thirty earth diameters." },
+        { "prompt": "In what year was the Eiffel Tower completed?", "answer": 1889, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Walking stick" },
+        { "prompt": "Horseshoe" },
+        { "prompt": "Zebra" },
+        { "prompt": "Bakery" },
+        { "prompt": "Watermelon" },
+        { "prompt": "Cowboy" },
+        { "prompt": "Scales" },
+        { "prompt": "Flute" },
+        { "prompt": "Snow shovel" },
+        { "prompt": "Plumber" },
+        { "prompt": "Roller coaster" },
+        { "prompt": "Binoculars" },
+        { "prompt": "Doorbell" },
+        { "prompt": "Ostrich" },
+        { "prompt": "Backpack" },
+        { "prompt": "Rubbish bin" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest cities of Germany.", "answers": [{ "text": "Berlin" }, { "text": "Hamburg" }, { "text": "Munich" }, { "text": "Cologne" }] },
+        { "prompt": "Name the four oceans besides the Southern Ocean.", "answers": [{ "text": "Pacific" }, { "text": "Atlantic" }, { "text": "Indian Ocean" }, { "text": "Arctic Ocean" }] },
+        { "prompt": "Name the four members of the Fantastic Four.", "answers": [{ "text": "Mister Fantastic" }, { "text": "Invisible Woman" }, { "text": "Human Torch" }, { "text": "The Thing" }] },
+        { "prompt": "Name the four great Athenian dramatists besides Menander.", "answers": [{ "text": "Aeschylus" }, { "text": "Sophocles" }, { "text": "Euripides" }, { "text": "Aristophanes" }] },
+        { "prompt": "Name the four countries that border Belgium by land.", "answers": [{ "text": "The Netherlands" }, { "text": "Germany" }, { "text": "Luxembourg" }, { "text": "France" }] },
+        { "prompt": "Name the four kinds of tissue in the human body.", "answers": [{ "text": "Muscle tissue" }, { "text": "Nervous tissue" }, { "text": "Epithelium" }, { "text": "Connective tissue" }] },
+        { "prompt": "Name the four largest islands of the British Isles.", "answers": [{ "text": "Great Britain" }, { "text": "Ireland" }, { "text": "Lewis and Harris" }, { "text": "Skye" }] },
+        { "prompt": "Name the four concertos of Vivaldi's Four Seasons.", "answers": [{ "text": "Spring" }, { "text": "Summer" }, { "text": "Autumn" }, { "text": "Winter" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Polish astronomer put the sun at the centre of the solar system?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus"] }] },
+        { "prompt": "What is the largest lake in Africa?", "answers": [{ "text": "Lake Victoria", "aliases": ["Victoria"] }] },
+        { "prompt": "Which Russian composer wrote the ballet Swan Lake?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Tchaikovsky", "Pyotr Tchaikovsky"] }] },
+        { "prompt": "What is the capital of Turkey?", "answers": [{ "text": "Ankara" }] },
+        { "prompt": "Which two scientists described the DNA double helix in 1953?", "answers": [{ "text": "Watson and Crick", "aliases": ["James Watson and Francis Crick"] }] },
+        { "prompt": "In what year did the Dutch constitution introduce ministerial responsibility?", "answers": [{ "text": "1848" }] }
+      ]
+    }
+  ]
+}

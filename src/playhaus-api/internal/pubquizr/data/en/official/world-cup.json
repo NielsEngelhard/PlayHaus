@@ -1,0 +1,104 @@
+{
+  "slug": "world-cup",
+  "title": "The Football World Cup",
+  "description": "A whole pub quiz about the football World Cup: finals, players and host countries.",
+  "publishedAt": "2026-03-25",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In what year was the first football World Cup held?", "category": "History", "answers": [{ "text": "1930" }] },
+        { "prompt": "Which country won the first World Cup in 1930?", "category": "History", "answers": [{ "text": "Uruguay" }] },
+        { "prompt": "What was the World Cup trophy called until 1970?", "category": "History", "answers": [{ "text": "The Jules Rimet Cup", "aliases": ["Jules Rimet"] }] },
+        { "prompt": "Which country has become world champion most often?", "category": "Countries", "answers": [{ "text": "Brazil" }] },
+        { "prompt": "Which country became world champion for the first time in 2010?", "category": "Countries", "answers": [{ "text": "Spain" }] },
+        { "prompt": "Which country won the 1966 World Cup at home?", "category": "Countries", "answers": [{ "text": "England" }] },
+        { "prompt": "Which African country reached the semi-final for the first time in 2022?", "category": "Countries", "answers": [{ "text": "Morocco" }] },
+        { "prompt": "Which Brazilian became world champion in 1958 at the age of seventeen?", "category": "Players", "answers": [{ "text": "Pele" }] },
+        { "prompt": "Which Argentine scored the goal known as the hand of God in 1986?", "category": "Players", "answers": [{ "text": "Diego Maradona", "aliases": ["Maradona"] }] },
+        { "prompt": "Which Frenchman was sent off for a headbutt in the 2006 final?", "category": "Players", "answers": [{ "text": "Zinedine Zidane", "aliases": ["Zidane"] }] },
+        { "prompt": "Which captain became world champion with Argentina in 2022?", "category": "Players", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Which German became the record holder with sixteen World Cup goals in 2014?", "category": "Players", "answers": [{ "text": "Miroslav Klose", "aliases": ["Klose"] }] },
+        { "prompt": "Which Dutch forward scored the famous goal against Argentina in 1998?", "category": "The Netherlands", "answers": [{ "text": "Dennis Bergkamp", "aliases": ["Bergkamp"] }] },
+        { "prompt": "Which country beat the Netherlands in the 1974 World Cup final?", "category": "The Netherlands", "answers": [{ "text": "West Germany", "aliases": ["Germany"] }] },
+        { "prompt": "Which manager took the Netherlands to the 1974 final?", "category": "The Netherlands", "answers": [{ "text": "Rinus Michels", "aliases": ["Michels"] }] },
+        { "prompt": "How many countries took part in a World Cup from 1998 up to 2022?", "category": "Tournament", "answers": [{ "text": "Thirty-two", "aliases": ["32"] }] },
+        { "prompt": "How many players does a football team have on the pitch?", "category": "Tournament", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which country hosted the World Cup in 2022?", "category": "Hosts", "answers": [{ "text": "Qatar" }] },
+        { "prompt": "Which two Asian countries jointly hosted the World Cup in 2002?", "category": "Hosts", "answers": [{ "text": "Japan and South Korea", "aliases": ["South Korea and Japan"] }] },
+        { "prompt": "What is the famous football stadium in Rio de Janeiro called?", "category": "Stadiums", "answers": [{ "text": "The Maracana", "aliases": ["Maracana"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country won the 1998 World Cup?", "options": [{ "text": "France", "correct": true }, { "text": "Brazil" }, { "text": "Italy" }, { "text": "Germany" }] },
+        { "prompt": "Which country won the 2014 World Cup?", "options": [{ "text": "Germany", "correct": true }, { "text": "Argentina" }, { "text": "Brazil" }, { "text": "The Netherlands" }] },
+        { "prompt": "In which country was the 2014 World Cup held?", "options": [{ "text": "Brazil", "correct": true }, { "text": "Argentina" }, { "text": "Mexico" }, { "text": "Chile" }] },
+        { "prompt": "How many times had Italy won the World Cup up to 2022?", "options": [{ "text": "Four", "correct": true }, { "text": "Two" }, { "text": "Three" }, { "text": "Five" }] },
+        { "prompt": "Which player became world champion three times?", "options": [{ "text": "Pele", "correct": true }, { "text": "Diego Maradona" }, { "text": "Franz Beckenbauer" }, { "text": "Mario Zagallo" }] },
+        { "prompt": "Which German became world champion as a player and as a manager?", "options": [{ "text": "Franz Beckenbauer", "correct": true }, { "text": "Helmut Schon" }, { "text": "Jurgen Klinsmann" }, { "text": "Lothar Matthaus" }] },
+        { "prompt": "In what year was the World Cup held in Germany for the second time?", "options": [{ "text": "1974" }, { "text": "1990" }, { "text": "2002" }, { "text": "2006", "correct": true }] },
+        { "prompt": "Which country won the 1978 World Cup on home soil?", "options": [{ "text": "Argentina", "correct": true }, { "text": "Brazil" }, { "text": "Uruguay" }, { "text": "Chile" }] },
+        { "prompt": "How many minutes does a match last without extra time?", "options": [{ "text": "80" }, { "text": "90", "correct": true }, { "text": "100" }, { "text": "120" }] },
+        { "prompt": "Which card means a player has to leave the pitch?", "options": [{ "text": "The red card", "correct": true }, { "text": "The yellow card" }, { "text": "The blue card" }, { "text": "The green card" }] },
+        { "prompt": "Who was the manager of Germany for the 2014 title?", "options": [{ "text": "Joachim Low", "correct": true }, { "text": "Hansi Flick" }, { "text": "Rudi Voller" }, { "text": "Berti Vogts" }] },
+        { "prompt": "Which award does the top scorer of a World Cup receive?", "options": [{ "text": "The Golden Boot", "correct": true }, { "text": "The Golden Ball" }, { "text": "The Golden Glove" }, { "text": "The Golden Cup" }] },
+        { "prompt": "Which country hosted the first World Cup in Africa, in 2010?", "options": [{ "text": "South Africa", "correct": true }, { "text": "Nigeria" }, { "text": "Egypt" }, { "text": "Kenya" }] },
+        { "prompt": "How many goals did Geoff Hurst score in the 1966 final?", "options": [{ "text": "Three", "correct": true }, { "text": "One" }, { "text": "Two" }, { "text": "Four" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many countries took part in the first World Cup in 1930?", "answer": 13, "unit": "countries", "explanation": "Thirteen, because the trip to Uruguay took weeks by boat." },
+        { "prompt": "How many World Cup matches did the German Lothar Matthaus play in total?", "answer": 25, "unit": "matches" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Goal" },
+        { "prompt": "Referee" },
+        { "prompt": "Stadium" },
+        { "prompt": "Penalty" },
+        { "prompt": "Goalkeeper" },
+        { "prompt": "Captain" },
+        { "prompt": "Flag" },
+        { "prompt": "Trophy" },
+        { "prompt": "Extra time" },
+        { "prompt": "Corner" },
+        { "prompt": "Manager" },
+        { "prompt": "Supporter" },
+        { "prompt": "Shirt" },
+        { "prompt": "Whistle" },
+        { "prompt": "Group stage" },
+        { "prompt": "Hat-trick" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that have been world champions.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "Italy" }, { "text": "Argentina" }] },
+        { "prompt": "Name four countries that have hosted a World Cup.", "answers": [{ "text": "Mexico" }, { "text": "France" }, { "text": "Japan" }, { "text": "South Africa" }] },
+        { "prompt": "Name the four positions in a football team.", "answers": [{ "text": "Goalkeeper" }, { "text": "Defender" }, { "text": "Midfielder" }, { "text": "Forward" }] },
+        { "prompt": "Name four South American countries that have played at a World Cup.", "answers": [{ "text": "Brazil" }, { "text": "Argentina" }, { "text": "Uruguay" }, { "text": "Chile" }] },
+        { "prompt": "Name four Dutch players who have played at a World Cup.", "answers": [{ "text": "Johan Cruijff" }, { "text": "Dennis Bergkamp" }, { "text": "Arjen Robben" }, { "text": "Virgil van Dijk" }] },
+        { "prompt": "Name four European countries that have played a World Cup final.", "answers": [{ "text": "The Netherlands" }, { "text": "France" }, { "text": "Italy" }, { "text": "Germany" }] },
+        { "prompt": "Name four parts of a football pitch.", "answers": [{ "text": "Halfway line" }, { "text": "Penalty area" }, { "text": "Goal" }, { "text": "Corner flag" }] },
+        { "prompt": "Name four famous football stadiums.", "answers": [{ "text": "Maracana" }, { "text": "Wembley" }, { "text": "Camp Nou" }, { "text": "Santiago Bernabeu" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which country was world champion in 1934 and 1938?", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which Brazilian was top scorer of the 2002 World Cup?", "answers": [{ "text": "Ronaldo" }] },
+        { "prompt": "Which Italian was top scorer of the 1982 World Cup?", "answers": [{ "text": "Paolo Rossi", "aliases": ["Rossi"] }] },
+        { "prompt": "What is the trophy the world champion has received since 1974 called?", "answers": [{ "text": "The FIFA World Cup Trophy", "aliases": ["World Cup Trophy"] }] },
+        { "prompt": "Which Asian country reached the semi-final in 2002?", "answers": [{ "text": "South Korea" }] },
+        { "prompt": "What was the dog that found the stolen World Cup trophy in 1966 called?", "answers": [{ "text": "Pickles" }] }
+      ]
+    }
+  ]
+}

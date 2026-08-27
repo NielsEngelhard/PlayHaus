@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w33",
+  "title": "Weekquiz week 33",
+  "description": "De wekelijkse quiz van woensdag 12 augustus 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Denemarken?", "category": "Aardrijkskunde", "answers": [{ "text": "Kopenhagen" }] },
+        { "prompt": "Welk gas hebben mensen nodig om te kunnen ademen?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof", "aliases": ["O2"] }] },
+        { "prompt": "Welk rijk werd geregeerd vanuit Rome en viel in het westen in 476?", "category": "Geschiedenis", "answers": [{ "text": "Het Romeinse Rijk", "aliases": ["Romeinse Rijk"] }] },
+        { "prompt": "Hoeveel spelers heeft een voetbalteam in het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welke Ierse band bracht het album The Joshua Tree uit?", "category": "Muziek", "answers": [{ "text": "U2" }] },
+        { "prompt": "Welke regisseur maakte de film Schindler's List?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
+        { "prompt": "Welk dier is het grootste landdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De olifant", "aliases": ["Afrikaanse olifant"] }] },
+        { "prompt": "Welke Nederlandse stad ligt het zuidelijkst van het land?", "category": "Nederland", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "Welke taal wordt in Egypte als officiele taal gesproken?", "category": "Taal", "answers": [{ "text": "Arabisch" }] },
+        { "prompt": "Welke Franse beeldhouwer maakte De denker?", "category": "Kunst", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
+        { "prompt": "Hoeveel zijden heeft een kubus?", "category": "Wetenschap", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welk werelddeel is het kleinste?", "category": "Aardrijkskunde", "answers": [{ "text": "Oceanie", "aliases": ["Australie"] }] },
+        { "prompt": "Welke Britse premier leidde het land door de Tweede Wereldoorlog?", "category": "Geschiedenis", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
+        { "prompt": "Welke Japanse gerecht bestaat uit rijst met rauwe vis?", "category": "Eten", "answers": [{ "text": "Sushi" }] },
+        { "prompt": "Hoeveel minuten duurt een ronde in het olympisch boksen?", "category": "Sport", "answers": [{ "text": "Drie minuten", "aliases": ["3"] }] },
+        { "prompt": "Welke vogel legt de grootste eieren?", "category": "Natuur", "answers": [{ "text": "De struisvogel", "aliases": ["struisvogel"] }] },
+        { "prompt": "Hoe heet de zetel van de Nederlandse regering?", "category": "Nederland", "answers": [{ "text": "Het Binnenhof", "aliases": ["Binnenhof"] }] },
+        { "prompt": "Wat is de eenheid van vermogen?", "category": "Wetenschap", "answers": [{ "text": "De watt", "aliases": ["watt", "W"] }] },
+        { "prompt": "Welke acteur speelde Tony Stark in de Marvel-films?", "category": "Film", "answers": [{ "text": "Robert Downey Jr.", "aliases": ["Downey"] }] },
+        { "prompt": "Welke rivier stroomt door Kairo?", "category": "Aardrijkskunde", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land grenst NIET aan Oostenrijk?", "options": [{ "text": "Slovenie" }, { "text": "Kroatie", "correct": true }, { "text": "Slowakije" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Wie schreef De kleine prins?", "options": [{ "text": "Saint-Exupery", "correct": true }, { "text": "Camus" }, { "text": "Gide" }, { "text": "Malraux" }] },
+        { "prompt": "Welk element heeft het symbool Au?", "options": [{ "text": "Zilver" }, { "text": "Goud", "correct": true }, { "text": "Koper" }, { "text": "Aluminium" }] },
+        { "prompt": "In welk jaar werd de eerste film met geluid uitgebracht?", "options": [{ "text": "1919" }, { "text": "1923" }, { "text": "1927", "correct": true }, { "text": "1931" }] },
+        { "prompt": "Wat is de hoofdstad van Finland?", "options": [{ "text": "Turku" }, { "text": "Tampere" }, { "text": "Helsinki", "correct": true }, { "text": "Espoo" }] },
+        { "prompt": "Welk dier heeft de grootste ogen van alle dieren?", "options": [{ "text": "Reuzenpijlinktvis", "correct": true }, { "text": "Blauwe vinvis" }, { "text": "Struisvogel" }, { "text": "Olifant" }] },
+        { "prompt": "Hoeveel spelers heeft een zaalvoetbalteam in het veld?", "options": [{ "text": "Vier" }, { "text": "Vijf", "correct": true }, { "text": "Zes" }, { "text": "Zeven" }] },
+        { "prompt": "Welke planeet heeft de duidelijkste ringen?", "options": [{ "text": "Jupiter" }, { "text": "Saturnus", "correct": true }, { "text": "Uranus" }, { "text": "Neptunus" }] },
+        { "prompt": "Welk land ligt tussen Spanje en Frankrijk in de Pyreneeen?", "options": [{ "text": "Andorra", "correct": true }, { "text": "Monaco" }, { "text": "San Marino" }, { "text": "Liechtenstein" }] },
+        { "prompt": "Welke Duitse schrijver schreef Faust?", "options": [{ "text": "Goethe", "correct": true }, { "text": "Schiller" }, { "text": "Lessing" }, { "text": "Heine" }] },
+        { "prompt": "Welk deel van de hersenen regelt de balans?", "options": [{ "text": "Grote hersenen" }, { "text": "Kleine hersenen", "correct": true }, { "text": "Hersenstam" }, { "text": "Hypothalamus" }] },
+        { "prompt": "Welke Nederlandse stad wordt de Lichtstad genoemd?", "options": [{ "text": "Eindhoven", "correct": true }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "Helmond" }] },
+        { "prompt": "In welk jaar werd de eerste Nobelprijs uitgereikt?", "options": [{ "text": "1895" }, { "text": "1901", "correct": true }, { "text": "1908" }, { "text": "1912" }] },
+        { "prompt": "Welk onderdeel van een orgel bespeelt de organist met de voeten?", "options": [{ "text": "Manualen" }, { "text": "Pedalen", "correct": true }, { "text": "Registers" }, { "text": "Blaasbalgen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is het Panamakanaal?", "answer": 82, "unit": "kilometer", "explanation": "Tweeentachtig kilometer van de Atlantische naar de Stille Oceaan." },
+        { "prompt": "In welk jaar werd de Nederlandse Grondwet van Thorbecke ingevoerd?", "answer": 1848, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Anker" },
+        { "prompt": "Sleutelgat" },
+        { "prompt": "Beer" },
+        { "prompt": "Vliegtuig" },
+        { "prompt": "Druiventak" },
+        { "prompt": "Koning" },
+        { "prompt": "Hamer" },
+        { "prompt": "Accordeon" },
+        { "prompt": "Onweer" },
+        { "prompt": "Bakker" },
+        { "prompt": "Tunnel" },
+        { "prompt": "Thermometer" },
+        { "prompt": "Knoop" },
+        { "prompt": "Vlieg" },
+        { "prompt": "Camping" },
+        { "prompt": "Paraplubak" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste steden van de Verenigde Staten.", "answers": [{ "text": "New York" }, { "text": "Los Angeles" }, { "text": "Chicago" }, { "text": "Houston" }] },
+        { "prompt": "Noem de vier leden van Queen.", "answers": [{ "text": "Freddie Mercury" }, { "text": "Brian May" }, { "text": "Roger Taylor" }, { "text": "John Deacon" }] },
+        { "prompt": "Noem vier zeeen die aan Europa grenzen naast de Noordzee.", "answers": [{ "text": "Oostzee" }, { "text": "Middellandse Zee" }, { "text": "Zwarte Zee" }, { "text": "Adriatische Zee" }] },
+        { "prompt": "Noem de vier evangelisten.", "answers": [{ "text": "Mattheus" }, { "text": "Marcus" }, { "text": "Lucas" }, { "text": "Johannes" }] },
+        { "prompt": "Noem de vier grootste eilanden van de Middellandse Zee.", "answers": [{ "text": "Sicilie" }, { "text": "Sardinie" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
+        { "prompt": "Noem vier instrumenten uit de houtblazersgroep van een orkest.", "answers": [{ "text": "Hobo" }, { "text": "Klarinet" }, { "text": "Fagot" }, { "text": "Dwarsfluit" }] },
+        { "prompt": "Noem de vier officiele talen van Zwitserland.", "answers": [{ "text": "Duits" }, { "text": "Frans" }, { "text": "Italiaans" }, { "text": "Reto-Romaans" }] },
+        { "prompt": "Noem vier planeten met een vast oppervlak in ons zonnestelsel.", "answers": [{ "text": "Mercurius" }, { "text": "Venus" }, { "text": "Aarde" }, { "text": "Mars" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse sterrenkundige gaf zijn naam aan de wolk van kometen rond ons zonnestelsel?", "answers": [{ "text": "Jan Hendrik Oort", "aliases": ["Oort"] }] },
+        { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga", "Volga"] }] },
+        { "prompt": "Welke Duitse componist schreef de opera Der Ring des Nibelungen?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] },
+        { "prompt": "Wat is de hoofdstad van Nepal?", "answers": [{ "text": "Kathmandu" }] },
+        { "prompt": "Welke Britse bioloog schreef De oorsprong der soorten?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "In welk jaar werd de eerste Tour de France gereden?", "answers": [{ "text": "1903" }] }
+      ]
+    }
+  ]
+}

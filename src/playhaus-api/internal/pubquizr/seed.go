@@ -10,6 +10,8 @@ import (
 	"fmt"
 	"io/fs"
 	"path"
+	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -33,9 +35,16 @@ var quizFiles embed.FS
 const seedRoot = "data"
 
 // quizFile is the shape of one file on disk.
+//
+// Every key a file may carry has to appear here: the decoder is set to refuse
+// unknown fields, so a field this struct does not name is not a key that gets
+// ignored, it is a boot that does not happen.
 type quizFile struct {
-	Slug        string      `json:"slug"`
-	Title       string      `json:"title"`
+	Slug  string `json:"slug"`
+	Title string `json:"title"`
+	// PublishedAt is the day the quiz went up, written as 2006-01-02. Optional --
+	// see publishedAtFor for what a file that leaves it out gets.
+	PublishedAt string      `json:"publishedAt,omitempty"`
 	Description string      `json:"description"`
 	Rounds      []roundFile `json:"rounds"`
 }
@@ -158,6 +167,67 @@ func shelfOf(file string) (i18n.Locale, Category, error) {
 	return locale, category, nil
 }
 
+// publishedAtLayout is how a file writes a date: the day, and nothing smaller. The
+// hour a quiz went up is not something anybody needs to know.
+const publishedAtLayout = "2006-01-02"
+
+// weeklySlug is the YYYY-wNN a weekly quiz is named after.
+var weeklySlug = regexp.MustCompile(`^(\d{4})-w(\d{1,2})$`)
+
+// publishedAtFor is the day a quiz went up.
+//
+// Three answers, in order. A file that says so wins. A weekly quiz says which
+// Wednesday it belongs to in its slug already, so it is not asked to repeat itself in
+// a field that could then disagree with its own name. Anything else falls back to
+// this boot -- which puts every such quiz on one timestamp, so it is a default worth
+// avoiding rather than relying on.
+func publishedAtFor(slug, declared string, now time.Time) (*time.Time, error) {
+	if declared = strings.TrimSpace(declared); declared != "" {
+		day, err := time.Parse(publishedAtLayout, declared)
+		if err != nil {
+			return nil, fmt.Errorf("publishedAt %q is not a %s date", declared, publishedAtLayout)
+		}
+
+		return &day, nil
+	}
+
+	if week := weeklySlug.FindStringSubmatch(slug); week != nil {
+		day, err := wednesdayOfWeek(week[1], week[2])
+		if err != nil {
+			return nil, err
+		}
+
+		return &day, nil
+	}
+
+	return &now, nil
+}
+
+// wednesdayOfWeek is the Wednesday of one ISO week, which is the day a weekly quiz
+// belongs to.
+func wednesdayOfWeek(year, week string) (time.Time, error) {
+	y, err := strconv.Atoi(year)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("%q is not a year", year)
+	}
+
+	w, err := strconv.Atoi(week)
+	if err != nil || w < 1 || w > 53 {
+		return time.Time{}, fmt.Errorf("%q is not a week of the year", week)
+	}
+
+	// The fourth of January is in ISO week 1 whichever weekday it lands on, so the
+	// Monday before it is where the year's weeks start counting.
+	anchor := time.Date(y, time.January, 4, 0, 0, 0, 0, time.UTC)
+	weekday := int(anchor.Weekday())
+	if weekday == 0 {
+		weekday = 7 // Sunday closes an ISO week rather than opening one.
+	}
+	monday := anchor.AddDate(0, 0, 1-weekday)
+
+	return monday.AddDate(0, 0, (w-1)*7+2), nil
+}
+
 func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 	if strings.TrimSpace(f.Slug) == "" {
 		return nil, fmt.Errorf("needs a slug")
@@ -167,6 +237,14 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 	}
 
 	now := time.Now().UTC()
+
+	// Published is the one timestamp that is about the quiz rather than about this
+	// boot, so it is the only one that does not come from the clock.
+	published, err := publishedAtFor(f.Slug, f.PublishedAt, now)
+	if err != nil {
+		return nil, err
+	}
+
 	quiz := &Quiz{
 		ID:          uuid.New(),
 		Slug:        f.Slug,
@@ -174,7 +252,7 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 		Category:    category,
 		Title:       f.Title,
 		Description: f.Description,
-		PublishedAt: &now,
+		PublishedAt: published,
 		CreatedAt:   now,
 		UpdatedAt:   now,
 	}

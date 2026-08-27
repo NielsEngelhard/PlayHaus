@@ -1,0 +1,104 @@
+{
+  "slug": "human-body",
+  "title": "Het Menselijk Lichaam",
+  "description": "Een hele pubquiz over het menselijk lichaam: botten, bloed, organen en zintuigen.",
+  "publishedAt": "2026-01-28",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk orgaan pompt het bloed door het lichaam?", "category": "Organen", "answers": [{ "text": "Het hart", "aliases": ["hart"] }] },
+        { "prompt": "Welke organen zuiveren het bloed en maken urine?", "category": "Organen", "answers": [{ "text": "De nieren", "aliases": ["nieren"] }] },
+        { "prompt": "Hoeveel botten heeft een volwassen mens?", "category": "Botten", "answers": [{ "text": "Tweehonderdzes", "aliases": ["206"] }] },
+        { "prompt": "Wat is het langste bot van het menselijk lichaam?", "category": "Botten", "answers": [{ "text": "Het dijbeen", "aliases": ["dijbeen", "femur"] }] },
+        { "prompt": "Hoeveel zintuigen worden klassiek onderscheiden?", "category": "Zintuigen", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welk eiwit in rode bloedcellen vervoert zuurstof?", "category": "Bloed", "answers": [{ "text": "Hemoglobine", "aliases": ["haemoglobine"] }] },
+        { "prompt": "Welk orgaan is het grootste inwendige orgaan van het lichaam?", "category": "Organen", "answers": [{ "text": "De lever", "aliases": ["lever"] }] },
+        { "prompt": "Wat is het grootste orgaan van het menselijk lichaam?", "category": "Huid", "answers": [{ "text": "De huid", "aliases": ["huid"] }] },
+        { "prompt": "Hoe heet de spier aan de voorkant van de bovenarm?", "category": "Spieren", "answers": [{ "text": "De biceps", "aliases": ["biceps"] }] },
+        { "prompt": "Welk orgaan is het centrum van het zenuwstelsel?", "category": "Zenuwstelsel", "answers": [{ "text": "De hersenen", "aliases": ["hersenen"] }] },
+        { "prompt": "Hoeveel longen heeft een mens?", "category": "Ademhaling", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Welke spier onder de longen zorgt voor de ademhaling?", "category": "Ademhaling", "answers": [{ "text": "Het middenrif", "aliases": ["middenrif", "diafragma"] }] },
+        { "prompt": "In welk orgaan wordt voedsel met maagzuur vermengd?", "category": "Spijsvertering", "answers": [{ "text": "De maag", "aliases": ["maag"] }] },
+        { "prompt": "Hoeveel tanden en kiezen heeft een volwassene met verstandskiezen?", "category": "Tanden", "answers": [{ "text": "Tweeendertig", "aliases": ["32"] }] },
+        { "prompt": "Welk gekleurde deel van het oog regelt de grootte van de pupil?", "category": "Zintuigen", "answers": [{ "text": "De iris", "aliases": ["iris", "regenboogvlies"] }] },
+        { "prompt": "Hoeveel chromosomen heeft een menselijke lichaamscel?", "category": "Cellen", "answers": [{ "text": "Zesenveertig", "aliases": ["46"] }] },
+        { "prompt": "Hoeveel holtes heeft het menselijk hart?", "category": "Bloed", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Hoe heet de zenuwstreng die door de wervelkolom loopt?", "category": "Zenuwstelsel", "answers": [{ "text": "Het ruggenmerg", "aliases": ["ruggenmerg"] }] },
+        { "prompt": "Welke klier in de hals regelt de stofwisseling?", "category": "Klieren", "answers": [{ "text": "De schildklier", "aliases": ["schildklier"] }] },
+        { "prompt": "Welk orgaan maakt insuline aan?", "category": "Spijsvertering", "answers": [{ "text": "De alvleesklier", "aliases": ["alvleesklier", "pancreas"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk bot is het kleinste van het menselijk lichaam?", "options": [{ "text": "Stijgbeugel", "correct": true }, { "text": "Hamer" }, { "text": "Aambeeld" }, { "text": "Neusbeen" }] },
+        { "prompt": "Hoeveel liter bloed heeft een volwassen mens ongeveer?", "options": [{ "text": "3" }, { "text": "5", "correct": true }, { "text": "8" }, { "text": "10" }] },
+        { "prompt": "Welke bloedgroep is de universele donor voor rode bloedcellen?", "options": [{ "text": "O negatief", "correct": true }, { "text": "AB positief" }, { "text": "A positief" }, { "text": "B negatief" }] },
+        { "prompt": "Welk deel van de hersenen regelt de ademhaling?", "options": [{ "text": "De hersenstam", "correct": true }, { "text": "De kleine hersenen" }, { "text": "De grote hersenen" }, { "text": "De hypofyse" }] },
+        { "prompt": "Hoeveel ribben heeft een mens gewoonlijk?", "options": [{ "text": "20" }, { "text": "22" }, { "text": "24", "correct": true }, { "text": "26" }] },
+        { "prompt": "Welk orgaan slaat gal op?", "options": [{ "text": "De galblaas", "correct": true }, { "text": "De lever" }, { "text": "De milt" }, { "text": "De alvleesklier" }] },
+        { "prompt": "Welke bloedvaten voeren bloed van het hart af?", "options": [{ "text": "Slagaders", "correct": true }, { "text": "Aders" }, { "text": "Haarvaten" }, { "text": "Lymfevaten" }] },
+        { "prompt": "Hoeveel wervels heeft de halswervelkolom?", "options": [{ "text": "5" }, { "text": "7", "correct": true }, { "text": "9" }, { "text": "12" }] },
+        { "prompt": "Welke stof geeft de huid haar kleur?", "options": [{ "text": "Melanine", "correct": true }, { "text": "Keratine" }, { "text": "Collageen" }, { "text": "Hemoglobine" }] },
+        { "prompt": "Welk zintuig zit in het slakkenhuis van het oor?", "options": [{ "text": "Gehoor", "correct": true }, { "text": "Reuk" }, { "text": "Smaak" }, { "text": "Tastzin" }] },
+        { "prompt": "Wat is de normale lichaamstemperatuur in graden Celsius?", "options": [{ "text": "35" }, { "text": "36" }, { "text": "37", "correct": true }, { "text": "39" }] },
+        { "prompt": "Welk orgaan zit achter het borstbeen en krimpt na de kindertijd?", "options": [{ "text": "De zwezerik", "correct": true }, { "text": "De milt" }, { "text": "De schildklier" }, { "text": "De alvleesklier" }] },
+        { "prompt": "Hoeveel botten heeft de menselijke hand en pols samen?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] },
+        { "prompt": "Welke vitamine maakt het lichaam aan onder invloed van zonlicht?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine C" }, { "text": "Vitamine D", "correct": true }, { "text": "Vitamine K" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel keer klopt het hart van een volwassene in rust per minuut?", "answer": 70, "unit": "slagen", "explanation": "Zestig tot tachtig slagen per minuut is het gewone bereik in rust." },
+        { "prompt": "Hoeveel meter lang is de dunne darm van een volwassene?", "answer": 6, "unit": "meter" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Hart" },
+        { "prompt": "Skelet" },
+        { "prompt": "Longen" },
+        { "prompt": "Bloedvat" },
+        { "prompt": "Oog" },
+        { "prompt": "Oor" },
+        { "prompt": "Tand" },
+        { "prompt": "Spier" },
+        { "prompt": "Duim" },
+        { "prompt": "Knie" },
+        { "prompt": "Hersenen" },
+        { "prompt": "Nier" },
+        { "prompt": "Ademhaling" },
+        { "prompt": "Vingerafdruk" },
+        { "prompt": "Wenkbrauw" },
+        { "prompt": "Niezen" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier holtes van het hart.", "answers": [{ "text": "Linkerboezem" }, { "text": "Rechterboezem" }, { "text": "Linkerkamer" }, { "text": "Rechterkamer" }] },
+        { "prompt": "Noem de vier basissmaken naast umami.", "answers": [{ "text": "Zoet" }, { "text": "Zuur" }, { "text": "Zout" }, { "text": "Bitter" }] },
+        { "prompt": "Noem de vier zintuigen naast het gezichtsvermogen.", "answers": [{ "text": "Gehoor" }, { "text": "Reuk" }, { "text": "Smaak" }, { "text": "Tastzin" }] },
+        { "prompt": "Noem de vier bloedgroepen van het ABO-systeem.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
+        { "prompt": "Noem vier botten van het menselijk lichaam.", "answers": [{ "text": "Dijbeen" }, { "text": "Schedel" }, { "text": "Sleutelbeen" }, { "text": "Scheenbeen" }] },
+        { "prompt": "Noem vier organen in de buikholte.", "answers": [{ "text": "Maag" }, { "text": "Lever" }, { "text": "Nieren" }, { "text": "Milt" }] },
+        { "prompt": "Noem de vier soorten tanden in de mond.", "answers": [{ "text": "Snijtanden" }, { "text": "Hoektanden" }, { "text": "Premolaren" }, { "text": "Kiezen" }] },
+        { "prompt": "Noem de vier kwabben van de grote hersenen.", "answers": [{ "text": "Voorhoofdskwab" }, { "text": "Wandbeenkwab" }, { "text": "Slaapkwab" }, { "text": "Achterhoofdskwab" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet de langste zenuw van het menselijk lichaam?", "answers": [{ "text": "De heupzenuw", "aliases": ["heupzenuw", "ischiaszenuw"] }] },
+        { "prompt": "Welk bot in de hals is met geen enkel ander bot verbonden?", "answers": [{ "text": "Het tongbeen", "aliases": ["tongbeen"] }] },
+        { "prompt": "Welke Engelse arts beschreef in 1628 de bloedsomloop?", "answers": [{ "text": "William Harvey", "aliases": ["Harvey"] }] },
+        { "prompt": "Hoe heet de vloeistof die de gewrichten smeert?", "answers": [{ "text": "Gewrichtssmeer", "aliases": ["synoviaal vocht"] }] },
+        { "prompt": "Hoe heet de buitenste laag van de huid?", "answers": [{ "text": "De opperhuid", "aliases": ["opperhuid", "epidermis"] }] },
+        { "prompt": "Welk deel van het oog verandert van vorm om scherp te stellen?", "answers": [{ "text": "De ooglens", "aliases": ["lens"] }] }
+      ]
+    }
+  ]
+}

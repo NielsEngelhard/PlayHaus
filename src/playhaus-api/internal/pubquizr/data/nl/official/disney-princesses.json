@@ -1,0 +1,104 @@
+{
+  "slug": "disney-princesses",
+  "title": "Disney Prinsessen",
+  "description": "Een hele pubquiz over de prinsessen van Disney: van Sneeuwwitje uit 1937 tot Vaiana.",
+  "publishedAt": "2026-02-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke prinses is de hoofdpersoon van de tekenfilm uit 1937?", "category": "Films", "answers": [{ "text": "Sneeuwwitje" }] },
+        { "prompt": "Welke prinses verliest een glazen muiltje op de trap?", "category": "Films", "answers": [{ "text": "Assepoester" }] },
+        { "prompt": "Welke prinses valt door een spinnenwiel in een lange slaap?", "category": "Films", "answers": [{ "text": "Doornroosje", "aliases": ["Aurora"] }] },
+        { "prompt": "Welke prinses is een zeemeermin?", "category": "Films", "answers": [{ "text": "Ariel" }] },
+        { "prompt": "Welke prinses houdt van boeken en woont bij een beest?", "category": "Films", "answers": [{ "text": "Belle" }] },
+        { "prompt": "Welke prinses komt uit de stad Agrabah?", "category": "Films", "answers": [{ "text": "Jasmine" }] },
+        { "prompt": "Welke prinses verkleedt zich als soldaat in China?", "category": "Films", "answers": [{ "text": "Mulan" }] },
+        { "prompt": "Welke prinses uit 1995 is de dochter van een opperhoofd?", "category": "Films", "answers": [{ "text": "Pocahontas" }] },
+        { "prompt": "Welke prinses uit New Orleans droomt van haar eigen restaurant?", "category": "Films", "answers": [{ "text": "Tiana" }] },
+        { "prompt": "Welke prinses met heel lang haar woont in een toren?", "category": "Films", "answers": [{ "text": "Rapunzel" }] },
+        { "prompt": "Welke Schotse prinses uit 2012 is een boogschutter?", "category": "Films", "answers": [{ "text": "Merida" }] },
+        { "prompt": "Welke heldin vaart in 2016 weg van het eiland Motunui?", "category": "Films", "answers": [{ "text": "Vaiana", "aliases": ["Moana"] }] },
+        { "prompt": "Hoe heet de krab die Ariel in de gaten houdt?", "category": "Personages", "answers": [{ "text": "Sebastiaan", "aliases": ["Sebastian"] }] },
+        { "prompt": "Hoe heet de kandelaar in Belle en het Beest?", "category": "Personages", "answers": [{ "text": "Lumiere" }] },
+        { "prompt": "Wat komt er in Aladdin uit de wonderlamp?", "category": "Personages", "answers": [{ "text": "Een geest", "aliases": ["geest", "djinn"] }] },
+        { "prompt": "Hoe heet de kleine draak die Mulan helpt?", "category": "Personages", "answers": [{ "text": "Mushu" }] },
+        { "prompt": "Hoe heet de kameleon van Rapunzel?", "category": "Personages", "answers": [{ "text": "Pascal" }] },
+        { "prompt": "Hoe heet de haan die met Vaiana meevaart?", "category": "Personages", "answers": [{ "text": "Hei Hei" }] },
+        { "prompt": "Hoe heet de theepot in Belle en het Beest?", "category": "Personages", "answers": [{ "text": "Mevrouw Tas", "aliases": ["Mrs Potts"] }] },
+        { "prompt": "Hoeveel dwergen wonen er in het huisje van Sneeuwwitje?", "category": "Films", "answers": [{ "text": "Zeven", "aliases": ["7"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar kwam Sneeuwwitje en de zeven dwergen uit?", "options": [{ "text": "1928" }, { "text": "1937", "correct": true }, { "text": "1945" }, { "text": "1950" }] },
+        { "prompt": "Hoe heet de zeeheks in De kleine zeemeermin?", "options": [{ "text": "Ursula", "correct": true }, { "text": "Maleficent" }, { "text": "Cruella" }, { "text": "Yzma" }] },
+        { "prompt": "Wie is de slechte fee in Doornroosje?", "options": [{ "text": "Maleficent", "correct": true }, { "text": "Ursula" }, { "text": "Yzma" }, { "text": "Gothel" }] },
+        { "prompt": "Hoe heet de vader van Ariel?", "options": [{ "text": "Triton", "correct": true }, { "text": "Neptunus" }, { "text": "Poseidon" }, { "text": "Eric" }] },
+        { "prompt": "In welke stad woont Tiana?", "options": [{ "text": "New Orleans", "correct": true }, { "text": "Miami" }, { "text": "Savannah" }, { "text": "Charleston" }] },
+        { "prompt": "Hoe heet de dief die Rapunzel uit haar toren meeneemt?", "options": [{ "text": "Flynn Rider", "correct": true }, { "text": "Aladdin" }, { "text": "Kristoff" }, { "text": "Naveen" }] },
+        { "prompt": "Welke Disneyfilm is op een oude Chinese ballade gebaseerd?", "options": [{ "text": "Mulan", "correct": true }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Vaiana" }] },
+        { "prompt": "Uit welke Disneyfilm komt het lied Let It Go?", "options": [{ "text": "Frozen", "correct": true }, { "text": "Vaiana" }, { "text": "Rapunzel" }, { "text": "Merida" }] },
+        { "prompt": "Hoe heet de zus van Elsa in Frozen?", "options": [{ "text": "Anna", "correct": true }, { "text": "Merida" }, { "text": "Rapunzel" }, { "text": "Belle" }] },
+        { "prompt": "Hoe heet de sneeuwpop in Frozen?", "options": [{ "text": "Olaf", "correct": true }, { "text": "Sven" }, { "text": "Kristoff" }, { "text": "Marshmallow" }] },
+        { "prompt": "Welke Disneyprinses krijgt aan het eind van haar film geen prins?", "options": [{ "text": "Merida", "correct": true }, { "text": "Belle" }, { "text": "Ariel" }, { "text": "Tiana" }] },
+        { "prompt": "In welk jaar kwam De kleine zeemeermin uit?", "options": [{ "text": "1985" }, { "text": "1989", "correct": true }, { "text": "1992" }, { "text": "1995" }] },
+        { "prompt": "Hoe heet de tijger van Jasmine?", "options": [{ "text": "Rajah", "correct": true }, { "text": "Shere Khan" }, { "text": "Nala" }, { "text": "Bagheera" }] },
+        { "prompt": "Welke Amerikaanse actrice zong Let It Go in de Engelse versie?", "options": [{ "text": "Idina Menzel", "correct": true }, { "text": "Kristen Bell" }, { "text": "Demi Lovato" }, { "text": "Julie Andrews" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar kwam Frozen uit?", "answer": 2013, "unit": "", "explanation": "De film kwam in november 2013 uit en werd de best bekeken tekenfilm van zijn tijd." },
+        { "prompt": "Hoeveel minuten duurt Sneeuwwitje en de zeven dwergen?", "answer": 83, "unit": "minuten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Kroon" },
+        { "prompt": "Glazen muiltje" },
+        { "prompt": "Kasteel" },
+        { "prompt": "Spiegel" },
+        { "prompt": "Appel" },
+        { "prompt": "Toren" },
+        { "prompt": "Zeemeermin" },
+        { "prompt": "Vliegend tapijt" },
+        { "prompt": "Sneeuwpop" },
+        { "prompt": "Roos" },
+        { "prompt": "Spinnenwiel" },
+        { "prompt": "Pijl en boog" },
+        { "prompt": "Kikker" },
+        { "prompt": "Baljurk" },
+        { "prompt": "Lantaarn" },
+        { "prompt": "Kano" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier Disneyprinsessen.", "answers": [{ "text": "Sneeuwwitje" }, { "text": "Assepoester" }, { "text": "Ariel" }, { "text": "Belle" }] },
+        { "prompt": "Noem de vier prinsessen uit films van voor 1990.", "answers": [{ "text": "Sneeuwwitje" }, { "text": "Assepoester" }, { "text": "Doornroosje" }, { "text": "Ariel" }] },
+        { "prompt": "Noem vier slechteriken uit Disneyfilms.", "answers": [{ "text": "Ursula" }, { "text": "Maleficent" }, { "text": "Jafar" }, { "text": "Gaston" }] },
+        { "prompt": "Noem vier dieren die een Disneyprinses bijstaan.", "answers": [{ "text": "Sebastiaan" }, { "text": "Mushu" }, { "text": "Pascal" }, { "text": "Rajah" }] },
+        { "prompt": "Noem vier liedjes uit Disneyfilms.", "answers": [{ "text": "Let It Go" }, { "text": "Under The Sea" }, { "text": "A Whole New World" }, { "text": "Colors Of The Wind" }] },
+        { "prompt": "Noem vier Disneyprinsessen zonder Europese achtergrond.", "answers": [{ "text": "Jasmine" }, { "text": "Mulan" }, { "text": "Pocahontas" }, { "text": "Tiana" }] },
+        { "prompt": "Noem vier Disneyfilms met een prinses uit de jaren negentig.", "answers": [{ "text": "Belle en het Beest" }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Mulan" }] },
+        { "prompt": "Noem vier personages uit Frozen.", "answers": [{ "text": "Elsa" }, { "text": "Anna" }, { "text": "Olaf" }, { "text": "Kristoff" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet de vrouw die Rapunzel in de toren opsluit?", "answers": [{ "text": "Moeder Gothel", "aliases": ["Gothel"] }] },
+        { "prompt": "Wat is de echte naam van Flynn Rider?", "answers": [{ "text": "Eugene Fitzherbert", "aliases": ["Eugene"] }] },
+        { "prompt": "Hoe heet het koninkrijk van Elsa en Anna?", "answers": [{ "text": "Arendelle" }] },
+        { "prompt": "Hoe heet de grootmoeder van Vaiana?", "answers": [{ "text": "Tala" }] },
+        { "prompt": "Op welk sprookje van Hans Christian Andersen is Frozen losjes gebaseerd?", "answers": [{ "text": "De sneeuwkoningin", "aliases": ["sneeuwkoningin"] }] },
+        { "prompt": "Hoe heet de prins in De prinses en de kikker?", "answers": [{ "text": "Naveen" }] }
+      ]
+    }
+  ]
+}

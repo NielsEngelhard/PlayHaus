@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w24",
+  "title": "Weekly quiz week 24",
+  "description": "The weekly quiz of Wednesday 10 June 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the longest river in Africa?", "category": "Geography", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "Which gas do plants give off in daylight?", "category": "Science", "answers": [{ "text": "Oxygen", "aliases": ["O2"] }] },
+        { "prompt": "In what year did the Berlin Wall fall?", "category": "History", "answers": [{ "text": "1989" }] },
+        { "prompt": "How many players does a volleyball team have on court?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Who painted the Mona Lisa?", "category": "Art", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci"] }] },
+        { "prompt": "How many legs does a spider have?", "category": "Nature", "answers": [{ "text": "Eight", "aliases": ["8"] }] },
+        { "prompt": "Which Dutch province has Assen as its capital?", "category": "The Netherlands", "answers": [{ "text": "Drenthe" }] },
+        { "prompt": "Which instrument did Louis Armstrong play?", "category": "Music", "answers": [{ "text": "Trumpet" }] },
+        { "prompt": "Which actor played Jack Dawson in Titanic?", "category": "Film", "answers": [{ "text": "Leonardo DiCaprio", "aliases": ["DiCaprio"] }] },
+        { "prompt": "How many letters are there in the English alphabet?", "category": "Language", "answers": [{ "text": "Twenty-six", "aliases": ["26"] }] },
+        { "prompt": "Which planet is closest to the sun?", "category": "Science", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "On which continent is the Sahara?", "category": "Geography", "answers": [{ "text": "Africa" }] },
+        { "prompt": "Who was the first president of the United States?", "category": "History", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }] },
+        { "prompt": "Which bean is chocolate made from?", "category": "Food", "answers": [{ "text": "The cacao bean", "aliases": ["cocoa bean", "cacao"] }] },
+        { "prompt": "In which sport do you hit a shuttlecock over the net?", "category": "Sport", "answers": [{ "text": "Badminton" }] },
+        { "prompt": "Which tree bears acorns?", "category": "Nature", "answers": [{ "text": "The oak", "aliases": ["oak"] }] },
+        { "prompt": "In which city is the Rijksmuseum?", "category": "The Netherlands", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "What is the chemical formula for water?", "category": "Science", "answers": [{ "text": "H2O" }] },
+        { "prompt": "In which film does Julie Andrews sing the song Do-Re-Mi?", "category": "Film", "answers": [{ "text": "The Sound of Music" }] },
+        { "prompt": "Which sea borders the northern coast of Egypt?", "category": "Geography", "answers": [{ "text": "The Mediterranean", "aliases": ["Mediterranean Sea", "Mediterranean"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries does NOT border Germany?", "options": [{ "text": "Belgium" }, { "text": "Czechia" }, { "text": "Hungary", "correct": true }, { "text": "Denmark" }] },
+        { "prompt": "Who wrote the novel Crime and Punishment?", "options": [{ "text": "Dostoevsky", "correct": true }, { "text": "Tolstoy" }, { "text": "Chekhov" }, { "text": "Gogol" }] },
+        { "prompt": "Which element has atomic number 1?", "options": [{ "text": "Helium" }, { "text": "Hydrogen", "correct": true }, { "text": "Lithium" }, { "text": "Carbon" }] },
+        { "prompt": "In what year did the Titanic sink?", "options": [{ "text": "1905" }, { "text": "1912", "correct": true }, { "text": "1918" }, { "text": "1923" }] },
+        { "prompt": "What is the capital of Canada?", "options": [{ "text": "Toronto" }, { "text": "Vancouver" }, { "text": "Ottawa", "correct": true }, { "text": "Montreal" }] },
+        { "prompt": "Which of these animals is a marsupial?", "options": [{ "text": "Otter" }, { "text": "Wombat", "correct": true }, { "text": "Lemming" }, { "text": "Ferret" }] },
+        { "prompt": "How many strings does a standard violin have?", "options": [{ "text": "Three" }, { "text": "Four", "correct": true }, { "text": "Five" }, { "text": "Six" }] },
+        { "prompt": "Which planet is known for its great red spot?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Saturn" }, { "text": "Mars" }, { "text": "Neptune" }] },
+        { "prompt": "Which country gave the Statue of Liberty to the United States?", "options": [{ "text": "England" }, { "text": "France", "correct": true }, { "text": "Spain" }, { "text": "Italy" }] },
+        { "prompt": "Which Dutch painter cut off part of his own ear?", "options": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Van Gogh", "correct": true }, { "text": "Mondrian" }] },
+        { "prompt": "What is the longest bone in the human body?", "options": [{ "text": "Shin bone" }, { "text": "Femur", "correct": true }, { "text": "Humerus" }, { "text": "Fibula" }] },
+        { "prompt": "Which of these seas is really a lake?", "options": [{ "text": "Caspian Sea", "correct": true }, { "text": "Black Sea" }, { "text": "Red Sea" }, { "text": "Adriatic Sea" }] },
+        { "prompt": "In what year did the First World War begin?", "options": [{ "text": "1912" }, { "text": "1914", "correct": true }, { "text": "1916" }, { "text": "1918" }] },
+        { "prompt": "Which instrument has 88 keys?", "options": [{ "text": "Organ" }, { "text": "Piano", "correct": true }, { "text": "Harpsichord" }, { "text": "Accordion" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How tall was the Eiffel Tower when it opened in 1889, in metres?", "answer": 312, "unit": "metres", "explanation": "Just over three hundred metres, and the tallest structure in the world for forty years." },
+        { "prompt": "In what year was the first human launched into space?", "answer": 1961, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Umbrella" },
+        { "prompt": "Lighthouse" },
+        { "prompt": "Wheelbarrow" },
+        { "prompt": "Washing machine" },
+        { "prompt": "Snowman" },
+        { "prompt": "Harmonica" },
+        { "prompt": "Swimming pool" },
+        { "prompt": "Compass" },
+        { "prompt": "Birthday" },
+        { "prompt": "Camel" },
+        { "prompt": "Postman" },
+        { "prompt": "Glacier" },
+        { "prompt": "Ice skates" },
+        { "prompt": "Hospital" },
+        { "prompt": "Rainbow" },
+        { "prompt": "Tractor" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four seasons.", "answers": [{ "text": "Spring" }, { "text": "Summer" }, { "text": "Autumn" }, { "text": "Winter" }] },
+        { "prompt": "Name the four Beatles.", "answers": [{ "text": "John Lennon" }, { "text": "Paul McCartney" }, { "text": "George Harrison" }, { "text": "Ringo Starr" }] },
+        { "prompt": "Name the four largest cities of the Dutch Randstad.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
+        { "prompt": "Name the four cardinal directions.", "answers": [{ "text": "North" }, { "text": "East" }, { "text": "South" }, { "text": "West" }] },
+        { "prompt": "Name the four blood groups of the ABO system.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
+        { "prompt": "Name the four countries of the United Kingdom.", "answers": [{ "text": "England" }, { "text": "Scotland" }, { "text": "Wales" }, { "text": "Northern Ireland" }] },
+        { "prompt": "Name the four suits in a deck of cards.", "answers": [{ "text": "Hearts" }, { "text": "Diamonds" }, { "text": "Clubs" }, { "text": "Spades" }] },
+        { "prompt": "Name the four gas planets of our solar system.", "answers": [{ "text": "Jupiter" }, { "text": "Saturn" }, { "text": "Uranus" }, { "text": "Neptune" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch physicist won the 1913 Nobel Prize for his work at very low temperatures?", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
+        { "prompt": "What is the longest river in South America?", "answers": [{ "text": "The Amazon", "aliases": ["Amazon"] }] },
+        { "prompt": "Which composer wrote the opera The Magic Flute?", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
+        { "prompt": "What is the capital of Mongolia?", "answers": [{ "text": "Ulaanbaatar", "aliases": ["Ulan Bator"] }] },
+        { "prompt": "On which ship did Charles Darwin make his voyage around the world?", "answers": [{ "text": "The Beagle", "aliases": ["Beagle"] }] },
+        { "prompt": "In what year were the United Nations founded?", "answers": [{ "text": "1945" }] }
+      ]
+    }
+  ]
+}

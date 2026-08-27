@@ -1,0 +1,104 @@
+{
+  "slug": "netherlands",
+  "title": "Dutch Glory",
+  "description": "A whole pub quiz about the Netherlands: provinces, polders, painters and skaters.",
+  "publishedAt": "2026-01-07",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "How many provinces does the Netherlands have?", "category": "Provinces", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "What is the capital of the Netherlands?", "category": "Cities", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "In which city does the Dutch government sit?", "category": "Government", "answers": [{ "text": "The Hague", "aliases": ["'s-Gravenhage"] }] },
+        { "prompt": "Which dam closes the IJsselmeer off from the Wadden Sea?", "category": "Water", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Which Dutch painter made The Night Watch?", "category": "Art", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Which Dutch province is the largest by area?", "category": "Provinces", "answers": [{ "text": "Friesland", "aliases": ["Fryslan"] }] },
+        { "prompt": "Which trading company was founded in Amsterdam in 1602?", "category": "History", "answers": [{ "text": "The VOC", "aliases": ["Dutch East India Company"] }] },
+        { "prompt": "Which Dutch football club won the Champions League in 1995?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
+        { "prompt": "Which Dutch city is the best known home of the stroopwafel?", "category": "Food", "answers": [{ "text": "Gouda" }] },
+        { "prompt": "Which language is officially recognised alongside Dutch in Friesland?", "category": "Language", "answers": [{ "text": "Frisian", "aliases": ["Frysk"] }] },
+        { "prompt": "Which large river enters the Netherlands at Lobith?", "category": "Water", "answers": [{ "text": "The Rhine", "aliases": ["Rhine"] }] },
+        { "prompt": "Which royal house does the Dutch king come from?", "category": "Royal house", "answers": [{ "text": "Orange-Nassau", "aliases": ["House of Orange"] }] },
+        { "prompt": "Which Dutch city is nicknamed the city on the Meuse?", "category": "Cities", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "On which date is Dutch King's Day celebrated?", "category": "Holidays", "answers": [{ "text": "27 April", "aliases": ["April 27"] }] },
+        { "prompt": "What is the name of the polder holding the lowest point of the Netherlands?", "category": "Geography", "answers": [{ "text": "The Zuidplaspolder", "aliases": ["Zuidplaspolder"] }] },
+        { "prompt": "Which Dutch painter wrote hundreds of letters to his brother Theo?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Which skating tour is ridden past eleven Frisian cities?", "category": "Sport", "answers": [{ "text": "The Elfstedentocht", "aliases": ["Eleven Cities Tour"] }] },
+        { "prompt": "Which Dutch admiral sailed up the Medway to Chatham in 1667?", "category": "History", "answers": [{ "text": "Michiel de Ruyter", "aliases": ["De Ruyter"] }] },
+        { "prompt": "Which ring of forts and flooded land defended Amsterdam?", "category": "Buildings", "answers": [{ "text": "The Defence Line of Amsterdam", "aliases": ["Defence Line of Amsterdam"] }] },
+        { "prompt": "Which Dutch province was the last to be created, in 1986?", "category": "Provinces", "answers": [{ "text": "Flevoland" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which province does NOT border the IJsselmeer?", "options": [{ "text": "Friesland" }, { "text": "North Holland" }, { "text": "Groningen", "correct": true }, { "text": "Flevoland" }] },
+        { "prompt": "Which Dutch city has the largest seaport in Europe?", "options": [{ "text": "Rotterdam", "correct": true }, { "text": "Amsterdam" }, { "text": "Vlissingen" }, { "text": "Terneuzen" }] },
+        { "prompt": "How many seats does the Dutch House of Representatives have?", "options": [{ "text": "100" }, { "text": "125" }, { "text": "150", "correct": true }, { "text": "175" }] },
+        { "prompt": "In what year were the Delta Works completed with the Maeslant barrier?", "options": [{ "text": "1986" }, { "text": "1993" }, { "text": "1997", "correct": true }, { "text": "2002" }] },
+        { "prompt": "Which Dutch province has Arnhem as its capital?", "options": [{ "text": "Gelderland", "correct": true }, { "text": "Overijssel" }, { "text": "Utrecht" }, { "text": "Limburg" }] },
+        { "prompt": "Which animal stands on the coat of arms of the Kingdom?", "options": [{ "text": "Eagle" }, { "text": "Lion", "correct": true }, { "text": "Bear" }, { "text": "Stag" }] },
+        { "prompt": "Which Dutch cyclist won the Tour de France in 1980?", "options": [{ "text": "Joop Zoetemelk", "correct": true }, { "text": "Jan Janssen" }, { "text": "Hennie Kuiper" }, { "text": "Gerrie Knetemann" }] },
+        { "prompt": "Which Dutch city has had a university since 1575?", "options": [{ "text": "Leiden", "correct": true }, { "text": "Groningen" }, { "text": "Utrecht" }, { "text": "Amsterdam" }] },
+        { "prompt": "Which Dutch product is traded at the market of Alkmaar?", "options": [{ "text": "Flowers" }, { "text": "Cheese", "correct": true }, { "text": "Fish" }, { "text": "Cattle" }] },
+        { "prompt": "Who was the first king of the Netherlands?", "options": [{ "text": "Willem I", "correct": true }, { "text": "Willem II" }, { "text": "Willem III" }, { "text": "Willem-Alexander" }] },
+        { "prompt": "Which Dutch island is NOT one of the Wadden islands?", "options": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Goeree", "correct": true }, { "text": "Schiermonnikoog" }] },
+        { "prompt": "Which Dutch river flows through Nijmegen?", "options": [{ "text": "Waal", "correct": true }, { "text": "IJssel" }, { "text": "Maas" }, { "text": "Lek" }] },
+        { "prompt": "In what year did the Rijksmuseum open in its present building?", "options": [{ "text": "1800" }, { "text": "1863" }, { "text": "1885", "correct": true }, { "text": "1901" }] },
+        { "prompt": "Which Dutch writer wrote The Evenings?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the Afsluitdijk?", "answer": 32, "unit": "kilometres", "explanation": "Thirty-two kilometres from North Holland to Friesland, closed in 1932." },
+        { "prompt": "How many metres below sea level is the lowest point of the Netherlands?", "answer": 7, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Clogs" },
+        { "prompt": "Stroopwafel" },
+        { "prompt": "Canal" },
+        { "prompt": "Poffertjes" },
+        { "prompt": "Dyke" },
+        { "prompt": "Windmill" },
+        { "prompt": "Tulip" },
+        { "prompt": "Cycle path" },
+        { "prompt": "Herring" },
+        { "prompt": "Sinterklaas" },
+        { "prompt": "Doughnut" },
+        { "prompt": "Skating tour" },
+        { "prompt": "Cheese market" },
+        { "prompt": "Delta Works" },
+        { "prompt": "King's Day" },
+        { "prompt": "Water board" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest cities of the Netherlands.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
+        { "prompt": "Name the four inhabited Wadden islands besides Schiermonnikoog.", "answers": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }] },
+        { "prompt": "Name the four largest cities of North Brabant.", "answers": [{ "text": "Eindhoven" }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "'s-Hertogenbosch" }] },
+        { "prompt": "Name the four large rivers of the Netherlands.", "answers": [{ "text": "Rhine" }, { "text": "Meuse" }, { "text": "Waal" }, { "text": "IJssel" }] },
+        { "prompt": "Name four Dutch painters of the Golden Age.", "answers": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
+        { "prompt": "Name the four provinces that border Germany besides Limburg.", "answers": [{ "text": "Groningen" }, { "text": "Drenthe" }, { "text": "Overijssel" }, { "text": "Gelderland" }] },
+        { "prompt": "Name four Dutch cheeses.", "answers": [{ "text": "Gouda" }, { "text": "Edam" }, { "text": "Leerdammer" }, { "text": "Maasdam" }] },
+        { "prompt": "Name the four largest provinces of the Netherlands by area.", "answers": [{ "text": "Friesland" }, { "text": "Gelderland" }, { "text": "North Brabant" }, { "text": "Overijssel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch navigator reached New Zealand in 1642?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
+        { "prompt": "What is the Dutch national anthem called?", "answers": [{ "text": "The Wilhelmus", "aliases": ["Wilhelmus"] }] },
+        { "prompt": "Which Dutch architect designed the Rietveld Schroder House in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "In what year did Spain recognise the Dutch Republic?", "answers": [{ "text": "1648" }] },
+        { "prompt": "Which Dutch poet wrote the play Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
+        { "prompt": "Which Caribbean island of the Dutch Kingdom is the largest?", "answers": [{ "text": "Curacao" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w26",
+  "title": "Weekquiz week 26",
+  "description": "De wekelijkse quiz van woensdag 24 juni 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk land staat bekend als het Land van de Rijzende Zon?", "category": "Aardrijkskunde", "answers": [{ "text": "Japan" }] },
+        { "prompt": "Bij hoeveel graden Celsius kookt water op zeeniveau?", "category": "Wetenschap", "answers": [{ "text": "Honderd", "aliases": ["100"] }] },
+        { "prompt": "Welke Romeinse keizer zou hebben gemusiceerd terwijl Rome brandde?", "category": "Geschiedenis", "answers": [{ "text": "Nero" }] },
+        { "prompt": "In welke sport heet een stand van nul punten love?", "category": "Sport", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Welke componist schreef de Negende Symfonie met de Ode aan de Vreugde?", "category": "Muziek", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] },
+        { "prompt": "Welke acteur speelde Indiana Jones?", "category": "Film", "answers": [{ "text": "Harrison Ford", "aliases": ["Ford"] }] },
+        { "prompt": "Welke vogel kan achteruit vliegen?", "category": "Natuur", "answers": [{ "text": "De kolibrie", "aliases": ["kolibrie"] }] },
+        { "prompt": "Welke Nederlandse stad is beroemd om zijn kaasmarkt?", "category": "Nederland", "answers": [{ "text": "Alkmaar" }] },
+        { "prompt": "Hoeveel letters telt het Griekse alfabet?", "category": "Taal", "answers": [{ "text": "Vierentwintig", "aliases": ["24"] }] },
+        { "prompt": "Bij welke kunststroming hoort Salvador Dali?", "category": "Kunst", "answers": [{ "text": "Surrealisme" }] },
+        { "prompt": "Welk deel van een plant neemt water uit de grond op?", "category": "Wetenschap", "answers": [{ "text": "De wortels", "aliases": ["wortels"] }] },
+        { "prompt": "Wat is de grootste warme woestijn ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Wie kroonde zichzelf in 1804 tot keizer van Frankrijk?", "category": "Geschiedenis", "answers": [{ "text": "Napoleon Bonaparte", "aliases": ["Napoleon"] }] },
+        { "prompt": "Welke harde kaas is genoemd naar de Italiaanse stad Parma?", "category": "Eten", "answers": [{ "text": "Parmezaanse kaas", "aliases": ["parmezaan"] }] },
+        { "prompt": "Hoeveel holes heeft een volledige golfbaan?", "category": "Sport", "answers": [{ "text": "Achttien", "aliases": ["18"] }] },
+        { "prompt": "Welk insect maakt honing?", "category": "Natuur", "answers": [{ "text": "De bij", "aliases": ["bij", "honingbij"] }] },
+        { "prompt": "Hoe heet de grootste luchthaven van Nederland?", "category": "Nederland", "answers": [{ "text": "Schiphol" }] },
+        { "prompt": "Welke wetenschapper bedacht de relativiteitstheorie?", "category": "Wetenschap", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Welke animatiefilm uit 1994 gaat over de leeuwenwelp Simba?", "category": "Film", "answers": [{ "text": "The Lion King", "aliases": ["De Leeuwenkoning"] }] },
+        { "prompt": "Welk eiland is het grootste ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Groenland" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze dieren is GEEN zoogdier?", "options": [{ "text": "Dolfijn" }, { "text": "Vleermuis" }, { "text": "Pinguin", "correct": true }, { "text": "Walvis" }] },
+        { "prompt": "Wat is de hoofdstad van Brazilie?", "options": [{ "text": "Rio de Janeiro" }, { "text": "Sao Paulo" }, { "text": "Brasilia", "correct": true }, { "text": "Salvador" }] },
+        { "prompt": "Welke club won in 1956 de eerste Europacup I?", "options": [{ "text": "Real Madrid", "correct": true }, { "text": "Benfica" }, { "text": "AC Milan" }, { "text": "Ajax" }] },
+        { "prompt": "Welk orgaan maakt insuline?", "options": [{ "text": "Lever" }, { "text": "Alvleesklier", "correct": true }, { "text": "Nier" }, { "text": "Milt" }] },
+        { "prompt": "In welk jaar landde Apollo 11 op de maan?", "options": [{ "text": "1967" }, { "text": "1969", "correct": true }, { "text": "1971" }, { "text": "1973" }] },
+        { "prompt": "Wie schilderde De schreeuw?", "options": [{ "text": "Munch", "correct": true }, { "text": "Klimt" }, { "text": "Schiele" }, { "text": "Kandinsky" }] },
+        { "prompt": "Welke zee ligt tussen Saoedi-Arabie en Afrika?", "options": [{ "text": "Dode Zee" }, { "text": "Rode Zee", "correct": true }, { "text": "Zwarte Zee" }, { "text": "Kaspische Zee" }] },
+        { "prompt": "Welke stad was de hoofdstad van het Byzantijnse Rijk?", "options": [{ "text": "Athene" }, { "text": "Rome" }, { "text": "Constantinopel", "correct": true }, { "text": "Alexandrie" }] },
+        { "prompt": "Welk gas vormt ongeveer 78 procent van de lucht die wij inademen?", "options": [{ "text": "Zuurstof" }, { "text": "Stikstof", "correct": true }, { "text": "Koolstofdioxide" }, { "text": "Argon" }] },
+        { "prompt": "Welke schrijver bedacht de detective Hercule Poirot?", "options": [{ "text": "Arthur Conan Doyle" }, { "text": "Agatha Christie", "correct": true }, { "text": "Georges Simenon" }, { "text": "Dorothy Sayers" }] },
+        { "prompt": "Welk land heeft een vlag met een rode cirkel op een wit veld?", "options": [{ "text": "Zuid-Korea" }, { "text": "Japan", "correct": true }, { "text": "Bangladesh" }, { "text": "Laos" }] },
+        { "prompt": "Welk snaarinstrument staat rechtop en wordt met de vingers getokkeld?", "options": [{ "text": "Citer" }, { "text": "Harp", "correct": true }, { "text": "Luit" }, { "text": "Banjo" }] },
+        { "prompt": "In welk jaar viel het West-Romeinse Rijk?", "options": [{ "text": "410" }, { "text": "476", "correct": true }, { "text": "527" }, { "text": "622" }] },
+        { "prompt": "Welke planeet heeft het heetste oppervlak?", "options": [{ "text": "Mercurius" }, { "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Jupiter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is de Chinese Muur volgens de officiele meting uit 2012?", "answer": 21196, "unit": "kilometer", "explanation": "Ruim eenentwintigduizend kilometer, alle zijtakken meegerekend." },
+        { "prompt": "In welk jaar werd het wereldwijde web vrij beschikbaar voor iedereen?", "answer": 1993, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Zeilboot" },
+        { "prompt": "Wekker" },
+        { "prompt": "Olifant" },
+        { "prompt": "Supermarkt" },
+        { "prompt": "Ananas" },
+        { "prompt": "Ridder" },
+        { "prompt": "Parachute" },
+        { "prompt": "Fietspomp" },
+        { "prompt": "Sneeuwvlok" },
+        { "prompt": "Kapper" },
+        { "prompt": "Woestijn" },
+        { "prompt": "Telescoop" },
+        { "prompt": "Ladder" },
+        { "prompt": "Kangoeroe" },
+        { "prompt": "Bruiloft" },
+        { "prompt": "Draaimolen" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste eilanden van de Middellandse Zee.", "answers": [{ "text": "Sicilie" }, { "text": "Sardinie" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
+        { "prompt": "Noem de vier grote landen die aan Zwitserland grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Oostenrijk" }] },
+        { "prompt": "Noem de vier basissmaken naast umami.", "answers": [{ "text": "Zoet" }, { "text": "Zuur" }, { "text": "Zout" }, { "text": "Bitter" }] },
+        { "prompt": "Noem de vier ruiters van de Apocalyps.", "answers": [{ "text": "Verovering" }, { "text": "Oorlog" }, { "text": "Hongersnood" }, { "text": "Dood" }] },
+        { "prompt": "Noem de vier grootste manen van Jupiter.", "answers": [{ "text": "Io" }, { "text": "Europa" }, { "text": "Ganymedes" }, { "text": "Callisto" }] },
+        { "prompt": "Noem de vier zwemslagen van de Olympische Spelen.", "answers": [{ "text": "Vlinderslag" }, { "text": "Rugslag" }, { "text": "Schoolslag" }, { "text": "Vrije slag" }] },
+        { "prompt": "Noem de vier gekleurde ringen van het olympische symbool naast de zwarte.", "answers": [{ "text": "Blauw" }, { "text": "Geel" }, { "text": "Groen" }, { "text": "Rood" }] },
+        { "prompt": "Noem de vier ingredienten van gewoon brood.", "answers": [{ "text": "Meel" }, { "text": "Water" }, { "text": "Gist" }, { "text": "Zout" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Nederlandse zeevaarder bereikte in 1642 het eiland dat nu Tasmanie heet?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
+        { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
+        { "prompt": "Welk element heeft het symbool Fe?", "answers": [{ "text": "IJzer", "aliases": ["ijzer"] }] },
+        { "prompt": "Wie schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "In welk jaar werd de euro als contant geld ingevoerd?", "answers": [{ "text": "2002" }] },
+        { "prompt": "Wat is de grootste woestijn ter wereld als koude woestijnen meetellen?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctische woestijn"] }] }
+      ]
+    }
+  ]
+}

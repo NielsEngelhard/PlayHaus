@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w30",
+  "title": "Weekly quiz week 30",
+  "description": "The weekly quiz of Wednesday 22 July 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Poland?", "category": "Geography", "answers": [{ "text": "Warsaw" }] },
+        { "prompt": "How many colours does a rainbow have in the classic division?", "category": "Science", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "Which people built the pyramids of Giza?", "category": "History", "answers": [{ "text": "The Egyptians", "aliases": ["Egyptians"] }] },
+        { "prompt": "How many players does a handball team have on court?", "category": "Sport", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "Which British band released the song Bohemian Rhapsody?", "category": "Music", "answers": [{ "text": "Queen" }] },
+        { "prompt": "Which actor played the role of Neo in The Matrix?", "category": "Film", "answers": [{ "text": "Keanu Reeves", "aliases": ["Reeves"] }] },
+        { "prompt": "Which animal is called the king of the jungle?", "category": "Nature", "answers": [{ "text": "The lion", "aliases": ["lion"] }] },
+        { "prompt": "Which Dutch city is known for the Dom Tower?", "category": "The Netherlands", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "What is the name for a word that reads the same backwards?", "category": "Language", "answers": [{ "text": "A palindrome", "aliases": ["palindrome"] }] },
+        { "prompt": "Which Italian artist sculpted the David in Florence?", "category": "Art", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "Which sense does a bat use to navigate in the dark?", "category": "Science", "answers": [{ "text": "Hearing", "aliases": ["echolocation"] }] },
+        { "prompt": "Which two countries lie on the Iberian Peninsula?", "category": "Geography", "answers": [{ "text": "Spain and Portugal" }] },
+        { "prompt": "Which German chancellor united the German states in 1871?", "category": "History", "answers": [{ "text": "Otto von Bismarck", "aliases": ["Bismarck"] }] },
+        { "prompt": "Which fruit is dried to make a raisin?", "category": "Food", "answers": [{ "text": "The grape", "aliases": ["grape", "grapes"] }] },
+        { "prompt": "How many games does a player need at minimum to win a set of tennis?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Which animal has a trunk?", "category": "Nature", "answers": [{ "text": "The elephant", "aliases": ["elephant"] }] },
+        { "prompt": "Which Vermeer painting hangs in the Mauritshuis in The Hague?", "category": "The Netherlands", "answers": [{ "text": "Girl with a Pearl Earring", "aliases": ["Girl with a Pearl"] }] },
+        { "prompt": "What is the unit of electrical voltage?", "category": "Science", "answers": [{ "text": "The volt", "aliases": ["volt", "V"] }] },
+        { "prompt": "Which 1994 film is set in Shawshank prison?", "category": "Film", "answers": [{ "text": "The Shawshank Redemption", "aliases": ["Shawshank"] }] },
+        { "prompt": "Which canal connects the Mediterranean with the Red Sea?", "category": "Geography", "answers": [{ "text": "The Suez Canal", "aliases": ["Suez Canal", "Suez"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country is NOT on the Balkan Peninsula?", "options": [{ "text": "Albania" }, { "text": "Slovenia" }, { "text": "Slovakia", "correct": true }, { "text": "Montenegro" }] },
+        { "prompt": "Who wrote The Divine Comedy?", "options": [{ "text": "Dante", "correct": true }, { "text": "Petrarca" }, { "text": "Boccaccio" }, { "text": "Ariosto" }] },
+        { "prompt": "Which part of the eye controls how much light comes in?", "options": [{ "text": "Cornea" }, { "text": "Iris", "correct": true }, { "text": "Retina" }, { "text": "Lens" }] },
+        { "prompt": "In what year was the Maastricht Treaty signed?", "options": [{ "text": "1986" }, { "text": "1990" }, { "text": "1992", "correct": true }, { "text": "1995" }] },
+        { "prompt": "What is the capital of Morocco?", "options": [{ "text": "Casablanca" }, { "text": "Rabat", "correct": true }, { "text": "Marrakech" }, { "text": "Fez" }] },
+        { "prompt": "Which animal can change the colour of its skin?", "options": [{ "text": "Chameleon", "correct": true }, { "text": "Salamander" }, { "text": "Gecko" }, { "text": "Iguana" }] },
+        { "prompt": "How many players does a water polo team have in the water?", "options": [{ "text": "Six" }, { "text": "Seven", "correct": true }, { "text": "Eight" }, { "text": "Nine" }] },
+        { "prompt": "Which body is the earth's only natural satellite?", "options": [{ "text": "The moon", "correct": true }, { "text": "Phobos" }, { "text": "Titan" }, { "text": "Europa" }] },
+        { "prompt": "Which country is made up of more than seventeen thousand islands?", "options": [{ "text": "Philippines" }, { "text": "Indonesia", "correct": true }, { "text": "Japan" }, { "text": "Malaysia" }] },
+        { "prompt": "Which French painter made the series Water Lilies?", "options": [{ "text": "Claude Monet", "correct": true }, { "text": "Edgar Degas" }, { "text": "Paul Cezanne" }, { "text": "Pierre-Auguste Renoir" }] },
+        { "prompt": "Which mineral is the softest on the Mohs scale?", "options": [{ "text": "Gypsum" }, { "text": "Talc", "correct": true }, { "text": "Calcite" }, { "text": "Quartz" }] },
+        { "prompt": "Which Dutch city lies on the river Waal?", "options": [{ "text": "Nijmegen", "correct": true }, { "text": "Deventer" }, { "text": "Zwolle" }, { "text": "Maastricht" }] },
+        { "prompt": "In what year was the first football World Cup held?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] },
+        { "prompt": "Which instrument does NOT belong to the strings of a symphony orchestra?", "options": [{ "text": "Violin" }, { "text": "Cello" }, { "text": "Clarinet", "correct": true }, { "text": "Double bass" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many days does one orbit of the earth around the sun take, in whole days?", "answer": 365, "unit": "days", "explanation": "Exactly 365 days and almost six hours, and those hours are the leap year." },
+        { "prompt": "How many kilometres long is the Rhine?", "answer": 1233, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Blacksmith" },
+        { "prompt": "Ski boot" },
+        { "prompt": "Owl" },
+        { "prompt": "Castle" },
+        { "prompt": "Melon" },
+        { "prompt": "Clown" },
+        { "prompt": "Iron" },
+        { "prompt": "Drum" },
+        { "prompt": "Hailstone" },
+        { "prompt": "Fisherman" },
+        { "prompt": "Ferry" },
+        { "prompt": "Weather vane" },
+        { "prompt": "Glove" },
+        { "prompt": "Frog" },
+        { "prompt": "Playground" },
+        { "prompt": "Coffee grinder" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest cities of the Netherlands.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
+        { "prompt": "Name the four original members of Led Zeppelin.", "answers": [{ "text": "Robert Plant" }, { "text": "Jimmy Page" }, { "text": "John Paul Jones" }, { "text": "John Bonham" }] },
+        { "prompt": "Name the four South American countries that have hosted the football World Cup.", "answers": [{ "text": "Uruguay" }, { "text": "Brazil" }, { "text": "Chile" }, { "text": "Argentina" }] },
+        { "prompt": "Name the four months that have thirty days.", "answers": [{ "text": "April" }, { "text": "June" }, { "text": "September" }, { "text": "November" }] },
+        { "prompt": "Name the four Great Lakes of North America besides Lake Michigan.", "answers": [{ "text": "Lake Superior" }, { "text": "Lake Huron" }, { "text": "Lake Erie" }, { "text": "Lake Ontario" }] },
+        { "prompt": "Name the four large bones of the human leg and hip.", "answers": [{ "text": "Femur" }, { "text": "Tibia" }, { "text": "Fibula" }, { "text": "Hip bone" }] },
+        { "prompt": "Name the four Alpine countries besides Switzerland and Austria.", "answers": [{ "text": "France" }, { "text": "Italy" }, { "text": "Germany" }, { "text": "Slovenia" }] },
+        { "prompt": "Name four composers of the baroque or classical era.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Vivaldi" }, { "text": "Mozart" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Swedish chemist established the Nobel Prizes in his will?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
+        { "prompt": "What is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which Italian composer wrote the opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which French chemist gave his name to heating milk to kill bacteria?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "In what year did the first railway line in the Netherlands open?", "answers": [{ "text": "1839" }] }
+      ]
+    }
+  ]
+}

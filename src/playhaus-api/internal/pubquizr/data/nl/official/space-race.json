@@ -1,0 +1,104 @@
+{
+  "slug": "space-race",
+  "title": "De Ruimtewedloop",
+  "description": "Een hele pubquiz over de ruimtewedloop: raketten, kosmonauten, maanlandingen en sondes.",
+  "publishedAt": "2026-03-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke satelliet draaide in 1957 als eerste om de aarde?", "category": "Satellieten", "answers": [{ "text": "Spoetnik 1", "aliases": ["Spoetnik"] }] },
+        { "prompt": "Welke Sovjetkosmonaut vloog in 1961 als eerste mens de ruimte in?", "category": "Kosmonauten", "answers": [{ "text": "Joeri Gagarin", "aliases": ["Gagarin"] }] },
+        { "prompt": "Wie was in 1963 de eerste vrouw in de ruimte?", "category": "Kosmonauten", "answers": [{ "text": "Valentina Teresjkova", "aliases": ["Teresjkova"] }] },
+        { "prompt": "Welke missie bracht in 1969 de eerste mensen op de maan?", "category": "Maanlandingen", "answers": [{ "text": "Apollo 11" }] },
+        { "prompt": "Wie zette als tweede mens voet op de maan?", "category": "Maanlandingen", "answers": [{ "text": "Buzz Aldrin", "aliases": ["Aldrin"] }] },
+        { "prompt": "Wie bleef tijdens de maanlanding in de commandomodule van Apollo 11?", "category": "Maanlandingen", "answers": [{ "text": "Michael Collins", "aliases": ["Collins"] }] },
+        { "prompt": "Hoe heette de maanlander van Apollo 11?", "category": "Maanlandingen", "answers": [{ "text": "Eagle" }] },
+        { "prompt": "Welke Amerikaanse ruimtevaartorganisatie werd in 1958 opgericht?", "category": "Organisaties", "answers": [{ "text": "NASA" }] },
+        { "prompt": "Welke hond draaide in 1957 als eerste dier om de aarde?", "category": "Dieren", "answers": [{ "text": "Laika" }] },
+        { "prompt": "Welke Amerikaan draaide in 1962 als eerste om de aarde?", "category": "Astronauten", "answers": [{ "text": "John Glenn", "aliases": ["Glenn"] }] },
+        { "prompt": "Welke raket bracht de Apollomissies naar de maan?", "category": "Raketten", "answers": [{ "text": "De Saturn V", "aliases": ["Saturn 5"] }] },
+        { "prompt": "Hoe heet het Sovjetruimteschip dat sinds 1967 mensen naar een baan brengt?", "category": "Programma's", "answers": [{ "text": "Sojoez", "aliases": ["Soyuz"] }] },
+        { "prompt": "Welke Apollomissie raakte in 1970 op weg naar de maan in nood?", "category": "Missies", "answers": [{ "text": "Apollo 13" }] },
+        { "prompt": "Hoe heette het eerste Amerikaanse ruimtestation uit 1973?", "category": "Ruimtestations", "answers": [{ "text": "Skylab" }] },
+        { "prompt": "Welke Duits-Amerikaanse raketingenieur leidde het Saturnprogramma?", "category": "Ingenieurs", "answers": [{ "text": "Wernher von Braun", "aliases": ["Von Braun"] }] },
+        { "prompt": "Wie zette als eerste mens voet op de maan?", "category": "Maanlandingen", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "In welke maanvlakte landde Apollo 11?", "category": "Maanlandingen", "answers": [{ "text": "De Zee van Rust", "aliases": ["Mare Tranquillitatis"] }] },
+        { "prompt": "Welke Amerikaanse ruimteveer vloog in 1981 als eerste?", "category": "Ruimteveren", "answers": [{ "text": "Columbia" }] },
+        { "prompt": "Welke afkorting staat voor het internationale ruimtestation?", "category": "Ruimtestations", "answers": [{ "text": "ISS" }] },
+        { "prompt": "Welke planeet was in 1976 het doel van de Vikinglanders?", "category": "Sondes", "answers": [{ "text": "Mars" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke Apollomissie vloog als eerste om de maan heen?", "options": [{ "text": "Apollo 8", "correct": true }, { "text": "Apollo 7" }, { "text": "Apollo 9" }, { "text": "Apollo 10" }] },
+        { "prompt": "Welke Sovjetsonde bereikte in 1959 als eerste de maan?", "options": [{ "text": "Loena 2", "correct": true }, { "text": "Spoetnik 2" }, { "text": "Vostok 1" }, { "text": "Zond 1" }] },
+        { "prompt": "Met welk ruimteschip vloog Gagarin?", "options": [{ "text": "Vostok 1", "correct": true }, { "text": "Sojoez 1" }, { "text": "Loena 1" }, { "text": "Mercury 1" }] },
+        { "prompt": "Hoeveel Apollomissies landden op de maan?", "options": [{ "text": "Vier" }, { "text": "Zes", "correct": true }, { "text": "Acht" }, { "text": "Tien" }] },
+        { "prompt": "Welke Amerikaanse president kondigde in 1961 de maanmissie aan?", "options": [{ "text": "John F. Kennedy", "correct": true }, { "text": "Dwight Eisenhower" }, { "text": "Lyndon Johnson" }, { "text": "Richard Nixon" }] },
+        { "prompt": "Welke Europese ruimtevaartorganisatie werd in 1975 opgericht?", "options": [{ "text": "ESA", "correct": true }, { "text": "NASA" }, { "text": "CNES" }, { "text": "DLR" }] },
+        { "prompt": "Hoe heette de gezamenlijke Amerikaans-Sovjetmissie van 1975?", "options": [{ "text": "Apollo-Sojoez", "correct": true }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "Gemini" }] },
+        { "prompt": "Welk Sovjetruimtestation vloog van 1986 tot 2001?", "options": [{ "text": "Mir", "correct": true }, { "text": "Saljoet" }, { "text": "Skylab" }, { "text": "Tiangong" }] },
+        { "prompt": "Welke sonde stuurde in 1989 de eerste beelden van Neptunus?", "options": [{ "text": "Voyager 2", "correct": true }, { "text": "Voyager 1" }, { "text": "Pioneer 11" }, { "text": "New Horizons" }] },
+        { "prompt": "Welke ruimteveer verongelukte kort na de lancering in 1986?", "options": [{ "text": "Challenger", "correct": true }, { "text": "Columbia" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
+        { "prompt": "Welke planeet onderzocht de sonde Cassini?", "options": [{ "text": "Saturnus", "correct": true }, { "text": "Jupiter" }, { "text": "Mars" }, { "text": "Venus" }] },
+        { "prompt": "Hoe lang duurde de reis van Apollo 11 naar de maan ongeveer?", "options": [{ "text": "Drie dagen", "correct": true }, { "text": "Een dag" }, { "text": "Een week" }, { "text": "Een maand" }] },
+        { "prompt": "Welk land bracht in 2003 als derde zelfstandig een mens in de ruimte?", "options": [{ "text": "China", "correct": true }, { "text": "Japan" }, { "text": "India" }, { "text": "Frankrijk" }] },
+        { "prompt": "Welke Apollomissie nam als eerste een maanwagen mee?", "options": [{ "text": "Apollo 15", "correct": true }, { "text": "Apollo 11" }, { "text": "Apollo 13" }, { "text": "Apollo 12" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog was de Saturn V-raket?", "answer": 111, "unit": "meter", "explanation": "Ruim honderdtien meter, hoger dan het Vrijheidsbeeld met sokkel." },
+        { "prompt": "Hoeveel dagen duurde de vlucht van Apollo 11?", "answer": 8, "unit": "dagen" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Raket" },
+        { "prompt": "Maan" },
+        { "prompt": "Ruimtepak" },
+        { "prompt": "Satelliet" },
+        { "prompt": "Sterrenwacht" },
+        { "prompt": "Zwaartekracht" },
+        { "prompt": "Astronaut" },
+        { "prompt": "Telescoop" },
+        { "prompt": "Maanlander" },
+        { "prompt": "Lanceerplatform" },
+        { "prompt": "Komeet" },
+        { "prompt": "Zonnepaneel" },
+        { "prompt": "Aftellen" },
+        { "prompt": "Gewichtloosheid" },
+        { "prompt": "Baan" },
+        { "prompt": "Meteoriet" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier astronauten die op de maan hebben gelopen.", "answers": [{ "text": "Neil Armstrong" }, { "text": "Buzz Aldrin" }, { "text": "Pete Conrad" }, { "text": "Alan Shepard" }] },
+        { "prompt": "Noem vier Amerikaanse ruimtevaartprogramma's.", "answers": [{ "text": "Mercury" }, { "text": "Gemini" }, { "text": "Apollo" }, { "text": "Spaceshuttle" }] },
+        { "prompt": "Noem vier planeten die door ruimtesondes zijn bezocht.", "answers": [{ "text": "Mars" }, { "text": "Venus" }, { "text": "Jupiter" }, { "text": "Saturnus" }] },
+        { "prompt": "Noem vier ruimteveren van de NASA.", "answers": [{ "text": "Columbia" }, { "text": "Challenger" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
+        { "prompt": "Noem vier landen met een eigen ruimtevaartorganisatie.", "answers": [{ "text": "Verenigde Staten" }, { "text": "Rusland" }, { "text": "China" }, { "text": "India" }] },
+        { "prompt": "Noem vier hemellichamen waarop een sonde is geland.", "answers": [{ "text": "De maan" }, { "text": "Mars" }, { "text": "Venus" }, { "text": "Titan" }] },
+        { "prompt": "Noem vier onderdelen van een raket.", "answers": [{ "text": "Motor" }, { "text": "Brandstoftank" }, { "text": "Neuskegel" }, { "text": "Stuurvinnen" }] },
+        { "prompt": "Noem vier ruimtestations.", "answers": [{ "text": "Saljoet" }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "ISS" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Sovjetkosmonaut maakte in 1965 de eerste ruimtewandeling?", "answers": [{ "text": "Aleksej Leonov", "aliases": ["Leonov"] }] },
+        { "prompt": "Welke Nederlander vloog in 1985 als eerste de ruimte in?", "answers": [{ "text": "Wubbo Ockels", "aliases": ["Ockels"] }] },
+        { "prompt": "Welke ruimtetelescoop werd in 1990 in een baan gebracht?", "answers": [{ "text": "De Hubble", "aliases": ["Hubble"] }] },
+        { "prompt": "Welke Apollomissie was de laatste met een maanlanding?", "answers": [{ "text": "Apollo 17" }] },
+        { "prompt": "Hoe heette de grote Sovjetmaanraket die nooit met succes vloog?", "answers": [{ "text": "De N1", "aliases": ["N1"] }] },
+        { "prompt": "Welke sonde landde in 2005 op Titan, de maan van Saturnus?", "answers": [{ "text": "Huygens" }] }
+      ]
+    }
+  ]
+}

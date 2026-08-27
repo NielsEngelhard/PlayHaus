@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w30",
+  "title": "Weekquiz week 30",
+  "description": "De wekelijkse quiz van woensdag 22 juli 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Polen?", "category": "Aardrijkskunde", "answers": [{ "text": "Warschau" }] },
+        { "prompt": "Hoeveel kleuren heeft een regenboog volgens de klassieke indeling?", "category": "Wetenschap", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Welk volk bouwde de piramides van Gizeh?", "category": "Geschiedenis", "answers": [{ "text": "De Egyptenaren", "aliases": ["Egyptenaren"] }] },
+        { "prompt": "Hoeveel spelers heeft een handbalteam in het veld?", "category": "Sport", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Welke Britse band bracht het nummer Bohemian Rhapsody uit?", "category": "Muziek", "answers": [{ "text": "Queen" }] },
+        { "prompt": "Welke acteur speelde de rol van Neo in The Matrix?", "category": "Film", "answers": [{ "text": "Keanu Reeves", "aliases": ["Reeves"] }] },
+        { "prompt": "Welk dier wordt de koning van de jungle genoemd?", "category": "Natuur", "answers": [{ "text": "De leeuw", "aliases": ["leeuw"] }] },
+        { "prompt": "Welke Nederlandse stad staat bekend om de Domtoren?", "category": "Nederland", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Hoe heet een woord dat achterstevoren hetzelfde gelezen wordt?", "category": "Taal", "answers": [{ "text": "Een palindroom", "aliases": ["palindroom"] }] },
+        { "prompt": "Welke Italiaanse kunstenaar beeldhouwde de David in Florence?", "category": "Kunst", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "Welk zintuig gebruikt een vleermuis om in het donker te navigeren?", "category": "Wetenschap", "answers": [{ "text": "Het gehoor", "aliases": ["gehoor", "echolocatie"] }] },
+        { "prompt": "Welke twee landen liggen op het Iberisch Schiereiland?", "category": "Aardrijkskunde", "answers": [{ "text": "Spanje en Portugal" }] },
+        { "prompt": "Welke Duitse kanselier verenigde de Duitse staten in 1871?", "category": "Geschiedenis", "answers": [{ "text": "Otto von Bismarck", "aliases": ["Bismarck"] }] },
+        { "prompt": "Welk fruit wordt gedroogd tot een rozijn?", "category": "Eten", "answers": [{ "text": "De druif", "aliases": ["druif", "druiven"] }] },
+        { "prompt": "Hoeveel games moet je minimaal winnen voor een set in het tennis?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welk dier heeft een slurf?", "category": "Natuur", "answers": [{ "text": "De olifant", "aliases": ["olifant"] }] },
+        { "prompt": "Welk Nederlands schilderij van Vermeer hangt in het Mauritshuis in Den Haag?", "category": "Nederland", "answers": [{ "text": "Het meisje met de perl", "aliases": ["Meisje met de perl"] }] },
+        { "prompt": "Wat is de eenheid van elektrische spanning?", "category": "Wetenschap", "answers": [{ "text": "De volt", "aliases": ["volt", "V"] }] },
+        { "prompt": "Welke film uit 1994 speelt zich af in de gevangenis van Shawshank?", "category": "Film", "answers": [{ "text": "The Shawshank Redemption", "aliases": ["Shawshank"] }] },
+        { "prompt": "Welk kanaal verbindt de Middellandse Zee met de Rode Zee?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Suezkanaal", "aliases": ["Suezkanaal", "Suez"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land ligt NIET op het Balkanschiereiland?", "options": [{ "text": "Albanie" }, { "text": "Slovenie" }, { "text": "Slowakije", "correct": true }, { "text": "Montenegro" }] },
+        { "prompt": "Wie schreef De goddelijke komedie?", "options": [{ "text": "Dante", "correct": true }, { "text": "Petrarca" }, { "text": "Boccaccio" }, { "text": "Ariosto" }] },
+        { "prompt": "Welk deel van het oog regelt hoeveel licht binnenkomt?", "options": [{ "text": "Hoornvlies" }, { "text": "Iris", "correct": true }, { "text": "Netvlies" }, { "text": "Ooglens" }] },
+        { "prompt": "In welk jaar werd het Verdrag van Maastricht ondertekend?", "options": [{ "text": "1986" }, { "text": "1990" }, { "text": "1992", "correct": true }, { "text": "1995" }] },
+        { "prompt": "Wat is de hoofdstad van Marokko?", "options": [{ "text": "Casablanca" }, { "text": "Rabat", "correct": true }, { "text": "Marrakech" }, { "text": "Fez" }] },
+        { "prompt": "Welk dier kan zijn huid van kleur laten veranderen?", "options": [{ "text": "Kameleon", "correct": true }, { "text": "Salamander" }, { "text": "Gekko" }, { "text": "Leguaan" }] },
+        { "prompt": "Hoeveel spelers heeft een waterpoloteam in het water?", "options": [{ "text": "Zes" }, { "text": "Zeven", "correct": true }, { "text": "Acht" }, { "text": "Negen" }] },
+        { "prompt": "Wat is de enige natuurlijke satelliet van de aarde?", "options": [{ "text": "De maan", "correct": true }, { "text": "Phobos" }, { "text": "Titan" }, { "text": "Europa" }] },
+        { "prompt": "Welk land bestaat uit meer dan zeventienduizend eilanden?", "options": [{ "text": "Filipijnen" }, { "text": "Indonesie", "correct": true }, { "text": "Japan" }, { "text": "Maleisie" }] },
+        { "prompt": "Welke Franse schilder maakte de reeks Waterlelies?", "options": [{ "text": "Claude Monet", "correct": true }, { "text": "Edgar Degas" }, { "text": "Paul Cezanne" }, { "text": "Pierre-Auguste Renoir" }] },
+        { "prompt": "Welk mineraal is het zachtste op de schaal van Mohs?", "options": [{ "text": "Gips" }, { "text": "Talk", "correct": true }, { "text": "Calciet" }, { "text": "Kwarts" }] },
+        { "prompt": "Welke Nederlandse stad ligt aan de Waal?", "options": [{ "text": "Nijmegen", "correct": true }, { "text": "Deventer" }, { "text": "Zwolle" }, { "text": "Maastricht" }] },
+        { "prompt": "In welk jaar werd het eerste Wereldkampioenschap voetbal gehouden?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] },
+        { "prompt": "Welk instrument hoort NIET bij de strijkers van een symfonieorkest?", "options": [{ "text": "Viool" }, { "text": "Cello" }, { "text": "Klarinet", "correct": true }, { "text": "Contrabas" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel dagen duurt een omloop van de aarde om de zon, afgerond op hele dagen?", "answer": 365, "unit": "dagen", "explanation": "Precies 365 dagen en bijna zes uur, en die zes uur zijn het schrikkeljaar." },
+        { "prompt": "Hoeveel kilometer lang is de Rijn ongeveer?", "answer": 1233, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Hoefsmid" },
+        { "prompt": "Skischoen" },
+        { "prompt": "Uil" },
+        { "prompt": "Kasteel" },
+        { "prompt": "Meloen" },
+        { "prompt": "Clown" },
+        { "prompt": "Strijkijzer" },
+        { "prompt": "Trommel" },
+        { "prompt": "Hagelsteen" },
+        { "prompt": "Visser" },
+        { "prompt": "Veerboot" },
+        { "prompt": "Weerhaan" },
+        { "prompt": "Handschoen" },
+        { "prompt": "Kikker" },
+        { "prompt": "Speeltuin" },
+        { "prompt": "Koffiemolen" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste steden van Nederland.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
+        { "prompt": "Noem de vier oorspronkelijke leden van Led Zeppelin.", "answers": [{ "text": "Robert Plant" }, { "text": "Jimmy Page" }, { "text": "John Paul Jones" }, { "text": "John Bonham" }] },
+        { "prompt": "Noem de vier Zuid-Amerikaanse landen die het WK voetbal hebben gehouden.", "answers": [{ "text": "Uruguay" }, { "text": "Brazilie" }, { "text": "Chili" }, { "text": "Argentinie" }] },
+        { "prompt": "Noem de vier maanden met dertig dagen.", "answers": [{ "text": "April" }, { "text": "Juni" }, { "text": "September" }, { "text": "November" }] },
+        { "prompt": "Noem de vier Grote Meren van Noord-Amerika naast het Michiganmeer.", "answers": [{ "text": "Bovenmeer" }, { "text": "Huronmeer" }, { "text": "Eriemeer" }, { "text": "Ontariomeer" }] },
+        { "prompt": "Noem de vier grote botten van het menselijk been en de heup.", "answers": [{ "text": "Dijbeen" }, { "text": "Scheenbeen" }, { "text": "Kuitbeen" }, { "text": "Heupbeen" }] },
+        { "prompt": "Noem de vier landen waar de Alpen doorheen lopen naast Zwitserland en Oostenrijk.", "answers": [{ "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Duitsland" }, { "text": "Slovenie" }] },
+        { "prompt": "Noem vier componisten uit de barok of de klassieke tijd.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Vivaldi" }, { "text": "Mozart" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Zweedse scheikundige stelde de Nobelprijzen in zijn testament in?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
+        { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Welke Italiaanse componist schreef de opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Welke Franse scheikundige gaf zijn naam aan het verhitten van melk om bacterien te doden?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "In welk jaar werd de eerste treinverbinding in Nederland geopend?", "answers": [{ "text": "1839" }] }
+      ]
+    }
+  ]
+}

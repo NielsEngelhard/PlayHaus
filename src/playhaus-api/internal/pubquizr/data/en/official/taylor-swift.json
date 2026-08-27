@@ -1,0 +1,104 @@
+{
+  "slug": "taylor-swift",
+  "title": "Taylor Swift",
+  "description": "A whole pub quiz about Taylor Swift: albums, tours, songs and Taylor's Version.",
+  "publishedAt": "2026-02-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which American state was Taylor Swift born?", "category": "People", "answers": [{ "text": "Pennsylvania" }] },
+        { "prompt": "In what year was Taylor Swift born?", "category": "People", "answers": [{ "text": "1989" }] },
+        { "prompt": "What is her debut album from 2006 called?", "category": "Albums", "answers": [{ "text": "Taylor Swift" }] },
+        { "prompt": "Which album from 2014 took her from country to pop?", "category": "Albums", "answers": [{ "text": "1989" }] },
+        { "prompt": "Which album did she record during lockdown in 2020?", "category": "Albums", "answers": [{ "text": "Folklore" }] },
+        { "prompt": "Which album followed folklore in December 2020?", "category": "Albums", "answers": [{ "text": "Evermore" }] },
+        { "prompt": "What is her 2019 album with the title track Lover called?", "category": "Albums", "answers": [{ "text": "Lover" }] },
+        { "prompt": "Which album from 2017 opens with the song Ready For It?", "category": "Albums", "answers": [{ "text": "Reputation" }] },
+        { "prompt": "Which album from 2012 is named after a colour?", "category": "Albums", "answers": [{ "text": "Red" }] },
+        { "prompt": "What is her third album from 2010 called?", "category": "Albums", "answers": [{ "text": "Speak Now" }] },
+        { "prompt": "What is her second album from 2008 called?", "category": "Albums", "answers": [{ "text": "Fearless" }] },
+        { "prompt": "Which single from 1989 is about shrugging off criticism and is named after a dance move?", "category": "Songs", "answers": [{ "text": "Shake It Off" }] },
+        { "prompt": "Which song from Red exists in a ten minute version?", "category": "Songs", "answers": [{ "text": "All Too Well" }] },
+        { "prompt": "What was her world tour that began in 2023 called?", "category": "Tours", "answers": [{ "text": "The Eras Tour", "aliases": ["Eras Tour"] }] },
+        { "prompt": "In which American city did she begin her country career?", "category": "Cities", "answers": [{ "text": "Nashville" }] },
+        { "prompt": "Which string instrument does Taylor Swift play most on stage?", "category": "Instruments", "answers": [{ "text": "The guitar", "aliases": ["guitar"] }] },
+        { "prompt": "Which American music award did she win in 2010 with Fearless as album of the year?", "category": "Awards", "answers": [{ "text": "The Grammy", "aliases": ["Grammy"] }] },
+        { "prompt": "In which 2019 musical film did she play a cat?", "category": "Films", "answers": [{ "text": "Cats" }] },
+        { "prompt": "Which duet with Ed Sheeran is on the album Red?", "category": "Songs", "answers": [{ "text": "Everything Has Changed" }] },
+        { "prompt": "What is her 2024 album called?", "category": "Albums", "answers": [{ "text": "The Tortured Poets Department", "aliases": ["Tortured Poets"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "On which day in December was Taylor Swift born?", "options": [{ "text": "13", "correct": true }, { "text": "17" }, { "text": "21" }, { "text": "25" }] },
+        { "prompt": "Which album is the song Blank Space on?", "options": [{ "text": "1989", "correct": true }, { "text": "Red" }, { "text": "Reputation" }, { "text": "Lover" }] },
+        { "prompt": "In which genre did Taylor Swift begin her career?", "options": [{ "text": "Country", "correct": true }, { "text": "Pop" }, { "text": "Rock" }, { "text": "Jazz" }] },
+        { "prompt": "Which record label released her first album?", "options": [{ "text": "Big Machine", "correct": true }, { "text": "Republic" }, { "text": "Universal" }, { "text": "Sony" }] },
+        { "prompt": "Which term does she use for her re-recorded albums?", "options": [{ "text": "Taylor's Version", "correct": true }, { "text": "Deluxe" }, { "text": "Remaster" }, { "text": "Reissue" }] },
+        { "prompt": "Which album did she re-record first, in 2021?", "options": [{ "text": "Fearless", "correct": true }, { "text": "Red" }, { "text": "Speak Now" }, { "text": "1989" }] },
+        { "prompt": "Which song was the first single from folklore?", "options": [{ "text": "Cardigan", "correct": true }, { "text": "Willow" }, { "text": "Betty" }, { "text": "August" }] },
+        { "prompt": "Aaron Dessner, co-producer of folklore, is a member of which American band?", "options": [{ "text": "The National", "correct": true }, { "text": "Bon Iver" }, { "text": "Arcade Fire" }, { "text": "Vampire Weekend" }] },
+        { "prompt": "How many songs are on the standard version of folklore?", "options": [{ "text": "13" }, { "text": "16", "correct": true }, { "text": "17" }, { "text": "19" }] },
+        { "prompt": "Which rapper features on the remix of Bad Blood?", "options": [{ "text": "Kendrick Lamar", "correct": true }, { "text": "Drake" }, { "text": "Nicki Minaj" }, { "text": "Post Malone" }] },
+        { "prompt": "Which song opens the album 1989?", "options": [{ "text": "Welcome To New York", "correct": true }, { "text": "Style" }, { "text": "Blank Space" }, { "text": "Shake It Off" }] },
+        { "prompt": "In which 2014 film did Taylor Swift play the character Rosemary?", "options": [{ "text": "The Giver", "correct": true }, { "text": "Valentine's Day" }, { "text": "Cats" }, { "text": "Amsterdam" }] },
+        { "prompt": "At what age did Taylor Swift learn to play guitar?", "options": [{ "text": "Twelve", "correct": true }, { "text": "Eight" }, { "text": "Fifteen" }, { "text": "Eighteen" }] },
+        { "prompt": "What are Taylor Swift's fans called?", "options": [{ "text": "Swifties", "correct": true }, { "text": "Swifters" }, { "text": "Taylors" }, { "text": "Lovers" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many minutes does All Too Well last in the long version?", "answer": 10, "unit": "minutes", "explanation": "The version on Red (Taylor's Version) runs ten minutes and thirteen seconds." },
+        { "prompt": "How many songs are on Red (Taylor's Version)?", "answer": 30, "unit": "songs" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Guitar" },
+        { "prompt": "Concert" },
+        { "prompt": "Friendship bracelet" },
+        { "prompt": "Cardigan" },
+        { "prompt": "Snake" },
+        { "prompt": "Red lipstick" },
+        { "prompt": "Cat" },
+        { "prompt": "Stage" },
+        { "prompt": "Fairytale" },
+        { "prompt": "Love letter" },
+        { "prompt": "Stadium" },
+        { "prompt": "Sequin dress" },
+        { "prompt": "Diary" },
+        { "prompt": "Record player" },
+        { "prompt": "Microphone" },
+        { "prompt": "Autumn" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four albums by Taylor Swift.", "answers": [{ "text": "Fearless" }, { "text": "Red" }, { "text": "1989" }, { "text": "Lover" }] },
+        { "prompt": "Name the four albums she re-recorded as Taylor's Version.", "answers": [{ "text": "Fearless" }, { "text": "Red" }, { "text": "Speak Now" }, { "text": "1989" }] },
+        { "prompt": "Name four songs from the album 1989.", "answers": [{ "text": "Shake It Off" }, { "text": "Blank Space" }, { "text": "Style" }, { "text": "Bad Blood" }] },
+        { "prompt": "Name four songs from the album Red.", "answers": [{ "text": "All Too Well" }, { "text": "I Knew You Were Trouble" }, { "text": "22" }, { "text": "We Are Never Ever Getting Back Together" }] },
+        { "prompt": "Name four artists Taylor Swift has collaborated with.", "answers": [{ "text": "Ed Sheeran" }, { "text": "Bon Iver" }, { "text": "Kendrick Lamar" }, { "text": "Post Malone" }] },
+        { "prompt": "Name four tours by Taylor Swift.", "answers": [{ "text": "Fearless Tour" }, { "text": "Speak Now World Tour" }, { "text": "The Red Tour" }, { "text": "The Eras Tour" }] },
+        { "prompt": "Name four songs from the album folklore.", "answers": [{ "text": "Cardigan" }, { "text": "Exile" }, { "text": "The 1" }, { "text": "August" }] },
+        { "prompt": "Name four cities outside America where the Eras Tour played.", "answers": [{ "text": "Paris" }, { "text": "London" }, { "text": "Amsterdam" }, { "text": "Tokyo" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which album is the song The Man on?", "answers": [{ "text": "Lover" }] },
+        { "prompt": "What is the 2020 documentary about Taylor Swift called?", "answers": [{ "text": "Miss Americana" }] },
+        { "prompt": "Which Taylor Swift album won the Grammy for album of the year in 2021?", "answers": [{ "text": "Folklore" }] },
+        { "prompt": "In which town in Pennsylvania was Taylor Swift born?", "answers": [{ "text": "West Reading", "aliases": ["Reading"] }] },
+        { "prompt": "Which song on folklore did she sing with Bon Iver?", "answers": [{ "text": "Exile" }] },
+        { "prompt": "What is her 2022 album with the song Anti-Hero called?", "answers": [{ "text": "Midnights" }] }
+      ]
+    }
+  ]
+}

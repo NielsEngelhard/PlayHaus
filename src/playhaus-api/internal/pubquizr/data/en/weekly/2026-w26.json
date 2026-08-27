@@ -1,0 +1,103 @@
+{
+  "slug": "2026-w26",
+  "title": "Weekly quiz week 26",
+  "description": "The weekly quiz of Wednesday 24 June 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which country is known as the Land of the Rising Sun?", "category": "Geography", "answers": [{ "text": "Japan" }] },
+        { "prompt": "At how many degrees Celsius does water boil at sea level?", "category": "Science", "answers": [{ "text": "One hundred", "aliases": ["100"] }] },
+        { "prompt": "Which Roman emperor is said to have played music while Rome burned?", "category": "History", "answers": [{ "text": "Nero" }] },
+        { "prompt": "In which sport is a score of zero points called love?", "category": "Sport", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Which composer wrote the Ninth Symphony with the Ode to Joy?", "category": "Music", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] },
+        { "prompt": "Which actor played Indiana Jones?", "category": "Film", "answers": [{ "text": "Harrison Ford", "aliases": ["Ford"] }] },
+        { "prompt": "Which bird can fly backwards?", "category": "Nature", "answers": [{ "text": "The hummingbird", "aliases": ["hummingbird"] }] },
+        { "prompt": "Which Dutch city is famous for its cheese market?", "category": "The Netherlands", "answers": [{ "text": "Alkmaar" }] },
+        { "prompt": "How many letters are in the Greek alphabet?", "category": "Language", "answers": [{ "text": "Twenty-four", "aliases": ["24"] }] },
+        { "prompt": "Which art movement does Salvador Dali belong to?", "category": "Art", "answers": [{ "text": "Surrealism" }] },
+        { "prompt": "Which part of a plant takes water out of the ground?", "category": "Science", "answers": [{ "text": "The roots", "aliases": ["roots"] }] },
+        { "prompt": "What is the largest hot desert in the world?", "category": "Geography", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Who crowned himself emperor of France in 1804?", "category": "History", "answers": [{ "text": "Napoleon Bonaparte", "aliases": ["Napoleon"] }] },
+        { "prompt": "Which hard cheese is named after the Italian city of Parma?", "category": "Food", "answers": [{ "text": "Parmesan", "aliases": ["Parmigiano Reggiano"] }] },
+        { "prompt": "How many holes does a full golf course have?", "category": "Sport", "answers": [{ "text": "Eighteen", "aliases": ["18"] }] },
+        { "prompt": "Which insect makes honey?", "category": "Nature", "answers": [{ "text": "The bee", "aliases": ["bee", "honeybee"] }] },
+        { "prompt": "What is the name of the largest airport in the Netherlands?", "category": "The Netherlands", "answers": [{ "text": "Schiphol" }] },
+        { "prompt": "Which scientist came up with the theory of relativity?", "category": "Science", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Which 1994 animated film is about the lion cub Simba?", "category": "Film", "answers": [{ "text": "The Lion King" }] },
+        { "prompt": "Which island is the largest in the world?", "category": "Geography", "answers": [{ "text": "Greenland" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these animals is NOT a mammal?", "options": [{ "text": "Dolphin" }, { "text": "Bat" }, { "text": "Penguin", "correct": true }, { "text": "Whale" }] },
+        { "prompt": "What is the capital of Brazil?", "options": [{ "text": "Rio de Janeiro" }, { "text": "Sao Paulo" }, { "text": "Brasilia", "correct": true }, { "text": "Salvador" }] },
+        { "prompt": "Which club won the first European Cup in 1956?", "options": [{ "text": "Real Madrid", "correct": true }, { "text": "Benfica" }, { "text": "AC Milan" }, { "text": "Ajax" }] },
+        { "prompt": "Which organ makes insulin?", "options": [{ "text": "Liver" }, { "text": "Pancreas", "correct": true }, { "text": "Kidney" }, { "text": "Spleen" }] },
+        { "prompt": "In what year did Apollo 11 land on the moon?", "options": [{ "text": "1967" }, { "text": "1969", "correct": true }, { "text": "1971" }, { "text": "1973" }] },
+        { "prompt": "Who painted The Scream?", "options": [{ "text": "Munch", "correct": true }, { "text": "Klimt" }, { "text": "Schiele" }, { "text": "Kandinsky" }] },
+        { "prompt": "Which sea lies between Saudi Arabia and Africa?", "options": [{ "text": "Dead Sea" }, { "text": "Red Sea", "correct": true }, { "text": "Black Sea" }, { "text": "Caspian Sea" }] },
+        { "prompt": "Which city was the capital of the Byzantine Empire?", "options": [{ "text": "Athens" }, { "text": "Rome" }, { "text": "Constantinople", "correct": true }, { "text": "Alexandria" }] },
+        { "prompt": "Which gas makes up about 78 percent of the air we breathe?", "options": [{ "text": "Oxygen" }, { "text": "Nitrogen", "correct": true }, { "text": "Carbon dioxide" }, { "text": "Argon" }] },
+        { "prompt": "Which writer created the detective Hercule Poirot?", "options": [{ "text": "Arthur Conan Doyle" }, { "text": "Agatha Christie", "correct": true }, { "text": "Georges Simenon" }, { "text": "Dorothy Sayers" }] },
+        { "prompt": "Which country has a flag with a red circle on a white field?", "options": [{ "text": "South Korea" }, { "text": "Japan", "correct": true }, { "text": "Bangladesh" }, { "text": "Laos" }] },
+        { "prompt": "Which string instrument stands upright and is plucked with the fingers?", "options": [{ "text": "Zither" }, { "text": "Harp", "correct": true }, { "text": "Lute" }, { "text": "Banjo" }] },
+        { "prompt": "In what year did the Western Roman Empire fall?", "options": [{ "text": "410" }, { "text": "476", "correct": true }, { "text": "527" }, { "text": "622" }] },
+        { "prompt": "Which planet has the hottest surface?", "options": [{ "text": "Mercury" }, { "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Jupiter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the Great Wall of China according to the official 2012 survey?", "answer": 21196, "unit": "kilometres", "explanation": "Just over twenty-one thousand kilometres, side branches included." },
+        { "prompt": "In what year was the world wide web released freely to everyone?", "answer": 1993, "unit": "" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Sailing boat" },
+        { "prompt": "Alarm clock" },
+        { "prompt": "Elephant" },
+        { "prompt": "Supermarket" },
+        { "prompt": "Pineapple" },
+        { "prompt": "Knight" },
+        { "prompt": "Parachute" },
+        { "prompt": "Bicycle pump" },
+        { "prompt": "Snowflake" },
+        { "prompt": "Hairdresser" },
+        { "prompt": "Desert" },
+        { "prompt": "Telescope" },
+        { "prompt": "Ladder" },
+        { "prompt": "Kangaroo" },
+        { "prompt": "Wedding" },
+        { "prompt": "Carousel" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest islands in the Mediterranean.", "answers": [{ "text": "Sicily" }, { "text": "Sardinia" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
+        { "prompt": "Name the four large countries that border Switzerland.", "answers": [{ "text": "Germany" }, { "text": "France" }, { "text": "Italy" }, { "text": "Austria" }] },
+        { "prompt": "Name the four basic tastes besides umami.", "answers": [{ "text": "Sweet" }, { "text": "Sour" }, { "text": "Salty" }, { "text": "Bitter" }] },
+        { "prompt": "Name the four horsemen of the Apocalypse.", "answers": [{ "text": "Conquest" }, { "text": "War" }, { "text": "Famine" }, { "text": "Death" }] },
+        { "prompt": "Name the four largest moons of Jupiter.", "answers": [{ "text": "Io" }, { "text": "Europa" }, { "text": "Ganymede" }, { "text": "Callisto" }] },
+        { "prompt": "Name the four Olympic swimming strokes.", "answers": [{ "text": "Butterfly" }, { "text": "Backstroke" }, { "text": "Breaststroke" }, { "text": "Freestyle" }] },
+        { "prompt": "Name the four coloured Olympic rings besides the black one.", "answers": [{ "text": "Blue" }, { "text": "Yellow" }, { "text": "Green" }, { "text": "Red" }] },
+        { "prompt": "Name the four ingredients of plain bread.", "answers": [{ "text": "Flour" }, { "text": "Water" }, { "text": "Yeast" }, { "text": "Salt" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Dutch navigator reached the island now called Tasmania in 1642?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
+        { "prompt": "Which river flows through Vienna, Budapest and Belgrade?", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },
+        { "prompt": "Which element has the symbol Fe?", "answers": [{ "text": "Iron" }] },
+        { "prompt": "Who painted the ceiling of the Sistine Chapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "In what year was the euro introduced as cash?", "answers": [{ "text": "2002" }] },
+        { "prompt": "What is the largest desert in the world if cold deserts count?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctic desert"] }] }
+      ]
+    }
+  ]
+}

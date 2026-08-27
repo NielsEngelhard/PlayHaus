@@ -1,0 +1,104 @@
+{
+  "slug": "ancient-egypt",
+  "title": "Ancient Egypt",
+  "description": "A whole pub quiz about ancient Egypt: pyramids, pharaohs, gods and hieroglyphs.",
+  "publishedAt": "2026-04-01",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Near which place do the great pyramids of Egypt stand?", "category": "Monuments", "answers": [{ "text": "Giza", "aliases": ["Gizeh"] }] },
+        { "prompt": "What is the statue at Giza with a lion's body and a human head called?", "category": "Monuments", "answers": [{ "text": "The Sphinx", "aliases": ["sphinx"] }] },
+        { "prompt": "For which pharaoh was the largest pyramid built?", "category": "Monuments", "answers": [{ "text": "Khufu", "aliases": ["Cheops"] }] },
+        { "prompt": "Whose tomb, belonging to a young pharaoh, was found in 1922?", "category": "Pharaohs", "answers": [{ "text": "Tutankhamun", "aliases": ["Tutankhamen", "Toetanchamon"] }] },
+        { "prompt": "Which British archaeologist found that tomb?", "category": "Pharaohs", "answers": [{ "text": "Howard Carter", "aliases": ["Carter"] }] },
+        { "prompt": "Which woman ruled as pharaoh around 1470 BC?", "category": "Pharaohs", "answers": [{ "text": "Hatshepsut", "aliases": ["Hatsjepsoet"] }] },
+        { "prompt": "Which queen was the last ruler of ancient Egypt?", "category": "Pharaohs", "answers": [{ "text": "Cleopatra", "aliases": ["Cleopatra VII"] }] },
+        { "prompt": "Which pharaoh had the rock temples of Abu Simbel built?", "category": "Pharaohs", "answers": [{ "text": "Ramesses II", "aliases": ["Ramesses"] }] },
+        { "prompt": "What is the Egyptian picture writing called?", "category": "Writing", "answers": [{ "text": "Hieroglyphs", "aliases": ["hieroglyphics"] }] },
+        { "prompt": "Which stone made deciphering that writing possible?", "category": "Writing", "answers": [{ "text": "The Rosetta Stone", "aliases": ["Rosetta"] }] },
+        { "prompt": "Which Frenchman deciphered the Egyptian writing?", "category": "Writing", "answers": [{ "text": "Jean-Francois Champollion", "aliases": ["Champollion"] }] },
+        { "prompt": "Which Egyptian god was shown with the head of a jackal?", "category": "Gods", "answers": [{ "text": "Anubis", "aliases": ["Anoebis"] }] },
+        { "prompt": "Which god was the sun god of Egypt?", "category": "Gods", "answers": [{ "text": "Ra", "aliases": ["Re"] }] },
+        { "prompt": "Which god was shown with the head of a falcon?", "category": "Gods", "answers": [{ "text": "Horus" }] },
+        { "prompt": "Which goddess was the wife of Osiris?", "category": "Gods", "answers": [{ "text": "Isis" }] },
+        { "prompt": "Which river is the lifeline of Egypt?", "category": "The Nile", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What is the fertile area where that river reaches the sea called?", "category": "The Nile", "answers": [{ "text": "The Nile delta", "aliases": ["delta"] }] },
+        { "prompt": "What is the stone coffin a mummy was placed in called?", "category": "Customs", "answers": [{ "text": "A sarcophagus", "aliases": ["sarcophagus"] }] },
+        { "prompt": "Which beetle was a sacred symbol in Egypt?", "category": "Customs", "answers": [{ "text": "The scarab", "aliases": ["scarab"] }] },
+        { "prompt": "Which Macedonian conqueror founded the city of Alexandria in 331 BC?", "category": "History", "answers": [{ "text": "Alexander the Great", "aliases": ["Alexander"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "What did the Egyptians write their texts on?", "options": [{ "text": "Papyrus", "correct": true }, { "text": "Parchment" }, { "text": "Clay" }, { "text": "Silk" }] },
+        { "prompt": "What is the valley near Luxor with the tombs of pharaohs called?", "options": [{ "text": "The Valley of the Kings", "correct": true }, { "text": "The Valley of the Pyramids" }, { "text": "The Valley of the Nile" }, { "text": "The Valley of the Gods" }] },
+        { "prompt": "Which organ did the embalmers leave inside the body?", "options": [{ "text": "The heart", "correct": true }, { "text": "The liver" }, { "text": "The brain" }, { "text": "The lungs" }] },
+        { "prompt": "Which god ruled over the dead and the underworld?", "options": [{ "text": "Osiris", "correct": true }, { "text": "Ra" }, { "text": "Thoth" }, { "text": "Seth" }] },
+        { "prompt": "How many great pyramids stand on the plateau of Giza?", "options": [{ "text": "Three", "correct": true }, { "text": "Two" }, { "text": "Four" }, { "text": "Six" }] },
+        { "prompt": "What was the highest official under a pharaoh called?", "options": [{ "text": "The vizier", "correct": true }, { "text": "The scribe" }, { "text": "The nomarch" }, { "text": "The high priest" }] },
+        { "prompt": "In which direction does the Nile flow?", "options": [{ "text": "Northwards", "correct": true }, { "text": "Southwards" }, { "text": "Eastwards" }, { "text": "Westwards" }] },
+        { "prompt": "Which city was the capital during the New Kingdom?", "options": [{ "text": "Thebes", "correct": true }, { "text": "Memphis" }, { "text": "Alexandria" }, { "text": "Cairo" }] },
+        { "prompt": "Which animal was sacred to the goddess Bastet?", "options": [{ "text": "The cat", "correct": true }, { "text": "The dog" }, { "text": "The cow" }, { "text": "The ibis" }] },
+        { "prompt": "Which pharaoh moved the capital and worshipped only the sun?", "options": [{ "text": "Akhenaten", "correct": true }, { "text": "Thutmose III" }, { "text": "Ramesses III" }, { "text": "Sneferu" }] },
+        { "prompt": "About how many years did building the largest pyramid take?", "options": [{ "text": "Twenty", "correct": true }, { "text": "Five" }, { "text": "Fifty" }, { "text": "A hundred" }] },
+        { "prompt": "Which god with the head of an ibis was the god of wisdom?", "options": [{ "text": "Thoth", "correct": true }, { "text": "Ptah" }, { "text": "Amon" }, { "text": "Sobek" }] },
+        { "prompt": "What does the word pharaoh originally mean?", "options": [{ "text": "Great house", "correct": true }, { "text": "Child of the sun" }, { "text": "Lord of the earth" }, { "text": "Living god" }] },
+        { "prompt": "Which sea lies to the north of Egypt?", "options": [{ "text": "The Mediterranean", "correct": true }, { "text": "The Red Sea" }, { "text": "The Black Sea" }, { "text": "The Dead Sea" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall was the largest pyramid of Giza originally?", "answer": 147, "unit": "metres", "explanation": "Almost a hundred and fifty metres; erosion cost it a few metres of top." },
+        { "prompt": "About how many kilometres long is the Nile?", "answer": 6650, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Pyramid" },
+        { "prompt": "Mummy" },
+        { "prompt": "Pharaoh" },
+        { "prompt": "Desert" },
+        { "prompt": "Camel" },
+        { "prompt": "Temple" },
+        { "prompt": "Gold" },
+        { "prompt": "Sphinx" },
+        { "prompt": "River" },
+        { "prompt": "Tomb" },
+        { "prompt": "Mask" },
+        { "prompt": "Papyrus" },
+        { "prompt": "Treasure" },
+        { "prompt": "Sun" },
+        { "prompt": "Snake" },
+        { "prompt": "Obelisk" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four Egyptian gods.", "answers": [{ "text": "Ra" }, { "text": "Osiris" }, { "text": "Isis" }, { "text": "Anubis" }] },
+        { "prompt": "Name four objects from the tomb of Tutankhamun.", "answers": [{ "text": "The golden mask" }, { "text": "The sarcophagus" }, { "text": "A chariot" }, { "text": "Jewellery" }] },
+        { "prompt": "Name four countries the Nile runs through or along.", "answers": [{ "text": "Egypt" }, { "text": "Sudan" }, { "text": "South Sudan" }, { "text": "Uganda" }] },
+        { "prompt": "Name four kinds of building from ancient Egypt.", "answers": [{ "text": "Pyramid" }, { "text": "Temple" }, { "text": "Obelisk" }, { "text": "Rock tomb" }] },
+        { "prompt": "Name four animals that were sacred in Egypt.", "answers": [{ "text": "The cat" }, { "text": "The crocodile" }, { "text": "The ibis" }, { "text": "The bull" }] },
+        { "prompt": "Name four steps of mummification.", "answers": [{ "text": "Removing the organs" }, { "text": "Drying with salt" }, { "text": "Wrapping in linen" }, { "text": "Placing in a sarcophagus" }] },
+        { "prompt": "Name four pharaohs.", "answers": [{ "text": "Khufu" }, { "text": "Ramesses II" }, { "text": "Tutankhamun" }, { "text": "Hatshepsut" }] },
+        { "prompt": "Name four cities in present-day Egypt.", "answers": [{ "text": "Cairo" }, { "text": "Alexandria" }, { "text": "Luxor" }, { "text": "Aswan" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What was the new capital Akhenaten had built called?", "answers": [{ "text": "Akhetaten", "aliases": ["Amarna"] }] },
+        { "prompt": "What are the four jars the organs were kept in called?", "answers": [{ "text": "Canopic jars", "aliases": ["canopic vases"] }] },
+        { "prompt": "Which Greek historian called Egypt a gift of the Nile?", "answers": [{ "text": "Herodotus" }] },
+        { "prompt": "Which dynasty ruled Egypt between Alexander and the Romans?", "answers": [{ "text": "The Ptolemies", "aliases": ["Ptolemaic dynasty"] }] },
+        { "prompt": "What is the Egyptian sign of life called?", "answers": [{ "text": "The ankh", "aliases": ["ankh"] }] },
+        { "prompt": "In what year did Egypt become a province of Rome?", "answers": [{ "text": "30 BC", "aliases": ["30 BCE"] }] }
+      ]
+    }
+  ]
+}
