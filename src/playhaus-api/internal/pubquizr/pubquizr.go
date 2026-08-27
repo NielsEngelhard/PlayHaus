@@ -162,6 +162,10 @@ func (Question) TableName() string { return "pq_questions" }
 
 // CorrectAnswers are the answers that score, leaving the wrong ABCD options and the
 // spelling variants out.
+//
+// Carries ChoiceCorrectOptions and OpenAnswersPerQuestion without naming them: it is
+// what validateQuestion counts to check both. A method on the row, so it stays on the
+// row.
 func (q Question) CorrectAnswers() []Answer {
 	var correct []Answer
 	for _, answer := range q.Answers {

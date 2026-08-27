@@ -304,7 +304,7 @@ func validateQuestion(q Question) error {
 				correct++
 			}
 		}
-		if correct != 1 {
+		if correct != ChoiceCorrectOptions {
 			return fmt.Errorf("needs exactly one correct option, has %d", correct)
 		}
 
@@ -314,7 +314,7 @@ func validateQuestion(q Question) error {
 		}
 
 	case KindOpen:
-		if len(q.CorrectAnswers()) != 1 {
+		if len(q.CorrectAnswers()) != OpenAnswersPerQuestion {
 			return fmt.Errorf("needs exactly one answer, has %d", len(q.CorrectAnswers()))
 		}
 

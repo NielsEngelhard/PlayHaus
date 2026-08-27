@@ -2,9 +2,7 @@ package lol
 
 import (
 	"context"
-	"crypto/rand"
 	"fmt"
-	"math/big"
 	"time"
 
 	"playhaus-api/internal/i18n"
@@ -33,7 +31,7 @@ type CreateSoloGameInput struct {
 
 func (in CreateSoloGameInput) validate() map[string]string {
 	problems := map[string]string{}
-	if in.WordLength < MinWordLength || in.WordLength > MaxWordLength {
+	if !ValidWordLength(in.WordLength) {
 		problems["wordLength"] = fmt.Sprintf("must be between %d and %d", MinWordLength, MaxWordLength)
 	}
 
@@ -84,7 +82,7 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		CreatedAt:       time.Now().UTC(),
 	}
 
-	rounds, err := s.generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale, in.OnlyPickCommonWords)
+	rounds, err := s.generateRounds(game.ID, RoundsFor(1), in.WordLength, locale, in.OnlyPickCommonWords)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -172,10 +170,8 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	if !IsAllowedWord(game.Locale, game.WordLength, word) {
 		return nil, ErrInvalidGuessWordNonExisting
 	}
-	for _, played := range round.Guesses {
-		if played.Word == word {
-			return nil, ErrDuplicateGuess
-		}
+	if AlreadyGuessed(round.Guesses, word) {
+		return nil, ErrDuplicateGuess
 	}
 
 	guess := &LeagueOfLettersGuess{
@@ -189,7 +185,9 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	}
 
 	solved := guess.Correct()
-	roundOver := solved || guess.GuessNumber >= MaxGuesses
+	// GuessNumber counts this row, so the round is asked about the board as it will
+	// stand -- the guess is scored before it is appended, and this is the same order.
+	roundOver := RoundIsOver(solved, guess.GuessNumber)
 
 	game.Score += DetermineScore(*guess, round.Guesses)
 
@@ -256,7 +254,7 @@ func (s *Service) generateRounds(gameID uuid.UUID, amount int, wordLength int, l
 	for i := range amount {
 		word := words[i]
 		if s.opts.DevMode {
-			word = devModeWord
+			word = DevModeWord
 		}
 
 		rounds[i] = LeagueOfLettersRound{
@@ -268,31 +266,4 @@ func (s *Service) generateRounds(gameID uuid.UUID, amount int, wordLength int, l
 	}
 
 	return rounds, nil
-}
-
-func determineNumberOfRounds(nPlayers int) int {
-	switch {
-	case nPlayers == 1:
-		return 3
-	case nPlayers <= 3:
-		return nPlayers * 2
-	default:
-		return nPlayers * 3
-	}
-}
-
-func generateRandomString(length int) (string, error) {
-	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-	result := make([]byte, length)
-
-	for i := range result {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(chars))))
-		if err != nil {
-			return "", err
-		}
-		result[i] = chars[n.Int64()]
-	}
-
-	return string(result), nil
 }

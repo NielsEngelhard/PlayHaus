@@ -8,42 +8,9 @@ package pubquizr
 // works by moving one of the two and letting the other follow. `OpenOn` and `ReadBy` are
 // the two ends of that sentence and the only things that may write either column.
 //
-// hot_seat.go holds what only rounds 1 and 2 do; round_three.go and round_four.go hold
-// what only those rounds do. Everything here is arithmetic, with no database in the way,
-// so the ordering can be read and tested on its own.
-
-// wrap is n modulo size, always non-negative. Go's % keeps the sign of its left
-// operand, which is not what walking backwards round a table wants.
-func wrap(n, size int) int {
-	return ((n % size) + size) % size
-}
-
-// QuestionsIn is how many questions a round of this session holds.
-//
-// Read off the deal rather than off the quiz: what this table plays was frozen when
-// the game started, and the quiz behind it may hold more than they were dealt.
-
-// ReaderFor is who reads to one seat: the player on their right, which is the seat
-// before them in table order.
-//
-// The round's whole ordering, in one line. A question is read by the neighbour of
-// whoever it opens on, so naming the seat that starts names the reader too -- and
-// every way the game moves on works by moving the start and letting the reading
-// follow it.
-func ReaderFor(seat, players int) int {
-	if players <= 0 {
-		return -1
-	}
-
-	return wrap(seat-1, players)
-}
-
-// OpenOn puts the next question on one seat and the reading on the seat to its
-// right.
-//
-// The only thing that should ever write either of the two columns, because they are
-// one fact: a hot seat with somebody other than its right-hand neighbour reading to
-// it is a table nobody at it could describe.
+// The ordering rules themselves -- wrap, ReaderFor, RotatesEachTurn -- moved to rules.go,
+// with everything else a rule change touches. What is left here is the Session methods
+// that write the two columns.
 
 // OpenOn puts the next question on one seat and the reading on the seat to its
 // right.
@@ -60,13 +27,6 @@ func (s *Session) OpenOn(seat int) {
 	s.HotSeat = wrap(seat, players)
 	s.QuizMasterSeat = ReaderFor(s.HotSeat, players)
 }
-
-// LowestScoringSeat is whoever has the fewest points, ties going to whoever sits
-// nearest the head of the table.
-//
-// Every round but the first and the finale opens on them: the round starts with the
-// person who most needs it to. Ties break on the seat rather than at random so the
-// answer is the same one twice, which is what lets a table argue with it.
 
 // QuestionsIn is how many questions a round of this session holds.
 //
@@ -85,8 +45,6 @@ func (s *Session) QuestionsInRound(round int) int {
 }
 
 // QuestionAt is the dealt question in one slot, or nil when the round is over.
-
-// QuestionAt is the dealt question in one slot, or nil when the round is over.
 func (s *Session) QuestionAt(round, position int) *SessionQuestion {
 	for i := range s.Questions {
 		if s.Questions[i].Round == round && s.Questions[i].Position == position {
@@ -96,9 +54,6 @@ func (s *Session) QuestionAt(round, position int) *SessionQuestion {
 
 	return nil
 }
-
-// PlayerAt is whoever is sitting in one seat, or nil for a seat that is not at this
-// table.
 
 // PlayerAt is whoever is sitting in one seat, or nil for a seat that is not at this
 // table.
@@ -112,19 +67,14 @@ func (s *Session) PlayerAt(seat int) *SessionPlayer {
 	return nil
 }
 
-// HotSeatOrFirst is where the current question started.
-//
-// The stored seat, except for the two cases where it cannot be believed: a session
-// dealt before the column existed carries -1, and a seat that has ended up being the
-// reader's own is a table that could not be asked anything. Both fall back to the
-// seat on the quizmaster's left, which is where a fresh question starts anyway.
-
 // LowestScoringSeat is whoever has the fewest points, ties going to whoever sits
 // nearest the head of the table.
 //
 // Every round but the first and the finale opens on them: the round starts with the
 // person who most needs it to. Ties break on the seat rather than at random so the
 // answer is the same one twice, which is what lets a table argue with it.
+//
+// A rule, but not one rules.go can hold: it has to read the scoreboard.
 func (s *Session) LowestScoringSeat() int {
 	seat, score := -1, 0
 
@@ -157,24 +107,15 @@ func (s *Session) RotateOneSeat() {
 	s.OpenOn(s.HotSeatOrFirst() + 1)
 }
 
-// RotatesEachTurn is whether a round moves the table on by itself.
-//
-// Rounds 1 and 2 do not: where they go next is decided by the verdict, because taking a
-// question keeps you in the seat. Rounds 3 and 4 simply go round -- everybody guesses
-// once, everybody describes once -- so the turn moves whether anybody scored or not.
-func RotatesEachTurn(round int) bool {
-	return round == RoundClosest || round == RoundDescribe
-}
-
 // OpenRoundOn starts a round on one seat: whoever plays first.
 //
 // Round 4 reads that as the describer, because a describer holds the phone; everywhere
 // else it is the seat being asked. The finale is left alone -- it is only the top two,
 // and who starts it is that round's own business.
 func (s *Session) OpenRoundOn(round, seat int) {
-	switch round {
-	case RoundFinale:
-	case RoundDescribe:
+	switch {
+	case round == RoundFinale:
+	case OpensOnTheReader(round):
 		s.ReadBy(seat)
 	default:
 		s.OpenOn(seat)
@@ -189,6 +130,9 @@ func (s *Session) OpenRoundOn(round, seat int) {
 // hang off the seat rather than off the slot -- which is why nothing may look a round 4
 // question up by CurrentPosition. It would find a word belonging to somebody else's
 // thirty seconds.
+//
+// Stays here because the answer for every other round is however many questions this
+// session was dealt, which only the session knows.
 func (s *Session) TurnsInRound(round int) int {
 	if round == RoundDescribe {
 		return len(s.Players)

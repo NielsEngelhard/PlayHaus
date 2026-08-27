@@ -70,8 +70,8 @@ func (s *verdictStore) ListQuizzes(context.Context, QuizFilter) ([]*Quiz, int64,
 func (s *verdictStore) QuestionCounts(context.Context, []uuid.UUID) (map[uuid.UUID]int, error) {
 	return nil, nil
 }
-func (s *verdictStore) ReplaceQuiz(context.Context, *Quiz) error         { return nil }
-func (s *verdictStore) CreateSession(context.Context, *Session) error    { return nil }
+func (s *verdictStore) ReplaceQuiz(context.Context, *Quiz) error      { return nil }
+func (s *verdictStore) CreateSession(context.Context, *Session) error { return nil }
 func (s *verdictStore) SessionsInProgressByUserID(context.Context, string) ([]*Session, error) {
 	return nil, nil
 }

@@ -17,10 +17,12 @@ func TestDetermineScore(t *testing.T) {
 	// p c c p -- the k and m are in the word but in each other's places.
 	opening := played("kelm", target)
 
-	// 1 + 5 + 5 + 1: two letters placed out of nowhere, two sighted for the first
-	// time. Nothing was known going in, so every letter is news.
-	if got := DetermineScore(opening, nil); got != 12 {
-		t.Fatalf("opening guess scored %d, want 12", got)
+	// Two letters placed out of nowhere, two sighted for the first time. Nothing was
+	// known going in, so every letter is news. Spelled out of the rules rather than
+	// as a bare 12, so re-pricing a letter in rules.go moves this with it.
+	wantOpening := 2*InstantCorrectPoints + 2*WrongPlacePoints
+	if got := DetermineScore(opening, nil); got != wantOpening {
+		t.Fatalf("opening guess scored %d, want %d", got, wantOpening)
 	}
 
 	// c c c c, and the answer.
@@ -28,9 +30,10 @@ func TestDetermineScore(t *testing.T) {
 
 	// The e and the l were already nailed down, so they pay nothing the second
 	// time. The m and the k had only been sighted, so placing them is worth the
-	// after-hint rate: 2 + 0 + 0 + 2, plus 6 for the word.
-	if got := DetermineScore(solving, []LeagueOfLettersGuess{opening}); got != 10 {
-		t.Fatalf("solving guess scored %d, want 10", got)
+	// after-hint rate -- plus the flat bonus for landing the word.
+	wantSolving := 2*CorrectAfterHintPoints + WordGuessedPoints
+	if got := DetermineScore(solving, []LeagueOfLettersGuess{opening}); got != wantSolving {
+		t.Fatalf("solving guess scored %d, want %d", got, wantSolving)
 	}
 }
 

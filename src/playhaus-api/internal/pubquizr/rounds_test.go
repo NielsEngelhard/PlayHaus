@@ -57,10 +57,6 @@ func TestReaderForIsTheSeatOnTheRight(t *testing.T) {
 // OpenOn is the only thing that should write either seat, because the two are one
 // fact: a hot seat read to by anybody but its right-hand neighbour is a table nobody
 // sitting at it could describe.
-
-// OpenOn is the only thing that should write either seat, because the two are one
-// fact: a hot seat read to by anybody but its right-hand neighbour is a table nobody
-// sitting at it could describe.
 func TestOpenOnPutsTheReadingOnTheSeatToTheRight(t *testing.T) {
 	session := &Session{
 		Players: []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}, {Seat: 3}},
@@ -77,8 +73,6 @@ func TestOpenOnPutsTheReadingOnTheSeatToTheRight(t *testing.T) {
 		}
 	}
 }
-
-// Who opens every round but the first and the finale.
 
 // Who opens every round but the first and the finale.
 func TestLowestScoringSeat(t *testing.T) {

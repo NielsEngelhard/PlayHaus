@@ -193,11 +193,14 @@ type StartSingleDeviceInput struct {
 func (in StartSingleDeviceInput) validate() map[string]string {
 	problems := map[string]string{}
 
-	if len(in.PlayerNames) < MinPlayers {
-		problems["playerNames"] = fmt.Sprintf("needs at least %d players", MinPlayers)
-	}
-	if len(in.PlayerNames) > MaxPlayers {
-		problems["playerNames"] = fmt.Sprintf("takes at most %d players", MaxPlayers)
+	if !PlayerCountOK(len(in.PlayerNames)) {
+		// Two messages off the one rule: which side of it you fell off is the only
+		// part the person setting up the quiz can do anything about.
+		if len(in.PlayerNames) < MinPlayers {
+			problems["playerNames"] = fmt.Sprintf("needs at least %d players", MinPlayers)
+		} else {
+			problems["playerNames"] = fmt.Sprintf("takes at most %d players", MaxPlayers)
+		}
 	}
 	for _, name := range in.PlayerNames {
 		if strings.TrimSpace(name) == "" {
@@ -327,10 +330,10 @@ func seatNames(raw []string) ([]string, error) {
 		names = append(names, trimmed)
 	}
 
-	if len(names) < MinPlayers {
-		return nil, ErrTooFewPlayers
-	}
-	if len(names) > MaxPlayers {
+	if !PlayerCountOK(len(names)) {
+		if len(names) < MinPlayers {
+			return nil, ErrTooFewPlayers
+		}
 		return nil, ErrTooManyPlayers
 	}
 
@@ -357,7 +360,11 @@ type roundDeal struct {
 	want func(available int) int
 	// seatFor is whose question each slot is, built once the size of the deal is
 	// known. Nil for the rounds that belong to the table.
-	seatFor func(dealt int) func(i int) *int
+	//
+	// carried is what the quiz holds for the round, dealt is how much of it this table
+	// plays. Round 4 needs the first: how many words each player gets is a rule about
+	// the pool, and the dealt count is that rule's answer already applied.
+	seatFor func(carried, dealt int) func(i int) *int
 }
 
 // dealQuestions works out what this table will actually play.
@@ -370,17 +377,32 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 	// round but the fourth: even round 2, which used to hand everybody their own ABCD
 	// question and now runs on the hot seat like round 1, where the reading moves and
 	// the questions do not.
-	toTheTable := func(int) func(int) *int { return func(int) *int { return nil } }
+	toTheTable := func(int, int) func(int) *int { return func(int) *int { return nil } }
 	// inTurns keeps a player's words together, which is what round 4 needs: you
 	// describe all of yours inside the same thirty seconds.
-	inTurns := func(dealt int) func(int) *int {
-		per := max(dealt/max(players, 1), 1)
+	//
+	// How many each is asked of DescribeWordsPerPlayer, against what the quiz carries.
+	// It used to be dealt/players with a floor of 1, which is the same answer -- the
+	// deal is players*per by construction, so dividing it back out returns per, and
+	// the floor was MinDescribeWordsPerTurn spelled as a literal. But it was the rule
+	// worked out a second way, and it only agreed because of an identity two functions
+	// away in another file. Asking the rule cannot disagree with the rule.
+	inTurns := func(carried, _ int) func(int) *int {
+		per := DescribeWordsPerPlayer(players, carried)
+		if per <= 0 {
+			// Only reachable with nobody at the table, which deals no words at all --
+			// but the division below is not the place to find that out.
+			return func(int) *int { return nil }
+		}
 		return func(i int) *int {
 			seat := i / per
 			return &seat
 		}
 	}
 
+	// The running order of an evening. Fixed, and the one rule in this file that is not
+	// in rules.go: it is a table of functions rather than values, and every number in it
+	// is already a call into rules.go.
 	for _, round := range []roundDeal{
 		{RoundOpen, all, toTheTable},
 		{RoundChoice, func(int) int { return ChoiceQuestionsFor(players) }, toTheTable},
@@ -392,6 +414,9 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 		{RoundFinale, all, toTheTable},
 	} {
 		available := quiz.QuestionsIn(round.number)
+		// Held on to, because available is about to be cut down to what this table
+		// plays and one of the rules is about the whole pool.
+		carried := len(available)
 
 		if minimum := MinQuestionsIn(round.number); len(available) < minimum {
 			return nil, fmt.Errorf("%w: round %d has %d questions, needs %d",
@@ -405,7 +430,7 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 		}
 		available = available[:want]
 
-		seatFor := round.seatFor(len(available))
+		seatFor := round.seatFor(carried, len(available))
 		for i, question := range available {
 			deal = append(deal, dealtQuestion{
 				round:        round.number,
@@ -530,7 +555,7 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 		question.Points = points
 		out.Questions = append(out.Questions, question)
 
-		if session.CurrentRound == RoundChoice {
+		if !RoundKeepsTheSeat(session.CurrentRound) {
 			// Round 2 never lets a correct answer keep the seat -- it shuffles on
 			// exactly the way a wrong-with-nobody-left question does, so that over the
 			// round's one question per player, every seat is asked exactly once and
@@ -731,6 +756,9 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 
 // checkGuessingSeats is the rule both ways into round 3 share: real seats, each named
 // once, and never the person reading it out.
+//
+// "Real" is the part that keeps it out of rules.go -- which seats exist is a fact about
+// this table, not about the game. The each-named-once half is DuplicateGuessSeat's.
 func (s *Session) checkGuessingSeats(seats []int) error {
 	named := make(map[int]struct{}, len(seats))
 
@@ -777,7 +805,6 @@ func (s *Service) closestAnswer(ctx context.Context, session *Session, question 
 
 	return 0, fmt.Errorf("closest answer: %w", ErrQuizNotFound)
 }
-
 
 // WordAward is what became of one word inside the thirty seconds. Empty Seats is a word
 // nobody got. More than one seat is a draw -- two people shouting it at the same
@@ -911,7 +938,7 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 		score(describer, DescribeWordPoints)
 
 		word.Status = QuestionDone
-		word.Points = DescribeWordPoints + len(winners)*DescribeGuessPoints
+		word.Points = DescribeWordPointsFor(len(winners))
 		out.Questions = append(out.Questions, word)
 	}
 
@@ -938,6 +965,9 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 //
 // The result is only the guessed ones: a word missing from it, or mapped to an empty
 // slice, is a word nobody got.
+//
+// Carries round 4's "you cannot be credited with your own word" -- see GuessableSeats,
+// which it checks against. Needs the turn's words and the table, so it stays.
 func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (map[uuid.UUID][]int, error) {
 	thisTurn := make(map[uuid.UUID]struct{}, len(words))
 	for _, word := range words {
@@ -986,8 +1016,6 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 
 	return guessed, nil
 }
-
-
 
 // advance moves the session on to the next slot, and off the end of the round when
 // there is no next slot.

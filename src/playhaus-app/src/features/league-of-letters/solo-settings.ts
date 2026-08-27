@@ -1,7 +1,7 @@
 /**
- * The knobs a solo game is set up with. These mirror `MinWordLength`/`MaxWordLength`
- * in the API (`internal/lol/lol.go`) — keep the two in
- * step, since the values travel to the backend as-is.
+ * The knobs a solo game is set up with. These mirror `MinWordLength`/`MaxWordLength` in
+ * the API, which keeps every game rule in one file: `internal/lol/rules.go`. Keep the two
+ * in step, since the values travel to the backend as-is.
  *
  * The language list is not here: it moved to `@/constants/languages` once an
  * account gained a language of its own, and a game only borrows it.
@@ -12,9 +12,9 @@ import { DEFAULT_LANGUAGE, type LanguageCode } from '@/constants/languages';
 /**
  * All five have word lists behind them, in both languages.
  *
- * Three is not among them: the backend enforces four to eight and ships no
- * three-letter lists, and with the opening letter given away a three-letter word
- * would be a two-letter puzzle anyway.
+ * Three is not among them: the backend enforces four to eight — `ValidWordLength` in
+ * `internal/lol/rules.go` — and ships no three-letter lists, and with the opening letter
+ * given away a three-letter word would be a two-letter puzzle anyway.
  */
 export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
 
@@ -23,9 +23,8 @@ export type WordLength = typeof WORD_LENGTHS[number];
 /**
  * The shape of a solo game, for the setup screen to promise before one exists.
  *
- * Mirrors the backend, which is where these are actually decided: `MaxGuesses` in
- * `internal/lol/lol.go`, and `determineNumberOfRounds(1)`
- * in `internal/lol/service.go`. Keep the two in step.
+ * Mirrors the backend, which is where these are actually decided: `MaxGuesses` and
+ * `RoundsFor(1)`, both in `internal/lol/rules.go`. Keep the two in step.
  *
  * Duplicated here rather than read off the game because the setup screen shows them
  * *before* it creates anything — the server's `Game` carries `totalRounds` and
@@ -52,6 +51,8 @@ export interface SoloSettings {
  * The locale here is only what a screen starts from before it knows whose game it
  * is — both the solo settings screen and the lobby replace it with the account's
  * own language as soon as the session has one.
+ *
+ * The five is `DefaultWordLength` in `internal/lol/rules.go`.
  */
 export const DEFAULT_LOL_SETTINGS: SoloSettings = {
     locale: DEFAULT_LANGUAGE,

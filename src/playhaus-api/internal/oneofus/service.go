@@ -10,13 +10,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type GameMode string
-
-const (
-	Word     GameMode = "word"
-	Sentence GameMode = "sentence"
-)
-
 type GameInputLine struct {
 	RealLine     string
 	ImposterLine string
@@ -52,7 +45,7 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 		}
 	}
 
-	rounds, err := generateOneOfUsRounds(in.Locale, in.GameMode, 4, gameID, players)
+	rounds, err := generateOneOfUsRounds(in.Locale, in.GameMode, Rounds, gameID, players)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +83,8 @@ func generateOneOfUsRounds(
 	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	for i, line := range content {
-		imposterAmount := determineAmountOfImposters(len(players))
+		// Redrawn every round rather than rotated
+		imposterAmount := ImpostersFor(len(players))
 
 		// Create a shuffled copy so the original players slice isn't modified.
 		shuffledPlayers := append([]OneOfUsLocalPlayer(nil), players...)
@@ -110,8 +104,4 @@ func generateOneOfUsRounds(
 	}
 
 	return rounds, nil
-}
-
-func determineAmountOfImposters(totalPlayers int) int {
-	return totalPlayers / 3 // 1 imposter per 3 players
 }

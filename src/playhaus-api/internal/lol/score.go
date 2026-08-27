@@ -1,20 +1,5 @@
 package lol
 
-// What a guess is worth.
-//
-// The scale pays for information, not for being right. A letter you had no way
-// of knowing is worth five; the same letter placed a second time is worth
-// nothing, because the board already told you where it went. Landing a letter
-// you had only ever seen as "somewhere in the word" sits between the two: the
-// round gave you the hint, you did the placing.
-//
-// The effect is that the cheapest way to a high score is to learn something with
-// every word, and that padding a solved round with repeats pays nothing.
-const instantCorrectPoints = 5
-const correctAfterHintPoints = 2
-const wrongPlacePoints = 1
-const wordGuessedPoints = 6
-
 // DetermineScore is what one guess earned, given the guesses that came before it
 // in the same round.
 //
@@ -35,21 +20,21 @@ func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueO
 			// The round had already said this letter was in the word somewhere;
 			// finding its square is the part that was still open.
 			case spotted[letter.Letter]:
-				score += correctAfterHintPoints
+				score += CorrectAfterHintPoints
 			default:
-				score += instantCorrectPoints
+				score += InstantCorrectPoints
 			}
 		case LetterPresent:
 			// Only the first sighting is news. A letter kept in the wrong place
 			// across three guesses is one discovery, not three.
 			if !placed[letter.Letter] && !spotted[letter.Letter] {
-				score += wrongPlacePoints
+				score += WrongPlacePoints
 			}
 		}
 	}
 
 	if currentGuess.Correct() {
-		score += wordGuessedPoints
+		score += WordGuessedPoints
 	}
 
 	return score

@@ -29,8 +29,9 @@ import (
 // lobbySettingsRequest is what the host gets to decide, on the way in.
 //
 // Validate answers nothing: the bounds on a word length are the game's rules rather
-// than the wire's, and the service already owns them. Checking them twice would be
-// two places to change MinWordLength.
+// than the wire's, and the service already owns them. Checking them twice would be two
+// places to change one rule -- there is exactly one, lol.ValidWordLength, and both
+// LobbySettings.validate and the solo path ask it.
 type lobbySettingsRequest struct {
 	WordLength int     `json:"wordLength"`
 	Locale     *string `json:"locale"`

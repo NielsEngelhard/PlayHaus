@@ -19,44 +19,6 @@ package pubquizr
 // Kept apart from the service so the ordering can be read, and tested, without a
 // database in the way.
 
-// AnsweringSeat is whose turn it is to answer, given where the question started and
-// how many seats have already tried it.
-//
-// hotSeat is the seat the question was first asked to. attempts is the number of
-// goes already had: 0 is that seat, 1 is the next one along, and so on. Returns -1
-// once every seat but the reader has had a go, which is the question running out
-// rather than a seat to ask.
-//
-// The walk skips the quizmaster rather than stopping at them. A question can now
-// start anywhere, so "back at the reader" is a seat to step over on the way round
-// and no longer says anything about how much of the table is left.
-func AnsweringSeat(quizMasterSeat, hotSeat, attempts, players int) int {
-	if players <= 1 || attempts < 0 {
-		return -1
-	}
-	// Everybody except the reader gets at most one go, so there are players-1 of
-	// them and the next attempt after that is nobody.
-	if attempts >= players-1 {
-		return -1
-	}
-
-	// The seats that can be asked are every seat but the reader, in table order from
-	// their left. Working along that ring rather than in seat numbers is what makes
-	// skipping the quizmaster fall out instead of needing a loop that steps over
-	// them.
-	first := wrap(quizMasterSeat+1, players)
-
-	// Where the hot seat sits in that ring. A hot seat that is somehow the reader --
-	// or one never set -- lands on players-1, which is 0 once it is taken round the
-	// ring, so the question starts to the reader's left the way it always used to.
-	start := wrap(hotSeat-first, players)
-
-	return wrap(first+(start+attempts)%(players-1), players)
-}
-
-// wrap is n modulo size, always non-negative. Go's % keeps the sign of its left
-// operand, which is not what walking backwards round a table wants.
-
 // HotSeatOrFirst is where the current question started.
 //
 // The stored seat, except for the two cases where it cannot be believed: a session
@@ -75,12 +37,6 @@ func (s *Session) HotSeatOrFirst() int {
 
 	return s.HotSeat
 }
-
-// CurrentAnsweringSeat is whose turn it is to answer right now, or -1 when nobody
-// is being asked anything -- a finished session, or a round this file has no say
-// over.
-//
-// attempts is what the store counted for the current question.
 
 // CurrentAnsweringSeat is whose turn it is to answer right now, or -1 when nobody
 // is being asked anything -- a finished session, or a round this file has no say

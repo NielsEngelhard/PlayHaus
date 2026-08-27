@@ -164,9 +164,9 @@ func TestEveryListedWordIsAValidGuess(t *testing.T) {
 
 				// generateRounds asks for one distinct word per round, so a list
 				// shorter than the rounds a game draws fails at creation.
-				if len(words) < determineNumberOfRounds(1) {
+				if len(words) < RoundsFor(1) {
 					t.Errorf("%s-%d-%s: holds %d words, need at least %d",
-						locale, size, listType, len(words), determineNumberOfRounds(1))
+						locale, size, listType, len(words), RoundsFor(1))
 				}
 
 				seen := map[string]bool{}

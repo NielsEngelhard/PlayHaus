@@ -55,6 +55,8 @@ func (s *Session) Describer() int {
 
 // GuessableSeats is everybody who may be credited with a word this turn: the whole table
 // except whoever is describing.
+//
+// The rule is "everybody but the describer"; the list of everybody is the session's.
 func (s *Session) GuessableSeats(describer int) []int {
 	seats := make([]int, 0, len(s.Players))
 

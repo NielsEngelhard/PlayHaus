@@ -28,7 +28,7 @@ type LobbySettings struct {
 
 func (in LobbySettings) validate() map[string]string {
 	problems := map[string]string{}
-	if in.WordLength < MinWordLength || in.WordLength > MaxWordLength {
+	if !ValidWordLength(in.WordLength) {
 		problems["wordLength"] = fmt.Sprintf("must be between %d and %d", MinWordLength, MaxWordLength)
 	}
 	return problems
@@ -40,12 +40,6 @@ func (in LobbySettings) normalised() LobbySettings {
 	}
 	return in
 }
-
-// multiplayerCommonWordsOnly is the word list a shared board draws from. Not a
-// setting: solo lets a player take the whole list because a hard word costs only
-// them, whereas six rows split between a table means one obscure answer wastes
-// everybody's turn. The settings card has no switch for it on purpose.
-const multiplayerCommonWordsOnly = true
 
 type MultiplayerStore interface {
 	CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error
@@ -414,7 +408,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 		}
 	}
 
-	rounds, err := s.generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, multiplayerCommonWordsOnly)
+	rounds, err := s.generateRounds(game.ID, RoundsFor(len(seated)), game.WordLength, game.Locale, multiplayerCommonWordsOnly)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -584,12 +578,8 @@ func (s *Service) SubmitMultiplayerGuess(ctx context.Context, in SubmitMultiplay
 	if !IsAllowedWord(game.Locale, game.WordLength, word) {
 		return nil, ErrInvalidGuessWordNonExisting
 	}
-	// Across the whole table, not just your own rows: on a shared board somebody
-	// else having tried a word is exactly as much of a repeat as you having tried it.
-	for _, played := range round.Guesses {
-		if !played.Skipped && played.Word == word {
-			return nil, ErrDuplicateGuess
-		}
+	if AlreadyGuessed(round.Guesses, word) {
+		return nil, ErrDuplicateGuess
 	}
 
 	guess := &LeagueOfLettersGuess{
@@ -776,7 +766,7 @@ func (g *MultiplayerLeagueOfLettersGame) opener(roundNumber int) string {
 	if len(seated) == 0 {
 		return ""
 	}
-	return seated[(roundNumber-1)%len(seated)].UserID
+	return seated[OpenerSeat(roundNumber, len(seated))].UserID
 }
 
 // playerAfter is whose turn it is once userID has had theirs.
@@ -788,7 +778,7 @@ func (g *MultiplayerLeagueOfLettersGame) playerAfter(userID string) string {
 
 	for i, player := range seated {
 		if player.UserID == userID {
-			return seated[(i+1)%len(seated)].UserID
+			return seated[SeatAfter(i, len(seated))].UserID
 		}
 	}
 

@@ -25,47 +25,6 @@ const (
 	GameAbandoned  GameStatus = "abandoned"
 )
 
-const (
-	MinWordLength = 4
-	MaxWordLength = 8
-)
-
-// DefaultWordLength is what a room plays at until its host says otherwise.
-//
-// A lobby is opened before anybody has been asked anything -- the code has to exist
-// to be shared -- so it needs a length to sit at while the room fills up. Classic
-// League of Letters, and the same figure DEFAULT_SOLO_SETTINGS starts the solo
-// screen on.
-const DefaultWordLength = 5
-
-// devModeWord is what every round plays when Options.DevMode is on: five letters, so
-// it fits a room left on DefaultWordLength, and always the same so a screen can be
-// walked through without anybody having to guess a real word.
-const devModeWord = "lepel"
-
-// MaxGuesses is how many rows a round has.
-//
-// In solo they are all yours. In multiplayer the table shares them -- six rows
-// between however many of you there are -- which is what makes a wasted turn cost
-// everybody something.
-const MaxGuesses = 6
-
-const (
-	MaxLobbyPlayers   = 6
-	MinLobbyPlayers   = 2
-	JoinCodeLength    = 4
-	MinSecondsPerTurn = 10
-	MaxSecondsPerTurn = 100
-)
-
-const (
-	DefaultSecondsPerTurn = 35
-)
-
-// joinCodeAlphabet leaves out O/0 and I/1. Codes get read out loud across a room,
-// and the app's own generator made the same choice.
-const joinCodeAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
-
 var (
 	ErrGameNotFound = errors.New("game not found")
 	ErrInvalidInput = errors.New("invalid game settings")
@@ -174,10 +133,9 @@ type MultiplayerLeagueOfLettersGame struct {
 	TurnUserID string    `gorm:"not null"`
 	TurnEndsAt time.Time `gorm:"not null"`
 
-	Status    GameStatus `gorm:"not null"`
-	CreatedAt time.Time  `gorm:"not null"`
-
-	SecondsPerGuess int `gorm:"not null;default:35"`
+	Status          GameStatus `gorm:"not null"`
+	CreatedAt       time.Time  `gorm:"not null"`
+	SecondsPerGuess int        `gorm:"not null;default:35"`
 }
 
 func (MultiplayerLeagueOfLettersGame) TableName() string { return "mp_lol_games" }
@@ -226,17 +184,12 @@ func (r LeagueOfLettersRound) Solved() bool {
 	return false
 }
 
-// IsOver reports whether this round can still take a guess.
 func (r LeagueOfLettersRound) IsOver() bool {
-	return r.Solved() || len(r.Guesses) >= MaxGuesses
+	return RoundIsOver(r.Solved(), len(r.Guesses))
 }
 
-// FirstLetter is the hint the round opens with
 func (r LeagueOfLettersRound) FirstLetter() string {
-	if r.Word == "" {
-		return ""
-	}
-	return string([]rune(r.Word)[0])
+	return HintLetter(r.Word)
 }
 
 type LeagueOfLettersGuess struct {

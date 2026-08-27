@@ -17,10 +17,12 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
 	switch {
-	case len(req.PlayerNames) < oneofus.MinPlayers:
-		problems["playerNames"] = "needs at least " + strconv.Itoa(oneofus.MinPlayers) + " players"
-	case len(req.PlayerNames) > oneofus.MaxPlayers:
-		problems["playerNames"] = "takes at most " + strconv.Itoa(oneofus.MaxPlayers) + " players"
+	case !oneofus.PlayerCountOK(len(req.PlayerNames)):
+		if len(req.PlayerNames) < oneofus.MinPlayers {
+			problems["playerNames"] = "needs at least " + strconv.Itoa(oneofus.MinPlayers) + " players"
+		} else {
+			problems["playerNames"] = "takes at most " + strconv.Itoa(oneofus.MaxPlayers) + " players"
+		}
 	default:
 		for _, name := range req.PlayerNames {
 			if strings.TrimSpace(name) == "" {
@@ -51,16 +53,11 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		return
 	}
 
-	gameMode := oneofus.Sentence
-	if req.WordOnly == true {
-		gameMode = oneofus.Word
-	}
-
 	game, err := s.oneOfUs.StartSingleDeviceGame(r.Context(), oneofus.StartOneOfUsSingleDeviceGameInput{
 		OwnerID:     ownerID,
 		Locale:      localeFrom(Deref(req.Locale, ""), r),
 		PlayerNames: req.PlayerNames,
-		GameMode:    gameMode,
+		GameMode:    oneofus.ModeFor(req.WordOnly),
 	})
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "Error creating the single device OOU game")
