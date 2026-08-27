@@ -39,13 +39,13 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number): Rou
         case ROUND_CLOSEST:
             return {
                 kind: t('pubquizr.play.rounds.closest'),
-                rule: t('pubquizr.play.handoff.ruleClosest'),
+                rule: '',
                 brief: t('pubquizr.play.intro.briefClosest')
             };
         case ROUND_DESCRIBE:
             return {
                 kind: t('pubquizr.play.rounds.describe'),
-                rule: t('pubquizr.play.handoff.ruleDescribe'),
+                rule: '',
                 brief: t('pubquizr.play.intro.briefDescribe')
             };
         default:

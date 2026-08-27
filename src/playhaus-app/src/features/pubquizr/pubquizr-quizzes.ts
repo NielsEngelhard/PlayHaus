@@ -30,6 +30,15 @@ export interface QuizListItem {
     locale: string
     /** RFC 3339, and absent on a quiz that has not been published yet. */
     publishedAt?: string
+    /**
+     * A cover for the row's avatar slot.
+     *
+     * Nothing sends this yet — the endpoint answers with the six fields above and no
+     * more. It is declared because the row already has the slot and has to know what to
+     * do when one arrives; until then every quiz falls back to its swatch, which is why
+     * `quiz-shelf.ts` works the initials and the colour out from the title and the id.
+     */
+    imageUrl?: string
 }
 
 /**

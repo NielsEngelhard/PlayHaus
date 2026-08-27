@@ -404,13 +404,21 @@ export const nl: Catalog = {
                 promise: 'ELKE WEEK EEN\nNIEUWE QUIZ'
             },
             list: {
-                label: 'Alle quizzen · nieuwste eerst',
+                label: 'Alle quizzen',
                 tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
                 published: '{{day}} {{month}} {{year}}',
                 loadOlder: 'Ouder laden',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
-                comingSoon: 'Coming soon...'
+                comingSoon: 'Coming soon...',
+                search: 'Zoek een quiz…',
+                searchLabel: 'Zoek in de quizzen op deze lijst',
+                total: '{{quizzes}} in totaal',
+                matches: '{{quizzes}} gevonden',
+                noMatches: 'Hier staat niks dat daarop lijkt.',
+                noMatchesMore: 'Nog niks gevonden — oudere quizzen komen per pagina binnen. Laad er meer en kijk nog eens.',
+                sortNewest: 'Nieuwste',
+                sortAlpha: 'A–Z'
             }
         },
         oneDevice: {
@@ -471,9 +479,9 @@ export const nl: Catalog = {
             leadOpen: '{{name}} leest voor aan de speler links',
             leadChoice: '{{name}} leest voor · vier opties',
             leadClosest: '{{name}} leest voor · de rest gokt',
-            leadDescribe: '{{name}} omschrijft zijn eigen woorden',
+            leadDescribe: '{{name}} is aan de beurt',
             readAloud: 'Lees dit hardop voor',
-            onlyYouSeeThis: 'Alleen jij ziet dit',
+            onlyYouSeeThis: 'Het antwoord',
             alsoAccept: 'Ook goed: {{answers}}',
             answer: {
                 reveal: 'Tik om het antwoord te zien',
@@ -489,11 +497,11 @@ export const nl: Catalog = {
             correct: 'Goed',
             markWrong: 'Reken {{name}} fout',
             markCorrect: 'Reken {{name}} goed',
-            wrongPassesTo: 'Fout speelt de beurt door naar {{name}}',
+            wrongPassesTo: 'Fout? Dan mag {{name}}',
             wrongEndsQuestion: 'Niemand meer over, fout beëindigt deze vraag',
             choiceAlwaysPasses: 'Hoe dan ook, nu aan de beurt: {{name}}',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
-            worthPoints: 'Voor {{worth}}',
+            worthPoints: 'Voor {{worth}} punt(en)',
             noPoint: 'Geen punt',
             scores: 'Stand',
             choice: {
@@ -546,11 +554,11 @@ export const nl: Catalog = {
                 backspace: 'Wissen'
             },
             describe: {
-                readyTitle: 'Jouw woorden, {{name}}',
-                readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te doen',
-                readyRuleNoSaying: 'Zeg het woord zelf nooit',
-                readyRuleBothScore: 'Wie het als eerste roept scoort, en jij ook',
-                readyRuleTiming: 'De punten worden pas verdeeld als de tijd om is, dus blijf doorgaan in plaats van over één woord te discussiëren',
+                readyTitle: 'De regels',
+                readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te omschrijven',
+                readyRuleNoSaying: 'Zeg het woord zelf nooit. Anders telt het niet.',
+                readyRuleBothScore: 'Wie het als eerste roept scoort ook punten.',
+                readyRuleTiming: 'De punten worden pas verdeeld als de tijd om is, dus blijf doorgaan in plaats van over één woord te discussiëren.',
                 start: 'Laat mijn woorden zien en start',
                 dontSayIt: 'Zeg het woord zelf nooit',
                 runningReminder: 'Jullie scoren allebei als iemand het raadt. Zeg het woord nooit.',
@@ -564,10 +572,10 @@ export const nl: Catalog = {
             intro: {
                 of: 'van {{total}}',
                 round: 'Ronde {{round}}',
-                briefOpen: 'Twintig open vragen, en ze kunnen overal over gaan. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout en hij schuift door langs de tafel. Alleen elke tweede vraag levert een punt op.',
-                briefChoice: 'Pittige vragen, multiple choice. Eén vraag per speler, met alle vier de opties erbij voorgelezen. Elke vraag is twee punten waard.',
+                briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke tweede vraag levert een punt op.',
+                briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
-                briefDescribe: 'Dertig seconden om je eigen woorden aan de tafel te omschrijven zonder ze ooit te zeggen. Elk woord dat iemand roept is een punt voor jou en een punt voor wie het riep.',
+                briefDescribe: '31 seconden om je eigen woorden aan de tafel te omschrijven zonder het woord te zeggen (of een vertaling). Elk geraden woord is een punt voor zowel de roeper als de rader.',
                 action: 'Start ronde {{round}}'
             },
             handoff: {
@@ -576,7 +584,7 @@ export const nl: Catalog = {
                 jobOpen: '{{name}} leest voor aan de speler links van zich',
                 jobChoice: '{{name}} leest de vraag en alle vier de opties voor',
                 jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
-                jobDescribe: '{{name}} omschrijft zijn eigen woorden. Niemand anders mag meekijken.',
+                jobDescribe: 'Alleen {{name}} mag dit zien.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
@@ -585,7 +593,7 @@ export const nl: Catalog = {
             },
             standings: {
                 title: 'Ronde {{round}} klaar',
-                description: 'Zo staat de tafel ervoor met die ronde achter de rug.',
+                description: 'De tussenstand.',
                 startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
             }

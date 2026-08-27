@@ -443,8 +443,8 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     row: {
-        gap: 6,
-        padding: 11,
+        gap: 8,
+        padding: 13,
         borderRadius: 16,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderMuted,
@@ -452,7 +452,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     rowWord: {
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: 900,
         letterSpacing: -0.3,
         color: theme.colors.text
@@ -476,9 +476,9 @@ const useStyles = createThemedStyles(theme => ({
     chip: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6,
-        paddingVertical: 6,
-        paddingHorizontal: 10,
+        gap: 7,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
         borderRadius: 999,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderMuted,
@@ -492,20 +492,20 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     chipAvatar: {
-        width: 20,
-        height: 20,
+        width: 22,
+        height: 22,
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     chipInitials: {
-        fontSize: 8.5,
+        fontSize: 9.5,
         fontWeight: 900
     },
 
     chipText: {
-        fontSize: 12.5,
+        fontSize: 13.5,
         fontWeight: 700,
         color: theme.colors.text
     },

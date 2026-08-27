@@ -426,14 +426,39 @@ export const en = {
                 promise: 'NEW GENERAL\nQUIZ WEEKLY'
             },
             list: {
-                label: 'All quizzes · newest first',
+                /**
+                 * The shelf's name, which no longer promises an order — the panel has a
+                 * sort of its own now, and a heading that said "newest first" would be
+                 * wrong every time somebody pressed it.
+                 */
+                label: 'All quizzes',
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
                 /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
                 published: '{{day}} {{month}} {{year}}',
                 loadOlder: 'Load older',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
                 failed: 'The quizzes could not be loaded. Check your connection.',
-                comingSoon: 'Coming soon...'
+                comingSoon: 'Coming soon...',
+                search: 'Search quizzes…',
+                /** Read out for the search field, which shows only its icon. */
+                searchLabel: 'Search the quizzes on this shelf',
+                /**
+                 * How many quizzes the shelf holds, and how many of them a search found.
+                 * Never `count`: that is the one option name i18next treats as a plural
+                 * trigger, and there are no plural forms behind it. See `common.time`.
+                 */
+                total: '{{quizzes}} total',
+                matches: '{{quizzes}} found',
+                noMatches: 'Nothing on this shelf matches that.',
+                /**
+                 * The same miss, with older pages still unfetched behind it. Search only
+                 * sees the quizzes already loaded, so this has to say so rather than
+                 * leave someone certain their quiz is not here.
+                 */
+                noMatchesMore: 'Nothing matches that yet — older quizzes arrive a page at a time. Load some more and look again.',
+                /** The sort switch, spelled as the order it would put the shelf in. */
+                sortNewest: 'Newest',
+                sortAlpha: 'A–Z'
             }
         },
         oneDevice: {

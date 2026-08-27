@@ -9,6 +9,14 @@ export interface Quizzes {
     status: QuizzesStatus,
     /** Every page fetched so far, newest first, in one list. */
     items: QuizListItem[],
+    /**
+     * How many quizzes are on this shelf altogether.
+     *
+     * The shelf's own size, which `items.length` is not — that is however many pages
+     * have arrived. A list that names its own length has to say the first number, or
+     * it counts down to "load older" and then contradicts itself.
+     */
+    total: number,
     /** Whether there is an older page to ask for. */
     hasMore: boolean,
     /** Whether one is being fetched right now. */
@@ -33,11 +41,12 @@ interface Shelf {
     status: QuizzesStatus,
     items: QuizListItem[],
     page: number,
+    total: number,
     hasMore: boolean
 }
 
 function emptyShelf(category: QuizCategory, locale: LanguageCode, attempt: number): Shelf {
-    return { category, locale, attempt, status: 'loading', items: [], page: 1, hasMore: false };
+    return { category, locale, attempt, status: 'loading', items: [], page: 1, total: 0, hasMore: false };
 }
 
 /**
@@ -109,6 +118,7 @@ export function useQuizzes(category: QuizCategory): Quizzes {
                     status: 'ready',
                     items: response.items,
                     page: response.page,
+                    total: response.total,
                     hasMore: response.hasMore
                 }));
             })
@@ -137,6 +147,10 @@ export function useQuizzes(category: QuizCategory): Quizzes {
                     ...shown,
                     items: [...shown.items, ...response.items],
                     page: response.page,
+                    // Taken from the older page as well: a quiz published while someone
+                    // is reading moves the shelf's length, and the count on screen
+                    // should be the one this list was actually paged out of.
+                    total: response.total,
                     hasMore: response.hasMore
                 }));
             })
@@ -156,6 +170,7 @@ export function useQuizzes(category: QuizCategory): Quizzes {
     return {
         status: current.status,
         items: current.items,
+        total: current.total,
         hasMore: current.hasMore,
         loadingMore,
         loadMore,

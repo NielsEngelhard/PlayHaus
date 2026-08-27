@@ -1,5 +1,4 @@
 import GameIndexPage from "@/components/layout/GameIndexPage";
-import Label from "@/components/text/Label";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
@@ -63,8 +62,9 @@ export default function QuizzerIndexPage() {
                 />
             </View>
 
+            {/* No label above it: the shelf is a panel with a header of its own now, and
+                naming it twice on one page reads as two lists. */}
             <View style={styles.list}>
-                <Label label={t('pubquizr.index.list.label')} />
                 <QuizList />
             </View>
         </GameIndexPage>

@@ -9,3 +9,43 @@
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
 }
+
+/*
+ * The scrollbar on the pubquizR quiz shelf.
+ *
+ * `QuizList` caps its rows at a height you can see the bottom of, which only works if
+ * the box looks scrollable — and on the web a React Native `ScrollView` paints no
+ * scrollbar of its own, so the one thing saying "there is more below this" would be the
+ * fade alone. There is no style prop for a scrollbar, so it is said here, in the one
+ * place the app keeps web-only CSS.
+ *
+ * Hung on an id rather than a class because react-native-web gives no way to set a class
+ * name, and a screen only ever holds one shelf: the index page has one, and the setup
+ * screen renders the same component once.
+ */
+#quiz-shelf-scroller {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 13, 18, 0.32) transparent;
+}
+
+#quiz-shelf-scroller::-webkit-scrollbar {
+  width: 8px;
+}
+
+#quiz-shelf-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Inset by a transparent border rather than by width, so the thumb keeps the pill shape
+   a narrower one would round away. */
+#quiz-shelf-scroller::-webkit-scrollbar-thumb {
+  background: rgba(15, 13, 18, 0.32);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+#quiz-shelf-scroller::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 13, 18, 0.55);
+  background-clip: content-box;
+}

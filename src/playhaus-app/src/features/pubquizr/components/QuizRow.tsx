@@ -5,7 +5,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, View, type ImageStyle } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
 import { initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 
@@ -26,6 +26,20 @@ interface Props {
 const AVATAR_SIZE = 44;
 
 /**
+ * A cover filling the avatar's box, inside whatever border that box is wearing.
+ *
+ * Outside `useStyles` because it holds no colour — the one thing a module-level style
+ * object cannot be trusted with, since `StyleSheet.create` would freeze it to whichever
+ * scheme happened to be current at import. It is also the wrong shape for that sheet:
+ * every entry there is a `ViewStyle`, and an `Image` takes an `ImageStyle`.
+ */
+const AVATAR_IMAGE: ImageStyle = {
+    width: '100%',
+    height: '100%',
+    borderRadius: 999
+};
+
+/**
  * One quiz on a shelf: its swatch, what it is called, what is in it, and when it went
  * up.
  *
@@ -42,10 +56,23 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
 
     const body = (
         <>
+            {/* One box, filled two ways: a cover when the quiz has one, the initials
+                every quiz has otherwise. The swatch stays behind either — it is the
+                fallback when there is no image, and the placeholder underneath one that
+                has not arrived, which is the whole of the loading state this needs. */}
             <View style={[styles.avatar, { backgroundColor: swatch.color }]}>
-                <AppText style={[styles.initials, { color: swatch.foreground }]}>
-                    {initialsFor(quiz.title)}
-                </AppText>
+                {quiz.imageUrl !== undefined ? (
+                    <Image
+                        source={{ uri: quiz.imageUrl }}
+                        resizeMode="cover"
+                        accessibilityIgnoresInvertColors
+                        style={AVATAR_IMAGE}
+                    />
+                ) : (
+                    <AppText style={[styles.initials, { color: swatch.foreground }]}>
+                        {initialsFor(quiz.title)}
+                    </AppText>
+                )}
             </View>
 
             {/* `minWidth: 0` is what lets the long title truncate instead of
