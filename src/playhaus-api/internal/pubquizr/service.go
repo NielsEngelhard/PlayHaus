@@ -1017,6 +1017,258 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 	return guessed, nil
 }
 
+// ListAward is what became of one of round 5's four answers: which of them, and who at
+// the table gets credit for it. Empty Seats is an answer nobody found -- worth writing
+// down as much as a found one is, the same way a round 4 word nobody guessed is.
+//
+// More than one seat is a draw, same as round 3 and round 4: two people calling it out
+// at once both score in full rather than splitting the point.
+type ListAward struct {
+	AnswerID uuid.UUID
+	Seats    []int
+}
+
+// ListInput is the quizmaster settling one round 5 question, once every answer that was
+// found during the round has been credited to whoever found it.
+//
+// SessionQuestionID is the staleness guard every settle carries: a screen left open, or
+// a second tap, is refused rather than quietly scoring the question after it.
+type ListInput struct {
+	SessionID         uuid.UUID
+	OwnerID           string
+	SessionQuestionID uuid.UUID
+	// Awards must name every one of the question's four answers, once each -- the
+	// screen has a row for each already, so asking for all of them costs it nothing and
+	// stops a body that arrived half-written from quietly scoring an answer as missed.
+	Awards []ListAward
+}
+
+// RecordListAward scores one round 5 question and moves the game on.
+//
+// One answer pays whoever is credited with it, same as a round 4 word pays its guesser
+// -- but there is no describer's point sitting beside it here, because nobody in this
+// round is the one who is supposed to know the answers. The quizmaster reads the
+// question rather than answering it, and never keeps the seat across questions: the
+// reading rotates on by one seat every time, the same shuffle round 2's questions get,
+// so the job of reading four answers out of a table does not fall to one person all
+// night.
+func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, error) {
+	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundList {
+		return nil, ErrWrongRound
+	}
+
+	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
+	if question == nil || question.ID != in.SessionQuestionID {
+		return nil, ErrStaleTurn
+	}
+
+	correct, err := s.listAnswers(ctx, session, question)
+	if err != nil {
+		return nil, err
+	}
+
+	now := time.Now().UTC()
+	out := TurnOutcome{}
+	named := make(map[uuid.UUID]struct{}, len(in.Awards))
+	raised := map[int]*SessionPlayer{}
+
+	score := func(seat, points int) {
+		player := session.PlayerAt(seat)
+		player.Score += points
+		raised[seat] = player
+	}
+
+	total := 0
+	for _, awarded := range in.Awards {
+		match := false
+		for _, answer := range correct {
+			if answer.ID == awarded.AnswerID {
+				match = true
+				break
+			}
+		}
+		if !match {
+			return nil, fmt.Errorf("%w: %s", ErrUnknownAnswer, awarded.AnswerID)
+		}
+		if _, twice := named[awarded.AnswerID]; twice {
+			return nil, fmt.Errorf("list awards: %w: answer %s twice", ErrInvalidInput, awarded.AnswerID)
+		}
+		named[awarded.AnswerID] = struct{}{}
+
+		if len(awarded.Seats) == 0 {
+			// Nobody found it: a row worth writing down, the same as a round 4 word
+			// nobody guessed.
+			answerID := awarded.AnswerID
+			out.Answers = append(out.Answers, &SessionAnswer{
+				ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
+				AnswerID: &answerID, Correct: false, CreatedAt: now,
+			})
+			continue
+		}
+
+		seen := make(map[int]struct{}, len(awarded.Seats))
+		for _, seat := range awarded.Seats {
+			if session.PlayerAt(seat) == nil {
+				return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
+			}
+			if seat == session.QuizMasterSeat {
+				return nil, fmt.Errorf("%w: seat %d", ErrQuizmasterCannotGuess, seat)
+			}
+			if _, twice := seen[seat]; twice {
+				return nil, fmt.Errorf("list awards: %w: seat %d twice for answer %s",
+					ErrInvalidInput, seat, awarded.AnswerID)
+			}
+			seen[seat] = struct{}{}
+
+			answerID := awarded.AnswerID
+			out.Answers = append(out.Answers, &SessionAnswer{
+				ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
+				Seat: &seat, AnswerID: &answerID, Correct: true, Points: ListAnswerPoints,
+				CreatedAt: now,
+			})
+			score(seat, ListAnswerPoints)
+			total += ListAnswerPoints
+		}
+	}
+
+	if len(named) != len(correct) {
+		return nil, fmt.Errorf("list awards: %w: %d answers to this question, %d were ruled on",
+			ErrInvalidInput, len(correct), len(named))
+	}
+
+	// In seat order, so two runs of the same turn write the same rows in the same order.
+	for _, player := range session.Players {
+		if scored, moved := raised[player.Seat]; moved {
+			out.Players = append(out.Players, scored)
+		}
+	}
+
+	question.Status = QuestionDone
+	question.Points = total
+	out.Questions = append(out.Questions, question)
+
+	// The reading rotates to the next seat for the next list question -- round 5 never
+	// lets whoever is reading keep the job the way a round 1 hot seat does, the same
+	// shuffle round 2's questions get.
+	session.RotateOneSeat()
+
+	s.advance(session)
+	session.UpdatedAt = now
+
+	if err := s.store.RecordTurn(ctx, session, out); err != nil {
+		return nil, err
+	}
+
+	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+}
+
+// listAnswers are the four things round 5's current question is looking for.
+//
+// The one place this round has to reach for content: a dealt question carries an id and
+// nothing else, and which seats get credit cannot be checked without the answer key.
+// Mirrors closestAnswer.
+func (s *Service) listAnswers(ctx context.Context, session *Session, question *SessionQuestion) ([]Answer, error) {
+	quiz, err := s.store.QuizByID(ctx, session.QuizID)
+	if err != nil {
+		return nil, err
+	}
+	if quiz == nil {
+		return nil, fmt.Errorf("list answers: %w", ErrQuizNotFound)
+	}
+
+	for _, candidate := range quiz.Questions {
+		if candidate.ID != question.QuestionID {
+			continue
+		}
+		return candidate.CorrectAnswers(), nil
+	}
+
+	return nil, fmt.Errorf("list answers: %w", ErrQuizNotFound)
+}
+
+// RecordFinaleVerdict scores one round 6 question and moves the finale on.
+//
+// The finale reads like round 1 -- an open question, read aloud -- and moves like round
+// 2: whichever finalist just answered, right or wrong, the next question goes to the
+// other one. There is no line for a wrong answer to pass down, because there is nobody
+// else left at this table to pass it to -- the two finalists are the whole of it, see
+// OpenFinale. So this needs none of the attempt counting hot_seat.go does: every finale
+// question is exactly one attempt, by whoever the hot seat already names.
+//
+// Reuses VerdictInput rather than a type of its own -- the body is the same shape as a
+// round 1 or round 2 verdict, naming the question and the ruling and nothing else, for
+// the same reason: who is answering and what happens next are the game's own business.
+func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
+	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundFinale {
+		return nil, ErrWrongRound
+	}
+
+	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
+	if question == nil || question.ID != in.SessionQuestionID {
+		return nil, ErrStaleTurn
+	}
+
+	answering, reading := session.HotSeat, session.QuizMasterSeat
+	player := session.PlayerAt(answering)
+	if player == nil {
+		return nil, fmt.Errorf("finale verdict: no player in seat %d", answering)
+	}
+
+	now := time.Now().UTC()
+	attempt := &SessionAnswer{
+		ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
+		Seat: &answering, Correct: in.Correct, CreatedAt: now,
+	}
+	if said := strings.TrimSpace(in.Said); said != "" {
+		attempt.Text = &said
+	}
+	out := TurnOutcome{Answers: []*SessionAnswer{attempt}}
+
+	points := 0
+	if in.Correct {
+		points = FinalePoints
+		// Onto FinaleScore, not Score -- the finale is won on its own tally, not on
+		// top of what either finalist arrived with. See SessionPlayer.FinaleScore.
+		player.FinaleScore += points
+		out.Players = append(out.Players, player)
+	}
+	attempt.Points = points
+
+	question.Status = QuestionDone
+	question.Points = points
+	out.Questions = append(out.Questions, question)
+
+	// Round 2's rule, not round 1's: the seat never keeps itself, right or wrong. The
+	// finalist who was just reading is who the next question goes to, and the one who
+	// just answered reads it to them.
+	session.OpenFinaleOn(reading, answering)
+
+	s.advance(session)
+	session.UpdatedAt = now
+
+	if err := s.store.RecordTurn(ctx, session, out); err != nil {
+		return nil, err
+	}
+
+	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+}
+
 // advance moves the session on to the next slot, and off the end of the round when
 // there is no next slot.
 //
@@ -1051,6 +1303,13 @@ func (s *Service) advance(session *Session) {
 	// nothing carries it over a round boundary.
 	session.HotSeatRun = 0
 
+	if session.CurrentRound == RoundFinale {
+		// The finale picks its own two players off the scoreboard rather than opening
+		// on whoever is furthest behind at the whole table -- see OpenFinale.
+		session.OpenFinale()
+		return
+	}
+
 	// Every round but the first opens on whoever is furthest behind, which is the one
 	// place a score decides anything about the order. What "opens on" means is the
 	// round's own business -- round 4 reads it as who describes first, because there
@@ -1069,8 +1328,24 @@ func (s *Service) advance(session *Session) {
 // CurrentPosition counts turns rather than words, so looking a question up by it there
 // would find a word out of somebody else's thirty seconds. The result is thrown away
 // today, which is exactly the sort of thing that stops being true quietly.
+//
+// The finale is answered before the hot seat rounds are even asked about: it is not one
+// of IsHotSeatRound's rounds -- HotSeat there passes a question down a line, and the
+// finale has no line, just the other finalist -- but HotSeat is still exactly who is
+// being asked, with nothing to count to know it.
 func (s *Service) AnsweringSeatFor(ctx context.Context, session *Session) (int, error) {
-	if session.Status != SessionInProgress || !IsHotSeatRound(session.CurrentRound) {
+	if session.Status != SessionInProgress {
+		return -1, nil
+	}
+
+	if session.CurrentRound == RoundFinale {
+		if session.QuestionAt(RoundFinale, session.CurrentPosition) == nil {
+			return -1, nil
+		}
+		return session.HotSeat, nil
+	}
+
+	if !IsHotSeatRound(session.CurrentRound) {
 		return -1, nil
 	}
 

@@ -100,6 +100,7 @@ var (
 	ErrQuizmasterCannotGuess = errors.New("the quizmaster is reading this one out")
 	ErrDescriberCannotGuess  = errors.New("you cannot guess your own word")
 	ErrUnknownWord           = errors.New("that word is not part of this turn")
+	ErrUnknownAnswer         = errors.New("that answer is not part of this question")
 )
 
 type Quiz struct {
@@ -268,8 +269,14 @@ type SessionPlayer struct {
 	Seat      int       `gorm:"primaryKey"` // Seat is where they are sitting, left to right, because the phone gets turned round the table
 	Name      string    `gorm:"not null"`
 	Score     int       `gorm:"not null;default:0"`
-	Color     string    `gorm:"not null"`
-	CreatedAt time.Time `gorm:"not null"`
+	// FinaleScore is what this player has taken in round 6, and only round 6 -- kept
+	// apart from Score because the finale is won on it alone. A finalist can finish an
+	// evening leading on Score and still lose the night to whoever answered more finale
+	// questions, and the reverse is exactly what makes the finale worth playing. Zero
+	// for whoever never reached the finale.
+	FinaleScore int    `gorm:"not null;default:0"`
+	Color       string `gorm:"not null"`
+	CreatedAt   time.Time `gorm:"not null"`
 }
 
 func (SessionPlayer) TableName() string { return "pq_session_players" }

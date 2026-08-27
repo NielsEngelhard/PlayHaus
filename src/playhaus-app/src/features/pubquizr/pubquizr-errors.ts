@@ -34,6 +34,7 @@ export function quizErrorMessage(error: unknown): TranslationKey {
                 case 'stale_turn':
                 case 'unknown_seat':
                 case 'unknown_word':
+                case 'unknown_answer':
                     return 'pubquizr.errors.staleTurn';
                 case 'duplicate_guess':
                     return 'pubquizr.errors.duplicateGuess';

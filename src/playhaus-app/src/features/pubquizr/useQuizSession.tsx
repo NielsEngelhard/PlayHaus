@@ -7,7 +7,10 @@ import {
     getSingleDeviceSessionRequest,
     recordClosestGuessesRequest,
     recordDescribeAwardsRequest,
+    recordFinaleVerdictRequest,
+    recordListAwardsRequest,
     recordOpenVerdictRequest,
+    type ListAward,
     type QuizSession,
     type SeatGuess,
     type WordAward
@@ -39,6 +42,10 @@ export interface PlayableSession {
     settleClosest: (settled: { guesses: SeatGuess[] } | { winningSeats: number[] }) => void
     /** Round 4: what became of each of the describer's words. */
     settleDescribe: (awards: WordAward[]) => void
+    /** Round 5: what became of each of the question's four answers. */
+    settleList: (awards: ListAward[]) => void
+    /** Round 6: was that right? Its own call rather than `rule` — see `round-six.ts`. */
+    ruleFinale: (correct: boolean) => void
     reload: () => void
 }
 
@@ -184,6 +191,24 @@ export function useQuizSession(sessionId: string): PlayableSession {
         });
     }, [submit, sessionId]);
 
+    const settleList = useCallback((awards: ListAward[]) => {
+        submit(current => {
+            const [dealt] = current.turnQuestionIds;
+            if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
+
+            return recordListAwardsRequest(sessionId, dealt, awards);
+        });
+    }, [submit, sessionId]);
+
+    const ruleFinale = useCallback((correct: boolean) => {
+        submit(current => {
+            const [dealt] = current.turnQuestionIds;
+            if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
+
+            return recordFinaleVerdictRequest(sessionId, dealt, correct);
+        });
+    }, [submit, sessionId]);
+
     const reload = useCallback(() => setAttempt(previous => previous + 1), []);
 
     return {
@@ -196,6 +221,8 @@ export function useQuizSession(sessionId: string): PlayableSession {
         rule,
         settleClosest,
         settleDescribe,
+        settleList,
+        ruleFinale,
         reload
     };
 }

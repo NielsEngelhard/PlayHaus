@@ -8,14 +8,18 @@ import { useT } from "@/features/i18n/LanguageContext";
 import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
+import FinalResultsScreen from "@/features/pubquizr/components/play/FinalResultsScreen";
 import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
+import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
+import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
+import { finalStandingsOf, finaleTurnOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
@@ -26,7 +30,7 @@ import { useState } from "react";
 import { View } from "react-native";
 
 /** The rounds this build can play. Past the last of them the evening stops on a board. */
-const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE];
+const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE, ROUND_LIST, ROUND_FINALE];
 
 /** What a round is called, what its phone-holder does, and the rule they need first. */
 interface RoundCopy {
@@ -66,6 +70,10 @@ function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): Rou
             return { kind, rule, brief, lead: t('pubquizr.play.leadClosest', { name }), job: t('pubquizr.play.handoff.jobClosest', { name }) };
         case ROUND_DESCRIBE:
             return { kind, rule, brief, lead: t('pubquizr.play.leadDescribe', { name }), job: t('pubquizr.play.handoff.jobDescribe', { name }) };
+        case ROUND_LIST:
+            return { kind, rule, brief, lead: t('pubquizr.play.leadList', { name }), job: t('pubquizr.play.handoff.jobList', { name }) };
+        case ROUND_FINALE:
+            return { kind, rule, brief, lead: t('pubquizr.play.leadFinale', { name }), job: t('pubquizr.play.handoff.jobFinale', { name }) };
         default:
             return { kind, rule, brief, lead: t('pubquizr.play.leadOpen', { name }), job: t('pubquizr.play.handoff.jobOpen', { name }) };
     }
@@ -200,6 +208,21 @@ export default function OneDeviceQuizPage() {
     const playable = PLAYABLE.includes(round);
 
     /*
+     * The evening is over. `RoundStandings`' own dead end below is for a round this
+     * build cannot draw — a table that finished round 6 is not that, it finished the
+     * whole quiz, and it gets the screen that says so and ranks it rather than being
+     * told a round it will never see is not built yet.
+     */
+    if (session.status === 'completed') {
+        return (
+            <FinalResultsScreen
+                standings={finalStandingsOf(session)}
+                onLeave={leave}
+            />
+        )
+    }
+
+    /*
      * Round 3 stops on its result before it moves anywhere else.
      *
      * In front of the scoreboard as well as the hand-off, because the question that ends
@@ -244,13 +267,17 @@ export default function OneDeviceQuizPage() {
     const hotSeat = hotSeatTurnOf(session, quiz);
     const closest = closestTurnOf(session, quiz);
     const describe = describeTurnOf(session, quiz);
+    const list = listTurnOf(session, quiz);
+    const finale = finaleTurnOf(session, quiz);
 
     // Whoever is holding the phone this turn, and how far into the round they are. Every
     // round has both; only which board draws them changes. What the turn is worth used to
     // be read here too, for the progress card this page no longer draws — each board now
     // takes it off its own turn on the way into `TurnStrip`.
-    const holder = hotSeat?.quizmaster ?? closest?.quizmaster ?? describe?.describer ?? null;
-    const number = hotSeat?.number ?? closest?.number ?? describe?.number ?? 0;
+    const holder = hotSeat?.quizmaster ?? closest?.quizmaster ?? describe?.describer
+        ?? list?.quizmaster ?? finale?.quizmaster ?? null;
+    const number = hotSeat?.number ?? closest?.number ?? describe?.number
+        ?? list?.number ?? finale?.number ?? 0;
 
     // A round the session says it is on but no board can draw is a deal this build does
     // not understand — a game dealt before these rounds existed, most likely. The
@@ -364,6 +391,35 @@ export default function OneDeviceQuizPage() {
                     onSettle={awards => {
                         setHandedFrom(describe.describer.seat);
                         game.settleDescribe(awards);
+                    }}
+                />
+            )}
+
+            {list !== null && (
+                <ListBoard
+                    turn={list}
+                    round={round}
+                    lead={copy.lead}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    onSettle={awards => {
+                        setHandedFrom(list.quizmaster.seat);
+                        game.settleList(awards);
+                    }}
+                />
+            )}
+
+            {finale !== null && (
+                <HotSeatBoard
+                    turn={finale}
+                    seats={seats}
+                    round={round}
+                    lead={copy.lead}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    onVerdict={(correct, from) => {
+                        setHandedFrom(from);
+                        game.ruleFinale(correct);
                     }}
                 />
             )}

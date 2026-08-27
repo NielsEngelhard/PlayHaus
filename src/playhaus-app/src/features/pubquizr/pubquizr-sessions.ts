@@ -15,6 +15,12 @@ export interface QuizSessionPlayer {
     seat: number
     name: string
     score: number
+    /**
+     * What this seat has taken in round 6, and only round 6 — zero for whoever never
+     * reached the finale. Kept apart from `score` because the finale is won on this
+     * tally alone; see `finalStandingsOf`.
+     */
+    finaleScore: number
     /** An `AVATAR_COLORS` id, not a hex — see `features/settings/profile`. */
     color: string
 }
@@ -231,5 +237,54 @@ export async function recordDescribeAwardsRequest(
     return request<QuizSession>(
         `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/describe`,
         { method: 'POST', body: JSON.stringify({ describerSeat, awards }) }
+    );
+}
+
+/**
+ * What became of one of round 5's four answers. Empty seats is an answer nobody found,
+ * which is worth saying rather than leaving out. More than one seat is a draw — two
+ * people calling it out at the same instant — and every seat named scores in full.
+ */
+export interface ListAward {
+    answerId: string
+    seats: number[]
+}
+
+/**
+ * The quizmaster settling one round 5 question, once the round has been all the way
+ * round or the answers have run out first, and the game one step further on.
+ *
+ * Every one of the question's four answers has to be ruled on, including the ones
+ * nobody found — the screen has a row per answer already, so that costs it nothing and
+ * stops a half-written body quietly scoring an answer as missed.
+ */
+export async function recordListAwardsRequest(
+    sessionId: string,
+    sessionQuestionId: string,
+    awards: ListAward[]
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/list`,
+        { method: 'POST', body: JSON.stringify({ sessionQuestionId, awards }) }
+    );
+}
+
+/**
+ * The quizmaster ruling on one round 6 question, and the finale one step further on.
+ *
+ * The same shape as `recordOpenVerdictRequest` — which question, and whether it was
+ * right — because who is answering and what happens next are the finale's own business,
+ * the same way they are round 1 and round 2's. It posts to its own endpoint rather than
+ * the shared `/verdict` one because it is not one of that endpoint's rounds: the finale
+ * never lets an answer keep the seat, and it pays `finaleScore` rather than `score`.
+ */
+export async function recordFinaleVerdictRequest(
+    sessionId: string,
+    sessionQuestionId: string,
+    correct: boolean
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/finale`,
+        { method: 'POST', body: JSON.stringify({ sessionQuestionId, correct }) }
     );
 }

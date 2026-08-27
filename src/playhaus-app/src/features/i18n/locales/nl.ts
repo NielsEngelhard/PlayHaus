@@ -461,7 +461,9 @@ export const nl: Catalog = {
                 open: 'Open',
                 choice: 'Meerkeuze',
                 closest: 'Wie zit er het dichtst bij',
-                describe: 'Omschrijven'
+                describe: 'Omschrijven',
+                list: 'Noem er vier',
+                finale: 'De finale'
             },
             questionNumber: 'Vraag {{number}}',
             questionTotal: ' van {{total}}',
@@ -480,6 +482,8 @@ export const nl: Catalog = {
             leadChoice: '{{name}} leest voor · vier opties',
             leadClosest: '{{name}} leest voor · de rest gokt',
             leadDescribe: '{{name}} is aan de beurt',
+            leadList: '{{name}} leest voor · de rest roept antwoorden',
+            leadFinale: '{{name}} leest voor aan de andere finalist',
             readAloud: 'Lees dit hardop voor',
             onlyYouSeeThis: 'Het antwoord',
             alsoAccept: 'Ook goed: {{answers}}',
@@ -567,7 +571,19 @@ export const nl: Catalog = {
                 nobody: 'Niemand had hem',
                 standing: '{{name}} pakt {{points}} uit deze beurt',
                 stillToRule: 'Nog {{left}} te gaan',
-                settle: 'Deel de punten uit'
+                settle: 'Verder gaan'
+            },
+            list: {
+                readCategory: 'Lees de categorie hardop voor',
+                perAnswer: '{{worth}} per antwoord',
+                turnOrder: 'Tien seconden elk, op tafelvolgorde',
+                start: 'Begin met raden',
+                skip: 'Sla de beurt van {{name}} over',
+                scoringTitle: 'Wie vond ze?',
+                nothingFound: 'Niemand heeft iets gevonden — niets te verdelen.',
+                whoSaidItHint: 'Tik wie elk antwoord riep',
+                stillToRule: 'Nog {{left}} te verdelen',
+                settle: 'Verder gaan'
             },
             intro: {
                 of: 'van {{total}}',
@@ -576,6 +592,8 @@ export const nl: Catalog = {
                 briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefDescribe: '31 seconden om je eigen woorden aan de tafel te omschrijven zonder het woord te zeggen (of een vertaling). Elk geraden woord is een punt voor zowel de roeper als de rader.',
+                briefList: 'Eén vraag met vier antwoorden erin verstopt. Iedereen behalve de quiz master krijgt om de beurt tien seconden om er zoveel mogelijk te roepen, tot alle vier gevonden zijn of de tafel geen beurten meer over heeft. Daarna zegt de quiz master wie wat riep — een punt per antwoord.',
+                briefFinale: 'De twee hoogste standen tegen elkaar. Net als ronde 1: een open vraag, hardop voorgelezen. Net als ronde 2: de vraag blijft nooit bij wie net antwoordde, dus hij wisselt steeds tussen die twee. Wie de finale wint, wint de hele avond.',
                 action: 'Start ronde {{round}}'
             },
             handoff: {
@@ -585,10 +603,14 @@ export const nl: Catalog = {
                 jobChoice: '{{name}} leest de vraag en alle vier de opties voor',
                 jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
                 jobDescribe: 'Alleen {{name}} mag dit zien.',
+                jobList: '{{name}} leest de categorie voor en vinkt antwoorden af zodra de tafel ze roept.',
+                jobFinale: '{{name}} leest voor aan de andere finalist.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
                 ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep, dus laat ze roepen.',
+                ruleList: 'Tien seconden elk. Vink een antwoord af zodra iemand het roept, en zeg daarna wie wat vond.',
+                ruleFinale: 'De vraag blijft nooit bij wie net antwoordde — hij wisselt steeds. Wie van jullie twee de meeste goed heeft wint de avond.',
                 action: 'Ik ben {{name}}, laat de vraag zien'
             },
             standings: {
@@ -596,6 +618,12 @@ export const nl: Catalog = {
                 description: 'De tussenstand.',
                 startNext: 'Start ronde {{round}}',
                 nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
+            },
+            final: {
+                title: 'De quiz is afgelopen',
+                description: 'Zo eindigde de avond.',
+                won: '{{name}} won de finale en daarmee de hele avond.',
+                finalist: 'Finalist'
             }
         },
         errors: {

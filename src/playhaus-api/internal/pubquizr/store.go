@@ -320,9 +320,13 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 		}
 
 		for _, player := range out.Players {
+			// Both columns, always -- a hot seat verdict only ever moved Score and a
+			// finale verdict only ever moves FinaleScore, but writing back whichever one
+			// did not change is writing back the value this same session just read, so
+			// it costs nothing and there is no third column to remember tomorrow.
 			err := tx.Model(&SessionPlayer{}).
 				Where("session_id = ? AND seat = ?", session.ID, player.Seat).
-				Update("score", player.Score).Error
+				Updates(map[string]any{"score": player.Score, "finale_score": player.FinaleScore}).Error
 			if err != nil {
 				return fmt.Errorf("update score: %w", err)
 			}

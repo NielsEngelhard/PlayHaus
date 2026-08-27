@@ -1,5 +1,7 @@
 package pubquizr
 
+import "sort"
+
 // What every round shares: where a turn sits, whose it is, and how the table moves
 // between them.
 //
@@ -111,7 +113,8 @@ func (s *Session) RotateOneSeat() {
 //
 // Round 4 reads that as the describer, because a describer holds the phone; everywhere
 // else it is the seat being asked. The finale is left alone -- it is only the top two,
-// and who starts it is that round's own business.
+// and who starts it is that round's own business. See OpenFinale, which advance calls
+// instead of this on the way into round 6.
 func (s *Session) OpenRoundOn(round, seat int) {
 	switch {
 	case round == RoundFinale:
@@ -120,6 +123,50 @@ func (s *Session) OpenRoundOn(round, seat int) {
 	default:
 		s.OpenOn(seat)
 	}
+}
+
+// OpenFinaleOn seats the finale directly: whoever is named opens as the hot seat, and
+// the other reads to them.
+//
+// Not OpenOn, on purpose: that wraps by the whole table's size, and the finale's table
+// is always exactly two seats, whichever two they turn out to be. Round 2's turn order
+// is what calls this every question -- see RecordFinaleVerdict -- because the finale
+// never lets an answer keep the seat, right or wrong, so the two names simply swap.
+func (s *Session) OpenFinaleOn(hot, master int) {
+	s.HotSeat = hot
+	s.QuizMasterSeat = master
+}
+
+// OpenFinale seats the finale for the first time: the two highest scores at the table,
+// ties going the way LowestScoringSeat's do, to whoever sits nearest the head of it. The
+// lower of the two opens, the same rule every round but the first plays by -- it starts
+// with whoever most needs it to.
+//
+// Called by advance in place of OpenRoundOn on the way into round 6, which is why
+// OpenRoundOn leaves the finale alone: this is the round's own business, and it needs
+// the scoreboard OpenRoundOn's callers do not carry.
+func (s *Session) OpenFinale() {
+	type ranked struct{ seat, score int }
+
+	ranks := make([]ranked, 0, len(s.Players))
+	for _, player := range s.Players {
+		ranks = append(ranks, ranked{player.Seat, player.Score})
+	}
+
+	sort.Slice(ranks, func(i, j int) bool {
+		if ranks[i].score != ranks[j].score {
+			return ranks[i].score > ranks[j].score
+		}
+		return ranks[i].seat < ranks[j].seat
+	})
+
+	if len(ranks) < 2 {
+		// Below MinPlayers, which cannot happen through the setup form -- but this is
+		// arithmetic on a slice, not a rule about how many people may sit down.
+		return
+	}
+
+	s.OpenFinaleOn(ranks[1].seat, ranks[0].seat)
 }
 
 // TurnsInRound is how many goes a round holds -- which is not always how many questions

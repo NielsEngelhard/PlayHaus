@@ -146,7 +146,12 @@ type quizSessionPlayerResponse struct {
 	Seat  int    `json:"seat"`
 	Name  string `json:"name"`
 	Score int    `json:"score"`
-	Color string `json:"color"`
+	// FinaleScore is what this player has taken in round 6 and only round 6, zero for
+	// whoever never reached it. It is what the finale is actually won on, separately
+	// from the running Score everybody else finished the evening with -- see
+	// pubquizr.SessionPlayer.FinaleScore.
+	FinaleScore int    `json:"finaleScore"`
+	Color       string `json:"color"`
 }
 
 type quizSessionQuestionResponse struct {
@@ -220,10 +225,11 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	players := make([]quizSessionPlayerResponse, 0, len(s.Players))
 	for _, player := range s.Players {
 		players = append(players, quizSessionPlayerResponse{
-			Seat:  player.Seat,
-			Name:  player.Name,
-			Score: player.Score,
-			Color: player.Color,
+			Seat:        player.Seat,
+			Name:        player.Name,
+			Score:       player.Score,
+			FinaleScore: player.FinaleScore,
+			Color:       player.Color,
 		})
 	}
 
@@ -727,7 +733,150 @@ func (s *Server) handleDescribeAwards(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
+// listAwardRequest is what became of one of round 5's four answers. Empty seats is an
+// answer nobody found, which is a thing worth saying rather than a row worth leaving out.
+// More than one seat is a draw -- everybody named scores in full.
+type listAwardRequest struct {
+	AnswerID string `json:"answerId"`
+	Seats    []int  `json:"seats"`
+}
 
+// listAwardsRequest is the quizmaster settling one round 5 question, once the round has
+// been round every player it is going to reach.
+type listAwardsRequest struct {
+	SessionQuestionID string              `json:"sessionQuestionId"`
+	Awards            []listAwardRequest `json:"awards"`
+}
+
+func (req listAwardsRequest) Validate() map[string]string {
+	problems := map[string]string{}
+
+	if strings.TrimSpace(req.SessionQuestionID) == "" {
+		problems["sessionQuestionId"] = "is required"
+	}
+	if len(req.Awards) == 0 {
+		problems["awards"] = "every answer to the question needs a verdict"
+	}
+	for _, awarded := range req.Awards {
+		if strings.TrimSpace(awarded.AnswerID) == "" {
+			problems["awards"] = "every award names an answer"
+			break
+		}
+	}
+
+	return problems
+}
+
+// handleListAwards is the quizmaster settling one round 5 question: which of its four
+// answers were found, and by whom.
+func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleListAwards reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	req, problems, err := decode[listAwardsRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		// An unparseable id cannot name the current question, which is the same
+		// answer as naming one the table has moved past.
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return
+	}
+
+	awards := make([]pubquizr.ListAward, 0, len(req.Awards))
+	for _, awarded := range req.Awards {
+		answerID, err := uuid.Parse(awarded.AnswerID)
+		if err != nil {
+			writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
+			return
+		}
+		awards = append(awards, pubquizr.ListAward{AnswerID: answerID, Seats: awarded.Seats})
+	}
+
+	session, err := s.pubquizr.RecordListAward(r.Context(), pubquizr.ListInput{
+		SessionID:         sessionID,
+		OwnerID:           ownerID,
+		SessionQuestionID: questionID,
+		Awards:            awards,
+	})
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+// handleFinaleVerdict is the quizmaster ruling on one round 6 question.
+//
+// The body is exactly openVerdictRequest's shape -- which question, and whether it was
+// right -- reused rather than declared again, for the same reason the two hot seat
+// rounds share theirs: the request never named the round, and who is answering and what
+// happens next are the game's own business. A finale gets its own endpoint rather than
+// sharing handleHotSeatVerdict's because it is not one of that endpoint's rounds -- see
+// the note on RecordFinaleVerdict.
+func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleFinaleVerdict reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	req, problems, err := decode[openVerdictRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return
+	}
+
+	session, err := s.pubquizr.RecordFinaleVerdict(r.Context(), pubquizr.VerdictInput{
+		SessionID:         sessionID,
+		OwnerID:           ownerID,
+		SessionQuestionID: questionID,
+		Correct:           req.Correct,
+		Said:              req.Said,
+	})
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
 
 // writeSession answers with a session, and with whoever it is currently waiting on.
 func (s *Server) writeSession(w http.ResponseWriter, r *http.Request, session *pubquizr.Session, status int) {
@@ -771,6 +920,8 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 		writeErrorCode(w, http.StatusConflict, "describer_cannot_guess", "you cannot guess your own word")
 	case errors.Is(err, pubquizr.ErrUnknownWord):
 		writeErrorCode(w, http.StatusConflict, "unknown_word", "that word is not part of this turn")
+	case errors.Is(err, pubquizr.ErrUnknownAnswer):
+		writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
 	// Last of the named cases, because several of the ones above are kinds of it and
 	// would be swallowed here. Unmapped until the rounds that lean on it landed, which
 	// meant a bad body came back as a 500.

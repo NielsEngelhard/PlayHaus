@@ -133,6 +133,11 @@ func (s *Server) AddPubquizRHandlers() {
 	// has to be told is nothing like a verdict.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/closest", s.requireAuth(s.handleClosestGuesses))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/describe", s.requireAuth(s.handleDescribeAwards))
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/list", s.requireAuth(s.handleListAwards))
+	// The finale is not one of the hot seat rounds' rounds -- see the note on
+	// RecordFinaleVerdict -- so it gets an endpoint of its own rather than sharing
+	// /verdict with rounds 1 and 2.
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/finale", s.requireAuth(s.handleFinaleVerdict))
 }
 
 func (s *Server) AddOneOfUsHandlers() {

@@ -31,6 +31,12 @@ const (
 	ClosestPoints       = 2
 	DescribeWordPoints  = 1
 	DescribeGuessPoints = 1
+	// ListAnswerPoints is what one of round 5's four answers pays whoever gets credit
+	// for it.
+	ListAnswerPoints = 1
+	// FinalePoints is what a correct finale question pays -- onto FinaleScore, not
+	// Score, because the finale is won on its own tally. See SessionPlayer.FinaleScore.
+	FinalePoints = 1
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions          = 4
@@ -45,7 +51,7 @@ const (
 
 	DescribeSeconds = 30
 
-	ListSecondsPerTurn = 25
+	ListSecondsPerTurn = 10
 )
 
 // IsHotSeatRound is whether a round is played on the hot seat: read to one seat,

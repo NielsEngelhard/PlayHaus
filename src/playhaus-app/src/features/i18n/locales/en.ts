@@ -513,7 +513,9 @@ export const en = {
                 open: 'Open',
                 choice: 'Multiple choice',
                 closest: 'Closest guess',
-                describe: 'Describe it'
+                describe: 'Describe it',
+                list: 'Name four',
+                finale: 'The final'
             },
             /**
              * Split in two so the total can be greyed out beside the number. Never
@@ -568,6 +570,14 @@ export const en = {
             leadChoice: '{{name}} reads · four options',
             leadClosest: '{{name}} reads · everyone else guesses',
             leadDescribe: '{{name}} describes their own words',
+            leadList: '{{name}} reads · everyone else calls out answers',
+            /**
+             * Unused while `answering` is set — the finale always has somebody in
+             * particular being asked, so `TurnStrip` never falls back to its one-line
+             * variant here. Kept for the same reason every other round keeps one: the
+             * shape of `roundCopy` is uniform across rounds.
+             */
+            leadFinale: '{{name}} reads to the other finalist',
             readAloud: 'Read this out loud',
             onlyYouSeeThis: 'Only you see this',
             alsoAccept: 'Also accept: {{answers}}',
@@ -746,6 +756,25 @@ export const en = {
                 stillToRule: '{{left}} still to go',
                 settle: 'Hand out the points'
             },
+            /** Round 5: one category, four answers, and the table takes turns to find them. */
+            list: {
+                readCategory: 'Read the category out loud',
+                perAnswer: '{{worth}} a find',
+                turnOrder: 'Ten seconds each, in table order',
+                start: 'Start guessing',
+                /** The skip button, top right of the guessing screen. */
+                skip: "Skip {{name}}'s turn",
+                scoringTitle: 'Who found them?',
+                nothingFound: 'Nobody found anything this time — nothing to hand out.',
+                whoSaidItHint: 'Tap whoever called each one out',
+                /**
+                 * Never `count`: that is the one option name i18next treats as a
+                 * plural trigger, and there are no plural forms behind it. See
+                 * `common.time`.
+                 */
+                stillToRule: '{{left}} still to credit',
+                settle: 'Hand out the points'
+            },
             /**
              * The screen that opens every round, before the phone is handed to anybody.
              *
@@ -763,6 +792,8 @@ export const en = {
                 briefChoice: 'Hard questions, this time with four answers to choose from. One question each, read out with all four options — and every single one of them is worth two points.',
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
                 briefDescribe: 'Thirty seconds each to describe your own words to the table without ever saying them. Every word somebody shouts out is a point for you and a point for whoever got it.',
+                briefList: 'One question with four answers hiding in it. Everybody but the reader gets ten seconds in turn to call out as many as they can, until all four are found or the table runs out of goes. Then the reader says who called out what — a point each.',
+                briefFinale: 'The top two scores go head to head. Same as round 1: an open question, read aloud. Same as round 2: the question never stays with whoever just answered, so it swaps between the two of them every time. Whoever answers more of the finale wins the whole evening.',
                 action: 'Start round {{round}}'
             },
             handoff: {
@@ -779,6 +810,8 @@ export const en = {
                 jobChoice: '{{name}} reads the question and all four options',
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
                 jobDescribe: '{{name}} describes their own words. Nobody else may look at the screen.',
+                jobList: '{{name}} reads the category and marks off answers as the table calls them out.',
+                jobFinale: '{{name}} reads to the other finalist.',
                 /**
                  * The round's rule, said on the one screen with room to say it properly.
                  * The board says the short version every turn; this is the version with
@@ -788,6 +821,8 @@ export const en = {
                 ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it, so make them shout.',
+                ruleList: 'Ten seconds each. Mark an answer the instant somebody says it, then say who found what once the round is done.',
+                ruleFinale: 'The question never stays with whoever just answered — it swaps every time. Most correct out of the two of you wins the night.',
                 action: "I'm {{name}}, show the question"
             },
             standings: {
@@ -795,6 +830,15 @@ export const en = {
                 description: 'How the table stands with that round behind you.',
                 startNext: 'Start round {{round}}',
                 nextRoundWip: 'Round {{round}} is not built yet. Your scores are saved. The quiz is waiting where you left it.'
+            },
+            /** The very last screen: the whole evening, ranked. */
+            final: {
+                title: 'The quiz is over',
+                /** Only when there is nobody to name — an empty table, in practice. */
+                description: 'How the whole evening finished.',
+                won: '{{name}} won the final and the whole night with it.',
+                /** The tag under a finalist's name, so their row explains its own number. */
+                finalist: 'Finalist'
             }
         },
         /**
