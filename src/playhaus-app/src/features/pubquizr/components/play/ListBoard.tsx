@@ -12,6 +12,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import DescribeTimer from "./DescribeTimer";
+import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
 
@@ -55,6 +56,8 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     const [found, setFound] = useState<Set<string>>(new Set());
     /** Every seat named for an answer, or an empty array for one ruled nobody got. */
     const [awards, setAwards] = useState<Record<string, number[]>>({});
+    /** Whether the category's been unfolded back out of the one-line recap. */
+    const [rereading, setRereading] = useState(false);
 
     /*
      * Reset during render, the same way every other board here does: a new question has
@@ -69,15 +72,16 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setGuesserIndex(0);
         setFound(new Set());
         setAwards({});
+        setRereading(false);
     }
 
     const guesser = turn.guessing[guesserIndex] ?? turn.guessing[turn.guessing.length - 1];
 
     /**
-     * Marking the last answer is what ends the round, not a timer — checked right here
-     * rather than in an effect, so the stage changes in the same commit as the tap that
-     * caused it instead of the board painting once more with a finished round still
-     * waiting on its clock.
+     * Marking the last answer is what ends the round, not a timer — checked off the
+     * updater's own next value, so a rapid double tap toggles rather than double-adds,
+     * and the stage changes in the same commit as the tap that caused it instead of the
+     * board painting once more with a finished round still waiting on its clock.
      */
     function toggleFound(id: string) {
         setFound(current => {
@@ -90,16 +94,29 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         });
     }
 
-    /** The current player's ten seconds are over, one way or another. */
+    /**
+     * The current player's ten seconds are over, one way or another. Past the last
+     * guesser, the round is done — but only into the scoring screen when there is
+     * something on it to do: nobody found anything is nobody to credit, and a screen
+     * whose only control is its own "next" button is a stop the table does not need.
+     *
+     * Reads `guesserIndex` and `found` off the closure rather than off a `setState`
+     * updater, on purpose: the "nothing found" branch below posts straight to the
+     * server, and a real request has no business living inside a function React is free
+     * to call more than once while resolving state.
+     */
     function nextGuesser() {
-        setGuesserIndex(current => {
-            const next = current + 1;
-            if (next >= turn.guessing.length) {
-                setStage('scoring');
-                return current;
-            }
-            return next;
-        });
+        const next = guesserIndex + 1;
+        if (next < turn.guessing.length) {
+            setGuesserIndex(next);
+            return;
+        }
+
+        if (found.size === 0) {
+            onSettle(turn.answers.map(answer => ({ answerId: answer.id, seats: [] })));
+        } else {
+            setStage('scoring');
+        }
     }
 
     /** Add or drop one seat from an answer's credits — a draw is more than one at once. */
@@ -196,12 +213,25 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     worth={turn.worth}
                 />
 
+                {/* The category, kept on screen for as long as the table is calling
+                    answers out at it — a reader who has to leave this screen to remind
+                    themselves what was asked is a reader who stops reading it out
+                    again, and the table is still guessing off what it heard once. */}
+                <QuestionRecap
+                    prompt={turn.question.prompt}
+                    icon="volume-2"
+                    hint={t('pubquizr.play.reread')}
+                    expanded={rereading}
+                    onPress={() => setRereading(current => !current)}
+                />
+
                 <View style={styles.skipRow}>
                     <Pressable
                         onPress={nextGuesser}
+                        disabled={busy}
                         accessibilityRole="button"
                         accessibilityLabel={t('pubquizr.play.list.skip', { name: guesser.name })}
-                        style={styles.skip}
+                        style={[styles.skip, busy && styles.dimmed]}
                     >
                         <AppText style={styles.skipText}>
                             {t('pubquizr.play.list.skip', { name: guesser.name })}
@@ -230,10 +260,11 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                             <Pressable
                                 key={answer.id}
                                 onPress={() => toggleFound(answer.id)}
+                                disabled={busy}
                                 accessibilityRole="checkbox"
-                                accessibilityState={{ checked: got }}
+                                accessibilityState={{ checked: got, disabled: busy }}
                                 accessibilityLabel={answer.text}
-                                style={[styles.answer, got && styles.answerFound]}
+                                style={[styles.answer, got && styles.answerFound, busy && styles.dimmed]}
                             >
                                 <Feather
                                     name={got ? 'check-circle' : 'circle'}
@@ -248,6 +279,18 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                         )
                     })}
                 </ScrollView>
+
+                {/* Only ever seen here when the last guesser's turn found nothing and
+                    the round tried to settle itself straight through — see
+                    `nextGuesser` — and the server refused it. Everything typed in is
+                    still on screen either way, since `found` never left this board. */}
+                {error !== null && (
+                    <InlineNotification
+                        icon="alert-triangle"
+                        color={theme.colors.blush}
+                        message={t(error)}
+                    />
+                )}
             </View>
         )
     }
@@ -269,99 +312,94 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 {t('pubquizr.play.list.scoringTitle')}
             </AppText>
 
-            {foundAnswers.length === 0 ? (
-                <AppText style={styles.recap}>
-                    {t('pubquizr.play.list.nothingFound')}
-                </AppText>
-            ) : (
-                <>
-                    <AppText style={styles.recap}>
-                        {t('pubquizr.play.list.whoSaidItHint')}
-                    </AppText>
+            {/* Reachable only with something found — `nextGuesser` settles straight
+                through when nothing was, rather than stopping the table on this screen
+                with nothing on it to do. */}
+            <AppText style={styles.recap}>
+                {t('pubquizr.play.list.whoSaidItHint')}
+            </AppText>
 
-                    <ScrollView
-                        style={styles.rows}
-                        contentContainerStyle={styles.rowsInner}
-                        keyboardShouldPersistTaps="handled"
-                    >
-                        {foundAnswers.map(answer => {
-                            const named = awards[answer.id] ?? [];
-                            const nobody = answer.id in awards && named.length === 0;
+            <ScrollView
+                style={styles.rows}
+                contentContainerStyle={styles.rowsInner}
+                keyboardShouldPersistTaps="handled"
+            >
+                {foundAnswers.map(answer => {
+                    const named = awards[answer.id] ?? [];
+                    const nobody = answer.id in awards && named.length === 0;
 
-                            return (
-                                <View key={answer.id} style={styles.row}>
-                                    <AppText style={styles.rowAnswer} numberOfLines={1}>
-                                        {answer.text}
-                                    </AppText>
+                    return (
+                        <View key={answer.id} style={styles.row}>
+                            <AppText style={styles.rowAnswer} numberOfLines={1}>
+                                {answer.text}
+                            </AppText>
 
-                                    <View style={styles.chips}>
-                                        {turn.guessing.map(seat => {
-                                            const active = named.includes(seat.seat);
+                            <View style={styles.chips}>
+                                {turn.guessing.map(seat => {
+                                    const active = named.includes(seat.seat);
 
-                                            return (
-                                                <Pressable
-                                                    key={seat.seat}
-                                                    onPress={() => toggleCredit(answer.id, seat.seat)}
-                                                    disabled={busy}
-                                                    accessibilityRole="checkbox"
-                                                    accessibilityState={{ checked: active, disabled: busy }}
-                                                    accessibilityLabel={seat.name}
-                                                    style={[
-                                                        styles.chip,
-                                                        active && styles.chipActive,
-                                                        busy && styles.dimmed
-                                                    ]}
-                                                >
-                                                    <View style={[styles.chipAvatar, { backgroundColor: seat.swatch.color }]}>
-                                                        <AppText style={[styles.chipInitials, { color: seat.swatch.foreground }]}>
-                                                            {seat.initials}
-                                                        </AppText>
-                                                    </View>
-
-                                                    <AppText
-                                                        style={[styles.chipText, active && styles.chipTextActive]}
-                                                        numberOfLines={1}
-                                                    >
-                                                        {seat.name}
-                                                    </AppText>
-
-                                                    {active && (
-                                                        <Feather name="check" size={13} color={Brand.ink} />
-                                                    )}
-                                                </Pressable>
-                                            )
-                                        })}
-
+                                    return (
                                         <Pressable
-                                            onPress={() => markNobody(answer.id)}
+                                            key={seat.seat}
+                                            onPress={() => toggleCredit(answer.id, seat.seat)}
                                             disabled={busy}
                                             accessibilityRole="checkbox"
-                                            accessibilityState={{ checked: nobody, disabled: busy }}
-                                            accessibilityLabel={t('pubquizr.play.describe.nobody')}
+                                            accessibilityState={{ checked: active, disabled: busy }}
+                                            accessibilityLabel={seat.name}
                                             style={[
                                                 styles.chip,
-                                                styles.chipNobody,
-                                                nobody && styles.chipNobodyActive,
+                                                active && styles.chipActive,
                                                 busy && styles.dimmed
                                             ]}
                                         >
-                                            <Feather
-                                                name="x"
-                                                size={14}
-                                                color={nobody ? theme.colors.destructiveText : theme.colors.textMuted}
-                                            />
+                                            <View style={[styles.chipAvatar, { backgroundColor: seat.swatch.color }]}>
+                                                <AppText style={[styles.chipInitials, { color: seat.swatch.foreground }]}>
+                                                    {seat.initials}
+                                                </AppText>
+                                            </View>
 
-                                            <AppText style={[styles.chipText, nobody && styles.chipNobodyText]}>
-                                                {t('pubquizr.play.describe.nobody')}
+                                            <AppText
+                                                style={[styles.chipText, active && styles.chipTextActive]}
+                                                numberOfLines={1}
+                                            >
+                                                {seat.name}
                                             </AppText>
+
+                                            {active && (
+                                                <Feather name="check" size={13} color={Brand.ink} />
+                                            )}
                                         </Pressable>
-                                    </View>
-                                </View>
-                            )
-                        })}
-                    </ScrollView>
-                </>
-            )}
+                                    )
+                                })}
+
+                                <Pressable
+                                    onPress={() => markNobody(answer.id)}
+                                    disabled={busy}
+                                    accessibilityRole="checkbox"
+                                    accessibilityState={{ checked: nobody, disabled: busy }}
+                                    accessibilityLabel={t('pubquizr.play.describe.nobody')}
+                                    style={[
+                                        styles.chip,
+                                        styles.chipNobody,
+                                        nobody && styles.chipNobodyActive,
+                                        busy && styles.dimmed
+                                    ]}
+                                >
+                                    <Feather
+                                        name="x"
+                                        size={14}
+                                        color={nobody ? theme.colors.destructiveText : theme.colors.textMuted}
+                                    />
+
+                                    <AppText style={[styles.chipText, nobody && styles.chipNobodyText]}>
+                                        {t('pubquizr.play.describe.nobody')}
+                                    </AppText>
+                                </Pressable>
+                            </View>
+                        </View>
+                    )
+                })}
+            </ScrollView>
 
             {error !== null && (
                 <InlineNotification

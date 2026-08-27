@@ -97,6 +97,15 @@ func ChoiceQuestionsFor(players int) int {
 	return max(players, 0)
 }
 
+// ListQuestionsFor is how many round 5 questions this table plays: one each, the same
+// rule ChoiceQuestionsFor gives round 2. Every player reads exactly once -- the reading
+// rotates one seat per settled question, see Service.RecordListAward -- and every player
+// starts as the first guesser exactly once, which only comes out even if the round is
+// exactly as long as the table is wide.
+func ListQuestionsFor(players int) int {
+	return max(players, 0)
+}
+
 func ClosestQuestionsFor(players, available int) int {
 	return max(min(players, available), 0)
 }
@@ -120,8 +129,10 @@ const (
 	MinClosestQuestions          = 1
 	MinDescribeWordsAtAFullTable = 2
 	MinDescribeWords             = MaxPlayers * MinDescribeWordsAtAFullTable
-	MinListQuestions             = 8
-	MinFinaleQuestions           = 4
+	// MinListQuestions is what a full table of round 5 needs -- one per player, the
+	// same MinChoiceQuestions is for round 2.
+	MinListQuestions   = MaxPlayers
+	MinFinaleQuestions = 4
 )
 
 // MinQuestionsIn is the smallest number of questions a round may carry.

@@ -408,7 +408,10 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 		{RoundChoice, func(int) int { return ChoiceQuestionsFor(players) }, toTheTable},
 		{RoundClosest, func(a int) int { return ClosestQuestionsFor(players, a) }, toTheTable},
 		{RoundDescribe, func(a int) int { return DescribeWordsFor(players, a) }, inTurns},
-		{RoundList, all, toTheTable},
+		// One question per player, the same rule round 2 plays by: every player reads
+		// once and starts as first guesser once, which only comes out even if the round
+		// is exactly as long as the table is wide.
+		{RoundList, func(int) int { return ListQuestionsFor(players) }, toTheTable},
 		// The finalists are not known until the other five rounds are done, so the
 		// finale is dealt to the table and assigned to nobody.
 		{RoundFinale, all, toTheTable},

@@ -580,7 +580,6 @@ export const nl: Catalog = {
                 start: 'Begin met raden',
                 skip: 'Sla de beurt van {{name}} over',
                 scoringTitle: 'Wie vond ze?',
-                nothingFound: 'Niemand heeft iets gevonden — niets te verdelen.',
                 whoSaidItHint: 'Tik wie elk antwoord riep',
                 stillToRule: 'Nog {{left}} te verdelen',
                 settle: 'Verder gaan'

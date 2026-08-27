@@ -133,6 +133,33 @@ func TestStartSingleDeviceQuizDealsOneChoiceQuestionEach(t *testing.T) {
 	}
 }
 
+// TestStartSingleDeviceQuizDealsOneListQuestionEach covers round 5: one question per
+// player, the same rule round 2 plays by -- every player reads once and starts as first
+// guesser once, which only comes out even if the round is exactly as long as the table.
+func TestStartSingleDeviceQuizDealsOneListQuestionEach(t *testing.T) {
+	h, _ := newQuizServer(t)
+	session := newGuestSession(t, h)
+	quiz := aQuiz(t, h, session.Token, "locale=nl")
+
+	for _, players := range []int{pubquizr.MinPlayers, 5, pubquizr.MaxPlayers} {
+		t.Run(fmt.Sprintf("%d players", players), func(t *testing.T) {
+			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
+
+			dealt := questionsIn(started, pubquizr.RoundList)
+			if got, want := len(dealt), players; got != want {
+				t.Fatalf("round 5 questions = %d, want %d", got, want)
+			}
+
+			for _, question := range dealt {
+				if question.AssignedSeat != nil {
+					t.Errorf("round 5 question %d was dealt to seat %d -- the round belongs to the table",
+						question.Position, *question.AssignedSeat)
+				}
+			}
+		})
+	}
+}
+
 // TestStartSingleDeviceQuizDealsTheWordsTheQuizHas covers round 4: you describe all of
 // yours inside the same thirty seconds, so a player's words have to land on one seat --
 // and everybody has to get the same number of them.

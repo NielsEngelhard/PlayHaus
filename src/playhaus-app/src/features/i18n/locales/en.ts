@@ -765,7 +765,6 @@ export const en = {
                 /** The skip button, top right of the guessing screen. */
                 skip: "Skip {{name}}'s turn",
                 scoringTitle: 'Who found them?',
-                nothingFound: 'Nobody found anything this time — nothing to hand out.',
                 whoSaidItHint: 'Tap whoever called each one out',
                 /**
                  * Never `count`: that is the one option name i18next treats as a
