@@ -7,7 +7,8 @@ import TextButton from "@/components/ui/TextButton";
 import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { joinLink } from "@/features/league-of-letters/join-link";
+import { LEAGUE_OF_LETTERS } from "@/constants/games";
+import { joinLink } from "@/features/join/join-link";
 import { shareLink, type ShareOutcome } from "@/utils/share";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
@@ -84,7 +85,7 @@ export default function LobbyCodeHero({ code }: Props) {
 
     // The same link the QR carries, so the two ways of handing this room over cannot come
     // apart. Built rather than hardcoded — see `joinLink`.
-    const joinUrl = joinLink(code);
+    const joinUrl = joinLink(LEAGUE_OF_LETTERS, code);
 
     async function share() {
         setNote(noteFor(await shareLink(joinUrl, t('lol.lobby.shareTitle'))));

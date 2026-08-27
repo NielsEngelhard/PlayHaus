@@ -2,14 +2,13 @@ package lol
 
 import (
 	"context"
-	"crypto/rand"
 	"errors"
 	"fmt"
-	"math/big"
 	"slices"
 	"time"
 
 	"playhaus-api/internal/i18n"
+	"playhaus-api/internal/joincode"
 
 	"github.com/google/uuid"
 )
@@ -139,42 +138,15 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 	return lobby, nil
 }
 
-// freeJoinCode draws codes until it finds one nobody is using.
+// freeJoinCode is a free code for this game, which is joincode.Free with the one thing
+// this package can contribute to the question handed to it.
 //
-// Thirty-two characters to the fourth is about a million codes and a room lives for
-// minutes, so the first draw is almost always free -- but "almost always" is not a
-// primary key, and a collision would hand two rooms the same door.
+// Uniqueness lives here rather than there because the code is this table's primary key:
+// only the lobby store can say whether a room already answers to one. Everything else --
+// the draw, the alphabet, the retry, the L on the front -- is the same for every game
+// and belongs to nobody in particular.
 func (s *Service) freeJoinCode(ctx context.Context) (string, error) {
-	for range 10 {
-		code, err := newJoinCode()
-		if err != nil {
-			return "", fmt.Errorf("generate join code: %w", err)
-		}
-
-		taken, err := s.store.LobbyCodeTaken(ctx, code)
-		if err != nil {
-			return "", fmt.Errorf("check join code: %w", err)
-		}
-		if !taken {
-			return code, nil
-		}
-	}
-
-	return "", fmt.Errorf("could not find a free join code")
-}
-
-func newJoinCode() (string, error) {
-	code := make([]byte, JoinCodeLength)
-
-	for i := range code {
-		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(joinCodeAlphabet))))
-		if err != nil {
-			return "", err
-		}
-		code[i] = joinCodeAlphabet[n.Int64()]
-	}
-
-	return string(code), nil
+	return joincode.Free(ctx, joincode.LeagueOfLetters, s.store.LobbyCodeTaken)
 }
 
 // Lobby reads a room back by its code.

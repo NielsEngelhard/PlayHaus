@@ -8,7 +8,6 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
 
 export const MAX_LOBBY_PLAYERS = 6;
 export const MIN_LOBBY_PLAYERS = 2;
-export const LOBBY_CODE_LENGTH = 4;
 export type LobbyStatus = 'waiting' | 'started';
 
 export interface LobbyPlayer {
@@ -35,7 +34,11 @@ export interface StartLobbyRequestData {
 
 export interface Lobby {
     id: string
-    /** What players type in to get here. Uppercase, `LOBBY_CODE_LENGTH` characters. */
+    /**
+     * What players type in to get here. Uppercase, `JOIN_CODE_LENGTH` characters, the
+     * first of which is `L` — every game's codes are drawn from one generator and say
+     * which game they belong to. See `features/join/join-code.ts`.
+     */
     code: string
     /** Whose room it is. Only this player may change the settings or start the game. */
     hostId: string

@@ -7,6 +7,7 @@ import (
 	"slices"
 
 	"playhaus-api/internal/auth"
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
@@ -55,7 +56,7 @@ func NewServer(
 	// The socket layer knows nothing about any game; this is where League of
 	// Letters claims its namespace. PubquizR claims one when it learns to play
 	// across several phones -- a table sharing one device has nobody to notify.
-	hub.Register(lolNamespace, lolRealtime{server: s})
+	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
 
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
@@ -90,16 +91,25 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	// Before {code}, so the literal wins: this is the room you are already in, not a
 	// room called "current".
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/current", s.requireAuth(s.handleGetCurrentLobby))
-	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleGetLobby))
+
+	// room is what every route addressed by a join code is wrapped in: signed in, and
+	// carrying a code that is a League of Letters code rather than merely five
+	// characters. Named because it is the same two wrappers eight times, and eight
+	// nested pairs is a place for one of them to go missing unnoticed.
+	room := func(next http.HandlerFunc) http.HandlerFunc {
+		return s.requireAuth(s.requireGameCode(joincode.LeagueOfLetters, next))
+	}
+
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", room(s.handleGetLobby))
 	// PATCH rather than PUT: the settings card sends the knobs it has, and a room
 	// carries more than the two of them.
-	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleUpdateLobbySettings))
-	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleDeleteLobby))
-	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", s.requireAuth(s.handleJoinLobby))
-	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", s.requireAuth(s.handleLeaveLobby))
-	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/start", s.requireAuth(s.handleStartLobby))
-	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/rematch", s.requireAuth(s.handleRematchLobby))
-	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/abandon", s.requireAuth(s.handleAbandonLobby))
+	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", room(s.handleUpdateLobbySettings))
+	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", room(s.handleDeleteLobby))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", room(s.handleJoinLobby))
+	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", room(s.handleLeaveLobby))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/start", room(s.handleStartLobby))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/rematch", room(s.handleRematchLobby))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/abandon", room(s.handleAbandonLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/multiplayer/{gameID}", s.requireAuth(s.handleGetMultiplayerGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))
 }

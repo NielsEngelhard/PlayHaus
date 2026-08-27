@@ -45,11 +45,6 @@ const (
 	WordGuessedPoints      = 6
 )
 
-const (
-	JoinCodeLength   = 4
-	joinCodeAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
-)
-
 func ValidWordLength(length int) bool {
 	return length >= MinWordLength && length <= MaxWordLength
 }

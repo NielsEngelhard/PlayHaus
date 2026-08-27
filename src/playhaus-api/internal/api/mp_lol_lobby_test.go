@@ -4,8 +4,10 @@ import (
 	"context"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 
 	"gorm.io/gorm"
@@ -19,6 +21,15 @@ func lobbyStartPath(code string) string   { return lobbyPathFor(code) + "/start"
 func lobbyLeavePath(code string) string   { return lobbyPathFor(code) + "/players/me" }
 func mpGamePath(gameID string) string     { return "/api/v1/league-of-letters/multiplayer/" + gameID }
 func mpGuessesPath(gameID string) string  { return mpGamePath(gameID) + "/guesses" }
+
+// deadCode is a perfectly good League of Letters code that no room answers to --
+// right length, right prefix, every character one we hand out.
+//
+// Spelled out as a real code rather than any old string of letters because the
+// routes now refuse anything that is not one before the handler behind them runs,
+// and a test reaching for "a code nobody has" would otherwise be answered by the
+// guard instead of by the thing it means to test.
+const deadCode = "LZWQ9"
 
 // Opening a room takes a language and nothing else -- the word length is decided
 // inside the room, from the settings card, and not read until the game starts.
@@ -66,8 +77,13 @@ func TestCreateLobbyAnswersAWholeRoom(t *testing.T) {
 
 	lobby := createLobby(t, srv, session.Token)
 
-	if len(lobby.Code) != lol.JoinCodeLength {
-		t.Errorf("code = %q, want %d characters", lobby.Code, lol.JoinCodeLength)
+	if len(lobby.Code) != joincode.Length {
+		t.Errorf("code = %q, want %d characters", lobby.Code, joincode.Length)
+	}
+	// The prefix is the whole of how the app knows which screen to open, so a room that
+	// came back without one would send every player who joined it nowhere.
+	if game, ok := joincode.GameFor(lobby.Code); !ok || game != joincode.LeagueOfLetters {
+		t.Errorf("code = %q, want a League of Letters code", lobby.Code)
 	}
 	if lobby.ID != lobby.Code {
 		t.Errorf("id = %q and code = %q, want them to be the same room", lobby.ID, lobby.Code)
@@ -244,7 +260,7 @@ func TestJoinLobbyUnknownCode(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	token := newGuestSession(t, srv).Token
 
-	rec := joinLobby(t, srv, token, "ZZZZZZ")
+	rec := joinLobby(t, srv, token, deadCode)
 	if rec.Code != http.StatusNotFound {
 		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
 	}
@@ -378,7 +394,7 @@ func TestLeaveLobbyThatIsGone(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	token := newGuestSession(t, srv).Token
 
-	rec := do(t, srv, http.MethodDelete, lobbyLeavePath("ZZZZZZ"), "", token)
+	rec := do(t, srv, http.MethodDelete, lobbyLeavePath(deadCode), "", token)
 	if rec.Code != http.StatusNoContent {
 		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNoContent, rec.Body)
 	}
@@ -587,5 +603,94 @@ func TestRematchRefusesARoomThatNeverStarted(t *testing.T) {
 	rec := do(t, srv, http.MethodPost, lobbyRematchPath(lobby.Code), "", host.Token)
 	if rec.Code != http.StatusConflict {
 		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
+	}
+}
+
+// Every route addressed by a join code is guarded by the shape of the code before
+// the handler behind it is reached, so these test the door rather than the room.
+//
+// They are worth more than they look: the guard is the only thing standing between a
+// PubquizR code and a League of Letters handler, and the failure it prevents is a
+// player being told a room exists on the strength of five characters that were never
+// about this game at all.
+
+// A code for another game is not a request this address can answer, and the answer
+// has to be the same one a room that never existed gets -- a 404 the app already has
+// a line of prose for, rather than a 500 out of the depths of the lobby store.
+func TestLobbyRoutesRefuseAnotherGamesCode(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	token := newGuestSession(t, srv).Token
+
+	// One code per game that has a letter but no rooms yet. Both are perfectly good
+	// codes; neither is this game's.
+	for _, code := range []string{"P4X2Q", "O4X2Q"} {
+		rec := do(t, srv, http.MethodGet, lobbyPathFor(code), "", token)
+		if rec.Code != http.StatusNotFound {
+			t.Errorf("GET %s: status = %d, want %d (body: %s)", code, rec.Code, http.StatusNotFound, rec.Body)
+		}
+		if got := errorCode(t, rec); got != "lobby_not_found" {
+			t.Errorf("GET %s: code = %q, want lobby_not_found", code, got)
+		}
+
+		// Joining too, because that is the route a scanned QR walks into and the one
+		// place a stranger's code arrives without anybody having typed it.
+		if rec := joinLobby(t, srv, token, code); rec.Code != http.StatusNotFound {
+			t.Errorf("POST %s/players: status = %d, want %d (body: %s)", code, rec.Code, http.StatusNotFound, rec.Body)
+		}
+	}
+}
+
+// The old four-character codes stop working, which is the whole of the migration:
+// rooms live for minutes, so there is nothing to carry across -- but an app left open
+// across the deploy will ask about one, and what it gets back has to be the room-is-
+// gone answer it already knows how to draw.
+func TestLobbyRoutesRefuseTheOldFormat(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	token := newGuestSession(t, srv).Token
+
+	rec := do(t, srv, http.MethodGet, lobbyPathFor("K2V8"), "", token)
+	if rec.Code != http.StatusNotFound {
+		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
+	}
+}
+
+// Codes are read off other people's screens and typed by hand, so the case they
+// arrive in is not the case they were handed out in.
+//
+// This one guards a load-bearing detail with no compiler behind it: the code is the
+// lobby table's primary key and SQLite compares TEXT byte for byte, so the room only
+// answers to the spelling it was stored under. Everything that touches a code
+// uppercases it on the way in; drop that in one place and lowercase simply stops
+// finding rooms.
+func TestLobbyRoutesAcceptALowercaseCode(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+	lobby := createLobby(t, srv, host.Token)
+
+	rec := do(t, srv, http.MethodGet, lobbyPathFor(strings.ToLower(lobby.Code)), "", host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+	if got := decodeBody[lobbyResponse](t, rec); got.Code != lobby.Code {
+		t.Errorf("code = %q, want the room it was opened as, %q", got.Code, lobby.Code)
+	}
+}
+
+// Two rooms are two doors. Trivially true of a random draw, and worth pinning anyway,
+// because the code is a primary key and the day two rooms share one is the day two
+// tables of people find each other.
+func TestCreateLobbyHandsOutADifferentCodeEachTime(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+
+	first := createLobby(t, srv, newGuestSession(t, srv).Token)
+	second := createLobby(t, srv, newGuestSession(t, srv).Token)
+
+	if first.Code == second.Code {
+		t.Fatalf("two rooms opened with the same code %q", first.Code)
+	}
+	for _, code := range []string{first.Code, second.Code} {
+		if game, ok := joincode.GameFor(code); !ok || game != joincode.LeagueOfLetters {
+			t.Errorf("code = %q, want a League of Letters code", code)
+		}
 	}
 }

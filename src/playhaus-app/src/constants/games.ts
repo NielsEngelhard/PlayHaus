@@ -21,6 +21,18 @@ export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
+/**
+ * The character a join code starts with, which is the whole of how a code says which
+ * game it belongs to.
+ *
+ * Mirrors `Prefix()` in `internal/joincode/game.go`, and the mirroring is the point of
+ * the literal union rather than `string`: there is no codegen between the two and no
+ * test runner in this app, so this type is the only thing that will ever object to a
+ * lowercase `'l'`, a `'0'`, or a fourth game quietly taking a letter that is already
+ * spoken for.
+ */
+export type JoinCodePrefix = 'L' | 'P' | 'O';
+
 export interface Game {
     slug: string,
     name: string,
@@ -42,6 +54,21 @@ export interface Game {
      */
     isNew?: boolean,
     navigationUrl: string,
+    /**
+     * The character a code for this game begins with. See `JoinCodePrefix`, and keep it
+     * in step with `internal/joincode/game.go`.
+     */
+    joinCodePrefix: JoinCodePrefix,
+    /**
+     * The page a code for this game opens, or `null` for a game that has no rooms yet.
+     *
+     * Nullable rather than absent, because the prefix and the door are two different
+     * questions: PubquizR and One of Us both have a letter reserved — the server will
+     * hand out `P` and `O` codes the day they learn to play across several phones — and
+     * until then a code for one of them is a real code with nowhere to go. Somewhere to
+     * go is exactly what this field is, so it says so.
+     */
+    roomRoute: ((code: string) => string) | null,
     deviceMode: DeviceMode,
     minMaxPlayersIndicator: string
     minutesAverage: number
@@ -67,6 +94,8 @@ export const LEAGUE_OF_LETTERS: Game = {
     deviceMode: 'perPlayer',
     playable: true,
     navigationUrl: ROUTES.leagueOfLettersIndex,
+    joinCodePrefix: 'L',
+    roomRoute: ROUTES.leagueOfLettersRoom,
     minMaxPlayersIndicator: "1-6",
     minutesAverage: 10
 };
@@ -85,6 +114,8 @@ export const PUBQUIZR: Game = {
     playable: true,
     isNew: true,
     navigationUrl: ROUTES.quizzerIndex,
+    joinCodePrefix: 'P',
+    roomRoute: null,
     minMaxPlayersIndicator: "3-8",
     minutesAverage: 25
 };
@@ -105,6 +136,8 @@ export const ONE_OF_US: Game = {
     deviceMode: 'perPlayer',
     playable: true,
     navigationUrl: ROUTES.oneOfUsIndex,
+    joinCodePrefix: 'O',
+    roomRoute: null,
     minMaxPlayersIndicator: "3-7",
     minutesAverage: 10
 };
@@ -139,4 +172,24 @@ export function gameForPathname(pathname: string): Game | null {
  */
 export function gameBySlug(slug: string): Game | null {
     return GAMES.find(game => game.slug === slug) ?? null;
+}
+
+/**
+ * The game a join code belongs to, or `null` when no game has claimed its first
+ * character.
+ *
+ * The third lookup beside `gameForPathname` and `gameBySlug`, and the only one that runs
+ * on something a player typed. It reads the first character and nothing else — a code
+ * does not have to be whole, or even valid, for this to answer: the join card asks after
+ * a single keystroke so it can name the game beside the boxes, which is what turns the
+ * `O`/`0` confusion into something you catch on character one rather than on a 404 a
+ * screen later.
+ *
+ * Whether that game has anywhere to *take* the code is `roomRoute`, and a separate
+ * question — see `resolveJoinCode`.
+ */
+export function gameForJoinCode(code: string): Game | null {
+    const prefix = code.charAt(0).toUpperCase();
+
+    return GAMES.find(game => game.joinCodePrefix === prefix) ?? null;
 }

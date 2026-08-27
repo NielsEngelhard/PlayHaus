@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 	"slices"
-	"strings"
 
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/user"
 
@@ -389,11 +389,37 @@ func newRoundResponse(round lol.LeagueOfLettersRound, endsAt string) roundRespon
 
 // lobbyCode reads the join code off the path.
 //
-// Upper-cased because the code is stored that way and looked up exactly: a player
-// typing their code in lower case is not a player at the wrong door, and the socket
-// room key normalises the same way.
+// Normalised rather than taken as typed, because the code is stored uppercase and
+// looked up exactly: a player typing their code in lower case is not a player at the
+// wrong door. joincode.Normalize is also what reads a leading zero as the O it can only
+// have meant, and the socket room key normalises through the same function.
+//
+// The shape of the code is not checked here. Every route that takes one wears
+// requireGameCode, so by the time a handler asks, the answer is a code for this game.
 func lobbyCode(r *http.Request) string {
-	return strings.ToUpper(strings.TrimSpace(r.PathValue("code")))
+	return joincode.Normalize(r.PathValue("code"))
+}
+
+// requireGameCode is the guard every route addressed by a join code wears: it refuses
+// anything that is not a code for g before the handler behind it runs.
+//
+// Answers 404 rather than 400, and the distinction matters. A code for another game is
+// not a malformed request -- it is a perfectly good code for a room that is not at this
+// address, and "there is no such room here" is both true and the thing the player needs
+// to hear. The app already draws a 404 on this path as "that room is gone"; a 400 would
+// be a new branch saying something less useful.
+//
+// Parameterised by game rather than hardcoded to League of Letters so that PubquizR and
+// One of Us wear it unchanged on the day they grow rooms of their own.
+func (s *Server) requireGameCode(g joincode.Game, next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		game, ok := joincode.GameFor(joincode.Normalize(r.PathValue("code")))
+		if !ok || game != g {
+			writeErrorCode(w, http.StatusNotFound, "lobby_not_found", "that room does not exist")
+			return
+		}
+		next(w, r)
+	}
 }
 
 func (s *Server) handleCreateLobby(w http.ResponseWriter, r *http.Request) {

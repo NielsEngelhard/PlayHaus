@@ -4,7 +4,7 @@ import TextButton from "@/components/ui/TextButton";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { codeFromScan } from "@/features/league-of-letters/join-link";
+import { codeFromScan } from "@/features/join/join-link";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useEffect, useRef } from "react";
 import { View } from "react-native";
@@ -77,8 +77,8 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
     return (
         <PopupModal
             visible={visible}
-            title={t('lol.index.join.scanTitle')}
-            message={t('lol.index.join.scanCopy')}
+            title={t('join.scanTitle')}
+            message={t('join.scanCopy')}
             onRequestClose={close}
         >
             <View style={styles.stage}>
@@ -102,8 +102,8 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
             {permission?.granted !== true && (
                 <AppText style={styles.note}>
                     {permission !== null && !permission.canAskAgain
-                        ? t('lol.index.join.permissionDenied')
-                        : t('lol.index.join.permissionAsk')}
+                        ? t('join.permissionDenied')
+                        : t('join.permissionAsk')}
                 </AppText>
             )}
 
@@ -112,7 +112,7 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
                 one there is a button that does nothing. */}
             {permission?.granted !== true && permission?.canAskAgain !== false && (
                 <TextButton
-                    text={t('lol.index.join.permissionGrant')}
+                    text={t('join.permissionGrant')}
                     variant='primary'
                     fullWidth
                     onPress={() => void requestPermission()}
@@ -120,7 +120,7 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
             )}
 
             <TextButton
-                text={t('lol.index.join.scanCancel')}
+                text={t('join.scanCancel')}
                 variant='muted'
                 fullWidth
                 onPress={close}

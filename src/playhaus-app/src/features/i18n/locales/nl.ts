@@ -87,6 +87,58 @@ export const nl: Catalog = {
         },
         newBadge: 'Nieuw'
     },
+    /*
+     * De joinkaart, die van geen enkel spel in het bijzonder is.
+     *
+     * Deze stonden onder `lol.index` tot het eerste teken van een code het spel begon te
+     * noemen, omdat de kaart alleen League of Letters-kamers opende. Hij staat nu op drie
+     * pagina's en maar één daarvan is dat spel, dus de oude key loog over waar deze
+     * woorden te zien zijn.
+     */
+    join: {
+        label: 'JOIN EEN GAME',
+        /**
+         * Dezelfde kaart, op een breed scherm in tweeën: de vakjes zijn daar maar
+         * de helft, dus het label noemt zijn eigen helft in plaats van de kaart.
+         */
+        labelWide: 'TYP DE CODE',
+        paste: 'Plakken',
+        pasteLabel: 'Code plakken',
+        codeLabel: 'Joincode',
+        /**
+         * Het chipje naast de vakjes, zodra het eerste teken erin staat.
+         *
+         * De echte bescherming tegen `O` en `0`: je ziet dat het eerste teken goed
+         * aankwam voordat je het tweede typt, in plaats van pas bij een afwijzing vijf
+         * tekens later.
+         */
+        gameHint: 'Je joint {{game}}',
+        /**
+         * Een complete code die niets opent — een eerste teken dat geen spel heeft, een
+         * spel dat nog geen kamers heeft, of een teken in de code dat wij nooit uitgeven.
+         *
+         * Eén zin voor alle drie, want voor wie de telefoon vasthoudt zijn het hetzelfde:
+         * vijf tekens die niets openen.
+         */
+        rejected: 'Dit is geen code die we kunnen openen. Check hem en probeer opnieuw.',
+        scanRowTitle: 'Of scan zijn scherm',
+        scanRowHint: 'Je zit er meteen in',
+        scanAction: 'Scan liever',
+        scanCopy: 'Richt je telefoon op de code van de host',
+        scanTitle: 'Scannen om te joinen',
+        scanLabel: 'Scan een QR-code om een game te joinen',
+        scanCancel: 'Annuleren',
+        permissionAsk: 'De camera is nodig om de code van de host te lezen. Er wordt niets opgenomen of verstuurd.',
+        permissionGrant: 'Camera toestaan',
+        /**
+         * Hier geen knop onder: dit antwoord verander je in de instellingen.
+         *
+         * Het aantal staat er bewust niet meer in. Er stond "de vier tekens" en codes zijn
+         * nu vijf tekens lang — precies het soort zin dat stil fout gaat zodra een getal
+         * verschuift en niemand eraan denkt de catalogus erop na te lezen.
+         */
+        permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de code gewoon in.'
+    },
     languages: {
         nl: { description: 'Woorden uit de Nederlandse lijst.' },
         en: { description: 'Woorden uit de Engelse lijst.' }
@@ -199,29 +251,7 @@ export const nl: Catalog = {
             description: 'Test je woordenschat en probeer het geheime woord te raden.',
             playingAs: 'Jij bent {{name}}',
             solo: { title: 'Solo', description: 'Speel alleen, lekker rustig.', action: 'Instellen' },
-            multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' },
-            join: {
-                label: 'JOIN EEN GAME',
-                /**
-                 * Dezelfde kaart, op een breed scherm in tweeën: de vakjes zijn daar maar
-                 * de helft, dus het label noemt zijn eigen helft in plaats van de kaart.
-                 */
-                labelWide: 'TYP DE CODE',
-                paste: 'Plakken',
-                pasteLabel: 'Code plakken',
-                codeLabel: 'Lobbycode',
-                scanRowTitle: 'Of scan zijn scherm',
-                scanRowHint: 'Je zit er meteen in',
-                scanAction: 'Scan liever',
-                scanCopy: 'Richt je telefoon op de code van de host',
-                scanTitle: 'Scannen om te joinen',
-                scanLabel: 'Scan een QR-code om een lobby te joinen',
-                scanCancel: 'Annuleren',
-                permissionAsk: 'De camera is nodig om de code van de host te lezen. Er wordt niets opgenomen of verstuurd.',
-                permissionGrant: 'Camera toestaan',
-                /** Hier geen knop onder: dit antwoord verander je in de instellingen. */
-                permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de vier tekens gewoon in.'
-            }
+            multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' }
         },
         settings: {
             loading: 'Spel zoeken…',

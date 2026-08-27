@@ -3,7 +3,7 @@ import AppText from "@/components/text/AppText";
 import BigIntroText from "@/components/text/BigIntroText";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
-import JoinCodeCard from "@/features/reconnect/components/JoinCodeCard";
+import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import ReconnectableGameCard from "@/features/reconnect/components/ReconnectableGameCard";
 import RefreshBar from "@/features/reconnect/components/RefreshBar";
 import { kindOf, startedAgo } from "@/features/reconnect/game-kinds";

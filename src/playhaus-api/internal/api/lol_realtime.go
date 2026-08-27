@@ -3,9 +3,9 @@ package api
 import (
 	"context"
 	"errors"
-	"strings"
 	"time"
 
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/realtime"
 
@@ -20,10 +20,20 @@ import (
 // The room is keyed by the join code, so the same connection carries the lobby and
 // the game that grows out of it -- nobody reconnects at kickoff, which is the one
 // moment a reconnect would be most visible.
-const lolNamespace = "lol"
 
+// lolRoom is the socket room a join code names.
+//
+// Both halves come from joincode rather than being spelled out here. The namespace
+// because a room key is "namespace:code" and the code already says which game it is: if
+// the two could disagree, "lol:P4X2Q" would be a room a client could sit in forever,
+// correctly connected to a game that will never publish into it. The id because the code
+// is compared byte for byte everywhere else, and a room reached in lower case is a room
+// nobody is talking to.
 func lolRoom(code string) realtime.Key {
-	return realtime.Key{Namespace: lolNamespace, ID: strings.ToUpper(code)}
+	return realtime.Key{
+		Namespace: joincode.LeagueOfLetters.Namespace(),
+		ID:        joincode.Normalize(code),
+	}
 }
 
 // Message types, server to client. The client sends exactly one thing back --

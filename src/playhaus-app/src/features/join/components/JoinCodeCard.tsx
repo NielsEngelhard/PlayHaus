@@ -1,11 +1,11 @@
-import { LOBBY_CODE_LENGTH } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
-import { ROUTES } from "@/constants/routes";
+import { gameForJoinCode } from "@/constants/games";
 import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { codeFromScan, sanitize } from "@/features/league-of-letters/join-link";
-import ScanToJoin from "@/features/league-of-letters/components/ScanToJoin";
+import ScanToJoin from "@/features/join/components/ScanToJoin";
+import { JOIN_CODE_LENGTH, resolveJoinCode, sanitize } from "@/features/join/join-code";
+import { codeFromScan } from "@/features/join/join-link";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -17,7 +17,7 @@ import { Animated, Easing, Pressable, TextInput, useWindowDimensions, View } fro
 /** Half a blink. The caret is on for this long, then off for this long. */
 const BLINK_MS = 550;
 
-const SLOTS = Array.from({ length: LOBBY_CODE_LENGTH }, (_, index) => index);
+const SLOTS = Array.from({ length: JOIN_CODE_LENGTH }, (_, index) => index);
 
 /**
  * The page's own shape, repeated here.
@@ -70,7 +70,7 @@ const SLOT_GAP = Spacing.two;
  * same test that splits the card today keeps it stacked the day codes get longer, with
  * nobody having to remember to come back here. See `isWide`.
  */
-const CLUSTER_WIDTH = LOBBY_CODE_LENGTH * MAX_SLOT + (LOBBY_CODE_LENGTH - 1) * SLOT_GAP;
+const CLUSTER_WIDTH = JOIN_CODE_LENGTH * MAX_SLOT + (JOIN_CODE_LENGTH - 1) * SLOT_GAP;
 
 /**
  * Whether the card has the width to stand its two halves side by side.
@@ -94,10 +94,11 @@ const SLOT_ASPECT = 0.86;
 
 /**
  * Type size is the one thing that cannot follow the box, so it follows the code length
- * instead — a constant, known here at module load. Six slots on a narrow phone are tight
- * enough that the four-character size would sit on its own borders.
+ * instead — a constant, known here at module load. Five slots on a narrow phone are
+ * already tight enough that the larger size would sit on its own borders, which is why
+ * the prefix arriving cost nothing here: the card was written expecting it.
  */
-const SLOT_FONT = LOBBY_CODE_LENGTH > 4 ? 21 : 26;
+const SLOT_FONT = JOIN_CODE_LENGTH > 4 ? 21 : 26;
 
 /** The scan tile, in each arrangement. Big enough on the wide one to be the panel's subject. */
 const SCAN_TILE_SMALL = 44;
@@ -108,8 +109,15 @@ const SWEEP_REACH = 0.3;
 const SWEEP_MS = 2400;
 
 /**
- * Enter a lobby code and join someone else's game — by typing it, or by pointing the
+ * Enter a join code and join someone else's game — by typing it, or by pointing the
  * camera at the host's screen.
+ *
+ * This card knows no routes, and that is the load-bearing thing about it. It is mounted on
+ * three pages — `/reconnect`, League of Letters and One of Us — and it used to push a
+ * League of Letters room whatever page it was standing on, which meant a player typing a
+ * code on the One of Us page was marched into a word game. Where a code goes is now
+ * `resolveJoinCode`'s answer, read off the code's first character, and the card cannot
+ * override it because it does not import `ROUTES` at all.
  *
  * The code is drawn as one box per character, but it is typed into a single `TextInput`
  * laid over the whole row at zero opacity. One field rather than several is what makes
@@ -142,6 +150,15 @@ export default function JoinCodeCard() {
     const [scanning, setScanning] = useState(false);
 
     /**
+     * What to say about a code that went nowhere, or null when there is nothing to say.
+     *
+     * A line under the boxes rather than an alert: the field is still sitting there with
+     * the code in it, and the next thing to do is fix a character — which an alert would be
+     * standing in front of.
+     */
+    const [rejected, setRejected] = useState(false);
+
+    /**
      * Whether this card has already sent someone off with the code it holds.
      *
      * This screen stays mounted underneath the room, so coming back from a code that did
@@ -155,21 +172,37 @@ export default function JoinCodeCard() {
     const cursor = focused ? code.length : -1;
 
     function join(value: string) {
-        if (value.length !== LOBBY_CODE_LENGTH || sent.current) return;
+        if (sent.current) return;
+
+        const target = resolveJoinCode(value);
+
+        // Still being typed. Nothing to say and nothing to do — least of all a refusal,
+        // which at three characters in would be a complaint about an unfinished sentence.
+        if (target.kind === 'incomplete') return;
+
+        if (target.kind === 'rejected') {
+            setRejected(true);
+            return;
+        }
 
         sent.current = true;
+        setRejected(false);
         // The room draws its own chrome, and an open keyboard would sit on top of it.
         field.current?.blur();
 
-        router.push(ROUTES.leagueOfLettersRoom(value) as RelativePathString);
+        router.push(target.href as RelativePathString);
     }
 
     function change(text: string) {
         const next = sanitize(text);
 
         // Editing back down to an incomplete code is the signal that this is a fresh
-        // attempt, so the next completion is allowed to travel.
-        if (next.length < LOBBY_CODE_LENGTH) sent.current = false;
+        // attempt, so the next completion is allowed to travel — and the refusal that was
+        // standing under the boxes is about a code that no longer exists.
+        if (next.length < JOIN_CODE_LENGTH) {
+            sent.current = false;
+            setRejected(false);
+        }
 
         setCode(next);
         join(next);
@@ -188,6 +221,7 @@ export default function JoinCodeCard() {
      */
     function acceptCode(value: string) {
         sent.current = false;
+        setRejected(false);
 
         setCode(value);
         join(value);
@@ -222,11 +256,11 @@ export default function JoinCodeCard() {
             style={styles.paste}
             onPress={() => void paste()}
             accessibilityRole='button'
-            accessibilityLabel={t('lol.index.join.pasteLabel')}
+            accessibilityLabel={t('join.pasteLabel')}
         >
             <Feather name='clipboard' size={13} color={Brand.secondary} />
 
-            <AppText style={styles.pasteText}>{t('lol.index.join.paste')}</AppText>
+            <AppText style={styles.pasteText}>{t('join.paste')}</AppText>
         </PopPressable>
     );
 
@@ -258,11 +292,11 @@ export default function JoinCodeCard() {
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 onSubmitEditing={() => join(code)}
-                maxLength={LOBBY_CODE_LENGTH}
+                maxLength={JOIN_CODE_LENGTH}
                 autoCapitalize='characters'
                 autoCorrect={false}
                 returnKeyType='go'
-                accessibilityLabel={t('lol.index.join.codeLabel')}
+                accessibilityLabel={t('join.codeLabel')}
                 // `caretHidden` because the boxes draw their own, and the real one would
                 // be sitting at the far left of an invisible field.
                 caretHidden
@@ -271,6 +305,39 @@ export default function JoinCodeCard() {
         </Pressable>
     );
 
+    /**
+     * The line under the boxes: which game this code belongs to, or why it opens nothing.
+     *
+     * The game appears on the *first* keystroke, and that is the point of it rather than a
+     * flourish. `O` is One of Us's letter and `0` is not in the alphabet, so a leading zero
+     * is read as the letter — sensible, and silent. Naming the game straight away is what
+     * turns a mistyped first character into something you see before you have typed the
+     * second, instead of a refusal five characters later with no clue which one was wrong.
+     *
+     * One line for both messages because they cannot both be true: a code whole enough to
+     * be refused has a first character, and if that character named a game with somewhere
+     * to go it would not have been refused. Keeping them in one row also keeps the card
+     * from growing a line and shunting the scan half down as you type.
+     */
+    const hint = (() => {
+        if (rejected) return <AppText style={styles.rejected}>{t('join.rejected')}</AppText>;
+
+        const game = gameForJoinCode(code);
+        if (game === null) return null;
+
+        return (
+            <View style={styles.gameHint}>
+                {/* The game's own accent, which is the same colour its home card and its
+                    header wear — so the confirmation is recognisable before it is read. */}
+                <View style={[styles.gameDot, { backgroundColor: game.color }]} />
+
+                <AppText style={styles.gameHintText}>
+                    {t('join.gameHint', { game: game.name })}
+                </AppText>
+            </View>
+        );
+    })();
+
     return (
         <>
             <View style={[styles.card, wide ? styles.cardWide : styles.cardStacked]}>
@@ -278,9 +345,13 @@ export default function JoinCodeCard() {
                     ? (
                         <>
                             <View style={styles.typeColumn}>
-                                <AppText style={styles.label}>{t('lol.index.join.labelWide')}</AppText>
+                                <AppText style={styles.label}>{t('join.labelWide')}</AppText>
 
                                 <View style={styles.slotsWide}>{slots}</View>
+
+                                {/* Held at a fixed height so the row does not jump as the
+                                    line appears and goes. */}
+                                <View style={styles.hintLine}>{hint}</View>
 
                                 <View style={styles.footWide}>{pasteChip}</View>
                             </View>
@@ -295,12 +366,14 @@ export default function JoinCodeCard() {
                                 the scan row, and two controls on that line would make the
                                 second way in compete with a shortcut to the first. */}
                             <View style={styles.head}>
-                                <AppText style={styles.label}>{t('lol.index.join.label')}</AppText>
+                                <AppText style={styles.label}>{t('join.label')}</AppText>
 
                                 {pasteChip}
                             </View>
 
                             {slots}
+
+                            <View style={styles.hintLine}>{hint}</View>
 
                             <ScanRow onPress={() => setScanning(true)} />
                         </>
@@ -337,14 +410,14 @@ function ScanRow({ onPress }: ScanProps) {
             style={styles.scanRow}
             onPress={onPress}
             accessibilityRole='button'
-            accessibilityLabel={t('lol.index.join.scanLabel')}
+            accessibilityLabel={t('join.scanLabel')}
         >
             <ScanTile size={SCAN_TILE_SMALL} />
 
             <View style={styles.scanRowCopy}>
-                <AppText style={styles.scanRowTitle}>{t('lol.index.join.scanRowTitle')}</AppText>
+                <AppText style={styles.scanRowTitle}>{t('join.scanRowTitle')}</AppText>
 
-                <AppText style={styles.scanRowHint}>{t('lol.index.join.scanRowHint')}</AppText>
+                <AppText style={styles.scanRowHint}>{t('join.scanRowHint')}</AppText>
             </View>
 
             <Feather name='chevron-right' size={17} color={theme.colors.text} />
@@ -373,13 +446,13 @@ function ScanPanel({ onPress }: ScanProps) {
             style={({ pressed }) => [styles.scanColumn, pressed && styles.scanColumnHeld]}
             onPress={onPress}
             accessibilityRole='button'
-            accessibilityLabel={t('lol.index.join.scanLabel')}
+            accessibilityLabel={t('join.scanLabel')}
         >
             <ScanTile size={SCAN_TILE_LARGE} />
 
-            <AppText style={styles.scanPanelTitle}>{t('lol.index.join.scanAction')}</AppText>
+            <AppText style={styles.scanPanelTitle}>{t('join.scanAction')}</AppText>
 
-            <AppText style={styles.scanPanelCopy}>{t('lol.index.join.scanCopy')}</AppText>
+            <AppText style={styles.scanPanelCopy}>{t('join.scanCopy')}</AppText>
         </Pressable>
     )
 }
@@ -616,6 +689,39 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: SLOT_FONT,
         textAlign: 'center',
         color: theme.colors.text
+    },
+    /**
+     * The line under the boxes, at a fixed height whether or not it has anything in it.
+     *
+     * Reserved rather than grown into: this row fills in on the first keystroke and empties
+     * again on a backspace, and a card that changed height each time would walk the scan
+     * half up and down the page under the thumb reaching for it.
+     */
+    hintLine: {
+        height: 22,
+        justifyContent: 'center'
+    },
+    gameHint: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6
+    },
+    gameDot: {
+        width: 7,
+        height: 7,
+        borderRadius: 999
+    },
+    gameHintText: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: theme.colors.textSecondary
+    },
+    rejected: {
+        fontSize: 12,
+        fontWeight: 700,
+        // The one red on this card. A refusal that shared the hint's colour would be a
+        // sentence you have to read to notice it was a refusal.
+        color: Brand.destructive
     },
     footWide: {
         marginTop: Spacing.three - 2,

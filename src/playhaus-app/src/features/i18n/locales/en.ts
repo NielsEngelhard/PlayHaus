@@ -102,6 +102,59 @@ export const en = {
      * never translated, so someone who cannot yet read the current interface language can
      * still find their own.
      */
+    /*
+     * The join card, which is not any one game's.
+     *
+     * These lived under `lol.index` until the first character of a code started naming
+     * the game, because the card only ever opened League of Letters rooms. It is mounted
+     * on three pages now and only one of them is that game, so the old key was a lie
+     * about which screen the words appear on.
+     */
+    join: {
+        label: 'JOIN A GAME',
+        /**
+         * The same card, split in two on a wide screen: the boxes are only half
+         * of it there, so the label names its own half rather than the card.
+         */
+        labelWide: 'TYPE THE CODE',
+        paste: 'Paste',
+        pasteLabel: 'Paste code',
+        codeLabel: 'Join code',
+        /**
+         * The chip beside the boxes, as soon as the first character is in.
+         *
+         * The real defence against `O` and `0`: you find out the first character landed
+         * where you meant it before you have typed the second, rather than off a refusal
+         * five characters later.
+         */
+        gameHint: 'Joining {{game}}',
+        /**
+         * A whole code that opens nothing — an unclaimed first character, a game with no
+         * rooms yet, or a character in the body that no code contains.
+         *
+         * One phrase for all three, because they are one thing to the person holding the
+         * phone: five characters that do not open anything. Saying which would mean
+         * explaining that a game has a letter reserved for a feature it does not have.
+         */
+        rejected: "That isn't a code we can open. Check it and try again.",
+        scanRowTitle: 'Or scan their screen',
+        scanRowHint: 'Joins instantly',
+        scanAction: 'Scan instead',
+        scanCopy: "Point your phone at the host's code",
+        scanTitle: 'Scan to join',
+        scanLabel: 'Scan a QR code to join a game',
+        scanCancel: 'Cancel',
+        permissionAsk: 'The camera is needed to read the host’s code. Nothing is recorded or sent anywhere.',
+        permissionGrant: 'Allow the camera',
+        /**
+         * No button under this one: the answer has to be changed in settings.
+         *
+         * The count is deliberately not named. It said "the four characters" and codes are
+         * five now, which is the kind of sentence that goes quietly wrong the moment a
+         * number moves and nobody thinks to grep the catalogue for it.
+         */
+        permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the code instead.'
+    },
     languages: {
         nl: { description: 'Words from the Dutch list.' },
         en: { description: 'Words from the English list.' }
@@ -214,29 +267,7 @@ export const en = {
             description: 'Test your vocabulary, challenge your friends, and try to guess the secret word before you run out of chances. Play solo or against your enemies.',
             playingAs: 'Playing as {{name}}',
             solo: { title: 'Solo', description: 'Three rounds, your rules.', action: 'Set up' },
-            multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' },
-            join: {
-                label: 'JOIN A LOBBY',
-                /**
-                 * The same card, split in two on a wide screen: the boxes are only half
-                 * of it there, so the label names its own half rather than the card.
-                 */
-                labelWide: 'TYPE THE CODE',
-                paste: 'Paste',
-                pasteLabel: 'Paste code',
-                codeLabel: 'Lobby code',
-                scanRowTitle: 'Or scan their screen',
-                scanRowHint: 'Joins instantly',
-                scanAction: 'Scan instead',
-                scanCopy: "Point your phone at the host's code",
-                scanTitle: 'Scan to join',
-                scanLabel: 'Scan a QR code to join a lobby',
-                scanCancel: 'Cancel',
-                permissionAsk: 'The camera is needed to read the host’s code. Nothing is recorded or sent anywhere.',
-                permissionGrant: 'Allow the camera',
-                /** No button under this one: the answer has to be changed in settings. */
-                permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the four characters instead.'
-            }
+            multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' }
         },
         settings: {
             loading: 'Looking for your game…',

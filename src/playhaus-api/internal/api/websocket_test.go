@@ -9,6 +9,7 @@ import (
 	"testing"
 	"time"
 
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/realtime"
 
 	"github.com/coder/websocket"
@@ -40,7 +41,7 @@ func dialRoom(t *testing.T, srv *httptest.Server, code, token string) *socket {
 	t.Helper()
 
 	url := strings.Replace(srv.URL, "http://", "ws://", 1) +
-		"/api/v1/ws?room=" + lolNamespace + ":" + code + "&token=" + token
+		"/api/v1/ws?room=" + joincode.LeagueOfLetters.Namespace() + ":" + code + "&token=" + token
 
 	ctx, cancel := context.WithTimeout(t.Context(), frameWait)
 	defer cancel()
@@ -174,7 +175,7 @@ func TestSocketRefusesABadToken(t *testing.T) {
 	lobby := createLobby(t, srv, host.Token)
 
 	url := strings.Replace(live.URL, "http://", "ws://", 1) +
-		"/api/v1/ws?room=" + lolNamespace + ":" + lobby.Code + "&token=nonsense"
+		"/api/v1/ws?room=" + joincode.LeagueOfLetters.Namespace() + ":" + lobby.Code + "&token=nonsense"
 
 	ctx, cancel := context.WithTimeout(t.Context(), frameWait)
 	defer cancel()
@@ -515,5 +516,69 @@ func TestRematchIsAnnouncedInTheOldRoom(t *testing.T) {
 	announced := into[rematchPayload](t, conn.await(typeRematch))
 	if announced.Code != next.Code {
 		t.Errorf("announced %q, want the room the host opened %q", announced.Code, next.Code)
+	}
+}
+
+// A room in a game's namespace is named by a join code, and the handshake says so.
+//
+// Without the check "lol:P4X2Q" is a room key like any other: the hub would hand out
+// a subscription to a room in the word game's namespace named after somebody else's
+// game, and nothing would ever publish into it. Refused at the door instead.
+func TestSocketRefusesARoomThatIsNotACodeForTheGame(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	live := liveServer(t, srv)
+
+	token := newGuestSession(t, srv).Token
+
+	// Another game's code, an unclaimed first character, and something that is not a
+	// code at all -- the three ways the id can fail to be one.
+	for _, room := range []string{"P4X2Q", "K2V8X", "garbage"} {
+		url := strings.Replace(live.URL, "http://", "ws://", 1) +
+			"/api/v1/ws?room=" + joincode.LeagueOfLetters.Namespace() + ":" + room + "&token=" + token
+
+		ctx, cancel := context.WithTimeout(t.Context(), frameWait)
+		conn, res, err := websocket.Dial(ctx, url, nil)
+		cancel()
+
+		if err == nil {
+			_ = conn.CloseNow()
+			t.Errorf("%q got a socket", room)
+			continue
+		}
+		if res == nil || res.StatusCode != http.StatusBadRequest {
+			t.Errorf("%q: status = %v, want %d", room, res, http.StatusBadRequest)
+		}
+	}
+}
+
+// The same room, whatever case it is asked for in.
+//
+// This is a regression test for a silent failure rather than a tidy-up. Every publish
+// goes through lolRoom, which uppercases; the handshake used to take the id exactly as
+// written. So a client connecting to "lol:abcde" was put in a room of that name,
+// handed its snapshot on the way in -- because the snapshot is fetched with a
+// normalised code -- and then heard nothing ever again. Correctly connected to
+// nothing, with no error anywhere to find.
+func TestSocketNormalisesTheRoomCode(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	live := liveServer(t, srv)
+
+	host := newGuestSession(t, srv)
+	guest := newGuestSession(t, srv)
+	lobby := createLobby(t, srv, host.Token)
+
+	// Lowercase, the way a code typed by hand arrives.
+	hostConn := dialRoom(t, live, strings.ToLower(lobby.Code), host.Token)
+	hostConn.await(typeState)
+
+	// Somebody joining is published into the uppercase room. If the two are not the
+	// same room, this frame never comes.
+	if rec := joinLobby(t, srv, guest.Token, lobby.Code); rec.Code != http.StatusOK {
+		t.Fatalf("join: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	roster := into[lobbyPayload](t, hostConn.await(typeLobby)).Lobby
+	if len(roster.Players) != 2 {
+		t.Errorf("got %d players, want the guest who joined to have arrived", len(roster.Players))
 	}
 }

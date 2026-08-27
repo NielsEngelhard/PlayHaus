@@ -6,7 +6,7 @@ import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
-import JoinCodeCard from "@/features/reconnect/components/JoinCodeCard";
+import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";

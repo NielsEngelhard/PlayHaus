@@ -8,6 +8,16 @@ import (
 	"time"
 )
 
+// GameType is a game *and the way it is being played*, which is a finer thing than a
+// game: League of Letters is two of these because a solo board and a shared one are
+// reached by different screens, and the reconnect list is drawing a row that has to know
+// which.
+//
+// Not to be confused with joincode.Game, which is the coarser axis -- the three games
+// themselves, one letter each, as the front of a join code. That one answers "whose
+// room is this"; this one answers "what am I putting on the screen". Neither derives from
+// the other today, and folding them together would mean asking lol_solo which door it
+// opens when it has no door at all.
 type GameType string
 
 const (

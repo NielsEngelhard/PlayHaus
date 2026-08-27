@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"playhaus-api/internal/auth"
+	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/realtime"
 
 	"github.com/coder/websocket"
@@ -37,6 +38,32 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "room must be namespace:id")
 		return
+	}
+
+	// A room in a game's namespace is named by a join code, so the id has to be one --
+	// for that game, and in the one spelling everything else compares it in.
+	//
+	// Namespaces that are not a game's are left alone: the hub refuses the ones nobody
+	// has claimed, and a game whose rooms are named by something other than a code is
+	// free to arrive here later without this having an opinion about it.
+	//
+	// The normalising is a fix rather than a tidy-up. ParseKey takes the id as written
+	// while every publisher goes through its game's room key, which uppercases -- so a
+	// client connecting to "lol:abcde" used to be put in a room of that exact name,
+	// receive its state once on the way in, and then hear nothing ever again, because
+	// nobody was publishing to a room spelled that way. Correctly connected to nothing
+	// is the worst kind of broken: there is no error anywhere to find.
+	//
+	// The agreement check is the other half. Now that a code names its own game, a
+	// namespace that disagrees with it is a client asking for a room that cannot exist,
+	// and letting it in would recreate the same silence by a different route.
+	if game := joincode.Game(key.Namespace); game.Valid() {
+		named, code, err := joincode.Parse(key.ID)
+		if err != nil || named != game {
+			writeError(w, http.StatusBadRequest, "room is not a join code for that game")
+			return
+		}
+		key.ID = code
 	}
 
 	// The server's own read and write timeouts would cut a socket off after fifteen
