@@ -1,3 +1,3 @@
-src/playhaus-api/internal/api/multiplayer-league-of-letters.go
-src/playhaus-api/internal/api/reconnect_test.go
-src/playhaus-api/internal/api/reconnect.go
+# OS / editor junk. Per-module ignores live in src/*/.gitignore.
+.DS_Store
+Thumbs.db

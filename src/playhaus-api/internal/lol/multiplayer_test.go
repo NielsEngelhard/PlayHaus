@@ -1,4 +1,4 @@
-package league_of_letters
+package lol
 
 import (
 	"testing"
@@ -16,6 +16,10 @@ func gameWith(players, rounds int) *MultiplayerLeagueOfLettersGame {
 		CurrentRound: 1,
 		Status:       GameInProgress,
 		WordLength:   5,
+		// Set here because every real game has it -- StartLobby writes it and the
+		// column defaults to it -- and a fixture at zero would be testing the clock
+		// against a state nothing produces.
+		SecondsPerGuess: DefaultSecondsPerTurn,
 	}
 
 	for i := range players {
@@ -85,8 +89,8 @@ func TestAdvanceResetsTheClock(t *testing.T) {
 	play(game, false)
 
 	left := time.Until(game.TurnEndsAt)
-	if left <= 0 || left > SecondsPerTurn*time.Second {
-		t.Errorf("the new turn has %s left, want a full %ds", left, SecondsPerTurn)
+	if left <= 0 || left > DefaultSecondsPerTurn*time.Second {
+		t.Errorf("the new turn has %s left, want a full %ds", left, DefaultSecondsPerTurn)
 	}
 }
 

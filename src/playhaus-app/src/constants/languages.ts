@@ -4,7 +4,7 @@
  * Mirrors `i18n.Locales` in the API (`internal/i18n/locale.go`) — keep the two in
  * step, since these codes travel to the backend as-is and it refuses anything not
  * on its own list. Adding one there also means adding its word lists under
- * `internal/league-of-letters/data/`.
+ * `internal/lol/data/`.
  *
  * Lives in `constants` rather than under `features/league-of-letters`, which is
  * where it started: a language is an account setting now, and the profile screen

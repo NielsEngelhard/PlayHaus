@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing"
 
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 )
 
 func lobbyCurrentPath() string            { return lobbyPath + "/current" }
@@ -58,8 +58,8 @@ func TestCurrentLobbyFindsARoomNobodyStarted(t *testing.T) {
 	if found.Code != opened.Code {
 		t.Errorf("code = %q, want the room this host opened (%q)", found.Code, opened.Code)
 	}
-	if found.Status != string(league_of_letters.LobbyWaiting) {
-		t.Errorf("status = %q, want %q", found.Status, league_of_letters.LobbyWaiting)
+	if found.Status != string(lol.LobbyWaiting) {
+		t.Errorf("status = %q, want %q", found.Status, lol.LobbyWaiting)
 	}
 }
 
@@ -133,8 +133,8 @@ func TestAbandonLobbyEndsTheGameAndTheRoom(t *testing.T) {
 	}
 
 	game := decodeBody[multiplayerGameResponse](t, do(t, srv, http.MethodGet, mpGamePath(started.GameID), "", host.Token))
-	if game.Status != string(league_of_letters.GameAbandoned) {
-		t.Errorf("game status = %q, want %q", game.Status, league_of_letters.GameAbandoned)
+	if game.Status != string(lol.GameAbandoned) {
+		t.Errorf("game status = %q, want %q", game.Status, lol.GameAbandoned)
 	}
 
 	if rec := do(t, srv, http.MethodGet, lobbyCurrentPath(), "", host.Token); rec.Code != http.StatusNoContent {

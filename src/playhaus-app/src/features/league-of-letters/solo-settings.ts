@@ -1,6 +1,6 @@
 /**
  * The knobs a solo game is set up with. These mirror `MinWordLength`/`MaxWordLength`
- * in the API (`internal/league-of-letters/league-of-letters.go`) — keep the two in
+ * in the API (`internal/lol/lol.go`) — keep the two in
  * step, since the values travel to the backend as-is.
  *
  * The language list is not here: it moved to `@/constants/languages` once an
@@ -24,8 +24,8 @@ export type WordLength = typeof WORD_LENGTHS[number];
  * The shape of a solo game, for the setup screen to promise before one exists.
  *
  * Mirrors the backend, which is where these are actually decided: `MaxGuesses` in
- * `internal/league-of-letters/league-of-letters.go`, and `determineNumberOfRounds(1)`
- * in `internal/league-of-letters/service.go`. Keep the two in step.
+ * `internal/lol/lol.go`, and `determineNumberOfRounds(1)`
+ * in `internal/lol/service.go`. Keep the two in step.
  *
  * Duplicated here rather than read off the game because the setup screen shows them
  * *before* it creates anything — the server's `Game` carries `totalRounds` and

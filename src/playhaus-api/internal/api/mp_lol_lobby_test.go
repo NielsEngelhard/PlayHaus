@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 
 	"gorm.io/gorm"
 )
@@ -66,8 +66,8 @@ func TestCreateLobbyAnswersAWholeRoom(t *testing.T) {
 
 	lobby := createLobby(t, srv, session.Token)
 
-	if len(lobby.Code) != league_of_letters.JoinCodeLength {
-		t.Errorf("code = %q, want %d characters", lobby.Code, league_of_letters.JoinCodeLength)
+	if len(lobby.Code) != lol.JoinCodeLength {
+		t.Errorf("code = %q, want %d characters", lobby.Code, lol.JoinCodeLength)
 	}
 	if lobby.ID != lobby.Code {
 		t.Errorf("id = %q and code = %q, want them to be the same room", lobby.ID, lobby.Code)
@@ -75,8 +75,8 @@ func TestCreateLobbyAnswersAWholeRoom(t *testing.T) {
 	if lobby.HostID != session.User.ID {
 		t.Errorf("hostId = %q, want the creator %q", lobby.HostID, session.User.ID)
 	}
-	if lobby.Status != string(league_of_letters.LobbyWaiting) {
-		t.Errorf("status = %q, want %q", lobby.Status, league_of_letters.LobbyWaiting)
+	if lobby.Status != string(lol.LobbyWaiting) {
+		t.Errorf("status = %q, want %q", lobby.Status, lol.LobbyWaiting)
 	}
 	if lobby.GameID != "" {
 		t.Errorf("gameId = %q on a room that has not started", lobby.GameID)
@@ -86,8 +86,8 @@ func TestCreateLobbyAnswersAWholeRoom(t *testing.T) {
 	if lobby.Settings.Locale != "en" {
 		t.Errorf("locale = %q, want the one it was opened with", lobby.Settings.Locale)
 	}
-	if lobby.Settings.WordLength != league_of_letters.DefaultWordLength {
-		t.Errorf("wordLength = %d, want the default %d", lobby.Settings.WordLength, league_of_letters.DefaultWordLength)
+	if lobby.Settings.WordLength != lol.DefaultWordLength {
+		t.Errorf("wordLength = %d, want the default %d", lobby.Settings.WordLength, lol.DefaultWordLength)
 	}
 
 	// The host is a player, and the first one -- the list is drawn straight off this.
@@ -139,8 +139,8 @@ func TestCreateLobbyWithoutALanguage(t *testing.T) {
 	if lobby.Settings.Locale == "" {
 		t.Error("settings came back with no locale, which the room screen draws")
 	}
-	if lobby.Settings.WordLength != league_of_letters.DefaultWordLength {
-		t.Errorf("wordLength = %d, want the default %d", lobby.Settings.WordLength, league_of_letters.DefaultWordLength)
+	if lobby.Settings.WordLength != lol.DefaultWordLength {
+		t.Errorf("wordLength = %d, want the default %d", lobby.Settings.WordLength, lol.DefaultWordLength)
 	}
 }
 
@@ -258,7 +258,7 @@ func TestJoinLobbyFull(t *testing.T) {
 	lobby := createLobby(t, srv, newGuestSession(t, srv).Token)
 
 	// The host has one of the seats already.
-	for i := range league_of_letters.MaxLobbyPlayers - 1 {
+	for i := range lol.MaxLobbyPlayers - 1 {
 		rec := joinLobby(t, srv, newGuestSession(t, srv).Token, lobby.Code)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("player %d: status = %d (body: %s)", i+2, rec.Code, rec.Body)
@@ -492,8 +492,8 @@ func TestRematchOpensARoomOnTheSameSettings(t *testing.T) {
 	if next.Code == lobby.Code {
 		t.Fatalf("code = %q, want a room of its own", next.Code)
 	}
-	if next.Status != string(league_of_letters.LobbyWaiting) {
-		t.Errorf("status = %q, want %q", next.Status, league_of_letters.LobbyWaiting)
+	if next.Status != string(lol.LobbyWaiting) {
+		t.Errorf("status = %q, want %q", next.Status, lol.LobbyWaiting)
 	}
 	if next.GameID != "" {
 		t.Errorf("gameId = %q on a room nobody has started", next.GameID)

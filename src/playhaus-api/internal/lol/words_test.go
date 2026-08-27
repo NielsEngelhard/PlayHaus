@@ -1,4 +1,4 @@
-package league_of_letters
+package lol
 
 import (
 	"playhaus-api/internal/i18n"

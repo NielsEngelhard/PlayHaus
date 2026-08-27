@@ -3,11 +3,11 @@ package api
 import (
 	"log/slog"
 	"net/http"
-	one_of_us "playhaus-api/internal/one-of-us"
+	"playhaus-api/internal/oneofus"
 	"slices"
 
 	"playhaus-api/internal/auth"
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
@@ -17,9 +17,9 @@ type Server struct {
 	mux             *http.ServeMux
 	users           *user.Service
 	auth            *auth.Service
-	leagueOfLetters *league_of_letters.Service
+	leagueOfLetters *lol.Service
 	pubquizr        *pubquizr.Service
-	oneOfUs         *one_of_us.Service
+	oneOfUs         *oneofus.Service
 	// rt is every live socket room. Handlers publish into it after a write; they
 	// never read game state out of it.
 	rt  *realtime.Hub
@@ -34,7 +34,7 @@ type Server struct {
 func NewServer(
 	users *user.Service,
 	authSvc *auth.Service,
-	leagueOfLetters *league_of_letters.Service,
+	leagueOfLetters *lol.Service,
 	pubquizrSvc *pubquizr.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
@@ -91,6 +91,9 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	// room called "current".
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/current", s.requireAuth(s.handleGetCurrentLobby))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleGetLobby))
+	// PATCH rather than PUT: the settings card sends the knobs it has, and a room
+	// carries more than the two of them.
+	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleUpdateLobbySettings))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", s.requireAuth(s.handleDeleteLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", s.requireAuth(s.handleJoinLobby))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}/players/me", s.requireAuth(s.handleLeaveLobby))

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -75,8 +75,8 @@ func submitMpGuess(t *testing.T, h http.Handler, token, gameID, word string) *ht
 // that have no route of their own: the turn timeout and the resume that follows an
 // empty room. Both are driven by the socket rather than by a request, and waiting
 // thirty-five seconds of wall clock to see one is not a test.
-func lolServiceFrom(db *gorm.DB) *league_of_letters.Service {
-	return league_of_letters.NewService(league_of_letters.NewGormStore(db))
+func lolServiceFrom(db *gorm.DB) *lol.Service {
+	return lol.NewService(lol.NewGormStore(db), lol.Options{})
 }
 
 func mustUUID(t *testing.T, id string) uuid.UUID {
@@ -100,7 +100,7 @@ func TestStartLobbyDealsTheFirstTurn(t *testing.T) {
 	if game.Mode != "multiplayer" {
 		t.Errorf("mode = %q, want multiplayer", game.Mode)
 	}
-	if game.Status != string(league_of_letters.GameInProgress) {
+	if game.Status != string(lol.GameInProgress) {
 		t.Errorf("status = %q, want in_progress", game.Status)
 	}
 	if len(game.Players) != 2 {
@@ -124,8 +124,8 @@ func TestStartLobbyDealsTheFirstTurn(t *testing.T) {
 	if err != nil {
 		t.Fatalf("turn endsAt = %q: %v", game.Turn.EndsAt, err)
 	}
-	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.DefaultSecondsPerTurn*time.Second {
-		t.Errorf("turn has %s left, want up to %ds", left, league_of_letters.DefaultSecondsPerTurn)
+	if left := time.Until(endsAt); left <= 0 || left > lol.DefaultSecondsPerTurn*time.Second {
+		t.Errorf("turn has %s left, want up to %ds", left, lol.DefaultSecondsPerTurn)
 	}
 
 	// The board's countdown reads the round it is drawing, so the deadline has to
@@ -220,8 +220,8 @@ func TestSubmitMultiplayerGuessScoresAndPassesTheTurn(t *testing.T) {
 	if err != nil {
 		t.Fatalf("turn endsAt = %q: %v", got.Turn.EndsAt, err)
 	}
-	if left := time.Until(endsAt); left <= 0 || left > league_of_letters.DefaultSecondsPerTurn*time.Second {
-		t.Errorf("the new turn has %s left, want a full %ds", left, league_of_letters.DefaultSecondsPerTurn)
+	if left := time.Until(endsAt); left <= 0 || left > lol.DefaultSecondsPerTurn*time.Second {
+		t.Errorf("the new turn has %s left, want a full %ds", left, lol.DefaultSecondsPerTurn)
 	}
 
 	// And the score went to the player who earned it, not to the table.
@@ -324,7 +324,7 @@ func TestMultiplayerRoundRunsOutOfGuesses(t *testing.T) {
 	turn := game.Turn.UserID
 	var last multiplayerGuessResponse
 
-	for i, word := range wrongGuesses(t, answer, league_of_letters.MaxGuesses) {
+	for i, word := range wrongGuesses(t, answer, lol.MaxGuesses) {
 		rec := submitMpGuess(t, srv, tokenFor(t, turn, host, guest), game.ID, word)
 		if rec.Code != http.StatusCreated {
 			t.Fatalf("guess %d: status = %d (body: %s)", i+1, rec.Code, rec.Body)
@@ -333,7 +333,7 @@ func TestMultiplayerRoundRunsOutOfGuesses(t *testing.T) {
 		last = decodeBody[multiplayerGuessResponse](t, rec)
 		turn = last.Turn.UserID
 
-		wantOver := i == league_of_letters.MaxGuesses-1
+		wantOver := i == lol.MaxGuesses-1
 		if last.RoundOver != wantOver {
 			t.Errorf("guess %d: RoundOver = %v, want %v", i+1, last.RoundOver, wantOver)
 		}
@@ -449,8 +449,8 @@ func TestSkippedTurnsCanSpendAWholeRound(t *testing.T) {
 	svc := lolServiceFrom(db)
 	id := mustUUID(t, game.ID)
 
-	var last *league_of_letters.MultiplayerGuessOutcome
-	for i := range league_of_letters.MaxGuesses {
+	var last *lol.MultiplayerGuessOutcome
+	for i := range lol.MaxGuesses {
 		outcome, err := svc.SkipTurn(t.Context(), id)
 		if err != nil {
 			t.Fatalf("skip %d: %v", i+1, err)
@@ -499,7 +499,7 @@ func TestMultiplayerGameEndsAfterItsLastRound(t *testing.T) {
 	}
 
 	fresh := decodeBody[multiplayerGameResponse](t, do(t, srv, http.MethodGet, mpGamePath(game.ID), "", host.Token))
-	if fresh.Status != string(league_of_letters.GameCompleted) {
+	if fresh.Status != string(lol.GameCompleted) {
 		t.Errorf("status = %q, want completed", fresh.Status)
 	}
 

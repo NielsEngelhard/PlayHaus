@@ -15,7 +15,7 @@ import (
 	"playhaus-api/internal/api"
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
@@ -61,7 +61,7 @@ func run() error {
 		}
 	}()
 
-	models := append([]any{&user.User{}, &auth.Session{}}, league_of_letters.Models()...)
+	models := append([]any{&user.User{}, &auth.Session{}}, lol.Models()...)
 	models = append(models, pubquizr.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
@@ -76,7 +76,9 @@ func run() error {
 	// --- wiring -------------------------------------------------------
 	userService := user.NewService(user.NewGormStore(db))
 	authService := auth.NewService(auth.NewGormStore(db), userService)
-	lolService := league_of_letters.NewService(league_of_letters.NewGormStore(db))
+	lolService := lol.NewService(lol.NewGormStore(db), lol.Options{
+		DevMode: cfg.LeagueOfLettersDevMode,
+	})
 	pubquizrService := pubquizr.NewService(pubquizrStore)
 
 	// Every live socket room in the process. Game-agnostic: the games claim their

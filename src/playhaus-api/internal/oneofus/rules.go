@@ -1,4 +1,4 @@
-package one_of_us
+package oneofus
 
 const (
 	MinPlayers = 3

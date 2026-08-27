@@ -2,7 +2,7 @@ package api
 
 import (
 	"net/http"
-	one_of_us "playhaus-api/internal/one-of-us"
+	"playhaus-api/internal/oneofus"
 	"strconv"
 	"strings"
 )
@@ -17,10 +17,10 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
 	switch {
-	case len(req.PlayerNames) < one_of_us.MinPlayers:
-		problems["playerNames"] = "needs at least " + strconv.Itoa(one_of_us.MinPlayers) + " players"
-	case len(req.PlayerNames) > one_of_us.MaxPlayers:
-		problems["playerNames"] = "takes at most " + strconv.Itoa(one_of_us.MaxPlayers) + " players"
+	case len(req.PlayerNames) < oneofus.MinPlayers:
+		problems["playerNames"] = "needs at least " + strconv.Itoa(oneofus.MinPlayers) + " players"
+	case len(req.PlayerNames) > oneofus.MaxPlayers:
+		problems["playerNames"] = "takes at most " + strconv.Itoa(oneofus.MaxPlayers) + " players"
 	default:
 		for _, name := range req.PlayerNames {
 			if strings.TrimSpace(name) == "" {
@@ -51,12 +51,12 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		return
 	}
 
-	gameMode := one_of_us.Sentence
+	gameMode := oneofus.Sentence
 	if req.WordOnly == true {
-		gameMode = one_of_us.Word
+		gameMode = oneofus.Word
 	}
 
-	game, err := s.oneOfUs.StartSingleDeviceGame(r.Context(), one_of_us.StartOneOfUsSingleDeviceGameInput{
+	game, err := s.oneOfUs.StartSingleDeviceGame(r.Context(), oneofus.StartOneOfUsSingleDeviceGameInput{
 		OwnerID:     ownerID,
 		Locale:      localeFrom(Deref(req.Locale, ""), r),
 		PlayerNames: req.PlayerNames,

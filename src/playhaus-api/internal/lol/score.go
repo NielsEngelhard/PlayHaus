@@ -1,4 +1,4 @@
-package league_of_letters
+package lol
 
 // What a guess is worth.
 //

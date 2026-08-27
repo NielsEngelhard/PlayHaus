@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -25,9 +26,19 @@ func Load() (Config, error) {
 		return Config{}, err
 	}
 
+	// Resolved here rather than left relative. The default is relative to the working
+	// directory, so `go run ./cmd/api` from the module root and the same binary run
+	// from cmd/api are two different databases -- which looks like a server that
+	// forgot everything rather than one reading a different file. Absolute means the
+	// path main logs at startup is the file actually opened.
+	dbPath, err := filepath.Abs(env("DB_PATH", "data/app.db"))
+	if err != nil {
+		return Config{}, fmt.Errorf("resolve DB_PATH: %w", err)
+	}
+
 	return Config{
 		Addr:                   env("ADDR", ":8080"),
-		DBPath:                 env("DB_PATH", "data/app.db"),
+		DBPath:                 dbPath,
 		ShutdownTimeout:        shutdownTimeout,
 		Debug:                  envBool("DEBUG", false),
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),

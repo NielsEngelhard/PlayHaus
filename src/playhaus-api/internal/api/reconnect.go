@@ -2,7 +2,7 @@ package api
 
 import (
 	"net/http"
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 	"playhaus-api/internal/pubquizr"
 )
 
@@ -65,7 +65,7 @@ func mapQuizSessionsToReconnectableGame(sessions []*pubquizr.Session) []Reconnec
 	return mappedGames
 }
 
-func mapMultiplayerGamesToReconnectableGame(games []*league_of_letters.MultiplayerLeagueOfLettersGame) []ReconnectableGame {
+func mapMultiplayerGamesToReconnectableGame(games []*lol.MultiplayerLeagueOfLettersGame) []ReconnectableGame {
 	mappedGames := make([]ReconnectableGame, len(games))
 
 	for i := range games {
@@ -83,7 +83,7 @@ func mapMultiplayerGamesToReconnectableGame(games []*league_of_letters.Multiplay
 	return mappedGames
 }
 
-func mapSoloGamesToReconnectableGame(soloGames []*league_of_letters.SoloLeagueOfLettersGame) []ReconnectableGame {
+func mapSoloGamesToReconnectableGame(soloGames []*lol.SoloLeagueOfLettersGame) []ReconnectableGame {
 	mappedGames := make([]ReconnectableGame, len(soloGames))
 
 	for i := range soloGames {

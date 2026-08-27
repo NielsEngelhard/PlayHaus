@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"playhaus-api/internal/i18n"
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 
 	"gorm.io/gorm"
 )
@@ -67,7 +67,7 @@ func wrongGuesses(t *testing.T, answer string, n int) []string {
 			return found
 		}
 
-		word, err := league_of_letters.GetRandomWord(i18n.EN, size, false)
+		word, err := lol.GetRandomWord(i18n.EN, size, false)
 		if err != nil {
 			t.Fatalf("draw a word: %v", err)
 		}
@@ -128,8 +128,8 @@ func TestSubmitGuessScoresTheWord(t *testing.T) {
 		t.Errorf("got %d marks, want 5", len(got.Guess.Marks))
 	}
 	// The opening letter is given away, so it is always in the right place.
-	if len(got.Guess.Marks) > 0 && got.Guess.Marks[0] != string(league_of_letters.LetterCorrect) {
-		t.Errorf("first mark = %q, want %q", got.Guess.Marks[0], league_of_letters.LetterCorrect)
+	if len(got.Guess.Marks) > 0 && got.Guess.Marks[0] != string(lol.LetterCorrect) {
+		t.Errorf("first mark = %q, want %q", got.Guess.Marks[0], lol.LetterCorrect)
 	}
 	if got.Solved || got.RoundOver || got.GameOver {
 		t.Errorf("a wrong first guess ended something: %+v", got)
@@ -185,8 +185,8 @@ func TestSubmitGuessSolvingAdvancesTheRound(t *testing.T) {
 		t.Errorf("Word = %q, want %q -- a finished round tells its answer", got.Word, answer)
 	}
 	for i, mark := range got.Guess.Marks {
-		if mark != string(league_of_letters.LetterCorrect) {
-			t.Errorf("mark %d = %q, want %q", i, mark, league_of_letters.LetterCorrect)
+		if mark != string(lol.LetterCorrect) {
+			t.Errorf("mark %d = %q, want %q", i, mark, lol.LetterCorrect)
 		}
 	}
 
@@ -213,14 +213,14 @@ func TestSubmitGuessRunsOutOfGuesses(t *testing.T) {
 	answer := answerFor(t, db, game.ID, 1)
 
 	var last submitGuessResponse
-	for i, word := range wrongGuesses(t, answer, league_of_letters.MaxGuesses) {
+	for i, word := range wrongGuesses(t, answer, lol.MaxGuesses) {
 		rec := submitGuess(t, srv, token, game.ID, word)
 		if rec.Code != http.StatusCreated {
 			t.Fatalf("guess %d: status = %d, want %d (body: %s)", i+1, rec.Code, http.StatusCreated, rec.Body)
 		}
 		last = decodeBody[submitGuessResponse](t, rec)
 
-		wantOver := i == league_of_letters.MaxGuesses-1
+		wantOver := i == lol.MaxGuesses-1
 		if last.RoundOver != wantOver {
 			t.Errorf("guess %d: RoundOver = %v, want %v", i+1, last.RoundOver, wantOver)
 		}
@@ -270,8 +270,8 @@ func TestSubmitGuessCompletesTheGame(t *testing.T) {
 	}
 
 	fresh := getSoloGame(t, srv, token, game.ID)
-	if fresh.Status != string(league_of_letters.GameCompleted) {
-		t.Errorf("Status = %q, want %q", fresh.Status, league_of_letters.GameCompleted)
+	if fresh.Status != string(lol.GameCompleted) {
+		t.Errorf("Status = %q, want %q", fresh.Status, lol.GameCompleted)
 	}
 	// Every round is done, so every answer is on show.
 	for _, round := range fresh.Rounds {
@@ -399,8 +399,8 @@ func TestGetSoloGameReturnsPlayedGuesses(t *testing.T) {
 	}
 
 	fresh := getSoloGame(t, srv, token, game.ID)
-	if fresh.MaxGuesses != league_of_letters.MaxGuesses {
-		t.Errorf("MaxGuesses = %d, want %d", fresh.MaxGuesses, league_of_letters.MaxGuesses)
+	if fresh.MaxGuesses != lol.MaxGuesses {
+		t.Errorf("MaxGuesses = %d, want %d", fresh.MaxGuesses, lol.MaxGuesses)
 	}
 	if fresh.TotalRounds != soloRounds {
 		t.Errorf("TotalRounds = %d, want %d", fresh.TotalRounds, soloRounds)

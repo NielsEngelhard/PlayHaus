@@ -1,4 +1,4 @@
-package league_of_letters
+package lol
 
 import (
 	"errors"
@@ -37,6 +37,11 @@ const (
 // League of Letters, and the same figure DEFAULT_SOLO_SETTINGS starts the solo
 // screen on.
 const DefaultWordLength = 5
+
+// devModeWord is what every round plays when Options.DevMode is on: five letters, so
+// it fits a room left on DefaultWordLength, and always the same so a screen can be
+// walked through without anybody having to guess a real word.
+const devModeWord = "lepel"
 
 // MaxGuesses is how many rows a round has.
 //

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 
 	"github.com/google/uuid"
 )
@@ -55,7 +55,7 @@ type guessResponse struct {
 	Skipped bool `json:"skipped,omitempty"`
 }
 
-func newGuessResponse(g league_of_letters.LeagueOfLettersGuess) guessResponse {
+func newGuessResponse(g lol.LeagueOfLettersGuess) guessResponse {
 	marks := make([]string, 0, len(g.Letters))
 	for _, mark := range g.Marks() {
 		marks = append(marks, string(mark))
@@ -72,7 +72,7 @@ func newGuessResponse(g league_of_letters.LeagueOfLettersGuess) guessResponse {
 	}
 }
 
-func newSoloGameResponse(g *league_of_letters.SoloLeagueOfLettersGame) soloGameResponse {
+func newSoloGameResponse(g *lol.SoloLeagueOfLettersGame) soloGameResponse {
 	rounds := make([]roundResponse, 0, len(g.Rounds))
 	for _, r := range g.Rounds {
 		guesses := make([]guessResponse, 0, len(r.Guesses))
@@ -99,7 +99,7 @@ func newSoloGameResponse(g *league_of_letters.SoloLeagueOfLettersGame) soloGameR
 		OwnerID:      g.OwnerID,
 		Locale:       g.Locale.String(),
 		WordLength:   g.WordLength,
-		MaxGuesses:   league_of_letters.MaxGuesses,
+		MaxGuesses:   lol.MaxGuesses,
 		CurrentRound: g.CurrentRound,
 		TotalRounds:  len(g.Rounds),
 		Score:        g.Score,
@@ -125,7 +125,7 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 
 	onlyPickCommonWords := req.HardMode == nil || *req.HardMode == false
 
-	game, problems, err := s.leagueOfLetters.CreateSoloGame(r.Context(), league_of_letters.CreateSoloGameInput{
+	game, problems, err := s.leagueOfLetters.CreateSoloGame(r.Context(), lol.CreateSoloGameInput{
 		OwnerID:             ownerID,
 		WordLength:          req.WordLength,
 		Locale:              localeFrom(Deref(req.Locale, ""), r),
@@ -181,7 +181,7 @@ func (s *Server) handleGetSoloGame(w http.ResponseWriter, r *http.Request) {
 
 	game, err := s.leagueOfLetters.SoloGameForOwner(r.Context(), gameID, ownerID)
 	if err != nil {
-		if errors.Is(err, league_of_letters.ErrGameNotFound) {
+		if errors.Is(err, lol.ErrGameNotFound) {
 			writeError(w, http.StatusNotFound, "game not found")
 			return
 		}
@@ -203,7 +203,7 @@ func (s *Server) handleGetCurrentSoloGame(w http.ResponseWriter, r *http.Request
 
 	game, err := s.leagueOfLetters.CurrentSoloGame(r.Context(), userID)
 	if err != nil {
-		if errors.Is(err, league_of_letters.ErrGameNotFound) {
+		if errors.Is(err, lol.ErrGameNotFound) {
 			w.WriteHeader(http.StatusNoContent)
 			return
 		}
@@ -260,7 +260,7 @@ func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	outcome, err := s.leagueOfLetters.SubmitGuess(r.Context(), league_of_letters.SubmitGuessInput{
+	outcome, err := s.leagueOfLetters.SubmitGuess(r.Context(), lol.SubmitGuessInput{
 		GameID:  gameID,
 		OwnerID: ownerID,
 		Word:    req.Word,
@@ -283,17 +283,17 @@ func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) writeGuessError(w http.ResponseWriter, err error) {
 	switch {
-	case errors.Is(err, league_of_letters.ErrGameNotFound):
+	case errors.Is(err, lol.ErrGameNotFound):
 		writeError(w, http.StatusNotFound, "game not found")
-	case errors.Is(err, league_of_letters.ErrInvalidGuessCharacters):
+	case errors.Is(err, lol.ErrInvalidGuessCharacters):
 		writeError(w, http.StatusBadRequest, "invalid characters in guess (or too short)")
-	case errors.Is(err, league_of_letters.ErrInvalidGuessWordNonExisting):
+	case errors.Is(err, lol.ErrInvalidGuessWordNonExisting):
 		writeError(w, http.StatusBadRequest, "that word does not exist")
-	case errors.Is(err, league_of_letters.ErrDuplicateGuess):
+	case errors.Is(err, lol.ErrDuplicateGuess):
 		writeError(w, http.StatusConflict, "you already guessed that word")
-	case errors.Is(err, league_of_letters.ErrRoundClosed):
+	case errors.Is(err, lol.ErrRoundClosed):
 		writeError(w, http.StatusConflict, "this round takes no more guesses")
-	case errors.Is(err, league_of_letters.ErrGameFinished):
+	case errors.Is(err, lol.ErrGameFinished):
 		writeError(w, http.StatusConflict, "this game is over")
 	default:
 		s.log.Error("submit guess", "err", err)

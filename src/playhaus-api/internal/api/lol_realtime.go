@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	league_of_letters "playhaus-api/internal/league-of-letters"
+	"playhaus-api/internal/lol"
 	"playhaus-api/internal/realtime"
 
 	"github.com/google/uuid"
@@ -214,7 +214,7 @@ func (h lolRealtime) OnMessage(ctx context.Context, room *realtime.Room, client 
 	// Only from the player whose turn it is. Otherwise a client could paint letters
 	// into the row somebody else is typing in.
 	game, err := h.server.leagueOfLetters.MultiplayerGame(ctx, state.gameID, client.UserID)
-	if err != nil || game.TurnUserID != client.UserID || game.Status != league_of_letters.GameInProgress {
+	if err != nil || game.TurnUserID != client.UserID || game.Status != lol.GameInProgress {
 		return
 	}
 
@@ -247,7 +247,7 @@ func (h lolRealtime) resumeTurn(ctx context.Context, room *realtime.Room) {
 	if err != nil {
 		// A finished game has no turn to resume, which is the ordinary case here --
 		// somebody opening a game that is over.
-		if !errors.Is(err, league_of_letters.ErrGameFinished) {
+		if !errors.Is(err, lol.ErrGameFinished) {
 			h.server.log.Error("resume turn", "err", err, "room", room.Key.String())
 		}
 		return
@@ -296,9 +296,9 @@ func (h lolRealtime) turnExpired(room *realtime.Room, gameID uuid.UUID, endsAt t
 	if err != nil {
 		// Lost a race with a real guess, or the game ended. Either way the game has
 		// moved and somebody else has already said so.
-		if !errors.Is(err, league_of_letters.ErrNotYourTurn) &&
-			!errors.Is(err, league_of_letters.ErrGameFinished) &&
-			!errors.Is(err, league_of_letters.ErrRoundClosed) {
+		if !errors.Is(err, lol.ErrNotYourTurn) &&
+			!errors.Is(err, lol.ErrGameFinished) &&
+			!errors.Is(err, lol.ErrRoundClosed) {
 			h.server.log.Error("skip turn", "err", err, "game", gameID)
 		}
 		return
@@ -313,12 +313,12 @@ func (h lolRealtime) turnExpired(room *realtime.Room, gameID uuid.UUID, endsAt t
 func (h lolRealtime) broadcastGuess(
 	ctx context.Context,
 	room *realtime.Room,
-	game *league_of_letters.MultiplayerLeagueOfLettersGame,
+	game *lol.MultiplayerLeagueOfLettersGame,
 	body multiplayerGuessResponse,
 ) {
 	room.Broadcast(realtime.Message(typeGuess, body))
 
-	if game.Status != league_of_letters.GameInProgress {
+	if game.Status != lol.GameInProgress {
 		room.Broadcast(realtime.Message(typeGameOver, gameOverPayload{Players: body.Players}))
 		room.CancelTimer()
 		stateOf(room).turnEndsAt = time.Time{}
@@ -364,7 +364,7 @@ func (s *Server) publishRematch(code, next string) {
 	})
 }
 
-func (s *Server) publishGameStarted(code string, game *league_of_letters.MultiplayerLeagueOfLettersGame, body lobbyResponse) {
+func (s *Server) publishGameStarted(code string, game *lol.MultiplayerLeagueOfLettersGame, body lobbyResponse) {
 	handler := lolRealtime{server: s}
 
 	s.rt.In(lolRoom(code), func(room *realtime.Room) {
@@ -383,7 +383,7 @@ func (s *Server) publishGameStarted(code string, game *league_of_letters.Multipl
 	})
 }
 
-func (s *Server) publishGuess(code string, game *league_of_letters.MultiplayerLeagueOfLettersGame, body multiplayerGuessResponse) {
+func (s *Server) publishGuess(code string, game *lol.MultiplayerLeagueOfLettersGame, body multiplayerGuessResponse) {
 	handler := lolRealtime{server: s}
 
 	s.rt.In(lolRoom(code), func(room *realtime.Room) {

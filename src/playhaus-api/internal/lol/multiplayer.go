@@ -1,4 +1,4 @@
-package league_of_letters
+package lol
 
 import (
 	"context"
@@ -40,6 +40,12 @@ func (in LobbySettings) normalised() LobbySettings {
 	}
 	return in
 }
+
+// multiplayerCommonWordsOnly is the word list a shared board draws from. Not a
+// setting: solo lets a player take the whole list because a hard word costs only
+// them, whereas six rows split between a table means one obscure answer wastes
+// everybody's turn. The settings card has no switch for it on purpose.
+const multiplayerCommonWordsOnly = true
 
 type MultiplayerStore interface {
 	CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error
@@ -180,6 +186,43 @@ func newJoinCode() (string, error) {
 // Lobby reads a room back by its code.
 func (s *Service) Lobby(ctx context.Context, code string) (*MultiplayerLeagueOfLettersLobby, error) {
 	return s.store.LobbyByCode(ctx, code)
+}
+
+// UpdateLobbySettings moves the room onto what the host has picked. Host only.
+//
+// Answers the whole room rather than the settings back, because this is what the rest
+// of the table is shown: the same snapshot a join or a leave produces, so whatever
+// draws the room screen does not need a second shape for "the settings changed".
+//
+// Refused while a game is running -- the words have already been drawn by then, so a
+// length changed now would be a settings card disagreeing with the board.
+func (s *Service) UpdateLobbySettings(ctx context.Context, code, userID string, in LobbySettings) (*MultiplayerLeagueOfLettersLobby, map[string]string, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
+	if err != nil {
+		return nil, nil, err
+	}
+	if lobby.OwnerID != userID {
+		return nil, nil, ErrNotHost
+	}
+	if lobby.Status != LobbyWaiting {
+		return nil, nil, ErrLobbyStarted
+	}
+
+	in = in.normalised()
+	if problems := in.validate(); len(problems) > 0 {
+		return nil, problems, nil
+	}
+
+	if err := s.store.SaveLobbySettings(ctx, code, in); err != nil {
+		return nil, nil, fmt.Errorf("save lobby settings: %w", err)
+	}
+
+	// Answered from what was just written rather than read back: the store has the
+	// same two fields, and a second query is a second chance to disagree with it.
+	lobby.Locale = in.Locale
+	lobby.WordLength = in.WordLength
+
+	return lobby, nil, nil
 }
 
 // JoinLobby steps into somebody else's room, and is safe to call again on a room
@@ -326,12 +369,12 @@ func (s *Service) AbandonLobby(ctx context.Context, code, userID string) error {
 // So are the settings. The room's word length has been sitting on the lobby since it
 // opened, moving under the host's finger; this is the first and only moment anything
 // reads it, because it is the moment the words are drawn.
-func (s *Service) StartLobby(ctx context.Context, in *StartLobbyInput) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
-	lobby, err := s.store.LobbyByCode(ctx, in.GameID)
+func (s *Service) StartLobby(ctx context.Context, code, userID string) (*MultiplayerLeagueOfLettersLobby, *MultiplayerLeagueOfLettersGame, error) {
+	lobby, err := s.store.LobbyByCode(ctx, code)
 	if err != nil {
 		return nil, nil, err
 	}
-	if lobby.OwnerID != in.UserID {
+	if lobby.OwnerID != userID {
 		return nil, nil, ErrNotHost
 	}
 	if lobby.Status != LobbyWaiting {
@@ -351,14 +394,14 @@ func (s *Service) StartLobby(ctx context.Context, in *StartLobbyInput) (*Multipl
 		ID:              uuid.New(),
 		LobbyID:         lobby.ID,
 		OwnerID:         lobby.OwnerID,
-		Locale:          in.Locale,
-		WordLength:      in.WordLength,
+		Locale:          lobby.Locale,
+		WordLength:      lobby.WordLength,
 		CurrentRound:    1,
 		Status:          GameInProgress,
 		CreatedAt:       now,
 		TurnUserID:      seated[0].UserID,
-		TurnEndsAt:      now.Add(time.Duration(in.SecondsPerGuess) * time.Second),
-		SecondsPerGuess: in.SecondsPerGuess,
+		TurnEndsAt:      now.Add(DefaultSecondsPerTurn * time.Second),
+		SecondsPerGuess: DefaultSecondsPerTurn,
 	}
 
 	game.Players = make([]MultiplayerGamePlayer, len(seated))
@@ -371,7 +414,7 @@ func (s *Service) StartLobby(ctx context.Context, in *StartLobbyInput) (*Multipl
 		}
 	}
 
-	rounds, err := generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, in.OnlyPickCommonWords)
+	rounds, err := s.generateRounds(game.ID, determineNumberOfRounds(len(seated)), game.WordLength, game.Locale, multiplayerCommonWordsOnly)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -485,15 +528,6 @@ func (s *Service) MultiplayerGame(ctx context.Context, id uuid.UUID, userID stri
 // MultiplayerGamesByUserID is every unfinished game this player is at a table for.
 func (s *Service) MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error) {
 	return s.store.MultiplayerGamesByUserID(ctx, userID)
-}
-
-type StartLobbyInput struct {
-	GameID              string
-	UserID              string
-	WordLength          int
-	OnlyPickCommonWords bool
-	Locale              i18n.Locale
-	SecondsPerGuess     int
 }
 
 type SubmitMultiplayerGuessInput struct {

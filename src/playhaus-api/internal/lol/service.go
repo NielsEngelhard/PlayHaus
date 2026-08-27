@@ -1,11 +1,10 @@
-package league_of_letters
+package lol
 
 import (
 	"context"
 	"crypto/rand"
 	"fmt"
 	"math/big"
-	"playhaus-api/internal/config"
 	"time"
 
 	"playhaus-api/internal/i18n"
@@ -41,12 +40,23 @@ func (in CreateSoloGameInput) validate() map[string]string {
 	return problems
 }
 
-type Service struct {
-	store Store
+// Options is the behaviour a deployment gets to choose, rather than the game's own
+// rules. It is passed in from main because the environment is main's business: a
+// service that read it for itself could not be constructed two ways in a test, and
+// the reading would happen once per game rather than once per process.
+type Options struct {
+	// DevMode makes every round play devModeWord instead of a drawn word, so a
+	// screen can be walked through without guessing at anything.
+	DevMode bool
 }
 
-func NewService(store Store) *Service {
-	return &Service{store: store}
+type Service struct {
+	store Store
+	opts  Options
+}
+
+func NewService(store Store, opts Options) *Service {
+	return &Service{store: store, opts: opts}
 }
 
 func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*SoloLeagueOfLettersGame, map[string]string, error) {
@@ -74,7 +84,7 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		CreatedAt:       time.Now().UTC(),
 	}
 
-	rounds, err := generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale, in.OnlyPickCommonWords)
+	rounds, err := s.generateRounds(game.ID, determineNumberOfRounds(1), in.WordLength, locale, in.OnlyPickCommonWords)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -236,22 +246,17 @@ func validatedLetters(word, target string) []LeagueOfLettersValidatedLetter {
 	return letters
 }
 
-func generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale, onlyPickCommonWords bool) ([]LeagueOfLettersRound, error) {
+func (s *Service) generateRounds(gameID uuid.UUID, amount int, wordLength int, locale i18n.Locale, onlyPickCommonWords bool) ([]LeagueOfLettersRound, error) {
 	words, err := GetRandomWords(locale, wordLength, amount, onlyPickCommonWords)
 	if err != nil {
 		return nil, err
 	}
 
-	cfg, err := config.Load()
-	if err != nil {
-		return nil, fmt.Errorf("error loading config: %w", err)
-	}
-
 	rounds := make([]LeagueOfLettersRound, amount)
 	for i := range amount {
 		word := words[i]
-		if cfg.LeagueOfLettersDevMode == true {
-			word = "lepel"
+		if s.opts.DevMode {
+			word = devModeWord
 		}
 
 		rounds[i] = LeagueOfLettersRound{
