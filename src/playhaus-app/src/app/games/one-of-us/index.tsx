@@ -3,8 +3,8 @@ import { ONE_OF_US } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import JoinCodeCard from "@/features/join/components/JoinCodeCard";
+import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
@@ -25,6 +25,7 @@ export default function OneOfUsIndexPage() {
         >
             <View style={styles.modes}>
                 <ModeCard
+                    solid
                     icon='smartphone'
                     gradient={Gradients.lemon}
                     iconInk={Brand.ink}
@@ -40,6 +41,7 @@ export default function OneOfUsIndexPage() {
                     palest accent in the set, so the glyph on it stays ink in both
                     schemes and the lit top edge has to work that much harder. */}
                 <ModeCard
+                    solid
                     icon='users'
                     gradient={ONE_OF_US.gradient}
                     iconInk={Brand.ink}
@@ -48,6 +50,7 @@ export default function OneOfUsIndexPage() {
                     description={t('oneOfUs.index.multiDevice.description')}
                     action={t('oneOfUs.index.multiDevice.action')}
                     navigationUrl={ROUTES.oneOfUsSetupLobby}
+                    isDisabled={true}
                 />
             </View>
 

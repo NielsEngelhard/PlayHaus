@@ -143,6 +143,10 @@ func (s *Server) AddPubquizRHandlers() {
 func (s *Server) AddOneOfUsHandlers() {
 	// Single device game
 	s.mux.HandleFunc("POST /api/v1/one-of-us/single-device", s.requireAuth(s.handleCreateOneOfUsOneDeviceGame))
+	s.mux.HandleFunc("GET /api/v1/one-of-us/single-device/{gameID}", s.requireAuth(s.handleGetSingleDeviceOneOfUsGame))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/single-device/{gameID}/vote/{playerID}", s.requireAuth(s.handleVotePlayerOutOfSingleDeviceOneOfUsGame))
+
+	// Multi device game
 }
 
 // AddRealtimeHandlers registers the one socket route every game shares. It is not

@@ -4,9 +4,9 @@ import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import ModeCard from "@/features/league-of-letters/components/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
-import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -32,6 +32,7 @@ export default function LeagueOfLettersIndexPage() {
         >
             <View style={styles.modes}>
                 <ModeCard
+                    solid
                     icon='user'
                     gradient={Gradients.lemon}
                     iconInk={Brand.ink}
@@ -43,9 +44,10 @@ export default function LeagueOfLettersIndexPage() {
                 />
 
                 <ModeCard
+                    solid
                     icon='users'
                     gradient={LEAGUE_OF_LETTERS.gradient}
-                    iconInk={theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent}
+                    iconInk={Brand.ink}
                     highlight={0.35}
                     title={t('lol.index.multiplayer.title')}
                     chip={`${MIN_LOBBY_PLAYERS}-${MAX_LOBBY_PLAYERS}`}

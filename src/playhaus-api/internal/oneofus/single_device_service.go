@@ -17,6 +17,10 @@ type GameInputLine struct {
 
 type Store interface {
 	CreateOneDeviceGame(ctx context.Context, game *OneOfUsSingleDeviceGame) error
+	GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error)
+	GetOneDeviceGamePlayers(ctx context.Context, ownerID string, gameID uuid.UUID) ([]OneOfUsLocalPlayer, error)
+	VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid.UUID) error
+	RemoveOneDeviceGame(ctx context.Context, gameID uuid.UUID) error
 }
 
 type Service struct {
@@ -30,6 +34,19 @@ type StartOneOfUsSingleDeviceGameInput struct {
 	GameMode    GameMode
 }
 
+type VotePlayerOutSingleDeviceGameInput struct {
+	OwnerID  string
+	GameID   uuid.UUID
+	PlayerID uuid.UUID
+}
+
+type VotePlayerOutSingleDeviceGameResponse struct {
+	PlayerID     uuid.UUID
+	PlayerRole   Role
+	GameEnded    bool
+	CiviliansWon bool
+}
+
 func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSingleDeviceGameInput) (*OneOfUsSingleDeviceGame, error) {
 	gameID := uuid.New()
 	now := time.Now().UTC()
@@ -37,26 +54,33 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 	players := make([]OneOfUsLocalPlayer, len(in.PlayerNames))
 	for seat, name := range in.PlayerNames {
 		players[seat] = OneOfUsLocalPlayer{
-			GameId:    gameID,
-			Seat:      seat,
-			Name:      name,
-			Score:     0,
-			CreatedAt: now,
+			playerID:   uuid.UUID{},
+			Name:       name,
+			Role:       Civilian,
+			CreatedAt:  now,
+			IsVotedOut: false,
 		}
 	}
 
-	rounds, err := generateOneOfUsRounds(in.Locale, in.GameMode, Rounds, gameID, players)
+	assignImposters(players)
+
+	lines, err := GetContentLines(in.Locale, in.GameMode, 1)
 	if err != nil {
 		return nil, err
 	}
 
+	if len(lines) == 0 {
+		return nil, fmt.Errorf("no lines found for game %s", in.OwnerID)
+	}
+
 	game := &OneOfUsSingleDeviceGame{
-		ID:        gameID,
-		OwnerID:   in.OwnerID,
-		Locale:    in.Locale,
-		CreatedAt: now,
-		Rounds:    rounds,
-		Players:   players,
+		ID:               gameID,
+		OwnerID:          in.OwnerID,
+		Locale:           in.Locale,
+		CreatedAt:        now,
+		ActualQuestion:   lines[0].RealLine,
+		ImposterQuestion: lines[0].ImposterLine,
+		Players:          players,
 	}
 
 	err = s.store.CreateOneDeviceGame(ctx, game)
@@ -67,41 +91,91 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 	return game, nil
 }
 
-func generateOneOfUsRounds(
-	locale i18n.Locale,
-	mode GameMode,
-	amount int,
-	gameID uuid.UUID,
-	players []OneOfUsLocalPlayer,
-) ([]OneOfUsRound, error) {
-	content, err := GetContentLines(locale, mode, amount)
+func (s *Service) GetSingleDeviceOneOfUsGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error) {
+	return s.store.GetOneDeviceGame(ctx, ownerID, gameID)
+}
+
+func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlayerOutSingleDeviceGameInput) (*VotePlayerOutSingleDeviceGameResponse, error) {
+	players, err := s.store.GetOneDeviceGamePlayers(ctx, in.OwnerID, in.GameID)
 	if err != nil {
 		return nil, err
 	}
 
-	rounds := make([]OneOfUsRound, len(content))
-	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
+	player := getPlayerByID(in.PlayerID, players)
+	if player == nil {
+		return nil, fmt.Errorf("player not found")
+	}
 
-	for i, line := range content {
-		// Redrawn every round rather than rotated
-		imposterAmount := ImpostersFor(len(players))
+	if player.IsVotedOut == true {
+		return nil, fmt.Errorf("player is already voted out")
+	}
 
-		// Create a shuffled copy so the original players slice isn't modified.
-		shuffledPlayers := append([]OneOfUsLocalPlayer(nil), players...)
-		rand.Shuffle(len(shuffledPlayers), func(i, j int) {
-			shuffledPlayers[i], shuffledPlayers[j] = shuffledPlayers[j], shuffledPlayers[i]
-		})
+	player.IsVotedOut = true
+	err = s.store.VoteOutPlayerOneDeviceGame(ctx, player.playerID)
+	if err != nil {
+		return nil, err
+	}
 
-		imposters := shuffledPlayers[:imposterAmount]
+	gameEnded, noMoreImposters := determineGameEnded(players)
 
-		rounds[i] = OneOfUsRound{
-			GameID:           gameID,
-			RoundNumber:      i + 1,
-			ActualQuestion:   line.RealLine,
-			ImposterQuestion: line.ImposterLine,
-			Imposters:        imposters,
+	if gameEnded == true {
+		err = s.store.RemoveOneDeviceGame(ctx, in.GameID)
+		if err != nil {
+			fmt.Errorf("Could not remove RemoveOneDeviceGame with game ID %s: %w", in.GameID, err)
 		}
 	}
 
-	return rounds, nil
+	return &VotePlayerOutSingleDeviceGameResponse{
+		PlayerID:     player.playerID,
+		PlayerRole:   player.Role,
+		GameEnded:    gameEnded,
+		CiviliansWon: gameEnded && noMoreImposters,
+	}, nil
+}
+
+func getPlayerByID(playerID uuid.UUID, players []OneOfUsLocalPlayer) *OneOfUsLocalPlayer {
+	for _, player := range players {
+		if player.playerID == playerID {
+			return &player
+		}
+	}
+
+	return nil
+}
+
+func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
+	civilians := 0
+	activePlayers := 0
+
+	for _, player := range players {
+		if player.IsVotedOut {
+			continue
+		}
+
+		activePlayers++
+
+		if player.Role == Civilian {
+			civilians++
+		}
+	}
+
+	civiliansInMinority := civilians <= activePlayers/2
+	noMoreImposters := activePlayers == civilians
+	gameEnded := civiliansInMinority || noMoreImposters
+
+	return gameEnded, noMoreImposters
+}
+
+func assignImposters(players []OneOfUsLocalPlayer) {
+	amountOfImposters := len(players) / 3
+
+	if amountOfImposters == 0 {
+		return
+	}
+
+	indices := rand.Perm(len(players))
+
+	for _, index := range indices[:amountOfImposters] {
+		players[index].Role = Imposter
+	}
 }

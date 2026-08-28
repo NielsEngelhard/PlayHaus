@@ -73,32 +73,26 @@ export default function ProfilePage() {
                 <ProfileCard name={profile.name} color={profile.color} />
             </View>
 
-            {/* Keyed on the name so the card's internal draft restarts from it once a
-                save lands. A refused one keeps its draft — the key has not moved —
-                so you can fix the name rather than retype it. */}
-            <ProfileNameCard
-                key={profile.name}
-                name={profile.name}
-                onSave={updateUsername}
-                saving={saving}
-            />
-
-            <View style={tilt('0.4deg')}>
-                <ProfileAvatarColorPickerCard
-                    value={profile.color}
-                    onChange={updateColor}
-                    disabled={saving}
-                />
-            </View>
-
-            {/* Saved the moment it moves, like the swatches above it. The flag in
-                the header renders off the same `locale`, so it follows along
-                without this page telling it to. */}
             <View style={tilt('-0.2deg')}>
                 <LanguageSelect
                     label={t('common.language')}
                     value={profile.locale}
                     onChange={updateLocale}
+                    disabled={saving}
+                />
+            </View>        
+
+            <ProfileNameCard
+                key={profile.name}
+                name={profile.name}
+                onSave={updateUsername}
+                saving={saving}
+            />    
+
+            <View style={tilt('0.4deg')}>
+                <ProfileAvatarColorPickerCard
+                    value={profile.color}
+                    onChange={updateColor}
                     disabled={saving}
                 />
             </View>

@@ -85,7 +85,16 @@ export const nl: Catalog = {
             description: 'Ontraadsel wie de bedrieger is.',
             mainCategory: 'Bluf',
         },
-        newBadge: 'Nieuw'
+        fakeFiller: {
+            description: 'Verzin een fout antwoord.',
+            mainCategory: 'Misleiding',
+        },
+        sketchOff: {
+            description: 'Wie kan het beste tekenen?',
+            mainCategory: 'Creatief',
+        },        
+        newBadge: 'Nieuw',
+        wipBadge: 'In de maak'
     },
     /*
      * De joinkaart, die van geen enkel spel in het bijzonder is.
@@ -140,8 +149,8 @@ export const nl: Catalog = {
         permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de code gewoon in.'
     },
     languages: {
-        nl: { description: 'Woorden uit de Nederlandse lijst.' },
-        en: { description: 'Woorden uit de Engelse lijst.' }
+        nl: { description: 'Spellen in het Nederlands' },
+        en: { description: 'Games in english' }
     },
     auth: {
         login: {
@@ -207,7 +216,7 @@ export const nl: Catalog = {
         guest: {
             title: 'Gastaccount',
             message: 'Je speelt als gast. Dit account is tijdelijk: statistieken en progressiegaan verloren wanneer ik ga opruimen. Voeg een e-mailadres en wachtwoord toe om een echt account te maken.',
-            action: 'Upgrade account (gratis)'
+            action: 'Upgrade (gratis)'
         },
         upgrade: {
             title: 'Houd je account',
@@ -652,7 +661,7 @@ export const nl: Catalog = {
                 action: "Spelen" 
             }, 
             multiDevice: { 
-                title: "1 telefoon per persoon", 
+                title: "Multi device", 
                 description: "Maak een lobby en nodig andere spelers uit", 
                 action: "Lobby maken" 
             } 

@@ -475,11 +475,6 @@ func (s *Server) handleGetCurrentSingleDeviceSession(w http.ResponseWriter, r *h
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// handleDeleteSingleDeviceSession gives up on an evening, for good.
-//
-// The rows go rather than the status moving to abandoned, so there is nothing to read
-// back afterwards. Answers 204 whether or not there was anything to delete: a session
-// that is not this player's is the same answer as one that never existed.
 func (s *Server) handleDeleteSingleDeviceSession(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -754,7 +749,7 @@ type listAwardRequest struct {
 // listAwardsRequest is the quizmaster settling one round 5 question, once the round has
 // been round every player it is going to reach.
 type listAwardsRequest struct {
-	SessionQuestionID string              `json:"sessionQuestionId"`
+	SessionQuestionID string             `json:"sessionQuestionId"`
 	Awards            []listAwardRequest `json:"awards"`
 }
 

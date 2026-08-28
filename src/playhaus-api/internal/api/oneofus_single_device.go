@@ -5,12 +5,19 @@ import (
 	"playhaus-api/internal/oneofus"
 	"strconv"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 type createOneOfUsOneDeviceGameRequest struct {
 	Locale      *string  `json:"locale"`
 	PlayerNames []string `json:"playerNames"`
 	WordOnly    bool     `json:"wordOnly"`
+}
+
+type votePlayerOutSingleOneOfUsGameRequest struct {
+	GameID   string `json:"gameId"`
+	PlayerID string `json:"playerId"`
 }
 
 func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
@@ -68,9 +75,57 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 }
 
 func (s *Server) handleVotePlayerOutOfSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
 
+	gameID, err := uuid.Parse(r.PathValue("gameID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "Missing gameID")
+		return
+	}
+
+	playerID, err := uuid.Parse(r.PathValue("playerID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "Missing playerID")
+		return
+	}
+
+	res, err := s.oneOfUs.VotePlayerOutSingleDeviceGame(r.Context(), oneofus.VotePlayerOutSingleDeviceGameInput{
+		OwnerID:  ownerID,
+		GameID:   gameID,
+		PlayerID: playerID,
+	})
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, "Error voting out player")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, res)
 }
 
 func (s *Server) handleGetSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
 
+	gameID, err := uuid.Parse(r.PathValue("gameID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "Missing gameID")
+		return
+	}
+
+	res, err := s.oneOfUs.GetSingleDeviceOneOfUsGame(r.Context(), ownerID, gameID)
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, "Error getting game")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, res)
 }

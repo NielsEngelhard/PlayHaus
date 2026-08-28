@@ -71,12 +71,6 @@ export const en = {
         bottomTeaser: "More party games coming soon...",
     },
     games: {
-        /**
-         * How many devices a game needs, as one line under its home card.
-         *
-         * Keyed by mode, not by game: the answer is a property of how a game is played,
-         * and two games played the same way should say it with the same words.
-         */
         device: {
             perPlayer: '1 per player',
             oneDevice: '1 total',
@@ -94,8 +88,16 @@ export const en = {
             description: 'Unravel who the imposter is.',
             mainCategory: 'Bluf'
         },
-        /** The badge on the newest game's card. Set in caps by the card itself. */
-        newBadge: 'New'
+        fakeFiller: {
+            description: 'Invent a wrong answer.',
+            mainCategory: 'Deception',
+        },
+        sketchOff: {
+            description: 'Who can draw best?',
+            mainCategory: 'Creative',
+        },           
+        newBadge: 'New',
+        wipBadge: 'In the making'
     },
     /**
      * Only the descriptions. The names themselves stay endonyms in `LANGUAGES` and are

@@ -51,3 +51,10 @@ A prompt with a blank ("The Dutch national ___ championship was won in 1987 by..
 Reuses: your pubquiz question pipeline — same content shape, different scoring. Effort: low-medium; the cost is writing prompts that are obscure but plausible, in two languages.
 
 5 tekenspel raad de tekening?
+
+
+
+
+# Kan alleen multi device
+A prompt with a blank ("The Dutch national ___ championship was won in 1987 by..."). Everyone writes a fake answer; all fakes plus the truth get shuffled and shown; you score for fooling others and for finding the truth.
+Reuses: your pubquiz question pipeline — same content shape, different scoring. Effort: low-medium; the cost is writing prompts that are obscure but plausible, in two languages.

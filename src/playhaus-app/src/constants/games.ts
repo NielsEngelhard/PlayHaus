@@ -3,13 +3,11 @@ import { Brand, Gradients, type AccentInk } from '@/constants/theme';
 import type { TranslationKey } from '@/features/i18n/keys';
 import type { ImageSource } from 'expo-image';
 
-/**
- * The games' display names. Shared rather than per-feature: the home list, the game
- * pages' copy, and the header capsule all show the same string.
- */
 export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "PubquizR";
 export const ONE_OF_US_NAME: string = "One of Us";
+export const FAKE_FILLER_NAME: string = "Fake Filler";
+export const SKETCH_OFF_NAME: string = "Sketch Off";
 
 /**
  * How many devices a group needs to play.
@@ -21,66 +19,28 @@ export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
-/**
- * The character a join code starts with, which is the whole of how a code says which
- * game it belongs to.
- *
- * Mirrors `Prefix()` in `internal/joincode/game.go`, and the mirroring is the point of
- * the literal union rather than `string`: there is no codegen between the two and no
- * test runner in this app, so this type is the only thing that will ever object to a
- * lowercase `'l'`, a `'0'`, or a fourth game quietly taking a letter that is already
- * spoken for.
- */
-export type JoinCodePrefix = 'L' | 'P' | 'O';
+export type JoinCodePrefix = 'L' | 'P' | 'O' | 'F' | 'S';
 
 export interface Game {
     slug: string,
     name: string,
     color: string,
     gradient: readonly [string, string, string],
-    /**
-     * Which ink the game's own pages set their copy in once they are standing on that
-     * gradient. Two of the three are saturated enough for paper; the violet is not.
-     */
     accentInk: AccentInk,
     glyphInk: Record<'light' | 'dark', string>,
-    icon: ImageSource,
+    icon: ImageSource | undefined,
     descriptionKey: TranslationKey,
     mainCategoryIndicatorKey: TranslationKey,
     playable: boolean,
-    /**
-     * Wears the "new" badge on its home card. At most one game should carry this — the
-     * badge is a pointer at the newest thing, and two of them point nowhere.
-     */
     isNew?: boolean,
     navigationUrl: string,
-    /**
-     * The character a code for this game begins with. See `JoinCodePrefix`, and keep it
-     * in step with `internal/joincode/game.go`.
-     */
     joinCodePrefix: JoinCodePrefix,
-    /**
-     * The page a code for this game opens, or `null` for a game that has no rooms yet.
-     *
-     * Nullable rather than absent, because the prefix and the door are two different
-     * questions: PubquizR and One of Us both have a letter reserved — the server will
-     * hand out `P` and `O` codes the day they learn to play across several phones — and
-     * until then a code for one of them is a real code with nowhere to go. Somewhere to
-     * go is exactly what this field is, so it says so.
-     */
     roomRoute: ((code: string) => string) | null,
     deviceMode: DeviceMode,
     minMaxPlayersIndicator: string
     minutesAverage: number
 }
 
-/*
- * The three entries, each exported on its own as well as through `GAMES` below.
- *
- * A game's own front page reads its entry directly (see `GameIndexPage`), and a page
- * that had to find itself in the list first would either be doing a lookup that can
- * come back empty or repeating the figures the list already holds.
- */
 export const LEAGUE_OF_LETTERS: Game = {
     slug: 'league-of-letters',
     name: LEAGUE_OF_LETTERS_NAME,
@@ -120,9 +80,6 @@ export const PUBQUIZR: Game = {
     minutesAverage: 25
 };
 
-// Violet rather than the mint it used to carry, which the icon never agreed with: the
-// glyph has been violet since it was drawn, and the accent is what the header, the home
-// card and the game's own page all take their colour from.
 export const ONE_OF_US: Game = {
     slug: 'one-of-us',
     name: ONE_OF_US_NAME,
@@ -142,12 +99,50 @@ export const ONE_OF_US: Game = {
     minutesAverage: 10
 };
 
+export const FAKE_FILLER: Game = {
+    slug: 'fake-filler',
+    name: FAKE_FILLER_NAME,
+    color: Brand.mint,
+    gradient: Gradients.mint,
+    accentInk: 'ink',
+    glyphInk: { light: Brand.ink, dark: Brand.ink },
+    icon: undefined,
+    mainCategoryIndicatorKey: 'games.fakeFiller.mainCategory',
+    descriptionKey: 'games.fakeFiller.description',
+    deviceMode: 'perPlayer',
+    playable: true,
+    navigationUrl: ROUTES.fakeFillerIndex,
+    joinCodePrefix: 'F',
+    roomRoute: null,
+    minMaxPlayersIndicator: "2-6",
+    minutesAverage: 10
+};
+
+export const SKETCH_OFF: Game = {
+    slug: 'sketch-off',
+    name: SKETCH_OFF_NAME,
+    color: Brand.lemon,
+    gradient: Gradients.lemon,
+    accentInk: 'ink',
+    glyphInk: { light: Brand.ink, dark: Brand.ink },
+    icon: undefined,
+    mainCategoryIndicatorKey: 'games.sketchOff.mainCategory',
+    descriptionKey: 'games.sketchOff.description',
+    deviceMode: 'perPlayer',
+    playable: false,
+    navigationUrl: ROUTES.sketchOffIndex,
+    joinCodePrefix: 'F',
+    roomRoute: null,
+    minMaxPlayersIndicator: "2-6",
+    minutesAverage: 10,
+};
+
 /**
  * Every game the app knows about. The home page renders this list, and `Header` looks
  * the current route up in it — one registry so a game's name and accent can't drift
  * between the card you tapped and the chrome you land in.
  */
-export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US];
+export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER, SKETCH_OFF];
 
 /**
  * The game a path sits inside, or `null` anywhere outside `/games/{slug}`.

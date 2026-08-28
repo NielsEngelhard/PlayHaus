@@ -21,6 +21,12 @@ export const ROUTES = {
     oneOfUsSetupSingleDevice: "/games/one-of-us/single-device",
     oneOfUsSetupLobby: "/games/one-of-us/lobby",
 
+    // Fake Filler
+    fakeFillerIndex: "/games/fake-filler",
+
+    // Sketch OFF
+    sketchOffIndex: "/games/sketch-off",    
+
     // User
     reconnect: "/reconnect",
     friends: "/friends",

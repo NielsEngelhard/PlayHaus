@@ -93,6 +93,14 @@ export default function GameTeaserCard({
                                 </AppText>
                             </View>
                         )}
+
+                        {!playable && (
+                            <View style={styles.badge}>
+                                <AppText style={styles.badgeText}>
+                                    {t('games.wipBadge')}
+                                </AppText>
+                            </View>
+                        )}
                     </View>
 
                     <AppText style={styles.description} numberOfLines={2}>
