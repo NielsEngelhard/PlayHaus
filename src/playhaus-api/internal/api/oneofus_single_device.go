@@ -71,7 +71,7 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		return
 	}
 
-	writeJSON(w, http.StatusOK, game)
+	writeJSON(w, http.StatusOK, game.ID)
 }
 
 func (s *Server) handleVotePlayerOutOfSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {

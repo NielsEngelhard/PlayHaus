@@ -1,32 +1,19 @@
 import { getGame, roundOf, submitGuess, type Game, type GameRound } from '@/api/calls/league-of-letters';
 import { useAuth } from '@/features/auth/useAuth';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { gameErrorMessage } from '@/features/league-of-letters/game-errors';
 import { guessLandedHaptic } from '@/features/league-of-letters/guess-feedback';
-import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface GameState {
     game: Game | null
-    /** The round on screen. Not always the one the server is on — see `viewing` below. */
     round: GameRound | null
-    /** True until the first load settles, one way or the other. */
     loading: boolean
-    /** The initial load failed. There is no board to show, so the page offers a retry. */
     error: TranslationKey | null
     reload: () => void
-    /**
-     * Sends a guess and folds the result into the game in hand.
-     *
-     * Rejects rather than storing the failure: whether a refused guess is worth
-     * interrupting the player over is the board's call, not this hook's, and the
-     * board is the thing that knows a word is still sitting in the current row.
-     */
     guess: (word: string) => Promise<void>
-    /** The viewed round is finished — solved, or out of guesses. */
     roundOver: boolean
-    /** Every round is done. */
     gameOver: boolean
-    /** Moves on from a finished round to the one the server is now on. */
     nextRound: () => void
 }
 
