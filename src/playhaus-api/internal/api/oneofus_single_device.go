@@ -66,3 +66,11 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 
 	writeJSON(w, http.StatusOK, game)
 }
+
+func (s *Server) handleVotePlayerOutOfSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func (s *Server) handleGetSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
+
+}
