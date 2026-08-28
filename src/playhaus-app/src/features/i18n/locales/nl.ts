@@ -591,8 +591,9 @@ export const nl: Catalog = {
                 briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefDescribe: '31 seconden om je eigen woorden aan de tafel te omschrijven zonder het woord te zeggen (of een vertaling). Elk geraden woord is een punt voor zowel de roeper als de rader.',
-                briefList: 'Eén vraag met vier antwoorden erin verstopt. Iedereen behalve de quiz master krijgt om de beurt tien seconden om er zoveel mogelijk te roepen, tot alle vier gevonden zijn of de tafel geen beurten meer over heeft. Daarna zegt de quiz master wie wat riep — een punt per antwoord.',
-                briefFinale: 'De twee hoogste standen tegen elkaar. Net als ronde 1: een open vraag, hardop voorgelezen. Net als ronde 2: de vraag blijft nooit bij wie net antwoordde, dus hij wisselt steeds tussen die twee. Wie de finale wint, wint de hele avond.',
+                briefList: 'Eén vraag met vier antwoorden erin verstopt. Iedereen behalve de quiz master krijgt om de beurt tien seconden om er zoveel mogelijk te roepen, tot alle vier geraden zijn of iedereen is geweest. Punten worden aan het einde toegewezen.',
+                briefFinale: 'De 2 spelers met de meeste punten tegen elkaar.',
+                versus: 'vs',
                 action: 'Start ronde {{round}}'
             },
             handoff: {

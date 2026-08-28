@@ -2,7 +2,7 @@ import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
 import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { roundIntroToneFor } from "@/features/pubquizr/seats";
+import { roundIntroToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, View } from "react-native";
@@ -15,6 +15,17 @@ interface Props {
     kind: string
     /** What the table has to do this round, in the two or three sentences there is room for. */
     brief: string
+    /**
+     * The two players this round is actually between, or null for every round but the
+     * finale.
+     *
+     * Every other round is the whole table, so naming who is playing would be naming
+     * everybody — worth nothing. The finale is the one round that has already cut the
+     * table down to two before this screen ever opens (see `finaleTurnOf`), and that is
+     * the news: the round intro elsewhere in the evening says what the game is about to
+     * do, and here what the game is about to do is Alex against Sam.
+     */
+    finalists?: [Seat, Seat] | null
     onStart: () => void
 }
 
@@ -36,7 +47,7 @@ interface Props {
  * It stands in front of the very first round too, where there are no standings to come
  * out of — round 1 needs explaining more than any of them do.
  */
-export default function RoundIntroScreen({ round, totalRounds, kind, brief, onStart }: Props) {
+export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, onStart }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -67,6 +78,42 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, onSt
                 <AppText style={[styles.title, { color: tone.ink }]}>
                     {kind}
                 </AppText>
+
+                {/* The finale only. Every other round is played by the whole table, so
+                    there is nobody to single out here — this is the one screen in the
+                    evening that gets to say who, because it is the one round where who
+                    is the news. */}
+                {finalists !== null && finalists !== undefined && (
+                    <View style={styles.finalists}>
+                        <View style={styles.finalist}>
+                            <View style={[styles.portrait, { backgroundColor: finalists[0].swatch.color }]}>
+                                <AppText style={[styles.portraitText, { color: finalists[0].swatch.foreground }]}>
+                                    {finalists[0].initials}
+                                </AppText>
+                            </View>
+
+                            <AppText style={[styles.finalistName, { color: tone.ink }]} numberOfLines={1}>
+                                {finalists[0].name}
+                            </AppText>
+                        </View>
+
+                        <AppText style={[styles.versus, { color: tone.muted }]}>
+                            {t('pubquizr.play.intro.versus')}
+                        </AppText>
+
+                        <View style={styles.finalist}>
+                            <View style={[styles.portrait, { backgroundColor: finalists[1].swatch.color }]}>
+                                <AppText style={[styles.portraitText, { color: finalists[1].swatch.foreground }]}>
+                                    {finalists[1].initials}
+                                </AppText>
+                            </View>
+
+                            <AppText style={[styles.finalistName, { color: tone.ink }]} numberOfLines={1}>
+                                {finalists[1].name}
+                            </AppText>
+                        </View>
+                    </View>
+                )}
 
                 <AppText style={[styles.brief, { color: tone.muted }]}>
                     {brief}
@@ -152,6 +199,50 @@ const useStyles = createThemedStyles(() => ({
         lineHeight: 34 * 1.05,
         letterSpacing: -1.3,
         textAlign: 'center'
+    },
+
+    finalists: {
+        marginTop: 22,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 16
+    },
+
+    finalist: {
+        alignItems: 'center',
+        width: 84
+    },
+
+    // Smaller than the hand-off's own portrait: that screen is about one player, this
+    // one is about two of them side by side, and matching its size would crowd them.
+    portrait: {
+        width: 64,
+        height: 64,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: Brand.ink,
+        boxShadow: '3px 3px 0 0 rgba(15, 13, 18, 1)'
+    },
+
+    portraitText: {
+        fontSize: 22,
+        fontWeight: 900
+    },
+
+    finalistName: {
+        marginTop: 8,
+        fontSize: 13,
+        fontWeight: 800,
+        textAlign: 'center'
+    },
+
+    versus: {
+        fontSize: 12,
+        fontWeight: 900,
+        textTransform: 'uppercase',
+        letterSpacing: 1.4
     },
 
     // Muted where the name above it is full ink: this is the explanation, and the two

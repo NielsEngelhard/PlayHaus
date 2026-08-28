@@ -793,6 +793,8 @@ export const en = {
                 briefDescribe: 'Thirty seconds each to describe your own words to the table without ever saying them. Every word somebody shouts out is a point for you and a point for whoever got it.',
                 briefList: 'One question with four answers hiding in it. Everybody but the reader gets ten seconds in turn to call out as many as they can, until all four are found or the table runs out of goes. Then the reader says who called out what — a point each.',
                 briefFinale: 'The top two scores go head to head. Same as round 1: an open question, read aloud. Same as round 2: the question never stays with whoever just answered, so it swaps between the two of them every time. Whoever answers more of the finale wins the whole evening.',
+                /** Between the two finalist portraits on the finale's intro screen. */
+                versus: 'vs',
                 action: 'Start round {{round}}'
             },
             handoff: {

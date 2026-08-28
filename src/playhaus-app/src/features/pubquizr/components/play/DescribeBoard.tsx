@@ -1,16 +1,15 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { Brand } from "@/constants/theme";
+import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
+import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
 import {
     DESCRIBE_SECONDS,
     scoreOfAwards,
     type DescribeTurn
 } from "@/features/pubquizr/round-four";
-import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
-import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -345,7 +344,7 @@ const useStyles = createThemedStyles(theme => ({
 
     title: {
         flexShrink: 0,
-        fontSize: 22,
+        fontSize: FontSizes.xxl,
         fontWeight: 900,
         letterSpacing: -0.8,
         textAlign: 'center',
@@ -355,15 +354,15 @@ const useStyles = createThemedStyles(theme => ({
     rules: {
         width: '100%',
         maxWidth: 320,
-        gap: 10
+        gap: Spacing.two,        
     },
 
     rule: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 12,
-        padding: 12,
-        borderRadius: 16,
+        gap: Spacing.three,
+        padding: Spacing.three,
+        borderRadius: Spacing.three,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
@@ -383,7 +382,7 @@ const useStyles = createThemedStyles(theme => ({
     ruleText: {
         flex: 1,
         minWidth: 0,
-        fontSize: 13.5,
+        fontSize: FontSizes.md,
         fontWeight: 700,
         lineHeight: 13.5 * 1.4,
         color: theme.colors.text

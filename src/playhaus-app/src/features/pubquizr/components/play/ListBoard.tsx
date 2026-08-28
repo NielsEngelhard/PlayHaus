@@ -52,7 +52,15 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
     const [stage, setStage] = useState<Stage>('reading');
     const [guesserIndex, setGuesserIndex] = useState(0);
-    /** Answer ids the reader has marked found, with nobody credited yet. */
+    /**
+     * Answer ids the reader has ticked off while the table calls them out.
+     *
+     * A helper for the reader's own eyes during play, nothing more — it decides when to
+     * jump the round to scoring early (see `toggleFound`) and nothing else. It is never
+     * read on the scoring screen itself: every answer is assignable there whether or not
+     * it was ticked here, because a box left unchecked mid-round is not the same claim as
+     * a table ruling nobody got it, and the two must not end up looking the same.
+     */
     const [found, setFound] = useState<Set<string>>(new Set());
     /** Every seat named for an answer, or an empty array for one ruled nobody got. */
     const [awards, setAwards] = useState<Record<string, number[]>>({});
@@ -96,14 +104,11 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
     /**
      * The current player's ten seconds are over, one way or another. Past the last
-     * guesser, the round is done — but only into the scoring screen when there is
-     * something on it to do: nobody found anything is nobody to credit, and a screen
-     * whose only control is its own "next" button is a stop the table does not need.
-     *
-     * Reads `guesserIndex` and `found` off the closure rather than off a `setState`
-     * updater, on purpose: the "nothing found" branch below posts straight to the
-     * server, and a real request has no business living inside a function React is free
-     * to call more than once while resolving state.
+     * guesser, the round is done and the scoring screen is next — always, regardless of
+     * what got checked off while the clock was running. See the note on `found` above:
+     * crediting is a decision for the scoring screen alone, and skipping straight to a
+     * no-credit settle here would let a reader's un-ticked box during play quietly decide
+     * an assignment it was never meant to touch.
      */
     function nextGuesser() {
         const next = guesserIndex + 1;
@@ -112,11 +117,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             return;
         }
 
-        if (found.size === 0) {
-            onSettle(turn.answers.map(answer => ({ answerId: answer.id, seats: [] })));
-        } else {
-            setStage('scoring');
-        }
+        setStage('scoring');
     }
 
     /** Add or drop one seat from an answer's credits — a draw is more than one at once. */
@@ -136,9 +137,11 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards(current => ({ ...current, [answerId]: [] }));
     }
 
-    const foundAnswers = turn.answers.filter(answer => found.has(answer.id));
-    const ruled = foundAnswers.filter(answer => answer.id in awards).length;
-    const ready = ruled === foundAnswers.length;
+    // Every answer has to be ruled on for scoring, found or not — see the note on
+    // `found` above. A row left blank and a row marked "nobody" look the same on a
+    // phone being passed round, and the difference between them is a point.
+    const ruled = turn.answers.filter(answer => answer.id in awards).length;
+    const ready = ruled === turn.answers.length;
 
     if (stage === 'reading') {
         return (
@@ -280,10 +283,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     })}
                 </ScrollView>
 
-                {/* Only ever seen here when the last guesser's turn found nothing and
-                    the round tried to settle itself straight through — see
-                    `nextGuesser` — and the server refused it. Everything typed in is
-                    still on screen either way, since `found` never left this board. */}
                 {error !== null && (
                     <InlineNotification
                         icon="alert-triangle"
@@ -312,9 +311,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 {t('pubquizr.play.list.scoringTitle')}
             </AppText>
 
-            {/* Reachable only with something found — `nextGuesser` settles straight
-                through when nothing was, rather than stopping the table on this screen
-                with nothing on it to do. */}
             <AppText style={styles.recap}>
                 {t('pubquizr.play.list.whoSaidItHint')}
             </AppText>
@@ -324,7 +320,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 contentContainerStyle={styles.rowsInner}
                 keyboardShouldPersistTaps="handled"
             >
-                {foundAnswers.map(answer => {
+                {turn.answers.map(answer => {
                     const named = awards[answer.id] ?? [];
                     const nobody = answer.id in awards && named.length === 0;
 
@@ -414,7 +410,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 icon="award"
                 text={ready
                     ? t('pubquizr.play.list.settle')
-                    : t('pubquizr.play.list.stillToRule', { left: foundAnswers.length - ruled })}
+                    : t('pubquizr.play.list.stillToRule', { left: turn.answers.length - ruled })}
                 disabled={!ready || busy}
                 onPress={() => {
                     if (!ready || busy) return;
