@@ -19,9 +19,9 @@ import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finalStandingsOf, finaleTurnOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
+import { finalStandingsOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
-import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
+import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -309,17 +309,11 @@ export default function OneDeviceQuizPage() {
      */
     if (introducedRound !== round && session.currentPosition === 0) {
         // The finale only: by the time round 6 opens, the server has already cut the
-        // table down to these two seats (see `finalStandingsOf`), and naming them here
-        // is the whole reason this round gets its own screen rather than sharing round
-        // 2's copy with a different label.
-        const finalists: [Seat, Seat] | null =
-            round === ROUND_FINALE
-                ? (() => {
-                    const a = seatAt(seats, session.hotSeat);
-                    const b = seatAt(seats, session.quizMasterSeat);
-                    return a !== null && b !== null ? [a, b] : null;
-                })()
-                : null;
+        // table down to two players and put a third in the quizmaster's chair (see
+        // `finalistsOf`), and naming all three here is the whole reason this round gets
+        // its own screen rather than sharing round 2's copy with a different label.
+        const finalists = round === ROUND_FINALE ? finalistsOf(session, seats) : null;
+        const finaleMaster = round === ROUND_FINALE ? holder : null;
 
         return (
             <RoundIntroScreen
@@ -328,6 +322,7 @@ export default function OneDeviceQuizPage() {
                 kind={copy.kind}
                 brief={copy.brief}
                 finalists={finalists}
+                quizmaster={finaleMaster}
                 onStart={() => setIntroducedRound(round)}
             />
         )

@@ -577,7 +577,7 @@ export const en = {
              * variant here. Kept for the same reason every other round keeps one: the
              * shape of `roundCopy` is uniform across rounds.
              */
-            leadFinale: '{{name}} reads to the other finalist',
+            leadFinale: '{{name}} reads to both finalists',
             readAloud: 'Read this out loud',
             onlyYouSeeThis: 'Only you see this',
             alsoAccept: 'Also accept: {{answers}}',
@@ -792,9 +792,11 @@ export const en = {
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
                 briefDescribe: 'Thirty seconds each to describe your own words to the table without ever saying them. Every word somebody shouts out is a point for you and a point for whoever got it.',
                 briefList: 'One question with four answers hiding in it. Everybody but the reader gets ten seconds in turn to call out as many as they can, until all four are found or the table runs out of goes. Then the reader says who called out what — a point each.',
-                briefFinale: 'The top two scores go head to head. Same as round 1: an open question, read aloud. Same as round 2: the question never stays with whoever just answered, so it swaps between the two of them every time. Whoever answers more of the finale wins the whole evening.',
+                briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
+                /** Under the two portraits, naming whoever reads the whole finale out. */
+                quizmaster: '{{name}} is quizmaster',
                 action: 'Start round {{round}}'
             },
             handoff: {
@@ -812,7 +814,7 @@ export const en = {
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
                 jobDescribe: '{{name}} describes their own words. Nobody else may look at the screen.',
                 jobList: '{{name}} reads the category and marks off answers as the table calls them out.',
-                jobFinale: '{{name}} reads to the other finalist.',
+                jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
                 /**
                  * The round's rule, said on the one screen with room to say it properly.
                  * The board says the short version every turn; this is the version with
@@ -823,7 +825,7 @@ export const en = {
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it, so make them shout.',
                 ruleList: 'Ten seconds each. Mark an answer the instant somebody says it, then say who found what once the round is done.',
-                ruleFinale: 'The question never stays with whoever just answered — it swaps every time. Most correct out of the two of you wins the night.',
+                ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: "I'm {{name}}, show the question"
             },
             standings: {

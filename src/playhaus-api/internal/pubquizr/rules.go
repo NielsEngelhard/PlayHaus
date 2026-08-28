@@ -21,7 +21,7 @@ const (
 	RoundClosest  = 3 // a number; nearest wins
 	RoundDescribe = 4 // 30 seconds -- describe your words, the table guesses
 	RoundList     = 5 // one question, four answers we are looking for
-	RoundFinale   = 6 // head to head between the two highest scores
+	RoundFinale   = 6 // head to head between the two highest scores, read by a third
 )
 
 const (
@@ -34,9 +34,11 @@ const (
 	// ListAnswerPoints is what one of round 5's four answers pays whoever gets credit
 	// for it.
 	ListAnswerPoints = 1
-	// FinalePoints is what a correct finale question pays -- onto FinaleScore, not
-	// Score, because the finale is won on its own tally. See SessionPlayer.FinaleScore.
-	FinalePoints = 1
+	// FinalePoints is what a correct finale question pays, onto the same Score every
+	// other round adds to. A hundred, against the ones and twos the first five rounds
+	// hand out, because the finale is the round that decides the night and a tally of
+	// its own would say that twice.
+	FinalePoints = 100
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions          = 4
@@ -47,6 +49,8 @@ const (
 	DescribeWordsPerTurn    = 4
 	MinDescribeWordsPerTurn = 1
 
+	// FinalistCount is how many players reach the finale, and so also how many goes a
+	// finale question has in it: the seat it opens on, then the other one.
 	FinalistCount = 2
 
 	DescribeSeconds = 30

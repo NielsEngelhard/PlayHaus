@@ -262,6 +262,10 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		CurrentPosition: 0,
 		QuizMasterSeat:  ReaderFor(opening, len(names)),
 		HotSeat:         opening,
+		// No finale yet, and none of it decided until the other five rounds are
+		// played. See Session.FinalistSeatA.
+		FinalistSeatA: -1,
+		FinalistSeatB: -1,
 
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -1199,12 +1203,16 @@ func (s *Service) listAnswers(ctx context.Context, session *Session, question *S
 
 // RecordFinaleVerdict scores one round 6 question and moves the finale on.
 //
-// The finale reads like round 1 -- an open question, read aloud -- and moves like round
-// 2: whichever finalist just answered, right or wrong, the next question goes to the
-// other one. There is no line for a wrong answer to pass down, because there is nobody
-// else left at this table to pass it to -- the two finalists are the whole of it, see
-// OpenFinale. So this needs none of the attempt counting hot_seat.go does: every finale
-// question is exactly one attempt, by whoever the hot seat already names.
+// The finale reads like round 1 -- an open question, read aloud -- and it passes like
+// round 1 too, but down a line exactly two seats long. The question opens on whichever
+// finalist is behind; if they miss it, it crosses to the other one, who can still take
+// the full hundred for it. Miss it twice and it is dead, the same as a round 1 question
+// that beat the table.
+//
+// Which of the two is on it right now is read off the attempt count rather than off a
+// column, the same way the hot seat rounds do it -- see FinaleAnsweringSeat. HotSeat
+// stays on the seat the question opened on for as long as the question is alive, so a
+// reload mid-question finds the pass exactly where it left it.
 //
 // Reuses VerdictInput rather than a type of its own -- the body is the same shape as a
 // round 1 or round 2 verdict, naming the question and the ruling and nothing else, for
@@ -1227,7 +1235,17 @@ func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Se
 		return nil, ErrStaleTurn
 	}
 
-	answering, reading := session.HotSeat, session.QuizMasterSeat
+	attempts, err := s.store.AttemptsOn(ctx, question.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	answering := session.FinaleAnsweringSeat(attempts)
+	if answering < 0 {
+		// Both finalists have already had this one, so there is nothing left to rule on.
+		return nil, ErrStaleTurn
+	}
+
 	player := session.PlayerAt(answering)
 	if player == nil {
 		return nil, fmt.Errorf("finale verdict: no player in seat %d", answering)
@@ -1246,22 +1264,33 @@ func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Se
 	points := 0
 	if in.Correct {
 		points = FinalePoints
-		// Onto FinaleScore, not Score -- the finale is won on its own tally, not on
-		// top of what either finalist arrived with. See SessionPlayer.FinaleScore.
-		player.FinaleScore += points
+		// Onto Score, the one tally the whole evening is kept on. A finale question is
+		// worth a hundred of them, which is what lets round 6 decide the night without
+		// a column of its own. See FinalePoints.
+		player.Score += points
 		out.Players = append(out.Players, player)
 	}
 	attempt.Points = points
+
+	// A wrong answer with the other finalist still to come leaves everything where it
+	// is: same question, same slot, same opening seat. The attempt row that was just
+	// written is the whole of what changed, and it is what moves the question across.
+	if !in.Correct && attempts < FinalistCount-1 {
+		session.UpdatedAt = now
+
+		if err := s.store.RecordTurn(ctx, session, out); err != nil {
+			return nil, err
+		}
+
+		return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	}
 
 	question.Status = QuestionDone
 	question.Points = points
 	out.Questions = append(out.Questions, question)
 
-	// Round 2's rule, not round 1's: the seat never keeps itself, right or wrong. The
-	// finalist who was just reading is who the next question goes to, and the one who
-	// just answered reads it to them.
-	session.OpenFinaleOn(reading, answering)
-
+	// advance opens the next finale question on whichever finalist is behind *now*,
+	// which is why the hundred above is added before this and not after.
 	s.advance(session)
 	session.UpdatedAt = now
 
@@ -1288,6 +1317,12 @@ func (s *Service) advance(session *Session) {
 		// by the verdict, because taking a question keeps you in the seat.
 		if RotatesEachTurn(session.CurrentRound) {
 			session.RotateOneSeat()
+		}
+		// The finale moves on the scoreboard rather than round the table: every
+		// question opens on whichever of the two finalists is behind, and the hundred
+		// the last one paid may well have just changed which that is.
+		if session.CurrentRound == RoundFinale {
+			session.OpenFinaleQuestion()
 		}
 		return
 	}
@@ -1333,19 +1368,26 @@ func (s *Service) advance(session *Session) {
 // today, which is exactly the sort of thing that stops being true quietly.
 //
 // The finale is answered before the hot seat rounds are even asked about: it is not one
-// of IsHotSeatRound's rounds -- HotSeat there passes a question down a line, and the
-// finale has no line, just the other finalist -- but HotSeat is still exactly who is
-// being asked, with nothing to count to know it.
+// of IsHotSeatRound's rounds, because its line is two seats long and does not run round
+// the table. It still counts attempts, though -- a question its opening seat has missed
+// is on the other finalist. See FinaleAnsweringSeat.
 func (s *Service) AnsweringSeatFor(ctx context.Context, session *Session) (int, error) {
 	if session.Status != SessionInProgress {
 		return -1, nil
 	}
 
 	if session.CurrentRound == RoundFinale {
-		if session.QuestionAt(RoundFinale, session.CurrentPosition) == nil {
+		question := session.QuestionAt(RoundFinale, session.CurrentPosition)
+		if question == nil {
 			return -1, nil
 		}
-		return session.HotSeat, nil
+
+		attempts, err := s.store.AttemptsOn(ctx, question.ID)
+		if err != nil {
+			return -1, err
+		}
+
+		return session.FinaleAnsweringSeat(attempts), nil
 	}
 
 	if !IsHotSeatRound(session.CurrentRound) {

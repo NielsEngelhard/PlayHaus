@@ -143,15 +143,12 @@ func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 // --- session --------------------------------------------------------------
 
 type quizSessionPlayerResponse struct {
-	Seat  int    `json:"seat"`
-	Name  string `json:"name"`
+	Seat int    `json:"seat"`
+	Name string `json:"name"`
+	// Score is everything this player has taken all evening, round 6 included. There
+	// is one tally and the night is won on it -- see pubquizr.SessionPlayer.Score.
 	Score int    `json:"score"`
-	// FinaleScore is what this player has taken in round 6 and only round 6, zero for
-	// whoever never reached it. It is what the finale is actually won on, separately
-	// from the running Score everybody else finished the evening with -- see
-	// pubquizr.SessionPlayer.FinaleScore.
-	FinaleScore int    `json:"finaleScore"`
-	Color       string `json:"color"`
+	Color string `json:"color"`
 }
 
 type quizSessionQuestionResponse struct {
@@ -190,6 +187,14 @@ type quizSessionResponse struct {
 	// one to the quizmaster's left -- and there it means nothing. Read describerSeat
 	// in round 4 and the guessing seats off the table in round 3.
 	HotSeat int `json:"hotSeat"`
+	// FinalistSeats are the two players round 6 is between, and null until the finale
+	// opens.
+	//
+	// Sent because the app can no longer work them out: the quizmaster is somebody who
+	// did not reach the finale, so quizMasterSeat no longer names a finalist, and the
+	// top two on the final scoreboard are not always the top two who walked into round
+	// 6. See pubquizr.Session.FinalistSeatA.
+	FinalistSeats []int `json:"finalistSeats"`
 	// HotSeatRun is how many questions in a row the hot seat has taken. Sent so the
 	// board can put a number on the rule the round is built round -- take one and you
 	// are asked the next -- rather than leaving it to be explained out loud.
@@ -225,11 +230,10 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	players := make([]quizSessionPlayerResponse, 0, len(s.Players))
 	for _, player := range s.Players {
 		players = append(players, quizSessionPlayerResponse{
-			Seat:        player.Seat,
-			Name:        player.Name,
-			Score:       player.Score,
-			FinaleScore: player.FinaleScore,
-			Color:       player.Color,
+			Seat:  player.Seat,
+			Name:  player.Name,
+			Score: player.Score,
+			Color: player.Color,
 		})
 	}
 
@@ -254,6 +258,11 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	var describing *int
 	if seat := s.Describer(); seat >= 0 {
 		describing = &seat
+	}
+
+	var finalists []int
+	if a, b, ok := s.Finalists(); ok {
+		finalists = []int{a, b}
 	}
 
 	// What this turn will accept a ruling on. Round 4 is the whole of one seat's
@@ -281,6 +290,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		TotalRounds:     pubquizr.Rounds,
 		AnsweringSeat:   asked,
 		HotSeat:         s.HotSeatOrFirst(),
+		FinalistSeats:   finalists,
 		HotSeatRun:      s.HotSeatRun,
 		TurnsInRound:    s.TurnsInRound(s.CurrentRound),
 		DescriberSeat:   describing,

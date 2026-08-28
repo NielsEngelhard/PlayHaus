@@ -14,13 +14,12 @@ export interface QuizSessionPlayer {
     /** Seat 0 is the first name that was typed in. Seats run round the table from there. */
     seat: number
     name: string
-    score: number
     /**
-     * What this seat has taken in round 6, and only round 6 — zero for whoever never
-     * reached the finale. Kept apart from `score` because the finale is won on this
-     * tally alone; see `finalStandingsOf`.
+     * Everything this seat has taken all evening, the finale included — there is one
+     * tally and the night is won on it. A finale question pays 100 onto it; see
+     * `FINALE_POINTS`.
      */
-    finaleScore: number
+    score: number
     /** An `AVATAR_COLORS` id, not a hex — see `features/settings/profile`. */
     color: string
 }
@@ -58,9 +57,19 @@ export interface QuizSession {
      *
      * Not the seat left of the reader: a correct answer keeps you in it, so where a
      * question starts depends on who took the last one. Needed here only to say who a
-     * wrong answer would pass to — see `nextUpAfter`.
+     * wrong answer would pass to — see `nextUpAfter`, and `finaleTurnOf` for round 6,
+     * where the line it passes down is the other finalist and nobody else.
      */
     hotSeat: number
+    /**
+     * The two seats round 6 is between, and null until the finale opens.
+     *
+     * The app cannot work them out for itself any more: the finale's quizmaster is
+     * somebody who did *not* reach it, so `quizMasterSeat` no longer names a finalist,
+     * and a finale question pays onto `score`, so the top two at the end of the evening
+     * are not always the top two who walked into round 6.
+     */
+    finalistSeats: number[] | null
     /**
      * How many questions in a row the hot seat has taken.
      *
@@ -275,8 +284,9 @@ export async function recordListAwardsRequest(
  * The same shape as `recordOpenVerdictRequest` — which question, and whether it was
  * right — because who is answering and what happens next are the finale's own business,
  * the same way they are round 1 and round 2's. It posts to its own endpoint rather than
- * the shared `/verdict` one because it is not one of that endpoint's rounds: the finale
- * never lets an answer keep the seat, and it pays `finaleScore` rather than `score`.
+ * the shared `/verdict` one because it is not one of that endpoint's rounds: the line a
+ * finale question passes down is two seats long and does not run round the table, and it
+ * pays 100 rather than the ones and twos every other round hands out.
  */
 export async function recordFinaleVerdictRequest(
     sessionId: string,

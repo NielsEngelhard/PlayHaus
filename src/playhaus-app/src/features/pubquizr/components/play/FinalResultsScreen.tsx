@@ -24,12 +24,10 @@ interface Props {
  * round just played any more, and it is the only screen in the evening that has to say
  * out loud that the game itself is over.
  *
- * The winner is not whoever scored the most across the whole night — it is whichever
- * finalist took more of round 6, which is the one tally the finale keeps apart from
- * everybody's running score for exactly this reason. So the top two rows carry their
- * finale score rather than their total, and everybody below them carries the score they
- * actually played five rounds for. Showing both numbers on the same row would say two
- * different things at once about what a place was earned on.
+ * The most points wins, and every row carries the same number — a finale question pays
+ * onto the running score like everything else does, at a hundred a time, so there is one
+ * tally and one order to put the table in. The two who played round 6 are tagged rather
+ * than ranked apart: it is the story of the evening, not the reason for the order.
  */
 export default function FinalResultsScreen({ standings, onLeave }: Props) {
     const t = useT();
@@ -88,7 +86,7 @@ export default function FinalResultsScreen({ standings, onLeave }: Props) {
                             </View>
 
                             <AppText style={[styles.score, (first || second) && styles.onLemon]}>
-                                {seat.finalist ? seat.finaleScore : seat.score}
+                                {seat.score}
                             </AppText>
                         </View>
                     )

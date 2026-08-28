@@ -483,7 +483,7 @@ export const nl: Catalog = {
             leadClosest: '{{name}} leest voor · de rest gokt',
             leadDescribe: '{{name}} is aan de beurt',
             leadList: '{{name}} leest voor · de rest roept antwoorden',
-            leadFinale: '{{name}} leest voor aan de andere finalist',
+            leadFinale: '{{name}} leest voor aan beide finalisten',
             readAloud: 'Lees dit hardop voor',
             onlyYouSeeThis: 'Het antwoord',
             alsoAccept: 'Ook goed: {{answers}}',
@@ -592,8 +592,9 @@ export const nl: Catalog = {
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefDescribe: '31 seconden om je eigen woorden aan de tafel te omschrijven zonder het woord te zeggen (of een vertaling). Elk geraden woord is een punt voor zowel de roeper als de rader.',
                 briefList: 'Eén vraag met vier antwoorden erin verstopt. Iedereen behalve de quiz master krijgt om de beurt tien seconden om er zoveel mogelijk te roepen, tot alle vier geraden zijn of iedereen is geweest. Punten worden aan het einde toegewezen.',
-                briefFinale: 'De 2 spelers met de meeste punten tegen elkaar.',
+                briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is 100 punten waard. De persoon met de minste punten begint steeds.',
                 versus: 'vs',
+                quizmaster: '{{name}} is quiz master',
                 action: 'Start ronde {{round}}'
             },
             handoff: {
@@ -604,13 +605,13 @@ export const nl: Catalog = {
                 jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
                 jobDescribe: 'Alleen {{name}} mag dit zien.',
                 jobList: '{{name}} leest de categorie voor en vinkt antwoorden af zodra de tafel ze roept.',
-                jobFinale: '{{name}} leest voor aan de andere finalist.',
+                jobFinale: '{{name}} leest voor aan beide finalisten en speelt deze ronde zelf niet mee.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
                 ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep, dus laat ze roepen.',
                 ruleList: 'Tien seconden elk. Vink een antwoord af zodra iemand het roept, en zeg daarna wie wat vond.',
-                ruleFinale: 'De vraag blijft nooit bij wie net antwoordde — hij wisselt steeds. Wie van jullie twee de meeste goed heeft wint de avond.',
+                ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. 100 punten per goed antwoord, en de meeste punten wint de avond.',
                 action: 'Ik ben {{name}}, laat de vraag zien'
             },
             standings: {
@@ -622,7 +623,7 @@ export const nl: Catalog = {
             final: {
                 title: 'De quiz is afgelopen',
                 description: 'Zo eindigde de avond.',
-                won: '{{name}} won de finale en daarmee de hele avond.',
+                won: '{{name}} is de grote winnaar!',
                 finalist: 'Finalist'
             }
         },

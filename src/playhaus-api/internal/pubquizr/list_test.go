@@ -258,11 +258,16 @@ func TestListEndsIntoTheFinale(t *testing.T) {
 	if got, want := store.session.CurrentRound, RoundFinale; got != want {
 		t.Fatalf("CurrentRound = %d, want %d", got, want)
 	}
-	// Seats 2 and 0 are the two highest scores (9 and 7); the lower of the pair opens.
+	// Seats 2 and 0 are the two highest scores (9 and 7); the lower of the pair opens,
+	// and seat 1 (5) is the best score that did not make it, so they read.
+	a, b, ok := store.session.Finalists()
+	if !ok || a != 2 || b != 0 {
+		t.Errorf("Finalists() = %d, %d, %v -- want 2, 0, true", a, b, ok)
+	}
 	if got, want := store.session.HotSeat, 0; got != want {
 		t.Errorf("HotSeat = %d, want %d -- the weaker finalist opens", got, want)
 	}
-	if got, want := store.session.QuizMasterSeat, 2; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d -- the stronger finalist reads first", got, want)
+	if got, want := store.session.QuizMasterSeat, 1; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- third place reads the finale", got, want)
 	}
 }

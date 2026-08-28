@@ -26,6 +26,15 @@ interface Props {
      * do, and here what the game is about to do is Alex against Sam.
      */
     finalists?: [Seat, Seat] | null
+    /**
+     * Who is reading the finale out, or null for every round but that one.
+     *
+     * The finale is the only round whose quizmaster is not playing it, and the only one
+     * where the same person reads every question — so it is the only round where saying
+     * who that is in advance is worth a line. Everywhere else the reading moves seat by
+     * seat and the hand-off screen names it, one turn at a time.
+     */
+    quizmaster?: Seat | null
     onStart: () => void
 }
 
@@ -47,7 +56,7 @@ interface Props {
  * It stands in front of the very first round too, where there are no standings to come
  * out of — round 1 needs explaining more than any of them do.
  */
-export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, onStart }: Props) {
+export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, quizmaster, onStart }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -112,6 +121,23 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                                 {finalists[1].name}
                             </AppText>
                         </View>
+                    </View>
+                )}
+
+                {/* Under the two of them, because it is the answer to the question the
+                    portraits have just raised: if those two are playing, who is asking?
+                    The finale only — see the note on the prop. */}
+                {quizmaster !== null && quizmaster !== undefined && (
+                    <View style={styles.quizmaster}>
+                        <View style={[styles.chip, { backgroundColor: quizmaster.swatch.color }]}>
+                            <AppText style={[styles.chipText, { color: quizmaster.swatch.foreground }]}>
+                                {quizmaster.initials}
+                            </AppText>
+                        </View>
+
+                        <AppText style={[styles.quizmasterText, { color: tone.ink }]} numberOfLines={1}>
+                            {t('pubquizr.play.intro.quizmaster', { name: quizmaster.name })}
+                        </AppText>
                     </View>
                 )}
 
@@ -243,6 +269,42 @@ const useStyles = createThemedStyles(() => ({
         fontWeight: 900,
         textTransform: 'uppercase',
         letterSpacing: 1.4
+    },
+
+    // A pill rather than a third portrait: the quizmaster is not in the fight the two
+    // faces above are, and drawing them at the same size would say they were.
+    quizmaster: {
+        marginTop: 18,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        maxWidth: '100%',
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderRadius: 999,
+        borderWidth: 2,
+        borderColor: Brand.ink
+    },
+
+    chip: {
+        width: 26,
+        height: 26,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1.5,
+        borderColor: Brand.ink
+    },
+
+    chipText: {
+        fontSize: 10,
+        fontWeight: 900
+    },
+
+    quizmasterText: {
+        flexShrink: 1,
+        fontSize: 13,
+        fontWeight: 800
     },
 
     // Muted where the name above it is full ink: this is the explanation, and the two

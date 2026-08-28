@@ -249,6 +249,21 @@ type Session struct {
 	// counting has just been given up.
 	HotSeatRun int `gorm:"not null;default:0"`
 
+	// FinalistSeatA and FinalistSeatB are the two players round 6 is between, fixed
+	// the moment the finale opens and never touched again.
+	//
+	// Kept rather than read back off HotSeat and QuizMasterSeat, which is where the
+	// pair used to live: the quizmaster is now somebody who did not reach the finale,
+	// so the two columns that move during a round no longer name the two people the
+	// round is about. And they cannot be worked out from the scoreboard afterwards
+	// either -- a finale question pays onto Score, so the top two at the end of the
+	// evening are not always the top two who walked into it.
+	//
+	// -1 in both is a session that has not reached round 6, or one dealt before these
+	// columns existed. Finalists reads that as "no pair yet".
+	FinalistSeatA int `gorm:"not null;default:-1"`
+	FinalistSeatB int `gorm:"not null;default:-1"`
+
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 
@@ -268,15 +283,13 @@ type SessionPlayer struct {
 	SessionID uuid.UUID `gorm:"primaryKey;type:text"`
 	Seat      int       `gorm:"primaryKey"` // Seat is where they are sitting, left to right, because the phone gets turned round the table
 	Name      string    `gorm:"not null"`
+	// Score is everything this player has taken all evening, the finale included --
+	// there is one tally and the night is won on it. A finale question pays a hundred
+	// onto it, which is what makes round 6 decide the game without needing a column of
+	// its own to do it in. See FinalePoints.
 	Score     int       `gorm:"not null;default:0"`
-	// FinaleScore is what this player has taken in round 6, and only round 6 -- kept
-	// apart from Score because the finale is won on it alone. A finalist can finish an
-	// evening leading on Score and still lose the night to whoever answered more finale
-	// questions, and the reverse is exactly what makes the finale worth playing. Zero
-	// for whoever never reached the finale.
-	FinaleScore int    `gorm:"not null;default:0"`
-	Color       string `gorm:"not null"`
-	CreatedAt   time.Time `gorm:"not null"`
+	Color     string    `gorm:"not null"`
+	CreatedAt time.Time `gorm:"not null"`
 }
 
 func (SessionPlayer) TableName() string { return "pq_session_players" }

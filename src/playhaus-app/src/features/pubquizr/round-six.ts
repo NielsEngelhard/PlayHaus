@@ -4,28 +4,52 @@ import type { QuizSession } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
 /**
- * Round 6, the finale: the top two players, head to head.
+ * Round 6, the finale: the top two players, head to head, read to by a third.
  *
- * It reads like round 1 -- an open question, asked and answered out loud -- and it
- * moves like round 2: whoever just answered never keeps the question, right or wrong,
- * so the two finalists simply swap who is reading and who is answering every time. With
- * only two players left there is nobody else for a wrong answer to pass to, which is
- * the whole reason `finaleTurnOf` hands back a `HotSeatTurn` rather than a shape of its
- * own -- `HotSeatBoard` already draws exactly this turn, `options` empty and
- * `alwaysNextUp` set, for round 2. The finale is that board again, with the table
- * shrunk to two.
+ * It reads like round 1 -- an open question, asked and answered out loud -- and it passes
+ * like round 1 too, but down a line exactly two seats long. The question opens on
+ * whichever finalist is behind; if they miss it, it crosses to the other one, who can
+ * still take the whole hundred for it. Miss it twice and it is dead. That is why
+ * `finaleTurnOf` hands back a `HotSeatTurn` rather than a shape of its own -- `nextUp` is
+ * exactly the "who gets it if this is wrong" that `HotSeatBoard` already draws for round
+ * 1, with the rest of the table taken away.
  *
- * What is different lives on the session rather than on the turn: a finale question
- * pays `finaleScore`, not the running `score` every other round adds to -- the finale is
- * won on that tally alone, kept apart so a finalist who arrived behind can still leave
- * on top. See `finalStandingsOf`.
+ * Two things are different from every other round, and both are about who is holding the
+ * phone. The quizmaster is not playing: they are the best score that did not reach the
+ * finale, and they read the whole round rather than the reading moving on with the seat.
+ * And a correct answer pays `FINALE_POINTS` onto the same running `score` the first five
+ * rounds built up, so the night is won on one tally -- see `finalStandingsOf`.
  */
 
 /** Kept in step with `RoundFinale` in Go. */
 export const ROUND_FINALE = 6;
 
-/** What a correct finale question pays. Mirrors `FinalePoints`. */
-export const FINALE_POINTS = 1;
+/**
+ * What a correct finale question pays. Mirrors `FinalePoints`.
+ *
+ * A hundred, against the ones and twos the first five rounds hand out: the finale is the
+ * round that decides the night, and paying it in the same currency as everything else is
+ * what lets there be one scoreboard instead of two.
+ */
+export const FINALE_POINTS = 100;
+
+/**
+ * The two players round 6 is between, or null before the finale has opened.
+ *
+ * Read off `finalistSeats` rather than worked out here, because neither of the two
+ * columns that used to name them still does: the quizmaster did not reach the finale, and
+ * the top two on the closing scoreboard are not always the top two who walked into it.
+ */
+export function finalistsOf(session: QuizSession, seats: Seat[]): [Seat, Seat] | null {
+    const pair = session.finalistSeats;
+    if (pair === null || pair === undefined || pair.length < 2) return null;
+
+    const a = seatAt(seats, pair[0]);
+    const b = seatAt(seats, pair[1]);
+    if (a === null || b === null) return null;
+
+    return [a, b];
+}
 
 /**
  * What is on screen right now, or null when round 6 is not what is being played.
@@ -49,10 +73,18 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
     const seats = seatsOf(session);
     const quizmaster = seatAt(seats, session.quizMasterSeat);
     const answering = seatAt(seats, session.answeringSeat);
-    if (quizmaster === null || answering === null) return null;
+    const finalists = finalistsOf(session, seats);
+    if (quizmaster === null || answering === null || finalists === null) return null;
 
     const answers = question.answers.filter(answer => answer.alias !== true);
     const aliases = question.answers.filter(answer => answer.alias === true);
+
+    // The question is still on the seat it opened on, so the other finalist has not had
+    // it yet and a wrong answer crosses the table to them. Once it has crossed there is
+    // nobody left, which is what `hotSeat` staying put through the pass is for.
+    const waiting = session.answeringSeat === session.hotSeat
+        ? finalists.find(finalist => finalist.seat !== session.answeringSeat) ?? null
+        : null;
 
     return {
         dealt,
@@ -62,14 +94,14 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         options: [],
         quizmaster,
         answering,
-        // Nobody holds this seat across two questions -- see the note above -- so there
-        // is no streak to put a number on.
+        // A run counts questions taken in a row out of one seat, and the finale has no
+        // seat to hold: every question is dealt again to whoever is behind.
         run: 0,
-        nextUp: null,
-        // The other finalist, always: round 2's rule is what makes this one name true
-        // no matter which button gets pressed, and with two players it is also the only
-        // name there is.
-        alwaysNextUp: quizmaster,
+        nextUp: waiting,
+        // Round 2's line, and the finale has nothing to say in it: where the next
+        // question goes depends on this one's verdict, because it goes to whoever the
+        // hundred leaves behind.
+        alwaysNextUp: null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         worth: FINALE_POINTS
@@ -82,44 +114,29 @@ export interface FinalStanding extends Seat {
     place: number
     /** Whether this seat was one of the two who played the finale. */
     finalist: boolean
-    /** What this seat took in round 6 and only round 6. Zero for non-finalists. */
-    finaleScore: number
 }
 
 /**
  * Who a finished evening belongs to, and where everybody else ended up.
  *
- * The winner is not whoever has the most points -- it is whichever finalist took more
- * of the finale, which is the one tally kept apart from the running score for exactly
- * this reason (see the note above). The runner-up is the other finalist regardless of
- * `finaleScore`: they made the final two, and a bad night in the finale itself should
- * not read as though they never got there. Everybody who did not reach the finale is
- * ranked below both of them, by the score they actually played five rounds for.
+ * The most points wins, and that is the whole rule: a finale question pays onto the same
+ * `score` the first five rounds were played for, so there is one number per player and
+ * one order to put them in. Ties break on the seat rather than at random, the way every
+ * other ordering in this game does, so the answer is the same one twice.
  *
- * `session.hotSeat` and `session.quizMasterSeat` are the two finalists for as long as
- * the finale is being played and for as long as the session remembers having played
- * it -- the finale never lets a third seat into either column, see `OpenFinale` and
- * `RecordFinaleVerdict` in the Go service -- so reading the pair straight off the
- * session is exact rather than a guess.
+ * `finalist` is still worth carrying even though it decides nothing here -- the two who
+ * played round 6 are the story of the evening, and a row that does not say so reads as
+ * though the finale never happened.
  */
 export function finalStandingsOf(session: QuizSession): FinalStanding[] {
     const seats = seatsOf(session);
-    const finalistSeats = new Set([session.hotSeat, session.quizMasterSeat]);
-    const finaleScoreOf = (seat: number) =>
-        session.players.find(player => player.seat === seat)?.finaleScore ?? 0;
+    const finalistSeats = new Set(session.finalistSeats ?? []);
 
-    const finalists = seats
-        .filter(seat => finalistSeats.has(seat.seat))
-        .sort((a, b) => finaleScoreOf(b.seat) - finaleScoreOf(a.seat) || a.seat - b.seat);
-
-    const rest = seats
-        .filter(seat => !finalistSeats.has(seat.seat))
-        .sort((a, b) => b.score - a.score || a.seat - b.seat);
-
-    return [...finalists, ...rest].map((seat, index) => ({
-        ...seat,
-        place: index + 1,
-        finalist: finalistSeats.has(seat.seat),
-        finaleScore: finaleScoreOf(seat.seat)
-    }));
+    return [...seats]
+        .sort((a, b) => b.score - a.score || a.seat - b.seat)
+        .map((seat, index) => ({
+            ...seat,
+            place: index + 1,
+            finalist: finalistSeats.has(seat.seat)
+        }));
 }

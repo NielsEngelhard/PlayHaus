@@ -112,9 +112,9 @@ func (s *Session) RotateOneSeat() {
 // OpenRoundOn starts a round on one seat: whoever plays first.
 //
 // Round 4 reads that as the describer, because a describer holds the phone; everywhere
-// else it is the seat being asked. The finale is left alone -- it is only the top two,
-// and who starts it is that round's own business. See OpenFinale, which advance calls
-// instead of this on the way into round 6.
+// else it is the seat being asked. The finale is left alone -- it is two players and a
+// quizmaster who is neither of them, and who starts it is that round's own business. See
+// OpenFinale, which advance calls instead of this on the way into round 6.
 func (s *Session) OpenRoundOn(round, seat int) {
 	switch {
 	case round == RoundFinale:
@@ -125,22 +125,112 @@ func (s *Session) OpenRoundOn(round, seat int) {
 	}
 }
 
-// OpenFinaleOn seats the finale directly: whoever is named opens as the hot seat, and
-// the other reads to them.
+// SeatFinale names the three people round 6 is played by: the two finalists, and the
+// quizmaster who reads to both of them for the whole round.
 //
-// Not OpenOn, on purpose: that wraps by the whole table's size, and the finale's table
-// is always exactly two seats, whichever two they turn out to be. Round 2's turn order
-// is what calls this every question -- see RecordFinaleVerdict -- because the finale
-// never lets an answer keep the seat, right or wrong, so the two names simply swap.
-func (s *Session) OpenFinaleOn(hot, master int) {
-	s.HotSeat = hot
+// Not OpenOn, on purpose. OpenOn writes one fact -- you are read to by the player on
+// your right -- and the finale is the one round where that is not true: the reading
+// does not follow the seat round the table, it sits still on somebody who is not
+// playing. So the two columns are written straight, and which finalist is on the
+// question is then OpenFinaleQuestion's business rather than the quizmaster's.
+func (s *Session) SeatFinale(a, b, master int) {
+	s.FinalistSeatA, s.FinalistSeatB = a, b
 	s.QuizMasterSeat = master
+
+	s.OpenFinaleQuestion()
 }
 
-// OpenFinale seats the finale for the first time: the two highest scores at the table,
-// ties going the way LowestScoringSeat's do, to whoever sits nearest the head of it. The
-// lower of the two opens, the same rule every round but the first plays by -- it starts
-// with whoever most needs it to.
+// OpenFinaleQuestion puts the next finale question on whichever finalist is behind.
+//
+// Every question, not just the first: the score moves by a hundred at a time in round 6,
+// so who is behind changes as the round is played, and the rule the whole finale hangs
+// on is that the question always opens on whoever most needs it to. It is the same rule
+// LowestScoringSeat gives every other round, read across two seats instead of the table.
+func (s *Session) OpenFinaleQuestion() {
+	if seat := s.FinaleOpener(); seat >= 0 {
+		s.HotSeat = seat
+	}
+}
+
+// Finalists is the pair round 6 is between, and false before it has opened.
+//
+// Two different seats or none: the same seat twice is a Session built in Go rather than
+// read back from a row, where the columns start at zero instead of at the -1 the schema
+// gives them. Everything downstream asks this rather than the columns, so that reads as
+// "no finale yet" the same way an unplayed session does.
+func (s *Session) Finalists() (int, int, bool) {
+	if s.FinalistSeatA < 0 || s.FinalistSeatB < 0 || s.FinalistSeatA == s.FinalistSeatB {
+		return -1, -1, false
+	}
+
+	return s.FinalistSeatA, s.FinalistSeatB, true
+}
+
+// FinaleRival is the finalist who is not this one, or -1 for a seat that is not in the
+// finale at all.
+func (s *Session) FinaleRival(seat int) int {
+	a, b, ok := s.Finalists()
+	if !ok {
+		return -1
+	}
+
+	switch seat {
+	case a:
+		return b
+	case b:
+		return a
+	default:
+		return -1
+	}
+}
+
+// FinaleOpener is whichever finalist has the fewer points, ties going the way
+// LowestScoringSeat's do -- to whoever sits nearest the head of the table.
+func (s *Session) FinaleOpener() int {
+	a, b, ok := s.Finalists()
+	if !ok {
+		return -1
+	}
+
+	first, second := s.PlayerAt(a), s.PlayerAt(b)
+	if first == nil || second == nil {
+		return -1
+	}
+
+	if first.Score != second.Score {
+		if first.Score < second.Score {
+			return a
+		}
+		return b
+	}
+
+	return min(a, b)
+}
+
+// FinaleAnsweringSeat is which finalist a round 6 question is on after `attempts` goes
+// at it: the seat it opened on, then the other one, then nobody.
+//
+// The pass is what makes the finale worth watching from the losing end -- a question the
+// player in front misses is still worth its full hundred to the player behind. Two goes
+// and no more, because there are only two of them.
+func (s *Session) FinaleAnsweringSeat(attempts int) int {
+	switch {
+	case attempts < 0 || attempts >= FinalistCount:
+		return -1
+	case attempts == 0:
+		return s.HotSeat
+	default:
+		return s.FinaleRival(s.HotSeat)
+	}
+}
+
+// OpenFinale seats the finale for the first time: the top two scores play it, and the
+// best score that did not make it reads to them.
+//
+// Ties go the way LowestScoringSeat's do, to whoever sits nearest the head of the table.
+// Third place gets the quizmaster's chair because somebody has to hold the phone and it
+// cannot be either of the two people being asked -- and of everybody left, they are the
+// one the table has just watched come closest.
 //
 // Called by advance in place of OpenRoundOn on the way into round 6, which is why
 // OpenRoundOn leaves the finale alone: this is the round's own business, and it needs
@@ -160,13 +250,15 @@ func (s *Session) OpenFinale() {
 		return ranks[i].seat < ranks[j].seat
 	})
 
-	if len(ranks) < 2 {
-		// Below MinPlayers, which cannot happen through the setup form -- but this is
-		// arithmetic on a slice, not a rule about how many people may sit down.
+	if len(ranks) <= FinalistCount {
+		// A table with nobody spare to read is below MinPlayers, which cannot happen
+		// through the setup form -- but this is arithmetic on a slice, not a rule about
+		// how many people may sit down, so it declines rather than seating a finalist
+		// as their own quizmaster.
 		return
 	}
 
-	s.OpenFinaleOn(ranks[1].seat, ranks[0].seat)
+	s.SeatFinale(ranks[0].seat, ranks[1].seat, ranks[FinalistCount].seat)
 }
 
 // TurnsInRound is how many goes a round holds -- which is not always how many questions
