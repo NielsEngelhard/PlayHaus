@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
-import { gameBySlug } from "@/constants/games";
-import { Brand, Gradients, Spacing, linearGradient } from "@/constants/theme";
+import type { Game } from "@/constants/games";
+import { Spacing, linearGradient } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -8,6 +8,14 @@ import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, View } from "react-native";
 
 interface Props {
+    /**
+     * Whose room is being waited on. Its glyph, gradient and ink are what breathes.
+     *
+     * Passed in rather than looked up here, which is what it used to be: this is the
+     * whole of a guest's screen, and a second game's lobby has to be able to wait in its
+     * own colour rather than in League of Letters'.
+     */
+    game: Game,
     /** Whoever opened the room. Named, so the wait has somebody at the end of it. */
     hostName: string
 }
@@ -46,14 +54,10 @@ const DOTS = [0, 1, 2];
  * the point: something that moves is the only way a page with no controls says it is
  * still connected, which is the one question anybody staring at it actually has.
  */
-export default function WaitingForHost({ hostName }: Props) {
+export default function WaitingForHost({ game, hostName }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
-
-    // The same glyph, gradient and ink the game wears on the home card, from the one
-    // registry that decides them. See `constants/games.ts`.
-    const game = gameBySlug('league-of-letters');
 
     const [breathe] = useState(() => new Animated.Value(0));
 
@@ -90,6 +94,10 @@ export default function WaitingForHost({ hostName }: Props) {
                 <Animated.View
                     style={[
                         styles.glow,
+                        // The game's own colour rather than the app's orange: this is the
+                        // biggest thing on a guest's screen, and it should be the colour of
+                        // the room they are sitting in.
+                        { backgroundColor: game.color },
                         {
                             opacity: breathe.interpolate({
                                 inputRange: [0, 1],
@@ -106,14 +114,9 @@ export default function WaitingForHost({ hostName }: Props) {
                 />
 
                 <View style={styles.glyphRing}>
-                    <View style={[styles.tile, linearGradient(game?.gradient ?? Gradients.primary)]}>
-                        <AppText
-                            style={[
-                                styles.glyph,
-                                { color: game?.glyphInk[theme.scheme] ?? Brand.textOnAccent }
-                            ]}
-                        >
-                            {(game?.name ?? 'L')[0]}
+                    <View style={[styles.tile, linearGradient(game.gradient)]}>
+                        <AppText style={[styles.glyph, { color: game.glyphInk[theme.scheme] }]}>
+                            {game.name[0]}
                         </AppText>
                     </View>
                 </View>
@@ -126,14 +129,14 @@ export default function WaitingForHost({ hostName }: Props) {
             </AppText>
 
             <View style={styles.dots} accessibilityRole='progressbar' accessibilityLabel={t('lol.lobby.waitingLabel')}>
-                {DOTS.map(index => <BouncingDot key={index} index={index} />)}
+                {DOTS.map(index => <BouncingDot key={index} index={index} accent={game.color} />)}
             </View>
         </View>
     )
 }
 
 /** One of the three dots under the message, hopping a beat behind the one before it. */
-function BouncingDot({ index }: { index: number }) {
+function BouncingDot({ index, accent }: { index: number, accent: string }) {
     const styles = useStyles();
 
     const [hop] = useState(() => new Animated.Value(0));
@@ -171,6 +174,7 @@ function BouncingDot({ index }: { index: number }) {
         <Animated.View
             style={[
                 styles.dot,
+                { backgroundColor: accent },
                 {
                     opacity: hop.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }),
                     transform: [{

@@ -1,16 +1,18 @@
-import { MAX_LOBBY_PLAYERS, type LobbyPlayer } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
+import { initialsFor, type LobbySeat } from "@/components/ui/lobby-seat";
 import { Spacing } from "@/constants/theme";
-import { initialsFor } from "@/features/league-of-letters/components/lobby-player";
-import { avatarColorById } from "@/utils/color-utils";
+import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { useT } from "@/features/i18n/LanguageContext";
+import { avatarColorById } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 interface Props {
-    players: LobbyPlayer[],
+    /** Everyone in the room, in whatever order the game's API deals them. */
+    players: LobbySeat[],
+    /** How many the room holds. The rest of the grid is drawn as free seats. */
+    maxPlayers: number,
     /** Whose room this is, so one card can be marked as the one that runs it. */
     hostId: string,
     /** Whose screen this is, so a name can read as yours rather than as a stranger's. */
@@ -23,7 +25,15 @@ interface Props {
      * and they cannot see a word of it. The host is about to start a game on these
      * people, so which of them are actually there is worth a line.
      */
-    online: Set<string>
+    online: Set<string>,
+    /**
+     * The colour the host's line is written in — the game's own, from its registry entry.
+     *
+     * A prop rather than `useAccent`, because a lobby lends its colour only to the button
+     * that starts the game: the pickers in the settings card above keep their standing
+     * lemon. See the note in `LobbyPageBase`.
+     */
+    accent: string
 }
 
 /** Two to a row. Six seats then fit in three rows, which is what the design lays out. */
@@ -41,8 +51,11 @@ const AVATAR_SIZE = 36;
  * Laid out as explicit rows of two rather than as a wrapping grid. React Native has no
  * `grid`, and percentage widths plus a gap wrap at the wrong moment — two 48% cards and
  * 10pt between them come to more than the row, so they end up one to a line.
+ *
+ * Knows nothing about which game it is drawing: the seats and the size of the room both
+ * arrive as props, so a second lobby built on `LobbyPageBase` uses this one unchanged.
  */
-export default function LobbyPlayerGrid({ players, hostId, userId, online }: Props) {
+export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, online, accent }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -50,9 +63,9 @@ export default function LobbyPlayerGrid({ players, hostId, userId, online }: Pro
      * Every seat, taken or not. `null` is one nobody is in yet — the two are drawn side
      * by side, so they have to be one list to chop into rows.
      */
-    const seats: (LobbyPlayer | null)[] = [
+    const seats: (LobbySeat | null)[] = [
         ...players,
-        ...Array.from({ length: Math.max(0, MAX_LOBBY_PLAYERS - players.length) }, () => null)
+        ...Array.from({ length: Math.max(0, maxPlayers - players.length) }, () => null)
     ];
 
     const rows = Array.from(
@@ -63,9 +76,11 @@ export default function LobbyPlayerGrid({ players, hostId, userId, online }: Pro
     return (
         <View>
             <View style={styles.header}>
-                <AppText style={styles.label}>{t('lol.lobby.players')}</AppText>
+                <AppText style={styles.label}>{t('lobby.players')}</AppText>
 
-                <AppText style={styles.count}>{t('lol.lobby.playerCount', { taken: players.length, max: MAX_LOBBY_PLAYERS })}</AppText>
+                <AppText style={styles.count}>
+                    {t('lobby.playerCount', { taken: players.length, max: maxPlayers })}
+                </AppText>
             </View>
 
             <View style={styles.rows}>
@@ -80,6 +95,7 @@ export default function LobbyPlayerGrid({ players, hostId, userId, online }: Pro
                                 host={seat.userId === hostId}
                                 you={seat.userId === userId}
                                 live={online.has(seat.userId)}
+                                accent={accent}
                             />
                         ))}
                     </View>
@@ -90,14 +106,15 @@ export default function LobbyPlayerGrid({ players, hostId, userId, online }: Pro
 }
 
 interface PlayerCardProps {
-    player: LobbyPlayer,
+    player: LobbySeat,
     host: boolean,
     you: boolean,
-    live: boolean
+    live: boolean,
+    accent: string
 }
 
 /** One person: their swatch, their name, and one word about them under it. */
-function PlayerCard({ player, host, you, live }: PlayerCardProps) {
+function PlayerCard({ player, host, you, live, accent }: PlayerCardProps) {
     const styles = useStyles();
     const t = useT();
 
@@ -119,10 +136,12 @@ function PlayerCard({ player, host, you, live }: PlayerCardProps) {
                   * everybody else whether they are actually looking at their screen.
                   */}
                 {host ? (
-                    <AppText style={styles.host}>{you ? t('lol.lobby.hostYou') : t('lol.lobby.hostTag')}</AppText>
+                    <AppText style={[styles.host, { color: accent }]}>
+                        {you ? t('lobby.hostYou') : t('lobby.hostTag')}
+                    </AppText>
                 ) : (
                     <AppText style={[styles.status, !live && styles.statusAway]}>
-                        {live ? t('lol.lobby.ready') : t('lol.lobby.away')}
+                        {live ? t('lobby.ready') : t('lobby.away')}
                     </AppText>
                 )}
             </View>
@@ -140,13 +159,13 @@ function EmptySeat() {
         <View
             style={[styles.card, styles.cardEmpty]}
             accessibilityRole='text'
-            accessibilityLabel={t('lol.lobby.freeSeat')}
+            accessibilityLabel={t('lobby.freeSeat')}
         >
             <View style={styles.avatarEmpty}>
                 <Feather name='plus' size={15} color={theme.colors.textFaint} />
             </View>
 
-            <AppText style={styles.waiting} numberOfLines={1}>{t('lol.lobby.waiting')}</AppText>
+            <AppText style={styles.waiting} numberOfLines={1}>{t('lobby.waiting')}</AppText>
         </View>
     )
 }
@@ -239,11 +258,11 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         color: theme.colors.text
     },
+    // The colour is set at the call site, from the game's own accent.
     host: {
         fontSize: 10.5,
         fontWeight: 800,
-        letterSpacing: 0.5,
-        color: theme.colors.primary
+        letterSpacing: 0.5
     },
     status: {
         fontSize: 10.5,

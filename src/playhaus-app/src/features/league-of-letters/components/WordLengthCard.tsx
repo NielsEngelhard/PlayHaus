@@ -34,7 +34,7 @@ export default function WordLengthSelect({
             label={t('lol.settings.wordLength')}
             valueLabel={showValue ? t('lol.settings.wordLengthOption', { letters: value }) : undefined}
             variant={variant}
-            compact={variant === "inline"}
+            compact={false}
         />
     );
 }

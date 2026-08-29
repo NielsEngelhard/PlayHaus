@@ -13,7 +13,7 @@ import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
-import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
+import StartGameButton from "@/components/ui/StartGameButton";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";

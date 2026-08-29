@@ -10,7 +10,7 @@ import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
+import StartGameButton from "@/components/ui/StartGameButton";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/one-of-us/oou-settings";

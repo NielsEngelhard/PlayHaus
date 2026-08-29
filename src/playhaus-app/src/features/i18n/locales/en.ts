@@ -276,6 +276,46 @@ export const en = {
             network: 'Could not reach the server. Check your connection and try again.'
         }
     },
+    /**
+     * The waiting room's own words, shared by every game that has one.
+     *
+     * Its own namespace rather than a corner of `lol` because the room is chrome now: a
+     * second game's lobby draws the same bar, the same code band and the same seat grid
+     * through `LobbyPageBase`, and those pieces would otherwise be reading a neighbour's
+     * catalogue. What stays under `lol.lobby` is only what League of Letters itself says.
+     */
+    lobby: {
+        yourRoom: 'Your room',
+        named: 'Lobby {{code}}',
+        live: 'Live',
+        offline: 'Offline',
+        disconnected: 'Lost the connection to the lobby',
+        close: 'Close the lobby',
+        leave: 'Leave the lobby',
+        joinCode: 'Join code',
+        code: 'Lobby code',
+        codeSpoken: 'Lobby code: {{characters}}',
+        copyCode: 'Copy lobby code {{characters}}',
+        copied: 'Copied',
+        readAloud: 'Read it out, or let them scan it.',
+        shareTitle: 'Join my lobby',
+        shareLink: 'Share link',
+        shareLinkLabel: 'Share the link to this lobby',
+        linkCopied: 'Link copied',
+        shareFailed: 'Sharing did not work',
+        qrLabel: 'Show a QR code to join this lobby',
+        qrTitle: 'Scan to join',
+        qrCopy: 'Hold another phone up to this and it lands straight in the lobby.',
+        players: 'Players',
+        playerCount: '{{taken}} of {{max}}',
+        inLobby: 'In the lobby',
+        hostYou: 'HOST · YOU',
+        hostTag: 'HOST',
+        ready: 'Ready',
+        away: 'Away',
+        freeSeat: 'Free seat',
+        waiting: 'Waiting…'
+    },
     lol: {
         index: {
             description: 'Test your vocabulary, challenge your friends, and try to guess the secret word before you run out of chances. Play solo or against your enemies.',
@@ -289,6 +329,12 @@ export const en = {
             title: 'Solo setup',
             wordLength: 'Word length',
             wordLengthOption: '{{letters}} letters',
+            /** The settings card's one line while it is shut. See `LobbySettingsCard`. */
+            summary: {
+                seconds: '{{seconds}}s',
+                hardOn: 'Hard mode',
+                hardOff: 'Normal'
+            },
             hardMode: {
                 label: 'Hard mode',
                 description: 'The word can be any existing word in the language. Switch it off to play with an easier set of words.'
@@ -364,34 +410,6 @@ export const en = {
             startNote: 'Once you start, nobody else can join.',
             needPlayers: 'You need at least one other player.',
             hostFallback: 'The host',
-            close: 'Close the lobby',
-            leave: 'Leave the lobby',
-            youHost: 'You host',
-            connected: 'Connected to lobby {{code}}',
-            disconnected: 'Lost the connection to the lobby',
-            code: 'Lobby code',
-            named: 'Lobby {{code}}',
-            shareTitle: 'Join my lobby',
-            codeSpoken: 'Lobby code: {{characters}}',
-            copyCode: 'Copy lobby code {{characters}}',
-            copied: 'Copied',
-            readAloud: 'Read it out, or',
-            shareLinkLabel: 'Share the link to this lobby',
-            shareLink: 'Share the link',
-            linkCopied: 'Link copied',
-            shareFailed: 'Sharing did not work',
-            qrLabel: 'Show a QR code to join this lobby',
-            qrTitle: 'Scan to join',
-            qrCopy: 'Hold another phone up to this and it lands straight in the lobby.',
-            players: 'Players',
-            playerCount: '{{taken}} of {{max}}',
-            inLobby: 'In the lobby',
-            hostYou: 'HOST · YOU',
-            hostTag: 'HOST',
-            ready: 'Ready',
-            away: 'Away',
-            freeSeat: 'Free seat',
-            waiting: 'Waiting…',
             settingsTitle: 'Game settings',
             timePerTurn: 'Time per turn',
             timePerTurnOption: '{{seconds}} seconds',

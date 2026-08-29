@@ -3,7 +3,7 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import { accentOf, type Game } from "@/constants/games";
-import { accentInkColor, withAlpha } from "@/constants/theme";
+import { ContentWidth, accentInkColor, withAlpha } from "@/constants/theme";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -11,7 +11,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
 import { Children, Fragment, type ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -38,6 +38,12 @@ interface Props {
     /** The one thing this screen is for. Usually a `StartGameButton`. */
     action: ReactNode
 }
+
+/**
+ * The band's own side padding, and so also the distance its contents keep from the
+ * column's edges once the fill has reached out past them — see `bleed`.
+ */
+const HEADER_PADDING = 18;
 
 /**
  * The page every game's setup screen *is*: the game's own header, a ruled column of
@@ -70,6 +76,26 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
     // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();
 
+    /*
+     * How far past the column's edges the band has to reach to make the window.
+     *
+     * The page is drawn in the app's one 600dp column, which on a phone is the window and
+     * on a desktop window is a strip down the middle of it. A header that stops where the
+     * column does is a coloured rectangle laid on the page rather than the top of it, so
+     * the fill reaches out and the padding below puts its contents back where they were —
+     * the chips and the title stay lined up with the rows underneath.
+     *
+     * Web only, and the same trade `GameIndexPage`'s hero band makes: a child painting
+     * outside its parent is allowed on iOS and clipped on Android, and what keeps the
+     * overflow from becoming sideways scroll is the `overflow-x: hidden` a vertical
+     * `ScrollView` only has on web. `useWindowDimensions` answers 0 with no DOM to
+     * measure, so the pre-rendered export ships the unbled band and hydration widens it.
+     */
+    const { width: windowWidth } = useWindowDimensions();
+    const bleed = Platform.OS === 'web'
+        ? Math.max(0, Math.ceil((windowWidth - ContentWidth) / 2))
+        : 0;
+
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
 
@@ -83,7 +109,12 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
                 <View
                     style={[
                         styles.header,
-                        { backgroundColor: accent.color, paddingTop: insets.top + 14 }
+                        {
+                            backgroundColor: accent.color,
+                            paddingTop: insets.top + 14,
+                            marginHorizontal: -bleed,
+                            paddingHorizontal: HEADER_PADDING + bleed
+                        }
                     ]}
                 >
                     {/* The chrome the app's header would have carried, on the page's own
@@ -155,15 +186,16 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // One sheet from the top of the window to the bottom of it. On a desktop window it
-    // is the app's column and the canvas shows either side; on a phone it is the screen.
+    // No surface of its own. The app's canvas — the dot grid, or the washes in dark —
+    // is laid down for every page by the root layout, and this one is no exception: the
+    // band's accent and the rules below it are the only things drawn here.
     page: {
         flex: 1,
-        width: '100%',
-        backgroundColor: theme.colors.backgroundSecondary
+        width: '100%'
     },
+    // The sides are set at the call site, which is where the reach past the column is
+    // known — see `bleed`. `HEADER_PADDING` is what they come to at phone width.
     header: {
-        paddingHorizontal: 18,
         paddingBottom: 18,
         gap: 14,
         borderBottomWidth: theme.borderWidth,

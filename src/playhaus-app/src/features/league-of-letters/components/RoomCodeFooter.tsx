@@ -40,10 +40,10 @@ export default function RoomCodeFooter({ code }: Props) {
         <Pressable
             onPress={() => void copy()}
             accessibilityRole='button'
-            accessibilityLabel={t('lol.lobby.copyCode', { characters: [...code].join(' ') })}
+            accessibilityLabel={t('lobby.copyCode', { characters: [...code].join(' ') })}
             style={styles.footer}
         >
-            <AppText style={styles.label}>{confirmed ? t('lol.lobby.copied') : t('lol.lobby.code')}</AppText>
+            <AppText style={styles.label}>{confirmed ? t('lobby.copied') : t('lobby.code')}</AppText>
 
             <AppText style={styles.code}>{code}</AppText>
 

@@ -50,7 +50,7 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
     const code = kind.code?.(game);
     const started = startedAgo(game.createdAt);
 
-    const title = code === undefined ? kind.title : t('lol.lobby.named', { code });
+    const title = code === undefined ? kind.title : t('lobby.named', { code });
 
     const chips = [
         code === undefined ? t(kind.modeKey) : kind.title,

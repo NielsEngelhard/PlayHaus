@@ -1,7 +1,7 @@
 import { MAX_LOBBY_PLAYERS, type LobbyPlayer } from "@/api/calls/league-of-letters-lobby";
 import AppText from "@/components/text/AppText";
 import { Brand, Spacing } from "@/constants/theme";
-import { initialsFor } from "@/features/league-of-letters/components/lobby-player";
+import { initialsFor } from "@/components/ui/lobby-seat";
 import { avatarColorById } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -31,9 +31,9 @@ export default function LobbyRoster({ players, hostId, userId }: Props) {
     return (
         <View>
             <View style={styles.header}>
-                <AppText style={styles.label}>{t('lol.lobby.inLobby')}</AppText>
+                <AppText style={styles.label}>{t('lobby.inLobby')}</AppText>
 
-                <AppText style={styles.count}>{t('lol.lobby.playerCount', { taken: players.length, max: MAX_LOBBY_PLAYERS })}</AppText>
+                <AppText style={styles.count}>{t('lobby.playerCount', { taken: players.length, max: MAX_LOBBY_PLAYERS })}</AppText>
             </View>
 
             <View style={styles.list}>
