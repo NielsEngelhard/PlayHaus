@@ -1,6 +1,6 @@
 import { Brand } from "@/constants/theme";
 import type { Phrase, TranslationKey } from "@/features/i18n/keys";
-import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
+import { AVATAR_COLORS, type AvatarColor } from "@/utils/color-utils";
 import type { QuizListItem } from "./pubquizr-quizzes";
 
 /**

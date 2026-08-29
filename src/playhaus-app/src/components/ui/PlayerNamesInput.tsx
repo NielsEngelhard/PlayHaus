@@ -1,57 +1,35 @@
 import AppText from "@/components/text/AppText";
 import { fontFamilyForWeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/pubquizr/one-device-table";
-import { colorForSeat } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, TextInput, View } from "react-native";
 
 interface Props {
-    /** One entry per seat, in seating order. Always at least `MIN_PLAYERS` long. */
     names: string[]
+    minPlayers: number
+    maxPlayers: number
     onChange: (names: string[]) => void
-    /** Locked while the quiz is being started. */
     disabled?: boolean
 }
 
-/** Room for two digits, so the fields beside them line up whatever the seat. */
 const BADGE_SIZE = 30;
 
-/**
- * The table, as a row of chairs rather than a set of names.
- *
- * The order is the whole point of this control, which is why the seats are numbered.
- * The phone goes round the table as the quiz master role moves, so seat 2 is whoever is
- * sitting next to seat 1. Getting it wrong does not break the game — it just means the
- * phone travels the wrong way round a real table.
- *
- * `MIN_PLAYERS` rows are always standing, because a table of fewer than three is not a
- * game the server will open: an empty seat somebody has to notice is a better prompt
- * than a button that refuses to say why it is grey.
- */
-export default function PlayerSeats({ names, onChange, disabled = false }: Props) {
+export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlayers, disabled = false }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
-    const full = names.length >= MAX_PLAYERS;
-    // The first three seats are the game's own minimum, so there is nothing to take
-    // away from them — only the chairs past it can be removed.
-    const removable = names.length > MIN_PLAYERS;
+    const removable = names.length > minPlayers;
+    const full = names.length >= maxPlayers;
 
     function rename(seat: number, name: string) {
         onChange(names.map((current, index) => index === seat ? name : current));
     }
 
-    /**
-     * Takes a chair away, and everybody past it shuffles up one.
-     *
-     * That shuffle is why this is a splice rather than a blanked-out field: the seats
-     * have to stay a contiguous run for the numbering to mean anything, and a gap at
-     * seat 3 would be a hole in a circle of chairs.
-     */
+
     function remove(seat: number) {
         onChange(names.filter((_, index) => index !== seat));
     }
@@ -78,12 +56,10 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                         <TextInput
                             value={name}
                             onChangeText={value => rename(seat, value)}
-                            placeholder={t('pubquizr.oneDevice.players.placeholder')}
+                            placeholder={t('common.player.namePlaceholder')}
                             placeholderTextColor={theme.colors.textSecondary}
                             autoCapitalize="words"
                             autoCorrect={false}
-                            // The keyboard's own way of saying "there is another one of
-                            // these", which is exactly what the next seat is.
                             returnKeyType="next"
                             editable={!disabled}
                             accessibilityLabel={t('pubquizr.oneDevice.players.seat', { seat: seat + 1 })}
@@ -95,7 +71,7 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                                 onPress={() => remove(seat)}
                                 disabled={disabled}
                                 accessibilityRole="button"
-                                accessibilityLabel={t('pubquizr.oneDevice.players.remove', { seat: seat + 1 })}
+                                accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
                                 accessibilityState={{ disabled }}
                                 style={[styles.remove, disabled && styles.dimmed]}
                             >
@@ -117,15 +93,12 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                     <Feather name="plus" size={15} color={theme.colors.focus} />
 
                     <AppText style={styles.addText}>
-                        {t('pubquizr.oneDevice.players.add')}
+                        {t('common.player.add')}
                     </AppText>
                 </Pressable>
 
                 <AppText style={styles.count}>
-                    {t('pubquizr.oneDevice.players.count', {
-                        seats: names.length,
-                        max: MAX_PLAYERS
-                    })}
+                    {names.length} / {maxPlayers}
                 </AppText>
             </View>
         </View>

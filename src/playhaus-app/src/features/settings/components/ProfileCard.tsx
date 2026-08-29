@@ -3,7 +3,7 @@ import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { avatarColorById } from "@/features/settings/profile";
+import { avatarColorById } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 

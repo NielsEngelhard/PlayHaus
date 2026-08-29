@@ -14,7 +14,6 @@ export const en = {
         language: 'Language',
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'nothing selected',
-        players: 'players',
         change: 'change',
         minutes: 'min',
         time: {
@@ -33,6 +32,12 @@ export const en = {
                 mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu',
                 fri: 'Fri', sat: 'Sat', sun: 'Sun'
             }
+        },
+        player: {
+            players: "Players",
+            add: "Add player",
+            remove: "Remove player",
+            namePlaceholder: "Name"
         }
     },
     nav: {
@@ -460,35 +465,22 @@ export const en = {
                 noMatchesMore: 'Nothing matches that yet — older quizzes arrive a page at a time. Load some more and look again.',
                 /** The sort switch, spelled as the order it would put the shelf in. */
                 sortNewest: 'Newest',
-                sortAlpha: 'A–Z'
+                sortAlpha: 'A–Z',
             }
         },
         oneDevice: {
             title: 'One device',
             description: 'One phone for the whole table. Seat everyone, pick a quiz, and pass it round.',
-            /**
-             * Why the seating order is worth getting right, said before the fields
-             * rather than after them.
-             */
             order: {
                 title: 'Order matters',
                 message: 'Fill the names in the order people are sitting, left to right. The quiz master role moves along the table in that order.'
             },
             players: {
                 label: 'Who is playing',
-                /** Read out for the field; the number beside it is the seat. */
                 seat: 'Player {{seat}}',
-                placeholder: 'Name',
-                add: 'Add player',
-                /**
-                 * Never `count`: that is the one option name i18next treats as a plural
-                 * trigger, and there are no plural forms behind it. See `common.time`.
-                 */
-                count: '{{seats}} / {{max}}',
-                remove: 'Remove player {{seat}}',
                 tooFew: 'A quiz needs at least three players.',
                 tooMany: 'Eight players is the most that fit round one phone.',
-                duplicate: 'Two players cannot share a name.'
+                duplicate: 'Two players cannot share a name.',
             },
             quiz: {
                 selected: 'Playing',
@@ -876,7 +868,7 @@ export const en = {
         index: { 
             description: "Everyone gets a question/word, e.g. “What would you do if you became invisible?” Everyone answers anonymously, except one player gets a slightly different question/word.", 
             oneDevice: { 
-                title: "1 phone", 
+                title: "1 cevice", 
                 description: "Play with 1 phone that is passed around", 
                 action: "Play" 
             }, 
@@ -885,7 +877,11 @@ export const en = {
                 description: "Create a lobby and invite other players", 
                 action: "Create lobby" 
             } 
-        } 
+        },
+        singleDevice: {
+            title: "Play with 1 device",
+            description: "Fill in all the names of the people that you are playing with. Then press start. The game is self-explanatory."
+        }
     },
     friends: {
         title: 'Friends',

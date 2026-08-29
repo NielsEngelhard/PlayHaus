@@ -1,5 +1,5 @@
 import { Brand } from "@/constants/theme";
-import { avatarColorById, type AvatarColor } from "@/features/settings/profile";
+import { avatarColorById, type AvatarColor } from "@/utils/color-utils";
 import type { QuizSession, QuizSessionPlayer } from "./pubquizr-sessions";
 
 /**

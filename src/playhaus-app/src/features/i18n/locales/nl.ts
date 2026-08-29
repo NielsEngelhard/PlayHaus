@@ -15,7 +15,6 @@ export const nl: Catalog = {
         language: 'Taal',
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'niets gekozen',
-        players: 'spelers',
         change: 'verander',
         minutes: 'min',
         time: {
@@ -34,7 +33,13 @@ export const nl: Catalog = {
                 mon: 'ma', tue: 'di', wed: 'wo', thu: 'do',
                 fri: 'vr', sat: 'za', sun: 'zo'
             }
-        }
+        },
+      player: {
+            players: "Spelers",
+            add: "Toevoegen",
+            remove: "Verwijder",
+            namePlaceholder: "Naam"
+        }        
     },
     nav: {
         games: 'Spellen',
@@ -440,13 +445,9 @@ export const nl: Catalog = {
             players: {
                 label: 'Wie doen er mee',
                 seat: 'Speler {{seat}}',
-                placeholder: 'Naam',
-                add: 'Speler toevoegen',
-                count: '{{seats}} / {{max}}',
-                remove: 'Speler {{seat}} verwijderen',
                 tooFew: 'Een quiz heeft minstens drie spelers nodig.',
                 tooMany: 'Acht spelers is het maximum rond één telefoon.',
-                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.'
+                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.',
             },
             quiz: {
                 selected: 'Jullie spelen',
@@ -665,7 +666,11 @@ export const nl: Catalog = {
                 description: "Maak een lobby en nodig andere spelers uit", 
                 action: "Lobby maken" 
             } 
-        } 
+        },
+        singleDevice: {
+            title: "Speel met 1 device",
+            description: "Vul alle namen in van de spelers waar je mee speelt. Druk dan op start."
+        }        
     },
     friends: {
         title: 'Vrienden',

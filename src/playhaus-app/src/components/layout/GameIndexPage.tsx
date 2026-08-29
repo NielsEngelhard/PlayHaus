@@ -243,7 +243,7 @@ export default function GameIndexPage({
             <View style={styles.facts}>
                 <Fact
                     icon="user"
-                    text={`${minMaxPlayers} ${t('common.players')}`}
+                    text={`${minMaxPlayers} ${t('common.player.players')}`}
                     on={on}
                 />
                 <Fact

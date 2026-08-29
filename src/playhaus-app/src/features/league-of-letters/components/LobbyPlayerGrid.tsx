@@ -2,7 +2,7 @@ import { MAX_LOBBY_PLAYERS, type LobbyPlayer } from "@/api/calls/league-of-lette
 import AppText from "@/components/text/AppText";
 import { Spacing } from "@/constants/theme";
 import { initialsFor } from "@/features/league-of-letters/components/lobby-player";
-import { avatarColorById } from "@/features/settings/profile";
+import { avatarColorById } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useT } from "@/features/i18n/LanguageContext";

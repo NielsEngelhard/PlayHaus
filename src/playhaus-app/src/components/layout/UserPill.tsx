@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import { useContextPillStyles } from "@/components/layout/ContextPill";
 import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/features/auth/useAuth";
-import { avatarColorById } from "@/features/settings/profile";
+import { avatarColorById } from "@/utils/color-utils";
 import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";

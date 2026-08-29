@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { AVATAR_COLORS, type AvatarColor } from "@/features/settings/profile";
+import { AVATAR_COLORS, type AvatarColor } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { intoRows } from "@/utils/rows";
 import Feather from "@expo/vector-icons/Feather";

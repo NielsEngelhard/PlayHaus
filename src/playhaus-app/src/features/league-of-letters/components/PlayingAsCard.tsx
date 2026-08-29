@@ -3,7 +3,7 @@ import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
-import { avatarColorById } from "@/features/settings/profile";
+import { avatarColorById } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Link, RelativePathString } from "expo-router";
 import { View } from "react-native";

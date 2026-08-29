@@ -1,7 +1,7 @@
 import type { GamePlayer } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
-import { avatarColorById } from "@/features/settings/profile";
+import { avatarColorById } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
 import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
