@@ -1,9 +1,9 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {

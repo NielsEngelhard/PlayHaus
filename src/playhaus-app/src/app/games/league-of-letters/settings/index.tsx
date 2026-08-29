@@ -3,8 +3,10 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
+import Card from "@/components/ui/Card";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
+import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
 import ToggleRow from "@/components/ui/ToggleRow";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
@@ -13,8 +15,7 @@ import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
-import StartGameButton from "@/components/ui/StartGameButton";
-import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
+import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -197,27 +198,33 @@ export default function LeagueOfLettersSettingsPage() {
                 }
             >
                 {/* One child per ruled section. */}
-                <WordLengthCard
-                    variant='inline'
-                    showValue
-                    value={settings.wordLength}
-                    onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                />
+                <Card>
+                    <WordLengthInput
+                        variant='inline'
+                        showValue
+                        value={settings.wordLength}
+                        onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
+                    />                    
+                </Card>
 
-                <LanguageSelect
-                    variant='row'
-                    value={settings.locale}
-                    onChange={locale => setSettings(current => ({ ...current, locale }))}
-                />
+                <Card>
+                    <LanguageSelect
+                        variant='row'
+                        value={settings.locale}
+                        onChange={locale => setSettings(current => ({ ...current, locale }))}
+                    />                    
+                </Card>
 
-                <ToggleRow
-                    flush
-                    value={settings.hardMode}
-                    onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
-                    label={t('lol.settings.hardMode.label')}
-                    description={t('lol.settings.hardMode.description')}
-                    icon="zap"
-                />
+                <Card>
+                    <ToggleRow
+                        flush
+                        value={settings.hardMode}
+                        onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
+                        label={t('lol.settings.hardMode.label')}
+                        description={t('lol.settings.hardMode.description')}
+                        icon="zap"
+                    />
+                </Card>
             </SettingsPageBase>
 
             {/*

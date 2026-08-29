@@ -5,7 +5,7 @@ import ToggleRow from "@/components/ui/ToggleRow";
 import { languageByCode } from "@/constants/languages";
 import { useT } from "@/features/i18n/LanguageContext";
 import SecondsPerGuessSelect from "@/features/league-of-letters/components/TimePerRoundSelect";
-import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
+import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 
 interface Props {
     settings: LobbySettings,
@@ -30,7 +30,7 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
             summary={summaryOf(settings, t)}
         >
             {/* One child per ruled section, the same shape `SettingsPageBase` uses. */}
-            <WordLengthCard
+            <WordLengthInput
                 variant='inline'
                 value={settings.wordLength}
                 onChange={wordLength => onChange({ ...settings, wordLength })}

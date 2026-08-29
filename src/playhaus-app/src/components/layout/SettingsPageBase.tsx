@@ -3,14 +3,14 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import { accentOf, type Game } from "@/constants/games";
-import { ContentWidth, accentInkColor, withAlpha } from "@/constants/theme";
+import { accentInkColor, ContentWidth, Spacing, withAlpha } from "@/constants/theme";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
-import { Children, Fragment, type ReactNode } from "react";
+import { Children, type ReactNode } from "react";
 import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -100,7 +100,6 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
     const ink = accentInkColor(accent.ink);
 
     // Nulls and falses drop out here, so a section the page decided not to render takes
-    // its divider with it rather than leaving a rule against nothing.
     const sections = Children.toArray(children);
 
     return (
@@ -152,12 +151,8 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
                     contentContainerStyle={styles.bodyContent}
                     showsVerticalScrollIndicator={false}
                 >
-                    {sections.map((section, index) => (
-                        <Fragment key={index}>
-                            {index > 0 && <View style={styles.divider} />}
-
-                            <View style={styles.section}>{section}</View>
-                        </Fragment>
+                    {sections.map((section, i) => (
+                        <View key={i} style={styles.section}>{section}</View>
                     ))}
                 </ScrollView>
 
@@ -186,18 +181,13 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // No surface of its own. The app's canvas — the dot grid, or the washes in dark —
-    // is laid down for every page by the root layout, and this one is no exception: the
-    // band's accent and the rules below it are the only things drawn here.
     page: {
         flex: 1,
         width: '100%'
     },
-    // The sides are set at the call site, which is where the reach past the column is
-    // known — see `bleed`. `HEADER_PADDING` is what they come to at phone width.
     header: {
         paddingBottom: 18,
-        gap: 14,
+        gap: Spacing.two,
         borderBottomWidth: theme.borderWidth,
         borderBottomColor: theme.colors.border
     },
@@ -245,12 +235,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: 16
     },
     section: {
-        paddingVertical: 16
-    },
-    // Between sections only. The band and the footer draw the two ends.
-    divider: {
-        height: 2,
-        backgroundColor: theme.scheme === 'dark' ? theme.colors.border : 'rgba(15, 13, 18, 0.12)'
+        paddingVertical: Spacing.two
     },
     // Outside the scroller, so it is on the bottom edge whatever the form above it does.
     // The bottom padding is set at the call site, from the device's own inset.

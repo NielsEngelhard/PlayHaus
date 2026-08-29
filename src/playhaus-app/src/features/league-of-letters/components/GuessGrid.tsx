@@ -352,7 +352,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                     : spent
                         ? styles.tileSpent
                         // A typed-but-unsubmitted letter stands up off the page; an empty
-                        // slot sits back, the same way `WordLengthCard` separates chosen
+                        // slot sits back, the same way `WordLengthInput` separates chosen
                         // from not.
                         : letter
                             ? styles.tileFilled

@@ -38,14 +38,14 @@ const hoverTransition = Platform.select({
 
 const useStyles = createThemedStyles(theme => ({
     container: {
-        backgroundColor: theme.colors.backgroundSecondary,
         borderRadius: 16,
         flexDirection: 'column',
-        borderWidth: 2,
-        borderColor: theme.colors.border,
         padding: Spacing.four,
         width: '100%',
-        ...theme.shadows.hardLarge
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.background,
+        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
     },
     hovered: {
         transform: [{ translateX: -2 }, { translateY: -2 }],
