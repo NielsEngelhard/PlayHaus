@@ -16,6 +16,7 @@ export const en = {
         nothingSelected: 'nothing selected',
         change: 'change',
         minutes: 'min',
+        start: 'Start',
         time: {
             justNow: 'just now',
             minutesAgo: '{{minutes}} min ago',
@@ -876,11 +877,17 @@ export const en = {
                 title: "1 phone per person", 
                 description: "Create a lobby and invite other players", 
                 action: "Create lobby" 
-            } 
+            }
         },
         singleDevice: {
             title: "Play with 1 device",
             description: "Fill in all the names of the people that you are playing with. Then press start. The game is self-explanatory."
+        },
+        settings: {
+            wordsOnly: {
+                title: "Use words only",
+                description: "Use words only or use sentences that you should find a fitting answer for."
+            }
         }
     },
     friends: {

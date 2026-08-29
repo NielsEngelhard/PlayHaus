@@ -11,14 +11,14 @@ import ToggleRow from "@/components/ui/ToggleRow";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import StartGameButton from "@/features/league-of-letters/components/StartGameButton";
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
-import { useT } from "@/features/i18n/LanguageContext";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import type { TranslationKey } from "@/features/i18n/keys";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -221,8 +221,6 @@ export default function LeagueOfLettersSettingsPage() {
                 </View>
             )}
 
-            {/* `marginTop: auto` is what pins this to the bottom edge, which only works
-                because `useFullScreen` gives the column a height to push against. */}
             <View style={styles.footer}>
                 <View style={styles.facts}>
                     <Feather name='info' size={14} color={theme.colors.textMuted} />
@@ -291,10 +289,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     footer: {
         marginTop: 'auto',
-        // Only a floor, for the case where the cards above already fill the screen and
-        // `marginTop: auto` has no slack left to give. The gap under the button is the
-        // layout's `fullScreenBody` padding — one owner for the bottom edge, so every
-        // full-screen page ends the same distance off it.
         paddingTop: Spacing.four
     },
     facts: {

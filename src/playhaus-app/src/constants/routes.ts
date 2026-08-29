@@ -19,6 +19,7 @@ export const ROUTES = {
     // One of us
     oneOfUsIndex: "/games/one-of-us",
     oneOfUsSetupSingleDevice: "/games/one-of-us/single-device",
+    oneOfUsPlaySingleDeviceGame: (gameId: string) => `/games/one-of-us/single-device/${gameId}`,
     oneOfUsSetupLobby: "/games/one-of-us/lobby",
 
     // Fake Filler

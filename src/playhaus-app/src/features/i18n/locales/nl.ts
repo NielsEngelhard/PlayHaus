@@ -17,6 +17,7 @@ export const nl: Catalog = {
         nothingSelected: 'niets gekozen',
         change: 'verander',
         minutes: 'min',
+        start: 'Start',
         time: {
             justNow: 'zojuist',
             minutesAgo: '{{minutes}} min geleden',
@@ -670,6 +671,12 @@ export const nl: Catalog = {
         singleDevice: {
             title: "Speel met 1 device",
             description: "Vul alle namen in van de spelers waar je mee speelt. Druk dan op start."
+        },
+        settings: {
+            wordsOnly: {
+                title: "Alleen woorden",
+                description: "Gebruik alleen woorden of wil je ook zinnen gebruiken om een passend antwoord bij te zoeken."
+            }
         }        
     },
     friends: {
