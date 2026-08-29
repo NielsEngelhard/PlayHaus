@@ -1,4 +1,5 @@
 import { abandonGame, createGame, getCurrentGame, type Game } from "@/api/calls/league-of-letters";
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
@@ -17,7 +18,7 @@ import WordLengthCard from "@/features/league-of-letters/components/WordLengthCa
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useRouter } from "expo-router";
+import { useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
@@ -34,6 +35,12 @@ import { View } from "react-native";
 export default function LeagueOfLettersSettingsPage() {
     const styles = useStyles();
     const t = useT();
+
+    // `SettingsPageBase` claims this too, but only once it is on screen. Claimed here as
+    // well — before the early return below — so the app header does not paint for the
+    // length of the check and then leave. Called before every early return, so the hook
+    // order never changes.
+    useChromeless();
 
     const router = useRouter();
     const { status, user } = useAuth();
@@ -178,6 +185,7 @@ export default function LeagueOfLettersSettingsPage() {
             <SettingsPageBase
                 game={LEAGUE_OF_LETTERS}
                 title={t('lol.settings.title')}
+                back={ROUTES.leagueOfLettersIndex as RelativePathString}
                 facts={t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
                 error={error === null ? undefined : t(error)}
                 action={
@@ -249,11 +257,10 @@ export default function LeagueOfLettersSettingsPage() {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The card sizes itself; this only gives it the column's full width and lifts it
-    // clear of the header.
+    // Only here to pass the window's height through to the base, which is the page.
     container: {
-        width: '100%',
-        paddingTop: Spacing.two
+        flex: 1,
+        width: '100%'
     },
     abandonError: {
         // Inside the modal, where the form's own `InlineNotification` would be a card

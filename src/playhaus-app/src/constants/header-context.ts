@@ -1,9 +1,7 @@
 import { gameForPathname } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
-import { Brand } from '@/constants/theme';
 import type Feather from '@expo/vector-icons/Feather';
 import type { ImageSource } from 'expo-image';
-import type { TFunction } from 'i18next';
 
 /**
  * What the header says about where you are.
@@ -76,22 +74,14 @@ export function headerOverAccent(pathname: string): boolean {
 }
 
 /**
- * Takes the translator rather than storing a key, unlike the registries next door.
- *
- * There is exactly one word here that comes out of the catalogue, and one caller to
- * hand it in: a `labelKey` on `HeaderPill` would mean every other label, all of which
- * are brand names that must never be translated, having to say so.
+ * Every label this can answer with is a brand name, so nothing here is translated. The
+ * one word that used to be — the solo setup screen's mode pill — left with that screen's
+ * header; a `labelKey` on `HeaderPill` is what a next one would want.
  */
-export function headerContextFor(pathname: string, t: TFunction): HeaderContext {
-    // Setting up a solo game. Loud lemon rather than the game's own accent: this screen
-    // is about one mode of one game, and the pill is the only thing on it that says
-    // which mode.
-    if (pathname === ROUTES.leagueOfLettersSoloSettings) {
-        return {
-            back: ROUTES.leagueOfLettersIndex,
-            pill: { label: t('reconnect.mode.solo'), accent: Brand.lemon, icon: 'cpu', filled: true }
-        };
-    }
+export function headerContextFor(pathname: string): HeaderContext {
+    // Nothing here for the solo setup screen, which is drawn without this header at all:
+    // `SettingsPageBase` is the page, and the way out and the theme switch sit on the
+    // band it draws itself. See `useChromeless`.
 
     // Trading a guest account in for a real one. The only page off a game with a way
     // back, and it needs one: it is reached from the profile rather than from the tab

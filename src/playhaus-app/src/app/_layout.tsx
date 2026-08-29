@@ -1,5 +1,5 @@
 import BottomBar from '@/components/layout/BottomBar';
-import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
+import { FullScreenProvider, useChromelessValue, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
@@ -133,6 +133,7 @@ function App() {
  */
 function Chrome() {
   const fullScreen = useFullScreenValue();
+  const chromeless = useChromelessValue();
   const tone = usePageToneValue();
   const styles = useStyles();
   const pathname = usePathname();
@@ -166,10 +167,15 @@ function Chrome() {
     <View style={[styles.content, fullScreen && styles.contentFullScreen]}>
       {/* Outside the animation: the header is the app's chrome rather than part of the
           page, and a wordmark sliding in on every route would be the one thing on
-          screen insisting it had changed too. */}
-      <View style={headerOverAccent(pathname) && styles.headerAbove}>
-        <Header />
-      </View>
+          screen insisting it had changed too.
+
+          Gone entirely on a chromeless page, which draws a header of its own and would
+          otherwise have two — see `useChromeless`. */}
+      {!chromeless && (
+        <View style={headerOverAccent(pathname) && styles.headerAbove}>
+          <Header />
+        </View>
+      )}
 
       <SlideFadeIn
         // What replays the entrance — and deliberately not a `key`.
@@ -224,7 +230,11 @@ function Chrome() {
         */}
       <ScrollView
         style={[styles.scroll, fullScreen && styles.scrollFullScreen]}
-        contentContainerStyle={fullScreen ? styles.fullScreenContent : styles.scrollContent}
+        contentContainerStyle={
+          chromeless
+            ? styles.chromelessContent
+            : fullScreen ? styles.fullScreenContent : styles.scrollContent
+        }
         scrollEnabled={!fullScreen}
         showsVerticalScrollIndicator={false}
       >
@@ -265,6 +275,12 @@ const useStyles = createThemedStyles(theme => ({
     paddingHorizontal: Spacing.four,
     // Nothing floats over the page in this mode, so it may use the bottom edge.
     paddingBottom: Spacing.four,
+  },
+  // The same, without the gutters: a page that has taken the chrome paints its own
+  // header and its own footer, and both run to the edges of the column.
+  chromelessContent: {
+    flex: 1,
+    alignItems: 'center',
   },
   content: {
     maxWidth: ContentWidth,

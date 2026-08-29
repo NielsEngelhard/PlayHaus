@@ -1,7 +1,6 @@
 import { headerContextFor } from "@/constants/header-context";
 import { ROUTES } from "@/constants/routes";
 import { HeaderHeight, Spacing } from "@/constants/theme";
-import { useT } from "@/features/i18n/LanguageContext";
 import { Link, RelativePathString, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import BackChip from "./BackChip";
@@ -14,11 +13,10 @@ import UserPill from "./UserPill";
 
 export default function Header() {
     const pathname = usePathname();
-    const t = useT();
 
     // Everything the header knows about where it is, worked out from the route. See
     // `header-context.ts` for why it is read rather than pushed.
-    const { back, pill, mark } = headerContextFor(pathname, t);
+    const { back, pill, mark } = headerContextFor(pathname);
 
     return (
         <View style={styles.container}>
