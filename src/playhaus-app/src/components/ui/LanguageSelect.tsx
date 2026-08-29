@@ -14,8 +14,8 @@ interface Props {
      */
     label?: string,
     disabled?: boolean,
-    /** Passed straight through. See `SelectInput` for what `inline` drops. */
-    variant?: 'card' | 'inline'
+    /** Passed straight through. See `SelectInput` for what `inline` and `row` drop. */
+    variant?: 'card' | 'inline' | 'row'
 }
 
 /**

@@ -1,6 +1,8 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
-import { Brand, Gradients, Spacing, linearGradient } from "@/constants/theme";
+import { Brand, Gradients, Spacing, accentInkColor, linearGradient, withAlpha } from "@/constants/theme";
+import { useAccent } from "@/features/theme/AccentContext";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Pressable, View } from "react-native";
 
@@ -35,6 +37,12 @@ export interface HorizontalButtonSelectProps<T> {
      * Optional label displayed above the buttons.
      */
     label?: string;
+
+    /**
+     * What the chosen option is, spelled out at the other end of the label's line —
+     * "5 letters" over a row that only says "5". Needs `label` to have somewhere to go.
+     */
+    valueLabel?: string;
 }
 
 const TILE_GRADIENT_MIDPOINT = 60;
@@ -50,7 +58,8 @@ export default function HorizontalButtonSelect<T>({
     getAccessibilityLabel,
     variant = "card",
     compact = false,
-    label
+    label,
+    valueLabel
 }: HorizontalButtonSelectProps<T>) {
     const styles = useStyles();
 
@@ -58,7 +67,7 @@ export default function HorizontalButtonSelect<T>({
 
     return (
         <View style={inline ? undefined : styles.card}>
-            {label && <Label label={label} />}
+            {label && <Label label={label} value={valueLabel} />}
 
             <View style={[styles.row, inline && styles.rowInline]}>
                 {options.map((option, index) => {
@@ -98,6 +107,20 @@ function ButtonTile({
     onPress
 }: ButtonTileProps) {
     const styles = useStyles();
+    const theme = useTheme();
+
+    /*
+     * The colour the chosen tile wears, which is the page's if it lends one.
+     *
+     * Lemon is the standing answer and stays the answer everywhere nothing is lent —
+     * the lobby's settings card, the time picker. Inside a settings card the game's own
+     * colour is what "chosen" means, so the same picker is orange under League of
+     * Letters and violet under One of Us.
+     */
+    const accent = useAccent();
+    const fill = accent?.gradient ?? Gradients.lemon;
+    const flat = accent?.color ?? Brand.lemon;
+    const ink = accent === null ? Brand.ink : accentInkColor(accent.ink);
 
     return (
         <Pressable
@@ -109,16 +132,19 @@ function ButtonTile({
                 styles.tile,
                 compact && styles.tileCompact,
                 selected ? styles.tileSelected : styles.tileUnselected,
-                selected &&
-                    linearGradient(
-                        Gradients.lemon,
-                        TILE_GRADIENT_MIDPOINT
-                    )
+                selected && linearGradient(fill, TILE_GRADIENT_MIDPOINT),
+                // Dark has no ink line to cut the tile out with, so the edge and the lift
+                // are both drawn in the accent — see `tileSelected` for the light case.
+                selected && theme.scheme === "dark" && {
+                    borderColor: flat,
+                    boxShadow: `0 10px 20px -12px ${withAlpha(flat, 0.8)}`
+                }
             ]}
         >
             <AppText
                 style={[
                     selected ? styles.tileTextSelected : styles.tileText,
+                    selected && { color: ink },
                     compact &&
                         (selected
                             ? styles.tileTextSelectedCompact

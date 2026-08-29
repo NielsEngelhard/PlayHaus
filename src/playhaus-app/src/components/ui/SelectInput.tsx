@@ -49,8 +49,13 @@ interface Props<T extends string> {
      * The lobby's settings card is the one caller: it holds the same two knobs the solo
      * setup screen does, in a fraction of the height, and a card inside a card with two
      * labels stacked on top of each other is what that would otherwise be.
+     *
+     * `row` drops the field as well. What is left is a line of the page — icon, the
+     * label with the current answer under it, a chevron at the end — for a card that
+     * rules its rows apart rather than boxing each one. It is the same control: it
+     * measures itself and opens the same list, it simply does not look like an input.
      */
-    variant?: 'card' | 'inline'
+    variant?: 'card' | 'inline' | 'row'
 }
 
 /** Where the field is on screen, so the list can be put under it. */
@@ -173,10 +178,13 @@ export default function SelectInput<T extends string>({
     const above = anchor === null ? 0 : anchor.y - GAP - SCREEN_MARGIN;
     const dropUp = below < MIN_ROOM && above > below;
 
+    const row = variant === 'row';
+
     const body = (
         <View>
-            {label && (
-                <Label label={label} />                
+            {/* The row carries its own label, inside the line rather than above it. */}
+            {label && !row && (
+                <Label label={label} />
             )}
 
             <Pressable
@@ -190,8 +198,9 @@ export default function SelectInput<T extends string>({
                 // without announcing that it had.
                 aria-expanded={open}
                 style={[
-                    styles.field,
-                    disabled && styles.fieldDisabled
+                    row ? styles.fieldRow : styles.field,
+                    disabled && !row && styles.fieldDisabled,
+                    disabled && row && styles.dimmed
                 ]}
             >
                 {withIcons && (
@@ -200,13 +209,23 @@ export default function SelectInput<T extends string>({
 
                 {/* A value with no matching option means the caller and the list are out of
                     step. Show an em dash rather than an empty field or a crash. */}
-                <AppText style={[styles.fieldText, disabled && styles.dimmed]} numberOfLines={1}>
-                    {selected?.label ?? '—'}
-                </AppText>
+                {row ? (
+                    <View style={styles.fieldRowText}>
+                        <AppText style={styles.fieldRowLabel}>{label}</AppText>
+
+                        <AppText style={styles.fieldRowValue} numberOfLines={1}>
+                            {selected?.label ?? '—'}
+                        </AppText>
+                    </View>
+                ) : (
+                    <AppText style={[styles.fieldText, disabled && styles.dimmed]} numberOfLines={1}>
+                        {selected?.label ?? '—'}
+                    </AppText>
+                )}
 
                 <Feather
                     name={open ? 'chevron-up' : 'chevron-down'}
-                    size={20}
+                    size={row ? 17 : 20}
                     color={disabled ? theme.colors.textSecondary : theme.colors.text}
                 />
             </Pressable>
@@ -280,7 +299,7 @@ export default function SelectInput<T extends string>({
         </View>
     );
 
-    return variant === 'inline' ? <View>{body}</View> : <Card>{body}</Card>;
+    return variant === 'card' ? <Card>{body}</Card> : <View>{body}</View>;
 }
 
 interface OptionRowProps<T extends string> {
@@ -358,6 +377,30 @@ const useStyles = createThemedStyles(theme => ({
     },
     fieldDisabled: {
         backgroundColor: theme.colors.muted
+    },
+    // The same control with none of the chrome: no fill, no outline, no shadow. What
+    // separates it from what is above and below it is the rule its container draws.
+    fieldRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12
+    },
+    fieldRowText: {
+        flex: 1,
+        minWidth: 0
+    },
+    fieldRowLabel: {
+        fontSize: 11,
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: 2.2,
+        color: theme.colors.textSecondary
+    },
+    fieldRowValue: {
+        marginTop: 2,
+        fontSize: 15,
+        fontWeight: 700,
+        color: theme.colors.text
     },
     dimmed: {
         opacity: 0.5

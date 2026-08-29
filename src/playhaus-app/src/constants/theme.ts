@@ -333,6 +333,45 @@ export const Gradients = {
 export type AccentInk = 'ink' | 'paper';
 
 /**
+ * One colour identity, in the two forms a component might need it and with the answer
+ * to what may be written on top of it.
+ *
+ * The shape a `Game` from `constants/games.ts` already has — see `accentOf` there — so a
+ * control that takes one of these can be handed a game and wear its colour. What that is
+ * for is the settings card: the same word-length picker is lemon under League of Letters
+ * and violet under One of Us, and neither the picker nor the page it sits on has to know
+ * which. See `features/theme/AccentContext`.
+ */
+export interface Accent {
+    /** The flat fill, for the small surfaces that would be wasted on a gradient. */
+    color: string,
+    /** The shaded form of the same colour, for anything big enough to shade. */
+    gradient: readonly [string, string, string],
+    ink: AccentInk
+}
+
+/** The one of the two inks an accent's own `AccentInk` is asking for. */
+export function accentInkColor(ink: AccentInk): string {
+    return ink === 'ink' ? Brand.ink : Brand.textOnAccent;
+}
+
+/**
+ * A brand hex at partial strength, for the glows and the dimmed labels that are drawn
+ * from a colour a component was handed rather than from a token.
+ *
+ * Only `#RRGGBB` is understood, which is every accent in this file. Anything else comes
+ * back untouched — a shadow at full strength is a worse look, not a crash.
+ */
+export function withAlpha(color: string, alpha: number): string {
+    const hex = color.replace('#', '');
+    if (hex.length !== 6 || !/^[0-9a-fA-F]{6}$/.test(hex)) return color;
+
+    const value = parseInt(hex, 16);
+
+    return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}, ${alpha})`;
+}
+
+/**
  * Which fill a solid button wears. Only the colour changes — every variant keeps the
  * border, shadow and label treatment `theme.solidButton` lays down, so a row of them
  * still reads as one family.

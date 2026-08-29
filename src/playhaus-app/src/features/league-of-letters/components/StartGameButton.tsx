@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
-import { Brand, Gradients, linearGradient } from "@/constants/theme";
+import { Brand, Gradients, accentInkColor, linearGradient, withAlpha } from "@/constants/theme";
+import { useAccent } from "@/features/theme/AccentContext";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable } from "react-native";
@@ -20,6 +22,22 @@ interface Props {
  */
 export default function StartGameButton({ text, onPress, disabled = false }: Props) {
     const styles = useStyles();
+    const theme = useTheme();
+
+    /*
+     * The colour it starts. Orange wherever nothing is lent, which is every caller that
+     * is not a settings card — see `AccentContext`.
+     *
+     * The glow is the accent's own colour at low strength rather than a fixed orange:
+     * a button that throws light in a colour it is not is what makes a themed one look
+     * borrowed.
+     */
+    const accent = useAccent();
+    const fill = accent?.gradient ?? Gradients.primary;
+    const flat = accent?.color ?? Brand.primary;
+    const ink = accent === null ? Brand.textOnAccent : accentInkColor(accent.ink);
+
+    const glow = `0 16px 26px -16px ${withAlpha(flat, 0.9)}`;
 
     return (
         <Pressable
@@ -27,11 +45,20 @@ export default function StartGameButton({ text, onPress, disabled = false }: Pro
             disabled={disabled}
             accessibilityRole='button'
             accessibilityState={{ disabled }}
-            style={[styles.button, linearGradient(Gradients.primary), disabled && styles.disabled]}
+            style={[
+                styles.button,
+                linearGradient(fill),
+                theme.scheme === 'dark'
+                    // Outlined in the lightest stop of its own gradient, which is what
+                    // keeps the edge visible once there is no ink line to draw it with.
+                    ? { borderColor: fill[0], boxShadow: `0 16px 26px -14px ${withAlpha(flat, 0.85)}` }
+                    : { boxShadow: `3px 3px 0 0 ${Brand.ink}, ${glow}` },
+                disabled && styles.disabled
+            ]}
         >
-            <AppText style={styles.label}>{text}</AppText>
+            <AppText style={[styles.label, { color: ink }]}>{text}</AppText>
 
-            <Feather name='arrow-right' size={19} color={Brand.textOnAccent} />
+            <Feather name='arrow-right' size={19} color={ink} />
         </Pressable>
     )
 }
@@ -45,12 +72,9 @@ const useStyles = createThemedStyles(theme => ({
         gap: 10,
         borderRadius: 18,
         borderWidth: theme.borderWidth,
-        // Dark outlines it in a lighter orange than the fill, which is what keeps the
-        // edge visible once there is no ink line to draw it with.
-        borderColor: theme.scheme === 'dark' ? '#FF8557' : theme.colors.border,
-        boxShadow: theme.scheme === 'dark'
-            ? '0 16px 26px -14px rgba(254, 90, 29, 0.85)'
-            : '3px 3px 0 0 #0F0D12, 0 16px 26px -16px rgba(254, 90, 29, 0.9)'
+        // The border and the glow are drawn from the accent at the call site — only the
+        // light scheme's ink line is a constant.
+        borderColor: theme.colors.border
     },
     // The same half-strength every other blocked control in the app wears.
     disabled: {

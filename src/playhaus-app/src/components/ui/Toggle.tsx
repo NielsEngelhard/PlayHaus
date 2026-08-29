@@ -1,3 +1,4 @@
+import { useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Pressable, View } from "react-native";
 
@@ -28,6 +29,10 @@ const KNOB_TRAVEL_END = TRACK_WIDTH - TRACK_BORDER * 2 - KNOB_SIZE - KNOB_INSET;
 export default function Toggle({ value, onValueChange, label, disabled = false }: Props) {
     const styles = useStyles();
 
+    // What "on" looks like, in the colour of whatever this switch belongs to. Orange
+    // wherever nothing is lent — see `AccentContext`.
+    const accent = useAccent();
+
     return (
         <Pressable
             onPress={() => onValueChange(!value)}
@@ -38,6 +43,7 @@ export default function Toggle({ value, onValueChange, label, disabled = false }
             style={[
                 styles.track,
                 value ? styles.trackOn : styles.trackOff,
+                value && accent !== null && { backgroundColor: accent.color },
                 disabled && styles.trackDisabled
             ]}
         >

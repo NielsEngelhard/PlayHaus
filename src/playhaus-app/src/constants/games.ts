@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/routes';
-import { Brand, Gradients, type AccentInk } from '@/constants/theme';
+import { Brand, Gradients, type Accent, type AccentInk } from '@/constants/theme';
 import type { TranslationKey } from '@/features/i18n/keys';
 import type { ImageSource } from 'expo-image';
 
@@ -143,6 +143,16 @@ export const SKETCH_OFF: Game = {
  * between the card you tapped and the chrome you land in.
  */
 export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER, SKETCH_OFF];
+
+/**
+ * A game's colour identity, in the shape the controls take it in.
+ *
+ * Three of the fields above under the names the design system uses for them, so a game
+ * can be lent to `AccentProvider` without every screen restating the mapping.
+ */
+export function accentOf(game: Game): Accent {
+    return { color: game.color, gradient: game.gradient, ink: game.accentInk };
+}
 
 /**
  * The game a path sits inside, or `null` anywhere outside `/games/{slug}`.

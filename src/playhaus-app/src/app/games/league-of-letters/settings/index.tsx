@@ -1,13 +1,12 @@
 import { abandonGame, createGame, getCurrentGame, type Game } from "@/api/calls/league-of-letters";
-import { useFullScreen } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
-import InlineNotification from "@/components/ui/InlineNotification";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
 import ToggleRow from "@/components/ui/ToggleRow";
+import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
@@ -17,9 +16,7 @@ import StartGameButton from "@/features/league-of-letters/components/StartGameBu
 import WordLengthCard from "@/features/league-of-letters/components/WordLengthCard";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
@@ -35,13 +32,8 @@ import { View } from "react-native";
  * the question can quietly destroy it.
  */
 export default function LeagueOfLettersSettingsPage() {
-    const theme = useTheme();
     const styles = useStyles();
     const t = useT();
-
-    // Claims the viewport: no bottom bar, and the footer can sit on the bottom edge.
-    // Called before every early return below, so the hook order never changes.
-    useFullScreen();
 
     const router = useRouter();
     const { status, user } = useAuth();
@@ -183,59 +175,42 @@ export default function LeagueOfLettersSettingsPage() {
 
     return (
         <View style={styles.container}>
-            <SimpleTextHero
+            <SettingsPageBase
+                game={LEAGUE_OF_LETTERS}
                 title={t('lol.settings.title')}
-                description={t('lol.settings.description')}
-            />
-
-            <View style={styles.wordLength}>
+                facts={t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
+                error={error === null ? undefined : t(error)}
+                action={
+                    <StartGameButton
+                        text={starting ? t('common.busy') : t('lol.settings.start')}
+                        onPress={start}
+                        disabled={starting}
+                    />
+                }
+            >
+                {/* One child per ruled section. */}
                 <WordLengthCard
+                    variant='inline'
+                    showValue
                     value={settings.wordLength}
                     onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                />           
-            </View>
+                />
 
-            <View style={styles.language}>
                 <LanguageSelect
+                    variant='row'
                     value={settings.locale}
                     onChange={locale => setSettings(current => ({ ...current, locale }))}
                 />
-            </View>
 
-            <ToggleRow
-                value={settings.hardMode}
-                onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
-                label={t('lol.settings.hardMode.label')}
-                description={t('lol.settings.hardMode.description')}
-                icon="zap"
-            />
-
-            {error && (
-                <View style={styles.error}>
-                    <InlineNotification
-                        icon='alert-triangle'
-                        color={theme.colors.blush}
-                        title={t('common.failed')}
-                        message={t(error)}
-                    />
-                </View>
-            )}
-
-            <View style={styles.footer}>
-                <View style={styles.facts}>
-                    <Feather name='info' size={14} color={theme.colors.textMuted} />
-
-                    <AppText style={styles.factsText}>
-                        {t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
-                    </AppText>
-                </View>
-
-                <StartGameButton
-                    text={starting ? t('common.busy') : t('lol.settings.start')}
-                    onPress={start}
-                    disabled={starting}
+                <ToggleRow
+                    flush
+                    value={settings.hardMode}
+                    onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
+                    label={t('lol.settings.hardMode.label')}
+                    description={t('lol.settings.hardMode.description')}
+                    icon="zap"
                 />
-            </View>
+            </SettingsPageBase>
 
             {/*
               * Sits over the form until the running game has been dealt with one way or
@@ -274,34 +249,11 @@ export default function LeagueOfLettersSettingsPage() {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // The card sizes itself; this only gives it the column's full width and lifts it
+    // clear of the header.
     container: {
-        flex: 1,
-        width: '100%'
-    },
-    wordLength: {
-        marginTop: 20
-    },
-    language: {
-        marginTop: 14
-    },
-    error: {
-        marginTop: 14
-    },
-    footer: {
-        marginTop: 'auto',
-        paddingTop: Spacing.four
-    },
-    facts: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: Spacing.two,
-        marginBottom: Spacing.three - 4
-    },
-    factsText: {
-        fontSize: 12,
-        fontWeight: 600,
-        color: theme.colors.textMuted
+        width: '100%',
+        paddingTop: Spacing.two
     },
     abandonError: {
         // Inside the modal, where the form's own `InlineNotification` would be a card

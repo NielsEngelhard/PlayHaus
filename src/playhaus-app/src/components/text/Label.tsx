@@ -20,15 +20,35 @@ interface Props {
      * sits in, and a margin of its own would push it off centre between them.
      */
     inline?: boolean
+    /**
+     * What the control below currently says, on the opposite end of the label's line.
+     *
+     * For a picker whose own answer is a glyph rather than a word — the word-length row
+     * reads "4 5 6 7 8", and "5 letters" up here is what turns the chosen one into a
+     * sentence. Ignored when a rule is drawn, which already owns that end of the row.
+     */
+    value?: string
 }
 
-export default function Label({ label, rule = false, inline = false }: Props) {
+export default function Label({ label, rule = false, inline = false, value }: Props) {
     const styles = useStyles();
 
     const flush = inline || rule === 'around';
 
     if (rule === false) {
-        return <AppText style={[styles.label, flush && styles.labelFlush]}>{label}</AppText>
+        if (value === undefined) {
+            return <AppText style={[styles.label, flush && styles.labelFlush]}>{label}</AppText>
+        }
+
+        return (
+            // Baselines rather than centres: the two are set at different sizes, and it
+            // is the line they sit on that has to match.
+            <View style={[styles.valueRow, flush && styles.labelFlush]}>
+                <AppText style={[styles.label, styles.labelFlush]}>{label}</AppText>
+
+                <AppText style={styles.value}>{value}</AppText>
+            </View>
+        )
     }
 
     return (
@@ -58,6 +78,19 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: 7,
         marginBottom: Spacing.two
+    },
+    valueRow: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        gap: Spacing.two,
+        marginBottom: Spacing.two
+    },
+    value: {
+        flexShrink: 1,
+        fontSize: 12,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
     labelFlush: {
         marginBottom: 0

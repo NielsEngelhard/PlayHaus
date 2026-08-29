@@ -285,8 +285,8 @@ export const en = {
         },
         settings: {
             loading: 'Looking for your game…',
-            title: 'Set up your\ngame',
-            description: 'Choose how you want to play, then start.',
+            /** Sits under the game's own name in the card's header, so it names the mode. */
+            title: 'Solo setup',
             wordLength: 'Word length',
             wordLengthOption: '{{letters}} letters',
             hardMode: {

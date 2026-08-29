@@ -276,8 +276,7 @@ export const nl: Catalog = {
         },
         settings: {
             loading: 'Spel zoeken…',
-            title: 'Zet je spel\nklaar',
-            description: 'Kies hoe je wilt spelen en begin.',
+            title: 'Solo opzetten',
             wordLength: 'Woordlengte',
             wordLengthOption: '{{letters}} letters',
             hardMode: {

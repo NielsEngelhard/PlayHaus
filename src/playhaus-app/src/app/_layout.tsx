@@ -1,10 +1,3 @@
-import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Slot, ThemeProvider as NavigationThemeProvider, usePathname } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, View } from 'react-native';
-import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useFullScreenValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
@@ -19,6 +12,13 @@ import FeedbackPreferencesSync from '@/features/feedback/FeedbackPreferencesSync
 import { LanguageProvider } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { ThemeProvider, useThemeMode, useThemeReady } from '@/features/theme/ThemeContext';
+import { useFonts } from 'expo-font';
+import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider, Slot, usePathname } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,11 +41,7 @@ function depthOf(pathname: string): number {
 
 export default function RootLayout() {
   return (
-    // Nothing else provides this: the layout renders a bare `Slot` rather than a
-    // navigator, so `BottomBar` would have no insets to read without it.
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      {/* Outermost of the app's own providers, because everything below it — the
-          navigator's own theme included — is drawn in whichever scheme it resolves. */}
       <ThemeProvider>
         <App />
       </ThemeProvider>
@@ -96,8 +92,6 @@ function App() {
 
   return (
     <NavigationThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {/* The clock and battery sit on the app's own canvas, so they take the
-          opposite ink to it rather than the device's. */}
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
 
       {/* Outside everything it gates, so the popup can cover the chrome too. */}
