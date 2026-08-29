@@ -32,6 +32,7 @@ export const Brand = {
     secondary: '#3B4DF0',
     lemon: '#FFE538',
     mint: '#73ECBC',
+    pink: '#FFBEB8',
     /**
      * Pale enough that it is the one accent in the set that cannot carry paper text.
      * Anything filled with it wears ink instead — see `AccentInk`.
@@ -319,6 +320,7 @@ export const Gradients = {
     lemon: ['#FFF07A', Brand.lemon, '#EFCE00'],
     mint: ['#A8F5D6', Brand.mint, '#35C99A'],
     violet: ['#DCD2FF', Brand.violet, '#9B85F5'],
+    pink: ['#FFE0DD', Brand.pink, '#F28F86'],
 } as const satisfies Record<string, readonly [string, string, string]>;
 
 /**
