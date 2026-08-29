@@ -2,9 +2,9 @@ import AppText from "@/components/text/AppText";
 import { fontFamilyForWeight, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/pubquizr/one-device-table";
-import { colorForSeat } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, TextInput, View } from "react-native";
 
@@ -78,7 +78,7 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                         <TextInput
                             value={name}
                             onChangeText={value => rename(seat, value)}
-                            placeholder={t('pubquizr.oneDevice.players.placeholder')}
+                            placeholder={t('common.player.namePlaceholder')}
                             placeholderTextColor={theme.colors.textSecondary}
                             autoCapitalize="words"
                             autoCorrect={false}
@@ -95,7 +95,7 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                                 onPress={() => remove(seat)}
                                 disabled={disabled}
                                 accessibilityRole="button"
-                                accessibilityLabel={t('pubquizr.oneDevice.players.remove', { seat: seat + 1 })}
+                                accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
                                 accessibilityState={{ disabled }}
                                 style={[styles.remove, disabled && styles.dimmed]}
                             >
@@ -117,15 +117,12 @@ export default function PlayerSeats({ names, onChange, disabled = false }: Props
                     <Feather name="plus" size={15} color={theme.colors.focus} />
 
                     <AppText style={styles.addText}>
-                        {t('pubquizr.oneDevice.players.add')}
+                        {t('common.player.add')}
                     </AppText>
                 </Pressable>
 
                 <AppText style={styles.count}>
-                    {t('pubquizr.oneDevice.players.count', {
-                        seats: names.length,
-                        max: MAX_PLAYERS
-                    })}
+                    {names.length} / {MAX_PLAYERS}
                 </AppText>
             </View>
         </View>
