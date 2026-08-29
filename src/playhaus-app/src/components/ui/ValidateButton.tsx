@@ -2,17 +2,17 @@ import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
-import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 interface Props {
-    /** Whoever the question is with right now. */
-    answering: Seat
-    /** The answer is uncovered. Until it is, there is nothing to judge against. */
+    /** What the gate itself says, e.g. "Score Sanne" or "Vote Tom out". */
+    label: string
+    /** The line under it, saying which of the two states you are in. */
+    hint: string
+    /** Open. Until it is, there is nothing to decide on. */
     unlocked: boolean
     onPress: () => void
 }
@@ -27,12 +27,15 @@ interface Props {
  * this in front of them means the only thing an accidental press can reach is a button
  * whose whole effect is to show two more buttons.
  *
- * Locked until the answer is uncovered, because judging an answer you have not read is
- * the mistake the whole sequence exists to prevent. The line underneath says which of
- * the two states you are in rather than leaving a grey button to explain itself.
+ * Locked until whatever it gates has been read, because deciding on something you have
+ * not read is the mistake the whole sequence exists to prevent. The line underneath says
+ * which of the two states you are in rather than leaving a grey button to explain itself.
+ *
+ * One of Us leans on it for the same reason from the other direction: voting somebody
+ * out is just as final as scoring a question, and just as easy to do with a thumb while
+ * the phone is moving.
  */
-export default function ValidateButton({ answering, unlocked, onPress }: Props) {
-    const t = useT();
+export default function ValidateButton({ label, hint, unlocked, onPress }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -42,7 +45,7 @@ export default function ValidateButton({ answering, unlocked, onPress }: Props) 
                 onPress={onPress}
                 disabled={!unlocked}
                 accessibilityRole="button"
-                accessibilityLabel={t('pubquizr.play.validate', { name: answering.name })}
+                accessibilityLabel={label}
                 accessibilityState={{ disabled: !unlocked }}
                 style={[styles.button, !unlocked && styles.locked]}
             >
@@ -53,11 +56,11 @@ export default function ValidateButton({ answering, unlocked, onPress }: Props) 
                 />
 
                 <AppText style={[styles.label, !unlocked && styles.lockedLabel]}>
-                    {t('pubquizr.play.validate', { name: answering.name })}
+                    {label}
                 </AppText>
             </PopPressable>
 
-            <TextHint text={unlocked ? t('pubquizr.play.validateHint') : t('pubquizr.play.validateLocked')} />
+            <TextHint text={hint} />
         </View>
     )
 }

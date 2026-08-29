@@ -92,7 +92,7 @@ export const en = {
         },
         oneOfUs: {
             description: 'Unravel who the imposter is.',
-            mainCategory: 'Bluf'
+            mainCategory: 'Bluff'
         },
         fakeFiller: {
             description: 'Invent a wrong answer.',
@@ -255,14 +255,20 @@ export const en = {
     },
     reconnect: {
         hero: {
-            title: 'Join a Game', accent: 'or Reconnect',
-            description: "Reconnect to an existing game or join a new one."
-        },        
+            title: 'Join a game', accent: 'with a code',
+            resume: { title: 'Pick up', accent: 'where you left off' }
+        },
         loading: 'Looking for your games…',
+        stillRunning: 'Still running',
+        orJoin: 'Or join a game',
+        nothingRunning: 'Nothing running',
         updated: 'Updated {{time}}',
-        noGames: 'Found no games to reconnect to.',
-        resume: 'Continue playing',
-        refresh: { label: 'Refresh the list', action: 'Refresh' },
+        resume: 'Continue playing {{game}}',
+        refresh: { label: 'Check for games again', action: 'Check again' },
+        empty: {
+            title: 'No games left running',
+            message: 'Anything you walk out of halfway shows up here, ready to walk back into.'
+        },
         mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: 'One device' },
         errors: {
             expired: 'Your session has expired. Log in again.',
@@ -869,7 +875,7 @@ export const en = {
         index: { 
             description: "Everyone gets a question/word, e.g. “What would you do if you became invisible?” Everyone answers anonymously, except one player gets a slightly different question/word.", 
             oneDevice: { 
-                title: "1 cevice", 
+                title: "1 device", 
                 description: "Play with 1 phone that is passed around", 
                 action: "Play" 
             }, 
@@ -881,13 +887,108 @@ export const en = {
         },
         singleDevice: {
             title: "Play with 1 device",
-            description: "Fill in all the names of the people that you are playing with. Then press start. The game is self-explanatory."
+            description: "Fill in all the names of the people that you are playing with. Then press start. The game is self-explanatory.",
+            players: {
+                tooFew: 'One of Us needs at least three players.',
+                tooMany: 'Nine players is the most that fit round one phone.',
+                duplicate: 'Two players cannot share a name.'
+            }
         },
         settings: {
             wordsOnly: {
                 title: "Use words only",
                 description: "Use words only or use sentences that you should find a fitting answer for."
             }
+        },
+        play: {
+            loading: 'Dealing the words…',
+            close: 'Leave the game',
+            /** The header, every round. */
+            roundLabel: 'Round {{round}}',
+
+            /**
+             * The pass-the-phone reveal, once per player before the first round.
+             *
+             * The step line counts people rather than rounds, because that is what is
+             * actually happening: the phone is going round the table once so everybody
+             * can read their own word.
+             */
+            reveal: {
+                step: 'Handing out words · {{number}} of {{total}}',
+                title: 'Pass the phone to {{name}}',
+                body: 'Only {{name}} may look at the next screen.',
+                note: 'Everybody gets a word. One or more of you get a different one — and will have to bluff.',
+                action: "I'm {{name}}",
+                secretLabel: 'Tap to see your word',
+                secretHint: 'Hold the phone so nobody else can read it.',
+                warning: 'Only you see this',
+                /** After the word is open: the way on, phrased as putting it away. */
+                hide: 'Hide',
+                done: 'Got it — pass it on',
+                lastDone: 'Got it — start round 1'
+            },
+
+            /**
+             * One speaker at a time, in an order reshuffled every round.
+             *
+             * The screen names one person and nothing else. There is nothing to type:
+             * the whole turn happens out loud, and the phone is only keeping the order.
+             */
+            speak: {
+                step: 'Round {{round}} · {{number}} of {{total}}',
+                nowSpeaking: 'Now speaking',
+                hint: 'Say one word about your own word. Do not say the word itself.',
+                next: 'Next player',
+                lastNext: 'Everyone has spoken'
+            },
+
+            discuss: {
+                title: 'Talk it over',
+                description: 'Who sounded like they were guessing? Argue it out, then vote somebody out.',
+                /** The tie rule, which the app deliberately does not enforce. */
+                tieNote: 'If the vote ties, the table decides together who goes.',
+                action: 'Ready to vote'
+            },
+
+            vote: {
+                title: 'Who is one of us?',
+                description: 'Tap whoever the table has decided on, then confirm.',
+                nobody: 'Nobody chosen yet',
+                confirm: 'Vote {{name}} out',
+                confirmHint: 'This cannot be undone.',
+                locked: 'Tap a name first.'
+            },
+
+            /** What the table is told the moment somebody leaves. */
+            elimination: {
+                title: '{{name}} is out',
+                civilian: '{{name}} was one of the civilians.',
+                imposter: '{{name}} was an imposter.',
+                remaining: '{{players}} still in the game.',
+                next: 'Start round {{round}}'
+            },
+
+            over: {
+                civilians: 'The civilians win',
+                imposters: 'The imposters win',
+                civiliansWhy: 'Every imposter has been voted out.',
+                impostersWhy: 'The imposters are no longer outnumbered.',
+                /** The reveal at the end: who was what, all of it at once. */
+                rolesTitle: 'Everybody',
+                civilianTag: 'Civilian',
+                imposterTag: 'Imposter',
+                votedOut: 'Voted out',
+                civilianWord: 'The word was',
+                imposterWord: 'The imposters had',
+                again: 'Play again'
+            }
+        },
+        errors: {
+            expired: 'You have been signed out. Sign in again to carry on.',
+            gameGone: 'That game is no longer there.',
+            badTable: 'That table cannot be dealt. Check the names and try again.',
+            generic: 'Something went wrong. Try again.',
+            network: 'No connection to the server. Check your internet.'
         }
     },
     friends: {

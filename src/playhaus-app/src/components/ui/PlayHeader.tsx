@@ -1,5 +1,4 @@
 import AppText from "@/components/text/AppText";
-import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -9,6 +8,8 @@ interface Props {
     onClose: () => void
     /** "Round 2 · Multiple choice", which used to be the top line of its own card. */
     label: string
+    /** What the close button is called, for anyone who cannot see the cross. */
+    closeLabel: string
 }
 
 /**
@@ -21,9 +22,11 @@ interface Props {
  * What is up here instead is which round it is, which cost a whole line of its own card
  * before and costs nothing here: this row was 58 points of a close button and empty
  * space, and the label is the one fact on the board nobody needs to act on.
+ *
+ * Both lines are props: this sits at the top of every one-device game, and only the game
+ * knows what to call its own rounds.
  */
-export default function PlayHeader({ onClose, label }: Props) {
-    const t = useT();
+export default function PlayHeader({ onClose, label, closeLabel }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -32,7 +35,7 @@ export default function PlayHeader({ onClose, label }: Props) {
             <Pressable
                 onPress={onClose}
                 accessibilityRole="button"
-                accessibilityLabel={t('pubquizr.play.close')}
+                accessibilityLabel={closeLabel}
                 style={styles.close}
             >
                 <Feather name="x" size={16} color={theme.colors.text} />

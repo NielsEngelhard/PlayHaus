@@ -16,6 +16,7 @@ import (
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
 	"playhaus-api/internal/lol"
+	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/realtime"
@@ -63,6 +64,7 @@ func run() error {
 
 	models := append([]any{&user.User{}, &auth.Session{}}, lol.Models()...)
 	models = append(models, pubquizr.Models()...)
+	models = append(models, oneofus.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
@@ -80,13 +82,14 @@ func run() error {
 		DevMode: cfg.LeagueOfLettersDevMode,
 	})
 	pubquizrService := pubquizr.NewService(pubquizrStore)
+	oneOfUsService := oneofus.NewService(oneofus.NewGormStore(db))
 
 	// Every live socket room in the process. Game-agnostic: the games claim their
 	// namespaces inside NewServer.
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, pubquizrService, hub, logger, cfg.AllowedOrigins)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, hub, logger, cfg.AllowedOrigins)
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------

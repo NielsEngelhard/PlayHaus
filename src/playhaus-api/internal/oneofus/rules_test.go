@@ -34,7 +34,7 @@ func TestImpostersForSpreadsOneInThree(t *testing.T) {
 		{5, 1}, // still one -- five is not two threes
 		{6, 2}, // and now two
 		{9, 3},
-		{MaxPlayers, 3}, // ten is three threes and a spare
+		{MaxPlayers, 3}, // nine is exactly three threes
 	} {
 		if got := ImpostersFor(tc.players); got != tc.want {
 			t.Errorf("ImpostersFor(%d) = %d, want %d", tc.players, got, tc.want)

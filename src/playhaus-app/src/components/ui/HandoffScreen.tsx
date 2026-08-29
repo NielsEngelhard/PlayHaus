@@ -1,29 +1,35 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
+import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
-import { useT } from "@/features/i18n/LanguageContext";
-import { handoffToneFor, type Seat } from "@/features/pubquizr/seats";
+import { handoffToneFor, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, Pressable, View } from "react-native";
 
 interface Props {
-    /**
-     * Who has to take the phone: whoever is reading the questions out, and in round 4
-     * whoever is about to describe — the words are on the screen, so it can only be
-     * theirs.
-     */
-    quizmaster: Seat
-    /** Who is handing it over, or null on the very first turn of the round. */
+    /** Who has to take the phone. */
+    person: Seat
+    /** Who is handing it over, or null when nobody has held it yet. */
     from: Seat | null
-    round: number
+    /**
+     * Which fill this one wears, as a 1-based count of hand-offs.
+     *
+     * A number rather than the tone itself so two screens cannot pick the same fill by
+     * accident, and so the cycling stays one rule in one place. See `handoffToneFor`.
+     */
+    toneNumber: number
+    /** The small uppercase line above the portrait — where in the game this is. */
+    step: string
+    /** The headline. Usually the name of whoever is taking the phone. */
+    title: string
     /** What that person is about to do, in one line. */
-    job: string
-    /** The round's rule, on the one screen with room to say it properly. */
-    rule: string
-    number: number
-    total: number
+    body: string
+    /** The rule they need before they start, when the game has one to give. */
+    note?: string
+    /** The button. Phrasing it as a claim — the person's own name — is the point. */
+    action: string
     onReady: () => void
 }
 
@@ -40,10 +46,11 @@ const useNativeDriver = Platform.OS !== 'web';
  *
  * A whole screen rather than a banner, and a colour of its own rather than the page's
  * canvas, because it has one job — to be impossible to read past. The next screen has
- * the answers on it, so the moment the phone changes hands is the moment the game can
- * be spoiled, and a notice that could be scrolled past would eventually be scrolled
- * past. The fill changes every question (see `handoffToneFor`) so that the tenth
- * hand-off still registers as a new screen rather than as the one you just dismissed.
+ * something on it that only one person may see, so the moment the phone changes hands is
+ * the moment the game can be spoiled, and a notice that could be scrolled past would
+ * eventually be scrolled past. The fill changes every hand-off (see `handoffToneFor`) so
+ * that the tenth one still registers as a new screen rather than as the one you just
+ * dismissed.
  *
  * It paints past the page's own gutters, up over the app header, and — on a window wide
  * enough for the app's column to leave room beside it — out to the window's own edges.
@@ -55,24 +62,25 @@ const useNativeDriver = Platform.OS !== 'web';
  * up, which is the intended reading of a screen whose whole point is "stop here". The
  * board behind it still has its own way out.
  *
- * The button says the new quizmaster's own name rather than "continue". Pressing it is
- * a claim about who is holding the phone, and phrasing it as one is what makes handing
- * it over first feel like the point rather than a step in the way.
+ * Every line on it is a prop. This used to live in `features/pubquizr` and look its own
+ * copy up, which is exactly what stopped a second game from using it: One of Us hands
+ * the phone round to reveal a secret word, a pub quiz hands it round to read questions
+ * out, and the shape of the screen is the only thing those two have in common.
  */
 export default function HandoffScreen({
-    quizmaster,
+    person,
     from,
-    round,
-    job,
-    rule,
-    number,
-    total,
+    toneNumber,
+    step,
+    title,
+    body,
+    note,
+    action,
     onReady
 }: Props) {
-    const t = useT();
     const styles = useStyles();
 
-    const tone = handoffToneFor(number);
+    const tone = handoffToneFor(toneNumber);
 
     // The window's colour, not just this page's. The screen fills the column it is
     // drawn in on its own (see `screen`), and on a phone the column is the window — but
@@ -113,39 +121,32 @@ export default function HandoffScreen({
             <View style={styles.header} />
 
             <AppText style={[styles.step, { color: tone.muted }]}>
-                {t('pubquizr.play.handoff.step', { round, number, total })}
+                {step}
             </AppText>
 
-            <View style={[styles.portrait, { backgroundColor: quizmaster.swatch.color }]}>
-                <AppText style={[styles.portraitText, { color: quizmaster.swatch.foreground }]}>
-                    {quizmaster.initials}
-                </AppText>
-            </View>
+            <SeatAvatar seat={person} size={132} raised style={styles.portrait} />
 
             <AppText style={[styles.title, { color: tone.ink }]}>
-                {t('pubquizr.play.handoff.title', { name: quizmaster.name })}
+                {title}
             </AppText>
 
             <AppText style={[styles.body, { color: tone.muted }]}>
-                {job}
+                {body}
             </AppText>
 
-            {/* The round's rule, on the one screen with room to say it properly. The
-                board says the short version every turn; this is where the whole of it
-                fits — and whoever is about to take the phone is exactly who needs to
-                know how the next few turns score.
+            {/* The rule of the moment, on the one screen with room to say it properly.
+                Full-strength ink where the line above it is muted: this is an
+                instruction rather than a caption about the hand-off, and the two should
+                not read as the same kind of sentence. */}
+            {note !== undefined && (
+                <AppText style={[styles.rule, { color: tone.ink }]}>
+                    {note}
+                </AppText>
+            )}
 
-                Passed in rather than looked up here, because it is the one line on this
-                screen that changes completely from round to round: the hot seat rounds
-                are about staying in, round 3 is about who guesses, and round 4 is a
-                stopwatch. */}
-            <AppText style={[styles.rule, { color: tone.ink }]}>
-                {rule}
-            </AppText>
-
-            {/* Only when there is somebody to hand over *from*. On the first question
-                of the round nobody has held the phone yet, and an arrow out of an
-                empty circle would be saying something that is not true. */}
+            {/* Only when there is somebody to hand over *from*. On the first turn nobody
+                has held the phone yet, and an arrow out of an empty circle would be
+                saying something that is not true. */}
             {from !== null && (
                 <Animated.View
                     style={[
@@ -162,19 +163,13 @@ export default function HandoffScreen({
                     accessibilityElementsHidden
                     importantForAccessibility="no-hide-descendants"
                 >
-                    <View style={[styles.small, { backgroundColor: from.swatch.color }]}>
-                        <AppText style={[styles.smallText, { color: from.swatch.foreground }]}>
-                            {from.initials}
-                        </AppText>
-                    </View>
+                    <SeatAvatar seat={from} size={38} />
 
                     <Feather name="arrow-right" size={20} color={tone.ink} />
 
-                    <View style={[styles.small, styles.smallTo, { backgroundColor: quizmaster.swatch.color }]}>
-                        <AppText style={[styles.smallText, { color: quizmaster.swatch.foreground }]}>
-                            {quizmaster.initials}
-                        </AppText>
-                    </View>
+                    {/* The one being handed to is lifted off the page; the one letting
+                        go is not. */}
+                    <SeatAvatar seat={person} size={38} raised />
                 </Animated.View>
             )}
 
@@ -184,7 +179,7 @@ export default function HandoffScreen({
                 style={styles.button}
             >
                 <AppText style={styles.buttonText}>
-                    {t('pubquizr.play.handoff.action', { name: quizmaster.name })}
+                    {action}
                 </AppText>
             </Pressable>
         </View>
@@ -208,12 +203,6 @@ const useStyles = createThemedStyles(() => ({
      * window is painted by the root layout, which is the only thing that can reach it —
      * see `usePageTone` above. The fill stays here as well as there so the two never
      * disagree about which colour this turn is.
-     *
-     * One seam is left, and it is not worth chasing: `SlideFadeIn` fades the page slot
-     * in over ~130ms on entrance, so the header shows through this for that long the
-     * first time the screen opens. It replays on the pathname only, and every hand-off
-     * after the first is a frame swap inside one mounted route, so it happens once on
-     * arrival rather than every turn.
      */
     screen: {
         flex: 1,
@@ -243,25 +232,8 @@ const useStyles = createThemedStyles(() => ({
         textAlign: 'center'
     },
 
-    // The portrait keeps the player's own swatch rather than the screen's tone, so it
-    // still says who even when the two happen to be the same colour — the hard ink
-    // line round it is what keeps it legible in that case.
     portrait: {
-        marginTop: 26,
-        width: 132,
-        height: 132,
-        flexShrink: 0,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Brand.ink,
-        boxShadow: '4px 4px 0 0 rgba(15, 13, 18, 1)'
-    },
-
-    portraitText: {
-        fontSize: 44,
-        fontWeight: 900
+        marginTop: 26
     },
 
     title: {
@@ -284,9 +256,6 @@ const useStyles = createThemedStyles(() => ({
         textAlign: 'center'
     },
 
-    // Full-strength ink where the line above it is muted: this is the rule of the
-    // round rather than a caption about the hand-off, and the two should not read as
-    // the same kind of sentence.
     rule: {
         marginTop: 12,
         maxWidth: 270,
@@ -303,26 +272,6 @@ const useStyles = createThemedStyles(() => ({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10
-    },
-
-    small: {
-        width: 38,
-        height: 38,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Brand.ink
-    },
-
-    // The one being handed to is lifted off the page; the one letting go is not.
-    smallTo: {
-        boxShadow: '2px 2px 0 0 rgba(15, 13, 18, 1)'
-    },
-
-    smallText: {
-        fontSize: 12,
-        fontWeight: 900
     },
 
     // Ink fill in every tone. It is the one control on the screen, and a button that

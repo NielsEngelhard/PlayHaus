@@ -246,14 +246,20 @@ export const nl: Catalog = {
     },
     reconnect: {
         hero: {
-            title: 'Een spel joinen', accent: 'of herverbinden',
-            description: "Verbind opnieuw met een bestaand spel of join een nieuw spel."
+            title: 'Een spel joinen', accent: 'met een code',
+            resume: { title: 'Ga verder', accent: 'waar je gebleven was' }
         },
         loading: 'Spellen zoeken…',
+        stillRunning: 'Nog bezig',
+        orJoin: 'Of join een spel',
+        nothingRunning: 'Niets bezig',
         updated: 'Bijgewerkt {{time}}',
-        noGames: 'Geen spellen gevonden om mee te herverbinden',
-        resume: 'Verder spelen',
-        refresh: { label: 'Ververs de lijst', action: 'Ververs' },
+        resume: 'Verder spelen met {{game}}',
+        refresh: { label: 'Opnieuw naar spellen kijken', action: 'Opnieuw kijken' },
+        empty: {
+            title: 'Geen spellen meer bezig',
+            message: 'Alles wat je halverwege laat liggen staat hier weer klaar om verder te spelen.'
+        },
         mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: '1 telefoon' },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
@@ -670,14 +676,91 @@ export const nl: Catalog = {
         },
         singleDevice: {
             title: "Speel met 1 device",
-            description: "Vul alle namen in van de spelers waar je mee speelt. Druk dan op start."
+            description: "Vul alle namen in van de spelers waar je mee speelt. Druk dan op start.",
+            players: {
+                tooFew: 'One of Us heeft minstens drie spelers nodig.',
+                tooMany: 'Negen spelers is het maximum voor één telefoon.',
+                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.'
+            }
         },
         settings: {
             wordsOnly: {
                 title: "Alleen woorden",
                 description: "Gebruik alleen woorden of wil je ook zinnen gebruiken om een passend antwoord bij te zoeken."
             }
-        }        
+        },
+        play: {
+            loading: 'De woorden worden verdeeld…',
+            close: 'Spel verlaten',
+            roundLabel: 'Ronde {{round}}',
+
+            reveal: {
+                step: 'Woorden verdelen · {{number}} van {{total}}',
+                title: 'Geef de telefoon aan {{name}}',
+                body: 'Alleen {{name}} mag het volgende scherm zien.',
+                note: 'Iedereen krijgt een rol en zin of woord. Eén of meer van jullie krijgen een andere rol iets anders dan de burgers. De imposters!',
+                action: 'Ik ben {{name}}',
+                secretLabel: 'Tik om je woord te zien',
+                secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
+                warning: 'Alleen jij ziet dit',
+                hide: 'Verbergen',
+                done: 'Gezien — geef door',
+                lastDone: 'Gezien — start ronde 1'
+            },
+
+            speak: {
+                step: 'Ronde {{round}} · {{number}} van {{total}}',
+                nowSpeaking: 'Nu aan de beurt',
+                hint: 'Zeg één woord over jouw woord. Noem het woord zelf niet.',
+                next: 'Volgende speler',
+                lastNext: 'Iedereen is geweest'
+            },
+
+            discuss: {
+                title: 'Overleg',
+                description: 'Wie klonk alsof die zat te gokken? Praat het uit en stem daarna iemand weg.',
+                tieNote: 'Bij een gelijke stand beslist de tafel samen wie er weggaat.',
+                action: 'Klaar om te stemmen'
+            },
+
+            vote: {
+                title: 'Wie is one of us?',
+                description: 'Tik op degene die de tafel gekozen heeft en bevestig.',
+                nobody: 'Nog niemand gekozen',
+                confirm: '{{name}} wegstemmen',
+                confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
+                locked: 'Tik eerst op een naam.'
+            },
+
+            elimination: {
+                title: '{{name}} ligt eruit',
+                civilian: '{{name}} was een burger.',
+                imposter: '{{name}} was een imposter.',
+                remaining: 'Nog {{players}} in het spel.',
+                next: 'Start ronde {{round}}'
+            },
+
+            over: {
+                civilians: 'De burgers winnen',
+                imposters: 'De imposters winnen',
+                civiliansWhy: 'Alle imposters zijn weggestemd.',
+                impostersWhy: 'De imposters zijn niet langer in de minderheid.',
+                rolesTitle: 'Iedereen',
+                civilianTag: 'Burger',
+                imposterTag: 'Imposter',
+                votedOut: 'Weggestemd',
+                civilianWord: 'Het woord was',
+                imposterWord: 'De imposters hadden',
+                again: 'Opnieuw spelen'
+            }
+        },
+        errors: {
+            expired: 'Je bent uitgelogd. Log opnieuw in om verder te spelen.',
+            gameGone: 'Dat spel bestaat niet meer.',
+            badTable: 'Die tafel kan niet gedeeld worden. Check de namen en probeer opnieuw.',
+            generic: 'Er ging iets mis. Probeer het opnieuw.',
+            network: 'Geen verbinding met de server. Check je internet.'
+        }
     },
     friends: {
         title: 'Vrienden',

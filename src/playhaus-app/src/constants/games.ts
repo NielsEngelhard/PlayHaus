@@ -95,7 +95,7 @@ export const ONE_OF_US: Game = {
     navigationUrl: ROUTES.oneOfUsIndex,
     joinCodePrefix: 'O',
     roomRoute: null,
-    minMaxPlayersIndicator: "3-7",
+    minMaxPlayersIndicator: "3-9",
     minutesAverage: 10
 };
 

@@ -3,6 +3,7 @@ package oneofus
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -29,7 +30,11 @@ func (s GormStore) CreateOneDeviceGame(ctx context.Context, game *OneOfUsSingleD
 func (s GormStore) GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error) {
 	var game OneOfUsSingleDeviceGame
 
+	// Preloaded, because the players are the game as far as the app is concerned --
+	// without them the reconnect endpoint answers with a word pair and "players": null,
+	// which is a game nobody can carry on playing.
 	if err := s.db.WithContext(ctx).
+		Preload("Players").
 		Where("id = ? AND owner_id = ?", gameID, ownerID).
 		First(&game).Error; err != nil {
 		return OneOfUsSingleDeviceGame{}, fmt.Errorf(
@@ -84,11 +89,24 @@ func (s GormStore) VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid
 	return nil
 }
 
-func (s GormStore) RemoveOneDeviceGame(ctx context.Context, gameID uuid.UUID) error {
-	result := s.db.WithContext(ctx).Delete(&OneOfUsSingleDeviceGame{}, "id = ?", gameID)
+// FinishOneDeviceGame stamps how a game ended.
+//
+// This replaced a hard delete. Deleting meant the row went the instant a side won, so
+// the reconnect endpoint 404'd on a game that had just finished -- and the results
+// screen is exactly the one a table comes back to.
+func (s GormStore) FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, civiliansWon bool) error {
+	now := time.Now().UTC()
+
+	result := s.db.WithContext(ctx).
+		Model(&OneOfUsSingleDeviceGame{}).
+		Where("id = ?", gameID).
+		Updates(map[string]any{
+			"finished_at":   &now,
+			"civilians_won": &civiliansWon,
+		})
 
 	if result.Error != nil {
-		return fmt.Errorf("remove OneOfUsSingleDeviceGame: %w", result.Error)
+		return fmt.Errorf("finish OneOfUsSingleDeviceGame: %w", result.Error)
 	}
 
 	if result.RowsAffected == 0 {

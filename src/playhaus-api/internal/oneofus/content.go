@@ -54,8 +54,15 @@ func GetContentLines(locale i18n.Locale, mode GameMode, amount int) ([]GameInput
 	return lines[:amount], nil
 }
 
+// buildDataFilePath names the embedded list for a locale and mode, e.g.
+// "data/en/en-sentences.txt".
+//
+// The mode is singular ("word", "sentence") and the files are plural, so the "s" is
+// part of the template rather than the value. The template also used to carry a [SIZE]
+// placeholder that nothing ever substituted, which meant every lookup asked for a file
+// called "en-[SIZE]-sentence.txt" and every game failed to start.
 func buildDataFilePath(lang i18n.Locale, mode GameMode) string {
-	const base = "data/[LANGUAGE]/[LANGUAGE]-[SIZE]-[LIST_TYPE].txt"
+	const base = "data/[LANGUAGE]/[LANGUAGE]-[LIST_TYPE]s.txt"
 
 	path := strings.ReplaceAll(base, "[LANGUAGE]", string(lang))
 	path = strings.ReplaceAll(path, "[LIST_TYPE]", string(mode))

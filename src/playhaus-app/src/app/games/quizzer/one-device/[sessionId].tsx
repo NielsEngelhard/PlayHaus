@@ -9,10 +9,10 @@ import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import FinalResultsScreen from "@/features/pubquizr/components/play/FinalResultsScreen";
-import HandoffScreen from "@/features/pubquizr/components/play/HandoffScreen";
+import HandoffScreen from "@/components/ui/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
-import PlayHeader from "@/features/pubquizr/components/play/PlayHeader";
+import PlayHeader from "@/components/ui/PlayHeader";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
@@ -331,13 +331,14 @@ export default function OneDeviceQuizPage() {
     if (claimedBy !== holder.seat) {
         return (
             <HandoffScreen
-                quizmaster={holder}
+                person={holder}
                 from={seatAt(seats, handedFrom)}
-                round={round}
-                job={copy.job}
-                rule={copy.rule}
-                number={number}
-                total={session.turnsInRound}
+                toneNumber={number}
+                step={t('pubquizr.play.handoff.step', { round, number, total: session.turnsInRound })}
+                title={t('pubquizr.play.handoff.title', { name: holder.name })}
+                body={copy.job}
+                note={copy.rule}
+                action={t('pubquizr.play.handoff.action', { name: holder.name })}
                 onReady={() => setClaimedBy(holder.seat)}
             />
         )
@@ -355,6 +356,7 @@ export default function OneDeviceQuizPage() {
             <PlayHeader
                 onClose={leave}
                 label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
+                closeLabel={t('pubquizr.play.close')}
             />
 
             {hotSeat !== null && (

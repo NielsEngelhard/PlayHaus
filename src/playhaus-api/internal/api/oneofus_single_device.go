@@ -15,11 +15,6 @@ type createOneOfUsOneDeviceGameRequest struct {
 	WordOnly    bool     `json:"wordOnly"`
 }
 
-type votePlayerOutSingleOneOfUsGameRequest struct {
-	GameID   string `json:"gameId"`
-	PlayerID string `json:"playerId"`
-}
-
 func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
@@ -45,7 +40,7 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
-		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		s.log.Error("handleCreateOneOfUsOneDeviceGame reached without an authenticated user")
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}
@@ -71,13 +66,16 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		return
 	}
 
-	writeJSON(w, http.StatusOK, game.ID)
+	// An object rather than the bare id string this used to answer with: every other
+	// endpoint in the API answers with one, and a top-level JSON string is the shape
+	// that cannot grow a second field later without breaking every client.
+	writeJSON(w, http.StatusOK, map[string]any{"gameId": game.ID})
 }
 
 func (s *Server) handleVotePlayerOutOfSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
-		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		s.log.Error("handleVotePlayerOutOfSingleDeviceOneOfUsGame reached without an authenticated user")
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}
@@ -110,7 +108,7 @@ func (s *Server) handleVotePlayerOutOfSingleDeviceOneOfUsGame(w http.ResponseWri
 func (s *Server) handleGetSingleDeviceOneOfUsGame(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
-		s.log.Error("handleSubmitGuess reached without an authenticated user")
+		s.log.Error("handleGetSingleDeviceOneOfUsGame reached without an authenticated user")
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}

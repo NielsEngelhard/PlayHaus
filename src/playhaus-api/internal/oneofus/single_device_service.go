@@ -20,11 +20,15 @@ type Store interface {
 	GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error)
 	GetOneDeviceGamePlayers(ctx context.Context, ownerID string, gameID uuid.UUID) ([]OneOfUsLocalPlayer, error)
 	VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid.UUID) error
-	RemoveOneDeviceGame(ctx context.Context, gameID uuid.UUID) error
+	FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, civiliansWon bool) error
 }
 
 type Service struct {
 	store Store
+}
+
+func NewService(store Store) *Service {
+	return &Service{store: store}
 }
 
 type StartOneOfUsSingleDeviceGameInput struct {
@@ -41,10 +45,10 @@ type VotePlayerOutSingleDeviceGameInput struct {
 }
 
 type VotePlayerOutSingleDeviceGameResponse struct {
-	PlayerID     uuid.UUID
-	PlayerRole   Role
-	GameEnded    bool
-	CiviliansWon bool
+	PlayerID     uuid.UUID `json:"playerId"`
+	PlayerRole   Role      `json:"playerRole"`
+	GameEnded    bool      `json:"gameEnded"`
+	CiviliansWon bool      `json:"civiliansWon"`
 }
 
 func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSingleDeviceGameInput) (*OneOfUsSingleDeviceGame, error) {
@@ -54,7 +58,8 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 	players := make([]OneOfUsLocalPlayer, len(in.PlayerNames))
 	for seat, name := range in.PlayerNames {
 		players[seat] = OneOfUsLocalPlayer{
-			playerID:   uuid.UUID{},
+			PlayerID:   uuid.New(),
+			SessionID:  gameID,
 			Name:       name,
 			Role:       Civilian,
 			CreatedAt:  now,
@@ -101,48 +106,62 @@ func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlay
 		return nil, err
 	}
 
-	player := getPlayerByID(in.PlayerID, players)
-	if player == nil {
+	// The index, not the player. Ranging by value and handing back `&player` takes the
+	// address of the loop's own copy, so the elimination below would be written to a
+	// value nothing else can see -- and `determineGameEnded`, reading the slice, would
+	// still count the player it just removed. That is a win condition that fires one
+	// vote late, every time.
+	seat := indexOfPlayer(in.PlayerID, players)
+	if seat < 0 {
 		return nil, fmt.Errorf("player not found")
 	}
 
-	if player.IsVotedOut == true {
+	if players[seat].IsVotedOut {
 		return nil, fmt.Errorf("player is already voted out")
 	}
 
-	player.IsVotedOut = true
-	err = s.store.VoteOutPlayerOneDeviceGame(ctx, player.playerID)
-	if err != nil {
+	players[seat].IsVotedOut = true
+
+	if err := s.store.VoteOutPlayerOneDeviceGame(ctx, players[seat].PlayerID); err != nil {
 		return nil, err
 	}
 
 	gameEnded, noMoreImposters := determineGameEnded(players)
+	civiliansWon := gameEnded && noMoreImposters
 
-	if gameEnded == true {
-		err = s.store.RemoveOneDeviceGame(ctx, in.GameID)
-		if err != nil {
-			fmt.Errorf("Could not remove RemoveOneDeviceGame with game ID %s: %w", in.GameID, err)
+	if gameEnded {
+		if err := s.store.FinishOneDeviceGame(ctx, in.GameID, civiliansWon); err != nil {
+			return nil, fmt.Errorf("finish game %s: %w", in.GameID, err)
 		}
 	}
 
 	return &VotePlayerOutSingleDeviceGameResponse{
-		PlayerID:     player.playerID,
-		PlayerRole:   player.Role,
+		PlayerID:     players[seat].PlayerID,
+		PlayerRole:   players[seat].Role,
 		GameEnded:    gameEnded,
-		CiviliansWon: gameEnded && noMoreImposters,
+		CiviliansWon: civiliansWon,
 	}, nil
 }
 
-func getPlayerByID(playerID uuid.UUID, players []OneOfUsLocalPlayer) *OneOfUsLocalPlayer {
-	for _, player := range players {
-		if player.playerID == playerID {
-			return &player
+// indexOfPlayer is where a player sits in the slice, or -1 when they are not at this
+// table. An index rather than a pointer so callers mutate the slice itself; see the note
+// at the call site.
+func indexOfPlayer(playerID uuid.UUID, players []OneOfUsLocalPlayer) int {
+	for index, player := range players {
+		if player.PlayerID == playerID {
+			return index
 		}
 	}
 
-	return nil
+	return -1
 }
 
+// determineGameEnded reads the table after an elimination and says whether it is over,
+// and whether that is because the imposters are all gone.
+//
+// The two endings are not symmetrical. Civilians have to finish the job -- every imposter
+// out -- while the imposters only have to survive to parity, because from there they can
+// outvote the room and nothing the civilians do can change it.
 func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 	civilians := 0
 	activePlayers := 0
@@ -167,9 +186,9 @@ func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 }
 
 func assignImposters(players []OneOfUsLocalPlayer) {
-	amountOfImposters := len(players) / 3
+	amountOfImposters := ImpostersFor(len(players))
 
-	if amountOfImposters == 0 {
+	if amountOfImposters <= 0 || amountOfImposters > len(players) {
 		return
 	}
 

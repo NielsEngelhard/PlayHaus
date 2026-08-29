@@ -17,7 +17,7 @@ import ChoiceCard from "./ChoiceCard";
 import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
-import ValidateButton from "./ValidateButton";
+import ValidateButton from "@/components/ui/ValidateButton";
 import VerdictButtons from "./VerdictButtons";
 
 /**
@@ -269,7 +269,10 @@ export default function HotSeatBoard({
                 />
             ) : (
                 <ValidateButton
-                    answering={turn.answering}
+                    label={t('pubquizr.play.validate', { name: turn.answering.name })}
+                    hint={stage === 'revealed'
+                        ? t('pubquizr.play.validateHint')
+                        : t('pubquizr.play.validateLocked')}
                     unlocked={stage === 'revealed'}
                     onPress={() => moveTo('judging')}
                 />

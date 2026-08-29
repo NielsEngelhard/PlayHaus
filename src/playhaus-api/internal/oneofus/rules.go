@@ -2,7 +2,7 @@ package oneofus
 
 const (
 	MinPlayers = 3
-	MaxPlayers = 10
+	MaxPlayers = 9
 )
 
 func PlayerCountOK(n int) bool {

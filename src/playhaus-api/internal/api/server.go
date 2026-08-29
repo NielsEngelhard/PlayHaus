@@ -37,6 +37,7 @@ func NewServer(
 	authSvc *auth.Service,
 	leagueOfLetters *lol.Service,
 	pubquizrSvc *pubquizr.Service,
+	oneOfUsSvc *oneofus.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
@@ -47,6 +48,7 @@ func NewServer(
 		auth:             authSvc,
 		leagueOfLetters:  leagueOfLetters,
 		pubquizr:         pubquizrSvc,
+		oneOfUs:          oneOfUsSvc,
 		rt:               hub,
 		log:              log,
 		allowedOrigins:   allowedOrigins,
@@ -62,6 +64,7 @@ func NewServer(
 	s.AddUserHandlers()
 	s.AddLeagueOfLettersHandlers()
 	s.AddPubquizRHandlers()
+	s.AddOneOfUsHandlers()
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 
