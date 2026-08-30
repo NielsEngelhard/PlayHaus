@@ -4,10 +4,11 @@ import { accentInkColor, Brand, ContentWidth, Spacing, withAlpha, type Accent, t
 import { useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { usePathname } from "expo-router";
 import type { ReactNode } from "react";
-import { Platform, Pressable, useWindowDimensions, View } from "react-native";
+import { Pressable, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 /** How one step of the track has gone, or that it has not been played yet. */
@@ -84,21 +85,8 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     const fill = accent?.color ?? theme.colors.backgroundSecondary;
     const ink = accent === null ? theme.colors.text : accentInkColor(accent.ink);
 
-    /*
-     * How far past its own edges the band has to reach to make the window — and it starts
-     * from inside the page's gutters, so those come off first.
-     *
-     * Web only, and the same trade `GameIndexPage`'s slab makes: a child painting outside
-     * its parent is allowed on iOS and clipped on Android, and what keeps the overflow
-     * from becoming sideways scroll is the `overflow-x: hidden` a vertical `ScrollView`
-     * only has on web. `useWindowDimensions` answers 0 with no DOM to measure, so the
-     * pre-rendered export ships the unbled band and hydration widens it.
-     */
     const { width: windowWidth } = useWindowDimensions();
-    const bleed = Platform.OS === 'web'
-        ? Math.max(0, Math.ceil((windowWidth - COLUMN_WIDTH) / 2))
-        : 0;
-    const reach = Spacing.six + bleed;
+    const reach = getReach(windowWidth)
 
     // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();

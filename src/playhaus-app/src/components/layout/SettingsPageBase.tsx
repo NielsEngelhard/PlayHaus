@@ -3,15 +3,16 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import { accentOf, type Game } from "@/constants/games";
-import { accentInkColor, ContentWidth, Spacing, withAlpha } from "@/constants/theme";
+import { accentInkColor, Spacing, withAlpha } from "@/constants/theme";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
 import { Children, type ReactNode } from "react";
-import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
+import { ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -100,9 +101,7 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, ch
      * measure, so the pre-rendered export ships the unbled band and hydration widens it.
      */
     const { width: windowWidth } = useWindowDimensions();
-    const bleed = Platform.OS === 'web'
-        ? Math.max(0, Math.ceil((windowWidth - ContentWidth) / 2))
-        : 0;
+    const reach = getReach(windowWidth)
 
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
@@ -119,8 +118,8 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, ch
                         {
                             backgroundColor: accent.color,
                             paddingTop: insets.top + 14,
-                            marginHorizontal: -bleed,
-                            paddingHorizontal: HEADER_PADDING + bleed
+                            marginHorizontal: -reach,
+                            paddingHorizontal: reach
                         }
                     ]}
                 >
