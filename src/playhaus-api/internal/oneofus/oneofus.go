@@ -10,13 +10,9 @@ import (
 type Role int
 
 const (
-	Civilian Role = 0
-	Imposter Role = 1
-	// Nitwit is an imposter who was not even given the imposter's word. They are told
-	// they are the nitwit and nothing else, and have to sit through a round of people
-	// describing something they have never seen. Dealt only at the table sizes that
-	// carry enough imposters to spare one -- see NitwitsFor.
-	Nitwit Role = 2
+	Civilian Role = 0 // Sees "real"
+	Imposter Role = 1 // Sees "fake"
+	Nitwit   Role = 2 // Sees nothing
 )
 
 // WithCivilians says which side a role counts for when a win condition is worked out.

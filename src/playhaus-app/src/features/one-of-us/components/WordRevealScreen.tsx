@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import AnswerReveal from "@/components/ui/AnswerReveal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
+import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import RoleCard from "@/features/one-of-us/components/RoleCard";
@@ -22,6 +23,8 @@ interface Props {
     number: number
     total: number
     onDone: () => void
+    /** The way out of the game. The band's arrow is the only one on this screen. */
+    onLeave: () => void
 }
 
 /**
@@ -49,6 +52,12 @@ interface Props {
  * else's. It is the same panel in the same place either way, which also means nothing
  * about the shape of this screen tells the room who drew the short straw.
  *
+ * The band goes on the word half and not on the wall in front of it. Every other screen
+ * in the game wears the game's colour along the top, and the one that hands you a secret
+ * should not be the odd one out — but the wall's whole job is to be impossible to read
+ * past, and a strip of chrome above it, way out included, is a way past. So the wall
+ * stays a wall, and the colour arrives with the word.
+ *
  * The way on only appears once the word has been seen. A player who passes the phone on
  * without reading their word has no way back to it, and the game gives them nothing to
  * bluff with. `seen` is the one thing this screen does track for itself, and it is a
@@ -62,7 +71,8 @@ export default function WordRevealScreen({
     role,
     number,
     total,
-    onDone
+    onDone,
+    onLeave
 }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -89,54 +99,69 @@ export default function WordRevealScreen({
 
     const last = number === total;
 
+    // One segment per player, because this is the one part of the game that does know how
+    // long it runs for: everybody gets a word exactly once, so the round the band cannot
+    // count towards is still a queue it can.
+    const handed: SegmentState[] = Array.from({ length: total }, (_, index) =>
+        index < number ? 'played' : 'upcoming'
+    );
+
     return (
-        <View style={styles.screen}>
-            <AppText style={styles.step}>
-                {t('oneOfUs.play.reveal.step', { number, total })}
-            </AppText>
-
-            <AppText style={styles.name}>{person.name}</AppText>
-
-            <AnswerReveal
-                key={person.seat}
-                answer={word ?? t('oneOfUs.play.reveal.noWord')}
-                onReveal={() => setSeen(true)}
-                extraContent={<RoleCard role={role} style={styles.role} />}
+        <View style={styles.page}>
+            {/* The step line the body used to open with. It is the band's now — a screen
+                that says "2 of 5" twice within 40 points is saying it once too often. */}
+            <InGameHeader
+                onClose={onLeave}
+                closeLabel={t('oneOfUs.play.close')}
+                label={t('oneOfUs.play.reveal.step', { number, total })}
+                segments={handed}
             />
 
-            <View style={styles.footer}>
-                {seen && (
-                    <ActionButton
-                        size="large"
-                        icon={last ? 'play' : 'arrow-right'}
-                        text={last
-                            ? t('oneOfUs.play.reveal.lastDone')
-                            : t('oneOfUs.play.reveal.done')}
-                        onPress={onDone}
-                    />
-                )}
+            <View style={styles.screen}>
+                <AppText style={styles.name}>{person.name}</AppText>
+
+                <AnswerReveal
+                    key={person.seat}
+                    answer={word ?? t('oneOfUs.play.reveal.noWord')}
+                    onReveal={() => setSeen(true)}
+                    extraContent={<RoleCard role={role} style={styles.role} />}
+                />
+
+                <View style={styles.footer}>
+                    {seen && (
+                        <ActionButton
+                            size="large"
+                            icon={last ? 'play' : 'arrow-right'}
+                            text={last
+                                ? t('oneOfUs.play.reveal.lastDone')
+                                : t('oneOfUs.play.reveal.done')}
+                            onPress={onDone}
+                        />
+                    )}
+                </View>
             </View>
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // The band is the top of this, and the gutters are here so it has something to reach
+    // back out through — the page it is drawn on has claimed the chrome and hands this
+    // the bare window. See `useChromeless`.
+    page: {
+        flex: 1,
+        width: '100%',
+        paddingHorizontal: Spacing.four,
+        paddingBottom: Spacing.four
+    },
+
     screen: {
         flex: 1,
         width: '100%',
         paddingTop: Spacing.four
     },
 
-    step: {
-        fontSize: 11,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 2.2,
-        color: theme.colors.textMuted
-    },
-
     name: {
-        marginTop: 10,
         fontSize: 34,
         fontWeight: 900,
         letterSpacing: -1.2,

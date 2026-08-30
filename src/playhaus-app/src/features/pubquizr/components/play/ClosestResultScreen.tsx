@@ -174,11 +174,16 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // The gutters are this screen's own: the board it stands in front of has claimed the
+    // app's chrome, which hands every page on this route the bare window. See
+    // `useChromeless`.
     screen: {
         flex: 1,
         minHeight: 0,
         width: '100%',
+        paddingHorizontal: Spacing.four,
         paddingTop: Spacing.three,
+        paddingBottom: Spacing.four,
         gap: Spacing.three
     },
 

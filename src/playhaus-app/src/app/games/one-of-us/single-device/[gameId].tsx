@@ -1,7 +1,7 @@
-import { useFullScreen } from "@/components/layout/FullScreenContext";
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import InlineNotification from "@/components/ui/InlineNotification";
-import PlayHeader from "@/components/ui/PlayHeader";
+import InGameHeader from "@/components/ui/InGameHeader";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
@@ -68,10 +68,11 @@ export default function PlayingSingleDeviceGame() {
     const styles = useStyles();
     const router = useRouter();
 
-    // Claims the viewport: no bottom bar, no page scroller, and the screens can size
-    // themselves to the window. Called before every early return below, so the hook
-    // order never changes.
-    useFullScreen();
+    // Claims the viewport and the app's chrome with it: no bottom bar, no page scroller,
+    // and no header — the board draws its own, in the game's colour, and a screen with two
+    // headers is a screen where neither is the header. See `InGameHeader`. Called before
+    // every early return below, so the hook order never changes.
+    useChromeless();
 
     const { gameId } = useLocalSearchParams<{ gameId: string }>();
     const play = useSingleDeviceOneOfUsGame(gameId);
@@ -164,9 +165,12 @@ export default function PlayingSingleDeviceGame() {
     /*
      * The word reveal, once per player before the first round.
      *
-     * Full-bleed and without the header above it, because the hand-off it opens on has
-     * to cover the whole window to be worth anything — a stop sign framed by the app's
-     * own chrome reads as another card. See `HandoffScreen`.
+     * Returned from outside the board frame below because it is two screens rather than
+     * one and only the second of them may wear the band: the hand-off it opens on has to
+     * cover the whole window to be worth anything, and a stop sign framed by chrome —
+     * with a way past it in the corner — reads as another card. `WordRevealScreen` draws
+     * its own band once the phone has been claimed, and `GameOverScreen` above draws one
+     * too; both are outside the frame because neither has a round to name.
      */
     if (current.kind === 'reveal') {
         const player = game.players[current.index];
@@ -180,6 +184,7 @@ export default function PlayingSingleDeviceGame() {
                 role={player.role}
                 number={current.index + 1}
                 total={game.players.length}
+                onLeave={leave}
                 onDone={() => setPhase(current.index + 1 < game.players.length
                     ? { kind: 'reveal', index: current.index + 1 }
                     // Everybody has their word. The first round opens on its own
@@ -191,10 +196,16 @@ export default function PlayingSingleDeviceGame() {
 
     return (
         <View style={styles.board}>
-            <PlayHeader
+            {/*
+              * No track under the label. A game of One of Us runs until the imposters are
+              * found or they outnumber everybody left, so there is no total for a bar to
+              * count towards — and a bar that fills at a rate nobody can read is worse
+              * than the label standing on its own. See `InGameHeader`.
+              */}
+            <InGameHeader
                 onClose={leave}
-                label={t('oneOfUs.play.roundLabel', { round: roundOf(current) })}
                 closeLabel={t('oneOfUs.play.close')}
+                label={t('oneOfUs.play.roundLabel', { round: roundOf(current) })}
             />
 
             {current.kind === 'speak' && (() => {
@@ -293,15 +304,25 @@ function roundOf(phase: Phase): number {
 }
 
 const useStyles = createThemedStyles(() => ({
+    // The gap is the header's: its band ends on a hard line rather than in the slack the
+    // old 58pt row carried inside itself, so the board keeps off it from out here.
+    //
+    // The sides and the bottom edge are here for a different reason — a chromeless page is
+    // handed the window bare (see `useChromeless`), so the gutters the scroller used to
+    // lay down belong to the board now. The band reaches back out through them.
     board: {
         flex: 1,
-        width: '100%'
+        width: '100%',
+        gap: Spacing.three - 4,
+        paddingHorizontal: Spacing.four,
+        paddingBottom: Spacing.four
     },
 
     message: {
         flex: 1,
         width: '100%',
         justifyContent: 'center',
+        paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.six
     }
 }))

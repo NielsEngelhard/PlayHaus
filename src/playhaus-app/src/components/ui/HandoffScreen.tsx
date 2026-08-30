@@ -1,12 +1,13 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
-import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { handoffToneFor, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, Pressable, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     /** Who has to take the phone. */
@@ -52,15 +53,14 @@ const useNativeDriver = Platform.OS !== 'web';
  * that the tenth one still registers as a new screen rather than as the one you just
  * dismissed.
  *
- * It paints past the page's own gutters, up over the app header, and — on a window wide
- * enough for the app's column to leave room beside it — out to the window's own edges.
- * Everything else in the app is a card inside a 24dp inset under a 66dp header, and a
- * stop sign framed by both reads as another card. See the note on `screen` for how it
- * escapes the first two and `usePageTone` below for the third.
+ * It takes the whole window: every board that shows one has claimed the app's chrome
+ * already (see `useChromeless`), so there is no header to escape any more and no gutters
+ * to reach out of — only, on a window wide enough for the app's column to leave room
+ * beside it, the canvas either side. See `usePageTone` below for that.
  *
- * Covering the header does mean its controls stop being tappable for as long as this is
- * up, which is the intended reading of a screen whose whole point is "stop here". The
- * board behind it still has its own way out.
+ * It is drawn instead of the board rather than over it, so the accent band and its way
+ * out are gone for as long as this is up. That is the intended reading of a screen whose
+ * whole point is "stop here"; tapping through puts the board and its way out back.
  *
  * Every line on it is a prop. This used to live in `features/pubquizr` and look its own
  * copy up, which is exactly what stopped a second game from using it: One of Us hands
@@ -79,6 +79,10 @@ export default function HandoffScreen({
     onReady
 }: Props) {
     const styles = useStyles();
+
+    // The band that normally holds the notch open is not drawn on this screen — it has
+    // no chrome at all — so the wall holds it open itself.
+    const insets = useSafeAreaInsets();
 
     const tone = handoffToneFor(toneNumber);
 
@@ -117,7 +121,7 @@ export default function HandoffScreen({
     }, [nudge]);
 
     return (
-        <View style={[styles.screen, { backgroundColor: tone.fill }]}>
+        <View style={[styles.screen, { backgroundColor: tone.fill, paddingTop: insets.top }]}>
             <View style={styles.header} />
 
             <AppText style={[styles.step, { color: tone.muted }]}>
@@ -188,35 +192,31 @@ export default function HandoffScreen({
 
 const useStyles = createThemedStyles(() => ({
     /**
-     * Painted past the page's gutters, and up over the header.
+     * The whole of whatever it is handed, plus its own padding inside that.
      *
-     * The 24dp inset and the 24dp bottom pad belong to the one scroller in
-     * `app/_layout.tsx`, and the header above is a sibling of the whole page slot —
-     * three things every page shares and no page can reach. So this pulls back out of
-     * all of them with negative margins and lays its own padding down inside, which is
-     * what lets the fill cover the strip while everything below stays where it was.
-     *
-     * `paddingTop` matching `marginTop` is the whole trick: the background grows into
-     * the header's 66dp, the content does not move into it.
+     * It used to claw its way out of the page's 24dp gutters, its 24dp bottom pad and the
+     * 66dp header with three negative margins. None of those are there any more: a board
+     * claims the chrome (see `useChromeless`), lays its own gutters down around the parts
+     * that want them, and this is drawn outside those — so the wall already starts at the
+     * window's edge and only has to pad its own contents in off it.
      *
      * Sideways this reaches the app's own column and no further; the rest of a wide
      * window is painted by the root layout, which is the only thing that can reach it —
      * see `usePageTone` above. The fill stays here as well as there so the two never
      * disagree about which colour this turn is.
+     *
+     * The top padding is set at the call site, from the device's own inset.
      */
     screen: {
         flex: 1,
         alignItems: 'center',
-        marginTop: -HeaderHeight,
-        marginHorizontal: -Spacing.four,
-        marginBottom: -Spacing.four,
-        paddingTop: HeaderHeight,
         paddingHorizontal: Spacing.four + 4,
         paddingBottom: 26
     },
 
-    // Stands in for the header the play screen has, so the two frames start their
-    // content at the same height and the swap does not jump.
+    // Stands in for the band the play screen has, so the two frames start their content
+    // at the same height and the swap does not jump. The notch is not in here: the screen
+    // above already pads for it, exactly as the band does.
     header: {
         height: 58,
         flexShrink: 0

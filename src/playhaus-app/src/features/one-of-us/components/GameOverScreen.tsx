@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
+import InGameHeader from "@/components/ui/InGameHeader";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import TextButton from "@/components/ui/TextButton";
 import { Brand, Spacing } from "@/constants/theme";
@@ -42,6 +43,11 @@ interface Props {
  * The nitwit is listed on the imposters' side of the room but tagged and coloured as
  * itself: "who was lying" and "who was given nothing at all" are two different answers,
  * and the second one is the one the table will want to hear about afterwards.
+ *
+ * It wears the same band every other screen in the game does, and no track under it:
+ * there is nothing left to be part of the way through. The band's arrow and the muted
+ * button in the footer are the same way out, kept in both places because this screen is
+ * long enough to scroll and the way out should not be something you have to reach.
  */
 export default function GameOverScreen({
     civiliansWon,
@@ -56,6 +62,12 @@ export default function GameOverScreen({
 
     return (
         <View style={styles.screen}>
+            <InGameHeader
+                onClose={onLeave}
+                closeLabel={t('oneOfUs.play.close')}
+                label={t('oneOfUs.play.over.label')}
+            />
+
             {/* Both sides get it. The imposters winning is just as much a result as
                 the civilians winning, and a celebration that only fired one way would
                 be the app taking a side. */}
@@ -163,9 +175,14 @@ export default function GameOverScreen({
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // The gutters are this screen's own: the page it is drawn on has claimed the app's
+    // chrome and hands it the bare window, and the band above reaches back out through
+    // them. See `useChromeless`.
     screen: {
         flex: 1,
-        width: '100%'
+        width: '100%',
+        paddingHorizontal: Spacing.four,
+        paddingBottom: Spacing.four
     },
 
     scroller: {

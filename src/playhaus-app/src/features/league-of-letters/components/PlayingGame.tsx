@@ -2,6 +2,7 @@ import type { Game, GameRound } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
+import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
@@ -11,7 +12,7 @@ import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/compon
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import NextRoundCountdown from "@/features/league-of-letters/components/NextRoundCountdown";
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
-import RoundBar from "@/features/league-of-letters/components/RoundBar";
+import RoundChip from "@/features/league-of-letters/components/RoundChip";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
@@ -381,19 +382,40 @@ export default function PlayingGame({
         }
     }
 
+    const outcome = decided ? (won ? 'won' : 'lost') : 'playing';
+
+    /*
+     * One segment per round, and the one you are on only turns green when it is won —
+     * which is why the track is worth having over a plain "2 of 3": it carries how the
+     * game has actually gone, not just how far in you are.
+     *
+     * Only the round on screen carries its own verdict. The rounds behind it are drawn as
+     * played rather than as won or lost, because that is the one fact `round` is handed
+     * about them; `game.rounds` knows the rest and nothing asks it yet.
+     */
+    const segments: SegmentState[] = Array.from({ length: game.totalRounds }, (_, index) =>
+        index < round.roundNumber - 1 ? 'played'
+            : index > round.roundNumber - 1 ? 'upcoming'
+                : outcome === 'playing' ? 'played' : outcome
+    );
+
     return (
         <View style={styles.screen}>
             {/* Everything about the round itself: the way out, where you are in the game,
                 and the hint — which becomes the round's verdict once it has one. The app
                 header sits above this and stays out of the round's business. */}
-            <RoundBar
-                round={round.roundNumber}
-                total={game.totalRounds}
-                outcome={decided ? (won ? 'won' : 'lost') : 'playing'}
-                firstLetter={firstLetter}
-                tries={myGuesses.length}
-                onLeave={() => router.replace(ROUTES.leagueOfLettersIndex)}
-            />
+            <InGameHeader
+                onClose={() => router.replace(ROUTES.leagueOfLettersIndex)}
+                closeLabel={t('common.back')}
+                label={t('lol.game.roundOf', { round: round.roundNumber, total: game.totalRounds })}
+                segments={segments}
+            >
+                <RoundChip
+                    outcome={outcome}
+                    firstLetter={firstLetter}
+                    tries={myGuesses.length}
+                />
+            </InGameHeader>
 
             {/* A lane of its own, held open whether or not there is anything in it. The
                 grid sizes itself to whatever room it is left, so a line that came and
@@ -530,13 +552,18 @@ export default function PlayingGame({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the room the header leaves, which is what keeps the keyboard on the bottom
-    // edge and the board off the fold. No top padding of its own: the header above ends in
-    // enough slack to stand as the gap, and the board is short enough on height already.
+    // Fills the window, which is what keeps the keyboard on the bottom edge and the board
+    // off the fold. No top padding of its own: the band above it is the top of the screen,
+    // and the board is short enough on height already.
+    //
+    // The sides are here rather than on the page because a chromeless page is handed the
+    // window bare — see `useChromeless`. The band reaches back out through them; see the
+    // negative margin in `InGameHeader`.
     screen: {
         flex: 1,
         width: '100%',
         gap: Spacing.three - 4,
+        paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.two
     },
     timer: {

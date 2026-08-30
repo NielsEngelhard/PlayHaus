@@ -1,4 +1,4 @@
-import { useFullScreen } from "@/components/layout/FullScreenContext";
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
@@ -12,7 +12,7 @@ import FinalResultsScreen from "@/features/pubquizr/components/play/FinalResults
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
-import PlayHeader from "@/components/ui/PlayHeader";
+import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
@@ -116,7 +116,7 @@ export default function OneDeviceQuizPage() {
     // Claims the viewport: no bottom bar, no page scroller, and the board can size
     // itself to the window the way the design draws it. Called before every early
     // return below, so the hook order never changes.
-    useFullScreen();
+    useChromeless();
 
     const { sessionId } = useLocalSearchParams<{ sessionId: string }>();
     const game = useQuizSession(sessionId);
@@ -344,6 +344,21 @@ export default function OneDeviceQuizPage() {
         )
     }
 
+    /*
+     * The evening, one segment per round, and deliberately not one per question.
+     *
+     * `TurnStrip` is already counting the questions in this round, a few points below and
+     * with the number spelled out beside them — drawing the same eight steps again up here
+     * would be one fact twice. Rounds are what the label beside them is about, and the
+     * pair then says where you are in the evening and where you are in the round.
+     *
+     * Every round up to and including this one is played: the header cannot say how any
+     * of them went, because a round is a table's worth of scores rather than a verdict.
+     */
+    const rounds: SegmentState[] = Array.from({ length: session.totalRounds }, (_, index) =>
+        index < round ? 'played' : 'upcoming'
+    );
+
     return (
         <View style={styles.board}>
             {/*
@@ -352,11 +367,15 @@ export default function OneDeviceQuizPage() {
               * under a banner of two person cards; both are now the one strip each board
               * draws for itself — which is what lets round 3 swap it for the question
               * recap once the form is up. See `TurnStrip`.
+              *
+              * Nothing in the right-hand slot: there is no backstage or menu control on
+              * this board to put there, and a chip invented to fill it would be one.
               */}
-            <PlayHeader
+            <InGameHeader
                 onClose={leave}
-                label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
                 closeLabel={t('pubquizr.play.close')}
+                label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
+                segments={rounds}
             />
 
             {hotSeat !== null && (
@@ -439,15 +458,25 @@ export default function OneDeviceQuizPage() {
 }
 
 const useStyles = createThemedStyles(() => ({
+    // The gap is the header's: its band ends on a hard line rather than in the slack the
+    // old 58pt row carried inside itself, so the board keeps off it from out here.
+    //
+    // The sides and the bottom edge are here for a different reason — a chromeless page is
+    // handed the window bare (see `useChromeless`), so the gutters the scroller used to
+    // lay down belong to the board now. The band reaches back out through them.
     board: {
         flex: 1,
         width: '100%',
+        gap: Spacing.three - 4,
+        paddingHorizontal: Spacing.four,
+        paddingBottom: Spacing.four
     },
 
     message: {
         flex: 1,
         width: '100%',
         justifyContent: 'center',
+        paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.six
     }
 }))

@@ -1,4 +1,4 @@
-import { useFullScreen } from "@/components/layout/FullScreenContext";
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -28,7 +28,7 @@ export default function LeagueOfLettersSoloPage() {
     const theme = useTheme();
     const styles = useStyles();
 
-    useFullScreen();
+    useChromeless();
 
     const router = useRouter();
     const t = useT();
@@ -82,8 +82,10 @@ const useStyles = createThemedStyles(theme => ({
     failed: {
         width: '100%',
         gap: Spacing.four,
-        // Sits below the header rather than filling the screen: there is no board
-        // to centre, and a lone message floating mid-page reads as a crash.
+        // Sits near the top rather than filling the screen: there is no board to centre,
+        // and a lone message floating mid-page reads as a crash. The gutters are its own,
+        // because the page it is on has claimed the chrome — see `useChromeless`.
+        paddingHorizontal: Spacing.four,
         paddingTop: Spacing.four,
         alignItems: 'flex-start'
     }

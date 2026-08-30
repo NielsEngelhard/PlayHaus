@@ -1052,6 +1052,8 @@ export const en = {
             },
 
             over: {
+                /** The band along the top. The headline under it says who won. */
+                label: 'Game over',
                 civilians: 'The civilians win',
                 imposters: 'The imposters win',
                 civiliansWhy: 'Every imposter has been voted out.',

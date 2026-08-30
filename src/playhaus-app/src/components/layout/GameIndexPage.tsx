@@ -362,8 +362,9 @@ const useStyles = createThemedStyles(theme => ({
      * The 24dp gutters belong to the one scroller in `app/_layout.tsx` and the header
      * above is a sibling of the whole page slot — two things every page shares and no
      * page can reach. So this pulls back out of both with negative margins and lays its
-     * own padding down inside, exactly as `HandoffScreen` does: the fill grows into the
-     * header's 66dp and out to the column's edges, and the content does not move.
+     * own padding down inside, the same trick `InGameHeader` uses on a board: the fill
+     * grows into the header's 66dp and out to the column's edges, and the content does
+     * not move.
      *
      * The bottom padding is the gap the design leaves between the facts and the first
      * card below. It is inside the hero on purpose: the band is drawn from the hero's own

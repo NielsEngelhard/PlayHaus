@@ -1,11 +1,12 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
-import { Brand, HeaderHeight, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { roundIntroToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     round: number
@@ -60,6 +61,10 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
     const t = useT();
     const styles = useStyles();
 
+    // Nothing above this holds the notch open — the board's band is not drawn on the
+    // screens that stand in front of it.
+    const insets = useSafeAreaInsets();
+
     const tone = roundIntroToneFor(round);
 
     // The window's colour, not just this page's — the same reason the hand-off asks for
@@ -68,7 +73,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
     usePageTone(tone.fill);
 
     return (
-        <View style={[styles.screen, { backgroundColor: tone.fill }]}>
+        <View style={[styles.screen, { backgroundColor: tone.fill, paddingTop: insets.top }]}>
             <View style={styles.header} />
 
             <View style={styles.body}>
@@ -163,24 +168,22 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
 
 const useStyles = createThemedStyles(() => ({
     /**
-     * Painted past the page's gutters and up over the header, exactly as
-     * `HandoffScreen` does it — the 24dp inset, the 24dp bottom pad and the 66dp header
-     * all belong to `app/_layout.tsx` and no page can reach them, so this pulls back out
-     * of all three with negative margins and lays its own padding down inside.
+     * The whole of whatever it is handed, exactly as `HandoffScreen` takes it — there is
+     * no header to pull up over and no gutters to reach out of, because the board this is
+     * drawn instead of has claimed the chrome and lays its own gutters down inside.
+     *
+     * The top padding is set at the call site, from the device's own inset.
      */
     screen: {
         flex: 1,
         alignItems: 'center',
-        marginTop: -HeaderHeight,
-        marginHorizontal: -Spacing.four,
-        marginBottom: -Spacing.four,
-        paddingTop: HeaderHeight,
         paddingHorizontal: Spacing.four + 4,
         paddingBottom: 26
     },
 
-    // Stands in for the header the play screen has, so this frame and the ones either
-    // side of it start their content at the same height and the swap does not jump.
+    // Stands in for the band the play screen has, so this frame and the ones either side
+    // of it start their content at the same height and the swap does not jump. The notch
+    // is not in here: the screen above already pads for it, exactly as the band does.
     header: {
         height: 58,
         flexShrink: 0

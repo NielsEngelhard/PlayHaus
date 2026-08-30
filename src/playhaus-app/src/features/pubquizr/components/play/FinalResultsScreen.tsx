@@ -197,9 +197,14 @@ export default function FinalResultsScreen({ standings, onLeave }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // The gutters are this screen's own: the board it stands in front of has claimed the
+    // app's chrome, which hands every page on this route the bare window. See
+    // `useChromeless`.
     screen: {
         flex: 1,
-        width: '100%'
+        width: '100%',
+        paddingHorizontal: Spacing.four,
+        paddingBottom: Spacing.four
     },
 
     scroller: {

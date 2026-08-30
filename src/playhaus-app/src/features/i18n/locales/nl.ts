@@ -785,6 +785,8 @@ export const nl: Catalog = {
             },
 
             over: {
+                /** The band along the top. The headline under it says who won. */
+                label: 'Spel afgelopen',
                 civilians: 'De burgers winnen',
                 imposters: 'De imposters winnen',
                 civiliansWhy: 'Alle imposters zijn weggestemd.',

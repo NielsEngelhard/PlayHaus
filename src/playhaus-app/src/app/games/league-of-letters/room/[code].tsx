@@ -1,4 +1,4 @@
-import { useFullScreen } from "@/components/layout/FullScreenContext";
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -121,11 +121,12 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
     const styles = useStyles();
     const t = useT();
 
-    // `useFullScreen` lives here rather than on the page: a board has to fit the window
-    // exactly, and neither the lobby nor the uitslag does — they are columns of cards that
-    // want the ordinary scrolling page and the bottom bar. A hook cannot be called for one
-    // and not the others, so the board is its own component.
-    useFullScreen();
+    // The claim lives here rather than on the page: a board has to fit the window exactly
+    // and draws its own header, and neither the lobby nor the uitslag does — they are
+    // columns of cards that want the ordinary scrolling page, the bottom bar and the app's
+    // header. A hook cannot be called for one and not the others, so the board is its own
+    // component.
+    useChromeless();
 
     const { user } = useAuth();
 
@@ -133,7 +134,7 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
 
     if (error !== null) {
         return (
-            <View style={styles.page}>
+            <View style={styles.failed}>
                 <BackButton href={ROUTES.leagueOfLettersIndex} />
 
                 <InlineNotification
@@ -183,7 +184,7 @@ interface RoomResultsProps {
 /**
  * The end of the game, still inside the room.
  *
- * No `useFullScreen`: a scoreboard is an ordinary page and wants the scroll and the
+ * No viewport claim: a scoreboard is an ordinary page and wants the scroll and the
  * bottom bar back, and unmounting the board is what gives them up.
  */
 function RoomResults({ table, isHost, onPlayAgain, playingAgain, error }: RoomResultsProps) {
@@ -216,5 +217,16 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%',
         gap: Spacing.two
+    },
+
+    // The same, plus the gutters the board lays down for itself: this branch draws no
+    // board, and the page it is on has claimed the chrome and so is handed the bare
+    // window. See `useChromeless`.
+    failed: {
+        flex: 1,
+        width: '100%',
+        gap: Spacing.two,
+        paddingHorizontal: Spacing.four,
+        paddingTop: Spacing.four
     }
 }))
