@@ -21,8 +21,9 @@ import (
 // it plays are two different moments, and only the second one has a host sitting in
 // front of the settings card.
 type LobbySettings struct {
-	Locale     i18n.Locale
-	WordLength int
+	Locale         i18n.Locale
+	WordLength     int
+	SecondsPerTurn int
 }
 
 func (in LobbySettings) validate() map[string]string {
@@ -96,7 +97,7 @@ type RecordMultiplayerGuessInput struct {
 // of the three arriving later than the others would be a room that appears in
 // pieces.
 func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*MultiplayerLeagueOfLettersLobby, error) {
-	return s.openLobby(ctx, ownerID, locale, DefaultWordLength)
+	return s.openLobby(ctx, ownerID, locale, DefaultWordLength, DefaultSecondsPerTurn)
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and a length to
@@ -105,7 +106,7 @@ func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.L
 // Shared with Rematch, which opens a room exactly this way but carries the last one's
 // length in rather than starting over at the default -- that table has already agreed
 // what it is playing, and asking again is the setup the button exists to skip.
-func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, wordLength int) (*MultiplayerLeagueOfLettersLobby, error) {
+func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, wordLength int, secondsPerTurn int) (*MultiplayerLeagueOfLettersLobby, error) {
 	if ownerID == "" {
 		return nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
 	}
@@ -120,12 +121,13 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 
 	now := time.Now().UTC()
 	lobby := &MultiplayerLeagueOfLettersLobby{
-		ID:         code,
-		OwnerID:    ownerID,
-		Locale:     locale,
-		WordLength: wordLength,
-		Status:     LobbyWaiting,
-		CreatedAt:  now,
+		ID:             code,
+		OwnerID:        ownerID,
+		Locale:         locale,
+		WordLength:     wordLength,
+		SecondsPerTurn: secondsPerTurn,
+		Status:         LobbyWaiting,
+		CreatedAt:      now,
 		// The host is a player like any other, and the first one -- which is what
 		// makes them the top row of the list and the first to play.
 		Players: []MultiplayerLobbyPlayer{{LobbyID: code, UserID: ownerID, Seat: 0, JoinedAt: now}},
@@ -444,7 +446,7 @@ func (s *Service) Rematch(ctx context.Context, code, userID string) (*Multiplaye
 		return nil, ErrGameNotOver
 	}
 
-	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.WordLength)
+	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.WordLength, lobby.SecondsPerTurn)
 	if err != nil {
 		return nil, err
 	}

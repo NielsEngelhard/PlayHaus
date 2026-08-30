@@ -10,13 +10,17 @@ const (
 	MaxWordLength = 8
 )
 
+const (
+	MinSecondsPerTurn     = 10
+	MaxSecondsPerTurn     = 100
+	DefaultSecondsPerTurn = 35
+)
+
 const DefaultWordLength = 5
 
 const MaxGuesses = 6
 
 const multiplayerCommonWordsOnly = true
-
-const DefaultSecondsPerTurn = 35
 
 const DevModeWord = "lepel" // When running in DEV mode this is always the word
 

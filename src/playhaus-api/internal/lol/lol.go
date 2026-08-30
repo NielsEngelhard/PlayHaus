@@ -57,15 +57,16 @@ const (
 )
 
 type MultiplayerLeagueOfLettersLobby struct {
-	ID          string                   `gorm:"primaryKey;type:text"`
-	OwnerID     string                   `gorm:"index;not null"`
-	Locale      i18n.Locale              `gorm:"not null"`
-	WordLength  int                      `gorm:"not null"`
-	Status      LobbyStatus              `gorm:"not null"`
-	GameID      *uuid.UUID               `gorm:"type:text"`
-	Players     []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
-	CreatedAt   time.Time                `gorm:"not null"`
-	RematchCode *string                  `gorm:"type:text"` // RematchCode is the room this one's table moved on to, once the game was over and
+	ID             string                   `gorm:"primaryKey;type:text"`
+	OwnerID        string                   `gorm:"index;not null"`
+	Locale         i18n.Locale              `gorm:"not null"`
+	WordLength     int                      `gorm:"not null"`
+	SecondsPerTurn int                      `gorm:"not null"`
+	Status         LobbyStatus              `gorm:"not null"`
+	GameID         *uuid.UUID               `gorm:"type:text"`
+	Players        []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
+	CreatedAt      time.Time                `gorm:"not null"`
+	RematchCode    *string                  `gorm:"type:text"` // RematchCode is the room this one's table moved on to, once the game was over and
 }
 
 func (MultiplayerLeagueOfLettersLobby) TableName() string { return "mp_lol_lobbies" }

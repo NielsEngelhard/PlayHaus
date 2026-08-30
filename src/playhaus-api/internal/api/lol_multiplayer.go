@@ -33,11 +33,22 @@ import (
 // places to change one rule -- there is exactly one, lol.ValidWordLength, and both
 // LobbySettings.validate and the solo path ask it.
 type lobbySettingsRequest struct {
-	WordLength int     `json:"wordLength"`
-	Locale     *string `json:"locale"`
+	WordLength      int     `json:"wordLength"`
+	Locale          *string `json:"locale"`
+	SecondsPerGuess int     `json:"secondsPerGuess"`
 }
 
-func (lobbySettingsRequest) Validate() map[string]string { return nil }
+func (req lobbySettingsRequest) Validate() map[string]string {
+	if req.SecondsPerGuess < lol.MinSecondsPerTurn || req.SecondsPerGuess > lol.MaxSecondsPerTurn {
+		return map[string]string{"SecondsPerGuess": "Exceeds min or max value"}
+	}
+
+	if req.WordLength < lol.MinWordLength || req.WordLength > lol.MaxWordLength {
+		return map[string]string{"WordLength": "Exceeds min or max value"}
+	}
+
+	return nil
+}
 
 // newLobbyRequest is what opens a room: a language, and deliberately nowhere to put
 // a word length. decode rejects unknown fields, so a client still sending settings
@@ -54,8 +65,9 @@ func (newLobbyRequest) Validate() map[string]string { return nil }
 // ---------------------------------------------------------------------------
 
 type lobbySettingsResponse struct {
-	Locale     string `json:"locale"`
-	WordLength int    `json:"wordLength"`
+	Locale         string `json:"locale"`
+	WordLength     int    `json:"wordLength"`
+	SecondsPerTurn int    `json:"secondsPerTurn"`
 }
 
 // lobbyPlayerResponse is somebody in the room, and is deliberately the front half of
@@ -214,8 +226,9 @@ func (s *Server) newLobbyResponse(ctx context.Context, lobby *lol.MultiplayerLea
 		HostID: lobby.OwnerID,
 		Status: string(lobby.Status),
 		Settings: lobbySettingsResponse{
-			Locale:     lobby.Locale.String(),
-			WordLength: lobby.WordLength,
+			Locale:         lobby.Locale.String(),
+			WordLength:     lobby.WordLength,
+			SecondsPerTurn: lobby.SecondsPerTurn,
 		},
 		Players:   players,
 		CreatedAt: lobby.CreatedAt.Format(timeFormat),
@@ -528,8 +541,9 @@ func (s *Server) handleUpdateLobbySettings(w http.ResponseWriter, r *http.Reques
 	code := lobbyCode(r)
 
 	lobby, problems, err := s.leagueOfLetters.UpdateLobbySettings(r.Context(), code, userID, lol.LobbySettings{
-		Locale:     localeFrom(Deref(req.Locale, ""), r),
-		WordLength: req.WordLength,
+		Locale:         localeFrom(Deref(req.Locale, ""), r),
+		WordLength:     req.WordLength,
+		SecondsPerTurn: req.SecondsPerGuess,
 	})
 	if err != nil {
 		s.writeLobbyError(w, "update lobby settings", err)
