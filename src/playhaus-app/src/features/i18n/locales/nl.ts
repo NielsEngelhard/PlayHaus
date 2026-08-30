@@ -724,7 +724,7 @@ export const nl: Catalog = {
             speak: {
                 step: 'Ronde {{round}} · {{number}} van {{total}}',
                 nowSpeaking: 'Nu aan de beurt',
-                hint: 'Zeg één woord over jouw woord. Noem het woord zelf niet.',
+                hint: 'Zeg één woord wat met jouw woord te maken heeft. Noem het woord zelf niet.',
                 next: 'Volgende speler',
                 lastNext: 'Iedereen is geweest'
             },

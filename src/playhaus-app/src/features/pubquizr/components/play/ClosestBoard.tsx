@@ -15,7 +15,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, TextInput, View } from "react-native";
-import BackstagePanel from "./BackstagePanel";
+import AnswerReveal from "./AnswerReveal";
 import NumberPad from "./NumberPad";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
@@ -292,7 +292,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             <View style={styles.body}>
                 <Label label={turn.question.prompt} />
 
-                <BackstagePanel
+                <AnswerReveal
                     answer={turn.unit === ''
                         ? String(turn.answer)
                         : t('pubquizr.play.closest.answer', { answer: turn.answer, unit: turn.unit })}

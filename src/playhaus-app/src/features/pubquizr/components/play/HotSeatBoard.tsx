@@ -13,7 +13,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { View } from "react-native";
-import BackstagePanel from "./BackstagePanel";
+import AnswerReveal from "./AnswerReveal";
 import ChoiceCard from "./ChoiceCard";
 import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
@@ -217,16 +217,11 @@ export default function HotSeatBoard({
                 {/* The answer takes the room the question was in. It is the thing being
                     read now, and the only one of the two that still has to be legible
                     from an arm's length across a table. */}
-                <BackstagePanel
+                <AnswerReveal
                     key={turn.question.id}
                     answer={turn.answer}
                     letter={turn.options.find(option => option.correct)?.letter}
                     aliases={turn.aliases}
-                    // Never called: the gate is what uncovered this, and it is the only
-                    // way onto this screen. The panel asks for it because round 1 needs
-                    // it, where the uncovering is a step of its own.
-                    onReveal={() => { }}
-                    onHide={() => {  }}
                     style={styles.answer}
                 />
 
@@ -250,7 +245,7 @@ export default function HotSeatBoard({
 
             <ScriptCard prompt={turn.question.prompt} seats={seats} />
 
-            <BackstagePanel
+            <AnswerReveal
                 key={turn.question.id}
                 answer={turn.answer}
                 aliases={turn.aliases}

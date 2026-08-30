@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import AnswerReveal from "@/components/ui/AnswerReveal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
-import SecretCard from "@/components/ui/SecretCard";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/table/seats";
@@ -69,19 +69,10 @@ export default function WordRevealScreen({ person, from, word, number, total, on
 
             <AppText style={styles.name}>{person.name}</AppText>
 
-            <SecretCard
-                secret={word}
-                revealLabel={t('oneOfUs.play.reveal.secretLabel')}
-                revealHint={t('oneOfUs.play.reveal.secretHint')}
-                warning={t('oneOfUs.play.reveal.warning')}
-                revealed={revealed}
+            <AnswerReveal
+                key={person.seat}
+                answer={word}
                 onReveal={() => setRevealed(true)}
-                // Covering it again is offered for the same reason it is covered to
-                // begin with: this screen sits open for as long as it takes somebody to
-                // read a whole sentence, and the next person is already leaning in.
-                onHide={() => setRevealed(false)}
-                hideLabel={t('oneOfUs.play.reveal.hide')}
-                style={styles.card}
             />
 
             <View style={styles.footer}>

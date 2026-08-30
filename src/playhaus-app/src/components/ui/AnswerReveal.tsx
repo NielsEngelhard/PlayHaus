@@ -9,50 +9,16 @@ import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     answer: string
-    /**
-     * The letter it came in on, in round 2. Set beside the answer rather than only in
-     * the row above, because the letter is what the table shouted and the words are what
-     * the quizmaster is checking against — reading "B  Amsterdam" answers both at once.
-     */
     letter?: string
-    /** Wordings that also count. "Tarantino" for "Quentin Tarantino". */
-    aliases: string[]
+    aliases?: string[]
     onReveal?: () => void
-    /**
-     * How to cover it again, where that is offered. Round 3 is the one place it is: its
-     * form stays on screen for as long as it takes four people to say a number, and an
-     * answer sitting open above it for that whole time will be read by somebody.
-     */
     onHide?: () => void
-    /**
-     * The short version: one row, no room given to the answer, for a screen where the
-     * slab is a reference rather than the subject.
-     */
     compact?: boolean
-    /** For layout only — how the panel sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
     initiallyRevealed?: boolean
 }
 
-/**
- * The back of the card: what the answer actually is, once you have asked for it.
- *
- * Covered until tapped, and that is not ceremony. The phone goes round a table with
- * five other people leaning towards it, and this screen is the one thing in the game
- * that can spoil the question — an answer that is simply *there* the moment the board
- * appears is an answer somebody else reads over your shoulder. Uncovering it is a
- * deliberate act, done when the reader is ready and holding the phone at their own
- * angle.
- *
- * Ink in both schemes, covered or not. Every other surface in this app is paper or
- * near-black depending on the scheme; this one is always the dark slab, so "the part
- * nobody else may see" is a thing you recognise by its colour before you have read a
- * word of it.
- *
- * The aliases matter more than they look. A quizmaster who cannot see that "the Meuse"
- * also counts will wave off a right answer, and the table will argue about it.
- */
-export default function BackstagePanel({
+export default function AnswerReveal({
     answer,
     letter,
     aliases,
@@ -130,7 +96,7 @@ export default function BackstagePanel({
                         </AppText>
                     </View>
 
-                    {aliases.length > 0 && !compact && (
+                    {(aliases && aliases.length > 0 && !compact) && (
                         <AppText style={styles.aliases}>
                             {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
                         </AppText>

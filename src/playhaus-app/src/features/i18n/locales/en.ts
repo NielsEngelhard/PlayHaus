@@ -935,7 +935,7 @@ export const en = {
             }
         },
         play: {
-            loading: 'Dealing the words…',
+            loading: 'loading…',
             close: 'Leave the game',
             /** The header, every round. */
             roundLabel: 'Round {{round}}',
