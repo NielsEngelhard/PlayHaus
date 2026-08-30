@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
@@ -16,7 +17,6 @@ import { useState } from "react";
 import { Pressable, ScrollView, TextInput, View } from "react-native";
 import BackstagePanel from "./BackstagePanel";
 import NumberPad from "./NumberPad";
-import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
 
@@ -96,7 +96,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     const styles = useStyles();
 
     const [stage, setStage] = useState<Stage>('reading');
-    const [revealed, setRevealed] = useState(false);
     const [typed, setTyped] = useState<Record<number, string>>({});
     /** Whose field the pad is typing into. */
     const [focused, setFocused] = useState<number | null>(null);
@@ -116,7 +115,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     if (settledId !== turn.dealt.id) {
         setSettledId(turn.dealt.id);
         setStage('reading');
-        setRevealed(false);
         setTyped({});
         setFocused(null);
         setByHand(false);
@@ -129,12 +127,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         turn.answer
     );
 
-    // Only once the answer is on screen: marking a row as nearest before the quizmaster
-    // has seen the number is the app telling them the answer sideways. The same rule
-    // governs the "6 off" lines and the name in the button, which are the same leak said
-    // three different ways.
-    const marked = revealed ? review.winners : [];
-
     const problem: TranslationKey | null = review.duplicates.length > 0
         ? 'pubquizr.play.closest.duplicate'
         : review.unreadable.length > 0
@@ -145,7 +137,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         ? picked !== null
         : review.guesses.length > 0 && problem === null;
 
-    const winner = turn.guessing.find(seat => seat.seat === marked[0]) ?? null;
+    const winner = turn.guessing.find(seat => seat.seat === review.winners[0]) ?? null;
 
     /** Everybody whose row is still empty, and how many are not. */
     const blank = turn.guessing.filter(seat => (typed[seat.seat] ?? '').trim() === '');
@@ -298,24 +290,13 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     return (
         <View style={styles.screen}>
             <View style={styles.body}>
-                {/* The recap stands where the strip did. Everything the strip was saying
-                    has already been said out loud by this point in the turn, and the
-                    question is the one thing the table will ask for again. */}
-                <QuestionRecap
-                    prompt={turn.question.prompt}
-                    icon="arrow-left"
-                    hint={t('pubquizr.play.closest.backToQuestion')}
-                    onPress={() => setStage('reading')}
-                />
+                <Label label={turn.question.prompt} />
 
                 <BackstagePanel
                     answer={turn.unit === ''
                         ? String(turn.answer)
                         : t('pubquizr.play.closest.answer', { answer: turn.answer, unit: turn.unit })}
                     aliases={turn.explanation === '' ? [] : [turn.explanation]}
-                    revealed={revealed}
-                    onReveal={() => setRevealed(true)}
-                    onHide={revealed ? () => setRevealed(false) : undefined}
                     compact
                 />
 
@@ -345,7 +326,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     contentContainerStyle={styles.rowsInner}
                 >
                     {turn.guessing.map(seat => {
-                        const nearest = marked.includes(seat.seat);
+                        const nearest = review.winners?.includes(seat.seat);
                         const clashing = review.duplicates.includes(seat.seat);
                         const chosen = byHand && picked === seat.seat;
                         const holding = !byHand && focused === seat.seat;
@@ -394,7 +375,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                         loud with five people checking the arithmetic.
                                         Only ever after the reveal — before it, this line
                                         would be the answer told sideways. */}
-                                    {revealed && guess !== undefined && (
+                                    {guess !== undefined && (
                                         <View style={styles.gap}>
                                             {nearest && (
                                                 <Feather name="award" size={11} color={Brand.ink} />

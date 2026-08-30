@@ -4,6 +4,7 @@ import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
+import { useState } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
@@ -16,9 +17,7 @@ interface Props {
     letter?: string
     /** Wordings that also count. "Tarantino" for "Quentin Tarantino". */
     aliases: string[]
-    /** Whether the quizmaster has asked to see it. */
-    revealed: boolean
-    onReveal: () => void
+    onReveal?: () => void
     /**
      * How to cover it again, where that is offered. Round 3 is the one place it is: its
      * form stays on screen for as long as it takes four people to say a number, and an
@@ -32,6 +31,7 @@ interface Props {
     compact?: boolean
     /** For layout only — how the panel sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
+    initiallyRevealed?: boolean
 }
 
 /**
@@ -56,19 +56,31 @@ export default function BackstagePanel({
     answer,
     letter,
     aliases,
-    revealed,
     onReveal,
     onHide,
     compact = false,
-    style
+    style,
+    initiallyRevealed = false
 }: Props) {
     const t = useT();
     const styles = useStyles();
 
+    const [revealed, setRevealed] = useState<boolean>(initiallyRevealed);
+
+    function onHidePressed() {
+        setRevealed(false);
+        if (onHide) onHide();
+    }
+
+    function onRevealPressed() {
+        setRevealed(true);
+        if (onReveal) onReveal();
+    }    
+
     if (!revealed) {
         return (
             <PopPressable
-                onPress={onReveal}
+                onPress={onRevealPressed}
                 accessibilityRole="button"
                 accessibilityLabel={t('pubquizr.play.answer.reveal')}
                 style={[styles.panel, compact && styles.compactPanel, style]}
@@ -125,24 +137,22 @@ export default function BackstagePanel({
                     )}
                 </View>
 
-                {onHide !== undefined && (
-                    <Pressable
-                        onPress={onHide}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('pubquizr.play.closest.hide')}
-                        // Hit slop rather than a taller pill: the control has to clear 44
-                        // points to be hittable and the bar it sits in is 46 tall, so the
-                        // room has to come from around it rather than from inside it.
-                        hitSlop={10}
-                        style={styles.hide}
-                    >
-                        <Feather name="eye-off" size={13} color="rgba(254, 251, 248, 0.7)" />
+                <Pressable
+                    onPress={onHidePressed}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('pubquizr.play.closest.hide')}
+                    // Hit slop rather than a taller pill: the control has to clear 44
+                    // points to be hittable and the bar it sits in is 46 tall, so the
+                    // room has to come from around it rather than from inside it.
+                    hitSlop={10}
+                    style={styles.hide}
+                >
+                    <Feather name="eye-off" size={13} color="rgba(254, 251, 248, 0.7)" />
 
-                        <AppText style={styles.hideLabel}>
-                            {t('pubquizr.play.closest.hide')}
-                        </AppText>
-                    </Pressable>
-                )}
+                    <AppText style={styles.hideLabel}>
+                        {t('pubquizr.play.closest.hide')}
+                    </AppText>
+                </Pressable>
             </View>
         </View>
     )
