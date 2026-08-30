@@ -1,6 +1,6 @@
 package pubquizr
 
-// Round 4: thirty seconds to describe your own words without saying them.
+// Round 4: thirty seconds to describe your own words to the player on your left.
 //
 // One turn per player, several words inside it. That is the thing about this round that
 // everything else has to bend around: `CurrentPosition` counts turns here, not words, so
@@ -12,9 +12,17 @@ package pubquizr
 // who may see them. So the describer is the quizmaster, which is why the round opens with
 // `ReadBy` rather than `OpenOn` -- see rounds.go.
 //
-// A word guessed pays twice: a point to whoever described it and a point to whoever
-// shouted it. That is the whole design of the round. One-sided, it is a room politely
-// waiting for somebody else to score.
+// It is not a room shouting at once. The describer plays to one person, the seat on their
+// left, and inside the thirty seconds that seat is the only one whose answer counts --
+// the same "you are read to by the player on your right" the whole game is built on, and
+// the reason `DescribeGuesser` is just `ReadBy`'s seat read back out. When time is up the
+// words nobody got go round the rest of the table, one guess each, and that is what
+// `DescribeBonusSeats` is: the order they are offered in, and the list a settle is
+// allowed to spend only once per name.
+//
+// A word that lands pays twice either way -- a point to whoever described it and a point
+// to whoever named it. The describer earns theirs for getting it across, and getting it
+// across late still counts.
 
 // WordsFor are the round 4 words dealt to one seat, in the order they were dealt.
 //
@@ -53,18 +61,44 @@ func (s *Session) Describer() int {
 	return s.QuizMasterSeat
 }
 
-// GuessableSeats is everybody who may be credited with a word this turn: the whole table
-// except whoever is describing.
+// DescribeGuesser is who the describer is playing to: the seat on their left, and the
+// only seat whose answer counts while the clock is running. -1 when round 4 is not what
+// is being played.
 //
-// The rule is "everybody but the describer"; the list of everybody is the session's.
-func (s *Session) GuessableSeats(describer int) []int {
-	seats := make([]int, 0, len(s.Players))
+// The same seat `ReadBy` opened the turn on, read back out rather than worked out again
+// -- see `HotSeatOrFirst`, which is the same seat under the rounds that keep one.
+func (s *Session) DescribeGuesser() int {
+	describer := s.Describer()
+	if describer < 0 || len(s.Players) == 0 {
+		return -1
+	}
 
-	for _, player := range s.Players {
-		if player.Seat == describer {
+	return wrap(describer+1, len(s.Players))
+}
+
+// DescribeBonusSeats is everybody who gets one guess at the leftovers once the thirty
+// seconds are up, in the order their go comes round: from the guesser's left onwards,
+// the describer and the guesser themselves left out.
+//
+// Ordered, unlike the "everybody but the reader" list this replaced, because the order is
+// now part of the rule -- one try each, taken in turn, and a leftover word is gone once
+// somebody has it. Same walk `GuessingSeats` does for round 5, minus one more seat.
+func (s *Session) DescribeBonusSeats() []int {
+	describer := s.Describer()
+	guesser := s.DescribeGuesser()
+	if describer < 0 || guesser < 0 {
+		return nil
+	}
+
+	players := len(s.Players)
+	seats := make([]int, 0, max(players-2, 0))
+
+	for step := 1; step < players; step++ {
+		seat := wrap(guesser+step, players)
+		if seat == describer || seat == guesser {
 			continue
 		}
-		seats = append(seats, player.Seat)
+		seats = append(seats, seat)
 	}
 
 	return seats

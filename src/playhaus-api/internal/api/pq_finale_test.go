@@ -85,7 +85,10 @@ func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionRe
 	}
 
 	for session.CurrentRound == pubquizr.RoundDescribe {
-		guesser, _ := otherSeats(session, 1)
+		// The seat being described to, because they are the only one who may be
+		// credited with more than one word of a turn -- everybody else gets a single
+		// bonus guess at the leftovers.
+		guesser := *session.DescribeGuesserSeat
 
 		awards := make([]wordAwardRequest, 0, len(session.TurnQuestionIDs))
 		for _, word := range session.TurnQuestionIDs {

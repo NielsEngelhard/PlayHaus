@@ -95,6 +95,21 @@ export interface QuizSession {
      */
     describerSeat: number | null
     /**
+     * Who round 4 is being described to — the seat on the describer's left, and the only
+     * one whose answer counts while the clock is running. Null in every other round.
+     *
+     * Named by the server for the same reason `describerSeat` is: it is the seat the turn
+     * was opened on and the server already knows it, so working it out here as well would
+     * be two answers to one question waiting to disagree.
+     */
+    describeGuesserSeat: number | null
+    /**
+     * Everybody who gets one guess at the words nobody got once the thirty seconds are
+     * up, in the order their go comes round — from the guesser's left onwards, the
+     * describer and the guesser left out. Empty in every other round.
+     */
+    describeBonusSeats: number[]
+    /**
      * The dealt questions this turn is about: one in rounds 1 to 3, and the describer's
      * whole set of words in round 4.
      *

@@ -99,8 +99,16 @@ var (
 	ErrDuplicateGuess        = errors.New("two players guessed the same number")
 	ErrQuizmasterCannotGuess = errors.New("the quizmaster is reading this one out")
 	ErrDescriberCannotGuess  = errors.New("you cannot guess your own word")
-	ErrUnknownWord           = errors.New("that word is not part of this turn")
-	ErrUnknownAnswer         = errors.New("that answer is not part of this question")
+	// ErrOneGuessEach is round 4's bonus rule refusing a second word to the same
+	// player. The seat being described to may take every word of the turn; everybody
+	// else gets one guess at what is left over, and one is one.
+	ErrOneGuessEach = errors.New("that player has already had their guess")
+	// ErrTwoOnOneWord is a round 4 word credited to more than one player. Nobody is
+	// shouting over anybody in this round: inside the clock only one seat is playing,
+	// and after it a word is gone the moment somebody names it.
+	ErrTwoOnOneWord  = errors.New("only one player can be credited with a word")
+	ErrUnknownWord   = errors.New("that word is not part of this turn")
+	ErrUnknownAnswer = errors.New("that answer is not part of this question")
 )
 
 type Quiz struct {

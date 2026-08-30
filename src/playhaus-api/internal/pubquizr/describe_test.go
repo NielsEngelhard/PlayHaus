@@ -8,9 +8,11 @@ import (
 )
 
 // Round 4 is the only round where one turn covers several questions and one word pays
-// two people. Both of those are easy to get subtly wrong in ways a game would not notice
-// until somebody added the scores up at the end of the night, so they are what these
-// tests are about.
+// two people, and the only one played in two halves: the seat on the describer's left
+// answering against the clock, then one guess each round the rest of the table for what
+// is left over. All of that is easy to get subtly wrong in ways a game would not notice
+// until somebody added the scores up at the end of the night, so it is what these tests
+// are about.
 
 // newDescribeSession is a table of four in round 4, `words` each, with seat `describer`
 // holding the phone.
@@ -50,9 +52,12 @@ func award(t *testing.T, store *verdictStore, awards []WordAward) error {
 	return err
 }
 
-// A word guessed pays the describer for getting it across and the guesser for shouting
-// it. That is the whole design of the round: one-sided, it is a room politely waiting for
-// somebody else to score.
+// A word that lands pays the describer for getting it across and whoever named it for
+// naming it. That is the whole design of the round: one-sided, the describer would be
+// sitting out their own turn.
+//
+// Both halves of the turn in one settle, which is how they always arrive: a leftover
+// taken by a bonus seat and a word the guesser had inside the clock.
 func TestAGuessedWordPaysBothOfThem(t *testing.T) {
 	session := newDescribeSession(2, 3)
 	store := &verdictStore{session: session}
@@ -93,63 +98,116 @@ func TestAGuessedWordPaysBothOfThem(t *testing.T) {
 	}
 }
 
-// One point per correct guess, not one per turn: guess two of somebody's words and you
-// take two.
+// One point per correct guess, not one per turn: the seat being described to may take
+// every word of the turn, and takes one for each of them.
+//
+// They are the exception to the round's one-guess-each rule, and the reason it is worth a
+// test of its own: the same three awards to anybody else is a refusal.
 func TestAGuesserTakesOneForEachWordTheyGet(t *testing.T) {
 	session := newDescribeSession(0, 3)
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
+	guesser := session.DescribeGuesser()
 
 	err := award(t, store, []WordAward{
-		{SessionQuestionID: words[0].ID, Seats: []int{2}},
-		{SessionQuestionID: words[1].ID, Seats: []int{2}},
-		{SessionQuestionID: words[2].ID, Seats: []int{2}},
+		{SessionQuestionID: words[0].ID, Seats: []int{guesser}},
+		{SessionQuestionID: words[1].ID, Seats: []int{guesser}},
+		{SessionQuestionID: words[2].ID, Seats: []int{guesser}},
 	})
 	if err != nil {
 		t.Fatalf("RecordDescribeAwards: %v", err)
 	}
 
-	if got, want := store.session.PlayerAt(2).Score, 3*DescribeGuessPoints; got != want {
-		t.Errorf("the loud one scored %d, want %d", got, want)
+	if got, want := store.session.PlayerAt(guesser).Score, 3*DescribeGuessPoints; got != want {
+		t.Errorf("the guesser scored %d, want %d", got, want)
 	}
 	if got, want := store.session.PlayerAt(0).Score, 3*DescribeWordPoints; got != want {
 		t.Errorf("the describer scored %d, want %d", got, want)
 	}
 }
 
-// Two people can shout a word at the same instant, and neither should lose out over who
-// was half a second faster: both take the full guess points, the same way an equally
-// close round 3 guess does, and the describer still only takes their word point once.
-func TestTwoSimultaneousGuessesBothScore(t *testing.T) {
+// A word taken after the clock stops pays exactly what one taken inside it does: a point
+// to whoever stole it and a point to the describer.
+//
+// The describer earns theirs for getting the word across, and getting it across late
+// still counts -- somebody at that table only knew the word because of how it was
+// described. Worth pinning down, because the two halves of the turn arrive in the same
+// batch and nothing downstream can tell them apart.
+func TestABonusWordPaysWhatAnInTimeOneDoes(t *testing.T) {
 	session := newDescribeSession(0, 2)
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
+	guesser := session.DescribeGuesser()
+	bonus := session.DescribeBonusSeats()[0]
 
 	err := award(t, store, []WordAward{
-		{SessionQuestionID: words[0].ID, Seats: []int{1, 2}},
-		{SessionQuestionID: words[1].ID},
+		{SessionQuestionID: words[0].ID, Seats: []int{guesser}},
+		{SessionQuestionID: words[1].ID, Seats: []int{bonus}},
 	})
 	if err != nil {
 		t.Fatalf("RecordDescribeAwards: %v", err)
 	}
 
-	for _, seat := range []int{1, 2} {
+	for _, seat := range []int{guesser, bonus} {
 		if got, want := store.session.PlayerAt(seat).Score, DescribeGuessPoints; got != want {
-			t.Errorf("seat %d scored %d, want %d -- a draw is not worth half", seat, got, want)
+			t.Errorf("seat %d scored %d, want %d -- a late word is not worth less", seat, got, want)
 		}
 	}
-	if got, want := store.session.PlayerAt(0).Score, DescribeWordPoints; got != want {
-		t.Errorf("the describer scored %d, want %d -- once for the word, not once per winner", got, want)
+	if got, want := store.session.PlayerAt(0).Score, 2*DescribeWordPoints; got != want {
+		t.Errorf("the describer scored %d, want %d -- both words landed", got, want)
 	}
 
 	for _, word := range store.recorded.Questions {
-		if word.ID != words[0].ID {
-			continue
+		if got, want := word.Points, DescribeWordPoints+DescribeGuessPoints; got != want {
+			t.Errorf("a word closed for %d, want %d", got, want)
 		}
-		if got, want := word.Points, DescribeWordPoints+2*DescribeGuessPoints; got != want {
-			t.Errorf("the word closed for %d, want %d", got, want)
+	}
+}
+
+// Everybody but the seat being described to gets one guess, and one is one -- naming the
+// same player for a second leftover is the bonus round being played twice.
+func TestOnlyTheGuesserTakesMoreThanOne(t *testing.T) {
+	session := newDescribeSession(0, 2)
+	store := &verdictStore{session: session}
+
+	words := session.WordsFor(0)
+	bonus := session.DescribeBonusSeats()[0]
+
+	err := award(t, store, []WordAward{
+		{SessionQuestionID: words[0].ID, Seats: []int{bonus}},
+		{SessionQuestionID: words[1].ID, Seats: []int{bonus}},
+	})
+
+	if !errors.Is(err, ErrOneGuessEach) {
+		t.Fatalf("err = %v, want %v", err, ErrOneGuessEach)
+	}
+	if len(store.recorded.Answers) > 0 || len(store.recorded.Players) > 0 {
+		t.Error("a refused turn still wrote something")
+	}
+}
+
+// Who is playing, and in what order the leftovers go round. The guesser is the seat on
+// the describer's left -- the same seat every other round is read to -- and the bonus
+// walks on from there, the describer and the guesser both left out.
+func TestDescribeSeatsWalkFromTheDescribersLeft(t *testing.T) {
+	for _, describer := range []int{0, 1, 2, 3} {
+		session := newDescribeSession(describer, 2)
+
+		if got, want := session.DescribeGuesser(), (describer+1)%4; got != want {
+			t.Errorf("describer %d plays to seat %d, want %d", describer, got, want)
+		}
+
+		want := []int{(describer + 2) % 4, (describer + 3) % 4}
+		got := session.DescribeBonusSeats()
+		if len(got) != len(want) {
+			t.Fatalf("describer %d: bonus seats %v, want %v", describer, got, want)
+		}
+		for i := range want {
+			if got[i] != want[i] {
+				t.Fatalf("describer %d: bonus seats %v, want %v", describer, got, want)
+			}
 		}
 	}
 }
@@ -206,7 +264,8 @@ func TestDescribeRefusals(t *testing.T) {
 	words := session.WordsFor(2)
 	otherTurn := session.WordsFor(3)
 	describer, stranger := 2, 9
-	guesser := 1
+	// The seat being described to, and one of the two who only get a bonus guess.
+	guesser, bonus := session.DescribeGuesser(), session.DescribeBonusSeats()[0]
 
 	table := []struct {
 		name   string
@@ -239,9 +298,19 @@ func TestDescribeRefusals(t *testing.T) {
 			want:   ErrInvalidInput,
 		},
 		{
+			name:   "two names on one word",
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser, bonus}}, {SessionQuestionID: words[1].ID}},
+			want:   ErrTwoOnOneWord,
+		},
+		{
 			name:   "the same seat named twice for one word",
 			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser, guesser}}, {SessionQuestionID: words[1].ID}},
-			want:   ErrInvalidInput,
+			want:   ErrTwoOnOneWord,
+		},
+		{
+			name:   "a bonus guess spent twice",
+			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{bonus}}, {SessionQuestionID: words[1].ID, Seats: []int{bonus}}},
+			want:   ErrOneGuessEach,
 		},
 	}
 

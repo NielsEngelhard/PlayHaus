@@ -348,7 +348,7 @@ func TestDescribeAwardsPayTheDescriberAndTheGuessers(t *testing.T) {
 	h, token, session := atRoundFour(t, 4)
 
 	describer := *session.DescriberSeat
-	guesser, _ := otherSeats(session, 1)
+	guesser := *session.DescribeGuesserSeat
 
 	before := map[int]int{}
 	for _, player := range session.Players {
@@ -447,6 +447,34 @@ func TestDescribeAwardsRefusals(t *testing.T) {
 			},
 			code: http.StatusUnprocessableEntity,
 			want: "invalid_input",
+		},
+		{
+			// Everybody but the seat being described to gets one guess at the
+			// leftovers, so crediting a bonus player with the whole turn is the
+			// round being played the old way, when the room shouted at once.
+			name: "one player taking the whole turn",
+			body: func(s quizSessionResponse) describeAwardsRequest {
+				seat := s.DescribeBonusSeats[0]
+				return describeAwardsRequest{
+					DescriberSeat: *s.DescriberSeat,
+					Awards:        allWords(s, &seat),
+				}
+			},
+			code: http.StatusConflict,
+			want: "one_guess_each",
+		},
+		{
+			name: "two names on one word",
+			body: func(s quizSessionResponse) describeAwardsRequest {
+				awards := allWords(s, nil)
+				awards[0].Seats = []int{*s.DescribeGuesserSeat, s.DescribeBonusSeats[0]}
+				return describeAwardsRequest{
+					DescriberSeat: *s.DescriberSeat,
+					Awards:        awards,
+				}
+			},
+			code: http.StatusConflict,
+			want: "two_on_one_word",
 		},
 	}
 

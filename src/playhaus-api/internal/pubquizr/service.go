@@ -841,10 +841,12 @@ type DescribeInput struct {
 
 // RecordDescribeAwards scores one round 4 turn and moves the game on.
 //
-// Every guessed word pays the describer once for getting it across, and every guesser
-// named for it once each for shouting it -- so a word with a single winner puts two
-// points on the board, same as before, and a word with a draw puts on one more for
-// every extra name.
+// Every word that lands pays two points: one to the describer for getting it across and
+// one to whoever named it. Which of the two halves of the turn it was named in makes no
+// difference to what it pays -- the seat being described to takes the ones they got
+// inside the thirty seconds, and each of the others takes at most one of the leftovers
+// afterwards, and a point is a point either way. What the halves do decide is who a name
+// is allowed to be, and that is `matchAwards`.
 func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -912,8 +914,10 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 			continue
 		}
 
-		// One row per winner, each a real point -- a draw is two (or more) people
-		// shouting it at once, not one person's win split between them.
+		// One row per name. `matchAwards` has already held it to a single one --
+		// nobody shouts over anybody in this round -- but the loop is what the store
+		// and the tally below both already speak, and a word credited to nobody has
+		// to come through the same shape.
 		for _, guesser := range winners {
 			guesser := guesser
 			out.Answers = append(out.Answers, &SessionAnswer{
@@ -928,10 +932,10 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 			score(guesser, DescribeGuessPoints)
 		}
 
-		// And one more row for the describer's own point, earned once per word no
-		// matter how many people shouted it. They are told apart from the guesser rows
-		// by the seat: the row whose seat is the describer's is theirs, and a guesser
-		// can never be that seat.
+		// And one more row for the describer's own point, earned once per word that
+		// landed -- late, in the bonus, counts as much as inside the clock. They are
+		// told apart from the guesser rows by the seat: the row whose seat is the
+		// describer's is theirs, and a guesser can never be that seat.
 		describer := in.DescriberSeat
 		out.Answers = append(out.Answers, &SessionAnswer{
 			ID:                uuid.New(),
@@ -971,15 +975,28 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 // refuses anything that does not line up exactly.
 //
 // The result is only the guessed ones: a word missing from it, or mapped to an empty
-// slice, is a word nobody got.
+// slice, is a word nobody got. Seats stayed a slice after the round stopped allowing two
+// names on one word, because it is what the wire and the store already speak and a word
+// credited to nobody still has to arrive as something.
 //
-// Carries round 4's "you cannot be credited with your own word" -- see GuessableSeats,
-// which it checks against. Needs the turn's words and the table, so it stays.
+// Three of round 4's rules live here, and all three are about who a name may be. The
+// describer cannot be credited with their own word. A word can only go to one player --
+// inside the clock there is only one player answering, and after it a leftover is gone
+// the moment somebody takes it. And every seat but the one being described to may be
+// named at most once in the whole turn, which is the bonus round's "one guess each"
+// spelled as arithmetic; see `DescribeBonusSeats` for the order those guesses come in.
+//
+// Needs the turn's words and the table, so it stays.
 func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (map[uuid.UUID][]int, error) {
 	thisTurn := make(map[uuid.UUID]struct{}, len(words))
 	for _, word := range words {
 		thisTurn[word.ID] = struct{}{}
 	}
+
+	// Who was being described to. Everybody else is spending a single bonus guess, and
+	// `spent` is what stops them spending it twice.
+	guesser := session.DescribeGuesser()
+	spent := map[int]struct{}{}
 
 	guessed := map[uuid.UUID][]int{}
 	named := make(map[uuid.UUID]struct{}, len(in.Awards))
@@ -997,20 +1014,22 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 		if len(award.Seats) == 0 {
 			continue
 		}
+		if len(award.Seats) > 1 {
+			return nil, fmt.Errorf("%w: word %s", ErrTwoOnOneWord, award.SessionQuestionID)
+		}
 
-		seen := make(map[int]struct{}, len(award.Seats))
-		for _, seat := range award.Seats {
-			if session.PlayerAt(seat) == nil {
-				return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
+		seat := award.Seats[0]
+		if session.PlayerAt(seat) == nil {
+			return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
+		}
+		if seat == in.DescriberSeat {
+			return nil, fmt.Errorf("%w: seat %d", ErrDescriberCannotGuess, seat)
+		}
+		if seat != guesser {
+			if _, twice := spent[seat]; twice {
+				return nil, fmt.Errorf("%w: seat %d", ErrOneGuessEach, seat)
 			}
-			if seat == in.DescriberSeat {
-				return nil, fmt.Errorf("%w: seat %d", ErrDescriberCannotGuess, seat)
-			}
-			if _, twice := seen[seat]; twice {
-				return nil, fmt.Errorf("describe awards: %w: seat %d twice for word %s",
-					ErrInvalidInput, seat, award.SessionQuestionID)
-			}
-			seen[seat] = struct{}{}
+			spent[seat] = struct{}{}
 		}
 
 		guessed[award.SessionQuestionID] = award.Seats
