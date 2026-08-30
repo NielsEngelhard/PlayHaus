@@ -12,9 +12,9 @@ import {
 import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
 import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
+import type { TranslationKey } from '@/features/i18n/keys';
 import { lobbyErrorMessage } from '@/features/league-of-letters/game-errors';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
-import type { TranslationKey } from '@/features/i18n/keys';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface LobbyState {
@@ -368,7 +368,7 @@ export function useLobby(code?: string): LobbyState {
                 locale: lobby.settings.locale,
                 wordLength: lobby.settings.wordLength,
                 hardMode: lobby.settings.hardMode,
-                secondsPerGuess: lobby.settings.secondsPerGuess
+                secondsPerGuess: lobby.settings.secondsPerTurn
             });
 
             // Before anything else: the caller navigates to the board the moment this

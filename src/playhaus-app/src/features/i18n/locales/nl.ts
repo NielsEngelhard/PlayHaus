@@ -528,7 +528,7 @@ export const nl: Catalog = {
             markCorrect: 'Reken {{name}} goed',
             wrongPassesTo: 'Fout? Dan mag {{name}}',
             wrongEndsQuestion: 'Niemand meer over, fout beëindigt deze vraag',
-            choiceAlwaysPasses: 'Hoe dan ook, nu aan de beurt: {{name}}',
+            choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoints: 'Voor {{worth}} punt(en)',
             noPoint: 'Geen punt',

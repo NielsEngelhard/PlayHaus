@@ -21,7 +21,7 @@ export interface LobbySettings {
     locale: LanguageCode
     wordLength: WordLength
     hardMode: boolean
-    secondsPerGuess: number
+    secondsPerTurn: number
 }
 
 export interface StartLobbyRequestData {

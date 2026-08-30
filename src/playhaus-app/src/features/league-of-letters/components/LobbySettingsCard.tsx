@@ -4,7 +4,7 @@ import LanguageSelect from "@/components/ui/LanguageSelect";
 import ToggleRow from "@/components/ui/ToggleRow";
 import { languageByCode } from "@/constants/languages";
 import { useT } from "@/features/i18n/LanguageContext";
-import SecondsPerGuessSelect from "@/features/league-of-letters/components/TimePerRoundSelect";
+import TimerPerRoundSelect from "@/features/league-of-letters/components/TimePerRoundSelect";
 import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 
 interface Props {
@@ -36,10 +36,10 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                 onChange={wordLength => onChange({ ...settings, wordLength })}
             />
 
-            <SecondsPerGuessSelect
+            <TimerPerRoundSelect
                 variant='inline'
-                value={settings.secondsPerGuess}
-                onChange={secondsPerGuess => onChange({ ...settings, secondsPerGuess })}
+                value={settings.secondsPerTurn}
+                onChange={secondsPerGuess => onChange({ ...settings, secondsPerTurn: secondsPerGuess })}
             />
 
             <ToggleRow
@@ -70,7 +70,7 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
 function summaryOf(settings: LobbySettings, t: ReturnType<typeof useT>): string {
     return [
         t('lol.settings.wordLengthOption', { letters: settings.wordLength }),
-        t('lol.settings.summary.seconds', { seconds: settings.secondsPerGuess }),
+        t('lol.settings.summary.seconds', { seconds: settings.secondsPerTurn }),
         settings.hardMode ? t('lol.settings.summary.hardOn') : t('lol.settings.summary.hardOff'),
         languageByCode(settings.locale).label
     ].join(' · ');
