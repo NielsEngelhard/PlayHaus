@@ -1,16 +1,16 @@
 import { createSingleDeviceOneOfUsGame } from "@/api/calls/one-of-us-single-device";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
-import InlineNotification from "@/components/ui/InlineNotification";
+import SettingsPageBase from "@/components/layout/SettingsPageBase";
+import Card from "@/components/ui/Card";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
+import StartGameButton from "@/components/ui/StartGameButton";
 import ToggleRow from "@/components/ui/ToggleRow";
+import { ONE_OF_US } from "@/constants/games";
 import { DEFAULT_LANGUAGE, LanguageCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import StartGameButton from "@/components/ui/StartGameButton";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/one-of-us/oou-settings";
@@ -115,65 +115,61 @@ export default function OneOfUsSingleDeviceIndexPage() {
 
     return (
         <View style={styles.container}>
-            <SimpleTextHero
+            <SettingsPageBase
+                game={ONE_OF_US}
                 title={t('oneOfUs.singleDevice.title')}
-                description={t('oneOfUs.singleDevice.description')}
-            />
+                intro={t('oneOfUs.singleDevice.description')}
+                back={ROUTES.oneOfUsIndex as RelativePathString}
+                error={error === null ? undefined : t(error)}
+                action={
+                    <StartGameButton
+                        text={starting ? t('common.busy') : t('common.start')}
+                        onPress={start}
+                        disabled={starting}
+                    />
+                }
+            >
+                {/* One child per section, and a card around each of them — none of these
+                    three draws any chrome of its own. */}
+                <Card>
+                    <PlayerNamesInput
+                        minPlayers={MIN_PLAYERS}
+                        maxPlayers={MAX_PLAYERS}
+                        names={names}
+                        onChange={editNames}
+                        disabled={starting}
+                    />
+                </Card>
 
-            {error !== null && (
-                <InlineNotification
-                    icon="alert-triangle"
-                    title={t('common.failed')}
-                    message={t(error)}
-                />
-            )}
+                <Card>
+                    <LanguageSelect
+                        variant='row'
+                        value={language}
+                        onChange={locale => setPicked(locale)}
+                    />
+                </Card>
 
-            <PlayerNamesInput
-                minPlayers={MIN_PLAYERS}
-                maxPlayers={MAX_PLAYERS}
-                names={names}
-                onChange={editNames}
-                disabled={starting}
-            />
-
-            <View style={styles.language}>
-                <LanguageSelect
-                    value={language}
-                    onChange={locale => setPicked(locale)}
-                />
-            </View>
-
-            <ToggleRow
-                value={wordsOnly}
-                onChange={value => setWordsOnly(value)}
-                label={t('oneOfUs.settings.wordsOnly.title')}
-                description={t('oneOfUs.settings.wordsOnly.description')}
-                icon="zap"
-            />
-
-            <View style={styles.footer}>
-                <StartGameButton
-                    text={starting ? t('common.busy') : t('common.start')}
-                    onPress={start}
-                    disabled={starting}
-                />
-            </View>
+                <Card>
+                    <ToggleRow
+                        flush
+                        value={wordsOnly}
+                        onChange={value => setWordsOnly(value)}
+                        label={t('oneOfUs.settings.wordsOnly.title')}
+                        description={t('oneOfUs.settings.wordsOnly.description')}
+                        icon="zap"
+                    />
+                </Card>
+            </SettingsPageBase>
         </View>
     )
 }
 
 const useStyles = createThemedStyles(() => ({
+    // Only here to pass the window's height through to the base, which is the page.
     container: {
         flex: 1,
         width: '100%'
-    },
-    language: {
-        marginTop: 14
-    },
-    footer: {
-        marginTop: 'auto',
-        paddingTop: Spacing.four
-    },
+    }
 }))
 
 /**

@@ -41,6 +41,9 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
         <LobbyPageBase
             game={LEAGUE_OF_LETTERS}
             title={t('lobby.named', { code: lobby.code })}
+            // No `handsOutCode`: a guest gets the code in the bar, to pass on or to read
+            // back, but not the band — they already used it to get in.
+            code={lobby.code}
             live={state.connection === 'open'}
             onBack={onBack}
             backLabel={t('lobby.leave')}

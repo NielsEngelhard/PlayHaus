@@ -24,11 +24,19 @@ interface Props {
     /** Stands in for the game's name above the title, for a screen that is not about it. */
     eyebrow?: string,
     /**
-     * One block per child, ruled off from one another.
+     * A line about the screen, above the first setting.
      *
-     * A rule between two rows rather than a card around each is the whole shape of this
-     * screen: the settings are one object being described, not a stack of separate
-     * things, and boxing each knob would say the opposite.
+     * For a mode that has to explain itself before it asks anything. The band's title is
+     * a name rather than a sentence, and the paragraph these screens used to open with
+     * sat under a hero the band has since replaced.
+     */
+    intro?: string,
+    /**
+     * One block per child, each its own section of the column.
+     *
+     * A block that draws no chrome of its own arrives wrapped in a `Card`; one that is
+     * already a panel — an `InlineNotification`, a shelf — comes bare, because a card
+     * inside a card is two boxes saying the same thing.
      */
     children: ReactNode,
     /** What the player is about to get, in a line above the action. */
@@ -65,7 +73,7 @@ const HEADER_PADDING = 18;
  * passing it to each of them. The rows themselves stay ordinary components — the same
  * `ToggleRow` used outside a settings page looks exactly as it did.
  */
-export default function SettingsPageBase({ game, title, back, eyebrow, children, facts, error, action }: Props) {
+export default function SettingsPageBase({ game, title, back, eyebrow, intro, children, facts, error, action }: Props) {
     const styles = useStyles();
     const theme = useTheme();
 
@@ -151,6 +159,12 @@ export default function SettingsPageBase({ game, title, back, eyebrow, children,
                     contentContainerStyle={styles.bodyContent}
                     showsVerticalScrollIndicator={false}
                 >
+                    {intro !== undefined && (
+                        <View style={styles.section}>
+                            <AppText style={styles.intro}>{intro}</AppText>
+                        </View>
+                    )}
+
                     {sections.map((section, i) => (
                         <View key={i} style={styles.section}>{section}</View>
                     ))}
@@ -236,6 +250,13 @@ const useStyles = createThemedStyles(theme => ({
     },
     section: {
         paddingVertical: Spacing.two
+    },
+    // Not in a `Card`: a paragraph in a box reads as a notice about the page rather than
+    // as the page introducing itself.
+    intro: {
+        fontSize: 14,
+        lineHeight: 14 * 1.5,
+        color: theme.colors.textSecondary
     },
     // Outside the scroller, so it is on the bottom edge whatever the form above it does.
     // The bottom padding is set at the call site, from the device's own inset.

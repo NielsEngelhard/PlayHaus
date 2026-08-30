@@ -11,12 +11,16 @@ import type { ImageSource } from 'expo-image';
  * *previous* page's name sitting in the chrome — which is exactly the bug this used to
  * have. The route always knows.
  *
- * Every route gets one, boards and lobbies included. Those screens draw a top row of
- * their own underneath this, and that row is where the way out lives: leaving one of them
- * either abandons a round or deletes a room, and the chip in this header is a plain
- * `Link` that cannot ask first. So they get the wordmark in the left slot rather than a
- * back chip — the header is here to say which game you are in and to keep the theme
- * toggle reachable, and the page's own row carries the leaving.
+ * Every route gets one, boards included: a board draws a top row of its own underneath
+ * this, and that row is where the way out lives, because leaving abandons a round and the
+ * chip in this header is a plain `Link` that cannot ask first. So it gets the wordmark in
+ * the left slot rather than a back chip — the header is here to say which game you are in
+ * and to keep the theme and mute buttons reachable, and the page's own row carries the
+ * leaving.
+ *
+ * A lobby is answered here too and then never asked: it is drawn without this header at
+ * all, its bar being a header rather than a second row under one. See `LobbyPageBase`,
+ * which took the mute button with it.
  */
 export interface HeaderContext {
     /** Where the back chip goes, or `null` to show the wordmark in its place. */
@@ -79,9 +83,9 @@ export function headerOverAccent(pathname: string): boolean {
  * header; a `labelKey` on `HeaderPill` is what a next one would want.
  */
 export function headerContextFor(pathname: string): HeaderContext {
-    // Nothing here for the solo setup screen, which is drawn without this header at all:
-    // `SettingsPageBase` is the page, and the way out and the theme switch sit on the
-    // band it draws itself. See `useChromeless`.
+    // Nothing here for the solo setup or lobby screens, which are drawn without this
+    // header at all: `SettingsPageBase` and `LobbyPageBase` are the page, and the way out
+    // and the chrome sit on the band each draws itself. See `useChromeless`.
 
     // Trading a guest account in for a real one. The only page off a game with a way
     // back, and it needs one: it is reached from the profile rather than from the tab

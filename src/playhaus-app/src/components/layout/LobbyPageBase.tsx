@@ -1,16 +1,18 @@
 import { useContextPillStyles } from "@/components/layout/ContextPill";
-import { useFullScreen } from "@/components/layout/FullScreenContext";
+import { useChromeless } from "@/components/layout/FullScreenContext";
+import MusicToggle from "@/components/layout/MusicToggle";
 import AppText from "@/components/text/AppText";
 import JoinCodeBand from "@/components/ui/JoinCodeBand";
 import { accentOf, type Game } from "@/constants/games";
-import { Spacing } from "@/constants/theme";
+import { ContentWidth, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState, type ReactNode } from "react";
-import { Animated, Easing, Platform, Pressable, ScrollView, View } from "react-native";
+import { Animated, Easing, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     /**
@@ -29,13 +31,22 @@ interface Props {
     onBack: () => void,
     backLabel: string,
     /**
-     * The code to hand out, on a slab of the game's colour.
+     * The room's code.
      *
-     * Present only on the screen that has something to hand out. A guest already used
-     * their code to get in, so their screen draws no band and puts the waiting where it
-     * would have been.
+     * Always, on every lobby: it is what the room is called, and it rides in the bar so
+     * that the band below can be scrolled away without taking the answer to "which room
+     * is this" with it.
      */
-    joinCode?: string,
+    code: string,
+    /**
+     * Whether this screen also hands the code *out* — the band, with the tiles, the QR
+     * and the share control.
+     *
+     * Only the screen that has something to offer draws it. A guest already used their
+     * code to get in, so theirs is a reference rather than an offer: the pill in the bar,
+     * and the waiting where the band would have been.
+     */
+    handsOutCode?: boolean,
     /** The scrolling middle: who is here, what the game is set to, anything that failed. */
     children: ReactNode,
     /** Pinned to the bottom edge. The one thing the screen is for. */
@@ -57,18 +68,29 @@ const PULSE_MS = 1000;
  * The waiting room, whichever game's it is: a bar, the join code on the game's own
  * colour, a scrolling middle and one pinned action.
  *
- * Three fixed things and one that moves. The bar stays because it holds the way out; the
- * band stays because the code is what a host reads out and must not be scrolled off; the
- * footer stays because it is what the screen is *for* and it must not be somewhere below
- * the fold when the last player arrives. Everything in between — the seats, the settings
- * — moves, because on a short phone with six seats drawn it has to.
+ * Two fixed things and one that moves. The bar stays because it holds the way out and the
+ * mute button; the footer stays because it is what the screen is *for* and it must not be
+ * somewhere below the fold when the last player arrives. Everything between them — the
+ * code, the seats, the settings — moves, because on a short phone with six seats drawn it
+ * has to.
  *
- * The sibling of `SettingsPageBase`, and the differences are deliberate. That one is
- * chromeless and carries the app's header on its own band; a lobby keeps the app header,
- * because it is a screen with music playing that you sit in front of for minutes and the
- * mute button has to stay reachable — see the note in `constants/header-context.ts`,
- * which already reserves the header's left slot for exactly this arrangement. So the bar
- * here is a second row under the app's, not a replacement for it.
+ * The band scrolls with the rest, which is a deliberate change of mind. Pinning it bought
+ * a code that could never be scrolled away, at the price of a third of the window spent on
+ * four characters for as long as the room is open — and a host reads the code out once, in
+ * the first ten seconds, while the seats underneath are what the screen is about for every
+ * minute after that. So it is the top of the page rather than a fixture on it.
+ *
+ * What stays pinned is the code itself, at chrome size, in the bar's pill. Scrolling the
+ * band away therefore costs the host the QR and the share button — the things you use once
+ * — and not the four characters, which somebody may ask for again at any point.
+ *
+ * The sibling of `SettingsPageBase`, and now the same arrangement: chromeless, with the
+ * app's header given up and what it carried earned back on the page's own bar. A screen
+ * with two headers is a screen where neither one is the header, and the lobby had exactly
+ * that — the app's row and this bar stacked, with the way out in the lower one. The piece
+ * of that header this bar has to keep is the mute button, because a lobby is a screen with
+ * music playing that you sit in front of for minutes; it goes on the right, the corner it
+ * was already in.
  *
  * A second game's lobby is this component plus its own `Game`, its own seats and its own
  * footer. Nothing in here knows what League of Letters is.
@@ -79,7 +101,8 @@ export default function LobbyPageBase({
     live,
     onBack,
     backLabel,
-    joinCode,
+    code,
+    handsOutCode = false,
     children,
     footer
 }: Props) {
@@ -87,13 +110,55 @@ export default function LobbyPageBase({
     const styles = useStyles();
 
     // Claimed here so a page built on this cannot forget. A page with an early return of
-    // its own claims it as well, so the app's bottom bar does not paint for the length of
-    // a load and then leave — see `useFullScreen`.
-    useFullScreen();
+    // its own claims it as well, so the app's chrome does not paint for the length of a
+    // load and then leave — see `useChromeless`.
+    useChromeless();
+
+    // The app's header used to hold the notch open. Nothing does now but this bar.
+    const insets = useSafeAreaInsets();
+
+    /**
+     * How far past its own edges the top of the page has to reach to make the window.
+     *
+     * The page is drawn in the app's one 600dp column, which on a phone is the window and
+     * on a desktop window is a strip down the middle of it. A coloured band that stopped
+     * where the column does would be a rectangle laid on the page rather than the top of
+     * it, so the fill reaches out and the padding puts the contents back — the code and
+     * the tiles stay lined up with the seats underneath. `SettingsPageBase` does exactly
+     * this with its own header, and the two have to agree.
+     *
+     * Web only, and the same trade both of those make: a child painting outside its parent
+     * is allowed on iOS and clipped on Android, and what keeps the overflow from becoming
+     * sideways scroll is the `overflow-x: hidden` a vertical `ScrollView` only has on web.
+     * `useWindowDimensions` answers 0 with no DOM to measure, so the pre-rendered export
+     * ships the unbled band and hydration widens it.
+     */
+    const { width: windowWidth } = useWindowDimensions();
+    const bleed = Platform.OS === 'web'
+        ? Math.max(0, Math.ceil((windowWidth - ContentWidth) / 2))
+        : 0;
+
+    /**
+     * The reach itself, worn by the bar and the band alike.
+     *
+     * Both, and not only the coloured one: the rule under the bar sits on top of a fill
+     * that runs past it, and a line stopping short of that would read as a mistake rather
+     * than as a boundary.
+     *
+     * The gutters are in here rather than in the stylesheet so there is one place that
+     * decides how far these two reach and where their contents sit once they have. A
+     * chromeless page is handed no gutters by the root layout — see `useChromeless` — so
+     * this is where the 24dp comes from now, rather than being a claw-back of one that was
+     * already there.
+     */
+    const reach = {
+        marginHorizontal: -bleed,
+        paddingHorizontal: Spacing.four + bleed
+    };
 
     return (
         <View style={styles.screen}>
-            <View style={styles.bar}>
+            <View style={[styles.bar, reach, { height: BAR_HEIGHT + insets.top, paddingTop: insets.top }]}>
                 {/*
                   * The way out lives here rather than in the app's header for one reason:
                   * that header's back chip is a `Link`, and here going back deletes a
@@ -115,19 +180,23 @@ export default function LobbyPageBase({
 
                 <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
 
-                <LivePill live={live} />
+                <RoomPill code={code} live={live} />
+
+                {/* The one piece of the app's header this page cannot do without. It reads
+                    the claimed scene rather than the route, so it appears with the lobby's
+                    music and not before — see `MusicToggle`. */}
+                <MusicToggle />
             </View>
 
-            {joinCode !== undefined && (
-                <JoinCodeBand game={game} code={joinCode} style={styles.band} />
-            )}
+            <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+                {/* Outside the padded column below it, so the fill still runs edge to
+                    edge: the band is the top of the page, it has only stopped being fixed
+                    to the top of the window. */}
+                {handsOutCode && (
+                    <JoinCodeBand game={game} code={code} style={reach} />
+                )}
 
-            <ScrollView
-                style={styles.scroll}
-                contentContainerStyle={styles.content}
-                showsVerticalScrollIndicator={false}
-            >
-                {children}
+                <View style={styles.content}>{children}</View>
             </ScrollView>
 
             {/*
@@ -139,41 +208,58 @@ export default function LobbyPageBase({
               * room rather than about a setting: the band above, and whatever starts it.
               */}
             <AccentProvider accent={accentOf(game)}>
-                <View style={styles.footer}>{footer}</View>
+                <View style={[styles.footer, { paddingBottom: insets.bottom + Spacing.four }]}>
+                    {footer}
+                </View>
             </AccentProvider>
         </View>
     )
 }
 
 /**
- * Whether this device is still listening, in the corner of the bar.
+ * Which room this is, and whether it is still listening, in one pill at the right of the
+ * bar.
  *
- * Worth a pill of its own on both screens, though for different reasons: a guest is
- * waiting for something that will happen on somebody else's phone, and a host is about to
- * start a game on a socket that has to be up. Either way it is the one thing this screen
- * can tell you about itself.
+ * The two share a pill because neither earns one alone. The code is four characters, and a
+ * frame around four characters next to a frame around one dot is two frames doing the work
+ * of one. And the state used to spend a whole word — "Live" — saying the least surprising
+ * thing a lobby you are sitting in could tell you; silent while it holds and loud only when
+ * it breaks is the right budget for one bit, which is what the dot alone now does.
+ *
+ * So the dot is the status and the label is the address. A screen reader gets them as two
+ * things in that order rather than as one sentence somebody had to compose out of two
+ * catalogue entries, which is also why neither of the strings here had to change.
  */
-function LivePill({ live }: { live: boolean }) {
+function RoomPill({ code, live }: { code: string, live: boolean }) {
     const t = useT();
+    const styles = useStyles();
     const pill = useContextPillStyles();
 
     return (
-        <View
-            style={pill.pill}
-            accessibilityRole='text'
-            accessibilityLabel={live ? t('lobby.live') : t('lobby.disconnected')}
-        >
-            <PulseDot live={live} />
+        <View style={[pill.pill, styles.roomPill]}>
+            <PulseDot
+                live={live}
+                label={live ? t('lobby.live') : t('lobby.disconnected')}
+            />
 
-            <AppText style={pill.label} numberOfLines={1}>
-                {live ? t('lobby.live') : t('lobby.offline')}
+            <AppText
+                style={[pill.label, styles.code]}
+                numberOfLines={1}
+                accessibilityLabel={t('lobby.codeSpoken', { characters: [...code].join(' ') })}
+            >
+                {code}
             </AppText>
         </View>
     )
 }
 
-/** The dot in the pill: breathing while connected, flat and red once not. */
-function PulseDot({ live }: { live: boolean }) {
+/**
+ * The dot in the pill: breathing while connected, flat and red once not.
+ *
+ * It carries the label as well, because it is now the whole of what the pill says about the
+ * connection — the word that used to sit beside it is gone.
+ */
+function PulseDot({ live, label }: { live: boolean, label: string }) {
     const theme = useTheme();
     const pill = useContextPillStyles();
 
@@ -211,6 +297,8 @@ function PulseDot({ live }: { live: boolean }) {
 
     return (
         <Animated.View
+            accessibilityRole='text'
+            accessibilityLabel={label}
             style={[
                 pill.dot,
                 { backgroundColor: live ? theme.colors.available : theme.colors.destructive },
@@ -221,38 +309,26 @@ function PulseDot({ live }: { live: boolean }) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the viewport this page claimed, which is what lets the bar, the band and the
-    // footer stay put while the middle scrolls between them.
+    // Fills the viewport this page claimed, which is what lets the bar and the footer stay
+    // put while the middle scrolls between them.
     screen: {
         flex: 1,
         width: '100%'
     },
 
     /**
-     * The bar and the band both reach back out into the root scroller's gutters.
-     *
-     * Those 24dp belong to the one scroller in `app/_layout.tsx` and no page can reach
-     * them, so these pull out with a negative margin and lay their own padding down
-     * inside — the same trick `GameIndexPage`'s hero band plays. The line under the bar
-     * and the colour under that then run edge to edge, as the design has them, while
-     * everything on them stays in the column.
-     *
-     * Only to the column's edges and not to the window's: a lobby is a phone-shaped
-     * screen you hold up to a table, not a landing hero.
+     * Everything but the sides and the notch, which are set at the call site — see `reach`
+     * and `insets`. The bar pulls out past the column's edges and lays its own padding
+     * down inside, so the rule under it runs the full width of the window while the chip,
+     * the title and the two controls stay in the column.
      */
     bar: {
-        height: BAR_HEIGHT,
         flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.two + 2,
-        marginHorizontal: -Spacing.four,
-        paddingHorizontal: Spacing.four,
         borderBottomWidth: theme.borderWidth,
         borderBottomColor: theme.colors.border
-    },
-    band: {
-        marginHorizontal: -Spacing.four
     },
 
     chip: {
@@ -267,7 +343,19 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
     },
-    // Takes the room between the chip and the pill, which is also what pushes the pill to
+    // The pill's own `flexShrink` is set for a game's name, which can be long. A code is
+    // four characters and every one of them matters, so this one holds its width and lets
+    // the title beside it give the ground instead.
+    roomPill: {
+        flexShrink: 0
+    },
+    // The pill's label, opened up — not to the 2 the guest's footer wears or the 6 the QR
+    // panel does, because this is chrome. Far enough apart to stop reading as a word.
+    code: {
+        letterSpacing: 1.6
+    },
+
+    // Takes the room between the chip and the controls, which is also what pushes them to
     // the far edge without either side having to know the other's width.
     title: {
         flex: 1,
@@ -281,15 +369,21 @@ const useStyles = createThemedStyles(theme => ({
     scroll: {
         width: '100%'
     },
+    // The page's gutters, which a chromeless page has to lay down for itself. Around the
+    // children only: the band above them runs edge to edge and carries its own.
     content: {
+        paddingHorizontal: Spacing.four,
         paddingTop: 18,
         gap: 18,
         // Clears the shadows the cards throw downwards, which paint outside their own box
         // and would otherwise be cropped by the scroller's bottom edge.
         paddingBottom: Spacing.three
     },
+    // Outside the scroller, so it is on the bottom edge whatever the page above it does.
+    // The bottom padding is set at the call site, from the device's own inset.
     footer: {
         flexShrink: 0,
+        paddingHorizontal: Spacing.four,
         paddingTop: Spacing.two
     }
 }))

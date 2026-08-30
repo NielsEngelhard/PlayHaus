@@ -1,11 +1,14 @@
+import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
-import ActionButton from "@/components/ui/ActionButton";
+import Card from "@/components/ui/Card";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
+import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
+import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
@@ -49,15 +52,18 @@ const EMPTY_TABLE: string[] = Array.from({ length: MIN_PLAYERS }, () => '');
  * off a shelf. The players are a *seating order*: the phone is passed round the table as
  * the quiz master role moves, so the order the names go in is the order the phone
  * travels, which is why the note above the seats says so out loud.
- *
- * No `useFullScreen` here, unlike the LoL settings screen. That one is a short form that
- * wants its footer on the bottom edge; this one has an entire paginated shelf in the
- * middle of it and belongs in the app's own scroller.
  */
 export default function OneDeviceQuizerSetup() {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+
+    // `SettingsPageBase` claims this too, but only once it is on screen. Claimed here as
+    // well — before the early return below — so the app header does not paint for the
+    // length of the check and then leave. Called before every early return, so the hook
+    // order never changes.
+    useChromeless();
+
     const router = useRouter();
 
     // Handed over by `QuizRow` on the index: tapping a quiz there is the same journey as
@@ -229,16 +235,23 @@ export default function OneDeviceQuizerSetup() {
 
     return (
         <View style={styles.container}>
-            <SimpleTextHero
+            <SettingsPageBase
+                game={PUBQUIZR}
                 title={t('pubquizr.oneDevice.title')}
-                description={t('pubquizr.oneDevice.description')}
-            />
-
-            <View style={styles.section}>
-                <Label label={t('pubquizr.oneDevice.players.label')} />
-
+                intro={t('pubquizr.oneDevice.description')}
+                back={ROUTES.quizzerIndex as RelativePathString}
+                error={error === null ? undefined : t(error)}
+                action={
+                    <StartGameButton
+                        text={starting ? t('common.busy') : t('pubquizr.oneDevice.start')}
+                        onPress={() => void start()}
+                        disabled={!canStart}
+                    />
+                }
+            >
                 {/* Above the seats rather than below them: it is the instruction for
-                    filling them in, and an instruction read afterwards is a correction. */}
+                    filling them in, and an instruction read afterwards is a correction.
+                    Its own section, and bare — it draws a card of its own. */}
                 <InlineNotification
                     icon="repeat"
                     color={theme.colors.mint}
@@ -246,33 +259,22 @@ export default function OneDeviceQuizerSetup() {
                     message={t('pubquizr.oneDevice.order.message')}
                 />
 
-                <PlayerSeats names={names} onChange={editNames} disabled={starting} />
+                <Card>
+                    <Label label={t('pubquizr.oneDevice.players.label')} />
 
-                {showProblem && (
-                    <AppText style={styles.problem}>{t(problem)}</AppText>
-                )}
-            </View>
+                    <PlayerSeats names={names} onChange={editNames} disabled={starting} />
 
-            <View style={styles.section}>
+                    {/* Kept beside the seats rather than sent to the footer: it is about
+                        the table, and the footer's line is about the quiz that failed to
+                        start. */}
+                    {showProblem && (
+                        <AppText style={styles.problem}>{t(problem)}</AppText>
+                    )}
+                </Card>
+
+                {/* Already a fenced panel of its own, so no card around it. */}
                 <QuizPicker quiz={selected.quiz} onSelect={selected.select} />
-            </View>
-
-            {error !== null && (
-                <InlineNotification
-                    icon="alert-triangle"
-                    color={theme.colors.blush}
-                    title={t('common.failed')}
-                    message={t(error)}
-                />
-            )}
-
-            <ActionButton
-                size="large"
-                icon="play"
-                text={starting ? t('common.busy') : t('pubquizr.oneDevice.start')}
-                onPress={() => void start()}
-                disabled={!canStart}
-            />
+            </SettingsPageBase>
 
             {/*
               * Sits over the form until the running quiz has been dealt with one way or
@@ -323,17 +325,16 @@ function padToMinimum(names: string[]): string[] {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // Only here to pass the window's height through to the base, which is the page.
     container: {
-        width: '100%',
-        gap: Spacing.four
-    },
-
-    section: {
-        width: '100%',
-        gap: Spacing.three
+        flex: 1,
+        width: '100%'
     },
 
     problem: {
+        // The card lays its children out with no gap of its own, so the line has to keep
+        // itself off the last seat.
+        marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         fontWeight: 700,

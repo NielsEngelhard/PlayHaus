@@ -220,7 +220,9 @@ const useStyles = createThemedStyles(theme => ({
     band: {
         gap: 11,
         // The sides match the page's own gutters, so the code lines up with everything
-        // under it even though the fill has reached out past them.
+        // under it even though the fill has reached out past them. A page that reaches
+        // further still — `LobbyPageBase` on a desktop window — widens this to match
+        // through `style`, which lands after this.
         paddingHorizontal: Spacing.four,
         paddingTop: Spacing.three,
         paddingBottom: 18,
