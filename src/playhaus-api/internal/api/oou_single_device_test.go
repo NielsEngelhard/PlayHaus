@@ -310,16 +310,26 @@ func TestSingleDeviceOneOfUsGameSeatsAFullTable(t *testing.T) {
 		t.Fatalf("seated %d of %d players", len(game.Players), oneofus.MaxPlayers)
 	}
 
-	imposters := 0
+	imposters, nitwits := 0, 0
 	for _, player := range game.Players {
-		if player.Role == int(oneofus.Imposter) {
+		switch oneofus.Role(player.Role) {
+		case oneofus.Imposter:
 			imposters++
+		case oneofus.Nitwit:
+			nitwits++
 		}
 	}
 
-	// Nine is three threes, which is the whole reason the app stops there.
-	if imposters != 3 {
-		t.Errorf("a full table dealt %d imposters, want 3", imposters)
+	// Nine is three threes, which is the whole reason the app stops there. One of the
+	// three is the nitwit -- dealt out of the imposters' share rather than on top of it,
+	// so the side is still three deep.
+	if imposters+nitwits != 3 {
+		t.Errorf("a full table dealt %d in the dark (%d imposters, %d nitwits), want 3",
+			imposters+nitwits, imposters, nitwits)
+	}
+	if nitwits != oneofus.NitwitsFor(oneofus.MaxPlayers) {
+		t.Errorf("a full table dealt %d nitwits, want %d",
+			nitwits, oneofus.NitwitsFor(oneofus.MaxPlayers))
 	}
 }
 

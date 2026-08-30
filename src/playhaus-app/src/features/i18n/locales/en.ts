@@ -978,6 +978,8 @@ export const en = {
                 secretLabel: 'Tap to see your word',
                 secretHint: 'Hold the phone so nobody else can read it.',
                 warning: 'Only you see this',
+                /** What the one player who was dealt nothing reads where a word would be. */
+                noWord: 'No word at all',
 
                 /**
                  * The side you are on, uncovered with the word.
@@ -996,6 +998,10 @@ export const en = {
                     imposter: {
                         name: 'Imposter',
                         explanation: 'Your word is not the one most of the table got, and you do not know theirs. Listen to what the others say, guess what they are all describing, and bluff your way through your own turn. You win by surviving until the imposters are no longer outnumbered.'
+                    },
+                    nitwit: {
+                        name: 'The nitwit',
+                        explanation: 'You got no word at all — not even the imposters’ one. You are on their side and they do not know who you are. Everything you say has to be built out of what you have just heard other people say, so listen hard and give away nothing. You win with the imposters, by surviving until they are no longer outnumbered.'
                     }
                 },
                 /** After the word is open: the way on, phrased as putting it away. */
@@ -1040,6 +1046,7 @@ export const en = {
                 title: '{{name}} is out',
                 civilian: '{{name}} was one of the civilians.',
                 imposter: '{{name}} was an imposter.',
+                nitwit: '{{name}} was the nitwit — no word at all.',
                 remaining: '{{players}} still in the game.',
                 next: 'Start round {{round}}'
             },
@@ -1053,6 +1060,7 @@ export const en = {
                 rolesTitle: 'Everybody',
                 civilianTag: 'Civilian',
                 imposterTag: 'Imposter',
+                nitwitTag: 'Nitwit',
                 votedOut: 'Voted out',
                 civilianWord: 'The word was',
                 imposterWord: 'The imposters had',

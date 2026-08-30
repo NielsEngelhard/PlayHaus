@@ -67,7 +67,7 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 		}
 	}
 
-	assignImposters(players)
+	assignRoles(players)
 
 	lines, err := GetContentLines(in.Locale, in.GameMode, 1)
 	if err != nil {
@@ -173,7 +173,7 @@ func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 
 		activePlayers++
 
-		if player.Role == Civilian {
+		if player.Role.WithCivilians() {
 			civilians++
 		}
 	}
@@ -185,7 +185,18 @@ func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 	return gameEnded, noMoreImposters
 }
 
-func assignImposters(players []OneOfUsLocalPlayer) {
+// assignRoles deals the table: everybody arrives a civilian, some of them leave here
+// lying, and on a big enough table one of the liars leaves here with nothing at all.
+//
+// The nitwit is promoted out of the imposters rather than drawn separately, which is
+// what keeps the sides the size ImpostersFor promised. Drawing them from the civilians
+// instead would quietly add a fourth liar to a nine-player game and move the win
+// condition with it.
+//
+// The permutation is already a fair shuffle, so taking the nitwit off the front of the
+// same draw needs no second round of randomness -- indices[0] is as uniformly chosen as
+// any other seat in it.
+func assignRoles(players []OneOfUsLocalPlayer) {
 	amountOfImposters := ImpostersFor(len(players))
 
 	if amountOfImposters <= 0 || amountOfImposters > len(players) {
@@ -193,8 +204,16 @@ func assignImposters(players []OneOfUsLocalPlayer) {
 	}
 
 	indices := rand.Perm(len(players))
+	dealt := indices[:amountOfImposters]
 
-	for _, index := range indices[:amountOfImposters] {
+	for _, index := range dealt {
 		players[index].Role = Imposter
+	}
+
+	// Clamped against the draw rather than trusted: NitwitsFor only says yes once there
+	// are three imposters to pick from, but a future change to either number should
+	// deal a strange table rather than panic on one.
+	for _, index := range dealt[:min(NitwitsFor(len(players)), len(dealt))] {
+		players[index].Role = Nitwit
 	}
 }

@@ -3,7 +3,7 @@ import ActionButton from "@/components/ui/ActionButton";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { OneOfUsRole } from "@/features/one-of-us/models";
+import { OneOfUsRole, withCivilians } from "@/features/one-of-us/models";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -30,6 +30,12 @@ interface Props {
  * The role is stated plainly rather than teased. A reveal that made you wait would be
  * playing a different game than the table is: they have just spent a round on this
  * exact question and the answer is the payoff, not a cliffhanger.
+ *
+ * Three verdicts, not two. The nitwit plays for the imposters, so calling them a
+ * civilian here would be telling the table the round went the other way than it did —
+ * and it gets its own line and its own colour rather than being folded into "imposter",
+ * because catching somebody who never had the word is a different result to argue the
+ * next round from than catching somebody who did.
  */
 export default function EliminationScreen({
     person,
@@ -41,7 +47,8 @@ export default function EliminationScreen({
     const t = useT();
     const styles = useStyles();
 
-    const imposter = role === OneOfUsRole.Imposter;
+    const caught = !withCivilians(role);
+    const nitwit = role === OneOfUsRole.Nitwit;
 
     return (
         <View style={styles.screen}>
@@ -52,20 +59,28 @@ export default function EliminationScreen({
                     {t('oneOfUs.play.elimination.title', { name: person.name })}
                 </AppText>
 
-                {/* Orange for an imposter caught, mint for a civilian lost. The colour
-                    is the headline: it says which way the round went before the
-                    sentence under it has been read. */}
-                <View style={[styles.verdict, imposter ? styles.caught : styles.lost]}>
+                {/* Orange for an imposter caught, lemon for the nitwit, mint for a
+                    civilian lost — the same three colours the reveal dressed the roles
+                    in. The colour is the headline: it says which way the round went
+                    before the sentence under it has been read. */}
+                <View
+                    style={[
+                        styles.verdict,
+                        nitwit ? styles.nitwit : caught ? styles.caught : styles.lost
+                    ]}
+                >
                     <Feather
-                        name={imposter ? 'zap' : 'user'}
+                        name={nitwit ? 'help-circle' : caught ? 'zap' : 'user'}
                         size={16}
                         color={Brand.ink}
                     />
 
                     <AppText style={styles.verdictText}>
-                        {imposter
-                            ? t('oneOfUs.play.elimination.imposter', { name: person.name })
-                            : t('oneOfUs.play.elimination.civilian', { name: person.name })}
+                        {nitwit
+                            ? t('oneOfUs.play.elimination.nitwit', { name: person.name })
+                            : caught
+                                ? t('oneOfUs.play.elimination.imposter', { name: person.name })
+                                : t('oneOfUs.play.elimination.civilian', { name: person.name })}
                     </AppText>
                 </View>
 
@@ -130,6 +145,10 @@ const useStyles = createThemedStyles(theme => ({
 
     lost: {
         backgroundColor: Brand.mint
+    },
+
+    nitwit: {
+        backgroundColor: Brand.lemon
     },
 
     // Ink on both fills, which are the same colour in both schemes.

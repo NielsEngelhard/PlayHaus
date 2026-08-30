@@ -116,25 +116,84 @@ func TestImpostersWinAtParity(t *testing.T) {
 	}
 }
 
+// dealt counts a table by role.
+func dealt(players []OneOfUsLocalPlayer) (civilians, imposters, nitwits int) {
+	for _, player := range players {
+		switch player.Role {
+		case Civilian:
+			civilians++
+		case Imposter:
+			imposters++
+		case Nitwit:
+			nitwits++
+		}
+	}
+
+	return civilians, imposters, nitwits
+}
+
 // A dealt table always has somebody lying and somebody to lie to.
-func TestAssignImpostersDealsBothSides(t *testing.T) {
+//
+// The count that matters is imposters *and* nitwits against civilians: the nitwit is
+// dealt out of the imposters' share, so a table that grew one has exactly as many people
+// in the dark as it did before the role existed.
+func TestAssignRolesDealsBothSides(t *testing.T) {
 	for size := MinPlayers; size <= MaxPlayers; size++ {
 		players := table(size, 0)
-		assignImposters(players)
+		assignRoles(players)
 
-		imposters := 0
-		for _, player := range players {
-			if player.Role == Imposter {
-				imposters++
+		civilians, imposters, nitwits := dealt(players)
+		lying := imposters + nitwits
+
+		if want := ImpostersFor(size); lying != want {
+			t.Errorf("%d players: dealt %d in the dark, want %d", size, lying, want)
+		}
+
+		if lying == 0 || civilians == 0 {
+			t.Errorf("%d players: dealt a one-sided table (%d lying, %d civilians)",
+				size, lying, civilians)
+		}
+	}
+}
+
+// The nitwit shows up exactly where NitwitsFor says it should, and never twice.
+func TestAssignRolesDealsAtMostOneNitwit(t *testing.T) {
+	for size := MinPlayers; size <= MaxPlayers; size++ {
+		// Dealt from a shuffle, so one deal proves nothing. Repeating it is what makes
+		// "never two" a claim about the rule rather than about one lucky permutation.
+		for range 200 {
+			players := table(size, 0)
+			assignRoles(players)
+
+			_, imposters, nitwits := dealt(players)
+
+			if want := NitwitsFor(size); nitwits != want {
+				t.Fatalf("%d players: dealt %d nitwits, want %d", size, nitwits, want)
+			}
+
+			// The role is only worth having while somebody else still knows the word.
+			if nitwits > 0 && imposters == 0 {
+				t.Fatalf("%d players: the nitwit is the whole imposter side", size)
 			}
 		}
+	}
+}
 
-		if want := ImpostersFor(size); imposters != want {
-			t.Errorf("%d players: dealt %d imposters, want %d", size, imposters, want)
-		}
+// A nitwit is an imposter as far as winning goes. Nothing in determineGameEnded spells
+// the roles out any more, and this is the test that says it must not start: a nitwit
+// counted as a civilian would end the game a vote early and hand it to the wrong side.
+func TestNitwitCountsAgainstTheCivilians(t *testing.T) {
+	players := table(4, 1)
+	players = append(players, OneOfUsLocalPlayer{PlayerID: uuid.New(), Role: Nitwit})
 
-		if imposters == 0 || imposters == size {
-			t.Errorf("%d players: dealt a one-sided table (%d imposters)", size, imposters)
-		}
+	// Four civilians, one imposter, one nitwit. Taking the imposter leaves 4 against 1,
+	// which is neither parity nor a clean sweep.
+	if ended, _ := voteOut(t, players, firstAlive(t, players, Imposter)); ended {
+		t.Fatal("game ended with the nitwit still in it")
+	}
+
+	ended, civiliansWon := voteOut(t, players, firstAlive(t, players, Nitwit))
+	if !ended || !civiliansWon {
+		t.Errorf("nitwit out last: ended=%v civiliansWon=%v, want true/true", ended, civiliansWon)
 	}
 }

@@ -5,7 +5,7 @@ import SeatAvatar from "@/components/ui/SeatAvatar";
 import TextButton from "@/components/ui/TextButton";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { OneOfUsRole } from "@/features/one-of-us/models";
+import { OneOfUsRole, withCivilians } from "@/features/one-of-us/models";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { ScrollView, View } from "react-native";
@@ -38,6 +38,10 @@ interface Props {
  *
  * Both words are shown together for the same reason. Half the fun afterwards is
  * realising how close the two were, and neither half means much on its own.
+ *
+ * The nitwit is listed on the imposters' side of the room but tagged and coloured as
+ * itself: "who was lying" and "who was given nothing at all" are two different answers,
+ * and the second one is the one the table will want to hear about afterwards.
  */
 export default function GameOverScreen({
     civiliansWon,
@@ -96,18 +100,23 @@ export default function GameOverScreen({
 
                 <View style={styles.list}>
                     {players.map(({ seat, role, votedOut }) => {
-                        const imposter = role === OneOfUsRole.Imposter;
+                        const lied = !withCivilians(role);
+                        const nitwit = role === OneOfUsRole.Nitwit;
 
                         return (
                             <View
                                 key={seat.seat}
-                                style={[styles.row, imposter && styles.imposterRow]}
+                                style={[
+                                    styles.row,
+                                    lied && styles.imposterRow,
+                                    nitwit && styles.nitwitRow
+                                ]}
                             >
                                 <SeatAvatar seat={seat} size={36} />
 
                                 <View style={styles.who}>
                                     <AppText
-                                        style={[styles.name, imposter && styles.onPrimary]}
+                                        style={[styles.name, lied && styles.onPrimary]}
                                         numberOfLines={1}
                                     >
                                         {seat.name}
@@ -115,17 +124,19 @@ export default function GameOverScreen({
 
                                     {votedOut && (
                                         <AppText
-                                            style={[styles.fate, imposter && styles.onPrimaryMuted]}
+                                            style={[styles.fate, lied && styles.onPrimaryMuted]}
                                         >
                                             {t('oneOfUs.play.over.votedOut')}
                                         </AppText>
                                     )}
                                 </View>
 
-                                <AppText style={[styles.tag, imposter && styles.onPrimary]}>
-                                    {imposter
-                                        ? t('oneOfUs.play.over.imposterTag')
-                                        : t('oneOfUs.play.over.civilianTag')}
+                                <AppText style={[styles.tag, lied && styles.onPrimary]}>
+                                    {nitwit
+                                        ? t('oneOfUs.play.over.nitwitTag')
+                                        : lied
+                                            ? t('oneOfUs.play.over.imposterTag')
+                                            : t('oneOfUs.play.over.civilianTag')}
                                 </AppText>
                             </View>
                         )
@@ -248,6 +259,12 @@ const useStyles = createThemedStyles(theme => ({
     imposterRow: {
         borderColor: Brand.ink,
         backgroundColor: Brand.primary
+    },
+
+    // Lemon rather than orange, and applied over `imposterRow` so the row keeps the
+    // inked border and the inked text that come with being on that side.
+    nitwitRow: {
+        backgroundColor: Brand.lemon
     },
 
     who: {

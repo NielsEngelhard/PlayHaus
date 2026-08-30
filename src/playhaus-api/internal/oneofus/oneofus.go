@@ -12,7 +12,32 @@ type Role int
 const (
 	Civilian Role = 0
 	Imposter Role = 1
+	// Nitwit is an imposter who was not even given the imposter's word. They are told
+	// they are the nitwit and nothing else, and have to sit through a round of people
+	// describing something they have never seen. Dealt only at the table sizes that
+	// carry enough imposters to spare one -- see NitwitsFor.
+	Nitwit Role = 2
 )
+
+// WithCivilians says which side a role counts for when a win condition is worked out.
+//
+// A predicate rather than `role == Civilian` at each call site, because there is now
+// more than one way to not be a civilian and the next role added would silently land on
+// the wrong side of every comparison that spelled it out by hand. The nitwit is an
+// imposter for this purpose: they are dealt in place of one, so the balance a table is
+// dealt is the balance it has to be won from.
+func (r Role) WithCivilians() bool {
+	return r == Civilian
+}
+
+// KnowsAWord says whether this role was given anything to read at all.
+//
+// Civilians get the real line and imposters get the near-miss. The nitwit gets neither,
+// which is the whole of the role: everybody else is bluffing around a word, and they are
+// bluffing around a blank.
+func (r Role) KnowsAWord() bool {
+	return r != Nitwit
+}
 
 // OneOfUsSingleDeviceGame is one table playing off one phone.
 //

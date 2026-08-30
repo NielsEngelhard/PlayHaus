@@ -38,15 +38,28 @@ export function alivePlayers(game: OneOfUsSingleDeviceGame): OneOfUsLocalPlayer[
 }
 
 /**
- * The word this player is playing on.
+ * The word this player is playing on, or null for the one who was given none.
+ *
+ * The nitwit is the null: they are dealt neither half of the pair, which is the whole of
+ * the role. Returned as null rather than as an empty string or a stand-in phrase so the
+ * reveal screen has to decide what to show — a blank word panel would read as a bug to
+ * whoever drew it, and it is the one screen where "there is nothing here" has to be
+ * unmistakably deliberate.
  *
  * One of the two places allowed to read a role before the game is over, and both of them
  * are the same moment: this, and the role card beside it on the reveal screen. Everything
  * else draws a player without asking what they were dealt, which is what keeps a stray
  * render from spoiling a game the phone is holding both halves of.
  */
-export function wordFor(game: OneOfUsSingleDeviceGame, player: OneOfUsLocalPlayer): string {
-    return player.role === OneOfUsRole.Imposter ? game.imposterQuestion : game.actualQuestion;
+export function wordFor(game: OneOfUsSingleDeviceGame, player: OneOfUsLocalPlayer): string | null {
+    switch (player.role) {
+        case OneOfUsRole.Nitwit:
+            return null;
+        case OneOfUsRole.Imposter:
+            return game.imposterQuestion;
+        default:
+            return game.actualQuestion;
+    }
 }
 
 /**

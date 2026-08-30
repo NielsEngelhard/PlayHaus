@@ -729,6 +729,7 @@ export const nl: Catalog = {
                 secretLabel: 'Tik om je woord te zien',
                 secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
                 warning: 'Alleen jij ziet dit',
+                noWord: 'Helemaal geen woord',
 
                 role: {
                     label: 'Jouw rol',
@@ -739,6 +740,10 @@ export const nl: Catalog = {
                     imposter: {
                         name: 'Imposter',
                         explanation: 'Jouw woord is niet het woord dat de rest van de tafel heeft, en dat van hen ken je niet. Luister goed naar wat de anderen zeggen, raad waar ze het over hebben en bluf je door je eigen beurt heen. Je wint als de imposters niet langer in de minderheid zijn.'
+                    },
+                    nitwit: {
+                        name: 'De onnozele',
+                        explanation: 'Jij hebt helemaal geen woord gekregen — zelfs niet dat van de imposters. Je speelt wel met ze mee, maar zij weten niet wie je bent. Alles wat jij zegt moet je bij elkaar rapen uit wat je de anderen hoort zeggen, dus luister scherp en geef niets weg. Je wint samen met de imposters, als zij niet langer in de minderheid zijn.'
                     }
                 },
                 hide: 'Verbergen',
@@ -774,6 +779,7 @@ export const nl: Catalog = {
                 title: '{{name}} ligt eruit',
                 civilian: '{{name}} was een burger.',
                 imposter: '{{name}} was een imposter.',
+                nitwit: '{{name}} was de onnozele — helemaal geen woord.',
                 remaining: 'Nog {{players}} in het spel.',
                 next: 'Start ronde {{round}}'
             },
@@ -786,6 +792,7 @@ export const nl: Catalog = {
                 rolesTitle: 'Iedereen',
                 civilianTag: 'Burger',
                 imposterTag: 'Imposter',
+                nitwitTag: 'Onnozele',
                 votedOut: 'Weggestemd',
                 civilianWord: 'Het woord was',
                 imposterWord: 'De imposters hadden',

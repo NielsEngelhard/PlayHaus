@@ -73,6 +73,82 @@ func TestEveryLegalTableHasBothSides(t *testing.T) {
 	}
 }
 
+// The nitwit only appears once a table is dealing enough imposters to give one up.
+func TestNitwitsForArrivesWithTheThirdImposter(t *testing.T) {
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		want := 0
+		if ImpostersFor(players) >= MinImpostersForNitwit {
+			want = MaxNitwits
+		}
+
+		if got := NitwitsFor(players); got != want {
+			t.Errorf("NitwitsFor(%d) = %d, want %d (%d imposters)",
+				players, got, want, ImpostersFor(players))
+		}
+	}
+}
+
+// Pins where the line actually falls today, which is the thing a player notices: only a
+// full table of nine gets one. Moving it should be an edit to this table.
+func TestNitwitsForIsTheNinePlayerRole(t *testing.T) {
+	for _, tc := range []struct {
+		players, want int
+	}{
+		{3, 0},
+		{5, 0},
+		{6, 0}, // two imposters, and giving one up would leave a single liar who knows
+		{8, 0},
+		{9, 1},
+		{MaxPlayers, 1},
+	} {
+		if got := NitwitsFor(tc.players); got != tc.want {
+			t.Errorf("NitwitsFor(%d) = %d, want %d", tc.players, got, tc.want)
+		}
+	}
+}
+
+// Whenever a nitwit is dealt there are still imposters left who were given the word.
+// A side made up entirely of people with nothing to go on is not a side.
+func TestANitwitNeverEatsTheWholeImposterSide(t *testing.T) {
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		if knowing := ImpostersFor(players) - NitwitsFor(players); knowing < 1 {
+			t.Errorf("a table of %d leaves %d imposters holding the word", players, knowing)
+		}
+	}
+}
+
+// The role numbers are column contents and the JSON the app switches on, so they are
+// pinned: renaming a constant is free, renumbering one is a migration plus an app that
+// reads every stored game wrong.
+func TestRoleValuesAreStable(t *testing.T) {
+	if Civilian != 0 || Imposter != 1 || Nitwit != 2 {
+		t.Errorf("role values changed: %d, %d, %d", Civilian, Imposter, Nitwit)
+	}
+}
+
+func TestWhichSideARoleIsOn(t *testing.T) {
+	if !Civilian.WithCivilians() {
+		t.Error("a civilian is not with the civilians")
+	}
+	for _, role := range []Role{Imposter, Nitwit} {
+		if role.WithCivilians() {
+			t.Errorf("role %d counts for the civilians", role)
+		}
+	}
+}
+
+// The one thing that separates the nitwit from an ordinary imposter.
+func TestOnlyTheNitwitGetsNoWord(t *testing.T) {
+	for _, role := range []Role{Civilian, Imposter} {
+		if !role.KnowsAWord() {
+			t.Errorf("role %d was given nothing to read", role)
+		}
+	}
+	if Nitwit.KnowsAWord() {
+		t.Error("the nitwit was given a word")
+	}
+}
+
 func TestModeFor(t *testing.T) {
 	if got := ModeFor(true); got != Word {
 		t.Errorf("ModeFor(true) = %q, want %q", got, Word)

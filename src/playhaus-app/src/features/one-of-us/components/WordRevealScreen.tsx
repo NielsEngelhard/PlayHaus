@@ -15,8 +15,8 @@ interface Props {
     person: Seat
     /** Who is handing the phone over, or null for the very first player. */
     from: Seat | null
-    /** The word this player is playing on — theirs alone. */
-    word: string
+    /** The word this player is playing on — theirs alone, or null for the nitwit. */
+    word: string | null
     /** Which side they are on, uncovered with the word and hidden again with it. */
     role: OneOfUsRole
     number: number
@@ -39,13 +39,21 @@ interface Props {
  * Uncovering it uncovers the role with it, on a card of its own underneath. The two are
  * one secret: a word means nothing until you know whether yours is the odd one out, and
  * an imposter who has to work that out during round one has already lost the round
- * working it out. Covering the word again takes the role card back down with it — both
- * halves are equally worth hiding from whoever is leaning over.
+ * working it out. So the card rides along as `extraContent`, which `AnswerReveal` only
+ * draws while it is open — covering the word takes the role back down with it, and this
+ * screen keeps no second copy of that state to fall out of step with.
+ *
+ * The nitwit has no word, and still goes through the identical two taps to be told so.
+ * The panel says it in words rather than sitting empty — a blank slab is what a broken
+ * screen looks like, and this is the one player who cannot check theirs against anybody
+ * else's. It is the same panel in the same place either way, which also means nothing
+ * about the shape of this screen tells the room who drew the short straw.
  *
  * The way on only appears once the word has been seen. A player who passes the phone on
  * without reading their word has no way back to it, and the game gives them nothing to
- * bluff with. It stays put after the word is covered again: `seen` is what earns it, and
- * putting the secret away is not a reason to take the exit back.
+ * bluff with. `seen` is the one thing this screen does track for itself, and it is a
+ * latch rather than a mirror of the panel: putting the secret away is not a reason to
+ * take the exit back.
  */
 export default function WordRevealScreen({
     person,
@@ -60,10 +68,8 @@ export default function WordRevealScreen({
     const styles = useStyles();
 
     const [claimed, setClaimed] = useState(false);
-    /** Ever uncovered — the way on. */
+    /** Ever uncovered — the way on. Not whether it is showing right now; see below. */
     const [seen, setSeen] = useState(false);
-    /** Uncovered right now — the role card. */
-    const [open, setOpen] = useState(false);
 
     if (!claimed) {
         return (
@@ -93,12 +99,8 @@ export default function WordRevealScreen({
 
             <AnswerReveal
                 key={person.seat}
-                answer={word}
-                onReveal={() => {
-                    setSeen(true);
-                    setOpen(true);
-                }}
-                onHide={() => setOpen(false)}
+                answer={word ?? t('oneOfUs.play.reveal.noWord')}
+                onReveal={() => setSeen(true)}
                 extraContent={<RoleCard role={role} style={styles.role} />}
             />
 
