@@ -4,8 +4,8 @@ import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
 /**
- * Round 4, as the screen needs it: thirty seconds to describe your own words without
- * saying them.
+ * Round 4, as the screen needs it: thirty seconds to describe your own words to the
+ * player on your left.
  *
  * One turn per player, several words inside it. That is the thing about this round the
  * rest of the app has to bend around — `currentPosition` counts turns here, not words, so
@@ -16,9 +16,15 @@ import { seatAt, seatsOf, type Seat } from "./seats";
  * who may see them. So in this round the describer is the quizmaster, which is why the
  * hand-off screen still names the right person without knowing any of this.
  *
- * A word guessed pays twice — a point to whoever described it and a point to whoever
- * shouted it. That is the whole design of the round: one-sided, it is a room politely
- * waiting for somebody else to score.
+ * The turn is played in two halves, and they are what `guesser` and `bonus` are for.
+ * Inside the thirty seconds the describer is playing to one person — the seat on their
+ * left, the same seat every other round is read to — and nobody else's answer counts.
+ * When time is up, whatever nobody got goes round the rest of the table for one guess
+ * each, in `bonus` order, and a word is gone the moment somebody takes it.
+ *
+ * A word that lands pays twice either way: a point to whoever described it and a point to
+ * whoever named it. Late counts as much as in time — somebody only knew the word because
+ * of how it was described.
  */
 
 /** Kept in step with `RoundDescribe` in Go. */
@@ -34,7 +40,7 @@ export const ROUND_DESCRIBE = 4;
  */
 export const DESCRIBE_SECONDS = DEV_MODE ? 3 : 30;
 
-/** What one guessed word pays the describer, and what it pays the guesser. */
+/** What one word that lands pays the describer, and what it pays whoever named it. */
 export const DESCRIBE_WORD_POINTS = 1;
 export const DESCRIBE_GUESS_POINTS = 1;
 
@@ -46,13 +52,28 @@ export interface DescribeWord {
     word: string
 }
 
+/**
+ * What became of each word: the seat credited with it, or null for one nobody got.
+ *
+ * One seat rather than a list, because there is nobody to draw with any more. Inside the
+ * clock only `guesser` is playing, and after it a leftover is gone as soon as somebody
+ * names it — so "who got this word" has exactly one answer, and a shape that could hold
+ * two would be a shape the server refuses.
+ */
+export type DescribeAwards = Record<string, number | null>;
+
 export interface DescribeTurn {
     /** Whoever is describing, and holding the phone. */
     describer: Seat
     /** Their words, in the order they were dealt. */
     words: DescribeWord[]
-    /** Everybody who could be credited with one: the table, minus the describer. */
-    guessers: Seat[]
+    /** The one person they are describing to: the seat on their left. */
+    guesser: Seat
+    /**
+     * Everybody else, in the order their bonus guess comes round — from the guesser's
+     * left onwards. Empty at a table of two, which round 4 never sees.
+     */
+    bonus: Seat[]
     /** 1-based, for "turn 2 of 5". */
     number: number
     total: number
@@ -67,10 +88,14 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     if (session.status !== 'in_progress') return null;
     if (session.currentRound !== ROUND_DESCRIBE) return null;
     if (session.describerSeat === null) return null;
+    if (session.describeGuesserSeat === null) return null;
 
     const seats = seatsOf(session);
     const describer = seatAt(seats, session.describerSeat);
     if (describer === null) return null;
+
+    const guesser = seatAt(seats, session.describeGuesserSeat);
+    if (guesser === null) return null;
 
     const questions = quiz.rounds.flatMap(round => round.questions);
 
@@ -89,27 +114,41 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     }
     if (words.length === 0) return null;
 
+    // The server's order, kept: it is the order the bonus guesses are offered in, and
+    // re-deriving it here would be the app and the server taking turns to be right.
+    const bonus: Seat[] = [];
+    for (const seat of session.describeBonusSeats) {
+        const player = seatAt(seats, seat);
+        if (player !== null) bonus.push(player);
+    }
+
     return {
         describer,
         words,
-        guessers: seats.filter(seat => seat.seat !== describer.seat),
+        guesser,
+        bonus,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         worth: DESCRIBE_WORD_POINTS + DESCRIBE_GUESS_POINTS
     };
 }
 
+/** The words still going spare: the ones the guesser did not get inside the clock. */
+export function unclaimedWords(turn: DescribeTurn, awards: DescribeAwards): DescribeWord[] {
+    return turn.words.filter(word => (awards[word.dealt.id] ?? null) === null);
+}
+
 /**
  * How many points a set of awards is about to hand out, per seat.
  *
- * A word maps to every seat that gets it, not just one: a draw is two or more people
- * shouting it at the same instant, and every one of them scores in full, the same way a
- * tied round 3 guess does. The describer still earns their word point once per word no
- * matter how many people it is split between.
+ * One name per word, so the arithmetic is the same for both halves of the turn: whoever
+ * is credited takes the guess points, and the describer takes their word point on top for
+ * having got it across. A word stolen after the timer pays exactly what one guessed
+ * inside it does.
  */
 export function scoreOfAwards(
     turn: DescribeTurn,
-    awards: Record<string, number[]>
+    awards: DescribeAwards
 ): Map<number, number> {
     const scores = new Map<number, number>();
 
@@ -118,12 +157,10 @@ export function scoreOfAwards(
     };
 
     for (const word of turn.words) {
-        const guessers = awards[word.dealt.id];
-        if (guessers === undefined || guessers.length === 0) continue;
+        const credited = awards[word.dealt.id] ?? null;
+        if (credited === null) continue;
 
-        for (const guesser of guessers) {
-            add(guesser, DESCRIBE_GUESS_POINTS);
-        }
+        add(credited, DESCRIBE_GUESS_POINTS);
         add(turn.describer.seat, DESCRIBE_WORD_POINTS);
     }
 

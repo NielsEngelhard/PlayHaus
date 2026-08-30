@@ -42,6 +42,14 @@ export function quizErrorMessage(error: unknown): TranslationKey {
                     return 'pubquizr.errors.quizmasterCannotGuess';
                 case 'describer_cannot_guess':
                     return 'pubquizr.errors.describerCannotGuess';
+                // Round 4's two halves, refused. The board only ever offers the taps
+                // the round allows, so reaching either of these means a screen and a
+                // server disagreeing about who was playing rather than a mis-tap --
+                // which is worth its own line, not a "try again".
+                case 'one_guess_each':
+                    return 'pubquizr.errors.oneGuessEach';
+                case 'two_on_one_word':
+                    return 'pubquizr.errors.twoOnOneWord';
             }
         }
 

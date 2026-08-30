@@ -177,6 +177,7 @@ export default function PlayingSingleDeviceGame() {
                 person={seatOf(player, current.index)}
                 from={previous === null ? null : seatOf(previous, current.index - 1)}
                 word={wordFor(game, player)}
+                role={player.role}
                 number={current.index + 1}
                 total={game.players.length}
                 onDone={() => setPhase(current.index + 1 < game.players.length

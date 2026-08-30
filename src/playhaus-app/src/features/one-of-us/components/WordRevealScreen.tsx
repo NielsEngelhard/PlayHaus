@@ -4,6 +4,8 @@ import AnswerReveal from "@/components/ui/AnswerReveal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import RoleCard from "@/features/one-of-us/components/RoleCard";
+import type { OneOfUsRole } from "@/features/one-of-us/models";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
@@ -15,6 +17,8 @@ interface Props {
     from: Seat | null
     /** The word this player is playing on — theirs alone. */
     word: string
+    /** Which side they are on, uncovered with the word and hidden again with it. */
+    role: OneOfUsRole
     number: number
     total: number
     onDone: () => void
@@ -32,16 +36,34 @@ interface Props {
  * "claimed the phone" and "is holding it at an angle nobody else can read" are not the
  * same thing. See `SecretCard`.
  *
+ * Uncovering it uncovers the role with it, on a card of its own underneath. The two are
+ * one secret: a word means nothing until you know whether yours is the odd one out, and
+ * an imposter who has to work that out during round one has already lost the round
+ * working it out. Covering the word again takes the role card back down with it — both
+ * halves are equally worth hiding from whoever is leaning over.
+ *
  * The way on only appears once the word has been seen. A player who passes the phone on
  * without reading their word has no way back to it, and the game gives them nothing to
- * bluff with.
+ * bluff with. It stays put after the word is covered again: `seen` is what earns it, and
+ * putting the secret away is not a reason to take the exit back.
  */
-export default function WordRevealScreen({ person, from, word, number, total, onDone }: Props) {
+export default function WordRevealScreen({
+    person,
+    from,
+    word,
+    role,
+    number,
+    total,
+    onDone
+}: Props) {
     const t = useT();
     const styles = useStyles();
 
     const [claimed, setClaimed] = useState(false);
-    const [revealed, setRevealed] = useState(false);
+    /** Ever uncovered — the way on. */
+    const [seen, setSeen] = useState(false);
+    /** Uncovered right now — the role card. */
+    const [open, setOpen] = useState(false);
 
     if (!claimed) {
         return (
@@ -72,11 +94,16 @@ export default function WordRevealScreen({ person, from, word, number, total, on
             <AnswerReveal
                 key={person.seat}
                 answer={word}
-                onReveal={() => setRevealed(true)}
+                onReveal={() => {
+                    setSeen(true);
+                    setOpen(true);
+                }}
+                onHide={() => setOpen(false)}
+                extraContent={<RoleCard role={role} style={styles.role} />}
             />
 
             <View style={styles.footer}>
-                {revealed && (
+                {seen && (
                     <ActionButton
                         size="large"
                         icon={last ? 'play' : 'arrow-right'}
@@ -114,8 +141,8 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    card: {
-        marginTop: Spacing.four
+    role: {
+        marginTop: 10
     },
 
     // Holds the button's height whether or not it is showing, so uncovering the word

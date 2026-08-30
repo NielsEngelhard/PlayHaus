@@ -584,18 +584,29 @@ export const nl: Catalog = {
             },
             describe: {
                 readyTitle: 'De regels',
+                roleQuizmaster: 'Quiz master',
+                roleGuesser: 'Raadt',
+                readyRuleOnlyGuesser: 'Je omschrijft aan {{guesser}}. Zolang de klok loopt telt alleen wat zij zeggen.',
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te omschrijven',
                 readyRuleNoSaying: 'Zeg het woord zelf nooit. Anders telt het niet.',
-                readyRuleBothScore: 'Wie het als eerste roept scoort ook punten.',
-                readyRuleTiming: 'De punten worden pas verdeeld als de tijd om is, dus blijf doorgaan in plaats van over één woord te discussiëren.',
+                readyRuleBothScore: 'Elk woord dat {{guesser}} raadt is een punt voor hen én een punt voor jou',
+                readyRuleBonus: 'Als de tijd om is krijgen de andere {{others}} spelers ieder één gok op een woord dat niemand had',
                 start: 'Laat mijn woorden zien en start',
                 dontSayIt: 'Zeg het woord zelf nooit',
-                runningReminder: 'Jullie scoren allebei als iemand het raadt. Zeg het woord nooit.',
-                scoringTitle: 'Wie had ze?',
-                whoGotItHint: 'Tik iedereen aan die het tegelijk riep',
+                runningReminder: 'Alleen {{guesser}} mag antwoorden. De rest van de tafel is straks aan de beurt.',
+                inTimeTitle: 'Wat had {{guesser}}?',
+                inTimeHint: 'Tik elk woord aan dat {{guesser}} op tijd zei',
+                toBonus: 'Bonusronde · nog {{left}} over',
+                toSettle: 'Door naar de punten',
+                bonusOf: 'Bonus · {{number}} van {{total}}',
+                bonusTitle: '{{name}} mag één keer gokken',
+                bonusHint: 'Eén gok op één van deze woorden. Raak, en jullie scoren allebei.',
+                bonusMissed: '{{name}} had niks',
+                scoringTitle: 'Hoe de beurt ging',
                 nobody: 'Niemand had hem',
+                plus: '+{{points}}',
                 standing: '{{name}} pakt {{points}}p uit deze beurt',
-                stillToRule: 'Nog {{left}} te gaan',
+                scoreAgain: 'Deze beurt opnieuw scoren',
                 settle: 'Verder gaan'
             },
             list: {
@@ -615,7 +626,7 @@ export const nl: Catalog = {
                 briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke tweede vraag levert een punt op.',
                 briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
-                briefDescribe: '31 seconden om je eigen woorden aan de tafel te omschrijven zonder het woord te zeggen (of een vertaling). Elk geraden woord is een punt voor zowel de roeper als de rader.',
+                briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling) — aan de speler links van je, en aan niemand anders. Elk woord dat die raadt is een punt voor hen én voor jou. Daarna krijgt de rest van de tafel ieder één gok op een gemist woord.',
                 briefList: 'Eén vraag met vier antwoorden erin verstopt. Iedereen behalve de quiz master krijgt om de beurt tien seconden om er zoveel mogelijk te roepen, tot alle vier geraden zijn of iedereen is geweest. Punten worden aan het einde toegewezen.',
                 briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is 100 punten waard. De persoon met de minste punten begint steeds.',
                 versus: 'vs',
@@ -628,13 +639,13 @@ export const nl: Catalog = {
                 jobOpen: '{{name}} leest voor aan de speler links van zich',
                 jobChoice: '{{name}} leest de vraag en alle vier de opties voor',
                 jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
-                jobDescribe: 'Alleen {{name}} mag dit zien.',
+                jobDescribe: '{{name}} omschrijft de woorden aan de speler links. Alleen {{name}} mag dit scherm zien.',
                 jobList: '{{name}} leest de categorie voor en vinkt antwoorden af zodra de tafel ze roept.',
                 jobFinale: '{{name}} leest voor aan beide finalisten en speelt deze ronde zelf niet mee.',
                 ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
-                ruleDescribe: 'Dertig seconden. Elk woord dat de tafel raadt is een punt voor jou én een punt voor wie het riep, dus laat ze roepen.',
+                ruleDescribe: 'Dertig seconden, gespeeld met de speler links van je. Elk woord dat die raadt is een punt voor hen én een punt voor jou.',
                 ruleList: 'Tien seconden elk. Vink een antwoord af zodra iemand het roept, en zeg daarna wie wat vond.',
                 ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. 100 punten per goed antwoord, en de meeste punten wint de avond.',
                 action: 'Ik ben {{name}}, laat de vraag zien'
@@ -670,7 +681,9 @@ export const nl: Catalog = {
             staleTurn: 'De tafel is al verder. Het bord hieronder is waar de quiz echt staat.',
             duplicateGuess: 'Twee spelers kunnen niet hetzelfde getal gokken. Vraag er een om een ander.',
             quizmasterCannotGuess: 'Wie de vraag voorleest, mag er zelf niet naar gokken.',
-            describerCannotGuess: 'Je kunt geen punt krijgen voor een woord dat je zelf omschreef.'
+            describerCannotGuess: 'Je kunt geen punt krijgen voor een woord dat je zelf omschreef.',
+            oneGuessEach: 'Iedereen behalve de speler die raadt krijgt één gok.',
+            twoOnOneWord: 'Een woord kan maar aan één speler worden toegekend.'
         }
     },
     oneOfUs: { 
@@ -716,6 +729,18 @@ export const nl: Catalog = {
                 secretLabel: 'Tik om je woord te zien',
                 secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
                 warning: 'Alleen jij ziet dit',
+
+                role: {
+                    label: 'Jouw rol',
+                    civilian: {
+                        name: 'Burger',
+                        explanation: 'De meesten van jullie hebben ditzelfde woord. Zeg er iets over waaruit blijkt dat je het kent, zonder het te noemen — zeg je te veel, dan geef je het cadeau aan de imposters. Zoek daarna uit wie er zit te bluffen en stem die weg.'
+                    },
+                    imposter: {
+                        name: 'Imposter',
+                        explanation: 'Jouw woord is niet het woord dat de rest van de tafel heeft, en dat van hen ken je niet. Luister goed naar wat de anderen zeggen, raad waar ze het over hebben en bluf je door je eigen beurt heen. Je wint als de imposters niet langer in de minderheid zijn.'
+                    }
+                },
                 hide: 'Verbergen',
                 done: 'Gezien, geef door',
                 lastDone: 'Gezien, start ronde 1'

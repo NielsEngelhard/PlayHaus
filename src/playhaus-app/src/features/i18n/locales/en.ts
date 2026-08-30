@@ -755,24 +755,43 @@ export const en = {
                 minus: 'Minus',
                 backspace: 'Backspace'
             },
-            /** Round 4: thirty seconds to describe your own words. */
+            /** Round 4: thirty seconds to describe your own words to the player on your left. */
             describe: {
-                readyTitle: 'Your words, {{name}}',
+                readyTitle: 'The rules',
+                /**
+                 * Under the two faces on the ready card. The round used to be a room
+                 * shouting at once, so who is playing whom is the thing a table has to
+                 * be told before anybody presses start.
+                 */
+                roleQuizmaster: 'Quizmaster',
+                roleGuesser: 'Guessing',
                 /** The ready screen's rules list, one row each rather than one paragraph. */
+                readyRuleOnlyGuesser: 'You describe to {{guesser}}, and only their answers count while the clock is running',
                 readyRuleTime: '{{seconds}} seconds to get through as many of your {{words}} words as you can',
                 readyRuleNoSaying: 'Never say the word itself',
-                readyRuleBothScore: 'Whoever shouts it first scores, and so do you',
-                readyRuleTiming: 'Points are handed out after time is up, so keep moving instead of arguing over one word',
+                readyRuleBothScore: 'Every word {{guesser}} gets is a point for them and a point for you',
+                readyRuleBonus: 'When time is up, the other {{others}} each get one guess at a word nobody got',
                 start: 'Show my words and start',
                 dontSayIt: 'Never say the word itself',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
-                runningReminder: 'Both of you score if they guess it. Never say the word.',
-                scoringTitle: 'Who got them?',
-                whoGotItHint: 'Tap everyone who shouted it at once',
+                runningReminder: 'Only {{guesser}} may answer. The rest of the table gets its go afterwards.',
+                /** The first scoring screen: what the guesser got inside the thirty seconds. */
+                inTimeTitle: 'What did {{guesser}} get?',
+                inTimeHint: 'Tap every word {{guesser}} said before time ran out',
+                toBonus: 'Bonus round · {{left}} left over',
+                toSettle: 'On to the points',
+                /** The bonus walk: one screen per remaining player, one guess each. */
+                bonusOf: 'Bonus · {{number}} of {{total}}',
+                bonusTitle: '{{name}} has one guess',
+                bonusHint: 'One guess at one of these. Get it and you both score.',
+                bonusMissed: '{{name}} got nothing',
+                scoringTitle: 'How the turn went',
                 nobody: 'Nobody got it',
+                /** Beside the name on a word that landed: what it paid, all in. */
+                plus: '+{{points}}',
                 /** What the turn is about to be worth to the person who described it. */
                 standing: '{{name}} takes {{points}} from this turn',
-                stillToRule: '{{left}} still to go',
+                scoreAgain: 'Score this turn again',
                 settle: 'Hand out the points'
             },
             /** Round 5: one category, four answers, and the table takes turns to find them. */
@@ -809,7 +828,7 @@ export const en = {
                 briefOpen: 'Twenty open questions, and they can be about anything. The reader asks the player on their left; get it right and the next one is yours as well, miss it and it moves on round the table. Only every second question is worth a point.',
                 briefChoice: 'Hard questions, this time with four answers to choose from. One question each, read out with all four options — and every single one of them is worth two points.',
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
-                briefDescribe: 'Thirty seconds each to describe your own words to the table without ever saying them. Every word somebody shouts out is a point for you and a point for whoever got it.',
+                briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
                 briefList: 'One question with four answers hiding in it. Everybody but the reader gets ten seconds in turn to call out as many as they can, until all four are found or the table runs out of goes. Then the reader says who called out what — a point each.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
@@ -831,7 +850,7 @@ export const en = {
                 jobOpen: '{{name}} reads to the player on their left',
                 jobChoice: '{{name}} reads the question and all four options',
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
-                jobDescribe: '{{name}} describes their own words. Nobody else may look at the screen.',
+                jobDescribe: '{{name}} describes their own words to the player on their left. Nobody else may look at the screen.',
                 jobList: '{{name}} reads the category and marks off answers as the table calls them out.',
                 jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
                 /**
@@ -842,7 +861,7 @@ export const en = {
                 ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
                 ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
-                ruleDescribe: 'Thirty seconds. Every word the table gets is a point for you and a point for whoever shouted it, so make them shout.',
+                ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Ten seconds each. Mark an answer the instant somebody says it, then say who found what once the round is done.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: "I'm {{name}}, show the question"
@@ -902,7 +921,10 @@ export const en = {
             staleTurn: 'The table has already moved on. The board below is where the quiz actually is.',
             duplicateGuess: 'Two players cannot guess the same number. Ask one of them for another.',
             quizmasterCannotGuess: 'Whoever is reading the question out does not get to guess at it.',
-            describerCannotGuess: 'You cannot be credited with a word you were describing.'
+            describerCannotGuess: 'You cannot be credited with a word you were describing.',
+            /** Round 4's two halves, refused: one name per word, one bonus guess each. */
+            oneGuessEach: 'Everybody but the player being described to gets one guess.',
+            twoOnOneWord: 'Only one player can be credited with a word.'
         }
     },
     oneOfUs: { 
@@ -956,6 +978,26 @@ export const en = {
                 secretLabel: 'Tap to see your word',
                 secretHint: 'Hold the phone so nobody else can read it.',
                 warning: 'Only you see this',
+
+                /**
+                 * The side you are on, uncovered with the word.
+                 *
+                 * The explanations say what to do with the word rather than defining the
+                 * role: knowing you are called an imposter is worth nothing on its own,
+                 * and the one thing a player needs in the ten seconds they hold the
+                 * phone is whether they are bluffing or hunting.
+                 */
+                role: {
+                    label: 'Your role',
+                    civilian: {
+                        name: 'Civilian',
+                        explanation: 'Most of you got this same word. Say something about it that proves you know it, without saying it outright — say too much and you hand it to the imposters. Then work out who is faking it, and vote them out.'
+                    },
+                    imposter: {
+                        name: 'Imposter',
+                        explanation: 'Your word is not the one most of the table got, and you do not know theirs. Listen to what the others say, guess what they are all describing, and bluff your way through your own turn. You win by surviving until the imposters are no longer outnumbered.'
+                    }
+                },
                 /** After the word is open: the way on, phrased as putting it away. */
                 hide: 'Hide',
                 done: 'Got it — pass it on',

@@ -40,7 +40,8 @@ export function alivePlayers(game: OneOfUsSingleDeviceGame): OneOfUsLocalPlayer[
 /**
  * The word this player is playing on.
  *
- * The one place in the app allowed to read a role before the game is over. Everything
+ * One of the two places allowed to read a role before the game is over, and both of them
+ * are the same moment: this, and the role card beside it on the reveal screen. Everything
  * else draws a player without asking what they were dealt, which is what keeps a stray
  * render from spoiling a game the phone is holding both halves of.
  */

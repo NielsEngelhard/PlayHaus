@@ -4,7 +4,7 @@ import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
     compact?: boolean
     style?: StyleProp<ViewStyle>
     initiallyRevealed?: boolean
+    extraContent?: React.ReactNode
 }
 
 export default function AnswerReveal({
@@ -26,7 +27,8 @@ export default function AnswerReveal({
     onHide,
     compact = false,
     style,
-    initiallyRevealed = false
+    initiallyRevealed = false,
+    extraContent
 }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -71,56 +73,64 @@ export default function AnswerReveal({
     }
 
     return (
-        <View style={[styles.panel, compact && styles.compactPanel, style]}>
-            <View style={styles.open}>
-                <View style={styles.said}>
-                    <View style={styles.warning}>
-                        <Feather name="eye-off" size={14} color={Brand.lemon} />
+        <>
+            <View style={[styles.panel, compact && styles.compactPanel, style]}>
+                <View style={styles.open}>
+                    <View style={styles.said}>
+                        <View style={styles.warning}>
+                            <Feather name="eye-off" size={14} color={Brand.lemon} />
 
-                        <AppText style={styles.warningText}>
-                            {compact
-                                ? t('pubquizr.play.closest.answerLabel')
-                                : t('pubquizr.play.onlyYouSeeThis')}
-                        </AppText>
-                    </View>
+                            <AppText style={styles.warningText}>
+                                {compact
+                                    ? t('pubquizr.play.closest.answerLabel')
+                                    : t('pubquizr.play.onlyYouSeeThis')}
+                            </AppText>
+                        </View>
 
-                    <View style={styles.answerRow}>
-                        {letter !== undefined && (
-                            <AppText style={styles.letter}>{letter}</AppText>
+                        <View style={styles.answerRow}>
+                            {letter !== undefined && (
+                                <AppText style={styles.letter}>{letter}</AppText>
+                            )}
+
+                            <AppText
+                                style={[styles.answer, compact && styles.compactAnswer]}
+                            >
+                                {answer}
+                            </AppText>
+                        </View>
+
+                        {(aliases && aliases.length > 0 && !compact) && (
+                            <AppText style={styles.aliases}>
+                                {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
+                            </AppText>
                         )}
-
-                        <AppText
-                            style={[styles.answer, compact && styles.compactAnswer]}
-                        >
-                            {answer}
-                        </AppText>
                     </View>
 
-                    {(aliases && aliases.length > 0 && !compact) && (
-                        <AppText style={styles.aliases}>
-                            {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
+                    <Pressable
+                        onPress={onHidePressed}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('pubquizr.play.closest.hide')}
+                        // Hit slop rather than a taller pill: the control has to clear 44
+                        // points to be hittable and the bar it sits in is 46 tall, so the
+                        // room has to come from around it rather than from inside it.
+                        hitSlop={10}
+                        style={styles.hide}
+                    >
+                        <Feather name="eye-off" size={13} color="rgba(254, 251, 248, 0.7)" />
+
+                        <AppText style={styles.hideLabel}>
+                            {t('pubquizr.play.closest.hide')}
                         </AppText>
-                    )}
+                    </Pressable>
                 </View>
-
-                <Pressable
-                    onPress={onHidePressed}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('pubquizr.play.closest.hide')}
-                    // Hit slop rather than a taller pill: the control has to clear 44
-                    // points to be hittable and the bar it sits in is 46 tall, so the
-                    // room has to come from around it rather than from inside it.
-                    hitSlop={10}
-                    style={styles.hide}
-                >
-                    <Feather name="eye-off" size={13} color="rgba(254, 251, 248, 0.7)" />
-
-                    <AppText style={styles.hideLabel}>
-                        {t('pubquizr.play.closest.hide')}
-                    </AppText>
-                </Pressable>
             </View>
-        </View>
+
+            {extraContent && (
+                <>
+                    {extraContent}
+                </>
+            )}        
+        </>
     )
 }
 
