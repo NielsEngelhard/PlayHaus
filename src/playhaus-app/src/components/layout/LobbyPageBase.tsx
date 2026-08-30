@@ -78,11 +78,15 @@ export default function LobbyPageBase({
                 <MusicToggle />
             </View>
 
-            <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+            <ScrollView
+                style={[styles.scroll, { marginHorizontal: -reach }]}
+                contentContainerStyle={{ paddingHorizontal: reach }}
+                showsVerticalScrollIndicator={false}
+            >
                 {handsOutCode && (
                     <JoinCodeBand game={game} code={code} style={{
                         marginHorizontal: -reach,
-                        paddingHorizontal: reach                        
+                        paddingHorizontal: reach
                     }} />
                 )}
 
@@ -248,8 +252,11 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
+    // Stretched rather than sized: the width has to come out of what the column leaves
+    // *after* the negative margins set at the call site, which a `width: '100%'` would
+    // pin back to the column and undo.
     scroll: {
-        width: '100%'
+        alignSelf: 'stretch'
     },
     // The page's gutters, which a chromeless page has to lay down for itself. Around the
     // children only: the band above them runs edge to edge and carries its own.
