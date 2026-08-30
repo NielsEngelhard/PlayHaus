@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
+import AnswerReveal from "@/components/ui/AnswerReveal";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
 import ValidateButton from "@/components/ui/ValidateButton";
@@ -13,7 +14,6 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { View } from "react-native";
-import AnswerReveal from "./AnswerReveal";
 import ChoiceCard from "./ChoiceCard";
 import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";

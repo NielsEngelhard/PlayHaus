@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
+import AnswerReveal from "@/components/ui/AnswerReveal";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
 import PopupModal from "@/components/ui/PopupModal";
@@ -15,7 +16,6 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, TextInput, View } from "react-native";
-import AnswerReveal from "./AnswerReveal";
 import NumberPad from "./NumberPad";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
