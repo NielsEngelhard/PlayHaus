@@ -166,7 +166,7 @@ const useStyles = createThemedStyles(theme => ({
     wrong: {
         flex: 1,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     wrongLabel: {

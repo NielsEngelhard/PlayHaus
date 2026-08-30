@@ -65,7 +65,7 @@ const useStyles = createThemedStyles(theme => {
             borderWidth: theme.borderWidth,
             borderColor: theme.colors.border,
             backgroundColor: theme.colors.backgroundSecondary,
-            ...(dark ? {} : theme.shadows.hardSmall)
+            ...theme.shadows.hardSmall
         },
 
         tab: {

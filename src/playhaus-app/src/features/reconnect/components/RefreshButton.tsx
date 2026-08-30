@@ -90,7 +90,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingHorizontal: 14,
         // Light keeps the hard lift its chrome has; dark leaves this flat, saving the
         // coloured shadows for the cards that are the point of the page.
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
     // The same half-strength every other blocked control in the app wears.
     disabled: {

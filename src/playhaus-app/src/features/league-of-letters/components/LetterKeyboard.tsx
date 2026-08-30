@@ -1,7 +1,7 @@
 import type { Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
-import { Brand } from "@/constants/theme";
+import { Brand, withAlpha } from "@/constants/theme";
 import { markStyles } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -197,7 +197,7 @@ const useStyles = createThemedStyles(theme => {
             borderColor: theme.colors.border,
             // Seated rather than floating: the shadow is directly underneath, so a key
             // reads as something pressed down into the board instead of hanging off it.
-            ...(dark ? {} : { boxShadow: '0 2px 0 0 rgba(15, 13, 18, 0.85)' })
+            boxShadow: `0 2px 0 0 ${withAlpha(theme.colors.shadow, 0.85)}`
         },
         keyUnknown: {
             borderColor: theme.colors.border,

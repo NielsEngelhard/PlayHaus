@@ -390,9 +390,9 @@ const useStyles = createThemedStyles(theme => ({
         top: -Spacing.six,
         borderBottomLeftRadius: 32,
         borderBottomRightRadius: 32,
-        // Light cuts the band off with the same hard line every card wears. Dark has no
-        // ink to draw it in — see `Palette.border` — and against that canvas the gradient
-        // is its own edge.
+        // Light cuts the band off with the same hard line every card wears. Dark leaves
+        // it open: a mid-grey line under a full-width gradient reads as a seam rather
+        // than an edge, and the gradient is its own edge anyway.
         borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderBottomColor: theme.colors.border
     },

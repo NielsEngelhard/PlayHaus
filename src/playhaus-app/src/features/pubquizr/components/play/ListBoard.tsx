@@ -551,7 +551,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     // Mint in both schemes, the same "this one" a right answer wears everywhere else.

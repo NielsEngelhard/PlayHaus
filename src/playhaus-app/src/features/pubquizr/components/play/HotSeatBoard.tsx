@@ -321,7 +321,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.lemon,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hard)
+        ...theme.shadows.hard
     },
 
     // Ink on lemon in both schemes, because the fill is lemon in both.

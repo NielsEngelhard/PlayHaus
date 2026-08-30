@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
 import { ROUTES } from "@/constants/routes";
-import { Brand, BottomBarHeight, Spacing } from "@/constants/theme";
+import { Brand, BottomBarHeight, Spacing, withAlpha } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -134,9 +134,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark'
-            ? {}
-            : { boxShadow: '3px 3px 0 0 #0F0D12, 0 14px 24px -14px rgba(15, 13, 18, 0.55)' })
+        boxShadow: `3px 3px 0 0 ${theme.colors.shadow}, 0 14px 24px -14px ${withAlpha(theme.colors.shadow, 0.55)}`
     },
     /**
      * The three icon tabs split whatever the pill leaves, evenly. That even split is what

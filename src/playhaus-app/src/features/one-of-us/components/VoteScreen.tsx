@@ -151,7 +151,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     // Lemon in both schemes, like every other "this is the one" in the app.

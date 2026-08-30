@@ -133,7 +133,7 @@ const useStyles = createThemedStyles(theme => ({
     right: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     // Answered and over. Height as well as opacity: fading four full rows would still

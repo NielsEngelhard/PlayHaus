@@ -191,7 +191,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: 2,
         borderColor: Brand.ink,
         backgroundColor: theme.colors.lemon,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hard)
+        ...theme.shadows.hard
     },
 
     // Ink in both schemes, here and below: the panel is lemon in both.
@@ -282,7 +282,7 @@ const useStyles = createThemedStyles(theme => ({
     won: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     avatar: {

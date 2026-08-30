@@ -464,7 +464,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.background,
         padding: 14,
         gap: 10,
-        ...(theme.scheme === 'dark' ? {} : hardShadow(4, theme.colors.border))
+        ...hardShadow(4, theme.colors.shadow)
     },
 
     header: {

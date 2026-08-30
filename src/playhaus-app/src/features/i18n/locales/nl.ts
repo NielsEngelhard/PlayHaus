@@ -648,8 +648,13 @@ export const nl: Catalog = {
             final: {
                 title: 'De quiz is afgelopen',
                 description: 'Zo eindigde de avond.',
-                won: '{{name}} is de grote winnaar!',
-                finalist: 'Finalist'
+                finalist: 'Finalist',
+                winnerLabel: 'Winnaar',
+                points: '{{score}} punten',
+                tieLabel: 'Gedeelde eerste plaats',
+                tieTitle: 'Niemand liep uit',
+                tieDescription: 'Niemand eindigde bovenaan. De avond is gedeeld.',
+                restLabel: 'De rest van de tafel'
             }
         },
         errors: {

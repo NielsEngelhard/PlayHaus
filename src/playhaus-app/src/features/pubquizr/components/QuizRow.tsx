@@ -157,7 +157,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     // The one accent that means "this is the one" in either scheme — blue on paper,
@@ -175,16 +175,13 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
-        // A swatch is a colour rather than a surface, so light cuts it out of the page
-        // with the same ink line and offset every other object on it wears, and dark
-        // leaves it to carry itself.
+        // The offset is the same in both schemes; the ink line is not. A swatch is a
+        // colour rather than a surface, and in dark a mid-grey ring around a bright fill
+        // mutes the colour instead of framing it.
+        ...theme.shadows.hardSmall,
         ...(theme.scheme === 'dark'
             ? {}
-            : {
-                borderWidth: theme.borderWidth,
-                borderColor: theme.colors.border,
-                ...theme.shadows.hardSmall
-            })
+            : { borderWidth: theme.borderWidth, borderColor: theme.colors.border })
     },
 
     initials: {

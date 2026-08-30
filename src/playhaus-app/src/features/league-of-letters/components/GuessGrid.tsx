@@ -1,6 +1,6 @@
 import type { GameGuess, Mark } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Spacing, withAlpha } from "@/constants/theme";
 import { markStyles, type MarkStyle } from "@/features/league-of-letters/marks";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -393,17 +393,18 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border
     },
-    // Only light lifts a scored tile. Dark says the same thing with the mark's colour,
-    // and a shadow under every tile on a dark board reads as grime rather than depth.
-    tileScored: theme.scheme === 'dark'
-        ? {}
-        : { boxShadow: '2px 2px 0 0 #0F0D12, 0 8px 14px -10px rgba(15, 13, 18, 0.6)' },
+    // A scored tile lifts in both schemes. On the old near-black board a shadow under
+    // every tile read as grime rather than depth, so dark said it with the mark's colour
+    // alone — the lifted canvas has somewhere for the offset to fall.
+    tileScored: {
+        boxShadow: `2px 2px 0 0 ${theme.colors.shadow}, 0 8px 14px -10px ${withAlpha(theme.colors.shadow, 0.6)}`
+    },
     tileFilled: {
         borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
         backgroundColor: theme.scheme === 'dark'
             ? theme.colors.backgroundFocus
             : theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        ...theme.shadows.hardSmall
     },
     tileEmpty: {
         borderColor: theme.colors.boardEmptyBorder,

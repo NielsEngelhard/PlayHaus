@@ -85,6 +85,6 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         // Matches `ThemeToggle`: the two sit side by side and any difference between them
         // would read as one of them being a different kind of thing.
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        ...theme.shadows.hardSmall
     }
 }));

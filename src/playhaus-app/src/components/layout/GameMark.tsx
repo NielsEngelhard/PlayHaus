@@ -37,6 +37,8 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         borderRadius: 10,
         // Matches the wordmark opposite it, so the two ends of the row sit at one height.
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        // Written out rather than spread from `theme.shadows`, because this style is an
+        // `ImageStyle` and a `ViewStyle` spread widens `overflow` past what one allows.
+        boxShadow: `2px 2px 0 0 ${theme.colors.shadow}`
     }
 }))

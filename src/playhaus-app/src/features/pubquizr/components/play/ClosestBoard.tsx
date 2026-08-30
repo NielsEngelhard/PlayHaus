@@ -649,7 +649,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.mint,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hard)
+        ...theme.shadows.hard
     },
 
     // Ink on mint in both schemes, because the fill is mint in both.
@@ -737,7 +737,7 @@ const useStyles = createThemedStyles(theme => ({
     nearest: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardSmall)
+        ...theme.shadows.hardSmall
     },
 
     clashing: {

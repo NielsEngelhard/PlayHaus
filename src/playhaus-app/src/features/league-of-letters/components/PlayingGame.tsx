@@ -564,7 +564,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 5,
         paddingHorizontal: 14,
         backgroundColor: theme.colors.lemon,
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        ...theme.shadows.hardSmall
     },
     noticeText: {
         fontSize: 13,

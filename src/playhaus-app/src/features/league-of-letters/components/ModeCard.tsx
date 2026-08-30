@@ -53,8 +53,8 @@ interface Props {
      *
      * Because the fill *is* the accent, the three gradient stops are read as flat
      * colours here rather than shaded into one: the middle stop fills the card, and the
-     * lightest one outlines it in dark mode, where a hard ink border has nothing to
-     * bite against.
+     * other two go unused. The card is still a card — it wears the same border and the
+     * same lift as the quiet one beside it, and only the fill changes.
      */
     solid?: boolean,
     /**
@@ -122,7 +122,6 @@ export default function ModeCard({
     const theme = useTheme();
     const styles = useStyles();
 
-    const dark = theme.scheme === "dark";
     const fill = gradient[1];
     const on = ON_FILL[onFill];
 
@@ -136,16 +135,13 @@ export default function ModeCard({
                 solid && styles.cardSolid,
                 // Inline because the fill is the caller's, and a themed sheet is built
                 // once per scheme with no card in front of it to ask.
-                solid && {
-                    backgroundColor: fill,
-                    // Dark has no ink line to draw — see `Palette.border` — so the
-                    // outline steps up to the accent's own lightest stop, and the lift
-                    // comes from a wash of the fill underneath instead.
-                    borderColor: dark ? gradient[0] : theme.colors.border,
-                    ...(dark
-                        ? { boxShadow: `0 16px 28px -16px ${fill}` }
-                        : theme.popShadow(theme.colors.border))
-                },
+                //
+                // Only the fill is the caller's, though. The border and the lift stay
+                // `card`'s own in both schemes: dark used to trade them for the accent's
+                // lightest stop and a blurred wash of the fill, back when it had no line
+                // dark enough to draw with — but that reads as a glow rather than as a
+                // card, and on the lifted canvas the ordinary chrome works here.
+                solid && { backgroundColor: fill },
                 isDisabled && styles.cardDisabled
             ])}
         >
@@ -259,7 +255,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === "dark" ? {} : theme.popShadow(theme.colors.border))
+        ...theme.popShadow(theme.colors.shadow)
     },
 
     cardSolid: {

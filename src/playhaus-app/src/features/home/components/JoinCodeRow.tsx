@@ -145,7 +145,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.lemon,
         // The field beside it is flat to the page and this is not, which is the whole of
         // what says which half of the row is the control.
-        ...(theme.scheme === 'dark' ? {} : hardShadow(2, theme.colors.border))
+        ...hardShadow(2, theme.colors.shadow)
     },
 
     buttonDisabled: {

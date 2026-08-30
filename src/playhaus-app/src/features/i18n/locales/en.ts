@@ -858,9 +858,25 @@ export const en = {
                 title: 'The quiz is over',
                 /** Only when there is nobody to name — an empty table, in practice. */
                 description: 'How the whole evening finished.',
-                won: '{{name}} won the final and the whole night with it.',
                 /** The tag under a finalist's name, so their row explains its own number. */
-                finalist: 'Finalist'
+                finalist: 'Finalist',
+                /**
+                 * The banner across the top of the winner's card. Uppercased by the
+                 * style rather than by the copy, so a language whose casing rules
+                 * differ still gets its own.
+                 */
+                winnerLabel: 'Winner',
+                /** Under the winner's name, on the card. Their whole evening in one number. */
+                points: '{{score}} points',
+                /**
+                 * Nobody won outright. The card names the joint leaders instead, and
+                 * the app does not hand the night to whoever the sort put first.
+                 */
+                tieLabel: 'Shared first',
+                tieTitle: 'Too close to call',
+                tieDescription: 'Nobody finished ahead. The night is shared.',
+                /** The rest of the table, under the winner's card. */
+                restLabel: 'The rest of the table'
             }
         },
         /**

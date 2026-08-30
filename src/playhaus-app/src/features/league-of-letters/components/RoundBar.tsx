@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -114,7 +114,7 @@ const useStyles = createThemedStyles(theme => {
             borderWidth: theme.borderWidth,
             borderColor: theme.colors.border,
             backgroundColor: theme.colors.backgroundSecondary,
-            ...(dark ? {} : { boxShadow: '3px 3px 0 0 #0F0D12, 0 12px 22px -16px rgba(15, 13, 18, 0.5)' })
+            boxShadow: `3px 3px 0 0 ${theme.colors.shadow}, 0 12px 22px -16px ${withAlpha(theme.colors.shadow, 0.5)}`
         },
         leave: {
             width: 34,

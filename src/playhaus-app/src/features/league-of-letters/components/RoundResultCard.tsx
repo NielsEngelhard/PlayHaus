@@ -64,7 +64,7 @@ const useStyles = createThemedStyles(theme => {
             borderWidth: theme.borderWidth,
             borderColor: theme.colors.borderStrong,
             backgroundColor: theme.colors.backgroundSecondary,
-            ...(dark ? {} : theme.popShadow(theme.colors.border))
+            ...theme.popShadow(theme.colors.shadow)
         },
         badge: {
             position: 'absolute',
@@ -75,7 +75,7 @@ const useStyles = createThemedStyles(theme => {
             borderRadius: 8,
             borderWidth: theme.borderWidth,
             transform: [{ rotate: '-6deg' }],
-            ...(dark ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+            ...theme.shadows.hardSmall
         },
         badgeWon: {
             borderColor: dark ? theme.colors.mint : theme.colors.border,

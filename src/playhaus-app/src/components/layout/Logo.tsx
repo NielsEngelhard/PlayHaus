@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText"
 import { APP_NAME } from "@/constants/global-constants"
-import { Brand, Spacing } from "@/constants/theme"
+import { Brand, Spacing, withAlpha } from "@/constants/theme"
 import { createThemedStyles } from "@/features/theme/createThemedStyles"
 import { View } from "react-native"
 
@@ -42,11 +42,10 @@ const useStyles = createThemedStyles(theme => ({
         paddingLeft: 6,
         paddingRight: Spacing.three - 4,
         paddingVertical: 5,
-        // Light lifts the pill off the page; dark leaves the chrome flat and saves the
-        // shadows for the content.
-        ...(theme.scheme === 'dark'
-            ? {}
-            : { boxShadow: '2px 2px 0 0 #0F0D12, 0 6px 14px -8px rgba(15, 13, 18, 0.5)' })
+        // A hard offset with a soft one under it, so the pill is both cut out and
+        // floating. Both cast into `shadow`, which is ink on paper and a near-black one
+        // step under the canvas in dark.
+        boxShadow: `2px 2px 0 0 ${theme.colors.shadow}, 0 6px 14px -8px ${withAlpha(theme.colors.shadow, 0.5)}`
     },
     // With no name beside it the tile would be sitting in a lopsided capsule.
     pillTight: {

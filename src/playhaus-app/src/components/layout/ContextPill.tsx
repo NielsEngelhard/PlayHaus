@@ -63,7 +63,7 @@ export const useContextPillStyles = createThemedStyles(theme => ({
         // The only thing on the header row that gives ground when a long name meets a
         // narrow phone — the toggle beside it is a fixed circle.
         flexShrink: 1,
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        ...theme.shadows.hardSmall
     },
     dot: {
         width: 7,

@@ -68,7 +68,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         // Light keeps the hard lift the rest of its chrome has; dark leaves this flat,
         // saving the coloured shadows for the cards that are the point of the page.
-        ...(theme.scheme === 'dark' ? {} : theme.popShadow(theme.colors.border))
+        ...theme.popShadow(theme.colors.shadow)
     },
     tile: {
         width: 34,

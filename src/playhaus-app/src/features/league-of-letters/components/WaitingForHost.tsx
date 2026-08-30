@@ -221,7 +221,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.scheme === 'dark'
             ? theme.colors.backgroundFocus
             : theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '3px 3px 0 0 #0F0D12' })
+        ...theme.shadows.hard
     },
     tile: {
         width: TILE_SIZE,

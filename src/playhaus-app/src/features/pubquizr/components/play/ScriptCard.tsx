@@ -160,7 +160,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === 'dark' ? {} : theme.shadows.hardLarge)
+        ...theme.shadows.hardLarge
     },
 
     cardTop: {

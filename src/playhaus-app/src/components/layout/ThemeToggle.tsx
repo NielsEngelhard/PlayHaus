@@ -54,6 +54,6 @@ const useStyles = createThemedStyles(theme => ({
         // No house tilt here, unlike the cards: this one is a circle, so a rotation
         // would cost a transform — the one `PopPressable` needs for its press — and
         // show nothing for it.
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '2px 2px 0 0 #0F0D12' })
+        ...theme.shadows.hardSmall
     }
 }));

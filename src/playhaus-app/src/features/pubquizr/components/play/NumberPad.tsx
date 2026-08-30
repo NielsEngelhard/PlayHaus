@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import PopPressable from "@/components/ui/PopPressable";
 import { useT } from "@/features/i18n/LanguageContext";
+import { withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { haptic } from "@/utils/haptics";
@@ -185,7 +186,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         // Seated rather than floating: the shadow is directly underneath, so a key
         // reads as something pressed down into the pad instead of hanging off it.
-        ...(theme.scheme === 'dark' ? {} : { boxShadow: '0 2px 0 0 rgba(15, 13, 18, 0.2)' })
+        boxShadow: `0 2px 0 0 ${withAlpha(theme.colors.shadow, 0.2)}`
     },
 
     keyMuted: {

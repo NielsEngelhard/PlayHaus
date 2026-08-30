@@ -74,12 +74,22 @@ export interface Palette {
     /**
      * The outline chrome wears: pills, the bottom bar, the header.
      *
-     * The two schemes solve this differently. Light draws a hard ink line and throws a
-     * hard ink shadow off it — that contrast is the whole look. Dark cannot: ink on
-     * near-black is invisible, so the border steps back to a low grey and the pop comes
-     * from a coloured shadow instead (see `popShadow`).
+     * One idea in both schemes: a hard line, with a hard shadow thrown off it. Light
+     * draws that line in ink on paper and casts in the same ink. Dark draws it in a mid
+     * grey on charcoal and casts into `shadow` — which only works because the dark
+     * canvas sits high enough off black to have something darker beneath it.
      */
     border: string,
+    /**
+     * The colour a hard offset shadow is cast in: always a step *darker* than that
+     * scheme's own canvas.
+     *
+     * Its own token rather than a reuse of `border`, because the two only coincide in
+     * light — where the line and the shadow are both ink. Dark needs a line that reads
+     * *up* off the canvas and a shadow that reads *down* into it, which is two
+     * directions and therefore two values.
+     */
+    shadow: string,
     /** A rung up from `border`, for the raised cards that should read as nearer. */
     borderStrong: string,
     /** A rung down, for chips that should barely be there. */
@@ -168,6 +178,7 @@ const Colors: Record<Scheme, Palette> = {
         backgroundSelected: '#E0E1E6',
         backgroundInput: '#F7EBD8',
         border: '#0F0D12',
+        shadow: Brand.ink,
         borderStrong: '#0F0D12',
         borderSubtle: 'rgba(15, 13, 18, 0.25)',
         borderDashed: 'rgba(15, 13, 18, 0.3)',
@@ -187,29 +198,38 @@ const Colors: Record<Scheme, Palette> = {
     dark: {
         ...Brand,
         text: '#F5F3EF',
-        textSecondary: '#9A97A6',
-        textMuted: '#7C7A88',
-        background: '#0E0E13',
-        // Surfaces climb away from the canvas as they come forward, which is what does
-        // the separating here — the border is too quiet to do it alone.
-        backgroundSecondary: '#17171F',
-        backgroundElement: '#14141B',
-        backgroundSelected: '#22222B',
-        backgroundInput: '#0C0A0F',
-        border: '#33333F',
-        borderStrong: '#3A3A47',
-        borderSubtle: '#2C2C37',
-        borderDashed: '#33333F',
-        borderMuted: '#33333F',
-        textFaint: '#7C7A88',
-        boardEmpty: '#15151C',
-        boardEmptyBorder: '#26262F',
-        markAbsent: '#26262F',
+        textSecondary: '#A9A5B6',
+        textMuted: '#8C899B',
+        // Charcoal rather than near-black, and the accents are the reason: a saturated
+        // hue needs a ground to sit on, and #3B4DF0 on #0E0E13 had nothing under it and
+        // read as a hole. Lifting the canvas also buys back the two things the old
+        // scheme had to do without — a border you can see, and something darker than the
+        // page to cast a shadow into.
+        background: '#1B1A22',
+        // Surfaces still climb away from the canvas as they come forward, but they are
+        // no longer doing the separating alone: the border and the shadow carry it now,
+        // the same way they do on paper.
+        backgroundSecondary: '#26242F',
+        backgroundElement: '#211F29',
+        backgroundSelected: '#333140',
+        backgroundInput: '#14131A',
+        border: '#474554',
+        shadow: '#08070D',
+        borderStrong: '#57546A',
+        borderSubtle: '#3A3846',
+        borderDashed: '#474554',
+        borderMuted: '#3A3846',
+        textFaint: '#7E7B8C',
+        boardEmpty: '#221F2A',
+        boardEmptyBorder: '#3A3846',
+        // A rung above `boardEmpty`, not below it: a tile the word has no use for has
+        // still been filled in, and must not read as one nobody has typed into.
+        markAbsent: '#383544',
         destructiveText: '#FF7A6E',
         focus: Brand.lemon,
         focusRing: 'rgba(255, 229, 56, 0.25)',
-        backgroundFocus: '#1D1D26',
-        muted: '#2E2A35',
+        backgroundFocus: '#2E2C3A',
+        muted: '#3A3644',
         scrim: 'rgba(0, 0, 0, 0.6)',
         scrimStrong: 'rgba(0, 0, 0, 0.75)'
     }
@@ -279,8 +299,8 @@ export const Spacing = {
  * Build a hard shadow: `<offset>px <offset>px 0 0 <color>`.
  *
  * The colour is required rather than defaulted, because the only sensible default is
- * the current scheme's border and this file has no way to know which that is. Pass
- * `theme.colors.border`, or reach for `theme.shadows` where a standard offset will do.
+ * the current scheme's `shadow` and this file has no way to know which that is. Pass
+ * `theme.colors.shadow`, or reach for `theme.shadows` where a standard offset will do.
  */
 export const hardShadow = (offset: number, color: string): ViewStyle => ({
     boxShadow: `${offset}px ${offset}px 0 0 ${color}`,
@@ -397,8 +417,9 @@ export interface Theme {
     scheme: Scheme,
     colors: Palette,
     /**
-     * How heavy an outline is. Light draws 2px, dark 1.5px — a full-weight line in a low
-     * grey reads as a smudge, and the dark scheme is not relying on the border anyway.
+     * How heavy an outline is: 2px in both schemes. Dark used to draw 1.5, because a
+     * full-weight line in a low grey read as a smudge — but on the lifted canvas the
+     * border is a real line again, and it is carrying the frame.
      */
     borderWidth: number,
     shadows: Shadows,
@@ -406,9 +427,10 @@ export interface Theme {
      * The lift under something that should look like it is sitting above the page.
      *
      * Light stacks a hard ink offset with a soft ambient one, so a card is both cut out
-     * and floating. Dark drops the ink entirely — there is nothing darker than the canvas
-     * to cast — and throws a hard shadow in `accent` instead, which is what makes a dark
-     * card pop rather than dissolve.
+     * and floating. Dark keeps both layers but throws the hard one in `accent` rather
+     * than in ink — the coloured offset is this scheme's signature. The ambient wash
+     * under it is what stops a card floating on nothing when the accent it was handed
+     * is a neutral.
      *
      * Pass the colour the element is "about": its game accent, its own fill.
      */
@@ -424,11 +446,14 @@ export interface Theme {
 }
 
 /**
- * The canvas behind every page, which is a different idea in each scheme.
+ * The canvas behind every page: graph paper, in whichever of the two inks the scheme
+ * has to draw with.
  *
- * Light is graph paper: one faint dot, tiled every 22px. Dark is unlit, with two soft
- * washes of the brand colours bled into opposite corners — a dot grid on near-black
- * would read as dust.
+ * One faint dot, tiled every 22px, in both schemes. Dark used to be a different idea
+ * entirely — two washes of brand colour bled into opposite corners, because a dot grid
+ * on near-black would have read as dust. The lifted canvas has room for the dot, so the
+ * two schemes can be one page rather than two designs, and the brand hues go back to
+ * being what the app puts *on* the page rather than part of the page itself.
  *
  * The tiling is why this returns three properties rather than one. React Native 0.86
  * carries `experimental_backgroundSize` / `_backgroundRepeat` alongside
@@ -436,18 +461,14 @@ export interface Theme {
  * nothing but a prefix between them.
  */
 function pageCanvas(scheme: Scheme): { image: string, size: string, repeat: string } {
-    if (scheme === 'dark') {
-        return {
-            image:
-                'radial-gradient(circle at 15% 12%, rgba(254, 90, 29, 0.20) 0%, transparent 40%), ' +
-                'radial-gradient(circle at 85% 80%, rgba(59, 77, 240, 0.22) 0%, transparent 44%)',
-            size: 'auto',
-            repeat: 'no-repeat'
-        };
-    }
+    // Paper at 5.5% against ink at 9%: a light dot on a dark ground carries further than
+    // a dark one on paper, so it needs less of itself to read as the same dot.
+    const dot = scheme === 'dark'
+        ? 'rgba(245, 243, 239, 0.055)'
+        : 'rgba(15, 13, 18, 0.09)';
 
     return {
-        image: 'radial-gradient(rgba(15, 13, 18, 0.09) 1px, transparent 1px)',
+        image: `radial-gradient(${dot} 1px, transparent 1px)`,
         size: '22px 22px',
         repeat: 'repeat'
     };
@@ -458,20 +479,20 @@ function buildTheme(scheme: Scheme): Theme {
     const canvas = pageCanvas(scheme);
     const dark = scheme === 'dark';
 
-    const borderWidth = dark ? 1.5 : 2;
+    const borderWidth = 2;
 
-    // In dark these paint in the low-grey border colour, which is nearly nothing — the
-    // scheme's lift comes from `popShadow` instead. Kept rather than removed so every
-    // component that reaches for a standard offset still resolves to something.
+    // Cast into `colors.shadow` rather than `colors.border`. The two are the same ink in
+    // light, but in dark the border has to read *up* off the canvas and the shadow *down*
+    // into it, which is what lets both schemes use the one hard offset.
     const shadows: Shadows = {
-        hard: hardShadow(3, colors.border),
-        hardSmall: hardShadow(2, colors.border),
-        hardLarge: hardShadow(5, colors.border)
+        hard: hardShadow(3, colors.shadow),
+        hardSmall: hardShadow(2, colors.shadow),
+        hardLarge: hardShadow(5, colors.shadow)
     };
 
     const popShadow = (accent: string): ViewStyle => ({
         boxShadow: dark
-            ? `3px 3px 0 0 ${accent}`
+            ? `3px 3px 0 0 ${accent}, 0 16px 28px -18px rgba(0, 0, 0, 0.7)`
             : `3px 3px 0 0 ${colors.border}, 0 16px 28px -18px rgba(15, 13, 18, 0.5)`
     });
 

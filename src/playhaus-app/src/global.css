@@ -22,10 +22,15 @@
  * Hung on an id rather than a class because react-native-web gives no way to set a class
  * name, and a screen only ever holds one shelf: the index page has one, and the setup
  * screen renders the same component once.
+ *
+ * The thumb is a mid grey rather than either ink or paper, because this file cannot see
+ * the scheme: the in-app toggle is React state and never moves `prefers-color-scheme`,
+ * so a media query would answer for the device rather than for the app. One grey that
+ * reads on both grounds is the honest way to say it here.
  */
 #quiz-shelf-scroller {
   scrollbar-width: thin;
-  scrollbar-color: rgba(15, 13, 18, 0.32) transparent;
+  scrollbar-color: rgba(124, 121, 139, 0.45) transparent;
 }
 
 #quiz-shelf-scroller::-webkit-scrollbar {
@@ -39,13 +44,13 @@
 /* Inset by a transparent border rather than by width, so the thumb keeps the pill shape
    a narrower one would round away. */
 #quiz-shelf-scroller::-webkit-scrollbar-thumb {
-  background: rgba(15, 13, 18, 0.32);
+  background: rgba(124, 121, 139, 0.45);
   border: 2px solid transparent;
   border-radius: 999px;
   background-clip: content-box;
 }
 
 #quiz-shelf-scroller::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 13, 18, 0.55);
+  background: rgba(124, 121, 139, 0.7);
   background-clip: content-box;
 }

@@ -164,9 +164,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...(theme.scheme === "dark"
-            ? {}
-            : theme.popShadow(theme.colors.border))
+        ...theme.popShadow(theme.colors.shadow)
     },
 
     row: {

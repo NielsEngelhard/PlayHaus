@@ -42,7 +42,7 @@
           "resizeMode": "contain",
           "dark": {
             "image": "./assets/images/playhaus-lockup-light.svg",
-            "backgroundColor": "#0E0E13"
+            "backgroundColor": "#1B1A22"
           }
         }
       ],
