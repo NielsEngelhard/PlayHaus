@@ -717,8 +717,8 @@ export const nl: Catalog = {
                 secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
                 warning: 'Alleen jij ziet dit',
                 hide: 'Verbergen',
-                done: 'Gezien — geef door',
-                lastDone: 'Gezien — start ronde 1'
+                done: 'Gezien, geef door',
+                lastDone: 'Gezien, start ronde 1'
             },
 
             speak: {
@@ -731,14 +731,14 @@ export const nl: Catalog = {
 
             discuss: {
                 title: 'Overleg',
-                description: 'Wie klonk alsof die zat te gokken? Praat het uit en stem daarna iemand weg.',
+                description: 'Wie klonk alsof die zat te gokken? Stem allemaal iemand weg. Je mag jezelf niet verdedigen. Je mag alleen overleggen wie je weg stemt en waarom.',
                 tieNote: 'Bij een gelijke stand beslist de tafel samen wie er weggaat.',
                 action: 'Klaar om te stemmen'
             },
 
             vote: {
-                title: 'Wie is one of us?',
-                description: 'Tik op degene die de tafel gekozen heeft en bevestig.',
+                title: 'Wie stemmen we weg?',
+                description: 'Tik op degene die de meerderheid van de stemmen heeft en bevestig.',
                 nobody: 'Nog niemand gekozen',
                 confirm: '{{name}} wegstemmen',
                 confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
