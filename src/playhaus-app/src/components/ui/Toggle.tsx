@@ -1,4 +1,6 @@
+import { Brand, withAlpha } from "@/constants/theme";
 import { useAccent } from "@/features/theme/AccentContext";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Pressable, View } from "react-native";
 
@@ -11,27 +13,32 @@ interface Props {
     disabled?: boolean
 }
 
-const TRACK_WIDTH = 56;
-const TRACK_HEIGHT = 32;
-const TRACK_BORDER = 2;
-const KNOB_SIZE = 22;
+const TRACK_WIDTH = 52;
+const TRACK_HEIGHT = 31;
+const KNOB_SIZE = 25;
 const KNOB_INSET = 3;
 
-// Absolute children sit inside the border, so the knob travels the padding box rather
-// than the full track.
-const KNOB_TRAVEL_END = TRACK_WIDTH - TRACK_BORDER * 2 - KNOB_SIZE - KNOB_INSET;
+// No border on the track any more, so the knob travels the full width less itself and
+// the same inset at both ends.
+const KNOB_TRAVEL_END = TRACK_WIDTH - KNOB_SIZE - KNOB_INSET;
 
 /**
- * An on/off switch in the app's own hand: hard border, hard shadow, no platform chrome.
- * React Native's `Switch` renders as the OS draws it, which sits oddly next to the rest
- * of the UI, so this is drawn from scratch.
+ * An on/off switch in the app's own hand. React Native's `Switch` renders as the OS
+ * draws it, which sits oddly next to the rest of the UI, so this is drawn from scratch.
+ *
+ * Soft rather than outlined: the settings pages took the 2px lines and hard shadows off
+ * everything you touch, and the switch says "on" by glowing in its own colour instead of
+ * by being fenced in ink. The glow is what makes the state legible at a glance — an
+ * accent track that threw no light would read as a printed pill, not a live control.
  */
 export default function Toggle({ value, onValueChange, label, disabled = false }: Props) {
     const styles = useStyles();
+    const theme = useTheme();
 
     // What "on" looks like, in the colour of whatever this switch belongs to. Orange
     // wherever nothing is lent — see `AccentContext`.
     const accent = useAccent();
+    const fill = accent?.color ?? theme.colors.primary;
 
     return (
         <Pressable
@@ -42,8 +49,9 @@ export default function Toggle({ value, onValueChange, label, disabled = false }
             accessibilityState={{ checked: value, disabled }}
             style={[
                 styles.track,
-                value ? styles.trackOn : styles.trackOff,
-                value && accent !== null && { backgroundColor: accent.color },
+                value
+                    ? { backgroundColor: fill, boxShadow: `0 6px 14px -6px ${withAlpha(fill, 0.7)}` }
+                    : styles.trackOff,
                 disabled && styles.trackDisabled
             ]}
         >
@@ -63,12 +71,7 @@ const useStyles = createThemedStyles(theme => ({
         height: TRACK_HEIGHT,
         flexShrink: 0,
         justifyContent: 'center',
-        borderRadius: 999,
-        borderWidth: TRACK_BORDER,
-        borderColor: theme.colors.border
-    },
-    trackOn: {
-        backgroundColor: theme.colors.primary
+        borderRadius: 999
     },
     trackOff: {
         backgroundColor: theme.colors.muted
@@ -83,9 +86,9 @@ const useStyles = createThemedStyles(theme => ({
         width: KNOB_SIZE,
         height: KNOB_SIZE,
         borderRadius: 999,
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
+        // Paper in both schemes: the knob sits on an accent when on and on `muted` when
+        // off, neither of which flips with the canvas, so the knob must not either.
+        backgroundColor: Brand.textOnAccent,
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.25)'
     }
 }))

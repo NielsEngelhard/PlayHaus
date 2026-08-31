@@ -3,7 +3,6 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
-import Card from "@/components/ui/Card";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
 import StartGameButton from "@/components/ui/StartGameButton";
@@ -15,6 +14,7 @@ import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
+import BoardPreview from "@/features/league-of-letters/components/BoardPreview";
 import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
 import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
@@ -187,6 +187,13 @@ export default function LeagueOfLettersSettingsPage() {
                 game={LEAGUE_OF_LETTERS}
                 title={t('lol.settings.title')}
                 back={ROUTES.leagueOfLettersIndex as RelativePathString}
+                preview={<BoardPreview wordLength={settings.wordLength} />}
+                previewCaption={[
+                    t('lol.settings.wordLengthOption', { letters: settings.wordLength }),
+                    settings.hardMode
+                        ? t('lol.settings.summary.hardOn')
+                        : t('lol.settings.summary.hardOff')
+                ].join(' · ')}
                 facts={t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
                 error={error === null ? undefined : t(error)}
                 action={
@@ -197,34 +204,27 @@ export default function LeagueOfLettersSettingsPage() {
                     />
                 }
             >
-                {/* One child per ruled section. */}
-                <Card>
-                    <WordLengthInput
-                        variant='inline'
-                        showValue
-                        value={settings.wordLength}
-                        onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                    />                    
-                </Card>
+                {/* One child per ruled section — bare on the sheet, no cards. */}
+                <WordLengthInput
+                    variant='inline'
+                    showValue
+                    value={settings.wordLength}
+                    onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
+                />
 
-                <Card>
-                    <LanguageSelect
-                        variant='row'
-                        value={settings.locale}
-                        onChange={locale => setSettings(current => ({ ...current, locale }))}
-                    />                    
-                </Card>
+                <LanguageSelect
+                    variant='row'
+                    value={settings.locale}
+                    onChange={locale => setSettings(current => ({ ...current, locale }))}
+                />
 
-                <Card>
-                    <ToggleRow
-                        flush
-                        value={settings.hardMode}
-                        onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
-                        label={t('lol.settings.hardMode.label')}
-                        description={t('lol.settings.hardMode.description')}
-                        icon="zap"
-                    />
-                </Card>
+                <ToggleRow
+                    flush
+                    value={settings.hardMode}
+                    onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
+                    label={t('lol.settings.hardMode.label')}
+                    description={t('lol.settings.hardMode.description')}
+                />
             </SettingsPageBase>
 
             {/*

@@ -1,8 +1,6 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
-import { Brand, Gradients, Spacing, accentInkColor, linearGradient, withAlpha } from "@/constants/theme";
-import { useAccent } from "@/features/theme/AccentContext";
-import { useTheme } from "@/features/theme/ThemeContext";
+import { Spacing, withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Pressable, View } from "react-native";
 
@@ -45,10 +43,8 @@ export interface HorizontalButtonSelectProps<T> {
     valueLabel?: string;
 }
 
-const TILE_GRADIENT_MIDPOINT = 60;
-
-const TILE_HEIGHT = 60;
-const TILE_HEIGHT_COMPACT = 46;
+const TILE_HEIGHT = 52;
+const TILE_HEIGHT_COMPACT = 42;
 
 export default function HorizontalButtonSelect<T>({
     options,
@@ -69,7 +65,7 @@ export default function HorizontalButtonSelect<T>({
         <View style={inline ? undefined : styles.card}>
             {label && <Label label={label} value={valueLabel} />}
 
-            <View style={[styles.row, inline && styles.rowInline]}>
+            <View style={styles.track}>
                 {options.map((option, index) => {
                     const selected = option === value;
 
@@ -99,6 +95,15 @@ interface ButtonTileProps {
     onPress: () => void;
 }
 
+/*
+ * One tab of the picker. The chosen one is a paper tile floating just above a sunken
+ * track; the rest are nothing but their numbers, resting in it.
+ *
+ * The tile used to wear the page's accent, but a picker that shouts in the game's
+ * colour competes with the one control on the page that is allowed to — the action.
+ * Paper says "chosen" through elevation instead, which also means the picker needs no
+ * ink-versus-paper decision and reads the same under every accent, violet included.
+ */
 function ButtonTile({
     label,
     accessibilityLabel,
@@ -107,20 +112,6 @@ function ButtonTile({
     onPress
 }: ButtonTileProps) {
     const styles = useStyles();
-    const theme = useTheme();
-
-    /*
-     * The colour the chosen tile wears, which is the page's if it lends one.
-     *
-     * Lemon is the standing answer and stays the answer everywhere nothing is lent —
-     * the lobby's settings card, the time picker. Inside a settings card the game's own
-     * colour is what "chosen" means, so the same picker is orange under League of
-     * Letters and violet under One of Us.
-     */
-    const accent = useAccent();
-    const fill = accent?.gradient ?? Gradients.lemon;
-    const flat = accent?.color ?? Brand.lemon;
-    const ink = accent === null ? Brand.ink : accentInkColor(accent.ink);
 
     return (
         <Pressable
@@ -131,20 +122,12 @@ function ButtonTile({
             style={[
                 styles.tile,
                 compact && styles.tileCompact,
-                selected ? styles.tileSelected : styles.tileUnselected,
-                selected && linearGradient(fill, TILE_GRADIENT_MIDPOINT),
-                // Dark has no ink line to cut the tile out with, so the edge and the lift
-                // are both drawn in the accent — see `tileSelected` for the light case.
-                selected && theme.scheme === "dark" && {
-                    borderColor: flat,
-                    boxShadow: `0 10px 20px -12px ${withAlpha(flat, 0.8)}`
-                }
+                selected && styles.tileSelected
             ]}
         >
             <AppText
                 style={[
                     selected ? styles.tileTextSelected : styles.tileText,
-                    selected && { color: ink },
                     compact &&
                         (selected
                             ? styles.tileTextSelectedCompact
@@ -167,67 +150,61 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.popShadow(theme.colors.shadow)
     },
 
-    row: {
+    // A shallow well the options sit in, drawn as a wash of whichever ink the scheme
+    // writes with. It is the only part of the control that touches the page, so it has
+    // to stay quiet enough to sit on bare canvas with no card around it.
+    track: {
         flexDirection: "row",
-        gap: Spacing.two
-    },
-
-    rowInline: {
-        marginTop: 0,
-        gap: 6
+        gap: 4,
+        padding: 4,
+        borderRadius: 16,
+        backgroundColor:
+            theme.scheme === "dark"
+                ? withAlpha(theme.colors.text, 0.06)
+                : withAlpha(theme.colors.border, 0.06)
     },
 
     tile: {
+        flex: 1,
         height: TILE_HEIGHT,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 16,
-        borderWidth: theme.borderWidth
+        borderRadius: 12
     },
 
     tileCompact: {
         height: TILE_HEIGHT_COMPACT,
-        borderRadius: 13
+        borderRadius: 10
     },
 
+    // Lifted out of the track on a soft shadow rather than cut out with an outline.
+    // Dark's canvas swallows a faint shadow, so it casts harder into `shadow` and the
+    // fill takes the selected rung, which sits higher off the track than a plain card.
     tileSelected: {
-        flex: 1.25,
-        borderColor:
-            theme.scheme === "dark"
-                ? theme.colors.lemon
-                : theme.colors.border,
-        boxShadow:
-            theme.scheme === "dark"
-                ? "0 10px 20px -12px rgba(255, 229, 56, 0.8)"
-                : "2px 2px 0 0 #0F0D12, 0 10px 18px -12px rgba(15, 13, 18, 0.6)"
-    },
-
-    tileUnselected: {
-        flex: 1,
-        borderColor: theme.colors.borderMuted,
         backgroundColor:
             theme.scheme === "dark"
-                ? theme.colors.backgroundElement
-                : theme.colors.background
+                ? theme.colors.backgroundSelected
+                : theme.colors.backgroundSecondary,
+        boxShadow: `0 3px 8px -2px ${withAlpha(theme.colors.shadow, theme.scheme === "dark" ? 0.8 : 0.28)}`
     },
 
     tileText: {
-        fontSize: 22,
-        fontWeight: 900,
+        fontSize: 17,
+        fontWeight: 800,
         color: theme.colors.textFaint
     },
 
     tileTextSelected: {
-        fontSize: 26,
+        fontSize: 18,
         fontWeight: 900,
-        color: Brand.ink
+        color: theme.colors.text
     },
 
     tileTextCompact: {
-        fontSize: 17
+        fontSize: 15
     },
 
     tileTextSelectedCompact: {
-        fontSize: 20
+        fontSize: 16
     }
 }));

@@ -39,8 +39,9 @@ export const nl: Catalog = {
             players: "Spelers",
             add: "Toevoegen",
             remove: "Verwijder",
-            namePlaceholder: "Naam"
-        }        
+            namePlaceholder: "Naam",
+            seated: "{{players}} spelers"
+        }
     },
     nav: {
         games: 'Spellen',
@@ -280,7 +281,6 @@ export const nl: Catalog = {
         codeSpoken: 'Lobbycode: {{characters}}',
         copyCode: 'Lobbycode {{characters}} kopiëren',
         copied: 'Gekopieerd',
-        readAloud: 'Lees hem voor, of laat ze scannen.',
         shareTitle: 'Kom in mijn lobby',
         shareLink: 'Deel de link',
         shareLinkLabel: 'Deel de link naar deze lobby',
@@ -297,6 +297,8 @@ export const nl: Catalog = {
         ready: 'Klaar',
         away: 'Weg',
         freeSeat: 'Vrije plek',
+        moreSeatsOne: '+ nog 1 vrije plek',
+        moreSeatsMany: '+ nog {{seats}} vrije plekken',
         waiting: 'Wachten…'
     },
     lol: {
