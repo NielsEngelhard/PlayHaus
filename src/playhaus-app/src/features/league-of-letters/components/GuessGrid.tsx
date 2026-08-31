@@ -378,7 +378,6 @@ const useStyles = createThemedStyles(theme => ({
     board: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         width: '100%'
     },
     grid: {

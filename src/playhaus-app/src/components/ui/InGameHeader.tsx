@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import { accentOf, gameForPathname } from "@/constants/games";
 import { accentInkColor, Brand, ContentWidth, Spacing, withAlpha, type Accent, type Theme } from "@/constants/theme";
-import { useAccent } from "@/features/theme/AccentContext";
+import { AccentProvider, useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { getReach } from "@/utils/size-utils";
@@ -39,6 +39,20 @@ interface Props {
      * `flexShrink: 0`: the label beside it is the one thing on this row that gives ground.
      */
     children?: ReactNode
+    /**
+     * The far-right cluster: the chrome the app's header would have carried, on the
+     * board's own band.
+     *
+     * A slot of its own rather than more `children`, because the two ends of this row are
+     * different kinds of thing — the chip is about the round and changes with it, and
+     * these are the app's standing controls and never do. Kept apart, they can be spaced
+     * apart: the cluster closes up to a tighter gap than the row's, so two buttons read as
+     * one pair rather than as two more items on the row.
+     *
+     * Everything drawn in here finds this band's accent through context, so a `band`
+     * variant works without the caller looking the colour up again.
+     */
+    actions?: ReactNode
 }
 
 /**
@@ -67,7 +81,7 @@ interface Props {
  * The notch is this component's too, for the same reason — nothing above it is holding
  * it open any more.
  */
-export default function InGameHeader({ onClose, closeLabel, label, segments, children }: Props) {
+export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const pathname = usePathname();
@@ -91,7 +105,7 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();
 
-    return (
+    const band = (
         <View
             style={[
                 styles.band,
@@ -130,8 +144,21 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
             </View>
 
             {children}
+
+            {actions !== undefined && <View style={styles.actions}>{actions}</View>}
         </View>
-    )
+    );
+
+    /*
+     * The colour is lent onward as well as painted.
+     *
+     * Whatever sits in `actions` draws itself as a wash of ink over the accent — see
+     * `ThemeToggle`'s band variant — and finds out which accent through `useAccent`. On a
+     * board there is no provider upstream to tell it: the colour was worked out here, from
+     * the route, so this is the thing that has to say it. A board drawn inside a provider
+     * already gets `lent` back, which is the same value and a harmless second telling.
+     */
+    return accent === null ? band : <AccentProvider accent={accent}>{band}</AccentProvider>;
 }
 
 /** The band's own vertical padding, which the notch is then added on top of. */
@@ -206,6 +233,13 @@ const useStyles = createThemedStyles(theme => ({
     body: {
         flex: 1,
         minWidth: 0
+    },
+    // Tighter than the row's own gap: these belong to each other rather than to the row.
+    actions: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexShrink: 0,
+        gap: Spacing.one
     },
     label: {
         fontSize: 10.5,

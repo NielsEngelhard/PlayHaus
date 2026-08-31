@@ -17,8 +17,14 @@ import { View } from "react-native";
 /**
  * A solo game in progress.
  *
- * No clock and nobody else on screen — that is the whole of what makes it solo.
- * The board and keyboard are the same ones a multiplayer room uses.
+ * No deadline and nobody else on screen — that is the whole of what makes it solo. The
+ * board and keyboard are the same ones a multiplayer room uses, and so is the clock above
+ * them, except that this one counts up from when the game was made rather than down to
+ * somebody's turn running out.
+ *
+ * `useChromeless` is why the board carries the music and theme buttons itself: the app's
+ * header is not on this screen, and those two are the only part of it worth having while
+ * a round is being played.
  *
  * The word length and language are not read from the route: the game is fetched
  * by id and carries its own, which are what the server actually made rather than
@@ -67,6 +73,9 @@ export default function LeagueOfLettersSoloPage() {
                 game={game}
                 round={round}
                 userId={user.id}
+                // Solo has no roster to read a name off, so the account is the player:
+                // there is exactly one of them, and it is whoever is signed in.
+                player={{ name: user.name, avatarColorId: user.color }}
                 onGuess={guess}
                 onNextRound={nextRound}
                 onFinish={() => router.replace({

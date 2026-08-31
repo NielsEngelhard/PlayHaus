@@ -351,6 +351,8 @@ export const nl: Catalog = {
             guess: 'Raden',
             clear: 'Wissen',
             timeLeft: 'Resterende tijd',
+            scoreLabel: '{{name}}, {{score}} punten',
+            playTimeLabel: 'Speeltijd: {{time}}',
             yourTurn: 'AAN ZET',
             typing: 'typt…'
         },

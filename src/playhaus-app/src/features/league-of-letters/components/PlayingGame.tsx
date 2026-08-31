@@ -1,4 +1,6 @@
 import type { Game, GameRound } from "@/api/calls/league-of-letters";
+import MusicToggle from "@/components/layout/MusicToggle";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
@@ -7,6 +9,8 @@ import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
 import { useMusic } from "@/features/audio/MusicContext";
+import { useT } from "@/features/i18n/LanguageContext";
+import type { TranslationKey } from "@/features/i18n/keys";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
@@ -14,11 +18,10 @@ import NextRoundCountdown from "@/features/league-of-letters/components/NextRoun
 import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
 import RoundChip from "@/features/league-of-letters/components/RoundChip";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
+import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useT } from "@/features/i18n/LanguageContext";
-import type { TranslationKey } from "@/features/i18n/keys";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
@@ -33,6 +36,15 @@ interface Props {
     round: GameRound,
     /** Whose board this is. Matched against `GameGuess.userId`. */
     userId: string,
+    /**
+     * Solo only: who is playing, for the status row above the board.
+     *
+     * Handed in rather than read off the session here, the same way `userId` is — the
+     * board is given who it is drawing for and does not go looking. Multiplayer has no
+     * use for it: `game.players` already names everybody at the table, this player
+     * included.
+     */
+    player?: { name: string, avatarColorId: string },
     /**
      * Sends a complete word. Rejecting is how a refusal is reported — whatever it
      * throws is turned into a line for the player by `guessErrorMessage`.
@@ -130,6 +142,7 @@ export default function PlayingGame({
     game,
     round,
     userId,
+    player,
     onGuess,
     myTurn,
     typing,
@@ -409,6 +422,22 @@ export default function PlayingGame({
                 closeLabel={t('common.back')}
                 label={t('lol.game.roundOf', { round: round.roundNumber, total: game.totalRounds })}
                 segments={segments}
+                /*
+                 * The two switches the app's header carries everywhere else. A board has
+                 * claimed the chrome — see `useChromeless` — and these are the two of its
+                 * controls a player actually reaches for mid-game: the music is loud in a
+                 * room full of people, and the lights go down in the same room. Losing
+                 * them for the length of a game meant leaving the game to get them back.
+                 *
+                 * Only these two. The pill and the wordmark are about where you are, and
+                 * the band already says that better than they would.
+                 */
+                actions={
+                    <>
+                        <MusicToggle variant='band' />
+                        <ThemeToggle variant='band' />
+                    </>
+                }
             >
                 <RoundChip
                     outcome={outcome}
@@ -417,21 +446,22 @@ export default function PlayingGame({
                 />
             </InGameHeader>
 
-            {/* A lane of its own, held open whether or not there is anything in it. The
-                grid sizes itself to whatever room it is left, so a line that came and
-                went would resize every tile on the board twice per nudge. Takes no
-                touches, so nothing underneath it stops working. */}
-            <View style={styles.noticeLane} pointerEvents='none'>
-                {!verdict && notice && (
-                    <View style={styles.notice}>
-                        <AppText style={styles.noticeText}>{t(notice.key)}</AppText>
-                    </View>
-                )}
-            </View>
-
             {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
             {multiplayer && round.endsAt && !finished && (
                 <GameTimer endsAt={round.endsAt} style={styles.timer} />
+            )}
+
+            {/* Solo's answer to the row of chips below: you, your running total, and how
+                long you have been at it. The clock stops when the game does, so what is
+                left standing over the last verdict is how long the game took. */}
+            {!multiplayer && player !== undefined && (
+                <SoloStatusRow
+                    name={player.name}
+                    avatarColorId={player.avatarColorId}
+                    score={game.score}
+                    startedAt={game.createdAt}
+                    running={!gameOver}
+                />
             )}
 
             {multiplayer && game.players && (
@@ -443,6 +473,19 @@ export default function PlayingGame({
                     typingUserId={typing === null || typing === undefined ? undefined : game.turn?.userId}
                 />
             )}
+
+
+            {/* A lane of its own, held open whether or not there is anything in it. The
+                grid sizes itself to whatever room it is left, so a line that came and
+                went would resize every tile on the board twice per nudge. Takes no
+                touches, so nothing underneath it stops working. */}
+            <View style={styles.noticeLane} pointerEvents='none'>
+                {!verdict && notice && (
+                    <View style={styles.notice}>
+                        <AppText style={styles.noticeText}>{t(notice.key)}</AppText>
+                    </View>
+                )}
+            </View>            
 
             {/* Keyed on the round number, which is what replays the lift: a new round is
                 a new board, and remounting it is what clears the last one's tiles as
@@ -608,6 +651,7 @@ const useStyles = createThemedStyles(theme => ({
     // as one. Holds its size for the same reason they do: the board above is the only
     // thing on this screen that gives room away.
     controls: {
-        flexShrink: 0
+        flexShrink: 0,
+        marginBottom: Spacing.three
     }
 }))

@@ -109,7 +109,7 @@ export default function LobbyPageBase({
 
                     <LivePill live={live} />
 
-                    <MusicToggle subtle />
+                    <MusicToggle variant='subtle' />
                 </View>
 
                 <ScrollView

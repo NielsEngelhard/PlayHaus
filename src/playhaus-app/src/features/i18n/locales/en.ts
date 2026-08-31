@@ -374,6 +374,10 @@ export const en = {
             guess: 'Guess',
             clear: 'Clear',
             timeLeft: 'Time left',
+            /** Read out for the solo board's status chip, which shows both as one line. */
+            scoreLabel: '{{name}}, {{score}} points',
+            /** Read out for the solo board's clock, which shows the time on its own. */
+            playTimeLabel: 'Play time: {{time}}',
             yourTurn: 'YOUR TURN',
             typing: 'typing…'
         },
