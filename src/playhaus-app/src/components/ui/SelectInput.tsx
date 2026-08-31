@@ -210,23 +210,30 @@ export default function SelectInput<T extends string>({
                 {/* A value with no matching option means the caller and the list are out of
                     step. Show an em dash rather than an empty field or a crash. */}
                 {row ? (
-                    <View style={styles.fieldRowText}>
-                        <AppText style={styles.fieldRowLabel}>{label}</AppText>
+                    <>
+                        <AppText style={styles.fieldRowLabel} numberOfLines={1}>{label}</AppText>
 
                         <AppText style={styles.fieldRowValue} numberOfLines={1}>
                             {selected?.label ?? '—'}
                         </AppText>
-                    </View>
+                    </>
                 ) : (
                     <AppText style={[styles.fieldText, disabled && styles.dimmed]} numberOfLines={1}>
                         {selected?.label ?? '—'}
                     </AppText>
                 )}
 
+                {/* The row's chevron points into the list it opens rather than tracking
+                    open/closed — the open list covers the field, so a flipping glyph is
+                    animation nobody sees. */}
                 <Feather
-                    name={open ? 'chevron-up' : 'chevron-down'}
+                    name={row ? 'chevron-right' : open ? 'chevron-up' : 'chevron-down'}
                     size={row ? 17 : 20}
-                    color={disabled ? theme.colors.textSecondary : theme.colors.text}
+                    color={
+                        disabled ? theme.colors.textSecondary
+                            : row ? theme.colors.textMuted
+                                : theme.colors.text
+                    }
                 />
             </Pressable>
 
@@ -385,22 +392,20 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: 12
     },
-    fieldRowText: {
-        flex: 1,
-        minWidth: 0
-    },
+    // The line reads like a sentence: what this row is in the row's own voice, the
+    // current answer quieter at the far end, the chevron saying there are others.
     fieldRowLabel: {
-        fontSize: 11,
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 2.2,
-        color: theme.colors.textSecondary
-    },
-    fieldRowValue: {
-        marginTop: 2,
+        flex: 1,
+        minWidth: 0,
         fontSize: 15,
         fontWeight: 700,
         color: theme.colors.text
+    },
+    fieldRowValue: {
+        flexShrink: 1,
+        fontSize: 15,
+        fontWeight: 700,
+        color: theme.colors.textSecondary
     },
     dimmed: {
         opacity: 0.5

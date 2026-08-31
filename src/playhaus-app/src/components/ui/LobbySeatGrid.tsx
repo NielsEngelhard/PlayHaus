@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
 import { initialsFor, type LobbySeat } from "@/components/ui/lobby-seat";
-import { Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -11,9 +11,9 @@ import { View } from "react-native";
 interface Props {
     /** Everyone in the room, in whatever order the game's API deals them. */
     players: LobbySeat[],
-    /** How many the room holds. The rest of the grid is drawn as free seats. */
+    /** How many the room holds. One free seat is drawn; the rest become a count. */
     maxPlayers: number,
-    /** Whose room this is, so one card can be marked as the one that runs it. */
+    /** Whose room this is, so one row can be marked as the one that runs it. */
     hostId: string,
     /** Whose screen this is, so a name can read as yours rather than as a stranger's. */
     userId: string | undefined,
@@ -36,21 +36,19 @@ interface Props {
     accent: string
 }
 
-/** Two to a row. Six seats then fit in three rows, which is what the design lays out. */
-const COLUMNS = 2;
-
-const AVATAR_SIZE = 36;
+const AVATAR_SIZE = 32;
 
 /**
  * Who is in the room, and how much room is left, on the host's screen.
  *
- * The free seats are drawn rather than counted: a lobby is a screen you sit and watch,
- * and a card appearing in a gap that was already there says "somebody arrived" far more
- * plainly than a number going from two to three.
+ * One person to a row rather than the old two-column grid: a row has the width to say
+ * three things at once — the face, the name, and one word about them on the far side —
+ * where a half-width card had to stack the word under the name and truncate both.
  *
- * Laid out as explicit rows of two rather than as a wrapping grid. React Native has no
- * `grid`, and percentage widths plus a gap wrap at the wrong moment — two 48% cards and
- * 10pt between them come to more than the row, so they end up one to a line.
+ * Exactly one free seat is drawn open, and any beyond it are a count. The open seat is
+ * what makes an arrival legible — a card filling a gap that was already there says
+ * "somebody arrived" far more plainly than a number going from two to three — but one gap
+ * carries that meaning as well as four, and four dashed boxes were most of the screen.
  *
  * Knows nothing about which game it is drawing: the seats and the size of the room both
  * arrive as props, so a second lobby built on `LobbyPageBase` uses this one unchanged.
@@ -59,19 +57,12 @@ export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, onl
     const t = useT();
     const styles = useStyles();
 
-    /**
-     * Every seat, taken or not. `null` is one nobody is in yet — the two are drawn side
-     * by side, so they have to be one list to chop into rows.
-     */
-    const seats: (LobbySeat | null)[] = [
-        ...players,
-        ...Array.from({ length: Math.max(0, maxPlayers - players.length) }, () => null)
-    ];
+    const free = Math.max(0, maxPlayers - players.length);
 
-    const rows = Array.from(
-        { length: Math.ceil(seats.length / COLUMNS) },
-        (_, row) => seats.slice(row * COLUMNS, row * COLUMNS + COLUMNS)
-    );
+    // The seats beyond the one drawn open. Two wordings rather than a `{{count}}` key,
+    // which would switch i18next into plural mode — the same trade `common.player.seated`
+    // documents.
+    const remaining = free - 1;
 
     return (
         <View>
@@ -84,28 +75,32 @@ export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, onl
             </View>
 
             <View style={styles.rows}>
-                {rows.map((row, index) => (
-                    <View key={index} style={styles.row}>
-                        {row.map((seat, column) => seat === null ? (
-                            <EmptySeat key={`free-${column}`} />
-                        ) : (
-                            <PlayerCard
-                                key={seat.userId}
-                                player={seat}
-                                host={seat.userId === hostId}
-                                you={seat.userId === userId}
-                                live={online.has(seat.userId)}
-                                accent={accent}
-                            />
-                        ))}
-                    </View>
+                {players.map(player => (
+                    <PlayerRow
+                        key={player.userId}
+                        player={player}
+                        host={player.userId === hostId}
+                        you={player.userId === userId}
+                        live={online.has(player.userId)}
+                        accent={accent}
+                    />
                 ))}
+
+                {free > 0 && <FreeSeatRow />}
             </View>
+
+            {remaining > 0 && (
+                <AppText style={styles.moreSeats}>
+                    {remaining === 1
+                        ? t('lobby.moreSeatsOne')
+                        : t('lobby.moreSeatsMany', { seats: remaining })}
+                </AppText>
+            )}
         </View>
     )
 }
 
-interface PlayerCardProps {
+interface PlayerRowProps {
     player: LobbySeat,
     host: boolean,
     you: boolean,
@@ -113,56 +108,54 @@ interface PlayerCardProps {
     accent: string
 }
 
-/** One person: their swatch, their name, and one word about them under it. */
-function PlayerCard({ player, host, you, live, accent }: PlayerCardProps) {
+/** One person: their swatch, their name, and one word about them on the far side. */
+function PlayerRow({ player, host, you, live, accent }: PlayerRowProps) {
     const styles = useStyles();
     const t = useT();
 
     const avatar = avatarColorById(player.avatarColorId);
 
     return (
-        <View style={[styles.card, styles.cardTaken]}>
+        <View style={[styles.row, styles.rowTaken]}>
             <View style={[styles.avatar, { backgroundColor: avatar.color }]}>
                 <AppText style={[styles.initials, { color: avatar.foreground }]}>
                     {initialsFor(player.name)}
                 </AppText>
             </View>
 
-            <View style={styles.body}>
-                <AppText style={styles.name} numberOfLines={1}>{player.name}</AppText>
+            <AppText style={styles.name} numberOfLines={1}>{player.name}</AppText>
 
-                {/*
-                  * One line, in the order the host needs it: who runs the lobby, and for
-                  * everybody else whether they are actually looking at their screen.
-                  */}
-                {host ? (
-                    <AppText style={[styles.host, { color: accent }]}>
-                        {you ? t('lobby.hostYou') : t('lobby.hostTag')}
-                    </AppText>
-                ) : (
-                    <AppText style={[styles.status, !live && styles.statusAway]}>
-                        {live ? t('lobby.ready') : t('lobby.away')}
-                    </AppText>
-                )}
-            </View>
+            {/*
+              * One word, in the order the host needs it: who runs the lobby, and for
+              * everybody else whether they are actually looking at their screen.
+              */}
+            {host ? (
+                <AppText style={[styles.status, styles.statusHost, { color: accent }]}>
+                    {you ? t('lobby.hostYou') : t('lobby.hostTag')}
+                </AppText>
+            ) : (
+                <AppText style={[styles.status, !live && styles.statusAway]}>
+                    {live ? t('lobby.ready') : t('lobby.away')}
+                </AppText>
+            )}
         </View>
     )
 }
 
-/** A seat nobody has taken. Drawn open, so the lobby reads as unfinished. */
-function EmptySeat() {
+/** The seat nobody has taken yet. Drawn open, so the lobby reads as unfinished. */
+function FreeSeatRow() {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
 
     return (
         <View
-            style={[styles.card, styles.cardEmpty]}
+            style={[styles.row, styles.rowEmpty]}
             accessibilityRole='text'
             accessibilityLabel={t('lobby.freeSeat')}
         >
             <View style={styles.avatarEmpty}>
-                <Feather name='plus' size={15} color={theme.colors.textFaint} />
+                <Feather name='plus' size={13} color={theme.colors.textFaint} />
             </View>
 
             <AppText style={styles.waiting} numberOfLines={1}>{t('lobby.waiting')}</AppText>
@@ -193,30 +186,29 @@ const useStyles = createThemedStyles(theme => ({
     },
     rows: {
         marginTop: 10,
-        gap: 10
+        gap: 8
     },
     row: {
         flexDirection: 'row',
-        gap: 10
-    },
-    card: {
-        flex: 1,
-        minWidth: 0,
-        flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
-        padding: 11,
-        borderRadius: 18,
-        borderWidth: theme.borderWidth
+        paddingVertical: 9,
+        paddingHorizontal: 12,
+        borderRadius: 16
     },
-    cardTaken: {
-        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
+    // A thin ring rather than the app's hard border-and-shadow: six of those stacked in a
+    // column read as six little machines, where the design wants a list you skim.
+    rowTaken: {
+        borderWidth: 1.5,
+        borderColor: theme.scheme === 'dark'
+            ? theme.colors.borderSubtle
+            : 'rgba(15, 13, 18, 0.12)',
+        backgroundColor: theme.colors.backgroundSecondary
     },
-    // A free seat sits back instead: no shadow, a thinner fill, and a broken outline so
-    // it does not read as a person with a blank name.
-    cardEmpty: {
+    // A free seat sits back instead: a thinner fill and a broken outline, so it does not
+    // read as a person with a blank name.
+    rowEmpty: {
+        borderWidth: theme.borderWidth,
         borderStyle: 'dashed',
         borderColor: theme.colors.borderDashed,
         backgroundColor: theme.scheme === 'dark'
@@ -231,7 +223,7 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center',
         borderRadius: 999,
         borderWidth: theme.borderWidth,
-        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border
+        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : Brand.ink
     },
     avatarEmpty: {
         width: AVATAR_SIZE,
@@ -249,25 +241,24 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900,
         letterSpacing: -0.3
     },
-    body: {
-        flex: 1,
-        minWidth: 0
-    },
     name: {
+        flex: 1,
+        minWidth: 0,
         fontSize: 13.5,
         fontWeight: 800,
         color: theme.colors.text
     },
-    // The colour is set at the call site, from the game's own accent.
-    host: {
-        fontSize: 10.5,
-        fontWeight: 800,
-        letterSpacing: 0.5
-    },
+    // The one word on the far side. It holds its width; the name gives ground instead.
     status: {
+        flexShrink: 0,
         fontSize: 10.5,
         fontWeight: 700,
+        letterSpacing: 0.4,
         color: theme.colors.textMuted
+    },
+    // The colour is set at the call site, from the game's own accent.
+    statusHost: {
+        fontWeight: 800
     },
     // Somebody whose phone is asleep. Said quietly rather than as an alarm: they are
     // still in the room, and the host may perfectly well start without them looking.
@@ -278,6 +269,12 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0,
         fontSize: 12.5,
+        fontWeight: 700,
+        color: theme.colors.textFaint
+    },
+    moreSeats: {
+        marginTop: 8,
+        fontSize: 11.5,
         fontWeight: 700,
         color: theme.colors.textFaint
     }

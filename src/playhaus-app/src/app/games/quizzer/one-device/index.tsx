@@ -3,7 +3,6 @@ import LoadingPage from "@/components/layout/LoadingPage";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
-import Card from "@/components/ui/Card";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
 import StartGameButton from "@/components/ui/StartGameButton";
@@ -16,6 +15,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import PlayerSeats from "@/features/pubquizr/components/PlayerSeats";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
+import TablePreview from "@/features/pubquizr/components/TablePreview";
 import { MIN_PLAYERS, seatedNames, tableProblem } from "@/features/pubquizr/one-device-table";
 import { quizErrorMessage } from "@/features/pubquizr/pubquizr-errors";
 import {
@@ -240,6 +240,11 @@ export default function OneDeviceQuizerSetup() {
                 title={t('pubquizr.oneDevice.title')}
                 intro={t('pubquizr.oneDevice.description')}
                 back={ROUTES.quizzerIndex as RelativePathString}
+                preview={<TablePreview names={names} />}
+                previewCaption={[
+                    t('common.player.seated', { players: seatedNames(names).length }),
+                    selected.quiz?.title
+                ].filter(Boolean).join(' · ')}
                 error={error === null ? undefined : t(error)}
                 action={
                     <StartGameButton
@@ -259,7 +264,9 @@ export default function OneDeviceQuizerSetup() {
                     message={t('pubquizr.oneDevice.order.message')}
                 />
 
-                <Card>
+                {/* A fragment so label, seats and complaint stay one child — one ruled
+                    section, no card. */}
+                <>
                     <Label label={t('pubquizr.oneDevice.players.label')} />
 
                     <PlayerSeats names={names} onChange={editNames} disabled={starting} />
@@ -270,7 +277,7 @@ export default function OneDeviceQuizerSetup() {
                     {showProblem && (
                         <AppText style={styles.problem}>{t(problem)}</AppText>
                     )}
-                </Card>
+                </>
 
                 {/* Already a fenced panel of its own, so no card around it. */}
                 <QuizPicker quiz={selected.quiz} onSelect={selected.select} />
@@ -332,8 +339,8 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     problem: {
-        // The card lays its children out with no gap of its own, so the line has to keep
-        // itself off the last seat.
+        // The section lays its children out with no gap of its own, so the line has to
+        // keep itself off the last seat.
         marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,

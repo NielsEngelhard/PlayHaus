@@ -1,8 +1,5 @@
-import { FontSizes, Spacing, accentInkColor } from "@/constants/theme"
-import { useAccent } from "@/features/theme/AccentContext"
+import { FontSizes, Spacing } from "@/constants/theme"
 import { createThemedStyles } from "@/features/theme/createThemedStyles"
-import { useTheme } from "@/features/theme/ThemeContext"
-import Feather from "@expo/vector-icons/Feather"
 import { View } from "react-native"
 import AppText from "../text/AppText"
 import Toggle from "./Toggle"
@@ -12,7 +9,6 @@ interface Props {
     label: string,
     description: string
     onChange: (value: boolean) => void,
-    icon: keyof typeof Feather.glyphMap,
     /**
      * Drops the row's own vertical padding, for a container that already spaces the
      * blocks inside it — `SettingsPageBase` rules its sections apart and pads them
@@ -21,31 +17,24 @@ interface Props {
     flush?: boolean
 }
 
-export default function ToggleRow({ value, label, description, icon, onChange, flush = false }: Props) {
+/**
+ * A named switch with a line saying what it does: label and description on the left,
+ * the toggle on the right.
+ *
+ * There used to be an icon tile in front of the text, but a glyph in a box is one more
+ * outlined object on a page that now keeps its outlines for the things you touch — the
+ * words carry the meaning, and the switch's own colour carries whose setting it is.
+ */
+export default function ToggleRow({ value, label, description, onChange, flush = false }: Props) {
     const styles = useStyles();
-    const theme = useTheme();
-
-    // The tile under the glyph takes the page's colour where one is lent; on its own it
-    // stays the quiet sunken fill it has everywhere else.
-    const accent = useAccent();
 
     return (
         <View
             style={[styles.row, flush && styles.rowFlush]}
         >
-            <View style={styles.info}>
-                <View style={[styles.iconTile, accent !== null && { backgroundColor: accent.color }]}>
-                    <Feather
-                        name={icon}
-                        size={16}
-                        color={accent === null ? theme.colors.text : accentInkColor(accent.ink)}
-                    />
-                </View>
-
-                <View style={styles.text}>
-                    <AppText style={styles.title}>{label}</AppText>
-                    <AppText style={styles.description}>{description}</AppText>
-                </View>
+            <View style={styles.text}>
+                <AppText style={styles.title}>{label}</AppText>
+                <AppText style={styles.description}>{description}</AppText>
             </View>
 
             <Toggle
@@ -53,21 +42,11 @@ export default function ToggleRow({ value, label, description, icon, onChange, f
                 onValueChange={value => onChange(value)}
                 label={label}
             />
-        </View>        
+        </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    label: {
-        fontSize: FontSizes.xs,
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 2.2,
-        color: theme.colors.textSecondary
-    },
-    rows: {
-        marginTop: Spacing.three
-    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -77,29 +56,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     rowFlush: {
         paddingVertical: 0
-    },
-    // Only between rows — the card's own padding does the work at the two ends.
-    rowDivided: {
-        borderTopWidth: 2,
-        borderTopColor: theme.colors.border
-    },
-    info: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        gap: Spacing.two
-    },
-    iconTile: {
-        width: 32,
-        height: 32,
-        flexShrink: 0,
-        marginTop: Spacing.half,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        borderRadius: 10,
-        backgroundColor: theme.colors.backgroundInput
     },
     text: {
         flex: 1,

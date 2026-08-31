@@ -1,15 +1,13 @@
-import { useContextPillStyles } from "@/components/layout/ContextPill";
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import MusicToggle from "@/components/layout/MusicToggle";
 import AppText from "@/components/text/AppText";
-import JoinCodeBand from "@/components/ui/JoinCodeBand";
+import JoinCodeHero from "@/components/ui/JoinCodeHero";
 import { accentOf, type Game } from "@/constants/games";
-import { Spacing } from "@/constants/theme";
+import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState, type ReactNode } from "react";
 import { Animated, Easing, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native";
@@ -27,9 +25,23 @@ interface Props {
     footer: ReactNode
 }
 
-/** The design's row: tall enough to clear the notch, short enough to spend on chrome. */
-const BAR_HEIGHT = 62;
-const CHIP_SIZE = 36;
+/** The game's colour as a ribbon along the top — the one place the page says whose it is. */
+const STRIP_HEIGHT = 8;
+
+const CHIP_SIZE = 34;
+
+/**
+ * Where the page stops being a phone screen and becomes a card on the canvas.
+ *
+ * Past this the window is wide enough that the card plus a visible margin of dot grid
+ * beats edge-to-edge, which at that size reads as a stretched phone. Web only: a tablet
+ * held sideways is still a device in a hand, and a frame inside its bezel is a frame
+ * inside a frame.
+ */
+const FRAME_AT = 700;
+
+/** The card, at its widest. A touch over the mockup's 390, since desktop rows run longer. */
+const CARD_WIDTH = 460;
 
 // react-native-web has no native animation module, so asking for one there is a
 // console warning and nothing else. Opacity is driver-safe everywhere else.
@@ -38,6 +50,16 @@ const useNativeDriver = Platform.OS !== 'web';
 /** Half a breath. The dot fades out over this, then back in over it. */
 const PULSE_MS = 1000;
 
+/**
+ * The shape every lobby shares: the game's ribbon, a quiet bar, the code as a headline
+ * when there is one to hand out, a scrolling middle, and a pinned footer.
+ *
+ * On a phone it owns the whole viewport, ribbon under the notch and footer over the home
+ * indicator. On a wide window it becomes the card the design was drawn as — bordered,
+ * rounded, floating on the app's own dot grid — with the same tree either way: only the
+ * styles switch on `framed`, never the elements, because remounting this page would tear
+ * down and rejoin the room's socket.
+ */
 export default function LobbyPageBase({
     game,
     title,
@@ -56,98 +78,97 @@ export default function LobbyPageBase({
 
     const insets = useSafeAreaInsets();
 
+    // Static prerender sees a width of zero and renders the phone branch, which is the
+    // right default for a page that is mobile-first anyway.
     const { width: windowWidth } = useWindowDimensions();
-    const reach = getReach(windowWidth)
+    const framed = Platform.OS === 'web' && windowWidth >= FRAME_AT;
+
+    const accent = accentOf(game);
 
     return (
-        <View style={styles.screen}>
-            <View style={[styles.bar, { height: BAR_HEIGHT + insets.top, paddingTop: insets.top }]}>
-                <Pressable
-                    onPress={onBack}
-                    accessibilityRole='button'
-                    accessibilityLabel={backLabel}
-                    style={styles.chip}
-                >
-                    <Feather name='arrow-left' size={17} color={theme.colors.text} />
-                </Pressable>
+        <View style={[styles.screen, framed && styles.screenFramed]}>
+            <View style={[styles.shell, framed && [styles.card, theme.popShadow(accent.color)]]}>
+                {/* On a phone the ribbon absorbs the notch: the accent runs up under the
+                    status bar rather than leaving a dead strip above itself. */}
+                <View style={{
+                    height: STRIP_HEIGHT + (framed ? 0 : insets.top),
+                    backgroundColor: accent.color
+                }} />
 
-                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
+                <View style={styles.bar}>
+                    <Pressable
+                        onPress={onBack}
+                        accessibilityRole='button'
+                        accessibilityLabel={backLabel}
+                        style={styles.chip}
+                    >
+                        <Feather name='arrow-left' size={17} color={theme.colors.text} />
+                    </Pressable>
 
-                <RoomPill code={code} live={live} />
+                    <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
 
-                <MusicToggle />
-            </View>
+                    <LivePill live={live} />
 
-            <ScrollView
-                style={[styles.scroll, { marginHorizontal: -reach }]}
-                contentContainerStyle={{ paddingHorizontal: reach }}
-                showsVerticalScrollIndicator={false}
-            >
-                {handsOutCode && (
-                    <JoinCodeBand game={game} code={code} style={{
-                        marginHorizontal: -reach,
-                        paddingHorizontal: reach
-                    }} />
-                )}
-
-                <View style={styles.content}>{children}</View>
-            </ScrollView>
-
-            <AccentProvider accent={accentOf(game)}>
-                <View style={[styles.footer, { paddingBottom: insets.bottom + Spacing.four }]}>
-                    {footer}
+                    <MusicToggle subtle />
                 </View>
-            </AccentProvider>
+
+                <ScrollView
+                    style={[styles.scroll, framed && styles.scrollFramed]}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={styles.content}>
+                        {handsOutCode && <JoinCodeHero game={game} code={code} />}
+
+                        {children}
+                    </View>
+                </ScrollView>
+
+                <AccentProvider accent={accent}>
+                    <View style={[
+                        styles.footer,
+                        { paddingBottom: framed ? Spacing.three : insets.bottom + Spacing.four }
+                    ]}>
+                        {footer}
+                    </View>
+                </AccentProvider>
+            </View>
         </View>
     )
 }
 
 /**
- * Which room this is, and whether it is still listening, in one pill at the right of the
- * bar.
+ * Whether the room is still listening, as a dot and a word in the bar.
  *
- * The two share a pill because neither earns one alone. The code is four characters, and a
- * frame around four characters next to a frame around one dot is two frames doing the work
- * of one. And the state used to spend a whole word — "Live" — saying the least surprising
- * thing a lobby you are sitting in could tell you; silent while it holds and loud only when
- * it breaks is the right budget for one bit, which is what the dot alone now does.
- *
- * So the dot is the status and the label is the address. A screen reader gets them as two
- * things in that order rather than as one sentence somebody had to compose out of two
- * catalogue entries, which is also why neither of the strings here had to change.
+ * The code no longer lives up here — it is the headline of the hero now, or the guest's
+ * own title — so the pill's whole job is the one bit of state a lobby you are sitting in
+ * can surprise you with. Green and breathing while it holds; red, flat and renamed the
+ * moment it breaks.
  */
-function RoomPill({ code, live }: { code: string, live: boolean }) {
+function LivePill({ live }: { live: boolean }) {
     const t = useT();
     const styles = useStyles();
-    const pill = useContextPillStyles();
 
     return (
-        <View style={[pill.pill, styles.roomPill]}>
-            <PulseDot
-                live={live}
-                label={live ? t('lobby.live') : t('lobby.disconnected')}
-            />
+        <View
+            style={[styles.pill, live ? styles.pillLive : styles.pillOffline]}
+            accessibilityRole='text'
+            // The visible word is one beat; the label is the whole sentence, so a screen
+            // reader hears what actually happened rather than just "offline".
+            accessibilityLabel={live ? t('lobby.live') : t('lobby.disconnected')}
+        >
+            <PulseDot live={live} />
 
-            <AppText
-                style={[pill.label, styles.code]}
-                numberOfLines={1}
-                accessibilityLabel={t('lobby.codeSpoken', { characters: [...code].join(' ') })}
-            >
-                {code}
+            <AppText style={[styles.pillWord, live ? styles.wordLive : styles.wordOffline]}>
+                {live ? t('lobby.live') : t('lobby.offline')}
             </AppText>
         </View>
     )
 }
 
-/**
- * The dot in the pill: breathing while connected, flat and red once not.
- *
- * It carries the label as well, because it is now the whole of what the pill says about the
- * connection — the word that used to sit beside it is gone.
- */
-function PulseDot({ live, label }: { live: boolean, label: string }) {
+/** The dot in the pill: breathing while connected, flat and red once not. */
+function PulseDot({ live }: { live: boolean }) {
     const theme = useTheme();
-    const pill = useContextPillStyles();
+    const styles = useStyles();
 
     const [pulse] = useState(() => new Animated.Value(1));
 
@@ -183,10 +204,8 @@ function PulseDot({ live, label }: { live: boolean, label: string }) {
 
     return (
         <Animated.View
-            accessibilityRole='text'
-            accessibilityLabel={label}
             style={[
-                pill.dot,
+                styles.dot,
                 { backgroundColor: live ? theme.colors.available : theme.colors.destructive },
                 { opacity: pulse }
             ]}
@@ -201,22 +220,47 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
+    // Wide windows: the card floats in the middle of the claimed viewport, and the dot
+    // grid the layout paints behind every page becomes the canvas around it.
+    screenFramed: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: Spacing.five
+    },
 
-    /**
-     * Everything but the sides and the notch, which are set at the call site — see `reach`
-     * and `insets`. The bar pulls out past the column's edges and lays its own padding
-     * down inside, so the rule under it runs the full width of the window while the chip,
-     * the title and the two controls stay in the column.
-     */
+    // On a phone this is a passthrough that fills the screen. `card` reshapes it.
+    shell: {
+        flex: 1,
+        width: '100%'
+    },
+    // The mockup's frame: hard border, big radius, and the accent-keyed pop shadow laid
+    // on at the call site. `overflow: hidden` is what clips the ribbon into the corners.
+    card: {
+        flexGrow: 0,
+        flexShrink: 1,
+        flexBasis: 'auto',
+        maxWidth: CARD_WIDTH,
+        maxHeight: '100%',
+        borderRadius: 30,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
+        backgroundColor: theme.colors.background,
+        overflow: 'hidden'
+    },
+
+    // No rule under it any more: the bar and the page separate by whitespace and by the
+    // hero's own weight, the way the design draws them.
     bar: {
         flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: Spacing.two + 2,
-        borderBottomWidth: theme.borderWidth,
-        borderBottomColor: theme.colors.border
+        gap: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 18
     },
 
+    // A wash rather than the app's hard-edged button: the bar is chrome on a page whose
+    // loud thing is the hero, so its controls sit back.
     chip: {
         width: CHIP_SIZE,
         height: CHIP_SIZE,
@@ -224,21 +268,9 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 12,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-    // The pill's own `flexShrink` is set for a game's name, which can be long. A code is
-    // four characters and every one of them matters, so this one holds its width and lets
-    // the title beside it give the ground instead.
-    roomPill: {
-        flexShrink: 0
-    },
-    // The pill's label, opened up — not to the 2 the guest's footer wears or the 6 the QR
-    // panel does, because this is chrome. Far enough apart to stop reading as a word.
-    code: {
-        letterSpacing: 1.6
+        backgroundColor: theme.scheme === 'dark'
+            ? 'rgba(245, 243, 239, 0.08)'
+            : withAlpha(Brand.ink, 0.06)
     },
 
     // Takes the room between the chip and the controls, which is also what pushes them to
@@ -252,27 +284,69 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    // Stretched rather than sized: the width has to come out of what the column leaves
-    // *after* the negative margins set at the call site, which a `width: '100%'` would
-    // pin back to the column and undo.
-    scroll: {
-        alignSelf: 'stretch'
+    pill: {
+        flexShrink: 0,
+        height: 26,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        borderRadius: 999
     },
-    // The page's gutters, which a chromeless page has to lay down for itself. Around the
-    // children only: the band above them runs edge to edge and carries its own.
+    pillLive: {
+        backgroundColor: withAlpha(Brand.available, 0.16)
+    },
+    pillOffline: {
+        backgroundColor: withAlpha(Brand.destructive, 0.16)
+    },
+    pillWord: {
+        fontSize: 11,
+        fontWeight: 800
+    },
+    // The word's greens, one per scheme: `Brand.available` itself is tuned to be a fill,
+    // and as text on its own 16% tint it lands just short of readable either way.
+    wordLive: {
+        color: theme.scheme === 'dark' ? '#7ADE8A' : '#1E7A2B'
+    },
+    wordOffline: {
+        color: theme.colors.destructiveText
+    },
+    dot: {
+        width: 8,
+        height: 8,
+        borderRadius: 999
+    },
+
+    scroll: {
+        width: '100%'
+    },
+    // In the card the middle stops growing: the card hugs its content and only scrolls
+    // when the window is shorter than the lobby. The outer chrome cannot scroll for it —
+    // the layout's scroller is off for chromeless pages.
+    scrollFramed: {
+        flexGrow: 0
+    },
+    // The page's gutters, which a chromeless page has to lay down for itself. The hero is
+    // just the first thing in the column now — no full-bleed band, no negative margins.
     content: {
         paddingHorizontal: Spacing.four,
-        paddingTop: 18,
-        gap: 18,
-        // Clears the shadows the cards throw downwards, which paint outside their own box
-        // and would otherwise be cropped by the scroller's bottom edge.
+        paddingTop: 4,
+        gap: 14,
+        // Clears the glow the hero throws downwards, which paints outside its own box and
+        // would otherwise be cropped by the scroller's bottom edge.
         paddingBottom: Spacing.three
     },
-    // Outside the scroller, so it is on the bottom edge whatever the page above it does.
-    // The bottom padding is set at the call site, from the device's own inset.
+
+    // Outside the scroller, so it is on the bottom edge whatever the page above it does,
+    // and ruled off from it — the one line the design keeps. The bottom padding is set at
+    // the call site, from the device's own inset.
     footer: {
         flexShrink: 0,
         paddingHorizontal: Spacing.four,
-        paddingTop: Spacing.two
+        paddingTop: Spacing.two,
+        borderTopWidth: 1,
+        borderTopColor: theme.scheme === 'dark'
+            ? theme.colors.borderSubtle
+            : 'rgba(15, 13, 18, 0.1)'
     }
 }))

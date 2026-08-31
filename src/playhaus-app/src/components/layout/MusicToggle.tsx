@@ -1,4 +1,5 @@
 import PopPressable from "@/components/ui/PopPressable";
+import { Brand, withAlpha } from "@/constants/theme";
 import { useMusicScene } from "@/features/audio/MusicContext";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -7,7 +8,20 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 
+interface Props {
+    /**
+     * The quiet version, for a bar that has its own idea of what a control looks like.
+     *
+     * The lobby's chips are borderless washes rather than the app's hard-edged buttons,
+     * and one hard-edged circle among them would read as a different kind of thing. A
+     * prop rather than a `style` override because the look is the component's to own —
+     * `style` props stay layout-only by convention.
+     */
+    subtle?: boolean
+}
+
 const SIZE = 32;
+const SUBTLE_SIZE = 30;
 
 /**
  * Turns the background music off and on, from wherever it is playing.
@@ -31,7 +45,7 @@ const SIZE = 32;
  * It writes the same account setting as the switch on the profile page, through the same
  * hook, so the two can never disagree.
  */
-export default function MusicToggle() {
+export default function MusicToggle({ subtle = false }: Props) {
     const scene = useMusicScene();
     const { user } = useAuth();
     const { updateEnableMusic, saving } = useProfile();
@@ -58,7 +72,7 @@ export default function MusicToggle() {
             accessibilityRole='switch'
             accessibilityState={{ checked: playing, disabled: saving }}
             accessibilityLabel={playing ? t('chrome.muteMusic') : t('chrome.unmuteMusic')}
-            style={styles.button}
+            style={subtle ? styles.buttonSubtle : styles.button}
         >
             <Feather
                 name={playing ? 'music' : 'volume-x'}
@@ -86,5 +100,18 @@ const useStyles = createThemedStyles(theme => ({
         // Matches `ThemeToggle`: the two sit side by side and any difference between them
         // would read as one of them being a different kind of thing.
         ...theme.shadows.hardSmall
+    },
+    // The lobby bar's register: a wash instead of a border, square-ish like the back chip
+    // beside it rather than the circle the standing button wears.
+    buttonSubtle: {
+        width: SUBTLE_SIZE,
+        height: SUBTLE_SIZE,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 12,
+        backgroundColor: theme.scheme === 'dark'
+            ? 'rgba(245, 243, 239, 0.08)'
+            : withAlpha(Brand.ink, 0.06)
     }
 }));

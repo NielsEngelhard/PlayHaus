@@ -38,7 +38,10 @@ export const en = {
             players: "Players",
             add: "Add player",
             remove: "Remove player",
-            namePlaceholder: "Name"
+            namePlaceholder: "Name",
+            // `{{players}}` on purpose — `{{count}}` would switch i18next into plural
+            // mode and demand `_one`/`_other` variants of the key.
+            seated: "{{players}} players"
         }
     },
     nav: {
@@ -297,7 +300,6 @@ export const en = {
         codeSpoken: 'Lobby code: {{characters}}',
         copyCode: 'Copy lobby code {{characters}}',
         copied: 'Copied',
-        readAloud: 'Read it out, or let them scan it.',
         shareTitle: 'Join my lobby',
         shareLink: 'Share link',
         shareLinkLabel: 'Share the link to this lobby',
@@ -314,6 +316,10 @@ export const en = {
         ready: 'Ready',
         away: 'Away',
         freeSeat: 'Free seat',
+        // Two wordings rather than one key with a count: the sentence bends around the
+        // number in both languages, and a `{{seats}} seat(s)` would read like a form.
+        moreSeatsOne: '+ 1 more free seat',
+        moreSeatsMany: '+ {{seats}} more free seats',
         waiting: 'Waiting…'
     },
     lol: {

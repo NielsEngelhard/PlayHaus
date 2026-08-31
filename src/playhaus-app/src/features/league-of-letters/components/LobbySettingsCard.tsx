@@ -48,7 +48,6 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                 onChange={value => onChange({ ...settings, hardMode: value })}
                 label={t('lol.settings.hardMode.label')}
                 description={t('lol.settings.hardMode.description')}
-                icon='zap'
             />
 
             <LanguageSelect

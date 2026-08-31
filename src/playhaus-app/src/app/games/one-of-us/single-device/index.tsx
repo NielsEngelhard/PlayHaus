@@ -1,6 +1,5 @@
 import { createSingleDeviceOneOfUsGame } from "@/api/calls/one-of-us-single-device";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
-import Card from "@/components/ui/Card";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
 import StartGameButton from "@/components/ui/StartGameButton";
@@ -11,6 +10,7 @@ import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/features/auth/useAuth";
 import { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
+import TableRingPreview from "@/features/one-of-us/components/TableRingPreview";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/one-of-us/oou-settings";
@@ -120,6 +120,8 @@ export default function OneOfUsSingleDeviceIndexPage() {
                 title={t('oneOfUs.singleDevice.title')}
                 intro={t('oneOfUs.singleDevice.description')}
                 back={ROUTES.oneOfUsIndex as RelativePathString}
+                preview={<TableRingPreview names={names} />}
+                previewCaption={t('common.player.seated', { players: seatedNames(names).length })}
                 error={error === null ? undefined : t(error)}
                 action={
                     <StartGameButton
@@ -129,36 +131,28 @@ export default function OneOfUsSingleDeviceIndexPage() {
                     />
                 }
             >
-                {/* One child per section, and a card around each of them — none of these
-                    three draws any chrome of its own. */}
-                <Card>
-                    <PlayerNamesInput
-                        minPlayers={MIN_PLAYERS}
-                        maxPlayers={MAX_PLAYERS}
-                        names={names}
-                        onChange={editNames}
-                        disabled={starting}
-                    />
-                </Card>
+                {/* One child per ruled section — bare on the sheet, no cards. */}
+                <PlayerNamesInput
+                    minPlayers={MIN_PLAYERS}
+                    maxPlayers={MAX_PLAYERS}
+                    names={names}
+                    onChange={editNames}
+                    disabled={starting}
+                />
 
-                <Card>
-                    <LanguageSelect
-                        variant='row'
-                        value={language}
-                        onChange={locale => setPicked(locale)}
-                    />
-                </Card>
+                <LanguageSelect
+                    variant='row'
+                    value={language}
+                    onChange={locale => setPicked(locale)}
+                />
 
-                <Card>
-                    <ToggleRow
-                        flush
-                        value={wordsOnly}
-                        onChange={value => setWordsOnly(value)}
-                        label={t('oneOfUs.settings.wordsOnly.title')}
-                        description={t('oneOfUs.settings.wordsOnly.description')}
-                        icon="zap"
-                    />
-                </Card>
+                <ToggleRow
+                    flush
+                    value={wordsOnly}
+                    onChange={value => setWordsOnly(value)}
+                    label={t('oneOfUs.settings.wordsOnly.title')}
+                    description={t('oneOfUs.settings.wordsOnly.description')}
+                />
             </SettingsPageBase>
         </View>
     )
