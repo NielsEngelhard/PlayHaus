@@ -1,5 +1,7 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import HandoffScreen from "@/components/ui/HandoffScreen";
+import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
@@ -9,17 +11,15 @@ import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
 import FinalResultsScreen from "@/features/pubquizr/components/play/FinalResultsScreen";
-import HandoffScreen from "@/components/ui/HandoffScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
-import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
-import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finalStandingsOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
+import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
+import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
@@ -31,6 +31,28 @@ import { View } from "react-native";
 
 /** The rounds this build can play. Past the last of them the evening stops on a board. */
 const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE, ROUND_LIST, ROUND_FINALE];
+
+/**
+ * The evening as a track: one segment per round, filled as far as `through`.
+ *
+ * Deliberately not one segment per question. `TurnStrip` is already counting the questions
+ * in this round, a few points below and with the number spelled out beside them — drawing
+ * the same eight steps again up here would be one fact said twice. Rounds are what the
+ * label beside the track is about, and the pair then says where you are in the evening and
+ * where you are in the round.
+ *
+ * `through` is a count of rounds behind you rather than "the round you are on", because
+ * the screens that draw this do not agree on what that would mean: a board stands inside
+ * the round it is drawing, so that round is under way and fills, while the scoreboard
+ * stands in front of one that has not started, so the fill stops at the round behind it.
+ * Made an argument, so the off-by-one is settled once here rather than at each call site.
+ *
+ * Every segment is `played` or `upcoming` and never `won` or `lost`: the header cannot say
+ * how a round went, because a round is a table's worth of scores rather than a verdict.
+ */
+function roundTrack(total: number, through: number): SegmentState[] {
+    return Array.from({ length: total }, (_, index) => index < through ? 'played' : 'upcoming');
+}
 
 /** What a round is called, what its phone-holder does, and the rule they need first. */
 interface RoundCopy {
@@ -255,12 +277,36 @@ export default function OneDeviceQuizPage() {
 
     if (between || !playable) {
         return (
-            <RoundStandings
-                standings={standingsOf(session)}
-                round={round - 1}
-                onNext={playable ? () => startRound(round) : null}
-                onLeave={leave}
-            />
+            <>
+                {/*
+                  * The band gets gutters of its own here rather than the board's, because
+                  * `RoundStandings` below already lays its own down — one padded frame
+                  * around both would give the scoreboard two sets of them. Without any it
+                  * had none, which is what put the leave button hard against the glass:
+                  * the band's bleed cancels out to wherever its parent's padding edge is,
+                  * so a parent with no padding lines it up on nothing. See `InGameHeader`.
+                  */}
+                <View style={styles.band}>
+                    <InGameHeader
+                        onClose={leave}
+                        closeLabel={t('pubquizr.play.close')}
+                        label={t('pubquizr.play.standings.label', {
+                            round: round - 1,
+                            total: session.totalRounds
+                        })}
+                        // The round about to start has not started, so the track stops at
+                        // the one behind it. This screen is the gap between the two.
+                        segments={roundTrack(session.totalRounds, round - 1)}
+                    />
+                </View>
+
+                <RoundStandings
+                    standings={standingsOf(session)}
+                    round={round - 1}
+                    onNext={playable ? () => startRound(round) : null}
+                    onLeave={leave}
+                />
+            </>
         )
     }
 
@@ -284,12 +330,30 @@ export default function OneDeviceQuizPage() {
     // scoreboard is the honest place to stop, the same as when the rounds run out.
     if (holder === null) {
         return (
-            <RoundStandings
-                standings={standingsOf(session)}
-                round={round - 1}
-                onNext={null}
-                onLeave={leave}
-            />
+            <>
+                {/* The scoreboard again, so the band it wears is the scoreboard's. The
+                    label used to be empty here, which drew the band as a bare coloured
+                    strip with a button in it — the one screen in the game that could not
+                    say where in the evening it had stopped. */}
+                <View style={styles.band}>
+                    <InGameHeader
+                        onClose={leave}
+                        closeLabel={t('pubquizr.play.close')}
+                        label={t('pubquizr.play.standings.label', {
+                            round: round - 1,
+                            total: session.totalRounds
+                        })}
+                        segments={roundTrack(session.totalRounds, round - 1)}
+                    />
+                </View>
+
+                <RoundStandings
+                    standings={standingsOf(session)}
+                    round={round - 1}
+                    onNext={null}
+                    onLeave={leave}
+                />
+            </>
         )
     }
 
@@ -338,44 +402,20 @@ export default function OneDeviceQuizPage() {
                 title={t('pubquizr.play.handoff.title', { name: holder.name })}
                 body={copy.job}
                 note={copy.rule}
-                action={t('pubquizr.play.handoff.action', { name: holder.name })}
+                action={t('pubquizr.play.handoff.action')}
                 onReady={() => setClaimedBy(holder.seat)}
             />
         )
     }
 
-    /*
-     * The evening, one segment per round, and deliberately not one per question.
-     *
-     * `TurnStrip` is already counting the questions in this round, a few points below and
-     * with the number spelled out beside them — drawing the same eight steps again up here
-     * would be one fact twice. Rounds are what the label beside them is about, and the
-     * pair then says where you are in the evening and where you are in the round.
-     *
-     * Every round up to and including this one is played: the header cannot say how any
-     * of them went, because a round is a table's worth of scores rather than a verdict.
-     */
-    const rounds: SegmentState[] = Array.from({ length: session.totalRounds }, (_, index) =>
-        index < round ? 'played' : 'upcoming'
-    );
-
     return (
         <View style={styles.board}>
-            {/*
-              * The header carries the round's name and the boards carry everything else
-              * about the turn. `RoundProgress` used to sit here as a card of its own,
-              * under a banner of two person cards; both are now the one strip each board
-              * draws for itself — which is what lets round 3 swap it for the question
-              * recap once the form is up. See `TurnStrip`.
-              *
-              * Nothing in the right-hand slot: there is no backstage or menu control on
-              * this board to put there, and a chip invented to fill it would be one.
-              */}
             <InGameHeader
                 onClose={leave}
                 closeLabel={t('pubquizr.play.close')}
                 label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
-                segments={rounds}
+                // Up to and including this one: the round being drawn is under way.
+                segments={roundTrack(session.totalRounds, round)}
             />
 
             {hotSeat !== null && (
@@ -470,6 +510,15 @@ const useStyles = createThemedStyles(() => ({
         gap: Spacing.three - 4,
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.four
+    },
+
+    // The board's gutters and nothing else, for a screen whose body lays down its own.
+    // `flexShrink` because the scoreboard beside it is a `flex: 1` and would otherwise
+    // take the band's height off it before giving up any of its own.
+    band: {
+        width: '100%',
+        flexShrink: 0,
+        paddingHorizontal: Spacing.four
     },
 
     message: {

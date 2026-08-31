@@ -98,6 +98,57 @@ func (s *Session) ReadBy(seat int) {
 	s.OpenOn(seat + 1)
 }
 
+// TurnGuesser is the one seat whose answer counts while the clock is running, or -1 in
+// the rounds that are not played to a single seat.
+//
+// Rounds 4 and 5 both are -- round 4 describes its words to them, round 5 asks them for
+// the four answers -- and in both it is the seat on the reader's left, which is the same
+// "you are read to by the player on your right" the whole game is built on. So this is
+// the seat OpenOn already wrote, read back out rather than worked out a second time: two
+// answers to one question is two things waiting to disagree.
+func (s *Session) TurnGuesser() int {
+	if s.Status != SessionInProgress || !HasBonusRound(s.CurrentRound) {
+		return -1
+	}
+
+	players := len(s.Players)
+	if players == 0 {
+		return -1
+	}
+
+	return wrap(s.QuizMasterSeat+1, players)
+}
+
+// BonusSeats is everybody who gets one guess at whatever the clock left behind, in the
+// order their go comes round: from the guesser's left onwards, the reader and the guesser
+// themselves left out. Empty in the rounds that have no bonus round.
+//
+// Ordered, because the order is part of the rule rather than a way of drawing it -- one
+// try each, taken in turn, and a leftover is gone once somebody has it. It is also the
+// list a settle is allowed to spend only once per name; see bonusLedger.
+//
+// Empty too at a table of two, which neither round ever sees: MinPlayers is three.
+func (s *Session) BonusSeats() []int {
+	guesser := s.TurnGuesser()
+	if guesser < 0 {
+		return nil
+	}
+
+	reader := s.QuizMasterSeat
+	players := len(s.Players)
+	seats := make([]int, 0, max(players-2, 0))
+
+	for step := 1; step < players; step++ {
+		seat := wrap(guesser+step, players)
+		if seat == reader || seat == guesser {
+			continue
+		}
+		seats = append(seats, seat)
+	}
+
+	return seats
+}
+
 // RotateOneSeat moves the whole table on by one: whoever was reading is now the one
 // being asked.
 //

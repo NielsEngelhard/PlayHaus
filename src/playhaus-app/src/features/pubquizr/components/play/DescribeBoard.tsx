@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { Brand, FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -18,7 +18,10 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
-import DescribeTimer from "./DescribeTimer";
+import BonusRoundScreen from "./BonusRoundScreen";
+import PickRow, { AwardRow } from "./PickRow";
+import TurnTimer from "./TurnTimer";
+import TurnRulesScreen, { type TurnRule } from "./TurnRulesScreen";
 import TurnStrip from "./TurnStrip";
 
 interface Props {
@@ -73,6 +76,16 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     const [awards, setAwards] = useState<DescribeAwards>({});
     /** Whose bonus guess is being offered, as an index into `turn.bonus`. */
     const [bonusIndex, setBonusIndex] = useState(0);
+    /**
+     * The word this player has been marked down for, before it is committed.
+     *
+     * Tapping a word used to credit it and move to the next player in the same gesture,
+     * which put the single most destructive tap on the screen — one guess spent, on
+     * somebody else's behalf, with the screen already gone — under the same finger that
+     * is scrolling the list. Now it selects, exactly like the in-time screen above it,
+     * and the button at the bottom is the one thing that ends the player's go.
+     */
+    const [bonusPick, setBonusPick] = useState<string | null>(null);
 
     /*
      * Reset during render, like every other board here: a new turn has to arrive with its
@@ -85,6 +98,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         setStage('ready');
         setAwards({});
         setBonusIndex(0);
+        setBonusPick(null);
     }
 
     const unclaimed = unclaimedWords(turn, awards);
@@ -117,6 +131,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         }
 
         setBonusIndex(0);
+        setBonusPick(null);
         setStage('bonus');
     }
 
@@ -129,6 +144,8 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
      * still has the old pool.
      */
     function nextBonus(left: number) {
+        setBonusPick(null);
+
         const next = bonusIndex + 1;
         if (left > 0 && next < turn.bonus.length) {
             setBonusIndex(next);
@@ -136,6 +153,27 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         }
 
         setStage('settle');
+    }
+
+    /**
+     * The marked-down word is spent, and the walk moves on — or the guess goes on
+     * nothing, which is the common case for words that already beat somebody with a clock
+     * running.
+     *
+     * `unclaimed.length - 1` for the same reason `nextBonus` takes the count at all: the
+     * credit is going out in this commit and the render it happens in is still holding
+     * the old pool.
+     */
+    function spendBonus(player: Seat) {
+        if (busy) return;
+
+        if (bonusPick === null) {
+            nextBonus(unclaimed.length);
+            return;
+        }
+
+        credit(bonusPick, player.seat);
+        nextBonus(unclaimed.length - 1);
     }
 
     /*
@@ -157,57 +195,13 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         />
     );
 
-    /**
-     * Who is doing what, drawn once and used on both screens that need to say it.
-     *
-     * The round's whole change of shape in one line: this person is describing, that
-     * person is answering, and nobody else is in it until the clock stops. Said with
-     * faces rather than a sentence because it is the first thing the table has to
-     * understand and the last thing anybody reads twice.
-     */
-    function pairing(reader: Seat, answerer: Seat) {
-        return (
-            <View style={styles.pairing}>
-                <View style={styles.party}>
-                    <View style={[styles.portrait, { backgroundColor: reader.swatch.color }]}>
-                        <AppText style={[styles.portraitText, { color: reader.swatch.foreground }]}>
-                            {reader.initials}
-                        </AppText>
-                    </View>
-
-                    <AppText style={styles.partyName} numberOfLines={1}>{reader.name}</AppText>
-
-                    <AppText style={styles.partyRole}>
-                        {t('pubquizr.play.describe.roleQuizmaster')}
-                    </AppText>
-                </View>
-
-                <Feather name="arrow-right" size={18} color={theme.colors.textMuted} />
-
-                <View style={styles.party}>
-                    <View style={[styles.portrait, { backgroundColor: answerer.swatch.color }]}>
-                        <AppText style={[styles.portraitText, { color: answerer.swatch.foreground }]}>
-                            {answerer.initials}
-                        </AppText>
-                    </View>
-
-                    <AppText style={styles.partyName} numberOfLines={1}>{answerer.name}</AppText>
-
-                    <AppText style={styles.partyRole}>
-                        {t('pubquizr.play.describe.roleGuesser')}
-                    </AppText>
-                </View>
-            </View>
-        )
-    }
-
     if (stage === 'ready') {
         // Written at the table rather than at the phone, and in the order the turn
         // happens in: who is playing, how long, what is not allowed, what it pays, and
         // then what happens after the clock stops. The two that name a person are the
         // point of the screen — this round used to be a room shouting at once, and a
         // table that half-remembers the old rule will play it that way again.
-        const rules: { icon: keyof typeof Feather.glyphMap, text: string }[] = [
+        const rules: TurnRule[] = [
             {
                 icon: 'user-check',
                 text: t('pubquizr.play.describe.readyRuleOnlyGuesser', {
@@ -237,43 +231,21 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         ];
 
         return (
-            <View style={styles.turn}>
-                {strip}
-
-                <ScrollView contentContainerStyle={styles.centre}>
-                    <AppText style={styles.title}>
-                        {t('pubquizr.play.describe.readyTitle')}
-                    </AppText>
-
-                    {pairing(turn.describer, turn.guesser)}
-
-                    <View style={styles.rules}>
-                        {rules.map((rule, index) => (
-                            <View key={index} style={styles.rule}>
-                                <View style={styles.ruleIcon}>
-                                    <Feather name={rule.icon} size={16} color={Brand.ink} />
-                                </View>
-
-                                <AppText style={styles.ruleText}>{rule.text}</AppText>
-                            </View>
-                        ))}
-                    </View>
-                </ScrollView>
-
-                <ActionButton
-                    size="large"
-                    icon="play"
-                    text={t('pubquizr.play.describe.start')}
-                    onPress={() => setStage('running')}
-                />
-            </View>
+            <TurnRulesScreen
+                strip={strip}
+                quizmaster={turn.describer}
+                guesser={turn.guesser}
+                rules={rules}
+                action={t('pubquizr.play.describe.start')}
+                onStart={() => setStage('running')}
+            />
         )
     }
 
     if (stage === 'running') {
         return (
             <View style={styles.turn}>
-                <DescribeTimerSlot onDone={() => setStage('inTime')} />
+                <TurnTimerSlot onDone={() => setStage('inTime')} />
 
                 <ScrollView contentContainerStyle={styles.words}>
                     {turn.words.map(word => (
@@ -312,38 +284,15 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 </AppText>
 
                 <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
-                    {turn.words.map(word => {
-                        const active = (awards[word.dealt.id] ?? null) !== null;
-
-                        return (
-                            <Pressable
-                                key={word.dealt.id}
-                                onPress={() => toggleInTime(word.dealt.id)}
-                                disabled={busy}
-                                accessibilityRole="checkbox"
-                                accessibilityState={{ checked: active, disabled: busy }}
-                                accessibilityLabel={word.word}
-                                style={[
-                                    styles.pick,
-                                    active && styles.pickActive,
-                                    busy && styles.dimmed
-                                ]}
-                            >
-                                <AppText
-                                    style={[styles.pickWord, active && styles.pickWordActive]}
-                                    numberOfLines={1}
-                                >
-                                    {word.word}
-                                </AppText>
-
-                                <Feather
-                                    name={active ? 'check-circle' : 'circle'}
-                                    size={18}
-                                    color={active ? Brand.ink : theme.colors.textMuted}
-                                />
-                            </Pressable>
-                        )
-                    })}
+                    {turn.words.map(word => (
+                        <PickRow
+                            key={word.dealt.id}
+                            label={word.word}
+                            active={(awards[word.dealt.id] ?? null) !== null}
+                            disabled={busy}
+                            onPress={() => toggleInTime(word.dealt.id)}
+                        />
+                    ))}
                 </ScrollView>
 
                 <ActionButton
@@ -370,68 +319,18 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         }
 
         return (
-            <View style={styles.turn}>
-                {strip}
-
-                <View style={styles.bonusHead}>
-                    <View style={[styles.portrait, { backgroundColor: player.swatch.color }]}>
-                        <AppText style={[styles.portraitText, { color: player.swatch.foreground }]}>
-                            {player.initials}
-                        </AppText>
-                    </View>
-
-                    <View style={styles.bonusWho}>
-                        <AppText style={styles.bonusCount}>
-                            {t('pubquizr.play.describe.bonusOf', {
-                                number: bonusIndex + 1,
-                                total: turn.bonus.length
-                            })}
-                        </AppText>
-
-                        <AppText style={styles.bonusName} numberOfLines={1}>
-                            {t('pubquizr.play.describe.bonusTitle', { name: player.name })}
-                        </AppText>
-                    </View>
-                </View>
-
-                <AppText style={styles.recap}>
-                    {t('pubquizr.play.describe.bonusHint')}
-                </AppText>
-
-                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
-                    {unclaimed.map(word => (
-                        <Pressable
-                            key={word.dealt.id}
-                            onPress={() => {
-                                if (busy) return;
-                                credit(word.dealt.id, player.seat);
-                                nextBonus(unclaimed.length - 1);
-                            }}
-                            disabled={busy}
-                            accessibilityRole="button"
-                            accessibilityLabel={word.word}
-                            style={[styles.pick, busy && styles.dimmed]}
-                        >
-                            <AppText style={styles.pickWord} numberOfLines={1}>
-                                {word.word}
-                            </AppText>
-
-                            <Feather name="plus-circle" size={18} color={theme.colors.textMuted} />
-                        </Pressable>
-                    ))}
-                </ScrollView>
-
-                {/* Spending the guess on nothing is the common case, not the exception —
-                    these are the words that already beat somebody with a clock running —
-                    so it is a full-width way out rather than something to hunt for. */}
-                <ActionButton
-                    size="large"
-                    icon="skip-forward"
-                    text={t('pubquizr.play.describe.bonusMissed', { name: player.name })}
-                    disabled={busy}
-                    onPress={() => nextBonus(unclaimed.length)}
-                />
-            </View>
+            <BonusRoundScreen
+                strip={strip}
+                player={player}
+                index={bonusIndex}
+                total={turn.bonus.length}
+                options={unclaimed.map(word => ({ id: word.dealt.id, label: word.word }))}
+                picked={bonusPick}
+                hint={t('pubquizr.play.describe.bonusHint')}
+                busy={busy}
+                onPick={setBonusPick}
+                onSpend={() => spendBonus(player)}
+            />
         )
     }
 
@@ -451,37 +350,13 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                         : [turn.guesser, ...turn.bonus].find(seat => seat.seat === credited) ?? null;
 
                     return (
-                        <View key={word.dealt.id} style={styles.row}>
-                            <AppText style={styles.rowWord} numberOfLines={1}>
-                                {word.word}
-                            </AppText>
-
-                            {winner === null ? (
-                                <View style={[styles.chip, styles.chipNobody]}>
-                                    <Feather name="x" size={13} color={theme.colors.textMuted} />
-
-                                    <AppText style={styles.chipText}>
-                                        {t('pubquizr.play.describe.nobody')}
-                                    </AppText>
-                                </View>
-                            ) : (
-                                <View style={[styles.chip, styles.chipActive]}>
-                                    <View style={[styles.chipAvatar, { backgroundColor: winner.swatch.color }]}>
-                                        <AppText style={[styles.chipInitials, { color: winner.swatch.foreground }]}>
-                                            {winner.initials}
-                                        </AppText>
-                                    </View>
-
-                                    <AppText style={[styles.chipText, styles.chipTextActive]} numberOfLines={1}>
-                                        {winner.name}
-                                    </AppText>
-
-                                    <AppText style={[styles.chipText, styles.chipTextActive]}>
-                                        {t('pubquizr.play.describe.plus', { points: turn.worth })}
-                                    </AppText>
-                                </View>
-                            )}
-                        </View>
+                        <AwardRow
+                            key={word.dealt.id}
+                            label={word.word}
+                            winner={winner}
+                            points={turn.worth}
+                            nobody={t('pubquizr.play.turn.nobody')}
+                        />
                     )
                 })}
             </ScrollView>
@@ -514,6 +389,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                     if (busy) return;
                     setAwards({});
                     setBonusIndex(0);
+                    setBonusPick(null);
                     setStage('inTime');
                 }}
                 disabled={busy}
@@ -555,8 +431,8 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
  * the scoring screen would be a re-render the countdown has to survive. It does survive
  * them — it counts against a deadline — but the thirty seconds should not depend on that.
  */
-function DescribeTimerSlot({ onDone }: { onDone: () => void }) {
-    return <DescribeTimer seconds={DESCRIBE_SECONDS} onDone={onDone} />;
+function TurnTimerSlot({ onDone }: { onDone: () => void }) {
+    return <TurnTimer seconds={DESCRIBE_SECONDS} onDone={onDone} />;
 }
 
 const useStyles = createThemedStyles(theme => ({
@@ -567,105 +443,12 @@ const useStyles = createThemedStyles(theme => ({
         gap: 14
     },
 
-    centre: {
-        flexGrow: 1,
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 22,
-        paddingVertical: 4
-    },
-
     title: {
         flexShrink: 0,
         fontSize: FontSizes.xxl,
         fontWeight: 900,
         letterSpacing: -0.8,
         textAlign: 'center',
-        color: theme.colors.text
-    },
-
-    // Who is playing whom, said with faces. The arrow is the whole rule: it points one
-    // way, and until the clock stops nobody off this row is in the round at all.
-    pairing: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        gap: Spacing.three,
-        paddingTop: 4
-    },
-
-    party: {
-        width: 104,
-        alignItems: 'center',
-        gap: 6
-    },
-
-    portrait: {
-        width: 52,
-        height: 52,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Brand.ink
-    },
-
-    portraitText: {
-        fontSize: 18,
-        fontWeight: 900
-    },
-
-    partyName: {
-        fontSize: 14,
-        fontWeight: 900,
-        textAlign: 'center',
-        color: theme.colors.text
-    },
-
-    partyRole: {
-        fontSize: 10,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-        textAlign: 'center',
-        color: theme.colors.textMuted
-    },
-
-    rules: {
-        width: '100%',
-        maxWidth: 320,
-        gap: Spacing.two,
-    },
-
-    rule: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.three,
-        padding: Spacing.three,
-        borderRadius: Spacing.three,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-
-    ruleIcon: {
-        width: 30,
-        height: 30,
-        flexShrink: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 999,
-        backgroundColor: theme.colors.mint
-    },
-
-    ruleText: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: FontSizes.md,
-        fontWeight: 700,
-        lineHeight: 13.5 * 1.4,
         color: theme.colors.text
     },
 
@@ -712,37 +495,6 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    // Whose bonus guess this is, at the size the pairing row draws a face — the two
-    // screens are asking the table to look at a person, and they should agree on how big
-    // a person is.
-    bonusHead: {
-        flexShrink: 0,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.three
-    },
-
-    bonusWho: {
-        flex: 1,
-        minWidth: 0,
-        gap: 2
-    },
-
-    bonusCount: {
-        fontSize: 10,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
-
-    bonusName: {
-        fontSize: FontSizes.xl,
-        fontWeight: 900,
-        letterSpacing: -0.6,
-        color: theme.colors.text
-    },
-
     rows: {
         flex: 1,
         minHeight: 0
@@ -753,114 +505,12 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: 2
     },
 
-    // A whole word, tappable end to end: on both scoring screens the only decision is
-    // which word, and a target the size of a checkbox would be the wrong shape for it.
-    pick: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 10,
-        paddingVertical: 14,
-        paddingHorizontal: 16,
-        borderRadius: 16,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundSecondary
-    },
-
-    // Mint, the same "this one" every guess-scoring row in this app wears.
-    pickActive: {
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
-    },
-
-    pickWord: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 18,
-        fontWeight: 900,
-        letterSpacing: -0.4,
-        color: theme.colors.text
-    },
-
-    pickWordActive: {
-        color: Brand.ink
-    },
-
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 10,
-        padding: 13,
-        borderRadius: 16,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundSecondary
-    },
-
-    rowWord: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 17,
-        fontWeight: 900,
-        letterSpacing: -0.3,
-        color: theme.colors.text
-    },
-
     standing: {
         flexShrink: 0,
         textAlign: 'center',
         fontSize: 11.5,
         fontWeight: 700,
         color: theme.colors.textMuted
-    },
-
-    chip: {
-        flexShrink: 0,
-        maxWidth: '60%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 7,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundInput
-    },
-
-    chipActive: {
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
-    },
-
-    chipAvatar: {
-        width: 22,
-        height: 22,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    chipInitials: {
-        fontSize: 9.5,
-        fontWeight: 900
-    },
-
-    chipText: {
-        flexShrink: 1,
-        fontSize: 13.5,
-        fontWeight: 700,
-        color: theme.colors.textMuted
-    },
-
-    chipTextActive: {
-        color: Brand.ink
-    },
-
-    chipNobody: {
-        borderStyle: 'dashed'
     },
 
     again: {

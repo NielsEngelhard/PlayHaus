@@ -15,7 +15,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { View } from "react-native";
 import ChoiceCard from "./ChoiceCard";
-import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
 import VerdictButtons from "./VerdictButtons";
@@ -60,15 +59,20 @@ interface Props {
  * the options underneath it. Which is backwards: the question is the only thing on the
  * screen that leaves the phone as speech.
  *
- * So round 2 is two screens rather than one crowded one, split at the moment the turn
- * actually changes character:
+ * So round 2 gets a layout of its own: the question and all four options in one card,
+ * with the room the question needs to be read from.
  *
- * **Reading.** The question and all four options are one card, and the only control is
- * the gate. Nothing else is on screen because nothing else is happening yet — the table
- * has not heard the fourth option.
+ * That card does not move when the answer comes up, and that is the point of this round's
+ * screen. It used to: the question folded away into a tappable recap line, the three
+ * options that were over fell back to 38-point ghosts, and an answer panel opened
+ * underneath — so the one tap in the middle of the turn rebuilt everything on screen, in
+ * front of a table that had just been read to and was in the middle of answering. The
+ * quizmaster then had to find their place again to say which one it was.
  *
- * **Judging.** The question shrinks to a line you can tap to re-read, the three options
- * that are over fall back to ghosts, and the room goes to the answer and the verdict.
+ * Now nothing moves. The right option turns mint where it stands, and the gate underneath
+ * is replaced by the two verdict buttons. The list *is* the answer panel — the answer to
+ * a multiple choice question is one of four rows already on the screen, and putting it in
+ * a panel of its own was saying it twice in two shapes.
  *
  * The gate is where round 2's ritual differs from round 1's, and it is one tap rather
  * than two on purpose. The two things round 1 asks for separately — uncover the answer,
@@ -107,9 +111,6 @@ export default function HotSeatBoard({
         { questionId: null, stage: 'covered' }
     );
 
-    /** Whether the recap row has been unfolded back into the whole question. */
-    const [rereading, setRereading] = useState(false);
-
     /*
      * Reset during render rather than from an effect.
      *
@@ -121,7 +122,6 @@ export default function HotSeatBoard({
      */
     if (progress.questionId !== turn.dealt.id) {
         setProgress({ questionId: turn.dealt.id, stage: 'covered' });
-        setRereading(false);
     }
 
     // What this render is actually drawing. React restarts the render on the setState
@@ -158,26 +158,45 @@ export default function HotSeatBoard({
     );
 
     if (turn.options.length > 0) {
-        if (stage === 'covered') {
-            return (
-                <View style={styles.turn}>
-                    {strip}
+        const revealed = stage !== 'covered';
 
-                    <ScriptCard
-                        prompt={turn.question.prompt}
-                        cue={t('pubquizr.play.choice.readAll')}
-                        size={26}
-                        align="top"
-                    >
-                        {/* Ruled off from the question, because they are the second half
-                            of the same utterance rather than more of the first. */}
-                        <View style={styles.optionsRule}>
-                            <ChoiceCard options={turn.options} revealed={false} />
-                        </View>
-                    </ScriptCard>
+        return (
+            <View style={styles.turn}>
+                {strip}
 
-                    {notice}
+                {/*
+                  * The same card either side of the reveal, down to the cue above it. The
+                  * only thing the tap changes inside it is which row is mint — everything
+                  * the table has been read is still where it was, in the size it was read
+                  * at, so the quizmaster is naming a row rather than finding one again.
+                  */}
+                <ScriptCard
+                    prompt={turn.question.prompt}
+                    cue={t('pubquizr.play.choice.readAll')}
+                    size={26}
+                    align="top"
+                >
+                    {/* Ruled off from the question, because they are the second half
+                        of the same utterance rather than more of the first. */}
+                    <View style={styles.optionsRule}>
+                        <ChoiceCard options={turn.options} revealed={revealed} />
+                    </View>
+                </ScriptCard>
 
+                {notice}
+
+                {/* The one thing that does swap. Which is the guard: nothing that scores
+                    is on screen until the gate has been pressed on purpose. */}
+                {revealed ? (
+                    <VerdictButtons
+                        answering={turn.answering}
+                        nextUp={turn.nextUp}
+                        alwaysNextUp={turn.alwaysNextUp}
+                        worth={turn.worth}
+                        busy={busy}
+                        onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}
+                    />
+                ) : (
                     <View style={styles.gate}>
                         <PopPressable
                             onPress={() => moveTo('judging')}
@@ -196,45 +215,7 @@ export default function HotSeatBoard({
 
                         <TextHint text={t('pubquizr.play.gateHint')} />
                     </View>
-                </View>
-            )
-        }
-
-        return (
-            <View style={styles.turn}>
-                {strip}
-
-                <QuestionRecap
-                    prompt={turn.question.prompt}
-                    icon="volume-2"
-                    hint={t('pubquizr.play.reread')}
-                    expanded={rereading}
-                    onPress={() => setRereading(current => !current)}
-                />
-
-                <ChoiceCard options={turn.options} revealed />
-
-                {/* The answer takes the room the question was in. It is the thing being
-                    read now, and the only one of the two that still has to be legible
-                    from an arm's length across a table. */}
-                <AnswerReveal
-                    key={turn.question.id}
-                    answer={turn.answer}
-                    letter={turn.options.find(option => option.correct)?.letter}
-                    aliases={turn.aliases}
-                    style={styles.answer}
-                />
-
-                {notice}
-
-                <VerdictButtons
-                    answering={turn.answering}
-                    nextUp={turn.nextUp}
-                    alwaysNextUp={turn.alwaysNextUp}
-                    worth={turn.worth}
-                    busy={busy}
-                    onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}
-                />
+                )}
             </View>
         )
     }
@@ -265,7 +246,7 @@ export default function HotSeatBoard({
                 />
             ) : (
                 <ValidateButton
-                    label={t('pubquizr.play.validate', { name: turn.answering.name })}
+                    label={t('pubquizr.play.validate')}
                     hint={stage === 'revealed'
                         ? t('pubquizr.play.validateHint')
                         : t('pubquizr.play.validateLocked')}
@@ -285,13 +266,6 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minHeight: 0,
         gap: 12
-    },
-
-    // On the judging screen this is the middle of the board, so it is the block that
-    // grows — with the question folded away there is nothing else that should.
-    answer: {
-        flex: 1,
-        minHeight: 0
     },
 
     optionsRule: {

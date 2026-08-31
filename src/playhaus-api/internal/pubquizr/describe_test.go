@@ -108,7 +108,7 @@ func TestAGuesserTakesOneForEachWordTheyGet(t *testing.T) {
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
-	guesser := session.DescribeGuesser()
+	guesser := session.TurnGuesser()
 
 	err := award(t, store, []WordAward{
 		{SessionQuestionID: words[0].ID, Seats: []int{guesser}},
@@ -139,8 +139,8 @@ func TestABonusWordPaysWhatAnInTimeOneDoes(t *testing.T) {
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
-	guesser := session.DescribeGuesser()
-	bonus := session.DescribeBonusSeats()[0]
+	guesser := session.TurnGuesser()
+	bonus := session.BonusSeats()[0]
 
 	err := award(t, store, []WordAward{
 		{SessionQuestionID: words[0].ID, Seats: []int{guesser}},
@@ -173,7 +173,7 @@ func TestOnlyTheGuesserTakesMoreThanOne(t *testing.T) {
 	store := &verdictStore{session: session}
 
 	words := session.WordsFor(0)
-	bonus := session.DescribeBonusSeats()[0]
+	bonus := session.BonusSeats()[0]
 
 	err := award(t, store, []WordAward{
 		{SessionQuestionID: words[0].ID, Seats: []int{bonus}},
@@ -195,12 +195,12 @@ func TestDescribeSeatsWalkFromTheDescribersLeft(t *testing.T) {
 	for _, describer := range []int{0, 1, 2, 3} {
 		session := newDescribeSession(describer, 2)
 
-		if got, want := session.DescribeGuesser(), (describer+1)%4; got != want {
+		if got, want := session.TurnGuesser(), (describer+1)%4; got != want {
 			t.Errorf("describer %d plays to seat %d, want %d", describer, got, want)
 		}
 
 		want := []int{(describer + 2) % 4, (describer + 3) % 4}
-		got := session.DescribeBonusSeats()
+		got := session.BonusSeats()
 		if len(got) != len(want) {
 			t.Fatalf("describer %d: bonus seats %v, want %v", describer, got, want)
 		}
@@ -265,7 +265,7 @@ func TestDescribeRefusals(t *testing.T) {
 	otherTurn := session.WordsFor(3)
 	describer, stranger := 2, 9
 	// The seat being described to, and one of the two who only get a bonus guess.
-	guesser, bonus := session.DescribeGuesser(), session.DescribeBonusSeats()[0]
+	guesser, bonus := session.TurnGuesser(), session.BonusSeats()[0]
 
 	table := []struct {
 		name   string
@@ -300,12 +300,12 @@ func TestDescribeRefusals(t *testing.T) {
 		{
 			name:   "two names on one word",
 			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser, bonus}}, {SessionQuestionID: words[1].ID}},
-			want:   ErrTwoOnOneWord,
+			want:   ErrTwoOnOneCredit,
 		},
 		{
 			name:   "the same seat named twice for one word",
 			awards: []WordAward{{SessionQuestionID: words[0].ID, Seats: []int{guesser, guesser}}, {SessionQuestionID: words[1].ID}},
-			want:   ErrTwoOnOneWord,
+			want:   ErrTwoOnOneCredit,
 		},
 		{
 			name:   "a bonus guess spent twice",

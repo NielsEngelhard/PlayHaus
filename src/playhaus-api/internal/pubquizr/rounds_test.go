@@ -184,7 +184,7 @@ func TestRotatesEachTurn(t *testing.T) {
 		RoundChoice:   false,
 		RoundClosest:  true, // everybody guesses once
 		RoundDescribe: true, // everybody describes once
-		RoundList:     false,
+		RoundList:     true, // everybody reads once
 		RoundFinale:   false,
 	}
 

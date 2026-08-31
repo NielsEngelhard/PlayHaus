@@ -4,33 +4,39 @@ import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
 /**
- * Round 5, as the screen needs it: one category, four answers, and the whole table
- * taking turns to call them out.
+ * Round 5, as the screen needs it: one question, four answers hiding in it, and twenty
+ * seconds for the player being asked to name as many of them as they can.
  *
- * Nothing about this round is a hot seat and nothing about it is a ring walked one
- * attempt at a time, the way round 3 and round 4 are not either. The reader puts one
- * question to the table and everybody but them gets ten seconds in turn to shout
- * whatever they can think of; the reader taps an answer the instant somebody says it,
- * which only marks it found -- crediting it to whoever actually said it is the very
- * last thing this turn does, once the round has been all the way round or the answers
- * have run out first.
+ * Played exactly the way round 4 is, and moved there for the reason round 4 was: a
+ * question put to the whole table at once is a question the loudest player wins. So the
+ * reader asks one person — the seat on their left, the same seat every other round is
+ * read to — and inside the clock nobody else's answer counts. When time is up, whatever
+ * is left goes round the rest of the table in `bonus` order for one guess each, and an
+ * answer is gone the moment somebody takes it.
  *
- * That two-step is why this file, unlike round 3's, carries no settling logic of its
- * own: what got found and by whom is built up entirely on the board while the timer is
- * running, and the only thing that ever reaches the server is the one list of credits at
- * the end. See `ListBoard`.
+ * What is *not* the same is what a found answer pays. Round 4 pays twice, because the
+ * describer earned a point for getting the word across; here the reader only read a
+ * question out, so an answer pays its finder and nobody else.
+ *
+ * Unlike round 4, crediting is not a screen of its own: the reader is holding the answer
+ * key while the guesser recites at them, so ticking an answer off *is* crediting it, and
+ * it happens live on the clock. See `ListBoard`.
  */
 
 /** Kept in step with `RoundList` in Go. */
 export const ROUND_LIST = 5;
 
 /**
- * How long each player's turn lasts. Mirrors `ListSecondsPerTurn` in `rules.go`.
+ * How long the guesser has. Mirrors `ListSeconds` in `rules.go`.
+ *
+ * Ten seconds shorter than `DESCRIBE_SECONDS`, because the two clocks are spent on
+ * different work: thirty is a describer talking their way round four words, twenty is
+ * somebody reciting what they already know.
  *
  * Shortened under DEV_MODE for the same reason `DESCRIBE_SECONDS` is: working on the
  * round should not mean sitting out a full turn per player to reach the screen after it.
  */
-export const LIST_SECONDS_PER_TURN = DEV_MODE ? 3 : 10;
+export const LIST_SECONDS = DEV_MODE ? 3 : 20;
 
 /** What one credited answer pays. Mirrors `ListAnswerPoints`. */
 export const LIST_ANSWER_POINTS = 1;
@@ -43,6 +49,16 @@ export interface ListAnswerSlot {
     aliases: string[]
 }
 
+/**
+ * What became of each answer: the seat credited with it, or null for one nobody found.
+ *
+ * One seat rather than a list, exactly as `DescribeAwards` is and for the same reason:
+ * inside the clock only `guesser` is playing, and after it a leftover is gone as soon as
+ * somebody names it — so "who got this" has exactly one answer, and a shape that could
+ * hold two would be a shape the server refuses.
+ */
+export type ListAwards = Record<string, number | null>;
+
 export interface ListTurn {
     /** The dealt question being played, which is what a settle has to name. */
     dealt: QuizSessionQuestion
@@ -50,10 +66,15 @@ export interface ListTurn {
     question: QuizQuestion
     /** The four things being looked for, in the order they were written. */
     answers: ListAnswerSlot[]
-    /** Whoever is reading the category out. They do not get a turn to guess. */
+    /** Whoever is reading the question out. They do not get to guess at it. */
     quizmaster: Seat
-    /** Everybody who does, in the order their ten seconds come round. */
-    guessing: Seat[]
+    /** The one person they are asking: the seat on their left. */
+    guesser: Seat
+    /**
+     * Everybody else, in the order their bonus guess comes round — from the guesser's
+     * left onwards. Empty at a table of two, which round 5 never sees.
+     */
+    bonus: Seat[]
     /** 1-based, for "question 2 of 8". */
     number: number
     total: number
@@ -67,6 +88,7 @@ export interface ListTurn {
 export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | null {
     if (session.status !== 'in_progress') return null;
     if (session.currentRound !== ROUND_LIST) return null;
+    if (session.guesserSeat === null) return null;
 
     const dealt = session.questions.find(
         question => question.round === session.currentRound
@@ -83,6 +105,9 @@ export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | n
     const quizmaster = seatAt(seats, session.quizMasterSeat);
     if (quizmaster === null) return null;
 
+    const guesser = seatAt(seats, session.guesserSeat);
+    if (guesser === null) return null;
+
     const primary = question.answers
         .filter(answer => answer.alias !== true)
         .sort((a, b) => a.position - b.position);
@@ -95,38 +120,49 @@ export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | n
             .map(other => other.text)
     }));
 
+    // The server's order, kept: it is the order the bonus guesses are offered in, and
+    // re-deriving it here would be the app and the server taking turns to be right. Same
+    // walk `describeTurnOf` makes, off the same field.
+    const bonus: Seat[] = [];
+    for (const seat of session.bonusSeats) {
+        const player = seatAt(seats, seat);
+        if (player !== null) bonus.push(player);
+    }
+
     return {
         dealt,
         question,
         answers,
         quizmaster,
-        guessing: guessingSeats(session, seats),
+        guesser,
+        bonus,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         worth: LIST_ANSWER_POINTS
     };
 }
 
+/** The answers still going spare: the ones the guesser did not get inside the clock. */
+export function unclaimedAnswers(turn: ListTurn, awards: ListAwards): ListAnswerSlot[] {
+    return turn.answers.filter(answer => (awards[answer.id] ?? null) === null);
+}
+
 /**
- * Everybody but the reader, in the order their turn comes round: the question goes to
- * the reader's own left and round the table from there.
+ * How many points a set of awards is about to hand out, per seat.
  *
- * The same walk round 3's `guessingSeats` does, and duplicated for the same reason
- * that one is: this only decides what order the table is drawn in, and the server is
- * still the one that says whose credit counts.
+ * Shorter arithmetic than round 4's `scoreOfAwards`, because there is only one name on an
+ * answer that landed: whoever is credited takes the point, and nobody takes one for
+ * having asked the question.
  */
-function guessingSeats(session: QuizSession, seats: Seat[]): Seat[] {
-    const players = seats.length;
-    if (players <= 1) return [];
+export function scoreOfListAwards(turn: ListTurn, awards: ListAwards): Map<number, number> {
+    const scores = new Map<number, number>();
 
-    const guessing: Seat[] = [];
-    for (let step = 0; step < players; step++) {
-        const seat = (session.hotSeat + step) % players;
-        if (seat === session.quizMasterSeat) continue;
+    for (const answer of turn.answers) {
+        const credited = awards[answer.id] ?? null;
+        if (credited === null) continue;
 
-        const found = seatAt(seats, seat);
-        if (found !== null) guessing.push(found);
+        scores.set(credited, (scores.get(credited) ?? 0) + LIST_ANSWER_POINTS);
     }
 
-    return guessing;
+    return scores;
 }

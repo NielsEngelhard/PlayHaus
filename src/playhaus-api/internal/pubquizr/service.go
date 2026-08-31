@@ -971,6 +971,34 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 }
 
+// bonusLedger is the "one guess each" rule of rounds 4 and 5, kept in one place because
+// both rounds spend it the same way.
+//
+// The seat being played to is unlimited -- inside the clock they are the only person
+// answering, and everything that landed there is theirs. Every other seat is spending a
+// single bonus guess, and this is what stops them spending it twice.
+type bonusLedger struct {
+	guesser int
+	spent   map[int]struct{}
+}
+
+func newBonusLedger(guesser int) *bonusLedger {
+	return &bonusLedger{guesser: guesser, spent: map[int]struct{}{}}
+}
+
+// take spends one seat's go, and refuses the second one.
+func (l *bonusLedger) take(seat int) error {
+	if seat == l.guesser {
+		return nil
+	}
+	if _, twice := l.spent[seat]; twice {
+		return fmt.Errorf("%w: seat %d", ErrOneGuessEach, seat)
+	}
+	l.spent[seat] = struct{}{}
+
+	return nil
+}
+
 // matchAwards pairs what the quizmaster said with the words the turn actually holds, and
 // refuses anything that does not line up exactly.
 //
@@ -984,7 +1012,12 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 // inside the clock there is only one player answering, and after it a leftover is gone
 // the moment somebody takes it. And every seat but the one being described to may be
 // named at most once in the whole turn, which is the bonus round's "one guess each"
-// spelled as arithmetic; see `DescribeBonusSeats` for the order those guesses come in.
+// spelled as arithmetic; see `Session.BonusSeats` for the order those guesses come in.
+//
+// The last two are round 5's rules as well now, which is why the ledger and the error
+// they raise are shared -- see `bonusLedger` and `RecordListAward`. What keeps this
+// function round 4's is the first one and the shape it rules on: words dealt to a seat,
+// named by session question id.
 //
 // Needs the turn's words and the table, so it stays.
 func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (map[uuid.UUID][]int, error) {
@@ -993,10 +1026,8 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 		thisTurn[word.ID] = struct{}{}
 	}
 
-	// Who was being described to. Everybody else is spending a single bonus guess, and
-	// `spent` is what stops them spending it twice.
-	guesser := session.DescribeGuesser()
-	spent := map[int]struct{}{}
+	// Who was being described to. Everybody else is spending a single bonus guess.
+	ledger := newBonusLedger(session.TurnGuesser())
 
 	guessed := map[uuid.UUID][]int{}
 	named := make(map[uuid.UUID]struct{}, len(in.Awards))
@@ -1015,7 +1046,7 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 			continue
 		}
 		if len(award.Seats) > 1 {
-			return nil, fmt.Errorf("%w: word %s", ErrTwoOnOneWord, award.SessionQuestionID)
+			return nil, fmt.Errorf("%w: word %s", ErrTwoOnOneCredit, award.SessionQuestionID)
 		}
 
 		seat := award.Seats[0]
@@ -1025,11 +1056,8 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 		if seat == in.DescriberSeat {
 			return nil, fmt.Errorf("%w: seat %d", ErrDescriberCannotGuess, seat)
 		}
-		if seat != guesser {
-			if _, twice := spent[seat]; twice {
-				return nil, fmt.Errorf("%w: seat %d", ErrOneGuessEach, seat)
-			}
-			spent[seat] = struct{}{}
+		if err := ledger.take(seat); err != nil {
+			return nil, err
 		}
 
 		guessed[award.SessionQuestionID] = award.Seats
@@ -1047,8 +1075,9 @@ func matchAwards(session *Session, words []*SessionQuestion, in DescribeInput) (
 // the table gets credit for it. Empty Seats is an answer nobody found -- worth writing
 // down as much as a found one is, the same way a round 4 word nobody guessed is.
 //
-// More than one seat is a draw, same as round 3 and round 4: two people calling it out
-// at once both score in full rather than splitting the point.
+// At most one seat. Seats stayed a slice after the round stopped allowing two names on
+// one answer, for the reason `WordAward`'s did: it is what the wire and the store already
+// speak, and an answer credited to nobody still has to arrive as something.
 type ListAward struct {
 	AnswerID uuid.UUID
 	Seats    []int
@@ -1071,13 +1100,22 @@ type ListInput struct {
 
 // RecordListAward scores one round 5 question and moves the game on.
 //
-// One answer pays whoever is credited with it, same as a round 4 word pays its guesser
-// -- but there is no describer's point sitting beside it here, because nobody in this
-// round is the one who is supposed to know the answers. The quizmaster reads the
-// question rather than answering it, and never keeps the seat across questions: the
-// reading rotates on by one seat every time, the same shuffle round 2's questions get,
-// so the job of reading four answers out of a table does not fall to one person all
-// night.
+// The round is played exactly the way round 4 is, and for the same reason it was moved
+// there: a question put to the whole table at once is a question the loudest player wins.
+// So the reader asks one person -- the seat on their left, `TurnGuesser` -- who has
+// `ListSeconds` to name as many of the four as they can, and then whatever is left goes
+// round the rest of the table for one guess each in `BonusSeats` order. Which half an
+// answer was found in makes no difference to what it pays; what the halves decide is who
+// a name is allowed to be, and that is the ledger below.
+//
+// One answer pays whoever is credited with it, and nothing else -- there is no reader's
+// point sitting beside it the way there is a describer's in round 4. Reading a question
+// out is not the work getting a word across is, and paying for it would be paying
+// somebody for holding the phone.
+//
+// The reading never stays put across questions: `RotatesEachTurn` moves the whole table
+// on by one, so everybody reads exactly once and everybody is the guesser exactly once,
+// which is what `ListQuestionsFor` makes the round long enough for.
 func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -1105,6 +1143,10 @@ func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, 
 	out := TurnOutcome{}
 	named := make(map[uuid.UUID]struct{}, len(in.Awards))
 	raised := map[int]*SessionPlayer{}
+
+	// Who was being asked inside the clock. Everything they got is theirs; everybody
+	// else is spending the single bonus guess the ledger counts.
+	ledger := newBonusLedger(session.TurnGuesser())
 
 	score := func(seat, points int) {
 		player := session.PlayerAt(seat)
@@ -1140,29 +1182,29 @@ func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, 
 			continue
 		}
 
-		seen := make(map[int]struct{}, len(awarded.Seats))
-		for _, seat := range awarded.Seats {
-			if session.PlayerAt(seat) == nil {
-				return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
-			}
-			if seat == session.QuizMasterSeat {
-				return nil, fmt.Errorf("%w: seat %d", ErrQuizmasterCannotGuess, seat)
-			}
-			if _, twice := seen[seat]; twice {
-				return nil, fmt.Errorf("list awards: %w: seat %d twice for answer %s",
-					ErrInvalidInput, seat, awarded.AnswerID)
-			}
-			seen[seat] = struct{}{}
-
-			answerID := awarded.AnswerID
-			out.Answers = append(out.Answers, &SessionAnswer{
-				ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
-				Seat: &seat, AnswerID: &answerID, Correct: true, Points: ListAnswerPoints,
-				CreatedAt: now,
-			})
-			score(seat, ListAnswerPoints)
-			total += ListAnswerPoints
+		if len(awarded.Seats) > 1 {
+			return nil, fmt.Errorf("%w: answer %s", ErrTwoOnOneCredit, awarded.AnswerID)
 		}
+
+		seat := awarded.Seats[0]
+		if session.PlayerAt(seat) == nil {
+			return nil, fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
+		}
+		if seat == session.QuizMasterSeat {
+			return nil, fmt.Errorf("%w: seat %d", ErrQuizmasterCannotGuess, seat)
+		}
+		if err := ledger.take(seat); err != nil {
+			return nil, err
+		}
+
+		answerID := awarded.AnswerID
+		out.Answers = append(out.Answers, &SessionAnswer{
+			ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
+			Seat: &seat, AnswerID: &answerID, Correct: true, Points: ListAnswerPoints,
+			CreatedAt: now,
+		})
+		score(seat, ListAnswerPoints)
+		total += ListAnswerPoints
 	}
 
 	if len(named) != len(correct) {
@@ -1181,11 +1223,9 @@ func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, 
 	question.Points = total
 	out.Questions = append(out.Questions, question)
 
-	// The reading rotates to the next seat for the next list question -- round 5 never
-	// lets whoever is reading keep the job the way a round 1 hot seat does, the same
-	// shuffle round 2's questions get.
-	session.RotateOneSeat()
-
+	// The reading rotates to the next seat inside `advance`, the same as round 3's and
+	// round 4's -- see `RotatesEachTurn`. Round 5 used to do it here, one seat at a time
+	// by hand, which was the same movement written down twice.
 	s.advance(session)
 	session.UpdatedAt = now
 

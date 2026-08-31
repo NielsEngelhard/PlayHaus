@@ -88,13 +88,13 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     if (session.status !== 'in_progress') return null;
     if (session.currentRound !== ROUND_DESCRIBE) return null;
     if (session.describerSeat === null) return null;
-    if (session.describeGuesserSeat === null) return null;
+    if (session.guesserSeat === null) return null;
 
     const seats = seatsOf(session);
     const describer = seatAt(seats, session.describerSeat);
     if (describer === null) return null;
 
-    const guesser = seatAt(seats, session.describeGuesserSeat);
+    const guesser = seatAt(seats, session.guesserSeat);
     if (guesser === null) return null;
 
     const questions = quiz.rounds.flatMap(round => round.questions);
@@ -117,7 +117,7 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     // The server's order, kept: it is the order the bonus guesses are offered in, and
     // re-deriving it here would be the app and the server taking turns to be right.
     const bonus: Seat[] = [];
-    for (const seat of session.describeBonusSeats) {
+    for (const seat of session.bonusSeats) {
         const player = seatAt(seats, seat);
         if (player !== null) bonus.push(player);
     }

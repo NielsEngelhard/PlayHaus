@@ -20,22 +20,23 @@ const HURRY_SECONDS = 10;
 const useNativeDriver = Platform.OS !== 'web';
 
 /**
- * Thirty seconds, drawn as they go.
+ * A turn's clock, drawn as it goes. Round 4's thirty seconds and round 5's twenty, which
+ * are the two rounds played to one seat against a stopwatch.
  *
  * Digits *and* a bar, which is one more than either of the app's other countdowns has.
- * They are for two different people: the describer is talking and will not read a number,
- * so the bar is what they catch out of the corner of an eye; the rest of the table is
- * watching the phone and wants to know whether to keep shouting. A round that ends in an
- * argument about whether time was up is the thing this is here to prevent.
+ * They are for two different people: the player being asked is talking and will not read
+ * a number, so the bar is what they catch out of the corner of an eye; the rest of the
+ * table is watching the phone and wants to know how long they have to wait. A round that
+ * ends in an argument about whether time was up is the thing this is here to prevent.
  *
  * The clock is kept against a wall-clock deadline rather than by counting ticks down. An
  * interval that misses a beat — and it will, on a phone being waved about — would
  * otherwise make the turn quietly longer than the round says it is.
  *
  * `onDone` fires exactly once. It is held in a ref rather than listed as a dependency so
- * that a parent re-rendering mid-turn cannot restart the thirty seconds.
+ * that a parent re-rendering mid-turn cannot restart the clock.
  */
-export default function DescribeTimer({ seconds, onDone }: Props) {
+export default function TurnTimer({ seconds, onDone }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 

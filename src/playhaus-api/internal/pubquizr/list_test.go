@@ -9,10 +9,14 @@ import (
 )
 
 // Round 5 settles a whole question in one request, the same shape round 3 and round 4
-// do: every answer that was found during the ten seconds arrives together, credited to
-// whoever called it out. So these tests are about the settling -- who gets the point,
-// who may not, and what the table does afterwards -- rather than about a ring being
-// walked one attempt at a time.
+// do: every answer that was found arrives together, credited to whoever named it. So
+// these tests are about the settling -- who gets the point, who may not, and what the
+// table does afterwards -- rather than about a ring being walked one attempt at a time.
+//
+// The round is played the way round 4 is: the seat on the reader's left is asked first
+// and has the clock to itself, and whatever is left then goes round the rest of the table
+// for one guess each. That is why most of the refusals below are about who a name may be,
+// and why they are the same refusals `describe_test.go` checks.
 
 // newListSession is a table of four in round 5, with `positions` questions dealt and a
 // quiz behind them carrying four correct answers apiece.
@@ -121,24 +125,50 @@ func TestListAwardsPayCreditedSeats(t *testing.T) {
 	}
 }
 
-// Two people can call an answer out at the same instant, and neither loses out over who
-// was half a second faster: both take the full point, the same way a tied round 3 guess
-// and a tied round 4 word do.
-func TestListTwoSimultaneousFindsBothScore(t *testing.T) {
+// The seat being asked has the clock to itself, so there is nothing stopping them naming
+// all four: unlike everybody else at the table they are not spending a single bonus
+// guess, and the ledger has to let them through every time.
+func TestListGuesserMayTakeEveryAnswer(t *testing.T) {
+	session, quiz := newListSession(0, 1, 0, 4)
+	store := &verdictStore{session: session, quiz: quiz}
+	answers := answersOf(t, session, quiz)
+
+	guesser := session.TurnGuesser()
+
+	named := map[uuid.UUID][]int{}
+	for _, answer := range answers {
+		named[answer.ID] = []int{guesser}
+	}
+
+	if err := settleList(t, store, fullAwards(answers, named)); err != nil {
+		t.Fatalf("RecordListAward: %v", err)
+	}
+
+	if got, want := store.session.PlayerAt(guesser).Score, len(answers)*ListAnswerPoints; got != want {
+		t.Errorf("the guesser scored %d, want %d", got, want)
+	}
+}
+
+// The bonus round is one guess each, so two of the leftovers may go to two different
+// players -- but never both to the same one. Seat 1 is the guesser here; 2 and 3 are the
+// two seats walking the bonus.
+func TestListBonusSeatsTakeOneLeftoverEach(t *testing.T) {
 	session, quiz := newListSession(0, 1, 0, 4)
 	store := &verdictStore{session: session, quiz: quiz}
 	answers := answersOf(t, session, quiz)
 
 	err := settleList(t, store, fullAwards(answers, map[uuid.UUID][]int{
-		answers[0].ID: {1, 2},
+		answers[0].ID: {1},
+		answers[1].ID: {2},
+		answers[2].ID: {3},
 	}))
 	if err != nil {
 		t.Fatalf("RecordListAward: %v", err)
 	}
 
-	for _, seat := range []int{1, 2} {
+	for _, seat := range []int{1, 2, 3} {
 		if got, want := store.session.PlayerAt(seat).Score, ListAnswerPoints; got != want {
-			t.Errorf("seat %d scored %d, want %d -- a draw is not worth half", seat, got, want)
+			t.Errorf("seat %d scored %d, want %d", seat, got, want)
 		}
 	}
 }
@@ -197,11 +227,34 @@ func TestListAwardsRefusals(t *testing.T) {
 			want: ErrUnknownAnswer,
 		},
 		{
+			// Nobody shouts over anybody in this round any more: inside the clock only
+			// one seat is playing, and after it an answer is gone the moment somebody
+			// names it. Two names on one answer is a screen and a server disagreeing
+			// about which half of the turn is being ruled on.
+			name: "two players credited with one answer",
+			awards: func(answers []Answer) []ListAward {
+				return fullAwards(answers, map[uuid.UUID][]int{answers[0].ID: {1, 2}})
+			},
+			want: ErrTwoOnOneCredit,
+		},
+		{
 			name: "the same seat named twice for one answer",
 			awards: func(answers []Answer) []ListAward {
 				return fullAwards(answers, map[uuid.UUID][]int{answers[0].ID: {1, 1}})
 			},
-			want: ErrInvalidInput,
+			want: ErrTwoOnOneCredit,
+		},
+		{
+			// Seat 2 is not the one being asked, so it has a single bonus guess and a
+			// second answer is one more than it has.
+			name: "a bonus seat taking two of the leftovers",
+			awards: func(answers []Answer) []ListAward {
+				return fullAwards(answers, map[uuid.UUID][]int{
+					answers[0].ID: {2},
+					answers[1].ID: {2},
+				})
+			},
+			want: ErrOneGuessEach,
 		},
 	}
 

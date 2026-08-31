@@ -9,7 +9,7 @@ import TextButton from "@/components/ui/TextButton";
 import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import { offBy, reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
+import { reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -89,6 +89,13 @@ interface Props {
  * The answer stays behind the covered panel until it is asked for, exactly as in every
  * other round: this screen is the one thing that can spoil the question, and the numbers
  * being typed in are being said out loud as they are typed.
+ *
+ * And the form never says who is winning. It used to: the nearest row filled mint and
+ * said how far off it had landed the moment a number went in, and the button named the
+ * person it was about to pay. That is the result of the turn given away halfway through
+ * writing it down, in front of a table still saying its numbers out loud, and it makes
+ * the last two rows pointless to fill in. So the ruling arrives in one place only —
+ * `ClosestResultScreen`, once the button has been pressed.
  */
 export default function ClosestBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
@@ -136,8 +143,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     const ready = byHand
         ? picked !== null
         : review.guesses.length > 0 && problem === null;
-
-    const winner = turn.guessing.find(seat => seat.seat === review.winners[0]) ?? null;
 
     /** Everybody whose row is still empty, and how many are not. */
     const blank = turn.guessing.filter(seat => (typed[seat.seat] ?? '').trim() === '');
@@ -326,11 +331,9 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     contentContainerStyle={styles.rowsInner}
                 >
                     {turn.guessing.map(seat => {
-                        const nearest = review.winners?.includes(seat.seat);
                         const clashing = review.duplicates.includes(seat.seat);
                         const chosen = byHand && picked === seat.seat;
                         const holding = !byHand && focused === seat.seat;
-                        const guess = review.guesses.find(entry => entry.seat === seat.seat);
 
                         return (
                             <Pressable
@@ -348,11 +351,11 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                     : t('pubquizr.play.closest.entry', { name: seat.name })}
                                 style={[
                                     styles.row,
-                                    nearest && styles.nearest,
-                                    chosen && styles.nearest,
+                                    // Only ever a row somebody has tapped. A row that is
+                                    // merely nearest is not marked at all any more.
+                                    chosen && styles.chosen,
                                     // After the fill, so the row being typed into still
-                                    // says so when it is also the one winning. It is the
-                                    // only cursor this screen has.
+                                    // says so. It is the only cursor this screen has.
                                     holding && styles.holding,
                                     clashing && styles.clashing
                                 ]}
@@ -364,36 +367,17 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                 </View>
 
                                 <View style={styles.who}>
+                                    {/* How far off used to be said here too, under the
+                                        name. It is the subtraction the table would have
+                                        to do to see who won, which is the one thing this
+                                        screen is now careful not to hand over. It is said
+                                        on the result screen instead. */}
                                     <AppText
-                                        style={[styles.name, (nearest || chosen) && styles.onMint]}
+                                        style={[styles.name, chosen && styles.onMint]}
                                         numberOfLines={1}
                                     >
                                         {seat.name}
                                     </AppText>
-
-                                    {/* How far off, so nobody does the subtraction out
-                                        loud with five people checking the arithmetic.
-                                        Only ever after the reveal — before it, this line
-                                        would be the answer told sideways. */}
-                                    {guess !== undefined && (
-                                        <View style={styles.gap}>
-                                            {nearest && (
-                                                <Feather name="award" size={11} color={Brand.ink} />
-                                            )}
-
-                                            <AppText
-                                                style={[styles.gapText, nearest && styles.onMint]}
-                                            >
-                                                {nearest
-                                                    ? t('pubquizr.play.closest.nearestOff', {
-                                                        off: offBy(guess.value, turn.answer)
-                                                    })
-                                                    : t('pubquizr.play.closest.off', {
-                                                        off: offBy(guess.value, turn.answer)
-                                                    })}
-                                            </AppText>
-                                        </View>
-                                    )}
                                 </View>
 
                                 {byHand ? (
@@ -417,11 +401,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                             showSoftInputOnFocus={false}
                                             placeholder={t('pubquizr.play.closest.placeholder')}
                                             placeholderTextColor={theme.colors.textFaint}
-                                            style={[
-                                                styles.field,
-                                                nearest && styles.fieldNearest,
-                                                holding && styles.fieldHolding
-                                            ]}
+                                            style={[styles.field, holding && styles.fieldHolding]}
                                         />
 
                                         {holding && <View style={styles.caret} />}
@@ -448,18 +428,12 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     <ActionButton
                         size="large"
                         icon="award"
-                        // Named once there is a name to say. Before the reveal it stays
-                        // the round's rule, for the same reason the rows stay unmarked:
-                        // "Award 2 to Sanne" on an unrevealed board tells the quizmaster
-                        // who was nearest, which is most of the answer.
+                        // Never a name. Working out who was nearest is what pressing this
+                        // is for, so a button that already knew would have answered the
+                        // question the screen after it exists to answer.
                         text={byHand
                             ? t('pubquizr.play.closest.award')
-                            : winner !== null
-                                ? t('pubquizr.play.closest.awardTo', {
-                                    worth: turn.worth,
-                                    name: winner.name
-                                })
-                                : t('pubquizr.play.closest.settle', { worth: turn.worth })}
+                            : t('pubquizr.play.validate')}
                         disabled={!ready || busy}
                         onPress={settle}
                     />
@@ -714,8 +688,9 @@ const useStyles = createThemedStyles(theme => ({
         boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
     },
 
-    // Mint in both schemes, the same "this one" the Correct button wears.
-    nearest: {
+    // Mint in both schemes, the same "this one" the Correct button wears. Only the
+    // by-hand pick reaches it now.
+    chosen: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
         ...theme.shadows.hardSmall
@@ -753,19 +728,6 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    gap: {
-        marginTop: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 5
-    },
-
-    gapText: {
-        fontSize: 11,
-        fontWeight: 700,
-        color: theme.colors.textMuted
-    },
-
     fieldWrap: {
         flexShrink: 0,
         flexDirection: 'row',
@@ -796,12 +758,6 @@ const useStyles = createThemedStyles(theme => ({
     fieldHolding: {
         borderColor: theme.colors.focus,
         backgroundColor: theme.colors.backgroundFocus
-    },
-
-    fieldNearest: {
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.backgroundSecondary,
-        color: Brand.ink
     },
 
     // Drawn rather than real: the field is not editable, so it has no cursor of its own,

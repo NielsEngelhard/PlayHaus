@@ -184,8 +184,8 @@ type quizSessionResponse struct {
 	// anywhere, "has it been all the way round" is the distance back to here.
 	//
 	// It still holds a seat in the rounds where nobody is being asked -- it is always
-	// one to the quizmaster's left -- and there it means nothing. Read describerSeat
-	// in round 4 and the guessing seats off the table in round 3.
+	// one to the quizmaster's left -- and there it means nothing. Read guesserSeat in
+	// rounds 4 and 5 and the guessing seats off the table in round 3.
 	HotSeat int `json:"hotSeat"`
 	// FinalistSeats are the two players round 6 is between, and null until the finale
 	// opens.
@@ -210,20 +210,20 @@ type quizSessionResponse struct {
 	// It is the quizMasterSeat -- the describer holds the phone, because the words are
 	// on it -- but naming it means the app does not have to know that trick.
 	DescriberSeat *int `json:"describerSeat"`
-	// DescribeGuesserSeat is who round 4 is being described to -- the seat on the
-	// describer's left, and the only one whose answer counts while the clock runs.
-	// Null in every other round.
+	// GuesserSeat is the one player being played to this turn -- the seat on the
+	// reader's left, and the only one whose answer counts while the clock runs. Sent in
+	// rounds 4 and 5, which are the two rounds built that way, and null everywhere else.
 	//
 	// Sent for the same reason describerSeat is: it is the seat the turn was opened on
 	// and the server already knows it, so the app naming it a second time off
 	// arithmetic of its own would be two answers to one question waiting to disagree.
-	// The rules card the round opens with names this player out loud.
-	DescribeGuesserSeat *int `json:"describeGuesserSeat"`
-	// DescribeBonusSeats are the players who each get one guess at the words nobody
-	// got, in the order their go comes round. Empty in every other round.
-	DescribeBonusSeats []int `json:"describeBonusSeats"`
-	// TurnQuestionIDs are the dealt questions this turn is about: one in rounds 1 to
-	// 3, and the describer's whole set of words in round 4.
+	// The rules card each of those turns opens with names this player out loud.
+	GuesserSeat *int `json:"guesserSeat"`
+	// BonusSeats are the players who each get one guess at whatever the clock left
+	// behind, in the order their go comes round. Empty in every other round.
+	BonusSeats []int `json:"bonusSeats"`
+	// TurnQuestionIDs are the dealt questions this turn is about: one in every round
+	// but the fourth, and the describer's whole set of words in that one.
 	//
 	// The server saying what it will accept, rather than the app working out whose
 	// words are whose from assignedSeat and hoping the two agree.
@@ -272,12 +272,12 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		describing = &seat
 	}
 
-	var describeGuesser *int
-	if seat := s.DescribeGuesser(); seat >= 0 {
-		describeGuesser = &seat
+	var guesser *int
+	if seat := s.TurnGuesser(); seat >= 0 {
+		guesser = &seat
 	}
 
-	bonus := s.DescribeBonusSeats()
+	bonus := s.BonusSeats()
 	if bonus == nil {
 		bonus = []int{}
 	}
@@ -301,27 +301,27 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	}
 
 	return quizSessionResponse{
-		ID:                  s.ID.String(),
-		QuizID:              s.QuizID.String(),
-		Mode:                string(s.Mode),
-		Locale:              s.Locale.String(),
-		Status:              string(s.Status),
-		CurrentRound:        s.CurrentRound,
-		CurrentPosition:     s.CurrentPosition,
-		QuizMasterSeat:      s.QuizMasterSeat,
-		TotalRounds:         pubquizr.Rounds,
-		AnsweringSeat:       asked,
-		HotSeat:             s.HotSeatOrFirst(),
-		FinalistSeats:       finalists,
-		HotSeatRun:          s.HotSeatRun,
-		TurnsInRound:        s.TurnsInRound(s.CurrentRound),
-		DescriberSeat:       describing,
-		DescribeGuesserSeat: describeGuesser,
-		DescribeBonusSeats:  bonus,
-		TurnQuestionIDs:     turn,
-		Players:             players,
-		Questions:           questions,
-		CreatedAt:           s.CreatedAt.Format(timeFormat),
+		ID:              s.ID.String(),
+		QuizID:          s.QuizID.String(),
+		Mode:            string(s.Mode),
+		Locale:          s.Locale.String(),
+		Status:          string(s.Status),
+		CurrentRound:    s.CurrentRound,
+		CurrentPosition: s.CurrentPosition,
+		QuizMasterSeat:  s.QuizMasterSeat,
+		TotalRounds:     pubquizr.Rounds,
+		AnsweringSeat:   asked,
+		HotSeat:         s.HotSeatOrFirst(),
+		FinalistSeats:   finalists,
+		HotSeatRun:      s.HotSeatRun,
+		TurnsInRound:    s.TurnsInRound(s.CurrentRound),
+		DescriberSeat:   describing,
+		GuesserSeat:     guesser,
+		BonusSeats:      bonus,
+		TurnQuestionIDs: turn,
+		Players:         players,
+		Questions:       questions,
+		CreatedAt:       s.CreatedAt.Format(timeFormat),
 	}
 }
 
@@ -948,9 +948,9 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 	case errors.Is(err, pubquizr.ErrDescriberCannotGuess):
 		writeErrorCode(w, http.StatusConflict, "describer_cannot_guess", "you cannot guess your own word")
 	case errors.Is(err, pubquizr.ErrOneGuessEach):
-		writeErrorCode(w, http.StatusConflict, "one_guess_each", "everybody but the guesser gets one word")
-	case errors.Is(err, pubquizr.ErrTwoOnOneWord):
-		writeErrorCode(w, http.StatusConflict, "two_on_one_word", "only one player can be credited with a word")
+		writeErrorCode(w, http.StatusConflict, "one_guess_each", "everybody but the guesser gets one go")
+	case errors.Is(err, pubquizr.ErrTwoOnOneCredit):
+		writeErrorCode(w, http.StatusConflict, "two_on_one", "only one player can be credited with that")
 	case errors.Is(err, pubquizr.ErrUnknownWord):
 		writeErrorCode(w, http.StatusConflict, "unknown_word", "that word is not part of this turn")
 	case errors.Is(err, pubquizr.ErrUnknownAnswer):

@@ -57,53 +57,13 @@ func answersOfQuiz(t *testing.T, h http.Handler, token, quizID string) map[strin
 // atTheFinale is a real session played through all five rounds, sat on the first finale
 // question.
 //
-// Round 4 and round 5 are settled so that the scoreboard comes out uneven -- one seat is
-// handed everything -- because a finale seated off a flat table proves nothing about who
-// it picks.
+// Round 5 is settled so that the scoreboard comes out uneven -- the seat being asked is
+// handed the whole question -- because a finale seated off a flat table proves nothing
+// about who it picks. Rounds 1 to 4 are `atRoundFive`'s business.
 func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionResponse) {
 	t.Helper()
 
-	h, _ := newQuizServer(t)
-	guest := newGuestSession(t, h)
-	quiz := aQuiz(t, h, guest.Token, "locale=nl")
-	answers := answersOfQuiz(t, h, guest.Token, quiz.ID)
-
-	session := startedQuiz(t, h, guest.Token, quiz.ID, tableOf(players)...)
-	session = playOutRound(t, h, guest.Token, session) // round 1
-	session = playOutRound(t, h, guest.Token, session) // round 2
-
-	for session.CurrentRound == pubquizr.RoundClosest {
-		winner, _ := otherSeats(session, 1)
-		rec := do(t, h, http.MethodPost, closestPath(session.ID), closestBody(t, closestGuessesRequest{
-			SessionQuestionID: session.TurnQuestionIDs[0],
-			WinningSeats:      []int{winner},
-		}), guest.Token)
-		if rec.Code != http.StatusOK {
-			t.Fatalf("settle round 3: status = %d (body: %s)", rec.Code, rec.Body)
-		}
-		session = decodeBody[quizSessionResponse](t, rec)
-	}
-
-	for session.CurrentRound == pubquizr.RoundDescribe {
-		// The seat being described to, because they are the only one who may be
-		// credited with more than one word of a turn -- everybody else gets a single
-		// bonus guess at the leftovers.
-		guesser := *session.DescribeGuesserSeat
-
-		awards := make([]wordAwardRequest, 0, len(session.TurnQuestionIDs))
-		for _, word := range session.TurnQuestionIDs {
-			awards = append(awards, wordAwardRequest{SessionQuestionID: word, Seats: []int{guesser}})
-		}
-
-		rec := do(t, h, http.MethodPost, describePath(session.ID), describeBody(t, describeAwardsRequest{
-			DescriberSeat: *session.DescriberSeat,
-			Awards:        awards,
-		}), guest.Token)
-		if rec.Code != http.StatusOK {
-			t.Fatalf("settle round 4: status = %d (body: %s)", rec.Code, rec.Body)
-		}
-		session = decodeBody[quizSessionResponse](t, rec)
-	}
+	h, token, answers, session := atRoundFive(t, players)
 
 	for session.CurrentRound == pubquizr.RoundList {
 		dealt := session.TurnQuestionIDs[0]
@@ -115,7 +75,11 @@ func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionRe
 			}
 		}
 
-		claimer, _ := otherSeats(session, 1)
+		// The seat being asked, for the reason round 4 uses it too: they are the only
+		// player who may be credited with more than one of a question's answers,
+		// everybody else having a single bonus guess at the leftovers.
+		claimer := *session.GuesserSeat
+
 		awards := make([]listAwardRequest, 0, 4)
 		for _, answer := range answers[questionID] {
 			awards = append(awards, listAwardRequest{AnswerID: answer, Seats: []int{claimer}})
@@ -124,7 +88,7 @@ func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionRe
 		rec := do(t, h, http.MethodPost, listPath(session.ID), listBody(t, listAwardsRequest{
 			SessionQuestionID: dealt,
 			Awards:            awards,
-		}), guest.Token)
+		}), token)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("settle round 5: status = %d (body: %s)", rec.Code, rec.Body)
 		}
@@ -135,7 +99,7 @@ func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionRe
 		t.Fatalf("currentRound = %d, want %d", got, want)
 	}
 
-	return h, guest.Token, session
+	return h, token, session
 }
 
 func scoreOf(session quizSessionResponse, seat int) int {

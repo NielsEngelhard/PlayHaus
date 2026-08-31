@@ -588,7 +588,31 @@ export const en = {
                 staysWhileRight: '{{name}} keeps being asked until they get one wrong',
                 /** The strip's own two halves: "NI reads → SA  Sanne answers". */
                 reads: 'reads',
-                answers: 'to {{name}}'
+                answers: 'to {{name}}',
+                /*
+                 * What rounds 4 and 5 share, now that they are played the same way: one
+                 * person asking, one person answering against a clock, and everybody else
+                 * waiting for a single guess at whatever is left.
+                 *
+                 * Here rather than under `describe.*` or `list.*` because the screens are
+                 * literally shared -- `TurnRulesScreen`, `BonusRoundScreen` and `AwardRow`
+                 * are drawn by both boards, and a key living under one round's name would
+                 * have to be borrowed by the other, which `list` was already doing for
+                 * `nobody`.
+                 */
+                roleQuizmaster: 'Quizmaster',
+                roleGuesser: 'Guessing',
+                /** The bonus walk: one screen per remaining player, one guess each. */
+                bonusOf: 'Bonus · {{number}} of {{total}}',
+                /*
+                 * The two ways off the bonus screen, which is one button wearing whichever
+                 * of them the marked row says it is. Tapping only marks, so a mis-tap
+                 * costs nothing but a second tap.
+                 */
+                bonusMissed: '{{name}} got nothing',
+                bonusTake: '{{name}} got it',
+                /** On a settle row nobody is credited with. */
+                nobody: 'Nobody got it'
             },
             /**
              * The strip's one-line variant, for the rounds where nobody in particular is
@@ -599,7 +623,7 @@ export const en = {
             leadChoice: '{{name}} reads · four options',
             leadClosest: '{{name}} reads · everyone else guesses',
             leadDescribe: '{{name}} describes their own words',
-            leadList: '{{name}} reads · everyone else calls out answers',
+            leadList: '{{name}} asks · one player names what they can',
             /**
              * Unused while `answering` is set — the finale always has somebody in
              * particular being asked, so `TurnStrip` never falls back to its one-line
@@ -690,7 +714,6 @@ export const en = {
                  */
                 duplicate: 'Two players have the same number. Ask one of them for another.',
                 unreadable: 'One of those is not a number.',
-                settle: 'Nearest takes {{worth}}',
                 /** The way out for a table that has already agreed out loud. */
                 pickInstead: 'Skip the numbers, just tap who won',
                 typeInstead: 'Type the guesses instead',
@@ -709,17 +732,15 @@ export const en = {
                 theirNumbers: 'Their numbers',
                 filled: '{{filled}} of {{total}} in',
                 /**
-                 * How far off each guess landed, under the name. Only ever once the
-                 * answer is on screen — before that it would be the app telling the
-                 * table the answer sideways.
+                 * How far off each guess landed, under the name. Only on the result
+                 * screen — the form the numbers are typed into says nothing about who is
+                 * winning, because that is what pressing its button is for.
                  *
-                 * Worth the two lines it costs: without them the quizmaster does four
-                 * subtractions out loud while five people check the arithmetic.
+                 * Worth the two lines it costs there: without them the quizmaster does
+                 * four subtractions out loud while five people check the arithmetic.
                  */
                 off: '{{off}} off',
                 nearestOff: 'nearest · {{off}} off',
-                /** The settling button, naming whoever it would pay as it stands. */
-                awardTo: 'Award {{worth}} to {{name}}',
                 /**
                  * The check on the way out, when a row is still blank.
                  *
@@ -767,14 +788,6 @@ export const en = {
             },
             /** Round 4: thirty seconds to describe your own words to the player on your left. */
             describe: {
-                readyTitle: 'The rules',
-                /**
-                 * Under the two faces on the ready card. The round used to be a room
-                 * shouting at once, so who is playing whom is the thing a table has to
-                 * be told before anybody presses start.
-                 */
-                roleQuizmaster: 'Quizmaster',
-                roleGuesser: 'Guessing',
                 /** The ready screen's rules list, one row each rather than one paragraph. */
                 readyRuleOnlyGuesser: 'You describe to {{guesser}}, and only their answers count while the clock is running',
                 readyRuleTime: '{{seconds}} seconds to get through as many of your {{words}} words as you can',
@@ -790,36 +803,38 @@ export const en = {
                 inTimeHint: 'Tap every word {{guesser}} said before time ran out',
                 toBonus: 'Bonus round · {{left}} left over',
                 toSettle: 'On to the points',
-                /** The bonus walk: one screen per remaining player, one guess each. */
-                bonusOf: 'Bonus · {{number}} of {{total}}',
-                bonusTitle: '{{name}} has one guess',
-                bonusHint: 'One guess at one of these. Get it and you both score.',
-                bonusMissed: '{{name}} got nothing',
+                bonusHint: 'The quizmaster says nothing more, but every other player gets one guess at what is left — off whatever they just heard.',
                 scoringTitle: 'How the turn went',
-                nobody: 'Nobody got it',
-                /** Beside the name on a word that landed: what it paid, all in. */
-                plus: '+{{points}}',
                 /** What the turn is about to be worth to the person who described it. */
                 standing: '{{name}} takes {{points}} from this turn',
                 scoreAgain: 'Score this turn again',
                 settle: 'Hand out the points'
             },
-            /** Round 5: one category, four answers, and the table takes turns to find them. */
+            /**
+             * Round 5: one question, four answers, and twenty seconds with the player on
+             * the reader's left.
+             *
+             * Deliberately parallel to `describe.*` — the round is played the same way, so
+             * the wordings should read as the same rules with different nouns rather than
+             * as two games that happen to share a phone.
+             */
             list: {
-                readCategory: 'Read the category out loud',
-                perAnswer: '{{worth}} a find',
-                turnOrder: 'Ten seconds each, in table order',
-                start: 'Start guessing',
-                /** The skip button, top right of the guessing screen. */
-                skip: "Skip {{name}}'s turn",
-                scoringTitle: 'Who found them?',
-                whoSaidItHint: 'Tap whoever called each one out',
-                /**
-                 * Never `count`: that is the one option name i18next treats as a
-                 * plural trigger, and there are no plural forms behind it. See
-                 * `common.time`.
-                 */
-                stillToRule: '{{left}} still to credit',
+                /** The ready screen's rules list, one row each rather than one paragraph. */
+                readyRuleOnlyGuesser: 'You ask {{guesser}}, and only their answers count while the clock is running',
+                readyRuleTime: '{{seconds}} seconds to name as many of the {{answers}} answers as they can',
+                readyRuleHidden: 'The answers are on your screen only. Never read them out.',
+                readyRuleScore: 'Every answer they get is {{worth}} point for them',
+                readyRuleBonus: 'When time is up, the other {{others}} each get one guess at an answer nobody got',
+                start: 'Show the answers and start',
+                /** Shown again mid-timer, so it does not depend on being remembered. */
+                runningReminder: 'Tick off every answer {{guesser}} says. Nobody else counts yet.',
+                toBonus: 'Bonus round · {{left}} left over',
+                toSettle: 'On to the points',
+                bonusHint: 'One guess at one of these. Get it and the point is yours.',
+                scoringTitle: 'How the question went',
+                /** What the question is about to be worth to the person who was asked it. */
+                standing: '{{name}} takes {{points}} from this question',
+                scoreAgain: 'Score this question again',
                 settle: 'Hand out the points'
             },
             /**
@@ -839,7 +854,7 @@ export const en = {
                 briefChoice: 'Hard questions, this time with four answers to choose from. One question each, read out with all four options — and every single one of them is worth two points.',
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
-                briefList: 'One question with four answers hiding in it. Everybody but the reader gets ten seconds in turn to call out as many as they can, until all four are found or the table runs out of goes. Then the reader says who called out what — a point each.',
+                briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
@@ -861,7 +876,7 @@ export const en = {
                 jobChoice: '{{name}} reads the question and all four options',
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
                 jobDescribe: '{{name}} describes their own words to the player on their left. Nobody else may look at the screen.',
-                jobList: '{{name}} reads the category and marks off answers as the table calls them out.',
+                jobList: '{{name}} reads the question out and ticks off every answer the player on their left gets.',
                 jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
                 /**
                  * The round's rule, said on the one screen with room to say it properly.
@@ -872,11 +887,17 @@ export const en = {
                 ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
-                ruleList: 'Ten seconds each. Mark an answer the instant somebody says it, then say who found what once the round is done.',
+                ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: "I'm {{name}}, show the question"
             },
             standings: {
+                /**
+                 * The accent band over the scoreboard, which is the one thing on that
+                 * screen saying where in the evening it is — the hero under it names the
+                 * round that just ended, and the track beside this counts them off.
+                 */
+                label: 'Round {{round}} of {{total}} done',
                 title: 'Round {{round}} done',
                 description: 'How the table stands with that round behind you.',
                 startNext: 'Start round {{round}}',
@@ -933,8 +954,8 @@ export const en = {
             quizmasterCannotGuess: 'Whoever is reading the question out does not get to guess at it.',
             describerCannotGuess: 'You cannot be credited with a word you were describing.',
             /** Round 4's two halves, refused: one name per word, one bonus guess each. */
-            oneGuessEach: 'Everybody but the player being described to gets one guess.',
-            twoOnOneWord: 'Only one player can be credited with a word.'
+            oneGuessEach: 'Everybody but the player being asked gets one guess.',
+            twoOnOne: 'Only one player can be credited with that.'
         }
     },
     oneOfUs: { 

@@ -1,225 +1,253 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { Brand } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { ListAward } from "@/features/pubquizr/pubquizr-sessions";
-import { LIST_SECONDS_PER_TURN, type ListTurn } from "@/features/pubquizr/round-five";
+import {
+    LIST_SECONDS,
+    scoreOfListAwards,
+    unclaimedAnswers,
+    type ListAwards,
+    type ListTurn
+} from "@/features/pubquizr/round-five";
+import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
-import DescribeTimer from "./DescribeTimer";
+import BonusRoundScreen from "./BonusRoundScreen";
+import PickRow, { AwardRow } from "./PickRow";
 import QuestionRecap from "./QuestionRecap";
-import ScriptCard from "./ScriptCard";
+import TurnRulesScreen, { type TurnRule } from "./TurnRulesScreen";
 import TurnStrip from "./TurnStrip";
+import TurnTimer from "./TurnTimer";
 
 interface Props {
     turn: ListTurn
     /** Which round this is, for the strip's pips. */
     round: number
-    /** The strip's one-line sentence, for the reading screen where nobody is answering yet. */
+    /**
+     * What the strip says when nobody in particular is being asked. Round 5 does have
+     * somebody now — the seat on the reader's left — so `TurnStrip` draws the two-person
+     * row and never reads this; it stays on the prop because the page hands every board
+     * the same three lines.
+     */
     lead: string
     busy: boolean
     error: TranslationKey | null
     onSettle: (awards: ListAward[]) => void
 }
 
-/** Where in the question we are. Three screens, the same split round 4's board makes. */
-type Stage = 'reading' | 'guessing' | 'scoring'
+/**
+ * Where in the question we are.
+ *
+ * Round 4's machine with one screen fewer. There, `running` is thirty seconds with
+ * nothing to press and `inTime` is the ticking-off afterwards, because the describer is
+ * busy talking and cannot also be marking words. Here the reader is holding the answer
+ * key and listening, so ticking one off *is* crediting it and the two screens are one.
+ */
+type Stage = 'ready' | 'running' | 'bonus' | 'settle'
 
 /**
- * The board for round 5: one category, four answers, and the whole table taking turns
- * to call them out.
+ * The board for round 5: one question, four answers, and twenty seconds with the player
+ * on the reader's left.
  *
- * Three screens rather than one. **Reading** is the question on its own, public and out
- * loud — this round has nothing to hide from the table, unlike the hot seat rounds'
- * covered answer, because the table is the one doing the guessing. **Guessing** is where
- * the four answers finally go on screen, one player's ten seconds at a time: tapping one
- * only marks it found, it does not say who found it, because the reader is watching the
- * table call things out and marking them as they land rather than working out credit on
- * the fly. **Scoring** is that last step, once the round has been all the way round the
- * table or the four answers have run out first — the same "settle it once, at the end"
- * shape round 4's award screen uses, and for the same reason: crediting people is a
- * decision worth a second look with the clock no longer running.
+ * The round used to be the whole table calling things out at once, each player against a
+ * clock of their own, with credit sorted out at the end on a grid where anybody could be
+ * given anything. It is now played the way round 4 is — one person inside the clock,
+ * everybody else waiting for the bonus round — and the screens follow: the same rules
+ * card in front of it, the same walk after it, the same look back at the ruling before
+ * the points go out.
+ *
+ * The scoring is a walk rather than a form for round 4's reason: doing it on one screen
+ * would mean drawing every seat against every answer and then explaining, in words, why
+ * most of those taps are not allowed. Instead the screen only ever offers the taps that
+ * are.
  */
 export default function ListBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
-    const [stage, setStage] = useState<Stage>('reading');
-    const [guesserIndex, setGuesserIndex] = useState(0);
-    /**
-     * Answer ids the reader has ticked off while the table calls them out.
-     *
-     * A helper for the reader's own eyes during play, nothing more — it decides when to
-     * jump the round to scoring early (see `toggleFound`) and nothing else. It is never
-     * read on the scoring screen itself: every answer is assignable there whether or not
-     * it was ticked here, because a box left unchecked mid-round is not the same claim as
-     * a table ruling nobody got it, and the two must not end up looking the same.
-     */
-    const [found, setFound] = useState<Set<string>>(new Set());
-    /** Every seat named for an answer, or an empty array for one ruled nobody got. */
-    const [awards, setAwards] = useState<Record<string, number[]>>({});
-    /** Whether the category's been unfolded back out of the one-line recap. */
+    const [stage, setStage] = useState<Stage>('ready');
+    /** What became of each answer: the seat credited with it, or null for one nobody got. */
+    const [awards, setAwards] = useState<ListAwards>({});
+    /** Whose bonus guess is being offered, as an index into `turn.bonus`. */
+    const [bonusIndex, setBonusIndex] = useState(0);
+    /** The answer this player has been marked down for, before it is committed. */
+    const [bonusPick, setBonusPick] = useState<string | null>(null);
+    /** Whether the question has been unfolded back out of the one-line recap. */
     const [rereading, setRereading] = useState(false);
 
     /*
-     * Reset during render, the same way every other board here does: a new question has
-     * to arrive with nothing found and nobody credited, in the same commit that brings
-     * it — cleared afterwards, the board would paint once showing the last question's
-     * answers under the new one's prompt.
+     * Reset during render, like every other board here: a new question has to arrive with
+     * nothing found and nobody credited, in the same commit that brings it — cleared
+     * afterwards, the board would paint once showing the last question's ruling under the
+     * new one's prompt.
      */
     const [turnOf, setTurnOf] = useState<string | null>(null);
     if (turnOf !== turn.dealt.id) {
         setTurnOf(turn.dealt.id);
-        setStage('reading');
-        setGuesserIndex(0);
-        setFound(new Set());
+        setStage('ready');
         setAwards({});
+        setBonusIndex(0);
+        setBonusPick(null);
         setRereading(false);
     }
 
-    const guesser = turn.guessing[guesserIndex] ?? turn.guessing[turn.guessing.length - 1];
+    const unclaimed = unclaimedAnswers(turn, awards);
+    const standing = scoreOfListAwards(turn, awards);
+
+    /** Credit an answer to one seat, or to nobody. */
+    function credit(answerId: string, seat: number | null) {
+        setAwards(current => ({ ...current, [answerId]: seat }));
+    }
 
     /**
-     * Marking the last answer is what ends the round, not a timer — checked off the
-     * updater's own next value, so a rapid double tap toggles rather than double-adds,
-     * and the stage changes in the same commit as the tap that caused it instead of the
-     * board painting once more with a finished round still waiting on its clock.
+     * Did the guesser get this one inside the clock? Only they can be named here.
+     *
+     * Ticking the last one is what ends the clock early, not the timer — checked off the
+     * updater's own next value, so a rapid double tap toggles rather than ending a
+     * question that is not finished, and the stage changes in the same commit as the tap
+     * that caused it instead of the board painting once more with a clock still running
+     * over a question nobody can add to.
      */
-    function toggleFound(id: string) {
-        setFound(current => {
-            const next = new Set(current);
-            if (next.has(id)) next.delete(id); else next.add(id);
+    function toggleInTime(answerId: string) {
+        setAwards(current => {
+            const next: ListAwards = {
+                ...current,
+                [answerId]: (current[answerId] ?? null) === null ? turn.guesser.seat : null
+            };
 
-            if (next.size >= turn.answers.length) setStage('scoring');
+            const left = turn.answers.filter(answer => (next[answer.id] ?? null) === null);
+            if (left.length === 0) setStage('settle');
 
             return next;
         });
     }
 
     /**
-     * The current player's ten seconds are over, one way or another. Past the last
-     * guesser, the round is done and the scoring screen is next — always, regardless of
-     * what got checked off while the clock was running. See the note on `found` above:
-     * crediting is a decision for the scoring screen alone, and skipping straight to a
-     * no-credit settle here would let a reader's un-ticked box during play quietly decide
-     * an assignment it was never meant to touch.
+     * The clock's half of the question is ruled on. What is left goes round the table.
+     *
+     * Straight to the settle when there is nothing left to steal, or nobody to offer it
+     * to: a bonus round with an empty pool is a screen that asks a person to look at
+     * nothing and press on.
      */
-    function nextGuesser() {
-        const next = guesserIndex + 1;
-        if (next < turn.guessing.length) {
-            setGuesserIndex(next);
+    function openBonus() {
+        if (unclaimed.length === 0 || turn.bonus.length === 0) {
+            setStage('settle');
             return;
         }
 
-        setStage('scoring');
+        setBonusIndex(0);
+        setBonusPick(null);
+        setStage('bonus');
     }
 
-    /** Add or drop one seat from an answer's credits — a draw is more than one at once. */
-    function toggleCredit(answerId: string, seat: number) {
-        setAwards(current => {
-            const named = current[answerId] ?? [];
-            return {
-                ...current,
-                [answerId]: named.includes(seat)
-                    ? named.filter(candidate => candidate !== seat)
-                    : [...named, seat]
-            };
-        });
+    /**
+     * One player's single guess is spent, taken or not. On to the next of them — or to
+     * the settle, once the answers have run out or everybody has had their go.
+     *
+     * `left` is passed in rather than read off `unclaimed`, because the seat that has
+     * just taken an answer is being credited in the same commit and the render this runs
+     * in still has the old pool.
+     */
+    function nextBonus(left: number) {
+        setBonusPick(null);
+
+        const next = bonusIndex + 1;
+        if (left > 0 && next < turn.bonus.length) {
+            setBonusIndex(next);
+            return;
+        }
+
+        setStage('settle');
     }
 
-    function markNobody(answerId: string) {
-        setAwards(current => ({ ...current, [answerId]: [] }));
+    /** The marked-down answer is spent, and the walk moves on. */
+    function spendBonus(player: Seat) {
+        if (busy) return;
+
+        if (bonusPick === null) {
+            nextBonus(unclaimed.length);
+            return;
+        }
+
+        credit(bonusPick, player.seat);
+        nextBonus(unclaimed.length - 1);
     }
 
-    // Every answer has to be ruled on for scoring, found or not — see the note on
-    // `found` above. A row left blank and a row marked "nobody" look the same on a
-    // phone being passed round, and the difference between them is a point.
-    const ruled = turn.answers.filter(answer => answer.id in awards).length;
-    const ready = ruled === turn.answers.length;
+    /*
+     * The same strip every other round wears, naming the two people the question is
+     * actually between. Left off the stopwatch screen along with everything else it does
+     * not need — that screen is twenty seconds and four boxes.
+     */
+    const strip = (
+        <TurnStrip
+            quizmaster={turn.quizmaster}
+            answering={turn.guesser}
+            lead={lead}
+            run={0}
+            round={round}
+            number={turn.number}
+            total={turn.total}
+            worth={turn.worth}
+        />
+    );
 
-    if (stage === 'reading') {
+    if (stage === 'ready') {
+        // Written at the table rather than at the phone, and in the order the question
+        // happens in: who is playing, how long, what is being looked for, what it pays,
+        // and then what happens after the clock stops. The two that name a person are the
+        // point of the screen — this round used to be a room shouting at once, and a
+        // table that half-remembers the old rule will play it that way again.
+        const rules: TurnRule[] = [
+            {
+                icon: 'user-check',
+                text: t('pubquizr.play.list.readyRuleOnlyGuesser', { guesser: turn.guesser.name })
+            },
+            {
+                icon: 'clock',
+                text: t('pubquizr.play.list.readyRuleTime', {
+                    seconds: LIST_SECONDS,
+                    answers: turn.answers.length
+                })
+            },
+            { icon: 'eye-off', text: t('pubquizr.play.list.readyRuleHidden') },
+            {
+                icon: 'award',
+                text: t('pubquizr.play.list.readyRuleScore', { worth: turn.worth })
+            },
+            {
+                icon: 'users',
+                text: t('pubquizr.play.list.readyRuleBonus', { others: turn.bonus.length })
+            }
+        ];
+
         return (
-            <View style={styles.turn}>
-                <TurnStrip
-                    quizmaster={turn.quizmaster}
-                    answering={null}
-                    lead={lead}
-                    run={0}
-                    round={round}
-                    number={turn.number}
-                    total={turn.total}
-                    worth={turn.worth}
-                />
-
-                <ScriptCard
-                    prompt={turn.question.prompt}
-                    cue={t('pubquizr.play.list.readCategory')}
-                    size={26}
-                >
-                    <View style={styles.stake}>
-                        <Feather name="award" size={13} color={Brand.ink} />
-
-                        <AppText style={styles.stakeLabel}>
-                            {t('pubquizr.play.list.perAnswer', { worth: turn.worth })}
-                        </AppText>
-                    </View>
-
-                    <View style={styles.guessingRule}>
-                        <AppText style={styles.guessingLabel}>
-                            {t('pubquizr.play.list.turnOrder')}
-                        </AppText>
-
-                        <View style={styles.guessers}>
-                            {turn.guessing.map(seat => (
-                                <View
-                                    key={seat.seat}
-                                    style={[styles.guesser, { backgroundColor: seat.swatch.color }]}
-                                    accessibilityRole="text"
-                                    accessibilityLabel={seat.name}
-                                >
-                                    <AppText style={[styles.guesserInitials, { color: seat.swatch.foreground }]}>
-                                        {seat.initials}
-                                    </AppText>
-                                </View>
-                            ))}
-                        </View>
-                    </View>
-                </ScriptCard>
-
-                <ActionButton
-                    size="large"
-                    icon="play"
-                    text={t('pubquizr.play.list.start')}
-                    onPress={() => setStage('guessing')}
-                />
-            </View>
+            <TurnRulesScreen
+                strip={strip}
+                quizmaster={turn.quizmaster}
+                guesser={turn.guesser}
+                rules={rules}
+                action={t('pubquizr.play.list.start')}
+                onStart={() => setStage('running')}
+            />
         )
     }
 
-    if (stage === 'guessing') {
+    if (stage === 'running') {
         return (
             <View style={styles.turn}>
-                <TurnStrip
-                    quizmaster={turn.quizmaster}
-                    answering={guesser}
-                    lead={lead}
-                    run={0}
-                    round={round}
-                    number={turn.number}
-                    total={turn.total}
-                    worth={turn.worth}
-                />
+                {strip}
 
-                {/* The category, kept on screen for as long as the table is calling
-                    answers out at it — a reader who has to leave this screen to remind
-                    themselves what was asked is a reader who stops reading it out
-                    again, and the table is still guessing off what it heard once. */}
+                {/* The question, kept on screen for as long as the guesser is calling
+                    answers at it — a reader who has to leave this screen to remind
+                    themselves what was asked is a reader who stops reading it out again,
+                    and the guesser is still working off what they heard once. */}
                 <QuestionRecap
                     prompt={turn.question.prompt}
                     icon="volume-2"
@@ -228,174 +256,115 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     onPress={() => setRereading(current => !current)}
                 />
 
-                <View style={styles.skipRow}>
-                    <Pressable
-                        onPress={nextGuesser}
-                        disabled={busy}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('pubquizr.play.list.skip', { name: guesser.name })}
-                        style={[styles.skip, busy && styles.dimmed]}
-                    >
-                        <AppText style={styles.skipText}>
-                            {t('pubquizr.play.list.skip', { name: guesser.name })}
-                        </AppText>
-
-                        <Feather name="skip-forward" size={14} color={theme.colors.textMuted} />
-                    </Pressable>
-                </View>
-
-                {/* Keyed to the guesser, so each one gets its own fresh ten seconds
-                    instead of picking up wherever the last one's clock left off. */}
-                <ListTimerSlot
-                    key={`${turn.dealt.id}-${guesserIndex}`}
-                    onDone={nextGuesser}
-                />
+                {/* Keyed to the question, so a reload lands on a fresh twenty seconds
+                    rather than picking up wherever the last one's clock left off. Time
+                    running out and the reader pressing on are the same move — through
+                    `openBonus`, which is what knows there may be nothing left to offer. */}
+                <ListTimerSlot key={turn.dealt.id} onDone={openBonus} />
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.onlyYouSeeThis')}
                 </AppText>
 
-                <ScrollView contentContainerStyle={styles.answers}>
-                    {turn.answers.map(answer => {
-                        const got = found.has(answer.id);
-
-                        return (
-                            <Pressable
-                                key={answer.id}
-                                onPress={() => toggleFound(answer.id)}
-                                disabled={busy}
-                                accessibilityRole="checkbox"
-                                accessibilityState={{ checked: got, disabled: busy }}
-                                accessibilityLabel={answer.text}
-                                style={[styles.answer, got && styles.answerFound, busy && styles.dimmed]}
-                            >
-                                <Feather
-                                    name={got ? 'check-circle' : 'circle'}
-                                    size={22}
-                                    color={got ? Brand.ink : theme.colors.textMuted}
-                                />
-
-                                <AppText style={[styles.answerText, got && styles.answerTextFound]}>
-                                    {answer.text}
-                                </AppText>
-                            </Pressable>
-                        )
-                    })}
+                {/* Ticking is crediting here, unlike round 4, where the describer is
+                    talking and cannot also be marking. The reader is holding the answer
+                    key and listening to one person, so every tick goes to that person. */}
+                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                    {turn.answers.map(answer => (
+                        <PickRow
+                            key={answer.id}
+                            label={answer.text}
+                            active={(awards[answer.id] ?? null) !== null}
+                            disabled={busy}
+                            onPress={() => toggleInTime(answer.id)}
+                        />
+                    ))}
                 </ScrollView>
 
-                {error !== null && (
-                    <InlineNotification
-                        icon="alert-triangle"
-                        color={theme.colors.blush}
-                        message={t(error)}
-                    />
-                )}
+                <AppText style={styles.recap}>
+                    {t('pubquizr.play.list.runningReminder', { guesser: turn.guesser.name })}
+                </AppText>
+
+                {/* The way out before the clock is: a guesser who has plainly run dry
+                    should not have to sit and watch the bar empty, and the bonus round is
+                    the next thing either way. */}
+                <ActionButton
+                    size="large"
+                    icon="arrow-right"
+                    text={unclaimed.length > 0 && turn.bonus.length > 0
+                        ? t('pubquizr.play.list.toBonus', { left: unclaimed.length })
+                        : t('pubquizr.play.list.toSettle')}
+                    disabled={busy}
+                    onPress={openBonus}
+                />
             </View>
+        )
+    }
+
+    if (stage === 'bonus') {
+        const player = turn.bonus[bonusIndex];
+
+        // A pool that has emptied under the walk, or a seat that is no longer at the
+        // table: either way there is nothing to offer, so the screen does not open.
+        if (player === undefined || unclaimed.length === 0) {
+            setStage('settle');
+            return null;
+        }
+
+        return (
+            <BonusRoundScreen
+                strip={strip}
+                player={player}
+                index={bonusIndex}
+                total={turn.bonus.length}
+                options={unclaimed.map(answer => ({ id: answer.id, label: answer.text }))}
+                picked={bonusPick}
+                hint={t('pubquizr.play.list.bonusHint')}
+                busy={busy}
+                onPick={setBonusPick}
+                onSpend={() => spendBonus(player)}
+            />
         )
     }
 
     return (
         <View style={styles.turn}>
-            <TurnStrip
-                quizmaster={turn.quizmaster}
-                answering={null}
-                lead={lead}
-                run={0}
-                round={round}
-                number={turn.number}
-                total={turn.total}
-                worth={turn.worth}
-            />
+            {strip}
 
             <AppText style={styles.title}>
                 {t('pubquizr.play.list.scoringTitle')}
             </AppText>
 
-            <AppText style={styles.recap}>
-                {t('pubquizr.play.list.whoSaidItHint')}
-            </AppText>
-
-            <ScrollView
-                style={styles.rows}
-                contentContainerStyle={styles.rowsInner}
-                keyboardShouldPersistTaps="handled"
-            >
+            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {turn.answers.map(answer => {
-                    const named = awards[answer.id] ?? [];
-                    const nobody = answer.id in awards && named.length === 0;
+                    const credited = awards[answer.id] ?? null;
+                    const winner = credited === null
+                        ? null
+                        : [turn.guesser, ...turn.bonus].find(seat => seat.seat === credited) ?? null;
 
                     return (
-                        <View key={answer.id} style={styles.row}>
-                            <AppText style={styles.rowAnswer} numberOfLines={1}>
-                                {answer.text}
-                            </AppText>
-
-                            <View style={styles.chips}>
-                                {turn.guessing.map(seat => {
-                                    const active = named.includes(seat.seat);
-
-                                    return (
-                                        <Pressable
-                                            key={seat.seat}
-                                            onPress={() => toggleCredit(answer.id, seat.seat)}
-                                            disabled={busy}
-                                            accessibilityRole="checkbox"
-                                            accessibilityState={{ checked: active, disabled: busy }}
-                                            accessibilityLabel={seat.name}
-                                            style={[
-                                                styles.chip,
-                                                active && styles.chipActive,
-                                                busy && styles.dimmed
-                                            ]}
-                                        >
-                                            <View style={[styles.chipAvatar, { backgroundColor: seat.swatch.color }]}>
-                                                <AppText style={[styles.chipInitials, { color: seat.swatch.foreground }]}>
-                                                    {seat.initials}
-                                                </AppText>
-                                            </View>
-
-                                            <AppText
-                                                style={[styles.chipText, active && styles.chipTextActive]}
-                                                numberOfLines={1}
-                                            >
-                                                {seat.name}
-                                            </AppText>
-
-                                            {active && (
-                                                <Feather name="check" size={13} color={Brand.ink} />
-                                            )}
-                                        </Pressable>
-                                    )
-                                })}
-
-                                <Pressable
-                                    onPress={() => markNobody(answer.id)}
-                                    disabled={busy}
-                                    accessibilityRole="checkbox"
-                                    accessibilityState={{ checked: nobody, disabled: busy }}
-                                    accessibilityLabel={t('pubquizr.play.describe.nobody')}
-                                    style={[
-                                        styles.chip,
-                                        styles.chipNobody,
-                                        nobody && styles.chipNobodyActive,
-                                        busy && styles.dimmed
-                                    ]}
-                                >
-                                    <Feather
-                                        name="x"
-                                        size={14}
-                                        color={nobody ? theme.colors.destructiveText : theme.colors.textMuted}
-                                    />
-
-                                    <AppText style={[styles.chipText, nobody && styles.chipNobodyText]}>
-                                        {t('pubquizr.play.describe.nobody')}
-                                    </AppText>
-                                </Pressable>
-                            </View>
-                        </View>
+                        <AwardRow
+                            key={answer.id}
+                            label={answer.text}
+                            winner={winner}
+                            points={turn.worth}
+                            nobody={t('pubquizr.play.turn.nobody')}
+                        />
                     )
                 })}
             </ScrollView>
+
+            {/* What the question is about to be worth to the person who was asked it.
+                Their total is the one worth showing: it is what the twenty seconds
+                actually produced, and it is the number they will want to argue about. */}
+            {standing.size > 0 && (
+                <AppText style={styles.standing}>
+                    {t('pubquizr.play.list.standing', {
+                        name: turn.guesser.name,
+                        points: standing.get(turn.guesser.seat) ?? 0
+                    })}
+                </AppText>
+            )}
 
             {error !== null && (
                 <InlineNotification
@@ -405,20 +374,43 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 />
             )}
 
+            {/* The way back, because the scoring is a walk rather than a form: once the
+                bonus has moved past a player there is no other way to undo a mis-tap, and
+                one of them is a point somebody will notice. */}
+            <Pressable
+                onPress={() => {
+                    if (busy) return;
+                    setAwards({});
+                    setBonusIndex(0);
+                    setBonusPick(null);
+                    setStage('running');
+                }}
+                disabled={busy}
+                accessibilityRole="button"
+                style={[styles.again, busy && styles.dimmed]}
+            >
+                <Feather name="rotate-ccw" size={14} color={theme.colors.textMuted} />
+
+                <AppText style={styles.againText}>
+                    {t('pubquizr.play.list.scoreAgain')}
+                </AppText>
+            </Pressable>
+
             <ActionButton
                 size="large"
                 icon="award"
-                text={ready
-                    ? t('pubquizr.play.list.settle')
-                    : t('pubquizr.play.list.stillToRule', { left: turn.answers.length - ruled })}
-                disabled={!ready || busy}
+                text={t('pubquizr.play.list.settle')}
+                disabled={busy}
                 onPress={() => {
-                    if (!ready || busy) return;
+                    if (busy) return;
 
-                    onSettle(turn.answers.map(answer => ({
-                        answerId: answer.id,
-                        seats: awards[answer.id] ?? []
-                    })));
+                    onSettle(turn.answers.map(answer => {
+                        const credited = awards[answer.id] ?? null;
+                        return {
+                            answerId: answer.id,
+                            seats: credited === null ? [] : [credited]
+                        };
+                    }));
                 }}
             />
         </View>
@@ -426,11 +418,13 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 }
 
 /**
- * The timer, kept behind a component of its own so it mounts once per guesser — see
- * `DescribeTimerSlot`, which this mirrors for the same reason.
+ * The timer, kept behind a component of its own so it mounts once per question — see
+ * `DescribeBoard`’s own slot, which this mirrors for the same reason: inlining it would put it
+ * in the same tree as the awards state, and every tick on the answers would be a
+ * re-render the countdown has to survive.
  */
 function ListTimerSlot({ onDone }: { onDone: () => void }) {
-    return <DescribeTimer seconds={LIST_SECONDS_PER_TURN} onDone={onDone} />;
+    return <TurnTimer seconds={LIST_SECONDS} onDone={onDone} />;
 }
 
 const useStyles = createThemedStyles(theme => ({
@@ -441,91 +435,23 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12
     },
 
-    /* Reading screen ------------------------------------------------------------ */
-
-    stake: {
-        alignSelf: 'flex-start',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 7,
-        paddingVertical: 4,
-        paddingHorizontal: 11,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.mint
-    },
-
-    stakeLabel: {
-        fontSize: 11.5,
-        fontWeight: 900,
-        color: Brand.ink
-    },
-
-    guessingRule: {
-        marginTop: 22,
-        paddingTop: 16,
-        borderTopWidth: 2,
-        borderTopColor: theme.colors.borderMuted
-    },
-
-    guessingLabel: {
-        fontSize: 11,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
-
-    guessers: {
-        marginTop: 10,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 8
-    },
-
-    guesser: {
-        width: 38,
-        height: 38,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: theme.borderWidth,
-        borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink
-    },
-
-    guesserInitials: {
-        fontSize: 12,
-        fontWeight: 900
-    },
-
-    /* Guessing screen ------------------------------------------------------------ */
-
-    // The skip button sits at the top right of its own row, apart from the strip: it is
-    // a way to cut a turn short rather than a fact about it, and the strip already names
-    // whose turn is being cut short.
-    skipRow: {
+    title: {
         flexShrink: 0,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
+        fontSize: FontSizes.xxl,
+        fontWeight: 900,
+        letterSpacing: -0.8,
+        textAlign: 'center',
+        color: theme.colors.text
     },
 
-    skip: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundSecondary
+    rows: {
+        flex: 1,
+        minHeight: 0
     },
 
-    skipText: {
-        fontSize: 11.5,
-        fontWeight: 800,
-        color: theme.colors.textMuted
+    rowsInner: {
+        gap: 10,
+        paddingVertical: 4
     },
 
     hint: {
@@ -536,54 +462,8 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    answers: {
-        gap: 10,
-        paddingVertical: 4
-    },
-
-    answer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        paddingVertical: 14,
-        paddingHorizontal: 16,
-        borderRadius: 16,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-
-    // Mint in both schemes, the same "this one" a right answer wears everywhere else.
-    answerFound: {
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
-    },
-
-    answerText: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 18,
-        fontWeight: 900,
-        letterSpacing: -0.4,
-        color: theme.colors.text
-    },
-
-    answerTextFound: {
-        color: Brand.ink
-    },
-
-    /* Scoring screen --------------------------------------------------------------- */
-
-    title: {
-        flexShrink: 0,
-        fontSize: 22,
-        fontWeight: 900,
-        letterSpacing: -0.8,
-        textAlign: 'center',
-        color: theme.colors.text
-    },
-
+    // The one line worth surfacing again once the clock starts, so it does not depend on
+    // being remembered from a screen already left behind.
     recap: {
         flexShrink: 0,
         textAlign: 'center',
@@ -592,94 +472,31 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    rows: {
-        flex: 1,
-        minHeight: 0
-    },
-
-    rowsInner: {
-        gap: 10,
-        paddingBottom: 2
-    },
-
-    row: {
-        gap: 8,
-        padding: 13,
-        borderRadius: 16,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundSecondary
-    },
-
-    rowAnswer: {
-        fontSize: 17,
-        fontWeight: 900,
-        letterSpacing: -0.3,
+    standing: {
+        flexShrink: 0,
+        textAlign: 'center',
+        fontSize: 12.5,
+        fontWeight: 800,
         color: theme.colors.text
     },
 
-    chips: {
-        marginTop: 4,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 8
-    },
-
-    chip: {
+    again: {
+        flexShrink: 0,
+        alignSelf: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 7,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderMuted,
-        backgroundColor: theme.colors.backgroundInput
+        gap: 6,
+        paddingVertical: 6,
+        paddingHorizontal: 10
     },
 
-    chipActive: {
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
-    },
-
-    chipAvatar: {
-        width: 22,
-        height: 22,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    chipInitials: {
-        fontSize: 9.5,
-        fontWeight: 900
-    },
-
-    chipText: {
-        fontSize: 13.5,
-        fontWeight: 700,
-        color: theme.colors.text
-    },
-
-    chipTextActive: {
-        color: Brand.ink
-    },
-
-    chipNobody: {
-        borderStyle: 'dashed'
-    },
-
-    chipNobodyActive: {
-        borderStyle: 'solid',
-        borderColor: theme.colors.destructive,
-        backgroundColor: theme.colors.backgroundSecondary
-    },
-
-    chipNobodyText: {
-        color: theme.colors.destructiveText
+    againText: {
+        fontSize: 11.5,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
 
     dimmed: {
-        opacity: 0.5
+        opacity: 0.45
     }
 }))

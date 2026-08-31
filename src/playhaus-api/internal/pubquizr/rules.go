@@ -55,7 +55,15 @@ const (
 
 	DescribeSeconds = 30
 
-	ListSecondsPerTurn = 10
+	// ListSeconds is round 5's clock, and it belongs to one player rather than to the
+	// table: the round is played the way round 4 is, so the seat on the reader's left
+	// gets the whole of it and everybody else waits for the bonus round.
+	//
+	// Shorter than DescribeSeconds because the two rounds ask different work of the
+	// clock. Thirty seconds is a describer talking their way round four words; twenty is
+	// somebody reciting what they already know, and a longer window there is mostly
+	// silence with the answers still on screen.
+	ListSeconds = 20
 )
 
 // IsHotSeatRound is whether a round is played on the hot seat: read to one seat,
@@ -188,12 +196,28 @@ func ReaderFor(seat, players int) int {
 	return wrap(seat-1, players)
 }
 
+// RotatesEachTurn is whether a round walks the table a seat at a time rather than
+// leaving the reading where the last answer put it.
+//
+// Rounds 3, 4 and 5 all do: everybody guesses once, everybody describes once, everybody
+// reads once. The hot seat rounds do not, because there taking a question buys you the
+// next one.
 func RotatesEachTurn(round int) bool {
-	return round == RoundClosest || round == RoundDescribe
+	return round == RoundClosest || round == RoundDescribe || round == RoundList
 }
 
 func OpensOnTheReader(round int) bool {
 	return round == RoundDescribe
+}
+
+// HasBonusRound is whether a round ends with whatever is left over going round the rest
+// of the table, one guess each.
+//
+// Rounds 4 and 5, which are the two played to a single seat against a clock and so the
+// two that can have anything left when it stops. It is what TurnGuesser and BonusSeats
+// are asking when they decide whether this round has such a seat at all.
+func HasBonusRound(round int) bool {
+	return round == RoundDescribe || round == RoundList
 }
 
 func AnsweringSeat(quizMasterSeat, hotSeat, attempts, players int) int {

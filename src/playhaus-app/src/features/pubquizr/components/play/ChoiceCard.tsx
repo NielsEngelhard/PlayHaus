@@ -24,12 +24,12 @@ interface Props {
  * Which is why the letters are set as hard as they are — the letter is the thing being
  * said out loud, and it has to be findable at a glance while somebody is arguing.
  *
- * The two densities are the round's two beats. While the question is being read, all four
- * are equals at full size, because at that moment they are four things to say. Once a
- * letter has been shouted and the answer is up, three of them are over: they fall back to
- * 38-point ghosts and the right one keeps its full row. That is not decoration either —
- * it hands about 90 points to the answer panel underneath, and it means a quizmaster who
- * has just read four options aloud does not have to match a sentence back to a row.
+ * The reveal marks the right row and does nothing else. The three that are over used to
+ * fall back to 38-point ghosts, which was buying height for an answer panel underneath —
+ * and the panel has gone, because the answer to a multiple choice question is one of these
+ * four rows and did not need saying twice. Without something to buy the height for, the
+ * shrinking was the whole list rearranging itself under a table that had just been read
+ * it. So all four stay where they are and mint says which one it was.
  */
 export default function ChoiceCard({ options, revealed }: Props) {
     const t = useT();
@@ -43,15 +43,11 @@ export default function ChoiceCard({ options, revealed }: Props) {
         >
             {options.map(option => {
                 const right = revealed && option.correct;
-                // Only the ones that are over. The right one keeps its full row even
-                // after the reveal, so the row the quizmaster is looking for is the one
-                // that has not moved.
-                const spent = revealed && !option.correct;
 
                 return (
                     <View
                         key={option.id}
-                        style={[styles.option, right && styles.right, spent && styles.spent]}
+                        style={[styles.option, right && styles.right]}
                         accessibilityRole="text"
                         accessibilityLabel={right
                             ? t('pubquizr.play.choice.spokenCorrect', {
@@ -63,31 +59,14 @@ export default function ChoiceCard({ options, revealed }: Props) {
                                 text: option.text
                             })}
                     >
-                        <View
-                            style={[
-                                styles.letter,
-                                right && styles.letterRight,
-                                spent && styles.letterSpent
-                            ]}
-                        >
-                            <AppText
-                                style={[
-                                    styles.letterText,
-                                    right && styles.onMint,
-                                    spent && styles.letterTextSpent
-                                ]}
-                            >
+                        <View style={[styles.letter, right && styles.letterRight]}>
+                            <AppText style={[styles.letterText, right && styles.onMint]}>
                                 {option.letter}
                             </AppText>
                         </View>
 
                         <AppText
-                            style={[
-                                styles.text,
-                                right && styles.textRight,
-                                right && styles.onMint,
-                                spent && styles.textSpent
-                            ]}
+                            style={[styles.text, right && styles.textRight, right && styles.onMint]}
                         >
                             {option.text}
                         </AppText>
@@ -136,18 +115,6 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hardSmall
     },
 
-    // Answered and over. Height as well as opacity: fading four full rows would still
-    // leave four full rows' worth of the screen spoken for.
-    spent: {
-        minHeight: 38,
-        height: 38,
-        paddingVertical: 0,
-        borderRadius: 12,
-        borderColor: theme.colors.boardEmptyBorder,
-        backgroundColor: 'transparent',
-        opacity: 0.45
-    },
-
     letter: {
         width: 28,
         height: 28,
@@ -165,22 +132,10 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: 'rgba(15, 13, 18, 0.08)'
     },
 
-    letterSpent: {
-        width: 24,
-        height: 24,
-        borderRadius: 8,
-        borderColor: theme.colors.borderSubtle,
-        backgroundColor: 'transparent'
-    },
-
     letterText: {
         fontSize: 13,
         fontWeight: 900,
         color: theme.colors.text
-    },
-
-    letterTextSpent: {
-        fontSize: 11.5
     },
 
     // `minWidth: 0` so a long option wraps inside the row instead of pushing the tick
@@ -197,11 +152,6 @@ const useStyles = createThemedStyles(theme => ({
     textRight: {
         fontSize: 15.5,
         fontWeight: 900
-    },
-
-    textSpent: {
-        fontSize: 13.5,
-        lineHeight: 13.5 * 1.3
     },
 
     // Ink on mint in both schemes, because the fill is mint in both.

@@ -348,7 +348,7 @@ func TestDescribeAwardsPayTheDescriberAndTheGuessers(t *testing.T) {
 	h, token, session := atRoundFour(t, 4)
 
 	describer := *session.DescriberSeat
-	guesser := *session.DescribeGuesserSeat
+	guesser := *session.GuesserSeat
 
 	before := map[int]int{}
 	for _, player := range session.Players {
@@ -454,7 +454,7 @@ func TestDescribeAwardsRefusals(t *testing.T) {
 			// round being played the old way, when the room shouted at once.
 			name: "one player taking the whole turn",
 			body: func(s quizSessionResponse) describeAwardsRequest {
-				seat := s.DescribeBonusSeats[0]
+				seat := s.BonusSeats[0]
 				return describeAwardsRequest{
 					DescriberSeat: *s.DescriberSeat,
 					Awards:        allWords(s, &seat),
@@ -467,14 +467,14 @@ func TestDescribeAwardsRefusals(t *testing.T) {
 			name: "two names on one word",
 			body: func(s quizSessionResponse) describeAwardsRequest {
 				awards := allWords(s, nil)
-				awards[0].Seats = []int{*s.DescribeGuesserSeat, s.DescribeBonusSeats[0]}
+				awards[0].Seats = []int{*s.GuesserSeat, s.BonusSeats[0]}
 				return describeAwardsRequest{
 					DescriberSeat: *s.DescriberSeat,
 					Awards:        awards,
 				}
 			},
 			code: http.StatusConflict,
-			want: "two_on_one_word",
+			want: "two_on_one",
 		},
 	}
 
@@ -508,6 +508,147 @@ func allWords(session quizSessionResponse, seat *int) []wordAwardRequest {
 		awards = append(awards, wordAwardRequest{SessionQuestionID: word, Seats: seats})
 	}
 	return awards
+}
+
+// --- round 5 --------------------------------------------------------------
+
+// atRoundFive is a real session played all the way to the first list question, together
+// with the answer key the round needs -- a dealt round 5 question carries an id and
+// nothing else, and there is no crediting anybody without knowing what the four answers
+// are.
+func atRoundFive(t *testing.T, players int) (http.Handler, string, map[string][]string, quizSessionResponse) {
+	t.Helper()
+
+	h, token, session := atRoundFour(t, players)
+	answers := answersOfQuiz(t, h, token, session.QuizID)
+
+	for session.CurrentRound == pubquizr.RoundDescribe {
+		// Everything to the seat being described to, because they are the only player
+		// who may be credited with more than one word of a turn.
+		awards := allWords(session, session.GuesserSeat)
+
+		rec := do(t, h, http.MethodPost, describePath(session.ID), describeBody(t, describeAwardsRequest{
+			DescriberSeat: *session.DescriberSeat,
+			Awards:        awards,
+		}), token)
+		if rec.Code != http.StatusOK {
+			t.Fatalf("settle round 4: status = %d (body: %s)", rec.Code, rec.Body)
+		}
+		session = decodeBody[quizSessionResponse](t, rec)
+	}
+
+	if got, want := session.CurrentRound, pubquizr.RoundList; got != want {
+		t.Fatalf("currentRound = %d, want %d", got, want)
+	}
+
+	return h, token, answers, session
+}
+
+// Round 5 is played the way round 4 is -- one seat asked against the clock, the rest of
+// the table walking the leftovers afterwards -- so it has to name both, and the app is
+// not left to work either out from a hot seat that means something different every round.
+func TestRoundFiveNamesTheGuesserAndTheBonusSeats(t *testing.T) {
+	_, _, _, session := atRoundFive(t, 4)
+
+	if session.GuesserSeat == nil {
+		t.Fatal("guesserSeat = null in round 5")
+	}
+	// The seat on the reader's left: you are read to by the player on your right, the
+	// one fact the whole game's seating is built on.
+	want := (session.QuizMasterSeat + 1) % len(session.Players)
+	if got := *session.GuesserSeat; got != want {
+		t.Errorf("guesserSeat = %d, want %d", got, want)
+	}
+
+	// And the reader is not describing anything -- round 5's quizmaster reads a question
+	// out, which is not round 4's job however alike the two rounds now play.
+	if session.DescriberSeat != nil {
+		t.Errorf("describerSeat = %d, want null outside round 4", *session.DescriberSeat)
+	}
+
+	// Everybody else, in the order their bonus guess comes round, starting on the
+	// guesser's left. Neither the reader nor the guesser is in it.
+	if got, want := len(session.BonusSeats), len(session.Players)-2; got != want {
+		t.Fatalf("bonusSeats = %v, want %d of them", session.BonusSeats, want)
+	}
+	for i, seat := range session.BonusSeats {
+		if seat == session.QuizMasterSeat || seat == *session.GuesserSeat {
+			t.Errorf("bonusSeats[%d] = %d, which is already playing", i, seat)
+		}
+		if got, want := seat, (*session.GuesserSeat+1+i)%len(session.Players); got != want {
+			t.Errorf("bonusSeats[%d] = %d, want %d -- from the guesser's left", i, got, want)
+		}
+	}
+
+	// One question each, and the reading moves on every one of them, so everybody reads
+	// once and everybody is the guesser once.
+	if got, want := session.TurnsInRound, len(session.Players); got != want {
+		t.Errorf("turnsInRound = %d, want %d", got, want)
+	}
+}
+
+// A settled question pays its finder and nobody else -- there is no reader's point beside
+// it the way there is a describer's in round 4 -- and then the whole table moves on one
+// seat.
+func TestListAwardsPayTheFinderAndRotateTheReading(t *testing.T) {
+	h, token, answers, session := atRoundFive(t, 4)
+
+	reader := session.QuizMasterSeat
+	guesser := *session.GuesserSeat
+	bonus := session.BonusSeats[0]
+
+	dealt := session.TurnQuestionIDs[0]
+	var questionID string
+	for _, question := range session.Questions {
+		if question.ID == dealt {
+			questionID = question.QuestionID
+		}
+	}
+
+	before := map[int]int{}
+	for _, player := range session.Players {
+		before[player.Seat] = player.Score
+	}
+
+	// Two of the four land: one inside the clock, one on a bonus guess. Late counts
+	// exactly as much as in time.
+	key := answers[questionID]
+	awards := make([]listAwardRequest, 0, len(key))
+	for i, answer := range key {
+		awarded := listAwardRequest{AnswerID: answer}
+		switch i {
+		case 0:
+			awarded.Seats = []int{guesser}
+		case 1:
+			awarded.Seats = []int{bonus}
+		}
+		awards = append(awards, awarded)
+	}
+
+	rec := do(t, h, http.MethodPost, listPath(session.ID), listBody(t, listAwardsRequest{
+		SessionQuestionID: dealt,
+		Awards:            awards,
+	}), token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	settled := decodeBody[quizSessionResponse](t, rec)
+	for _, player := range settled.Players {
+		gained := player.Score - before[player.Seat]
+
+		want := 0
+		if player.Seat == guesser || player.Seat == bonus {
+			want = pubquizr.ListAnswerPoints
+		}
+		if gained != want {
+			t.Errorf("seat %d gained %d, want %d", player.Seat, gained, want)
+		}
+	}
+
+	if got, want := settled.QuizMasterSeat, (reader+1)%len(settled.Players); got != want {
+		t.Errorf("quizMasterSeat = %d, want %d -- the reading moved on", got, want)
+	}
 }
 
 // otherSeats is `want` seats that are not the quizmaster, in table order.

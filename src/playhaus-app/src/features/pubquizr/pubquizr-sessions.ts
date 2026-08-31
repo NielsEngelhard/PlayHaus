@@ -95,23 +95,27 @@ export interface QuizSession {
      */
     describerSeat: number | null
     /**
-     * Who round 4 is being described to — the seat on the describer's left, and the only
-     * one whose answer counts while the clock is running. Null in every other round.
+     * The one player being played to this turn — the seat on the reader's left, and the
+     * only one whose answer counts while the clock is running.
+     *
+     * Sent in rounds 4 and 5, which are the two rounds built that way: round 4 describes
+     * its words to them, round 5 asks them for the four answers. Null in every other
+     * round.
      *
      * Named by the server for the same reason `describerSeat` is: it is the seat the turn
      * was opened on and the server already knows it, so working it out here as well would
      * be two answers to one question waiting to disagree.
      */
-    describeGuesserSeat: number | null
+    guesserSeat: number | null
     /**
-     * Everybody who gets one guess at the words nobody got once the thirty seconds are
-     * up, in the order their go comes round — from the guesser's left onwards, the
-     * describer and the guesser left out. Empty in every other round.
+     * Everybody who gets one guess at whatever the clock left behind, in the order their
+     * go comes round — from the guesser's left onwards, the reader and the guesser left
+     * out. Empty in every round that has no bonus round.
      */
-    describeBonusSeats: number[]
+    bonusSeats: number[]
     /**
-     * The dealt questions this turn is about: one in rounds 1 to 3, and the describer's
-     * whole set of words in round 4.
+     * The dealt questions this turn is about: one in every round but the fourth, and the
+     * describer's whole set of words in that one.
      *
      * The server saying what it will accept a ruling on, rather than the app working it
      * out from `assignedSeat` and hoping the two agree.
@@ -266,8 +270,12 @@ export async function recordDescribeAwardsRequest(
 
 /**
  * What became of one of round 5's four answers. Empty seats is an answer nobody found,
- * which is worth saying rather than leaving out. More than one seat is a draw — two
- * people calling it out at the same instant — and every seat named scores in full.
+ * which is worth saying rather than leaving out.
+ *
+ * At most one seat, the same as a `WordAward`: inside the clock there is only one player
+ * answering, and after it a leftover is gone the moment somebody names it. It stayed an
+ * array because that is what the wire and the store already speak, and an answer credited
+ * to nobody still has to arrive as something.
  */
 export interface ListAward {
     answerId: string
@@ -275,8 +283,8 @@ export interface ListAward {
 }
 
 /**
- * The quizmaster settling one round 5 question, once the round has been all the way
- * round or the answers have run out first, and the game one step further on.
+ * The quizmaster settling one round 5 question, once the clock has run and the leftovers
+ * have been round the table, and the game one step further on.
  *
  * Every one of the question's four answers has to be ruled on, including the ones
  * nobody found — the screen has a row per answer already, so that costs it nothing and
