@@ -7,10 +7,10 @@ import Card from "@/components/ui/Card";
 import Confetti from "@/components/ui/Confetti";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
-import FinalScoreboard from "@/features/league-of-letters/components/FinalScoreboard";
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
+import FinalScoreboard from "@/features/league-of-letters/components/FinalScoreboard";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
@@ -131,11 +131,13 @@ export default function MultiplayerResults({
 
 const useStyles = createThemedStyles(theme => ({
     page: {
-        width: '100%'
+        width: '100%',
+        overflow: 'visible'
     },
     body: {
         marginTop: Spacing.four,
-        gap: Spacing.four
+        gap: Spacing.four,
+        overflow: 'visible'
     },
     again: {
         gap: Spacing.two

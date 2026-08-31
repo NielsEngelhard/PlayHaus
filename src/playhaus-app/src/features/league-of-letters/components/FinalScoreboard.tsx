@@ -2,9 +2,9 @@ import type { GamePlayer } from "@/api/calls/league-of-letters";
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
 import { FontSizes, Spacing } from "@/constants/theme";
-import { avatarColorById } from "@/utils/color-utils";
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
+import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { avatarColorById } from "@/utils/color-utils";
 import { View } from "react-native";
 
 interface Props {
@@ -107,7 +107,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: Spacing.three,
         paddingVertical: Spacing.three,
-        paddingHorizontal: Spacing.four
+        paddingHorizontal: Spacing.four,        
     },
     divided: {
         borderTopWidth: 2,

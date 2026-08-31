@@ -18,9 +18,11 @@ import { seatAt, seatsOf, type Seat } from "./seats";
  * describer earned a point for getting the word across; here the reader only read a
  * question out, so an answer pays its finder and nobody else.
  *
- * Unlike round 4, crediting is not a screen of its own: the reader is holding the answer
- * key while the guesser recites at them, so ticking an answer off *is* crediting it, and
- * it happens live on the clock. See `ListBoard`.
+ * Unlike round 4, ticking an answer off *is* crediting it rather than a separate step —
+ * the reader is holding the answer key while the guesser recites at them — and it starts
+ * live on the clock. It does not end there: `ListBoard` gives the reader one more,
+ * unhurried pass at the same rows once the clock stops, since a tick made against a
+ * bar about to hit zero is a tick easily missed. See `ListBoard`.
  */
 
 /** Kept in step with `RoundList` in Go. */

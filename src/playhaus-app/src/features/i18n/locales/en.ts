@@ -828,6 +828,11 @@ export const en = {
                 start: 'Show the answers and start',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
                 runningReminder: 'Tick off every answer {{guesser}} says. Nobody else counts yet.',
+                /** The button that ends the clock early, before time runs out on its own. */
+                toInTime: "Check {{guesser}}'s answers",
+                /** The confirm screen: one last look before the leftovers go round the table. */
+                inTimeTitle: 'What did {{guesser}} get?',
+                inTimeHint: "Tap every answer {{guesser}} got — including the one they named as time ran out",
                 toBonus: 'Bonus round · {{left}} left over',
                 toSettle: 'On to the points',
                 bonusHint: 'One guess at one of these. Get it and the point is yours.',

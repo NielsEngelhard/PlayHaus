@@ -44,12 +44,15 @@ interface Props {
 /**
  * Where in the question we are.
  *
- * Round 4's machine with one screen fewer. There, `running` is thirty seconds with
- * nothing to press and `inTime` is the ticking-off afterwards, because the describer is
- * busy talking and cannot also be marking words. Here the reader is holding the answer
- * key and listening, so ticking one off *is* crediting it and the two screens are one.
+ * Close to round 4's machine, plus the screen round 4 gets from not being able to tick
+ * live. Here the reader *can* tick while the clock runs — they are listening, not
+ * talking — but a tick made with the bar about to hit zero is a tick made in a hurry, and
+ * an answer named in the same breath as "time" can miss it by a screen's worth of lag.
+ * `inTime` is the same board with the clock gone: whatever `running` left ticked is
+ * already marked there, and the reader gets one unhurried pass to add the one that got
+ * away, or take back a mis-tap, before the leftovers go round the table.
  */
-type Stage = 'ready' | 'running' | 'bonus' | 'settle'
+type Stage = 'ready' | 'running' | 'inTime' | 'bonus' | 'settle'
 
 /**
  * The board for round 5: one question, four answers, and twenty seconds with the player
@@ -258,9 +261,9 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                 {/* Keyed to the question, so a reload lands on a fresh twenty seconds
                     rather than picking up wherever the last one's clock left off. Time
-                    running out and the reader pressing on are the same move — through
-                    `openBonus`, which is what knows there may be nothing left to offer. */}
-                <ListTimerSlot key={turn.dealt.id} onDone={openBonus} />
+                    running out and the reader pressing on early are the same move: on to
+                    `inTime`, for one unhurried look at what the clock left ticked. */}
+                <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.onlyYouSeeThis')}
@@ -286,8 +289,49 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 </AppText>
 
                 {/* The way out before the clock is: a guesser who has plainly run dry
-                    should not have to sit and watch the bar empty, and the bonus round is
-                    the next thing either way. */}
+                    should not have to sit and watch the bar empty. Either way this leads
+                    to `inTime`, not straight to the bonus round — the reader is about to
+                    stop looking at a countdown, not about to hand the phone onward. */}
+                <ActionButton
+                    size="large"
+                    icon="arrow-right"
+                    text={t('pubquizr.play.list.toInTime', { guesser: turn.guesser.name })}
+                    disabled={busy}
+                    onPress={() => setStage('inTime')}
+                />
+            </View>
+        )
+    }
+
+    if (stage === 'inTime') {
+        return (
+            <View style={styles.turn}>
+                {strip}
+
+                <AppText style={styles.title}>
+                    {t('pubquizr.play.list.inTimeTitle', { guesser: turn.guesser.name })}
+                </AppText>
+
+                <AppText style={styles.recap}>
+                    {t('pubquizr.play.list.inTimeHint', { guesser: turn.guesser.name })}
+                </AppText>
+
+                {/* The same rows the clock was ticked against, carried over as-is — this
+                    is a second look at that state, not a fresh one — so anything already
+                    marked shows marked, and the reader is only ever adding the one that
+                    got away or taking back a mis-tap. */}
+                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                    {turn.answers.map(answer => (
+                        <PickRow
+                            key={answer.id}
+                            label={answer.text}
+                            active={(awards[answer.id] ?? null) !== null}
+                            disabled={busy}
+                            onPress={() => toggleInTime(answer.id)}
+                        />
+                    ))}
+                </ScrollView>
+
                 <ActionButton
                     size="large"
                     icon="arrow-right"
@@ -376,14 +420,16 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
             {/* The way back, because the scoring is a walk rather than a form: once the
                 bonus has moved past a player there is no other way to undo a mis-tap, and
-                one of them is a point somebody will notice. */}
+                one of them is a point somebody will notice. Back to `inTime`, not
+                `running` — the clock already ran once, and re-running it would cost the
+                table twenty seconds to fix a tap. */}
             <Pressable
                 onPress={() => {
                     if (busy) return;
                     setAwards({});
                     setBonusIndex(0);
                     setBonusPick(null);
-                    setStage('running');
+                    setStage('inTime');
                 }}
                 disabled={busy}
                 accessibilityRole="button"

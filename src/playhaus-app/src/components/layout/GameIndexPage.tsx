@@ -380,7 +380,7 @@ const useStyles = createThemedStyles(theme => ({
         marginHorizontal: -Spacing.four,
         paddingTop: HeaderHeight + Spacing.two,
         paddingHorizontal: Spacing.four,
-        paddingBottom: Spacing.four
+        paddingBottom: Spacing.four,
     },
 
     // `bottom` is set inline, from the measured row — see `OVERLAP_FRACTION`.

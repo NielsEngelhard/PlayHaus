@@ -274,7 +274,7 @@ const useStyles = createThemedStyles(theme => ({
     alignItems: 'center',
     paddingHorizontal: Spacing.four,
     // Nothing floats over the page in this mode, so it may use the bottom edge.
-    paddingBottom: Spacing.four,
+    paddingBottom: Spacing.four,    
   },
   // The same, without the gutters: a page that has taken the chrome paints its own
   // header and its own footer, and both run to the edges of the column.
