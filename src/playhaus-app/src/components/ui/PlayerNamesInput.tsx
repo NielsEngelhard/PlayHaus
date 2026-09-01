@@ -5,7 +5,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
 
 interface Props {
@@ -25,6 +25,15 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
 
     const removable = names.length > minPlayers;
     const full = names.length >= maxPlayers;
+
+    useEffect(() => {
+        if (names.length < minPlayers) {
+            onChange([
+                ...names,
+                ...Array.from({ length: minPlayers - names.length }, () => ''),
+            ]);
+        }
+    }, [names, minPlayers, onChange]);    
 
     /*
      * Which seat is being typed into, so the field can trade its shadow for a halo.

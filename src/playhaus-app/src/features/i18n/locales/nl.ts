@@ -649,7 +649,7 @@ export const nl: Catalog = {
                 toBonus: 'Bonusronde · nog {{left}} over',
                 toSettle: 'Door naar de punten',
                 bonusHint: 'Eén gok op een van deze. Goed geraden en het punt is van jou.',
-                scoringTitle: 'Hoe de vraag ging',
+                scoringTitle: 'Resultaat',
                 standing: '{{name}} pakt {{points}}p uit deze vraag',
                 scoreAgain: 'Deze vraag opnieuw scoren',
                 settle: 'Verder gaan'
