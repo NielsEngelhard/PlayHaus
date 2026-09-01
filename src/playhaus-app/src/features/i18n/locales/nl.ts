@@ -11,6 +11,7 @@ export const nl: Catalog = {
         save: 'Opslaan',
         you: 'Jij',
         host: 'Host',
+        and: 'en',
         /**
          * De twee woorden waarmee een `Toggle` zichzelf stempelt. De schakelaar zegt
          * zijn stand in letters én in kleur en diepte, zodat de instelling in één
@@ -753,14 +754,19 @@ export const nl: Catalog = {
         play: {
             loading: 'De woorden worden verdeeld…',
             close: 'Spel verlaten',
-            roundLabel: 'Ronde {{round}}',
+            roundSpeak: 'Ronde {{round}} · beurt',
+            roundDiscuss: 'Ronde {{round}} · overleg',
+            roundVote: 'Ronde {{round}} · stemmen',
+            roundResult: 'Ronde {{round}} · uitslag',
 
             reveal: {
-                step: 'Woorden verdelen · {{number}} van {{total}}',
-                title: 'Geef de telefoon aan {{name}}',
-                body: 'Alleen {{name}} mag het volgende scherm zien.',
-                note: 'Iedereen krijgt een rol en zin of woord. Eén of meer van jullie krijgen een andere rol iets anders dan de burgers. De imposters!',
+                step: 'Woord {{number}} van {{total}}',
+                title: '{{name}} is aan de beurt',
+                body: 'Pak de telefoon aan van {{from}} en houd hem voor jezelf.',
+                bodyFirst: 'Alleen {{name}} mag het volgende scherm zien.',
+                note: 'Niemand anders mag meekijken.',
                 action: 'Ik ben {{name}}',
+                queue: 'Nog aan de beurt: {{names}}',
                 secretLabel: 'Tik om je woord te zien',
                 secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
                 warning: 'Alleen jij ziet dit',
@@ -770,53 +776,67 @@ export const nl: Catalog = {
                     label: 'Jouw rol',
                     civilian: {
                         name: 'Burger',
-                        explanation: 'De meesten van jullie hebben ditzelfde woord. Zeg er iets over waaruit blijkt dat je het kent, zonder het te noemen — zeg je te veel, dan geef je het cadeau aan de imposters. Zoek daarna uit wie er zit te bluffen en stem die weg.'
+                        explanation: 'Iedereen met jouw woord hoort erbij. Zoek degene die het niet heeft.'
                     },
                     imposter: {
                         name: 'Imposter',
-                        explanation: 'Jouw woord is niet het woord dat de rest van de tafel heeft, en dat van hen ken je niet. Luister goed naar wat de anderen zeggen, raad waar ze het over hebben en bluf je door je eigen beurt heen. Je wint als de imposters niet langer in de minderheid zijn.'
+                        explanation: 'Jouw woord is niet dat van de rest van de tafel. Bluf mee en overleef.'
                     },
                     nitwit: {
                         name: 'De onnozele',
-                        explanation: 'Jij hebt helemaal geen woord gekregen — zelfs niet dat van de imposters. Je speelt wel met ze mee, maar zij weten niet wie je bent. Alles wat jij zegt moet je bij elkaar rapen uit wat je de anderen hoort zeggen, dus luister scherp en geef niets weg. Je wint samen met de imposters, als zij niet langer in de minderheid zijn.'
+                        explanation: 'Jij hebt helemaal geen woord. Bouw elke beurt op wat je anderen hoort zeggen.'
                     }
                 },
                 hide: 'Verbergen',
-                done: 'Gezien, geef door',
+                done: 'Geef door aan {{name}}',
                 lastDone: 'Gezien, start ronde 1'
             },
 
             speak: {
-                step: 'Ronde {{round}} · {{number}} van {{total}}',
-                nowSpeaking: 'Nu aan de beurt',
+                step: 'Spreker {{number}} van {{total}}',
+                nowSpeaking: 'Nu aan het woord',
                 hint: 'Zeg één woord wat met jouw woord te maken heeft. Noem het woord zelf niet.',
-                next: 'Volgende speler',
+                next: 'Volgende: {{name}}',
                 lastNext: 'Iedereen is geweest'
             },
 
             discuss: {
-                title: 'Overleg',
-                description: 'Wie klonk alsof die zat te gokken? Stem allemaal iemand weg. Je mag jezelf niet verdedigen. Je mag alleen overleggen wie je weg stemt en waarom.',
-                tieNote: 'Bij een gelijke stand beslist de tafel samen wie er weggaat.',
-                action: 'Klaar om te stemmen'
+                ring: 'Praat het uit',
+                title: 'Wie klopt er niet?',
+                description: 'Geen timer. De tafel bepaalt zelf wanneer het genoeg is geweest.',
+                tieNote: 'Staken de stemmen? Praat het uit aan tafel.',
+                action: 'Stemmen'
             },
 
             vote: {
-                title: 'Wie stemmen we weg?',
-                description: 'Tik op degene die de meerderheid van de stemmen heeft en bevestig.',
+                title: 'Stem iemand weg',
+                description: 'Tik een naam en bevestig daarna.',
+                ringChosen: 'Gekozen',
                 nobody: 'Nog niemand gekozen',
-                confirm: '{{name}} wegstemmen',
+                confirm: 'Stem op {{name}}',
                 confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
                 locked: 'Tik eerst op een naam.'
             },
 
             elimination: {
-                title: '{{name}} ligt eruit',
+                ringLabel: 'Weggestemd',
                 civilian: '{{name}} was een burger.',
                 imposter: '{{name}} was een imposter.',
                 nitwit: '{{name}} was de onnozele — helemaal geen woord.',
                 remaining: 'Nog {{players}} in het spel.',
-                next: 'Start ronde {{round}}'
+                next: 'Ronde {{round}}'
+            },
+
+            briefing: {
+                title: 'Wie zitten er aan tafel',
+                intro: 'Iedereen krijgt een van deze rollen. Lees ze voor voordat je begint.',
+                roleLabel: 'Rol',
+                role: {
+                    civilian: 'De meesten aan tafel zijn burgers. Zij hebben allemaal hetzelfde woord en moeten uitzoeken wie dat niet heeft.',
+                    imposter: 'De imposters kregen een ander woord en kennen het echte niet. Zij bluffen mee en winnen door te overleven.',
+                    nitwit: 'De onnozele kreeg helemaal geen woord en speelt mee met de imposters — die geen idee hebben wie het is.'
+                },
+                action: 'Woorden verdelen'
             },
 
             over: {

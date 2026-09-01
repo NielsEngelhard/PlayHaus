@@ -4,7 +4,7 @@ import Confetti from "@/components/ui/Confetti";
 import InGameHeader from "@/components/ui/InGameHeader";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import TextButton from "@/components/ui/TextButton";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { OneOfUsRole, withCivilians } from "@/features/one-of-us/models";
 import type { Seat } from "@/features/table/seats";
@@ -191,6 +191,7 @@ const useStyles = createThemedStyles(theme => ({
 
     content: {
         paddingTop: Spacing.four,
+        paddingRight: ShadowReach.hardSmall,
         paddingBottom: Spacing.three
     },
 

@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import ActionButton from "@/components/ui/ActionButton";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { offBy, type ClosestResult } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
@@ -265,6 +265,7 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 9,
+        paddingRight: ShadowReach.hardSmall,
         paddingBottom: 2
     },
 

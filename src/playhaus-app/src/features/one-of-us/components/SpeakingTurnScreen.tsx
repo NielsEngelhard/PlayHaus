@@ -1,18 +1,20 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
-import SeatAvatar from "@/components/ui/SeatAvatar";
+import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
-    speaker: Seat
-    round: number
     /** 1-based position in this round's shuffled order. */
     number: number
-    total: number
     onNext: () => void
+    nextUp: Seat | null
+    seats: Seat[]
+    speaker: Seat
+    total: number
 }
 
 /**
@@ -27,7 +29,14 @@ interface Props {
  * meant to be read by the whole table at once, and standing a wall in front of every
  * single turn would make a nine-player round nine taps longer for no reason.
  */
-export default function SpeakingTurnScreen({ speaker, round, number, total, onNext }: Props) {
+export default function SpeakingTurnScreen({
+    number,
+    onNext,
+    nextUp,
+    seats,
+    speaker,
+    total
+}: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -37,28 +46,44 @@ export default function SpeakingTurnScreen({ speaker, round, number, total, onNe
         <View style={styles.screen}>
             <View style={styles.middle}>
                 <AppText style={styles.step}>
-                    {t('oneOfUs.play.speak.step', { round, number, total })}
+                    {t('oneOfUs.play.speak.step', { number, total })}
                 </AppText>
 
-                <SeatAvatar seat={speaker} size={112} raised style={styles.avatar} />
-
-                <AppText style={styles.label}>
-                    {t('oneOfUs.play.speak.nowSpeaking')}
-                </AppText>
-
-                <AppText style={styles.name}>{speaker.name}</AppText>
+                <SeatRing
+                    seats={seats}
+                    markOf={seat => seat.seat === speaker.seat ? 'focus' : 'muted'}
+                    label={t('oneOfUs.play.speak.nowSpeaking')}
+                    headline={speaker.name}
+                />
 
                 <AppText style={styles.hint}>
                     {t('oneOfUs.play.speak.hint')}
                 </AppText>
+
+                <View
+                    style={styles.dashes}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no-hide-descendants"
+                >
+                    {Array.from({ length: total }, (_, index) => (
+                        <View
+                            key={index}
+                            style={[
+                                styles.dash,
+                                index < number - 1 && styles.dashDone,
+                                index === number - 1 && styles.dashNow
+                            ]}
+                        />
+                    ))}
+                </View>
             </View>
 
             <ActionButton
                 size="large"
                 icon={last ? 'message-circle' : 'arrow-right'}
-                text={last
+                text={last || nextUp === null
                     ? t('oneOfUs.play.speak.lastNext')
-                    : t('oneOfUs.play.speak.next')}
+                    : t('oneOfUs.play.speak.next', { name: nextUp.name })}
                 onPress={onNext}
             />
         </View>
@@ -71,16 +96,16 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
 
-    // Centred in what is left after the header, so the name sits where the eye already
+    // Centred in what is left after the header, so the ring sits where the eye already
     // is rather than at the top of a mostly empty screen.
     middle: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        gap: 0
+        justifyContent: 'center'
     },
 
     step: {
+        marginBottom: Spacing.three,
         fontSize: 11,
         fontWeight: 900,
         textTransform: 'uppercase',
@@ -89,36 +114,30 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    avatar: {
-        marginTop: 24
-    },
-
-    label: {
-        marginTop: 22,
-        fontSize: 11.5,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.6,
-        color: theme.colors.textMuted
-    },
-
-    name: {
-        marginTop: 6,
-        fontSize: 40,
-        fontWeight: 900,
-        lineHeight: 40 * 1.05,
-        letterSpacing: -1.6,
-        textAlign: 'center',
-        color: theme.colors.text
-    },
-
     hint: {
-        marginTop: 16,
+        marginTop: Spacing.three,
         maxWidth: 280,
         fontSize: 14,
         fontWeight: 600,
         lineHeight: 14 * 1.5,
         textAlign: 'center',
         color: theme.colors.textSecondary
+    },
+    dashes: {
+        marginTop: Spacing.three,
+        flexDirection: 'row',
+        gap: 5
+    },
+    dash: {
+        width: 22,
+        height: 5,
+        borderRadius: 999,
+        backgroundColor: theme.colors.boardEmptyBorder
+    },
+    dashDone: {
+        backgroundColor: theme.colors.text
+    },
+    dashNow: {
+        backgroundColor: theme.colors.violet
     }
 }))

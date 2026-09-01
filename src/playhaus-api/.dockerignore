@@ -1,0 +1,6 @@
+# Mirrors .gitignore: never ship a stale local db or a host-built binary into the image.
+/data/
+*.db
+/ph-api
+/ph-api.exe
+.idea/

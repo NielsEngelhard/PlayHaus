@@ -107,3 +107,10 @@ export function handoffToneFor(turnNumber: number): HandoffTone {
 export function roundIntroToneFor(round: number): HandoffTone {
     return handoffToneFor(round + 1);
 }
+
+export function joinNames(names: string[], and: string): string {
+    if (names.length === 0) return '';
+    if (names.length === 1) return names[0];
+
+    return `${names.slice(0, -1).join(', ')} ${and} ${names[names.length - 1]}`;
+}

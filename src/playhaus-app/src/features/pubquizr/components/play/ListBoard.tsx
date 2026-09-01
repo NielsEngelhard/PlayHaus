@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
-import { FontSizes } from "@/constants/theme";
+import { FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { ListAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -28,49 +28,15 @@ import TurnTimer from "./TurnTimer";
 
 interface Props {
     turn: ListTurn
-    /** Which round this is, for the strip's pips. */
     round: number
-    /**
-     * What the strip says when nobody in particular is being asked. Round 5 does have
-     * somebody now — the seat on the reader's left — so `TurnStrip` draws the two-person
-     * row and never reads this; it stays on the prop because the page hands every board
-     * the same three lines.
-     */
     lead: string
     busy: boolean
     error: TranslationKey | null
     onSettle: (awards: ListAward[]) => void
 }
 
-/**
- * Where in the question we are.
- *
- * Close to round 4's machine, plus the screen round 4 gets from not being able to tick
- * live. Here the reader *can* tick while the clock runs — they are listening, not
- * talking — but a tick made with the bar about to hit zero is a tick made in a hurry, and
- * an answer named in the same breath as "time" can miss it by a screen's worth of lag.
- * `inTime` is the same board with the clock gone: whatever `running` left ticked is
- * already marked there, and the reader gets one unhurried pass to add the one that got
- * away, or take back a mis-tap, before the leftovers go round the table.
- */
 type Stage = 'ready' | 'running' | 'inTime' | 'bonus' | 'settle'
 
-/**
- * The board for round 5: one question, four answers, and twenty seconds with the player
- * on the reader's left.
- *
- * The round used to be the whole table calling things out at once, each player against a
- * clock of their own, with credit sorted out at the end on a grid where anybody could be
- * given anything. It is now played the way round 4 is — one person inside the clock,
- * everybody else waiting for the bonus round — and the screens follow: the same rules
- * card in front of it, the same walk after it, the same look back at the ruling before
- * the points go out.
- *
- * The scoring is a walk rather than a form for round 4's reason: doing it on one screen
- * would mean drawing every seat against every answer and then explaining, in words, why
- * most of those taps are not allowed. Instead the screen only ever offers the taps that
- * are.
- */
 export default function ListBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -88,12 +54,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     /** Whether the question has been unfolded back out of the one-line recap. */
     const [rereading, setRereading] = useState(false);
 
-    /*
-     * Reset during render, like every other board here: a new question has to arrive with
-     * nothing found and nobody credited, in the same commit that brings it — cleared
-     * afterwards, the board would paint once showing the last question's ruling under the
-     * new one's prompt.
-     */
     const [turnOf, setTurnOf] = useState<string | null>(null);
     if (turnOf !== turn.dealt.id) {
         setTurnOf(turn.dealt.id);
@@ -113,15 +73,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards(current => ({ ...current, [answerId]: seat }));
     }
 
-    /**
-     * Did the guesser get this one inside the clock? Only they can be named here.
-     *
-     * Ticking the last one is what ends the clock early, not the timer — checked off the
-     * updater's own next value, so a rapid double tap toggles rather than ending a
-     * question that is not finished, and the stage changes in the same commit as the tap
-     * that caused it instead of the board painting once more with a clock still running
-     * over a question nobody can add to.
-     */
     function toggleInTime(answerId: string) {
         setAwards(current => {
             const next: ListAwards = {
@@ -163,13 +114,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         if (after >= turn.guesses) setStage('inTime');
     }
 
-    /**
-     * The clock's half of the question is ruled on. What is left goes round the table.
-     *
-     * Straight to the settle when there is nothing left to steal, or nobody to offer it
-     * to: a bonus round with an empty pool is a screen that asks a person to look at
-     * nothing and press on.
-     */
     function openBonus() {
         if (unclaimed.length === 0 || turn.bonus.length === 0) {
             setStage('settle');
@@ -181,14 +125,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setStage('bonus');
     }
 
-    /**
-     * One player's single guess is spent, taken or not. On to the next of them — or to
-     * the settle, once the answers have run out or everybody has had their go.
-     *
-     * `left` is passed in rather than read off `unclaimed`, because the seat that has
-     * just taken an answer is being credited in the same commit and the render this runs
-     * in still has the old pool.
-     */
     function nextBonus(left: number) {
         setBonusPick(null);
 
@@ -201,7 +137,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setStage('settle');
     }
 
-    /** The marked-down answer is spent, and the walk moves on. */
     function spendBonus(player: Seat) {
         if (busy) return;
 
@@ -214,11 +149,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         nextBonus(unclaimed.length - 1);
     }
 
-    /*
-     * The same strip every other round wears, naming the two people the question is
-     * actually between. Left off the stopwatch screen along with everything else it does
-     * not need — that screen is twenty seconds and four boxes.
-     */
     const strip = (
         <TurnStrip
             quizmaster={turn.quizmaster}
@@ -233,11 +163,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     );
 
     if (stage === 'ready') {
-        // Written at the table rather than at the phone, and in the order the question
-        // happens in: who is playing, how long, what is being looked for, what it pays,
-        // and then what happens after the clock stops. The two that name a person are the
-        // point of the screen — this round used to be a room shouting at once, and a
-        // table that half-remembers the old rule will play it that way again.
         const rules: TurnRule[] = [
             {
                 icon: 'user-check',
@@ -286,10 +211,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             <View style={styles.turn}>
                 {strip}
 
-                {/* The question, kept on screen for as long as the guesser is calling
-                    answers at it — a reader who has to leave this screen to remind
-                    themselves what was asked is a reader who stops reading it out again,
-                    and the guesser is still working off what they heard once. */}
                 <QuestionRecap
                     prompt={turn.question.prompt}
                     icon="volume-2"
@@ -298,10 +219,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     onPress={() => setRereading(current => !current)}
                 />
 
-                {/* Keyed to the question, so a reload lands on a fresh twenty seconds
-                    rather than picking up wherever the last one's clock left off. Time
-                    running out and the reader pressing on early are the same move: on to
-                    `inTime`, for one unhurried look at what the clock left ticked. */}
                 {turn.guesses === null
                     ? <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
                     : <GuessCounter spent={spent} total={turn.guesses} />}
@@ -310,9 +227,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     {t('pubquizr.play.onlyYouSeeThis')}
                 </AppText>
 
-                {/* Ticking is crediting here, unlike round 4, where the describer is
-                    talking and cannot also be marking. The reader is holding the answer
-                    key and listening to one person, so every tick goes to that person. */}
                 <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {turn.answers.map(answer => (
                         <PickRow
@@ -344,17 +258,15 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     </PopPressable>
                 )}
 
-                {/* The way out before the clock is: a guesser who has plainly run dry
-                    should not have to sit and watch the bar empty. Either way this leads
-                    to `inTime`, not straight to the bonus round — the reader is about to
-                    stop looking at a countdown, not about to hand the phone onward. */}
-                <ActionButton
-                    size="large"
-                    icon="arrow-right"
-                    text={t('pubquizr.play.list.toInTime', { guesser: turn.guesser.name })}
-                    disabled={busy}
-                    onPress={() => setStage('inTime')}
-                />
+                {turn.guesses !== null && (
+                    <ActionButton
+                        size="large"
+                        icon="arrow-right"
+                        text={t('pubquizr.play.list.toInTime', { guesser: turn.guesser.name })}
+                        disabled={busy}
+                        onPress={() => setStage('inTime')}
+                    />
+                )}
             </View>
         )
     }
@@ -372,10 +284,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     {t('pubquizr.play.list.inTimeHint', { guesser: turn.guesser.name })}
                 </AppText>
 
-                {/* The same rows the clock was ticked against, carried over as-is — this
-                    is a second look at that state, not a fresh one — so anything already
-                    marked shows marked, and the reader is only ever adding the one that
-                    got away or taking back a mis-tap. */}
                 <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {turn.answers.map(answer => (
                         <PickRow
@@ -404,8 +312,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     if (stage === 'bonus') {
         const player = turn.bonus[bonusIndex];
 
-        // A pool that has emptied under the walk, or a seat that is no longer at the
-        // table: either way there is nothing to offer, so the screen does not open.
         if (player === undefined || unclaimed.length === 0) {
             setStage('settle');
             return null;
@@ -580,6 +486,10 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 10,
+        // Room on the right for the hard shadow each pick row throws — a ScrollView
+        // clips its own content box, and with no slack there the shadow's right edge
+        // was the thing getting cut instead of cast.
+        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 
@@ -590,9 +500,6 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 700,
         color: theme.colors.textMuted
     },
-
-    // The one line worth surfacing again once the clock starts, so it does not depend on
-    // being remembered from a screen already left behind.
     recap: {
         flexShrink: 0,
         textAlign: 'center',

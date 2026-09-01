@@ -1,8 +1,8 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
-import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import SeatRing from "@/features/one-of-us/components/SeatRing";
 import { OneOfUsRole, withCivilians } from "@/features/one-of-us/models";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -10,39 +10,23 @@ import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 interface Props {
-    person: Seat
-    role: OneOfUsRole
-    /** How many are still in, after this one left. */
-    remaining: number
     /** The round about to start. */
     nextRound: number
     onNext: () => void
+    person: Seat
+    remaining: number
+    role: OneOfUsRole
+    seats: Seat[]
 }
 
-/**
- * What the table is told the moment somebody goes.
- *
- * A whole screen, because this is the only information the game ever gives back. Every
- * other thing the table knows it worked out by listening to each other; this is the one
- * fact handed down, and it is what the next round is argued from. Putting it in a
- * banner over the next screen would let it be scrolled past by whoever taps fastest.
- *
- * The role is stated plainly rather than teased. A reveal that made you wait would be
- * playing a different game than the table is: they have just spent a round on this
- * exact question and the answer is the payoff, not a cliffhanger.
- *
- * Three verdicts, not two. The nitwit plays for the imposters, so calling them a
- * civilian here would be telling the table the round went the other way than it did —
- * and it gets its own line and its own colour rather than being folded into "imposter",
- * because catching somebody who never had the word is a different result to argue the
- * next round from than catching somebody who did.
- */
+
 export default function EliminationScreen({
-    person,
-    role,
-    remaining,
     nextRound,
-    onNext
+    onNext,
+    person,
+    remaining,
+    role,
+    seats
 }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -53,11 +37,12 @@ export default function EliminationScreen({
     return (
         <View style={styles.screen}>
             <View style={styles.middle}>
-                <SeatAvatar seat={person} size={112} raised style={styles.avatar} />
-
-                <AppText style={styles.title}>
-                    {t('oneOfUs.play.elimination.title', { name: person.name })}
-                </AppText>
+                <SeatRing
+                    seats={seats}
+                    markOf={seat => seat.seat === person.seat ? 'out' : 'muted'}
+                    label={t('oneOfUs.play.elimination.ringLabel')}
+                    headline={person.name}
+                />
 
                 {/* Orange for an imposter caught, lemon for the nitwit, mint for a
                     civilian lost — the same three colours the reveal dressed the roles
@@ -111,24 +96,8 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center'
     },
 
-    avatar: {
-        // Dimmed: this person is out of the game, and the avatar should not look as
-        // present as the ones on the turn screens.
-        opacity: 0.75
-    },
-
-    title: {
-        marginTop: 24,
-        fontSize: 36,
-        fontWeight: 900,
-        lineHeight: 36 * 1.05,
-        letterSpacing: -1.4,
-        textAlign: 'center',
-        color: theme.colors.text
-    },
-
     verdict: {
-        marginTop: 20,
+        marginTop: 24,
         flexDirection: 'row',
         alignItems: 'center',
         gap: 9,

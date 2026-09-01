@@ -1,49 +1,34 @@
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
+    onVote: () => void
     /** Everybody still in, so the table can see who it is actually choosing between. */
     seats: Seat[]
-    onVote: () => void
 }
 
-/**
- * The argument, which the phone stays out of.
- *
- * No timer. One was available — pubquizr's `DescribeTimer` is fully generic and would
- * have dropped straight in — and it is deliberately not here: a countdown turns the one
- * part of this game that is purely social into something the table is losing at, and
- * cuts off the quiet player who was about to say the useful thing.
- *
- * The tie rule is stated and not enforced, for the same reason. When a vote ties the
- * table settles it out loud, so the app never needs to know a tie happened — it only
- * ever hears the single name that comes out the other side.
- */
-export default function DiscussScreen({ seats, onVote }: Props) {
+export default function DiscussScreen({ onVote, seats }: Props) {
     const t = useT();
     const styles = useStyles();
 
     return (
         <View style={styles.screen}>
+            <SeatRing
+                seats={seats}
+                headline={t('oneOfUs.play.discuss.ring')}
+            />
+
             <SimpleTextHero
                 title={t('oneOfUs.play.discuss.title')}
                 description={t('oneOfUs.play.discuss.description')}
             />
-
-            {/* Who is left, as a row of faces rather than a list of names: this is a
-                reminder of the shape of the table, not something to act on. */}
-            <View style={styles.faces}>
-                {seats.map(seat => (
-                    <SeatAvatar key={seat.seat} seat={seat} size={44} />
-                ))}
-            </View>
 
             <View style={styles.footer}>
                 <InlineNotification
@@ -66,14 +51,8 @@ const useStyles = createThemedStyles(() => ({
     screen: {
         flex: 1,
         width: '100%',
-        paddingTop: Spacing.three
-    },
-
-    faces: {
-        marginTop: Spacing.four,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10
+        paddingTop: Spacing.three,
+        gap: Spacing.four
     },
 
     footer: {

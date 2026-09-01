@@ -306,6 +306,19 @@ export const hardShadow = (offset: number, color: string): ViewStyle => ({
     boxShadow: `${offset}px ${offset}px 0 0 ${color}`,
 });
 
+/**
+ * How far each of `theme.shadows`' hard shadows throws, in px. Anything that carries one
+ * of these and sits inside an unpadded scroll container needs this much spare room on
+ * its right (and, since the offset is diagonal, technically its bottom too) or the
+ * offset corner gets clipped by the container instead of cast past it. See
+ * `PlayerScoreRow`'s `row` style for the shape of that fix.
+ */
+export const ShadowReach = {
+    hard: 3,
+    hardSmall: 2,
+    hardLarge: 5
+} as const;
+
 export interface Shadows {
     hard: ViewStyle,
     hardSmall: ViewStyle,
@@ -485,9 +498,9 @@ function buildTheme(scheme: Scheme): Theme {
     // light, but in dark the border has to read *up* off the canvas and the shadow *down*
     // into it, which is what lets both schemes use the one hard offset.
     const shadows: Shadows = {
-        hard: hardShadow(3, colors.shadow),
-        hardSmall: hardShadow(2, colors.shadow),
-        hardLarge: hardShadow(5, colors.shadow)
+        hard: hardShadow(ShadowReach.hard, colors.shadow),
+        hardSmall: hardShadow(ShadowReach.hardSmall, colors.shadow),
+        hardLarge: hardShadow(ShadowReach.hardLarge, colors.shadow)
     };
 
     const popShadow = (accent: string): ViewStyle => ({

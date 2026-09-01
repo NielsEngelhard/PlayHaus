@@ -3,7 +3,7 @@ import ActionButton from "@/components/ui/ActionButton";
 import Confetti from "@/components/ui/Confetti";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { FinalStanding } from "@/features/pubquizr/round-six";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -213,6 +213,7 @@ const useStyles = createThemedStyles(theme => ({
 
     content: {
         paddingTop: Spacing.three,
+        paddingRight: ShadowReach.hardLarge,
         paddingBottom: Spacing.three
     },
 

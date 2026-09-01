@@ -5,10 +5,12 @@ import InGameHeader from "@/components/ui/InGameHeader";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
-import { useT } from "@/features/i18n/LanguageContext";
+import type { Phrase, TranslationKey } from "@/features/i18n/keys";
+import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import DiscussScreen from "@/features/one-of-us/components/DiscussScreen";
 import EliminationScreen from "@/features/one-of-us/components/EliminationScreen";
 import GameOverScreen from "@/features/one-of-us/components/GameOverScreen";
+import RolesBriefingScreen from "@/features/one-of-us/components/RolesBriefingScreen";
 import SpeakingTurnScreen from "@/features/one-of-us/components/SpeakingTurnScreen";
 import VoteScreen from "@/features/one-of-us/components/VoteScreen";
 import WordRevealScreen from "@/features/one-of-us/components/WordRevealScreen";
@@ -64,6 +66,7 @@ import { View } from "react-native";
  */
 export default function PlayingSingleDeviceGame() {
     const t = useT();
+    const phrase = usePhrase();
     const theme = useTheme();
     const styles = useStyles();
     const router = useRouter();
@@ -81,31 +84,15 @@ export default function PlayingSingleDeviceGame() {
     const [phase, setPhase] = useState<Phase | null>(null);
     /** The game `phase` was opened for, so a different one is not resumed into. */
     const [openedFor, setOpenedFor] = useState<string | null>(null);
-    /** The seat the vote screen has highlighted, before it is committed. */
     const [chosen, setChosen] = useState<number | null>(null);
+    const [briefed, setBriefed] = useState(false);
 
-    /*
-     * Where this game opens, worked out once and then left alone.
-     *
-     * Set during render rather than from an effect — the same thing `useQuizzes` does
-     * next door, and for the same reason: an effect would paint one frame of the wrong
-     * screen first. React drops this render and immediately re-runs it with the phase
-     * set, so nothing is committed in between.
-     *
-     * It could not simply be `phase ?? resumeAt(game)` inline, because `resumeAt` is
-     * not pure: resuming mid-game deals a fresh speaking order, so every re-render
-     * before the first tap would deal another one and the name on screen would change
-     * under a table that was still reading it. Keying on the game id is what makes it
-     * happen exactly once.
-     */
     if (play.game !== null && openedFor !== play.game.id) {
         setOpenedFor(play.game.id);
         setPhase(resumeAt(play.game));
     }
 
     function leave() {
-        // `replace`, not `back`: this screen is reached from the setup form, and going
-        // back to it would offer to start a second game of the one just left.
         router.replace(ROUTES.oneOfUsIndex);
     }
 
@@ -172,6 +159,10 @@ export default function PlayingSingleDeviceGame() {
      * its own band once the phone has been claimed, and `GameOverScreen` above draws one
      * too; both are outside the frame because neither has a round to name.
      */
+    if (!briefed && current.kind === 'reveal' && current.index === 0) {
+        return <RolesBriefingScreen onDone={() => setBriefed(true)} onLeave={leave} />;
+    }
+
     if (current.kind === 'reveal') {
         const player = game.players[current.index];
         const previous = current.index > 0 ? game.players[current.index - 1] : null;
@@ -184,6 +175,11 @@ export default function PlayingSingleDeviceGame() {
                 role={player.role}
                 number={current.index + 1}
                 total={game.players.length}
+                // `game.players` is itself the order the phone goes round in, so
+                // everybody after this one is the queue, already in order.
+                queue={game.players
+                    .slice(current.index + 1)
+                    .map((waiting, offset) => seatOf(waiting, current.index + 1 + offset))}
                 onLeave={leave}
                 onDone={() => setPhase(current.index + 1 < game.players.length
                     ? { kind: 'reveal', index: current.index + 1 }
@@ -205,7 +201,7 @@ export default function PlayingSingleDeviceGame() {
             <InGameHeader
                 onClose={leave}
                 closeLabel={t('oneOfUs.play.close')}
-                label={t('oneOfUs.play.roundLabel', { round: roundOf(current) })}
+                label={phrase(headerLabelFor(current))}
             />
 
             {current.kind === 'speak' && (() => {
@@ -219,10 +215,15 @@ export default function PlayingSingleDeviceGame() {
                     return <View />;
                 }
 
+                const following = current.index + 1 < current.order.length
+                    ? seatFor(game, current.order[current.index + 1])
+                    : null;
+
                 return (
                     <SpeakingTurnScreen
                         speaker={speaker}
-                        round={current.round}
+                        seats={alive.map(player => seatFor(game, player.playerId)!)}
+                        nextUp={following}
                         number={current.index + 1}
                         total={current.order.length}
                         onNext={() => setPhase(current.index + 1 < current.order.length
@@ -276,9 +277,20 @@ export default function PlayingSingleDeviceGame() {
                 const gone = seatFor(game, current.result.playerId);
                 if (gone === null) return <View />;
 
+                // The ring as it stood for the vote, not as it stands now. `voteOut`
+                // flips `isVotedOut` on the local game before this phase is even set, so
+                // `alive` has already dropped the one person this screen is about — and
+                // a ring built from it would have nobody to cross out.
+                const ring = game.players
+                    .filter(player =>
+                        !player.isVotedOut
+                        || player.playerId === current.result.playerId)
+                    .map(player => seatFor(game, player.playerId)!);
+
                 return (
                     <EliminationScreen
                         person={gone}
+                        seats={ring}
                         role={current.result.playerRole}
                         remaining={alive.length}
                         nextRound={current.round + 1}
@@ -288,6 +300,31 @@ export default function PlayingSingleDeviceGame() {
             })()}
         </View>
     )
+}
+
+/**
+ * Which of the four round labels the header wears.
+ *
+ * The board's four screens are now the same picture doing four different things, so the
+ * header is the only thing on them that says which one the table is on. Four keys rather
+ * than one with a `{{phase}}` hole in it, so the separator is not something a translation
+ * can quietly drop from the one line carrying that.
+ */
+function headerLabelFor(phase: Phase): Phrase {
+    return { key: keyOf(phase), values: { round: roundOf(phase) } };
+}
+
+function keyOf(phase: Phase): TranslationKey {
+    switch (phase.kind) {
+        case 'discuss':
+            return 'oneOfUs.play.roundDiscuss';
+        case 'vote':
+            return 'oneOfUs.play.roundVote';
+        case 'elimination':
+            return 'oneOfUs.play.roundResult';
+        default:
+            return 'oneOfUs.play.roundSpeak';
+    }
 }
 
 /** Which round the header should name. The reveal is in front of round 1. */

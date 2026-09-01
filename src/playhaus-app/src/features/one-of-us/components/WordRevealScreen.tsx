@@ -2,83 +2,44 @@ import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import AnswerReveal from "@/components/ui/AnswerReveal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
-import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
+import InGameHeader from "@/components/ui/InGameHeader";
+import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import RoleCard from "@/features/one-of-us/components/RoleCard";
 import type { OneOfUsRole } from "@/features/one-of-us/models";
-import type { Seat } from "@/features/table/seats";
+import { joinNames, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
-    person: Seat
-    /** Who is handing the phone over, or null for the very first player. */
     from: Seat | null
-    /** The word this player is playing on — theirs alone, or null for the nitwit. */
-    word: string | null
-    /** Which side they are on, uncovered with the word and hidden again with it. */
-    role: OneOfUsRole
     number: number
-    total: number
     onDone: () => void
-    /** The way out of the game. The band's arrow is the only one on this screen. */
     onLeave: () => void
+    person: Seat
+    queue: Seat[]
+    role: OneOfUsRole
+    total: number
+    word: string | null
 }
 
-/**
- * One player's word, handed over privately.
- *
- * Two screens rather than one, and the hand-off in front is the half that matters: this
- * is the only moment in the game where the phone shows something that belongs to one
- * person, so it has to be impossible to reach by accident. `HandoffScreen` is the wall,
- * and it does not come down until somebody claims to be the person named on it.
- *
- * Behind it the word stays covered until tapped — a second deliberate act, because
- * "claimed the phone" and "is holding it at an angle nobody else can read" are not the
- * same thing. See `SecretCard`.
- *
- * Uncovering it uncovers the role with it, on a card of its own underneath. The two are
- * one secret: a word means nothing until you know whether yours is the odd one out, and
- * an imposter who has to work that out during round one has already lost the round
- * working it out. So the card rides along as `extraContent`, which `AnswerReveal` only
- * draws while it is open — covering the word takes the role back down with it, and this
- * screen keeps no second copy of that state to fall out of step with.
- *
- * The nitwit has no word, and still goes through the identical two taps to be told so.
- * The panel says it in words rather than sitting empty — a blank slab is what a broken
- * screen looks like, and this is the one player who cannot check theirs against anybody
- * else's. It is the same panel in the same place either way, which also means nothing
- * about the shape of this screen tells the room who drew the short straw.
- *
- * The band goes on the word half and not on the wall in front of it. Every other screen
- * in the game wears the game's colour along the top, and the one that hands you a secret
- * should not be the odd one out — but the wall's whole job is to be impossible to read
- * past, and a strip of chrome above it, way out included, is a way past. So the wall
- * stays a wall, and the colour arrives with the word.
- *
- * The way on only appears once the word has been seen. A player who passes the phone on
- * without reading their word has no way back to it, and the game gives them nothing to
- * bluff with. `seen` is the one thing this screen does track for itself, and it is a
- * latch rather than a mirror of the panel: putting the secret away is not a reason to
- * take the exit back.
- */
 export default function WordRevealScreen({
-    person,
     from,
-    word,
-    role,
     number,
-    total,
     onDone,
-    onLeave
+    onLeave,
+    person,
+    queue,
+    role,
+    total,
+    word
 }: Props) {
     const t = useT();
     const styles = useStyles();
 
     const [claimed, setClaimed] = useState(false);
-    /** Ever uncovered — the way on. Not whether it is showing right now; see below. */
     const [seen, setSeen] = useState(false);
 
     if (!claimed) {
@@ -89,7 +50,9 @@ export default function WordRevealScreen({
                 toneNumber={number}
                 step={t('oneOfUs.play.reveal.step', { number, total })}
                 title={t('oneOfUs.play.reveal.title', { name: person.name })}
-                body={t('oneOfUs.play.reveal.body', { name: person.name })}
+                body={from === null
+                    ? t('oneOfUs.play.reveal.bodyFirst', { name: person.name })
+                    : t('oneOfUs.play.reveal.body', { from: from.name })}
                 note={t('oneOfUs.play.reveal.note')}
                 action={t('oneOfUs.play.reveal.action', { name: person.name })}
                 onReady={() => setClaimed(true)}
@@ -97,24 +60,14 @@ export default function WordRevealScreen({
         )
     }
 
-    const last = number === total;
-
-    // One segment per player, because this is the one part of the game that does know how
-    // long it runs for: everybody gets a word exactly once, so the round the band cannot
-    // count towards is still a queue it can.
-    const handed: SegmentState[] = Array.from({ length: total }, (_, index) =>
-        index < number ? 'played' : 'upcoming'
-    );
+    const next = queue.length === 0 ? null : queue[0];
 
     return (
         <View style={styles.page}>
-            {/* The step line the body used to open with. It is the band's now — a screen
-                that says "2 of 5" twice within 40 points is saying it once too often. */}
             <InGameHeader
                 onClose={onLeave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={t('oneOfUs.play.reveal.step', { number, total })}
-                segments={handed}
             />
 
             <View style={styles.screen}>
@@ -128,13 +81,34 @@ export default function WordRevealScreen({
                 />
 
                 <View style={styles.footer}>
+                    {next !== null && (
+                        <View style={styles.queue}>
+                            <View style={styles.queueFaces}>
+                                {queue.map((seat, index) => (
+                                    <View
+                                        key={seat.seat}
+                                        style={index === 0 ? undefined : styles.overlap}
+                                    >
+                                        <SeatAvatar seat={seat} size={24} />
+                                    </View>
+                                ))}
+                            </View>
+
+                            <AppText style={styles.queueText} numberOfLines={2}>
+                                {t('oneOfUs.play.reveal.queue', {
+                                    names: joinNames(queue.map(seat => seat.name), t('common.and'))
+                                })}
+                            </AppText>
+                        </View>
+                    )}
+
                     {seen && (
                         <ActionButton
                             size="large"
-                            icon={last ? 'play' : 'arrow-right'}
-                            text={last
+                            icon={next === null ? 'play' : 'arrow-right'}
+                            text={next === null
                                 ? t('oneOfUs.play.reveal.lastDone')
-                                : t('oneOfUs.play.reveal.done')}
+                                : t('oneOfUs.play.reveal.done', { name: next.name })}
                             onPress={onDone}
                         />
                     )}
@@ -145,38 +119,57 @@ export default function WordRevealScreen({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The band is the top of this, and the gutters are here so it has something to reach
-    // back out through — the page it is drawn on has claimed the chrome and hands this
-    // the bare window. See `useChromeless`.
     page: {
         flex: 1,
         width: '100%',
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.four
     },
-
     screen: {
         flex: 1,
         width: '100%',
         paddingTop: Spacing.four
     },
-
     name: {
         fontSize: 34,
         fontWeight: 900,
         letterSpacing: -1.2,
         color: theme.colors.text
     },
-
     role: {
         marginTop: 10
     },
-
-    // Holds the button's height whether or not it is showing, so uncovering the word
-    // does not shift the card that was just tapped.
     footer: {
         marginTop: 'auto',
         minHeight: 66,
+        gap: Spacing.two,
         justifyContent: 'flex-end'
+    },
+    queue: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        paddingVertical: 9,
+        paddingHorizontal: 12,
+        borderRadius: 16,
+        borderWidth: 2,
+        borderStyle: 'dashed',
+        borderColor: theme.colors.borderMuted
+    },
+    queueFaces: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    overlap: {
+        marginLeft: -8
+    },
+
+    queueText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 11.5,
+        fontWeight: 700,
+        lineHeight: 11.5 * 1.4,
+        color: theme.colors.textMuted
     }
 }))

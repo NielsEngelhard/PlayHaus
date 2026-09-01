@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { FontSizes } from "@/constants/theme";
+import { FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -464,6 +464,7 @@ const useStyles = createThemedStyles(theme => ({
 
     words: {
         gap: 10,
+        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 
@@ -502,6 +503,7 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 10,
+        paddingRight: ShadowReach.hardSmall,
         paddingBottom: 2
     },
 

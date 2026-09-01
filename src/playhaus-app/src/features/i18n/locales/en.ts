@@ -11,6 +11,12 @@ export const en = {
         you: 'You',
         host: 'Host',
         /**
+         * The word before the last name in a list of them, for `joinNames`. A word on
+         * its own rather than a whole sentence because the list it joins is built from
+         * player names, which no catalogue can know in advance.
+         */
+        and: 'and',
+        /**
          * The two words a `Toggle` stamps itself with. The switch says its state in
          * letters as well as in fill and depth, so the setting is readable at a glance
          * and without relying on colour.
@@ -1030,8 +1036,19 @@ export const en = {
         play: {
             loading: 'loading…',
             close: 'Leave the game',
-            /** The header, every round. */
-            roundLabel: 'Round {{round}}',
+            /**
+             * The header, every round.
+             *
+             * Four keys rather than one with a `{{phase}}` hole in it. The four screens
+             * now look alike on purpose — the same ring of seats, doing something
+             * different — so the header is the only thing telling the table which one
+             * they are on, and a separator that a translator cannot move or drop is not
+             * good enough for the one line carrying that.
+             */
+            roundSpeak: 'Round {{round}} · turn',
+            roundDiscuss: 'Round {{round}} · discuss',
+            roundVote: 'Round {{round}} · vote',
+            roundResult: 'Round {{round}} · result',
 
             /**
              * The pass-the-phone reveal, once per player before the first round.
@@ -1041,11 +1058,27 @@ export const en = {
              * can read their own word.
              */
             reveal: {
-                step: 'Handing out words · {{number}} of {{total}}',
-                title: 'Pass the phone to {{name}}',
-                body: 'Only {{name}} may look at the next screen.',
-                note: 'Everybody gets a word. One or more of you get a different one — and will have to bluff.',
+                step: 'Word {{number}} of {{total}}',
+                title: '{{name}} is up',
+                /**
+                 * Two bodies, because `HandoffScreen` takes `from: Seat | null` and the
+                 * first player has nobody to take the phone from. Naming who is handing
+                 * it over is worth the second key: it is the one instruction on the
+                 * screen that says what to physically do.
+                 */
+                body: 'Take the phone from {{from}} and hold it where only you can see it.',
+                bodyFirst: 'Only {{name}} may look at the next screen.',
+                note: 'Nobody else may look.',
                 action: "I'm {{name}}",
+                /**
+                 * Who has not been handed the phone yet, under the role card.
+                 *
+                 * Deliberately phrased so one name and five names both read correctly,
+                 * rather than split into singular and plural keys — the list is built by
+                 * `joinNames`, and a sentence with the names at the end is the one shape
+                 * that survives either.
+                 */
+                queue: 'Still to come: {{names}}',
                 secretLabel: 'Tap to see your word',
                 secretHint: 'Hold the phone so nobody else can read it.',
                 warning: 'Only you see this',
@@ -1059,25 +1092,31 @@ export const en = {
                  * role: knowing you are called an imposter is worth nothing on its own,
                  * and the one thing a player needs in the ten seconds they hold the
                  * phone is whether they are bluffing or hunting.
+                 *
+                 * One line each, and that is a size limit as much as a style. The card
+                 * now shares the screen with the queue strip below it, and the paragraph
+                 * these used to be pushed that off the bottom of a small phone. What the
+                 * long versions carried — what each role is *for* — is said properly by
+                 * the briefing, to the whole table, before anything is dealt.
                  */
                 role: {
                     label: 'Your role',
                     civilian: {
                         name: 'Civilian',
-                        explanation: 'Most of you got this same word. Say something about it that proves you know it, without saying it outright — say too much and you hand it to the imposters. Then work out who is faking it, and vote them out.'
+                        explanation: 'Everybody with your word belongs. Find the one who does not have it.'
                     },
                     imposter: {
                         name: 'Imposter',
-                        explanation: 'Your word is not the one most of the table got, and you do not know theirs. Listen to what the others say, guess what they are all describing, and bluff your way through your own turn. You win by surviving until the imposters are no longer outnumbered.'
+                        explanation: 'Your word is not the one the rest of the table got. Bluff along and survive.'
                     },
                     nitwit: {
                         name: 'The nitwit',
-                        explanation: 'You got no word at all — not even the imposters’ one. You are on their side and they do not know who you are. Everything you say has to be built out of what you have just heard other people say, so listen hard and give away nothing. You win with the imposters, by surviving until they are no longer outnumbered.'
+                        explanation: 'You got no word at all. Build every turn out of what you hear.'
                     }
                 },
                 /** After the word is open: the way on, phrased as putting it away. */
                 hide: 'Hide',
-                done: 'Got it — pass it on',
+                done: 'Pass to {{name}}',
                 lastDone: 'Got it — start round 1'
             },
 
@@ -1088,38 +1127,67 @@ export const en = {
              * the whole turn happens out loud, and the phone is only keeping the order.
              */
             speak: {
-                step: 'Round {{round}} · {{number}} of {{total}}',
+                // Loses the round it used to carry: the header says it now, on every
+                // one of the four board screens rather than only this one.
+                step: 'Speaker {{number}} of {{total}}',
                 nowSpeaking: 'Now speaking',
                 hint: 'Say one word about your own word. Do not say the word itself.',
-                next: 'Next player',
+                next: 'Next: {{name}}',
                 lastNext: 'Everyone has spoken'
             },
 
             discuss: {
-                title: 'Talk it over',
-                description: 'Who sounded like they were guessing? Argue it out, then vote somebody out.',
+                /** The middle of the ring, which has room for three words at most. */
+                ring: 'Talk it out',
+                title: 'Who does not fit?',
+                description: 'No timer. The table decides for itself when it has heard enough.',
                 /** The tie rule, which the app deliberately does not enforce. */
-                tieNote: 'If the vote ties, the table decides together who goes.',
-                action: 'Ready to vote'
+                tieNote: 'Vote tied? Talk it out at the table.',
+                action: 'Vote'
             },
 
             vote: {
-                title: 'Who is one of us?',
-                description: 'Tap whoever the table has decided on, then confirm.',
+                title: 'Vote somebody out',
+                description: 'Tap a name, then confirm.',
+                /** Above the chosen name, in the middle of the ring. */
+                ringChosen: 'Chosen',
                 nobody: 'Nobody chosen yet',
-                confirm: 'Vote {{name}} out',
+                confirm: 'Vote for {{name}}',
                 confirmHint: 'This cannot be undone.',
                 locked: 'Tap a name first.'
             },
 
             /** What the table is told the moment somebody leaves. */
             elimination: {
-                title: '{{name}} is out',
+                /** Above their name, on the seat that is about to disappear. */
+                ringLabel: 'Voted out',
                 civilian: '{{name}} was one of the civilians.',
                 imposter: '{{name}} was an imposter.',
                 nitwit: '{{name}} was the nitwit — no word at all.',
                 remaining: '{{players}} still in the game.',
-                next: 'Start round {{round}}'
+                next: 'Round {{round}}'
+            },
+
+            /**
+             * Every role the game can deal, read out to the table before the phone
+             * starts going round.
+             *
+             * Written in the third person, unlike everything under `reveal.role`. These
+             * are said out loud about people who have not been dealt anything yet, so
+             * "your word" would be nonsense — and the same card component draws both,
+             * which is why it takes the wording rather than looking it up.
+             */
+            briefing: {
+                title: 'Who is at the table',
+                intro: 'Everybody is dealt one of these. Read them out before you start.',
+                /** Replaces the reveal card's "Your role" eyebrow. */
+                roleLabel: 'Role',
+                role: {
+                    civilian: 'Most of the table are civilians. They all share one word and have to work out who does not have it.',
+                    imposter: 'The imposters got a different word and do not know the real one. They bluff along, and win by surviving.',
+                    nitwit: 'The nitwit got no word at all and plays with the imposters — who have no idea who they are.'
+                },
+                action: 'Hand out the words'
             },
 
             over: {
