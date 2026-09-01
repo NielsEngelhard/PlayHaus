@@ -21,6 +21,7 @@ import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
+import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -82,8 +83,8 @@ interface RoundCopy {
  * in the answering half of that strip, so the strip says what the round is doing instead
  * — and only the round knows what that is.
  */
-function roundCopy(t: ReturnType<typeof useT>, round: number, name: string): RoundCopy {
-    const { kind, rule, brief } = roundKindAndRule(t, round);
+function roundCopy(t: ReturnType<typeof useT>, round: number, name: string, zen: boolean): RoundCopy {
+    const { kind, rule, brief } = roundKindAndRule(t, round, zen);
 
     switch (round) {
         case ROUND_CHOICE:
@@ -228,6 +229,7 @@ export default function OneDeviceQuizPage() {
     const seats = seatsOf(session);
     const round = session.currentRound;
     const playable = PLAYABLE.includes(round);
+    const ordinal = roundOrdinalOf(session);
 
     /*
      * The evening is over. `RoundStandings`' own dead end below is for a round this
@@ -291,18 +293,18 @@ export default function OneDeviceQuizPage() {
                         onClose={leave}
                         closeLabel={t('pubquizr.play.close')}
                         label={t('pubquizr.play.standings.label', {
-                            round: round - 1,
+                            round: ordinal - 1,
                             total: session.totalRounds
                         })}
                         // The round about to start has not started, so the track stops at
                         // the one behind it. This screen is the gap between the two.
-                        segments={roundTrack(session.totalRounds, round - 1)}
+                        segments={roundTrack(session.totalRounds, ordinal - 1)}
                     />
                 </View>
 
                 <RoundStandings
                     standings={standingsOf(session)}
-                    round={round - 1}
+                    round={ordinal - 1}
                     onNext={playable ? () => startRound(round) : null}
                     onLeave={leave}
                 />
@@ -340,16 +342,16 @@ export default function OneDeviceQuizPage() {
                         onClose={leave}
                         closeLabel={t('pubquizr.play.close')}
                         label={t('pubquizr.play.standings.label', {
-                            round: round - 1,
+                            round: ordinal - 1,
                             total: session.totalRounds
                         })}
-                        segments={roundTrack(session.totalRounds, round - 1)}
+                        segments={roundTrack(session.totalRounds, ordinal - 1)}
                     />
                 </View>
 
                 <RoundStandings
                     standings={standingsOf(session)}
-                    round={round - 1}
+                    round={ordinal - 1}
                     onNext={null}
                     onLeave={leave}
                 />
@@ -357,7 +359,7 @@ export default function OneDeviceQuizPage() {
         )
     }
 
-    const copy = roundCopy(t, round, holder.name);
+    const copy = roundCopy(t, round, holder.name, session.zenMode);
 
     /*
      * The round explains itself before anybody is handed the phone.
@@ -381,7 +383,7 @@ export default function OneDeviceQuizPage() {
 
         return (
             <RoundIntroScreen
-                round={round}
+                round={ordinal}
                 totalRounds={session.totalRounds}
                 kind={copy.kind}
                 brief={copy.brief}
@@ -398,7 +400,7 @@ export default function OneDeviceQuizPage() {
                 person={holder}
                 from={seatAt(seats, handedFrom)}
                 toneNumber={number}
-                step={t('pubquizr.play.handoff.step', { round, number, total: session.turnsInRound })}
+                step={t('pubquizr.play.handoff.step', { round: ordinal, number, total: session.turnsInRound })}
                 title={t('pubquizr.play.handoff.title', { name: holder.name })}
                 body={copy.job}
                 note={copy.rule}
@@ -413,9 +415,9 @@ export default function OneDeviceQuizPage() {
             <InGameHeader
                 onClose={leave}
                 closeLabel={t('pubquizr.play.close')}
-                label={t('pubquizr.play.roundLabel', { round, kind: copy.kind })}
+                label={t('pubquizr.play.roundLabel', { round: ordinal, kind: copy.kind })}
                 // Up to and including this one: the round being drawn is under way.
-                segments={roundTrack(session.totalRounds, round)}
+                segments={roundTrack(session.totalRounds, ordinal)}
             />
 
             {hotSeat !== null && (

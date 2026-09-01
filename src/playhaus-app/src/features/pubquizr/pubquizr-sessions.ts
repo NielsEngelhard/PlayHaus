@@ -122,6 +122,8 @@ export interface QuizSession {
      */
     turnQuestionIds: string[]
     totalRounds: number
+    rounds: number[]
+    zenMode: boolean
     /**
      * Whose turn it is to answer the question on screen, and null when nobody is being
      * asked anything — a finished quiz, or a round this build cannot play yet.
@@ -150,11 +152,12 @@ export interface QuizSession {
  */
 export async function startSingleDeviceQuizRequest(
     quizId: string,
-    playerNames: string[]
+    playerNames: string[],
+    zenMode: boolean
 ): Promise<QuizSession> {
     return request<QuizSession>('/api/v1/pubquizr/single-device', {
         method: 'POST',
-        body: JSON.stringify({ quizId, playerNames })
+        body: JSON.stringify({ quizId, playerNames, zenMode })
     });
 }
 

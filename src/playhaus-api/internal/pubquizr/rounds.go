@@ -325,6 +325,10 @@ func (s *Session) OpenFinale() {
 // session was dealt, which only the session knows.
 func (s *Session) TurnsInRound(round int) int {
 	if round == RoundDescribe {
+		if !PlaysRound(s.ZenMode, round) {
+			return 0
+		}
+
 		return len(s.Players)
 	}
 

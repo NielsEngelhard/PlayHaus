@@ -64,7 +64,7 @@ func TestRoundFourDealsTheCapPerPlayerNotTheWholeShelf(t *testing.T) {
 	const players = MaxPlayers
 	const carried = 80
 
-	deal, err := dealQuestions(quizCarrying(carried), players)
+	deal, err := dealQuestions(quizCarrying(carried), players, false)
 	if err != nil {
 		t.Fatalf("deal: %v", err)
 	}
@@ -93,7 +93,7 @@ func TestRoundFourSharesAThinShelfEvenly(t *testing.T) {
 	const players = MaxPlayers
 	const carried = MinDescribeWords // sixteen: two each at a full table
 
-	deal, err := dealQuestions(quizCarrying(carried), players)
+	deal, err := dealQuestions(quizCarrying(carried), players, false)
 	if err != nil {
 		t.Fatalf("deal: %v", err)
 	}
@@ -114,7 +114,7 @@ func TestRoundFourSharesAThinShelfEvenly(t *testing.T) {
 // one that hands a slot to a seat, and a slot that quietly gained an owner would be a
 // question nobody but one player is allowed to answer.
 func TestOnlyRoundFourAssignsSeats(t *testing.T) {
-	deal, err := dealQuestions(quizCarrying(40), MaxPlayers)
+	deal, err := dealQuestions(quizCarrying(40), MaxPlayers, false)
 	if err != nil {
 		t.Fatalf("deal: %v", err)
 	}

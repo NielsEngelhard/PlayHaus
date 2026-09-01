@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import PopPressable from "@/components/ui/PopPressable";
 import { FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -82,6 +83,8 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     const [bonusIndex, setBonusIndex] = useState(0);
     /** The answer this player has been marked down for, before it is committed. */
     const [bonusPick, setBonusPick] = useState<string | null>(null);
+
+    const [spent, setSpent] = useState(0);
     /** Whether the question has been unfolded back out of the one-line recap. */
     const [rereading, setRereading] = useState(false);
 
@@ -98,6 +101,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards({});
         setBonusIndex(0);
         setBonusPick(null);
+        setSpent(0);
         setRereading(false);
     }
 
@@ -130,6 +134,33 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
             return next;
         });
+    }
+
+    function tickWhileRunning(answerId: string) {
+        if (turn.guesses === null) {
+            toggleInTime(answerId);
+            return;
+        }
+
+        const taking = (awards[answerId] ?? null) === null;
+        const next: ListAwards = { ...awards, [answerId]: taking ? turn.guesser.seat : null };
+        setAwards(next);
+
+        const left = turn.answers.filter(answer => (next[answer.id] ?? null) === null);
+        const after = Math.max(0, spent + (taking ? 1 : -1));
+        setSpent(after);
+
+        if (left.length === 0) setStage('settle');
+        else if (after >= turn.guesses) setStage('inTime');
+    }
+
+    function missOne() {
+        if (busy || turn.guesses === null) return;
+
+        const after = spent + 1;
+        setSpent(after);
+
+        if (after >= turn.guesses) setStage('inTime');
     }
 
     /**
@@ -212,13 +243,21 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 icon: 'user-check',
                 text: t('pubquizr.play.list.readyRuleOnlyGuesser', { guesser: turn.guesser.name })
             },
-            {
-                icon: 'clock',
-                text: t('pubquizr.play.list.readyRuleTime', {
-                    seconds: LIST_SECONDS,
-                    answers: turn.answers.length
-                })
-            },
+            turn.guesses === null
+                ? {
+                    icon: 'clock',
+                    text: t('pubquizr.play.list.readyRuleTime', {
+                        seconds: LIST_SECONDS,
+                        answers: turn.answers.length
+                    })
+                }
+                : {
+                    icon: 'target',
+                    text: t('pubquizr.play.list.readyRuleGuesses', {
+                        guesses: turn.guesses,
+                        answers: turn.answers.length
+                    })
+                },
             { icon: 'eye-off', text: t('pubquizr.play.list.readyRuleHidden') },
             {
                 icon: 'award',
@@ -263,7 +302,9 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     rather than picking up wherever the last one's clock left off. Time
                     running out and the reader pressing on early are the same move: on to
                     `inTime`, for one unhurried look at what the clock left ticked. */}
-                <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
+                {turn.guesses === null
+                    ? <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
+                    : <GuessCounter spent={spent} total={turn.guesses} />}
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.onlyYouSeeThis')}
@@ -279,7 +320,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                             label={answer.text}
                             active={(awards[answer.id] ?? null) !== null}
                             disabled={busy}
-                            onPress={() => toggleInTime(answer.id)}
+                            onPress={() => tickWhileRunning(answer.id)}
                         />
                     ))}
                 </ScrollView>
@@ -287,6 +328,21 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 <AppText style={styles.recap}>
                     {t('pubquizr.play.list.runningReminder', { guesser: turn.guesser.name })}
                 </AppText>
+
+                {turn.guesses !== null && (
+                    <PopPressable
+                        onPress={missOne}
+                        disabled={busy}
+                        accessibilityRole="button"
+                        style={[styles.missed, busy && styles.dimmed]}
+                    >
+                        <Feather name="x" size={15} color={theme.colors.textMuted} />
+
+                        <AppText style={styles.missedText}>
+                            {t('pubquizr.play.list.missed')}
+                        </AppText>
+                    </PopPressable>
+                )}
 
                 {/* The way out before the clock is: a guesser who has plainly run dry
                     should not have to sit and watch the bar empty. Either way this leads
@@ -473,6 +529,33 @@ function ListTimerSlot({ onDone }: { onDone: () => void }) {
     return <TurnTimer seconds={LIST_SECONDS} onDone={onDone} />;
 }
 
+function GuessCounter({ spent, total }: { spent: number, total: number }) {
+    const t = useT();
+    const styles = useStyles();
+
+    const left = Math.max(0, total - spent);
+
+    return (
+        <View style={styles.counter}>
+            <View style={styles.pips}>
+                {Array.from({ length: total }, (_, index) => (
+                    <View
+                        key={index}
+                        style={[styles.pip, index < spent && styles.pipSpent]}
+                    />
+                ))}
+            </View>
+
+            <AppText
+                style={styles.counterLabel}
+                accessibilityLiveRegion="polite"
+            >
+                {t('pubquizr.play.list.guessCounter', { left, total })}
+            </AppText>
+        </View>
+    )
+}
+
 const useStyles = createThemedStyles(theme => ({
     turn: {
         marginTop: 14,
@@ -524,6 +607,54 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12.5,
         fontWeight: 800,
         color: theme.colors.text
+    },
+    counter: {
+        flexShrink: 0,
+        alignItems: 'center',
+        gap: 10
+    },
+
+    pips: {
+        flexDirection: 'row',
+        gap: 8
+    },
+
+    pip: {
+        width: 26,
+        height: 26,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.focus
+    },
+    pipSpent: {
+        backgroundColor: theme.colors.backgroundElement
+    },
+
+    counterLabel: {
+        fontSize: 13,
+        fontWeight: 800,
+        color: theme.colors.text
+    },
+
+    missed: {
+        flexShrink: 0,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundElement
+    },
+
+    missedText: {
+        fontSize: 12.5,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
 
     again: {

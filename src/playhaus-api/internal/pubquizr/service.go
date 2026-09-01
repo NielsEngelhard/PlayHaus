@@ -188,6 +188,7 @@ type StartSingleDeviceInput struct {
 	// PlayerNames are in seating order, left to right, because the phone gets
 	// turned round the table as the quiz master role moves.
 	PlayerNames []string
+	ZenMode     bool
 }
 
 func (in StartSingleDeviceInput) validate() map[string]string {
@@ -237,7 +238,7 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		return nil, nil, err
 	}
 
-	deal, err := dealQuestions(quiz, len(names))
+	deal, err := dealQuestions(quiz, len(names), in.ZenMode)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -266,6 +267,8 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		// played. See Session.FinalistSeatA.
 		FinalistSeatA: -1,
 		FinalistSeatB: -1,
+
+		ZenMode: in.ZenMode,
 
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -372,7 +375,7 @@ type roundDeal struct {
 }
 
 // dealQuestions works out what this table will actually play.
-func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
+func dealQuestions(quiz *Quiz, players int, zen bool) ([]dealtQuestion, error) {
 	var deal []dealtQuestion
 
 	// all is a round that plays everything the quiz carries for it.
@@ -420,6 +423,10 @@ func dealQuestions(quiz *Quiz, players int) ([]dealtQuestion, error) {
 		// finale is dealt to the table and assigned to nobody.
 		{RoundFinale, all, toTheTable},
 	} {
+		if !PlaysRound(zen, round.number) {
+			continue
+		}
+
 		available := quiz.QuestionsIn(round.number)
 		// Held on to, because available is about to be cut down to what this table
 		// plays and one of the rules is about the whole pool.
@@ -1386,15 +1393,18 @@ func (s *Service) advance(session *Session) {
 		return
 	}
 
-	session.CurrentRound++
+	next := NextRound(session.ZenMode, session.CurrentRound)
 	session.CurrentPosition = 0
 
-	if session.CurrentRound > Rounds {
+	if next < 0 {
+		session.CurrentRound++
 		session.Status = SessionCompleted
 		finished := time.Now().UTC()
 		session.CompletedAt = &finished
 		return
 	}
+
+	session.CurrentRound = next
 
 	// A run is a round 1 thing -- it counts questions asked to one seat in a row -- so
 	// nothing carries it over a round boundary.

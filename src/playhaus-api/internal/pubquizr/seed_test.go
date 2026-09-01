@@ -74,7 +74,7 @@ func TestSeedLoadsEveryQuizThatShips(t *testing.T) {
 		t.Fatalf("load quizzes: %v", err)
 	}
 	for _, quiz := range loaded {
-		if _, err := dealQuestions(quiz, MaxPlayers); err != nil {
+		if _, err := dealQuestions(quiz, MaxPlayers, false); err != nil {
 			t.Errorf("quiz %s/%s cannot seat %d players: %v", quiz.Locale, quiz.Slug, MaxPlayers, err)
 		}
 	}

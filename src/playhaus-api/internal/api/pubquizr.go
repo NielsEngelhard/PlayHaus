@@ -169,10 +169,12 @@ type quizSessionResponse struct {
 	Locale string `json:"locale"`
 	Status string `json:"status"`
 
-	CurrentRound    int `json:"currentRound"`
-	CurrentPosition int `json:"currentPosition"`
-	QuizMasterSeat  int `json:"quizMasterSeat"`
-	TotalRounds     int `json:"totalRounds"`
+	CurrentRound    int   `json:"currentRound"`
+	CurrentPosition int   `json:"currentPosition"`
+	QuizMasterSeat  int   `json:"quizMasterSeat"`
+	TotalRounds     int   `json:"totalRounds"`
+	Rounds          []int `json:"rounds"`
+	ZenMode         bool  `json:"zenMode"`
 	// AnsweringSeat is whose turn it is to answer the current question, and null
 	// when nobody is being asked anything -- a finished session, a round this build
 	// cannot play yet, or one of the rounds where the whole table answers at once.
@@ -300,6 +302,8 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		}
 	}
 
+	order := pubquizr.RunningOrder(s.ZenMode)
+
 	return quizSessionResponse{
 		ID:              s.ID.String(),
 		QuizID:          s.QuizID.String(),
@@ -309,7 +313,9 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		CurrentRound:    s.CurrentRound,
 		CurrentPosition: s.CurrentPosition,
 		QuizMasterSeat:  s.QuizMasterSeat,
-		TotalRounds:     pubquizr.Rounds,
+		TotalRounds:     len(order),
+		Rounds:          order,
+		ZenMode:         s.ZenMode,
 		AnsweringSeat:   asked,
 		HotSeat:         s.HotSeatOrFirst(),
 		FinalistSeats:   finalists,
@@ -382,6 +388,7 @@ func (s *Server) handleGetQuiz(w http.ResponseWriter, r *http.Request) {
 type startSingleDeviceRequest struct {
 	QuizID      string   `json:"quizId"`
 	PlayerNames []string `json:"playerNames"`
+	ZenMode     bool     `json:"zenMode"`
 }
 
 func (req startSingleDeviceRequest) Validate() map[string]string {
@@ -435,6 +442,7 @@ func (s *Server) handleStartSingleDeviceQuiz(w http.ResponseWriter, r *http.Requ
 		QuizID:      quizID,
 		OwnerID:     ownerID,
 		PlayerNames: req.PlayerNames,
+		ZenMode:     req.ZenMode,
 	})
 	if err != nil {
 		s.writePubquizRError(w, err)

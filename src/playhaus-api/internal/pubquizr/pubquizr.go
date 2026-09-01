@@ -272,6 +272,8 @@ type Session struct {
 	FinalistSeatA int `gorm:"not null;default:-1"`
 	FinalistSeatB int `gorm:"not null;default:-1"`
 
+	ZenMode bool `gorm:"not null;default:false"`
+
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 

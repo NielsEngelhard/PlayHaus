@@ -473,6 +473,11 @@ export const nl: Catalog = {
                 pick: 'Kies een quiz',
                 pickAnother: 'Of kies een andere'
             },
+            zenMode: {
+                label: 'Zen-modus',
+                description: 'Geen timers. Ronde 4 — omschrijven — vervalt, en in ronde 5 krijgt de speler zes gokken in plaats van twintig seconden.',
+                caption: 'Zen · geen timers'
+            },
             start: 'Start de quiz',
             loading: 'Kijken of er nog een quiz openstaat…',
             running: {
@@ -610,16 +615,19 @@ export const nl: Catalog = {
                 settle: 'Verder gaan'
             },
             list: {
-                readyRuleOnlyGuesser: 'Je vraagt het aan {{guesser}}. Zolang de klok loopt telt alleen wat zij zeggen',
+                readyRuleOnlyGuesser: 'Je vraagt het aan {{guesser}}. Tot hun beurt voorbij is telt alleen wat zij zeggen',
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van de {{answers}} antwoorden te noemen',
+                readyRuleGuesses: '{{guesses}} gokken om zoveel mogelijk van de {{answers}} antwoorden te noemen',
                 readyRuleHidden: 'Alleen jij als quizmaster ziet deze antwoorden',
                 readyRuleScore: 'Elk antwoord dat ze noemen is {{worth}} punt voor de gokker',
-                readyRuleBonus: 'Als de tijd om is krijgen de andere {{others}} spelers ieder één gok voor een antwoord dat nog niet genoemd is om zo bonuspunten te scoren',
+                readyRuleBonus: 'Daarna krijgen de andere {{others}} spelers ieder één gok voor een antwoord dat nog niet genoemd is om zo bonuspunten te scoren',
                 start: 'Laat de antwoorden zien en start',
                 runningReminder: 'Vink elk antwoord af dat {{guesser}} noemt. De rest telt nog niet mee.',
+                guessCounter: 'Nog {{left}} van {{total}} gokken',
+                missed: 'Fout — dat kost een gok',
                 toInTime: 'Antwoorden van {{guesser}} controleren',
                 inTimeTitle: 'Wat had {{guesser}}?',
-                inTimeHint: 'Tik elk antwoord aan dat {{guesser}} goed had — ook het antwoord dat nog net op tijd kwam',
+                inTimeHint: 'Tik elk antwoord aan dat {{guesser}} goed had — ook het antwoord dat er helemaal aan het eind nog uit kwam',
                 toBonus: 'Bonusronde · nog {{left}} over',
                 toSettle: 'Door naar de punten',
                 bonusHint: 'Eén gok op een van deze. Goed geraden en het punt is van jou.',
@@ -636,6 +644,7 @@ export const nl: Catalog = {
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling) — aan de speler links van je, en aan niemand anders. Elk woord dat die raadt is een punt voor hen én voor jou. Daarna krijgt de rest van de tafel ieder één gok op een gemist woord.',
                 briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
+                briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die zes gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
                 briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is 100 punten waard. De persoon met de minste punten begint steeds.',
                 versus: 'vs',
                 quizmaster: '{{name}} is quiz master',

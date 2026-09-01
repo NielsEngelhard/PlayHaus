@@ -7,6 +7,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
 import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
+import ToggleRow from "@/components/ui/ToggleRow";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
@@ -75,6 +76,7 @@ export default function OneDeviceQuizerSetup() {
     const [names, setNames] = useState<string[]>(EMPTY_TABLE);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
+    const [zenMode, setZenMode] = useState(false);
     /** False until the server has said whether a quiz is already running. */
     const [checked, setChecked] = useState(false);
     /** The quiz that was already running, until the table has said what to do with it. */
@@ -206,7 +208,7 @@ export default function OneDeviceQuizerSetup() {
         const seats = seatedNames(names);
 
         try {
-            const session = await startSingleDeviceQuizRequest(selected.quiz.id, seats);
+            const session = await startSingleDeviceQuizRequest(selected.quiz.id, seats, zenMode);
 
             // Written only once the server has taken them. Remembering a table that was
             // refused would hand the same rejected names back next week.
@@ -243,7 +245,8 @@ export default function OneDeviceQuizerSetup() {
                 preview={<TablePreview names={names} />}
                 previewCaption={[
                     t('common.player.seated', { players: seatedNames(names).length }),
-                    selected.quiz?.title
+                    selected.quiz?.title,
+                    zenMode ? t('pubquizr.oneDevice.zenMode.caption') : null
                 ].filter(Boolean).join(' · ')}
                 error={error === null ? undefined : t(error)}
                 action={
@@ -281,6 +284,14 @@ export default function OneDeviceQuizerSetup() {
 
                 {/* Already a fenced panel of its own, so no card around it. */}
                 <QuizPicker quiz={selected.quiz} onSelect={selected.select} />
+
+                <ToggleRow
+                    flush
+                    value={zenMode}
+                    onChange={setZenMode}
+                    label={t('pubquizr.oneDevice.zenMode.label')}
+                    description={t('pubquizr.oneDevice.zenMode.description')}
+                />
             </SettingsPageBase>
 
             {/*

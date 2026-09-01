@@ -24,6 +24,29 @@ const (
 	RoundFinale   = 6 // head to head between the two highest scores, read by a third
 )
 
+func RunningOrder(zen bool) []int {
+	if zen {
+		return []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundFinale}
+	}
+
+	return []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale}
+}
+
+func PlaysRound(zen bool, round int) bool {
+	return slices.Contains(RunningOrder(zen), round)
+}
+
+func NextRound(zen bool, round int) int {
+	order := RunningOrder(zen)
+
+	at := slices.Index(order, round)
+	if at < 0 || at+1 >= len(order) {
+		return -1
+	}
+
+	return order[at+1]
+}
+
 const (
 	OpenQuestionPoints  = 1
 	OpenScoresEvery     = 2
@@ -64,6 +87,8 @@ const (
 	// somebody reciting what they already know, and a longer window there is mostly
 	// silence with the answers still on screen.
 	ListSeconds = 20
+
+	ZenListGuesses = 6
 )
 
 // IsHotSeatRound is whether a round is played on the hot seat: read to one seat,

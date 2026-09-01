@@ -30,7 +30,7 @@ export interface RoundKindAndRule {
  * `RoundIntroScreen` opens every round with it, and it has no name yet to put in a
  * `job` line the way the hand-off does.
  */
-export function roundKindAndRule(t: ReturnType<typeof useT>, round: number): RoundKindAndRule {
+export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen = false): RoundKindAndRule {
     switch (round) {
         case ROUND_CHOICE:
             return {
@@ -54,7 +54,7 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number): Rou
             return {
                 kind: t('pubquizr.play.rounds.list'),
                 rule: '',
-                brief: t('pubquizr.play.intro.briefList')
+                brief: zen ? t('pubquizr.play.intro.briefListZen') : t('pubquizr.play.intro.briefList')
             };
         case ROUND_FINALE:
             return {

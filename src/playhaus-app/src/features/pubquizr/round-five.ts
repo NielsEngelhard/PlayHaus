@@ -40,6 +40,8 @@ export const ROUND_LIST = 5;
  */
 export const LIST_SECONDS = DEV_MODE ? 3 : 20;
 
+export const ZEN_LIST_GUESSES = 6;
+
 /** What one credited answer pays. Mirrors `ListAnswerPoints`. */
 export const LIST_ANSWER_POINTS = 1;
 
@@ -82,6 +84,7 @@ export interface ListTurn {
     total: number
     /** What one credited answer pays. */
     worth: number
+    guesses: number | null
 }
 
 /**
@@ -140,7 +143,8 @@ export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | n
         bonus,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
-        worth: LIST_ANSWER_POINTS
+        worth: LIST_ANSWER_POINTS,
+        guesses: session.zenMode ? ZEN_LIST_GUESSES : null
     };
 }
 
