@@ -748,7 +748,7 @@ export const nl: Catalog = {
         settings: {
             wordsOnly: {
                 title: "Alleen woorden",
-                description: "Gebruik alleen woorden of wil je ook zinnen gebruiken om een passend antwoord bij te zoeken."
+                description: "Gebruik alleen woorden. Anders een zin."
             }
         },
         play: {
@@ -802,9 +802,9 @@ export const nl: Catalog = {
 
             discuss: {
                 ring: 'Praat het uit',
-                title: 'Wie klopt er niet?',
-                description: 'Geen timer. De tafel bepaalt zelf wanneer het genoeg is geweest.',
-                tieNote: 'Staken de stemmen? Praat het uit aan tafel.',
+                title: 'Wie geloofd de meerderheid niet?',
+                description: 'Iedereen moet stemmen op iemand die hij/zij niet vertrouwd. Degene met de meeste stemmen wordt weggestemd.',
+                tieNote: 'Je mag jouw antwoord niet verdedigen. Iedereen moet gewoon stemmen zonder overleg. Overleg is verboden!',
                 action: 'Stemmen'
             },
 

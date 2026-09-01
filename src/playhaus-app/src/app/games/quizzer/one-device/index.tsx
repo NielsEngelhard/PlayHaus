@@ -15,12 +15,11 @@ import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
-import PlayerSeats from "@/features/pubquizr/components/PlayerSeats";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
 import QuizRow from "@/features/pubquizr/components/QuizRow";
 import TablePreview from "@/features/pubquizr/components/TablePreview";
 import TableRecap from "@/features/pubquizr/components/TableRecap";
-import { MIN_PLAYERS, seatedNames, tableProblem } from "@/features/pubquizr/one-device-table";
+import { MAX_PLAYERS, MIN_PLAYERS, seatedNames, tableProblem } from "@/features/pubquizr/one-device-table";
 import { quizErrorMessage } from "@/features/pubquizr/pubquizr-errors";
 import {
     abandonSingleDeviceSessionRequest,
@@ -35,32 +34,16 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, View } from "react-native";
+import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
 
-/** The seats a fresh table starts with: the fewest the server will open a game for. */
 const EMPTY_TABLE: string[] = Array.from({ length: MIN_PLAYERS }, () => '');
 
-/**
- * The three questions, in the order they are asked.
- *
- * Who is playing comes first because it is the one nobody can skip and the one the
- * remembered table can answer for them; the quiz second, because that is the choice
- * people came to make; the rest last, because it is the only part of the form somebody
- * can reasonably ignore.
- */
 type Step = 1 | 2 | 3;
 
 const STEPS = 3;
 
-/** How far a step travels on its way in. Small: this is a change of subject, not of page. */
 const STEP_TRAVEL = 26;
 
-/**
- * The heading each step puts on the band, and the line it opens with underneath.
- *
- * Steps one and two reuse the labels their own controls used to carry: with one question
- * to a page the band's title *is* that label, and printing it twice would be the screen
- * asking the same thing of itself.
- */
 const STEP_TITLES: Record<Step, TranslationKey> = {
     1: 'pubquizr.oneDevice.players.label',
     2: 'pubquizr.oneDevice.steps.quizTitle',
@@ -73,64 +56,20 @@ const STEP_INTROS: Record<Step, TranslationKey> = {
     3: 'pubquizr.oneDevice.steps.settingsIntro'
 };
 
-/**
- * Setting up a quiz for one table sharing one phone.
- *
- * Everything on this screen is local until `Start`, which is what creates the session on
- * the server — so backing out and coming back gives you the form again, and nothing
- * exists until you commit.
- *
- * Except when there is already a quiz. A table keeps one evening at a time, and starting
- * one throws every other session away — so this screen asks the server first, and a
- * table that left a quiz running is asked what to do about it before the form behind the
- * question can quietly destroy it. Same shape, and the same reasoning, as the League of
- * Letters settings screen.
- *
- * Two things are being asked for, and only one of them is obvious. The quiz is a choice
- * off a shelf. The players are a *seating order*: the phone is passed round the table as
- * the quiz master role moves, so the order the names go in is the order the phone
- * travels, which is why the note above the seats says so out loud.
- *
- * They are asked one at a time. All three used to be one scroll, and the quiz shelf
- * alone is most of a screen tall — so the seats were above the fold, the shelf was the
- * fold, and the one switch below it was found by accident if at all. A step apiece gives
- * each question the whole page and a heading of its own, and turns the start button into
- * something that only appears once there is nothing left to answer.
- *
- * Still one route, and one `SettingsPageBase`. The steps are state, not addresses: the
- * band, the table above it and the footer stay mounted while only the sheet's contents
- * change, which is what makes moving between them feel like turning a page rather than
- * loading one. It also keeps the half-filled form out of the browser's history, where
- * every entry would be a page that no longer exists.
- */
 export default function OneDeviceQuizerSetup() {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
-    // `SettingsPageBase` claims this too, but only once it is on screen. Claimed here as
-    // well — before the early return below — so the app header does not paint for the
-    // length of the check and then leave. Called before every early return, so the hook
-    // order never changes.
     useChromeless();
 
     const router = useRouter();
 
-    // Handed over by `QuizRow` on the index: tapping a quiz there is the same journey as
-    // pressing "one device", with the choice already made.
     const { quizId } = useLocalSearchParams<{ quizId?: string }>();
     const selected = useSelectedQuiz(quizId);
 
     const { status } = useAuth();
 
-    /**
-     * Which question is being asked, and which way the answer to the last one left.
-     *
-     * The direction is kept beside the step rather than worked out from it because by
-     * the time the sheet re-renders there is nothing left to compare against. It is also
-     * what makes the first paint still: arriving on the screen is the router's own
-     * transition, and a second slide underneath it would be one animation too many.
-     */
     const [flow, setFlow] = useState<{ step: Step, travel: number }>({ step: 1, travel: 0 });
     const step = flow.step;
 
@@ -138,29 +77,17 @@ export default function OneDeviceQuizerSetup() {
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [zenMode, setZenMode] = useState(false);
-    /** False until the server has said whether a quiz is already running. */
     const [checked, setChecked] = useState(false);
-    /** The quiz that was already running, until the table has said what to do with it. */
     const [running, setRunning] = useState<QuizSession | null>(null);
     const [abandoning, setAbandoning] = useState(false);
-    /** Kept apart from `error`, which belongs to the form the modal is sitting on top of. */
     const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
-    // Nothing may touch state after unmount — starting the quiz navigates away while
-    // the request that caused it may still be settling.
     const mounted = useRef(true);
     useEffect(() => {
         mounted.current = true;
         return () => { mounted.current = false; };
     }, []);
 
-    /**
-     * Last week's table, if this phone remembers one.
-     *
-     * Seeded once and only into an untouched form: the read is asynchronous, and a
-     * person who started typing before it came back must not have their first name
-     * overwritten by a group they are no longer playing with.
-     */
     const seeded = useRef(false);
     useEffect(() => {
         void (async () => {
@@ -174,16 +101,11 @@ export default function OneDeviceQuizerSetup() {
         })();
     }, []);
 
-    // Only a signed-in session has a quiz to find; while the session is being restored
-    // there is nothing to ask about yet.
     const signedIn = status === 'signedIn';
 
     useEffect(() => {
         if (!signedIn) return;
 
-        // Asking on mount and acting on the answer is the whole job. Every state change
-        // happens after the `await`, never on the way in, so nothing cascades in the
-        // render this effect belongs to.
         void (async () => {
             let found: QuizSession | null = null;
             try {
@@ -196,18 +118,12 @@ export default function OneDeviceQuizerSetup() {
 
             if (!mounted.current) return;
 
-            // Both outcomes end the wait. A quiz that was found is put to the table as a
-            // question over the form rather than acted on for them: an evening halfway
-            // through is a lot to lose to a screen somebody only meant to look at.
             setRunning(found);
             setChecked(true);
         })();
     }, [signedIn]);
 
-    /** Back to the table they left. */
     function resume(session: QuizSession) {
-        // `replace`, not `push`: this screen would send the quizmaster straight back to
-        // the game they just left, so it must not be behind it.
         router.replace(ROUTES.quizzerOneDeviceSession(session.id) as RelativePathString);
     }
 
@@ -391,15 +307,15 @@ export default function OneDeviceQuizerSetup() {
                     />
                 )}
 
-                {/* A fragment so seats and complaint stay one child — one ruled section,
-                    no card. The label they used to sit under is the band's title now. */}
                 {step === 1 && (
                     <>
-                        <PlayerSeats names={names} onChange={editNames} disabled={starting} />
+                        <PlayerNamesInput
+                            minPlayers={MIN_PLAYERS}
+                            maxPlayers={MAX_PLAYERS}
+                            names={names}
+                            onChange={editNames}
+                        />
 
-                        {/* Kept beside the seats rather than sent to the footer: it is
-                            about the table, and the footer's line is about the quiz that
-                            failed to start. */}
                         {showProblem && (
                             <AppText style={styles.problem}>{t(problem)}</AppText>
                         )}
@@ -488,12 +404,6 @@ export default function OneDeviceQuizerSetup() {
     )
 }
 
-/**
- * A remembered table, back up to the minimum number of chairs.
- *
- * A stored row can be shorter than `MIN_PLAYERS` — the rules can move, and so can what
- * an older build wrote — and `PlayerSeats` is promised at least that many seats.
- */
 function padToMinimum(names: string[]): string[] {
     return names.length >= MIN_PLAYERS
         ? names

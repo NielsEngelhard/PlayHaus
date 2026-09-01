@@ -37,7 +37,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
      */
     const [picked, setPicked] = useState<LanguageCode | null>(null);
     const language = picked ?? auth.user?.locale ?? DEFAULT_LANGUAGE;
-    const [wordsOnly, setWordsOnly] = useState<boolean>(false);
+    const [wordsOnly, setWordsOnly] = useState<boolean>(true);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [starting, setStarting] = useState(false);
 
