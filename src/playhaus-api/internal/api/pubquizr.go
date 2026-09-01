@@ -24,6 +24,7 @@ type quizSummaryResponse struct {
 	Category    string `json:"category"`
 	Locale      string `json:"locale"`
 	PublishedAt string `json:"publishedAt,omitempty"`
+	Played      bool   `json:"played,omitempty"`
 }
 
 type quizListResponse struct {
@@ -72,7 +73,7 @@ type quizAnswerResponse struct {
 	Alias bool `json:"alias,omitempty"`
 }
 
-func newQuizSummaryResponse(q *pubquizr.Quiz, questionCount int) quizSummaryResponse {
+func newQuizSummaryResponse(q *pubquizr.Quiz, played bool) quizSummaryResponse {
 	summary := quizSummaryResponse{
 		ID:          q.ID.String(),
 		Slug:        q.Slug,
@@ -81,6 +82,7 @@ func newQuizSummaryResponse(q *pubquizr.Quiz, questionCount int) quizSummaryResp
 		Category:    q.Category.String(),
 		Locale:      q.Locale.String(),
 		PublishedAt: q.CreatedAt.Format(time.RFC3339),
+		Played:      played,
 	}
 
 	if q.PublishedAt != nil {
@@ -89,7 +91,7 @@ func newQuizSummaryResponse(q *pubquizr.Quiz, questionCount int) quizSummaryResp
 	return summary
 }
 
-func newQuizResponse(q *pubquizr.Quiz) quizResponse {
+func newQuizResponse(q *pubquizr.Quiz, played bool) quizResponse {
 	rounds := make([]quizRoundResponse, 0, pubquizr.Rounds)
 
 	for number := 1; number <= pubquizr.Rounds; number++ {
@@ -111,7 +113,7 @@ func newQuizResponse(q *pubquizr.Quiz) quizResponse {
 	}
 
 	return quizResponse{
-		quizSummaryResponse: newQuizSummaryResponse(q, len(q.Questions)),
+		quizSummaryResponse: newQuizSummaryResponse(q, played),
 		Rounds:              rounds,
 	}
 }
@@ -334,6 +336,13 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 // --- handlers -------------------------------------------------------------
 
 func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleListQuizzes reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
 	query := r.URL.Query()
 
 	// The locale is not a nicety here. A quiz is written for one language, so a
@@ -346,7 +355,7 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 		PageSize: atoiOr(query.Get("pageSize"), pubquizr.DefaultPageSize),
 	}
 
-	page, err := s.pubquizr.ListQuizzes(r.Context(), filter)
+	page, err := s.pubquizr.ListQuizzes(r.Context(), ownerID, filter)
 	if err != nil {
 		s.log.Error("list quizzes", "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
@@ -355,7 +364,7 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 
 	items := make([]quizSummaryResponse, 0, len(page.Quizzes))
 	for _, quiz := range page.Quizzes {
-		items = append(items, newQuizSummaryResponse(quiz, page.Counts[quiz.ID]))
+		items = append(items, newQuizSummaryResponse(quiz, page.Played[quiz.ID]))
 	}
 
 	writeJSON(w, http.StatusOK, quizListResponse{
@@ -368,6 +377,13 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleGetQuiz(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleGetQuiz reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
 	quizID, err := uuid.Parse(r.PathValue("quizID"))
 	if err != nil {
 		// An unparseable id cannot name a quiz, and saying so is the same answer
@@ -382,7 +398,14 @@ func (s *Server) handleGetQuiz(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, http.StatusOK, newQuizResponse(quiz))
+	played, err := s.pubquizr.HasPlayed(r.Context(), ownerID, quiz.ID)
+	if err != nil {
+		s.log.Error("quiz played", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	writeJSON(w, http.StatusOK, newQuizResponse(quiz, played))
 }
 
 type startSingleDeviceRequest struct {

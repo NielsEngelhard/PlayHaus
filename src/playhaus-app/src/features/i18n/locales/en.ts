@@ -491,6 +491,14 @@ export const en = {
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
                 /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
                 published: '{{day}} {{month}} {{year}}',
+                /**
+                 * The mark on a quiz this host has already had out of the box.
+                 *
+                 * Past tense and nothing else — no date and no tally. The row only has
+                 * to answer "have we done this one?", and a quiz the table half played
+                 * in March is as spoiled as one they finished last night.
+                 */
+                played: 'Played',
                 loadOlder: 'Load older',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
                 failed: 'The quizzes could not be loaded. Check your connection.',

@@ -21,6 +21,9 @@ type Store interface {
 	QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]int, error)
 	ReplaceQuiz(ctx context.Context, quiz *Quiz) error
 
+	RecordQuizPlay(ctx context.Context, play *QuizPlay) error
+	PlayedQuizIDs(ctx context.Context, ownerID string, quizIDs []uuid.UUID) (map[uuid.UUID]bool, error)
+
 	CreateSession(ctx context.Context, session *Session) error
 	SessionByID(ctx context.Context, id uuid.UUID) (*Session, error)
 	SessionsInProgressByUserID(ctx context.Context, userID string) ([]*Session, error)
@@ -80,6 +83,7 @@ func (f QuizFilter) Offset() int { return (f.Page - 1) * f.PageSize }
 type QuizPage struct {
 	Quizzes  []*Quiz
 	Counts   map[uuid.UUID]int
+	Played   map[uuid.UUID]bool
 	Page     int
 	PageSize int
 	Total    int64
@@ -106,8 +110,7 @@ func (s *Service) Quiz(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 	return quiz, nil
 }
 
-// ListQuizzes is one page of the shelf.
-func (s *Service) ListQuizzes(ctx context.Context, f QuizFilter) (*QuizPage, error) {
+func (s *Service) ListQuizzes(ctx context.Context, ownerID string, f QuizFilter) (*QuizPage, error) {
 	f = f.normalize()
 
 	quizzes, total, err := s.store.ListQuizzes(ctx, f)
@@ -124,13 +127,29 @@ func (s *Service) ListQuizzes(ctx context.Context, f QuizFilter) (*QuizPage, err
 		return nil, err
 	}
 
+	played, err := s.store.PlayedQuizIDs(ctx, ownerID, ids)
+	if err != nil {
+		return nil, err
+	}
+
 	return &QuizPage{
 		Quizzes:  quizzes,
 		Counts:   counts,
+		Played:   played,
 		Page:     f.Page,
 		PageSize: f.PageSize,
 		Total:    total,
 	}, nil
+}
+
+// HasPlayed is whether this host has already had this one quiz out of the box.
+func (s *Service) HasPlayed(ctx context.Context, ownerID string, quizID uuid.UUID) (bool, error) {
+	played, err := s.store.PlayedQuizIDs(ctx, ownerID, []uuid.UUID{quizID})
+	if err != nil {
+		return false, err
+	}
+
+	return played[quizID], nil
 }
 
 func (s *Service) Session(ctx context.Context, id uuid.UUID) (*Session, error) {
@@ -305,6 +324,14 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 
 	if err := s.store.CreateSession(ctx, session); err != nil {
 		return nil, nil, err
+	}
+
+	if err := s.store.RecordQuizPlay(ctx, &QuizPlay{
+		OwnerID:  in.OwnerID,
+		QuizID:   quiz.ID,
+		PlayedAt: now,
+	}); err != nil {
+		return nil, nil, fmt.Errorf("record quiz play: %w", err)
 	}
 
 	// A table plays one evening at a time: this one replaces whatever was still

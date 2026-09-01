@@ -364,6 +364,14 @@ type SessionAnswer struct {
 
 func (SessionAnswer) TableName() string { return "pq_session_answers" }
 
+type QuizPlay struct {
+	OwnerID  string    `gorm:"primaryKey"`           // users.ID -- whose phone this was
+	QuizID   uuid.UUID `gorm:"primaryKey;type:text"` // pq_quizzes.ID
+	PlayedAt time.Time `gorm:"not null"`
+}
+
+func (QuizPlay) TableName() string { return "pq_quiz_plays" }
+
 // Models are the tables this game owns, parents before children so a fresh database
 // can build the foreign keys as it goes.
 func Models() []any {
@@ -375,5 +383,6 @@ func Models() []any {
 		&SessionPlayer{},
 		&SessionQuestion{},
 		&SessionAnswer{},
+		&QuizPlay{},
 	}
 }

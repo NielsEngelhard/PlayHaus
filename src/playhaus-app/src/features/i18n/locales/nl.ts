@@ -449,6 +449,7 @@ export const nl: Catalog = {
                 label: 'Alle quizzen',
                 tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
                 published: '{{day}} {{month}} {{year}}',
+                played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',

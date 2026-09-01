@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type GormStore struct {
@@ -148,6 +149,40 @@ func (s *GormStore) QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (ma
 		counts[row.QuizID] = row.Total
 	}
 	return counts, nil
+}
+
+// RecordQuizPlay remembers that user already played this quiz
+func (s *GormStore) RecordQuizPlay(ctx context.Context, play *QuizPlay) error {
+	err := s.db.WithContext(ctx).
+		Clauses(clause.OnConflict{DoNothing: true}).
+		Create(play).Error
+	if err != nil {
+		return fmt.Errorf("insert quiz play: %w", err)
+	}
+
+	return nil
+}
+
+// PlayedQuizIDs is which of the given quizzes this host has already played, as a set.
+func (s *GormStore) PlayedQuizIDs(ctx context.Context, ownerID string, quizIDs []uuid.UUID) (map[uuid.UUID]bool, error) {
+	played := make(map[uuid.UUID]bool, len(quizIDs))
+	if ownerID == "" || len(quizIDs) == 0 {
+		return played, nil
+	}
+
+	var ids []uuid.UUID
+	err := s.db.WithContext(ctx).
+		Model(&QuizPlay{}).
+		Where("owner_id = ? AND quiz_id IN ?", ownerID, quizIDs).
+		Pluck("quiz_id", &ids).Error
+	if err != nil {
+		return nil, fmt.Errorf("select quiz plays: %w", err)
+	}
+
+	for _, id := range ids {
+		played[id] = true
+	}
+	return played, nil
 }
 
 // ReplaceQuiz writes a seeded quiz and the content under it, replacing whatever was
@@ -341,9 +376,9 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 				// on the one path where forgetting it loses who the finale is between.
 				"finalist_seat_a": session.FinalistSeatA,
 				"finalist_seat_b": session.FinalistSeatB,
-				"status":           session.Status,
-				"completed_at":     session.CompletedAt,
-				"updated_at":       session.UpdatedAt,
+				"status":          session.Status,
+				"completed_at":    session.CompletedAt,
+				"updated_at":      session.UpdatedAt,
 			}).Error
 		if err != nil {
 			return fmt.Errorf("update session: %w", err)

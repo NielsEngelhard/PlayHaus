@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
+import Chip from "@/components/ui/Chip";
 import { ROUTES } from "@/constants/routes";
-import { usePhrase } from "@/features/i18n/LanguageContext";
+import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
@@ -47,12 +48,17 @@ const AVATAR_IMAGE: ImageStyle = {
  * there to say the row goes somewhere, not to be aimed at.
  */
 export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
+    const t = useT();
     const theme = useTheme();
     const styles = useStyles();
     const phrase = usePhrase();
 
     const swatch = swatchFor(quiz);
     const published = publishedAtPhrase(quiz.publishedAt);
+
+    const label = quiz.played
+        ? `${quiz.title}, ${t('pubquizr.index.list.played')}`
+        : quiz.title;
 
     const body = (
         <>
@@ -88,13 +94,21 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
                     </AppText>
                 )}
 
-                {published !== null && (
-                    <View style={styles.published}>
-                        <Feather name="clock" size={11} color={theme.colors.textMuted} />
+                {(published !== null || quiz.played === true) && (
+                    <View style={styles.meta}>
+                        {published !== null && (
+                            <View style={styles.published}>
+                                <Feather name="clock" size={11} color={theme.colors.textMuted} />
 
-                        <AppText style={styles.publishedText}>
-                            {phrase(published)}
-                        </AppText>
+                                <AppText style={styles.publishedText}>
+                                    {phrase(published)}
+                                </AppText>
+                            </View>
+                        )}
+
+                        {quiz.played === true && (
+                            <Chip text={t('pubquizr.index.list.played')} icon="check" />
+                        )}
                     </View>
                 )}
             </View>
@@ -117,9 +131,9 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
             <Pressable
                 onPress={() => onSelect(quiz)}
                 accessibilityRole="radio"
-                accessibilityLabel={quiz.title}
+                accessibilityLabel={label}
                 accessibilityState={{ selected, checked: selected }}
-                style={[styles.row, selected && styles.rowSelected]}
+                style={[styles.row, quiz.played === true && styles.rowPlayed, selected && styles.rowSelected]}
             >
                 {body}
             </Pressable>
@@ -136,10 +150,10 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
         >
             <Pressable
                 accessibilityRole="button"
-                accessibilityLabel={quiz.title}
+                accessibilityLabel={label}
                 // Flattened: `Link asChild` clones this onto the anchor it renders, and a
                 // style array does not survive that trip.
-                style={StyleSheet.flatten([styles.row])}
+                style={StyleSheet.flatten([styles.row, quiz.played === true && styles.rowPlayed])}
             >
                 {body}
             </Pressable>
@@ -159,10 +173,10 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         ...theme.shadows.hardSmall
     },
+    rowPlayed: {
+        opacity: 0.72
+    },
 
-    // The one accent that means "this is the one" in either scheme — blue on paper,
-    // lemon on the dark canvas — carried on the border and the fill rather than on a
-    // badge, so a column of rows shows its answer at a glance.
     rowSelected: {
         borderColor: theme.colors.focus,
         backgroundColor: theme.colors.backgroundFocus
@@ -208,9 +222,15 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 700,
         color: theme.colors.textSecondary
     },
+    meta: {
+        marginTop: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 8
+    },
 
     published: {
-        marginTop: 6,
         flexDirection: 'row',
         alignItems: 'center',
         gap: 5
