@@ -46,6 +46,22 @@ func (s GormStore) GetOneDeviceGame(ctx context.Context, ownerID string, gameID 
 	return game, nil
 }
 
+func (s GormStore) GetOneDeviceGames(ctx context.Context, ownerID string) ([]*OneOfUsSingleDeviceGame, error) {
+	var games []*OneOfUsSingleDeviceGame
+
+	if err := s.db.WithContext(ctx).
+		Preload("Players").
+		Where("owner_id = ?", ownerID).
+		Find(&games).Error; err != nil {
+		return nil, fmt.Errorf(
+			"get OneOfUsSingleDeviceGame: %w",
+			err,
+		)
+	}
+
+	return games, nil
+}
+
 func (s GormStore) GetOneDeviceGamePlayers(ctx context.Context, ownerID string, gameID uuid.UUID) ([]OneOfUsLocalPlayer, error) {
 	var players []OneOfUsLocalPlayer
 

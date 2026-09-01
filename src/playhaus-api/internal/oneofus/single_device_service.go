@@ -18,6 +18,7 @@ type GameInputLine struct {
 type Store interface {
 	CreateOneDeviceGame(ctx context.Context, game *OneOfUsSingleDeviceGame) error
 	GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error)
+	GetOneDeviceGames(ctx context.Context, ownerID string) ([]*OneOfUsSingleDeviceGame, error)
 	GetOneDeviceGamePlayers(ctx context.Context, ownerID string, gameID uuid.UUID) ([]OneOfUsLocalPlayer, error)
 	VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid.UUID) error
 	FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, civiliansWon bool) error
@@ -98,6 +99,10 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 
 func (s *Service) GetSingleDeviceOneOfUsGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error) {
 	return s.store.GetOneDeviceGame(ctx, ownerID, gameID)
+}
+
+func (s *Service) GetSingleDeviceOneOfUsGames(ctx context.Context, ownerID string) ([]*OneOfUsSingleDeviceGame, error) {
+	return s.store.GetOneDeviceGames(ctx, ownerID)
 }
 
 func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlayerOutSingleDeviceGameInput) (*VotePlayerOutSingleDeviceGameResponse, error) {

@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 	"playhaus-api/internal/lol"
+	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/pubquizr"
 )
 
@@ -46,6 +47,14 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapQuizSessionsToReconnectableGame(quizzes)...)
 	}
 
+	// Get one device one of us games
+	singleDeviceOOUGames, err := s.oneOfUs.GetSingleDeviceOneOfUsGames(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get single device one of us games to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapSingleDeviceOneOfUsGamesToReconnectableGame(singleDeviceOOUGames)...)
+	}
+
 	writeJSON(w, http.StatusOK, allGames)
 }
 
@@ -59,6 +68,22 @@ func mapQuizSessionsToReconnectableGame(sessions []*pubquizr.Session) []Reconnec
 			ID:        session.ID.String(),
 			Type:      PubquizRSingleDevice,
 			CreatedAt: session.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
+}
+
+func mapSingleDeviceOneOfUsGamesToReconnectableGame(games []*oneofus.OneOfUsSingleDeviceGame) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(games))
+
+	for i := range games {
+		game := games[i]
+
+		mappedGames[i] = ReconnectableGame{
+			ID:        game.ID.String(),
+			Type:      OneOfUsSingleDevice,
+			CreatedAt: game.CreatedAt.Format(timeFormat),
 		}
 	}
 
