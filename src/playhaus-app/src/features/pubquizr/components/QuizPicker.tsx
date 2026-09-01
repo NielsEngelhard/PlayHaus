@@ -15,12 +15,16 @@ interface Props {
 /**
  * Which quiz the table is about to play, and every other one they could have picked.
  *
- * Two parts rather than a list with a tick somewhere in it. The chosen quiz is pinned
- * above the shelf because it may not be on the shelf at all — it can have come from
- * another tab, or from a page of older quizzes nobody has loaded — and an answer you
- * have to go looking for is not an answer. The shelf below leaves it out for the same
- * reason `QuizList` explains: once it is drawn above, a second copy in the rows reads
- * as two different quizzes with the same name.
+ * The chosen quiz is pinned above the shelf because it may not be on the shelf at all
+ * — it can have come from another tab, or from a page of older quizzes nobody has
+ * loaded — and an answer you have to go looking for is not an answer.
+ *
+ * It is pinned *as well as* left in the rows, not instead of them. Both are drawn
+ * selected, so the pair reads as one quiz seen twice rather than as two: the row above
+ * is the answer, and the ticked row below is where that answer sits among the others.
+ * Pulling it out of the list instead made the shelf re-flow under the finger that had
+ * just tapped it, and left whoever came back to change their mind hunting for the one
+ * row that was no longer there.
  */
 export default function QuizPicker({ quiz, onSelect }: Props) {
     const t = useT();
@@ -46,7 +50,7 @@ export default function QuizPicker({ quiz, onSelect }: Props) {
                         : t('pubquizr.oneDevice.quiz.pickAnother')}
                 />
 
-                <QuizList onSelect={onSelect} omitQuizId={quiz?.id} />
+                <QuizList onSelect={onSelect} selectedQuizId={quiz?.id} />
             </View>
         </View>
     )

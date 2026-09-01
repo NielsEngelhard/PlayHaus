@@ -2,6 +2,7 @@ import BackChip from "@/components/layout/BackChip";
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { accentOf, type Game } from "@/constants/games";
 import { accentInkColor, Spacing, withAlpha } from "@/constants/theme";
 import { AccentProvider } from "@/features/theme/AccentContext";
@@ -11,7 +12,7 @@ import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
-import { Children, type ReactNode } from "react";
+import { Children, useEffect, useRef, type ReactNode } from "react";
 import { ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -22,8 +23,21 @@ interface Props {
     title: string,
     /** Where the way out goes. This page has the only one: there is no app header on it. */
     back: Href,
+    /**
+     * Takes the chip over, for a screen whose "back" is a step of its own rather than
+     * another page. `back` is still what it falls through to on the first step.
+     */
+    onBack?: () => void,
     /** Stands in for the game's name in the band's top row, for a screen that is not about it. */
     eyebrow?: string,
+    /**
+     * Where this screen is in a run of them, as a track under the top row.
+     *
+     * A form split into steps has to say how many are left, or every step looks like it
+     * might be the last one. `current` is 1-based and counts itself as filled — you are
+     * on it, not past it.
+     */
+    progress?: { current: number, total: number },
     /**
      * A line about the screen, above the first setting.
      *
@@ -56,6 +70,16 @@ interface Props {
      * still comes as one child, and simply brings its chrome with it.
      */
     children: ReactNode,
+    /**
+     * Replays the sheet's entrance whenever it changes, for a screen that swaps its own
+     * contents underneath a band that stays put.
+     *
+     * The whole column moves as one, inside the scroller, so the hairlines between the
+     * sections travel with them. `enterFrom` is where it comes in from, in px — positive
+     * is from the right, which is what going forwards should look like.
+     */
+    enterKey?: string,
+    enterFrom?: number,
     /** What the player is about to get, in a line above the action. */
     facts?: string,
     /** What went wrong, in the same place. Already translated. */
@@ -98,7 +122,7 @@ const BAND_TUCK = 18;
  * page passing it to each of them. The rows themselves stay ordinary components — the
  * same `ToggleRow` used outside a settings page looks exactly as it did.
  */
-export default function SettingsPageBase({ game, title, back, eyebrow, intro, preview, previewCaption, children, facts, error, action }: Props) {
+export default function SettingsPageBase({ game, title, back, onBack, eyebrow, progress, intro, preview, previewCaption, children, enterKey, enterFrom, facts, error, action }: Props) {
     const styles = useStyles();
     const theme = useTheme();
 
@@ -130,8 +154,42 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, pr
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
 
+    /*
+     * Back to the top whenever the contents change underneath the scroller.
+     *
+     * The page never remounts between steps, so neither does this — and a step arriving
+     * at whatever offset the last one was left at is the one thing that gives the trick
+     * away. Unanimated on purpose: the column is already sliding in, and a scroll running
+     * against that would be two movements arguing. A no-op for every page that asks
+     * everything at once, which is every other caller.
+     */
+    const scroller = useRef<ScrollView>(null);
+    useEffect(() => {
+        if (enterKey === undefined) return;
+
+        scroller.current?.scrollTo({ y: 0, animated: false });
+    }, [enterKey]);
+
     // Nulls and falses drop out here, so a section the page decided not to render takes
     const sections = Children.toArray(children);
+
+    // Built out here so the scroller can hand it to `SlideFadeIn` or render it bare
+    // without the column being written twice.
+    const column = (
+        <>
+            {intro !== undefined && (
+                <View style={styles.section}>
+                    <AppText style={styles.intro}>{intro}</AppText>
+                </View>
+            )}
+
+            {sections.map((section, i) => (
+                <View key={i} style={[styles.section, i > 0 && styles.sectionDivided]}>
+                    {section}
+                </View>
+            ))}
+        </>
+    );
 
     return (
         <AccentProvider accent={accent}>
@@ -152,7 +210,7 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, pr
                         their `band` variants — so the game's name can sit between them
                         as part of the same row. */}
                     <View style={styles.chrome}>
-                        <BackChip href={back} variant='band' />
+                        <BackChip href={back} onPress={onBack} variant='band' />
 
                         <View style={styles.chromeRight}>
                             <AppText style={[styles.eyebrow, { color: withAlpha(ink, 0.85) }]}>
@@ -162,6 +220,24 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, pr
                             <ThemeToggle variant='band' />
                         </View>
                     </View>
+
+                    {/* Under the row that names the step, because it is the same sentence
+                        said as a picture. Drawn in the accent's ink rather than in a
+                        colour of its own: on a band already carrying one colour, a
+                        second would read as a status rather than as a count. */}
+                    {progress !== undefined && (
+                        <View style={styles.track}>
+                            {Array.from({ length: progress.total }, (_, i) => (
+                                <View
+                                    key={i}
+                                    style={[
+                                        styles.segment,
+                                        { backgroundColor: withAlpha(ink, i < progress.current ? 0.9 : 0.22) }
+                                    ]}
+                                />
+                            ))}
+                        </View>
+                    )}
 
                     {preview !== undefined ? (
                         <>
@@ -209,21 +285,20 @@ export default function SettingsPageBase({ game, title, back, eyebrow, intro, pr
                         rather than `flex`, so a short form sits under the band instead
                         of being stretched down to meet the footer. */}
                     <ScrollView
+                        ref={scroller}
                         style={styles.body}
                         contentContainerStyle={styles.bodyContent}
                         showsVerticalScrollIndicator={false}
                     >
-                        {intro !== undefined && (
-                            <View style={styles.section}>
-                                <AppText style={styles.intro}>{intro}</AppText>
-                            </View>
+                        {enterKey === undefined ? column : (
+                            <SlideFadeIn
+                                replayKey={enterKey}
+                                offsetX={enterFrom}
+                                durationMs={260}
+                            >
+                                {column}
+                            </SlideFadeIn>
                         )}
-
-                        {sections.map((section, i) => (
-                            <View key={i} style={[styles.section, i > 0 && styles.sectionDivided]}>
-                                {section}
-                            </View>
-                        ))}
                     </ScrollView>
                 </View>
 
@@ -280,6 +355,18 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         letterSpacing: 2,
         textTransform: 'uppercase'
+    },
+    // Pulled up out of the band's own gap: the track belongs to the eyebrow above it,
+    // not to the title it would otherwise sit halfway between.
+    track: {
+        flexDirection: 'row',
+        gap: 5,
+        marginTop: -Spacing.two
+    },
+    segment: {
+        flex: 1,
+        height: 4,
+        borderRadius: 999
     },
     title: {
         fontSize: 32,

@@ -5,6 +5,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
+import { useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
 
 interface Props {
@@ -24,6 +25,16 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
 
     const removable = names.length > minPlayers;
     const full = names.length >= maxPlayers;
+
+    /*
+     * Which seat is being typed into, so the field can trade its shadow for a halo.
+     *
+     * React Native has no `:focus`, and the swap is not something a style can express on
+     * its own — a focused field puts its hard shadow *down* and lights a ring instead, so
+     * exactly one of the two has to be live at a time and the component has to know which
+     * one that is.
+     */
+    const [focused, setFocused] = useState<number | null>(null);
 
     function rename(seat: number, name: string) {
         onChange(names.map((current, index) => index === seat ? name : current));
@@ -56,14 +67,16 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                         <TextInput
                             value={name}
                             onChangeText={value => rename(seat, value)}
+                            onFocus={() => setFocused(seat)}
+                            onBlur={() => setFocused(current => current === seat ? null : current)}
                             placeholder={t('common.player.namePlaceholder')}
-                            placeholderTextColor={theme.colors.textSecondary}
+                            placeholderTextColor={theme.colors.textFaint}
                             autoCapitalize="words"
                             autoCorrect={false}
                             returnKeyType="next"
                             editable={!disabled}
                             accessibilityLabel={t('pubquizr.oneDevice.players.seat', { seat: seat + 1 })}
-                            style={[styles.input, disabled && styles.dimmed]}
+                            style={[styles.input, focused === seat && styles.inputFocused, disabled && styles.dimmed]}
                         />
 
                         {removable && (
@@ -75,7 +88,7 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                                 accessibilityState={{ disabled }}
                                 style={[styles.remove, disabled && styles.dimmed]}
                             >
-                                <Feather name="x" size={16} color={theme.colors.textMuted} />
+                                <Feather name="x" size={16} color={theme.colors.textFaint} />
                             </Pressable>
                         )}
                     </View>
@@ -90,7 +103,9 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                     accessibilityState={{ disabled: disabled || full }}
                     style={[styles.add, (disabled || full) && styles.dimmed]}
                 >
-                    <Feather name="plus" size={15} color={theme.colors.focus} />
+                    <View style={styles.addDisc}>
+                        <Feather name="plus" size={12} color={theme.colors.text} />
+                    </View>
 
                     <AppText style={styles.addText}>
                         {t('common.player.add')}
@@ -108,7 +123,7 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
 const useStyles = createThemedStyles(theme => ({
     container: {
         width: '100%',
-        gap: 8
+        gap: 9
     },
 
     seat: {
@@ -140,6 +155,11 @@ const useStyles = createThemedStyles(theme => ({
     // The chrome `TextField` wears, minus its label: the seat number to the left already
     // says which field this is, and a stack of eight uppercase micro-labels would be the
     // loudest thing on the page.
+    //
+    // An inked slab sitting *on* the sheet rather than a well sunk into it, which is why
+    // the fill is `backgroundSecondary` and not `backgroundInput`: the hard shadow is what
+    // makes the field an object you can put a finger on, and a surface throwing one has to
+    // be lighter than the paper it throws it onto.
     input: {
         flex: 1,
         minWidth: 0,
@@ -147,12 +167,23 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: 2,
         borderColor: theme.colors.border,
         borderRadius: 14,
-        backgroundColor: theme.colors.backgroundInput,
+        backgroundColor: theme.colors.backgroundSecondary,
         paddingHorizontal: Spacing.three,
         fontSize: 15,
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(700),
-        color: theme.colors.text
+        color: theme.colors.text,
+        // Written out rather than taken from `theme.shadows`, which is typed as a
+        // `ViewStyle`: spreading one into a `TextInput`'s sheet widens the entry past what
+        // a text style may hold. Same offset, same ink — see `hardShadow`.
+        boxShadow: `3px 3px 0 0 ${theme.colors.shadow}`
+    },
+
+    // Typing presses the field down: the offset shadow goes and a halo comes up in its
+    // place. One `boxShadow` overwriting another, so this has to be applied *after*
+    // `input` in the style array — there is nothing to spread conditionally.
+    inputFocused: {
+        boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
     },
 
     remove: {
@@ -180,17 +211,30 @@ const useStyles = createThemedStyles(theme => ({
         paddingLeft: BADGE_SIZE + 9
     },
 
-    // The one accent that means "there is more of this" in either scheme: blue on paper,
-    // lemon on the dark canvas, which is what `focus` already resolves to.
+    // A small inked disc, in the same hand as the fields above it — the row reads as one
+    // more seat you can stamp into being. The affordance is the disc, so the words next to
+    // it go back to being words rather than the one coloured thing in the block.
+    addDisc: {
+        width: 22,
+        height: 22,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
+    },
+
     addText: {
         fontSize: 12.5,
-        fontWeight: 800,
-        color: theme.colors.focus
+        fontWeight: 900,
+        color: theme.colors.text
     },
 
     count: {
         fontSize: 11,
-        fontWeight: 800,
+        fontWeight: 900,
         letterSpacing: 1.2,
         color: theme.colors.textMuted
     },

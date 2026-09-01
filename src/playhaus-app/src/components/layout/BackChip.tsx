@@ -12,6 +12,15 @@ interface Props {
     /** Where up is. Worked out by `Header` from the route, not by the page. */
     href: Href,
     /**
+     * Handled here instead, for a page whose "up" is somewhere inside itself.
+     *
+     * A multi-step form is one route, so its earlier steps have no address to link to —
+     * back means "put step two away", which only the page can do. `href` stays required
+     * as the fallback the last step out still uses, and so a page can never be built
+     * with a chip that has nowhere to go.
+     */
+    onPress?: () => void,
+    /**
      * `chrome` is the standing square chip the app `Header` wears. `band` is the same
      * way out redrawn for an accent band: a translucent ink pill with the word "Back"
      * in it, because a band has no header conventions around it to say what a bare
@@ -29,7 +38,7 @@ const SIZE = 36;
  * where the back control should be a real anchor you can middle-click, and where history
  * can hold pages that aren't ours.
  */
-export default function BackChip({ href, variant = 'chrome' }: Props) {
+export default function BackChip({ href, onPress, variant = 'chrome' }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
@@ -48,28 +57,34 @@ export default function BackChip({ href, variant = 'chrome' }: Props) {
         ? withAlpha(Brand.ink, accent.ink === 'paper' ? 0.22 : 0.08)
         : undefined;
 
-    return (
-        <Link href={href} asChild>
-            <Pressable
-                accessibilityRole='link'
-                accessibilityLabel={t('common.back')}
-                // Flattened: `Link asChild` clones this onto the anchor it renders, and a
-                // style array does not survive that trip.
-                style={StyleSheet.flatten([
-                    band ? styles.bandChip : styles.chip,
-                    band && { backgroundColor: bandFill }
-                ])}
-            >
-                <Feather name='arrow-left' size={band ? 16 : 17} color={bandGlyph} />
+    const chip = (
+        <Pressable
+            // A step back is a button and an anchor is a link, and a screen reader
+            // announcing the wrong one of those promises a page change that is not coming.
+            accessibilityRole={onPress === undefined ? 'link' : 'button'}
+            accessibilityLabel={t('common.back')}
+            onPress={onPress}
+            // Flattened: `Link asChild` clones this onto the anchor it renders, and a
+            // style array does not survive that trip.
+            style={StyleSheet.flatten([
+                band ? styles.bandChip : styles.chip,
+                band && { backgroundColor: bandFill }
+            ])}
+        >
+            <Feather name='arrow-left' size={band ? 16 : 17} color={bandGlyph} />
 
-                {band && (
-                    <AppText style={[styles.bandLabel, { color: bandGlyph }]}>
-                        {t('common.back')}
-                    </AppText>
-                )}
-            </Pressable>
-        </Link>
-    )
+            {band && (
+                <AppText style={[styles.bandLabel, { color: bandGlyph }]}>
+                    {t('common.back')}
+                </AppText>
+            )}
+        </Pressable>
+    );
+
+    // Only wrapped when the way back really is another page. A `Link` around a handler
+    // that stays put would put an href in the status bar, and on web it would navigate
+    // out from under the step the handler just moved to.
+    return onPress === undefined ? <Link href={href} asChild>{chip}</Link> : chip;
 }
 
 const useStyles = createThemedStyles(theme => ({

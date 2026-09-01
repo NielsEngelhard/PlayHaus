@@ -10,6 +10,13 @@ export const en = {
         save: 'Save',
         you: 'You',
         host: 'Host',
+        /**
+         * The two words a `Toggle` stamps itself with. The switch says its state in
+         * letters as well as in fill and depth, so the setting is readable at a glance
+         * and without relying on colour.
+         */
+        on: 'ON',
+        off: 'OFF',
         loading: 'One moment…',
         language: 'Language',
         selectValue: '{{label}}: {{value}}',
@@ -17,6 +24,13 @@ export const en = {
         change: 'change',
         minutes: 'min',
         start: 'Start',
+        /** On the button that closes one step of a form and opens the next. */
+        next: 'Next',
+        /**
+         * Where a form split into steps has got to, on the band above it. Never
+         * `count` — see `player.seated`.
+         */
+        stepOf: 'Step {{step}} of {{total}}',
         time: {
             justNow: 'just now',
             minutesAgo: '{{minutes}} min ago',
@@ -522,13 +536,19 @@ export const en = {
                 pick: 'Pick a quiz',
                 pickAnother: 'Or pick another'
             },
+            steps: {
+                quizTitle: 'Which quiz',
+                quizIntro: 'Pick the quiz the table is going to play. Search by name, or browse the shelves.',
+                settingsTitle: 'How you play',
+                settingsIntro: 'Almost there. Check the table below, and change anything that is not right.',
+                table: 'At the table',
+            },
             zenMode: {
                 label: 'Zen mode',
                 description: 'No timers. Round 4 — describe it — is left out, and in round 5 the player gets six guesses instead of twenty seconds.',
                 caption: 'Zen · no timers'
             },
             start: 'Start quiz',
-            /** While the server is being asked whether a quiz is already running. */
             loading: 'Checking for an open quiz…',
             running: {
                 title: 'A quiz is still open',
@@ -540,9 +560,7 @@ export const en = {
         play: {
             loading: 'Setting up the table…',
             close: 'Leave the quiz',
-            /** "Round 1 · Open" — the round, and what kind of round it is. */
             roundLabel: 'Round {{round}} · {{kind}}',
-            /** What kind of round it is, for the label beside its number. */
             rounds: {
                 open: 'Open',
                 choice: 'Multiple choice',

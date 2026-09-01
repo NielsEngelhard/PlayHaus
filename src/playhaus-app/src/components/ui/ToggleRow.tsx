@@ -1,4 +1,4 @@
-import { FontSizes, Spacing } from "@/constants/theme"
+import { Spacing } from "@/constants/theme"
 import { createThemedStyles } from "@/features/theme/createThemedStyles"
 import { View } from "react-native"
 import AppText from "../text/AppText"
@@ -51,7 +51,7 @@ const useStyles = createThemedStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: Spacing.three,
+        gap: 14,
         paddingVertical: Spacing.three
     },
     rowFlush: {
@@ -61,16 +61,20 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0
     },
+    // A notch under the app's body size, and the line beneath it quieter still. The
+    // switch beside them is a 66pt stamp now: at the old scale the row read as two things
+    // shouting, where the setting's name only has to be findable.
     title: {
-        fontSize: FontSizes.md,
-        lineHeight: FontSizes.md * 1.2,
-        fontWeight: 700,
+        fontSize: 15,
+        lineHeight: 15 * 1.2,
+        fontWeight: 800,
         color: theme.colors.text
     },
     description: {
-        marginTop: Spacing.half,
-        fontSize: FontSizes.xs,
-        lineHeight: FontSizes.xs * 1.4,
-        color: theme.colors.textSecondary
+        marginTop: 3,
+        fontSize: 12.5,
+        lineHeight: 12.5 * 1.4,
+        fontWeight: 500,
+        color: theme.colors.textMuted
     }
 }))

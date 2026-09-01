@@ -115,13 +115,15 @@ interface Props {
      */
     onSelect?: (quiz: QuizListItem) => void,
     /**
-     * A quiz to leave out of the rows.
+     * The quiz already chosen, drawn as the active row wherever it turns up.
      *
-     * For the setup screen, where the chosen quiz is already drawn above the list — it
-     * would otherwise appear twice on one screen, once as the answer and once as an
-     * option, which reads as two different quizzes with the same name.
+     * It is marked rather than removed. A shelf that drops the row you just tapped
+     * leaves a gap where your own choice used to be and makes the list re-flow under
+     * your finger — and coming back to change your mind, the one row you are looking
+     * for is the one that is missing. Marked, the shelf stays a stable map of every
+     * quiz there is, with a tick on the one in play.
      */
-    omitQuizId?: string
+    selectedQuizId?: string
 }
 
 /**
@@ -145,7 +147,7 @@ interface Props {
  * locale and a page number and nothing else — which is why running out of matches with
  * more pages behind them says so instead of showing an empty shelf.
  */
-export default function QuizList({ onSelect, omitQuizId }: Props) {
+export default function QuizList({ onSelect, selectedQuizId }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -170,13 +172,9 @@ export default function QuizList({ onSelect, omitQuizId }: Props) {
     const searching = needle !== '';
 
     const visible = useMemo(() => {
-        const kept = omitQuizId === undefined
-            ? quizzes.items
-            : quizzes.items.filter(quiz => quiz.id !== omitQuizId);
-
         const matched = needle === ''
-            ? kept
-            : kept.filter(quiz =>
+            ? quizzes.items
+            : quizzes.items.filter(quiz =>
                 fold(quiz.title).includes(needle) || fold(quiz.description).includes(needle));
 
         if (sort === 'newest') return matched;
@@ -190,7 +188,7 @@ export default function QuizList({ onSelect, omitQuizId }: Props) {
 
             return a < b ? -1 : a > b ? 1 : 0;
         });
-    }, [quizzes.items, omitQuizId, needle, sort]);
+    }, [quizzes.items, needle, sort]);
 
     /*
      * The three measurements behind the fade, held as refs rather than as state.
@@ -340,10 +338,9 @@ export default function QuizList({ onSelect, omitQuizId }: Props) {
                             scrollEventThrottle={16}
                         >
                             {visible.length === 0 ? (
-                                // Not always a failed search: `omitQuizId` can empty a
-                                // one-quiz shelf on the setup screen, and "nothing
-                                // matches" would be the wrong thing to say about a
-                                // search nobody ran.
+                                // Not always a failed search — a shelf can simply have
+                                // nothing on it yet — and "nothing matches" would be the
+                                // wrong thing to say about a search nobody ran.
                                 <InlineNotification
                                     icon={searching ? 'search' : 'inbox'}
                                     message={!searching
@@ -354,7 +351,12 @@ export default function QuizList({ onSelect, omitQuizId }: Props) {
                                 />
                             ) : (
                                 visible.map(quiz => (
-                                    <QuizRow key={quiz.id} quiz={quiz} onSelect={onSelect} />
+                                    <QuizRow
+                                    key={quiz.id}
+                                    quiz={quiz}
+                                    onSelect={onSelect}
+                                    selected={quiz.id === selectedQuizId}
+                                />
                                 ))
                             )}
 

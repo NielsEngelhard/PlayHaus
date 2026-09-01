@@ -71,7 +71,7 @@ const useStyles = createThemedStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: Spacing.three,
+        gap: 14,
         paddingVertical: Spacing.three
     },
     // Only between rows — the card's own padding does the work at the two ends.
@@ -101,16 +101,20 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0
     },
+    // Deliberately the same three values `ToggleRow` uses. This card hand-rolls its own
+    // version of that row, and the two sit either side of the same stamped switch — if the
+    // type scales drift apart the switch looks like two different controls.
     title: {
-        fontSize: FontSizes.md,
-        lineHeight: FontSizes.md * 1.2,
-        fontWeight: 700,
+        fontSize: 15,
+        lineHeight: 15 * 1.2,
+        fontWeight: 800,
         color: theme.colors.text
     },
     description: {
-        marginTop: Spacing.half,
-        fontSize: FontSizes.xs,
-        lineHeight: FontSizes.xs * 1.4,
-        color: theme.colors.textSecondary
+        marginTop: 3,
+        fontSize: 12.5,
+        lineHeight: 12.5 * 1.4,
+        fontWeight: 500,
+        color: theme.colors.textMuted
     }
 }))

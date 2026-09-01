@@ -11,6 +11,13 @@ export const nl: Catalog = {
         save: 'Opslaan',
         you: 'Jij',
         host: 'Host',
+        /**
+         * De twee woorden waarmee een `Toggle` zichzelf stempelt. De schakelaar zegt
+         * zijn stand in letters én in kleur en diepte, zodat de instelling in één
+         * oogopslag leesbaar is en niet van kleur alleen afhangt.
+         */
+        on: 'AAN',
+        off: 'UIT',
         loading: 'Even geduld…',
         language: 'Taal',
         selectValue: '{{label}}: {{value}}',
@@ -18,6 +25,8 @@ export const nl: Catalog = {
         change: 'verander',
         minutes: 'min',
         start: 'Start',
+        next: 'Verder',
+        stepOf: 'Stap {{step}} van {{total}}',
         time: {
             justNow: 'zojuist',
             minutesAgo: '{{minutes}} min geleden',
@@ -473,9 +482,16 @@ export const nl: Catalog = {
                 pick: 'Kies een quiz',
                 pickAnother: 'Of kies een andere'
             },
+            steps: {
+                quizTitle: 'Welke quiz',
+                quizIntro: 'Kies de quiz die jullie gaan spelen. Zoek op naam of blader door de lijsten.',
+                settingsTitle: 'Hoe jullie spelen',
+                settingsIntro: 'Bijna klaar. Check de tafel hieronder en pas aan wat niet klopt.',
+                table: 'Aan tafel',
+            },
             zenMode: {
                 label: 'Zen-modus',
-                description: 'Geen timers. Ronde 4 — omschrijven — vervalt, en in ronde 5 krijgt de speler zes gokken in plaats van twintig seconden.',
+                description: 'Geen tijdsdru. Rondes met een timer worden vervangen of anders gespeeld.',
                 caption: 'Zen · geen timers'
             },
             start: 'Start de quiz',
