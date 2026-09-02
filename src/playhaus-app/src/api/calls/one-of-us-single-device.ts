@@ -17,6 +17,17 @@ export interface OneOfUsLocalPlayer {
   role: OneOfUsRole;
   createdAt: string;
   isVotedOut: boolean;
+  /**
+   * The one seat that settles a tied vote.
+   *
+   * Dealt by the server and reassigned there when the mayor is voted out, so it is not
+   * something this app works out for itself — a table that reloads mid-game has to be
+   * given back the same name it was arguing in front of a minute ago.
+   *
+   * Unlike `role`, this is meant to be drawn: the vote screen names the mayor every
+   * round. It says nothing about which side they are on, which is the point of it.
+   */
+  isMayor: boolean;
 }
 
 export interface OneOfUsSingleDeviceGame {
@@ -38,7 +49,18 @@ interface CreateSingleDeviceGameInput {
     locale: string,
     playerNames: string[],
     /** Words rather than the sentences the game deals by default. */
-    wordOnly: boolean
+    wordOnly: boolean,
+    /**
+     * Which imposter roles this table is willing to be dealt, as the role numbers
+     * themselves — `OneOfUsRole` is an int on the wire, the same as everywhere else.
+     *
+     * Every role in here *can* be dealt; how many of each is still the server's, from
+     * the table's size. Only the imposter side may appear: the API answers 422 on a set
+     * carrying the civilian, an unknown number, a duplicate, or nothing at all. Omitting
+     * the field asks for the whole set, which is what the game dealt before the setting
+     * existed — but this app always sends it.
+     */
+    enabledRoles: OneOfUsRole[]
 }
 
 interface CreatedGame {
@@ -50,6 +72,16 @@ export interface VoteOutResult {
     playerRole: OneOfUsRole
     gameEnded: boolean
     civiliansWon: boolean
+    /**
+     * Who wears the chain now the vote has been counted — the same seat as before,
+     * unless this vote took the mayor.
+     *
+     * Sent on every vote rather than only when it moves, because the hook patches its
+     * copy of the table from this answer instead of refetching: a field that was only
+     * sometimes there would leave the old mayor lit on the next vote screen. Null once
+     * the game is over, and on a game dealt before the office existed.
+     */
+    mayorPlayerId: string | null
 }
 
 export async function getSingleDeviceOneOfUsGame(gameId: string): Promise<OneOfUsSingleDeviceGame | null> {

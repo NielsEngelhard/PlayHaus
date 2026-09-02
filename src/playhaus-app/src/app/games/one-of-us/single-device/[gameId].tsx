@@ -16,6 +16,7 @@ import VoteScreen from "@/features/one-of-us/components/VoteScreen";
 import WordRevealScreen from "@/features/one-of-us/components/WordRevealScreen";
 import {
     alivePlayers,
+    mayorSeat,
     openRound,
     resumeAt,
     seatFor,
@@ -118,7 +119,13 @@ export default function PlayingSingleDeviceGame() {
         const previous = current.index > 0 ? game.players[current.index - 1] : null;
 
         return (
+            // Keyed on the seat, so the phone going round is a new screen each time
+            // rather than the same one with a different name on it. Without this the
+            // component keeps the `claimed` and `seen` it was left in, and everybody
+            // after the first is handed the phone already showing the previous
+            // player's continue button, with the "give this to X" wall skipped.
             <WordRevealScreen
+                key={current.index}
                 person={seatOf(player, current.index)}
                 from={previous === null ? null : seatOf(previous, current.index - 1)}
                 word={wordFor(game, player)}
@@ -186,6 +193,7 @@ export default function PlayingSingleDeviceGame() {
             {current.kind === 'discuss' && (
                 <DiscussScreen
                     seats={alive.map(player => seatFor(game, player.playerId)!)}
+                    mayor={mayorSeat(game)}
                     onVote={() => {
                         setChosen(null);
                         setPhase({ kind: 'vote', round: current.round });
@@ -196,6 +204,7 @@ export default function PlayingSingleDeviceGame() {
             {current.kind === 'vote' && (
                 <VoteScreen
                     seats={alive.map(player => seatFor(game, player.playerId)!)}
+                    mayor={mayorSeat(game)}
                     chosen={chosen}
                     onChoose={setChosen}
                     busy={play.voting}

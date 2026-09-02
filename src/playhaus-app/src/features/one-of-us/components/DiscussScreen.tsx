@@ -9,12 +9,19 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
+    /**
+     * Who settles a tie, or null on a table dealt before the office existed. The note
+     * under the ring is the last thing said before the vote opens, so it is the right
+     * place to name them — and with nobody to name it falls back to the older wording,
+     * which leaves the tie with the table.
+     */
+    mayor: Seat | null
     onVote: () => void
     /** Everybody still in, so the table can see who it is actually choosing between. */
     seats: Seat[]
 }
 
-export default function DiscussScreen({ onVote, seats }: Props) {
+export default function DiscussScreen({ mayor, onVote, seats }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -33,7 +40,9 @@ export default function DiscussScreen({ onVote, seats }: Props) {
             <View style={styles.footer}>
                 <InlineNotification
                     icon="users"
-                    message={t('oneOfUs.play.discuss.tieNote')}
+                    message={mayor === null
+                        ? t('oneOfUs.play.discuss.tieNote')
+                        : t('oneOfUs.play.discuss.tieNoteMayor', { name: mayor.name })}
                 />
 
                 <ActionButton

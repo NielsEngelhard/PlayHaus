@@ -113,13 +113,20 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
             // own answer applied — not a guess at one. `finishedAt` is set for the same
             // reason: it is what a reload would find, so the resumed game agrees with
             // the screen that is already up.
+            //
+            // The mayor is taken from the answer for the same reason and not carried
+            // over: the vote may have been for the mayor themselves, and the server has
+            // already handed the chain on by the time this runs. Applying it to every
+            // seat rather than only to the new mayor is what takes it off the old one.
             setGame(current => current === null ? current : {
                 ...current,
                 finishedAt: result.gameEnded ? new Date().toISOString() : current.finishedAt,
                 civiliansWon: result.gameEnded ? result.civiliansWon : current.civiliansWon,
-                players: current.players.map(player => player.playerId === result.playerId
-                    ? { ...player, isVotedOut: true }
-                    : player)
+                players: current.players.map(player => ({
+                    ...player,
+                    isVotedOut: player.isVotedOut || player.playerId === result.playerId,
+                    isMayor: player.playerId === result.mayorPlayerId
+                }))
             });
 
             return result;

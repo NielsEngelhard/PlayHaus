@@ -1031,6 +1031,32 @@ export const en = {
             wordsOnly: {
                 title: "Use words only",
                 description: "Use words only or use sentences that you should find a fitting answer for."
+            },
+            /**
+             * Which of the liars this table is willing to be dealt.
+             *
+             * Only the imposter side is switchable, so the description has to say what
+             * the row is *not* offering as well as what it is: somebody looking for the
+             * mayor here would otherwise assume the game has not got one.
+             *
+             * The role names are not repeated — the row reads them out of `ROLE_FACES`,
+             * from `oneOfUs.play.reveal.role.*.name`, so a role is called the same thing
+             * on the setup screen and in the game. These are only the lines that answer
+             * the setup screen's own question: what changes if this is off.
+             */
+            roles: {
+                title: 'Roles',
+                description: 'Which imposters this table can be dealt. Civilians and the mayor are always in the game.',
+                /** Beside the label, in place of the switches' own answer. */
+                count: '{{enabled}} of {{total}}',
+                /** Under the group, once there is only one switch left standing. */
+                locked: 'One kind of imposter has to stay on — without one, nobody can win.',
+                imposter: {
+                    description: 'Gets a different word and has to bluff along.'
+                },
+                nitwit: {
+                    description: 'Gets no word at all. Only dealt at a table of nine.'
+                }
             }
         },
         play: {
@@ -1141,8 +1167,13 @@ export const en = {
                 ring: 'Talk it out',
                 title: 'Who does not fit?',
                 description: 'No timer. The table decides for itself when it has heard enough.',
-                /** The tie rule, which the app deliberately does not enforce. */
+                /**
+                 * The tie rule. Still not enforced by the app — it never sees the
+                 * individual votes, only the one name the table settles on — but a
+                 * table with a mayor is told whose call it is when it cannot settle.
+                 */
                 tieNote: 'Vote tied? Talk it out at the table.',
+                tieNoteMayor: 'Vote tied? {{name}} has the final say as mayor.',
                 action: 'Vote'
             },
 
@@ -1154,7 +1185,10 @@ export const en = {
                 nobody: 'Nobody chosen yet',
                 confirm: 'Vote for {{name}}',
                 confirmHint: 'This cannot be undone.',
-                locked: 'Tap a name first.'
+                locked: 'Tap a name first.',
+                /** The strip above the confirm button, on every round. */
+                mayorLabel: 'Mayor',
+                mayorNote: '{{name}} decides who goes if the vote ties. The mayor can be an imposter too.'
             },
 
             /** What the table is told the moment somebody leaves. */

@@ -9,12 +9,12 @@ import { startedAgo, type GameKind } from "@/features/reconnect/game-kinds";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 
 interface Props {
     game: ReconnectableGame
-    /** What this type of game is called and where its button goes. */
     kind: GameKind
 }
 
@@ -24,7 +24,8 @@ const PLAY_SIZE = 34;
 const UNKNOWN_GAME = {
     color: Brand.primary,
     gradient: Gradients.primary,
-    glyphInk: { light: Brand.textOnAccent, dark: Brand.ink }
+    glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
+    icon: undefined
 };
 
 /**
@@ -64,11 +65,15 @@ export default function ReconnectableGameCard({ game, kind }: Props) {
             accessibilityLabel={t('reconnect.resume', { game: title })}
             style={[styles.card, theme.popShadow(look.color)]}
         >
-            <View style={[styles.tile, linearGradient(look.gradient)]}>
-                <AppText style={[styles.glyph, { color: look.glyphInk[theme.scheme] }]}>
-                    {(registered?.name ?? kind.title)[0]}
-                </AppText>
-            </View>
+            {look.icon ? (
+                <Image source={look.icon} style={styles.icon} />
+            ) : (
+                <View style={[styles.tile, linearGradient(look.gradient)]}>
+                    <AppText style={[styles.glyph, { color: look.glyphInk[theme.scheme] }]}>
+                        {(registered?.name ?? kind.title)[0]}
+                    </AppText>
+                </View>
+            )}
 
             <View style={styles.body}>
                 <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
@@ -97,6 +102,14 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary,
         padding: 12
+    },
+    // The SVG marks draw their own background, border and glyph, so this is sized and
+    // rounded to match the tile below without repeating either.
+    icon: {
+        width: TILE_SIZE,
+        height: TILE_SIZE,
+        flexShrink: 0,
+        borderRadius: 16
     },
     tile: {
         width: TILE_SIZE,

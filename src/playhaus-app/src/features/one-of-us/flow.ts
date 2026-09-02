@@ -137,3 +137,23 @@ export function seatFor(game: OneOfUsSingleDeviceGame, playerId: string): Seat |
 
     return seat < 0 ? null : seatOf(game.players[seat], seat);
 }
+
+/**
+ * The seat wearing the mayor's chain, or null for a table that has none.
+ *
+ * Null is a real answer rather than a fault. A game dealt before the office existed
+ * carries `isMayor: false` on every seat — the column was added underneath it — and the
+ * screens have to draw that table as a game without a tie-breaker rather than as a game
+ * that failed to load. The vote screen drops its disclaimer in that case, which is
+ * honest: there is nobody to name.
+ *
+ * Voted-out seats are refused on the way out even though the server takes the chain off
+ * them, so a stale copy of the table can never put a name on the vote screen that the
+ * ring above it has already removed.
+ */
+export function mayorSeat(game: OneOfUsSingleDeviceGame): Seat | null {
+    const seat = game.players.findIndex(player => player.isMayor && !player.isVotedOut);
+
+    return seat < 0 ? null : seatOf(game.players[seat], seat);
+}
+

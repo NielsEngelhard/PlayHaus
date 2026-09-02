@@ -20,6 +20,7 @@ type oouPlayerResponse struct {
 	Name       string `json:"name"`
 	Role       int    `json:"role"`
 	IsVotedOut bool   `json:"isVotedOut"`
+	IsMayor    bool   `json:"isMayor"`
 }
 
 type oouGameResponse struct {
@@ -33,22 +34,45 @@ type oouGameResponse struct {
 }
 
 type oouVoteResponse struct {
-	PlayerID     string `json:"playerId"`
-	PlayerRole   int    `json:"playerRole"`
-	GameEnded    bool   `json:"gameEnded"`
-	CiviliansWon bool   `json:"civiliansWon"`
+	PlayerID      string  `json:"playerId"`
+	PlayerRole    int     `json:"playerRole"`
+	GameEnded     bool    `json:"gameEnded"`
+	CiviliansWon  bool    `json:"civiliansWon"`
+	MayorPlayerID *string `json:"mayorPlayerId"`
+}
+
+// mayorOf is the seat wearing the chain in a game as the app receives it, or an empty
+// string for a table with none.
+func mayorOf(game oouGameResponse) string {
+	for _, player := range game.Players {
+		if player.IsMayor {
+			return player.PlayerID
+		}
+	}
+
+	return ""
 }
 
 func oouCreateBody(t *testing.T, locale string, wordOnly bool, names ...string) string {
+	t.Helper()
+
+	// nil rather than the whole set spelled out, because that is what every client that
+	// predates the roles row sends and the default is the thing worth exercising by
+	// default. The tests that care pass a set through oouCreateBodyWithRoles.
+	return oouCreateBodyWithRoles(t, locale, wordOnly, nil, names...)
+}
+
+func oouCreateBodyWithRoles(t *testing.T, locale string, wordOnly bool, enabledRoles []int, names ...string) string {
 	t.Helper()
 
 	// Marshalled from the handler's own request type, so a field renamed there fails
 	// this test rather than silently going out as an unknown key -- decode runs with
 	// DisallowUnknownFields, which turns any drift into a 400.
 	body, err := json.Marshal(createOneOfUsOneDeviceGameRequest{
-		Locale:      &locale,
-		PlayerNames: names,
-		WordOnly:    wordOnly,
+		Locale:       &locale,
+		PlayerNames:  names,
+		WordOnly:     wordOnly,
+		EnabledRoles: enabledRoles,
 	})
 	if err != nil {
 		t.Fatalf("marshal request: %v", err)
@@ -354,5 +378,199 @@ func TestVotingOutTheSamePlayerTwiceIsRefused(t *testing.T) {
 	path := fmt.Sprintf("%s/%s/vote/%s", oouSingleDevicePath, game.ID, civilian.PlayerID)
 	if rec := do(t, h, http.MethodPost, path, "", session.Token); rec.Code == http.StatusOK {
 		t.Errorf("voted the same player out twice: status = %d", rec.Code)
+	}
+}
+
+// The deal reaches the app with exactly one mayor on it.
+//
+// It has to arrive on the game rather than be worked out by the phone: the vote screen
+// names the mayor every round, and a table that reloaded mid-game would otherwise be
+// told a different name than the one it had been arguing in front of.
+func TestSingleDeviceOneOfUsGameIsDealtOneMayor(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom", "Eva", "Ravi")
+
+	mayors := 0
+	for _, player := range game.Players {
+		if player.IsMayor {
+			mayors++
+		}
+	}
+
+	if mayors != oneofus.MayorsPerTable {
+		t.Fatalf("the deal arrived with %d mayors, want %d", mayors, oneofus.MayorsPerTable)
+	}
+}
+
+// Voting the mayor out hands the chain on, in the same answer that says who left.
+//
+// Six seats, so one elimination cannot end the game -- the point being tested is the
+// succession, and a finished game has no next vote to break a tie for.
+func TestVotingOutTheMayorHandsTheChainOn(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom", "Eva", "Ravi", "Iris")
+
+	mayor := mayorOf(game)
+	if mayor == "" {
+		t.Fatal("the deal arrived without a mayor")
+	}
+
+	voted := voteOutPlayer(t, h, session.Token, game.ID, mayor)
+	if voted.GameEnded {
+		t.Fatal("one elimination ended a six-player game; the succession cannot be tested")
+	}
+
+	if voted.MayorPlayerID == nil {
+		t.Fatal("voting the mayor out answered with no mayor at all")
+	}
+
+	if *voted.MayorPlayerID == mayor {
+		t.Error("the chain is still on the player who was just voted out")
+	}
+
+	// Read back rather than trusted: the response is the app's shortcut, the stored
+	// table is what a reload sees, and the two disagreeing is the bug this guards.
+	after := fetchOouGame(t, h, session.Token, game.ID)
+
+	stored := mayorOf(after)
+	if stored != *voted.MayorPlayerID {
+		t.Errorf("the game says the mayor is %s, the vote said %s", stored, *voted.MayorPlayerID)
+	}
+
+	for _, player := range after.Players {
+		if player.IsMayor && player.IsVotedOut {
+			t.Errorf("%s is wearing the chain and is voted out", player.Name)
+		}
+	}
+}
+
+// Voting out anybody else leaves the office where it was.
+func TestVotingOutAnybodyElseLeavesTheMayorAlone(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom", "Eva", "Ravi", "Iris")
+
+	mayor := mayorOf(game)
+	if mayor == "" {
+		t.Fatal("the deal arrived without a mayor")
+	}
+
+	var other string
+	for _, player := range game.Players {
+		if player.PlayerID != mayor {
+			other = player.PlayerID
+			break
+		}
+	}
+
+	voted := voteOutPlayer(t, h, session.Token, game.ID, other)
+	if voted.MayorPlayerID == nil || *voted.MayorPlayerID != mayor {
+		t.Errorf("voting out a bystander moved the chain to %v, want %s", voted.MayorPlayerID, mayor)
+	}
+
+	if stored := mayorOf(fetchOouGame(t, h, session.Token, game.ID)); stored != mayor {
+		t.Errorf("the stored mayor is %s, want %s", stored, mayor)
+	}
+}
+
+// A role the host switched off is a role the API will not deal.
+//
+// A full table, because nine is the only size that reaches the nitwit at all: at any
+// smaller table NitwitsFor already says none, and a test that passed there would prove
+// nothing about the setting.
+func TestCreateSingleDeviceOneOfUsGameHonoursTheRolesSetting(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	names := make([]string, oneofus.MaxPlayers)
+	for i := range names {
+		names[i] = fmt.Sprintf("Player %d", i+1)
+	}
+
+	cases := map[string]struct {
+		enabled  []int
+		imposter int
+		nitwit   int
+	}{
+		// The nitwit off is the table that wants the game as it was before the role.
+		"imposters only": {[]int{int(oneofus.Imposter)}, 3, 0},
+		// The imposter off is the whole side playing blind. MaxNitwits caps the mixed
+		// deal at one; with nothing to sit beside there is nothing for it to cap.
+		"nitwits only": {[]int{int(oneofus.Nitwit)}, 0, 3},
+		// Both on has to be exactly what the game dealt before the field existed --
+		// see TestSingleDeviceOneOfUsGameSeatsAFullTable, which asks for it by omission.
+		"the whole set": {[]int{int(oneofus.Imposter), int(oneofus.Nitwit)}, 2, 1},
+	}
+
+	for name, test := range cases {
+		body := oouCreateBodyWithRoles(t, "en", true, test.enabled, names...)
+
+		rec := do(t, h, http.MethodPost, oouSingleDevicePath, body, session.Token)
+		if rec.Code != http.StatusOK {
+			t.Fatalf("%s: create game: status = %d (body: %s)", name, rec.Code, rec.Body)
+		}
+
+		created := decodeBody[struct {
+			GameID string `json:"gameId"`
+		}](t, rec)
+
+		game := fetchOouGame(t, h, session.Token, created.GameID)
+
+		imposters, nitwits := 0, 0
+		for _, player := range game.Players {
+			switch oneofus.Role(player.Role) {
+			case oneofus.Imposter:
+				imposters++
+			case oneofus.Nitwit:
+				nitwits++
+			}
+		}
+
+		if imposters != test.imposter || nitwits != test.nitwit {
+			t.Errorf("%s: dealt %d imposters and %d nitwits, want %d and %d",
+				name, imposters, nitwits, test.imposter, test.nitwit)
+		}
+	}
+}
+
+// A roles set the game cannot be dealt from is a 422 on that field, not a strange game.
+func TestCreateSingleDeviceOneOfUsGameRejectsAnUndealableRoleSet(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	names := []string{"Niels", "Sanne", "Tom", "Eva"}
+
+	for name, enabled := range map[string][]int{
+		// Sent, and empty: a table with nobody to find, which the civilians cannot win
+		// and the imposters have already won. Distinct from the field being absent,
+		// which is every older client and means the whole set.
+		"no roles at all": {},
+		// The two that are always in the game, arriving as though they were switches.
+		"the civilian":         {int(oneofus.Civilian)},
+		"a civilian alongside": {int(oneofus.Imposter), int(oneofus.Civilian)},
+		// A client that knows about a role this build does not.
+		"an unknown role":     {int(oneofus.Nitwit), 7},
+		"the same role twice": {int(oneofus.Imposter), int(oneofus.Imposter)},
+	} {
+		body := oouCreateBodyWithRoles(t, "en", true, enabled, names...)
+
+		rec := do(t, h, http.MethodPost, oouSingleDevicePath, body, session.Token)
+		if rec.Code != http.StatusUnprocessableEntity {
+			t.Errorf("%s: status = %d, want 422 (body: %s)", name, rec.Code, rec.Body)
+			continue
+		}
+
+		problems := decodeBody[struct {
+			Errors map[string]string `json:"errors"`
+		}](t, rec)
+
+		if _, named := problems.Errors["enabledRoles"]; !named {
+			t.Errorf("%s: 422 did not name enabledRoles (errors: %v)", name, problems.Errors)
+		}
 	}
 }

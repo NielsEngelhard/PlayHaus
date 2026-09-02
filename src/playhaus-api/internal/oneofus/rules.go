@@ -1,5 +1,7 @@
 package oneofus
 
+import "slices"
+
 const (
 	MinPlayers = 3
 	MaxPlayers = 9
@@ -49,6 +51,141 @@ func NitwitsFor(players int) int {
 	}
 
 	return MaxNitwits
+}
+
+// imposterRoles is every role that may be dealt in place of a civilian, and so every
+// role a host is allowed to switch off.
+//
+// Deliberately a list of the roles rather than "everything that is not a civilian":
+// Role is an int, so a predicate written the negative way would call an unknown number
+// arriving off the wire a perfectly good imposter role and deal it to somebody. The
+// civilian is absent because a table of nothing but liars has nobody to lie to, and the
+// mayor is absent because it was never a Role in the first place -- see the note on
+// IsMayor. Both are always in the game, and neither is a switch.
+var imposterRoles = []Role{Imposter, Nitwit}
+
+// ImposterRoles is the whole set, and the set a table falls back to when nobody has
+// said otherwise. A copy, because the caller is handed something it will want to filter.
+func ImposterRoles() []Role {
+	return append([]Role(nil), imposterRoles...)
+}
+
+// ImposterRoleSetOK says whether a set of roles is one this game can be dealt from.
+//
+// Three ways to fail: something in it is not an imposter role at all (a civilian, a
+// mayor that never was one, an int nobody has defined yet), the same role is in it
+// twice, or it is empty. The last is the one worth naming -- a table with every liar
+// switched off is not a quiet game of nothing but civilians, it is a game with no win
+// condition, because the civilians only win by voting out an imposter that does not
+// exist.
+func ImposterRoleSetOK(roles []Role) bool {
+	if len(roles) == 0 {
+		return false
+	}
+
+	for index, role := range roles {
+		if !slices.Contains(imposterRoles, role) {
+			return false
+		}
+
+		if slices.Contains(roles[:index], role) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// RolesFor is the hand a table's liars are dealt -- one role per imposter seat -- given
+// which imposter roles were left switched on.
+//
+// The length is always ImpostersFor, whatever is enabled: the setting says what the
+// liars may be, never how many of them there are. A role switched off moves its seats
+// onto another enabled role rather than handing them back to the civilians, because the
+// win condition in determineGameEnded is priced off the ratio ImpostersFor promises, and
+// a table that quietly dealt fewer liars would be a different game than the one the
+// setting offered to change.
+//
+// An unusable set is not an error here. This is a pure rule with no way to report one,
+// and the two callers that could hand it a bad set -- a request that got past Validate,
+// a test written before this existed -- are both better served by the full game than by
+// a table with no roles on it. The wire is where an empty set is refused.
+func RolesFor(players int, enabled []Role) []Role {
+	seats := ImpostersFor(players)
+	if seats <= 0 || seats > players {
+		return nil
+	}
+
+	if !ImposterRoleSetOK(enabled) {
+		enabled = imposterRoles
+	}
+
+	nitwits := 0
+
+	switch {
+	case !slices.Contains(enabled, Nitwit):
+		nitwits = 0
+	case !slices.Contains(enabled, Imposter):
+		// Nothing left to be dealt beside, so MaxNitwits does not apply. That cap is
+		// there to keep the nitwit a bonus problem sitting next to two imposters who do
+		// know the word; with the imposter switched off there are none for them to sit
+		// next to, and the whole of the liars' side plays blind. That is the game the
+		// switch was thrown for, not an accident to clamp back to one.
+		nitwits = seats
+	default:
+		// Clamped against the seats rather than trusted, the same way the old deal
+		// clamped it: NitwitsFor only says yes once there are three imposters to promote
+		// one out of, but a future change to either number should deal a strange table
+		// rather than slice past the end of the hand.
+		nitwits = min(NitwitsFor(players), seats)
+	}
+
+	hand := make([]Role, 0, seats)
+
+	for range nitwits {
+		hand = append(hand, Nitwit)
+	}
+
+	for range seats - nitwits {
+		hand = append(hand, Imposter)
+	}
+
+	return hand
+}
+
+const (
+	// MayorsPerTable is one, always, and that is the whole of the office: a tie needs a
+	// casting vote, and a casting vote shared between two people is another tie.
+	MayorsPerTable = 1
+	// MayorMayBeAnImposter says the chain is drawn from the whole table rather than
+	// from the civilians. Written down rather than left implicit in MayorCandidates
+	// because it is the rule that surprises people: the table can spend a whole game
+	// letting the person they are hunting decide who goes home.
+	MayorMayBeAnImposter = true
+)
+
+// MayorCandidates is every seat that may hold the chain, as indices into players.
+//
+// Being alive is the only test. Role is deliberately not read here -- see
+// MayorMayBeAnImposter -- and neither is who held it before, because the office is
+// redrawn from scratch each time rather than passed to a neighbour: passing it round the
+// ring would make the next mayor guessable from the seating, and a tie-breaker whose
+// identity can be predicted is a tie-breaker that can be played around.
+//
+// Indices rather than players so the caller can write back into its own slice, the same
+// shape assignRoles works in.
+func MayorCandidates(players []OneOfUsLocalPlayer) []int {
+	candidates := make([]int, 0, len(players))
+
+	for index, player := range players {
+		if player.IsVotedOut {
+			continue
+		}
+
+		candidates = append(candidates, index)
+	}
+
+	return candidates
 }
 
 const Rounds = 4

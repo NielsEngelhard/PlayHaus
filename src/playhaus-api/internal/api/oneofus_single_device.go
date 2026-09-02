@@ -13,6 +13,15 @@ type createOneOfUsOneDeviceGameRequest struct {
 	Locale      *string  `json:"locale"`
 	PlayerNames []string `json:"playerNames"`
 	WordOnly    bool     `json:"wordOnly"`
+	// EnabledRoles is which imposter roles this table left switched on, as the same role
+	// numbers the game deals out -- see oneofus.Role, whose ints are the wire format.
+	//
+	// Absent means the whole set, which is what keeps every client that predates the
+	// setting working. An explicit empty array does not: a caller that sent the field
+	// and put nothing in it is asking for a game with no liars in it, which is a game
+	// nobody can win, and the difference between "did not ask" and "asked for none" is
+	// exactly what the nil check in imposterRolesFrom is for.
+	EnabledRoles []int `json:"enabledRoles"`
 }
 
 func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
@@ -34,7 +43,34 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 		}
 	}
 
+	// Its own check rather than another arm of the switch above: the two fields describe
+	// different things about the table, and a body that got both wrong should hear about
+	// both rather than about whichever the switch reached first.
+	if !oneofus.ImposterRoleSetOK(imposterRolesFrom(req.EnabledRoles)) {
+		problems["enabledRoles"] = "needs at least one imposter role, and only imposter roles"
+	}
+
 	return problems
+}
+
+// imposterRolesFrom reads the wire's role numbers as roles, and reads a field that was
+// never sent as the whole set.
+//
+// No filtering and no clamping on the way through -- an unknown number stays an unknown
+// number so that ImposterRoleSetOK can refuse the body. Quietly dropping what it did not
+// recognise would turn a typo in a client into a table dealt from whatever was left,
+// which is the kind of thing that only shows up as somebody's game being strange.
+func imposterRolesFrom(values []int) []oneofus.Role {
+	if values == nil {
+		return oneofus.ImposterRoles()
+	}
+
+	roles := make([]oneofus.Role, len(values))
+	for index, value := range values {
+		roles[index] = oneofus.Role(value)
+	}
+
+	return roles
 }
 
 func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http.Request) {
@@ -56,10 +92,11 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 	}
 
 	game, err := s.oneOfUs.StartSingleDeviceGame(r.Context(), oneofus.StartOneOfUsSingleDeviceGameInput{
-		OwnerID:     ownerID,
-		Locale:      localeFrom(Deref(req.Locale, ""), r),
-		PlayerNames: req.PlayerNames,
-		GameMode:    oneofus.ModeFor(req.WordOnly),
+		OwnerID:      ownerID,
+		Locale:       localeFrom(Deref(req.Locale, ""), r),
+		PlayerNames:  req.PlayerNames,
+		GameMode:     oneofus.ModeFor(req.WordOnly),
+		EnabledRoles: imposterRolesFrom(req.EnabledRoles),
 	})
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "Error creating the single device OOU game")

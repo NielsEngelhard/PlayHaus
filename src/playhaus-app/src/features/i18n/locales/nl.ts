@@ -745,6 +745,18 @@ export const nl: Catalog = {
             wordsOnly: {
                 title: "Alleen woorden",
                 description: "Gebruik alleen woorden. Anders een zin."
+            },
+            roles: {
+                title: 'Rollen',
+                description: 'Welke rollen uitgedeeld kunnen worden.',
+                count: '{{enabled}} van {{total}}',
+                locked: 'Er moet één soort bedrieger aan blijven — zonder kan niemand winnen.',
+                imposter: {
+                    description: 'Krijgt een ander woord en moet meepraten zonder door de mand te vallen.'
+                },
+                nitwit: {
+                    description: 'Krijgt helemaal geen woord. Alleen bij een tafel van negen.'
+                }
             }
         },
         play: {
@@ -797,10 +809,11 @@ export const nl: Catalog = {
             },
 
             discuss: {
-                ring: 'Praat het uit',
-                title: 'Wie geloofd de meerderheid niet?',
-                description: 'Iedereen moet stemmen op iemand die hij/zij niet vertrouwd. Degene met de meeste stemmen wordt weggestemd.',
+                ring: 'Stemmen',
+                title: 'Wie wordt geëlimineerd?',
+                description: 'Iedereen moet wijzen naar iemand die hij/zij niet vertrouwd. Degene met de meeste stemmen wordt weggestemd. Je mag niet, niet stemmen.',
                 tieNote: 'Je mag jouw antwoord niet verdedigen. Iedereen moet gewoon stemmen zonder overleg. Overleg is verboden!',
+                tieNoteMayor: 'Je mag jouw antwoord niet verdedigen. Stemmen zonder overleg! Gelijk aantal stemmen, dan beslist {{name}} als burgemeester.',
                 action: 'Stemmen'
             },
 
@@ -811,7 +824,9 @@ export const nl: Catalog = {
                 nobody: 'Nog niemand gekozen',
                 confirm: 'Stem op {{name}}',
                 confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
-                locked: 'Tik eerst op een naam.'
+                locked: 'Tik eerst op een naam.',
+                mayorLabel: 'Burgemeester',
+                mayorNote: '{{name}} beslist wie eruit gaat als de stemmen staken. De burgemeester kan ook een imposter zijn.'
             },
 
             elimination: {

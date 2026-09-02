@@ -10,10 +10,12 @@ import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/features/auth/useAuth";
 import { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
+import RolesSettingRow from "@/features/one-of-us/components/RolesSettingRow";
 import TableRingPreview from "@/features/one-of-us/components/TableRingPreview";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
+import type { OneOfUsRole } from "@/features/one-of-us/models";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
-import { MAX_PLAYERS, MIN_PLAYERS } from "@/features/one-of-us/oou-settings";
+import { DEFAULT_ENABLED_ROLES, MAX_PLAYERS, MIN_PLAYERS, toggleRole } from "@/features/one-of-us/oou-settings";
 import { readTable, writeTable } from "@/features/one-of-us/table-store";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { router, type RelativePathString } from "expo-router";
@@ -38,6 +40,12 @@ export default function OneOfUsSingleDeviceIndexPage() {
     const [picked, setPicked] = useState<LanguageCode | null>(null);
     const language = picked ?? auth.user?.locale ?? DEFAULT_LANGUAGE;
     const [wordsOnly, setWordsOnly] = useState<boolean>(true);
+    /**
+     * Which imposter roles this table will be dealt from. Everything on to begin with,
+     * which is the game as it was before the row existed — a setup screen should open on
+     * the whole game and let a table take pieces out of it, not open on a subset.
+     */
+    const [roles, setRoles] = useState<OneOfUsRole[]>(DEFAULT_ENABLED_ROLES);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [starting, setStarting] = useState(false);
 
@@ -72,7 +80,8 @@ export default function OneOfUsSingleDeviceIndexPage() {
             const gameId = await createSingleDeviceOneOfUsGame({
                 locale: language,
                 playerNames: seated,
-                wordOnly: wordsOnly
+                wordOnly: wordsOnly,
+                enabledRoles: roles
             });
 
             // A create that answered without an id is a create that did not happen,
@@ -152,6 +161,12 @@ export default function OneOfUsSingleDeviceIndexPage() {
                     onChange={value => setWordsOnly(value)}
                     label={t('oneOfUs.settings.wordsOnly.title')}
                     description={t('oneOfUs.settings.wordsOnly.description')}
+                />
+
+                <RolesSettingRow
+                    enabled={roles}
+                    onToggle={role => setRoles(current => toggleRole(current, role))}
+                    disabled={starting}
                 />
             </SettingsPageBase>
         </View>

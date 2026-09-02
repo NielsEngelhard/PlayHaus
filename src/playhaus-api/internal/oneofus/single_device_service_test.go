@@ -2,6 +2,7 @@ package oneofus
 
 import (
 	"playhaus-api/internal/i18n"
+	"slices"
 	"testing"
 
 	"github.com/google/uuid"
@@ -140,7 +141,7 @@ func dealt(players []OneOfUsLocalPlayer) (civilians, imposters, nitwits int) {
 func TestAssignRolesDealsBothSides(t *testing.T) {
 	for size := MinPlayers; size <= MaxPlayers; size++ {
 		players := table(size, 0)
-		assignRoles(players)
+		assignRoles(players, nil)
 
 		civilians, imposters, nitwits := dealt(players)
 		lying := imposters + nitwits
@@ -163,7 +164,7 @@ func TestAssignRolesDealsAtMostOneNitwit(t *testing.T) {
 		// "never two" a claim about the rule rather than about one lucky permutation.
 		for range 200 {
 			players := table(size, 0)
-			assignRoles(players)
+			assignRoles(players, nil)
 
 			_, imposters, nitwits := dealt(players)
 
@@ -195,5 +196,160 @@ func TestNitwitCountsAgainstTheCivilians(t *testing.T) {
 	ended, civiliansWon := voteOut(t, players, firstAlive(t, players, Nitwit))
 	if !ended || !civiliansWon {
 		t.Errorf("nitwit out last: ended=%v civiliansWon=%v, want true/true", ended, civiliansWon)
+	}
+}
+
+// Exactly one chain at the deal, whatever the table size.
+func TestAssignMayorDealsExactlyOne(t *testing.T) {
+	for size := MinPlayers; size <= MaxPlayers; size++ {
+		players := table(size, 0)
+		assignMayor(players)
+
+		mayors := 0
+		for _, player := range players {
+			if player.IsMayor {
+				mayors++
+			}
+		}
+
+		if mayors != MayorsPerTable {
+			t.Errorf("table of %d was dealt %d mayors, want %d", size, mayors, MayorsPerTable)
+		}
+	}
+}
+
+// Redrawing takes the chain off whoever had it. Two mayors on one table is two casting
+// votes, which is the tie the office exists to settle.
+func TestAssignMayorTakesTheChainOffTheLastOne(t *testing.T) {
+	players := table(4, 1)
+	players[0].IsMayor = true
+	players[0].IsVotedOut = true
+
+	next := assignMayor(players)
+	if next < 0 {
+		t.Fatal("assignMayor found nobody to hand the chain to on a table with four seats left")
+	}
+
+	if players[0].IsMayor {
+		t.Error("the voted-out mayor is still wearing the chain")
+	}
+
+	if !players[next].IsMayor {
+		t.Errorf("assignMayor returned seat %d but did not mark it", next)
+	}
+}
+
+// The new mayor is somebody still in the game -- never the seat that has just left.
+func TestAssignMayorNeverPicksSomebodyVotedOut(t *testing.T) {
+	// Repeated because the draw is random: one pass proves very little about a uniform
+	// pick over three survivors, and this is the invariant that a bad candidate list
+	// would break only sometimes.
+	for range 200 {
+		players := table(3, 2)
+		players[0].IsVotedOut = true
+		players[1].IsVotedOut = true
+
+		next := assignMayor(players)
+		if next < 0 {
+			t.Fatal("assignMayor found nobody on a table with three seats left")
+		}
+
+		if players[next].IsVotedOut {
+			t.Fatalf("assignMayor handed the chain to seat %d, who is voted out", next)
+		}
+	}
+}
+
+// The last screen of the game: everybody is out, so there is nobody to break a tie for
+// and assignMayor says so rather than picking a seat that has left.
+func TestAssignMayorOnAnEmptiedTable(t *testing.T) {
+	players := table(2, 0)
+	for index := range players {
+		players[index].IsVotedOut = true
+	}
+	players[0].IsMayor = true
+
+	if next := assignMayor(players); next >= 0 {
+		t.Errorf("assignMayor returned seat %d on a table with nobody left, want -1", next)
+	}
+
+	if players[0].IsMayor {
+		t.Error("the chain is still on a table with nobody left to wear it")
+	}
+}
+
+// Over enough deals the chain lands on a liar, because it is drawn from the whole room.
+// A mayor that could only ever be a civilian would be a free reading of somebody's role.
+func TestAssignMayorEventuallyLandsOnAnImposter(t *testing.T) {
+	for range 500 {
+		players := table(2, 1)
+		next := assignMayor(players)
+
+		if next >= 0 && !players[next].Role.WithCivilians() {
+			return
+		}
+	}
+
+	t.Error("500 deals of a three-player table never made the imposter mayor")
+}
+
+// A role that was switched off never reaches a seat.
+//
+// Every set the row can produce, at every table size, repeated because the deal is a
+// shuffle -- the same reason TestAssignRolesDealsAtMostOneNitwit runs its 200. The
+// counts are RolesFor's business and are pinned in rules_test.go; what this proves is
+// that the draw actually lays that hand down instead of dealing its own.
+func TestAssignRolesNeverDealsADisabledRole(t *testing.T) {
+	sets := [][]Role{
+		{Imposter},
+		{Nitwit},
+		{Imposter, Nitwit},
+	}
+
+	for _, enabled := range sets {
+		for size := MinPlayers; size <= MaxPlayers; size++ {
+			for range 50 {
+				players := table(size, 0)
+				assignRoles(players, enabled)
+
+				for _, player := range players {
+					if player.Role == Civilian {
+						continue
+					}
+
+					if !slices.Contains(enabled, player.Role) {
+						t.Fatalf("%d players, enabled %v: dealt role %d", size, enabled, player.Role)
+					}
+				}
+			}
+		}
+	}
+}
+
+// A table with the imposter switched off still has two sides to it.
+//
+// The one deal where the counts and the win condition could come apart: every liar is a
+// nitwit, so nothing on that side knows the word, and determineGameEnded has to keep
+// reading them as the side to be found. If WithCivilians ever stopped covering the
+// nitwit this is the test that would catch it, because this is the game where the nitwit
+// is the whole of the opposition.
+func TestATableOfNothingButNitwitsStillHasTwoSides(t *testing.T) {
+	for size := MinPlayers; size <= MaxPlayers; size++ {
+		players := table(size, 0)
+		assignRoles(players, []Role{Nitwit})
+
+		civilians, imposters, nitwits := dealt(players)
+
+		if imposters != 0 {
+			t.Errorf("%d players: dealt %d imposters with the role switched off", size, imposters)
+		}
+
+		if want := ImpostersFor(size); nitwits != want {
+			t.Errorf("%d players: dealt %d nitwits, want %d", size, nitwits, want)
+		}
+
+		if civilians == 0 {
+			t.Errorf("%d players: nobody left to lie to", size)
+		}
 	}
 }

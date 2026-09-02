@@ -105,6 +105,39 @@ func (s GormStore) VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid
 	return nil
 }
 
+// SetMayorOneDeviceGame moves the chain to one seat and takes it off everybody else.
+//
+// Both halves in one transaction, because the in-between state is a table with no mayor
+// at all -- and the vote screen reads the office out loud every round, so a reload landing
+// between the two writes would tell the table there is nobody to break a tie. SQLite is
+// held to one writer here (see the database package), so the transaction costs nothing.
+//
+// Scoped by session as well as by player id: clearing on session alone is what makes this
+// safe to call without first reading who had it.
+func (s GormStore) SetMayorOneDeviceGame(ctx context.Context, gameID uuid.UUID, playerID uuid.UUID) error {
+	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&OneOfUsLocalPlayer{}).
+			Where("session_id = ?", gameID).
+			Update("is_mayor", false).Error; err != nil {
+			return fmt.Errorf("clear mayor for game %s: %w", gameID, err)
+		}
+
+		result := tx.Model(&OneOfUsLocalPlayer{}).
+			Where("session_id = ? AND player_id = ?", gameID, playerID).
+			Update("is_mayor", true)
+
+		if result.Error != nil {
+			return fmt.Errorf("set mayor %s: %w", playerID, result.Error)
+		}
+
+		if result.RowsAffected == 0 {
+			return fmt.Errorf("player %s not found", playerID)
+		}
+
+		return nil
+	})
+}
+
 // FinishOneDeviceGame stamps how a game ended.
 //
 // This replaced a hard delete. Deleting meant the row went the instant a side won, so

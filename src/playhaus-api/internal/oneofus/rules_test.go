@@ -1,6 +1,9 @@
 package oneofus
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 // The rules, asked directly.
 //
@@ -262,5 +265,195 @@ func TestGettingAwayWithItBeatsCatchingSomebody(t *testing.T) {
 	if ImposterCaughtPoints >= ImposterEscapePoints {
 		t.Errorf("being caught pays %d and escaping pays %d -- there is nothing to play for",
 			ImposterCaughtPoints, ImposterEscapePoints)
+	}
+}
+
+// The chain is drawn from everybody still playing, and from nobody else.
+func TestMayorCandidatesAreTheSurvivors(t *testing.T) {
+	players := []OneOfUsLocalPlayer{
+		{Name: "Niels"},
+		{Name: "Sanne", IsVotedOut: true},
+		{Name: "Tom"},
+		{Name: "Eva", IsVotedOut: true},
+	}
+
+	got := MayorCandidates(players)
+	want := []int{0, 2}
+
+	if len(got) != len(want) {
+		t.Fatalf("MayorCandidates returned %v, want %v", got, want)
+	}
+
+	for index, seat := range want {
+		if got[index] != seat {
+			t.Errorf("MayorCandidates returned %v, want %v", got, want)
+			break
+		}
+	}
+}
+
+// The rule the table has to be told about: the mayor is drawn from the whole room, so
+// the person breaking a tie can be the person the room is hunting. A candidate list that
+// quietly skipped the liars would make the office a tell.
+func TestMayorCanBeAnImposter(t *testing.T) {
+	players := []OneOfUsLocalPlayer{
+		{Name: "Niels", Role: Civilian},
+		{Name: "Sanne", Role: Imposter},
+		{Name: "Tom", Role: Nitwit},
+	}
+
+	if got := len(MayorCandidates(players)); got != len(players) {
+		t.Fatalf("MayorCandidates returned %d seats, want all %d -- role must not narrow the draw", got, len(players))
+	}
+
+	if !MayorMayBeAnImposter {
+		t.Error("MayorMayBeAnImposter is false, but MayorCandidates draws from every role")
+	}
+}
+
+// A table with nobody left has nobody to give the chain to, and says so with an empty
+// list rather than a seat that does not exist.
+func TestMayorCandidatesOfAnEmptiedTable(t *testing.T) {
+	players := []OneOfUsLocalPlayer{
+		{Name: "Niels", IsVotedOut: true},
+		{Name: "Sanne", IsVotedOut: true},
+	}
+
+	if got := MayorCandidates(players); len(got) != 0 {
+		t.Errorf("MayorCandidates returned %v, want nothing", got)
+	}
+}
+
+// The set a host is offered is the imposter side and nothing else.
+//
+// Pinned rather than left to read off the var, because the two roles that are missing
+// are missing on purpose and both of them are one careless append away from being
+// switchable: a civilian, which would let a table deal itself no honest players, and
+// the mayor, which is not a Role at all -- it is the flag on the seat, and it has to
+// stay off this list for the same reason it stays off WithCivilians.
+func TestOnlyTheImposterSideCanBeSwitchedOff(t *testing.T) {
+	got := ImposterRoles()
+
+	if !slices.Equal(got, []Role{Imposter, Nitwit}) {
+		t.Errorf("ImposterRoles() = %v, want [Imposter Nitwit]", got)
+	}
+
+	if slices.Contains(got, Civilian) {
+		t.Error("the civilian can be switched off")
+	}
+
+	// A copy, so a caller filtering its own view of the set cannot quietly narrow what
+	// every table after it is dealt from.
+	ImposterRoles()[0] = Civilian
+	if !slices.Equal(ImposterRoles(), got) {
+		t.Error("ImposterRoles() hands out the package's own slice")
+	}
+}
+
+func TestWhichRoleSetsAreDealable(t *testing.T) {
+	cases := []struct {
+		name  string
+		roles []Role
+		ok    bool
+	}{
+		{"the whole set", []Role{Imposter, Nitwit}, true},
+		{"imposters only", []Role{Imposter}, true},
+		{"nitwits only", []Role{Nitwit}, true},
+		{"the other way round", []Role{Nitwit, Imposter}, true},
+		// A table with nobody to find is a table with no win condition: the civilians
+		// only ever win by voting the last imposter out.
+		{"nothing at all", []Role{}, false},
+		{"nil", nil, false},
+		// The two that are always in the game arriving as switches, and a number from a
+		// client that knows about a role this build does not.
+		{"the civilian", []Role{Imposter, Civilian}, false},
+		{"an unknown role", []Role{Imposter, Role(7)}, false},
+		// Not an error worth being lenient about: a set that says the same thing twice
+		// is a client with a bug in it, and the next thing it sends may not be harmless.
+		{"the same role twice", []Role{Imposter, Imposter}, false},
+	}
+
+	for _, test := range cases {
+		if got := ImposterRoleSetOK(test.roles); got != test.ok {
+			t.Errorf("%s: ImposterRoleSetOK(%v) = %v, want %v", test.name, test.roles, got, test.ok)
+		}
+	}
+}
+
+// Switching a role off changes what the liars are, never how many of them there are.
+//
+// The invariant the win condition rests on: determineGameEnded is priced off the ratio
+// ImpostersFor promises, so a hand that came back short would hand the civilians a game
+// they had not finished.
+func TestEveryRoleSetDealsTheSameNumberOfLiars(t *testing.T) {
+	sets := [][]Role{
+		{Imposter},
+		{Nitwit},
+		{Imposter, Nitwit},
+		// The two an unusable set falls back to the full game from, since RolesFor has
+		// no way to report a problem and a table with no liars on it is worse than one
+		// dealt the default.
+		nil,
+		{Civilian},
+	}
+
+	for _, enabled := range sets {
+		for players := MinPlayers; players <= MaxPlayers; players++ {
+			hand := RolesFor(players, enabled)
+
+			if want := ImpostersFor(players); len(hand) != want {
+				t.Errorf("%d players, enabled %v: dealt %d liars, want %d",
+					players, enabled, len(hand), want)
+			}
+		}
+	}
+}
+
+func TestRolesForDealsOnlyWhatIsSwitchedOn(t *testing.T) {
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		// The nitwit off is the setting a table reaches for when it wants the game the
+		// role was added to, without the role.
+		for _, role := range RolesFor(players, []Role{Imposter}) {
+			if role != Imposter {
+				t.Errorf("%d players, nitwit off: dealt role %d", players, role)
+			}
+		}
+
+		// The imposter off is the harder direction. MaxNitwits caps the mixed deal at
+		// one, but that cap exists to keep the nitwit beside imposters who do know the
+		// word -- with none to be beside, the whole side plays blind, which is the game
+		// the switch was thrown for.
+		blind := RolesFor(players, []Role{Nitwit})
+		for _, role := range blind {
+			if role != Nitwit {
+				t.Errorf("%d players, imposter off: dealt role %d", players, role)
+			}
+		}
+	}
+}
+
+// With both on, the deal is exactly the one the game had before the setting existed.
+func TestTheWholeSetDealsTheOriginalHand(t *testing.T) {
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		nitwits, imposters := 0, 0
+
+		for _, role := range RolesFor(players, ImposterRoles()) {
+			switch role {
+			case Nitwit:
+				nitwits++
+			case Imposter:
+				imposters++
+			default:
+				t.Fatalf("%d players: dealt role %d to the imposter side", players, role)
+			}
+		}
+
+		if want := NitwitsFor(players); nitwits != want {
+			t.Errorf("%d players: dealt %d nitwits, want %d", players, nitwits, want)
+		}
+
+		if want := ImpostersFor(players) - NitwitsFor(players); imposters != want {
+			t.Errorf("%d players: dealt %d imposters, want %d", players, imposters, want)
+		}
 	}
 }

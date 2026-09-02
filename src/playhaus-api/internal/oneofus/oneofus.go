@@ -76,6 +76,17 @@ type OneOfUsLocalPlayer struct {
 	Role       Role      `gorm:"not null" json:"role"`
 	CreatedAt  time.Time `gorm:"not null" json:"createdAt"`
 	IsVotedOut bool      `gorm:"not null" json:"isVotedOut"`
+	// IsMayor marks the one seat that settles a tied vote.
+	//
+	// A separate axis from Role, and deliberately so: the chain is drawn from the whole
+	// table, so the mayor is as likely to be an imposter as a civilian, and a table can
+	// spend a whole game being run by the person it is looking for. Folding it into Role
+	// would make it a fourth kind of player and put it on one side of WithCivilians,
+	// which is exactly the thing it must not be.
+	//
+	// Unlike the roles this is public: the app draws it on the vote screen every round,
+	// because a tie-breaker nobody can name is not a rule, it is an argument.
+	IsMayor bool `gorm:"not null;default:false" json:"isMayor"`
 }
 
 func (OneOfUsLocalPlayer) TableName() string { return "oou_local_players" }
