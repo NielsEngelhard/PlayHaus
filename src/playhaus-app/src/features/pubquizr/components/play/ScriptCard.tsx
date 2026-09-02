@@ -56,6 +56,22 @@ interface Props {
      * both ends of it.
      */
     align?: 'centre' | 'top'
+    /**
+     * Whether the card takes every point it is given (the default) or grows only into
+     * room that is actually spare.
+     *
+     * The default is `flex: 1`, which is growth from a basis of zero: on a board whose
+     * height is the window's that is exactly right — the question ends up with whatever
+     * the rest of the board does not want. Inside a `ScrollView` it is wrong twice over.
+     * A basis-zero child of a content container measured with no height collapses to
+     * nothing, and a basis-zero child that *is* given a height takes it off its
+     * siblings, so a card that should have pushed the page into scrolling squashes the
+     * rows under it instead.
+     *
+     * `false` grows from the card's own content instead: spare room still goes to the
+     * question, and a screen too short for everything scrolls rather than shrinking.
+     */
+    fills?: boolean
 }
 
 /**
@@ -76,14 +92,15 @@ export default function ScriptCard({
     size = 27,
     seats,
     children,
-    align = 'centre'
+    align = 'centre',
+    fills = true
 }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
     return (
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, !fills && styles.grows]}>
             <View style={styles.cue}>
                 <Feather name="volume-2" size={15} color={theme.colors.primary} />
 
@@ -92,7 +109,13 @@ export default function ScriptCard({
                 </AppText>
             </View>
 
-            <View style={[styles.card, align === 'top' && styles.cardTop]}>
+            <View
+                style={[
+                    styles.card,
+                    align === 'top' && styles.cardTop,
+                    !fills && styles.grows
+                ]}
+            >
                 <AppText
                     style={[styles.prompt, { fontSize: size, lineHeight: size * 1.16 }]}
                 >
@@ -165,6 +188,16 @@ const useStyles = createThemedStyles(theme => ({
 
     cardTop: {
         justifyContent: 'flex-start'
+    },
+
+    // The `fills={false}` half of both of the above: grown from the content's own height
+    // rather than from zero. Written out as three properties because that is the whole
+    // difference — `flex: 1` sets the basis to zero, and the basis is the thing that has
+    // to change for the card to survive being inside a scroller.
+    grows: {
+        flexGrow: 1,
+        flexShrink: 0,
+        flexBasis: 'auto'
     },
 
     prompt: {

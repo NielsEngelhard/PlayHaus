@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
+import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import PopPressable from "@/components/ui/PopPressable";
 import { FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -23,6 +23,7 @@ import { Pressable, ScrollView, View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
 import PickRow, { AwardRow } from "./PickRow";
 import QuestionRecap from "./QuestionRecap";
+import ScriptCard from "./ScriptCard";
 import TurnRulesScreen, { type TurnRule } from "./TurnRulesScreen";
 import TurnStrip from "./TurnStrip";
 import TurnTimer from "./TurnTimer";
@@ -84,23 +85,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
             return next;
         });
-    }
-
-    function tickWhileRunning(answerId: string) {
-        if (turn.guesses === null) {
-            toggleInTime(answerId);
-            return;
-        }
-
-        const taking = (awards[answerId] ?? null) === null;
-        const next: ListAwards = { ...awards, [answerId]: taking ? turn.guesser.seat : null };
-        setAwards(next);
-
-        const left = turn.answers.filter(answer => (next[answer.id] ?? null) === null);
-        const after = Math.max(0 + (taking ? 1 : -1));
-
-        if (left.length === 0) setStage('settle');
-        else if (after >= turn.guesses) setStage('inTime');
     }
 
     function openBonus() {
@@ -196,6 +180,81 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     }
 
     if (stage === 'running') {
+        const rows = turn.answers.map(answer => (
+            <PickRow
+                key={answer.id}
+                label={answer.text}
+                active={(awards[answer.id] ?? null) !== null}
+                disabled={busy}
+                onPress={() => toggleInTime(answer.id)}
+            />
+        ));
+
+        const hint = (
+            <AppText style={styles.hint}>
+                {t('pubquizr.play.onlyYouSeeThis')}
+            </AppText>
+        );
+
+        const reminder = (
+            <AppText style={styles.recap}>
+                {t('pubquizr.play.list.runningReminder', { guesser: turn.guesser.name })}
+            </AppText>
+        );
+
+        /*
+         * Zen mode gets a page of its own rather than the timed one with the clock left
+         * out, because taking the clock out changes what the screen is for. A timed turn
+         * is twenty seconds of ticking, so the question can shrink to `QuestionRecap`
+         * the moment it has been read: nobody is going to reread it while the bar
+         * drains. An untimed turn is a conversation — the question gets asked again and
+         * again — and a one-line recap behind a tap is the wrong home for the one thing
+         * on the board that leaves the phone as speech. So it stays in the `ScriptCard`
+         * the rest of the quiz reads its questions out of.
+         *
+         * That card is also why the whole page scrolls here rather than just the rows.
+         * With the question at full size the board can outgrow a short phone, and a
+         * scroller around the rows alone answers that by squeezing the rows — which
+         * leaves the reader tapping answers through a two-row window underneath a card
+         * with room to spare. Scrolling the page keeps everything the size it should be
+         * and puts the overflow where it belongs.
+         */
+        if (turn.guesses !== null) {
+            return (
+                <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
+                    {strip}
+
+                    <ScriptCard prompt={turn.question.prompt} fills={false} />
+
+                    {/* The rule, said once and quietly. It was an `InlineNotification`,
+                        which is a card — and a card is how this app says something that
+                        has just happened and needs dealing with, not a standing fact
+                        about the round. Given that much weight next to the question it
+                        read as the more important of the two. */}
+                    <TextHint
+                        text={t('pubquizr.play.list.zenNotice', {
+                            guesser: turn.guesser.name,
+                            nGuesses: ZEN_LIST_GUESSES
+                        })}
+                    />
+
+                    {hint}
+
+                    <View style={styles.rowsColumn}>{rows}</View>
+
+                    {reminder}
+
+                    <ActionButton
+                        size="large"
+                        icon="arrow-right"
+                        text={t('pubquizr.play.list.settle', { guesser: turn.guesser.name })}
+                        disabled={busy}
+                        onPress={() => setStage('inTime')}
+                    />
+                </ScrollView>
+            )
+        }
+
         return (
             <View style={styles.turn}>
                 {strip}
@@ -208,56 +267,15 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     onPress={() => setRereading(current => !current)}
                 />
 
-                {turn.guesses === null
-                    ? <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
-                    : <ZenNotice
-                        guesser={turn.guesser.name}
-                        nGuesses={ZEN_LIST_GUESSES}
-                    />}
+                <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
 
-                <AppText style={styles.hint}>
-                    {t('pubquizr.play.onlyYouSeeThis')}
-                </AppText>
+                {hint}
 
                 <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
-                    {turn.answers.map(answer => (
-                        <PickRow
-                            key={answer.id}
-                            label={answer.text}
-                            active={(awards[answer.id] ?? null) !== null}
-                            disabled={busy}
-                            onPress={() => tickWhileRunning(answer.id)}
-                        />
-                    ))}
+                    {rows}
                 </ScrollView>
 
-                <AppText style={styles.recap}>
-                    {t('pubquizr.play.list.runningReminder', { guesser: turn.guesser.name })}
-                </AppText>
-
-                {turn.guesses !== null && (
-                    <PopPressable
-                        disabled={busy}
-                        accessibilityRole="button"
-                        style={[styles.missed, busy && styles.dimmed]}
-                    >
-                        <Feather name="x" size={15} color={theme.colors.textMuted} />
-
-                        <AppText style={styles.missedText}>
-                            {t('pubquizr.play.list.missed')}
-                        </AppText>
-                    </PopPressable>
-                )}
-
-                {turn.guesses !== null && (
-                    <ActionButton
-                        size="large"
-                        icon="arrow-right"
-                        text={t('pubquizr.play.list.toInTime', { guesser: turn.guesser.name })}
-                        disabled={busy}
-                        onPress={() => setStage('inTime')}
-                    />
-                )}
+                {reminder}
             </View>
         )
     }
@@ -420,18 +438,6 @@ function ListTimerSlot({ onDone }: { onDone: () => void }) {
     return <TurnTimer seconds={LIST_SECONDS} onDone={onDone} />;
 }
 
-function ZenNotice({ guesser, nGuesses }: { guesser: string, nGuesses: number }) {
-    const t = useT();
-
-    return (
-        <InlineNotification
-            icon="feather"
-            title={t('pubquizr.play.list.zenTitle')}
-            message={t('pubquizr.play.list.zenNotice', { guesser, nGuesses })}
-        />
-    )
-}
-
 const useStyles = createThemedStyles(theme => ({
     turn: {
         marginTop: 14,
@@ -452,6 +458,29 @@ const useStyles = createThemedStyles(theme => ({
     rows: {
         flex: 1,
         minHeight: 0
+    },
+
+    // Zen mode's page, where the scroller is the board itself rather than a window on
+    // the rows. `flexGrow` on the content so that a turn which does fit still fills the
+    // window — without it the content container is content-height and everything bunches
+    // up at the top with the question card refusing to grow into the room below it.
+    page: {
+        flex: 1,
+        minHeight: 0
+    },
+
+    pageInner: {
+        flexGrow: 1,
+        gap: 12,
+        paddingRight: ShadowReach.hardSmall,
+        paddingVertical: 4
+    },
+
+    // The rows on that page: spacing only. The slack the pick rows' hard shadow needs is
+    // the page's business now, and laying it down again here would inset the rows from
+    // the question card above them by twice as much.
+    rowsColumn: {
+        gap: 10
     },
 
     rowsInner: {
@@ -485,26 +514,6 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         color: theme.colors.text
     },
-    missed: {
-        flexShrink: 0,
-        alignSelf: 'center',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        paddingVertical: 10,
-        paddingHorizontal: 16,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundElement
-    },
-
-    missedText: {
-        fontSize: 12.5,
-        fontWeight: 800,
-        color: theme.colors.textMuted
-    },
-
     again: {
         flexShrink: 0,
         alignSelf: 'center',

@@ -17,16 +17,6 @@ import { View } from "react-native";
 
 const REFRESH_COOLDOWN_MS = 5000;
 
-/**
- * The two ways into a game that is already going: back into one of your own, or into
- * somebody else's with their code.
- *
- * The page puts whichever of those is actually available first. With games running, the
- * list is the page and the join card is the alternative underneath a rule; with none, the
- * join card is the page and the empty list is a note under it saying what would appear
- * there. Same two blocks either way — only their order and the heading over them change,
- * so nobody arrives at a screen whose headline is about something it cannot offer.
- */
 export default function ReconnectPage() {
     const theme = useTheme();
     const styles = useStyles();

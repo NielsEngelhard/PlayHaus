@@ -80,21 +80,12 @@ export default function HandoffScreen({
 }: Props) {
     const styles = useStyles();
 
-    // The band that normally holds the notch open is not drawn on this screen — it has
-    // no chrome at all — so the wall holds it open itself.
     const insets = useSafeAreaInsets();
 
     const tone = handoffToneFor(toneNumber);
 
-    // The window's colour, not just this page's. The screen fills the column it is
-    // drawn in on its own (see `screen`), and on a phone the column is the window — but
-    // on a desktop window the column is 600dp in the middle of it, and a wall that stops
-    // 600dp short reads as a page that has broken rather than as a stop sign. This asks
-    // the root layout, which does own the window, to paint the rest in the same colour.
     usePageTone(tone.fill);
 
-    // Built once by the lazy initialiser: rebuilding it on a render would drop the
-    // nudge back to its start mid-swing.
     const [nudge] = useState(() => new Animated.Value(0));
 
     useEffect(() => {
@@ -191,32 +182,12 @@ export default function HandoffScreen({
 }
 
 const useStyles = createThemedStyles(() => ({
-    /**
-     * The whole of whatever it is handed, plus its own padding inside that.
-     *
-     * It used to claw its way out of the page's 24dp gutters, its 24dp bottom pad and the
-     * 66dp header with three negative margins. None of those are there any more: a board
-     * claims the chrome (see `useChromeless`), lays its own gutters down around the parts
-     * that want them, and this is drawn outside those — so the wall already starts at the
-     * window's edge and only has to pad its own contents in off it.
-     *
-     * Sideways this reaches the app's own column and no further; the rest of a wide
-     * window is painted by the root layout, which is the only thing that can reach it —
-     * see `usePageTone` above. The fill stays here as well as there so the two never
-     * disagree about which colour this turn is.
-     *
-     * The top padding is set at the call site, from the device's own inset.
-     */
     screen: {
         flex: 1,
         alignItems: 'center',
         paddingHorizontal: Spacing.four + 4,
         paddingBottom: 26
     },
-
-    // Stands in for the band the play screen has, so the two frames start their content
-    // at the same height and the swap does not jump. The notch is not in here: the screen
-    // above already pads for it, exactly as the band does.
     header: {
         height: 58,
         flexShrink: 0
@@ -273,11 +244,6 @@ const useStyles = createThemedStyles(() => ({
         alignItems: 'center',
         gap: 10
     },
-
-    // Ink fill in every tone. It is the one control on the screen, and a button that
-    // changed colour with the background would stop being obviously the way out.
-    // `marginTop: auto` pins it to the bottom edge, which works because the page has
-    // claimed the whole viewport.
     button: {
         marginTop: 'auto',
         width: '100%',

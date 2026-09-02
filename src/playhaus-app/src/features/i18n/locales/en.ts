@@ -869,11 +869,7 @@ export const en = {
                  * drawn as a meter. It states the whole of what is different about the
                  * round, because it is on screen for the whole of it.
                  */
-                zenTitle: 'No clock',
                 zenNotice: 'No time pressure here. {{guesser}} can guess {{nGuesses}} times, and afterwards everybody else gets one bonus guess at an answer nobody got.',
-                missed: 'Wrong — that is a guess gone',
-                /** The button that ends the clock early, before time runs out on its own. */
-                toInTime: "Check {{guesser}}'s answers",
                 /** The confirm screen: one last look before the leftovers go round the table. */
                 inTimeTitle: 'What did {{guesser}} get?',
                 inTimeHint: "Tap every answer {{guesser}} got — including the one they named right at the end",

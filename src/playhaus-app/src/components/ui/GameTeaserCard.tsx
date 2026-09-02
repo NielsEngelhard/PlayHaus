@@ -14,13 +14,11 @@ interface Props {
     gradient: readonly [string, string, string],
     glyphInk: string,
     name: string,
-    /** The game's own icon. Falls back to the name's initial when unset. */
     icon?: ImageSource,
     description: string,
     deviceMode: DeviceMode,
     minMaxPlayers: string,
     durationInMinutes?: number,
-    /** Wears the badge beside the name — `game.isNew`. */
     isNew?: boolean,
     playable: boolean,
     navigationUrl: Href

@@ -30,40 +30,6 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 
-/**
- * One of Us, played on one phone.
- *
- * This file is the router between the game's screens and nothing else — the same job
- * `app/games/quizzer/one-device/[sessionId].tsx` does for a pub quiz, and built the same
- * way, because a table sharing one phone has the same problem in both games: the screen
- * has to stop and wait at every point where the phone changes hands or something is
- * about to be revealed.
- *
- * The one real difference is where the state lives. A pub quiz asks the server whose
- * turn it is on every ruling; this game does not, because the server has nothing to say
- * about it. Everything that happens in a round happens out loud across a table — the
- * words are spoken, the argument is had in the room — and the only write in the whole
- * game is the name that comes out of a vote. So the phase is held here in `phase`, the
- * server holds who is out, and the two only ever meet at a vote. See `flow.ts`.
- *
- * The phases in order:
- *
- * **reveal** goes round the table once before the first round, handing each player their
- * own word behind a hand-off wall. It happens once per game, not once per round.
- *
- * **speak** names one player at a time in an order reshuffled every round, so nobody
- * gets the advantage of going last twice.
- *
- * **discuss** is the argument, which the phone stays out of — no timer, and no tie
- * handling, because the table settles both of those itself.
- *
- * **vote** is the one screen that writes anything, behind a two-step gate.
- *
- * **elimination** says who went and what they were, which is the only information the
- * game ever gives back and the thing the next round is argued from.
- *
- * **over** reveals everybody.
- */
 export default function PlayingSingleDeviceGame() {
     const t = useT();
     const phrase = usePhrase();
@@ -71,18 +37,12 @@ export default function PlayingSingleDeviceGame() {
     const styles = useStyles();
     const router = useRouter();
 
-    // Claims the viewport and the app's chrome with it: no bottom bar, no page scroller,
-    // and no header — the board draws its own, in the game's colour, and a screen with two
-    // headers is a screen where neither is the header. See `InGameHeader`. Called before
-    // every early return below, so the hook order never changes.
     useChromeless();
 
     const { gameId } = useLocalSearchParams<{ gameId: string }>();
     const play = useSingleDeviceOneOfUsGame(gameId);
 
-    /** Which screen is up, or null until the game has loaded and can say. */
     const [phase, setPhase] = useState<Phase | null>(null);
-    /** The game `phase` was opened for, so a different one is not resumed into. */
     const [openedFor, setOpenedFor] = useState<string | null>(null);
     const [chosen, setChosen] = useState<number | null>(null);
     const [briefed, setBriefed] = useState(false);
@@ -122,9 +82,6 @@ export default function PlayingSingleDeviceGame() {
 
     const game = play.game;
 
-    // Only ever true for the render that chose the phase, which the block above sets
-    // during this same render — React drops that render and re-runs with it in place,
-    // so this is a frame nobody sees rather than a state the screen can sit in.
     if (phase === null) {
         return <LoadingPage message={t('oneOfUs.play.loading')} />;
     }
@@ -151,13 +108,6 @@ export default function PlayingSingleDeviceGame() {
 
     /*
      * The word reveal, once per player before the first round.
-     *
-     * Returned from outside the board frame below because it is two screens rather than
-     * one and only the second of them may wear the band: the hand-off it opens on has to
-     * cover the whole window to be worth anything, and a stop sign framed by chrome —
-     * with a way past it in the corner — reads as another card. `WordRevealScreen` draws
-     * its own band once the phone has been claimed, and `GameOverScreen` above draws one
-     * too; both are outside the frame because neither has a round to name.
      */
     if (!briefed && current.kind === 'reveal' && current.index === 0) {
         return <RolesBriefingScreen onDone={() => setBriefed(true)} onLeave={leave} />;
