@@ -6,7 +6,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface Props {
     /**
@@ -26,7 +26,7 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
     const styles = useStyles();
 
     return (
-        <View style={styles.screen}>
+        <ScrollView style={styles.screen}>
             <SeatRing
                 seats={seats}
                 headline={t('oneOfUs.play.discuss.ring')}
@@ -52,7 +52,7 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
                     onPress={onVote}
                 />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

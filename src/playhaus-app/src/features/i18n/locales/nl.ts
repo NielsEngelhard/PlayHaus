@@ -720,7 +720,7 @@ export const nl: Catalog = {
     },
     oneOfUs: { 
         index: { 
-            description: "De burgers krijgen allemaal hetzelfde woord, of dezelfde vraag. De imposters krijgen een net wat andere en moeten zich schuil houden.", 
+            description: "Kun jij de burgers van de bedrieger(s) onderscheiden?", 
             oneDevice: { 
                 title: "1 telefoon", 
                 description: "Speel met 1 telefoon die wordt doorgegeven", 
@@ -755,7 +755,7 @@ export const nl: Catalog = {
                     description: 'Krijgt een ander woord en moet meepraten zonder door de mand te vallen.'
                 },
                 nitwit: {
-                    description: 'Krijgt helemaal geen woord. Alleen bij een tafel van negen.'
+                    description: 'Krijgt helemaal geen woord.'
                 }
             }
         },
@@ -833,19 +833,19 @@ export const nl: Catalog = {
                 ringLabel: 'Weggestemd',
                 civilian: '{{name}} was een burger.',
                 imposter: '{{name}} was een imposter.',
-                nitwit: '{{name}} was de onnozele — helemaal geen woord.',
+                nitwit: '{{name}} was de onnozele.',
                 remaining: 'Nog {{players}} in het spel.',
                 next: 'Ronde {{round}}'
             },
 
             briefing: {
-                title: 'Wie zitten er aan tafel',
+                title: 'Wie spelen er mee',
                 intro: 'Iedereen krijgt een van deze rollen. Lees ze voor voordat je begint.',
                 roleLabel: 'Rol',
                 role: {
                     civilian: 'De meesten aan tafel zijn burgers. Zij hebben allemaal hetzelfde woord en moeten uitzoeken wie dat niet heeft.',
                     imposter: 'De imposters kregen een ander woord en kennen het echte niet. Zij bluffen mee en winnen door te overleven.',
-                    nitwit: 'De onnozele kreeg helemaal geen woord en speelt mee met de imposters — die geen idee hebben wie het is.'
+                    nitwit: 'De onnozele kreeg helemaal geen woord en speelt mee met de imposters, die geen idee hebben wie het is.'
                 },
                 action: 'Woorden verdelen'
             },

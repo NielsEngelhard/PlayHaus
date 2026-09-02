@@ -90,7 +90,7 @@ export const ONE_OF_US: Game = {
     icon: require('@/assets/icons/one-of-us-icon.svg'),
     mainCategoryIndicatorKey: 'games.oneOfUs.mainCategory',
     descriptionKey: 'games.oneOfUs.description',
-    deviceMode: 'perPlayer',
+    deviceMode: 'perPlayerOrOneDevice',
     playable: true,
     navigationUrl: ROUTES.oneOfUsIndex,
     joinCodePrefix: 'O',
