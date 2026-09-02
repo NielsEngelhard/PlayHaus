@@ -3,6 +3,7 @@ package pubquizr
 import (
 	"context"
 	"testing"
+	"time"
 
 	"playhaus-api/internal/i18n"
 
@@ -85,6 +86,9 @@ func (s *verdictStore) CurrentSessionByOwnerID(context.Context, string) (*Sessio
 func (s *verdictStore) DeleteSessionByID(context.Context, uuid.UUID, string) error { return nil }
 func (s *verdictStore) DeleteSessionsByOwnerID(context.Context, string, uuid.UUID) error {
 	return nil
+}
+func (s *verdictStore) DeleteSessionsOlderThan(context.Context, time.Time) (int64, error) {
+	return 0, nil
 }
 
 const verdictOwner = "owner"

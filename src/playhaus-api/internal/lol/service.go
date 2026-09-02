@@ -3,6 +3,7 @@ package lol
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"time"
 
 	"playhaus-api/internal/i18n"
@@ -17,9 +18,51 @@ type Store interface {
 	DeleteSoloGameByID(ctx context.Context, soloGameID string, userID string) error
 	CurrentSoloGameByUserID(ctx context.Context, userID string) (*SoloLeagueOfLettersGame, error)
 	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
+	DeleteSoloGamesOlderThan(ctx context.Context, before time.Time) (int64, error)
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
 
 	MultiplayerStore
+}
+
+// SweepConfig is the retention window per table the sweep touches.
+type SweepConfig struct {
+	SoloGameAge time.Duration
+	LobbyAge    time.Duration // shared by lobbies and started multiplayer games
+}
+
+// SweepStale deletes old solo games and multiplayer lobbies/games on a ticker until ctx
+// is cancelled. A DB-only delete is safe: realtime rooms are ephemeral and self-reap
+// once empty, so nothing live is still pointing at a room or game this old.
+func (s *Service) SweepStale(ctx context.Context, cfg SweepConfig, every time.Duration, log *slog.Logger) {
+	ticker := time.NewTicker(every)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-ticker.C:
+			now := time.Now().UTC()
+
+			if deleted, err := s.store.DeleteSoloGamesOlderThan(ctx, now.Add(-cfg.SoloGameAge)); err != nil {
+				log.Error("sweep stale solo league of letters games", "err", err)
+			} else if deleted > 0 {
+				log.Info("swept stale solo league of letters games", "deleted", deleted)
+			}
+
+			if deleted, err := s.store.DeleteLobbiesOlderThan(ctx, now.Add(-cfg.LobbyAge)); err != nil {
+				log.Error("sweep stale league of letters lobbies", "err", err)
+			} else if deleted > 0 {
+				log.Info("swept stale league of letters lobbies", "deleted", deleted)
+			}
+
+			if deleted, err := s.store.DeleteMultiplayerGamesOlderThan(ctx, now.Add(-cfg.LobbyAge)); err != nil {
+				log.Error("sweep stale multiplayer league of letters games", "err", err)
+			} else if deleted > 0 {
+				log.Info("swept stale multiplayer league of letters games", "deleted", deleted)
+			}
+		}
+	}
 }
 
 type CreateSoloGameInput struct {

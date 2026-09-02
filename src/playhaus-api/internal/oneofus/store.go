@@ -105,6 +105,18 @@ func (s GormStore) VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid
 	return nil
 }
 
+func (s GormStore) DeleteAllSingleDeviceGamesForSpecificUser(ctx context.Context, playerID string) error {
+	result := s.db.WithContext(ctx).
+		Where("owner_id = ?", playerID).
+		Delete(&OneOfUsSingleDeviceGame{})
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
 // SetMayorOneDeviceGame moves the chain to one seat and takes it off everybody else.
 //
 // Both halves in one transaction, because the in-between state is a table with no mayor
@@ -163,4 +175,38 @@ func (s GormStore) FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, ci
 	}
 
 	return nil
+}
+
+// DeleteGamesOlderThan removes single-device games created before the cutoff, players
+// and all. Used by the retention sweep, not by anything a player triggers.
+func (s GormStore) DeleteGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var gameIDs []uuid.UUID
+		err := tx.Model(&OneOfUsSingleDeviceGame{}).
+			Where("created_at < ?", before).
+			Pluck("id", &gameIDs).Error
+		if err != nil {
+			return fmt.Errorf("select games: %w", err)
+		}
+		if len(gameIDs) == 0 {
+			return nil
+		}
+
+		if err := tx.Where("session_id IN ?", gameIDs).Delete(&OneOfUsLocalPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete players: %w", err)
+		}
+		result := tx.Where("id IN ?", gameIDs).Delete(&OneOfUsSingleDeviceGame{})
+		if result.Error != nil {
+			return fmt.Errorf("delete games: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+	if err != nil {
+		return 0, fmt.Errorf("delete one of us games older than cutoff: %w", err)
+	}
+	return deleted, nil
 }

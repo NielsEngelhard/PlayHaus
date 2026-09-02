@@ -110,6 +110,12 @@ func run() error {
 	// Expired sessions are already rejected on every request; this only keeps
 	// the table from growing forever. It stops when ctx is cancelled.
 	go authService.SweepExpired(ctx, time.Hour, logger)
+	go lolService.SweepStale(ctx, lol.SweepConfig{
+		SoloGameAge: 72 * time.Hour,
+		LobbyAge:    time.Hour,
+	}, 5*time.Minute, logger)
+	go pubquizrService.SweepStaleSessions(ctx, 72*time.Hour, time.Hour, logger)
+	go oneOfUsService.SweepStaleGames(ctx, 12*time.Hour, time.Hour, logger)
 
 	// Buffered so the goroutine can exit even if nobody is receiving.
 	// Never closed: a closed channel would make the select below fire with a

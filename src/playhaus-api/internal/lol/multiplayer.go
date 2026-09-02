@@ -52,9 +52,11 @@ type MultiplayerStore interface {
 	SaveLobbySettings(ctx context.Context, code string, in LobbySettings) error
 	SaveRematchCode(ctx context.Context, code, rematchCode string) (bool, error)
 	DeleteLobby(ctx context.Context, code string) error
+	DeleteLobbiesOlderThan(ctx context.Context, before time.Time) (int64, error)
 	StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby, game *MultiplayerLeagueOfLettersGame) error
 	MultiplayerGameByID(ctx context.Context, id uuid.UUID) (*MultiplayerLeagueOfLettersGame, error)
 	MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error)
+	DeleteMultiplayerGamesOlderThan(ctx context.Context, before time.Time) (int64, error)
 	RecordMultiplayerGuess(ctx context.Context, in RecordMultiplayerGuessInput) error
 	RestartTurn(ctx context.Context, gameID uuid.UUID, expectTurnUserID string, endsAt time.Time) error
 }

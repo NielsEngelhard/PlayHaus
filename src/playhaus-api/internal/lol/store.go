@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -172,6 +173,70 @@ func (s *GormStore) DeleteSoloGamesByUserId(ctx context.Context, userID string, 
 		return fmt.Errorf("delete solo games for user: %w", err)
 	}
 	return nil
+}
+
+// DeleteSoloGamesOlderThan removes solo games created before the cutoff, board and
+// all. Used by the retention sweep, not by anything a player triggers.
+func (s *GormStore) DeleteSoloGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var gameIDs []uuid.UUID
+		err := tx.Model(&SoloLeagueOfLettersGame{}).
+			Where("created_at < ?", before).
+			Pluck("id", &gameIDs).Error
+		if err != nil {
+			return fmt.Errorf("select games: %w", err)
+		}
+		if len(gameIDs) == 0 {
+			return nil
+		}
+
+		var roundIDs []uuid.UUID
+		err = tx.Model(&LeagueOfLettersRound{}).
+			Where("game_id IN ?", gameIDs).
+			Pluck("id", &roundIDs).Error
+		if err != nil {
+			return fmt.Errorf("select rounds: %w", err)
+		}
+
+		var guessIDs []uuid.UUID
+		if len(roundIDs) > 0 {
+			err = tx.Model(&LeagueOfLettersGuess{}).
+				Where("round_id IN ?", roundIDs).
+				Pluck("id", &guessIDs).Error
+			if err != nil {
+				return fmt.Errorf("select guesses: %w", err)
+			}
+		}
+
+		// Deepest first, so no row is ever orphaned mid-transaction.
+		if len(guessIDs) > 0 {
+			if err := tx.Where("guess_id IN ?", guessIDs).Delete(&LeagueOfLettersValidatedLetter{}).Error; err != nil {
+				return fmt.Errorf("delete letters: %w", err)
+			}
+			if err := tx.Where("id IN ?", guessIDs).Delete(&LeagueOfLettersGuess{}).Error; err != nil {
+				return fmt.Errorf("delete guesses: %w", err)
+			}
+		}
+		if len(roundIDs) > 0 {
+			if err := tx.Where("id IN ?", roundIDs).Delete(&LeagueOfLettersRound{}).Error; err != nil {
+				return fmt.Errorf("delete rounds: %w", err)
+			}
+		}
+		result := tx.Where("id IN ?", gameIDs).Delete(&SoloLeagueOfLettersGame{})
+		if result.Error != nil {
+			return fmt.Errorf("delete games: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+
+	if err != nil {
+		return 0, fmt.Errorf("delete solo games older than cutoff: %w", err)
+	}
+	return deleted, nil
 }
 
 // RecordGuess stores a guess and the game state it moved.

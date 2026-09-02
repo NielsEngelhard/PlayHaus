@@ -3,6 +3,7 @@ package pubquizr
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"math"
 	"math/rand/v2"
 	"strings"
@@ -30,6 +31,7 @@ type Store interface {
 	CurrentSessionByOwnerID(ctx context.Context, ownerID string) (*Session, error)
 	DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, ownerID string) error
 	DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error
+	DeleteSessionsOlderThan(ctx context.Context, before time.Time) (int64, error)
 	// AttemptsOn counts answer rows, which is a count of seats that have had a go only
 	// in the hot seat rounds -- see the note on GormStore.AttemptsOn. Ask
 	// IsHotSeatRound before reading it as one.
@@ -99,6 +101,29 @@ type Service struct {
 
 func NewService(store Store) *Service {
 	return &Service{store: store}
+}
+
+// SweepStaleSessions deletes sessions older than maxAge on a ticker until ctx is
+// cancelled.
+func (s *Service) SweepStaleSessions(ctx context.Context, maxAge, every time.Duration, log *slog.Logger) {
+	ticker := time.NewTicker(every)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-ticker.C:
+			deleted, err := s.store.DeleteSessionsOlderThan(ctx, time.Now().UTC().Add(-maxAge))
+			if err != nil {
+				log.Error("sweep stale pubquizr sessions", "err", err)
+				continue
+			}
+			if deleted > 0 {
+				log.Info("swept stale pubquizr sessions", "deleted", deleted)
+			}
+		}
+	}
 }
 
 func (s *Service) Quiz(ctx context.Context, id uuid.UUID) (*Quiz, error) {

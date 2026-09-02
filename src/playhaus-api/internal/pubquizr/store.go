@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	"playhaus-api/internal/i18n"
 
@@ -446,6 +447,13 @@ func (s *GormStore) DeleteSessionsByOwnerID(ctx context.Context, ownerID string,
 		return fmt.Errorf("delete previous sessions for %s: %w", ownerID, err)
 	}
 	return nil
+}
+
+// DeleteSessionsOlderThan throws away every evening created before the cutoff.
+func (s *GormStore) DeleteSessionsOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	return s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
+		return tx.Where("created_at < ?", before)
+	})
 }
 
 // deleteSessions removes whichever sessions the scope names, and everything hanging

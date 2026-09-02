@@ -197,6 +197,48 @@ func TestDeleteSoloGamesByUserIdWithNothingToDelete(t *testing.T) {
 	}
 }
 
+// The retention sweep goes by age alone, whatever the game's status -- an
+// in-progress game abandoned three days ago is exactly as stale as a finished one.
+func TestDeleteSoloGamesOlderThanLeavesNewerGamesAlone(t *testing.T) {
+	store, db := newTestStore(t)
+	now := time.Now().UTC()
+	cutoff := now.Add(-72 * time.Hour)
+
+	old := insertGame(t, db, "owner", GameInProgress, now.Add(-73*time.Hour))
+	recent := insertGame(t, db, "owner", GameCompleted, now.Add(-1*time.Hour))
+
+	oldRound := insertPlayedRound(t, db, old)
+	insertPlayedRound(t, db, recent)
+
+	deleted, err := store.DeleteSoloGamesOlderThan(context.Background(), cutoff)
+	if err != nil {
+		t.Fatalf("delete solo games older than cutoff: %v", err)
+	}
+	if deleted != 1 {
+		t.Fatalf("deleted = %d, want 1", deleted)
+	}
+
+	var gameIDs []uuid.UUID
+	if err := db.Model(&SoloLeagueOfLettersGame{}).Pluck("id", &gameIDs).Error; err != nil {
+		t.Fatalf("read games: %v", err)
+	}
+	if len(gameIDs) != 1 || gameIDs[0] != recent {
+		t.Fatalf("games left = %v, want only %v", gameIDs, recent)
+	}
+
+	assertRowCount(t, db, "lol_rounds", 1)
+	assertRowCount(t, db, "lol_guesses", 1)
+	assertRowCount(t, db, "lol_letters", 1)
+
+	var roundIDs []uuid.UUID
+	if err := db.Model(&LeagueOfLettersRound{}).Pluck("id", &roundIDs).Error; err != nil {
+		t.Fatalf("read rounds: %v", err)
+	}
+	if slices.Contains(roundIDs, oldRound) {
+		t.Errorf("round %v from the old game survived", oldRound)
+	}
+}
+
 func TestGetSoloGamesByUserIdWithNoGames(t *testing.T) {
 	store, db := newTestStore(t)
 

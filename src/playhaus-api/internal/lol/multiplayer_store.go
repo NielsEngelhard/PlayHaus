@@ -178,6 +178,108 @@ func (s *GormStore) DeleteLobby(ctx context.Context, code string) error {
 	return nil
 }
 
+// DeleteLobbiesOlderThan drops rooms (and their seats) created before the cutoff,
+// waiting or started -- a room this old has nobody still walking through its door.
+// Used by the retention sweep, not by anything a player triggers.
+func (s *GormStore) DeleteLobbiesOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var codes []string
+		err := tx.Model(&MultiplayerLeagueOfLettersLobby{}).
+			Where("created_at < ?", before).
+			Pluck("id", &codes).Error
+		if err != nil {
+			return fmt.Errorf("select lobbies: %w", err)
+		}
+		if len(codes) == 0 {
+			return nil
+		}
+
+		if err := tx.Where("lobby_id IN ?", codes).Delete(&MultiplayerLobbyPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete lobby players: %w", err)
+		}
+		result := tx.Where("id IN ?", codes).Delete(&MultiplayerLeagueOfLettersLobby{})
+		if result.Error != nil {
+			return fmt.Errorf("delete lobbies: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+	if err != nil {
+		return 0, fmt.Errorf("delete lobbies older than cutoff: %w", err)
+	}
+	return deleted, nil
+}
+
+// DeleteMultiplayerGamesOlderThan drops started games (and their boards and
+// scoreboards) created before the cutoff. Used by the retention sweep, not by
+// anything a player triggers.
+func (s *GormStore) DeleteMultiplayerGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var gameIDs []uuid.UUID
+		err := tx.Model(&MultiplayerLeagueOfLettersGame{}).
+			Where("created_at < ?", before).
+			Pluck("id", &gameIDs).Error
+		if err != nil {
+			return fmt.Errorf("select games: %w", err)
+		}
+		if len(gameIDs) == 0 {
+			return nil
+		}
+
+		var roundIDs []uuid.UUID
+		err = tx.Model(&LeagueOfLettersRound{}).
+			Where("game_id IN ?", gameIDs).
+			Pluck("id", &roundIDs).Error
+		if err != nil {
+			return fmt.Errorf("select rounds: %w", err)
+		}
+
+		var guessIDs []uuid.UUID
+		if len(roundIDs) > 0 {
+			err = tx.Model(&LeagueOfLettersGuess{}).
+				Where("round_id IN ?", roundIDs).
+				Pluck("id", &guessIDs).Error
+			if err != nil {
+				return fmt.Errorf("select guesses: %w", err)
+			}
+		}
+
+		// Deepest first, so no row is ever orphaned mid-transaction.
+		if len(guessIDs) > 0 {
+			if err := tx.Where("guess_id IN ?", guessIDs).Delete(&LeagueOfLettersValidatedLetter{}).Error; err != nil {
+				return fmt.Errorf("delete letters: %w", err)
+			}
+			if err := tx.Where("id IN ?", guessIDs).Delete(&LeagueOfLettersGuess{}).Error; err != nil {
+				return fmt.Errorf("delete guesses: %w", err)
+			}
+		}
+		if len(roundIDs) > 0 {
+			if err := tx.Where("id IN ?", roundIDs).Delete(&LeagueOfLettersRound{}).Error; err != nil {
+				return fmt.Errorf("delete rounds: %w", err)
+			}
+		}
+		if err := tx.Where("game_id IN ?", gameIDs).Delete(&MultiplayerGamePlayer{}).Error; err != nil {
+			return fmt.Errorf("delete game players: %w", err)
+		}
+		result := tx.Where("id IN ?", gameIDs).Delete(&MultiplayerLeagueOfLettersGame{})
+		if result.Error != nil {
+			return fmt.Errorf("delete games: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+	if err != nil {
+		return 0, fmt.Errorf("delete multiplayer games older than cutoff: %w", err)
+	}
+	return deleted, nil
+}
+
 // StartLobby writes the game and points the lobby at it, together.
 //
 // One transaction because the two halves are meaningless apart: a lobby marked

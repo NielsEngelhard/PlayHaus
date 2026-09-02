@@ -3,6 +3,7 @@ package oneofus
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"math/rand"
 	"playhaus-api/internal/i18n"
 	"time"
@@ -23,6 +24,8 @@ type Store interface {
 	VoteOutPlayerOneDeviceGame(ctx context.Context, playerID uuid.UUID) error
 	SetMayorOneDeviceGame(ctx context.Context, gameID uuid.UUID, playerID uuid.UUID) error
 	FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, civiliansWon bool) error
+	DeleteAllSingleDeviceGamesForSpecificUser(ctx context.Context, playerID string) error
+	DeleteGamesOlderThan(ctx context.Context, before time.Time) (int64, error)
 }
 
 type Service struct {
@@ -31,6 +34,28 @@ type Service struct {
 
 func NewService(store Store) *Service {
 	return &Service{store: store}
+}
+
+// SweepStaleGames deletes games older than maxAge on a ticker until ctx is cancelled.
+func (s *Service) SweepStaleGames(ctx context.Context, maxAge, every time.Duration, log *slog.Logger) {
+	ticker := time.NewTicker(every)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-ticker.C:
+			deleted, err := s.store.DeleteGamesOlderThan(ctx, time.Now().UTC().Add(-maxAge))
+			if err != nil {
+				log.Error("sweep stale one of us games", "err", err)
+				continue
+			}
+			if deleted > 0 {
+				log.Info("swept stale one of us games", "deleted", deleted)
+			}
+		}
+	}
 }
 
 type StartOneOfUsSingleDeviceGameInput struct {
@@ -106,6 +131,11 @@ func (s *Service) StartSingleDeviceGame(ctx context.Context, in StartOneOfUsSing
 		ActualQuestion:   lines[0].RealLine,
 		ImposterQuestion: lines[0].ImposterLine,
 		Players:          players,
+	}
+
+	err = s.store.DeleteAllSingleDeviceGamesForSpecificUser(ctx, in.OwnerID)
+	if err != nil {
+		return nil, fmt.Errorf("error deleting old games in CreateOneDeviceGame %w", err)
 	}
 
 	err = s.store.CreateOneDeviceGame(ctx, game)
