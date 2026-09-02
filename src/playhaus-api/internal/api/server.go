@@ -3,6 +3,7 @@ package api
 import (
 	"log/slog"
 	"net/http"
+	"playhaus-api/internal/fakefiller"
 	"playhaus-api/internal/oneofus"
 	"slices"
 
@@ -21,6 +22,8 @@ type Server struct {
 	leagueOfLetters *lol.Service
 	pubquizr        *pubquizr.Service
 	oneOfUs         *oneofus.Service
+	fakeFiller      *fakefiller.Service
+
 	// rt is every live socket room. Handlers publish into it after a write; they
 	// never read game state out of it.
 	rt  *realtime.Hub

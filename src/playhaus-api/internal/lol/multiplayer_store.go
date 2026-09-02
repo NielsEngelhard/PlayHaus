@@ -33,7 +33,6 @@ func withTable(db *gorm.DB) *gorm.DB {
 }
 
 func (s *GormStore) CreateLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby) error {
-	// Creates the host's row through the association.
 	if err := s.db.WithContext(ctx).Create(lobby).Error; err != nil {
 		return fmt.Errorf("insert lobby: %w", err)
 	}

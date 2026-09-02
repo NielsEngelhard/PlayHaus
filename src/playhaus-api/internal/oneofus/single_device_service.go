@@ -11,11 +11,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type GameInputLine struct {
-	RealLine     string
-	ImposterLine string
-}
-
 type Store interface {
 	CreateOneDeviceGame(ctx context.Context, game *OneOfUsSingleDeviceGame) error
 	GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error)
@@ -59,17 +54,10 @@ func (s *Service) SweepStaleGames(ctx context.Context, maxAge, every time.Durati
 }
 
 type StartOneOfUsSingleDeviceGameInput struct {
-	OwnerID     string
-	Locale      i18n.Locale
-	PlayerNames []string
-	GameMode    GameMode
-	// EnabledRoles is which of the imposter roles this table agreed to play with.
-	//
-	// Nil is the whole set, which is what every caller that does not care about the
-	// setting -- and every test written before it existed -- gets. Not persisted: the
-	// deal happens once, here, and the row that comes out of it already says what
-	// everybody is. Storing the setting as well would be storing the question next to
-	// its own answer.
+	OwnerID      string
+	Locale       i18n.Locale
+	PlayerNames  []string
+	GameMode     GameMode
 	EnabledRoles []Role
 }
 
@@ -80,18 +68,10 @@ type VotePlayerOutSingleDeviceGameInput struct {
 }
 
 type VotePlayerOutSingleDeviceGameResponse struct {
-	PlayerID     uuid.UUID `json:"playerId"`
-	PlayerRole   Role      `json:"playerRole"`
-	GameEnded    bool      `json:"gameEnded"`
-	CiviliansWon bool      `json:"civiliansWon"`
-	// MayorPlayerID is who wears the chain now the vote has been counted -- the same
-	// seat as before unless the vote took the mayor, in which case it is whoever the
-	// table has just been given instead.
-	//
-	// Always sent, not only when it changes, because the app patches its copy of the
-	// table from this response rather than refetching: a field that is only sometimes
-	// there would leave the old mayor lit on the next vote screen. Nil once the game is
-	// over, which is the one state with nothing left to break a tie for.
+	PlayerID      uuid.UUID  `json:"playerId"`
+	PlayerRole    Role       `json:"playerRole"`
+	GameEnded     bool       `json:"gameEnded"`
+	CiviliansWon  bool       `json:"civiliansWon"`
 	MayorPlayerID *uuid.UUID `json:"mayorPlayerId"`
 }
 

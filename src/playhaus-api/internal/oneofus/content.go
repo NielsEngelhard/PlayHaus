@@ -8,6 +8,13 @@ import (
 	"strings"
 )
 
+const ContentDivider = "---"
+
+type GameInputLine struct {
+	RealLine     string
+	ImposterLine string
+}
+
 //go:embed data
 var contentFiles embed.FS
 
@@ -28,7 +35,7 @@ func GetContentLines(locale i18n.Locale, mode GameMode, amount int) ([]GameInput
 			continue
 		}
 
-		parts := strings.SplitN(line, "---", 2)
+		parts := strings.SplitN(line, ContentDivider, 2)
 		if len(parts) != 2 {
 			return nil, fmt.Errorf("invalid line does not consist of 2 parts to split on: %s", line)
 		}

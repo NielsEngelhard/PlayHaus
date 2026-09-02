@@ -83,16 +83,9 @@ func (l MultiplayerLeagueOfLettersLobby) Has(userID string) bool {
 }
 
 type MultiplayerLobbyPlayer struct {
-	LobbyID string `gorm:"primaryKey;type:text"`
-	UserID  string `gorm:"primaryKey;index"`
-
-	// Seat is the order people walked in, and becomes the turn order when the game
-	// starts. Stored rather than worked out from JoinedAt: two players who join in
-	// the same microsecond -- which SQLite's resolution makes a real possibility,
-	// and a test makes a certainty -- would otherwise sort in whatever order the
-	// database felt like, and that order decides who plays first.
-	Seat int `gorm:"not null"`
-
+	LobbyID  string    `gorm:"primaryKey;type:text"`
+	UserID   string    `gorm:"primaryKey;index"`
+	Seat     int       `gorm:"not null"` // Seat is the order people walked in
 	JoinedAt time.Time `gorm:"not null"`
 }
 

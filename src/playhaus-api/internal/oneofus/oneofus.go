@@ -15,84 +15,41 @@ const (
 	Nitwit   Role = 2 // Sees nothing
 )
 
-// WithCivilians says which side a role counts for when a win condition is worked out.
-//
-// A predicate rather than `role == Civilian` at each call site, because there is now
-// more than one way to not be a civilian and the next role added would silently land on
-// the wrong side of every comparison that spelled it out by hand. The nitwit is an
-// imposter for this purpose: they are dealt in place of one, so the balance a table is
-// dealt is the balance it has to be won from.
 func (r Role) WithCivilians() bool {
 	return r == Civilian
 }
 
-// KnowsAWord says whether this role was given anything to read at all.
-//
-// Civilians get the real line and imposters get the near-miss. The nitwit gets neither,
-// which is the whole of the role: everybody else is bluffing around a word, and they are
-// bluffing around a blank.
 func (r Role) KnowsAWord() bool {
 	return r != Nitwit
 }
 
-// OneOfUsSingleDeviceGame is one table playing off one phone.
-//
-// The whole deal lives in this row: both halves of the word pair and, through the
-// association, everybody's role. That is not a leak to fix — a single device has one
-// screen for the whole table, so the phone has to hold what it is about to reveal one
-// player at a time. Keeping the secrets off it would mean a round trip per reveal and a
-// game that stops working the moment the wifi does.
 type OneOfUsSingleDeviceGame struct {
-	ID               uuid.UUID   `gorm:"primaryKey;type:text" json:"id"`
-	OwnerID          string      `gorm:"index;not null" json:"ownerId"`
-	Locale           i18n.Locale `gorm:"not null" json:"locale"`
-	CreatedAt        time.Time   `gorm:"not null" json:"createdAt"`
-	ActualQuestion   string      `gorm:"not null" json:"actualQuestion"`
-	ImposterQuestion string      `gorm:"not null" json:"imposterQuestion"`
-
-	// Set once, when a side has won. Nil for a game still being played, which is what
-	// the app reads to tell "carry on where you left off" from "show me the result".
-	//
-	// The game used to be deleted at this point. That answered the reconnect endpoint
-	// with a 404 in exactly the situation somebody most wants it to work — the phone
-	// locked on the final screen — so the row now stays and says how it ended.
-	FinishedAt   *time.Time `json:"finishedAt"`
-	CiviliansWon *bool      `json:"civiliansWon"`
-
-	Players []OneOfUsLocalPlayer `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE" json:"players"`
+	ID               uuid.UUID            `gorm:"primaryKey;type:text" json:"id"`
+	OwnerID          string               `gorm:"index;not null" json:"ownerId"`
+	Locale           i18n.Locale          `gorm:"not null" json:"locale"`
+	CreatedAt        time.Time            `gorm:"not null" json:"createdAt"`
+	ActualQuestion   string               `gorm:"not null" json:"actualQuestion"`
+	ImposterQuestion string               `gorm:"not null" json:"imposterQuestion"`
+	FinishedAt       *time.Time           `json:"finishedAt"`
+	CiviliansWon     *bool                `json:"civiliansWon"`
+	Players          []OneOfUsLocalPlayer `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE" json:"players"`
 }
 
 func (OneOfUsSingleDeviceGame) TableName() string { return "oou_single_device_games" }
 
 type OneOfUsLocalPlayer struct {
-	PlayerID uuid.UUID `gorm:"primaryKey;type:text" json:"playerId"`
-	// The game this seat belongs to. Named for the association above rather than
-	// GameID, and it has to exist as a field: GORM builds the foreign key from the
-	// struct, so a `foreignKey:SessionID` with no SessionID migrates to a players
-	// table that cannot be joined to anything.
+	PlayerID   uuid.UUID `gorm:"primaryKey;type:text" json:"playerId"`
 	SessionID  uuid.UUID `gorm:"index;not null;type:text" json:"-"`
 	Name       string    `gorm:"not null" json:"name"`
 	Score      int       `gorm:"not null;default:0" json:"score"`
 	Role       Role      `gorm:"not null" json:"role"`
 	CreatedAt  time.Time `gorm:"not null" json:"createdAt"`
 	IsVotedOut bool      `gorm:"not null" json:"isVotedOut"`
-	// IsMayor marks the one seat that settles a tied vote.
-	//
-	// A separate axis from Role, and deliberately so: the chain is drawn from the whole
-	// table, so the mayor is as likely to be an imposter as a civilian, and a table can
-	// spend a whole game being run by the person it is looking for. Folding it into Role
-	// would make it a fourth kind of player and put it on one side of WithCivilians,
-	// which is exactly the thing it must not be.
-	//
-	// Unlike the roles this is public: the app draws it on the vote screen every round,
-	// because a tie-breaker nobody can name is not a rule, it is an argument.
-	IsMayor bool `gorm:"not null;default:false" json:"isMayor"`
+	IsMayor    bool      `gorm:"not null;default:false" json:"isMayor"`
 }
 
 func (OneOfUsLocalPlayer) TableName() string { return "oou_local_players" }
 
-// Models are the tables this game owns, parents before children so a fresh database
-// can build the foreign keys as it goes.
 func Models() []any {
 	return []any{
 		&OneOfUsSingleDeviceGame{},
