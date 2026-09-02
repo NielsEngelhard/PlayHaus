@@ -50,12 +50,6 @@ const STEP_TITLES: Record<Step, TranslationKey> = {
     3: 'pubquizr.oneDevice.steps.settingsTitle'
 };
 
-const STEP_INTROS: Record<Step, TranslationKey> = {
-    1: 'pubquizr.oneDevice.description',
-    2: 'pubquizr.oneDevice.steps.quizIntro',
-    3: 'pubquizr.oneDevice.steps.settingsIntro'
-};
-
 export default function OneDeviceQuizerSetup() {
     const t = useT();
     const theme = useTheme();
@@ -256,7 +250,6 @@ export default function OneDeviceQuizerSetup() {
             <SettingsPageBase
                 game={PUBQUIZR}
                 title={t(STEP_TITLES[step])}
-                intro={t(STEP_INTROS[step])}
                 eyebrow={t('common.stepOf', { step, total: STEPS })}
                 progress={{ current: step, total: STEPS }}
                 back={ROUTES.quizzerIndex as RelativePathString}

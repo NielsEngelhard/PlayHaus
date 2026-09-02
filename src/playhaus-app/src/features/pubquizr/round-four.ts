@@ -3,81 +3,26 @@ import type { QuizDetail } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
-/**
- * Round 4, as the screen needs it: thirty seconds to describe your own words to the
- * player on your left.
- *
- * One turn per player, several words inside it. That is the thing about this round the
- * rest of the app has to bend around — `currentPosition` counts turns here, not words, so
- * nothing may look a word up by it. The server sends `turnQuestionIds`, which is the only
- * honest answer to "which words are this turn about".
- *
- * The describer holds the phone, because the words are on it and they are the only person
- * who may see them. So in this round the describer is the quizmaster, which is why the
- * hand-off screen still names the right person without knowing any of this.
- *
- * The turn is played in two halves, and they are what `guesser` and `bonus` are for.
- * Inside the thirty seconds the describer is playing to one person — the seat on their
- * left, the same seat every other round is read to — and nobody else's answer counts.
- * When time is up, whatever nobody got goes round the rest of the table for one guess
- * each, in `bonus` order, and a word is gone the moment somebody takes it.
- *
- * A word that lands pays twice either way: a point to whoever described it and a point to
- * whoever named it. Late counts as much as in time — somebody only knew the word because
- * of how it was described.
- */
-
-/** Kept in step with `RoundDescribe` in Go. */
 export const ROUND_DESCRIBE = 4;
-
-/**
- * How long a turn lasts. Mirrors `DescribeSeconds` in `rules.go`.
- *
- * Under DEV_MODE it is three seconds, so that working on the round does not mean sitting
- * out a full turn per player to reach the screen after it. Everything else about the
- * round reads the seconds from here — the rules card on the ready screen included — so
- * the shortened turn still describes itself honestly.
- */
 export const DESCRIBE_SECONDS = DEV_MODE ? 3 : 30;
 
-/** What one word that lands pays the describer, and what it pays whoever named it. */
 export const DESCRIBE_WORD_POINTS = 1;
 export const DESCRIBE_GUESS_POINTS = 1;
 
-/** One of the describer's words. */
 export interface DescribeWord {
-    /** The dealt question, which is what an award has to name. */
     dealt: QuizSessionQuestion
-    /** The word itself. On a describe question the prompt *is* the word. */
     word: string
 }
 
-/**
- * What became of each word: the seat credited with it, or null for one nobody got.
- *
- * One seat rather than a list, because there is nobody to draw with any more. Inside the
- * clock only `guesser` is playing, and after it a leftover is gone as soon as somebody
- * names it — so "who got this word" has exactly one answer, and a shape that could hold
- * two would be a shape the server refuses.
- */
 export type DescribeAwards = Record<string, number | null>;
 
 export interface DescribeTurn {
-    /** Whoever is describing, and holding the phone. */
     describer: Seat
-    /** Their words, in the order they were dealt. */
     words: DescribeWord[]
-    /** The one person they are describing to: the seat on their left. */
     guesser: Seat
-    /**
-     * Everybody else, in the order their bonus guess comes round — from the guesser's
-     * left onwards. Empty at a table of two, which round 4 never sees.
-     */
     bonus: Seat[]
-    /** 1-based, for "turn 2 of 5". */
     number: number
     total: number
-    /** What one word that lands pays, all in. */
     worth: number
 }
 

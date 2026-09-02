@@ -3,44 +3,11 @@ import type { QuizDetail, QuizQuestion } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
-/**
- * Round 5, as the screen needs it: one question, four answers hiding in it, and twenty
- * seconds for the player being asked to name as many of them as they can.
- *
- * Played exactly the way round 4 is, and moved there for the reason round 4 was: a
- * question put to the whole table at once is a question the loudest player wins. So the
- * reader asks one person — the seat on their left, the same seat every other round is
- * read to — and inside the clock nobody else's answer counts. When time is up, whatever
- * is left goes round the rest of the table in `bonus` order for one guess each, and an
- * answer is gone the moment somebody takes it.
- *
- * What is *not* the same is what a found answer pays. Round 4 pays twice, because the
- * describer earned a point for getting the word across; here the reader only read a
- * question out, so an answer pays its finder and nobody else.
- *
- * Unlike round 4, ticking an answer off *is* crediting it rather than a separate step —
- * the reader is holding the answer key while the guesser recites at them — and it starts
- * live on the clock. It does not end there: `ListBoard` gives the reader one more,
- * unhurried pass at the same rows once the clock stops, since a tick made against a
- * bar about to hit zero is a tick easily missed. See `ListBoard`.
- */
-
-/** Kept in step with `RoundList` in Go. */
 export const ROUND_LIST = 5;
 
-/**
- * How long the guesser has. Mirrors `ListSeconds` in `rules.go`.
- *
- * Ten seconds shorter than `DESCRIBE_SECONDS`, because the two clocks are spent on
- * different work: thirty is a describer talking their way round four words, twenty is
- * somebody reciting what they already know.
- *
- * Shortened under DEV_MODE for the same reason `DESCRIBE_SECONDS` is: working on the
- * round should not mean sitting out a full turn per player to reach the screen after it.
- */
 export const LIST_SECONDS = DEV_MODE ? 3 : 20;
 
-export const ZEN_LIST_GUESSES = 6;
+export const ZEN_LIST_GUESSES = 8;
 
 /** What one credited answer pays. Mirrors `ListAnswerPoints`. */
 export const LIST_ANSWER_POINTS = 1;
@@ -53,14 +20,6 @@ export interface ListAnswerSlot {
     aliases: string[]
 }
 
-/**
- * What became of each answer: the seat credited with it, or null for one nobody found.
- *
- * One seat rather than a list, exactly as `DescribeAwards` is and for the same reason:
- * inside the clock only `guesser` is playing, and after it a leftover is gone as soon as
- * somebody names it — so "who got this" has exactly one answer, and a shape that could
- * hold two would be a shape the server refuses.
- */
 export type ListAwards = Record<string, number | null>;
 
 export interface ListTurn {

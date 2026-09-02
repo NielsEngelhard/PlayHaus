@@ -8,16 +8,9 @@ import { Link, type Href } from "expo-router";
 import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
-    /** Where the back link goes. */
     href: Href,
     label?: string,
-    /**
-     * Defaults to `secondary`, the accent fill `theme.solidButton` already carries. Pass
-     * `neutral` where going back is not what the page is for and the accent would be
-     * competing with the thing that is.
-     */
     variant?: ButtonVariant,
-    /** For layout only — how the button sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 

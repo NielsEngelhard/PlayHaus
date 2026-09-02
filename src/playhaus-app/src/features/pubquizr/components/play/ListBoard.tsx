@@ -10,6 +10,7 @@ import {
     LIST_SECONDS,
     scoreOfListAwards,
     unclaimedAnswers,
+    ZEN_LIST_GUESSES,
     type ListAwards,
     type ListTurn
 } from "@/features/pubquizr/round-five";
@@ -50,7 +51,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     /** The answer this player has been marked down for, before it is committed. */
     const [bonusPick, setBonusPick] = useState<string | null>(null);
 
-    const [spent, setSpent] = useState(0);
     /** Whether the question has been unfolded back out of the one-line recap. */
     const [rereading, setRereading] = useState(false);
 
@@ -61,7 +61,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards({});
         setBonusIndex(0);
         setBonusPick(null);
-        setSpent(0);
         setRereading(false);
     }
 
@@ -98,20 +97,10 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards(next);
 
         const left = turn.answers.filter(answer => (next[answer.id] ?? null) === null);
-        const after = Math.max(0, spent + (taking ? 1 : -1));
-        setSpent(after);
+        const after = Math.max(0 + (taking ? 1 : -1));
 
         if (left.length === 0) setStage('settle');
         else if (after >= turn.guesses) setStage('inTime');
-    }
-
-    function missOne() {
-        if (busy || turn.guesses === null) return;
-
-        const after = spent + 1;
-        setSpent(after);
-
-        if (after >= turn.guesses) setStage('inTime');
     }
 
     function openBonus() {
@@ -221,7 +210,10 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                 {turn.guesses === null
                     ? <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
-                    : <GuessCounter spent={spent} total={turn.guesses} />}
+                    : <ZenNotice
+                        guesser={turn.guesser.name}
+                        nGuesses={ZEN_LIST_GUESSES}
+                    />}
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.onlyYouSeeThis')}
@@ -245,7 +237,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                 {turn.guesses !== null && (
                     <PopPressable
-                        onPress={missOne}
                         disabled={busy}
                         accessibilityRole="button"
                         style={[styles.missed, busy && styles.dimmed]}
@@ -425,40 +416,19 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     )
 }
 
-/**
- * The timer, kept behind a component of its own so it mounts once per question — see
- * `DescribeBoard`’s own slot, which this mirrors for the same reason: inlining it would put it
- * in the same tree as the awards state, and every tick on the answers would be a
- * re-render the countdown has to survive.
- */
 function ListTimerSlot({ onDone }: { onDone: () => void }) {
     return <TurnTimer seconds={LIST_SECONDS} onDone={onDone} />;
 }
 
-function GuessCounter({ spent, total }: { spent: number, total: number }) {
+function ZenNotice({ guesser, nGuesses }: { guesser: string, nGuesses: number }) {
     const t = useT();
-    const styles = useStyles();
-
-    const left = Math.max(0, total - spent);
 
     return (
-        <View style={styles.counter}>
-            <View style={styles.pips}>
-                {Array.from({ length: total }, (_, index) => (
-                    <View
-                        key={index}
-                        style={[styles.pip, index < spent && styles.pipSpent]}
-                    />
-                ))}
-            </View>
-
-            <AppText
-                style={styles.counterLabel}
-                accessibilityLiveRegion="polite"
-            >
-                {t('pubquizr.play.list.guessCounter', { left, total })}
-            </AppText>
-        </View>
+        <InlineNotification
+            icon="feather"
+            title={t('pubquizr.play.list.zenTitle')}
+            message={t('pubquizr.play.list.zenNotice', { guesser, nGuesses })}
+        />
     )
 }
 
@@ -515,35 +485,6 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         color: theme.colors.text
     },
-    counter: {
-        flexShrink: 0,
-        alignItems: 'center',
-        gap: 10
-    },
-
-    pips: {
-        flexDirection: 'row',
-        gap: 8
-    },
-
-    pip: {
-        width: 26,
-        height: 26,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.focus
-    },
-    pipSpent: {
-        backgroundColor: theme.colors.backgroundElement
-    },
-
-    counterLabel: {
-        fontSize: 13,
-        fontWeight: 800,
-        color: theme.colors.text
-    },
-
     missed: {
         flexShrink: 0,
         alignSelf: 'center',

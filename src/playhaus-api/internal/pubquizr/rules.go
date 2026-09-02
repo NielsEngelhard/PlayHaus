@@ -88,7 +88,14 @@ const (
 	// silence with the answers still on screen.
 	ListSeconds = 20
 
-	ZenListGuesses = 6
+	// ZenListGuesses is what replaces round 5's clock in zen mode: the seat on the
+	// reader's left gets this many guesses instead of ListSeconds, and the round moves
+	// on when they run out rather than when time does.
+	//
+	// Comfortably more than ListAnswersPerQuestion. A budget as tight as the number of
+	// answers there are to find would make the untimed round the harder one to play,
+	// which is the opposite of what a table asks for when it turns the timers off.
+	ZenListGuesses = 8
 )
 
 // IsHotSeatRound is whether a round is played on the hot seat: read to one seat,

@@ -552,14 +552,12 @@ export const en = {
             },
             steps: {
                 quizTitle: 'Which quiz',
-                quizIntro: 'Pick the quiz the table is going to play. Search by name, or browse the shelves.',
                 settingsTitle: 'How you play',
-                settingsIntro: 'Almost there. Check the table below, and change anything that is not right.',
                 table: 'At the table',
             },
             zenMode: {
                 label: 'Zen mode',
-                description: 'No timers. Round 4 — describe it — is left out, and in round 5 the player gets six guesses instead of twenty seconds.',
+                description: 'No timers. Round 4 — describe it — is left out, and in round 5 the player gets eight guesses instead of twenty seconds.',
                 caption: 'Zen · no timers'
             },
             start: 'Start quiz',
@@ -866,7 +864,13 @@ export const en = {
                 start: 'Show the answers and start',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
                 runningReminder: 'Tick off every answer {{guesser}} says. Nobody else counts yet.',
-                guessCounter: '{{left}} of {{total}} guesses left',
+                /**
+                 * Zen mode's stand-in for the clock, said in a notification rather than
+                 * drawn as a meter. It states the whole of what is different about the
+                 * round, because it is on screen for the whole of it.
+                 */
+                zenTitle: 'No clock',
+                zenNotice: 'No time pressure here. {{guesser}} can guess {{nGuesses}} times, and afterwards everybody else gets one bonus guess at an answer nobody got.',
                 missed: 'Wrong — that is a guess gone',
                 /** The button that ends the clock early, before time runs out on its own. */
                 toInTime: "Check {{guesser}}'s answers",
@@ -900,7 +904,7 @@ export const en = {
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
                 briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
-                briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who gets six guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
+                briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
