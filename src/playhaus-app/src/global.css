@@ -54,3 +54,24 @@
   background: rgba(124, 121, 139, 0.7);
   background-clip: content-box;
 }
+
+/*
+ * No zooming, anywhere.
+ *
+ * `touch-action` is the declarative half of the lock set up in `src/app/+html.tsx`: a
+ * touch is governed by the intersection of these values from the hit element up through
+ * its ancestors, so saying it once on the root says it for the whole page. `pan-x pan-y`
+ * keeps every scroll the app has and drops the two gestures it never wants — the pinch,
+ * and the double tap that would otherwise zoom a card to fill the screen when somebody
+ * taps an answer twice in a hurry.
+ *
+ * `text-size-adjust` is a third, quieter zoom: mobile Safari inflates text when a phone
+ * is turned to landscape, which on a screen laid out in `rem` moves everything under it.
+ * `100%` means "the size we asked for".
+ */
+html,
+body {
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
