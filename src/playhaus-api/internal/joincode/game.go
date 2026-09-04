@@ -6,11 +6,11 @@ package joincode
 // characters off a friend's screen, types them in, and the first of them is the whole
 // of what decides which door opens.
 //
-// Three letters were free and all three games took the obvious one: L, P, O. That O
-// reintroduces exactly the confusion the alphabet was stripped down to avoid is the
-// price of the obvious letter, and it is paid in Normalize -- a zero typed in the
-// first position can only ever have been meant as an O, because no game claims a
-// digit there, so it is simply read as one.
+// Every game took the obvious letter: L, P, O, F. That O reintroduces exactly the
+// confusion the alphabet was stripped down to avoid is the price of the obvious letter,
+// and it is paid in Normalize -- a zero typed in the first position can only ever have
+// been meant as an O, because no game claims a digit there, so it is simply read as one.
+// F needs no such rescue: no digit is mistaken for it.
 //
 // The values are the short wire tokens rather than the URL slugs the app routes on
 // ("league-of-letters" and friends). Those belong to the routes and are a third
@@ -21,16 +21,17 @@ const (
 	LeagueOfLetters Game = "lol"
 	PubquizR        Game = "pq"
 	OneOfUs         Game = "oou"
+	FakeFiller      Game = "ff"
 )
 
 // Games is every game this build knows how to hand a code out for.
 //
-// Two of the three cannot yet be joined by one: PubquizR and One of Us are played by a
+// Two of the four cannot yet be joined by one: PubquizR and One of Us are played by a
 // table sharing a single phone, so there is no room for a code to open. They are here
 // anyway, because the prefix is the thing being decided -- a game that picked its letter
 // only on the day it grew a lobby would be picking it from whatever was left, and the
 // letters are the part that has to be stable.
-var Games = []Game{LeagueOfLetters, PubquizR, OneOfUs}
+var Games = []Game{LeagueOfLetters, PubquizR, OneOfUs, FakeFiller}
 
 // Valid reports whether this is a game this build has, as opposed to a string that has
 // been cast into the type.
@@ -57,6 +58,8 @@ func (g Game) Prefix() byte {
 		return 'P'
 	case OneOfUs:
 		return 'O'
+	case FakeFiller:
+		return 'F'
 	default:
 		return 0
 	}

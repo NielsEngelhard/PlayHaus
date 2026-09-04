@@ -11,6 +11,11 @@ type GormStore struct {
 	db *gorm.DB
 }
 
+func (s *GormStore) GetLobbyByID(ctx context.Context, lobby string) (*FFLobby, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func NewGormStore(db *gorm.DB) *GormStore {
 	return &GormStore{db: db}
 }
@@ -66,7 +71,7 @@ func (s *GormStore) StartLobby(ctx context.Context, lobby *FFLobby, game *FFMult
 	return nil
 }
 
-func (s *GormStore) AddLobbyPlayer(ctx context.Context, player *FFPlayer) error {
+func (s *GormStore) AddLobbyPlayer(ctx context.Context, player *FFLobbyPlayer) error {
 	if err := s.db.WithContext(ctx).Create(player).Error; err != nil {
 		return fmt.Errorf("insert FFplayer in FFLobby: %w", err)
 	}
@@ -76,7 +81,7 @@ func (s *GormStore) AddLobbyPlayer(ctx context.Context, player *FFPlayer) error 
 func (s *GormStore) RemoveLobbyPlayer(ctx context.Context, code, userID string) error {
 	err := s.db.WithContext(ctx).
 		Where("lobby_id = ? AND user_id = ?", code, userID).
-		Delete(&FFPlayer{}).Error
+		Delete(&FFLobbyPlayer{}).Error
 	if err != nil {
 		return fmt.Errorf("delete FFPlayer from FFLobby : %w", err)
 	}

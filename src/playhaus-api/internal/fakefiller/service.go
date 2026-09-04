@@ -6,8 +6,6 @@ import (
 	"playhaus-api/internal/i18n"
 	"playhaus-api/internal/joincode"
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type Store interface {
@@ -15,7 +13,7 @@ type Store interface {
 	CreateLobby(ctx context.Context, lobby *FFLobby) error
 	StartLobby(ctx context.Context, lobby *FFLobby, game *FFMultiDeviceGame) error
 	GetLobbyByID(ctx context.Context, lobby string) (*FFLobby, error)
-	AddLobbyPlayer(ctx context.Context, player *FFPlayer) error
+	AddLobbyPlayer(ctx context.Context, player *FFLobbyPlayer) error
 	RemoveLobbyPlayer(ctx context.Context, code, userID string) error
 }
 
@@ -46,7 +44,7 @@ func (s *Service) CreateMpLobby(ctx context.Context, ownerID string, locale i18n
 		ID:        code,
 		OwnerID:   ownerID,
 		Locale:    locale,
-		Players:   []FFPlayer{{LobbyID: code, UserID: ownerID}},
+		Players:   []FFLobbyPlayer{{LobbyID: code, UserID: ownerID}},
 		CreatedAt: now,
 	}
 
@@ -66,66 +64,68 @@ type StartFFGameInput struct {
 
 // Start the game
 func (s *Service) StartMpLobby(ctx context.Context, in *StartFFGameInput) (*FFMultiDeviceGame, error) {
-	lobby, err := s.store.GetLobbyByID(ctx, in.GameID)
-	if err != nil {
-		return nil, err
-	}
-
-	if len(lobby.Players) < MultiDeviceGameMinPlayers {
-		return nil, fmt.Errorf("MultiDeviceGameMinPlayers not reached")
-	}
-
-	if len(lobby.Players) > MultiDeviceGameMaxPlayers {
-		return nil, fmt.Errorf("MultiDeviceGameMaxPlayers exceeded")
-	}
-
-	now := time.Now().UTC()
-
-	game := &FFMultiDeviceGame{
-		ID:           uuid.New(),
-		LobbyID:      lobby.ID,
-		OwnerID:      lobby.OwnerID,
-		Locale:       in.Locale,
-		GameMode:     in.GameMode,
-		CurrentRound: 1,
-		CreatedAt:    now,
-	}
-
-	players, err := createPlayers(game)
-	if err != nil {
-		return nil, err
-	}
-
-	rounds, err := createRounds(game)
-	if err != nil {
-		return nil, err
-	}
-
-	game.Players = players
-	game.Rounds = rounds
-
-	if err := s.store.StartLobby(ctx, lobby, game); err != nil {
-		return nil, fmt.Errorf("start lobby: %w", err)
-	}
-
-	return game, nil
+	//lobby, err := s.store.GetLobbyByID(ctx, in.GameID)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//
+	//if len(lobby.Players) < MultiDeviceGameMinPlayers {
+	//	return nil, fmt.Errorf("MultiDeviceGameMinPlayers not reached")
+	//}
+	//
+	//if len(lobby.Players) > MultiDeviceGameMaxPlayers {
+	//	return nil, fmt.Errorf("MultiDeviceGameMaxPlayers exceeded")
+	//}
+	//
+	//now := time.Now().UTC()
+	//
+	//game := &FFMultiDeviceGame{
+	//	ID:           uuid.New(),
+	//	LobbyID:      lobby.ID,
+	//	OwnerID:      lobby.OwnerID,
+	//	Locale:       in.Locale,
+	//	GameMode:     in.GameMode,
+	//	CurrentRound: 1,
+	//	CreatedAt:    now,
+	//}
+	//
+	//players, err := createPlayers(game)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//
+	//rounds, err := createRounds(game)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//
+	//game.Players = players
+	//game.Rounds = rounds
+	//
+	//if err := s.store.StartLobby(ctx, lobby, game); err != nil {
+	//	return nil, fmt.Errorf("start lobby: %w", err)
+	//}
+	//
+	//return game, nil
+	return nil, nil
 }
 
 func (s *Service) freeJoinCode(ctx context.Context) (string, error) {
 	return joincode.Free(ctx, joincode.LeagueOfLetters, s.store.LobbyCodeTaken)
 }
 
-func createPlayers(game *FFMultiDeviceGame) ([]FFPlayer, error) {
-	game.Players = make([]FFPlayer, len(X))
-	for i, player := range X {
-		game.Players[i] = FFPlayer{
-			UserID:  player.UserID,
-			LobbyID: game.LobbyID,
-			Score:   0,
-		}
-	}
-}
+//func createPlayers(game *FFMultiDeviceGame) ([]FFLobbyPlayer, error) {
+//	game.Players = make([]FFLobbyPlayer, len(X))
+//	for i, player := range X {
+//		game.Players[i] = FFLobbyPlayer{
+//			UserID:  player.UserID,
+//			LobbyID: game.LobbyID,
+//			Score:   0,
+//		}
+//	}
+//}
 
 func createRounds() []FFRound {
+	return nil
 	// Every person always can write 2 answers himself. So it is possible you don't battle every other player, but that is OK
 }

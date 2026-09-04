@@ -4,27 +4,43 @@ import (
 	"embed"
 	"fmt"
 	"math/rand/v2"
-	"playhaus-api/internal/i18n"
 	"strings"
+
+	"playhaus-api/internal/i18n"
 )
 
+// ContentDivider separates a prompt from its answers, and the answers from each other.
 const ContentDivider = "---"
-const Placeholder = "[]"
 
+// Placeholder is the blank, and it is the single source of truth for the spelling: the
+// parser counts these, the round remembers how many it found, and the app fills them in. A
+// data file that spells it differently has no blanks at all as far as this package is
+// concerned, so changing it here is the whole of changing it.
+const Placeholder = "[FILL]"
+
+// GameInputLine is one prompt as it comes off disk: the sentence with its blanks still in,
+// and -- in the mode that has one -- the real answer, one value per blank.
 type GameInputLine struct {
 	Line    string
 	Answers []string
+	Blanks  int
 }
 
 //go:embed data
 var contentFiles embed.FS
 
+// GetContentLines draws `amount` distinct prompts for a locale and mode.
+//
+// It is an error to ask for more than the file holds. The caller is dealing a game whose
+// round count is fixed by the number of players, so quietly returning four prompts for a
+// six-player table would not produce a smaller game -- it would produce a broken one, two
+// players holding prompts that do not exist.
 func GetContentLines(locale i18n.Locale, mode FFGameMode, amount int) ([]GameInputLine, error) {
 	filePath := buildDataFilePath(locale, mode)
 
 	data, err := contentFiles.ReadFile(filePath)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("read fake filler content %s: %w", filePath, err)
 	}
 
 	var lines []GameInputLine
@@ -44,12 +60,15 @@ func GetContentLines(locale i18n.Locale, mode FFGameMode, amount int) ([]GameInp
 		lines = append(lines, parsedLine)
 	}
 
-	if amount <= 0 || len(lines) == 0 {
+	if amount <= 0 {
 		return []GameInputLine{}, nil
 	}
 
 	if amount > len(lines) {
-		amount = len(lines)
+		return nil, fmt.Errorf(
+			"%w: %s holds %d prompts, need %d",
+			ErrNotEnoughContent, filePath, len(lines), amount,
+		)
 	}
 
 	rand.Shuffle(len(lines), func(i, j int) {
@@ -67,8 +86,11 @@ func parseLine(line string, mode FFGameMode) (GameInputLine, error) {
 	return parseAnswerLine(line)
 }
 
+// parseCreativeLine reads a prompt that has no truth: blanks, and nothing after them.
 func parseCreativeLine(line string) (GameInputLine, error) {
-	if !strings.Contains(line, Placeholder) {
+	blanks := strings.Count(line, Placeholder)
+
+	if blanks == 0 {
 		return GameInputLine{}, fmt.Errorf(
 			"creative line must contain at least one %q placeholder: %s",
 			Placeholder,
@@ -79,9 +101,11 @@ func parseCreativeLine(line string) (GameInputLine, error) {
 	return GameInputLine{
 		Line:    line,
 		Answers: []string{},
+		Blanks:  blanks,
 	}, nil
 }
 
+// parseAnswerLine reads a prompt that carries its real answer, one value per blank.
 func parseAnswerLine(line string) (GameInputLine, error) {
 	parts := strings.SplitN(line, ContentDivider, 2)
 
@@ -112,9 +136,9 @@ func parseAnswerLine(line string) (GameInputLine, error) {
 
 	answers := splitAnswers(answerText)
 
-	placeholderCount := strings.Count(text, Placeholder)
+	blanks := strings.Count(text, Placeholder)
 
-	if placeholderCount == 0 {
+	if blanks == 0 {
 		return GameInputLine{}, fmt.Errorf(
 			"answer line must contain at least one %q placeholder: %s",
 			Placeholder,
@@ -122,10 +146,12 @@ func parseAnswerLine(line string) (GameInputLine, error) {
 		)
 	}
 
-	if placeholderCount != len(answers) {
+	// The answers are positional -- the nth answer fills the nth blank -- so a count that
+	// does not line up is a data file that would silently render the wrong sentence.
+	if blanks != len(answers) {
 		return GameInputLine{}, fmt.Errorf(
 			"answer line has %d placeholders but %d answers: %s",
-			placeholderCount,
+			blanks,
 			len(answers),
 			line,
 		)
@@ -134,6 +160,7 @@ func parseAnswerLine(line string) (GameInputLine, error) {
 	return GameInputLine{
 		Line:    text,
 		Answers: answers,
+		Blanks:  blanks,
 	}, nil
 }
 
@@ -153,8 +180,14 @@ func splitAnswers(answerText string) []string {
 	return answers
 }
 
+// buildDataFilePath names the file a locale and mode are read out of.
+//
+// The mode goes in as it stands. This template was borrowed from internal/oneofus, whose
+// modes are singular ("word") against plural files ("words") and so ends in an "s" that
+// this game must not have -- Fake Filler's modes are already plural, and the extra letter
+// asked for en-factss.txt, a file that has never existed.
 func buildDataFilePath(lang i18n.Locale, mode FFGameMode) string {
-	const base = "data/[LANGUAGE]/[LANGUAGE]-[LIST_TYPE]s.txt"
+	const base = "data/[LANGUAGE]/[LANGUAGE]-[LIST_TYPE].txt"
 
 	path := strings.ReplaceAll(base, "[LANGUAGE]", string(lang))
 	path = strings.ReplaceAll(path, "[LIST_TYPE]", string(mode))
