@@ -13,8 +13,8 @@ Get-Content "$env:USERPROFILE\.ssh\playhaus_ci" -Raw | Set-Clipboard
 1. Create deployment/terraform/terraform.tfvars based on terraform.tfvars.example and fill in all values
 2. terraform init && terraform apply (in ./deployment/terraform)
 3. Create A record pointing to server IP for host address
-    - A 206.189.104.116 @   300
-    - A 206.189.104.116 www 300
+    - A 64.225.81.229 @   300
+    - A 64.225.81.229 www 300
 4. GitHub secrets:
     - DEPLOY_HOST (reserved IP)
     - DEPLOY_SSH_KEY (private key generated above)
