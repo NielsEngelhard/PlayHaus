@@ -251,7 +251,8 @@ why `ALLOWED_ORIGINS` is set to the empty string in production and why the webso
   production runs.
 - `.github/workflows/deploy-{api,app}.yml` — build, push to GHCR tagged `sha-<12>`, and
   recreate **only** that one container (`--no-deps`). A backend deploy never reloads a
-  player's open page.
+  player's open page. Both are `workflow_dispatch` only: **nothing deploys on a push to
+  `main`**, so do not describe merging as shipping.
 
 Two things worth knowing before changing anything here:
 

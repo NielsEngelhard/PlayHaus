@@ -1,23 +1,9 @@
 # Build the Go API, publish it to GHCR, and roll the `api` container on the droplet.
-#
-# The sibling workflow does the same for the web app. They are deliberately separate and
-# deliberately touch only their own container: see deployment/server/deploy.sh for why.
-
 name: Deploy API
 
 on:
-    push:
-        branches: [main]
-        paths:
-            - 'src/playhaus-api/**'
-            # A change to the compose file or the Caddyfile has to reach the box, and it
-            # can arrive from either workflow. Both list it.
-            - 'deployment/server/**'
-            - '.github/workflows/deploy-api.yml'
     workflow_dispatch:
 
-# Never two deploys of the same half at once. cancel-in-progress is off on purpose: a
-# half-finished deploy is worse than a queued one.
 concurrency:
     group: deploy-api
     cancel-in-progress: false

@@ -1,18 +1,7 @@
 # Build the Expo web export, publish it to GHCR, and roll the `app` container on the
-# droplet. The mirror image of deploy-api.yml, with one real difference: the API origin is
-# compiled into the bundle here rather than read at runtime.
 
 name: Deploy Web App
-
 on:
-    push:
-        branches: [main]
-        paths:
-            - 'src/playhaus-app/**'
-            # A change to the compose file or the Caddyfile has to reach the box, and it
-            # can arrive from either workflow. Both list it.
-            - 'deployment/server/**'
-            - '.github/workflows/deploy-app.yml'
     workflow_dispatch:
 
 concurrency:

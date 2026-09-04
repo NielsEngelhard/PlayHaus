@@ -123,9 +123,11 @@ served to every visitor, and a secret would be masked in the build logs for no b
 
 ### 7. Deploy
 
-Push to `main`, or run both workflows by hand from the Actions tab. Run **Deploy API**
-first and let it finish, then **Deploy Web App** — each only ever touches its own
-container, so at bootstrap the second one is what completes the set.
+Actions tab → **Deploy API** → Run workflow. Let it finish, then do the same for
+**Deploy Web App**.
+
+Order matters only this once: each workflow touches only its own container, so the second
+run is what completes the set.
 
 ### 8. Make the packages public
 
@@ -156,16 +158,20 @@ only path that exercises `wss://` all the way through Caddy, nginx and the Go hi
 
 ## Deploying, after that
 
-Push to `main`. The path filters decide which workflow runs:
+**Both workflows are manual.** Nothing deploys on a push to `main` — merging and shipping
+are separate decisions, and the droplet is the live site.
 
-- anything under `src/playhaus-api/` → **Deploy API**
-- anything under `src/playhaus-app/` → **Deploy Web App**
-- anything under `deployment/server/` → **both**, since either can carry the new compose
-  file or Caddyfile up to the box
+Actions tab → **Deploy API** or **Deploy Web App** → Run workflow. Pick the half you
+changed; run both if you changed both. Each builds from whatever commit is on the branch
+you select in the Run workflow dialog, so you can also ship an older commit deliberately.
 
-Each workflow builds, pushes `sha-<12 chars>` and `latest` to GHCR, writes the exact sha
-tag into `/opt/playhaus/.env`, and recreates **only its own container** with `--no-deps`.
+Each run builds, pushes `sha-<12 chars>` and `latest` to GHCR, writes the exact sha tag
+into `/opt/playhaus/.env`, and recreates **only its own container** with `--no-deps`.
 Shipping a backend fix does not reload anyone's open page.
+
+Both runs also copy the current `deployment/server/` files up to the droplet, so a change
+to the compose file or the Caddyfile takes effect on the next deploy of either half —
+whichever you happen to run.
 
 The last step of each run is a real request against `https://playhaus.site`, so a green
 check means the site answered.
