@@ -9,6 +9,7 @@ import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
+import { Image } from "expo-image";
 import { useEffect, useState, type ReactNode } from "react";
 import { Animated, Easing, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -94,6 +95,17 @@ export default function LobbyPageBase({
                     height: STRIP_HEIGHT + (framed ? 0 : insets.top),
                     backgroundColor: accent.color
                 }} />
+
+                <View style={styles.gameKicker}>
+                    <Image source={game.icon} style={styles.gameIcon} />
+
+                    <AppText
+                        style={[styles.gameName, { color: game.gradient[2] }]}
+                        numberOfLines={1}
+                    >
+                        {game.name}
+                    </AppText>
+                </View>
 
                 <View style={styles.bar}>
                     <Pressable
@@ -246,6 +258,26 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : theme.colors.border,
         backgroundColor: theme.colors.background,
         overflow: 'hidden'
+    },
+
+    gameKicker: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingHorizontal: 18,
+        paddingTop: 10
+    },
+    gameIcon: {
+        width: 16,
+        height: 16,
+        flexShrink: 0,
+        borderRadius: 4
+    },
+    gameName: {
+        fontSize: 11,
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: 0.8
     },
 
     // No rule under it any more: the bar and the page separate by whitespace and by the
