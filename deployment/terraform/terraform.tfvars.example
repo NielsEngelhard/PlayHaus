@@ -8,8 +8,8 @@ domain     = "playhaus.site"
 acme_email = "engelhardniels@gmail.com"
 
 # Defaults are ams3 and the $6/month s-1vcpu-1gb. Uncomment to change.
-# region       = "ams3"
-# droplet_size = "s-1vcpu-1gb"
+region       = "ams3"
+droplet_size = "s-1vcpu-1gb"
 
 # Verbatim contents of the .pub files, one line each. Spell the path out in PowerShell --
 # it does not expand ~, and Windows ssh-keygen does not either.
