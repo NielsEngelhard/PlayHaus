@@ -63,6 +63,7 @@ func NewServer(
 	// across several phones -- a table sharing one device has nobody to notify.
 	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
 
+	s.AddHealthHandlers()
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
 	s.AddLeagueOfLettersHandlers()
@@ -76,8 +77,17 @@ func NewServer(
 	return chain(s.mux, requestID, recoverPanic(log), logRequests(log), cors(allowedOrigins))
 }
 
+// AddHealthHandlers registers the one route that asks for nothing at all -- no
+// token, no join code, no body. The deploy pipeline and any uptime monitor need a
+// cheap 200 to point at, and every other route in this file would answer them with
+// a 401.
+func (s *Server) AddHealthHandlers() {
+	s.mux.HandleFunc("GET /api/v1/health", s.handleHealth)
+}
+
 // AddAuthHandlers registers the routes that hand out or revoke a session.
-// These are the only ones a caller can reach without a token.
+// Apart from the health route above, these are the only ones a caller can reach
+// without a token -- necessarily, since they are how a caller gets one.
 func (s *Server) AddAuthHandlers() {
 	s.mux.HandleFunc("POST /api/v1/auth/login", s.handleLogin)
 	s.mux.HandleFunc("POST /api/v1/auth/logout", s.handleLogout)

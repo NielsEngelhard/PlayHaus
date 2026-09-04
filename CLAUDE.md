@@ -13,8 +13,9 @@ own directory.
 The app reaches the API through `EXPO_PUBLIC_API_URL` (`src/playhaus-app/.env`, default
 `http://localhost:8080`), so start the API first.
 
-There is no Makefile, no CI, no Dockerfile and no scripts directory. The commands below are the
-whole build surface.
+There is no Makefile and no scripts directory; the commands below are the whole local build
+surface. Deployment is separate and lives in `deployment/` — see **Deployment** at the bottom
+of this file.
 
 A nested `src/playhaus-app/CLAUDE.md` (→ `AGENTS.md`) also loads when working inside the app.
 
@@ -228,3 +229,39 @@ blocks and interface members are alphabetised.
 - `src/playhaus-app/IDEAS.md` — an unimplemented backlog of game concepts.
 - `src/playhaus-app/README.md` — untouched create-expo-app boilerplate describing an `app/`
   directory this repo does not have. Ignore it.
+
+## Deployment
+
+Everything about running this in production is under `deployment/`, and
+`deployment/README.md` is the runbook — read that rather than reconstructing it from here.
+
+One $6/month DigitalOcean droplet, three containers: `caddy` (TLS and Let's Encrypt) in
+front of `app` (the nginx image, which serves the static Expo export **and** proxies
+`/api/` onward) in front of `api`. The app and the API therefore share one origin, which is
+why `ALLOWED_ORIGINS` is set to the empty string in production and why the websocket's
+`Origin`-versus-`Host` check passes without configuration.
+
+- `deployment/terraform/` — droplet, firewall, reserved IP, and a `cloud-init.yaml.tftpl`
+  that runs **only on first boot**. The droplet carries
+  `lifecycle { ignore_changes = [user_data, image] }` so that editing the template cannot
+  replace the box; its disk is the entire database.
+- `deployment/server/` — the compose file, `Caddyfile` and `deploy.sh` that live on the
+  droplet. Copied up by CI on every deploy, so the repo is the only definition of them.
+- `deployment/docker-compose.yml` — the *local* stack, which builds from source. Not what
+  production runs.
+- `.github/workflows/deploy-{api,app}.yml` — build, push to GHCR tagged `sha-<12>`, and
+  recreate **only** that one container (`--no-deps`). A backend deploy never reloads a
+  player's open page.
+
+Two things worth knowing before changing anything here:
+
+- `EXPO_PUBLIC_API_URL` is inlined by Metro at **image build time**, so the web image is
+  domain-specific and changing the domain means rebuilding it — not just editing an
+  environment variable.
+- `GET /api/v1/health` (`internal/api/health.go`) is the only route with no token in front
+  of it. It deliberately touches no storage: it answers the container healthcheck and the
+  post-deploy smoke test, and a probe that queried SQLite would fail behind a write and
+  restart a healthy server.
+
+There are **no backups** — a deliberate choice. The SQLite file has exactly one copy, on
+the droplet's disk.

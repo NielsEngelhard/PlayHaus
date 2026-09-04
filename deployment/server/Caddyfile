@@ -1,0 +1,38 @@
+# TLS and nothing else.
+#
+# Caddy owns :80 and :443 on the droplet, obtains and renews a Let's Encrypt certificate
+# on its own, redirects http:// to https:// without being asked, and hands everything to
+# the app container. Routing between the static site and the API happens one hop further
+# in, in src/playhaus-app/nginx.conf, which already knew how to do it.
+#
+# DOMAIN and ACME_EMAIL come from /opt/playhaus/.env via the compose file. {$VAR} is
+# Caddy's own environment substitution and is resolved when the config is loaded.
+#
+# Keep the comment flush against the block below: `caddy fmt` removes a blank line there,
+# and an unformatted Caddyfile logs a warning on every start.
+{
+	# Where Let's Encrypt sends expiry warnings if renewal ever stops working. Without
+	# it the account is anonymous and the first warning you get is a browser error.
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# `app` is the compose service name, resolved by Docker's embedded DNS.
+	#
+	# Nothing here mentions websockets, unlike the nginx config below it, and that is
+	# not an omission: Caddy v2 passes an Upgrade through transparently and puts no
+	# read timeout on a proxied connection, so an idle League of Letters lobby is not
+	# cut from under the players. nginx needed proxy_read_timeout 3600s for the same
+	# reason only because its default is 60s.
+	reverse_proxy app:80
+}
+
+www.{$DOMAIN} {
+	# One canonical origin. It matters more than tidiness here: the app bundle is built
+	# with a single EXPO_PUBLIC_API_URL baked in, so a player who arrived on www would
+	# have a page on one host calling an API on another -- cross-origin, and refused by
+	# the socket handshake's Origin check.
+	redir https://{$DOMAIN}{uri} permanent
+}

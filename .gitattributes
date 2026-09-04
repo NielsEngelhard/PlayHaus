@@ -1,0 +1,7 @@
+# Files a Linux shell or daemon reads have to keep LF endings whatever core.autocrlf does
+# on the machine that checked them out. A CRLF shebang fails with a "bad interpreter"
+# error that names an invisible character, and the cloud-init template carries shell
+# scripts inside it that would inherit the same problem on the droplet's first boot.
+*.sh      text eol=lf
+*.tftpl   text eol=lf
+Caddyfile text eol=lf

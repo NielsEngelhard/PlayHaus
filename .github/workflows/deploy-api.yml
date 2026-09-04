@@ -1,0 +1,104 @@
+# Build the Go API, publish it to GHCR, and roll the `api` container on the droplet.
+#
+# The sibling workflow does the same for the web app. They are deliberately separate and
+# deliberately touch only their own container: see deployment/server/deploy.sh for why.
+
+name: Deploy API
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'src/playhaus-api/**'
+            # A change to the compose file or the Caddyfile has to reach the box, and it
+            # can arrive from either workflow. Both list it.
+            - 'deployment/server/**'
+            - '.github/workflows/deploy-api.yml'
+    workflow_dispatch:
+
+# Never two deploys of the same half at once. cancel-in-progress is off on purpose: a
+# half-finished deploy is worse than a queued one.
+concurrency:
+    group: deploy-api
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Work out the image reference
+              run: |
+                  # GHCR rejects an uppercase path, and the owner here is "NielsEngelhard".
+                  owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+                  echo "IMAGE=ghcr.io/$owner/playhaus-api" >> "$GITHUB_ENV"
+                  # Twelve characters of the commit sha. Long enough to be unique in this
+                  # repo, short enough to read out over the phone during a rollback.
+                  echo "TAG=sha-${GITHUB_SHA::12}" >> "$GITHUB_ENV"
+
+            - uses: docker/setup-buildx-action@v3
+
+            - uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  # Built in, scoped to this repository by the permissions block above.
+                  # No personal access token to create or rotate.
+                  password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Build and push
+              uses: docker/build-push-action@v6
+              with:
+                  context: src/playhaus-api
+                  push: true
+                  tags: |
+                      ${{ env.IMAGE }}:${{ env.TAG }}
+                      ${{ env.IMAGE }}:latest
+                  # The Go module cache and the compiled packages, kept between runs.
+                  # Without this every push recompiles the whole dependency tree.
+                  cache-from: type=gha
+                  cache-to: type=gha,mode=max
+
+            - name: Deploy to the droplet
+              env:
+                  DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+                  DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+              run: |
+                  set -euo pipefail
+
+                  mkdir -p ~/.ssh
+                  printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+                  chmod 600 ~/.ssh/id_ed25519
+
+                  # Trust on first use, every run. The alternative is pinning the host key
+                  # in a secret; against a fixed reserved IP inside DigitalOcean's network
+                  # the extra ceremony buys little, but see deployment/README.md if you
+                  # want it.
+                  ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+                  # The server-side stack is copied every time rather than kept in sync by
+                  # hand, so the repository is the only place it is defined.
+                  scp deployment/server/docker-compose.yml \
+                      deployment/server/Caddyfile \
+                      deployment/server/deploy.sh \
+                      "deploy@$DEPLOY_HOST:/opt/playhaus/"
+
+                  ssh "deploy@$DEPLOY_HOST" \
+                      "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh API_IMAGE '$IMAGE:$TAG' api"
+
+            - name: Smoke test
+              env:
+                  PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
+              run: |
+                  # A green check should mean the thing is answering, not merely that a
+                  # container was created. The retries cover the few seconds the API takes
+                  # to migrate and seed on boot.
+                  curl --fail --silent --show-error \
+                       --retry 10 --retry-delay 3 --retry-all-errors \
+                       "$PUBLIC_ORIGIN/api/v1/health"
+                  echo

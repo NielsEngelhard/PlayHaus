@@ -1,0 +1,17 @@
+# Provider plugins and lock-adjacent state. .terraform.lock.hcl IS committed -- it pins
+# provider checksums, which is the point of it.
+.terraform/
+
+# State records every resource, and for some providers their secrets. Local backend, so
+# this file is the only record that the droplet exists: back it up somewhere.
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
+
+# Holds the DigitalOcean token.
+*.tfvars
+!*.tfvars.example
+
+# Private keys never belong in a repo, and this is a directory people copy them into.
+*.pem
+*.key

@@ -1,0 +1,115 @@
+#cloud-config
+#
+# First boot, and only first boot. Nothing here runs again, which is why it does as little
+# as possible: it prepares a box that can run Docker and accept a deploy, and stops. The
+# stack itself -- the compose file, the Caddyfile, the images -- is put here by the GitHub
+# Actions workflows, so that changing it never means rebuilding the droplet.
+#
+# Terraform renders this with templatefile(), so every dollar-brace placeholder below is
+# substituted before the droplet ever sees it -- including the ones inside comments, which
+# is a fast way to break a plan. A literal one that has to survive to the shell is written
+# with a doubled dollar sign.
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - ca-certificates
+  - curl
+  - unattended-upgrades
+
+# Declared before the user below, because cloud-init creates groups first and users
+# second, while Docker -- which would otherwise create this group -- is not installed
+# until runcmd. Adding deploy to a group that does not exist yet is a hard failure that
+# leaves the box without its login.
+groups:
+  - docker
+
+users:
+  - name: deploy
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    groups: [docker, sudo]
+    ssh_authorized_keys:
+      - ${admin_ssh_public_key}
+      - ${ci_ssh_public_key}
+
+write_files:
+  # Written before Docker is installed, so the daemon picks it up on its very first
+  # start. Container logs are otherwise unbounded, and this disk is 25 GB: a chatty
+  # request log is a realistic way to fill it and take the site down in a way that looks
+  # like nothing in particular.
+  - path: /etc/docker/daemon.json
+    permissions: '0644'
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": { "max-size": "10m", "max-file": "3" }
+      }
+
+  - path: /etc/ssh/sshd_config.d/99-playhaus.conf
+    permissions: '0644'
+    content: |
+      # Keys only. Both the deploy user and root are reachable by key alone, which is
+      # what makes leaving port 22 open to the internet an acceptable trade -- GitHub
+      # Actions runners have no fixed egress addresses to narrow it to.
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PermitRootLogin prohibit-password
+
+  # Every deploy leaves the image it replaced behind, tagged and unreferenced. Two
+  # workflows pushing a few times a week fills 25 GB in a couple of months, and the
+  # symptom is a deploy that fails on `docker compose pull` for no obvious reason.
+  # `until=168h` keeps the last week, so a rollback to yesterday's tag is still a local
+  # operation.
+  - path: /etc/cron.daily/docker-prune
+    permissions: '0755'
+    content: |
+      #!/bin/sh
+      docker image prune -af --filter until=168h >/dev/null 2>&1
+
+  # The environment the compose file reads. DOMAIN and ACME_EMAIL are settled here and
+  # never touched again; the two image references are placeholders that deploy.sh
+  # overwrites, one per workflow. They point at :latest so that a `docker compose up` run
+  # by hand before the first deploy does something sensible rather than failing on an
+  # empty variable.
+  # defer: true is load-bearing. cloud-init runs write-files before users-groups, so
+  # without it `owner: deploy:deploy` names a user that does not exist yet and the
+  # write fails. Deferring moves it to the config stage, after the user is created.
+  - path: /opt/playhaus/.env
+    permissions: '0644'
+    owner: 'deploy:deploy'
+    defer: true
+    content: |
+      DOMAIN=${domain}
+      ACME_EMAIL=${acme_email}
+      API_IMAGE=ghcr.io/nielsengelhard/playhaus-api:latest
+      APP_IMAGE=ghcr.io/nielsengelhard/playhaus-app:latest
+
+runcmd:
+  # 1 GB of RAM with no swap is enough to run the three containers and not much else --
+  # an apt upgrade or a `docker compose pull` of two images at once can push it over, and
+  # the OOM killer picks the largest process, which is the API. Two gigabytes of swap on
+  # an SSD costs nothing and turns that into a slow minute instead of an outage.
+  # swappiness is lowered so it is a safety net rather than a routine path.
+  - [sh, -c, 'fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile']
+  - [sh, -c, 'echo "/swapfile none swap sw 0 0" >> /etc/fstab']
+  - [sh, -c, 'echo "vm.swappiness=10" > /etc/sysctl.d/99-playhaus.conf && sysctl -p /etc/sysctl.d/99-playhaus.conf']
+
+  # The official convenience script. It adds Docker's apt repository and installs the
+  # engine plus the compose plugin, which is what `docker compose` (no hyphen) needs.
+  - [sh, -c, 'curl -fsSL https://get.docker.com | sh']
+  - [systemctl, enable, --now, docker]
+
+  - [mkdir, -p, /opt/playhaus]
+  - [chown, -R, 'deploy:deploy', /opt/playhaus]
+
+  # Security updates apply themselves. This box is not looked at often.
+  - [sh, -c, 'echo "unattended-upgrades unattended-upgrades/enable_auto_updates boolean true" | debconf-set-selections && dpkg-reconfigure -f noninteractive unattended-upgrades']
+
+  - [systemctl, restart, ssh]
+
+# Printed to the console log, and what `cloud-init status --wait` waits for. Without it
+# there is no way to tell a box that is still installing Docker from one where the install
+# failed -- both answer ssh and neither has a docker binary.
+final_message: 'PlayHaus droplet ready after $UPTIME seconds. Docker installed, /opt/playhaus prepared. Deploy from GitHub Actions.'

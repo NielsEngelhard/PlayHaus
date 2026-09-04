@@ -1,0 +1,119 @@
+# Build the Expo web export, publish it to GHCR, and roll the `app` container on the
+# droplet. The mirror image of deploy-api.yml, with one real difference: the API origin is
+# compiled into the bundle here rather than read at runtime.
+
+name: Deploy Web App
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'src/playhaus-app/**'
+            # A change to the compose file or the Caddyfile has to reach the box, and it
+            # can arrive from either workflow. Both list it.
+            - 'deployment/server/**'
+            - '.github/workflows/deploy-app.yml'
+    workflow_dispatch:
+
+concurrency:
+    group: deploy-app
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Work out the image reference
+              run: |
+                  owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+                  echo "IMAGE=ghcr.io/$owner/playhaus-app" >> "$GITHUB_ENV"
+                  echo "TAG=sha-${GITHUB_SHA::12}" >> "$GITHUB_ENV"
+
+            - name: Check the origin is configured
+              env:
+                  PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
+              run: |
+                  # Caught here rather than three minutes later, because an empty build arg
+                  # produces an image that builds cleanly, deploys cleanly, and serves a
+                  # page whose every API call goes to "undefined/api/v1/...".
+                  if [ -z "$PUBLIC_ORIGIN" ]; then
+                      echo "The PUBLIC_ORIGIN repository variable is not set." >&2
+                      echo "Settings -> Secrets and variables -> Actions -> Variables:" >&2
+                      echo "  PUBLIC_ORIGIN = https://playhaus.site" >&2
+                      exit 1
+                  fi
+
+            - uses: docker/setup-buildx-action@v3
+
+            - uses: docker/login-action@v3
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Build and push
+              uses: docker/build-push-action@v6
+              with:
+                  context: src/playhaus-app
+                  push: true
+                  tags: |
+                      ${{ env.IMAGE }}:${{ env.TAG }}
+                      ${{ env.IMAGE }}:latest
+                  build-args: |
+                      EXPO_PUBLIC_API_URL=${{ vars.PUBLIC_ORIGIN }}
+                      EXPO_PUBLIC_DEV_MODE=
+                  # npm ci and the Metro bundle, kept between runs. This is the slow half
+                  # of the pipeline by some margin.
+                  cache-from: type=gha
+                  cache-to: type=gha,mode=max
+
+            # EXPO_PUBLIC_API_URL is read by src/api/client.ts at module scope and inlined
+            # by Metro, so it is frozen into the bundle at build time and cannot be changed
+            # by an environment variable on the droplet. It must be the bare origin --
+            # client.ts appends /api/v1/... itself and socket.ts derives wss:// from it by
+            # swapping the scheme. Changing the domain means rebuilding this image.
+            #
+            # EXPO_PUBLIC_DEV_MODE is passed empty on purpose. The committed .env sets it
+            # to true and only .dockerignore keeps that file out of the build context;
+            # saying nothing here would leave the Dockerfile's own default in charge.
+
+            - name: Deploy to the droplet
+              env:
+                  DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+                  DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+              run: |
+                  set -euo pipefail
+
+                  mkdir -p ~/.ssh
+                  printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+                  chmod 600 ~/.ssh/id_ed25519
+                  ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+                  scp deployment/server/docker-compose.yml \
+                      deployment/server/Caddyfile \
+                      deployment/server/deploy.sh \
+                      "deploy@$DEPLOY_HOST:/opt/playhaus/"
+
+                  ssh "deploy@$DEPLOY_HOST" \
+                      "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"
+
+            - name: Smoke test
+              env:
+                  PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
+              run: |
+                  # The document itself, and then the API through the same origin -- which
+                  # is the half of the routing this workflow owns: nginx inside the app
+                  # image is what puts /api/ in front of the Go container.
+                  curl --fail --silent --show-error --output /dev/null \
+                       --retry 10 --retry-delay 3 --retry-all-errors \
+                       "$PUBLIC_ORIGIN/"
+                  curl --fail --silent --show-error \
+                       --retry 10 --retry-delay 3 --retry-all-errors \
+                       "$PUBLIC_ORIGIN/api/v1/health"
+                  echo

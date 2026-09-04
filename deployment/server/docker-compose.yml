@@ -1,0 +1,92 @@
+# The stack as it runs on the droplet.
+#
+# The sibling file one directory up is the *local* compose file: it builds both images
+# from source and publishes the app on a port. This one never builds anything. It runs
+# images that a GitHub Actions run already built and pushed to ghcr.io, pinned by digest-
+# bearing tag in the .env file next to it, and it is the only file the deploy pipeline
+# copies onto the server.
+#
+# Three containers, one network, one of them reachable from outside:
+#
+#     :80/:443 -> caddy -> app (nginx: static export + /api/ proxy) -> api (Go + sqlite)
+#
+# The app image already fronts the API on its own origin -- see src/playhaus-app/nginx.conf
+# -- so caddy is a pure TLS terminator in front of it rather than a second router. Adding a
+# layer instead of replacing nginx keeps the image identical in every environment, which
+# means the thing tested locally is the thing that ships.
+
+# Fixed, so the volume names are playhaus_api-data and playhaus_caddy-data no matter what
+# the directory on disk happens to be called. Compose otherwise derives the project name
+# from the folder, and a renamed folder silently orphans the database.
+name: playhaus
+
+services:
+    api:
+        image: ${API_IMAGE}
+        environment:
+            ADDR: ':8080'
+            DB_PATH: /app/data/app.db
+            DEBUG: 'false'
+
+            # config.go defaults this to true, and true means every League of Letters
+            # round plays the same word. It has to be said out loud in production.
+            LOL_DEV_MODE: 'false'
+
+            # Set-but-empty means "no origins", which is the one thing an unset variable
+            # cannot express (it would fall back to the two localhost dev origins). No
+            # origins is correct here: every browser request arrives same-origin through
+            # nginx, so CORS never comes into it, and the websocket handshake falls back
+            # to coder/websocket's default of requiring Origin's host to equal Host.
+            ALLOWED_ORIGINS: ''
+        volumes:
+            # The sqlite file plus the -wal/-shm files WAL mode keeps beside it -- all
+            # three have to share one filesystem. The API creates the directory itself on
+            # boot, so an empty volume is fine.
+            #
+            # This volume is the entire database. `docker compose down -v` deletes it.
+            - api-data:/app/data
+        healthcheck:
+            # busybox wget, already in the alpine runtime image; nothing had to be added
+            # to the API image for this. Liveness only -- the endpoint touches no storage.
+            test: ['CMD', 'wget', '--quiet', '--tries=1', '--spider', 'http://127.0.0.1:8080/api/v1/health']
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 10s
+        restart: unless-stopped
+
+    app:
+        image: ${APP_IMAGE}
+        # Ordering for a manual `docker compose up`. The deploy script passes --no-deps
+        # precisely to bypass this, so that shipping one half never restarts the other.
+        depends_on:
+            - api
+        restart: unless-stopped
+
+    caddy:
+        image: caddy:2-alpine
+        ports:
+            - '80:80'
+            - '443:443'
+            # HTTP/3. Harmless if nothing speaks it; a missing UDP rule is otherwise an
+            # invisible slow path for browsers that try QUIC first.
+            - '443:443/udp'
+        environment:
+            DOMAIN: ${DOMAIN}
+            ACME_EMAIL: ${ACME_EMAIL}
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile:ro
+            # The certificates and the ACME account key live in caddy-data. Losing this
+            # volume means re-issuing from scratch, and Let's Encrypt rate-limits that to
+            # five certificates per domain per week -- so a few careless recreations can
+            # leave the site without TLS for days. Treat it as precious.
+            - caddy-data:/data
+            - caddy-config:/config
+        depends_on:
+            - app
+        restart: unless-stopped
+
+volumes:
+    api-data:
+    caddy-data:
+    caddy-config:
