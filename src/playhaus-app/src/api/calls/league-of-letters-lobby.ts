@@ -20,16 +20,7 @@ export interface LobbyPlayer {
 export interface LobbySettings {
     locale: LanguageCode
     wordLength: WordLength
-    hardMode: boolean
     secondsPerTurn: number
-}
-
-export interface StartLobbyRequestData {
-    lobbyId: string,
-    locale: LanguageCode
-    wordLength: WordLength
-    hardMode: boolean
-    secondsPerGuess?: number
 }
 
 export interface Lobby {
@@ -107,8 +98,37 @@ export async function getLobby(code: string): Promise<Lobby> {
     return request<Lobby>(lobbyPath(code));
 }
 
-export async function startLobby(data: StartLobbyRequestData): Promise<Lobby> {
-    return request<Lobby>(`${lobbyPath(data.lobbyId)}/start`, { method: 'POST', body: JSON.stringify(data) });
+/**
+ * Saves the room's settings. Host only, and only while the room is still waiting.
+ *
+ * Answers the whole room, and the server sends the same body out over the socket, so
+ * everybody sitting in the lobby sees the change rather than only the host who made it.
+ *
+ * `secondsPerGuess` is the wire's name for what the response calls `secondsPerTurn` --
+ * the API is asymmetric here, so this is the one place that has to know it.
+ */
+export async function updateLobbySettings(code: string, settings: LobbySettings): Promise<Lobby> {
+    return request<Lobby>(lobbyPath(code), {
+        method: 'PATCH',
+        body: JSON.stringify({
+            locale: settings.locale,
+            wordLength: settings.wordLength,
+            secondsPerGuess: settings.secondsPerTurn
+        })
+    });
+}
+
+/**
+ * Starts the game on whatever the room is set to.
+ *
+ * Takes nothing but the code on purpose: the settings are the room's, saved by
+ * `updateLobbySettings` as the host moves them, and the server reads them off the lobby.
+ * This used to post them alongside the start, which the handler never read -- so the
+ * word length the host picked was dropped on the floor and every game played five
+ * letters.
+ */
+export async function startLobby(code: string): Promise<Lobby> {
+    return request<Lobby>(`${lobbyPath(code)}/start`, { method: 'POST' });
 }
 
 export async function deleteLobby(code: string): Promise<void> {

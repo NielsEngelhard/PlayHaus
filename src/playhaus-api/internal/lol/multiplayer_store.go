@@ -132,7 +132,11 @@ func (s *GormStore) SaveLobbySettings(ctx context.Context, code string, in Lobby
 	err := s.db.WithContext(ctx).
 		Model(&MultiplayerLeagueOfLettersLobby{}).
 		Where("id = ?", code).
-		Updates(map[string]any{"locale": in.Locale, "word_length": in.WordLength}).Error
+		Updates(map[string]any{
+			"locale":           in.Locale,
+			"word_length":      in.WordLength,
+			"seconds_per_turn": in.SecondsPerTurn,
+		}).Error
 	if err != nil {
 		return fmt.Errorf("update lobby settings: %w", err)
 	}

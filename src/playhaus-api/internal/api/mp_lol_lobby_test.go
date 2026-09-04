@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -204,6 +205,65 @@ func TestStartLobbyPlaysTheLengthTheRoomWasSetTo(t *testing.T) {
 	game := decodeBody[multiplayerGameResponse](t, do(t, srv, http.MethodGet, mpGamePath(started.GameID), "", host.Token))
 	if game.WordLength != 7 {
 		t.Errorf("game wordLength = %d, want the 7 the room was set to", game.WordLength)
+	}
+}
+
+// The clock the host picked used to be saved nowhere and started from nowhere: every
+// room ran on the default however the picker was left.
+func TestStartLobbyRunsTheClockTheRoomWasSetTo(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+	lobby := createLobby(t, srv, host.Token)
+
+	if rec := joinLobby(t, srv, newGuestSession(t, srv).Token, lobby.Code); rec.Code != http.StatusOK {
+		t.Fatalf("join: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	seconds := lol.DefaultSecondsPerTurn + 15
+	body := fmt.Sprintf(`{"wordLength":5,"locale":"nl","secondsPerGuess":%d}`, seconds)
+
+	saved := decodeBody[lobbyResponse](t, do(t, srv, http.MethodPatch, lobbyPathFor(lobby.Code), body, host.Token))
+	if saved.Settings.SecondsPerTurn != seconds {
+		t.Errorf("saved secondsPerTurn = %d, want %d", saved.Settings.SecondsPerTurn, seconds)
+	}
+
+	// And read back, not just echoed: the guests in the room refetch rather than
+	// trusting the answer to somebody else's write.
+	reread := decodeBody[lobbyResponse](t, do(t, srv, http.MethodGet, lobbyPathFor(lobby.Code), "", host.Token))
+	if reread.Settings.SecondsPerTurn != seconds {
+		t.Errorf("reread secondsPerTurn = %d, want the %d that was saved", reread.Settings.SecondsPerTurn, seconds)
+	}
+
+	rec := do(t, srv, http.MethodPost, lobbyStartPath(lobby.Code), "", host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("start: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	// Off the row rather than the response: the clock reaches the app as the moment
+	// the turn ends, so the number itself is only visible here.
+	started := decodeBody[lobbyResponse](t, rec)
+
+	var game lol.MultiplayerLeagueOfLettersGame
+	if err := db.First(&game, "id = ?", started.GameID).Error; err != nil {
+		t.Fatalf("read game: %v", err)
+	}
+	if game.SecondsPerGuess != seconds {
+		t.Errorf("game secondsPerGuess = %d, want the %d the room was set to", game.SecondsPerGuess, seconds)
+	}
+}
+
+// A clock outside the picker's range is refused rather than quietly stored, now that
+// what is stored is what the turns actually run on.
+func TestLobbySettingsRefuseAnImpossibleClock(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+	lobby := createLobby(t, srv, host.Token)
+
+	body := fmt.Sprintf(`{"wordLength":5,"locale":"nl","secondsPerGuess":%d}`, lol.MaxSecondsPerTurn+1)
+
+	rec := do(t, srv, http.MethodPatch, lobbyPathFor(lobby.Code), body, host.Token)
+	if rec.Code != http.StatusUnprocessableEntity {
+		t.Fatalf("status = %d, want 422 (body: %s)", rec.Code, rec.Body)
 	}
 }
 

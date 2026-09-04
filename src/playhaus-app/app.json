@@ -39,11 +39,7 @@
           "backgroundColor": "#FBF7F0",
           "image": "./assets/images/playhaus-lockup-light.svg",
           "imageWidth": 240,
-          "resizeMode": "contain",
-          "dark": {
-            "image": "./assets/images/playhaus-lockup-light.svg",
-            "backgroundColor": "#1B1A22"
-          }
+          "resizeMode": "contain"
         }
       ],
       "expo-secure-store",

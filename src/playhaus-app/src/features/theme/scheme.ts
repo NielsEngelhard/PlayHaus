@@ -1,17 +1,17 @@
+import type { Scheme } from '@/constants/theme';
+
 /**
- * What the app has been told about which scheme to wear.
+ * Narrows whatever came back out of storage, which is a string at best.
  *
- * Three modes but only two schemes: `system` is the state a fresh install is in, where
- * the app follows the device and changes with it. Touching the toggle replaces it with
- * an explicit choice, and there is no way back to `system` from the UI — one button
- * that cycles three states would need to say which of the three it is in, and the flip
- * this app wants is a flip.
+ * There used to be a third state alongside the two schemes — `system`, "wear whatever
+ * the device is wearing" — and a fresh install started in it. It is gone: the app is
+ * light until somebody says otherwise, and a phone that happens to be in dark mode is
+ * not somebody saying otherwise. Nothing ever wrote `system` to disk (the toggle only
+ * ever picked one of the two real schemes), but this is a guard rather than a cast
+ * precisely so that a value from a build that no longer exists reads as "never chosen"
+ * and lands on light, instead of being handed to the provider as a scheme it cannot
+ * resolve.
  */
-export type ThemeMode = 'system' | 'light' | 'dark';
-
-const MODES: ThemeMode[] = ['system', 'light', 'dark'];
-
-/** Narrows whatever came back out of storage, which is a string at best. */
-export function isThemeMode(value: string | null | undefined): value is ThemeMode {
-    return value != null && (MODES as string[]).includes(value);
+export function isScheme(value: string | null | undefined): value is Scheme {
+    return value === 'light' || value === 'dark';
 }

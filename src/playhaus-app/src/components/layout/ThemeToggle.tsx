@@ -3,7 +3,7 @@ import { Brand, accentInkColor, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme, useThemeMode } from "@/features/theme/ThemeContext";
+import { useScheme, useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 
 const SIZE = 32;
@@ -29,7 +29,7 @@ interface Props {
  * nothing left to do.
  */
 export default function ThemeToggle({ variant = 'chrome' }: Props) {
-    const { scheme, toggle } = useThemeMode();
+    const { scheme, toggle } = useScheme();
     const { colors } = useTheme();
     const styles = useStyles();
     const t = useT();

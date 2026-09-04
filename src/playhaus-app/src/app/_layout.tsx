@@ -3,6 +3,7 @@ import { FullScreenProvider, useChromelessValue, useFullScreenValue } from '@/co
 import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
+import { APP_NAME } from '@/constants/global-constants';
 import { headerOverAccent } from '@/constants/header-context';
 import { BottomBarHeight, ContentWidth, Spacing } from '@/constants/theme';
 import { MusicProvider } from '@/features/audio/MusicContext';
@@ -11,9 +12,10 @@ import { AuthProvider } from '@/features/auth/useAuth';
 import FeedbackPreferencesSync from '@/features/feedback/FeedbackPreferencesSync';
 import { LanguageProvider } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
-import { ThemeProvider, useThemeMode, useThemeReady } from '@/features/theme/ThemeContext';
+import { ThemeProvider, useScheme, useThemeReady } from '@/features/theme/ThemeContext';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider, Slot, usePathname } from 'expo-router';
+import Head from 'expo-router/head';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
@@ -54,7 +56,7 @@ export default function RootLayout() {
  * component cannot read a context its own render puts in place.
  */
 function App() {
-  const { scheme } = useThemeMode();
+  const { scheme } = useScheme();
   const themeReady = useThemeReady();
 
   // Loaded at runtime rather than through the expo-font config plugin, because the
@@ -93,6 +95,18 @@ function App() {
   return (
     <NavigationThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
+
+      {/* Web only, and only to name the browser tab. `Head` is expo-router's wrapper over
+          react-helmet, which renders a `<title>` into every exported page whether anything
+          claims one or not — left unclaimed it is empty, and helmet rewrites `document.title`
+          to that empty string again after hydration, so a title written straight into
+          `+html.tsx` would not survive. On native the same component drives Handoff and
+          Spotlight indexing rather than a title, which is not something this app asks for. */}
+      {Platform.OS === 'web' && (
+        <Head>
+          <title>{APP_NAME}</title>
+        </Head>
+      )}
 
       {/* Outside everything it gates, so the popup can cover the chrome too. */}
       <AuthProvider>

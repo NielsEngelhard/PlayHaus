@@ -28,23 +28,27 @@ import (
 
 // lobbySettingsRequest is what the host gets to decide, on the way in.
 //
-// Validate answers nothing: the bounds on a word length are the game's rules rather
+// Validate says nothing about the word length: those bounds are the game's rules rather
 // than the wire's, and the service already owns them. Checking them twice would be two
 // places to change one rule -- there is exactly one, lol.ValidWordLength, and both
 // LobbySettings.validate and the solo path ask it.
+//
+// The clock is a pointer because this is a PATCH and a plain int cannot tell "leave it
+// alone" from "ten seconds a turn": absent means the room keeps the default, and a
+// number that is present is held to the same bounds the picker offers.
 type lobbySettingsRequest struct {
 	WordLength      int     `json:"wordLength"`
 	Locale          *string `json:"locale"`
-	SecondsPerGuess int     `json:"secondsPerGuess"`
+	SecondsPerGuess *int    `json:"secondsPerGuess"`
 }
 
 func (req lobbySettingsRequest) Validate() map[string]string {
-	if req.SecondsPerGuess < lol.MinSecondsPerTurn || req.SecondsPerGuess > lol.MaxSecondsPerTurn {
-		return map[string]string{"SecondsPerGuess": "Exceeds min or max value"}
+	if req.SecondsPerGuess == nil {
+		return nil
 	}
 
-	if req.WordLength < lol.MinWordLength || req.WordLength > lol.MaxWordLength {
-		return map[string]string{"WordLength": "Exceeds min or max value"}
+	if *req.SecondsPerGuess < lol.MinSecondsPerTurn || *req.SecondsPerGuess > lol.MaxSecondsPerTurn {
+		return map[string]string{"SecondsPerGuess": "Exceeds min or max value"}
 	}
 
 	return nil
@@ -532,9 +536,16 @@ func (s *Server) handleUpdateLobbySettings(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	req, _, err := decode[lobbySettingsRequest](r)
+	// The wire's own problems are answered here rather than dropped: the clock is
+	// stored now and started from, so a number outside the picker's range would be a
+	// room whose turns are over before they begin.
+	req, invalid, err := decode[lobbySettingsRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(invalid) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": invalid})
 		return
 	}
 
@@ -543,7 +554,7 @@ func (s *Server) handleUpdateLobbySettings(w http.ResponseWriter, r *http.Reques
 	lobby, problems, err := s.leagueOfLetters.UpdateLobbySettings(r.Context(), code, userID, lol.LobbySettings{
 		Locale:         localeFrom(Deref(req.Locale, ""), r),
 		WordLength:     req.WordLength,
-		SecondsPerTurn: req.SecondsPerGuess,
+		SecondsPerTurn: Deref(req.SecondsPerGuess, lol.DefaultSecondsPerTurn),
 	})
 	if err != nil {
 		s.writeLobbyError(w, "update lobby settings", err)

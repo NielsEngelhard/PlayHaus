@@ -380,6 +380,7 @@ export const en = {
             guessUnsupported: 'Guessing works as soon as the server supports it.',
             alreadyGuessedYou: 'You tried that one already.',
             alreadyGuessed: 'That one has been tried already.',
+            mustStartWith: 'The word starts with {{letter}}.',
             resultLabel: 'Result',
             viewResult: 'View the result',
             nextRound: 'Next round',

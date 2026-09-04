@@ -58,6 +58,30 @@ func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
 	return words
 }
 
+// DevModeWord answers the word every round plays while LOL_DEV_MODE is on: the first
+// entry of the list the game would otherwise have drawn from. Deterministic, which is
+// the whole point of the flag -- a screen can be walked through without guessing at
+// anything -- but drawn per locale and per length, so the word length the player picked
+// still decides how wide the board is. A single hard-coded word would have made the
+// setting look broken, which is exactly how it looked.
+//
+// The false is "no list for that combination", and the caller is expected to fall back
+// to the word it drew rather than treat it as a failure: dev mode is a convenience, and
+// an unplayable game is a worse answer than a random word.
+func DevModeWord(lang i18n.Locale, size int, onlyPickCommonWords bool) (string, bool) {
+	wordListType := Common
+	if !onlyPickCommonWords {
+		wordListType = All
+	}
+
+	lines, err := readFileAndGetLines(lang, size, wordListType)
+	if err != nil || len(lines) == 0 {
+		return "", false
+	}
+
+	return lines[0], true
+}
+
 func GetRandomWord(lang i18n.Locale, size int, onlyPickCommonWords bool) (string, error) {
 	words, err := GetRandomWords(lang, size, 1, onlyPickCommonWords)
 	if err != nil {

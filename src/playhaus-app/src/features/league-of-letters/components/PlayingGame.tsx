@@ -9,8 +9,8 @@ import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Spacing } from "@/constants/theme";
 import { useMusic } from "@/features/audio/MusicContext";
-import { useT } from "@/features/i18n/LanguageContext";
-import type { TranslationKey } from "@/features/i18n/keys";
+import { usePhrase, useT } from "@/features/i18n/LanguageContext";
+import type { Phrase } from "@/features/i18n/keys";
 import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
@@ -153,6 +153,7 @@ export default function PlayingGame({
 }: Props) {
     const styles = useStyles();
     const t = useT();
+    const phrase = usePhrase();
 
     const router = useRouter();
 
@@ -169,11 +170,17 @@ export default function PlayingGame({
      *
      * Uppercased once here, which is the case the board, the keyboard and the draft all
      * work in.
+     *
+     * Shown as a hint and never typed for anybody: the row opens empty, and the letter
+     * is put down by the player like every other one. Handing it to them costs the one
+     * press it saves and takes the first tile away from them — a board that types back
+     * is a board they have to work around, on a keyboard whose backspace then refuses
+     * the tile they are looking at.
      */
     const firstLetter = round.firstLetter.toUpperCase();
 
-    /** Never empty: every row starts with the hint already down in its first tile. */
-    const [draft, setDraft] = useState(firstLetter);
+    /** Empty until the player types. The hint is theirs to put down, not ours. */
+    const [draft, setDraft] = useState('');
     const [sending, setSending] = useState(false);
     /**
      * The catalogue key of the line, wrapped in an object rather than held bare so that
@@ -181,7 +188,7 @@ export default function PlayingGame({
      * equal as strings, which would leave the first one's dismissal timer running and
      * blink the second away.
      */
-    const [notice, setNotice] = useState<{ key: TranslationKey } | null>(null);
+    const [notice, setNotice] = useState<Phrase | null>(null);
     /**
      * The board is still turning its last row over. Nothing that knows the answer may be
      * shown while it is, or the keyboard and the end-of-round line spoil the tiles that
@@ -238,14 +245,15 @@ export default function PlayingGame({
 
     // A new board is a new draft — otherwise moving to the next round leaves half a word
     // behind in a row that now belongs to a different puzzle. Adjusted during render, so
-    // the stale letters never get painted once. The hint is part of the key because it is
-    // part of the draft: a new opening letter has to replace the one already typed in.
+    // the stale letters never get painted once. The hint is part of the key because a
+    // word typed under the old one can no longer be the answer: a changed opening letter
+    // makes whatever is standing in the row wrong in the one way the round refuses.
     const boardKey = `${game.id}:${round.roundNumber}:${firstLetter}`;
     const [drafted, setDrafted] = useState(boardKey);
     const newBoard = drafted !== boardKey;
     if (newBoard) {
         setDrafted(boardKey);
-        setDraft(firstLetter);
+        setDraft('');
         setNotice(null);
         setRevealing(false);
     }
@@ -341,11 +349,10 @@ export default function PlayingGame({
 
     function backspace() {
         setNotice(null);
-        // The hint is not the player's to delete. Wiping the row and having to put the
-        // same letter back by hand is busywork, and a row that starts with anything else
-        // is a word that cannot be the answer.
+        // Every letter in the row was typed by the player, the opening one included, so
+        // every letter comes back out again. Nothing here is held back from them.
         setDraft(current => {
-            const next = current.length > firstLetter.length ? current.slice(0, -1) : current;
+            const next = current.slice(0, -1);
             if (next !== current) onTyping?.(next);
             return next;
         });
@@ -363,6 +370,16 @@ export default function PlayingGame({
         // over — the empty tiles already say the word is not finished, and a line of text
         // repeating that is noise on every stray press of the guess key.
         if (draft.length < game.wordLength) return;
+
+        // The hint is a rule as well as a hint: the server refuses a word that opens on
+        // anything else. Answered here rather than sent off, because the board already
+        // knows the letter — and a 400 comes back as "ongeldig woord", which blames the
+        // word for what is really a mistyped first tile. Named in full, so the line says
+        // which letter it means without the player looking back up at the chip.
+        if (!draft.startsWith(firstLetter)) {
+            setNotice({ key: 'lol.game.mustStartWith', values: { letter: firstLetter } });
+            return;
+        }
 
         // Checked here as well as on the server. The board already knows every word
         // that has been tried, so a repeat can be answered instantly, and in the
@@ -382,8 +399,7 @@ export default function PlayingGame({
             await onGuess(draft);
             // Cleared only on success: a guess the server refused is still the word
             // the player meant, and retyping it would be a punishment for a hiccup.
-            // Cleared back to the hint, not to nothing — the next row opens the same way.
-            setDraft(firstLetter);
+            setDraft('');
             // And the table stops seeing the word that has now landed as a row.
             onTyping?.('');
             // The reveal is not started here. The row this guess just put on the board is
@@ -482,7 +498,7 @@ export default function PlayingGame({
             <View style={styles.noticeLane} pointerEvents='none'>
                 {!verdict && notice && (
                     <View style={styles.notice}>
-                        <AppText style={styles.noticeText}>{t(notice.key)}</AppText>
+                        <AppText style={styles.noticeText}>{phrase(notice)}</AppText>
                     </View>
                 )}
             </View>            
@@ -650,8 +666,13 @@ const useStyles = createThemedStyles(theme => ({
     // Wraps whichever of the keyboard and the result is up, so the two of them lift in
     // as one. Holds its size for the same reason they do: the board above is the only
     // thing on this screen that gives room away.
+    //
+    // The gap underneath is deliberately generous. The bottom row of a keyboard sitting
+    // this close to the edge of the phone is where the home indicator and the browser's
+    // own chrome live, and a thumb reaching past them to find Wissen is a thumb that
+    // sometimes leaves the app instead. The board above absorbs it.
     controls: {
         flexShrink: 0,
-        marginBottom: Spacing.three
+        marginBottom: Spacing.five
     }
 }))

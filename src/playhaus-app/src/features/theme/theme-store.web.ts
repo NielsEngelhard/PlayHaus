@@ -1,14 +1,15 @@
-import type { ThemeMode } from '@/features/theme/mode';
-import { isThemeMode } from '@/features/theme/mode';
+import type { Scheme } from '@/constants/theme';
+import { isScheme } from '@/features/theme/scheme';
 
 /**
- * The web half of `theme-store.ts`. See that file for why this pair exists.
+ * The web half of `theme-store.ts`. See that file for why this pair exists, and for
+ * why the key still says `mode`.
  *
  * `localStorage` rather than a cookie: the preference is only ever read by the client,
  * and this app pre-renders its pages in Node (`output: "static"`), where there is no
  * window at all — hence the guard on every access.
  */
-const MODE_KEY = 'playhaus_theme_mode';
+const SCHEME_KEY = 'playhaus_theme_mode';
 
 function storage(): Storage | null {
     if (typeof window === 'undefined') return null;
@@ -23,15 +24,15 @@ function storage(): Storage | null {
     }
 }
 
-export async function readThemeMode(): Promise<ThemeMode | null> {
-    const stored = storage()?.getItem(MODE_KEY);
+export async function readScheme(): Promise<Scheme | null> {
+    const stored = storage()?.getItem(SCHEME_KEY);
 
-    return isThemeMode(stored) ? stored : null;
+    return isScheme(stored) ? stored : null;
 }
 
-export async function writeThemeMode(mode: ThemeMode): Promise<void> {
+export async function writeScheme(scheme: Scheme): Promise<void> {
     try {
-        storage()?.setItem(MODE_KEY, mode);
+        storage()?.setItem(SCHEME_KEY, scheme);
     } catch {
         // Over quota, or a store that reads fine and refuses writes. Not worth
         // failing a theme toggle over.

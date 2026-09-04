@@ -7,6 +7,7 @@ import {
     LobbySettings,
     rematchLobby,
     startLobby,
+    updateLobbySettings,
     type Lobby
 } from '@/api/calls/league-of-letters-lobby';
 import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
@@ -33,7 +34,7 @@ export interface LobbyState {
     connection: SocketStatus
     /** The host closed the room while you were in it. The code no longer works. */
     closed: boolean
-    /** A settings change is in the air. */
+    /** A settings change is in the air. The start button waits it out. */
     saving: boolean
 
     starting: boolean
@@ -54,7 +55,11 @@ export interface LobbyState {
     /** Host only. Opens the next room on the same settings; everybody else is told. */
     rematch: () => Promise<void>
     reload: () => void
-    updateSettings: (s: LobbySettings) => void
+    /**
+     * Host only. Moves the room onto new settings and saves them, so everybody in it —
+     * and the game that starts from it — sees the same ones.
+     */
+    updateSettings: (settings: LobbySettings) => void
 }
 
 /**
@@ -363,13 +368,9 @@ export function useLobby(code?: string): LobbyState {
         writing.current = true;
 
         try {
-            const started = await startLobby({
-                lobbyId: lobby.code,
-                locale: lobby.settings.locale,
-                wordLength: lobby.settings.wordLength,
-                hardMode: lobby.settings.hardMode,
-                secondsPerGuess: lobby.settings.secondsPerTurn
-            });
+            // Nothing but the code: the settings are already the room's, saved as the
+            // host moved them, and the server starts on what it has stored.
+            const started = await startLobby(lobby.code);
 
             // Before anything else: the caller navigates to the board the moment this
             // resolves, and this screen unmounting on the way there must not take the
@@ -414,16 +415,49 @@ export function useLobby(code?: string): LobbyState {
         }
     }, [lobby, isHost, rematching]);
 
-    const updateSettings = (s: LobbySettings) => {
-        setLobby(prev => {
-            if (!prev) return null
+    /**
+     * Moves one of the room's settings, and saves it.
+     *
+     * Optimistic, because these are switches and a switch that waits for a round trip
+     * before it moves feels broken. The save behind it is the part that was missing:
+     * this used to write local state and stop there, so the host watched the word
+     * length change on their own screen while the server kept the room on the default
+     * five -- and started the game on five.
+     *
+     * `writing` is held for the same reason `start` holds it: the answer to this PATCH
+     * is broadcast to the room, so a frame carrying the *old* settings can still be in
+     * the air when the new ones go out, and landing it would put the switch back.
+     */
+    const updateSettings = useCallback(async (next: LobbySettings) => {
+        if (lobby === null) return;
 
-            return {
-                ...prev,
-                settings: s,
-            }
-        })
-    }
+        const code = lobby.code;
+        const previous = lobby.settings;
+
+        setActionError(null);
+        setSaving(true);
+        writing.current = true;
+        setLobby(current => (current === null ? null : { ...current, settings: next }));
+
+        try {
+            const saved = await updateLobbySettings(code, next);
+            if (!mounted.current) return;
+
+            // The server's answer rather than what was sent: it normalises, and a room
+            // showing something the server did not agree to is the bug this fixes.
+            setLobby(current => (current?.code === saved.code ? saved : current));
+        } catch (failure) {
+            if (!mounted.current) return;
+
+            // Put the switch back. A control that stays where it was moved to after the
+            // save failed is a promise the room will not keep.
+            setLobby(current => (current === null ? null : { ...current, settings: previous }));
+            setActionError(lobbyErrorMessage(failure));
+        } finally {
+            writing.current = false;
+            if (mounted.current) setSaving(false);
+        }
+    }, [lobby]);
 
     const close = useCallback(async () => {
         const leaving = owed.current;

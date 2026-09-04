@@ -187,10 +187,9 @@ func (s *Service) UpdateLobbySettings(ctx context.Context, code, userID string, 
 		return nil, nil, fmt.Errorf("save lobby settings: %w", err)
 	}
 
-	// Answered from what was just written rather than read back: the store has the
-	// same two fields, and a second query is a second chance to disagree with it.
 	lobby.Locale = in.Locale
 	lobby.WordLength = in.WordLength
+	lobby.SecondsPerTurn = in.SecondsPerTurn
 
 	return lobby, nil, nil
 }
@@ -370,8 +369,8 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 		Status:          GameInProgress,
 		CreatedAt:       now,
 		TurnUserID:      seated[0].UserID,
-		TurnEndsAt:      now.Add(DefaultSecondsPerTurn * time.Second),
-		SecondsPerGuess: DefaultSecondsPerTurn,
+		TurnEndsAt:      now.Add(time.Duration(lobby.SecondsPerTurn) * time.Second),
+		SecondsPerGuess: lobby.SecondsPerTurn,
 	}
 
 	game.Players = make([]MultiplayerGamePlayer, len(seated))

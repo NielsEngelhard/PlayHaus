@@ -22,8 +22,6 @@ const MaxGuesses = 6
 
 const multiplayerCommonWordsOnly = true
 
-const DevModeWord = "lepel" // When running in DEV mode this is always the word
-
 const (
 	SoloRounds                = 3
 	SmallTableUpTo            = 3

@@ -86,9 +86,7 @@ func (in CreateSoloGameInput) validate() map[string]string {
 // service that read it for itself could not be constructed two ways in a test, and
 // the reading would happen once per game rather than once per process.
 type Options struct {
-	// DevMode makes every round play devModeWord instead of a drawn word, so a
-	// screen can be walked through without guessing at anything.
-	DevMode bool
+	DevMode bool // DevMode makes every round play the same word
 }
 
 type Service struct {
@@ -293,11 +291,19 @@ func (s *Service) generateRounds(gameID uuid.UUID, amount int, wordLength int, l
 		return nil, err
 	}
 
+	// One word for the whole game in dev mode, but the *right* length: picking a
+	// fixed word here would quietly ignore the length the player chose, and a
+	// setting that does nothing looks like a broken setting rather than a dev flag.
+	devWord := ""
+	if s.opts.DevMode {
+		devWord, _ = DevModeWord(locale, wordLength, onlyPickCommonWords)
+	}
+
 	rounds := make([]LeagueOfLettersRound, amount)
 	for i := range amount {
 		word := words[i]
-		if s.opts.DevMode {
-			word = DevModeWord
+		if devWord != "" {
+			word = devWord
 		}
 
 		rounds[i] = LeagueOfLettersRound{

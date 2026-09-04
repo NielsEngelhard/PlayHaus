@@ -69,14 +69,17 @@ export default function LetterKeyboard({ marks, onKey, onEnter, onBackspace, dis
                 ))}
             </View>
 
+            {/* Backspace left, guess right — the way every phone keyboard puts them, and
+                the way a right thumb expects: the key that commits the word sits under
+                where the thumb already rests. */}
             <View style={styles.row}>
-                <ActionKey icon='corner-down-left' label={t('lol.game.guess')} height={keyHeight} disabled={disabled} onPress={onEnter} variant='enter' />
+                <ActionKey icon='delete' label={t('lol.game.clear')} height={keyHeight} disabled={disabled} onPress={onBackspace} variant='delete' />
 
                 {ROWS[2].split('').map(letter => (
                     <LetterKey key={letter} letter={letter} mark={marks[letter]} height={keyHeight} disabled={disabled} onPress={onKey} />
                 ))}
 
-                <ActionKey icon='delete' label={t('lol.game.clear')} height={keyHeight} disabled={disabled} onPress={onBackspace} variant='delete' />
+                <ActionKey icon='corner-down-left' label={t('lol.game.guess')} height={keyHeight} disabled={disabled} onPress={onEnter} variant='enter' />
             </View>
         </View>
     )

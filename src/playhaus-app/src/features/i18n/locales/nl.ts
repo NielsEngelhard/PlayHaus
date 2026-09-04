@@ -347,6 +347,7 @@ export const nl: Catalog = {
             guessUnsupported: 'Raden kan zodra de server dit ondersteunt.',
             alreadyGuessedYou: 'Die had je al.',
             alreadyGuessed: 'Die is al geprobeerd.',
+            mustStartWith: 'Het woord begint met de {{letter}}.',
             resultLabel: 'Uitslag',
             viewResult: 'Bekijk de uitslag',
             nextRound: 'Volgende ronde',
