@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { FontSizes, ShadowReach } from "@/constants/theme";
+import { Brand, FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -248,11 +248,25 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 <TurnTimerSlot onDone={() => setStage('inTime')} />
 
                 <ScrollView contentContainerStyle={styles.words}>
-                    {turn.words.map(word => (
-                        <View key={word.dealt.id} style={styles.word}>
-                            <AppText style={styles.wordText}>{word.word}</AppText>
-                        </View>
-                    ))}
+                    {turn.words.map(word => {
+                        const guessed = (awards[word.dealt.id] ?? null) !== null;
+
+                        return (
+                            <Pressable
+                                key={word.dealt.id}
+                                onPress={() => toggleInTime(word.dealt.id)}
+                                disabled={busy}
+                                accessibilityRole="checkbox"
+                                accessibilityState={{ checked: guessed, disabled: busy }}
+                                accessibilityLabel={word.word}
+                                style={[styles.word, guessed && styles.wordGuessed, busy && styles.dimmed]}
+                            >
+                                <AppText style={[styles.wordText, guessed && styles.wordTextGuessed]}>
+                                    {word.word}
+                                </AppText>
+                            </Pressable>
+                        )
+                    })}
                 </ScrollView>
 
                 <AppText style={styles.hint}>
@@ -469,7 +483,10 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     // The one thing on this screen that has to be readable at arm's length, held at an
-    // angle, by somebody who is also talking.
+    // angle, by somebody who is also talking. Tappable so the describer can cross a word
+    // off the moment it lands, rather than having to remember it for the `inTime` screen
+    // — that screen still opens on whatever this one left tapped, so a mid-timer tap is
+    // never the only chance to get it right.
     word: {
         paddingVertical: 14,
         paddingHorizontal: 16,
@@ -480,12 +497,22 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hardSmall
     },
 
+    wordGuessed: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint
+    },
+
     wordText: {
         fontSize: 26,
         fontWeight: 900,
         letterSpacing: -1,
         textAlign: 'center',
         color: theme.colors.text
+    },
+
+    wordTextGuessed: {
+        color: Brand.ink,
+        textDecorationLine: 'line-through'
     },
 
     hint: {

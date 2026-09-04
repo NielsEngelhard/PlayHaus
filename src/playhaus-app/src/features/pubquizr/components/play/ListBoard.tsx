@@ -22,7 +22,6 @@ import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
 import PickRow, { AwardRow } from "./PickRow";
-import QuestionRecap from "./QuestionRecap";
 import ScriptCard from "./ScriptCard";
 import TurnRulesScreen, { type TurnRule } from "./TurnRulesScreen";
 import TurnStrip from "./TurnStrip";
@@ -37,7 +36,11 @@ interface Props {
     onSettle: (awards: ListAward[]) => void
 }
 
-type Stage = 'ready' | 'running' | 'inTime' | 'bonus' | 'settle'
+/**
+ * `preTimer` only ever sits between `ready` and `running` for a timed turn. Zen mode has
+ * no clock to hold a beat in front of, so its `ready` screen goes straight to `running`.
+ */
+type Stage = 'ready' | 'preTimer' | 'running' | 'inTime' | 'bonus' | 'settle'
 
 export default function ListBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
@@ -52,9 +55,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     /** The answer this player has been marked down for, before it is committed. */
     const [bonusPick, setBonusPick] = useState<string | null>(null);
 
-    /** Whether the question has been unfolded back out of the one-line recap. */
-    const [rereading, setRereading] = useState(false);
-
     const [turnOf, setTurnOf] = useState<string | null>(null);
     if (turnOf !== turn.dealt.id) {
         setTurnOf(turn.dealt.id);
@@ -62,7 +62,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         setAwards({});
         setBonusIndex(0);
         setBonusPick(null);
-        setRereading(false);
     }
 
     const unclaimed = unclaimedAnswers(turn, awards);
@@ -174,8 +173,34 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 guesser={turn.guesser}
                 rules={rules}
                 action={t('pubquizr.play.list.start')}
-                onStart={() => setStage('running')}
+                onStart={() => setStage(turn.guesses === null ? 'preTimer' : 'running')}
             />
+        )
+    }
+
+    // A beat between the rules and the clock, for a timed turn only — zen mode has no
+    // clock to hold this beat in front of, so its `ready` screen skips straight to
+    // `running`. The question is read here, out loud, before anybody presses anything
+    // that starts counting down: the twenty seconds are for the guesser to answer in, not
+    // for the quizmaster to read the question against.
+    if (stage === 'preTimer') {
+        return (
+            <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
+                {strip}
+
+                <ScriptCard prompt={turn.question.prompt} fills={false} />
+
+                <AppText style={styles.recap}>
+                    {t('pubquizr.play.list.preTimerHint', { guesser: turn.guesser.name })}
+                </AppText>
+
+                <ActionButton
+                    size="large"
+                    icon="play"
+                    text={t('pubquizr.play.list.startTimer')}
+                    onPress={() => setStage('running')}
+                />
+            </ScrollView>
         )
     }
 
@@ -203,14 +228,10 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         );
 
         /*
-         * Zen mode gets a page of its own rather than the timed one with the clock left
-         * out, because taking the clock out changes what the screen is for. A timed turn
-         * is twenty seconds of ticking, so the question can shrink to `QuestionRecap`
-         * the moment it has been read: nobody is going to reread it while the bar
-         * drains. An untimed turn is a conversation — the question gets asked again and
-         * again — and a one-line recap behind a tap is the wrong home for the one thing
-         * on the board that leaves the phone as speech. So it stays in the `ScriptCard`
-         * the rest of the quiz reads its questions out of.
+         * Zen mode still gets a page of its own rather than sharing the timed layout
+         * below it, but both now read the question out of the same full-size `ScriptCard`
+         * round 2 uses, rather than the one-line recap this screen used to fold it into
+         * once the clock was running.
          *
          * That card is also why the whole page scrolls here rather than just the rows.
          * With the question at full size the board can outgrow a short phone, and a
@@ -259,13 +280,14 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             <View style={styles.turn}>
                 {strip}
 
-                <QuestionRecap
-                    prompt={turn.question.prompt}
-                    icon="volume-2"
-                    hint={t('pubquizr.play.reread')}
-                    expanded={rereading}
-                    onPress={() => setRereading(current => !current)}
-                />
+                {/* `fills={false}` still carries a `flexGrow` — it is meant for the zen
+                    page above, where the surrounding `ScrollView` has nothing else
+                    competing for the leftover space. Here the rows below it want that
+                    space instead, so the card is boxed in a plain, ungrowing wrapper: it
+                    gets exactly its own content's height and nothing more. */}
+                <View style={styles.question}>
+                    <ScriptCard prompt={turn.question.prompt} fills={false} />
+                </View>
 
                 <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
 
@@ -444,6 +466,12 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minHeight: 0,
         gap: 12
+    },
+
+    // Sized to its content and nothing more, so `ScriptCard`'s own `flexGrow` has no
+    // extra space to spend inside it — see the note where this wraps it.
+    question: {
+        flexShrink: 0
     },
 
     title: {

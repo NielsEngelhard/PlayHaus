@@ -399,7 +399,8 @@ export const en = {
             scoreLabel: '{{name}}, {{score}} points',
             /** Read out for the solo board's clock, which shows the time on its own. */
             playTimeLabel: 'Play time: {{time}}',
-            yourTurn: 'YOUR TURN'
+            yourTurn: 'YOUR TURN',
+            yourTurnNotice: 'YOUR TURN!'
         },
         results: {
             loading: 'Loading the result…',
@@ -689,8 +690,6 @@ export const en = {
              */
             gate: '{{name}} answered, check it',
             gateHint: "Nothing to tap until they've picked a letter",
-            /** The one-line question recap, and what tapping it does. */
-            reread: 'tap to reread',
             wrong: 'Wrong',
             correct: 'Correct',
             /** Read out for the buttons, which are two words on their own. */
@@ -699,6 +698,17 @@ export const en = {
             wrongPassesTo: 'Wrong passes the turn to {{name}}',
             /** Nobody left to ask: the question dies here rather than passing on. */
             wrongEndsQuestion: 'Nobody else to ask, wrong ends this question',
+            /**
+             * `PassOnPrompt`, rounds 1 and 6 only: the one thing on screen after a wrong
+             * answer that still has somebody left to ask. Named after the person taking
+             * it, the same reason `gate` and `validate` are — a stray tap during a
+             * hand-over has to read as obviously somebody else's turn.
+             */
+            passOn: 'Now {{name}} can guess',
+            /** The line underneath, saying why the button says what it says. */
+            passOnHint: '{{name}} had it wrong · tap to continue',
+            /** The button's accessibility label, said whole rather than split in two. */
+            passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
             /**
              * Round 2 only, replacing both lines above it: round 2 never keeps the seat
              * on a correct answer, so this one name is true no matter which button gets
@@ -832,7 +842,7 @@ export const en = {
                 start: 'Show my words and start',
                 dontSayIt: 'Never say the word itself',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
-                runningReminder: 'Only {{guesser}} may answer. The rest of the table gets its go afterwards.',
+                runningReminder: 'Tap a word off as {{guesser}} gets it. The rest of the table gets its go afterwards.',
                 /** The first scoring screen: what the guesser got inside the thirty seconds. */
                 inTimeTitle: 'What did {{guesser}} get?',
                 inTimeHint: 'Tap every word {{guesser}} said before time ran out',
@@ -862,6 +872,12 @@ export const en = {
                 readyRuleScore: 'Every answer they get is {{worth}} point for them',
                 readyRuleBonus: 'Afterwards the other {{others}} each get one guess at an answer nobody got',
                 start: 'Show the answers and start',
+                /**
+                 * The beat between the rules and the clock: the question is read out here,
+                 * before the quizmaster presses anything that starts counting down.
+                 */
+                preTimerHint: 'First read the question out loud, then start the timer and {{guesser}} can start guessing',
+                startTimer: 'Start the timer',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
                 runningReminder: 'Tick off every answer {{guesser}} says. Nobody else counts yet.',
                 /**

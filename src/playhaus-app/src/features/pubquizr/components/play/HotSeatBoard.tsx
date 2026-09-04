@@ -15,6 +15,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { View } from "react-native";
 import ChoiceCard from "./ChoiceCard";
+import PassOnPrompt from "./PassOnPrompt";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
 import VerdictButtons from "./VerdictButtons";
@@ -30,8 +31,14 @@ import VerdictButtons from "./VerdictButtons";
  * Round 2 takes them two at a time — see the note on `HotSeatBoard` — but the guard it
  * cares about is the same one: nothing that scores is reachable while the question is
  * still being read out.
+ *
+ * `passed` is the fourth: a wrong answer with somebody left in `nextUp` — rounds 1, 2 and
+ * 6 all pass the same question on round the table exactly the same way — does not go
+ * straight back to `judging` for them. The strip at the top already changes to say who
+ * that is, but it is too easy to miss on a phone being passed round a table, so the
+ * buttons stand down for one more tap that names it outright — see `PassOnPrompt`.
  */
-type Stage = 'covered' | 'revealed' | 'judging';
+type Stage = 'covered' | 'revealed' | 'judging' | 'passed';
 
 interface Props {
     turn: HotSeatTurn
@@ -107,9 +114,18 @@ export default function HotSeatBoard({
      * would eventually be forgotten is the one that leaves the next question's answer
      * already on screen.
      */
-    const [progress, setProgress] = useState<{ questionId: string | null, stage: Stage }>(
-        { questionId: null, stage: 'covered' }
-    );
+    const [progress, setProgress] = useState<{
+        questionId: string | null
+        stage: Stage
+        /**
+         * Only set while `stage` is `'passed'`: who just had it wrong, and who it
+         * passed to. Captured at the moment "Wrong" is pressed rather than read back
+         * off `turn` once the ruling round-trips, so the prompt names the right two
+         * people the instant it appears instead of flashing the old answerer while the
+         * request is still in flight.
+         */
+        handoff: { from: Seat, to: Seat } | null
+    }>({ questionId: null, stage: 'covered', handoff: null });
 
     /*
      * Reset during render rather than from an effect.
@@ -121,19 +137,50 @@ export default function HotSeatBoard({
      * `useQuizzes` empties its shelf during render.
      */
     if (progress.questionId !== turn.dealt.id) {
-        setProgress({ questionId: turn.dealt.id, stage: 'covered' });
+        setProgress({ questionId: turn.dealt.id, stage: 'covered', handoff: null });
     }
 
     // What this render is actually drawing. React restarts the render on the setState
     // above, so this only stands in for one discarded pass.
-    const stage: Stage = progress.questionId === turn.dealt.id ? progress.stage : 'covered';
+    //
+    // One more fallback lives here: a ruling that came back refused leaves `session`
+    // exactly as it was — see `useQuizSession` — so a "Wrong" that never happened has no
+    // business leaving the buttons stood down. `busy` guards this from firing mid-flight,
+    // while the verdict is still in the air and there is nothing refused yet to see.
+    const stage: Stage = progress.questionId !== turn.dealt.id
+        ? 'covered'
+        : progress.stage === 'passed' && error !== null && !busy
+            ? 'judging'
+            : progress.stage;
 
     // Captured rather than read off `turn` inside the callback: this is a hoisted
     // function, so TypeScript cannot see that the value it closes over is the current one.
     const questionId = turn.dealt.id;
 
     function moveTo(next: Stage) {
-        setProgress({ questionId, stage: next });
+        setProgress({ questionId, stage: next, handoff: null });
+    }
+
+    /**
+     * The one thing "Wrong" does before it also does the real thing.
+     *
+     * A wrong answer with somebody left in `nextUp` does not go straight back to a
+     * judging board for them — it stands the buttons down for `PassOnPrompt` first, so
+     * the hand-off is a thing that happened rather than a thing the top strip quietly
+     * changed to say. Correct answers, and a wrong one with nobody left to ask, are
+     * unaffected: both already end in a new `dealt.id` or a finished round, which resets
+     * the ritual on its own.
+     */
+    function handleWrongOrCorrect(correct: boolean) {
+        if (!correct && turn.nextUp !== null) {
+            setProgress({
+                questionId,
+                stage: 'passed',
+                handoff: { from: turn.answering, to: turn.nextUp }
+            });
+        }
+
+        onVerdict(correct, turn.quizmaster.seat);
     }
 
     const strip = (
@@ -187,14 +234,21 @@ export default function HotSeatBoard({
 
                 {/* The one thing that does swap. Which is the guard: nothing that scores
                     is on screen until the gate has been pressed on purpose. */}
-                {revealed ? (
+                {stage === 'judging' ? (
                     <VerdictButtons
                         answering={turn.answering}
                         nextUp={turn.nextUp}
                         alwaysNextUp={turn.alwaysNextUp}
                         worth={turn.worth}
                         busy={busy}
-                        onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}
+                        onVerdict={handleWrongOrCorrect}
+                    />
+                ) : stage === 'passed' && progress.handoff !== null ? (
+                    <PassOnPrompt
+                        from={progress.handoff.from}
+                        to={progress.handoff.to}
+                        busy={busy}
+                        onContinue={() => moveTo('judging')}
                     />
                 ) : (
                     <View style={styles.gate}>
@@ -242,7 +296,14 @@ export default function HotSeatBoard({
                     alwaysNextUp={turn.alwaysNextUp}
                     worth={turn.worth}
                     busy={busy}
-                    onVerdict={correct => onVerdict(correct, turn.quizmaster.seat)}
+                    onVerdict={handleWrongOrCorrect}
+                />
+            ) : stage === 'passed' && progress.handoff !== null ? (
+                <PassOnPrompt
+                    from={progress.handoff.from}
+                    to={progress.handoff.to}
+                    busy={busy}
+                    onContinue={() => moveTo('judging')}
                 />
             ) : (
                 <ValidateButton

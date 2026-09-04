@@ -22,8 +22,9 @@ import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { playYourTurn } from "@/utils/your-turn-sound";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -231,6 +232,26 @@ export default function PlayingGame({
         setCouldPlay(canPlay);
         if (!canPlay) setDraft('');
     }
+
+    /**
+     * The turn arriving gets a sound and a line in the notice lane, on top of the draft's
+     * own reset above — a beat you can hear and read even if the phone was face down.
+     * Kept in a ref rather than the render-time adjustment above: playing a sound is not
+     * something a render is allowed to do more than once for the same transition, so it
+     * waits for the effect to actually commit.
+     *
+     * Skips the round's starting player, you included, if that is how the game opens — the
+     * ref starts at whatever `canPlay` already is, so the first commit sees no change and
+     * only a later handoff counts as one.
+     */
+    const wasMyTurn = useRef(canPlay);
+    useEffect(() => {
+        if (multiplayer && canPlay && !wasMyTurn.current) {
+            playYourTurn();
+            setNotice({ key: 'lol.game.yourTurnNotice' });
+        }
+        wasMyTurn.current = canPlay;
+    }, [multiplayer, canPlay]);
 
     // The backend withholds the answer while the round is still winnable, so being told it
     // at all is what tells us the round is over. No separate flag needed.
