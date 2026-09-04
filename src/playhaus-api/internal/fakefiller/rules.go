@@ -96,3 +96,13 @@ func ScoreVote(mode FFGameMode, votedForAuthorID string) (guesser, author int) {
 	}
 	return 0, FooledPoints
 }
+
+// EligibleVoter reports whether a player may vote on a round: everybody except the two
+// people who wrote for it.
+//
+// Not a timing question -- it says nothing about whether the table has reached this round
+// -- but a question about who this round belongs to, which never changes once the prompts
+// are dealt. The screen uses it to know which of its own prompts it is only watching.
+func EligibleVoter(round FFRound, userID string) bool {
+	return !round.WrittenBy(userID)
+}

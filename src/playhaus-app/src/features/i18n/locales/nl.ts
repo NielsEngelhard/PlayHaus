@@ -55,7 +55,7 @@ export const nl: Catalog = {
     },
     nav: {
         games: 'Spellen',
-        reconnect: 'Verder spelen',
+        reconnect: 'Reconnect',
         friends: 'Vrienden',
         profile: 'Profiel'
     },

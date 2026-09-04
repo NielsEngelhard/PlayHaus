@@ -25,6 +25,7 @@ const (
 	LeagueOfLettersMultiplayer GameType = "lol_multiplayer"
 	PubquizRSingleDevice       GameType = "pq_single_device"
 	OneOfUsSingleDevice        GameType = "oou_single_device"
+	FakeFillerMultiplayer      GameType = "ff_multiplayer"
 )
 
 // timeFormat is the one wire format for timestamps: RFC 3339 with UTC written

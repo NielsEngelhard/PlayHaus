@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"playhaus-api/internal/fakefiller"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/pubquizr"
@@ -47,6 +48,14 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapQuizSessionsToReconnectableGame(quizzes)...)
 	}
 
+	// GET fake filler games
+	fakeFillerGames, err := s.fakeFiller.GamesByUserID(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get fake filler games to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapFFGamesToReconnectableGame(fakeFillerGames)...)
+	}
+
 	// Get one device one of us games
 	singleDeviceOOUGames, err := s.oneOfUs.GetSingleDeviceOneOfUsGames(r.Context(), userID)
 	if err != nil {
@@ -83,6 +92,26 @@ func mapSingleDeviceOneOfUsGamesToReconnectableGame(games []*oneofus.OneOfUsSing
 		mappedGames[i] = ReconnectableGame{
 			ID:        game.ID.String(),
 			Type:      OneOfUsSingleDevice,
+			CreatedAt: game.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
+}
+
+func mapFFGamesToReconnectableGame(games []*fakefiller.FFMultiDeviceGame) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(games))
+
+	for i := range games {
+		game := games[i]
+
+		mappedGames[i] = ReconnectableGame{
+			// The join code, not the game id -- the same choice League of Letters
+			// makes just below, and for the same reason: a room is reached by its
+			// code, and that is the one screen that knows how to draw a game like
+			// this.
+			ID:        game.LobbyID,
+			Type:      FakeFillerMultiplayer,
 			CreatedAt: game.CreatedAt.Format(timeFormat),
 		}
 	}

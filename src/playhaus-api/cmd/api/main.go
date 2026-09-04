@@ -15,6 +15,7 @@ import (
 	"playhaus-api/internal/api"
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
+	"playhaus-api/internal/fakefiller"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database"
@@ -65,6 +66,7 @@ func run() error {
 	models := append([]any{&user.User{}, &auth.Session{}}, lol.Models()...)
 	models = append(models, pubquizr.Models()...)
 	models = append(models, oneofus.Models()...)
+	models = append(models, fakefiller.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
@@ -83,13 +85,14 @@ func run() error {
 	})
 	pubquizrService := pubquizr.NewService(pubquizrStore)
 	oneOfUsService := oneofus.NewService(oneofus.NewGormStore(db))
+	fakeFillerService := fakefiller.NewService(fakefiller.NewGormStore(db))
 
 	// Every live socket room in the process. Game-agnostic: the games claim their
 	// namespaces inside NewServer.
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, hub, logger, cfg.AllowedOrigins)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, hub, logger, cfg.AllowedOrigins)
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------
@@ -116,6 +119,10 @@ func run() error {
 	}, 5*time.Minute, logger)
 	go pubquizrService.SweepStaleSessions(ctx, 72*time.Hour, time.Hour, logger)
 	go oneOfUsService.SweepStaleGames(ctx, 12*time.Hour, time.Hour, logger)
+	go fakeFillerService.SweepStale(ctx, fakefiller.SweepConfig{
+		LobbyAge: time.Hour,
+		GameAge:  12 * time.Hour,
+	}, 5*time.Minute, logger)
 
 	// Buffered so the goroutine can exit even if nobody is receiving.
 	// Never closed: a closed channel would make the select below fire with a

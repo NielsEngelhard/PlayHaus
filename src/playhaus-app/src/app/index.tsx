@@ -6,6 +6,7 @@ import GameTeaserCard from '@/components/ui/GameTeaserCard';
 import { GAMES } from '@/constants/games';
 import { Spacing } from '@/constants/theme';
 import JoinCodeRow from '@/features/home/components/JoinCodeRow';
+import ReconnectChip from '@/features/home/components/ReconnectChip';
 import { useT } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
@@ -27,6 +28,10 @@ export default function HomeScreen() {
         />
 
         <AppText style={styles.introText}>{t('home.subtitle')}</AppText>
+
+        <View style={styles.reconnect}>
+          <ReconnectChip />
+        </View>
       </View>
 
       {/* Above the list rather than under it: someone opening the app with four
@@ -77,6 +82,9 @@ const useStyles = createThemedStyles(theme => ({
     fontSize: 14,
     lineHeight: 14 * 1.5,
     color: theme.colors.textSecondary
+  },
+  reconnect: {
+    marginTop: 14
   },
   join: {
     marginTop: Spacing.three

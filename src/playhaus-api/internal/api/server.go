@@ -41,6 +41,7 @@ func NewServer(
 	leagueOfLetters *lol.Service,
 	pubquizrSvc *pubquizr.Service,
 	oneOfUsSvc *oneofus.Service,
+	fakeFillerSvc *fakefiller.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
@@ -52,16 +53,19 @@ func NewServer(
 		leagueOfLetters:  leagueOfLetters,
 		pubquizr:         pubquizrSvc,
 		oneOfUs:          oneOfUsSvc,
+		fakeFiller:       fakeFillerSvc,
 		rt:               hub,
 		log:              log,
 		allowedOrigins:   allowedOrigins,
 		anyOriginAllowed: slices.Contains(allowedOrigins, AnyOrigin),
 	}
 
-	// The socket layer knows nothing about any game; this is where League of
-	// Letters claims its namespace. PubquizR claims one when it learns to play
-	// across several phones -- a table sharing one device has nobody to notify.
+	// The socket layer knows nothing about any game; this is where the two games
+	// that are played across several phones claim their namespaces. PubquizR and
+	// One of Us claim one when they learn to -- a table sharing one device has
+	// nobody to notify.
 	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
+	hub.Register(joincode.FakeFiller.Namespace(), ffRealtime{server: s})
 
 	s.AddHealthHandlers()
 	s.AddAuthHandlers()
@@ -69,6 +73,7 @@ func NewServer(
 	s.AddLeagueOfLettersHandlers()
 	s.AddPubquizRHandlers()
 	s.AddOneOfUsHandlers()
+	s.AddFakeFillerHandlers()
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 

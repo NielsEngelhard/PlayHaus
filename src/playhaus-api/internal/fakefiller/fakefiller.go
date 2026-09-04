@@ -306,6 +306,25 @@ func (r *FFRound) Option(authorID string) *FFOption {
 	return nil
 }
 
+// OptionInSlot finds the option shown in a given position, or nil.
+//
+// This is how a vote is resolved: the voting screen is sent slots rather than author ids,
+// because an author id is either a player or the string "__truth__" and either would give
+// the round away before it is voted on. Only meaningful once voting has opened -- before
+// that every option sits at UnassignedSlot, which is why that constant is negative and no
+// slot ever is.
+func (r *FFRound) OptionInSlot(slot int) *FFOption {
+	if slot < 0 {
+		return nil
+	}
+	for i := range r.Options {
+		if r.Options[i].Slot == slot {
+			return &r.Options[i]
+		}
+	}
+	return nil
+}
+
 // Answered reports whether both authors have written their fake.
 func (r FFRound) Answered() bool {
 	return r.Option(r.AuthorOneUserID) != nil && r.Option(r.AuthorTwoUserID) != nil
