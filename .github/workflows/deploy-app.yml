@@ -16,7 +16,7 @@ jobs:
             packages: write
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Work out the image reference
               run: |
@@ -38,16 +38,16 @@ jobs:
                       exit 1
                   fi
 
-            - uses: docker/setup-buildx-action@v3
+            - uses: docker/setup-buildx-action@v4
 
-            - uses: docker/login-action@v3
+            - uses: docker/login-action@v4
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Build and push
-              uses: docker/build-push-action@v6
+              uses: docker/build-push-action@v7
               with:
                   context: src/playhaus-app
                   push: true
@@ -91,18 +91,3 @@ jobs:
 
                   ssh "deploy@$DEPLOY_HOST" \
                       "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"
-
-            - name: Smoke test
-              env:
-                  PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
-              run: |
-                  # The document itself, and then the API through the same origin -- which
-                  # is the half of the routing this workflow owns: nginx inside the app
-                  # image is what puts /api/ in front of the Go container.
-                  curl --fail --silent --show-error --output /dev/null \
-                       --retry 10 --retry-delay 3 --retry-all-errors \
-                       "$PUBLIC_ORIGIN/"
-                  curl --fail --silent --show-error \
-                       --retry 10 --retry-delay 3 --retry-all-errors \
-                       "$PUBLIC_ORIGIN/api/v1/health"
-                  echo

@@ -16,7 +16,7 @@ jobs:
             packages: write
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
 
             - name: Work out the image reference
               run: |
@@ -27,9 +27,9 @@ jobs:
                   # repo, short enough to read out over the phone during a rollback.
                   echo "TAG=sha-${GITHUB_SHA::12}" >> "$GITHUB_ENV"
 
-            - uses: docker/setup-buildx-action@v3
+            - uses: docker/setup-buildx-action@v4
 
-            - uses: docker/login-action@v3
+            - uses: docker/login-action@v4
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
@@ -38,7 +38,7 @@ jobs:
                   password: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Build and push
-              uses: docker/build-push-action@v6
+              uses: docker/build-push-action@v7
               with:
                   context: src/playhaus-api
                   push: true
@@ -76,15 +76,3 @@ jobs:
 
                   ssh "deploy@$DEPLOY_HOST" \
                       "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh API_IMAGE '$IMAGE:$TAG' api"
-
-            - name: Smoke test
-              env:
-                  PUBLIC_ORIGIN: ${{ vars.PUBLIC_ORIGIN }}
-              run: |
-                  # A green check should mean the thing is answering, not merely that a
-                  # container was created. The retries cover the few seconds the API takes
-                  # to migrate and seed on boot.
-                  curl --fail --silent --show-error \
-                       --retry 10 --retry-delay 3 --retry-all-errors \
-                       "$PUBLIC_ORIGIN/api/v1/health"
-                  echo

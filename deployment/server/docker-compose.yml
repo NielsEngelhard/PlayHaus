@@ -61,6 +61,16 @@ services:
         # precisely to bypass this, so that shipping one half never restarts the other.
         depends_on:
             - api
+        healthcheck:
+            # busybox wget again, this time the one in nginx:alpine. Answering on :80 is
+            # the whole claim -- nginx refuses to start at all when it cannot resolve the
+            # `api` upstream in its config, so a container that is serving has already
+            # proved rather more than this asks.
+            test: ['CMD', 'wget', '--quiet', '--tries=1', '--spider', 'http://127.0.0.1/']
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 5s
         restart: unless-stopped
 
     caddy:

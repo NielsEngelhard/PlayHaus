@@ -127,7 +127,9 @@ Actions tab → **Deploy API** → Run workflow. Let it finish, then do the same
 **Deploy Web App**.
 
 Order matters only this once: each workflow touches only its own container, so the second
-run is what completes the set.
+run is what completes the set. Until the web app has been deployed, the site answers
+**502** — Caddy is up and holding a valid certificate, but has nothing to proxy to. That
+is expected, not a fault.
 
 ### 8. Make the packages public
 
@@ -173,8 +175,20 @@ Both runs also copy the current `deployment/server/` files up to the droplet, so
 to the compose file or the Caddyfile takes effect on the next deploy of either half —
 whichever you happen to run.
 
-The last step of each run is a real request against `https://playhaus.site`, so a green
-check means the site answered.
+**A deploy is not verified.** `docker compose up -d` returns as soon as the container has
+been *created*, so a green run means the image was built, pushed, and recreated on the
+droplet — not that it serves. A binary that panics on a bad migration starts perfectly
+well and then stops, and nothing here would notice.
+
+So check by hand after shipping something you are unsure of:
+
+```powershell
+curl.exe https://playhaus.site/api/v1/health
+ssh deploy@<ip> "cd /opt/playhaus && docker compose ps"
+```
+
+`docker compose ps` reports health for both `api` and `app`, since each declares a
+healthcheck — that is the quickest read on whether the thing that just shipped is alive.
 
 ---
 
@@ -236,6 +250,23 @@ docker run --rm -v playhaus_api-data:/data -v "$PWD:/out" alpine:3.20 sh -c \
 ```
 
 Then move it off the box — a copy that lives on the same disk is not a backup.
+
+### The site answers 502
+
+Caddy is running and TLS is fine — it has simply got nothing to forward to. Check which
+containers are actually up:
+
+```
+ssh deploy@<ip>
+cd /opt/playhaus && docker compose ps
+```
+
+A 502 on **`/` as well as `/api/`** means the **app** container is missing or down: `/` is
+served by nginx off its own disk with no upstream involved, so nothing but a missing app
+container can produce it. Run **Deploy Web App**.
+
+A 502 on `/api/` only, with `/` still serving the page, means the **api** container is
+down. Run **Deploy API**, or look at `docker compose logs api`.
 
 ### Certificates
 

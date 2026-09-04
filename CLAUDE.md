@@ -260,9 +260,10 @@ Two things worth knowing before changing anything here:
   domain-specific and changing the domain means rebuilding it — not just editing an
   environment variable.
 - `GET /api/v1/health` (`internal/api/health.go`) is the only route with no token in front
-  of it. It deliberately touches no storage: it answers the container healthcheck and the
-  post-deploy smoke test, and a probe that queried SQLite would fail behind a write and
-  restart a healthy server.
+  of it. It deliberately touches no storage: it answers the container healthcheck, and a
+  probe that queried SQLite would fail behind a write and restart a healthy server. The
+  deploy workflows do **not** check it — they ship and stop, so a green run does not mean
+  the container serves.
 
 There are **no backups** — a deliberate choice. The SQLite file has exactly one copy, on
 the droplet's disk.
