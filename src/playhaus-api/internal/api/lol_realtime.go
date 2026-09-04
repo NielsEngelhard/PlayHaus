@@ -96,9 +96,7 @@ type turnPayload struct {
 }
 
 type typingPayload struct {
-	UserID string `json:"userId"`
-	// Letters is the draft as it stands, not a keystroke: a client that misses a
-	// frame is corrected by the next one rather than left a letter behind.
+	UserID  string `json:"userId"`
 	Letters string `json:"letters"`
 }
 

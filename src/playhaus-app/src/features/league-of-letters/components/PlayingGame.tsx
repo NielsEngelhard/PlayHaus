@@ -25,6 +25,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     game: Game,
@@ -59,12 +60,6 @@ interface Props {
      * Left undefined on solo, where the board is always yours.
      */
     myTurn?: boolean,
-    /**
-     * Multiplayer only. What the player whose turn it is has typed so far, shown in
-     * the row they are typing it into so the table can watch them think. Never your
-     * own letters — those are already on screen as `draft`.
-     */
-    typing?: string | null,
     /**
      * Multiplayer only. Relays this player's draft to the rest of the table. Called
      * on every keystroke; the throttling is the caller's.
@@ -145,7 +140,6 @@ export default function PlayingGame({
     player,
     onGuess,
     myTurn,
-    typing,
     onTyping,
     online,
     onNextRound,
@@ -156,6 +150,16 @@ export default function PlayingGame({
     const phrase = usePhrase();
 
     const router = useRouter();
+
+    /*
+     * How much of the bottom of the screen belongs to the phone rather than to the game.
+     *
+     * The keyboard used to clear it by a flat 32, which on an iPhone is 34dp of home
+     * indicator and 6dp of clearance — the exact thing the constant was chosen to avoid,
+     * and dead space on every Android and browser that has no indicator at all. The
+     * device knows the number; `InGameHeader` already asks it for the notch.
+     */
+    const insets = useSafeAreaInsets();
 
     // Something with a pulse, rather than the loop a room waits on. Claimed by the board
     // rather than by a route, because the multiplayer room serves the lobby and the board
@@ -216,6 +220,17 @@ export default function PlayingGame({
 
     /** On a shared board the keyboard is only live when the turn is yours. */
     const canPlay = !multiplayer || myTurn === true;
+
+    // A turn that ends unsubmitted does not carry its draft into the next one — otherwise
+    // whatever was left standing in the row reappears next time the turn comes back
+    // around. Cleared the moment the turn is no longer yours rather than when it becomes
+    // yours again, so nobody else's screen is shown a draft that is already stale.
+    // Adjusted during render, the same way `boardKey` is, so it is never painted.
+    const [couldPlay, setCouldPlay] = useState(canPlay);
+    if (canPlay !== couldPlay) {
+        setCouldPlay(canPlay);
+        if (!canPlay) setDraft('');
+    }
 
     // The backend withholds the answer while the round is still winnable, so being told it
     // at all is what tells us the round is over. No separate flag needed.
@@ -486,7 +501,6 @@ export default function PlayingGame({
                     userId={userId}
                     online={online}
                     turnUserId={game.turn?.userId}
-                    typingUserId={typing === null || typing === undefined ? undefined : game.turn?.userId}
                 />
             )}
 
@@ -528,7 +542,7 @@ export default function PlayingGame({
                      * when that is you, and the letters relayed from their keyboard when
                      * it is not. One row, whoever is filling it.
                      */
-                    draft={finished ? '' : canPlay ? draft : typing ?? ''}
+                    draft={finished ? '' : canPlay ? draft : ''}
                 />
             </SlideFadeIn>
 
@@ -542,7 +556,7 @@ export default function PlayingGame({
                 offsetY={RISE_PX}
                 durationMs={RISE_MS}
                 delayMs={RISE_STAGGER_MS}
-                style={styles.controls}
+                style={[styles.controls, { marginBottom: Math.max(Spacing.two, insets.bottom) + Spacing.two }]}
             >
                 {decided ? (
                     <View style={styles.outcome}>
@@ -598,6 +612,7 @@ export default function PlayingGame({
                         onEnter={submit}
                         onBackspace={backspace}
                         disabled={finished || sending || revealing || !canPlay}
+                        style={styles.keyboard}
                     />
                 )}
             </SlideFadeIn>
@@ -667,12 +682,24 @@ const useStyles = createThemedStyles(theme => ({
     // as one. Holds its size for the same reason they do: the board above is the only
     // thing on this screen that gives room away.
     //
-    // The gap underneath is deliberately generous. The bottom row of a keyboard sitting
-    // this close to the edge of the phone is where the home indicator and the browser's
-    // own chrome live, and a thumb reaching past them to find Wissen is a thumb that
-    // sometimes leaves the app instead. The board above absorbs it.
+    // The gap underneath is set at the call site, from the device's own bottom inset: the
+    // bottom row of a keyboard this close to the edge of the phone is where the home
+    // indicator and the browser's own chrome live, and a thumb reaching past them to find
+    // Wissen is a thumb that sometimes leaves the app instead.
     controls: {
-        flexShrink: 0,
-        marginBottom: Spacing.five
+        flexShrink: 0
+    },
+    // The board's gutters are generous on purpose, but a keyboard is not page content —
+    // it is the one control on the screen a thumb aims at twenty-six times a round, and
+    // every dp it hands back to the margin comes straight off the width of a key. So it
+    // takes the whole gutter back and runs edge to edge, the way a phone's own keyboard
+    // does: exactly `screen`'s own horizontal padding, cancelled.
+    //
+    // A negative margin rather than `InGameHeader`'s `getReach`, which is the other way
+    // out of this column: that one paints past the parent, which Android is free to clip,
+    // and a clipped key is a key that stops answering. Cancelling the padding stops at
+    // the parent's own edge, so every key is still live on every platform.
+    keyboard: {
+        marginHorizontal: -Spacing.three
     }
 }))

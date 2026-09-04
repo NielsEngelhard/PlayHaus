@@ -8,21 +8,9 @@ import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
 
 interface Props {
     players: GamePlayer[],
-    /** Whose row this is, so one chip can read `Jij` instead of a name. */
     userId: string,
-    /**
-     * Who is connected right now. A player not in here has their light out, which on
-     * a turn-based board is the difference between waiting on somebody who is looking
-     * at the screen and waiting on somebody whose phone locked.
-     *
-     * Left out on solo, where there is nobody to be connected.
-     */
     online?: Set<string>,
-    /** Whose turn it is, so the chip can say the board is waiting on them. */
     turnUserId?: string,
-    /** Who is mid-word, if anybody. */
-    typingUserId?: string,
-    /** For layout only — how the row sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 
@@ -32,7 +20,7 @@ interface Props {
  * A chip rather than a table row: the board is the screen and this has to stay out of
  * its way. It scrolls sideways, so a full room never squeezes the grid.
  */
-export default function PlayerScoreRow({ players, userId, online, turnUserId, typingUserId, style }: Props) {
+export default function PlayerScoreRow({ players, userId, online, turnUserId, style }: Props) {
     const styles = useStyles();
 
     // The server orders players by when they joined; a scoreboard wants the leader first.
@@ -54,7 +42,6 @@ export default function PlayerScoreRow({ players, userId, online, turnUserId, ty
                     // is not the same as "offline", which would put every light out.
                     live={online === undefined ? undefined : online.has(player.userId)}
                     up={player.userId === turnUserId}
-                    typing={player.userId === typingUserId}
                 />
             ))}
         </ScrollView>
@@ -66,10 +53,9 @@ interface PlayerChipProps {
     you: boolean,
     live?: boolean,
     up: boolean,
-    typing: boolean
 }
 
-function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
+function PlayerChip({ player, you, live, up }: PlayerChipProps) {
     const styles = useStyles();
     const t = useT();
 
@@ -102,10 +88,7 @@ function PlayerChip({ player, you, live, up, typing }: PlayerChipProps) {
                 {you ? t('common.you') : player.name}
             </AppText>
 
-            {/* While somebody is typing, what they are doing is more use than their score. */}
-            {typing
-                ? <AppText style={styles.typing}>{t('lol.game.typing')}</AppText>
-                : <AppText style={styles.score}>{player.score}</AppText>}
+             <AppText style={styles.score}>{player.score}</AppText>
         </View>
     )
 }
@@ -206,11 +189,5 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.sm,
         fontWeight: 900,
         color: theme.colors.text
-    },
-    typing: {
-        fontSize: FontSizes.xs,
-        fontWeight: 700,
-        fontStyle: 'italic',
-        color: theme.colors.textSecondary
     }
 }))

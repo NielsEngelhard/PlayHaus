@@ -399,8 +399,7 @@ export const en = {
             scoreLabel: '{{name}}, {{score}} points',
             /** Read out for the solo board's clock, which shows the time on its own. */
             playTimeLabel: 'Play time: {{time}}',
-            yourTurn: 'YOUR TURN',
-            typing: 'typing…'
+            yourTurn: 'YOUR TURN'
         },
         results: {
             loading: 'Loading the result…',

@@ -130,7 +130,7 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
 
     const { user } = useAuth();
 
-    const { game, round, online, loading, error, myTurn, typing, guess, onTyping, nextRound, gameOver, reload } = table;
+    const { game, round, online, loading, error, myTurn, guess, onTyping, nextRound, gameOver, reload } = table;
 
     if (error !== null) {
         return (
@@ -162,7 +162,6 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
                 online={online}
                 onGuess={guess}
                 myTurn={myTurn}
-                typing={typing}
                 onTyping={onTyping}
                 // Only while there is somewhere to go on to. The last round's verdict is
                 // the end of the game, and `onFinish` is where that leads instead.

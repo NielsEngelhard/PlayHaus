@@ -359,13 +359,12 @@ export const nl: Catalog = {
             lost: 'HELAAS',
             theWord: 'Het woord',
             attempts: 'Pogingen',
-            guess: 'Raden',
+            guess: 'GO',
             clear: 'Wissen',
             timeLeft: 'Resterende tijd',
             scoreLabel: '{{name}}, {{score}} punten',
             playTimeLabel: 'Speeltijd: {{time}}',
-            yourTurn: 'AAN ZET',
-            typing: 'typt…'
+            yourTurn: 'AAN ZET'
         },
         results: {
             loading: 'Uitslag laden…',
