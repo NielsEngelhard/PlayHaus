@@ -5,7 +5,7 @@
 do_token = "dop_v1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 domain     = "playhaus.site"
-acme_email = "you@example.com"
+acme_email = "engelhardniels@gmail.com"
 
 # Defaults are ams3 and the $6/month s-1vcpu-1gb. Uncomment to change.
 # region       = "ams3"
