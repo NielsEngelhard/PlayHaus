@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "About how many kilometres per hour did the locomotive Rocket reach in 1829?", "answer": 48, "unit": "km per hour", "explanation": "About thirty miles per hour, which won it the trials at Rainhill." },
-        { "prompt": "In what year did the World Wide Web become available to everyone?", "answer": 1991, "unit": "" }
+        { "prompt": "In what year did the World Wide Web become available to everyone?", "answer": 1991, "unit": "" },
+        { "prompt": "In what year did Gutenberg print his first Bible with the printing press?", "answer": 1455, "unit": "" },
+        { "prompt": "In what year did Alexander Graham Bell patent the telephone?", "answer": 1876, "unit": "" },
+        { "prompt": "In what year did the Wright brothers make their first powered flight?", "answer": 1903, "unit": "" },
+        { "prompt": "In what year was the first microprocessor, the Intel 4004, released?", "answer": 1971, "unit": "" },
+        { "prompt": "In what year did Thomas Edison patent the practical light bulb?", "answer": 1879, "unit": "" },
+        { "prompt": "How many seconds did the Wright brothers' first flight last?", "answer": 12, "unit": "seconds" }
       ]
     },
     {

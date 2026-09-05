@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres tall was the Saturn V rocket?", "answer": 111, "unit": "metres", "explanation": "Over a hundred and ten metres, taller than the Statue of Liberty on its base." },
-        { "prompt": "How many days did the flight of Apollo 11 last?", "answer": 8, "unit": "days" }
+        { "prompt": "How many days did the flight of Apollo 11 last?", "answer": 8, "unit": "days" },
+        { "prompt": "In what year did Sputnik 1 launch?", "answer": 1957, "unit": "" },
+        { "prompt": "In what year did the first man walk on the moon?", "answer": 1969, "unit": "" },
+        { "prompt": "How many astronauts have walked on the moon in total?", "answer": 12, "unit": "astronauts" },
+        { "prompt": "In what year did Yuri Gagarin become the first human in space?", "answer": 1961, "unit": "" },
+        { "prompt": "How many days did it take Apollo 11 to reach the moon?", "answer": 4, "unit": "days" },
+        { "prompt": "In what year was NASA founded?", "answer": 1958, "unit": "" }
       ]
     },
     {

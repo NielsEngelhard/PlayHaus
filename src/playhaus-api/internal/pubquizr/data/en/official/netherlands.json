@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres long is the Afsluitdijk?", "answer": 32, "unit": "kilometres", "explanation": "Thirty-two kilometres from North Holland to Friesland, closed in 1932." },
-        { "prompt": "How many metres below sea level is the lowest point of the Netherlands?", "answer": 7, "unit": "metres" }
+        { "prompt": "How many metres below sea level is the lowest point of the Netherlands?", "answer": 7, "unit": "metres" },
+        { "prompt": "How many provinces does the Netherlands have?", "answer": 12, "unit": "provinces" },
+        { "prompt": "How many kilometres long is the Dutch coastline, roughly?", "answer": 450, "unit": "kilometres" },
+        { "prompt": "In what year did the Netherlands finish building the Delta Works flood barrier, the Oosterscheldekering?", "answer": 1986, "unit": "" },
+        { "prompt": "How many inhabitants does the Netherlands have, in millions, roughly?", "answer": 18, "unit": "million inhabitants" },
+        { "prompt": "In what year did Rembrandt paint The Night Watch?", "answer": 1642, "unit": "" },
+        { "prompt": "How many thousand kilometres of cycle paths does the Netherlands have, roughly?", "answer": 37, "unit": "thousand kilometres" }
       ]
     },
     {

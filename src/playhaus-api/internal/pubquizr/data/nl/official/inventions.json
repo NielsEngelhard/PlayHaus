@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer per uur haalde de locomotief Rocket in 1829 ongeveer?", "answer": 48, "unit": "km per uur", "explanation": "Ongeveer dertig mijl per uur, waarmee hij de proefritten bij Rainhill won." },
-        { "prompt": "In welk jaar werd het World Wide Web voor iedereen beschikbaar?", "answer": 1991, "unit": "" }
+        { "prompt": "In welk jaar werd het World Wide Web voor iedereen beschikbaar?", "answer": 1991, "unit": "" },
+        { "prompt": "In welk jaar drukte Gutenberg zijn eerste bijbel met de boekdrukpers?", "answer": 1455, "unit": "" },
+        { "prompt": "In welk jaar patenteerde Alexander Graham Bell de telefoon?", "answer": 1876, "unit": "" },
+        { "prompt": "In welk jaar maakten de gebroeders Wright hun eerste gemotoriseerde vlucht?", "answer": 1903, "unit": "" },
+        { "prompt": "In welk jaar kwam de eerste microprocessor, de Intel 4004, uit?", "answer": 1971, "unit": "" },
+        { "prompt": "In welk jaar patenteerde Thomas Edison de praktisch bruikbare gloeilamp?", "answer": 1879, "unit": "" },
+        { "prompt": "Hoeveel seconden duurde de eerste vlucht van de gebroeders Wright?", "answer": 12, "unit": "seconden" }
       ]
     },
     {

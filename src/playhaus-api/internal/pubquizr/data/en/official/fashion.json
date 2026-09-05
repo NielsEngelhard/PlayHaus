@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year was the Levi Strauss company founded?", "answer": 1853, "unit": "", "explanation": "Levi Strauss started in San Francisco in 1853; the riveted trouser followed in 1873." },
-        { "prompt": "In what year was the first Met Gala held?", "answer": 1948, "unit": "" }
+        { "prompt": "In what year was the first Met Gala held?", "answer": 1948, "unit": "" },
+        { "prompt": "In what year was the house of Chanel founded?", "answer": 1910, "unit": "" },
+        { "prompt": "In what year did the first Paris Fashion Week take place?", "answer": 1973, "unit": "" },
+        { "prompt": "In what year was the house of Dior founded?", "answer": 1946, "unit": "" },
+        { "prompt": "In what year did Louis Vuitton open his first shop in Paris?", "answer": 1854, "unit": "" },
+        { "prompt": "In what year did Vogue magazine first appear?", "answer": 1892, "unit": "" },
+        { "prompt": "How many outfits does a haute couture show typically feature at minimum?", "answer": 25, "unit": "outfits" }
       ]
     },
     {

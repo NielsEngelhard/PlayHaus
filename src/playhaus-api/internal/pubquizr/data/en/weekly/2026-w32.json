@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres high is the Dom Tower of Utrecht?", "answer": 112, "unit": "metres", "explanation": "Just over a hundred and ten metres, the tallest church tower in the Netherlands." },
-        { "prompt": "In what year was The Night Watch completed?", "answer": 1642, "unit": "" }
+        { "prompt": "In what year was The Night Watch completed?", "answer": 1642, "unit": "" },
+        { "prompt": "How many bells hang in the carillon of the Dom Tower of Utrecht, roughly?", "answer": 50, "unit": "bells" },
+        { "prompt": "In what year did Rembrandt die?", "answer": 1669, "unit": "" },
+        { "prompt": "How many steps does the Dom Tower have to the top?", "answer": 465, "unit": "steps" },
+        { "prompt": "In what year was Rembrandt born?", "answer": 1606, "unit": "" },
+        { "prompt": "How many figures, roughly, are depicted in The Night Watch?", "answer": 34, "unit": "figures" },
+        { "prompt": "In what year did construction of the Dom Tower begin?", "answer": 1321, "unit": "" }
       ]
     },
     {

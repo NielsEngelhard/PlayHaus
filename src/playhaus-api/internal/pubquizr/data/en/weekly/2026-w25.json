@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres high is Mount Everest?", "answer": 8849, "unit": "metres", "explanation": "The height China and Nepal agreed on together in 2020." },
-        { "prompt": "In what year was the first iPhone unveiled?", "answer": 2007, "unit": "" }
+        { "prompt": "In what year was the first iPhone unveiled?", "answer": 2007, "unit": "" },
+        { "prompt": "How many countries does the summit of Mount Everest sit on the border of?", "answer": 2, "unit": "countries", "explanation": "The summit sits on the border between Nepal and China (Tibet)." },
+        { "prompt": "In what year did Facebook launch?", "answer": 2004, "unit": "" },
+        { "prompt": "How many kilometres long is the Great Barrier Reef?", "answer": 2300, "unit": "kilometres" },
+        { "prompt": "In what year did the first iPod go on sale?", "answer": 2001, "unit": "" },
+        { "prompt": "How many metres deep is the deepest point of the ocean, the Mariana Trench, roughly?", "answer": 10935, "unit": "metres" },
+        { "prompt": "In what year did Steve Jobs co-found Apple?", "answer": 1976, "unit": "" }
       ]
     },
     {

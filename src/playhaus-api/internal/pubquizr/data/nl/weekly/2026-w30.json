@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel dagen duurt een omloop van de aarde om de zon, afgerond op hele dagen?", "answer": 365, "unit": "dagen", "explanation": "Precies 365 dagen en bijna zes uur, en die zes uur zijn het schrikkeljaar." },
-        { "prompt": "Hoeveel kilometer lang is de Rijn ongeveer?", "answer": 1233, "unit": "kilometer" }
+        { "prompt": "Hoeveel kilometer lang is de Rijn ongeveer?", "answer": 1233, "unit": "kilometer" },
+        { "prompt": "Hoeveel minuten doet het zonlicht er ongeveer over om de aarde te bereiken?", "answer": 8, "unit": "minuten" },
+        { "prompt": "Hoeveel kilometer lang is de totale loop van de Rijn, van bron tot zee?", "answer": 1233, "unit": "kilometer" },
+        { "prompt": "Hoeveel graden staat de aardas gekanteld, wat de seizoenen veroorzaakt?", "answer": 23, "unit": "graden" },
+        { "prompt": "Door hoeveel landen stroomt de Rijn?", "answer": 6, "unit": "landen" },
+        { "prompt": "Hoeveel uur duurt een volledige omwenteling van de aarde om haar as?", "answer": 24, "unit": "uur" },
+        { "prompt": "Hoeveel kilometer per seconde legt de aarde ongeveer af rond de zon?", "answer": 30, "unit": "kilometer per seconde" }
       ]
     },
     {

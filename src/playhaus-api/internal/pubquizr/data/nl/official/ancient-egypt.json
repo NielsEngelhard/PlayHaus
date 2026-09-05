@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel meter hoog was de grootste piramide van Gizeh oorspronkelijk?", "answer": 147, "unit": "meter", "explanation": "Bijna honderdvijftig meter; erosie kostte haar een paar meter top." },
-        { "prompt": "Hoeveel kilometer lang is de Nijl ongeveer?", "answer": 6650, "unit": "kilometer" }
+        { "prompt": "Hoeveel kilometer lang is de Nijl ongeveer?", "answer": 6650, "unit": "kilometer" },
+        { "prompt": "In welk jaar ontdekte Howard Carter het graf van Toetanchamon?", "answer": 1922, "unit": "" },
+        { "prompt": "Hoeveel jaar regeerde Cleopatra ongeveer als farao?", "answer": 21, "unit": "jaar", "explanation": "Ze kwam in 51 v.Chr. aan de macht en stierf in 30 v.Chr." },
+        { "prompt": "Hoeveel piramides zijn er in totaal bekend uit het oude Egypte?", "answer": 118, "unit": "piramides" },
+        { "prompt": "Hoeveel arbeiders werkten er ongeveer aan de bouw van de grote piramide van Gizeh?", "answer": 20000, "unit": "arbeiders", "explanation": "Moderne schattingen gaan uit van zo'n twintigduizend geschoolde arbeiders in plaats van slaven." },
+        { "prompt": "Hoeveel koningsgraven zijn er gevonden in de Vallei der Koningen?", "answer": 63, "unit": "graven" },
+        { "prompt": "In welk jaar werd de Steen van Rosetta gevonden?", "answer": 1799, "unit": "", "explanation": "Franse soldaten vonden hem bij het stadje Rosette tijdens Napoleons Egyptische veldtocht." }
       ]
     },
     {

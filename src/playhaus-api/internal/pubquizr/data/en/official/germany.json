@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres long was the Berlin Wall around West Berlin?", "answer": 155, "unit": "kilometres", "explanation": "Over a hundred and fifty kilometres of concrete and fence, forty of them through the city." },
-        { "prompt": "How many kilometres of the Rhine flow through Germany?", "answer": 865, "unit": "kilometres" }
+        { "prompt": "How many kilometres of the Rhine flow through Germany?", "answer": 865, "unit": "kilometres" },
+        { "prompt": "How many federal states does Germany have?", "answer": 16, "unit": "states" },
+        { "prompt": "In what year was Germany reunified?", "answer": 1990, "unit": "" },
+        { "prompt": "How many kilometres long is the Autobahn network in total?", "answer": 13000, "unit": "kilometres", "explanation": "Germany's motorway network runs to about thirteen thousand kilometres." },
+        { "prompt": "In what year was the Volkswagen Beetle first produced?", "answer": 1938, "unit": "" },
+        { "prompt": "How many inhabitants does Berlin have, in millions, roughly?", "answer": 4, "unit": "million inhabitants" },
+        { "prompt": "In what year did Goethe die?", "answer": 1832, "unit": "" }
       ]
     },
     {

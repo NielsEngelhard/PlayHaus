@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel meter hoog is de Mount Everest?", "answer": 8849, "unit": "meter", "explanation": "De hoogte die China en Nepal in 2020 samen vaststelden." },
-        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "answer": 2007, "unit": "" }
+        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "answer": 2007, "unit": "" },
+        { "prompt": "Aan hoeveel landen grenst de top van de Mount Everest?", "answer": 2, "unit": "landen", "explanation": "De top ligt op de grens tussen Nepal en China (Tibet)." },
+        { "prompt": "In welk jaar werd Facebook gelanceerd?", "answer": 2004, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is het Great Barrier Reef?", "answer": 2300, "unit": "kilometer" },
+        { "prompt": "In welk jaar kwam de eerste iPod in de winkel?", "answer": 2001, "unit": "" },
+        { "prompt": "Hoeveel meter diep is het diepste punt van de oceaan, de Marianentrog, ongeveer?", "answer": 10935, "unit": "meter" },
+        { "prompt": "In welk jaar richtte Steve Jobs Apple mede op?", "answer": 1976, "unit": "" }
       ]
     },
     {

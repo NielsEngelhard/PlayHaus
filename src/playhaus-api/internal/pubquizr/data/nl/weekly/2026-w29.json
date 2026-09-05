@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel liter bloed heeft een volwassen mens ongeveer in zijn lichaam?", "answer": 5, "unit": "liter", "explanation": "Ongeveer vijf liter, iets meer bij een grote man en iets minder bij een kleine vrouw." },
-        { "prompt": "In welk jaar werd de Nederlandse Oost-Indische Compagnie opgericht?", "answer": 1602, "unit": "" }
+        { "prompt": "In welk jaar werd de Nederlandse Oost-Indische Compagnie opgericht?", "answer": 1602, "unit": "" },
+        { "prompt": "Hoeveel dagen duurt het voordat rode bloedcellen volledig vernieuwd zijn?", "answer": 120, "unit": "dagen" },
+        { "prompt": "In welk jaar werd de West-Indische Compagnie, de rivaal van de VOC, opgericht?", "answer": 1621, "unit": "" },
+        { "prompt": "Hoeveel liter bloed pompt het hart ongeveer per dag rond?", "answer": 7500, "unit": "liter" },
+        { "prompt": "In welk jaar werd Nieuw-Amsterdam omgedoopt tot New York?", "answer": 1664, "unit": "" },
+        { "prompt": "Hoeveel kamers heeft het menselijk hart?", "answer": 4, "unit": "kamers" },
+        { "prompt": "In welk jaar ging de VOC failliet en hield ze op te bestaan?", "answer": 1799, "unit": "" }
       ]
     },
     {

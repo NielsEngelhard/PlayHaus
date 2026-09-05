@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many times does an adult heart beat per minute at rest?", "answer": 70, "unit": "beats", "explanation": "Sixty to eighty beats a minute is the ordinary resting range." },
-        { "prompt": "How many metres long is the small intestine of an adult?", "answer": 6, "unit": "metres" }
+        { "prompt": "How many metres long is the small intestine of an adult?", "answer": 6, "unit": "metres" },
+        { "prompt": "How many bones does an adult human body have?", "answer": 206, "unit": "bones" },
+        { "prompt": "How many teeth does a full set of adult teeth have?", "answer": 32, "unit": "teeth" },
+        { "prompt": "How many litres of blood does the average adult body contain?", "answer": 5, "unit": "litres" },
+        { "prompt": "How many pairs of ribs does an adult human have?", "answer": 12, "unit": "pairs" },
+        { "prompt": "How many vertebrae make up the human spine?", "answer": 33, "unit": "vertebrae" },
+        { "prompt": "How many muscles are there in the human body, roughly?", "answer": 650, "unit": "muscles" }
       ]
     },
     {

@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel keer klopt het hart van een volwassene in rust per minuut?", "answer": 70, "unit": "slagen", "explanation": "Zestig tot tachtig slagen per minuut is het gewone bereik in rust." },
-        { "prompt": "Hoeveel meter lang is de dunne darm van een volwassene?", "answer": 6, "unit": "meter" }
+        { "prompt": "Hoeveel meter lang is de dunne darm van een volwassene?", "answer": 6, "unit": "meter" },
+        { "prompt": "Hoeveel botten heeft het lichaam van een volwassene?", "answer": 206, "unit": "botten" },
+        { "prompt": "Hoeveel tanden en kiezen telt een volledig volwassen gebit?", "answer": 32, "unit": "stuks" },
+        { "prompt": "Hoeveel liter bloed bevat het lichaam van een gemiddelde volwassene?", "answer": 5, "unit": "liter" },
+        { "prompt": "Hoeveel paar ribben heeft een volwassen mens?", "answer": 12, "unit": "paar" },
+        { "prompt": "Uit hoeveel wervels bestaat de menselijke ruggengraat?", "answer": 33, "unit": "wervels" },
+        { "prompt": "Hoeveel spieren heeft het menselijk lichaam ongeveer?", "answer": 650, "unit": "spieren" }
       ]
     },
     {

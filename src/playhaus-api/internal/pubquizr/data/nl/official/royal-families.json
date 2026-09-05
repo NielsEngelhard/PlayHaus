@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar werd Elizabeth II gekroond?", "answer": 1953, "unit": "", "explanation": "Ze volgde haar vader op in 1952 en werd in juni 1953 gekroond." },
-        { "prompt": "Hoeveel jaar regeerde de Franse koning Lodewijk XIV?", "answer": 72, "unit": "jaar" }
+        { "prompt": "Hoeveel jaar regeerde de Franse koning Lodewijk XIV?", "answer": 72, "unit": "jaar" },
+        { "prompt": "Hoeveel jaar regeerde koningin Elizabeth II in totaal?", "answer": 70, "unit": "jaar", "explanation": "Ze regeerde van 1952 tot 2022, langer dan enige andere Britse vorst." },
+        { "prompt": "In welk jaar besteeg koning Willem-Alexander de Nederlandse troon?", "answer": 2013, "unit": "" },
+        { "prompt": "Hoeveel jaar regeerde Lodewijk XVI voordat de Franse Revolutie een einde maakte aan zijn heerschappij?", "answer": 15, "unit": "jaar" },
+        { "prompt": "In welk jaar kroonde Napoleon zichzelf tot keizer van Frankrijk?", "answer": 1804, "unit": "" },
+        { "prompt": "Hoeveel jaar regeerde koningin Beatrix voor haar troonsafstand?", "answer": 33, "unit": "jaar" },
+        { "prompt": "In welk jaar vond de kroning van koning Charles III plaats?", "answer": 2023, "unit": "" }
       ]
     },
     {

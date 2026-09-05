@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres tall was the largest pyramid of Giza originally?", "answer": 147, "unit": "metres", "explanation": "Almost a hundred and fifty metres; erosion cost it a few metres of top." },
-        { "prompt": "About how many kilometres long is the Nile?", "answer": 6650, "unit": "kilometres" }
+        { "prompt": "About how many kilometres long is the Nile?", "answer": 6650, "unit": "kilometres" },
+        { "prompt": "In what year did Howard Carter discover Tutankhamun's tomb?", "answer": 1922, "unit": "" },
+        { "prompt": "About how many years did Cleopatra's reign as pharaoh last?", "answer": 21, "unit": "years", "explanation": "She took the throne in 51 BC and died in 30 BC." },
+        { "prompt": "How many pyramids in total are known to have been built in ancient Egypt?", "answer": 118, "unit": "pyramids" },
+        { "prompt": "About how many workers are estimated to have built the Great Pyramid of Giza?", "answer": 20000, "unit": "workers", "explanation": "Modern estimates favour a skilled workforce of about twenty thousand rather than the old picture of slaves." },
+        { "prompt": "How many kings' tombs have been found in the Valley of the Kings?", "answer": 63, "unit": "tombs" },
+        { "prompt": "In what year was the Rosetta Stone found?", "answer": 1799, "unit": "", "explanation": "French soldiers found it near the town of Rosetta during Napoleon's Egyptian campaign." }
       ]
     },
     {

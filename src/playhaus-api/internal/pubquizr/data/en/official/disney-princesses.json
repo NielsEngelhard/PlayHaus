@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year did Frozen come out?", "answer": 2013, "unit": "", "explanation": "The film came out in November 2013 and became the most watched animated film of its day." },
-        { "prompt": "How many minutes does Snow White and the Seven Dwarfs last?", "answer": 83, "unit": "minutes" }
+        { "prompt": "How many minutes does Snow White and the Seven Dwarfs last?", "answer": 83, "unit": "minutes" },
+        { "prompt": "In what year did Snow White and the Seven Dwarfs come out?", "answer": 1937, "unit": "", "explanation": "The first full-length animated feature film ever released." },
+        { "prompt": "How many minutes does Frozen last?", "answer": 102, "unit": "minutes" },
+        { "prompt": "In what year did The Little Mermaid come out?", "answer": 1989, "unit": "" },
+        { "prompt": "How many official Disney princesses are there in the franchise line-up?", "answer": 12, "unit": "princesses" },
+        { "prompt": "In what year did Moana come out?", "answer": 2016, "unit": "" },
+        { "prompt": "How many minutes does Beauty and the Beast last?", "answer": 84, "unit": "minutes" }
       ]
     },
     {

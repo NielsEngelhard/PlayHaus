@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel landen deden mee aan het eerste WK in 1930?", "answer": 13, "unit": "landen", "explanation": "Dertien, want de reis naar Uruguay duurde weken per boot." },
-        { "prompt": "Hoeveel WK-wedstrijden speelde de Duitser Lothar Matthaus in totaal?", "answer": 25, "unit": "wedstrijden" }
+        { "prompt": "Hoeveel WK-wedstrijden speelde de Duitser Lothar Matthaus in totaal?", "answer": 25, "unit": "wedstrijden" },
+        { "prompt": "In welk jaar won Brazilie zijn vijfde WK-titel?", "answer": 2002, "unit": "" },
+        { "prompt": "Hoeveel landen deden mee aan het WK 2026, het eerste onder het uitgebreide format?", "answer": 48, "unit": "landen" },
+        { "prompt": "Hoeveel doelpunten maakte Miroslav Klose in totaal op WK's, het record aller tijden?", "answer": 16, "unit": "doelpunten" },
+        { "prompt": "In welk jaar werd voor het eerst een WK-finale beslist door strafschoppen?", "answer": 1994, "unit": "" },
+        { "prompt": "Hoeveel landen deden mee aan het WK 2022 in Qatar?", "answer": 32, "unit": "landen" },
+        { "prompt": "Hoeveel WK-titels heeft Brazilie in totaal gewonnen?", "answer": 5, "unit": "titels" }
       ]
     },
     {

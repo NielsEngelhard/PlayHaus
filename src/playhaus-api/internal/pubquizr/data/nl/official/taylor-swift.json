@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel minuten duurt All Too Well in de lange versie?", "answer": 10, "unit": "minuten", "explanation": "De versie op Red (Taylor's Version) duurt tien minuten en dertien seconden." },
-        { "prompt": "Hoeveel nummers staan er op Red (Taylor's Version)?", "answer": 30, "unit": "nummers" }
+        { "prompt": "Hoeveel nummers staan er op Red (Taylor's Version)?", "answer": 30, "unit": "nummers" },
+        { "prompt": "In welk jaar bracht Taylor Swift haar debuutalbum uit?", "answer": 2006, "unit": "" },
+        { "prompt": "Hoeveel studioalbums had Taylor Swift uitgebracht tot en met Midnights, exclusief heropnames?", "answer": 10, "unit": "albums" },
+        { "prompt": "Hoeveel Grammy Awards voor Album van het Jaar heeft Taylor Swift gewonnen?", "answer": 4, "unit": "prijzen" },
+        { "prompt": "In welk jaar begon de Eras Tour?", "answer": 2023, "unit": "" },
+        { "prompt": "Hoeveel nummers staan er op de standaardeditie van 1989?", "answer": 13, "unit": "nummers" },
+        { "prompt": "In welk jaar werd Taylor Swift geboren?", "answer": 1989, "unit": "" }
       ]
     },
     {

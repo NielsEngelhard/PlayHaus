@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many minutes long is the theatrical cut of The Godfather?", "answer": 175, "unit": "minutes", "explanation": "Two hours and fifty-five minutes." },
-        { "prompt": "In what year was the first feature-length film with synchronised dialogue, The Jazz Singer, released?", "answer": 1927, "unit": "" }
+        { "prompt": "In what year was the first feature-length film with synchronised dialogue, The Jazz Singer, released?", "answer": 1927, "unit": "" },
+        { "prompt": "In what year did the first Star Wars film come out?", "answer": 1977, "unit": "" },
+        { "prompt": "How many Oscars did Titanic win?", "answer": 11, "unit": "Oscars" },
+        { "prompt": "How many minutes does Avatar last?", "answer": 162, "unit": "minutes" },
+        { "prompt": "In what year did the first Technicolor feature film, Becky Sharp, come out?", "answer": 1935, "unit": "" },
+        { "prompt": "How many competitive Best Director Oscars has Steven Spielberg won?", "answer": 2, "unit": "Oscars", "explanation": "For Schindler's List and Saving Private Ryan." },
+        { "prompt": "In what year did the first Avengers film come out?", "answer": 2012, "unit": "" }
       ]
     },
     {

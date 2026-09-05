@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many keys does a modern concert grand piano have?", "answer": 88, "unit": "keys", "explanation": "A little over seven octaves: 52 white keys and 36 black ones." },
-        { "prompt": "How many metres long is an Olympic swimming pool?", "answer": 50, "unit": "metres" }
+        { "prompt": "How many metres long is an Olympic swimming pool?", "answer": 50, "unit": "metres" },
+        { "prompt": "How many strings does a standard grand piano have, roughly?", "answer": 230, "unit": "strings" },
+        { "prompt": "In what year were the first modern Olympic swimming events held?", "answer": 1896, "unit": "" },
+        { "prompt": "How many metres deep is an Olympic diving pool at minimum?", "answer": 5, "unit": "metres" },
+        { "prompt": "In what year did Bartolomeo Cristofori build the first piano?", "answer": 1700, "unit": "", "explanation": "Roughly around the year 1700, in Florence." },
+        { "prompt": "How many lanes does an Olympic swimming pool have?", "answer": 10, "unit": "lanes" },
+        { "prompt": "In what year did synchronised swimming become an Olympic sport?", "answer": 1984, "unit": "" }
       ]
     },
     {

@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres is the average distance from earth to the moon?", "answer": 384400, "unit": "kilometres", "explanation": "Nearly four hundred thousand kilometres, about thirty earth diameters." },
-        { "prompt": "In what year was the Eiffel Tower completed?", "answer": 1889, "unit": "" }
+        { "prompt": "In what year was the Eiffel Tower completed?", "answer": 1889, "unit": "" },
+        { "prompt": "How many kilometres tall is Mauna Kea measured from its base on the ocean floor to its peak, roughly?", "answer": 10, "unit": "kilometres", "explanation": "Measured from its base on the ocean floor, Mauna Kea beats Everest." },
+        { "prompt": "In what year did Concorde make its first commercial flight?", "answer": 1976, "unit": "" },
+        { "prompt": "How many kilometres per hour could Concorde reach at cruising speed?", "answer": 2180, "unit": "kilometres per hour" },
+        { "prompt": "In what year was the Eiffel Tower's original permit set to expire, after which it was due to be demolished?", "answer": 1909, "unit": "", "explanation": "It was saved because it proved useful as a radio antenna." },
+        { "prompt": "How many steps does the Eiffel Tower have to the top?", "answer": 1665, "unit": "steps" },
+        { "prompt": "In what year did the first crewed moon landing take place?", "answer": 1969, "unit": "" }
       ]
     },
     {

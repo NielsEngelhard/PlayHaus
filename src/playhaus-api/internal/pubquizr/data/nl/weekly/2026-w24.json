@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoe hoog was de Eiffeltoren bij de opening in 1889, in meters?", "answer": 312, "unit": "meter", "explanation": "Ruim driehonderd meter, en daarmee veertig jaar lang het hoogste bouwwerk ter wereld." },
-        { "prompt": "In welk jaar werd de eerste mens de ruimte in gelanceerd?", "answer": 1961, "unit": "" }
+        { "prompt": "In welk jaar werd de eerste mens de ruimte in gelanceerd?", "answer": 1961, "unit": "" },
+        { "prompt": "Hoeveel meter hoog is het Vrijheidsbeeld, inclusief voetstuk?", "answer": 93, "unit": "meter" },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is de Amazone rivier ongeveer?", "answer": 6400, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de telefoon gepatenteerd door Alexander Graham Bell?", "answer": 1876, "unit": "" },
+        { "prompt": "Over hoeveel tijdzones strekt Rusland zich uit?", "answer": 11, "unit": "tijdzones" },
+        { "prompt": "In welk jaar vonden de eerste Olympische Spelen van de moderne tijd plaats?", "answer": 1896, "unit": "" }
       ]
     },
     {

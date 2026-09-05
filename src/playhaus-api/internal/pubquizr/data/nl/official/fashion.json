@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar werd het merk Levi Strauss opgericht?", "answer": 1853, "unit": "", "explanation": "Levi Strauss begon in 1853 in San Francisco, de klinknagel in de broek volgde in 1873." },
-        { "prompt": "In welk jaar werd het eerste Met Gala gehouden?", "answer": 1948, "unit": "" }
+        { "prompt": "In welk jaar werd het eerste Met Gala gehouden?", "answer": 1948, "unit": "" },
+        { "prompt": "In welk jaar werd het modehuis Chanel opgericht?", "answer": 1910, "unit": "" },
+        { "prompt": "In welk jaar vond de eerste Paris Fashion Week plaats?", "answer": 1973, "unit": "" },
+        { "prompt": "In welk jaar werd het modehuis Dior opgericht?", "answer": 1946, "unit": "" },
+        { "prompt": "In welk jaar opende Louis Vuitton zijn eerste winkel in Parijs?", "answer": 1854, "unit": "" },
+        { "prompt": "In welk jaar verscheen het tijdschrift Vogue voor het eerst?", "answer": 1892, "unit": "" },
+        { "prompt": "Uit hoeveel outfits bestaat een haute-coutureshow doorgaans minimaal?", "answer": 25, "unit": "outfits" }
       ]
     },
     {

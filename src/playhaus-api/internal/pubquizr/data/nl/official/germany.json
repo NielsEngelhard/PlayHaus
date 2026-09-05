@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer lang was de Berlijnse Muur rond West-Berlijn?", "answer": 155, "unit": "kilometer", "explanation": "Ruim honderdvijftig kilometer beton en hek, waarvan ruim veertig door de stad zelf." },
-        { "prompt": "Hoeveel kilometer van de Rijn stroomt door Duitsland?", "answer": 865, "unit": "kilometer" }
+        { "prompt": "Hoeveel kilometer van de Rijn stroomt door Duitsland?", "answer": 865, "unit": "kilometer" },
+        { "prompt": "Uit hoeveel deelstaten bestaat Duitsland?", "answer": 16, "unit": "deelstaten" },
+        { "prompt": "In welk jaar werd Duitsland herenigd?", "answer": 1990, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is het Duitse Autobahn-netwerk in totaal?", "answer": 13000, "unit": "kilometer", "explanation": "Het Duitse snelwegennet beslaat ongeveer dertienduizend kilometer." },
+        { "prompt": "In welk jaar werd de Volkswagen Kever voor het eerst geproduceerd?", "answer": 1938, "unit": "" },
+        { "prompt": "Hoeveel miljoen inwoners heeft Berlijn ongeveer?", "answer": 4, "unit": "miljoen inwoners" },
+        { "prompt": "In welk jaar overleed Goethe?", "answer": 1832, "unit": "" }
       ]
     },
     {

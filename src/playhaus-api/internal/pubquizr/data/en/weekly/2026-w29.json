@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many litres of blood does an adult human body hold?", "answer": 5, "unit": "litres", "explanation": "Around five litres, a little more in a large man and less in a small woman." },
-        { "prompt": "In what year was the Dutch East India Company founded?", "answer": 1602, "unit": "" }
+        { "prompt": "In what year was the Dutch East India Company founded?", "answer": 1602, "unit": "" },
+        { "prompt": "How many days does it take red blood cells to fully renew in the human body?", "answer": 120, "unit": "days" },
+        { "prompt": "In what year was the Dutch West India Company, the VOC's rival, founded?", "answer": 1621, "unit": "" },
+        { "prompt": "How many litres of blood does the heart pump per day, roughly?", "answer": 7500, "unit": "litres" },
+        { "prompt": "In what year did New Amsterdam get renamed New York?", "answer": 1664, "unit": "" },
+        { "prompt": "How many chambers does the human heart have?", "answer": 4, "unit": "chambers" },
+        { "prompt": "In what year did the Dutch East India Company go bankrupt and dissolve?", "answer": 1799, "unit": "" }
       ]
     },
     {

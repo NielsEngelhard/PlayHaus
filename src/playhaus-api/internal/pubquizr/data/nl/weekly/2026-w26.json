@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer lang is de Chinese Muur volgens de officiele meting uit 2012?", "answer": 21196, "unit": "kilometer", "explanation": "Ruim eenentwintigduizend kilometer, alle zijtakken meegerekend." },
-        { "prompt": "In welk jaar werd het wereldwijde web vrij beschikbaar voor iedereen?", "answer": 1993, "unit": "" }
+        { "prompt": "In welk jaar werd het wereldwijde web vrij beschikbaar voor iedereen?", "answer": 1993, "unit": "" },
+        { "prompt": "Hoeveel jaar heeft de bouw van de Chinese Muur ongeveer in totaal geduurd, over alle dynastieen heen?", "answer": 2000, "unit": "jaar", "explanation": "De bouw verspreidde zich over verschillende dynastieen gedurende ongeveer tweeduizend jaar." },
+        { "prompt": "In welk jaar werd Google opgericht?", "answer": 1998, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is de Trans-Siberische spoorlijn?", "answer": 9289, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de euro de officiele munt van de eerste lidstaten?", "answer": 1999, "unit": "" },
+        { "prompt": "Hoeveel officiele tijdzones gebruikt China, ondanks zijn omvang?", "answer": 1, "unit": "tijdzone" },
+        { "prompt": "In welk jaar werd de Verboden Stad in China geopend als museum?", "answer": 1925, "unit": "" }
       ]
     },
     {

@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel botten heeft het menselijk lichaam bij de geboorte?", "answer": 270, "unit": "botten", "explanation": "Er groeien botten aan elkaar, dus een volwassene houdt er 206 over." },
-        { "prompt": "Hoeveel kilometer is de Afsluitdijk lang?", "answer": 32, "unit": "kilometer" }
+        { "prompt": "Hoeveel kilometer is de Afsluitdijk lang?", "answer": 32, "unit": "kilometer" },
+        { "prompt": "Hoeveel botten heeft een volwassen mens, nadat een deel van de babybotten aan elkaar is gegroeid?", "answer": 206, "unit": "botten" },
+        { "prompt": "In welk jaar werd de Zuiderzeewet aangenomen die de inpoldering en de Afsluitdijk mogelijk maakte?", "answer": 1918, "unit": "" },
+        { "prompt": "Hoeveel botten zitten er in een menselijke hand, inclusief pols?", "answer": 27, "unit": "botten" },
+        { "prompt": "In welk jaar werd de Afsluitdijk voltooid?", "answer": 1932, "unit": "" },
+        { "prompt": "Hoeveel vierkante kilometer is de Flevopolder, de grootste kunstmatige polder ter wereld, ongeveer?", "answer": 970, "unit": "vierkante kilometer" },
+        { "prompt": "Hoeveel botten zitten er in een menselijke voet, inclusief enkel?", "answer": 26, "unit": "botten" }
       ]
     },
     {

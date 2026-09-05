@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar werd Mattel opgericht?", "answer": 1945, "unit": "", "explanation": "Ruth en Elliot Handler begonnen in 1945 met lijstjes en poppenhuismeubels." },
-        { "prompt": "Hoeveel minuten duurt de Barbiefilm uit 2023?", "answer": 114, "unit": "minuten" }
+        { "prompt": "Hoeveel minuten duurt de Barbiefilm uit 2023?", "answer": 114, "unit": "minuten" },
+        { "prompt": "In welk jaar kwam de eerste Barbiepop op de markt?", "answer": 1959, "unit": "" },
+        { "prompt": "Hoeveel Barbiepoppen heeft Mattel wereldwijd verkocht sinds 1959, in miljarden?", "answer": 1, "unit": "miljard poppen", "explanation": "Mattel geeft al jaren aan dat er meer dan een miljard poppen zijn verkocht sinds de start." },
+        { "prompt": "Hoeveel dagen na de release passeerde de Barbiefilm een miljard dollar aan de kassa?", "answer": 17, "unit": "dagen" },
+        { "prompt": "In welk jaar introduceerde Mattel Ken, de vriend van Barbie?", "answer": 1961, "unit": "" },
+        { "prompt": "Hoeveel Oscarnominaties kreeg de Barbiefilm uit 2023?", "answer": 8, "unit": "nominaties" },
+        { "prompt": "Hoeveel centimeter hoog is een standaard Barbiepop?", "answer": 29, "unit": "centimeter" }
       ]
     },
     {

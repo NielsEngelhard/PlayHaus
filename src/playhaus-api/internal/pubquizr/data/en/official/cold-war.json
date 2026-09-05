@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year did Churchill speak at Fulton about the Iron Curtain?", "answer": 1946, "unit": "", "explanation": "March 1946, at Fulton in Missouri, with Truman on the platform beside him." },
-        { "prompt": "How many kilometres long was the border between East and West Germany?", "answer": 1393, "unit": "kilometres" }
+        { "prompt": "How many kilometres long was the border between East and West Germany?", "answer": 1393, "unit": "kilometres" },
+        { "prompt": "In what year was the Berlin Wall built?", "answer": 1961, "unit": "" },
+        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989, "unit": "", "explanation": "The night of 9 November 1989, after a garbled press announcement." },
+        { "prompt": "How many days did the Cuban Missile Crisis last?", "answer": 13, "unit": "days" },
+        { "prompt": "In what year did the Soviet Union collapse?", "answer": 1991, "unit": "" },
+        { "prompt": "How many kilometres long was the Berlin Wall in total, including the parts through the city?", "answer": 155, "unit": "kilometres" },
+        { "prompt": "In what year did the Warsaw Pact come into existence?", "answer": 1955, "unit": "" }
       ]
     },
     {

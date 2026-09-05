@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year was Mattel founded?", "answer": 1945, "unit": "", "explanation": "Ruth and Elliot Handler started out in 1945 with picture frames and doll furniture." },
-        { "prompt": "How many minutes does the 2023 Barbie film last?", "answer": 114, "unit": "minutes" }
+        { "prompt": "How many minutes does the 2023 Barbie film last?", "answer": 114, "unit": "minutes" },
+        { "prompt": "In what year was the first Barbie doll launched?", "answer": 1959, "unit": "" },
+        { "prompt": "How many Barbie dolls has Mattel sold worldwide since 1959, in billions?", "answer": 1, "unit": "billion dolls", "explanation": "Mattel has long said over a billion dolls have been sold since launch." },
+        { "prompt": "How many days after its release did the Barbie film pass a billion dollars at the box office?", "answer": 17, "unit": "days" },
+        { "prompt": "In what year did Mattel introduce Ken, Barbie's boyfriend?", "answer": 1961, "unit": "" },
+        { "prompt": "How many Oscar nominations did the 2023 Barbie film receive?", "answer": 8, "unit": "nominations" },
+        { "prompt": "How many centimetres tall is a standard Barbie doll?", "answer": 29, "unit": "centimetres" }
       ]
     },
     {

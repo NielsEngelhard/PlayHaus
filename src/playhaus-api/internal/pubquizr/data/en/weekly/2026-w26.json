@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres long is the Great Wall of China according to the official 2012 survey?", "answer": 21196, "unit": "kilometres", "explanation": "Just over twenty-one thousand kilometres, side branches included." },
-        { "prompt": "In what year was the world wide web released freely to everyone?", "answer": 1993, "unit": "" }
+        { "prompt": "In what year was the world wide web released freely to everyone?", "answer": 1993, "unit": "" },
+        { "prompt": "How many years did the building of the Great Wall of China span in total, across all dynasties, roughly?", "answer": 2000, "unit": "years", "explanation": "Construction spanned different dynasties over roughly two thousand years." },
+        { "prompt": "In what year was Google founded?", "answer": 1998, "unit": "" },
+        { "prompt": "How many kilometres long is the Trans-Siberian Railway?", "answer": 9289, "unit": "kilometres" },
+        { "prompt": "In what year did the euro become the official currency of its first member states?", "answer": 1999, "unit": "" },
+        { "prompt": "How many official time zones does China use, despite its size?", "answer": 1, "unit": "time zone" },
+        { "prompt": "In what year did China's Forbidden City open to the public as a museum?", "answer": 1925, "unit": "" }
       ]
     },
     {

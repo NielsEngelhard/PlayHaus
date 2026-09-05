@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many countries took part in the first World Cup in 1930?", "answer": 13, "unit": "countries", "explanation": "Thirteen, because the trip to Uruguay took weeks by boat." },
-        { "prompt": "How many World Cup matches did the German Lothar Matthaus play in total?", "answer": 25, "unit": "matches" }
+        { "prompt": "How many World Cup matches did the German Lothar Matthaus play in total?", "answer": 25, "unit": "matches" },
+        { "prompt": "In what year did Brazil win its fifth World Cup title?", "answer": 2002, "unit": "" },
+        { "prompt": "How many countries took part in the 2026 World Cup, the first under the expanded format?", "answer": 48, "unit": "countries" },
+        { "prompt": "How many goals did Miroslav Klose score across his World Cup career, the all-time record?", "answer": 16, "unit": "goals" },
+        { "prompt": "In what year did a World Cup final first get decided by a penalty shootout?", "answer": 1994, "unit": "" },
+        { "prompt": "How many teams competed in the 2022 World Cup in Qatar?", "answer": 32, "unit": "teams" },
+        { "prompt": "How many World Cup titles has Brazil won in total?", "answer": 5, "unit": "titles" }
       ]
     },
     {

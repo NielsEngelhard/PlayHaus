@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel seconden duurt Bohemian Rhapsody van Queen?", "answer": 355, "unit": "seconden", "explanation": "Vijf minuten en 55 seconden." },
-        { "prompt": "Hoeveel bezoekers trekt Lowlands ongeveer per editie?", "answer": 55000, "unit": "bezoekers" }
+        { "prompt": "Hoeveel bezoekers trekt Lowlands ongeveer per editie?", "answer": 55000, "unit": "bezoekers" },
+        { "prompt": "In welk jaar werd Queen opgericht?", "answer": 1970, "unit": "" },
+        { "prompt": "Hoeveel miljoen exemplaren van Thriller van Michael Jackson zijn er wereldwijd ongeveer verkocht?", "answer": 70, "unit": "miljoen exemplaren" },
+        { "prompt": "In welk jaar vond het eerste Eurovisie Songfestival plaats?", "answer": 1956, "unit": "" },
+        { "prompt": "Hoeveel minuten duurt Hey Jude van The Beatles?", "answer": 7, "unit": "minuten" },
+        { "prompt": "In welk jaar bracht ABBA Dancing Queen uit?", "answer": 1976, "unit": "" },
+        { "prompt": "Hoeveel edities van Lowlands hebben er ongeveer plaatsgevonden sinds de start in 1993?", "answer": 30, "unit": "edities" }
       ]
     },
     {

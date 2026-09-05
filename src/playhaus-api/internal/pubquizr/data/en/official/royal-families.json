@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year was Elizabeth II crowned?", "answer": 1953, "unit": "", "explanation": "She succeeded her father in 1952 and was crowned in June 1953." },
-        { "prompt": "For how many years did the French king Louis XIV reign?", "answer": 72, "unit": "years" }
+        { "prompt": "For how many years did the French king Louis XIV reign?", "answer": 72, "unit": "years" },
+        { "prompt": "How many years did Queen Elizabeth II reign in total?", "answer": 70, "unit": "years", "explanation": "She reigned from 1952 to 2022, the longest of any British monarch." },
+        { "prompt": "In what year did King Willem-Alexander of the Netherlands take the throne?", "answer": 2013, "unit": "" },
+        { "prompt": "How many years did Louis XVI reign before the French Revolution ended his rule?", "answer": 15, "unit": "years" },
+        { "prompt": "In what year did Napoleon crown himself Emperor of the French?", "answer": 1804, "unit": "" },
+        { "prompt": "How many years did Queen Beatrix of the Netherlands reign before her abdication?", "answer": 33, "unit": "years" },
+        { "prompt": "In what year did King Charles III's coronation take place?", "answer": 2023, "unit": "" }
       ]
     },
     {

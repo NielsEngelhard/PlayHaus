@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar kwam Frozen uit?", "answer": 2013, "unit": "", "explanation": "De film kwam in november 2013 uit en werd de best bekeken tekenfilm van zijn tijd." },
-        { "prompt": "Hoeveel minuten duurt Sneeuwwitje en de zeven dwergen?", "answer": 83, "unit": "minuten" }
+        { "prompt": "Hoeveel minuten duurt Sneeuwwitje en de zeven dwergen?", "answer": 83, "unit": "minuten" },
+        { "prompt": "In welk jaar kwam Sneeuwwitje en de zeven dwergen uit?", "answer": 1937, "unit": "", "explanation": "De eerste avondvullende animatiefilm ooit uitgebracht." },
+        { "prompt": "Hoeveel minuten duurt Frozen?", "answer": 102, "unit": "minuten" },
+        { "prompt": "In welk jaar kwam De Kleine Zeemeermin uit?", "answer": 1989, "unit": "" },
+        { "prompt": "Hoeveel officiele Disneyprinsessen telt de franchise?", "answer": 12, "unit": "prinsessen" },
+        { "prompt": "In welk jaar kwam Vaiana uit?", "answer": 2016, "unit": "" },
+        { "prompt": "Hoeveel minuten duurt Belle en het Beest?", "answer": 84, "unit": "minuten" }
       ]
     },
     {

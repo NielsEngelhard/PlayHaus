@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer is de afstand van de aarde tot de maan gemiddeld?", "answer": 384400, "unit": "kilometer", "explanation": "Bijna vierhonderdduizend kilometer, ongeveer dertig keer de diameter van de aarde." },
-        { "prompt": "In welk jaar werd de Eiffeltoren voltooid?", "answer": 1889, "unit": "" }
+        { "prompt": "In welk jaar werd de Eiffeltoren voltooid?", "answer": 1889, "unit": "" },
+        { "prompt": "Hoeveel kilometer hoog is de Mauna Kea gemeten vanaf zijn basis op de oceaanbodem tot de top, ongeveer?", "answer": 10, "unit": "kilometer", "explanation": "Gemeten vanaf zijn basis op de oceaanbodem is de Mauna Kea hoger dan de Everest." },
+        { "prompt": "In welk jaar maakte de Concorde zijn eerste commerciele vlucht?", "answer": 1976, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur kon de Concorde op kruissnelheid halen?", "answer": 2180, "unit": "kilometer per uur" },
+        { "prompt": "In welk jaar zou de oorspronkelijke vergunning van de Eiffeltoren verlopen, waarna hij gesloopt zou worden?", "answer": 1909, "unit": "", "explanation": "Hij werd gered omdat hij nuttig bleek als radioantenne." },
+        { "prompt": "Hoeveel treden heeft de Eiffeltoren tot aan de top?", "answer": 1665, "unit": "treden" },
+        { "prompt": "In welk jaar vond de eerste bemande maanlanding plaats?", "answer": 1969, "unit": "" }
       ]
     },
     {

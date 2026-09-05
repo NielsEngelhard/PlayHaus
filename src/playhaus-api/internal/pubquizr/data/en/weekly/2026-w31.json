@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres is the circumference of the earth at the equator?", "answer": 40075, "unit": "kilometres", "explanation": "Just over forty thousand kilometres, which is where the metre was derived from." },
-        { "prompt": "In what year was the Afsluitdijk closed?", "answer": 1932, "unit": "" }
+        { "prompt": "In what year was the Afsluitdijk closed?", "answer": 1932, "unit": "" },
+        { "prompt": "How many kilometres is the circumference of the earth measured through the poles?", "answer": 40008, "unit": "kilometres", "explanation": "Slightly less than the equatorial circumference because earth bulges at the equator." },
+        { "prompt": "In what year did the Netherlands adopt the metre as its official unit of length?", "answer": 1816, "unit": "" },
+        { "prompt": "How many kilometres is earth's diameter, roughly?", "answer": 12742, "unit": "kilometres" },
+        { "prompt": "In what year did the Zuiderzee stop being an open sea and become the IJsselmeer?", "answer": 1932, "unit": "", "explanation": "The closing of the Afsluitdijk that year turned it into a freshwater lake." },
+        { "prompt": "How many hectares of polder land did the Afsluitdijk enable by closing off the Zuiderzee?", "answer": 165000, "unit": "hectares", "explanation": "The Wieringermeer, Noordoostpolder and Flevoland polders together add up to about that." },
+        { "prompt": "How many degrees of longitude does the earth turn through in one hour?", "answer": 15, "unit": "degrees" }
       ]
     },
     {

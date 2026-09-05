@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How tall was the Eiffel Tower when it opened in 1889, in metres?", "answer": 312, "unit": "metres", "explanation": "Just over three hundred metres, and the tallest structure in the world for forty years." },
-        { "prompt": "In what year was the first human launched into space?", "answer": 1961, "unit": "" }
+        { "prompt": "In what year was the first human launched into space?", "answer": 1961, "unit": "" },
+        { "prompt": "How many metres tall is the Statue of Liberty, including its pedestal?", "answer": 93, "unit": "metres" },
+        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989, "unit": "" },
+        { "prompt": "How many kilometres long is the Amazon river, roughly?", "answer": 6400, "unit": "kilometres" },
+        { "prompt": "In what year was the telephone patented by Alexander Graham Bell?", "answer": 1876, "unit": "" },
+        { "prompt": "How many time zones does Russia span?", "answer": 11, "unit": "time zones" },
+        { "prompt": "In what year did the first Olympic Games of the modern era take place?", "answer": 1896, "unit": "" }
       ]
     },
     {

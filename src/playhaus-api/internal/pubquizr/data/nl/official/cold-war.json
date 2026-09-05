@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar sprak Churchill in Fulton over het IJzeren Gordijn?", "answer": 1946, "unit": "", "explanation": "Maart 1946, in Fulton in Missouri, met Truman naast hem op het podium." },
-        { "prompt": "Hoeveel kilometer lang was de grens tussen Oost- en West-Duitsland?", "answer": 1393, "unit": "kilometer" }
+        { "prompt": "Hoeveel kilometer lang was de grens tussen Oost- en West-Duitsland?", "answer": 1393, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answer": 1961, "unit": "" },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989, "unit": "", "explanation": "In de nacht van 9 november 1989, na een verwarrende persconferentie." },
+        { "prompt": "Hoeveel dagen duurde de Cubacrisis?", "answer": 13, "unit": "dagen" },
+        { "prompt": "In welk jaar viel de Sovjet-Unie uiteen?", "answer": 1991, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang was de Berlijnse Muur in totaal, inclusief het deel door de stad?", "answer": 155, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd het Warschaupact opgericht?", "answer": 1955, "unit": "" }
       ]
     },
     {

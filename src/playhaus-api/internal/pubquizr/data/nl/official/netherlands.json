@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer lang is de Afsluitdijk?", "answer": 32, "unit": "kilometer", "explanation": "Tweeendertig kilometer van Noord-Holland naar Friesland, in 1932 gesloten." },
-        { "prompt": "Hoeveel meter onder zeeniveau ligt het laagste punt van Nederland?", "answer": 7, "unit": "meter" }
+        { "prompt": "Hoeveel meter onder zeeniveau ligt het laagste punt van Nederland?", "answer": 7, "unit": "meter" },
+        { "prompt": "Uit hoeveel provincies bestaat Nederland?", "answer": 12, "unit": "provincies" },
+        { "prompt": "Hoeveel kilometer lang is de Nederlandse kustlijn ongeveer?", "answer": 450, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de Oosterscheldekering, onderdeel van de Deltawerken, voltooid?", "answer": 1986, "unit": "" },
+        { "prompt": "Hoeveel miljoen inwoners heeft Nederland ongeveer?", "answer": 18, "unit": "miljoen inwoners" },
+        { "prompt": "In welk jaar schilderde Rembrandt De Nachtwacht?", "answer": 1642, "unit": "" },
+        { "prompt": "Hoeveel duizend kilometer aan fietspaden heeft Nederland ongeveer?", "answer": 37, "unit": "duizend kilometer" }
       ]
     },
     {

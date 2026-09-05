@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In what year did the first Harry Potter book appear?", "answer": 1997, "unit": "", "explanation": "June 1997, in a first print run of five hundred copies." },
-        { "prompt": "About how many minutes does the first Harry Potter film last?", "answer": 152, "unit": "minutes" }
+        { "prompt": "About how many minutes does the first Harry Potter film last?", "answer": 152, "unit": "minutes" },
+        { "prompt": "How many Harry Potter books did J.K. Rowling write in the main series?", "answer": 7, "unit": "books" },
+        { "prompt": "In what year did the last Harry Potter film premiere?", "answer": 2011, "unit": "" },
+        { "prompt": "How many house points did Gryffindor have in total at the end of the first book, after Dumbledore's last-minute awards?", "answer": 482, "unit": "points", "explanation": "It brought Gryffindor to 482 against Slytherin's 472." },
+        { "prompt": "How many Weasley children are there in total?", "answer": 7, "unit": "children" },
+        { "prompt": "In what year is Harry Potter born, according to the books?", "answer": 1980, "unit": "" },
+        { "prompt": "Which platform number does Harry use, alongside the three-quarters, to reach the Hogwarts Express?", "answer": 9, "unit": "" }
       ]
     },
     {

@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "In welk jaar verscheen het eerste Harry Potterboek?", "answer": 1997, "unit": "", "explanation": "Juni 1997, in een eerste oplage van vijfhonderd exemplaren." },
-        { "prompt": "Hoeveel minuten duurt de eerste Harry Potterfilm ongeveer?", "answer": 152, "unit": "minuten" }
+        { "prompt": "Hoeveel minuten duurt de eerste Harry Potterfilm ongeveer?", "answer": 152, "unit": "minuten" },
+        { "prompt": "Uit hoeveel boeken bestaat de originele Harry Potterreeks van J.K. Rowling?", "answer": 7, "unit": "boeken" },
+        { "prompt": "In welk jaar ging de laatste Harry Potterfilm in premiere?", "answer": 2011, "unit": "" },
+        { "prompt": "Hoeveel huispunten had Griffoendor in totaal aan het einde van het eerste boek, na Perkamentus' punten op het laatste moment?", "answer": 482, "unit": "punten", "explanation": "Dat bracht Griffoendor op 482 tegen Zwadderich's 472." },
+        { "prompt": "Hoeveel kinderen telt de familie Wemel in totaal?", "answer": 7, "unit": "kinderen" },
+        { "prompt": "In welk jaar wordt Harry Potter geboren, volgens de boeken?", "answer": 1980, "unit": "" },
+        { "prompt": "Het hoeveelste perron gebruikt Harry, naast het driekwart, om bij de Zweinsteinexpres te komen?", "answer": 9, "unit": "" }
       ]
     },
     {

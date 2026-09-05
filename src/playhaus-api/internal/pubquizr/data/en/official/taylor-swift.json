@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many minutes does All Too Well last in the long version?", "answer": 10, "unit": "minutes", "explanation": "The version on Red (Taylor's Version) runs ten minutes and thirteen seconds." },
-        { "prompt": "How many songs are on Red (Taylor's Version)?", "answer": 30, "unit": "songs" }
+        { "prompt": "How many songs are on Red (Taylor's Version)?", "answer": 30, "unit": "songs" },
+        { "prompt": "In what year did Taylor Swift release her debut album?", "answer": 2006, "unit": "" },
+        { "prompt": "How many studio albums had Taylor Swift released up to and including Midnights, not counting re-recordings?", "answer": 10, "unit": "albums" },
+        { "prompt": "How many Grammy Awards for Album of the Year has Taylor Swift won?", "answer": 4, "unit": "awards" },
+        { "prompt": "In what year did the Eras Tour begin?", "answer": 2023, "unit": "" },
+        { "prompt": "How many tracks are on the standard edition of 1989?", "answer": 13, "unit": "tracks" },
+        { "prompt": "In what year was Taylor Swift born?", "answer": 1989, "unit": "" }
       ]
     },
     {

@@ -52,7 +52,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel meter hoog was de Saturn V-raket?", "answer": 111, "unit": "meter", "explanation": "Ruim honderdtien meter, hoger dan het Vrijheidsbeeld met sokkel." },
-        { "prompt": "Hoeveel dagen duurde de vlucht van Apollo 11?", "answer": 8, "unit": "dagen" }
+        { "prompt": "Hoeveel dagen duurde de vlucht van Apollo 11?", "answer": 8, "unit": "dagen" },
+        { "prompt": "In welk jaar werd de Spoetnik 1 gelanceerd?", "answer": 1957, "unit": "" },
+        { "prompt": "In welk jaar zette de eerste mens voet op de maan?", "answer": 1969, "unit": "" },
+        { "prompt": "Hoeveel astronauten hebben in totaal op de maan gelopen?", "answer": 12, "unit": "astronauten" },
+        { "prompt": "In welk jaar werd Yuri Gagarin de eerste mens in de ruimte?", "answer": 1961, "unit": "" },
+        { "prompt": "Hoeveel dagen deed Apollo 11 erover om de maan te bereiken?", "answer": 4, "unit": "dagen" },
+        { "prompt": "In welk jaar werd NASA opgericht?", "answer": 1958, "unit": "" }
       ]
     },
     {

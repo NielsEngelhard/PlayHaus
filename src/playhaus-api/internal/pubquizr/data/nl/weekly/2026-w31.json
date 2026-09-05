@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer is de omtrek van de aarde langs de evenaar?", "answer": 40075, "unit": "kilometer", "explanation": "Ruim veertigduizend kilometer, want de meter is oorspronkelijk uit die omtrek afgeleid." },
-        { "prompt": "In welk jaar werd de Afsluitdijk gesloten?", "answer": 1932, "unit": "" }
+        { "prompt": "In welk jaar werd de Afsluitdijk gesloten?", "answer": 1932, "unit": "" },
+        { "prompt": "Hoeveel kilometer is de omtrek van de aarde gemeten door de polen?", "answer": 40008, "unit": "kilometer", "explanation": "Iets minder dan de omtrek bij de evenaar, omdat de aarde daar iets uitpuilt." },
+        { "prompt": "In welk jaar voerde Nederland de meter officieel in als lengtemaat?", "answer": 1816, "unit": "" },
+        { "prompt": "Hoeveel kilometer is de diameter van de aarde ongeveer?", "answer": 12742, "unit": "kilometer" },
+        { "prompt": "In welk jaar hield de Zuiderzee op een open zee te zijn en werd het het IJsselmeer?", "answer": 1932, "unit": "", "explanation": "Door de sluiting van de Afsluitdijk dat jaar werd het een zoetwatermeer." },
+        { "prompt": "Hoeveel hectare aan polders is er dankzij het afsluiten van de Zuiderzee uiteindelijk drooggelegd?", "answer": 165000, "unit": "hectare", "explanation": "De Wieringermeer, Noordoostpolder en Flevoland samen komen op ongeveer dat aantal." },
+        { "prompt": "Hoeveel graden lengtegraad draait de aarde in een uur?", "answer": 15, "unit": "graden" }
       ]
     },
     {

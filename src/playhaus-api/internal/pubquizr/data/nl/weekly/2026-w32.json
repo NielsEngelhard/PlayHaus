@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel meter hoog is de Domtoren van Utrecht?", "answer": 112, "unit": "meter", "explanation": "Ruim honderdtien meter, en daarmee de hoogste kerktoren van Nederland." },
-        { "prompt": "In welk jaar werd het schilderij De Nachtwacht voltooid?", "answer": 1642, "unit": "" }
+        { "prompt": "In welk jaar werd het schilderij De Nachtwacht voltooid?", "answer": 1642, "unit": "" },
+        { "prompt": "Hoeveel klokken hangen er ongeveer in het carillon van de Domtoren van Utrecht?", "answer": 50, "unit": "klokken" },
+        { "prompt": "In welk jaar overleed Rembrandt?", "answer": 1669, "unit": "" },
+        { "prompt": "Hoeveel treden heeft de Domtoren tot aan de top?", "answer": 465, "unit": "treden" },
+        { "prompt": "In welk jaar werd Rembrandt geboren?", "answer": 1606, "unit": "" },
+        { "prompt": "Hoeveel figuren zijn er ongeveer afgebeeld op De Nachtwacht?", "answer": 34, "unit": "figuren" },
+        { "prompt": "In welk jaar begon de bouw van de Domtoren?", "answer": 1321, "unit": "" }
       ]
     },
     {

@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many days does one orbit of the earth around the sun take, in whole days?", "answer": 365, "unit": "days", "explanation": "Exactly 365 days and almost six hours, and those hours are the leap year." },
-        { "prompt": "How many kilometres long is the Rhine?", "answer": 1233, "unit": "kilometres" }
+        { "prompt": "How many kilometres long is the Rhine?", "answer": 1233, "unit": "kilometres" },
+        { "prompt": "How many minutes does it take light from the sun to reach earth, roughly?", "answer": 8, "unit": "minutes" },
+        { "prompt": "How many kilometres long is the Rhine's total course, from source to sea?", "answer": 1233, "unit": "kilometres" },
+        { "prompt": "How many degrees is earth's axis tilted, causing the seasons?", "answer": 23, "unit": "degrees" },
+        { "prompt": "How many countries does the Rhine flow through?", "answer": 6, "unit": "countries" },
+        { "prompt": "How many hours does it take earth to complete one full rotation on its axis?", "answer": 24, "unit": "hours" },
+        { "prompt": "How many kilometres per second does earth travel around the sun, roughly?", "answer": 30, "unit": "kilometres per second" }
       ]
     },
     {

@@ -51,7 +51,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel toetsen heeft een moderne concertvleugel?", "answer": 88, "unit": "toetsen", "explanation": "Ruim zeven octaven: 52 witte toetsen en 36 zwarte." },
-        { "prompt": "Hoeveel meter lang is een olympisch zwembad?", "answer": 50, "unit": "meter" }
+        { "prompt": "Hoeveel meter lang is een olympisch zwembad?", "answer": 50, "unit": "meter" },
+        { "prompt": "Hoeveel snaren heeft een standaard concertvleugel ongeveer?", "answer": 230, "unit": "snaren" },
+        { "prompt": "In welk jaar werden de eerste moderne olympische zwemonderdelen gehouden?", "answer": 1896, "unit": "" },
+        { "prompt": "Hoeveel meter diep is een olympisch duikbad minimaal?", "answer": 5, "unit": "meter" },
+        { "prompt": "In welk jaar bouwde Bartolomeo Cristofori de eerste piano?", "answer": 1700, "unit": "", "explanation": "Rond het jaar 1700, in Florence." },
+        { "prompt": "Hoeveel banen heeft een olympisch zwembad?", "answer": 10, "unit": "banen" },
+        { "prompt": "In welk jaar werd synchroonzwemmen een olympische sport?", "answer": 1984, "unit": "" }
       ]
     },
     {
