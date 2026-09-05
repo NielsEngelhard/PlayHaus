@@ -1,19 +1,19 @@
-import { MAX_LOBBY_PLAYERS, type Lobby } from "@/api/calls/league-of-letters-lobby";
+import type { FFLobby } from "@/api/calls/fake-filler-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import InlineNotification from "@/components/ui/InlineNotification";
-import { LEAGUE_OF_LETTERS } from "@/constants/games";
-import { useAuth } from "@/features/auth/useAuth";
-import { useT } from "@/features/i18n/LanguageContext";
 import LobbyRoster from "@/components/ui/LobbyRoster";
 import RoomCodeFooter from "@/components/ui/RoomCodeFooter";
 import WaitingForHost from "@/components/ui/WaitingForHost";
-import type { LobbyState } from "@/features/league-of-letters/useLobby";
+import { FAKE_FILLER } from "@/constants/games";
+import { useAuth } from "@/features/auth/useAuth";
+import type { FFLobbyState } from "@/features/fake-filler/useLobby";
+import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 
 interface Props {
-    state: LobbyState,
-    lobby: Lobby,
-    /** Opens the leave-the-room confirm. Owned by `LobbyView`, which also acts on it. */
+    state: FFLobbyState,
+    lobby: FFLobby,
+    /** Opens the leave-the-room confirm. Owned by `LobbyView`, which acts on it. */
     onBack: () => void
 }
 
@@ -21,11 +21,11 @@ interface Props {
  * The room, on the screen of somebody who joined it.
  *
  * The same shell as the host's and deliberately not the same screen. A guest decides
- * nothing here — not the word length, not the language, not when it starts — so showing
- * them the knobs, even as values, would be showing them a form they cannot fill in. And
- * they have no code to hand out either, having just used one, so no band: what fills that
- * space instead is the one thing they need to know, which is that the room is still there
- * and who they are waiting for.
+ * nothing here — not the mode, not the language, not when it starts — so showing them the
+ * knobs, even as values, would be showing them a form they cannot fill in. And they have
+ * no code to hand out either, having just used one, so no band: what fills that space
+ * instead is the one thing they need to know, which is that the room is still there and
+ * who they are waiting for.
  */
 export default function GuestLobby({ state, lobby, onBack }: Props) {
     const t = useT();
@@ -39,7 +39,7 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
 
     return (
         <LobbyPageBase
-            game={LEAGUE_OF_LETTERS}
+            game={FAKE_FILLER}
             title={t('lobby.named', { code: lobby.code })}
             // No `handsOutCode`: a guest gets the code in the bar, to pass on or to read
             // back, but not the band — they already used it to get in.
@@ -52,13 +52,13 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
             footer={<RoomCodeFooter code={lobby.code} />}
         >
             <WaitingForHost
-                game={LEAGUE_OF_LETTERS}
-                hostName={host?.name ?? t('lol.lobby.hostFallback')}
+                game={FAKE_FILLER}
+                hostName={host?.name ?? t('fakeFiller.lobby.hostFallback')}
             />
 
             <LobbyRoster
                 players={lobby.players}
-                maxPlayers={MAX_LOBBY_PLAYERS}
+                maxPlayers={lobby.maxPlayers}
                 hostId={lobby.hostId}
                 userId={user?.id}
             />

@@ -19,6 +19,16 @@ interface Props {
      * would read as a different kind of thing to tap.
      */
     mode?: 'check' | 'radio'
+    /**
+     * How many lines the label may run to before it is cut.
+     *
+     * One by default, which is what a quiz answer wants: "3 hours 47 minutes" fits, and a
+     * row that grew would push the next one off a phone. Fake Filler's options are whole
+     * filled-in sentences, though, and a sentence cut after one line is a thing you are
+     * being asked to vote on without being shown — so it raises this rather than keeping
+     * a near-identical row of its own.
+     */
+    lines?: number
     disabled?: boolean
     onPress: () => void
 }
@@ -32,7 +42,14 @@ interface Props {
  * table — so it is one component rather than two sets of near-identical styles drifting
  * apart in two boards.
  */
-export default function PickRow({ label, active, mode = 'check', disabled = false, onPress }: Props) {
+export default function PickRow({
+    label,
+    active,
+    mode = 'check',
+    lines = 1,
+    disabled = false,
+    onPress
+}: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -45,7 +62,10 @@ export default function PickRow({ label, active, mode = 'check', disabled = fals
             accessibilityLabel={label}
             style={[styles.pick, active && styles.pickActive, disabled && styles.dimmed]}
         >
-            <AppText style={[styles.pickText, active && styles.pickTextActive]} numberOfLines={1}>
+            <AppText
+                style={[styles.pickText, active && styles.pickTextActive]}
+                numberOfLines={lines}
+            >
                 {label}
             </AppText>
 

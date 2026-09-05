@@ -3,7 +3,7 @@ import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import ModeCard from "@/features/league-of-letters/components/ModeCard";
+import ModeCard from "@/components/ui/ModeCard";
 import QuizList from "@/features/pubquizr/components/QuizList";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";

@@ -9,7 +9,7 @@ import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import MultiplayerResults from "@/features/league-of-letters/components/MultiplayerResults";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
-import RoomClosedNotice from "@/features/league-of-letters/components/RoomClosedNotice";
+import RoomClosedNotice from "@/components/ui/RoomClosedNotice";
 import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useMultiplayerGame, type MultiplayerGameState } from "@/features/league-of-letters/useMultiplayerGame";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -89,6 +89,7 @@ export default function LeagueOfLettersRoomPage() {
                 message={gameId !== undefined
                     ? t('lol.lobby.hostStoppedGame')
                     : t('lol.lobby.hostClosedLobby')}
+                href={ROUTES.leagueOfLettersIndex}
             />
         )
     }

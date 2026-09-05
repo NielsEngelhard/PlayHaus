@@ -10,6 +10,8 @@ export const en = {
         save: 'Save',
         you: 'You',
         host: 'Host',
+        /** The badge `PlayerScoreRow` puts on whoever is up. */
+        yourTurn: 'YOUR TURN',
         /**
          * The word before the last name in a list of them, for `joinNames`. A word on
          * its own rather than a whole sentence because the list it joins is built from
@@ -340,7 +342,14 @@ export const en = {
         // number in both languages, and a `{{seats}} seat(s)` would read like a form.
         moreSeatsOne: '+ 1 more free seat',
         moreSeatsMany: '+ {{seats}} more free seats',
-        waiting: 'Waiting…'
+        waiting: 'Waiting…',
+        // The guest's whole screen and the dead-room notice. Here rather than under a
+        // game, because `WaitingForHost` and `RoomClosedNotice` are drawn for whichever
+        // game's room you are sitting in.
+        waitingForHost: 'Waiting for the host',
+        waitingForHostMessage: '{{name}} is setting up the game. Stay on this screen and it starts right here.',
+        waitingLabel: 'Waiting',
+        closedTitle: 'Lobby closed'
     },
     lol: {
         index: {
@@ -399,7 +408,6 @@ export const en = {
             scoreLabel: '{{name}}, {{score}} points',
             /** Read out for the solo board's clock, which shows the time on its own. */
             playTimeLabel: 'Play time: {{time}}',
-            yourTurn: 'YOUR TURN',
             yourTurnNotice: 'YOUR TURN!'
         },
         results: {
@@ -444,10 +452,6 @@ export const en = {
             settingsTitle: 'Game settings',
             timePerTurn: 'Time per turn',
             timePerTurnOption: '{{seconds}} seconds',
-            waitingForHost: 'Waiting for the host',
-            waitingForHostMessage: '{{name}} is setting up the game. Stay on this screen and it starts right here.',
-            waitingLabel: 'Waiting',
-            closedTitle: 'Lobby closed',
             results: {
                 title: 'Game over',
                 tie: 'A tie at {{score}} points.',
@@ -1275,6 +1279,135 @@ export const en = {
             badTable: 'That table cannot be dealt. Check the names and try again.',
             generic: 'Something went wrong. Try again.',
             network: 'No connection to the server. Check your internet.'
+        }
+    },
+    fakeFiller: {
+        index: {
+            description: 'A sentence with a hole in it. Two of you secretly invent a filling; everyone else has to spot which one is real.',
+            multiplayer: {
+                title: 'Play together',
+                description: 'Everyone on their own phone. One opens the room, the rest come in with the code.',
+                action: 'Open a room'
+            }
+        },
+        lobby: {
+            loading: 'Looking for your room…',
+            opening: 'Opening the room…',
+            noLobby: 'No room',
+            hostStoppedGame: 'The host stopped the game. Ask for a new code for another round.',
+            hostClosedLobby: 'The host closed the room. Ask for a new code.',
+            running: {
+                gameTitle: 'You are already playing',
+                lobbyTitle: 'You still have a room open',
+                gameMessage: 'You are still playing a game in room {{code}}. Continue, or stop it and open a new room.',
+                lobbyMessage: 'Room {{code}} is still open in your name. Go back to it, or close it and open a new one.',
+                resumeGame: 'Continue playing',
+                resumeLobby: 'Go to open room',
+                stopGame: 'Stop game',
+                closeLobby: 'Stop game and create new'
+            },
+            confirmClose: {
+                title: 'Close the room?',
+                message: 'The room is deleted and the code stops working. Everyone already in it is thrown out.',
+                action: 'Close'
+            },
+            confirmLeave: {
+                title: 'Leave the room?',
+                message: 'You go back to the game menu. You can join again later with the same code.',
+                action: 'Leave'
+            },
+            stay: 'Stay here',
+            start: 'Start the game',
+            startNote: 'Once you start, nobody else can join.',
+            // Interpolated rather than fixed at three: the floor is the server's, and it
+            // arrives on every lobby as `minPlayers`.
+            needPlayers: 'You need at least {{min}} players.',
+            hostFallback: 'The host',
+            settingsTitle: 'Game settings',
+            mode: 'Prompts',
+            modeFacts: 'True facts',
+            modeCreative: 'Anything goes',
+            // The one setting worth a sentence: it changes whether there are points for
+            // guessing at all, which is not something a two-word label can carry.
+            modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
+            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked.'
+        },
+        play: {
+            loading: 'Dealing the prompts…',
+            noGame: 'No game',
+            writing: {
+                title: 'Fill in the blanks',
+                // Says the goal in one line, because it is the opposite of what a quiz
+                // trains people to do and is worth stating plainly.
+                intro: 'Two prompts are yours. Invent something believable — you score every time somebody picks it.',
+                promptOf: 'Prompt {{index}} of {{total}}',
+                blank: 'Blank {{index}}',
+                blankPlaceholder: 'Your answer',
+                submit: 'Lock it in',
+                locked: 'Locked in',
+                edit: 'Change it',
+                incomplete: 'Fill in every blank first.',
+                waitingTitle: 'Both of yours are in',
+                waitingMessage: 'Waiting for the rest of the table. Voting starts the moment the last answer lands.',
+                progress: '{{done}} of {{total}} answers in'
+            },
+            voting: {
+                title: 'Which one is real?',
+                titleCreative: 'Which one do you like best?',
+                roundOf: 'Round {{round}} of {{total}}',
+                pick: 'Pick this one',
+                confirm: 'Lock in my vote',
+                voted: 'Vote counted',
+                yoursTitle: 'This one is yours',
+                yoursMessage: 'You wrote for this prompt, so you sit this round out. Fingers crossed somebody falls for it.',
+                progress: '{{done}} of {{total}} votes in',
+                waiting: 'Waiting for the others to vote…'
+            },
+            reveal: {
+                title: 'The results',
+                truth: 'The truth',
+                fake: 'Fake',
+                writtenBy: 'Written by {{name}}',
+                nobodyPicked: 'Nobody picked this',
+                pickedBy: 'Picked by {{names}}',
+                points: '+{{points}}',
+                noScore: 'No points this round.',
+                next: 'Next round',
+                toResults: 'See the final scores'
+            }
+        },
+        results: {
+            loading: 'Loading the result…',
+            title: 'Game over',
+            tie: 'A tie at {{score}} points.',
+            youWin: 'You win with {{score}} points.',
+            playerWins: '{{name}} wins with {{score}} points.',
+            againSamePlayers: 'Once more, same players',
+            autoJoin: 'Everyone still on this screen is taken along to the new room automatically.',
+            anotherRound: 'Another round?',
+            hostCanOpen: 'The game is done. The host can open a new room. Stay here and you come along automatically.'
+        },
+        errors: {
+            expired: 'Your session has expired. Log in again.',
+            gameGone: 'This game no longer exists.',
+            generic: 'Something went wrong. Please try again.',
+            network: 'Could not reach the server. Check your connection and try again.',
+            lobbyFull: 'This room is full.',
+            lobbyGone: 'This room does not exist any more. Check the code.',
+            alreadyStarted: 'This game has already started.',
+            notEnoughPlayers: 'You need at least three players to start.',
+            tooManyPlayers: 'That is too many players for one game.',
+            // A short data file is a broken build rather than a broken request, so this
+            // says so rather than suggesting a retry that will fail the same way.
+            noContent: 'There are not enough prompts to play in this language. Try the other one.',
+            notYourPrompt: 'That prompt was not dealt to you.',
+            alreadyAnswered: 'You have already filled that one in.',
+            alreadyVoted: 'You have already voted on this round.',
+            cannotVoteOwnPrompt: 'You wrote for this one, so you cannot vote on it.',
+            wrongRound: 'The table has moved on to the next round.',
+            wrongPhase: 'The table is not doing that yet.',
+            badAnswer: 'Fill in every blank before locking it in.',
+            gameFinished: 'This game is over.'
         }
     },
     friends: {

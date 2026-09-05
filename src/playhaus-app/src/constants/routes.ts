@@ -24,6 +24,8 @@ export const ROUTES = {
 
     // Fake Filler
     fakeFillerIndex: "/games/fake-filler",
+    fakeFillerCreateRoom: "/games/fake-filler/room",
+    fakeFillerRoom: (code: string) => `/games/fake-filler/room/${code}`,
 
     // Sketch OFF
     sketchOffIndex: "/games/sketch-off",    

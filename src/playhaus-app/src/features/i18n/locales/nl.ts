@@ -11,6 +11,7 @@ export const nl: Catalog = {
         save: 'Opslaan',
         you: 'Jij',
         host: 'Host',
+        yourTurn: 'AAN ZET',
         and: 'en',
         /**
          * De twee woorden waarmee een `Toggle` zichzelf stempelt. De schakelaar zegt
@@ -309,7 +310,11 @@ export const nl: Catalog = {
         freeSeat: 'Vrije plek',
         moreSeatsOne: '+ nog 1 vrije plek',
         moreSeatsMany: '+ nog {{seats}} vrije plekken',
-        waiting: 'Wachten…'
+        waiting: 'Wachten…',
+        waitingForHost: 'Wachten op de host',
+        waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het start hier meteen mee.',
+        waitingLabel: 'Wachten',
+        closedTitle: 'Lobby gesloten'
     },
     lol: {
         index: {
@@ -364,7 +369,6 @@ export const nl: Catalog = {
             timeLeft: 'Resterende tijd',
             scoreLabel: '{{name}}, {{score}} punten',
             playTimeLabel: 'Speeltijd: {{time}}',
-            yourTurn: 'AAN ZET',
             yourTurnNotice: 'JOUW BEURT!'
         },
         results: {
@@ -409,10 +413,6 @@ export const nl: Catalog = {
             settingsTitle: 'Spelinstellingen',
             timePerTurn: 'Tijd per beurt',
             timePerTurnOption: '{{seconds}} seconden',
-            waitingForHost: 'Wachten op de host',
-            waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het start hier meteen mee.',
-            waitingLabel: 'Wachten',
-            closedTitle: 'Lobby gesloten',
             results: {
                 title: 'Spel afgelopen',
                 tie: 'Gelijkspel op {{score}} punten.',
@@ -882,6 +882,127 @@ export const nl: Catalog = {
             badTable: 'Die tafel kan niet gedeeld worden. Check de namen en probeer opnieuw.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
             network: 'Geen verbinding met de server. Check je internet.'
+        }
+    },
+    fakeFiller: {
+        index: {
+            description: 'Een zin met een gat erin. Twee spelers verzinnen stiekem een invulling; de rest moet raden welke echt is.',
+            multiplayer: {
+                title: 'Samen spelen',
+                description: 'Iedereen op zijn eigen telefoon. Eén opent de kamer, de rest komt binnen met de code.',
+                action: 'Open een kamer'
+            }
+        },
+        lobby: {
+            loading: 'Zoeken naar je kamer…',
+            opening: 'Kamer openen…',
+            noLobby: 'Geen kamer',
+            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor nog een ronde.',
+            hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
+            running: {
+                gameTitle: 'Je bent al aan het spelen',
+                lobbyTitle: 'Je hebt nog een kamer open staan',
+                gameMessage: 'Je speelt nog een spel in kamer {{code}}. Ga verder, of stop het en open een nieuwe kamer.',
+                lobbyMessage: 'Kamer {{code}} staat nog op jouw naam open. Ga terug, of sluit hem en open een nieuwe.',
+                resumeGame: 'Verder spelen',
+                resumeLobby: 'Naar open kamer',
+                stopGame: 'Spel stoppen',
+                closeLobby: 'Spel stoppen en nieuwe maken'
+            },
+            confirmClose: {
+                title: 'Kamer sluiten?',
+                message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die er al in zit vliegt eruit.',
+                action: 'Sluiten'
+            },
+            confirmLeave: {
+                title: 'Kamer verlaten?',
+                message: 'Je gaat terug naar het spelmenu. Je kunt later met dezelfde code weer meedoen.',
+                action: 'Verlaten'
+            },
+            stay: 'Blijf hier',
+            start: 'Start het spel',
+            startNote: 'Zodra je start kan niemand er meer bij.',
+            needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
+            hostFallback: 'De host',
+            settingsTitle: 'Spelinstellingen',
+            mode: 'Vragen',
+            modeFacts: 'Echte feiten',
+            modeCreative: 'Alles mag',
+            modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
+            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest.'
+        },
+        play: {
+            loading: 'Vragen uitdelen…',
+            noGame: 'Geen spel',
+            writing: {
+                title: 'Vul de gaten in',
+                intro: 'Twee vragen zijn van jou. Verzin iets geloofwaardigs — je scoort elke keer dat iemand jouw antwoord kiest.',
+                promptOf: 'Vraag {{index}} van {{total}}',
+                blank: 'Gat {{index}}',
+                blankPlaceholder: 'Jouw antwoord',
+                submit: 'Vastzetten',
+                locked: 'Vastgezet',
+                edit: 'Aanpassen',
+                incomplete: 'Vul eerst elk gat in.',
+                waitingTitle: 'Allebei die van jou staan erin',
+                waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste antwoord binnen is.',
+                progress: '{{done}} van {{total}} antwoorden binnen'
+            },
+            voting: {
+                title: 'Welke is echt?',
+                titleCreative: 'Welke vind jij de beste?',
+                roundOf: 'Ronde {{round}} van {{total}}',
+                pick: 'Kies deze',
+                confirm: 'Zet mijn stem vast',
+                voted: 'Stem geteld',
+                yoursTitle: 'Deze is van jou',
+                yoursMessage: 'Jij hebt voor deze vraag geschreven, dus je slaat deze ronde over. Duimen dat iemand erin trapt.',
+                progress: '{{done}} van {{total}} stemmen binnen',
+                waiting: 'Wachten tot de rest gestemd heeft…'
+            },
+            reveal: {
+                title: 'De uitslag',
+                truth: 'De waarheid',
+                fake: 'Verzonnen',
+                writtenBy: 'Geschreven door {{name}}',
+                nobodyPicked: 'Niemand koos deze',
+                pickedBy: 'Gekozen door {{names}}',
+                points: '+{{points}}',
+                noScore: 'Geen punten deze ronde.',
+                next: 'Volgende ronde',
+                toResults: 'Naar de eindstand'
+            }
+        },
+        results: {
+            loading: 'Uitslag laden…',
+            title: 'Spel afgelopen',
+            tie: 'Gelijkspel op {{score}} punten.',
+            youWin: 'Jij wint met {{score}} punten.',
+            playerWins: '{{name}} wint met {{score}} punten.',
+            againSamePlayers: 'Nog een keer, zelfde spelers',
+            autoJoin: 'Iedereen die nog op dit scherm zit gaat automatisch mee naar de nieuwe kamer.',
+            anotherRound: 'Nog een ronde?',
+            hostCanOpen: 'Het spel is klaar. De host kan een nieuwe kamer openen. Blijf hier en je gaat automatisch mee.'
+        },
+        errors: {
+            expired: 'Je sessie is verlopen. Log opnieuw in.',
+            gameGone: 'Dit spel bestaat niet meer.',
+            generic: 'Er ging iets mis. Probeer het opnieuw.',
+            network: 'Geen verbinding met de server. Controleer je internet.',
+            lobbyFull: 'Deze kamer is vol.',
+            lobbyGone: 'Deze kamer bestaat niet meer. Controleer de code.',
+            alreadyStarted: 'Dit spel is al begonnen.',
+            notEnoughPlayers: 'Je hebt minstens drie spelers nodig om te starten.',
+            tooManyPlayers: 'Dat zijn te veel spelers voor één spel.',
+            noContent: 'Er zijn niet genoeg vragen in deze taal. Probeer de andere.',
+            notYourPrompt: 'Die vraag is niet aan jou uitgedeeld.',
+            alreadyAnswered: 'Die heb je al ingevuld.',
+            alreadyVoted: 'Je hebt al gestemd in deze ronde.',
+            cannotVoteOwnPrompt: 'Jij hebt voor deze geschreven, dus je kunt er niet op stemmen.',
+            wrongRound: 'De tafel is al naar de volgende ronde.',
+            wrongPhase: 'Zo ver is de tafel nog niet.',
+            badAnswer: 'Vul elk gat in voordat je vastzet.',
+            gameFinished: 'Dit spel is afgelopen.'
         }
     },
     friends: {

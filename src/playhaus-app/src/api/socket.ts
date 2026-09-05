@@ -45,6 +45,21 @@ export type ServerEvent =
 /** The one thing a client says. Everything else is a request. */
 export type ClientEvent = { type: 'typing', data: { letters: string } };
 
+/**
+ * The least a frame can be, and all the transport below needs to know about one.
+ *
+ * `ServerEvent` above is League of Letters' union, and a second game's cannot simply be
+ * added to it: Fake Filler spells `state`, `lobby` and `game_started` the same way — on
+ * purpose, they are the same events — but carries a different lobby and a different board
+ * inside them. Merged, `event.data.lobby` would be a union of two shapes at every call
+ * site in both games.
+ *
+ * So the transport is generic over the union instead, and this is the bound: enough to
+ * read a `type` off, which is all `openSocket` and the presence mirror in `useRoomSocket`
+ * ever do. Each game declares its own union and gets it back narrowed.
+ */
+export type AnyServerEvent = { type: string, data?: unknown };
+
 // ---------------------------------------------------------------------------
 // The connection
 // ---------------------------------------------------------------------------
@@ -55,16 +70,16 @@ export type ClientEvent = { type: 'typing', data: { letters: string } };
  */
 export type SocketStatus = 'connecting' | 'open' | 'closed';
 
-export interface Socket {
-    send: (event: ClientEvent) => void
+export interface Socket<C = ClientEvent> {
+    send: (event: C) => void
     /** Hangs up for good. A socket closed this way does not reconnect. */
     close: () => void
 }
 
-interface Options {
+interface Options<E extends AnyServerEvent> {
     room: string
     token: string
-    onEvent: (event: ServerEvent) => void
+    onEvent: (event: E) => void
     onStatus: (status: SocketStatus) => void
 }
 
@@ -100,7 +115,9 @@ function socketUrl(room: string, token: string): string {
  * Uses the global `WebSocket`, which React Native and the web both have. `ws` and
  * friends are Node libraries and would not survive the trip to a device.
  */
-export function openSocket({ room, token, onEvent, onStatus }: Options): Socket {
+export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEvent>(
+    { room, token, onEvent, onStatus }: Options<E>
+): Socket<C> {
     let socket: WebSocket | null = null;
     let retryMs = FIRST_RETRY_MS;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
@@ -137,9 +154,9 @@ export function openSocket({ room, token, onEvent, onStatus }: Options): Socket 
         ws.onmessage = event => {
             if (closed) return;
 
-            let parsed: ServerEvent;
+            let parsed: E;
             try {
-                parsed = JSON.parse(String(event.data)) as ServerEvent;
+                parsed = JSON.parse(String(event.data)) as E;
             } catch {
                 // A frame this build cannot read. Dropping it is right: the next
                 // snapshot carries the truth anyway.

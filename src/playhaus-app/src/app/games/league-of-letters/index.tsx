@@ -5,7 +5,7 @@ import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import JoinCodeCard from "@/features/join/components/JoinCodeCard";
-import ModeCard from "@/features/league-of-letters/components/ModeCard";
+import ModeCard from "@/components/ui/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";

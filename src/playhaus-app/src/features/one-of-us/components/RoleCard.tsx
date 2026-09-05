@@ -52,52 +52,78 @@ export default function RoleCard({ role, label, explanation, style, reveal = fal
     const face = reveal ? revealFaceOf(role) : faceOf(role);
 
     return (
-        <View style={[styles.card, { backgroundColor: face.fill }, style]}>
-            <View style={styles.head}>
-                <View style={styles.badge}>
-                    <Feather name={face.icon} size={17} color={face.fill} />
+        <View style={[styles.card, style]}>
+            <View style={[styles.spine, { backgroundColor: face.fill }]} />
+
+            <View style={styles.content}>
+                <View style={styles.head}>
+                    <View style={[styles.badge, { backgroundColor: face.fill }]}>
+                        <Feather name={face.icon} size={17} color={Brand.ink} />
+                    </View>
+
+                    <View style={styles.naming}>
+                        <AppText style={styles.label}>
+                            {label ?? t('oneOfUs.play.reveal.role.label')}
+                        </AppText>
+
+                        <AppText style={styles.name}>{t(face.name)}</AppText>
+                    </View>
                 </View>
 
-                <View style={styles.naming}>
-                    <AppText style={styles.label}>
-                        {label ?? t('oneOfUs.play.reveal.role.label')}
-                    </AppText>
-
-                    <AppText style={styles.name}>{t(face.name)}</AppText>
-                </View>
+                <AppText style={styles.explanation}>
+                    {explanation ?? t(face.explanation)}
+                </AppText>
             </View>
-
-            <AppText style={styles.explanation}>
-                {explanation ?? t(face.explanation)}
-            </AppText>
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // Paper, not the scheme's own card surface — the same fixed fill the badge and the
+    // spine draw on, so a card reads as one paper stock in either scheme rather than as
+    // a themed surface with fixed accents pasted on top.
     card: {
-        padding: 15,
+        flexDirection: 'row',
         borderRadius: 20,
         borderWidth: theme.borderWidth,
-        borderColor: Brand.ink
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent,
+        overflow: 'hidden',
+        ...theme.shadows.hard
+    },
+
+    // The role's colour, run down the card's spine rather than across its face — the
+    // card itself stays paper, and identity reads as a single stripe rather than a
+    // block of tinted background fighting the ink text on top of it.
+    spine: {
+        width: 10,
+        flexShrink: 0,
+        borderRightWidth: theme.borderWidth,
+        borderRightColor: Brand.ink
+    },
+
+    content: {
+        flex: 1,
+        minWidth: 0,
+        paddingVertical: 13,
+        paddingHorizontal: 14
     },
 
     head: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 12
+        gap: 11
     },
 
-    // Ink disc with the fill's own colour inside it, so the badge reads as a hole cut
-    // in the card rather than as a second block of paint on top of it.
+    // The fill's own colour rather than ink, now that ink is the spine's job — a badge
+    // reads as the coin the spine was struck from.
     badge: {
         width: 36,
         height: 36,
         flexShrink: 0,
         borderRadius: 999,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: Brand.ink
+        justifyContent: 'center'
     },
 
     naming: {

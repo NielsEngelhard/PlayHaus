@@ -113,8 +113,11 @@ export const FAKE_FILLER: Game = {
     playable: true,
     navigationUrl: ROUTES.fakeFillerIndex,
     joinCodePrefix: 'F',
-    roomRoute: null,
-    minMaxPlayersIndicator: "2-6",
+    roomRoute: ROUTES.fakeFillerRoom,
+    // The backend's own floor and ceiling: a round is written by two people and voted on
+    // by everybody else, so three is the smallest table that leaves anybody to vote.
+    // See `MinLobbyPlayers`/`MaxLobbyPlayers` in `internal/fakefiller/rules.go`.
+    minMaxPlayersIndicator: "3-9",
     minutesAverage: 10
 };
 
@@ -131,7 +134,11 @@ export const SKETCH_OFF: Game = {
     deviceMode: 'perPlayer',
     playable: false,
     navigationUrl: ROUTES.sketchOffIndex,
-    joinCodePrefix: 'F',
+    // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game
+    // in `GAMES` that claims a character. Two games on one letter meant this one was only
+    // ever unreachable by array order, which would have become a real bug the moment it
+    // grew a `roomRoute`.
+    joinCodePrefix: 'S',
     roomRoute: null,
     minMaxPlayersIndicator: "2-6",
     minutesAverage: 10,

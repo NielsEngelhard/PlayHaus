@@ -18,6 +18,19 @@ export interface LobbySeat {
 }
 
 /**
+ * A seat with a score on it: what a scoreboard row is drawn from, and no more.
+ *
+ * The same structural trick one line up, carried into the half of a game that has scores.
+ * League of Letters' `GamePlayer` and Fake Filler's `FFGamePlayer` are the same four
+ * properties under two names — both games' APIs answer `{userId, name, avatarColorId,
+ * score}` — so `PlayerScoreRow` and `FinalScoreboard` take this and neither game's board
+ * has to know the other exists.
+ */
+export interface ScoredPlayer extends LobbySeat {
+    score: number
+}
+
+/**
  * The two letters on somebody's swatch.
  *
  * Spread, not sliced: a name starting with an emoji or an accented pair, cut with

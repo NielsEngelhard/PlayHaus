@@ -15,7 +15,7 @@ import GameTimer from "@/features/league-of-letters/components/GameTimer";
 import GuessGrid, { revealDurationMs } from "@/features/league-of-letters/components/GuessGrid";
 import LetterKeyboard from "@/features/league-of-letters/components/LetterKeyboard";
 import NextRoundCountdown from "@/features/league-of-letters/components/NextRoundCountdown";
-import PlayerScoreRow from "@/features/league-of-letters/components/PlayerScoreRow";
+import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import RoundChip from "@/features/league-of-letters/components/RoundChip";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
 import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow";

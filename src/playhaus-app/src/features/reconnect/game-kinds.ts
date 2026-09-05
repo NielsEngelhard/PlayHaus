@@ -1,5 +1,5 @@
 import type { GameType, ReconnectableGame } from '@/api/calls/reconnect';
-import { LEAGUE_OF_LETTERS_NAME, ONE_OF_US_NAME, PUBQUIZR_NAME } from '@/constants/games';
+import { FAKE_FILLER_NAME, LEAGUE_OF_LETTERS_NAME, ONE_OF_US_NAME, PUBQUIZR_NAME } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { Href } from 'expo-router';
@@ -44,7 +44,17 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         modeKey: 'reconnect.mode.oneDevice',
         slug: 'one-of-us',
         href: game => ROUTES.oneOfUsPlaySingleDeviceGame(game.id) as Href,
-    }    
+    },
+    // Like `lol_multiplayer`, and for the same reason: the backend sends the **join
+    // code** as the id rather than the game's, because a room is reached by its code and
+    // that is the one screen which knows how to draw a game like this.
+    ff_multiplayer: {
+        title: FAKE_FILLER_NAME,
+        modeKey: 'reconnect.mode.lobby',
+        slug: 'fake-filler',
+        code: game => game.id,
+        href: game => ROUTES.fakeFillerRoom(game.id) as Href,
+    }
 };
 
 /** The look-up above, as a question the list can ask about a game. */

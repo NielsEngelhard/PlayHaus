@@ -6,7 +6,7 @@ import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { ReactNode } from "react";
 import { ScrollView, View } from "react-native";
-import PickRow from "./PickRow";
+import PickRow from "@/components/ui/PickRow";
 
 /** One of the things still going spare: a round 4 word, a round 5 answer. */
 export interface BonusOption {

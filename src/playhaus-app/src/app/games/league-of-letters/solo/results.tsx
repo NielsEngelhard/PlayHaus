@@ -8,7 +8,7 @@ import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
-import FinalScoreboard from "@/features/league-of-letters/components/FinalScoreboard";
+import FinalScoreboard from "@/components/ui/FinalScoreboard";
 import { useGame } from "@/features/league-of-letters/useGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";

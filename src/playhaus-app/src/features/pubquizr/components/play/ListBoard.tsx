@@ -21,7 +21,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
-import PickRow, { AwardRow } from "./PickRow";
+import PickRow, { AwardRow } from "@/components/ui/PickRow";
 import ScriptCard from "./ScriptCard";
 import TurnRulesScreen, { type TurnRule } from "./TurnRulesScreen";
 import TurnStrip from "./TurnStrip";

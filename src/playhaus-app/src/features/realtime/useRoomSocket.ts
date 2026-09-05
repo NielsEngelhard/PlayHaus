@@ -1,16 +1,16 @@
-import { openSocket, type ClientEvent, type ServerEvent, type Socket, type SocketStatus } from '@/api/socket';
+import { openSocket, type AnyServerEvent, type ClientEvent, type ServerEvent, type Socket, type SocketStatus } from '@/api/socket';
 import { sessionToken } from '@/features/auth/useAuth';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export interface RoomSocket {
+export interface RoomSocket<C = ClientEvent> {
     /** Whether this device is live. Your own dot. */
     status: SocketStatus
     /** Who else is live, by user id. Everybody else's dot. */
     online: Set<string>
-    send: (event: ClientEvent) => void
+    send: (event: C) => void
 }
 
-interface Options {
+interface Options<E extends AnyServerEvent> {
     /**
      * Which room, as `namespace:id`. Pass undefined to stay disconnected — before
      * a lobby exists, or on a screen that has navigated away from one.
@@ -18,7 +18,21 @@ interface Options {
     room: string | undefined
     /** Only opens once this is true, which for every caller is "signed in". */
     enabled?: boolean
-    onEvent: (event: ServerEvent) => void
+    onEvent: (event: E) => void
+}
+
+/**
+ * The two frames every room sends whatever game it belongs to.
+ *
+ * The presence mirror below is the one thing this hook reads out of a frame rather than
+ * passing on, so it is also the one place that has to look inside a union it is generic
+ * over. Narrowing to this rather than to either game's own type keeps that honest: any
+ * union with a `state` and a `presence` carrying `online` satisfies it.
+ */
+type PresenceFrame = { type: 'state' | 'presence', data: { online: string[] } };
+
+function isPresence(event: AnyServerEvent): event is PresenceFrame {
+    return event.type === 'state' || event.type === 'presence';
 }
 
 /**
@@ -32,8 +46,13 @@ interface Options {
  * Presence is kept here rather than by the caller because it is the one thing every
  * room has and no game has to implement: the server sends the whole list every time
  * it changes, so this is a mirror of it and never a tally kept by hand.
+ *
+ * Generic over the frame union, defaulting to League of Letters' — which is what keeps
+ * every existing call site of this hook unchanged while Fake Filler passes its own.
  */
-export function useRoomSocket({ room, enabled = true, onEvent }: Options): RoomSocket {
+export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
+    { room, enabled = true, onEvent }: Options<E>
+): RoomSocket {
     const [status, setStatus] = useState<SocketStatus>('closed');
     const [online, setOnline] = useState<Set<string>>(() => new Set());
 
@@ -62,7 +81,7 @@ export function useRoomSocket({ room, enabled = true, onEvent }: Options): RoomS
         // Subscribing to an external system is what an effect is for, and this one
         // writes no state on the way in: every setState below happens in a callback,
         // once a frame has actually arrived.
-        const open = openSocket({
+        const open = openSocket<E>({
             room,
             token,
             onStatus: setStatus,
@@ -70,7 +89,7 @@ export function useRoomSocket({ room, enabled = true, onEvent }: Options): RoomS
                 // Presence is mirrored here so no caller has to; the events still go
                 // on, because a screen may want to react to somebody arriving as well
                 // as to the list itself.
-                if (event.type === 'state' || event.type === 'presence') {
+                if (isPresence(event)) {
                     setOnline(new Set(event.data.online));
                 }
 
