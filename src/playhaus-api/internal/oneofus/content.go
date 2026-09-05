@@ -3,7 +3,7 @@ package oneofus
 import (
 	"embed"
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
 	"playhaus-api/internal/i18n"
 	"strings"
 )

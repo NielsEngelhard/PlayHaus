@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
-	"math/rand"
+	"math/rand/v2"
 	"playhaus-api/internal/i18n"
 	"time"
 
@@ -231,7 +231,7 @@ func assignMayor(players []OneOfUsLocalPlayer) int {
 		return -1
 	}
 
-	chosen := candidates[rand.Intn(len(candidates))]
+	chosen := candidates[rand.IntN(len(candidates))]
 	players[chosen].IsMayor = true
 
 	return chosen

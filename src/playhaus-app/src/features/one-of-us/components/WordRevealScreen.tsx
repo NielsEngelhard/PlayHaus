@@ -87,7 +87,7 @@ export default function WordRevealScreen({
                         key={person.seat}
                         answer={word ?? t('oneOfUs.play.reveal.noWord')}
                         onReveal={() => setSeen(true)}
-                        extraContent={<RoleCard role={role} style={styles.role} />}
+                        extraContent={<RoleCard role={role} reveal style={styles.role} />}
                     />
                 </View>
 

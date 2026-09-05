@@ -118,8 +118,15 @@ func TestStartSingleDeviceQuizDealsOneChoiceQuestionEach(t *testing.T) {
 		t.Run(fmt.Sprintf("%d players", players), func(t *testing.T) {
 			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
 
+			// The smallest table plays four instead of one each -- see
+			// ChoiceQuestionsFor.
+			want := players
+			if players == pubquizr.MinPlayers {
+				want = 4
+			}
+
 			dealt := questionsIn(started, pubquizr.RoundChoice)
-			if got, want := len(dealt), players; got != want {
+			if got := len(dealt); got != want {
 				t.Fatalf("round 2 questions = %d, want %d", got, want)
 			}
 

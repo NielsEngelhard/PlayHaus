@@ -3,6 +3,8 @@ package api
 import (
 	"net/http"
 	"testing"
+
+	"playhaus-api/internal/oneofus"
 )
 
 const reconnectPath = "/api/v1/reconnect-games"
@@ -47,6 +49,53 @@ func TestGetReconnectableGamesListsTheCallersSoloGames(t *testing.T) {
 	if games[0].CreatedAt == "" {
 		t.Error("createdAt is empty")
 	}
+}
+
+// A finished One of Us table has nothing left to reconnect to, so it must drop off
+// this list the moment the last vote ends the game -- even though the row itself
+// stays in the database for its own results screen (fetchOouGame in
+// oou_single_device_test.go).
+func TestGetReconnectableGamesDropsAFinishedOneOfUsGame(t *testing.T) {
+	h := newTestServer(t)
+	session := newGuestSession(t, h)
+
+	game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom", "Eva")
+
+	rec := do(t, h, http.MethodGet, reconnectPath, "", session.Token)
+	games := decodeBody[[]ReconnectableGame](t, rec)
+	if len(games) != 1 {
+		t.Fatalf("got %d games before the table finished, want 1 (body: %s)", len(games), rec.Body)
+	}
+
+	var civilian oouPlayerResponse
+	for _, player := range game.Players {
+		if player.Role == int(oneofus.Civilian) {
+			civilian = player
+			break
+		}
+	}
+	// Four players, one imposter: voting out two civilians reaches parity and ends
+	// the game (see TestVotingOutCiviliansToParityEndsTheGameForTheImposters).
+	var second oouPlayerResponse
+	for _, player := range game.Players {
+		if player.Role == int(oneofus.Civilian) && player.PlayerID != civilian.PlayerID {
+			second = player
+			break
+		}
+	}
+	voteOutPlayer(t, h, session.Token, game.ID, civilian.PlayerID)
+	if final := voteOutPlayer(t, h, session.Token, game.ID, second.PlayerID); !final.GameEnded {
+		t.Fatal("voting out two of three civilians did not end the game")
+	}
+
+	rec = do(t, h, http.MethodGet, reconnectPath, "", session.Token)
+	games = decodeBody[[]ReconnectableGame](t, rec)
+	if len(games) != 0 {
+		t.Errorf("got %d games after the table finished, want 0 (body: %s)", len(games), rec.Body)
+	}
+
+	// The row itself is untouched -- only dropped from the reconnect list.
+	fetchOouGame(t, h, session.Token, game.ID)
 }
 
 // A player with nothing running gets an answer, not an error -- the page's empty

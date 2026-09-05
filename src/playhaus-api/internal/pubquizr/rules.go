@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	MinPlayers = 3
+	MinPlayers = 2
 	MaxPlayers = 8
 	Rounds     = 6
 )
@@ -21,7 +21,7 @@ const (
 	RoundClosest  = 3 // a number; nearest wins
 	RoundDescribe = 4 // 30 seconds -- describe your words, the table guesses
 	RoundList     = 5 // one question, four answers we are looking for
-	RoundFinale   = 6 // head to head between the two highest scores, read by a third
+	RoundFinale   = 6 // head to head between the two highest scores, read by a third where the table has one to spare
 )
 
 func RunningOrder(zen bool) []int {
@@ -137,7 +137,13 @@ func DescribeWordPointsFor(winners int) int {
 	return DescribeWordPoints + max(winners, 0)*DescribeGuessPoints
 }
 
+// ChoiceQuestionsFor is how many round 2 questions this table plays: one each -- except
+// at the smallest table the game allows, where one each would be a round of two
+// questions, over almost as soon as it starts. There it plays four instead.
 func ChoiceQuestionsFor(players int) int {
+	if players == MinPlayers {
+		return 4
+	}
 	return max(players, 0)
 }
 
@@ -150,8 +156,26 @@ func ListQuestionsFor(players int) int {
 	return max(players, 0)
 }
 
+// ClosestQuestionsFor is how many round 3 questions this table plays: one per player,
+// capped at what the quiz actually carries -- except at the smallest table the game
+// allows, which plays four instead of two, for the same reason ChoiceQuestionsFor does.
 func ClosestQuestionsFor(players, available int) int {
+	if players == MinPlayers {
+		return max(min(4, available), 0)
+	}
 	return max(min(players, available), 0)
+}
+
+// ClosestQuizmasterGuesses is whether round 3 lets its reader guess too, rather than
+// only reading the question out.
+//
+// Everywhere else the reader sits a question out and the rest of the table competes for
+// it, and with three or more players that still leaves somebody to win it. At the
+// smallest table the game allows there is only one other seat, so sitting the reader out
+// would leave a single guess to land on the number by default -- not a round, just a
+// formality. So there the reader guesses too.
+func ClosestQuizmasterGuesses(players int) bool {
+	return players == MinPlayers
 }
 
 func DescribeWordsPerPlayer(players, available int) int {
@@ -165,6 +189,27 @@ func DescribeWordsPerPlayer(players, available int) int {
 // DescribeWordsFor is how many round 4 words this table needs in total.
 func DescribeWordsFor(players, available int) int {
 	return players * DescribeWordsPerPlayer(players, available)
+}
+
+// FinaleHasReferee is whether this table has a seat spare to read the finale without
+// playing it. False only at the smallest table the game allows, where the two players
+// have already been finaling each other since round one and there is nobody left over.
+func FinaleHasReferee(players int) bool {
+	return players > FinalistCount
+}
+
+// FinalePointsFor is what a correct finale question pays at this table.
+//
+// The full hundred needs a neutral reader to mean anything -- it is what lets the round
+// stand apart as the one that can decide a night the first five rounds left close. A
+// table with no spare seat for one has already been playing these two players against
+// each other all evening, so its finale pays the same as any other round's question
+// rather than pretending to be the one that decides everything.
+func FinalePointsFor(players int) int {
+	if FinaleHasReferee(players) {
+		return FinalePoints
+	}
+	return ClosestPoints
 }
 
 const (

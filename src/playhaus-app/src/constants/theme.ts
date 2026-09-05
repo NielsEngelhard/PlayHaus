@@ -47,7 +47,12 @@ export const Brand = {
     /** Ink, as a fill rather than as text — the darkest avatar swatch wears this. */
     ink: '#0F0D12',
     /** The struck-out grey a spent letter tile wears, in either scheme. */
-    slate: '#4B4C58'
+    slate: '#4B4C58',
+    /**
+     * A neutral the game accents never touch, for the one card in One of Us that has to
+     * say nothing rather than something — see `revealFaceOf` in `features/one-of-us/roles`.
+     */
+    fog: '#DCDCE4'
 } as const;
 
 /**

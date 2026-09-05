@@ -14,10 +14,10 @@ import { seatAt, seatsOf, type Seat } from "./seats";
  * Both rounds are a hot seat, and the reading always follows the seat round the table —
  * you are always read to by the player on your right. Where they differ: round 1 lets a
  * correct answer keep you in the seat for the next question, round 2 never does — it
- * deals exactly one question per player, and shuffles the seat on by one regardless of
- * correct or wrong, so that everybody is asked once and reads once. Round 2 also adds
- * four options to read aloud and pays double on every question instead of on every
- * second one.
+ * deals one question per player (four instead, at the smallest table the game allows),
+ * and shuffles the seat on by one regardless of correct or wrong, so that everybody is
+ * asked and reads the same number of times. Round 2 also adds four options to read aloud
+ * and pays double on every question instead of on every second one.
  *
  * None of it is decided here; it all comes back from the server. But it has to be *said*
  * on screen before a button is pressed, which is what `worthOf`, `nextUpAfter` and the

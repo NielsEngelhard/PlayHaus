@@ -476,7 +476,7 @@ export const nl: Catalog = {
             players: {
                 label: 'Wie doen er mee',
                 seat: 'Speler {{seat}}',
-                tooFew: 'Een quiz heeft minstens drie spelers nodig.',
+                tooFew: 'Een quiz heeft minstens twee spelers nodig.',
                 tooMany: 'Acht spelers is het maximum rond één telefoon.',
                 duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.',
             },
@@ -709,7 +709,7 @@ export const nl: Catalog = {
             expired: 'Je bent uitgelogd. Log opnieuw in om een quiz te starten.',
             quizGone: 'Die quiz bestaat niet meer. Kies een andere.',
             badTable: 'De tafel werd geweigerd. Check de namen en probeer het opnieuw.',
-            tooFewPlayers: 'Een quiz heeft minstens drie spelers nodig.',
+            tooFewPlayers: 'Een quiz heeft minstens twee spelers nodig.',
             tooManyPlayers: 'Acht spelers is het maximum rond één telefoon.',
             duplicateName: 'Twee spelers kunnen niet dezelfde naam hebben.',
             quizTooSmall: 'Deze quiz heeft niet genoeg vragen voor zoveel spelers. Kies een andere quiz, of speel met minder mensen.',
@@ -794,6 +794,10 @@ export const nl: Catalog = {
                     imposter: {
                         name: 'Imposter',
                         explanation: 'Jouw woord is niet dat van de rest van de tafel. Bluf mee en overleef.'
+                    },
+                    unknown: {
+                        name: 'Burger of Imposter',
+                        explanation: 'Je weet niet wat je bent. Let op de tafel, luister naar het woord en kom erachter.'
                     },
                     nitwit: {
                         name: 'De onnozele',

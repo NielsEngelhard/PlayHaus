@@ -1,3 +1,4 @@
+import { MIN_PLAYERS } from "./one-device-table";
 import type { QuizDetail, QuizQuestion } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
@@ -12,6 +13,11 @@ import { seatAt, seatsOf, type Seat } from "./seats";
  *
  * So there is no ring to walk here and nobody in particular is "being asked". The whole
  * turn is settled in one go, which is why the screen is a form rather than two buttons.
+ *
+ * The smallest table the game allows has no seat to spare for a spectator, so its reader
+ * guesses too — see `closestQuizmasterGuesses`. `ClosestBoard` has to know it as well as
+ * `guessingSeats`: with the reader guessing there is nobody left to safely peek at the
+ * answer before the numbers are in, so it hides that panel for the length of the form.
  */
 
 /** Kept in step with `RoundClosest` in Go. */
@@ -19,6 +25,14 @@ export const ROUND_CLOSEST = 3;
 
 /** What the nearest number takes. Mirrors `ClosestPoints` in `rules.go`. */
 export const CLOSEST_POINTS = 2;
+
+/**
+ * Whether round 3 lets its reader guess too. Mirrors `ClosestQuizmasterGuesses` in
+ * `rules.go`.
+ */
+export function closestQuizmasterGuesses(players: number): boolean {
+    return players === MIN_PLAYERS;
+}
 
 export interface ClosestTurn {
     /** The dealt question being played, which is what a ruling has to name. */
@@ -31,10 +45,18 @@ export interface ClosestTurn {
     unit: string
     /** The aside the quizmaster can read after it, or empty. */
     explanation: string
-    /** Whoever is reading it out. They do not get to guess at it. */
+    /**
+     * Whoever is reading it out. They do not get to guess at it -- except at the
+     * smallest table the game allows, where they are also in `guessing`.
+     */
     quizmaster: Seat
     /** Everybody who does, in table order from where the question opened. */
     guessing: Seat[]
+    /**
+     * Whether the reader is one of the seats in `guessing` this turn. True only at the
+     * smallest table the game allows -- see `closestQuizmasterGuesses`.
+     */
+    quizmasterGuesses: boolean
     /** 1-based, for "question 2 of 2". */
     number: number
     total: number
@@ -64,6 +86,8 @@ export function closestTurnOf(session: QuizSession, quiz: QuizDetail): ClosestTu
     const quizmaster = seatAt(seats, session.quizMasterSeat);
     if (quizmaster === null) return null;
 
+    const quizmasterGuesses = closestQuizmasterGuesses(seats.length);
+
     return {
         dealt,
         question,
@@ -71,7 +95,8 @@ export function closestTurnOf(session: QuizSession, quiz: QuizDetail): ClosestTu
         unit: question.unit ?? '',
         explanation: question.explanation ?? '',
         quizmaster,
-        guessing: guessingSeats(session, seats),
+        guessing: guessingSeats(session, seats, quizmasterGuesses),
+        quizmasterGuesses,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         worth: CLOSEST_POINTS
@@ -79,21 +104,22 @@ export function closestTurnOf(session: QuizSession, quiz: QuizDetail): ClosestTu
 }
 
 /**
- * Everybody but the reader, in the order a table actually answers in: the question goes
- * to the quizmaster's left and round from there.
+ * Everybody who guesses, in the order a table actually answers in: the question goes to
+ * the quizmaster's left and round from there, and back to the reader themselves last at
+ * the smallest table the game allows.
  *
  * The same walk the server does in `round_three.go`. Duplicated for the same reason the
  * hot seat's `nextUpAfter` is: this only decides what order the rows are drawn in, and
  * the server is still the one that says whose guess counts.
  */
-function guessingSeats(session: QuizSession, seats: Seat[]): Seat[] {
+function guessingSeats(session: QuizSession, seats: Seat[], quizmasterGuesses: boolean): Seat[] {
     const players = seats.length;
     if (players <= 1) return [];
 
     const guessing: Seat[] = [];
     for (let step = 0; step < players; step++) {
         const seat = (session.hotSeat + step) % players;
-        if (seat === session.quizMasterSeat) continue;
+        if (seat === session.quizMasterSeat && !quizmasterGuesses) continue;
 
         const found = seatAt(seats, seat);
         if (found !== null) guessing.push(found);

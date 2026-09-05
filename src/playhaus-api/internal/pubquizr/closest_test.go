@@ -278,6 +278,29 @@ func TestClosestRefusals(t *testing.T) {
 	}
 }
 
+// The smallest table the game allows has no seat to spare for a spectator, so its
+// reader guesses too -- otherwise the round would be a single guess winning by default.
+func TestClosestQuizmasterGuessesAtATableOfTwo(t *testing.T) {
+	session, quiz := newClosestSession(0, 1, 0, 4)
+	session.Players = session.Players[:2]
+	store := &verdictStore{session: session, quiz: quiz}
+
+	err := settle(t, store, ClosestInput{Guesses: []SeatGuess{
+		{Seat: 0, Value: 210},
+		{Seat: 1, Value: 300},
+	}})
+	if err != nil {
+		t.Fatalf("RecordClosestGuesses: %v", err)
+	}
+
+	if got, want := store.session.PlayerAt(0).Score, ClosestPoints; got != want {
+		t.Errorf("the reader's own guess scored %d, want %d -- it is nearest", got, want)
+	}
+	if got := store.session.PlayerAt(1).Score; got != 0 {
+		t.Errorf("seat 1 scored %d, want 0", got)
+	}
+}
+
 // The round goes round: everybody reads one out, and the reading moves whether anybody
 // scored or not.
 func TestRoundThreeMovesOneSeatEachQuestion(t *testing.T) {

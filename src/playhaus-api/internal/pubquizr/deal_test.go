@@ -110,6 +110,38 @@ func TestRoundFourSharesAThinShelfEvenly(t *testing.T) {
 	}
 }
 
+// The smallest table the game allows plays rounds 2 and 3 at double length, so a table
+// of two is not left with the shortest rounds instead of the longest ones.
+func TestSmallestTableDealsDoubleLengthChoiceAndClosestRounds(t *testing.T) {
+	quiz := quizCarrying(16)
+	// quizCarrying floors round 3 at MinClosestQuestions, which is one -- too few to
+	// show the doubling capped at what the quiz carries rather than at the ordinary
+	// floor. Given four instead, so the deal below actually gets to ask for all four.
+	for position := 1; position < 4; position++ {
+		quiz.Questions = append(quiz.Questions, Question{
+			ID: uuid.New(), QuizID: quiz.ID, Round: RoundClosest,
+			Kind: KindOf(RoundClosest), Position: position,
+		})
+	}
+
+	deal, err := dealQuestions(quiz, MinPlayers, false)
+	if err != nil {
+		t.Fatalf("deal: %v", err)
+	}
+
+	counts := map[int]int{}
+	for _, slot := range deal {
+		counts[slot.round]++
+	}
+
+	if got, want := counts[RoundChoice], 4; got != want {
+		t.Errorf("round 2 dealt %d questions, want %d", got, want)
+	}
+	if got, want := counts[RoundClosest], 4; got != want {
+		t.Errorf("round 3 dealt %d questions, want %d", got, want)
+	}
+}
+
 // Every other round belongs to the table, whatever the shelf holds. Round 4 is the only
 // one that hands a slot to a seat, and a slot that quietly gained an owner would be a
 // question nobody but one player is allowed to answer.

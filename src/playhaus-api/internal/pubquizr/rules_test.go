@@ -11,9 +11,9 @@ func TestPlayerCountOK(t *testing.T) {
 			t.Errorf("PlayerCountOK(%d) = false, want true", n)
 		}
 	}
-	// Two is out on purpose: on the hot seat rounds a missed question has nowhere to
-	// go except the only other person.
-	for _, n := range []int{0, 1, 2, MaxPlayers + 1} {
+	// Below MinPlayers a missed hot seat question has nowhere to go at all -- not even
+	// the only other person, because there is no other person.
+	for _, n := range []int{0, MinPlayers - 1, MaxPlayers + 1} {
 		if PlayerCountOK(n) {
 			t.Errorf("PlayerCountOK(%d) = true, want false", n)
 		}
@@ -87,6 +87,19 @@ func TestDescribeWordsPerPlayer(t *testing.T) {
 		if got := DescribeWordsPerPlayer(tc.players, tc.available); got != tc.want {
 			t.Errorf("DescribeWordsPerPlayer(%d, %d) = %d, want %d",
 				tc.players, tc.available, got, tc.want)
+		}
+	}
+}
+
+// Only the smallest table lets its round 3 reader guess -- everywhere else that would
+// be the reader marking their own homework.
+func TestClosestQuizmasterGuesses(t *testing.T) {
+	if !ClosestQuizmasterGuesses(MinPlayers) {
+		t.Errorf("ClosestQuizmasterGuesses(%d) = false, want true", MinPlayers)
+	}
+	for _, n := range []int{MinPlayers + 1, MaxPlayers} {
+		if ClosestQuizmasterGuesses(n) {
+			t.Errorf("ClosestQuizmasterGuesses(%d) = true, want false", n)
 		}
 	}
 }

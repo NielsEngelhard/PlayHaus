@@ -180,6 +180,42 @@ func TestAssignRolesDealsAtMostOneNitwit(t *testing.T) {
 	}
 }
 
+// The imposter can land on any seat, not just the last one dealt.
+//
+// assignRoles lays a hand onto a Fisher-Yates permutation of the seats
+// (`indices[seat]`, not `seat` itself), so nothing about seat order should favour any one
+// player. This is the test that would have caught it if it did: four players and one
+// imposter, dealt four thousand times, with every seat expected to come up roughly a
+// quarter of the time. The tolerance is wide on purpose -- five-plus standard deviations
+// around the expected count -- so this fails on a real bias (say, always the last seat)
+// and not on ordinary shuffle noise.
+func TestAssignRolesPicksAnyImposterSeatUniformly(t *testing.T) {
+	const trials = 4000
+	const seats = 4
+
+	var landedOn [seats]int
+
+	for range trials {
+		players := table(seats, 0)
+		assignRoles(players, nil)
+
+		for seat, player := range players {
+			if player.Role == Imposter {
+				landedOn[seat]++
+			}
+		}
+	}
+
+	want := trials / seats
+	tolerance := want / 4 // generous: a real "always seat N" bug misses by the whole width.
+
+	for seat, count := range landedOn {
+		if count < want-tolerance || count > want+tolerance {
+			t.Errorf("seat %d was dealt the imposter %d/%d times, want roughly %d", seat, count, trials, want)
+		}
+	}
+}
+
 // A nitwit is an imposter as far as winning goes. Nothing in determineGameEnded spells
 // the roles out any more, and this is the test that says it must not start: a nitwit
 // counted as a civilian would end the game a vote early and hand it to the wrong side.

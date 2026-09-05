@@ -76,7 +76,7 @@ export const PUBQUIZR: Game = {
     navigationUrl: ROUTES.quizzerIndex,
     joinCodePrefix: 'P',
     roomRoute: null,
-    minMaxPlayersIndicator: "3-8",
+    minMaxPlayersIndicator: "2-8",
     minutesAverage: 25
 };
 

@@ -235,6 +235,12 @@ func TestRoundLengths(t *testing.T) {
 	if got, want := ChoiceQuestionsFor(5), 5; got != want {
 		t.Errorf("ChoiceQuestionsFor(5) = %d, want %d -- one each", got, want)
 	}
+	// The smallest table plays four instead of one each, so the round is not over
+	// almost as soon as it starts.
+	if got, want := ChoiceQuestionsFor(MinPlayers), 4; got != want {
+		t.Errorf("ChoiceQuestionsFor(%d) = %d, want %d -- the smallest table plays four",
+			MinPlayers, got, want)
+	}
 
 	closest := []struct{ players, available, want int }{
 		// One per player, so everybody reads one out...
@@ -242,12 +248,36 @@ func TestRoundLengths(t *testing.T) {
 		// ...or all the quiz carries, which today is two.
 		{players: 6, available: 2, want: 2},
 		{players: 3, available: 3, want: 3},
+		// The smallest table plays four instead of two, the same exception
+		// ChoiceQuestionsFor makes...
+		{players: MinPlayers, available: 8, want: 4},
+		// ...still capped at what the quiz actually carries.
+		{players: MinPlayers, available: 3, want: 3},
 	}
 	for _, row := range closest {
 		if got := ClosestQuestionsFor(row.players, row.available); got != row.want {
 			t.Errorf("ClosestQuestionsFor(%d, %d) = %d, want %d",
 				row.players, row.available, got, row.want)
 		}
+	}
+}
+
+// FinalePointsFor and FinaleHasReferee, the two things that change about the finale at
+// a table with nobody spare to read.
+func TestFinalePointsForNeedsAReferee(t *testing.T) {
+	if !FinaleHasReferee(FinalistCount + 1) {
+		t.Errorf("FinaleHasReferee(%d) = false, want true", FinalistCount+1)
+	}
+	if FinaleHasReferee(FinalistCount) {
+		t.Errorf("FinaleHasReferee(%d) = true, want false -- both seats are finalists", FinalistCount)
+	}
+
+	if got, want := FinalePointsFor(MaxPlayers), FinalePoints; got != want {
+		t.Errorf("FinalePointsFor(%d) = %d, want %d", MaxPlayers, got, want)
+	}
+	if got, want := FinalePointsFor(MinPlayers), ClosestPoints; got != want {
+		t.Errorf("FinalePointsFor(%d) = %d, want %d -- no referee, no hundred-point round",
+			MinPlayers, got, want)
 	}
 }
 

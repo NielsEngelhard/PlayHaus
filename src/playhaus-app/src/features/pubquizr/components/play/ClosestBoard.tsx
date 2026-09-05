@@ -297,13 +297,19 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             <View style={styles.body}>
                 <Label label={turn.question.prompt} />
 
-                <AnswerReveal
-                    answer={turn.unit === ''
-                        ? String(turn.answer)
-                        : t('pubquizr.play.closest.answer', { answer: turn.answer, unit: turn.unit })}
-                    aliases={turn.explanation === '' ? [] : [turn.explanation]}
-                    compact
-                />
+                {/* Hidden at the smallest table the game allows: the reader is one of
+                    the guessers this round (see `closestQuizmasterGuesses`), so there
+                    is nobody left who could peek at this without also being the person
+                    about to type a number in below it. */}
+                {!turn.quizmasterGuesses && (
+                    <AnswerReveal
+                        answer={turn.unit === ''
+                            ? String(turn.answer)
+                            : t('pubquizr.play.closest.answer', { answer: turn.answer, unit: turn.unit })}
+                        aliases={turn.explanation === '' ? [] : [turn.explanation]}
+                        compact
+                    />
+                )}
 
                 <View style={styles.sectionRule}>
                     <AppText style={styles.sectionLabel}>

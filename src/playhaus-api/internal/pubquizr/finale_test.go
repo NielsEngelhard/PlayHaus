@@ -281,15 +281,104 @@ func TestOpenFinaleNeverSeatsAFinalistAsQuizmaster(t *testing.T) {
 	}
 }
 
-// A table with nobody spare to read is below MinPlayers and cannot happen through the
-// setup form, but it must not seat somebody as their own quizmaster either.
-func TestOpenFinaleDeclinesATableOfTwo(t *testing.T) {
+// The smallest table the game allows has nobody spare to read, so the two players read
+// to each other instead -- the same way every other round already plays at a table of
+// two.
+func TestOpenFinaleSeatsATableOfTwoWithNoSpareReader(t *testing.T) {
 	session := &Session{Players: []SessionPlayer{{Seat: 0, Score: 4}, {Seat: 1, Score: 1}}}
 
 	session.OpenFinale()
 
-	if _, _, ok := session.Finalists(); ok {
-		t.Error("a table of two seated a finale")
+	a, b, ok := session.Finalists()
+	if !ok || a != 0 || b != 1 {
+		t.Errorf("Finalists() = %d, %d, %v -- want 0, 1, true", a, b, ok)
+	}
+	if got, want := session.HotSeat, 1; got != want {
+		t.Errorf("HotSeat = %d, want %d -- the finalist behind opens", got, want)
+	}
+	if got, want := session.QuizMasterSeat, 0; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- the other finalist reads", got, want)
+	}
+}
+
+// Without alternation this would never happen: the finalist behind opens every question
+// by score (FinaleOpener), a miss never crosses to the other one at this table size (see
+// FinaleAnsweringSeat), and a player who never catches up on score never stops being
+// "behind" either. So the seat that opened last question is not asked the next one, even
+// across a run of misses that never changes who is ahead.
+func TestFinaleAtATableOfTwoAlternatesEvenWhenTheSameSeatKeepsMissing(t *testing.T) {
+	session := newFinaleSession(0, 0, 1, 0, 4)
+	// Seat 0 is ten points clear and never answers, so score alone would leave seat 1
+	// "behind" -- and so opening -- for the rest of the round.
+	session.Players = []SessionPlayer{{Seat: 0, Score: 10}, {Seat: 1, Score: 0}}
+	session.QuizMasterSeat, session.HotSeat = 0, 1
+
+	store := &verdictStore{session: session}
+
+	seen := map[int]int{}
+	for range 4 {
+		seen[store.session.HotSeat]++
+
+		if err := settleFinale(t, store, false); err != nil {
+			t.Fatalf("RecordFinaleVerdict: %v", err)
+		}
+	}
+
+	if seen[0] == 0 || seen[1] == 0 {
+		t.Fatalf("hot seat visited seats %v over 4 questions -- one player never got a turn", seen)
+	}
+}
+
+// A miss at the smallest table has nobody to cross to who has not already seen the
+// answer, so it ends the question rather than passing it on.
+func TestFinaleAnsweringSeatAtATableOfTwoDoesNotCrossToTheReader(t *testing.T) {
+	session := &Session{
+		Players:        []SessionPlayer{{Seat: 0, Score: 4}, {Seat: 1, Score: 1}},
+		FinalistSeatA:  0,
+		FinalistSeatB:  1,
+		HotSeat:        1,
+		QuizMasterSeat: 0,
+	}
+
+	if got, want := session.FinaleAnsweringSeat(0), 1; got != want {
+		t.Errorf("FinaleAnsweringSeat(0) = %d, want %d -- the seat behind still gets its go", got, want)
+	}
+	if got := session.FinaleAnsweringSeat(1); got != -1 {
+		t.Errorf("FinaleAnsweringSeat(1) = %d, want -1 -- the only other seat already read the question", got)
+	}
+}
+
+// The reduced points a table with no neutral reader pays, and the single go it plays
+// each question to, all the way through RecordFinaleVerdict rather than through the
+// rules directly.
+func TestFinaleVerdictAtATableOfTwoPaysReducedPointsAndEndsOnOneMiss(t *testing.T) {
+	session := newFinaleSession(0, 0, 1, 0, 4)
+	session.Players = []SessionPlayer{{Seat: 0, Score: 0}, {Seat: 1, Score: 0}}
+	session.QuizMasterSeat, session.HotSeat = 0, 1
+
+	store := &verdictStore{session: session}
+	if err := settleFinale(t, store, true); err != nil {
+		t.Fatalf("RecordFinaleVerdict: %v", err)
+	}
+
+	if got, want := store.session.PlayerAt(1).Score, ClosestPoints; got != want {
+		t.Errorf("Score = %d, want %d -- the smallest table pays a normal round's points", got, want)
+	}
+	if got, want := store.session.CurrentPosition, 1; got != want {
+		t.Errorf("CurrentPosition = %d, want %d -- one correct answer settles the question", got, want)
+	}
+
+	// A miss at the next question ends it immediately too -- there is nobody left to
+	// pass it to.
+	next := store.session.QuestionAt(RoundFinale, store.session.CurrentPosition)
+	if next == nil {
+		t.Fatal("no question dealt in the next slot")
+	}
+	if err := settleFinale(t, store, false); err != nil {
+		t.Fatalf("RecordFinaleVerdict: %v", err)
+	}
+	if got, want := store.session.CurrentPosition, 2; got != want {
+		t.Errorf("CurrentPosition = %d, want %d -- a miss with nobody to pass to still settles the question", got, want)
 	}
 }
 

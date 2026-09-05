@@ -543,11 +543,13 @@ type VerdictInput struct {
 // The two rounds also differ in what a question pays -- round 1 on every second one,
 // round 2 on all of them and double, see HotSeatPointsAt.
 //
-// Round 2 additionally always shuffles the seat on one, correct or not: it deals exactly
-// one question per player (ChoiceQuestionsFor), and the only way every seat ends up
-// asked once and reading once is if landing a question never lets anybody keep it. Round
-// 1 does not have this shape -- it deals more questions than there are players on
-// purpose, so a table that is bad at trivia does not run out before it is done.
+// Round 2 additionally always shuffles the seat on one, correct or not: it deals one
+// question per player -- or four at the smallest table the game allows, where one each
+// would barely be a round (ChoiceQuestionsFor) -- and the only way every seat ends up
+// asked and reading the same number of times is if landing a question never lets
+// anybody keep it. Round 1 does not have this shape -- it deals more questions than
+// there are players on purpose, so a table that is bad at trivia does not run out before
+// it is done.
 func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -821,10 +823,11 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 }
 
 // checkGuessingSeats is the rule both ways into round 3 share: real seats, each named
-// once, and never the person reading it out.
+// once, and -- at every table but the smallest -- never the person reading it out.
 //
 // "Real" is the part that keeps it out of rules.go -- which seats exist is a fact about
-// this table, not about the game. The each-named-once half is DuplicateGuessSeat's.
+// this table, not about the game. The each-named-once half is DuplicateGuessSeat's, and
+// the reader exception is ClosestQuizmasterGuesses's.
 func (s *Session) checkGuessingSeats(seats []int) error {
 	named := make(map[int]struct{}, len(seats))
 
@@ -832,7 +835,7 @@ func (s *Session) checkGuessingSeats(seats []int) error {
 		if s.PlayerAt(seat) == nil {
 			return fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
 		}
-		if seat == s.QuizMasterSeat {
+		if seat == s.QuizMasterSeat && !ClosestQuizmasterGuesses(len(s.Players)) {
 			return fmt.Errorf("%w: seat %d", ErrQuizmasterCannotGuess, seat)
 		}
 		if _, twice := named[seat]; twice {
@@ -1324,8 +1327,9 @@ func (s *Service) listAnswers(ctx context.Context, session *Session, question *S
 // The finale reads like round 1 -- an open question, read aloud -- and it passes like
 // round 1 too, but down a line exactly two seats long. The question opens on whichever
 // finalist is behind; if they miss it, it crosses to the other one, who can still take
-// the full hundred for it. Miss it twice and it is dead, the same as a round 1 question
-// that beat the table.
+// the points for it. Miss it twice and it is dead, the same as a round 1 question that
+// beat the table -- except at the smallest table, which has nobody to cross to and so
+// only gets the one go. See FinaleAnsweringSeat.
 //
 // Which of the two is on it right now is read off the attempt count rather than off a
 // column, the same way the hot seat rounds do it -- see FinaleAnsweringSeat. HotSeat
@@ -1381,19 +1385,23 @@ func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Se
 
 	points := 0
 	if in.Correct {
-		points = FinalePoints
+		points = FinalePointsFor(len(session.Players))
 		// Onto Score, the one tally the whole evening is kept on. A finale question is
-		// worth a hundred of them, which is what lets round 6 decide the night without
-		// a column of its own. See FinalePoints.
+		// worth a hundred of them at a table with a neutral reader, which is what lets
+		// round 6 decide the night without a column of its own -- and the same as any
+		// other round's question at the smallest table, which has no such reader. See
+		// FinalePointsFor.
 		player.Score += points
 		out.Players = append(out.Players, player)
 	}
 	attempt.Points = points
 
-	// A wrong answer with the other finalist still to come leaves everything where it
-	// is: same question, same slot, same opening seat. The attempt row that was just
-	// written is the whole of what changed, and it is what moves the question across.
-	if !in.Correct && attempts < FinalistCount-1 {
+	// A wrong answer with somebody still to come leaves everything where it is: same
+	// question, same slot, same opening seat. The attempt row that was just written is
+	// the whole of what changed, and it is what moves the question across. At the
+	// smallest table there is nobody left to come -- FinaleAnsweringSeat says so -- so
+	// this falls through and settles the question below on the first miss.
+	if !in.Correct && session.FinaleAnsweringSeat(attempts+1) >= 0 {
 		session.UpdatedAt = now
 
 		if err := s.store.RecordTurn(ctx, session, out); err != nil {

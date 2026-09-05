@@ -7,7 +7,7 @@ import {
 
 export { duplicateSeats, seatedNames } from "@/features/table/one-device-table";
 
-export const MIN_PLAYERS = 3;
+export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 8;
 
 const LIMITS: TableLimits = { min: MIN_PLAYERS, max: MAX_PLAYERS };

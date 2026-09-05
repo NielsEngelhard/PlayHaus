@@ -127,7 +127,8 @@ func (s *Session) TurnGuesser() int {
 // try each, taken in turn, and a leftover is gone once somebody has it. It is also the
 // list a settle is allowed to spend only once per name; see bonusLedger.
 //
-// Empty too at a table of two, which neither round ever sees: MinPlayers is three.
+// Empty too at a table of two: there is nobody besides the reader and the guesser left
+// over to take a leftover guess.
 func (s *Session) BonusSeats() []int {
 	guesser := s.TurnGuesser()
 	if guesser < 0 {
@@ -197,10 +198,38 @@ func (s *Session) SeatFinale(a, b, master int) {
 // so who is behind changes as the round is played, and the rule the whole finale hangs
 // on is that the question always opens on whoever most needs it to. It is the same rule
 // LowestScoringSeat gives every other round, read across two seats instead of the table.
+//
+// Not at the smallest table, though. There a miss never crosses to the other finalist --
+// see FinaleAnsweringSeat, which has nobody to cross to -- so a player who is behind and
+// keeps missing would keep opening every question by that same rule forever, and the
+// player ahead would never be asked a single one. There the hot seat alternates instead,
+// the same way every other round here already plays at a table of two.
 func (s *Session) OpenFinaleQuestion() {
-	if seat := s.FinaleOpener(); seat >= 0 {
+	if !FinaleHasReferee(len(s.Players)) {
+		seat := s.FinaleRival(s.HotSeat)
+		if seat < 0 {
+			// The very first question, or a hot seat that was not already a finalist's
+			// -- fall back to whoever is behind, the same as the referee case opens on.
+			seat = s.FinaleOpener()
+		}
+		if seat < 0 {
+			return
+		}
+
 		s.HotSeat = seat
+		// No neutral reader to leave the chair with, so it moves with the hot seat
+		// instead -- the same rule every hot seat round already plays by: whoever is
+		// not being asked holds the phone.
+		s.QuizMasterSeat = ReaderFor(seat, len(s.Players))
+		return
 	}
+
+	seat := s.FinaleOpener()
+	if seat < 0 {
+		return
+	}
+
+	s.HotSeat = seat
 }
 
 // Finalists is the pair round 6 is between, and false before it has opened.
@@ -270,6 +299,11 @@ func (s *Session) FinaleAnsweringSeat(attempts int) int {
 		return -1
 	case attempts == 0:
 		return s.HotSeat
+	case !FinaleHasReferee(len(s.Players)):
+		// The only other seat is the one that was just holding the phone: they have
+		// already seen the answer, so a miss ends the question here rather than
+		// crossing to them the way it would with a neutral reader in the chair.
+		return -1
 	default:
 		return s.FinaleRival(s.HotSeat)
 	}
@@ -301,11 +335,19 @@ func (s *Session) OpenFinale() {
 		return ranks[i].seat < ranks[j].seat
 	})
 
-	if len(ranks) <= FinalistCount {
-		// A table with nobody spare to read is below MinPlayers, which cannot happen
-		// through the setup form -- but this is arithmetic on a slice, not a rule about
-		// how many people may sit down, so it declines rather than seating a finalist
-		// as their own quizmaster.
+	if len(ranks) < FinalistCount {
+		// Arithmetic on a slice, not a rule about how many people may sit down -- but
+		// there is nobody to seat a finale between.
+		return
+	}
+
+	if !FinaleHasReferee(len(ranks)) {
+		// The smallest table the game allows: both players are already the finale, and
+		// there is nobody spare to hold the phone. They read to each other instead, the
+		// same way every other round here already plays at a table of two -- see
+		// OpenFinaleQuestion.
+		s.FinalistSeatA, s.FinalistSeatB = ranks[0].seat, ranks[1].seat
+		s.OpenFinaleQuestion()
 		return
 	}
 

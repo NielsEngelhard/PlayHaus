@@ -1,37 +1,58 @@
 import type { HotSeatTurn } from "./hot-seat";
 import type { QuizDetail } from "./pubquizr-quizzes";
 import type { QuizSession } from "./pubquizr-sessions";
+import { CLOSEST_POINTS } from "./round-three";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
 /**
- * Round 6, the finale: the top two players, head to head, read to by a third.
+ * Round 6, the finale: the top two players, head to head, read to by a third where the
+ * table has one to spare.
  *
  * It reads like round 1 -- an open question, asked and answered out loud -- and it passes
  * like round 1 too, but down a line exactly two seats long. The question opens on
  * whichever finalist is behind; if they miss it, it crosses to the other one, who can
- * still take the whole hundred for it. Miss it twice and it is dead. That is why
- * `finaleTurnOf` hands back a `HotSeatTurn` rather than a shape of its own -- `nextUp` is
- * exactly the "who gets it if this is wrong" that `HotSeatBoard` already draws for round
- * 1, with the rest of the table taken away.
+ * still take the points for it. Miss it twice and it is dead. That is why `finaleTurnOf`
+ * hands back a `HotSeatTurn` rather than a shape of its own -- `nextUp` is exactly the
+ * "who gets it if this is wrong" that `HotSeatBoard` already draws for round 1, with the
+ * rest of the table taken away.
  *
  * Two things are different from every other round, and both are about who is holding the
  * phone. The quizmaster is not playing: they are the best score that did not reach the
  * finale, and they read the whole round rather than the reading moving on with the seat.
- * And a correct answer pays `FINALE_POINTS` onto the same running `score` the first five
- * rounds built up, so the night is won on one tally -- see `finalStandingsOf`.
+ * And a correct answer pays onto the same running `score` the first five rounds built up,
+ * so the night is won on one tally -- see `finalStandingsOf`.
+ *
+ * The smallest table the game allows has nobody spare for that third seat -- both players
+ * are already the finale. There the phone moves with the hot seat instead, the same way
+ * every other round already plays at a table of two, a miss ends the question rather than
+ * crossing to somebody who was just holding the phone, and it pays a normal round's points
+ * rather than pretending to be the round that decides the whole night. See
+ * `FinaleHasReferee` and `FinalePointsFor` in `rules.go`.
  */
 
 /** Kept in step with `RoundFinale` in Go. */
 export const ROUND_FINALE = 6;
+
+/** Kept in step with `FinalistCount` in Go: how many players reach the finale. */
+export const FINALIST_COUNT = 2;
 
 /**
  * What a correct finale question pays. Mirrors `FinalePoints`.
  *
  * A hundred, against the ones and twos the first five rounds hand out: the finale is the
  * round that decides the night, and paying it in the same currency as everything else is
- * what lets there be one scoreboard instead of two.
+ * what lets there be one scoreboard instead of two. Only at a table with a seat spare to
+ * read it, though -- see `finalePointsFor`.
  */
 export const FINALE_POINTS = 100;
+
+/**
+ * What a correct finale question actually pays at a table this size. Mirrors
+ * `FinalePointsFor` in `rules.go`.
+ */
+export function finalePointsFor(players: number): number {
+    return players > FINALIST_COUNT ? FINALE_POINTS : CLOSEST_POINTS;
+}
 
 /**
  * The two players round 6 is between, or null before the finale has opened.
@@ -82,7 +103,11 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
     // The question is still on the seat it opened on, so the other finalist has not had
     // it yet and a wrong answer crosses the table to them. Once it has crossed there is
     // nobody left, which is what `hotSeat` staying put through the pass is for.
-    const waiting = session.answeringSeat === session.hotSeat
+    //
+    // Not at the smallest table, though: there the only other seat is the one that was
+    // just holding the phone, and a miss ends the question rather than crossing to them
+    // -- see `FinaleAnsweringSeat` in `rules.go`.
+    const waiting = seats.length > FINALIST_COUNT && session.answeringSeat === session.hotSeat
         ? finalists.find(finalist => finalist.seat !== session.answeringSeat) ?? null
         : null;
 
@@ -104,7 +129,7 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         alwaysNextUp: null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
-        worth: FINALE_POINTS
+        worth: finalePointsFor(seats.length)
     };
 }
 

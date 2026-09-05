@@ -542,7 +542,7 @@ export const en = {
             players: {
                 label: 'Who is playing',
                 seat: 'Player {{seat}}',
-                tooFew: 'A quiz needs at least three players.',
+                tooFew: 'A quiz needs at least two players.',
                 tooMany: 'Eight players is the most that fit round one phone.',
                 duplicate: 'Two players cannot share a name.',
             },
@@ -1000,7 +1000,7 @@ export const en = {
             expired: 'You have been signed out. Sign in again to start a quiz.',
             quizGone: 'That quiz is no longer available. Pick another one.',
             badTable: 'The table was refused. Check the names and try again.',
-            tooFewPlayers: 'A quiz needs at least three players.',
+            tooFewPlayers: 'A quiz needs at least two players.',
             tooManyPlayers: 'Eight players is the most that fit round one phone.',
             duplicateName: 'Two players cannot share a name.',
             quizTooSmall: 'This quiz does not have enough questions for that many players. Pick another quiz, or play with fewer people.',
@@ -1150,6 +1150,17 @@ export const en = {
                     imposter: {
                         name: 'Imposter',
                         explanation: 'Your word is not the one the rest of the table got. Bluff along and survive.'
+                    },
+                    /**
+                     * What a civilian and an imposter are shown instead of `civilian` or
+                     * `imposter` above — those two stay in the file for the briefing and the
+                     * end-of-game reveal, which are allowed to name names. The reveal is not:
+                     * telling the imposter what they are here is the one thing that gives
+                     * them a head start nobody else at the table gets.
+                     */
+                    unknown: {
+                        name: 'Civilian or Imposter',
+                        explanation: "You don't know which one you are. Watch the table, listen to the word, and work it out."
                     },
                     nitwit: {
                         name: 'The nitwit',

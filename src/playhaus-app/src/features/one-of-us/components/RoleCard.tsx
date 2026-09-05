@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { OneOfUsRole } from "@/features/one-of-us/models";
-import { faceOf } from "@/features/one-of-us/roles";
+import { faceOf, revealFaceOf } from "@/features/one-of-us/roles";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { View, type StyleProp, type ViewStyle } from "react-native";
@@ -12,6 +12,13 @@ interface Props {
     label?: string
     explanation?: string
     style?: StyleProp<ViewStyle>
+    /**
+     * The personal reveal, rather than the briefing or an after-the-fact announcement.
+     * Swaps `faceOf` for `revealFaceOf` so a civilian and an imposter draw the identical
+     * card — see `revealFaceOf` for why. Defaults to false, which is every caller except
+     * `WordRevealScreen`.
+     */
+    reveal?: boolean
 }
 
 /**
@@ -27,19 +34,22 @@ interface Props {
  *
  * Two callers, and the difference between them is who is reading. On the reveal it is
  * one person learning about themselves, in the second person, ten seconds before they
- * have to act on it. On the briefing it is the whole table learning what is in the box,
- * before anybody has been dealt anything — the same card, the same colours, but nobody
- * in the room is "you" yet. That is what `label` and `explanation` are for; neither
- * caller gets to change how the card looks, only what it says.
+ * have to act on it — and for a civilian or an imposter that person is not allowed to
+ * learn which one they are, which is what `reveal` is for: it swaps the real face for
+ * `revealFaceOf`'s single "could be either" one. On the briefing it is the whole table
+ * learning what is in the box, before anybody has been dealt anything — the same card,
+ * the same colours, but nobody in the room is "you" yet, so the real faces are fine.
+ * `label` and `explanation` layer on top of either: what the card says, not which one it
+ * is.
  *
- * All three fills are fixed in either scheme, so everything on them is inked rather than
+ * All fills are fixed in either scheme, so everything drawn on them is inked rather than
  * themed.
  */
-export default function RoleCard({ role, label, explanation, style }: Props) {
+export default function RoleCard({ role, label, explanation, style, reveal = false }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    const face = faceOf(role);
+    const face = reveal ? revealFaceOf(role) : faceOf(role);
 
     return (
         <View style={[styles.card, { backgroundColor: face.fill }, style]}>

@@ -46,12 +46,16 @@ func (s GormStore) GetOneDeviceGame(ctx context.Context, ownerID string, gameID 
 	return game, nil
 }
 
+// GetOneDeviceGames are the games this player could still walk back into -- the
+// reconnect list, not the archive. A finished game stays in the table (see
+// FinishOneDeviceGame) so its own results screen keeps answering, but it has
+// nothing left to reconnect to and must not haunt this list forever.
 func (s GormStore) GetOneDeviceGames(ctx context.Context, ownerID string) ([]*OneOfUsSingleDeviceGame, error) {
 	var games []*OneOfUsSingleDeviceGame
 
 	if err := s.db.WithContext(ctx).
 		Preload("Players").
-		Where("owner_id = ?", ownerID).
+		Where("owner_id = ? AND finished_at IS NULL", ownerID).
 		Find(&games).Error; err != nil {
 		return nil, fmt.Errorf(
 			"get OneOfUsSingleDeviceGame: %w",
