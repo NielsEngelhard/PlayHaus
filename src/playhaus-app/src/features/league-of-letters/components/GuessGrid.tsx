@@ -225,6 +225,9 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
     /** 0 on the board, 1 at the top of the hop. */
     const [hop] = useState(() => new Animated.Value(0));
 
+    const [shown, setShown] = useState(letter);
+    if (letter !== '' && shown !== letter) setShown(letter);
+
     const wasFilled = useRef(filled);
     const wasMarked = useRef(mark);
 
@@ -232,25 +235,31 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
         if (wasFilled.current === filled) return;
         wasFilled.current = filled;
 
-        // Backspaced: nothing to play, just be ready for the next letter to land.
-        if (!filled) {
+        if (filled) {
             landing.setValue(0);
-            return;
+            const drop = Animated.timing(landing, {
+                toValue: 1,
+                duration: FILL_MS,
+                // Overshoots a hair past full size on the way in, so the letter arrives with
+                // a knock rather than growing into place.
+                easing: Easing.out(Easing.back(2)),
+                useNativeDriver
+            });
+
+            drop.start();
+            return () => drop.stop();
         }
 
-        landing.setValue(0);
-        const drop = Animated.timing(landing, {
-            toValue: 1,
+        const lift = Animated.timing(landing, {
+            toValue: 0,
             duration: FILL_MS,
-            // Overshoots a hair past full size on the way in, so the letter arrives with
-            // a knock rather than growing into place.
-            easing: Easing.out(Easing.back(2)),
+            easing: Easing.in(Easing.back(2)),
             useNativeDriver
         });
 
-        drop.start();
-        return () => drop.stop();
-    }, [filled, landing]);
+        lift.start(({ finished }) => finished && setShown(''));
+        return () => lift.stop();
+    }, [filled, letter, landing]);
 
     useEffect(() => {
         if (wasMarked.current === mark) return;
@@ -333,13 +342,9 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                     // lands on the design's 16 at the full 58.
                     borderRadius: Math.min(16, Math.round(size * 0.28)),
                     transform: [
-                        // Scaled with the tile so the wave is the same shape on a phone as
-                        // it is on a tablet.
                         { translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.3] }) },
                         { scale: hop.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] }) },
-                        { scale: filled ? landing.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) : 1 },
-                        // Never quite zero: a tile with no height at all blinks out of
-                        // existence on web instead of turning edge-on.
+                        { scale: shown ? landing.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) : 1 },
                         { scaleY: turn.interpolate({ inputRange: [0, 1], outputRange: [0.04, 1] }) }
                     ]
                 },
@@ -354,7 +359,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                         // A typed-but-unsubmitted letter stands up off the page; an empty
                         // slot sits back, the same way `WordLengthInput` separates chosen
                         // from not.
-                        : letter
+                        : shown
                             ? styles.tileFilled
                             : styles.tileEmpty
             ]}
@@ -368,7 +373,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                     }
                 ]}
             >
-                {letter}
+                {shown}
             </AppText>
         </Animated.View>
     )
