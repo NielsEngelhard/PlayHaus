@@ -127,6 +127,11 @@ const useStyles = createThemedStyles(theme => ({
     card: {
         flexDirection: 'row',
         alignItems: 'center',
+        // `gap` is the floor — how close two segments (or a segment and its divider) are
+        // allowed to sit. `space-between` then hands out whatever room is left over the
+        // same way between every pair, divider included, so the card reads as evenly laid
+        // out across its full width instead of a cluster of chips against its left edge.
+        justifyContent: 'space-between',
         gap: 11,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,

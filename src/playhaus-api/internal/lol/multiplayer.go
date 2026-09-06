@@ -570,7 +570,7 @@ func (s *Service) SubmitMultiplayerGuess(ctx context.Context, in SubmitMultiplay
 	// Scored against what the round had revealed before this row, which on a shared
 	// board is what the whole table already knew. Same function as solo: the scale
 	// pays for information, and information here is public.
-	score := DetermineScore(*guess, round.Guesses)
+	score := DetermineScore(*guess, round.Guesses, round.FirstLetter())
 
 	return s.recordTurn(ctx, game, round, guess, in.UserID, score)
 }

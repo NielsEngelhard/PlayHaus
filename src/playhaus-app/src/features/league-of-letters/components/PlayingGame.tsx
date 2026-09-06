@@ -28,7 +28,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { playYourTurn } from "@/utils/your-turn-sound";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Animated, Platform, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MetaDataRow from "./MetaDataRow";
 
@@ -99,6 +99,21 @@ interface Props {
 
 /** How long a nudge like "Die had je al." stays up before it stops being useful. */
 const NOTICE_MS = 2500;
+
+/**
+ * How long the nudge takes to fade in or out.
+ *
+ * The pill used to snap straight in and out with the rest of the board frozen around
+ * it, which read as the screen flickering rather than as a message arriving — every
+ * other transition here gets a beat, and this was the one exception. Short on purpose:
+ * this is a nudge, not a page arriving.
+ */
+const NOTICE_FADE_MS = 140;
+
+// react-native-web has no native animation module, so asking for one there is a
+// console warning and nothing else. Transforms and opacity are driver-safe everywhere
+// else.
+const useNativeDriver = Platform.OS !== 'web';
 
 /**
  * The room kept free for a nudge, whether or not there is one up.
@@ -206,6 +221,17 @@ export default function PlayingGame({
      * blink the second away.
      */
     const [notice, setNotice] = useState<Phrase | null>(null);
+    /**
+     * What the pill actually renders, a beat behind `notice` clearing — so the fade-out
+     * below has words to fade rather than a blank pill disappearing on schedule. Adjusted
+     * during render, the same way `newBoard` is below, so a new notice's own text is
+     * never painted a frame late.
+     */
+    const [shownNotice, setShownNotice] = useState<Phrase | null>(null);
+    if (notice !== null && shownNotice !== notice) {
+        setShownNotice(notice);
+    }
+    const [noticeOpacity] = useState(() => new Animated.Value(0));
     /**
      * The board is still turning its last row over. Nothing that knows the answer may be
      * shown while it is, or the keyboard and the end-of-round line spoil the tiles that
@@ -358,6 +384,29 @@ export default function PlayingGame({
         const clear = setTimeout(() => setNotice(null), NOTICE_MS);
         return () => clearTimeout(clear);
     }, [notice]);
+
+    // Fades the pill to match: in when a new notice arrives, out when it is cleared. The
+    // text itself only disappears once the fade-out has actually finished, in the
+    // animation's own callback rather than in the body here.
+    useEffect(() => {
+        if (notice !== null) {
+            const fadeIn = Animated.timing(noticeOpacity, {
+                toValue: 1,
+                duration: NOTICE_FADE_MS,
+                useNativeDriver
+            });
+            fadeIn.start();
+            return () => fadeIn.stop();
+        }
+
+        const fadeOut = Animated.timing(noticeOpacity, {
+            toValue: 0,
+            duration: NOTICE_FADE_MS,
+            useNativeDriver
+        });
+        fadeOut.start(({ finished }) => finished && setShownNotice(null));
+        return () => fadeOut.stop();
+    }, [notice, noticeOpacity]);
 
     /**
      * On a shared board the round moves itself on.
@@ -556,12 +605,12 @@ export default function PlayingGame({
                 went would resize every tile on the board twice per nudge. Takes no
                 touches, so nothing underneath it stops working. */}
             <View style={styles.noticeLane} pointerEvents='none'>
-                {!verdict && notice && (
-                    <View style={styles.notice}>
-                        <AppText style={styles.noticeText}>{phrase(notice)}</AppText>
-                    </View>
+                {!verdict && shownNotice && (
+                    <Animated.View style={[styles.notice, { opacity: noticeOpacity }]}>
+                        <AppText style={styles.noticeText}>{phrase(shownNotice)}</AppText>
+                    </Animated.View>
                 )}
-            </View>            
+            </View>
 
             {/* Keyed on the round number, which is what replays the lift: a new round is
                 a new board, and remounting it is what clears the last one's tiles as

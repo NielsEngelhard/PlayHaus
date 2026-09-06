@@ -230,7 +230,7 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	// stand -- the guess is scored before it is appended, and this is the same order.
 	roundOver := RoundIsOver(solved, guess.GuessNumber)
 
-	game.Score += DetermineScore(*guess, round.Guesses)
+	game.Score += DetermineScore(*guess, round.Guesses, round.FirstLetter())
 
 	outcome := &GuessOutcome{
 		Guess:        guess,

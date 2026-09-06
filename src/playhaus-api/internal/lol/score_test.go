@@ -21,7 +21,7 @@ func TestDetermineScore(t *testing.T) {
 	// known going in, so every letter is news. Spelled out of the rules rather than
 	// as a bare 12, so re-pricing a letter in rules.go moves this with it.
 	wantOpening := 2*InstantCorrectPoints + 2*WrongPlacePoints
-	if got := DetermineScore(opening, nil); got != wantOpening {
+	if got := DetermineScore(opening, nil, ""); got != wantOpening {
 		t.Fatalf("opening guess scored %d, want %d", got, wantOpening)
 	}
 
@@ -32,7 +32,7 @@ func TestDetermineScore(t *testing.T) {
 	// time. The m and the k had only been sighted, so placing them is worth the
 	// after-hint rate -- plus the flat bonus for landing the word.
 	wantSolving := 2*CorrectAfterHintPoints + WordGuessedPoints
-	if got := DetermineScore(solving, []LeagueOfLettersGuess{opening}); got != wantSolving {
+	if got := DetermineScore(solving, []LeagueOfLettersGuess{opening}, ""); got != wantSolving {
 		t.Fatalf("solving guess scored %d, want %d", got, wantSolving)
 	}
 }
@@ -45,14 +45,37 @@ func TestDetermineScoreIgnoresWhatIsAlreadyKnown(t *testing.T) {
 	// The same word again. Every letter repeats something the round has already
 	// said, so it earns nothing at all -- which is the point of scoring against
 	// the history rather than the marks alone.
-	if got := DetermineScore(played("kelm", target), []LeagueOfLettersGuess{first}); got != 0 {
+	if got := DetermineScore(played("kelm", target), []LeagueOfLettersGuess{first}, ""); got != 0 {
 		t.Fatalf("repeated guess scored %d, want 0", got)
 	}
 }
 
 func TestDetermineScoreSkipsAbsentLetters(t *testing.T) {
 	// Nothing in common: four absent letters and no solve.
-	if got := DetermineScore(played("vocht", "spaar"), nil); got != 0 {
+	if got := DetermineScore(played("vocht", "spaar"), nil, ""); got != 0 {
 		t.Fatalf("guess with nothing in it scored %d, want 0", got)
+	}
+}
+
+func TestDetermineScoreNeverPaysForTheGivenLetter(t *testing.T) {
+	const target = "melk"
+
+	// The round hands out "m" for free, so the very first guess landing it in
+	// position 0 must not pay the instant-correct rate -- that would reward a
+	// letter nobody found. The e, l and k are still genuine discoveries.
+	opening := played("melk", target)
+	wantOpening := 3*InstantCorrectPoints + WordGuessedPoints
+	if got := DetermineScore(opening, nil, "m"); got != wantOpening {
+		t.Fatalf("opening guess scored %d, want %d", got, wantOpening)
+	}
+
+	// If the given letter also turns up again elsewhere in the word, that
+	// occurrence is not news either -- the round already told the player "m" is
+	// in the word. Only the "a" and the "s" are things the guess actually found.
+	const targetWithRepeat = "mams"
+	repeated := played("mams", targetWithRepeat)
+	wantRepeated := 2*InstantCorrectPoints + WordGuessedPoints
+	if got := DetermineScore(repeated, nil, "m"); got != wantRepeated {
+		t.Fatalf("guess with repeated given letter scored %d, want %d", got, wantRepeated)
 	}
 }

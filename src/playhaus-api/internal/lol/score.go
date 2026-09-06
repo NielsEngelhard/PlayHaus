@@ -1,13 +1,26 @@
 package lol
 
+import "strings"
+
 // DetermineScore is what one guess earned, given the guesses that came before it
-// in the same round.
+// in the same round and the letter the round handed out for free.
 //
 // `previousGuesses` is the round's history *without* `currentGuess` in it —
 // SubmitGuess scores a guess before appending it, which is the only order in
 // which "already known" means anything.
-func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueOfLettersGuess) int {
+//
+// `hintLetter` is the round's opening letter (`LeagueOfLettersRound.FirstLetter`).
+// It is pre-seeded into `placed` rather than skipped by position, because it is
+// already known the instant the round starts -- before there is any guess
+// history to derive it from, and regardless of where else it turns up in the
+// word. Without this, the very first guess of every round would score free
+// points for a letter nobody actually guessed, since position 0 is always
+// LetterCorrect before any guess has run.
+func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueOfLettersGuess, hintLetter string) int {
 	placed, spotted := createListOfAlreadyGuessedLetters(previousGuesses)
+	if hintLetter != "" {
+		placed[strings.ToLower(hintLetter)] = true
+	}
 
 	score := 0
 	for _, letter := range currentGuess.Letters {
