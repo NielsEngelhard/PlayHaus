@@ -255,10 +255,15 @@ export default function PlayingGame({
      * only a later handoff counts as one.
      */
     const wasMyTurn = useRef(canPlay);
+    // Handed to `InGameHeader` as `turnFlickerAt` — a header has no other way to tell a
+    // turn starting from any other render, since `canPlay` alone is still true a moment
+    // later and would have nothing left to change.
+    const [turnFlickerAt, setTurnFlickerAt] = useState(0);
     useEffect(() => {
         if (multiplayer && canPlay && !wasMyTurn.current) {
             playYourTurn();
             setNotice({ key: 'lol.game.yourTurnNotice' });
+            setTurnFlickerAt(Date.now());
         }
         wasMyTurn.current = canPlay;
     }, [multiplayer, canPlay]);
@@ -492,6 +497,7 @@ export default function PlayingGame({
                 closeLabel={t('common.back')}
                 label={t('lol.game.roundOf', { round: round.roundNumber, total: game.totalRounds })}
                 segments={segments}
+                turnFlickerAt={turnFlickerAt}
                 /*
                  * The two switches the app's header carries everywhere else. A board has
                  * claimed the chrome — see `useChromeless` — and these are the two of its
