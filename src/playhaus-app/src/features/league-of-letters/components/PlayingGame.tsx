@@ -101,7 +101,8 @@ interface Props {
 const NOTICE_MS = 2500;
 
 /**
- * How long the nudge takes to fade in or out.
+ * How long the nudge takes to slide and fade in or out — one clock for both, since
+ * they ride the same Animated.Value below rather than two that could drift apart.
  *
  * The pill used to snap straight in and out with the rest of the board frozen around
  * it, which read as the screen flickering rather than as a message arriving — every
@@ -116,12 +117,10 @@ const NOTICE_FADE_MS = 140;
 const useNativeDriver = Platform.OS !== 'web';
 
 /**
- * The room kept free for a nudge, whether or not there is one up.
- *
- * Tall enough for the pill and no taller. Stated as a height rather than left to the
- * pill, because the point of the lane is that it is the same size when it is empty.
+ * How far the toast travels on its way in — enough to read as dropping in from
+ * somewhere, short enough that it doesn't overshoot into the header above it.
  */
-const NOTICE_LANE_HEIGHT = 30;
+const NOTICE_SLIDE_PX = 30;
 
 /**
  * How a new round arrives: the board and the controls under it lift into place.
@@ -561,75 +560,103 @@ export default function PlayingGame({
                 }
             />
 
-            <MetaDataRow
-                game={game}
-                outcome={outcome}
-                firstLetter={firstLetter}
-                finished={finished}
-                multiplayer={multiplayer}
-                myGuesses={myGuesses}
-                round={round}                
-            />
-
-            {/* Solo's answer to the row of chips below: you, your running total, and how
-                long you have been at it. The clock stops when the game does, so what is
-                left standing over the last verdict is how long the game took. */}
-            {!multiplayer && player !== undefined && (
-                <SoloStatusRow
-                    name={player.name}
-                    avatarColorId={player.avatarColorId}
-                    score={game.score}
-                    startedAt={game.createdAt}
-                    running={!gameOver}
+            {/* Everything the notice can afford to drop in on top of: the round's own
+                stats, the roster, and the board. Wrapped together so the toast below can
+                be positioned once, absolutely, against this box rather than against the
+                whole screen — which would mean landing on top of the header instead. */}
+            <View style={styles.stage}>
+                <MetaDataRow
+                    game={game}
+                    outcome={outcome}
+                    firstLetter={firstLetter}
+                    finished={finished}
+                    multiplayer={multiplayer}
+                    myGuesses={myGuesses}
+                    round={round}
                 />
-            )}
 
-            {multiplayer && game.players && (
-                <PlayerScoreRow
-                    players={game.players}
-                    userId={userId}
-                    online={online}
-                    turnUserId={game.turn?.userId}
-                />
-            )}
-
-            {/* Notification (optional) */}
-            <View style={styles.noticeLane} pointerEvents='none'>
-                {!verdict && shownNotice && (
-                    <Animated.View style={[styles.notice, { opacity: noticeOpacity }]}>
-                        <AppText style={styles.noticeText}>{phrase(shownNotice)}</AppText>
-                    </Animated.View>
+                {/* Solo's answer to the row of chips below: you, your running total, and how
+                    long you have been at it. The clock stops when the game does, so what is
+                    left standing over the last verdict is how long the game took. */}
+                {!multiplayer && player !== undefined && (
+                    <SoloStatusRow
+                        name={player.name}
+                        avatarColorId={player.avatarColorId}
+                        score={game.score}
+                        startedAt={game.createdAt}
+                        running={!gameOver}
+                    />
                 )}
+
+                {multiplayer && game.players && (
+                    <PlayerScoreRow
+                        players={game.players}
+                        userId={userId}
+                        online={online}
+                        turnUserId={game.turn?.userId}
+                    />
+                )}
+
+                {/* Keyed on the round number, which is what replays the lift: a new round is
+                    a new board, and remounting it is what clears the last one's tiles as
+                    well as what starts the animation. Not `boardKey` — that also carries
+                    the hint letter, and a changed hint is not a new round.
+
+                    Prefixed because the controls below rise on the same round number: two
+                    siblings under one parent sharing a key is a key collision, and React
+                    answers it by matching the second element to the first one's fiber —
+                    the board drawn twice, and the keyboard nowhere. */}
+                <SlideFadeIn
+                    key={`board-${round.roundNumber}`}
+                    offsetY={RISE_PX}
+                    durationMs={RISE_MS}
+                    style={styles.board}
+                >
+                    <GuessGrid
+                        wordLength={game.wordLength}
+                        maxGuesses={game.maxGuesses}
+                        guesses={rows}
+                        /*
+                         * The row being typed only exists while the round can still be won,
+                         * and on a shared board it belongs to whoever is up: your own draft
+                         * when that is you, and the letters relayed from their keyboard when
+                         * it is not. One row, whoever is filling it.
+                         */
+                        draft={finished ? '' : canPlay ? draft : (typing ?? '')}
+                    />
+                </SlideFadeIn>
+
+                {/* A toast, not a reserved lane: the old version held a fixed strip of the
+                    column open at all times so a nudge had somewhere to land without
+                    shoving the board around when it arrived — empty far more often than
+                    not, on a screen where every point of height is the grid's. Absolute
+                    and rendered last so it stacks over the metadata row (or the top of
+                    the board itself) instead of pushing either down, and slides off the
+                    same way it came rather than just vanishing. */}
+                <View style={styles.noticeLane} pointerEvents='none'>
+                    {!verdict && shownNotice && (
+                        <Animated.View
+                            style={[
+                                styles.notice,
+                                {
+                                    opacity: noticeOpacity,
+                                    // One value doing both jobs: sliding in is arriving, and
+                                    // it should read as one motion rather than a fade with a
+                                    // slide tacked on a beat later.
+                                    transform: [{
+                                        translateY: noticeOpacity.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [-NOTICE_SLIDE_PX, 0]
+                                        })
+                                    }]
+                                }
+                            ]}
+                        >
+                            <AppText style={styles.noticeText}>{phrase(shownNotice)}</AppText>
+                        </Animated.View>
+                    )}
+                </View>
             </View>
-
-            {/* Keyed on the round number, which is what replays the lift: a new round is
-                a new board, and remounting it is what clears the last one's tiles as
-                well as what starts the animation. Not `boardKey` — that also carries
-                the hint letter, and a changed hint is not a new round.
-
-                Prefixed because the controls below rise on the same round number: two
-                siblings under one parent sharing a key is a key collision, and React
-                answers it by matching the second element to the first one's fiber —
-                the board drawn twice, and the keyboard nowhere. */}
-            <SlideFadeIn
-                key={`board-${round.roundNumber}`}
-                offsetY={RISE_PX}
-                durationMs={RISE_MS}
-                style={styles.board}
-            >
-                <GuessGrid
-                    wordLength={game.wordLength}
-                    maxGuesses={game.maxGuesses}
-                    guesses={rows}
-                    /*
-                     * The row being typed only exists while the round can still be won,
-                     * and on a shared board it belongs to whoever is up: your own draft
-                     * when that is you, and the letters relayed from their keyboard when
-                     * it is not. One row, whoever is filling it.
-                     */
-                    draft={finished ? '' : canPlay ? draft : (typing ?? '')}
-                />
-            </SlideFadeIn>
 
             {/* The keyboard stays mounted through the verdict rather than being swapped out
                 for it: pulling a full-height keyboard out of the tree and dropping a much
@@ -740,15 +767,30 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'space-between',
         gap: Spacing.two
     },
+    // Wraps the metadata row, the roster, and the board — see the comment at the call
+    // site. Its own `gap` stands in for the one `screen` used to give these when they
+    // were its own direct children.
+    stage: {
+        flex: 1,
+        width: '100%',
+        gap: Spacing.three - 4
+    },
     board: {
         flex: 1,
         width: '100%'
     },
+    // Absolute rather than in flow, so it costs `stage` nothing when there is no notice
+    // up. `zIndex`/`elevation` put it over the metadata row and the board underneath —
+    // both painted earlier in the tree, but stacking here is worth stating rather than
+    // leaving to render order surviving the next reshuffle of this file.
     noticeLane: {
-        flexShrink: 0,
-        height: NOTICE_LANE_HEIGHT,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
         alignItems: 'center',
-        justifyContent: 'center'
+        zIndex: 5,
+        elevation: 5
     },
     notice: {
         borderWidth: theme.borderWidth,
