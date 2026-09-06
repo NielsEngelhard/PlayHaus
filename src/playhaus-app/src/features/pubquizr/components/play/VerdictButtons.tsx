@@ -39,9 +39,12 @@ interface Props {
  * the board by `TurnStrip` rather than again here — the buttons name them too, but
  * only to a screen reader, where there is no banner overhead to have read it from.
  *
- * The two lines underneath say what each button will actually do before it is pressed.
- * "Wrong" means two quite different things depending on whether there is anybody left
- * to ask, and "correct" is no longer only "score it" — most questions in this round buy
+ * What each button actually does lives on the button now rather than in a caption
+ * underneath both of them: a third row says where the question goes next, at the
+ * moment a thumb is already over the button that decides it — a caption read only
+ * after the choice was too easy to miss under table noise and time pressure. "Wrong"
+ * means two quite different things depending on whether there is anybody left to ask,
+ * and "correct" is no longer only "score it" — most questions in this round buy
  * nothing but the seat, and which sort this one is has to be readable from here rather
  * than worked out from the number at the top of the board.
  */
@@ -59,105 +62,79 @@ export default function VerdictButtons({
 
     const scoring = worth > 0;
 
+    // Round 2 overrides the ordinary "who's next" arithmetic with one name that is
+    // true no matter which button gets pressed — see `alwaysNextUp` above. Either way
+    // it is Wrong's press that walks straight into a hand-off (`PassOnPrompt`), so
+    // that is the button that gets to say who it is.
+    const handoffSeat = alwaysNextUp ?? nextUp;
+
     return (
-        <View style={styles.container}>
-            <View style={styles.buttons}>
-                <Pressable
-                    onPress={() => onVerdict(false)}
-                    disabled={busy}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('pubquizr.play.markWrong', { name: answering.name })}
-                    accessibilityState={{ disabled: busy }}
-                    style={[styles.button, styles.wrong, busy && styles.dimmed]}
-                >
-                    <Feather name="x" size={20} color={theme.colors.destructive} />
+        <View style={styles.buttons}>
+            <Pressable
+                onPress={() => onVerdict(false)}
+                disabled={busy}
+                accessibilityRole="button"
+                accessibilityLabel={t('pubquizr.play.markWrong', { name: answering.name })}
+                accessibilityState={{ disabled: busy }}
+                style={[styles.button, styles.wrong, busy && styles.dimmed]}
+            >
+                <Feather name="x" size={20} color={theme.colors.destructive} />
 
-                    <AppText style={styles.wrongLabel}>{t('pubquizr.play.wrong')}</AppText>
-                </Pressable>
+                <AppText style={styles.wrongLabel}>{t('pubquizr.play.wrong')}</AppText>
 
-                <Pressable
-                    onPress={() => onVerdict(true)}
-                    disabled={busy}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('pubquizr.play.markCorrect', { name: answering.name })}
-                    accessibilityState={{ disabled: busy }}
-                    style={[styles.button, styles.correct, busy && styles.dimmed]}
-                >
-                    <Feather name="check" size={22} color={Brand.ink} />
+                {handoffSeat !== null ? (
+                    <View style={styles.handoff}>
+                        <Feather name="arrow-right" size={10} color={theme.colors.textMuted} />
 
-                    <AppText style={styles.correctLabel}>{t('pubquizr.play.correct')}</AppText>
-                </Pressable>
-            </View>
+                        <View style={[styles.handoffAvatar, { backgroundColor: handoffSeat.swatch.color }]}>
+                            <AppText style={[styles.handoffInitials, { color: handoffSeat.swatch.foreground }]}>
+                                {handoffSeat.initials}
+                            </AppText>
+                        </View>
 
-            {alwaysNextUp !== null ? (
-                // Round 2: one line, true either way, so there is nothing for the
-                // quizmaster to work out from which button they are about to press.
-                <HandoffHint
-                    text={t('pubquizr.play.choiceAlwaysPasses', { name: alwaysNextUp.name })}
-                    seat={alwaysNextUp}
-                />
-            ) : (
-                <>
-                    <AppText style={[styles.hint, scoring && styles.hintScoring]}>
+                        <AppText style={styles.handoffName}>{handoffSeat.name}</AppText>
+                    </View>
+                ) : (
+                    <AppText style={styles.caption}>{t('pubquizr.play.wrongEndsQuestion')}</AppText>
+                )}
+            </Pressable>
+
+            <Pressable
+                onPress={() => onVerdict(true)}
+                disabled={busy}
+                accessibilityRole="button"
+                accessibilityLabel={t('pubquizr.play.markCorrect', { name: answering.name })}
+                accessibilityState={{ disabled: busy }}
+                style={[styles.button, styles.correct, busy && styles.dimmed]}
+            >
+                <Feather name="check" size={22} color={Brand.ink} />
+
+                <AppText style={styles.correctLabel}>{t('pubquizr.play.correct')}</AppText>
+
+                {alwaysNextUp === null && (
+                    <AppText style={styles.correctCaption}>
                         {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
                         {scoring ? ` · ${t('pubquizr.play.worthPoints', { worth })}` : ''}
                     </AppText>
-
-                    {nextUp === null ? (
-                        <AppText style={styles.hint}>
-                            {t('pubquizr.play.wrongEndsQuestion')}
-                        </AppText>
-                    ) : (
-                        <HandoffHint
-                            text={t('pubquizr.play.wrongPassesTo', { name: nextUp.name })}
-                            seat={nextUp}
-                        />
-                    )}
-                </>
-            )}
-        </View>
-    )
-}
-
-/**
- * The one line a quizmaster cannot afford to miss: who this goes to next. Set apart
- * from the plain caption above it with a bordered pill and the seat's own avatar, so a
- * glance at the screen is enough — reading the sentence should not be the only way to
- * find out.
- */
-function HandoffHint({ text, seat }: { text: string, seat: Seat }) {
-    const styles = useStyles();
-
-    return (
-        <View style={styles.handoff}>
-            <Feather name="arrow-right" size={13} color={Brand.ink} />
-
-            <View style={[styles.handoffAvatar, { backgroundColor: seat.swatch.color }]}>
-                <AppText style={[styles.handoffInitials, { color: seat.swatch.foreground }]}>
-                    {seat.initials}
-                </AppText>
-            </View>
-
-            <AppText style={styles.handoffText}>{text}</AppText>
+                )}
+            </Pressable>
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    container: {
-        flexShrink: 0
-    },
-
     buttons: {
+        flexShrink: 0,
         flexDirection: 'row',
         gap: 11
     },
 
     button: {
-        height: 66,
+        height: 74,
+        paddingHorizontal: 8,
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 2,
+        gap: 3,
         borderRadius: 18,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border
@@ -192,54 +169,49 @@ const useStyles = createThemedStyles(theme => ({
         color: Brand.ink
     },
 
-    hint: {
-        marginTop: 9,
+    // Same weight and colour as `handoffName` — this is the same row, just without
+    // anybody to point an arrow at.
+    caption: {
         textAlign: 'center',
-        fontSize: 11.5,
-        fontWeight: 600,
+        fontSize: 10.5,
+        fontWeight: 800,
         color: theme.colors.textMuted
     },
 
-    // A question that pays says so in the scheme's own accent rather than in the grey
-    // the other line wears, because it is the one of the two worth reading twice.
-    hintScoring: {
+    // Ink at 60%, since the fill under this line is mint in both schemes — the same
+    // rule `correctLabel` follows, just softened for a line that is not the verdict.
+    correctCaption: {
+        textAlign: 'center',
+        fontSize: 10.5,
         fontWeight: 800,
-        color: theme.colors.text
+        color: 'rgba(15, 13, 18, 0.6)'
     },
 
-    // Lemon, the same accent the gate button above this screen wears, because this is
-    // the other line a quizmaster cannot afford to skim past.
+    // The one thing a quizmaster cannot afford to miss, riding on the button that
+    // causes it rather than in a caption read only after the choice is made.
     handoff: {
-        marginTop: 9,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        gap: 7,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        borderRadius: 14,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.lemon
+        gap: 4
     },
 
     handoffAvatar: {
-        width: 20,
-        height: 20,
+        width: 16,
+        height: 16,
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     handoffInitials: {
-        fontSize: 9,
+        fontSize: 7,
         fontWeight: 900
     },
 
-    handoffText: {
-        fontSize: 12.5,
-        fontWeight: 900,
-        color: Brand.ink
+    handoffName: {
+        fontSize: 10.5,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
 
     // The same half-strength every other blocked control in the app wears.

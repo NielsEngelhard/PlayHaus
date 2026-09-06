@@ -1,9 +1,9 @@
 import GameIndexPage from "@/components/layout/GameIndexPage";
+import ModeCard from "@/components/ui/ModeCard";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import ModeCard from "@/components/ui/ModeCard";
 import NewQuizCard from "@/features/pubquizr/components/NewQuizCard";
 import QuizPeek from "@/features/pubquizr/components/QuizPeek";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";

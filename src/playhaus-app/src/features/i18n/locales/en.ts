@@ -98,8 +98,8 @@ export const en = {
             label: 'Lobby code'
         },
         /** Heads the list of games, under the ways back into one you already have. */
-        startNew: 'Start something new',
-        bottomTeaser: "More party games coming soon...",
+        startNew: 'All games',
+        bottomTeaser: "More games in the making...",
     },
     games: {
         device: {
@@ -108,11 +108,11 @@ export const en = {
             perPlayerOrOneDevice: 'choice'
         },
         leagueOfLetters: {
-            description: 'Hunt the hidden word. Solo, or humiliate your friends.',
+            description: 'Test your vocabulary. Solo, or against your friends.',
             mainCategory: 'Word guessing',
         },
         quizzer: {
-            description: 'Your own mini pub quiz. Who knows it all?.',
+            description: 'Put your general knowledge to the test.',
             mainCategory: 'Trivia'
         },
         oneOfUs: {
@@ -189,8 +189,8 @@ export const en = {
         permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the code instead.'
     },
     languages: {
-        nl: { description: 'Words from the Dutch list.' },
-        en: { description: 'Words from the English list.' }
+        nl: { description: 'Games in Dutch' },
+        en: { description: 'Games in English' }
     },
     auth: {
         login: {
@@ -255,8 +255,8 @@ export const en = {
         },
         guest: {
             title: 'Guest account',
-            message: 'You are playing as a guest. This account is temporary: your name, colour and played games can be lost once this session ends. Add an email and a password to keep them for good.',
-            action: 'Make it permanent'
+            message: 'You are playing as a guest. This account is temporary: your stats and progress will be lost once things get cleaned up. Add an email address and password to make a real account.',
+            action: 'Upgrade (free)'
         },
         upgrade: {
             title: 'Keep your account',
@@ -284,7 +284,7 @@ export const en = {
             resume: { title: 'Pick up', accent: 'where you left off' }
         },
         loading: 'Looking for your games…',
-        stillRunning: 'Still running',
+        stillRunning: 'Still going',
         orJoin: 'Or join a game',
         nothingRunning: 'Nothing running',
         updated: 'Updated {{time}}',
@@ -317,7 +317,7 @@ export const en = {
         disconnected: 'Lost the connection to the lobby',
         close: 'Close the lobby',
         leave: 'Leave the lobby',
-        joinCode: 'Join code',
+        joinCode: 'Access code',
         code: 'Lobby code',
         codeSpoken: 'Lobby code: {{characters}}',
         copyCode: 'Copy lobby code {{characters}}',
@@ -353,10 +353,10 @@ export const en = {
     },
     lol: {
         index: {
-            description: 'Test your vocabulary, challenge your friends, and try to guess the secret word before you run out of chances. Play solo or against your enemies.',
+            description: 'Test your vocabulary and try to guess the secret word.',
             playingAs: 'Playing as {{name}}',
-            solo: { title: 'Solo', description: 'Three rounds, your rules.', action: 'Set up' },
-            multiplayer: { title: 'Multiplayer', description: 'Race against your friends.', action: 'Open' }
+            solo: { title: 'Solo', description: 'Play alone, nice and easy.', action: 'Set up' },
+            multiplayer: { title: 'Multiplayer', description: 'Create a lobby.', action: 'Open' }
         },
         settings: {
             loading: 'Looking for your game…',
@@ -375,7 +375,7 @@ export const en = {
                 description: 'The word can be any existing word in the language. Switch it off to play with an easier set of words.'
             },
             facts: '{{rounds}} rounds · {{guesses}} guesses per round · first letter given',
-            start: 'Start playing',
+            start: 'Start',
             running: {
                 title: 'You are already playing',
                 message: 'A solo game is still open. Continue where you left off, or throw it away and set up a new one.',
@@ -483,8 +483,8 @@ export const en = {
     },
     pubquizr: {
         index: {
-            description: 'A classic game of trivia with some fun twist to keep you entertained.',
-            oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Play' },
+            description: 'A classic pub quiz with a playful twist.',
+            oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'Everyone on their own.', action: 'Coming soon...' },
             /**
              * The sticker on the corner of the page. `weekday` is spelled one letter to
@@ -611,7 +611,7 @@ export const en = {
             },
             zenMode: {
                 label: 'Zen mode',
-                description: 'No timers. Round 4 — describe it — is left out, and in round 5 the player gets eight guesses instead of twenty seconds.',
+                description: 'No time pressure. Rounds with a timer are swapped out or played differently.',
                 caption: 'Zen · no timers'
             },
             start: 'Start quiz',
@@ -729,21 +729,13 @@ export const en = {
                 reveal: 'Tap to see the answer',
                 revealHint: 'Keep the screen to yourself'
             },
-            /**
-             * The gate in front of the verdict. Named after the person so a stray tap
-             * during a hand-over reads as obviously about somebody else's turn.
-             */
-            validate: "Check {{name}}'s answer",
+            /** The gate in front of the verdict. */
+            validate: 'Assess',
             validateHint: 'Then mark it right or wrong',
             validateLocked: 'Show the answer first',
-            /**
-             * Round 2's gate, which is `validate` and the reveal in one tap — see
-             * `HotSeatBoard`. Named after the person for the same reason `validate` is:
-             * a stray press during a hand-over has to read as obviously somebody else's
-             * turn.
-             */
-            gate: '{{name}} answered, check it',
-            gateHint: "Nothing to tap until they've picked a letter",
+            /** Round 2's gate, which is `validate` and the reveal in one tap — see `HotSeatBoard`. */
+            gate: 'Check the answer',
+            gateHint: 'Wrong passes the question to the next player.',
             wrong: 'Wrong',
             correct: 'Correct',
             /** Read out for the buttons, which are two words on their own. */
@@ -890,7 +882,7 @@ export const en = {
                 /** The ready screen's rules list, one row each rather than one paragraph. */
                 readyRuleOnlyGuesser: 'You describe to {{guesser}}, and only their answers count while the clock is running',
                 readyRuleTime: '{{seconds}} seconds to get through as many of your {{words}} words as you can',
-                readyRuleNoSaying: 'Never say the word itself',
+                readyRuleNoSaying: 'Never say the word itself — it will not count',
                 readyRuleBothScore: 'Every word {{guesser}} gets is a point for them and a point for you',
                 readyRuleBonus: 'When time is up, the other {{others}} each get one guess at a word nobody got',
                 start: 'Show my words and start',
@@ -1005,7 +997,7 @@ export const en = {
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
-                action: "I'm {{name}}, show the question"
+                action: 'Show the question'
             },
             standings: {
                 /**
@@ -1075,22 +1067,22 @@ export const en = {
         }
     },
     oneOfUs: { 
-        index: { 
-            description: "Everyone gets a question/word, e.g. “What would you do if you became invisible?” Everyone answers anonymously, except one player gets a slightly different question/word.", 
-            oneDevice: { 
-                title: "1 device", 
-                description: "Play with 1 phone that is passed around", 
-                action: "Play" 
-            }, 
-            multiDevice: { 
-                title: "1 phone per person", 
-                description: "Create a lobby and invite other players", 
-                action: "Create lobby" 
+        index: {
+            description: "Can you tell the civilians apart from the imposter(s)?",
+            oneDevice: {
+                title: "1 device",
+                description: "Play with 1 phone that is passed around",
+                action: "Play"
+            },
+            multiDevice: {
+                title: "Multi device",
+                description: "Create a lobby and invite other players",
+                action: "Create lobby"
             }
         },
         singleDevice: {
             title: "Play with 1 device",
-            description: "Fill in all the names of the people that you are playing with. Then press start. The game is self-explanatory.",
+            description: "Fill in all the names of the people you are playing with. Then press start.",
             players: {
                 tooFew: 'One of Us needs at least three players.',
                 tooMany: 'Nine players is the most that fit round one phone.',
@@ -1100,7 +1092,7 @@ export const en = {
         settings: {
             wordsOnly: {
                 title: "Use words only",
-                description: "Use words only or use sentences that you should find a fitting answer for."
+                description: "Use words only. Otherwise, a sentence."
             },
             /**
              * Which of the liars this table is willing to be dealt.
@@ -1116,7 +1108,7 @@ export const en = {
              */
             roles: {
                 title: 'Roles',
-                description: 'Which imposters this table can be dealt. Civilians and the mayor are always in the game.',
+                description: 'Which roles can be dealt out.',
                 /** Beside the label, in place of the switches' own answer. */
                 count: '{{enabled}} of {{total}}',
                 /** Under the group, once there is only one switch left standing. */
@@ -1125,12 +1117,12 @@ export const en = {
                     description: 'Gets a different word and has to bluff along.'
                 },
                 nitwit: {
-                    description: 'Gets no word at all. Only dealt at a table of nine.'
+                    description: 'Gets no word at all.'
                 }
             }
         },
         play: {
-            loading: 'loading…',
+            loading: 'Dealing out the words…',
             close: 'Leave the game',
             /**
              * The header, every round.
@@ -1245,16 +1237,12 @@ export const en = {
 
             discuss: {
                 /** The middle of the ring, which has room for three words at most. */
-                ring: 'Talk it out',
-                title: 'Who does not fit?',
-                description: 'No timer. The table decides for itself when it has heard enough.',
-                /**
-                 * The tie rule. Still not enforced by the app — it never sees the
-                 * individual votes, only the one name the table settles on — but a
-                 * table with a mayor is told whose call it is when it cannot settle.
-                 */
-                tieNote: 'Vote tied? Talk it out at the table.',
-                tieNoteMayor: 'Vote tied? {{name}} has the final say as mayor.',
+                ring: 'Vote',
+                title: "Who's getting voted out?",
+                description: "Everyone points at someone they don't trust. Whoever gets the most votes is voted out. Abstaining is not allowed.",
+                /** Shown throughout: nobody gets to argue their case, only vote. */
+                tieNote: "You can't defend your choice. Just vote — no discussion allowed!",
+                tieNoteMayor: "You can't defend your choice. Vote without discussion! If it's a tie, {{name}} decides as mayor.",
                 action: 'Vote'
             },
 
@@ -1278,7 +1266,7 @@ export const en = {
                 ringLabel: 'Voted out',
                 civilian: '{{name}} was one of the civilians.',
                 imposter: '{{name}} was an imposter.',
-                nitwit: '{{name}} was the nitwit — no word at all.',
+                nitwit: '{{name}} was the nitwit.',
                 remaining: '{{players}} still in the game.',
                 next: 'Round {{round}}'
             },
