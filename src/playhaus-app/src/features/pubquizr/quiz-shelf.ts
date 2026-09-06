@@ -43,15 +43,23 @@ export function swatchFor(quiz: QuizListItem): AvatarColor {
     return SWATCHES[hash(quiz.id) % SWATCHES.length];
 }
 
+/** The `YYYY-wNN` a weekly quiz's slug is built from — see `seed.go`'s `weeklySlug`. */
+const WEEKLY_SLUG = /^\d{4}-w(\d{1,2})$/;
+
 /**
- * The two letters on that swatch: the initials of the first two words of the title,
- * or its first two characters when it is one word.
+ * What sits on a quiz's swatch: the week number for a weekly quiz, since that is the
+ * one thing that actually tells two weekly quizzes apart at a glance, or the initials
+ * of the first two words of the title otherwise — its first two characters when the
+ * title is one word.
  *
  * Spread rather than sliced, because a title starting with an emoji or an accented pair
  * cut by index comes out as half a glyph.
  */
-export function initialsFor(title: string): string {
-    const words = title.trim().split(/\s+/).filter(Boolean);
+export function initialsFor(quiz: QuizListItem): string {
+    const week = quiz.category === 'weekly' ? WEEKLY_SLUG.exec(quiz.slug) : null;
+    if (week) return week[1].padStart(2, '0');
+
+    const words = quiz.title.trim().split(/\s+/).filter(Boolean);
 
     if (words.length >= 2) {
         return words.slice(0, 2).map(word => [...word][0]).join('').toUpperCase();

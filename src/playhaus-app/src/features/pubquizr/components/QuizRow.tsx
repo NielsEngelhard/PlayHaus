@@ -76,7 +76,7 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
                     />
                 ) : (
                     <AppText style={[styles.initials, { color: swatch.foreground }]}>
-                        {initialsFor(quiz.title)}
+                        {initialsFor(quiz)}
                     </AppText>
                 )}
             </View>

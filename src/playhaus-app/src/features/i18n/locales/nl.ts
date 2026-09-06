@@ -502,7 +502,7 @@ export const nl: Catalog = {
             },
             zenMode: {
                 label: 'Zen-modus',
-                description: 'Geen tijdsdru. Rondes met een timer worden vervangen of anders gespeeld.',
+                description: 'Geen tijdsdruk. Rondes met een timer worden vervangen of anders gespeeld.',
                 caption: 'Zen · geen timers'
             },
             start: 'Start de quiz',

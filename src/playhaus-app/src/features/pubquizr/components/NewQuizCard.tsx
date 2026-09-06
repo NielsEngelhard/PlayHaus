@@ -58,7 +58,7 @@ export default function NewQuizCard() {
             <View style={styles.middle}>
                 <View style={[styles.swatch, { backgroundColor: swatch.color }]}>
                     <AppText style={[styles.swatchInitials, { color: swatch.foreground }]}>
-                        {initialsFor(quiz.title)}
+                        {initialsFor(quiz)}
                     </AppText>
                 </View>
 
