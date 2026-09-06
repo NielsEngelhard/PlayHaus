@@ -6,14 +6,14 @@ import (
 )
 
 func TestZenLeavesRoundFourOutOfTheRunningOrder(t *testing.T) {
-	classic := RunningOrder(false)
-	zen := RunningOrder(true)
+	classic := RunningOrder(Modes{})
+	zen := RunningOrder(Modes{Zen: true})
 
 	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale}; !slices.Equal(classic, want) {
-		t.Errorf("RunningOrder(false) = %v, want %v", classic, want)
+		t.Errorf("RunningOrder(Modes{}) = %v, want %v", classic, want)
 	}
 	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundFinale}; !slices.Equal(zen, want) {
-		t.Errorf("RunningOrder(true) = %v, want %v", zen, want)
+		t.Errorf("RunningOrder(Modes{Zen: true}) = %v, want %v", zen, want)
 	}
 
 	if got, want := len(classic), Rounds; got != want {
@@ -36,14 +36,14 @@ func TestZenStepsFromRoundThreeStraightToRoundFive(t *testing.T) {
 	}
 
 	for _, row := range table {
-		if got := NextRound(row.zen, row.round); got != row.want {
-			t.Errorf("NextRound(%t, %d) = %d, want %d -- %s",
+		if got := NextRound(Modes{Zen: row.zen}, row.round); got != row.want {
+			t.Errorf("NextRound(zen %t, %d) = %d, want %d -- %s",
 				row.zen, row.round, got, row.want, row.whatItMeans)
 		}
 	}
 
-	if got := NextRound(true, RoundDescribe); got != -1 {
-		t.Errorf("NextRound(true, RoundDescribe) = %d, want -1", got)
+	if got := NextRound(Modes{Zen: true}, RoundDescribe); got != -1 {
+		t.Errorf("NextRound(Modes{Zen: true}, RoundDescribe) = %d, want -1", got)
 	}
 }
 
@@ -52,11 +52,11 @@ func TestZenDealsNoDescribeWords(t *testing.T) {
 
 	quiz := quizCarrying(40)
 
-	zen, err := dealQuestions(quiz, players, true)
+	zen, err := dealQuestions(quiz, players, Modes{Zen: true})
 	if err != nil {
 		t.Fatalf("zen deal: %v", err)
 	}
-	classic, err := dealQuestions(quiz, players, false)
+	classic, err := dealQuestions(quiz, players, Modes{})
 	if err != nil {
 		t.Fatalf("classic deal: %v", err)
 	}
@@ -74,7 +74,7 @@ func TestZenDealsNoDescribeWords(t *testing.T) {
 	if got := inRound(zen, RoundDescribe); got != 0 {
 		t.Errorf("a zen deal wrote %d round 4 words, want none", got)
 	}
-	for _, round := range RunningOrder(true) {
+	for _, round := range RunningOrder(Modes{Zen: true}) {
 		if got, want := inRound(zen, round), inRound(classic, round); got != want {
 			t.Errorf("zen dealt %d questions to round %d, want %d -- the same as always",
 				got, round, want)
@@ -85,10 +85,10 @@ func TestZenDealsNoDescribeWords(t *testing.T) {
 func TestZenDealsAQuizWithNoDescribeWordsAtAll(t *testing.T) {
 	quiz := quizCarrying(0)
 
-	if _, err := dealQuestions(quiz, 4, false); err == nil {
+	if _, err := dealQuestions(quiz, 4, Modes{}); err == nil {
 		t.Fatal("a classic deal took a quiz with nothing to describe")
 	}
-	if _, err := dealQuestions(quiz, 4, true); err != nil {
+	if _, err := dealQuestions(quiz, 4, Modes{Zen: true}); err != nil {
 		t.Errorf("zen deal: %v -- round 4 is not played, so its shelf is not its problem", err)
 	}
 }

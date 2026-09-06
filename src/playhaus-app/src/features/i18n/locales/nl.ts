@@ -511,6 +511,11 @@ export const nl: Catalog = {
                 description: 'Geen tijdsdruk. Rondes met een timer worden vervangen of anders gespeeld.',
                 caption: 'Zen · geen timers'
             },
+            triviaMode: {
+                label: 'Alleen trivia',
+                description: 'Alleen vragen en antwoorden. De omschrijfronde en de ronde met vier antwoorden vallen weg.',
+                caption: 'Alleen trivia · 4 rondes'
+            },
             start: 'Start de quiz',
             loading: 'Kijken of er nog een quiz openstaat…',
             running: {

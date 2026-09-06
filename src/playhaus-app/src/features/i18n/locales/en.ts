@@ -610,6 +610,11 @@ export const en = {
                 description: 'No time pressure. Rounds with a timer are swapped out or played differently.',
                 caption: 'Zen · no timers'
             },
+            triviaMode: {
+                label: 'Trivia only',
+                description: 'Just questions and answers. The describing round and the four-answer round are left out.',
+                caption: 'Trivia only · 4 rounds'
+            },
             start: 'Start quiz',
             loading: 'Checking for an open quiz…',
             running: {

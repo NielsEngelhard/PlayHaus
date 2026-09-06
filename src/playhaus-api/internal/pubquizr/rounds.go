@@ -14,6 +14,15 @@ import "sort"
 // with everything else a rule change touches. What is left here is the Session methods
 // that write the two columns.
 
+// Modes is how this evening was set up, in the shape the running order rules ask for.
+//
+// The columns are the storage and this is the value: nothing outside this method should
+// read ZenMode or TriviaMode to decide what gets played, because "which rounds does that
+// leave" is a rule and rules.go owns it.
+func (s *Session) Modes() Modes {
+	return Modes{Zen: s.ZenMode, Trivia: s.TriviaMode}
+}
+
 // OpenOn puts the next question on one seat and the reading on the seat to its
 // right.
 //
@@ -367,7 +376,7 @@ func (s *Session) OpenFinale() {
 // session was dealt, which only the session knows.
 func (s *Session) TurnsInRound(round int) int {
 	if round == RoundDescribe {
-		if !PlaysRound(s.ZenMode, round) {
+		if !PlaysRound(s.Modes(), round) {
 			return 0
 		}
 

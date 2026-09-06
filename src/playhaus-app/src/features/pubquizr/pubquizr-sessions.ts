@@ -125,6 +125,14 @@ export interface QuizSession {
     rounds: number[]
     zenMode: boolean
     /**
+     * Trivia only: rounds 4 and 5 — the describing game and the four-answer hunt — were
+     * left out of the evening.
+     *
+     * Which rounds that leaves is already `rounds`, and that is what the play screen
+     * reads. This is here for the copy that has to name the mode rather than list it.
+     */
+    triviaMode: boolean
+    /**
      * Whose turn it is to answer the question on screen, and null when nobody is being
      * asked anything — a finished quiz, or a round this build cannot play yet.
      *
@@ -137,6 +145,17 @@ export interface QuizSession {
     questions: QuizSessionQuestion[]
 
     createdAt: string
+}
+
+/**
+ * The setup form's toggles, which between them decide which of the six rounds the
+ * evening plays. Settled before the first question and never again — the running order
+ * decides the deal, so a mode turned on halfway through would ask for questions the
+ * server never dealt.
+ */
+export interface QuizModes {
+    zenMode: boolean
+    triviaMode: boolean
 }
 
 /**
@@ -153,11 +172,18 @@ export interface QuizSession {
 export async function startSingleDeviceQuizRequest(
     quizId: string,
     playerNames: string[],
-    zenMode: boolean
+    modes: QuizModes
 ): Promise<QuizSession> {
     return request<QuizSession>('/api/v1/pubquizr/single-device', {
         method: 'POST',
-        body: JSON.stringify({ quizId, playerNames, zenMode })
+        // Spelled out rather than spread, because a spread would carry whatever else the
+        // caller's object happened to be holding into a body that refuses extra keys.
+        body: JSON.stringify({
+            quizId,
+            playerNames,
+            zenMode: modes.zenMode,
+            triviaMode: modes.triviaMode
+        })
     });
 }
 

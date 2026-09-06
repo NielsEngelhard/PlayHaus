@@ -24,20 +24,61 @@ const (
 	RoundFinale   = 6 // head to head between the two highest scores, read by a third where the table has one to spare
 )
 
-func RunningOrder(zen bool) []int {
-	if zen {
-		return []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundFinale}
+// Modes are the toggles a table sets before the first question is read, and between
+// them they decide which of the six rounds the evening actually plays.
+//
+// One struct rather than a pair of bare bools threaded through every function below:
+// they are always passed together, and two unlabelled booleans at a call site is a
+// swap waiting to happen. It is also the shape a third toggle would join without
+// touching a signature.
+//
+// Frozen onto the session at the deal, because the running order decides what is dealt
+// -- turning a mode on halfway through an evening would ask for questions nobody wrote
+// down. See Session.Modes.
+type Modes struct {
+	// Zen leaves out round 4, the one round played against a stopwatch, and unwinds
+	// round 5's clock into a budget of guesses. See ZenListGuesses.
+	Zen bool
+	// Trivia leaves out both rounds that are not simply a question with an answer:
+	// the describing game and the four-answer list. What is left is asking and
+	// answering, which is the whole of what a table turns this on for.
+	Trivia bool
+}
+
+// RoundIsTrivia is whether a round is a question read out and answered, the shape
+// rounds 1, 2, 3 and 6 all share.
+//
+// The two that are not: round 4 is a describing game against a clock, and round 5 is
+// one question with four answers hunted at once by a single seat. They are the rounds
+// trivia mode drops, and they are also the two rounds that need a rule of their own
+// everywhere else in this package -- which is the same observation twice.
+func RoundIsTrivia(round int) bool {
+	return round != RoundDescribe && round != RoundList
+}
+
+func RunningOrder(m Modes) []int {
+	order := make([]int, 0, Rounds)
+
+	for _, round := range []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale} {
+		if m.Zen && round == RoundDescribe {
+			continue
+		}
+		if m.Trivia && !RoundIsTrivia(round) {
+			continue
+		}
+
+		order = append(order, round)
 	}
 
-	return []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale}
+	return order
 }
 
-func PlaysRound(zen bool, round int) bool {
-	return slices.Contains(RunningOrder(zen), round)
+func PlaysRound(m Modes, round int) bool {
+	return slices.Contains(RunningOrder(m), round)
 }
 
-func NextRound(zen bool, round int) int {
-	order := RunningOrder(zen)
+func NextRound(m Modes, round int) int {
+	order := RunningOrder(m)
 
 	at := slices.Index(order, round)
 	if at < 0 || at+1 >= len(order) {

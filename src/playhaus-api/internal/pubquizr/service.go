@@ -232,7 +232,9 @@ type StartSingleDeviceInput struct {
 	// PlayerNames are in seating order, left to right, because the phone gets
 	// turned round the table as the quiz master role moves.
 	PlayerNames []string
-	ZenMode     bool
+	// Modes are the setup form's toggles. They decide the running order, and through
+	// it the deal, so they are settled here and never again.
+	Modes Modes
 }
 
 func (in StartSingleDeviceInput) validate() map[string]string {
@@ -282,7 +284,7 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		return nil, nil, err
 	}
 
-	deal, err := dealQuestions(quiz, len(names), in.ZenMode)
+	deal, err := dealQuestions(quiz, len(names), in.Modes)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -312,7 +314,8 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		FinalistSeatA: -1,
 		FinalistSeatB: -1,
 
-		ZenMode: in.ZenMode,
+		ZenMode:    in.Modes.Zen,
+		TriviaMode: in.Modes.Trivia,
 
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -427,7 +430,7 @@ type roundDeal struct {
 }
 
 // dealQuestions works out what this table will actually play.
-func dealQuestions(quiz *Quiz, players int, zen bool) ([]dealtQuestion, error) {
+func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error) {
 	var deal []dealtQuestion
 
 	// all is a round that plays everything the quiz carries for it.
@@ -475,7 +478,7 @@ func dealQuestions(quiz *Quiz, players int, zen bool) ([]dealtQuestion, error) {
 		// finale is dealt to the table and assigned to nobody.
 		{RoundFinale, all, toTheTable},
 	} {
-		if !PlaysRound(zen, round.number) {
+		if !PlaysRound(modes, round.number) {
 			continue
 		}
 
@@ -1453,7 +1456,7 @@ func (s *Service) advance(session *Session) {
 		return
 	}
 
-	next := NextRound(session.ZenMode, session.CurrentRound)
+	next := NextRound(session.Modes(), session.CurrentRound)
 	session.CurrentPosition = 0
 
 	if next < 0 {

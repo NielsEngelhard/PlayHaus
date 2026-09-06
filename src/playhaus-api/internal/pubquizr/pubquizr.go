@@ -272,7 +272,16 @@ type Session struct {
 	FinalistSeatA int `gorm:"not null;default:-1"`
 	FinalistSeatB int `gorm:"not null;default:-1"`
 
-	ZenMode bool `gorm:"not null;default:false"`
+	// ZenMode and TriviaMode are the setup form's two toggles, frozen here at the
+	// deal. Columns rather than one packed value because GORM AutoMigrate is the whole
+	// of the schema story here: a new toggle is a new column with a default, and every
+	// session dealt before it existed reads back as false -- which is the mode it was
+	// actually played in.
+	//
+	// What each one does to the evening is Modes' business, not this struct's. See
+	// Session.Modes.
+	ZenMode    bool `gorm:"not null;default:false"`
+	TriviaMode bool `gorm:"not null;default:false"`
 
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`

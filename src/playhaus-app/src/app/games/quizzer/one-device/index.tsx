@@ -71,6 +71,7 @@ export default function OneDeviceQuizerSetup() {
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [zenMode, setZenMode] = useState(false);
+    const [triviaMode, setTriviaMode] = useState(false);
     const [checked, setChecked] = useState(false);
     const [running, setRunning] = useState<QuizSession | null>(null);
     const [abandoning, setAbandoning] = useState(false);
@@ -218,7 +219,7 @@ export default function OneDeviceQuizerSetup() {
         const seats = seatedNames(names);
 
         try {
-            const session = await startSingleDeviceQuizRequest(selected.quiz.id, seats, zenMode);
+            const session = await startSingleDeviceQuizRequest(selected.quiz.id, seats, { zenMode, triviaMode });
 
             // Written only once the server has taken them. Remembering a table that was
             // refused would hand the same rejected names back next week.
@@ -260,13 +261,14 @@ export default function OneDeviceQuizerSetup() {
                 enterFrom={flow.travel}
                 preview={<TablePreview names={names} />}
                 // Grows a clause per answered question, which walking the steps does on
-                // its own — there is no quiz to name until step 2 and no zen mode until
+                // its own — there is no quiz to name until step 2 and no modes until
                 // step 3. Left keyed on the answers rather than on the step number so a
                 // quiz arriving by deep link is named straight away, which is the only
                 // confirmation that the tap on the index was heard.
                 previewCaption={[
                     t('common.player.seated', { players: seatedNames(names).length }),
                     selected.quiz?.title,
+                    triviaMode ? t('pubquizr.oneDevice.triviaMode.caption') : null,
                     zenMode ? t('pubquizr.oneDevice.zenMode.caption') : null
                 ].filter(Boolean).join(' · ')}
                 error={error === null ? undefined : t(error)}
@@ -350,7 +352,29 @@ export default function OneDeviceQuizerSetup() {
                     </View>
                 )}
 
+                {/*
+                  * Trivia first, because it is the bigger cut of the two: it takes both
+                  * rounds that are not a question with an answer, and rounds 4 and 5 are
+                  * also the only two the evening ever runs a clock on. So with it on
+                  * there is no timer left for zen mode to turn off, and the switch below
+                  * it goes away rather than sitting there doing nothing — turned off on
+                  * the way past, so what the form shows and what it asks for stay the
+                  * same thing.
+                  */}
                 {step === 3 && (
+                    <ToggleRow
+                        flush
+                        value={triviaMode}
+                        onChange={trivia => {
+                            setTriviaMode(trivia);
+                            if (trivia) setZenMode(false);
+                        }}
+                        label={t('pubquizr.oneDevice.triviaMode.label')}
+                        description={t('pubquizr.oneDevice.triviaMode.description')}
+                    />
+                )}
+
+                {step === 3 && !triviaMode && (
                     <ToggleRow
                         flush
                         value={zenMode}

@@ -176,7 +176,11 @@ type quizSessionResponse struct {
 	QuizMasterSeat  int   `json:"quizMasterSeat"`
 	TotalRounds     int   `json:"totalRounds"`
 	Rounds          []int `json:"rounds"`
-	ZenMode         bool  `json:"zenMode"`
+	// ZenMode and TriviaMode are the two toggles this evening was set up with. Sent
+	// back so the app can say which it is playing; what they leave out of the running
+	// order is already answered by Rounds, which the app reads for that.
+	ZenMode    bool `json:"zenMode"`
+	TriviaMode bool `json:"triviaMode"`
 	// AnsweringSeat is whose turn it is to answer the current question, and null
 	// when nobody is being asked anything -- a finished session, a round this build
 	// cannot play yet, or one of the rounds where the whole table answers at once.
@@ -304,7 +308,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		}
 	}
 
-	order := pubquizr.RunningOrder(s.ZenMode)
+	order := pubquizr.RunningOrder(s.Modes())
 
 	return quizSessionResponse{
 		ID:              s.ID.String(),
@@ -318,6 +322,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		TotalRounds:     len(order),
 		Rounds:          order,
 		ZenMode:         s.ZenMode,
+		TriviaMode:      s.TriviaMode,
 		AnsweringSeat:   asked,
 		HotSeat:         s.HotSeatOrFirst(),
 		FinalistSeats:   finalists,
@@ -412,6 +417,7 @@ type startSingleDeviceRequest struct {
 	QuizID      string   `json:"quizId"`
 	PlayerNames []string `json:"playerNames"`
 	ZenMode     bool     `json:"zenMode"`
+	TriviaMode  bool     `json:"triviaMode"`
 }
 
 func (req startSingleDeviceRequest) Validate() map[string]string {
@@ -465,7 +471,7 @@ func (s *Server) handleStartSingleDeviceQuiz(w http.ResponseWriter, r *http.Requ
 		QuizID:      quizID,
 		OwnerID:     ownerID,
 		PlayerNames: req.PlayerNames,
-		ZenMode:     req.ZenMode,
+		Modes:       pubquizr.Modes{Zen: req.ZenMode, Trivia: req.TriviaMode},
 	})
 	if err != nil {
 		s.writePubquizRError(w, err)
