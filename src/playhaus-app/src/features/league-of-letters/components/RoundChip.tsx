@@ -13,7 +13,9 @@ interface Props {
     /** The letter every row opens with. Shown while the round is still winnable. */
     firstLetter: string,
     /** How many rows the player has spent. Shown once the round is decided. */
-    tries: number
+    tries: number,
+    /** How many rows the player got. The ratio's denominator, shown alongside `tries`. */
+    maxGuesses: number
 }
 
 /**
@@ -31,7 +33,7 @@ interface Props {
  * on a solo one. A touch smaller than the header chip this replaced, since it now always
  * has company on its row instead of the whole width to itself.
  */
-export default function RoundChip({ outcome, firstLetter, tries }: Props) {
+export default function RoundChip({ outcome, firstLetter, tries, maxGuesses }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -45,7 +47,7 @@ export default function RoundChip({ outcome, firstLetter, tries }: Props) {
                 />
 
                 <AppText style={styles.tries}>
-                    {t('lol.game.guesses', { guesses: tries })}
+                    {t('lol.game.guesses', { guesses: tries, max: maxGuesses })}
                 </AppText>
             </View>
         )

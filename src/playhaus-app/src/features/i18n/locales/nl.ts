@@ -356,7 +356,7 @@ export const nl: Catalog = {
             resultLabel: 'Uitslag',
             viewResult: 'Bekijk de uitslag',
             nextRound: 'Volgende ronde',
-            guesses: 'Pogingen: {{guesses}}',
+            guesses: '{{guesses}}/{{max}}',
             roundOf: 'Ronde {{round}} van {{total}}',
             hint: 'Hint',
             hintLabel: 'Hint: het woord begint met de {{letter}}',
@@ -367,7 +367,11 @@ export const nl: Catalog = {
             guess: 'GO',
             clear: 'Wissen',
             timeLeft: 'Resterende tijd',
+            /** Het woordlengte-label in de bovenste rij van de ronde. */
+            wordLengthLabel: '{{letters}} letters',
             scoreLabel: '{{name}}, {{score}} punten',
+            /** Voorleestekst voor de scorechip in de bovenste rij, die geen naam toont. */
+            scoreCompactLabel: '{{score}} punten',
             playTimeLabel: 'Speeltijd: {{time}}',
             yourTurnNotice: 'JOUW BEURT!'
         },

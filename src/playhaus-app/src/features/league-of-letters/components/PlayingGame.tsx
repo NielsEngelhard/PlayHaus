@@ -18,7 +18,9 @@ import NextRoundCountdown from "@/features/league-of-letters/components/NextRoun
 import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import RoundChip from "@/features/league-of-letters/components/RoundChip";
 import RoundResultCard from "@/features/league-of-letters/components/RoundResultCard";
+import ScoreChip from "@/features/league-of-letters/components/ScoreChip";
 import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow";
+import WordLengthChip from "@/features/league-of-letters/components/WordLengthChip";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -521,8 +523,15 @@ export default function PlayingGame({
                     outcome={outcome}
                     firstLetter={firstLetter}
                     tries={myGuesses.length}
-                />                
-                
+                    maxGuesses={game.maxGuesses}
+                />
+
+                <WordLengthChip wordLength={game.wordLength} />
+
+                {/* Solo already carries this number in `SoloStatusRow`, right below — a
+                    second chip for the same score would just be saying it twice. */}
+                {multiplayer && <ScoreChip score={game.score} />}
+
                 {multiplayer && round.endsAt && !finished && (
                     <GameTimer endsAt={round.endsAt} style={styles.timer} />
                 )}

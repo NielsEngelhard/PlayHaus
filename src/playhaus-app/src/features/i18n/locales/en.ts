@@ -393,7 +393,7 @@ export const en = {
             resultLabel: 'Result',
             viewResult: 'View the result',
             nextRound: 'Next round',
-            guesses: 'Guesses: {{guesses}}',
+            guesses: '{{guesses}}/{{max}}',
             roundOf: 'Round {{round}} of {{total}}',
             hint: 'Hint',
             hintLabel: 'Hint: the word starts with {{letter}}',
@@ -404,8 +404,12 @@ export const en = {
             guess: 'Guess',
             clear: 'Clear',
             timeLeft: 'Time left',
+            /** The word-length badge in the round's top row. */
+            wordLengthLabel: '{{letters}} letters',
             /** Read out for the solo board's status chip, which shows both as one line. */
             scoreLabel: '{{name}}, {{score}} points',
+            /** Read out for the score chip in the round's top row, which has no name to show. */
+            scoreCompactLabel: '{{score}} points',
             /** Read out for the solo board's clock, which shows the time on its own. */
             playTimeLabel: 'Play time: {{time}}',
             yourTurnNotice: 'YOUR TURN!'
