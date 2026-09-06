@@ -22,10 +22,12 @@ import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useTheme } from "@/features/theme/ThemeContext";
 import { playYourTurn } from "@/utils/your-turn-sound";
+import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -154,6 +156,7 @@ export default function PlayingGame({
     onFinish
 }: Props) {
     const styles = useStyles();
+    const theme = useTheme();
     const t = useT();
     const phrase = usePhrase();
 
@@ -291,12 +294,20 @@ export default function PlayingGame({
     // the stale letters never get painted once. The hint is part of the key because a
     // word typed under the old one can no longer be the answer: a changed opening letter
     // makes whatever is standing in the row wrong in the one way the round refuses.
+    //
+    // Started at '' rather than at `boardKey` itself, so the very first render of a board
+    // — the mount, not just a later round change — also counts as a new one and gets the
+    // same treatment below, prefill included.
     const boardKey = `${game.id}:${round.roundNumber}:${firstLetter}`;
-    const [drafted, setDrafted] = useState(boardKey);
+    const [drafted, setDrafted] = useState('');
     const newBoard = drafted !== boardKey;
     if (newBoard) {
         setDrafted(boardKey);
-        setDraft('');
+        // The round's opening letter goes down on the first row for whoever plays it,
+        // so the tile it costs a press to place is the one row nobody had to guess at.
+        // Only the first: a wrong guess still spends every letter after it, on this row
+        // and every one that follows, exactly as before.
+        setDraft(canPlay && rows.length === 0 ? firstLetter : '');
         setNotice(null);
         setRevealing(false);
     }
@@ -473,9 +484,9 @@ export default function PlayingGame({
 
     return (
         <View style={styles.screen}>
-            {/* Everything about the round itself: the way out, where you are in the game,
-                and the hint — which becomes the round's verdict once it has one. The app
-                header sits above this and stays out of the round's business. */}
+            {/* The way out, where you are in the game, and the app's two standing switches.
+                The hint used to sit in here too; it has moved below, next to the clock — see
+                `hintRow` — so it reads with the round's own pace instead of the header's. */}
             <InGameHeader
                 onClose={() => router.replace(ROUTES.leagueOfLettersIndex)}
                 closeLabel={t('common.back')}
@@ -497,18 +508,24 @@ export default function PlayingGame({
                         <ThemeToggle variant='band' />
                     </>
                 }
-            >
+            />
+
+            {/* The hint, beside whatever else is telling the player how this round is
+                paced. On a shared board that is the countdown, sitting immediately to the
+                hint's left; solo sets no deadline, so the hint stands alone in the same
+                corner. */}
+            <View style={styles.hintRow}>
+                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
+                {multiplayer && round.endsAt && !finished && (
+                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
+                )}
+
                 <RoundChip
                     outcome={outcome}
                     firstLetter={firstLetter}
                     tries={myGuesses.length}
                 />
-            </InGameHeader>
-
-            {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
-            {multiplayer && round.endsAt && !finished && (
-                <GameTimer endsAt={round.endsAt} style={styles.timer} />
-            )}
+            </View>
 
             {/* Solo's answer to the row of chips below: you, your running total, and how
                 long you have been at it. The clock stops when the game does, so what is
@@ -574,11 +591,14 @@ export default function PlayingGame({
                 />
             </SlideFadeIn>
 
-            {/* The keyboard until there is nothing left to type, then the verdict in the
-                same place. Swapped rather than stacked: a dead keyboard under a result is
-                a control that looks broken, and the room it takes is exactly the room the
-                result needs. Both wait out the reveal — a panel naming the word while the
-                last tiles are still face down reads the answer out early. */}
+            {/* The keyboard stays mounted through the verdict rather than being swapped out
+                for it: pulling a full-height keyboard out of the tree and dropping a much
+                shorter card in its place is what made the end of a round jump, since the
+                two controls settle at different heights. The verdict now lands as a popover
+                over the same box instead, blurring the dead keyboard underneath it rather
+                than replacing it, so the box itself never changes size. Both wait out the
+                reveal — a panel naming the word while the last tiles are still face down
+                reads the answer out early. */}
             <SlideFadeIn
                 key={`controls-${round.roundNumber}`}
                 offsetY={RISE_PX}
@@ -586,62 +606,74 @@ export default function PlayingGame({
                 delayMs={RISE_STAGGER_MS}
                 style={[styles.controls, { marginBottom: Math.max(Spacing.two, insets.bottom) + Spacing.two }]}
             >
-                {decided ? (
-                    <View style={styles.outcome}>
-                        <RoundResultCard
-                            word={answer ?? ''}
-                            tries={round.guesses.length}
-                            maxGuesses={game.maxGuesses}
-                            won={won}
+                <LetterKeyboard
+                    /*
+                     * On a shared board the keys show what the *table* has learned:
+                     * everybody is looking at the same six rows, so a letter greyed out
+                     * for whoever happened to type it and nobody else would be five
+                     * keyboards for one puzzle.
+                     *
+                     * The newest guess is left out until the board has finished showing
+                     * it — the keys would otherwise colour in before the tiles they
+                     * belong to.
+                     */
+                    marks={keyboardMarks(
+                        revealing ? rows.slice(0, -1) : rows,
+                        multiplayer ? undefined : userId
+                    )}
+                    onKey={type}
+                    onEnter={submit}
+                    onBackspace={backspace}
+                    disabled={finished || sending || revealing || !canPlay}
+                    style={styles.keyboard}
+                />
+
+                {decided && (
+                    // `box-none` on the popover's own frame so a touch that lands on the
+                    // blur but off the card still has somewhere to go — the keyboard under
+                    // it, already disabled by `finished` above, so nothing answers either way.
+                    <View style={styles.popover} pointerEvents='box-none'>
+                        <BlurView
+                            intensity={28}
+                            tint={theme.scheme === 'dark' ? 'dark' : 'light'}
+                            style={styles.popoverBlur}
+                            pointerEvents='none'
                         />
 
-                        {finishing ? (
-                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} label={t('lol.game.resultLabel')} />
-                        ) : gameOver ? (
-                            <ActionButton
-                                // The result is where a finished game goes when there is one
-                                // to go to. A board without it has only the way out to offer.
-                                text={onFinish === undefined ? t('common.backToGames') : t('lol.game.viewResult')}
-                                size='large'
-                                onPress={() => onFinish === undefined
-                                    ? router.replace(ROUTES.leagueOfLettersIndex)
-                                    : onFinish()}
+                        <View style={styles.outcome}>
+                            <RoundResultCard
+                                word={answer ?? ''}
+                                tries={round.guesses.length}
+                                maxGuesses={game.maxGuesses}
+                                won={won}
                             />
-                        ) : movingOn ? (
-                            /* No button on a shared board: the table moves on by itself,
-                               and all that is left to say is how long the word stays up. */
-                            <NextRoundCountdown durationMs={NEXT_ROUND_MS} />
-                        ) : (
-                            <ActionButton
-                                text={t('lol.game.nextRound')}
-                                size='large'
-                                onPress={() => onNextRound?.()}
-                                disabled={onNextRound === undefined}
-                            />
-                        )}
+
+                            {finishing ? (
+                                <NextRoundCountdown durationMs={NEXT_ROUND_MS} label={t('lol.game.resultLabel')} />
+                            ) : gameOver ? (
+                                <ActionButton
+                                    // The result is where a finished game goes when there is one
+                                    // to go to. A board without it has only the way out to offer.
+                                    text={onFinish === undefined ? t('common.backToGames') : t('lol.game.viewResult')}
+                                    size='large'
+                                    onPress={() => onFinish === undefined
+                                        ? router.replace(ROUTES.leagueOfLettersIndex)
+                                        : onFinish()}
+                                />
+                            ) : movingOn ? (
+                                /* No button on a shared board: the table moves on by itself,
+                                   and all that is left to say is how long the word stays up. */
+                                <NextRoundCountdown durationMs={NEXT_ROUND_MS} />
+                            ) : (
+                                <ActionButton
+                                    text={t('lol.game.nextRound')}
+                                    size='large'
+                                    onPress={() => onNextRound?.()}
+                                    disabled={onNextRound === undefined}
+                                />
+                            )}
+                        </View>
                     </View>
-                ) : (
-                    <LetterKeyboard
-                        /*
-                         * On a shared board the keys show what the *table* has learned:
-                         * everybody is looking at the same six rows, so a letter greyed out
-                         * for whoever happened to type it and nobody else would be five
-                         * keyboards for one puzzle.
-                         *
-                         * The newest guess is left out until the board has finished showing
-                         * it — the keys would otherwise colour in before the tiles they
-                         * belong to.
-                         */
-                        marks={keyboardMarks(
-                            revealing ? rows.slice(0, -1) : rows,
-                            multiplayer ? undefined : userId
-                        )}
-                        onKey={type}
-                        onEnter={submit}
-                        onBackspace={backspace}
-                        disabled={finished || sending || revealing || !canPlay}
-                        style={styles.keyboard}
-                    />
                 )}
             </SlideFadeIn>
 
@@ -668,9 +700,21 @@ const useStyles = createThemedStyles(theme => ({
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.two
     },
+    // No `justifyContent: 'flex-end'` any more: that was for a timer standing alone and
+    // stretched across the full row. It now shares `hintRow` with the hint chip, which is
+    // what pushes it to the row's own right edge instead.
     timer: {
-        flexShrink: 0,
-        justifyContent: 'flex-end'
+        flexShrink: 0
+    },
+    // Whatever tells the player how this round is paced, bunched into one corner: the
+    // countdown and the hint side by side on a shared board, or the hint alone on solo's.
+    // `flex-end` rather than `space-between` — the two belong together, not at opposite
+    // ends of the row.
+    hintRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        gap: Spacing.two
     },
     // All the room left over once everything around it has been laid out, which is what
     // the grid measures itself against.
@@ -706,16 +750,36 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         gap: Spacing.three - 4
     },
-    // Wraps whichever of the keyboard and the result is up, so the two of them lift in
-    // as one. Holds its size for the same reason they do: the board above is the only
-    // thing on this screen that gives room away.
+    // Wraps the keyboard and, once the round is decided, the popover laid over it, so the
+    // two of them lift in as one. Holds its size for the same reason the keyboard does: the
+    // board above is the only thing on this screen that gives room away. `relative` is what
+    // gives the popover something to measure `absoluteFillObject` against — the keyboard's
+    // own box, so the blur never has to be told a height of its own.
     //
     // The gap underneath is set at the call site, from the device's own bottom inset: the
     // bottom row of a keyboard this close to the edge of the phone is where the home
     // indicator and the browser's own chrome live, and a thumb reaching past them to find
     // Wissen is a thumb that sometimes leaves the app instead.
     controls: {
-        flexShrink: 0
+        flexShrink: 0,
+        position: 'relative'
+    },
+    // The verdict's frame, sized to the keyboard underneath it rather than to its own
+    // content. `left`/`right` repeat `keyboard`'s own negative margin rather than reading
+    // `-Spacing.three` twice — this is what keeps the blur flush with the keys it is
+    // covering instead of leaving a thin unblurred strip down each side of the phone.
+    popover: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: -Spacing.three,
+        right: -Spacing.three,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        paddingHorizontal: Spacing.three
+    },
+    popoverBlur: {
+        ...StyleSheet.absoluteFill
     },
     // The board's gutters are generous on purpose, but a keyboard is not page content —
     // it is the one control on the screen a thumb aims at twenty-six times a round, and

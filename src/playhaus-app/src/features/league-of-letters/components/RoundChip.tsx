@@ -25,6 +25,11 @@ interface Props {
  * header; they are the accent band now — see `InGameHeader`, which draws this in its
  * right-hand slot. What kept them together was the round, and the band is where the round
  * is spoken for, so this is free to be the one thing the bar had that no other game does.
+ *
+ * Sized to sit beside a clock rather than alone in a header any more — see `PlayingGame`,
+ * which now draws this next to `GameTimer` on a shared board and next to the elapsed clock
+ * on a solo one. A touch smaller than the header chip this replaced, since it now always
+ * has company on its row instead of the whole width to itself.
  */
 export default function RoundChip({ outcome, firstLetter, tries }: Props) {
     const styles = useStyles();
@@ -35,7 +40,7 @@ export default function RoundChip({ outcome, firstLetter, tries }: Props) {
             <View style={[styles.chip, outcome === 'won' ? styles.chipWon : styles.chipLost]}>
                 <Feather
                     name={outcome === 'won' ? 'check' : 'x'}
-                    size={15}
+                    size={13}
                     color={Brand.ink}
                 />
 
@@ -69,10 +74,10 @@ const useStyles = createThemedStyles(theme => {
             flexShrink: 0,
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 7,
-            paddingVertical: 5,
-            paddingHorizontal: 9,
-            borderRadius: 12,
+            gap: 6,
+            paddingVertical: 4,
+            paddingHorizontal: 8,
+            borderRadius: 11,
             borderWidth: theme.borderWidth
         },
         chipHint: {
@@ -88,7 +93,7 @@ const useStyles = createThemedStyles(theme => {
             backgroundColor: theme.colors.blush
         },
         hintLabel: {
-            fontSize: 9.5,
+            fontSize: 9,
             fontWeight: 800,
             textTransform: 'uppercase',
             letterSpacing: 1,
@@ -97,13 +102,13 @@ const useStyles = createThemedStyles(theme => {
             color: 'rgba(15, 13, 18, 0.6)'
         },
         hintLetter: {
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: 900,
             letterSpacing: -0.5,
             color: Brand.ink
         },
         tries: {
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: 900,
             color: Brand.ink
         }
