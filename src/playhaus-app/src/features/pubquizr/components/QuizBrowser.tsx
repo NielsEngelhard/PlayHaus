@@ -117,10 +117,10 @@ interface Props {
      */
     onSelect?: (quiz: QuizListItem) => void,
     /**
-     * Where a row goes when it is not a choice — see `QuizRow`, which explains why a row
+     * What a row does when it is not a choice — see `QuizRow`, which explains why a row
      * inside a `Modal` cannot simply be the link it is on the page.
      */
-    onNavigate?: (quiz: QuizListItem) => void,
+    onOpen?: (quiz: QuizListItem) => void,
     /**
      * The quiz already chosen, drawn as the active row wherever it turns up.
      *
@@ -162,7 +162,7 @@ interface Props {
  * locale and a page number and nothing else — which is why running out of matches with
  * more pages behind them says so instead of showing an empty shelf.
  */
-export default function QuizBrowser({ onSelect, onNavigate, selectedQuizId, onClose }: Props) {
+export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -413,7 +413,7 @@ export default function QuizBrowser({ onSelect, onNavigate, selectedQuizId, onCl
                                         key={quiz.id}
                                         quiz={quiz}
                                         onSelect={onSelect}
-                                        onNavigate={onNavigate}
+                                        onPress={onOpen}
                                         selected={quiz.id === selectedQuizId}
                                     />
                                 ))

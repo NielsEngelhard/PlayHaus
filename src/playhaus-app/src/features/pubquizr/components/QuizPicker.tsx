@@ -72,10 +72,12 @@ export default function QuizPicker({ quiz, onSelect }: Props) {
                 <View>
                     <Label label={t('pubquizr.oneDevice.quiz.selected')} />
 
-                    {/* Selected and still pressable, but it opens the browse rather than
-                        doing nothing: on a step whose whole subject is this one row, the
-                        row is the most obvious thing to press to change it. */}
-                    <QuizRow quiz={quiz} onSelect={() => setBrowsing(true)} selected />
+                    {/* Still pressable, and it opens the browse: on a step whose whole
+                        subject is this one row, the row is the most obvious thing to
+                        press to change it. A button rather than a chosen radio, because
+                        pressing it is not choosing it again — it is asking the question
+                        the sheet answers. */}
+                    <QuizRow quiz={quiz} onPress={() => setBrowsing(true)} selected />
                 </View>
             )}
 

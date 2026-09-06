@@ -103,12 +103,12 @@ export default function QuizPeek() {
               * The rows in here go where the rows on the page go, but by hand: the sheet
               * is a `Modal`, and on native that is a root of its own, so a route pushed
               * from under one would leave it hanging over the setup screen it opened.
-              * Closed first, then pushed — see `QuizRow`'s `onNavigate`.
+              * Closed first, then pushed — see `QuizRow`'s `onPress`.
               */}
             <QuizSheet
                 visible={browsing}
                 onClose={() => setBrowsing(false)}
-                onNavigate={quiz => {
+                onOpen={quiz => {
                     setBrowsing(false);
                     router.push({
                         pathname: ROUTES.quizzerOneDeviceGameSettings as RelativePathString,

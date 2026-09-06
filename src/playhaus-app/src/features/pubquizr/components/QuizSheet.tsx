@@ -45,7 +45,7 @@ interface Props {
      * on native, so a route pushed from inside one leaves the sheet standing over
      * whatever it landed on. The caller closes this and navigates itself.
      */
-    onNavigate?: (quiz: QuizListItem) => void,
+    onOpen?: (quiz: QuizListItem) => void,
     /** The quiz already chosen, ticked wherever it turns up in the rows. */
     selectedQuizId?: string
 }
@@ -71,7 +71,7 @@ interface Props {
  * rather than `visible` tearing it away mid-flight. Only the geometry differs — this
  * comes up from the edge it is attached to instead of growing from the middle.
  */
-export default function QuizSheet({ visible, onClose, onSelect, onNavigate, selectedQuizId }: Props) {
+export default function QuizSheet({ visible, onClose, onSelect, onOpen, selectedQuizId }: Props) {
     const t = useT();
     const styles = useStyles();
     const insets = useSafeAreaInsets();
@@ -164,7 +164,7 @@ export default function QuizSheet({ visible, onClose, onSelect, onNavigate, sele
                     >
                         <QuizBrowser
                             onSelect={onSelect}
-                            onNavigate={onNavigate}
+                            onOpen={onOpen}
                             selectedQuizId={selectedQuizId}
                             onClose={onClose}
                         />
