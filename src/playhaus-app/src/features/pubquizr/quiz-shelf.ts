@@ -74,34 +74,9 @@ export function initialsFor(quiz: QuizListItem): string {
  * Nine times in ten the pick is the newest unplayed weekly quiz, so that is the answer —
  * and a table that has played every weekly quiz there is still gets the newest rather
  * than nothing, because "you are up to date" is not a thing to press.
- *
- * A function rather than three lines inside the card that draws it, because the peek
- * underneath has to know the same answer: it lists what comes *after* the featured quiz,
- * and the one thing it must not do is repeat it directly beneath itself.
  */
 export function featuredQuiz(items: QuizListItem[]): QuizListItem | null {
     return items.find(quiz => quiz.played !== true) ?? items[0] ?? null;
-}
-
-/**
- * The taste of the shelf that sits on the index page: a few quizzes, unplayed first.
- *
- * Not a shelf — there is no search on it, no tabs, and above all no scroller of its own.
- * It exists to show that there is more than the featured quiz and to give the browse
- * sheet something to be the rest of, so the only thing it has to get right is that these
- * are quizzes somebody might want and that `featured` is not among them.
- *
- * The order the API answers with is kept inside each half. Unplayed quizzes come first
- * because that is what the shelf's own default filter says the page is for, but within
- * that they stay newest first, which is how the rows are filed everywhere else.
- */
-export function peekQuizzes(items: QuizListItem[], featured: QuizListItem | null, count: number): QuizListItem[] {
-    const rest = items.filter(quiz => quiz.id !== featured?.id);
-
-    return [
-        ...rest.filter(quiz => quiz.played !== true),
-        ...rest.filter(quiz => quiz.played === true)
-    ].slice(0, count);
 }
 
 /**

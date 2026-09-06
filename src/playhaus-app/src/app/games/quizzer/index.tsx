@@ -1,18 +1,24 @@
 import GameIndexPage from "@/components/layout/GameIndexPage";
 import ModeCard from "@/components/ui/ModeCard";
+import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import NewQuizCard from "@/features/pubquizr/components/NewQuizCard";
-import QuizPeek from "@/features/pubquizr/components/QuizPeek";
+import QuizSheet from "@/features/pubquizr/components/QuizSheet";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { useRouter, type RelativePathString } from "expo-router";
+import { useState } from "react";
 import { View } from "react-native";
 
 export default function QuizzerIndexPage() {
     const styles = useStyles();
     const t = useT();
+    const router = useRouter();
+
+    const [browsing, setBrowsing] = useState(false);
 
     return (
         <GameIndexPage
@@ -63,12 +69,34 @@ export default function QuizzerIndexPage() {
                 />
             </View>
 
-            {/* No label above it: the shelf is a panel with a header of its own now, and
-                naming it twice on one page reads as two lists. */}
             <View style={styles.list}>
                 <NewQuizCard />
-                <QuizPeek />
+
+                <TextButton
+                    text={t('pubquizr.index.list.seeAll')}
+                    onPress={() => setBrowsing(true)}
+                    variant="neutral"
+                    fullWidth
+                />
             </View>
+
+            {/*
+              * The rows in here go where the rows on the page go, but by hand: the sheet
+              * is a `Modal`, and on native that is a root of its own, so a route pushed
+              * from under one would leave it hanging over the setup screen it opened.
+              * Closed first, then pushed.
+              */}
+            <QuizSheet
+                visible={browsing}
+                onClose={() => setBrowsing(false)}
+                onOpen={quiz => {
+                    setBrowsing(false);
+                    router.push({
+                        pathname: ROUTES.quizzerOneDeviceGameSettings as RelativePathString,
+                        params: { quizId: quiz.id }
+                    });
+                }}
+            />
         </GameIndexPage>
     )
 }

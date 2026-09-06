@@ -25,7 +25,7 @@ export default function NewQuizCard() {
 
     // Bonus furniture, not load-bearing: a stalled or empty weekly shelf means there is
     // nothing honest to feature here, so this renders nothing rather than its own
-    // spinner or error state — `QuizPeek` below is already saying that.
+    // spinner or error state.
     const quiz = quizzes.status === 'ready' ? featuredQuiz(quizzes.items) : null;
     if (quiz === null) return null;
 

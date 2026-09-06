@@ -1,14 +1,11 @@
-import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
+import TextButton from "@/components/ui/TextButton";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
-import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
-import { usePlayableQuizzes } from "../useQuizzes";
 import QuizRow from "./QuizRow";
 import QuizSheet from "./QuizSheet";
 
@@ -36,15 +33,9 @@ interface Props {
  */
 export default function QuizPicker({ quiz, onSelect }: Props) {
     const t = useT();
-    const theme = useTheme();
     const styles = useStyles();
 
     const [browsing, setBrowsing] = useState(false);
-
-    // Only for the count on the row, which is about every shelf the sheet holds rather
-    // than the one it opens on. Nothing extra is fetched to show it: these are the same
-    // two requests the sheet makes, answered before it is opened.
-    const shelves = usePlayableQuizzes();
 
     /*
      * Once, and only on the way in.
@@ -81,38 +72,17 @@ export default function QuizPicker({ quiz, onSelect }: Props) {
                 </View>
             )}
 
-            {/*
-              * A line of the page rather than a field: icon, what it is with the count
-              * under it, a chevron saying there is more behind it. The same shape
-              * `SelectInput`'s `row` variant uses, for the same reason — this is a
-              * control that opens a list, and it should read like the others that do.
-              */}
-            <Pressable
+            {/* Same plain button the index page opens its own browse sheet with, rather
+                than a bordered row of its own — one shape for "there is a list behind
+                this" across the game. */}
+            <TextButton
+                text={quiz === null
+                    ? t('pubquizr.oneDevice.quiz.pick')
+                    : t('pubquizr.oneDevice.quiz.pickAnother')}
                 onPress={() => setBrowsing(true)}
-                accessibilityRole="button"
-                accessibilityLabel={t('pubquizr.index.list.browse')}
-                style={styles.browse}
-            >
-                <View style={styles.browseIcon}>
-                    <Feather name="book-open" size={18} color={theme.colors.textOnAccent} />
-                </View>
-
-                <View style={styles.browseBody}>
-                    <AppText style={styles.browseTitle} numberOfLines={1}>
-                        {quiz === null
-                            ? t('pubquizr.oneDevice.quiz.pick')
-                            : t('pubquizr.oneDevice.quiz.pickAnother')}
-                    </AppText>
-
-                    <AppText style={styles.browseValue} numberOfLines={1}>
-                        {shelves.ready
-                            ? t('pubquizr.index.list.total', { quizzes: shelves.total })
-                            : t('pubquizr.index.list.label')}
-                    </AppText>
-                </View>
-
-                <Feather name="chevron-right" size={18} color={theme.colors.textMuted} />
-            </Pressable>
+                variant="neutral"
+                fullWidth
+            />
 
             <QuizSheet
                 visible={browsing}
@@ -124,52 +94,9 @@ export default function QuizPicker({ quiz, onSelect }: Props) {
     )
 }
 
-const useStyles = createThemedStyles(theme => ({
+const useStyles = createThemedStyles(() => ({
     container: {
         width: '100%',
         gap: Spacing.three
-    },
-
-    browse: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        padding: 12,
-        borderRadius: 20,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-
-    // The same 56dp disc a quiz row wears, so the line sits on the grid the rows above
-    // it set rather than half an avatar to the left of it.
-    browseIcon: {
-        width: 56,
-        height: 56,
-        flexShrink: 0,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: theme.colors.primary
-    },
-
-    browseBody: {
-        flex: 1,
-        minWidth: 0
-    },
-
-    browseTitle: {
-        fontSize: 17,
-        fontWeight: 900,
-        letterSpacing: -0.5,
-        color: theme.colors.text
-    },
-
-    browseValue: {
-        marginTop: 3,
-        fontSize: 12.5,
-        fontWeight: 700,
-        color: theme.colors.textSecondary
     }
 }));

@@ -534,12 +534,8 @@ export const en = {
                  */
                 played: 'Played',
                 loadOlder: 'Load older',
-                /**
-                 * The way off the index page's three-row peek and into the sheet that
-                 * holds the rest. `{{quizzes}}` rather than `count` for the same reason
-                 * `total` and `matches` below avoid it — see the note on those.
-                 */
-                seeAll: 'See all {{quizzes}}',
+                /** The way off the index page and into the sheet that holds the shelf. */
+                seeAll: 'See all quizzes',
                 /**
                  * The same way through, before there is a number to put in it — a
                  * shelf still loading has a total of zero, and "see all 0" is the

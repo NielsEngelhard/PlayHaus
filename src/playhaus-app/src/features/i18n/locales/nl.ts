@@ -466,7 +466,7 @@ export const nl: Catalog = {
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
-                seeAll: 'Bekijk alle {{quizzes}}',
+                seeAll: 'Bekijk alle quizzen',
                 browse: 'Blader door alle quizzen',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
                 filterEmpty: 'Hier staat nog niks op dit tabblad.',
@@ -499,7 +499,7 @@ export const nl: Catalog = {
             quiz: {
                 selected: 'Jullie spelen',
                 pick: 'Kies een quiz',
-                pickAnother: 'Of kies een andere'
+                pickAnother: 'Of kies een andere quiz'
             },
             steps: {
                 quizTitle: 'Welke quiz',
