@@ -67,6 +67,12 @@ interface Props {
      */
     onTyping?: (letters: string) => void,
     /**
+     * Multiplayer only. What the player whose turn it is has typed so far, as relayed
+     * over the socket. Only ever meaningful when it is not your own turn — see `draft`
+     * below, which is where your own keystrokes show up instead.
+     */
+    typing?: string | null,
+    /**
      * Multiplayer only. Who is connected, for the scoreboard's live dots. On a
      * turn-based board this is the difference between waiting on somebody who is
      * looking at the screen and waiting on somebody whose phone locked.
@@ -142,6 +148,7 @@ export default function PlayingGame({
     onGuess,
     myTurn,
     onTyping,
+    typing,
     online,
     onNextRound,
     onFinish
@@ -563,7 +570,7 @@ export default function PlayingGame({
                      * when that is you, and the letters relayed from their keyboard when
                      * it is not. One row, whoever is filling it.
                      */
-                    draft={finished ? '' : canPlay ? draft : ''}
+                    draft={finished ? '' : canPlay ? draft : (typing ?? '')}
                 />
             </SlideFadeIn>
 
