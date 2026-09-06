@@ -447,13 +447,23 @@ export const nl: Catalog = {
                 weekday: 'WOE',
                 promise: 'ELKE WEEK EEN\nNIEUWE QUIZ'
             },
+            newQuiz: {
+                badge: 'Nieuw deze week',
+                play: 'Speel deze'
+            },
             list: {
                 label: 'Alle quizzen',
                 tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
+                playedFilter: {
+                    all: 'Alles {{n}}',
+                    unplayed: 'Nieuw {{n}}',
+                    played: 'Gespeeld {{n}}'
+                },
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
+                filterEmpty: 'Hier staat nog niks op dit tabblad.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
                 comingSoon: 'Coming soon...',
                 search: 'Zoek een quiz…',

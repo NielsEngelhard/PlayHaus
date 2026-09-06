@@ -72,6 +72,15 @@ const END_SLACK = 4;
  */
 type Sort = 'newest' | 'alpha';
 
+/**
+ * The three ways the shelf can be split by whether a quiz has been played.
+ *
+ * `unplayed` is the default the shelf opens on — see `QuizList` below for why.
+ */
+type PlayedFilter = 'all' | 'unplayed' | 'played';
+
+const PLAYED_FILTERS = ['all', 'unplayed', 'played'] as const satisfies readonly PlayedFilter[];
+
 /** What NFD leaves behind once an accent has been split off the letter it sat on. */
 const COMBINING_MARKS = /[\u0300-\u036f]/g;
 
@@ -155,26 +164,41 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
     const [category, setCategory] = useState<QuizCategory>('weekly');
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState<Sort>('newest');
+    // Defaults to the shelf's own reason for existing: what is left to play, not what
+    // has already been.
+    const [playedFilter, setPlayedFilter] = useState<PlayedFilter>('unplayed');
 
     const quizzes = useQuizzes(category);
 
     /**
      * A new shelf is a new question, so it is asked from scratch. Carrying the old words
-     * across would open the tab already filtered by something nobody typed on it, which
-     * looks like the new shelf is nearly empty.
+     * (or the old played/unplayed split) across would open the tab already filtered by
+     * something nobody chose on it, which looks like the new shelf is nearly empty.
      */
     function chooseCategory(next: QuizCategory) {
         setCategory(next);
         setQuery('');
+        setPlayedFilter('unplayed');
     }
 
     const needle = fold(query.trim());
     const searching = needle !== '';
 
+    // Sub-counts for the played/unplayed tabs. Unlike `quizzes.total`, which the server
+    // reports for the whole shelf, these can only see pages already loaded — the same
+    // honest approximation `matches` below already makes for a search.
+    const unplayedCount = quizzes.items.filter(quiz => quiz.played !== true).length;
+    const playedCount = quizzes.items.filter(quiz => quiz.played === true).length;
+
     const visible = useMemo(() => {
-        const matched = needle === ''
+        const byPlayed = playedFilter === 'all'
             ? quizzes.items
             : quizzes.items.filter(quiz =>
+                playedFilter === 'played' ? quiz.played === true : quiz.played !== true);
+
+        const matched = needle === ''
+            ? byPlayed
+            : byPlayed.filter(quiz =>
                 fold(quiz.title).includes(needle) || fold(quiz.description).includes(needle));
 
         if (sort === 'newest') return matched;
@@ -188,7 +212,7 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
 
             return a < b ? -1 : a > b ? 1 : 0;
         });
-    }, [quizzes.items, needle, sort]);
+    }, [quizzes.items, playedFilter, needle, sort]);
 
     /*
      * The three measurements behind the fade, held as refs rather than as state.
@@ -257,6 +281,19 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                 onClick={chooseCategory}
                 getLabel={tab => t(`pubquizr.index.list.tabs.${tab}`)}
             />
+
+            {shelf && (
+                <Tabs
+                    tabs={PLAYED_FILTERS}
+                    activeTab={playedFilter}
+                    onClick={setPlayedFilter}
+                    getLabel={filter => t(`pubquizr.index.list.playedFilter.${filter}`, {
+                        n: filter === 'all'
+                            ? quizzes.total
+                            : filter === 'played' ? playedCount : unplayedCount
+                    })}
+                />
+            )}
 
             {!shelf ? (
                 // Nothing to search and nothing to scroll: whatever there is to say
@@ -339,15 +376,19 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                         >
                             {visible.length === 0 ? (
                                 // Not always a failed search — a shelf can simply have
-                                // nothing on it yet — and "nothing matches" would be the
-                                // wrong thing to say about a search nobody ran.
+                                // nothing on it yet, or nothing left on the tab the
+                                // played/unplayed filter is sitting on — and "nothing
+                                // matches" would be the wrong thing to say about a search
+                                // nobody ran.
                                 <InlineNotification
-                                    icon={searching ? 'search' : 'inbox'}
-                                    message={!searching
-                                        ? t('pubquizr.index.list.empty')
-                                        : quizzes.hasMore
+                                    icon={searching ? 'search' : playedFilter !== 'all' ? 'filter' : 'inbox'}
+                                    message={searching
+                                        ? (quizzes.hasMore
                                             ? t('pubquizr.index.list.noMatchesMore')
-                                            : t('pubquizr.index.list.noMatches')}
+                                            : t('pubquizr.index.list.noMatches'))
+                                        : playedFilter !== 'all'
+                                            ? t('pubquizr.index.list.filterEmpty')
+                                            : t('pubquizr.index.list.empty')}
                                 />
                             ) : (
                                 visible.map(quiz => (

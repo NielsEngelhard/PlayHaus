@@ -1,12 +1,12 @@
 import AppText from "@/components/text/AppText";
-import Chip from "@/components/ui/Chip";
 import { ROUTES } from "@/constants/routes";
+import { Brand } from "@/constants/theme";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { Image, Pressable, StyleSheet, View, type ImageStyle } from "react-native";
+import { Image, Pressable, View, type ImageStyle } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
 import { initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 
@@ -24,7 +24,7 @@ interface Props {
     selected?: boolean
 }
 
-const AVATAR_SIZE = 44;
+const AVATAR_SIZE = 56;
 
 /**
  * A cover filling the avatar's box, inside whatever border that box is wearing.
@@ -84,9 +84,17 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
             {/* `minWidth: 0` is what lets the long title truncate instead of
                 pushing the chevron off the end of the row. */}
             <View style={styles.body}>
-                <AppText style={styles.title} numberOfLines={1}>
-                    {quiz.title}
-                </AppText>
+                <View style={styles.titleRow}>
+                    <AppText style={styles.title} numberOfLines={1}>
+                        {quiz.title}
+                    </AppText>
+
+                    {quiz.played === true && (
+                        <View style={styles.playedDisc}>
+                            <Feather name="check" size={12} color={Brand.ink} />
+                        </View>
+                    )}
+                </View>
 
                 {quiz.description !== '' && (
                     <AppText style={styles.description} numberOfLines={2}>
@@ -94,21 +102,15 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
                     </AppText>
                 )}
 
-                {(published !== null || quiz.played === true) && (
+                {published !== null && (
                     <View style={styles.meta}>
-                        {published !== null && (
-                            <View style={styles.published}>
-                                <Feather name="clock" size={11} color={theme.colors.textMuted} />
+                        <View style={styles.published}>
+                            <Feather name="clock" size={11} color={theme.colors.textMuted} />
 
-                                <AppText style={styles.publishedText}>
-                                    {phrase(published)}
-                                </AppText>
-                            </View>
-                        )}
-
-                        {quiz.played === true && (
-                            <Chip text={t('pubquizr.index.list.played')} icon="check" />
-                        )}
+                            <AppText style={styles.publishedText}>
+                                {phrase(published)}
+                            </AppText>
+                        </View>
                     </View>
                 )}
             </View>
@@ -133,7 +135,7 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
                 accessibilityRole="radio"
                 accessibilityLabel={label}
                 accessibilityState={{ selected, checked: selected }}
-                style={[styles.row, quiz.played === true && styles.rowPlayed, selected && styles.rowSelected]}
+                style={[styles.row, selected && styles.rowSelected]}
             >
                 {body}
             </Pressable>
@@ -151,9 +153,7 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
             <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={label}
-                // Flattened: `Link asChild` clones this onto the anchor it renders, and a
-                // style array does not survive that trip.
-                style={StyleSheet.flatten([styles.row, quiz.played === true && styles.rowPlayed])}
+                style={styles.row}
             >
                 {body}
             </Pressable>
@@ -173,10 +173,6 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         ...theme.shadows.hardSmall
     },
-    rowPlayed: {
-        opacity: 0.72
-    },
-
     rowSelected: {
         borderColor: theme.colors.focus,
         backgroundColor: theme.colors.backgroundFocus
@@ -208,22 +204,41 @@ const useStyles = createThemedStyles(theme => ({
         minWidth: 0
     },
 
+    titleRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6
+    },
+
     title: {
-        fontSize: 15,
+        flexShrink: 1,
+        fontSize: 17,
         fontWeight: 900,
-        letterSpacing: -0.3,
+        letterSpacing: -0.5,
         color: theme.colors.text
+    },
+
+    playedDisc: {
+        width: 22,
+        height: 22,
+        flexShrink: 0,
+        borderRadius: 999,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint
     },
 
     description: {
         marginTop: 3,
-        fontSize: 11.5,
-        lineHeight: 11.5 * 1.35,
+        fontSize: 12.5,
+        lineHeight: 12.5 * 1.35,
         fontWeight: 700,
         color: theme.colors.textSecondary
     },
     meta: {
-        marginTop: 6,
+        marginTop: 7,
         flexDirection: 'row',
         alignItems: 'center',
         flexWrap: 'wrap',

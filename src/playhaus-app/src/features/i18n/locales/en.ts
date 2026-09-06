@@ -492,6 +492,15 @@ export const en = {
                 /** Broken by hand: the design sets it on two lines. */
                 promise: 'NEW GENERAL\nQUIZ WEEKLY'
             },
+            /**
+             * The hero above the shelf: the one quiz the picker answers with, unprompted,
+             * instead of leaving the pick to a browse. `badge` names *why* it's there
+             * rather than *what* it is — the row underneath it already says the title.
+             */
+            newQuiz: {
+                badge: 'New this week',
+                play: 'Play this'
+            },
             list: {
                 /**
                  * The shelf's name, which no longer promises an order — the panel has a
@@ -500,6 +509,16 @@ export const en = {
                  */
                 label: 'All quizzes',
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
+                /**
+                 * The second row of tabs: what's left to play versus what's already been.
+                 * `n` rather than `count`, for the same reason `total`/`matches` below
+                 * avoid it — no plural forms sit behind any of these three.
+                 */
+                playedFilter: {
+                    all: 'All {{n}}',
+                    unplayed: 'New {{n}}',
+                    played: 'Played {{n}}'
+                },
                 /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
                 published: '{{day}} {{month}} {{year}}',
                 /**
@@ -512,6 +531,13 @@ export const en = {
                 played: 'Played',
                 loadOlder: 'Load older',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
+                /**
+                 * What the played/unplayed tabs say when one of them comes up empty with
+                 * no search running — distinct from `noMatches`, which is about a search
+                 * that found nothing. Nobody typed anything here, so "nothing matches
+                 * that" would be a non sequitur.
+                 */
+                filterEmpty: 'Nothing on this tab yet.',
                 failed: 'The quizzes could not be loaded. Check your connection.',
                 comingSoon: 'Coming soon...',
                 search: 'Search quizzes…',
