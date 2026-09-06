@@ -6,7 +6,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import { Pressable, View } from "react-native";
-import { initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
+import { featuredQuiz, initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 import { useQuizzes } from "../useQuizzes";
 
 /**
@@ -25,10 +25,9 @@ export default function NewQuizCard() {
 
     // Bonus furniture, not load-bearing: a stalled or empty weekly shelf means there is
     // nothing honest to feature here, so this renders nothing rather than its own
-    // spinner or error state — `QuizList` below is already saying that.
-    if (quizzes.status !== 'ready' || quizzes.items.length === 0) return null;
-
-    const quiz = quizzes.items.find(item => item.played !== true) ?? quizzes.items[0];
+    // spinner or error state — `QuizPeek` below is already saying that.
+    const quiz = quizzes.status === 'ready' ? featuredQuiz(quizzes.items) : null;
+    if (quiz === null) return null;
 
     const swatch = swatchFor(quiz);
     const published = publishedAtPhrase(quiz.publishedAt);

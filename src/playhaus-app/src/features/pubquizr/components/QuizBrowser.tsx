@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
 import Tabs from "@/components/ui/Tabs";
 import TextButton from "@/components/ui/TextButton";
-import { Spacing, fontFamilyForWeight, hardShadow } from "@/constants/theme";
+import { Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -22,6 +22,7 @@ import {
 import { QUIZ_CATEGORIES, type QuizCategory, type QuizListItem } from "../pubquizr-quizzes";
 import { useQuizzes } from "../useQuizzes";
 import QuizRow from "./QuizRow";
+import RuleButton from "./RuleButton";
 
 /**
  * The shelf whose name is not a shelf yet.
@@ -33,27 +34,18 @@ import QuizRow from "./QuizRow";
 const COMING_SOON: QuizCategory = 'community';
 
 /** How many placeholder rows stand in for the first page while it is on its way. */
-const SKELETON_ROWS = 3;
-
-/**
- * The ceiling on the shelf: five rows and the divider under them.
- *
- * Chosen against the shortest phone rather than against the content — the point is that
- * the panel ends well inside the viewport, so there is page above it and page below it
- * and the thing that scrolls is visibly a box rather than the screen.
- */
-const LIST_MAX_HEIGHT = 336;
+const SKELETON_ROWS = 5;
 
 /**
  * What the web's scrollbar rules in `global.css` are hung on.
  *
- * An id rather than a class because react-native-web offers no way to set one, and a
- * screen only ever holds a single shelf — the index page has one, and the setup screen
- * renders the same component once.
+ * An id rather than a class because react-native-web offers no way to set one, and only
+ * ever one browser is mounted at a time — the sheet it lives in is the only thing that
+ * opens it, and the peek on the index page has no scroller of its own.
  */
 const SCROLLER_ID = 'quiz-shelf-scroller';
 
-/** The wash over the bottom edge of the shelf, saying the rows carry on past it. */
+/** The wash over the bottom edge of the rows, saying they carry on past it. */
 const FADE_HEIGHT = 34;
 
 /**
@@ -75,7 +67,8 @@ type Sort = 'newest' | 'alpha';
 /**
  * The three ways the shelf can be split by whether a quiz has been played.
  *
- * `unplayed` is the default the shelf opens on — see `QuizList` below for why.
+ * `unplayed` is the default it opens on — what is left to play, not what has already
+ * been.
  */
 type PlayedFilter = 'all' | 'unplayed' | 'played';
 
@@ -119,10 +112,15 @@ function washToTop(color: string): ViewStyle {
 
 interface Props {
     /**
-     * Turns the rows from links into a choice. Without it this is the shelf on the
-     * index page, and tapping a quiz goes to the setup screen.
+     * Turns the rows from links into a choice. Without it the rows are links into the
+     * setup screen, carrying the quiz they were tapped on.
      */
     onSelect?: (quiz: QuizListItem) => void,
+    /**
+     * Where a row goes when it is not a choice — see `QuizRow`, which explains why a row
+     * inside a `Modal` cannot simply be the link it is on the page.
+     */
+    onNavigate?: (quiz: QuizListItem) => void,
     /**
      * The quiz already chosen, drawn as the active row wherever it turns up.
      *
@@ -132,31 +130,39 @@ interface Props {
      * for is the one that is missing. Marked, the shelf stays a stable map of every
      * quiz there is, with a tick on the one in play.
      */
-    selectedQuizId?: string
+    selectedQuizId?: string,
+    /**
+     * The way out, drawn at the end of the header row.
+     *
+     * The browser's own line rather than the sheet's, so that the title, the count and
+     * the close sit on one line instead of the sheet stacking a second header of its own
+     * above the first.
+     */
+    onClose?: () => void
 }
 
 /**
- * Every quiz there is, in a box you can see the bottom of.
+ * Every quiz there is, filling whatever it has been given.
  *
- * This did not use to scroll. The argument against it was that the page is already
- * inside the app's one scroller and a list with its own would be a scroll area inside a
- * scroll area — two things to flick, one of which swallows the other. That objection is
- * about a list with no visible end: a shelf that filled the viewport would leave nowhere
- * to put a finger that is not the inner list, and forty quizzes down the page the two
- * mode cards and the weekly stamp had been pushed out of reach entirely.
+ * This used to be a capped panel on the page — a box 336px tall with its own scroller,
+ * fenced so that it visibly ended inside the viewport. The fence was the right answer to
+ * the wrong question: a list inside a scrolling page has to be a box you can see the
+ * bottom of, or it swallows the page's own gesture and pushes everything above it out of
+ * reach. But that leaves two things to flick on every screen it appears on, and on the
+ * index it left a small box at the end of a long page — scroll down, then scroll again.
  *
- * So the shelf is capped at `LIST_MAX_HEIGHT` and fenced by the panel's own border.
- * There is always page above it and page below it to flick instead, and the boundary is
- * something you see rather than something you find out about. What the button-paged
- * design got right is kept: "load older" still sits at the end of the rows, inside the
- * box, because pages arriving on a press is what stops a shelf being infinite.
+ * So the browse is not on a page any more. `QuizSheet` gives this the screen, and with
+ * the screen the cap goes: the rows are `flex: 1` and are the only thing that scrolls
+ * anywhere near them. What the panel got right is kept — "load older" still sits at the
+ * end of the rows, because pages arriving on a press is what stops a shelf being
+ * infinite, and the fade over the last row still says there is more under it.
  *
  * Search is the other half of the answer. It runs over the pages already loaded, because
  * that is all the endpoint offers — `GET /api/v1/pubquizr/quizzes` takes a category, a
  * locale and a page number and nothing else — which is why running out of matches with
  * more pages behind them says so instead of showing an empty shelf.
  */
-export default function QuizList({ onSelect, selectedQuizId }: Props) {
+export default function QuizBrowser({ onSelect, onNavigate, selectedQuizId, onClose }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -257,7 +263,7 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
     const shelf = category !== COMING_SOON && quizzes.status === 'ready' && quizzes.items.length > 0;
 
     return (
-        <View style={styles.panel}>
+        <View style={styles.browser}>
             <View style={styles.header}>
                 {/* `Label`'s own typography, not the component: its bottom margin is
                     there to hold whatever it heads off, and in a row it would push the
@@ -272,6 +278,19 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                             ? t('pubquizr.index.list.matches', { quizzes: visible.length })
                             : t('pubquizr.index.list.total', { quizzes: quizzes.total })}
                     </AppText>
+                )}
+
+                <View style={styles.headerSpacer} />
+
+                {onClose !== undefined && (
+                    <Pressable
+                        onPress={onClose}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.close')}
+                        style={styles.close}
+                    >
+                        <Feather name="x" size={17} color={theme.colors.textSecondary} />
+                    </Pressable>
                 )}
             </View>
 
@@ -305,7 +324,7 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                             message={t('pubquizr.index.list.comingSoon')}
                         />
                     ) : quizzes.status === 'loading' ? (
-                        <Skeleton />
+                        <QuizSkeleton rows={SKELETON_ROWS} />
                     ) : quizzes.status === 'failed' ? (
                         <InlineNotification
                             icon="alert-triangle"
@@ -353,20 +372,18 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                         </Pressable>
                     </View>
 
-                    <View>
+                    {/* Takes the rest of the sheet, so the rows are what fills it and the
+                        fade below has something to sit on the edge of. */}
+                    <View style={styles.rows}>
                         <ScrollView
                             style={styles.scroller}
                             contentContainerStyle={styles.scrollerContent}
-                            // Without this Android hands every gesture over the shelf
-                            // straight to the page behind it, and the inner list never
-                            // moves at all.
-                            nestedScrollEnabled
                             // Tapping a row with the keyboard up should be tapping a row,
                             // not dismissing the keyboard and losing the tap.
                             keyboardShouldPersistTaps="handled"
                             showsVerticalScrollIndicator
                             // On the web that indicator is the browser's own, and an
-                            // unstyled one over this panel is invisible. What makes it
+                            // unstyled one over this sheet is invisible. What makes it
                             // show is in `global.css`, hung on this id.
                             id={SCROLLER_ID}
                             onLayout={onLayout}
@@ -393,19 +410,21 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
                             ) : (
                                 visible.map(quiz => (
                                     <QuizRow
-                                    key={quiz.id}
-                                    quiz={quiz}
-                                    onSelect={onSelect}
-                                    selected={quiz.id === selectedQuizId}
-                                />
+                                        key={quiz.id}
+                                        quiz={quiz}
+                                        onSelect={onSelect}
+                                        onNavigate={onNavigate}
+                                        selected={quiz.id === selectedQuizId}
+                                    />
                                 ))
                             )}
 
-                            {/* Inside the box, at the end of the rows — including the end
-                                of no rows at all, which is the one case where the answer
-                                someone searched for is a page that has not arrived. */}
+                            {/* At the end of the rows — including the end of no rows at
+                                all, which is the one case where the answer somebody
+                                searched for is a page that has not arrived. */}
                             {quizzes.hasMore && (
-                                <LoadOlder
+                                <RuleButton
+                                    text={quizzes.loadingMore ? t('common.busy') : t('pubquizr.index.list.loadOlder')}
                                     busy={quizzes.loadingMore}
                                     onPress={quizzes.loadMore}
                                 />
@@ -420,66 +439,38 @@ export default function QuizList({ onSelect, selectedQuizId }: Props) {
     )
 }
 
-interface LoadOlderProps {
-    busy: boolean,
-    onPress: () => void
-}
-
-/**
- * The end of the list, and the way past it: a rule across the column with the label
- * sitting in the gap.
- *
- * Drawn as a divider rather than as a button because that is what it is — the line says
- * the list stops here, and the words say it does not have to.
- */
-function LoadOlder({ busy, onPress }: LoadOlderProps) {
-    const t = useT();
-    const styles = useStyles();
-
-    return (
-        <Pressable
-            onPress={onPress}
-            disabled={busy}
-            accessibilityRole="button"
-            accessibilityState={{ disabled: busy, busy }}
-            style={styles.loadOlder}
-        >
-            <View style={styles.rule} />
-
-            <AppText style={styles.loadOlderText}>
-                {busy ? t('common.busy') : t('pubquizr.index.list.loadOlder')}
-            </AppText>
-
-            <View style={styles.rule} />
-        </Pressable>
-    )
+interface SkeletonProps {
+    rows: number
 }
 
 /**
  * The shape of the list before there is one.
  *
- * Rows rather than a spinner: the page is about to be a column of these, so the wait
+ * Rows rather than a spinner: the sheet is about to be a column of these, so the wait
  * should be the same column with nothing written in it yet — the list arrives by filling
  * in rather than by replacing what was there.
+ *
+ * Exported because the peek on the index page waits for the same request and should wait
+ * in the same way, just fewer rows deep.
  */
-function Skeleton() {
+export function QuizSkeleton({ rows }: SkeletonProps) {
     const styles = useStyles();
     const theme = useTheme();
 
     return (
         <>
-            {Array.from({ length: SKELETON_ROWS }, (_, index) => (
+            {Array.from({ length: rows }, (_, index) => (
                 <View
                     key={index}
-                    // Nothing here to read out, and three empty rows announced as
-                    // anything at all would be three announcements of nothing.
+                    // Nothing here to read out, and empty rows announced as anything at
+                    // all would be several announcements of nothing.
                     accessibilityElementsHidden
                     importantForAccessibility="no-hide-descendants"
                     style={[
                         styles.skeletonRow,
                         // The rows fade as they go down, so the column reads as one
-                        // thing loading rather than as three that failed.
-                        { opacity: 1 - index * 0.25 }
+                        // thing loading rather than as several that failed.
+                        { opacity: Math.max(1 - index * 0.2, 0.15) }
                     ]}
                 >
                     <View style={[styles.skeletonAvatar, { backgroundColor: theme.colors.boardEmpty }]} />
@@ -495,25 +486,21 @@ function Skeleton() {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The fence. A shelf that scrolls has to look like a container before it is
-    // scrolled, or the first flick is a surprise — light cuts it out of the page with
-    // the same ink line and offset everything else on it wears, and dark, where that
-    // line would be invisible, leaves the raised fill to do it.
-    panel: {
+    // No fence of its own any more. The sheet around it is the container, and a bordered
+    // panel inside a bordered sheet is a box drawn twice.
+    browser: {
+        flex: 1,
+        // Without it a flex child on the web refuses to shrink below its content, so a
+        // long shelf would push the scroller past the bottom of the sheet instead of
+        // scrolling inside it.
+        minHeight: 0,
         width: '100%',
-        borderRadius: 24,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.background,
-        padding: 14,
-        gap: 10,
-        ...hardShadow(4, theme.colors.shadow)
+        gap: 10
     },
 
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
         gap: Spacing.two
     },
 
@@ -529,6 +516,22 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 11,
         fontWeight: 800,
         color: theme.colors.textSecondary
+    },
+
+    // Pushes the close to the far end without the label and the count drifting apart:
+    // those two are one phrase and belong next to each other.
+    headerSpacer: {
+        flex: 1
+    },
+
+    close: {
+        width: 30,
+        height: 30,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 999,
+        backgroundColor: theme.colors.backgroundElement
     },
 
     plain: {
@@ -573,11 +576,13 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textSecondary
     },
 
+    rows: {
+        flex: 1,
+        minHeight: 0
+    },
+
     scroller: {
-        maxHeight: LIST_MAX_HEIGHT,
-        // Not `flex`, which would stretch a two-row shelf to the full ceiling and leave
-        // the panel mostly empty.
-        flexGrow: 0
+        flex: 1
     },
 
     scrollerContent: {
@@ -596,28 +601,6 @@ const useStyles = createThemedStyles(theme => ({
         bottom: 0,
         height: FADE_HEIGHT,
         ...washToTop(theme.colors.background)
-    },
-
-    loadOlder: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 9,
-        paddingTop: Spacing.one,
-        paddingBottom: 2
-    },
-
-    rule: {
-        flex: 1,
-        height: 2,
-        backgroundColor: theme.colors.boardEmptyBorder
-    },
-
-    // The one accent that means "there is more of this" in either scheme: blue on
-    // paper, lemon on the dark canvas, which is what `focus` already resolves to.
-    loadOlderText: {
-        fontSize: 12,
-        fontWeight: 800,
-        color: theme.colors.focus
     },
 
     skeletonRow: {

@@ -13,15 +13,14 @@
 /*
  * The scrollbar on the pubquizR quiz shelf.
  *
- * `QuizList` caps its rows at a height you can see the bottom of, which only works if
- * the box looks scrollable — and on the web a React Native `ScrollView` paints no
- * scrollbar of its own, so the one thing saying "there is more below this" would be the
- * fade alone. There is no style prop for a scrollbar, so it is said here, in the one
- * place the app keeps web-only CSS.
+ * `QuizBrowser` fills the sheet it opens in, and on the web a React Native `ScrollView`
+ * paints no scrollbar of its own — so how far down a shelf of sixty quizzes you are
+ * would be said by the fade at the bottom edge and nothing else. There is no style prop
+ * for a scrollbar, so it is said here, in the one place the app keeps web-only CSS.
  *
  * Hung on an id rather than a class because react-native-web gives no way to set a class
- * name, and a screen only ever holds one shelf: the index page has one, and the setup
- * screen renders the same component once.
+ * name, and only ever one browser is mounted: it lives in the sheet, only one sheet is
+ * open at a time, and the peek on the index page has no scroller of its own.
  *
  * The thumb is a mid grey rather than either ink or paper, because this file cannot see
  * the scheme: the in-app toggle is React state and never moves `prefers-color-scheme`,

@@ -5,7 +5,7 @@ import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ModeCard from "@/components/ui/ModeCard";
 import NewQuizCard from "@/features/pubquizr/components/NewQuizCard";
-import QuizList from "@/features/pubquizr/components/QuizList";
+import QuizPeek from "@/features/pubquizr/components/QuizPeek";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
@@ -67,7 +67,7 @@ export default function QuizzerIndexPage() {
                 naming it twice on one page reads as two lists. */}
             <View style={styles.list}>
                 <NewQuizCard />
-                <QuizList />
+                <QuizPeek />
             </View>
         </GameIndexPage>
     )

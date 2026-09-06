@@ -20,6 +20,18 @@ interface Props {
      * screen itself there is nowhere left to go, so the same row becomes the choice.
      */
     onSelect?: (quiz: QuizListItem) => void,
+    /**
+     * Goes where the row's link goes, but by hand.
+     *
+     * For a row inside `QuizSheet` on the index page, where the destination is the same
+     * setup screen the link points at but something has to happen first: the sheet is a
+     * `Modal`, and on native a `Modal` is its own root, so navigating out from under one
+     * leaves it sitting over the page it landed on. The caller closes the sheet and
+     * pushes the route itself.
+     *
+     * Ignored when `onSelect` is given — a row that picks a quiz is not going anywhere.
+     */
+    onNavigate?: (quiz: QuizListItem) => void,
     /** Draws the row as the one already chosen. Only meaningful alongside `onSelect`. */
     selected?: boolean
 }
@@ -47,7 +59,7 @@ const AVATAR_IMAGE: ImageStyle = {
  * The whole row is the target rather than the chevron at the end of it — the chevron is
  * there to say the row goes somewhere, not to be aimed at.
  */
-export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
+export default function QuizRow({ quiz, onSelect, onNavigate, selected = false }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -125,9 +137,11 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
         </>
     );
 
-    // Two different targets rather than one that branches inside `onPress`: a link has
+    // Three different targets rather than one that branches inside `onPress`: a link has
     // to render an anchor on web to be a link at all — right-clickable, openable in a
-    // new tab — and a choice on a form must not be one.
+    // new tab — and a choice on a form must not be one. The middle case is a row that
+    // goes where the link goes but cannot be one, and it is a button rather than a radio
+    // because nothing about it is being chosen.
     if (onSelect) {
         return (
             <Pressable
@@ -136,6 +150,19 @@ export default function QuizRow({ quiz, onSelect, selected = false }: Props) {
                 accessibilityLabel={label}
                 accessibilityState={{ selected, checked: selected }}
                 style={[styles.row, selected && styles.rowSelected]}
+            >
+                {body}
+            </Pressable>
+        )
+    }
+
+    if (onNavigate) {
+        return (
+            <Pressable
+                onPress={() => onNavigate(quiz)}
+                accessibilityRole="button"
+                accessibilityLabel={label}
+                style={styles.row}
             >
                 {body}
             </Pressable>

@@ -534,6 +534,20 @@ export const en = {
                  */
                 played: 'Played',
                 loadOlder: 'Load older',
+                /**
+                 * The way off the index page's three-row peek and into the sheet that
+                 * holds the rest. `{{quizzes}}` rather than `count` for the same reason
+                 * `total` and `matches` below avoid it — see the note on those.
+                 */
+                seeAll: 'See all {{quizzes}}',
+                /**
+                 * The same way through, before there is a number to put in it — a
+                 * shelf still loading has a total of zero, and "see all 0" is the
+                 * kind of wrong that outlives the request. Also what the row on the
+                 * setup screen is announced as, where the count is a second line
+                 * that a screen reader reads separately.
+                 */
+                browse: 'Browse all quizzes',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
                 /**
                  * What the played/unplayed tabs say when one of them comes up empty with
@@ -580,6 +594,11 @@ export const en = {
                 tooMany: 'Eight players is the most that fit round one phone.',
                 duplicate: 'Two players cannot share a name.',
             },
+            /**
+             * `pick` and `pickAnother` title the row that opens the browse sheet, so
+             * they read as the thing pressing it will do — the shelf's own
+             * `list.browse` is what that row is announced as.
+             */
             quiz: {
                 selected: 'Playing',
                 pick: 'Pick a quiz',

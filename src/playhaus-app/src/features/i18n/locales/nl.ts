@@ -466,6 +466,8 @@ export const nl: Catalog = {
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
+                seeAll: 'Bekijk alle {{quizzes}}',
+                browse: 'Blader door alle quizzen',
                 empty: 'Hier staat nog niks. Probeer een ander tabblad.',
                 filterEmpty: 'Hier staat nog niks op dit tabblad.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',

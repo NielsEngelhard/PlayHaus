@@ -31,6 +31,7 @@ import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import MetaDataRow from "./MetaDataRow";
 
 interface Props {
     game: Game,
@@ -518,24 +519,15 @@ export default function PlayingGame({
                 }
             />
 
-            <View style={styles.topRow}>
-                <RoundChip
-                    outcome={outcome}
-                    firstLetter={firstLetter}
-                    tries={myGuesses.length}
-                    maxGuesses={game.maxGuesses}
-                />
-
-                <WordLengthChip wordLength={game.wordLength} />
-
-                {/* Solo already carries this number in `SoloStatusRow`, right below — a
-                    second chip for the same score would just be saying it twice. */}
-                {multiplayer && <ScoreChip score={game.score} />}
-
-                {multiplayer && round.endsAt && !finished && (
-                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
-                )}
-            </View>
+            <MetaDataRow
+                game={game}
+                outcome={outcome}
+                firstLetter={firstLetter}
+                finished={finished}
+                multiplayer={multiplayer}
+                myGuesses={myGuesses}
+                round={round}                
+            />
 
             {/* Solo's answer to the row of chips below: you, your running total, and how
                 long you have been at it. The clock stops when the game does, so what is
