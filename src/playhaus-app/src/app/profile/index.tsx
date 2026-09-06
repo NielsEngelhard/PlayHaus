@@ -65,13 +65,13 @@ export default function ProfilePage() {
                 the moment the account stops being a guest one — the upgrade page
                 patches the session's user on its way out, so coming back here
                 re-renders without it. */}
-            {profile.isGuest && (
+            {profile.isGuest ? (
                 <GuestAccountNotice onUpgrade={() => router.push(ROUTES.upgradeAccount)} />
+            ) : (
+                <View style={tilt('-0.5deg')}>
+                    <ProfileCard name={profile.name} color={profile.color} />
+                </View>
             )}
-
-            <View style={tilt('-0.5deg')}>
-                <ProfileCard name={profile.name} color={profile.color} />
-            </View>
 
             <View style={tilt('-0.2deg')}>
                 <LanguageSelect

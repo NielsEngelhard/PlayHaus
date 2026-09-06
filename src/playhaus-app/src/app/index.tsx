@@ -2,6 +2,7 @@ import AppText from '@/components/text/AppText';
 import BigIntroText from '@/components/text/BigIntroText';
 import Label from '@/components/text/Label';
 import TextHint from '@/components/text/TextHint';
+import { Badge } from '@/components/ui/Badge';
 import GameTeaserCard from '@/components/ui/GameTeaserCard';
 import { GAMES } from '@/constants/games';
 import { Spacing } from '@/constants/theme';
@@ -13,6 +14,8 @@ import { useTheme } from '@/features/theme/ThemeContext';
 import { RelativePathString } from 'expo-router';
 import { View } from 'react-native';
 
+const appVersion = process.env.EXPO_PUBLIC_APP_VERSION;
+
 export default function HomeScreen() {
   const theme = useTheme();
   const styles = useStyles();
@@ -21,6 +24,12 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      {appVersion && (
+        <View style={styles.version}>
+          <Badge text={appVersion} />
+        </View>
+      )}
+
       <View style={styles.intro}>
         <BigIntroText
           title={t('home.headline.title')}
@@ -71,7 +80,13 @@ export default function HomeScreen() {
 
 const useStyles = createThemedStyles(theme => ({
   container: {
-    width: '100%'
+    width: '100%',
+    position: 'relative'
+  },
+  version: {
+    position: 'absolute',
+    top: 0,
+    right: 0
   },
   intro: {
     marginTop: Spacing.two

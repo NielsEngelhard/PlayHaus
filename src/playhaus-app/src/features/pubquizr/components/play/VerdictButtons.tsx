@@ -81,22 +81,6 @@ export default function VerdictButtons({
                 <Feather name="x" size={20} color={theme.colors.destructive} />
 
                 <AppText style={styles.wrongLabel}>{t('pubquizr.play.wrong')}</AppText>
-
-                {handoffSeat !== null ? (
-                    <View style={styles.handoff}>
-                        <Feather name="arrow-right" size={10} color={theme.colors.textMuted} />
-
-                        <View style={[styles.handoffAvatar, { backgroundColor: handoffSeat.swatch.color }]}>
-                            <AppText style={[styles.handoffInitials, { color: handoffSeat.swatch.foreground }]}>
-                                {handoffSeat.initials}
-                            </AppText>
-                        </View>
-
-                        <AppText style={styles.handoffName}>{handoffSeat.name}</AppText>
-                    </View>
-                ) : (
-                    <AppText style={styles.caption}>{t('pubquizr.play.wrongEndsQuestion')}</AppText>
-                )}
             </Pressable>
 
             <Pressable
@@ -110,13 +94,6 @@ export default function VerdictButtons({
                 <Feather name="check" size={22} color={Brand.ink} />
 
                 <AppText style={styles.correctLabel}>{t('pubquizr.play.correct')}</AppText>
-
-                {alwaysNextUp === null && (
-                    <AppText style={styles.correctCaption}>
-                        {t('pubquizr.play.correctKeepsTurn', { name: answering.name })}
-                        {scoring ? ` · ${t('pubquizr.play.worthPoints', { worth })}` : ''}
-                    </AppText>
-                )}
             </Pressable>
         </View>
     )
