@@ -7,8 +7,8 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { usePathname } from "expo-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { AccessibilityInfo, Animated, Easing, Platform, Pressable, useWindowDimensions, View } from "react-native";
+import type { ReactNode } from "react";
+import { Pressable, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 /** How one step of the track has gone, or that it has not been played yet. */
@@ -53,15 +53,6 @@ interface Props {
      * variant works without the caller looking the colour up again.
      */
     actions?: ReactNode
-    /**
-     * Multiplayer only: flickers the band three times whenever this changes — the same
-     * "replay on a changing value" trick `SlideFadeIn` uses for `replayKey`, since a turn
-     * starting is not a mount and there is no new `key` to hang the effect off.
-     *
-     * Left out by every board with no turn to announce — solo play, and every game but
-     * League of Letters — in which case the band never flickers.
-     */
-    turnFlickerAt?: number
 }
 
 /**
@@ -90,7 +81,7 @@ interface Props {
  * The notch is this component's too, for the same reason — nothing above it is holding
  * it open any more.
  */
-export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions, turnFlickerAt }: Props) {
+export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const pathname = usePathname();
@@ -114,63 +105,15 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();
 
-    /*
-     * The flicker itself: opacity rather than colour, so it costs nothing to compute for
-     * a game with no turn to announce and needs no second colour to flicker towards — the
-     * band just briefly shows the page through itself.
-     *
-     * The ref starts at whatever `turnFlickerAt` already is, the same trick the turn
-     * effect this is fed by uses on `wasMyTurn`: the first commit sees no change, and only
-     * a later call counts as one.
-     */
-    const [flicker] = useState(() => new Animated.Value(1));
-    const lastFlickerAt = useRef(turnFlickerAt);
-    useEffect(() => {
-        if (turnFlickerAt === undefined || turnFlickerAt === lastFlickerAt.current) return;
-        lastFlickerAt.current = turnFlickerAt;
-
-        let cancelled = false;
-        let run: Animated.CompositeAnimation | undefined;
-
-        // Checked rather than assumed: someone who has asked the OS for less movement
-        // gets the band exactly as it was, not a dimmer version of the same flash.
-        AccessibilityInfo.isReduceMotionEnabled().then(reduced => {
-            if (cancelled || reduced) return;
-
-            const dip = Animated.timing(flicker, {
-                toValue: FLICKER_DIM,
-                duration: FLICKER_PULSE_MS,
-                easing: Easing.inOut(Easing.quad),
-                useNativeDriver
-            });
-            const rise = Animated.timing(flicker, {
-                toValue: 1,
-                duration: FLICKER_PULSE_MS,
-                easing: Easing.inOut(Easing.quad),
-                useNativeDriver
-            });
-
-            run = Animated.sequence(Array(FLICKER_COUNT).fill(null).flatMap(() => [dip, rise]));
-            run.start();
-        });
-
-        return () => {
-            cancelled = true;
-            run?.stop();
-            flicker.setValue(1);
-        };
-    }, [turnFlickerAt, flicker]);
-
     const band = (
-        <Animated.View
+        <View
             style={[
                 styles.band,
                 {
                     backgroundColor: fill,
                     paddingTop: insets.top + BAND_PADDING,
                     marginHorizontal: -reach,
-                    paddingHorizontal: reach,
-                    opacity: flicker
+                    paddingHorizontal: reach
                 }
             ]}
         >
@@ -203,7 +146,7 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
             {children}
 
             {actions !== undefined && <View style={styles.actions}>{actions}</View>}
-        </Animated.View>
+        </View>
     );
 
     /*
@@ -220,19 +163,6 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
 
 /** The band's own vertical padding, which the notch is then added on top of. */
 const BAND_PADDING = 11;
-
-// react-native-web has no native animation module, so asking for one there is a console
-// warning and nothing else. Opacity is driver-safe everywhere else.
-const useNativeDriver = Platform.OS !== 'web';
-
-/** How many times the band dips and recovers for one turn starting. */
-const FLICKER_COUNT = 3;
-
-/** How long one half of a flicker takes — the dip, or the recovery, not both. */
-const FLICKER_PULSE_MS = 90;
-
-/** How far the band dips. Not to zero: a blank header reads as broken, not as a signal. */
-const FLICKER_DIM = 0.25;
 
 /**
  * How wide the band already is before it reaches out: the app's one column, plus the two
