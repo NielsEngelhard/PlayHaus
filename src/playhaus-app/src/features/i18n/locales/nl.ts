@@ -542,8 +542,10 @@ export const nl: Catalog = {
                 spokenRun: '{{master}} vraagt het aan {{player}}, die er {{run}} op rij goed heeft',
                 run: '{{run}} op rij',
                 staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat',
-                reads: 'leest voor',
-                answers: 'aan {{name}}',
+                /** De koptekst boven de spotlight: wie deze beurt leidt. */
+                quizmasterLabel: '{{name}} is quiz master',
+                /** Het label boven de uitgelichte naam van wie nu antwoord moet geven. */
+                answeringNow: 'Antwoordt nu',
                 roleQuizmaster: 'Quiz master',
                 roleGuesser: 'Raadt',
                 bonusOf: 'Bonus · {{number}} van {{total}}',

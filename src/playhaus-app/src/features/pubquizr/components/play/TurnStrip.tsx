@@ -4,8 +4,6 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
-import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 /**
@@ -43,13 +41,12 @@ interface Props {
 /**
  * Everything about the turn that is not the question: who, how far in, and what for.
  *
- * This was two blocks — a banner of two person cards with the round's rule under it, and
- * a progress card under that — and together they cost about 150 points of a phone. That
- * was affordable in round 1 and it is not in rounds 2 and 3, where a tall block goes in
- * underneath the question as well: `ScriptCard` is the only thing on the board that
- * flexes, so every point spent up here comes off the question, and the question is the
- * one element that leaves the phone as speech. Two lines in one card says the same four
- * facts and gives the difference back.
+ * This used to be one row wearing both people at the same size, which asked a glance to
+ * work out which of the two names mattered right now. It now reads top to bottom instead
+ * of left to right: a quiet header line says who is running the turn and how far into the
+ * round the table is, and underneath it one spotlighted portrait says who the table is
+ * actually waiting on. Nothing else on the card is drawn at that size, so there is never
+ * a second thing to glance past to find it.
  *
  * What was dropped to get there is the round's rule ("X keeps being asked until they get
  * one wrong"). It is still said in full on the hand-off screen, which is where somebody
@@ -57,8 +54,8 @@ interface Props {
  *
  * The one-line variant is not a smaller version of the two-line one — it is a different
  * sentence. A round with no seat being asked has no run, no "answers", and nothing to
- * highlight, so drawing an empty second half of the row would be worse than not drawing
- * it.
+ * spotlight, so drawing an empty header over an empty portrait would be worse than not
+ * drawing either.
  */
 export default function TurnStrip({
     quizmaster,
@@ -71,7 +68,6 @@ export default function TurnStrip({
     worth
 }: Props) {
     const t = useT();
-    const theme = useTheme();
     const styles = useStyles();
 
     // Only round 1 alternates. Everywhere else every turn pays, so a taller pip would be
@@ -99,8 +95,8 @@ export default function TurnStrip({
     if (answering === null) {
         return (
             <View style={styles.card}>
-                <View style={styles.row}>
-                    <Avatar seat={quizmaster} />
+                <View style={styles.soloRow}>
+                    <Avatar seat={quizmaster} size="sm" decorative />
 
                     <AppText style={styles.lead} numberOfLines={1}>{lead}</AppText>
 
@@ -112,12 +108,29 @@ export default function TurnStrip({
 
     return (
         <View style={styles.card}>
+            {/* Who is running the turn, and how far into the round it is. Read as two
+                separate scraps rather than folded into the sentence below — "quizmaster"
+                and "question 3 of 8" are both true on their own, unlike the spotlight's
+                "asking" sentence, which only means anything the two people together. */}
+            <View style={styles.header}>
+                <Avatar seat={quizmaster} size="sm" decorative />
+
+                <AppText style={styles.headerLabel} numberOfLines={1}>
+                    {t('pubquizr.play.turn.quizmasterLabel', { name: quizmaster.name })}
+                </AppText>
+
+                {count}
+            </View>
+
             <View
-                style={styles.row}
-                // Read out as the one sentence it is, rather than as five separate
-                // scraps — the same label the banner this replaced built, so nothing
-                // changes for a screen reader. The run is folded in here too: this
-                // stands in for its children, so a pill inside it would go unread.
+                style={styles.spotlight}
+                // Read out as the one sentence it is, rather than as three separate
+                // scraps — the same label the two-avatar row this replaced built, so
+                // nothing changes for a screen reader even though the quizmaster's own
+                // portrait moved up into the header above. The run is folded in here
+                // too, and the points pill after it is not: this stands in for its
+                // children, so a pill inside it would go unread, and the points are
+                // said nowhere near as often as they are seen.
                 accessibilityRole="text"
                 accessibilityLabel={run >= RUN_WORTH_SAYING
                     ? t('pubquizr.play.turn.spokenRun', {
@@ -130,24 +143,19 @@ export default function TurnStrip({
                         player: answering.name
                     })}
             >
-                <Avatar seat={quizmaster} />
-
-                <AppText style={styles.reads}>{t('pubquizr.play.turn.reads')}</AppText>
-
-                <Feather
-                    name="arrow-right"
-                    size={14}
-                    color={theme.colors.textMuted}
-                    style={styles.arrow}
-                />
-
-                <Avatar seat={answering} />
+                <Avatar seat={answering} size="lg" />
 
                 {/* `minWidth: 0` is what lets a long name truncate instead of pushing
                     the badge off the end of the row. */}
-                <AppText style={styles.name} numberOfLines={1}>
-                    {t('pubquizr.play.turn.answers', { name: answering.name })}
-                </AppText>
+                <View style={styles.spotlightBody}>
+                    <AppText style={styles.spotlightLabel}>
+                        {t('pubquizr.play.turn.answeringNow')}
+                    </AppText>
+
+                    <AppText style={styles.spotlightName} numberOfLines={1}>
+                        {answering.name}
+                    </AppText>
+                </View>
 
                 <View style={[styles.badge, scoring && styles.badgeScoring]}>
                     <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
@@ -160,7 +168,7 @@ export default function TurnStrip({
 
             <View style={styles.progress}>
                 {/* One pip per question, so the row is the round. Not read out: the
-                    count beside it and the badge above already say it in words. */}
+                    count up in the header and the badge above already say it in words. */}
                 <View
                     style={styles.pips}
                     accessibilityElementsHidden
@@ -178,26 +186,40 @@ export default function TurnStrip({
                         />
                     ))}
                 </View>
-
-                {count}
             </View>
         </View>
     )
 }
 
 /**
- * One person, at strip size.
+ * One person, at one of the strip's two sizes: `sm` for the header's own quizmaster line,
+ * `lg` for the portrait the spotlight row is built around.
  *
- * 26 points rather than the 34 the banner used, and no name beside it — the name is said
- * once in the row rather than twice, and at this size the swatch is doing the work a
- * label would anyway.
+ * `decorative` hides the swatch from a screen reader when the name beside it already says
+ * the same thing in words — the header's avatar is exactly that case; the spotlight
+ * portrait is not, because it is the only place `answering.name` appears outside the
+ * accessibility label built above it.
  */
-function Avatar({ seat }: { seat: Seat }) {
+function Avatar({ seat, size, decorative }: { seat: Seat, size: 'sm' | 'lg', decorative?: boolean }) {
     const styles = useStyles();
 
     return (
-        <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
-            <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
+        <View
+            style={[
+                styles.avatar,
+                size === 'lg' && styles.avatarLarge,
+                { backgroundColor: seat.swatch.color }
+            ]}
+            accessibilityElementsHidden={decorative}
+            importantForAccessibility={decorative ? 'no-hide-descendants' : undefined}
+        >
+            <AppText
+                style={[
+                    styles.initials,
+                    size === 'lg' && styles.initialsLarge,
+                    { color: seat.swatch.foreground }
+                ]}
+            >
                 {seat.initials}
             </AppText>
         </View>
@@ -205,26 +227,51 @@ function Avatar({ seat }: { seat: Seat }) {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // Unpadded: the header, spotlight and progress sections each carry their own, so the
+    // header's bottom border can run edge to edge under the rounded corners.
     card: {
         flexShrink: 0,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
         borderRadius: 16,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
+        overflow: 'hidden',
         ...theme.shadows.hardSmall
     },
 
-    row: {
+    // The one-line variant's own row — there is no header/spotlight split to give it
+    // padding, so it carries what `card` used to.
+    soloRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8
+        gap: 8,
+        paddingVertical: 8,
+        paddingHorizontal: 10
+    },
+
+    // Who is running the turn, and how far into the round it is — quiet on purpose,
+    // since the spotlight row underneath it is the thing worth a glance.
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderBottomWidth: theme.borderWidth,
+        borderBottomColor: theme.colors.border
+    },
+
+    headerLabel: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 12,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
 
     avatar: {
-        width: 26,
-        height: 26,
+        width: 22,
+        height: 22,
         flexShrink: 0,
         borderRadius: 999,
         alignItems: 'center',
@@ -233,33 +280,57 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink
     },
 
+    // The spotlight's own portrait, sized to be the one thing on the card a glance lands
+    // on first — everything else here is either text or a 22-point swatch.
+    avatarLarge: {
+        width: 48,
+        height: 48,
+        ...theme.shadows.hardSmall
+    },
+
     initials: {
-        fontSize: 9.5,
+        fontSize: 8.5,
         fontWeight: 900
     },
 
-    reads: {
-        flexShrink: 0,
-        fontSize: 12.5,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
+    initialsLarge: {
+        fontSize: 16
     },
 
-    arrow: {
-        flexShrink: 0
+    // Who has to answer it: the portrait, its "answering now" label, and the name —
+    // spaced apart from `progress` and `header` by their own padding rather than a gap,
+    // so the badge at the end can still sit flush with the row it belongs to.
+    spotlight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        paddingVertical: 10,
+        paddingHorizontal: 10
     },
 
-    name: {
+    spotlightBody: {
         flex: 1,
-        minWidth: 0,
-        fontSize: 14.5,
+        minWidth: 0
+    },
+
+    spotlightLabel: {
+        fontSize: 10.5,
         fontWeight: 900,
-        letterSpacing: -0.3,
+        textTransform: 'uppercase',
+        letterSpacing: 0.8,
+        color: theme.colors.focus
+    },
+
+    spotlightName: {
+        marginTop: 1,
+        fontSize: 20,
+        fontWeight: 900,
+        letterSpacing: -0.5,
         color: theme.colors.text
     },
 
-    // The one-line variant carries the whole sentence, so it takes the slack the two
-    // avatars and the badge would otherwise be sharing with it.
+    // The one-line variant carries the whole sentence, so it takes the slack the avatar
+    // and the count would otherwise be sharing with it.
     lead: {
         flex: 1,
         minWidth: 0,
@@ -299,15 +370,14 @@ const useStyles = createThemedStyles(theme => ({
         color: Brand.ink
     },
 
+    // Its own section now that the count moved up into the header — just the pips,
+    // padded like the sections above and below it.
     progress: {
-        marginTop: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 9
+        paddingHorizontal: 10,
+        paddingBottom: 8
     },
 
     pips: {
-        flex: 1,
         flexDirection: 'row',
         // Bottom-aligned so the taller scoring pips grow upwards off one baseline,
         // which is what makes the row read as a rhythm rather than as noise.

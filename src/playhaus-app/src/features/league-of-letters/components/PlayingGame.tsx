@@ -26,7 +26,6 @@ import { keyboardMarks } from "@/features/league-of-letters/marks";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { playYourTurn } from "@/utils/your-turn-sound";
-import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -597,7 +596,7 @@ export default function PlayingGame({
                 for it: pulling a full-height keyboard out of the tree and dropping a much
                 shorter card in its place is what made the end of a round jump, since the
                 two controls settle at different heights. The verdict now lands as a popover
-                over the same box instead, blurring the dead keyboard underneath it rather
+                over the same box instead, dimming the dead keyboard underneath it rather
                 than replacing it, so the box itself never changes size. Both wait out the
                 reveal — a panel naming the word while the last tiles are still face down
                 reads the answer out early. */}
@@ -632,13 +631,11 @@ export default function PlayingGame({
 
                 {decided && (
                     // `box-none` on the popover's own frame so a touch that lands on the
-                    // blur but off the card still has somewhere to go — the keyboard under
+                    // scrim but off the card still has somewhere to go — the keyboard under
                     // it, already disabled by `finished` above, so nothing answers either way.
                     <View style={styles.popover} pointerEvents='box-none'>
-                        <BlurView
-                            intensity={28}
-                            tint={theme.scheme === 'dark' ? 'dark' : 'light'}
-                            style={styles.popoverBlur}
+                        <View
+                            style={[styles.popoverBlur, { backgroundColor: theme.colors.background + 'CC' }]}
                             pointerEvents='none'
                         />
 

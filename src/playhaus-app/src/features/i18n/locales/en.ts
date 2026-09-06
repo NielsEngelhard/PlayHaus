@@ -675,9 +675,10 @@ export const en = {
                  * took one.
                  */
                 staysWhileRight: '{{name}} keeps being asked until they get one wrong',
-                /** The strip's own two halves: "NI reads → SA  Sanne answers". */
-                reads: 'reads',
-                answers: 'to {{name}}',
+                /** The strip's own header, naming whoever is running this turn. */
+                quizmasterLabel: '{{name}} is quizmaster',
+                /** The label over the strip's spotlighted, answering-now portrait. */
+                answeringNow: 'Answering now',
                 /*
                  * What rounds 4 and 5 share, now that they are played the same way: one
                  * person asking, one person answering against a clock, and everybody else

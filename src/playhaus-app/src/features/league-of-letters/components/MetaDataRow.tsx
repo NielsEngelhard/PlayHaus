@@ -1,10 +1,12 @@
+import { Fragment, type ReactNode } from "react";
 import { View } from "react-native";
-import RoundChip from "./RoundChip";
-import WordLengthChip from "./WordLengthChip";
-import ScoreChip from "./ScoreChip";
+import AppText from "@/components/text/AppText";
 import GameTimer from "./GameTimer";
+import { Brand } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { Spacing } from "@/constants/theme";
+import { useTheme } from "@/features/theme/ThemeContext";
+import { useT } from "@/features/i18n/LanguageContext";
+import Feather from "@expo/vector-icons/Feather";
 import { GameGuess, Game, GameRound } from "@/api/calls/league-of-letters";
 
 interface Props {
@@ -17,39 +19,178 @@ interface Props {
     finished: boolean
 }
 
+/**
+ * Everything about the round that is not the board itself, read as one card rather than
+ * a row of separately bordered chips: the hint (or how the round went) keeps its own
+ * filled pill, since it is the one segment whose colour carries meaning, and the word
+ * length, score and clock sit beside it as plain icon-and-number pairs behind a single
+ * border, split by a hairline rather than each wearing an outline of their own.
+ */
 export default function MetaDataRow({ game, outcome, firstLetter, myGuesses, multiplayer, round, finished }: Props) {
+    const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
+
+    const segments: { key: string, node: ReactNode }[] = [];
+
+    // Mirrors the old `RoundChip`: the hint while the round is still winnable, the tally
+    // once it is decided, and nothing at all if there is no hint to give yet.
+    if (outcome !== 'playing') {
+        segments.push({
+            key: 'outcome',
+            node: (
+                <View style={[styles.pill, outcome === 'won' ? styles.pillWon : styles.pillLost]}>
+                    <Feather name={outcome === 'won' ? 'check' : 'x'} size={13} color={Brand.ink} />
+
+                    <AppText style={styles.tries}>
+                        {t('lol.game.guesses', { guesses: myGuesses.length, max: game.maxGuesses })}
+                    </AppText>
+                </View>
+            )
+        });
+    } else if (firstLetter !== '') {
+        segments.push({
+            key: 'hint',
+            node: (
+                <View
+                    style={[styles.pill, styles.pillHint]}
+                    accessibilityRole='text'
+                    accessibilityLabel={t('lol.game.hintLabel', { letter: firstLetter })}
+                >
+                    <AppText style={styles.hintLabel}>{t('lol.game.hint')}</AppText>
+
+                    <AppText style={styles.hintLetter}>{firstLetter}</AppText>
+                </View>
+            )
+        });
+    }
+
+    segments.push({
+        key: 'length',
+        node: (
+            <View style={styles.segment}>
+                <Feather name='hash' size={13} color={theme.colors.textMuted} />
+
+                <AppText style={styles.segmentLabel}>
+                    {t('lol.game.wordLengthLabel', { letters: game.wordLength })}
+                </AppText>
+            </View>
+        )
+    });
+
+    // Solo already carries this number in `SoloStatusRow`, right below — a second
+    // segment for the same score would just be saying it twice.
+    if (multiplayer) {
+        segments.push({
+            key: 'score',
+            node: (
+                <View
+                    style={styles.segment}
+                    accessibilityRole='text'
+                    accessibilityLabel={t('lol.game.scoreCompactLabel', { score: game.score })}
+                >
+                    <Feather name='star' size={13} color={Brand.primary} />
+
+                    <AppText style={styles.segmentLabel}>{game.score}</AppText>
+                </View>
+            )
+        });
+    }
+
+    if (multiplayer && round.endsAt && !finished) {
+        segments.push({
+            key: 'timer',
+            node: (
+                <View style={styles.segment}>
+                    <Feather name='clock' size={13} color={theme.colors.text} />
+
+                    <GameTimer endsAt={round.endsAt} />
+                </View>
+            )
+        });
+    }
 
     return (
-            <View style={styles.topRow}>
-                <RoundChip
-                    outcome={outcome}
-                    firstLetter={firstLetter}
-                    tries={myGuesses.length}
-                    maxGuesses={game.maxGuesses}
-                />
+        <View style={styles.card}>
+            {segments.map((segment, index) => (
+                <Fragment key={segment.key}>
+                    {index > 0 && <View style={styles.divider} />}
 
-                <WordLengthChip wordLength={game.wordLength} />
-
-                {/* Solo already carries this number in `SoloStatusRow`, right below — a
-                    second chip for the same score would just be saying it twice. */}
-                {multiplayer && <ScoreChip score={game.score} />}
-
-                {multiplayer && round.endsAt && !finished && (
-                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
-                )}
-            </View>        
+                    {segment.node}
+                </Fragment>
+            ))}
+        </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    topRow: {
+    card: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: Spacing.two
+        gap: 11,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        borderRadius: 16,
+        backgroundColor: theme.colors.backgroundSecondary,
+        paddingVertical: 6,
+        paddingLeft: 6,
+        paddingRight: 12,
+        ...theme.shadows.hardSmall
     },
-    timer: {
-        flexShrink: 0
+    // A hairline rather than a border of its own — the card is what draws the outline
+    // now, and four of them inside it would be back to the row this replaced.
+    divider: {
+        width: 1.5,
+        alignSelf: 'stretch',
+        backgroundColor: theme.colors.borderSubtle
     },
+    pill: {
+        flexShrink: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 11
+    },
+    pillHint: {
+        backgroundColor: theme.colors.lemon
+    },
+    pillWon: {
+        backgroundColor: theme.colors.mint
+    },
+    pillLost: {
+        backgroundColor: theme.colors.blush
+    },
+    hintLabel: {
+        fontSize: 9,
+        fontWeight: 800,
+        textTransform: 'uppercase',
+        letterSpacing: 1,
+        // Ink at 60%, on a lemon pill in both schemes — so it is stated once here rather
+        // than flipping with the scheme like the rest of the palette.
+        color: 'rgba(15, 13, 18, 0.6)'
+    },
+    hintLetter: {
+        fontSize: 15,
+        fontWeight: 900,
+        letterSpacing: -0.5,
+        color: Brand.ink
+    },
+    tries: {
+        fontSize: 11,
+        fontWeight: 900,
+        color: Brand.ink
+    },
+    segment: {
+        flexShrink: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6
+    },
+    segmentLabel: {
+        fontSize: 13,
+        fontWeight: 900,
+        color: theme.colors.text
+    }
 }))
