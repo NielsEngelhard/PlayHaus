@@ -510,21 +510,16 @@ export default function PlayingGame({
                 }
             />
 
-            {/* The hint, beside whatever else is telling the player how this round is
-                paced. On a shared board that is the countdown, sitting immediately to the
-                hint's left; solo sets no deadline, so the hint stands alone in the same
-                corner. */}
-            <View style={styles.hintRow}>
-                {/* Untimed rounds carry no deadline, so there is nothing to count down. */}
-                {multiplayer && round.endsAt && !finished && (
-                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
-                )}
-
+            <View style={styles.topRow}>
                 <RoundChip
                     outcome={outcome}
                     firstLetter={firstLetter}
                     tries={myGuesses.length}
-                />
+                />                
+                
+                {multiplayer && round.endsAt && !finished && (
+                    <GameTimer endsAt={round.endsAt} style={styles.timer} />
+                )}
             </View>
 
             {/* Solo's answer to the row of chips below: you, your running total, and how
@@ -686,13 +681,6 @@ export default function PlayingGame({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the window, which is what keeps the keyboard on the bottom edge and the board
-    // off the fold. No top padding of its own: the band above it is the top of the screen,
-    // and the board is short enough on height already.
-    //
-    // The sides are here rather than on the page because a chromeless page is handed the
-    // window bare — see `useChromeless`. The band reaches back out through them; see the
-    // negative margin in `InGameHeader`.
     screen: {
         flex: 1,
         width: '100%',
@@ -700,30 +688,19 @@ const useStyles = createThemedStyles(theme => ({
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.two
     },
-    // No `justifyContent: 'flex-end'` any more: that was for a timer standing alone and
-    // stretched across the full row. It now shares `hintRow` with the hint chip, which is
-    // what pushes it to the row's own right edge instead.
     timer: {
         flexShrink: 0
     },
-    // Whatever tells the player how this round is paced, bunched into one corner: the
-    // countdown and the hint side by side on a shared board, or the hint alone on solo's.
-    // `flex-end` rather than `space-between` — the two belong together, not at opposite
-    // ends of the row.
-    hintRow: {
+    topRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         gap: Spacing.two
     },
-    // All the room left over once everything around it has been laid out, which is what
-    // the grid measures itself against.
     board: {
         flex: 1,
         width: '100%'
     },
-    // Fixed height rather than a minimum: a message long enough to wrap should spill into
-    // the gap around the lane, not push the board down and shrink every tile.
     noticeLane: {
         flexShrink: 0,
         height: NOTICE_LANE_HEIGHT,
@@ -744,8 +721,6 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         color: Brand.ink
     },
-    // Stands where the keyboard was, and is spaced like it: the result and the way on
-    // are one block, not two things that happen to be near each other.
     outcome: {
         flexShrink: 0,
         gap: Spacing.three - 4

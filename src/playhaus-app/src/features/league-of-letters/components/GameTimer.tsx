@@ -59,14 +59,6 @@ export default function GameTimer({ endsAt, style }: Props) {
 
     return (
         <View style={[styles.row, style]}>
-            <Feather
-                name='clock'
-                size={14}
-                color={hurry ? theme.colors.destructive : theme.colors.textSecondary}
-            />
-
-            <AppText style={styles.label}>{t('lol.game.timeLeft')}</AppText>
-
             <AppText style={[styles.time, hurry && styles.timeHurry]}>
                 {formatted(remaining)}
             </AppText>
