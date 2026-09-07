@@ -215,19 +215,25 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         }));
     }
 
+    // The same strip every other round wears, on both halves of this one: the round has
+    // no single answerer, so it always draws the one-line variant.
+    const strip = (
+        <TurnStrip
+            quizmaster={turn.quizmaster}
+            answering={null}
+            lead={lead}
+            run={0}
+            round={round}
+            number={turn.number}
+            total={turn.total}
+            worth={turn.worth}
+        />
+    );
+
     if (stage === 'reading') {
         return (
             <View style={styles.turn}>
-                <TurnStrip
-                    quizmaster={turn.quizmaster}
-                    answering={null}
-                    lead={lead}
-                    run={0}
-                    round={round}
-                    number={turn.number}
-                    total={turn.total}
-                    worth={turn.worth}
-                />
+                {strip}
 
                 <ScriptCard prompt={turn.question.prompt} size={31}>
                     <View style={styles.stake}>
@@ -295,6 +301,8 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     return (
         <View style={styles.screen}>
             <View style={styles.body}>
+                {strip}
+
                 <Label label={turn.question.prompt} />
 
                 {/* Hidden at the smallest table the game allows: the reader is one of

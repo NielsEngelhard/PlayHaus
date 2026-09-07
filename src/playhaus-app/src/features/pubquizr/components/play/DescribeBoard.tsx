@@ -177,10 +177,10 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     }
 
     /*
-     * The same strip every other round wears. Round 4 does have somebody being asked now
-     * — the seat on the describer's left — so the strip says so, the way it does in the
-     * rounds that are read to one person. On the stopwatch screen it is left off along
-     * with everything else: that screen is thirty seconds with nothing to press.
+     * The same strip every other round wears, across every stage of this one — including
+     * the stopwatch. Round 4 does have somebody being asked now — the seat on the
+     * describer's left — so the strip says so, the way it does in the rounds that are
+     * read to one person.
      */
     const strip = (
         <TurnStrip
@@ -245,6 +245,8 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     if (stage === 'running') {
         return (
             <View style={styles.turn}>
+                {strip}
+
                 <TurnTimerSlot onDone={() => setStage('inTime')} />
 
                 <ScrollView contentContainerStyle={styles.words}>

@@ -56,7 +56,7 @@ export const LEAGUE_OF_LETTERS: Game = {
     navigationUrl: ROUTES.leagueOfLettersIndex,
     joinCodePrefix: 'L',
     roomRoute: ROUTES.leagueOfLettersRoom,
-    minMaxPlayersIndicator: "1-6",
+    minMaxPlayersIndicator: "1-4",
     minutesAverage: 10
 };
 

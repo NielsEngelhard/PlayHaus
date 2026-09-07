@@ -340,7 +340,7 @@ export const nl: Catalog = {
                     guesses: '{{guesses}} pogingen',
                     action: 'Speel het woord van vandaag'
                 },
-                free: { title: 'Casual', description: 'Een rustig solo potje' },
+                free: { title: 'Oefenen', description: 'Een rustig solo potje' },
                 competitive: { title: 'Competitief', description: 'Probeer een steeds hogere score te halen' },
                 quick: 'Snel spelen · {{letters}} letters'
             },
@@ -574,12 +574,8 @@ export const nl: Catalog = {
             questionTotal: ' van {{total}}',
             questionOutOf: '/{{total}}',
             turn: {
-                asking: 'vraagt',
-                answering: 'antwoordt',
                 spoken: '{{master}} vraagt het aan {{player}}',
                 spokenRun: '{{master}} vraagt het aan {{player}}, die er {{run}} op rij goed heeft',
-                run: '{{run}} op rij',
-                staysWhileRight: '{{name}} blijft aan de beurt tot er één fout gaat',
                 /** De koptekst boven de spotlight: wie deze beurt leidt. */
                 quizmasterLabel: '{{name}} is quiz master',
                 /** Het label boven de uitgelichte naam van wie nu antwoord moet geven. */

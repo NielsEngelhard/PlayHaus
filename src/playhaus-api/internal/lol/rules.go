@@ -2,7 +2,7 @@ package lol
 
 const (
 	MinLobbyPlayers = 2
-	MaxLobbyPlayers = 6
+	MaxLobbyPlayers = 4
 )
 
 const (

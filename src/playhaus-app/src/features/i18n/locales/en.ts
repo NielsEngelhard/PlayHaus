@@ -690,8 +690,6 @@ export const en = {
             questionOutOf: '/{{total}}',
             /** The two people the turn is about, above the question. */
             turn: {
-                asking: 'asking',
-                answering: 'answering',
                 /** The banner read out as the one sentence it is. */
                 spoken: '{{master}} is asking {{player}}',
                 /**
@@ -700,19 +698,6 @@ export const en = {
                  * never reach it otherwise.
                  */
                 spokenRun: '{{master}} is asking {{player}}, who has taken {{run}} in a row',
-                /**
-                 * The pill beside the name. Never `count`: that is the one option name
-                 * i18next treats as a plural trigger, and there are no plural forms
-                 * behind it. See `common.time`.
-                 */
-                run: 'Run of {{run}}',
-                /**
-                 * The round's rule, on screen every turn rather than only on the
-                 * hand-off. It is the thing a table gets wrong: the questions do not go
-                 * round like a deal of cards, they come straight back to whoever just
-                 * took one.
-                 */
-                staysWhileRight: '{{name}} keeps being asked until they get one wrong',
                 /** The strip's own header, naming whoever is running this turn. */
                 quizmasterLabel: '{{name}} is quizmaster',
                 /** The label over the strip's spotlighted, answering-now portrait. */

@@ -6,7 +6,7 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
  * The waiting room a multiplayer League of Letters game is set up in.
  */
 
-export const MAX_LOBBY_PLAYERS = 6;
+export const MAX_LOBBY_PLAYERS = 4;
 export const MIN_LOBBY_PLAYERS = 2;
 export type LobbyStatus = 'waiting' | 'started';
 
