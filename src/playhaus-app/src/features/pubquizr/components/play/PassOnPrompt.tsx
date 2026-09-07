@@ -7,6 +7,7 @@ import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
+import QuickAssign from "./QuickAssign";
 
 interface Props {
     /** Who just had it wrong. */
@@ -15,6 +16,16 @@ interface Props {
     to: Seat
     /** The ruling that got us here is still in the air. */
     busy: boolean
+    /**
+     * Everybody the question can still be put to, `to` first. Only read by the quick
+     * assign panel, which is the one thing here that needs to see past the next name.
+     */
+    remaining: Seat[]
+    /**
+     * Offered the shortcut past the rest of the line — see `QuickAssign`. Left out where
+     * there is no line to skip: the finale, and the last seat of any question.
+     */
+    onQuickAssign?: (seat: number | null) => void
     onContinue: () => void
 }
 
@@ -33,9 +44,20 @@ interface Props {
  * is the same fact, but after it, and it is the only thing on the screen rather than a
  * caption under two buttons.
  */
-export default function PassOnPrompt({ from, to, busy, onContinue }: Props) {
+export default function PassOnPrompt({
+    from,
+    to,
+    busy,
+    remaining,
+    onQuickAssign,
+    onContinue
+}: Props) {
     const t = useT();
     const styles = useStyles();
+
+    // Nothing to skip past means nothing to offer: with one name left the shortcut is a
+    // longer way of pressing the button above it.
+    const shortcut = onQuickAssign !== undefined && remaining.length > 1;
 
     return (
         <View style={styles.container}>
@@ -63,7 +85,27 @@ export default function PassOnPrompt({ from, to, busy, onContinue }: Props) {
                 <Feather name="arrow-right" size={16} color={Brand.ink} />
             </PopPressable>
 
-            <TextHint text={t('pubquizr.play.passOnHint', { name: from.name })} />
+            {/*
+              * With the shortcut on, the hint gives up the middle of the line and moves
+              * left so the chip can have the end of it. Without it the line is the hint
+              * alone, centred, exactly as it always was — `TextHint` owns that case
+              * rather than being reproduced with a different rule for its one caller.
+              */}
+            {shortcut ? (
+                <View style={styles.footer}>
+                    <AppText style={styles.hint} numberOfLines={1}>
+                        {t('pubquizr.play.passOnHint', { name: from.name })}
+                    </AppText>
+
+                    <QuickAssign
+                        remaining={remaining}
+                        busy={busy}
+                        onAssign={onQuickAssign}
+                    />
+                </View>
+            ) : (
+                <TextHint text={t('pubquizr.play.passOnHint', { name: from.name })} />
+            )}
         </View>
     )
 }
@@ -90,6 +132,23 @@ const useStyles = createThemedStyles(theme => ({
 
     busy: {
         opacity: 0.5
+    },
+
+    // The same row `TextHint` would have been, with the shortcut on the end of it.
+    footer: {
+        marginTop: 9,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 10
+    },
+
+    // TextHint's own type, minus the centring the row does instead.
+    hint: {
+        flexShrink: 1,
+        fontSize: 11.5,
+        fontWeight: 600,
+        color: theme.colors.textMuted
     },
 
     avatar: {

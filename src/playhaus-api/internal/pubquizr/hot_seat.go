@@ -11,6 +11,11 @@ package pubquizr
 // The seat is therefore not something that can be worked out from who is reading, and
 // `Session.HotSeat` is where it lives. Everything here is arithmetic around it.
 //
+// The passing itself no longer reaches this package one step at a time. The app walks
+// the line on its own and says the whole of a question at once, when it closes -- see
+// `PassLine` in rules.go, which is that line as a list, and `RecordHotSeatTurn`, which
+// is what checks a client's version of it against this one.
+//
 // Rounds 3 and 4 are not played this way at all -- everybody guesses at once, everybody
 // describes in turn -- so nothing in this file applies to them. `IsHotSeatRound` in
 // rules.go is the predicate that says which rounds it does apply to, and

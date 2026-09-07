@@ -37,6 +37,11 @@ import VerdictButtons from "./VerdictButtons";
  * straight back to `judging` for them. The strip at the top already changes to say who
  * that is, but it is too easy to miss on a phone being passed round a table, so the
  * buttons stand down for one more tap that names it outright — see `PassOnPrompt`.
+ *
+ * Nothing about that beat leaves the phone. A question passing along used to be a
+ * request whose whole effect was to let the *next* request work out who was being asked;
+ * the board keeps count itself now and posts the question once, when it closes. Which is
+ * why the prompt appears the instant Wrong is pressed rather than after a round trip.
  */
 type Stage = 'covered' | 'revealed' | 'judging' | 'passed';
 
@@ -50,8 +55,18 @@ interface Props {
     /** A ruling is already in the air. */
     busy: boolean
     error: TranslationKey | null
-    /** Called with the verdict, and with who was reading when it was given. */
-    onVerdict: (correct: boolean, from: number) => void
+    /**
+     * Whether the quizmaster may name the winner outright instead of walking the table a
+     * Wrong at a time — see `QuickAssign`. Off in the finale, whose line is two seats
+     * long and has nothing to skip.
+     */
+    quickAssign?: boolean
+    /**
+     * Called once, with the settled question: who was asked and missed it in the order it
+     * reached them, who took it in the end — or null when it beat everybody — and who was
+     * reading while all of that happened.
+     */
+    onSettle: (missedSeats: number[], correctSeat: number | null, from: number) => void
 }
 
 /**
@@ -99,7 +114,8 @@ export default function HotSeatBoard({
     lead,
     busy,
     error,
-    onVerdict
+    quickAssign = false,
+    onSettle
 }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -118,14 +134,16 @@ export default function HotSeatBoard({
         questionId: string | null
         stage: Stage
         /**
-         * Only set while `stage` is `'passed'`: who just had it wrong, and who it
-         * passed to. Captured at the moment "Wrong" is pressed rather than read back
-         * off `turn` once the ruling round-trips, so the prompt names the right two
-         * people the instant it appears instead of flashing the old answerer while the
-         * request is still in flight.
+         * How far down the line the question has got: how many people have been asked
+         * and missed it, none of which the server knows yet.
+         *
+         * This is the whole of the state that used to live in attempt rows on the other
+         * side of a request. It rides with the question id for the same reason the stage
+         * does — a new question is a fresh line — and it is what turns `turn.remaining`
+         * into who is being asked right now.
          */
-        handoff: { from: Seat, to: Seat } | null
-    }>({ questionId: null, stage: 'covered', handoff: null });
+        missed: number
+    }>({ questionId: null, stage: 'covered', missed: 0 });
 
     /*
      * Reset during render rather than from an effect.
@@ -137,58 +155,106 @@ export default function HotSeatBoard({
      * `useQuizzes` empties its shelf during render.
      */
     if (progress.questionId !== turn.dealt.id) {
-        setProgress({ questionId: turn.dealt.id, stage: 'covered', handoff: null });
+        setProgress({ questionId: turn.dealt.id, stage: 'covered', missed: 0 });
     }
 
     // What this render is actually drawing. React restarts the render on the setState
     // above, so this only stands in for one discarded pass.
-    //
-    // One more fallback lives here: a ruling that came back refused leaves `session`
-    // exactly as it was — see `useQuizSession` — so a "Wrong" that never happened has no
-    // business leaving the buttons stood down. `busy` guards this from firing mid-flight,
-    // while the verdict is still in the air and there is nothing refused yet to see.
-    const stage: Stage = progress.questionId !== turn.dealt.id
-        ? 'covered'
-        : progress.stage === 'passed' && error !== null && !busy
-            ? 'judging'
-            : progress.stage;
+    const fresh = progress.questionId !== turn.dealt.id;
+    const stage: Stage = fresh ? 'covered' : progress.stage;
+    const missed = fresh ? 0 : progress.missed;
 
-    // Captured rather than read off `turn` inside the callback: this is a hoisted
-    // function, so TypeScript cannot see that the value it closes over is the current one.
+    /*
+     * Who the question is with, worked out here rather than read off the session.
+     *
+     * `turn.remaining` is the line as the server last saw it — everybody still to be
+     * asked, in order — and `missed` is how far along it the phone has since walked on
+     * its own. So the person being asked is the one at that offset, and the fallback is
+     * only there for the impossible case of a line that has run out from under us.
+     *
+     * The server's `turn.answering` is still the truth at the moment a question opens;
+     * these two agree exactly while `missed` is 0, which is every time a question
+     * arrives.
+     */
+    const answering = turn.remaining[missed] ?? turn.answering;
+    const nextUp = turn.remaining[missed + 1] ?? null;
+    /** Who just had it wrong, for the hand-off prompt. Null on a fresh question. */
+    const handedFrom = missed > 0 ? turn.remaining[missed - 1] ?? null : null;
+    // A run belongs to whoever is *holding* the seat. Once a question has passed along,
+    // the person now being asked has taken nothing yet, so there is no run to put up.
+    const run = missed === 0 ? turn.run : 0;
+
+    // Captured rather than read off `turn` inside the callback: these are hoisted
+    // functions, so TypeScript cannot see that the value they close over is the current
+    // one.
     const questionId = turn.dealt.id;
 
     function moveTo(next: Stage) {
-        setProgress({ questionId, stage: next, handoff: null });
+        setProgress({ questionId, stage: next, missed });
     }
 
     /**
-     * The one thing "Wrong" does before it also does the real thing.
+     * The one thing that leaves the phone: the whole question, once.
      *
-     * A wrong answer with somebody left in `nextUp` does not go straight back to a
-     * judging board for them — it stands the buttons down for `PassOnPrompt` first, so
-     * the hand-off is a thing that happened rather than a thing the top strip quietly
-     * changed to say. Correct answers, and a wrong one with nobody left to ask, are
-     * unaffected: both already end in a new `dealt.id` or a finished round, which resets
-     * the ritual on its own.
+     * `upTo` is how far down the line it got — everybody before that missed it — and
+     * `correctSeat` is whoever took it, or null for a question that beat the table.
+     */
+    function settle(correctSeat: number | null, upTo: number) {
+        onSettle(
+            turn.remaining.slice(0, upTo).map(seat => seat.seat),
+            correctSeat,
+            turn.quizmaster.seat
+        );
+    }
+
+    /**
+     * What the two verdict buttons do, which is no longer one thing each.
+     *
+     * Correct settles the question here and now. Wrong only settles it when there is
+     * nobody left to ask — otherwise it walks the line on this phone and stands the
+     * buttons down for `PassOnPrompt`, with no request and nothing to wait for.
      */
     function handleWrongOrCorrect(correct: boolean) {
-        if (!correct && turn.nextUp !== null) {
-            setProgress({
-                questionId,
-                stage: 'passed',
-                handoff: { from: turn.answering, to: turn.nextUp }
-            });
+        if (correct) {
+            settle(answering.seat, missed);
+            return;
         }
 
-        onVerdict(correct, turn.quizmaster.seat);
+        if (nextUp !== null) {
+            setProgress({ questionId, stage: 'passed', missed: missed + 1 });
+            return;
+        }
+
+        // Nobody left: the question beat the table.
+        settle(null, turn.remaining.length);
+    }
+
+    /**
+     * The shortcut past all of that: the quizmaster asked the table in a circle and is
+     * naming the winner, or saying that nobody got it.
+     *
+     * It is the same settled turn Correct sends — the seats it skips past are recorded
+     * as having missed it, because out loud they did — so there is nothing special about
+     * it on the wire or on the server. See `QuickAssign`.
+     */
+    function handleQuickAssign(seat: number | null) {
+        if (seat === null) {
+            settle(null, turn.remaining.length);
+            return;
+        }
+
+        const at = turn.remaining.findIndex(candidate => candidate.seat === seat);
+        if (at < 0) return;
+
+        settle(seat, at);
     }
 
     const strip = (
         <TurnStrip
             quizmaster={turn.quizmaster}
-            answering={turn.answering}
+            answering={answering}
             lead={lead}
-            run={turn.run}
+            run={run}
             round={round}
             number={turn.number}
             total={turn.total}
@@ -201,6 +267,28 @@ export default function HotSeatBoard({
             icon="alert-triangle"
             color={theme.colors.blush}
             message={t(error)}
+        />
+    );
+
+    const verdict = (
+        <VerdictButtons
+            answering={answering}
+            nextUp={nextUp}
+            alwaysNextUp={turn.alwaysNextUp}
+            worth={turn.worth}
+            busy={busy}
+            onVerdict={handleWrongOrCorrect}
+        />
+    );
+
+    const passOn = handedFrom !== null && (
+        <PassOnPrompt
+            from={handedFrom}
+            to={answering}
+            busy={busy}
+            remaining={turn.remaining.slice(missed)}
+            onQuickAssign={quickAssign ? handleQuickAssign : undefined}
+            onContinue={() => moveTo('judging')}
         />
     );
 
@@ -234,36 +322,20 @@ export default function HotSeatBoard({
 
                 {/* The one thing that does swap. Which is the guard: nothing that scores
                     is on screen until the gate has been pressed on purpose. */}
-                {stage === 'judging' ? (
-                    <VerdictButtons
-                        answering={turn.answering}
-                        nextUp={turn.nextUp}
-                        alwaysNextUp={turn.alwaysNextUp}
-                        worth={turn.worth}
-                        busy={busy}
-                        onVerdict={handleWrongOrCorrect}
-                    />
-                ) : stage === 'passed' && progress.handoff !== null ? (
-                    <PassOnPrompt
-                        from={progress.handoff.from}
-                        to={progress.handoff.to}
-                        busy={busy}
-                        onContinue={() => moveTo('judging')}
-                    />
-                ) : (
+                {stage === 'judging' ? verdict : stage === 'passed' && passOn ? passOn : (
                     <View style={styles.gate}>
                         <PopPressable
                             onPress={() => moveTo('judging')}
                             accessibilityRole="button"
                             accessibilityLabel={t('pubquizr.play.gate', {
-                                name: turn.answering.name
+                                name: answering.name
                             })}
                             style={styles.gateButton}
                         >
                             <Feather name="eye" size={18} color={Brand.ink} />
 
                             <AppText style={styles.gateLabel}>
-                                {t('pubquizr.play.gate', { name: turn.answering.name })}
+                                {t('pubquizr.play.gate', { name: answering.name })}
                             </AppText>
                         </PopPressable>
 
@@ -289,23 +361,7 @@ export default function HotSeatBoard({
 
             {notice}
 
-            {stage === 'judging' ? (
-                <VerdictButtons
-                    answering={turn.answering}
-                    nextUp={turn.nextUp}
-                    alwaysNextUp={turn.alwaysNextUp}
-                    worth={turn.worth}
-                    busy={busy}
-                    onVerdict={handleWrongOrCorrect}
-                />
-            ) : stage === 'passed' && progress.handoff !== null ? (
-                <PassOnPrompt
-                    from={progress.handoff.from}
-                    to={progress.handoff.to}
-                    busy={busy}
-                    onContinue={() => moveTo('judging')}
-                />
-            ) : (
+            {stage === 'judging' ? verdict : stage === 'passed' && passOn ? passOn : (
                 <ValidateButton
                     label={t('pubquizr.play.validate')}
                     hint={stage === 'revealed'

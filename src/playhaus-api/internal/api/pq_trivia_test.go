@@ -120,7 +120,7 @@ func TestTriviaEveningPlaysThroughToTheEnd(t *testing.T) {
 		}
 
 		rec := do(t, h, http.MethodPost, finalePath(session.ID),
-			verdictBody(t, session.TurnQuestionIDs[0], true), guest.Token)
+			verdictBody(t, session), guest.Token)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("finale turn %d: status = %d (body: %s)", turn, rec.Code, rec.Body)
 		}

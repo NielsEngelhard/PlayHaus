@@ -7,9 +7,9 @@ import {
     getSingleDeviceSessionRequest,
     recordClosestGuessesRequest,
     recordDescribeAwardsRequest,
-    recordFinaleVerdictRequest,
+    recordFinaleTurnRequest,
     recordListAwardsRequest,
-    recordOpenVerdictRequest,
+    recordHotSeatTurnRequest,
     type ListAward,
     type QuizSession,
     type SeatGuess,
@@ -33,8 +33,14 @@ export interface PlayableSession {
      * screen at all — this one sits over a board that is still perfectly good.
      */
     rulingError: TranslationKey | null
-    /** Rounds 1 and 2: was that right? */
-    rule: (correct: boolean) => void
+    /**
+     * Rounds 1 and 2: one whole question, settled. Who was asked and missed it on the way
+     * round, and who took it — or null for a question that beat the table.
+     *
+     * One call per question rather than per player. The board walks the pass line itself,
+     * so a wrong answer with somebody left to ask never comes through here at all.
+     */
+    settleTurn: (missedSeats: number[], correctSeat: number | null) => void
     /**
      * Round 3: whose number was nearest. Either every guess, and the server settles it,
      * or the winners outright when nobody wrote the numbers down.
@@ -44,8 +50,8 @@ export interface PlayableSession {
     settleDescribe: (awards: WordAward[]) => void
     /** Round 5: what became of each of the question's four answers. */
     settleList: (awards: ListAward[]) => void
-    /** Round 6: was that right? Its own call rather than `rule` — see `round-six.ts`. */
-    ruleFinale: (correct: boolean) => void
+    /** Round 6: the same, down a two seat line. Its own call — see `round-six.ts`. */
+    settleFinale: (missedSeats: number[], correctSeat: number | null) => void
     reload: () => void
 }
 
@@ -161,12 +167,12 @@ export function useQuizSession(sessionId: string): PlayableSession {
      * finds a word out of somebody else's thirty seconds. The server already knows what
      * it will accept, so it says.
      */
-    const rule = useCallback((correct: boolean) => {
+    const settleTurn = useCallback((missedSeats: number[], correctSeat: number | null) => {
         submit(current => {
             const [dealt] = current.turnQuestionIds;
             if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
 
-            return recordOpenVerdictRequest(sessionId, dealt, correct);
+            return recordHotSeatTurnRequest(sessionId, dealt, missedSeats, correctSeat);
         });
     }, [submit, sessionId]);
 
@@ -200,12 +206,12 @@ export function useQuizSession(sessionId: string): PlayableSession {
         });
     }, [submit, sessionId]);
 
-    const ruleFinale = useCallback((correct: boolean) => {
+    const settleFinale = useCallback((missedSeats: number[], correctSeat: number | null) => {
         submit(current => {
             const [dealt] = current.turnQuestionIds;
             if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
 
-            return recordFinaleVerdictRequest(sessionId, dealt, correct);
+            return recordFinaleTurnRequest(sessionId, dealt, missedSeats, correctSeat);
         });
     }, [submit, sessionId]);
 
@@ -218,11 +224,11 @@ export function useQuizSession(sessionId: string): PlayableSession {
         error,
         ruling,
         rulingError,
-        rule,
+        settleTurn,
         settleClosest,
         settleDescribe,
         settleList,
-        ruleFinale,
+        settleFinale,
         reload
     };
 }

@@ -44,7 +44,7 @@ func playOutRound(t *testing.T, h http.Handler, token string, session quizSessio
 		}
 
 		rec := do(t, h, http.MethodPost, verdictPath(session.ID),
-			verdictBody(t, session.TurnQuestionIDs[0], true), token)
+			verdictBody(t, session), token)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("round %d turn %d: status = %d (body: %s)", round, turn, rec.Code, rec.Body)
 		}

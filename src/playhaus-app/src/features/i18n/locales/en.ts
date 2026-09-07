@@ -757,6 +757,21 @@ export const en = {
             /** The button's accessibility label, said whole rather than split in two. */
             passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
             /**
+             * `QuickAssign`, the optional shortcut beside the hand-off: ask the table in
+             * a circle out loud, then name who got it, instead of tapping Wrong down the
+             * line. The panel has to say that skipping people marks them wrong, because
+             * that is the one thing about it somebody could be surprised by — and it is
+             * also exactly what happened at the table.
+             */
+            quickAssign: 'Quick assign',
+            quickAssignSpoken: 'Quick assign: name who answered correctly',
+            quickAssignTitle: 'Who got it?',
+            quickAssignBody: 'Ask the table in a circle, then name who got it. Everyone you skip is marked wrong, the same as tapping Wrong down the line.',
+            quickAssignLabel: 'Answered correctly',
+            quickAssignNobody: 'Nobody got it',
+            quickAssignConfirm: 'Assign',
+            quickAssignCancel: 'Back',
+            /**
              * Round 2 only, replacing both lines above it: round 2 never keeps the seat
              * on a correct answer, so this one name is true no matter which button gets
              * pressed.

@@ -34,7 +34,8 @@ type Store interface {
 	DeleteSessionsOlderThan(ctx context.Context, before time.Time) (int64, error)
 	// AttemptsOn counts answer rows, which is a count of seats that have had a go only
 	// in the hot seat rounds -- see the note on GormStore.AttemptsOn. Ask
-	// IsHotSeatRound before reading it as one.
+	// IsHotSeatRound before reading it as one, and expect zero for any question this
+	// build dealt: a turn is settled in one request, so its rows all arrive together.
 	AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error)
 	RecordTurn(ctx context.Context, session *Session, out TurnOutcome) error
 }
@@ -513,35 +514,103 @@ func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error
 	return deal, nil
 }
 
-// VerdictInput is the quizmaster's ruling on what they just heard.
+// TurnInput is the quizmaster's ruling on a whole hot seat turn: everybody the question
+// was put to, in the order it went round, and what became of it.
 //
-// Deliberately not carrying the seat. Who is answering is the game's own business --
-// it falls out of who is reading and how many people have already had a go -- and a
-// client that got to name it could hand a point to whoever it liked.
-type VerdictInput struct {
+// It does carry seats, which the one-verdict-at-a-time shape before it deliberately did
+// not. The reason that was safe to change is that it hands the client no freedom it did
+// not already have: the only way to reach a player four seats away was to press Wrong
+// three times, and the only thing this changes is that those three presses arrive
+// together instead of as three requests. What holds the line is the check below in
+// checkAgainstLine -- the server works out for itself who the question may still be put
+// to, and refuses a body that skips somebody, reorders them, or names a seat that is not
+// next. A client that gets its own arithmetic wrong gets a refused ruling; it does not
+// get to hand a point to whoever it likes.
+type TurnInput struct {
 	SessionID uuid.UUID
 	OwnerID   string
-	// SessionQuestionID is the question the verdict was given for. It has to be
+	// SessionQuestionID is the question the turn was settled for. It has to be
 	// named so a screen left open, or a second tap on the same button, is refused
 	// rather than silently scoring the question after it.
 	SessionQuestionID uuid.UUID
-	Correct           bool
-	// Said is what the player actually answered, if the quizmaster typed it in.
-	// Kept only so the table can argue about it afterwards.
+	// MissedSeats are the seats that were asked and did not get it, in the order the
+	// question reached them. Empty when the first person asked took it.
+	MissedSeats []int
+	// CorrectSeat is whoever took it in the end, or nil for a question that went all
+	// the way round and beat everybody.
+	CorrectSeat *int
+	// Said is what the player actually answered, if the quizmaster typed it in. Kept
+	// only so the table can argue about it afterwards, and recorded against the seat
+	// that took the question -- a turn nobody took has nothing to attach it to.
 	Said string
 }
 
-// RecordHotSeatVerdict scores one go at a round 1 or round 2 question and moves the
-// game on.
+// checkAgainstLine is the whole of what stops a settled turn naming whoever it likes.
 //
-// Three things can happen. A correct answer ends the question. In round 1 it keeps the
-// seat: the next question is asked to whoever just took this one, and the reading comes
-// round with them, because a question is always read by the seat on the answerer's
-// right. Round 2 never keeps it -- see the round 2 note below. A wrong answer with
-// somebody left to ask passes it along and changes nothing else. A wrong answer with
-// nobody left ends the question for no points and moves the seat on by itself -- in
-// round 1 onto the reader, the one seat the dead question never reached, and in round 2
-// one along from where it opened.
+// line is what the server worked out for itself: the seats the question may still be
+// put to, in order, starting with whoever is being asked right now -- PassLine for the
+// hot seat rounds, Session.FinaleLine for round 6. A body is only honest if the seats
+// it says missed are the front of that line, in that order, and the seat it says took
+// it is the very next one along. A turn nobody took has to have gone the whole way.
+//
+// Every refusal is ErrStaleTurn rather than an error of its own, because that is what
+// this almost always is in practice: a phone showing a question the table has moved
+// past. The app already knows how to say so and reload.
+func checkAgainstLine(line, missed []int, correct *int) error {
+	if len(missed) > len(line) {
+		return ErrStaleTurn
+	}
+
+	for i, seat := range missed {
+		if line[i] != seat {
+			return ErrStaleTurn
+		}
+	}
+
+	if correct == nil {
+		// Nobody took it, so every seat with a go left has to have used it. A short
+		// list here would be a question quietly killed with people still to ask.
+		if len(missed) != len(line) {
+			return ErrStaleTurn
+		}
+
+		return nil
+	}
+
+	if len(missed) >= len(line) {
+		return ErrStaleTurn
+	}
+
+	if line[len(missed)] != *correct {
+		return ErrStaleTurn
+	}
+
+	return nil
+}
+
+// RecordHotSeatTurn scores one whole round 1 or round 2 question and moves the game on.
+//
+// Two things can happen, and both of them end the question. Either somebody took it,
+// after however many people missed it on the way round, or the question went the whole
+// way and beat the table. A correct answer in round 1 keeps the seat: the next question
+// is asked to whoever just took this one, and the reading comes round with them, because
+// a question is always read by the seat on the answerer's right. Round 2 never keeps it
+// -- see the round 2 note below. A question nobody took ends for no points and moves the
+// seat on by itself -- in round 1 onto the reader, the one seat the dead question never
+// reached, and in round 2 one along from where it opened.
+//
+// There used to be a third thing: a wrong answer with somebody left to ask, which passed
+// the question along and changed nothing else. It arrived as its own request and its
+// whole effect was to write an attempt row, so that the *next* request could count the
+// rows and work out who was being asked. That is gone. A question passing round the
+// table is not a decision anybody has to store -- it is arithmetic both ends already do
+// -- so the app now walks the line itself and says the whole of it in one request when
+// the question finally closes. At a table of eight that is one request where it used to
+// be up to seven, and the quizmaster gets the next name with no round trip in the way.
+//
+// What is written is unchanged: one attempt row per seat that had a go, in order, which
+// is exactly what the request-per-press path left behind. Nothing that reads those rows
+// afterwards can tell the difference.
 //
 // The two rounds also differ in what a question pays -- round 1 on every second one,
 // round 2 on all of them and double, see HotSeatPointsAt.
@@ -553,7 +622,7 @@ type VerdictInput struct {
 // anybody keep it. Round 1 does not have this shape -- it deals more questions than
 // there are players on purpose, so a table that is bad at trivia does not run out before
 // it is done.
-func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
+func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
 		return nil, err
@@ -581,36 +650,77 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 
 	hot := session.HotSeatOrFirst()
 
-	seat := AnsweringSeat(session.QuizMasterSeat, hot, attempts, len(session.Players))
-	if seat < 0 {
+	line := PassLine(session.QuizMasterSeat, hot, attempts, len(session.Players))
+	if len(line) == 0 {
 		// The question has already been round the whole table. Nobody is being
-		// asked anything, so there is no verdict to give.
+		// asked anything, so there is no turn to settle.
 		return nil, ErrStaleTurn
 	}
-
-	player := session.PlayerAt(seat)
-	if player == nil {
-		return nil, fmt.Errorf("record verdict: no player in seat %d", seat)
+	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
+		return nil, err
 	}
 
-	attempt := &SessionAnswer{
-		ID:                uuid.New(),
-		SessionID:         session.ID,
-		SessionQuestionID: question.ID,
-		Seat:              &seat,
-		Correct:           in.Correct,
-		CreatedAt:         time.Now().UTC(),
-	}
-	if said := strings.TrimSpace(in.Said); said != "" {
-		attempt.Text = &said
+	now := time.Now().UTC()
+	out := TurnOutcome{}
+
+	// One row per seat that had a go, in the order the question reached them -- the
+	// same rows, in the same order, a request per press used to leave behind.
+	for _, seat := range in.MissedSeats {
+		if session.PlayerAt(seat) == nil {
+			return nil, fmt.Errorf("record turn: no player in seat %d", seat)
+		}
+
+		out.Answers = append(out.Answers, &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           false,
+			CreatedAt:         now,
+		})
 	}
 
-	// Only the rows that actually changed go in. `RecordTurn` writes what it is given
-	// and leaves the rest alone, so a wrong answer mid-question is one insert.
-	out := TurnOutcome{Answers: []*SessionAnswer{attempt}}
+	if in.CorrectSeat == nil {
+		// The question went the whole way round and beat the table. Nobody earned the
+		// seat, so it moves by itself -- and the two rounds move it opposite ways.
+		//
+		// Round 1 hands it to the reader: a question that beat the table went round
+		// everybody except them, so they are the one seat left that was never asked it,
+		// and the reading falls back to the seat on their right the way it always does.
+		// Round 2 shuffles one along from where the question opened instead, exactly as
+		// a question somebody got does, because its one question per player only comes
+		// out even if the table keeps moving the one way.
+		question.Status = QuestionDone
+		out.Questions = append(out.Questions, question)
 
-	switch {
-	case in.Correct:
+		session.HotSeatRun = 0
+		if session.CurrentRound == RoundChoice {
+			session.OpenOn(hot + 1)
+		} else {
+			session.OpenOn(session.QuizMasterSeat)
+		}
+		s.advance(session)
+	} else {
+		seat := *in.CorrectSeat
+
+		player := session.PlayerAt(seat)
+		if player == nil {
+			return nil, fmt.Errorf("record turn: no player in seat %d", seat)
+		}
+
+		attempt := &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           true,
+			CreatedAt:         now,
+		}
+		if said := strings.TrimSpace(in.Said); said != "" {
+			attempt.Text = &said
+		}
+		out.Answers = append(out.Answers, attempt)
+
 		// Half the round 1 questions are worth nothing. Left as a zero rather than
 		// skipped so the attempt row still says what it was worth at the time, which
 		// is what the table will want when it argues about the score later.
@@ -628,10 +738,10 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 
 		if !RoundKeepsTheSeat(session.CurrentRound) {
 			// Round 2 never lets a correct answer keep the seat -- it shuffles on
-			// exactly the way a wrong-with-nobody-left question does, so that over the
-			// round's one question per player, every seat is asked exactly once and
-			// reads exactly once. There is no streak to track, since nobody holds the
-			// seat across two questions any more.
+			// exactly the way a question nobody got does, so that over the round's one
+			// question per player, every seat is asked exactly once and reads exactly
+			// once. There is no streak to track, since nobody holds the seat across two
+			// questions any more.
 			session.HotSeatRun = 1
 			session.OpenOn(hot + 1)
 		} else {
@@ -653,35 +763,9 @@ func (s *Service) RecordHotSeatVerdict(ctx context.Context, in VerdictInput) (*S
 		}
 
 		s.advance(session)
-
-	case AnsweringSeat(session.QuizMasterSeat, hot, attempts+1, len(session.Players)) < 0:
-		// Wrong, and that was the last seat with a go left. Nobody earned the seat, so
-		// it moves by itself -- and the two rounds move it opposite ways.
-		//
-		// Round 1 hands it to the reader: a question that beat the table went round
-		// everybody except them, so they are the one seat left that was never asked it,
-		// and the reading falls back to the seat on their right the way it always does.
-		// Round 2 shuffles one along from where the question opened instead, exactly as
-		// a question somebody got does, because its one question per player only comes
-		// out even if the table keeps moving the one way.
-		question.Status = QuestionDone
-		out.Questions = append(out.Questions, question)
-
-		session.HotSeatRun = 0
-		if session.CurrentRound == RoundChoice {
-			session.OpenOn(hot + 1)
-		} else {
-			session.OpenOn(session.QuizMasterSeat)
-		}
-		s.advance(session)
-
-	default:
-		// Wrong, but the question is still alive: it simply passes along. Nothing
-		// about the session moves -- the next answering seat falls out of the extra
-		// attempt row this writes.
 	}
 
-	session.UpdatedAt = time.Now().UTC()
+	session.UpdatedAt = now
 
 	if err := s.store.RecordTurn(ctx, session, out); err != nil {
 		return nil, err
@@ -1325,24 +1409,27 @@ func (s *Service) listAnswers(ctx context.Context, session *Session, question *S
 	return nil, fmt.Errorf("list answers: %w", ErrQuizNotFound)
 }
 
-// RecordFinaleVerdict scores one round 6 question and moves the finale on.
+// RecordFinaleTurn scores one whole round 6 question and moves the finale on.
 //
 // The finale reads like round 1 -- an open question, read aloud -- and it passes like
 // round 1 too, but down a line exactly two seats long. The question opens on whichever
 // finalist is behind; if they miss it, it crosses to the other one, who can still take
 // the points for it. Miss it twice and it is dead, the same as a round 1 question that
 // beat the table -- except at the smallest table, which has nobody to cross to and so
-// only gets the one go. See FinaleAnsweringSeat.
+// only gets the one go. See FinaleAnsweringSeat, and Session.FinaleLine for the same
+// thing as the list this checks a settled turn against.
 //
-// Which of the two is on it right now is read off the attempt count rather than off a
-// column, the same way the hot seat rounds do it -- see FinaleAnsweringSeat. HotSeat
-// stays on the seat the question opened on for as long as the question is alive, so a
-// reload mid-question finds the pass exactly where it left it.
+// Where the line starts is read off the attempt count rather than off a column, the same
+// way the hot seat rounds do it. HotSeat stays on the seat the question opened on for as
+// long as the question is alive, so a reload mid-question finds the pass where it left
+// it.
 //
-// Reuses VerdictInput rather than a type of its own -- the body is the same shape as a
-// round 1 or round 2 verdict, naming the question and the ruling and nothing else, for
-// the same reason: who is answering and what happens next are the game's own business.
-func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Session, error) {
+// Settled in one request like the hot seat rounds, and reusing TurnInput for it. The
+// finale saves at most one round trip by it -- its line is two seats long -- so the
+// reason to do it here too is the screen rather than the network: rounds 1, 2 and 6 are
+// drawn by one component, and a board that spoke one protocol to two endpoints is the
+// seam that eventually rots.
+func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
 		return nil, err
@@ -1365,30 +1452,58 @@ func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Se
 		return nil, err
 	}
 
-	answering := session.FinaleAnsweringSeat(attempts)
-	if answering < 0 {
+	line := session.FinaleLine(attempts)
+	if len(line) == 0 {
 		// Both finalists have already had this one, so there is nothing left to rule on.
 		return nil, ErrStaleTurn
 	}
-
-	player := session.PlayerAt(answering)
-	if player == nil {
-		return nil, fmt.Errorf("finale verdict: no player in seat %d", answering)
+	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
+		return nil, err
 	}
 
 	now := time.Now().UTC()
-	attempt := &SessionAnswer{
-		ID: uuid.New(), SessionID: session.ID, SessionQuestionID: question.ID,
-		Seat: &answering, Correct: in.Correct, CreatedAt: now,
+	out := TurnOutcome{}
+
+	for _, seat := range in.MissedSeats {
+		if session.PlayerAt(seat) == nil {
+			return nil, fmt.Errorf("finale turn: no player in seat %d", seat)
+		}
+
+		out.Answers = append(out.Answers, &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           false,
+			CreatedAt:         now,
+		})
 	}
-	if said := strings.TrimSpace(in.Said); said != "" {
-		attempt.Text = &said
-	}
-	out := TurnOutcome{Answers: []*SessionAnswer{attempt}}
 
 	points := 0
-	if in.Correct {
+	if in.CorrectSeat != nil {
+		seat := *in.CorrectSeat
+
+		player := session.PlayerAt(seat)
+		if player == nil {
+			return nil, fmt.Errorf("finale turn: no player in seat %d", seat)
+		}
+
+		attempt := &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           true,
+			CreatedAt:         now,
+		}
+		if said := strings.TrimSpace(in.Said); said != "" {
+			attempt.Text = &said
+		}
+
 		points = FinalePointsFor(len(session.Players))
+		attempt.Points = points
+		out.Answers = append(out.Answers, attempt)
+
 		// Onto Score, the one tally the whole evening is kept on. A finale question is
 		// worth a hundred of them at a table with a neutral reader, which is what lets
 		// round 6 decide the night without a column of its own -- and the same as any
@@ -1396,22 +1511,6 @@ func (s *Service) RecordFinaleVerdict(ctx context.Context, in VerdictInput) (*Se
 		// FinalePointsFor.
 		player.Score += points
 		out.Players = append(out.Players, player)
-	}
-	attempt.Points = points
-
-	// A wrong answer with somebody still to come leaves everything where it is: same
-	// question, same slot, same opening seat. The attempt row that was just written is
-	// the whole of what changed, and it is what moves the question across. At the
-	// smallest table there is nobody left to come -- FinaleAnsweringSeat says so -- so
-	// this falls through and settles the question below on the first miss.
-	if !in.Correct && session.FinaleAnsweringSeat(attempts+1) >= 0 {
-		session.UpdatedAt = now
-
-		if err := s.store.RecordTurn(ctx, session, out); err != nil {
-			return nil, err
-		}
-
-		return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	}
 
 	question.Status = QuestionDone

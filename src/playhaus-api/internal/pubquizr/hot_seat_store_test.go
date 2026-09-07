@@ -113,14 +113,19 @@ func TestHotSeatSurvivesTheRoundTrip(t *testing.T) {
 		}
 	}
 
-	moved, err := service.RecordHotSeatVerdict(ctx, VerdictInput{
+	// Nothing is said about seats 1 and 2 here: their rows are already on the table, so
+	// the line the server works out starts at seat 3. This is also the one case that
+	// proves a question a previous build left part way round is picked up where it was
+	// left rather than started again -- see PassLine's attempts argument.
+	took := 3
+	moved, err := service.RecordHotSeatTurn(ctx, TurnInput{
 		SessionID:         session.ID,
 		OwnerID:           "owner",
 		SessionQuestionID: question.ID,
-		Correct:           true,
+		CorrectSeat:       &took,
 	})
 	if err != nil {
-		t.Fatalf("RecordHotSeatVerdict: %v", err)
+		t.Fatalf("RecordHotSeatTurn: %v", err)
 	}
 
 	// Read back off the database, not out of the pointer we just mutated.
@@ -178,15 +183,16 @@ func TestSessionFromBeforeTheHotSeatColumnStillPlays(t *testing.T) {
 		t.Errorf("answering seat = %d, want %d", seat, want)
 	}
 
-	// And a verdict on it repairs the column rather than tripping over it.
-	moved, err := service.RecordHotSeatVerdict(ctx, VerdictInput{
+	// And a settled turn on it repairs the column rather than tripping over it.
+	took := 3
+	moved, err := service.RecordHotSeatTurn(ctx, TurnInput{
 		SessionID:         session.ID,
 		OwnerID:           "owner",
 		SessionQuestionID: stale.QuestionAt(RoundOpen, 0).ID,
-		Correct:           true,
+		CorrectSeat:       &took,
 	})
 	if err != nil {
-		t.Fatalf("RecordHotSeatVerdict: %v", err)
+		t.Fatalf("RecordHotSeatTurn: %v", err)
 	}
 	if got, want := moved.HotSeat, 3; got != want {
 		t.Errorf("HotSeat = %d, want %d", got, want)

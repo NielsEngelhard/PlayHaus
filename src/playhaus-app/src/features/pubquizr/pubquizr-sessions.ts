@@ -218,24 +218,37 @@ export async function abandonSingleDeviceSessionRequest(sessionId: string): Prom
 }
 
 /**
- * The quizmaster's ruling on what they just heard, and the game one step further on.
+ * One whole hot seat question, settled, and the game one step further on.
  *
- * Says which question and whether it was right, and nothing else. Who was answering,
- * what it was worth and who reads next are all worked out by the server — a client that
- * got to name the seat could hand a point to whoever it liked.
+ * Sent once, when the question actually closes — not once per player. A question passing
+ * round the table is not a decision anybody has to store: the seat order is arithmetic
+ * both ends already do, so the board walks it (`remainingSeatsOf` in `hot-seat.ts`) and
+ * says the whole of it here. That is up to seven requests saved on one question at a full
+ * table, and a Wrong that lands with no round trip in the way.
+ *
+ * `missedSeats` is who was asked and did not get it, in the order the question reached
+ * them, and `correctSeat` is whoever took it — or `null` for a question that beat
+ * everybody. The server is not taking the client's word for any of it: it works the same
+ * line out itself and refuses a body that skips a seat, reorders them, or hands the
+ * question to somebody it had not reached yet. Which is why naming seats here is safe —
+ * it is the same freedom as pressing Wrong until you got to them.
  *
  * `sessionQuestionId` is the guard against a screen left open and against a second tap
- * on the same button: a verdict naming a question the table has moved past is refused
- * with `stale_turn` rather than quietly scoring the question after it.
+ * on the same button: a turn naming a question the table has moved past is refused with
+ * `stale_turn` rather than quietly scoring the question after it.
  */
-export async function recordOpenVerdictRequest(
+export async function recordHotSeatTurnRequest(
     sessionId: string,
     sessionQuestionId: string,
-    correct: boolean
+    missedSeats: number[],
+    correctSeat: number | null
 ): Promise<QuizSession> {
     return request<QuizSession>(
         `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/verdict`,
-        { method: 'POST', body: JSON.stringify({ sessionQuestionId, correct }) }
+        {
+            method: 'POST',
+            body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+        }
     );
 }
 
@@ -331,22 +344,29 @@ export async function recordListAwardsRequest(
 }
 
 /**
- * The quizmaster ruling on one round 6 question, and the finale one step further on.
+ * One whole round 6 question, settled, and the finale one step further on.
  *
- * The same shape as `recordOpenVerdictRequest` — which question, and whether it was
- * right — because who is answering and what happens next are the finale's own business,
- * the same way they are round 1 and round 2's. It posts to its own endpoint rather than
- * the shared `/verdict` one because it is not one of that endpoint's rounds: the line a
- * finale question passes down is two seats long and does not run round the table, and it
- * pays 100 rather than the ones and twos every other round hands out.
+ * Exactly the same body as `recordHotSeatTurnRequest` — who missed it, who took it —
+ * because the finale passes the same way, just down a line two seats long. It saves at
+ * most one request by it; the reason it settles in one call too is that rounds 1, 2 and
+ * 6 are all drawn by `HotSeatBoard`, and a board speaking one protocol to one endpoint
+ * and another to the other is the seam that rots.
+ *
+ * Its own endpoint rather than the shared `/verdict` one because it is not one of that
+ * endpoint's rounds: the line a finale question passes down does not run round the table,
+ * and it pays 100 rather than the ones and twos every other round hands out.
  */
-export async function recordFinaleVerdictRequest(
+export async function recordFinaleTurnRequest(
     sessionId: string,
     sessionQuestionId: string,
-    correct: boolean
+    missedSeats: number[],
+    correctSeat: number | null
 ): Promise<QuizSession> {
     return request<QuizSession>(
         `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/finale`,
-        { method: 'POST', body: JSON.stringify({ sessionQuestionId, correct }) }
+        {
+            method: 'POST',
+            body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+        }
     );
 }

@@ -285,12 +285,18 @@ func (s *GormStore) SessionsInProgressByUserID(ctx context.Context, userID strin
 // Which is how many seats have had a go at it -- but only in the hot seat rounds, where
 // and only where it is one row per seat that tried. Round 3 writes a row per guess and
 // round 4 writes up to two rows per word, so anything reading this as a seat count has to
-// have asked IsHotSeatRound first. Rounds 3 and 4 settle a whole turn in one request and
-// never ask at all, which is the real containment.
+// have asked IsHotSeatRound first. Rounds 3 and 4 never ask at all, which is the real
+// containment.
 //
-// Counted rather than stored on the question, because the rows are already there:
-// round 1 writes one per seat that tried, which is exactly what "how far down the
-// line has this passed" means. See the note on SessionAnswer.
+// Every round settles a whole turn in one request now, so on a game played entirely by
+// this build the answer is always zero: a hot seat question collects all of its rows at
+// once, at the moment it closes. It is still asked, and still has to be right, because a
+// question a previous build left part way down the line has rows already -- and that is
+// exactly where PassLine has to pick the line up from.
+//
+// Counted rather than stored on the question, because the rows are already there: one
+// per seat that tried, which is exactly what "how far down the line has this got" means.
+// See the note on SessionAnswer.
 func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error) {
 	var count int64
 

@@ -152,11 +152,12 @@ func TestHotSeatVerdictRefusesRoundsThatAreNotAHotSeat(t *testing.T) {
 		store := &verdictStore{session: session}
 		question := session.QuestionAt(round, 0)
 
-		_, err := NewService(store).RecordHotSeatVerdict(t.Context(), VerdictInput{
+		seat := 1
+		_, err := NewService(store).RecordHotSeatTurn(t.Context(), TurnInput{
 			SessionID:         session.ID,
 			OwnerID:           verdictOwner,
 			SessionQuestionID: question.ID,
-			Correct:           true,
+			CorrectSeat:       &seat,
 		})
 		if err == nil {
 			t.Errorf("round %d took a hot seat verdict", round)

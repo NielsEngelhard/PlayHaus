@@ -179,32 +179,28 @@ func TestFinaleWrongAnswerCrossesToTheOtherFinalistAndStillPays(t *testing.T) {
 	question := session.TurnQuestionIDs[0]
 	position := session.CurrentPosition
 
-	rec := do(t, h, http.MethodPost, finalePath(session.ID), verdictBody(t, question, false), token)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("first go: status = %d (body: %s)", rec.Code, rec.Body)
+	// The other finalist, worked out from the pair rather than by posting a miss and
+	// reading who it crossed to: the crossing does not reach the server any more, so
+	// there is no intermediate response to read it off.
+	crossed := -1
+	for _, seat := range session.FinalistSeats {
+		if seat != opened {
+			crossed = seat
+		}
 	}
-	session = decodeBody[quizSessionResponse](t, rec)
-
-	if got, want := session.CurrentPosition, position; got != want {
-		t.Fatalf("currentPosition = %d, want %d -- the question is still alive", got, want)
-	}
-	if session.AnsweringSeat == nil {
-		t.Fatal("answeringSeat = null with the other finalist still to go")
-	}
-
-	crossed := *session.AnsweringSeat
-	if crossed == opened {
-		t.Fatalf("answeringSeat = %d, want the other finalist", crossed)
+	if crossed < 0 {
+		t.Fatalf("finalistSeats = %v, want a second finalist beside %d", session.FinalistSeats, opened)
 	}
 	if session.QuizMasterSeat == crossed {
-		t.Error("the question crossed to the quizmaster")
+		t.Fatal("the other finalist is also the quizmaster")
 	}
 
 	before := scoreOf(session, crossed)
 
-	rec = do(t, h, http.MethodPost, finalePath(session.ID), verdictBody(t, question, true), token)
+	rec := do(t, h, http.MethodPost, finalePath(session.ID),
+		settledBody(t, question, []int{opened}, &crossed), token)
 	if rec.Code != http.StatusOK {
-		t.Fatalf("second go: status = %d (body: %s)", rec.Code, rec.Body)
+		t.Fatalf("status = %d (body: %s)", rec.Code, rec.Body)
 	}
 	session = decodeBody[quizSessionResponse](t, rec)
 
@@ -230,7 +226,7 @@ func TestFinaleKeepsOneQuizmasterForTheWholeRound(t *testing.T) {
 		}
 
 		rec := do(t, h, http.MethodPost, finalePath(session.ID),
-			verdictBody(t, session.TurnQuestionIDs[0], true), token)
+			verdictBody(t, session), token)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("turn %d: status = %d (body: %s)", turn, rec.Code, rec.Body)
 		}

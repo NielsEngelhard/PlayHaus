@@ -34,12 +34,30 @@ func settleFinale(t *testing.T, store *verdictStore, correct bool) error {
 		t.Fatal("no question dealt in the current slot")
 	}
 
-	_, err := NewService(store).RecordFinaleVerdict(t.Context(), VerdictInput{
+	// The finale settles a whole turn in one call the same way the hot seat rounds do,
+	// so true here is whichever finalist is on it taking the question, and false is it
+	// going the rest of the way -- across to the rival where there is one, and no
+	// further where there is not. See Session.FinaleLine.
+	in := TurnInput{
 		SessionID:         session.ID,
 		OwnerID:           verdictOwner,
 		SessionQuestionID: question.ID,
-		Correct:           correct,
-	})
+	}
+
+	// A question both finalists have already had leaves nothing to build a body out of.
+	// Named anyway rather than fatal here, because refusing that is the service's job
+	// and there are tests that want to watch it do it.
+	asked := session.FinaleLine(store.attempts)
+	switch {
+	case len(asked) == 0:
+		in.CorrectSeat = &session.HotSeat
+	case correct:
+		in.CorrectSeat = &asked[0]
+	default:
+		in.MissedSeats = asked
+	}
+
+	_, err := NewService(store).RecordFinaleTurn(t.Context(), in)
 	return err
 }
 
@@ -48,7 +66,7 @@ func TestFinaleVerdictPaysTheRunningScore(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
 
 	if err := settleFinale(t, store, true); err != nil {
-		t.Fatalf("RecordFinaleVerdict: %v", err)
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
 	if got, want := store.session.PlayerAt(1).Score, FinalePoints; got != want {
@@ -63,7 +81,7 @@ func TestFinaleVerdictScoresNothingWhenWrong(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
 
 	if err := settleFinale(t, store, false); err != nil {
-		t.Fatalf("RecordFinaleVerdict: %v", err)
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
 	if got := store.session.PlayerAt(1).Score; got != 0 {
@@ -121,38 +139,79 @@ func TestFinaleOpensOnWhicheverFinalistIsBehind(t *testing.T) {
 }
 
 // A question the finalist in front of it misses is still worth its full hundred to the
-// other one.
+// other one. Said as one settled turn now -- the miss and the take together -- because
+// a question crossing to the rival is not a thing the server has to be told separately
+// any more than a round 1 question going round the table is.
 func TestFinaleWrongAnswerPassesToTheOtherFinalist(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
 
-	if err := settleFinale(t, store, false); err != nil {
-		t.Fatalf("first go: %v", err)
-	}
-
-	if got, want := store.session.CurrentPosition, 0; got != want {
-		t.Errorf("CurrentPosition = %d, want %d -- the question is still alive", got, want)
-	}
-	if got, want := store.session.HotSeat, 1; got != want {
-		t.Errorf("HotSeat = %d, want %d -- it still names where the question opened", got, want)
-	}
-	if len(store.recorded.Questions) > 0 {
-		t.Error("a question still being passed across was closed")
-	}
-	if got, want := store.session.FinaleAnsweringSeat(1), 2; got != want {
-		t.Errorf("FinaleAnsweringSeat(1) = %d, want %d", got, want)
-	}
-
-	// The other finalist takes it, and is paid for it.
-	store.attempts = 1
-	if err := settleFinale(t, store, true); err != nil {
-		t.Fatalf("second go: %v", err)
+	took := 2
+	_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
+		SessionID:         store.session.ID,
+		OwnerID:           verdictOwner,
+		SessionQuestionID: store.session.QuestionAt(RoundFinale, 0).ID,
+		MissedSeats:       []int{1},
+		CorrectSeat:       &took,
+	})
+	if err != nil {
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
 	if got, want := store.session.PlayerAt(2).Score, FinalePoints; got != want {
 		t.Errorf("Score = %d, want %d -- a passed question still pays", got, want)
 	}
+	if got := store.session.PlayerAt(1).Score; got != 0 {
+		t.Errorf("the finalist who missed it scored %d, want 0", got)
+	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)
+	}
+	if got, want := len(store.recorded.Answers), 2; got != want {
+		t.Errorf("wrote %d attempt rows, want %d -- one per finalist that had a go", got, want)
+	}
+}
+
+// The finale's line is two seats long, and the same rule holds on it as on the table: a
+// turn that names a miss and stops there, with nobody said to have taken it, is a
+// question killed with a finalist still to ask.
+func TestFinaleTurnThatStopsHalfWayIsRefused(t *testing.T) {
+	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
+
+	_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
+		SessionID:         store.session.ID,
+		OwnerID:           verdictOwner,
+		SessionQuestionID: store.session.QuestionAt(RoundFinale, 0).ID,
+		MissedSeats:       []int{1},
+	})
+
+	if !errors.Is(err, ErrStaleTurn) {
+		t.Fatalf("err = %v, want %v", err, ErrStaleTurn)
+	}
+	if got, want := store.session.CurrentPosition, 0; got != want {
+		t.Errorf("CurrentPosition = %d, want %d -- a refused turn moves nothing", got, want)
+	}
+}
+
+// Nor may it hand the hundred to somebody who is not in the finale at all -- the referee
+// in the chair least of all, who has been reading the answer off the screen.
+func TestFinaleTurnCannotPayANonFinalist(t *testing.T) {
+	for _, seat := range []int{0, 3} {
+		store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
+
+		took := seat
+		_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
+			SessionID:         store.session.ID,
+			OwnerID:           verdictOwner,
+			SessionQuestionID: store.session.QuestionAt(RoundFinale, 0).ID,
+			CorrectSeat:       &took,
+		})
+
+		if !errors.Is(err, ErrStaleTurn) {
+			t.Errorf("seat %d: err = %v, want %v", seat, err, ErrStaleTurn)
+		}
+		if got := store.session.PlayerAt(seat).Score; got != 0 {
+			t.Errorf("seat %d scored %d off a refused turn, want 0", seat, got)
+		}
 	}
 }
 
@@ -193,11 +252,12 @@ func TestFinaleRefusesRoundsThatAreNotTheFinale(t *testing.T) {
 		}
 
 		store := &verdictStore{session: session}
-		_, err := NewService(store).RecordFinaleVerdict(t.Context(), VerdictInput{
+		seat := session.HotSeat
+		_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
 			SessionID:         session.ID,
 			OwnerID:           verdictOwner,
 			SessionQuestionID: session.Questions[0].ID,
-			Correct:           true,
+			CorrectSeat:       &seat,
 		})
 
 		if !errors.Is(err, ErrWrongRound) {
@@ -209,11 +269,12 @@ func TestFinaleRefusesRoundsThatAreNotTheFinale(t *testing.T) {
 func TestFinaleRefusesAStaleTurn(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
 
-	_, err := NewService(store).RecordFinaleVerdict(t.Context(), VerdictInput{
+	seat := store.session.HotSeat
+	_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
 		SessionID:         store.session.ID,
 		OwnerID:           verdictOwner,
 		SessionQuestionID: uuid.New(),
-		Correct:           true,
+		CorrectSeat:       &seat,
 	})
 
 	if !errors.Is(err, ErrStaleTurn) {
@@ -227,7 +288,7 @@ func TestFinaleEndsTheSession(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 3, 4)}
 
 	if err := settleFinale(t, store, true); err != nil {
-		t.Fatalf("RecordFinaleVerdict: %v", err)
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
 	if got, want := store.session.Status, SessionCompleted; got != want {
@@ -320,7 +381,7 @@ func TestFinaleAtATableOfTwoAlternatesEvenWhenTheSameSeatKeepsMissing(t *testing
 		seen[store.session.HotSeat]++
 
 		if err := settleFinale(t, store, false); err != nil {
-			t.Fatalf("RecordFinaleVerdict: %v", err)
+			t.Fatalf("RecordFinaleTurn: %v", err)
 		}
 	}
 
@@ -349,7 +410,7 @@ func TestFinaleAnsweringSeatAtATableOfTwoDoesNotCrossToTheReader(t *testing.T) {
 }
 
 // The reduced points a table with no neutral reader pays, and the single go it plays
-// each question to, all the way through RecordFinaleVerdict rather than through the
+// each question to, all the way through RecordFinaleTurn rather than through the
 // rules directly.
 func TestFinaleVerdictAtATableOfTwoPaysReducedPointsAndEndsOnOneMiss(t *testing.T) {
 	session := newFinaleSession(0, 0, 1, 0, 4)
@@ -358,7 +419,7 @@ func TestFinaleVerdictAtATableOfTwoPaysReducedPointsAndEndsOnOneMiss(t *testing.
 
 	store := &verdictStore{session: session}
 	if err := settleFinale(t, store, true); err != nil {
-		t.Fatalf("RecordFinaleVerdict: %v", err)
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
 	if got, want := store.session.PlayerAt(1).Score, ClosestPoints; got != want {
@@ -375,7 +436,7 @@ func TestFinaleVerdictAtATableOfTwoPaysReducedPointsAndEndsOnOneMiss(t *testing.
 		t.Fatal("no question dealt in the next slot")
 	}
 	if err := settleFinale(t, store, false); err != nil {
-		t.Fatalf("RecordFinaleVerdict: %v", err)
+		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 	if got, want := store.session.CurrentPosition, 2; got != want {
 		t.Errorf("CurrentPosition = %d, want %d -- a miss with nobody to pass to still settles the question", got, want)

@@ -192,7 +192,7 @@ func TestZenEveningPlaysThroughToTheEnd(t *testing.T) {
 		}
 
 		rec := do(t, h, http.MethodPost, finalePath(session.ID),
-			verdictBody(t, session.TurnQuestionIDs[0], true), token)
+			verdictBody(t, session), token)
 		if rec.Code != http.StatusOK {
 			t.Fatalf("finale turn %d: status = %d (body: %s)", turn, rec.Code, rec.Body)
 		}

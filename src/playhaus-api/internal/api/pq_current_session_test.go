@@ -17,17 +17,35 @@ import (
 
 const currentSingleDevicePath = singleDevicePath + "/current"
 
-func verdictBody(t *testing.T, sessionQuestionID string, correct bool) string {
+// settledBody is a whole hot seat turn as the app sends it: who was asked and missed on
+// the way round, and who took it in the end. A nil taker is a question that beat them all.
+func settledBody(t *testing.T, sessionQuestionID string, missed []int, correct *int) string {
 	t.Helper()
 
-	body, err := json.Marshal(openVerdictRequest{
+	body, err := json.Marshal(hotSeatTurnRequest{
 		SessionQuestionID: sessionQuestionID,
-		Correct:           correct,
+		MissedSeats:       missed,
+		CorrectSeat:       correct,
 	})
 	if err != nil {
-		t.Fatalf("marshal verdict: %v", err)
+		t.Fatalf("marshal turn: %v", err)
 	}
 	return string(body)
+}
+
+// verdictBody is the commonest settled turn there is -- the seat being asked right now
+// takes it -- and the one these tests walk a session forward with.
+func verdictBody(t *testing.T, session quizSessionResponse) string {
+	t.Helper()
+
+	if len(session.TurnQuestionIDs) == 0 {
+		t.Fatal("the turn offered no question to rule on")
+	}
+	if session.AnsweringSeat == nil {
+		t.Fatal("answeringSeat = null, so there is nobody to credit")
+	}
+
+	return settledBody(t, session.TurnQuestionIDs[0], nil, session.AnsweringSeat)
 }
 
 // sessionRows is what the database actually holds, which is the half of "the old game
@@ -80,9 +98,8 @@ func TestStartSingleDeviceQuizThrowsAwayTheRunningOne(t *testing.T) {
 
 	// Played a little, so the evening that gets thrown away has attempt rows to
 	// leave behind as well as a table and a deal.
-	opening := questionsIn(first, pubquizr.RoundOpen)[0]
 	rec := do(t, h, http.MethodPost, singleDeviceSessionPath(first.ID)+"/verdict",
-		verdictBody(t, opening.ID, true), session.Token)
+		verdictBody(t, first), session.Token)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("verdict: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
 	}

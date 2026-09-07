@@ -100,6 +100,23 @@ export interface HotSeatTurn {
     /** Who gets it if this one is wrong, or null when the question is on its last seat. */
     nextUp: Seat | null
     /**
+     * Everybody this question has still to be put to, in the order it will reach them:
+     * whoever is being asked right now first, then round the table, the reader stepped
+     * over, ending at the seat it opened on.
+     *
+     * The board walks this itself. A question passing along is no longer a request --
+     * see `useQuizSession.settleTurn` — so between one settled turn and the next, this
+     * list plus a count of how many have missed it is the whole of where the question
+     * has got to. `answering` and `nextUp` above are its first two entries, and are kept
+     * only because a caller that has not passed the question on yet reads better for
+     * having them named.
+     *
+     * The server draws the same list from the same arithmetic (`PassLine` in `rules.go`)
+     * and checks a settled turn against it, so the two have to agree — a disagreement is
+     * a refused ruling rather than a point going to the wrong person.
+     */
+    remaining: Seat[]
+    /**
      * Round 2 only: who becomes the hot seat next, regardless of whether this question
      * is answered right or wrong. Round 2 never lets a correct answer keep the seat, so
      * unlike `nextUp` this one name is true no matter which button gets pressed. Empty
@@ -158,6 +175,8 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
             }))
         : [];
 
+    const remaining = remainingSeatsOf(session, seats);
+
     return {
         dealt,
         question,
@@ -173,7 +192,9 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
         // along, the person now being asked has taken nothing yet, so there is no run
         // of theirs to put on the board.
         run: session.answeringSeat === session.hotSeat ? session.hotSeatRun : 0,
-        nextUp: nextUpAfter(session, seats),
+        // Named off the line rather than worked out again, so the two can never disagree.
+        nextUp: remaining[1] ?? null,
+        remaining,
         alwaysNextUp: session.currentRound === ROUND_CHOICE
             ? seatAt(seats, (session.hotSeat + 1) % seats.length)
             : null,
@@ -184,30 +205,45 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
 }
 
 /**
- * Who a wrong answer would pass the question to, or null when there is nobody left.
+ * Everybody the current question has still to be put to, in the order it will reach
+ * them, starting with whoever is being asked right now.
  *
- * The same arithmetic the server does in `hot_seat.go`, and it is duplicated on purpose:
- * this is only ever used to *say* what the wrong button will do before it is pressed. The
- * server is still the one that decides, and the next screen comes back from it — so a
- * disagreement here is a misleading line of small print rather than a point going to the
- * wrong person.
+ * The same arithmetic the server does in `rules.go`'s `PassLine`, and it used to be
+ * duplicated on the understanding that it did not much matter: it was only ever used to
+ * *say* what the wrong button would do before it was pressed, the server decided, and a
+ * disagreement was a misleading line of small print rather than a point going astray.
+ *
+ * That is no longer true. A wrong answer does not reach the server any more — the board
+ * walks this list itself and posts the whole question once, when it closes — so this is
+ * now what decides who gets credited. What keeps it honest is the other end: the server
+ * works the line out again and refuses a turn that does not match it, so the worst a bug
+ * here can do is get a ruling rejected.
  *
  * The reader is stepped over rather than stopped at. A question no longer has to start
  * on their left, so landing on them says nothing about how much of the table is left;
  * what ends the question is arriving back at the seat it opened on, which is the point
  * at which everybody but the reader has had their one go.
  */
-function nextUpAfter(session: QuizSession, seats: Seat[]): Seat | null {
-    if (session.answeringSeat === null) return null;
-    if (seats.length <= 1) return null;
+export function remainingSeatsOf(session: QuizSession, seats: Seat[]): Seat[] {
+    if (session.answeringSeat === null) return [];
+    if (seats.length <= 1) return [];
 
-    let next = (session.answeringSeat + 1) % seats.length;
-    if (next === session.quizMasterSeat) {
+    const line: Seat[] = [];
+
+    let next = session.answeringSeat;
+    do {
+        const seat = seatAt(seats, next);
+        if (seat === null) break;
+
+        line.push(seat);
+
         next = (next + 1) % seats.length;
-    }
+        if (next === session.quizMasterSeat) {
+            next = (next + 1) % seats.length;
+        }
+        // Round to where it started: everybody else has already said no. The length
+        // guard is belt and braces against a session whose seats cannot be walked.
+    } while (next !== session.hotSeat && line.length < seats.length);
 
-    // All the way round to where it started: everybody else has already said no.
-    if (next === session.hotSeat) return null;
-
-    return seatAt(seats, next);
+    return line;
 }

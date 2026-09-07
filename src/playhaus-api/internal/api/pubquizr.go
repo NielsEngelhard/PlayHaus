@@ -561,30 +561,72 @@ func (s *Server) handleDeleteSingleDeviceSession(w http.ResponseWriter, r *http.
 	w.WriteHeader(http.StatusNoContent)
 }
 
-type openVerdictRequest struct {
+// hotSeatTurnRequest is the quizmaster settling one whole hot seat question: everybody
+// it was put to on the way round, and what became of it.
+//
+// It used to be one ruling per request, which meant a request every time a question
+// passed along -- up to seven of them on one question at a full table, none of which
+// decided anything. Now the app walks the line itself and says the whole of it once, at
+// the point the question actually closes. See pubquizr.TurnInput for why naming seats
+// here is safe, and pubquizr.checkAgainstLine for what makes it so.
+//
+// Shared with the finale, which settles the same way down a line two seats long.
+type hotSeatTurnRequest struct {
 	SessionQuestionID string `json:"sessionQuestionId"`
-	Correct           bool   `json:"correct"`
+	// MissedSeats is who was asked and missed, in the order the question reached them.
+	// Empty when the first person asked took it.
+	MissedSeats []int `json:"missedSeats"`
+	// CorrectSeat is who took it, or null for a question that beat everybody. A pointer
+	// because null is a real answer here rather than an absent field, and seat 0 is a
+	// real seat -- the two would be the same value otherwise.
+	CorrectSeat *int `json:"correctSeat"`
 	// Said is what the player actually answered, if the quizmaster bothered to type
 	// it in. Optional everywhere -- the verdict is the quizmaster's, not the text's.
 	Said string `json:"said,omitempty"`
 }
 
-func (req openVerdictRequest) Validate() map[string]string {
+func (req hotSeatTurnRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
 	if strings.TrimSpace(req.SessionQuestionID) == "" {
 		problems["sessionQuestionId"] = "is required"
 	}
 
+	// Only the shape is checked here. Whether these are the *right* seats -- the front
+	// of the line, in order, with the taker next along -- needs the session, so it is
+	// the service's to answer.
+	seen := map[int]bool{}
+	for _, seat := range req.MissedSeats {
+		if seat < 0 || seat >= pubquizr.MaxPlayers {
+			problems["missedSeats"] = "names a seat nobody could be sitting in"
+			break
+		}
+		if seen[seat] {
+			problems["missedSeats"] = "names the same seat twice"
+			break
+		}
+		seen[seat] = true
+	}
+
+	if req.CorrectSeat != nil {
+		switch {
+		case *req.CorrectSeat < 0 || *req.CorrectSeat >= pubquizr.MaxPlayers:
+			problems["correctSeat"] = "names a seat nobody could be sitting in"
+		case seen[*req.CorrectSeat]:
+			problems["correctSeat"] = "cannot have missed it and taken it"
+		}
+	}
+
 	return problems
 }
 
-// handleHotSeatVerdict is the quizmaster ruling on a round 1 or round 2 answer.
+// handleHotSeatVerdict is the quizmaster settling a whole round 1 or round 2 question.
 //
-// The body says which question and whether it was right, and nothing else. Who was
-// answering, what it is worth and who reads next are all the game's own business --
-// see VerdictInput. That is also why the two rounds share one endpoint: the request
-// never named the round, and the two are the same game with different sums.
+// The body says which question, who missed it on the way round and who took it. What it
+// is worth and who reads next are still the game's own business, and so is whether those
+// seats are the ones it may name at all -- see TurnInput. The two rounds share one
+// endpoint because the request never named the round, and the two are the same game with
+// different sums.
 func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -599,7 +641,7 @@ func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[openVerdictRequest](r)
+	req, problems, err := decode[hotSeatTurnRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
@@ -617,11 +659,12 @@ func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session, err := s.pubquizr.RecordHotSeatVerdict(r.Context(), pubquizr.VerdictInput{
+	session, err := s.pubquizr.RecordHotSeatTurn(r.Context(), pubquizr.TurnInput{
 		SessionID:         sessionID,
 		OwnerID:           ownerID,
 		SessionQuestionID: questionID,
-		Correct:           req.Correct,
+		MissedSeats:       req.MissedSeats,
+		CorrectSeat:       req.CorrectSeat,
 		Said:              req.Said,
 	})
 	if err != nil {
@@ -891,14 +934,14 @@ func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// handleFinaleVerdict is the quizmaster ruling on one round 6 question.
+// handleFinaleVerdict is the quizmaster settling one whole round 6 question.
 //
-// The body is exactly openVerdictRequest's shape -- which question, and whether it was
-// right -- reused rather than declared again, for the same reason the two hot seat
-// rounds share theirs: the request never named the round, and who is answering and what
-// happens next are the game's own business. A finale gets its own endpoint rather than
-// sharing handleHotSeatVerdict's because it is not one of that endpoint's rounds -- see
-// the note on RecordFinaleVerdict.
+// The body is exactly hotSeatTurnRequest's shape -- which question, who missed it, who
+// took it -- reused rather than declared again, for the same reason the two hot seat
+// rounds share theirs: the request never named the round, and what happens next is the
+// game's own business. A finale gets its own endpoint rather than sharing
+// handleHotSeatVerdict's because it is not one of that endpoint's rounds -- see the note
+// on RecordFinaleTurn.
 func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -913,7 +956,7 @@ func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[openVerdictRequest](r)
+	req, problems, err := decode[hotSeatTurnRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
@@ -929,11 +972,12 @@ func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session, err := s.pubquizr.RecordFinaleVerdict(r.Context(), pubquizr.VerdictInput{
+	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), pubquizr.TurnInput{
 		SessionID:         sessionID,
 		OwnerID:           ownerID,
 		SessionQuestionID: questionID,
-		Correct:           req.Correct,
+		MissedSeats:       req.MissedSeats,
+		CorrectSeat:       req.CorrectSeat,
 		Said:              req.Said,
 	})
 	if err != nil {

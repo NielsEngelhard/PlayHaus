@@ -428,12 +428,16 @@ export default function OneDeviceQuizPage() {
                     lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    onVerdict={(correct, from) => {
+                    // Rounds 1 and 2 are the ones with a table to walk: the quizmaster
+                    // may name who got it outright rather than tapping Wrong down the
+                    // line. See `QuickAssign`.
+                    quickAssign
+                    onSettle={(missedSeats, correctSeat, from) => {
                         // Remembered before the ruling goes out, because the session that
                         // comes back may well have moved the phone on — and the hand-off
                         // then wants to say who it is coming *from*.
                         setHandedFrom(from);
-                        game.rule(correct);
+                        game.settleTurn(missedSeats, correctSeat);
                     }}
                 />
             )}
@@ -489,9 +493,11 @@ export default function OneDeviceQuizPage() {
                     lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    onVerdict={(correct, from) => {
+                    // No quick assign here: the finale is between two people, so there is
+                    // never anybody to skip past.
+                    onSettle={(missedSeats, correctSeat, from) => {
                         setHandedFrom(from);
-                        game.ruleFinale(correct);
+                        game.settleFinale(missedSeats, correctSeat);
                     }}
                 />
             )}

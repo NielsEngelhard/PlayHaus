@@ -123,6 +123,12 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         // seat to hold: every question is dealt again to whoever is behind.
         run: 0,
         nextUp: waiting,
+        // The finale's whole pass line, which is one or two names long: whoever is on it
+        // now, and the rival if the question has not already crossed to them. The twin of
+        // `Session.FinaleLine` in `rounds.go`, which is what a settled finale turn is
+        // checked against. Never long enough for the quick assign shortcut to appear,
+        // which is the right answer for a round with one other person in it.
+        remaining: waiting === null ? [answering] : [answering, waiting],
         // Round 2's line, and the finale has nothing to say in it: where the next
         // question goes depends on this one's verdict, because it goes to whoever the
         // hundred leaves behind.

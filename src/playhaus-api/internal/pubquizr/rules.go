@@ -354,6 +354,42 @@ func AnsweringSeat(quizMasterSeat, hotSeat, attempts, players int) int {
 	return wrap(first+(start+attempts)%(players-1), players)
 }
 
+// PassLine is everybody a hot seat question has still to be asked to, in the order it
+// will reach them: whoever is answering right now first, then round the table, the
+// reader stepped over, ending when it arrives back at the seat the question opened on.
+//
+// This is the whole of the round's ordering as one list rather than one step at a time,
+// and it exists because the app now settles a whole turn in a single request -- a run
+// of seats that missed it and then, perhaps, the seat that took it. RecordHotSeatTurn
+// checks the body against this line, which is what keeps a client naming seats to
+// exactly the freedom it always had by pressing Wrong over and over.
+//
+// The app draws the same list from the same arithmetic (`remainingSeatsOf` in
+// `hot-seat.ts`), and the two must agree. That is a real requirement now rather than a
+// cosmetic one -- see the note on RecordHotSeatTurn -- so this is written in terms of
+// AnsweringSeat rather than beside it, and the two cannot drift apart.
+//
+// attempts is what the store counted for the question, so a question a previous build
+// left part way down the line picks up from where those rows left it rather than
+// starting again at the top.
+func PassLine(quizMasterSeat, hotSeat, attempts, players int) []int {
+	if players <= 1 || attempts < 0 {
+		return nil
+	}
+
+	line := make([]int, 0, players-1)
+	for step := attempts; ; step++ {
+		seat := AnsweringSeat(quizMasterSeat, hotSeat, step, players)
+		if seat < 0 {
+			break
+		}
+
+		line = append(line, seat)
+	}
+
+	return line
+}
+
 type SeatGuess struct {
 	Seat  int
 	Value float64

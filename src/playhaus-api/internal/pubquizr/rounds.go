@@ -318,6 +318,33 @@ func (s *Session) FinaleAnsweringSeat(attempts int) int {
 	}
 }
 
+// FinaleLine is the finale's PassLine: the finalists a round 6 question has still to be
+// put to, in the order it reaches them.
+//
+// One or two seats and never more. Two with a referee in the chair -- the finalist it
+// opened on, then their rival -- and one without, because there the only other seat is
+// the person who was just holding the phone and has already read the answer.
+//
+// The same shape as PassLine and for the same reason: the finale settles a whole turn
+// in one request too, and SettleFinaleTurn checks the body against this.
+func (s *Session) FinaleLine(attempts int) []int {
+	if attempts < 0 {
+		return nil
+	}
+
+	line := make([]int, 0, FinalistCount)
+	for step := attempts; ; step++ {
+		seat := s.FinaleAnsweringSeat(step)
+		if seat < 0 {
+			break
+		}
+
+		line = append(line, seat)
+	}
+
+	return line
+}
+
 // OpenFinale seats the finale for the first time: the top two scores play it, and the
 // best score that did not make it reads to them.
 //
