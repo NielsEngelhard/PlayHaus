@@ -614,13 +614,15 @@ export const nl: Catalog = {
             passOn: 'Nu mag {{name}} raden',
             passOnHint: '{{name}} had het fout · tik om verder te gaan',
             passOnSpoken: 'Nu mag {{to}} dezelfde vraag raden, omdat {{from}} het fout had. Tik om verder te gaan.',
-            quickAssign: 'Snel toewijzen',
+            /** The button's own label. Short on purpose — it sits under the icon in a
+                square the size of a thumb, not beside it in a sentence. */
+            quickAssign: 'Snel',
             quickAssignSpoken: 'Snel toewijzen: kies wie het goed had',
             quickAssignTitle: 'Wie had het goed?',
             quickAssignBody: 'Vraag de tafel de kring rond en kies wie het goed had. Iedereen die je overslaat wordt fout gerekend, net als wanneer je steeds op Fout tikt.',
-            quickAssignLabel: 'Had het goed',
             quickAssignNobody: 'Niemand had het goed',
             quickAssignConfirm: 'Toewijzen',
+            quickAssignConfirmNamed: 'Toewijzen aan {{name}}',
             quickAssignCancel: 'Terug',
             choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',

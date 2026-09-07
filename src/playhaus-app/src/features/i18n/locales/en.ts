@@ -785,13 +785,15 @@ export const en = {
              * that is the one thing about it somebody could be surprised by — and it is
              * also exactly what happened at the table.
              */
-            quickAssign: 'Quick assign',
+            /** The button's own label. Short on purpose — it sits under the icon in a
+                square the size of a thumb, not beside it in a sentence. */
+            quickAssign: 'Quick',
             quickAssignSpoken: 'Quick assign: name who answered correctly',
             quickAssignTitle: 'Who got it?',
             quickAssignBody: 'Ask the table in a circle, then name who got it. Everyone you skip is marked wrong, the same as tapping Wrong down the line.',
-            quickAssignLabel: 'Answered correctly',
             quickAssignNobody: 'Nobody got it',
             quickAssignConfirm: 'Assign',
+            quickAssignConfirmNamed: 'Assign to {{name}}',
             quickAssignCancel: 'Back',
             /**
              * Round 2 only, replacing both lines above it: round 2 never keeps the seat

@@ -43,6 +43,10 @@ interface Props {
  * `VerdictButtons`' own `HandoffHint`, which is a preview said *before* the press: this
  * is the same fact, but after it, and it is the only thing on the screen rather than a
  * caption under two buttons.
+ *
+ * With the shortcut on, `QuickAssign`'s own trigger sits beside this button rather than
+ * under it — the design puts the two side by side, one row, and the hint line moves
+ * under both of them rather than splitting the line with the chip that used to sit here.
  */
 export default function PassOnPrompt({
     from,
@@ -56,56 +60,49 @@ export default function PassOnPrompt({
     const styles = useStyles();
 
     // Nothing to skip past means nothing to offer: with one name left the shortcut is a
-    // longer way of pressing the button above it.
+    // longer way of pressing the button beside it.
     const shortcut = onQuickAssign !== undefined && remaining.length > 1;
 
     return (
         <View style={styles.container}>
-            <PopPressable
-                onPress={onContinue}
-                disabled={busy}
-                accessibilityRole="button"
-                accessibilityLabel={t('pubquizr.play.passOnSpoken', {
-                    to: to.name,
-                    from: from.name
-                })}
-                accessibilityState={{ disabled: busy }}
-                style={[styles.button, busy && styles.busy]}
-            >
-                <View style={[styles.avatar, { backgroundColor: to.swatch.color }]}>
-                    <AppText style={[styles.initials, { color: to.swatch.foreground }]}>
-                        {to.initials}
-                    </AppText>
-                </View>
+            <View style={styles.row}>
+                <PopPressable
+                    onPress={onContinue}
+                    disabled={busy}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('pubquizr.play.passOnSpoken', {
+                        to: to.name,
+                        from: from.name
+                    })}
+                    accessibilityState={{ disabled: busy }}
+                    style={[styles.button, busy && styles.busy]}
+                >
+                    <View style={[styles.avatar, { backgroundColor: to.swatch.color }]}>
+                        <AppText style={[styles.initials, { color: to.swatch.foreground }]}>
+                            {to.initials}
+                        </AppText>
+                    </View>
 
-                <AppText style={styles.label}>
-                    {t('pubquizr.play.passOn', { name: to.name })}
-                </AppText>
-
-                <Feather name="arrow-right" size={16} color={Brand.ink} />
-            </PopPressable>
-
-            {/*
-              * With the shortcut on, the hint gives up the middle of the line and moves
-              * left so the chip can have the end of it. Without it the line is the hint
-              * alone, centred, exactly as it always was — `TextHint` owns that case
-              * rather than being reproduced with a different rule for its one caller.
-              */}
-            {shortcut ? (
-                <View style={styles.footer}>
-                    <AppText style={styles.hint} numberOfLines={1}>
-                        {t('pubquizr.play.passOnHint', { name: from.name })}
+                    {/* Shrinks rather than pushing the icon off the end: the button gives
+                        up half its width to the shortcut beside it, and a long name still
+                        has to fit in what is left. */}
+                    <AppText style={styles.label} numberOfLines={1}>
+                        {t('pubquizr.play.passOn', { name: to.name })}
                     </AppText>
 
+                    <Feather name="arrow-right" size={16} color={Brand.ink} />
+                </PopPressable>
+
+                {shortcut && (
                     <QuickAssign
                         remaining={remaining}
                         busy={busy}
                         onAssign={onQuickAssign}
                     />
-                </View>
-            ) : (
-                <TextHint text={t('pubquizr.play.passOnHint', { name: from.name })} />
-            )}
+                )}
+            </View>
+
+            <TextHint text={t('pubquizr.play.passOnHint', { name: from.name })} />
         </View>
     )
 }
@@ -115,9 +112,21 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0
     },
 
+    row: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        gap: 11
+    },
+
     // Lemon, the same accent `VerdictButtons`' own hand-off pill and the round 2 gate
     // wear — this is another "read this before you tap anything else" moment.
+    //
+    // `flex: 1` rather than a fixed width: alone in the row it fills it exactly as it
+    // always did, and beside the shortcut's fixed 66px square it gives up only the room
+    // that square actually needs.
     button: {
+        flex: 1,
+        minWidth: 0,
         height: 66,
         flexDirection: 'row',
         alignItems: 'center',
@@ -134,26 +143,10 @@ const useStyles = createThemedStyles(theme => ({
         opacity: 0.5
     },
 
-    // The same row `TextHint` would have been, with the shortcut on the end of it.
-    footer: {
-        marginTop: 9,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 10
-    },
-
-    // TextHint's own type, minus the centring the row does instead.
-    hint: {
-        flexShrink: 1,
-        fontSize: 11.5,
-        fontWeight: 600,
-        color: theme.colors.textMuted
-    },
-
     avatar: {
         width: 26,
         height: 26,
+        flexShrink: 0,
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
@@ -166,8 +159,11 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // Ink on lemon in both schemes, because the fill is lemon in both.
+    // Ink on lemon in both schemes, because the fill is lemon in both. Shrinks ahead of
+    // the avatar and the arrow either side of it, which stay their own fixed size.
     label: {
+        flexShrink: 1,
+        minWidth: 0,
         fontSize: 16,
         fontWeight: 900,
         color: Brand.ink
