@@ -358,6 +358,43 @@ export const en = {
             solo: { title: 'Solo', description: 'Play alone, nice and easy.', action: 'Set up' },
             multiplayer: { title: 'Multiplayer', description: 'Create a lobby.', action: 'Open' }
         },
+        /** The two pages you pick a way to play on. See `GameModePageBase`. */
+        modes: {
+            solo: {
+                title: 'Solo',
+                description: 'Play on your own. A new word every day, or a round whenever it suits you.',
+                /** The pills on the band. All three are mocked — see `mock-solo-stats.ts`. */
+                facts: {
+                    streak: '{{days}} day streak',
+                    played: '{{played}} played',
+                    best: 'Best {{best}}'
+                },
+                daily: {
+                    eyebrow: 'Today',
+                    title: 'Word of the day',
+                    /** Under the countdown, so it says what the clock is counting down to. */
+                    reset: 'Until reset',
+                    friends: 'Friends today',
+                    guesses: '{{guesses}} guesses',
+                    action: 'Play today\'s word'
+                },
+                free: { title: 'Play free', description: 'No pressure, no score' },
+                competitive: { title: 'Competitive', description: 'Time and guesses both count' },
+                /** The link under the cards. The number is the one you actually get. */
+                quick: 'Quick play · {{letters}} letters'
+            },
+            multiplayer: {
+                title: 'Multiplayer',
+                description: 'Play together from anywhere. Your own round with friends, or a tournament with a bracket.',
+                tournament: {
+                    eyebrow: 'New',
+                    title: 'Tournament',
+                    description: '1v1 rounds (1v1v1 with an odd number). Rounds per match equals the number of players.',
+                    action: 'Set up a tournament'
+                },
+                own: { title: 'Own game', description: 'Up to {{max}} players · your rules' }
+            }
+        },
         settings: {
             loading: 'Looking for your game…',
             /** Sits under the game's own name in the card's header, so it names the mode. */

@@ -21,6 +21,15 @@ export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
 export type WordLength = typeof WORD_LENGTHS[number];
 
 /**
+ * What quick play draws from — the three in the middle of the range.
+ *
+ * Quick play skips the setup form, so the length is picked for you, and the two ends of
+ * `WORD_LENGTHS` are the wrong thing to hand somebody who did not ask: four is over
+ * before it starts and eight is a sit-down. These three are all recognisably the game.
+ */
+export const QUICK_WORD_LENGTHS = [5, 6, 7] as const satisfies readonly WordLength[];
+
+/**
  * The shape of a solo game, for the setup screen to promise before one exists.
  *
  * Mirrors the backend, which is where these are actually decided: `MaxGuesses` and

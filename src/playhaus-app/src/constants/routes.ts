@@ -5,6 +5,9 @@ export const ROUTES = {
 
     // League of letters
     leagueOfLettersIndex: "/games/league-of-letters",
+    // The two mode pickers, one step in front of the settings form and the lobby below.
+    leagueOfLettersSoloModes: "/games/league-of-letters/modes/solo",
+    leagueOfLettersMultiplayerModes: "/games/league-of-letters/modes/multiplayer",
     leagueOfLettersSolo: "/games/league-of-letters/solo",
     leagueOfLettersSoloResults: "/games/league-of-letters/solo/results",
     leagueOfLettersSoloSettings: "/games/league-of-letters/settings",
