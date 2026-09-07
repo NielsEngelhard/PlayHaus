@@ -1,5 +1,5 @@
 import { FADE_MS, rampVolume, type Fade } from "@/features/audio/fade";
-import { pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
+import { loopsForever, pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
 import { ensureAudioSession } from "@/utils/audio-session";
 import { createAudioPlayer, type AudioPlayer } from "expo-audio";
 
@@ -79,13 +79,21 @@ function trackPlayer(track: TrackId): AudioPlayer | undefined {
     try {
         const player = createAudioPlayer(SOURCES[track]);
 
-        player.loop = true;
+        player.loop = loopsForever(track);
         // Silent until something fades it in. A player built at `VOLUME` would be a hard cut
         // waiting to happen the first time anything called `play` without a ramp.
         player.volume = 0;
 
         players.set(track, player);
         levels.set(track, 0);
+
+        // A track that does not loop natively hands its ending to `rotate` instead of going
+        // quiet. Registered once, at creation, since `players` never lets go of an entry.
+        if (!player.loop) {
+            player.addListener('playbackStatusUpdate', status => {
+                if (status.didJustFinish) rotate(track);
+            });
+        }
 
         return player;
     } catch {
@@ -175,6 +183,41 @@ function retire(track: TrackId): void {
         // Gone for good now, so there is nothing left to pick back up.
         if (retired?.track === track) retired = null;
     });
+}
+
+/**
+ * A track finishing on its own is a cue, not a stop: hand its scene a fresh pick the same way a
+ * scene switch would, rather than leaving the game to go quiet or repeat itself.
+ *
+ * Guarded on `currentTrack` still matching `track` — a finish event is a callback registered at
+ * creation and outlives any single claim, so one arriving after the scene moved on (a claim
+ * handed back, or a faster switch already under way) is stale and must not resurrect a track
+ * nobody asked for.
+ */
+function rotate(track: TrackId): void {
+    if (currentScene === null || currentTrack !== track) return;
+
+    const scene = currentScene;
+    const next = pickTrack(scene);
+
+    const player = trackPlayer(next);
+    if (!player) {
+        // No fresh pick to hand over to. The old track has already finished, so there is
+        // nothing left to resume it from — the scene simply goes quiet, same as `stopMusic`.
+        currentScene = null;
+        currentTrack = null;
+        retire(track);
+
+        return;
+    }
+
+    currentTrack = next;
+
+    // The old track is already silent — it just finished — so this is a fade in rather than a
+    // crossfade. `retire` still does the honours: pausing it once its (already-arrived) fade
+    // lands keeps every path to silence going through the same door.
+    retire(track);
+    start(next);
 }
 
 /**

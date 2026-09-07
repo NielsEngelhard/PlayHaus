@@ -68,3 +68,18 @@ export function pickTrack(scene: MusicScene): TrackId {
 
     return chosen;
 }
+
+/**
+ * Whether `track` should loop forever under its own steam, rather than handing its ending off to
+ * a fresh `pickTrack` call.
+ *
+ * True for a track whose scene has nothing else to play — the lobby's one loop, which is meant
+ * to sound the same every time a room waits. A scene with more than one track is the opposite: a
+ * game repeating itself is the thing worth avoiding, so its tracks play once and the player picks
+ * again on the way out. See the rotation in `music-player.ts` / `music-player.web.ts`.
+ */
+export function loopsForever(track: TrackId): boolean {
+    const scene = (Object.keys(PLAYLISTS) as MusicScene[]).find(s => PLAYLISTS[s].includes(track));
+
+    return scene === undefined || PLAYLISTS[scene].length <= 1;
+}

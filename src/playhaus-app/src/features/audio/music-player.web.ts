@@ -1,5 +1,5 @@
 import { FADE_MS, rampVolume, type Fade } from "@/features/audio/fade";
-import { pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
+import { loopsForever, pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
 import { Asset } from "expo-asset";
 
 /**
@@ -104,8 +104,12 @@ function trackVoice(track: TrackId): Voice | undefined {
         // the one thing that turns it into something `Audio` can be pointed at.
         const element = new Audio(Asset.fromModule(SOURCES[track]).uri);
 
-        element.loop = true;
+        element.loop = loopsForever(track);
         element.preload = 'auto';
+
+        // A track that does not loop natively hands its ending to `rotate` instead of going
+        // quiet. Registered once, at creation, since `voices` never lets go of an entry.
+        if (!element.loop) element.addEventListener('ended', () => rotate(track));
 
         let gain: GainNode | null = null;
 
@@ -243,6 +247,33 @@ function watchVisibility(): void {
             } catch { }
         }
     });
+}
+
+/**
+ * A track finishing on its own is a cue, not a stop — see `rotate` in `music-player.ts`, whose
+ * contract this matches exactly.
+ */
+function rotate(track: TrackId): void {
+    if (currentScene === null || currentTrack !== track) return;
+
+    const scene = currentScene;
+    const next = pickTrack(scene);
+
+    const voice = trackVoice(next);
+    if (!voice) {
+        // No fresh pick to hand over to. The old track has already finished, so there is
+        // nothing left to resume it from — the scene simply goes quiet, same as `stopMusic`.
+        currentScene = null;
+        currentTrack = null;
+        retire(track);
+
+        return;
+    }
+
+    currentTrack = next;
+
+    retire(track);
+    start(next);
 }
 
 /**
