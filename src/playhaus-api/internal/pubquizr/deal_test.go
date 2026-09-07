@@ -110,35 +110,48 @@ func TestRoundFourSharesAThinShelfEvenly(t *testing.T) {
 	}
 }
 
-// The smallest table the game allows plays rounds 2 and 3 at double length, so a table
-// of two is not left with the shortest rounds instead of the longest ones.
-func TestSmallestTableDealsDoubleLengthChoiceAndClosestRounds(t *testing.T) {
-	quiz := quizCarrying(16)
-	// quizCarrying floors round 3 at MinClosestQuestions, which is one -- too few to
-	// show the doubling capped at what the quiz carries rather than at the ordinary
-	// floor. Given four instead, so the deal below actually gets to ask for all four.
-	for position := 1; position < 4; position++ {
-		quiz.Questions = append(quiz.Questions, Question{
-			ID: uuid.New(), QuizID: quiz.ID, Round: RoundClosest,
-			Kind: KindOf(RoundClosest), Position: position,
-		})
+// Rounds 2, 3 and 5 are dealt whole laps of the table at every size of table -- no
+// exception for the smallest one, and none for the largest.
+//
+// The property that matters is the one the deal is for: over the round every seat reads
+// the same number of times, because all three rounds move the reading on one seat per
+// question. A deal that stopped part-way round would leave the seats it reached one
+// reading ahead of the ones it did not, which is the unfairness this is here to catch.
+func TestEveryTableIsDealtWholeLapsOfRoundsTwoThreeAndFive(t *testing.T) {
+	// Wide enough to hand out the round 4 cap, so nothing here trips the too-small
+	// check on a different round.
+	quiz := quizCarrying(MaxPlayers * DescribeWordsPerTurn)
+
+	// What the quiz turned out to hold for each of the three, read off the quiz rather
+	// than off MinQuestionsIn: the floor is what quizCarrying used today, and the point
+	// of the assertion is the arithmetic against whatever is actually on the shelf.
+	carried := map[int]int{}
+	for _, question := range quiz.Questions {
+		carried[question.Round]++
 	}
 
-	deal, err := dealQuestions(quiz, MinPlayers, Modes{})
-	if err != nil {
-		t.Fatalf("deal: %v", err)
-	}
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		deal, err := dealQuestions(quiz, players, Modes{})
+		if err != nil {
+			t.Fatalf("%d players: deal: %v", players, err)
+		}
 
-	counts := map[int]int{}
-	for _, slot := range deal {
-		counts[slot.round]++
-	}
+		counts := map[int]int{}
+		for _, slot := range deal {
+			counts[slot.round]++
+		}
 
-	if got, want := counts[RoundChoice], 4; got != want {
-		t.Errorf("round 2 dealt %d questions, want %d", got, want)
-	}
-	if got, want := counts[RoundClosest], 4; got != want {
-		t.Errorf("round 3 dealt %d questions, want %d", got, want)
+		for _, round := range []int{RoundChoice, RoundClosest, RoundList} {
+			want := WholeCyclesOf(players, carried[round])
+			if got := counts[round]; got != want {
+				t.Errorf("%d players: round %d dealt %d of %d questions, want %d",
+					players, round, got, carried[round], want)
+			}
+			if want == 0 {
+				t.Errorf("%d players: round %d was dealt nothing out of %d -- MinQuestionsIn should keep a lapless round off the table",
+					players, round, carried[round])
+			}
+		}
 	}
 }
 

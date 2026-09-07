@@ -121,7 +121,8 @@ func TestQuizWithoutZenPlaysEveryRound(t *testing.T) {
 func TestZenHandsRoundThreeStraightToRoundFive(t *testing.T) {
 	h, token, session := atZenRoundThree(t, 4)
 
-	if got, want := session.TurnsInRound, 2; got != want {
+	closest := carriedIn(t, h, token, session.QuizID, pubquizr.RoundClosest)
+	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), closest); got != want {
 		t.Fatalf("turnsInRound = %d, want %d -- round 3 is unchanged by the mode", got, want)
 	}
 
@@ -142,8 +143,9 @@ func TestZenHandsRoundThreeStraightToRoundFive(t *testing.T) {
 	if got, want := len(session.BonusSeats), len(session.Players)-2; got != want {
 		t.Errorf("bonusSeats = %v, want %d of them", session.BonusSeats, want)
 	}
-	if got, want := session.TurnsInRound, len(session.Players); got != want {
-		t.Errorf("turnsInRound = %d, want %d -- one question each", got, want)
+	list := carriedIn(t, h, token, session.QuizID, pubquizr.RoundList)
+	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), list); got != want {
+		t.Errorf("turnsInRound = %d, want %d -- whole laps of the table", got, want)
 	}
 	if got, want := session.CurrentPosition, 0; got != want {
 		t.Errorf("currentPosition = %d, want %d", got, want)

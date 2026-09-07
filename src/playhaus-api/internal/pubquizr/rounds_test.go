@@ -230,35 +230,49 @@ func TestOpenRoundOnReadsTheSeatTheRoundsWay(t *testing.T) {
 	}
 }
 
-// How long each round is, given the table and what the quiz turned out to carry.
-func TestRoundLengths(t *testing.T) {
-	if got, want := ChoiceQuestionsFor(5), 5; got != want {
-		t.Errorf("ChoiceQuestionsFor(5) = %d, want %d -- one each", got, want)
-	}
-	// The smallest table plays four instead of one each, so the round is not over
-	// almost as soon as it starts.
-	if got, want := ChoiceQuestionsFor(MinPlayers), 4; got != want {
-		t.Errorf("ChoiceQuestionsFor(%d) = %d, want %d -- the smallest table plays four",
-			MinPlayers, got, want)
+// How long rounds 2, 3 and 5 are, given the table and what the quiz turned out to carry.
+//
+// Asserted as the three properties that define the rule rather than as a list of answers,
+// because a list of answers is the rule copied out a second way and would agree with a
+// wrong one just as readily. What is actually wanted of a length is that the reading comes
+// out even (a multiple of the table), that it is not more than there is to play, and that
+// it is not needlessly less -- and those three together admit exactly one number.
+func TestWholeCyclesOfPlaysEveryWholeLapAndNoPartOne(t *testing.T) {
+	// The shelves the shipped quizzes actually carry for these rounds, plus the sizes
+	// worth poking at: nothing, one, a shelf just short of a lap, and one much wider
+	// than any table.
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		for _, available := range []int{0, 1, players - 1, players, 8, 14, 100} {
+			got := WholeCyclesOf(players, available)
+
+			if got%players != 0 {
+				t.Errorf("WholeCyclesOf(%d, %d) = %d, which is not whole laps of the table",
+					players, available, got)
+			}
+			if got > available {
+				t.Errorf("WholeCyclesOf(%d, %d) = %d, more than the quiz carries",
+					players, available, got)
+			}
+			if available-got >= players {
+				t.Errorf("WholeCyclesOf(%d, %d) = %d, leaving %d unplayed -- a whole lap was left on the shelf",
+					players, available, got, available-got)
+			}
+		}
 	}
 
-	closest := []struct{ players, available, want int }{
-		// One per player, so everybody reads one out...
-		{players: 4, available: 8, want: 4},
-		// ...or all the quiz carries, which today is two.
-		{players: 6, available: 2, want: 2},
-		{players: 3, available: 3, want: 3},
-		// The smallest table plays four instead of two, the same exception
-		// ChoiceQuestionsFor makes...
-		{players: MinPlayers, available: 8, want: 4},
-		// ...still capped at what the quiz actually carries.
-		{players: MinPlayers, available: 3, want: 3},
+	// A table of two and a table of five out of the same fourteen-question round 2, which
+	// is the pair the rule exists for: no exception for the small table, just as many laps
+	// as fit. Spelled out so a change to the arithmetic has to be meant.
+	if got, want := WholeCyclesOf(2, 14), 14; got != want {
+		t.Errorf("WholeCyclesOf(2, 14) = %d, want %d -- seven laps of a table of two", got, want)
 	}
-	for _, row := range closest {
-		if got := ClosestQuestionsFor(row.players, row.available); got != row.want {
-			t.Errorf("ClosestQuestionsFor(%d, %d) = %d, want %d",
-				row.players, row.available, got, row.want)
-		}
+	if got, want := WholeCyclesOf(5, 14), 10; got != want {
+		t.Errorf("WholeCyclesOf(5, 14) = %d, want %d -- two laps, and four left over", got, want)
+	}
+
+	// Nobody at the table divides by zero rather than answering it.
+	if got := WholeCyclesOf(0, 8); got != 0 {
+		t.Errorf("WholeCyclesOf(0, 8) = %d, want 0", got)
 	}
 }
 

@@ -57,7 +57,7 @@ export interface ClosestTurn {
      * smallest table the game allows -- see `closestQuizmasterGuesses`.
      */
     quizmasterGuesses: boolean
-    /** 1-based, for "question 2 of 2". */
+    /** 1-based, for "question 2 of 6". */
     number: number
     total: number
     /** What the nearest guess pays. */

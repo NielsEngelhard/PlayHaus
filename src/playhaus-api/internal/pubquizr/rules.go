@@ -178,33 +178,28 @@ func DescribeWordPointsFor(winners int) int {
 	return DescribeWordPoints + max(winners, 0)*DescribeGuessPoints
 }
 
-// ChoiceQuestionsFor is how many round 2 questions this table plays: one each -- except
-// at the smallest table the game allows, where one each would be a round of two
-// questions, over almost as soon as it starts. There it plays four instead.
-func ChoiceQuestionsFor(players int) int {
-	if players == MinPlayers {
-		return 4
+// WholeCyclesOf is how many turns a round plays when the reading has to go round the
+// table a whole number of times: as much of what the quiz carries as divides evenly by
+// the table, and no more.
+//
+// The one rule rounds 2, 3 and 5 all play by, and the reason none of them needs a special
+// case for a particular table size. All three move the reading on one seat per question
+// -- round 2 because taking a question never keeps the seat, rounds 3 and 5 because
+// RotatesEachTurn says so -- so a round that stops part-way round the ring leaves the
+// seats it reached one reading ahead of the ones it did not. A whole number of laps is
+// the only length that comes out even at every table, and taking as many laps as the quiz
+// carries is the most of it that can be played while staying that way.
+//
+// Zero for a round carrying fewer questions than the table is wide, which has no whole
+// lap in it at all. MinQuestionsIn keeps that out of a started game: every round this
+// rule governs needs MaxPlayers questions to pass validation, and no table the game
+// seats is wider than that.
+func WholeCyclesOf(players, available int) int {
+	if players <= 0 || available <= 0 {
+		return 0
 	}
-	return max(players, 0)
-}
 
-// ListQuestionsFor is how many round 5 questions this table plays: one each, the same
-// rule ChoiceQuestionsFor gives round 2. Every player reads exactly once -- the reading
-// rotates one seat per settled question, see Service.RecordListAward -- and every player
-// starts as the first guesser exactly once, which only comes out even if the round is
-// exactly as long as the table is wide.
-func ListQuestionsFor(players int) int {
-	return max(players, 0)
-}
-
-// ClosestQuestionsFor is how many round 3 questions this table plays: one per player,
-// capped at what the quiz actually carries -- except at the smallest table the game
-// allows, which plays four instead of two, for the same reason ChoiceQuestionsFor does.
-func ClosestQuestionsFor(players, available int) int {
-	if players == MinPlayers {
-		return max(min(4, available), 0)
-	}
-	return max(min(players, available), 0)
+	return players * (available / players)
 }
 
 // ClosestQuizmasterGuesses is whether round 3 lets its reader guess too, rather than
@@ -254,15 +249,17 @@ func FinalePointsFor(players int) int {
 }
 
 const (
-	MinOpenQuestions             = 20
+	MinOpenQuestions = 20
+	// The three floors below belong to the three rounds WholeCyclesOf governs, and they
+	// are all the same number for the same reason: those rounds play whole laps of the
+	// table, so a round carrying fewer questions than the widest table the game seats
+	// would have no whole lap in it and be played not at all.
 	MinChoiceQuestions           = MaxPlayers
-	MinClosestQuestions          = 1
+	MinClosestQuestions          = MaxPlayers
+	MinListQuestions             = MaxPlayers
 	MinDescribeWordsAtAFullTable = 2
 	MinDescribeWords             = MaxPlayers * MinDescribeWordsAtAFullTable
-	// MinListQuestions is what a full table of round 5 needs -- one per player, the
-	// same MinChoiceQuestions is for round 2.
-	MinListQuestions   = MaxPlayers
-	MinFinaleQuestions = 4
+	MinFinaleQuestions           = 4
 )
 
 // MinQuestionsIn is the smallest number of questions a round may carry.

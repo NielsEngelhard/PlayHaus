@@ -86,7 +86,7 @@ func closestBody(t *testing.T, req closestGuessesRequest) string {
 // Nobody is "being asked" in round 3 -- the whole table guesses at once -- and the app
 // has to be told that rather than left to infer it from a seat that means nothing.
 func TestRoundThreeAsksTheWholeTable(t *testing.T) {
-	_, _, session := atRoundThree(t, 4)
+	h, token, session := atRoundThree(t, 4)
 
 	if session.AnsweringSeat != nil {
 		t.Errorf("answeringSeat = %d, want null in round 3", *session.AnsweringSeat)
@@ -97,10 +97,11 @@ func TestRoundThreeAsksTheWholeTable(t *testing.T) {
 	if got, want := len(session.TurnQuestionIDs), 1; got != want {
 		t.Errorf("turnQuestionIds = %d, want %d", got, want)
 	}
-	// Every shipped quiz carries two closest questions, and the round deals what the
-	// quiz has rather than one per player.
-	if got, want := session.TurnsInRound, 2; got != want {
-		t.Errorf("turnsInRound = %d, want %d", got, want)
+	// As many whole laps of the table as the quiz carries closest questions for -- the
+	// rule rounds 2, 3 and 5 share, whatever the size of the table.
+	carried := carriedIn(t, h, token, session.QuizID, pubquizr.RoundClosest)
+	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), carried); got != want {
+		t.Errorf("turnsInRound = %d, want %d (of %d carried)", got, want, carried)
 	}
 }
 
@@ -548,7 +549,7 @@ func atRoundFive(t *testing.T, players int) (http.Handler, string, map[string][]
 // the table walking the leftovers afterwards -- so it has to name both, and the app is
 // not left to work either out from a hot seat that means something different every round.
 func TestRoundFiveNamesTheGuesserAndTheBonusSeats(t *testing.T) {
-	_, _, _, session := atRoundFive(t, 4)
+	h, token, _, session := atRoundFive(t, 4)
 
 	if session.GuesserSeat == nil {
 		t.Fatal("guesserSeat = null in round 5")
@@ -580,10 +581,15 @@ func TestRoundFiveNamesTheGuesserAndTheBonusSeats(t *testing.T) {
 		}
 	}
 
-	// One question each, and the reading moves on every one of them, so everybody reads
-	// once and everybody is the guesser once.
-	if got, want := session.TurnsInRound, len(session.Players); got != want {
-		t.Errorf("turnsInRound = %d, want %d", got, want)
+	// Whole laps of the table, and the reading moves on every question, so everybody
+	// reads the same number of times and is the guesser the same number of times.
+	carried := carriedIn(t, h, token, session.QuizID, pubquizr.RoundList)
+	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), carried); got != want {
+		t.Errorf("turnsInRound = %d, want %d (of %d carried)", got, want, carried)
+	}
+	if session.TurnsInRound%len(session.Players) != 0 {
+		t.Errorf("turnsInRound = %d at a table of %d -- the round stops part-way round the ring",
+			session.TurnsInRound, len(session.Players))
 	}
 }
 

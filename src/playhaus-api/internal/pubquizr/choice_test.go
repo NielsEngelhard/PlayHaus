@@ -2,14 +2,13 @@ package pubquizr
 
 import (
 	"slices"
-	"sort"
 	"testing"
 )
 
 // Round 2 is round 1's hot seat with four options read out, a different sum, and one
-// rule of its own: nobody keeps the seat. The round deals exactly one question per
-// player, and the only way that turns into everybody asked once and everybody reading
-// once is if landing a question never buys another go at the next one -- so what is
+// rule of its own: nobody keeps the seat. The round is dealt whole laps of the table, and
+// the only way that turns into everybody asked and everybody reading the same number of
+// times is if landing a question never buys another go at the next one -- so what is
 // worth proving here is that every question pays, that it pays double, and that the
 // seat always shuffles on by exactly one, correct or not, regardless of who actually
 // answered it.
@@ -27,8 +26,8 @@ func newChoiceSession(master, hot, position, positions int) *Session {
 }
 
 // Round 1's every-second rhythm is what makes surviving a scoreless question worth
-// something. Round 2 is one question per player, so there is no lap to survive and every
-// one of them simply pays.
+// something. Round 2 never lets anybody hold the seat, so there is nothing to survive and
+// every one of its questions simply pays.
 func TestEveryChoiceQuestionPays(t *testing.T) {
 	for position := 0; position < 4; position++ {
 		store := &verdictStore{session: newChoiceSession(0, 1, position, 4)}
@@ -65,30 +64,38 @@ func TestChoiceCorrectAnswerStillShufflesOn(t *testing.T) {
 	}
 }
 
-// Over the whole round, every seat is the hot seat exactly once and quizmaster exactly
-// once -- the round deals one question per player, and a correct answer never keeps the
-// seat, so the two rings walk the table exactly once each and never repeat.
-func TestRoundTwoGivesEverySeatOneTurnEachWay(t *testing.T) {
-	store := &verdictStore{session: newChoiceSession(0, 1, 0, 4)}
+// Over the whole round, every seat is the hot seat the same number of times and
+// quizmaster the same number of times -- the round is dealt whole laps of the table
+// (WholeCyclesOf), and a correct answer never keeps the seat, so the two rings walk the
+// table right round and land back where they started.
+//
+// Twelve questions rather than one lap of four, because one lap cannot tell the rule
+// apart from an accident: any round that walks a ring of four exactly four steps visits
+// each seat once whatever else it does. Twelve is what a table of four is actually dealt
+// out of the fourteen every shipped quiz carries for this round.
+func TestRoundTwoGivesEverySeatTheSameNumberOfTurnsEachWay(t *testing.T) {
+	const players = 4
+	turns := WholeCyclesOf(players, 14)
 
-	var hotSeats, quizMasters []int
-	for i := 0; i < 4; i++ {
-		hotSeats = append(hotSeats, store.session.HotSeat)
-		quizMasters = append(quizMasters, store.session.QuizMasterSeat)
+	store := &verdictStore{session: newChoiceSession(0, 1, 0, turns)}
+
+	hotSeats := make([]int, players)
+	quizMasters := make([]int, players)
+	for range turns {
+		hotSeats[store.session.HotSeat]++
+		quizMasters[store.session.QuizMasterSeat]++
 
 		store.attempts = 0
 		rule(t, store, true)
 	}
 
-	sort.Ints(hotSeats)
-	sort.Ints(quizMasters)
-
-	want := []int{0, 1, 2, 3}
+	each := turns / players
+	want := []int{each, each, each, each}
 	if !slices.Equal(hotSeats, want) {
-		t.Errorf("hot seats over the round = %v, want each seat exactly once: %v", hotSeats, want)
+		t.Errorf("hot seat turns per seat over %d questions = %v, want %v", turns, hotSeats, want)
 	}
 	if !slices.Equal(quizMasters, want) {
-		t.Errorf("quizmasters over the round = %v, want each seat exactly once: %v", quizMasters, want)
+		t.Errorf("quizmaster turns per seat over %d questions = %v, want %v", turns, quizMasters, want)
 	}
 }
 

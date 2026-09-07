@@ -468,13 +468,14 @@ func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error
 	// is already a call into rules.go.
 	for _, round := range []roundDeal{
 		{RoundOpen, all, toTheTable},
-		{RoundChoice, func(int) int { return ChoiceQuestionsFor(players) }, toTheTable},
-		{RoundClosest, func(a int) int { return ClosestQuestionsFor(players, a) }, toTheTable},
+		// Rounds 2, 3 and 5 are the three that walk the reading round the table one seat
+		// per question, so all three are dealt the same way: whole laps of the table, as
+		// many as the quiz carries. See WholeCyclesOf for why nothing here needs to know
+		// how wide the table is beyond dividing by it.
+		{RoundChoice, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
+		{RoundClosest, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
 		{RoundDescribe, func(a int) int { return DescribeWordsFor(players, a) }, inTurns},
-		// One question per player, the same rule round 2 plays by: every player reads
-		// once and starts as first guesser once, which only comes out even if the round
-		// is exactly as long as the table is wide.
-		{RoundList, func(int) int { return ListQuestionsFor(players) }, toTheTable},
+		{RoundList, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
 		// The finalists are not known until the other five rounds are done, so the
 		// finale is dealt to the table and assigned to nobody.
 		{RoundFinale, all, toTheTable},
@@ -615,13 +616,11 @@ func checkAgainstLine(line, missed []int, correct *int) error {
 // The two rounds also differ in what a question pays -- round 1 on every second one,
 // round 2 on all of them and double, see HotSeatPointsAt.
 //
-// Round 2 additionally always shuffles the seat on one, correct or not: it deals one
-// question per player -- or four at the smallest table the game allows, where one each
-// would barely be a round (ChoiceQuestionsFor) -- and the only way every seat ends up
-// asked and reading the same number of times is if landing a question never lets
-// anybody keep it. Round 1 does not have this shape -- it deals more questions than
-// there are players on purpose, so a table that is bad at trivia does not run out before
-// it is done.
+// Round 2 additionally always shuffles the seat on one, correct or not: it is dealt whole
+// laps of the table (WholeCyclesOf), and the only way every seat ends up asked and reading
+// the same number of times is if landing a question never lets anybody keep it. Round 1
+// does not have this shape -- it deals more questions than there are players on purpose,
+// so a table that is bad at trivia does not run out before it is done.
 func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -1263,8 +1262,9 @@ type ListInput struct {
 // somebody for holding the phone.
 //
 // The reading never stays put across questions: `RotatesEachTurn` moves the whole table
-// on by one, so everybody reads exactly once and everybody is the guesser exactly once,
-// which is what `ListQuestionsFor` makes the round long enough for.
+// on by one, so everybody reads the same number of times and is the guesser the same
+// number of times -- which is what `WholeCyclesOf` sizes the round to come out at, by
+// only ever dealing it whole laps of the table.
 func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {

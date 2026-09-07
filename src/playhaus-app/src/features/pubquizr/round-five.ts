@@ -35,7 +35,8 @@ export interface ListTurn {
     guesser: Seat
     /**
      * Everybody else, in the order their bonus guess comes round — from the guesser's
-     * left onwards. Empty at a table of two, which round 5 never sees.
+     * left onwards. Empty at a table of two, where the reader and the guesser are already
+     * the whole table.
      */
     bonus: Seat[]
     /** 1-based, for "question 2 of 8". */

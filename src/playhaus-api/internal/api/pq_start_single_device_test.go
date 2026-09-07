@@ -48,6 +48,30 @@ func questionsIn(session quizSessionResponse, round int) []quizSessionQuestionRe
 	return found
 }
 
+// carriedIn is the other half of questionsIn: how many questions the quiz holds for a
+// round, against however many of them a given table is dealt.
+//
+// Read off the quiz rather than written down here, because how much content a round ships
+// with is not a rule and will change -- what is being asserted is the arithmetic between
+// the two numbers, not either number.
+func carriedIn(t *testing.T, h http.Handler, token, quizID string, round int) int {
+	t.Helper()
+
+	rec := do(t, h, http.MethodGet, quizPath(quizID), "", token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("get quiz: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	for _, carried := range decodeBody[quizResponse](t, rec).Rounds {
+		if carried.Round == round {
+			return len(carried.Questions)
+		}
+	}
+
+	t.Fatalf("the quiz carries no round %d at all", round)
+	return 0
+}
+
 func TestStartSingleDeviceQuizSeatsTheTableInOrder(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
@@ -109,25 +133,23 @@ func TestStartSingleDeviceQuizSeatsTheTableInOrder(t *testing.T) {
 // They are dealt to nobody in particular, which is the part worth asserting. Round 2
 // used to hand every player their own ABCD question; it now runs on the hot seat like
 // round 1, where the reading moves round the table and the questions belong to it.
-func TestStartSingleDeviceQuizDealsOneChoiceQuestionEach(t *testing.T) {
+func TestStartSingleDeviceQuizDealsWholeLapsOfRoundTwo(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
 	quiz := aQuiz(t, h, session.Token, "locale=nl")
+	carried := carriedIn(t, h, session.Token, quiz.ID, pubquizr.RoundChoice)
 
 	for _, players := range []int{pubquizr.MinPlayers, 5, pubquizr.MaxPlayers} {
 		t.Run(fmt.Sprintf("%d players", players), func(t *testing.T) {
 			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
 
-			// The smallest table plays four instead of one each -- see
-			// ChoiceQuestionsFor.
-			want := players
-			if players == pubquizr.MinPlayers {
-				want = 4
-			}
+			// As many whole laps of the table as the quiz carries, at every size of
+			// table -- see pubquizr.WholeCyclesOf.
+			want := pubquizr.WholeCyclesOf(players, carried)
 
 			dealt := questionsIn(started, pubquizr.RoundChoice)
 			if got := len(dealt); got != want {
-				t.Fatalf("round 2 questions = %d, want %d", got, want)
+				t.Fatalf("round 2 dealt %d of %d questions, want %d", got, carried, want)
 			}
 
 			for _, question := range dealt {
@@ -140,21 +162,23 @@ func TestStartSingleDeviceQuizDealsOneChoiceQuestionEach(t *testing.T) {
 	}
 }
 
-// TestStartSingleDeviceQuizDealsOneListQuestionEach covers round 5: one question per
-// player, the same rule round 2 plays by -- every player reads once and starts as first
-// guesser once, which only comes out even if the round is exactly as long as the table.
-func TestStartSingleDeviceQuizDealsOneListQuestionEach(t *testing.T) {
+// TestStartSingleDeviceQuizDealsWholeLapsOfRoundFive covers round 5, which is dealt by
+// the same rule round 2 is -- every player reads the same number of times and starts as
+// first guesser the same number of times, which only comes out even if the round is a
+// whole number of laps of the table.
+func TestStartSingleDeviceQuizDealsWholeLapsOfRoundFive(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
 	quiz := aQuiz(t, h, session.Token, "locale=nl")
+	carried := carriedIn(t, h, session.Token, quiz.ID, pubquizr.RoundList)
 
 	for _, players := range []int{pubquizr.MinPlayers, 5, pubquizr.MaxPlayers} {
 		t.Run(fmt.Sprintf("%d players", players), func(t *testing.T) {
 			started := startedQuiz(t, h, session.Token, quiz.ID, tableOf(players)...)
 
 			dealt := questionsIn(started, pubquizr.RoundList)
-			if got, want := len(dealt), players; got != want {
-				t.Fatalf("round 5 questions = %d, want %d", got, want)
+			if got, want := len(dealt), pubquizr.WholeCyclesOf(players, carried); got != want {
+				t.Fatalf("round 5 dealt %d of %d questions, want %d", got, carried, want)
 			}
 
 			for _, question := range dealt {
