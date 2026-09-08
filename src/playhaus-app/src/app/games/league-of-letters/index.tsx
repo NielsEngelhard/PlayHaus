@@ -7,6 +7,8 @@ import { useT } from "@/features/i18n/LanguageContext";
 import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import ModeCard from "@/components/ui/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
+import TournamentCard from "@/features/league-of-letters/components/TournamentCard";
+import WordOfTheDayCard from "@/features/league-of-letters/components/WordOfTheDayCard";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -28,6 +30,9 @@ export default function LeagueOfLettersIndexPage() {
             deviceMode={LEAGUE_OF_LETTERS.deviceMode}
             durationInMinutes={LEAGUE_OF_LETTERS.minutesAverage}
         >
+            {/* The first child is the row the band is cut around, and the daily is what the band should stop on. */}
+            <WordOfTheDayCard />
+
             <View style={styles.modes}>
                 <ModeCard
                     solid
@@ -55,6 +60,10 @@ export default function LeagueOfLettersIndexPage() {
                 />
             </View>
 
+            <View style={styles.tournament}>
+                <TournamentCard />
+            </View>
+
             <View style={styles.playingAs}>
                 <PlayingAsCard />
             </View>
@@ -68,9 +77,13 @@ export default function LeagueOfLettersIndexPage() {
 
 const useStyles = createThemedStyles(() => ({
     modes: {
+        marginTop: Spacing.three - 4,
         flexDirection: 'row',
         alignItems: 'stretch',
         gap: Spacing.three - 4
+    },
+    tournament: {
+        marginTop: Spacing.three - 4
     },
     playingAs: {
         marginTop: Spacing.three

@@ -289,7 +289,17 @@ export const nl: Catalog = {
             description: 'Test je woordenschat en probeer het geheime woord te raden.',
             playingAs: 'Jij bent {{name}}',
             solo: { title: 'Solo', description: 'Speel alleen, lekker rustig.', action: 'Instellen' },
-            multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' }
+            multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' },
+            wordOfTheDay: {
+                title: 'Woord van de dag',
+                resetIn: 'Nog {{time}} tot een nieuw woord'
+            },
+            tournament: {
+                badge: 'Nieuw',
+                title: 'Toernooi',
+                description: 'Begin een toernooi (minimaal 4 spelers)',
+                action: 'Toernooi opzetten'
+            }
         },
         settings: {
             loading: 'Spel zoeken…',

@@ -8,6 +8,8 @@ export const ROUTES = {
     leagueOfLettersSoloResults: "/games/league-of-letters/solo/results",
     leagueOfLettersSoloSettings: "/games/league-of-letters/settings",
     leagueOfLettersCreateRoom: "/games/league-of-letters/room",
+    leagueOfLettersWordOfTheDay: "/games/league-of-letters/word-of-the-day",
+    leagueOfLettersTournament: "/games/league-of-letters/tournament",
     leagueOfLettersRoom: (code: string) => `/games/league-of-letters/room/${code}`,
     
     // PubquizR

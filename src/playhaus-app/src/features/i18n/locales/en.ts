@@ -300,7 +300,17 @@ export const en = {
             description: 'Test your vocabulary and try to guess the secret word.',
             playingAs: 'Playing as {{name}}',
             solo: { title: 'Solo', description: 'Play alone, nice and easy.', action: 'Set up' },
-            multiplayer: { title: 'Multiplayer', description: 'Create a lobby.', action: 'Open' }
+            multiplayer: { title: 'Multiplayer', description: 'Create a lobby.', action: 'Open' },
+            wordOfTheDay: {
+                title: 'Word of the day',
+                resetIn: 'A new word in {{time}}'
+            },
+            tournament: {
+                badge: 'New',
+                title: 'Tournament',
+                description: '1v1 matches (1v1v1 with an odd number). Rounds per match = the number of players.',
+                action: 'Set up a tournament'
+            }
         },
         settings: {
             loading: 'Looking for your game…',
