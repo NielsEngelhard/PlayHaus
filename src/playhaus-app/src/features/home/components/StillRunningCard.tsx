@@ -14,12 +14,7 @@ interface Props {
     kind: GameKind
 }
 
-/**
- * The one-line reminder that a game is still open, sitting under the game list.
- *
- * Deliberately quieter than a game card: no gradient, no shadow in either scheme. It is
- * a way back into something already started, not another thing to start.
- */
+// The one-line reminder that a game is still open, sitting under the game list.
 export default function StillRunningCard({ game, kind }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -66,8 +61,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        // Light keeps the hard lift the rest of its chrome has; dark leaves this flat,
-        // saving the coloured shadows for the cards that are the point of the page.
+        // Light keeps the hard lift the rest of its chrome has.
         ...theme.popShadow(theme.colors.shadow)
     },
     tile: {

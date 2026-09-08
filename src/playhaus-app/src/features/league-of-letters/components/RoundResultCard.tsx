@@ -13,22 +13,14 @@ interface Props {
     won: boolean
 }
 
-/**
- * The verdict, in the space the keyboard was in.
- *
- * It takes the keyboard's place rather than sitting above it: there is nothing left to
- * type, and a dead keyboard under a result is a control that looks broken. The word is
- * spelled out even on a win — the board says it in green, but it says it as five separate
- * tiles, and the point of a result is to be read as a word.
- */
+// The verdict, in the space the keyboard was in.
 export default function RoundResultCard({ word, tries, maxGuesses, won }: Props) {
     const styles = useStyles();
     const t = useT();
 
     return (
         <View style={styles.card}>
-            {/* Tilted and hung over the card's own edge, the way the FAVOURITE flag sits
-                on a game card — a sticker on the result rather than a heading in it. */}
+            {/* Tilted and hung over the card's own edge, the way the FAVOURITE flag sits on a game card. */}
             <View style={[styles.badge, won ? styles.badgeWon : styles.badgeLost]}>
                 <AppText style={styles.badgeText}>{won ? t('lol.game.solved') : t('lol.game.lost')}</AppText>
             </View>
@@ -92,8 +84,7 @@ const useStyles = createThemedStyles(theme => {
             color: Brand.ink
         },
         row: {
-            // Baselines rather than centres: the two big numbers should sit on the same
-            // line even though their labels are different lengths.
+            // Baselines rather than centres: the two big numbers should sit on the same line even though their labels are different lengths.
             flexDirection: 'row',
             alignItems: 'flex-end',
             justifyContent: 'space-between',

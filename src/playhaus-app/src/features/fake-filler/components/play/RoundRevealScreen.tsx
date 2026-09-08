@@ -20,25 +20,12 @@ interface Props {
     onContinue: () => void
 }
 
-/**
- * The end of a round, with everything told at last.
- *
- * This is the only screen in the game that names authors, and it is where the whole of the
- * redaction upstream pays off: until the last vote landed, nothing anybody held could say
- * who wrote which line. So it is worth being generous here — every option, who wrote it,
- * who fell for it, and which one was true.
- *
- * The board holds on this screen rather than following the server. `currentRound` has
- * already moved on by the time this renders — the last vote advanced it — so the reveal is
- * shown until the reader taps on, which is what `onContinue` is for. Without that the
- * payoff would be replaced by the next prompt in the same frame that produced it.
- */
+// The end of a round, with everything told at last.
 export default function RoundRevealScreen({ game, reveal, userId, more, onContinue }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Truth first when there is one, then the fakes by how many they fooled: the round's
-    // answer leads, and the rest read as a ranking of who got away with it.
+    // Truth first when there is one, then the fakes by how many they fooled.
     const ordered = [...reveal.options].sort((left, right) => {
         if (left.isTruth === true) return -1;
         if (right.isTruth === true) return 1;
@@ -109,8 +96,7 @@ function OptionResult({ option, line, game, userId }: OptionResultProps) {
         return game.players.find(player => player.userId === id)?.name ?? '?';
     };
 
-    // The truth has no author to credit: `TruthAuthorID` is not a player, which is also
-    // why nobody is paid when it is picked.
+    // The truth has no author to credit.
     const author = truth || option.authorId === undefined || option.authorId === TRUTH_AUTHOR_ID
         ? null
         : nameOf(option.authorId);

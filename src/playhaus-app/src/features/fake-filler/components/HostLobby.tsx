@@ -22,18 +22,7 @@ interface Props {
     onStart: () => void
 }
 
-/**
- * The room, on the screen of whoever opened it.
- *
- * Everything about the *shape* of this screen is `LobbyPageBase`'s — the bar, the code
- * band, the scrolling middle, the pinned footer — so what is left here is only the three
- * things that are Fake Filler's: who the seats belong to, what this game has to set, and
- * what starting it says.
- *
- * The bounds come off the lobby rather than out of a constant. The server sends
- * `minPlayers` and `maxPlayers` on every room precisely so that the floor this screen
- * enforces and the floor `StartLobby` enforces cannot drift apart.
- */
+// The room, on the screen of whoever opened it.
 export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -51,17 +40,14 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
             onBack={onBack}
             backLabel={t('lobby.close')}
             code={lobby.code}
-            // The host's screen is the one with something to offer, so it gets the band
-            // as well as the pill.
+            // The host's screen is the one with something to offer, so it gets the band as well as the pill.
             handsOutCode
             footer={
                 <View>
                     <StartGameButton
                         text={state.starting ? t('common.busy') : t('fakeFiller.lobby.start')}
                         onPress={onStart}
-                        // A save still in the air means the game could start on settings
-                        // that did not stick — the mode in particular, which decides
-                        // whether the game has a right answer in it at all.
+                        // A save still in the air means the game could start on settings that did not stick.
                         disabled={state.starting || state.saving || !enough}
                     />
 

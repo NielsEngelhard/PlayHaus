@@ -69,8 +69,7 @@ func (s *Service) ByEmail(ctx context.Context, email string) (*User, error) {
 	return s.store.ByEmail(ctx, NormalizeEmail(email))
 }
 
-// UpdateUsername renames an account. The name is stored trimmed, so the padding
-// a mobile keyboard adds never becomes part of what other players see.
+// UpdateUsername renames an account.
 func (s *Service) UpdateUsername(ctx context.Context, username string, userId string) error {
 	return s.store.UpdateUsername(ctx, strings.TrimSpace(username), userId)
 }
@@ -95,14 +94,9 @@ func (s *Service) UpdateEnableVibration(ctx context.Context, enabled bool, userI
 	return s.store.UpdateEnableVibration(ctx, enabled, userId)
 }
 
-// UpgradeGuestAccount turns the guest somebody is already signed in as into a real
-// account, in place. The row keeps its id, so the name, the colour and every game
-// played as a guest come along -- which is the whole reason this exists rather than
-// CreateUser.
+// UpgradeGuestAccount turns the guest somebody is already signed in as into a real account, in place.
 func (s *Service) UpgradeGuestAccount(ctx context.Context, userID string, rawEmail string, rawPw string) error {
-	// Checked before anything is written, and not only for the caller's sake: for a
-	// full account this endpoint would otherwise be a way to replace an email and a
-	// password without ever being asked for the current one.
+	// Checked before anything is written, and not only for the caller's sake.
 	u, err := s.store.ByID(ctx, userID)
 	if err != nil {
 		return fmt.Errorf("load user: %w", err)

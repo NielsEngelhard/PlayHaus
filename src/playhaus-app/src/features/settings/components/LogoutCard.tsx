@@ -43,8 +43,7 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 2.2,
         color: theme.colors.textSecondary
     },
-    // The button hugs its text rather than filling the card, so it needs a row to sit
-    // at the start of.
+    // The button hugs its text rather than filling the card, so it needs a row to sit at the start of.
     buttonRow: {
         marginTop: Spacing.three,
         flexDirection: 'row'

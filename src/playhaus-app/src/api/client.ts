@@ -18,15 +18,7 @@ function parseJson(text: string): unknown {
   }
 }
 
-/**
- * The line to put in front of a person.
- *
- * The API says what went wrong in one of two shapes: `{"error": "…"}` for a
- * refusal, and `{"errors": {"email": "must be a valid email address"}}` for a
- * form it would not accept — one entry per field. Both are read here so no
- * caller has to know which it got, and so nobody is ever shown a line of raw
- * JSON, which is what falling through to the body text would do.
- */
+// The line to put in front of a person.
 function errorMessage(body: unknown, text: string, fallback: string): string {
   if (body !== null && typeof body === 'object') {
     const { error, errors } = body as { error?: unknown, errors?: unknown };
@@ -56,10 +48,7 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
     },
   });
 
-  // Read the body as text before deciding what it is. The API answers in JSON,
-  // but a failure that never reached it — a dev server's HTML error page, a
-  // proxy timeout — does not, and calling res.json() first would throw on
-  // exactly the responses whose message we most want to put in front of a user.
+  // Read the body as text before deciding what it is.
   const text = res.status === 204 ? '' : await res.text();
   const body = text ? parseJson(text) : null;
 
@@ -70,14 +59,7 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   return body as T;
 }
 
-/**
- * The machine-readable tag on a refusal, when the API attached one.
- *
- * Some statuses cover more than one situation — the pubquizr start endpoint answers
- * 409 to four different problems — and the app says something different about each.
- * Branching on this rather than on the prose means the server can reword its messages
- * without breaking what a player is told.
- */
+// The machine-readable tag on a refusal, when the API attached one.
 export function apiErrorCode(error: unknown): string | undefined {
   if (!(error instanceof ApiError)) return undefined;
   if (error.body === null || typeof error.body !== 'object') return undefined;

@@ -12,27 +12,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Tab {
     icon: keyof typeof Feather.glyphMap,
-    /**
-     * Read aloud for every tab, and drawn as well on the `prominent` one — which is why
-     * that tab's label is the word the eye should see rather than the fuller phrase a
-     * screen reader would like.
-     */
-    /**
-     * A catalogue key, because this list is built at module load where no hook can
-     * reach. The bar resolves it at render, the same way the home list resolves a
-     * game's description.
-     */
+    // A catalogue key, not a string: this list is built at module load where no hook can reach.
     labelKey: TranslationKey,
     href: Href,
     /** Extra path prefixes that should also light this tab up. */
     alsoMatches?: string[],
-    /**
-     * Draws this tab as a wide labelled pill instead of an icon.
-     *
-     * Exactly one tab wears it. Games is the reason the app is open, and four identical
-     * circles made it a peer of Profile; the pill is what stops that, so it stays named
-     * whether or not you are standing in it.
-     */
+    // Draws this tab as a wide labelled pill instead of an icon.
     prominent?: true
 }
 
@@ -61,8 +46,7 @@ export default function BottomBar() {
     const pathname = usePathname()
     const t = useT();
 
-    // The active tab is the one bright fill down here, so its contents take whichever ink
-    // stays readable on orange in this scheme.
+    // The active tab is the one bright fill down here.
     const activeInk = theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent;
 
     return (
@@ -74,9 +58,7 @@ export default function BottomBar() {
                 {TABS.map(tab => {
                     const active = isActive(tab, pathname)
 
-                    // The idle pill is a surface with type on it rather than a glyph
-                    // floating in the bar, so it reads at full strength while the plain
-                    // icons stay muted.
+                    // The idle pill is a surface with type on it rather than a glyph floating in the bar.
                     const ink = active
                         ? activeInk
                         : tab.prominent ? theme.colors.text : theme.colors.textMuted
@@ -84,8 +66,7 @@ export default function BottomBar() {
                     return (
                         <Link key={tab.labelKey} href={tab.href} asChild>
                             <Pressable
-                                // Flattened: `Link asChild` clones this onto the anchor it renders, and a
-                                // style array does not survive that merge.
+                                // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that merge.
                                 style={StyleSheet.flatten([styles.item, tab.prominent && styles.itemProminent])}
                                 accessibilityRole='link'
                                 accessibilityLabel={t(tab.labelKey)}
@@ -136,12 +117,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         boxShadow: `3px 3px 0 0 ${theme.colors.shadow}, 0 14px 24px -14px ${withAlpha(theme.colors.shadow, 0.55)}`
     },
-    /**
-     * The three icon tabs split whatever the pill leaves, evenly. That even split is what
-     * keeps the glyphs on a rhythm: each sits in the middle of its own third, so the last
-     * one stays clear of the bar's rounded end, and none of them moves sideways when the
-     * fill travels from one tab to another.
-     */
+    // The three icon tabs split whatever the pill leaves, evenly.
     item: {
         flex: 1,
         height: '100%',
@@ -150,8 +126,7 @@ const useStyles = createThemedStyles(theme => ({
     },
     // Sized by its label instead, and never squeezed by the icons beside it.
     itemProminent: {
-        // `flex: 1` on `item` also pins flexBasis to 0, so overriding grow and shrink alone
-        // would leave a zero-width box and the pill would spill out of the bar.
+        // `flex: 1` on `item` also pins flexBasis to 0.
         flexBasis: 'auto',
         flexGrow: 0,
         flexShrink: 0
@@ -165,8 +140,7 @@ const useStyles = createThemedStyles(theme => ({
     },
     iconActive: {
         backgroundColor: theme.colors.primary,
-        // Light rings the active pip to match the rest of its chrome; dark lets the
-        // orange do the work on its own.
+        // Light rings the active pip to match the rest of its chrome; dark lets the orange do the work on its own.
         borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderColor: theme.colors.border
     },
@@ -185,8 +159,7 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.scheme === 'dark' ? theme.colors.primary : theme.colors.border
     },
     pillIdle: {
-        // A step off the bar in either direction — light drops to the page's own paper,
-        // dark climbs a rung — so the pill is still an object when it isn't the fill.
+        // A step off the bar in either direction.
         backgroundColor: theme.scheme === 'dark'
             ? theme.colors.backgroundSelected
             : theme.colors.background,

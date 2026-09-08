@@ -12,25 +12,7 @@ interface Props {
     revealed: boolean
 }
 
-/**
- * Round 2's four options, set as four options to read out.
- *
- * Stacked rather than in a row. Four answer texts will not fit across a phone — "3 hours
- * 47 minutes" is not a chip — and reading them out in a column matches the order they
- * come off the page, which is what the person holding it is doing.
- *
- * Nothing here is tappable. Nobody picks an option on this phone: the table shouts a
- * letter and the quizmaster rules on it with the same two buttons every other round uses.
- * Which is why the letters are set as hard as they are — the letter is the thing being
- * said out loud, and it has to be findable at a glance while somebody is arguing.
- *
- * The reveal marks the right row and does nothing else. The three that are over used to
- * fall back to 38-point ghosts, which was buying height for an answer panel underneath —
- * and the panel has gone, because the answer to a multiple choice question is one of these
- * four rows and did not need saying twice. Without something to buy the height for, the
- * shrinking was the whole list rearranging itself under a table that had just been read
- * it. So all four stay where they are and mint says which one it was.
- */
+// Round 2's four options, set as four options to read out.
 export default function ChoiceCard({ options, revealed }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -71,8 +53,7 @@ export default function ChoiceCard({ options, revealed }: Props) {
                             {option.text}
                         </AppText>
 
-                        {/* Only ever on the right one, so the row does not reserve space
-                            for a tick that is never coming. */}
+                        {/* Only ever on the right one, so the row does not reserve space for a tick that is never coming. */}
                         {right && (
                             <Feather name="check" size={18} color={Brand.ink} />
                         )}
@@ -84,9 +65,7 @@ export default function ChoiceCard({ options, revealed }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // No padding and no fill of its own: this sits inside `ScriptCard`, under the same
-    // rule as the question, because the question and its four options are one thing to
-    // say and should not be two blocks competing for the same height.
+    // No padding and no fill of its own.
     card: {
         flexShrink: 0,
         gap: 8
@@ -102,13 +81,11 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 14,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderMuted,
-        // The canvas rather than the card's own fill: these sit *on* a card, and a white
-        // row on a white card is an outline with nothing inside it.
+        // The canvas rather than the card's own fill.
         backgroundColor: theme.colors.background
     },
 
-    // Mint in both schemes, the same "yes, this one" the Correct button wears, so the
-    // two agree about what a right answer looks like.
+    // Mint in both schemes, the same "yes, this one" the Correct button wears.
     right: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
@@ -138,8 +115,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    // `minWidth: 0` so a long option wraps inside the row instead of pushing the tick
-    // off the end of it.
+    // `minWidth: 0` so a long option wraps inside the row instead of pushing the tick off the end of it.
     text: {
         flex: 1,
         minWidth: 0,

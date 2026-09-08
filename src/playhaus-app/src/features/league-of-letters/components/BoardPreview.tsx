@@ -8,31 +8,12 @@ interface Props {
     wordLength: WordLength
 }
 
-/**
- * The letter the first tile shows. Pure decoration: no word exists yet at setup — the
- * server deals one when the game starts — so this is a hint of what the board will look
- * like, not a peek at it. Any letter would do; 'S' starts more words than most.
- */
+// The letter the first tile shows.
 const SAMPLE_LETTER = 'S';
 
-/**
- * A row of letter tiles on the settings band, one per letter of the configured length.
- *
- * The word-length picker's live consequence: drag it to 8 and the row grows to 8. The
- * first tile is filled in to say "letters go here"; the rest are dashed outlines,
- * because empty-and-waiting is exactly what they are.
- *
- * Drawn entirely in `Brand` constants — it only ever sits on the game's orange band,
- * which is scheme-invariant, so a module-scope sheet is safe here where it would not be
- * in a themed component.
- */
+// A row of letter tiles on the settings band, one per letter of the configured length.
 export default function BoardPreview({ wordLength }: Props) {
-    /*
-     * Tiles shrink as the word grows so eight of them still fit a narrow phone: the
-     * band keeps ~18dp padding a side, so 8×34 + 7×6 = 314 clears a 360dp window.
-     * Stepped rather than measured — three fixed sizes keep the row from wobbling by a
-     * fraction of a pixel every time the length changes.
-     */
+    // Tiles shrink as the word grows so eight of them still fit a narrow phone.
     const width = wordLength >= 8 ? 34 : wordLength === 7 ? 38 : 46;
     const height = Math.round(width * 1.15);
 
@@ -67,8 +48,7 @@ const styles = StyleSheet.create({
         backgroundColor: Brand.lemon,
         borderColor: Brand.ink
     },
-    // Paper washes, not ink ones: on the saturated orange band a pale ghost of a tile
-    // reads as "empty slot", where a dark one would read as a second kind of key.
+    // Paper washes, not ink ones: on the saturated orange band a pale ghost of a tile reads as "empty slot", where a dark one would read as a second kind of key.
     empty: {
         backgroundColor: withAlpha(Brand.textOnAccent, 0.22),
         borderColor: withAlpha(Brand.textOnAccent, 0.6),

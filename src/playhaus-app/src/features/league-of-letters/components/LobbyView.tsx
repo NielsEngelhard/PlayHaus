@@ -21,28 +21,11 @@ import { View } from "react-native";
 interface Props {
     /** Everything `useLobby` returned. The screen drives the room entirely through it. */
     state: LobbyState,
-    /**
-     * The host started the game. The room screens differ in where that leads — the host
-     * is on `/room` and has to travel to the code, a guest is already there — so it is
-     * the caller's to answer.
-     */
+    // The host started the game.
     onStarted: (lobby: Lobby) => void
 }
 
-/**
- * The waiting room: everything both people in it have in common, and then which of the
- * two screens they get.
- *
- * The host and the guest used to be one component branching on `isHost`, on the grounds
- * that the difference was only permission. It is not: a host is setting something up and
- * a guest is waiting for something to happen, and those want opposite screens — one is a
- * code, a roster and a big green light, the other is a held breath. So this keeps what is
- * genuinely shared (the three states where there is no room to show, and the question
- * asked on the way out) and hands the room itself to `HostLobby` or `GuestLobby`.
- *
- * The page claims the whole viewport. Both halves pin something top and bottom, and inside
- * the root layout's shared scroller there is nothing for a page to pin against.
- */
+// The waiting room: everything both people in it have in common, and then which of the two screens they get.
 export default function LobbyView({ state, onStarted }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -51,22 +34,16 @@ export default function LobbyView({ state, onStarted }: Props) {
     const router = useRouter();
     const { lobby, isHost, closing } = state;
 
-    // Both claimed before the early returns below, because a hook cannot be called for one
-    // branch and not another. The waiting and failed states are the same page as the room
-    // — they just have less on them.
+    // Both claimed before the early returns below, because a hook cannot be called for one branch and not another.
     useFullScreen();
 
-    // The other half of the room's soundtrack. This one component is both ways into a lobby
-    // — `/room` reaches it through `OpenRoom`, `/room/[code]` renders it directly — so the
-    // claim belongs here rather than on either page.
+    // The other half of the room's soundtrack.
     useMusic('lobby');
 
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
 
-    // The host shut the lobby while this player was sitting in it. The code no longer
-    // works, so there is nothing to offer but the way out: a retry would only find
-    // the same 404.
+    // The host shut the lobby while this player was sitting in it.
     if (state.closed) {
         return (
             <RoomClosedNotice
@@ -125,14 +102,7 @@ export default function LobbyView({ state, onStarted }: Props) {
                 />
             )}
 
-            {/*
-              * The one thing on this screen that cannot be undone, so it is asked rather
-              * than done. Both screens' back chips lead here, which is the reason they
-              * are buttons of their own rather than the header's link.
-              *
-              * Dismissable, unlike the solo screen's panel: staying is a perfectly good
-              * answer here, and the lobby behind it still works.
-              */}
+            {/* The one thing on this screen that cannot be undone, so it is asked rather than done. */}
             <PopupModal
                 visible={leaving}
                 title={isHost ? t('lol.lobby.confirmClose.title') : t('lol.lobby.confirmLeave.title')}

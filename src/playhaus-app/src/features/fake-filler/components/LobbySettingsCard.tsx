@@ -17,19 +17,7 @@ interface Props {
 /** In the order they are offered. `facts` is the server's default, so it leads. */
 const MODES: readonly FFGameMode[] = ['facts', 'creative'];
 
-/**
- * What the host is about to start a game on, folded away until they want it.
- *
- * Shut by default for the same reason League of Letters' is: a room is mostly spent
- * watching people arrive, and rows of controls between the code and the start button push
- * both off a phone. The summary line says what it is set to, so opening it is a choice
- * rather than the only way to check.
- *
- * The one departure is the sentence under the mode buttons. Two words cannot carry what
- * that switch does — it decides whether there is a right answer in the game at all, and
- * so whether guessing scores anything — and a host picking blind would be choosing the
- * rules without knowing it.
- */
+// What the host is about to start a game on, folded away until they want it.
 export default function LobbySettingsCard({ settings, onChange }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -41,8 +29,7 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
     return (
         <CollapsibleCard
             title={t('fakeFiller.lobby.settingsTitle')}
-            // The language is the only half not translated: a language's name is written
-            // in its own language, which is the point of `label`.
+            // The language is the only half not translated.
             summary={`${modeLabel(settings.gameMode)} · ${languageByCode(settings.locale).label}`}
         >
             {/* One child per ruled section, the same shape `SettingsPageBase` uses. */}

@@ -20,31 +20,13 @@ interface Props {
     onVote: (roundNumber: number, slot: number) => Promise<boolean>
 }
 
-/**
- * The voting phase, one round at a time.
- *
- * Three screens' worth of states in one, because they are the same round seen from
- * different seats: the people who wrote for it watch, everybody else picks, and whoever
- * has already picked waits. Which one you get is settled by the round rather than by
- * anything this screen decides — `canVote` was fixed when the prompts were dealt, and
- * `myVoteSlot` is the server's record of what you did.
- *
- * The options are named by `slot` and nothing else. That is not a shortcut: an option's
- * author is either a player or the string `"__truth__"`, and either one would answer the
- * question the round is asking. So a vote names a position on screen and the server maps
- * it back.
- */
+// The voting phase, one round at a time.
 export default function VotingScreen({ game, round, busy, onVote }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
-    /**
-     * The option under the finger, before it is committed.
-     *
-     * Undefined rather than -1 for "nothing picked", because **slot 0 is a real option**
-     * — the same reason `myVoteSlot` is optional on the wire.
-     */
+    // The option under the finger, before it is committed.
     const [picked, setPicked] = useState<number | undefined>(undefined);
 
     const voted = round.myVoteSlot !== undefined;
@@ -65,8 +47,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                 </AppText>
 
                 <AppText style={styles.title}>
-                    {/* Creative mode has no truth to find, so asking which one is real
-                        would be asking a question with no answer. */}
+                    {/* Creative mode has no truth to find, so asking which one is real would be asking a question with no answer. */}
                     {game.gameMode === 'facts'
                         ? t('fakeFiller.play.voting.title')
                         : t('fakeFiller.play.voting.titleCreative')}
@@ -83,8 +64,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                         <PickRow
                             key={option.slot}
                             mode='radio'
-                            // A whole filled-in sentence, so it is allowed to wrap: cut
-                            // after one line it would be a thing to vote on unread.
+                            // A whole filled-in sentence, so it is allowed to wrap: cut after one line it would be a thing to vote on unread.
                             lines={4}
                             label={fillPrompt(round.line, option.fills)}
                             active={voted ? round.myVoteSlot === option.slot : picked === option.slot}
@@ -111,13 +91,6 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                 </View>
             ) : (
                 // One of this round's two authors, with nothing to do but watch.
-                //
-                // They still get the line-up. The server sends it — the options are
-                // public once a round opens, and they give nothing away: an author knows
-                // their own fake, and the other two are the truth and the other author's,
-                // which they can no more tell apart than anybody else. Watching your own
-                // line sit among the others is most of the fun of the round you wrote
-                // for, so it would be a strange thing to withhold.
                 <View style={styles.options}>
                     <InlineNotification
                         icon='eye'

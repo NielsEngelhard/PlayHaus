@@ -13,29 +13,9 @@ import (
 	"github.com/google/uuid"
 )
 
-// The multiplayer half of League of Letters on the wire: the room a game is set up
-// in, the game it becomes, and one row landing on the shared board.
-//
-// The response shapes live here rather than next to the solo ones because the
-// socket sends the same structs -- a lobby in a frame and a lobby in a response body
-// have to be the same lobby -- and lol_realtime.go is where the frames
-// are. The app mirrors all of this in api/calls/league-of-letters-lobby.ts and
-// api/calls/league-of-letters.ts; keep the three in step.
-
-// ---------------------------------------------------------------------------
-// Requests
-// ---------------------------------------------------------------------------
+// The multiplayer half of League of Letters on the wire.
 
 // lobbySettingsRequest is what the host gets to decide, on the way in.
-//
-// Validate says nothing about the word length: those bounds are the game's rules rather
-// than the wire's, and the service already owns them. Checking them twice would be two
-// places to change one rule -- there is exactly one, lol.ValidWordLength, and both
-// LobbySettings.validate and the solo path ask it.
-//
-// The clock is a pointer because this is a PATCH and a plain int cannot tell "leave it
-// alone" from "ten seconds a turn": absent means the room keeps the default, and a
-// number that is present is held to the same bounds the picker offers.
 type lobbySettingsRequest struct {
 	WordLength      int     `json:"wordLength"`
 	Locale          *string `json:"locale"`
@@ -54,19 +34,12 @@ func (req lobbySettingsRequest) Validate() map[string]string {
 	return nil
 }
 
-// newLobbyRequest is what opens a room: a language, and deliberately nowhere to put
-// a word length. decode rejects unknown fields, so a client still sending settings
-// here -- one written against the old contract -- is refused rather than quietly
-// having them dropped and believing the room is set up the way it asked.
+// newLobbyRequest is what opens a room.
 type newLobbyRequest struct {
 	Locale *string `json:"locale"`
 }
 
 func (newLobbyRequest) Validate() map[string]string { return nil }
-
-// ---------------------------------------------------------------------------
-// Responses
-// ---------------------------------------------------------------------------
 
 type lobbySettingsResponse struct {
 	Locale         string `json:"locale"`
@@ -74,9 +47,7 @@ type lobbySettingsResponse struct {
 	SecondsPerTurn int    `json:"secondsPerTurn"`
 }
 
-// lobbyPlayerResponse is somebody in the room, and is deliberately the front half of
-// gamePlayerResponse -- same ids, same swatch -- so a player waiting and the
-// scoreboard row they turn into are the same person to whatever draws one.
+// lobbyPlayerResponse is somebody in the room, and is deliberately the front half of gamePlayerResponse.
 type lobbyPlayerResponse struct {
 	UserID        string `json:"userId"`
 	Name          string `json:"name"`
@@ -86,23 +57,17 @@ type lobbyPlayerResponse struct {
 
 type lobbyResponse struct {
 	ID string `json:"id"`
-	// Code is what players type in to get here, and is the same string as ID: a room
-	// has nothing anybody looks it up by except its code.
+	// Code is what players type in to get here, and is the same string as ID.
 	Code string `json:"code"`
-	// HostID is whose room it is. The app hides the controls; the server is what
-	// enforces it.
+	// HostID is whose room it is.
 	HostID    string                `json:"hostId"`
 	Status    string                `json:"status"`
 	Settings  lobbySettingsResponse `json:"settings"`
 	Players   []lobbyPlayerResponse `json:"players"`
 	CreatedAt string                `json:"createdAt"`
-	// GameID is the game to open, and is only set once the host has started the
-	// room. Its appearing is how everybody else finds out.
+	// GameID is the game to open, and is only set once the host has started the room.
 	GameID string `json:"gameId,omitempty"`
-	// RematchCode is the room this one's table has moved on to, once the game was
-	// over and the host pressed play again. Carried on the snapshot as well as
-	// announced over the socket, so a player whose connection blipped over the
-	// announcement is still taken across by the next read.
+	// RematchCode is the room this one's table has moved on to, once the game was over and the host pressed play again.
 	RematchCode string `json:"rematchCode,omitempty"`
 }
 
@@ -115,11 +80,6 @@ type gamePlayerResponse struct {
 }
 
 // multiplayerGameResponse is the board, the table and the clock.
-//
-// Every field the solo response has, in the same place, plus the three a solo game
-// has no use for: which sort of game this is, who else is at it, and who is up. The
-// app draws both from one Game type, so a field that moved here would be a field
-// that moved for solo too.
 type multiplayerGameResponse struct {
 	ID         string `json:"id"`
 	Mode       string `json:"mode"`
@@ -130,32 +90,20 @@ type multiplayerGameResponse struct {
 	// CurrentRound is the round being played, counting from 1.
 	CurrentRound int `json:"currentRound"`
 	TotalRounds  int `json:"totalRounds"`
-	// Score is the reader's own, so the board can show it without picking itself out
-	// of Players first.
+	// Score is the reader's own, so the board can show it without picking itself out of Players first.
 	Score     int                  `json:"score"`
 	Status    string               `json:"status"`
 	CreatedAt string               `json:"createdAt"`
 	Rounds    []roundResponse      `json:"rounds"`
 	Players   []gamePlayerResponse `json:"players"`
-	// Turn is the same shape the socket's turn frame carries, because it is the same
-	// turn: a board that has just been fetched and a board that has just been told
-	// must not disagree about who is up.
+	// Turn is the same shape the socket's turn frame carries, because it is the same turn.
 	Turn turnPayload `json:"turn"`
 }
 
 // multiplayerGuessResponse is what one row did.
-//
-// Not the whole game, for the same reason the solo guess response is not: every
-// client already holds the board, and resending it on every word would make the
-// answer grow with the game. What a client cannot work out for itself is what this
-// row revealed, what it did to the scores, and whose turn it is now.
-//
-// The same struct goes back to the player who guessed and out to everybody watching,
-// so the two apply the same update from the same numbers.
 type multiplayerGuessResponse struct {
 	Guess guessResponse `json:"guess"`
-	// RoundNumber is the round the row was played into, which is not the round the
-	// game is on afterwards if this row ended it.
+	// RoundNumber is the round the row was played into.
 	RoundNumber int  `json:"roundNumber"`
 	Solved      bool `json:"solved"`
 	RoundOver   bool `json:"roundOver"`
@@ -165,20 +113,11 @@ type multiplayerGuessResponse struct {
 	CurrentRound int                  `json:"currentRound"`
 	Players      []gamePlayerResponse `json:"players"`
 	Turn         turnPayload          `json:"turn"`
-	// NextRound is the board this row opened, when it ended the one before it. Sent
-	// with the row so nobody has to refetch the game to draw the next hint.
+	// NextRound is the board this row opened, when it ended the one before it.
 	NextRound *roundResponse `json:"nextRound,omitempty"`
 }
 
-// ---------------------------------------------------------------------------
-// Building them
-// ---------------------------------------------------------------------------
-
 // usersByID looks up the names and swatches a roster is drawn with.
-//
-// A failure here is logged rather than returned: the room is what was asked for, and
-// a player list with a name missing is a better answer than a lobby screen that will
-// not open because the account service hiccuped.
 func (s *Server) usersByID(ctx context.Context, ids []string) map[string]*user.User {
 	if len(ids) == 0 {
 		return nil
@@ -192,8 +131,7 @@ func (s *Server) usersByID(ctx context.Context, ids []string) map[string]*user.U
 	return found
 }
 
-// nameAndColor is one roster row's half of a user, or empty for an id the account
-// service did not know.
+// nameAndColor is one roster row's half of a user, or empty for an id the account service did not know.
 func nameAndColor(users map[string]*user.User, userID string) (string, string) {
 	if u, ok := users[userID]; ok {
 		return u.Name, u.Color
@@ -202,8 +140,7 @@ func nameAndColor(users map[string]*user.User, userID string) (string, string) {
 }
 
 func (s *Server) newLobbyResponse(ctx context.Context, lobby *lol.MultiplayerLeagueOfLettersLobby) lobbyResponse {
-	// By seat, which is the order people walked in -- so the host is the top row
-	// before the game starts and plays first once it has.
+	// By seat, which is the order people walked in.
 	seated := slices.Clone(lobby.Players)
 	slices.SortFunc(seated, func(a, b lol.MultiplayerLobbyPlayer) int { return a.Seat - b.Seat })
 
@@ -252,8 +189,7 @@ func (s *Server) newMultiplayerGameResponse(
 	game *lol.MultiplayerLeagueOfLettersGame,
 	userID string,
 ) multiplayerGameResponse {
-	// In turn order, which is the order the scoreboard is drawn in and the order the
-	// turn passes around.
+	// In turn order, which is the order the scoreboard is drawn in and the order the turn passes around.
 	seated := slices.Clone(game.Players)
 	slices.SortFunc(seated, func(a, b lol.MultiplayerGamePlayer) int { return a.TurnOrder - b.TurnOrder })
 
@@ -263,8 +199,7 @@ func (s *Server) newMultiplayerGameResponse(
 	}
 	users := s.usersByID(ctx, ids)
 
-	// A game player has no join time of its own -- the table was settled at kickoff
-	// -- so the game's own is the honest answer for all of them.
+	// A game player has no join time of its own.
 	joinedAt := game.CreatedAt.Format(timeFormat)
 
 	players := make([]gamePlayerResponse, 0, len(seated))
@@ -283,8 +218,7 @@ func (s *Server) newMultiplayerGameResponse(
 
 	rounds := make([]roundResponse, 0, len(game.Rounds))
 	for _, round := range game.Rounds {
-		// The deadline goes on the round being played and on no other, so the board's
-		// countdown can read the round it is drawing without knowing about turns.
+		// The deadline goes on the round being played and on no other.
 		endsAt := ""
 		if game.Status == lol.GameInProgress && round.RoundNumber == game.CurrentRound {
 			endsAt = turn.EndsAt
@@ -316,8 +250,7 @@ func (s *Server) newMultiplayerGuessResponse(
 ) multiplayerGuessResponse {
 	game := outcome.Game
 
-	// Straight off the game rather than looked up separately: the scores in this
-	// answer have to be the ones this row produced.
+	// Straight off the game rather than looked up separately.
 	ids := make([]string, 0, len(game.Players))
 	for _, player := range game.Players {
 		ids = append(ids, player.UserID)
@@ -355,8 +288,7 @@ func (s *Server) newMultiplayerGuessResponse(
 		Turn:         turn,
 	}
 
-	// A round that ended and a game that ended look the same from the row that did
-	// it; only the first of the two has a next board to send.
+	// A round that ended and a game that ended look the same from the row that did it.
 	if outcome.RoundOver && !outcome.GameOver {
 		if next := game.Round(game.CurrentRound); next != nil {
 			opened := newRoundResponse(*next, turn.EndsAt)
@@ -367,8 +299,7 @@ func (s *Server) newMultiplayerGuessResponse(
 	return body
 }
 
-// newTurnPayload is who is up and until when, in the one shape both the socket and
-// the HTTP responses use.
+// newTurnPayload is who is up and until when, in the one shape both the socket and the HTTP responses use.
 func newTurnPayload(game *lol.MultiplayerLeagueOfLettersGame) turnPayload {
 	return turnPayload{
 		UserID:      game.TurnUserID,
@@ -377,8 +308,7 @@ func newTurnPayload(game *lol.MultiplayerLeagueOfLettersGame) turnPayload {
 	}
 }
 
-// newRoundResponse is one round of a shared board. endsAt is empty on every round
-// but the one being played.
+// newRoundResponse is one round of a shared board. endsAt is empty on every round but the one being played.
 func newRoundResponse(round lol.LeagueOfLettersRound, endsAt string) roundResponse {
 	guesses := make([]guessResponse, 0, len(round.Guesses))
 	for _, guess := range round.Guesses {
@@ -400,34 +330,12 @@ func newRoundResponse(round lol.LeagueOfLettersRound, endsAt string) roundRespon
 	return body
 }
 
-// ---------------------------------------------------------------------------
-// Lobby handlers
-// ---------------------------------------------------------------------------
-
 // lobbyCode reads the join code off the path.
-//
-// Normalised rather than taken as typed, because the code is stored uppercase and
-// looked up exactly: a player typing their code in lower case is not a player at the
-// wrong door. joincode.Normalize is also what reads a leading zero as the O it can only
-// have meant, and the socket room key normalises through the same function.
-//
-// The shape of the code is not checked here. Every route that takes one wears
-// requireGameCode, so by the time a handler asks, the answer is a code for this game.
 func lobbyCode(r *http.Request) string {
 	return joincode.Normalize(r.PathValue("code"))
 }
 
-// requireGameCode is the guard every route addressed by a join code wears: it refuses
-// anything that is not a code for g before the handler behind it runs.
-//
-// Answers 404 rather than 400, and the distinction matters. A code for another game is
-// not a malformed request -- it is a perfectly good code for a room that is not at this
-// address, and "there is no such room here" is both true and the thing the player needs
-// to hear. The app already draws a 404 on this path as "that room is gone"; a 400 would
-// be a new branch saying something less useful.
-//
-// Parameterised by game rather than hardcoded to League of Letters so that PubquizR and
-// One of Us wear it unchanged on the day they grow rooms of their own.
+// requireGameCode is the guard every route addressed by a join code wears.
 func (s *Server) requireGameCode(g joincode.Game, next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		game, ok := joincode.GameFor(joincode.Normalize(r.PathValue("code")))
@@ -459,16 +367,11 @@ func (s *Server) handleCreateLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Nothing is published: the room is one request old and there is nobody
-	// connected to it yet to tell.
+	// Nothing is published: the room is one request old and there is nobody connected to it yet to tell.
 	writeJSON(w, http.StatusCreated, s.newLobbyResponse(r.Context(), lobby))
 }
 
-// handleGetLobby is the snapshot the room screen opens on. Everything after it
-// arrives over the socket, so there is nothing here to poll.
-//
-// Knowing the code is what gets you in, so knowing the code is also what lets you
-// read it -- the checks that matter are on the calls that change something.
+// handleGetLobby is the snapshot the room screen opens on.
 func (s *Server) handleGetLobby(w http.ResponseWriter, r *http.Request) {
 	lobby, err := s.leagueOfLetters.Lobby(r.Context(), lobbyCode(r))
 	if err != nil {
@@ -479,12 +382,7 @@ func (s *Server) handleGetLobby(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, s.newLobbyResponse(r.Context(), lobby))
 }
 
-// handleGetCurrentLobby is what the app asks on launch: the room this player is host
-// of, whether it ever started or not, so a host who shut the app mid-game is offered
-// their way back into it.
-//
-// Nothing to come back to is 204 rather than 404 -- having no room open is the
-// ordinary state, not a failed lookup.
+// handleGetCurrentLobby is what the app asks on launch.
 func (s *Server) handleGetCurrentLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -536,9 +434,7 @@ func (s *Server) handleUpdateLobbySettings(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	// The wire's own problems are answered here rather than dropped: the clock is
-	// stored now and started from, so a number outside the picker's range would be a
-	// room whose turns are over before they begin.
+	// The wire's own problems are answered here rather than dropped.
 	req, invalid, err := decode[lobbySettingsRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
@@ -587,8 +483,7 @@ func (s *Server) handleLeaveLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// The room as it stands without them. A code that is already gone leaves nothing
-	// to publish, which is the same no-op the leave itself was.
+	// The room as it stands without them.
 	if lobby, err := s.leagueOfLetters.Lobby(r.Context(), code); err == nil {
 		s.publishLobby(code, s.newLobbyResponse(r.Context(), lobby))
 	}
@@ -612,18 +507,13 @@ func (s *Server) handleDeleteLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Told rather than left to be discovered: anybody still on the room screen is
-	// looking at a code that has stopped working.
+	// Told rather than left to be discovered.
 	s.publishLobbyClosed(code)
 
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// handleStartLobby turns a room into a game. Host only.
-//
-// Answers the lobby rather than the game, because the lobby is what everybody else
-// is watching and gameId appearing on it is how they find out. The board is fetched
-// by id afterwards, the same way solo does it.
+// handleStartLobby turns a room into a game.
 func (s *Server) handleStartLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -641,19 +531,13 @@ func (s *Server) handleStartLobby(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body := s.newLobbyResponse(r.Context(), lobby)
-	// Carries the first turn and starts its clock, so the table does not wait for
-	// somebody to connect before the countdown begins.
+	// Carries the first turn and starts its clock.
 	s.publishGameStarted(code, game, body)
 
 	writeJSON(w, http.StatusOK, body)
 }
 
-// handleRematchLobby opens the next room for a table that has just finished, and
-// answers it. Host only.
-//
-// 201 both times it is pressed: the second press is answered with the room the first
-// one opened rather than a second room beside it, and from the app's side "here is
-// the room" is the same outcome either way.
+// handleRematchLobby opens the next room for a table that has just finished, and answers it.
 func (s *Server) handleRematchLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -670,17 +554,13 @@ func (s *Server) handleRematchLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Announced on the room they are all still sitting in -- that is the only place
-	// the rest of the table is listening, and the new code is how they follow.
+	// Announced on the room they are all still sitting in.
 	s.publishRematch(code, next.ID)
 
 	writeJSON(w, http.StatusCreated, s.newLobbyResponse(r.Context(), next))
 }
 
-// handleAbandonLobby throws a room and its game away for good. Host only.
-//
-// The difference from DELETE is the game: this is the host saying they are done
-// playing rather than done with the room, so the board stops too.
+// handleAbandonLobby throws a room and its game away for good.
 func (s *Server) handleAbandonLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -696,16 +576,11 @@ func (s *Server) handleAbandonLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Same as a delete from anybody still on the screen: the code has stopped
-	// working, and they are better told than left to find out.
+	// Same as a delete from anybody still on the screen.
 	s.publishLobbyClosed(code)
 
 	w.WriteHeader(http.StatusNoContent)
 }
-
-// ---------------------------------------------------------------------------
-// Game handlers
-// ---------------------------------------------------------------------------
 
 func (s *Server) handleGetMultiplayerGame(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
@@ -717,8 +592,7 @@ func (s *Server) handleGetMultiplayerGame(w http.ResponseWriter, r *http.Request
 
 	gameID, err := uuid.Parse(r.PathValue("gameID"))
 	if err != nil {
-		// An unparseable id cannot name a game, and saying so is the same answer as
-		// "not your table".
+		// An unparseable id cannot name a game, and saying so is the same answer as "not your table".
 		writeError(w, http.StatusNotFound, "game not found")
 		return
 	}
@@ -767,22 +641,13 @@ func (s *Server) handleSubmitMultiplayerGuess(w http.ResponseWriter, r *http.Req
 	}
 
 	body := s.newMultiplayerGuessResponse(r.Context(), outcome)
-	// Everybody watching gets exactly what the guesser got back, so the player who
-	// played the row and the players watching it land apply the same update.
+	// Everybody watching gets exactly what the guesser got back.
 	s.publishGuess(outcome.Game.LobbyID, outcome.Game, body)
 
 	writeJSON(w, http.StatusCreated, body)
 }
 
-// ---------------------------------------------------------------------------
-// Refusals
-// ---------------------------------------------------------------------------
-
 // writeLobbyError turns a service error into a status and a machine-readable tag.
-//
-// The tag is what the app branches on. A full room and a room that has already
-// started are both 409 and the app says something quite different about each, so
-// telling them apart cannot depend on the prose.
 func (s *Server) writeLobbyError(w http.ResponseWriter, what string, err error) {
 	switch {
 	case errors.Is(err, lol.ErrLobbyNotFound):
@@ -803,14 +668,11 @@ func (s *Server) writeLobbyError(w http.ResponseWriter, what string, err error) 
 	}
 }
 
-// writeMultiplayerGuessError is the solo guess refusals plus the one a shared board
-// adds: it is somebody else's turn.
+// writeMultiplayerGuessError is the solo guess refusals plus the one a shared board adds: it is somebody else's turn.
 func (s *Server) writeMultiplayerGuessError(w http.ResponseWriter, err error) {
 	switch {
 	case errors.Is(err, lol.ErrGameNotFound):
-		// Not at the table reads the same as not a game. Being at it is the whole of
-		// the permission model, and saying which of the two it is would tell a
-		// stranger that the game exists.
+		// Not at the table reads the same as not a game.
 		writeErrorCode(w, http.StatusNotFound, "game_not_found", "game not found")
 	case errors.Is(err, lol.ErrNotYourTurn):
 		writeErrorCode(w, http.StatusConflict, "not_your_turn", "it is not your turn")

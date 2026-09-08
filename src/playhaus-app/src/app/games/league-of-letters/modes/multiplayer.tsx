@@ -8,17 +8,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import TournamentCard from "@/features/league-of-letters/components/TournamentCard";
 import type { RelativePathString } from "expo-router";
 
-/**
- * The two ways to play against other people — a room of your own, or a bracket.
- *
- * Only the first exists. "Own game" is the lobby this page was pushed in front of, and it
- * still does the whole already-have-a-room dance itself, so there is nothing to check here
- * and this page holds no state at all.
- *
- * The facts on the band are real, unlike the solo page's: they are the same three the
- * game's index card carries, read from the same places, so a player who counted six seats
- * on one screen is not told four on the next.
- */
+// The two ways to play against other people — a room of your own, or a bracket.
 export default function LeagueOfLettersMultiplayerModesPage() {
     const t = useT();
 

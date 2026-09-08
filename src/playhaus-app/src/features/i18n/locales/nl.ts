@@ -13,11 +13,7 @@ export const nl: Catalog = {
         host: 'Host',
         yourTurn: 'AAN ZET',
         and: 'en',
-        /**
-         * De twee woorden waarmee een `Toggle` zichzelf stempelt. De schakelaar zegt
-         * zijn stand in letters én in kleur en diepte, zodat de instelling in één
-         * oogopslag leesbaar is en niet van kleur alleen afhangt.
-         */
+        // De twee woorden waarmee een `Toggle` zichzelf stempelt.
         on: 'AAN',
         off: 'UIT',
         loading: 'Even geduld…',
@@ -114,39 +110,17 @@ export const nl: Catalog = {
         newBadge: 'Nieuw',
         wipBadge: 'In de maak'
     },
-    /*
-     * De joinkaart, die van geen enkel spel in het bijzonder is.
-     *
-     * Deze stonden onder `lol.index` tot het eerste teken van een code het spel begon te
-     * noemen, omdat de kaart alleen League of Letters-kamers opende. Hij staat nu op drie
-     * pagina's en maar één daarvan is dat spel, dus de oude key loog over waar deze
-     * woorden te zien zijn.
-     */
+    // De joinkaart, die van geen enkel spel in het bijzonder is.
     join: {
         label: 'JOIN EEN GAME',
-        /**
-         * Dezelfde kaart, op een breed scherm in tweeën: de vakjes zijn daar maar
-         * de helft, dus het label noemt zijn eigen helft in plaats van de kaart.
-         */
+        // Dezelfde kaart, op een breed scherm in tweeën.
         labelWide: 'TYP DE CODE',
         paste: 'Plakken',
         pasteLabel: 'Code plakken',
         codeLabel: 'Joincode',
-        /**
-         * Het chipje naast de vakjes, zodra het eerste teken erin staat.
-         *
-         * De echte bescherming tegen `O` en `0`: je ziet dat het eerste teken goed
-         * aankwam voordat je het tweede typt, in plaats van pas bij een afwijzing vijf
-         * tekens later.
-         */
+        // Het chipje naast de vakjes, zodra het eerste teken erin staat.
         gameHint: 'Je joint {{game}}',
-        /**
-         * Een complete code die niets opent — een eerste teken dat geen spel heeft, een
-         * spel dat nog geen kamers heeft, of een teken in de code dat wij nooit uitgeven.
-         *
-         * Eén zin voor alle drie, want voor wie de telefoon vasthoudt zijn het hetzelfde:
-         * vijf tekens die niets openen.
-         */
+        // Een complete code die niets opent.
         rejected: 'Dit is geen code die we kunnen openen. Check hem en probeer opnieuw.',
         scanRowTitle: 'Of scan zijn scherm',
         scanRowHint: 'Je zit er meteen in',
@@ -157,13 +131,7 @@ export const nl: Catalog = {
         scanCancel: 'Annuleren',
         permissionAsk: 'De camera is nodig om de code van de host te lezen. Er wordt niets opgenomen of verstuurd.',
         permissionGrant: 'Camera toestaan',
-        /**
-         * Hier geen knop onder: dit antwoord verander je in de instellingen.
-         *
-         * Het aantal staat er bewust niet meer in. Er stond "de vier tekens" en codes zijn
-         * nu vijf tekens lang — precies het soort zin dat stil fout gaat zodra een getal
-         * verschuift en niemand eraan denkt de catalogus erop na te lezen.
-         */
+        // Hier geen knop onder: dit antwoord verander je in de instellingen.
         permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de code gewoon in.'
     },
     languages: {
@@ -614,8 +582,7 @@ export const nl: Catalog = {
             passOn: 'Nu mag {{name}} raden',
             passOnHint: '{{name}} had het fout · tik om verder te gaan',
             passOnSpoken: 'Nu mag {{to}} dezelfde vraag raden, omdat {{from}} het fout had. Tik om verder te gaan.',
-            /** The button's own label. Short on purpose — it sits under the icon in a
-                square the size of a thumb, not beside it in a sentence. */
+            // The button's own label.
             quickAssign: 'Snel',
             quickAssignSpoken: 'Snel toewijzen: kies wie het goed had',
             quickAssignTitle: 'Wie had het goed?',

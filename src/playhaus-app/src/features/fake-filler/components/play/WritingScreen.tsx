@@ -21,17 +21,7 @@ interface Props {
     onSubmit: (roundNumber: number, fills: string[]) => Promise<boolean>
 }
 
-/**
- * The writing phase: your two prompts, in whatever order you like.
- *
- * Both at once rather than one after the other, because that is what the server is doing
- * — every round is open through the whole of this phase and nothing is waiting on the
- * order you fill them in. A wizard would invent a sequence the game does not have.
- *
- * What the table is told while this happens is a count and nothing else, which is the
- * whole of what this phase hides. The progress line at the bottom is that count; there is
- * deliberately nothing on this screen that could say what anybody wrote.
- */
+// The writing phase: your two prompts, in whatever order you like.
 export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -43,8 +33,7 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
-            // The keyboard is up for most of this screen, and a tap on the page behind it
-            // should reach the button rather than only dismiss it.
+            // The keyboard is up for most of this screen.
             keyboardShouldPersistTaps='handled'
         >
             {done ? (
@@ -78,13 +67,7 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
     )
 }
 
-/**
- * Both of yours are in and the game is waiting on somebody else.
- *
- * Worth saying plainly, because there is no clock in this game: nothing times out and
- * nothing is forfeited, so a table that has stopped moving has stopped on a person rather
- * than on a bug, and a screen that only sat there would look broken.
- */
+// Both of yours are in and the game is waiting on somebody else.
 function WaitingOnTable() {
     const t = useT();
     const theme = useTheme();
@@ -107,25 +90,12 @@ interface PromptCardProps {
     onSubmit: (roundNumber: number, fills: string[]) => Promise<boolean>
 }
 
-/**
- * One prompt, and the state of this player's answer to it.
- *
- * Locked once sent, with a way back out: the server refuses a second answer to the same
- * prompt (`already_answered`), so "change it" reopens the fields locally and would be
- * refused — which is why it is not offered once the answer has actually landed. What it
- * is there for is the moment before, when the fields are filled and nothing has been
- * sent.
- */
+// One prompt, and the state of this player's answer to it.
 function PromptCard({ round, position, total, busy, onSubmit }: PromptCardProps) {
     const t = useT();
     const styles = useStyles();
 
-    /**
-     * The draft, one entry per blank.
-     *
-     * Seeded from `myFills` so a reconnect redraws an answer already given rather than an
-     * empty prompt — the server echoes it back on every read for exactly this.
-     */
+    // The draft, one entry per blank.
     const [fills, setFills] = useState<string[]>(() => (
         round.myFills ?? Array.from({ length: round.blanks }, () => '')
     ));

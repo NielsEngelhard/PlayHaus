@@ -5,13 +5,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, type StyleProp, type ViewStyle } from "react-native";
 
-/**
- * How much room the button is given.
- *
- * `regular` is the one that closes a card — the resume button on a reconnect row. `large`
- * is the one that closes a screen, and everything about it scales up together: a 62pt
- * button with 15pt type on it reads as a mistake rather than as emphasis.
- */
+// How much room the button is given.
 type Size = 'regular' | 'large';
 
 const SIZES: Record<Size, { height: number, radius: number, label: number, tracking: number, gap: number, icon: number }> = {
@@ -30,16 +24,7 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
-/**
- * The one committing button on a screen: join this room, play the next round.
- *
- * Takes the scheme's loudest neutral rather than a brand accent — ink on paper, lemon on
- * ink. That keeps it unmistakably the primary action without competing with the orange
- * and mint the game itself uses to mean something.
- *
- * `StartGameButton` is the same idea in a game's own colour, for the one screen where
- * starting the game *is* the subject.
- */
+// The one committing button on a screen: join this room, play the next round.
 export default function ActionButton({
     text,
     onPress,

@@ -4,13 +4,7 @@ import { ROUTES } from '@/constants/routes';
 import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { Href } from 'expo-router';
 
-/**
- * What one kind of game looks like in the reconnect list, and where its row goes.
- *
- * The list is one endpoint serving every game type there will ever be, so the row
- * cannot know what it is drawing. This is the lookup that tells it — add a game
- * type to the wire, add it here, and the list draws it without any other change.
- */
+// What one kind of game looks like in the reconnect list, and where its row goes.
 export interface GameKind {
     title: string
     modeKey: TranslationKey
@@ -45,9 +39,7 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         slug: 'one-of-us',
         href: game => ROUTES.oneOfUsPlaySingleDeviceGame(game.id) as Href,
     },
-    // Like `lol_multiplayer`, and for the same reason: the backend sends the **join
-    // code** as the id rather than the game's, because a room is reached by its code and
-    // that is the one screen which knows how to draw a game like this.
+    // Like `lol_multiplayer`, and for the same reason.
     ff_multiplayer: {
         title: FAKE_FILLER_NAME,
         modeKey: 'reconnect.mode.lobby',
@@ -66,13 +58,7 @@ const MINUTE = 60 * 1000;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
 
-/**
- * The month names, as catalogue keys in calendar order.
- *
- * `Intl` is still not what formats this: it is not something every runtime this app
- * ships to can be relied on for, and the abbreviations the design wants are three
- * letters in both languages, which is a thing the catalogue can simply say.
- */
+// The month names, as catalogue keys in calendar order.
 const MONTH_KEYS = [
     'common.time.months.jan', 'common.time.months.feb', 'common.time.months.mar',
     'common.time.months.apr', 'common.time.months.may', 'common.time.months.jun',
@@ -87,8 +73,7 @@ export function startedAgo(createdAt: string, now: number = Date.now()): Phrase 
 
     const elapsed = now - started;
 
-    // A clock a little behind the server's would otherwise read as a game started
-    // in the future, which is a stranger thing to show than "just now".
+    // A clock a little behind the server's would otherwise read as a game started in the future.
     if (elapsed < MINUTE) return { key: 'common.time.justNow' };
     if (elapsed < HOUR) {
         return { key: 'common.time.minutesAgo', values: { minutes: Math.floor(elapsed / MINUTE) } };

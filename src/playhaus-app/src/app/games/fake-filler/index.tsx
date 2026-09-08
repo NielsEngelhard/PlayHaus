@@ -9,14 +9,7 @@ import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
-/**
- * The game's front door.
- *
- * One mode card rather than the pair the other games open with, and it is not stretched
- * to fill the row: Fake Filler has no solo mode and could not have one — a round is
- * written by two people and voted on by everybody else — so a second card would have to
- * be either a lie or a disabled thing to explain.
- */
+// The game's front door.
 export default function FakeFillerIndexPage() {
     const styles = useStyles();
     const t = useT();
@@ -32,8 +25,7 @@ export default function FakeFillerIndexPage() {
             deviceMode={FAKE_FILLER.deviceMode}
             durationInMinutes={FAKE_FILLER.minutesAverage}
         >
-            {/* The first child is the row the band is cut around, so it has to be the
-                mode cards even when there is only one. See `GameIndexPage`. */}
+            {/* The first child is the row the band is cut around, so it has to be the mode cards even when there is only one. */}
             <View style={styles.modes}>
                 <ModeCard
                     solid

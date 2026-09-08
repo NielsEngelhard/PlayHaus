@@ -9,10 +9,7 @@ interface Props {
     value: WordLength;
     onChange: (wordLength: WordLength) => void;
     variant?: "card" | "inline";
-    /**
-     * Spells the chosen length out beside the label — "5 letters" over a row of bare
-     * numbers. Off by default: the lobby's card has no room for it.
-     */
+    // Spells the chosen length out beside the label — "5 letters" over a row of bare numbers.
     showValue?: boolean;
 }
 

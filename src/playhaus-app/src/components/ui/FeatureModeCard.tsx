@@ -5,50 +5,25 @@ import type { ReactNode } from "react";
 import { Pressable, View } from "react-native";
 
 interface Props {
-    /**
-     * The card's own colour, flat. A `Brand` hue rather than a palette token: this card is
-     * an identity — "the yellow one is the daily" — and an identity that swapped with the
-     * scheme would stop being one.
-     */
+    // The card's own colour, flat.
     fill: string,
     /** The small caps over the title: "Today", "New". */
     eyebrow: string,
     title: string,
     /** A line or two under the title. Optional — the daily says it with the panel instead. */
     description?: string,
-    /**
-     * The top-right slot, level with the eyebrow: the daily's countdown to reset. Whatever
-     * goes in it has to be narrow, because the title is what takes the rest of the row.
-     */
+    // The top-right slot, level with the eyebrow: the daily's countdown to reset.
     aside?: ReactNode,
-    /**
-     * The inset panel between the title and the action — a friends list, a bracket. Drawn
-     * on a wash rather than on a colour of its own, so the card still reads as one object.
-     */
+    // The inset panel between the title and the action — a friends list, a bracket.
     children?: ReactNode,
-    /**
-     * Which way that wash goes. `ink` sinks the panel into the card, which is what a list
-     * of rows wants; `paper` lifts it out, which is what a diagram drawn in outlined
-     * shapes needs to have something to be drawn *on*.
-     */
+    // Which way that wash goes.
     panelTone?: 'ink' | 'paper',
     /** What pressing this does, on the bar across the bottom. */
     action: string,
     onPress: () => void
 }
 
-/**
- * The loud card at the top of a mode page: the one way to play that the page is pushing.
- *
- * There is exactly one of these per page, and everything under it is quieter — see
- * `ModeOptionCard`. The whole card is the accent, the way `ModeCard`'s `solid` variant
- * hands its fill over, and the action is an ink bar across the bottom rather than a line
- * of text with an arrow: this is a button that happens to have a card wrapped round it.
- *
- * Ink and paper in both schemes for the fill and the action, because the fill is a brand
- * hue either way. The border and the lift come from the theme, so the card sits on the
- * dark canvas the same way every other card does.
- */
+// The loud card at the top of a mode page: the one way to play that the page is pushing.
 export default function FeatureModeCard({
     fill,
     eyebrow,
@@ -89,9 +64,7 @@ export default function FeatureModeCard({
                 </View>
             )}
 
-            {/* Not a `TextButton`: that one wears an accent fill and a hard shadow, which
-                on a card that is already an accent with a hard shadow would be a button
-                lying on top of itself. */}
+            {/* Not a `TextButton`: that one wears an accent fill and a hard shadow. */}
             <View style={styles.action}>
                 <AppText style={styles.actionText}>{action}</AppText>
             </View>
@@ -115,8 +88,7 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'space-between',
         gap: 10
     },
-    // Takes the room the aside does not, so a long title wraps rather than pushing the
-    // countdown off the card.
+    // Takes the room the aside does not, so a long title wraps rather than pushing the countdown off the card.
     headText: {
         flex: 1,
         minWidth: 0
@@ -145,8 +117,7 @@ const useStyles = createThemedStyles(theme => ({
         color: withAlpha(Brand.ink, 0.7)
     },
 
-    // A hole punched in the fill rather than a surface of the app's, so it does not follow
-    // the canvas — the same reasoning as `ModeCard`'s solid tile.
+    // A hole punched in the fill rather than a surface of the app's, so it does not follow the canvas.
     panel: {
         padding: 12,
         gap: 8,

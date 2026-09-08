@@ -101,9 +101,7 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0
     },
-    // Deliberately the same three values `ToggleRow` uses. This card hand-rolls its own
-    // version of that row, and the two sit either side of the same stamped switch — if the
-    // type scales drift apart the switch looks like two different controls.
+    // Deliberately the same three values `ToggleRow` uses.
     title: {
         fontSize: 15,
         lineHeight: 15 * 1.2,

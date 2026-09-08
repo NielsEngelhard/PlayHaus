@@ -42,10 +42,7 @@ var (
 	ErrNotEnoughPlayers = errors.New("not enough players to start")
 	ErrNotYourTurn      = errors.New("it is not your turn")
 
-	// ErrGameNotOver is a rematch asked for while the table is still playing. Its own
-	// error rather than ErrGameFinished inverted, because the two are asked by
-	// different screens about different things: one is a guess arriving too late, this
-	// is a room being reopened too early.
+	// ErrGameNotOver is a rematch asked for while the table is still playing.
 	ErrGameNotOver = errors.New("game is not over yet")
 )
 
@@ -90,10 +87,6 @@ type MultiplayerLobbyPlayer struct {
 }
 
 // NextSeat is the seat a new arrival should take.
-//
-// The highest in use plus one rather than the number of players: somebody leaving
-// takes their seat number out of the middle, and reusing it would put the new
-// arrival ahead of people who were already waiting.
 func (l MultiplayerLeagueOfLettersLobby) NextSeat() int {
 	next := 0
 	for _, player := range l.Players {
@@ -107,10 +100,6 @@ func (l MultiplayerLeagueOfLettersLobby) NextSeat() int {
 func (MultiplayerLobbyPlayer) TableName() string { return "mp_lol_lobby_players" }
 
 // MultiplayerLeagueOfLettersGame is a started room.
-//
-// It shares the round, guess and letter tables with the solo game -- the board is
-// the same board, and a guess is the same guess -- and adds the two things a solo
-// game has no use for: who is up, and until when.
 type MultiplayerLeagueOfLettersGame struct {
 	ID         uuid.UUID   `gorm:"primaryKey;type:text"`
 	LobbyID    string      `gorm:"index;not null;type:text"`
@@ -197,8 +186,7 @@ type LeagueOfLettersGuess struct {
 	CreatedAt   time.Time                        `gorm:"not null"`
 }
 
-// Correct reports whether this guess was the answer. A skipped row never is: it
-// has no letters, so there is nothing in it that could be right.
+// Correct reports whether this guess was the answer.
 func (g LeagueOfLettersGuess) Correct() bool {
 	if len(g.Letters) == 0 {
 		return false

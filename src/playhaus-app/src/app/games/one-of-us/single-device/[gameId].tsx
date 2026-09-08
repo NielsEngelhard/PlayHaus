@@ -107,9 +107,7 @@ export default function PlayingSingleDeviceGame() {
         )
     }
 
-    /*
-     * The word reveal, once per player before the first round.
-     */
+    // The word reveal, once per player before the first round.
     if (!briefed && current.kind === 'reveal' && current.index === 0) {
         return <RolesBriefingScreen onDone={() => setBriefed(true)} onLeave={leave} />;
     }
@@ -119,11 +117,7 @@ export default function PlayingSingleDeviceGame() {
         const previous = current.index > 0 ? game.players[current.index - 1] : null;
 
         return (
-            // Keyed on the seat, so the phone going round is a new screen each time
-            // rather than the same one with a different name on it. Without this the
-            // component keeps the `claimed` and `seen` it was left in, and everybody
-            // after the first is handed the phone already showing the previous
-            // player's continue button, with the "give this to X" wall skipped.
+            // Keyed on the seat, so the phone going round is a new screen each time rather than the same one with a different name on it.
             <WordRevealScreen
                 key={current.index}
                 person={seatOf(player, current.index)}
@@ -132,16 +126,14 @@ export default function PlayingSingleDeviceGame() {
                 role={player.role}
                 number={current.index + 1}
                 total={game.players.length}
-                // `game.players` is itself the order the phone goes round in, so
-                // everybody after this one is the queue, already in order.
+                // `game.players` is itself the order the phone goes round in.
                 queue={game.players
                     .slice(current.index + 1)
                     .map((waiting, offset) => seatOf(waiting, current.index + 1 + offset))}
                 onLeave={leave}
                 onDone={() => setPhase(current.index + 1 < game.players.length
                     ? { kind: 'reveal', index: current.index + 1 }
-                    // Everybody has their word. The first round opens on its own
-                    // shuffle, the same as every round after it.
+                    // Everybody has their word.
                     : openRound(game, 1))}
             />
         )
@@ -149,12 +141,7 @@ export default function PlayingSingleDeviceGame() {
 
     return (
         <View style={styles.board}>
-            {/*
-              * No track under the label. A game of One of Us runs until the imposters are
-              * found or they outnumber everybody left, so there is no total for a bar to
-              * count towards — and a bar that fills at a rate nobody can read is worse
-              * than the label standing on its own. See `InGameHeader`.
-              */}
+            {/* No track under the label. */}
             <InGameHeader
                 onClose={leave}
                 closeLabel={t('oneOfUs.play.close')}
@@ -164,10 +151,7 @@ export default function PlayingSingleDeviceGame() {
             {current.kind === 'speak' && (() => {
                 const speaker = seatFor(game, current.order[current.index]);
 
-                // A speaking order naming somebody who is not in the game any more can
-                // only happen if the order outlived the round it was shuffled for.
-                // Reshuffling is the honest repair: nothing has been said yet this
-                // round that re-speaking it would spoil.
+                // A speaking order naming somebody who is not in the game any more can only happen if the order outlived the round it was shuffled for.
                 if (speaker === null) {
                     return <View />;
                 }
@@ -215,9 +199,7 @@ export default function PlayingSingleDeviceGame() {
 
                         void (async () => {
                             const result = await play.voteOut(player.playerId);
-                            // Null is a refusal, and `play.voteError` is already saying
-                            // so on the board this leaves up. Moving on would announce
-                            // an elimination that never happened.
+                            // Null is a refusal, and `play.voteError` is already saying so on the board this leaves up.
                             if (result === null) return;
 
                             setPhase(result.gameEnded
@@ -236,10 +218,7 @@ export default function PlayingSingleDeviceGame() {
                 const gone = seatFor(game, current.result.playerId);
                 if (gone === null) return <View />;
 
-                // The ring as it stood for the vote, not as it stands now. `voteOut`
-                // flips `isVotedOut` on the local game before this phase is even set, so
-                // `alive` has already dropped the one person this screen is about — and
-                // a ring built from it would have nobody to cross out.
+                // The ring as it stood for the vote, not as it stands now.
                 const ring = game.players
                     .filter(player =>
                         !player.isVotedOut
@@ -261,14 +240,7 @@ export default function PlayingSingleDeviceGame() {
     )
 }
 
-/**
- * Which of the four round labels the header wears.
- *
- * The board's four screens are now the same picture doing four different things, so the
- * header is the only thing on them that says which one the table is on. Four keys rather
- * than one with a `{{phase}}` hole in it, so the separator is not something a translation
- * can quietly drop from the one line carrying that.
- */
+// Which of the four round labels the header wears.
 function headerLabelFor(phase: Phase): Phrase {
     return { key: keyOf(phase), values: { round: roundOf(phase) } };
 }
@@ -300,12 +272,7 @@ function roundOf(phase: Phase): number {
 }
 
 const useStyles = createThemedStyles(() => ({
-    // The gap is the header's: its band ends on a hard line rather than in the slack the
-    // old 58pt row carried inside itself, so the board keeps off it from out here.
-    //
-    // The sides and the bottom edge are here for a different reason — a chromeless page is
-    // handed the window bare (see `useChromeless`), so the gutters the scroller used to
-    // lay down belong to the board now. The band reaches back out through them.
+    // The gap is the header's: its band ends on a hard line rather than in the slack the old 58pt row carried inside itself.
     board: {
         flex: 1,
         width: '100%',

@@ -35,13 +35,7 @@ export const ROLE_FACES: Record<OneOfUsRole, RoleFace> = {
     }
 };
 
-/**
- * What a civilian and an imposter are both shown when the phone reveals their word — one
- * face for the two of them, so the card cannot out an imposter before the table gets to.
- * Only `revealFaceOf` hands this out; `faceOf` (the briefing, the elimination screen and
- * the game-over reveal, all of which are allowed to name names once it is safe to) never
- * does.
- */
+// What a civilian and an imposter are both shown when the phone reveals their word.
 const UNKNOWN_FACE: RoleFace = {
     fill: Brand.fog,
     icon: 'eye-off',
@@ -61,16 +55,7 @@ export function faceOf(role: OneOfUsRole): RoleFace {
     return ROLE_FACES[role] ?? ROLE_FACES[OneOfUsRole.Civilian];
 }
 
-/**
- * What the phone actually shows the player holding it, as opposed to what `faceOf` would
- * say the role is.
- *
- * The nitwit is told outright: no word at all is the whole of their hand, and there is
- * nothing to bluff by hiding it. A civilian and an imposter are not — telling either of
- * them apart here is exactly the thing a reveal is not allowed to do, since an imposter
- * handed "you are the imposter" already knows something the table does not and has
- * nothing left to work out.
- */
+// What the phone actually shows the player holding it, as opposed to what `faceOf` would say the role is.
 export function revealFaceOf(role: OneOfUsRole): RoleFace {
     return role === OneOfUsRole.Nitwit ? ROLE_FACES[OneOfUsRole.Nitwit] : UNKNOWN_FACE;
 }

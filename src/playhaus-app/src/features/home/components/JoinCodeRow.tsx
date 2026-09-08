@@ -12,20 +12,7 @@ import { TextInput, View } from "react-native";
 const HEIGHT = 46;
 const BUTTON_WIDTH = 84;
 
-/**
- * Somebody else's code, at the top of the home page: one field and a button.
- *
- * The short way in for the common case — you have been sent a code and want to be in that
- * room. `JoinCodeCard` over in `features/join` is the long way, with a box per character
- * and a camera beside it, and it stays where it is: it belongs to a page about getting
- * back into a game, while this is a line on a page about starting one.
- *
- * The button makes no decision of its own. `resolveJoinCode` reads the code's first
- * character and hands back the page that character named, and this pushes it — the same
- * dispatch `JoinCodeCard` makes, from the other end of the app. Nothing here is asked of
- * the server: the room screen is what joins the room, so a code that names a game but no
- * room of that game is refused on the way to the door rather than at it.
- */
+// Somebody else's code, at the top of the home page: one field and a button.
 export default function JoinCodeRow() {
     const theme = useTheme();
     const styles = useStyles();
@@ -36,13 +23,7 @@ export default function JoinCodeRow() {
 
     const [code, setCode] = useState('');
 
-    /**
-     * A whole code that opened nothing, and the line under the row saying so.
-     *
-     * Cleared on the next keystroke rather than on the next press: the fix for a refused
-     * code is a changed character, and a complaint still standing over a code that has
-     * since been edited is a complaint about something that is no longer on screen.
-     */
+    // A whole code that opened nothing, and the line under the row saying so.
     const [rejected, setRejected] = useState(false);
 
     const target = resolveJoinCode(code);
@@ -77,8 +58,7 @@ export default function JoinCodeRow() {
                     placeholderTextColor={theme.colors.textFaint}
                     autoCapitalize="characters"
                     autoCorrect={false}
-                    // The keyboard's own key does what the button does, because a code
-                    // typed out in full has already said what it is for.
+                    // The keyboard's own key does what the button does, because a code typed out in full has already said what it is for.
                     returnKeyType="go"
                     onSubmitEditing={join}
                     accessibilityLabel={t('home.join.label')}
@@ -87,8 +67,7 @@ export default function JoinCodeRow() {
 
                 <PopPressable
                     onPress={join}
-                    // Half-strength until there is a whole code to send, which is the
-                    // same way every other blocked control in the app says so.
+                    // Half-strength until there is a whole code to send.
                     disabled={target.kind === 'incomplete'}
                     accessibilityRole="button"
                     accessibilityState={{ disabled: target.kind === 'incomplete' }}
@@ -117,15 +96,12 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 14,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
-        // A card's fill rather than the sunken one every other field wears: this sits on
-        // the open page rather than inside a panel, so it has to lift off the canvas.
+        // A card's fill rather than the sunken one every other field wears.
         backgroundColor: theme.colors.backgroundSecondary,
         fontSize: 17,
-        // A `TextInput` gets no help from `AppText`, so the weight has to be named as a
-        // family — see `fontFamilyForWeight`.
+        // A `TextInput` gets no help from `AppText`, so the weight has to be named as a family — see `fontFamilyForWeight`.
         fontFamily: fontFamilyForWeight(900),
-        // Wide enough that the characters read as a code being spelled out rather than
-        // as a word.
+        // Wide enough that the characters read as a code being spelled out rather than as a word.
         letterSpacing: 4,
         color: theme.colors.text
     },
@@ -139,12 +115,9 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 14,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
-        // The lemon in both schemes rather than the scheme's loudest neutral an
-        // `ActionButton` takes: this is the one filled control on a page otherwise made
-        // of outlined cards, and it is the accent that says so on paper and on ink alike.
+        // The lemon in both schemes rather than the scheme's loudest neutral an `ActionButton` takes.
         backgroundColor: theme.colors.lemon,
-        // The field beside it is flat to the page and this is not, which is the whole of
-        // what says which half of the row is the control.
+        // The field beside it is flat to the page and this is not.
         ...hardShadow(2, theme.colors.shadow)
     },
 

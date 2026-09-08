@@ -1,5 +1,4 @@
-// `as const` keeps these as literal types so they satisfy expo-router's `Href`,
-// which typed routes narrows to the routes that actually exist.
+// `as const` keeps these as literal types so they satisfy expo-router's `Href`.
 export const ROUTES = {
     home: "/",
 

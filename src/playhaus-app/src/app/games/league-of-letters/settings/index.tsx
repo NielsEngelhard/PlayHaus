@@ -23,24 +23,12 @@ import { useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
-/**
- * Set up a solo game, then start it. The settings are local until `Start`, which is
- * what creates the game on the server — so backing out and returning gives you the
- * defaults again, and nothing exists until you commit.
- *
- * Except when there is already a game. A player holds one solo game at a time, and
- * `createGame` throws the old one away — so this screen asks the server first, and a
- * player who left a board running is asked what to do about it before the form behind
- * the question can quietly destroy it.
- */
+// Set up a solo game, then start it.
 export default function LeagueOfLettersSettingsPage() {
     const styles = useStyles();
     const t = useT();
 
-    // `SettingsPageBase` claims this too, but only once it is on screen. Claimed here as
-    // well — before the early return below — so the app header does not paint for the
-    // length of the check and then leave. Called before every early return, so the hook
-    // order never changes.
+    // `SettingsPageBase` claims this too, but only once it is on screen.
     useChromeless();
 
     const router = useRouter();
@@ -56,23 +44,14 @@ export default function LeagueOfLettersSettingsPage() {
     /** Kept apart from `error`, which belongs to the form the modal is sitting on top of. */
     const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
-    // Nothing may touch state after unmount — the redirect below unmounts this
-    // screen while the request that caused it may still be settling.
+    // Nothing may touch state after unmount.
     const mounted = useRef(true);
     useEffect(() => {
         mounted.current = true;
         return () => { mounted.current = false; };
     }, []);
 
-    /**
-     * The account's language is where this form starts, once the session has one.
-     *
-     * Seeded rather than read straight off the user, and only the once: after that
-     * the picker below owns the value, so choosing English here is a choice about
-     * this game and changing the account's language in another tab cannot reach in
-     * and move a knob the player has already set. Nothing is written back either —
-     * the profile screen is where the account's own language is changed.
-     */
+    // The account's language is where this form starts, once the session has one.
     const seeded = useRef(false);
     useEffect(() => {
         if (seeded.current || user === null) return;
@@ -81,33 +60,24 @@ export default function LeagueOfLettersSettingsPage() {
         setSettings(current => ({ ...current, locale: user.locale }));
     }, [user]);
 
-    // Only a signed-in session has a game to find; while the session is being
-    // restored there is nothing to ask about yet.
+    // Only a signed-in session has a game to find; while the session is being restored there is nothing to ask about yet.
     const signedIn = status === 'signedIn';
 
     useEffect(() => {
         if (!signedIn) return;
 
-        // Asking on mount and acting on the answer is the whole job. Every state
-        // change happens after the `await`, never on the way in, so nothing
-        // cascades in the render this effect belongs to — same shape as `useGame`'s
-        // load.
+        // Asking on mount and acting on the answer is the whole job.
         void (async () => {
             let found: Game | null = null;
             try {
                 found = await getCurrentGame();
             } catch {
-                // The check failing is not worth stopping on: the form below still
-                // works, and starting a game from it replaces whatever was there —
-                // which is what would have happened before this screen ever asked.
+                // The check failing is not worth stopping on.
             }
 
             if (!mounted.current) return;
 
-            // Both outcomes end the wait. A game that was found is put to the player
-            // as a question over the form rather than acted on for them: it took a
-            // while to build and losing it to a screen they only meant to look at
-            // would be the app's decision, not theirs.
+            // Both outcomes end the wait.
             setRunning(found);
             setChecked(true);
         })();
@@ -115,18 +85,14 @@ export default function LeagueOfLettersSettingsPage() {
 
     /** Back to the board they left. */
     function resume(game: Game) {
-        // `replace`, not `push`: this screen would send the player straight back to
-        // the board they just left, so it must not be behind it.
+        // `replace`, not `push`: this screen would send the player straight back to the board they just left.
         router.replace({
             pathname: ROUTES.leagueOfLettersSolo,
             params: { gameId: game.id }
         });
     }
 
-    /**
-     * Throw the running game away and stay here. What is left behind the closing modal
-     * is the form, which is now free to make a new game out of nothing.
-     */
+    // Throw the running game away and stay here.
     async function abandon(game: Game) {
         if (abandoning) return;
 
@@ -141,9 +107,7 @@ export default function LeagueOfLettersSettingsPage() {
         } catch (failure) {
             if (!mounted.current) return;
 
-            // Kept open on failure. Closing it would leave the player looking at a form
-            // that still cannot be used without destroying the game they just failed to
-            // destroy, with nothing on screen saying so.
+            // Kept open on failure.
             setAbandonError(gameErrorMessage(failure));
         } finally {
             if (mounted.current) setAbandoning(false);
@@ -159,10 +123,7 @@ export default function LeagueOfLettersSettingsPage() {
         try {
             const game = await createGame(settings);
 
-            // Only the id travels. Everything else about the game — its length, its
-            // language, how many rounds it drew — is the server's answer, and the
-            // play screen reads it off the game it fetches rather than off what
-            // this screen happened to ask for.
+            // Only the id travels.
             router.push({
                 pathname: ROUTES.leagueOfLettersSolo,
                 params: { gameId: game.id }
@@ -174,9 +135,7 @@ export default function LeagueOfLettersSettingsPage() {
         }
     }
 
-    // Held back until the answer is in. A form that appears on its own and then has a
-    // panel drop over it a moment later reads as a misfire, and for the length of that
-    // moment it is a form whose only outcome would be destroying a game.
+    // Held back until the answer is in.
     if (!checked) {
         return <LoadingPage message={t('lol.settings.loading')} />;
     }
@@ -227,11 +186,7 @@ export default function LeagueOfLettersSettingsPage() {
                 />
             </SettingsPageBase>
 
-            {/*
-              * Sits over the form until the running game has been dealt with one way or
-              * the other. No dismissal: both ways out are on it, and a third that just
-              * put the player back on a form they cannot safely use would not be one.
-              */}
+            {/* Sits over the form until the running game has been dealt with one way or the other. */}
             <PopupModal
                 visible={running !== null}
                 title={t('lol.settings.running.title')}
@@ -246,8 +201,7 @@ export default function LeagueOfLettersSettingsPage() {
                     variant='primary'
                     fullWidth
                     disabled={abandoning}
-                    // `running` cannot be null while the modal is up, but the close
-                    // animation outlives it — so the buttons have to survive it too.
+                    // `running` cannot be null while the modal is up, but the close animation outlives it.
                     onPress={() => running && resume(running)}
                 />
 
@@ -270,9 +224,7 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
     abandonError: {
-        // Inside the modal, where the form's own `InlineNotification` would be a card
-        // within a card. The panel is already the thing being looked at, so the line
-        // only has to be readable and the wrong colour for good news.
+        // Inside the modal, where the form's own `InlineNotification` would be a card within a card.
         marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,

@@ -28,23 +28,11 @@ export interface PlayableSession {
     error: TranslationKey | null
     /** A ruling is in the air. The buttons lock rather than disappear. */
     ruling: boolean
-    /**
-     * A ruling was refused. Kept apart from `error`, which means there is nothing on
-     * screen at all — this one sits over a board that is still perfectly good.
-     */
+    // A ruling was refused.
     rulingError: TranslationKey | null
-    /**
-     * Rounds 1 and 2: one whole question, settled. Who was asked and missed it on the way
-     * round, and who took it — or null for a question that beat the table.
-     *
-     * One call per question rather than per player. The board walks the pass line itself,
-     * so a wrong answer with somebody left to ask never comes through here at all.
-     */
+    // Rounds 1 and 2: one whole question, settled.
     settleTurn: (missedSeats: number[], correctSeat: number | null) => void
-    /**
-     * Round 3: whose number was nearest. Either every guess, and the server settles it,
-     * or the winners outright when nobody wrote the numbers down.
-     */
+    // Round 3: whose number was nearest.
     settleClosest: (settled: { guesses: SeatGuess[] } | { winningSeats: number[] }) => void
     /** Round 4: what became of each of the describer's words. */
     settleDescribe: (awards: WordAward[]) => void
@@ -55,19 +43,7 @@ export interface PlayableSession {
     reload: () => void
 }
 
-/**
- * One quiz being played, and the one way to move it on.
- *
- * Two requests rather than one, because they age differently. The quiz is the content
- * — twenty questions and their answers — and it cannot change while a game is running,
- * so it is fetched once and kept. The session is how the evening is going, and every
- * verdict replaces it wholesale with the server's own answer rather than being patched
- * in place: who reads next and whose turn it is to answer are the game's decisions, and
- * guessing at them here is how the screen and the database start to disagree.
- *
- * There is no polling and no socket. One phone is playing this, and it is the only
- * thing that can change the session.
- */
+// One quiz being played, and the one way to move it on.
 export function useQuizSession(sessionId: string): PlayableSession {
     const { status: auth } = useAuth();
     const [session, setSession] = useState<QuizSession | null>(null);
@@ -77,23 +53,14 @@ export function useQuizSession(sessionId: string): PlayableSession {
     const [rulingError, setRulingError] = useState<TranslationKey | null>(null);
     const [attempt, setAttempt] = useState(0);
 
-    // Nothing may touch state after unmount — the way off this screen is the close
-    // button, which can be pressed with a verdict still in the air.
+    // Nothing may touch state after unmount.
     const mounted = useRef(true);
     useEffect(() => {
         mounted.current = true;
         return () => { mounted.current = false; };
     }, []);
 
-    /*
-     * Only a signed-in session may ask for this one: the endpoint is behind auth.
-     *
-     * Restoring is not signed in yet and signed out has the gate standing over this
-     * page, and asking in either state answers 401 — which this screen reads as an
-     * expired session and says so, to somebody whose session is perfectly good.
-     * Waiting means the board loads itself the moment there is somebody to load it
-     * for, including straight after a sign-in on the gate.
-     */
+    // Only a signed-in session may ask for this one: the endpoint is behind auth.
     const signedIn = auth === 'signedIn';
 
     useEffect(() => {
@@ -104,9 +71,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
         void (async () => {
             try {
                 const loaded = await getSingleDeviceSessionRequest(sessionId);
-                // The quiz is asked for second rather than alongside, because its id
-                // is on the session. One extra round trip on the way in buys a screen
-                // that never has to cope with half a game.
+                // The quiz is asked for second rather than alongside, because its id is on the session.
                 const content = await getQuizRequest(loaded.quizId);
                 if (!current || !mounted.current) return;
 
@@ -120,19 +85,11 @@ export function useQuizSession(sessionId: string): PlayableSession {
             }
         })();
 
-        // Nothing to abort — `request` has no signal — so dropping the answer is the
-        // whole of the tidy-up, the same as `useQuizzes` next door.
+        // Nothing to abort — `request` has no signal — so dropping the answer is the whole of the tidy-up, the same as `useQuizzes` next door.
         return () => { current = false; };
     }, [sessionId, attempt, signedIn]);
 
-    /**
-     * One way to move the game on, whichever round is doing it.
-     *
-     * Every round posts something different and gets the same thing back — the whole new
-     * session, replacing this one wholesale rather than being patched in. So the locking,
-     * the refusal handling and the unmount guard are the same three lines every time, and
-     * they live here rather than three times over.
-     */
+    // One way to move the game on, whichever round is doing it.
     const submit = useCallback((move: (session: QuizSession) => Promise<QuizSession>) => {
         if (ruling || session === null) return;
 
@@ -148,9 +105,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
             } catch (failure) {
                 if (!mounted.current) return;
 
-                // The board stays up. What is on it is still what the server thinks is
-                // happening, and a refused ruling is a thing to try again rather than a
-                // reason to throw the game away.
+                // The board stays up.
                 setRulingError(quizErrorMessage(failure));
             } finally {
                 if (mounted.current) setRuling(false);
@@ -158,15 +113,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
         })();
     }, [ruling, session]);
 
-    /*
-     * Which question a ruling is about comes off `turnQuestionIds` rather than being
-     * looked up by round and position.
-     *
-     * Those two stopped being enough at round 4, where one turn covers several words and
-     * the position counts turns rather than slots — looking a question up by it there
-     * finds a word out of somebody else's thirty seconds. The server already knows what
-     * it will accept, so it says.
-     */
+    // Which question a ruling is about comes off `turnQuestionIds` rather than being looked up by round and position.
     const settleTurn = useCallback((missedSeats: number[], correctSeat: number | null) => {
         submit(current => {
             const [dealt] = current.turnQuestionIds;

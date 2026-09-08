@@ -15,14 +15,7 @@ interface Props {
 /** How long the tick stays up after a copy. Long enough to notice, short enough to forget. */
 const CONFIRMED_MS = 1600;
 
-/**
- * The code, at the bottom of a guest's screen, small and quiet.
- *
- * A guest already used this code to get in, so it is not news — it is there for the one
- * thing they might still want it for: passing it on to somebody sitting next to them.
- * Hence the dashed frame, which is the app's shape for something waiting to be used
- * rather than something that has happened.
- */
+// The code, at the bottom of a guest's screen, small and quiet.
 export default function RoomCodeFooter({ code }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -31,8 +24,7 @@ export default function RoomCodeFooter({ code }: Props) {
     const [confirmed, confirm] = useCooldown(CONFIRMED_MS);
 
     async function copy() {
-        // Only a real copy is worth confirming. On a phone this opens the share sheet
-        // instead — the platform has already said what happened, far louder than a tick.
+        // Only a real copy is worth confirming.
         if (await copyText(code) === 'copied') confirm();
     }
 
@@ -81,8 +73,7 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 20,
         fontWeight: 900,
         letterSpacing: 2,
-        // Lemon on the dark canvas, the way the host's tiles are: it is the one thing in
-        // this frame worth reading.
+        // Lemon on the dark canvas, the way the host's tiles are: it is the one thing in this frame worth reading.
         color: theme.scheme === 'dark' ? theme.colors.lemon : theme.colors.text
     }
 }))

@@ -10,12 +10,7 @@ interface Profile {
     profile: User | null
     /** A save is in the air. Every control says so and stays put until it lands. */
     saving: boolean
-    /**
-     * A save failed. Nothing was changed, and the page keeps working.
-     *
-     * The catalogue key rather than the sentence, so the line is resolved at render and
-     * follows the account when its language changes underneath it.
-     */
+    // A save failed.
     saveError: TranslationKey | null
     updateUsername: (username: string) => void
     updateColor: (color: string) => void
@@ -25,63 +20,27 @@ interface Profile {
     updateEnableVibration: (enabled: boolean) => void
 }
 
-/**
- * Which line a failed save deserves, as a catalogue key.
- *
- * The server's own `message` is not passed through: it is English whatever the
- * interface is speaking, and it is written for whoever is reading the logs.
- */
+// Which line a failed save deserves, as a catalogue key.
 function profileErrorMessage(error: unknown): TranslationKey {
     if (error instanceof ApiError) {
         if (error.status === 401) return 'profile.errors.expired';
         return 'profile.errors.generic';
     }
 
-    // `fetch` rejects with a TypeError when it cannot reach the host at all —
-    // in development usually a wrong EXPO_PUBLIC_API_URL or an API that isn't up.
+    // `fetch` rejects with a TypeError when it cannot reach the host at all.
     return 'profile.errors.network';
 }
 
-/**
- * Edits the signed-in account.
- *
- * There is no fetch here. `/me` already answers with the whole account —
- * name, colour, all three toggles — so the session's copy in `AuthProvider` is
- * the profile, and reading it a second time on this page would only be a way
- * for the two to disagree.
- *
- * Every field is its own endpoint, each answering `204` with an empty body.
- * That is what makes the write local: a reply means the server now holds
- * exactly what was sent, so `patchUser` puts it on screen without a re-read.
- *
- * Saves are confirmed rather than optimistic — a control moves once the server
- * has taken the value, not before. One round trip is short enough that the lag
- * is barely there, and it means nothing on this page is ever showing something
- * the account does not actually hold.
- */
+// Edits the signed-in account.
 export function useProfile(): Profile {
     const { user, patchUser } = useAuth();
     const [saving, setSaving] = useState(false);
     const [saveError, setSaveError] = useState<TranslationKey | null>(null);
 
-    /**
-     * One save at a time, across the whole page.
-     *
-     * `saving` is state because the controls grey out on it, but state does not
-     * settle until the next render — two taps in the same tick would both read
-     * `false` and both fire. The ref is what actually holds the door shut.
-     */
+    // One save at a time, across the whole page.
     const inFlight = useRef(false);
 
-    /**
-     * `body` carries exactly the one field its endpoint names: the backend
-     * decodes with `DisallowUnknownFields`, so an extra one is a 400 rather than
-     * something quietly ignored.
-     *
-     * `patch` is what the account will hold once that lands — usually the same
-     * value under the name `/me` gives it, which is not always the name the
-     * endpoint takes (`username` in, `name` out).
-     */
+    // `body` carries exactly the one field its endpoint names.
     const save = useCallback(async (path: string, body: object, patch: Partial<User>) => {
         if (inFlight.current) return;
 
@@ -93,8 +52,7 @@ export function useProfile(): Profile {
             await request<null>(path, { method: 'PUT', body: JSON.stringify(body) });
             patchUser(patch);
         } catch (failure) {
-            // Nothing moved on screen, so there is nothing to roll back — the
-            // control is still showing the value the account still holds.
+            // Nothing moved on screen, so there is nothing to roll back.
             setSaveError(profileErrorMessage(failure));
         } finally {
             inFlight.current = false;
@@ -102,11 +60,7 @@ export function useProfile(): Profile {
         }
     }, [patchUser]);
 
-    /**
-     * Trimmed, because that is what the backend stores and measures its length
-     * against — so the trimmed name is what the account ends up holding, and
-     * patching with the raw draft would leave the page a space out of step.
-     */
+    // Trimmed, because that is what the backend stores and measures its length against.
     const updateUsername = useCallback((username: string) => {
         const name = username.trim();
         void save('/api/v1/user/username', { username: name }, { name });
@@ -116,11 +70,7 @@ export function useProfile(): Profile {
         void save('/api/v1/user/color', { color }, { color });
     }, [save]);
 
-    /**
-     * The flag in the header renders off the session's `locale`, so `patchUser` is
-     * what moves it — the same round trip that saves the language changes the
-     * chrome, without the header having to know this page exists.
-     */
+    // The flag in the header renders off the session's `locale`, so `patchUser` is what moves it.
     const updateLocale = useCallback((locale: LanguageCode) => {
         void save('/api/v1/user/locale', { locale }, { locale });
     }, [save]);

@@ -1,27 +1,12 @@
 import type { Game, GamePlayer, MultiplayerGuessResult, Turn } from '@/api/calls/league-of-letters';
 import type { Lobby } from '@/api/calls/league-of-letters-lobby';
 
-/**
- * The socket half of the API.
- *
- * Mirrors the Go backend's `internal/api/league-of-letters-realtime.go` for the
- * message types and `internal/realtime` for the envelope around them — keep the two
- * in step, the same way the REST types are kept in step with their handlers.
- *
- * The protocol is deliberately lopsided. Everything a player *does* goes over HTTP,
- * where the validation, the status codes and the Dutch error copy already live; the
- * socket only carries what happened, plus the one thing HTTP cannot express because
- * it is not a change to anything: the letters somebody is in the middle of typing.
- */
+// The socket half of the API.
 
 /** A room is `namespace:id`. League of Letters rooms are keyed by their join code. */
 export function lolRoom(code: string): string {
     return `lol:${code.toUpperCase()}`;
 }
-
-// ---------------------------------------------------------------------------
-// Server to client
-// ---------------------------------------------------------------------------
 
 export type ServerEvent =
     /** The whole picture, sent as the connection opens. A reconnect is told where things stand rather than replayed at. */
@@ -45,29 +30,10 @@ export type ServerEvent =
 /** The one thing a client says. Everything else is a request. */
 export type ClientEvent = { type: 'typing', data: { letters: string } };
 
-/**
- * The least a frame can be, and all the transport below needs to know about one.
- *
- * `ServerEvent` above is League of Letters' union, and a second game's cannot simply be
- * added to it: Fake Filler spells `state`, `lobby` and `game_started` the same way — on
- * purpose, they are the same events — but carries a different lobby and a different board
- * inside them. Merged, `event.data.lobby` would be a union of two shapes at every call
- * site in both games.
- *
- * So the transport is generic over the union instead, and this is the bound: enough to
- * read a `type` off, which is all `openSocket` and the presence mirror in `useRoomSocket`
- * ever do. Each game declares its own union and gets it back narrowed.
- */
+// The least a frame can be, and all the transport below needs to know about one.
 export type AnyServerEvent = { type: string, data?: unknown };
 
-// ---------------------------------------------------------------------------
-// The connection
-// ---------------------------------------------------------------------------
-
-/**
- * `connecting` covers the first attempt and every retry after it, because to the
- * screen they are the same thing: not live yet, and trying.
- */
+// `connecting` covers the first attempt and every retry after it, because to the screen they are the same thing.
 export type SocketStatus = 'connecting' | 'open' | 'closed';
 
 export interface Socket<C = ClientEvent> {
@@ -87,34 +53,15 @@ interface Options<E extends AnyServerEvent> {
 const FIRST_RETRY_MS = 500;
 const MAX_RETRY_MS = 8_000;
 
-/**
- * The websocket URL for this build.
- *
- * Derived from the one API base rather than configured separately: a socket that
- * could point somewhere other than the API is a way to have half the app talking to
- * production and the other half to a laptop.
- */
+// The websocket URL for this build.
 function socketUrl(room: string, token: string): string {
     const base = (process.env.EXPO_PUBLIC_API_URL ?? '').replace(/^http/, 'ws');
 
-    // The token goes in the query string because a browser's WebSocket takes a URL
-    // and nothing else. The server reads it exactly as it reads a bearer header,
-    // and does not log the query.
+    // The token goes in the query string because a browser's WebSocket takes a URL and nothing else.
     return `${base}/api/v1/ws?room=${encodeURIComponent(room)}&token=${encodeURIComponent(token)}`;
 }
 
-/**
- * Opens a room and keeps it open.
- *
- * Reconnects on its own, with backoff, because the alternative is a screen that
- * silently stops updating: a phone that locked, a laptop that slept, a train that
- * went into a tunnel. Every reconnect is answered by the server with a fresh
- * `state`, so nothing has to be replayed and the caller needs no resume logic — it
- * just applies whatever the snapshot says.
- *
- * Uses the global `WebSocket`, which React Native and the web both have. `ws` and
- * friends are Node libraries and would not survive the trip to a device.
- */
+// Opens a room and keeps it open.
 export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEvent>(
     { room, token, onEvent, onStatus }: Options<E>
 ): Socket<C> {
@@ -131,22 +78,13 @@ export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEve
         const ws = new WebSocket(socketUrl(room, token));
         socket = ws;
 
-        /**
-         * The last frame was a refusal — the room does not exist, or this player is not
-         * in it. The server says so and then hangs up, so a close that follows one is an
-         * answer rather than a hiccup, and asking again every few seconds for as long as
-         * the screen is open would only get the same answer. Cleared by any other frame,
-         * because a refusal the server keeps the connection open after (a frame it could
-         * not read) is not one to give up over.
-         */
+        // The last frame was a refusal — the room does not exist, or this player is not in it.
         let refused = false;
 
         ws.onopen = () => {
             if (closed) return;
 
-            // Reset only once a connection actually stands up. Resetting when one is
-            // merely attempted would turn a server that accepts and immediately drops
-            // into a tight loop.
+            // Reset only once a connection actually stands up.
             retryMs = FIRST_RETRY_MS;
             onStatus('open');
         };
@@ -158,8 +96,7 @@ export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEve
             try {
                 parsed = JSON.parse(String(event.data)) as E;
             } catch {
-                // A frame this build cannot read. Dropping it is right: the next
-                // snapshot carries the truth anyway.
+                // A frame this build cannot read.
                 return;
             }
 
@@ -168,8 +105,7 @@ export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEve
             onEvent(parsed);
         };
 
-        // `onerror` is followed by `onclose` on every platform, so the retry is
-        // scheduled from one place rather than two.
+        // `onerror` is followed by `onclose` on every platform, so the retry is scheduled from one place rather than two.
         ws.onerror = () => { };
 
         ws.onclose = () => {
@@ -187,8 +123,7 @@ export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEve
     function schedule() {
         if (closed || retryTimer !== null) return;
 
-        // Jittered, so a server coming back up is not met by every client in every
-        // room at the same instant.
+        // Jittered, so a server coming back up is not met by every client in every room at the same instant.
         const wait = retryMs * (0.75 + Math.random() * 0.5);
         retryMs = Math.min(retryMs * 2, MAX_RETRY_MS);
 
@@ -202,9 +137,7 @@ export function openSocket<E extends AnyServerEvent = ServerEvent, C = ClientEve
 
     return {
         send(event) {
-            // Dropped rather than queued. The only thing sent is a draft that is
-            // about to be superseded by the next keystroke — a letter delivered
-            // after a reconnect would be describing a row that has moved on.
+            // Dropped rather than queued.
             if (socket === null || socket.readyState !== WebSocket.OPEN) return;
 
             socket.send(JSON.stringify(event));

@@ -19,13 +19,7 @@ interface Props {
     finished: boolean
 }
 
-/**
- * Everything about the round that is not the board itself, read as one card rather than
- * a row of separately bordered chips: the hint (or how the round went) keeps its own
- * filled pill, since it is the one segment whose colour carries meaning, and the word
- * length, score and clock sit beside it as plain icon-and-number pairs behind a single
- * border, split by a hairline rather than each wearing an outline of their own.
- */
+// Everything about the round that is not the board itself, read as one card rather than a row of separately bordered chips.
 export default function MetaDataRow({ game, outcome, firstLetter, myGuesses, multiplayer, round, finished }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -33,8 +27,7 @@ export default function MetaDataRow({ game, outcome, firstLetter, myGuesses, mul
 
     const segments: { key: string, node: ReactNode }[] = [];
 
-    // Mirrors the old `RoundChip`: the hint while the round is still winnable, the tally
-    // once it is decided, and nothing at all if there is no hint to give yet.
+    // Mirrors the old `RoundChip`: the hint while the round is still winnable, the tally once it is decided.
     if (outcome !== 'playing') {
         segments.push({
             key: 'outcome',
@@ -78,8 +71,7 @@ export default function MetaDataRow({ game, outcome, firstLetter, myGuesses, mul
         )
     });
 
-    // Solo already carries this number in `SoloStatusRow`, right below — a second
-    // segment for the same score would just be saying it twice.
+    // Solo already carries this number in `SoloStatusRow`, right below.
     if (multiplayer) {
         segments.push({
             key: 'score',
@@ -127,10 +119,7 @@ const useStyles = createThemedStyles(theme => ({
     card: {
         flexDirection: 'row',
         alignItems: 'center',
-        // `gap` is the floor — how close two segments (or a segment and its divider) are
-        // allowed to sit. `space-between` then hands out whatever room is left over the
-        // same way between every pair, divider included, so the card reads as evenly laid
-        // out across its full width instead of a cluster of chips against its left edge.
+        // `gap` is the floor — how close two segments (or a segment and its divider) are allowed to sit.
         justifyContent: 'space-between',
         gap: 11,
         borderWidth: theme.borderWidth,
@@ -142,8 +131,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingRight: 12,
         ...theme.shadows.hardSmall
     },
-    // A hairline rather than a border of its own — the card is what draws the outline
-    // now, and four of them inside it would be back to the row this replaced.
+    // A hairline rather than a border of its own.
     divider: {
         width: 1.5,
         alignSelf: 'stretch',
@@ -172,8 +160,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         textTransform: 'uppercase',
         letterSpacing: 1,
-        // Ink at 60%, on a lemon pill in both schemes — so it is stated once here rather
-        // than flipping with the scheme like the rest of the palette.
+        // Ink at 60%, on a lemon pill in both schemes.
         color: 'rgba(15, 13, 18, 0.6)'
     },
     hintLetter: {

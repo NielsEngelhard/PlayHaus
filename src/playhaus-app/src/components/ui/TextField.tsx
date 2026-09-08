@@ -24,12 +24,7 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
-/**
- * A labelled single-line input in the app's chrome: hard border, sunken fill.
- *
- * The look is the one `ProfileNameCard` established; it lives here so the auth
- * forms don't grow a second, slightly different copy of it.
- */
+// A labelled single-line input in the app's chrome: hard border, sunken fill.
 export default function TextField({
     label,
     value,

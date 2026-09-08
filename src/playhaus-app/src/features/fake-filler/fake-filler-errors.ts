@@ -2,23 +2,7 @@ import { FFLobbyFullError } from '@/api/calls/fake-filler-lobby';
 import { ApiError, apiErrorCode } from '@/api/client';
 import type { TranslationKey } from '@/features/i18n/keys';
 
-/**
- * Turns a failed Fake Filler call into the key of a line worth showing a person.
- *
- * A key rather than a sentence, and that is the whole point: these are called from
- * callbacks and stored in state, so a finished sentence would be frozen in whichever
- * language was current when the call failed and would still be in it after the player
- * changed languages. The key is resolved at render instead.
- *
- * None of the server's own wording is passed through to get there — it is all English,
- * and some of it is not even the API's. So every case that reaches a person is written in
- * the catalogue, and anything unrecognised falls back to a plain apology.
- *
- * These branch on the response's `code` rather than only on its status, which is the one
- * place this differs from `league-of-letters/game-errors.ts`. Fake Filler's handlers hand
- * out a stable code for every refusal (`internal/api/fakefiller.go`), and it is worth
- * using: half a dozen of them are 409s, and "conflict" is not a sentence.
- */
+// Turns a failed Fake Filler call into the key of a line worth showing a person.
 export function ffErrorMessage(error: unknown): TranslationKey {
     if (error instanceof ApiError) {
         switch (error.status) {
@@ -31,18 +15,11 @@ export function ffErrorMessage(error: unknown): TranslationKey {
         }
     }
 
-    // `fetch` rejects with a TypeError when it cannot reach the host at all — in
-    // development usually a wrong EXPO_PUBLIC_API_URL or an API that isn't up.
+    // `fetch` rejects with a TypeError when it cannot reach the host at all.
     return 'fakeFiller.errors.network';
 }
 
-/**
- * The same, for the room.
- *
- * A room fails in ways a game does not — the code was mistyped, the host closed it while
- * it was being joined, the nine seats went — and every one of those is a sentence about a
- * room rather than about a game.
- */
+// The same, for the room.
 export function ffLobbyErrorMessage(error: unknown): TranslationKey {
     if (error instanceof FFLobbyFullError) {
         return 'fakeFiller.errors.lobbyFull';
@@ -57,8 +34,7 @@ export function ffLobbyErrorMessage(error: unknown): TranslationKey {
             return 'fakeFiller.errors.notEnoughPlayers';
         case 'too_many_players':
             return 'fakeFiller.errors.tooManyPlayers';
-        // A short data file. A broken build rather than a broken request, so it gets its
-        // own line instead of "try again" — which would fail the same way.
+        // A short data file.
         case 'no_content':
             return 'fakeFiller.errors.noContent';
         case 'lobby_not_found':
@@ -66,21 +42,14 @@ export function ffLobbyErrorMessage(error: unknown): TranslationKey {
     }
 
     if (error instanceof ApiError && error.status === 404) {
-        // A code that is gone and a code that was never right are the same answer from
-        // the server, and the player is far more likely to have mistyped one.
+        // A code that is gone and a code that was never right are the same answer from the server.
         return 'fakeFiller.errors.lobbyGone';
     }
 
     return ffErrorMessage(error);
 }
 
-/**
- * The same, for a refused answer or vote.
- *
- * The board checks what it can before sending — every blank filled, a slot actually on
- * screen — so these are the cases it could not have known about: the table moved on while
- * the request was in the air, or two taps landed as two requests.
- */
+// The same, for a refused answer or vote.
 export function ffPlayErrorMessage(error: unknown): TranslationKey {
     switch (apiErrorCode(error)) {
         case 'not_your_prompt':

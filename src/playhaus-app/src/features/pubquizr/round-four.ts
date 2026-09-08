@@ -26,9 +26,7 @@ export interface DescribeTurn {
     worth: number
 }
 
-/**
- * What is on screen right now, or null when round 4 is not what is being played.
- */
+// What is on screen right now, or null when round 4 is not what is being played.
 export function describeTurnOf(session: QuizSession, quiz: QuizDetail): DescribeTurn | null {
     if (session.status !== 'in_progress') return null;
     if (session.currentRound !== ROUND_DESCRIBE) return null;
@@ -44,9 +42,7 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
 
     const questions = quiz.rounds.flatMap(round => round.questions);
 
-    // Off `turnQuestionIds` rather than off `assignedSeat`: the server has already said
-    // what it will accept a ruling on, and working it out again here is two answers to
-    // one question waiting to disagree.
+    // Off `turnQuestionIds` rather than off `assignedSeat`.
     const words: DescribeWord[] = [];
     for (const id of session.turnQuestionIds) {
         const dealt = session.questions.find(question => question.id === id);
@@ -59,8 +55,7 @@ export function describeTurnOf(session: QuizSession, quiz: QuizDetail): Describe
     }
     if (words.length === 0) return null;
 
-    // The server's order, kept: it is the order the bonus guesses are offered in, and
-    // re-deriving it here would be the app and the server taking turns to be right.
+    // The server's order, kept: it is the order the bonus guesses are offered in.
     const bonus: Seat[] = [];
     for (const seat of session.bonusSeats) {
         const player = seatAt(seats, seat);
@@ -83,14 +78,7 @@ export function unclaimedWords(turn: DescribeTurn, awards: DescribeAwards): Desc
     return turn.words.filter(word => (awards[word.dealt.id] ?? null) === null);
 }
 
-/**
- * How many points a set of awards is about to hand out, per seat.
- *
- * One name per word, so the arithmetic is the same for both halves of the turn: whoever
- * is credited takes the guess points, and the describer takes their word point on top for
- * having got it across. A word stolen after the timer pays exactly what one guessed
- * inside it does.
- */
+// How many points a set of awards is about to hand out, per seat.
 export function scoreOfAwards(
     turn: DescribeTurn,
     awards: DescribeAwards

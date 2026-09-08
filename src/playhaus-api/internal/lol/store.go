@@ -29,8 +29,7 @@ func (s *GormStore) CreateSoloGame(ctx context.Context, g *SoloLeagueOfLettersGa
 	return nil
 }
 
-// withBoard preloads the whole tree a game is played on, each level in the order
-// it is played in, so a caller never has to sort it back afterwards.
+// withBoard preloads the whole tree a game is played on, each level in the order it is played in.
 func withBoard(db *gorm.DB) *gorm.DB {
 	return db.
 		Preload("Rounds", func(db *gorm.DB) *gorm.DB {
@@ -175,8 +174,7 @@ func (s *GormStore) DeleteSoloGamesByUserId(ctx context.Context, userID string, 
 	return nil
 }
 
-// DeleteSoloGamesOlderThan removes solo games created before the cutoff, board and
-// all. Used by the retention sweep, not by anything a player triggers.
+// DeleteSoloGamesOlderThan removes solo games created before the cutoff, board and all.
 func (s *GormStore) DeleteSoloGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
 	var deleted int64
 
@@ -247,8 +245,7 @@ func (s *GormStore) RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess
 			return fmt.Errorf("insert guess: %w", err)
 		}
 
-		// Named columns rather than Save: the game was loaded with its rounds
-		// preloaded, and saving the struct whole would write the whole tree back.
+		// Named columns rather than Save: the game was loaded with its rounds preloaded.
 		err := tx.Model(&SoloLeagueOfLettersGame{}).
 			Where("id = ?", game.ID).
 			Updates(map[string]any{

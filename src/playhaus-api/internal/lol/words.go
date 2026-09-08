@@ -20,9 +20,7 @@ const (
 //go:embed data
 var wordFiles embed.FS
 
-// allowedLists caches each parsed guessable list. Splitting a full dictionary
-// on every guess would be waste, and the files never change under a running
-// process -- they are compiled in.
+// allowedLists caches each parsed guessable list.
 var allowedLists sync.Map // string -> map[string]struct{}
 
 // IsAllowedWord reports whether a word appears in the word list for that language
@@ -43,8 +41,7 @@ func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
 		return cached.(map[string]struct{})
 	}
 
-	// A missing file is not an error -- it is the "no list yet" case, and it
-	// caches as an empty set so the read is not retried on every guess.
+	// A missing file is not an error -- it is the "no list yet" case.
 	words := map[string]struct{}{}
 	if data, err := wordFiles.ReadFile(key); err == nil {
 		for line := range strings.SplitSeq(string(data), "\n") {
@@ -58,16 +55,7 @@ func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
 	return words
 }
 
-// DevModeWord answers the word every round plays while LOL_DEV_MODE is on: the first
-// entry of the list the game would otherwise have drawn from. Deterministic, which is
-// the whole point of the flag -- a screen can be walked through without guessing at
-// anything -- but drawn per locale and per length, so the word length the player picked
-// still decides how wide the board is. A single hard-coded word would have made the
-// setting look broken, which is exactly how it looked.
-//
-// The false is "no list for that combination", and the caller is expected to fall back
-// to the word it drew rather than treat it as a failure: dev mode is a convenience, and
-// an unplayable game is a worse answer than a random word.
+// DevModeWord answers the word every round plays while LOL_DEV_MODE is on.
 func DevModeWord(lang i18n.Locale, size int, onlyPickCommonWords bool) (string, bool) {
 	wordListType := Common
 	if !onlyPickCommonWords {
@@ -149,9 +137,7 @@ func buildWordFilePath(lang i18n.Locale, size int, wlt WordListType) string {
 	return path
 }
 
-// pickDistinctIndices returns count distinct indices in [0, n) using Floyd's
-// algorithm: O(count) time and memory regardless of how large n is, and it
-// never rejects/retries, so it stays fast even when count is close to n.
+// pickDistinctIndices returns count distinct indices in [0, n) using Floyd's algorithm.
 func pickDistinctIndices(n, count int) []int {
 	chosen := make(map[int]struct{}, count)
 	indices := make([]int, 0, count)
@@ -165,8 +151,7 @@ func pickDistinctIndices(n, count int) []int {
 		indices = append(indices, t)
 	}
 
-	// Floyd's yields a uniformly random *set*, but the order it emits them in
-	// is not uniform -- shuffle so round 1 isn't biased toward the file's tail.
+	// Floyd's yields a uniformly random *set*, but the order it emits them in is not uniform.
 	rand.Shuffle(len(indices), func(a, b int) {
 		indices[a], indices[b] = indices[b], indices[a]
 	})

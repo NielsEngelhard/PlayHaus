@@ -16,60 +16,24 @@ interface Props {
     kind: string
     /** What the table has to do this round, in the two or three sentences there is room for. */
     brief: string
-    /**
-     * The two players this round is actually between, or null for every round but the
-     * finale.
-     *
-     * Every other round is the whole table, so naming who is playing would be naming
-     * everybody — worth nothing. The finale is the one round that has already cut the
-     * table down to two before this screen ever opens (see `finaleTurnOf`), and that is
-     * the news: the round intro elsewhere in the evening says what the game is about to
-     * do, and here what the game is about to do is Alex against Sam.
-     */
+    // The two players this round is actually between, or null for every round but the finale.
     finalists?: [Seat, Seat] | null
-    /**
-     * Who is reading the finale out, or null for every round but that one.
-     *
-     * The finale is the only round whose quizmaster is not playing it, and the only one
-     * where the same person reads every question — so it is the only round where saying
-     * who that is in advance is worth a line. Everywhere else the reading moves seat by
-     * seat and the hand-off screen names it, one turn at a time.
-     */
+    // Who is reading the finale out, or null for every round but that one.
     quizmaster?: Seat | null
     onStart: () => void
 }
 
-/**
- * The screen that opens a round: which round this is, what it is called, and what the
- * table is about to have to do.
- *
- * Every round changes the game — the hot seat becomes four options, then a number
- * everybody guesses, then a stopwatch — and until this screen existed the only place any
- * of that was said was the hand-off, which is read by one person with the phone already
- * in their hand. The table found out what round 3 was by watching somebody play it.
- *
- * Full-bleed for the same reason `HandoffScreen` is, and built the same way: it paints
- * past the page's gutters and up over the header so it reads as a beat in the evening
- * rather than another card in a list. See the note on `screen` there for how it escapes
- * the layout, and `roundIntroToneFor` for why its fill is never the colour of the
- * hand-off that follows it.
- *
- * It stands in front of the very first round too, where there are no standings to come
- * out of — round 1 needs explaining more than any of them do.
- */
+// The screen that opens a round: which round this is, what it is called, and what the table is about to have to do.
 export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, quizmaster, onStart }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Nothing above this holds the notch open — the board's band is not drawn on the
-    // screens that stand in front of it.
+    // Nothing above this holds the notch open — the board's band is not drawn on the screens that stand in front of it.
     const insets = useSafeAreaInsets();
 
     const tone = roundIntroToneFor(round);
 
-    // The window's colour, not just this page's — the same reason the hand-off asks for
-    // it: on a wide window the app's column is 600dp in the middle, and a wall that
-    // stops 600dp short reads as a page that has broken.
+    // The window's colour, not just this page's — the same reason the hand-off asks for it.
     usePageTone(tone.fill);
 
     return (
@@ -77,8 +41,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
             <View style={styles.header} />
 
             <View style={styles.body}>
-                {/* The number is the headline. It is the one thing about a round that is
-                    the same every quiz, and the table calls rounds by it. */}
+                {/* The number is the headline. */}
                 <AppText style={[styles.kicker, { color: tone.muted }]}>
                     {t('pubquizr.play.intro.of', { total: totalRounds })}
                 </AppText>
@@ -93,10 +56,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                     {kind}
                 </AppText>
 
-                {/* The finale only. Every other round is played by the whole table, so
-                    there is nobody to single out here — this is the one screen in the
-                    evening that gets to say who, because it is the one round where who
-                    is the news. */}
+                {/* The finale only. */}
                 {finalists !== null && finalists !== undefined && (
                     <View style={styles.finalists}>
                         <View style={styles.finalist}>
@@ -129,9 +89,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                     </View>
                 )}
 
-                {/* Under the two of them, because it is the answer to the question the
-                    portraits have just raised: if those two are playing, who is asking?
-                    The finale only — see the note on the prop. */}
+                {/* Under the two of them, because it is the answer to the question the portraits have just raised. */}
                 {quizmaster !== null && quizmaster !== undefined && (
                     <View style={styles.quizmaster}>
                         <View style={[styles.chip, { backgroundColor: quizmaster.swatch.color }]}>
@@ -167,13 +125,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
 }
 
 const useStyles = createThemedStyles(() => ({
-    /**
-     * The whole of whatever it is handed, exactly as `HandoffScreen` takes it — there is
-     * no header to pull up over and no gutters to reach out of, because the board this is
-     * drawn instead of has claimed the chrome and lays its own gutters down inside.
-     *
-     * The top padding is set at the call site, from the device's own inset.
-     */
+    // The whole of whatever it is handed, exactly as `HandoffScreen` takes it.
     screen: {
         flex: 1,
         alignItems: 'center',
@@ -181,16 +133,13 @@ const useStyles = createThemedStyles(() => ({
         paddingBottom: 26
     },
 
-    // Stands in for the band the play screen has, so this frame and the ones either side
-    // of it start their content at the same height and the swap does not jump. The notch
-    // is not in here: the screen above already pads for it, exactly as the band does.
+    // Stands in for the band the play screen has.
     header: {
         height: 58,
         flexShrink: 0
     },
 
-    // Centred in what is left over rather than pinned to the top: there is only one
-    // block of text on this screen, and it should sit in the middle of the wall.
+    // Centred in what is left over rather than pinned to the top.
     body: {
         flex: 1,
         alignItems: 'center',
@@ -242,8 +191,7 @@ const useStyles = createThemedStyles(() => ({
         width: 84
     },
 
-    // Smaller than the hand-off's own portrait: that screen is about one player, this
-    // one is about two of them side by side, and matching its size would crowd them.
+    // Smaller than the hand-off's own portrait.
     portrait: {
         width: 64,
         height: 64,
@@ -274,8 +222,7 @@ const useStyles = createThemedStyles(() => ({
         letterSpacing: 1.4
     },
 
-    // A pill rather than a third portrait: the quizmaster is not in the fight the two
-    // faces above are, and drawing them at the same size would say they were.
+    // A pill rather than a third portrait.
     quizmaster: {
         marginTop: 18,
         flexDirection: 'row',
@@ -310,8 +257,7 @@ const useStyles = createThemedStyles(() => ({
         fontWeight: 800
     },
 
-    // Muted where the name above it is full ink: this is the explanation, and the two
-    // should not read as the same kind of sentence.
+    // Muted where the name above it is full ink.
     brief: {
         marginTop: 14,
         maxWidth: 300,
@@ -321,9 +267,7 @@ const useStyles = createThemedStyles(() => ({
         textAlign: 'center'
     },
 
-    // Ink fill in every tone, the same as the hand-off's: it is the one control on the
-    // screen, and a button that changed colour with the background would stop being
-    // obviously the way out.
+    // Ink fill in every tone, the same as the hand-off's.
     button: {
         width: '100%',
         height: 64,

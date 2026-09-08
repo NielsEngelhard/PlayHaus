@@ -39,8 +39,7 @@ func (s *GormStore) ByTokenHash(ctx context.Context, tokenHash string) (*Session
 	return &session, nil
 }
 
-// DeleteByTokenHash is a hard delete -- Session has no DeletedAt, so the row is
-// really gone and a leaked token cannot be revived.
+// DeleteByTokenHash is a hard delete.
 func (s *GormStore) DeleteByTokenHash(ctx context.Context, tokenHash string) error {
 	err := s.db.WithContext(ctx).Where("token_hash = ?", tokenHash).Delete(&Session{}).Error
 	if err != nil {

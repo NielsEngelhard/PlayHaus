@@ -10,11 +10,7 @@ import { intoRows } from "@/utils/rows";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
-/**
- * Two, which is exactly how many languages there are. A third would land on its own
- * row at full width rather than half of one, which is the wrong shape for a tile —
- * revisit the number along with `LANGUAGES` rather than before it.
- */
+// Two, which is exactly how many languages there are.
 const COLUMNS = 2;
 
 /** Bigger than the 24px the dropdown uses: here the flag is the tile, not a bullet. */
@@ -23,11 +19,7 @@ const FLAG_WIDTH = 40;
 const CHECK_SIZE = 26;
 
 interface Props {
-    /**
-     * Optional, unlike `LanguageSelect`. The guest gate has nothing picked until you
-     * pick it, and a grid can show that honestly where a field with a single line
-     * cannot — it would have to invent a value to display.
-     */
+    // Optional, unlike `LanguageSelect`.
     value?: LanguageCode,
     onChange: (value: LanguageCode) => void,
     /** Left off to render the tiles bare, for a screen that titles them itself. */
@@ -36,19 +28,7 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * The languages, laid out as tiles you tap, with the flag and what choosing one
- * actually changes on each.
- *
- * The other way to pick a language is `LanguageSelect`, and the two are for different
- * moments. That one is a settings field: a value you already have, changed now and
- * then, worth one line. This one is for a choice being made for the first time, where
- * the alternatives should be on screen together rather than behind a tap.
- *
- * Bare rather than wrapped in a `Card`, which is where it differs from every other
- * picker here — the auth sheet is already a card, and a second one inside it would
- * read as a box in a box.
- */
+// The languages, laid out as tiles you tap, with the flag and what choosing one actually changes on each.
 export default function LanguageGrid({ value, onChange, label, disabled = false }: Props) {
     const styles = useStyles();
 
@@ -95,9 +75,7 @@ function Tile({ language, selected, disabled, onPress }: TileProps) {
             disabled={disabled}
             accessibilityRole='radio'
             accessibilityLabel={language.label}
-            // `aria-checked` rather than `accessibilityState={{ checked }}`: the latter
-            // never reaches the DOM in this version, so the chosen tile would look
-            // picked without announcing that it was.
+            // `aria-checked` rather than `accessibilityState={{ checked }}`.
             aria-checked={selected}
             style={[
                 styles.tile,
@@ -153,8 +131,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSelected,
         ...theme.shadows.hardLarge
     },
-    // The ones you have not picked sit back a step, the way the swatch grid does it:
-    // shallower shadow, a touch of the card showing through.
+    // The ones you have not picked sit back a step, the way the swatch grid does it.
     tileUnselected: {
         opacity: 0.8,
         ...theme.shadows.hardSmall

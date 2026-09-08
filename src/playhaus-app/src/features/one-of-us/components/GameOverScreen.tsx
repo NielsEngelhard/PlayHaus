@@ -28,27 +28,7 @@ interface Props {
     onLeave: () => void
 }
 
-/**
- * How it ended, and who everybody was.
- *
- * The whole table is revealed at once rather than a winner announced. The question the
- * game has been asking for the last ten minutes is "which of you was lying", and a
- * screen that answered only "the civilians won" would leave the one thing everybody
- * actually wants unsaid — including for the players who went out in round one and have
- * been watching ever since.
- *
- * Both words are shown together for the same reason. Half the fun afterwards is
- * realising how close the two were, and neither half means much on its own.
- *
- * The nitwit is listed on the imposters' side of the room but tagged and coloured as
- * itself: "who was lying" and "who was given nothing at all" are two different answers,
- * and the second one is the one the table will want to hear about afterwards.
- *
- * It wears the same band every other screen in the game does, and no track under it:
- * there is nothing left to be part of the way through. The band's arrow and the muted
- * button in the footer are the same way out, kept in both places because this screen is
- * long enough to scroll and the way out should not be something you have to reach.
- */
+// How it ended, and who everybody was.
 export default function GameOverScreen({
     civiliansWon,
     players,
@@ -68,9 +48,7 @@ export default function GameOverScreen({
                 label={t('oneOfUs.play.over.label')}
             />
 
-            {/* Both sides get it. The imposters winning is just as much a result as
-                the civilians winning, and a celebration that only fired one way would
-                be the app taking a side. */}
+            {/* Both sides get it. */}
             <Confetti active />
 
             <ScrollView
@@ -175,9 +153,7 @@ export default function GameOverScreen({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The gutters are this screen's own: the page it is drawn on has claimed the app's
-    // chrome and hands it the bare window, and the band above reaches back out through
-    // them. See `useChromeless`.
+    // The gutters are this screen's own.
     screen: {
         flex: 1,
         width: '100%',
@@ -224,8 +200,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary
     },
 
-    // The imposters' half in the game's own orange, so the pair reads as two sides
-    // rather than as one list of two facts.
+    // The imposters' half in the game's own orange, so the pair reads as two sides rather than as one list of two facts.
     imposterWord: {
         borderColor: Brand.ink,
         backgroundColor: Brand.primary
@@ -279,8 +254,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: Brand.primary
     },
 
-    // Lemon rather than orange, and applied over `imposterRow` so the row keeps the
-    // inked border and the inked text that come with being on that side.
+    // Lemon rather than orange, and applied over `imposterRow` so the row keeps the inked border and the inked text that come with being on that side.
     nitwitRow: {
         backgroundColor: Brand.lemon
     },

@@ -15,8 +15,7 @@ type loginRequest struct {
 	Password string `json:"password"`
 }
 
-// Validate only checks that something was supplied. Whether the credentials are
-// correct is Login's job, and the answer is always the same 401 either way.
+// Validate only checks that something was supplied.
 func (r loginRequest) Validate() map[string]string {
 	problems := map[string]string{}
 	if strings.TrimSpace(r.Email) == "" {
@@ -28,8 +27,7 @@ func (r loginRequest) Validate() map[string]string {
 	return problems
 }
 
-// sessionResponse is what every route that starts a session returns. The token
-// is the session: store it, send it as a bearer token, drop it on logout.
+// sessionResponse is what every route that starts a session returns.
 type sessionResponse struct {
 	Token     string       `json:"token"`
 	ExpiresAt time.Time    `json:"expiresAt"`
@@ -65,9 +63,7 @@ func (s *Server) handleLogin(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, newSessionResponse(u, session, token))
 }
 
-// handleLogout revokes the caller's token. It is deliberately not behind
-// requireAuth: logging out with a token that is already invalid should succeed
-// quietly rather than hand the client a 401 it cannot act on.
+// handleLogout revokes the caller's token.
 func (s *Server) handleLogout(w http.ResponseWriter, r *http.Request) {
 	if err := s.auth.Logout(r.Context(), auth.BearerToken(r)); err != nil {
 		s.log.Error("logout", "err", err)
@@ -77,8 +73,7 @@ func (s *Server) handleLogout(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// handleMe resolves a stored token back into its user, which is how the app
-// restores a session at launch.
+// handleMe resolves a stored token back into its user, which is how the app restores a session at launch.
 func (s *Server) handleMe(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {

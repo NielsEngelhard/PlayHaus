@@ -45,8 +45,7 @@ func New(g Game) (string, error) {
 	return string(code), nil
 }
 
-// Generates join codes
-// If already used join code is generated, it will generate a new one
+// Generates join codes If already used join code is generated, it will generate a new one
 func Free(ctx context.Context, g Game, taken Taken) (string, error) {
 	for range draws {
 		code, err := New(g)

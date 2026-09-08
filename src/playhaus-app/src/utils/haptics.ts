@@ -1,28 +1,9 @@
-/**
- * The short buzzes the app answers a touch with.
- *
- * Split by platform because haptics are a phone idea and this app also ships to web —
- * same reasoning as `share.ts`/`share.web.ts`. The web half is a no-op: the Vibration API
- * is a blunt on/off rumble on the handful of browsers that have it, needs a permission
- * prompt on some of them, and there is no desktop hardware to feel it. See `haptics.web.ts`.
- *
- * Every call is gated on the account's own switch and swallows everything. `impactAsync`
- * rejects outright on hardware with no haptic engine — emulators, most iPads — and iOS
- * silently disables the Taptic engine in Low Power Mode, while the camera is open, and
- * during dictation. None of that is worth an error, and none of it is a bug to chase.
- */
+// The short buzzes the app answers a touch with.
 
 import { vibrationEnabled } from "@/features/feedback/preferences";
 import * as Haptics from "expo-haptics";
 
-/**
- * What a buzz is for, rather than how strong it is — the mapping onto the platform's own
- * scale lives here so a call site never has to think about `ImpactFeedbackStyle`.
- *
- * - `tap`: a key going down. The lightest thing available, because it fires on every letter.
- * - `land`: something the app was waiting for arrived.
- * - `success` / `nearMiss`: how that thing turned out.
- */
+// What a buzz is for, rather than how strong it is.
 export type HapticFeel = 'tap' | 'land' | 'success' | 'nearMiss';
 
 export function haptic(feel: HapticFeel): void {
@@ -44,7 +25,6 @@ export function haptic(feel: HapticFeel): void {
                 break;
         }
     } catch {
-        // A platform that throws synchronously rather than rejecting. Either way a buzz
-        // that did not happen must not take the keypress that asked for it down with it.
+        // A platform that throws synchronously rather than rejecting.
     }
 }

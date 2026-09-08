@@ -8,18 +8,9 @@ import { TextInput, View } from "react-native";
 interface Props {
     /** The prompt, blanks and all — the `line` exactly as the server sent it. */
     line: string,
-    /**
-     * What goes in the blanks.
-     *
-     * `null` leaves them empty, which is how a prompt is drawn before anybody has
-     * answered it. Otherwise the nth entry fills the nth blank, which is also the order
-     * the API wants them back in.
-     */
+    // What goes in the blanks.
     fills: string[] | null,
-    /**
-     * Editable turns the blanks into fields and makes this the writing screen. Read-only
-     * everywhere else — an option being voted on, an option being revealed.
-     */
+    // Editable turns the blanks into fields and makes this the writing screen.
     editable?: boolean,
     onChangeFill?: (index: number, value: string) => void,
     placeholder?: string,
@@ -28,18 +19,7 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * One prompt, with something in its gaps.
- *
- * The sentence and its fills are kept apart all the way from the data file to here, which
- * is what lets one prompt be drawn three ways — as fields to write into, as somebody's
- * answer, as an empty frame — without three copies of it. This is where they are put back
- * together, and it is the only component that knows what a blank looks like.
- *
- * Laid out as wrapping inline text rather than a column of labelled fields. A blank is
- * part of a sentence and the sentence is the joke; breaking it into a form would make
- * people read the words as instructions instead of as a line they are finishing.
- */
+// One prompt, with something in its gaps.
 export default function PromptLine({
     line,
     fills,
@@ -88,8 +68,7 @@ export default function PromptLine({
                         placeholderTextColor={theme.colors.textMuted}
                         editable={!disabled}
                         accessibilityLabel={blankLabel?.(part.index + 1)}
-                        // The blanks are mid-sentence, so the keyboard must not treat
-                        // each one as the start of a new one.
+                        // The blanks are mid-sentence, so the keyboard must not treat each one as the start of a new one.
                         autoCapitalize='none'
                         autoCorrect={false}
                         returnKeyType='done'
@@ -101,9 +80,7 @@ export default function PromptLine({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Wrapping row rather than a paragraph: the blanks are views, and a `Text` cannot lay
-    // an input out inline on native. Baseline alignment is what keeps the words and the
-    // fields sitting on the same line rather than the fields floating above them.
+    // Wrapping row rather than a paragraph: the blanks are views, and a `Text` cannot lay an input out inline on native.
     line: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -117,8 +94,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 700,
         color: theme.colors.text
     },
-    // Underlined rather than boxed, so it reads as a gap in a sentence rather than as a
-    // form field dropped into one.
+    // Underlined rather than boxed, so it reads as a gap in a sentence rather than as a form field dropped into one.
     input: {
         minWidth: 96,
         paddingHorizontal: 6,
@@ -133,8 +109,7 @@ const useStyles = createThemedStyles(theme => ({
         borderBottomWidth: 2,
         borderBottomColor: theme.colors.borderStrong
     },
-    // Nothing to show. Keeps the underline a readable length rather than collapsing to
-    // the width of an empty string.
+    // Nothing to show.
     slotEmpty: {
         minWidth: 72
     },

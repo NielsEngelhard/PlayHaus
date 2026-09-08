@@ -4,13 +4,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
-/**
- * A knockout between everybody in the lobby, at the top of the multiplayer page.
- *
- * **Nothing behind it yet** — there is no tournament on the API, so pressing it logs and
- * goes nowhere. It is on the page because the shape of the multiplayer page is what is
- * being decided, and one option is not a page to pick from.
- */
+// A knockout between everybody in the lobby, at the top of the multiplayer page. **Nothing behind it yet**.
 export default function TournamentCard() {
     const t = useT();
 
@@ -30,14 +24,7 @@ export default function TournamentCard() {
     )
 }
 
-/**
- * Four into two into one, as a picture.
- *
- * Plain views rather than an asset: it is six rounded bars and two rules, it has to
- * follow the card's own ink, and an SVG for it would be a file to keep in step with a
- * palette. Decoration, so it is hidden from a screen reader — the sentence above the
- * panel is what actually says what a tournament is.
- */
+// Four into two into one, as a picture.
 function Bracket() {
     const styles = useStyles();
 
@@ -56,8 +43,7 @@ function Bracket() {
 
             <View style={styles.connector} />
 
-            {/* The gap does the work the connecting lines would: each bar of a later round
-                sits centred on the pair it came from. */}
+            {/* The gap does the work the connecting lines would: each bar of a later round sits centred on the pair it came from. */}
             <View style={[styles.round, styles.roundSemi]}>
                 <View style={styles.seed} />
                 <View style={styles.seed} />
@@ -73,8 +59,7 @@ function Bracket() {
 }
 
 const useStyles = createThemedStyles(() => ({
-    // Drawn against the card's blush, which does not follow the scheme — so neither may
-    // any of this. See `FeatureModeCard`'s `fill`.
+    // Drawn against the card's blush, which does not follow the scheme — so neither may any of this.
     bracket: {
         flexDirection: 'row',
         alignItems: 'center',

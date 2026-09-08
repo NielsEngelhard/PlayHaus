@@ -18,43 +18,18 @@ interface Props {
 
 /** How long the winner's card takes to land. */
 const CARD_MS = 460;
-/**
- * When the first of the other places starts, and how far apart they follow.
- *
- * Held until the card is most of the way in, so the table reads the winner before the
- * board underneath starts filling. Short steps after that — eight seats at anything
- * slower is a screen that takes a second and a half to finish arriving.
- */
+// When the first of the other places starts, and how far apart they follow.
 const ROWS_DELAY_MS = 260;
 const ROW_STEP_MS = 60;
 const ROW_MS = 340;
 
-/**
- * Where the whole evening ended: the winner, then every other seat and its final place.
- *
- * The one screen this session ends on. `RoundStandings` stands between rounds and is
- * built to be walked past — a breather with a button to the next thing. This has no next
- * thing, so it is deliberately not another scoreboard: the winner comes out of the list
- * and onto a card of their own, at portrait size, and the rest of the table ranks
- * underneath. A board that merely highlighted its top row was the same screen the table
- * had already been shown five times that evening, which is no way to end a night.
- *
- * The most points wins, and every row carries the same number — a finale question pays
- * onto the running score like everything else does, at a hundred a time, so there is one
- * tally and one order to put the table in. The two who played round 6 are tagged rather
- * than ranked apart: it is the story of the evening, not the reason for the order.
- *
- * A shared top score gets a card that says so instead of a winner. `finalStandingsOf`
- * breaks ties on the seat so that the order is stable, but a seat number is not a reason
- * to hand somebody the night, and this is the screen where that would matter most.
- */
+// Where the whole evening ended: the winner, then every other seat and its final place.
 export default function FinalResultsScreen({ standings, onLeave }: Props) {
     const t = useT();
     const styles = useStyles();
 
     const top = standings[0];
-    // Nobody wins on a tie. The same test `RoundStandings` makes before it paints its
-    // leader row, for the same reason.
+    // Nobody wins on a tie.
     const leaders = top === undefined
         ? []
         : standings.filter(seat => seat.score === top.score);
@@ -89,10 +64,7 @@ export default function FinalResultsScreen({ standings, onLeave }: Props) {
                                 </AppText>
                             </View>
 
-                            {/* One portrait where there is a winner, the joint leaders
-                                side by side where there is not — the card is about who
-                                the night belongs to, and on a tie that is more than one
-                                person. */}
+                            {/* One portrait where there is a winner, the joint leaders side by side where there is not. */}
                             <View style={styles.faces}>
                                 {leaders.map(seat => (
                                     <SeatAvatar
@@ -129,8 +101,7 @@ export default function FinalResultsScreen({ standings, onLeave }: Props) {
 
                         <View style={styles.list}>
                             {rest.map((seat, index) => {
-                                // Only where somebody actually won: on a tie there is no
-                                // runner-up, just the first seat that finished behind.
+                                // Only where somebody actually won: on a tie there is no runner-up, just the first seat that finished behind.
                                 const runnerUp = outright && seat.place === 2;
 
                                 return (
@@ -189,17 +160,14 @@ export default function FinalResultsScreen({ standings, onLeave }: Props) {
                 />
             </View>
 
-            {/* Last, so it falls in front of everything. It takes no room and no touches,
-                so the button underneath keeps working while it comes down. */}
+            {/* Last, so it falls in front of everything. */}
             <Confetti active />
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The gutters are this screen's own: the board it stands in front of has claimed the
-    // app's chrome, which hands every page on this route the bare window. See
-    // `useChromeless`.
+    // The gutters are this screen's own.
     screen: {
         flex: 1,
         width: '100%',
@@ -217,8 +185,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: Spacing.three
     },
 
-    // The sentence this screen exists to say, at label size rather than as a headline:
-    // the card under it is the headline, and two of those would compete.
+    // The sentence this screen exists to say, at label size rather than as a headline.
     over: {
         marginBottom: 10,
         fontSize: 11,
@@ -235,8 +202,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textSecondary
     },
 
-    // Lemon and ink, the same "this is the one" every leader row in the app wears —
-    // blown up to the size of the moment it is marking.
+    // Lemon and ink, the same "this is the one" every leader row in the app wears.
     card: {
         alignItems: 'center',
         paddingVertical: Spacing.four,
@@ -310,8 +276,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 8
     },
 
-    // Quieter than the rows this screen used to draw: they are the field now rather than
-    // the result, and the card above them is what the table is looking at.
+    // Quieter than the rows this screen used to draw.
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -325,8 +290,7 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hardSmall
     },
 
-    // The runner-up keeps the mint this game pays finale points in, so the top of the
-    // board still reads as the pair who finished the same finale apart.
+    // The runner-up keeps the mint this game pays finale points in.
     runnerUp: {
         backgroundColor: theme.colors.mint,
         borderColor: Brand.ink
@@ -340,8 +304,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    // `minWidth: 0` is what lets a long name truncate instead of pushing the score off
-    // the end of the row.
+    // `minWidth: 0` is what lets a long name truncate instead of pushing the score off the end of the row.
     who: {
         flex: 1,
         minWidth: 0
@@ -369,8 +332,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    // The runner-up's row is mint in both schemes, so its ink has to be too — the dark
-    // scheme's own near-white text would disappear into it.
+    // The runner-up's row is mint in both schemes, so its ink has to be too.
     onMint: {
         color: Brand.ink
     },

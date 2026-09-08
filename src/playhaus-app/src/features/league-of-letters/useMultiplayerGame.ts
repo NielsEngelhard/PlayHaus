@@ -24,10 +24,7 @@ export interface MultiplayerGameState {
     error: TranslationKey | null
     /** It is this player's turn: the keyboard is live and a guess will be taken. */
     myTurn: boolean
-    /**
-     * What the player whose turn it is has typed so far, or null when nobody is
-     * mid-word. Never your own letters — you already have those on screen.
-     */
+    // What the player whose turn it is has typed so far, or null when nobody is mid-word.
     typing: string | null
     reload: () => void
     guess: (word: string) => Promise<void>
@@ -38,45 +35,17 @@ export interface MultiplayerGameState {
     nextRound: () => void
 }
 
-/**
- * How often a draft goes out at most.
- *
- * Fast typing is around ten keystrokes a second and every one of them is a frame to
- * five other people, so this is the difference between a socket that carries a word
- * and one that carries a keyboard. Short enough that the letters still appear as
- * they are typed rather than in clumps.
- */
+// How often a draft goes out at most.
 const TYPING_THROTTLE_MS = 80;
 
-/**
- * Plays one multiplayer game.
- *
- * The shape of `useGame`, with the difference that a solo game only ever changes
- * because its one player changed it, and this one changes constantly because of
- * other people. So where `useGame` has nothing to listen to, this folds in the
- * events the room's socket delivers — and the fold is the same code either way,
- * because a guess of your own and a guess of somebody else's arrive in exactly the
- * same shape.
- *
- * Holds its own connection to the room, keyed by the join code — the same room the
- * lobby is on. That is a second connection from one device while both screens are
- * mounted, which costs nothing that matters: presence counts players rather than
- * connections, so the two are one light, and the alternative is threading every
- * frame down through a lobby that has no business knowing what a board is.
- */
+// Plays one multiplayer game.
 export function useMultiplayerGame(gameId: string | undefined, code: string): MultiplayerGameState {
     const { user, status } = useAuth();
     const [game, setGame] = useState<Game | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [typing, setTyping] = useState<string | null>(null);
 
-    /**
-     * Which round the board is showing.
-     *
-     * Lags `game.currentRound` on purpose, exactly as in solo: a round that has just
-     * ended stays up until the player moves off it, so the verdict is not swapped out
-     * from under them by the next puzzle.
-     */
+    // Which round the board is showing.
     const [viewing, setViewing] = useState(1);
 
     const mounted = useRef(true);
@@ -108,21 +77,12 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
     useEffect(() => {
         if (!signedIn || !gameId) return;
 
-        // set-state-in-effect: fetching the board on mount and storing it is the whole
-        // job, and state is only written after the request resolves — `useGame` loads
-        // the same way.
+        // set-state-in-effect: fetching the board on mount and storing it is the whole job, and state is only written after the request resolves.
         // eslint-disable-next-line react-hooks/set-state-in-effect
         void load();
     }, [signedIn, gameId, load]);
 
-    /**
-     * Folds one row into the board.
-     *
-     * The only place the game moves, and it is deliberately reached by both paths:
-     * the answer to your own guess and the broadcast of somebody else's are the same
-     * type carrying the same fields, so a rule about how a row lands cannot end up
-     * true for one and not the other.
-     */
+    // Folds one row into the board.
     const applyGuess = useCallback((result: MultiplayerGuessResult) => {
         // Whoever was typing has stopped: the row they were typing is now on the board.
         setTyping(null);
@@ -130,9 +90,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
         setGame(current => {
             if (current === null) return current;
 
-            // Already have it. Your own guess arrives twice -- once as the response,
-            // once as the broadcast -- and a row added twice is a row that pushes the
-            // board out of shape.
+            // Already have it.
             const already = current.rounds
                 .find(round => round.roundNumber === result.roundNumber)
                 ?.guesses.some(guess => guess.id === result.guess.id);
@@ -143,8 +101,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
                     return {
                         ...round,
                         guesses: [...round.guesses, result.guess],
-                        // Arrives only when the round is over, and its presence is what
-                        // the board reads as "this one is done".
+                        // Arrives only when the round is over, and its presence is what the board reads as "this one is done".
                         word: result.word ?? round.word,
                         // A finished round stops counting down.
                         endsAt: undefined
@@ -178,8 +135,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
 
         switch (event.type) {
             case 'state': {
-                // A reconnect. Whatever happened while the connection was down is
-                // already in this, so there is nothing to catch up on by hand.
+                // A reconnect.
                 if (event.data.game === undefined) return;
 
                 const fresh = event.data.game;
@@ -222,8 +178,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
                 return;
 
             default:
-                // Lobby business, which `useLobby` is reading off its own connection to
-                // the same room.
+                // Lobby business, which `useLobby` is reading off its own connection to the same room.
                 return;
         }
     }, [applyGuess]);
@@ -240,13 +195,10 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
         const result = await submitMultiplayerGuess(gameId, word);
         if (!mounted.current) return;
 
-        // Here rather than in `applyGuess`, which also runs for rows the room broadcasts:
-        // somebody else's word landing is not something your phone should announce.
+        // Here rather than in `applyGuess`, which also runs for rows the room broadcasts.
         guessLandedHaptic(result);
 
-        // Applied here as well as when the broadcast arrives, so the player who
-        // guessed sees their row land at once rather than after a round trip through
-        // the room. `applyGuess` drops the duplicate.
+        // Applied here as well as when the broadcast arrives.
         applyGuess(result);
     }, [gameId, applyGuess]);
 
@@ -266,8 +218,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
             return;
         }
 
-        // Trailing edge, so the last letter of a word is never the one that gets
-        // dropped -- which is exactly the letter the people watching are waiting on.
+        // Trailing edge, so the last letter of a word is never the one that gets dropped.
         if (pending.current !== null) clearTimeout(pending.current);
         pending.current = setTimeout(() => {
             pending.current = null;
@@ -287,15 +238,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
     const current = game?.id === gameId ? game : null;
     const round = current === null ? null : roundOf(current, viewing) ?? null;
 
-    /**
-     * The round the game is actually on, kept somewhere a callback can read it without
-     * having to be rebuilt to do so.
-     *
-     * `nextRound` has to be stable: in multiplayer the board hangs the between-rounds
-     * wait off it, and a callback that changed identity every time the room delivered a
-     * frame — a turn moving, a score landing — would restart that wait on every frame and
-     * never move anybody on.
-     */
+    // The round the game is actually on, kept somewhere a callback can read it without having to be rebuilt to do so.
     const currentRound = useRef(1);
     useEffect(() => {
         currentRound.current = game?.currentRound ?? 1;
@@ -312,8 +255,7 @@ export function useMultiplayerGame(gameId: string | undefined, code: string): Mu
         loading: current === null && error === null,
         error,
         myTurn: current?.turn?.userId !== undefined && current.turn.userId === userId,
-        // Only while the board is showing the round actually being played: letters
-        // relayed onto a finished round somebody is still reading would be noise.
+        // Only while the board is showing the round actually being played.
         typing: current !== null && viewing === current.currentRound ? typing : null,
         reload,
         guess,

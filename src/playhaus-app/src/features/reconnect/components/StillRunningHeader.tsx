@@ -17,18 +17,7 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * The line that names the list of open games, counts it, and offers to fetch it again.
- *
- * The count is here rather than on the heading because it is the one number on the page
- * that changes: a player who left two games running and comes back to one wants to see
- * that at the top of the section, not to count rows.
- *
- * The timestamp is the plain phrase — "2 minutes ago" — because in a row that already
- * says "still running" and carries a refresh button, "updated" is the only thing it
- * could mean. A screen reader gets the whole sentence instead, since it hears this line
- * on its own rather than beside the button.
- */
+// The line that names the list of open games, counts it, and offers to fetch it again.
 export default function StillRunningHeader({
     count,
     updated,

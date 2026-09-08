@@ -1,18 +1,7 @@
-/**
- * Web half of the token store — see `token-store.ts` for the contract.
- *
- * `localStorage` is readable by any script on the page, so unlike the native
- * keychain this offers no protection against XSS. It is the standard trade for a
- * browser app: the alternative is keeping the token in memory only, which logs
- * you out on every refresh.
- */
+// Web half of the token store — see `token-store.ts` for the contract.
 const TOKEN_KEY = 'playhaus_session_token';
 
-/**
- * `output: "static"` prerenders every route in Node, where there is no `window`.
- * Returning null there keeps the build from crashing; the real value is read
- * again once the page hydrates in a browser.
- */
+// `output: "static"` prerenders every route in Node, where there is no `window`.
 function storage(): Storage | null {
     return typeof window === 'undefined' ? null : window.localStorage;
 }

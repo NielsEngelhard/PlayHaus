@@ -14,21 +14,11 @@ import { View } from "react-native";
 
 interface Props {
     onBack: () => void
-    /**
-     * Only needed where signing up does not take this form off screen with it. The
-     * gate, its one caller today, unmounts on its own the moment the session starts.
-     */
+    // Only needed where signing up does not take this form off screen with it.
     onSuccess?: () => void
 }
 
-/**
- * Creates an account from nothing and signs straight into it — one call, since the API
- * answers a signup with a session.
- *
- * The uncommon road. Everybody starts as a guest and trades up from their profile,
- * which keeps the games; this is here for somebody who came to the login form without
- * an account and wants a fresh one rather than the guest they are not signed into.
- */
+// Creates an account from nothing and signs straight into it — one call, since the API answers a signup with a session.
 export default function SignupForm({ onBack, onSuccess }: Props) {
     const styles = useStyles();
     const t = useT();
@@ -51,8 +41,7 @@ export default function SignupForm({ onBack, onSuccess }: Props) {
 
         const trimmedEmail = email.trim();
 
-        // Checked on submit rather than folded into `canSubmit`: a button that
-        // stays greyed out until you happen to type an `@` explains nothing.
+        // Checked on submit rather than folded into `canSubmit`.
         if (!trimmedEmail.includes('@')) {
             setError('auth.signup.invalidEmail');
             return;

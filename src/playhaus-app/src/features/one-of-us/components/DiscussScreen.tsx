@@ -9,12 +9,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { ScrollView, View } from "react-native";
 
 interface Props {
-    /**
-     * Who settles a tie, or null on a table dealt before the office existed. The note
-     * under the ring is the last thing said before the vote opens, so it is the right
-     * place to name them — and with nobody to name it falls back to the older wording,
-     * which leaves the tie with the table.
-     */
+    // Who settles a tie, or null on a table dealt before the office existed.
     mayor: Seat | null
     onVote: () => void
     /** Everybody still in, so the table can see who it is actually choosing between. */

@@ -106,10 +106,7 @@ func mapFFGamesToReconnectableGame(games []*fakefiller.FFMultiDeviceGame) []Reco
 		game := games[i]
 
 		mappedGames[i] = ReconnectableGame{
-			// The join code, not the game id -- the same choice League of Letters
-			// makes just below, and for the same reason: a room is reached by its
-			// code, and that is the one screen that knows how to draw a game like
-			// this.
+			// The join code, not the game id -- the same choice League of Letters makes just below, and for the same reason.
 			ID:        game.LobbyID,
 			Type:      FakeFillerMultiplayer,
 			CreatedAt: game.CreatedAt.Format(timeFormat),
@@ -126,8 +123,7 @@ func mapMultiplayerGamesToReconnectableGame(games []*lol.MultiplayerLeagueOfLett
 		game := games[i]
 
 		mappedGames[i] = ReconnectableGame{
-			// The join code, not the game id: a room is reached by its code, and
-			// that is the one screen that knows how to draw a game like this.
+			// The join code, not the game id: a room is reached by its code.
 			ID:        game.LobbyID,
 			Type:      LeagueOfLettersMultiplayer,
 			CreatedAt: game.CreatedAt.Format(timeFormat),

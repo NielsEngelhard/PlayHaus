@@ -11,13 +11,7 @@ interface Props {
     wordLength: WordLength
 }
 
-/**
- * How long the word is, sat beside `RoundChip` in the round's top row.
- *
- * The one difficulty signal the board never states outright otherwise: the grid shows it
- * by its width, but a row of empty tiles is not something a glance across a crowded table
- * reads as a number the way this chip is.
- */
+// How long the word is, sat beside `RoundChip` in the round's top row.
 export default function WordLengthChip({ wordLength }: Props) {
     const styles = useStyles();
     const t = useT();

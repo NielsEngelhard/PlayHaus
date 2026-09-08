@@ -14,14 +14,7 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
-/**
- * Walks back up one page. Wears the same chrome as `TextButton`, with an arrow ahead of
- * the label.
- *
- * A `Link` rather than a `Pressable` with `router.back()`: this app ships to web too,
- * where the back link should be a real anchor you can middle-click, and where history
- * can hold pages that aren't ours.
- */
+// Walks back up one page.
 export default function BackButton({ href, label, variant = 'secondary', style }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -36,8 +29,7 @@ export default function BackButton({ href, label, variant = 'secondary', style }
             <Pressable
                 accessibilityRole='link'
                 accessibilityLabel={text}
-                // `style` comes last so a caller can trim the standing margin below
-                // without having to reach into this file for the rest of the look.
+                // `style` comes last so a caller can trim the standing margin below without having to reach into this file for the rest of the look.
                 style={StyleSheet.flatten([styles.button, { backgroundColor: fill }, style])}
             >
                 <Feather name='arrow-left' size={18} color={ink} />
@@ -50,8 +42,7 @@ export default function BackButton({ href, label, variant = 'secondary', style }
 const useStyles = createThemedStyles(theme => ({
     button: {
         ...theme.solidButton,
-        // A column parent stretches its children by default, so sizing to the label
-        // means opting out of that rather than doing nothing.
+        // A column parent stretches its children by default.
         alignSelf: 'flex-start',
         flexShrink: 0,
         flexDirection: 'row',

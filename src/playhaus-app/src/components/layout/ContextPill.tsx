@@ -10,24 +10,11 @@ interface Props {
     label: string,
     /** Shown instead of the dot, for a pill naming a mode rather than a place. */
     icon?: keyof typeof Feather.glyphMap,
-    /**
-     * Fills the pill with `accent` and drops its contents to ink.
-     *
-     * For the one pill on a screen that is the screen's own subject. An outlined pill
-     * reports where you are; a filled one is part of what you came for.
-     */
+    // Fills the pill with `accent` and drops its contents to ink.
     filled?: boolean
 }
 
-/**
- * The pill at the right of the header: a dot or an icon, then one line of uppercase.
- *
- * Says what the corner is about — which game you are inside, which mode you are setting
- * up, or who you are when you are not inside either. They all wear this so the slot
- * doesn't change shape as you move between them.
- *
- * Presentational on purpose. Anything that needs the pill to be tappable wraps it.
- */
+// The pill at the right of the header: a dot or an icon, then one line of uppercase.
 export default function ContextPill({ accent, label, icon, filled = false }: Props) {
     const styles = useStyles();
 
@@ -60,8 +47,7 @@ export const useContextPillStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         paddingVertical: 5,
         paddingHorizontal: 11,
-        // The only thing on the header row that gives ground when a long name meets a
-        // narrow phone — the toggle beside it is a fixed circle.
+        // The only thing on the header row that gives ground when a long name meets a narrow phone.
         flexShrink: 1,
         ...theme.shadows.hardSmall
     },

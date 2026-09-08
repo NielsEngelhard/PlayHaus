@@ -12,39 +12,11 @@ interface Props {
     label?: string
     explanation?: string
     style?: StyleProp<ViewStyle>
-    /**
-     * The personal reveal, rather than the briefing or an after-the-fact announcement.
-     * Swaps `faceOf` for `revealFaceOf` so a civilian and an imposter draw the identical
-     * card — see `revealFaceOf` for why. Defaults to false, which is every caller except
-     * `WordRevealScreen`.
-     */
+    // The personal reveal, rather than the briefing or an after-the-fact announcement.
     reveal?: boolean
 }
 
-/**
- * Which side of the game a player is on, and what that actually asks of them.
- *
- * A word on its own does not tell you what to do with it. Everybody is handed something
- * that reads like a perfectly ordinary word, and the whole game turns on whether yours
- * is the one the table is talking about — which is precisely the thing a player cannot
- * work out from the word itself. Without this card the imposter's first round is spent
- * discovering they are the imposter, and by then they have already given themselves
- * away. For the nitwit the card is not an aid but the entire hand: it is the only thing
- * they are given.
- *
- * Two callers, and the difference between them is who is reading. On the reveal it is
- * one person learning about themselves, in the second person, ten seconds before they
- * have to act on it — and for a civilian or an imposter that person is not allowed to
- * learn which one they are, which is what `reveal` is for: it swaps the real face for
- * `revealFaceOf`'s single "could be either" one. On the briefing it is the whole table
- * learning what is in the box, before anybody has been dealt anything — the same card,
- * the same colours, but nobody in the room is "you" yet, so the real faces are fine.
- * `label` and `explanation` layer on top of either: what the card says, not which one it
- * is.
- *
- * All fills are fixed in either scheme, so everything drawn on them is inked rather than
- * themed.
- */
+// Which side of the game a player is on, and what that actually asks of them.
 export default function RoleCard({ role, label, explanation, style, reveal = false }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -79,9 +51,7 @@ export default function RoleCard({ role, label, explanation, style, reveal = fal
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Paper, not the scheme's own card surface — the same fixed fill the badge and the
-    // spine draw on, so a card reads as one paper stock in either scheme rather than as
-    // a themed surface with fixed accents pasted on top.
+    // Paper, not the scheme's own card surface.
     card: {
         flexDirection: 'row',
         borderRadius: 20,
@@ -92,9 +62,7 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hard
     },
 
-    // The role's colour, run down the card's spine rather than across its face — the
-    // card itself stays paper, and identity reads as a single stripe rather than a
-    // block of tinted background fighting the ink text on top of it.
+    // The role's colour, run down the card's spine rather than across its face.
     spine: {
         width: 10,
         flexShrink: 0,
@@ -115,8 +83,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 11
     },
 
-    // The fill's own colour rather than ink, now that ink is the spine's job — a badge
-    // reads as the coin the spine was struck from.
+    // The fill's own colour rather than ink, now that ink is the spine's job.
     badge: {
         width: 36,
         height: 36,

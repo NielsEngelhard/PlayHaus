@@ -43,8 +43,7 @@ func (r upgradeGuestUserRequest) Validate() map[string]string {
 	return problems
 }
 
-// NameMinLength and NameMaxLength bound a display name. The app enforces the
-// same numbers in features/settings/profile.ts -- keep the two in step.
+// NameMinLength and NameMaxLength bound a display name.
 const (
 	NameMinLength = 4
 	NameMaxLength = 16
@@ -57,8 +56,7 @@ type updateUserUsernameRequest struct {
 func (r updateUserUsernameRequest) Validate() map[string]string {
 	problems := map[string]string{}
 
-	// Measured on the trimmed name, since that is what gets stored: padding is
-	// not length, and " " is not a three character name.
+	// Measured on the trimmed name, since that is what gets stored.
 	name := strings.TrimSpace(r.Username)
 
 	switch {
@@ -97,9 +95,7 @@ func (r updateUserLocaleRequest) Validate() map[string]string {
 	return nil
 }
 
-// The three toggles take a pointer so a body that leaves the field out is a
-// complaint rather than a silent "off" -- the two are easy to confuse on the
-// wire, and only one of them is what the player asked for.
+// The three toggles take a pointer so a body that leaves the field out is a complaint rather than a silent "off".
 type updateUserEnableSoundsRequest struct {
 	EnableSounds *bool `json:"enableSounds"`
 }
@@ -159,8 +155,7 @@ func newUserResponse(u *user.User) userResponse {
 	}
 }
 
-// localeFrom prefers an explicit locale in the request body and falls back to
-// the Accept-Language header. i18n.Parse turns anything unusable into Default.
+// localeFrom prefers an explicit locale in the request body and falls back to the Accept-Language header. i18n.Parse turns anything unusable into Default.
 func localeFrom(body string, r *http.Request) i18n.Locale {
 	if strings.TrimSpace(body) != "" {
 		return i18n.Parse(body)
@@ -215,8 +210,7 @@ func updateUserField[T Validator](
 		return
 	}
 
-	// Nothing to say back: the client already knows the value it sent, and /me is
-	// where it re-reads the account.
+	// Nothing to say back: the client already knows the value it sent, and /me is where it re-reads the account.
 	w.WriteHeader(http.StatusNoContent)
 }
 
@@ -262,10 +256,7 @@ func (s *Server) handleUpdateUserEnableVibration(w http.ResponseWriter, r *http.
 		})
 }
 
-// handleUpgradeGuestUser turns the guest whose token this request carries into a
-// real account. Nothing is said back: the session token is unchanged -- the row was
-// updated in place -- so the client already holds everything it needs, and /me is
-// where it re-reads the account.
+// handleUpgradeGuestUser turns the guest whose token this request carries into a real account.
 func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if ok == false {
@@ -287,9 +278,7 @@ func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) 
 		switch {
 		case errors.Is(err, user.ErrEmailTaken):
 			writeError(w, http.StatusConflict, "email already in use")
-		// Already a real account, so there is nothing here to upgrade. A refusal
-		// rather than a quiet success: letting it through would make this a way to
-		// change an email and a password without being asked for the old one.
+		// Already a real account, so there is nothing here to upgrade.
 		case errors.Is(err, user.ErrNotGuest):
 			writeError(w, http.StatusConflict, "account is not a guest")
 		case errors.Is(err, user.ErrNotFound):
@@ -323,9 +312,7 @@ func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// A guest has no password, so Login could never let them back in. The token
-	// minted here is the only way into the account -- lose it and the account
-	// is gone.
+	// A guest has no password, so Login could never let them back in.
 	session, token, err := s.auth.StartSession(r.Context(), u.ID)
 	if err != nil {
 		s.log.Error("start guest session", "err", err)
@@ -362,8 +349,7 @@ func (s *Server) handleCreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Signing up logs you in, so the client does not have to immediately replay
-	// the password it just sent.
+	// Signing up logs you in, so the client does not have to immediately replay the password it just sent.
 	session, token, err := s.auth.StartSession(r.Context(), u.ID)
 	if err != nil {
 		s.log.Error("start session after signup", "err", err)

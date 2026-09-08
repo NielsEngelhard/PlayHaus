@@ -9,39 +9,15 @@ interface Props {
     label: string
     /** Whether it is currently marked. */
     active: boolean
-    /**
-     * Whether the mark is one of several or the only one allowed.
-     *
-     * Only the accessibility role changes: a screen reader has to be told whether taking
-     * this row will drop the mark on another one, and sighted players find that out by
-     * watching it happen. Everything else about the two is the same on purpose — the
-     * rounds put them on consecutive screens, and a row that changed shape between them
-     * would read as a different kind of thing to tap.
-     */
+    // Whether the mark is one of several or the only one allowed.
     mode?: 'check' | 'radio'
-    /**
-     * How many lines the label may run to before it is cut.
-     *
-     * One by default, which is what a quiz answer wants: "3 hours 47 minutes" fits, and a
-     * row that grew would push the next one off a phone. Fake Filler's options are whole
-     * filled-in sentences, though, and a sentence cut after one line is a thing you are
-     * being asked to vote on without being shown — so it raises this rather than keeping
-     * a near-identical row of its own.
-     */
+    // How many lines the label may run to before it is cut.
     lines?: number
     disabled?: boolean
     onPress: () => void
 }
 
-/**
- * One tappable line in a list of things that either landed or did not: a word of round
- * 4's turn, an answer of round 5's question.
- *
- * Both rounds spend most of their screens on exactly this row — ticking off what the
- * guesser got inside the clock, and then offering the leftovers one at a time round the
- * table — so it is one component rather than two sets of near-identical styles drifting
- * apart in two boards.
- */
+// One tappable line in a list of things that either landed or did not.
 export default function PickRow({
     label,
     active,
@@ -78,13 +54,7 @@ export default function PickRow({
     )
 }
 
-/**
- * The row that says "who got this", drawn read-only.
- *
- * The other half of the same pair: `PickRow` is the screen where the decision is made and
- * this is the screen where it is looked at again before the points go out. Round 4 and
- * round 5 both end on a list of these.
- */
+// The row that says "who got this", drawn read-only.
 export function AwardRow({ label, winner, points, nobody }: {
     label: string
     /** Whoever is credited, or null for something nobody got. */
@@ -198,8 +168,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.mint
     },
 
-    // Dashed, so an uncredited row reads as an absence rather than as a player called
-    // "nobody" sitting in the same kind of pill as a real one.
+    // Dashed, so an uncredited row reads as an absence rather than as a player called "nobody" sitting in the same kind of pill as a real one.
     chipNobody: {
         borderStyle: 'dashed'
     },

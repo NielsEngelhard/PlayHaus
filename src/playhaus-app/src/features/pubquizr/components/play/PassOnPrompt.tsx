@@ -16,38 +16,14 @@ interface Props {
     to: Seat
     /** The ruling that got us here is still in the air. */
     busy: boolean
-    /**
-     * Everybody the question can still be put to, `to` first. Only read by the quick
-     * assign panel, which is the one thing here that needs to see past the next name.
-     */
+    // Everybody the question can still be put to, `to` first.
     remaining: Seat[]
-    /**
-     * Offered the shortcut past the rest of the line — see `QuickAssign`. Left out where
-     * there is no line to skip: the finale, and the last seat of any question.
-     */
+    // Offered the shortcut past the rest of the line — see `QuickAssign`.
     onQuickAssign?: (seat: number | null) => void
     onContinue: () => void
 }
 
-/**
- * The beat between one player getting it wrong and the next one being handed the same
- * question.
- *
- * `TurnStrip` already repaints to say who is answering now, but that is a banner at the
- * top of a phone that is mid-hand-off round a table — easy to miss, and the two buttons
- * right underneath it are still Correct and Wrong for whoever has the phone next. So a
- * wrong answer with somebody left to ask does not go straight back to those buttons: it
- * stands them down for this one tap instead, which is the only thing on screen and names
- * both halves of what just happened. Modelled on `ValidateButton` and the round 2 gate
- * in `HotSeatBoard` — a lemon button above a quieter hint line — rather than on
- * `VerdictButtons`' own `HandoffHint`, which is a preview said *before* the press: this
- * is the same fact, but after it, and it is the only thing on the screen rather than a
- * caption under two buttons.
- *
- * With the shortcut on, `QuickAssign`'s own trigger sits beside this button rather than
- * under it — the design puts the two side by side, one row, and the hint line moves
- * under both of them rather than splitting the line with the chip that used to sit here.
- */
+// The beat between one player getting it wrong and the next one being handed the same question.
 export default function PassOnPrompt({
     from,
     to,
@@ -59,8 +35,7 @@ export default function PassOnPrompt({
     const t = useT();
     const styles = useStyles();
 
-    // Nothing to skip past means nothing to offer: with one name left the shortcut is a
-    // longer way of pressing the button beside it.
+    // Nothing to skip past means nothing to offer.
     const shortcut = onQuickAssign !== undefined && remaining.length > 1;
 
     return (
@@ -83,9 +58,7 @@ export default function PassOnPrompt({
                         </AppText>
                     </View>
 
-                    {/* Shrinks rather than pushing the icon off the end: the button gives
-                        up half its width to the shortcut beside it, and a long name still
-                        has to fit in what is left. */}
+                    {/* Shrinks rather than pushing the icon off the end. */}
                     <AppText style={styles.label} numberOfLines={1}>
                         {t('pubquizr.play.passOn', { name: to.name })}
                     </AppText>
@@ -118,12 +91,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 11
     },
 
-    // Lemon, the same accent `VerdictButtons`' own hand-off pill and the round 2 gate
-    // wear — this is another "read this before you tap anything else" moment.
-    //
-    // `flex: 1` rather than a fixed width: alone in the row it fills it exactly as it
-    // always did, and beside the shortcut's fixed 66px square it gives up only the room
-    // that square actually needs.
+    // Lemon, the same accent `VerdictButtons`' own hand-off pill and the round 2 gate wear.
     button: {
         flex: 1,
         minWidth: 0,
@@ -159,8 +127,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // Ink on lemon in both schemes, because the fill is lemon in both. Shrinks ahead of
-    // the avatar and the arrow either side of it, which stay their own fixed size.
+    // Ink on lemon in both schemes, because the fill is lemon in both.
     label: {
         flexShrink: 1,
         minWidth: 0,

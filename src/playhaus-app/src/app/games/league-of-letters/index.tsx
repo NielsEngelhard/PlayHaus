@@ -18,9 +18,7 @@ export default function LeagueOfLettersIndexPage() {
 
     return (
         <GameIndexPage
-            // Broken by hand rather than left to wrap: the design sets the two words on
-            // their own lines, and letting the column decide would move the break as the
-            // viewport changes.
+            // Broken by hand rather than left to wrap.
             name={'League of\nLetters'}
             icon={LEAGUE_OF_LETTERS.icon}
             gradient={LEAGUE_OF_LETTERS.gradient}

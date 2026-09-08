@@ -36,10 +36,7 @@ export default function OneOfUsIndexPage() {
                     navigationUrl={ROUTES.oneOfUsSetupSingleDevice}
                 />
 
-                {/* The game's own violet rather than the house orange this used to
-                    default to — the pair should say which game they belong to. It is the
-                    palest accent in the set, so the glyph on it stays ink in both
-                    schemes and the lit top edge has to work that much harder. */}
+                {/* The game's own violet rather than the house orange this used to default to. */}
                 <ModeCard
                     solid
                     icon='users'

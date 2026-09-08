@@ -26,19 +26,7 @@ interface Props {
 
 const TILE_SIZE = 56;
 
-/**
- * One game, as a row on the home page: its mark, its name, a line about it, and the
- * three facts you need before you can say yes.
- *
- * The card is paper in both schemes and the game's own colour is the shadow under it,
- * which is the only place the accent appears — a row of these should read as one list
- * with three colours in it rather than as three coloured cards. The marks carry the
- * accent themselves, so the hue is never far from the name it belongs to.
- *
- * The facts are set as a plain line rather than as `Chip`s. Three pills in a row on a
- * card this size read as three controls, and none of them is pressable; an icon in front
- * of each is enough to say which fact is which.
- */
+// One game, as a row on the home page.
 export default function GameTeaserCard({
     color,
     gradient,
@@ -60,9 +48,7 @@ export default function GameTeaserCard({
     return (
         <Link href={navigationUrl} asChild>
             <Pressable
-                // Flattened, not an array. `Link asChild` clones this onto the anchor it
-                // renders, and a style array survives that trip as `{0: …, 1: …}` — which
-                // stringifies into nothing and drops the card's whole appearance.
+                // Flattened, not an array.
                 style={StyleSheet.flatten([
                     styles.card,
                     playable ? hardShadow(3, color) : styles.cardDim
@@ -155,8 +141,7 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.backgroundSecondary
     },
-    // A game that cannot be played yet keeps the shape and loses the colour: the shadow
-    // goes back to the scheme's own line, which is what the accent was standing in for.
+    // A game that cannot be played yet keeps the shape and loses the colour.
     cardDim: theme.scheme === 'dark'
         ? {
             backgroundColor: theme.colors.backgroundElement,
@@ -166,8 +151,7 @@ const useStyles = createThemedStyles(theme => ({
             opacity: 0.85,
             ...hardShadow(3, theme.colors.border)
         },
-    // The SVG marks draw their own background, border and glyph, so this is sized and
-    // rounded to match the tile below without repeating either.
+    // The SVG marks draw their own background, border and glyph.
     icon: {
         width: TILE_SIZE,
         height: TILE_SIZE,
@@ -211,8 +195,7 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         borderRadius: 999,
         borderWidth: 1.5,
-        // Ink and lemon in both schemes: the badge is a sticker on the card rather than a
-        // surface of the app's, so it does not follow the canvas.
+        // Ink and lemon in both schemes: the badge is a sticker on the card rather than a surface of the app's.
         borderColor: Brand.ink,
         backgroundColor: Brand.lemon,
         paddingVertical: 1,
@@ -236,8 +219,7 @@ const useStyles = createThemedStyles(theme => ({
         marginTop: 6,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        // The gap between two facts is wider than the one between an icon and its own
-        // text, which is what groups them without a separator having to.
+        // The gap between two facts is wider than the one between an icon and its own text.
         gap: Spacing.two + 2
     },
     fact: {

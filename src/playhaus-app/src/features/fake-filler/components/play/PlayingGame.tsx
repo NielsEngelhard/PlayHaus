@@ -20,18 +20,7 @@ interface Props {
     onFinish: () => void
 }
 
-/**
- * The board: which of the game's screens this player is on, and the band above it.
- *
- * The phase comes off the server rather than being advanced here, which is the one thing
- * that makes this different from a wizard. There are two of them and no third — a
- * finished game is a *status*, not a stage — so what this switches on is the phase, the
- * round the table is voting on, and whether a reveal is being read.
- *
- * The reveal wins over the voting round on purpose. `useGame` holds `votingRound` at null
- * while a reveal is up, because the server has already moved `currentRound` on and
- * following it would replace the payoff with the next prompt in the same frame.
- */
+// The board: which of the game's screens this player is on, and the band above it.
 export default function PlayingGame({ table, userId, onClose, onFinish }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -56,18 +45,10 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
         return <LoadingPage message={t('fakeFiller.play.loading')} />;
     }
 
-    /**
-     * The round the band is counting, which is not always the one the game is on: while
-     * a reveal is up the table has moved on and the header must not.
-     */
+    // The round the band is counting, which is not always the one the game is on.
     const at = reveal?.roundNumber ?? game.currentRound;
 
-    // During writing every round is open at once, so there is no position to draw — the
-    // segments would be a bar with nothing to say. The writing screen counts answers
-    // instead, which is the thing that is actually moving.
-    // `played` rather than `won`/`lost`: a Fake Filler round is not something the table
-    // wins or loses, it is a prompt that has been settled. Everything from the current
-    // round on is still ahead.
+    // During writing every round is open at once, so there is no position to draw.
     const segments: SegmentState[] | undefined = game.phase === 'writing'
         ? undefined
         : Array.from({ length: game.totalRounds }, (_, index): SegmentState => (
@@ -98,16 +79,12 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                     game={game}
                     reveal={reveal}
                     userId={userId}
-                    // Whether there is another prompt behind this one. Read off the reveal
-                    // rather than off `currentRound`, which has already moved.
+                    // Whether there is another prompt behind this one.
                     more={reveal.roundNumber < game.totalRounds}
                     onContinue={() => {
                         table.dismissReveal();
 
-                        // The last round has been read, so the room moves on to the
-                        // result. Driven from here rather than from the game's status,
-                        // because the status flipped the moment the vote landed and the
-                        // reveal had not been read yet.
+                        // The last round has been read, so the room moves on to the result.
                         if (reveal.roundNumber >= game.totalRounds) onFinish();
                     }}
                 />
@@ -120,10 +97,7 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                 />
             ) : votingRound !== null ? (
                 <VotingScreen
-                    // Keyed by the round, so the half-made choice inside it is torn down
-                    // with the round it belonged to. Without this the next prompt opens
-                    // with a slot already marked — the one picked last round, which is a
-                    // different sentence entirely.
+                    // Keyed by the round, so the half-made choice inside it is torn down with the round it belonged to.
                     key={votingRound.id}
                     game={game}
                     round={votingRound}
@@ -131,8 +105,7 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                     onVote={table.castVote}
                 />
             ) : (
-                // Voting, but there is no round to show: the game finished while this
-                // player was somewhere else, so the room's result is what they want.
+                // Voting, but there is no round to show.
                 <LoadingPage message={t('fakeFiller.results.loading')} />
             )}
         </View>
@@ -148,8 +121,7 @@ const useStyles = createThemedStyles(() => ({
     notice: {
         paddingHorizontal: Spacing.four
     },
-    // The board draws its own gutters: this page is chromeless, so it is handed the bare
-    // window. See `useChromeless`.
+    // The board draws its own gutters: this page is chromeless, so it is handed the bare window.
     failed: {
         flex: 1,
         width: '100%',

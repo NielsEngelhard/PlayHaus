@@ -1,9 +1,6 @@
 import { parseTable } from '@/features/one-of-us/one-device-table';
 
-/**
- * The web half of `table-store.ts`. See that file for why this pair exists, and
- * `features/theme/theme-store.web.ts` for why every access is guarded.
- */
+// The web half of `table-store.ts`.
 const TABLE_KEY = 'playhaus_oneofus_table';
 
 function storage(): Storage | null {
@@ -12,8 +9,7 @@ function storage(): Storage | null {
     try {
         return window.localStorage;
     } catch {
-        // Safari in private mode, and any browser with site data blocked, throws on
-        // the property itself.
+        // Safari in private mode, and any browser with site data blocked, throws on the property itself.
         return null;
     }
 }

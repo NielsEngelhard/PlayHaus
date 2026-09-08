@@ -13,14 +13,7 @@ type createOneOfUsOneDeviceGameRequest struct {
 	Locale      *string  `json:"locale"`
 	PlayerNames []string `json:"playerNames"`
 	WordOnly    bool     `json:"wordOnly"`
-	// EnabledRoles is which imposter roles this table left switched on, as the same role
-	// numbers the game deals out -- see oneofus.Role, whose ints are the wire format.
-	//
-	// Absent means the whole set, which is what keeps every client that predates the
-	// setting working. An explicit empty array does not: a caller that sent the field
-	// and put nothing in it is asking for a game with no liars in it, which is a game
-	// nobody can win, and the difference between "did not ask" and "asked for none" is
-	// exactly what the nil check in imposterRolesFrom is for.
+	// EnabledRoles is which imposter roles this table left switched on, as the same role numbers the game deals out.
 	EnabledRoles []int `json:"enabledRoles"`
 }
 
@@ -43,9 +36,7 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 		}
 	}
 
-	// Its own check rather than another arm of the switch above: the two fields describe
-	// different things about the table, and a body that got both wrong should hear about
-	// both rather than about whichever the switch reached first.
+	// Its own check rather than another arm of the switch above.
 	if !oneofus.ImposterRoleSetOK(imposterRolesFrom(req.EnabledRoles)) {
 		problems["enabledRoles"] = "needs at least one imposter role, and only imposter roles"
 	}
@@ -53,13 +44,7 @@ func (req createOneOfUsOneDeviceGameRequest) Validate() map[string]string {
 	return problems
 }
 
-// imposterRolesFrom reads the wire's role numbers as roles, and reads a field that was
-// never sent as the whole set.
-//
-// No filtering and no clamping on the way through -- an unknown number stays an unknown
-// number so that ImposterRoleSetOK can refuse the body. Quietly dropping what it did not
-// recognise would turn a typo in a client into a table dealt from whatever was left,
-// which is the kind of thing that only shows up as somebody's game being strange.
+// imposterRolesFrom reads the wire's role numbers as roles, and reads a field that was never sent as the whole set.
 func imposterRolesFrom(values []int) []oneofus.Role {
 	if values == nil {
 		return oneofus.ImposterRoles()
@@ -103,9 +88,7 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		return
 	}
 
-	// An object rather than the bare id string this used to answer with: every other
-	// endpoint in the API answers with one, and a top-level JSON string is the shape
-	// that cannot grow a second field later without breaking every client.
+	// An object rather than the bare id string this used to answer with.
 	writeJSON(w, http.StatusOK, map[string]any{"gameId": game.ID})
 }
 

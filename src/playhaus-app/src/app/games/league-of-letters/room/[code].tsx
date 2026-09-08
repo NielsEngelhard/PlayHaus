@@ -20,24 +20,7 @@ import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 
-/**
- * A room, joined by its code.
- *
- * Three screens in one, and which one you get is the room's own business: while the lobby
- * is waiting this is the lobby, the moment the host starts — which a guest finds out
- * about through the socket — it becomes the board, and when the last round is decided it
- * becomes the uitslag. The host arrives here already on the second of the three, having
- * started the game on the way over.
- *
- * The ending stays inside this screen rather than moving to a page of its own the way
- * solo's does, and that is the whole reason playing again works: the room's socket is
- * what carries everybody into the next lobby, and a result that navigated away would hang
- * up on the one connection that can deliver the new code.
- *
- * The board is owned here rather than inside `RoomGame` for the same sort of reason — it
- * outlives the board. Fetching it again for the result would be a loading page between
- * the last word and the scoreboard, over a game whose every score is already on screen.
- */
+// A room, joined by its code.
 export default function LeagueOfLettersRoomPage() {
     const { code } = useLocalSearchParams<{ code: string }>();
     const router = useRouter();
@@ -50,28 +33,17 @@ export default function LeagueOfLettersRoomPage() {
 
     /** The board has had its last word and the room is showing the result. */
     const [finished, setFinished] = useState(false);
-    // Stable: the board hangs the wait after the final verdict off this, and a callback
-    // rebuilt on every frame the room delivers would restart that wait forever.
+    // Stable: the board hangs the wait after the final verdict off this.
     const finish = useCallback(() => setFinished(true), []);
 
-    // A different game under the same screen, which is exactly what playing again is:
-    // the route's code changes but the screen behind it is reused, so a result left
-    // standing would be the next game's board replaced by the last game's scoreboard
-    // before a word had been played. Adjusted during render, so it is never painted.
+    // A different game under the same screen, which is exactly what playing again is.
     const [showing, setShowing] = useState(gameId);
     if (showing !== gameId) {
         setShowing(gameId);
         setFinished(false);
     }
 
-    /**
-     * The host opened the next room, so everybody still here goes to it — the host on the
-     * strength of their own request, the guests on the announcement it made. One path,
-     * because `useLobby` ends up holding the same code either way.
-     *
-     * `replace`, not `push`: the room that has just been played out is not somewhere the
-     * back button should be able to return to.
-     */
+    // The host opened the next room, so everybody still here goes to it.
     const { rematchCode } = state;
     useEffect(() => {
         if (rematchCode === null || rematchCode === code) return;
@@ -79,10 +51,7 @@ export default function LeagueOfLettersRoomPage() {
         router.replace(ROUTES.leagueOfLettersRoom(rematchCode) as RelativePathString);
     }, [rematchCode, code, router]);
 
-    // The host stopped the game, or shut the room out from under everybody waiting in
-    // it. Checked ahead of the board, because that is where the people who need telling
-    // are sitting: the board reads the same lobby but has no lobby screen of its own, so
-    // without this a stopped game is a grid that quietly stops answering.
+    // The host stopped the game, or shut the room out from under everybody waiting in it.
     if (state.closed) {
         return (
             <RoomClosedNotice
@@ -103,8 +72,7 @@ export default function LeagueOfLettersRoomPage() {
     return (
         <LobbyView
             state={state}
-            // Nothing to do: this screen is already the room the game started in, and the
-            // status it started with is what swaps the board in above.
+            // Nothing to do: this screen is already the room the game started in.
             onStarted={() => { }}
         />
     )
@@ -122,11 +90,7 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
     const styles = useStyles();
     const t = useT();
 
-    // The claim lives here rather than on the page: a board has to fit the window exactly
-    // and draws its own header, and neither the lobby nor the uitslag does — they are
-    // columns of cards that want the ordinary scrolling page, the bottom bar and the app's
-    // header. A hook cannot be called for one and not the others, so the board is its own
-    // component.
+    // The claim lives here rather than on the page.
     useChromeless();
 
     const { user } = useAuth();
@@ -165,8 +129,7 @@ function RoomGame({ table, onFinish }: RoomGameProps) {
                 myTurn={myTurn}
                 onTyping={onTyping}
                 typing={typing}
-                // Only while there is somewhere to go on to. The last round's verdict is
-                // the end of the game, and `onFinish` is where that leads instead.
+                // Only while there is somewhere to go on to.
                 onNextRound={gameOver ? undefined : nextRound}
                 onFinish={onFinish}
             />
@@ -182,20 +145,14 @@ interface RoomResultsProps {
     error: TranslationKey | null
 }
 
-/**
- * The end of the game, still inside the room.
- *
- * No viewport claim: a scoreboard is an ordinary page and wants the scroll and the
- * bottom bar back, and unmounting the board is what gives them up.
- */
+// The end of the game, still inside the room.
 function RoomResults({ table, isHost, onPlayAgain, playingAgain, error }: RoomResultsProps) {
     const { user } = useAuth();
     const t = useT();
 
     const { game, online } = table;
 
-    // Only while the board is still loading, which by this point it is not: the lobby
-    // does not reach the result without having played a game on screen first.
+    // Only while the board is still loading, which by this point it is not.
     if (game === null) {
         return <LoadingPage message={t('lol.results.loading')} />;
     }
@@ -220,9 +177,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: Spacing.two
     },
 
-    // The same, plus the gutters the board lays down for itself: this branch draws no
-    // board, and the page it is on has claimed the chrome and so is handed the bare
-    // window. See `useChromeless`.
+    // The same, plus the gutters the board lays down for itself.
     failed: {
         flex: 1,
         width: '100%',

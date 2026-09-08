@@ -173,8 +173,7 @@ func (s *Server) handleGetSoloGame(w http.ResponseWriter, r *http.Request) {
 
 	gameID, err := uuid.Parse(r.PathValue("gameID"))
 	if err != nil {
-		// An unparseable id cannot name a game, and saying so is the same
-		// answer as "not yours".
+		// An unparseable id cannot name a game, and saying so is the same answer as "not yours".
 		writeError(w, http.StatusNotFound, "game not found")
 		return
 	}

@@ -9,22 +9,11 @@ interface Props {
     label: string,
     description: string
     onChange: (value: boolean) => void,
-    /**
-     * Drops the row's own vertical padding, for a container that already spaces the
-     * blocks inside it — `SettingsPageBase` rules its sections apart and pads them
-     * itself, and a row padding itself again inside one sits low in its own band.
-     */
+    // Drops the row's own vertical padding, for a container that already spaces the blocks inside it.
     flush?: boolean
 }
 
-/**
- * A named switch with a line saying what it does: label and description on the left,
- * the toggle on the right.
- *
- * There used to be an icon tile in front of the text, but a glyph in a box is one more
- * outlined object on a page that now keeps its outlines for the things you touch — the
- * words carry the meaning, and the switch's own colour carries whose setting it is.
- */
+// A named switch with a line saying what it does: label and description on the left, the toggle on the right.
 export default function ToggleRow({ value, label, description, onChange, flush = false }: Props) {
     const styles = useStyles();
 
@@ -61,9 +50,7 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0
     },
-    // A notch under the app's body size, and the line beneath it quieter still. The
-    // switch beside them is a 66pt stamp now: at the old scale the row read as two things
-    // shouting, where the setting's name only has to be findable.
+    // A notch under the app's body size, and the line beneath it quieter still.
     title: {
         fontSize: 15,
         lineHeight: 15 * 1.2,

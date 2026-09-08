@@ -17,41 +17,22 @@ interface GameState {
     nextRound: () => void
 }
 
-/**
- * Loads one game and plays it.
- *
- * There is no polling. Solo is the only mode this drives, and a solo game only
- * ever changes because its one player did something — so the answer to a guess is
- * already the newest state there is, and a timer asking the server again would
- * find nothing new every time.
- */
+// Loads one game and plays it.
 export function useGame(gameId: string | undefined): GameState {
     const { user, status } = useAuth();
     const [game, setGame] = useState<Game | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
-    /**
-     * Which round the board is showing.
-     *
-     * It lags `game.currentRound` on purpose. Ending a round advances the server
-     * immediately, but the player has not seen the verdict yet — swapping the
-     * board to a fresh puzzle at that moment would take the answer away in the
-     * same frame it was revealed. `nextRound` is what catches it up.
-     */
+    // Which round the board is showing.
     const [viewing, setViewing] = useState(1);
 
-    // Nothing may touch state after unmount, and `reload` can fire again while an
-    // earlier load is still in the air.
+    // Nothing may touch state after unmount, and `reload` can fire again while an earlier load is still in the air.
     const mounted = useRef(true);
     useEffect(() => {
         mounted.current = true;
         return () => { mounted.current = false; };
     }, []);
 
-    /**
-     * Every state change happens after the `await`, never on the way in — the
-     * effect below calls this during render's commit, and a `setState` before the
-     * first suspension point would be a synchronous cascading render.
-     */
+    // Every state change happens after the `await`, never on the way in.
     const load = useCallback(async () => {
         if (!gameId) return;
 
@@ -70,19 +51,14 @@ export function useGame(gameId: string | undefined): GameState {
         }
     }, [gameId]);
 
-    // Only a signed-in session can read a game: the API answers 404 for a game you
-    // do not own, and while signed out the auth gate is standing over this page
-    // anyway.
+    // Only a signed-in session can read a game.
     const signedIn = status === 'signedIn';
     const userId = user?.id ?? null;
 
     useEffect(() => {
         if (!signedIn) return;
 
-        // set-state-in-effect: fetching on mount and storing the result is the whole
-        // job, and there is no query library here to hand it to. State is only
-        // written after the request resolves, so nothing cascades in the render this
-        // effect belongs to. `useProfile` loads the same way.
+        // set-state-in-effect: fetching on mount and storing the result is the whole job.
         // eslint-disable-next-line react-hooks/set-state-in-effect
         void load();
     }, [signedIn, userId, load]);
@@ -95,14 +71,11 @@ export function useGame(gameId: string | undefined): GameState {
 
         guessLandedHaptic(result);
 
-        // Applied rather than refetched. The response carries the guess and the
-        // little around it that moved, and the rest of the game is already here —
-        // asking for all of it again would send back what we just sent up.
+        // Applied rather than refetched.
         setGame(current => {
             if (current === null || current.id !== gameId) return current;
 
-            // The guess was played against whichever round the game was on when it
-            // was sent, which is the one it has not advanced past yet.
+            // The guess was played against whichever round the game was on when it was sent.
             const played = current.currentRound;
 
             return {
@@ -114,8 +87,7 @@ export function useGame(gameId: string | undefined): GameState {
                     ? {
                         ...round,
                         guesses: [...round.guesses, result.guess],
-                        // Arrives only when the round is over, and its presence is
-                        // what the board reads as "this one is done".
+                        // Arrives only when the round is over, and its presence is what the board reads as "this one is done".
                         word: result.word ?? round.word
                     }
                     : round)
@@ -126,15 +98,12 @@ export function useGame(gameId: string | undefined): GameState {
     const reload = useCallback(() => {
         if (!signedIn) return;
 
-        // Clearing the error here rather than inside `load` is what puts the loading
-        // state back up, so a retry visibly does something. Safe from an event
-        // handler, which is not what the effect rule is about.
+        // Clearing the error here rather than inside `load` is what puts the loading state back up.
         setError(null);
         void load();
     }, [signedIn, load]);
 
-    // What was fetched is only this game if it is the one that was asked for —
-    // otherwise the previous game would flash on screen while the new one loads.
+    // What was fetched is only this game if it is the one that was asked for.
     const current = game?.id === gameId ? game : null;
     const visibleError = signedIn ? error : null;
     const round = current === null ? null : roundOf(current, viewing) ?? null;

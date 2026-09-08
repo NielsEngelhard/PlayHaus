@@ -28,18 +28,7 @@ interface Props {
     error: TranslationKey | null
 }
 
-/**
- * How the game ends: the table, ranked, and the one thing left to decide.
- *
- * Part of the room rather than a page of its own, and that is load-bearing. The room's
- * socket is what carries everybody into the next lobby, and a result that navigated away
- * would hang up on the only connection that can deliver the new code — every guest would
- * have to be given it by hand. So the room shows another screen instead of sending
- * anybody anywhere.
- *
- * Which is also why the guests get a sentence rather than a button: their part is to stay
- * put, and the screen has to say so, or sitting still looks like being stuck.
- */
+// How the game ends: the table, ranked, and the one thing left to decide.
 export default function Results({
     players,
     userId,
@@ -52,13 +41,10 @@ export default function Results({
     const styles = useStyles();
     const t = useT();
 
-    // Ranked the same way `FinalScoreboard` ranks the list it draws. This is only for the
-    // line above it, which needs to name the top of that list.
+    // Ranked the same way `FinalScoreboard` ranks the list it draws.
     const ranked = [...players].sort((a, b) => b.score - a.score);
     const best = ranked[0];
-    // A shared top score is nobody's win. Said as a draw rather than handed to whoever the
-    // sort happened to put first — and a likelier outcome here than in a game with a
-    // clock, since every round pays out in single points.
+    // A shared top score is nobody's win.
     const drawn = ranked.length > 1 && ranked[1].score === best?.score;
     const youWon = !drawn && best?.userId === userId;
 
@@ -75,9 +61,7 @@ export default function Results({
             <View style={styles.body}>
                 <SimpleTextHero title={t('fakeFiller.results.title')} description={outcome} />
 
-                {/* The live rings matter here in a way they would not on a solo result:
-                    the host is about to decide whether to play again with the same
-                    people, and this is where they see who is still on the other end. */}
+                {/* The live rings matter here in a way they would not on a solo result. */}
                 <FinalScoreboard players={players} userId={userId} online={online} />
 
                 {isHost ? (
@@ -92,8 +76,7 @@ export default function Results({
                             onPress={onPlayAgain}
                         />
 
-                        {/* Under the button rather than in its place: the room is still
-                            there and pressing again is a perfectly good next move. */}
+                        {/* Under the button rather than in its place: the room is still there and pressing again is a perfectly good next move. */}
                         {error !== null && (
                             <AppText style={styles.error}>{t(error)}</AppText>
                         )}
@@ -121,8 +104,7 @@ export default function Results({
                 />
             </View>
 
-            {/* Last, so it falls in front of everything. It takes no room and no touches,
-                so the buttons underneath keep working while it comes down. */}
+            {/* Last, so it falls in front of everything. */}
             <Confetti active={youWon} />
         </View>
     )

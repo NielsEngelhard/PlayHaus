@@ -44,10 +44,7 @@ export default function EliminationScreen({
                     headline={person.name}
                 />
 
-                {/* Orange for an imposter caught, lemon for the nitwit, mint for a
-                    civilian lost — the same three colours the reveal dressed the roles
-                    in. The colour is the headline: it says which way the round went
-                    before the sentence under it has been read. */}
+                {/* Orange for an imposter caught, lemon for the nitwit, mint for a civilian lost. */}
                 <View
                     style={[
                         styles.verdict,

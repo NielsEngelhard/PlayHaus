@@ -12,22 +12,14 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
 
-/**
- * The value for "nobody got it".
- *
- * A sentinel rather than a nullable value because the grid below keys its tiles on a
- * string, and it has to be a string no seat number can ever be.
- */
+// The value for "nobody got it".
 const NOBODY = 'nobody';
 
 /** Nothing chosen yet. */
 const UNCHOSEN = '';
 
 interface Props {
-    /**
-     * Everybody the question can still be put to, in the order it would reach them,
-     * starting with whoever is being asked right now.
-     */
+    // Everybody the question can still be put to, in the order it would reach them, starting with whoever is being asked right now.
     remaining: Seat[]
     /** A ruling is already in the air. */
     busy: boolean
@@ -35,30 +27,7 @@ interface Props {
     onAssign: (seat: number | null) => void
 }
 
-/**
- * The shortcut for a table that already knows how the round works: ask everyone in a
- * circle out loud, then say who got it.
- *
- * The long way round — Wrong, hand-off, Wrong, hand-off — is what teaches the pass-on
- * rule, so it stays, and it stays the default. But a quizmaster who has played this
- * before is not learning anything from six taps; they have already been round the table
- * by the time the phone catches up. So this sits beside the hand-off rather than
- * replacing it, and it says what it is before it does anything: the panel is the whole
- * explanation, because somebody meeting this button has to be told that skipping people
- * marks them wrong, which is exactly what happened out loud.
- *
- * It is not a different move. What it sends is the settled turn the long way round would
- * have sent, down to the attempt row per player — see `HotSeatBoard.handleQuickAssign`.
- *
- * The icon is `ClosestBoard`'s "pick instead" switch's own `zap`: that is already this
- * game's mark for a shortcut past the ordinary flow, and there is no reason for the
- * second one to reach for something else.
- *
- * The grid is drawn in `remaining`'s own order, which already *is* the order this
- * question would reach each of them the long way round — see `remainingSeatsOf` in
- * `hot-seat.ts`. The numbered badge on each tile says so, rather than leaving a
- * quizmaster who has just gone round the table to line that up in their head.
- */
+// The shortcut for a table that already knows how the round works.
 export default function QuickAssign({ remaining, busy, onAssign }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -71,8 +40,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
 
     function close() {
         setOpen(false);
-        // Cleared on the way out rather than on the way in, so a panel reopened after a
-        // refused ruling does not still be holding the answer that was refused.
+        // Cleared on the way out rather than on the way in.
         setChosen(UNCHOSEN);
     }
 
@@ -85,13 +53,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
 
     return (
         <>
-            {/*
-              * The square lemon button the design puts beside the row's main action,
-              * down to the bolt-over-label stack — not the plain text chip this used to
-              * be. Lemon rather than mint for the same reason `HotSeatBoard`'s own gate
-              * button is: mint already means "yes, this one" everywhere else, and this
-              * is an offer, not a verdict.
-              */}
+            {/* The square lemon button the design puts beside the row's main action, down to the bolt-over-label stack. */}
             <PopPressable
                 onPress={() => setOpen(true)}
                 disabled={busy}
@@ -105,11 +67,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
                 <AppText style={styles.triggerLabel}>{t('pubquizr.play.quickAssign')}</AppText>
             </PopPressable>
 
-            {/*
-              * Dismissable: this is an offer, not a decision that has to be made. Backing
-              * out lands back on the hand-off with nothing changed, which is the flow it
-              * was only ever a shortcut for.
-              */}
+            {/* Dismissable: this is an offer, not a decision that has to be made. */}
             <PopupModal
                 visible={open}
                 title={t('pubquizr.play.quickAssignTitle')}
@@ -140,9 +98,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
                                     {seat.name}
                                 </AppText>
 
-                                {/* Says what `remaining`'s own order already means: this is
-                                    where this seat falls in the circle, starting from
-                                    whoever is being asked right now. */}
+                                {/* Says what `remaining`'s own order already means. */}
                                 <View style={styles.badge}>
                                     <AppText style={styles.badgeText}>{index + 1}</AppText>
                                 </View>
@@ -164,11 +120,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
                     <AppText style={styles.nobodyText}>{t('pubquizr.play.quickAssignNobody')}</AppText>
                 </Pressable>
 
-                {/* Locked until somebody is actually named. A stray tap on a panel that
-                    opened with the first player already selected would score the
-                    question to whoever happened to be there. Named once somebody is,
-                    rather than left as a generic verb, so the last thing tapped before
-                    a score gets written down says exactly whose. */}
+                {/* Locked until somebody is actually named. */}
                 <TextButton
                     text={chosenSeat
                         ? t('pubquizr.play.quickAssignConfirmNamed', { name: chosenSeat.name })
@@ -191,9 +143,7 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fixed and square, the way the design's own "Snel" button sits beside a full-width
-    // one — the icon-over-label stack only reads at this shape, not stretched to fit a
-    // chip's worth of width.
+    // Fixed and square, the way the design's own "Snel" button sits beside a full-width one.
     trigger: {
         width: 66,
         height: 66,
@@ -257,8 +207,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // Modelled on `SeatRing`'s own chosen-mark badge, flipped to the tile's top-right
-    // corner and holding a number instead of a check.
+    // Modelled on `SeatRing`'s own chosen-mark badge, flipped to the tile's top-right corner and holding a number instead of a check.
     badge: {
         position: 'absolute',
         top: -6,
@@ -289,8 +238,7 @@ const useStyles = createThemedStyles(theme => ({
         borderStyle: 'dashed',
         borderColor: theme.colors.borderDashed
     },
-    // Solid and flatly filled rather than mint: this is a neutral pick, not a correct
-    // one, and the grid's own selected colour would say the opposite of what it means.
+    // Solid and flatly filled rather than mint.
     nobodySelected: {
         borderStyle: 'solid',
         borderColor: theme.colors.border,

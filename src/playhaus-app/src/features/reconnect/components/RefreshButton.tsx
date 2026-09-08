@@ -6,14 +6,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
-/**
- * Where the control is standing.
- *
- * `icon` is the one in the "still running" header — a list is already on screen, the
- * refresh is housekeeping beside it, and a word there would be louder than the section
- * it belongs to. `pill` is the one on the empty card, where reloading is the only thing
- * left to do and so has to say what it is.
- */
+// Where the control is standing.
 type Variant = 'icon' | 'pill';
 
 interface Props {
@@ -24,12 +17,7 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * Ask the server again.
- *
- * It goes half-strength for a moment after every press — long enough that leaning on it
- * does nothing, quiet enough that it never explains itself.
- */
+// Ask the server again.
 export default function RefreshButton({
     onPress,
     variant = 'icon',
@@ -88,8 +76,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         paddingVertical: 8,
         paddingHorizontal: 14,
-        // Light keeps the hard lift its chrome has; dark leaves this flat, saving the
-        // coloured shadows for the cards that are the point of the page.
+        // Light keeps the hard lift its chrome has.
         ...theme.shadows.hardSmall
     },
     // The same half-strength every other blocked control in the app wears.

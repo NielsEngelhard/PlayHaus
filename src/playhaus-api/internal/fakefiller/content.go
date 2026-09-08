@@ -12,14 +12,10 @@ import (
 // ContentDivider separates a prompt from its answers, and the answers from each other.
 const ContentDivider = "---"
 
-// Placeholder is the blank, and it is the single source of truth for the spelling: the
-// parser counts these, the round remembers how many it found, and the app fills them in. A
-// data file that spells it differently has no blanks at all as far as this package is
-// concerned, so changing it here is the whole of changing it.
+// Placeholder is the blank, and it is the single source of truth for the spelling.
 const Placeholder = "[FILL]"
 
-// GameInputLine is one prompt as it comes off disk: the sentence with its blanks still in,
-// and -- in the mode that has one -- the real answer, one value per blank.
+// GameInputLine is one prompt as it comes off disk.
 type GameInputLine struct {
 	Line    string
 	Answers []string
@@ -30,11 +26,6 @@ type GameInputLine struct {
 var contentFiles embed.FS
 
 // GetContentLines draws `amount` distinct prompts for a locale and mode.
-//
-// It is an error to ask for more than the file holds. The caller is dealing a game whose
-// round count is fixed by the number of players, so quietly returning four prompts for a
-// six-player table would not produce a smaller game -- it would produce a broken one, two
-// players holding prompts that do not exist.
 func GetContentLines(locale i18n.Locale, mode FFGameMode, amount int) ([]GameInputLine, error) {
 	filePath := buildDataFilePath(locale, mode)
 
@@ -146,8 +137,7 @@ func parseAnswerLine(line string) (GameInputLine, error) {
 		)
 	}
 
-	// The answers are positional -- the nth answer fills the nth blank -- so a count that
-	// does not line up is a data file that would silently render the wrong sentence.
+	// The answers are positional -- the nth answer fills the nth blank -- so a count that does not line up is a data file that would silently render the wrong sentence.
 	if blanks != len(answers) {
 		return GameInputLine{}, fmt.Errorf(
 			"answer line has %d placeholders but %d answers: %s",
@@ -181,11 +171,6 @@ func splitAnswers(answerText string) []string {
 }
 
 // buildDataFilePath names the file a locale and mode are read out of.
-//
-// The mode goes in as it stands. This template was borrowed from internal/oneofus, whose
-// modes are singular ("word") against plural files ("words") and so ends in an "s" that
-// this game must not have -- Fake Filler's modes are already plural, and the extra letter
-// asked for en-factss.txt, a file that has never existed.
 func buildDataFilePath(lang i18n.Locale, mode FFGameMode) string {
 	const base = "data/[LANGUAGE]/[LANGUAGE]-[LIST_TYPE].txt"
 

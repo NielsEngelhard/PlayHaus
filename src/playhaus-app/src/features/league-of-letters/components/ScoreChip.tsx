@@ -10,15 +10,7 @@ interface Props {
     score: number
 }
 
-/**
- * The player's own score, next to the board rather than only in the scoreboard below it —
- * see `PlayerScoreRow`, which already carries the same number but only once the player
- * looks past the grid to find their own row in it.
- *
- * No name on this chip, unlike `PlayerScoreRow`'s and `SoloStatusRow`'s: both of those are
- * read alongside everyone else's row and need one to tell rows apart, where this one only
- * ever means "you".
- */
+// The player's own score, next to the board rather than only in the scoreboard below it.
 export default function ScoreChip({ score }: Props) {
     const styles = useStyles();
     const t = useT();

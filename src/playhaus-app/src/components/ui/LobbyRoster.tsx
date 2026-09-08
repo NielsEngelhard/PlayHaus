@@ -8,13 +8,7 @@ import { View } from "react-native";
 
 interface Props {
     players: LobbySeat[],
-    /**
-     * How many the room holds, for the count beside the label.
-     *
-     * A prop rather than a constant read off one game's API: the ceiling is the room's
-     * own — six for League of Letters, nine for Fake Filler — and a roster that imported
-     * one of them would quietly tell the other game's guests the wrong number.
-     */
+    // How many the room holds, for the count beside the label.
     maxPlayers: number,
     /** Whose room this is. Marked, because they are who everyone here is waiting on. */
     hostId: string,
@@ -24,13 +18,7 @@ interface Props {
 
 const AVATAR_SIZE = 32;
 
-/**
- * Who else is in the room, on a guest's screen.
- *
- * One column rather than the host's two, and no free seats: a guest cannot invite anyone,
- * so a row of gaps would only be a list of things they are not allowed to do. What they
- * do want is the roll call — that the people they came in with are actually here.
- */
+// Who else is in the room, on a guest's screen.
 export default function LobbyRoster({ players, maxPlayers, hostId, userId }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -80,10 +68,7 @@ function PlayerRow({ player, host, you }: PlayerRowProps) {
 
             <AppText style={styles.name} numberOfLines={1}>{player.name}</AppText>
 
-            {/*
-              * The host's tag is filled and yours is outlined: one of them is the answer
-              * to "who is this screen waiting for", the other is only orientation.
-              */}
+            {/* The host's tag is filled and yours is outlined. */}
             {host && (
                 <View style={styles.hostTag}>
                     <AppText style={styles.hostTagText}>{t('common.host')}</AppText>

@@ -30,18 +30,7 @@ interface Props {
     error: TranslationKey | null
 }
 
-/**
- * How a shared game ends: the table, ranked, and the one thing left to decide.
- *
- * Deliberately part of the room rather than a page of its own, which is the difference
- * between this and the solo uitslag. The room's socket is what carries everybody into the
- * next lobby, and a result that navigated away from the room would hang up on the only
- * connection that can deliver that — every guest would have to be given the new code by
- * hand. So the room shows a third screen instead of sending anybody anywhere.
- *
- * Which is also why the guests get a sentence rather than a button: their part is to stay
- * put, and the screen has to say so, or sitting still looks like being stuck.
- */
+// How a shared game ends: the table, ranked, and the one thing left to decide.
 export default function MultiplayerResults({
     game,
     userId,
@@ -56,12 +45,10 @@ export default function MultiplayerResults({
 
     const players = game.players ?? [];
 
-    // Ranked the same way `FinalScoreboard` ranks the list it draws. This is only for
-    // the line above it, which needs to name the top of that list.
+    // Ranked the same way `FinalScoreboard` ranks the list it draws.
     const ranked = [...players].sort((a, b) => b.score - a.score);
     const best = ranked[0];
-    // A shared top score is nobody's win. Said as a draw rather than handed to whoever
-    // the sort happened to put first.
+    // A shared top score is nobody's win.
     const drawn = ranked.length > 1 && ranked[1].score === best?.score;
     const youWon = !drawn && best?.userId === userId;
 
@@ -78,9 +65,7 @@ export default function MultiplayerResults({
             <View style={styles.body}>
                 <SimpleTextHero title={t('lol.lobby.results.title')} description={outcome} />
 
-                {/* The live rings matter here in a way they do not on a solo result: the
-                    host is about to decide whether to play again with the same people,
-                    and this is where they can see who is still on the other end. */}
+                {/* The live rings matter here in a way they do not on a solo result. */}
                 <FinalScoreboard players={players} userId={userId} online={online} />
 
                 {isHost ? (
@@ -93,8 +78,7 @@ export default function MultiplayerResults({
                             onPress={onPlayAgain}
                         />
 
-                        {/* Under the button rather than in its place: the lobby is still
-                            there and pressing again is a perfectly good next move. */}
+                        {/* Under the button rather than in its place: the lobby is still there and pressing again is a perfectly good next move. */}
                         {error !== null && (
                             <AppText style={styles.error}>{t(error)}</AppText>
                         )}
@@ -122,8 +106,7 @@ export default function MultiplayerResults({
                 />
             </View>
 
-            {/* Last, so it falls in front of everything. It takes no room and no touches,
-                so the buttons underneath keep working while it comes down. */}
+            {/* Last, so it falls in front of everything. */}
             <Confetti active={youWon} />
         </View>
     )
@@ -145,8 +128,7 @@ const useStyles = createThemedStyles(theme => ({
     error: {
         fontSize: FontSizes.sm,
         fontWeight: 700,
-        // The text red rather than the fill red: `#E31029` vibrates on the dark canvas,
-        // and this is a line to read rather than an alarm.
+        // The text red rather than the fill red.
         color: theme.colors.destructiveText
     },
     hint: {
@@ -166,8 +148,7 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: 21,
         color: theme.colors.textSecondary
     },
-    // Trimmed back from the margin the button carries by default: the gap on `body` is
-    // already holding it off whatever is above it.
+    // Trimmed back from the margin the button carries by default.
     back: {
         marginVertical: 0,
         alignSelf: 'stretch'

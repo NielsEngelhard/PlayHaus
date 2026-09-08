@@ -8,10 +8,7 @@ import { type StyleProp, type ViewStyle } from "react-native";
 interface Props {
     text: string
     onPress: () => void
-    /**
-     * `false` (the default) sizes the button to its label. `true` stretches it across
-     * the parent, label still centred.
-     */
+    // `false` (the default) sizes the button to its label.
     fullWidth?: boolean
     disabled?: boolean
     /** Defaults to `secondary`, the fill `theme.solidButton` already carries. */
@@ -55,8 +52,7 @@ export default function TextButton({
 
 const useStyles = createThemedStyles(theme => ({
     button: theme.solidButton,
-    // A column parent stretches its children by default, so fitting the label means
-    // opting out of that rather than doing nothing.
+    // A column parent stretches its children by default.
     fitText: {
         alignSelf: 'flex-start',
         flexShrink: 0

@@ -110,9 +110,7 @@ export default function AnswerReveal({
                         onPress={onHidePressed}
                         accessibilityRole="button"
                         accessibilityLabel={t('pubquizr.play.closest.hide')}
-                        // Hit slop rather than a taller pill: the control has to clear 44
-                        // points to be hittable and the bar it sits in is 46 tall, so the
-                        // room has to come from around it rather than from inside it.
+                        // Hit slop rather than a taller pill.
                         hitSlop={10}
                         style={styles.hide}
                     >
@@ -141,8 +139,7 @@ const useStyles = createThemedStyles(theme => ({
         padding: 15,
         borderRadius: 20,
         borderWidth: theme.borderWidth,
-        // Ink on ink in the dark scheme would be an invisible edge, so the border
-        // steps up to the scheme's own rather than staying the slab's colour.
+        // Ink on ink in the dark scheme would be an invisible edge.
         borderColor: theme.scheme === 'dark' ? theme.colors.border : Brand.ink,
         backgroundColor: Brand.ink
     },
@@ -159,8 +156,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12
     },
 
-    // Lemon on the ink slab: the one warm thing on the covered panel, so the tap
-    // target reads as an invitation rather than as a disabled block.
+    // Lemon on the ink slab: the one warm thing on the covered panel.
     eye: {
         width: 34,
         height: 34,
@@ -222,8 +218,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 10
     },
 
-    // Lemon, and a good deal smaller than the words beside it. It is the index rather
-    // than the answer: the thing you find the row by, not the thing you read out.
+    // Lemon, and a good deal smaller than the words beside it.
     letter: {
         flexShrink: 0,
         fontSize: 15,
@@ -251,8 +246,7 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12,
         fontWeight: 600,
         lineHeight: 12 * 1.4,
-        // Quieter than the answer without being a second colour: the same paper,
-        // stepped back, so the two read as one thing said twice.
+        // Quieter than the answer without being a second colour.
         color: 'rgba(254, 251, 248, 0.6)'
     },
 

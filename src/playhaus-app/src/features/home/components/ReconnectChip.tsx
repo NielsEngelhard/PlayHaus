@@ -7,13 +7,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { Link, RelativePathString } from "expo-router";
 import { Pressable } from "react-native";
 
-/**
- * A quiet way to `/reconnect`, for someone who already has a game open somewhere and
- * would otherwise have no reason to notice the bottom bar's own tab for it.
- *
- * Deliberately just a bordered pill, not a card: this page's cards are for starting
- * something new, and a returning player isn't doing that.
- */
+// A quiet way to `/reconnect`, for someone who already has a game open somewhere and would otherwise have no reason to notice the bottom bar's own tab for it.
 export default function ReconnectChip() {
     const theme = useTheme();
     const styles = useStyles();

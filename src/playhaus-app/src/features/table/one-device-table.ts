@@ -1,16 +1,4 @@
-/**
- * A row of names typed into one phone, and what can be wrong with it.
- *
- * Every game played round one device opens on the same form and asks the same three
- * questions of it — are there enough people, are there too many, has somebody been typed
- * in twice. Only the answers to the first two differ: a pub quiz seats eight, One of Us
- * seats nine, and whatever comes next will want its own number.
- *
- * So the limits are arguments and the verdict is a tag rather than a line of copy. Each
- * game keeps its own `one-device-table.ts` next to its own translation keys and turns
- * the tag into something to read there — which is the half that genuinely cannot be
- * shared, because `TranslationKey` is checked against the catalogue at the call site.
- */
+// A row of names typed into one phone, and what can be wrong with it.
 
 export interface TableLimits {
     min: number
@@ -46,14 +34,7 @@ export function tableProblemOf(names: string[], limits: TableLimits): TableProbl
     return null;
 }
 
-/**
- * Reads a stored table back into a row of names, or `null` when there is nothing usable
- * there.
- *
- * Parsed defensively rather than cast. The stored string outlives any one build, and a
- * shape that used to be written and no longer is has to read as "no table remembered"
- * instead of being handed to the form as seats it cannot draw.
- */
+// Reads a stored table back into a row of names, or `null` when there is nothing usable there.
 export function parseStoredTable(stored: string | null | undefined, maxPlayers: number): string[] | null {
     if (!stored) return null;
 

@@ -73,15 +73,7 @@ export default function WordRevealScreen({
             <View style={styles.screen}>
                 <AppText style={styles.name}>{person.name}</AppText>
 
-                {/* The name stays pinned under the band — it is the one thing on this
-                    screen that has to be readable before the phone is even level — and
-                    the panel takes the middle. Whoever has just been handed the phone is
-                    holding it flat and low, and a tap target at the very top of a screen
-                    in that grip is the hardest place on it to reach.
-
-                    Centred as a block, so the card that opens under the word grows away
-                    from the middle in both directions rather than shoving the whole
-                    reveal upwards the moment it is tapped. */}
+                {/* The name stays pinned under the band. */}
                 <View style={styles.middle}>
                     <AnswerReveal
                         key={person.seat}
@@ -147,10 +139,7 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -1.2,
         color: theme.colors.text
     },
-    // Takes every point the name and the footer leave behind, and centres the panel in
-    // it. `flex: 1` rather than a margin, so it also gives way when there is not enough
-    // room for all three -- the footer holds the only way off this screen and must never
-    // be the thing that gets pushed off the bottom edge.
+    // Takes every point the name and the footer leave behind, and centres the panel in it.
     middle: {
         flex: 1,
         justifyContent: 'center'

@@ -13,17 +13,7 @@ import { View } from "react-native";
 /** How often the countdown redraws. The minute is the smallest thing it shows. */
 const TICK_MS = 1000;
 
-/**
- * Today's word, at the top of the solo page — one puzzle everybody gets, and a list of
- * who has already had a go at it.
- *
- * **Nothing behind it yet.** There is no daily word on the API and no friend activity to
- * read, so pressing it logs and goes nowhere, and the rows come from
- * `mock-solo-stats.ts`. What is real is the countdown: a card whose clock is frozen at
- * whatever time the mockup was exported reads as broken rather than as unfinished, and
- * counting down to the next local midnight costs nothing and is the behaviour the real
- * card will want anyway.
- */
+// Today's word, at the top of the solo page.
 export default function WordOfTheDayCard() {
     const styles = useStyles();
     const t = useT();
@@ -41,8 +31,7 @@ export default function WordOfTheDayCard() {
             <View style={styles.friends}>
                 {MOCK_FRIENDS_TODAY.map(friend => (
                     <View key={friend.name} style={styles.friend}>
-                        {/* The same avatar the real rows will wear, so the mocked list is
-                            already the right shape rather than a placeholder to redraw. */}
+                        {/* The same avatar the real rows will wear. */}
                         <SeatAvatar
                             seat={{
                                 seat: 0,
@@ -66,15 +55,7 @@ export default function WordOfTheDayCard() {
     )
 }
 
-/**
- * How long today's word has left, as `H:MM` over a label.
- *
- * Local midnight rather than a server deadline, because there is no server to ask — but
- * the arithmetic is the same either way, so only the `deadline` line changes when there
- * is. Rebuilt every second rather than counted down from a stored number: a tab that has
- * been asleep comes back with the right time on it instead of however far its own timer
- * happened to get.
- */
+// How long today's word has left, as `H:MM` over a label.
 function ResetCountdown() {
     const styles = useStyles();
     const t = useT();
@@ -102,8 +83,7 @@ function ResetCountdown() {
 function untilMidnight(): string {
     const now = new Date();
 
-    // Built from the calendar date rather than by adding 24 hours, so the two days a year
-    // that are not 24 hours long still land on midnight.
+    // Built from the calendar date rather than by adding 24 hours.
     const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 
     const minutes = Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 60_000));
@@ -112,8 +92,7 @@ function untilMidnight(): string {
 }
 
 const useStyles = createThemedStyles(() => ({
-    // Every colour here is drawn against the card's lemon, which does not follow the
-    // scheme — so neither may these. See `FeatureModeCard`'s `fill`.
+    // Every colour here is drawn against the card's lemon, which does not follow the scheme — so neither may these.
     aside: {
         flexShrink: 0,
         alignItems: 'flex-end'
@@ -147,8 +126,7 @@ const useStyles = createThemedStyles(() => ({
         alignItems: 'center',
         gap: 8
     },
-    // Takes the room between the avatar and the score, which is also what pushes the
-    // score to the far edge without either side knowing the other's width.
+    // Takes the room between the avatar and the score.
     friendName: {
         flex: 1,
         minWidth: 0,

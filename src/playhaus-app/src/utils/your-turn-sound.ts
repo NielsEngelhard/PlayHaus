@@ -2,12 +2,7 @@ import { soundsEnabled } from "@/features/feedback/preferences";
 import { ensureAudioSession } from "@/utils/audio-session";
 import { createAudioPlayer, type AudioPlayer } from "expo-audio";
 
-/**
- * The chime that says a shared board is waiting on you, specifically. One player for the
- * whole app the same way `bubble-sound.ts` is one player for every press — built lazily, on
- * the first time it is actually needed, so a cold start and the web build's static
- * pre-render never touch `Audio` at all.
- */
+// The chime that says a shared board is waiting on you, specifically.
 let player: AudioPlayer | undefined;
 
 /** Set once a device has refused us a player, so we stop asking on every turn. */
@@ -28,10 +23,7 @@ function yourTurnPlayer(): AudioPlayer | undefined {
     return player;
 }
 
-/**
- * Play the chime, if the account asked for sound and audio will have us. Sound is a
- * garnish here, the same as the bubble's — nothing this does is allowed to throw.
- */
+// Play the chime, if the account asked for sound and audio will have us.
 export function playYourTurn(): void {
     if (!soundsEnabled()) return;
 

@@ -2,12 +2,7 @@ import AppText from "@/components/text/AppText";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 
-/**
- * Why the last attempt failed, said in one line above the submit button.
- *
- * Deliberately not `InlineNotification`: that one wraps itself in a `Card`, and
- * these already sit inside the gate's card.
- */
+// Why the last attempt failed, said in one line above the submit button.
 export default function AuthErrorText({ message }: { message: string }) {
     const styles = useStyles();
 

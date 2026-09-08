@@ -17,18 +17,7 @@ interface Props {
     total: number
 }
 
-/**
- * Whose turn it is to say something.
- *
- * The whole turn happens out loud, so this screen holds nothing but a name — there is
- * nothing to type, nothing to score and nothing for the phone to check. What it is
- * really doing is keeping the order, which is the one thing a table cannot keep in its
- * head once it has started arguing.
- *
- * No hand-off in front of it, unlike the reveal. Nothing here is secret: this screen is
- * meant to be read by the whole table at once, and standing a wall in front of every
- * single turn would make a nine-player round nine taps longer for no reason.
- */
+// Whose turn it is to say something.
 export default function SpeakingTurnScreen({
     number,
     onNext,
@@ -96,8 +85,7 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
 
-    // Centred in what is left after the header, so the ring sits where the eye already
-    // is rather than at the top of a mostly empty screen.
+    // Centred in what is left after the header.
     middle: {
         flex: 1,
         alignItems: 'center',

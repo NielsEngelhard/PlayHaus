@@ -13,9 +13,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Store is every SQL statement about sessions. The interface lives here, next
-// to its consumer, so the service can be tested against a fake and the GORM
-// implementation stays swappable.
+// Store is every SQL statement about sessions.
 type Store interface {
 	Create(ctx context.Context, session *Session) error
 	ByTokenHash(ctx context.Context, tokenHash string) (*Session, error)
@@ -23,8 +21,7 @@ type Store interface {
 	DeleteExpired(ctx context.Context, before time.Time) (int64, error)
 }
 
-// Users is the slice of the user package this service needs. Declaring it here
-// rather than importing *user.Service keeps the dependency narrow and honest.
+// Users is the slice of the user package this service needs.
 type Users interface {
 	ByEmail(ctx context.Context, email string) (*user.User, error)
 	ByID(ctx context.Context, id string) (*user.User, error)
@@ -39,25 +36,17 @@ func NewService(sessions Store, users Users) *Service {
 	return &Service{sessions: sessions, users: users}
 }
 
-// dummyHash is compared against when no account matches, so a wrong email costs
-// the same time as a wrong password. Without it, response timing reveals which
-// addresses are registered.
-//
-// Computed on first use rather than in an init(): bcrypt deliberately takes a
-// noticeable amount of time, and a package that spends that before main() has
-// started is a surprise nobody needs.
+// dummyHash is compared against when no account matches, so a wrong email costs the same time as a wrong password.
 var dummyHash = sync.OnceValue(func() []byte {
 	h, err := bcrypt.GenerateFromPassword([]byte("not-a-real-password-just-for-timing"), bcrypt.DefaultCost)
 	if err != nil {
-		// Only reachable if bcrypt rejects a literal this file controls, which
-		// is a programming error rather than a runtime one.
+		// Only reachable if bcrypt rejects a literal this file controls, which is a programming error rather than a runtime one.
 		panic("auth: could not build dummy hash: " + err.Error())
 	}
 	return h
 })
 
-// Login verifies credentials and starts a session. The returned token is the
-// only readable copy; store it client-side and send it as a bearer token.
+// Login verifies credentials and starts a session.
 func (s *Service) Login(ctx context.Context, email, password string) (*user.User, *Session, string, error) {
 	u, err := s.users.ByEmail(ctx, user.NormalizeEmail(email))
 	switch {
@@ -69,8 +58,7 @@ func (s *Service) Login(ctx context.Context, email, password string) (*user.User
 		return nil, nil, "", fmt.Errorf("lookup user by email: %w", err)
 	}
 
-	// Guests have no password hash and so can never log in -- their signup
-	// token is the only way into the account.
+	// Guests have no password hash and so can never log in -- their signup token is the only way into the account.
 	if u.PasswordHash == nil {
 		_ = bcrypt.CompareHashAndPassword(dummyHash(), []byte(password))
 		return nil, nil, "", ErrInvalidCredentials
@@ -87,9 +75,7 @@ func (s *Service) Login(ctx context.Context, email, password string) (*user.User
 	return u, session, token, nil
 }
 
-// StartSession mints a token for a user that has already been authenticated by
-// other means. Signup and guest creation use it directly: a guest has no
-// password, so Login could never let one in.
+// StartSession mints a token for a user that has already been authenticated by other means.
 func (s *Service) StartSession(ctx context.Context, userID string) (*Session, string, error) {
 	token, err := newToken()
 	if err != nil {
@@ -109,9 +95,7 @@ func (s *Service) StartSession(ctx context.Context, userID string) (*Session, st
 	return session, token, nil
 }
 
-// Authenticate resolves a raw token into the user ID that owns it. Anything
-// wrong with the token -- unknown, expired, empty -- comes back as
-// ErrInvalidSession so the caller has exactly one 401 path.
+// Authenticate resolves a raw token into the user ID that owns it.
 func (s *Service) Authenticate(ctx context.Context, token string) (string, error) {
 	if token == "" {
 		return "", ErrInvalidSession
@@ -126,9 +110,7 @@ func (s *Service) Authenticate(ctx context.Context, token string) (string, error
 	}
 
 	if session.Expired(time.Now().UTC()) {
-		// Drop the row now rather than leaving it for the sweeper. Failing to
-		// delete it does not change the answer -- the session is expired either
-		// way -- so this is logged rather than returned.
+		// Drop the row now rather than leaving it for the sweeper.
 		if err := s.sessions.DeleteByTokenHash(ctx, session.TokenHash); err != nil {
 			slog.Warn("delete expired session", "err", err)
 		}
@@ -138,8 +120,7 @@ func (s *Service) Authenticate(ctx context.Context, token string) (string, error
 	return session.UserID, nil
 }
 
-// Logout revokes a token. Calling it with an unknown token is not an error, so
-// a client can safely log out twice.
+// Logout revokes a token.
 func (s *Service) Logout(ctx context.Context, token string) error {
 	if token == "" {
 		return nil
@@ -147,12 +128,7 @@ func (s *Service) Logout(ctx context.Context, token string) error {
 	return s.sessions.DeleteByTokenHash(ctx, hashToken(token))
 }
 
-// SweepExpired deletes sessions past their expiry on a ticker until ctx is
-// cancelled. Expired sessions are already rejected by Authenticate; this just
-// stops the table growing forever.
-//
-// A goroutine rather than a cron entry because it is the only background job
-// this API has, and one that must not outlive the process it belongs to.
+// SweepExpired deletes sessions past their expiry on a ticker until ctx is cancelled.
 func (s *Service) SweepExpired(ctx context.Context, every time.Duration, log *slog.Logger) {
 	ticker := time.NewTicker(every)
 	defer ticker.Stop()

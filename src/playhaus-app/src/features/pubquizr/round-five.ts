@@ -33,11 +33,7 @@ export interface ListTurn {
     quizmaster: Seat
     /** The one person they are asking: the seat on their left. */
     guesser: Seat
-    /**
-     * Everybody else, in the order their bonus guess comes round — from the guesser's
-     * left onwards. Empty at a table of two, where the reader and the guesser are already
-     * the whole table.
-     */
+    // Everybody else, in the order their bonus guess comes round — from the guesser's left onwards.
     bonus: Seat[]
     /** 1-based, for "question 2 of 8". */
     number: number
@@ -47,9 +43,7 @@ export interface ListTurn {
     guesses: number | null
 }
 
-/**
- * What is on screen right now, or null when round 5 is not what is being played.
- */
+// What is on screen right now, or null when round 5 is not what is being played.
 export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | null {
     if (session.status !== 'in_progress') return null;
     if (session.currentRound !== ROUND_LIST) return null;
@@ -85,9 +79,7 @@ export function listTurnOf(session: QuizSession, quiz: QuizDetail): ListTurn | n
             .map(other => other.text)
     }));
 
-    // The server's order, kept: it is the order the bonus guesses are offered in, and
-    // re-deriving it here would be the app and the server taking turns to be right. Same
-    // walk `describeTurnOf` makes, off the same field.
+    // The server's order, kept: it is the order the bonus guesses are offered in.
     const bonus: Seat[] = [];
     for (const seat of session.bonusSeats) {
         const player = seatAt(seats, seat);
@@ -113,13 +105,7 @@ export function unclaimedAnswers(turn: ListTurn, awards: ListAwards): ListAnswer
     return turn.answers.filter(answer => (awards[answer.id] ?? null) === null);
 }
 
-/**
- * How many points a set of awards is about to hand out, per seat.
- *
- * Shorter arithmetic than round 4's `scoreOfAwards`, because there is only one name on an
- * answer that landed: whoever is credited takes the point, and nobody takes one for
- * having asked the question.
- */
+// How many points a set of awards is about to hand out, per seat.
 export function scoreOfListAwards(turn: ListTurn, awards: ListAwards): Map<number, number> {
     const scores = new Map<number, number>();
 

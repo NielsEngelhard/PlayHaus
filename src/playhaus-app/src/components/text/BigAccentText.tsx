@@ -10,13 +10,7 @@ interface Props {
 export const HeadingSize = 34;
 export const HeadingLineHeight = HeadingSize * 1.05;
 
-/**
- * The second line of the home heading, set in the app's inverted block: paper letters on
- * a slab of ink.
- *
- * It is the loudest thing on the page on purpose — the heading is the only place the app
- * shouts, and everything under it is chrome by comparison.
- */
+// The second line of the home heading, set in the app's inverted block: paper letters on a slab of ink.
 export default function BigAccentText({ text }: Props ) {
     const styles = useStyles();
 

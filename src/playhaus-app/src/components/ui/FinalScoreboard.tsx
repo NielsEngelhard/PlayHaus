@@ -11,35 +11,15 @@ interface Props {
     players: ScoredPlayer[],
     /** Whose game this is, so one row can read `Jij` instead of a name. */
     userId: string,
-    /**
-     * Who is connected right now, drawn as the ring around the swatch — the same mark
-     * `PlayerScoreRow` puts on a chip.
-     *
-     * It earns its place on a result because of what happens next: the host decides from
-     * this screen whether to play again with the same people, and who is still on the
-     * other end is exactly what that decision is about.
-     *
-     * Left out where there is nobody to be connected, which is every solo game.
-     */
+    // Who is connected right now, drawn as the ring around the swatch — the same mark `PlayerScoreRow` puts on a chip.
     online?: Set<string>
 }
 
-/**
- * How everyone finished, as a ranked list.
- *
- * The other half of `PlayerScoreRow`, which is the same information as chips above a
- * board that must not lose any room to it. Nothing is competing for the screen here,
- * so the result gets the full width and a place number — the two things a scoreboard
- * has that a status line does not.
- *
- * One player is a legitimate scoreboard, not a degenerate one: solo is the only mode
- * the API serves today, and a table of one still says what the game was worth.
- */
+// How everyone finished, as a ranked list.
 export default function FinalScoreboard({ players, userId, online }: Props) {
     const styles = useStyles();
 
-    // Ranked here rather than trusted from the caller: the API orders players by when
-    // they joined, and the winner is not usually the first to arrive.
+    // Ranked here rather than trusted from the caller.
     const ranked = [...players].sort((a, b) => b.score - a.score);
 
     return (
@@ -50,11 +30,9 @@ export default function FinalScoreboard({ players, userId, online }: Props) {
                     player={player}
                     place={index + 1}
                     you={player.userId === userId}
-                    // Undefined means nobody is tracking presence, which is not the same
-                    // as "away" — that would put every light out on a solo result.
+                    // Undefined means nobody is tracking presence, which is not the same as "away".
                     live={online === undefined ? undefined : online.has(player.userId)}
-                    // Every row but the first is fenced off from the one above it. The
-                    // last row keeps a clean bottom edge against the card.
+                    // Every row but the first is fenced off from the one above it.
                     divided={index > 0}
                 />
             ))}
@@ -96,8 +74,7 @@ function ScoreLine({ player, place, you, live, divided }: ScoreLineProps) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The rows carry their own padding so a divider can run the full width of the
-    // card rather than stopping short of its edges.
+    // The rows carry their own padding so a divider can run the full width of the card rather than stopping short of its edges.
     card: {
         paddingVertical: Spacing.one,
         paddingHorizontal: 0
@@ -140,8 +117,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: 2,
         borderColor: theme.colors.border
     },
-    // Still here. Same two marks as the board's chips, so a light means the same thing
-    // on the result as it did while the game was on.
+    // Still here.
     dotLive: {
         borderColor: theme.colors.mint
     },
@@ -150,8 +126,7 @@ const useStyles = createThemedStyles(theme => ({
         opacity: 0.55
     },
     name: {
-        // Takes the slack, so the score stays pinned to the right-hand edge however
-        // long or short the name is.
+        // Takes the slack, so the score stays pinned to the right-hand edge however long or short the name is.
         flex: 1,
         fontSize: FontSizes.md,
         fontWeight: 700,

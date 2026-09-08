@@ -24,8 +24,7 @@ func NewGormStore(db *gorm.DB) *GormStore {
 // Compile-time check that we satisfy the interface.
 var _ Store = (*GormStore)(nil)
 
-// withContent preloads a quiz whole, each level in playing order, so a caller never
-// has to sort it back afterwards.
+// withContent preloads a quiz whole, each level in playing order, so a caller never has to sort it back afterwards.
 func withContent(db *gorm.DB) *gorm.DB {
 	return db.
 		Preload("Questions", func(db *gorm.DB) *gorm.DB {
@@ -64,9 +63,6 @@ func (s *GormStore) QuizByID(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 }
 
 // QuizBySlug is the seeder's lookup: does this file already have a row.
-//
-// Find rather than First, because a miss here is the ordinary case on a fresh
-// database and First would log every one of them as an error at boot.
 func (s *GormStore) QuizBySlug(ctx context.Context, slug string, locale i18n.Locale) (*Quiz, error) {
 	var quizzes []Quiz
 
@@ -83,11 +79,9 @@ func (s *GormStore) QuizBySlug(ctx context.Context, slug string, locale i18n.Loc
 	return &quizzes[0], nil
 }
 
-// ListQuizzes is one page of the shelf, newest first, plus how many there are in
-// total so the caller can say whether there is more.
+// ListQuizzes is one page of the shelf, newest first, plus how many there are in total so the caller can say whether there is more.
 func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int64, error) {
-	// Built once and reused for both the count and the page, so the two can never
-	// disagree about what they are counting.
+	// Built once and reused for both the count and the page, so the two can never disagree about what they are counting.
 	query := func() *gorm.DB {
 		q := s.db.WithContext(ctx).Model(&Quiz{}).
 			Where("locale = ?", f.Locale)
@@ -104,13 +98,7 @@ func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int
 
 	var quizzes []*Quiz
 	err := query().
-		// A weekly quiz is placed by the Wednesday it belongs to and everything
-		// else by when it went up; COALESCE puts both on one ordering so the
-		// shelves can also be listed together.
-		//
-		// The id is only the tiebreak, so page 2 cannot repeat page 1. It used to be
-		// the whole ordering, which nobody noticed while there were three quizzes on
-		// the shelf and a uuid could pass for a date.
+		// A weekly quiz is placed by the Wednesday it belongs to and everything else by when it went up.
 		Order("COALESCE(published_at, created_at) DESC, id DESC").
 		Limit(f.PageSize).
 		Offset(f.Offset()).
@@ -122,10 +110,7 @@ func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int
 	return quizzes, total, nil
 }
 
-// QuestionCounts is how many questions each of the given quizzes has, keyed by quiz
-// id. The list endpoint sends summaries rather than content, and this is the one
-// number a summary still needs -- asked in a single query rather than by preloading
-// every question of every quiz on the page.
+// QuestionCounts is how many questions each of the given quizzes has, keyed by quiz id.
 func (s *GormStore) QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]int, error) {
 	counts := make(map[uuid.UUID]int, len(quizIDs))
 	if len(quizIDs) == 0 {
@@ -186,13 +171,7 @@ func (s *GormStore) PlayedQuizIDs(ctx context.Context, ownerID string, quizIDs [
 	return played, nil
 }
 
-// ReplaceQuiz writes a seeded quiz and the content under it, replacing whatever was
-// there before.
-//
-// Replace rather than merge: the JSON file is the whole truth about a seeded quiz,
-// so a question deleted from the file has to disappear from the database too, and
-// working out which rows moved would be a lot of care spent on content nobody has
-// played yet.
+// ReplaceQuiz writes a seeded quiz and the content under it, replacing whatever was there before.
 func (s *GormStore) ReplaceQuiz(ctx context.Context, quiz *Quiz) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		var existingID uuid.UUID
@@ -205,8 +184,7 @@ func (s *GormStore) ReplaceQuiz(ctx context.Context, quiz *Quiz) error {
 		}
 
 		if existingID != uuid.Nil {
-			// Keep the id: a session already points at it, and a reseed should not
-			// break somebody halfway through a game.
+			// Keep the id: a session already points at it, and a reseed should not break somebody halfway through a game.
 			quiz.ID = existingID
 
 			var questionIDs []uuid.UUID
@@ -281,22 +259,6 @@ func (s *GormStore) SessionsInProgressByUserID(ctx context.Context, userID strin
 }
 
 // AttemptsOn is how many answer rows one dealt question has collected.
-//
-// Which is how many seats have had a go at it -- but only in the hot seat rounds, where
-// and only where it is one row per seat that tried. Round 3 writes a row per guess and
-// round 4 writes up to two rows per word, so anything reading this as a seat count has to
-// have asked IsHotSeatRound first. Rounds 3 and 4 never ask at all, which is the real
-// containment.
-//
-// Every round settles a whole turn in one request now, so on a game played entirely by
-// this build the answer is always zero: a hot seat question collects all of its rows at
-// once, at the moment it closes. It is still asked, and still has to be right, because a
-// question a previous build left part way down the line has rows already -- and that is
-// exactly where PassLine has to pick the line up from.
-//
-// Counted rather than stored on the question, because the rows are already there: one
-// per seat that tried, which is exactly what "how far down the line has this got" means.
-// See the note on SessionAnswer.
 func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error) {
 	var count int64
 
@@ -312,40 +274,19 @@ func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID)
 }
 
 // TurnOutcome is everything one settled turn changed.
-//
-// Rounds 3 and 4 settle several things at once -- five guesses, four words, three scores
-// -- and every one of them is the same fact as the session moving on. A score raised
-// without its answer row beside it is a point nobody can account for afterwards, and that
-// stays true whether there is one of them or six. So there is one writer, and it takes
-// however many of each there are.
 type TurnOutcome struct {
-	// Answers are the attempt rows to insert. One per seat that had a go in the hot
-	// seat rounds; one per guess in round 3; one per word and one for the describer
-	// beside it in round 4.
+	// Answers are the attempt rows to insert.
 	Answers []*SessionAnswer
 	// Questions are the dealt questions whose status or points moved.
 	Questions []*SessionQuestion
-	// Players are the seats whose score moved, at most once each. The score written is
-	// absolute rather than an increment, worked out in memory off the session that was
-	// just read -- which is safe because a single device session has exactly one
-	// writer: the phone on the table.
+	// Players are the seats whose score moved, at most once each.
 	Players []*SessionPlayer
 }
 
 // RecordTurn writes one settled turn and the session it moved, together.
-//
-// One transaction because all of it is one fact: a question moved on without the
-// session's position following it would leave the table reading a question the session no
-// longer thinks it is on. Every slice may be empty -- a wrong answer that leaves the
-// question open changes nothing but the attempt row.
-//
-// The session columns written here are the whole of how a game remembers where it is, and
-// a missing key in that map would leave every ordering test in this package passing and
-// every real game losing its place on the next reload.
 func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOutcome) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		// GORM refuses an empty slice, and a turn with nothing to say about who
-		// answered is a legitimate one -- see the wrong-with-seats-left branch.
+		// GORM refuses an empty slice, and a turn with nothing to say about who answered is a legitimate one.
 		if len(out.Answers) > 0 {
 			if err := tx.Create(out.Answers).Error; err != nil {
 				return fmt.Errorf("insert attempts: %w", err)
@@ -378,9 +319,7 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 				"quiz_master_seat": session.QuizMasterSeat,
 				"hot_seat":         session.HotSeat,
 				"hot_seat_run":     session.HotSeatRun,
-				// Written on every turn although only the one that rolls into round 6
-				// ever sets them: the alternative is a second write nothing else needs,
-				// on the one path where forgetting it loses who the finale is between.
+				// Written on every turn although only the one that rolls into round 6 ever sets them.
 				"finalist_seat_a": session.FinalistSeatA,
 				"finalist_seat_b": session.FinalistSeatB,
 				"status":          session.Status,
@@ -401,12 +340,6 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 }
 
 // CurrentSessionByOwnerID is the evening this player could still walk back into.
-//
-// Newest first, and only one of them. A player keeps one game at a time -- opening a
-// new one throws the rest away, see DeleteSessionsByOwnerID -- so in practice there
-// is never a second row to choose between. The ordering is what makes that true
-// rather than assumed: a row left behind by an older build must not outrank the game
-// somebody is actually sitting at.
 func (s *GormStore) CurrentSessionByOwnerID(ctx context.Context, ownerID string) (*Session, error) {
 	var session Session
 
@@ -425,10 +358,6 @@ func (s *GormStore) CurrentSessionByOwnerID(ctx context.Context, ownerID string)
 }
 
 // DeleteSessionByID throws one evening away, for good.
-//
-// Scoped to the owner, so somebody else's session is a no-op rather than a refusal --
-// owning it is the whole of the permission model here, the same way it is for a solo
-// League of Letters game.
 func (s *GormStore) DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, ownerID string) error {
 	_, err := s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
 		return tx.Where("id = ? AND owner_id = ?", sessionID, ownerID)
@@ -440,11 +369,6 @@ func (s *GormStore) DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, 
 }
 
 // DeleteSessionsByOwnerID throws away every evening this player owns but one.
-//
-// What "a table plays one quiz at a time" costs. Written as "all of them except this
-// id" rather than "all of them, then create" on purpose: the new session is already
-// in the database when this runs, so a failure here leaves a player with one game too
-// many rather than with none at all.
 func (s *GormStore) DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error {
 	_, err := s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
 		return tx.Where("owner_id = ? AND id <> ?", ownerID, except)
@@ -462,12 +386,7 @@ func (s *GormStore) DeleteSessionsOlderThan(ctx context.Context, before time.Tim
 	})
 }
 
-// deleteSessions removes whichever sessions the scope names, and everything hanging
-// off them.
-//
-// The child rows are cleared by hand rather than left to the OnDelete:CASCADE tags on
-// Session: those are only honoured where the database enforces foreign keys, and this
-// game is played on SQLite. Deepest first, so no row is ever orphaned mid-transaction.
+// deleteSessions removes whichever sessions the scope names, and everything hanging off them.
 func (s *GormStore) deleteSessions(ctx context.Context, scope func(*gorm.DB) *gorm.DB) (int64, error) {
 	var deleted int64
 

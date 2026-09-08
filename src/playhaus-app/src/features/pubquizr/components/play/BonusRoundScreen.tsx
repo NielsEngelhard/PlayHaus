@@ -34,19 +34,7 @@ interface Props {
     onSpend: () => void
 }
 
-/**
- * One player's single guess at whatever the clock left behind.
- *
- * Rounds 4 and 5 both end this way — the leftovers go round the table from the guesser's
- * left, one try each, and a leftover is gone the moment somebody takes it — so the walk
- * is one screen rather than two. The rounds differ only in what is being guessed at,
- * which is why this takes `{ id, label }` and not words or answers.
- *
- * Tapping only marks. It used to credit and advance in the same gesture, which put the
- * single most destructive tap on the screen — one guess spent, on somebody else's behalf,
- * with the screen already gone — under the same finger that is scrolling the list. Now
- * the button at the bottom is the one thing that ends a player's go.
- */
+// One player's single guess at whatever the clock left behind.
 export default function BonusRoundScreen({
     strip, player, index, total, options, picked, hint, busy, onPick, onSpend
 }: Props) {
@@ -75,11 +63,7 @@ export default function BonusRoundScreen({
 
             <AppText style={styles.hint}>{hint}</AppText>
 
-            {/*
-              * A picker rather than a list of commands, and only one of them can be
-              * marked: this player has one guess, so a second tap moves the mark rather
-              * than adding to it.
-              */}
+            {/* A picker rather than a list of commands, and only one of them can be marked. */}
             <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {options.map(option => (
                     <PickRow
@@ -93,11 +77,7 @@ export default function BonusRoundScreen({
                 ))}
             </ScrollView>
 
-            {/* One button, which is the only way off this screen either way. Spending the
-                guess on nothing is the common case, not the exception — these are the
-                things that already beat somebody with a clock running — so with nothing
-                marked it is still the full-width way on rather than something to hunt
-                for. */}
+            {/* One button, which is the only way off this screen either way. */}
             <ActionButton
                 size="large"
                 icon={picked === null ? 'skip-forward' : 'check'}

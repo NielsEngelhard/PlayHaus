@@ -14,12 +14,7 @@ interface Props {
     person: Seat
     /** Who is handing it over, or null when nobody has held it yet. */
     from: Seat | null
-    /**
-     * Which fill this one wears, as a 1-based count of hand-offs.
-     *
-     * A number rather than the tone itself so two screens cannot pick the same fill by
-     * accident, and so the cycling stays one rule in one place. See `handoffToneFor`.
-     */
+    // Which fill this one wears, as a 1-based count of hand-offs.
     toneNumber: number
     /** The small uppercase line above the portrait — where in the game this is. */
     step: string
@@ -38,35 +33,10 @@ interface Props {
 const NUDGE = 7;
 const NUDGE_MS = 1200;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Transforms are driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/**
- * The screen between two turns: stop, give the phone to somebody else.
- *
- * A whole screen rather than a banner, and a colour of its own rather than the page's
- * canvas, because it has one job — to be impossible to read past. The next screen has
- * something on it that only one person may see, so the moment the phone changes hands is
- * the moment the game can be spoiled, and a notice that could be scrolled past would
- * eventually be scrolled past. The fill changes every hand-off (see `handoffToneFor`) so
- * that the tenth one still registers as a new screen rather than as the one you just
- * dismissed.
- *
- * It takes the whole window: every board that shows one has claimed the app's chrome
- * already (see `useChromeless`), so there is no header to escape any more and no gutters
- * to reach out of — only, on a window wide enough for the app's column to leave room
- * beside it, the canvas either side. See `usePageTone` below for that.
- *
- * It is drawn instead of the board rather than over it, so the accent band and its way
- * out are gone for as long as this is up. That is the intended reading of a screen whose
- * whole point is "stop here"; tapping through puts the board and its way out back.
- *
- * Every line on it is a prop. This used to live in `features/pubquizr` and look its own
- * copy up, which is exactly what stopped a second game from using it: One of Us hands
- * the phone round to reveal a secret word, a pub quiz hands it round to read questions
- * out, and the shape of the screen is the only thing those two have in common.
- */
+// The screen between two turns: stop, give the phone to somebody else.
 export default function HandoffScreen({
     person,
     from,
@@ -129,19 +99,14 @@ export default function HandoffScreen({
                 {body}
             </AppText>
 
-            {/* The rule of the moment, on the one screen with room to say it properly.
-                Full-strength ink where the line above it is muted: this is an
-                instruction rather than a caption about the hand-off, and the two should
-                not read as the same kind of sentence. */}
+            {/* The rule of the moment, on the one screen with room to say it properly. */}
             {note !== undefined && (
                 <AppText style={[styles.rule, { color: tone.ink }]}>
                     {note}
                 </AppText>
             )}
 
-            {/* Only when there is somebody to hand over *from*. On the first turn nobody
-                has held the phone yet, and an arrow out of an empty circle would be
-                saying something that is not true. */}
+            {/* Only when there is somebody to hand over *from*. */}
             {from !== null && (
                 <Animated.View
                     style={[
@@ -162,8 +127,7 @@ export default function HandoffScreen({
 
                     <Feather name="arrow-right" size={20} color={tone.ink} />
 
-                    {/* The one being handed to is lifted off the page; the one letting
-                        go is not. */}
+                    {/* The one being handed to is lifted off the page; the one letting go is not. */}
                     <SeatAvatar seat={person} size={38} raised />
                 </Animated.View>
             )}

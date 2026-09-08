@@ -30,9 +30,7 @@ type SweepConfig struct {
 	LobbyAge    time.Duration // shared by lobbies and started multiplayer games
 }
 
-// SweepStale deletes old solo games and multiplayer lobbies/games on a ticker until ctx
-// is cancelled. A DB-only delete is safe: realtime rooms are ephemeral and self-reap
-// once empty, so nothing live is still pointing at a room or game this old.
+// SweepStale deletes old solo games and multiplayer lobbies/games on a ticker until ctx is cancelled.
 func (s *Service) SweepStale(ctx context.Context, cfg SweepConfig, every time.Duration, log *slog.Logger) {
 	ticker := time.NewTicker(every)
 	defer ticker.Stop()
@@ -81,10 +79,7 @@ func (in CreateSoloGameInput) validate() map[string]string {
 	return problems
 }
 
-// Options is the behaviour a deployment gets to choose, rather than the game's own
-// rules. It is passed in from main because the environment is main's business: a
-// service that read it for itself could not be constructed two ways in a test, and
-// the reading would happen once per game rather than once per process.
+// Options is the behaviour a deployment gets to choose, rather than the game's own rules.
 type Options struct {
 	DevMode bool // DevMode makes every round play the same word
 }
@@ -196,8 +191,7 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 
 	round := game.round(game.CurrentRound)
 	if round == nil {
-		// The game points at a round it does not have. Nothing the player can do
-		// about it, so it is not a refusal -- it is a broken game.
+		// The game points at a round it does not have.
 		return nil, fmt.Errorf("game %s has no round %d", game.ID, game.CurrentRound)
 	}
 	if round.IsOver() {
@@ -226,8 +220,7 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	}
 
 	solved := guess.Correct()
-	// GuessNumber counts this row, so the round is asked about the board as it will
-	// stand -- the guess is scored before it is appended, and this is the same order.
+	// GuessNumber counts this row, so the round is asked about the board as it will stand.
 	roundOver := RoundIsOver(solved, guess.GuessNumber)
 
 	game.Score += DetermineScore(*guess, round.Guesses, round.FirstLetter())
@@ -291,9 +284,7 @@ func (s *Service) generateRounds(gameID uuid.UUID, amount int, wordLength int, l
 		return nil, err
 	}
 
-	// One word for the whole game in dev mode, but the *right* length: picking a
-	// fixed word here would quietly ignore the length the player chose, and a
-	// setting that does nothing looks like a broken setting rather than a dev flag.
+	// One word for the whole game in dev mode, but the *right* length.
 	devWord := ""
 	if s.opts.DevMode {
 		devWord, _ = DevModeWord(locale, wordLength, onlyPickCommonWords)

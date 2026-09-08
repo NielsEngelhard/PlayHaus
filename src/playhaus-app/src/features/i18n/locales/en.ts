@@ -12,17 +12,9 @@ export const en = {
         host: 'Host',
         /** The badge `PlayerScoreRow` puts on whoever is up. */
         yourTurn: 'YOUR TURN',
-        /**
-         * The word before the last name in a list of them, for `joinNames`. A word on
-         * its own rather than a whole sentence because the list it joins is built from
-         * player names, which no catalogue can know in advance.
-         */
+        // The word before the last name in a list of them, for `joinNames`.
         and: 'and',
-        /**
-         * The two words a `Toggle` stamps itself with. The switch says its state in
-         * letters as well as in fill and depth, so the setting is readable at a glance
-         * and without relying on colour.
-         */
+        // The two words a `Toggle` stamps itself with.
         on: 'ON',
         off: 'OFF',
         loading: 'One moment…',
@@ -34,10 +26,7 @@ export const en = {
         start: 'Start',
         /** On the button that closes one step of a form and opens the next. */
         next: 'Next',
-        /**
-         * Where a form split into steps has got to, on the band above it. Never
-         * `count` — see `player.seated`.
-         */
+        // Where a form split into steps has got to, on the band above it.
         stepOf: 'Step {{step}} of {{total}}',
         time: {
             justNow: 'just now',
@@ -61,8 +50,7 @@ export const en = {
             add: "Add player",
             remove: "Remove player",
             namePlaceholder: "Name",
-            // `{{players}}` on purpose — `{{count}}` would switch i18next into plural
-            // mode and demand `_one`/`_other` variants of the key.
+            // `{{players}}` on purpose — `{{count}}` would switch i18next into plural mode and demand `_one`/`_other` variants of the key.
             seated: "{{players}} players"
         }
     },
@@ -130,45 +118,17 @@ export const en = {
         newBadge: 'New',
         wipBadge: 'In the making'
     },
-    /**
-     * Only the descriptions. The names themselves stay endonyms in `LANGUAGES` and are
-     * never translated, so someone who cannot yet read the current interface language can
-     * still find their own.
-     */
-    /*
-     * The join card, which is not any one game's.
-     *
-     * These lived under `lol.index` until the first character of a code started naming
-     * the game, because the card only ever opened League of Letters rooms. It is mounted
-     * on three pages now and only one of them is that game, so the old key was a lie
-     * about which screen the words appear on.
-     */
+    // The join card, which is not any one game's.
     join: {
         label: 'JOIN A GAME',
-        /**
-         * The same card, split in two on a wide screen: the boxes are only half
-         * of it there, so the label names its own half rather than the card.
-         */
+        // The same card, split in two on a wide screen.
         labelWide: 'TYPE THE CODE',
         paste: 'Paste',
         pasteLabel: 'Paste code',
         codeLabel: 'Join code',
-        /**
-         * The chip beside the boxes, as soon as the first character is in.
-         *
-         * The real defence against `O` and `0`: you find out the first character landed
-         * where you meant it before you have typed the second, rather than off a refusal
-         * five characters later.
-         */
+        // The chip beside the boxes, as soon as the first character is in.
         gameHint: 'Joining {{game}}',
-        /**
-         * A whole code that opens nothing — an unclaimed first character, a game with no
-         * rooms yet, or a character in the body that no code contains.
-         *
-         * One phrase for all three, because they are one thing to the person holding the
-         * phone: five characters that do not open anything. Saying which would mean
-         * explaining that a game has a letter reserved for a feature it does not have.
-         */
+        // A whole code that opens nothing.
         rejected: "That isn't a code we can open. Check it and try again.",
         scanRowTitle: 'Or scan their screen',
         scanRowHint: 'Joins instantly',
@@ -179,13 +139,7 @@ export const en = {
         scanCancel: 'Cancel',
         permissionAsk: 'The camera is needed to read the host’s code. Nothing is recorded or sent anywhere.',
         permissionGrant: 'Allow the camera',
-        /**
-         * No button under this one: the answer has to be changed in settings.
-         *
-         * The count is deliberately not named. It said "the four characters" and codes are
-         * five now, which is the kind of sentence that goes quietly wrong the moment a
-         * number moves and nobody thinks to grep the catalogue for it.
-         */
+        // No button under this one: the answer has to be changed in settings.
         permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the code instead.'
     },
     languages: {
@@ -301,14 +255,7 @@ export const en = {
             network: 'Could not reach the server. Check your connection and try again.'
         }
     },
-    /**
-     * The waiting room's own words, shared by every game that has one.
-     *
-     * Its own namespace rather than a corner of `lol` because the room is chrome now: a
-     * second game's lobby draws the same bar, the same code band and the same seat grid
-     * through `LobbyPageBase`, and those pieces would otherwise be reading a neighbour's
-     * catalogue. What stays under `lol.lobby` is only what League of Letters itself says.
-     */
+    // The waiting room's own words, shared by every game that has one.
     lobby: {
         yourRoom: 'Your room',
         named: 'Lobby {{code}}',
@@ -338,14 +285,11 @@ export const en = {
         ready: 'Ready',
         away: 'Away',
         freeSeat: 'Free seat',
-        // Two wordings rather than one key with a count: the sentence bends around the
-        // number in both languages, and a `{{seats}} seat(s)` would read like a form.
+        // Two wordings rather than one key with a count.
         moreSeatsOne: '+ 1 more free seat',
         moreSeatsMany: '+ {{seats}} more free seats',
         waiting: 'Waiting…',
-        // The guest's whole screen and the dead-room notice. Here rather than under a
-        // game, because `WaitingForHost` and `RoomClosedNotice` are drawn for whichever
-        // game's room you are sitting in.
+        // The guest's whole screen and the dead-room notice.
         waitingForHost: 'Waiting for the host',
         waitingForHostMessage: '{{name}} is setting up the game. Stay on this screen and it starts right here.',
         waitingLabel: 'Waiting',
@@ -523,38 +467,22 @@ export const en = {
             description: 'A classic pub quiz with a playful twist.',
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'Everyone on their own.', action: 'Coming soon...' },
-            /**
-             * The sticker on the corner of the page. `weekday` is spelled one letter to
-             * a tile, so a translation of it has to stay short enough to fit three or
-             * four of them beside the headline.
-             */
+            // The sticker on the corner of the page.
             weekly: {
                 weekday: 'WED',
                 /** Broken by hand: the design sets it on two lines. */
                 promise: 'NEW GENERAL\nQUIZ WEEKLY'
             },
-            /**
-             * The hero above the shelf: the one quiz the picker answers with, unprompted,
-             * instead of leaving the pick to a browse. `badge` names *why* it's there
-             * rather than *what* it is — the row underneath it already says the title.
-             */
+            // The hero above the shelf: the one quiz the picker answers with, unprompted, instead of leaving the pick to a browse.
             newQuiz: {
                 badge: 'New this week',
                 play: 'Play this'
             },
             list: {
-                /**
-                 * The shelf's name, which no longer promises an order — the panel has a
-                 * sort of its own now, and a heading that said "newest first" would be
-                 * wrong every time somebody pressed it.
-                 */
+                // The shelf's name, which no longer promises an order.
                 label: 'All quizzes',
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
-                /**
-                 * The second row of tabs: what's left to play versus what's already been.
-                 * `n` rather than `count`, for the same reason `total`/`matches` below
-                 * avoid it — no plural forms sit behind any of these three.
-                 */
+                // The second row of tabs: what's left to play versus what's already been.
                 playedFilter: {
                     all: 'All {{n}}',
                     unplayed: 'New {{n}}',
@@ -562,51 +490,26 @@ export const en = {
                 },
                 /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
                 published: '{{day}} {{month}} {{year}}',
-                /**
-                 * The mark on a quiz this host has already had out of the box.
-                 *
-                 * Past tense and nothing else — no date and no tally. The row only has
-                 * to answer "have we done this one?", and a quiz the table half played
-                 * in March is as spoiled as one they finished last night.
-                 */
+                // The mark on a quiz this host has already had out of the box.
                 played: 'Played',
                 loadOlder: 'Load older',
                 /** The way off the index page and into the sheet that holds the shelf. */
                 seeAll: 'See all quizzes',
-                /**
-                 * The same way through, before there is a number to put in it — a
-                 * shelf still loading has a total of zero, and "see all 0" is the
-                 * kind of wrong that outlives the request. Also what the row on the
-                 * setup screen is announced as, where the count is a second line
-                 * that a screen reader reads separately.
-                 */
+                // The same way through, before there is a number to put in it.
                 browse: 'Browse all quizzes',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
-                /**
-                 * What the played/unplayed tabs say when one of them comes up empty with
-                 * no search running — distinct from `noMatches`, which is about a search
-                 * that found nothing. Nobody typed anything here, so "nothing matches
-                 * that" would be a non sequitur.
-                 */
+                // What the played/unplayed tabs say when one of them comes up empty with no search running.
                 filterEmpty: 'Nothing on this tab yet.',
                 failed: 'The quizzes could not be loaded. Check your connection.',
                 comingSoon: 'Coming soon...',
                 search: 'Search quizzes…',
                 /** Read out for the search field, which shows only its icon. */
                 searchLabel: 'Search the quizzes on this shelf',
-                /**
-                 * How many quizzes the shelf holds, and how many of them a search found.
-                 * Never `count`: that is the one option name i18next treats as a plural
-                 * trigger, and there are no plural forms behind it. See `common.time`.
-                 */
+                // How many quizzes the shelf holds, and how many of them a search found.
                 total: '{{quizzes}} total',
                 matches: '{{quizzes}} found',
                 noMatches: 'Nothing on this shelf matches that.',
-                /**
-                 * The same miss, with older pages still unfetched behind it. Search only
-                 * sees the quizzes already loaded, so this has to say so rather than
-                 * leave someone certain their quiz is not here.
-                 */
+                // The same miss, with older pages still unfetched behind it.
                 noMatchesMore: 'Nothing matches that yet — older quizzes arrive a page at a time. Load some more and look again.',
                 /** The sort switch, spelled as the order it would put the shelf in. */
                 sortNewest: 'Newest',
@@ -627,11 +530,7 @@ export const en = {
                 tooMany: 'Eight players is the most that fit round one phone.',
                 duplicate: 'Two players cannot share a name.',
             },
-            /**
-             * `pick` and `pickAnother` title the row that opens the browse sheet, so
-             * they read as the thing pressing it will do — the shelf's own
-             * `list.browse` is what that row is announced as.
-             */
+            // `pick` and `pickAnother` title the row that opens the browse sheet, so they read as the thing pressing it will do.
             quiz: {
                 selected: 'Playing',
                 pick: 'Pick a quiz',
@@ -673,76 +572,39 @@ export const en = {
                 list: 'Name four',
                 finale: 'The final'
             },
-            /**
-             * Split in two so the total can be greyed out beside the number. Never
-             * `count`: that is the one option name i18next treats as a plural trigger,
-             * and there are no plural forms behind it. See `common.time`.
-             */
+            // Split in two so the total can be greyed out beside the number.
             questionNumber: 'Question {{number}}',
             questionTotal: ' of {{total}}',
-            /**
-             * The same fact at strip size: "3/8", with the total greyed out beside the
-             * number. Two keys again for the same reason, and the number itself is left
-             * bare — there is nothing to translate about a digit. Whatever draws this
-             * owes a screen reader `questionNumber` + `questionTotal` as a label,
-             * because "3 slash 8" is not a sentence.
-             */
+            // The same fact at strip size: "3/8", with the total greyed out beside the number.
             questionOutOf: '/{{total}}',
             /** The two people the turn is about, above the question. */
             turn: {
                 /** The banner read out as the one sentence it is. */
                 spoken: '{{master}} is asking {{player}}',
-                /**
-                 * The same, once there is a run worth saying. The pill that carries it
-                 * on screen sits inside a labelled banner, so a screen reader would
-                 * never reach it otherwise.
-                 */
+                // The same, once there is a run worth saying.
                 spokenRun: '{{master}} is asking {{player}}, who has taken {{run}} in a row',
                 /** The strip's own header, naming whoever is running this turn. */
                 quizmasterLabel: '{{name}} is quizmaster',
                 /** The label over the strip's spotlighted, answering-now portrait. */
                 answeringNow: 'Answering now',
-                /*
-                 * What rounds 4 and 5 share, now that they are played the same way: one
-                 * person asking, one person answering against a clock, and everybody else
-                 * waiting for a single guess at whatever is left.
-                 *
-                 * Here rather than under `describe.*` or `list.*` because the screens are
-                 * literally shared -- `TurnRulesScreen`, `BonusRoundScreen` and `AwardRow`
-                 * are drawn by both boards, and a key living under one round's name would
-                 * have to be borrowed by the other, which `list` was already doing for
-                 * `nobody`.
-                 */
+                // What rounds 4 and 5 share, now that they are played the same way.
                 roleQuizmaster: 'Quizmaster',
                 roleGuesser: 'Guessing',
                 /** The bonus walk: one screen per remaining player, one guess each. */
                 bonusOf: 'Bonus · {{number}} of {{total}}',
-                /*
-                 * The two ways off the bonus screen, which is one button wearing whichever
-                 * of them the marked row says it is. Tapping only marks, so a mis-tap
-                 * costs nothing but a second tap.
-                 */
+                // The two ways off the bonus screen, which is one button wearing whichever of them the marked row says it is.
                 bonusMissed: '{{name}} got nothing',
                 bonusTake: '{{name}} got it',
                 /** On a settle row nobody is credited with. */
                 nobody: 'Nobody got it'
             },
-            /**
-             * The strip's one-line variant, for the rounds where nobody in particular is
-             * being asked. Said by the round rather than by the strip, because "reads"
-             * is only half the sentence and the other half is what the round is.
-             */
+            // The strip's one-line variant, for the rounds where nobody in particular is being asked.
             leadOpen: '{{name}} reads to the player on their left',
             leadChoice: '{{name}} reads · four options',
             leadClosest: '{{name}} reads · everyone else guesses',
             leadDescribe: '{{name}} describes their own words',
             leadList: '{{name}} asks · one player names what they can',
-            /**
-             * Unused while `answering` is set — the finale always has somebody in
-             * particular being asked, so `TurnStrip` never falls back to its one-line
-             * variant here. Kept for the same reason every other round keeps one: the
-             * shape of `roundCopy` is uniform across rounds.
-             */
+            // Unused while `answering` is set.
             leadFinale: '{{name}} reads to both finalists',
             readAloud: 'Read this out loud',
             onlyYouSeeThis: 'Only you see this',
@@ -767,26 +629,13 @@ export const en = {
             wrongPassesTo: 'Wrong passes the turn to {{name}}',
             /** Nobody left to ask: the question dies here rather than passing on. */
             wrongEndsQuestion: 'Nobody else to ask, wrong ends this question',
-            /**
-             * `PassOnPrompt`, rounds 1 and 6 only: the one thing on screen after a wrong
-             * answer that still has somebody left to ask. Named after the person taking
-             * it, the same reason `gate` and `validate` are — a stray tap during a
-             * hand-over has to read as obviously somebody else's turn.
-             */
+            // `PassOnPrompt`, rounds 1 and 6 only: the one thing on screen after a wrong answer that still has somebody left to ask.
             passOn: 'Now {{name}} can guess',
             /** The line underneath, saying why the button says what it says. */
             passOnHint: '{{name}} had it wrong · tap to continue',
             /** The button's accessibility label, said whole rather than split in two. */
             passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
-            /**
-             * `QuickAssign`, the optional shortcut beside the hand-off: ask the table in
-             * a circle out loud, then name who got it, instead of tapping Wrong down the
-             * line. The panel has to say that skipping people marks them wrong, because
-             * that is the one thing about it somebody could be surprised by — and it is
-             * also exactly what happened at the table.
-             */
-            /** The button's own label. Short on purpose — it sits under the icon in a
-                square the size of a thumb, not beside it in a sentence. */
+            // `QuickAssign`, the optional shortcut beside the hand-off.
             quickAssign: 'Quick',
             quickAssignSpoken: 'Quick assign: name who answered correctly',
             quickAssignTitle: 'Who got it?',
@@ -795,27 +644,11 @@ export const en = {
             quickAssignConfirm: 'Assign',
             quickAssignConfirmNamed: 'Assign to {{name}}',
             quickAssignCancel: 'Back',
-            /**
-             * Round 2 only, replacing both lines above it: round 2 never keeps the seat
-             * on a correct answer, so this one name is true no matter which button gets
-             * pressed.
-             */
+            // Round 2 only, replacing both lines above it.
             choiceAlwaysPasses: 'Either way, next up: {{name}}',
-            /**
-             * What Correct does, which is no longer only "score it". Said beside the
-             * Wrong line because the two together are the round's whole rule, and the
-             * moment to read it is with a thumb over the buttons.
-             */
+            // What Correct does, which is no longer only "score it".
             correctKeepsTurn: 'Correct and the next question is {{name}} again',
-            /**
-             * What the turn on screen pays. In round 1 every second question does — see
-             * `scoresAt` — and the other half are worth nothing but the seat, which is a
-             * thing the table will not forgive being told only after the fact. Every
-             * other round pays on all of them.
-             *
-             * Never `count`: that is the one option name i18next treats as a plural
-             * trigger, and there are no plural forms behind this. See `common.time`.
-             */
+            // What the turn on screen pays.
             worthPoints: 'For {{worth}}',
             noPoint: 'No point',
             /** The score strip on the question card. A running total, not this round's. */
@@ -823,12 +656,7 @@ export const en = {
             /** Round 2: the four options, read out loud. */
             choice: {
                 options: 'The four options',
-                /**
-                 * The cue above the question while it is being read. Round 1's cue says
-                 * only "read this out loud"; round 2 has four more things to say before
-                 * anybody may answer, and a quizmaster who reads the question and stops
-                 * is the mistake this line exists to prevent.
-                 */
+                // The cue above the question while it is being read.
                 readAll: 'Read out loud: question and all four',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}}, this is the right one'
@@ -839,10 +667,7 @@ export const en = {
                 answer: '{{answer}} {{unit}}',
                 placeholder: 'Guess',
                 entry: "{{name}}'s guess",
-                /**
-                 * Copying is not guessing, so the second person to say a number has to
-                 * pick another one. Said as the thing to do rather than as a complaint.
-                 */
+                // Copying is not guessing, so the second person to say a number has to pick another one.
                 duplicate: 'Two players have the same number. Ask one of them for another.',
                 unreadable: 'One of those is not a number.',
                 /** The way out for a table that has already agreed out loud. */
@@ -862,40 +687,16 @@ export const en = {
                 /** The rows, and how many of them have a number in them so far. */
                 theirNumbers: 'Their numbers',
                 filled: '{{filled}} of {{total}} in',
-                /**
-                 * How far off each guess landed, under the name. Only on the result
-                 * screen — the form the numbers are typed into says nothing about who is
-                 * winning, because that is what pressing its button is for.
-                 *
-                 * Worth the two lines it costs there: without them the quizmaster does
-                 * four subtractions out loud while five people check the arithmetic.
-                 */
+                // How far off each guess landed, under the name.
                 off: '{{off}} off',
                 nearestOff: 'nearest · {{off}} off',
-                /**
-                 * The check on the way out, when a row is still blank.
-                 *
-                 * Not a rule — a blank row is legal, and `reviewGuesses` drops it on
-                 * purpose, because somebody is always at the bar. But the far commoner
-                 * reason for a blank row is that the quizmaster has not got to it yet,
-                 * and the turn cannot be taken back once it is settled. So it asks.
-                 *
-                 * Two wordings rather than a `count`: that is the one option name
-                 * i18next treats as a plural trigger, and there are no plural forms
-                 * behind these. See `common.time`.
-                 */
+                // The check on the way out, when a row is still blank.
                 missingTitle: 'Not everybody has a number',
                 missingOne: '{{names}} has nothing written down, so they cannot win this one.',
                 missingMany: '{{names}} have nothing written down, so they cannot win this one.',
                 missingBack: 'Go back and fill them in',
                 missingAnyway: 'Settle it anyway',
-                /**
-                 * The screen after the settle: who was right, before the phone moves on.
-                 *
-                 * Two wordings wherever a tie changes the verb, rather than a `count`:
-                 * that is the one option name i18next treats as a plural trigger, and
-                 * there are no plural forms behind these. See `common.time`.
-                 */
+                // The screen after the settle: who was right, before the phone moves on.
                 result: {
                     nearestOne: '{{names}} was nearest',
                     nearestMany: '{{names}} were nearest',
@@ -941,14 +742,7 @@ export const en = {
                 scoreAgain: 'Score this turn again',
                 settle: 'Hand out the points'
             },
-            /**
-             * Round 5: one question, four answers, and twenty seconds with the player on
-             * the reader's left.
-             *
-             * Deliberately parallel to `describe.*` — the round is played the same way, so
-             * the wordings should read as the same rules with different nouns rather than
-             * as two games that happen to share a phone.
-             */
+            // Round 5: one question, four answers, and twenty seconds with the player on the reader's left.
             list: {
                 /** The ready screen's rules list, one row each rather than one paragraph. */
                 readyRuleOnlyGuesser: 'You ask {{guesser}}, and until their turn is over only their answers count',
@@ -958,19 +752,12 @@ export const en = {
                 readyRuleScore: 'Every answer they get is {{worth}} point for them',
                 readyRuleBonus: 'Afterwards the other {{others}} each get one guess at an answer nobody got',
                 start: 'Show the answers and start',
-                /**
-                 * The beat between the rules and the clock: the question is read out here,
-                 * before the quizmaster presses anything that starts counting down.
-                 */
+                // The beat between the rules and the clock.
                 preTimerHint: 'First read the question out loud, then start the timer and {{guesser}} can start guessing',
                 startTimer: 'Start the timer',
                 /** Shown again mid-timer, so it does not depend on being remembered. */
                 runningReminder: 'Tick off every answer {{guesser}} says. Nobody else counts yet.',
-                /**
-                 * Zen mode's stand-in for the clock, said in a notification rather than
-                 * drawn as a meter. It states the whole of what is different about the
-                 * round, because it is on screen for the whole of it.
-                 */
+                // Zen mode's stand-in for the clock, said in a notification rather than drawn as a meter.
                 zenNotice: 'No time pressure here. {{guesser}} can guess {{nGuesses}} times, and afterwards everybody else gets one bonus guess at an answer nobody got.',
                 /** The confirm screen: one last look before the leftovers go round the table. */
                 inTimeTitle: 'What did {{guesser}} get?',
@@ -984,14 +771,7 @@ export const en = {
                 scoreAgain: 'Score this question again',
                 settle: 'Hand out the points'
             },
-            /**
-             * The screen that opens every round, before the phone is handed to anybody.
-             *
-             * `rounds.*` names a round in the two words a label has room for and
-             * `handoff.rule*` states its rule at whoever is holding the phone; these are
-             * the versions written at the table, which has not seen this round before and
-             * needs to know what is about to be asked of it.
-             */
+            // The screen that opens every round, before the phone is handed to anybody.
             intro: {
                 /** Under the number: "of 6". */
                 of: 'of {{total}}',
@@ -1015,22 +795,14 @@ export const en = {
                 step: 'Round {{round}} · {{number}} of {{total}}',
                 /** Broken over two lines by the design, which the app does not force. */
                 title: 'Pass the phone to {{name}}',
-                /**
-                 * What the person taking the phone is about to do. One line per round,
-                 * because "reads to the player on their left" is true of the first three
-                 * and completely wrong for the fourth.
-                 */
+                // What the person taking the phone is about to do.
                 jobOpen: '{{name}} reads to the player on their left',
                 jobChoice: '{{name}} reads the question and all four options',
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
                 jobDescribe: '{{name}} describes their own words to the player on their left. Nobody else may look at the screen.',
                 jobList: '{{name}} reads the question out and ticks off every answer the player on their left gets.',
                 jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
-                /**
-                 * The round's rule, said on the one screen with room to say it properly.
-                 * The board says the short version every turn; this is the version with
-                 * room for the second half of it.
-                 */
+                // The round's rule, said on the one screen with room to say it properly.
                 ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
                 ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
@@ -1040,11 +812,7 @@ export const en = {
                 action: 'Show the question'
             },
             standings: {
-                /**
-                 * The accent band over the scoreboard, which is the one thing on that
-                 * screen saying where in the evening it is — the hero under it names the
-                 * round that just ended, and the track beside this counts them off.
-                 */
+                // The accent band over the scoreboard, which is the one thing on that screen saying where in the evening it is.
                 label: 'Round {{round}} of {{total}} done',
                 title: 'Round {{round}} done',
                 description: 'How the table stands with that round behind you.',
@@ -1058,18 +826,11 @@ export const en = {
                 description: 'How the whole evening finished.',
                 /** The tag under a finalist's name, so their row explains its own number. */
                 finalist: 'Finalist',
-                /**
-                 * The banner across the top of the winner's card. Uppercased by the
-                 * style rather than by the copy, so a language whose casing rules
-                 * differ still gets its own.
-                 */
+                // The banner across the top of the winner's card.
                 winnerLabel: 'Winner',
                 /** Under the winner's name, on the card. Their whole evening in one number. */
                 points: '{{score}} points',
-                /**
-                 * Nobody won outright. The card names the joint leaders instead, and
-                 * the app does not hand the night to whoever the sort put first.
-                 */
+                // Nobody won outright.
                 tieLabel: 'Shared first',
                 tieTitle: 'Too close to call',
                 tieDescription: 'Nobody finished ahead. The night is shared.',
@@ -1077,11 +838,7 @@ export const en = {
                 restLabel: 'The rest of the table'
             }
         },
-        /**
-         * Written here rather than passed through from the API, for the reason
-         * `lol.errors` spells out: the server's own wording is English, and some of it
-         * is not even the API's.
-         */
+        // Written here rather than passed through from the API, for the reason `lol.errors` spells out.
         errors: {
             expired: 'You have been signed out. Sign in again to start a quiz.',
             quizGone: 'That quiz is no longer available. Pick another one.',
@@ -1092,11 +849,7 @@ export const en = {
             quizTooSmall: 'This quiz does not have enough questions for that many players. Pick another quiz, or play with fewer people.',
             generic: 'The quiz could not be started. Try again.',
             network: 'No connection to the server. Check your internet.',
-            /**
-             * The turn moved under the screen — a second tap, or a phone left open on
-             * something the table has already played. The board stays up, so the line
-             * says what to do rather than apologising.
-             */
+            // The turn moved under the screen — a second tap, or a phone left open on something the table has already played.
             staleTurn: 'The table has already moved on. The board below is where the quiz actually is.',
             duplicateGuess: 'Two players cannot guess the same number. Ask one of them for another.',
             quizmasterCannotGuess: 'Whoever is reading the question out does not get to guess at it.',
@@ -1134,18 +887,7 @@ export const en = {
                 title: "Use words only",
                 description: "Use words only. Otherwise, a sentence."
             },
-            /**
-             * Which of the liars this table is willing to be dealt.
-             *
-             * Only the imposter side is switchable, so the description has to say what
-             * the row is *not* offering as well as what it is: somebody looking for the
-             * mayor here would otherwise assume the game has not got one.
-             *
-             * The role names are not repeated — the row reads them out of `ROLE_FACES`,
-             * from `oneOfUs.play.reveal.role.*.name`, so a role is called the same thing
-             * on the setup screen and in the game. These are only the lines that answer
-             * the setup screen's own question: what changes if this is off.
-             */
+            // Which of the liars this table is willing to be dealt.
             roles: {
                 title: 'Roles',
                 description: 'Which roles can be dealt out.',
@@ -1164,48 +906,22 @@ export const en = {
         play: {
             loading: 'Dealing out the words…',
             close: 'Leave the game',
-            /**
-             * The header, every round.
-             *
-             * Four keys rather than one with a `{{phase}}` hole in it. The four screens
-             * now look alike on purpose — the same ring of seats, doing something
-             * different — so the header is the only thing telling the table which one
-             * they are on, and a separator that a translator cannot move or drop is not
-             * good enough for the one line carrying that.
-             */
+            // The header, every round.
             roundSpeak: 'Round {{round}} · turn',
             roundDiscuss: 'Round {{round}} · discuss',
             roundVote: 'Round {{round}} · vote',
             roundResult: 'Round {{round}} · result',
 
-            /**
-             * The pass-the-phone reveal, once per player before the first round.
-             *
-             * The step line counts people rather than rounds, because that is what is
-             * actually happening: the phone is going round the table once so everybody
-             * can read their own word.
-             */
+            // The pass-the-phone reveal, once per player before the first round.
             reveal: {
                 step: 'Word {{number}} of {{total}}',
                 title: '{{name}} is up',
-                /**
-                 * Two bodies, because `HandoffScreen` takes `from: Seat | null` and the
-                 * first player has nobody to take the phone from. Naming who is handing
-                 * it over is worth the second key: it is the one instruction on the
-                 * screen that says what to physically do.
-                 */
+                // Two bodies, because `HandoffScreen` takes `from: Seat | null` and the first player has nobody to take the phone from.
                 body: 'Take the phone from {{from}} and hold it where only you can see it.',
                 bodyFirst: 'Only {{name}} may look at the next screen.',
                 note: 'Nobody else may look.',
                 action: "I'm {{name}}",
-                /**
-                 * Who has not been handed the phone yet, under the role card.
-                 *
-                 * Deliberately phrased so one name and five names both read correctly,
-                 * rather than split into singular and plural keys — the list is built by
-                 * `joinNames`, and a sentence with the names at the end is the one shape
-                 * that survives either.
-                 */
+                // Who has not been handed the phone yet, under the role card.
                 queue: 'Still to come: {{names}}',
                 secretLabel: 'Tap to see your word',
                 secretHint: 'Hold the phone so nobody else can read it.',
@@ -1213,20 +929,7 @@ export const en = {
                 /** What the one player who was dealt nothing reads where a word would be. */
                 noWord: 'No word at all',
 
-                /**
-                 * The side you are on, uncovered with the word.
-                 *
-                 * The explanations say what to do with the word rather than defining the
-                 * role: knowing you are called an imposter is worth nothing on its own,
-                 * and the one thing a player needs in the ten seconds they hold the
-                 * phone is whether they are bluffing or hunting.
-                 *
-                 * One line each, and that is a size limit as much as a style. The card
-                 * now shares the screen with the queue strip below it, and the paragraph
-                 * these used to be pushed that off the bottom of a small phone. What the
-                 * long versions carried — what each role is *for* — is said properly by
-                 * the briefing, to the whole table, before anything is dealt.
-                 */
+                // The side you are on, uncovered with the word.
                 role: {
                     label: 'Your role',
                     civilian: {
@@ -1237,13 +940,7 @@ export const en = {
                         name: 'Imposter',
                         explanation: 'Your word is not the one the rest of the table got. Bluff along and survive.'
                     },
-                    /**
-                     * What a civilian and an imposter are shown instead of `civilian` or
-                     * `imposter` above — those two stay in the file for the briefing and the
-                     * end-of-game reveal, which are allowed to name names. The reveal is not:
-                     * telling the imposter what they are here is the one thing that gives
-                     * them a head start nobody else at the table gets.
-                     */
+                    // What a civilian and an imposter are shown instead of `civilian` or `imposter` above.
                     unknown: {
                         name: 'Civilian or Imposter',
                         explanation: "You don't know which one you are. Watch the table, listen to the word, and work it out."
@@ -1259,15 +956,9 @@ export const en = {
                 lastDone: 'Got it — start round 1'
             },
 
-            /**
-             * One speaker at a time, in an order reshuffled every round.
-             *
-             * The screen names one person and nothing else. There is nothing to type:
-             * the whole turn happens out loud, and the phone is only keeping the order.
-             */
+            // One speaker at a time, in an order reshuffled every round.
             speak: {
-                // Loses the round it used to carry: the header says it now, on every
-                // one of the four board screens rather than only this one.
+                // Loses the round it used to carry.
                 step: 'Speaker {{number}} of {{total}}',
                 nowSpeaking: 'Now speaking',
                 hint: 'Say one word about your own word. Do not say the word itself.',
@@ -1311,15 +1002,7 @@ export const en = {
                 next: 'Round {{round}}'
             },
 
-            /**
-             * Every role the game can deal, read out to the table before the phone
-             * starts going round.
-             *
-             * Written in the third person, unlike everything under `reveal.role`. These
-             * are said out loud about people who have not been dealt anything yet, so
-             * "your word" would be nonsense — and the same card component draws both,
-             * which is why it takes the wording rather than looking it up.
-             */
+            // Every role the game can deal, read out to the table before the phone starts going round.
             briefing: {
                 title: 'Who is at the table',
                 intro: 'Everybody is dealt one of these. Read them out before you start.',
@@ -1397,16 +1080,14 @@ export const en = {
             stay: 'Stay here',
             start: 'Start the game',
             startNote: 'Once you start, nobody else can join.',
-            // Interpolated rather than fixed at three: the floor is the server's, and it
-            // arrives on every lobby as `minPlayers`.
+            // Interpolated rather than fixed at three: the floor is the server's, and it arrives on every lobby as `minPlayers`.
             needPlayers: 'You need at least {{min}} players.',
             hostFallback: 'The host',
             settingsTitle: 'Game settings',
             mode: 'Prompts',
             modeFacts: 'True facts',
             modeCreative: 'Anything goes',
-            // The one setting worth a sentence: it changes whether there are points for
-            // guessing at all, which is not something a two-word label can carry.
+            // The one setting worth a sentence.
             modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
             modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked.'
         },
@@ -1415,8 +1096,7 @@ export const en = {
             noGame: 'No game',
             writing: {
                 title: 'Fill in the blanks',
-                // Says the goal in one line, because it is the opposite of what a quiz
-                // trains people to do and is worth stating plainly.
+                // Says the goal in one line, because it is the opposite of what a quiz trains people to do and is worth stating plainly.
                 intro: 'Two prompts are yours. Invent something believable — you score every time somebody picks it.',
                 promptOf: 'Prompt {{index}} of {{total}}',
                 blank: 'Blank {{index}}',
@@ -1475,8 +1155,7 @@ export const en = {
             alreadyStarted: 'This game has already started.',
             notEnoughPlayers: 'You need at least three players to start.',
             tooManyPlayers: 'That is too many players for one game.',
-            // A short data file is a broken build rather than a broken request, so this
-            // says so rather than suggesting a retry that will fail the same way.
+            // A short data file is a broken build rather than a broken request.
             noContent: 'There are not enough prompts to play in this language. Try the other one.',
             notYourPrompt: 'That prompt was not dealt to you.',
             alreadyAnswered: 'You have already filled that one in.',

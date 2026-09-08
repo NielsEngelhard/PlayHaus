@@ -28,44 +28,17 @@ interface Props {
     turn: DescribeTurn
     /** Which round this is, for the strip's pips. */
     round: number
-    /**
-     * What the strip says when nobody in particular is being asked. Round 4 does have
-     * somebody now — the seat on the describer's left — so `TurnStrip` draws the
-     * two-person row and never reads this; it stays on the prop because the page hands
-     * every board the same three lines and a round that quietly stopped taking one would
-     * be a thing to rediscover.
-     */
+    // What the strip says when nobody in particular is being asked.
     lead: string
     busy: boolean
     error: TranslationKey | null
     onSettle: (awards: WordAward[]) => void
 }
 
-/**
- * Where in the turn we are.
- *
- * Five screens, because they cannot share a phone and because the turn is played in two
- * halves: the clock, which only the person on the describer's left is answering against,
- * and then the leftovers going round the rest of the table one guess each.
- */
+// Where in the turn we are.
 type Stage = 'ready' | 'running' | 'inTime' | 'bonus' | 'settle';
 
-/**
- * The board for round 4: your words, thirty seconds with the player on your left, and
- * then one guess each round the rest of the table for whatever is left over.
- *
- * The split into screens is not decoration. The words may only be seen by the person
- * describing them, so the first screen is a gate they have to close on purpose — the same
- * gate the hand-off is, one level in. The second is a stopwatch with the words on it and
- * nothing to press, because the person holding it is talking. Everything after it happens
- * with time already up and in front of everybody.
- *
- * The scoring is two screens rather than one, and that is the round's rule made into a
- * shape: `inTime` can credit nobody but the guesser, and `bonus` offers each remaining
- * player the words that survived them, once. Doing it on one screen would mean drawing
- * every seat against every word and then explaining, in words, why most of those taps are
- * not allowed — so instead the screen only ever offers the taps that are.
- */
+// The board for round 4: your words, thirty seconds with the player on your left.
 export default function DescribeBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -76,22 +49,10 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     const [awards, setAwards] = useState<DescribeAwards>({});
     /** Whose bonus guess is being offered, as an index into `turn.bonus`. */
     const [bonusIndex, setBonusIndex] = useState(0);
-    /**
-     * The word this player has been marked down for, before it is committed.
-     *
-     * Tapping a word used to credit it and move to the next player in the same gesture,
-     * which put the single most destructive tap on the screen — one guess spent, on
-     * somebody else's behalf, with the screen already gone — under the same finger that
-     * is scrolling the list. Now it selects, exactly like the in-time screen above it,
-     * and the button at the bottom is the one thing that ends the player's go.
-     */
+    // The word this player has been marked down for, before it is committed.
     const [bonusPick, setBonusPick] = useState<string | null>(null);
 
-    /*
-     * Reset during render, like every other board here: a new turn has to arrive with its
-     * words hidden again, in the same commit that brings it. Keyed on the describer,
-     * because that is what a turn is in this round.
-     */
+    // Reset during render, like every other board here.
     const [turnOf, setTurnOf] = useState<number | null>(null);
     if (turnOf !== turn.describer.seat) {
         setTurnOf(turn.describer.seat);
@@ -117,13 +78,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         }));
     }
 
-    /**
-     * The clock's half of the turn is ruled on. What is left goes round the table.
-     *
-     * Straight to the settle when there is nothing left to steal, or nobody to offer it
-     * to: a bonus round with an empty pool is a screen that asks a person to look at
-     * nothing and press on.
-     */
+    // The clock's half of the turn is ruled on.
     function openBonus() {
         if (unclaimed.length === 0 || turn.bonus.length === 0) {
             setStage('settle');
@@ -135,14 +90,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         setStage('bonus');
     }
 
-    /**
-     * One player's single guess is spent, taken or not. On to the next of them — or to
-     * the settle, once the words have run out or everybody has had their go.
-     *
-     * `left` is passed in rather than read off `unclaimed`, because the seat that has
-     * just taken a word is being credited in the same commit and the render this runs in
-     * still has the old pool.
-     */
+    // One player's single guess is spent, taken or not.
     function nextBonus(left: number) {
         setBonusPick(null);
 
@@ -155,15 +103,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         setStage('settle');
     }
 
-    /**
-     * The marked-down word is spent, and the walk moves on — or the guess goes on
-     * nothing, which is the common case for words that already beat somebody with a clock
-     * running.
-     *
-     * `unclaimed.length - 1` for the same reason `nextBonus` takes the count at all: the
-     * credit is going out in this commit and the render it happens in is still holding
-     * the old pool.
-     */
+    // The marked-down word is spent, and the walk moves on.
     function spendBonus(player: Seat) {
         if (busy) return;
 
@@ -176,12 +116,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
         nextBonus(unclaimed.length - 1);
     }
 
-    /*
-     * The same strip every other round wears, across every stage of this one — including
-     * the stopwatch. Round 4 does have somebody being asked now — the seat on the
-     * describer's left — so the strip says so, the way it does in the rounds that are
-     * read to one person.
-     */
+    // The same strip every other round wears, across every stage of this one — including the stopwatch.
     const strip = (
         <TurnStrip
             quizmaster={turn.describer}
@@ -196,11 +131,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     );
 
     if (stage === 'ready') {
-        // Written at the table rather than at the phone, and in the order the turn
-        // happens in: who is playing, how long, what is not allowed, what it pays, and
-        // then what happens after the clock stops. The two that name a person are the
-        // point of the screen — this round used to be a room shouting at once, and a
-        // table that half-remembers the old rule will play it that way again.
+        // Written at the table rather than at the phone, and in the order the turn happens in.
         const rules: TurnRule[] = [
             {
                 icon: 'user-check',
@@ -275,10 +206,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                     {t('pubquizr.play.describe.dontSayIt')}
                 </AppText>
 
-                {/* The one rule worth a reminder mid-timer, and it is the one the round
-                    changed: the describer is playing to one person, and the rest of the
-                    table calling out is not the game any more. Everything else on the
-                    ready screen is a decision made before this started. */}
+                {/* The one rule worth a reminder mid-timer, and it is the one the round changed. */}
                 <AppText style={styles.recap}>
                     {t('pubquizr.play.describe.runningReminder', { guesser: turn.guesser.name })}
                 </AppText>
@@ -327,8 +255,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     if (stage === 'bonus') {
         const player = turn.bonus[bonusIndex];
 
-        // A pool that has emptied under the walk, or a seat that is no longer at the
-        // table: either way there is nothing to offer, so the screen does not open.
+        // A pool that has emptied under the walk, or a seat that is no longer at the table.
         if (player === undefined || unclaimed.length === 0) {
             setStage('settle');
             return null;
@@ -377,9 +304,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 })}
             </ScrollView>
 
-            {/* What the turn is about to be worth, while it can still be changed. The
-                describer's own total is the one worth showing: it is the sum of everything
-                that landed, and it is the number they will want to argue about. */}
+            {/* What the turn is about to be worth, while it can still be changed. */}
             {standing.size > 0 && (
                 <AppText style={styles.standing}>
                     {t('pubquizr.play.describe.standing', {
@@ -397,9 +322,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 />
             )}
 
-            {/* The way back, because the two scoring screens are a walk rather than a
-                form: once the bonus has moved past a player there is no other way to undo
-                a mis-tap, and one of them is a point somebody will notice. */}
+            {/* The way back, because the two scoring screens are a walk rather than a form. */}
             <Pressable
                 onPress={() => {
                     if (busy) return;
@@ -440,13 +363,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
     )
 }
 
-/**
- * The timer, kept behind a component of its own so it mounts once per turn.
- *
- * Inlining it would put it in the same tree as the awards state, and every keystroke on
- * the scoring screen would be a re-render the countdown has to survive. It does survive
- * them — it counts against a deadline — but the thirty seconds should not depend on that.
- */
+// The timer, kept behind a component of its own so it mounts once per turn.
 function TurnTimerSlot({ onDone }: { onDone: () => void }) {
     return <TurnTimer seconds={DESCRIBE_SECONDS} onDone={onDone} />;
 }
@@ -468,8 +385,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    // The one line worth surfacing again once the timer starts, so it does not depend
-    // on being remembered from a screen already left behind.
+    // The one line worth surfacing again once the timer starts.
     recap: {
         flexShrink: 0,
         textAlign: 'center',
@@ -484,11 +400,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 4
     },
 
-    // The one thing on this screen that has to be readable at arm's length, held at an
-    // angle, by somebody who is also talking. Tappable so the describer can cross a word
-    // off the moment it lands, rather than having to remember it for the `inTime` screen
-    // — that screen still opens on whatever this one left tapped, so a mid-timer tap is
-    // never the only chance to get it right.
+    // The one thing on this screen that has to be readable at arm's length, held at an angle, by somebody who is also talking.
     word: {
         paddingVertical: 14,
         paddingHorizontal: 16,

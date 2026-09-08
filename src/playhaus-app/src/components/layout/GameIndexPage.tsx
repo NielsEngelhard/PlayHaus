@@ -9,10 +9,7 @@ import { Children, useState, type ReactNode } from "react";
 import { Platform, useWindowDimensions, View, type LayoutChangeEvent } from "react-native";
 
 interface Props {
-    /**
-     * The game's name, at the top of the slab. Newlines are honoured, for a title the
-     * design breaks at a chosen word rather than wherever the column runs out.
-     */
+    // The game's name, at the top of the slab.
     name: string,
     /** The game's own square mark — `game.icon`. */
     icon: ImageSource,
@@ -28,85 +25,27 @@ interface Props {
     deviceMode: DeviceMode,
     /** Roughly how long a game runs. */
     durationInMinutes: number,
-    /**
-     * Laid over the top-right corner of the slab, level with the mark — pubquizR's
-     * weekly stamp. Optional, and nothing else on the page moves when it is there.
-     */
+    // Laid over the top-right corner of the slab, level with the mark — pubquizR's weekly stamp.
     stamp?: ReactNode,
-    /**
-     * The rest of the page: the mode cards and whatever each game keeps under them.
-     *
-     * The first child is special — it is the row the band is cut around, so it has to be
-     * the mode cards. See `OVERLAP_FRACTION`.
-     */
+    // The rest of the page: the mode cards and whatever each game keeps under them.
     children: ReactNode
 }
 
 const MARK_SIZE = 58;
 
-/**
- * How far down its first row of cards the band stops.
- *
- * Half, so the cards straddle the edge rather than beginning at it. Ending the band flush
- * with the top of the page's own content draws a hard rule across the screen and leaves
- * two stacked blocks either side of it; letting the row sit into the colour ties the two
- * together, and is what the design does on the screens whose hero is short enough for it
- * to happen by accident.
- *
- * Measured rather than set as a depth, because the two card designs are not the same
- * height — the quiet `ModeCard` floors at 186dp and the solid one at 132dp — and a single
- * depth would cut them at two different fractions.
- */
+// How far down its first row of cards the band stops.
 const OVERLAP_FRACTION = 0.5;
 
-/**
- * What the row is assumed to be until it has been measured, i.e. for the first painted
- * frame and for the pre-rendered web export before it hydrates.
- *
- * Between the two floors above, so the guess is out by at most ~14dp either way — a
- * sliver of band edge in the gutter between the cards, moving once during the page's own
- * 220ms entrance.
- */
+// What the row is assumed to be until it has been measured, i.e. for the first painted frame and for the pre-rendered web export before it hydrates.
 const ASSUMED_ROW_HEIGHT = 160;
 
-/**
- * The window width the hero turns sideways at.
- *
- * Past a tablet held upright (768) and short of the narrow laptop windows people put
- * side by side, which are better off with the phone's stacked hero.
- *
- * Deliberately not the width the band starts reaching out at, which is simply the point
- * there is any canvas beside it to reach into — see `bleed`. Between the two the hero
- * stacks as it does on a phone under a band that is already the whole window.
- */
+// The window width the hero turns sideways at.
 const WIDE_BREAKPOINT = 900;
 
-/**
- * How wide the hero already is: the app's one column, plus the two gutters it has
- * reached back out into — see `hero`.
- */
+// How wide the hero already is: the app's one column, plus the two gutters it has reached back out into — see `hero`.
 const HERO_WIDTH = ContentWidth + Spacing.four * 2;
 
-/**
- * Every game's front page: an accent slab carrying the game's mark, name, pitch and
- * facts, and under it whatever that game offers.
- *
- * The slab is the whole point of the shared shell. A game's colour used to reach its own
- * page through the corner mark and a card's drop shadow and nothing else, so below the
- * title one game looked exactly like the next. Here the top third of the page *is* the
- * game's gradient, run full-bleed and up behind the header, and the answer to "which
- * game am I in" is the first thing on screen.
- *
- * Nothing about its height is fixed. It wraps the hero and the gap under it, so a
- * two-line title carries the band down with it and a translation that runs long cannot
- * push the facts out of their own colour, and it then runs on past that into the first
- * row of cards — see `OVERLAP_FRACTION`.
- *
- * On a desktop window it turns sideways — see `WIDE_BREAKPOINT`. The band takes the
- * whole width rather than the column's, and the pitch and facts move up beside the
- * title instead of under it, which is what keeps a full-bleed band from being a third
- * of a laptop screen tall.
- */
+// Every game's front page: an accent slab carrying the game's mark, name, pitch and facts.
 export default function GameIndexPage({
     name,
     icon,
@@ -125,21 +64,7 @@ export default function GameIndexPage({
 
     const on = ON_ACCENT[accentInk];
 
-    /*
-     * How far past its own edges the band has to reach to make the window, and so also
-     * whether it is reaching at all.
-     *
-     * Anything left over is worth taking. A band that stops short of the window is a
-     * coloured rectangle laid on the page rather than the top of it, which is the whole
-     * thing this is here to avoid.
-     *
-     * Web only, for two reasons: the band reaches outside its own parent, which iOS
-     * allows and Android clips; and the clipping that keeps it from turning into
-     * sideways scroll is the `overflow-x: hidden` a vertical `ScrollView` only has on
-     * web. `useWindowDimensions` answers 0 with no DOM to measure, so the pre-rendered
-     * export ships the narrow layout and hydration widens it — the same trade the row
-     * measurement below already makes, and for the same reason.
-     */
+    // How far past its own edges the band has to reach to make the window, and so also whether it is reaching at all.
     const bleed = Platform.OS === 'web'
         ? Math.max(0, Math.ceil((windowWidth - HERO_WIDTH) / 2))
         : 0;
@@ -153,18 +78,14 @@ export default function GameIndexPage({
     const [rowHeight, setRowHeight] = useState<number | null>(null);
     const overlap = Math.round((rowHeight ?? ASSUMED_ROW_HEIGHT) * OVERLAP_FRACTION);
 
-    // Rounded before it is compared as well as before it is used: on web the measurement
-    // comes back fractional and a row that has not moved would otherwise hand back a
-    // slightly different number every pass and re-render on each one.
+    // Rounded before it is compared as well as before it is used.
     const measureRow = (event: LayoutChangeEvent) => {
         const height = Math.round(event.nativeEvent.layout.height);
 
         if (height !== rowHeight) setRowHeight(height);
     };
 
-    // The hero's pieces, built here rather than inline: the narrow layout stacks them
-    // and the wide one deals them into two columns, and they are the same pieces either
-    // way.
+    // The hero's pieces, built here rather than inline.
     const mark = (
         <Image
             source={icon}
@@ -174,14 +95,7 @@ export default function GameIndexPage({
         />
     );
 
-    /*
-     * The row above the hero proper.
-     *
-     * It carries the mark when the hero is stacked, and only the stamp when it is not —
-     * a sticker slapped on the corner of the band, with nothing under it. Where the wide
-     * layout has neither it is not rendered at all, rather than left as an empty 58dp of
-     * colour.
-     */
+    // The row above the hero proper.
     const topRow = (!wide || stamp !== undefined) && (
         <View style={styles.markRow}>
             {!wide && mark}
@@ -196,8 +110,7 @@ export default function GameIndexPage({
         <AppText
             style={[
                 styles.title,
-                // Only where the stamp is actually in the way. On a wide window it is
-                // off at the far end of the band and the title is in its own column.
+                // Only where the stamp is actually in the way.
                 !wide && stamp !== undefined && styles.textPastStamp,
                 wide && styles.titleWide,
                 { color: on.text }
@@ -243,22 +156,12 @@ export default function GameIndexPage({
     return (
         <View style={styles.container}>
             <View style={styles.hero}>
-                {/*
-                  * Drawn first so everything after it lands on top, and deaf to presses
-                  * so it never stands between a finger and the header above it.
-                  *
-                  * It fills the hero, which has already reached past the page's gutters
-                  * and up over the header with negative margins — see `hero`. The extra
-                  * reach above the top edge is for the strip over the header: on iOS a
-                  * bounce at the top of the page pulls the canvas down into view, and the
-                  * band should stretch rather than tear off.
-                  */}
+                {/* Drawn first so everything after it lands on top. */}
                 <View
                     pointerEvents="none"
                     style={[
                         styles.slab,
-                        // Square once it runs off the sides of the window: a corner
-                        // rounded against an edge it never touches reads as a mistake.
+                        // Square once it runs off the sides of the window: a corner rounded against an edge it never touches reads as a mistake.
                         bleed > 0 && styles.slabWide,
                         { bottom: -overlap, left: -bleed, right: -bleed },
                         linearGradient(gradient)
@@ -268,14 +171,9 @@ export default function GameIndexPage({
                 {topRow}
 
                 {wide ? (
-                    // Top-aligned: the pitch column is the taller of the two, so this
-                    // is what puts the name and the first line of the pitch on the same
-                    // line rather than leaving the lockup adrift halfway down the band.
+                    // Top-aligned: the pitch column is the taller of the two.
                     <View style={[styles.wideRow, topRow === false && styles.wideRowFlush]}>
-                        {/* Mark and name as one lockup, the way they sit together
-                            everywhere else in the app — the stacked layout only pulls
-                            them apart because a phone has no width to keep them on one
-                            line. */}
+                        {/* Mark and name as one lockup, the way they sit together everywhere else in the app. */}
                         <View style={styles.wideLead}>
                             {mark}
 
@@ -293,10 +191,7 @@ export default function GameIndexPage({
                 )}
             </View>
 
-            {/* A wrapper only to hold `onLayout`. It is a plain full-width box — the
-                column around it stretches its children by default — so the row inside is
-                laid out exactly as it would be on its own, and the gaps under it belong
-                to the blocks that follow rather than to this. */}
+            {/* A wrapper only to hold `onLayout`. */}
             <View onLayout={measureRow}>{cards}</View>
 
             {rest}
@@ -309,25 +204,7 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
 
-    /**
-     * The band, laid out rather than positioned.
-     *
-     * The 24dp gutters belong to the one scroller in `app/_layout.tsx` and the header
-     * above is a sibling of the whole page slot — two things every page shares and no
-     * page can reach. So this pulls back out of both with negative margins and lays its
-     * own padding down inside, the same trick `InGameHeader` uses on a board: the fill
-     * grows into the header's 66dp and out to the column's edges, and the content does
-     * not move.
-     *
-     * The bottom padding is the gap the design leaves between the facts and the first
-     * card below. It is inside the hero on purpose: the band is drawn from the hero's own
-     * box, so this is the point the band's depth is then measured on from, whatever the
-     * title did to the height above it.
-     *
-     * The header survives being covered because it is drawn *above* the page slot on
-     * exactly these routes, rather than under it as it is everywhere else — see
-     * `headerOverAccent` in `constants/header-context.ts`.
-     */
+    // The band, laid out rather than positioned.
     hero: {
         marginTop: -HeaderHeight,
         marginHorizontal: -Spacing.four,
@@ -344,9 +221,7 @@ const useStyles = createThemedStyles(theme => ({
         top: -Spacing.six,
         borderBottomLeftRadius: 32,
         borderBottomRightRadius: 32,
-        // Light cuts the band off with the same hard line every card wears. Dark leaves
-        // it open: a mid-grey line under a full-width gradient reads as a seam rather
-        // than an edge, and the gradient is its own edge anyway.
+        // Light cuts the band off with the same hard line every card wears.
         borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderBottomColor: theme.colors.border
     },
@@ -356,13 +231,7 @@ const useStyles = createThemedStyles(theme => ({
         borderBottomRightRadius: 0
     },
 
-    /**
-     * The two columns the hero splits into on a desktop window.
-     *
-     * The gap under the mark is the title's own `marginTop` moved out here, so it
-     * belongs to the row rather than to whichever of the two columns happens to be
-     * taller — see `titleWide`.
-     */
+    // The two columns the hero splits into on a desktop window.
     wideRow: {
         marginTop: 14,
         flexDirection: 'row',
@@ -375,23 +244,16 @@ const useStyles = createThemedStyles(theme => ({
         marginTop: 0
     },
 
-    // Sized by its contents rather than by a share of the row: the name is the thing
-    // being set, and the pitch beside it takes what is left.
+    // Sized by its contents rather than by a share of the row.
     wideLead: {
         flexDirection: 'row',
-        // Centred rather than topped, because the two names are not the same shape —
-        // one breaks over two lines and the others do not — and this is the one
-        // alignment that reads as a lockup in both cases.
+        // Centred rather than topped, because the two names are not the same shape.
         alignItems: 'center',
         gap: Spacing.three - 4,
         flexShrink: 1
     },
 
-    /**
-     * Short of half the column even where there is room for more. A pitch is a line
-     * under a name, and one running the full width of the band would be a paragraph
-     * competing with the title for the eye.
-     */
+    // Short of half the column even where there is room for more.
     widePitch: {
         flex: 1,
         minWidth: 0,
@@ -400,8 +262,7 @@ const useStyles = createThemedStyles(theme => ({
 
     markRow: {
         height: MARK_SIZE,
-        // The stamp is taller than the mark and hangs past this row on both sides, so
-        // the row keeps the mark's height and lets it.
+        // The stamp is taller than the mark and hangs past this row on both sides.
         justifyContent: 'center'
     },
 
@@ -409,8 +270,7 @@ const useStyles = createThemedStyles(theme => ({
         width: MARK_SIZE,
         height: MARK_SIZE,
         flexShrink: 0,
-        // The SVGs draw their own ground, border and glyph; this only rounds the corner
-        // off to the same radius they are cut with.
+        // The SVGs draw their own ground, border and glyph.
         borderRadius: 15
     },
 
@@ -428,32 +288,27 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -2
     },
 
-    // The gap above belongs to `wideRow` there, and a margin left on the title would sink
-    // the name inside its own lockup and off the line the row now tops it against.
+    // The gap above belongs to `wideRow` there.
     titleWide: {
         marginTop: 0
     },
 
     description: {
         marginTop: 12,
-        // Short of the full width even on a wide window, where a pitch running the whole
-        // 600 would read as a paragraph rather than as a line under a name.
+        // Short of the full width even on a wide window, where a pitch running the whole 600 would read as a paragraph rather than as a line under a name.
         maxWidth: 300,
         fontSize: 14,
         fontWeight: 500,
         lineHeight: 14 * 1.5
     },
 
-    // Both caps come off in the wide layout: the column it is in is the width now, and
-    // the top gap is the row's.
+    // Both caps come off in the wide layout: the column it is in is the width now, and the top gap is the row's.
     descriptionWide: {
         marginTop: 0,
         maxWidth: '100%'
     },
 
-    // The copy stops where the sticker starts. Held here rather than by the stamp
-    // because the text is what has to give way: it is drawn after the stamp, so a line
-    // long enough to reach it would be laid over it rather than pushed aside.
+    // The copy stops where the sticker starts.
     textPastStamp: {
         maxWidth: 300
     },

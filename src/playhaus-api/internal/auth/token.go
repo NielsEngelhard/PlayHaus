@@ -8,8 +8,7 @@ import (
 	"strings"
 )
 
-// newToken returns 256 bits of cryptographically random data. This is the only
-// readable copy of the token -- it is handed to the client and never stored.
+// newToken returns 256 bits of cryptographically random data.
 func newToken() (string, error) {
 	b := make([]byte, 32)
 	if _, err := rand.Read(b); err != nil {
@@ -18,20 +17,13 @@ func newToken() (string, error) {
 	return base64.RawURLEncoding.EncodeToString(b), nil
 }
 
-// hashToken is plain SHA-256 rather than bcrypt: the token is already 256 bits
-// of entropy, so it needs no stretching, and a fast deterministic hash is what
-// lets the lookup use an index.
+// hashToken is plain SHA-256 rather than bcrypt.
 func hashToken(token string) string {
 	sum := sha256.Sum256([]byte(token))
 	return base64.RawURLEncoding.EncodeToString(sum[:])
 }
 
-// BearerToken pulls the session token out of an Authorization header, or
-// returns "" if there isn't a well-formed one.
-//
-// Bearer rather than a cookie because the client is a React Native app: it has
-// no shared cookie jar, and it already stores the token itself in the device
-// keychain via expo-secure-store.
+// BearerToken pulls the session token out of an Authorization header, or returns "" if there isn't a well-formed one.
 func BearerToken(r *http.Request) string {
 	const prefix = "Bearer "
 

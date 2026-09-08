@@ -3,31 +3,12 @@ import type { Phrase, TranslationKey } from "@/features/i18n/keys";
 import { AVATAR_COLORS, type AvatarColor } from "@/utils/color-utils";
 import type { QuizListItem } from "./pubquizr-quizzes";
 
-/**
- * How a quiz turns into a row: the two letters on its swatch, the colour behind them,
- * and the line under its description.
- *
- * All three are worked out from what the list endpoint sends, which is deliberately
- * thin — a title, a description, a date. Nothing here asks the API for more.
- */
+// How a quiz turns into a row: the two letters on its swatch, the colour behind them.
 
-/**
- * The swatches a quiz can wear.
- *
- * The pale half of the profile palette, taken by the ink they carry rather than listed
- * again: a row's initials are small and dark, so a swatch that wanted paper letters
- * would need a different type size to stay readable, and the row has one.
- */
+// The swatches a quiz can wear.
 const SWATCHES: AvatarColor[] = AVATAR_COLORS.filter(color => color.foreground === Brand.ink);
 
-/**
- * A number from a string, stable across runs and platforms.
- *
- * djb2, which is not a good hash and does not need to be: the only thing riding on it
- * is which of three colours a quiz gets, and the one property that matters is that it
- * is the same colour tomorrow. `Math.imul` keeps the arithmetic in 32 bits, where a
- * plain `*` would silently drift into doubles and stop being reproducible.
- */
+// A number from a string, stable across runs and platforms. djb2, which is not a good hash and does not need to be.
 function hash(value: string): number {
     let result = 5381;
 
@@ -46,15 +27,7 @@ export function swatchFor(quiz: QuizListItem): AvatarColor {
 /** The `YYYY-wNN` a weekly quiz's slug is built from — see `seed.go`'s `weeklySlug`. */
 const WEEKLY_SLUG = /^\d{4}-w(\d{1,2})$/;
 
-/**
- * What sits on a quiz's swatch: the week number for a weekly quiz, since that is the
- * one thing that actually tells two weekly quizzes apart at a glance, or the initials
- * of the first two words of the title otherwise — its first two characters when the
- * title is one word.
- *
- * Spread rather than sliced, because a title starting with an emoji or an accented pair
- * cut by index comes out as half a glyph.
- */
+// What sits on a quiz's swatch: the week number for a weekly quiz.
 export function initialsFor(quiz: QuizListItem): string {
     const week = quiz.category === 'weekly' ? WEEKLY_SLUG.exec(quiz.slug) : null;
     if (week) return week[1].padStart(2, '0');
@@ -68,25 +41,12 @@ export function initialsFor(quiz: QuizListItem): string {
     return [...(words[0] ?? '')].slice(0, 2).join('').toUpperCase() || '?';
 }
 
-/**
- * The one quiz the picker answers with instead of asking about.
- *
- * Nine times in ten the pick is the newest unplayed weekly quiz, so that is the answer —
- * and a table that has played every weekly quiz there is still gets the newest rather
- * than nothing, because "you are up to date" is not a thing to press.
- */
+// The one quiz the picker answers with instead of asking about.
 export function featuredQuiz(items: QuizListItem[]): QuizListItem | null {
     return items.find(quiz => quiz.played !== true) ?? items[0] ?? null;
 }
 
-/**
- * The month names, as catalogue keys in calendar order.
- *
- * `Intl` is still not what formats this — see `features/reconnect/game-kinds.ts`, which
- * says the same thing about the same problem: it is not something every runtime this
- * app ships to can be relied on for, and three-letter abbreviations are a thing the
- * catalogue can simply say.
- */
+// The month names, as catalogue keys in calendar order.
 const MONTH_KEYS = [
     'common.time.months.jan', 'common.time.months.feb', 'common.time.months.mar',
     'common.time.months.apr', 'common.time.months.may', 'common.time.months.jun',
@@ -94,18 +54,7 @@ const MONTH_KEYS = [
     'common.time.months.oct', 'common.time.months.nov', 'common.time.months.dec'
 ] as const satisfies readonly TranslationKey[];
 
-/**
- * When a quiz went up, as the row shows it: "19 Aug 2025".
- *
- * An absolute date rather than the relative wording the reconnect list uses. These are
- * shelves rather than sessions — a weekly quiz is *the one from August* — and the list
- * is sorted by this, so the dates have to line up down the column to be worth reading at
- * all. The day is what a shelf is filed under; the hour it went up is not, so it is not
- * shown.
- *
- * Returns `null` for a quiz with no publication date, or one whose date does not parse:
- * the row then draws no date line rather than the word "Invalid".
- */
+// When a quiz went up, as the row shows it: "19 Aug 2025".
 export function publishedAtPhrase(publishedAt: string | undefined): Phrase | null {
     if (!publishedAt) return null;
 

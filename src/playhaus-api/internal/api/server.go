@@ -24,13 +24,11 @@ type Server struct {
 	oneOfUs         *oneofus.Service
 	fakeFiller      *fakefiller.Service
 
-	// rt is every live socket room. Handlers publish into it after a write; they
-	// never read game state out of it.
+	// rt is every live socket room.
 	rt  *realtime.Hub
 	log *slog.Logger
 
-	// Kept for the socket handshake, which has to answer the same origin question
-	// CORS does but cannot go through the CORS middleware to do it.
+	// Kept for the socket handshake, which has to answer the same origin question CORS does but cannot go through the CORS middleware to do it.
 	allowedOrigins   []string
 	anyOriginAllowed bool
 }
@@ -60,10 +58,7 @@ func NewServer(
 		anyOriginAllowed: slices.Contains(allowedOrigins, AnyOrigin),
 	}
 
-	// The socket layer knows nothing about any game; this is where the two games
-	// that are played across several phones claim their namespaces. PubquizR and
-	// One of Us claim one when they learn to -- a table sharing one device has
-	// nobody to notify.
+	// The socket layer knows nothing about any game.
 	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
 	hub.Register(joincode.FakeFiller.Namespace(), ffRealtime{server: s})
 
@@ -77,22 +72,16 @@ func NewServer(
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 
-	// cors sits innermost so a preflight -- which it answers itself, without
-	// reaching the mux -- still gets a request id and still shows up in the log.
+	// cors sits innermost so a preflight.
 	return chain(s.mux, requestID, recoverPanic(log), logRequests(log), cors(allowedOrigins))
 }
 
-// AddHealthHandlers registers the one route that asks for nothing at all -- no
-// token, no join code, no body. The deploy pipeline and any uptime monitor need a
-// cheap 200 to point at, and every other route in this file would answer them with
-// a 401.
+// AddHealthHandlers registers the one route that asks for nothing at all -- no token, no join code, no body.
 func (s *Server) AddHealthHandlers() {
 	s.mux.HandleFunc("GET /api/v1/health", s.handleHealth)
 }
 
 // AddAuthHandlers registers the routes that hand out or revoke a session.
-// Apart from the health route above, these are the only ones a caller can reach
-// without a token -- necessarily, since they are how a caller gets one.
 func (s *Server) AddAuthHandlers() {
 	s.mux.HandleFunc("POST /api/v1/auth/login", s.handleLogin)
 	s.mux.HandleFunc("POST /api/v1/auth/logout", s.handleLogout)
@@ -109,21 +98,16 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 
 	// Multiplayer
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby", s.requireAuth(s.handleCreateLobby))
-	// Before {code}, so the literal wins: this is the room you are already in, not a
-	// room called "current".
+	// Before {code}, so the literal wins: this is the room you are already in, not a room called "current".
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/current", s.requireAuth(s.handleGetCurrentLobby))
 
-	// room is what every route addressed by a join code is wrapped in: signed in, and
-	// carrying a code that is a League of Letters code rather than merely five
-	// characters. Named because it is the same two wrappers eight times, and eight
-	// nested pairs is a place for one of them to go missing unnoticed.
+	// room is what every route addressed by a join code is wrapped in.
 	room := func(next http.HandlerFunc) http.HandlerFunc {
 		return s.requireAuth(s.requireGameCode(joincode.LeagueOfLetters, next))
 	}
 
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}", room(s.handleGetLobby))
-	// PATCH rather than PUT: the settings card sends the knobs it has, and a room
-	// carries more than the two of them.
+	// PATCH rather than PUT: the settings card sends the knobs it has, and a room carries more than the two of them.
 	s.mux.HandleFunc("PATCH /api/v1/league-of-letters/lobby/{code}", room(s.handleUpdateLobbySettings))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/lobby/{code}", room(s.handleDeleteLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/players", room(s.handleJoinLobby))
@@ -142,22 +126,17 @@ func (s *Server) AddPubquizRHandlers() {
 
 	// Single device -- one phone passed round the table
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device", s.requireAuth(s.handleStartSingleDeviceQuiz))
-	// Before {sessionID}, so the literal wins: this is the game you left running, not
-	// a session called "current".
+	// Before {sessionID}, so the literal wins: this is the game you left running, not a session called "current".
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/current", s.requireAuth(s.handleGetCurrentSingleDeviceSession))
 	s.mux.HandleFunc("GET /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleGetSingleDeviceSession))
 	s.mux.HandleFunc("DELETE /api/v1/pubquizr/single-device/{sessionID}", s.requireAuth(s.handleDeleteSingleDeviceSession))
-	// One endpoint for rounds 1 and 2: the body never named the round, and the two are
-	// the same game with different sums.
+	// One endpoint for rounds 1 and 2: the body never named the round, and the two are the same game with different sums.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/verdict", s.requireAuth(s.handleHotSeatVerdict))
-	// A round that settles in one piece gets an endpoint of its own, because what it
-	// has to be told is nothing like a verdict.
+	// A round that settles in one piece gets an endpoint of its own.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/closest", s.requireAuth(s.handleClosestGuesses))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/describe", s.requireAuth(s.handleDescribeAwards))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/list", s.requireAuth(s.handleListAwards))
-	// The finale is not one of the hot seat rounds' rounds -- see the note on
-	// RecordFinaleTurn -- so it gets an endpoint of its own rather than sharing
-	// /verdict with rounds 1 and 2.
+	// The finale is not one of the hot seat rounds' rounds.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/finale", s.requireAuth(s.handleFinaleVerdict))
 }
 
@@ -170,9 +149,7 @@ func (s *Server) AddOneOfUsHandlers() {
 	// Multi device game
 }
 
-// AddRealtimeHandlers registers the one socket route every game shares. It is not
-// wrapped in requireAuth: a browser cannot put a header on a WebSocket, so the
-// handler authenticates the query string itself.
+// AddRealtimeHandlers registers the one socket route every game shares.
 func (s *Server) AddRealtimeHandlers() {
 	s.mux.HandleFunc("GET /api/v1/ws", s.handleWebSocket)
 }

@@ -8,22 +8,13 @@ import { Pressable, View } from "react-native";
 
 interface Props {
     title: string
-    /**
-     * Left out on the gate's first screen, which has nothing before it. The row then
-     * carries the title alone rather than an arrow with nowhere to go.
-     */
+    // Left out on the gate's first screen, which has nothing before it.
     onBack?: () => void
     /** Set while a request is in flight, so nobody navigates out from under it. */
     disabled?: boolean
 }
 
-/**
- * Title row for a form inside the auth gate, with the way back to the step before
- * it.
- *
- * Not the shared `BackButton`: that one is a `Link` to a route, and these steps
- * are views inside a modal that has no route of its own.
- */
+// Title row for a form inside the auth gate, with the way back to the step before it.
 export default function AuthFormHeader({ title, onBack, disabled = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();

@@ -45,7 +45,6 @@ var wordLists = map[i18n.Locale]struct{ adjectives, nouns []string }{
 }
 
 // generateUsername returns a random display name like "swiftotter42".
-// It makes no uniqueness guarantee — the caller handles collisions.
 func generateUsername(locale i18n.Locale) string {
 	words := wordLists[locale]
 

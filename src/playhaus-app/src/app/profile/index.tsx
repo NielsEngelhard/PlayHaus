@@ -20,15 +20,7 @@ import { View } from "react-native";
 // The cards sit a hair off-square, the way they do in the design.
 const tilt = (degrees: string) => ({ transform: [{ rotate: degrees }] });
 
-/**
- * Your name, avatar and preferences, as the account actually holds them.
- *
- * Every edit on this page is a write: the name on save, the colour and the
- * toggles the moment they move. All of them wait for the server before the
- * control moves, and while one is in the air the rest are greyed out — a
- * profile is small enough that a second write on top of the first is a mistake
- * rather than something to queue up.
- */
+// Your name, avatar and preferences, as the account actually holds them.
 export default function ProfilePage() {
     const styles = useStyles();
     const t = useT();
@@ -46,9 +38,7 @@ export default function ProfilePage() {
         updateEnableVibration
     } = useProfile();
 
-    // Only while the session is being restored, or once it has ended — the auth
-    // gate is already standing over the page in the second case, so this is just
-    // what sits behind it rather than a failure worth reporting.
+    // Only while the session is being restored, or once it has ended.
     if (!profile) {
         return <LoadingPage message={t('profile.loading')} />;
     }
@@ -61,10 +51,7 @@ export default function ProfilePage() {
 
     return (
         <View style={styles.container}>
-            {/* First on the page, before the profile it is a warning about. Gone
-                the moment the account stops being a guest one — the upgrade page
-                patches the session's user on its way out, so coming back here
-                re-renders without it. */}
+            {/* First on the page, before the profile it is a warning about. */}
             {profile.isGuest ? (
                 <GuestAccountNotice onUpgrade={() => router.push(ROUTES.upgradeAccount)} />
             ) : (
@@ -107,14 +94,11 @@ export default function ProfilePage() {
                 disabled={saving}
             />
 
-            {/* Nothing moved, so this is what says why — otherwise a refused save
-                looks like a missed tap. */}
+            {/* Nothing moved, so this is what says why — otherwise a refused save looks like a missed tap. */}
             {saveError && <AppText style={styles.saveError}>{t(saveError)}</AppText>}
 
             <View style={tilt('-0.3deg')}>
-                {/* Revokes the session and drops the stored token, which brings the
-                    auth gate straight back up. Home is what sits behind it: a
-                    profile page belongs to the account you just left. */}
+                {/* Revokes the session and drops the stored token, which brings the auth gate straight back up. */}
                 <LogoutCard onLogout={() => { void logout().then(() => router.replace(ROUTES.home)); }} />
             </View>
         </View>

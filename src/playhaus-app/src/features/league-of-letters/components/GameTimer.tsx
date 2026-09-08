@@ -26,14 +26,7 @@ function formatted(milliseconds: number): string {
     return `${Math.floor(total / 60)}:${seconds.toString().padStart(2, '0')}`;
 }
 
-/**
- * The countdown on a multiplayer round. Solo games have no clock at all, so this is
- * never rendered for them.
- *
- * It counts down against the server's deadline rather than from a duration, so a phone
- * that slept through half the round comes back showing the right number instead of one
- * that is thirty seconds behind everybody else's.
- */
+// The countdown on a multiplayer round.
 export default function GameTimer({ endsAt, style }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -41,9 +34,7 @@ export default function GameTimer({ endsAt, style }: Props) {
 
     const [remaining, setRemaining] = useState(() => remainingMs(endsAt));
 
-    // Re-read during render rather than from an effect: a new deadline has to show the
-    // right number in the same paint, and an effect would leave the old one up until the
-    // next tick. This is React's "adjusting state when a prop changes" pattern.
+    // Re-read during render rather than from an effect.
     const [deadline, setDeadline] = useState(endsAt);
     if (deadline !== endsAt) {
         setDeadline(endsAt);

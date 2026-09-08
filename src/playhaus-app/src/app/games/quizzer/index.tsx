@@ -30,8 +30,7 @@ export default function QuizzerIndexPage() {
             minMaxPlayers={PUBQUIZR.minMaxPlayersIndicator}
             deviceMode={PUBQUIZR.deviceMode}
             durationInMinutes={PUBQUIZR.minutesAverage}
-            // Laid over the slab rather than set beside the mark, so it can hang past
-            // the corner the way a sticker would.
+            // Laid over the slab rather than set beside the mark, so it can hang past the corner the way a sticker would.
             stamp={
                 <WeeklyStamp
                     letters={t('pubquizr.index.weekly.weekday')}
@@ -80,12 +79,7 @@ export default function QuizzerIndexPage() {
                 />
             </View>
 
-            {/*
-              * The rows in here go where the rows on the page go, but by hand: the sheet
-              * is a `Modal`, and on native that is a root of its own, so a route pushed
-              * from under one would leave it hanging over the setup screen it opened.
-              * Closed first, then pushed.
-              */}
+            {/* The rows in here go where the rows on the page go, but by hand. */}
             <QuizSheet
                 visible={browsing}
                 onClose={() => setBrowsing(false)}

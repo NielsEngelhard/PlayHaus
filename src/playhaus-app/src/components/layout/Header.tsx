@@ -14,14 +14,12 @@ import UserPill from "./UserPill";
 export default function Header() {
     const pathname = usePathname();
 
-    // Everything the header knows about where it is, worked out from the route. See
-    // `header-context.ts` for why it is read rather than pushed.
+    // Everything the header knows about where it is, worked out from the route.
     const { back, pill, mark } = headerContextFor(pathname);
 
     return (
         <View style={styles.container}>
-            {/* Left. A screen with a way out swaps the wordmark for it — once you are
-                inside something, the app's name is not what you need. */}
+            {/* Left. */}
             <View style={styles.left}>
                 {back === null ? (
                     <Link href={ROUTES.home as RelativePathString}>
@@ -33,8 +31,7 @@ export default function Header() {
             </View>
 
             <View style={styles.right}>
-                {/* On a game's own front page the corner is the game's mark; inside
-                    something else it is about that; outside either, about you. */}
+                {/* On a game's own front page the corner is the game's mark. */}
                 {mark !== undefined ? (
                     <GameMark icon={mark.icon} label={mark.label} />
                 ) : pill === null ? (
@@ -48,8 +45,7 @@ export default function Header() {
                     />
                 )}
 
-                {/* Renders nothing unless there is music to silence, so on most pages the
-                    corner is the theme button alone, exactly as it was. */}
+                {/* Renders nothing unless there is music to silence. */}
                 <MusicToggle />
 
                 <ThemeToggle />
@@ -74,8 +70,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.two,
-        // The pill inside this is the only thing on the row that gives ground, so this
-        // has to be shrinkable for it to have anything to shrink into.
+        // The pill inside this is the only thing on the row that gives ground.
         flexShrink: 1
     }
 })

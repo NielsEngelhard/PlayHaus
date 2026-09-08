@@ -9,9 +9,7 @@ export const ONE_OF_US_NAME: string = "One of Us";
 export const FAKE_FILLER_NAME: string = "Fake Filler";
 export const SKETCH_OFF_NAME: string = "Sketch Off";
 
-/**
- * How many devices a group needs to play.
- */
+// How many devices a group needs to play.
 export type DeviceMode = 'perPlayer' | 'oneDevice' | 'perPlayerOrOneDevice';
 export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayer: 'games.device.perPlayer',
@@ -114,9 +112,7 @@ export const FAKE_FILLER: Game = {
     navigationUrl: ROUTES.fakeFillerIndex,
     joinCodePrefix: 'F',
     roomRoute: ROUTES.fakeFillerRoom,
-    // The backend's own floor and ceiling: a round is written by two people and voted on
-    // by everybody else, so three is the smallest table that leaves anybody to vote.
-    // See `MinLobbyPlayers`/`MaxLobbyPlayers` in `internal/fakefiller/rules.go`.
+    // The backend's own floor and ceiling.
     minMaxPlayersIndicator: "3-9",
     minutesAverage: 10
 };
@@ -134,39 +130,22 @@ export const SKETCH_OFF: Game = {
     deviceMode: 'perPlayer',
     playable: false,
     navigationUrl: ROUTES.sketchOffIndex,
-    // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game
-    // in `GAMES` that claims a character. Two games on one letter meant this one was only
-    // ever unreachable by array order, which would have become a real bug the moment it
-    // grew a `roomRoute`.
+    // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game in `GAMES` that claims a character.
     joinCodePrefix: 'S',
     roomRoute: null,
     minMaxPlayersIndicator: "2-6",
     minutesAverage: 10,
 };
 
-/**
- * Every game the app knows about. The home page renders this list, and `Header` looks
- * the current route up in it — one registry so a game's name and accent can't drift
- * between the card you tapped and the chrome you land in.
- */
+// Every game the app knows about.
 export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER, SKETCH_OFF];
 
-/**
- * A game's colour identity, in the shape the controls take it in.
- *
- * Three of the fields above under the names the design system uses for them, so a game
- * can be lent to `AccentProvider` without every screen restating the mapping.
- */
+// A game's colour identity, in the shape the controls take it in.
 export function accentOf(game: Game): Accent {
     return { color: game.color, gradient: game.gradient, ink: game.accentInk };
 }
 
-/**
- * The game a path sits inside, or `null` anywhere outside `/games/{slug}`.
- *
- * Matches on the first segment after `/games/` only, so every page of a game — its
- * index, its settings, a room at `/room/ABCD` — resolves to the same entry.
- */
+// The game a path sits inside, or `null` anywhere outside `/games/{slug}`.
 export function gameForPathname(pathname: string): Game | null {
     const slug = /^\/games\/([^/]+)/.exec(pathname)?.[1];
     if (!slug) return null;
@@ -174,32 +153,12 @@ export function gameForPathname(pathname: string): Game | null {
     return GAMES.find(game => game.slug === slug) ?? null;
 }
 
-/**
- * A game by its `/games/{slug}` segment, or `null` for a slug this build has no
- * entry for.
- *
- * The reconnect rows use this: the wire tells them which *type* of game they are
- * drawing, and this turns that into the same glyph, gradient and accent the home
- * card wears — so one game has one face wherever it turns up.
- */
+// A game by its `/games/{slug}` segment, or `null` for a slug this build has no entry for.
 export function gameBySlug(slug: string): Game | null {
     return GAMES.find(game => game.slug === slug) ?? null;
 }
 
-/**
- * The game a join code belongs to, or `null` when no game has claimed its first
- * character.
- *
- * The third lookup beside `gameForPathname` and `gameBySlug`, and the only one that runs
- * on something a player typed. It reads the first character and nothing else — a code
- * does not have to be whole, or even valid, for this to answer: the join card asks after
- * a single keystroke so it can name the game beside the boxes, which is what turns the
- * `O`/`0` confusion into something you catch on character one rather than on a 404 a
- * screen later.
- *
- * Whether that game has anywhere to *take* the code is `roomRoute`, and a separate
- * question — see `resolveJoinCode`.
- */
+// The game a join code belongs to, or `null` when no game has claimed its first character.
 export function gameForJoinCode(code: string): Game | null {
     const prefix = code.charAt(0).toUpperCase();
 

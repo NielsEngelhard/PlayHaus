@@ -8,31 +8,19 @@ import { useEffect, useState } from "react";
 import { Animated, Easing, Platform, View } from "react-native";
 
 interface Props {
-    /**
-     * Whose room is being waited on. Its glyph, gradient and ink are what breathes.
-     *
-     * Passed in rather than looked up here, which is what it used to be: this is the
-     * whole of a guest's screen, and a second game's lobby has to be able to wait in its
-     * own colour rather than in League of Letters'.
-     */
+    // Whose room is being waited on.
     game: Game,
     /** Whoever opened the room. Named, so the wait has somebody at the end of it. */
     hostName: string
 }
 
-// react-native-web has no native animation module, so asking for one there is a console
-// warning and nothing else. Transforms and opacity are driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
 /** Half a breath of the halo. Slow on purpose — this is a screen you sit in front of. */
 const BREATHE_MS = 1300;
 
-/**
- * One full turn of the three-dot wave, the same for every dot, and how far behind each
- * other they leave. Holding the cycle constant rather than letting each dot take as long
- * as it needs is what keeps them in phase over minutes instead of drifting apart — the
- * same trick `LoadingPage` plays.
- */
+// One full turn of the three-dot wave, the same for every dot, and how far behind each other they leave.
 const BOUNCE_MS = 1400;
 const BOUNCE_STAGGER_MS = 180;
 const BOUNCE_RISE_MS = 420;
@@ -45,15 +33,7 @@ const TILE_SIZE = 52;
 
 const DOTS = [0, 1, 2];
 
-/**
- * The whole of a guest's screen above the roster: the game's own glyph, breathing, and
- * one line about whose turn it is to do something.
- *
- * A guest can do exactly nothing here — they cannot change a setting, invite anybody or
- * start the game — so the screen is built to be looked at rather than used. The motion is
- * the point: something that moves is the only way a page with no controls says it is
- * still connected, which is the one question anybody staring at it actually has.
- */
+// The whole of a guest's screen above the roster.
 export default function WaitingForHost({ game, hostName }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -87,16 +67,11 @@ export default function WaitingForHost({ game, hostName }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.halo}>
-                {/*
-                  * Grows as it fades, so the glyph reads as sitting in something rather
-                  * than as having a ring drawn round it.
-                  */}
+                {/* Grows as it fades, so the glyph reads as sitting in something rather than as having a ring drawn round it. */}
                 <Animated.View
                     style={[
                         styles.glow,
-                        // The game's own colour rather than the app's orange: this is the
-                        // biggest thing on a guest's screen, and it should be the colour of
-                        // the room they are sitting in.
+                        // The game's own colour rather than the app's orange.
                         { backgroundColor: game.color },
                         {
                             opacity: breathe.interpolate({
@@ -159,8 +134,7 @@ function BouncingDot({ index, accent }: { index: number, accent: string }) {
                     easing: Easing.inOut(Easing.quad),
                     useNativeDriver
                 }),
-                // Pads every dot out to the same cycle. Stays positive for the last dot,
-                // which is what the numbers above are chosen to guarantee.
+                // Pads every dot out to the same cycle.
                 Animated.delay(BOUNCE_MS - lead - BOUNCE_RISE_MS - BOUNCE_FALL_MS)
             ])
         );
@@ -199,8 +173,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    // Behind everything, at the halo's full size, so what grows is the glow and not the
-    // layout: a breathing element that took part in it would shove the page up and down.
+    // Behind everything, at the halo's full size, so what grows is the glow and not the layout.
     glow: {
         position: 'absolute',
         top: 0,
@@ -229,8 +202,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        // Only light outlines the tile. In dark the gradient is the brightest thing on
-        // the screen already, and a grey line around it would only mute it.
+        // Only light outlines the tile.
         borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderColor: theme.colors.border,
         // A lit top edge, so the tile reads as domed rather than printed.
@@ -260,8 +232,7 @@ const useStyles = createThemedStyles(theme => ({
         marginTop: 14,
         flexDirection: 'row',
         gap: 6,
-        // The dots hop out of their own box, so the row keeps the headroom rather than
-        // letting them be clipped.
+        // The dots hop out of their own box, so the row keeps the headroom rather than letting them be clipped.
         height: 8 + BOUNCE_HEIGHT,
         alignItems: 'flex-end'
     },

@@ -28,20 +28,7 @@ interface Props {
     onStart: () => void
 }
 
-/**
- * The screen a turn opens on: who is asking, who is answering, and what the round is
- * about to do to them.
- *
- * Rounds 4 and 5 are the two played to a single seat against a clock, and both of them
- * used to be a room shouting at once. A table that half-remembers the old rule will play
- * it that way again, so neither round starts until somebody has read who is actually in
- * it — which is what the two portraits and the arrow between them are for. The rules
- * below them are written in the order the turn happens in.
- *
- * Not to be confused with `RoundIntroScreen`, which stands in front of the round as a
- * whole and is read by the table before anybody is holding anything. This one is read
- * once per turn, by whoever has just been handed the phone.
- */
+// The screen a turn opens on: who is asking, who is answering, and what the round is about to do to them.
 export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, action, onStart }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -52,12 +39,7 @@ export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, act
             {strip}
 
             <ScrollView contentContainerStyle={styles.centre}>
-                {/*
-                  * The round's whole shape in one line: this person is asking, that
-                  * person is answering, and nobody else is in it until the clock stops.
-                  * Said with faces rather than a sentence because it is the first thing
-                  * the table has to understand and the last thing anybody reads twice.
-                  */}
+                {/* The round's whole shape in one line. */}
                 <View style={styles.pairing}>
                     <View style={styles.party}>
                         <View style={[styles.portrait, { backgroundColor: quizmaster.swatch.color }]}>
@@ -125,8 +107,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 4
     },
 
-    // Who is playing whom, said with faces. The arrow is the whole rule: it points one
-    // way, and until the clock stops nobody off this row is in the round at all.
+    // Who is playing whom, said with faces.
     pairing: {
         flexDirection: 'row',
         alignItems: 'flex-start',

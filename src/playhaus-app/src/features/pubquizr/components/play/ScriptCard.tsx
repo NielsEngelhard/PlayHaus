@@ -9,83 +9,21 @@ import { View } from "react-native";
 
 interface Props {
     prompt: string
-    /**
-     * The line above the question. Defaults to "read this out loud"; round 2 says more,
-     * because a quizmaster who reads the question and stops is that round's whole
-     * failure mode.
-     */
+    // The line above the question.
     cue?: string
-    /**
-     * How big the question is set. The default suits a card with something under it;
-     * round 3, whose card holds only a pill and a row of avatars, sets it larger.
-     */
+    // How big the question is set.
     size?: number
-    /**
-     * Everybody at the table, in seating order, for the score strip along the bottom —
-     * and left out where there is no room for it.
-     *
-     * Their running totals, and labelled as such. It used to say "scores this round",
-     * which was true for exactly as long as round 1 was the only round there was. A
-     * per-round breakdown would mean the server totting up each seat's points per round
-     * and sending them along; the scoreboard between rounds tells that story well enough
-     * for now, and a label that lies is worse than a strip that only says the total.
-     *
-     * Round 1 is the only board that still passes them. Rounds 2 and 3 put something
-     * taller under the question — four options, a row of guessers — and 40 points spent
-     * on a fact nobody acts on is 40 points off the question.
-     */
+    // Everybody at the table, in seating order, for the score strip along the bottom.
     seats?: Seat[]
-    /**
-     * Whatever else belongs inside this card: round 2's four options, round 3's stake and
-     * its guessers.
-     *
-     * Inside rather than beside, and that is the whole point of this prop. This card is
-     * the only thing on the board that flexes, so anything left outside it competes with
-     * the question for height and wins — which is how round 2 ended up reading its
-     * question at half the size of the options underneath it.
-     *
-     * No rule is drawn for it. Where one belongs is a question about what is being added:
-     * round 2 rules off the question from its options, round 3 keeps its stake with the
-     * question and rules off only the row of guessers.
-     */
+    // Whatever else belongs inside this card: round 2's four options, round 3's stake and its guessers.
     children?: ReactNode
-    /**
-     * Where the content sits when there is room to spare. Centred by default, which is
-     * what a card holding one question wants; a card holding a question and four options
-     * starts at the top, so a long one grows downwards into the space instead of out of
-     * both ends of it.
-     */
+    // Where the content sits when there is room to spare.
     align?: 'centre' | 'top'
-    /**
-     * Whether the card takes every point it is given (the default) or grows only into
-     * room that is actually spare.
-     *
-     * The default is `flex: 1`, which is growth from a basis of zero: on a board whose
-     * height is the window's that is exactly right — the question ends up with whatever
-     * the rest of the board does not want. Inside a `ScrollView` it is wrong twice over.
-     * A basis-zero child of a content container measured with no height collapses to
-     * nothing, and a basis-zero child that *is* given a height takes it off its
-     * siblings, so a card that should have pushed the page into scrolling squashes the
-     * rows under it instead.
-     *
-     * `false` grows from the card's own content instead: spare room still goes to the
-     * question, and a screen too short for everything scrolls rather than shrinking.
-     */
+    // Whether the card takes every point it is given (the default) or grows only into room that is actually spare.
     fills?: boolean
 }
 
-/**
- * The line to say out loud, set as a line to say out loud — and whatever has to be read
- * out with it.
- *
- * Big, quoted, and given the rest of the card to breathe in, because this is the one
- * thing on the screen that leaves the phone as speech. Everything else here is for the
- * person holding it; this is for the room.
- *
- * Anything the quizmaster reads in the same breath goes in `children`, inside the same
- * card, so the flexed space is shared between things that are all part of one utterance
- * rather than fought over by a card and its neighbours.
- */
+// The line to say out loud, set as a line to say out loud — and whatever has to be read out with it.
 export default function ScriptCard({
     prompt,
     cue,
@@ -160,9 +98,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 8
     },
 
-    // The app's own orange rather than the grey it used to wear. This line is an
-    // instruction to speak, and it is the only one on the board — a grey caption above
-    // a black question reads as a heading and gets skipped.
+    // The app's own orange rather than the grey it used to wear.
     cueText: {
         flex: 1,
         minWidth: 0,
@@ -190,10 +126,7 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'flex-start'
     },
 
-    // The `fills={false}` half of both of the above: grown from the content's own height
-    // rather than from zero. Written out as three properties because that is the whole
-    // difference — `flex: 1` sets the basis to zero, and the basis is the thing that has
-    // to change for the card to survive being inside a scroller.
+    // The `fills={false}` half of both of the above: grown from the content's own height rather than from zero.
     grows: {
         flexGrow: 1,
         flexShrink: 0,
@@ -233,9 +166,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    // Wraps rather than scrolls: eight seats is the most there can be, and a row of
-    // eight initials that runs out of width should drop onto a second line rather
-    // than hide the people at the end of the table.
+    // Wraps rather than scrolls: eight seats is the most there can be.
     scoreRow: {
         flex: 1,
         flexDirection: 'row',

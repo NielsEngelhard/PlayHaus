@@ -1,16 +1,4 @@
-/**
- * Fixtures for the parts of the solo mode page that have no backend yet.
- *
- * TODO: none of this is real. There is no streak, no play count, no personal best and no
- * daily word, and nothing on the API answers for a friend's attempt at one. The solo mode
- * page draws them anyway because the shape of that page is the thing being decided, and a
- * band with three empty pills on it does not let anyone decide it.
- *
- * Kept in one file, out of the components, so that when those endpoints land there is
- * exactly one thing to delete and the compiler names every screen that was leaning on it.
- * Everything here is a constant on purpose — nothing is randomised, so two people looking
- * at the same screenshot are looking at the same numbers.
- */
+// Fixtures for the parts of the solo mode page that have no backend yet.
 
 export interface MockSoloStats {
     /** Days in a row with the daily word solved. */

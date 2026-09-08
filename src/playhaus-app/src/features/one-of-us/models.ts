@@ -1,18 +1,8 @@
-/**
- * What a player was dealt. The numbers are the server's own — `Role` is an int on the
- * wire, not a string — so these have to keep matching `oneofus.Role` in the API.
- */
+// What a player was dealt.
 export enum OneOfUsRole {
   Civilian = 0,
   Imposter = 1,
-  /**
-   * An imposter who was not even given the imposter's word.
-   *
-   * Dealt only at the table sizes carrying three imposters or more, and never more than
-   * one — see `NitwitsFor` on the server. Everything that treats a role as a two-way
-   * choice has to be told about this one: it plays for the imposters but there is no
-   * word behind it, so a screen switching on `=== Imposter` will call it a civilian.
-   */
+  // An imposter who was not even given the imposter's word.
   Nitwit = 2,
 }
 

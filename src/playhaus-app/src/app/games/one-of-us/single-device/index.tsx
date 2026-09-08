@@ -28,23 +28,11 @@ export default function OneOfUsSingleDeviceIndexPage() {
     const styles = useStyles()
 
     const [names, setNames] = useState<string[]>([]);
-    /**
-     * The language picked on this screen, or null while it is still whatever the
-     * account says.
-     *
-     * Derived rather than copied into state by an effect. The account arrives a moment
-     * after this screen first paints, and an effect that wrote it into state would both
-     * render once with the wrong flag and overwrite a choice made in that moment. Null
-     * means "nobody has chosen", which is the only thing this needs to remember.
-     */
+    // The language picked on this screen, or null while it is still whatever the account says.
     const [picked, setPicked] = useState<LanguageCode | null>(null);
     const language = picked ?? auth.user?.locale ?? DEFAULT_LANGUAGE;
     const [wordsOnly, setWordsOnly] = useState<boolean>(true);
-    /**
-     * Which imposter roles this table will be dealt from. Everything on to begin with,
-     * which is the game as it was before the row existed — a setup screen should open on
-     * the whole game and let a table take pieces out of it, not open on a subset.
-     */
+    // Which imposter roles this table will be dealt from.
     const [roles, setRoles] = useState<OneOfUsRole[]>(DEFAULT_ENABLED_ROLES);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [starting, setStarting] = useState(false);
@@ -54,13 +42,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
         if (error !== null) setError(null);
     }
 
-    /**
-     * Starts the game, or says why it cannot.
-     *
-     * The table is checked here rather than by the button being disabled: a form that
-     * silently will not submit leaves somebody looking for the seat they typed twice.
-     * `tableProblem` names the one thing wrong with it, in the game's own words.
-     */
+    // Starts the game, or says why it cannot.
     async function start() {
         if (starting) return;
 
@@ -84,16 +66,13 @@ export default function OneOfUsSingleDeviceIndexPage() {
                 enabledRoles: roles
             });
 
-            // A create that answered without an id is a create that did not happen,
-            // whatever its status said. Pushing on it would land the table on a game
-            // screen with nothing behind it.
+            // A create that answered without an id is a create that did not happen, whatever its status said.
             if (gameId === null) {
                 setError('oneOfUs.errors.generic');
                 return;
             }
 
-            // `push`, so the back gesture returns to this form — the game itself leaves
-            // with `replace`, which is what stops the two bouncing off each other.
+            // `push`, so the back gesture returns to this form.
             router.push(ROUTES.oneOfUsPlaySingleDeviceGame(gameId) as RelativePathString)
         } catch (failure) {
             setError(oneOfUsErrorMessage(failure));
@@ -102,13 +81,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
         }
     }
 
-    /**
-     * Last week's table, if this phone remembers one.
-     *
-     * The ref guards against the effect seeding twice, and against seeding over names
-     * somebody has already started typing — the read is asynchronous, so the form is
-     * live for as long as the keychain takes to answer.
-     */
+    // Last week's table, if this phone remembers one.
     const seeded = useRef(false);
     useEffect(() => {
         void (async () => {
@@ -181,13 +154,7 @@ const useStyles = createThemedStyles(() => ({
     }
 }))
 
-/**
- * A remembered table, padded out to the fewest seats the game can be played with.
- *
- * Outside the component so the effect that seeds the form can call it: a function
- * declared in the body is not in scope until the render that declares it has got that
- * far, and the effect runs from a closure over an earlier one.
- */
+// A remembered table, padded out to the fewest seats the game can be played with.
 function padToMinimum(names: string[]): string[] {
     return names.length >= MIN_PLAYERS
         ? names

@@ -12,14 +12,7 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * What stands where the list of open games would be, when there are none.
- *
- * A broken outline and no shadow, because it is a space rather than a thing: the card
- * describes what will appear here, and the one control on it is the only thing that
- * could make that happen from this page. Everything you can actually do right now is in
- * the join card above it.
- */
+// What stands where the list of open games would be, when there are none.
 export default function NoGamesCard({ onRefresh, busy = false, disabled = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -55,8 +48,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderStyle: 'dashed',
         borderColor: theme.colors.borderDashed,
-        // The same thin wash every other empty slot in the app wears — enough to hold
-        // the canvas back without becoming a surface of its own.
+        // The same thin wash every other empty slot in the app wears.
         backgroundColor: theme.scheme === 'dark'
             ? 'rgba(23, 23, 31, 0.55)'
             : 'rgba(255, 255, 255, 0.5)'

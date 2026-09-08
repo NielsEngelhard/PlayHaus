@@ -20,78 +20,21 @@ interface Props {
     closeLabel: string
     /** "Round 2 of 3", which used to be the top line of a card of its own. */
     label: string
-    /**
-     * One entry per step of whatever this game counts in.
-     *
-     * Left out by a game with no total to count towards — see One of Us, which ends when
-     * the table has found the imposters and so cannot say in advance how many rounds that
-     * takes. The header then draws the label row alone rather than a bar with an invented
-     * end on it.
-     */
+    // One entry per step of whatever this game counts in.
     segments?: SegmentState[]
-    /**
-     * The right-hand slot: whatever chip the game wants there, and none of this one's
-     * business.
-     *
-     * Rendered bare rather than inside a slot of its own, so a chip that decides it has
-     * nothing to say can return null and take the row's gap with it — a wrapper would
-     * hold 12 points open around nothing. What it costs is that the chip carries its own
-     * `flexShrink: 0`: the label beside it is the one thing on this row that gives ground.
-     */
+    // The right-hand slot: whatever chip the game wants there, and none of this one's business.
     children?: ReactNode
-    /**
-     * The far-right cluster: the chrome the app's header would have carried, on the
-     * board's own band.
-     *
-     * A slot of its own rather than more `children`, because the two ends of this row are
-     * different kinds of thing — the chip is about the round and changes with it, and
-     * these are the app's standing controls and never do. Kept apart, they can be spaced
-     * apart: the cluster closes up to a tighter gap than the row's, so two buttons read as
-     * one pair rather than as two more items on the row.
-     *
-     * Everything drawn in here finds this band's accent through context, so a `band`
-     * variant works without the caller looking the colour up again.
-     */
+    // The far-right cluster: the chrome the app's header would have carried, on the board's own band.
     actions?: ReactNode
 }
 
-/**
- * The top of every board: the way out, where you are, and the game's own colour.
- *
- * What is up here besides the way out is which round it is, which cost a whole line of a
- * card of its own before and costs nothing here — this row was already spending 58 points
- * on a close button and empty space, and the label is the one fact on the board nobody
- * needs to act on. Both it and the track are props: this sits at the top of three
- * different games, and only the game knows what to call its own rounds.
- *
- * The band is why it is one component rather than three top rows. Setup and lobby screens
- * wear the game's colour as their header — see `SettingsPageBase` — and the boards used
- * to answer with cream, so the one screen a player spends the whole game on was the one
- * screen that had stopped saying which game it was.
- *
- * In place of the app's header rather than under it, which is why the leaving is this
- * component's: the chip in that header is a `Link`, and abandoning a round mid-game is
- * not a thing to do on a middle-click. A board claims the chrome with `useChromeless`
- * and this stands where it stood — a screen with two headers is a screen where neither
- * is the header, the same argument `SettingsPageBase` makes for the setup band.
- *
- * Full-bleed, and drawn from inside the board's own gutters, so `bleed` below is doing
- * the same job it does on the settings band: the fill reaches out to the window and the
- * padding puts the contents back where they were, lined up with the board underneath.
- * The notch is this component's too, for the same reason — nothing above it is holding
- * it open any more.
- */
+// The top of every board: the way out, where you are, and the game's own colour.
 export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const pathname = usePathname();
 
-    /*
-     * Whose colour this is. An accent already in force wins, for a board drawn inside a
-     * provider; otherwise the route says which game it is, the same lookup the app header
-     * reads. Both can miss, and every `useAccent` consumer keeps its own fallback for
-     * that — here it is the cream row this replaced, which no board route can reach.
-     */
+    // Whose colour this is.
     const lent = useAccent();
     const game = gameForPathname(pathname);
     const accent: Accent | null = lent ?? (game === null ? null : accentOf(game));
@@ -149,46 +92,20 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
         </View>
     );
 
-    /*
-     * The colour is lent onward as well as painted.
-     *
-     * Whatever sits in `actions` draws itself as a wash of ink over the accent — see
-     * `ThemeToggle`'s band variant — and finds out which accent through `useAccent`. On a
-     * board there is no provider upstream to tell it: the colour was worked out here, from
-     * the route, so this is the thing that has to say it. A board drawn inside a provider
-     * already gets `lent` back, which is the same value and a harmless second telling.
-     */
+    // The colour is lent onward as well as painted.
     return accent === null ? band : <AccentProvider accent={accent}>{band}</AccentProvider>;
 }
 
 /** The band's own vertical padding, which the notch is then added on top of. */
 const BAND_PADDING = 11;
 
-/**
- * How wide the band already is before it reaches out: the app's one column, plus the two
- * gutters the board lays down either side of it. A chromeless page is handed the window
- * with no gutters of its own, so those belong to the board now — and both come off before
- * there is any canvas left to reach into.
- */
+// How wide the band already is before it reaches out.
 const COLUMN_WIDTH = ContentWidth + Spacing.four * 2;
 
 /** Past this many steps the track closes up, so the gaps stop eating the segments. */
 const CROWDED = 6;
 
-/**
- * What one segment looks like on an accent band.
- *
- * Two of these differ from the colours the same states wore on cream, and the ground is
- * the whole reason. `played` was the game's own `primary`, which is now the band itself:
- * orange on orange disappears outright, and blue on blue is close enough to say nothing —
- * a segment whose only job is "this one has been played" was reading as an empty one.
- * Lemon is the one brand hue that carries on all three accents. `lost` steps down from
- * `destructive` to `blush` for the same reason in reverse: a loud red is a warning on a
- * cream card and a hole punched in a coloured one.
- *
- * Kept here rather than at the call sites so no game picks a segment colour by hand, and
- * here rather than in `marks.ts`, which is League of Letters' own and about letter tiles.
- */
+// What one segment looks like on an accent band.
 function segmentFill(state: SegmentState, ink: string, theme: Theme): string {
     switch (state) {
         case 'won':
@@ -203,21 +120,18 @@ function segmentFill(state: SegmentState, ink: string, theme: Theme): string {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Square, and hard against the board below it. A radius up here would make it a card
-    // laid on the page rather than the top of it, which is the thing it exists to stop.
+    // Square, and hard against the board below it.
     band: {
         flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
-        // Only the bottom half. The top is set at the call site, from the device's own
-        // inset — see `BAND_PADDING`.
+        // Only the bottom half.
         paddingBottom: BAND_PADDING,
         borderBottomWidth: theme.borderWidth,
         borderBottomColor: theme.colors.border
     },
-    // A paper chip in every scheme and on every accent, so its glyph is ink in every
-    // scheme and on every accent — including violet, where the label goes dark with it.
+    // A paper chip in every scheme and on every accent, so its glyph is ink in every scheme and on every accent.
     leave: {
         width: 34,
         height: 34,

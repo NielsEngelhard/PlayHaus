@@ -20,22 +20,10 @@ import NumberPad from "./NumberPad";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
 
-/**
- * The page's own horizontal padding, which the pad has to undo to reach the edges.
- *
- * Named rather than inlined because it is a fact about somewhere else: `fullScreenContent`
- * in `app/_layout.tsx` pads every full-screen page by this much, and the pad is the one
- * thing on this screen that should not be inside it — a keyboard that stops short of the
- * glass reads as a card, and the keys lose the width.
- */
+// The page's own horizontal padding, which the pad has to undo to reach the edges.
 const PAGE_PADDING = Spacing.four;
 
-/**
- * As long a number as one field will hold at 21 points.
- *
- * Not a rule about guesses — it is a rule about the box. Past this the digits scroll out
- * of sight and the quizmaster is typing blind, which is worse than being told to stop.
- */
+// As long a number as one field will hold at 21 points.
 const MAX_DIGITS = 12;
 
 /** Which half of the turn is on screen: reading it out, or writing the numbers down. */
@@ -49,54 +37,14 @@ interface Props {
     lead: string
     busy: boolean
     error: TranslationKey | null
-    /**
-     * `winners` travels alongside the request body because it is the one thing the
-     * server's reply will not hand back on its own: by the time the new session comes
-     * back, this question has moved on and there is nothing left to compute it from.
-     * `ClosestResultScreen`, which is what the settle leads to, needs it now.
-     */
+    // `winners` travels alongside the request body because it is the one thing the server's reply will not hand back on its own.
     onSettle: (
         settled: { guesses: { seat: number, value: number }[] } | { winningSeats: number[] },
         winners: Seat[]
     ) => void
 }
 
-/**
- * The board for round 3: one number each, and whoever lands nearest.
- *
- * A form rather than two buttons, because the whole turn is settled at once — there is no
- * seat being asked and nothing to pass along. The quizmaster reads the question out,
- * everybody says a number, and these rows are where the numbers go.
- *
- * Typing them in is worth the trouble and is why it is the default: it puts the guesses
- * on the record, so a table can argue about them at the end of the night, and it means
- * nobody has to do the subtraction out loud. But a table that has already agreed who was
- * closest should not have to type four numbers to say so, so there is a way to just tap
- * the winner — the same turn settled with less written down.
- *
- * Two screens rather than one, and the split is the fix for what a five-person test found.
- * All of it used to be on screen together: question, answer panel, a scrolling list of
- * fields, and the button. The list was a scroller inside the one flexed card, so the
- * question shrank to nothing to make room for it, and touching a field brought up the
- * system keyboard over the rest of the form — leaving a nested scroll, under a keyboard,
- * as the way to reach the fourth guesser and the button that ends the turn.
- *
- * Now the question gets a screen of its own to be read from, and the form gets a screen
- * of its own with the rows as its only scroller and its own pad along the bottom. Nothing
- * appears, nothing moves, and the award button is visible from the first number to the
- * last.
- *
- * The answer stays behind the covered panel until it is asked for, exactly as in every
- * other round: this screen is the one thing that can spoil the question, and the numbers
- * being typed in are being said out loud as they are typed.
- *
- * And the form never says who is winning. It used to: the nearest row filled mint and
- * said how far off it had landed the moment a number went in, and the button named the
- * person it was about to pay. That is the result of the turn given away halfway through
- * writing it down, in front of a table still saying its numbers out loud, and it makes
- * the last two rows pointless to fill in. So the ruling arrives in one place only —
- * `ClosestResultScreen`, once the button has been pressed.
- */
+// The board for round 3: one number each, and whoever lands nearest.
 export default function ClosestBoard({ turn, round, lead, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -112,12 +60,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     /** Standing in front of a settle that would leave somebody's row blank. */
     const [confirming, setConfirming] = useState(false);
 
-    /*
-     * Reset during render, the same way the hot seat board resets its ritual: a new
-     * question has to arrive with an empty form and a covered answer in the same commit
-     * that brings it, or the board paints once with the last question's numbers under
-     * the new question's prompt.
-     */
+    // Reset during render, the same way the hot seat board resets its ritual.
     const [settledId, setSettledId] = useState<string | null>(null);
     if (settledId !== turn.dealt.id) {
         setSettledId(turn.dealt.id);
@@ -158,15 +101,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             return;
         }
 
-        /*
-         * A blank row is legal — `reviewGuesses` drops it rather than complaining,
-         * because somebody is always at the bar and a rule insisting on everybody would
-         * be a screen the quizmaster cannot get off. But it is far likelier to mean the
-         * quizmaster has not got to that person yet, and settling is the one thing on
-         * this screen that cannot be taken back: the turn goes to the server, the points
-         * are paid, and the phone moves on. So it asks first rather than either refusing
-         * or quietly leaving somebody out of a round they were playing in.
-         */
+        // A blank row is legal — `reviewGuesses` drops it rather than complaining.
         if (blank.length > 0) {
             setConfirming(true);
             return;
@@ -175,14 +110,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         send();
     }
 
-    /**
-     * The settle itself, past whatever stood in front of it.
-     *
-     * Guarded again rather than trusting the caller: this is reachable from the panel as
-     * well as from the button, and the panel is on screen for as long as somebody takes
-     * to read it — long enough for a ruling to have gone out from a double tap on the
-     * button behind it.
-     */
+    // The settle itself, past whatever stood in front of it.
     function send() {
         setConfirming(false);
         if (!ready || busy) return;
@@ -197,9 +125,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
 
         setTyped(current => {
             const held = current[focused] ?? '';
-            // A guess nobody could read out is not a guess. The stop is here rather than
-            // in `reviewGuesses`, which is about what a number means and not about how
-            // wide the field it came from is.
+            // A guess nobody could read out is not a guess.
             if (held.length >= MAX_DIGITS) return current;
 
             return { ...current, [focused]: held + character };
@@ -215,8 +141,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         }));
     }
 
-    // The same strip every other round wears, on both halves of this one: the round has
-    // no single answerer, so it always draws the one-line variant.
+    // The same strip every other round wears, on both halves of this one.
     const strip = (
         <TurnStrip
             quizmaster={turn.quizmaster}
@@ -249,9 +174,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                             {t('pubquizr.play.closest.guessingOrder')}
                         </AppText>
 
-                        {/* Who is playing for it, as faces rather than as a list of
-                            names. The quizmaster is about to go round the table asking
-                            each of them in turn, and this is the order to go in. */}
+                        {/* Who is playing for it, as faces rather than as a list of names. */}
                         <View style={styles.guessers}>
                             {turn.guessing.map(seat => (
                                 <View
@@ -275,8 +198,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     <PopPressable
                         onPress={() => {
                             setStage('collecting');
-                            // Somewhere to type before the first row is tapped: the pad
-                            // arriving with nothing in focus is a pad that does nothing.
+                            // Somewhere to type before the first row is tapped: the pad arriving with nothing in focus is a pad that does nothing.
                             setFocused(current => current ?? turn.guessing[0]?.seat ?? null);
                         }}
                         accessibilityRole="button"
@@ -305,10 +227,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
 
                 <Label label={turn.question.prompt} />
 
-                {/* Hidden at the smallest table the game allows: the reader is one of
-                    the guessers this round (see `closestQuizmasterGuesses`), so there
-                    is nobody left who could peek at this without also being the person
-                    about to type a number in below it. */}
+                {/* Hidden at the smallest table the game allows. */}
                 {!turn.quizmasterGuesses && (
                     <AnswerReveal
                         answer={turn.unit === ''
@@ -334,12 +253,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     </AppText>
                 </View>
 
-                {/*
-                 * The one scroller on the screen, and a direct child of the board rather
-                 * than something nested inside a flexed card. A table of eight is seven
-                 * rows, which is the one case that still does not fit; everything smaller
-                 * simply sits there.
-                 */}
+                {/* The one scroller on the screen, and a direct child of the board rather than something nested inside a flexed card. */}
                 <ScrollView
                     style={styles.rows}
                     contentContainerStyle={styles.rowsInner}
@@ -365,11 +279,9 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                     : t('pubquizr.play.closest.entry', { name: seat.name })}
                                 style={[
                                     styles.row,
-                                    // Only ever a row somebody has tapped. A row that is
-                                    // merely nearest is not marked at all any more.
+                                    // Only ever a row somebody has tapped.
                                     chosen && styles.chosen,
-                                    // After the fill, so the row being typed into still
-                                    // says so. It is the only cursor this screen has.
+                                    // After the fill, so the row being typed into still says so.
                                     holding && styles.holding,
                                     clashing && styles.clashing
                                 ]}
@@ -381,11 +293,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                 </View>
 
                                 <View style={styles.who}>
-                                    {/* How far off used to be said here too, under the
-                                        name. It is the subtraction the table would have
-                                        to do to see who won, which is the one thing this
-                                        screen is now careful not to hand over. It is said
-                                        on the result screen instead. */}
+                                    {/* How far off used to be said here too, under the name. */}
                                     <AppText
                                         style={[styles.name, chosen && styles.onMint]}
                                         numberOfLines={1}
@@ -401,13 +309,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                         color={chosen ? Brand.ink : theme.colors.textMuted}
                                     />
                                 ) : (
-                                    /*
-                                     * Inert, and that is the point of it. The pad along
-                                     * the bottom is what edits this, so the field takes
-                                     * no focus and raises no keyboard — `pointerEvents`
-                                     * off so the tap goes to the row instead, which is
-                                     * the thing that moves the pad's attention here.
-                                     */
+                                    // Inert, and that is the point of it.
                                     <View pointerEvents="none" style={styles.fieldWrap}>
                                         <TextInput
                                             value={typed[seat.seat] ?? ''}
@@ -442,9 +344,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     <ActionButton
                         size="large"
                         icon="award"
-                        // Never a name. Working out who was nearest is what pressing this
-                        // is for, so a button that already knew would have answered the
-                        // question the screen after it exists to answer.
+                        // Never a name.
                         text={byHand
                             ? t('pubquizr.play.closest.award')
                             : t('pubquizr.play.validate')}
@@ -473,8 +373,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                 </View>
             </View>
 
-            {/* By hand there is nothing to type, so there is no pad — and the rows get
-                the height back to be tapped in. */}
+            {/* By hand there is nothing to type, so there is no pad — and the rows get the height back to be tapped in. */}
             {!byHand && (
                 <NumberPad
                     onKey={press}
@@ -484,11 +383,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                 />
             )}
 
-            {/*
-              * Dismissable, unlike the panels that stand in front of something dangerous:
-              * backing out of this one lands on the form with everything still typed in,
-              * which is the outcome it is recommending anyway.
-              */}
+            {/* Dismissable, unlike the panels that stand in front of something dangerous. */}
             <PopupModal
                 visible={confirming}
                 title={t('pubquizr.play.closest.missingTitle')}
@@ -527,8 +422,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12
     },
 
-    // The collecting screen, which is a board with a pad bolted to the bottom of it —
-    // so the margin lives out here and the column inside carries only the gap.
+    // The collecting screen, which is a board with a pad bolted to the bottom of it.
     screen: {
         marginTop: 12,
         flex: 1,
@@ -543,8 +437,7 @@ const useStyles = createThemedStyles(theme => ({
 
     /* The reading screen ------------------------------------------------------- */
 
-    // Mint, because it is the same "this is what it pays" the badge on the strip wears
-    // in every other round. This round has no per-seat badge to put it on.
+    // Mint, because it is the same "this is what it pays" the badge on the strip wears in every other round.
     stake: {
         alignSelf: 'flex-start',
         flexDirection: 'row',
@@ -606,8 +499,7 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0
     },
 
-    // Mint: this one is not a gate in front of anything irreversible, it is the turn
-    // carrying on, and mint is what this round pays in.
+    // Mint: this one is not a gate in front of anything irreversible, it is the turn carrying on.
     collectButton: {
         height: 62,
         flexDirection: 'row',
@@ -678,9 +570,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: 2
     },
 
-    // 60 points and a 36-point swatch, up from 46 and 30. These rows are read across a
-    // table by somebody checking whether their number went in right, and tapped by a
-    // thumb belonging to a person who is also talking.
+    // 60 points and a 36-point swatch, up from 46 and 30.
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -694,16 +584,13 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary
     },
 
-    // Where the pad is typing. The scheme's own accent plus the halo every focused
-    // control in this app wears, because that is exactly what this is — the row with
-    // the cursor in it, on a screen whose cursor is not where the finger is.
+    // Where the pad is typing.
     holding: {
         borderColor: theme.colors.focus,
         boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
     },
 
-    // Mint in both schemes, the same "this one" the Correct button wears. Only the
-    // by-hand pick reaches it now.
+    // Mint in both schemes, the same "this one" the Correct button wears.
     chosen: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
@@ -748,12 +635,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center'
     },
 
-    // 104 by 46, up from 96 by 38, and the number itself from 15 to 21. It is the one
-    // thing on the row that has to be checked from the far side of a table, and it was
-    // the smallest.
-    //
-    // A raw TextInput is not an AppText, so the family has to be named by hand — the
-    // same thing `TextField` does for the same reason.
+    // 104 by 46, up from 96 by 38, and the number itself from 15 to 21.
     field: {
         width: 104,
         height: 46,
@@ -774,8 +656,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundFocus
     },
 
-    // Drawn rather than real: the field is not editable, so it has no cursor of its own,
-    // and the pad needs somewhere visible to be pointing.
+    // Drawn rather than real: the field is not editable.
     caret: {
         position: 'absolute',
         right: 8,
@@ -816,8 +697,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    // Out to the glass on three sides. `flexShrink` on the pad itself is what lets a
-    // table of eight take the height back off it rather than off the rows.
+    // Out to the glass on three sides.
     pad: {
         marginTop: 12,
         marginHorizontal: -PAGE_PADDING,

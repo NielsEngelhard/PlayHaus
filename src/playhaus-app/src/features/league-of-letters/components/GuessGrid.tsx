@@ -10,12 +10,7 @@ import { Animated, Easing, LayoutChangeEvent, Platform, StyleProp, View, ViewSty
 interface Props {
     wordLength: number,
     maxGuesses: number,
-    /**
-     * The rows on the board, oldest first, already scored by the server.
-     *
-     * In solo these are all yours. On a multiplayer board they belong to whoever
-     * played them — the six rows are the table's, not one player's.
-     */
+    // The rows on the board, oldest first, already scored by the server.
     guesses: GameGuess[],
     /** The row being typed. Empty once the round is decided. */
     draft: string,
@@ -25,10 +20,7 @@ interface Props {
 
 const GAP = Spacing.two;
 
-/**
- * A tile any smaller than this stops being readable; any larger and a three-letter game
- * on a tablet turns into four enormous slabs. Between them the grid simply fits.
- */
+// A tile any smaller than this stops being readable.
 const MIN_TILE = 26;
 const MAX_TILE = 58;
 
@@ -47,29 +39,15 @@ const HOP_DOWN_MS = 380;
 /** Gap between one tile hopping and the next, which is what makes it a wave. */
 const HOP_STEP_MS = 55;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Transforms are driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/**
- * How long a freshly scored row takes to finish turning over.
- *
- * Exported because the reveal is a moment the rest of the screen has to respect: the
- * keyboard colours and the end-of-round line would otherwise give away the last tiles
- * while they are still face down. The timing lives here, with the animation it belongs to.
- */
+// How long a freshly scored row takes to finish turning over.
 export function revealDurationMs(wordLength: number): number {
     return Math.max(0, wordLength - 1) * REVEAL_STEP_MS + SETTLED_AFTER_MS;
 }
 
-/**
- * The largest tile that fits the board on both axes at once.
- *
- * Width alone is not enough: the grid is up to six rows tall and the keyboard underneath
- * is not negotiable, so a tall board on a short phone has to size down off its height.
- * Measured from the container rather than the window, which keeps it right on web at any
- * browser size and inside the 600px content cap.
- */
+// The largest tile that fits the board on both axes at once.
 function fittedTileSize(width: number, height: number, columns: number, rows: number): number {
     if (width <= 0 || height <= 0) return 0;
 
@@ -123,16 +101,13 @@ interface GuessRowProps {
 function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
     const styles = useStyles();
 
-    // A row the clock filled in. It has no word and no marks, so there is nothing to
-    // reveal and nothing to colour — it is a turn that went by, drawn as one.
+    // A row the clock filled in.
     const skipped = guess?.skipped === true;
 
     const word = skipped ? '' : (guess?.word ?? draft).toUpperCase();
     const { revealed, live } = useReveal(skipped ? undefined : guess?.word, wordLength);
 
-    // The row that won it, once the last tile is face up. Only for a word that landed
-    // while the row was watching: coming back to a finished game should not throw a
-    // party over a result the player already knows.
+    // The row that won it, once the last tile is face up.
     const winning = guess !== undefined
         && guess.marks.length === wordLength
         && guess.marks.every(mark => mark === 'correct');
@@ -144,8 +119,7 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
                 <LetterTile
                     key={column}
                     letter={word[column] ?? ''}
-                    // Held back until this tile's turn comes round. Until then it is
-                    // indistinguishable from the letter the player typed a moment ago.
+                    // Held back until this tile's turn comes round.
                     mark={skipped ? undefined : column < revealed ? guess?.marks[column] : undefined}
                     size={size}
                     celebrate={celebrate}
@@ -157,22 +131,13 @@ function GuessRow({ wordLength, size, guess, draft }: GuessRowProps) {
     )
 }
 
-/**
- * How many of this row's marks are face up yet, and whether the row watched them land.
- *
- * A word that was already on the board when the row mounted is shown whole: coming back
- * to a game in progress should not replay every turn of it. Only a word that lands while
- * the row is watching gets dealt out a tile at a time — `live` is that distinction, which
- * the celebration needs for the same reason the reveal does.
- */
+// How many of this row's marks are face up yet, and whether the row watched them land.
 function useReveal(word: string | undefined, wordLength: number): { revealed: number, live: boolean } {
     const [dealt, setDealt] = useState(word);
     const [revealed, setRevealed] = useState(word ? wordLength : 0);
     const [live, setLive] = useState(false);
 
-    // Adjusted during render rather than in an effect, so a scored row never gets painted
-    // face up for a frame before the reveal takes it back. A word going missing is the next
-    // round starting, which puts the row back to an empty draft.
+    // Adjusted during render rather than in an effect.
     if (dealt !== word) {
         setDealt(word);
         setRevealed(word ? 1 : 0);
@@ -208,18 +173,12 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
 
     const filled = letter !== '';
 
-    /**
-     * The face trails the prop by half a turn: the tile has to be edge-on before it can
-     * come back a different colour, or the answer is readable through the flip. Held as
-     * the style rather than the mark because it is always a beat behind what the mark says.
-     */
+    // The face trails the prop by half a turn.
     const marks = markStyles(theme);
 
     const [face, setFace] = useState<MarkStyle | undefined>(mark && marks[mark]);
 
-    // Built once by the lazy initialiser — a fresh value on every render would drop a tile
-    // mid-flip. A tile that mounts already filled or already scored starts settled, which
-    // is what keeps a reloaded board from animating itself in.
+    // Built once by the lazy initialiser — a fresh value on every render would drop a tile mid-flip.
     const [landing] = useState(() => new Animated.Value(filled ? 1 : 0));
     const [turn] = useState(() => new Animated.Value(1));
     /** 0 on the board, 1 at the top of the hop. */
@@ -240,8 +199,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
             const drop = Animated.timing(landing, {
                 toValue: 1,
                 duration: FILL_MS,
-                // Overshoots a hair past full size on the way in, so the letter arrives with
-                // a knock rather than growing into place.
+                // Overshoots a hair past full size on the way in, so the letter arrives with a knock rather than growing into place.
                 easing: Easing.out(Easing.back(2)),
                 useNativeDriver
             });
@@ -286,8 +244,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                 useNativeDriver
             })
         ]);
-        // The face goes on at the turn, while the tile is edge-on and there is nothing
-        // to see: swapping it in the open would hand the mark over early.
+        // The face goes on at the turn, while the tile is edge-on and there is nothing to see.
         const swap = setTimeout(() => setFace(marks[mark]), FLIP_MS);
 
         flip.start();
@@ -295,9 +252,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
             clearTimeout(swap);
             flip.stop();
         };
-        // `theme.scheme` rather than `marks`: that is rebuilt on every render, and depending
-        // on it would restart the flip mid-turn. The scheme is what actually changes what a
-        // face looks like.
+        // `theme.scheme` rather than `marks`.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mark, turn, theme.scheme]);
 
@@ -305,8 +260,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
         if (!celebrate) return;
 
         const dance = Animated.sequence([
-            // The last tile is still finishing its turn when the row is declared won, and
-            // one that jumped mid-flip would land before its own colour did.
+            // The last tile is still finishing its turn when the row is declared won.
             Animated.delay(SETTLED_AFTER_MS + column * HOP_STEP_MS),
             Animated.timing(hop, {
                 toValue: 1,
@@ -317,8 +271,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
             Animated.timing(hop, {
                 toValue: 0,
                 duration: HOP_DOWN_MS,
-                // Settles with a knock rather than easing down, which is the same note the
-                // letters arrive on.
+                // Settles with a knock rather than easing down, which is the same note the letters arrive on.
                 easing: Easing.bounce,
                 useNativeDriver
             })
@@ -338,8 +291,7 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                 {
                     width: size,
                     height: size,
-                    // Scales with the tile so a 26dp tile doesn't end up a lozenge, and
-                    // lands on the design's 16 at the full 58.
+                    // Scales with the tile so a 26dp tile doesn't end up a lozenge, and lands on the design's 16 at the full 58.
                     borderRadius: Math.min(16, Math.round(size * 0.28)),
                     transform: [
                         { translateY: hop.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.3] }) },
@@ -349,16 +301,12 @@ function LetterTile({ letter, mark, size, celebrate = false, column, spent = fal
                     ]
                 },
                 face
-                    // A scored tile takes the mark's own outline, which in dark is the
-                    // mark's colour — there is no ink there to frame it with.
+                    // A scored tile takes the mark's own outline, which in dark is the mark's colour.
                     ? [{ backgroundColor: face.fill, borderColor: face.border }, styles.tileScored]
-                    // A turn that ran out. Drawn broken rather than blank so it reads as
-                    // a row that was spent, not one still waiting to be played.
+                    // A turn that ran out.
                     : spent
                         ? styles.tileSpent
-                        // A typed-but-unsubmitted letter stands up off the page; an empty
-                        // slot sits back, the same way `WordLengthInput` separates chosen
-                        // from not.
+                        // A typed-but-unsubmitted letter stands up off the page.
                         : shown
                             ? styles.tileFilled
                             : styles.tileEmpty
@@ -397,9 +345,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border
     },
-    // A scored tile lifts in both schemes. On the old near-black board a shadow under
-    // every tile read as grime rather than depth, so dark said it with the mark's colour
-    // alone — the lifted canvas has somewhere for the offset to fall.
+    // A scored tile lifts in both schemes.
     tileScored: {
         boxShadow: `2px 2px 0 0 ${theme.colors.shadow}, 0 8px 14px -10px ${withAlpha(theme.colors.shadow, 0.6)}`
     },
@@ -414,9 +360,7 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.boardEmptyBorder,
         backgroundColor: theme.colors.boardEmpty
     },
-    // A row the clock filled in: no fill, no shadow, a broken outline. The same
-    // vocabulary `LobbyPlayerGrid` uses for a seat nobody has taken, because it means
-    // the same thing -- a place that stayed empty.
+    // A row the clock filled in: no fill, no shadow, a broken outline.
     tileSpent: {
         backgroundColor: 'transparent',
         borderStyle: 'dashed',

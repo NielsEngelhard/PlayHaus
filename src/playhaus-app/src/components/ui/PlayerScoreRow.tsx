@@ -14,12 +14,7 @@ interface Props {
     style?: StyleProp<ViewStyle>
 }
 
-/**
- * Who else is playing and how they're doing, as a row of chips above the board.
- *
- * A chip rather than a table row: the board is the screen and this has to stay out of
- * its way. It scrolls sideways, so a full room never squeezes the grid.
- */
+// Who else is playing and how they're doing, as a row of chips above the board.
 export default function PlayerScoreRow({ players, userId, online, turnUserId, style }: Props) {
     const styles = useStyles();
 
@@ -38,8 +33,7 @@ export default function PlayerScoreRow({ players, userId, online, turnUserId, st
                     key={player.userId}
                     player={player}
                     you={player.userId === userId}
-                    // Undefined means nobody is tracking presence — a solo board — and
-                    // is not the same as "offline", which would put every light out.
+                    // Undefined means nobody is tracking presence.
                     live={online === undefined ? undefined : online.has(player.userId)}
                     up={player.userId === turnUserId}
                 />
@@ -63,23 +57,14 @@ function PlayerChip({ player, you, live, up }: PlayerChipProps) {
 
     return (
         <View style={[styles.chip, you && styles.chipYou, up && styles.chipUp]}>
-            {/*
-              * Whose turn it is, said in words rather than left to the outline alone.
-              * Sits on the chip's own top edge instead of inside it: the chips are a
-              * scoreboard, and a label that pushed the name and the score around would
-              * make the row jump every time the turn moved.
-              */}
+            {/* Whose turn it is, said in words rather than left to the outline alone. */}
             {up && (
                 <View style={styles.turnBadge}>
                     <AppText style={styles.turnBadgeText}>{t('common.yourTurn')}</AppText>
                 </View>
             )}
 
-            {/*
-              * Two marks in one place: the swatch says who, the ring around it says
-              * whether they are here. Stacked rather than set side by side, because a
-              * second dot on a chip this size reads as a second person.
-              */}
+            {/* Two marks in one place: the swatch says who, the ring around it says whether they are here. */}
             <View style={[styles.dot, { backgroundColor: avatar.color }, live !== undefined && (
                 live ? styles.dotLive : styles.dotAway
             )]} />
@@ -93,27 +78,19 @@ function PlayerChip({ player, you, live, up }: PlayerChipProps) {
     )
 }
 
-/**
- * How far the turn badge stands above its chip, and how far past its right edge. Named
- * because the row has to leave exactly this much room around the chips — the badge is
- * positioned outside its parent, and a ScrollView clips whatever leaves its content box.
- */
+// How far the turn badge stands above its chip, and how far past its right edge.
 const TURN_BADGE_RISE = 9;
 const TURN_BADGE_REACH = 4;
 
 const useStyles = createThemedStyles(theme => ({
     scroll: {
-        // A horizontal ScrollView stretches to its content's height otherwise, which in a
-        // column parent means it tries to take the whole board.
+        // A horizontal ScrollView stretches to its content's height otherwise.
         flexGrow: 0
     },
     row: {
         flexDirection: 'row',
         gap: Spacing.two,
-        // Room for the hard shadow, which sits outside the chip's own box, and — above
-        // and to the right — for the turn badge, which sits outside it the same way.
-        // Held whether or not there is a badge up, so the row does not shift the moment
-        // somebody's turn starts.
+        // Room for the hard shadow and the turn badge, both outside the chip; held always, so the row does not shift.
         paddingTop: TURN_BADGE_RISE,
         paddingBottom: Spacing.half + 2,
         paddingRight: Spacing.half + 2 + TURN_BADGE_REACH
@@ -136,14 +113,11 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.background,
         ...theme.shadows.hard
     },
-    // Whoever the board is waiting on. Outlined in the app's accent rather than
-    // filled with it: the chip still has to read as the same chip it was a moment ago.
+    // Whoever the board is waiting on.
     chipUp: {
         borderColor: theme.colors.primary
     },
-    // The same accent as the outline it sits on, filled this time — an outline alone is
-    // hard to pick out of a row of five chips. Straddles the top-right edge rather than
-    // clearing it, so it reads as part of the chip and not as a sixth player.
+    // The same accent as the outline it sits on, filled this time.
     turnBadge: {
         position: 'absolute',
         top: -TURN_BADGE_RISE,
@@ -168,13 +142,11 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: 2,
         borderColor: theme.colors.border
     },
-    // Here. The ring is what carries it, so the swatch underneath stays the player's
-    // own colour and the two facts do not fight over one dot.
+    // Here.
     dotLive: {
         borderColor: theme.colors.mint
     },
-    // Gone. Dimmed as well as ringed, because a colour alone is a poor thing to
-    // hang "this person cannot see the board" on.
+    // Gone.
     dotAway: {
         borderColor: theme.colors.destructive,
         opacity: 0.55

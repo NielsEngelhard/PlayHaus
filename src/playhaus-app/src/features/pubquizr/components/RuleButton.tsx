@@ -10,16 +10,7 @@ interface Props {
     busy?: boolean
 }
 
-/**
- * The end of a list, and the way past it: a rule across the column with the label
- * sitting in the gap.
- *
- * Drawn as a divider rather than as a button because that is what it is — the line says
- * the list stops here, and the words say it does not have to. Both places that end a
- * list of quizzes use it: "load older" at the foot of the browse sheet, and "see all" at
- * the foot of the three-row peek on the index. They are the same sentence about two
- * different lists, so they are the same shape.
- */
+// The end of a list, and the way past it: a rule across the column with the label sitting in the gap.
 export default function RuleButton({ text, onPress, busy = false }: Props) {
     const styles = useStyles();
 
@@ -55,8 +46,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.boardEmptyBorder
     },
 
-    // The one accent that means "there is more of this" in either scheme: blue on
-    // paper, lemon on the dark canvas, which is what `focus` already resolves to.
+    // The one accent that means "there is more of this" in either scheme.
     text: {
         fontSize: 12,
         fontWeight: 800,

@@ -43,8 +43,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {/* Above the list rather than under it: someone opening the app with four
-          characters in hand is here to use them, not to read the menu. */}
+      {/* Above the list rather than under it. */}
       <View style={styles.join}>
         <JoinCodeRow />
       </View>

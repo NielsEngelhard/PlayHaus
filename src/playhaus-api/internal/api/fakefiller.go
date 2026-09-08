@@ -12,31 +12,9 @@ import (
 	"playhaus-api/internal/joincode"
 )
 
-// Fake Filler on the wire: the room a game is set up in, the game it becomes, and the two
-// writes a player makes while playing it.
-//
-// The response shapes live here rather than beside the game because the socket sends the
-// same structs -- a lobby in a frame and a lobby in a response body have to be the same
-// lobby -- and ff_realtime.go is where the frames are.
-//
-// Everything is prefixed ff because internal/api is one package and League of Letters got
-// here first: statePayload, lobbyResponse, gamePlayerResponse and the rest are all taken.
-// The wire *tags* are deliberately not prefixed -- both games spell "state" the same way,
-// because they are the same idea and a client library should not need two spellings.
-//
-// The rule that shapes this whole file is redaction. Fake Filler is a game about not
-// knowing who wrote what, so the server has to be the thing that does not say: a response
-// carries the reader's own answers and nobody else's, and an option is identified by the
-// position it was shuffled into rather than by its author -- because the author of one of
-// them is the string "__truth__", and sending that would end the round before it started.
+// Fake Filler on the wire: options are identified by shuffled position, never by author -- one author is the string "__truth__" and must never reach a client.
 
-// ---------------------------------------------------------------------------
-// Requests
-// ---------------------------------------------------------------------------
-
-// ffNewLobbyRequest is what opens a room: a language, and deliberately nowhere to put a
-// mode. decode rejects unknown fields, so a client still sending settings here is refused
-// rather than quietly having them dropped and believing the room is set up as it asked.
+// ffNewLobbyRequest is what opens a room.
 type ffNewLobbyRequest struct {
 	Locale *string `json:"locale"`
 }
@@ -44,11 +22,6 @@ type ffNewLobbyRequest struct {
 func (ffNewLobbyRequest) Validate() map[string]string { return nil }
 
 // ffLobbySettingsRequest is what the host gets to decide, on the way in.
-//
-// Both fields are pointers because this is a PATCH and the settings card sends the knob it
-// moved: absent means leave it as it stands. Validate says nothing about which modes exist
-// -- that is the game's rule rather than the wire's, and fakefiller.LobbySettings.validate
-// already owns it.
 type ffLobbySettingsRequest struct {
 	GameMode *string `json:"gameMode"`
 	Locale   *string `json:"locale"`
@@ -56,12 +29,7 @@ type ffLobbySettingsRequest struct {
 
 func (ffLobbySettingsRequest) Validate() map[string]string { return nil }
 
-// ffSubmitAnswerRequest is one player's fake for one prompt: a value per blank, in the
-// order the blanks appear.
-//
-// Fills is a list rather than a string because a prompt can have more than one blank and
-// an author fills all of them. How many is right is a question about the round, so the
-// service answers it; all this can say is that an answer with nothing in it is not one.
+// ffSubmitAnswerRequest is one player's fake for one prompt: a value per blank, in the order the blanks appear.
 type ffSubmitAnswerRequest struct {
 	RoundNumber int      `json:"roundNumber"`
 	Fills       []string `json:"fills"`
@@ -79,10 +47,6 @@ func (req ffSubmitAnswerRequest) Validate() map[string]string {
 }
 
 // ffCastVoteRequest names a slot rather than an author.
-//
-// This is the redaction showing through into the request shape: the voting screen was
-// never sent the authors, so it has nothing else it could name. The server maps the slot
-// back to whoever is sitting in it.
 type ffCastVoteRequest struct {
 	RoundNumber int `json:"roundNumber"`
 	Slot        int `json:"slot"`
@@ -99,18 +63,12 @@ func (req ffCastVoteRequest) Validate() map[string]string {
 	return problems
 }
 
-// ---------------------------------------------------------------------------
-// Responses
-// ---------------------------------------------------------------------------
-
 type ffLobbySettingsResponse struct {
 	GameMode string `json:"gameMode"`
 	Locale   string `json:"locale"`
 }
 
-// ffLobbyPlayerResponse is somebody in the room, and is deliberately the front half of
-// ffGamePlayerResponse -- same ids, same swatch -- so a player waiting and the scoreboard
-// row they turn into are the same person to whatever draws one.
+// ffLobbyPlayerResponse is somebody in the room, and is deliberately the front half of ffGamePlayerResponse.
 type ffLobbyPlayerResponse struct {
 	UserID        string `json:"userId"`
 	Name          string `json:"name"`
@@ -120,8 +78,7 @@ type ffLobbyPlayerResponse struct {
 
 type ffLobbyResponse struct {
 	ID string `json:"id"`
-	// Code is what players type in to get here, and is the same string as ID: a room has
-	// nothing anybody looks it up by except its code.
+	// Code is what players type in to get here, and is the same string as ID.
 	Code string `json:"code"`
 	// HostID is whose room it is. The app hides the controls; the server enforces it.
 	HostID     string                  `json:"hostId"`
@@ -131,12 +88,9 @@ type ffLobbyResponse struct {
 	MinPlayers int                     `json:"minPlayers"`
 	MaxPlayers int                     `json:"maxPlayers"`
 	CreatedAt  string                  `json:"createdAt"`
-	// GameID is the game to open, set only once the host has started the room. Its
-	// appearing is how everybody else finds out.
+	// GameID is the game to open, set only once the host has started the room.
 	GameID string `json:"gameId,omitempty"`
-	// RematchCode is the room this one's table has moved on to. Carried on the snapshot
-	// as well as announced over the socket, so a player whose connection blipped over the
-	// announcement is still taken across by the next read.
+	// RematchCode is the room this one's table has moved on to.
 	RematchCode string `json:"rematchCode,omitempty"`
 }
 
@@ -149,11 +103,6 @@ type ffGamePlayerResponse struct {
 }
 
 // ffOptionResponse is one thing a voter can pick.
-//
-// Slot is the identity while voting is open and the only identity: it is what a vote
-// names, and it is all a client is given. AuthorID, IsTruth and Voters appear together
-// and only once the round has been revealed -- before that, any one of the three would
-// answer the question the round is asking.
 type ffOptionResponse struct {
 	Slot  int      `json:"slot"`
 	Fills []string `json:"fills"`
@@ -163,59 +112,38 @@ type ffOptionResponse struct {
 	Voters   []string `json:"voters,omitempty"`
 }
 
-// ffRoundResponse is one prompt as it looks to one reader, which is the important part:
-// two players fetching the same round get different bodies, and that is the game working.
-//
-// Mine, Answered, MyFills and MyVoteSlot are about the reader. Everything else is either
-// public (the line, the counts) or gated on the round having been revealed.
+// ffRoundResponse is one prompt as it looks to one reader, which is the important part.
 type ffRoundResponse struct {
 	ID     string `json:"id"`
 	Number int    `json:"number"`
-	// Line still carries its blanks; the fills are kept apart so one prompt can be
-	// rendered three ways without three copies of the sentence.
+	// Line still carries its blanks; the fills are kept apart so one prompt can be rendered three ways without three copies of the sentence.
 	Line   string `json:"line"`
 	Blanks int    `json:"blanks"`
 
 	// Mine is whether this prompt was dealt to the reader to write for.
 	Mine bool `json:"mine"`
-	// Answered is whether the reader has written their fake for it. Only meaningful on a
-	// round that is Mine.
+	// Answered is whether the reader has written their fake for it.
 	Answered bool `json:"answered"`
-	// MyFills is the reader's own answer, echoed back so a reconnect can redraw a prompt
-	// they had already filled in.
+	// MyFills is the reader's own answer, echoed back so a reconnect can redraw a prompt they had already filled in.
 	MyFills []string `json:"myFills,omitempty"`
-	// AnswerCount is how many of the two authors have written. Progress, never content --
-	// it is the number the writing screen counts down, and it says nothing about what was
-	// written or by whom.
+	// AnswerCount is how many of the two authors have written.
 	AnswerCount int `json:"answerCount"`
 
-	// CanVote is whether the reader is eligible to vote on this round at all, which is
-	// settled when the prompts are dealt and has nothing to do with whether the table has
-	// reached it yet.
+	// CanVote is whether the reader is eligible to vote on this round at all.
 	CanVote bool `json:"canVote"`
-	// MyVoteSlot is the slot the reader picked, once they have. A pointer because slot
-	// zero is a real answer and "not voted" has to be tellable from it.
+	// MyVoteSlot is the slot the reader picked, once they have.
 	MyVoteSlot *int `json:"myVoteSlot,omitempty"`
 	VoteCount  int  `json:"voteCount"`
 
 	// Options are sent only for the round being voted on and for rounds already revealed.
-	// A round still being written has no order yet, and a round the table has not reached
-	// would be one a player could read ahead in.
 	Options []ffOptionResponse `json:"options,omitempty"`
 
 	Revealed bool `json:"revealed"`
-	// Authors are the two players who wrote for this prompt, told only once the round is
-	// revealed. This is the answer to the whole round, so it is also the last thing sent.
+	// Authors are the two players who wrote for this prompt, told only once the round is revealed.
 	Authors []string `json:"authors,omitempty"`
 }
 
 // ffGameResponse is the board as one player may see it.
-//
-// Not a shared document with holes punched in it: it is built per reader, and Rounds is
-// where that happens. Two things ride along at the top because every screen needs them and
-// working them out from the roster is the sort of arithmetic that ends up done differently
-// on two platforms: how many answers a finished writing phase has, and how many votes a
-// round waits for.
 type ffGameResponse struct {
 	ID       string `json:"id"`
 	LobbyID  string `json:"lobbyId"`
@@ -224,15 +152,13 @@ type ffGameResponse struct {
 	GameMode string `json:"gameMode"`
 
 	Phase string `json:"phase"`
-	// CurrentRound only means anything once Phase is voting -- during writing every round
-	// is open at once.
+	// CurrentRound only means anything once Phase is voting -- during writing every round is open at once.
 	CurrentRound int    `json:"currentRound"`
 	TotalRounds  int    `json:"totalRounds"`
 	Status       string `json:"status"`
 	CreatedAt    string `json:"createdAt"`
 
-	// Score is the reader's own, so the board can show it without picking itself out of
-	// Players first.
+	// Score is the reader's own, so the board can show it without picking itself out of Players first.
 	Score int `json:"score"`
 
 	AnswersIn     int `json:"answersIn"`
@@ -244,29 +170,18 @@ type ffGameResponse struct {
 }
 
 // ffAnswerResponse is what one answer did: counts, and nothing else.
-//
-// Deliberately carries no fills, not even the writer's own. The same body is broadcast to
-// the whole table, so anything in it is something everybody learns -- and what a player is
-// writing is the one thing this half of the game is about not knowing.
 type ffAnswerResponse struct {
 	RoundNumber int    `json:"roundNumber"`
 	Phase       string `json:"phase"`
 	AnswersIn   int    `json:"answersIn"`
 	// AnswersNeeded is how many the whole game is waiting for, not how many this round is.
 	AnswersNeeded int `json:"answersNeeded"`
-	// VotingOpened is set on the answer that finished the writing phase. Everybody who
-	// sees it should re-read the game: their own options are waiting behind it.
+	// VotingOpened is set on the answer that finished the writing phase.
 	VotingOpened bool   `json:"votingOpened"`
 	GameID       string `json:"gameId"`
 }
 
-// ffPublicRoundResponse is a round with nothing reader-specific on it, which is what makes
-// it safe to broadcast: the prompt and the options in the order everybody sees them.
-//
-// Sent as the *next* round when a vote closes one, so the table can move on without each
-// client re-fetching the whole game. What it cannot carry is whether the reader may vote
-// on it -- that depends on who wrote it, which is exactly what must not be said -- so a
-// client answers that from the snapshot it already holds.
+// ffPublicRoundResponse is a round with nothing reader-specific on it, which is what makes it safe to broadcast.
 type ffPublicRoundResponse struct {
 	ID      string             `json:"id"`
 	Number  int                `json:"number"`
@@ -275,12 +190,7 @@ type ffPublicRoundResponse struct {
 	Options []ffOptionResponse `json:"options"`
 }
 
-// ffRevealResponse is a finished round with everything told: who wrote which fake, which
-// option was the truth, and who picked what.
-//
-// Public by construction, which is why it is a type of its own rather than a revealed
-// ffRoundResponse -- that one carries the reader's own answers, and this is the one body
-// the whole table is sent at once.
+// ffRevealResponse is a finished round with everything told.
 type ffRevealResponse struct {
 	RoundNumber int                `json:"roundNumber"`
 	Line        string             `json:"line"`
@@ -289,11 +199,6 @@ type ffRevealResponse struct {
 }
 
 // ffVoteResponse is what one vote did.
-//
-// Not the whole game, for the same reason League of Letters does not resend the board on
-// every guess: every client already holds it, and what it cannot work out for itself is
-// how many votes are in, whether that closed the round, and what the round turned out to
-// be. Reveal and NextRound are set together on the vote that ends a round.
 type ffVoteResponse struct {
 	GameID      string `json:"gameId"`
 	RoundNumber int    `json:"roundNumber"`
@@ -301,8 +206,7 @@ type ffVoteResponse struct {
 	VotesNeeded int    `json:"votesNeeded"`
 	RoundOver   bool   `json:"roundOver"`
 	GameOver    bool   `json:"gameOver"`
-	// CurrentRound is the round the game is on afterwards, which is not RoundNumber if
-	// this vote closed it.
+	// CurrentRound is the round the game is on afterwards, which is not RoundNumber if this vote closed it.
 	CurrentRound int    `json:"currentRound"`
 	Status       string `json:"status"`
 
@@ -311,10 +215,6 @@ type ffVoteResponse struct {
 	Reveal    *ffRevealResponse      `json:"reveal,omitempty"`
 	NextRound *ffPublicRoundResponse `json:"nextRound,omitempty"`
 }
-
-// ---------------------------------------------------------------------------
-// Building them
-// ---------------------------------------------------------------------------
 
 func (s *Server) newFFLobbyResponse(ctx context.Context, lobby *fakefiller.FFLobby) ffLobbyResponse {
 	// By seat, which is the order people walked in -- so the host is the top row.
@@ -348,9 +248,7 @@ func (s *Server) newFFLobbyResponse(ctx context.Context, lobby *fakefiller.FFLob
 			Locale:   lobby.Locale.String(),
 		},
 		Players: players,
-		// Carried rather than hardcoded in the app: the room screen draws "3 to 9
-		// players" and greys out its start button from these, and the bounds are the
-		// game's to state.
+		// Carried rather than hardcoded in the app.
 		MinPlayers: fakefiller.MinLobbyPlayers,
 		MaxPlayers: fakefiller.MaxLobbyPlayers,
 		CreatedAt:  lobby.CreatedAt.Format(timeFormat),
@@ -375,8 +273,7 @@ func (s *Server) ffPlayers(ctx context.Context, game *fakefiller.FFMultiDeviceGa
 	}
 	users := s.usersByID(ctx, ids)
 
-	// A game player has no join time of its own -- the table was settled at kickoff -- so
-	// the game's own is the honest answer for all of them.
+	// A game player has no join time of its own.
 	joinedAt := game.CreatedAt.Format(timeFormat)
 
 	players := make([]ffGamePlayerResponse, 0, len(seated))
@@ -393,12 +290,7 @@ func (s *Server) ffPlayers(ctx context.Context, game *fakefiller.FFMultiDeviceGa
 	return players
 }
 
-// ffRoundVisibility answers the two questions every redaction in this file turns on.
-//
-// open is the round being voted on right now, which is the only unfinished round whose
-// options anybody may see. revealed is a round whose voting is done, which is the only
-// round whose authors anybody may see. A game that was abandoned mid-round reveals
-// nothing further: the round never finished, so there is no result to tell.
+// ffRoundVisibility answers the two questions every redaction in this file turns on. open is the round being voted on right now.
 func ffRoundVisibility(game *fakefiller.FFMultiDeviceGame, number int) (open, revealed bool) {
 	if game.Phase != fakefiller.PhaseVoting {
 		return false, false
@@ -424,9 +316,7 @@ func newFFRoundResponse(game *fakefiller.FFMultiDeviceGame, round fakefiller.FFR
 		Revealed:    revealed,
 	}
 
-	// The reader's own answer, and only ever the reader's own. Looked up by their user id
-	// because that is what an option is filed under, which is the same reason a second
-	// answer from them is impossible.
+	// The reader's own answer, and only ever the reader's own.
 	if mine := round.Option(userID); mine != nil {
 		body.Answered = true
 		body.MyFills = mine.Fills
@@ -449,11 +339,7 @@ func newFFRoundResponse(game *fakefiller.FFMultiDeviceGame, round fakefiller.FFR
 	return body
 }
 
-// newFFOptionResponses is the line-up, in the order it was shuffled into.
-//
-// revealed is what decides how much of an option is an option: without it, a slot and its
-// fills, which is everything a voter needs and nothing that would tell them the answer.
-// With it, the author, whether it was the truth, and who picked it.
+// newFFOptionResponses is the line-up, in the order it was shuffled into. revealed is what decides how much of an option is an option.
 func newFFOptionResponses(round fakefiller.FFRound, revealed bool) []ffOptionResponse {
 	sorted := slices.Clone(round.Options)
 	slices.SortFunc(sorted, func(a, b fakefiller.FFOption) int { return a.Slot - b.Slot })
@@ -479,8 +365,7 @@ func newFFOptionResponses(round fakefiller.FFRound, revealed bool) []ffOptionRes
 	return options
 }
 
-// ffAnswerCount is how many of a round's two authors have written, which is every option
-// on it except the truth -- that one was written when the game was dealt.
+// ffAnswerCount is how many of a round's two authors have written, which is every option on it except the truth.
 func ffAnswerCount(round fakefiller.FFRound) int {
 	count := 0
 	for _, option := range round.Options {
@@ -523,8 +408,7 @@ func (s *Server) newFFGameResponse(
 	}
 }
 
-// newFFAnswerResponse is the progress frame. It is built from the outcome rather than the
-// request so that the count it carries is the one the write produced.
+// newFFAnswerResponse is the progress frame.
 func newFFAnswerResponse(outcome *fakefiller.AnswerOutcome, roundNumber int) ffAnswerResponse {
 	return ffAnswerResponse{
 		GameID:        outcome.Game.ID.String(),
@@ -563,8 +447,7 @@ func (s *Server) newFFVoteResponse(ctx context.Context, outcome *fakefiller.Vote
 	}
 	body.Reveal = &reveal
 
-	// A round that ended and a game that ended look the same from the vote that did it;
-	// only the first of the two has a next prompt to send.
+	// A round that ended and a game that ended look the same from the vote that did it.
 	if !outcome.GameOver {
 		if next := game.Round(game.CurrentRound); next != nil {
 			opened := ffPublicRoundResponse{
@@ -581,20 +464,12 @@ func (s *Server) newFFVoteResponse(ctx context.Context, outcome *fakefiller.Vote
 	return body
 }
 
-// ---------------------------------------------------------------------------
-// Routes
-// ---------------------------------------------------------------------------
-
 func (s *Server) AddFakeFillerHandlers() {
 	s.mux.HandleFunc("POST /api/v1/fake-filler/lobby", s.requireAuth(s.handleCreateFFLobby))
-	// Before {code}, so the literal wins: this is the room you are already in, not a room
-	// called "current".
+	// Before {code}, so the literal wins: this is the room you are already in, not a room called "current".
 	s.mux.HandleFunc("GET /api/v1/fake-filler/lobby/current", s.requireAuth(s.handleGetCurrentFFLobby))
 
-	// room is what every route addressed by a join code is wrapped in: signed in, and
-	// carrying a code that is a Fake Filler code rather than merely five characters. A
-	// League of Letters code reaching one of these is a 404, not a 400 -- it is a
-	// perfectly good code for a room that is not at this address.
+	// room is what every route addressed by a join code is wrapped in.
 	room := func(next http.HandlerFunc) http.HandlerFunc {
 		return s.requireAuth(s.requireGameCode(joincode.FakeFiller, next))
 	}
@@ -612,10 +487,6 @@ func (s *Server) AddFakeFillerHandlers() {
 	s.mux.HandleFunc("POST /api/v1/fake-filler/game/{gameID}/answers", s.requireAuth(s.handleSubmitFFAnswer))
 	s.mux.HandleFunc("POST /api/v1/fake-filler/game/{gameID}/votes", s.requireAuth(s.handleCastFFVote))
 }
-
-// ---------------------------------------------------------------------------
-// Lobby handlers
-// ---------------------------------------------------------------------------
 
 func (s *Server) handleCreateFFLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
@@ -637,13 +508,11 @@ func (s *Server) handleCreateFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Nothing is published: the room is one request old and there is nobody connected to
-	// it yet to tell.
+	// Nothing is published: the room is one request old and there is nobody connected to it yet to tell.
 	writeJSON(w, http.StatusCreated, s.newFFLobbyResponse(r.Context(), lobby))
 }
 
-// handleGetFFLobby is the snapshot the room screen opens on. Everything after it arrives
-// over the socket, so there is nothing here to poll.
+// handleGetFFLobby is the snapshot the room screen opens on.
 func (s *Server) handleGetFFLobby(w http.ResponseWriter, r *http.Request) {
 	lobby, err := s.fakeFiller.Lobby(r.Context(), lobbyCode(r))
 	if err != nil {
@@ -654,8 +523,7 @@ func (s *Server) handleGetFFLobby(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, s.newFFLobbyResponse(r.Context(), lobby))
 }
 
-// handleGetCurrentFFLobby is what the app asks on launch. Nothing to come back to is 204
-// rather than 404 -- having no room open is the ordinary state, not a failed lookup.
+// handleGetCurrentFFLobby is what the app asks on launch.
 func (s *Server) handleGetCurrentFFLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -719,8 +587,7 @@ func (s *Server) handleUpdateFFLobbySettings(w http.ResponseWriter, r *http.Requ
 
 	code := lobbyCode(r)
 
-	// The room has to be read before the mode can default to what it is already playing:
-	// a PATCH that carries only a language must not knock the mode back to facts.
+	// The room has to be read before the mode can default to what it is already playing.
 	current, err := s.fakeFiller.Lobby(r.Context(), code)
 	if err != nil {
 		s.writeFFLobbyError(w, "update fake filler lobby settings", err)
@@ -762,8 +629,7 @@ func (s *Server) handleLeaveFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// The room as it stands without them. A code that is already gone leaves nothing to
-	// publish, which is the same no-op the leave itself was.
+	// The room as it stands without them.
 	if lobby, err := s.fakeFiller.Lobby(r.Context(), code); err == nil {
 		s.publishFFLobby(code, s.newFFLobbyResponse(r.Context(), lobby))
 	}
@@ -787,18 +653,13 @@ func (s *Server) handleDeleteFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Told rather than left to be discovered: anybody still on the room screen is looking
-	// at a code that has stopped working.
+	// Told rather than left to be discovered.
 	s.publishFFLobbyClosed(code)
 
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// handleStartFFLobby turns a room into a game. Host only.
-//
-// Answers the lobby rather than the game, because the lobby is what everybody else is
-// watching and gameId appearing on it is how they find out. The board is fetched by id
-// afterwards -- and it has to be, because the board is different for every reader.
+// handleStartFFLobby turns a room into a game.
 func (s *Server) handleStartFFLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -821,10 +682,7 @@ func (s *Server) handleStartFFLobby(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, body)
 }
 
-// handleRematchFFLobby opens the next room for a table that has just finished. Host only.
-//
-// 201 both times it is pressed: the second press is answered with the room the first one
-// opened rather than a second room beside it.
+// handleRematchFFLobby opens the next room for a table that has just finished.
 func (s *Server) handleRematchFFLobby(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -841,8 +699,7 @@ func (s *Server) handleRematchFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Announced on the room they are all still sitting in -- that is the only place the
-	// rest of the table is listening, and the new code is how they follow.
+	// Announced on the room they are all still sitting in.
 	s.publishFFRematch(code, next.ID)
 
 	writeJSON(w, http.StatusCreated, s.newFFLobbyResponse(r.Context(), next))
@@ -869,10 +726,6 @@ func (s *Server) handleAbandonFFLobby(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// ---------------------------------------------------------------------------
-// Game handlers
-// ---------------------------------------------------------------------------
-
 func (s *Server) handleGetFFGame(w http.ResponseWriter, r *http.Request) {
 	userID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -883,8 +736,7 @@ func (s *Server) handleGetFFGame(w http.ResponseWriter, r *http.Request) {
 
 	gameID, err := uuid.Parse(r.PathValue("gameID"))
 	if err != nil {
-		// An unparseable id cannot name a game, and saying so is the same answer as "not
-		// your table".
+		// An unparseable id cannot name a game, and saying so is the same answer as "not your table".
 		writeErrorCode(w, http.StatusNotFound, "game_not_found", "game not found")
 		return
 	}
@@ -934,13 +786,11 @@ func (s *Server) handleSubmitFFAnswer(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body := newFFAnswerResponse(outcome, req.RoundNumber)
-	// Counts only, so the same body goes to the table as to the writer -- there is
-	// nothing in it the writer knows and the table does not.
+	// Counts only, so the same body goes to the table as to the writer.
 	s.publishFFAnswerProgress(outcome.Game.LobbyID, body)
 
 	if outcome.VotingOpened {
-		// The options are different for nobody -- but which of them a player may vote on
-		// is -- so the table is told to re-read rather than sent a board.
+		// The options are different for nobody.
 		s.publishFFVotingStarted(outcome.Game.LobbyID, outcome.Game.ID.String())
 	}
 
@@ -983,24 +833,13 @@ func (s *Server) handleCastFFVote(w http.ResponseWriter, r *http.Request) {
 	}
 
 	body := s.newFFVoteResponse(r.Context(), outcome)
-	// Everybody watching gets exactly what the voter got back, so the player who cast the
-	// vote and the players watching it land apply the same update. It carries no
-	// reader-specific field, which is what makes that possible here.
+	// Everybody watching gets exactly what the voter got back.
 	s.publishFFVote(outcome.Game.LobbyID, body)
 
 	writeJSON(w, http.StatusCreated, body)
 }
 
-// ---------------------------------------------------------------------------
-// Refusals
-// ---------------------------------------------------------------------------
-
 // writeFFLobbyError turns a room error into a status and a machine-readable tag.
-//
-// A separate function from writeLobbyError rather than a shared one, because that one
-// switches on lol sentinels: two games' errors are two different types, and errors.Is
-// between them is always false. The tags are deliberately the same strings, so an app that
-// already knows what "lobby_full" means does not have to learn it twice.
 func (s *Server) writeFFLobbyError(w http.ResponseWriter, what string, err error) {
 	switch {
 	case errors.Is(err, fakefiller.ErrLobbyNotFound):
@@ -1018,8 +857,7 @@ func (s *Server) writeFFLobbyError(w http.ResponseWriter, what string, err error
 	case errors.Is(err, fakefiller.ErrGameNotOver):
 		writeErrorCode(w, http.StatusConflict, "game_not_over", "that game is still being played")
 	case errors.Is(err, fakefiller.ErrNotEnoughContent):
-		// A short data file, which is a broken build rather than a broken request: the
-		// host did nothing wrong and there is nothing they can do about it.
+		// A short data file, which is a broken build rather than a broken request.
 		s.log.Error(what, "err", err)
 		writeErrorCode(w, http.StatusInternalServerError, "no_content", "there are not enough prompts to play")
 	default:
@@ -1028,14 +866,11 @@ func (s *Server) writeFFLobbyError(w http.ResponseWriter, what string, err error
 	}
 }
 
-// writeFFPlayError is the refusals a board produces: reading it, writing into it, voting
-// on it.
+// writeFFPlayError is the refusals a board produces: reading it, writing into it, voting on it.
 func (s *Server) writeFFPlayError(w http.ResponseWriter, what string, err error) {
 	switch {
 	case errors.Is(err, fakefiller.ErrGameNotFound):
-		// Not at the table reads the same as not a game. Being at it is the whole of the
-		// permission model, and saying which of the two it is would tell a stranger the
-		// game exists.
+		// Not at the table reads the same as not a game.
 		writeErrorCode(w, http.StatusNotFound, "game_not_found", "game not found")
 	case errors.Is(err, fakefiller.ErrRoundNotFound):
 		writeErrorCode(w, http.StatusNotFound, "round_not_found", "that prompt is not in this game")

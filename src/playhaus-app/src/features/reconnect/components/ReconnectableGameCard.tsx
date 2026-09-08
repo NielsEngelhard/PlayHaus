@@ -28,15 +28,7 @@ const UNKNOWN_GAME = {
     icon: undefined
 };
 
-/**
- * One game left running, as a row you walk back into.
- *
- * The whole row is the button, and the lemon disc on the right is what says so. It used
- * to be a full-width "continue playing" bar under the title, which made every row two
- * decisions tall — on a page whose entire subject is a short list of ways back in, the
- * list itself should be scannable in one look, and the only thing you can do to a row is
- * the thing the row is for.
- */
+// One game left running, as a row you walk back into.
 export default function ReconnectableGameCard({ game, kind }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -103,8 +95,7 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary,
         padding: 12
     },
-    // The SVG marks draw their own background, border and glyph, so this is sized and
-    // rounded to match the tile below without repeating either.
+    // The SVG marks draw their own background, border and glyph.
     icon: {
         width: TILE_SIZE,
         height: TILE_SIZE,
@@ -118,8 +109,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
-        // Only light outlines the tile. In dark the gradient is the brightest thing on
-        // the card already, and a grey line around it would only mute it.
+        // Only light outlines the tile.
         borderWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderColor: theme.colors.border,
         // A lit top edge, so the tile reads as domed rather than printed.
@@ -130,8 +120,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
     body: {
-        // Without this the text column refuses to shrink and pushes the tile off the
-        // card on a narrow screen.
+        // Without this the text column refuses to shrink and pushes the tile off the card on a narrow screen.
         flex: 1,
         minWidth: 0
     },
@@ -147,8 +136,7 @@ const useStyles = createThemedStyles(theme => ({
         flexWrap: 'wrap',
         gap: 5
     },
-    // Not a button of its own — the row is the button. This is the arrowhead that says
-    // which way the row goes, in the one colour the app uses for "go".
+    // Not a button of its own — the row is the button.
     play: {
         width: PLAY_SIZE,
         height: PLAY_SIZE,

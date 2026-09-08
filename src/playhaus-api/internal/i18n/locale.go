@@ -21,8 +21,7 @@ var Locales = []Locale{NL, EN}
 func (l Locale) Valid() bool    { return slices.Contains(Locales, l) }
 func (l Locale) String() string { return string(l) }
 
-// Names lists the supported locales as plain strings, for a validation message
-// that has to spell out the alternatives.
+// Names lists the supported locales as plain strings, for a validation message that has to spell out the alternatives.
 func Names() []string {
 	names := make([]string, len(Locales))
 	for i, l := range Locales {
@@ -31,8 +30,7 @@ func Names() []string {
 	return names
 }
 
-// Parse normalises a locale string. "nl-NL", "NL", "nl" all yield NL.
-// Unsupported or empty input yields Default.
+// Parse normalises a locale string.
 func Parse(s string) Locale {
 	s = strings.ToLower(strings.TrimSpace(s))
 	if i := strings.IndexAny(s, "-_"); i > 0 {
@@ -44,13 +42,9 @@ func Parse(s string) Locale {
 	return Default
 }
 
-// Locale implements driver.Valuer and sql.Scanner so it can be used directly
-// as a struct field type. GORM picks both up automatically, so a Locale field
-// needs no converter and no `gorm:"type:..."` tag.
+// Locale implements driver.Valuer and sql.Scanner so it can be used directly as a struct field type.
 
-// Value stores the locale as plain text. An unsupported locale is rejected
-// rather than written, so an invalid value can never reach the database --
-// including the zero value, which catches a User built without a locale.
+// Value stores the locale as plain text.
 func (l Locale) Value() (driver.Value, error) {
 	if !l.Valid() {
 		return nil, fmt.Errorf("i18n: refusing to store unsupported locale %q", string(l))
@@ -58,8 +52,7 @@ func (l Locale) Value() (driver.Value, error) {
 	return string(l), nil
 }
 
-// Scan reads the locale back. The driver hands us a string or, depending on
-// the column type, a []byte -- both are accepted.
+// Scan reads the locale back.
 func (l *Locale) Scan(src any) error {
 	switch v := src.(type) {
 	case nil:
@@ -77,6 +70,5 @@ func (l *Locale) Scan(src any) error {
 	return nil
 }
 
-// GormDataType tells GORM to give the column a plain string type when it
-// builds the DDL. Without it GORM has to guess from the Valuer.
+// GormDataType tells GORM to give the column a plain string type when it builds the DDL.
 func (Locale) GormDataType() string { return "string" }

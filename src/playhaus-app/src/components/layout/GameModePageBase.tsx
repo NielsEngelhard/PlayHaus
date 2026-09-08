@@ -28,96 +28,36 @@ interface Props {
     title: string,
     /** The pitch under it, in a line or two. */
     description: string,
-    /**
-     * The outlined pills under the pitch: what this mode costs you in players, phones and
-     * minutes, or what it has given you so far.
-     */
+    // The outlined pills under the pitch.
     facts: ModeFact[],
     /** Where the way out goes. This page has the only one: there is no app header on it. */
     back: Href,
     /** Stands in for the game's name in the band's top row, for a screen not about it. */
     eyebrow?: string,
-    /**
-     * The ways to play, as one column on the sheet.
-     *
-     * Each child brings its own chrome — these are cards of two or three different shapes
-     * rather than rows in a form, so unlike `SettingsPageBase` nothing is ruled apart or
-     * padded for them here.
-     */
+    // The ways to play, as one column on the sheet.
     children: ReactNode
 }
 
 /** The sheet's side padding, and so also the band's once the fill has reached past it. */
 const PAGE_PADDING = 24;
 
-/**
- * How far the sheet climbs back up over the band.
- *
- * The band's own bottom padding is `SHEET_LIFT + BAND_TAIL`, so what shows of it below the
- * facts is `BAND_TAIL` and the first card straddles the edge rather than beginning at it.
- * Same idea as `GameIndexPage`'s `OVERLAP_FRACTION` and `SettingsPageBase`'s `BAND_TUCK`,
- * with the depth simply read off the design: nothing here has to be measured, because the
- * first card on this page is always the big one.
- */
+// How far the sheet climbs back up over the band.
 const SHEET_LIFT = 100;
 const BAND_TAIL = 14;
 
 const MARK_SIZE = 58;
 
-/**
- * The page a game's ways to play are picked on: the game's gradient across the top
- * carrying the mode's name, and a sheet of choices pulled up over it.
- *
- * The third of the app's page bases, and the one that sits between the other two — you
- * arrive from the game's index and leave for a `SettingsPageBase` or a `LobbyPageBase`.
- * It exists because "solo" and "multiplayer" stopped being single destinations: each is a
- * shelf of modes now, and a shelf needs a page rather than a menu hung off a card.
- *
- * Like `SettingsPageBase` it takes the viewport and the app's chrome with it (see
- * `useChromeless`), because the band at the top is a header and a screen with two of those
- * is a screen where neither is the header. What the app's one gave up comes back on the
- * band: the way out, and the theme switch.
- *
- * Unlike `SettingsPageBase` there is no footer and nothing that has to stay on the bottom
- * edge — every choice on the page is equally the point of it — so the whole thing, band
- * included, scrolls as one. That scroller has to be this page's own: `useChromeless` also
- * claims full-screen, which is what turns the root layout's scroller off.
- *
- * The game's colour arrives once and is lent down through `AccentProvider`, so the back
- * pill and the theme toggle come out in the right ink without being told.
- */
+// The page a game's ways to play are picked on.
 export default function GameModePageBase({ game, title, description, facts, back, eyebrow, children }: Props) {
     const styles = useStyles();
 
-    // Claimed here so a page built on this cannot forget. A page with an early return of
-    // its own should claim it as well — see `useChromeless`.
+    // Claimed here so a page built on this cannot forget.
     useChromeless();
 
     // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();
 
-    /*
-     * How far past the column's edges the band has to reach to make the window.
-     *
-     * The page is drawn in the app's one 600dp column, which on a phone is the window and
-     * on a desktop window is a strip down the middle of it. A header that stops where the
-     * column does is a coloured rectangle laid on the page rather than the top of it, so
-     * the fill reaches out and the padding below puts its contents back where they were.
-     *
-     * Web only, and the same trade `SettingsPageBase` and `GameIndexPage` make: a child
-     * painting outside its parent is allowed on iOS and clipped on Android, and what keeps
-     * the overflow from becoming sideways scroll is the `overflow-x: hidden` a vertical
-     * `ScrollView` only has on web. `useWindowDimensions` answers 0 with no DOM to measure,
-     * so the pre-rendered export ships the unbled band and hydration widens it.
-     *
-     * Unlike on `SettingsPageBase`, the reach is spent on the *page* rather than on the
-     * band — and it has to be. There the band is a sibling of the scroller, so the only
-     * thing that ever clips it is the root layout's full-window one. Here everything
-     * scrolls together, and a vertical `ScrollView` on web is `overflow-x: hidden`: a band
-     * reaching out from inside this one would be cut back to the column's 600dp exactly
-     * where it is supposed to be widest. So the whole scroller is widened instead, and the
-     * sheet below pads its cards back into the column.
-     */
+    // How far past the column's edges the band has to reach to make the window.
     const { width: windowWidth } = useWindowDimensions();
     const reach = getReach(windowWidth);
 
@@ -129,8 +69,7 @@ export default function GameModePageBase({ game, title, description, facts, back
 
     return (
         <AccentProvider accent={accent}>
-            {/* The page, and the scroller in it, reach out past the app's column so the
-                band inside can be the full width of the window — see `reach`. */}
+            {/* The page, and the scroller in it, reach out past the app's column so the band inside can be the full width of the window. */}
             <View style={[styles.page, { marginHorizontal: -reach }]}>
                 <ScrollView
                     style={styles.scroll}
@@ -140,8 +79,7 @@ export default function GameModePageBase({ game, title, description, facts, back
                     <View
                         style={[
                             styles.band,
-                            // Square once it runs off the sides of the window: a corner
-                            // rounded against an edge it never touches reads as a mistake.
+                            // Square once it runs off the sides of the window: a corner rounded against an edge it never touches reads as a mistake.
                             reach > Spacing.six && styles.bandWide,
                             {
                                 paddingTop: insets.top + 14,
@@ -150,10 +88,7 @@ export default function GameModePageBase({ game, title, description, facts, back
                             linearGradient(game.gradient)
                         ]}
                     >
-                        {/* The chrome the app's header would have carried, on the page's
-                            own one. Both draw themselves as washes of ink over the accent
-                            — see their `band` variants — so the game's name can sit
-                            between them as part of the same row. */}
+                        {/* The chrome the app's header would have carried, on the page's own one. */}
                         <View style={styles.chrome}>
                             <BackChip href={back} variant='band' />
 
@@ -191,13 +126,7 @@ export default function GameModePageBase({ game, title, description, facts, back
                         </View>
                     </View>
 
-                    {/* The sheet. No surface of its own: the page's canvas is already
-                        behind it, and the cards are what the eye reads as laid over the
-                        band.
-
-                        Its padding is what puts the cards back in the app's column after
-                        the page reached out of it — so they stay 600dp wide under a band
-                        that is now as wide as the window. */}
+                    {/* The sheet. */}
                     <View
                         style={[
                             styles.sheet,
@@ -216,17 +145,14 @@ export default function GameModePageBase({ game, title, description, facts, back
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // No `width`, on either of these. Both are stretched to their parent by default, which
-    // is what lets the negative margin set at the call site *widen* the page rather than
-    // slide a fixed-width one sideways out of the column.
+    // No `width`, on either of these.
     page: {
         flex: 1
     },
     scroll: {
         flex: 1
     },
-    // `flexGrow` rather than `flex`, so a short page sits under the band instead of being
-    // stretched down to fill a desktop window.
+    // `flexGrow` rather than `flex`, so a short page sits under the band instead of being stretched down to fill a desktop window.
     scrollContent: {
         flexGrow: 1
     },
@@ -236,9 +162,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: SHEET_LIFT + BAND_TAIL,
         borderBottomLeftRadius: 32,
         borderBottomRightRadius: 32,
-        // Light cuts the band off with the same hard line every card wears. Dark leaves it
-        // open: a mid-grey line under a full-width gradient reads as a seam rather than an
-        // edge, and the gradient is its own edge anyway.
+        // Light cuts the band off with the same hard line every card wears.
         borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderBottomColor: theme.colors.border
     },
@@ -272,8 +196,7 @@ const useStyles = createThemedStyles(theme => ({
         width: MARK_SIZE,
         height: MARK_SIZE,
         flexShrink: 0,
-        // The SVGs draw their own ground, border and glyph; this only rounds the corner
-        // off to the same radius they are cut with.
+        // The SVGs draw their own ground, border and glyph.
         borderRadius: 15
     },
 
@@ -287,8 +210,7 @@ const useStyles = createThemedStyles(theme => ({
 
     description: {
         marginTop: 12,
-        // Short of the full width even where there is room, where a pitch running the
-        // whole 600 would read as a paragraph rather than as a line under a name.
+        // Short of the full width even where there is room, where a pitch running the whole 600 would read as a paragraph rather than as a line under a name.
         maxWidth: 300,
         fontSize: 14,
         fontWeight: 500,

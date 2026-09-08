@@ -214,9 +214,35 @@ prop). `AccentProvider`/`useAccent()` is a per-screen colour identity and delibe
 
 ## House style
 
-The codebase is unusually heavily commented, in prose, explaining *why* — often several
-sentences, with package docs on anything non-obvious. Match that register rather than the sparse
-default. No Prettier: the app uses 4-space indent and single quotes. The app's
+**Comments are one line, or they are not there.** Write the line only when the code cannot say it
+itself: a non-obvious invariant, a silent failure mode, a reason some tempting simplification is
+wrong. Skip it when the code already reads clearly — a comment restating the function's name is
+noise. No prose paragraphs, no changelog narration ("this used to be…"), no essays at the top of
+a file, no divider banners.
+
+The exception is the wiring and infrastructure layer, where a longer block earns its place because
+it explains how the process is assembled rather than what a game rule does. Only these may carry
+multi-line comments:
+
+- `src/playhaus-api/cmd/api/main.go`
+- `src/playhaus-api/internal/api/` — `cors.go`, `middleware.go`, `websocket.go`, `health.go`
+- `src/playhaus-api/internal/config/config.go`
+- `src/playhaus-api/internal/platform/database/`
+- `src/playhaus-api/internal/realtime/`
+
+Everywhere else in the API — handlers, `server.go`, `respond.go`, every game package's `rules.go`,
+`service.go`, `store.go` and models, `joincode`, `i18n` — is one-liners only, and a package doc is
+a single sentence.
+
+**`src/playhaus-app` has no multi-line comments at all**, with no exceptions: no JSDoc blocks, no
+file-header docs, no multi-line `{/* … */}` in JSX, no prose above a `.web.ts` fork. A Metro
+gotcha worth recording gets one line.
+
+Always keep, whatever the file: `//go:embed` and other `//go:` directives,
+`// eslint-disable-next-line` (positional — it must stay directly above the line it suppresses),
+and tab-indented lines inside a godoc comment, which render as a code block.
+
+No Prettier: the app uses 4-space indent and single quotes. The app's
 `.vscode/settings.json` runs `organizeImports` and `sortMembers` on save, which is why import
 blocks and interface members are alphabetised.
 

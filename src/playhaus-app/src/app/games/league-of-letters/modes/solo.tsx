@@ -20,16 +20,7 @@ import { useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Pressable, View } from "react-native";
 
-/**
- * The four ways to play on your own — pick one, and only then set anything up.
- *
- * This sits between the game's index and the setup form, which is the page that used to
- * be what "Solo" meant. Three of the four are not that form: the daily word and the
- * competitive ladder have no backend yet and log rather than navigate, and quick play
- * skips the form entirely by making the choices for you.
- *
- * The stats on the band are mocked — see `mock-solo-stats.ts`.
- */
+// The four ways to play on your own — pick one, and only then set anything up.
 export default function LeagueOfLettersSoloModesPage() {
     const styles = useStyles();
     const t = useT();
@@ -74,19 +65,7 @@ export default function LeagueOfLettersSoloModesPage() {
     )
 }
 
-/**
- * Straight into a game, with the settings decided for you.
- *
- * The whole point is that it is one press, so the length is drawn once when the page
- * arrives rather than when the link is pressed — that way the number on the link is the
- * number you get, and pressing it cannot feel like a slot machine.
- *
- * `createGame` throws away whatever solo game you already have, which is why the setup
- * form asks about one before it shows you a form. Skipping the form must not mean
- * skipping that question, so the same two ways out are offered here — the difference is
- * only that this asks on the press rather than on mount, since there is a whole page of
- * other things to do here and none of them are dangerous.
- */
+// Straight into a game, with the settings decided for you.
 function QuickPlay() {
     const styles = useStyles();
     const t = useT();
@@ -106,8 +85,7 @@ function QuickPlay() {
     /** Kept apart from `error`, which belongs to the page the modal is sitting on top of. */
     const [abandonError, setAbandonError] = useState<TranslationKey | null>(null);
 
-    // Nothing may touch state after unmount — every path out of here navigates away while
-    // the request that caused it may still be settling.
+    // Nothing may touch state after unmount.
     const mounted = useRef(true);
     useEffect(() => {
         mounted.current = true;
@@ -116,9 +94,7 @@ function QuickPlay() {
 
     /** Make the game and go, with no further questions. */
     async function create() {
-        // Only the length is this screen's. The language is the account's, exactly as the
-        // setup form seeds it, and hard mode is off — a game nobody set up should be the
-        // ordinary one.
+        // Only the length is this screen's.
         const game = await createGame({
             ...DEFAULT_LOL_SETTINGS,
             locale: user?.locale ?? DEFAULT_LOL_SETTINGS.locale,
@@ -141,9 +117,7 @@ function QuickPlay() {
         setError(null);
 
         try {
-            // A game that is found is put to the player as a question rather than acted
-            // on for them: it took a while to build, and losing it to a link they pressed
-            // for a *new* game would be the app's decision, not theirs.
+            // A game that is found is put to the player as a question rather than acted on for them.
             const found = await getCurrentGame();
             if (!mounted.current) return;
 
@@ -162,8 +136,7 @@ function QuickPlay() {
 
     /** Back to the board they left. */
     function resume(game: Game) {
-        // `replace`, not `push`: this page would send the player straight back to the
-        // board they just left, so it must not be behind it.
+        // `replace`, not `push`: this page would send the player straight back to the board they just left.
         router.replace({
             pathname: ROUTES.leagueOfLettersSolo,
             params: { gameId: game.id }
@@ -186,9 +159,7 @@ function QuickPlay() {
         } catch (failure) {
             if (!mounted.current) return;
 
-            // Kept open on failure. Closing it would leave the player back on a page whose
-            // link still cannot be used without destroying the game that just failed to be
-            // destroyed, with nothing on screen saying so.
+            // Kept open on failure.
             setAbandonError(gameErrorMessage(failure));
         } finally {
             if (mounted.current) setAbandoning(false);
@@ -197,8 +168,7 @@ function QuickPlay() {
 
     return (
         <>
-            {/* A link rather than a third card: the two cards above are the choice, and
-                this is the way past making one. */}
+            {/* A link rather than a third card: the two cards above are the choice, and this is the way past making one. */}
             <Pressable
                 onPress={() => void start()}
                 disabled={busy}
@@ -216,11 +186,7 @@ function QuickPlay() {
                 <AppText style={styles.error}>{t(error)}</AppText>
             )}
 
-            {/*
-              * The same question the setup form asks, in the same words. No dismissal:
-              * both ways out are on it, and a third that just put the player back on a
-              * link they cannot safely press would not be one.
-              */}
+            {/* The same question the setup form asks, in the same words. */}
             <PopupModal
                 visible={running !== null}
                 title={t('lol.settings.running.title')}
@@ -235,8 +201,7 @@ function QuickPlay() {
                     variant='primary'
                     fullWidth
                     disabled={abandoning}
-                    // `running` cannot be null while the modal is up, but the close
-                    // animation outlives it — so the buttons have to survive it too.
+                    // `running` cannot be null while the modal is up, but the close animation outlives it.
                     onPress={() => running && resume(running)}
                 />
 
@@ -280,9 +245,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.destructiveText
     },
     abandonError: {
-        // Inside the modal, where the page's own `InlineNotification` would be a card
-        // within a card. The panel is already the thing being looked at, so the line only
-        // has to be readable and the wrong colour for good news.
+        // Inside the modal, where the page's own `InlineNotification` would be a card within a card.
         marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,

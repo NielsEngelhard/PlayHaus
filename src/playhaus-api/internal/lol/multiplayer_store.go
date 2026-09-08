@@ -13,19 +13,14 @@ import (
 // Compile-time check that the multiplayer half is implemented too.
 var _ MultiplayerStore = (*GormStore)(nil)
 
-// withRoster preloads a lobby's players in the order they arrived, which is the
-// order the room list draws them in and the order the turns are dealt in.
-//
-// By seat rather than by joined_at: the timestamps can tie, and a turn order that
-// depends on which of two equal timestamps the database returns first is not one.
+// withRoster preloads a lobby's players in the order they arrived.
 func withRoster(db *gorm.DB) *gorm.DB {
 	return db.Preload("Players", func(db *gorm.DB) *gorm.DB {
 		return db.Order("seat ASC")
 	})
 }
 
-// withTable preloads everything a multiplayer game is played on: the same board
-// tree as a solo game, plus the scoreboard.
+// withTable preloads everything a multiplayer game is played on.
 func withTable(db *gorm.DB) *gorm.DB {
 	return withBoard(db).Preload("Players", func(db *gorm.DB) *gorm.DB {
 		return db.Order("turn_order ASC")
@@ -55,14 +50,7 @@ func (s *GormStore) LobbyByCode(ctx context.Context, code string) (*MultiplayerL
 	return &lobby, nil
 }
 
-// WaitingLobbyByOwnerID is the newest room this player opened that nobody has
-// started yet, and nothing else: a room that has become a game is a game, and the
-// question this answers is "is there still a door standing open with my name on it".
-//
-// Rooms are handed back when their host leaves the screen, so in practice this only
-// finds one the give-back never reached -- an app that was killed, a connection that
-// died on the way out. Which is exactly the room the host has forgotten about and
-// would otherwise strand.
+// WaitingLobbyByOwnerID is the newest room this player opened that nobody has started yet, and nothing else.
 func (s *GormStore) WaitingLobbyByOwnerID(ctx context.Context, userID string) (*MultiplayerLeagueOfLettersLobby, error) {
 	var lobby MultiplayerLeagueOfLettersLobby
 
@@ -81,11 +69,6 @@ func (s *GormStore) WaitingLobbyByOwnerID(ctx context.Context, userID string) (*
 }
 
 // AbandonMultiplayerGame ends a game for the whole table.
-//
-// Conditional on it still being in progress, so a host pressing this while the last
-// round is being decided does not overwrite a game that finished properly -- a
-// completed game is a result people are looking at, and this is not a way to take it
-// off them.
 func (s *GormStore) AbandonMultiplayerGame(ctx context.Context, gameID uuid.UUID) error {
 	err := s.db.WithContext(ctx).
 		Model(&MultiplayerLeagueOfLettersGame{}).
@@ -143,13 +126,7 @@ func (s *GormStore) SaveLobbySettings(ctx context.Context, code string, in Lobby
 	return nil
 }
 
-// SaveRematchCode points a finished room at the one its table moved on to, and reports
-// whether this caller was the one that got to set it.
-//
-// Conditional on the slot still being empty, the same way StartLobby's write is
-// conditional on the room still waiting: the host pressing the button twice is two
-// rooms opened and only one of them anybody is told about, so the loser has to find out
-// that it lost.
+// SaveRematchCode points a finished room at the one its table moved on to.
 func (s *GormStore) SaveRematchCode(ctx context.Context, code, rematchCode string) (bool, error) {
 	res := s.db.WithContext(ctx).
 		Model(&MultiplayerLeagueOfLettersLobby{}).
@@ -162,9 +139,7 @@ func (s *GormStore) SaveRematchCode(ctx context.Context, code, rematchCode strin
 	return res.RowsAffected == 1, nil
 }
 
-// DeleteLobby drops the room and its seats. The game a started room left behind is
-// deliberately not touched: people are still playing it, and the room was only ever
-// the door they came in through.
+// DeleteLobby drops the room and its seats.
 func (s *GormStore) DeleteLobby(ctx context.Context, code string) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		if err := tx.Where("lobby_id = ?", code).Delete(&MultiplayerLobbyPlayer{}).Error; err != nil {
@@ -181,9 +156,7 @@ func (s *GormStore) DeleteLobby(ctx context.Context, code string) error {
 	return nil
 }
 
-// DeleteLobbiesOlderThan drops rooms (and their seats) created before the cutoff,
-// waiting or started -- a room this old has nobody still walking through its door.
-// Used by the retention sweep, not by anything a player triggers.
+// DeleteLobbiesOlderThan drops rooms (and their seats) created before the cutoff, waiting or started.
 func (s *GormStore) DeleteLobbiesOlderThan(ctx context.Context, before time.Time) (int64, error) {
 	var deleted int64
 
@@ -216,9 +189,7 @@ func (s *GormStore) DeleteLobbiesOlderThan(ctx context.Context, before time.Time
 	return deleted, nil
 }
 
-// DeleteMultiplayerGamesOlderThan drops started games (and their boards and
-// scoreboards) created before the cutoff. Used by the retention sweep, not by
-// anything a player triggers.
+// DeleteMultiplayerGamesOlderThan drops started games (and their boards and scoreboards) created before the cutoff.
 func (s *GormStore) DeleteMultiplayerGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
 	var deleted int64
 
@@ -284,10 +255,6 @@ func (s *GormStore) DeleteMultiplayerGamesOlderThan(ctx context.Context, before 
 }
 
 // StartLobby writes the game and points the lobby at it, together.
-//
-// One transaction because the two halves are meaningless apart: a lobby marked
-// started with no game is a room whose players are sent to a board that is not
-// there, and a game no lobby points at is one nobody can find.
 func (s *GormStore) StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLettersLobby, game *MultiplayerLeagueOfLettersGame) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		// Creates the rounds and the scoreboard through their associations.
@@ -295,8 +262,7 @@ func (s *GormStore) StartLobby(ctx context.Context, lobby *MultiplayerLeagueOfLe
 			return fmt.Errorf("insert multiplayer game: %w", err)
 		}
 
-		// Named columns rather than Save: the lobby was loaded with its players
-		// preloaded, and saving it whole would write the roster back too.
+		// Named columns rather than Save: the lobby was loaded with its players preloaded.
 		res := tx.Model(&MultiplayerLeagueOfLettersLobby{}).
 			Where("id = ? AND status = ?", lobby.ID, LobbyWaiting).
 			Updates(map[string]any{"status": LobbyStarted, "game_id": game.ID})
@@ -333,7 +299,6 @@ func (s *GormStore) MultiplayerGameByID(ctx context.Context, id uuid.UUID) (*Mul
 }
 
 // MultiplayerGamesByUserID is every unfinished game this player has a seat at.
-// Used by the reconnect list, so the board is not loaded -- only the row is.
 func (s *GormStore) MultiplayerGamesByUserID(ctx context.Context, userID string) ([]*MultiplayerLeagueOfLettersGame, error) {
 	var games []*MultiplayerLeagueOfLettersGame
 
@@ -349,13 +314,7 @@ func (s *GormStore) MultiplayerGamesByUserID(ctx context.Context, userID string)
 	return games, nil
 }
 
-// RecordMultiplayerGuess writes one row and the game state it moved -- but only if
-// the game is still where the caller found it.
-//
-// The conditional update goes first, before anything is inserted, so a guess that
-// lost a race to the turn timeout is refused rather than half-applied. With SQLite
-// on a single connection this is belt and braces; with anything else it is the
-// thing that makes two players pressing Raden at once safe.
+// RecordMultiplayerGuess writes one row and the game state it moved.
 func (s *GormStore) RecordMultiplayerGuess(ctx context.Context, in RecordMultiplayerGuessInput) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		res := tx.Model(&MultiplayerLeagueOfLettersGame{}).
@@ -374,8 +333,7 @@ func (s *GormStore) RecordMultiplayerGuess(ctx context.Context, in RecordMultipl
 			return ErrNotYourTurn
 		}
 
-		// Creates the letters too, through the association. A skipped row has none,
-		// which is what makes it draw as an empty row rather than a scored one.
+		// Creates the letters too, through the association.
 		if err := tx.Create(in.Guess).Error; err != nil {
 			return fmt.Errorf("insert guess: %w", err)
 		}
@@ -397,8 +355,7 @@ func (s *GormStore) RecordMultiplayerGuess(ctx context.Context, in RecordMultipl
 	return nil
 }
 
-// RestartTurn gives the current player their clock back. Conditional on it still
-// being their turn, so a resume that raced a real guess does nothing.
+// RestartTurn gives the current player their clock back.
 func (s *GormStore) RestartTurn(ctx context.Context, gameID uuid.UUID, expectTurnUserID string, endsAt time.Time) error {
 	err := s.db.WithContext(ctx).
 		Model(&MultiplayerLeagueOfLettersGame{}).

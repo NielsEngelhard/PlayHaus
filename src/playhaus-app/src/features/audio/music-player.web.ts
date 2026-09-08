@@ -2,31 +2,7 @@ import { FADE_MS, rampVolume, type Fade } from "@/features/audio/fade";
 import { loopsForever, pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
 import { Asset } from "expo-asset";
 
-/**
- * Web half of the background music — see `music-player.ts` for the contract and for why these
- * are split at all.
- *
- * This used to be a pair of no-ops, on four grounds. Three of them stopped applying when music
- * was scoped to lobbies and games, and the fourth has a fix:
- *
- * - **Autoplay.** The objection was a loop starting because a page mounted, with no gesture
- *   behind it. Nothing starts on load any more: the only things that ask for music are a lobby
- *   and a board, and neither can be reached without tapping through to it. By the time
- *   `playScene` is called the browser has long since had its gesture.
- * - **Volume.** Apple ignores `HTMLMediaElement.volume`, so a track meant for 20% would play at
- *   full on iOS Safari — the one failure mode worse than no music at all. Routing through a
- *   `GainNode` instead is respected there. Where Web Audio is unavailable we fall back to
- *   `volume`, which is wrong only on the platform that was going to be wrong anyway.
- * - **Pre-render.** The web build is exported statically, which runs this module in Node. So
- *   nothing here touches `Audio`, `window` or `document` at import — every browser API sits
- *   behind `browser()` and is reached only once something asks for a scene.
- * - **Nothing to pause it.** A native app's players are stopped for it when it backgrounds; a
- *   tab's are not. `watchVisibility` is that missing half.
- *
- * A gain node **per track** rather than one shared one, which is what a crossfade needs: during
- * a handover two loops are audible at once at different levels, and a single output stage can
- * only hold one level for both.
- */
+// Web half of the background music — see `music-player.ts` for the contract and for why these are split at all.
 
 /** Matches `music-player.ts`. Every loop is mastered to −18.8 LUFS, so one number covers all. */
 const VOLUME = 0.2;
@@ -49,13 +25,7 @@ const fades = new Map<TrackId, Fade>();
 /** Which elements are actually rolling. See `music-player.ts`, whose `running` this mirrors. */
 const running = new Set<TrackId>();
 
-/**
- * The scene and track a fade out is still working through.
- *
- * Kept so that reclaiming the same scene before the fade lands picks that loop back up instead
- * of a different one — which is what muting and unmuting inside a game is, and getting a new
- * song out of a button labelled "unmute" is not what anybody pressed it for.
- */
+// The scene and track a fade out is still working through.
 let retired: { scene: MusicScene, track: TrackId } | null = null;
 
 let currentScene: MusicScene | null = null;
@@ -64,11 +34,7 @@ let currentTrack: TrackId | null = null;
 /** Set once the browser has refused us audio, so we stop asking on every navigation. */
 let unavailable = false;
 
-/**
- * The shared `AudioContext`, or `null` if this browser has no Web Audio. Built once, lazily —
- * constructing one before a gesture gets it a suspended context on some browsers and a console
- * warning on the rest.
- */
+// The shared `AudioContext`, or `null` if this browser has no Web Audio.
 let context: AudioContext | null = null;
 let contextBuilt = false;
 
@@ -100,15 +66,13 @@ function trackVoice(track: TrackId): Voice | undefined {
     if (existing) return existing;
 
     try {
-        // `require` of an `.m4a` is an asset reference, not a URL, on every platform. This is
-        // the one thing that turns it into something `Audio` can be pointed at.
+        // `require` of an `.m4a` is an asset reference, not a URL, on every platform.
         const element = new Audio(Asset.fromModule(SOURCES[track]).uri);
 
         element.loop = loopsForever(track);
         element.preload = 'auto';
 
-        // A track that does not loop natively hands its ending to `rotate` instead of going
-        // quiet. Registered once, at creation, since `voices` never lets go of an entry.
+        // A track that does not loop natively hands its ending to `rotate` instead of going quiet.
         if (!element.loop) element.addEventListener('ended', () => rotate(track));
 
         let gain: GainNode | null = null;
@@ -120,8 +84,7 @@ function trackVoice(track: TrackId): Voice | undefined {
             gain.gain.value = 0;
             gain.connect(ctx.destination);
 
-            // Routed through the graph, the element's own volume is upstream of the gain and
-            // would attenuate twice. The gain is the only thing holding the level.
+            // Routed through the graph, the element's own volume is upstream of the gain and would attenuate twice.
             element.volume = 1;
             ctx.createMediaElementSource(element).connect(gain);
         } else {
@@ -148,9 +111,7 @@ function setLevel(track: TrackId, volume: number): void {
     if (!voice) return;
 
     try {
-        // Written straight onto the param rather than scheduled with `linearRampToValueAtTime`:
-        // the ramp is already being walked by `fade.ts`, so both halves of the app move on the
-        // same curve, and there is no scheduled automation left for a cancelled fade to fight.
+        // Written straight onto the param rather than scheduled with `linearRampToValueAtTime`.
         if (voice.gain) voice.gain.gain.value = volume;
         else voice.element.volume = volume;
     } catch { }
@@ -189,8 +150,7 @@ function start(track: TrackId): void {
     const voice = voices.get(track);
     if (!voice) return;
 
-    // Anything already rolling is a track being reclaimed mid-fade — see the same guard in
-    // `music-player.ts`. It comes back up from where it got to rather than restarting.
+    // Anything already rolling is a track being reclaimed mid-fade — see the same guard in `music-player.ts`.
     if (!running.has(track)) {
         try {
             // Suspended until a gesture, and getting here took several. Harmless when running.
@@ -198,9 +158,7 @@ function start(track: TrackId): void {
 
             voice.element.currentTime = 0;
             setLevel(track, 0);
-            // Unlike the native player this hands back a promise, and a rejected one is an
-            // unhandled rejection in the console rather than a thrown error. Swallowed here for
-            // the same reason everything else is: the screen works without a soundtrack.
+            // Unlike the native player this hands back a promise.
             void voice.element.play().catch(() => { });
         } catch {
             return;
@@ -222,14 +180,7 @@ function retire(track: TrackId): void {
     });
 }
 
-/**
- * A tab that is not being looked at should not be playing a game's music. Registered on the
- * first `playScene` rather than at import, because `document` does not exist during the static
- * pre-render.
- *
- * Every rolling element, not just the claimed one: mid-handover there are two, and the one on
- * its way out is exactly as audible as the one arriving.
- */
+// A tab that is not being looked at should not be playing a game's music.
 let watching = false;
 
 function watchVisibility(): void {
@@ -249,10 +200,7 @@ function watchVisibility(): void {
     });
 }
 
-/**
- * A track finishing on its own is a cue, not a stop — see `rotate` in `music-player.ts`, whose
- * contract this matches exactly.
- */
+// A track finishing on its own is a cue, not a stop.
 function rotate(track: TrackId): void {
     if (currentScene === null || currentTrack !== track) return;
 
@@ -261,8 +209,7 @@ function rotate(track: TrackId): void {
 
     const voice = trackVoice(next);
     if (!voice) {
-        // No fresh pick to hand over to. The old track has already finished, so there is
-        // nothing left to resume it from — the scene simply goes quiet, same as `stopMusic`.
+        // No fresh pick to hand over to.
         currentScene = null;
         currentTrack = null;
         retire(track);
@@ -276,18 +223,14 @@ function rotate(track: TrackId): void {
     start(next);
 }
 
-/**
- * Play something suitable for `scene`, and make sure it is the only thing going. Idempotent per
- * scene — see `music-player.ts`, whose contract this matches exactly.
- */
+// Play something suitable for `scene`, and make sure it is the only thing going.
 export function playScene(scene: MusicScene): void {
     if (!browser()) return;
     if (currentScene === scene) return;
 
     const previous = currentTrack;
 
-    // Still audible from a stop this scene has not finished leaving — so it is resumed rather
-    // than replaced. Anything else is a fresh arrival and gets a fresh pick.
+    // Still audible from a stop this scene has not finished leaving — so it is resumed rather than replaced.
     const resumable = retired !== null && retired.scene === scene && running.has(retired.track)
         ? retired.track
         : null;

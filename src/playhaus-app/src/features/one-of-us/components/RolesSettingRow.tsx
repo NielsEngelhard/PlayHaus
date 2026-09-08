@@ -19,53 +19,23 @@ interface Props {
     disabled?: boolean
 }
 
-/**
- * What a role's switch says about itself, which is not what its card says in the game.
- *
- * `ROLE_FACES` already carries a name and an explanation, and the name is reused here —
- * one role should not be called two things in one app. The explanation is not: in the
- * game it is addressed to the one person holding the phone and written to be read in the
- * ten seconds before they act on it, where here it is addressed to whoever is setting the
- * table up and has to answer a different question — what changes about the game if this
- * is off. So the descriptions live beside the switches rather than in `roles.ts`.
- */
+// What a role's switch says about itself, which is not what its card says in the game.
 const SETTING_NOTES: Partial<Record<OneOfUsRole, TranslationKey>> = {
     [OneOfUsRole.Imposter]: 'oneOfUs.settings.roles.imposter.description',
     [OneOfUsRole.Nitwit]: 'oneOfUs.settings.roles.nitwit.description'
 }
 
-/**
- * What one switch says about its role, falling back to what the role says in the game.
- *
- * Partial rather than complete, because the civilian has no switch and giving it a line
- * here would be writing copy for a control that does not exist. The fallback is for a
- * role added to `TOGGLEABLE_ROLES` before somebody has written its setting line: a
- * sentence from the game is the wrong voice, but a blank space is worse.
- */
+// What one switch says about its role, falling back to what the role says in the game.
 function noteOf(role: OneOfUsRole): TranslationKey {
     return SETTING_NOTES[role] ?? faceOf(role).explanation
 }
 
-/**
- * Which roles this table is willing to be dealt.
- *
- * Only the imposter side is switchable — see `TOGGLEABLE_ROLES` for why the civilian and
- * the mayor are not — so the row is a short list of the liars rather than a picture of
- * the whole table. Every role left on *can* be dealt; how many of each still comes from
- * the table's size, which is the server's business and deliberately not a setting.
- *
- * The last switch still standing is drawn disabled rather than left live and rejected on
- * submit. A table with no imposters in it is not a gentler game, it is a game that cannot
- * end: the civilians only ever win by voting out the last liar. That is worth saying in
- * the group's own footnote, because a switch that will not move and does not say why
- * reads as a bug.
- */
+// Which roles this table is willing to be dealt.
 export default function RolesSettingRow({ enabled, onToggle, disabled = false }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Written out rather than assumed to be all of them: the last one on is the one that
-    // cannot be turned off, and the footnote below only belongs on a group in that state.
+    // Written out rather than assumed to be all of them.
     const locked = enabled.length === 1;
 
     return (
@@ -89,9 +59,7 @@ export default function RolesSettingRow({ enabled, onToggle, disabled = false }:
 
                     return (
                         <View key={role} style={styles.row}>
-                            {/* The role's own colour, as the disc it wears on its card in
-                                the game. Both fills are fixed in either scheme, so the
-                                glyph on top of one is inked rather than themed. */}
+                            {/* The role's own colour, as the disc it wears on its card in the game. */}
                             <View style={[styles.badge, { backgroundColor: face.fill }]}>
                                 <Feather name={face.icon} size={15} color={Brand.ink} />
                             </View>
@@ -123,8 +91,7 @@ export default function RolesSettingRow({ enabled, onToggle, disabled = false }:
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The same size and colour as `SettingsPageBase`'s own intro, so the line under the
-    // section label reads as part of the page's voice rather than as a notice.
+    // The same size and colour as `SettingsPageBase`'s own intro.
     intro: {
         marginTop: -Spacing.half,
         fontSize: 12.5,
@@ -160,8 +127,7 @@ const useStyles = createThemedStyles(theme => ({
         minWidth: 0
     },
 
-    // The same two sizes `ToggleRow` sets a setting's name and line at, because that is
-    // what the row under this one is and the two have to read as the same kind of thing.
+    // The same two sizes `ToggleRow` sets a setting's name and line at.
     name: {
         fontSize: 15,
         lineHeight: 15 * 1.2,

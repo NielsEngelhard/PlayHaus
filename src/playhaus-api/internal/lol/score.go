@@ -2,20 +2,7 @@ package lol
 
 import "strings"
 
-// DetermineScore is what one guess earned, given the guesses that came before it
-// in the same round and the letter the round handed out for free.
-//
-// `previousGuesses` is the round's history *without* `currentGuess` in it —
-// SubmitGuess scores a guess before appending it, which is the only order in
-// which "already known" means anything.
-//
-// `hintLetter` is the round's opening letter (`LeagueOfLettersRound.FirstLetter`).
-// It is pre-seeded into `placed` rather than skipped by position, because it is
-// already known the instant the round starts -- before there is any guess
-// history to derive it from, and regardless of where else it turns up in the
-// word. Without this, the very first guess of every round would score free
-// points for a letter nobody actually guessed, since position 0 is always
-// LetterCorrect before any guess has run.
+// DetermineScore is what one guess earned, given the guesses that came before it in the same round and the letter the round handed out for free.
 func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueOfLettersGuess, hintLetter string) int {
 	placed, spotted := createListOfAlreadyGuessedLetters(previousGuesses)
 	if hintLetter != "" {
@@ -27,19 +14,16 @@ func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueO
 		switch letter.Status {
 		case LetterCorrect:
 			switch {
-			// Already nailed to a square in an earlier guess. Typing it again is
-			// copying off your own board.
+			// Already nailed to a square in an earlier guess.
 			case placed[letter.Letter]:
-			// The round had already said this letter was in the word somewhere;
-			// finding its square is the part that was still open.
+			// The round had already said this letter was in the word somewhere; finding its square is the part that was still open.
 			case spotted[letter.Letter]:
 				score += CorrectAfterHintPoints
 			default:
 				score += InstantCorrectPoints
 			}
 		case LetterPresent:
-			// Only the first sighting is news. A letter kept in the wrong place
-			// across three guesses is one discovery, not three.
+			// Only the first sighting is news.
 			if !placed[letter.Letter] && !spotted[letter.Letter] {
 				score += WrongPlacePoints
 			}
@@ -53,12 +37,7 @@ func DetermineScore(currentGuess LeagueOfLettersGuess, previousGuesses []LeagueO
 	return score
 }
 
-// createListOfAlreadyGuessedLetters splits what the round has revealed so far
-// into the letters whose square is known and the letters only known to be in the
-// word — the two states that change what the next sighting of them is worth.
-//
-// Both are keyed by the letter itself rather than by position: the player learns
-// about letters, and a second E in the answer is not a second discovery.
+// createListOfAlreadyGuessedLetters splits what the round has revealed into placed letters and letters only known to be in the word.
 func createListOfAlreadyGuessedLetters(guesses []LeagueOfLettersGuess) (placed, spotted map[string]bool) {
 	placed = make(map[string]bool)
 	spotted = make(map[string]bool)

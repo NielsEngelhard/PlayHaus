@@ -16,13 +16,7 @@ interface Props {
     saving?: boolean
 }
 
-/**
- * Edit the name other players see. The field holds a draft so a half-typed name never
- * reaches the rest of the page: only the save button commits it.
- *
- * A save is a round trip, so the button waits it out with a spinner rather than
- * snapping back to normal and leaving you unsure whether the tap registered.
- */
+// Edit the name other players see.
 export default function ProfileNameCard({ name, onSave, saving = false }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -31,8 +25,7 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
 
     const [draft, setDraft] = useState(name);
 
-    // Trimmed, because that is what the backend stores and validates against —
-    // padding is not a name, and " Bob " is not a change to "Bob".
+    // Trimmed, because that is what the backend stores and validates against.
     const trimmed = draft.trim();
     const canSave = !saving && trimmed !== name && trimmed.length >= NAME_MIN_LENGTH;
 

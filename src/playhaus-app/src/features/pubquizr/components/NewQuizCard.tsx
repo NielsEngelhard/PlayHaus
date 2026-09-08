@@ -9,13 +9,7 @@ import { Pressable, View } from "react-native";
 import { featuredQuiz, initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 import { useQuizzes } from "../useQuizzes";
 
-/**
- * The one quiz the picker answers with instead of asking about.
- *
- * Nine times in ten the pick is the newest unplayed weekly quiz, so that is what this
- * shows — played already or not — rather than making everyone scan the shelf below it to
- * find the same answer themselves.
- */
+// The one quiz the picker answers with instead of asking about.
 export default function NewQuizCard() {
     const t = useT();
     const styles = useStyles();
@@ -23,9 +17,7 @@ export default function NewQuizCard() {
 
     const quizzes = useQuizzes('weekly');
 
-    // Bonus furniture, not load-bearing: a stalled or empty weekly shelf means there is
-    // nothing honest to feature here, so this renders nothing rather than its own
-    // spinner or error state.
+    // Bonus furniture, not load-bearing.
     const quiz = quizzes.status === 'ready' ? featuredQuiz(quizzes.items) : null;
     if (quiz === null) return null;
 
@@ -98,9 +90,7 @@ export default function NewQuizCard() {
 }
 
 const useStyles = createThemedStyles(() => ({
-    // A poster rather than a themed surface, the way `WeeklyStamp` is: the card is
-    // always this blue, at midnight too, so its ink and paper come from `Brand` rather
-    // than from `theme.colors`, which would flip them with the scheme.
+    // A poster rather than a themed surface, the way `WeeklyStamp` is.
     card: {
         borderRadius: 26,
         borderWidth: 2,

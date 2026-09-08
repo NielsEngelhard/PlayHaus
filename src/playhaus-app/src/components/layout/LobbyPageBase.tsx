@@ -31,36 +31,19 @@ const STRIP_HEIGHT = 8;
 
 const CHIP_SIZE = 34;
 
-/**
- * Where the page stops being a phone screen and becomes a card on the canvas.
- *
- * Past this the window is wide enough that the card plus a visible margin of dot grid
- * beats edge-to-edge, which at that size reads as a stretched phone. Web only: a tablet
- * held sideways is still a device in a hand, and a frame inside its bezel is a frame
- * inside a frame.
- */
+// Where the page stops being a phone screen and becomes a card on the canvas.
 const FRAME_AT = 700;
 
 /** The card, at its widest. A touch over the mockup's 390, since desktop rows run longer. */
 const CARD_WIDTH = 460;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Opacity is driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
 /** Half a breath. The dot fades out over this, then back in over it. */
 const PULSE_MS = 1000;
 
-/**
- * The shape every lobby shares: the game's ribbon, a quiet bar, the code as a headline
- * when there is one to hand out, a scrolling middle, and a pinned footer.
- *
- * On a phone it owns the whole viewport, ribbon under the notch and footer over the home
- * indicator. On a wide window it becomes the card the design was drawn as — bordered,
- * rounded, floating on the app's own dot grid — with the same tree either way: only the
- * styles switch on `framed`, never the elements, because remounting this page would tear
- * down and rejoin the room's socket.
- */
+// The shape every lobby shares: the game's ribbon, a quiet bar, the code as a headline when there is one to hand out, a scrolling middle.
 export default function LobbyPageBase({
     game,
     title,
@@ -79,8 +62,7 @@ export default function LobbyPageBase({
 
     const insets = useSafeAreaInsets();
 
-    // Static prerender sees a width of zero and renders the phone branch, which is the
-    // right default for a page that is mobile-first anyway.
+    // Static prerender sees a width of zero and renders the phone branch.
     const { width: windowWidth } = useWindowDimensions();
     const framed = Platform.OS === 'web' && windowWidth >= FRAME_AT;
 
@@ -89,8 +71,7 @@ export default function LobbyPageBase({
     return (
         <View style={[styles.screen, framed && styles.screenFramed]}>
             <View style={[styles.shell, framed && [styles.card, theme.popShadow(accent.color)]]}>
-                {/* On a phone the ribbon absorbs the notch: the accent runs up under the
-                    status bar rather than leaving a dead strip above itself. */}
+                {/* On a phone the ribbon absorbs the notch. */}
                 <View style={{
                     height: STRIP_HEIGHT + (framed ? 0 : insets.top),
                     backgroundColor: accent.color
@@ -148,14 +129,7 @@ export default function LobbyPageBase({
     )
 }
 
-/**
- * Whether the room is still listening, as a dot and a word in the bar.
- *
- * The code no longer lives up here — it is the headline of the hero now, or the guest's
- * own title — so the pill's whole job is the one bit of state a lobby you are sitting in
- * can surprise you with. Green and breathing while it holds; red, flat and renamed the
- * moment it breaks.
- */
+// Whether the room is still listening, as a dot and a word in the bar.
 function LivePill({ live }: { live: boolean }) {
     const t = useT();
     const styles = useStyles();
@@ -164,8 +138,7 @@ function LivePill({ live }: { live: boolean }) {
         <View
             style={[styles.pill, live ? styles.pillLive : styles.pillOffline]}
             accessibilityRole='text'
-            // The visible word is one beat; the label is the whole sentence, so a screen
-            // reader hears what actually happened rather than just "offline".
+            // The visible word is one beat; the label is the whole sentence.
             accessibilityLabel={live ? t('lobby.live') : t('lobby.disconnected')}
         >
             <PulseDot live={live} />
@@ -185,8 +158,7 @@ function PulseDot({ live }: { live: boolean }) {
     const [pulse] = useState(() => new Animated.Value(1));
 
     useEffect(() => {
-        // A dropped connection holds still. A dot that kept breathing in red would read
-        // as "working on it" at exactly the moment nothing is working.
+        // A dropped connection holds still.
         if (!live) {
             pulse.setValue(1);
             return;
@@ -226,14 +198,12 @@ function PulseDot({ live }: { live: boolean }) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Fills the viewport this page claimed, which is what lets the bar and the footer stay
-    // put while the middle scrolls between them.
+    // Fills the viewport this page claimed.
     screen: {
         flex: 1,
         width: '100%'
     },
-    // Wide windows: the card floats in the middle of the claimed viewport, and the dot
-    // grid the layout paints behind every page becomes the canvas around it.
+    // Wide windows: the card floats in the middle of the claimed viewport.
     screenFramed: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -245,8 +215,7 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
-    // The mockup's frame: hard border, big radius, and the accent-keyed pop shadow laid
-    // on at the call site. `overflow: hidden` is what clips the ribbon into the corners.
+    // The mockup's frame: hard border, big radius, and the accent-keyed pop shadow laid on at the call site.
     card: {
         flexGrow: 0,
         flexShrink: 1,
@@ -280,8 +249,7 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 0.8
     },
 
-    // No rule under it any more: the bar and the page separate by whitespace and by the
-    // hero's own weight, the way the design draws them.
+    // No rule under it any more: the bar and the page separate by whitespace and by the hero's own weight, the way the design draws them.
     bar: {
         flexShrink: 0,
         flexDirection: 'row',
@@ -291,8 +259,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingHorizontal: 18
     },
 
-    // A wash rather than the app's hard-edged button: the bar is chrome on a page whose
-    // loud thing is the hero, so its controls sit back.
+    // A wash rather than the app's hard-edged button.
     chip: {
         width: CHIP_SIZE,
         height: CHIP_SIZE,
@@ -305,8 +272,7 @@ const useStyles = createThemedStyles(theme => ({
             : withAlpha(Brand.ink, 0.06)
     },
 
-    // Takes the room between the chip and the controls, which is also what pushes them to
-    // the far edge without either side having to know the other's width.
+    // Takes the room between the chip and the controls.
     title: {
         flex: 1,
         minWidth: 0,
@@ -335,8 +301,7 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 11,
         fontWeight: 800
     },
-    // The word's greens, one per scheme: `Brand.available` itself is tuned to be a fill,
-    // and as text on its own 16% tint it lands just short of readable either way.
+    // The word's greens, one per scheme.
     wordLive: {
         color: theme.scheme === 'dark' ? '#7ADE8A' : '#1E7A2B'
     },
@@ -352,26 +317,20 @@ const useStyles = createThemedStyles(theme => ({
     scroll: {
         width: '100%'
     },
-    // In the card the middle stops growing: the card hugs its content and only scrolls
-    // when the window is shorter than the lobby. The outer chrome cannot scroll for it —
-    // the layout's scroller is off for chromeless pages.
+    // In the card the middle stops growing.
     scrollFramed: {
         flexGrow: 0
     },
-    // The page's gutters, which a chromeless page has to lay down for itself. The hero is
-    // just the first thing in the column now — no full-bleed band, no negative margins.
+    // The page's gutters, which a chromeless page has to lay down for itself.
     content: {
         paddingHorizontal: Spacing.four,
         paddingTop: 4,
         gap: 14,
-        // Clears the glow the hero throws downwards, which paints outside its own box and
-        // would otherwise be cropped by the scroller's bottom edge.
+        // Clears the glow the hero throws downwards.
         paddingBottom: Spacing.three
     },
 
-    // Outside the scroller, so it is on the bottom edge whatever the page above it does,
-    // and ruled off from it — the one line the design keeps. The bottom padding is set at
-    // the call site, from the device's own inset.
+    // Outside the scroller, so it is on the bottom edge whatever the page above it does, and ruled off from it.
     footer: {
         flexShrink: 0,
         paddingHorizontal: Spacing.four,

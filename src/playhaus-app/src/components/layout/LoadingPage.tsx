@@ -10,14 +10,7 @@ interface Props {
     message?: string
 }
 
-/**
- * A tile per letter, each one on its own accent, hopping in a wave.
- *
- * This app has no spinners: a ring going round is the one shape the rest of the
- * UI never makes. The tiles are the same object the games are built from — hard
- * border, hard shadow, a hair off-square — so a wait looks like the app rather
- * than like a widget borrowed from somewhere else.
- */
+// A tile per letter, each one on its own accent, hopping in a wave.
 const TILES = [
     { letter: 'P', color: Brand.lemon,     foreground: Brand.ink,          tilt: -4 },
     { letter: 'L', color: Brand.primary,   foreground: Brand.textOnAccent, tilt: 5 },
@@ -32,15 +25,10 @@ const RISE_MS = 240;
 const FALL_MS = 280;
 /** Gap between one tile leaving the ground and the next. */
 const STAGGER_MS = 110;
-/**
- * One full turn of the wave, the same for every tile. Holding the cycle constant
- * rather than letting each tile take as long as it needs is what keeps them in
- * phase over minutes instead of drifting apart.
- */
+// One full turn of the wave, the same for every tile.
 const CYCLE_MS = 1200;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Transforms are driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
 export default function LoadingPage({ message }: Props) {
@@ -49,9 +37,7 @@ export default function LoadingPage({ message }: Props) {
 
     const text = message ?? t('common.loading');
 
-    // One value per tile, built once by the lazy initialiser: re-creating them on
-    // a render would drop the wave back to the floor mid-hop. State rather than a
-    // ref because these are read while rendering, to build the transforms.
+    // One value per tile, built once by the lazy initialiser.
     const [hops] = useState(() => TILES.map(() => new Animated.Value(0)));
 
     useEffect(() => {
@@ -74,8 +60,7 @@ export default function LoadingPage({ message }: Props) {
                         easing: Easing.bounce,
                         useNativeDriver
                     }),
-                    // Pads every tile out to the same cycle, so the last one landing
-                    // and the first one leaving stay a fixed beat apart.
+                    // Pads every tile out to the same cycle, so the last one landing and the first one leaving stay a fixed beat apart.
                     Animated.delay(CYCLE_MS - lead - RISE_MS - FALL_MS)
                 ])
             );
@@ -104,8 +89,7 @@ export default function LoadingPage({ message }: Props) {
                                         })
                                     },
                                     {
-                                        // Straightens up as it rises, so the wave has a
-                                        // flick to it rather than just going up and down.
+                                        // Straightens up as it rises, so the wave has a flick to it rather than just going up and down.
                                         rotate: hops[index].interpolate({
                                             inputRange: [0, 1],
                                             outputRange: [`${tile.tilt}deg`, `${-tile.tilt * 0.6}deg`]
@@ -143,8 +127,7 @@ const useStyles = createThemedStyles(theme => ({
     },
     row: {
         flexDirection: 'row',
-        // The tiles hop out of their own box, and the row is centred anyway, so it
-        // needs the headroom rather than the tiles needing to be clipped.
+        // The tiles hop out of their own box, and the row is centred anyway.
         alignItems: 'flex-end',
         height: TILE_SIZE + HOP_HEIGHT,
         gap: Spacing.two

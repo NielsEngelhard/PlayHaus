@@ -9,24 +9,11 @@ import { AccessibilityInfo, Animated, Easing, Pressable, View, type LayoutChange
 interface Props {
     /** What the card is about, on the header row. */
     title: string,
-    /**
-     * What is inside it, in one line, shown only while it is shut.
-     *
-     * The whole reason this can default to shut: a settings card that hides its values
-     * behind a chevron makes the host open it to check them, which is worse than the
-     * scrolling it saved. A line saying "5 letters · 30s · Normal" does not.
-     */
+    // What is inside it, in one line, shown only while it is shut.
     summary: string,
     /** Starts shut, which is what every caller so far wants. */
     defaultOpen?: boolean,
-    /**
-     * One block per child, ruled off from one another and from the header.
-     *
-     * The same shape `SettingsPageBase` uses, and for the same reason: the rows inside
-     * are one object being described, not a stack of separate things, and boxing each of
-     * them would say the opposite. Nulls and falses drop out, so a section the caller
-     * decided not to render takes its rule with it.
-     */
+    // One block per child, ruled off from one another and from the header.
     children: ReactNode
 }
 
@@ -34,19 +21,7 @@ interface Props {
 const OPEN_MS = 200;
 const CLOSE_MS = 160;
 
-/**
- * A card that keeps its contents folded away until asked.
- *
- * Deliberately not a `Modal` like `SelectInput`: what is in here is a *form*, and the
- * page it is on — a lobby — is one you sit and watch while other people arrive. Covering
- * that to change a setting would hide the thing the screen is for. So it opens in place
- * and pushes the page down instead.
- *
- * The height is measured rather than guessed. Children overflow their parent in React
- * Native rather than being squeezed by it, so the block inside reports its natural height
- * through `onLayout` even while the wrapper around it is clamped to zero — which is what
- * lets the first open animate from a real number on the very first tap.
- */
+// A card that keeps its contents folded away until asked.
 export default function CollapsibleCard({ title, summary, defaultOpen = false, children }: Props) {
     const styles = useStyles();
     const theme = useTheme();
@@ -56,27 +31,17 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
     /** The body's natural height, once there has been a layout pass to read it off. */
     const [height, setHeight] = useState<number | null>(null);
 
-    /**
-     * Open and no longer moving, at which point the wrapper stops constraining the body
-     * at all.
-     *
-     * Worth the extra state: while it is clamped the wrapper has to clip, and the tiles
-     * inside throw hard shadows that paint outside their own box. Left clipped at rest,
-     * the chosen word-length tile would lose its shadow against the card's edge.
-     */
+    // Open and no longer moving, at which point the wrapper stops constraining the body at all.
     const [settled, setSettled] = useState(defaultOpen);
 
-    // 0 is shut, 1 is open. One value drives the height and the chevron, so they cannot
-    // drift apart. Lazily constructed — a `new Animated.Value` written straight into the
-    // call would be rebuilt every render and thrown away.
+    // 0 is shut, 1 is open.
     const [motion] = useState(() => new Animated.Value(defaultOpen ? 1 : 0));
 
     useEffect(() => {
         let cancelled = false;
         let run: Animated.CompositeAnimation | undefined;
 
-        // Checked rather than assumed: someone who has asked the OS for less movement
-        // gets the card already open, not a shortened version of the same fold.
+        // Checked rather than assumed: someone who has asked the OS for less movement gets the card already open, not a shortened version of the same fold.
         AccessibilityInfo.isReduceMotionEnabled().then(reduced => {
             if (cancelled) return;
 
@@ -90,9 +55,7 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
                 toValue: open ? 1 : 0,
                 duration: open ? OPEN_MS : CLOSE_MS,
                 easing: open ? Easing.out(Easing.cubic) : Easing.in(Easing.cubic),
-                // Never true, on any platform. `height` is a layout property, and the
-                // native driver only carries opacity and transforms — the rule the rest
-                // of the app states as `Platform.OS !== 'web'` does not apply here.
+                // Never true, on any platform.
                 useNativeDriver: false
             });
 
@@ -107,16 +70,12 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
     }, [open, motion]);
 
     function toggle() {
-        // Dropped before the state flips rather than in the effect, so a card being shut
-        // is already clamped to its measured height on the frame the animation starts —
-        // from `auto` there would be nothing for it to travel from.
+        // Dropped before the state flips rather than in the effect.
         setSettled(false);
         setOpen(current => !current);
     }
 
-    // Rounded before it is compared as well as before it is used: on web the measurement
-    // comes back fractional, and a body that has not moved would otherwise hand back a
-    // slightly different number every pass and re-render on each one.
+    // Rounded before it is compared as well as before it is used.
     function measure(event: LayoutChangeEvent) {
         const measured = Math.round(event.nativeEvent.layout.height);
 
@@ -131,17 +90,14 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
                 onPress={toggle}
                 accessibilityRole='button'
                 accessibilityLabel={`${title}: ${summary}`}
-                // `aria-expanded` rather than `accessibilityState={{ expanded }}`: the
-                // latter never reaches the DOM in this version, so the card would open
-                // without announcing that it had.
+                // `aria-expanded` rather than `accessibilityState={{ expanded }}`.
                 aria-expanded={open}
                 style={styles.header}
             >
                 <View style={styles.headerText}>
                     <AppText style={styles.title}>{title}</AppText>
 
-                    {/* Only while it is shut. Open, the values are on screen in full and
-                        a line repeating them would be the same answer twice. */}
+                    {/* Only while it is shut. */}
                     {!open && (
                         <AppText style={styles.summary} numberOfLines={1}>{summary}</AppText>
                     )}
@@ -164,8 +120,7 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
             <Animated.View
                 style={settled ? styles.bodyOpen : [
                     styles.body,
-                    // Nothing measured yet means this is the first paint of a shut card:
-                    // a flat zero, so the form never flashes into view before folding.
+                    // Nothing measured yet means this is the first paint of a shut card.
                     {
                         height: height === null
                             ? 0
@@ -176,12 +131,10 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
                 <View style={styles.sections} onLayout={measure}>
                     {sections.map((section, index) => (
                         <Fragment key={index}>
-                            {/* A rule above every block, the first included — that one is
-                                also the line under the header. */}
+                            {/* A rule above every block, the first included — that one is also the line under the header. */}
                             <View style={styles.divider} />
 
-                            {/* The last block stops short: the card's own padding closes
-                                it, and its own would sit on top of that. */}
+                            {/* The last block stops short: the card's own padding closes it, and its own would sit on top of that. */}
                             <View
                                 style={[
                                     styles.section,
@@ -199,8 +152,7 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The house card, one notch tighter: this is the third thing on a busy screen, and
-    // the standing 16pt of padding around a stack of controls reads as slack.
+    // The house card, one notch tighter.
     card: {
         padding: 14,
         borderRadius: 20,
@@ -214,9 +166,7 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: Spacing.three
     },
-    // The gap between the header and the first rule lives inside the folding part rather
-    // than under the header, so it collapses with everything else: a shut card is then
-    // evenly padded, and opening it does not start with a 12pt jump before the travel.
+    // The gap between the header and the first rule lives inside the folding part rather than under the header, so it collapses with everything else.
     sections: {
         paddingTop: 12
     },

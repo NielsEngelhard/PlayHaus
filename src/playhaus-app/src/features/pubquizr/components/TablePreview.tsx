@@ -5,28 +5,13 @@ import { colorForSeat } from "@/utils/color-utils";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
-    /**
-     * The name fields as typed, empty strings included: an empty entry is a seat waiting
-     * for a name and is drawn as one, so adding a field changes the band before anything
-     * is typed into it.
-     */
+    // The name fields as typed, empty strings included.
     names: string[]
 }
 
 const SEAT = 34;
 
-/**
- * The table on the settings band: one swatch per name field, in the same seat colours
- * `PlayerSeats` will deal once the quiz starts.
- *
- * The name list's live consequence — type a name and a seat fills in above, in the
- * colour that player will keep for the whole game. Named seats are solid swatches with
- * initials; empty fields are dashed ghosts, same vocabulary as `BoardPreview`'s empty
- * tiles.
- *
- * `Brand`-only colours, module-scope sheet: this only ever sits on the game's blue
- * band, which no scheme changes.
- */
+// The table on the settings band: one swatch per name field, in the same seat colours `PlayerSeats` will deal once the quiz starts.
 export default function TablePreview({ names }: Props) {
     return (
         <View style={styles.row}>
@@ -63,8 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 999
     },
-    // The ink ring is what keeps the lemon and mint swatches from melting into the band
-    // on the day a game's accent matches one of them.
+    // The ink ring is what keeps the lemon and mint swatches from melting into the band on the day a game's accent matches one of them.
     filled: {
         borderWidth: 2,
         borderColor: Brand.ink

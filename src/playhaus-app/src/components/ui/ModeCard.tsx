@@ -9,76 +9,33 @@ import { Pressable, StyleSheet, View } from "react-native";
 
 interface Props {
     icon: keyof typeof Feather.glyphMap,
-    /**
-     * Three stops for the icon tile, lightest first. See `Gradients`.
-     *
-     * `solid` reads the same three stops differently — see the flag below — so a card
-     * keeps its accent whichever design it is drawn in, and the caller passes one thing
-     * either way.
-     */
+    // Three stops for the icon tile, lightest first.
     gradient: readonly [string, string, string],
     /** Ink for the icon on that tile, already resolved for the scheme by the caller. */
     iconInk: string,
-    /**
-     * How bright the tile's lit top edge is. The paler the gradient, the more it takes
-     * to read as a highlight — the lemon tile needs more than the orange one.
-     *
-     * Ignored by `solid`, whose tile is flat paper.
-     */
+    // How bright the tile's lit top edge is.
     highlight: number,
     title: string,
     /** A short fact beside the title, like a player count. Optional. */
     chip?: string,
     description: string,
-    /**
-     * What tapping this does, as two or three words. Sits under the description.
-     *
-     * Not drawn by `solid`, which says the same thing with the card's own colour.
-     */
+    // What tapping this does, as two or three words.
     action: string,
     /** Where tapping this navigates. Optional when the card is not navigable. */
     navigationUrl?: Href,
     /** Whether the card is disabled. Defaults to false. */
     isDisabled?: boolean,
-    /**
-     * Draw the loud design instead of the quiet one. Defaults to false, which is the
-     * original card, unchanged.
-     *
-     * The two are the same object seen from different distances. The quiet card is a
-     * paper surface with the accent kept to a small tile — right where a page has
-     * several of them and none should shout. The loud one hands the whole card over to
-     * the accent, drops the action line, and stamps an oversized number into the
-     * corner: for the top of a game's own page, where there are exactly two of these
-     * and they are the point of the screen.
-     *
-     * Because the fill *is* the accent, the three gradient stops are read as flat
-     * colours here rather than shaded into one: the middle stop fills the card, and the
-     * other two go unused. The card is still a card — it wears the same border and the
-     * same lift as the quiet one beside it, and only the fill changes.
-     */
+    // Draw the loud design instead of the quiet one.
     solid?: boolean,
-    /**
-     * `solid` only. The number bled into the bottom-right corner — how many devices,
-     * how many players. Big enough to run off two edges, and quiet enough to read as
-     * texture rather than as a label.
-     */
+    // `solid` only.
     watermark?: string,
-    /**
-     * `solid` only. Which of the two inks stays readable on the fill: ink for the pale
-     * accents, paper for the saturated ones. Defaults to ink.
-     */
+    // `solid` only.
     onFill?: OnFill
 }
 
 export type OnFill = 'ink' | 'paper';
 
-/**
- * The three tones a solid card's contents wear, per ink.
- *
- * The secondary two are the ink at reduced strength rather than separate colours, which
- * is what keeps a card reading as one object: the description is the title gone quiet,
- * and the watermark is the same again, quiet enough to sit under everything else.
- */
+// The three tones a solid card's contents wear, per ink.
 const ON_FILL: Record<OnFill, { text: string, muted: string, watermark: string }> = {
     ink: {
         text: Brand.ink,
@@ -95,15 +52,7 @@ const ON_FILL: Record<OnFill, { text: string, muted: string, watermark: string }
 const TILE_SIZE = 56;
 const TILE_SIZE_SOLID = 40;
 
-/**
- * One way to play a game: an icon tile at the top, and the name, a line about it and —
- * in the quiet design — its action pinned to the bottom.
- *
- * Built to stand beside its twin rather than above it. Two of these share a row, so the
- * card is sized by the row and not by its own contents — which is why the body is pushed
- * down by `marginTop: 'auto'` and the card carries a floor height. Whichever of the pair
- * has the longer description sets the height, and both baselines still line up.
- */
+// One way to play a game. Sized by the row it shares with its twin, not by its own contents.
 export default function ModeCard({
     icon,
     gradient,
@@ -128,34 +77,24 @@ export default function ModeCard({
     const card = (
         <Pressable
             disabled={isDisabled}
-            // Flattened: `Link asChild` clones this onto the anchor it renders, and a
-            // style array does not survive that trip.
+            // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that trip.
             style={StyleSheet.flatten([
                 styles.card,
                 solid && styles.cardSolid,
-                // Inline because the fill is the caller's, and a themed sheet is built
-                // once per scheme with no card in front of it to ask.
-                //
-                // Only the fill is the caller's, though. The border and the lift stay
-                // `card`'s own in both schemes: dark used to trade them for the accent's
-                // lightest stop and a blurred wash of the fill, back when it had no line
-                // dark enough to draw with — but that reads as a glow rather than as a
-                // card, and on the lifted canvas the ordinary chrome works here.
+                // Inline because the fill is the caller's.
                 solid && { backgroundColor: fill },
                 isDisabled && styles.cardDisabled
             ])}
         >
             {solid && watermark !== undefined && (
                 <AppText
-                    // Decoration. A screen reader reading "10" out between the icon and
-                    // the title would be reading the wallpaper aloud.
+                    // Decoration.
                     accessibilityElementsHidden
                     importantForAccessibility="no-hide-descendants"
                     style={[
                         styles.watermark,
                         {
-                            // A second digit is that much wider, and the number should
-                            // run off the same amount of edge either way.
+                            // A second digit is that much wider, and the number should run off the same amount of edge either way.
                             right: watermark.length > 1 ? -12 : -8,
                             color: on.watermark
                         }
@@ -259,8 +198,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     cardSolid: {
-        // Shorter, because there is no action line under the description to make room
-        // for, and the pair still sizes itself off whichever card says more.
+        // Shorter, because there is no action line under the description to make room for.
         minHeight: 132,
         padding: 14,
         // The watermark is drawn past two of these edges and clipped back to them.
@@ -294,14 +232,12 @@ const useStyles = createThemedStyles(theme => ({
         width: TILE_SIZE_SOLID,
         height: TILE_SIZE_SOLID,
         flexShrink: 0,
-        // Above the watermark, which is drawn first and would otherwise be laid over the
-        // tile in the corner it grows out of.
+        // Above the watermark, which is drawn first and would otherwise be laid over the tile in the corner it grows out of.
         zIndex: 1,
         borderRadius: 13,
         alignItems: "center",
         justifyContent: "center",
-        // Ink and paper in both schemes: the tile is a hole punched in the accent rather
-        // than a surface of the app's, so it does not follow the canvas.
+        // Ink and paper in both schemes: the tile is a hole punched in the accent rather than a surface of the app's.
         borderWidth: 2,
         borderColor: Brand.ink,
         backgroundColor: Brand.textOnAccent

@@ -15,27 +15,10 @@ interface Props {
 /** The last stretch, where the bar turns and the digits start to matter. */
 const HURRY_SECONDS = 10;
 
-// react-native-web has no native animation module, and a transform is the one thing that
-// is driver-safe everywhere else. Same reasoning as `NextRoundCountdown`.
+// react-native-web has no native animation module, and a transform is the one thing that is driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/**
- * A turn's clock, drawn as it goes. Round 4's thirty seconds and round 5's twenty, which
- * are the two rounds played to one seat against a stopwatch.
- *
- * Digits *and* a bar, which is one more than either of the app's other countdowns has.
- * They are for two different people: the player being asked is talking and will not read
- * a number, so the bar is what they catch out of the corner of an eye; the rest of the
- * table is watching the phone and wants to know how long they have to wait. A round that
- * ends in an argument about whether time was up is the thing this is here to prevent.
- *
- * The clock is kept against a wall-clock deadline rather than by counting ticks down. An
- * interval that misses a beat — and it will, on a phone being waved about — would
- * otherwise make the turn quietly longer than the round says it is.
- *
- * `onDone` fires exactly once. It is held in a ref rather than listed as a dependency so
- * that a parent re-rendering mid-turn cannot restart the clock.
- */
+// A turn's clock, drawn as it goes.
 export default function TurnTimer({ seconds, onDone }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -44,9 +27,7 @@ export default function TurnTimer({ seconds, onDone }: Props) {
     const [width, setWidth] = useState(0);
     const [progress] = useState(() => new Animated.Value(0));
 
-    // Kept in a ref, and updated from an effect rather than during render, so a parent
-    // re-rendering mid-turn cannot restart the thirty seconds by handing the interval a
-    // new callback to depend on.
+    // Kept in a ref, and updated from an effect rather than during render.
     const done = useRef(onDone);
     useEffect(() => { done.current = onDone; }, [onDone]);
 
@@ -62,7 +43,6 @@ export default function TurnTimer({ seconds, onDone }: Props) {
                 finished = true;
                 clearInterval(tick);
                 // The phone is on a table in a noisy room and nobody is looking at it.
-                // A buzz is the only channel left; there is no alarm sound in the app.
                 haptic('land');
                 done.current();
             }
@@ -93,8 +73,7 @@ export default function TurnTimer({ seconds, onDone }: Props) {
         <View style={styles.timer}>
             <AppText
                 style={[styles.digits, { color: ink }]}
-                // Read out as a whole, and only as it changes: a screen reader announcing
-                // every quarter-second tick would be its own kind of noise.
+                // Read out as a whole, and only as it changes.
                 accessibilityLiveRegion="polite"
             >
                 {left}

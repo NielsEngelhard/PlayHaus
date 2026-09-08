@@ -76,9 +76,7 @@ export default function ReconnectPage() {
 
             <JoinCodeCard />
 
-            {/* Only an answered load may say there is nothing running. Until then the rule
-                carries the section's own name, so the page does not announce an absence
-                it has not established yet. */}
+            {/* Only an answered load may say there is nothing running. */}
             <Label
                 label={loading || error !== null ? t('reconnect.stillRunning') : t('reconnect.nothingRunning')}
                 rule='around'
@@ -113,8 +111,7 @@ const useStyles = createThemedStyles(() => ({
         flexDirection: 'column',
         gap: 18
     },
-    // The header names the list it is standing on, so the two sit closer to each other
-    // than either does to the blocks above and below.
+    // The header names the list it is standing on.
     section: {
         gap: 11
     },

@@ -9,37 +9,22 @@ export interface HorizontalButtonSelectProps<T> {
     value: T;
     onChange: (value: T) => void;
 
-    /**
-     * Converts an option into the text displayed inside its button.
-     */
+    // Converts an option into the text displayed inside its button.
     getLabel: (option: T) => string;
 
-    /**
-     * Used by screen readers to describe the selected option.
-     * Defaults to the value returned by `getLabel`.
-     */
+    // Used by screen readers to describe the selected option.
     getAccessibilityLabel?: (option: T) => string;
 
-    /**
-     * `card` wraps the selector in its own card.
-     * `inline` removes the card styling so the caller can provide its own container.
-     */
+    // `card` wraps the selector in its own card.
     variant?: "card" | "inline";
 
-    /**
-     * Compact makes the buttons shorter and slightly smaller.
-     */
+    // Compact makes the buttons shorter and slightly smaller.
     compact?: boolean;
 
-    /**
-     * Optional label displayed above the buttons.
-     */
+    // Optional label displayed above the buttons.
     label?: string;
 
-    /**
-     * What the chosen option is, spelled out at the other end of the label's line —
-     * "5 letters" over a row that only says "5". Needs `label` to have somewhere to go.
-     */
+    // What the chosen option is, spelled out at the other end of the label's line.
     valueLabel?: string;
 }
 
@@ -95,15 +80,7 @@ interface ButtonTileProps {
     onPress: () => void;
 }
 
-/*
- * One tab of the picker. The chosen one is a paper tile floating just above a sunken
- * track; the rest are nothing but their numbers, resting in it.
- *
- * The tile used to wear the page's accent, but a picker that shouts in the game's
- * colour competes with the one control on the page that is allowed to — the action.
- * Paper says "chosen" through elevation instead, which also means the picker needs no
- * ink-versus-paper decision and reads the same under every accent, violet included.
- */
+// One tab of the picker.
 function ButtonTile({
     label,
     accessibilityLabel,
@@ -150,9 +127,7 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.popShadow(theme.colors.shadow)
     },
 
-    // A shallow well the options sit in, drawn as a wash of whichever ink the scheme
-    // writes with. It is the only part of the control that touches the page, so it has
-    // to stay quiet enough to sit on bare canvas with no card around it.
+    // A shallow well the options sit in, drawn as a wash of whichever ink the scheme writes with.
     track: {
         flexDirection: "row",
         gap: 4,
@@ -178,8 +153,6 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     // Lifted out of the track on a soft shadow rather than cut out with an outline.
-    // Dark's canvas swallows a faint shadow, so it casts harder into `shadow` and the
-    // fill takes the selected rung, which sits higher off the track than a plain card.
     tileSelected: {
         backgroundColor:
             theme.scheme === "dark"

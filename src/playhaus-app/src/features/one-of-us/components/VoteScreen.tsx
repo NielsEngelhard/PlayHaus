@@ -17,11 +17,7 @@ interface Props {
     busy: boolean
     chosen: number | null
     error: TranslationKey | null
-    /**
-     * Who breaks a tie, or null for a table that has nobody — a game dealt before the
-     * office existed. The strip goes with them: naming a mayor who is not there would be
-     * worse than saying nothing.
-     */
+    // Who breaks a tie, or null for a table that has nobody — a game dealt before the office existed.
     mayor: Seat | null
     onChoose: (seat: number) => void
     onConfirm: () => void
@@ -60,18 +56,9 @@ export default function VoteScreen({
                 />
             )}
 
-            {/* The ring takes what the hero and the footer leave, and gives way first
-                when there is not enough of it. It used to sit between them at its own
-                fixed height with the footer pushed down by `marginTop: auto`, and on a
-                short window that pushed the confirm button clean off the bottom edge —
-                on a page that has claimed the viewport and therefore does not scroll,
-                which left the table looking at a vote it had no way to cast. The way
-                off a screen is the last thing that may be squeezed, never the first. */}
+            {/* The ring takes what the hero and the footer leave, and gives way first when there is not enough of it. */}
             <View style={styles.middle}>
-                {/* The middle is the receipt for the tap: it names whoever was picked,
-                    from a metre away, so the person holding the phone does not have to
-                    find the one seat that grew. Before anything is picked it says so
-                    plainly rather than sitting empty. */}
+                {/* The middle is the receipt for the tap. */}
                 <SeatRing
                     seats={seats}
                     markOf={seat => seat.seat === chosen ? 'chosen' : 'normal'}
@@ -85,14 +72,7 @@ export default function VoteScreen({
             </View>
 
             <View style={styles.footer}>
-                {/* Every round, whether or not this one ends level.
-                    
-                    The rule is only worth having if the table knows who holds it before
-                    the argument, not after: a casting vote produced at the moment it is
-                    needed is a rule somebody has just invented. Deliberately says nothing
-                    about which side the mayor is on, because the office is drawn from the
-                    whole room — the person settling the tie may well be the one the table
-                    is trying to find. */}
+                {/* Every round, whether or not this one ends level. */}
                 {mayor !== null && (
                     <View style={styles.mayor}>
                         <SeatAvatar seat={mayor} size={26} />
@@ -145,18 +125,14 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center'
     },
 
-    // `flexShrink: 0` rather than `marginTop: auto`: the room now comes from `middle`
-    // above, and this is the half of the screen that must survive a window too short for
-    // all of it.
+    // `flexShrink: 0` rather than `marginTop: auto`: the room now comes from `middle` above.
     footer: {
         flexShrink: 0,
         gap: Spacing.three,
         paddingTop: Spacing.two
     },
 
-    // The same dashed strip the reveal screen queues the table up in, for the same
-    // reason: it is a note about the round rather than a control, and it should not look
-    // like something to press on a screen whose whole job is one press.
+    // The same dashed strip the reveal screen queues the table up in, for the same reason.
     mayor: {
         flexDirection: 'row',
         alignItems: 'center',

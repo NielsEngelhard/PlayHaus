@@ -1,11 +1,4 @@
-// Package pubquizr is the pub quiz: five rounds and a head-to-head finale,
-// played by three to eight people.
-//
-// The package keeps two halves apart on purpose. The *content* tables -- quizzes,
-// questions, answers -- are authored once and played many times; they are seeded
-// from the JSON files in data/ and never change while a game is running. The
-// *session* tables are one table of people playing one quiz on one evening, and
-// they only ever reference content, never edit it.
+// Package pubquizr is the pub quiz: five rounds and a head-to-head finale, played by three to eight people.
 package pubquizr
 
 import (
@@ -18,10 +11,6 @@ import (
 )
 
 // Category is the shelf a quiz sits on.
-//
-// Weekly is the one that lands every Wednesday, Official is the back catalogue by
-// subject, and Community is what players write themselves -- the only category the
-// seeder never touches.
 type Category string
 
 const (
@@ -40,8 +29,7 @@ func (c Category) Valid() bool {
 
 func (c Category) String() string { return string(c) }
 
-// QuestionKind is what a question wants back, which is what decides how the screen
-// draws it and how the answer rows underneath it are read.
+// QuestionKind is what a question wants back.
 type QuestionKind string
 
 const (
@@ -51,8 +39,7 @@ const (
 	KindMultipleChoice QuestionKind = "multiple_choice"
 	// KindClosest is answered with a number; nearest wins. Round 3.
 	KindClosest QuestionKind = "closest"
-	// KindDescribe has no answer at all -- the Prompt is itself the word to
-	// describe. Round 4.
+	// KindDescribe has no answer at all -- the Prompt is itself the word to describe.
 	KindDescribe QuestionKind = "describe"
 	// KindList is one question with four answers to find between you. Round 5.
 	KindList QuestionKind = "list"
@@ -66,8 +53,7 @@ const (
 	SessionAbandoned  SessionStatus = "abandoned"
 )
 
-// Mode is how the table is playing. Only one exists so far; multi-device is the
-// version where everybody holds their own phone, and it will land here beside it.
+// Mode is how the table is playing.
 type Mode string
 
 const (
@@ -99,13 +85,9 @@ var (
 	ErrDuplicateGuess        = errors.New("two players guessed the same number")
 	ErrQuizmasterCannotGuess = errors.New("the quizmaster is reading this one out")
 	ErrDescriberCannotGuess  = errors.New("you cannot guess your own word")
-	// ErrOneGuessEach is the bonus rule of rounds 4 and 5 refusing a second helping to
-	// the same player. The seat being played to may take everything the clock produced;
-	// everybody else gets one guess at what is left over, and one is one.
+	// ErrOneGuessEach is the bonus rule of rounds 4 and 5 refusing a second helping to the same player.
 	ErrOneGuessEach = errors.New("that player has already had their guess")
-	// ErrTwoOnOneCredit is a word or an answer credited to more than one player. Nobody
-	// is shouting over anybody in either of these rounds: inside the clock only one seat
-	// is playing, and after it a leftover is gone the moment somebody names it.
+	// ErrTwoOnOneCredit is a word or an answer credited to more than one player.
 	ErrTwoOnOneCredit = errors.New("only one player can be credited with that")
 	ErrUnknownWord    = errors.New("that word is not part of this turn")
 	ErrUnknownAnswer  = errors.New("that answer is not part of this question")
@@ -127,8 +109,7 @@ type Quiz struct {
 
 func (Quiz) TableName() string { return "pq_quizzes" }
 
-// QuestionsIn are this quizzes questions for one round, in the order they were
-// written.
+// QuestionsIn are this quizzes questions for one round, in the order they were written.
 func (q Quiz) QuestionsIn(round int) []Question {
 	var found []Question
 	for _, question := range q.Questions {
@@ -148,16 +129,12 @@ type Question struct {
 	// Position orders the questions inside their round.
 	Position int `gorm:"not null;uniqueIndex:idx_pq_question_slot,priority:3"`
 
-	// Prompt is what the quiz master reads out. On a describe question it is the
-	// word itself -- there is nothing to ask, only something to act out.
+	// Prompt is what the quiz master reads out.
 	Prompt string `gorm:"not null"`
-	// Category is the free-text label round 1 questions carry ("music",
-	// "geography"). Round 1 can be about anything, so this is a hint for whoever is
-	// reading rather than a taxonomy.
+	// Category is the free-text label round 1 questions carry ("music", "geography").
 	Category *string
 
-	// NumericAnswer and Unit belong to a closest-guess question and are nil on
-	// every other kind.
+	// NumericAnswer and Unit belong to a closest-guess question and are nil on every other kind.
 	NumericAnswer *float64
 	Unit          *string
 
@@ -169,12 +146,7 @@ type Question struct {
 
 func (Question) TableName() string { return "pq_questions" }
 
-// CorrectAnswers are the answers that score, leaving the wrong ABCD options and the
-// spelling variants out.
-//
-// Carries ChoiceCorrectOptions and OpenAnswersPerQuestion without naming them: it is
-// what validateQuestion counts to check both. A method on the row, so it stays on the
-// row.
+// CorrectAnswers are the answers that score, leaving the wrong ABCD options and the spelling variants out.
 func (q Question) CorrectAnswers() []Answer {
 	var correct []Answer
 	for _, answer := range q.Answers {
@@ -185,14 +157,7 @@ func (q Question) CorrectAnswers() []Answer {
 	return correct
 }
 
-// Answer is one row under a question. What it means depends on the kind of question
-// it hangs from:
-//
-//   - open: the answer, plus any number of Alias rows for wordings that also count
-//   - multiple_choice: one of the four options, exactly one of them Correct
-//   - list: one of the four answers being searched for, all of them Correct
-//
-// Closest and describe questions have none.
+// Answer is one row under a question.
 type Answer struct {
 	ID         uuid.UUID `gorm:"primaryKey;type:text"`
 	QuestionID uuid.UUID `gorm:"not null;type:text;index"`
@@ -200,8 +165,7 @@ type Answer struct {
 	Position int    `gorm:"not null"` // 0..3 is A..D on a multiple choice question
 	Text     string `gorm:"not null"`
 	Correct  bool   `gorm:"not null;default:false"`
-	// Alias is an accepted alternative wording rather than an answer of its own. It
-	// never appears on screen and never counts twice.
+	// Alias is an accepted alternative wording rather than an answer of its own.
 	Alias bool `gorm:"not null;default:false"`
 }
 
@@ -223,63 +187,19 @@ type Session struct {
 	CurrentPosition int `gorm:"not null"`
 
 	// QuizMasterSeat is who is reading right now.
-	//
-	// Always the seat to the right of the hot seat -- whoever the next question opens
-	// on is read to by the person before them. So it moves whenever the hot seat does:
-	// a player taking a question from further down the table takes the reading round
-	// to their own neighbour with it, and a round 1 question nobody gets puts the reader
-	// themselves in the seat.
-	//
-	// Stored rather than derived from HotSeat so a row written by an older build still
-	// says what that build meant by it.
 	QuizMasterSeat int `gorm:"not null"`
 
-	// HotSeat is who the current question is asked to first.
-	//
-	// Not the seat left of the reader any more, which is why it has to be kept:
-	// taking a question keeps you in the seat, so where a question starts depends on
-	// who took the last one rather than on who is reading.
-	//
-	// -1 is a session dealt before this column existed. HotSeatOrFirst reads that as
-	// the old rule, so a game left open across the deploy carries on making sense
-	// instead of asking whoever happens to sit in seat 0.
+	// HotSeat is who the current question is asked to first; -1 is a session dealt before this column existed.
 	HotSeat int `gorm:"not null;default:-1"`
 
 	// HotSeatRun is how many questions in a row whoever is in the hot seat has taken.
-	//
-	// Kept rather than counted because it is only ever shown: the board says "on a run
-	// of three" so that the rule holding the round together -- take one and you are
-	// asked the next -- is legible from the screen instead of having to be explained by
-	// whoever read the box. Counting it off the attempt rows would be a join per
-	// verdict for a number nothing decides.
-	//
-	// Reset to nothing when a question beats the table, because the seat it was
-	// counting has just been given up.
 	HotSeatRun int `gorm:"not null;default:0"`
 
-	// FinalistSeatA and FinalistSeatB are the two players round 6 is between, fixed
-	// the moment the finale opens and never touched again.
-	//
-	// Kept rather than read back off HotSeat and QuizMasterSeat, which is where the
-	// pair used to live: the quizmaster is now somebody who did not reach the finale,
-	// so the two columns that move during a round no longer name the two people the
-	// round is about. And they cannot be worked out from the scoreboard afterwards
-	// either -- a finale question pays onto Score, so the top two at the end of the
-	// evening are not always the top two who walked into it.
-	//
-	// -1 in both is a session that has not reached round 6, or one dealt before these
-	// columns existed. Finalists reads that as "no pair yet".
+	// FinalistSeatA and FinalistSeatB are the two players round 6 is between, fixed when the finale opens; -1 in both means no pair yet.
 	FinalistSeatA int `gorm:"not null;default:-1"`
 	FinalistSeatB int `gorm:"not null;default:-1"`
 
-	// ZenMode and TriviaMode are the setup form's two toggles, frozen here at the
-	// deal. Columns rather than one packed value because GORM AutoMigrate is the whole
-	// of the schema story here: a new toggle is a new column with a default, and every
-	// session dealt before it existed reads back as false -- which is the mode it was
-	// actually played in.
-	//
-	// What each one does to the evening is Modes' business, not this struct's. See
-	// Session.Modes.
+	// ZenMode and TriviaMode are the setup form's two toggles, frozen here at the deal.
 	ZenMode    bool `gorm:"not null;default:false"`
 	TriviaMode bool `gorm:"not null;default:false"`
 
@@ -294,18 +214,11 @@ type Session struct {
 func (Session) TableName() string { return "pq_sessions" }
 
 // SessionPlayer is somebody sat at the table.
-//
-// Deliberately a name and not a user: six people round one phone should not mean six
-// accounts, and the seat -- not the account -- is what the game addresses. Every
-// other player in this codebase is a users row; this is the first that is not.
 type SessionPlayer struct {
 	SessionID uuid.UUID `gorm:"primaryKey;type:text"`
 	Seat      int       `gorm:"primaryKey"` // Seat is where they are sitting, left to right, because the phone gets turned round the table
 	Name      string    `gorm:"not null"`
-	// Score is everything this player has taken all evening, the finale included --
-	// there is one tally and the night is won on it. A finale question pays a hundred
-	// onto it, which is what makes round 6 decide the game without needing a column of
-	// its own to do it in. See FinalePoints.
+	// Score is everything this player has taken all evening, the finale included.
 	Score     int       `gorm:"not null;default:0"`
 	Color     string    `gorm:"not null"`
 	CreatedAt time.Time `gorm:"not null"`
@@ -313,13 +226,7 @@ type SessionPlayer struct {
 
 func (SessionPlayer) TableName() string { return "pq_session_players" }
 
-// SessionQuestion is a question this table will actually play, in the order they
-// will play it.
-//
-// The deal is frozen when the game starts rather than worked out as it goes, the way
-// League of Letters writes its words into lol_rounds up front: how many round 2
-// questions there are and whose words are whose both depend on how many of you there
-// are, and neither should change if somebody reloads the page.
+// SessionQuestion is a question this table will actually play, in the order they will play it.
 type SessionQuestion struct {
 	ID        uuid.UUID `gorm:"primaryKey;type:text"`
 	SessionID uuid.UUID `gorm:"not null;type:text;index;uniqueIndex:idx_pq_session_slot,priority:1"`
@@ -329,9 +236,7 @@ type SessionQuestion struct {
 
 	QuestionID uuid.UUID `gorm:"not null;type:text;index"`
 
-	// AssignedSeat is whose question this is. Round 2 hands every player their own
-	// ABCD question and round 4 hands every player two words; everywhere else the
-	// question belongs to the table and this is nil.
+	// AssignedSeat is whose question this is.
 	AssignedSeat *int
 
 	Status SessionQuestionStatus `gorm:"not null"`
@@ -343,13 +248,6 @@ type SessionQuestion struct {
 func (SessionQuestion) TableName() string { return "pq_session_questions" }
 
 // SessionAnswer is one attempt at a dealt question.
-//
-// There is no unique constraint on this table on purpose. Round 1 passes the turn
-// down the line until somebody gets it, so a question collects a row per seat that
-// tried; round 5 lets one seat claim several of the four answers inside their
-// twenty-five seconds. A composite unique index would also be false comfort here --
-// SQLite counts NULLs as distinct, and half these columns are nullable. The service
-// enforces one attempt per seat where that is the rule.
 type SessionAnswer struct {
 	ID                uuid.UUID `gorm:"primaryKey;type:text"`
 	SessionID         uuid.UUID `gorm:"not null;type:text;index"`
@@ -357,8 +255,7 @@ type SessionAnswer struct {
 
 	// Seat is who answered. Nil means nobody did before the question ran out.
 	Seat *int
-	// AnswerID is which row they landed on: the ABCD option they picked, or which
-	// of round 5's four answers they found.
+	// AnswerID is which row they landed on: the ABCD option they picked, or which of round 5's four answers they found.
 	AnswerID *uuid.UUID `gorm:"type:text"`
 	// NumericValue is a closest-guess guess.
 	NumericValue *float64
@@ -381,8 +278,7 @@ type QuizPlay struct {
 
 func (QuizPlay) TableName() string { return "pq_quiz_plays" }
 
-// Models are the tables this game owns, parents before children so a fresh database
-// can build the foreign keys as it goes.
+// Models are the tables this game owns, parents before children so a fresh database can build the foreign keys as it goes.
 func Models() []any {
 	return []any{
 		&Quiz{},

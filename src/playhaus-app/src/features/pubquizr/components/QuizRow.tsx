@@ -12,57 +12,24 @@ import { initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 
 interface Props {
     quiz: QuizListItem,
-    /**
-     * Picks this quiz instead of going anywhere.
-     *
-     * The row is two things depending on whether this is here. On the index it is a
-     * link into the setup screen, carrying the quiz it was tapped on; on the setup
-     * screen itself there is nowhere left to go, so the same row becomes the choice.
-     */
+    // Picks this quiz instead of going anywhere.
     onSelect?: (quiz: QuizListItem) => void,
-    /**
-     * Makes the row an ordinary button that does this, rather than a link or a choice.
-     *
-     * Two callers want that. A row inside `QuizSheet` on the index goes where the link
-     * would go, but cannot be one: a `Modal` is its own root on native, so a route pushed
-     * from under one leaves the sheet standing over whatever it landed on — the caller
-     * closes the sheet and pushes the route itself. And the chosen quiz pinned at the top
-     * of the setup step opens the browse, which is neither navigation nor a choice.
-     *
-     * Ignored when `onSelect` is given — a row that picks a quiz is not doing anything
-     * else.
-     */
+    // Makes the row an ordinary button that does this, rather than a link or a choice.
     onPress?: (quiz: QuizListItem) => void,
-    /**
-     * Draws the row as the one already chosen: focus border, and a tick where the
-     * chevron would be. Meaningless on a plain link, which is not one of a set.
-     */
+    // Draws the row as the one already chosen: focus border, and a tick where the chevron would be.
     selected?: boolean
 }
 
 const AVATAR_SIZE = 56;
 
-/**
- * A cover filling the avatar's box, inside whatever border that box is wearing.
- *
- * Outside `useStyles` because it holds no colour — the one thing a module-level style
- * object cannot be trusted with, since `StyleSheet.create` would freeze it to whichever
- * scheme happened to be current at import. It is also the wrong shape for that sheet:
- * every entry there is a `ViewStyle`, and an `Image` takes an `ImageStyle`.
- */
+// A cover filling the avatar's box, inside whatever border that box is wearing.
 const AVATAR_IMAGE: ImageStyle = {
     width: '100%',
     height: '100%',
     borderRadius: 999
 };
 
-/**
- * One quiz on a shelf: its swatch, what it is called, what is in it, and when it went
- * up.
- *
- * The whole row is the target rather than the chevron at the end of it — the chevron is
- * there to say the row goes somewhere, not to be aimed at.
- */
+// One quiz on a shelf: its swatch, what it is called, what is in it, and when it went up.
 export default function QuizRow({ quiz, onSelect, onPress, selected = false }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -78,10 +45,7 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
 
     const body = (
         <>
-            {/* One box, filled two ways: a cover when the quiz has one, the initials
-                every quiz has otherwise. The swatch stays behind either — it is the
-                fallback when there is no image, and the placeholder underneath one that
-                has not arrived, which is the whole of the loading state this needs. */}
+            {/* One box, filled two ways: a cover when the quiz has one, the initials every quiz has otherwise. */}
             <View style={[styles.avatar, { backgroundColor: swatch.color }]}>
                 {quiz.imageUrl !== undefined ? (
                     <Image
@@ -97,8 +61,7 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
                 )}
             </View>
 
-            {/* `minWidth: 0` is what lets the long title truncate instead of
-                pushing the chevron off the end of the row. */}
+            {/* `minWidth: 0` is what lets the long title truncate instead of pushing the chevron off the end of the row. */}
             <View style={styles.body}>
                 <View style={styles.titleRow}>
                     <AppText style={styles.title} numberOfLines={1}>
@@ -141,11 +104,7 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
         </>
     );
 
-    // Three different targets rather than one that branches inside `onPress`: a link has
-    // to render an anchor on web to be a link at all — right-clickable, openable in a
-    // new tab — and a choice on a form must not be one. The middle case is a row that
-    // goes where the link goes but cannot be one, and it is a button rather than a radio
-    // because nothing about it is being chosen.
+    // Three different targets rather than one that branches inside `onPress`.
     if (onSelect) {
         return (
             <Pressable
@@ -216,9 +175,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
-        // The offset is the same in both schemes; the ink line is not. A swatch is a
-        // colour rather than a surface, and in dark a mid-grey ring around a bright fill
-        // mutes the colour instead of framing it.
+        // The offset is the same in both schemes; the ink line is not.
         ...theme.shadows.hardSmall,
         ...(theme.scheme === 'dark'
             ? {}

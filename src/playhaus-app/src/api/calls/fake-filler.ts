@@ -2,25 +2,7 @@ import { request } from '@/api/client';
 import type { FFGameMode } from '@/api/calls/fake-filler-lobby';
 import type { LanguageCode } from '@/constants/languages';
 
-/**
- * The Fake Filler board.
- *
- * Mirrors the Go DTOs in `internal/api/fakefiller.go` — keep the two in step, the same
- * way every other call module is kept in step with its handlers.
- *
- * The one thing to hold on to while reading this file is **redaction**. Fake Filler is a
- * game about not knowing who wrote what, so `GET /game/{id}` is built per reader: two
- * players fetching the same round get different bodies, and that is the game working
- * rather than a bug. Three consequences show up in the types below:
- *
- * - an option is identified by the `slot` it was shuffled into, never by its author,
- *   because one of the authors is the string `"__truth__"` and naming it would end the
- *   round before it started. A vote therefore names a slot.
- * - `authorId`, `isTruth`, `voters` and `authors` appear together and only once a round
- *   has been revealed.
- * - `options` is absent entirely during the writing phase and for any round the table
- *   has not reached yet.
- */
+// The Fake Filler board.
 
 export type FFPhase = 'writing' | 'voting';
 export type FFGameStatus = 'in_progress' | 'completed' | 'abandoned';
@@ -39,16 +21,9 @@ export interface FFGamePlayer {
     joinedAt: string
 }
 
-/**
- * One of the things a voter can pick: a fake somebody wrote, or — in `facts` mode — the
- * real answer that came with the prompt.
- */
+// One of the things a voter can pick.
 export interface FFOption {
-    /**
-     * The shuffled position this option is shown in, assigned once when voting opens and
-     * never again. It is the option's whole identity while voting is open, and it is
-     * what a vote names.
-     */
+    // The shuffled position this option is shown in, assigned once when voting opens and never again.
     slot: number
     /** A value per blank, in the order the blanks appear. */
     fills: string[]
@@ -77,18 +52,9 @@ export interface FFRound {
     /** How many of the two authors have written. Progress, never content. */
     answerCount: number
 
-    /**
-     * Whether the reader may vote on this round at all — settled when the prompts were
-     * dealt, and nothing to do with whether the table has reached it yet.
-     */
+    // Whether the reader may vote on this round at all.
     canVote: boolean
-    /**
-     * The slot the reader picked, once they have.
-     *
-     * Optional rather than defaulted, because **slot 0 is a real answer**: "did not
-     * vote" has to be tellable from "voted for the first one", so check for `undefined`
-     * and never for falsiness.
-     */
+    // The slot the reader picked, once they have.
     myVoteSlot?: number
     voteCount: number
 
@@ -128,23 +94,14 @@ export interface FFGame {
     rounds: FFRound[]
 }
 
-/**
- * What one answer did: counts, and nothing else.
- *
- * Deliberately carries no fills, not even the writer's own — the same body is broadcast
- * to the whole table, and what a player is writing is the one thing this half of the
- * game is about not knowing.
- */
+// What one answer did: counts, and nothing else.
 export interface FFAnswerResult {
     roundNumber: number
     phase: FFPhase
     answersIn: number
     /** How many the whole game is waiting for, not how many this round is. */
     answersNeeded: number
-    /**
-     * Set on the answer that finished the writing phase. Everybody who sees it should
-     * re-read the game — their own options are waiting behind it.
-     */
+    // Set on the answer that finished the writing phase.
     votingOpened: boolean
     gameId: string
 }
@@ -166,13 +123,7 @@ export interface FFReveal {
     options: FFOption[]
 }
 
-/**
- * What one vote did.
- *
- * Not the whole game: every client already holds that, and what it cannot work out for
- * itself is how many votes are in, whether that closed the round, and what the round
- * turned out to be. `reveal` and `nextRound` are set together on the vote that ends one.
- */
+// What one vote did.
 export interface FFVoteResult {
     gameId: string
     roundNumber: number
@@ -197,12 +148,7 @@ export async function getFFGame(gameId: string): Promise<FFGame> {
     return request<FFGame>(gamePath(gameId));
 }
 
-/**
- * Fills in one of the two prompts dealt to this player.
- *
- * One value per blank, in the order the blanks appear. The server rejects a wrong count
- * or a blank value with `invalid_answer`, so the screen checks both before sending.
- */
+// Fills in one of the two prompts dealt to this player.
 export async function submitFFAnswer(
     gameId: string,
     roundNumber: number,
@@ -214,13 +160,7 @@ export async function submitFFAnswer(
     });
 }
 
-/**
- * Picks an option on the round the table is voting on.
- *
- * `slot`, never an author — that is the redaction showing through into the request
- * shape. The voting screen was never sent the authors, so it has nothing else it could
- * name, and the server maps the slot back to whoever is sitting in it.
- */
+// Picks an option on the round the table is voting on.
 export async function castFFVote(
     gameId: string,
     roundNumber: number,

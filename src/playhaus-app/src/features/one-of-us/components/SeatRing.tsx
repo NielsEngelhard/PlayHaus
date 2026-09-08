@@ -70,8 +70,7 @@ export default function SeatRing({
                 const grown = mark === 'focus' || mark === 'chosen';
                 const diameter = grown ? FOCUS : SEAT;
 
-                // First seat at twelve o'clock, the rest dealt clockwise. Positioned by
-                // its own diameter, so a grown seat keeps the centre point it had.
+                // First seat at twelve o'clock, the rest dealt clockwise.
                 const angle = (-90 + (index * 360) / seats.length) * (Math.PI / 180);
                 const position = {
                     width: diameter,
@@ -86,17 +85,14 @@ export default function SeatRing({
                     <>
                         <SeatAvatar seat={seat} size={diameter} raised={grown} />
 
-                        {/* The tick is the only thing besides the size that separates a
-                            chosen seat from a lit one, so a vote reads as aimed from
-                            across a table rather than as somebody's turn. */}
+                        {/* The tick is the only thing besides the size that separates a chosen seat from a lit one. */}
                         {mark === 'chosen' && (
                             <View style={styles.badge}>
                                 <Feather name="check" size={11} color={Brand.ink} />
                             </View>
                         )}
 
-                        {/* Struck where they sat. The seat stays in place for this one
-                            screen precisely so the table sees the gap appear. */}
+                        {/* Struck where they sat. */}
                         {mark === 'out' && (
                             <View style={styles.cross} pointerEvents="none">
                                 <Feather

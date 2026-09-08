@@ -20,14 +20,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// The quizzes that ship with the app, one JSON file each, laid out
-//
-//	data/{locale}/{category}/{slug}.json
-//
-// Locale and category come from the directory rather than from a field inside the
-// file, so a file can never disagree with where it is filed. Same idea as the League
-// of Letters word lists next door, which are found by locale and length rather than
-// by anything written in them.
+// Quizzes shipped with the app, one JSON file each, at data/{locale}/{category}/{slug}.json.
 //
 //go:embed data
 var quizFiles embed.FS
@@ -35,15 +28,10 @@ var quizFiles embed.FS
 const seedRoot = "data"
 
 // quizFile is the shape of one file on disk.
-//
-// Every key a file may carry has to appear here: the decoder is set to refuse
-// unknown fields, so a field this struct does not name is not a key that gets
-// ignored, it is a boot that does not happen.
 type quizFile struct {
 	Slug  string `json:"slug"`
 	Title string `json:"title"`
-	// PublishedAt is the day the quiz went up, written as 2006-01-02. Optional --
-	// see publishedAtFor for what a file that leaves it out gets.
+	// PublishedAt is the day the quiz went up, written as 2006-01-02.
 	PublishedAt string      `json:"publishedAt,omitempty"`
 	Description string      `json:"description"`
 	Rounds      []roundFile `json:"rounds"`
@@ -76,11 +64,6 @@ type answerFile struct {
 }
 
 // Seed brings the quizzes that ship with the app into the database.
-//
-// It is deliberately loud: a quiz file that does not describe a playable quiz stops
-// the process at boot rather than turning up as an evening that runs out of
-// questions in round 4. The config package takes the same line -- fail at startup
-// rather than mysteriously at 3am.
 func Seed(ctx context.Context, store Store) error {
 	files, err := fs.Glob(quizFiles, path.Join(seedRoot, "*", "*", "*.json"))
 	if err != nil {
@@ -122,8 +105,7 @@ func seedOne(ctx context.Context, store Store, file string) error {
 		return err
 	}
 
-	// The digest of the file rather than of the built quiz: the built quiz carries
-	// fresh uuids every boot and would never match itself.
+	// The digest of the file rather than of the built quiz.
 	sum := sha256.Sum256(raw)
 	quiz.ContentHash = hex.EncodeToString(sum[:])
 
@@ -134,8 +116,7 @@ func seedOne(ctx context.Context, store Store, file string) error {
 	case err != nil:
 		return err
 	case existing.ContentHash == quiz.ContentHash:
-		// Unchanged since the last boot. Rewriting it would churn the ids under
-		// anybody halfway through a game.
+		// Unchanged since the last boot.
 		return nil
 	}
 
@@ -159,28 +140,20 @@ func shelfOf(file string) (i18n.Locale, Category, error) {
 		return "", "", fmt.Errorf("%q is not a quiz category", parts[2])
 	}
 	if category == CategoryCommunity {
-		// Community quizzes are written by players. A file claiming that shelf would
-		// be the app pretending somebody wrote it.
+		// Community quizzes are written by players.
 		return "", "", fmt.Errorf("the loader does not ship community quizzes")
 	}
 
 	return locale, category, nil
 }
 
-// publishedAtLayout is how a file writes a date: the day, and nothing smaller. The
-// hour a quiz went up is not something anybody needs to know.
+// publishedAtLayout is how a file writes a date: the day, and nothing smaller.
 const publishedAtLayout = "2006-01-02"
 
 // weeklySlug is the YYYY-wNN a weekly quiz is named after.
 var weeklySlug = regexp.MustCompile(`^(\d{4})-w(\d{1,2})$`)
 
 // publishedAtFor is the day a quiz went up.
-//
-// Three answers, in order. A file that says so wins. A weekly quiz says which
-// Wednesday it belongs to in its slug already, so it is not asked to repeat itself in
-// a field that could then disagree with its own name. Anything else falls back to
-// this boot -- which puts every such quiz on one timestamp, so it is a default worth
-// avoiding rather than relying on.
 func publishedAtFor(slug, declared string, now time.Time) (*time.Time, error) {
 	if declared = strings.TrimSpace(declared); declared != "" {
 		day, err := time.Parse(publishedAtLayout, declared)
@@ -203,8 +176,7 @@ func publishedAtFor(slug, declared string, now time.Time) (*time.Time, error) {
 	return &now, nil
 }
 
-// wednesdayOfWeek is the Wednesday of one ISO week, which is the day a weekly quiz
-// belongs to.
+// wednesdayOfWeek is the Wednesday of one ISO week, which is the day a weekly quiz belongs to.
 func wednesdayOfWeek(year, week string) (time.Time, error) {
 	y, err := strconv.Atoi(year)
 	if err != nil {
@@ -216,8 +188,7 @@ func wednesdayOfWeek(year, week string) (time.Time, error) {
 		return time.Time{}, fmt.Errorf("%q is not a week of the year", week)
 	}
 
-	// The fourth of January is in ISO week 1 whichever weekday it lands on, so the
-	// Monday before it is where the year's weeks start counting.
+	// The fourth of January is in ISO week 1 whichever weekday it lands on.
 	anchor := time.Date(y, time.January, 4, 0, 0, 0, 0, time.UTC)
 	weekday := int(anchor.Weekday())
 	if weekday == 0 {
@@ -238,8 +209,7 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 
 	now := time.Now().UTC()
 
-	// Published is the one timestamp that is about the quiz rather than about this
-	// boot, so it is the only one that does not come from the clock.
+	// Published is the one timestamp that is about the quiz rather than about this boot.
 	published, err := publishedAtFor(f.Slug, f.PublishedAt, now)
 	if err != nil {
 		return nil, err
@@ -327,8 +297,7 @@ func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind Que
 				question.Answers = append(question.Answers, Answer{
 					ID:         uuid.New(),
 					QuestionID: question.ID,
-					// An alias sits at its answer's position: it is the same
-					// answer said differently, not a fifth one.
+					// An alias sits at its answer's position: it is the same answer said differently, not a fifth one.
 					Position: i,
 					Text:     alias,
 					Correct:  true,
@@ -345,11 +314,6 @@ func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind Que
 }
 
 // validate is the gate a quiz file has to get through to become a quiz.
-//
-// It checks two different things: that every question is internally coherent (four
-// options, one of them right), and that there is enough of each round to seat a full
-// table of eight. The second is what stops an evening running out of words halfway
-// through round 4.
 func validate(quiz *Quiz) error {
 	for round := 1; round <= Rounds; round++ {
 		questions := quiz.QuestionsIn(round)

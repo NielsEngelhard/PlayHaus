@@ -36,10 +36,7 @@ interface Props {
     onSettle: (awards: ListAward[]) => void
 }
 
-/**
- * `preTimer` only ever sits between `ready` and `running` for a timed turn. Zen mode has
- * no clock to hold a beat in front of, so its `ready` screen goes straight to `running`.
- */
+// `preTimer` only ever sits between `ready` and `running` for a timed turn.
 type Stage = 'ready' | 'preTimer' | 'running' | 'inTime' | 'bonus' | 'settle'
 
 export default function ListBoard({ turn, round, lead, busy, error, onSettle }: Props) {
@@ -178,11 +175,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         )
     }
 
-    // A beat between the rules and the clock, for a timed turn only — zen mode has no
-    // clock to hold this beat in front of, so its `ready` screen skips straight to
-    // `running`. The question is read here, out loud, before anybody presses anything
-    // that starts counting down: the twenty seconds are for the guesser to answer in, not
-    // for the quizmaster to read the question against.
+    // A beat between the rules and the clock, for a timed turn only.
     if (stage === 'preTimer') {
         return (
             <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
@@ -227,19 +220,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             </AppText>
         );
 
-        /*
-         * Zen mode still gets a page of its own rather than sharing the timed layout
-         * below it, but both now read the question out of the same full-size `ScriptCard`
-         * round 2 uses, rather than the one-line recap this screen used to fold it into
-         * once the clock was running.
-         *
-         * That card is also why the whole page scrolls here rather than just the rows.
-         * With the question at full size the board can outgrow a short phone, and a
-         * scroller around the rows alone answers that by squeezing the rows — which
-         * leaves the reader tapping answers through a two-row window underneath a card
-         * with room to spare. Scrolling the page keeps everything the size it should be
-         * and puts the overflow where it belongs.
-         */
+        // Zen mode still gets a page of its own rather than sharing the timed layout below it.
         if (turn.guesses !== null) {
             return (
                 <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
@@ -247,11 +228,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                     <ScriptCard prompt={turn.question.prompt} fills={false} />
 
-                    {/* The rule, said once and quietly. It was an `InlineNotification`,
-                        which is a card — and a card is how this app says something that
-                        has just happened and needs dealing with, not a standing fact
-                        about the round. Given that much weight next to the question it
-                        read as the more important of the two. */}
+                    {/* The rule, said once and quietly. */}
                     <TextHint
                         text={t('pubquizr.play.list.zenNotice', {
                             guesser: turn.guesser.name,
@@ -280,11 +257,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             <View style={styles.turn}>
                 {strip}
 
-                {/* `fills={false}` still carries a `flexGrow` — it is meant for the zen
-                    page above, where the surrounding `ScrollView` has nothing else
-                    competing for the leftover space. Here the rows below it want that
-                    space instead, so the card is boxed in a plain, ungrowing wrapper: it
-                    gets exactly its own content's height and nothing more. */}
+                {/* `fills={false}` still carries a `flexGrow`. */}
                 <View style={styles.question}>
                     <ScriptCard prompt={turn.question.prompt} fills={false} />
                 </View>
@@ -391,9 +364,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 })}
             </ScrollView>
 
-            {/* What the question is about to be worth to the person who was asked it.
-                Their total is the one worth showing: it is what the twenty seconds
-                actually produced, and it is the number they will want to argue about. */}
+            {/* What the question is about to be worth to the person who was asked it. */}
             {standing.size > 0 && (
                 <AppText style={styles.standing}>
                     {t('pubquizr.play.list.standing', {
@@ -411,11 +382,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 />
             )}
 
-            {/* The way back, because the scoring is a walk rather than a form: once the
-                bonus has moved past a player there is no other way to undo a mis-tap, and
-                one of them is a point somebody will notice. Back to `inTime`, not
-                `running` — the clock already ran once, and re-running it would cost the
-                table twenty seconds to fix a tap. */}
+            {/* The way back, because the scoring is a walk rather than a form. */}
             <Pressable
                 onPress={() => {
                     if (busy) return;
@@ -468,8 +435,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12
     },
 
-    // Sized to its content and nothing more, so `ScriptCard`'s own `flexGrow` has no
-    // extra space to spend inside it — see the note where this wraps it.
+    // Sized to its content and nothing more, so `ScriptCard`'s own `flexGrow` has no extra space to spend inside it.
     question: {
         flexShrink: 0
     },
@@ -488,10 +454,7 @@ const useStyles = createThemedStyles(theme => ({
         minHeight: 0
     },
 
-    // Zen mode's page, where the scroller is the board itself rather than a window on
-    // the rows. `flexGrow` on the content so that a turn which does fit still fills the
-    // window — without it the content container is content-height and everything bunches
-    // up at the top with the question card refusing to grow into the room below it.
+    // Zen mode's page, where the scroller is the board itself rather than a window on the rows.
     page: {
         flex: 1,
         minHeight: 0
@@ -504,18 +467,14 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 4
     },
 
-    // The rows on that page: spacing only. The slack the pick rows' hard shadow needs is
-    // the page's business now, and laying it down again here would inset the rows from
-    // the question card above them by twice as much.
+    // The rows on that page: spacing only.
     rowsColumn: {
         gap: 10
     },
 
     rowsInner: {
         gap: 10,
-        // Room on the right for the hard shadow each pick row throws — a ScrollView
-        // clips its own content box, and with no slack there the shadow's right edge
-        // was the thing getting cut instead of cast.
+        // Room on the right for the hard shadow each pick row throws.
         paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },

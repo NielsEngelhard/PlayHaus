@@ -30,9 +30,7 @@ func (s GormStore) CreateOneDeviceGame(ctx context.Context, game *OneOfUsSingleD
 func (s GormStore) GetOneDeviceGame(ctx context.Context, ownerID string, gameID uuid.UUID) (OneOfUsSingleDeviceGame, error) {
 	var game OneOfUsSingleDeviceGame
 
-	// Preloaded, because the players are the game as far as the app is concerned --
-	// without them the reconnect endpoint answers with a word pair and "players": null,
-	// which is a game nobody can carry on playing.
+	// Preloaded, because the players are the game as far as the app is concerned.
 	if err := s.db.WithContext(ctx).
 		Preload("Players").
 		Where("id = ? AND owner_id = ?", gameID, ownerID).
@@ -46,10 +44,7 @@ func (s GormStore) GetOneDeviceGame(ctx context.Context, ownerID string, gameID 
 	return game, nil
 }
 
-// GetOneDeviceGames are the games this player could still walk back into -- the
-// reconnect list, not the archive. A finished game stays in the table (see
-// FinishOneDeviceGame) so its own results screen keeps answering, but it has
-// nothing left to reconnect to and must not haunt this list forever.
+// GetOneDeviceGames are the games this player could still walk back into -- the reconnect list, not the archive.
 func (s GormStore) GetOneDeviceGames(ctx context.Context, ownerID string) ([]*OneOfUsSingleDeviceGame, error) {
 	var games []*OneOfUsSingleDeviceGame
 
@@ -122,14 +117,6 @@ func (s GormStore) DeleteAllSingleDeviceGamesForSpecificUser(ctx context.Context
 }
 
 // SetMayorOneDeviceGame moves the chain to one seat and takes it off everybody else.
-//
-// Both halves in one transaction, because the in-between state is a table with no mayor
-// at all -- and the vote screen reads the office out loud every round, so a reload landing
-// between the two writes would tell the table there is nobody to break a tie. SQLite is
-// held to one writer here (see the database package), so the transaction costs nothing.
-//
-// Scoped by session as well as by player id: clearing on session alone is what makes this
-// safe to call without first reading who had it.
 func (s GormStore) SetMayorOneDeviceGame(ctx context.Context, gameID uuid.UUID, playerID uuid.UUID) error {
 	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		if err := tx.Model(&OneOfUsLocalPlayer{}).
@@ -155,10 +142,6 @@ func (s GormStore) SetMayorOneDeviceGame(ctx context.Context, gameID uuid.UUID, 
 }
 
 // FinishOneDeviceGame stamps how a game ended.
-//
-// This replaced a hard delete. Deleting meant the row went the instant a side won, so
-// the reconnect endpoint 404'd on a game that had just finished -- and the results
-// screen is exactly the one a table comes back to.
 func (s GormStore) FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, civiliansWon bool) error {
 	now := time.Now().UTC()
 
@@ -181,8 +164,7 @@ func (s GormStore) FinishOneDeviceGame(ctx context.Context, gameID uuid.UUID, ci
 	return nil
 }
 
-// DeleteGamesOlderThan removes single-device games created before the cutoff, players
-// and all. Used by the retention sweep, not by anything a player triggers.
+// DeleteGamesOlderThan removes single-device games created before the cutoff, players and all.
 func (s GormStore) DeleteGamesOlderThan(ctx context.Context, before time.Time) (int64, error) {
 	var deleted int64
 

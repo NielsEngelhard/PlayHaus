@@ -15,26 +15,10 @@ import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-/**
- * The backend's own two rules, restated. `upgradeGuestUserRequest.Validate` refuses an
- * email without an `@` and a password under eight characters, and a form that let
- * either through would spend a round trip to be told so in a language of the server's
- * choosing.
- */
+// The backend's own two rules, restated.
 const PASSWORD_MIN_LENGTH = 8;
 
-/**
- * Turns the guest you are playing as into a permanent account.
- *
- * A page rather than a step in the auth sheet, which is where creating an account used
- * to live. The sheet is for somebody with no session; this is a thing you do from
- * inside one, deliberately, having decided the account is worth keeping — and the
- * profile is where that decision gets made.
- *
- * No name field: the guest already has one, generated in its own language, and the
- * profile page above is where it gets changed. Only the two things a guest is missing
- * are asked for.
- */
+// Turns the guest you are playing as into a permanent account.
 export default function UpgradeAccountPage() {
     const styles = useStyles();
     const t = useT();
@@ -46,30 +30,19 @@ export default function UpgradeAccountPage() {
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
 
-    /**
-     * Nothing to upgrade, so nothing to show. Two ways to land here: opening the URL
-     * directly on web, and the moment right after a success — `patchUser` flips
-     * `isGuest` while this page is still mounted, a render before the replace below
-     * takes it off screen.
-     *
-     * An effect rather than a redirect during render, because navigating is a side
-     * effect and expo-router will warn about one fired mid-render.
-     */
+    // Nothing to upgrade, so nothing to show.
     useEffect(() => {
         if (user !== null && !user.isGuest) {
             router.replace(ROUTES.profile);
         }
     }, [user]);
 
-    // Below the hooks, so their order never changes. Only while the session is being
-    // restored, or once it has ended — the auth gate is already standing over the page
-    // in the second case.
+    // Below the hooks, so their order never changes.
     if (user === null) {
         return <LoadingPage message={t('profile.loading')} />;
     }
 
-    // The effect above is on its way to the profile; this is only what fills the frame
-    // in between.
+    // The effect above is on its way to the profile; this is only what fills the frame in between.
     if (!user.isGuest) {
         return <LoadingPage message={t('profile.loading')} />;
     }
@@ -81,8 +54,7 @@ export default function UpgradeAccountPage() {
 
         const trimmedEmail = email.trim();
 
-        // Checked on submit rather than folded into `canSubmit`: a button that stays
-        // greyed out until you happen to type an `@` explains nothing.
+        // Checked on submit rather than folded into `canSubmit`.
         if (!trimmedEmail.includes('@')) {
             setError('profile.upgrade.invalidEmail');
             return;
@@ -98,14 +70,10 @@ export default function UpgradeAccountPage() {
         try {
             await upgradeGuest(trimmedEmail, password);
 
-            // Home rather than back to the profile. The notice that sent you here is
-            // gone, and landing on the page it used to sit at the top of would be an
-            // odd place to celebrate; `replace` because the page you just left belongs
-            // to an account state that no longer exists.
+            // Home rather than back to the profile.
             router.replace(ROUTES.home);
         } catch (failure) {
-            // The draft survives on purpose: the common failure is an email already in
-            // use, and that is a thing to correct rather than retype.
+            // The draft survives on purpose: the common failure is an email already in use.
             setError(upgradeErrorMessage(failure));
             setBusy(false);
         }

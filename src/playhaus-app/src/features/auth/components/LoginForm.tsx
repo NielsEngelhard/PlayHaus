@@ -12,17 +12,9 @@ import { StyleSheet, View } from "react-native";
 
 interface Props {
     onBack: () => void
-    /**
-     * The way on to `SignupForm`, for somebody who came looking for a login and does
-     * not have one. Optional because it is the *only* remaining door to signing up
-     * from scratch, and a caller that does not want that door open should not have to
-     * hide it afterwards.
-     */
+    // The way on to `SignupForm`, for somebody who came looking for a login and does not have one.
     onSignup?: () => void
-    /**
-     * Only needed where signing in does not take this form off screen with it.
-     * The gate unmounts on its own the moment the session starts.
-     */
+    // Only needed where signing in does not take this form off screen with it.
     onSuccess?: () => void
 }
 
@@ -36,9 +28,7 @@ export default function LoginForm({ onBack, onSignup, onSuccess }: Props) {
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
 
-    // Only emptiness is refused here. Whether the credentials are right is the
-    // server's answer to give, and guessing at it locally just adds a second
-    // opinion that can disagree.
+    // Only emptiness is refused here.
     const canSubmit = email.trim().length > 0 && password.length > 0 && !busy;
 
     async function submit() {
@@ -49,8 +39,7 @@ export default function LoginForm({ onBack, onSignup, onSuccess }: Props) {
 
         try {
             await login(email.trim(), password);
-            // Nothing to reset either way: in the gate success unmounts this form,
-            // and everywhere else `onSuccess` is what closes the sheet around it.
+            // Nothing to reset either way: in the gate success unmounts this form.
             onSuccess?.();
         } catch (failure) {
             setError(authErrorMessage(failure));
@@ -101,9 +90,7 @@ export default function LoginForm({ onBack, onSignup, onSuccess }: Props) {
                 style={styles.submit}
             />
 
-            {/* Under the submit and muted with it: creating an account from nothing is
-                the rarer road now — the usual one is playing as a guest first and
-                trading up from the profile — so it is offered rather than proposed. */}
+            {/* Under the submit and muted with it. */}
             {onSignup !== undefined && (
                 <TextButton
                     text={t('auth.login.signupPrompt')}

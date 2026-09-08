@@ -15,15 +15,7 @@ const SIZE = 110;
 const RADIUS = 40;
 const DOT = 26;
 
-/**
- * The circle One of Us is played in, on the settings band: one dot per player, dealt
- * round a ring. A ring rather than `TablePreview`'s row because this game *is* the
- * circle — everyone facing everyone, trying to spot the imposter — and because it never
- * has fewer than three seats to close one with (padding to `MIN_PLAYERS` keeps a
- * two-name draft looking like the game it will have to become before it can start).
- *
- * `Brand`-only colours, module-scope sheet: it sits only on the game's violet band.
- */
+// The circle One of Us is played in, on the settings band: one dot per player, dealt round a ring.
 export default function TableRingPreview({ names }: Props) {
     const seats = Math.max(names.length, MIN_PLAYERS);
 
@@ -74,8 +66,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: Brand.ink
     },
-    // Ink washes, unlike the paper ones the other previews use: the violet band is pale
-    // and carries ink text, so a paper ghost on it would barely register.
+    // Ink washes, unlike the paper ones the other previews use.
     empty: {
         backgroundColor: withAlpha(Brand.ink, 0.08),
         borderWidth: 2,

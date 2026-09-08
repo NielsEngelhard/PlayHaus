@@ -11,65 +11,32 @@ export interface RoomSocket<C = ClientEvent> {
 }
 
 interface Options<E extends AnyServerEvent> {
-    /**
-     * Which room, as `namespace:id`. Pass undefined to stay disconnected — before
-     * a lobby exists, or on a screen that has navigated away from one.
-     */
+    // Which room, as `namespace:id`.
     room: string | undefined
     /** Only opens once this is true, which for every caller is "signed in". */
     enabled?: boolean
     onEvent: (event: E) => void
 }
 
-/**
- * The two frames every room sends whatever game it belongs to.
- *
- * The presence mirror below is the one thing this hook reads out of a frame rather than
- * passing on, so it is also the one place that has to look inside a union it is generic
- * over. Narrowing to this rather than to either game's own type keeps that honest: any
- * union with a `state` and a `presence` carrying `online` satisfies it.
- */
+// The two frames every room sends whatever game it belongs to.
 type PresenceFrame = { type: 'state' | 'presence', data: { online: string[] } };
 
 function isPresence(event: AnyServerEvent): event is PresenceFrame {
     return event.type === 'state' || event.type === 'presence';
 }
 
-/**
- * Keeps one room connected for as long as a screen is on it.
- *
- * Game-agnostic on purpose: it knows about connecting, presence and handing frames
- * on, and nothing about what those frames mean. League of Letters reads them in
- * `useLobby` and `useMultiplayerGame`; PubquizR will read its own out of the same
- * hook.
- *
- * Presence is kept here rather than by the caller because it is the one thing every
- * room has and no game has to implement: the server sends the whole list every time
- * it changes, so this is a mirror of it and never a tally kept by hand.
- *
- * Generic over the frame union, defaulting to League of Letters' — which is what keeps
- * every existing call site of this hook unchanged while Fake Filler passes its own.
- */
+// Keeps one room connected for as long as a screen is on it.
 export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
     { room, enabled = true, onEvent }: Options<E>
 ): RoomSocket {
     const [status, setStatus] = useState<SocketStatus>('closed');
     const [online, setOnline] = useState<Set<string>>(() => new Set());
 
-    /**
-     * The handler, held in a ref rather than closed over.
-     *
-     * The callers build theirs from state that changes on every frame, so closing
-     * over it would give the effect below a new identity each time — and reopen the
-     * socket on every message it received.
-     */
+    // The handler, held in a ref rather than closed over.
     const handler = useRef(onEvent);
     useEffect(() => { handler.current = onEvent; }, [onEvent]);
 
-    /**
-     * The live connection, so `send` can keep one identity across renders while the
-     * socket underneath it is replaced on every reconnect and every room change.
-     */
+    // The live connection, so `send` can keep one identity across renders while the socket underneath it is replaced on every reconnect and every room change.
     const socket = useRef<Socket | null>(null);
 
     useEffect(() => {
@@ -78,17 +45,13 @@ export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
         const token = sessionToken();
         if (token === null) return;
 
-        // Subscribing to an external system is what an effect is for, and this one
-        // writes no state on the way in: every setState below happens in a callback,
-        // once a frame has actually arrived.
+        // Subscribing to an external system is what an effect is for, and this one writes no state on the way in.
         const open = openSocket<E>({
             room,
             token,
             onStatus: setStatus,
             onEvent: event => {
-                // Presence is mirrored here so no caller has to; the events still go
-                // on, because a screen may want to react to somebody arriving as well
-                // as to the list itself.
+                // Presence is mirrored here so no caller has to.
                 if (isPresence(event)) {
                     setOnline(new Set(event.data.online));
                 }
@@ -106,8 +69,7 @@ export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
         };
     }, [room, enabled]);
 
-    // Stable across renders: the board hands this to the keyboard, and a new
-    // function every keystroke would be a new prop on every keystroke.
+    // Stable across renders: the board hands this to the keyboard.
     const send = useCallback((event: ClientEvent) => {
         socket.current?.send(event);
     }, []);

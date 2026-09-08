@@ -20,24 +20,14 @@ const TILT = '-8deg';
 const SWELL = 1.06;
 const BREATH_MS = 1800;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Transforms are driver-safe everywhere else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/**
- * The sticker on the corner of the page: a weekday spelled out in letter tiles, and the
- * standing promise under it.
- *
- * The same three tiles the games are built from, at a quarter of the size and turned a
- * few degrees off true — this is the app's own object rather than a badge borrowed from
- * somewhere else. It breathes rather than blinks, because it is saying something that is
- * true every week and not something that just happened.
- */
+// The sticker on the corner of the page: a weekday spelled out in letter tiles, and the standing promise under it.
 export default function WeeklyStamp({ letters, caption, style }: Props) {
     const styles = useStyles();
 
-    // State rather than a ref because it is read while rendering, to build the
-    // transform. The lazy initialiser is what stops a render restarting the breath.
+    // State rather than a ref because it is read while rendering, to build the transform.
     const [swell] = useState(() => new Animated.Value(0));
 
     useEffect(() => {
@@ -82,8 +72,7 @@ export default function WeeklyStamp({ letters, caption, style }: Props) {
             ]}
         >
             <View style={styles.letters}>
-                {/* Spread rather than split, so a letter outside the basic alphabet
-                    still arrives as one tile. */}
+                {/* Spread rather than split, so a letter outside the basic alphabet still arrives as one tile. */}
                 {[...letters].map((letter, index) => (
                     <View key={index} style={styles.tile}>
                         <AppText style={styles.letter}>{letter}</AppText>
@@ -106,9 +95,7 @@ const useStyles = createThemedStyles(theme => {
             borderRadius: 14,
             alignItems: 'center',
             backgroundColor: theme.colors.lemon,
-            // Light cuts it out of the page with an ink line and drops it a hard
-            // shadow. Dark has no line worth drawing at this size, so the sticker
-            // lights the canvas under itself instead.
+            // Light cuts it out of the page with an ink line and drops it a hard shadow.
             ...(dark
                 ? { boxShadow: '0 14px 26px -12px rgba(255, 229, 56, 0.6)' }
                 : {
@@ -123,8 +110,7 @@ const useStyles = createThemedStyles(theme => {
             gap: 3
         },
 
-        // Ink and paper in both schemes: these sit on the lemon rather than on the
-        // page, so they take their colours from it and not from the canvas.
+        // Ink and paper in both schemes: these sit on the lemon rather than on the page.
         tile: {
             width: 19,
             height: 23,

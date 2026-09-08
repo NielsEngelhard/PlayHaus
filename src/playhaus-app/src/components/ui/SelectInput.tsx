@@ -23,14 +23,7 @@ export interface SelectOption<T extends string> {
     label: string,
     /** Optional second line. Shown in the open list only — the field stays one line. */
     description?: string,
-    /**
-     * Drawn to the left of the label, in the field and in every row. A node rather
-     * than an icon name so a caller can put anything there — `LanguageSelect` puts
-     * a `CountryFlag` in it, which is an image and not a glyph.
-     *
-     * The slot is reserved for every row as soon as one option fills it, so a list
-     * where only some options have one still lines its labels up.
-     */
+    // Drawn to the left of the label, in the field and in every row.
     icon?: ReactNode
 }
 
@@ -41,20 +34,7 @@ interface Props<T extends string> {
     onChange: (value: T) => void,
     /** Greyed out and unopenable — for a field whose save is still in the air. */
     disabled?: boolean,
-    /**
-     * `card` (the default) is the standing shape: a `Card` of its own, its label above
-     * the field. `inline` drops both — the card *and* the label — leaving just the
-     * field, for a caller that is already a card and has already named this row.
-     *
-     * The lobby's settings card is the one caller: it holds the same two knobs the solo
-     * setup screen does, in a fraction of the height, and a card inside a card with two
-     * labels stacked on top of each other is what that would otherwise be.
-     *
-     * `row` drops the field as well. What is left is a line of the page — icon, the
-     * label with the current answer under it, a chevron at the end — for a card that
-     * rules its rows apart rather than boxing each one. It is the same control: it
-     * measures itself and opens the same list, it simply does not look like an input.
-     */
+    // `card` (the default) is the standing shape: a `Card` of its own, its label above the field.
     variant?: 'card' | 'inline' | 'row'
 }
 
@@ -66,8 +46,7 @@ interface Anchor {
     height: number
 }
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Opacity and translate are driver-safe elsewhere.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
 /** Matches `PopupModal`: in quicker than out. */
@@ -84,22 +63,7 @@ const SCREEN_MARGIN = Spacing.three;
 /** Below this there is not enough room to be worth opening downwards. */
 const MIN_ROOM = 140;
 
-/**
- * Pick one of a list, the way a browser's `select` does it: the field stays where
- * it is and the options float over the page under it, rather than pushing
- * everything below them down.
- *
- * The list lives in a `Modal`, which is what makes that possible. Rendering it in
- * place would mean an absolutely positioned box fighting the stacking order of
- * whatever card comes next, and — because the cards in this app all sit a fraction
- * of a degree off-square — inheriting its parent's rotation. A `Modal` is its own
- * root, so the list is upright and on top of everything without either fight.
- *
- * The cost is that the position has to be measured rather than inherited, which is
- * what `Anchor` is. It is taken once, when the field is tapped: the modal covers
- * the page while it is open, so nothing behind it can scroll out from under the
- * list in the meantime.
- */
+// Pick one of a list, the way a browser's `select` does it.
 export default function SelectInput<T extends string>({
     label,
     value,
@@ -117,11 +81,7 @@ export default function SelectInput<T extends string>({
     const [open, setOpen] = useState(false);
     const { height: windowHeight } = useWindowDimensions();
 
-    /**
-     * The modal has to outlive `open`, or closing would tear the list off screen
-     * with the animation meant to see it out still to play. Same shape as
-     * `PopupModal`: raised during render, dropped by the animation itself.
-     */
+    // The modal has to outlive `open`, or closing would tear the list off screen with the animation meant to see it out still to play.
     const [present, setPresent] = useState(false);
     if (open && !present) setPresent(true);
 
@@ -145,22 +105,13 @@ export default function SelectInput<T extends string>({
 
     const selected = options.find(option => option.value === value);
 
-    /**
-     * Any option having an icon reserves the slot for all of them, so a list that
-     * mixes the two still reads as a column of labels rather than a ragged edge.
-     */
+    // Any option having an icon reserves the slot for all of them.
     const withIcons = options.some(option => option.icon !== undefined);
 
     function show() {
         if (disabled) return;
 
-        // Measured rather than remembered: the field moves with the page, and the
-        // last place it was is not where it is now.
-        //
-        // `measureInWindow` reports the field's untransformed layout box on native,
-        // so the house tilt every card wears is not accounted for. At half a degree
-        // that is a pixel or two over a card's width, which is under the rounding
-        // this list is placed with anyway.
+        // Measured rather than remembered: the field moves with the page, and the last place it was is not where it is now.
         field.current?.measureInWindow((x, y, width, height) => {
             setAnchor({ x, y, width, height });
             setOpen(true);
@@ -172,8 +123,7 @@ export default function SelectInput<T extends string>({
         setOpen(false);
     }
 
-    // Below the field when there is room for a usable list, above it when there is
-    // not — the same flip a browser does near the bottom of the window.
+    // Below the field when there is room for a usable list, above it when there is not.
     const below = anchor === null ? 0 : windowHeight - (anchor.y + anchor.height) - GAP - SCREEN_MARGIN;
     const above = anchor === null ? 0 : anchor.y - GAP - SCREEN_MARGIN;
     const dropUp = below < MIN_ROOM && above > below;
@@ -193,9 +143,7 @@ export default function SelectInput<T extends string>({
                 disabled={disabled}
                 accessibilityRole='button'
                 accessibilityLabel={t('common.selectValue', { label, value: selected?.label ?? t('common.nothingSelected') })}
-                // `aria-expanded` rather than `accessibilityState={{ expanded }}`: the
-                // latter never reaches the DOM in this version, so the field would open
-                // without announcing that it had.
+                // `aria-expanded` rather than `accessibilityState={{ expanded }}`.
                 aria-expanded={open}
                 style={[
                     row ? styles.fieldRow : styles.field,
@@ -207,8 +155,7 @@ export default function SelectInput<T extends string>({
                     <View style={styles.fieldIcon}>{selected?.icon}</View>
                 )}
 
-                {/* A value with no matching option means the caller and the list are out of
-                    step. Show an em dash rather than an empty field or a crash. */}
+                {/* A value with no matching option means the caller and the list are out of step. */}
                 {row ? (
                     <>
                         <AppText style={styles.fieldRowLabel} numberOfLines={1}>{label}</AppText>
@@ -223,9 +170,7 @@ export default function SelectInput<T extends string>({
                     </AppText>
                 )}
 
-                {/* The row's chevron points into the list it opens rather than tracking
-                    open/closed — the open list covers the field, so a flipping glyph is
-                    animation nobody sees. */}
+                {/* The row's chevron points into the list it opens rather than tracking open/closed. */}
                 <Feather
                     name={row ? 'chevron-right' : open ? 'chevron-up' : 'chevron-down'}
                     size={row ? 17 : 20}
@@ -241,19 +186,13 @@ export default function SelectInput<T extends string>({
                 <Modal
                     visible
                     transparent
-                    // Animated here, in one place, rather than half here and half in
-                    // whatever each platform's own transition happens to be.
+                    // Animated here, in one place, rather than half here and half in whatever each platform's own transition happens to be.
                     animationType='none'
                     statusBarTranslucent
-                    // Android's back button and the web's Escape. A select is never a
-                    // decision you have to make, so both simply close it.
+                    // Android's back button and the web's Escape.
                     onRequestClose={() => setOpen(false)}
                 >
-                    {/*
-                      * No dim behind it. A browser's select does not darken the page it
-                      * belongs to, and the field it came out of has to stay readable —
-                      * this is only here to catch the tap that closes the list.
-                      */}
+                    {/* No dim behind it. */}
                     <Pressable
                         style={styles.backdrop}
                         onPress={() => setOpen(false)}
@@ -283,8 +222,7 @@ export default function SelectInput<T extends string>({
                         ]}
                     >
                         <ScrollView
-                            // The list is usually shorter than its ceiling; this keeps it
-                            // that height rather than stretching it to fill.
+                            // The list is usually shorter than its ceiling; this keeps it that height rather than stretching it to fill.
                             style={styles.listScroll}
                             showsVerticalScrollIndicator={false}
                             bounces={false}
@@ -367,8 +305,7 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 2.2,
         color: theme.colors.textSecondary
     },
-    // Sunken, the way a text input reads — this is somewhere you put a value, not a
-    // button that does something.
+    // Sunken, the way a text input reads — this is somewhere you put a value, not a button that does something.
     field: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -385,15 +322,13 @@ const useStyles = createThemedStyles(theme => ({
     fieldDisabled: {
         backgroundColor: theme.colors.muted
     },
-    // The same control with none of the chrome: no fill, no outline, no shadow. What
-    // separates it from what is above and below it is the rule its container draws.
+    // The same control with none of the chrome: no fill, no outline, no shadow.
     fieldRow: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12
     },
-    // The line reads like a sentence: what this row is in the row's own voice, the
-    // current answer quieter at the far end, the chevron saying there are others.
+    // The line reads like a sentence: what this row is in the row's own voice, the current answer quieter at the far end, the chevron saying there are others.
     fieldRowLabel: {
         flex: 1,
         minWidth: 0,
@@ -422,8 +357,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 700,
         color: theme.colors.text
     },
-    // Catches the tap that closes the list, and nothing else. Transparent on
-    // purpose — see the note where it is rendered.
+    // Catches the tap that closes the list, and nothing else.
     backdrop: {
         position: 'absolute',
         top: 0,
@@ -431,8 +365,7 @@ const useStyles = createThemedStyles(theme => ({
         bottom: 0,
         left: 0
     },
-    // Positioned entirely at the call site, from the measured field: only the look
-    // lives here.
+    // Positioned entirely at the call site, from the measured field: only the look lives here.
     list: {
         position: 'absolute',
         backgroundColor: theme.colors.backgroundSecondary,

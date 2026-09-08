@@ -16,37 +16,17 @@ interface Props {
     onClose: () => void
 }
 
-/**
- * Joining by pointing the camera at the host's screen.
- *
- * The fastest way in when the host is in the room with you: their code is already on
- * screen, and reading four characters off it out loud is slower and easier to get wrong
- * than holding a phone up to it.
- *
- * A panel rather than part of the card, because a viewfinder is the only thing that should
- * be on screen while it is open — a live camera tucked into the corner of a form is both
- * distracting and, when it is pointed at whatever the phone happens to be facing,
- * faintly alarming. Closing it unmounts the `CameraView`, which is what puts the lens
- * light out; leaving it mounted and merely hidden would not.
- */
+// Joining by pointing the camera at the host's screen.
 export default function ScanToJoin({ visible, onCode, onClose }: Props) {
     const styles = useStyles();
     const t = useT();
 
     const [permission, requestPermission] = useCameraPermissions();
 
-    /**
-     * Whether this opening has already found a code.
-     *
-     * `onBarcodeScanned` fires per frame, not per code, so a camera resting on a QR for
-     * half a second delivers it thirty times. The same shape as the `sent` ref in
-     * `JoinCodeCard` and for the same reason: the first one wins and the rest are noise.
-     */
+    // Whether this opening has already found a code.
     const found = useRef(false);
 
-    // Cleared on the way *in* rather than on the way out. A hit has to keep the latch set
-    // through the close — frames already in flight arrive after `onClose` and would each
-    // push the room again — so the only safe place to let go of it is the next opening.
+    // Cleared on the way *in* rather than on the way out.
     useEffect(() => {
         if (visible) found.current = false;
     }, [visible]);
@@ -56,15 +36,12 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
 
         const code = codeFromScan(data);
 
-        // Silence is the right answer to a QR that is not ours. A lens sweeping a table
-        // crosses parcel labels and menus on the way to the host's screen, and a panel
-        // that complained about each one would be unusable.
+        // Silence is the right answer to a QR that is not ours.
         if (code === null) return;
 
         found.current = true;
 
-        // Closed first, so the camera is already gone by the time the room starts loading
-        // over the top of it.
+        // Closed first, so the camera is already gone by the time the room starts loading over the top of it.
         onClose();
         onCode(code);
     }
@@ -87,12 +64,9 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
                         <CameraView
                             style={styles.camera}
                             facing='back'
-                            // Only QR. Every extra format is another detector run against
-                            // every frame, and nothing else here encodes a join link.
+                            // Only QR.
                             barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
-                            // Latched on the way in rather than unset here: dropping the
-                            // handler takes a frame to reach the camera, and more results
-                            // arrive in the meantime.
+                            // Latched on the way in rather than unset here.
                             onBarcodeScanned={result => handle(result.data)}
                         />
                     )
@@ -107,9 +81,7 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
                 </AppText>
             )}
 
-            {/* Only while there is a question left to answer. Android and the browser both
-                refuse a second prompt once it has been turned down for good, so offering
-                one there is a button that does nothing. */}
+            {/* Only while there is a question left to answer. */}
             {permission?.granted !== true && permission?.canAskAgain !== false && (
                 <TextButton
                     text={t('join.permissionGrant')}
@@ -129,12 +101,7 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
     )
 }
 
-/**
- * What fills the viewfinder before there is one.
- *
- * A flat panel rather than a spinner: nothing is loading. The camera is waiting on an
- * answer from the player, and the line under it is where that answer gets asked for.
- */
+// What fills the viewfinder before there is one.
 function Waiting() {
     const styles = useStyles();
 
@@ -143,16 +110,14 @@ function Waiting() {
 
 const useStyles = createThemedStyles(theme => ({
     stage: {
-        // Square, and the widest the panel allows. A viewfinder that has to be aimed
-        // wants to be as big as the thing it is inside of.
+        // Square, and the widest the panel allows.
         width: '100%',
         aspectRatio: 1,
         marginBottom: Spacing.three,
         borderRadius: 18,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
-        // The camera fills its parent, and a square lens feed in a rounded frame keeps
-        // its corners unless the frame clips them itself.
+        // The camera fills its parent, and a square lens feed in a rounded frame keeps its corners unless the frame clips them itself.
         overflow: 'hidden',
         backgroundColor: theme.colors.backgroundInput
     },

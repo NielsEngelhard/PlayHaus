@@ -14,41 +14,18 @@ interface Props {
     standings: Seat[]
     /** The round just finished. */
     round: number
-    /**
-     * Starts the next one, or null when there is no next one this build can play.
-     *
-     * Null is what turns this from a breather into an ending: the notice appears, the
-     * action becomes the way out, and nobody is left waiting for a question that is
-     * never coming.
-     */
+    // Starts the next one, or null when there is no next one this build can play.
     onNext: (() => void) | null
     onLeave: () => void
 }
 
-/**
- * Where everyone stands with a round behind them.
- *
- * A round has to end with something, and a scoreboard is the thing a pub quiz ends rounds
- * with. It is also the beat the table needs: the phone changes hands, somebody reads the
- * scores out, and the next round starts when everybody is ready rather than the instant
- * the last answer is marked.
- *
- * The same screen is the honest place to stop, too. When there is no next round to start
- * it says so, because the session really has moved on — and the alternative is a screen
- * that either pretends the game is over or leaves the table waiting.
- *
- * It headlines the round that just ended and nothing else. It used to headline the one
- * about to start as well, back when it was the only screen that could — `RoundIntroScreen`
- * now stands between this and the first hand-off of the next round, and says it there
- * with room to say it properly. Both would be the same round named twice in a row.
- */
+// Where everyone stands with a round behind them.
 export default function RoundStandings({ standings, round, onNext, onLeave }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
 
-    // Only the outright leader gets the lemon row. On a tie nobody is winning, and two
-    // highlighted rows would say otherwise.
+    // Only the outright leader gets the lemon row.
     const top = standings[0]?.score ?? 0;
     const outright = standings.filter(seat => seat.score === top).length === 1;
 
@@ -120,9 +97,7 @@ export default function RoundStandings({ standings, round, onNext, onLeave }: Pr
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The gutters are this screen's own: the board it stands in front of has claimed the
-    // app's chrome, which hands every page on this route the bare window. See
-    // `useChromeless`.
+    // The gutters are this screen's own.
     screen: {
         flex: 1,
         width: '100%',
@@ -178,8 +153,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // `minWidth: 0` is what lets a long name truncate instead of pushing the score
-    // off the end of the row.
+    // `minWidth: 0` is what lets a long name truncate instead of pushing the score off the end of the row.
     name: {
         flex: 1,
         minWidth: 0,
@@ -195,8 +169,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    // The leader's row is lemon in both schemes, so its ink has to be too — the dark
-    // scheme's own near-white text would disappear into it.
+    // The leader's row is lemon in both schemes, so its ink has to be too.
     onLemon: {
         color: Brand.ink
     },

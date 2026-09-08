@@ -34,130 +34,51 @@ import MetaDataRow from "./MetaDataRow";
 
 interface Props {
     game: Game,
-    /**
-     * The round on screen. Not always the one the game is on: a round that has just
-     * ended stays up until the player moves off it, so the verdict is not swapped
-     * out from under them.
-     */
+    // The round on screen.
     round: GameRound,
     /** Whose board this is. Matched against `GameGuess.userId`. */
     userId: string,
-    /**
-     * Solo only: who is playing, for the status row above the board.
-     *
-     * Handed in rather than read off the session here, the same way `userId` is — the
-     * board is given who it is drawing for and does not go looking. Multiplayer has no
-     * use for it: `game.players` already names everybody at the table, this player
-     * included.
-     */
+    // Solo only: who is playing, for the status row above the board.
     player?: { name: string, avatarColorId: string },
-    /**
-     * Sends a complete word. Rejecting is how a refusal is reported — whatever it
-     * throws is turned into a line for the player by `guessErrorMessage`.
-     *
-     * Left out on a board that cannot be played.
-     */
+    // Sends a complete word.
     onGuess?: (word: string) => Promise<void>,
-    /**
-     * Multiplayer only. Whether the keyboard belongs to this player right now: on a
-     * shared board only one person may add a row at a time.
-     *
-     * Left undefined on solo, where the board is always yours.
-     */
+    // Multiplayer only.
     myTurn?: boolean,
-    /**
-     * Multiplayer only. Relays this player's draft to the rest of the table. Called
-     * on every keystroke; the throttling is the caller's.
-     */
+    // Multiplayer only.
     onTyping?: (letters: string) => void,
-    /**
-     * Multiplayer only. What the player whose turn it is has typed so far, as relayed
-     * over the socket. Only ever meaningful when it is not your own turn — see `draft`
-     * below, which is where your own keystrokes show up instead.
-     */
+    // Multiplayer only.
     typing?: string | null,
-    /**
-     * Multiplayer only. Who is connected, for the scoreboard's live dots. On a
-     * turn-based board this is the difference between waiting on somebody who is
-     * looking at the screen and waiting on somebody whose phone locked.
-     */
+    // Multiplayer only.
     online?: Set<string>,
-    /**
-     * Moves on from a finished round. Left out when there is nowhere to move on to,
-     * which is what makes the last round's verdict the end of the game.
-     */
+    // Moves on from a finished round.
     onNextRound?: () => void,
-    /**
-     * Leaves a game that has no rounds left. Left out on a board with nowhere to send
-     * anyone afterwards, which falls back to the way out of the game entirely.
-     *
-     * On a shared board this is called by the clock rather than by a press, so it has to
-     * be stable for the same reason `onNextRound` does.
-     */
+    // Leaves a game that has no rounds left.
     onFinish?: () => void
 }
 
 /** How long a nudge like "Die had je al." stays up before it stops being useful. */
 const NOTICE_MS = 2500;
 
-/**
- * How long the nudge takes to slide and fade in or out — one clock for both, since
- * they ride the same Animated.Value below rather than two that could drift apart.
- *
- * The pill used to snap straight in and out with the rest of the board frozen around
- * it, which read as the screen flickering rather than as a message arriving — every
- * other transition here gets a beat, and this was the one exception. Short on purpose:
- * this is a nudge, not a page arriving.
- */
+// How long the nudge takes to slide and fade in or out.
 const NOTICE_FADE_MS = 140;
 
-// react-native-web has no native animation module, so asking for one there is a
-// console warning and nothing else. Transforms and opacity are driver-safe everywhere
-// else.
+// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
 const useNativeDriver = Platform.OS !== 'web';
 
-/**
- * How far the toast travels on its way in — enough to read as dropping in from
- * somewhere, short enough that it doesn't overshoot into the header above it.
- */
+// How far the toast travels on its way in.
 const NOTICE_SLIDE_PX = 30;
 
-/**
- * How a new round arrives: the board and the controls under it lift into place.
- *
- * Rising rather than sliding sideways, which is the app's movement for going somewhere
- * else. A new round is not a new page — it is the same board with the next puzzle on
- * it — so it gets an axis of its own, and the round bar above stays put to say so.
- */
+// How a new round arrives: the board and the controls under it lift into place.
 const RISE_MS = 260;
-/**
- * How far they lift. Small, because the board is the largest thing on the screen and a
- * surface that size travelling any real distance reads as a lurch rather than a lift.
- */
+// How far they lift.
 const RISE_PX = 14;
-/**
- * The controls follow the board rather than moving with it. Just enough to be read as
- * one gesture settling in order, instead of the whole screen blinking at once.
- */
+// The controls follow the board rather than moving with it.
 const RISE_STAGGER_MS = 60;
 
-/**
- * How long a shared board sits on the answer before it moves itself on.
- *
- * Long enough to read a word and take in whether anybody got it, short enough that four
- * people are not left waiting on the fifth to look up from their phone. Counted from the
- * end of the reveal rather than from the end of the round, so the word is up for all of it.
- */
+// How long a shared board sits on the answer before it moves itself on.
 const NEXT_ROUND_MS = 3500;
 
-/**
- * A game being played: the board, the keyboard, and — for multiplayer — a clock and the
- * other players.
- *
- * The two modes are one component rather than two because they differ only in what sits
- * above the board. Everything that makes the screen a game is identical, and a solo game
- * is really a multiplayer one with nobody else in it and no deadline.
- */
+// A game being played: the board, the keyboard, and — for multiplayer — a clock and the other players.
 export default function PlayingGame({
     game,
     round,
@@ -178,79 +99,34 @@ export default function PlayingGame({
 
     const router = useRouter();
 
-    /*
-     * How much of the bottom of the screen belongs to the phone rather than to the game.
-     *
-     * The keyboard used to clear it by a flat 32, which on an iPhone is 34dp of home
-     * indicator and 6dp of clearance — the exact thing the constant was chosen to avoid,
-     * and dead space on every Android and browser that has no indicator at all. The
-     * device knows the number; `InGameHeader` already asks it for the notch.
-     */
+    // How much of the bottom of the screen belongs to the phone rather than to the game.
     const insets = useSafeAreaInsets();
 
-    // Something with a pulse, rather than the loop a room waits on. Claimed by the board
-    // rather than by a route, because the multiplayer room serves the lobby and the board
-    // off the same href — and claiming it here covers solo and multiplayer in the one
-    // place they agree.
+    // Something with a pulse, rather than the loop a room waits on.
     useMusic('playing');
 
-    /**
-     * The letter the round opens with. Given away rather than guessed: the server sends
-     * it alongside the round, so it is the one thing about the answer the app is allowed
-     * to know while the round is still winnable.
-     *
-     * Uppercased once here, which is the case the board, the keyboard and the draft all
-     * work in.
-     *
-     * Shown as a hint and never typed for anybody: the row opens empty, and the letter
-     * is put down by the player like every other one. Handing it to them costs the one
-     * press it saves and takes the first tile away from them — a board that types back
-     * is a board they have to work around, on a keyboard whose backspace then refuses
-     * the tile they are looking at.
-     */
+    // The letter the round opens with.
     const firstLetter = round.firstLetter.toUpperCase();
 
     /** Empty until the player types. The hint is theirs to put down, not ours. */
     const [draft, setDraft] = useState('');
     const [sending, setSending] = useState(false);
-    /**
-     * The catalogue key of the line, wrapped in an object rather than held bare so that
-     * saying the same thing twice is still a new notice: two identical keys in a row are
-     * equal as strings, which would leave the first one's dismissal timer running and
-     * blink the second away.
-     */
+    // The catalogue key of the line, wrapped in an object rather than held bare so that saying the same thing twice is still a new notice.
     const [notice, setNotice] = useState<Phrase | null>(null);
-    /**
-     * What the pill actually renders, a beat behind `notice` clearing — so the fade-out
-     * below has words to fade rather than a blank pill disappearing on schedule. Adjusted
-     * during render, the same way `newBoard` is below, so a new notice's own text is
-     * never painted a frame late.
-     */
+    // What the pill actually renders, a beat behind `notice` clearing.
     const [shownNotice, setShownNotice] = useState<Phrase | null>(null);
     if (notice !== null && shownNotice !== notice) {
         setShownNotice(notice);
     }
     const [noticeOpacity] = useState(() => new Animated.Value(0));
-    /**
-     * The board is still turning its last row over. Nothing that knows the answer may be
-     * shown while it is, or the keyboard and the end-of-round line spoil the tiles that
-     * have not been dealt yet.
-     */
+    // The board is still turning its last row over.
     const [revealing, setRevealing] = useState(false);
-    /** Bumped per row that lands, so a word arriving while the board is mid-reveal
-     * restarts the wait instead of inheriting the tail of the previous one's. */
+    // Bumped per row that lands, so a word arriving while the board is mid-reveal restarts the wait instead of inheriting the tail of the previous one's.
     const [revealed, setRevealed] = useState(0);
 
     const multiplayer = game.mode === 'multiplayer';
 
-    /**
-     * The rows on the board.
-     *
-     * In solo they are yours and only yours — the filter is really a guard, since
-     * nobody else can play into a solo game. On a multiplayer board the six rows
-     * belong to the table: everyone plays into the same grid, in turn, and drawing
-     * only your own would leave five of them looking blank to five different people.
-     */
+    // The rows on the board.
     const rows = multiplayer ? round.guesses : round.guesses.filter(guess => guess.userId === userId);
 
     /** Yours specifically, which is still what a win and the duplicate check are about. */
@@ -259,28 +135,14 @@ export default function PlayingGame({
     /** On a shared board the keyboard is only live when the turn is yours. */
     const canPlay = !multiplayer || myTurn === true;
 
-    // A turn that ends unsubmitted does not carry its draft into the next one — otherwise
-    // whatever was left standing in the row reappears next time the turn comes back
-    // around. Cleared the moment the turn is no longer yours rather than when it becomes
-    // yours again, so nobody else's screen is shown a draft that is already stale.
-    // Adjusted during render, the same way `boardKey` is, so it is never painted.
+    // A turn that ends unsubmitted does not carry its draft into the next one.
     const [couldPlay, setCouldPlay] = useState(canPlay);
     if (canPlay !== couldPlay) {
         setCouldPlay(canPlay);
         if (!canPlay) setDraft('');
     }
 
-    /**
-     * The turn arriving gets a sound and a line in the notice lane, on top of the draft's
-     * own reset above — a beat you can hear and read even if the phone was face down.
-     * Kept in a ref rather than the render-time adjustment above: playing a sound is not
-     * something a render is allowed to do more than once for the same transition, so it
-     * waits for the effect to actually commit.
-     *
-     * Skips the round's starting player, you included, if that is how the game opens — the
-     * ref starts at whatever `canPlay` already is, so the first commit sees no change and
-     * only a later handoff counts as one.
-     */
+    // The turn arriving gets a sound and a line in the notice lane, on top of the draft's own reset above.
     const wasMyTurn = useRef(canPlay);
     useEffect(() => {
         if (multiplayer && canPlay && !wasMyTurn.current) {
@@ -290,71 +152,37 @@ export default function PlayingGame({
         wasMyTurn.current = canPlay;
     }, [multiplayer, canPlay]);
 
-    // The backend withholds the answer while the round is still winnable, so being told it
-    // at all is what tells us the round is over. No separate flag needed.
+    // The backend withholds the answer while the round is still winnable.
     const answer = round.word;
     const finished = answer !== undefined;
     const won = myGuesses.some(guess => guess.marks.every(mark => mark === 'correct'));
     /** The last round's verdict is the game's, and there is nowhere to go on to. */
     const gameOver = finished && round.roundNumber >= game.totalRounds;
-    /**
-     * A win that happened here, just now. `revealed` is what rules out a board that was
-     * already won when it was opened — a reconnect should not throw paper at a result the
-     * player watched land ten minutes ago — and `revealing` holds it back until the board
-     * has finished turning the word over, the same way the losing line waits.
-     */
+    // A win that happened here, just now.
     const celebrating = finished && won && !revealing && revealed > 0;
-    /**
-     * The round is lost and the board has finished saying so. It takes the notice's place
-     * on screen: a nudge about the word you just typed is stale once the answer is out.
-     */
+    // The round is lost and the board has finished saying so.
     const verdict = finished && !revealing && !won;
-    /**
-     * The round is over *and* the board has stopped talking about it. Everything that
-     * would spoil the reveal — the verdict, the result panel, the way on — waits for this
-     * rather than for `finished` alone.
-     */
+    // The round is over *and* the board has stopped talking about it.
     const decided = finished && !revealing;
 
-    // A new board is a new draft — otherwise moving to the next round leaves half a word
-    // behind in a row that now belongs to a different puzzle. Adjusted during render, so
-    // the stale letters never get painted once. The hint is part of the key because a
-    // word typed under the old one can no longer be the answer: a changed opening letter
-    // makes whatever is standing in the row wrong in the one way the round refuses.
-    //
-    // Started at '' rather than at `boardKey` itself, so the very first render of a board
-    // — the mount, not just a later round change — also counts as a new one and gets the
-    // same treatment below, prefill included.
+    // A new board is a new draft — otherwise moving to the next round leaves half a word behind in a row that now belongs to a different puzzle.
     const boardKey = `${game.id}:${round.roundNumber}:${firstLetter}`;
     const [drafted, setDrafted] = useState('');
     const newBoard = drafted !== boardKey;
     if (newBoard) {
         setDrafted(boardKey);
-        // The round's opening letter goes down on the first row for whoever plays it,
-        // so the tile it costs a press to place is the one row nobody had to guess at.
-        // Only the first: a wrong guess still spends every letter after it, on this row
-        // and every one that follows, exactly as before.
+        // The round's opening letter goes down on the first row for whoever plays it.
         setDraft(canPlay && rows.length === 0 ? firstLetter : '');
         setNotice(null);
         setRevealing(false);
     }
 
-    /**
-     * The newest row on the board — the one that may still be turning over.
-     *
-     * A row landing is what starts the reveal, whoever played it. On a shared board
-     * everybody is watching the same tiles turn, so the answer has to wait them out on
-     * every screen and not only on the screen of whoever typed the word: otherwise the
-     * rest of the table reads the result off a card while their own board is still face
-     * down. Adjusted during render, so nothing that knows the answer is painted for a
-     * frame before the reveal takes it back.
-     */
+    // The newest row on the board — the one that may still be turning over.
     const newest = rows[rows.length - 1];
     const [dealt, setDealt] = useState(newest?.id);
     if (dealt !== newest?.id) {
         setDealt(newest?.id);
-        // A new round arrives with rows this screen never watched land, and a row the
-        // clock filled in has no marks to turn over. Neither of them is a reveal.
+        // A new round arrives with rows this screen never watched land, and a row the clock filled in has no marks to turn over.
         if (!newBoard && newest !== undefined && !newest.skipped) {
             setRevealing(true);
             setRevealed(count => count + 1);
@@ -379,9 +207,7 @@ export default function PlayingGame({
         return () => clearTimeout(clear);
     }, [notice]);
 
-    // Fades the pill to match: in when a new notice arrives, out when it is cleared. The
-    // text itself only disappears once the fade-out has actually finished, in the
-    // animation's own callback rather than in the body here.
+    // Fades the pill to match: in when a new notice arrives, out when it is cleared.
     useEffect(() => {
         if (notice !== null) {
             const fadeIn = Animated.timing(noticeOpacity, {
@@ -402,18 +228,7 @@ export default function PlayingGame({
         return () => fadeOut.stop();
     }, [notice, noticeOpacity]);
 
-    /**
-     * On a shared board the round moves itself on.
-     *
-     * Nobody presses Volgende ronde in multiplayer: five people each waiting for the
-     * other four is a game that pauses between every round, and one of them putting their
-     * phone in a pocket is a game that stops for good. So the answer gets its beat and
-     * the whole table goes on together — timed from the end of the reveal, which is the
-     * same moment on every screen because it is the same row scored the same way.
-     *
-     * `onNextRound` is stable, which is what makes this one wait rather than a wait that
-     * starts again every time the room delivers a frame.
-     */
+    // On a shared board the round moves itself on.
     const movingOn = multiplayer && decided && !gameOver && onNextRound !== undefined;
 
     useEffect(() => {
@@ -423,14 +238,7 @@ export default function PlayingGame({
         return () => clearTimeout(move);
     }, [movingOn, onNextRound]);
 
-    /**
-     * And the last round moves on to the uitslag, by the same clock.
-     *
-     * The end of the game is where the table most has to arrive together: the result is
-     * the screen the host opens the next room from, and anybody who never pressed
-     * through to it is somebody the room cannot carry along. So the final verdict gets
-     * the same beat as every other one and then takes everybody with it.
-     */
+    // And the last round moves on to the uitslag, by the same clock.
     const finishing = multiplayer && decided && gameOver && onFinish !== undefined;
 
     useEffect(() => {
@@ -444,8 +252,7 @@ export default function PlayingGame({
         setNotice(null);
         setDraft(current => {
             const next = current.length < game.wordLength ? current + letter : current;
-            // Relayed from here rather than from an effect on `draft`, so the table sees
-            // the letter on the same press that put it there.
+            // Relayed from here rather than from an effect on `draft`.
             if (next !== current) onTyping?.(next);
             return next;
         });
@@ -453,8 +260,7 @@ export default function PlayingGame({
 
     function backspace() {
         setNotice(null);
-        // Every letter in the row was typed by the player, the opening one included, so
-        // every letter comes back out again. Nothing here is held back from them.
+        // Every letter in the row was typed by the player, the opening one included, so every letter comes back out again.
         setDraft(current => {
             const next = current.slice(0, -1);
             if (next !== current) onTyping?.(next);
@@ -470,28 +276,16 @@ export default function PlayingGame({
             return;
         }
 
-        // Silently refused. A half-typed row is not a mistake worth interrupting anyone
-        // over — the empty tiles already say the word is not finished, and a line of text
-        // repeating that is noise on every stray press of the guess key.
+        // Silently refused.
         if (draft.length < game.wordLength) return;
 
-        // The hint is a rule as well as a hint: the server refuses a word that opens on
-        // anything else. Answered here rather than sent off, because the board already
-        // knows the letter — and a 400 comes back as "ongeldig woord", which blames the
-        // word for what is really a mistyped first tile. Named in full, so the line says
-        // which letter it means without the player looking back up at the chip.
+        // The hint is a rule as well as a hint: the server refuses a word that opens on anything else.
         if (!draft.startsWith(firstLetter)) {
             setNotice({ key: 'lol.game.mustStartWith', values: { letter: firstLetter } });
             return;
         }
 
-        // Checked here as well as on the server. The board already knows every word
-        // that has been tried, so a repeat can be answered instantly, and in the
-        // player's own language, rather than being sent off to come back as a 409.
-        //
-        // Against the whole board on multiplayer: on a shared grid somebody else
-        // having tried a word is exactly as much of a repeat as you having tried it,
-        // and the answer is a different sentence.
+        // Checked here as well as on the server.
         const played = rows.find(guess => !guess.skipped && guess.word.toUpperCase() === draft);
         if (played !== undefined) {
             setNotice({ key: played.userId === userId ? 'lol.game.alreadyGuessedYou' : 'lol.game.alreadyGuessed' });
@@ -501,13 +295,11 @@ export default function PlayingGame({
         setSending(true);
         try {
             await onGuess(draft);
-            // Cleared only on success: a guess the server refused is still the word
-            // the player meant, and retyping it would be a punishment for a hiccup.
+            // Cleared only on success: a guess the server refused is still the word the player meant.
             setDraft('');
             // And the table stops seeing the word that has now landed as a row.
             onTyping?.('');
-            // The reveal is not started here. The row this guess just put on the board is
-            // what starts it, on this screen by the same rule as on everybody else's.
+            // The reveal is not started here.
         } catch (failure) {
             setNotice({ key: guessErrorMessage(failure) });
         } finally {
@@ -517,15 +309,7 @@ export default function PlayingGame({
 
     const outcome = decided ? (won ? 'won' : 'lost') : 'playing';
 
-    /*
-     * One segment per round, and the one you are on only turns green when it is won —
-     * which is why the track is worth having over a plain "2 of 3": it carries how the
-     * game has actually gone, not just how far in you are.
-     *
-     * Only the round on screen carries its own verdict. The rounds behind it are drawn as
-     * played rather than as won or lost, because that is the one fact `round` is handed
-     * about them; `game.rounds` knows the rest and nothing asks it yet.
-     */
+    // One segment per round, and the one you are on only turns green when it is won — which is why the track is worth having over a plain "2 of 3".
     const segments: SegmentState[] = Array.from({ length: game.totalRounds }, (_, index) =>
         index < round.roundNumber - 1 ? 'played'
             : index > round.roundNumber - 1 ? 'upcoming'
@@ -534,24 +318,13 @@ export default function PlayingGame({
 
     return (
         <View style={styles.screen}>
-            {/* The way out, where you are in the game, and the app's two standing switches.
-                The hint used to sit in here too; it has moved below, next to the clock — see
-                `hintRow` — so it reads with the round's own pace instead of the header's. */}
+            {/* The way out, where you are in the game, and the app's two standing switches. */}
             <InGameHeader
                 onClose={() => router.replace(ROUTES.leagueOfLettersIndex)}
                 closeLabel={t('common.back')}
                 label={t('lol.game.roundOf', { round: round.roundNumber, total: game.totalRounds })}
                 segments={segments}
-                /*
-                 * The two switches the app's header carries everywhere else. A board has
-                 * claimed the chrome — see `useChromeless` — and these are the two of its
-                 * controls a player actually reaches for mid-game: the music is loud in a
-                 * room full of people, and the lights go down in the same room. Losing
-                 * them for the length of a game meant leaving the game to get them back.
-                 *
-                 * Only these two. The pill and the wordmark are about where you are, and
-                 * the band already says that better than they would.
-                 */
+                // The two switches the app's header carries everywhere else.
                 actions={
                     <>
                         <MusicToggle variant='band' />
@@ -560,10 +333,7 @@ export default function PlayingGame({
                 }
             />
 
-            {/* Everything the notice can afford to drop in on top of: the round's own
-                stats, the roster, and the board. Wrapped together so the toast below can
-                be positioned once, absolutely, against this box rather than against the
-                whole screen — which would mean landing on top of the header instead. */}
+            {/* Everything the notice can afford to drop in on top of: the round's own stats, the roster, and the board. */}
             <View style={styles.stage}>
                 <MetaDataRow
                     game={game}
@@ -575,9 +345,7 @@ export default function PlayingGame({
                     round={round}
                 />
 
-                {/* Solo's answer to the row of chips below: you, your running total, and how
-                    long you have been at it. The clock stops when the game does, so what is
-                    left standing over the last verdict is how long the game took. */}
+                {/* Solo's answer to the row of chips below: you, your running total, and how long you have been at it. */}
                 {!multiplayer && player !== undefined && (
                     <SoloStatusRow
                         name={player.name}
@@ -597,15 +365,7 @@ export default function PlayingGame({
                     />
                 )}
 
-                {/* Keyed on the round number, which is what replays the lift: a new round is
-                    a new board, and remounting it is what clears the last one's tiles as
-                    well as what starts the animation. Not `boardKey` — that also carries
-                    the hint letter, and a changed hint is not a new round.
-
-                    Prefixed because the controls below rise on the same round number: two
-                    siblings under one parent sharing a key is a key collision, and React
-                    answers it by matching the second element to the first one's fiber —
-                    the board drawn twice, and the keyboard nowhere. */}
+                {/* Keyed on the round number, which is what replays the lift. */}
                 <SlideFadeIn
                     key={`board-${round.roundNumber}`}
                     offsetY={RISE_PX}
@@ -616,23 +376,12 @@ export default function PlayingGame({
                         wordLength={game.wordLength}
                         maxGuesses={game.maxGuesses}
                         guesses={rows}
-                        /*
-                         * The row being typed only exists while the round can still be won,
-                         * and on a shared board it belongs to whoever is up: your own draft
-                         * when that is you, and the letters relayed from their keyboard when
-                         * it is not. One row, whoever is filling it.
-                         */
+                        // The row being typed only exists while the round can still be won, and on a shared board it belongs to whoever is up.
                         draft={finished ? '' : canPlay ? draft : (typing ?? '')}
                     />
                 </SlideFadeIn>
 
-                {/* A toast, not a reserved lane: the old version held a fixed strip of the
-                    column open at all times so a nudge had somewhere to land without
-                    shoving the board around when it arrived — empty far more often than
-                    not, on a screen where every point of height is the grid's. Absolute
-                    and rendered last so it stacks over the metadata row (or the top of
-                    the board itself) instead of pushing either down, and slides off the
-                    same way it came rather than just vanishing. */}
+                {/* A toast, not a reserved lane: the old version held a fixed strip of the column open at all times so a nudge had. */}
                 <View style={styles.noticeLane} pointerEvents='none'>
                     {!verdict && shownNotice && (
                         <Animated.View
@@ -640,9 +389,7 @@ export default function PlayingGame({
                                 styles.notice,
                                 {
                                     opacity: noticeOpacity,
-                                    // One value doing both jobs: sliding in is arriving, and
-                                    // it should read as one motion rather than a fade with a
-                                    // slide tacked on a beat later.
+                                    // One value doing both jobs: sliding in is arriving.
                                     transform: [{
                                         translateY: noticeOpacity.interpolate({
                                             inputRange: [0, 1],
@@ -658,14 +405,7 @@ export default function PlayingGame({
                 </View>
             </View>
 
-            {/* The keyboard stays mounted through the verdict rather than being swapped out
-                for it: pulling a full-height keyboard out of the tree and dropping a much
-                shorter card in its place is what made the end of a round jump, since the
-                two controls settle at different heights. The verdict now lands as a popover
-                over the same box instead, dimming the dead keyboard underneath it rather
-                than replacing it, so the box itself never changes size. Both wait out the
-                reveal — a panel naming the word while the last tiles are still face down
-                reads the answer out early. */}
+            {/* The keyboard stays mounted through the verdict rather than being swapped out for it. */}
             <SlideFadeIn
                 key={`controls-${round.roundNumber}`}
                 offsetY={RISE_PX}
@@ -674,16 +414,7 @@ export default function PlayingGame({
                 style={[styles.controls, { marginBottom: Math.max(Spacing.two, insets.bottom) + Spacing.two }]}
             >
                 <LetterKeyboard
-                    /*
-                     * On a shared board the keys show what the *table* has learned:
-                     * everybody is looking at the same six rows, so a letter greyed out
-                     * for whoever happened to type it and nobody else would be five
-                     * keyboards for one puzzle.
-                     *
-                     * The newest guess is left out until the board has finished showing
-                     * it — the keys would otherwise colour in before the tiles they
-                     * belong to.
-                     */
+                    // On a shared board the keys show what the *table* has learned.
                     marks={keyboardMarks(
                         revealing ? rows.slice(0, -1) : rows,
                         multiplayer ? undefined : userId
@@ -696,9 +427,7 @@ export default function PlayingGame({
                 />
 
                 {decided && (
-                    // `box-none` on the popover's own frame so a touch that lands on the
-                    // scrim but off the card still has somewhere to go — the keyboard under
-                    // it, already disabled by `finished` above, so nothing answers either way.
+                    // `box-none` on the popover's own frame so a touch that lands on the scrim but off the card still has somewhere to go.
                     <View style={styles.popover} pointerEvents='box-none'>
                         <View
                             style={[styles.popoverBlur, { backgroundColor: theme.colors.background + 'CC' }]}
@@ -717,8 +446,7 @@ export default function PlayingGame({
                                 <NextRoundCountdown durationMs={NEXT_ROUND_MS} label={t('lol.game.resultLabel')} />
                             ) : gameOver ? (
                                 <ActionButton
-                                    // The result is where a finished game goes when there is one
-                                    // to go to. A board without it has only the way out to offer.
+                                    // The result is where a finished game goes when there is one to go to.
                                     text={onFinish === undefined ? t('common.backToGames') : t('lol.game.viewResult')}
                                     size='large'
                                     onPress={() => onFinish === undefined
@@ -726,8 +454,7 @@ export default function PlayingGame({
                                         : onFinish()}
                                 />
                             ) : movingOn ? (
-                                /* No button on a shared board: the table moves on by itself,
-                                   and all that is left to say is how long the word stays up. */
+                                // No button on a shared board: the table moves on by itself, and all that is left to say is how long the word stays up.
                                 <NextRoundCountdown durationMs={NEXT_ROUND_MS} />
                             ) : (
                                 <ActionButton
@@ -742,9 +469,7 @@ export default function PlayingGame({
                 )}
             </SlideFadeIn>
 
-            {/* Last, so it falls in front of everything. It takes no room and no touches,
-                so the board underneath keeps its size and the buttons keep working while
-                the paper comes down. */}
+            {/* Last, so it falls in front of everything. */}
             <Confetti active={celebrating} />
         </View>
     )
@@ -767,9 +492,7 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'space-between',
         gap: Spacing.two
     },
-    // Wraps the metadata row, the roster, and the board — see the comment at the call
-    // site. Its own `gap` stands in for the one `screen` used to give these when they
-    // were its own direct children.
+    // Wraps the metadata row, the roster, and the board — see the comment at the call site.
     stage: {
         flex: 1,
         width: '100%',
@@ -779,10 +502,7 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
-    // Absolute rather than in flow, so it costs `stage` nothing when there is no notice
-    // up. `zIndex`/`elevation` put it over the metadata row and the board underneath —
-    // both painted earlier in the tree, but stacking here is worth stating rather than
-    // leaving to render order surviving the next reshuffle of this file.
+    // Absolute rather than in flow, so it costs `stage` nothing when there is no notice up.
     noticeLane: {
         position: 'absolute',
         top: 0,
@@ -810,24 +530,12 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         gap: Spacing.three - 4
     },
-    // Wraps the keyboard and, once the round is decided, the popover laid over it, so the
-    // two of them lift in as one. Holds its size for the same reason the keyboard does: the
-    // board above is the only thing on this screen that gives room away. `relative` is what
-    // gives the popover something to measure `absoluteFillObject` against — the keyboard's
-    // own box, so the blur never has to be told a height of its own.
-    //
-    // The gap underneath is set at the call site, from the device's own bottom inset: the
-    // bottom row of a keyboard this close to the edge of the phone is where the home
-    // indicator and the browser's own chrome live, and a thumb reaching past them to find
-    // Wissen is a thumb that sometimes leaves the app instead.
+    // Wraps the keyboard and, once the round is decided, the popover laid over it, so the two of them lift in as one.
     controls: {
         flexShrink: 0,
         position: 'relative'
     },
-    // The verdict's frame, sized to the keyboard underneath it rather than to its own
-    // content. `left`/`right` repeat `keyboard`'s own negative margin rather than reading
-    // `-Spacing.three` twice — this is what keeps the blur flush with the keys it is
-    // covering instead of leaving a thin unblurred strip down each side of the phone.
+    // The verdict's frame, sized to the keyboard underneath it rather than to its own content.
     popover: {
         position: 'absolute',
         top: 0,
@@ -841,16 +549,7 @@ const useStyles = createThemedStyles(theme => ({
     popoverBlur: {
         ...StyleSheet.absoluteFill
     },
-    // The board's gutters are generous on purpose, but a keyboard is not page content —
-    // it is the one control on the screen a thumb aims at twenty-six times a round, and
-    // every dp it hands back to the margin comes straight off the width of a key. So it
-    // takes the whole gutter back and runs edge to edge, the way a phone's own keyboard
-    // does: exactly `screen`'s own horizontal padding, cancelled.
-    //
-    // A negative margin rather than `InGameHeader`'s `getReach`, which is the other way
-    // out of this column: that one paints past the parent, which Android is free to clip,
-    // and a clipped key is a key that stops answering. Cancelling the padding stops at
-    // the parent's own edge, so every key is still live on every platform.
+    // The board's gutters are generous on purpose, but a keyboard is not page content.
     keyboard: {
         marginHorizontal: -Spacing.three
     }

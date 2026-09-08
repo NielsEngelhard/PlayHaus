@@ -35,14 +35,7 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
         }
     }, [names, minPlayers, onChange]);    
 
-    /*
-     * Which seat is being typed into, so the field can trade its shadow for a halo.
-     *
-     * React Native has no `:focus`, and the swap is not something a style can express on
-     * its own — a focused field puts its hard shadow *down* and lights a ring instead, so
-     * exactly one of the two has to be live at a time and the component has to know which
-     * one that is.
-     */
+    // Which seat is being typed into, so the field can trade its shadow for a halo.
     const [focused, setFocused] = useState<number | null>(null);
 
     function rename(seat: number, name: string) {
@@ -148,9 +141,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 999,
         alignItems: 'center',
         justifyContent: 'center',
-        // A swatch is a colour rather than a surface, so light cuts it out of the page
-        // with the same ink line every other object on it wears and dark leaves it to
-        // carry itself — the same trade `QuizRow` makes for its avatar.
+        // A swatch is a colour rather than a surface.
         ...(theme.scheme === 'dark'
             ? {}
             : { borderWidth: theme.borderWidth, borderColor: theme.colors.border })
@@ -161,14 +152,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900
     },
 
-    // The chrome `TextField` wears, minus its label: the seat number to the left already
-    // says which field this is, and a stack of eight uppercase micro-labels would be the
-    // loudest thing on the page.
-    //
-    // An inked slab sitting *on* the sheet rather than a well sunk into it, which is why
-    // the fill is `backgroundSecondary` and not `backgroundInput`: the hard shadow is what
-    // makes the field an object you can put a finger on, and a surface throwing one has to
-    // be lighter than the paper it throws it onto.
+    // The chrome `TextField` wears, minus its label.
     input: {
         flex: 1,
         minWidth: 0,
@@ -182,15 +166,11 @@ const useStyles = createThemedStyles(theme => ({
         // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(700),
         color: theme.colors.text,
-        // Written out rather than taken from `theme.shadows`, which is typed as a
-        // `ViewStyle`: spreading one into a `TextInput`'s sheet widens the entry past what
-        // a text style may hold. Same offset, same ink — see `hardShadow`.
+        // Written out rather than taken from `theme.shadows`, which is typed as a `ViewStyle`.
         boxShadow: `3px 3px 0 0 ${theme.colors.shadow}`
     },
 
-    // Typing presses the field down: the offset shadow goes and a halo comes up in its
-    // place. One `boxShadow` overwriting another, so this has to be applied *after*
-    // `input` in the style array — there is nothing to spread conditionally.
+    // Typing presses the field down: the offset shadow goes and a halo comes up in its place.
     inputFocused: {
         boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
     },
@@ -215,14 +195,11 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: 6,
         paddingVertical: Spacing.one,
-        // Indented by the badge column so the label starts where the names do, which is
-        // what makes it read as one more seat rather than as a button.
+        // Indented by the badge column so the label starts where the names do.
         paddingLeft: BADGE_SIZE + 9
     },
 
-    // A small inked disc, in the same hand as the fields above it — the row reads as one
-    // more seat you can stamp into being. The affordance is the disc, so the words next to
-    // it go back to being words rather than the one coloured thing in the block.
+    // A small inked disc, in the same hand as the fields above it — the row reads as one more seat you can stamp into being.
     addDisc: {
         width: 22,
         height: 22,

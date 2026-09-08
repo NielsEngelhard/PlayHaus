@@ -14,8 +14,7 @@ import (
 
 // --- quiz -----------------------------------------------------------------
 
-// quizSummaryResponse is a quiz on a shelf: enough to draw a card, and nothing
-// anybody could play from.
+// quizSummaryResponse is a quiz on a shelf: enough to draw a card, and nothing anybody could play from.
 type quizSummaryResponse struct {
 	ID          string `json:"id"`
 	Slug        string `json:"slug"`
@@ -36,10 +35,6 @@ type quizListResponse struct {
 }
 
 // quizResponse is the whole quiz, answers included.
-//
-// The answers ride along on purpose: this is the quiz master's own phone, they are
-// about to read them out loud anyway, and one call means the evening survives the
-// pub's wifi.
 type quizResponse struct {
 	quizSummaryResponse
 	Rounds []quizRoundResponse `json:"rounds"`
@@ -68,8 +63,7 @@ type quizAnswerResponse struct {
 	Position int    `json:"position"`
 	Text     string `json:"text"`
 	Correct  bool   `json:"correct"`
-	// Alias is an accepted alternative wording. The app should never draw one --
-	// it is there so a quiz master can see that "Tarantino" also counts.
+	// Alias is an accepted alternative wording.
 	Alias bool `json:"alias,omitempty"`
 }
 
@@ -147,8 +141,7 @@ func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 type quizSessionPlayerResponse struct {
 	Seat int    `json:"seat"`
 	Name string `json:"name"`
-	// Score is everything this player has taken all evening, round 6 included. There
-	// is one tally and the night is won on it -- see pubquizr.SessionPlayer.Score.
+	// Score is everything this player has taken all evening, round 6 included.
 	Score int    `json:"score"`
 	Color string `json:"color"`
 }
@@ -176,65 +169,26 @@ type quizSessionResponse struct {
 	QuizMasterSeat  int   `json:"quizMasterSeat"`
 	TotalRounds     int   `json:"totalRounds"`
 	Rounds          []int `json:"rounds"`
-	// ZenMode and TriviaMode are the two toggles this evening was set up with. Sent
-	// back so the app can say which it is playing; what they leave out of the running
-	// order is already answered by Rounds, which the app reads for that.
+	// ZenMode and TriviaMode are the two toggles this evening was set up with.
 	ZenMode    bool `json:"zenMode"`
 	TriviaMode bool `json:"triviaMode"`
-	// AnsweringSeat is whose turn it is to answer the current question, and null
-	// when nobody is being asked anything -- a finished session, a round this build
-	// cannot play yet, or one of the rounds where the whole table answers at once.
-	// Worked out here rather than by the app: it depends on how many seats have
-	// already had a go, which only the server counts.
+	// AnsweringSeat is whose turn it is to answer the current question, and null when nobody is being asked anything.
 	AnsweringSeat *int `json:"answeringSeat"`
-	// HotSeat is the seat the current question was first asked to. Sent so the app
-	// can say who a wrong answer would pass it to: with the question able to start
-	// anywhere, "has it been all the way round" is the distance back to here.
-	//
-	// It still holds a seat in the rounds where nobody is being asked -- it is always
-	// one to the quizmaster's left -- and there it means nothing. Read guesserSeat in
-	// rounds 4 and 5 and the guessing seats off the table in round 3.
+	// HotSeat is the seat the current question was first asked to.
 	HotSeat int `json:"hotSeat"`
-	// FinalistSeats are the two players round 6 is between, and null until the finale
-	// opens.
-	//
-	// Sent because the app can no longer work them out: the quizmaster is somebody who
-	// did not reach the finale, so quizMasterSeat no longer names a finalist, and the
-	// top two on the final scoreboard are not always the top two who walked into round
-	// 6. See pubquizr.Session.FinalistSeatA.
+	// FinalistSeats are the two players round 6 is between, and null until the finale opens.
 	FinalistSeats []int `json:"finalistSeats"`
-	// HotSeatRun is how many questions in a row the hot seat has taken. Sent so the
-	// board can put a number on the rule the round is built round -- take one and you
-	// are asked the next -- rather than leaving it to be explained out loud.
+	// HotSeatRun is how many questions in a row the hot seat has taken.
 	HotSeatRun int `json:"hotSeatRun"`
 	// TurnsInRound is how many goes this round holds.
-	//
-	// Not the same as counting the questions dealt to it: round 4 is one turn per
-	// player and several words inside each, so "word 5 of 8" would be the wrong thing
-	// to put on a screen.
 	TurnsInRound int `json:"turnsInRound"`
 	// DescriberSeat is who is describing in round 4, and null in every other round.
-	//
-	// It is the quizMasterSeat -- the describer holds the phone, because the words are
-	// on it -- but naming it means the app does not have to know that trick.
 	DescriberSeat *int `json:"describerSeat"`
-	// GuesserSeat is the one player being played to this turn -- the seat on the
-	// reader's left, and the only one whose answer counts while the clock runs. Sent in
-	// rounds 4 and 5, which are the two rounds built that way, and null everywhere else.
-	//
-	// Sent for the same reason describerSeat is: it is the seat the turn was opened on
-	// and the server already knows it, so the app naming it a second time off
-	// arithmetic of its own would be two answers to one question waiting to disagree.
-	// The rules card each of those turns opens with names this player out loud.
+	// GuesserSeat is the one player being played to this turn.
 	GuesserSeat *int `json:"guesserSeat"`
-	// BonusSeats are the players who each get one guess at whatever the clock left
-	// behind, in the order their go comes round. Empty in every other round.
+	// BonusSeats are the players who each get one guess at whatever the clock left behind, in the order their go comes round.
 	BonusSeats []int `json:"bonusSeats"`
-	// TurnQuestionIDs are the dealt questions this turn is about: one in every round
-	// but the fourth, and the describer's whole set of words in that one.
-	//
-	// The server saying what it will accept, rather than the app working out whose
-	// words are whose from assignedSeat and hoping the two agree.
+	// TurnQuestionIDs are the dealt questions this turn is about.
 	TurnQuestionIDs []string `json:"turnQuestionIds"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
@@ -243,9 +197,7 @@ type quizSessionResponse struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-// newQuizSessionResponse draws a session for the app. answeringSeat is passed in
-// rather than worked out here because it needs the attempt count, which lives in the
-// store; -1 means nobody is being asked.
+// newQuizSessionResponse draws a session for the app. answeringSeat is passed in rather than worked out here because it needs the attempt count.
 func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionResponse {
 	players := make([]quizSessionPlayerResponse, 0, len(s.Players))
 	for _, player := range s.Players {
@@ -295,8 +247,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		finalists = []int{a, b}
 	}
 
-	// What this turn will accept a ruling on. Round 4 is the whole of one seat's
-	// words; everywhere else it is the single question in the current slot.
+	// What this turn will accept a ruling on.
 	turn := []string{}
 	if s.Status == pubquizr.SessionInProgress {
 		if describing != nil {
@@ -350,9 +301,7 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 
 	query := r.URL.Query()
 
-	// The locale is not a nicety here. A quiz is written for one language, so a
-	// list that ignored it would be offering most people questions they cannot
-	// play. An explicit ?locale wins; otherwise Accept-Language decides.
+	// The locale is not a nicety here.
 	filter := pubquizr.QuizFilter{
 		Locale:   localeFrom(query.Get("locale"), r),
 		Category: pubquizr.Category(query.Get("category")),
@@ -391,8 +340,7 @@ func (s *Server) handleGetQuiz(w http.ResponseWriter, r *http.Request) {
 
 	quizID, err := uuid.Parse(r.PathValue("quizID"))
 	if err != nil {
-		// An unparseable id cannot name a quiz, and saying so is the same answer
-		// as "there is no such quiz".
+		// An unparseable id cannot name a quiz, and saying so is the same answer as "there is no such quiz".
 		writeError(w, http.StatusNotFound, "quiz not found")
 		return
 	}
@@ -508,13 +456,7 @@ func (s *Server) handleGetSingleDeviceSession(w http.ResponseWriter, r *http.Req
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// handleGetCurrentSingleDeviceSession answers with the evening this player left
-// running, and 204 when there is none.
-//
-// The setup screen asks this before it draws a form whose only outcome would be
-// destroying a game -- starting one throws every other session away. Same shape as
-// League of Letters' /solo/current, so the two screens can ask their question the
-// same way.
+// handleGetCurrentSingleDeviceSession answers with the evening this player left running, and 204 when there is none.
 func (s *Server) handleGetCurrentSingleDeviceSession(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -546,8 +488,7 @@ func (s *Server) handleDeleteSingleDeviceSession(w http.ResponseWriter, r *http.
 
 	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
 	if err != nil {
-		// An unparseable id cannot name a session, which is the same answer as one
-		// that is already gone.
+		// An unparseable id cannot name a session, which is the same answer as one that is already gone.
 		writeError(w, http.StatusNotFound, "session not found")
 		return
 	}
@@ -561,27 +502,14 @@ func (s *Server) handleDeleteSingleDeviceSession(w http.ResponseWriter, r *http.
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// hotSeatTurnRequest is the quizmaster settling one whole hot seat question: everybody
-// it was put to on the way round, and what became of it.
-//
-// It used to be one ruling per request, which meant a request every time a question
-// passed along -- up to seven of them on one question at a full table, none of which
-// decided anything. Now the app walks the line itself and says the whole of it once, at
-// the point the question actually closes. See pubquizr.TurnInput for why naming seats
-// here is safe, and pubquizr.checkAgainstLine for what makes it so.
-//
-// Shared with the finale, which settles the same way down a line two seats long.
+// hotSeatTurnRequest is the quizmaster settling one whole hot seat question.
 type hotSeatTurnRequest struct {
 	SessionQuestionID string `json:"sessionQuestionId"`
 	// MissedSeats is who was asked and missed, in the order the question reached them.
-	// Empty when the first person asked took it.
 	MissedSeats []int `json:"missedSeats"`
-	// CorrectSeat is who took it, or null for a question that beat everybody. A pointer
-	// because null is a real answer here rather than an absent field, and seat 0 is a
-	// real seat -- the two would be the same value otherwise.
+	// CorrectSeat is who took it, or null for a question that beat everybody.
 	CorrectSeat *int `json:"correctSeat"`
-	// Said is what the player actually answered, if the quizmaster bothered to type
-	// it in. Optional everywhere -- the verdict is the quizmaster's, not the text's.
+	// Said is what the player actually answered, if the quizmaster bothered to type it in.
 	Said string `json:"said,omitempty"`
 }
 
@@ -592,9 +520,7 @@ func (req hotSeatTurnRequest) Validate() map[string]string {
 		problems["sessionQuestionId"] = "is required"
 	}
 
-	// Only the shape is checked here. Whether these are the *right* seats -- the front
-	// of the line, in order, with the taker next along -- needs the session, so it is
-	// the service's to answer.
+	// Only the shape is checked here.
 	seen := map[int]bool{}
 	for _, seat := range req.MissedSeats {
 		if seat < 0 || seat >= pubquizr.MaxPlayers {
@@ -621,12 +547,6 @@ func (req hotSeatTurnRequest) Validate() map[string]string {
 }
 
 // handleHotSeatVerdict is the quizmaster settling a whole round 1 or round 2 question.
-//
-// The body says which question, who missed it on the way round and who took it. What it
-// is worth and who reads next are still the game's own business, and so is whether those
-// seats are the ones it may name at all -- see TurnInput. The two rounds share one
-// endpoint because the request never named the round, and the two are the same game with
-// different sums.
 func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -653,8 +573,7 @@ func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 
 	questionID, err := uuid.Parse(req.SessionQuestionID)
 	if err != nil {
-		// An unparseable id cannot name the current question, which is the same
-		// answer as naming one the table has moved past.
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
 		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
 		return
 	}
@@ -681,11 +600,6 @@ type seatGuessRequest struct {
 }
 
 // closestGuessesRequest is the quizmaster settling a round 3 question.
-//
-// Two shapes, one of which must be empty. Either every number was typed in and the
-// server works out who was nearest, or nobody typed anything and the quizmaster simply
-// says who won. A body carrying both is a screen that has disagreed with itself, and
-// picking one of them for it would be picking at random.
 type closestGuessesRequest struct {
 	SessionQuestionID string             `json:"sessionQuestionId"`
 	Guesses           []seatGuessRequest `json:"guesses,omitempty"`
@@ -732,8 +646,7 @@ func (s *Server) handleClosestGuesses(w http.ResponseWriter, r *http.Request) {
 
 	questionID, err := uuid.Parse(req.SessionQuestionID)
 	if err != nil {
-		// An unparseable id cannot name the current question, which is the same
-		// answer as naming one the table has moved past.
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
 		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
 		return
 	}
@@ -758,20 +671,13 @@ func (s *Server) handleClosestGuesses(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// wordAwardRequest is what became of one round 4 word. Empty seats is a word nobody got,
-// which is a thing worth saying rather than a row worth leaving out. More than one seat
-// is a draw -- everybody named scores in full.
+// wordAwardRequest is what became of one round 4 word.
 type wordAwardRequest struct {
 	SessionQuestionID string `json:"sessionQuestionId"`
 	Seats             []int  `json:"seats"`
 }
 
-// describeAwardsRequest is the quizmaster settling one thirty second turn.
-//
-// describerSeat is what makes this turn nameable at all: a turn covers several words, so
-// there is no single question to point at, but there is always exactly one person
-// describing. It is also the staleness guard -- a phone still showing the last turn names
-// the last describer.
+// describeAwardsRequest is the quizmaster settling one thirty second turn. describerSeat is what makes this turn nameable at all.
 type describeAwardsRequest struct {
 	DescriberSeat int                `json:"describerSeat"`
 	Awards        []wordAwardRequest `json:"awards"`
@@ -842,16 +748,13 @@ func (s *Server) handleDescribeAwards(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// listAwardRequest is what became of one of round 5's four answers. Empty seats is an
-// answer nobody found, which is a thing worth saying rather than a row worth leaving out.
-// More than one seat is a draw -- everybody named scores in full.
+// listAwardRequest is what became of one of round 5's four answers.
 type listAwardRequest struct {
 	AnswerID string `json:"answerId"`
 	Seats    []int  `json:"seats"`
 }
 
-// listAwardsRequest is the quizmaster settling one round 5 question, once the round has
-// been round every player it is going to reach.
+// listAwardsRequest is the quizmaster settling one round 5 question, once the round has been round every player it is going to reach.
 type listAwardsRequest struct {
 	SessionQuestionID string             `json:"sessionQuestionId"`
 	Awards            []listAwardRequest `json:"awards"`
@@ -876,8 +779,7 @@ func (req listAwardsRequest) Validate() map[string]string {
 	return problems
 }
 
-// handleListAwards is the quizmaster settling one round 5 question: which of its four
-// answers were found, and by whom.
+// handleListAwards is the quizmaster settling one round 5 question: which of its four answers were found, and by whom.
 func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -904,8 +806,7 @@ func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 
 	questionID, err := uuid.Parse(req.SessionQuestionID)
 	if err != nil {
-		// An unparseable id cannot name the current question, which is the same
-		// answer as naming one the table has moved past.
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
 		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
 		return
 	}
@@ -935,13 +836,6 @@ func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 }
 
 // handleFinaleVerdict is the quizmaster settling one whole round 6 question.
-//
-// The body is exactly hotSeatTurnRequest's shape -- which question, who missed it, who
-// took it -- reused rather than declared again, for the same reason the two hot seat
-// rounds share theirs: the request never named the round, and what happens next is the
-// game's own business. A finale gets its own endpoint rather than sharing
-// handleHotSeatVerdict's because it is not one of that endpoint's rounds -- see the note
-// on RecordFinaleTurn.
 func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -1036,9 +930,7 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 		writeErrorCode(w, http.StatusConflict, "unknown_word", "that word is not part of this turn")
 	case errors.Is(err, pubquizr.ErrUnknownAnswer):
 		writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
-	// Last of the named cases, because several of the ones above are kinds of it and
-	// would be swallowed here. Unmapped until the rounds that lean on it landed, which
-	// meant a bad body came back as a 500.
+	// Last of the named cases, because several of the ones above are kinds of it and would be swallowed here.
 	case errors.Is(err, pubquizr.ErrInvalidInput):
 		writeErrorCode(w, http.StatusUnprocessableEntity, "invalid_input", "that is not something this round can be told")
 	default:
@@ -1047,9 +939,7 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 	}
 }
 
-// atoiOr reads a query parameter that should be a number. Anything unreadable falls
-// back rather than failing: a bad ?page is a link somebody mangled, not a request
-// worth refusing, and the service clamps whatever comes through into range anyway.
+// atoiOr reads a query parameter that should be a number.
 func atoiOr(raw string, fallback int) int {
 	if raw == "" {
 		return fallback

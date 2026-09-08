@@ -106,9 +106,7 @@ export default function OneDeviceQuizerSetup() {
             try {
                 found = await getCurrentSingleDeviceSessionRequest();
             } catch {
-                // The check failing is not worth stopping on: the form below still works,
-                // and starting a quiz from it replaces whatever was there — which is what
-                // would have happened before this screen ever asked.
+                // The check failing is not worth stopping on.
             }
 
             if (!mounted.current) return;
@@ -122,10 +120,7 @@ export default function OneDeviceQuizerSetup() {
         router.replace(ROUTES.quizzerOneDeviceSession(session.id) as RelativePathString);
     }
 
-    /**
-     * Throw the running quiz away and stay here. What is left behind the closing modal is
-     * the form, which is now free to seat a new table out of nothing.
-     */
+    // Throw the running quiz away and stay here.
     async function abandon(session: QuizSession) {
         if (abandoning) return;
 
@@ -140,29 +135,14 @@ export default function OneDeviceQuizerSetup() {
         } catch (failure) {
             if (!mounted.current) return;
 
-            // Kept open on failure. Closing it would leave the table looking at a form
-            // that still cannot be used without destroying the quiz they just failed to
-            // destroy, with nothing on screen saying so.
+            // Kept open on failure.
             setAbandonError(quizErrorMessage(failure));
         } finally {
             if (mounted.current) setAbandoning(false);
         }
     }
 
-    /**
-     * On to another question, forwards or back.
-     *
-     * Three things have to be tidied on the way, all of them because the page stays
-     * mounted: the keyboard, which would otherwise still be up over a step with nothing
-     * to type into; the footer's error line, which belongs to a start that failed and
-     * would be sitting under a `Next` button by the time it was read; and the remembered
-     * table, which must not land on a form somebody has already pressed `Next` on.
-     *
-     * Only the chip and the footer come through here, so the browser's own back button
-     * still leaves the screen rather than stepping within it. That is what leaving has
-     * always done here — the form is local until `start` — and the alternative is
-     * putting half-filled steps in the history as pages that no longer exist.
-     */
+    // On to another question, forwards or back.
     function goTo(next: Step) {
         if (next === step) return;
 
@@ -177,37 +157,24 @@ export default function OneDeviceQuizerSetup() {
     }
 
     function editNames(next: string[]) {
-        // Any edit at all takes the form out of the running for the remembered table
-        // above, whichever of the two got here first.
+        // Any edit at all takes the form out of the running for the remembered table above, whichever of the two got here first.
         seeded.current = true;
         setNames(next);
 
-        // The line under the seats is about what is in them right now, so a table that
-        // has just been fixed should stop being complained about before it is sent.
+        // The line under the seats is about what is in them right now.
         if (error !== null) setError(null);
     }
 
-    // Checked here rather than only on submit, because both answers are worth showing
-    // before the button is pressed: what is wrong with the table, and — through the
-    // button's own state — that nothing is.
+    // Checked here rather than only on submit, because both answers are worth showing before the button is pressed.
     const problem = tableProblem(names);
     const canStart = problem === null && selected.quiz !== null && !starting;
 
-    /*
-     * What each step's button is waiting for.
-     *
-     * A step only ever guards its own question, so nothing here can strand anybody: the
-     * only way back to step 3 is through the two gates in front of it, and emptying a
-     * name once you are there closes step 1's again on the way past. `canStart` is still
-     * checked separately, because the start button has to answer for all three.
-     */
+    // What each step's button is waiting for.
     const stepReady = step === 1
         ? problem === null
         : step === 2 ? selected.quiz !== null : canStart;
 
-    // A form nobody has started filling in is not yet a mistake, so the line under the
-    // seats waits for a first name before it says anything. The button is grey either
-    // way, which is the quieter half of the same answer.
+    // A form nobody has started filling in is not yet a mistake.
     const showProblem = problem !== null && seatedNames(names).length > 0;
 
     async function start() {
@@ -221,14 +188,10 @@ export default function OneDeviceQuizerSetup() {
         try {
             const session = await startSingleDeviceQuizRequest(selected.quiz.id, seats, { zenMode, triviaMode });
 
-            // Written only once the server has taken them. Remembering a table that was
-            // refused would hand the same rejected names back next week.
+            // Written only once the server has taken them.
             void writeTable(seats);
 
-            // Only the id travels. Everything else about the session — who is in which
-            // seat, what the evening will play, whose turn it is to read — is the
-            // server's answer, and the play screen reads it off the session it fetches
-            // rather than off what this screen happened to ask for.
+            // Only the id travels.
             router.push(ROUTES.quizzerOneDeviceSession(session.id) as RelativePathString);
         } catch (failure) {
             if (!mounted.current) return;
@@ -239,9 +202,7 @@ export default function OneDeviceQuizerSetup() {
         }
     }
 
-    // Held back until the answer is in. A form that appears on its own and then has a
-    // panel drop over it a moment later reads as a misfire, and for the length of that
-    // moment it is a form whose only outcome would be destroying a quiz.
+    // Held back until the answer is in.
     if (!checked) {
         return <LoadingPage message={t('pubquizr.oneDevice.loading')} />;
     }
@@ -254,17 +215,12 @@ export default function OneDeviceQuizerSetup() {
                 eyebrow={t('common.stepOf', { step, total: STEPS })}
                 progress={{ current: step, total: STEPS }}
                 back={ROUTES.quizzerIndex as RelativePathString}
-                // Only from the second step on. The first one's way back really is
-                // another page, and it should stay the link it has always been.
+                // Only from the second step on.
                 onBack={step === 1 ? undefined : () => goTo((step - 1) as Step)}
                 enterKey={String(step)}
                 enterFrom={flow.travel}
                 preview={<TablePreview names={names} />}
-                // Grows a clause per answered question, which walking the steps does on
-                // its own — there is no quiz to name until step 2 and no modes until
-                // step 3. Left keyed on the answers rather than on the step number so a
-                // quiz arriving by deep link is named straight away, which is the only
-                // confirmation that the tap on the index was heard.
+                // Grows a clause per answered question, which walking the steps does on its own.
                 previewCaption={[
                     t('common.player.seated', { players: seatedNames(names).length }),
                     selected.quiz?.title,
@@ -280,9 +236,7 @@ export default function OneDeviceQuizerSetup() {
                         disabled={!stepReady}
                     />
                 ) : (
-                    // The one accent-filled button on the flow, and it only ever appears
-                    // on the step that can actually use it — so the colour still means
-                    // "this starts the game" rather than "this is the button".
+                    // The one accent-filled button on the flow, and it only ever appears on the step that can actually use it.
                     <StartGameButton
                         text={starting ? t('common.busy') : t('pubquizr.oneDevice.start')}
                         onPress={() => void start()}
@@ -290,9 +244,7 @@ export default function OneDeviceQuizerSetup() {
                     />
                 )}
             >
-                {/* Above the seats rather than below them: it is the instruction for
-                    filling them in, and an instruction read afterwards is a correction.
-                    Its own section, and bare — it draws a card of its own. */}
+                {/* Above the seats rather than below them. */}
                 {step === 1 && (
                     <InlineNotification
                         icon="repeat"
@@ -317,20 +269,12 @@ export default function OneDeviceQuizerSetup() {
                     </>
                 )}
 
-                {/* Already a fenced panel of its own, so no card around it. Given the
-                    whole step because it is nearly the whole of a phone screen on its
-                    own — a shelf, a search field and a scroller of its own. */}
+                {/* Already a fenced panel of its own, so no card around it. */}
                 {step === 2 && (
                     <QuizPicker quiz={selected.quiz} onSelect={selected.select} />
                 )}
 
-                {/*
-                  * What the last step is actually agreeing to, before the button that
-                  * commits it. Both halves are the control that set them rather than a
-                  * printed copy: tapping the quiz goes back to the shelf and tapping the
-                  * seats goes back to the names, so a mistake spotted here is one tap
-                  * from being fixed instead of a trip back through the chip.
-                  */}
+                {/* What the last step is actually agreeing to, before the button that commits it. */}
                 {step === 3 && (
                     <View style={styles.recap}>
                         <View>
@@ -352,15 +296,7 @@ export default function OneDeviceQuizerSetup() {
                     </View>
                 )}
 
-                {/*
-                  * Trivia first, because it is the bigger cut of the two: it takes both
-                  * rounds that are not a question with an answer, and rounds 4 and 5 are
-                  * also the only two the evening ever runs a clock on. So with it on
-                  * there is no timer left for zen mode to turn off, and the switch below
-                  * it goes away rather than sitting there doing nothing — turned off on
-                  * the way past, so what the form shows and what it asks for stay the
-                  * same thing.
-                  */}
+                {/* Trivia first, because it is the bigger cut of the two. */}
                 {step === 3 && (
                     <ToggleRow
                         flush
@@ -385,11 +321,7 @@ export default function OneDeviceQuizerSetup() {
                 )}
             </SettingsPageBase>
 
-            {/*
-              * Sits over the form until the running quiz has been dealt with one way or
-              * the other. No dismissal: both ways out are on it, and a third that just put
-              * the table back on a form they cannot safely use would not be one.
-              */}
+            {/* Sits over the form until the running quiz has been dealt with one way or the other. */}
             <PopupModal
                 visible={running !== null}
                 title={t('pubquizr.oneDevice.running.title')}
@@ -404,8 +336,7 @@ export default function OneDeviceQuizerSetup() {
                     variant='primary'
                     fullWidth
                     disabled={abandoning}
-                    // `running` cannot be null while the modal is up, but the close
-                    // animation outlives it — so the buttons have to survive it too.
+                    // `running` cannot be null while the modal is up, but the close animation outlives it.
                     onPress={() => running && resume(running)}
                 />
 
@@ -434,8 +365,7 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
 
-    // The two halves of the recap and the line under them. One section rather than two,
-    // because the line at the bottom is about both of the things above it.
+    // The two halves of the recap and the line under them.
     recap: {
         gap: Spacing.three
     },
@@ -447,8 +377,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     problem: {
-        // The section lays its children out with no gap of its own, so the line has to
-        // keep itself off the last seat.
+        // The section lays its children out with no gap of its own, so the line has to keep itself off the last seat.
         marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
@@ -457,9 +386,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     abandonError: {
-        // Inside the modal, where the form's own `InlineNotification` would be a card
-        // within a card. The panel is already the thing being looked at, so the line only
-        // has to be readable and the wrong colour for good news.
+        // Inside the modal, where the form's own `InlineNotification` would be a card within a card.
         marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,

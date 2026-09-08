@@ -8,17 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Link, RelativePathString } from "expo-router";
 import { View } from "react-native";
 
-/**
- * Who is about to play, above the mode list.
- *
- * Mostly here to confirm the name that will show up on the board, with a quiet way out to
- * the profile for when it is the wrong one. The link is deliberately the smallest thing on
- * the row: changing your name is not what this page is for, but finding out here that it
- * is wrong and having to go looking for the profile tab is worse.
- *
- * Renders nothing while signed out, like `UserPill`: there is no name to confirm yet and
- * the auth popup is already saying so.
- */
+// Who is about to play, above the mode list.
 export default function PlayingAsCard() {
     const { user } = useAuth();
     const styles = useStyles();
@@ -49,12 +39,7 @@ export default function PlayingAsCard() {
     )
 }
 
-/**
- * The first two characters of a name, as capitals.
- *
- * Spread rather than sliced, so a name that opens with an emoji or any other character
- * outside the basic plane keeps it whole instead of being cut down the middle.
- */
+// The first two characters of a name, as capitals.
 function initials(name: string): string {
     return [...name.trim()].slice(0, 2).join('').toUpperCase();
 }

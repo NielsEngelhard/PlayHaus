@@ -140,11 +140,7 @@ func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlay
 		return nil, err
 	}
 
-	// The index, not the player. Ranging by value and handing back `&player` takes the
-	// address of the loop's own copy, so the elimination below would be written to a
-	// value nothing else can see -- and `determineGameEnded`, reading the slice, would
-	// still count the player it just removed. That is a win condition that fires one
-	// vote late, every time.
+	// The index, not the player.
 	seat := indexOfPlayer(in.PlayerID, players)
 	if seat < 0 {
 		return nil, fmt.Errorf("player not found")
@@ -169,14 +165,7 @@ func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlay
 		}
 	}
 
-	// The chain only moves when the vote took the person wearing it, and only while
-	// there is still a game to break a tie in. Redrawn rather than handed to a
-	// neighbour -- see MayorCandidates for why -- and written before the response is
-	// built so the app is told who has it in the same breath as who left.
-	//
-	// A mayor voted out of a game that has just ended is left where they are: the reveal
-	// screen names everybody anyway, and moving an office nobody will use again would
-	// only be a write that can fail on the last request of the game.
+	// The chain only moves when the vote took the person wearing it, and only while there is still a game to break a tie in.
 	mayor := mayorOf(players)
 	if !gameEnded && players[seat].IsMayor {
 		if next := assignMayor(players); next >= 0 {
@@ -197,10 +186,7 @@ func (s *Service) VotePlayerOutSingleDeviceGame(ctx context.Context, in VotePlay
 	}, nil
 }
 
-// mayorOf is whoever is wearing the chain in this slice, or nil for a table that has
-// none. Nil rather than the zero uuid so the wire shape says "nobody" out loud: the app
-// reads a missing mayor as a game with no tie-breaker to name, which is a real state on
-// the last screen and must not be confused with a player whose id failed to parse.
+// mayorOf is whoever is wearing the chain in this slice, or nil for a table that has none.
 func mayorOf(players []OneOfUsLocalPlayer) *uuid.UUID {
 	for index, player := range players {
 		if player.IsMayor && !player.IsVotedOut {
@@ -211,15 +197,7 @@ func mayorOf(players []OneOfUsLocalPlayer) *uuid.UUID {
 	return nil
 }
 
-// assignMayor draws a new mayor out of everybody still in the game and takes the chain
-// off whoever had it. Returns the index it landed on, or -1 for a table with nobody left
-// to give it to.
-//
-// The draw is uniform over the survivors and blind to role, which is the office: an
-// imposter is exactly as likely to be handed the casting vote as anybody else, and the
-// table is never told which they are. Randomness lives here rather than in rules.go for
-// the same reason assignRoles keeps rand.Perm out of ImpostersFor -- the rules stay pure
-// and testable, and the service is the only thing that rolls dice.
+// assignMayor draws a new mayor out of everybody still in the game and takes the chain off whoever had it.
 func assignMayor(players []OneOfUsLocalPlayer) int {
 	candidates := MayorCandidates(players)
 
@@ -237,9 +215,7 @@ func assignMayor(players []OneOfUsLocalPlayer) int {
 	return chosen
 }
 
-// indexOfPlayer is where a player sits in the slice, or -1 when they are not at this
-// table. An index rather than a pointer so callers mutate the slice itself; see the note
-// at the call site.
+// indexOfPlayer is where a player sits in the slice, or -1 when they are not at this table.
 func indexOfPlayer(playerID uuid.UUID, players []OneOfUsLocalPlayer) int {
 	for index, player := range players {
 		if player.PlayerID == playerID {
@@ -250,12 +226,7 @@ func indexOfPlayer(playerID uuid.UUID, players []OneOfUsLocalPlayer) int {
 	return -1
 }
 
-// determineGameEnded reads the table after an elimination and says whether it is over,
-// and whether that is because the imposters are all gone.
-//
-// The two endings are not symmetrical. Civilians have to finish the job -- every imposter
-// out -- while the imposters only have to survive to parity, because from there they can
-// outvote the room and nothing the civilians do can change it.
+// determineGameEnded reads the table after an elimination and says whether it is over.
 func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 	civilians := 0
 	activePlayers := 0
@@ -279,16 +250,7 @@ func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 	return gameEnded, noMoreImposters
 }
 
-// assignRoles deals the table: everybody arrives a civilian, some of them leave here
-// lying, and depending on the table's size and its settings one of the liars leaves here
-// with nothing at all.
-//
-// Which roles are dealt and how many of each is RolesFor's decision, not this function's
-// -- the split is the package's usual one, with the rule pure and testable in rules.go
-// and the randomness confined to the service. What is left here is the draw: a fair
-// permutation, and the hand laid onto the front of it. That the hand happens to be
-// ordered (nitwits first) does not bias anybody, because the seats it is laid onto are
-// not -- indices[0] is as uniformly chosen as any other seat in the table.
+// assignRoles deals the table: everybody arrives a civilian, some of them leave here lying.
 func assignRoles(players []OneOfUsLocalPlayer, enabled []Role) {
 	hand := RolesFor(len(players), enabled)
 	if len(hand) == 0 {

@@ -22,23 +22,7 @@ interface Row {
     won: boolean
 }
 
-/**
- * The beat between settling a round 3 question and the next turn: who was right.
- *
- * The board used to fall straight through to the hand-off, which means the answer, the
- * numbers and the ruling all leave the screen in the same frame the phone starts moving
- * in. The table is still saying their guesses out loud at that point, and the one person
- * who saw the answer is the one being asked to pass the phone on — so what actually
- * happened gets relayed from memory, badly, over the top of the next hand-off.
- *
- * So the turn stops here first. The answer is on screen for everybody rather than for the
- * quizmaster alone, every guess is next to the name that said it and how far off it
- * landed, and whoever took the points is at the top of the screen in words. Only then
- * does the phone move.
- *
- * Everything on it was captured when the button was pressed — see `ClosestResult`. By the
- * time this paints, the session has moved on and none of it could be worked out again.
- */
+// The beat between settling a round 3 question and the next turn: who was right.
 export default function ClosestResultScreen({ result, onContinue }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -46,11 +30,7 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
     const { winners, guesses } = result;
     const names = winners.map(seat => seat.name).join(', ');
 
-    /*
-     * The guesses when there are any, and the winners when there are not: settling by
-     * hand writes no numbers down, so the list has nothing to say but who took it — and
-     * a screen headed "who was right" with an empty list under it reads as a bug.
-     */
+    // The guesses when there are any, and the winners when there are not.
     const rows: Row[] = guesses.length > 0
         ? guesses.map(guess => ({
             seat: guess.seat,
@@ -75,10 +55,7 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
         <View style={styles.screen}>
             <SimpleTextHero title={title} description={paid} />
 
-            {/* The answer, said once to the whole table. It has been behind the covered
-                panel for the entire turn, and this is the moment it stops being the
-                quizmaster's alone — with the question over it, because by now it has
-                been read out twice and half the table is arguing about what it meant. */}
+            {/* The answer, said once to the whole table. */}
             <View style={styles.answer}>
                 <AppText style={styles.answerLabel}>
                     {t('pubquizr.play.closest.result.answerLabel')}
@@ -110,8 +87,7 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
                 <View style={styles.rule} />
             </View>
 
-            {/* The one scroller on the screen. A table of eight is seven rows, which is
-                the only size that does not simply sit there. */}
+            {/* The one scroller on the screen. */}
             <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {rows.map(row => (
                     <View
@@ -174,9 +150,7 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The gutters are this screen's own: the board it stands in front of has claimed the
-    // app's chrome, which hands every page on this route the bare window. See
-    // `useChromeless`.
+    // The gutters are this screen's own.
     screen: {
         flex: 1,
         minHeight: 0,
@@ -187,8 +161,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: Spacing.three
     },
 
-    // Lemon, the way every other "here it is" panel in this game is: the answer is the
-    // thing this screen exists to put on the table.
+    // Lemon, the way every other "here it is" panel in this game is.
     answer: {
         flexShrink: 0,
         padding: 16,
@@ -269,8 +242,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: 2
     },
 
-    // The same 60-point row the form collected the numbers in, so the list reads as the
-    // one it was typed into rather than as a new screen's idea of the same people.
+    // The same 60-point row the form collected the numbers in.
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -332,8 +304,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    // What they actually said, at the size the field held it: this is the number people
-    // lean across a table to check.
+    // What they actually said, at the size the field held it: this is the number people lean across a table to check.
     value: {
         flexShrink: 0,
         fontSize: 21,

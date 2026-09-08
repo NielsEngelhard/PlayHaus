@@ -10,13 +10,7 @@ interface Props {
 
 const SIZE = 34;
 
-/**
- * A game's own square mark, for the right of the header on its front page.
- *
- * Stands in for `ContextPill` there rather than beside it. On a game's hub the name is
- * already set 32pt in the hero directly below, so a pill repeating it in 11pt caps is the
- * same word twice — the mark says the same thing without saying it.
- */
+// A game's own square mark, for the right of the header on its front page.
 export default function GameMark({ icon, label }: Props) {
     const styles = useStyles();
 
@@ -37,8 +31,6 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         borderRadius: 10,
         // Matches the wordmark opposite it, so the two ends of the row sit at one height.
-        // Written out rather than spread from `theme.shadows`, because this style is an
-        // `ImageStyle` and a `ViewStyle` spread widens `overflow` past what one allows.
         boxShadow: `2px 2px 0 0 ${theme.colors.shadow}`
     }
 }))

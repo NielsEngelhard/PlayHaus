@@ -14,23 +14,13 @@ interface Props {
     icon?: keyof typeof Feather.glyphMap,
     /** Fill behind the icon tile. */
     color?: string
-    /**
-     * The glyph on that fill. Only worth passing for a fill dark enough that the
-     * ink default disappears into it — a saturated one wants paper instead.
-     */
+    // The glyph on that fill.
     iconColor?: string
-    /**
-     * Anything to do about it, under the message — usually a single button. A
-     * notification that only says something needs none, which is why this is
-     * optional rather than a second required half.
-     */
+    // Anything to do about it, under the message — usually a single button.
     children?: ReactNode
 }
 
-/**
- * A calm inline message about the page you're already on — a heads-up, not an alarm.
- * `Tag` labels a thing in a word; this one has room to explain itself.
- */
+// A calm inline message about the page you're already on — a heads-up, not an alarm.
 export default function InlineNotification({
     title,
     message,
@@ -42,8 +32,7 @@ export default function InlineNotification({
     const theme = useTheme();
     const styles = useStyles();
 
-    // Defaulted here rather than in the parameter list: the resting colour comes from
-    // the theme now, and a parameter default is evaluated too early to read a hook.
+    // Defaulted here rather than in the parameter list.
     const fill = color ?? theme.colors.lemon;
 
     return (
@@ -68,8 +57,7 @@ export default function InlineNotification({
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // The wrapper is a `Card`, which lays its children out in a column — the icon and
-    // the text sit side by side inside it.
+    // The wrapper is a `Card`, which lays its children out in a column — the icon and the text sit side by side inside it.
     row: {
         flexDirection: 'row',
         alignItems: 'flex-start',
@@ -102,8 +90,7 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.text
     },
-    // A row, so a button inside hugs its label instead of being stretched across
-    // the text column the way a column parent would stretch it.
+    // A row, so a button inside hugs its label instead of being stretched across the text column the way a column parent would stretch it.
     actions: {
         marginTop: Spacing.three,
         flexDirection: 'row',

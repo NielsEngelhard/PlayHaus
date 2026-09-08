@@ -5,14 +5,7 @@ interface Props {
     text: string
 }
 
-/**
- * A quiet status pill for a fact that is not yet true — "Coming soon", and the like.
- *
- * Outlined and lettered in `theme.colors.secondary` rather than the neutral palette: it
- * is not a sticker like the "New" badge on `GameTeaserCard`, which earns brand ink and
- * lemon because it is announcing something, but it is still the app's own accent rather
- * than plain grey — the fill stays flat so the colour reads as a tint, not a control.
- */
+// A quiet status pill for a fact that is not yet true — "Coming soon", and the like.
 export function Badge({ text }: Props) {
     const styles = useStyles();
 

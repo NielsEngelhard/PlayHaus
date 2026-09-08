@@ -8,12 +8,7 @@ interface Props {
     includeAppName: boolean
 }
 
-/**
- * The wordmark, as a pill: a lemon initial tile followed by the app name in caps.
- *
- * Sits at the left of the header on every page. Inside a game the name drops away and
- * only the tile is left — the game is the headline there.
- */
+// The wordmark, as a pill: a lemon initial tile followed by the app name in caps.
 export default function Logo({ includeAppName }: Props) {
     const styles = useStyles();
 
@@ -42,9 +37,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingLeft: 6,
         paddingRight: Spacing.three - 4,
         paddingVertical: 5,
-        // A hard offset with a soft one under it, so the pill is both cut out and
-        // floating. Both cast into `shadow`, which is ink on paper and a near-black one
-        // step under the canvas in dark.
+        // A hard offset with a soft one under it, so the pill is both cut out and floating.
         boxShadow: `2px 2px 0 0 ${theme.colors.shadow}, 0 6px 14px -8px ${withAlpha(theme.colors.shadow, 0.5)}`
     },
     // With no name beside it the tile would be sitting in a lopsided capsule.

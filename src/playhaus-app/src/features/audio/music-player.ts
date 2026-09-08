@@ -3,61 +3,23 @@ import { loopsForever, pickTrack, SOURCES, type MusicScene, type TrackId } from 
 import { ensureAudioSession } from "@/utils/audio-session";
 import { createAudioPlayer, type AudioPlayer } from "expo-audio";
 
-/**
- * The background loops, and the machinery for having exactly one of them going.
- *
- * Split by platform — see `music-player.web.ts`, which answers the same contract with the
- * browser's own audio stack for reasons set out there.
- *
- * State lives at module scope rather than in the provider that drives it, for the same reason
- * `bubble-sound.ts` does: it keeps every player out of the static pre-render, and it means Fast
- * Refresh reloading the provider does not leave a loop orphaned with nothing holding a handle
- * to it.
- *
- * Nothing here cuts. Every arrival, departure and handover is a ramp — see `fade.ts` for the
- * shape and the timing.
- */
+// The background loops, and the machinery for having exactly one of them going.
 
-/**
- * Quiet. This is music nobody chose to put on, playing under a game they came for, and on iOS it
- * plays *on top of* whatever they were already listening to rather than pausing it (see the
- * `mixWithOthers` note in `audio-session.ts`). Every loop is mastered to −18.8 LUFS, so one
- * number suits all of them.
- *
- * The ceiling a fade in climbs to, rather than a level anything is ever set to outright.
- */
+// Quiet.
 const VOLUME = 0.2;
 
 const players = new Map<TrackId, AudioPlayer>();
 
-/**
- * Where each player's volume currently is.
- *
- * Kept here rather than read back off `player.volume`, because a fade has to know what level to
- * start from and the only thing that reliably knows is whoever wrote it last. Reading the
- * platform's own idea of it puts a bridge hop in the middle of every step.
- */
+// Where each player's volume currently is.
 const levels = new Map<TrackId, number>();
 
 /** Ramps in flight, so starting one on a track cancels the one it replaces. */
 const fades = new Map<TrackId, Fade>();
 
-/**
- * Which players are actually rolling.
- *
- * A track on its way out keeps playing until its fade reaches silence, so this is not the same
- * question as "which track is claimed" — and it is what lets a scene reclaimed mid-fade pick the
- * loop back up where it is instead of snapping it to the top.
- */
+// Which players are actually rolling.
 const running = new Set<TrackId>();
 
-/**
- * The scene and track a fade out is still working through.
- *
- * Kept so that reclaiming the same scene before the fade lands picks that loop back up instead
- * of a different one — which is what muting and unmuting inside a game is, and getting a new
- * song out of a button labelled "unmute" is not what anybody pressed it for.
- */
+// The scene and track a fade out is still working through.
 let retired: { scene: MusicScene, track: TrackId } | null = null;
 
 /** Which scene is meant to be playing, or nothing. */
@@ -80,15 +42,13 @@ function trackPlayer(track: TrackId): AudioPlayer | undefined {
         const player = createAudioPlayer(SOURCES[track]);
 
         player.loop = loopsForever(track);
-        // Silent until something fades it in. A player built at `VOLUME` would be a hard cut
-        // waiting to happen the first time anything called `play` without a ramp.
+        // Silent until something fades it in.
         player.volume = 0;
 
         players.set(track, player);
         levels.set(track, 0);
 
-        // A track that does not loop natively hands its ending to `rotate` instead of going
-        // quiet. Registered once, at creation, since `players` never lets go of an entry.
+        // A track that does not loop natively hands its ending to `rotate` instead of going quiet.
         if (!player.loop) {
             player.addListener('playbackStatusUpdate', status => {
                 if (status.didJustFinish) rotate(track);
@@ -114,12 +74,7 @@ function setLevel(track: TrackId, volume: number): void {
     }
 }
 
-/**
- * Ramp `track` to `to`, from wherever it is now, cancelling whatever ramp it was on.
- *
- * `onDone` runs only on arrival. A cancelled fade is one something else has taken over — firing
- * its tidy-up would pause a track that has just been asked to play again.
- */
+// Ramp `track` to `to`, from wherever it is now, cancelling whatever ramp it was on.
 function fadeTo(track: TrackId, to: number, onDone?: () => void): void {
     fades.get(track)?.cancel();
 
@@ -152,15 +107,10 @@ function start(track: TrackId): void {
     const player = players.get(track);
     if (!player) return;
 
-    // Anything already rolling is a track being reclaimed mid-fade — muting and unmuting inside
-    // a game, or a lobby retaken before its handover finished. Those only come back up from
-    // where they got to; restarting the loop under someone who never left would be the cut this
-    // all exists to avoid.
+    // Anything already rolling is a track being reclaimed mid-fade.
     if (!running.has(track)) {
         try {
-            // From the top. Music is scoped to lobbies and games, so a claim on a track that is
-            // not already going is somebody arriving somewhere — there is no journey to resume,
-            // and starting a fresh pick partway through it would be a strange way to greet them.
+            // From the top.
             player.seekTo(0);
             setLevel(track, 0);
             player.play();
@@ -185,15 +135,7 @@ function retire(track: TrackId): void {
     });
 }
 
-/**
- * A track finishing on its own is a cue, not a stop: hand its scene a fresh pick the same way a
- * scene switch would, rather than leaving the game to go quiet or repeat itself.
- *
- * Guarded on `currentTrack` still matching `track` — a finish event is a callback registered at
- * creation and outlives any single claim, so one arriving after the scene moved on (a claim
- * handed back, or a faster switch already under way) is stale and must not resurrect a track
- * nobody asked for.
- */
+// A track finishing on its own is a cue, not a stop.
 function rotate(track: TrackId): void {
     if (currentScene === null || currentTrack !== track) return;
 
@@ -202,8 +144,7 @@ function rotate(track: TrackId): void {
 
     const player = trackPlayer(next);
     if (!player) {
-        // No fresh pick to hand over to. The old track has already finished, so there is
-        // nothing left to resume it from — the scene simply goes quiet, same as `stopMusic`.
+        // No fresh pick to hand over to.
         currentScene = null;
         currentTrack = null;
         retire(track);
@@ -213,33 +154,18 @@ function rotate(track: TrackId): void {
 
     currentTrack = next;
 
-    // The old track is already silent — it just finished — so this is a fade in rather than a
-    // crossfade. `retire` still does the honours: pausing it once its (already-arrived) fade
-    // lands keeps every path to silence going through the same door.
+    // The old track is already silent — it just finished — so this is a fade in rather than a crossfade.
     retire(track);
     start(next);
 }
 
-/**
- * Play something suitable for `scene`, and make sure it is the only thing going.
- *
- * Idempotent *per scene*, which is the point: the provider calls this from an effect, and
- * guarding on the scene rather than the track means a re-render cannot reshuffle the music
- * under someone who has not gone anywhere.
- *
- * A player per track rather than one player whose source is swapped. `AudioPlayer.replace` tears
- * the underlying player down and builds a new one at the platform's defaults, so the loop comes
- * back as a one-shot at full volume — and a crossfade needs both tracks audible at once anyway,
- * which one player cannot do. Six streamed AAC loops cost next to nothing, and only the ones
- * actually picked are ever built.
- */
+// Play something suitable for `scene`, and make sure it is the only thing going.
 export function playScene(scene: MusicScene): void {
     if (currentScene === scene) return;
 
     const previous = currentTrack;
 
-    // Still audible from a stop this scene has not finished leaving — so it is resumed rather
-    // than replaced. Anything else is a fresh arrival and gets a fresh pick.
+    // Still audible from a stop this scene has not finished leaving — so it is resumed rather than replaced.
     const resumable = retired !== null && retired.scene === scene && running.has(retired.track)
         ? retired.track
         : null;
@@ -259,8 +185,7 @@ export function playScene(scene: MusicScene): void {
     currentScene = scene;
     currentTrack = track;
 
-    // Both ramps run at once and cross in the middle — see the equal-power note in `fade.ts`,
-    // which is what keeps the level steady through the handover instead of sagging.
+    // Both ramps run at once and cross in the middle.
     if (previous !== null && previous !== track) retire(previous);
 
     start(track);

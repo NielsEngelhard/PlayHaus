@@ -22,14 +22,7 @@ interface Props {
     onStart: () => void
 }
 
-/**
- * The room, on the screen of whoever opened it.
- *
- * Everything about the *shape* of this screen lives in `LobbyPageBase` now — the bar, the
- * code band, the scrolling middle, the pinned footer — so what is left here is only the
- * three things that are League of Letters': who the seats belong to, what this game has to
- * set, and what starting it says.
- */
+// The room, on the screen of whoever opened it.
 export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -47,25 +40,18 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
             onBack={onBack}
             backLabel={t('lobby.close')}
             code={lobby.code}
-            // The host's screen is the one with something to offer, so it gets the band
-            // as well as the pill.
+            // The host's screen is the one with something to offer, so it gets the band as well as the pill.
             handsOutCode
             footer={
                 <View>
                     <StartGameButton
                         text={state.starting ? t('common.busy') : t('lol.lobby.start')}
                         onPress={onStart}
-                        // A room of one has nobody to play against, and a save still in
-                        // the air means the game could start on settings that did not stick.
+                        // A room of one has nobody to play against.
                         disabled={state.starting || state.saving || !enough}
                     />
 
-                    {/*
-                      * The design promised latecomers could still join after the first
-                      * round. They cannot: the backend refuses a join once a lobby has
-                      * started, so this says the true thing instead — which is also the
-                      * more useful one, since it is the last moment anybody can be added.
-                      */}
+                    {/* The design promised latecomers could still join after the first round. */}
                     <AppText style={styles.footnote}>
                         {enough ? t('lol.lobby.startNote') : t('lol.lobby.needPlayers')}
                     </AppText>

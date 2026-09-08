@@ -14,20 +14,7 @@ import type { TranslationKey } from '@/features/i18n/keys';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-/**
- * The Fake Filler board.
- *
- * Opens a *second* socket onto the same room the lobby is already on, rather than
- * threading frames down from `useLobby` — the same choice `useMultiplayerGame` makes for
- * League of Letters, and for the same reason: presence counts players rather than
- * connections, so two sockets from one device are still one light.
- *
- * The board is fetched rather than pushed, and that is the shape of this whole file. Every
- * player's board is different — a round carries your own answer and not anybody else's,
- * and its options are identified by a shuffled slot — so there is no one body the server
- * could broadcast. What the socket carries instead is either a count, which is safe, or a
- * nudge to go and read a board of your own.
- */
+// The Fake Filler board.
 
 export interface FFGameState {
     game: FFGame | null
@@ -40,19 +27,9 @@ export interface FFGameState {
 
     /** The two prompts dealt to this player to write for. */
     myRounds: FFRound[]
-    /**
-     * The round the table is voting on, or null.
-     *
-     * Held back while a reveal is on screen — see `reveal`.
-     */
+    // The round the table is voting on, or null.
     votingRound: FFRound | null
-    /**
-     * The round just decided, while this player is still reading it.
-     *
-     * The server advances `currentRound` on the last vote, so without this the reveal
-     * would be replaced by the next prompt in the same frame that produced it. Cleared by
-     * `dismissReveal`, which is the only thing that moves the board on.
-     */
+    // The round just decided, while this player is still reading it.
     reveal: FFReveal | null
 
     submitting: boolean
@@ -104,18 +81,12 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
     useEffect(() => {
         if (!signedIn || gameId === undefined) return;
 
-        // set-state-in-effect: reading the board on mount and storing it is the whole
-        // job, and every write happens after the request resolves.
+        // set-state-in-effect: reading the board on mount and storing it is the whole job.
         // eslint-disable-next-line react-hooks/set-state-in-effect
         void load();
     }, [signedIn, gameId, load]);
 
-    /**
-     * A different game under the same hook, which is what playing again is.
-     *
-     * Adjusted during render so it is never painted: a reveal left standing from the last
-     * game would be the first thing the next one showed.
-     */
+    // A different game under the same hook, which is what playing again is.
     const [showing, setShowing] = useState(gameId);
     if (showing !== gameId) {
         setShowing(gameId);
@@ -130,16 +101,13 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
 
         switch (event.type) {
             case 'state': {
-                // The entire reconnect story. An app killed mid-vote comes back to a
-                // board built for it — same phase, same round, same option order — and
-                // carries on, so this replaces rather than merges.
+                // The entire reconnect story.
                 if (event.data.game !== undefined) setGame(event.data.game);
                 return;
             }
 
             case 'answer_progress': {
-                // Counts only, never content. The writing screen counts these down and
-                // learns nothing about what anybody wrote.
+                // Counts only, never content.
                 const { answersIn, answersNeeded } = event.data;
 
                 setGame(current => (
@@ -149,9 +117,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
             }
 
             case 'voting_started': {
-                // Carries no board, deliberately: which options a player may vote on
-                // depends on which prompts were dealt to them. So this is a nudge, and
-                // the answer is a round trip.
+                // Carries no board, deliberately: which options a player may vote on depends on which prompts were dealt to them.
                 void load();
                 return;
             }
@@ -169,11 +135,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
             }
 
             case 'round_result': {
-                // Everything the table needs is in this one frame — the reveal, the
-                // scores it moved, and the next round in the order everybody will see it
-                // — so no refetch. What it cannot carry is whether *this* reader may vote
-                // on the next round, because that depends on who wrote it; that is
-                // already on the round this board is holding, so it is preserved below.
+                // Everything the table needs is in this one frame.
                 const result = event.data;
 
                 setGame(current => {
@@ -196,8 +158,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
                             }
 
                             if (result.nextRound !== undefined && round.number === result.nextRound.number) {
-                                // Only the options are taken. `canVote` and `myVoteSlot`
-                                // are this reader's, and the broadcast has neither.
+                                // Only the options are taken.
                                 return { ...round, options: result.nextRound.options };
                             }
 
@@ -225,23 +186,14 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
         }
     }, [load]);
 
-    // Not before there is a game. During the lobby phase `useLobby` is already on this
-    // room, and a second connection from the same screen would be one this half has
-    // nothing to do with — the board's frames do not start until a game exists.
+    // Not before there is a game.
     const { status: connection, online } = useRoomSocket<FFServerEvent>({
         room: gameId === undefined ? undefined : ffRoom(code),
         enabled: signedIn,
         onEvent
     });
 
-    /**
-     * Fills in one of this player's prompts.
-     *
-     * The answer's own response is applied as well as the broadcast that follows it —
-     * they are the same body — so the writer's screen does not wait for its own frame to
-     * come back round. `votingOpened` is the one flag worth acting on: it means the board
-     * this player is holding is about to be replaced by one with options in it.
-     */
+    // Fills in one of this player's prompts.
     const submitAnswer = useCallback(async (roundNumber: number, fills: string[]): Promise<boolean> => {
         if (gameId === undefined || submitting) return false;
 
@@ -263,8 +215,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
                 ))
             });
 
-            // Voting opened on the back of this very request, so the options this player
-            // is about to be shown are waiting behind a read.
+            // Voting opened on the back of this very request.
             if (result.votingOpened) void load();
 
             return true;
@@ -277,13 +228,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
         }
     }, [gameId, submitting, load]);
 
-    /**
-     * Picks an option on the round being voted on.
-     *
-     * A slot, never an author — this screen was never sent the authors. The response is
-     * the same body the room is broadcast, so a vote that closes the round reveals it
-     * here without waiting for the frame.
-     */
+    // Picks an option on the round being voted on.
     const castVote = useCallback(async (roundNumber: number, slot: number): Promise<boolean> => {
         if (gameId === undefined || voting) return false;
 
@@ -331,14 +276,12 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
         }
     }, [gameId, voting]);
 
-    // Stable across renders: the reveal screen hangs its action off this, and a callback
-    // rebuilt on every frame the room delivers would be a new prop on every vote.
+    // Stable across renders: the reveal screen hangs its action off this.
     const dismissReveal = useCallback(() => setReveal(null), []);
 
     const myRounds = game === null ? [] : game.rounds.filter(round => round.mine);
 
-    // Null while a reveal is up, which is what holds the board on the round just decided
-    // rather than the one the server has already moved to.
+    // Null while a reveal is up, which is what holds the board on the round just decided rather than the one the server has already moved to.
     const votingRound = game === null || game.phase !== 'voting' || reveal !== null
         ? null
         : game.rounds.find(round => round.number === game.currentRound) ?? null;
@@ -358,8 +301,7 @@ export function useGame(gameId: string | undefined, code: string): FFGameState {
         voting,
         castVote,
         dismissReveal,
-        // Read off the status rather than off the round number, because a game the host
-        // abandoned is also over and never reaches the last round.
+        // Read off the status rather than off the round number.
         gameOver: game !== null && game.status !== 'in_progress',
         reload: load
     };
