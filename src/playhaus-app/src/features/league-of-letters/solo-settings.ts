@@ -7,9 +7,6 @@ export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
 
 export type WordLength = typeof WORD_LENGTHS[number];
 
-// What quick play draws from — the three in the middle of the range.
-export const QUICK_WORD_LENGTHS = [5, 6, 7] as const satisfies readonly WordLength[];
-
 // The shape of a solo game, for the setup screen to promise before one exists.
 export const SOLO_ROUNDS = 3;
 export const SOLO_MAX_GUESSES = 6;

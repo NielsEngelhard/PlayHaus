@@ -1,9 +1,9 @@
 import AppText from "@/components/text/AppText";
-import AccentFact, { ON_ACCENT } from "@/components/ui/AccentFact";
 import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
-import { ContentWidth, HeaderHeight, linearGradient, Spacing, type AccentInk } from "@/constants/theme";
+import { Brand, ContentWidth, HeaderHeight, linearGradient, Spacing, type AccentInk } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import Feather from "@expo/vector-icons/Feather";
 import { Image, type ImageSource } from "expo-image";
 import { Children, useState, type ReactNode } from "react";
 import { Platform, useWindowDimensions, View, type LayoutChangeEvent } from "react-native";
@@ -30,6 +30,20 @@ interface Props {
     // The rest of the page: the mode cards and whatever each game keeps under them.
     children: ReactNode
 }
+
+// The three tones the slab's contents wear, per ink.
+const ON_ACCENT: Record<AccentInk, { text: string, muted: string, border: string }> = {
+    ink: {
+        text: Brand.ink,
+        muted: 'rgba(15, 13, 18, 0.72)',
+        border: 'rgba(15, 13, 18, 0.35)'
+    },
+    paper: {
+        text: Brand.textOnAccent,
+        muted: 'rgba(254, 251, 248, 0.85)',
+        border: 'rgba(254, 251, 248, 0.55)'
+    }
+};
 
 const MARK_SIZE = 58;
 
@@ -134,17 +148,17 @@ export default function GameIndexPage({
             </AppText>
 
             <View style={styles.facts}>
-                <AccentFact
+                <Fact
                     icon="user"
                     text={`${minMaxPlayers} ${t('common.player.players')}`}
                     on={on}
                 />
-                <AccentFact
+                <Fact
                     icon="smartphone"
                     text={t(DEVICE_MODE_KEYS[deviceMode])}
                     on={on}
                 />
-                <AccentFact
+                <Fact
                     icon="clock"
                     text={`±${durationInMinutes} ${t('common.minutes')}`}
                     on={on}
@@ -197,6 +211,27 @@ export default function GameIndexPage({
             {rest}
         </View>
     )
+}
+
+// One of the three facts, as an outlined pill.
+function Fact({
+    icon,
+    text,
+    on
+}: {
+    icon: keyof typeof Feather.glyphMap,
+    text: string,
+    on: { text: string, border: string }
+}) {
+    const styles = useStyles();
+
+    return (
+        <View style={[styles.fact, { borderColor: on.border }]}>
+            <Feather name={icon} size={13} color={on.text} />
+
+            <AppText style={[styles.factText, { color: on.text }]}>{text}</AppText>
+        </View>
+    );
 }
 
 const useStyles = createThemedStyles(theme => ({
@@ -318,5 +353,20 @@ const useStyles = createThemedStyles(theme => ({
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 7
+    },
+
+    fact: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 5,
+        borderWidth: 1.5,
+        borderRadius: 999,
+        paddingVertical: 4,
+        paddingHorizontal: 11
+    },
+
+    factText: {
+        fontSize: 11.5,
+        fontWeight: 700
     }
 }))

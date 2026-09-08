@@ -38,7 +38,7 @@ export default function LeagueOfLettersIndexPage() {
                     title={t('lol.index.solo.title')}
                     description={t('lol.index.solo.description')}
                     action={t('lol.index.solo.action')}
-                    navigationUrl={ROUTES.leagueOfLettersSoloModes}
+                    navigationUrl={ROUTES.leagueOfLettersSoloSettings}
                 />
 
                 <ModeCard
@@ -51,7 +51,7 @@ export default function LeagueOfLettersIndexPage() {
                     chip={`${MIN_LOBBY_PLAYERS}-${MAX_LOBBY_PLAYERS}`}
                     description={t('lol.index.multiplayer.description')}
                     action={t('lol.index.multiplayer.action')}
-                    navigationUrl={ROUTES.leagueOfLettersMultiplayerModes}
+                    navigationUrl={ROUTES.leagueOfLettersCreateRoom}
                 />
             </View>
 

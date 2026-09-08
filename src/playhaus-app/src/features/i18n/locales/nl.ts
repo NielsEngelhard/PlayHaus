@@ -291,39 +291,6 @@ export const nl: Catalog = {
             solo: { title: 'Solo', description: 'Speel alleen, lekker rustig.', action: 'Instellen' },
             multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' }
         },
-        modes: {
-            solo: {
-                title: 'Solo',
-                description: 'Speel in je eentje. Elke dag een nieuw woord, of een potje wanneer het jou uitkomt.',
-                facts: {
-                    streak: '{{days}} dagen reeks',
-                    played: '{{played}} gespeeld',
-                    best: 'Beste {{best}}'
-                },
-                daily: {
-                    eyebrow: 'Vandaag',
-                    title: 'Woord van de dag',
-                    reset: 'Tot reset',
-                    friends: 'Vrienden vandaag',
-                    guesses: '{{guesses}} pogingen',
-                    action: 'Speel het woord van vandaag'
-                },
-                free: { title: 'Oefenen', description: 'Een rustig solo potje' },
-                competitive: { title: 'Competitief', description: 'Probeer een steeds hogere score te halen' },
-                quick: 'Snel spelen · {{letters}} letters'
-            },
-            multiplayer: {
-                title: 'Multiplayer',
-                description: 'Speel samen op afstand. Een eigen potje met vrienden, of een toernooi met een bracket.',
-                tournament: {
-                    eyebrow: 'Nieuw',
-                    title: 'Toernooi',
-                    description: '1v1 potjes (1v1v1 bij oneven aantal). Rondes per potje = aantal spelers.',
-                    action: 'Toernooi opzetten'
-                },
-                own: { title: 'Custom game', description: 'Max {{max}} spelers · jouw regels' }
-            }
-        },
         settings: {
             loading: 'Spel zoeken…',
             title: 'Solo opzetten',
