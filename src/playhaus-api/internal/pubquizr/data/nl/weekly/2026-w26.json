@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Wat is het grootste landdier dat nu nog leeft?", "difficulty": "easy", "answers": [{ "text": "De Afrikaanse olifant", "aliases": ["Olifant", "Afrikaanse olifant"] }] },
+        { "prompt": "In welk werelddeel ligt Egypte?", "difficulty": "easy", "answers": [{ "text": "Afrika" }] },
+        { "prompt": "Hoeveel wielen heeft een gewone fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Hoe heet bevroren water?", "difficulty": "easy", "answers": [{ "text": "Ijs", "aliases": ["IJs"] }] },
+        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "difficulty": "easy", "answers": [{ "text": "Mandarijn", "aliases": ["Chinees", "Mandarijn Chinees"] }] },
+        { "prompt": "Welke Italiaanse stad is op een lagune gebouwd en doorsneden met kanalen?", "difficulty": "hard", "answers": [{ "text": "Venetie", "aliases": ["Venezia", "Venice"] }] },
+        { "prompt": "Hoe heet de wetenschap die fossielen onderzoekt?", "difficulty": "hard", "answers": [{ "text": "Paleontologie" }] },
+        { "prompt": "Welk land gaf het Vrijheidsbeeld aan de Verenigde Staten?", "difficulty": "hard", "answers": [{ "text": "Frankrijk" }] },
+        { "prompt": "Welke Griekse filosoof was de leraar van Alexander de Grote?", "difficulty": "hard", "answers": [{ "text": "Aristoteles" }] },
+        { "prompt": "Hoeveel toetsen heeft een volledige vleugel?", "difficulty": "hard", "answers": [{ "text": "88" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse zeevaarder bereikte in 1642 het eiland dat nu Tasmanie heet?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
         { "prompt": "Welk element heeft het symbool Fe?", "answers": [{ "text": "IJzer", "aliases": ["ijzer"] }] },

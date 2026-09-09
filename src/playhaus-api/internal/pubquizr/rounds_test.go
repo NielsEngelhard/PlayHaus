@@ -167,7 +167,8 @@ func TestTurnsInRoundCountsTurnsNotQuestions(t *testing.T) {
 	for i := 0; i < 6; i++ {
 		session.Questions = append(session.Questions,
 			SessionQuestion{Round: RoundChoice, Position: i},
-			SessionQuestion{Round: RoundDescribe, Position: i})
+			SessionQuestion{Round: RoundDescribe, Position: i},
+			SessionQuestion{Round: RoundDoubleDown, Position: i})
 	}
 
 	if got, want := session.TurnsInRound(RoundChoice), 6; got != want {
@@ -176,16 +177,21 @@ func TestTurnsInRoundCountsTurnsNotQuestions(t *testing.T) {
 	if got, want := session.TurnsInRound(RoundDescribe), 3; got != want {
 		t.Errorf("TurnsInRound(round 4) = %d, want %d -- a turn is a player", got, want)
 	}
+	// Round 6 deals more than it plays on purpose: the questions nobody picks are the choice.
+	if got, want := session.TurnsInRound(RoundDoubleDown), 3; got != want {
+		t.Errorf("TurnsInRound(round 6) = %d, want %d -- a turn is a player", got, want)
+	}
 }
 
 func TestRotatesEachTurn(t *testing.T) {
 	want := map[int]bool{
-		RoundOpen:     false, // the verdict decides where it goes
-		RoundChoice:   false,
-		RoundClosest:  true, // everybody guesses once
-		RoundDescribe: true, // everybody describes once
-		RoundList:     true, // everybody reads once
-		RoundFinale:   false,
+		RoundOpen:       false, // the verdict decides where it goes
+		RoundChoice:     false,
+		RoundClosest:    true, // everybody guesses once
+		RoundDescribe:   true, // everybody describes once
+		RoundList:       true, // everybody reads once
+		RoundDoubleDown: true, // everybody is asked once
+		RoundFinale:     false,
 	}
 
 	for round, expected := range want {
@@ -209,6 +215,7 @@ func TestOpenRoundOnReadsTheSeatTheRoundsWay(t *testing.T) {
 		{RoundChoice, 2, 1},
 		{RoundClosest, 2, 1},
 		{RoundDescribe, 3, 2},
+		{RoundDoubleDown, 2, 1},
 	}
 
 	for _, row := range table {

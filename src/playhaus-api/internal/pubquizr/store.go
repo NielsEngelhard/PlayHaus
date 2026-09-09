@@ -319,7 +319,7 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 				"quiz_master_seat": session.QuizMasterSeat,
 				"hot_seat":         session.HotSeat,
 				"hot_seat_run":     session.HotSeatRun,
-				// Written on every turn although only the one that rolls into round 6 ever sets them.
+				// Written on every turn although only the one that rolls into the finale ever sets them.
 				"finalist_seat_a": session.FinalistSeatA,
 				"finalist_seat_b": session.FinalistSeatB,
 				"status":          session.Status,

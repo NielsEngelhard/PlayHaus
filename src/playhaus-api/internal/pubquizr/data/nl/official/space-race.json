@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoe heet het pak dat een astronaut buiten het ruimteschip draagt?", "difficulty": "easy", "answers": [{ "text": "Een ruimtepak", "aliases": ["Ruimtepak"] }] },
+        { "prompt": "Welke Amerikaanse ruimtevaartorganisatie voerde het Apolloprogramma uit?", "difficulty": "easy", "answers": [{ "text": "NASA" }] },
+        { "prompt": "Wat was de eerste kunstmaan, gelanceerd in 1957?", "difficulty": "easy", "answers": [{ "text": "Spoetnik 1", "aliases": ["Spoetnik", "Sputnik"] }] },
+        { "prompt": "Welk land lanceerde Spoetnik 1?", "difficulty": "easy", "answers": [{ "text": "De Sovjet-Unie", "aliases": ["Sovjet-Unie", "Rusland"] }] },
+        { "prompt": "Naar welke planeet werden de Vikingsondes gestuurd?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Hoeveel mensen hebben op de maan gelopen?", "difficulty": "hard", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "In welk jaar landde de laatste Apollomissie op de maan?", "difficulty": "hard", "answers": [{ "text": "1972" }] },
+        { "prompt": "Bij welke Apollomissie ontplofte op weg naar de maan een zuurstoftank?", "difficulty": "hard", "answers": [{ "text": "Apollo 13" }] },
+        { "prompt": "Welke Sovjethoofdontwerper zat achter Spoetnik en Vostok?", "difficulty": "hard", "answers": [{ "text": "Sergej Koroljov", "aliases": ["Koroljov", "Korolev"] }] },
+        { "prompt": "Bij welke missie uit 1975 koppelden een Amerikaans en een Sovjetruimteschip aan elkaar?", "difficulty": "hard", "answers": [{ "text": "Apollo-Sojoez", "aliases": ["Apollo-Soyuz", "Apollo Sojoez"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Sovjetkosmonaut maakte in 1965 de eerste ruimtewandeling?", "answers": [{ "text": "Aleksej Leonov", "aliases": ["Leonov"] }] },
         { "prompt": "Welke Nederlander vloog in 1985 als eerste de ruimte in?", "answers": [{ "text": "Wubbo Ockels", "aliases": ["Ockels"] }] },
         { "prompt": "Welke ruimtetelescoop werd in 1990 in een baan gebracht?", "answers": [{ "text": "De Hubble", "aliases": ["Hubble"] }] },

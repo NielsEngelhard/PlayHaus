@@ -8,7 +8,7 @@ import (
 func TestTriviaLeavesBothNonTriviaRoundsOutOfTheRunningOrder(t *testing.T) {
 	trivia := RunningOrder(Modes{Trivia: true})
 
-	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundFinale}; !slices.Equal(trivia, want) {
+	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundDoubleDown, RoundFinale}; !slices.Equal(trivia, want) {
 		t.Errorf("RunningOrder(trivia) = %v, want %v", trivia, want)
 	}
 
@@ -39,7 +39,8 @@ func TestTriviaStepsFromRoundThreeStraightToTheFinale(t *testing.T) {
 	}{
 		{round: RoundOpen, want: RoundChoice, whatItMeans: "the first three rounds are untouched"},
 		{round: RoundChoice, want: RoundClosest, whatItMeans: "and follow each other as always"},
-		{round: RoundClosest, want: RoundFinale, whatItMeans: "then the evening jumps the describing and the list"},
+		{round: RoundClosest, want: RoundDoubleDown, whatItMeans: "then the evening jumps the describing and the list"},
+		{round: RoundDoubleDown, want: RoundFinale, whatItMeans: "and doubling down is the last round before the finale"},
 		{round: RoundFinale, want: -1, whatItMeans: "nothing follows the finale"},
 		{round: RoundDescribe, want: -1, whatItMeans: "a round that is not played leads nowhere"},
 		{round: RoundList, want: -1, whatItMeans: "neither does the other one"},

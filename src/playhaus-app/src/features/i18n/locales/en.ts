@@ -543,6 +543,7 @@ export const en = {
                 closest: 'Closest guess',
                 describe: 'Describe it',
                 list: 'Name four',
+                doubleDown: 'Double Down',
                 finale: 'The final'
             },
             // Split in two so the total can be greyed out beside the number.
@@ -577,7 +578,8 @@ export const en = {
             leadClosest: '{{name}} reads · everyone else guesses',
             leadDescribe: '{{name}} describes their own words',
             leadList: '{{name}} asks · one player names what they can',
-            // Unused while `answering` is set.
+            // Both unused while `answering` is set.
+            leadDoubleDown: '{{name}} asks easy or hard',
             leadFinale: '{{name}} reads to both finalists',
             readAloud: 'Read this out loud',
             onlyYouSeeThis: 'Only you see this',
@@ -744,6 +746,14 @@ export const en = {
                 scoreAgain: 'Score this question again',
                 settle: 'Hand out the points'
             },
+            // Round 6: easy or hard, asked before there is a question to read.
+            doubleDown: {
+                ask: 'Easy or hard, {{name}}?',
+                /** Said out loud, because the choice is made at the table rather than on screen. */
+                cue: 'Ask out loud, then tap what they pick',
+                easy: 'Easy · {{points}} point',
+                hard: 'Hard · {{points}} points'
+            },
             // The screen that opens every round, before the phone is handed to anybody.
             intro: {
                 /** Under the number: "of 6". */
@@ -756,6 +766,7 @@ export const en = {
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
                 briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
                 briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
+                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 2. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
@@ -774,6 +785,7 @@ export const en = {
                 jobClosest: '{{name}} reads the question and collects everyone else’s number',
                 jobDescribe: '{{name}} describes their own words to the player on their left. Nobody else may look at the screen.',
                 jobList: '{{name}} reads the question out and ticks off every answer the player on their left gets.',
+                jobDoubleDown: '{{name}} asks the next player easy or hard, then reads out whichever question comes up.',
                 jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
                 // The round's rule, said on the one screen with room to say it properly.
                 ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
@@ -781,6 +793,7 @@ export const en = {
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
+                ruleDoubleDown: 'Easy pays 1, hard pays 2, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: 'Show the question'
             },

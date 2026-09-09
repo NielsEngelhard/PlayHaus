@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke kleur heeft de middelste baan van de Nederlandse vlag?", "difficulty": "easy", "answers": [{ "text": "Wit" }] },
+        { "prompt": "Naar welke oranje wortelknol is de kleur van het Nederlands elftal vernoemd?", "difficulty": "easy", "answers": [{ "text": "De wortel", "aliases": ["Wortel", "Peen"] }] },
+        { "prompt": "Om welke bloem staat Nederland het meest bekend?", "difficulty": "easy", "answers": [{ "text": "De tulp", "aliases": ["Tulp", "Tulpen"] }] },
+        { "prompt": "Hoe heten de traditionele Nederlandse houten schoenen?", "difficulty": "easy", "answers": [{ "text": "Klompen", "aliases": ["Klomp"] }] },
+        { "prompt": "In welke Nederlandse stad ligt de grootste haven van Europa?", "difficulty": "easy", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Welke Nederlandse schilder sneed in Arles een deel van zijn eigen oor af?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Hoe heten de waterwerken die na de watersnood van 1953 zijn gebouwd?", "difficulty": "hard", "answers": [{ "text": "De Deltawerken", "aliases": ["Deltawerken"] }] },
+        { "prompt": "Hoeveel Waddeneilanden zijn bewoond?", "difficulty": "hard", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "In welk jaar werd Nederland het eerste land dat het huwelijk openstelde voor paren van hetzelfde geslacht?", "difficulty": "hard", "answers": [{ "text": "2001" }] },
+        { "prompt": "Welke Nederlandse handelscompagnie uit 1602 gaf als eerste aandelen aan het publiek uit?", "difficulty": "hard", "answers": [{ "text": "De VOC", "aliases": ["VOC", "Verenigde Oostindische Compagnie"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse zeevaarder bereikte in 1642 Nieuw-Zeeland?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "Hoe heet het Nederlandse volkslied?", "answers": [{ "text": "Het Wilhelmus", "aliases": ["Wilhelmus"] }] },
         { "prompt": "Welke Nederlandse architect ontwierp de Rietveld Schroderhuis in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },

@@ -292,9 +292,9 @@ func TestListRefusesAStaleTurn(t *testing.T) {
 	}
 }
 
-// And when the round runs out, the finale opens on the two highest scores rather than on
-// whoever is furthest behind at the whole table.
-func TestListEndsIntoTheFinale(t *testing.T) {
+// And when the round runs out, the doubling down opens on whoever is furthest behind
+// rather than on whoever just scored.
+func TestListEndsIntoDoubleDown(t *testing.T) {
 	session, quiz := newListSession(0, 1, 3, 4)
 	session.Players[0].Score = 7
 	session.Players[1].Score = 5
@@ -308,19 +308,13 @@ func TestListEndsIntoTheFinale(t *testing.T) {
 		t.Fatalf("RecordListAward: %v", err)
 	}
 
-	if got, want := store.session.CurrentRound, RoundFinale; got != want {
+	if got, want := store.session.CurrentRound, RoundDoubleDown; got != want {
 		t.Fatalf("CurrentRound = %d, want %d", got, want)
 	}
-	// Seats 2 and 0 are the two highest scores (9 and 7); the lower of the pair opens,
-	// and seat 1 (5) is the best score that did not make it, so they read.
-	a, b, ok := store.session.Finalists()
-	if !ok || a != 2 || b != 0 {
-		t.Errorf("Finalists() = %d, %d, %v -- want 2, 0, true", a, b, ok)
+	if got, want := store.session.HotSeat, 3; got != want {
+		t.Errorf("HotSeat = %d, want %d -- the lowest score is asked first", got, want)
 	}
-	if got, want := store.session.HotSeat, 0; got != want {
-		t.Errorf("HotSeat = %d, want %d -- the weaker finalist opens", got, want)
-	}
-	if got, want := store.session.QuizMasterSeat, 1; got != want {
-		t.Errorf("QuizMasterSeat = %d, want %d -- third place reads the finale", got, want)
+	if got, want := store.session.QuizMasterSeat, ReaderFor(3, 4); got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d", got, want)
 	}
 }

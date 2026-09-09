@@ -12,7 +12,7 @@ import (
 // about three things: who reads, which finalist a question opens on, and what happens to
 // a question the first of them misses.
 
-// newFinaleSession is a table of four in round 6, with `positions` questions dealt, the
+// newFinaleSession is a table of four in the finale, with `positions` questions dealt, the
 // finale between seats `a` and `b`, and `master` reading to them.
 func newFinaleSession(master, a, b, position, positions int) *Session {
 	session := newVerdictSession(master, a, position, positions)

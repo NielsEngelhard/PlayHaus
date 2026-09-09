@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "In welk decennium kwam de eerste Barbiepop in de winkel?", "difficulty": "easy", "answers": [{ "text": "De jaren vijftig", "aliases": ["Jaren 50", "1950s"] }] },
+        { "prompt": "Welke haarkleur heeft Barbie in haar klassieke uitvoering?", "difficulty": "easy", "answers": [{ "text": "Blond", "aliases": ["Blonde"] }] },
+        { "prompt": "In welk jaar kwam de Barbiefilm in de bioscoop?", "difficulty": "easy", "answers": [{ "text": "2023" }] },
+        { "prompt": "In welk land ligt Barbies thuisstaat Californie?", "difficulty": "easy", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }] },
+        { "prompt": "Welk nummer van Aqua over Barbie was een hit in 1997?", "difficulty": "easy", "answers": [{ "text": "Barbie Girl" }] },
+        { "prompt": "Wat is Barbies volledige naam volgens Mattel zelf?", "difficulty": "hard", "answers": [{ "text": "Barbara Millicent Roberts", "aliases": ["Barbara Roberts"] }] },
+        { "prompt": "Welke Duitse pop kocht Ruth Handler op vakantie als rechtstreeks voorbeeld voor Barbie?", "difficulty": "hard", "answers": [{ "text": "Bild Lilli", "aliases": ["Lilli"] }] },
+        { "prompt": "Welk nummer van Billie Eilish uit de film van 2023 won een Oscar?", "difficulty": "hard", "answers": [{ "text": "What Was I Made For?", "aliases": ["What Was I Made For"] }] },
+        { "prompt": "In welk jaar kwam de eerste zwarte Barbie onder de naam Barbie op de markt?", "difficulty": "hard", "answers": [{ "text": "1980" }] },
+        { "prompt": "In welke band zette Mattel Barbie in 1986 als zangeres?", "difficulty": "hard", "answers": [{ "text": "Barbie and the Rockers", "aliases": ["The Rockers"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Hoeveel dollar kostte de eerste Barbiepop in 1959?", "answers": [{ "text": "Drie dollar", "aliases": ["3"] }] },
         { "prompt": "Wie was de echtgenoot van Ruth Handler en medeoprichter van Mattel?", "answers": [{ "text": "Elliot Handler", "aliases": ["Elliot"] }] },
         { "prompt": "In welk jaar verscheen de eerste animatiefilm van Barbie, Barbie in de Notenkraker?", "answers": [{ "text": "2001" }] },

@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "In which decade did the first Barbie doll go on sale?", "difficulty": "easy", "answers": [{ "text": "The 1950s", "aliases": ["1950s", "Fifties"] }] },
+        { "prompt": "What colour is Barbie's hair in her classic look?", "difficulty": "easy", "answers": [{ "text": "Blonde", "aliases": ["Blond"] }] },
+        { "prompt": "In which year did the Barbie film reach cinemas?", "difficulty": "easy", "answers": [{ "text": "2023" }] },
+        { "prompt": "Which country is Barbie's home state of California in?", "difficulty": "easy", "answers": [{ "text": "The United States", "aliases": ["United States", "USA", "America"] }] },
+        { "prompt": "Which Aqua song about Barbie was a hit in 1997?", "difficulty": "easy", "answers": [{ "text": "Barbie Girl" }] },
+        { "prompt": "What is Barbie's full given name in Mattel's own story?", "difficulty": "hard", "answers": [{ "text": "Barbara Millicent Roberts", "aliases": ["Barbara Roberts"] }] },
+        { "prompt": "Which German doll was the direct model Ruth Handler bought on holiday before designing Barbie?", "difficulty": "hard", "answers": [{ "text": "Bild Lilli", "aliases": ["Lilli"] }] },
+        { "prompt": "Which Billie Eilish song from the 2023 film won an Oscar?", "difficulty": "hard", "answers": [{ "text": "What Was I Made For?", "aliases": ["What Was I Made For"] }] },
+        { "prompt": "In which year was the first black Barbie sold under the Barbie name?", "difficulty": "hard", "answers": [{ "text": "1980" }] },
+        { "prompt": "Which band did Mattel put Barbie in front of as lead singer in 1986?", "difficulty": "hard", "answers": [{ "text": "Barbie and the Rockers", "aliases": ["The Rockers"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "How many dollars did the first Barbie doll cost in 1959?", "answers": [{ "text": "Three dollars", "aliases": ["3"] }] },
         { "prompt": "Who was Ruth Handler's husband and co-founder of Mattel?", "answers": [{ "text": "Elliot Handler", "aliases": ["Elliot"] }] },
         { "prompt": "In what year did the first Barbie animated film, Barbie in the Nutcracker, appear?", "answers": [{ "text": "2001" }] },

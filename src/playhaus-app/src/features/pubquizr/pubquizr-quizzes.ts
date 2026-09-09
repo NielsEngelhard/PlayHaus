@@ -56,6 +56,8 @@ export interface QuizQuestion {
     position: number
     prompt: string
     category?: string
+    /** Round 6 only: which half of the easy-or-hard pool this one is. */
+    difficulty?: 'easy' | 'hard'
     numericAnswer?: number
     unit?: string
     explanation?: string

@@ -8,7 +8,7 @@ import (
 const (
 	MinPlayers = 2
 	MaxPlayers = 8
-	Rounds     = 6
+	Rounds     = 7
 )
 
 func PlayerCountOK(n int) bool {
@@ -16,12 +16,13 @@ func PlayerCountOK(n int) bool {
 }
 
 const (
-	RoundOpen     = 1 // classic trivia, asked and answered out loud
-	RoundChoice   = 2 // ABCD, hard on purpose
-	RoundClosest  = 3 // a number; nearest wins
-	RoundDescribe = 4 // 30 seconds -- describe your words, the table guesses
-	RoundList     = 5 // one question, four answers we are looking for
-	RoundFinale   = 6 // head to head between the two highest scores, read by a third where the table has one to spare
+	RoundOpen       = 1 // classic trivia, asked and answered out loud
+	RoundChoice     = 2 // ABCD, hard on purpose
+	RoundClosest    = 3 // a number; nearest wins
+	RoundDescribe   = 4 // 30 seconds -- describe your words, the table guesses
+	RoundList       = 5 // one question, four answers we are looking for
+	RoundDoubleDown = 6 // easy for one point or hard for two -- the player picks before the question is read
+	RoundFinale     = 7 // head to head between the two highest scores, read by a third where the table has one to spare
 )
 
 // Modes are the toggles a table sets before the first question is read.
@@ -32,7 +33,7 @@ type Modes struct {
 	Trivia bool
 }
 
-// RoundIsTrivia is whether a round is a question read out and answered, the shape rounds 1, 2, 3 and 6 all share.
+// RoundIsTrivia is whether a round is a question read out and answered, the shape rounds 1, 2, 3, 6 and 7 all share.
 func RoundIsTrivia(round int) bool {
 	return round != RoundDescribe && round != RoundList
 }
@@ -40,7 +41,7 @@ func RoundIsTrivia(round int) bool {
 func RunningOrder(m Modes) []int {
 	order := make([]int, 0, Rounds)
 
-	for _, round := range []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale} {
+	for _, round := range []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundDoubleDown, RoundFinale} {
 		if m.Zen && round == RoundDescribe {
 			continue
 		}
@@ -80,6 +81,9 @@ const (
 	ListAnswerPoints = 1
 	// FinalePoints is what a correct finale question pays, onto the same Score every other round adds to.
 	FinalePoints = 100
+	// The two halves of round 6's choice: what the player asked for is what it pays, whoever ends up taking it.
+	EasyPoints = 1
+	HardPoints = 2
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions          = 4
@@ -100,6 +104,9 @@ const (
 
 	// ZenListGuesses is what replaces round 5's clock in zen mode.
 	ZenListGuesses = 8
+
+	// DoubleDownPerDifficulty is how many of each difficulty round 6 carries; at a full table a side can run out, which is the point of asking.
+	DoubleDownPerDifficulty = 5
 )
 
 // IsHotSeatRound is whether a round is played on the hot seat.
@@ -110,6 +117,23 @@ func IsHotSeatRound(round int) bool {
 // RoundKeepsTheSeat is whether taking a question in a hot seat round buys you the next
 func RoundKeepsTheSeat(round int) bool {
 	return IsHotSeatRound(round) && round != RoundChoice
+}
+
+// PassesRoundTheTable is whether a missed question is offered on to the next seat rather than dying where it was asked.
+func PassesRoundTheTable(round int) bool {
+	return IsHotSeatRound(round) || round == RoundDoubleDown
+}
+
+// DoubleDownPointsFor is what round 6 pays for the difficulty the player asked for.
+func DoubleDownPointsFor(difficulty Difficulty) int {
+	switch difficulty {
+	case DifficultyEasy:
+		return EasyPoints
+	case DifficultyHard:
+		return HardPoints
+	default:
+		return 0
+	}
 }
 
 // HotSeatPointsAt is what the question in one slot of a hot seat round is worth.
@@ -189,6 +213,7 @@ const (
 	MinDescribeWordsAtAFullTable = 2
 	MinDescribeWords             = MaxPlayers * MinDescribeWordsAtAFullTable
 	MinFinaleQuestions           = 4
+	MinDoubleDownQuestions       = DoubleDownPerDifficulty * 2
 )
 
 // MinQuestionsIn is the smallest number of questions a round may carry.
@@ -204,6 +229,8 @@ func MinQuestionsIn(round int) int {
 		return MinDescribeWords
 	case RoundList:
 		return MinListQuestions
+	case RoundDoubleDown:
+		return MinDoubleDownQuestions
 	case RoundFinale:
 		return MinFinaleQuestions
 	default:
@@ -223,7 +250,7 @@ func KindOf(round int) QuestionKind {
 	case RoundList:
 		return KindList
 	default:
-		// Round 1 and the finale are both asked out loud.
+		// Rounds 1 and 6 and the finale are all asked out loud.
 		return KindOpen
 	}
 }
@@ -242,7 +269,7 @@ func ReaderFor(seat, players int) int {
 
 // RotatesEachTurn is whether a round walks the table a seat at a time rather than leaving the reading where the last answer put it.
 func RotatesEachTurn(round int) bool {
-	return round == RoundClosest || round == RoundDescribe || round == RoundList
+	return round == RoundClosest || round == RoundDescribe || round == RoundList || round == RoundDoubleDown
 }
 
 func OpensOnTheReader(round int) bool {

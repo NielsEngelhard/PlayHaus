@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel spelers heeft een voetbalelftal op het veld?", "difficulty": "easy", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welk dier geeft ons wol?", "difficulty": "easy", "answers": [{ "text": "Het schaap", "aliases": ["Schaap"] }] },
+        { "prompt": "Wat is de hoofdstad van Italie?", "difficulty": "easy", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
+        { "prompt": "Welk zintuig gebruik je met je neus?", "difficulty": "easy", "answers": [{ "text": "De reuk", "aliases": ["Reuk", "Ruiken"] }] },
+        { "prompt": "Hoeveel letters heeft het Nederlandse alfabet?", "difficulty": "easy", "answers": [{ "text": "26" }] },
+        { "prompt": "Welke woestijn is de grootste warme woestijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Wie ontwikkelde de algemene relativiteitstheorie?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Welke stad hield in 1896 de eerste moderne Olympische Spelen?", "difficulty": "hard", "answers": [{ "text": "Athene" }] },
+        { "prompt": "Wat is het chemische symbool van goud?", "difficulty": "hard", "answers": [{ "text": "Au" }] },
+        { "prompt": "In welke Nederlandse stad zit het Internationaal Gerechtshof?", "difficulty": "hard", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Poolse astronoom zette de zon in het midden van het zonnestelsel?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus", "Kopernikus"] }] },
         { "prompt": "Wat is het grootste meer van Afrika?", "answers": [{ "text": "Het Victoriameer", "aliases": ["Victoriameer"] }] },
         { "prompt": "Welke Russische componist schreef het ballet Het Zwanenmeer?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Pjotr Tsjaikovski"] }] },

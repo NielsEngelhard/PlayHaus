@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Op welke school zit Harry Potter?", "difficulty": "easy", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }] },
+        { "prompt": "Wat voor wezen is Pluisje, die het luik bewaakt?", "difficulty": "easy", "answers": [{ "text": "Een driekoppige hond", "aliases": ["Driekoppige hond", "Hond"] }] },
+        { "prompt": "In welke afdeling worden Harry, Ron en Hermelien gesorteerd?", "difficulty": "easy", "answers": [{ "text": "Griffoendor", "aliases": ["Gryffindor"] }] },
+        { "prompt": "Hoe heet de mantel waarmee Harry onzichtbaar wordt?", "difficulty": "easy", "answers": [{ "text": "De Onzichtbaarheidsmantel", "aliases": ["Onzichtbaarheidsmantel"] }] },
+        { "prompt": "Wat is de achternaam van Ron?", "difficulty": "easy", "answers": [{ "text": "Wemel", "aliases": ["Weasley"] }] },
+        { "prompt": "Welke vorm heeft de Patronus van Harry?", "difficulty": "hard", "answers": [{ "text": "Een hert", "aliases": ["Hert"] }] },
+        { "prompt": "Hoe heet de door kobolden gedreven bank van de tovenaarswereld?", "difficulty": "hard", "answers": [{ "text": "Goudgrijp", "aliases": ["Gringotts"] }] },
+        { "prompt": "Vanaf welk perron op King's Cross vertrekt de Zweinsteinexpres?", "difficulty": "hard", "answers": [{ "text": "Perron negen driekwart", "aliases": ["9 3/4", "Negen en driekwart"] }] },
+        { "prompt": "Hoe heet de reuzenhalfbroer van Hagrid?", "difficulty": "hard", "answers": [{ "text": "Groemp", "aliases": ["Grawp"] }] },
+        { "prompt": "Hoe heet de kaart die laat zien waar iedereen in Zweinstein is?", "difficulty": "hard", "answers": [{ "text": "De Sluipwegwijzer", "aliases": ["Sluipwegwijzer", "Marauder's Map"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Hoe heet het toernooi tussen drie toverscholen in het vierde boek?", "answers": [{ "text": "Het Toverschool Toernooi", "aliases": ["Toverschool Toernooi"] }] },
         { "prompt": "Hoe heet het dorp bij de school dat leerlingen mogen bezoeken?", "answers": [{ "text": "Zweinsveld", "aliases": ["Hogsmeade"] }] },
         { "prompt": "Welke alchemist maakte de steen uit het eerste boek?", "answers": [{ "text": "Nicolaas Vlamel", "aliases": ["Flamel"] }] },

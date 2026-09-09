@@ -7,6 +7,7 @@ import {
     getSingleDeviceSessionRequest,
     recordClosestGuessesRequest,
     recordDescribeAwardsRequest,
+    recordDoubleDownTurnRequest,
     recordFinaleTurnRequest,
     recordListAwardsRequest,
     recordHotSeatTurnRequest,
@@ -38,7 +39,9 @@ export interface PlayableSession {
     settleDescribe: (awards: WordAward[]) => void
     /** Round 5: what became of each of the question's four answers. */
     settleList: (awards: ListAward[]) => void
-    /** Round 6: the same, down a two seat line. Its own call — see `round-six.ts`. */
+    // Round 6: one chosen question, settled. The only settle handed a question id, because the choice belongs to the client.
+    settleDoubleDown: (sessionQuestionId: string, missedSeats: number[], correctSeat: number | null) => void
+    /** Round 7: the same as a hot seat turn, down a two seat line. Its own call — see `round-seven.ts`. */
     settleFinale: (missedSeats: number[], correctSeat: number | null) => void
     reload: () => void
 }
@@ -153,6 +156,14 @@ export function useQuizSession(sessionId: string): PlayableSession {
         });
     }, [submit, sessionId]);
 
+    const settleDoubleDown = useCallback((
+        sessionQuestionId: string,
+        missedSeats: number[],
+        correctSeat: number | null
+    ) => {
+        submit(() => recordDoubleDownTurnRequest(sessionId, sessionQuestionId, missedSeats, correctSeat));
+    }, [submit, sessionId]);
+
     const settleFinale = useCallback((missedSeats: number[], correctSeat: number | null) => {
         submit(current => {
             const [dealt] = current.turnQuestionIds;
@@ -175,6 +186,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
         settleClosest,
         settleDescribe,
         settleList,
+        settleDoubleDown,
         settleFinale,
         reload
     };

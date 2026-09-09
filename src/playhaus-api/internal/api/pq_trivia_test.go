@@ -46,7 +46,7 @@ func TestTriviaQuizAnswersTheTriviaRunningOrder(t *testing.T) {
 	if session.ZenMode {
 		t.Error("zenMode = true on a session that only asked for trivia")
 	}
-	if want := []int{1, 2, 3, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 	if got, want := session.TotalRounds, len(session.Rounds); got != want {
@@ -75,14 +75,14 @@ func TestQuizWithoutTriviaPlaysTheOtherRoundsToo(t *testing.T) {
 	if session.TriviaMode {
 		t.Error("triviaMode = true on a session that did not ask for it")
 	}
-	if want := []int{1, 2, 3, 4, 5, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 4, 5, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 }
 
 // The whole evening, end to end, because the interesting part of leaving two rounds out
-// is the join afterwards: round 3 has to hand straight to a finale, and the finale has to
-// find two players off a scoreboard that was only ever built by rounds 1 to 3.
+// is the join afterwards: round 3 has to hand straight to round 6, and the finale has to
+// find two players off a scoreboard that was only ever built by the trivia rounds.
 func TestTriviaEveningPlaysThroughToTheEnd(t *testing.T) {
 	h, _ := newQuizServer(t)
 	guest := newGuestSession(t, h)
@@ -98,20 +98,26 @@ func TestTriviaEveningPlaysThroughToTheEnd(t *testing.T) {
 
 	session = settleRoundThree(t, h, guest.Token, session)
 
-	if got, want := session.CurrentRound, pubquizr.RoundFinale; got != want {
+	if got, want := session.CurrentRound, pubquizr.RoundDoubleDown; got != want {
 		t.Fatalf("currentRound = %d, want %d -- rounds 4 and 5 are not played", got, want)
 	}
 	if got, want := session.Status, string(pubquizr.SessionInProgress); got != want {
 		t.Errorf("status = %q, want %q", got, want)
-	}
-	if len(session.FinalistSeats) != pubquizr.FinalistCount {
-		t.Fatalf("finalistSeats = %v, want two of them", session.FinalistSeats)
 	}
 	if session.DescriberSeat != nil {
 		t.Errorf("describerSeat = %d, want null -- there is no describing tonight", *session.DescriberSeat)
 	}
 	if session.GuesserSeat != nil {
 		t.Errorf("guesserSeat = %d, want null -- there is no list round tonight", *session.GuesserSeat)
+	}
+
+	session = playOutDoubleDown(t, h, guest.Token, session)
+
+	if got, want := session.CurrentRound, pubquizr.RoundFinale; got != want {
+		t.Fatalf("currentRound = %d, want %d", got, want)
+	}
+	if len(session.FinalistSeats) != pubquizr.FinalistCount {
+		t.Fatalf("finalistSeats = %v, want two of them", session.FinalistSeats)
 	}
 
 	for turn := 0; session.CurrentRound == pubquizr.RoundFinale; turn++ {
@@ -130,7 +136,7 @@ func TestTriviaEveningPlaysThroughToTheEnd(t *testing.T) {
 	if got, want := session.Status, string(pubquizr.SessionCompleted); got != want {
 		t.Errorf("status = %q, want %q", got, want)
 	}
-	if want := []int{1, 2, 3, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 }
@@ -162,7 +168,7 @@ func TestZenAndTriviaTogetherPlayTheTriviaRounds(t *testing.T) {
 	if !session.ZenMode || !session.TriviaMode {
 		t.Errorf("zenMode = %t, triviaMode = %t -- both were asked for", session.ZenMode, session.TriviaMode)
 	}
-	if want := []int{1, 2, 3, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 }

@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which season comes after summer?", "difficulty": "easy", "answers": [{ "text": "Autumn", "aliases": ["Fall"] }] },
+        { "prompt": "What is the currency of the United Kingdom?", "difficulty": "easy", "answers": [{ "text": "The pound sterling", "aliases": ["Pound", "Pound sterling"] }] },
+        { "prompt": "Which bird is famous for being unable to fly and living in Antarctica?", "difficulty": "easy", "answers": [{ "text": "The penguin", "aliases": ["Penguin"] }] },
+        { "prompt": "How many legs does an insect have?", "difficulty": "easy", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "What is the tallest mountain in the world?", "difficulty": "easy", "answers": [{ "text": "Mount Everest", "aliases": ["Everest"] }] },
+        { "prompt": "Which country has the most time zones?", "difficulty": "hard", "answers": [{ "text": "France" }] },
+        { "prompt": "What does the Richter scale measure?", "difficulty": "hard", "answers": [{ "text": "Earthquake magnitude", "aliases": ["Earthquakes", "The strength of earthquakes"] }] },
+        { "prompt": "Which Russian author wrote War and Peace?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },
+        { "prompt": "Which strait separates Europe from Africa at its narrowest point?", "difficulty": "hard", "answers": [{ "text": "The Strait of Gibraltar", "aliases": ["Strait of Gibraltar", "Gibraltar"] }] },
+        { "prompt": "Which vitamin does the body make from sunlight?", "difficulty": "hard", "answers": [{ "text": "Vitamin D" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which German inventor built the movable type printing press around 1450?", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
         { "prompt": "What is the deepest place in the ocean?", "answers": [{ "text": "The Mariana Trench", "aliases": ["Mariana Trench", "Challenger Deep"] }] },
         { "prompt": "Which French writer wrote The Three Musketeers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },

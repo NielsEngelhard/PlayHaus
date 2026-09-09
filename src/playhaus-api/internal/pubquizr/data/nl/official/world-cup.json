@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel minuten duurt een voetbalwedstrijd zonder verlenging?", "difficulty": "easy", "answers": [{ "text": "Negentig", "aliases": ["90"] }] },
+        { "prompt": "Welk land won het WK van 2022 in Qatar?", "difficulty": "easy", "answers": [{ "text": "Argentinie", "aliases": ["Argentina"] }] },
+        { "prompt": "Welk land won het WK voor mannen het vaakst?", "difficulty": "easy", "answers": [{ "text": "Brazilie", "aliases": ["Brazil"] }] },
+        { "prompt": "Elke hoeveel jaar wordt het WK gehouden?", "difficulty": "easy", "answers": [{ "text": "Vier", "aliases": ["4", "Elke vier jaar"] }] },
+        { "prompt": "Welke Argentijn tilde in 2022 als aanvoerder de beker omhoog?", "difficulty": "easy", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Met hoeveel landen wordt het WK van 2026 gespeeld?", "difficulty": "hard", "answers": [{ "text": "Achtenveertig", "aliases": ["48"] }] },
+        { "prompt": "Wie maakte in de finale van 2010 het winnende doelpunt voor Spanje?", "difficulty": "hard", "answers": [{ "text": "Andres Iniesta", "aliases": ["Iniesta"] }] },
+        { "prompt": "In welk stadion werd de finale van 2022 gespeeld?", "difficulty": "hard", "answers": [{ "text": "Het Lusail Stadion", "aliases": ["Lusail", "Lusail Stadion"] }] },
+        { "prompt": "Hoe vaak stond Nederland in de WK-finale zonder te winnen?", "difficulty": "hard", "answers": [{ "text": "Drie", "aliases": ["3", "Drie keer"] }] },
+        { "prompt": "Wie werd topscorer van het WK van 2022?", "difficulty": "hard", "answers": [{ "text": "Kylian Mbappe", "aliases": ["Mbappe"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welk land werd wereldkampioen in 1934 en 1938?", "answers": [{ "text": "Italie" }] },
         { "prompt": "Welke Braziliaan werd in 2002 topscorer van het WK?", "answers": [{ "text": "Ronaldo" }] },
         { "prompt": "Welke Italiaan werd in 1982 topscorer van het WK?", "answers": [{ "text": "Paolo Rossi", "aliases": ["Rossi"] }] },

@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Met welke vrucht vergiftigt de koningin Sneeuwwitje?", "difficulty": "easy", "answers": [{ "text": "Een appel", "aliases": ["Appel"] }] },
+        { "prompt": "Welk geel met blauw visje is de beste vriend van Ariel?", "difficulty": "easy", "answers": [{ "text": "Botje", "aliases": ["Flounder"] }] },
+        { "prompt": "Welke sneeuwpop ontmoet Anna in Frozen?", "difficulty": "easy", "answers": [{ "text": "Olaf" }] },
+        { "prompt": "Welke prinses vaart de oceaan over met een haan die Heihei heet?", "difficulty": "easy", "answers": [{ "text": "Vaiana", "aliases": ["Moana"] }] },
+        { "prompt": "Waaraan vraagt de boze koningin wie de mooiste van het land is?", "difficulty": "easy", "answers": [{ "text": "Haar spiegel", "aliases": ["Spiegel", "De spiegel"] }] },
+        { "prompt": "Wie voedde Kristoff op in Frozen?", "difficulty": "hard", "answers": [{ "text": "De trollen", "aliases": ["Trollen"] }] },
+        { "prompt": "Welke Disneyprinses was de eerste die op een echt historisch persoon is gebaseerd?", "difficulty": "hard", "answers": [{ "text": "Pocahontas" }] },
+        { "prompt": "Welke componist schreef de liedjes voor De kleine zeemeermin en Belle en het Beest?", "difficulty": "hard", "answers": [{ "text": "Alan Menken", "aliases": ["Menken"] }] },
+        { "prompt": "Welke vloek legt Maleficent op Aurora, die op haar zestiende verjaardag moet toeslaan?", "difficulty": "hard", "answers": [{ "text": "Zich prikken aan een spinnewiel en sterven", "aliases": ["Prikken aan een spinnewiel", "Een spinnewiel"] }] },
+        { "prompt": "Hoe heet de bewakende draak van Mulan?", "difficulty": "hard", "answers": [{ "text": "Mushu" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Hoe heet de vrouw die Rapunzel in de toren opsluit?", "answers": [{ "text": "Moeder Gothel", "aliases": ["Gothel"] }] },
         { "prompt": "Wat is de echte naam van Flynn Rider?", "answers": [{ "text": "Eugene Fitzherbert", "aliases": ["Eugene"] }] },
         { "prompt": "Hoe heet het koninkrijk van Elsa en Anna?", "answers": [{ "text": "Arendelle" }] },

@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke kleur heeft een rijpe banaan?", "difficulty": "easy", "answers": [{ "text": "Geel" }] },
+        { "prompt": "Hoeveel dagen heeft een week?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Wat is de hoofdstad van Belgie?", "difficulty": "easy", "answers": [{ "text": "Brussel" }] },
+        { "prompt": "Welke sport wordt op Roland Garros gespeeld?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Welke ster geeft de aarde haar licht?", "difficulty": "easy", "answers": [{ "text": "De zon", "aliases": ["Zon"] }] },
+        { "prompt": "Welk land heette vroeger Perzie?", "difficulty": "hard", "answers": [{ "text": "Iran" }] },
+        { "prompt": "Hoeveel botten zitten er in een menselijke hand?", "difficulty": "hard", "answers": [{ "text": "27" }] },
+        { "prompt": "Welke slag maakte in 1815 een einde aan de macht van Napoleon?", "difficulty": "hard", "answers": [{ "text": "Waterloo", "aliases": ["De slag bij Waterloo"] }] },
+        { "prompt": "Welke band nam het album Abbey Road op?", "difficulty": "hard", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
+        { "prompt": "Welk zoogdier is het enige dat echt kan vliegen?", "difficulty": "hard", "answers": [{ "text": "De vleermuis", "aliases": ["Vleermuis", "Vleermuizen"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse filosoof schreef de Ethica en werd in 1656 uit de synagoge gezet?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
         { "prompt": "Wat is het grootste eiland van de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
         { "prompt": "Welke Hongaarse componist schreef de Hongaarse rapsodieen?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },

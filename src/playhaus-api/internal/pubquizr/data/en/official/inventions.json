@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which invention lights a room at the flick of a switch?", "difficulty": "easy", "answers": [{ "text": "The light bulb", "aliases": ["Light bulb", "Electric light"] }] },
+        { "prompt": "Who is credited with inventing the telephone in 1876?", "difficulty": "easy", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
+        { "prompt": "Which invention lets you fly from country to country?", "difficulty": "easy", "answers": [{ "text": "The aeroplane", "aliases": ["Aeroplane", "Airplane", "Plane"] }] },
+        { "prompt": "Which two-wheeled invention is powered by your own legs?", "difficulty": "easy", "answers": [{ "text": "The bicycle", "aliases": ["Bicycle", "Bike"] }] },
+        { "prompt": "Which invention keeps food cold in the kitchen?", "difficulty": "easy", "answers": [{ "text": "The refrigerator", "aliases": ["Refrigerator", "Fridge"] }] },
+        { "prompt": "Which two French brothers sent up the first hot air balloon in 1783?", "difficulty": "hard", "answers": [{ "text": "The Montgolfier brothers", "aliases": ["Montgolfier"] }] },
+        { "prompt": "Which invention of Percy Spencer's in 1945 began with a melted chocolate bar?", "difficulty": "hard", "answers": [{ "text": "The microwave oven", "aliases": ["Microwave", "Microwave oven"] }] },
+        { "prompt": "Which Scottish inventor's improved steam engine of 1769 powered the industrial revolution?", "difficulty": "hard", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },
+        { "prompt": "Which Dutch company invented the compact disc together with Sony?", "difficulty": "hard", "answers": [{ "text": "Philips" }] },
+        { "prompt": "Which Hungarian invented the ballpoint pen that carries his name?", "difficulty": "hard", "answers": [{ "text": "Laszlo Biro", "aliases": ["Biro"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which French brothers first showed a film to an audience in 1895?", "answers": [{ "text": "The Lumiere brothers", "aliases": ["Lumiere"] }] },
         { "prompt": "Which Dutch physicist won the 1902 Nobel Prize for his work on electrons?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz"] }] },
         { "prompt": "In what year was the transistor invented?", "answers": [{ "text": "1947" }] },

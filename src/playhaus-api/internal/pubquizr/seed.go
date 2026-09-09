@@ -46,6 +46,7 @@ type questionFile struct {
 	Prompt      string       `json:"prompt"`
 	Category    string       `json:"category,omitempty"`
 	Explanation string       `json:"explanation,omitempty"`
+	Difficulty  string       `json:"difficulty,omitempty"` // round 6 only
 	Unit        string       `json:"unit,omitempty"`
 	Answer      float64      `json:"answer,omitempty"` // closest-guess questions
 	Options     []optionFile `json:"options,omitempty"`
@@ -264,6 +265,8 @@ func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind Que
 	if f.Explanation != "" {
 		question.Explanation = &f.Explanation
 	}
+	// Rounds 1 and 6 are both KindOpen, so which of them may carry a difficulty is validate's job rather than this switch's.
+	question.Difficulty = Difficulty(f.Difficulty)
 
 	switch kind {
 	case KindClosest:
@@ -328,6 +331,43 @@ func validate(quiz *Quiz) error {
 				return fmt.Errorf("round %d question %d (%q): %w",
 					round, question.Position+1, question.Prompt, err)
 			}
+		}
+
+		if err := validateDifficulties(round, questions); err != nil {
+			return fmt.Errorf("round %d %w", round, err)
+		}
+	}
+
+	return nil
+}
+
+// validateDifficulties is round 6's own rule -- five easy and five hard -- and every other round's, which is to claim no difficulty at all.
+func validateDifficulties(round int, questions []Question) error {
+	if round != RoundDoubleDown {
+		for _, question := range questions {
+			if question.Difficulty != "" {
+				return fmt.Errorf("question %d (%q) carries a difficulty, which only round %d does",
+					question.Position+1, question.Prompt, RoundDoubleDown)
+			}
+		}
+
+		return nil
+	}
+
+	counted := map[Difficulty]int{}
+
+	for _, question := range questions {
+		if !question.Difficulty.Valid() {
+			return fmt.Errorf("question %d (%q) needs a difficulty of %q or %q",
+				question.Position+1, question.Prompt, DifficultyEasy, DifficultyHard)
+		}
+		counted[question.Difficulty]++
+	}
+
+	for _, difficulty := range []Difficulty{DifficultyEasy, DifficultyHard} {
+		if counted[difficulty] != DoubleDownPerDifficulty {
+			return fmt.Errorf("has %d %s questions, needs exactly %d",
+				counted[difficulty], difficulty, DoubleDownPerDifficulty)
 		}
 	}
 

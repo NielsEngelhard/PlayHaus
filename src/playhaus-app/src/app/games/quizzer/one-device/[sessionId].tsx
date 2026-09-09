@@ -1,5 +1,6 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import ActionButton from "@/components/ui/ActionButton";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -15,11 +16,14 @@ import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
+import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
+import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
-import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-six";
+import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { doubleDownPoolOf, doubleDownTurnOf, EASY_POINTS, HARD_POINTS, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
@@ -31,7 +35,7 @@ import { useState } from "react";
 import { View } from "react-native";
 
 /** The rounds this build can play. Past the last of them the evening stops on a board. */
-const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE, ROUND_LIST, ROUND_FINALE];
+const PLAYABLE = [ROUND_OPEN, ROUND_CHOICE, ROUND_CLOSEST, ROUND_DESCRIBE, ROUND_LIST, ROUND_DOUBLE_DOWN, ROUND_FINALE];
 
 // The evening as a track: one segment per round, filled as far as `through`.
 function roundTrack(total: number, through: number): SegmentState[] {
@@ -62,6 +66,8 @@ function roundCopy(t: ReturnType<typeof useT>, round: number, name: string, zen:
             return { kind, rule, brief, lead: t('pubquizr.play.leadDescribe', { name }), job: t('pubquizr.play.handoff.jobDescribe', { name }) };
         case ROUND_LIST:
             return { kind, rule, brief, lead: t('pubquizr.play.leadList', { name }), job: t('pubquizr.play.handoff.jobList', { name }) };
+        case ROUND_DOUBLE_DOWN:
+            return { kind, rule, brief, lead: t('pubquizr.play.leadDoubleDown', { name }), job: t('pubquizr.play.handoff.jobDoubleDown', { name }) };
         case ROUND_FINALE:
             return { kind, rule, brief, lead: t('pubquizr.play.leadFinale', { name }), job: t('pubquizr.play.handoff.jobFinale', { name }) };
         default:
@@ -92,6 +98,11 @@ export default function OneDeviceQuizPage() {
     const [introducedRound, setIntroducedRound] = useState<number | null>(null);
     // Round 3's last settled question, captured off the settle itself.
     const [closestResult, setClosestResult] = useState<ClosestResult | null>(null);
+    /** Round 6 only: which question was picked, and the turn it was picked for. */
+    const [pick, setPick] = useState<{ turn: number | null, questionId: string | null }>({
+        turn: null,
+        questionId: null
+    });
 
     function leave() {
         // `replace`, not `back`: this screen is reached from the setup form.
@@ -104,6 +115,7 @@ export default function OneDeviceQuizPage() {
         // A new round is a new person holding the phone, always: it opens on whoever is furthest behind.
         setClaimedBy(null);
         setHandedFrom(null);
+        setPick({ turn: null, questionId: null });
     }
 
     if (game.status === 'loading') {
@@ -135,6 +147,12 @@ export default function OneDeviceQuizPage() {
     const round = session.currentRound;
     const playable = PLAYABLE.includes(round);
     const ordinal = roundOrdinalOf(session);
+
+    // Reset during render rather than from an effect, the way the boards drop their own stage when the turn moves under them.
+    if (round === ROUND_DOUBLE_DOWN && pick.turn !== session.currentPosition) {
+        setPick({ turn: session.currentPosition, questionId: null });
+    }
+    const picked = pick.turn === session.currentPosition ? pick.questionId : null;
 
     // The evening is over.
     if (session.status === 'completed') {
@@ -192,13 +210,24 @@ export default function OneDeviceQuizPage() {
     const closest = closestTurnOf(session, quiz);
     const describe = describeTurnOf(session, quiz);
     const list = listTurnOf(session, quiz);
+    const doubleDown = doubleDownTurnOf(session, quiz, picked);
     const finale = finaleTurnOf(session, quiz);
+
+    // Round 6 is a choice before it is a question, so who is running the turn is known before there is a board to draw.
+    const asking = round === ROUND_DOUBLE_DOWN
+        ? {
+            pool: doubleDownPoolOf(session, quiz),
+            quizmaster: seatAt(seats, session.quizMasterSeat),
+            answering: seatAt(seats, session.answeringSeat),
+            number: session.currentPosition + 1
+        }
+        : null;
 
     // Whoever is holding the phone this turn, and how far into the round they are.
     const holder = hotSeat?.quizmaster ?? closest?.quizmaster ?? describe?.describer
-        ?? list?.quizmaster ?? finale?.quizmaster ?? null;
+        ?? list?.quizmaster ?? asking?.quizmaster ?? finale?.quizmaster ?? null;
     const number = hotSeat?.number ?? closest?.number ?? describe?.number
-        ?? list?.number ?? finale?.number ?? 0;
+        ?? list?.number ?? asking?.number ?? finale?.number ?? 0;
 
     // A round the session says it is on but no board can draw is a deal this build does not understand.
     if (holder === null) {
@@ -231,7 +260,7 @@ export default function OneDeviceQuizPage() {
 
     // The round explains itself before anybody is handed the phone.
     if (introducedRound !== round && session.currentPosition === 0) {
-        // The finale only: by the time round 6 opens.
+        // The finale only: by the time round 7 opens.
         const finalists = round === ROUND_FINALE ? finalistsOf(session, seats) : null;
         const finaleMaster = round === ROUND_FINALE ? holder : null;
 
@@ -335,6 +364,70 @@ export default function OneDeviceQuizPage() {
                 />
             )}
 
+            {asking !== null && asking.answering !== null && doubleDown === null && (
+                <View style={styles.choosing}>
+                    <TurnStrip
+                        quizmaster={holder}
+                        answering={asking.answering}
+                        lead={copy.lead}
+                        run={0}
+                        round={round}
+                        number={asking.number}
+                        total={session.turnsInRound}
+                        // Nothing is decided yet: what it pays is the question being asked.
+                        worth={0}
+                    />
+
+                    <ScriptCard
+                        prompt={t('pubquizr.play.doubleDown.ask', { name: asking.answering.name })}
+                        cue={t('pubquizr.play.doubleDown.cue')}
+                        seats={seats}
+                    >
+                        {/* One tap for the whole choice, and a side the table has spent is a button that will not press. */}
+                        <View style={styles.choice}>
+                            <ActionButton
+                                text={t('pubquizr.play.doubleDown.easy', { points: EASY_POINTS })}
+                                icon="feather"
+                                disabled={asking.pool.easy.length === 0}
+                                style={styles.choiceButton}
+                                onPress={() => setPick({
+                                    turn: session.currentPosition,
+                                    questionId: asking.pool.easy[0] ?? null
+                                })}
+                            />
+
+                            <ActionButton
+                                text={t('pubquizr.play.doubleDown.hard', { points: HARD_POINTS })}
+                                icon="zap"
+                                disabled={asking.pool.hard.length === 0}
+                                style={styles.choiceButton}
+                                onPress={() => setPick({
+                                    turn: session.currentPosition,
+                                    questionId: asking.pool.hard[0] ?? null
+                                })}
+                            />
+                        </View>
+                    </ScriptCard>
+                </View>
+            )}
+
+            {doubleDown !== null && (
+                <HotSeatBoard
+                    turn={doubleDown}
+                    seats={seats}
+                    round={round}
+                    lead={copy.lead}
+                    busy={game.ruling}
+                    error={game.rulingError}
+                    // The question walks the whole table on a wrong answer, so there is somebody to skip past.
+                    quickAssign
+                    onSettle={(missedSeats, correctSeat, from) => {
+                        setHandedFrom(from);
+                        game.settleDoubleDown(doubleDown.dealt.id, missedSeats, correctSeat);
+                    }}
+                />
+            )}
+
             {finale !== null && (
                 <HotSeatBoard
                     turn={finale}
@@ -369,6 +462,24 @@ const useStyles = createThemedStyles(() => ({
         width: '100%',
         flexShrink: 0,
         paddingHorizontal: Spacing.four
+    },
+
+    // The choice screen, wearing the same frame the boards give themselves.
+    choosing: {
+        marginTop: 12,
+        flex: 1,
+        minHeight: 0,
+        gap: 12
+    },
+
+    // Round 6's easy-or-hard buttons, side by side inside the script card.
+    choice: {
+        flexDirection: 'row',
+        gap: Spacing.two
+    },
+
+    choiceButton: {
+        flex: 1
     },
 
     message: {

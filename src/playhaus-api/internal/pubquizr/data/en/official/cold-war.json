@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which wall divided a German city from 1961 to 1989?", "difficulty": "easy", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
+        { "prompt": "Which two countries were the two superpowers of the Cold War?", "difficulty": "easy", "answers": [{ "text": "The United States and the Soviet Union", "aliases": ["USA and USSR", "America and Russia"] }] },
+        { "prompt": "Which country did the Soviet Union invade in 1979?", "difficulty": "easy", "answers": [{ "text": "Afghanistan" }] },
+        { "prompt": "What did the letters NATO stand for in the West's military alliance?", "difficulty": "easy", "answers": [{ "text": "North Atlantic Treaty Organization", "aliases": ["North Atlantic Treaty Organisation"] }] },
+        { "prompt": "What was the two superpowers' contest to build ever more weapons called?", "difficulty": "easy", "answers": [{ "text": "The arms race", "aliases": ["Arms race"] }] },
+        { "prompt": "Which Soviet leader stood opposite Kennedy during the Cuban missile crisis?", "difficulty": "hard", "answers": [{ "text": "Nikita Khrushchev", "aliases": ["Khrushchev"] }] },
+        { "prompt": "What was the Eastern bloc's answer to NATO, signed in 1955, called?", "difficulty": "hard", "answers": [{ "text": "The Warsaw Pact", "aliases": ["Warsaw Pact"] }] },
+        { "prompt": "Which American plan poured money into rebuilding western Europe from 1948?", "difficulty": "hard", "answers": [{ "text": "The Marshall Plan", "aliases": ["Marshall Plan"] }] },
+        { "prompt": "Which American U-2 pilot was shot down over the Soviet Union in 1960?", "difficulty": "hard", "answers": [{ "text": "Gary Powers", "aliases": ["Francis Gary Powers", "Powers"] }] },
+        { "prompt": "In which Berlin crisis of 1948 and 1949 did the West fly supplies in for almost a year?", "difficulty": "hard", "answers": [{ "text": "The Berlin Blockade", "aliases": ["Berlin Blockade", "Berlin Airlift"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which American spy plane was shot down over the Soviet Union in 1960?", "answers": [{ "text": "The U-2", "aliases": ["U2", "U-2"] }] },
         { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge"] }] },
         { "prompt": "What was the Soviet space station launched in 1986 called?", "answers": [{ "text": "Mir" }] },

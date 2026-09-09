@@ -171,6 +171,62 @@ func TestValidateRefusesAChoiceQuestionWithoutExactlyOneCorrectOption(t *testing
 	}
 }
 
+// The round 6 pool is the easy-or-hard choice, so a file that ships six of one kind is a
+// file where the sixth player has nothing to choose -- and this is where that is caught,
+// because seeding is a hard startup failure and nothing downstream counts the sides.
+func TestValidateRefusesADoubleDownRoundThatIsNotFiveOfEach(t *testing.T) {
+	table := []struct {
+		name string
+		easy int
+		hard int
+	}{
+		{"six of one and four of the other", 6, 4},
+		{"ten of one kind", 10, 0},
+		{"the right split of too few questions", 4, 4},
+	}
+
+	for _, row := range table {
+		t.Run(row.name, func(t *testing.T) {
+			var questions []Question
+			for i := 0; i < row.easy+row.hard; i++ {
+				difficulty := DifficultyEasy
+				if i >= row.easy {
+					difficulty = DifficultyHard
+				}
+				questions = append(questions, Question{
+					ID:         uuid.New(),
+					Round:      RoundDoubleDown,
+					Position:   i,
+					Kind:       KindOpen,
+					Difficulty: difficulty,
+					Prompt:     "Easy or hard?",
+				})
+			}
+
+			if err := validateDifficulties(RoundDoubleDown, questions); err == nil {
+				t.Fatalf("validateDifficulties accepted %d easy and %d hard", row.easy, row.hard)
+			}
+		})
+	}
+}
+
+// Difficulty is a round 6 word. A round 1 question wearing one is a file that has been
+// edited into the wrong block, which reads as a working quiz right up to the point where
+// somebody is asked to choose.
+func TestValidateRefusesADifficultyOutsideDoubleDown(t *testing.T) {
+	question := Question{
+		ID:         uuid.New(),
+		Round:      RoundOpen,
+		Kind:       KindOpen,
+		Difficulty: DifficultyHard,
+		Prompt:     "Who is being asked this?",
+	}
+
+	if err := validateDifficulties(RoundOpen, []Question{question}); err == nil {
+		t.Fatal("validateDifficulties accepted a round 1 question with a difficulty")
+	}
+}
+
 // A weekly quiz's slug is the only place its Wednesday is written down, so the shelf
 // order for the whole weekly category rests on this arithmetic. 2026-w34 is pinned
 // against the date its own description spells out in longhand.

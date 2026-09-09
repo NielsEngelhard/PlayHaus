@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel seconden zitten er in een minuut?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
+        { "prompt": "Welk dier legt eieren en kakelt?", "difficulty": "easy", "answers": [{ "text": "De kip", "aliases": ["Kip", "Hen"] }] },
+        { "prompt": "Wat is de hoofdstad van Noorwegen?", "difficulty": "easy", "answers": [{ "text": "Oslo" }] },
+        { "prompt": "Welke kleur krijg je als je rood en wit mengt?", "difficulty": "easy", "answers": [{ "text": "Roze" }] },
+        { "prompt": "Hoeveel weken heeft een jaar?", "difficulty": "easy", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
+        { "prompt": "Welk instrument meet de luchtdruk?", "difficulty": "hard", "answers": [{ "text": "De barometer", "aliases": ["Barometer"] }] },
+        { "prompt": "Welke stad is de hoofdstad van Nieuw-Zeeland?", "difficulty": "hard", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Welke zeevaarder maakte als eerste een reis rond de wereld af?", "difficulty": "hard", "answers": [{ "text": "Juan Sebastian Elcano", "aliases": ["Elcano", "Del Cano"] }] },
+        { "prompt": "Hoeveel graden heeft de som van de hoeken van een driehoek?", "difficulty": "hard", "answers": [{ "text": "Honderdtachtig", "aliases": ["180"] }] },
+        { "prompt": "Welk orgel bespeelde Johann Sebastian Bach jarenlang in Leipzig?", "difficulty": "hard", "answers": [{ "text": "Het orgel van de Thomaskerk", "aliases": ["De Thomaskerk", "Thomaskerk"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Hoeveel minuten duurt een halve voetbalwedstrijd?", "answers": [{ "text": "Vijfenveertig", "aliases": ["45"] }] },
         { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },

@@ -136,6 +136,8 @@ func (s *Server) AddPubquizRHandlers() {
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/closest", s.requireAuth(s.handleClosestGuesses))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/describe", s.requireAuth(s.handleDescribeAwards))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/list", s.requireAuth(s.handleListAwards))
+	// Round 6 borrows the hot seat rounds' body but not their positional question, so it needs its own.
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/double-down", s.requireAuth(s.handleDoubleDownVerdict))
 	// The finale is not one of the hot seat rounds' rounds.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/finale", s.requireAuth(s.handleFinaleVerdict))
 }

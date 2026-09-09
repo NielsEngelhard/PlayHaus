@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welk seizoen komt na de zomer?", "difficulty": "easy", "answers": [{ "text": "De herfst", "aliases": ["Herfst", "Najaar"] }] },
+        { "prompt": "Wat is de munt van het Verenigd Koninkrijk?", "difficulty": "easy", "answers": [{ "text": "Het pond sterling", "aliases": ["Pond", "Pond sterling"] }] },
+        { "prompt": "Welke vogel kan niet vliegen en leeft op Antarctica?", "difficulty": "easy", "answers": [{ "text": "De pinguin", "aliases": ["Pinguin"] }] },
+        { "prompt": "Hoeveel poten heeft een insect?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Wat is de hoogste berg op aarde?", "difficulty": "easy", "answers": [{ "text": "De Mount Everest", "aliases": ["Mount Everest", "Everest"] }] },
+        { "prompt": "Welk land heeft de meeste tijdzones?", "difficulty": "hard", "answers": [{ "text": "Frankrijk" }] },
+        { "prompt": "Wat meet de schaal van Richter?", "difficulty": "hard", "answers": [{ "text": "De kracht van aardbevingen", "aliases": ["Aardbevingen", "Kracht van aardbevingen"] }] },
+        { "prompt": "Welke Russische schrijver schreef Oorlog en vrede?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
+        { "prompt": "Welke zeestraat scheidt Europa op het smalste punt van Afrika?", "difficulty": "hard", "answers": [{ "text": "De Straat van Gibraltar", "aliases": ["Straat van Gibraltar", "Gibraltar"] }] },
+        { "prompt": "Welke vitamine maakt het lichaam aan uit zonlicht?", "difficulty": "hard", "answers": [{ "text": "Vitamine D" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Duitse uitvinder bouwde rond 1450 de boekdrukpers met losse letters?", "answers": [{ "text": "Johannes Gutenberg", "aliases": ["Gutenberg"] }] },
         { "prompt": "Wat is de diepste plek in de oceaan?", "answers": [{ "text": "De Marianentrog", "aliases": ["Marianentrog", "Challengerdiepte"] }] },
         { "prompt": "Welke Franse schrijver schreef De drie musketiers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },

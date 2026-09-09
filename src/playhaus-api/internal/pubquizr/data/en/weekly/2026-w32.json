@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which colour is a banana when ripe?", "difficulty": "easy", "answers": [{ "text": "Yellow" }] },
+        { "prompt": "How many days are in a week?", "difficulty": "easy", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "What is the capital of Belgium?", "difficulty": "easy", "answers": [{ "text": "Brussels" }] },
+        { "prompt": "Which sport is played at Roland Garros?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Which star gives the Earth its light?", "difficulty": "easy", "answers": [{ "text": "The Sun", "aliases": ["Sun"] }] },
+        { "prompt": "Which country was formerly known as Persia?", "difficulty": "hard", "answers": [{ "text": "Iran" }] },
+        { "prompt": "How many bones are in the human hand?", "difficulty": "hard", "answers": [{ "text": "27" }] },
+        { "prompt": "Which battle of 1815 ended Napoleon's rule?", "difficulty": "hard", "answers": [{ "text": "Waterloo", "aliases": ["The Battle of Waterloo"] }] },
+        { "prompt": "Which band recorded the album Abbey Road?", "difficulty": "hard", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
+        { "prompt": "What is the only mammal capable of true flight?", "difficulty": "hard", "answers": [{ "text": "The bat", "aliases": ["Bat", "Bats"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Dutch philosopher wrote the Ethics and was expelled from the synagogue in 1656?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
         { "prompt": "What is the largest island in the Mediterranean?", "answers": [{ "text": "Sicily" }] },
         { "prompt": "Which Hungarian composer wrote the Hungarian Rhapsodies?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },

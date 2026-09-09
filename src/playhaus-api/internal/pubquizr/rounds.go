@@ -1,6 +1,10 @@
 package pubquizr
 
-import "sort"
+import (
+	"sort"
+
+	"github.com/google/uuid"
+)
 
 // What every round shares: where a turn sits, whose it is, and how the table moves between them.
 
@@ -38,6 +42,30 @@ func (s *Session) QuestionAt(round, position int) *SessionQuestion {
 	for i := range s.Questions {
 		if s.Questions[i].Round == round && s.Questions[i].Position == position {
 			return &s.Questions[i]
+		}
+	}
+
+	return nil
+}
+
+// PendingIn are one round's dealt questions that are still to be played, in the order they were dealt.
+func (s *Session) PendingIn(round int) []*SessionQuestion {
+	var pending []*SessionQuestion
+
+	for i := range s.Questions {
+		if s.Questions[i].Round == round && s.Questions[i].Status == QuestionPending {
+			pending = append(pending, &s.Questions[i])
+		}
+	}
+
+	return pending
+}
+
+// PendingQuestion is one of a round's unplayed questions by id, and nil for anything else -- another round's, another session's, or one already scored.
+func (s *Session) PendingQuestion(round int, id uuid.UUID) *SessionQuestion {
+	for _, question := range s.PendingIn(round) {
+		if question.ID == id {
+			return question
 		}
 	}
 
@@ -125,7 +153,7 @@ func (s *Session) OpenRoundOn(round, seat int) {
 	}
 }
 
-// SeatFinale names the three people round 6 is played by.
+// SeatFinale names the three people the finale is played by.
 func (s *Session) SeatFinale(a, b, master int) {
 	s.FinalistSeatA, s.FinalistSeatB = a, b
 	s.QuizMasterSeat = master
@@ -159,7 +187,7 @@ func (s *Session) OpenFinaleQuestion() {
 	s.HotSeat = seat
 }
 
-// Finalists is the pair round 6 is between, and false before it has opened.
+// Finalists is the pair the finale is between, and false before it has opened.
 func (s *Session) Finalists() (int, int, bool) {
 	if s.FinalistSeatA < 0 || s.FinalistSeatB < 0 || s.FinalistSeatA == s.FinalistSeatB {
 		return -1, -1, false
@@ -207,7 +235,7 @@ func (s *Session) FinaleOpener() int {
 	return min(a, b)
 }
 
-// FinaleAnsweringSeat is which finalist a round 6 question is on after `attempts` goes at it.
+// FinaleAnsweringSeat is which finalist a finale question is on after `attempts` goes at it.
 func (s *Session) FinaleAnsweringSeat(attempts int) int {
 	switch {
 	case attempts < 0 || attempts >= FinalistCount:
@@ -274,7 +302,8 @@ func (s *Session) OpenFinale() {
 
 // TurnsInRound is how many goes a round holds -- which is not always how many questions it was dealt.
 func (s *Session) TurnsInRound(round int) int {
-	if round == RoundDescribe {
+	// Rounds 4 and 6 are both dealt more than they play, so their turns are counted off the table rather than off the pool.
+	if round == RoundDescribe || round == RoundDoubleDown {
 		if !PlaysRound(s.Modes(), round) {
 			return 0
 		}

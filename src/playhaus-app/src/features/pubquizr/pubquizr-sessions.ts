@@ -175,7 +175,23 @@ export async function recordListAwardsRequest(
     );
 }
 
-// One whole round 6 question, settled, and the finale one step further on.
+// One chosen round 6 question, settled. The id comes from the client because the choice does.
+export async function recordDoubleDownTurnRequest(
+    sessionId: string,
+    sessionQuestionId: string,
+    missedSeats: number[],
+    correctSeat: number | null
+): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/double-down`,
+        {
+            method: 'POST',
+            body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+        }
+    );
+}
+
+// One whole finale question, settled, and the finale one step further on.
 export async function recordFinaleTurnRequest(
     sessionId: string,
     sessionQuestionId: string,

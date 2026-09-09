@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which three colours does the German flag carry, from top to bottom?", "difficulty": "easy", "answers": [{ "text": "Black, red and gold", "aliases": ["Black red yellow", "Black red gold"] }] },
+        { "prompt": "Which German car brand uses four interlocking rings as its badge?", "difficulty": "easy", "answers": [{ "text": "Audi" }] },
+        { "prompt": "What is the German motorway network called?", "difficulty": "easy", "answers": [{ "text": "The Autobahn", "aliases": ["Autobahn"] }] },
+        { "prompt": "Which Munich beer festival draws millions every autumn?", "difficulty": "easy", "answers": [{ "text": "Oktoberfest" }] },
+        { "prompt": "Which German car company makes the Golf?", "difficulty": "easy", "answers": [{ "text": "Volkswagen", "aliases": ["VW"] }] },
+        { "prompt": "Which engineer's name is on the compression-ignition engine patented in 1892?", "difficulty": "hard", "answers": [{ "text": "Rudolf Diesel", "aliases": ["Diesel"] }] },
+        { "prompt": "Which company was formed in 1926 by the merger of Benz and Daimler?", "difficulty": "hard", "answers": [{ "text": "Mercedes-Benz", "aliases": ["Daimler-Benz", "Mercedes"] }] },
+        { "prompt": "Which German design school, founded in Weimar in 1919, shaped modern architecture?", "difficulty": "hard", "answers": [{ "text": "The Bauhaus", "aliases": ["Bauhaus"] }] },
+        { "prompt": "Which German firm's name means 'ball bearing works' and now sells kitchen appliances and power tools?", "difficulty": "hard", "answers": [{ "text": "Bosch" }] },
+        { "prompt": "Which German engineer built the first practical petrol motorcar in 1885?", "difficulty": "hard", "answers": [{ "text": "Karl Benz", "aliases": ["Carl Benz", "Benz"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which German city was the capital of West Germany until 1990?", "answers": [{ "text": "Bonn" }] },
         { "prompt": "Which German poet worked with Schiller in Weimar and died in 1832?", "answers": [{ "text": "Johann Wolfgang von Goethe", "aliases": ["Goethe"] }] },
         { "prompt": "What is the German high speed train called?", "answers": [{ "text": "ICE", "aliases": ["InterCityExpress"] }] },

@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "What is the suit an astronaut wears outside the craft called?", "difficulty": "easy", "answers": [{ "text": "A spacesuit", "aliases": ["Spacesuit"] }] },
+        { "prompt": "Which American space agency ran the Apollo programme?", "difficulty": "easy", "answers": [{ "text": "NASA" }] },
+        { "prompt": "Which was the first artificial satellite, launched in 1957?", "difficulty": "easy", "answers": [{ "text": "Sputnik 1", "aliases": ["Sputnik"] }] },
+        { "prompt": "Which country launched Sputnik 1?", "difficulty": "easy", "answers": [{ "text": "The Soviet Union", "aliases": ["Soviet Union", "USSR"] }] },
+        { "prompt": "Which planet were the Viking probes sent to?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "How many people have walked on the Moon?", "difficulty": "hard", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "In which year did the last Apollo mission land on the Moon?", "difficulty": "hard", "answers": [{ "text": "1972" }] },
+        { "prompt": "Which Apollo mission suffered an oxygen tank explosion on the way to the Moon?", "difficulty": "hard", "answers": [{ "text": "Apollo 13" }] },
+        { "prompt": "Which Soviet chief designer was the engineer behind Sputnik and Vostok?", "difficulty": "hard", "answers": [{ "text": "Sergei Korolev", "aliases": ["Korolev"] }] },
+        { "prompt": "Which 1975 mission saw an American and a Soviet spacecraft dock together?", "difficulty": "hard", "answers": [{ "text": "Apollo-Soyuz", "aliases": ["Apollo-Soyuz Test Project", "Apollo Soyuz"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Soviet cosmonaut made the first spacewalk, in 1965?", "answers": [{ "text": "Alexei Leonov", "aliases": ["Leonov"] }] },
         { "prompt": "Which Dutchman was the first to fly into space, in 1985?", "answers": [{ "text": "Wubbo Ockels", "aliases": ["Ockels"] }] },
         { "prompt": "Which space telescope was put into orbit in 1990?", "answers": [{ "text": "The Hubble", "aliases": ["Hubble"] }] },

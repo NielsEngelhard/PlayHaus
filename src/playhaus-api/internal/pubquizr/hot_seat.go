@@ -1,6 +1,6 @@
 package pubquizr
 
-// The hot seat, which is how rounds 1 and 2 are played.
+// The hot seat, which is how rounds 1 and 2 are played, and the pass line round 6 borrows from them.
 
 // HotSeatOrFirst is where the current question started.
 func (s *Session) HotSeatOrFirst() int {
@@ -18,10 +18,15 @@ func (s *Session) HotSeatOrFirst() int {
 
 // CurrentAnsweringSeat is whose turn it is to answer right now, or -1 when nobody is being asked anything.
 func (s *Session) CurrentAnsweringSeat(attempts int) int {
-	if s.Status != SessionInProgress || !IsHotSeatRound(s.CurrentRound) {
+	if s.Status != SessionInProgress || !PassesRoundTheTable(s.CurrentRound) {
 		return -1
 	}
-	if s.QuestionAt(s.CurrentRound, s.CurrentPosition) == nil {
+	// Round 6 counts CurrentPosition in turns rather than in questions, so what is left to ask is the pool and not the slot.
+	if s.CurrentRound == RoundDoubleDown {
+		if len(s.PendingIn(RoundDoubleDown)) == 0 {
+			return -1
+		}
+	} else if s.QuestionAt(s.CurrentRound, s.CurrentPosition) == nil {
 		return -1
 	}
 

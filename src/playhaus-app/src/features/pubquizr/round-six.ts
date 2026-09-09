@@ -1,67 +1,76 @@
-import type { HotSeatTurn } from "./hot-seat";
+import { remainingSeatsOf, type HotSeatTurn } from "./hot-seat";
 import type { QuizDetail } from "./pubquizr-quizzes";
 import type { QuizSession } from "./pubquizr-sessions";
-import { CLOSEST_POINTS } from "./round-three";
-import { seatAt, seatsOf, type Seat } from "./seats";
+import { seatAt, seatsOf } from "./seats";
 
-// Round 6, the finale: the top two players, head to head, read to by a third where the table has one to spare.
+// Round 6, doubling down: the quizmaster asks whoever is next easy or hard, and the answer decides what the question is worth.
 
-/** Kept in step with `RoundFinale` in Go. */
-export const ROUND_FINALE = 6;
+/** Kept in step with `RoundDoubleDown` in Go. */
+export const ROUND_DOUBLE_DOWN = 6;
 
-/** Kept in step with `FinalistCount` in Go: how many players reach the finale. */
-export const FINALIST_COUNT = 2;
+/** Kept in step with `EasyPoints` and `HardPoints` in `rules.go`. */
+export const EASY_POINTS = 1;
+export const HARD_POINTS = 2;
 
-// What a correct finale question pays.
-export const FINALE_POINTS = 100;
+/** Which half of the round's pool a question came out of. */
+export type Difficulty = 'easy' | 'hard';
 
-// What a correct finale question actually pays at a table this size.
-export function finalePointsFor(players: number): number {
-    return players > FINALIST_COUNT ? FINALE_POINTS : CLOSEST_POINTS;
+// What a question of one difficulty pays, whoever ends up taking it.
+export function doubleDownPointsFor(difficulty: Difficulty): number {
+    return difficulty === 'hard' ? HARD_POINTS : EASY_POINTS;
 }
 
-// The two players round 6 is between, or null before the finale has opened.
-export function finalistsOf(session: QuizSession, seats: Seat[]): [Seat, Seat] | null {
-    const pair = session.finalistSeats;
-    if (pair === null || pair === undefined || pair.length < 2) return null;
-
-    const a = seatAt(seats, pair[0]);
-    const b = seatAt(seats, pair[1]);
-    if (a === null || b === null) return null;
-
-    return [a, b];
+/** The dealt questions still on offer, by difficulty. An empty side is one the table has spent. */
+export interface DoubleDownPool {
+    easy: string[]
+    hard: string[]
 }
 
-// What is on screen right now, or null when round 6 is not what is being played.
-export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTurn | null {
+// The whole choice, read off the turn: the round is dealt more questions than it plays, and the ones nobody picks are what there was to choose between.
+export function doubleDownPoolOf(session: QuizSession, quiz: QuizDetail): DoubleDownPool {
+    const questions = quiz.rounds.flatMap(round => round.questions);
+    const pool: DoubleDownPool = { easy: [], hard: [] };
+
+    for (const id of session.turnQuestionIds) {
+        const dealt = session.questions.find(question => question.id === id);
+        if (dealt === undefined) continue;
+
+        const difficulty = questions.find(question => question.id === dealt.questionId)?.difficulty;
+        if (difficulty === 'easy' || difficulty === 'hard') pool[difficulty].push(id);
+    }
+
+    return pool;
+}
+
+// What is on screen right now, and null until a difficulty has been picked — which is what keeps the board off screen while the choice is still being made.
+export function doubleDownTurnOf(
+    session: QuizSession,
+    quiz: QuizDetail,
+    chosenId: string | null
+): HotSeatTurn | null {
     if (session.status !== 'in_progress') return null;
-    if (session.currentRound !== ROUND_FINALE) return null;
+    if (session.currentRound !== ROUND_DOUBLE_DOWN) return null;
     if (session.answeringSeat === null) return null;
+    if (chosenId === null) return null;
 
-    const dealt = session.questions.find(
-        question => question.round === session.currentRound
-            && question.position === session.currentPosition
-    );
+    // The question is the one that was chosen rather than the one this position dealt, which is the whole of the round.
+    const dealt = session.questions.find(question => question.id === chosenId);
     if (dealt === undefined) return null;
 
     const question = quiz.rounds
         .flatMap(round => round.questions)
         .find(candidate => candidate.id === dealt.questionId);
     if (question === undefined) return null;
+    if (question.difficulty !== 'easy' && question.difficulty !== 'hard') return null;
 
     const seats = seatsOf(session);
     const quizmaster = seatAt(seats, session.quizMasterSeat);
     const answering = seatAt(seats, session.answeringSeat);
-    const finalists = finalistsOf(session, seats);
-    if (quizmaster === null || answering === null || finalists === null) return null;
+    if (quizmaster === null || answering === null) return null;
 
     const answers = question.answers.filter(answer => answer.alias !== true);
     const aliases = question.answers.filter(answer => answer.alias === true);
-
-    // The question is still on the seat it opened on.
-    const waiting = seats.length > FINALIST_COUNT && session.answeringSeat === session.hotSeat
-        ? finalists.find(finalist => finalist.seat !== session.answeringSeat) ?? null
-        : null;
+    const remaining = remainingSeatsOf(session, seats);
 
     return {
         dealt,
@@ -71,37 +80,14 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         options: [],
         quizmaster,
         answering,
-        // A run counts questions taken in a row out of one seat, and the finale has no seat to hold.
+        // A run counts questions taken in a row out of one seat, and this round hands nobody a seat to hold.
         run: 0,
-        nextUp: waiting,
-        // The finale's whole pass line, which is one or two names long.
-        remaining: waiting === null ? [answering] : [answering, waiting],
-        // Round 2's line, and the finale has nothing to say in it.
+        nextUp: remaining[1] ?? null,
+        remaining,
+        // Round 2's line, and doubling down has nothing to say in it.
         alwaysNextUp: null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
-        worth: finalePointsFor(seats.length)
+        worth: doubleDownPointsFor(question.difficulty)
     };
-}
-
-/** One player's place in the final standings. */
-export interface FinalStanding extends Seat {
-    /** 1-based. */
-    place: number
-    /** Whether this seat was one of the two who played the finale. */
-    finalist: boolean
-}
-
-// Who a finished evening belongs to, and where everybody else ended up.
-export function finalStandingsOf(session: QuizSession): FinalStanding[] {
-    const seats = seatsOf(session);
-    const finalistSeats = new Set(session.finalistSeats ?? []);
-
-    return [...seats]
-        .sort((a, b) => b.score - a.score || a.seat - b.seat)
-        .map((seat, index) => ({
-            ...seat,
-            place: index + 1,
-            finalist: finalistSeats.has(seat.seat)
-        }));
 }

@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke muur deelde een Duitse stad van 1961 tot 1989?", "difficulty": "easy", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
+        { "prompt": "Welke twee landen waren de twee supermachten van de Koude Oorlog?", "difficulty": "easy", "answers": [{ "text": "De Verenigde Staten en de Sovjet-Unie", "aliases": ["VS en Sovjet-Unie", "Amerika en Rusland"] }] },
+        { "prompt": "Welk land viel de Sovjet-Unie in 1979 binnen?", "difficulty": "easy", "answers": [{ "text": "Afghanistan" }] },
+        { "prompt": "Hoe heet het militaire bondgenootschap van het Westen, afgekort NATO of NAVO?", "difficulty": "easy", "answers": [{ "text": "De Noord-Atlantische Verdragsorganisatie", "aliases": ["NAVO", "NATO"] }] },
+        { "prompt": "Hoe heette de wedloop tussen de twee supermachten om steeds meer wapens?", "difficulty": "easy", "answers": [{ "text": "De wapenwedloop", "aliases": ["Wapenwedloop"] }] },
+        { "prompt": "Welke Sovjetleider stond tegenover Kennedy tijdens de Cubacrisis?", "difficulty": "hard", "answers": [{ "text": "Nikita Chroesjtsjov", "aliases": ["Chroesjtsjov", "Khrushchev"] }] },
+        { "prompt": "Hoe heet het antwoord van het Oostblok op de NAVO, ondertekend in 1955?", "difficulty": "hard", "answers": [{ "text": "Het Warschaupact", "aliases": ["Warschaupact"] }] },
+        { "prompt": "Welk Amerikaans plan pompte vanaf 1948 geld in de wederopbouw van West-Europa?", "difficulty": "hard", "answers": [{ "text": "Het Marshallplan", "aliases": ["Marshallplan"] }] },
+        { "prompt": "Welke Amerikaanse U-2-piloot werd in 1960 boven de Sovjet-Unie neergehaald?", "difficulty": "hard", "answers": [{ "text": "Gary Powers", "aliases": ["Francis Gary Powers", "Powers"] }] },
+        { "prompt": "Bij welke Berlijnse crisis van 1948 en 1949 vloog het Westen bijna een jaar voorraden aan?", "difficulty": "hard", "answers": [{ "text": "De Berlijnse blokkade", "aliases": ["Berlijnse blokkade", "Luchtbrug"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welk Amerikaans spionagevliegtuig werd in 1960 boven de Sovjet-Unie neergehaald?", "answers": [{ "text": "De U-2", "aliases": ["U2", "U-2"] }] },
         { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug"] }] },
         { "prompt": "Hoe heette het Sovjetruimtestation dat in 1986 werd gelanceerd?", "answers": [{ "text": "Mir" }] },

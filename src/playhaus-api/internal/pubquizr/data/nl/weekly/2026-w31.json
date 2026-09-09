@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel uren zitten er in twee dagen?", "difficulty": "easy", "answers": [{ "text": "48" }] },
+        { "prompt": "Welk dier blaft?", "difficulty": "easy", "answers": [{ "text": "De hond", "aliases": ["Hond"] }] },
+        { "prompt": "Wat is de hoofdstad van Japan?", "difficulty": "easy", "answers": [{ "text": "Tokio", "aliases": ["Tokyo"] }] },
+        { "prompt": "Hoeveel poten heeft een spin?", "difficulty": "easy", "answers": [{ "text": "Acht", "aliases": ["8"] }] },
+        { "prompt": "Hoe noem je bevroren regen die als witte vlokken valt?", "difficulty": "easy", "answers": [{ "text": "Sneeuw" }] },
+        { "prompt": "Welke stad is de hoofdstad van Canada?", "difficulty": "hard", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Welke wetenschapper beschreef in 1687 als eerste de bewegingswetten?", "difficulty": "hard", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
+        { "prompt": "In welk land wordt per persoon de meeste thee gedronken?", "difficulty": "hard", "answers": [{ "text": "Turkije" }] },
+        { "prompt": "Wat is het diepste punt in de oceanen van de wereld?", "difficulty": "hard", "answers": [{ "text": "De Marianentrog", "aliases": ["Marianentrog", "Challengerdiepte"] }] },
+        { "prompt": "Welke kunstenaar beeldhouwde de David in Florence?", "difficulty": "hard", "answers": [{ "text": "Michelangelo" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse microscopist zag als eerste bacterien door een zelfgemaakte lens?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
         { "prompt": "Wat is de langste rivier van Azie?", "answers": [{ "text": "De Jangtsekiang", "aliases": ["Jangtse", "Yangtze"] }] },
         { "prompt": "Welke Duitse componist schreef de Brandenburgse concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },

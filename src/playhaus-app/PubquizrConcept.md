@@ -1,6 +1,6 @@
 I worked out the game idea for the "PubquizR" game. Lets start by creating the backend for it. All tables and some endpoints should be set up. This is the idea:
 
-Pubquizr game with 5 rounds you can play with 3 to 8 players.
+Pubquizr game with 6 rounds and a finale that you can play with 3 to 8 players.
 
 # The game
 Round 1:
@@ -15,10 +15,16 @@ Round 3:
 Round 4 - 30 Seconds
 - Each player gets 4 words that they should describe (e.g. Bradd Pitt and Milk). Then they have to describe that and the other people have to guess. If someones guesses a word the Quizmaster and the 
 
-Round 5:
-Finale between 2 people with the highest score
+Round 5 - Name four
+- One question with four answers hiding in it. The quiz master asks the player on their left, who has twenty seconds (or eight guesses in Zen) to name as many as they can. Whatever is left goes round the rest of the table for one guess each, and every answer is a point for whoever named it.
 
-Round 5:
+Round 6 - Double Down
+- The quiz master asks the next player easy or hard, taps the button for whichever they pick, and reads out the question that comes up. Easy is worth 1 point, hard 2. Each quiz carries exactly 5 easy and 5 hard questions for the round, so a difficulty can run out: if the five before you all took hard, you get an easy one.
+- A wrong answer passes round the table exactly as in round 1, and whoever takes it gets the question's full value.
+- Unlike round 1 nobody keeps the seat. The round opens on whoever is furthest behind and then goes clockwise, one turn each, one lap of the table.
+- The whole round is one HTTP call per turn: the pool arrives with the turn, so the choice and the pass walk happen on the phone.
+
+Round 7:
 The 2 persons with the most points will battle each other in the finale.
 
 # Modes explained

@@ -5,7 +5,7 @@ import SeatAvatar from "@/components/ui/SeatAvatar";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { FinalStanding } from "@/features/pubquizr/round-six";
+import type { FinalStanding } from "@/features/pubquizr/round-seven";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { ScrollView, View } from "react-native";

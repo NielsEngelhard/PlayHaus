@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which school does Harry Potter attend?", "difficulty": "easy", "answers": [{ "text": "Hogwarts" }] },
+        { "prompt": "What kind of creature is Fluffy, who guards the trapdoor?", "difficulty": "easy", "answers": [{ "text": "A three-headed dog", "aliases": ["Three-headed dog", "Dog"] }] },
+        { "prompt": "Which house are Harry, Ron and Hermione sorted into?", "difficulty": "easy", "answers": [{ "text": "Gryffindor" }] },
+        { "prompt": "What is the cloak that makes Harry disappear called?", "difficulty": "easy", "answers": [{ "text": "The Invisibility Cloak", "aliases": ["Invisibility Cloak"] }] },
+        { "prompt": "What is Ron's surname?", "difficulty": "easy", "answers": [{ "text": "Weasley" }] },
+        { "prompt": "What form does Harry's Patronus take?", "difficulty": "hard", "answers": [{ "text": "A stag", "aliases": ["Stag"] }] },
+        { "prompt": "What is the name of the goblin-run wizarding bank?", "difficulty": "hard", "answers": [{ "text": "Gringotts" }] },
+        { "prompt": "Which platform at King's Cross takes the Hogwarts Express?", "difficulty": "hard", "answers": [{ "text": "Platform nine and three-quarters", "aliases": ["9 3/4", "Nine and three quarters"] }] },
+        { "prompt": "What is the name of Hagrid's giant half-brother?", "difficulty": "hard", "answers": [{ "text": "Grawp" }] },
+        { "prompt": "What is the name of the map that shows everyone inside Hogwarts?", "difficulty": "hard", "answers": [{ "text": "The Marauder's Map", "aliases": ["Marauders Map"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "What is the tournament between three wizarding schools in the fourth book called?", "answers": [{ "text": "The Triwizard Tournament", "aliases": ["Triwizard"] }] },
         { "prompt": "What is the village near the school that pupils may visit called?", "answers": [{ "text": "Hogsmeade", "aliases": ["Zweinsveld"] }] },
         { "prompt": "Which alchemist made the stone from the first book?", "answers": [{ "text": "Nicolas Flamel", "aliases": ["Flamel", "Vlamel"] }] },

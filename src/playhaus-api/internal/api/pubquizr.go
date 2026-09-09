@@ -51,6 +51,8 @@ type quizQuestionResponse struct {
 	Position int    `json:"position"`
 	Prompt   string `json:"prompt"`
 	Category string `json:"category,omitempty"`
+	// Difficulty is what a round 6 question is worth, and is what the client polices the easy-or-hard choice with offline.
+	Difficulty string `json:"difficulty,omitempty"`
 	// NumericAnswer and Unit belong to a closest-guess question.
 	NumericAnswer *float64             `json:"numericAnswer,omitempty"`
 	Unit          string               `json:"unit,omitempty"`
@@ -129,6 +131,7 @@ func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 		Position:      q.Position,
 		Prompt:        q.Prompt,
 		Category:      Deref(q.Category, ""),
+		Difficulty:    q.Difficulty.String(),
 		NumericAnswer: q.NumericAnswer,
 		Unit:          Deref(q.Unit, ""),
 		Explanation:   Deref(q.Explanation, ""),
@@ -141,7 +144,7 @@ func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 type quizSessionPlayerResponse struct {
 	Seat int    `json:"seat"`
 	Name string `json:"name"`
-	// Score is everything this player has taken all evening, round 6 included.
+	// Score is everything this player has taken all evening, the finale included.
 	Score int    `json:"score"`
 	Color string `json:"color"`
 }
@@ -176,7 +179,7 @@ type quizSessionResponse struct {
 	AnsweringSeat *int `json:"answeringSeat"`
 	// HotSeat is the seat the current question was first asked to.
 	HotSeat int `json:"hotSeat"`
-	// FinalistSeats are the two players round 6 is between, and null until the finale opens.
+	// FinalistSeats are the two players the finale is between, and null until it opens.
 	FinalistSeats []int `json:"finalistSeats"`
 	// HotSeatRun is how many questions in a row the hot seat has taken.
 	HotSeatRun int `json:"hotSeatRun"`
@@ -253,6 +256,11 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		if describing != nil {
 			for _, word := range s.WordsFor(*describing) {
 				turn = append(turn, word.ID.String())
+			}
+		} else if s.CurrentRound == pubquizr.RoundDoubleDown {
+			// Round 6 publishes the whole pool it has left, because which of them is asked is the player's own choice.
+			for _, pending := range s.PendingIn(pubquizr.RoundDoubleDown) {
+				turn = append(turn, pending.ID.String())
 			}
 		} else if current := s.QuestionAt(s.CurrentRound, s.CurrentPosition); current != nil {
 			turn = append(turn, current.ID.String())
@@ -835,7 +843,7 @@ func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 	s.writeSession(w, r, session, http.StatusOK)
 }
 
-// handleFinaleVerdict is the quizmaster settling one whole round 6 question.
+// handleFinaleVerdict is the quizmaster settling one whole finale question.
 func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
 	if !ok {
@@ -867,6 +875,54 @@ func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	}
 
 	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), pubquizr.TurnInput{
+		SessionID:         sessionID,
+		OwnerID:           ownerID,
+		SessionQuestionID: questionID,
+		MissedSeats:       req.MissedSeats,
+		CorrectSeat:       req.CorrectSeat,
+		Said:              req.Said,
+	})
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+// handleDoubleDownVerdict is the quizmaster settling the round 6 question the player asked for.
+func (s *Server) handleDoubleDownVerdict(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleDoubleDownVerdict reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	req, problems, err := decode[hotSeatTurnRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	// Here the id names the question the player chose rather than the one the position dealt.
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return
+	}
+
+	session, err := s.pubquizr.RecordDoubleDownTurn(r.Context(), pubquizr.TurnInput{
 		SessionID:         sessionID,
 		OwnerID:           ownerID,
 		SessionQuestionID: questionID,

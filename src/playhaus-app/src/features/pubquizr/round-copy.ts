@@ -2,7 +2,8 @@ import type { useT } from "@/features/i18n/LanguageContext";
 import { ROUND_CHOICE } from "./hot-seat";
 import { ROUND_DESCRIBE } from "./round-four";
 import { ROUND_LIST } from "./round-five";
-import { ROUND_FINALE } from "./round-six";
+import { ROUND_FINALE } from "./round-seven";
+import { ROUND_DOUBLE_DOWN } from "./round-six";
 import { ROUND_CLOSEST } from "./round-three";
 
 export interface RoundKindAndRule {
@@ -40,6 +41,12 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen 
                 kind: t('pubquizr.play.rounds.list'),
                 rule: '',
                 brief: zen ? t('pubquizr.play.intro.briefListZen') : t('pubquizr.play.intro.briefList')
+            };
+        case ROUND_DOUBLE_DOWN:
+            return {
+                kind: t('pubquizr.play.rounds.doubleDown'),
+                rule: '',
+                brief: t('pubquizr.play.intro.briefDoubleDown')
             };
         case ROUND_FINALE:
             return {

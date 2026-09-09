@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "What is the biggest land animal alive today?", "difficulty": "easy", "answers": [{ "text": "The African elephant", "aliases": ["Elephant", "African elephant"] }] },
+        { "prompt": "Which continent is Egypt in?", "difficulty": "easy", "answers": [{ "text": "Africa" }] },
+        { "prompt": "How many wheels does a standard bicycle have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
+        { "prompt": "What is frozen water called?", "difficulty": "easy", "answers": [{ "text": "Ice" }] },
+        { "prompt": "Which language has the most native speakers in the world?", "difficulty": "easy", "answers": [{ "text": "Mandarin Chinese", "aliases": ["Chinese", "Mandarin"] }] },
+        { "prompt": "Which Italian city is built on a lagoon and crossed by canals?", "difficulty": "hard", "answers": [{ "text": "Venice", "aliases": ["Venezia"] }] },
+        { "prompt": "What is the study of fossils called?", "difficulty": "hard", "answers": [{ "text": "Palaeontology", "aliases": ["Paleontology"] }] },
+        { "prompt": "Which country gave the Statue of Liberty to the United States?", "difficulty": "hard", "answers": [{ "text": "France" }] },
+        { "prompt": "Which Greek philosopher taught Alexander the Great?", "difficulty": "hard", "answers": [{ "text": "Aristotle" }] },
+        { "prompt": "How many keys does a standard full-size piano have?", "difficulty": "hard", "answers": [{ "text": "88" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Dutch navigator reached the island now called Tasmania in 1642?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "Which river flows through Vienna, Budapest and Belgrade?", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },
         { "prompt": "Which element has the symbol Fe?", "answers": [{ "text": "Iron" }] },

@@ -1,4 +1,4 @@
-// Package pubquizr is the pub quiz: five rounds and a head-to-head finale, played by three to eight people.
+// Package pubquizr is the pub quiz: six rounds and a head-to-head finale, played by three to eight people.
 package pubquizr
 
 import (
@@ -29,11 +29,29 @@ func (c Category) Valid() bool {
 
 func (c Category) String() string { return string(c) }
 
+// Difficulty is which half of round 6's pool a question belongs to, and so what it pays.
+type Difficulty string
+
+const (
+	DifficultyEasy Difficulty = "easy"
+	DifficultyHard Difficulty = "hard"
+)
+
+func (d Difficulty) Valid() bool {
+	switch d {
+	case DifficultyEasy, DifficultyHard:
+		return true
+	}
+	return false
+}
+
+func (d Difficulty) String() string { return string(d) }
+
 // QuestionKind is what a question wants back.
 type QuestionKind string
 
 const (
-	// KindOpen is a question said out loud and answered out loud. Rounds 1 and 6.
+	// KindOpen is a question said out loud and answered out loud. Rounds 1, 6 and the finale.
 	KindOpen QuestionKind = "open"
 	// KindMultipleChoice carries exactly four options, one of them right. Round 2.
 	KindMultipleChoice QuestionKind = "multiple_choice"
@@ -134,6 +152,9 @@ type Question struct {
 	// Category is the free-text label round 1 questions carry ("music", "geography").
 	Category *string
 
+	// Difficulty is what a round 6 question is worth, and is empty on every other round.
+	Difficulty Difficulty `gorm:"not null;default:''"`
+
 	// NumericAnswer and Unit belong to a closest-guess question and are nil on every other kind.
 	NumericAnswer *float64
 	Unit          *string
@@ -195,7 +216,7 @@ type Session struct {
 	// HotSeatRun is how many questions in a row whoever is in the hot seat has taken.
 	HotSeatRun int `gorm:"not null;default:0"`
 
-	// FinalistSeatA and FinalistSeatB are the two players round 6 is between, fixed when the finale opens; -1 in both means no pair yet.
+	// FinalistSeatA and FinalistSeatB are the two players the finale is between, fixed when the finale opens; -1 in both means no pair yet.
 	FinalistSeatA int `gorm:"not null;default:-1"`
 	FinalistSeatB int `gorm:"not null;default:-1"`
 

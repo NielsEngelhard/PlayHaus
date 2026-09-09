@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "How many minutes are there in an hour?", "difficulty": "easy", "answers": [{ "text": "Sixty", "aliases": ["60"] }] },
+        { "prompt": "Which planet is closest to the Sun?", "difficulty": "easy", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "What is the capital of France?", "difficulty": "easy", "answers": [{ "text": "Paris" }] },
+        { "prompt": "Which fruit is traditionally used to make wine?", "difficulty": "easy", "answers": [{ "text": "Grapes", "aliases": ["Grape"] }] },
+        { "prompt": "How many colours are in a rainbow, traditionally counted?", "difficulty": "easy", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "Which mountain range separates Europe from Asia?", "difficulty": "hard", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] },
+        { "prompt": "Who painted The Night Watch?", "difficulty": "hard", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "What is the hardest naturally occurring substance?", "difficulty": "hard", "answers": [{ "text": "Diamond" }] },
+        { "prompt": "Which treaty of 1648 ended the Thirty Years' War?", "difficulty": "hard", "answers": [{ "text": "The Peace of Westphalia", "aliases": ["Peace of Westphalia", "Westphalia"] }] },
+        { "prompt": "Which composer went deaf and still wrote his ninth symphony?", "difficulty": "hard", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Who wrote the novel One Hundred Years of Solitude?", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Marquez"] }] },
         { "prompt": "What is the smallest independent state in the world?", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
         { "prompt": "Which element has the symbol W?", "answers": [{ "text": "Tungsten", "aliases": ["wolfram"] }] },

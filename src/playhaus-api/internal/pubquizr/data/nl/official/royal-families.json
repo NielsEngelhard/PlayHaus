@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke koning volgde koningin Elizabeth II in 2022 op?", "difficulty": "easy", "answers": [{ "text": "Charles III", "aliases": ["Koning Charles", "Charles"] }] },
+        { "prompt": "Welk Londens paleis is de officiele residentie van de Britse vorst?", "difficulty": "easy", "answers": [{ "text": "Buckingham Palace" }] },
+        { "prompt": "Wie is de koning van Nederland?", "difficulty": "easy", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
+        { "prompt": "Hoe heet het hoofddeksel dat een vorst bij een kroning draagt?", "difficulty": "easy", "answers": [{ "text": "Een kroon", "aliases": ["Kroon"] }] },
+        { "prompt": "Welk koninklijk paar trouwde in 2018 in Windsor, Harry en wie?", "difficulty": "easy", "answers": [{ "text": "Meghan Markle", "aliases": ["Meghan"] }] },
+        { "prompt": "Welke Britse vorst regeerde het langst?", "difficulty": "hard", "answers": [{ "text": "Elizabeth II", "aliases": ["Koningin Elizabeth II"] }] },
+        { "prompt": "Welk Nederlands koningshuis regeert sinds 1815?", "difficulty": "hard", "answers": [{ "text": "Het huis Oranje-Nassau", "aliases": ["Oranje-Nassau"] }] },
+        { "prompt": "Welke Japanse keizer besteeg in 2019 de troon en opende het Reiwa-tijdperk?", "difficulty": "hard", "answers": [{ "text": "Naruhito" }] },
+        { "prompt": "Welke Spaanse koning trad in 2014 af ten gunste van zijn zoon Felipe VI?", "difficulty": "hard", "answers": [{ "text": "Juan Carlos I", "aliases": ["Juan Carlos"] }] },
+        { "prompt": "Welke Zweedse koning regeert sinds 1973?", "difficulty": "hard", "answers": [{ "text": "Carl XVI Gustaf", "aliases": ["Karl XVI Gustaf", "Carl Gustaf"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "In welk paleis in Den Haag werkt de Nederlandse koning?", "answers": [{ "text": "Paleis Noordeinde", "aliases": ["Noordeinde"] }] },
         { "prompt": "Hoe heet de kroon die bij een Britse kroning op het hoofd wordt gezet?", "answers": [{ "text": "De kroon van Sint Edward", "aliases": ["Sint-Edwardkroon"] }] },
         { "prompt": "Welke Oostenrijkse keizerin stond bekend als Sisi?", "answers": [{ "text": "Elisabeth van Oostenrijk", "aliases": ["Elisabeth"] }] },

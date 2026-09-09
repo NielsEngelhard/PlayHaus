@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "How many minutes does a football match last without extra time?", "difficulty": "easy", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
+        { "prompt": "Which country won the 2022 World Cup in Qatar?", "difficulty": "easy", "answers": [{ "text": "Argentina" }] },
+        { "prompt": "Which country has won the men's World Cup the most times?", "difficulty": "easy", "answers": [{ "text": "Brazil" }] },
+        { "prompt": "Every how many years is the World Cup held?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4", "Every four years"] }] },
+        { "prompt": "Which Argentinian lifted the trophy as captain in 2022?", "difficulty": "easy", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "How many teams will play at the 2026 World Cup?", "difficulty": "hard", "answers": [{ "text": "Forty-eight", "aliases": ["48"] }] },
+        { "prompt": "Who scored the winning goal for Spain in the 2010 final?", "difficulty": "hard", "answers": [{ "text": "Andres Iniesta", "aliases": ["Iniesta"] }] },
+        { "prompt": "In which stadium was the 2022 final played?", "difficulty": "hard", "answers": [{ "text": "The Lusail Stadium", "aliases": ["Lusail", "Lusail Stadium"] }] },
+        { "prompt": "How many times have the Netherlands reached the World Cup final without winning?", "difficulty": "hard", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "Who was the top scorer of the 2022 World Cup?", "difficulty": "hard", "answers": [{ "text": "Kylian Mbappe", "aliases": ["Mbappe"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which country was world champion in 1934 and 1938?", "answers": [{ "text": "Italy" }] },
         { "prompt": "Which Brazilian was top scorer of the 2002 World Cup?", "answers": [{ "text": "Ronaldo" }] },
         { "prompt": "Which Italian was top scorer of the 1982 World Cup?", "answers": [{ "text": "Paolo Rossi", "aliases": ["Rossi"] }] },

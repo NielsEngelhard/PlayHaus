@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which ship sinks in the 1997 film by James Cameron?", "difficulty": "easy", "answers": [{ "text": "The Titanic", "aliases": ["Titanic"] }] },
+        { "prompt": "What are the golden statuettes handed out by the Academy called?", "difficulty": "easy", "answers": [{ "text": "Oscars", "aliases": ["Oscar", "Academy Awards"] }] },
+        { "prompt": "Which studio made Toy Story?", "difficulty": "easy", "answers": [{ "text": "Pixar" }] },
+        { "prompt": "Which district of Los Angeles is the home of the American film industry?", "difficulty": "easy", "answers": [{ "text": "Hollywood" }] },
+        { "prompt": "Which green Star Wars master trains Luke Skywalker?", "difficulty": "easy", "answers": [{ "text": "Yoda" }] },
+        { "prompt": "Which film won the first Academy Award for best picture, in 1929?", "difficulty": "hard", "answers": [{ "text": "Wings" }] },
+        { "prompt": "Which director made Psycho, Vertigo and The Birds?", "difficulty": "hard", "answers": [{ "text": "Alfred Hitchcock", "aliases": ["Hitchcock"] }] },
+        { "prompt": "Which South Korean film was the first non-English winner of best picture?", "difficulty": "hard", "answers": [{ "text": "Parasite" }] },
+        { "prompt": "Which 1994 Tarantino film revived John Travolta's career?", "difficulty": "hard", "answers": [{ "text": "Pulp Fiction" }] },
+        { "prompt": "Which actress has won the most acting Oscars, with four?", "difficulty": "hard", "answers": [{ "text": "Katharine Hepburn", "aliases": ["Hepburn"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Who directed 2001: A Space Odyssey?", "answers": [{ "text": "Stanley Kubrick", "aliases": ["Kubrick"] }] },
         { "prompt": "Which film features a shark called Bruce behind the scenes?", "answers": [{ "text": "Jaws" }] },
         { "prompt": "What is the name of the robot in WALL-E who arrives on Earth looking for plant life?", "answers": [{ "text": "EVE" }] },

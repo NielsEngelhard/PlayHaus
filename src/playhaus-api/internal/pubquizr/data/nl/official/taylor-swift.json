@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke kleur staat in de titel van Taylor Swifts album uit 2012?", "difficulty": "easy", "answers": [{ "text": "Rood", "aliases": ["Red"] }] },
+        { "prompt": "Welk album van haar is vernoemd naar het jaar waarin ze geboren is?", "difficulty": "easy", "answers": [{ "text": "1989" }] },
+        { "prompt": "Hoe worden de fans van Taylor Swift samen genoemd?", "difficulty": "easy", "answers": [{ "text": "Swifties", "aliases": ["Swiftie"] }] },
+        { "prompt": "In welk nummer van haar vraagt ze iemand het van zich af te schudden?", "difficulty": "easy", "answers": [{ "text": "Shake It Off" }] },
+        { "prompt": "Welk album met slangenthema volgde op 1989?", "difficulty": "easy", "answers": [{ "text": "Reputation" }] },
+        { "prompt": "Hoe heette haar stadiontournee van 2023 en 2024?", "difficulty": "hard", "answers": [{ "text": "The Eras Tour", "aliases": ["Eras Tour"] }] },
+        { "prompt": "Welke twee albums bracht ze in 2020 uit, opgenomen tijdens de lockdown?", "difficulty": "hard", "answers": [{ "text": "Folklore en Evermore", "aliases": ["Folklore & Evermore"] }] },
+        { "prompt": "Welk woord voegt ze toe aan de heropgenomen versies van haar vroege albums?", "difficulty": "hard", "answers": [{ "text": "Taylor's Version", "aliases": ["Taylors Version"] }] },
+        { "prompt": "Hoeveel Grammy's voor album van het jaar heeft ze gewonnen?", "difficulty": "hard", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Welk platenlabel verliet ze in 2018?", "difficulty": "hard", "answers": [{ "text": "Big Machine", "aliases": ["Big Machine Records"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Op welk album staat het nummer The Man?", "answers": [{ "text": "Lover" }] },
         { "prompt": "Hoe heet de documentaire over Taylor Swift die in 2020 uitkwam?", "answers": [{ "text": "Miss Americana" }] },
         { "prompt": "Welk album van Taylor Swift won in 2021 de Grammy voor album van het jaar?", "answers": [{ "text": "Folklore" }] },

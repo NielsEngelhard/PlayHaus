@@ -9,10 +9,10 @@ func TestZenLeavesRoundFourOutOfTheRunningOrder(t *testing.T) {
 	classic := RunningOrder(Modes{})
 	zen := RunningOrder(Modes{Zen: true})
 
-	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale}; !slices.Equal(classic, want) {
+	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundDoubleDown, RoundFinale}; !slices.Equal(classic, want) {
 		t.Errorf("RunningOrder(Modes{}) = %v, want %v", classic, want)
 	}
-	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundFinale}; !slices.Equal(zen, want) {
+	if want := []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundDoubleDown, RoundFinale}; !slices.Equal(zen, want) {
 		t.Errorf("RunningOrder(Modes{Zen: true}) = %v, want %v", zen, want)
 	}
 
@@ -30,7 +30,8 @@ func TestZenStepsFromRoundThreeStraightToRoundFive(t *testing.T) {
 	}{
 		{zen: false, round: RoundClosest, want: RoundDescribe, whatItMeans: "the classic evening still describes"},
 		{zen: true, round: RoundClosest, want: RoundList, whatItMeans: "zen skips the describing"},
-		{zen: true, round: RoundList, want: RoundFinale, whatItMeans: "and picks the evening back up at the finale"},
+		{zen: true, round: RoundList, want: RoundDoubleDown, whatItMeans: "and picks the evening back up at the doubling down"},
+		{zen: true, round: RoundDoubleDown, want: RoundFinale, whatItMeans: "which leads into the finale as always"},
 		{zen: false, round: RoundFinale, want: -1, whatItMeans: "nothing follows the finale"},
 		{zen: true, round: RoundFinale, want: -1, whatItMeans: "in either mode"},
 	}

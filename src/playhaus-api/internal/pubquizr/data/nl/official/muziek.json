@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Uit welk land komt de groep ABBA?", "difficulty": "easy", "answers": [{ "text": "Zweden" }] },
+        { "prompt": "Hoe heet de bekende popzaal aan het Weteringcircuit in Amsterdam?", "difficulty": "easy", "answers": [{ "text": "Paradiso" }] },
+        { "prompt": "Welk instrument bespeel je door met stokken op de vellen te slaan?", "difficulty": "easy", "answers": [{ "text": "De drums", "aliases": ["Drums", "Drumstel"] }] },
+        { "prompt": "Welk instrument heeft witte en zwarte toetsen?", "difficulty": "easy", "answers": [{ "text": "De piano", "aliases": ["Piano"] }] },
+        { "prompt": "Welke Nederlandse zanger maakte Het Dorp beroemd?", "difficulty": "easy", "answers": [{ "text": "Wim Sonneveld", "aliases": ["Sonneveld"] }] },
+        { "prompt": "Welk Nederlands lied won in 2019 het Eurovisie Songfestival?", "difficulty": "hard", "answers": [{ "text": "Arcade" }] },
+        { "prompt": "Welke componist schreef de Negende symfonie terwijl hij vrijwel doof was?", "difficulty": "hard", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] },
+        { "prompt": "Welke Nederlandse band bracht in 1969 de hit Venus uit?", "difficulty": "hard", "answers": [{ "text": "Shocking Blue" }] },
+        { "prompt": "Hoeveel toetsen heeft een volledige concertvleugel?", "difficulty": "hard", "answers": [{ "text": "88" }] },
+        { "prompt": "Welke Nederlandse violist en dirigent staat bekend om zijn Johann Strauss Orkest?", "difficulty": "hard", "answers": [{ "text": "Andre Rieu", "aliases": ["Andre Rieu", "Rieu"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke componist werd doof en bleef toch componeren?", "answers": [{ "text": "Beethoven" }] },
         { "prompt": "Welke band zong Stairway to Heaven?", "answers": [{ "text": "Led Zeppelin" }] },
         { "prompt": "Hoeveel lijnen heeft een muzikale notenbalk?", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },

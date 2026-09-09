@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel nullen staan er in duizend?", "difficulty": "easy", "answers": [{ "text": "Drie", "aliases": ["3"] }] },
+        { "prompt": "Welk dier staat bekend om zijn lange nek?", "difficulty": "easy", "answers": [{ "text": "De giraf", "aliases": ["Giraf", "Giraffe"] }] },
+        { "prompt": "Wat is de hoofdstad van Portugal?", "difficulty": "easy", "answers": [{ "text": "Lissabon", "aliases": ["Lisboa"] }] },
+        { "prompt": "Welke oranje groente eten tekenfilmkonijnen het liefst?", "difficulty": "easy", "answers": [{ "text": "De wortel", "aliases": ["Wortel", "Peen"] }] },
+        { "prompt": "Hoeveel spelers van een basketbalteam staan er op het veld?", "difficulty": "easy", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welk land heeft de langste kustlijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "Canada" }] },
+        { "prompt": "Hoe heet het proces waarmee planten uit zonlicht suiker maken?", "difficulty": "hard", "answers": [{ "text": "Fotosynthese" }] },
+        { "prompt": "Welke muur liet keizer Hadrianus door Noord-Brittannie aanleggen?", "difficulty": "hard", "answers": [{ "text": "De Muur van Hadrianus", "aliases": ["Muur van Hadrianus", "Hadrian's Wall"] }] },
+        { "prompt": "Welke letter komt in geen enkele naam van een Amerikaanse staat voor?", "difficulty": "hard", "answers": [{ "text": "Q" }] },
+        { "prompt": "Met welke Nederlandse club won Johan Cruijff drie Europacups?", "difficulty": "hard", "answers": [{ "text": "Ajax" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse sterrenkundige gaf zijn naam aan de wolk van kometen rond ons zonnestelsel?", "answers": [{ "text": "Jan Hendrik Oort", "aliases": ["Oort"] }] },
         { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga", "Volga"] }] },
         { "prompt": "Welke Duitse componist schreef de opera Der Ring des Nibelungen?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] },

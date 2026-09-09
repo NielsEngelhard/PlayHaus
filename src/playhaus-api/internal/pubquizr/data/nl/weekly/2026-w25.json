@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel minuten zitten er in een uur?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
+        { "prompt": "Welke planeet staat het dichtst bij de zon?", "difficulty": "easy", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Wat is de hoofdstad van Frankrijk?", "difficulty": "easy", "answers": [{ "text": "Parijs" }] },
+        { "prompt": "Van welke vrucht wordt traditioneel wijn gemaakt?", "difficulty": "easy", "answers": [{ "text": "Druiven", "aliases": ["Druif"] }] },
+        { "prompt": "Hoeveel kleuren heeft een regenboog volgens de traditie?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Welk gebergte scheidt Europa van Azie?", "difficulty": "hard", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
+        { "prompt": "Wie schilderde De Nachtwacht?", "difficulty": "hard", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Wat is de hardste stof die in de natuur voorkomt?", "difficulty": "hard", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Welk verdrag uit 1648 maakte een einde aan de Dertigjarige Oorlog?", "difficulty": "hard", "answers": [{ "text": "De Vrede van Westfalen", "aliases": ["Vrede van Westfalen", "Westfalen"] }] },
+        { "prompt": "Welke componist werd doof en schreef daarna nog zijn negende symfonie?", "difficulty": "hard", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Wie schreef de roman Honderd jaar eenzaamheid?", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Marquez"] }] },
         { "prompt": "Wat is de kleinste onafhankelijke staat ter wereld?", "answers": [{ "text": "Vaticaanstad", "aliases": ["het Vaticaan"] }] },
         { "prompt": "Welk element heeft het symbool W?", "answers": [{ "text": "Wolfraam", "aliases": ["tungsteen"] }] },

@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which meal is eaten in the morning?", "difficulty": "easy", "answers": [{ "text": "Breakfast" }] },
+        { "prompt": "What is the capital of Spain?", "difficulty": "easy", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Which animal is the fastest on land?", "difficulty": "easy", "answers": [{ "text": "The cheetah", "aliases": ["Cheetah"] }] },
+        { "prompt": "How many months of the year have thirty-one days?", "difficulty": "easy", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
+        { "prompt": "What do bees make?", "difficulty": "easy", "answers": [{ "text": "Honey" }] },
+        { "prompt": "Which sea is the saltiest body of water people can swim in?", "difficulty": "hard", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Who wrote the play Hamlet?", "difficulty": "hard", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Which gas makes up about seventy-eight per cent of the air?", "difficulty": "hard", "answers": [{ "text": "Nitrogen" }] },
+        { "prompt": "Which empire was ruled from Constantinople until 1453?", "difficulty": "hard", "answers": [{ "text": "The Byzantine Empire", "aliases": ["Byzantine Empire", "Byzantium"] }] },
+        { "prompt": "Which tennis tournament is played on grass?", "difficulty": "hard", "answers": [{ "text": "Wimbledon" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Dutch jurist wrote On the Law of War and Peace in 1625?", "answers": [{ "text": "Hugo de Groot", "aliases": ["Grotius", "Hugo Grotius"] }] },
         { "prompt": "What is the highest mountain in South America?", "answers": [{ "text": "Aconcagua", "aliases": ["Mount Aconcagua"] }] },
         { "prompt": "Which Austrian composer wrote over a hundred symphonies and is called the father of the symphony?", "answers": [{ "text": "Joseph Haydn", "aliases": ["Haydn"] }] },

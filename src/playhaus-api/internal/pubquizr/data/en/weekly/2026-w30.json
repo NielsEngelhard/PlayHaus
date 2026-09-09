@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which shape has three sides?", "difficulty": "easy", "answers": [{ "text": "A triangle", "aliases": ["Triangle"] }] },
+        { "prompt": "What is the largest planet in the solar system?", "difficulty": "easy", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Which drink is made from roasted beans and drunk hot?", "difficulty": "easy", "answers": [{ "text": "Coffee" }] },
+        { "prompt": "How many strings does a standard guitar have?", "difficulty": "easy", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "What is the capital of Germany?", "difficulty": "easy", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "Which country is home to the Great Barrier Reef?", "difficulty": "hard", "answers": [{ "text": "Australia" }] },
+        { "prompt": "Who was the first woman to win a Nobel Prize?", "difficulty": "hard", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Which river flows through Vienna, Budapest and Belgrade?", "difficulty": "hard", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },
+        { "prompt": "What is the smallest prime number?", "difficulty": "hard", "answers": [{ "text": "Two", "aliases": ["2"] }] },
+        { "prompt": "Which artist cut his own ear and painted sunflowers?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Swedish chemist established the Nobel Prizes in his will?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
         { "prompt": "What is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
         { "prompt": "Which Italian composer wrote the opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },

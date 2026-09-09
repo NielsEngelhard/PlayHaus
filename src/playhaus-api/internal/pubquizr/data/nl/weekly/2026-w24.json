@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Hoeveel dagen heeft een schrikkeljaar?", "difficulty": "easy", "answers": [{ "text": "366" }] },
+        { "prompt": "Wat is de grootste oceaan op aarde?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Pacific"] }] },
+        { "prompt": "Welk dier staat bekend als de koning van de jungle?", "difficulty": "easy", "answers": [{ "text": "De leeuw", "aliases": ["Leeuw"] }] },
+        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Hoeveel zijden heeft een zeshoek?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welk element heeft het symbool W?", "difficulty": "hard", "answers": [{ "text": "Wolfraam", "aliases": ["Wolfram", "Tungsten"] }] },
+        { "prompt": "Welke zee scheidt Italie van de Balkan?", "difficulty": "hard", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee", "Adriatische"] }] },
+        { "prompt": "Wie schreef de roman Honderd jaar eenzaamheid?", "difficulty": "hard", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Garcia Marquez", "Marquez"] }] },
+        { "prompt": "In welk jaar ontplofte de reactor van Tsjernobyl?", "difficulty": "hard", "answers": [{ "text": "1986" }] },
+        { "prompt": "Wat is qua oppervlakte het kleinste land van de wereld?", "difficulty": "hard", "answers": [{ "text": "Vaticaanstad", "aliases": ["Het Vaticaan", "Vaticaan"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Nederlandse natuurkundige kreeg in 1913 de Nobelprijs voor zijn werk bij zeer lage temperaturen?", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
         { "prompt": "Wat is de langste rivier van Zuid-Amerika?", "answers": [{ "text": "De Amazone", "aliases": ["Amazone"] }] },
         { "prompt": "Welke componist schreef de opera De Toverfluit?", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },

@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "How many zeros are in one thousand?", "difficulty": "easy", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "Which animal is famous for its long neck?", "difficulty": "easy", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
+        { "prompt": "What is the capital of Portugal?", "difficulty": "easy", "answers": [{ "text": "Lisbon", "aliases": ["Lisboa"] }] },
+        { "prompt": "Which vegetable is orange and eaten by rabbits in cartoons?", "difficulty": "easy", "answers": [{ "text": "The carrot", "aliases": ["Carrot"] }] },
+        { "prompt": "How many players are on a basketball team on court?", "difficulty": "easy", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "Which country has the longest coastline in the world?", "difficulty": "hard", "answers": [{ "text": "Canada" }] },
+        { "prompt": "What is the name of the process plants use to make sugar from sunlight?", "difficulty": "hard", "answers": [{ "text": "Photosynthesis" }] },
+        { "prompt": "Which wall did the Roman emperor Hadrian build across northern Britain?", "difficulty": "hard", "answers": [{ "text": "Hadrian's Wall", "aliases": ["Hadrians Wall"] }] },
+        { "prompt": "Which is the only letter that does not appear in any US state name?", "difficulty": "hard", "answers": [{ "text": "Q" }] },
+        { "prompt": "Which Dutch football club did Johan Cruyff win three European Cups with?", "difficulty": "hard", "answers": [{ "text": "Ajax" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Dutch astronomer gave his name to the cloud of comets around our solar system?", "answers": [{ "text": "Jan Hendrik Oort", "aliases": ["Oort"] }] },
         { "prompt": "What is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
         { "prompt": "Which German composer wrote the opera cycle Der Ring des Nibelungen?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] },

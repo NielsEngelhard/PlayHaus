@@ -407,7 +407,9 @@ func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error
 		{RoundClosest, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
 		{RoundDescribe, func(a int) int { return DescribeWordsFor(players, a) }, inTurns},
 		{RoundList, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
-		// The finalists are not known until the other five rounds are done.
+		// Round 6 deals its whole pool however many are playing: the questions nobody gets round to are the choice.
+		{RoundDoubleDown, all, toTheTable},
+		// The finalists are not known until the other six rounds are done.
 		{RoundFinale, all, toTheTable},
 	} {
 		if !PlaysRound(modes, round.number) {
@@ -1139,7 +1141,7 @@ func (s *Service) listAnswers(ctx context.Context, session *Session, question *S
 	return nil, fmt.Errorf("list answers: %w", ErrQuizNotFound)
 }
 
-// RecordFinaleTurn scores one whole round 6 question and moves the finale on.
+// RecordFinaleTurn scores one whole finale question and moves the finale on.
 func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session, error) {
 	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 	if err != nil {
@@ -1235,12 +1237,140 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
 }
 
+// difficultyOf is which half of round 6's pool a dealt question came out of.
+func (s *Service) difficultyOf(ctx context.Context, session *Session, question *SessionQuestion) (Difficulty, error) {
+	quiz, err := s.store.QuizByID(ctx, session.QuizID)
+	if err != nil {
+		return "", err
+	}
+	if quiz == nil {
+		return "", fmt.Errorf("double down difficulty: %w", ErrQuizNotFound)
+	}
+
+	for _, candidate := range quiz.Questions {
+		if candidate.ID != question.QuestionID {
+			continue
+		}
+		if !candidate.Difficulty.Valid() {
+			return "", fmt.Errorf("double down difficulty: %w", ErrStaleTurn)
+		}
+
+		return candidate.Difficulty, nil
+	}
+
+	return "", fmt.Errorf("double down difficulty: %w", ErrQuizNotFound)
+}
+
+// RecordDoubleDownTurn scores one round 6 question, the one the player asked for, and moves the table on a seat.
+func (s *Service) RecordDoubleDownTurn(ctx context.Context, in TurnInput) (*Session, error) {
+	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundDoubleDown {
+		return nil, ErrWrongRound
+	}
+
+	// The pool is the whole rule: another round's question, one already scored, or a sixth hard one after the hard five are spent is simply not pending.
+	question := session.PendingQuestion(RoundDoubleDown, in.SessionQuestionID)
+	if question == nil {
+		return nil, ErrStaleTurn
+	}
+
+	difficulty, err := s.difficultyOf(ctx, session, question)
+	if err != nil {
+		return nil, err
+	}
+
+	attempts, err := s.store.AttemptsOn(ctx, question.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	hot := session.HotSeatOrFirst()
+
+	line := PassLine(session.QuizMasterSeat, hot, attempts, len(session.Players))
+	if len(line) == 0 {
+		return nil, ErrStaleTurn
+	}
+	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
+		return nil, err
+	}
+
+	now := time.Now().UTC()
+	out := TurnOutcome{}
+
+	for _, seat := range in.MissedSeats {
+		if session.PlayerAt(seat) == nil {
+			return nil, fmt.Errorf("double down turn: no player in seat %d", seat)
+		}
+
+		out.Answers = append(out.Answers, &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           false,
+			CreatedAt:         now,
+		})
+	}
+
+	points := 0
+	if in.CorrectSeat != nil {
+		seat := *in.CorrectSeat
+
+		player := session.PlayerAt(seat)
+		if player == nil {
+			return nil, fmt.Errorf("double down turn: no player in seat %d", seat)
+		}
+
+		attempt := &SessionAnswer{
+			ID:                uuid.New(),
+			SessionID:         session.ID,
+			SessionQuestionID: question.ID,
+			Seat:              &seat,
+			Correct:           true,
+			CreatedAt:         now,
+		}
+		if said := strings.TrimSpace(in.Said); said != "" {
+			attempt.Text = &said
+		}
+
+		// A passed question keeps the value the player who was asked chose, whoever ends up taking it.
+		points = DoubleDownPointsFor(difficulty)
+		attempt.Points = points
+		out.Answers = append(out.Answers, attempt)
+
+		player.Score += points
+		out.Players = append(out.Players, player)
+	}
+
+	question.Status = QuestionDone
+	question.Points = points
+	out.Questions = append(out.Questions, question)
+
+	// Nobody holds the seat here, so there is no seat to set: advance rotates the table one place on its own.
+	session.HotSeatRun = 0
+	s.advance(session)
+	session.UpdatedAt = now
+
+	if err := s.store.RecordTurn(ctx, session, out); err != nil {
+		return nil, err
+	}
+
+	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+}
+
 // advance moves the session on to the next slot, and off the end of the round when there is no next slot.
 func (s *Service) advance(session *Session) {
 	session.CurrentPosition++
 
 	if session.CurrentPosition < session.TurnsInRound(session.CurrentRound) {
-		// Rounds 3 and 4 go round the table on their own.
+		// The rounds that walk the table a seat at a time do it here.
 		if RotatesEachTurn(session.CurrentRound) {
 			session.RotateOneSeat()
 		}
@@ -1295,6 +1425,11 @@ func (s *Service) AnsweringSeatFor(ctx context.Context, session *Session) (int, 
 		}
 
 		return session.FinaleAnsweringSeat(attempts), nil
+	}
+
+	if session.CurrentRound == RoundDoubleDown {
+		// Round 6's pass line is walked on the phone and only the finished turn is posted, so there is never a part-asked question to count attempts on.
+		return session.CurrentAnsweringSeat(0), nil
 	}
 
 	if !IsHotSeatRound(session.CurrentRound) {

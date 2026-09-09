@@ -10,7 +10,7 @@ import (
 
 // The finale over HTTP, reached by playing a real evening rather than by writing rows.
 //
-// Which is the point of doing it at this level at all: who round 6 seats depends on five
+// Which is the point of doing it at this level at all: who the finale seats depends on six
 // rounds of scoring, and the one thing worth proving is that a session that got there by
 // being played puts two people in the finale and somebody else in the quizmaster's chair.
 
@@ -54,46 +54,17 @@ func answersOfQuiz(t *testing.T, h http.Handler, token, quizID string) map[strin
 	return answers
 }
 
-// atTheFinale is a real session played through all five rounds, sat on the first finale
-// question.
+// atTheFinale is a real session played through every round before it, sat on the first
+// finale question.
 //
-// Round 5 is settled so that the scoreboard comes out uneven -- the seat being asked is
-// handed the whole question -- because a finale seated off a flat table proves nothing
-// about who it picks. Rounds 1 to 4 are `atRoundFive`'s business.
+// Rounds 1 to 5 are atDoubleDown's business, and round 6 is played out hard-first so that
+// the scoreboard the finale is seated off has been moved by the round immediately before
+// it.
 func atTheFinale(t *testing.T, players int) (http.Handler, string, quizSessionResponse) {
 	t.Helper()
 
-	h, token, answers, session := atRoundFive(t, players)
-
-	for session.CurrentRound == pubquizr.RoundList {
-		dealt := session.TurnQuestionIDs[0]
-
-		var questionID string
-		for _, question := range session.Questions {
-			if question.ID == dealt {
-				questionID = question.QuestionID
-			}
-		}
-
-		// The seat being asked, for the reason round 4 uses it too: they are the only
-		// player who may be credited with more than one of a question's answers,
-		// everybody else having a single bonus guess at the leftovers.
-		claimer := *session.GuesserSeat
-
-		awards := make([]listAwardRequest, 0, 4)
-		for _, answer := range answers[questionID] {
-			awards = append(awards, listAwardRequest{AnswerID: answer, Seats: []int{claimer}})
-		}
-
-		rec := do(t, h, http.MethodPost, listPath(session.ID), listBody(t, listAwardsRequest{
-			SessionQuestionID: dealt,
-			Awards:            awards,
-		}), token)
-		if rec.Code != http.StatusOK {
-			t.Fatalf("settle round 5: status = %d (body: %s)", rec.Code, rec.Body)
-		}
-		session = decodeBody[quizSessionResponse](t, rec)
-	}
+	h, token, session := atDoubleDown(t, players)
+	session = playOutDoubleDown(t, h, token, session)
 
 	if got, want := session.CurrentRound, pubquizr.RoundFinale; got != want {
 		t.Fatalf("currentRound = %d, want %d", got, want)
@@ -213,7 +184,7 @@ func TestFinaleWrongAnswerCrossesToTheOtherFinalistAndStillPays(t *testing.T) {
 }
 
 // The quizmaster reads the whole round: whoever the phone was handed to at the top of
-// round 6 is still holding it at the end of it.
+// the finale is still holding it at the end of it.
 func TestFinaleKeepsOneQuizmasterForTheWholeRound(t *testing.T) {
 	h, token, session := atTheFinale(t, 4)
 

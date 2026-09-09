@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke vorm heeft drie zijden?", "difficulty": "easy", "answers": [{ "text": "Een driehoek", "aliases": ["Driehoek"] }] },
+        { "prompt": "Wat is de grootste planeet van het zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Welke drank wordt van geroosterde bonen gemaakt en warm gedronken?", "difficulty": "easy", "answers": [{ "text": "Koffie" }] },
+        { "prompt": "Hoeveel snaren heeft een standaardgitaar?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Wat is de hoofdstad van Duitsland?", "difficulty": "easy", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "In welk land ligt het Groot Barrierrif?", "difficulty": "hard", "answers": [{ "text": "Australie", "aliases": ["Australia"] }] },
+        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "difficulty": "hard", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "difficulty": "hard", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
+        { "prompt": "Wat is het kleinste priemgetal?", "difficulty": "hard", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Welke kunstenaar sneed zijn eigen oor en schilderde zonnebloemen?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Zweedse scheikundige stelde de Nobelprijzen in zijn testament in?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
         { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
         { "prompt": "Welke Italiaanse componist schreef de opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },

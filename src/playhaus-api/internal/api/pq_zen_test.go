@@ -80,7 +80,7 @@ func TestZenQuizAnswersTheShortRunningOrder(t *testing.T) {
 	if !session.ZenMode {
 		t.Error("zenMode = false on a session that asked for it")
 	}
-	if want := []int{1, 2, 3, 5, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 5, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 	if got, want := session.TotalRounds, len(session.Rounds); got != want {
@@ -93,7 +93,7 @@ func TestZenQuizAnswersTheShortRunningOrder(t *testing.T) {
 	if got := questionsIn(session, pubquizr.RoundDescribe); len(got) != 0 {
 		t.Errorf("round 4 was dealt %d questions, want none", len(got))
 	}
-	for _, round := range []int{1, 2, 3, 5, 6} {
+	for _, round := range []int{1, 2, 3, 5, 6, 7} {
 		if got := questionsIn(session, round); len(got) == 0 {
 			t.Errorf("round %d was dealt nothing", round)
 		}
@@ -110,7 +110,7 @@ func TestQuizWithoutZenPlaysEveryRound(t *testing.T) {
 	if session.ZenMode {
 		t.Error("zenMode = true on a session that did not ask for it")
 	}
-	if want := []int{1, 2, 3, 4, 5, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 4, 5, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 	if got, want := session.TotalRounds, pubquizr.Rounds; got != want {
@@ -181,6 +181,12 @@ func TestZenEveningPlaysThroughToTheEnd(t *testing.T) {
 		session = decodeBody[quizSessionResponse](t, rec)
 	}
 
+	if got, want := session.CurrentRound, pubquizr.RoundDoubleDown; got != want {
+		t.Fatalf("currentRound = %d, want %d", got, want)
+	}
+
+	session = playOutDoubleDown(t, h, token, session)
+
 	if got, want := session.CurrentRound, pubquizr.RoundFinale; got != want {
 		t.Fatalf("currentRound = %d, want %d", got, want)
 	}
@@ -204,7 +210,7 @@ func TestZenEveningPlaysThroughToTheEnd(t *testing.T) {
 	if got, want := session.Status, string(pubquizr.SessionCompleted); got != want {
 		t.Errorf("status = %q, want %q", got, want)
 	}
-	if want := []int{1, 2, 3, 5, 6}; !slices.Equal(session.Rounds, want) {
+	if want := []int{1, 2, 3, 5, 6, 7}; !slices.Equal(session.Rounds, want) {
 		t.Errorf("rounds = %v, want %v", session.Rounds, want)
 	}
 }

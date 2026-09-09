@@ -97,6 +97,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "How many players are in a football team on the pitch?", "difficulty": "easy", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which animal gives us wool?", "difficulty": "easy", "answers": [{ "text": "The sheep", "aliases": ["Sheep"] }] },
+        { "prompt": "What is the capital of Italy?", "difficulty": "easy", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
+        { "prompt": "Which sense do you use your nose for?", "difficulty": "easy", "answers": [{ "text": "Smell" }] },
+        { "prompt": "How many letters are in the English alphabet?", "difficulty": "easy", "answers": [{ "text": "26" }] },
+        { "prompt": "Which desert is the largest hot desert in the world?", "difficulty": "hard", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Who developed the theory of general relativity?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Which city hosted the first modern Olympic Games in 1896?", "difficulty": "hard", "answers": [{ "text": "Athens" }] },
+        { "prompt": "What is the chemical symbol for gold?", "difficulty": "hard", "answers": [{ "text": "Au" }] },
+        { "prompt": "Which Dutch city is the seat of the International Court of Justice?", "difficulty": "hard", "answers": [{ "text": "The Hague", "aliases": ["Den Haag", "Hague"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Polish astronomer put the sun at the centre of the solar system?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus"] }] },
         { "prompt": "What is the largest lake in Africa?", "answers": [{ "text": "Lake Victoria", "aliases": ["Victoria"] }] },
         { "prompt": "Which Russian composer wrote the ballet Swan Lake?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Tchaikovsky", "Pyotr Tchaikovsky"] }] },

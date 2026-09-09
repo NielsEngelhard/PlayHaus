@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Van welke stof wordt een jeans traditioneel gemaakt?", "difficulty": "easy", "answers": [{ "text": "Denim" }] },
+        { "prompt": "Welke stad heeft een fashion week naast Parijs, Londen en New York?", "difficulty": "easy", "answers": [{ "text": "Milaan", "aliases": ["Milano"] }] },
+        { "prompt": "Hoe heet het looppad waarop modellen kleding showen?", "difficulty": "easy", "answers": [{ "text": "De catwalk", "aliases": ["Catwalk", "Loopbrug"] }] },
+        { "prompt": "Welk modeblad heeft sinds 1892 een Amerikaanse editie?", "difficulty": "easy", "answers": [{ "text": "Vogue" }] },
+        { "prompt": "Welk merk heeft een vinkvormig logo dat de swoosh heet?", "difficulty": "easy", "answers": [{ "text": "Nike" }] },
+        { "prompt": "Welk luxeconcern bezit Louis Vuitton, Dior en Fendi?", "difficulty": "hard", "answers": [{ "text": "LVMH" }] },
+        { "prompt": "Welke Britse ontwerper, overleden in 2010, zette Lady Gaga op armadilloschoenen?", "difficulty": "hard", "answers": [{ "text": "Alexander McQueen", "aliases": ["McQueen"] }] },
+        { "prompt": "Welke ontwerper nam in 1983 de leiding bij Chanel en bleef tot zijn dood?", "difficulty": "hard", "answers": [{ "text": "Karl Lagerfeld", "aliases": ["Lagerfeld"] }] },
+        { "prompt": "Welk Nederlands ontwerpersduo uit Amsterdam staat bekend om draagbare kunst?", "difficulty": "hard", "answers": [{ "text": "Viktor en Rolf", "aliases": ["Viktor & Rolf"] }] },
+        { "prompt": "Wat is de Franse term voor op maat gemaakte topmode, in Parijs wettelijk beschermd?", "difficulty": "hard", "answers": [{ "text": "Haute couture", "aliases": ["Couture"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Engelsman opende in de negentiende eeuw het eerste modehuis in Parijs?", "answers": [{ "text": "Charles Frederick Worth", "aliases": ["Worth"] }] },
         { "prompt": "Naar welke Britse actrice en zangeres is de Birkin-tas vernoemd?", "answers": [{ "text": "Jane Birkin", "aliases": ["Birkin"] }] },
         { "prompt": "Welk Italiaans merk begon in 1913 in Milaan als lederwarenwinkel?", "answers": [{ "text": "Prada" }] },

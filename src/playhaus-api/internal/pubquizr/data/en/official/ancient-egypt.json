@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which river ran through ancient Egypt and flooded its fields every year?", "difficulty": "easy", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "Which desert covers most of Egypt?", "difficulty": "easy", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Which boy king's tomb did Howard Carter open in 1922?", "difficulty": "easy", "answers": [{ "text": "Tutankhamun", "aliases": ["Tutankhamen", "King Tut"] }] },
+        { "prompt": "Which sea lies along Egypt's northern coast?", "difficulty": "easy", "answers": [{ "text": "The Mediterranean", "aliases": ["Mediterranean", "Mediterranean Sea"] }] },
+        { "prompt": "What was a preserved, wrapped Egyptian body called?", "difficulty": "easy", "answers": [{ "text": "A mummy", "aliases": ["Mummy"] }] },
+        { "prompt": "Whose painted limestone bust, dug up in 1912 and now in Berlin, is the most famous face of the Amarna period?", "difficulty": "hard", "answers": [{ "text": "Nefertiti" }] },
+        { "prompt": "Which board game, played on thirty squares, was a favourite pastime in ancient Egypt?", "difficulty": "hard", "answers": [{ "text": "Senet" }] },
+        { "prompt": "Which female pharaoh ruled for about two decades and was often shown wearing a false beard?", "difficulty": "hard", "answers": [{ "text": "Hatshepsut" }] },
+        { "prompt": "Whose Step Pyramid at Saqqara is the oldest pyramid in Egypt?", "difficulty": "hard", "answers": [{ "text": "Djoser", "aliases": ["Zoser"] }] },
+        { "prompt": "Which jackal-headed god led the dead to the weighing of the heart?", "difficulty": "hard", "answers": [{ "text": "Anubis" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "What was the new capital Akhenaten had built called?", "answers": [{ "text": "Akhetaten", "aliases": ["Amarna"] }] },
         { "prompt": "What are the four jars the organs were kept in called?", "answers": [{ "text": "Canopic jars", "aliases": ["canopic vases"] }] },
         { "prompt": "Which Greek historian called Egypt a gift of the Nile?", "answers": [{ "text": "Herodotus" }] },

@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Which colour is the middle stripe of the Dutch flag?", "difficulty": "easy", "answers": [{ "text": "White" }] },
+        { "prompt": "Which orange root vegetable are the Dutch football shirts' colour named after?", "difficulty": "easy", "answers": [{ "text": "The carrot", "aliases": ["Carrot"] }] },
+        { "prompt": "Which flower is the Netherlands most famous for?", "difficulty": "easy", "answers": [{ "text": "The tulip", "aliases": ["Tulip", "Tulips"] }] },
+        { "prompt": "What are the traditional Dutch wooden shoes called?", "difficulty": "easy", "answers": [{ "text": "Clogs", "aliases": ["Klompen", "Clog"] }] },
+        { "prompt": "Which Dutch city is home to the port of Europe's busiest harbour?", "difficulty": "easy", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Which Dutch painter cut off part of his own ear in Arles?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "What is the name of the sea defence works built after the 1953 flood?", "difficulty": "hard", "answers": [{ "text": "The Delta Works", "aliases": ["Delta Works", "Deltawerken"] }] },
+        { "prompt": "How many of the Dutch Wadden islands are inhabited?", "difficulty": "hard", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "In which year did the Netherlands become the first country to open marriage to same-sex couples?", "difficulty": "hard", "answers": [{ "text": "2001" }] },
+        { "prompt": "Which Dutch trading company, founded in 1602, was the first to issue shares to the public?", "difficulty": "hard", "answers": [{ "text": "The Dutch East India Company", "aliases": ["VOC", "Dutch East India Company"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Which Dutch navigator reached New Zealand in 1642?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "What is the Dutch national anthem called?", "answers": [{ "text": "The Wilhelmus", "aliases": ["Wilhelmus"] }] },
         { "prompt": "Which Dutch architect designed the Rietveld Schroder House in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },

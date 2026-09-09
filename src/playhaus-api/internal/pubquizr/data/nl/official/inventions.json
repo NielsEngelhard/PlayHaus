@@ -98,6 +98,21 @@
     {
       "round": 6,
       "questions": [
+        { "prompt": "Welke uitvinding verlicht een kamer met een klik op de schakelaar?", "difficulty": "easy", "answers": [{ "text": "De gloeilamp", "aliases": ["Gloeilamp", "Lamp"] }] },
+        { "prompt": "Wie wordt gezien als de uitvinder van de telefoon in 1876?", "difficulty": "easy", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
+        { "prompt": "Met welke uitvinding vlieg je van land naar land?", "difficulty": "easy", "answers": [{ "text": "Het vliegtuig", "aliases": ["Vliegtuig"] }] },
+        { "prompt": "Welke uitvinding op twee wielen laat je op je eigen benen vooruitkomen?", "difficulty": "easy", "answers": [{ "text": "De fiets", "aliases": ["Fiets"] }] },
+        { "prompt": "Welke uitvinding houdt eten koud in de keuken?", "difficulty": "easy", "answers": [{ "text": "De koelkast", "aliases": ["Koelkast"] }] },
+        { "prompt": "Welke twee Franse broers lieten in 1783 de eerste heteluchtballon opstijgen?", "difficulty": "hard", "answers": [{ "text": "De broers Montgolfier", "aliases": ["Montgolfier"] }] },
+        { "prompt": "Welke uitvinding van Percy Spencer uit 1945 begon met een gesmolten chocoladereep?", "difficulty": "hard", "answers": [{ "text": "De magnetron", "aliases": ["Magnetron", "Microgolfoven"] }] },
+        { "prompt": "Welke Schotse uitvinder verbeterde in 1769 de stoommachine die de industriele revolutie aandreef?", "difficulty": "hard", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },
+        { "prompt": "Welk Nederlands bedrijf vond samen met Sony de compact disc uit?", "difficulty": "hard", "answers": [{ "text": "Philips" }] },
+        { "prompt": "Welke Hongaar vond de balpen uit die zijn naam draagt?", "difficulty": "hard", "answers": [{ "text": "Laszlo Biro", "aliases": ["Biro"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
         { "prompt": "Welke Franse gebroeders toonden in 1895 als eersten een film aan publiek?", "answers": [{ "text": "De gebroeders Lumiere", "aliases": ["Lumiere"] }] },
         { "prompt": "Welke Nederlandse natuurkundige kreeg in 1902 de Nobelprijs voor zijn werk aan elektronen?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz"] }] },
         { "prompt": "In welk jaar werd de transistor uitgevonden?", "answers": [{ "text": "1947" }] },

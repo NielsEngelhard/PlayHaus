@@ -26,7 +26,7 @@ func TestRoundKeepsTheSeat(t *testing.T) {
 	if !RoundKeepsTheSeat(RoundOpen) {
 		t.Error("round 1 does not keep the seat, so nothing is worth staying in for")
 	}
-	for _, round := range []int{RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundFinale} {
+	for _, round := range []int{RoundChoice, RoundClosest, RoundDescribe, RoundList, RoundDoubleDown, RoundFinale} {
 		if RoundKeepsTheSeat(round) {
 			t.Errorf("round %d keeps the seat", round)
 		}
@@ -43,7 +43,7 @@ func TestOpensOnTheReader(t *testing.T) {
 	if !OpensOnTheReader(RoundDescribe) {
 		t.Error("round 4 opens on the seat being asked, but nobody is being asked")
 	}
-	for _, round := range []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundFinale} {
+	for _, round := range []int{RoundOpen, RoundChoice, RoundClosest, RoundList, RoundDoubleDown, RoundFinale} {
 		if OpensOnTheReader(round) {
 			t.Errorf("round %d opens on its reader", round)
 		}
