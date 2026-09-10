@@ -8,9 +8,11 @@ import (
 	"slices"
 
 	"playhaus-api/internal/auth"
+	"playhaus-api/internal/friend"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/pubquizr"
+	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 )
@@ -23,6 +25,8 @@ type Server struct {
 	pubquizr        *pubquizr.Service
 	oneOfUs         *oneofus.Service
 	fakeFiller      *fakefiller.Service
+	friends         *friend.Service
+	push            *push.Service
 
 	// rt is every live socket room.
 	rt  *realtime.Hub
@@ -40,6 +44,8 @@ func NewServer(
 	pubquizrSvc *pubquizr.Service,
 	oneOfUsSvc *oneofus.Service,
 	fakeFillerSvc *fakefiller.Service,
+	friendSvc *friend.Service,
+	pushSvc *push.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
@@ -52,6 +58,8 @@ func NewServer(
 		pubquizr:         pubquizrSvc,
 		oneOfUs:          oneOfUsSvc,
 		fakeFiller:       fakeFillerSvc,
+		friends:          friendSvc,
+		push:             pushSvc,
 		rt:               hub,
 		log:              log,
 		allowedOrigins:   allowedOrigins,
@@ -63,10 +71,13 @@ func NewServer(
 	hub.Register(joincode.FakeFiller.Namespace(), ffRealtime{server: s})
 	hub.Register(joincode.PubquizR.Namespace(), pqRealtime{server: s})
 	hub.Register(joincode.OneOfUs.Namespace(), oouRealtime{server: s})
+	// Not a game's namespace: one room per player, for what reaches them between games.
+	hub.Register(userNamespace, userRealtime{server: s})
 
 	s.AddHealthHandlers()
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
+	s.AddFriendHandlers()
 	s.AddLeagueOfLettersHandlers()
 	s.AddPubquizRHandlers()
 	s.AddPubquizRMultiDeviceHandlers()
@@ -201,6 +212,7 @@ func (s *Server) AddUserHandlers() {
 	s.mux.HandleFunc("PUT /api/v1/user/enable-sounds", s.requireAuth(s.handleUpdateUserEnableSounds))
 	s.mux.HandleFunc("PUT /api/v1/user/enable-music", s.requireAuth(s.handleUpdateUserEnableMusic))
 	s.mux.HandleFunc("PUT /api/v1/user/enable-vibration", s.requireAuth(s.handleUpdateUserEnableVibration))
+	s.mux.HandleFunc("PUT /api/v1/user/push-token", s.requireAuth(s.handleUpdateUserPushToken))
 }
 
 func (s *Server) AddReconnectHandlers() {

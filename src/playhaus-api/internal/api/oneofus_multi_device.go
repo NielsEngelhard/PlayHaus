@@ -608,6 +608,8 @@ func (s *Server) handleJoinOOULobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	s.linkLobbyFriends(r.Context(), userID, lobbyRoster(lobby.Players, func(p oneofus.OOULobbyPlayer) string { return p.UserID }))
+
 	body := s.newOOULobbyResponse(r.Context(), lobby)
 	s.publishOOULobby(code, body)
 

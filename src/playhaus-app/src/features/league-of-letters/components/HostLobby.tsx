@@ -6,11 +6,13 @@ import LobbySeatGrid from "@/components/ui/LobbySeatGrid";
 import StartGameButton from "@/components/ui/StartGameButton";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
+import InviteFriendModal from "@/features/friends/components/InviteFriendModal";
 import { useT } from "@/features/i18n/LanguageContext";
 import LobbySettingsCard from "@/features/league-of-letters/components/LobbySettingsCard";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
@@ -29,6 +31,8 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
     const styles = useStyles();
 
     const { user } = useAuth();
+
+    const [inviting, setInviting] = useState(false);
 
     const tournament = lobby.kind === 'tournament';
     const enough = lobby.players.length >= minPlayersFor(lobby.kind);
@@ -70,6 +74,7 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                 userId={user?.id}
                 online={state.online}
                 accent={LEAGUE_OF_LETTERS.color}
+                onInvite={() => setInviting(true)}
             />
 
             <LobbySettingsCard
@@ -85,6 +90,12 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                     message={t(state.actionError)}
                 />
             )}
+            <InviteFriendModal
+                visible={inviting}
+                onClose={() => setInviting(false)}
+                code={lobby.code}
+                seated={new Set(lobby.players.map(player => player.userId))}
+            />
         </LobbyPageBase>
     )
 }

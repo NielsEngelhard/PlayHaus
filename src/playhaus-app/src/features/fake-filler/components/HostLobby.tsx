@@ -8,9 +8,11 @@ import { FAKE_FILLER } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbySettingsCard from "@/features/fake-filler/components/LobbySettingsCard";
 import type { FFLobbyState } from "@/features/fake-filler/useLobby";
+import InviteFriendModal from "@/features/friends/components/InviteFriendModal";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
@@ -29,6 +31,8 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
     const styles = useStyles();
 
     const { user } = useAuth();
+
+    const [inviting, setInviting] = useState(false);
 
     const enough = lobby.players.length >= lobby.minPlayers;
 
@@ -66,6 +70,7 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                 userId={user?.id}
                 online={state.online}
                 accent={FAKE_FILLER.color}
+                onInvite={() => setInviting(true)}
             />
 
             <LobbySettingsCard
@@ -81,6 +86,12 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                     message={t(state.actionError)}
                 />
             )}
+            <InviteFriendModal
+                visible={inviting}
+                onClose={() => setInviting(false)}
+                code={lobby.code}
+                seated={new Set(lobby.players.map(player => player.userId))}
+            />
         </LobbyPageBase>
     )
 }

@@ -445,6 +445,8 @@ func (s *Server) handleJoinLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	s.linkLobbyFriends(r.Context(), userID, lobbyRoster(lobby.Players, func(p lol.MultiplayerLobbyPlayer) string { return p.UserID }))
+
 	body := s.newLobbyResponse(r.Context(), lobby)
 	s.publishLobby(code, body)
 

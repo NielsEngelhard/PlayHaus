@@ -293,7 +293,9 @@ export const en = {
         waitingForHost: 'Waiting for the host',
         waitingForHostMessage: '{{name}} is setting up the game. Stay on this screen and it starts right here.',
         waitingLabel: 'Waiting',
-        closedTitle: 'Lobby closed'
+        closedTitle: 'Lobby closed',
+        // The free seat, on the host's screen only.
+        inviteFriend: 'Invite a friend'
     },
     lol: {
         index: {
@@ -1463,9 +1465,39 @@ export const en = {
     friends: {
         title: 'Friends',
         description: 'Play together, keep track of who wins and challenge each other.',
-        soon: {
-            title: 'Coming soon',
-            message: 'Friend lists, invites and head to head standings are on the way. For now you play together with a lobby code.'
+        // The one rule worth stating plainly: there is no search and nothing to accept.
+        how: {
+            title: 'How friends work',
+            message: 'You do not add people here. Play a game together — join the same lobby — and everyone in it lands on this list. There is no search, and nothing to accept.'
+        },
+        listLabel: 'Your friends',
+        // The day somebody joined a room you were in.
+        since: 'Since {{date}}',
+        empty: {
+            title: 'Nobody here yet',
+            message: 'Start a game and share the code, or join someone else’s. Everyone in the lobby ends up here.'
+        },
+        errors: {
+            signedOut: 'Your session ran out. Sign in again to see your friends.',
+            generic: 'Your friends could not be loaded.',
+            network: 'No connection. Check your internet and try again.'
         }
+    },
+    invite: {
+        title: 'Invite a friend',
+        message: 'They get a nudge in the app, or a notification on their phone if it is closed.',
+        send: 'Invite',
+        sent: 'Invited',
+        failed: 'Did not send',
+        // Somebody already sitting in this room. Shown rather than hidden, so the list does not reshuffle as people arrive.
+        alreadyHere: 'In the lobby',
+        noFriends: 'You have not played with anybody yet. Share the code instead — everyone who joins lands on your friends list.',
+        loadFailed: 'Your friends could not be loaded.'
+    },
+    notifications: {
+        invite: '{{name}} invited you to {{game}}',
+        inviteGeneric: '{{name}} invited you to a game',
+        join: 'Join',
+        dismiss: 'Dismiss'
     }
 } as const;

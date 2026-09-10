@@ -6,11 +6,13 @@ import LobbySeatGrid from '@/components/ui/LobbySeatGrid';
 import StartGameButton from '@/components/ui/StartGameButton';
 import { ONE_OF_US } from '@/constants/games';
 import { useAuth } from '@/features/auth/useAuth';
+import InviteFriendModal from '@/features/friends/components/InviteFriendModal';
 import { useT } from '@/features/i18n/LanguageContext';
 import LobbySettingsCard from '@/features/one-of-us/components/multi-device/LobbySettingsCard';
 import type { OOULobbyState } from '@/features/one-of-us/useOneOfUsLobby';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
+import { useState } from 'react';
 import { View } from 'react-native';
 
 interface Props {
@@ -29,6 +31,8 @@ export default function HostLobby({ lobby, onBack, onStart, state }: Props) {
     const styles = useStyles();
 
     const { user } = useAuth();
+
+    const [inviting, setInviting] = useState(false);
 
     const enough = lobby.players.length >= lobby.minPlayers;
 
@@ -66,6 +70,7 @@ export default function HostLobby({ lobby, onBack, onStart, state }: Props) {
                 userId={user?.id}
                 online={state.online}
                 accent={ONE_OF_US.color}
+                onInvite={() => setInviting(true)}
             />
 
             <LobbySettingsCard
@@ -81,6 +86,12 @@ export default function HostLobby({ lobby, onBack, onStart, state }: Props) {
                     message={t(state.actionError)}
                 />
             )}
+            <InviteFriendModal
+                visible={inviting}
+                onClose={() => setInviting(false)}
+                code={lobby.code}
+                seated={new Set(lobby.players.map(player => player.userId))}
+            />
         </LobbyPageBase>
     )
 }

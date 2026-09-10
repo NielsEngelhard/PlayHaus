@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"playhaus-api/internal/i18n"
+	"playhaus-api/internal/push"
 	"playhaus-api/internal/user"
 )
 
@@ -118,6 +119,23 @@ type updateUserEnableVibrationRequest struct {
 
 func (r updateUserEnableVibrationRequest) Validate() map[string]string {
 	return required("enableVibration", r.EnableVibration)
+}
+
+// updateUserPushTokenRequest registers this installation for notifications. The token comes from expo-notifications and means nothing to us but a string to post back.
+type updateUserPushTokenRequest struct {
+	Token    string        `json:"token"`
+	Platform push.Platform `json:"platform"`
+}
+
+func (r updateUserPushTokenRequest) Validate() map[string]string {
+	problems := map[string]string{}
+	if strings.TrimSpace(r.Token) == "" {
+		problems["token"] = "is required"
+	}
+	if !r.Platform.Valid() {
+		problems["platform"] = "must be ios or android"
+	}
+	return problems
 }
 
 func required[T any](field string, value *T) map[string]string {
@@ -253,6 +271,14 @@ func (s *Server) handleUpdateUserEnableVibration(w http.ResponseWriter, r *http.
 	updateUserField(s, w, r, "update enable vibration",
 		func(ctx context.Context, req updateUserEnableVibrationRequest, userID string) error {
 			return s.users.UpdateEnableVibration(ctx, *req.EnableVibration, userID)
+		})
+}
+
+// handleUpdateUserPushToken stores where to reach somebody when the app is closed. Registering is all it does; nothing is sent until PUSH_ENABLED is on.
+func (s *Server) handleUpdateUserPushToken(w http.ResponseWriter, r *http.Request) {
+	updateUserField(s, w, r, "update push token",
+		func(ctx context.Context, req updateUserPushTokenRequest, userID string) error {
+			return s.push.Register(ctx, userID, req.Token, req.Platform)
 		})
 }
 

@@ -22,10 +22,12 @@ import (
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/pubquizr"
+	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 )
@@ -73,6 +75,8 @@ func run() error {
 	models = append(models, pubquizr.Models()...)
 	models = append(models, oneofus.Models()...)
 	models = append(models, fakefiller.Models()...)
+	models = append(models, friend.Models()...)
+	models = append(models, push.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		return fmt.Errorf("migrate database: %w", err)
 	}
@@ -94,13 +98,15 @@ func run() error {
 	oneOfUsStore := oneofus.NewGormStore(db)
 	oneOfUsService := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFillerService := fakefiller.NewService(fakefiller.NewGormStore(db))
+	friendService := friend.NewService(friend.NewGormStore(db))
+	pushService := push.NewService(push.NewGormStore(db), cfg.PushEnabled, logger)
 
 	// Every live socket room in the process. Game-agnostic: the games claim their
 	// namespaces inside NewServer.
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, hub, logger, cfg.AllowedOrigins)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, friendService, pushService, hub, logger, cfg.AllowedOrigins)
 	logger.Info("word of the day reset zone", "tz", cfg.DailyResetLocation.String())
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
@@ -138,6 +144,8 @@ func run() error {
 		LobbyAge: time.Hour,
 		GameAge:  12 * time.Hour,
 	}, 5*time.Minute, logger)
+	// An invite outlives nothing: the lobby it points at is swept after an hour.
+	go friendService.SweepExpired(ctx, 15*time.Minute, logger)
 	go fakeFillerService.SweepStale(ctx, fakefiller.SweepConfig{
 		LobbyAge: time.Hour,
 		GameAge:  12 * time.Hour,

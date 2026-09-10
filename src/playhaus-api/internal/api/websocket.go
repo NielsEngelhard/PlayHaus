@@ -66,6 +66,18 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		key.ID = code
 	}
 
+	// A personal room is named by its owner, and the owner is the authenticated caller
+	// and nobody else. The id is overwritten rather than checked on purpose: asking for
+	// somebody else's room is then not refused, it is simply not expressible. A check
+	// would leave the frames arriving in the same tick as the refusal to argue about --
+	// Client.Send selects over closing and send, and drainAndClose flushes the buffer.
+	//
+	// Note joincode.Game("user").Valid() is false, so the block above skips this
+	// namespace entirely and key.ID would otherwise arrive verbatim.
+	if key.Namespace == userNamespace {
+		key.ID = userID
+	}
+
 	// The server's own read and write timeouts would cut a socket off after fifteen
 	// seconds, which is what they are for on a request that is supposed to end. This
 	// one is not, so they are cleared before the connection is taken over. Without

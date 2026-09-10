@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import { initialsFor, type LobbySeat } from "@/components/ui/lobby-seat";
+import PopPressable from "@/components/ui/PopPressable";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -20,13 +21,15 @@ interface Props {
     // Who has the room open right now, by user id.
     online: Set<string>,
     // The colour the host's line is written in — the game's own, from its registry entry.
-    accent: string
+    accent: string,
+    /** Given only on the host's screen: the free seat becomes the way to fill it. */
+    onInvite?: () => void
 }
 
 const AVATAR_SIZE = 32;
 
 // Who is in the room, and how much room is left, on the host's screen.
-export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, online, accent }: Props) {
+export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, online, accent, onInvite }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -57,7 +60,7 @@ export default function LobbySeatGrid({ players, maxPlayers, hostId, userId, onl
                     />
                 ))}
 
-                {free > 0 && <FreeSeatRow />}
+                {free > 0 && <FreeSeatRow onInvite={onInvite} />}
             </View>
 
             {remaining > 0 && (
@@ -111,23 +114,46 @@ function PlayerRow({ player, host, you, live, accent }: PlayerRowProps) {
 }
 
 /** The seat nobody has taken yet. Drawn open, so the lobby reads as unfinished. */
-function FreeSeatRow() {
+function FreeSeatRow({ onInvite }: { onInvite?: () => void }) {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
 
-    return (
-        <View
-            style={[styles.row, styles.rowEmpty]}
-            accessibilityRole='text'
-            accessibilityLabel={t('lobby.freeSeat')}
-        >
+    const seat = (
+        <>
             <View style={styles.avatarEmpty}>
                 <Feather name='plus' size={13} color={theme.colors.textFaint} />
             </View>
 
-            <AppText style={styles.waiting} numberOfLines={1}>{t('lobby.waiting')}</AppText>
-        </View>
+            <AppText style={[styles.waiting, onInvite && styles.invite]} numberOfLines={1}>
+                {onInvite ? t('lobby.inviteFriend') : t('lobby.waiting')}
+            </AppText>
+
+            {onInvite && <Feather name='chevron-right' size={16} color={theme.colors.textMuted} />}
+        </>
+    );
+
+    if (!onInvite) {
+        return (
+            <View
+                style={[styles.row, styles.rowEmpty]}
+                accessibilityRole='text'
+                accessibilityLabel={t('lobby.freeSeat')}
+            >
+                {seat}
+            </View>
+        )
+    }
+
+    return (
+        <PopPressable
+            style={[styles.row, styles.rowEmpty]}
+            onPress={onInvite}
+            accessibilityRole='button'
+            accessibilityLabel={t('lobby.inviteFriend')}
+        >
+            {seat}
+        </PopPressable>
     )
 }
 
@@ -236,6 +262,11 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12.5,
         fontWeight: 700,
         color: theme.colors.textFaint
+    },
+    // The same seat, once it is something to press rather than something to read.
+    invite: {
+        fontWeight: 800,
+        color: theme.colors.text
     },
     moreSeats: {
         marginTop: 8,

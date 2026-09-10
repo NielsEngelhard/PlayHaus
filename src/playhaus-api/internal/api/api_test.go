@@ -12,10 +12,12 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database"
 	"playhaus-api/internal/pubquizr"
+	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
 
@@ -49,6 +51,8 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	models = append(models, pubquizr.Models()...)
 	models = append(models, oneofus.Models()...)
 	models = append(models, fakefiller.Models()...)
+	models = append(models, friend.Models()...)
+	models = append(models, push.Models()...)
 	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
 		t.Fatalf("migrate: %v", err)
 	}
@@ -60,13 +64,17 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	oneOfUsStore := oneofus.NewGormStore(db)
 	oneOfUs := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFiller := fakefiller.NewService(fakefiller.NewGormStore(db))
+	friends := friend.NewService(friend.NewGormStore(db))
 
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))
+
+	// Push is off, so it only ever logs the delivery it did not make.
+	pushes := push.NewService(push.NewGormStore(db), false, log)
 
 	hub := realtime.NewHub(log)
 	t.Cleanup(hub.Close)
 
-	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, hub, log, testOrigins)
+	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, friends, pushes, hub, log, testOrigins)
 	return handler, db
 }
 

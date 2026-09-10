@@ -7,12 +7,14 @@ import StartGameButton from "@/components/ui/StartGameButton";
 import ToggleRow from "@/components/ui/ToggleRow";
 import { PUBQUIZR } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
+import InviteFriendModal from "@/features/friends/components/InviteFriendModal";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
 import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
@@ -31,6 +33,8 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
     const styles = useStyles();
 
     const { user } = useAuth();
+
+    const [inviting, setInviting] = useState(false);
 
     // Seeded from the room, so a host coming back to it sees what they already picked.
     const selected = useSelectedQuiz(lobby.setup.quizId);
@@ -81,6 +85,7 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                 userId={user?.id}
                 online={state.online}
                 accent={PUBQUIZR.color}
+                onInvite={() => setInviting(true)}
             />
 
             {/* Already a fenced panel of its own, so no card around it. */}
@@ -122,6 +127,12 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                     message={t(state.actionError)}
                 />
             )}
+            <InviteFriendModal
+                visible={inviting}
+                onClose={() => setInviting(false)}
+                code={lobby.code}
+                seated={new Set(lobby.players.map(player => player.userId))}
+            />
         </LobbyPageBase>
     )
 }

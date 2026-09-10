@@ -231,6 +231,8 @@ func (s *Server) handleJoinPQLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	s.linkLobbyFriends(r.Context(), userID, lobbyRoster(lobby.Players, func(p pubquizr.PQLobbyPlayer) string { return p.UserID }))
+
 	body := newPQLobbyResponse(lobby)
 	s.publishPQLobby(code, body)
 

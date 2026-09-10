@@ -282,7 +282,8 @@ export const nl: Catalog = {
         waitingForHost: 'Wachten op de host',
         waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het start hier meteen mee.',
         waitingLabel: 'Wachten',
-        closedTitle: 'Lobby gesloten'
+        closedTitle: 'Lobby gesloten',
+        inviteFriend: 'Nodig een vriend uit'
     },
     lol: {
         index: {
@@ -1325,9 +1326,36 @@ export const nl: Catalog = {
     friends: {
         title: 'Vrienden',
         description: 'Speel samen, houd bij wie er wint en daag elkaar uit.',
-        soon: {
-            title: 'Binnenkort',
-            message: 'Vriendenlijsten, uitnodigingen en onderlinge standen komen eraan. Voor nu speel je samen via een lobbycode.'
+        how: {
+            title: 'Zo werken vrienden',
+            message: 'Je voegt hier niemand toe. Speel samen een spel — kom in dezelfde lobby — en iedereen die erbij was komt op deze lijst te staan. Zoeken hoeft niet en accepteren ook niet.'
+        },
+        listLabel: 'Jouw vrienden',
+        since: 'Sinds {{date}}',
+        empty: {
+            title: 'Nog niemand',
+            message: 'Start een spel en deel de code, of doe mee met die van iemand anders. Iedereen in de lobby komt hier terecht.'
+        },
+        errors: {
+            signedOut: 'Je sessie is verlopen. Log opnieuw in om je vrienden te zien.',
+            generic: 'Je vrienden konden niet worden geladen.',
+            network: 'Geen verbinding. Controleer je internet en probeer het opnieuw.'
         }
+    },
+    invite: {
+        title: 'Nodig een vriend uit',
+        message: 'Ze krijgen een seintje in de app, of een melding op hun telefoon als die dicht is.',
+        send: 'Uitnodigen',
+        sent: 'Uitgenodigd',
+        failed: 'Niet verstuurd',
+        alreadyHere: 'In de lobby',
+        noFriends: 'Je hebt nog met niemand gespeeld. Deel de code — iedereen die meedoet komt op je vriendenlijst.',
+        loadFailed: 'Je vrienden konden niet worden geladen.'
+    },
+    notifications: {
+        invite: '{{name}} nodigt je uit voor {{game}}',
+        inviteGeneric: '{{name}} nodigt je uit voor een spel',
+        join: 'Meedoen',
+        dismiss: 'Wegklikken'
     }
 };

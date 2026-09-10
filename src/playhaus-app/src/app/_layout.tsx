@@ -11,6 +11,8 @@ import AuthGate from '@/features/auth/components/AuthGate';
 import { AuthProvider } from '@/features/auth/useAuth';
 import FeedbackPreferencesSync from '@/features/feedback/FeedbackPreferencesSync';
 import { LanguageProvider } from '@/features/i18n/LanguageContext';
+import { FriendInviteProvider } from '@/features/notifications/FriendInviteContext';
+import InviteBanner from '@/features/notifications/components/InviteBanner';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { ThemeProvider, useScheme, useThemeReady } from '@/features/theme/ThemeContext';
 import { useFonts } from 'expo-font';
@@ -96,7 +98,10 @@ function App() {
             <FullScreenProvider>
               {/* And the whole window's colour with it — see `PageToneContext`. */}
               <PageToneProvider>
-                <Chrome />
+                {/* Inside the layout modes, which is how the banner knows you are already in a game. */}
+                <FriendInviteProvider>
+                  <Chrome />
+                </FriendInviteProvider>
 
                 {/* Renders nothing at all while signed in. */}
                 <AuthGate />
@@ -173,6 +178,9 @@ function Chrome() {
 
       {/* Sibling of the scroller, not a child: it stays put while the page moves. */}
       {!fullScreen && <BottomBar />}
+
+      {/* The same, at the other end. */}
+      <InviteBanner />
     </View>
   );
 }

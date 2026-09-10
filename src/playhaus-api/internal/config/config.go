@@ -17,6 +17,8 @@ type Config struct {
 	AllowedOrigins         []string
 	LeagueOfLettersDevMode bool // Always pick the first word of the list for all rounds (easy testing)
 
+	PushEnabled bool // Off until a build ships with expo-notifications and store credentials behind it
+
 	// DailyResetLocation is the one zone the word of the day turns over in, for
 	// everybody. A per-device midnight would give a traveller two words in a day
 	// and make one player's streak mean something different from another's.
@@ -53,6 +55,7 @@ func Load() (Config, error) {
 		Debug:                  envBool("DEBUG", false),
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
 		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", true), // Same word every round
+		PushEnabled:            envBool("PUSH_ENABLED", false),
 		DailyResetLocation:     resetLocation,
 	}, nil
 }

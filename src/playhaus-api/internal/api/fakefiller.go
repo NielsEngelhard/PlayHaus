@@ -561,6 +561,8 @@ func (s *Server) handleJoinFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	s.linkLobbyFriends(r.Context(), userID, lobbyRoster(lobby.Players, func(p fakefiller.FFLobbyPlayer) string { return p.UserID }))
+
 	body := s.newFFLobbyResponse(r.Context(), lobby)
 	s.publishFFLobby(code, body)
 
