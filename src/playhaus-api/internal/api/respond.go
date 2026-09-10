@@ -15,7 +15,9 @@ const (
 	LeagueOfLettersSolo        GameType = "lol_solo"
 	LeagueOfLettersMultiplayer GameType = "lol_multiplayer"
 	PubquizRSingleDevice       GameType = "pq_single_device"
+	PubquizRMultiDevice        GameType = "pq_multi_device"
 	OneOfUsSingleDevice        GameType = "oou_single_device"
+	OneOfUsMultiDevice         GameType = "oou_multi_device"
 	FakeFillerMultiplayer      GameType = "ff_multiplayer"
 )
 

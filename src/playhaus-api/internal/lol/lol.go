@@ -143,9 +143,27 @@ type SoloLeagueOfLettersGame struct {
 	Score           int                    `gorm:"not null"`
 	Status          GameStatus             `gorm:"not null"`
 	CreatedAt       time.Time              `gorm:"not null"`
+
+	// Competitive is the mode the game was set up in: a zen game keeps no score and runs no clock.
+	Competitive bool `gorm:"not null;default:false"`
+	// TimeBonus is what the clock was worth, folded into Score once the last round closed.
+	TimeBonus  int `gorm:"not null;default:0"`
+	FinishedAt *time.Time
 }
 
 func (SoloLeagueOfLettersGame) TableName() string { return "solo_lol_games" }
+
+// SoloCompetitiveHighScore is an account's best competitive run at one word length.
+type SoloCompetitiveHighScore struct {
+	UserID     string    `gorm:"primaryKey"`
+	WordLength int       `gorm:"primaryKey"`
+	Score      int       `gorm:"not null"`
+	Seconds    int       `gorm:"not null"`
+	GameID     uuid.UUID `gorm:"type:text;not null"`
+	AchievedAt time.Time `gorm:"not null"`
+}
+
+func (SoloCompetitiveHighScore) TableName() string { return "solo_lol_high_scores" }
 
 type LeagueOfLettersRound struct {
 	ID          uuid.UUID              `gorm:"primaryKey;type:text"`
@@ -224,6 +242,7 @@ func (LeagueOfLettersValidatedLetter) TableName() string { return "lol_letters" 
 func Models() []any {
 	return []any{
 		&SoloLeagueOfLettersGame{},
+		&SoloCompetitiveHighScore{},
 		&LeagueOfLettersRound{},
 		&LeagueOfLettersGuess{},
 		&LeagueOfLettersValidatedLetter{},

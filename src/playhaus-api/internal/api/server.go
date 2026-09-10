@@ -61,12 +61,15 @@ func NewServer(
 	// The socket layer knows nothing about any game.
 	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
 	hub.Register(joincode.FakeFiller.Namespace(), ffRealtime{server: s})
+	hub.Register(joincode.PubquizR.Namespace(), pqRealtime{server: s})
+	hub.Register(joincode.OneOfUs.Namespace(), oouRealtime{server: s})
 
 	s.AddHealthHandlers()
 	s.AddAuthHandlers()
 	s.AddUserHandlers()
 	s.AddLeagueOfLettersHandlers()
 	s.AddPubquizRHandlers()
+	s.AddPubquizRMultiDeviceHandlers()
 	s.AddOneOfUsHandlers()
 	s.AddFakeFillerHandlers()
 	s.AddReconnectHandlers()
@@ -92,6 +95,7 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	// Solo
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo", s.requireAuth(s.handleCreateSoloGame))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/current", s.requireAuth(s.handleGetCurrentSoloGame))
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/high-scores", s.requireAuth(s.handleGetHighScores))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleGetSoloGame))
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleDeleteSoloGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
@@ -149,6 +153,29 @@ func (s *Server) AddOneOfUsHandlers() {
 	s.mux.HandleFunc("POST /api/v1/one-of-us/single-device/{gameID}/vote/{playerID}", s.requireAuth(s.handleVotePlayerOutOfSingleDeviceOneOfUsGame))
 
 	// Multi device game
+	s.mux.HandleFunc("POST /api/v1/one-of-us/lobby", s.requireAuth(s.handleCreateOOULobby))
+	// Before {code}, so the literal wins: this is the room you are already in, not a room called "current".
+	s.mux.HandleFunc("GET /api/v1/one-of-us/lobby/current", s.requireAuth(s.handleGetCurrentOOULobby))
+
+	// room is what every route addressed by a join code is wrapped in.
+	room := func(next http.HandlerFunc) http.HandlerFunc {
+		return s.requireAuth(s.requireGameCode(joincode.OneOfUs, next))
+	}
+
+	s.mux.HandleFunc("GET /api/v1/one-of-us/lobby/{code}", room(s.handleGetOOULobby))
+	s.mux.HandleFunc("PATCH /api/v1/one-of-us/lobby/{code}", room(s.handleUpdateOOULobbySettings))
+	s.mux.HandleFunc("DELETE /api/v1/one-of-us/lobby/{code}", room(s.handleDeleteOOULobby))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/lobby/{code}/players", room(s.handleJoinOOULobby))
+	s.mux.HandleFunc("DELETE /api/v1/one-of-us/lobby/{code}/players/me", room(s.handleLeaveOOULobby))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/lobby/{code}/start", room(s.handleStartOOULobby))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/lobby/{code}/rematch", room(s.handleRematchOOULobby))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/lobby/{code}/abandon", room(s.handleAbandonOOULobby))
+
+	// Permission on a board is being dealt into it, so these carry no join code.
+	s.mux.HandleFunc("GET /api/v1/one-of-us/multi-device/{gameID}", s.requireAuth(s.handleGetOOUGame))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/multi-device/{gameID}/answers", s.requireAuth(s.handleSubmitOOUAnswer))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/multi-device/{gameID}/votes", s.requireAuth(s.handleCastOOUVote))
+	s.mux.HandleFunc("POST /api/v1/one-of-us/multi-device/{gameID}/continue", s.requireAuth(s.handleContinueOOURound))
 }
 
 // AddRealtimeHandlers registers the one socket route every game shares.

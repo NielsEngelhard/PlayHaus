@@ -1,5 +1,10 @@
 package lol
 
+import (
+	"math"
+	"time"
+)
+
 const (
 	MinLobbyPlayers = 2
 	MaxLobbyPlayers = 4
@@ -82,4 +87,26 @@ func AlreadyGuessed(guesses []LeagueOfLettersGuess, word string) bool {
 		}
 	}
 	return false
+}
+
+const (
+	MaxTimeBonus       = 60
+	FullTimeBonusUnder = time.Minute
+	TimeBonusZeroAt    = 6 * time.Minute
+)
+
+// TimeBonus is what finishing a competitive run in this long is worth: full marks under a minute, nothing after six.
+func TimeBonus(elapsed time.Duration) int {
+	// The first branch also absorbs a negative duration from a clock going backwards.
+	switch {
+	case elapsed <= FullTimeBonusUnder:
+		return MaxTimeBonus
+	case elapsed >= TimeBonusZeroAt:
+		return 0
+	}
+
+	left := float64(TimeBonusZeroAt - elapsed)
+	window := float64(TimeBonusZeroAt - FullTimeBonusUnder)
+
+	return int(math.Round(MaxTimeBonus * left / window))
 }

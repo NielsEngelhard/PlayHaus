@@ -1,6 +1,9 @@
 package lol
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 // The rules, asked directly. Everything in rules.go is pure, so these need no game,
 // no store and no clock -- which is most of why the rules live there.
@@ -129,5 +132,48 @@ func TestAlreadyGuessedIgnoresSkippedRows(t *testing.T) {
 
 	if AlreadyGuessed(guesses, "") {
 		t.Error("a skipped row blocks the next skip")
+	}
+}
+
+// The time bonus is a straight line between a minute and six, so the two ends and the
+// slope between them are the whole rule.
+
+func TestTimeBonusIsFullUnderAMinute(t *testing.T) {
+	for _, elapsed := range []time.Duration{0, 30 * time.Second, FullTimeBonusUnder} {
+		if got := TimeBonus(elapsed); got != MaxTimeBonus {
+			t.Errorf("TimeBonus(%s) = %d, want %d", elapsed, got, MaxTimeBonus)
+		}
+	}
+}
+
+func TestTimeBonusIsNothingAfterSixMinutes(t *testing.T) {
+	for _, elapsed := range []time.Duration{TimeBonusZeroAt, 10 * time.Minute, time.Hour} {
+		if got := TimeBonus(elapsed); got != 0 {
+			t.Errorf("TimeBonus(%s) = %d, want 0", elapsed, got)
+		}
+	}
+}
+
+func TestTimeBonusSlidesLinearlyBetween(t *testing.T) {
+	// Pins the curve players will learn: half the window left is half the bonus.
+	for _, tc := range []struct {
+		elapsed time.Duration
+		want    int
+	}{
+		{90 * time.Second, 54},
+		{2 * time.Minute, 48},
+		{3*time.Minute + 30*time.Second, MaxTimeBonus / 2},
+		{5 * time.Minute, 12},
+	} {
+		if got := TimeBonus(tc.elapsed); got != tc.want {
+			t.Errorf("TimeBonus(%s) = %d, want %d", tc.elapsed, got, tc.want)
+		}
+	}
+}
+
+// A device whose clock steps backwards mid-game hands the service a negative duration.
+func TestTimeBonusSurvivesAClockGoingBackwards(t *testing.T) {
+	if got := TimeBonus(-2 * time.Minute); got != MaxTimeBonus {
+		t.Errorf("TimeBonus(-2m) = %d, want %d", got, MaxTimeBonus)
 	}
 }

@@ -1,6 +1,6 @@
 import { MIN_PLAYERS } from "./one-device-table";
 import type { QuizDetail, QuizQuestion } from "./pubquizr-quizzes";
-import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
+import type { PQClosestReveal, QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
 
 // Round 3, as the screen needs it: a number, and whoever lands nearest it.
@@ -179,6 +179,43 @@ export interface ClosestResult {
     winners: Seat[]
     /** What being nearest paid. */
     worth: number
+}
+
+/** The same result on the shared screen, which only ever hears about it once the turn it came from is over. */
+export function closestRevealOf(
+    session: QuizSession,
+    quiz: QuizDetail,
+    reveal: PQClosestReveal
+): ClosestResult | null {
+    // The settled row is still in `questions`, which is what lets the result outlive the turn that produced it.
+    const dealt = session.questions.find(question => question.id === reveal.sessionQuestionId);
+    if (dealt === undefined) return null;
+
+    const question = quiz.rounds
+        .flatMap(round => round.questions)
+        .find(candidate => candidate.id === dealt.questionId);
+    if (question === undefined || question.numericAnswer === undefined) return null;
+
+    const seats = seatsOf(session);
+
+    return {
+        dealtId: dealt.id,
+        prompt: question.prompt,
+        answer: question.numericAnswer,
+        unit: question.unit ?? '',
+        explanation: question.explanation ?? '',
+        guesses: reveal.guesses.flatMap(guess => {
+            const seat = seatAt(seats, guess.seat);
+
+            return seat === null ? [] : [{ seat, value: guess.value }];
+        }),
+        winners: reveal.winningSeats.flatMap(seat => {
+            const found = seatAt(seats, seat);
+
+            return found === null ? [] : [found];
+        }),
+        worth: CLOSEST_POINTS
+    };
 }
 
 /** Everything the result screen needs, off the turn that just ended and its settle. */

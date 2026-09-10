@@ -34,6 +34,8 @@ type verdictStore struct {
 	// quiz is what QuizByID answers with, for the one path that needs content: round
 	// 3 has to know the number before it can say who was nearest to it.
 	quiz *Quiz
+	// guesses is what GuessesOn answers with, for round 3 settled off the numbers the phones sent.
+	guesses []SessionGuess
 
 	recorded TurnOutcome
 }
@@ -90,6 +92,38 @@ func (s *verdictStore) DeleteSessionsByOwnerID(context.Context, string, uuid.UUI
 }
 func (s *verdictStore) DeleteSessionsOlderThan(context.Context, time.Time) (int64, error) {
 	return 0, nil
+}
+func (s *verdictStore) SessionsInProgressByPlayerID(context.Context, string) ([]*Session, error) {
+	return nil, nil
+}
+func (s *verdictStore) SaveGuess(context.Context, *SessionGuess) error { return nil }
+func (s *verdictStore) GuessesOn(context.Context, uuid.UUID) ([]SessionGuess, error) {
+	return s.guesses, nil
+}
+func (s *verdictStore) ActivateQuestion(context.Context, uuid.UUID, uuid.UUID) (bool, error) {
+	return true, nil
+}
+func (s *verdictStore) AbandonSession(ctx context.Context, sessionID uuid.UUID) error {
+	return nil
+}
+
+func (s *verdictStore) CreateLobby(context.Context, *PQLobby) error { return nil }
+func (s *verdictStore) LobbyByCode(context.Context, string) (*PQLobby, error) {
+	return nil, ErrLobbyNotFound
+}
+func (s *verdictStore) LobbyCodeTaken(context.Context, string) (bool, error) { return false, nil }
+func (s *verdictStore) WaitingLobbyByOwnerID(context.Context, string) (*PQLobby, error) {
+	return nil, ErrLobbyNotFound
+}
+func (s *verdictStore) AddLobbyPlayer(context.Context, *PQLobbyPlayer) error     { return nil }
+func (s *verdictStore) RemoveLobbyPlayer(context.Context, string, string) error  { return nil }
+func (s *verdictStore) SaveLobbySetup(context.Context, string, LobbySetup) error { return nil }
+func (s *verdictStore) DeleteLobby(context.Context, string) error                { return nil }
+func (s *verdictStore) DeleteLobbiesOlderThan(context.Context, time.Time) (int64, error) {
+	return 0, nil
+}
+func (s *verdictStore) StartLobby(context.Context, *PQLobby, *Session, []*QuizPlay) error {
+	return nil
 }
 
 const verdictOwner = "owner"

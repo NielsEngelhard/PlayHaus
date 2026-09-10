@@ -14,6 +14,8 @@ type createSoloGameRequest struct {
 	WordLength int     `json:"wordLength"`
 	Locale     *string `json:"locale"`
 	HardMode   *bool   `json:"hardMode"`
+	// Competitive runs the clock and keeps score; zen, the default, does neither.
+	Competitive *bool `json:"competitive"`
 }
 
 func (createSoloGameRequest) Validate() map[string]string { return nil }
@@ -29,6 +31,9 @@ type soloGameResponse struct {
 	Score        int             `json:"score"`
 	Status       string          `json:"status"`
 	CreatedAt    string          `json:"createdAt"`
+	Competitive  bool            `json:"competitive"`
+	TimeBonus    int             `json:"timeBonus"`
+	FinishedAt   string          `json:"finishedAt,omitempty"`
 	Rounds       []roundResponse `json:"rounds"`
 }
 
@@ -94,6 +99,11 @@ func newSoloGameResponse(g *lol.SoloLeagueOfLettersGame) soloGameResponse {
 		rounds = append(rounds, round)
 	}
 
+	finishedAt := ""
+	if g.FinishedAt != nil {
+		finishedAt = g.FinishedAt.Format(timeFormat)
+	}
+
 	return soloGameResponse{
 		ID:           g.ID.String(),
 		OwnerID:      g.OwnerID,
@@ -105,6 +115,9 @@ func newSoloGameResponse(g *lol.SoloLeagueOfLettersGame) soloGameResponse {
 		Score:        g.Score,
 		Status:       string(g.Status),
 		CreatedAt:    g.CreatedAt.Format(timeFormat),
+		Competitive:  g.Competitive,
+		TimeBonus:    g.TimeBonus,
+		FinishedAt:   finishedAt,
 		Rounds:       rounds,
 	}
 }
@@ -130,6 +143,7 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 		WordLength:          req.WordLength,
 		Locale:              localeFrom(Deref(req.Locale, ""), r),
 		OnlyPickCommonWords: onlyPickCommonWords,
+		Competitive:         Deref(req.Competitive, false),
 	})
 	if err != nil {
 		s.log.Error("create solo game", "err", err)
@@ -233,6 +247,8 @@ type submitGuessResponse struct {
 	Word         string        `json:"word,omitempty"`
 	CurrentRound int           `json:"currentRound"`
 	Score        int           `json:"score"`
+	TimeBonus    int           `json:"timeBonus,omitempty"`
+	HighScore    bool          `json:"highScore,omitempty"`
 }
 
 func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
@@ -277,6 +293,8 @@ func (s *Server) handleSubmitGuess(w http.ResponseWriter, r *http.Request) {
 		Word:         outcome.Word,
 		CurrentRound: outcome.CurrentRound,
 		Score:        outcome.Score,
+		TimeBonus:    outcome.TimeBonus,
+		HighScore:    outcome.NewHighScore,
 	})
 }
 
@@ -298,4 +316,39 @@ func (s *Server) writeGuessError(w http.ResponseWriter, err error) {
 		s.log.Error("submit guess", "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 	}
+}
+
+type highScoreResponse struct {
+	WordLength int    `json:"wordLength"`
+	Score      int    `json:"score"`
+	Seconds    int    `json:"seconds"`
+	AchievedAt string `json:"achievedAt"`
+}
+
+func (s *Server) handleGetHighScores(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleGetHighScores reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	bests, err := s.leagueOfLetters.HighScores(r.Context(), userID)
+	if err != nil {
+		s.log.Error("list solo high scores", "err", err)
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	scores := make([]highScoreResponse, 0, len(bests))
+	for _, best := range bests {
+		scores = append(scores, highScoreResponse{
+			WordLength: best.WordLength,
+			Score:      best.Score,
+			Seconds:    best.Seconds,
+			AchievedAt: best.AchievedAt.Format(timeFormat),
+		})
+	}
+
+	writeJSON(w, http.StatusOK, scores)
 }

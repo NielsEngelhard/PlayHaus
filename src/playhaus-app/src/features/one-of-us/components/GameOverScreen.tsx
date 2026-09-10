@@ -24,7 +24,8 @@ interface Props {
     /** The civilians' word, and the one the imposters were bluffing around. */
     word: string
     imposterWord: string
-    onAgain: () => void
+    /** Null when this player cannot open another game, which is every guest in a multi-device room. */
+    onAgain: (() => void) | null
     onLeave: () => void
 }
 
@@ -135,12 +136,14 @@ export default function GameOverScreen({
             </ScrollView>
 
             <View style={styles.footer}>
-                <ActionButton
-                    size="large"
-                    icon="refresh-cw"
-                    text={t('oneOfUs.play.over.again')}
-                    onPress={onAgain}
-                />
+                {onAgain !== null && (
+                    <ActionButton
+                        size="large"
+                        icon="refresh-cw"
+                        text={t('oneOfUs.play.over.again')}
+                        onPress={onAgain}
+                    />
+                )}
 
                 <TextButton
                     text={t('common.backToGames')}

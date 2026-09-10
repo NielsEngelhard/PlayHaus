@@ -3,6 +3,8 @@ import { request } from "@/api/client"
 // A quiz being played, as the API keeps it.
 
 export interface QuizSessionPlayer {
+    /** Whose phone answers for this seat, and absent on one phone passed round the table. */
+    userId?: string | null
     /** Seat 0 is the first name that was typed in. Seats run round the table from there. */
     seat: number
     name: string
@@ -57,6 +59,11 @@ export interface QuizSession {
     triviaMode: boolean
     // Whose turn it is to answer the question on screen, and null when nobody is being asked anything.
     answeringSeat: number | null
+
+    // The room this table gathered in, and absent on one phone passed round.
+    lobbyCode?: string
+    // The one round 6 question a player has pinned by asking for its difficulty, and absent until they have.
+    activeQuestionId?: string
 
     players: QuizSessionPlayer[]
     questions: QuizSessionQuestion[]
@@ -205,4 +212,130 @@ export async function recordFinaleTurnRequest(
             body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
         }
     );
+}
+
+// Multi device: every evening below is addressed by its room's join code rather than its own id, and every body is its single device twin's.
+
+function multiDevicePath(code: string, settle: string = ''): string {
+    return `/api/v1/pubquizr/multi-device/${encodeURIComponent(code.toUpperCase())}${settle}`;
+}
+
+/** The evening a room is playing — what every device opens on, and what it refetches after a socket it lost. */
+export async function getMultiDeviceSessionRequest(code: string): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code));
+}
+
+// One whole hot seat question, settled by the phone that ended the walk.
+export async function recordMultiDeviceHotSeatTurnRequest(
+    code: string,
+    sessionQuestionId: string,
+    missedSeats: number[],
+    correctSeat: number | null,
+    chosenAnswerId?: string
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/verdict'), {
+        method: 'POST',
+        // Round 2 alone sends the option it landed on, and `JSON.stringify` drops it in every other round.
+        body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat, chosenAnswerId })
+    });
+}
+
+/** How far round 3's typing has got. Seats only: a number here would be a number leaked to the seats still typing. */
+export interface PQClosestProgress {
+    sessionQuestionId: string
+    seatsIn: number[]
+    guessesIn: number
+    guessesWanted: number
+}
+
+/** Round 3's result, and the one shape any of the numbers ever travel in. */
+export interface PQClosestReveal {
+    sessionQuestionId: string
+    guesses: SeatGuess[]
+    winningSeats: number[]
+}
+
+// One phone's own number in round 3, kept until the question is closed. Answers with who is in, never with what they said.
+export async function recordMultiDeviceClosestGuessRequest(
+    code: string,
+    sessionQuestionId: string,
+    value: number
+): Promise<PQClosestProgress> {
+    return request<PQClosestProgress>(multiDevicePath(code, '/closest/guess'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId, value })
+    });
+}
+
+// The quizmaster's phone closing one round 3 question. It scores the numbers the phones sent, and `byHand` is typing in for one that could not.
+export async function recordMultiDeviceClosestGuessesRequest(
+    code: string,
+    sessionQuestionId: string,
+    byHand: SeatGuess[]
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/closest'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId, guesses: byHand })
+    });
+}
+
+// The describer's own phone settling their thirty seconds -- the words are their secret, so nobody else can have ticked them.
+export async function recordMultiDeviceDescribeAwardsRequest(
+    code: string,
+    describerSeat: number,
+    awards: WordAward[]
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/describe'), {
+        method: 'POST',
+        body: JSON.stringify({ describerSeat, awards })
+    });
+}
+
+// The quizmaster's phone settling one round 5 question.
+export async function recordMultiDeviceListAwardsRequest(
+    code: string,
+    sessionQuestionId: string,
+    awards: ListAward[]
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/list'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId, awards })
+    });
+}
+
+// Round 6's choice: the question this phone asked for, pinned so nobody else's can settle another one.
+export async function recordMultiDeviceDoubleDownChoiceRequest(
+    code: string,
+    sessionQuestionId: string
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/double-down/choice'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId })
+    });
+}
+
+// The round 6 question the player asked for, judged by the quizmaster as any open question is.
+export async function recordMultiDeviceDoubleDownTurnRequest(
+    code: string,
+    sessionQuestionId: string,
+    missedSeats: number[],
+    correctSeat: number | null
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/double-down'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+    });
+}
+
+// One whole finale question, settled.
+export async function recordMultiDeviceFinaleTurnRequest(
+    code: string,
+    sessionQuestionId: string,
+    missedSeats: number[],
+    correctSeat: number | null
+): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/finale'), {
+        method: 'POST',
+        body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+    });
 }

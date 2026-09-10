@@ -31,6 +31,23 @@ export function quizErrorMessage(error: unknown): TranslationKey {
                     return 'pubquizr.errors.oneGuessEach';
                 case 'two_on_one':
                     return 'pubquizr.errors.twoOnOne';
+                // Round 2 is scored on the answerer's own phone, so the server checks the claim against the quiz.
+                case 'verdict_disagrees':
+                    return 'pubquizr.errors.verdictDisagrees';
+                case 'no_choice_yet':
+                    return 'pubquizr.errors.noChoiceYet';
+            }
+        }
+
+        // A seat refusal, which only a phone-per-player table can produce.
+        if (error.status === 403) {
+            switch (apiErrorCode(error)) {
+                case 'not_at_this_table':
+                    return 'pubquizr.errors.notAtThisTable';
+                case 'not_your_seat':
+                    return 'pubquizr.errors.notYourSeat';
+                case 'not_host':
+                    return 'pubquizr.errors.notHost';
             }
         }
 

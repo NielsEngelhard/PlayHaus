@@ -9,6 +9,7 @@ import ModeCard from "@/components/ui/ModeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
 import TournamentCard from "@/features/league-of-letters/components/TournamentCard";
 import WordOfTheDayCard from "@/features/league-of-letters/components/WordOfTheDayCard";
+import { bestOf, useHighScores } from "@/features/league-of-letters/useHighScores";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
@@ -17,6 +18,9 @@ export default function LeagueOfLettersIndexPage() {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+
+    // The competitive best, hung on the solo card. Undefined until it arrives, and on an account that has never played one.
+    const best = bestOf(useHighScores());
 
     return (
         <GameIndexPage
@@ -41,6 +45,7 @@ export default function LeagueOfLettersIndexPage() {
                     iconInk={Brand.ink}
                     highlight={0.5}
                     title={t('lol.index.solo.title')}
+                    chip={best === null ? undefined : t('lol.index.solo.best', { score: best.score })}
                     description={t('lol.index.solo.description')}
                     action={t('lol.index.solo.action')}
                     navigationUrl={ROUTES.leagueOfLettersSoloSettings}

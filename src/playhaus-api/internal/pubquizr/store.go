@@ -46,6 +46,13 @@ func withTable(db *gorm.DB) *gorm.DB {
 		})
 }
 
+// withRoster preloads a room's seats in the order they were handed out.
+func withRoster(db *gorm.DB) *gorm.DB {
+	return db.Preload("Players", func(db *gorm.DB) *gorm.DB {
+		return db.Order("seat ASC")
+	})
+}
+
 func (s *GormStore) QuizByID(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 	var quiz Quiz
 
@@ -218,6 +225,185 @@ func (s *GormStore) ReplaceQuiz(ctx context.Context, quiz *Quiz) error {
 	return nil
 }
 
+func (s *GormStore) CreateLobby(ctx context.Context, lobby *PQLobby) error {
+	// Create takes the host's seat with it, through the association.
+	if err := s.db.WithContext(ctx).Create(lobby).Error; err != nil {
+		return fmt.Errorf("insert lobby: %w", err)
+	}
+	return nil
+}
+
+func (s *GormStore) LobbyByCode(ctx context.Context, code string) (*PQLobby, error) {
+	var lobby PQLobby
+
+	err := withRoster(s.db.WithContext(ctx)).
+		Where("id = ?", code).
+		First(&lobby).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrLobbyNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select lobby: %w", err)
+	}
+	return &lobby, nil
+}
+
+func (s *GormStore) LobbyCodeTaken(ctx context.Context, code string) (bool, error) {
+	var count int64
+
+	err := s.db.WithContext(ctx).
+		Model(&PQLobby{}).
+		Where("id = ?", code).
+		Count(&count).Error
+	if err != nil {
+		return false, fmt.Errorf("count lobbies by code: %w", err)
+	}
+
+	return count > 0, nil
+}
+
+// WaitingLobbyByOwnerID is the newest room this player opened that nobody has started yet, and nothing else.
+func (s *GormStore) WaitingLobbyByOwnerID(ctx context.Context, userID string) (*PQLobby, error) {
+	var lobby PQLobby
+
+	err := withRoster(s.db.WithContext(ctx)).
+		Where("owner_id = ? AND status = ?", userID, LobbyWaiting).
+		Order("created_at DESC").
+		First(&lobby).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, ErrLobbyNotFound
+	}
+	if err != nil {
+		return nil, fmt.Errorf("select waiting lobby by owner: %w", err)
+	}
+	return &lobby, nil
+}
+
+func (s *GormStore) AddLobbyPlayer(ctx context.Context, player *PQLobbyPlayer) error {
+	if err := s.db.WithContext(ctx).Create(player).Error; err != nil {
+		return fmt.Errorf("insert lobby player: %w", err)
+	}
+	return nil
+}
+
+// RemoveLobbyPlayer gives one seat back. The seats that are left do not move, which is what lets the socket room hold a seat map it never has to refresh.
+func (s *GormStore) RemoveLobbyPlayer(ctx context.Context, code, userID string) error {
+	err := s.db.WithContext(ctx).
+		Where("lobby_id = ? AND user_id = ?", code, userID).
+		Delete(&PQLobbyPlayer{}).Error
+	if err != nil {
+		return fmt.Errorf("delete lobby player: %w", err)
+	}
+	return nil
+}
+
+func (s *GormStore) SaveLobbySetup(ctx context.Context, code string, in LobbySetup) error {
+	err := s.db.WithContext(ctx).
+		Model(&PQLobby{}).
+		Where("id = ?", code).
+		Updates(map[string]any{
+			"quiz_id":     in.QuizID,
+			"locale":      in.Locale,
+			"zen_mode":    in.ZenMode,
+			"trivia_mode": in.TriviaMode,
+		}).Error
+	if err != nil {
+		return fmt.Errorf("update lobby setup: %w", err)
+	}
+	return nil
+}
+
+// DeleteLobby drops the room and its seats.
+func (s *GormStore) DeleteLobby(ctx context.Context, code string) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		if err := tx.Where("lobby_id = ?", code).Delete(&PQLobbyPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete lobby players: %w", err)
+		}
+		if err := tx.Where("id = ?", code).Delete(&PQLobby{}).Error; err != nil {
+			return fmt.Errorf("delete lobby: %w", err)
+		}
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("delete lobby: %w", err)
+	}
+	return nil
+}
+
+// DeleteLobbiesOlderThan drops rooms and their seats, waiting or started.
+func (s *GormStore) DeleteLobbiesOlderThan(ctx context.Context, before time.Time) (int64, error) {
+	var deleted int64
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		var codes []string
+		err := tx.Model(&PQLobby{}).
+			Where("created_at < ?", before).
+			Pluck("id", &codes).Error
+		if err != nil {
+			return fmt.Errorf("select lobbies: %w", err)
+		}
+		if len(codes) == 0 {
+			return nil
+		}
+
+		if err := tx.Where("lobby_id IN ?", codes).Delete(&PQLobbyPlayer{}).Error; err != nil {
+			return fmt.Errorf("delete lobby players: %w", err)
+		}
+		result := tx.Where("id IN ?", codes).Delete(&PQLobby{})
+		if result.Error != nil {
+			return fmt.Errorf("delete lobbies: %w", result.Error)
+		}
+		deleted = result.RowsAffected
+
+		return nil
+	})
+	if err != nil {
+		return 0, fmt.Errorf("delete lobbies older than cutoff: %w", err)
+	}
+	return deleted, nil
+}
+
+// StartLobby deals the evening and marks the room spent, together, so two phones tapping start cannot deal two of them.
+func (s *GormStore) StartLobby(ctx context.Context, lobby *PQLobby, session *Session, plays []*QuizPlay) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		// Named columns rather than Save: the lobby was loaded with its players preloaded.
+		res := tx.Model(&PQLobby{}).
+			Where("id = ? AND status = ?", lobby.ID, LobbyWaiting).
+			Updates(map[string]any{"status": LobbyStarted, "session_id": session.ID})
+		if res.Error != nil {
+			return fmt.Errorf("mark lobby started: %w", res.Error)
+		}
+		if res.RowsAffected == 0 {
+			// Somebody else started it between the read and here.
+			return ErrLobbyStarted
+		}
+
+		// Create takes the table and the dealt questions with it, through the associations.
+		if err := tx.Create(session).Error; err != nil {
+			return fmt.Errorf("insert session: %w", err)
+		}
+
+		if len(plays) > 0 {
+			err := tx.Clauses(clause.OnConflict{DoNothing: true}).Create(plays).Error
+			if err != nil {
+				return fmt.Errorf("insert quiz plays: %w", err)
+			}
+		}
+
+		return nil
+	})
+	if err != nil {
+		if errors.Is(err, ErrLobbyStarted) {
+			return err
+		}
+		return fmt.Errorf("start lobby: %w", err)
+	}
+
+	return nil
+}
+
 // CreateSession writes a session, its table and its dealt questions in one go.
 func (s *GormStore) CreateSession(ctx context.Context, session *Session) error {
 	// Create takes the players and questions with it, through the associations.
@@ -258,6 +444,22 @@ func (s *GormStore) SessionsInProgressByUserID(ctx context.Context, userID strin
 	return sessions, nil
 }
 
+// SessionsInProgressByPlayerID is every evening this player is sitting at, host or not.
+func (s *GormStore) SessionsInProgressByPlayerID(ctx context.Context, userID string) ([]*Session, error) {
+	var sessions []*Session
+
+	err := s.db.WithContext(ctx).
+		Joins("JOIN pq_session_players ON pq_session_players.session_id = pq_sessions.id").
+		Where("pq_session_players.user_id = ? AND pq_sessions.status = ?", userID, SessionInProgress).
+		Order("pq_sessions.created_at DESC").
+		Find(&sessions).Error
+	if err != nil {
+		return nil, fmt.Errorf("select sessions in progress by player: %w", err)
+	}
+
+	return sessions, nil
+}
+
 // AttemptsOn is how many answer rows one dealt question has collected.
 func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error) {
 	var count int64
@@ -271,6 +473,48 @@ func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID)
 	}
 
 	return int(count), nil
+}
+
+// SaveGuess keeps one seat's number, replacing whatever that seat said before.
+func (s *GormStore) SaveGuess(ctx context.Context, guess *SessionGuess) error {
+	err := s.db.WithContext(ctx).
+		Clauses(clause.OnConflict{
+			Columns:   []clause.Column{{Name: "session_question_id"}, {Name: "seat"}},
+			DoUpdates: clause.AssignmentColumns([]string{"value", "created_at"}),
+		}).
+		Create(guess).Error
+	if err != nil {
+		return fmt.Errorf("upsert guess: %w", err)
+	}
+	return nil
+}
+
+// GuessesOn is the numbers the phones have sent for one dealt question, in seating order.
+func (s *GormStore) GuessesOn(ctx context.Context, sessionQuestionID uuid.UUID) ([]SessionGuess, error) {
+	var guesses []SessionGuess
+
+	err := s.db.WithContext(ctx).
+		Where("session_question_id = ?", sessionQuestionID).
+		Order("seat ASC").
+		Find(&guesses).Error
+	if err != nil {
+		return nil, fmt.Errorf("select guesses: %w", err)
+	}
+
+	return guesses, nil
+}
+
+// ActivateQuestion pins one pending question, and is false when it was not there to pin.
+func (s *GormStore) ActivateQuestion(ctx context.Context, sessionID, questionID uuid.UUID) (bool, error) {
+	res := s.db.WithContext(ctx).
+		Model(&SessionQuestion{}).
+		Where("id = ? AND session_id = ? AND status = ?", questionID, sessionID, QuestionPending).
+		Update("status", QuestionActive)
+	if res.Error != nil {
+		return false, fmt.Errorf("activate question: %w", res.Error)
+	}
+
+	return res.RowsAffected == 1, nil
 }
 
 // TurnOutcome is everything one settled turn changed.
@@ -299,6 +543,11 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 				Updates(map[string]any{"status": question.Status, "points": question.Points}).Error
 			if err != nil {
 				return fmt.Errorf("update question: %w", err)
+			}
+
+			// A settled question's staged numbers are spent, and there are none to find in any round but 3.
+			if err := tx.Where("session_question_id = ?", question.ID).Delete(&SessionGuess{}).Error; err != nil {
+				return fmt.Errorf("delete guesses: %w", err)
 			}
 		}
 
@@ -371,10 +620,23 @@ func (s *GormStore) DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, 
 // DeleteSessionsByOwnerID throws away every evening this player owns but one.
 func (s *GormStore) DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error {
 	_, err := s.deleteSessions(ctx, func(tx *gorm.DB) *gorm.DB {
-		return tx.Where("owner_id = ? AND id <> ?", ownerID, except)
+		// Single device only: a host starting a quiz on their own phone must not delete the room they are hosting.
+		return tx.Where("owner_id = ? AND id <> ? AND mode = ?", ownerID, except, ModeSingleDevice)
 	})
 	if err != nil {
 		return fmt.Errorf("delete previous sessions for %s: %w", ownerID, err)
+	}
+	return nil
+}
+
+// AbandonSession closes an evening nobody is coming back to, leaving the rows where they are.
+func (s *GormStore) AbandonSession(ctx context.Context, sessionID uuid.UUID) error {
+	err := s.db.WithContext(ctx).
+		Model(&Session{}).
+		Where("id = ? AND status = ?", sessionID, SessionInProgress).
+		Updates(map[string]any{"status": SessionAbandoned, "updated_at": time.Now().UTC()}).Error
+	if err != nil {
+		return fmt.Errorf("abandon session %s: %w", sessionID, err)
 	}
 	return nil
 }
@@ -399,6 +661,9 @@ func (s *GormStore) deleteSessions(ctx context.Context, scope func(*gorm.DB) *go
 			return nil
 		}
 
+		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionGuess{}).Error; err != nil {
+			return fmt.Errorf("delete guesses: %w", err)
+		}
 		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionAnswer{}).Error; err != nil {
 			return fmt.Errorf("delete attempts: %w", err)
 		}
@@ -407,6 +672,20 @@ func (s *GormStore) deleteSessions(ctx context.Context, scope func(*gorm.DB) *go
 		}
 		if err := tx.Where("session_id IN ?", sessionIDs).Delete(&SessionPlayer{}).Error; err != nil {
 			return fmt.Errorf("delete players: %w", err)
+		}
+
+		var codes []string
+		err := tx.Model(&PQLobby{}).Where("session_id IN ?", sessionIDs).Pluck("id", &codes).Error
+		if err != nil {
+			return fmt.Errorf("select lobbies: %w", err)
+		}
+		if len(codes) > 0 {
+			if err := tx.Where("lobby_id IN ?", codes).Delete(&PQLobbyPlayer{}).Error; err != nil {
+				return fmt.Errorf("delete lobby players: %w", err)
+			}
+			if err := tx.Where("id IN ?", codes).Delete(&PQLobby{}).Error; err != nil {
+				return fmt.Errorf("delete lobbies: %w", err)
+			}
 		}
 
 		result := tx.Where("id IN ?", sessionIDs).Delete(&Session{})

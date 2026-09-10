@@ -57,7 +57,8 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	authSvc := auth.NewService(auth.NewGormStore(db), users)
 	lol := lol.NewService(lol.NewGormStore(db), lol.Options{})
 	quizzes := pubquizr.NewService(pubquizr.NewGormStore(db))
-	oneOfUs := oneofus.NewService(oneofus.NewGormStore(db))
+	oneOfUsStore := oneofus.NewGormStore(db)
+	oneOfUs := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFiller := fakefiller.NewService(fakefiller.NewGormStore(db))
 
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))

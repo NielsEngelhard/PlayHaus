@@ -16,48 +16,14 @@ import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
 import { ffLobbyErrorMessage } from '@/features/fake-filler/fake-filler-errors';
 import type { TranslationKey } from '@/features/i18n/keys';
+import { hold, release, settleGiveBacks, track } from '@/features/realtime/room-holds';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 // The Fake Filler room, from opening it to being carried out of it into the next one.
 
-// How many screens on this device are sitting in each room, by join code.
-const holders = new Map<string, number>();
-
-function hold(code: string): void {
-    holders.set(code, (holders.get(code) ?? 0) + 1);
-}
-
-// The give-backs still in the air.
-const giveBacks = new Set<Promise<void>>();
-
-function track(work: Promise<unknown>): void {
-    // Swallowed rather than handled: a give-back is best-effort, and a room that failed to close is the server's to sweep.
-    const settled = work.then(() => { }, () => { });
-
-    giveBacks.add(settled);
-    void settled.then(() => giveBacks.delete(settled));
-}
-
-// Waits for every Fake Filler room this device is in the middle of handing back.
-export async function settleFFGiveBacks(): Promise<void> {
-    // A loop rather than one `Promise.all`.
-    while (giveBacks.size > 0) {
-        await Promise.all([...giveBacks]);
-    }
-}
-
-/** Lets go of one hold. True when it was the last, so the room is nobody's now. */
-function release(code: string): boolean {
-    const left = (holders.get(code) ?? 1) - 1;
-    if (left > 0) {
-        holders.set(code, left);
-        return false;
-    }
-
-    holders.delete(code);
-    return true;
-}
+// Kept under its old name for the one page that waits on it.
+export const settleFFGiveBacks = settleGiveBacks;
 
 export interface FFLobbyState {
     lobby: FFLobby | null

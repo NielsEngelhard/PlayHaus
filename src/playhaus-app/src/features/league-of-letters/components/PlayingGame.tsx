@@ -345,13 +345,13 @@ export default function PlayingGame({
                     round={round}
                 />
 
-                {/* Solo's answer to the row of chips below: you, your running total, and how long you have been at it. */}
+                {/* Solo's answer to the row of chips below: you, your running total, and how long you have been at it. A zen game keeps neither. */}
                 {!multiplayer && player !== undefined && (
                     <SoloStatusRow
                         name={player.name}
                         avatarColorId={player.avatarColorId}
-                        score={game.score}
-                        startedAt={game.createdAt}
+                        score={game.competitive ? game.score : undefined}
+                        startedAt={game.competitive ? game.createdAt : undefined}
                         running={!gameOver}
                     />
                 )}

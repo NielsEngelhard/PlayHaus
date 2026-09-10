@@ -10,7 +10,7 @@ export const ROUND_DOUBLE_DOWN = 6;
 
 /** Kept in step with `EasyPoints` and `HardPoints` in `rules.go`. */
 export const EASY_POINTS = 1;
-export const HARD_POINTS = 2;
+export const HARD_POINTS = 3;
 
 /** Which half of the round's pool a question came out of. */
 export type Difficulty = 'easy' | 'hard';

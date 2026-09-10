@@ -23,7 +23,7 @@ type oouPlayerResponse struct {
 	IsMayor    bool   `json:"isMayor"`
 }
 
-type oouGameResponse struct {
+type oouSingleDeviceGameResponse struct {
 	ID               string              `json:"id"`
 	Locale           string              `json:"locale"`
 	ActualQuestion   string              `json:"actualQuestion"`
@@ -33,7 +33,7 @@ type oouGameResponse struct {
 	Players          []oouPlayerResponse `json:"players"`
 }
 
-type oouVoteResponse struct {
+type oouSingleDeviceVoteResponse struct {
 	PlayerID      string  `json:"playerId"`
 	PlayerRole    int     `json:"playerRole"`
 	GameEnded     bool    `json:"gameEnded"`
@@ -43,7 +43,7 @@ type oouVoteResponse struct {
 
 // mayorOf is the seat wearing the chain in a game as the app receives it, or an empty
 // string for a table with none.
-func mayorOf(game oouGameResponse) string {
+func mayorOf(game oouSingleDeviceGameResponse) string {
 	for _, player := range game.Players {
 		if player.IsMayor {
 			return player.PlayerID
@@ -81,7 +81,7 @@ func oouCreateBodyWithRoles(t *testing.T, locale string, wordOnly bool, enabledR
 }
 
 // startedOouGame opens a game and reads it back, which is also the reconnect path.
-func startedOouGame(t *testing.T, h http.Handler, token string, names ...string) oouGameResponse {
+func startedOouGame(t *testing.T, h http.Handler, token string, names ...string) oouSingleDeviceGameResponse {
 	t.Helper()
 
 	rec := do(t, h, http.MethodPost, oouSingleDevicePath, oouCreateBody(t, "en", true, names...), token)
@@ -97,17 +97,17 @@ func startedOouGame(t *testing.T, h http.Handler, token string, names ...string)
 	return fetchOouGame(t, h, token, created.GameID)
 }
 
-func fetchOouGame(t *testing.T, h http.Handler, token, gameID string) oouGameResponse {
+func fetchOouGame(t *testing.T, h http.Handler, token, gameID string) oouSingleDeviceGameResponse {
 	t.Helper()
 
 	rec := do(t, h, http.MethodGet, oouSingleDevicePath+"/"+gameID, "", token)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("get game %s: status = %d, want 200 (body: %s)", gameID, rec.Code, rec.Body)
 	}
-	return decodeBody[oouGameResponse](t, rec)
+	return decodeBody[oouSingleDeviceGameResponse](t, rec)
 }
 
-func voteOutPlayer(t *testing.T, h http.Handler, token, gameID, playerID string) oouVoteResponse {
+func voteOutPlayer(t *testing.T, h http.Handler, token, gameID, playerID string) oouSingleDeviceVoteResponse {
 	t.Helper()
 
 	path := fmt.Sprintf("%s/%s/vote/%s", oouSingleDevicePath, gameID, playerID)
@@ -115,7 +115,7 @@ func voteOutPlayer(t *testing.T, h http.Handler, token, gameID, playerID string)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("vote out %s: status = %d, want 200 (body: %s)", playerID, rec.Code, rec.Body)
 	}
-	return decodeBody[oouVoteResponse](t, rec)
+	return decodeBody[oouSingleDeviceVoteResponse](t, rec)
 }
 
 // The deal, as the app receives it: a word pair, and a table where everybody can be

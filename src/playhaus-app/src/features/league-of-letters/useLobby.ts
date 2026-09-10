@@ -15,8 +15,12 @@ import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
 import type { TranslationKey } from '@/features/i18n/keys';
 import { lobbyErrorMessage } from '@/features/league-of-letters/game-errors';
+import { hold, release, settleGiveBacks, track } from '@/features/realtime/room-holds';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+// Kept under its old name for the one page that waits on it.
+export { settleGiveBacks };
 
 export interface LobbyState {
     lobby: Lobby | null
@@ -53,43 +57,6 @@ export interface LobbyState {
     updateSettings: (settings: LobbySettings) => void
 }
 
-// How many screens on this device are sitting in each room, by join code.
-const holders = new Map<string, number>();
-
-function hold(code: string): void {
-    holders.set(code, (holders.get(code) ?? 0) + 1);
-}
-
-// The give-backs still in the air.
-const giveBacks = new Set<Promise<void>>();
-
-function track(work: Promise<unknown>): void {
-    // Swallowed rather than handled: a give-back is best-effort.
-    const settled = work.then(() => { }, () => { });
-
-    giveBacks.add(settled);
-    void settled.then(() => giveBacks.delete(settled));
-}
-
-// Waits for every room this device is in the middle of handing back.
-export async function settleGiveBacks(): Promise<void> {
-    // A loop rather than one `Promise.all`.
-    while (giveBacks.size > 0) {
-        await Promise.all([...giveBacks]);
-    }
-}
-
-/** Lets go of one hold. True when it was the last, so the room is nobody's now. */
-function release(code: string): boolean {
-    const left = (holders.get(code) ?? 1) - 1;
-    if (left > 0) {
-        holders.set(code, left);
-        return false;
-    }
-
-    holders.delete(code);
-    return true;
-}
 
 export function useLobby(code?: string): LobbyState {
     const { user, status } = useAuth();

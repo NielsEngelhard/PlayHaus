@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"math"
 	"math/rand/v2"
+	"sort"
 	"strings"
 	"time"
 
@@ -14,6 +15,14 @@ import (
 
 	"github.com/google/uuid"
 )
+
+// LobbySetup is what the host of a multi device room decides before the quiz starts.
+type LobbySetup struct {
+	QuizID     *uuid.UUID
+	Locale     i18n.Locale
+	ZenMode    bool
+	TriviaMode bool
+}
 
 type Store interface {
 	QuizByID(ctx context.Context, id uuid.UUID) (*Quiz, error)
@@ -25,15 +34,36 @@ type Store interface {
 	RecordQuizPlay(ctx context.Context, play *QuizPlay) error
 	PlayedQuizIDs(ctx context.Context, ownerID string, quizIDs []uuid.UUID) (map[uuid.UUID]bool, error)
 
+	CreateLobby(ctx context.Context, lobby *PQLobby) error
+	LobbyByCode(ctx context.Context, code string) (*PQLobby, error)
+	LobbyCodeTaken(ctx context.Context, code string) (bool, error)
+	WaitingLobbyByOwnerID(ctx context.Context, userID string) (*PQLobby, error)
+	AddLobbyPlayer(ctx context.Context, player *PQLobbyPlayer) error
+	RemoveLobbyPlayer(ctx context.Context, code, userID string) error
+	SaveLobbySetup(ctx context.Context, code string, in LobbySetup) error
+	DeleteLobby(ctx context.Context, code string) error
+	DeleteLobbiesOlderThan(ctx context.Context, before time.Time) (int64, error)
+	// StartLobby deals the evening the room gathered for, and marks the room spent, together.
+	StartLobby(ctx context.Context, lobby *PQLobby, session *Session, plays []*QuizPlay) error
+
 	CreateSession(ctx context.Context, session *Session) error
 	SessionByID(ctx context.Context, id uuid.UUID) (*Session, error)
 	SessionsInProgressByUserID(ctx context.Context, userID string) ([]*Session, error)
+	// SessionsInProgressByPlayerID is the same question asked of a seat rather than an owner, which is how a guest player gets their room back.
+	SessionsInProgressByPlayerID(ctx context.Context, userID string) ([]*Session, error)
 	CurrentSessionByOwnerID(ctx context.Context, ownerID string) (*Session, error)
 	DeleteSessionByID(ctx context.Context, sessionID uuid.UUID, ownerID string) error
 	DeleteSessionsByOwnerID(ctx context.Context, ownerID string, except uuid.UUID) error
 	DeleteSessionsOlderThan(ctx context.Context, before time.Time) (int64, error)
 	// AttemptsOn counts answer rows, which is a count of seats that have had a go only in the hot seat rounds.
 	AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error)
+	// SaveGuess keeps one seat's number until the quizmaster closes the question, and a seat may change its mind.
+	SaveGuess(ctx context.Context, guess *SessionGuess) error
+	GuessesOn(ctx context.Context, sessionQuestionID uuid.UUID) ([]SessionGuess, error)
+	// ActivateQuestion pins the question a round 6 player asked for, and is false when somebody else got there first.
+	ActivateQuestion(ctx context.Context, sessionID, questionID uuid.UUID) (bool, error)
+	// AbandonSession closes an evening nobody is coming back to, without throwing it away.
+	AbandonSession(ctx context.Context, sessionID uuid.UUID) error
 	RecordTurn(ctx context.Context, session *Session, out TurnOutcome) error
 }
 
@@ -184,11 +214,56 @@ func (s *Service) SessionForOwner(ctx context.Context, id uuid.UUID, ownerID str
 	return session, nil
 }
 
+// sessionForActor is a session somebody may write to: their own phone when ownerID is given, else a seat at the table.
+func (s *Service) sessionForActor(ctx context.Context, id uuid.UUID, ownerID, actorID string) (*Session, error) {
+	if ownerID != "" {
+		return s.SessionForOwner(ctx, id, ownerID)
+	}
+
+	session, err := s.store.SessionByID(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	// Only that they are at the table at all -- which seat may settle which turn is the round's own business.
+	if session.SeatFor(actorID) < 0 {
+		return nil, ErrNotAtThisTable
+	}
+
+	return session, nil
+}
+
+// SessionsInProgress is every unfinished evening this player could walk back into, whether they are hosting it or only sitting at it.
 func (s *Service) SessionsInProgress(ctx context.Context, userID string) ([]*Session, error) {
 	if userID == "" {
 		return nil, nil
 	}
-	return s.store.SessionsInProgressByUserID(ctx, userID)
+
+	owned, err := s.store.SessionsInProgressByUserID(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	seated, err := s.store.SessionsInProgressByPlayerID(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	// A host is also a player, so the two overlap on every room this player opened themselves.
+	seen := make(map[uuid.UUID]bool, len(owned))
+	sessions := make([]*Session, 0, len(owned)+len(seated))
+
+	for _, group := range [][]*Session{owned, seated} {
+		for _, session := range group {
+			if seen[session.ID] {
+				continue
+			}
+
+			seen[session.ID] = true
+			sessions = append(sessions, session)
+		}
+	}
+
+	return sessions, nil
 }
 
 // CurrentSession is the unfinished evening this player owns, or ErrSessionNotFound when there is none.
@@ -261,39 +336,76 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		return nil, nil, err
 	}
 
-	// Round 1 opens on a seat drawn out of the hat.
-	opening := rand.IntN(len(names))
-
 	now := time.Now().UTC()
+	roster := make([]seatedPlayer, len(names))
+	for seat, name := range names {
+		roster[seat] = seatedPlayer{Name: name}
+	}
+
+	session := buildSession(quiz, roster, in.Modes, ModeSingleDevice, in.OwnerID, nil, deal, now)
+
+	if err := s.store.CreateSession(ctx, session); err != nil {
+		return nil, nil, err
+	}
+
+	if err := s.store.RecordQuizPlay(ctx, &QuizPlay{
+		OwnerID:  in.OwnerID,
+		QuizID:   quiz.ID,
+		PlayedAt: now,
+	}); err != nil {
+		return nil, nil, fmt.Errorf("record quiz play: %w", err)
+	}
+
+	// A table plays one evening at a time: this one replaces whatever was still open, however far into it the last lot got.
+	if err := s.store.DeleteSessionsByOwnerID(ctx, in.OwnerID, session.ID); err != nil {
+		return nil, nil, fmt.Errorf("delete previous sessions: %w", err)
+	}
+
+	return session, nil, nil
+}
+
+// seatedPlayer is one chair at a table being laid: a name, and the account holding it in multi device.
+type seatedPlayer struct {
+	Name   string
+	UserID *string
+}
+
+// buildSession lays an evening out in memory, and is the half of starting a quiz that both modes share.
+func buildSession(quiz *Quiz, roster []seatedPlayer, modes Modes, mode Mode, ownerID string, lobbyID *string, deal []dealtQuestion, now time.Time) *Session {
+	// Round 1 opens on a seat drawn out of the hat.
+	opening := rand.IntN(len(roster))
+
 	session := &Session{
 		ID:      uuid.New(),
 		QuizID:  quiz.ID,
-		OwnerID: in.OwnerID,
-		Mode:    ModeSingleDevice,
+		OwnerID: ownerID,
+		LobbyID: lobbyID,
+		Mode:    mode,
 		Locale:  quiz.Locale,
 		Status:  SessionInProgress,
 
 		CurrentRound:    RoundOpen,
 		CurrentPosition: 0,
-		QuizMasterSeat:  ReaderFor(opening, len(names)),
+		QuizMasterSeat:  ReaderFor(opening, len(roster)),
 		HotSeat:         opening,
 		// No finale yet, and none of it decided until the other five rounds are played.
 		FinalistSeatA: -1,
 		FinalistSeatB: -1,
 
-		ZenMode:    in.Modes.Zen,
-		TriviaMode: in.Modes.Trivia,
+		ZenMode:    modes.Zen,
+		TriviaMode: modes.Trivia,
 
 		CreatedAt: now,
 		UpdatedAt: now,
 	}
 
-	session.Players = make([]SessionPlayer, len(names))
-	for seat, name := range names {
+	session.Players = make([]SessionPlayer, len(roster))
+	for seat, player := range roster {
 		session.Players[seat] = SessionPlayer{
 			SessionID: session.ID,
 			Seat:      seat,
-			Name:      name,
+			Name:      player.Name,
+			UserID:    player.UserID,
 			Score:     0,
 			// The palette repeats past six, which only happens at a table of seven or eight.
 			Color:     user.Colors[seat%len(user.Colors)],
@@ -315,24 +427,7 @@ func (s *Service) StartSingleDeviceSession(ctx context.Context, in StartSingleDe
 		}
 	}
 
-	if err := s.store.CreateSession(ctx, session); err != nil {
-		return nil, nil, err
-	}
-
-	if err := s.store.RecordQuizPlay(ctx, &QuizPlay{
-		OwnerID:  in.OwnerID,
-		QuizID:   quiz.ID,
-		PlayedAt: now,
-	}); err != nil {
-		return nil, nil, fmt.Errorf("record quiz play: %w", err)
-	}
-
-	// A table plays one evening at a time: this one replaces whatever was still open, however far into it the last lot got.
-	if err := s.store.DeleteSessionsByOwnerID(ctx, in.OwnerID, session.ID); err != nil {
-		return nil, nil, fmt.Errorf("delete previous sessions: %w", err)
-	}
-
-	return session, nil, nil
+	return session
 }
 
 // seatNames trims the roster and refuses a table where two people would answer to the same thing.
@@ -450,6 +545,8 @@ func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error
 type TurnInput struct {
 	SessionID uuid.UUID
 	OwnerID   string
+	// ActorID is whose phone posted this, and is what multi device authorises the settle against.
+	ActorID string
 	// SessionQuestionID is the question the turn was settled for.
 	SessionQuestionID uuid.UUID
 	// MissedSeats are the seats that were asked and did not get it, in the order the question reached them.
@@ -458,6 +555,8 @@ type TurnInput struct {
 	CorrectSeat *int
 	// Said is what the player actually answered, if the quizmaster typed it in.
 	Said string
+	// ChosenAnswerID is the ABCD option round 2 landed on, which is the one verdict the server can check for itself.
+	ChosenAnswerID *uuid.UUID
 }
 
 // checkAgainstLine is the whole of what stops a settled turn naming whoever it likes. line is what the server worked out for itself.
@@ -492,9 +591,48 @@ func checkAgainstLine(line, missed []int, correct *int) error {
 	return nil
 }
 
+// settlerSeat is which seat may settle this turn, given what the settle claims.
+func settlerSeat(session *Session, in TurnInput) int {
+	// Round 2 scores itself, so the phone that ended the walk posts it -- and checkAgainstLine has already proved it cannot lie about its place in the line.
+	if session.CurrentRound == RoundChoice {
+		if in.CorrectSeat != nil {
+			return *in.CorrectSeat
+		}
+		if len(in.MissedSeats) > 0 {
+			return in.MissedSeats[len(in.MissedSeats)-1]
+		}
+	}
+
+	// Everywhere else an open answer is judged by a human, and that human is whoever is reading the question out.
+	return session.QuizMasterSeat
+}
+
+// requireSeat is the whole of a phone-per-player table's authorisation, and the only thing single device does not pay for.
+func (s *Service) requireSeat(session *Session, actorID string, seat int) error {
+	// A shared phone holds every seat and none of them are anybody's, so there is nothing to authorise against -- SessionForOwner has already said whose phone it is.
+	if !session.Seated() {
+		return nil
+	}
+
+	at := session.SeatFor(actorID)
+	if at < 0 {
+		return ErrNotAtThisTable
+	}
+	if at != seat {
+		return ErrNotYourSeat
+	}
+
+	return nil
+}
+
+// requireSettler is requireSeat for the four rounds whose turn is settled by walking the table.
+func (s *Service) requireSettler(session *Session, actorID string, in TurnInput) error {
+	return s.requireSeat(session, actorID, settlerSeat(session, in))
+}
+
 // RecordHotSeatTurn scores one whole round 1 or round 2 question and moves the game on.
 func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
 		return nil, err
 	}
@@ -528,6 +666,20 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 	}
 	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
 		return nil, err
+	}
+	if err := s.requireSettler(session, in.ActorID, in); err != nil {
+		return nil, err
+	}
+
+	// Round 2 scores itself on the answerer's own phone, so the claim gets checked against the quiz. An open answer is judged by a human and never by its stored text.
+	if session.CurrentRound == RoundChoice && in.ChosenAnswerID != nil {
+		answer, err := s.chosenAnswer(ctx, session, question, *in.ChosenAnswerID)
+		if err != nil {
+			return nil, err
+		}
+		if answer.Correct != (in.CorrectSeat != nil) {
+			return nil, ErrVerdictDisagrees
+		}
 	}
 
 	now := time.Now().UTC()
@@ -580,6 +732,8 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 		if said := strings.TrimSpace(in.Said); said != "" {
 			attempt.Text = &said
 		}
+		// Which option round 2 landed on, and nil in every round that has none.
+		attempt.AnswerID = in.ChosenAnswerID
 		out.Answers = append(out.Answers, attempt)
 
 		// Half the round 1 questions are worth nothing.
@@ -621,42 +775,152 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 	}
 
 	// Read back rather than returned from memory.
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
+}
+
+// chosenAnswer is the option a round 2 pick landed on, and refuses an id that belongs to some other question.
+func (s *Service) chosenAnswer(ctx context.Context, session *Session, question *SessionQuestion, answerID uuid.UUID) (*Answer, error) {
+	quiz, err := s.store.QuizByID(ctx, session.QuizID)
+	if err != nil {
+		return nil, err
+	}
+	if quiz == nil {
+		return nil, fmt.Errorf("chosen answer: %w", ErrQuizNotFound)
+	}
+
+	for _, candidate := range quiz.Questions {
+		if candidate.ID != question.QuestionID {
+			continue
+		}
+		for _, answer := range candidate.Answers {
+			if answer.ID == answerID {
+				return &answer, nil
+			}
+		}
+		return nil, ErrVerdictDisagrees
+	}
+
+	return nil, fmt.Errorf("chosen answer: %w", ErrQuizNotFound)
+}
+
+// ClosestGuessInput is one seat typing their own number in round 3, on their own phone.
+type ClosestGuessInput struct {
+	SessionID uuid.UUID
+	ActorID   string
+	// SessionQuestionID is the question the number is for, so a phone left behind cannot answer the one before.
+	SessionQuestionID uuid.UUID
+	Value             float64
+}
+
+// SaveClosestGuess keeps one seat's number until the question is closed, and answers with the seats that are in and never with a number.
+func (s *Service) SaveClosestGuess(ctx context.Context, in ClosestGuessInput) (*Session, []int, error) {
+	session, err := s.sessionForActor(ctx, in.SessionID, "", in.ActorID)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundClosest {
+		return nil, nil, ErrWrongRound
+	}
+
+	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
+	if question == nil || question.ID != in.SessionQuestionID {
+		return nil, nil, ErrStaleTurn
+	}
+
+	// Which also refuses the reader, unless the table is small enough that round 3 lets them guess too.
+	seat := session.SeatFor(in.ActorID)
+	if err := session.checkGuessingSeats([]int{seat}); err != nil {
+		return nil, nil, err
+	}
+	if math.IsNaN(in.Value) || math.IsInf(in.Value, 0) {
+		return nil, nil, fmt.Errorf("closest guess: %w: seat %d guessed something that is not a number",
+			ErrInvalidInput, seat)
+	}
+
+	err = s.store.SaveGuess(ctx, &SessionGuess{
+		SessionQuestionID: question.ID,
+		Seat:              seat,
+		SessionID:         session.ID,
+		Value:             in.Value,
+		CreatedAt:         time.Now().UTC(),
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	staged, err := s.store.GuessesOn(ctx, question.ID)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	seatsIn := make([]int, 0, len(staged))
+	for _, guess := range staged {
+		seatsIn = append(seatsIn, guess.Seat)
+	}
+
+	return session, seatsIn, nil
 }
 
 // ClosestInput is the quizmaster settling one round 3 question.
 type ClosestInput struct {
 	SessionID uuid.UUID
 	OwnerID   string
+	ActorID   string
 	// SessionQuestionID is the question this settles, named for the same reason a verdict names one.
 	SessionQuestionID uuid.UUID
 
 	Guesses      []SeatGuess
 	WinningSeats []int
+	// Staged scores the numbers the phones sent, with Guesses laid over them seat by seat -- which is the way in multi device settles.
+	Staged bool
+}
+
+// ClosestSettled is round 3's result the way the room wants to see it, and the only thing the numbers ever travel in.
+type ClosestSettled struct {
+	SessionQuestionID uuid.UUID
+	Guesses           []SeatGuess
+	WinningSeats      []int
 }
 
 // RecordClosestGuesses settles one round 3 question and moves the game on.
-func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*Session, *ClosestSettled, error) {
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	if session.Status != SessionInProgress {
-		return nil, ErrSessionOver
+		return nil, nil, ErrSessionOver
 	}
 	if session.CurrentRound != RoundClosest {
-		return nil, ErrWrongRound
+		return nil, nil, ErrWrongRound
+	}
+	if err := s.requireSeat(session, in.ActorID, session.QuizMasterSeat); err != nil {
+		return nil, nil, err
 	}
 
 	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
 	if question == nil || question.ID != in.SessionQuestionID {
-		return nil, ErrStaleTurn
+		return nil, nil, ErrStaleTurn
 	}
 
 	typed, named := len(in.Guesses) > 0, len(in.WinningSeats) > 0
-	if typed == named {
-		return nil, fmt.Errorf("closest guesses: %w: name the guesses or the winners, not both", ErrInvalidInput)
+	switch {
+	case in.Staged:
+		if named {
+			return nil, nil, fmt.Errorf("closest guesses: %w: a staged settle scores numbers, not winners", ErrInvalidInput)
+		}
+		// A staged settle with nothing staged is a real turn: nobody typed, so the question closes paying nobody.
+		if in.Guesses, err = s.stagedGuesses(ctx, question.ID, in.Guesses); err != nil {
+			return nil, nil, err
+		}
+		typed = len(in.Guesses) > 0
+	case typed == named:
+		return nil, nil, fmt.Errorf("closest guesses: %w: name the guesses or the winners, not both", ErrInvalidInput)
 	}
 
 	// Whichever way in, the seats have to be seats at this table, and never the person reading the question out.
@@ -668,24 +932,24 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 		}
 	}
 	if err := session.checkGuessingSeats(seats); err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	winners := in.WinningSeats
 	if typed {
 		for _, guess := range in.Guesses {
 			if math.IsNaN(guess.Value) || math.IsInf(guess.Value, 0) {
-				return nil, fmt.Errorf("closest guesses: %w: seat %d guessed something that is not a number",
+				return nil, nil, fmt.Errorf("closest guesses: %w: seat %d guessed something that is not a number",
 					ErrInvalidInput, guess.Seat)
 			}
 		}
 		if seat := DuplicateGuessSeat(in.Guesses); seat >= 0 {
-			return nil, fmt.Errorf("%w: seat %d", ErrDuplicateGuess, seat)
+			return nil, nil, fmt.Errorf("%w: seat %d", ErrDuplicateGuess, seat)
 		}
 
 		target, err := s.closestAnswer(ctx, session, question)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 		winners = ClosestWinners(target, in.Guesses)
 	}
@@ -733,14 +997,57 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 	question.Points = ClosestPoints
 	out.Questions = append(out.Questions, question)
 
+	settled := &ClosestSettled{
+		SessionQuestionID: question.ID,
+		Guesses:           in.Guesses,
+		WinningSeats:      winners,
+	}
+
 	s.advance(session)
 	session.UpdatedAt = now
 
 	if err := s.store.RecordTurn(ctx, session, out); err != nil {
+		return nil, nil, err
+	}
+
+	fresh, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return fresh, settled, nil
+}
+
+// stagedGuesses is the numbers the phones sent, with anything typed in by hand winning its seat -- which is what keeps a dead phone from killing the question.
+func (s *Service) stagedGuesses(ctx context.Context, sessionQuestionID uuid.UUID, byHand []SeatGuess) ([]SeatGuess, error) {
+	staged, err := s.store.GuessesOn(ctx, sessionQuestionID)
+	if err != nil {
 		return nil, err
 	}
 
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	values := make(map[int]float64, len(staged)+len(byHand))
+	seats := make([]int, 0, len(staged)+len(byHand))
+
+	keep := func(seat int, value float64) {
+		if _, already := values[seat]; !already {
+			seats = append(seats, seat)
+		}
+		values[seat] = value
+	}
+	for _, guess := range staged {
+		keep(guess.Seat, guess.Value)
+	}
+	for _, guess := range byHand {
+		keep(guess.Seat, guess.Value)
+	}
+	sort.Ints(seats)
+
+	merged := make([]SeatGuess, 0, len(seats))
+	for _, seat := range seats {
+		merged = append(merged, SeatGuess{Seat: seat, Value: values[seat]})
+	}
+
+	return merged, nil
 }
 
 // checkGuessingSeats is the rule both ways into round 3 share.
@@ -796,6 +1103,7 @@ type WordAward struct {
 type DescribeInput struct {
 	SessionID     uuid.UUID
 	OwnerID       string
+	ActorID       string
 	DescriberSeat int
 	// Awards must name every word of the turn, once each.
 	Awards []WordAward
@@ -803,7 +1111,7 @@ type DescribeInput struct {
 
 // RecordDescribeAwards scores one round 4 turn and moves the game on.
 func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
 		return nil, err
 	}
@@ -817,6 +1125,9 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 	// The turn is named by who is describing rather than by a question, so this is the staleness check.
 	if in.DescriberSeat != session.QuizMasterSeat {
 		return nil, ErrStaleTurn
+	}
+	if err := s.requireSeat(session, in.ActorID, in.DescriberSeat); err != nil {
+		return nil, err
 	}
 
 	words := session.WordsFor(in.DescriberSeat)
@@ -911,7 +1222,7 @@ func (s *Service) RecordDescribeAwards(ctx context.Context, in DescribeInput) (*
 		return nil, err
 	}
 
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 }
 
 // bonusLedger is the "one guess each" rule of rounds 4 and 5, kept in one place because both rounds spend it the same way.
@@ -999,6 +1310,7 @@ type ListAward struct {
 type ListInput struct {
 	SessionID         uuid.UUID
 	OwnerID           string
+	ActorID           string
 	SessionQuestionID uuid.UUID
 	// Awards must name every one of the question's four answers, once each.
 	Awards []ListAward
@@ -1006,7 +1318,7 @@ type ListInput struct {
 
 // RecordListAward scores one round 5 question and moves the game on.
 func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
 		return nil, err
 	}
@@ -1016,6 +1328,9 @@ func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, 
 	}
 	if session.CurrentRound != RoundList {
 		return nil, ErrWrongRound
+	}
+	if err := s.requireSeat(session, in.ActorID, session.QuizMasterSeat); err != nil {
+		return nil, err
 	}
 
 	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
@@ -1118,7 +1433,7 @@ func (s *Service) RecordListAward(ctx context.Context, in ListInput) (*Session, 
 		return nil, err
 	}
 
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 }
 
 // listAnswers are the four things round 5's current question is looking for.
@@ -1143,7 +1458,7 @@ func (s *Service) listAnswers(ctx context.Context, session *Session, question *S
 
 // RecordFinaleTurn scores one whole finale question and moves the finale on.
 func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
 		return nil, err
 	}
@@ -1171,6 +1486,9 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 		return nil, ErrStaleTurn
 	}
 	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
+		return nil, err
+	}
+	if err := s.requireSettler(session, in.ActorID, in); err != nil {
 		return nil, err
 	}
 
@@ -1234,7 +1552,7 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 		return nil, err
 	}
 
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 }
 
 // difficultyOf is which half of round 6's pool a dealt question came out of.
@@ -1261,9 +1579,55 @@ func (s *Service) difficultyOf(ctx context.Context, session *Session, question *
 	return "", fmt.Errorf("double down difficulty: %w", ErrQuizNotFound)
 }
 
+// DoubleDownChoiceInput is one player asking for the easy or the hard question, on their own phone.
+type DoubleDownChoiceInput struct {
+	SessionID uuid.UUID
+	ActorID   string
+	// SessionQuestionID is the one they picked out of the pool the round has left.
+	SessionQuestionID uuid.UUID
+}
+
+// ChooseDoubleDown pins the round 6 question a player asked for, so nobody else's phone can settle a different one.
+func (s *Service) ChooseDoubleDown(ctx context.Context, in DoubleDownChoiceInput) (*Session, error) {
+	session, err := s.sessionForActor(ctx, in.SessionID, "", in.ActorID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundDoubleDown {
+		return nil, ErrWrongRound
+	}
+	if err := s.requireSeat(session, in.ActorID, session.CurrentAnsweringSeat(0)); err != nil {
+		return nil, err
+	}
+
+	// Asking again would move the goalposts, and the question is already on the screen by then.
+	if session.ActiveQuestion(RoundDoubleDown) != nil {
+		return nil, ErrStaleTurn
+	}
+
+	question := session.PendingQuestion(RoundDoubleDown, in.SessionQuestionID)
+	if question == nil {
+		return nil, ErrStaleTurn
+	}
+
+	pinned, err := s.store.ActivateQuestion(ctx, session.ID, question.ID)
+	if err != nil {
+		return nil, err
+	}
+	if !pinned {
+		return nil, ErrStaleTurn
+	}
+
+	return s.sessionForActor(ctx, in.SessionID, "", in.ActorID)
+}
+
 // RecordDoubleDownTurn scores one round 6 question, the one the player asked for, and moves the table on a seat.
 func (s *Service) RecordDoubleDownTurn(ctx context.Context, in TurnInput) (*Session, error) {
-	session, err := s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 	if err != nil {
 		return nil, err
 	}
@@ -1275,8 +1639,13 @@ func (s *Service) RecordDoubleDownTurn(ctx context.Context, in TurnInput) (*Sess
 		return nil, ErrWrongRound
 	}
 
-	// The pool is the whole rule: another round's question, one already scored, or a sixth hard one after the hard five are spent is simply not pending.
-	question := session.PendingQuestion(RoundDoubleDown, in.SessionQuestionID)
+	// A phone per player asks for a difficulty first, and settling before anybody has would score a question nobody chose.
+	if session.Seated() && session.ActiveQuestion(RoundDoubleDown) == nil {
+		return nil, ErrNoChoiceYet
+	}
+
+	// The pool is the whole rule: another round's question, one already scored, or a sixth hard one after the hard five are spent is simply not offered.
+	question := session.OfferedQuestion(RoundDoubleDown, in.SessionQuestionID)
 	if question == nil {
 		return nil, ErrStaleTurn
 	}
@@ -1298,6 +1667,9 @@ func (s *Service) RecordDoubleDownTurn(ctx context.Context, in TurnInput) (*Sess
 		return nil, ErrStaleTurn
 	}
 	if err := checkAgainstLine(line, in.MissedSeats, in.CorrectSeat); err != nil {
+		return nil, err
+	}
+	if err := s.requireSettler(session, in.ActorID, in); err != nil {
 		return nil, err
 	}
 
@@ -1362,7 +1734,7 @@ func (s *Service) RecordDoubleDownTurn(ctx context.Context, in TurnInput) (*Sess
 		return nil, err
 	}
 
-	return s.SessionForOwner(ctx, in.SessionID, in.OwnerID)
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
 }
 
 // advance moves the session on to the next slot, and off the end of the round when there is no next slot.

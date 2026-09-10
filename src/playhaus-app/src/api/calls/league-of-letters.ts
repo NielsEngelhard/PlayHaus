@@ -1,6 +1,6 @@
 import { request } from '@/api/client';
 import type { LanguageCode } from '@/constants/languages';
-import type { WordLength } from '@/features/league-of-letters/solo-settings';
+import type { SoloSettings, WordLength } from '@/features/league-of-letters/solo-settings';
 
 // A League of Letters game as the API describes it.
 
@@ -59,6 +59,12 @@ export interface Game {
     score: number
     status: GameStatus
     createdAt: string
+    /** Competitive runs the clock and keeps score; zen does neither. */
+    competitive: boolean
+    /** What the clock was worth, already folded into `score`. Awarded once, at the end. */
+    timeBonus: number
+    // When the last round closed, on a competitive game that reached the end.
+    finishedAt?: string
     /** Every round of the game, drawn up front and ordered by `roundNumber`. */
     rounds: GameRound[]
     // Which sort of game this is.
@@ -72,6 +78,16 @@ export interface Game {
 export interface NewGame {
     locale: LanguageCode
     wordLength: WordLength
+    hardMode: boolean
+    competitive: boolean
+}
+
+// A personal best, kept per word length because a four-letter run and an eight-letter run are not the same achievement.
+export interface HighScore {
+    wordLength: WordLength
+    score: number
+    seconds: number
+    achievedAt: string
 }
 
 // What one guess did.
@@ -86,6 +102,10 @@ export interface GuessResult {
     word?: string
     currentRound: number
     score: number
+    /** The time bonus, present only on the guess that ended a competitive game. */
+    timeBonus?: number
+    /** Whether that run took the personal best for its word length. */
+    highScore?: boolean
 }
 
 // The server answered, but not with a game this app can draw.
@@ -117,11 +137,23 @@ function checked(game: Game): Game {
 }
 
 // Starts a solo game and returns it as the server created it, with every round already drawn.
-export async function createGame(game: NewGame): Promise<Game> {
+export async function createGame(settings: SoloSettings): Promise<Game> {
+    const body: NewGame = {
+        locale: settings.locale,
+        wordLength: settings.wordLength,
+        hardMode: settings.hardMode,
+        competitive: settings.mode === 'competitive'
+    };
+
     return checked(await request<Game>('/api/v1/league-of-letters/solo', {
         method: 'POST',
-        body: JSON.stringify(game)
+        body: JSON.stringify(body)
     }));
+}
+
+// Every personal best this account holds, one per word length.
+export function getHighScores(): Promise<HighScore[]> {
+    return request<HighScore[]>('/api/v1/league-of-letters/solo/high-scores');
 }
 
 // Reads a game back.

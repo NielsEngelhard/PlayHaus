@@ -72,6 +72,30 @@ func (s *Session) PendingQuestion(round int, id uuid.UUID) *SessionQuestion {
 	return nil
 }
 
+// ActiveQuestion is the question a round 6 player pinned by asking for its difficulty, and nil until one of them has.
+func (s *Session) ActiveQuestion(round int) *SessionQuestion {
+	for i := range s.Questions {
+		if s.Questions[i].Round == round && s.Questions[i].Status == QuestionActive {
+			return &s.Questions[i]
+		}
+	}
+
+	return nil
+}
+
+// OfferedQuestion is what this round will take a ruling on: whatever a player has pinned, and any of the pool until somebody has.
+func (s *Session) OfferedQuestion(round int, id uuid.UUID) *SessionQuestion {
+	if active := s.ActiveQuestion(round); active != nil {
+		if active.ID != id {
+			return nil
+		}
+
+		return active
+	}
+
+	return s.PendingQuestion(round, id)
+}
+
 // PlayerAt is whoever is sitting in one seat, or nil for a seat that is not at this table.
 func (s *Session) PlayerAt(seat int) *SessionPlayer {
 	for i := range s.Players {
@@ -81,6 +105,31 @@ func (s *Session) PlayerAt(seat int) *SessionPlayer {
 	}
 
 	return nil
+}
+
+// Seated is whether the seats at this table belong to individual phones, which is what makes a seat something to authorise against.
+func (s *Session) Seated() bool {
+	for _, player := range s.Players {
+		if player.UserID != nil {
+			return true
+		}
+	}
+
+	return false
+}
+
+// SeatFor is where somebody's phone is sitting at this table, and -1 for the shared screen and anybody else who is not.
+func (s *Session) SeatFor(userID string) int {
+	if userID == "" {
+		return -1
+	}
+	for _, player := range s.Players {
+		if player.UserID != nil && *player.UserID == userID {
+			return player.Seat
+		}
+	}
+
+	return -1
 }
 
 // LowestScoringSeat is whoever has the fewest points, ties going to whoever sits nearest the head of the table.
@@ -94,6 +143,20 @@ func (s *Session) LowestScoringSeat() int {
 	}
 
 	return seat
+}
+
+// GuessingSeats is everybody round 3 lets type a number, which is the whole table bar its reader at all but the smallest.
+func (s *Session) GuessingSeats() []int {
+	guessing := make([]int, 0, len(s.Players))
+
+	for _, player := range s.Players {
+		if player.Seat == s.QuizMasterSeat && !ClosestQuizmasterGuesses(len(s.Players)) {
+			continue
+		}
+		guessing = append(guessing, player.Seat)
+	}
+
+	return guessing
 }
 
 // ReadBy puts the reading on one seat and the next question on the seat to its left.

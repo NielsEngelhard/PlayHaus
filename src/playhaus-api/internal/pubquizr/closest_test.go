@@ -137,7 +137,7 @@ func settle(t *testing.T, store *verdictStore, in ClosestInput) error {
 	in.OwnerID = verdictOwner
 	in.SessionQuestionID = question.ID
 
-	_, err := NewService(store).RecordClosestGuesses(t.Context(), in)
+	_, _, err := NewService(store).RecordClosestGuesses(t.Context(), in)
 	return err
 }
 

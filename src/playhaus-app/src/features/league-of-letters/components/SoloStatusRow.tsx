@@ -13,49 +13,53 @@ interface Props {
     name: string,
     /** Which swatch in `AVATAR_COLORS`, not a colour — same as on `User`. */
     avatarColorId: string,
-    /** The running total across every round of this game, not the round on screen. */
-    score: number,
-    /** ISO timestamp, straight off `Game.createdAt`. Where the clock counts from. */
-    startedAt: string,
+    /** The running total across every round of this game, not the round on screen. Left out on a zen game, which keeps no score. */
+    score?: number,
+    /** ISO timestamp, straight off `Game.createdAt`. Where the clock counts from. Left out on a zen game, which runs no clock. */
+    startedAt?: string,
     // Whether the clock is still running.
     running?: boolean,
     /** For layout only — how the row sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 
-// Who is playing, how they are doing and how long they have been at it.
+// Who is playing, how they are doing and how long they have been at it. Both halves are optional, which is what zen mode is.
 export default function SoloStatusRow({ name, avatarColorId, score, startedAt, running = true, style }: Props) {
     const styles = useStyles();
     const theme = useTheme();
     const t = useT();
 
     const avatar = avatarColorById(avatarColorId);
-    const elapsed = useElapsed(startedAt, running);
+    const elapsed = useElapsed(startedAt ?? '', running && startedAt !== undefined);
 
     return (
         <View style={[styles.row, style]}>
             <View
                 style={styles.chip}
                 accessibilityRole='text'
-                accessibilityLabel={t('lol.game.scoreLabel', { name, score })}
+                accessibilityLabel={score === undefined ? name : t('lol.game.scoreLabel', { name, score })}
             >
                 {/* The player's own colour, the same swatch their chip wears at a table. */}
                 <View style={[styles.dot, { backgroundColor: avatar.color }]} />
 
                 <AppText style={styles.name} numberOfLines={1}>{name}</AppText>
 
-                <AppText style={styles.score}>{score}</AppText>
+                {score !== undefined && (
+                    <AppText style={styles.score}>{score}</AppText>
+                )}
             </View>
 
-            <View
-                style={styles.clock}
-                accessibilityRole='text'
-                accessibilityLabel={t('lol.game.playTimeLabel', { time: formatted(elapsed) })}
-            >
-                <Feather name='clock' size={14} color={theme.colors.textSecondary} />
+            {startedAt !== undefined && (
+                <View
+                    style={styles.clock}
+                    accessibilityRole='text'
+                    accessibilityLabel={t('lol.game.playTimeLabel', { time: formatted(elapsed) })}
+                >
+                    <Feather name='clock' size={14} color={theme.colors.textSecondary} />
 
-                <AppText style={styles.time}>{formatted(elapsed)}</AppText>
-            </View>
+                    <AppText style={styles.time}>{formatted(elapsed)}</AppText>
+                </View>
+            )}
         </View>
     )
 }

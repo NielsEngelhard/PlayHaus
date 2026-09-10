@@ -33,11 +33,27 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         slug: 'quizzer',
         href: game => ROUTES.quizzerOneDeviceSession(game.id) as Href,
     },
+    // Like `oou_multi_device`: the id is the join code, so the row goes to the controller.
+    pq_multi_device: {
+        title: PUBQUIZR_NAME,
+        modeKey: 'reconnect.mode.lobby',
+        slug: 'quizzer',
+        code: game => game.id,
+        href: game => ROUTES.quizzerRoom(game.id) as Href,
+    },
     oou_single_device: {
         title: ONE_OF_US_NAME,
         modeKey: 'reconnect.mode.oneDevice',
         slug: 'one-of-us',
         href: game => ROUTES.oneOfUsPlaySingleDeviceGame(game.id) as Href,
+    },
+    // The id is the join code, so the row goes to the room rather than to a board.
+    oou_multi_device: {
+        title: ONE_OF_US_NAME,
+        modeKey: 'reconnect.mode.lobby',
+        slug: 'one-of-us',
+        code: game => game.id,
+        href: game => ROUTES.oneOfUsRoom(game.id) as Href,
     },
     // Like `lol_multiplayer`, and for the same reason.
     ff_multiplayer: {

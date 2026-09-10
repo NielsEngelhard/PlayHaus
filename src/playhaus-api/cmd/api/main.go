@@ -84,7 +84,8 @@ func run() error {
 		DevMode: cfg.LeagueOfLettersDevMode,
 	})
 	pubquizrService := pubquizr.NewService(pubquizrStore)
-	oneOfUsService := oneofus.NewService(oneofus.NewGormStore(db))
+	oneOfUsStore := oneofus.NewGormStore(db)
+	oneOfUsService := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFillerService := fakefiller.NewService(fakefiller.NewGormStore(db))
 
 	// Every live socket room in the process. Game-agnostic: the games claim their
@@ -118,7 +119,12 @@ func run() error {
 		LobbyAge:    time.Hour,
 	}, 5*time.Minute, logger)
 	go pubquizrService.SweepStaleSessions(ctx, 72*time.Hour, time.Hour, logger)
+	go pubquizrService.SweepStaleLobbies(ctx, time.Hour, 5*time.Minute, logger)
 	go oneOfUsService.SweepStaleGames(ctx, 12*time.Hour, time.Hour, logger)
+	go oneOfUsService.SweepStaleMultiDevice(ctx, oneofus.SweepConfig{
+		LobbyAge: time.Hour,
+		GameAge:  12 * time.Hour,
+	}, 5*time.Minute, logger)
 	go fakeFillerService.SweepStale(ctx, fakefiller.SweepConfig{
 		LobbyAge: time.Hour,
 		GameAge:  12 * time.Hour,

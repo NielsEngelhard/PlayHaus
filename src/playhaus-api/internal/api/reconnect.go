@@ -64,20 +64,43 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapSingleDeviceOneOfUsGamesToReconnectableGame(singleDeviceOOUGames)...)
 	}
 
+	// Get multi device one of us games
+	multiDeviceOOUGames, err := s.oneOfUs.MultiDeviceGamesByUserID(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get multi device one of us games to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapMultiDeviceOneOfUsGamesToReconnectableGame(multiDeviceOOUGames)...)
+	}
+
 	writeJSON(w, http.StatusOK, allGames)
 }
 
 func mapQuizSessionsToReconnectableGame(sessions []*pubquizr.Session) []ReconnectableGame {
-	mappedGames := make([]ReconnectableGame, len(sessions))
+	mappedGames := make([]ReconnectableGame, 0, len(sessions))
 
 	for i := range sessions {
 		session := sessions[i]
 
-		mappedGames[i] = ReconnectableGame{
+		if session.Mode == pubquizr.ModeMultiDevice {
+			// A room with no code is a room nobody can be sent back to, so it is not offered.
+			if session.LobbyID == nil {
+				continue
+			}
+
+			mappedGames = append(mappedGames, ReconnectableGame{
+				// The join code, not the session id -- a room is reached by its code.
+				ID:        *session.LobbyID,
+				Type:      PubquizRMultiDevice,
+				CreatedAt: session.CreatedAt.Format(timeFormat),
+			})
+			continue
+		}
+
+		mappedGames = append(mappedGames, ReconnectableGame{
 			ID:        session.ID.String(),
 			Type:      PubquizRSingleDevice,
 			CreatedAt: session.CreatedAt.Format(timeFormat),
-		}
+		})
 	}
 
 	return mappedGames
@@ -92,6 +115,23 @@ func mapSingleDeviceOneOfUsGamesToReconnectableGame(games []*oneofus.OneOfUsSing
 		mappedGames[i] = ReconnectableGame{
 			ID:        game.ID.String(),
 			Type:      OneOfUsSingleDevice,
+			CreatedAt: game.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
+}
+
+func mapMultiDeviceOneOfUsGamesToReconnectableGame(games []*oneofus.OOUMultiDeviceGame) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(games))
+
+	for i := range games {
+		game := games[i]
+
+		mappedGames[i] = ReconnectableGame{
+			// The join code, not the game id -- a room is reached by its code.
+			ID:        game.LobbyID,
+			Type:      OneOfUsMultiDevice,
 			CreatedAt: game.CreatedAt.Format(timeFormat),
 		}
 	}

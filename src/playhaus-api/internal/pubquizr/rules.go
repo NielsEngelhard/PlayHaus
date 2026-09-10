@@ -83,7 +83,7 @@ const (
 	FinalePoints = 100
 	// The two halves of round 6's choice: what the player asked for is what it pays, whoever ends up taking it.
 	EasyPoints = 1
-	HardPoints = 2
+	HardPoints = 3
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions          = 4

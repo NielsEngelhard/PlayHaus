@@ -20,6 +20,8 @@ type Store interface {
 	DeleteSoloGamesByUserId(ctx context.Context, userID string, except uuid.UUID) error
 	DeleteSoloGamesOlderThan(ctx context.Context, before time.Time) (int64, error)
 	RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess, game *SoloLeagueOfLettersGame) error
+	SaveHighScoreIfBetter(ctx context.Context, best *SoloCompetitiveHighScore) (bool, error)
+	HighScoresByUserID(ctx context.Context, userID string) ([]SoloCompetitiveHighScore, error)
 
 	MultiplayerStore
 }
@@ -68,6 +70,7 @@ type CreateSoloGameInput struct {
 	WordLength          int
 	Locale              i18n.Locale
 	OnlyPickCommonWords bool
+	Competitive         bool
 }
 
 func (in CreateSoloGameInput) validate() map[string]string {
@@ -116,6 +119,7 @@ func (s *Service) CreateSoloGame(ctx context.Context, in CreateSoloGameInput) (*
 		Score:           0,
 		Status:          GameInProgress,
 		CreatedAt:       time.Now().UTC(),
+		Competitive:     in.Competitive,
 	}
 
 	rounds, err := s.generateRounds(game.ID, RoundsFor(1), in.WordLength, locale, in.OnlyPickCommonWords)
@@ -177,6 +181,8 @@ type GuessOutcome struct {
 	Word         string
 	CurrentRound int
 	Score        int
+	TimeBonus    int
+	NewHighScore bool
 }
 
 // SubmitGuess plays one word against the game's current round.
@@ -223,7 +229,10 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 	// GuessNumber counts this row, so the round is asked about the board as it will stand.
 	roundOver := RoundIsOver(solved, guess.GuessNumber)
 
-	game.Score += DetermineScore(*guess, round.Guesses, round.FirstLetter())
+	// Zen keeps no score, so nothing accumulates and the stored total stays 0.
+	if game.Competitive {
+		game.Score += DetermineScore(*guess, round.Guesses, round.FirstLetter())
+	}
 
 	outcome := &GuessOutcome{
 		Guess:        guess,
@@ -239,6 +248,16 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 		if game.CurrentRound >= len(game.Rounds) {
 			game.Status = GameCompleted
 			outcome.GameOver = true
+
+			if game.Competitive {
+				finished := time.Now().UTC()
+				game.FinishedAt = &finished
+				game.TimeBonus = TimeBonus(finished.Sub(game.CreatedAt))
+				game.Score += game.TimeBonus
+
+				outcome.TimeBonus = game.TimeBonus
+				outcome.Score = game.Score
+			}
 		} else {
 			game.CurrentRound++
 		}
@@ -249,7 +268,27 @@ func (s *Service) SubmitGuess(ctx context.Context, in SubmitGuessInput) (*GuessO
 		return nil, err
 	}
 
+	if outcome.GameOver && game.Competitive {
+		best, err := s.store.SaveHighScoreIfBetter(ctx, &SoloCompetitiveHighScore{
+			UserID:     game.OwnerID,
+			WordLength: game.WordLength,
+			Score:      game.Score,
+			Seconds:    int(game.FinishedAt.Sub(game.CreatedAt).Seconds()),
+			GameID:     game.ID,
+			AchievedAt: *game.FinishedAt,
+		})
+		if err != nil {
+			return nil, err
+		}
+		outcome.NewHighScore = best
+	}
+
 	return outcome, nil
+}
+
+// HighScores is every personal best this account holds, one per word length.
+func (s *Service) HighScores(ctx context.Context, userID string) ([]SoloCompetitiveHighScore, error) {
+	return s.store.HighScoresByUserID(ctx, userID)
 }
 
 func (g *SoloLeagueOfLettersGame) round(number int) *LeagueOfLettersRound {

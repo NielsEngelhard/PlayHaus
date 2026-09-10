@@ -93,9 +93,9 @@ func TestCreativePromptsHaveNoAnswers(t *testing.T) {
 // prompts for a six-player table would not deal a smaller game -- it would deal a broken
 // one, with two players holding prompts that do not exist.
 func TestAskingForMorePromptsThanTheFileHoldsIsAnError(t *testing.T) {
-	_, err := GetContentLines(i18n.EN, GameModeFacts, 1000)
+	_, err := GetContentLines(i18n.EN, GameModeFacts, 1_000_000)
 	if !errors.Is(err, ErrNotEnoughContent) {
-		t.Fatalf("GetContentLines for 1000 prompts: err = %v, want ErrNotEnoughContent", err)
+		t.Fatalf("GetContentLines for a million prompts: err = %v, want ErrNotEnoughContent", err)
 	}
 }
 
@@ -126,5 +126,39 @@ func TestAnAnswerLineWhoseAnswersDoNotMatchItsBlanksIsRejected(t *testing.T) {
 
 	if _, err := parseAnswerLine(line); err == nil {
 		t.Error("an answer line with two blanks and one answer was accepted")
+	}
+}
+
+// Distinctness is positional, so a prompt written twice is simply twice as likely to be
+// dealt -- nothing downstream notices, which is how the placeholder files got away with
+// holding one line ten times.
+func TestNoPromptAppearsTwice(t *testing.T) {
+	for _, locale := range i18n.Locales {
+		for _, mode := range []FFGameMode{GameModeFacts, GameModeCreative} {
+			data, err := contentFiles.ReadFile(buildDataFilePath(locale, mode))
+			if err != nil {
+				t.Fatalf("read %s %s: %v", locale, mode, err)
+			}
+
+			seen := make(map[string]bool)
+
+			for line := range strings.SplitSeq(string(data), "\n") {
+				line = strings.TrimSpace(line)
+				if line == "" {
+					continue
+				}
+
+				parsed, err := parseLine(line, mode)
+				if err != nil {
+					t.Fatalf("%s %s: %v", locale, mode, err)
+				}
+
+				key := strings.ToLower(parsed.Line)
+				if seen[key] {
+					t.Errorf("%s %s: prompt appears more than once: %q", locale, mode, parsed.Line)
+				}
+				seen[key] = true
+			}
+		}
 	}
 }

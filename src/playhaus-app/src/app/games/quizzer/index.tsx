@@ -64,9 +64,18 @@ export default function QuizzerIndexPage() {
                     title={t('pubquizr.index.multiDevice.title')}
                     description={t('pubquizr.index.multiDevice.description')}
                     action={t('pubquizr.index.multiDevice.action')}
-                    isDisabled={true}
+                    navigationUrl={ROUTES.quizzerMultiDeviceGameSettings}
                 />
             </View>
+
+            {/* Not a card: a card reads as a third way to play, and this is a way to open a display. */}
+            <TextButton
+                text={t('pubquizr.index.openTable')}
+                onPress={() => router.push(ROUTES.quizzerTableDoor as RelativePathString)}
+                variant="neutral"
+                fullWidth
+                style={styles.tableDoor}
+            />
 
             <View style={styles.list}>
                 <NewQuizCard />
@@ -100,6 +109,9 @@ const useStyles = createThemedStyles(() => ({
         flexDirection: 'row',
         alignItems: 'stretch',
         gap: 11
+    },
+    tableDoor: {
+        marginTop: Spacing.three
     },
     list: {
         marginTop: Spacing.three,

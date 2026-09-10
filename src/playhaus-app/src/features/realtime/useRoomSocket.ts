@@ -26,9 +26,9 @@ function isPresence(event: AnyServerEvent): event is PresenceFrame {
 }
 
 // Keeps one room connected for as long as a screen is on it.
-export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
+export function useRoomSocket<E extends AnyServerEvent = ServerEvent, C = ClientEvent>(
     { room, enabled = true, onEvent }: Options<E>
-): RoomSocket {
+): RoomSocket<C> {
     const [status, setStatus] = useState<SocketStatus>('closed');
     const [online, setOnline] = useState<Set<string>>(() => new Set());
 
@@ -37,7 +37,7 @@ export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
     useEffect(() => { handler.current = onEvent; }, [onEvent]);
 
     // The live connection, so `send` can keep one identity across renders while the socket underneath it is replaced on every reconnect and every room change.
-    const socket = useRef<Socket | null>(null);
+    const socket = useRef<Socket<C> | null>(null);
 
     useEffect(() => {
         if (room === undefined || !enabled) return;
@@ -46,7 +46,7 @@ export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
         if (token === null) return;
 
         // Subscribing to an external system is what an effect is for, and this one writes no state on the way in.
-        const open = openSocket<E>({
+        const open = openSocket<E, C>({
             room,
             token,
             onStatus: setStatus,
@@ -70,7 +70,7 @@ export function useRoomSocket<E extends AnyServerEvent = ServerEvent>(
     }, [room, enabled]);
 
     // Stable across renders: the board hands this to the keyboard.
-    const send = useCallback((event: ClientEvent) => {
+    const send = useCallback((event: C) => {
         socket.current?.send(event);
     }, []);
 

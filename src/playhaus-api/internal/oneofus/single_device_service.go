@@ -25,10 +25,11 @@ type Store interface {
 
 type Service struct {
 	store Store
+	multi MultiDeviceStore
 }
 
-func NewService(store Store) *Service {
-	return &Service{store: store}
+func NewService(store Store, multi MultiDeviceStore) *Service {
+	return &Service{store: store, multi: multi}
 }
 
 // SweepStaleGames deletes games older than maxAge on a ticker until ctx is cancelled.
@@ -243,11 +244,7 @@ func determineGameEnded(players []OneOfUsLocalPlayer) (bool, bool) {
 		}
 	}
 
-	civiliansInMinority := civilians <= activePlayers/2
-	noMoreImposters := activePlayers == civilians
-	gameEnded := civiliansInMinority || noMoreImposters
-
-	return gameEnded, noMoreImposters
+	return GameEnded(civilians, activePlayers)
 }
 
 // assignRoles deals the table: everybody arrives a civilian, some of them leave here lying.

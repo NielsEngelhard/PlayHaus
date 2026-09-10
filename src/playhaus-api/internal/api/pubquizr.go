@@ -147,6 +147,8 @@ type quizSessionPlayerResponse struct {
 	// Score is everything this player has taken all evening, the finale included.
 	Score int    `json:"score"`
 	Color string `json:"color"`
+	// UserID is whose phone answers for this seat, and is absent on one phone passed round the table.
+	UserID string `json:"userId,omitempty"`
 }
 
 type quizSessionQuestionResponse struct {
@@ -193,6 +195,10 @@ type quizSessionResponse struct {
 	BonusSeats []int `json:"bonusSeats"`
 	// TurnQuestionIDs are the dealt questions this turn is about.
 	TurnQuestionIDs []string `json:"turnQuestionIds"`
+	// LobbyCode is the room this table gathered in, and is absent on one phone passed round.
+	LobbyCode string `json:"lobbyCode,omitempty"`
+	// ActiveQuestionID is the question a player has pinned by asking for its difficulty, and is absent until they have.
+	ActiveQuestionID string `json:"activeQuestionId,omitempty"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
 	Questions []quizSessionQuestionResponse `json:"questions"`
@@ -205,10 +211,11 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	players := make([]quizSessionPlayerResponse, 0, len(s.Players))
 	for _, player := range s.Players {
 		players = append(players, quizSessionPlayerResponse{
-			Seat:  player.Seat,
-			Name:  player.Name,
-			Score: player.Score,
-			Color: player.Color,
+			Seat:   player.Seat,
+			Name:   player.Name,
+			Score:  player.Score,
+			Color:  player.Color,
+			UserID: Deref(player.UserID, ""),
 		})
 	}
 
@@ -250,6 +257,9 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		finalists = []int{a, b}
 	}
 
+	// The one question a round 6 player has pinned for themselves by asking for its difficulty.
+	pinned := s.ActiveQuestion(pubquizr.RoundDoubleDown)
+
 	// What this turn will accept a ruling on.
 	turn := []string{}
 	if s.Status == pubquizr.SessionInProgress {
@@ -258,42 +268,53 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 				turn = append(turn, word.ID.String())
 			}
 		} else if s.CurrentRound == pubquizr.RoundDoubleDown {
-			// Round 6 publishes the whole pool it has left, because which of them is asked is the player's own choice.
-			for _, pending := range s.PendingIn(pubquizr.RoundDoubleDown) {
-				turn = append(turn, pending.ID.String())
+			// Round 6 publishes the whole pool it has left, because which of them is asked is the player's own choice -- and then only the one they chose.
+			if pinned != nil {
+				turn = append(turn, pinned.ID.String())
+			} else {
+				for _, pending := range s.PendingIn(pubquizr.RoundDoubleDown) {
+					turn = append(turn, pending.ID.String())
+				}
 			}
 		} else if current := s.QuestionAt(s.CurrentRound, s.CurrentPosition); current != nil {
 			turn = append(turn, current.ID.String())
 		}
 	}
 
+	active := ""
+	if pinned != nil {
+		active = pinned.ID.String()
+	}
+
 	order := pubquizr.RunningOrder(s.Modes())
 
 	return quizSessionResponse{
-		ID:              s.ID.String(),
-		QuizID:          s.QuizID.String(),
-		Mode:            string(s.Mode),
-		Locale:          s.Locale.String(),
-		Status:          string(s.Status),
-		CurrentRound:    s.CurrentRound,
-		CurrentPosition: s.CurrentPosition,
-		QuizMasterSeat:  s.QuizMasterSeat,
-		TotalRounds:     len(order),
-		Rounds:          order,
-		ZenMode:         s.ZenMode,
-		TriviaMode:      s.TriviaMode,
-		AnsweringSeat:   asked,
-		HotSeat:         s.HotSeatOrFirst(),
-		FinalistSeats:   finalists,
-		HotSeatRun:      s.HotSeatRun,
-		TurnsInRound:    s.TurnsInRound(s.CurrentRound),
-		DescriberSeat:   describing,
-		GuesserSeat:     guesser,
-		BonusSeats:      bonus,
-		TurnQuestionIDs: turn,
-		Players:         players,
-		Questions:       questions,
-		CreatedAt:       s.CreatedAt.Format(timeFormat),
+		ID:               s.ID.String(),
+		QuizID:           s.QuizID.String(),
+		Mode:             string(s.Mode),
+		Locale:           s.Locale.String(),
+		Status:           string(s.Status),
+		CurrentRound:     s.CurrentRound,
+		CurrentPosition:  s.CurrentPosition,
+		QuizMasterSeat:   s.QuizMasterSeat,
+		TotalRounds:      len(order),
+		Rounds:           order,
+		ZenMode:          s.ZenMode,
+		TriviaMode:       s.TriviaMode,
+		AnsweringSeat:    asked,
+		HotSeat:          s.HotSeatOrFirst(),
+		FinalistSeats:    finalists,
+		HotSeatRun:       s.HotSeatRun,
+		TurnsInRound:     s.TurnsInRound(s.CurrentRound),
+		DescriberSeat:    describing,
+		GuesserSeat:      guesser,
+		BonusSeats:       bonus,
+		TurnQuestionIDs:  turn,
+		LobbyCode:        Deref(s.LobbyID, ""),
+		ActiveQuestionID: active,
+		Players:          players,
+		Questions:        questions,
+		CreatedAt:        s.CreatedAt.Format(timeFormat),
 	}
 }
 
@@ -519,6 +540,8 @@ type hotSeatTurnRequest struct {
 	CorrectSeat *int `json:"correctSeat"`
 	// Said is what the player actually answered, if the quizmaster bothered to type it in.
 	Said string `json:"said,omitempty"`
+	// ChosenAnswerID is the option round 2 landed on, so the server can check the verdict a phone scored for itself.
+	ChosenAnswerID string `json:"chosenAnswerId,omitempty"`
 }
 
 func (req hotSeatTurnRequest) Validate() map[string]string {
@@ -554,6 +577,45 @@ func (req hotSeatTurnRequest) Validate() map[string]string {
 	return problems
 }
 
+// pqTurnInput is the body every table-walking settle posts -- rounds 1, 2, 6 and 7 all send the same shape. It has already answered when false.
+func (s *Server) pqTurnInput(w http.ResponseWriter, r *http.Request) (pubquizr.TurnInput, bool) {
+	req, problems, err := decode[hotSeatTurnRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return pubquizr.TurnInput{}, false
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return pubquizr.TurnInput{}, false
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return pubquizr.TurnInput{}, false
+	}
+
+	in := pubquizr.TurnInput{
+		SessionQuestionID: questionID,
+		MissedSeats:       req.MissedSeats,
+		CorrectSeat:       req.CorrectSeat,
+		Said:              req.Said,
+	}
+
+	if raw := strings.TrimSpace(req.ChosenAnswerID); raw != "" {
+		chosen, err := uuid.Parse(raw)
+		if err != nil {
+			// An unparseable id is not one of the question's options, which is what a disagreeing verdict means.
+			writeErrorCode(w, http.StatusConflict, "verdict_disagrees", "that is not what the quiz says about that option")
+			return pubquizr.TurnInput{}, false
+		}
+		in.ChosenAnswerID = &chosen
+	}
+
+	return in, true
+}
+
 // handleHotSeatVerdict is the quizmaster settling a whole round 1 or round 2 question.
 func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
@@ -569,31 +631,14 @@ func (s *Server) handleHotSeatVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[hotSeatTurnRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	in, parsed := s.pqTurnInput(w, r)
+	if !parsed {
 		return
 	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
-		return
-	}
-
-	session, err := s.pubquizr.RecordHotSeatTurn(r.Context(), pubquizr.TurnInput{
-		SessionID:         sessionID,
-		OwnerID:           ownerID,
-		SessionQuestionID: questionID,
-		MissedSeats:       req.MissedSeats,
-		CorrectSeat:       req.CorrectSeat,
-		Said:              req.Said,
-	})
+	session, err := s.pubquizr.RecordHotSeatTurn(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -627,6 +672,37 @@ func (req closestGuessesRequest) Validate() map[string]string {
 	return problems
 }
 
+// pqClosestInput is a round 3 settle, parsed. It has already answered when false.
+func (s *Server) pqClosestInput(w http.ResponseWriter, r *http.Request) (pubquizr.ClosestInput, bool) {
+	req, problems, err := decode[closestGuessesRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return pubquizr.ClosestInput{}, false
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return pubquizr.ClosestInput{}, false
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return pubquizr.ClosestInput{}, false
+	}
+
+	guesses := make([]pubquizr.SeatGuess, 0, len(req.Guesses))
+	for _, guess := range req.Guesses {
+		guesses = append(guesses, pubquizr.SeatGuess{Seat: guess.Seat, Value: guess.Value})
+	}
+
+	return pubquizr.ClosestInput{
+		SessionQuestionID: questionID,
+		Guesses:           guesses,
+		WinningSeats:      req.WinningSeats,
+	}, true
+}
+
 // handleClosestGuesses is the quizmaster settling one round 3 question.
 func (s *Server) handleClosestGuesses(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
@@ -642,35 +718,14 @@ func (s *Server) handleClosestGuesses(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[closestGuessesRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	in, parsed := s.pqClosestInput(w, r)
+	if !parsed {
 		return
 	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
-		return
-	}
-
-	guesses := make([]pubquizr.SeatGuess, 0, len(req.Guesses))
-	for _, guess := range req.Guesses {
-		guesses = append(guesses, pubquizr.SeatGuess{Seat: guess.Seat, Value: guess.Value})
-	}
-
-	session, err := s.pubquizr.RecordClosestGuesses(r.Context(), pubquizr.ClosestInput{
-		SessionID:         sessionID,
-		OwnerID:           ownerID,
-		SessionQuestionID: questionID,
-		Guesses:           guesses,
-		WinningSeats:      req.WinningSeats,
-	})
+	session, _, err := s.pubquizr.RecordClosestGuesses(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -707,6 +762,34 @@ func (req describeAwardsRequest) Validate() map[string]string {
 	return problems
 }
 
+// pqDescribeInput is a round 4 settle, parsed. It has already answered when false.
+func (s *Server) pqDescribeInput(w http.ResponseWriter, r *http.Request) (pubquizr.DescribeInput, bool) {
+	req, problems, err := decode[describeAwardsRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return pubquizr.DescribeInput{}, false
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return pubquizr.DescribeInput{}, false
+	}
+
+	awards := make([]pubquizr.WordAward, 0, len(req.Awards))
+	for _, awarded := range req.Awards {
+		wordID, err := uuid.Parse(awarded.SessionQuestionID)
+		if err != nil {
+			writeErrorCode(w, http.StatusConflict, "stale_turn", "that word is no longer part of this turn")
+			return pubquizr.DescribeInput{}, false
+		}
+		awards = append(awards, pubquizr.WordAward{SessionQuestionID: wordID, Seats: awarded.Seats})
+	}
+
+	return pubquizr.DescribeInput{
+		DescriberSeat: req.DescriberSeat,
+		Awards:        awards,
+	}, true
+}
+
 // handleDescribeAwards is the quizmaster settling one round 4 turn.
 func (s *Server) handleDescribeAwards(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
@@ -722,32 +805,14 @@ func (s *Server) handleDescribeAwards(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[describeAwardsRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	in, parsed := s.pqDescribeInput(w, r)
+	if !parsed {
 		return
 	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	awards := make([]pubquizr.WordAward, 0, len(req.Awards))
-	for _, awarded := range req.Awards {
-		wordID, err := uuid.Parse(awarded.SessionQuestionID)
-		if err != nil {
-			writeErrorCode(w, http.StatusConflict, "stale_turn", "that word is no longer part of this turn")
-			return
-		}
-		awards = append(awards, pubquizr.WordAward{SessionQuestionID: wordID, Seats: awarded.Seats})
-	}
-
-	session, err := s.pubquizr.RecordDescribeAwards(r.Context(), pubquizr.DescribeInput{
-		SessionID:     sessionID,
-		OwnerID:       ownerID,
-		DescriberSeat: req.DescriberSeat,
-		Awards:        awards,
-	})
+	session, err := s.pubquizr.RecordDescribeAwards(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -787,6 +852,41 @@ func (req listAwardsRequest) Validate() map[string]string {
 	return problems
 }
 
+// pqListInput is a round 5 settle, parsed. It has already answered when false.
+func (s *Server) pqListInput(w http.ResponseWriter, r *http.Request) (pubquizr.ListInput, bool) {
+	req, problems, err := decode[listAwardsRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return pubquizr.ListInput{}, false
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return pubquizr.ListInput{}, false
+	}
+
+	questionID, err := uuid.Parse(req.SessionQuestionID)
+	if err != nil {
+		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
+		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+		return pubquizr.ListInput{}, false
+	}
+
+	awards := make([]pubquizr.ListAward, 0, len(req.Awards))
+	for _, awarded := range req.Awards {
+		answerID, err := uuid.Parse(awarded.AnswerID)
+		if err != nil {
+			writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
+			return pubquizr.ListInput{}, false
+		}
+		awards = append(awards, pubquizr.ListAward{AnswerID: answerID, Seats: awarded.Seats})
+	}
+
+	return pubquizr.ListInput{
+		SessionQuestionID: questionID,
+		Awards:            awards,
+	}, true
+}
+
 // handleListAwards is the quizmaster settling one round 5 question: which of its four answers were found, and by whom.
 func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 	ownerID, ok := UserIDFrom(r.Context())
@@ -802,39 +902,14 @@ func (s *Server) handleListAwards(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[listAwardsRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	in, parsed := s.pqListInput(w, r)
+	if !parsed {
 		return
 	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		// An unparseable id cannot name the current question, which is the same answer as naming one the table has moved past.
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
-		return
-	}
-
-	awards := make([]pubquizr.ListAward, 0, len(req.Awards))
-	for _, awarded := range req.Awards {
-		answerID, err := uuid.Parse(awarded.AnswerID)
-		if err != nil {
-			writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
-			return
-		}
-		awards = append(awards, pubquizr.ListAward{AnswerID: answerID, Seats: awarded.Seats})
-	}
-
-	session, err := s.pubquizr.RecordListAward(r.Context(), pubquizr.ListInput{
-		SessionID:         sessionID,
-		OwnerID:           ownerID,
-		SessionQuestionID: questionID,
-		Awards:            awards,
-	})
+	session, err := s.pubquizr.RecordListAward(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -858,30 +933,14 @@ func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, problems, err := decode[hotSeatTurnRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
+	in, parsed := s.pqTurnInput(w, r)
+	if !parsed {
 		return
 	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
-		return
-	}
-
-	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), pubquizr.TurnInput{
-		SessionID:         sessionID,
-		OwnerID:           ownerID,
-		SessionQuestionID: questionID,
-		MissedSeats:       req.MissedSeats,
-		CorrectSeat:       req.CorrectSeat,
-		Said:              req.Said,
-	})
+	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -905,31 +964,15 @@ func (s *Server) handleDoubleDownVerdict(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	req, problems, err := decode[hotSeatTurnRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
-		return
-	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
-
 	// Here the id names the question the player chose rather than the one the position dealt.
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
+	in, parsed := s.pqTurnInput(w, r)
+	if !parsed {
 		return
 	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
 
-	session, err := s.pubquizr.RecordDoubleDownTurn(r.Context(), pubquizr.TurnInput{
-		SessionID:         sessionID,
-		OwnerID:           ownerID,
-		SessionQuestionID: questionID,
-		MissedSeats:       req.MissedSeats,
-		CorrectSeat:       req.CorrectSeat,
-		Said:              req.Said,
-	})
+	session, err := s.pubquizr.RecordDoubleDownTurn(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -986,6 +1029,22 @@ func (s *Server) writePubquizRError(w http.ResponseWriter, err error) {
 		writeErrorCode(w, http.StatusConflict, "unknown_word", "that word is not part of this turn")
 	case errors.Is(err, pubquizr.ErrUnknownAnswer):
 		writeErrorCode(w, http.StatusConflict, "unknown_answer", "that answer is not part of this question")
+	case errors.Is(err, pubquizr.ErrLobbyNotFound):
+		writeErrorCode(w, http.StatusNotFound, "lobby_not_found", "that room does not exist")
+	case errors.Is(err, pubquizr.ErrLobbyFull):
+		writeErrorCode(w, http.StatusConflict, "lobby_full", "that room is full")
+	case errors.Is(err, pubquizr.ErrLobbyStarted):
+		writeErrorCode(w, http.StatusConflict, "lobby_started", "that quiz has already started")
+	case errors.Is(err, pubquizr.ErrNotHost):
+		writeErrorCode(w, http.StatusForbidden, "not_host", "only the host may do that")
+	case errors.Is(err, pubquizr.ErrNotAtThisTable):
+		writeErrorCode(w, http.StatusForbidden, "not_at_this_table", "you are not sitting at this table")
+	case errors.Is(err, pubquizr.ErrNotYourSeat):
+		writeErrorCode(w, http.StatusForbidden, "not_your_seat", "that is somebody else's turn")
+	case errors.Is(err, pubquizr.ErrVerdictDisagrees):
+		writeErrorCode(w, http.StatusConflict, "verdict_disagrees", "that is not what the quiz says about that option")
+	case errors.Is(err, pubquizr.ErrNoChoiceYet):
+		writeErrorCode(w, http.StatusConflict, "no_choice_yet", "nobody has picked easy or hard yet")
 	// Last of the named cases, because several of the ones above are kinds of it and would be swallowed here.
 	case errors.Is(err, pubquizr.ErrInvalidInput):
 		writeErrorCode(w, http.StatusUnprocessableEntity, "invalid_input", "that is not something this round can be told")

@@ -68,12 +68,12 @@ export const PUBQUIZR: Game = {
     icon: require('@/assets/icons/pubquizr-icon.svg'),
     mainCategoryIndicatorKey: 'games.quizzer.mainCategory',
     descriptionKey: 'games.quizzer.description',
-    deviceMode: 'oneDevice',
+    deviceMode: 'perPlayerOrOneDevice',
     playable: true,
     isNew: true,
     navigationUrl: ROUTES.quizzerIndex,
     joinCodePrefix: 'P',
-    roomRoute: null,
+    roomRoute: ROUTES.quizzerRoom,
     minMaxPlayersIndicator: "2-8",
     minutesAverage: 25
 };
@@ -92,7 +92,7 @@ export const ONE_OF_US: Game = {
     playable: true,
     navigationUrl: ROUTES.oneOfUsIndex,
     joinCodePrefix: 'O',
-    roomRoute: null,
+    roomRoute: ROUTES.oneOfUsRoom,
     minMaxPlayersIndicator: "3-9",
     minutesAverage: 10
 };

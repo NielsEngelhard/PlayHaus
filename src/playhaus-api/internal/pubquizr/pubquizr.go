@@ -76,6 +76,15 @@ type Mode string
 
 const (
 	ModeSingleDevice Mode = "single_device"
+	ModeMultiDevice  Mode = "multi_device"
+)
+
+// LobbyStatus is the same two-state life the other multi device rooms have: open, then spent.
+type LobbyStatus string
+
+const (
+	LobbyWaiting LobbyStatus = "waiting"
+	LobbyStarted LobbyStatus = "started"
 )
 
 // SessionQuestionStatus tracks a dealt question through one evening.
@@ -109,6 +118,17 @@ var (
 	ErrTwoOnOneCredit = errors.New("only one player can be credited with that")
 	ErrUnknownWord    = errors.New("that word is not part of this turn")
 	ErrUnknownAnswer  = errors.New("that answer is not part of this question")
+
+	ErrLobbyNotFound  = errors.New("lobby not found")
+	ErrLobbyFull      = errors.New("lobby is full")
+	ErrLobbyStarted   = errors.New("lobby has already started")
+	ErrNotHost        = errors.New("only the host may do that")
+	ErrNotAtThisTable = errors.New("you are not sitting at this table")
+	ErrNotYourSeat    = errors.New("that is not your seat to answer for")
+	// ErrVerdictDisagrees is round 2 self-scoring a pick the quiz does not agree with.
+	ErrVerdictDisagrees = errors.New("that option is not what the verdict claims")
+	// ErrNoChoiceYet is round 6 being settled before the player has asked for easy or hard.
+	ErrNoChoiceYet = errors.New("nobody has picked easy or hard yet")
 )
 
 type Quiz struct {
@@ -192,6 +212,67 @@ type Answer struct {
 
 func (Answer) TableName() string { return "pq_answers" }
 
+// --- multi device lobby --------------------------------------------------
+
+// PQLobby is where a table gathers before the quiz starts, keyed by its own join code.
+type PQLobby struct {
+	ID      string      `gorm:"primaryKey;type:text"`
+	OwnerID string      `gorm:"type:text;index;not null"`
+	Locale  i18n.Locale `gorm:"type:text;not null"`
+	Status  LobbyStatus `gorm:"type:text;not null"`
+
+	// QuizID is what the host has picked so far, and is nil until they have.
+	QuizID *uuid.UUID `gorm:"type:text;index"`
+	// ZenMode and TriviaMode wait here until the deal freezes them onto the session.
+	ZenMode    bool `gorm:"not null;default:false"`
+	TriviaMode bool `gorm:"not null;default:false"`
+
+	// SessionID is the evening this room dealt, set once and only by the start.
+	SessionID *uuid.UUID `gorm:"type:text;index"`
+
+	Players   []PQLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
+	CreatedAt time.Time       `gorm:"not null"`
+}
+
+func (PQLobby) TableName() string { return "pq_lobbies" }
+
+func (l PQLobby) Full() bool { return len(l.Players) >= MaxPlayers }
+
+func (l PQLobby) Has(userID string) bool { return l.SeatOf(userID) >= 0 }
+
+// SeatOf is where somebody is sitting, and -1 for the shared screen and anybody else who is not in the room.
+func (l PQLobby) SeatOf(userID string) int {
+	for _, player := range l.Players {
+		if player.UserID == userID {
+			return player.Seat
+		}
+	}
+	return -1
+}
+
+// NextSeat is the highest seat in use plus one, not len(Players): a seat somebody left stays empty.
+func (l PQLobby) NextSeat() int {
+	next := 0
+	for _, player := range l.Players {
+		if player.Seat >= next {
+			next = player.Seat + 1
+		}
+	}
+	return next
+}
+
+// PQLobbyPlayer is one phone in the room before the quiz starts.
+type PQLobbyPlayer struct {
+	LobbyID string `gorm:"primaryKey;type:text"`
+	UserID  string `gorm:"primaryKey;type:text;index"`
+	Seat    int    `gorm:"not null"`
+	// Name is a snapshot taken at join, because the roster a session plays is one too.
+	Name     string    `gorm:"not null"`
+	JoinedAt time.Time `gorm:"not null"`
+}
+
+func (PQLobbyPlayer) TableName() string { return "pq_lobby_players" }
+
 // --- session -------------------------------------------------------------
 
 // Session is one quiz being played by one table.
@@ -203,6 +284,9 @@ type Session struct {
 	Mode   Mode          `gorm:"not null"`
 	Locale i18n.Locale   `gorm:"not null"`
 	Status SessionStatus `gorm:"not null"`
+
+	// LobbyID is the join code this table gathered under, and is nil for one phone passed round.
+	LobbyID *string `gorm:"type:text;index"`
 
 	CurrentRound    int `gorm:"not null"`
 	CurrentPosition int `gorm:"not null"`
@@ -239,6 +323,8 @@ type SessionPlayer struct {
 	SessionID uuid.UUID `gorm:"primaryKey;type:text"`
 	Seat      int       `gorm:"primaryKey"` // Seat is where they are sitting, left to right, because the phone gets turned round the table
 	Name      string    `gorm:"not null"`
+	// UserID is whose phone answers for this seat, and is nil for one phone passed round.
+	UserID *string `gorm:"type:text;index"`
 	// Score is everything this player has taken all evening, the finale included.
 	Score     int       `gorm:"not null;default:0"`
 	Color     string    `gorm:"not null"`
@@ -291,6 +377,20 @@ type SessionAnswer struct {
 
 func (SessionAnswer) TableName() string { return "pq_session_answers" }
 
+// SessionGuess is one seat's number in round 3, held until the quizmaster closes the question.
+// The composite key is the rule it exists for: one number per seat, changeable right up to the settle.
+type SessionGuess struct {
+	SessionQuestionID uuid.UUID `gorm:"primaryKey;type:text"`
+	Seat              int       `gorm:"primaryKey"`
+
+	SessionID uuid.UUID `gorm:"not null;type:text;index"`
+	Value     float64   `gorm:"not null"`
+
+	CreatedAt time.Time `gorm:"not null"`
+}
+
+func (SessionGuess) TableName() string { return "pq_session_guesses" }
+
 type QuizPlay struct {
 	OwnerID  string    `gorm:"primaryKey"`           // users.ID -- whose phone this was
 	QuizID   uuid.UUID `gorm:"primaryKey;type:text"` // pq_quizzes.ID
@@ -305,10 +405,13 @@ func Models() []any {
 		&Quiz{},
 		&Question{},
 		&Answer{},
+		&PQLobby{},
+		&PQLobbyPlayer{},
 		&Session{},
 		&SessionPlayer{},
 		&SessionQuestion{},
 		&SessionAnswer{},
+		&SessionGuess{},
 		&QuizPlay{},
 	}
 }

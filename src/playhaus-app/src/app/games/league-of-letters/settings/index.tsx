@@ -3,6 +3,7 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
+import BigToggleButton, { type BigToggleOption } from "@/components/ui/BigToggleButton";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
 import StartGameButton from "@/components/ui/StartGameButton";
@@ -17,11 +18,16 @@ import type { TranslationKey } from "@/features/i18n/keys";
 import BoardPreview from "@/features/league-of-letters/components/BoardPreview";
 import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_ROUNDS } from "@/features/league-of-letters/solo-settings";
+import { BONUS_WINDOW_MINUTES, DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_MODES, SOLO_ROUNDS, type SoloMode } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
+
+const MODE_ICONS: Record<SoloMode, BigToggleOption<SoloMode>['icon']> = {
+    zen: 'smile',
+    competitive: 'award'
+};
 
 // Set up a solo game, then start it.
 export default function LeagueOfLettersSettingsPage() {
@@ -135,6 +141,14 @@ export default function LeagueOfLettersSettingsPage() {
         }
     }
 
+    const competitive = settings.mode === 'competitive';
+
+    const modes: BigToggleOption<SoloMode>[] = SOLO_MODES.map(mode => ({
+        icon: MODE_ICONS[mode],
+        label: t(`lol.settings.mode.${mode}.label`),
+        value: mode
+    }));
+
     // Held back until the answer is in.
     if (!checked) {
         return <LoadingPage message={t('lol.settings.loading')} />;
@@ -149,11 +163,14 @@ export default function LeagueOfLettersSettingsPage() {
                 preview={<BoardPreview wordLength={settings.wordLength} />}
                 previewCaption={[
                     t('lol.settings.wordLengthOption', { letters: settings.wordLength }),
+                    t(`lol.settings.summary.${settings.mode}`),
                     settings.hardMode
                         ? t('lol.settings.summary.hardOn')
                         : t('lol.settings.summary.hardOff')
                 ].join(' · ')}
-                facts={t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
+                facts={competitive
+                    ? t('lol.settings.competitiveFacts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES, minutes: BONUS_WINDOW_MINUTES })
+                    : t('lol.settings.facts', { rounds: SOLO_ROUNDS, guesses: SOLO_MAX_GUESSES })}
                 error={error === null ? undefined : t(error)}
                 action={
                     <StartGameButton
@@ -183,6 +200,15 @@ export default function LeagueOfLettersSettingsPage() {
                     onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
                     label={t('lol.settings.hardMode.label')}
                     description={t('lol.settings.hardMode.description')}
+                />
+
+                <BigToggleButton
+                    badge={t('lol.settings.mode.badge')}
+                    description={t(`lol.settings.mode.${settings.mode}.description`)}
+                    onChange={mode => setSettings(current => ({ ...current, mode }))}
+                    options={modes}
+                    title={t('lol.settings.mode.title')}
+                    value={settings.mode}
                 />
             </SettingsPageBase>
 

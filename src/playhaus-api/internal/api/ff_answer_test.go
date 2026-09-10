@@ -162,15 +162,35 @@ func TestFFAnAnswerMustFillEveryBlank(t *testing.T) {
 	player := game.players[0]
 	round := firstMineFFRound(t, getFFGame(t, srv, player.Token, game.gameID))
 
-	rec := submitFFAnswer(t, srv, player.Token, game.gameID, round.Number, []string{"only one"})
+	// How many blanks the dealt prompt has is whatever the shuffle handed us, so the counts
+	// are written relative to it rather than assumed.
+	tooMany := make([]string, round.Blanks+1)
+	for i := range tooMany {
+		tooMany[i] = "fill"
+	}
+
+	rec := submitFFAnswer(t, srv, player.Token, game.gameID, round.Number, tooMany)
 	if rec.Code != http.StatusUnprocessableEntity {
-		t.Fatalf("too few fills: status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)
+		t.Fatalf("too many fills: status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)
+	}
+
+	if round.Blanks > 1 {
+		tooFew := make([]string, round.Blanks-1)
+		for i := range tooFew {
+			tooFew[i] = "fill"
+		}
+
+		rec = submitFFAnswer(t, srv, player.Token, game.gameID, round.Number, tooFew)
+		if rec.Code != http.StatusUnprocessableEntity {
+			t.Fatalf("too few fills: status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)
+		}
 	}
 
 	blank := make([]string, round.Blanks)
 	for i := range blank {
 		blank[i] = "   "
 	}
+
 	rec = submitFFAnswer(t, srv, player.Token, game.gameID, round.Number, blank)
 	if rec.Code != http.StatusUnprocessableEntity {
 		t.Fatalf("empty fills: status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)

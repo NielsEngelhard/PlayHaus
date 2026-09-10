@@ -16,12 +16,17 @@ export const ROUTES = {
     quizzerIndex: "/games/quizzer",
     quizzerOneDeviceGameSettings: "/games/quizzer/one-device",
     quizzerOneDeviceSession: (sessionId: string) => `/games/quizzer/one-device/${sessionId}`,
+    quizzerMultiDeviceGameSettings: "/games/quizzer/room",
+    quizzerRoom: (code: string) => `/games/quizzer/room/${code}`,
+    quizzerTableDoor: "/games/quizzer/table",
+    quizzerTable: (code: string) => `/games/quizzer/table/${code}`,
 
     // One of us
     oneOfUsIndex: "/games/one-of-us",
     oneOfUsSetupSingleDevice: "/games/one-of-us/single-device",
     oneOfUsPlaySingleDeviceGame: (gameId: string) => `/games/one-of-us/single-device/${gameId}`,
-    oneOfUsSetupLobby: "/games/one-of-us/lobby",
+    oneOfUsCreateRoom: "/games/one-of-us/room",
+    oneOfUsRoom: (code: string) => `/games/one-of-us/room/${code}`,
 
     // Fake Filler
     fakeFillerIndex: "/games/fake-filler",

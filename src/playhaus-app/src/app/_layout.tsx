@@ -1,5 +1,5 @@
 import BottomBar from '@/components/layout/BottomBar';
-import { FullScreenProvider, useChromelessValue, useFullScreenValue } from '@/components/layout/FullScreenContext';
+import { FullScreenProvider, useChromelessValue, useFullScreenValue, useWideValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
@@ -113,6 +113,7 @@ function App() {
 function Chrome() {
   const fullScreen = useFullScreenValue();
   const chromeless = useChromelessValue();
+  const wide = useWideValue();
   const tone = usePageToneValue();
   const styles = useStyles();
   const pathname = usePathname();
@@ -129,7 +130,7 @@ function Chrome() {
   const enterFrom = seen.path === pathname ? seen.from : 0;
 
   const body = (
-    <View style={[styles.content, fullScreen && styles.contentFullScreen]}>
+    <View style={[styles.content, fullScreen && styles.contentFullScreen, wide && styles.contentWide]}>
       {/* Outside the animation: the header is the app's chrome rather than part of the page. */}
       {!chromeless && (
         <View style={headerOverAccent(pathname) && styles.headerAbove}>
@@ -221,6 +222,10 @@ const useStyles = createThemedStyles(theme => ({
   // Passes the window's height down, which is what lets a page claim the room left under `Header` with a plain `flex: 1`.
   contentFullScreen: {
     flex: 1,
+  },
+  // Drops the phone column for a page meant to be looked at across a room.
+  contentWide: {
+    maxWidth: '100%',
   },
   // The transition wrapper stands between `content` and the page, so it has to pass both of those down untouched.
   pageSlot: {

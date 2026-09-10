@@ -299,3 +299,103 @@ func TestCurrentSoloGameByUserIDWithNothingRunning(t *testing.T) {
 		t.Errorf("err = %v, want %v", err, ErrGameNotFound)
 	}
 }
+
+// The upsert is guarded, so a worse run has to leave the board alone.
+
+func TestSaveHighScoreIfBetterKeepsTheBetterRun(t *testing.T) {
+	store, _ := newTestStore(t)
+	ctx := context.Background()
+
+	first := &SoloCompetitiveHighScore{
+		UserID: "player-1", WordLength: 5, Score: 70, Seconds: 90,
+		GameID: uuid.New(), AchievedAt: time.Now().UTC(),
+	}
+	saved, err := store.SaveHighScoreIfBetter(ctx, first)
+	if err != nil {
+		t.Fatalf("save first: %v", err)
+	}
+	if !saved {
+		t.Fatal("the first run was not recorded as a best")
+	}
+
+	worse := &SoloCompetitiveHighScore{
+		UserID: "player-1", WordLength: 5, Score: 40, Seconds: 200,
+		GameID: uuid.New(), AchievedAt: time.Now().UTC(),
+	}
+	if saved, err := store.SaveHighScoreIfBetter(ctx, worse); err != nil {
+		t.Fatalf("save worse: %v", err)
+	} else if saved {
+		t.Error("a worse run replaced the best")
+	}
+
+	better := &SoloCompetitiveHighScore{
+		UserID: "player-1", WordLength: 5, Score: 95, Seconds: 60,
+		GameID: uuid.New(), AchievedAt: time.Now().UTC(),
+	}
+	if saved, err := store.SaveHighScoreIfBetter(ctx, better); err != nil {
+		t.Fatalf("save better: %v", err)
+	} else if !saved {
+		t.Error("a better run did not take the best")
+	}
+
+	bests, err := store.HighScoresByUserID(ctx, "player-1")
+	if err != nil {
+		t.Fatalf("read bests: %v", err)
+	}
+	if len(bests) != 1 {
+		t.Fatalf("got %d bests, want 1 -- one row per word length", len(bests))
+	}
+	if bests[0].Score != 95 {
+		t.Errorf("Score = %d, want 95", bests[0].Score)
+	}
+}
+
+// A four-letter best and an eight-letter best are not the same achievement.
+func TestHighScoresAreKeptPerWordLength(t *testing.T) {
+	store, _ := newTestStore(t)
+	ctx := context.Background()
+
+	for _, length := range []int{4, 8} {
+		_, err := store.SaveHighScoreIfBetter(ctx, &SoloCompetitiveHighScore{
+			UserID: "player-1", WordLength: length, Score: 50 + length, Seconds: 120,
+			GameID: uuid.New(), AchievedAt: time.Now().UTC(),
+		})
+		if err != nil {
+			t.Fatalf("save %d-letter best: %v", length, err)
+		}
+	}
+
+	bests, err := store.HighScoresByUserID(ctx, "player-1")
+	if err != nil {
+		t.Fatalf("read bests: %v", err)
+	}
+	if len(bests) != 2 {
+		t.Fatalf("got %d bests, want 2", len(bests))
+	}
+	if bests[0].WordLength != 4 || bests[1].WordLength != 8 {
+		t.Errorf("lengths = %d, %d, want 4, 8 in order", bests[0].WordLength, bests[1].WordLength)
+	}
+}
+
+// Two accounts at the same length are two rows, not a contest.
+func TestHighScoresAreNotSharedBetweenAccounts(t *testing.T) {
+	store, _ := newTestStore(t)
+	ctx := context.Background()
+
+	for _, userID := range []string{"player-1", "player-2"} {
+		if _, err := store.SaveHighScoreIfBetter(ctx, &SoloCompetitiveHighScore{
+			UserID: userID, WordLength: 5, Score: 60, Seconds: 120,
+			GameID: uuid.New(), AchievedAt: time.Now().UTC(),
+		}); err != nil {
+			t.Fatalf("save for %s: %v", userID, err)
+		}
+	}
+
+	bests, err := store.HighScoresByUserID(ctx, "player-2")
+	if err != nil {
+		t.Fatalf("read bests: %v", err)
+	}
+	if len(bests) != 1 || bests[0].UserID != "player-2" {
+		t.Errorf("got %+v, want only player-2's own best", bests)
+	}
+}

@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type GormStore struct {
@@ -252,6 +253,8 @@ func (s *GormStore) RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess
 				"current_round": game.CurrentRound,
 				"status":        game.Status,
 				"score":         game.Score,
+				"time_bonus":    game.TimeBonus,
+				"finished_at":   game.FinishedAt,
 			}).Error
 		if err != nil {
 			return fmt.Errorf("update game: %w", err)
@@ -264,4 +267,32 @@ func (s *GormStore) RecordGuess(ctx context.Context, guess *LeagueOfLettersGuess
 		return fmt.Errorf("record guess: %w", err)
 	}
 	return nil
+}
+
+// SaveHighScoreIfBetter writes the best only when it beats the one already on file, and reports whether it did.
+func (s *GormStore) SaveHighScoreIfBetter(ctx context.Context, best *SoloCompetitiveHighScore) (bool, error) {
+	result := s.db.WithContext(ctx).Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "user_id"}, {Name: "word_length"}},
+		DoUpdates: clause.AssignmentColumns([]string{"score", "seconds", "game_id", "achieved_at"}),
+		Where:     clause.Where{Exprs: []clause.Expression{gorm.Expr("excluded.score > solo_lol_high_scores.score")}},
+	}).Create(best)
+	if result.Error != nil {
+		return false, fmt.Errorf("save solo league of letters high score: %w", result.Error)
+	}
+
+	return result.RowsAffected > 0, nil
+}
+
+// HighScoresByUserID is every personal best an account holds, best word length first.
+func (s *GormStore) HighScoresByUserID(ctx context.Context, userID string) ([]SoloCompetitiveHighScore, error) {
+	var scores []SoloCompetitiveHighScore
+	err := s.db.WithContext(ctx).
+		Where("user_id = ?", userID).
+		Order("word_length ASC").
+		Find(&scores).Error
+	if err != nil {
+		return nil, fmt.Errorf("list solo league of letters high scores: %w", err)
+	}
+
+	return scores, nil
 }

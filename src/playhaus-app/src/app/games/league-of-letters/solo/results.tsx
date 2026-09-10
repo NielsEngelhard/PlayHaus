@@ -10,6 +10,8 @@ import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import FinalScoreboard from "@/components/ui/FinalScoreboard";
 import { useGame } from "@/features/league-of-letters/useGame";
+import { useHighScores } from "@/features/league-of-letters/useHighScores";
+import AppText from "@/components/text/AppText";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -29,6 +31,7 @@ export default function LeagueOfLettersResultsPage() {
 
     // Fetched rather than handed over from the board.
     const { game, loading, error, reload } = useGame(gameId);
+    const bests = useHighScores();
 
     // Who to list.
     const players = useMemo<GamePlayer[]>(() => {
@@ -71,6 +74,10 @@ export default function LeagueOfLettersResultsPage() {
     const won = game.rounds.some(round => round.guesses.some(guess =>
         guess.userId === user?.id && guess.marks.every(mark => mark === 'correct')));
 
+    // The bests are read back rather than carried over from the last guess, so a reload shows the same thing.
+    const newBest = game.competitive
+        && bests.some(best => best.wordLength === game.wordLength && best.score === game.score);
+
     return (
         <View style={styles.page}>
             <View style={styles.body}>
@@ -83,7 +90,24 @@ export default function LeagueOfLettersResultsPage() {
                     })}
                 />
 
-                <FinalScoreboard players={players} userId={user?.id ?? ''} />
+                {/* Zen keeps no score, so it gets neither the breakdown nor a scoreboard. */}
+                {game.competitive && (
+                    <View style={styles.breakdown}>
+                        <ScoreLine label={t('lol.results.baseScore')} value={game.score - game.timeBonus} />
+
+                        <ScoreLine label={t('lol.results.timeBonus')} value={game.timeBonus} />
+
+                        <ScoreLine label={t('lol.results.total')} value={game.score} total />
+
+                        {newBest && (
+                            <AppText style={styles.newBest}>
+                                {t('lol.results.newHighScore', { letters: game.wordLength })}
+                            </AppText>
+                        )}
+                    </View>
+                )}
+
+                {game.competitive && <FinalScoreboard players={players} userId={user?.id ?? ''} />}
 
                 {/* Straight to the settings screen rather than to a new game. */}
                 <TextButton
@@ -108,6 +132,19 @@ export default function LeagueOfLettersResultsPage() {
     )
 }
 
+// One row of the competitive breakdown: what it was for, and what it was worth.
+function ScoreLine({ label, value, total = false }: { label: string, value: number, total?: boolean }) {
+    const styles = useStyles();
+
+    return (
+        <View style={[styles.scoreLine, total && styles.scoreLineTotal]}>
+            <AppText style={[styles.scoreLabel, total && styles.scoreLabelTotal]}>{label}</AppText>
+
+            <AppText style={[styles.scoreValue, total && styles.scoreValueTotal]}>{value}</AppText>
+        </View>
+    );
+}
+
 const useStyles = createThemedStyles(theme => ({
     page: {
         width: '100%'
@@ -118,6 +155,51 @@ const useStyles = createThemedStyles(theme => ({
     },
     again: {
         backgroundColor: theme.colors.primary
+    },
+    breakdown: {
+        gap: Spacing.two,
+        padding: Spacing.three,
+        borderRadius: 22,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderStrong,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hard
+    },
+    scoreLine: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        gap: Spacing.three
+    },
+    // Ruled off from the two lines it adds up.
+    scoreLineTotal: {
+        paddingTop: Spacing.two,
+        borderTopWidth: theme.borderWidth,
+        borderTopColor: theme.colors.borderSubtle
+    },
+    scoreLabel: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: theme.colors.textMuted
+    },
+    scoreLabelTotal: {
+        fontWeight: 800,
+        color: theme.colors.text
+    },
+    scoreValue: {
+        fontSize: 18,
+        fontWeight: 800,
+        fontVariant: ['tabular-nums'],
+        color: theme.colors.text
+    },
+    scoreValueTotal: {
+        fontSize: 26,
+        fontWeight: 900
+    },
+    newBest: {
+        fontSize: 13,
+        fontWeight: 800,
+        color: theme.colors.available
     },
     // Trimmed back from the margin the button carries by default.
     back: {

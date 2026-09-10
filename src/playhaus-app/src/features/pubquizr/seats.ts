@@ -23,6 +23,17 @@ export function seatOf(player: QuizSessionPlayer): Seat {
     };
 }
 
+/** The table as the waiting room knows it: everybody in seating order, with nothing scored yet. */
+export function lobbySeatsOf(players: { avatarColorId: string, name: string, seat: number }[]): Seat[] {
+    return [...players].sort((a, b) => a.seat - b.seat).map(player => ({
+        seat: player.seat,
+        name: player.name,
+        score: 0,
+        initials: initialsOf(player.name),
+        swatch: avatarColorById(player.avatarColorId)
+    }));
+}
+
 /** Everybody at the table, in seating order. */
 export function seatsOf(session: QuizSession): Seat[] {
     return [...session.players].sort((a, b) => a.seat - b.seat).map(seatOf);

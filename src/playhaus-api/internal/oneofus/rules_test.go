@@ -1,7 +1,9 @@
 package oneofus
 
 import (
+	"fmt"
 	"slices"
+	"strings"
 	"testing"
 )
 
@@ -455,5 +457,130 @@ func TestTheWholeSetDealsTheOriginalHand(t *testing.T) {
 		if want := ImpostersFor(players) - NitwitsFor(players); imposters != want {
 			t.Errorf("%d players: dealt %d imposters, want %d", players, imposters, want)
 		}
+	}
+}
+
+// seatedPlayers is a table in seat order, with the chain on whoever is named.
+func seatedPlayers(mayor string, roles ...Role) []OOUGamePlayer {
+	players := make([]OOUGamePlayer, len(roles))
+
+	for seat, role := range roles {
+		id := fmt.Sprintf("u%d", seat)
+		players[seat] = OOUGamePlayer{UserID: id, Seat: seat, Role: role, IsMayor: id == mayor}
+	}
+
+	return players
+}
+
+func castVotes(pairs ...string) []OOUVote {
+	votes := make([]OOUVote, 0, len(pairs)/2)
+
+	for i := 0; i+1 < len(pairs); i += 2 {
+		votes = append(votes, OOUVote{VoterUserID: pairs[i], AccusedUserID: pairs[i+1]})
+	}
+
+	return votes
+}
+
+func TestPluralityTakesTheClearLeaderWithoutTheMayor(t *testing.T) {
+	players := seatedPlayers("u0", Civilian, Civilian, Imposter)
+	votes := castVotes("u0", "u2", "u1", "u2", "u2", "u0")
+
+	accused, count, tie := Eliminate(players, votes)
+
+	if accused != "u2" || count != 2 || tie {
+		t.Errorf("Eliminate = (%q, %d, %v), want (u2, 2, false)", accused, count, tie)
+	}
+}
+
+func TestTheMayorsVoteSettlesATie(t *testing.T) {
+	players := seatedPlayers("u2", Civilian, Civilian, Imposter, Civilian)
+	// u1 and u2 both have two votes, and the mayor is one of the four voters.
+	votes := castVotes("u0", "u2", "u1", "u2", "u2", "u1", "u3", "u1")
+
+	accused, count, tie := Eliminate(players, votes)
+
+	if accused != "u1" || count != 2 || !tie {
+		t.Errorf("Eliminate = (%q, %d, %v), want (u1, 2, true)", accused, count, tie)
+	}
+}
+
+// A mayor who voted for somebody who is not tied cannot break the tie, so the lowest seat does -- deterministically, because a coin flip would not be testable.
+func TestATieTheMayorCannotSettleGoesToTheLowestSeat(t *testing.T) {
+	players := seatedPlayers("u0", Civilian, Civilian, Imposter, Civilian, Civilian)
+	// u1 and u2 both have two votes, and the mayor spent theirs on u4.
+	votes := castVotes("u0", "u4", "u1", "u2", "u4", "u2", "u2", "u1", "u3", "u1")
+
+	accused, count, tie := Eliminate(players, votes)
+
+	if accused != "u1" || count != 2 || !tie {
+		t.Errorf("Eliminate = (%q, %d, %v), want (u1, 2, true)", accused, count, tie)
+	}
+}
+
+func TestTheVotedOutAreNeverEliminatedAgain(t *testing.T) {
+	players := seatedPlayers("u1", Civilian, Civilian, Imposter)
+	players[0].IsVotedOut = true
+
+	// Somebody voting for a player who is already gone cannot take them a second time.
+	votes := castVotes("u1", "u0", "u2", "u0")
+
+	if accused, _, _ := Eliminate(players, votes); accused == "u0" {
+		t.Error("Eliminate took a player who was already voted out")
+	}
+}
+
+// The two modes have to agree on when a game is over, so this asks the shared function what the single-device path used to work out on its own.
+func TestGameEndedMatchesWhatTheTableLooksLike(t *testing.T) {
+	cases := []struct {
+		civilians, active  int
+		ended, noImposters bool
+	}{
+		{civilians: 2, active: 3, ended: false, noImposters: false},
+		{civilians: 1, active: 2, ended: true, noImposters: false},
+		{civilians: 2, active: 2, ended: true, noImposters: true},
+		{civilians: 3, active: 4, ended: false, noImposters: false},
+		{civilians: 5, active: 9, ended: false, noImposters: false},
+	}
+
+	for _, test := range cases {
+		ended, noImposters := GameEnded(test.civilians, test.active)
+
+		if ended != test.ended || noImposters != test.noImposters {
+			t.Errorf("GameEnded(%d, %d) = (%v, %v), want (%v, %v)",
+				test.civilians, test.active, ended, noImposters, test.ended, test.noImposters)
+		}
+	}
+}
+
+func TestAnswersAreTrimmedAndCapped(t *testing.T) {
+	if got := NormaliseAnswer("  a   long    clue "); got != "a long clue" {
+		t.Errorf("NormaliseAnswer = %q, want %q", got, "a long clue")
+	}
+
+	if AnswerOK("") {
+		t.Error("an empty answer was accepted")
+	}
+
+	if !AnswerOK(strings.Repeat("é", MaxAnswerRunes)) {
+		t.Errorf("an answer of exactly %d runes was refused", MaxAnswerRunes)
+	}
+
+	if AnswerOK(strings.Repeat("é", MaxAnswerRunes+1)) {
+		t.Errorf("an answer of %d runes was accepted", MaxAnswerRunes+1)
+	}
+}
+
+func TestTheNitwitIsGivenNoPrompt(t *testing.T) {
+	if got := PromptFor(Nitwit, "real", "fake"); got != "" {
+		t.Errorf("PromptFor(Nitwit) = %q, want the empty string", got)
+	}
+
+	if got := PromptFor(Imposter, "real", "fake"); got != "fake" {
+		t.Errorf("PromptFor(Imposter) = %q, want %q", got, "fake")
+	}
+
+	if got := PromptFor(Civilian, "real", "fake"); got != "real" {
+		t.Errorf("PromptFor(Civilian) = %q, want %q", got, "real")
 	}
 }

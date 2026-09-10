@@ -46,8 +46,7 @@ export default function OneOfUsIndexPage() {
                     title={t('oneOfUs.index.multiDevice.title')}
                     description={t('oneOfUs.index.multiDevice.description')}
                     action={t('oneOfUs.index.multiDevice.action')}
-                    navigationUrl={ROUTES.oneOfUsSetupLobby}
-                    isDisabled={true}
+                    navigationUrl={ROUTES.oneOfUsCreateRoom}
                 />
             </View>
 

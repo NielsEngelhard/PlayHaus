@@ -299,7 +299,13 @@ export const en = {
         index: {
             description: 'Test your vocabulary and try to guess the secret word.',
             playingAs: 'Playing as {{name}}',
-            solo: { title: 'Solo', description: 'Play alone, nice and easy.', action: 'Set up' },
+            solo: {
+                title: 'Solo',
+                description: 'Play alone, nice and easy.',
+                action: 'Set up',
+                /** The personal best on the solo card, once there is one. */
+                best: 'Best {{score}}'
+            },
             multiplayer: { title: 'Multiplayer', description: 'Create a lobby.', action: 'Open' },
             wordOfTheDay: {
                 title: 'Word of the day',
@@ -322,13 +328,29 @@ export const en = {
             summary: {
                 seconds: '{{seconds}}s',
                 hardOn: 'Hard mode',
-                hardOff: 'Normal'
+                hardOff: 'Normal',
+                zen: 'Zen',
+                competitive: 'Competitive'
+            },
+            /** The segmented control that picks how a solo game is played. */
+            mode: {
+                title: 'Game mode',
+                badge: 'New',
+                zen: {
+                    label: 'Zen',
+                    description: 'No clock and no score — you play at your own pace.'
+                },
+                competitive: {
+                    label: 'Competitive',
+                    description: 'The clock runs from the start. Solve all three words for points, plus a bonus for the time you took.'
+                }
             },
             hardMode: {
                 label: 'Hard mode',
                 description: 'The word can be any existing word in the language. Switch it off to play with an easier set of words.'
             },
             facts: '{{rounds}} rounds · {{guesses}} guesses per round · first letter given',
+            competitiveFacts: '{{rounds}} rounds · {{guesses}} guesses per round · time bonus up to {{minutes}} minutes',
             start: 'Start',
             running: {
                 title: 'You are already playing',
@@ -373,6 +395,10 @@ export const en = {
             loadFailed: 'The result could not be loaded.',
             title: 'Game over',
             summary: 'Rounds: {{rounds}} · Letters: {{length}}',
+            baseScore: 'Guesses',
+            timeBonus: 'Time bonus',
+            total: 'Total',
+            newHighScore: 'A new personal best at {{letters}} letters!',
             again: 'Once more'
         },
         lobby: {
@@ -439,7 +465,8 @@ export const en = {
         index: {
             description: 'A classic pub quiz with a playful twist.',
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
-            multiDevice: { title: 'Multi-device', description: 'Everyone on their own.', action: 'Coming soon...' },
+            multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
+            openTable: 'Open the screen for the table',
             // The sticker on the corner of the page.
             weekly: {
                 weekday: 'WED',
@@ -532,6 +559,94 @@ export const en = {
                 resume: 'Carry on',
                 discard: 'Throw it away'
             }
+        },
+        // The multi device room: one screen the table looks at, and a phone each.
+        lobby: {
+            loading: 'Looking for your room…',
+            opening: 'Opening the room…',
+            noLobby: 'No room',
+            hostClosedLobby: 'The host closed the room. Ask for a new code.',
+            hostStoppedQuiz: 'The host stopped the quiz. Ask for a new code for another one.',
+            // The phone, for the moment between the deal and the controller.
+            dealt: 'The quiz is starting…',
+            screenHint: {
+                title: 'Put a screen up first',
+                message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.'
+            },
+            running: {
+                quizTitle: 'You are already playing',
+                lobbyTitle: 'You still have a room open',
+                quizMessage: 'A quiz is still running in room {{code}}. Carry on, or stop it and open a new room.',
+                lobbyMessage: 'Room {{code}} is still open in your name. Go back to it, or close it and open a new one.',
+                resumeQuiz: 'Carry on playing',
+                resumeLobby: 'Go to the open room',
+                stopQuiz: 'Stop the quiz',
+                closeLobby: 'Close it and open a new one'
+            },
+            confirmClose: {
+                title: 'Close the room?',
+                message: 'The room is deleted and the code stops working. Everybody already in it is thrown out.',
+                action: 'Close'
+            },
+            confirmLeave: {
+                title: 'Leave the room?',
+                message: 'You go back to the game menu. You can join again later with the same code.',
+                action: 'Leave'
+            },
+            stay: 'Stay here',
+            start: 'Start the quiz',
+            startNote: 'Once you start, nobody else can join.',
+            needPlayers: 'You need at least {{min}} phones at the table.',
+            needQuiz: 'Pick a quiz first.',
+            hostFallback: 'The host'
+        },
+        // The shared screen everybody at the table looks at. It only ever watches, so nothing on it is pressable.
+        table: {
+            // The laptop's way in, since a screen cannot scan the QR off its own display.
+            door: {
+                title: 'Put the quiz on a screen',
+                message: 'Type the code the host has on their phone. This screen only watches — everybody still plays from their own phone.',
+                codeLabel: 'Room code',
+                placeholder: 'PXK7Q',
+                open: 'Open the screen',
+                rejected: 'That is not a quiz code. Check it on the host phone.'
+            },
+            connecting: 'Finding the room…',
+            closed: 'The host closed the room, so this screen is done.',
+            dealt: 'The quiz has started.',
+            joinAt: 'Join with',
+            scanHint: 'Scan this with your phone to join.',
+            waitingForHost: 'Waiting for the host to start the quiz…',
+            needPlayers: 'Waiting for {{needed}} more before the quiz can start.',
+            scores: 'Scores',
+            quizmaster: 'Quizmaster',
+            guesser: 'Guesser',
+            standings: 'Standings',
+            answer: 'The answer',
+            numbersIn: '{{done}} of {{total}} numbers in',
+            typeYours: 'Type your number on your own phone.',
+            // A round whose screen has not been built yet, so the phones are all there is.
+            followPhones: 'Play this round on your phones.',
+            missed: 'Missed',
+            gotSoFar: '{{awarded}} of {{total}} so far',
+            choosing: '{{name}} is picking easy or hard',
+            over: 'That is the quiz.'
+        },
+        // The phone, which in this mode is a controller and not much else.
+        control: {
+            changeGuess: 'Change it',
+            guessSent: 'Your number is in',
+            onTheScreen: 'On the screen',
+            pickAnswer: 'Pick your answer',
+            roundStarting: '{{name}} is opening the round',
+            theScreenHasIt: 'Everything is on the big screen.',
+            submitGuess: 'That is my number',
+            theyTapItThemselves: '{{name}} taps their answer on their own phone.',
+            waitingFor: 'Waiting for {{name}}',
+            yourChoice: 'Easy or hard?',
+            yourChoiceCue: 'Pick one and your question goes on the screen',
+            yourGuess: 'Your number',
+            yourTurn: 'Your turn'
         },
         play: {
             loading: 'Setting up the table…',
@@ -766,7 +881,7 @@ export const en = {
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
                 briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
                 briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
-                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 2. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
+                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 3. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
@@ -793,7 +908,7 @@ export const en = {
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
-                ruleDoubleDown: 'Easy pays 1, hard pays 2, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
+                ruleDoubleDown: 'Easy pays 1, hard pays 3, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: 'Show the question'
             },
@@ -826,11 +941,18 @@ export const en = {
         },
         // Written here rather than passed through from the API, for the reason `lol.errors` spells out.
         errors: {
+            // The multi device room, refused.
+            lobbyFull: 'That room is full. Eight phones is the most that fit at one table.',
+            alreadyStarted: 'That room has already started. Ask for a new code.',
+            lobbyGone: 'That room no longer exists. Check the code.',
+            notHost: 'Only whoever opened the room can change that.',
+            notAtThisTable: 'You are not at this table.',
+            notYourSeat: 'It is not your turn to answer that.',
             expired: 'You have been signed out. Sign in again to start a quiz.',
             quizGone: 'That quiz is no longer available. Pick another one.',
             badTable: 'The table was refused. Check the names and try again.',
             tooFewPlayers: 'A quiz needs at least two players.',
-            tooManyPlayers: 'Eight players is the most that fit round one phone.',
+            tooManyPlayers: 'Eight players is the most that fit at one table.',
             duplicateName: 'Two players cannot share a name.',
             quizTooSmall: 'This quiz does not have enough questions for that many players. Pick another quiz, or play with fewer people.',
             generic: 'The quiz could not be started. Try again.',
@@ -842,7 +964,10 @@ export const en = {
             describerCannotGuess: 'You cannot be credited with a word you were describing.',
             /** Round 4's two halves, refused: one name per word, one bonus guess each. */
             oneGuessEach: 'Everybody but the player being asked gets one guess.',
-            twoOnOne: 'Only one player can be credited with that.'
+            twoOnOne: 'Only one player can be credited with that.',
+            /** Round 2 judges itself on the answerer's phone, and round 6's question is the player's own to pick. */
+            verdictDisagrees: 'That is not what the quiz says about that answer. Check which option was tapped.',
+            noChoiceYet: 'Nobody has picked easy or hard yet, so there is no question to judge.'
         }
     },
     oneOfUs: { 
@@ -866,6 +991,109 @@ export const en = {
                 tooFew: 'One of Us needs at least three players.',
                 tooMany: 'Nine players is the most that fit round one phone.',
                 duplicate: 'Two players cannot share a name.'
+            }
+        },
+        multiDevice: {
+            lobby: {
+                opening: 'Opening the room…',
+                noLobby: 'No room',
+                hostStoppedGame: 'The host stopped the game. Ask for a new code for another round.',
+                hostClosedLobby: 'The host closed the room. Ask for a new code.',
+                running: {
+                    gameTitle: 'You are already playing',
+                    lobbyTitle: 'You still have a room open',
+                    gameMessage: 'You are still playing a game in room {{code}}. Continue, or stop it and open a new room.',
+                    lobbyMessage: 'Room {{code}} is still open in your name. Go back to it, or close it and open a new one.',
+                    resumeGame: 'Continue playing',
+                    resumeLobby: 'Go to open room',
+                    stopGame: 'Stop game',
+                    closeLobby: 'Stop game and create new'
+                },
+                confirmClose: {
+                    title: 'Close the room?',
+                    message: 'The room is deleted and the code stops working. Everyone already in it is thrown out.',
+                    action: 'Close'
+                },
+                confirmLeave: {
+                    title: 'Leave the room?',
+                    message: 'You go back to the game menu. You can join again later with the same code.',
+                    action: 'Leave'
+                },
+                stay: 'Stay here',
+                start: 'Start the game',
+                startNote: 'Once you start, nobody else can join.',
+                // Interpolated rather than fixed at three: the floor is the server's, and it arrives on every lobby as `minPlayers`.
+                needPlayers: 'You need at least {{min}} players.',
+                hostFallback: 'The host',
+                settingsTitle: 'Game settings'
+            },
+            play: {
+                loading: 'Dealing the roles…',
+                noGame: 'No game',
+                waiting: 'Waiting for the table…',
+                // There is no round total to count against, so the band counts the round and the table beside it.
+                label: 'Round {{round}}',
+                stillIn: '{{count}} still in',
+                out: {
+                    title: 'You are out',
+                    message: 'The table voted you out. Stay and watch how it ends — you cannot answer or vote any more.'
+                },
+                deal: {
+                    label: 'Your prompt',
+                    title: 'This one is yours',
+                    intro: 'Only you see this. Keep it to yourself: every round you write a new answer about it.',
+                    action: 'I have got it'
+                },
+                answer: {
+                    round: 'Round {{round}}',
+                    title: 'Write your answer',
+                    intro: 'One line about your own prompt. Enough to prove you have it, not enough to hand it over.',
+                    field: 'Your answer',
+                    placeholder: 'Something only somebody with your prompt would write',
+                    submit: 'Lock it in',
+                    yours: 'Your answer',
+                    waitingTitle: 'Yours is in',
+                    waitingMessage: 'Waiting for the rest of the table. Voting starts the moment the last answer lands.',
+                    progress: '{{done}} of {{total}} answers in'
+                },
+                vote: {
+                    round: 'Round {{round}}',
+                    title: 'Which one does not fit?',
+                    intro: 'Every answer, and no names. Talk it over out loud, then pick the odd one out.',
+                    confirm: 'Cast my vote',
+                    confirmHint: 'This cannot be undone.',
+                    locked: 'Pick an answer first.',
+                    waiting: 'Your vote is in. Waiting for the rest of the table.',
+                    progress: '{{done}} of {{total}} votes in'
+                },
+                reveal: {
+                    round: 'Round {{round}}',
+                    title: 'Who wrote what',
+                    writtenBy: 'Written by {{name}}',
+                    pickedBy: 'Picked by {{names}}',
+                    nobodyPicked: 'Nobody picked this one',
+                    tieBroken: 'The vote tied, so the mayor settled it.',
+                    next: 'See who is out',
+                    toResult: 'See how it ended'
+                }
+            },
+            errors: {
+                lobbyFull: 'That room is full.',
+                alreadyStarted: 'That game has already started.',
+                notHost: 'Only the host can do that.',
+                notEnoughPlayers: 'You need more players before you can start.',
+                tooManyPlayers: 'That is more players than One of Us can seat.',
+                gameNotOver: 'The game is still going.',
+                noContent: 'There are no prompts for that language yet.',
+                lobbyGone: 'That room is no longer there.',
+                alreadyAnswered: 'Your answer for this round is already in.',
+                alreadyVoted: 'You have already voted this round.',
+                cannotVoteSelf: 'You cannot vote for your own answer.',
+                votedOut: 'You have been voted out, so you no longer answer or vote.',
+                wrongRound: 'That round has moved on. One moment.',
+                wrongPhase: 'The table is somewhere else. One moment.',
+                badAnswer: 'That answer will not do. Write something, and keep it short.',
+                gameFinished: 'That game is over.'
             }
         },
         settings: {

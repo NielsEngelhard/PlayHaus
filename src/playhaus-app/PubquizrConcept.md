@@ -19,7 +19,7 @@ Round 5 - Name four
 - One question with four answers hiding in it. The quiz master asks the player on their left, who has twenty seconds (or eight guesses in Zen) to name as many as they can. Whatever is left goes round the rest of the table for one guess each, and every answer is a point for whoever named it.
 
 Round 6 - Double Down
-- The quiz master asks the next player easy or hard, taps the button for whichever they pick, and reads out the question that comes up. Easy is worth 1 point, hard 2. Each quiz carries exactly 5 easy and 5 hard questions for the round, so a difficulty can run out: if the five before you all took hard, you get an easy one.
+- The quiz master asks the next player easy or hard, taps the button for whichever they pick, and reads out the question that comes up. Easy is worth 1 point, hard 3. Each quiz carries exactly 5 easy and 5 hard questions for the round, so a difficulty can run out: if the five before you all took hard, you get an easy one.
 - A wrong answer passes round the table exactly as in round 1, and whoever takes it gets the question's full value.
 - Unlike round 1 nobody keeps the seat. The round opens on whoever is furthest behind and then goes clockwise, one turn each, one lap of the table.
 - The whole round is one HTTP call per turn: the pool arrives with the turn, so the choice and the pass walk happen on the phone.
