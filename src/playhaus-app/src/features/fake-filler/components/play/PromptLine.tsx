@@ -1,9 +1,9 @@
 import AppText from "@/components/text/AppText";
-import { Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { splitPrompt } from "@/features/fake-filler/prompt";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { TextInput, View } from "react-native";
+import { TextInput, View, type TextStyle } from "react-native";
 
 interface Props {
     /** The prompt, blanks and all — the `line` exactly as the server sent it. */
@@ -16,10 +16,12 @@ interface Props {
     placeholder?: string,
     /** Accessibility label for a field, given its 1-based position. */
     blankLabel?: (position: number) => string,
-    disabled?: boolean
+    disabled?: boolean,
+    /** The sentence's type size. Everything else is scaled off it. */
+    size?: number
 }
 
-// One prompt, with something in its gaps.
+// One prompt, with something in its gaps — written in, or waiting to be.
 export default function PromptLine({
     line,
     fills,
@@ -27,11 +29,13 @@ export default function PromptLine({
     onChangeFill,
     placeholder,
     blankLabel,
-    disabled = false
+    disabled = false,
+    size = 19
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
+    const type: TextStyle = { fontSize: size, lineHeight: Math.round(size * 1.5) };
     const parts = splitPrompt(line);
 
     return (
@@ -39,21 +43,24 @@ export default function PromptLine({
             {parts.map((part, at) => {
                 if (part.kind === 'text') {
                     return (
-                        <AppText key={`text-${at}`} style={styles.text}>
+                        <AppText key={`text-${at}`} style={[styles.text, type]}>
                             {part.text}
                         </AppText>
                     )
                 }
 
                 const value = fills?.[part.index] ?? '';
+                const filled = value.trim() !== '';
 
                 if (!editable) {
                     return (
                         <View
                             key={`blank-${part.index}`}
-                            style={[styles.slot, value === '' && styles.slotEmpty]}
+                            style={[styles.blank, filled ? styles.blankFilled : styles.blankEmpty]}
                         >
-                            <AppText style={styles.filled}>{value}</AppText>
+                            <AppText style={[styles.text, type, filled ? styles.written : styles.waiting]}>
+                                {filled ? value : '…'}
+                            </AppText>
                         </View>
                     )
                 }
@@ -61,7 +68,14 @@ export default function PromptLine({
                 return (
                     <TextInput
                         key={`blank-${part.index}`}
-                        style={[styles.text, styles.input]}
+                        style={[
+                            styles.text,
+                            type,
+                            styles.blank,
+                            styles.field,
+                            filled ? styles.blankFilled : styles.blankEmpty,
+                            filled ? styles.written : styles.typing
+                        ]}
                         value={value}
                         onChangeText={next => onChangeFill?.(part.index, next)}
                         placeholder={placeholder}
@@ -79,6 +93,9 @@ export default function PromptLine({
     )
 }
 
+/** How heavy the rule under a blank is. Thicker than a border, because it is a marker stroke. */
+const STROKE = 3;
+
 const useStyles = createThemedStyles(theme => ({
     // Wrapping row rather than a paragraph: the blanks are views, and a `Text` cannot lay an input out inline on native.
     line: {
@@ -89,33 +106,37 @@ const useStyles = createThemedStyles(theme => ({
         columnGap: 2
     },
     text: {
-        fontSize: 19,
-        lineHeight: 19 * 1.6,
         fontWeight: 700,
+        letterSpacing: -0.4,
         color: theme.colors.text
     },
-    // Underlined rather than boxed, so it reads as a gap in a sentence rather than as a form field dropped into one.
-    input: {
+    blank: {
         minWidth: 96,
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderBottomWidth: 2,
+        paddingHorizontal: 5,
+        borderBottomWidth: STROKE
+    },
+    // Highlighted, the way a marker pen would leave it.
+    blankFilled: {
         borderBottomColor: theme.colors.text,
-        color: theme.colors.text
+        backgroundColor: theme.colors.mint
     },
-    slot: {
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderBottomWidth: 2,
-        borderBottomColor: theme.colors.borderStrong
+    blankEmpty: {
+        borderBottomColor: theme.colors.borderDashed
     },
-    // Nothing to show.
-    slotEmpty: {
-        minWidth: 72
+    // A field is laid out by its own text, so it needs the height a wrapping view gets for free.
+    field: {
+        paddingVertical: 2
     },
-    filled: {
-        fontSize: 19,
-        lineHeight: 19 * 1.6,
+    // Ink in both schemes: it is sitting on the mint, not beside it.
+    written: {
+        fontWeight: 900,
+        color: Brand.ink
+    },
+    waiting: {
+        fontWeight: 900,
+        color: theme.colors.textMuted
+    },
+    typing: {
         fontWeight: 900,
         color: theme.colors.text
     }

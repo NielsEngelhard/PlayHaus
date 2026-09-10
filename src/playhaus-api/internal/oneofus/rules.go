@@ -185,7 +185,7 @@ const (
 
 const (
 	VotesPerPlayer   = 1
-	SelfVotesAllowed = false
+	SelfVotesAllowed = true
 	MinVotesToCatch  = 2
 )
 
@@ -329,7 +329,7 @@ func Eliminate(players []OOUGamePlayer, votes []OOUVote) (string, int, bool) {
 		return leaders[0], best, false
 	}
 
-	// The chain decides. A tied mayor can never take themselves, because a self-vote is impossible.
+	// The chain decides: whoever the mayor named, their own name included.
 	for _, vote := range votes {
 		if vote.VoterUserID == mayor && slices.Contains(leaders, vote.AccusedUserID) {
 			return vote.AccusedUserID, best, true

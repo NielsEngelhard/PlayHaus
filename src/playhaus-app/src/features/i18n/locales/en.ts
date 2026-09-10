@@ -1411,6 +1411,9 @@ export const en = {
             },
             reveal: {
                 title: 'The results',
+                truthWas: 'The real one was',
+                // What picking the truth is worth, which is not the same as what writing a good fake is worth.
+                truthReward: 'spotting it is worth a point',
                 truth: 'The truth',
                 fake: 'Fake',
                 writtenBy: 'Written by {{name}}',

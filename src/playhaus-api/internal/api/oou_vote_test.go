@@ -83,8 +83,8 @@ func TestAnOpenOOUVoteNamesNobody(t *testing.T) {
 	}
 }
 
-// Your own answer is on the board, and your own slot is the one thing you may not pick.
-func TestAnOOUPlayerMayNotVoteForTheirOwnAnswer(t *testing.T) {
+// A vote names a slot, so every slot on the board is pickable — a table where two players wrote the same thing would otherwise leave a voter with nothing to pick.
+func TestAnOOUPlayerMayVoteForTheirOwnAnswer(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	game := threeHandedOOUGame(t, srv)
 	answerOOURound(t, srv, game, getOOUGame(t, srv, game.host.Token, game.gameID))
@@ -94,11 +94,11 @@ func TestAnOOUPlayerMayNotVoteForTheirOwnAnswer(t *testing.T) {
 	own := slotOf(t, board.Round, oouAnswerText(voter))
 
 	rec := castOOUVote(t, srv, voter.Token, game.gameID, board.CurrentRound, own)
-	if rec.Code != http.StatusForbidden {
-		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
 	}
-	if code := errorCode(t, rec); code != "cannot_vote_self" {
-		t.Errorf("code = %q, want cannot_vote_self", code)
+	if got := decodeBody[oouVoteResponse](t, rec); got.VotesIn != 1 {
+		t.Errorf("votesIn = %d, want 1", got.VotesIn)
 	}
 }
 

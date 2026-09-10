@@ -118,7 +118,6 @@ export default function PlayingGame({ onClose, onFinish, table, userId }: Props)
                     key={votingRound.id}
                     busy={table.voting}
                     mayorName={mayor === null ? null : mayor.name}
-                    myAnswer={game.myAnswer}
                     myVoteSlot={game.myVoteSlot}
                     round={votingRound}
                     onVote={table.castVote}

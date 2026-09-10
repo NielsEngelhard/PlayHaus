@@ -79,7 +79,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 24,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
-        backgroundColor: theme.colors.background,
+        backgroundColor: Brand.blush,
         ...theme.popShadow(theme.colors.shadow)
     },
 

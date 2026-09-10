@@ -1,15 +1,14 @@
-import type { FFGame, FFRound } from "@/api/calls/fake-filler";
+import type { FFGame, FFOption, FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
-import Card from "@/components/ui/Card";
 import InlineNotification from "@/components/ui/InlineNotification";
-import PickRow from "@/components/ui/PickRow";
-import TextButton from "@/components/ui/TextButton";
-import { Spacing } from "@/constants/theme";
-import PromptLine from "@/features/fake-filler/components/play/PromptLine";
-import { fillPrompt } from "@/features/fake-filler/prompt";
+import PopPressable from "@/components/ui/PopPressable";
+import { Brand, Spacing, withAlpha } from "@/constants/theme";
+import FilledLine from "@/features/fake-filler/components/play/FilledLine";
+import PlayButton from "@/features/fake-filler/components/play/PlayButton";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { fillPrompt } from "@/features/fake-filler/prompt";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -31,6 +30,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
 
     const voted = round.myVoteSlot !== undefined;
     const options = round.options ?? [];
+    const chosen = voted ? round.myVoteSlot : picked;
 
     return (
         <ScrollView
@@ -38,7 +38,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.intro}>
+            <View style={styles.head}>
                 <AppText style={styles.kicker}>
                     {t('fakeFiller.play.voting.roundOf', {
                         round: round.number,
@@ -46,7 +46,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                     })}
                 </AppText>
 
-                <AppText style={styles.title}>
+                <AppText style={styles.question} numberOfLines={2}>
                     {/* Creative mode has no truth to find, so asking which one is real would be asking a question with no answer. */}
                     {game.gameMode === 'facts'
                         ? t('fakeFiller.play.voting.title')
@@ -54,74 +54,103 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                 </AppText>
             </View>
 
-            <Card style={styles.prompt}>
-                <PromptLine line={round.line} fills={null} />
-            </Card>
+            {/* The prompt as it was dealt, so the line-up below it reads as three answers to one question. */}
+            <FilledLine line={round.line} fills={null} size={17} color={theme.colors.textSecondary} />
 
-            {round.canVote ? (
-                <View style={styles.options}>
-                    {options.map(option => (
-                        <PickRow
-                            key={option.slot}
-                            mode='radio'
-                            // A whole filled-in sentence, so it is allowed to wrap: cut after one line it would be a thing to vote on unread.
-                            lines={4}
-                            label={fillPrompt(round.line, option.fills)}
-                            active={voted ? round.myVoteSlot === option.slot : picked === option.slot}
-                            disabled={busy || voted}
-                            onPress={() => setPicked(option.slot)}
-                        />
-                    ))}
-
-                    {voted ? (
-                        <AppText style={styles.waiting}>
-                            {t('fakeFiller.play.voting.waiting')}
-                        </AppText>
-                    ) : (
-                        <TextButton
-                            text={busy ? t('common.busy') : t('fakeFiller.play.voting.confirm')}
-                            variant='primary'
-                            fullWidth
-                            disabled={busy || picked === undefined}
-                            onPress={() => {
-                                if (picked !== undefined) void onVote(round.number, picked);
-                            }}
-                        />
-                    )}
-                </View>
-            ) : (
+            {!round.canVote && (
                 // One of this round's two authors, with nothing to do but watch.
-                <View style={styles.options}>
-                    <InlineNotification
-                        icon='eye'
-                        color={theme.colors.lemon}
-                        title={t('fakeFiller.play.voting.yoursTitle')}
-                        message={t('fakeFiller.play.voting.yoursMessage')}
-                    />
-
-                    {options.map(option => (
-                        <PickRow
-                            key={option.slot}
-                            mode='radio'
-                            lines={4}
-                            label={fillPrompt(round.line, option.fills)}
-                            active={false}
-                            disabled
-                            onPress={() => { }}
-                        />
-                    ))}
-                </View>
+                <InlineNotification
+                    icon='eye'
+                    color={theme.colors.lemon}
+                    title={t('fakeFiller.play.voting.yoursTitle')}
+                    message={t('fakeFiller.play.voting.yoursMessage')}
+                />
             )}
 
-            <AppText style={styles.progress}>
-                {t('fakeFiller.play.voting.progress', {
-                    done: round.voteCount,
-                    total: game.votesNeeded
-                })}
-            </AppText>
+            <View style={styles.options}>
+                {options.map(option => (
+                    <Option
+                        key={option.slot}
+                        line={round.line}
+                        option={option}
+                        active={chosen === option.slot}
+                        // Said on the card rather than under the list, where it would read as a fourth option.
+                        note={voted && chosen === option.slot ? t('fakeFiller.play.voting.voted') : undefined}
+                        // Once the vote is in, everything that was not picked steps back.
+                        faded={voted && chosen !== option.slot}
+                        disabled={busy || voted || !round.canVote}
+                        onPress={() => setPicked(option.slot)}
+                    />
+                ))}
+            </View>
+
+            <View style={styles.foot}>
+                <AppText style={styles.progress}>
+                    {t('fakeFiller.play.voting.progress', {
+                        done: round.voteCount,
+                        total: game.votesNeeded
+                    })}
+                </AppText>
+
+                {round.canVote && (voted ? (
+                    <AppText style={styles.waiting}>
+                        {t('fakeFiller.play.voting.waiting')}
+                    </AppText>
+                ) : (
+                    <PlayButton
+                        tone='ink'
+                        text={busy ? t('common.busy') : t('fakeFiller.play.voting.confirm')}
+                        disabled={busy || picked === undefined}
+                        onPress={() => {
+                            if (picked !== undefined) void onVote(round.number, picked);
+                        }}
+                    />
+                ))}
+            </View>
         </ScrollView>
     )
 }
+
+interface OptionProps {
+    line: string,
+    option: FFOption,
+    active: boolean,
+    /** A word on the card itself, once there is something to say about it. */
+    note?: string,
+    faded: boolean,
+    disabled: boolean,
+    onPress: () => void
+}
+
+/** One thing to vote for: the prompt as somebody answered it, with their words marked. */
+function Option({ line, option, active, note, faded, disabled, onPress }: OptionProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+
+    return (
+        <PopPressable
+            onPress={onPress}
+            disabled={disabled}
+            accessibilityRole='radio'
+            accessibilityState={{ checked: active, disabled }}
+            accessibilityLabel={fillPrompt(line, option.fills)}
+            style={[styles.option, active && styles.optionActive, faded && styles.faded]}
+        >
+            <FilledLine
+                line={line}
+                fills={option.fills}
+                // The marker pen changes colour on the mint, where lemon would disappear.
+                mark={active ? MARK_ON_MINT : theme.colors.lemon}
+                color={active ? Brand.ink : undefined}
+            />
+
+            {note !== undefined && <AppText style={styles.picked}>{note}</AppText>}
+        </PopPressable>
+    )
+}
+
+/** Paper at three quarters: the one mark that still reads once the card underneath went mint. */
+const MARK_ON_MINT = withAlpha(Brand.textOnAccent, 0.75);
 
 const useStyles = createThemedStyles(theme => ({
     scroll: {
@@ -129,44 +158,82 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
     content: {
+        flexGrow: 1,
         paddingHorizontal: Spacing.four,
         paddingTop: Spacing.three,
-        paddingBottom: Spacing.five,
+        paddingBottom: Spacing.four,
         gap: Spacing.three
     },
-    intro: {
-        gap: 4
+    head: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: Spacing.two
     },
     kicker: {
-        fontSize: 11,
-        fontWeight: 800,
+        fontSize: 10,
+        fontWeight: 900,
         textTransform: 'uppercase',
         letterSpacing: 1.4,
         color: theme.colors.textMuted
     },
-    title: {
-        fontSize: 24,
+    // The question, said once at the top rather than as a heading over every option.
+    question: {
+        flexShrink: 1,
+        textAlign: 'right',
+        fontSize: 10,
         fontWeight: 900,
-        letterSpacing: -0.5,
+        textTransform: 'uppercase',
+        letterSpacing: 0.6,
         color: theme.colors.text
     },
-    prompt: {
-        gap: Spacing.two
-    },
     options: {
-        gap: Spacing.two
+        gap: Spacing.two + 1
+    },
+    option: {
+        gap: Spacing.one,
+        paddingVertical: 12,
+        paddingHorizontal: 13,
+        borderRadius: 16,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
+    },
+    // The one card being voted for stands a step proud of the two beside it.
+    optionActive: {
+        borderWidth: 3,
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint,
+        ...theme.shadows.hard
+    },
+    faded: {
+        opacity: 0.5
+    },
+    picked: {
+        fontSize: 10,
+        fontWeight: 900,
+        textTransform: 'uppercase',
+        letterSpacing: 0.8,
+        color: withAlpha(Brand.ink, 0.55)
+    },
+    foot: {
+        marginTop: 'auto',
+        paddingTop: Spacing.three,
+        gap: Spacing.two + 1
+    },
+    // Tabular, so the left-hand digit does not twitch as votes land.
+    progress: {
+        textAlign: 'center',
+        fontSize: 11.5,
+        fontWeight: 800,
+        fontVariant: ['tabular-nums'],
+        color: theme.colors.textMuted
     },
     waiting: {
         textAlign: 'center',
         fontSize: 12.5,
         fontWeight: 700,
         color: theme.colors.textSecondary
-    },
-    progress: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: 800,
-        fontVariant: ['tabular-nums'],
-        color: theme.colors.textMuted
     }
 }))

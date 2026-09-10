@@ -1267,12 +1267,14 @@ export const nl: Catalog = {
                 confirm: 'Zet mijn stem vast',
                 voted: 'Stem geteld',
                 yoursTitle: 'Deze is van jou',
-                yoursMessage: 'Jij hebt voor deze vraag geschreven, dus je slaat deze ronde over. Duimen dat iemand erin trapt.',
+                yoursMessage: 'Hopelijk raden anderen jouw fake filler!',
                 progress: '{{done}} van {{total}} stemmen binnen',
                 waiting: 'Wachten tot de rest gestemd heeft…'
             },
             reveal: {
                 title: 'De uitslag',
+                truthWas: 'De echte regel was',
+                truthReward: 'hem vinden is een punt waard',
                 truth: 'De waarheid',
                 fake: 'Verzonnen',
                 writtenBy: 'Geschreven door {{name}}',
@@ -1318,10 +1320,10 @@ export const nl: Catalog = {
     },
     friends: {
         title: 'Vrienden',
-        description: 'Speel samen, houd bij wie er wint en daag elkaar uit.',
+        description: 'Want alleen is zo saai.',
         how: {
-            title: 'Zo werken vrienden',
-            message: 'Je voegt hier niemand toe. Speel samen een spel — kom in dezelfde lobby — en iedereen die erbij was komt op deze lijst te staan. Zoeken hoeft niet en accepteren ook niet.'
+            title: 'Vrienden toevoegen',
+            message: 'Vrienden worden automatisch toegevoegd wanneer je voor het eerst met een andere speler speelt.'
         },
         listLabel: 'Jouw vrienden',
         since: 'Sinds {{date}}',

@@ -12,8 +12,6 @@ interface Props {
     busy: boolean
     /** Who settles a tie, so the table knows before it votes rather than after. */
     mayorName: string | null
-    /** This player's own answer, which is the only one they are not allowed to vote for. */
-    myAnswer: string | undefined
     myVoteSlot: number | undefined
     onVote: (roundNumber: number, slot: number) => Promise<boolean>
     round: OOURound
@@ -23,7 +21,6 @@ interface Props {
 export default function AnswerVoteScreen({
     busy,
     mayorName,
-    myAnswer,
     myVoteSlot,
     onVote,
     round
@@ -62,8 +59,8 @@ export default function AnswerVoteScreen({
                         lines={4}
                         label={answer.text}
                         active={voted ? myVoteSlot === answer.slot : picked === answer.slot}
-                        // Your own is off the table. Two identical answers both lock, and the server is the authority either way.
-                        disabled={busy || voted || answer.text === myAnswer}
+                        // Every slot is pickable, your own included: two identical answers must stay two options.
+                        disabled={busy || voted}
                         onPress={() => setPicked(answer.slot)}
                     />
                 ))}

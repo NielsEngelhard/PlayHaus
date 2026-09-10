@@ -56,7 +56,7 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
                     backgroundColor: fill,
                     paddingTop: insets.top + BAND_PADDING,
                     marginHorizontal: -reach,
-                    paddingHorizontal: reach
+                    paddingHorizontal: reach + GUTTER
                 }
             ]}
         >
@@ -98,6 +98,9 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
 
 /** The band's own vertical padding, which the notch is then added on top of. */
 const BAND_PADDING = 11;
+
+// The gutter kept between the band's contents and the column's edge, once the fill has bled past it.
+const GUTTER = Spacing.four;
 
 // How wide the band already is before it reaches out.
 const COLUMN_WIDTH = ContentWidth + Spacing.four * 2;

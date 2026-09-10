@@ -231,8 +231,8 @@ func TestCaught(t *testing.T) {
 }
 
 func TestCanVoteFor(t *testing.T) {
-	if CanVoteFor(2, 2) {
-		t.Error("a player can vote for themselves")
+	if !CanVoteFor(2, 2) {
+		t.Error("a player cannot vote for themselves")
 	}
 	if !CanVoteFor(0, 1) {
 		t.Error("a player cannot vote for the seat next to them")
