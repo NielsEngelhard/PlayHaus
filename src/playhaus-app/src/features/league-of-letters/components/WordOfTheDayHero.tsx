@@ -1,29 +1,30 @@
+import BackChip from '@/components/layout/BackChip';
 import AppText from '@/components/text/AppText';
 import { LEAGUE_OF_LETTERS } from '@/constants/games';
 import { Brand, ContentWidth, Gradients, linearGradient, withAlpha } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
-import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import { Platform, Pressable, useWindowDimensions, View } from 'react-native';
+import type { Href } from 'expo-router';
+import { Platform, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
     eyebrow: string,
     title: string,
-    onBack: () => void,
-    backLabel: string,
+    /** Where the way back goes. */
+    back: Href,
+    // Takes the chip over, for a `replace` rather than the `Link`'s `push`.
+    onBack?: () => void,
     streak: number,
     streakLabel: string
 }
-
-const CHIP_SIZE = 30;
 
 // How far the hero's contents stay from the column's edges, whatever the fill does behind them.
 const GUTTER = 15;
 
 // The top of the day's page: the game's orange, which month it is, the run of days, and the way back.
-export default function WordOfTheDayHero({ eyebrow, title, onBack, backLabel, streak, streakLabel }: Props) {
+export default function WordOfTheDayHero({ eyebrow, title, back, onBack, streak, streakLabel }: Props) {
     const styles = useStyles();
 
     const insets = useSafeAreaInsets();
@@ -46,14 +47,7 @@ export default function WordOfTheDayHero({ eyebrow, title, onBack, backLabel, st
                 paddingHorizontal: bleed + GUTTER
             }
         ]}>
-            <Pressable
-                onPress={onBack}
-                accessibilityRole='button'
-                accessibilityLabel={backLabel}
-                style={styles.chip}
-            >
-                <Feather name='chevron-left' size={16} color={Brand.textOnAccent} />
-            </Pressable>
+            <BackChip href={back} onPress={onBack} variant='band' />
 
             <View style={styles.row}>
                 <View style={styles.lines}>
@@ -95,17 +89,6 @@ const useStyles = createThemedStyles(theme => ({
     heroWide: {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0
-    },
-
-    // A wash on the orange rather than the app's hard-edged button.
-    chip: {
-        width: CHIP_SIZE,
-        height: CHIP_SIZE,
-        flexShrink: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 999,
-        backgroundColor: withAlpha(Brand.ink, 0.22)
     },
 
     row: {

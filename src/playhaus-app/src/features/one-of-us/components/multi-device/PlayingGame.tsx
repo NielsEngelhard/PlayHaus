@@ -64,20 +64,22 @@ export default function PlayingGame({ onClose, onFinish, table, userId }: Props)
 
     return (
         <View style={styles.page}>
-            <InGameHeader
-                onClose={onClose}
-                closeLabel={t('oneOfUs.play.close')}
-                label={t('oneOfUs.multiDevice.play.label', {
-                    round: reveal?.roundNumber ?? game.currentRound
-                })}
-            >
-                {/* No round total to count against, so the band counts the table instead: it shrinks by one a round. */}
-                <View style={styles.chip}>
-                    <AppText style={styles.chipText}>
-                        {t('oneOfUs.multiDevice.play.stillIn', { count: aliveCount(game.players) })}
-                    </AppText>
-                </View>
-            </InGameHeader>
+            <View style={styles.header}>
+                <InGameHeader
+                    onClose={onClose}
+                    closeLabel={t('oneOfUs.play.close')}
+                    label={t('oneOfUs.multiDevice.play.label', {
+                        round: reveal?.roundNumber ?? game.currentRound
+                    })}
+                >
+                    {/* No round total to count against, so the band counts the table instead: it shrinks by one a round. */}
+                    <View style={styles.chip}>
+                        <AppText style={styles.chipText}>
+                            {t('oneOfUs.multiDevice.play.stillIn', { count: aliveCount(game.players) })}
+                        </AppText>
+                    </View>
+                </InGameHeader>
+            </View>
 
             {actionError !== null && (
                 <View style={styles.notice}>
@@ -152,6 +154,10 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%',
         gap: Spacing.two
+    },
+    // The band bleeds through this padding, so it must match the notice/content screens' own inset.
+    header: {
+        paddingHorizontal: Spacing.four
     },
     notice: {
         paddingHorizontal: Spacing.four

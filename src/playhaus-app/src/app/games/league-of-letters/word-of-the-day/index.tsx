@@ -81,8 +81,8 @@ export default function LeagueOfLettersWordOfTheDayPage() {
                 <WordOfTheDayHero
                     eyebrow={t('lol.wordOfTheDay.eyebrow')}
                     title={monthTitle(today.day, language)}
+                    back={ROUTES.leagueOfLettersIndex}
                     onBack={() => router.replace(ROUTES.leagueOfLettersIndex)}
-                    backLabel={t('common.back')}
                     streak={today.streak}
                     streakLabel={t('lol.wordOfTheDay.streakDays', { days: today.streak })}
                 />

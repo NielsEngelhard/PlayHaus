@@ -299,7 +299,7 @@ export const nl: Catalog = {
             multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' },
             wordOfTheDay: {
                 title: 'Woord van de dag',
-                resetIn: 'Nog {{time}} tot een nieuw woord'
+                resetIn: 'Nog {{time}} tot het nieuwe woord'
             },
             tournament: {
                 badge: 'Nieuw',
