@@ -161,9 +161,9 @@ func (s *Service) SweepStaleMultiDevice(ctx context.Context, cfg SweepConfig, ev
 	}
 }
 
-// CreateLobby opens a room and puts the caller in it as the host.
+// CreateLobby opens a room and puts the caller in it as the host, word-only to match the single-device setup screen's default.
 func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*OOULobby, error) {
-	return s.openLobby(ctx, ownerID, locale, DefaultMode, ImposterRoles())
+	return s.openLobby(ctx, ownerID, locale, Word, ImposterRoles())
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and settings to sit at until somebody moves them.

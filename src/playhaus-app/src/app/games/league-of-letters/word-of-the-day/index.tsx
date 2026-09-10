@@ -1,7 +1,5 @@
 import { useChromeless } from '@/components/layout/FullScreenContext';
 import LoadingPage from '@/components/layout/LoadingPage';
-import AppText from '@/components/text/AppText';
-import ActionButton from '@/components/ui/ActionButton';
 import BackButton from '@/components/ui/BackButton';
 import InlineNotification from '@/components/ui/InlineNotification';
 import TextButton from '@/components/ui/TextButton';
@@ -9,12 +7,13 @@ import { accentOf, LEAGUE_OF_LETTERS } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import { Spacing } from '@/constants/theme';
 import { useT, useUiLanguage } from '@/features/i18n/LanguageContext';
-import DailyBestCard from '@/features/league-of-letters/components/DailyBestCard';
-import DailyFriendsCard from '@/features/league-of-letters/components/DailyFriendsCard';
-import StreakCard from '@/features/league-of-letters/components/StreakCard';
+import DailyCalendarCard from '@/features/league-of-letters/components/DailyCalendarCard';
+import DailyPlayCard from '@/features/league-of-letters/components/DailyPlayCard';
+import DailyStatsRow from '@/features/league-of-letters/components/DailyStatsRow';
+import DailyTodayCard from '@/features/league-of-letters/components/DailyTodayCard';
 import WordOfTheDayHero from '@/features/league-of-letters/components/WordOfTheDayHero';
 import { useWordOfTheDay } from '@/features/league-of-letters/useWordOfTheDay';
-import { dayTitle, MOCK_FRIENDS, untilReset } from '@/features/league-of-letters/word-of-the-day';
+import { dayTitle, monthTitle, untilReset } from '@/features/league-of-letters/word-of-the-day';
 import { AccentProvider } from '@/features/theme/AccentContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
@@ -28,7 +27,7 @@ const TICK_MS = 30_000;
 // How far the cards climb over the hero's bottom edge.
 const OVERLAP = 18;
 
-// Today's word: the streak it feeds, the best day to beat, and the one attempt going in.
+// The month of days behind today's word: the calendar, how today went, and the numbers it moved.
 export default function LeagueOfLettersWordOfTheDayPage() {
     const theme = useTheme();
     const styles = useStyles();
@@ -69,8 +68,8 @@ export default function LeagueOfLettersWordOfTheDayPage() {
         if (await start()) openBoard();
     };
 
-    // Today's own row in the history, which is what the result line reads.
-    const done = today.history[today.history.length - 1];
+    // Today's own box in the calendar, which is what the result card reads.
+    const done = today.month.find(day => day.day === today.day);
     const word = game?.rounds[0]?.word;
 
     // There is still a board to walk into: either the day has not been started or it was left half played.
@@ -81,16 +80,16 @@ export default function LeagueOfLettersWordOfTheDayPage() {
             <View style={styles.screen}>
                 <WordOfTheDayHero
                     eyebrow={t('lol.wordOfTheDay.eyebrow')}
-                    title={dayTitle(today.day, language)}
+                    title={monthTitle(today.day, language)}
                     onBack={() => router.replace(ROUTES.leagueOfLettersIndex)}
                     backLabel={t('common.back')}
+                    streak={today.streak}
+                    streakLabel={t('lol.wordOfTheDay.streakDays', { days: today.streak })}
                 />
 
                 <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
                     <View style={styles.body}>
-                        <StreakCard streak={today.streak} history={today.history} />
-
-                        <DailyBestCard stats={today.stats} />
+                        <DailyCalendarCard month={today.month} today={today.day} maxGuesses={today.maxGuesses} />
 
                         {error !== null && (
                             <InlineNotification
@@ -100,38 +99,25 @@ export default function LeagueOfLettersWordOfTheDayPage() {
                             />
                         )}
 
-                        {open ? (
-                            <View style={styles.cta}>
-                                <ActionButton
-                                    text={t(today.playable ? 'lol.wordOfTheDay.start' : 'lol.wordOfTheDay.resume')}
-                                    onPress={today.playable ? begin : openBoard}
-                                    disabled={starting}
-                                    size='large'
-                                />
-
-                                <AppText style={styles.caption}>
-                                    {t('lol.wordOfTheDay.caption', { letters: today.wordLength })}
-                                </AppText>
-                            </View>
+                        {open || done === undefined ? (
+                            <DailyPlayCard
+                                title={today.playable
+                                    ? t('lol.wordOfTheDay.playDay', { day: dayTitle(today.day, language) })
+                                    : t('lol.wordOfTheDay.resume')}
+                                subtitle={t('lol.wordOfTheDay.playHint', { letters: today.wordLength })}
+                                onPress={today.playable ? begin : openBoard}
+                                disabled={starting}
+                            />
                         ) : (
-                            <View style={styles.done}>
-                                <AppText style={styles.doneTitle}>{t('lol.wordOfTheDay.comeBackTitle')}</AppText>
-
-                                <AppText style={styles.doneLine}>
-                                    {done.solved
-                                        ? t(done.guesses === 1 ? 'lol.wordOfTheDay.solvedInOne' : 'lol.wordOfTheDay.solvedInMany', { guesses: done.guesses })
-                                        : t('lol.wordOfTheDay.notSolved', { word: (word ?? '').toUpperCase() })}
-                                </AppText>
-
-                                <AppText style={styles.doneNext}>
-                                    {t('lol.wordOfTheDay.nextWord', { time: untilReset(now, today.resetsAt) })}
-                                </AppText>
-
-                                <TextButton text={t('lol.wordOfTheDay.viewBoard')} onPress={openBoard} fullWidth />
-                            </View>
+                            <DailyTodayCard
+                                today={done}
+                                stats={today.stats}
+                                word={word}
+                                resetsIn={untilReset(now, today.resetsAt)}
+                            />
                         )}
 
-                        <DailyFriendsCard friends={MOCK_FRIENDS} />
+                        <DailyStatsRow stats={today.stats} />
                     </View>
                 </ScrollView>
             </View>
@@ -139,7 +125,7 @@ export default function LeagueOfLettersWordOfTheDayPage() {
     )
 }
 
-const useStyles = createThemedStyles(theme => ({
+const useStyles = createThemedStyles(() => ({
     screen: {
         flex: 1,
         width: '100%'
@@ -156,46 +142,6 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12,
         paddingHorizontal: 15,
         paddingBottom: 15
-    },
-
-    cta: {
-        gap: 7
-    },
-
-    done: {
-        gap: 7,
-        padding: 13,
-        borderRadius: 18,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.borderStrong,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.popShadow(theme.colors.shadow)
-    },
-
-    doneTitle: {
-        fontSize: 15,
-        fontWeight: 900,
-        letterSpacing: -0.3,
-        color: theme.colors.text
-    },
-
-    doneLine: {
-        fontSize: 12.5,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
-    },
-
-    doneNext: {
-        fontSize: 11.5,
-        fontWeight: 800,
-        color: theme.colors.textMuted
-    },
-
-    caption: {
-        textAlign: 'center',
-        fontSize: 11.5,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
     },
 
     failed: {

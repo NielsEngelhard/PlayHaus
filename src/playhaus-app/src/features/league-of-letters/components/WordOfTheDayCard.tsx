@@ -3,10 +3,11 @@ import { ROUTES } from "@/constants/routes";
 import { Brand } from "@/constants/theme";
 import { useNow } from "@/hooks/useNow";
 import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
+import { useWordOfTheDay } from "@/features/league-of-letters/useWordOfTheDay";
 import { resetDay, untilReset } from "@/features/league-of-letters/word-of-the-day";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { Pressable, View } from "react-native";
 
 // The two tones the card's contents wear on lemon, in either scheme.
@@ -29,11 +30,38 @@ export default function WordOfTheDayCard() {
     const styles = useStyles();
     const t = useT();
     const language = useUiLanguage();
+    const router = useRouter();
 
     const now = useNow(TICK_MS);
 
-    const card = (
-        <Pressable style={styles.card}>
+    const { today, game, starting, start } = useWordOfTheDay();
+
+    // A day still to play goes straight to the board; a day that is over goes to the month behind it.
+    const open = today !== null && (today.playable || game?.status !== 'completed');
+
+    const press = async () => {
+        if (!open) {
+            router.push(ROUTES.leagueOfLettersWordOfTheDay);
+            return;
+        }
+
+        // The day has to be opened before there is a board to walk into, and the overview is where a refusal is explained.
+        if (today.playable && !(await start())) {
+            router.push(ROUTES.leagueOfLettersWordOfTheDay);
+            return;
+        }
+
+        router.push(ROUTES.leagueOfLettersWordOfTheDayPlay);
+    };
+
+    return (
+        <Pressable
+            onPress={press}
+            disabled={starting}
+            accessibilityRole='button'
+            accessibilityLabel={t('lol.index.wordOfTheDay.title')}
+            style={[styles.card, starting && styles.starting]}
+        >
             <View style={styles.date}>
                 <AppText style={styles.month}>{monthLabel(now, language)}</AppText>
 
@@ -52,12 +80,6 @@ export default function WordOfTheDayCard() {
                 <Feather name="chevron-right" size={15} color={Brand.textOnAccent} />
             </View>
         </Pressable>
-    );
-
-    return (
-        <Link href={ROUTES.leagueOfLettersWordOfTheDay} asChild>
-            {card}
-        </Link>
     )
 }
 
@@ -84,6 +106,10 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.borderStrong,
         backgroundColor: theme.colors.lemon,
         ...theme.popShadow(theme.colors.shadow)
+    },
+
+    starting: {
+        opacity: 0.6
     },
 
     date: {

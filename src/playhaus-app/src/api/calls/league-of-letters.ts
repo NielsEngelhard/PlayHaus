@@ -214,8 +214,8 @@ export interface WordOfTheDay {
     game?: Game
     streak: number
     stats: DailyStats
-    /** The last seven days, oldest first, ending today. */
-    history: DailyDay[]
+    /** Every day of the calendar month today falls in, oldest first — the days still to come included, and empty. */
+    month: DailyDay[]
 }
 
 const dailyPath = '/api/v1/league-of-letters/word-of-the-day';

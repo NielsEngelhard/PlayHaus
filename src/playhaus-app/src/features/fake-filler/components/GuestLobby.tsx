@@ -36,6 +36,7 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
             live={state.connection === 'open'}
             onBack={onBack}
             backLabel={t('lobby.leave')}
+            minPlayers={lobby.minPlayers}
             // Pinned like the host's start button and for the same reason: it is the one thing on the page anybody can actually do.
             footer={<RoomCodeFooter code={lobby.code} />}
         >

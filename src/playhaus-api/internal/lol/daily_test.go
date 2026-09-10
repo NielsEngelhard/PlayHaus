@@ -180,22 +180,37 @@ func TestDailyStatsOfNothingPlayedAreEmpty(t *testing.T) {
 	}
 }
 
-func TestDailyHistoryIsSevenDaysEndingToday(t *testing.T) {
+func TestDailyMonthIsEveryDayOfTodaysMonth(t *testing.T) {
 	games := []DailyGame{{Day: "2026-09-08", Solved: true, Guesses: 3}}
 
-	history := DailyHistory(games, "2026-09-10", DailyHistoryDays)
+	month := DailyMonth(games, "2026-09-10")
 
-	if len(history) != 7 {
-		t.Fatalf("len(history) = %d, want 7", len(history))
+	if len(month) != 30 {
+		t.Fatalf("len(month) = %d, want 30 for September", len(month))
 	}
-	if history[0].Day != "2026-09-04" {
-		t.Errorf("history starts at %q, want %q", history[0].Day, "2026-09-04")
+	if month[0].Day != "2026-09-01" {
+		t.Errorf("month starts at %q, want %q", month[0].Day, "2026-09-01")
 	}
-	if last := history[6]; last.Day != "2026-09-10" || last.Played {
-		t.Errorf("history ends at %+v, want an unplayed 2026-09-10", last)
+	if last := month[29]; last.Day != "2026-09-30" || last.Played {
+		t.Errorf("month ends at %+v, want an unplayed 2026-09-30", last)
 	}
-	if played := history[4]; !played.Played || played.Guesses != 3 {
+	if played := month[7]; !played.Played || played.Guesses != 3 {
 		t.Errorf("2026-09-08 is %+v, want played in 3", played)
+	}
+	// A day nobody has reached yet is a box like any other, and empty.
+	if today := month[9]; today.Day != "2026-09-10" || today.Played {
+		t.Errorf("2026-09-10 is %+v, want unplayed", today)
+	}
+}
+
+func TestDailyMonthEndsOnTheLastDayOfAShortMonth(t *testing.T) {
+	month := DailyMonth(nil, "2026-02-11")
+
+	if len(month) != 28 {
+		t.Fatalf("len(month) = %d, want 28 for February 2026", len(month))
+	}
+	if last := month[27]; last.Day != "2026-02-28" {
+		t.Errorf("month ends at %q, want %q", last.Day, "2026-02-28")
 	}
 }
 
@@ -354,8 +369,8 @@ func TestWordOfTheDayIsPlayableWithNoSchedulerRun(t *testing.T) {
 	if status.Game != nil {
 		t.Error("a day nobody started reported a game")
 	}
-	if len(status.History) != DailyHistoryDays {
-		t.Errorf("len(History) = %d, want %d", len(status.History), DailyHistoryDays)
+	if len(status.Month) != 30 {
+		t.Errorf("len(Month) = %d, want 30 for September", len(status.Month))
 	}
 }
 

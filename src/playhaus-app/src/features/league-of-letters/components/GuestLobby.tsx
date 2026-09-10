@@ -1,4 +1,4 @@
-import type { Lobby } from "@/api/calls/league-of-letters-lobby";
+import { minPlayersFor, type Lobby } from "@/api/calls/league-of-letters-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
@@ -36,6 +36,7 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
             live={state.connection === 'open'}
             onBack={onBack}
             backLabel={t('lobby.leave')}
+            minPlayers={minPlayersFor(lobby.kind)}
             // Pinned like the host's start button and for the same reason: it is the one thing on the page anybody can actually do.
             footer={<RoomCodeFooter code={lobby.code} />}
         >

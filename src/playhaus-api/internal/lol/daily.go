@@ -35,9 +35,6 @@ const dailyPickTries = 40
 // dailyCommonWordsOnly keeps the one puzzle everybody shares out of the obscure end of the list.
 const dailyCommonWordsOnly = true
 
-// DailyHistoryDays is how many boxes the streak row holds.
-const DailyHistoryDays = 7
-
 // DailyWordLength is how long the answer is on a weekday: gentle on Monday, longest on Sunday.
 func DailyWordLength(day time.Weekday) int {
 	switch day {
@@ -138,7 +135,7 @@ func DailyStats(games []DailyGame) DailyStatsSummary {
 	return stats
 }
 
-// DailyDay is one box in the streak row.
+// DailyDay is one box in the calendar.
 type DailyDay struct {
 	Day     string
 	Weekday time.Weekday
@@ -147,25 +144,31 @@ type DailyDay struct {
 	Guesses int
 }
 
-// DailyHistory is the last count days ending on today, oldest first.
-func DailyHistory(games []DailyGame, today string, count int) []DailyDay {
+// DailyMonth is every day of the calendar month today falls in, oldest first — the days after today included, and empty.
+func DailyMonth(games []DailyGame, today string) []DailyDay {
+	first, err := time.Parse(DayLayout, today)
+	if err != nil {
+		return nil
+	}
+	first = time.Date(first.Year(), first.Month(), 1, 0, 0, 0, 0, time.UTC)
+
 	byDay := make(map[string]DailyGame, len(games))
 	for _, game := range games {
 		byDay[game.Day] = game
 	}
 
-	history := make([]DailyDay, 0, count)
-	for offset := count - 1; offset >= 0; offset-- {
-		day := ShiftDay(today, -offset)
-		entry := DailyDay{Day: day, Weekday: WeekdayOf(day)}
-		if game, ok := byDay[day]; ok {
+	month := make([]DailyDay, 0, 31)
+	for day := first; day.Month() == first.Month(); day = day.AddDate(0, 0, 1) {
+		key := day.Format(DayLayout)
+		entry := DailyDay{Day: key, Weekday: day.Weekday()}
+		if game, ok := byDay[key]; ok {
 			entry.Played = true
 			entry.Solved = game.Solved
 			entry.Guesses = game.Guesses
 		}
-		history = append(history, entry)
+		month = append(month, entry)
 	}
-	return history
+	return month
 }
 
 // DailyStatus is everything the word of the day screen draws.
@@ -177,7 +180,7 @@ type DailyStatus struct {
 	Game       *DailyGame
 	Streak     int
 	Stats      DailyStatsSummary
-	History    []DailyDay
+	Month      []DailyDay
 }
 
 // WordOfTheDay is the day's puzzle plus what this account has done with it, started or not.
@@ -219,7 +222,7 @@ func (s *Service) WordOfTheDay(ctx context.Context, userID string, locale i18n.L
 
 	status.Streak = Streak(PlayedDays(games), day)
 	status.Stats = DailyStats(games)
-	status.History = DailyHistory(games, day, DailyHistoryDays)
+	status.Month = DailyMonth(games, day)
 
 	return status, nil
 }

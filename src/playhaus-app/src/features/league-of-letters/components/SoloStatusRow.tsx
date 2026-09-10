@@ -19,12 +19,14 @@ interface Props {
     startedAt?: string,
     // Whether the clock is still running.
     running?: boolean,
+    // Today's board rather than an ordinary solo one. Mutually exclusive with the clock — a daily game is zen.
+    daily?: boolean,
     /** For layout only — how the row sits among its siblings. The look lives here. */
     style?: StyleProp<ViewStyle>
 }
 
 // Who is playing, how they are doing and how long they have been at it. Both halves are optional, which is what zen mode is.
-export default function SoloStatusRow({ name, avatarColorId, score, startedAt, running = true, style }: Props) {
+export default function SoloStatusRow({ name, avatarColorId, score, startedAt, running = true, daily = false, style }: Props) {
     const styles = useStyles();
     const theme = useTheme();
     const t = useT();
@@ -58,6 +60,14 @@ export default function SoloStatusRow({ name, avatarColorId, score, startedAt, r
                     <Feather name='clock' size={14} color={theme.colors.textSecondary} />
 
                     <AppText style={styles.time}>{formatted(elapsed)}</AppText>
+                </View>
+            )}
+
+            {daily && (
+                <View style={styles.clock} accessibilityRole='text'>
+                    <Feather name='calendar' size={14} color={theme.colors.textSecondary} />
+
+                    <AppText style={styles.time}>{t('lol.game.dailyLabel')}</AppText>
                 </View>
             )}
         </View>

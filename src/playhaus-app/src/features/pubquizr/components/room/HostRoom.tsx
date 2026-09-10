@@ -52,6 +52,7 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
             code={lobby.code}
             // The host's screen is the one with something to offer, so it gets the band as well as the pill.
             handsOutCode
+            minPlayers={lobby.minPlayers}
             footer={
                 <View>
                     <StartGameButton

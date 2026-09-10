@@ -91,11 +91,11 @@ func TestWordOfTheDayDescribesTodaysPuzzle(t *testing.T) {
 	if body.Streak != 0 || body.Stats.DaysPlayed != 0 {
 		t.Errorf("a fresh account has streak %d over %d days", body.Streak, body.Stats.DaysPlayed)
 	}
-	if len(body.History) != 7 {
-		t.Fatalf("len(history) = %d, want 7", len(body.History))
+	if want := daysInMonthOf(t, body.Day); len(body.Month) != want {
+		t.Fatalf("len(month) = %d, want %d", len(body.Month), want)
 	}
-	if last := body.History[6]; last.Day != body.Day {
-		t.Errorf("history ends on %q, want today (%q)", last.Day, body.Day)
+	if first := body.Month[0]; first.Day != body.Day[:8]+"01" {
+		t.Errorf("month starts on %q, want the first of today's month (%q)", first.Day, body.Day)
 	}
 
 	resetsAt, err := time.Parse(time.RFC3339, body.ResetsAt)
@@ -242,8 +242,8 @@ func TestSolvingWordOfTheDayRecordsItsGuessCount(t *testing.T) {
 	if body.Stats.DaysPlayed != 1 || body.Stats.DaysSolved != 1 {
 		t.Errorf("stats = %+v, want one day played and solved", body.Stats)
 	}
-	if today := body.History[6]; !today.Played || !today.Solved || today.Guesses != 3 {
-		t.Errorf("today's history entry is %+v, want solved in 3", today)
+	if today := monthDay(t, body, body.Day); !today.Played || !today.Solved || today.Guesses != 3 {
+		t.Errorf("today's calendar entry is %+v, want solved in 3", today)
 	}
 	if body.Game == nil || body.Game.Rounds[0].Word != answer {
 		t.Error("a finished day does not show the answer back")
@@ -258,6 +258,30 @@ func TestWordOfTheDayTakesNoGuessBeforeItIsStarted(t *testing.T) {
 	if rec.Code != http.StatusNotFound {
 		t.Errorf("guess without a game: status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
 	}
+}
+
+// daysInMonthOf is how many boxes the calendar of a day key's own month holds.
+func daysInMonthOf(t *testing.T, day string) int {
+	t.Helper()
+
+	parsed, err := time.Parse(lol.DayLayout, day)
+	if err != nil {
+		t.Fatalf("parse day %q: %v", day, err)
+	}
+	return time.Date(parsed.Year(), parsed.Month()+1, 0, 0, 0, 0, 0, time.UTC).Day()
+}
+
+// monthDay is one day's box, which a test that names a day should not have to index by hand.
+func monthDay(t *testing.T, body wordOfTheDayResponse, day string) dailyDayResponse {
+	t.Helper()
+
+	for _, entry := range body.Month {
+		if entry.Day == day {
+			return entry
+		}
+	}
+	t.Fatalf("no calendar entry for %q", day)
+	return dailyDayResponse{}
 }
 
 // backdateDailyGame moves a game whole days into the past, which is how a multi-day history is faked.

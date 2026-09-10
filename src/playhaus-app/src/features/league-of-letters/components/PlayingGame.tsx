@@ -353,6 +353,7 @@ export default function PlayingGame({
                         score={game.competitive ? game.score : undefined}
                         startedAt={game.competitive ? game.createdAt : undefined}
                         running={!gameOver}
+                        daily={game.mode === 'daily'}
                     />
                 )}
 

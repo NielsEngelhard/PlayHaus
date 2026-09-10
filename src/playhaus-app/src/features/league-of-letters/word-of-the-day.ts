@@ -1,4 +1,6 @@
-// The day the word of the day belongs to, and how it is written out.
+// The day the word of the day belongs to, how it is written out, and the calendar it sits in.
+
+import type { DailyDay } from '@/api/calls/league-of-letters';
 
 /** The one zone the word turns over in, for everybody. Mirrors `DAILY_RESET_TZ` on the API. */
 export const RESET_ZONE = 'Europe/Amsterdam';
@@ -72,14 +74,66 @@ export function dayTitle(day: string, language: string): string {
     return capitalised(label.replaceAll('.', ''));
 }
 
-// The two or three letters under a box in the streak row.
-export function weekdayLabel(weekday: number, language: string): string {
+// The one letter over a column of the calendar.
+export function weekdayInitial(weekday: number, language: string): string {
     const label = new Intl.DateTimeFormat(language, {
         timeZone: 'UTC',
         weekday: 'short'
     }).format(new Date(WEEK_ANCHOR + weekday * DAY_MS));
 
-    return label.replaceAll('.', '').toLowerCase();
+    return label.charAt(0).toLowerCase();
+}
+
+const DAYS_PER_WEEK = 7;
+
+/** The columns of the calendar, Monday first, as the weekdays Go numbers from Sunday. */
+export const WEEKDAY_COLUMNS: number[] = [1, 2, 3, 4, 5, 6, 0];
+
+// "September", off the server's day rather than the device's date.
+export function monthTitle(day: string, language: string): string {
+    const label = new Intl.DateTimeFormat(language, {
+        timeZone: 'UTC',
+        month: 'long'
+    }).format(dayDate(day));
+
+    return capitalised(label);
+}
+
+/** The month as calendar rows, padded with the blanks that keep every box under its own weekday. */
+export function monthWeeks(month: DailyDay[]): (DailyDay | null)[][] {
+    if (month.length === 0) return [];
+
+    // Go numbers Sunday 0, and the calendar starts on Monday.
+    const lead = (month[0].weekday + DAYS_PER_WEEK - 1) % DAYS_PER_WEEK;
+
+    const boxes: (DailyDay | null)[] = [...Array<null>(lead).fill(null), ...month];
+    const weeks: (DailyDay | null)[][] = [];
+
+    for (let start = 0; start < boxes.length; start += DAYS_PER_WEEK) {
+        const week = boxes.slice(start, start + DAYS_PER_WEEK);
+
+        weeks.push([...week, ...Array<null>(DAYS_PER_WEEK - week.length).fill(null)]);
+    }
+
+    return weeks;
+}
+
+/** How few guesses still counts as a quick day, which is the calendar's own dividing line. */
+export const QUICK_GUESSES = 3;
+
+/** What one box of the calendar says: how the day went, or that there was never anything in it. */
+export type DayTone = 'quick' | 'slow' | 'missed' | 'open' | 'skipped' | 'future';
+
+export function dayTone(day: DailyDay, today: string): DayTone {
+    if (day.played) {
+        if (!day.solved) return 'missed';
+
+        return day.guesses <= QUICK_GUESSES ? 'quick' : 'slow';
+    }
+
+    if (day.day === today) return 'open';
+
+    return day.day < today ? 'skipped' : 'future';
 }
 
 // A day key is a bare date, so it is read at UTC midnight and printed in UTC — never shifted into a zone.
@@ -96,19 +150,3 @@ export function averageLabel(average: number, language: string): string {
     return average.toLocaleString(language, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-// A friend's day, as the panel will read it once there is a social graph behind it.
-export interface DailyFriend {
-    name: string
-    /** Which swatch in `AVATAR_COLORS`, not a colour — same as on `User`. */
-    avatarColorId: string
-    streak: number
-    // How many guesses today took them, absent while they have not played it.
-    guesses?: number
-}
-
-/** Fake rows, so the panel and its layout are ready for a real friends list. */
-export const MOCK_FRIENDS: DailyFriend[] = [
-    { name: 'Sanne', avatarColorId: 'mint', streak: 12, guesses: 3 },
-    { name: 'Joris', avatarColorId: 'blush', streak: 5, guesses: 5 },
-    { name: 'Tess', avatarColorId: 'cobalt', streak: 2 }
-];

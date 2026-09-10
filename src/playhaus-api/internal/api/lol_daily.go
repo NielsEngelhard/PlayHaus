@@ -37,7 +37,8 @@ type wordOfTheDayResponse struct {
 	Game     *soloGameResponse  `json:"game,omitempty"`
 	Streak   int                `json:"streak"`
 	Stats    dailyStatsResponse `json:"stats"`
-	History  []dailyDayResponse `json:"history"`
+	// Month is every day of the calendar month today falls in, oldest first.
+	Month []dailyDayResponse `json:"month"`
 }
 
 // newDailyGameResponse serves the day's game in the shape the board already reads.
@@ -107,9 +108,9 @@ func (s *Server) handleGetWordOfTheDay(w http.ResponseWriter, r *http.Request) {
 }
 
 func newWordOfTheDayResponse(status *lol.DailyStatus) wordOfTheDayResponse {
-	history := make([]dailyDayResponse, 0, len(status.History))
-	for _, day := range status.History {
-		history = append(history, dailyDayResponse{
+	month := make([]dailyDayResponse, 0, len(status.Month))
+	for _, day := range status.Month {
+		month = append(month, dailyDayResponse{
 			Day:     day.Day,
 			Weekday: int(day.Weekday),
 			Played:  day.Played,
@@ -132,7 +133,7 @@ func newWordOfTheDayResponse(status *lol.DailyStatus) wordOfTheDayResponse {
 			DaysPlayed:     status.Stats.DaysPlayed,
 			DaysSolved:     status.Stats.DaysSolved,
 		},
-		History: history,
+		Month: month,
 	}
 
 	if status.Game != nil {

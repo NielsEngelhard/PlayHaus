@@ -22,6 +22,8 @@ interface Props {
     backLabel: string,
     code: string,
     handsOutCode?: boolean,
+    // How few players this room's kind can start with. Omitted where the room is past that question already.
+    minPlayers?: number,
     children: ReactNode,
     footer: ReactNode
 }
@@ -52,11 +54,13 @@ export default function LobbyPageBase({
     backLabel,
     code,
     handsOutCode = false,
+    minPlayers,
     children,
     footer
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const t = useT();
 
     useChromeless();
 
@@ -86,6 +90,12 @@ export default function LobbyPageBase({
                     >
                         {game.name}
                     </AppText>
+
+                    {minPlayers !== undefined && (
+                        <AppText style={styles.minPlayers} numberOfLines={1}>
+                            {t('lobby.minPlayers', { min: minPlayers })}
+                        </AppText>
+                    )}
                 </View>
 
                 <View style={styles.bar}>
@@ -247,6 +257,12 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         textTransform: 'uppercase',
         letterSpacing: 0.8
+    },
+    // Quieter than the name it sits beside — a fact about the room, not its headline.
+    minPlayers: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: theme.colors.textMuted
     },
 
     // No rule under it any more: the bar and the page separate by whitespace and by the hero's own weight, the way the design draws them.
