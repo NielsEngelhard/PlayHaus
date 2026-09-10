@@ -7,7 +7,6 @@ import PopupModal from "@/components/ui/PopupModal";
 import RoomClosedNotice from "@/components/ui/RoomClosedNotice";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { useMusic } from "@/features/audio/MusicContext";
 import { useT } from "@/features/i18n/LanguageContext";
 import GuestRoom from "@/features/pubquizr/components/room/GuestRoom";
 import HostRoom from "@/features/pubquizr/components/room/HostRoom";
@@ -34,11 +33,8 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
     const router = useRouter();
     const { lobby, isHost, closing } = state;
 
-    // Both claimed before the early returns below, because a hook cannot be called for one branch and not another.
+    // Claimed before the early returns below, because a hook cannot be called for one branch and not another.
     useFullScreen();
-
-    // The other half of the room's soundtrack.
-    useMusic('lobby');
 
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
