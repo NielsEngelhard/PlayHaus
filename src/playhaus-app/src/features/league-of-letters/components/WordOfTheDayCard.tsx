@@ -1,11 +1,12 @@
 import AppText from "@/components/text/AppText";
 import { ROUTES } from "@/constants/routes";
 import { Brand } from "@/constants/theme";
+import { useNow } from "@/hooks/useNow";
 import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
+import { resetDay, untilReset } from "@/features/league-of-letters/word-of-the-day";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { useEffect, useState } from "react";
 import { Pressable, View } from "react-native";
 
 // The two tones the card's contents wear on lemon, in either scheme.
@@ -29,7 +30,7 @@ export default function WordOfTheDayCard() {
     const t = useT();
     const language = useUiLanguage();
 
-    const now = useNow();
+    const now = useNow(TICK_MS);
 
     const card = (
         <Pressable style={styles.card}>
@@ -43,7 +44,7 @@ export default function WordOfTheDayCard() {
                 <AppText style={styles.title}>{t('lol.index.wordOfTheDay.title')}</AppText>
 
                 <AppText style={styles.subtitle}>
-                    {t('lol.index.wordOfTheDay.resetIn', { time: untilMidnight(now) })}
+                    {t('lol.index.wordOfTheDay.resetIn', { time: untilReset(now) })}
                 </AppText>
             </View>
 
@@ -60,35 +61,16 @@ export default function WordOfTheDayCard() {
     )
 }
 
-// The clock, re-read often enough that both the date and the countdown stay true across midnight.
-function useNow(): Date {
-    const [now, setNow] = useState(() => new Date());
-
-    useEffect(() => {
-        const tick = setInterval(() => setNow(new Date()), TICK_MS);
-
-        return () => clearInterval(tick);
-    }, []);
-
-    return now;
-}
-
+// The date on the tile is the day the word belongs to, which is not the device's own date just before midnight.
 function monthLabel(now: Date, language: string): string {
-    return now.toLocaleDateString(language, { month: 'short' }).replace('.', '').toUpperCase();
+    return resetDay(now)
+        .toLocaleDateString(language, { timeZone: 'UTC', month: 'short' })
+        .replace('.', '')
+        .toUpperCase();
 }
 
 function dayLabel(now: Date): string {
-    return String(now.getDate()).padStart(2, '0');
-}
-
-// How long this word has left, as hours and minutes up to the next local midnight.
-function untilMidnight(now: Date): string {
-    const midnight = new Date(now);
-    midnight.setHours(24, 0, 0, 0);
-
-    const minutes = Math.max(0, Math.round((midnight.getTime() - now.getTime()) / 60_000));
-
-    return `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
+    return String(resetDay(now).getUTCDate()).padStart(2, '0');
 }
 
 const useStyles = createThemedStyles(theme => ({

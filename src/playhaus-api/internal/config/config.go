@@ -16,6 +16,11 @@ type Config struct {
 	Debug                  bool
 	AllowedOrigins         []string
 	LeagueOfLettersDevMode bool // Always pick the first word of the list for all rounds (easy testing)
+
+	// DailyResetLocation is the one zone the word of the day turns over in, for
+	// everybody. A per-device midnight would give a traveller two words in a day
+	// and make one player's streak mean something different from another's.
+	DailyResetLocation *time.Location
 }
 
 func Load() (Config, error) {
@@ -36,6 +41,11 @@ func Load() (Config, error) {
 		return Config{}, fmt.Errorf("resolve DB_PATH: %w", err)
 	}
 
+	resetLocation, err := envLocation("DAILY_RESET_TZ", "Europe/Amsterdam")
+	if err != nil {
+		return Config{}, err
+	}
+
 	return Config{
 		Addr:                   env("ADDR", ":8080"),
 		DBPath:                 dbPath,
@@ -43,6 +53,7 @@ func Load() (Config, error) {
 		Debug:                  envBool("DEBUG", false),
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
 		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", true), // Same word every round
+		DailyResetLocation:     resetLocation,
 	}, nil
 }
 
@@ -90,6 +101,24 @@ func envBool(key string, fallback bool) bool {
 		return fallback
 	}
 	return v
+}
+
+// envLocation resolves a zone name. The runtime image carries no tzdata of its
+// own, so this only works because cmd/api imports time/tzdata -- see the note
+// there before removing that import.
+func envLocation(key, fallback string) (*time.Location, error) {
+	name := fallback
+	if raw := os.Getenv(key); raw != "" {
+		name = raw
+	} else {
+		fmt.Println("Missing environment variable: " + key)
+	}
+
+	loc, err := time.LoadLocation(name)
+	if err != nil {
+		return nil, fmt.Errorf("%s=%q is not a known time zone: %w", key, name, err)
+	}
+	return loc, nil
 }
 
 func envDuration(key string, fallback time.Duration) (time.Duration, error) {

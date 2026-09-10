@@ -447,6 +447,34 @@ export const en = {
                 hostCanOpen: 'The game is done. The host can open a new lobby. Stay here and you come along automatically.'
             }
         },
+        wordOfTheDay: {
+            eyebrow: 'Word of the day',
+            streak: 'Streak',
+            // Two wordings rather than one key with a count.
+            daysOne: 'day',
+            daysMany: 'days',
+            bestDayOne: 'Best day: {{guesses}} guess',
+            bestDayMany: 'Best day: {{guesses}} guesses',
+            noBestDay: 'No day solved yet',
+            averageOne: 'Average {{average}} · {{days}} day played',
+            averageMany: 'Average {{average}} · {{days}} days played',
+            start: 'Start',
+            resume: 'Keep playing',
+            // The letter count is the day's own: four on Monday, eight on Sunday.
+            caption: '{{letters}} letters, no clock. One attempt per day.',
+            comeBackTitle: 'Come back tomorrow',
+            nextWord: 'A new word in {{time}}',
+            solvedInOne: 'Solved in {{guesses}} guess',
+            solvedInMany: 'Solved in {{guesses}} guesses',
+            notSolved: 'Not today. The word was {{word}}.',
+            viewBoard: 'View your board',
+            friendsTitle: 'Friends',
+            friendsEmpty: 'Friends show up here as soon as they have played',
+            friendStreak: 'Streak {{streak}}',
+            friendGuessesOne: '{{guesses}} guess',
+            friendGuessesMany: '{{guesses}} guesses',
+            friendWaiting: 'Not played yet'
+        },
         errors: {
             staleServer: 'The server is running an older version of this game. Restart the API and try again.',
             expired: 'Your session has expired. Log in again.',
@@ -458,7 +486,8 @@ export const en = {
             roundClosed: 'This round is not taking any more guesses.',
             lobbyFull: 'This lobby is full.',
             lobbyGone: 'This lobby does not exist any more. Check the code.',
-            alreadyStarted: 'This game has already started.'
+            alreadyStarted: 'This game has already started.',
+            alreadyPlayedToday: 'You have already played today. Come back tomorrow.'
         }
     },
     pubquizr: {

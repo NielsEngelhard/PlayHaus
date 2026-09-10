@@ -35,6 +35,8 @@ type soloGameResponse struct {
 	TimeBonus    int             `json:"timeBonus"`
 	FinishedAt   string          `json:"finishedAt,omitempty"`
 	Rounds       []roundResponse `json:"rounds"`
+	// Mode is which sort of game this is, and is left off a solo one.
+	Mode string `json:"mode,omitempty"`
 }
 
 type roundResponse struct {

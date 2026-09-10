@@ -4,7 +4,7 @@ import type { SoloSettings, WordLength } from '@/features/league-of-letters/solo
 
 // A League of Letters game as the API describes it.
 
-export type GameMode = 'solo' | 'multiplayer';
+export type GameMode = 'solo' | 'multiplayer' | 'daily';
 
 /** Straight off the Go `GameStatus`. A solo game is created `in_progress`. */
 export type GameStatus = 'in_progress' | 'completed' | 'abandoned';
@@ -174,6 +174,70 @@ export async function abandonGame(gameId: string): Promise<void> {
 // Submits a guess against the game's current round.
 export function submitGuess(gameId: string, word: string): Promise<GuessResult> {
     return request<GuessResult>(`/api/v1/league-of-letters/solo/${gameId}/guesses`, {
+        method: 'POST',
+        body: JSON.stringify({ word })
+    });
+}
+
+// Word of the day The same board, once a day, with no clock and one attempt.
+
+// How one day went, for the seven boxes of the streak row.
+export interface DailyDay {
+    day: string
+    /** Go's numbering, Sunday first, so the label is this app's business and not the server's. */
+    weekday: number
+    played: boolean
+    solved: boolean
+    guesses: number
+}
+
+// What there is to improve on: guesses used, not points.
+export interface DailyStats {
+    /** The fewest guesses a solved day took, and 0 until a day is solved. */
+    bestGuesses: number
+    averageGuesses: number
+    daysPlayed: number
+    daysSolved: number
+}
+
+export interface WordOfTheDay {
+    /** The server's day, in the zone the word turns over in — never the device's own date. */
+    day: string
+    locale: LanguageCode
+    wordLength: WordLength
+    maxGuesses: number
+    /** When the next word arrives, so the countdown never has to agree about a timezone. */
+    resetsAt: string
+    /** Whether today is still open. One attempt per account per day. */
+    playable: boolean
+    // Today's attempt, from the moment it is started.
+    game?: Game
+    streak: number
+    stats: DailyStats
+    /** The last seven days, oldest first, ending today. */
+    history: DailyDay[]
+}
+
+const dailyPath = '/api/v1/league-of-letters/word-of-the-day';
+
+// Today's puzzle and everything this account has done with it.
+export async function getWordOfTheDay(locale: LanguageCode): Promise<WordOfTheDay> {
+    const today = await request<WordOfTheDay>(`${dailyPath}?locale=${locale}`);
+
+    return today.game === undefined ? today : { ...today, game: checked(today.game) };
+}
+
+// Opens the one attempt today has in it. The locale is frozen server-side from here on.
+export async function startWordOfTheDay(locale: LanguageCode): Promise<Game> {
+    return checked(await request<Game>(dailyPath, {
+        method: 'POST',
+        body: JSON.stringify({ locale })
+    }));
+}
+
+// Plays one word against today's round: the server resolves the game from the session and the date.
+export function submitDailyGuess(word: string): Promise<GuessResult> {
+    return request<GuessResult>(`${dailyPath}/guesses`, {
         method: 'POST',
         body: JSON.stringify({ word })
     });

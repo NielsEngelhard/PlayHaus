@@ -1,6 +1,6 @@
 import { LobbyFullError } from '@/api/calls/league-of-letters-lobby';
 import { GameContractError } from '@/api/calls/league-of-letters';
-import { ApiError } from '@/api/client';
+import { ApiError, apiErrorCode } from '@/api/client';
 import type { TranslationKey } from '@/features/i18n/keys';
 
 // Turns a failed game call into the key of a line worth showing a person.
@@ -39,6 +39,15 @@ export function guessErrorMessage(error: unknown): TranslationKey {
             case 409:
                 return 'lol.errors.roundClosed';
         }
+    }
+
+    return gameErrorMessage(error);
+}
+
+// The same, for the word of the day, whose one refusal of its own is a day already spent.
+export function dailyErrorMessage(error: unknown): TranslationKey {
+    if (apiErrorCode(error) === 'already_played_today') {
+        return 'lol.errors.alreadyPlayedToday';
     }
 
     return gameErrorMessage(error);

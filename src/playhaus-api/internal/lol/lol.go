@@ -44,6 +44,9 @@ var (
 
 	// ErrGameNotOver is a rematch asked for while the table is still playing.
 	ErrGameNotOver = errors.New("game is not over yet")
+
+	ErrAlreadyPlayedToday = errors.New("word of the day already played today")
+	ErrNoWordForDay       = errors.New("no word of the day for that day")
 )
 
 type LobbyStatus string
@@ -165,6 +168,44 @@ type SoloCompetitiveHighScore struct {
 
 func (SoloCompetitiveHighScore) TableName() string { return "solo_lol_high_scores" }
 
+// DailyWord is the answer one locale plays on one day, picked before anyone asks for it.
+type DailyWord struct {
+	Day        string      `gorm:"primaryKey;type:text"` // YYYY-MM-DD in the reset zone
+	Locale     i18n.Locale `gorm:"primaryKey"`
+	Word       string      `gorm:"not null"`
+	WordLength int         `gorm:"not null"`
+	CreatedAt  time.Time   `gorm:"not null"`
+}
+
+func (DailyWord) TableName() string { return "daily_lol_words" }
+
+// DailyGame is an account's single attempt at one day's word: one word, six guesses, no clock.
+type DailyGame struct {
+	ID      uuid.UUID `gorm:"primaryKey;type:text"`
+	OwnerID string    `gorm:"not null;index;uniqueIndex:idx_daily_lol_one_a_day"`
+	// Day and OwnerID share a unique index, and that index is the once-a-day rule.
+	Day        string                 `gorm:"not null;type:text;index;uniqueIndex:idx_daily_lol_one_a_day"`
+	Locale     i18n.Locale            `gorm:"not null"`
+	WordLength int                    `gorm:"not null"`
+	Rounds     []LeagueOfLettersRound `gorm:"foreignKey:GameID;-:migration"`
+	Status     GameStatus             `gorm:"not null"`
+	// Solved and Guesses are denormalised so the streak and stats never preload a board.
+	Solved     bool      `gorm:"not null;default:false"`
+	Guesses    int       `gorm:"not null;default:0"`
+	CreatedAt  time.Time `gorm:"not null"`
+	FinishedAt *time.Time
+}
+
+func (DailyGame) TableName() string { return "daily_lol_games" }
+
+// Round is the one round a daily game is played on.
+func (g *DailyGame) Round() *LeagueOfLettersRound {
+	if len(g.Rounds) == 0 {
+		return nil
+	}
+	return &g.Rounds[0]
+}
+
 type LeagueOfLettersRound struct {
 	ID          uuid.UUID              `gorm:"primaryKey;type:text"`
 	GameID      uuid.UUID              `gorm:"index;not null;type:text"`
@@ -243,6 +284,8 @@ func Models() []any {
 	return []any{
 		&SoloLeagueOfLettersGame{},
 		&SoloCompetitiveHighScore{},
+		&DailyWord{},
+		&DailyGame{},
 		&LeagueOfLettersRound{},
 		&LeagueOfLettersGuess{},
 		&LeagueOfLettersValidatedLetter{},

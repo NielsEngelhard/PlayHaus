@@ -24,6 +24,7 @@ type Store interface {
 	HighScoresByUserID(ctx context.Context, userID string) ([]SoloCompetitiveHighScore, error)
 
 	MultiplayerStore
+	DailyStore
 }
 
 // SweepConfig is the retention window per table the sweep touches.
@@ -85,6 +86,16 @@ func (in CreateSoloGameInput) validate() map[string]string {
 // Options is the behaviour a deployment gets to choose, rather than the game's own rules.
 type Options struct {
 	DevMode bool // DevMode makes every round play the same word
+	// DailyReset is the one zone the word of the day turns over in, for everybody.
+	DailyReset *time.Location
+}
+
+// ResetLocation is the zone the day turns over in, UTC when a deployment named none.
+func (s *Service) ResetLocation() *time.Location {
+	if s.opts.DailyReset == nil {
+		return time.UTC
+	}
+	return s.opts.DailyReset
 }
 
 type Service struct {

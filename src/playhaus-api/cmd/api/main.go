@@ -12,6 +12,12 @@ import (
 	"syscall"
 	"time"
 
+	// The runtime image is bare alpine with no tzdata package, so without this
+	// time.LoadLocation only knows UTC and the local zone -- and the fixed
+	// Europe/Amsterdam reset the word of the day turns over on would fail to
+	// load in production while working fine on a developer machine.
+	_ "time/tzdata"
+
 	"playhaus-api/internal/api"
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
@@ -81,7 +87,8 @@ func run() error {
 	userService := user.NewService(user.NewGormStore(db))
 	authService := auth.NewService(auth.NewGormStore(db), userService)
 	lolService := lol.NewService(lol.NewGormStore(db), lol.Options{
-		DevMode: cfg.LeagueOfLettersDevMode,
+		DevMode:    cfg.LeagueOfLettersDevMode,
+		DailyReset: cfg.DailyResetLocation,
 	})
 	pubquizrService := pubquizr.NewService(pubquizrStore)
 	oneOfUsStore := oneofus.NewGormStore(db)
@@ -94,6 +101,7 @@ func run() error {
 	defer hub.Close()
 
 	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, hub, logger, cfg.AllowedOrigins)
+	logger.Info("word of the day reset zone", "tz", cfg.DailyResetLocation.String())
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
 	// --- http server --------------------------------------------------
@@ -118,6 +126,9 @@ func run() error {
 		SoloGameAge: 72 * time.Hour,
 		LobbyAge:    time.Hour,
 	}, 5*time.Minute, logger)
+	// Pre-warms today's and tomorrow's word of the day. The read path picks one
+	// lazily too, so a missed tick is never player-visible.
+	go lolService.RunDaily(ctx, cfg.DailyResetLocation, logger)
 	go pubquizrService.SweepStaleSessions(ctx, 72*time.Hour, time.Hour, logger)
 	go pubquizrService.SweepStaleLobbies(ctx, time.Hour, 5*time.Minute, logger)
 	go oneOfUsService.SweepStaleGames(ctx, 12*time.Hour, time.Hour, logger)

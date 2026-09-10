@@ -430,6 +430,32 @@ export const nl: Catalog = {
                 hostCanOpen: 'Het spel zit erop. De host kan een nieuwe lobby openen. Blijf hier, dan word je er vanzelf in meegenomen.'
             }
         },
+        wordOfTheDay: {
+            eyebrow: 'Woord van de dag',
+            streak: 'Reeks',
+            daysOne: 'dag',
+            daysMany: 'dagen',
+            bestDayOne: 'Beste dag: {{guesses}} poging',
+            bestDayMany: 'Beste dag: {{guesses}} pogingen',
+            noBestDay: 'Nog geen dag opgelost',
+            averageOne: 'Gemiddeld {{average}} · {{days}} dag gespeeld',
+            averageMany: 'Gemiddeld {{average}} · {{days}} dagen gespeeld',
+            start: 'Beginnen',
+            resume: 'Verder spelen',
+            caption: '{{letters}} letters, geen klok. Eén poging per dag.',
+            comeBackTitle: 'Kom morgen terug',
+            nextWord: 'Nog {{time}} tot een nieuw woord',
+            solvedInOne: 'Opgelost in {{guesses}} poging',
+            solvedInMany: 'Opgelost in {{guesses}} pogingen',
+            notSolved: 'Vandaag niet gehaald. Het woord was {{word}}.',
+            viewBoard: 'Bekijk je bord',
+            friendsTitle: 'Vrienden',
+            friendsEmpty: 'Vrienden zie je hier zodra ze gespeeld hebben',
+            friendStreak: 'Reeks {{streak}}',
+            friendGuessesOne: '{{guesses}} poging',
+            friendGuessesMany: '{{guesses}} pogingen',
+            friendWaiting: 'Nog niet gespeeld'
+        },
         errors: {
             staleServer: 'De server draait een oudere versie van dit spel. Herstart de API en probeer het opnieuw.',
             expired: 'Je sessie is verlopen. Log opnieuw in.',
@@ -441,7 +467,8 @@ export const nl: Catalog = {
             roundClosed: 'Deze ronde neemt geen gokken meer aan.',
             lobbyFull: 'Deze lobby zit vol.',
             lobbyGone: 'Deze lobby bestaat niet (meer). Check de code.',
-            alreadyStarted: 'Dit spel is al begonnen.'
+            alreadyStarted: 'Dit spel is al begonnen.',
+            alreadyPlayedToday: 'Je hebt vandaag al gespeeld. Kom morgen terug.'
         }
     },
     pubquizr: {

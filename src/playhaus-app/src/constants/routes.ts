@@ -9,6 +9,7 @@ export const ROUTES = {
     leagueOfLettersSoloSettings: "/games/league-of-letters/settings",
     leagueOfLettersCreateRoom: "/games/league-of-letters/room",
     leagueOfLettersWordOfTheDay: "/games/league-of-letters/word-of-the-day",
+    leagueOfLettersWordOfTheDayPlay: "/games/league-of-letters/word-of-the-day/play",
     leagueOfLettersTournament: "/games/league-of-letters/tournament",
     leagueOfLettersRoom: (code: string) => `/games/league-of-letters/room/${code}`,
     

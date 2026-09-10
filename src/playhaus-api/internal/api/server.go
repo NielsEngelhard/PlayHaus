@@ -100,6 +100,11 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleDeleteSoloGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
 
+	// Word of the day -- one word, one attempt, and the server resolves both from the session and the date.
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/word-of-the-day", s.requireAuth(s.handleGetWordOfTheDay))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/word-of-the-day", s.requireAuth(s.handleStartWordOfTheDay))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/word-of-the-day/guesses", s.requireAuth(s.handleSubmitDailyGuess))
+
 	// Multiplayer
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby", s.requireAuth(s.handleCreateLobby))
 	// Before {code}, so the literal wins: this is the room you are already in, not a room called "current".
