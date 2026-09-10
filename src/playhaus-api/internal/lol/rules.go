@@ -11,6 +11,31 @@ const (
 )
 
 const (
+	MinTournamentPlayers = 4
+	MaxTournamentPlayers = 12
+)
+
+// TournamentRoundsPerMatch is fixed so a 1v1 and a 1v1v1 in the same stage finish together.
+const TournamentRoundsPerMatch = 4
+
+// TournamentLossesAllowed is what makes the bracket double elimination.
+const TournamentLossesAllowed = 2
+
+func MinPlayersFor(kind LobbyKind) int {
+	if kind == LobbyTournament {
+		return MinTournamentPlayers
+	}
+	return MinLobbyPlayers
+}
+
+func MaxPlayersFor(kind LobbyKind) int {
+	if kind == LobbyTournament {
+		return MaxTournamentPlayers
+	}
+	return MaxLobbyPlayers
+}
+
+const (
 	MinWordLength = 4
 	MaxWordLength = 8
 )

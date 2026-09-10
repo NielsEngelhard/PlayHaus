@@ -69,12 +69,15 @@ type RecordMultiplayerGuessInput struct {
 }
 
 // CreateLobby opens a room and puts the caller in it as the host.
-func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*MultiplayerLeagueOfLettersLobby, error) {
-	return s.openLobby(ctx, ownerID, locale, DefaultWordLength, DefaultSecondsPerTurn)
+func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale, kind LobbyKind) (*MultiplayerLeagueOfLettersLobby, error) {
+	if !kind.Valid() {
+		kind = LobbyMultiplayer
+	}
+	return s.openLobby(ctx, ownerID, locale, DefaultWordLength, DefaultSecondsPerTurn, kind)
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and a length to sit at until somebody moves it.
-func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, wordLength int, secondsPerTurn int) (*MultiplayerLeagueOfLettersLobby, error) {
+func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, wordLength int, secondsPerTurn int, kind LobbyKind) (*MultiplayerLeagueOfLettersLobby, error) {
 	if ownerID == "" {
 		return nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
 	}
@@ -95,6 +98,7 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 		WordLength:     wordLength,
 		SecondsPerTurn: secondsPerTurn,
 		Status:         LobbyWaiting,
+		Kind:           kind,
 		CreatedAt:      now,
 		// The host is a player like any other, and the first one.
 		Players: []MultiplayerLobbyPlayer{{LobbyID: code, UserID: ownerID, Seat: 0, JoinedAt: now}},
@@ -197,6 +201,9 @@ func (s *Service) DeleteLobby(ctx context.Context, code, userID string) error {
 	if lobby.OwnerID != userID {
 		return ErrNotHost
 	}
+	if lobby.TournamentID != nil {
+		return ErrTournamentRoom
+	}
 
 	return s.store.DeleteLobby(ctx, code)
 }
@@ -210,10 +217,6 @@ func (s *Service) CurrentLobby(ctx context.Context, userID string) (*Multiplayer
 
 	// Newest first, and only the ones this player owns.
 	for _, game := range games {
-		if game.OwnerID != userID {
-			continue
-		}
-
 		lobby, err := s.store.LobbyByCode(ctx, game.LobbyID)
 		if err != nil {
 			// A game whose room has been deleted is not one anybody can be sent back to -- the board is reached by its join code.
@@ -221,6 +224,11 @@ func (s *Service) CurrentLobby(ctx context.Context, userID string) (*Multiplayer
 				continue
 			}
 			return nil, err
+		}
+
+		// A tournament match room is owned by the host, but it is every competitor's game to come back to.
+		if lobby.TournamentID == nil && game.OwnerID != userID {
+			continue
 		}
 
 		return lobby, nil
@@ -240,6 +248,9 @@ func (s *Service) AbandonLobby(ctx context.Context, code, userID string) error {
 	}
 	if lobby.OwnerID != userID {
 		return ErrNotHost
+	}
+	if lobby.TournamentID != nil {
+		return ErrTournamentRoom
 	}
 
 	// The game first: a room deleted before its game was ended would leave a board running with no way for this call to find it again.
@@ -263,6 +274,10 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*Multipl
 	}
 	if lobby.Status != LobbyWaiting {
 		return nil, nil, ErrLobbyStarted
+	}
+	if lobby.Kind == LobbyTournament {
+		// A tournament room is started by drawing its bracket, not by dealing one game.
+		return nil, nil, ErrTournamentRoom
 	}
 	if len(lobby.Players) < MinLobbyPlayers {
 		return nil, nil, ErrNotEnoughPlayers
@@ -322,6 +337,10 @@ func (s *Service) Rematch(ctx context.Context, code, userID string) (*Multiplaye
 	if lobby.OwnerID != userID {
 		return nil, ErrNotHost
 	}
+	if lobby.TournamentID != nil {
+		// A match room's table moves on through the bracket, not through a rematch.
+		return nil, ErrTournamentRoom
+	}
 
 	// Already opened, which is what a double-tapped button looks like from here.
 	if lobby.RematchCode != nil {
@@ -347,7 +366,7 @@ func (s *Service) Rematch(ctx context.Context, code, userID string) (*Multiplaye
 		return nil, ErrGameNotOver
 	}
 
-	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.WordLength, lobby.SecondsPerTurn)
+	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.WordLength, lobby.SecondsPerTurn, LobbyMultiplayer)
 	if err != nil {
 		return nil, err
 	}
@@ -410,6 +429,8 @@ type MultiplayerGuessOutcome struct {
 	Word string
 	// RoundNumber is the round the guess was played into.
 	RoundNumber int
+	// TournamentCode is the bracket this game just settled a match in, empty for an ordinary game.
+	TournamentCode string
 }
 
 // SubmitMultiplayerGuess plays one word into the game's current round.
@@ -537,6 +558,15 @@ func (s *Service) recordTurn(
 	})
 	if err != nil {
 		return nil, err
+	}
+
+	// One indexed lookup, and only ever on the guess that ended a game.
+	if outcome.GameOver {
+		code, err := s.settleMatch(ctx, game)
+		if err != nil {
+			return nil, err
+		}
+		outcome.TournamentCode = code
 	}
 
 	return outcome, nil

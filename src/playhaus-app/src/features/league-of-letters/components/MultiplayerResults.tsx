@@ -27,7 +27,11 @@ interface Props {
     /** The next room is being opened. */
     playingAgain: boolean,
     /** It could not be opened. Said under the button, which stays pressable. */
-    error: TranslationKey | null
+    error: TranslationKey | null,
+    /** The bracket this match belongs to. A tournament match ends by going back to it, not by playing again. */
+    tournamentCode?: string,
+    // Set with `tournamentCode`, and the only way off this screen.
+    onBackToBracket?: () => void
 }
 
 // How a shared game ends: the table, ranked, and the one thing left to decide.
@@ -38,7 +42,9 @@ export default function MultiplayerResults({
     isHost,
     onPlayAgain,
     playingAgain,
-    error
+    error,
+    tournamentCode,
+    onBackToBracket
 }: Props) {
     const styles = useStyles();
     const t = useT();
@@ -68,7 +74,14 @@ export default function MultiplayerResults({
                 {/* The live rings matter here in a way they do not on a solo result. */}
                 <FinalScoreboard players={players} userId={userId} online={online} />
 
-                {isHost ? (
+                {tournamentCode !== undefined ? (
+                    <ActionButton
+                        text={t('lol.tournament.backToBracket')}
+                        size='large'
+                        icon='git-merge'
+                        onPress={() => onBackToBracket?.()}
+                    />
+                ) : isHost ? (
                     <View style={styles.again}>
                         <ActionButton
                             text={playingAgain ? t('lol.lobby.opening') : t('lol.lobby.results.againSamePlayers')}
@@ -98,12 +111,12 @@ export default function MultiplayerResults({
                 )}
 
                 {/* The only way out that does not wait for the host. */}
-                <BackButton
+                {tournamentCode === undefined && <BackButton
                     href={ROUTES.leagueOfLettersIndex}
                     label={t('common.backToGames')}
                     variant='neutral'
                     style={styles.back}
-                />
+                />}
             </View>
 
             {/* Last, so it falls in front of everything. */}

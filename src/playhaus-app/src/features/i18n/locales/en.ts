@@ -314,7 +314,7 @@ export const en = {
             tournament: {
                 badge: 'New',
                 title: 'Tournament',
-                description: '1v1 matches (1v1v1 with an odd number). Rounds per match = the number of players.',
+                description: '4 to 12 players, 1v1 matches (1v1v1 with an odd number), four rounds each. Lose twice and you are out.',
                 action: 'Set up a tournament'
             }
         },
@@ -475,6 +475,53 @@ export const en = {
             friendGuessesMany: '{{guesses}} guesses',
             friendWaiting: 'Not played yet'
         },
+        tournament: {
+            loading: 'Looking for the tournament…',
+            noBracket: 'No tournament',
+            yourTournament: 'Your tournament',
+            start: 'Draw the bracket',
+            startNote: 'Once you start, nobody else can join.',
+            needPlayers: 'A tournament needs at least four players.',
+            confirmLeave: {
+                title: 'Leave the tournament?',
+                message: 'Your matches keep running without you and you can lose them by the clock. You can come back with the same code.',
+                action: 'Leave'
+            },
+            // The bar along the top of the bracket.
+            title: 'Tournament · {{players}} players',
+            schedule: 'Schedule',
+            nextRoundReady: 'Round {{stage}} can start',
+            matchesLeft: '{{done}} of {{total}} matches done · {{left}} still open',
+            winners: 'Winners {{players}}',
+            losers: 'Losers {{players}}',
+            final: 'Final',
+            stageOne: 'Round {{stage}} · 1 match',
+            stageMany: 'Round {{stage}} · {{matches}} matches',
+            nothingHere: 'Nothing here yet',
+            // One match in a column.
+            playing: 'Playing',
+            bye: 'Free pass to the next round',
+            you: 'You',
+            knockedOut: {
+                title: 'Knocked out',
+                message: 'You finished {{place}}. Stay and watch the rest of the bracket play out.'
+            },
+            // The gate between one round and the next.
+            waitingOnOne: 'Waiting on 1 match',
+            waitingOnMany: 'Waiting on {{matches}} matches',
+            readyWaiting: 'Waiting for the others',
+            ready: 'I am ready',
+            readyCount: '{{ready}} of {{total}} are ready · starts as soon as everyone is',
+            readyGate: 'Ready opens once all {{matches}} matches are done',
+            backToBracket: 'Back to the bracket',
+            champion: {
+                title: 'Champion',
+                you: 'You won the tournament.',
+                player: '{{name}} wins the tournament.'
+            },
+            lossOne: '1 loss',
+            lossMany: '{{losses}} losses'
+        },
         errors: {
             staleServer: 'The server is running an older version of this game. Restart the API and try again.',
             expired: 'Your session has expired. Log in again.',
@@ -487,7 +534,10 @@ export const en = {
             lobbyFull: 'This lobby is full.',
             lobbyGone: 'This lobby does not exist any more. Check the code.',
             alreadyStarted: 'This game has already started.',
-            alreadyPlayedToday: 'You have already played today. Come back tomorrow.'
+            alreadyPlayedToday: 'You have already played today. Come back tomorrow.',
+            notEnoughForTournament: 'A tournament needs between four and twelve players.',
+            stageNotOver: 'This round is not done yet.',
+            tournamentOver: 'This tournament is already over.'
         }
     },
     pubquizr: {

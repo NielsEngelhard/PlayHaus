@@ -1,4 +1,4 @@
-import { MAX_LOBBY_PLAYERS, MIN_LOBBY_PLAYERS, type Lobby } from "@/api/calls/league-of-letters-lobby";
+import { minPlayersFor, type Lobby } from "@/api/calls/league-of-letters-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -30,12 +30,13 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
 
     const { user } = useAuth();
 
-    const enough = lobby.players.length >= MIN_LOBBY_PLAYERS;
+    const tournament = lobby.kind === 'tournament';
+    const enough = lobby.players.length >= minPlayersFor(lobby.kind);
 
     return (
         <LobbyPageBase
             game={LEAGUE_OF_LETTERS}
-            title={t('lobby.yourRoom')}
+            title={tournament ? t('lol.tournament.yourTournament') : t('lobby.yourRoom')}
             live={state.connection === 'open'}
             onBack={onBack}
             backLabel={t('lobby.close')}
@@ -45,7 +46,9 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
             footer={
                 <View>
                     <StartGameButton
-                        text={state.starting ? t('common.busy') : t('lol.lobby.start')}
+                        text={state.starting
+                            ? t('common.busy')
+                            : tournament ? t('lol.tournament.start') : t('lol.lobby.start')}
                         onPress={onStart}
                         // A room of one has nobody to play against.
                         disabled={state.starting || state.saving || !enough}
@@ -53,14 +56,16 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
 
                     {/* The design promised latecomers could still join after the first round. */}
                     <AppText style={styles.footnote}>
-                        {enough ? t('lol.lobby.startNote') : t('lol.lobby.needPlayers')}
+                        {tournament
+                            ? enough ? t('lol.tournament.startNote') : t('lol.tournament.needPlayers')
+                            : enough ? t('lol.lobby.startNote') : t('lol.lobby.needPlayers')}
                     </AppText>
                 </View>
             }
         >
             <LobbySeatGrid
                 players={lobby.players}
-                maxPlayers={MAX_LOBBY_PLAYERS}
+                maxPlayers={lobby.maxPlayers}
                 hostId={lobby.hostId}
                 userId={user?.id}
                 online={state.online}

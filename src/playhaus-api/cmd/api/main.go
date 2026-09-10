@@ -125,6 +125,8 @@ func run() error {
 	go lolService.SweepStale(ctx, lol.SweepConfig{
 		SoloGameAge: 72 * time.Hour,
 		LobbyAge:    time.Hour,
+		// A bracket of twelve outlives the rooms of the matches it has already played.
+		TournamentAge: 12 * time.Hour,
 	}, 5*time.Minute, logger)
 	// Pre-warms today's and tomorrow's word of the day. The read path picks one
 	// lazily too, so a missed tick is never player-visible.

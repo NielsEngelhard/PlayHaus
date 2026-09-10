@@ -1,5 +1,6 @@
 import type { Game, GamePlayer, MultiplayerGuessResult, Turn } from '@/api/calls/league-of-letters';
 import type { Lobby } from '@/api/calls/league-of-letters-lobby';
+import type { Tournament } from '@/api/calls/league-of-letters-tournament';
 
 // The socket half of the API.
 
@@ -10,7 +11,7 @@ export function lolRoom(code: string): string {
 
 export type ServerEvent =
     /** The whole picture, sent as the connection opens. A reconnect is told where things stand rather than replayed at. */
-    | { type: 'state', data: { lobby: Lobby, game?: Game, online: string[] } }
+    | { type: 'state', data: { lobby: Lobby, game?: Game, tournament?: Tournament, online: string[] } }
     /** Who is connected. This is the live dot. */
     | { type: 'presence', data: { online: string[] } }
     /** The room changed: somebody in or out, or a setting the host moved. */
@@ -18,6 +19,8 @@ export type ServerEvent =
     /** The host shut the room. The code is dead and there is nothing to go back to. */
     | { type: 'lobby_closed', data?: undefined }
     | { type: 'game_started', data: { gameId: string, lobby: Lobby } }
+    /** The bracket moved: a match settled, somebody readied, or a stage opened. */
+    | { type: 'tournament', data: { tournament: Tournament } }
     | { type: 'turn', data: Turn }
     /** The letters the active player has down so far. Never your own. */
     | { type: 'typing', data: { userId: string, letters: string } }

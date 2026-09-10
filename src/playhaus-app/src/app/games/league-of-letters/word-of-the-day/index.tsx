@@ -25,6 +25,9 @@ import { ScrollView, View } from 'react-native';
 // How often the countdown to the next word is re-read, which is fine at half a minute for a clock drawn to the minute.
 const TICK_MS = 30_000;
 
+// How far the cards climb over the hero's bottom edge.
+const OVERLAP = 18;
+
 // Today's word: the streak it feeds, the best day to beat, and the one attempt going in.
 export default function LeagueOfLettersWordOfTheDayPage() {
     const theme = useTheme();
@@ -142,16 +145,17 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%'
     },
 
+    // Pulled up under the hero's rounded edge: the overlap belongs to the scroller, since a negative margin inside it would be clipped away instead.
     scroll: {
-        width: '100%'
+        width: '100%',
+        marginTop: -OVERLAP
     },
 
-    // The design's gutters, pulled up under the hero's rounded edge.
+    // The design's gutters.
     body: {
         gap: 12,
         paddingHorizontal: 15,
-        paddingBottom: 15,
-        marginTop: -18
+        paddingBottom: 15
     },
 
     cta: {

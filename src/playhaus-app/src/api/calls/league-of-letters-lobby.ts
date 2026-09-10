@@ -5,7 +5,10 @@ import type { WordLength } from '@/features/league-of-letters/solo-settings';
 // The waiting room a multiplayer League of Letters game is set up in.
 
 export const MAX_LOBBY_PLAYERS = 4;
+export const MAX_TOURNAMENT_PLAYERS = 12;
 export const MIN_LOBBY_PLAYERS = 2;
+export const MIN_TOURNAMENT_PLAYERS = 4;
+export type LobbyKind = 'multiplayer' | 'tournament';
 export type LobbyStatus = 'waiting' | 'started';
 
 export interface LobbyPlayer {
@@ -34,6 +37,12 @@ export interface Lobby {
     createdAt: string
     /** The game to open, present only once `status` is `started`. */
     gameId?: string
+    // What the room is for: an ordinary game, or a tournament's bracket.
+    kind: LobbyKind
+    // How many seats the room has, which a tournament widens.
+    maxPlayers: number
+    // The bracket a match room belongs to, absent on an ordinary room.
+    tournamentCode?: string
     // The room this one's table has moved on to, present only once the game is over and the host has opened another.
     rematchCode?: string
 }
@@ -48,10 +57,10 @@ export class LobbyFullError extends Error {
 
 const lobbyPath = (code: string) => `/api/v1/league-of-letters/lobby/${encodeURIComponent(code)}`;
 
-export async function createLobby(locale?: LanguageCode): Promise<Lobby> {
+export async function createLobby(locale?: LanguageCode, kind: LobbyKind = 'multiplayer'): Promise<Lobby> {
     return request<Lobby>('/api/v1/league-of-letters/lobby', {
         method: 'POST',
-        body: JSON.stringify({ locale })
+        body: JSON.stringify({ locale, kind })
     });
 }
 
@@ -110,4 +119,9 @@ export async function rematchLobby(code: string): Promise<Lobby> {
 /** Whether this player owns the room, which is the whole of the permission model. */
 export function isHostOf(lobby: Lobby, userId: string | undefined): boolean {
     return userId !== undefined && lobby.hostId === userId;
+}
+
+// How few players a room of this kind can start with.
+export function minPlayersFor(kind: LobbyKind): number {
+    return kind === 'tournament' ? MIN_TOURNAMENT_PLAYERS : MIN_LOBBY_PLAYERS;
 }

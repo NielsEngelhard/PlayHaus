@@ -162,8 +162,9 @@ func (s *GormStore) DeleteLobbiesOlderThan(ctx context.Context, before time.Time
 
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		var codes []string
+		// A tournament owns its rooms for as long as it lives, and releases them when it is swept.
 		err := tx.Model(&MultiplayerLeagueOfLettersLobby{}).
-			Where("created_at < ?", before).
+			Where("created_at < ? AND tournament_id IS NULL", before).
 			Pluck("id", &codes).Error
 		if err != nil {
 			return fmt.Errorf("select lobbies: %w", err)
@@ -195,8 +196,10 @@ func (s *GormStore) DeleteMultiplayerGamesOlderThan(ctx context.Context, before 
 
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 		var gameIDs []uuid.UUID
+		// Same again: a tournament match survives its age until the bracket lets it go.
 		err := tx.Model(&MultiplayerLeagueOfLettersGame{}).
-			Where("created_at < ?", before).
+			Where("created_at < ? AND lobby_id NOT IN (?)", before,
+				tx.Model(&MultiplayerLeagueOfLettersLobby{}).Select("id").Where("tournament_id IS NOT NULL")).
 			Pluck("id", &gameIDs).Error
 		if err != nil {
 			return fmt.Errorf("select games: %w", err)

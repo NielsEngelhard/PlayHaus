@@ -51,6 +51,20 @@ export default function LeagueOfLettersRoomPage() {
         router.replace(ROUTES.leagueOfLettersRoom(rematchCode) as RelativePathString);
     }, [rematchCode, code, router]);
 
+    // A tournament's own room is a bracket, not a game, so it is shown by the screen that draws one.
+    const bracket = state.lobby?.kind === 'tournament';
+    const { handOver } = state;
+    useEffect(() => {
+        if (!bracket) return;
+
+        // Before the navigation, or unmounting this screen gives the seat back and the player lands on a room they just left.
+        handOver();
+        router.replace(ROUTES.leagueOfLettersTournamentRoom(code) as RelativePathString);
+    }, [bracket, code, handOver, router]);
+
+    // The bracket a match room belongs to, which is where its result goes back to.
+    const tournamentCode = state.lobby?.tournamentCode;
+
     // The host stopped the game, or shut the room out from under everybody waiting in it.
     if (state.closed) {
         return (
@@ -65,7 +79,17 @@ export default function LeagueOfLettersRoomPage() {
 
     if (gameId !== undefined) {
         return finished
-            ? <RoomResults table={table} isHost={state.isHost} onPlayAgain={() => void state.rematch()} playingAgain={state.rematching} error={state.actionError} />
+            ? <RoomResults
+                table={table}
+                isHost={state.isHost}
+                onPlayAgain={() => void state.rematch()}
+                playingAgain={state.rematching}
+                error={state.actionError}
+                tournamentCode={tournamentCode}
+                onBackToBracket={() => tournamentCode !== undefined && router.replace(
+                    ROUTES.leagueOfLettersTournamentRoom(tournamentCode) as RelativePathString
+                )}
+            />
             : <RoomGame table={table} onFinish={finish} />;
     }
 
@@ -142,11 +166,13 @@ interface RoomResultsProps {
     isHost: boolean,
     onPlayAgain: () => void,
     playingAgain: boolean,
-    error: TranslationKey | null
+    error: TranslationKey | null,
+    tournamentCode?: string,
+    onBackToBracket: () => void
 }
 
 // The end of the game, still inside the room.
-function RoomResults({ table, isHost, onPlayAgain, playingAgain, error }: RoomResultsProps) {
+function RoomResults({ table, isHost, onPlayAgain, playingAgain, error, tournamentCode, onBackToBracket }: RoomResultsProps) {
     const { user } = useAuth();
     const t = useT();
 
@@ -166,6 +192,8 @@ function RoomResults({ table, isHost, onPlayAgain, playingAgain, error }: RoomRe
             onPlayAgain={onPlayAgain}
             playingAgain={playingAgain}
             error={error}
+            tournamentCode={tournamentCode}
+            onBackToBracket={onBackToBracket}
         />
     )
 }

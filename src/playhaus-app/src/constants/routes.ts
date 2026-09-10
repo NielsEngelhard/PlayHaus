@@ -12,6 +12,7 @@ export const ROUTES = {
     leagueOfLettersWordOfTheDayPlay: "/games/league-of-letters/word-of-the-day/play",
     leagueOfLettersTournament: "/games/league-of-letters/tournament",
     leagueOfLettersRoom: (code: string) => `/games/league-of-letters/room/${code}`,
+    leagueOfLettersTournamentRoom: (code: string) => `/games/league-of-letters/tournament/${code}`,
     
     // PubquizR
     quizzerIndex: "/games/quizzer",

@@ -47,6 +47,12 @@ var (
 
 	ErrAlreadyPlayedToday = errors.New("word of the day already played today")
 	ErrNoWordForDay       = errors.New("no word of the day for that day")
+
+	ErrTournamentNotFound = errors.New("tournament not found")
+	ErrNotATournament     = errors.New("that room is not a tournament")
+	ErrStageNotOver       = errors.New("some matches of this round are still being played")
+	ErrTournamentOver     = errors.New("tournament is already over")
+	ErrTournamentRoom     = errors.New("that room belongs to a tournament")
 )
 
 type LobbyStatus string
@@ -55,6 +61,15 @@ const (
 	LobbyWaiting LobbyStatus = "waiting" // waiting to start
 	LobbyStarted LobbyStatus = "started"
 )
+
+type LobbyKind string
+
+const (
+	LobbyMultiplayer LobbyKind = "multiplayer"
+	LobbyTournament  LobbyKind = "tournament"
+)
+
+func (k LobbyKind) Valid() bool { return k == LobbyMultiplayer || k == LobbyTournament }
 
 type MultiplayerLeagueOfLettersLobby struct {
 	ID             string                   `gorm:"primaryKey;type:text"`
@@ -67,11 +82,16 @@ type MultiplayerLeagueOfLettersLobby struct {
 	Players        []MultiplayerLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
 	CreatedAt      time.Time                `gorm:"not null"`
 	RematchCode    *string                  `gorm:"type:text"` // RematchCode is the room this one's table moved on to, once the game was over and
+	Kind           LobbyKind                `gorm:"not null;default:multiplayer"`
+	// TournamentID is set both on a tournament's own lobby and on every match room it opens.
+	TournamentID *uuid.UUID `gorm:"index;type:text"`
 }
 
 func (MultiplayerLeagueOfLettersLobby) TableName() string { return "mp_lol_lobbies" }
 
-func (l MultiplayerLeagueOfLettersLobby) Full() bool { return len(l.Players) >= MaxLobbyPlayers }
+func (l MultiplayerLeagueOfLettersLobby) Full() bool {
+	return len(l.Players) >= MaxPlayersFor(l.Kind)
+}
 
 func (l MultiplayerLeagueOfLettersLobby) Has(userID string) bool {
 	for _, player := range l.Players {
@@ -280,6 +300,144 @@ type LeagueOfLettersValidatedLetter struct {
 
 func (LeagueOfLettersValidatedLetter) TableName() string { return "lol_letters" }
 
+type TournamentStatus string
+
+const (
+	TournamentInProgress TournamentStatus = "in_progress"
+	TournamentCompleted  TournamentStatus = "completed"
+)
+
+type Bracket string
+
+const (
+	BracketWinners Bracket = "winners"
+	BracketLosers  Bracket = "losers"
+	BracketFinal   Bracket = "final"
+)
+
+type MatchStatus string
+
+const (
+	MatchLive MatchStatus = "live"
+	MatchDone MatchStatus = "done"
+	MatchBye  MatchStatus = "bye"
+)
+
+// Tournament is a bracket of ordinary multiplayer games played by one lobby's table.
+type Tournament struct {
+	ID             uuid.UUID   `gorm:"primaryKey;type:text"`
+	LobbyID        string      `gorm:"index;not null;type:text"` // the tournament lobby's join code
+	OwnerID        string      `gorm:"index;not null"`
+	Locale         i18n.Locale `gorm:"not null"`
+	WordLength     int         `gorm:"not null"`
+	SecondsPerTurn int         `gorm:"not null"`
+	// Stage is the round of the bracket on the table right now, counting from 1.
+	Stage     int                `gorm:"not null"`
+	Status    TournamentStatus   `gorm:"not null"`
+	WinnerID  *string            `gorm:"index"`
+	Players   []TournamentPlayer `gorm:"foreignKey:TournamentID;constraint:OnDelete:CASCADE"`
+	Matches   []TournamentMatch  `gorm:"foreignKey:TournamentID;constraint:OnDelete:CASCADE"`
+	CreatedAt time.Time          `gorm:"not null"`
+}
+
+func (Tournament) TableName() string { return "tn_lol_tournaments" }
+
+// Player is the entry this account holds in the bracket.
+func (t Tournament) Player(userID string) *TournamentPlayer {
+	for i := range t.Players {
+		if t.Players[i].UserID == userID {
+			return &t.Players[i]
+		}
+	}
+	return nil
+}
+
+// Stand is who is still in, split by how many losses they carry.
+func (t Tournament) Stand() (winners, losers []string) {
+	for _, player := range t.Players {
+		switch {
+		case player.Eliminated():
+			continue
+		case player.Losses == 0:
+			winners = append(winners, player.UserID)
+		default:
+			losers = append(losers, player.UserID)
+		}
+	}
+	return winners, losers
+}
+
+// MatchesInStage are the matches drawn for one round of the bracket.
+func (t Tournament) MatchesInStage(stage int) []TournamentMatch {
+	var matches []TournamentMatch
+	for _, match := range t.Matches {
+		if match.Stage == stage {
+			matches = append(matches, match)
+		}
+	}
+	return matches
+}
+
+// StageOver reports whether every match of the stage on the table has a result.
+func (t Tournament) StageOver() bool {
+	for _, match := range t.MatchesInStage(t.Stage) {
+		if match.Status == MatchLive {
+			return false
+		}
+	}
+	return true
+}
+
+type TournamentPlayer struct {
+	TournamentID uuid.UUID `gorm:"primaryKey;type:text"`
+	UserID       string    `gorm:"primaryKey;index"`
+	Seed         int       `gorm:"not null"` // Seed is the lobby seat they came in on
+	Losses       int       `gorm:"not null"`
+	// ReadyStage is the stage this player has readied for, so readiness resets when the bracket moves on.
+	ReadyStage int  `gorm:"not null"`
+	Placement  *int // Placement is the finishing position, set the moment they are out
+}
+
+func (TournamentPlayer) TableName() string { return "tn_lol_tournament_players" }
+
+func (p TournamentPlayer) Eliminated() bool { return p.Losses >= TournamentLossesAllowed }
+
+type TournamentMatch struct {
+	ID           uuid.UUID `gorm:"primaryKey;type:text"`
+	TournamentID uuid.UUID `gorm:"index;not null;type:text"`
+	Stage        int       `gorm:"not null"`
+	Bracket      Bracket   `gorm:"not null"`
+	Position     int       `gorm:"not null"` // Position orders the matches within one bracket column
+	// LobbyID and GameID are the ordinary multiplayer room this match is played in, and are nil for a bye.
+	LobbyID   *string                 `gorm:"type:text"`
+	GameID    *uuid.UUID              `gorm:"index;type:text"`
+	Status    MatchStatus             `gorm:"not null"`
+	WinnerID  *string                 `gorm:"index"`
+	Players   []TournamentMatchPlayer `gorm:"foreignKey:MatchID;constraint:OnDelete:CASCADE"`
+	CreatedAt time.Time               `gorm:"not null"`
+}
+
+func (TournamentMatch) TableName() string { return "tn_lol_matches" }
+
+func (m TournamentMatch) Has(userID string) bool {
+	for _, player := range m.Players {
+		if player.UserID == userID {
+			return true
+		}
+	}
+	return false
+}
+
+type TournamentMatchPlayer struct {
+	MatchID uuid.UUID `gorm:"primaryKey;type:text"`
+	UserID  string    `gorm:"primaryKey;index"`
+	Slot    int       `gorm:"not null"`
+	Score   int       `gorm:"not null"`
+	Place   int       `gorm:"not null"` // Place is 1-based and 0 until the match is settled
+}
+
+func (TournamentMatchPlayer) TableName() string { return "tn_lol_match_players" }
+
 func Models() []any {
 	return []any{
 		&SoloLeagueOfLettersGame{},
@@ -293,5 +451,9 @@ func Models() []any {
 		&MultiplayerLobbyPlayer{},
 		&MultiplayerLeagueOfLettersGame{},
 		&MultiplayerGamePlayer{},
+		&Tournament{},
+		&TournamentPlayer{},
+		&TournamentMatch{},
+		&TournamentMatchPlayer{},
 	}
 }

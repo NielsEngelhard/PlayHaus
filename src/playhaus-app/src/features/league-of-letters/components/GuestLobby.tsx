@@ -1,4 +1,4 @@
-import { MAX_LOBBY_PLAYERS, type Lobby } from "@/api/calls/league-of-letters-lobby";
+import type { Lobby } from "@/api/calls/league-of-letters-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
@@ -46,7 +46,7 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
 
             <LobbyRoster
                 players={lobby.players}
-                maxPlayers={MAX_LOBBY_PLAYERS}
+                maxPlayers={lobby.maxPlayers}
                 hostId={lobby.hostId}
                 userId={user?.id}
             />

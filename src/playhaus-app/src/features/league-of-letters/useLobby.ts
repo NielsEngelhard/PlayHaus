@@ -8,8 +8,10 @@ import {
     rematchLobby,
     startLobby,
     updateLobbySettings,
-    type Lobby
+    type Lobby,
+    type LobbyKind
 } from '@/api/calls/league-of-letters-lobby';
+import { createTournament } from '@/api/calls/league-of-letters-tournament';
 import { lolRoom, type ServerEvent, type SocketStatus } from '@/api/socket';
 import { DEFAULT_LANGUAGE } from '@/constants/languages';
 import { useAuth } from '@/features/auth/useAuth';
@@ -55,10 +57,12 @@ export interface LobbyState {
     reload: () => void
     // Host only.
     updateSettings: (settings: LobbySettings) => void
+    /** Another screen is taking this room over, so leaving this one must not hand the seat back. */
+    handOver: () => void
 }
 
 
-export function useLobby(code?: string): LobbyState {
+export function useLobby(code?: string, kind: LobbyKind = 'multiplayer'): LobbyState {
     const { user, status } = useAuth();
     const [lobby, setLobby] = useState<Lobby | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
@@ -126,7 +130,7 @@ export function useLobby(code?: string): LobbyState {
 
         try {
             const opened = code === undefined
-                ? await createLobby(locale.current)
+                ? await createLobby(locale.current, kind)
                 : await joinLobby(code);
 
             if (held.current === null) {
@@ -156,7 +160,7 @@ export function useLobby(code?: string): LobbyState {
 
             setError(lobbyErrorMessage(failure));
         }
-    }, [signedIn, userId, code, letGo]);
+    }, [signedIn, userId, code, kind, letGo]);
 
     useEffect(() => {
         if (!signedIn) return;
@@ -237,7 +241,14 @@ export function useLobby(code?: string): LobbyState {
 
         try {
             // Nothing but the code: the settings are already the room's, saved as the host moved them.
-            const started = await startLobby(lobby.code);
+            // A tournament room draws a bracket instead of a game, and answers with the bracket rather than the room.
+            let started: Lobby;
+            if (lobby.kind === 'tournament') {
+                await createTournament(lobby.code);
+                started = { ...lobby, status: 'started' };
+            } else {
+                started = await startLobby(lobby.code);
+            }
 
             // Before anything else: the caller navigates to the board the moment this resolves.
             owed.current = null;
@@ -341,6 +352,11 @@ export function useLobby(code?: string): LobbyState {
         void load();
     }, [load]);
 
+    // The hold itself is left alone: the screen taking over counts itself in, and the last one out still releases.
+    const handOver = useCallback(() => {
+        owed.current = null;
+    }, []);
+
     return {
         lobby,
         loading: lobby === null && error === null,
@@ -359,6 +375,7 @@ export function useLobby(code?: string): LobbyState {
         rematching,
         rematch,
         reload,
-        updateSettings
+        updateSettings,
+        handOver
     };
 }

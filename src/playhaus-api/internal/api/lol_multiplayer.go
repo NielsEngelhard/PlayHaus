@@ -37,9 +37,16 @@ func (req lobbySettingsRequest) Validate() map[string]string {
 // newLobbyRequest is what opens a room.
 type newLobbyRequest struct {
 	Locale *string `json:"locale"`
+	// Kind is what the room is for, and defaults to an ordinary multiplayer game.
+	Kind *string `json:"kind"`
 }
 
-func (newLobbyRequest) Validate() map[string]string { return nil }
+func (req newLobbyRequest) Validate() map[string]string {
+	if req.Kind != nil && !lol.LobbyKind(*req.Kind).Valid() {
+		return map[string]string{"kind": "must be multiplayer or tournament"}
+	}
+	return nil
+}
 
 type lobbySettingsResponse struct {
 	Locale         string `json:"locale"`
@@ -69,6 +76,12 @@ type lobbyResponse struct {
 	GameID string `json:"gameId,omitempty"`
 	// RematchCode is the room this one's table has moved on to, once the game was over and the host pressed play again.
 	RematchCode string `json:"rematchCode,omitempty"`
+	// Kind is what the room is for: an ordinary game, or a tournament's bracket.
+	Kind string `json:"kind"`
+	// MaxPlayers is how many seats this room has, which a tournament widens.
+	MaxPlayers int `json:"maxPlayers"`
+	// TournamentCode is the bracket a match room belongs to, empty for an ordinary room.
+	TournamentCode string `json:"tournamentCode,omitempty"`
 }
 
 type gamePlayerResponse struct {
@@ -171,14 +184,22 @@ func (s *Server) newLobbyResponse(ctx context.Context, lobby *lol.MultiplayerLea
 			WordLength:     lobby.WordLength,
 			SecondsPerTurn: lobby.SecondsPerTurn,
 		},
-		Players:   players,
-		CreatedAt: lobby.CreatedAt.Format(timeFormat),
+		Players:    players,
+		CreatedAt:  lobby.CreatedAt.Format(timeFormat),
+		Kind:       string(lobby.Kind),
+		MaxPlayers: lol.MaxPlayersFor(lobby.Kind),
 	}
 	if lobby.GameID != nil {
 		body.GameID = lobby.GameID.String()
 	}
 	if lobby.RematchCode != nil {
 		body.RematchCode = *lobby.RematchCode
+	}
+	// A match room points back at the bracket it is a match of, which is how the app knows to go there next.
+	if lobby.TournamentID != nil && lobby.Kind != lol.LobbyTournament {
+		if code, err := s.leagueOfLetters.TournamentCode(ctx, *lobby.TournamentID); err == nil {
+			body.TournamentCode = code
+		}
 	}
 
 	return body
@@ -355,13 +376,17 @@ func (s *Server) handleCreateLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, _, err := decode[newLobbyRequest](r)
+	req, problems, err := decode[newLobbyRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
 
-	lobby, err := s.leagueOfLetters.CreateLobby(r.Context(), userID, localeFrom(Deref(req.Locale, ""), r))
+	lobby, err := s.leagueOfLetters.CreateLobby(r.Context(), userID, localeFrom(Deref(req.Locale, ""), r), lol.LobbyKind(Deref(req.Kind, "")))
 	if err != nil {
 		s.writeLobbyError(w, "create lobby", err)
 		return
@@ -644,6 +669,11 @@ func (s *Server) handleSubmitMultiplayerGuess(w http.ResponseWriter, r *http.Req
 	// Everybody watching gets exactly what the guesser got back.
 	s.publishGuess(outcome.Game.LobbyID, outcome.Game, body)
 
+	// That guess ended a tournament match, so the bracket has moved.
+	if outcome.TournamentCode != "" {
+		s.publishTournamentFor(r.Context(), outcome.TournamentCode)
+	}
+
 	writeJSON(w, http.StatusCreated, body)
 }
 
@@ -662,6 +692,8 @@ func (s *Server) writeLobbyError(w http.ResponseWriter, what string, err error) 
 		writeErrorCode(w, http.StatusConflict, "not_enough_players", "you need another player to start")
 	case errors.Is(err, lol.ErrGameNotOver):
 		writeErrorCode(w, http.StatusConflict, "game_not_over", "that game is still being played")
+	case errors.Is(err, lol.ErrTournamentRoom):
+		writeErrorCode(w, http.StatusConflict, "tournament_room", "that room belongs to a tournament")
 	default:
 		s.log.Error(what, "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")

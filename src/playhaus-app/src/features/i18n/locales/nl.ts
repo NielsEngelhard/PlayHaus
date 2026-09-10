@@ -302,7 +302,7 @@ export const nl: Catalog = {
             tournament: {
                 badge: 'Nieuw',
                 title: 'Toernooi',
-                description: 'Begin een toernooi (minimaal 4 spelers)',
+                description: '4 tot 12 spelers, 1v1 potjes (1v1v1 bij oneven), vier rondes per potje. Twee keer verliezen en je ligt eruit.',
                 action: 'Toernooi opzetten'
             }
         },
@@ -323,11 +323,11 @@ export const nl: Catalog = {
                 badge: 'Nieuw',
                 zen: {
                     label: 'Zen',
-                    description: 'Geen klok en geen score — je speelt op je gemak.'
+                    description: 'Een potje zonder tijd en score. Geen druk!'
                 },
                 competitive: {
                     label: 'Competitief',
-                    description: 'De klok loopt vanaf het begin. Los alle drie de woorden op voor punten, plus een bonus voor je tijd.'
+                    description: 'Los alle drie de woorden zo snel mogelijk op met zo min mogelijk pogingen. Hoe sneller en korter, hoe hoger je score.'
                 }
             },
             hardMode: {
@@ -456,6 +456,53 @@ export const nl: Catalog = {
             friendGuessesMany: '{{guesses}} pogingen',
             friendWaiting: 'Nog niet gespeeld'
         },
+        tournament: {
+            loading: 'Even het toernooi ophalen…',
+            noBracket: 'Geen toernooi',
+            yourTournament: 'Jouw toernooi',
+            start: 'Maak het schema',
+            startNote: 'Zodra je start kan er niemand meer bij.',
+            needPlayers: 'Een toernooi heeft minstens vier spelers nodig.',
+            confirmLeave: {
+                title: 'Toernooi verlaten?',
+                message: 'Je potjes lopen zonder jou door en je kunt ze op de klok verliezen. Met dezelfde code kom je terug.',
+                action: 'Verlaten'
+            },
+            // De balk bovenaan het schema.
+            title: 'Toernooi · {{players}} spelers',
+            schedule: 'Schema',
+            nextRoundReady: 'Ronde {{stage}} kan starten',
+            matchesLeft: '{{done}} van {{total}} potjes klaar · {{left}} nog onbeslist',
+            winners: 'Winnaars {{players}}',
+            losers: 'Verliezers {{players}}',
+            final: 'Finale',
+            stageOne: 'Ronde {{stage}} · 1 potje',
+            stageMany: 'Ronde {{stage}} · {{matches}} potjes',
+            nothingHere: 'Hier nog niets',
+            // Eén potje in een kolom.
+            playing: 'Bezig',
+            bye: 'Vrije doorgang naar de volgende ronde',
+            you: 'Jij',
+            knockedOut: {
+                title: 'Uitgeschakeld',
+                message: 'Je bent {{place}}e geworden. Blijf kijken hoe de rest van het schema afloopt.'
+            },
+            // De poort tussen de ene ronde en de volgende.
+            waitingOnOne: 'Wachten op 1 potje',
+            waitingOnMany: 'Wachten op {{matches}} potjes',
+            readyWaiting: 'Wachten op de anderen',
+            ready: 'Ik ben er klaar voor',
+            readyCount: '{{ready}} van de {{total}} staan klaar · start zodra iedereen er is',
+            readyGate: 'Ready wordt actief als alle {{matches}} potjes klaar zijn',
+            backToBracket: 'Terug naar het schema',
+            champion: {
+                title: 'Kampioen',
+                you: 'Je hebt het toernooi gewonnen.',
+                player: '{{name}} wint het toernooi.'
+            },
+            lossOne: '1 verlies',
+            lossMany: '{{losses}} verliezen'
+        },
         errors: {
             staleServer: 'De server draait een oudere versie van dit spel. Herstart de API en probeer het opnieuw.',
             expired: 'Je sessie is verlopen. Log opnieuw in.',
@@ -468,7 +515,10 @@ export const nl: Catalog = {
             lobbyFull: 'Deze lobby zit vol.',
             lobbyGone: 'Deze lobby bestaat niet (meer). Check de code.',
             alreadyStarted: 'Dit spel is al begonnen.',
-            alreadyPlayedToday: 'Je hebt vandaag al gespeeld. Kom morgen terug.'
+            alreadyPlayedToday: 'Je hebt vandaag al gespeeld. Kom morgen terug.',
+            notEnoughForTournament: 'Een toernooi heeft vier tot twaalf spelers nodig.',
+            stageNotOver: 'Deze ronde is nog niet klaar.',
+            tournamentOver: 'Dit toernooi is al afgelopen.'
         }
     },
     pubquizr: {
@@ -1155,8 +1205,8 @@ export const nl: Catalog = {
         index: {
             description: 'Een zin met een gat erin. Twee spelers verzinnen stiekem een invulling; de rest moet raden welke echt is.',
             multiplayer: {
-                title: 'Samen spelen',
-                description: 'Iedereen op zijn eigen telefoon. Eén opent de kamer, de rest komt binnen met de code.',
+                title: 'Multi device',
+                description: 'Iedereen op zijn eigen telefoon. Eén pseroon maak de lobby, de rest joined met de code.',
                 action: 'Open een kamer'
             }
         },

@@ -25,12 +25,15 @@ type Store interface {
 
 	MultiplayerStore
 	DailyStore
+	TournamentStore
 }
 
 // SweepConfig is the retention window per table the sweep touches.
 type SweepConfig struct {
 	SoloGameAge time.Duration
 	LobbyAge    time.Duration // shared by lobbies and started multiplayer games
+	// TournamentAge is longer: a bracket outlives the rooms of the matches it has already played.
+	TournamentAge time.Duration
 }
 
 // SweepStale deletes old solo games and multiplayer lobbies/games on a ticker until ctx is cancelled.
@@ -61,6 +64,12 @@ func (s *Service) SweepStale(ctx context.Context, cfg SweepConfig, every time.Du
 				log.Error("sweep stale multiplayer league of letters games", "err", err)
 			} else if deleted > 0 {
 				log.Info("swept stale multiplayer league of letters games", "deleted", deleted)
+			}
+
+			if deleted, err := s.store.DeleteTournamentsOlderThan(ctx, now.Add(-cfg.TournamentAge)); err != nil {
+				log.Error("sweep stale league of letters tournaments", "err", err)
+			} else if deleted > 0 {
+				log.Info("swept stale league of letters tournaments", "deleted", deleted)
 			}
 		}
 	}

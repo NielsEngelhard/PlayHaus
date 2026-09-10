@@ -71,3 +71,17 @@ export function lobbyErrorMessage(error: unknown): TranslationKey {
 
     return gameErrorMessage(error);
 }
+
+// The same, for the bracket.
+export function tournamentErrorMessage(error: unknown): TranslationKey {
+    switch (apiErrorCode(error)) {
+        case 'not_enough_players':
+            return 'lol.errors.notEnoughForTournament';
+        case 'stage_not_over':
+            return 'lol.errors.stageNotOver';
+        case 'tournament_over':
+            return 'lol.errors.tournamentOver';
+    }
+
+    return lobbyErrorMessage(error);
+}

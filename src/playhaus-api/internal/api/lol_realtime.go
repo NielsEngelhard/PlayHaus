@@ -44,12 +44,15 @@ const (
 	typeGameOver = "game_over"
 	// typeRematch is the host having opened a fresh room for the same table.
 	typeRematch = "rematch"
+	// typeTournament is the bracket having moved: a match settled, somebody readied, a stage drawn.
+	typeTournament = "tournament"
 )
 
 type statePayload struct {
-	Lobby  lobbyResponse            `json:"lobby"`
-	Game   *multiplayerGameResponse `json:"game,omitempty"`
-	Online []string                 `json:"online"`
+	Lobby      lobbyResponse            `json:"lobby"`
+	Game       *multiplayerGameResponse `json:"game,omitempty"`
+	Tournament *tournamentResponse      `json:"tournament,omitempty"`
+	Online     []string                 `json:"online"`
 }
 
 type presencePayload struct {
@@ -83,6 +86,10 @@ type gameOverPayload struct {
 // rematchPayload is the door out of a finished room: the code of the one that replaced it.
 type rematchPayload struct {
 	Code string `json:"code"`
+}
+
+type tournamentPayload struct {
+	Tournament tournamentResponse `json:"tournament"`
 }
 
 // lolRealtime is the Server's socket behaviour for League of Letters rooms.
@@ -136,6 +143,14 @@ func (h lolRealtime) OnJoin(ctx context.Context, room *realtime.Room, client *re
 		if game, err := s.leagueOfLetters.MultiplayerGame(ctx, *lobby.GameID, client.UserID); err == nil {
 			body := s.newMultiplayerGameResponse(ctx, game, client.UserID)
 			payload.Game = &body
+		}
+	}
+
+	// Set on the bracket's own room and on every match room it opened, so both can follow it.
+	if lobby.TournamentID != nil {
+		if tournament, err := s.leagueOfLetters.TournamentByID(ctx, *lobby.TournamentID); err == nil {
+			body := s.newTournamentResponse(ctx, tournament)
+			payload.Tournament = &body
 		}
 	}
 
@@ -251,6 +266,11 @@ func (h lolRealtime) turnExpired(room *realtime.Room, gameID uuid.UUID, endsAt t
 	}
 
 	h.broadcastGuess(ctx, room, outcome.Game, h.server.newMultiplayerGuessResponse(ctx, outcome))
+
+	// The clock finished a tournament match, so the bracket has moved.
+	if outcome.TournamentCode != "" {
+		h.server.publishTournamentFor(ctx, outcome.TournamentCode)
+	}
 }
 
 // broadcastGuess is the row, the scores and the next turn, plus the clock for it.
@@ -316,6 +336,36 @@ func (s *Server) publishGameStarted(code string, game *lol.MultiplayerLeagueOfLe
 		// The first turn's clock starts here, not when somebody next connects.
 		handler.armTurn(room, game.ID, game.TurnEndsAt)
 	})
+}
+
+// publishTournament tells one room the bracket moved.
+func (s *Server) publishTournament(code string, body tournamentResponse) {
+	s.rt.In(lolRoom(code), func(room *realtime.Room) {
+		room.Broadcast(realtime.Message(typeTournament, tournamentPayload{Tournament: body}))
+	})
+}
+
+// publishTournamentToMatches tells the rooms of the stage on the table, so a competitor sitting in one is moved on.
+func (s *Server) publishTournamentToMatches(tournament *lol.Tournament, body tournamentResponse) {
+	for _, match := range tournament.MatchesInStage(tournament.Stage) {
+		if match.LobbyID == nil {
+			continue
+		}
+		s.publishTournament(*match.LobbyID, body)
+	}
+}
+
+// publishTournamentFor is the bracket a settled match belongs to, read and published in one go.
+func (s *Server) publishTournamentFor(ctx context.Context, code string) {
+	tournament, err := s.leagueOfLetters.Tournament(ctx, code)
+	if err != nil {
+		s.log.Error("publish tournament", "err", err, "code", code)
+		return
+	}
+
+	body := s.newTournamentResponse(ctx, tournament)
+	s.publishTournament(code, body)
+	s.publishTournamentToMatches(tournament, body)
 }
 
 func (s *Server) publishGuess(code string, game *lol.MultiplayerLeagueOfLettersGame, body multiplayerGuessResponse) {
