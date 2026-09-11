@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welk orgaan neemt de lucht op als je ademt?", "difficulty": "easy", "answers": [{ "text": "De longen", "aliases": ["Longen"] }] },
-        { "prompt": "Door welke twee gaatjes adem je?", "difficulty": "easy", "answers": [{ "text": "De neusgaten", "aliases": ["Neusgaten", "Neus"] }] },
-        { "prompt": "Met welk orgaan denk je?", "difficulty": "easy", "answers": [{ "text": "De hersenen", "aliases": ["Hersenen", "Brein"] }] },
-        { "prompt": "Welke rode vloeistof vervoert zuurstof door je aderen?", "difficulty": "easy", "answers": [{ "text": "Bloed" }] },
-        { "prompt": "Hoe heten de harde witte dingen waarmee je kauwt?", "difficulty": "easy", "answers": [{ "text": "Tanden", "aliases": ["Tand"] }] },
+        { "prompt": "Wat is het grootste orgaan van het menselijk lichaam?", "difficulty": "easy", "answers": [{ "text": "De huid", "aliases": ["Huid"] }] },
+        { "prompt": "Hoeveel kamers heeft het menselijk hart?", "difficulty": "easy", "answers": [{ "text": "Vier" }] },
+        { "prompt": "Hoe heet het langste bot in het menselijk lichaam?", "difficulty": "easy", "answers": [{ "text": "Het dijbeen", "aliases": ["Dijbeen"] }] },
+        { "prompt": "Welk orgaan filtert afvalstoffen uit het bloed om urine te maken?", "difficulty": "easy", "answers": [{ "text": "De nieren", "aliases": ["Nieren"] }] },
+        { "prompt": "Hoeveel paar ribben heeft een volwassen mens meestal?", "difficulty": "easy", "answers": [{ "text": "Twaalf" }] },
         { "prompt": "Uit hoeveel botten bestaat het skelet van een volwassen mens?", "difficulty": "hard", "answers": [{ "text": "206" }] },
         { "prompt": "Wat is het kleinste botje in het menselijk lichaam?", "difficulty": "hard", "answers": [{ "text": "Het stijgbeugeltje", "aliases": ["Stijgbeugel", "Stapes"] }] },
         { "prompt": "Welke bloedcellen vervoeren zuurstof?", "difficulty": "hard", "answers": [{ "text": "Rode bloedcellen", "aliases": ["Erytrocyten"] }] },

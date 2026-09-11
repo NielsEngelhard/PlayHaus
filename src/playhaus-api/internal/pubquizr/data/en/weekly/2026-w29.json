@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which meal is eaten in the morning?", "difficulty": "easy", "answers": [{ "text": "Breakfast" }] },
-        { "prompt": "What is the capital of Spain?", "difficulty": "easy", "answers": [{ "text": "Madrid" }] },
-        { "prompt": "Which animal is the fastest on land?", "difficulty": "easy", "answers": [{ "text": "The cheetah", "aliases": ["Cheetah"] }] },
-        { "prompt": "How many months of the year have thirty-one days?", "difficulty": "easy", "answers": [{ "text": "Seven", "aliases": ["7"] }] },
-        { "prompt": "What do bees make?", "difficulty": "easy", "answers": [{ "text": "Honey" }] },
+        { "prompt": "Which is the only mammal capable of true flight?", "difficulty": "easy", "answers": [{ "text": "The bat", "aliases": ["Bat"] }] },
+        { "prompt": "What is the tallest land animal in the world?", "difficulty": "easy", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
+        { "prompt": "Which planet has the most moons in our solar system?", "difficulty": "easy", "answers": [{ "text": "Saturn" }] },
+        { "prompt": "What is the name for a baby kangaroo?", "difficulty": "easy", "answers": [{ "text": "A joey", "aliases": ["Joey"] }] },
+        { "prompt": "Which country consumes the most coffee per capita in the world?", "difficulty": "easy", "answers": [{ "text": "Finland" }] },
         { "prompt": "Which sea is the saltiest body of water people can swim in?", "difficulty": "hard", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
         { "prompt": "Who wrote the play Hamlet?", "difficulty": "hard", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
         { "prompt": "Which gas makes up about seventy-eight per cent of the air?", "difficulty": "hard", "answers": [{ "text": "Nitrogen" }] },

@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke drie kleuren heeft de Duitse vlag, van boven naar beneden?", "difficulty": "easy", "answers": [{ "text": "Zwart, rood en goud", "aliases": ["Zwart rood geel", "Zwart rood goud"] }] },
-        { "prompt": "Welk Duits automerk heeft vier in elkaar hakende ringen als logo?", "difficulty": "easy", "answers": [{ "text": "Audi" }] },
-        { "prompt": "Hoe heet het Duitse snelwegennet?", "difficulty": "easy", "answers": [{ "text": "De Autobahn", "aliases": ["Autobahn"] }] },
-        { "prompt": "Welk bierfeest in Munchen trekt elk najaar miljoenen bezoekers?", "difficulty": "easy", "answers": [{ "text": "Oktoberfest" }] },
-        { "prompt": "Welk Duits autobedrijf maakt de Golf?", "difficulty": "easy", "answers": [{ "text": "Volkswagen", "aliases": ["VW"] }] },
+        { "prompt": "Welk Duits automerk heeft een blauw-wit logo dat op een draaiende propeller lijkt?", "difficulty": "easy", "answers": [{ "text": "BMW" }] },
+        { "prompt": "In welke Duitse stad staat de Brandenburger Tor?", "difficulty": "easy", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Welke Duitse rivier stroomt door Keulen en is de drukste vaarweg van Europa?", "difficulty": "easy", "answers": [{ "text": "De Rijn", "aliases": ["Rijn"] }] },
+        { "prompt": "Welk Duits sportmerk, opgericht door Adolf Dassler, gebruikt drie strepen als logo?", "difficulty": "easy", "answers": [{ "text": "Adidas" }] },
+        { "prompt": "Hoe wordt het Duitse nationale voetbalelftal bijgenaamd?", "difficulty": "easy", "answers": [{ "text": "Die Mannschaft" }] },
         { "prompt": "Welke ingenieur gaf zijn naam aan de motor die hij in 1892 patenteerde?", "difficulty": "hard", "answers": [{ "text": "Rudolf Diesel", "aliases": ["Diesel"] }] },
         { "prompt": "Welk bedrijf ontstond in 1926 uit de fusie van Benz en Daimler?", "difficulty": "hard", "answers": [{ "text": "Mercedes-Benz", "aliases": ["Daimler-Benz", "Mercedes"] }] },
         { "prompt": "Welke Duitse ontwerpschool, in 1919 in Weimar opgericht, veranderde de moderne architectuur?", "difficulty": "hard", "answers": [{ "text": "Het Bauhaus", "aliases": ["Bauhaus"] }] },

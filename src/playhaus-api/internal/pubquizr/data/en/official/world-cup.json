@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many minutes does a football match last without extra time?", "difficulty": "easy", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
-        { "prompt": "Which country won the 2022 World Cup in Qatar?", "difficulty": "easy", "answers": [{ "text": "Argentina" }] },
-        { "prompt": "Which country has won the men's World Cup the most times?", "difficulty": "easy", "answers": [{ "text": "Brazil" }] },
-        { "prompt": "Every how many years is the World Cup held?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4", "Every four years"] }] },
-        { "prompt": "Which Argentinian lifted the trophy as captain in 2022?", "difficulty": "easy", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Which country hosted the 2014 World Cup?", "difficulty": "easy", "answers": [{ "text": "Brazil" }] },
+        { "prompt": "What is the gold trophy awarded to the World Cup winners called?", "difficulty": "easy", "answers": [{ "text": "The FIFA World Cup Trophy", "aliases": ["World Cup Trophy"] }] },
+        { "prompt": "Which three countries are co-hosting the 2026 World Cup?", "difficulty": "easy", "answers": [{ "text": "The United States, Mexico and Canada" }] },
+        { "prompt": "Who won the Golden Boot as top scorer of the 2018 World Cup?", "difficulty": "easy", "answers": [{ "text": "Harry Kane" }] },
+        { "prompt": "Which country won the first-ever World Cup, in 1930?", "difficulty": "easy", "answers": [{ "text": "Uruguay" }] },
         { "prompt": "How many teams will play at the 2026 World Cup?", "difficulty": "hard", "answers": [{ "text": "Forty-eight", "aliases": ["48"] }] },
         { "prompt": "Who scored the winning goal for Spain in the 2010 final?", "difficulty": "hard", "answers": [{ "text": "Andres Iniesta", "aliases": ["Iniesta"] }] },
         { "prompt": "In which stadium was the 2022 final played?", "difficulty": "hard", "answers": [{ "text": "The Lusail Stadium", "aliases": ["Lusail", "Lusail Stadium"] }] },

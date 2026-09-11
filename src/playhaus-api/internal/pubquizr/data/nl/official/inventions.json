@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke uitvinding verlicht een kamer met een klik op de schakelaar?", "difficulty": "easy", "answers": [{ "text": "De gloeilamp", "aliases": ["Gloeilamp", "Lamp"] }] },
-        { "prompt": "Wie wordt gezien als de uitvinder van de telefoon in 1876?", "difficulty": "easy", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
-        { "prompt": "Met welke uitvinding vlieg je van land naar land?", "difficulty": "easy", "answers": [{ "text": "Het vliegtuig", "aliases": ["Vliegtuig"] }] },
-        { "prompt": "Welke uitvinding op twee wielen laat je op je eigen benen vooruitkomen?", "difficulty": "easy", "answers": [{ "text": "De fiets", "aliases": ["Fiets"] }] },
-        { "prompt": "Welke uitvinding houdt eten koud in de keuken?", "difficulty": "easy", "answers": [{ "text": "De koelkast", "aliases": ["Koelkast"] }] },
+        { "prompt": "Welke Italiaan wordt gezien als de uitvinder van de radio in de jaren 1890?", "difficulty": "easy", "answers": [{ "text": "Guglielmo Marconi" }] },
+        { "prompt": "Wie wordt gezien als de uitvinder van de boekdrukkunst met losse letters, rond 1440?", "difficulty": "easy", "answers": [{ "text": "Johannes Gutenberg" }] },
+        { "prompt": "Welke Amerikaanse broers maakten in 1903 de eerste gemotoriseerde vliegtuigvlucht?", "difficulty": "easy", "answers": [{ "text": "De gebroeders Wright", "aliases": ["Gebroeders Wright"] }] },
+        { "prompt": "Wie wordt gezien als de uitvinder van het World Wide Web in 1989?", "difficulty": "easy", "answers": [{ "text": "Tim Berners-Lee" }] },
+        { "prompt": "Wie wordt gezien als de uitvinder van dynamiet in 1867?", "difficulty": "easy", "answers": [{ "text": "Alfred Nobel" }] },
         { "prompt": "Welke twee Franse broers lieten in 1783 de eerste heteluchtballon opstijgen?", "difficulty": "hard", "answers": [{ "text": "De broers Montgolfier", "aliases": ["Montgolfier"] }] },
         { "prompt": "Welke uitvinding van Percy Spencer uit 1945 begon met een gesmolten chocoladereep?", "difficulty": "hard", "answers": [{ "text": "De magnetron", "aliases": ["Magnetron", "Microgolfoven"] }] },
         { "prompt": "Welke Schotse uitvinder verbeterde in 1769 de stoommachine die de industriele revolutie aandreef?", "difficulty": "hard", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },

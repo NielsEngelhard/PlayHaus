@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many hours are there in two days?", "difficulty": "easy", "answers": [{ "text": "48" }] },
-        { "prompt": "Which animal barks?", "difficulty": "easy", "answers": [{ "text": "The dog", "aliases": ["Dog"] }] },
-        { "prompt": "What is the capital of Japan?", "difficulty": "easy", "answers": [{ "text": "Tokyo" }] },
-        { "prompt": "How many legs does a spider have?", "difficulty": "easy", "answers": [{ "text": "Eight", "aliases": ["8"] }] },
-        { "prompt": "What do you call frozen rain that falls as white flakes?", "difficulty": "easy", "answers": [{ "text": "Snow" }] },
+        { "prompt": "What is the capital of South Korea?", "difficulty": "easy", "answers": [{ "text": "Seoul" }] },
+        { "prompt": "Which insect is known for carrying many times its own body weight?", "difficulty": "easy", "answers": [{ "text": "The ant", "aliases": ["Ant"] }] },
+        { "prompt": "What is the name of the longest bone in the human leg?", "difficulty": "easy", "answers": [{ "text": "The femur", "aliases": ["Femur"] }] },
+        { "prompt": "Which ocean is the largest and deepest in the world?", "difficulty": "easy", "answers": [{ "text": "The Pacific", "aliases": ["Pacific Ocean"] }] },
+        { "prompt": "What is the capital of Canada?", "difficulty": "easy", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Which city is the capital of Canada?", "difficulty": "hard", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Which scientist first described the laws of motion in 1687?", "difficulty": "hard", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
         { "prompt": "Which country consumes the most tea per person?", "difficulty": "hard", "answers": [{ "text": "Turkey" }] },

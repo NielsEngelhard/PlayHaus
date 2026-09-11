@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which fruit does the queen use to poison Snow White?", "difficulty": "easy", "answers": [{ "text": "An apple", "aliases": ["Apple"] }] },
-        { "prompt": "Which yellow and blue fish is Ariel's best friend?", "difficulty": "easy", "answers": [{ "text": "Flounder" }] },
-        { "prompt": "Which snowman does Anna meet in Frozen?", "difficulty": "easy", "answers": [{ "text": "Olaf" }] },
-        { "prompt": "Which princess sails across the ocean with a chicken called Heihei?", "difficulty": "easy", "answers": [{ "text": "Moana", "aliases": ["Vaiana"] }] },
-        { "prompt": "What does the Evil Queen ask who is the fairest of them all?", "difficulty": "easy", "answers": [{ "text": "Her mirror", "aliases": ["A mirror", "Mirror"] }] },
+        { "prompt": "What is the name of the crab who serves as Ariel's advisor in The Little Mermaid?", "difficulty": "easy", "answers": [{ "text": "Sebastian" }] },
+        { "prompt": "What is the name of Belle's father, an inventor, in Beauty and the Beast?", "difficulty": "easy", "answers": [{ "text": "Maurice" }] },
+        { "prompt": "Which Disney princess lives in a cottage with seven dwarfs?", "difficulty": "easy", "answers": [{ "text": "Snow White" }] },
+        { "prompt": "Who provided the original voice of the Genie in Disney's 1992 Aladdin?", "difficulty": "easy", "answers": [{ "text": "Robin Williams" }] },
+        { "prompt": "Which Disney princess has magical hair that glows when she sings?", "difficulty": "easy", "answers": [{ "text": "Rapunzel" }] },
         { "prompt": "What is the name of the sea witch in The Little Mermaid?", "difficulty": "hard", "answers": [{ "text": "Ursula" }] },
         { "prompt": "Which princess was the first of Disney's to be based on a real historical person?", "difficulty": "hard", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Which composer wrote the songs for The Little Mermaid and Beauty and the Beast?", "difficulty": "hard", "answers": [{ "text": "Alan Menken", "aliases": ["Menken"] }] },

@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke koning volgde koningin Elizabeth II in 2022 op?", "difficulty": "easy", "answers": [{ "text": "Charles III", "aliases": ["Koning Charles", "Charles"] }] },
-        { "prompt": "Welk Londens paleis is de officiele residentie van de Britse vorst?", "difficulty": "easy", "answers": [{ "text": "Buckingham Palace" }] },
-        { "prompt": "Wie is de koning van Nederland?", "difficulty": "easy", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
-        { "prompt": "Hoe heet het hoofddeksel dat een vorst bij een kroning draagt?", "difficulty": "easy", "answers": [{ "text": "Een kroon", "aliases": ["Kroon"] }] },
-        { "prompt": "Welk koninklijk paar trouwde in 2018 in Windsor, Harry en wie?", "difficulty": "easy", "answers": [{ "text": "Meghan Markle", "aliases": ["Meghan"] }] },
+        { "prompt": "Wie is de huidige koning van Spanje, sinds 2014?", "difficulty": "easy", "answers": [{ "text": "Felipe VI" }] },
+        { "prompt": "Wie is de oudste dochter van de Britse prins William?", "difficulty": "easy", "answers": [{ "text": "Prinses Charlotte" }] },
+        { "prompt": "Hoe heette de echtgenoot van koningin Elizabeth II, die in 2021 overleed?", "difficulty": "easy", "answers": [{ "text": "Prins Philip" }] },
+        { "prompt": "Welke Deense koningin droeg in 2024 de troon over aan haar zoon Frederik X?", "difficulty": "easy", "answers": [{ "text": "Margrethe II" }] },
+        { "prompt": "Welke titel krijgt de oudste zoon van de regerende Britse vorst?", "difficulty": "easy", "answers": [{ "text": "Prins van Wales" }] },
         { "prompt": "Welke Britse vorst regeerde het langst?", "difficulty": "hard", "answers": [{ "text": "Elizabeth II", "aliases": ["Koningin Elizabeth II"] }] },
         { "prompt": "Welk Nederlands koningshuis regeert sinds 1815?", "difficulty": "hard", "answers": [{ "text": "Het huis Oranje-Nassau", "aliases": ["Oranje-Nassau"] }] },
         { "prompt": "Welke Japanse keizer besteeg in 2019 de troon en opende het Reiwa-tijdperk?", "difficulty": "hard", "answers": [{ "text": "Naruhito" }] },

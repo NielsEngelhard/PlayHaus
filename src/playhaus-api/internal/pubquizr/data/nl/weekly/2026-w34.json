@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel seconden zitten er in een minuut?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
-        { "prompt": "Welk dier legt eieren en kakelt?", "difficulty": "easy", "answers": [{ "text": "De kip", "aliases": ["Kip", "Hen"] }] },
-        { "prompt": "Wat is de hoofdstad van Noorwegen?", "difficulty": "easy", "answers": [{ "text": "Oslo" }] },
-        { "prompt": "Welke kleur krijg je als je rood en wit mengt?", "difficulty": "easy", "answers": [{ "text": "Roze" }] },
-        { "prompt": "Hoeveel weken heeft een jaar?", "difficulty": "easy", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
+        { "prompt": "Wat is de hoofdstad van Denemarken?", "difficulty": "easy", "answers": [{ "text": "Kopenhagen" }] },
+        { "prompt": "Welk zeezoogdier is het grootste dier dat ooit op aarde heeft geleefd?", "difficulty": "easy", "answers": [{ "text": "De blauwe vinvis", "aliases": ["Blauwe vinvis"] }] },
+        { "prompt": "Welke munteenheid wordt gebruikt in Zwitserland?", "difficulty": "easy", "answers": [{ "text": "De Zwitserse frank", "aliases": ["Zwitserse frank"] }] },
+        { "prompt": "Hoeveel planeten telt ons zonnestelsel sinds Pluto in 2006 werd gedegradeerd?", "difficulty": "easy", "answers": [{ "text": "Acht" }] },
+        { "prompt": "Welke stad wordt de Eeuwige Stad genoemd?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
         { "prompt": "Welk instrument meet de luchtdruk?", "difficulty": "hard", "answers": [{ "text": "De barometer", "aliases": ["Barometer"] }] },
         { "prompt": "Welke stad is de hoofdstad van Nieuw-Zeeland?", "difficulty": "hard", "answers": [{ "text": "Wellington" }] },
         { "prompt": "Welke zeevaarder maakte als eerste een reis rond de wereld af?", "difficulty": "hard", "answers": [{ "text": "Juan Sebastian Elcano", "aliases": ["Elcano", "Del Cano"] }] },

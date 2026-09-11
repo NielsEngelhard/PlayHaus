@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which three colours does the German flag carry, from top to bottom?", "difficulty": "easy", "answers": [{ "text": "Black, red and gold", "aliases": ["Black red yellow", "Black red gold"] }] },
-        { "prompt": "Which German car brand uses four interlocking rings as its badge?", "difficulty": "easy", "answers": [{ "text": "Audi" }] },
-        { "prompt": "What is the German motorway network called?", "difficulty": "easy", "answers": [{ "text": "The Autobahn", "aliases": ["Autobahn"] }] },
-        { "prompt": "Which Munich beer festival draws millions every autumn?", "difficulty": "easy", "answers": [{ "text": "Oktoberfest" }] },
-        { "prompt": "Which German car company makes the Golf?", "difficulty": "easy", "answers": [{ "text": "Volkswagen", "aliases": ["VW"] }] },
+        { "prompt": "Which German car brand's logo is a blue and white roundel resembling a spinning propeller?", "difficulty": "easy", "answers": [{ "text": "BMW" }] },
+        { "prompt": "In which German city does the Brandenburg Gate stand?", "difficulty": "easy", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "Which German river flows through Cologne and is Europe's busiest waterway?", "difficulty": "easy", "answers": [{ "text": "The Rhine", "aliases": ["Rhine"] }] },
+        { "prompt": "Which German sportswear brand, founded by Adolf Dassler, uses three stripes as its logo?", "difficulty": "easy", "answers": [{ "text": "Adidas" }] },
+        { "prompt": "What is Germany's national football team nicknamed?", "difficulty": "easy", "answers": [{ "text": "Die Mannschaft" }] },
         { "prompt": "Which engineer's name is on the compression-ignition engine patented in 1892?", "difficulty": "hard", "answers": [{ "text": "Rudolf Diesel", "aliases": ["Diesel"] }] },
         { "prompt": "Which company was formed in 1926 by the merger of Benz and Daimler?", "difficulty": "hard", "answers": [{ "text": "Mercedes-Benz", "aliases": ["Daimler-Benz", "Mercedes"] }] },
         { "prompt": "Which German design school, founded in Weimar in 1919, shaped modern architecture?", "difficulty": "hard", "answers": [{ "text": "The Bauhaus", "aliases": ["Bauhaus"] }] },

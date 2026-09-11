@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which organ takes in the air when you breathe?", "difficulty": "easy", "answers": [{ "text": "The lungs", "aliases": ["Lungs"] }] },
-        { "prompt": "Which two holes do you breathe through?", "difficulty": "easy", "answers": [{ "text": "The nostrils", "aliases": ["Nostrils", "Nose"] }] },
-        { "prompt": "Which organ do you use to think?", "difficulty": "easy", "answers": [{ "text": "The brain", "aliases": ["Brain"] }] },
-        { "prompt": "Which red liquid carries oxygen through your veins?", "difficulty": "easy", "answers": [{ "text": "Blood" }] },
-        { "prompt": "What are the hard white things you chew with called?", "difficulty": "easy", "answers": [{ "text": "Teeth", "aliases": ["Tooth"] }] },
+        { "prompt": "What is the largest organ of the human body?", "difficulty": "easy", "answers": [{ "text": "The skin", "aliases": ["Skin"] }] },
+        { "prompt": "How many chambers does the human heart have?", "difficulty": "easy", "answers": [{ "text": "Four" }] },
+        { "prompt": "What is the longest bone in the human body called?", "difficulty": "easy", "answers": [{ "text": "The femur", "aliases": ["Femur", "Thigh bone"] }] },
+        { "prompt": "Which organ filters waste from the blood to produce urine?", "difficulty": "easy", "answers": [{ "text": "The kidneys", "aliases": ["Kidneys"] }] },
+        { "prompt": "How many pairs of ribs does an adult human typically have?", "difficulty": "easy", "answers": [{ "text": "Twelve" }] },
         { "prompt": "How many bones are there in an adult human skeleton?", "difficulty": "hard", "answers": [{ "text": "206" }] },
         { "prompt": "What is the smallest bone in the human body?", "difficulty": "hard", "answers": [{ "text": "The stapes", "aliases": ["Stapes", "Stirrup"] }] },
         { "prompt": "Which blood cells carry oxygen?", "difficulty": "hard", "answers": [{ "text": "Red blood cells", "aliases": ["Erythrocytes"] }] },

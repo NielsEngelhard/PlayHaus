@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel spelers heeft een voetbalelftal op het veld?", "difficulty": "easy", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
-        { "prompt": "Welk dier geeft ons wol?", "difficulty": "easy", "answers": [{ "text": "Het schaap", "aliases": ["Schaap"] }] },
-        { "prompt": "Wat is de hoofdstad van Italie?", "difficulty": "easy", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
-        { "prompt": "Welk zintuig gebruik je met je neus?", "difficulty": "easy", "answers": [{ "text": "De reuk", "aliases": ["Reuk", "Ruiken"] }] },
-        { "prompt": "Hoeveel letters heeft het Nederlandse alfabet?", "difficulty": "easy", "answers": [{ "text": "26" }] },
+        { "prompt": "Hoeveel spelers staan er bij rugby union aan elke kant op het veld?", "difficulty": "easy", "answers": [{ "text": "Vijftien" }] },
+        { "prompt": "Welk land wordt gezien als de bakermat van het moderne voetbal?", "difficulty": "easy", "answers": [{ "text": "Engeland" }] },
+        { "prompt": "Hoe wordt de stand nul genoemd bij tennis?", "difficulty": "easy", "answers": [{ "text": "Love" }] },
+        { "prompt": "Hoeveel ringen staan er op de Olympische vlag?", "difficulty": "easy", "answers": [{ "text": "Vijf" }] },
+        { "prompt": "In welke stad werden de eerste moderne Olympische Spelen gehouden, in 1896?", "difficulty": "easy", "answers": [{ "text": "Athene" }] },
         { "prompt": "Welke woestijn is de grootste warme woestijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
         { "prompt": "Wie ontwikkelde de algemene relativiteitstheorie?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
         { "prompt": "Welke stad hield in 1896 de eerste moderne Olympische Spelen?", "difficulty": "hard", "answers": [{ "text": "Athene" }] },

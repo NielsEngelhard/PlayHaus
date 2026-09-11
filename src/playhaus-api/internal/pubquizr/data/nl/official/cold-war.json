@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke muur deelde een Duitse stad van 1961 tot 1989?", "difficulty": "easy", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
-        { "prompt": "Welke twee landen waren de twee supermachten van de Koude Oorlog?", "difficulty": "easy", "answers": [{ "text": "De Verenigde Staten en de Sovjet-Unie", "aliases": ["VS en Sovjet-Unie", "Amerika en Rusland"] }] },
-        { "prompt": "Welk land viel de Sovjet-Unie in 1979 binnen?", "difficulty": "easy", "answers": [{ "text": "Afghanistan" }] },
-        { "prompt": "Hoe heet het militaire bondgenootschap van het Westen, afgekort NATO of NAVO?", "difficulty": "easy", "answers": [{ "text": "De Noord-Atlantische Verdragsorganisatie", "aliases": ["NAVO", "NATO"] }] },
-        { "prompt": "Hoe heette de wedloop tussen de twee supermachten om steeds meer wapens?", "difficulty": "easy", "answers": [{ "text": "De wapenwedloop", "aliases": ["Wapenwedloop"] }] },
+        { "prompt": "Welke crisis in 1962 bracht de VS en de Sovjet-Unie aan de rand van een kernoorlog?", "difficulty": "easy", "answers": [{ "text": "De Cubacrisis", "aliases": ["Cubacrisis"] }] },
+        { "prompt": "Hoe werd de denkbeeldige grens tussen communistisch Oost-Europa en het Westen genoemd?", "difficulty": "easy", "answers": [{ "text": "Het IJzeren Gordijn", "aliases": ["IJzeren Gordijn"] }] },
+        { "prompt": "Welke Duitse hoofdstad werd van 1961 tot 1989 door een muur in tweeen gedeeld?", "difficulty": "easy", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Welke Amerikaanse president kondigde in 1983 het raketschildprogramma 'Star Wars' aan?", "difficulty": "easy", "answers": [{ "text": "Ronald Reagan" }] },
+        { "prompt": "Hoe heette het Sovjetbeleid van openheid dat Gorbatsjov in de jaren tachtig invoerde?", "difficulty": "easy", "answers": [{ "text": "Glasnost" }] },
         { "prompt": "Welke Sovjetleider stond tegenover Kennedy tijdens de Cubacrisis?", "difficulty": "hard", "answers": [{ "text": "Nikita Chroesjtsjov", "aliases": ["Chroesjtsjov", "Khrushchev"] }] },
         { "prompt": "Hoe heet het antwoord van het Oostblok op de NAVO, ondertekend in 1955?", "difficulty": "hard", "answers": [{ "text": "Het Warschaupact", "aliases": ["Warschaupact"] }] },
         { "prompt": "Welk Amerikaans plan pompte vanaf 1948 geld in de wederopbouw van West-Europa?", "difficulty": "hard", "answers": [{ "text": "Het Marshallplan", "aliases": ["Marshallplan"] }] },

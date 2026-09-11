@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which wall divided a German city from 1961 to 1989?", "difficulty": "easy", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
-        { "prompt": "Which two countries were the two superpowers of the Cold War?", "difficulty": "easy", "answers": [{ "text": "The United States and the Soviet Union", "aliases": ["USA and USSR", "America and Russia"] }] },
-        { "prompt": "Which country did the Soviet Union invade in 1979?", "difficulty": "easy", "answers": [{ "text": "Afghanistan" }] },
-        { "prompt": "What did the letters NATO stand for in the West's military alliance?", "difficulty": "easy", "answers": [{ "text": "North Atlantic Treaty Organization", "aliases": ["North Atlantic Treaty Organisation"] }] },
-        { "prompt": "What was the two superpowers' contest to build ever more weapons called?", "difficulty": "easy", "answers": [{ "text": "The arms race", "aliases": ["Arms race"] }] },
+        { "prompt": "Which 1962 crisis brought the US and USSR to the brink of nuclear war over missiles near Florida?", "difficulty": "easy", "answers": [{ "text": "The Cuban Missile Crisis", "aliases": ["Cuban Missile Crisis"] }] },
+        { "prompt": "What name was given to the imaginary line separating communist Eastern Europe from the West?", "difficulty": "easy", "answers": [{ "text": "The Iron Curtain", "aliases": ["Iron Curtain"] }] },
+        { "prompt": "Which German capital was split in two by a wall from 1961 to 1989?", "difficulty": "easy", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "Which US president announced the 'Star Wars' missile defence programme in 1983?", "difficulty": "easy", "answers": [{ "text": "Ronald Reagan" }] },
+        { "prompt": "What is the term for the Soviet policy of openness introduced by Gorbachev in the 1980s?", "difficulty": "easy", "answers": [{ "text": "Glasnost" }] },
         { "prompt": "Which Soviet leader stood opposite Kennedy during the Cuban missile crisis?", "difficulty": "hard", "answers": [{ "text": "Nikita Khrushchev", "aliases": ["Khrushchev"] }] },
         { "prompt": "What was the Eastern bloc's answer to NATO, signed in 1955, called?", "difficulty": "hard", "answers": [{ "text": "The Warsaw Pact", "aliases": ["Warsaw Pact"] }] },
         { "prompt": "Which American plan poured money into rebuilding western Europe from 1948?", "difficulty": "hard", "answers": [{ "text": "The Marshall Plan", "aliases": ["Marshall Plan"] }] },

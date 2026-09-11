@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which king succeeded Queen Elizabeth II in 2022?", "difficulty": "easy", "answers": [{ "text": "Charles III", "aliases": ["King Charles", "Charles"] }] },
-        { "prompt": "Which London palace is the British monarch's official residence?", "difficulty": "easy", "answers": [{ "text": "Buckingham Palace" }] },
-        { "prompt": "Who is the king of the Netherlands?", "difficulty": "easy", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
-        { "prompt": "What is the headpiece a monarch wears at a coronation called?", "difficulty": "easy", "answers": [{ "text": "A crown", "aliases": ["Crown"] }] },
-        { "prompt": "Which royal couple married at Windsor in 2018, Harry and who?", "difficulty": "easy", "answers": [{ "text": "Meghan Markle", "aliases": ["Meghan"] }] },
+        { "prompt": "Who is the current King of Spain, who took the throne in 2014?", "difficulty": "easy", "answers": [{ "text": "Felipe VI" }] },
+        { "prompt": "Which British princess is the eldest daughter of Prince William?", "difficulty": "easy", "answers": [{ "text": "Princess Charlotte" }] },
+        { "prompt": "What was the name of Queen Elizabeth II's husband, who died in 2021?", "difficulty": "easy", "answers": [{ "text": "Prince Philip" }] },
+        { "prompt": "Which Danish queen abdicated in favour of her son Frederik X in 2024?", "difficulty": "easy", "answers": [{ "text": "Margrethe II" }] },
+        { "prompt": "What title is given to the eldest son of the reigning British monarch?", "difficulty": "easy", "answers": [{ "text": "Prince of Wales" }] },
         { "prompt": "Which British monarch reigned the longest?", "difficulty": "hard", "answers": [{ "text": "Elizabeth II", "aliases": ["Queen Elizabeth II"] }] },
         { "prompt": "Which Dutch royal house has reigned since 1815?", "difficulty": "hard", "answers": [{ "text": "The House of Orange-Nassau", "aliases": ["Orange-Nassau", "Oranje-Nassau"] }] },
         { "prompt": "Which Japanese emperor took the throne in 2019, opening the Reiwa era?", "difficulty": "hard", "answers": [{ "text": "Naruhito" }] },

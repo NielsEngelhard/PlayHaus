@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Uit welk land komt de groep ABBA?", "difficulty": "easy", "answers": [{ "text": "Zweden" }] },
-        { "prompt": "Hoe heet de bekende popzaal aan het Weteringcircuit in Amsterdam?", "difficulty": "easy", "answers": [{ "text": "Paradiso" }] },
-        { "prompt": "Welk instrument bespeel je door met stokken op de vellen te slaan?", "difficulty": "easy", "answers": [{ "text": "De drums", "aliases": ["Drums", "Drumstel"] }] },
-        { "prompt": "Welk instrument heeft witte en zwarte toetsen?", "difficulty": "easy", "answers": [{ "text": "De piano", "aliases": ["Piano"] }] },
-        { "prompt": "Welke Nederlandse zanger maakte Het Dorp beroemd?", "difficulty": "easy", "answers": [{ "text": "Wim Sonneveld", "aliases": ["Sonneveld"] }] },
+        { "prompt": "Welke Britse band bracht in 1969 het album Abbey Road uit?", "difficulty": "easy", "answers": [{ "text": "The Beatles" }] },
+        { "prompt": "Welke Amerikaanse zanger staat bekend als de King of Rock and Roll?", "difficulty": "easy", "answers": [{ "text": "Elvis Presley" }] },
+        { "prompt": "Welke Jamaicaanse muziekstijl werd wereldberoemd dankzij Bob Marley?", "difficulty": "easy", "answers": [{ "text": "Reggae" }] },
+        { "prompt": "Welke Oostenrijkse componist stond al op jonge leeftijd bekend als een wonderkind?", "difficulty": "easy", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Welke Nederlandse dj was een van de eerste grote namen van de wereldwijde EDM-scene?", "difficulty": "easy", "answers": [{ "text": "Tiesto", "aliases": ["Tiësto"] }] },
         { "prompt": "Welk Nederlands lied won in 2019 het Eurovisie Songfestival?", "difficulty": "hard", "answers": [{ "text": "Arcade" }] },
         { "prompt": "Welke componist schreef de Negende symfonie terwijl hij vrijwel doof was?", "difficulty": "hard", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] },
         { "prompt": "Welke Nederlandse band bracht in 1969 de hit Venus uit?", "difficulty": "hard", "answers": [{ "text": "Shocking Blue" }] },

@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel dagen heeft een schrikkeljaar?", "difficulty": "easy", "answers": [{ "text": "366" }] },
-        { "prompt": "Wat is de grootste oceaan op aarde?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Pacific"] }] },
-        { "prompt": "Welk dier staat bekend als de koning van de jungle?", "difficulty": "easy", "answers": [{ "text": "De leeuw", "aliases": ["Leeuw"] }] },
-        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
-        { "prompt": "Hoeveel zijden heeft een zeshoek?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Wat is het kleinste land ter wereld?", "difficulty": "easy", "answers": [{ "text": "Vaticaanstad" }] },
+        { "prompt": "Welke planeet staat bekend als de Rode Planeet?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Hoeveel continenten zijn er op aarde?", "difficulty": "easy", "answers": [{ "text": "Zeven" }] },
+        { "prompt": "Welke munteenheid wordt gebruikt in Japan?", "difficulty": "easy", "answers": [{ "text": "De yen", "aliases": ["Yen"] }] },
+        { "prompt": "Welk gas nemen planten op uit de lucht voor fotosynthese?", "difficulty": "easy", "answers": [{ "text": "Koolstofdioxide" }] },
         { "prompt": "Welk element heeft het symbool W?", "difficulty": "hard", "answers": [{ "text": "Wolfraam", "aliases": ["Wolfram", "Tungsten"] }] },
         { "prompt": "Welke zee scheidt Italie van de Balkan?", "difficulty": "hard", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee", "Adriatische"] }] },
         { "prompt": "Wie schreef de roman Honderd jaar eenzaamheid?", "difficulty": "hard", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Garcia Marquez", "Marquez"] }] },

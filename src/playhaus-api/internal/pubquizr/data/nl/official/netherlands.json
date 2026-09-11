@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft de middelste baan van de Nederlandse vlag?", "difficulty": "easy", "answers": [{ "text": "Wit" }] },
-        { "prompt": "Naar welke oranje wortelknol is de kleur van het Nederlands elftal vernoemd?", "difficulty": "easy", "answers": [{ "text": "De wortel", "aliases": ["Wortel", "Peen"] }] },
-        { "prompt": "Om welke bloem staat Nederland het meest bekend?", "difficulty": "easy", "answers": [{ "text": "De tulp", "aliases": ["Tulp", "Tulpen"] }] },
-        { "prompt": "Hoe heten de traditionele Nederlandse houten schoenen?", "difficulty": "easy", "answers": [{ "text": "Klompen", "aliases": ["Klomp"] }] },
-        { "prompt": "In welke Nederlandse stad ligt de grootste haven van Europa?", "difficulty": "easy", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Wat is de hoofdstad van Nederland?", "difficulty": "easy", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "In welke Nederlandse stad zetelt de regering en woont de koning officieel?", "difficulty": "easy", "answers": [{ "text": "Den Haag" }] },
+        { "prompt": "Hoe heet laaggelegen, drooggelegd land dat door dijken wordt beschermd?", "difficulty": "easy", "answers": [{ "text": "Een polder", "aliases": ["Polder"] }] },
+        { "prompt": "Welke Nederlandse kaas, genoemd naar een marktstad, is een van de bekendste exportproducten?", "difficulty": "easy", "answers": [{ "text": "Goudse kaas", "aliases": ["Gouda"] }] },
+        { "prompt": "Welke Nederlandse schilder maakte De Nachtwacht en leefde in de zeventiende eeuw?", "difficulty": "easy", "answers": [{ "text": "Rembrandt" }] },
         { "prompt": "Welke Nederlandse schilder sneed in Arles een deel van zijn eigen oor af?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
         { "prompt": "Hoe heten de waterwerken die na de watersnood van 1953 zijn gebouwd?", "difficulty": "hard", "answers": [{ "text": "De Deltawerken", "aliases": ["Deltawerken"] }] },
         { "prompt": "Hoeveel Waddeneilanden zijn bewoond?", "difficulty": "hard", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },

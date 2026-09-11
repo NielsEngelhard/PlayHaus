@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe heet het pak dat een astronaut buiten het ruimteschip draagt?", "difficulty": "easy", "answers": [{ "text": "Een ruimtepak", "aliases": ["Ruimtepak"] }] },
-        { "prompt": "Welke Amerikaanse ruimtevaartorganisatie voerde het Apolloprogramma uit?", "difficulty": "easy", "answers": [{ "text": "NASA" }] },
-        { "prompt": "Wat was de eerste kunstmaan, gelanceerd in 1957?", "difficulty": "easy", "answers": [{ "text": "Spoetnik 1", "aliases": ["Spoetnik", "Sputnik"] }] },
-        { "prompt": "Welk land lanceerde Spoetnik 1?", "difficulty": "easy", "answers": [{ "text": "De Sovjet-Unie", "aliases": ["Sovjet-Unie", "Rusland"] }] },
-        { "prompt": "Naar welke planeet werden de Vikingsondes gestuurd?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Wie was de eerste mens in de ruimte, in 1961?", "difficulty": "easy", "answers": [{ "text": "Joeri Gagarin", "aliases": ["Yuri Gagarin"] }] },
+        { "prompt": "Wie was de eerste mens op de maan, in 1969?", "difficulty": "easy", "answers": [{ "text": "Neil Armstrong" }] },
+        { "prompt": "Welke NASA-missie liet voor het eerst astronauten op de maan landen?", "difficulty": "easy", "answers": [{ "text": "Apollo 11" }] },
+        { "prompt": "Wie was de eerste vrouw in de ruimte, voor de Sovjet-Unie in 1963?", "difficulty": "easy", "answers": [{ "text": "Valentina Teresjkova", "aliases": ["Valentina Tereshkova"] }] },
+        { "prompt": "Waar staat de afkorting ISS voor, het ruimtestation dat sinds 1998 rond de aarde draait?", "difficulty": "easy", "answers": [{ "text": "Het Internationaal Ruimtestation", "aliases": ["ISS"] }] },
         { "prompt": "Hoeveel mensen hebben op de maan gelopen?", "difficulty": "hard", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
         { "prompt": "In welk jaar landde de laatste Apollomissie op de maan?", "difficulty": "hard", "answers": [{ "text": "1972" }] },
         { "prompt": "Bij welke Apollomissie ontplofte op weg naar de maan een zuurstoftank?", "difficulty": "hard", "answers": [{ "text": "Apollo 13" }] },

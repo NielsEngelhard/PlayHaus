@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which season comes after summer?", "difficulty": "easy", "answers": [{ "text": "Autumn", "aliases": ["Fall"] }] },
-        { "prompt": "What is the currency of the United Kingdom?", "difficulty": "easy", "answers": [{ "text": "The pound sterling", "aliases": ["Pound", "Pound sterling"] }] },
-        { "prompt": "Which bird is famous for being unable to fly and living in Antarctica?", "difficulty": "easy", "answers": [{ "text": "The penguin", "aliases": ["Penguin"] }] },
-        { "prompt": "How many legs does an insect have?", "difficulty": "easy", "answers": [{ "text": "Six", "aliases": ["6"] }] },
-        { "prompt": "What is the tallest mountain in the world?", "difficulty": "easy", "answers": [{ "text": "Mount Everest", "aliases": ["Everest"] }] },
+        { "prompt": "What is the longest wall in the world?", "difficulty": "easy", "answers": [{ "text": "The Great Wall of China", "aliases": ["Great Wall of China"] }] },
+        { "prompt": "Which country gifted the Statue of Liberty to the United States?", "difficulty": "easy", "answers": [{ "text": "France" }] },
+        { "prompt": "What is the smallest planet in our solar system?", "difficulty": "easy", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "Which ocean lies between the Americas and Europe/Africa?", "difficulty": "easy", "answers": [{ "text": "The Atlantic", "aliases": ["Atlantic Ocean"] }] },
+        { "prompt": "What is the capital city of Australia?", "difficulty": "easy", "answers": [{ "text": "Canberra" }] },
         { "prompt": "Which country has the most time zones?", "difficulty": "hard", "answers": [{ "text": "France" }] },
         { "prompt": "What does the Richter scale measure?", "difficulty": "hard", "answers": [{ "text": "Earthquake magnitude", "aliases": ["Earthquakes", "The strength of earthquakes"] }] },
         { "prompt": "Which Russian author wrote War and Peace?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },

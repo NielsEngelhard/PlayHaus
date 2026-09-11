@@ -1,5 +1,6 @@
 import { TRUTH_AUTHOR_ID, type FFGame, type FFOption, type FFReveal } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
+import { Badge } from "@/components/ui/Badge";
 import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
@@ -165,7 +166,7 @@ function Fake({ option, line, game, nameOf }: FakeProps) {
                 />
 
                 {author !== null && (
-                    <AppText style={styles.byline}>{author}</AppText>
+                    <Badge text={author} color={Brand.mint} />
                 )}
             </View>
 
@@ -244,12 +245,6 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minWidth: 0,
         gap: 2
-    },
-    byline: {
-        fontSize: 12,
-        lineHeight: 12 * 1.4,
-        fontWeight: 900,
-        color: Brand.mint
     },
     points: {
         fontSize: 13,

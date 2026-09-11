@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke maaltijd eet je in de ochtend?", "difficulty": "easy", "answers": [{ "text": "Het ontbijt", "aliases": ["Ontbijt"] }] },
-        { "prompt": "Wat is de hoofdstad van Spanje?", "difficulty": "easy", "answers": [{ "text": "Madrid" }] },
-        { "prompt": "Welk dier is het snelst op het land?", "difficulty": "easy", "answers": [{ "text": "De jachtluipaard", "aliases": ["Jachtluipaard", "Cheeta"] }] },
-        { "prompt": "Hoeveel maanden van het jaar hebben eenendertig dagen?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
-        { "prompt": "Wat maken bijen?", "difficulty": "easy", "answers": [{ "text": "Honing" }] },
+        { "prompt": "Welk zoogdier is het enige dat echt kan vliegen?", "difficulty": "easy", "answers": [{ "text": "De vleermuis", "aliases": ["Vleermuis"] }] },
+        { "prompt": "Wat is het langste landdier ter wereld?", "difficulty": "easy", "answers": [{ "text": "De giraf", "aliases": ["Giraf"] }] },
+        { "prompt": "Welke planeet heeft de meeste manen in ons zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "Saturnus" }] },
+        { "prompt": "Hoe noem je een baby kangoeroe?", "difficulty": "easy", "answers": [{ "text": "Een joey", "aliases": ["Joey"] }] },
+        { "prompt": "Welk land drinkt per hoofd van de bevolking de meeste koffie ter wereld?", "difficulty": "easy", "answers": [{ "text": "Finland" }] },
         { "prompt": "In welk water kun je zwemmen dat het zoutst van de wereld is?", "difficulty": "hard", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
         { "prompt": "Wie schreef het toneelstuk Hamlet?", "difficulty": "hard", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
         { "prompt": "Welk gas vormt ongeveer achtenzeventig procent van de lucht?", "difficulty": "hard", "answers": [{ "text": "Stikstof" }] },

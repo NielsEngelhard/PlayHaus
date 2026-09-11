@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur staat in de titel van Taylor Swifts album uit 2012?", "difficulty": "easy", "answers": [{ "text": "Rood", "aliases": ["Red"] }] },
-        { "prompt": "Welk album van haar is vernoemd naar het jaar waarin ze geboren is?", "difficulty": "easy", "answers": [{ "text": "1989" }] },
-        { "prompt": "Hoe worden de fans van Taylor Swift samen genoemd?", "difficulty": "easy", "answers": [{ "text": "Swifties", "aliases": ["Swiftie"] }] },
-        { "prompt": "In welk nummer van haar vraagt ze iemand het van zich af te schudden?", "difficulty": "easy", "answers": [{ "text": "Shake It Off" }] },
-        { "prompt": "Welk album met slangenthema volgde op 1989?", "difficulty": "easy", "answers": [{ "text": "Reputation" }] },
+        { "prompt": "Wat is de titel van Taylor Swifts gelijknamige debuutalbum uit 2006?", "difficulty": "easy", "answers": [{ "text": "Taylor Swift" }] },
+        { "prompt": "Welk album van haar uit 2010 bevat het nummer Mine?", "difficulty": "easy", "answers": [{ "text": "Speak Now" }] },
+        { "prompt": "Welk album van haar uit 2019 bevat Lover en Cruel Summer?", "difficulty": "easy", "answers": [{ "text": "Lover" }] },
+        { "prompt": "Met welke Amerikaanse footballspeler kreeg Taylor Swift in 2023 een relatie?", "difficulty": "easy", "answers": [{ "text": "Travis Kelce" }] },
+        { "prompt": "In welke Amerikaanse staat is Taylor Swift geboren?", "difficulty": "easy", "answers": [{ "text": "Pennsylvania" }] },
         { "prompt": "Hoe heette haar stadiontournee van 2023 en 2024?", "difficulty": "hard", "answers": [{ "text": "The Eras Tour", "aliases": ["Eras Tour"] }] },
         { "prompt": "Welke twee albums bracht ze in 2020 uit, opgenomen tijdens de lockdown?", "difficulty": "hard", "answers": [{ "text": "Folklore en Evermore", "aliases": ["Folklore & Evermore"] }] },
         { "prompt": "Welk woord voegt ze toe aan de heropgenomen versies van haar vroege albums?", "difficulty": "hard", "answers": [{ "text": "Taylor's Version", "aliases": ["Taylors Version"] }] },

@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which fabric are jeans traditionally made from?", "difficulty": "easy", "answers": [{ "text": "Denim" }] },
-        { "prompt": "Which city holds a fashion week alongside Paris, London and New York?", "difficulty": "easy", "answers": [{ "text": "Milan" }] },
-        { "prompt": "What is the walkway models present clothes on called?", "difficulty": "easy", "answers": [{ "text": "The runway", "aliases": ["Runway", "Catwalk"] }] },
-        { "prompt": "Which fashion magazine has run an American edition since 1892?", "difficulty": "easy", "answers": [{ "text": "Vogue" }] },
-        { "prompt": "Which brand's trainers carry a tick-shaped logo called the swoosh?", "difficulty": "easy", "answers": [{ "text": "Nike" }] },
+        { "prompt": "Which French fashion house is known for its interlocking double-C logo?", "difficulty": "easy", "answers": [{ "text": "Chanel" }] },
+        { "prompt": "Which Italian fashion house is known for its interlocking double-G logo?", "difficulty": "easy", "answers": [{ "text": "Gucci" }] },
+        { "prompt": "What French term describes ready-made clothing sold in standard sizes, unlike custom tailoring?", "difficulty": "easy", "answers": [{ "text": "Pret-a-porter", "aliases": ["Ready-to-wear"] }] },
+        { "prompt": "Which designer, born Gabrielle, founded the Chanel fashion house?", "difficulty": "easy", "answers": [{ "text": "Coco Chanel" }] },
+        { "prompt": "Which 19th-century businessman is credited with popularising blue jeans in America?", "difficulty": "easy", "answers": [{ "text": "Levi Strauss" }] },
         { "prompt": "Which luxury group owns Louis Vuitton, Dior and Fendi?", "difficulty": "hard", "answers": [{ "text": "LVMH" }] },
         { "prompt": "Which British designer, who died in 2010, put Lady Gaga in armadillo shoes?", "difficulty": "hard", "answers": [{ "text": "Alexander McQueen", "aliases": ["McQueen"] }] },
         { "prompt": "Which designer took over at Chanel in 1983 and stayed until his death?", "difficulty": "hard", "answers": [{ "text": "Karl Lagerfeld", "aliases": ["Lagerfeld"] }] },

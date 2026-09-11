@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel minuten zitten er in een uur?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
-        { "prompt": "Welke planeet staat het dichtst bij de zon?", "difficulty": "easy", "answers": [{ "text": "Mercurius" }] },
-        { "prompt": "Wat is de hoofdstad van Frankrijk?", "difficulty": "easy", "answers": [{ "text": "Parijs" }] },
-        { "prompt": "Van welke vrucht wordt traditioneel wijn gemaakt?", "difficulty": "easy", "answers": [{ "text": "Druiven", "aliases": ["Druif"] }] },
-        { "prompt": "Hoeveel kleuren heeft een regenboog volgens de traditie?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "In welk land ligt het Great Barrier Reef?", "difficulty": "easy", "answers": [{ "text": "Australie", "aliases": ["Australië"] }] },
+        { "prompt": "Wat is de langste rivier ter wereld?", "difficulty": "easy", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat is de grootste hete woestijn ter wereld?", "difficulty": "easy", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Wat is de hardste natuurlijke stof op aarde?", "difficulty": "easy", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "difficulty": "easy", "answers": [{ "text": "Kwik" }] },
         { "prompt": "Welk gebergte scheidt Europa van Azie?", "difficulty": "hard", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
         { "prompt": "Wie schilderde De Nachtwacht?", "difficulty": "hard", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
         { "prompt": "Wat is de hardste stof die in de natuur voorkomt?", "difficulty": "hard", "answers": [{ "text": "Diamant" }] },

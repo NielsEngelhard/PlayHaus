@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke vorm heeft drie zijden?", "difficulty": "easy", "answers": [{ "text": "Een driehoek", "aliases": ["Driehoek"] }] },
-        { "prompt": "Wat is de grootste planeet van het zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "Jupiter" }] },
-        { "prompt": "Welke drank wordt van geroosterde bonen gemaakt en warm gedronken?", "difficulty": "easy", "answers": [{ "text": "Koffie" }] },
-        { "prompt": "Hoeveel snaren heeft een standaardgitaar?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
-        { "prompt": "Wat is de hoofdstad van Duitsland?", "difficulty": "easy", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Wat is de hoofdstad van Oostenrijk?", "difficulty": "easy", "answers": [{ "text": "Wenen" }] },
+        { "prompt": "Wat is de kleinste oceaan ter wereld?", "difficulty": "easy", "answers": [{ "text": "De Noordelijke IJszee", "aliases": ["Noordelijke IJszee"] }] },
+        { "prompt": "Welk Afrikaans land heeft de meeste inwoners?", "difficulty": "easy", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Welk orgaan klopt je hele leven lang zonder te stoppen?", "difficulty": "easy", "answers": [{ "text": "Het hart", "aliases": ["Hart"] }] },
+        { "prompt": "Hoeveel spelers staan er bij volleybal aan elke kant op het veld?", "difficulty": "easy", "answers": [{ "text": "Zes" }] },
         { "prompt": "In welk land ligt het Groot Barrierrif?", "difficulty": "hard", "answers": [{ "text": "Australie", "aliases": ["Australia"] }] },
         { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "difficulty": "hard", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
         { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "difficulty": "hard", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },

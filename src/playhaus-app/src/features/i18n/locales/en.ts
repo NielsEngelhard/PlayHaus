@@ -67,6 +67,11 @@ export const en = {
         unmuteMusic: 'Turn the music on',
         signedInAs: 'Signed in as {{name}}. Go to your profile.'
     },
+    notFound: {
+        title: "Page not found",
+        message: "This page doesn't exist, or it moved.",
+        action: "Take me home"
+    },
     home: {
         headline: {
             title: 'Tiny games,',

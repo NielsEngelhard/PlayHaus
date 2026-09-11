@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welk seizoen komt na de zomer?", "difficulty": "easy", "answers": [{ "text": "De herfst", "aliases": ["Herfst", "Najaar"] }] },
-        { "prompt": "Wat is de munt van het Verenigd Koninkrijk?", "difficulty": "easy", "answers": [{ "text": "Het pond sterling", "aliases": ["Pond", "Pond sterling"] }] },
-        { "prompt": "Welke vogel kan niet vliegen en leeft op Antarctica?", "difficulty": "easy", "answers": [{ "text": "De pinguin", "aliases": ["Pinguin"] }] },
-        { "prompt": "Hoeveel poten heeft een insect?", "difficulty": "easy", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
-        { "prompt": "Wat is de hoogste berg op aarde?", "difficulty": "easy", "answers": [{ "text": "De Mount Everest", "aliases": ["Mount Everest", "Everest"] }] },
+        { "prompt": "Wat is de langste muur ter wereld?", "difficulty": "easy", "answers": [{ "text": "De Chinese Muur", "aliases": ["Chinese Muur"] }] },
+        { "prompt": "Welk land schonk het Vrijheidsbeeld aan de Verenigde Staten?", "difficulty": "easy", "answers": [{ "text": "Frankrijk" }] },
+        { "prompt": "Wat is de kleinste planeet in ons zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Welke oceaan ligt tussen Amerika en Europa/Afrika?", "difficulty": "easy", "answers": [{ "text": "De Atlantische Oceaan", "aliases": ["Atlantische Oceaan"] }] },
+        { "prompt": "Wat is de hoofdstad van Australie?", "difficulty": "easy", "answers": [{ "text": "Canberra" }] },
         { "prompt": "Welk land heeft de meeste tijdzones?", "difficulty": "hard", "answers": [{ "text": "Frankrijk" }] },
         { "prompt": "Wat meet de schaal van Richter?", "difficulty": "hard", "answers": [{ "text": "De kracht van aardbevingen", "aliases": ["Aardbevingen", "Kracht van aardbevingen"] }] },
         { "prompt": "Welke Russische schrijver schreef Oorlog en vrede?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },

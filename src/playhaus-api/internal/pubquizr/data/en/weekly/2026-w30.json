@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which shape has three sides?", "difficulty": "easy", "answers": [{ "text": "A triangle", "aliases": ["Triangle"] }] },
-        { "prompt": "What is the largest planet in the solar system?", "difficulty": "easy", "answers": [{ "text": "Jupiter" }] },
-        { "prompt": "Which drink is made from roasted beans and drunk hot?", "difficulty": "easy", "answers": [{ "text": "Coffee" }] },
-        { "prompt": "How many strings does a standard guitar have?", "difficulty": "easy", "answers": [{ "text": "Six", "aliases": ["6"] }] },
-        { "prompt": "What is the capital of Germany?", "difficulty": "easy", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "What is the capital of Austria?", "difficulty": "easy", "answers": [{ "text": "Vienna" }] },
+        { "prompt": "Which is the smallest ocean in the world?", "difficulty": "easy", "answers": [{ "text": "The Arctic Ocean", "aliases": ["Arctic Ocean"] }] },
+        { "prompt": "Which country has the largest population in Africa?", "difficulty": "easy", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Which organ beats continuously, without rest, throughout your life?", "difficulty": "easy", "answers": [{ "text": "The heart", "aliases": ["Heart"] }] },
+        { "prompt": "How many players are on a volleyball team on court per side?", "difficulty": "easy", "answers": [{ "text": "Six" }] },
         { "prompt": "Which country is home to the Great Barrier Reef?", "difficulty": "hard", "answers": [{ "text": "Australia" }] },
         { "prompt": "Who was the first woman to win a Nobel Prize?", "difficulty": "hard", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
         { "prompt": "Which river flows through Vienna, Budapest and Belgrade?", "difficulty": "hard", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },

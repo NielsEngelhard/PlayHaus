@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which colour is in the title of Taylor Swift's 2012 album?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
-        { "prompt": "Which number album of hers is named after the year she was born?", "difficulty": "easy", "answers": [{ "text": "1989" }] },
-        { "prompt": "What are Taylor Swift's fans collectively called?", "difficulty": "easy", "answers": [{ "text": "Swifties", "aliases": ["Swiftie"] }] },
-        { "prompt": "Which of her songs asks someone to shake it off?", "difficulty": "easy", "answers": [{ "text": "Shake It Off" }] },
-        { "prompt": "Which snake-themed album followed 1989?", "difficulty": "easy", "answers": [{ "text": "Reputation" }] },
+        { "prompt": "What is the title of Taylor Swift's self-titled debut album, released in 2006?", "difficulty": "easy", "answers": [{ "text": "Taylor Swift" }] },
+        { "prompt": "Which 2010 album of hers includes the song 'Mine'?", "difficulty": "easy", "answers": [{ "text": "Speak Now" }] },
+        { "prompt": "Which 2019 album of hers includes 'Lover' and 'Cruel Summer'?", "difficulty": "easy", "answers": [{ "text": "Lover" }] },
+        { "prompt": "Which American football player did Taylor Swift begin dating in 2023?", "difficulty": "easy", "answers": [{ "text": "Travis Kelce" }] },
+        { "prompt": "In which US state was Taylor Swift born?", "difficulty": "easy", "answers": [{ "text": "Pennsylvania" }] },
         { "prompt": "What was the name of her 2023 and 2024 stadium tour?", "difficulty": "hard", "answers": [{ "text": "The Eras Tour", "aliases": ["Eras Tour"] }] },
         { "prompt": "Which two albums did she release in 2020, recorded in lockdown?", "difficulty": "hard", "answers": [{ "text": "Folklore and Evermore", "aliases": ["Folklore & Evermore"] }] },
         { "prompt": "What word does she add to the re-recorded versions of her early albums?", "difficulty": "hard", "answers": [{ "text": "Taylor's Version", "aliases": ["Taylors Version"] }] },

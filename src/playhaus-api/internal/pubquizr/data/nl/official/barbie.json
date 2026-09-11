@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "In welk decennium kwam de eerste Barbiepop in de winkel?", "difficulty": "easy", "answers": [{ "text": "De jaren vijftig", "aliases": ["Jaren 50", "1950s"] }] },
-        { "prompt": "Welke haarkleur heeft Barbie in haar klassieke uitvoering?", "difficulty": "easy", "answers": [{ "text": "Blond", "aliases": ["Blonde"] }] },
-        { "prompt": "In welk jaar kwam de Barbiefilm in de bioscoop?", "difficulty": "easy", "answers": [{ "text": "2023" }] },
-        { "prompt": "In welk land ligt Barbies thuisstaat Californie?", "difficulty": "easy", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }] },
-        { "prompt": "Welk nummer van Aqua over Barbie was een hit in 1997?", "difficulty": "easy", "answers": [{ "text": "Barbie Girl" }] },
+        { "prompt": "Welk Amerikaans speelgoedbedrijf, ook bekend van Hot Wheels, maakt Barbie?", "difficulty": "easy", "answers": [{ "text": "Mattel" }] },
+        { "prompt": "Hoe heet Barbies vriendje, geintroduceerd in 1961?", "difficulty": "easy", "answers": [{ "text": "Ken" }] },
+        { "prompt": "Welke filmstudio bracht de Barbiefilm uit 2023 uit?", "difficulty": "easy", "answers": [{ "text": "Warner Bros.", "aliases": ["Warner Bros"] }] },
+        { "prompt": "Hoe heet Barbies iconische roze huis, voor het eerst verkocht in 1962?", "difficulty": "easy", "answers": [{ "text": "Het Droomhuis", "aliases": ["Droomhuis"] }] },
+        { "prompt": "Welk model sportwagen wordt sterk geassocieerd met Barbie?", "difficulty": "easy", "answers": [{ "text": "Corvette" }] },
         { "prompt": "Wat is Barbies volledige naam volgens Mattel zelf?", "difficulty": "hard", "answers": [{ "text": "Barbara Millicent Roberts", "aliases": ["Barbara Roberts"] }] },
         { "prompt": "Welke Duitse pop kocht Ruth Handler op vakantie als rechtstreeks voorbeeld voor Barbie?", "difficulty": "hard", "answers": [{ "text": "Bild Lilli", "aliases": ["Lilli"] }] },
         { "prompt": "Welk nummer van Billie Eilish uit de film van 2023 won een Oscar?", "difficulty": "hard", "answers": [{ "text": "What Was I Made For?", "aliases": ["What Was I Made For"] }] },

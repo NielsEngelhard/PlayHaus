@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel nullen staan er in duizend?", "difficulty": "easy", "answers": [{ "text": "Drie", "aliases": ["3"] }] },
-        { "prompt": "Welk dier staat bekend om zijn lange nek?", "difficulty": "easy", "answers": [{ "text": "De giraf", "aliases": ["Giraf", "Giraffe"] }] },
-        { "prompt": "Wat is de hoofdstad van Portugal?", "difficulty": "easy", "answers": [{ "text": "Lissabon", "aliases": ["Lisboa"] }] },
-        { "prompt": "Welke oranje groente eten tekenfilmkonijnen het liefst?", "difficulty": "easy", "answers": [{ "text": "De wortel", "aliases": ["Wortel", "Peen"] }] },
-        { "prompt": "Hoeveel spelers van een basketbalteam staan er op het veld?", "difficulty": "easy", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Wat is de hoofdstad van Griekenland?", "difficulty": "easy", "answers": [{ "text": "Athene" }] },
+        { "prompt": "Welke grote kat is de grootste van alle katachtigen?", "difficulty": "easy", "answers": [{ "text": "De tijger", "aliases": ["Tijger"] }] },
+        { "prompt": "Over hoeveel tijdzones strekt Rusland zich uit?", "difficulty": "easy", "answers": [{ "text": "Elf" }] },
+        { "prompt": "Welke vogel is de snelste ter wereld tijdens een duikvlucht?", "difficulty": "easy", "answers": [{ "text": "De slechtvalk", "aliases": ["Slechtvalk"] }] },
+        { "prompt": "Hoeveel spelers staan er bij rugby league aan elke kant op het veld?", "difficulty": "easy", "answers": [{ "text": "Dertien" }] },
         { "prompt": "Welk land heeft de langste kustlijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "Canada" }] },
         { "prompt": "Hoe heet het proces waarmee planten uit zonlicht suiker maken?", "difficulty": "hard", "answers": [{ "text": "Fotosynthese" }] },
         { "prompt": "Welke muur liet keizer Hadrianus door Noord-Brittannie aanleggen?", "difficulty": "hard", "answers": [{ "text": "De Muur van Hadrianus", "aliases": ["Muur van Hadrianus", "Hadrian's Wall"] }] },

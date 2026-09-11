@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the biggest land animal alive today?", "difficulty": "easy", "answers": [{ "text": "The African elephant", "aliases": ["Elephant", "African elephant"] }] },
-        { "prompt": "Which continent is Egypt in?", "difficulty": "easy", "answers": [{ "text": "Africa" }] },
-        { "prompt": "How many wheels does a standard bicycle have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
-        { "prompt": "What is frozen water called?", "difficulty": "easy", "answers": [{ "text": "Ice" }] },
-        { "prompt": "Which language has the most native speakers in the world?", "difficulty": "easy", "answers": [{ "text": "Mandarin Chinese", "aliases": ["Chinese", "Mandarin"] }] },
+        { "prompt": "Which is the largest country in the world by land area?", "difficulty": "easy", "answers": [{ "text": "Russia" }] },
+        { "prompt": "Which bird lays the largest egg of any living bird?", "difficulty": "easy", "answers": [{ "text": "The ostrich", "aliases": ["Ostrich"] }] },
+        { "prompt": "What is the most populous country in the world?", "difficulty": "easy", "answers": [{ "text": "India" }] },
+        { "prompt": "Which precious metal has the chemical symbol Au?", "difficulty": "easy", "answers": [{ "text": "Gold" }] },
+        { "prompt": "What is the tallest land animal in the world?", "difficulty": "easy", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
         { "prompt": "Which Italian city is built on a lagoon and crossed by canals?", "difficulty": "hard", "answers": [{ "text": "Venice", "aliases": ["Venezia"] }] },
         { "prompt": "What is the study of fossils called?", "difficulty": "hard", "answers": [{ "text": "Palaeontology", "aliases": ["Paleontology"] }] },
         { "prompt": "Which country gave the Statue of Liberty to the United States?", "difficulty": "hard", "answers": [{ "text": "France" }] },

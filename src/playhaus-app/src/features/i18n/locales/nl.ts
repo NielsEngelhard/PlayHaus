@@ -63,6 +63,11 @@ export const nl: Catalog = {
         unmuteMusic: 'Zet de muziek aan',
         signedInAs: 'Ingelogd als {{name}}. Ga naar je profiel.'
     },
+    notFound: {
+        title: 'Pagina niet gevonden',
+        message: 'Deze pagina bestaat niet, of is verplaatst.',
+        action: 'Terug naar home'
+    },
     home: {
         headline: {
             title: 'Kleine spelletjes,',

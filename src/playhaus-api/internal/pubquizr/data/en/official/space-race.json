@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the suit an astronaut wears outside the craft called?", "difficulty": "easy", "answers": [{ "text": "A spacesuit", "aliases": ["Spacesuit"] }] },
-        { "prompt": "Which American space agency ran the Apollo programme?", "difficulty": "easy", "answers": [{ "text": "NASA" }] },
-        { "prompt": "Which was the first artificial satellite, launched in 1957?", "difficulty": "easy", "answers": [{ "text": "Sputnik 1", "aliases": ["Sputnik"] }] },
-        { "prompt": "Which country launched Sputnik 1?", "difficulty": "easy", "answers": [{ "text": "The Soviet Union", "aliases": ["Soviet Union", "USSR"] }] },
-        { "prompt": "Which planet were the Viking probes sent to?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Who was the first human to travel into space, in 1961?", "difficulty": "easy", "answers": [{ "text": "Yuri Gagarin" }] },
+        { "prompt": "Who was the first person to walk on the Moon, in 1969?", "difficulty": "easy", "answers": [{ "text": "Neil Armstrong" }] },
+        { "prompt": "Which NASA mission first landed astronauts on the Moon?", "difficulty": "easy", "answers": [{ "text": "Apollo 11" }] },
+        { "prompt": "Who was the first woman in space, flying for the Soviet Union in 1963?", "difficulty": "easy", "answers": [{ "text": "Valentina Tereshkova" }] },
+        { "prompt": "What do the letters ISS stand for, the space station launched in 1998?", "difficulty": "easy", "answers": [{ "text": "The International Space Station", "aliases": ["ISS"] }] },
         { "prompt": "How many people have walked on the Moon?", "difficulty": "hard", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
         { "prompt": "In which year did the last Apollo mission land on the Moon?", "difficulty": "hard", "answers": [{ "text": "1972" }] },
         { "prompt": "Which Apollo mission suffered an oxygen tank explosion on the way to the Moon?", "difficulty": "hard", "answers": [{ "text": "Apollo 13" }] },

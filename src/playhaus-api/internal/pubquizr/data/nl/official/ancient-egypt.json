@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke rivier stroomde door het oude Egypte en overstroomde elk jaar de akkers?", "difficulty": "easy", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
-        { "prompt": "Welke woestijn beslaat het grootste deel van Egypte?", "difficulty": "easy", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
-        { "prompt": "Welk graf van een jonge koning opende Howard Carter in 1922?", "difficulty": "easy", "answers": [{ "text": "Toetanchamon", "aliases": ["Tutankhamun", "Toetanchamun"] }] },
-        { "prompt": "Welke zee ligt langs de noordkust van Egypte?", "difficulty": "easy", "answers": [{ "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }] },
-        { "prompt": "Hoe noem je een gebalsemd en ingewikkeld Egyptisch lichaam?", "difficulty": "easy", "answers": [{ "text": "Een mummie", "aliases": ["Mummie"] }] },
+        { "prompt": "Van welke rietplant maakten de oude Egyptenaren een soort papier?", "difficulty": "easy", "answers": [{ "text": "Papyrus" }] },
+        { "prompt": "Welke Egyptische koningin had relaties met Julius Caesar en Marcus Antonius?", "difficulty": "easy", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "Hoe heet het grote standbeeld met een leeuwenlichaam en een mensenhoofd bij Gizeh?", "difficulty": "easy", "answers": [{ "text": "De Sfinx" }] },
+        { "prompt": "Welke Egyptische god met een valkenkop stond voor de hemel en het koningschap?", "difficulty": "easy", "answers": [{ "text": "Horus" }] },
+        { "prompt": "Welke Egyptische stad, gesticht door Alexander de Grote, had een beroemde oude bibliotheek?", "difficulty": "easy", "answers": [{ "text": "Alexandrie", "aliases": ["Alexandrië"] }] },
         { "prompt": "Wiens beschilderde kalkstenen buste, in 1912 opgegraven en nu in Berlijn, is het bekendste gezicht van de Amarnaperiode?", "difficulty": "hard", "answers": [{ "text": "Nefertiti" }] },
         { "prompt": "Welk bordspel op dertig vakjes was een geliefd tijdverdrijf in het oude Egypte?", "difficulty": "hard", "answers": [{ "text": "Senet" }] },
         { "prompt": "Welke vrouwelijke farao regeerde ruim twintig jaar en werd vaak met een valse baard afgebeeld?", "difficulty": "hard", "answers": [{ "text": "Hatsjepsoet", "aliases": ["Hatshepsut"] }] },

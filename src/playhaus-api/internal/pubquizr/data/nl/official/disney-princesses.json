@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Met welke vrucht vergiftigt de koningin Sneeuwwitje?", "difficulty": "easy", "answers": [{ "text": "Een appel", "aliases": ["Appel"] }] },
-        { "prompt": "Welk geel met blauw visje is de beste vriend van Ariel?", "difficulty": "easy", "answers": [{ "text": "Botje", "aliases": ["Flounder"] }] },
-        { "prompt": "Welke sneeuwpop ontmoet Anna in Frozen?", "difficulty": "easy", "answers": [{ "text": "Olaf" }] },
-        { "prompt": "Welke prinses vaart de oceaan over met een haan die Heihei heet?", "difficulty": "easy", "answers": [{ "text": "Vaiana", "aliases": ["Moana"] }] },
-        { "prompt": "Waaraan vraagt de boze koningin wie de mooiste van het land is?", "difficulty": "easy", "answers": [{ "text": "Haar spiegel", "aliases": ["Spiegel", "De spiegel"] }] },
+        { "prompt": "Hoe heet de krab die Ariels adviseur is in De Kleine Zeemeermin?", "difficulty": "easy", "answers": [{ "text": "Sebastiaan" }] },
+        { "prompt": "Hoe heet de vader van Belle, de uitvinder, in Belle en het Beest?", "difficulty": "easy", "answers": [{ "text": "Maurice" }] },
+        { "prompt": "Welke Disney-prinses woont met zeven dwergen in een huisje in het bos?", "difficulty": "easy", "answers": [{ "text": "Sneeuwwitje" }] },
+        { "prompt": "Wie sprak oorspronkelijk de stem in van de Genie in Aladdin uit 1992?", "difficulty": "easy", "answers": [{ "text": "Robin Williams" }] },
+        { "prompt": "Welke Disney-prinses heeft magisch haar dat oplicht als ze zingt?", "difficulty": "easy", "answers": [{ "text": "Rapunzel" }] },
         { "prompt": "Wie voedde Kristoff op in Frozen?", "difficulty": "hard", "answers": [{ "text": "De trollen", "aliases": ["Trollen"] }] },
         { "prompt": "Welke Disneyprinses was de eerste die op een echt historisch persoon is gebaseerd?", "difficulty": "hard", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Welke componist schreef de liedjes voor De kleine zeemeermin en Belle en het Beest?", "difficulty": "hard", "answers": [{ "text": "Alan Menken", "aliases": ["Menken"] }] },

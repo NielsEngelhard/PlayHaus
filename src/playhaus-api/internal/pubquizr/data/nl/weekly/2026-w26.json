@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Wat is het grootste landdier dat nu nog leeft?", "difficulty": "easy", "answers": [{ "text": "De Afrikaanse olifant", "aliases": ["Olifant", "Afrikaanse olifant"] }] },
-        { "prompt": "In welk werelddeel ligt Egypte?", "difficulty": "easy", "answers": [{ "text": "Afrika" }] },
-        { "prompt": "Hoeveel wielen heeft een gewone fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
-        { "prompt": "Hoe heet bevroren water?", "difficulty": "easy", "answers": [{ "text": "Ijs", "aliases": ["IJs"] }] },
-        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "difficulty": "easy", "answers": [{ "text": "Mandarijn", "aliases": ["Chinees", "Mandarijn Chinees"] }] },
+        { "prompt": "Welk land is qua oppervlakte het grootste ter wereld?", "difficulty": "easy", "answers": [{ "text": "Rusland" }] },
+        { "prompt": "Welke vogel legt het grootste ei van alle nog levende vogels?", "difficulty": "easy", "answers": [{ "text": "De struisvogel", "aliases": ["Struisvogel"] }] },
+        { "prompt": "Welk land heeft de meeste inwoners ter wereld?", "difficulty": "easy", "answers": [{ "text": "India" }] },
+        { "prompt": "Welk edelmetaal heeft het scheikundig symbool Au?", "difficulty": "easy", "answers": [{ "text": "Goud" }] },
+        { "prompt": "Welk dier is het langste landdier ter wereld?", "difficulty": "easy", "answers": [{ "text": "De giraf", "aliases": ["Giraf"] }] },
         { "prompt": "Welke Italiaanse stad is op een lagune gebouwd en doorsneden met kanalen?", "difficulty": "hard", "answers": [{ "text": "Venetie", "aliases": ["Venezia", "Venice"] }] },
         { "prompt": "Hoe heet de wetenschap die fossielen onderzoekt?", "difficulty": "hard", "answers": [{ "text": "Paleontologie" }] },
         { "prompt": "Welk land gaf het Vrijheidsbeeld aan de Verenigde Staten?", "difficulty": "hard", "answers": [{ "text": "Frankrijk" }] },

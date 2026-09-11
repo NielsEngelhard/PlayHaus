@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which school does Harry Potter attend?", "difficulty": "easy", "answers": [{ "text": "Hogwarts" }] },
-        { "prompt": "What kind of creature is Fluffy, who guards the trapdoor?", "difficulty": "easy", "answers": [{ "text": "A three-headed dog", "aliases": ["Three-headed dog", "Dog"] }] },
-        { "prompt": "Which house are Harry, Ron and Hermione sorted into?", "difficulty": "easy", "answers": [{ "text": "Gryffindor" }] },
-        { "prompt": "What is the cloak that makes Harry disappear called?", "difficulty": "easy", "answers": [{ "text": "The Invisibility Cloak", "aliases": ["Invisibility Cloak"] }] },
-        { "prompt": "What is Ron's surname?", "difficulty": "easy", "answers": [{ "text": "Weasley" }] },
+        { "prompt": "What is the name of Harry Potter's owl?", "difficulty": "easy", "answers": [{ "text": "Hedwig" }] },
+        { "prompt": "Who is the headmaster of Hogwarts for most of the series?", "difficulty": "easy", "answers": [{ "text": "Albus Dumbledore", "aliases": ["Dumbledore"] }] },
+        { "prompt": "What is the name of the dark wizard who killed Harry's parents?", "difficulty": "easy", "answers": [{ "text": "Lord Voldemort", "aliases": ["Voldemort"] }] },
+        { "prompt": "What sport is played on broomsticks at Hogwarts?", "difficulty": "easy", "answers": [{ "text": "Quidditch" }] },
+        { "prompt": "What is the name of Hagrid's dog?", "difficulty": "easy", "answers": [{ "text": "Fang" }] },
         { "prompt": "What form does Harry's Patronus take?", "difficulty": "hard", "answers": [{ "text": "A stag", "aliases": ["Stag"] }] },
         { "prompt": "What is the name of the goblin-run wizarding bank?", "difficulty": "hard", "answers": [{ "text": "Gringotts" }] },
         { "prompt": "Which platform at King's Cross takes the Hogwarts Express?", "difficulty": "hard", "answers": [{ "text": "Platform nine and three-quarters", "aliases": ["9 3/4", "Nine and three quarters"] }] },

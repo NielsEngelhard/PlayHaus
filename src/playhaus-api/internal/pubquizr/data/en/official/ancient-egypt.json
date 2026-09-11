@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which river ran through ancient Egypt and flooded its fields every year?", "difficulty": "easy", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
-        { "prompt": "Which desert covers most of Egypt?", "difficulty": "easy", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
-        { "prompt": "Which boy king's tomb did Howard Carter open in 1922?", "difficulty": "easy", "answers": [{ "text": "Tutankhamun", "aliases": ["Tutankhamen", "King Tut"] }] },
-        { "prompt": "Which sea lies along Egypt's northern coast?", "difficulty": "easy", "answers": [{ "text": "The Mediterranean", "aliases": ["Mediterranean", "Mediterranean Sea"] }] },
-        { "prompt": "What was a preserved, wrapped Egyptian body called?", "difficulty": "easy", "answers": [{ "text": "A mummy", "aliases": ["Mummy"] }] },
+        { "prompt": "What paper-like material did the ancient Egyptians make from a Nile reed plant?", "difficulty": "easy", "answers": [{ "text": "Papyrus" }] },
+        { "prompt": "Which Egyptian queen was known for her alliances with Julius Caesar and Mark Antony?", "difficulty": "easy", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "What is the giant statue with a lion's body and a human head near the Giza pyramids called?", "difficulty": "easy", "answers": [{ "text": "The Sphinx" }] },
+        { "prompt": "Which falcon-headed Egyptian god represented the sky and kingship?", "difficulty": "easy", "answers": [{ "text": "Horus" }] },
+        { "prompt": "Which Egyptian city, founded by Alexander the Great, was home to a famous ancient library?", "difficulty": "easy", "answers": [{ "text": "Alexandria" }] },
         { "prompt": "Whose painted limestone bust, dug up in 1912 and now in Berlin, is the most famous face of the Amarna period?", "difficulty": "hard", "answers": [{ "text": "Nefertiti" }] },
         { "prompt": "Which board game, played on thirty squares, was a favourite pastime in ancient Egypt?", "difficulty": "hard", "answers": [{ "text": "Senet" }] },
         { "prompt": "Which female pharaoh ruled for about two decades and was often shown wearing a false beard?", "difficulty": "hard", "answers": [{ "text": "Hatshepsut" }] },

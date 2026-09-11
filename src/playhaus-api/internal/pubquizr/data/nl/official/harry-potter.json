@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Op welke school zit Harry Potter?", "difficulty": "easy", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }] },
-        { "prompt": "Wat voor wezen is Pluisje, die het luik bewaakt?", "difficulty": "easy", "answers": [{ "text": "Een driekoppige hond", "aliases": ["Driekoppige hond", "Hond"] }] },
-        { "prompt": "In welke afdeling worden Harry, Ron en Hermelien gesorteerd?", "difficulty": "easy", "answers": [{ "text": "Griffoendor", "aliases": ["Gryffindor"] }] },
-        { "prompt": "Hoe heet de mantel waarmee Harry onzichtbaar wordt?", "difficulty": "easy", "answers": [{ "text": "De Onzichtbaarheidsmantel", "aliases": ["Onzichtbaarheidsmantel"] }] },
-        { "prompt": "Wat is de achternaam van Ron?", "difficulty": "easy", "answers": [{ "text": "Wemel", "aliases": ["Weasley"] }] },
+        { "prompt": "Hoe heet de uil van Harry Potter?", "difficulty": "easy", "answers": [{ "text": "Hedwig" }] },
+        { "prompt": "Wie is het grootste deel van de reeks schoolhoofd van Zweinstein?", "difficulty": "easy", "answers": [{ "text": "Albus Perkamentus", "aliases": ["Perkamentus"] }] },
+        { "prompt": "Hoe heet de duistere tovenaar die Harry's ouders vermoordde?", "difficulty": "easy", "answers": [{ "text": "Voldemort" }] },
+        { "prompt": "Welke sport wordt op bezemstelen gespeeld op Zweinstein?", "difficulty": "easy", "answers": [{ "text": "Zwerkbal" }] },
+        { "prompt": "Hoe heet de hond van Hagrid?", "difficulty": "easy", "answers": [{ "text": "Muil" }] },
         { "prompt": "Welke vorm heeft de Patronus van Harry?", "difficulty": "hard", "answers": [{ "text": "Een hert", "aliases": ["Hert"] }] },
         { "prompt": "Hoe heet de door kobolden gedreven bank van de tovenaarswereld?", "difficulty": "hard", "answers": [{ "text": "Goudgrijp", "aliases": ["Gringotts"] }] },
         { "prompt": "Vanaf welk perron op King's Cross vertrekt de Zweinsteinexpres?", "difficulty": "hard", "answers": [{ "text": "Perron negen driekwart", "aliases": ["9 3/4", "Negen en driekwart"] }] },

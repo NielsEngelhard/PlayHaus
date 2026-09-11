@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Van welke stof wordt een jeans traditioneel gemaakt?", "difficulty": "easy", "answers": [{ "text": "Denim" }] },
-        { "prompt": "Welke stad heeft een fashion week naast Parijs, Londen en New York?", "difficulty": "easy", "answers": [{ "text": "Milaan", "aliases": ["Milano"] }] },
-        { "prompt": "Hoe heet het looppad waarop modellen kleding showen?", "difficulty": "easy", "answers": [{ "text": "De catwalk", "aliases": ["Catwalk", "Loopbrug"] }] },
-        { "prompt": "Welk modeblad heeft sinds 1892 een Amerikaanse editie?", "difficulty": "easy", "answers": [{ "text": "Vogue" }] },
-        { "prompt": "Welk merk heeft een vinkvormig logo dat de swoosh heet?", "difficulty": "easy", "answers": [{ "text": "Nike" }] },
+        { "prompt": "Welk Frans modehuis staat bekend om het dubbele C-logo?", "difficulty": "easy", "answers": [{ "text": "Chanel" }] },
+        { "prompt": "Welk Italiaans modehuis staat bekend om het dubbele G-logo?", "difficulty": "easy", "answers": [{ "text": "Gucci" }] },
+        { "prompt": "Hoe heet kant-en-klare kleding in standaardmaten, in tegenstelling tot maatwerk?", "difficulty": "easy", "answers": [{ "text": "Pret-a-porter", "aliases": ["Ready-to-wear"] }] },
+        { "prompt": "Welke ontwerpster, geboren als Gabrielle, richtte het modehuis Chanel op?", "difficulty": "easy", "answers": [{ "text": "Coco Chanel" }] },
+        { "prompt": "Welke negentiende-eeuwse zakenman wordt gezien als de popularisator van de spijkerbroek in Amerika?", "difficulty": "easy", "answers": [{ "text": "Levi Strauss" }] },
         { "prompt": "Welk luxeconcern bezit Louis Vuitton, Dior en Fendi?", "difficulty": "hard", "answers": [{ "text": "LVMH" }] },
         { "prompt": "Welke Britse ontwerper, overleden in 2010, zette Lady Gaga op armadilloschoenen?", "difficulty": "hard", "answers": [{ "text": "Alexander McQueen", "aliases": ["McQueen"] }] },
         { "prompt": "Welke ontwerper nam in 1983 de leiding bij Chanel en bleef tot zijn dood?", "difficulty": "hard", "answers": [{ "text": "Karl Lagerfeld", "aliases": ["Lagerfeld"] }] },

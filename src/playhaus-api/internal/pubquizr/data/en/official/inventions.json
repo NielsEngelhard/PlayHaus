@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which invention lights a room at the flick of a switch?", "difficulty": "easy", "answers": [{ "text": "The light bulb", "aliases": ["Light bulb", "Electric light"] }] },
-        { "prompt": "Who is credited with inventing the telephone in 1876?", "difficulty": "easy", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }] },
-        { "prompt": "Which invention lets you fly from country to country?", "difficulty": "easy", "answers": [{ "text": "The aeroplane", "aliases": ["Aeroplane", "Airplane", "Plane"] }] },
-        { "prompt": "Which two-wheeled invention is powered by your own legs?", "difficulty": "easy", "answers": [{ "text": "The bicycle", "aliases": ["Bicycle", "Bike"] }] },
-        { "prompt": "Which invention keeps food cold in the kitchen?", "difficulty": "easy", "answers": [{ "text": "The refrigerator", "aliases": ["Refrigerator", "Fridge"] }] },
+        { "prompt": "Which Italian is traditionally credited with inventing the radio in the 1890s?", "difficulty": "easy", "answers": [{ "text": "Guglielmo Marconi" }] },
+        { "prompt": "Who is credited with inventing the printing press with movable type in the 1440s?", "difficulty": "easy", "answers": [{ "text": "Johannes Gutenberg" }] },
+        { "prompt": "Which American brothers made the first powered aeroplane flight in 1903?", "difficulty": "easy", "answers": [{ "text": "The Wright brothers", "aliases": ["Wright brothers"] }] },
+        { "prompt": "Who is credited with inventing the World Wide Web in 1989?", "difficulty": "easy", "answers": [{ "text": "Tim Berners-Lee" }] },
+        { "prompt": "Who is credited with inventing dynamite in 1867?", "difficulty": "easy", "answers": [{ "text": "Alfred Nobel" }] },
         { "prompt": "Which two French brothers sent up the first hot air balloon in 1783?", "difficulty": "hard", "answers": [{ "text": "The Montgolfier brothers", "aliases": ["Montgolfier"] }] },
         { "prompt": "Which invention of Percy Spencer's in 1945 began with a melted chocolate bar?", "difficulty": "hard", "answers": [{ "text": "The microwave oven", "aliases": ["Microwave", "Microwave oven"] }] },
         { "prompt": "Which Scottish inventor's improved steam engine of 1769 powered the industrial revolution?", "difficulty": "hard", "answers": [{ "text": "James Watt", "aliases": ["Watt"] }] },

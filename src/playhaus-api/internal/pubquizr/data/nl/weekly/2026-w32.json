@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft een rijpe banaan?", "difficulty": "easy", "answers": [{ "text": "Geel" }] },
-        { "prompt": "Hoeveel dagen heeft een week?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
-        { "prompt": "Wat is de hoofdstad van Belgie?", "difficulty": "easy", "answers": [{ "text": "Brussel" }] },
-        { "prompt": "Welke sport wordt op Roland Garros gespeeld?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
-        { "prompt": "Welke ster geeft de aarde haar licht?", "difficulty": "easy", "answers": [{ "text": "De zon", "aliases": ["Zon"] }] },
+        { "prompt": "Wat is de hoofdstad van Zwitserland?", "difficulty": "easy", "answers": [{ "text": "Bern" }] },
+        { "prompt": "Welke vrucht wordt in Zuidoost-Azie de 'koning der vruchten' genoemd vanwege de sterke geur?", "difficulty": "easy", "answers": [{ "text": "De durian", "aliases": ["Durian"] }] },
+        { "prompt": "Hoeveel snaren heeft een standaardviool?", "difficulty": "easy", "answers": [{ "text": "Vier" }] },
+        { "prompt": "Welke planeet staat bekend om zijn opvallende ringen?", "difficulty": "easy", "answers": [{ "text": "Saturnus" }] },
+        { "prompt": "Wat is de grootste woestijn ter wereld, inclusief koude woestijnen?", "difficulty": "easy", "answers": [{ "text": "Antarctica" }] },
         { "prompt": "Welk land heette vroeger Perzie?", "difficulty": "hard", "answers": [{ "text": "Iran" }] },
         { "prompt": "Hoeveel botten zitten er in een menselijke hand?", "difficulty": "hard", "answers": [{ "text": "27" }] },
         { "prompt": "Welke slag maakte in 1815 een einde aan de macht van Napoleon?", "difficulty": "hard", "answers": [{ "text": "Waterloo", "aliases": ["De slag bij Waterloo"] }] },

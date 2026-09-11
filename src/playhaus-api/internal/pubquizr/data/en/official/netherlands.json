@@ -98,11 +98,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which colour is the middle stripe of the Dutch flag?", "difficulty": "easy", "answers": [{ "text": "White" }] },
-        { "prompt": "Which orange root vegetable are the Dutch football shirts' colour named after?", "difficulty": "easy", "answers": [{ "text": "The carrot", "aliases": ["Carrot"] }] },
-        { "prompt": "Which flower is the Netherlands most famous for?", "difficulty": "easy", "answers": [{ "text": "The tulip", "aliases": ["Tulip", "Tulips"] }] },
-        { "prompt": "What are the traditional Dutch wooden shoes called?", "difficulty": "easy", "answers": [{ "text": "Clogs", "aliases": ["Klompen", "Clog"] }] },
-        { "prompt": "Which Dutch city is home to the port of Europe's busiest harbour?", "difficulty": "easy", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "What is the capital city of the Netherlands?", "difficulty": "easy", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Which Dutch city houses the national government and the King's official residence?", "difficulty": "easy", "answers": [{ "text": "The Hague", "aliases": ["Den Haag"] }] },
+        { "prompt": "What is the name for low-lying reclaimed land protected by dykes in the Netherlands?", "difficulty": "easy", "answers": [{ "text": "A polder", "aliases": ["Polder"] }] },
+        { "prompt": "Which Dutch cheese, named after a market town, is one of the country's most famous exports?", "difficulty": "easy", "answers": [{ "text": "Gouda" }] },
+        { "prompt": "Which Dutch painter, famous for The Night Watch, lived in the 17th century?", "difficulty": "easy", "answers": [{ "text": "Rembrandt" }] },
         { "prompt": "Which Dutch painter cut off part of his own ear in Arles?", "difficulty": "hard", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
         { "prompt": "What is the name of the sea defence works built after the 1953 flood?", "difficulty": "hard", "answers": [{ "text": "The Delta Works", "aliases": ["Delta Works", "Deltawerken"] }] },
         { "prompt": "How many of the Dutch Wadden islands are inhabited?", "difficulty": "hard", "answers": [{ "text": "Five", "aliases": ["5"] }] },

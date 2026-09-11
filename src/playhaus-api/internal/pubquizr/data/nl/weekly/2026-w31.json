@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel uren zitten er in twee dagen?", "difficulty": "easy", "answers": [{ "text": "48" }] },
-        { "prompt": "Welk dier blaft?", "difficulty": "easy", "answers": [{ "text": "De hond", "aliases": ["Hond"] }] },
-        { "prompt": "Wat is de hoofdstad van Japan?", "difficulty": "easy", "answers": [{ "text": "Tokio", "aliases": ["Tokyo"] }] },
-        { "prompt": "Hoeveel poten heeft een spin?", "difficulty": "easy", "answers": [{ "text": "Acht", "aliases": ["8"] }] },
-        { "prompt": "Hoe noem je bevroren regen die als witte vlokken valt?", "difficulty": "easy", "answers": [{ "text": "Sneeuw" }] },
+        { "prompt": "Wat is de hoofdstad van Zuid-Korea?", "difficulty": "easy", "answers": [{ "text": "Seoel" }] },
+        { "prompt": "Welk insect kan vele malen zijn eigen lichaamsgewicht dragen?", "difficulty": "easy", "answers": [{ "text": "De mier", "aliases": ["Mier"] }] },
+        { "prompt": "Hoe heet het langste bot in het menselijk been?", "difficulty": "easy", "answers": [{ "text": "Het dijbeen", "aliases": ["Dijbeen"] }] },
+        { "prompt": "Welke oceaan is de grootste en diepste ter wereld?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan"] }] },
+        { "prompt": "Wat is de hoofdstad van Canada?", "difficulty": "easy", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Welke stad is de hoofdstad van Canada?", "difficulty": "hard", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Welke wetenschapper beschreef in 1687 als eerste de bewegingswetten?", "difficulty": "hard", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
         { "prompt": "In welk land wordt per persoon de meeste thee gedronken?", "difficulty": "hard", "answers": [{ "text": "Turkije" }] },

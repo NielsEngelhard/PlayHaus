@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many players are in a football team on the pitch?", "difficulty": "easy", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
-        { "prompt": "Which animal gives us wool?", "difficulty": "easy", "answers": [{ "text": "The sheep", "aliases": ["Sheep"] }] },
-        { "prompt": "What is the capital of Italy?", "difficulty": "easy", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
-        { "prompt": "Which sense do you use your nose for?", "difficulty": "easy", "answers": [{ "text": "Smell" }] },
-        { "prompt": "How many letters are in the English alphabet?", "difficulty": "easy", "answers": [{ "text": "26" }] },
+        { "prompt": "How many players are on each side in a game of rugby union?", "difficulty": "easy", "answers": [{ "text": "Fifteen" }] },
+        { "prompt": "Which country is credited with inventing football (soccer) in its modern form?", "difficulty": "easy", "answers": [{ "text": "England" }] },
+        { "prompt": "What is the term for a score of zero in tennis?", "difficulty": "easy", "answers": [{ "text": "Love" }] },
+        { "prompt": "How many rings are on the Olympic flag?", "difficulty": "easy", "answers": [{ "text": "Five" }] },
+        { "prompt": "In which city were the first modern Olympic Games held, in 1896?", "difficulty": "easy", "answers": [{ "text": "Athens" }] },
         { "prompt": "Which desert is the largest hot desert in the world?", "difficulty": "hard", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
         { "prompt": "Who developed the theory of general relativity?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
         { "prompt": "Which city hosted the first modern Olympic Games in 1896?", "difficulty": "hard", "answers": [{ "text": "Athens" }] },

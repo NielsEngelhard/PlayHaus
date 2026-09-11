@@ -97,11 +97,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many days are there in a leap year?", "difficulty": "easy", "answers": [{ "text": "366" }] },
-        { "prompt": "What is the largest ocean on Earth?", "difficulty": "easy", "answers": [{ "text": "The Pacific", "aliases": ["Pacific Ocean", "Pacific"] }] },
-        { "prompt": "Which animal is known as the king of the jungle?", "difficulty": "easy", "answers": [{ "text": "The lion", "aliases": ["Lion"] }] },
-        { "prompt": "What colour do you get by mixing blue and yellow?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
-        { "prompt": "How many sides does a hexagon have?", "difficulty": "easy", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "What is the smallest country in the world by area?", "difficulty": "easy", "answers": [{ "text": "Vatican City" }] },
+        { "prompt": "Which planet is known as the Red Planet?", "difficulty": "easy", "answers": [{ "text": "Mars" }] },
+        { "prompt": "How many continents are there on Earth?", "difficulty": "easy", "answers": [{ "text": "Seven" }] },
+        { "prompt": "What is the currency used in Japan?", "difficulty": "easy", "answers": [{ "text": "The yen", "aliases": ["Yen"] }] },
+        { "prompt": "Which gas do plants absorb from the air for photosynthesis?", "difficulty": "easy", "answers": [{ "text": "Carbon dioxide" }] },
         { "prompt": "Which element has the chemical symbol W?", "difficulty": "hard", "answers": [{ "text": "Tungsten", "aliases": ["Wolfram"] }] },
         { "prompt": "Which sea separates Italy from the Balkans?", "difficulty": "hard", "answers": [{ "text": "The Adriatic", "aliases": ["Adriatic Sea", "Adriatic"] }] },
         { "prompt": "Who wrote the novel One Hundred Years of Solitude?", "difficulty": "hard", "answers": [{ "text": "Gabriel Garcia Marquez", "aliases": ["Garcia Marquez", "Marquez"] }] },
