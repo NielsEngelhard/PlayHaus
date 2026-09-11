@@ -36,6 +36,22 @@ func seatTournament(t *testing.T, service *Service, size int) (*MultiplayerLeagu
 	return lobby, players
 }
 
+// drawAndStart draws a bracket and opens the rooms of its first round, which is the host's two presses.
+func drawAndStart(t *testing.T, service *Service, code string) *Tournament {
+	t.Helper()
+
+	ctx := context.Background()
+	if _, err := service.CreateTournament(ctx, code, "host"); err != nil {
+		t.Fatalf("create tournament: %v", err)
+	}
+
+	tournament, err := service.StartStage(ctx, code, "host")
+	if err != nil {
+		t.Fatalf("start the first stage: %v", err)
+	}
+	return tournament
+}
+
 // playOutStage runs every live match of the stage on the table out on the clock.
 func playOutStage(t *testing.T, service *Service, tournament *Tournament) *Tournament {
 	t.Helper()
@@ -144,7 +160,7 @@ func TestOnlyTheHostStartsTheTournament(t *testing.T) {
 	}
 }
 
-func TestTheFirstStageOpensARoomPerMatch(t *testing.T) {
+func TestTheFirstStageIsDrawnBeforeAnyRoomOpens(t *testing.T) {
 	store, _ := newTestStore(t)
 	service := NewService(store, Options{DevMode: true})
 
@@ -163,6 +179,86 @@ func TestTheFirstStageOpensARoomPerMatch(t *testing.T) {
 
 	seen := map[string]bool{}
 	for _, match := range matches {
+		if match.Status != MatchPending {
+			t.Fatalf("match %s is %s, want %s", match.ID, match.Status, MatchPending)
+		}
+		if match.LobbyID != nil || match.GameID != nil {
+			t.Fatalf("match %s opened a room before the host started it", match.ID)
+		}
+		for _, player := range match.Players {
+			seen[player.UserID] = true
+		}
+	}
+
+	for _, userID := range players {
+		if !seen[userID] {
+			t.Fatalf("%s was not drawn into stage 1", userID)
+		}
+	}
+
+	// A round nobody has played is not a round anybody may ready for.
+	if tournament.StageOver() {
+		t.Fatal("a drawn stage counts as played")
+	}
+	if !tournament.StagePending() {
+		t.Fatal("a drawn stage is not pending")
+	}
+	if _, err := service.ReadyUp(ctx, lobby.ID, "host"); !errors.Is(err, ErrStageNotOver) {
+		t.Fatalf("readying a drawn stage got %v, want %v", err, ErrStageNotOver)
+	}
+}
+
+func TestOnlyTheHostStartsTheFirstStage(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, _ := seatTournament(t, service, 4)
+
+	if _, err := service.CreateTournament(ctx, lobby.ID, "host"); err != nil {
+		t.Fatalf("create tournament: %v", err)
+	}
+
+	if _, err := service.StartStage(ctx, lobby.ID, "player-1"); !errors.Is(err, ErrNotHost) {
+		t.Fatalf("a player starting the round got %v, want %v", err, ErrNotHost)
+	}
+}
+
+func TestAStageCannotBeStartedTwice(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, _ := seatTournament(t, service, 4)
+	drawAndStart(t, service, lobby.ID)
+
+	if _, err := service.StartStage(ctx, lobby.ID, "host"); !errors.Is(err, ErrStageStarted) {
+		t.Fatalf("starting the round twice got %v, want %v", err, ErrStageStarted)
+	}
+}
+
+func TestStartingTheFirstStageOpensARoomPerMatch(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, players := seatTournament(t, service, 4)
+
+	tournament := drawAndStart(t, service, lobby.ID)
+	if tournament.StagePending() {
+		t.Fatal("the round is still waiting on the host after it was started")
+	}
+
+	matches := tournament.MatchesInStage(1)
+	if len(matches) != 2 {
+		t.Fatalf("stage 1 drew %d matches, want 2", len(matches))
+	}
+
+	seen := map[string]bool{}
+	for _, match := range matches {
+		if match.Status != MatchLive {
+			t.Fatalf("match %s is %s, want %s", match.ID, match.Status, MatchLive)
+		}
 		if match.LobbyID == nil || match.GameID == nil {
 			t.Fatalf("match %s opened no room", match.ID)
 		}
@@ -197,10 +293,7 @@ func TestFinishingAMatchRecordsItsWinnerInTheBracket(t *testing.T) {
 	ctx := context.Background()
 	lobby, _ := seatTournament(t, service, 4)
 
-	tournament, err := service.CreateTournament(ctx, lobby.ID, "host")
-	if err != nil {
-		t.Fatalf("create tournament: %v", err)
-	}
+	tournament := drawAndStart(t, service, lobby.ID)
 
 	match := tournament.MatchesInStage(1)[0]
 	// Every turn runs out, so the tie falls back to turn order and the first slot takes it.
@@ -219,7 +312,7 @@ func TestFinishingAMatchRecordsItsWinnerInTheBracket(t *testing.T) {
 		}
 	}
 
-	tournament, err = service.TournamentByID(ctx, tournament.ID)
+	tournament, err := service.TournamentByID(ctx, tournament.ID)
 	if err != nil {
 		t.Fatalf("reload tournament: %v", err)
 	}
@@ -253,10 +346,7 @@ func TestTheNextStageWaitsForEveryoneToBeReady(t *testing.T) {
 	ctx := context.Background()
 	lobby, _ := seatTournament(t, service, 4)
 
-	tournament, err := service.CreateTournament(ctx, lobby.ID, "host")
-	if err != nil {
-		t.Fatalf("create tournament: %v", err)
-	}
+	tournament := drawAndStart(t, service, lobby.ID)
 
 	// Nobody may ready while a match of the stage is still being played.
 	if _, err := service.ReadyUp(ctx, lobby.ID, "host"); !errors.Is(err, ErrStageNotOver) {
@@ -268,7 +358,7 @@ func TestTheNextStageWaitsForEveryoneToBeReady(t *testing.T) {
 		t.Fatal("the stage did not finish")
 	}
 
-	tournament, err = service.ReadyUp(ctx, lobby.ID, "host")
+	tournament, err := service.ReadyUp(ctx, lobby.ID, "host")
 	if err != nil {
 		t.Fatalf("ready up: %v", err)
 	}
@@ -289,13 +379,9 @@ func TestLosingTwiceEliminatesAPlayer(t *testing.T) {
 	store, _ := newTestStore(t)
 	service := NewService(store, Options{DevMode: true})
 
-	ctx := context.Background()
 	lobby, _ := seatTournament(t, service, 4)
 
-	tournament, err := service.CreateTournament(ctx, lobby.ID, "host")
-	if err != nil {
-		t.Fatalf("create tournament: %v", err)
-	}
+	tournament := drawAndStart(t, service, lobby.ID)
 
 	for stage := 0; tournament.Status != TournamentCompleted; stage++ {
 		tournament = playOutStage(t, service, tournament)
@@ -344,10 +430,7 @@ func TestAnEliminatedPlayerDoesNotHoldUpTheReadyGate(t *testing.T) {
 	ctx := context.Background()
 	lobby, _ := seatTournament(t, service, 4)
 
-	tournament, err := service.CreateTournament(ctx, lobby.ID, "host")
-	if err != nil {
-		t.Fatalf("create tournament: %v", err)
-	}
+	tournament := drawAndStart(t, service, lobby.ID)
 
 	// Two stages is enough for somebody to have lost twice.
 	tournament = playOutStage(t, service, tournament)
@@ -388,10 +471,7 @@ func TestAMatchRoomIsNotThePlayersToClose(t *testing.T) {
 	ctx := context.Background()
 	lobby, _ := seatTournament(t, service, 4)
 
-	tournament, err := service.CreateTournament(ctx, lobby.ID, "host")
-	if err != nil {
-		t.Fatalf("create tournament: %v", err)
-	}
+	tournament := drawAndStart(t, service, lobby.ID)
 
 	room := *tournament.MatchesInStage(1)[0].LobbyID
 	if err := service.DeleteLobby(ctx, room, "host"); !errors.Is(err, ErrTournamentRoom) {

@@ -11,6 +11,7 @@ import (
 
 func tournamentPath(code string) string      { return lobbyPathFor(code) + "/tournament" }
 func tournamentReadyPath(code string) string { return tournamentPath(code) + "/ready" }
+func tournamentStartPath(code string) string { return tournamentPath(code) + "/start" }
 
 const newTournamentBody = `{"locale":"en","kind":"tournament"}`
 
@@ -37,13 +38,26 @@ func seatTournamentRoom(t *testing.T, srv http.Handler, size int) (sessionRespon
 	return host, guests, lobby
 }
 
-// startTournament draws the bracket, which is what a tournament room does instead of starting a game.
-func startTournament(t *testing.T, srv http.Handler, token, code string) tournamentResponse {
+// drawBracket draws the bracket, which is what a tournament room does instead of starting a game.
+func drawBracket(t *testing.T, srv http.Handler, token, code string) tournamentResponse {
 	t.Helper()
 
 	rec := do(t, srv, http.MethodPost, tournamentPath(code), "", token)
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("create tournament: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
+	}
+	return decodeBody[tournamentResponse](t, rec)
+}
+
+// startTournament is the host's two presses: draw the bracket, then open the first round's rooms.
+func startTournament(t *testing.T, srv http.Handler, token, code string) tournamentResponse {
+	t.Helper()
+
+	drawBracket(t, srv, token, code)
+
+	rec := do(t, srv, http.MethodPost, tournamentStartPath(code), "", token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("start the first stage: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
 	}
 	return decodeBody[tournamentResponse](t, rec)
 }
@@ -255,6 +269,60 @@ func TestAMatchRoomPointsBackAtItsBracket(t *testing.T) {
 	}
 	if room.GameID == "" {
 		t.Fatal("a match room opened without a game")
+	}
+}
+
+// The draw is a schedule the whole table reads before anybody plays.
+func TestTheDrawOpensNoRoomUntilTheHostStartsIt(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+
+	host, guests, lobby := seatTournamentRoom(t, srv, 4)
+	tournament := drawBracket(t, srv, host.Token, lobby.Code)
+
+	if !tournament.StagePending {
+		t.Fatal("stagePending = false on a bracket nobody has started")
+	}
+	for _, match := range tournament.Matches {
+		if match.Status != string(lol.MatchPending) {
+			t.Fatalf("match %s is %q, want pending", match.ID, match.Status)
+		}
+		if match.LobbyCode != "" {
+			t.Fatalf("match %s opened room %q before the host started it", match.ID, match.LobbyCode)
+		}
+	}
+
+	// A guest reads the same schedule, and cannot start it.
+	rec := do(t, srv, http.MethodGet, tournamentPath(lobby.Code), "", guests[0].Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("guest reading the draw: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	if rec := do(t, srv, http.MethodPost, tournamentStartPath(lobby.Code), "", guests[0].Token); rec.Code != http.StatusForbidden {
+		t.Fatalf("guest starting the round: status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
+	}
+
+	started := decodeBody[tournamentResponse](t, do(t, srv, http.MethodPost, tournamentStartPath(lobby.Code), "", host.Token))
+	if started.StagePending {
+		t.Fatal("stagePending = true after the host started the round")
+	}
+	for _, match := range started.Matches {
+		if match.Status != string(lol.MatchLive) || match.LobbyCode == "" {
+			t.Fatalf("match %s is %q in room %q, want live in a room", match.ID, match.Status, match.LobbyCode)
+		}
+	}
+}
+
+func TestAStageIsOnlyStartedOnce(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+
+	host, _, lobby := seatTournamentRoom(t, srv, 4)
+	startTournament(t, srv, host.Token, lobby.Code)
+
+	rec := do(t, srv, http.MethodPost, tournamentStartPath(lobby.Code), "", host.Token)
+	if rec.Code != http.StatusConflict {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
+	}
+	if code := errorCode(t, rec); code != "stage_started" {
+		t.Fatalf("code = %q, want stage_started", code)
 	}
 }
 

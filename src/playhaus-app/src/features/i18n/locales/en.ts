@@ -491,6 +491,7 @@ export const en = {
             title: 'Tournament · {{players}} players',
             schedule: 'Schedule',
             nextRoundReady: 'Round {{stage}} can start',
+            stageDrawn: 'Round {{stage}} is drawn',
             matchesLeft: '{{done}} of {{total}} matches done · {{left}} still open',
             winners: 'Winners {{players}}',
             losers: 'Losers {{players}}',
@@ -500,12 +501,21 @@ export const en = {
             nothingHere: 'Nothing here yet',
             // One match in a column.
             playing: 'Playing',
+            upNext: 'Up next',
             bye: 'Free pass to the next round',
             you: 'You',
             knockedOut: {
                 title: 'Knocked out',
                 message: 'You finished {{place}}. Stay and watch the rest of the bracket play out.'
             },
+            // The gate between the draw and the matches.
+            matchup: {
+                title: 'Your round {{stage}} match'
+            },
+            startMatches: 'Start the matches',
+            waitingForStart: 'Waiting for {{name}} to start',
+            startGateOne: '1 match is drawn and starts when the host says so',
+            startGateMany: '{{matches}} matches are drawn and all start at once',
             // The gate between one round and the next.
             waitingOnOne: 'Waiting on 1 match',
             waitingOnMany: 'Waiting on {{matches}} matches',
@@ -537,6 +547,7 @@ export const en = {
             alreadyPlayedToday: 'You have already played today. Come back tomorrow.',
             notEnoughForTournament: 'A tournament needs between four and twelve players.',
             stageNotOver: 'This round is not done yet.',
+            stageStarted: 'This round has already started.',
             tournamentOver: 'This tournament is already over.'
         }
     },

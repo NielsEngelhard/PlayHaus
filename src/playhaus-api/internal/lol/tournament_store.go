@@ -20,14 +20,11 @@ func withBracket(db *gorm.DB) *gorm.DB {
 		Preload("Matches.Players", func(db *gorm.DB) *gorm.DB { return db.Order("slot ASC") })
 }
 
-func (s *GormStore) CreateTournament(ctx context.Context, tournament *Tournament, rooms []MatchRoom) error {
+func (s *GormStore) CreateTournament(ctx context.Context, tournament *Tournament) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		// Creates the entrants through their association.
+		// Creates the entrants and the drawn matches through their associations.
 		if err := tx.Create(tournament).Error; err != nil {
 			return fmt.Errorf("insert tournament: %w", err)
-		}
-		if err := createMatchRooms(tx, rooms); err != nil {
-			return err
 		}
 
 		// The lobby the field gathered in is now the bracket's home, and takes no more players.
@@ -63,6 +60,37 @@ func createMatchRooms(tx *gorm.DB, rooms []MatchRoom) error {
 		if err := tx.Create(&room.Match).Error; err != nil {
 			return fmt.Errorf("insert tournament match: %w", err)
 		}
+	}
+	return nil
+}
+
+// StartTournamentStage opens the room of every match the stage on the table drew.
+func (s *GormStore) StartTournamentStage(ctx context.Context, tournamentID uuid.UUID, rooms []MatchRoom) error {
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		for i := range rooms {
+			room := rooms[i]
+			if err := tx.Create(room.Lobby).Error; err != nil {
+				return fmt.Errorf("insert match lobby: %w", err)
+			}
+			if err := tx.Create(room.Game).Error; err != nil {
+				return fmt.Errorf("insert match game: %w", err)
+			}
+
+			// Claimed once, so a second press rolls the rooms it opened back with it.
+			res := tx.Model(&TournamentMatch{}).
+				Where("id = ? AND tournament_id = ? AND status = ?", room.Match.ID, tournamentID, MatchPending).
+				Updates(map[string]any{"status": MatchLive, "lobby_id": room.Match.LobbyID, "game_id": room.Match.GameID})
+			if res.Error != nil {
+				return fmt.Errorf("open tournament match: %w", res.Error)
+			}
+			if res.RowsAffected == 0 {
+				return ErrStageStarted
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return err
 	}
 	return nil
 }

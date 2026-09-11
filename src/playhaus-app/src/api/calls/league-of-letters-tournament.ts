@@ -4,7 +4,7 @@ import type { LobbySettings } from '@/api/calls/league-of-letters-lobby';
 // The bracket half of multiplayer League of Letters.
 
 export type Bracket = 'winners' | 'losers' | 'final';
-export type MatchStatus = 'live' | 'done' | 'bye';
+export type MatchStatus = 'pending' | 'live' | 'done' | 'bye';
 export type TournamentStatus = 'in_progress' | 'completed';
 
 export interface TournamentPlayer {
@@ -37,7 +37,7 @@ export interface TournamentMatch {
     // Orders the matches within one bracket column.
     position: number
     status: MatchStatus
-    // The room this match is played in, which is where the client navigates to.
+    // The room this match is played in, which is where the client navigates to. Absent until it opens.
     lobbyCode?: string
     winnerId?: string
     players: TournamentMatchPlayer[]
@@ -53,6 +53,8 @@ export interface Tournament {
     stage: number
     // Every match of that round having a result, which is what opens the ready gate.
     stageOver: boolean
+    // That round being drawn but not opened, so the table is reading the bracket.
+    stagePending: boolean
     winnerId?: string
     settings: LobbySettings
     players: TournamentPlayer[]
@@ -80,6 +82,11 @@ export async function readyUp(code: string): Promise<Tournament> {
     return request<Tournament>(`${tournamentPath(code)}/ready`, { method: 'POST' });
 }
 
+// Opens the room of every match this round has drawn. Host only.
+export async function startStage(code: string): Promise<Tournament> {
+    return request<Tournament>(`${tournamentPath(code)}/start`, { method: 'POST' });
+}
+
 // The matches drawn for one round, in the order the bracket lays them out.
 export function matchesInStage(tournament: Tournament, stage: number): TournamentMatch[] {
     return tournament.matches
@@ -99,6 +106,17 @@ export function myLiveMatch(tournament: Tournament, userId: string | undefined):
 
     const mine = matchesInStage(tournament, tournament.stage).find(
         match => match.status === 'live' && match.players.some(player => player.userId === userId)
+    );
+
+    return mine ?? null;
+}
+
+/** The match this player is drawn into this round, played or not, or null when they sit it out. */
+export function myStageMatch(tournament: Tournament, userId: string | undefined): TournamentMatch | null {
+    if (userId === undefined) return null;
+
+    const mine = matchesInStage(tournament, tournament.stage).find(
+        match => match.players.some(player => player.userId === userId)
     );
 
     return mine ?? null;

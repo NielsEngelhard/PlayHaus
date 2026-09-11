@@ -21,15 +21,18 @@ export default function MatchCell({ match, userId }: Props) {
     const t = useT();
 
     const live = match.status === 'live';
+    const pending = match.status === 'pending';
     const mine = userId !== undefined && match.players.some(player => player.userId === userId);
 
     return (
         <View style={[styles.cell, live && styles.cellLive, mine && styles.cellMine]}>
-            {live && (
+            {(live || pending) && (
                 <View style={styles.badge}>
-                    <View style={styles.dot} />
+                    <View style={[styles.dot, pending && styles.dotPending]} />
 
-                    <AppText style={styles.badgeText}>{t('lol.tournament.playing')}</AppText>
+                    <AppText style={styles.badgeText}>
+                        {pending ? t('lol.tournament.upNext') : t('lol.tournament.playing')}
+                    </AppText>
                 </View>
             )}
 
@@ -112,6 +115,10 @@ const useStyles = createThemedStyles(theme => ({
         height: 6,
         borderRadius: 999,
         backgroundColor: theme.colors.available
+    },
+    // A drawn match is not running yet, so its dot does not read as live.
+    dotPending: {
+        backgroundColor: theme.colors.textFaint
     },
     badgeText: {
         fontSize: 9.5,

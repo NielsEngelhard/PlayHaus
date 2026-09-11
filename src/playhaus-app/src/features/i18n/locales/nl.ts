@@ -471,6 +471,7 @@ export const nl: Catalog = {
             title: 'Toernooi · {{players}} spelers',
             schedule: 'Schema',
             nextRoundReady: 'Ronde {{stage}} kan starten',
+            stageDrawn: 'Ronde {{stage}} is geloot',
             matchesLeft: '{{done}} van {{total}} potjes klaar · {{left}} nog onbeslist',
             winners: 'Winnaars {{players}}',
             losers: 'Verliezers {{players}}',
@@ -480,12 +481,21 @@ export const nl: Catalog = {
             nothingHere: 'Hier nog niets',
             // Eén potje in een kolom.
             playing: 'Bezig',
+            upNext: 'Straks',
             bye: 'Vrije doorgang naar de volgende ronde',
             you: 'Jij',
             knockedOut: {
                 title: 'Uitgeschakeld',
                 message: 'Je bent {{place}}e geworden. Blijf kijken hoe de rest van het schema afloopt.'
             },
+            // De poort tussen de loting en de potjes.
+            matchup: {
+                title: 'Jouw potje in ronde {{stage}}'
+            },
+            startMatches: 'Start de potjes',
+            waitingForStart: 'Wachten tot {{name}} start',
+            startGateOne: '1 potje is geloot en begint als de host dat zegt',
+            startGateMany: '{{matches}} potjes zijn geloot en beginnen tegelijk',
             // De poort tussen de ene ronde en de volgende.
             waitingOnOne: 'Wachten op 1 potje',
             waitingOnMany: 'Wachten op {{matches}} potjes',
@@ -517,6 +527,7 @@ export const nl: Catalog = {
             alreadyPlayedToday: 'Je hebt vandaag al gespeeld. Kom morgen terug.',
             notEnoughForTournament: 'Een toernooi heeft vier tot twaalf spelers nodig.',
             stageNotOver: 'Deze ronde is nog niet klaar.',
+            stageStarted: 'Deze ronde is al begonnen.',
             tournamentOver: 'Dit toernooi is al afgelopen.'
         }
     },

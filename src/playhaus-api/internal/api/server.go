@@ -137,6 +137,7 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/abandon", room(s.handleAbandonLobby))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/tournament", room(s.handleCreateTournament))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/lobby/{code}/tournament", room(s.handleGetTournament))
+	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/tournament/start", room(s.handleStartTournamentStage))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/lobby/{code}/tournament/ready", room(s.handleTournamentReady))
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/multiplayer/{gameID}", s.requireAuth(s.handleGetMultiplayerGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/multiplayer/{gameID}/guesses", s.requireAuth(s.handleSubmitMultiplayerGuess))

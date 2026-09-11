@@ -20,7 +20,9 @@ interface Props {
     live: boolean,
     /** Opens the leave confirm. Owned by the screen, which also acts on it. */
     onBack: () => void,
-    /** The ready gate, pinned to the bottom of the page. */
+    /** Sits above the columns, for whatever this round wants said first. */
+    notice?: ReactNode,
+    /** The gate for this round, pinned to the bottom of the page. */
     footer: ReactNode
 }
 
@@ -30,7 +32,7 @@ const POOLS = ['winners', 'losers'] as const;
 const COLUMN_WIDTH = 156;
 
 // The bracket, between one round and the next.
-export default function BracketView({ tournament, userId, live, onBack, footer }: Props) {
+export default function BracketView({ tournament, userId, live, onBack, notice, footer }: Props) {
     const styles = useStyles();
     const theme = useTheme();
     const t = useT();
@@ -65,15 +67,19 @@ export default function BracketView({ tournament, userId, live, onBack, footer }
                 <AppText style={styles.kicker}>{t('lol.tournament.schedule')}</AppText>
 
                 <AppText style={styles.status}>
-                    {tournament.stageOver
-                        ? t('lol.tournament.nextRoundReady', { stage: tournament.stage + 1 })
-                        : t('lol.tournament.matchesLeft', {
-                            done: stage.length - outstanding,
-                            total: stage.length,
-                            left: outstanding
-                        })}
+                    {tournament.stagePending
+                        ? t('lol.tournament.stageDrawn', { stage: tournament.stage })
+                        : tournament.stageOver
+                            ? t('lol.tournament.nextRoundReady', { stage: tournament.stage + 1 })
+                            : t('lol.tournament.matchesLeft', {
+                                done: stage.length - outstanding,
+                                total: stage.length,
+                                left: outstanding
+                            })}
                 </AppText>
             </View>
+
+            {notice}
 
             {me?.eliminated === true && (
                 <InlineNotification

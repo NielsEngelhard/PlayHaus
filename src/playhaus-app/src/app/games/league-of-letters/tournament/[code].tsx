@@ -11,6 +11,8 @@ import { useT } from "@/features/i18n/LanguageContext";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import BracketView from "@/features/league-of-letters/components/tournament/BracketView";
 import ReadyFooter from "@/features/league-of-letters/components/tournament/ReadyFooter";
+import StagePreview from "@/features/league-of-letters/components/tournament/StagePreview";
+import StageStartFooter from "@/features/league-of-letters/components/tournament/StageStartFooter";
 import TournamentChampion from "@/features/league-of-letters/components/tournament/TournamentChampion";
 import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useTournament } from "@/features/league-of-letters/useTournament";
@@ -90,6 +92,9 @@ export default function LeagueOfLettersTournamentRoomPage() {
     const stage = tournament.matches.filter(match => match.stage === tournament.stage);
     const outstanding = stage.filter(match => match.status === 'live').length;
 
+    // A drawn round is read by the table until the host opens its rooms, which is what moves everybody on.
+    const host = tournament.players.find(player => player.userId === tournament.hostId);
+
     return (
         <View style={styles.screen}>
             <BracketView
@@ -97,7 +102,23 @@ export default function LeagueOfLettersTournamentRoomPage() {
                 userId={user?.id}
                 live={bracket.connection === 'open'}
                 onBack={() => setLeaving(true)}
-                footer={
+                notice={tournament.stagePending && bracket.myDraw !== null && (
+                    <StagePreview
+                        match={bracket.myDraw}
+                        userId={user?.id}
+                        stage={tournament.stage}
+                    />
+                )}
+                footer={tournament.stagePending ? (
+                    <StageStartFooter
+                        isHost={bracket.isHost}
+                        hostName={host?.name ?? t('lol.lobby.hostFallback')}
+                        matches={stage.length}
+                        starting={bracket.starting}
+                        onStart={() => void bracket.startStage()}
+                        error={bracket.actionError}
+                    />
+                ) : (
                     <ReadyFooter
                         stageOver={tournament.stageOver}
                         outstanding={outstanding}
@@ -109,7 +130,7 @@ export default function LeagueOfLettersTournamentRoomPage() {
                         onReady={() => void bracket.readyUp()}
                         error={bracket.actionError}
                     />
-                }
+                )}
             />
 
             <PopupModal

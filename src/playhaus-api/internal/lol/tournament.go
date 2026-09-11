@@ -13,7 +13,8 @@ import (
 )
 
 type TournamentStore interface {
-	CreateTournament(ctx context.Context, tournament *Tournament, rooms []MatchRoom) error
+	CreateTournament(ctx context.Context, tournament *Tournament) error
+	StartTournamentStage(ctx context.Context, tournamentID uuid.UUID, rooms []MatchRoom) error
 	TournamentByID(ctx context.Context, id uuid.UUID) (*Tournament, error)
 	TournamentByLobbyCode(ctx context.Context, code string) (*Tournament, error)
 	TournamentLobbyCode(ctx context.Context, id uuid.UUID) (string, error)
@@ -92,12 +93,10 @@ func (s *Service) CreateTournament(ctx context.Context, code, userID string) (*T
 		tournament.Players[i] = TournamentPlayer{TournamentID: tournament.ID, UserID: player.UserID, Seed: i}
 	}
 
-	rooms, err := s.openMatchRooms(ctx, tournament, 1, NextStage(entrants, nil))
-	if err != nil {
-		return nil, err
-	}
+	// Drawn, not opened: the table sees who plays who until the host starts the round.
+	tournament.Matches = drawStage(tournament.ID, 1, NextStage(entrants, nil))
 
-	if err := s.store.CreateTournament(ctx, tournament, rooms); err != nil {
+	if err := s.store.CreateTournament(ctx, tournament); err != nil {
 		return nil, err
 	}
 
@@ -117,6 +116,41 @@ func (s *Service) TournamentByID(ctx context.Context, id uuid.UUID) (*Tournament
 // TournamentCode is the join code of the bracket a match room belongs to.
 func (s *Service) TournamentCode(ctx context.Context, id uuid.UUID) (string, error) {
 	return s.store.TournamentLobbyCode(ctx, id)
+}
+
+// StartStage opens a room for every match this round has drawn, and sets them running.
+func (s *Service) StartStage(ctx context.Context, code, userID string) (*Tournament, error) {
+	tournament, err := s.store.TournamentByLobbyCode(ctx, code)
+	if err != nil {
+		return nil, err
+	}
+	if tournament.OwnerID != userID {
+		return nil, ErrNotHost
+	}
+	if tournament.Status == TournamentCompleted {
+		return nil, ErrTournamentOver
+	}
+
+	var drawn []TournamentMatch
+	for _, match := range tournament.MatchesInStage(tournament.Stage) {
+		if match.Status == MatchPending {
+			drawn = append(drawn, match)
+		}
+	}
+	if len(drawn) == 0 {
+		return nil, ErrStageStarted
+	}
+
+	rooms, err := s.openDrawnMatches(ctx, tournament, drawn)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := s.store.StartTournamentStage(ctx, tournament.ID, rooms); err != nil {
+		return nil, err
+	}
+
+	return s.store.TournamentByID(ctx, tournament.ID)
 }
 
 // ReadyUp records that a player has seen the bracket, and draws the next stage once everyone has.
@@ -268,9 +302,42 @@ func (s *Service) settleMatch(ctx context.Context, game *MultiplayerLeagueOfLett
 	return tournament.LobbyID, nil
 }
 
-// openMatchRooms turns a stage's draws into ordinary multiplayer rooms, one per match.
+// openMatchRooms draws a stage and opens a room for every match of it in one go.
 func (s *Service) openMatchRooms(ctx context.Context, tournament *Tournament, stage int, draws []Draw) ([]MatchRoom, error) {
-	// Nothing is committed yet, so a code minted for an earlier draw is not taken as far as the store knows.
+	return s.openDrawnMatches(ctx, tournament, drawStage(tournament.ID, stage, draws))
+}
+
+// drawStage turns a stage's draws into matches that hold the pairing and nothing else.
+func drawStage(tournamentID uuid.UUID, stage int, draws []Draw) []TournamentMatch {
+	now := time.Now().UTC()
+
+	positions := map[Bracket]int{}
+	matches := make([]TournamentMatch, 0, len(draws))
+	for _, draw := range draws {
+		match := TournamentMatch{
+			ID:           uuid.New(),
+			TournamentID: tournamentID,
+			Stage:        stage,
+			Bracket:      draw.Bracket,
+			Position:     positions[draw.Bracket],
+			Status:       MatchPending,
+			CreatedAt:    now,
+		}
+		positions[draw.Bracket]++
+
+		match.Players = make([]TournamentMatchPlayer, len(draw.Players))
+		for i, userID := range draw.Players {
+			match.Players[i] = TournamentMatchPlayer{MatchID: match.ID, UserID: userID, Slot: i}
+		}
+		matches = append(matches, match)
+	}
+
+	return matches
+}
+
+// openDrawnMatches gives every drawn match the ordinary multiplayer room it is played in.
+func (s *Service) openDrawnMatches(ctx context.Context, tournament *Tournament, matches []TournamentMatch) ([]MatchRoom, error) {
+	// Nothing is committed yet, so a code minted for an earlier match is not taken as far as the store knows.
 	minted := map[string]bool{}
 	taken := func(ctx context.Context, code string) (bool, error) {
 		if minted[code] {
@@ -279,19 +346,15 @@ func (s *Service) openMatchRooms(ctx context.Context, tournament *Tournament, st
 		return s.store.LobbyCodeTaken(ctx, code)
 	}
 
-	positions := map[Bracket]int{}
-	rooms := make([]MatchRoom, 0, len(draws))
-	for _, draw := range draws {
+	rooms := make([]MatchRoom, 0, len(matches))
+	for _, match := range matches {
 		code, err := joincode.Free(ctx, joincode.LeagueOfLetters, taken)
 		if err != nil {
 			return nil, err
 		}
 		minted[code] = true
 
-		position := positions[draw.Bracket]
-		positions[draw.Bracket]++
-
-		room, err := s.openMatchRoom(tournament, stage, draw, position, code)
+		room, err := s.openMatchRoom(tournament, match, code)
 		if err != nil {
 			return nil, err
 		}
@@ -301,10 +364,9 @@ func (s *Service) openMatchRooms(ctx context.Context, tournament *Tournament, st
 	return rooms, nil
 }
 
-// openMatchRoom is one match: a room that is born started, and the game already dealt on its table.
-func (s *Service) openMatchRoom(tournament *Tournament, stage int, draw Draw, position int, code string) (*MatchRoom, error) {
+// openMatchRoom is one match's room: born started, with the game already dealt on its table.
+func (s *Service) openMatchRoom(tournament *Tournament, match TournamentMatch, code string) (*MatchRoom, error) {
 	now := time.Now().UTC()
-	matchID := uuid.New()
 
 	game := &MultiplayerLeagueOfLettersGame{
 		ID:              uuid.New(),
@@ -315,7 +377,7 @@ func (s *Service) openMatchRoom(tournament *Tournament, stage int, draw Draw, po
 		CurrentRound:    1,
 		Status:          GameInProgress,
 		CreatedAt:       now,
-		TurnUserID:      draw.Players[0],
+		TurnUserID:      match.Players[0].UserID,
 		TurnEndsAt:      now.Add(time.Duration(tournament.SecondsPerTurn) * time.Second),
 		SecondsPerGuess: tournament.SecondsPerTurn,
 	}
@@ -334,25 +396,15 @@ func (s *Service) openMatchRoom(tournament *Tournament, stage int, draw Draw, po
 		TournamentID: &tournament.ID,
 	}
 
-	match := TournamentMatch{
-		ID:           matchID,
-		TournamentID: tournament.ID,
-		Stage:        stage,
-		Bracket:      draw.Bracket,
-		Position:     position,
-		LobbyID:      &code,
-		GameID:       &game.ID,
-		Status:       MatchLive,
-		CreatedAt:    now,
-	}
+	match.LobbyID = &code
+	match.GameID = &game.ID
+	match.Status = MatchLive
 
-	lobby.Players = make([]MultiplayerLobbyPlayer, len(draw.Players))
-	game.Players = make([]MultiplayerGamePlayer, len(draw.Players))
-	match.Players = make([]TournamentMatchPlayer, len(draw.Players))
-	for i, userID := range draw.Players {
-		lobby.Players[i] = MultiplayerLobbyPlayer{LobbyID: code, UserID: userID, Seat: i, JoinedAt: now}
-		game.Players[i] = MultiplayerGamePlayer{GameID: game.ID, UserID: userID, TurnOrder: i}
-		match.Players[i] = TournamentMatchPlayer{MatchID: matchID, UserID: userID, Slot: i}
+	lobby.Players = make([]MultiplayerLobbyPlayer, len(match.Players))
+	game.Players = make([]MultiplayerGamePlayer, len(match.Players))
+	for i, player := range match.Players {
+		lobby.Players[i] = MultiplayerLobbyPlayer{LobbyID: code, UserID: player.UserID, Seat: i, JoinedAt: now}
+		game.Players[i] = MultiplayerGamePlayer{GameID: game.ID, UserID: player.UserID, TurnOrder: i}
 	}
 
 	rounds, err := s.generateRounds(game.ID, TournamentRoundsPerMatch, game.WordLength, game.Locale, multiplayerCommonWordsOnly)

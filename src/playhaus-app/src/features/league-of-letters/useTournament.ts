@@ -2,7 +2,9 @@ import {
     getTournament,
     myEntry,
     myLiveMatch,
+    myStageMatch,
     readyUp,
+    startStage,
     type Tournament,
     type TournamentMatch,
     type TournamentPlayer
@@ -30,12 +32,18 @@ export interface TournamentState {
     online: Set<string>
     /** The match this player still has to go and play, or null when there is nothing to return to. */
     myMatch: TournamentMatch | null
+    /** The match this player is drawn into this round, played or not, so a pending one shows too. */
+    myDraw: TournamentMatch | null
     /** This player's record in the bracket, absent for somebody who only ever watched. */
     me: TournamentPlayer | null
+    /** Whether this device belongs to the host, who opens each round's rooms. */
+    isHost: boolean
     /** Whether this player has already readied for the stage on the table. */
     ready: boolean
     readying: boolean
     readyUp: () => Promise<void>
+    starting: boolean
+    startStage: () => Promise<void>
     reload: () => void
 }
 
@@ -46,6 +54,7 @@ export function useTournament(code: string | undefined): TournamentState {
     const [error, setError] = useState<TranslationKey | null>(null);
     const [actionError, setActionError] = useState<TranslationKey | null>(null);
     const [readying, setReadying] = useState(false);
+    const [starting, setStarting] = useState(false);
 
     // Nothing may touch state after unmount.
     const mounted = useRef(true);
@@ -131,6 +140,22 @@ export function useTournament(code: string | undefined): TournamentState {
         }
     }, [code, readying]);
 
+    const open = useCallback(async () => {
+        if (code === undefined || starting) return;
+
+        setStarting(true);
+        setActionError(null);
+
+        try {
+            const answered = await startStage(code);
+            if (mounted.current) setTournament(answered);
+        } catch (failure) {
+            if (mounted.current) setActionError(tournamentErrorMessage(failure));
+        } finally {
+            if (mounted.current) setStarting(false);
+        }
+    }, [code, starting]);
+
     const reload = useCallback(() => {
         setError(null);
         void load();
@@ -144,10 +169,14 @@ export function useTournament(code: string | undefined): TournamentState {
         connection,
         online,
         myMatch: tournament === null ? null : myLiveMatch(tournament, userId),
+        myDraw: tournament === null ? null : myStageMatch(tournament, userId),
         me,
+        isHost: tournament !== null && tournament.hostId === userId,
         ready: me?.ready ?? false,
         readying,
         readyUp: send,
+        starting,
+        startStage: open,
         reload
     };
 }

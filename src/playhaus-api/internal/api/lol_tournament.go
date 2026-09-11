@@ -55,12 +55,14 @@ type tournamentResponse struct {
 	// Stage is the round of the bracket on the table right now, counting from 1.
 	Stage int `json:"stage"`
 	// StageOver is every match of that round having a result, which is what opens the ready gate.
-	StageOver  bool                       `json:"stageOver"`
-	WinnerID   string                     `json:"winnerId,omitempty"`
-	Settings   lobbySettingsResponse      `json:"settings"`
-	Players    []tournamentPlayerResponse `json:"players"`
-	Matches    []tournamentMatchResponse  `json:"matches"`
-	ReadyCount int                        `json:"readyCount"`
+	StageOver bool `json:"stageOver"`
+	// StagePending is that round being drawn but not opened, so the table is reading the bracket.
+	StagePending bool                       `json:"stagePending"`
+	WinnerID     string                     `json:"winnerId,omitempty"`
+	Settings     lobbySettingsResponse      `json:"settings"`
+	Players      []tournamentPlayerResponse `json:"players"`
+	Matches      []tournamentMatchResponse  `json:"matches"`
+	ReadyCount   int                        `json:"readyCount"`
 	// ReadyNeeded is how many players the next stage is waiting on, knocked-out ones excluded.
 	ReadyNeeded int    `json:"readyNeeded"`
 	CreatedAt   string `json:"createdAt"`
@@ -133,12 +135,13 @@ func (s *Server) newTournamentResponse(ctx context.Context, tournament *lol.Tour
 	}
 
 	body := tournamentResponse{
-		ID:        tournament.ID.String(),
-		Code:      tournament.LobbyID,
-		HostID:    tournament.OwnerID,
-		Status:    string(tournament.Status),
-		Stage:     tournament.Stage,
-		StageOver: tournament.StageOver(),
+		ID:           tournament.ID.String(),
+		Code:         tournament.LobbyID,
+		HostID:       tournament.OwnerID,
+		Status:       string(tournament.Status),
+		Stage:        tournament.Stage,
+		StageOver:    tournament.StageOver(),
+		StagePending: tournament.StagePending(),
 		Settings: lobbySettingsResponse{
 			Locale:         tournament.Locale.String(),
 			WordLength:     tournament.WordLength,
@@ -180,6 +183,28 @@ func (s *Server) handleCreateTournament(w http.ResponseWriter, r *http.Request) 
 	writeJSON(w, http.StatusCreated, body)
 }
 
+// handleStartTournamentStage opens the room of every match the round on the table drew.
+func (s *Server) handleStartTournamentStage(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleStartTournamentStage reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	tournament, err := s.leagueOfLetters.StartStage(r.Context(), lobbyCode(r), userID)
+	if err != nil {
+		s.writeTournamentError(w, "start tournament stage", err)
+		return
+	}
+
+	body := s.newTournamentResponse(r.Context(), tournament)
+	s.publishTournament(tournament.LobbyID, body)
+	s.publishTournamentToMatches(tournament, body)
+
+	writeJSON(w, http.StatusOK, body)
+}
+
 // handleGetTournament is the snapshot the bracket screen opens on.
 func (s *Server) handleGetTournament(w http.ResponseWriter, r *http.Request) {
 	tournament, err := s.leagueOfLetters.Tournament(r.Context(), lobbyCode(r))
@@ -219,6 +244,8 @@ func (s *Server) writeTournamentError(w http.ResponseWriter, what string, err er
 		writeErrorCode(w, http.StatusNotFound, "tournament_not_found", "that tournament does not exist")
 	case errors.Is(err, lol.ErrNotATournament):
 		writeErrorCode(w, http.StatusConflict, "not_a_tournament", "that room is not a tournament")
+	case errors.Is(err, lol.ErrStageStarted):
+		writeErrorCode(w, http.StatusConflict, "stage_started", "this round has already started")
 	case errors.Is(err, lol.ErrStageNotOver):
 		writeErrorCode(w, http.StatusConflict, "stage_not_over", "some matches of this round are still being played")
 	case errors.Is(err, lol.ErrTournamentOver):

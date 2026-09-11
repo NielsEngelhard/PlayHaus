@@ -79,6 +79,8 @@ export function tournamentErrorMessage(error: unknown): TranslationKey {
             return 'lol.errors.notEnoughForTournament';
         case 'stage_not_over':
             return 'lol.errors.stageNotOver';
+        case 'stage_started':
+            return 'lol.errors.stageStarted';
         case 'tournament_over':
             return 'lol.errors.tournamentOver';
     }

@@ -51,6 +51,7 @@ var (
 	ErrTournamentNotFound = errors.New("tournament not found")
 	ErrNotATournament     = errors.New("that room is not a tournament")
 	ErrStageNotOver       = errors.New("some matches of this round are still being played")
+	ErrStageStarted       = errors.New("this round has already started")
 	ErrTournamentOver     = errors.New("tournament is already over")
 	ErrTournamentRoom     = errors.New("that room belongs to a tournament")
 )
@@ -318,9 +319,11 @@ const (
 type MatchStatus string
 
 const (
-	MatchLive MatchStatus = "live"
-	MatchDone MatchStatus = "done"
-	MatchBye  MatchStatus = "bye"
+	// MatchPending is a match that has been drawn but whose room has not been opened yet.
+	MatchPending MatchStatus = "pending"
+	MatchLive    MatchStatus = "live"
+	MatchDone    MatchStatus = "done"
+	MatchBye     MatchStatus = "bye"
 )
 
 // Tournament is a bracket of ordinary multiplayer games played by one lobby's table.
@@ -381,11 +384,22 @@ func (t Tournament) MatchesInStage(stage int) []TournamentMatch {
 // StageOver reports whether every match of the stage on the table has a result.
 func (t Tournament) StageOver() bool {
 	for _, match := range t.MatchesInStage(t.Stage) {
-		if match.Status == MatchLive {
+		// A drawn round has not been played either, so it must not open the ready gate.
+		if match.Status == MatchLive || match.Status == MatchPending {
 			return false
 		}
 	}
 	return true
+}
+
+// StagePending reports whether the stage on the table is drawn but waiting on the host to open it.
+func (t Tournament) StagePending() bool {
+	for _, match := range t.MatchesInStage(t.Stage) {
+		if match.Status == MatchPending {
+			return true
+		}
+	}
+	return false
 }
 
 type TournamentPlayer struct {
