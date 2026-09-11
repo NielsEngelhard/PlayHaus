@@ -1,8 +1,8 @@
 import SimpleTextHero from "@/components/text/SimpleTextHero";
-import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import PinButton from "@/features/one-of-us/components/PinButton";
 import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -40,8 +40,7 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
                         : t('oneOfUs.play.discuss.tieNoteMayor', { name: mayor.name })}
                 />
 
-                <ActionButton
-                    size="large"
+                <PinButton
                     icon="arrow-right"
                     text={t('oneOfUs.play.discuss.action')}
                     onPress={onVote}

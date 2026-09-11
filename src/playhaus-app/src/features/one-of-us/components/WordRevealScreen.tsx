@@ -1,13 +1,12 @@
 import AppText from "@/components/text/AppText";
-import ActionButton from "@/components/ui/ActionButton";
-import AnswerReveal from "@/components/ui/AnswerReveal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader from "@/components/ui/InGameHeader";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import RoleCard from "@/features/one-of-us/components/RoleCard";
-import type { OneOfUsRole } from "@/features/one-of-us/models";
+import PinButton from "@/features/one-of-us/components/PinButton";
+import WordNote from "@/features/one-of-us/components/WordNote";
+import { OneOfUsRole } from "@/features/one-of-us/models";
 import { joinNames, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useState } from "react";
@@ -75,11 +74,17 @@ export default function WordRevealScreen({
 
                 {/* The name stays pinned under the band. */}
                 <View style={styles.middle}>
-                    <AnswerReveal
+                    <WordNote
                         key={person.seat}
-                        answer={word ?? t('oneOfUs.play.reveal.noWord')}
+                        blurb={t(role === OneOfUsRole.Nitwit
+                            ? 'oneOfUs.play.note.blurbBlank'
+                            : 'oneOfUs.play.note.blurb')}
+                        coverHint={t('oneOfUs.play.note.coverHint')}
+                        coverLabel={t('oneOfUs.play.note.cover')}
+                        label={t('oneOfUs.play.note.label')}
                         onReveal={() => setSeen(true)}
-                        extraContent={<RoleCard role={role} reveal style={styles.role} />}
+                        whenBlank={t('oneOfUs.play.reveal.noWord')}
+                        word={word}
                     />
                 </View>
 
@@ -106,8 +111,7 @@ export default function WordRevealScreen({
                     )}
 
                     {seen && (
-                        <ActionButton
-                            size="large"
+                        <PinButton
                             icon={next === null ? 'play' : 'arrow-right'}
                             text={next === null
                                 ? t('oneOfUs.play.reveal.lastDone')
@@ -139,13 +143,10 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -1.2,
         color: theme.colors.text
     },
-    // Takes every point the name and the footer leave behind, and centres the panel in it.
+    // Takes every point the name and the footer leave behind, and centres the stack in it.
     middle: {
         flex: 1,
         justifyContent: 'center'
-    },
-    role: {
-        marginTop: 10
     },
     footer: {
         flexShrink: 0,

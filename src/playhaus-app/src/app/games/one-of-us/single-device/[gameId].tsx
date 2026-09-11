@@ -1,10 +1,11 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
 import InGameHeader from "@/components/ui/InGameHeader";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
+import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import type { Phrase, TranslationKey } from "@/features/i18n/keys";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import DiscussScreen from "@/features/one-of-us/components/DiscussScreen";
@@ -146,7 +147,14 @@ export default function PlayingSingleDeviceGame() {
                 onClose={leave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={phrase(headerLabelFor(current))}
-            />
+            >
+                {/* No round total to count against, so the band counts the table instead: it shrinks by one a round. */}
+                <View style={styles.chip}>
+                    <AppText style={styles.chipText}>
+                        {t('oneOfUs.multiDevice.play.stillIn', { count: alive.length })}
+                    </AppText>
+                </View>
+            </InGameHeader>
 
             {current.kind === 'speak' && (() => {
                 const speaker = seatFor(game, current.order[current.index]);
@@ -271,7 +279,7 @@ function roundOf(phase: Phase): number {
     }
 }
 
-const useStyles = createThemedStyles(() => ({
+const useStyles = createThemedStyles(theme => ({
     // The gap is the header's: its band ends on a hard line rather than in the slack the old 58pt row carried inside itself.
     board: {
         flex: 1,
@@ -287,5 +295,24 @@ const useStyles = createThemedStyles(() => ({
         justifyContent: 'center',
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.six
+    },
+
+    // Paper on every accent and in every scheme, so its digits are ink on every accent and in every scheme.
+    chip: {
+        flexShrink: 0,
+        paddingHorizontal: 9,
+        paddingVertical: 5,
+        borderRadius: 9,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: withAlpha(Brand.textOnAccent, 0.92)
+    },
+
+    chipText: {
+        fontSize: 10.5,
+        fontWeight: 900,
+        letterSpacing: 0.4,
+        fontVariant: ['tabular-nums'],
+        color: Brand.ink
     }
 }))

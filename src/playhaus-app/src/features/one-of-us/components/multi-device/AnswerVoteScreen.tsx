@@ -1,10 +1,14 @@
 import type { OOURound } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
-import PickRow from '@/components/ui/PickRow';
-import ValidateButton from '@/components/ui/ValidateButton';
-import { Spacing } from '@/constants/theme';
+import { Brand, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
+import { noteInkOf } from '@/features/one-of-us/board-notes';
+import PinButton from '@/features/one-of-us/components/PinButton';
+import PinnedNote from '@/features/one-of-us/components/PinnedNote';
+import { myAnswerSlot } from '@/features/one-of-us/multi-device-flow';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
+import { useTheme } from '@/features/theme/ThemeContext';
+import Feather from '@expo/vector-icons/Feather';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
@@ -12,27 +16,33 @@ interface Props {
     busy: boolean
     /** Who settles a tie, so the table knows before it votes rather than after. */
     mayorName: string | null
+    myAnswer: string | undefined
     myVoteSlot: number | undefined
     onVote: (roundNumber: number, slot: number) => Promise<boolean>
     round: OOURound
 }
 
-// The vote: everybody's answer, nobody's name.
+// The vote: everybody's briefje, nobody's name.
 export default function AnswerVoteScreen({
     busy,
     mayorName,
+    myAnswer,
     myVoteSlot,
     onVote,
     round
 }: Props) {
     const t = useT();
+    const theme = useTheme();
     const styles = useStyles();
 
-    // The option under the finger, before it is committed.
+    // The note under the finger, before it is pinned.
     const [picked, setPicked] = useState<number | undefined>(undefined);
 
     const voted = myVoteSlot !== undefined;
     const answers = round.answers ?? [];
+    const mine = myAnswerSlot(answers, myAnswer);
+
+    const marked = voted ? myVoteSlot : picked;
 
     return (
         <ScrollView
@@ -40,67 +50,75 @@ export default function AnswerVoteScreen({
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.intro}>
-                <AppText style={styles.kicker}>
-                    {t('oneOfUs.multiDevice.play.vote.round', { round: round.number })}
-                </AppText>
+            <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.vote.title')}</AppText>
 
-                <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.vote.title')}</AppText>
+            <View style={styles.notes}>
+                {answers.map((answer, index) => {
+                    const own = answer.slot === mine;
+                    const active = answer.slot === marked;
+                    const tone = own ? 'mine' : active ? 'picked' : 'paper';
+                    const ink = noteInkOf(tone, theme);
 
-                <AppText style={styles.lede}>{t('oneOfUs.multiDevice.play.vote.intro')}</AppText>
-            </View>
+                    return (
+                        <PinnedNote
+                            key={answer.slot}
+                            index={index}
+                            tone={tone}
+                            style={styles.note}
+                            disabled={busy || voted || own}
+                            accessibilityLabel={answer.text}
+                            // The server refuses a self-vote, so a briefje the board knows is yours is not offered.
+                            onPress={own ? undefined : () => setPicked(answer.slot)}
+                        >
+                            <AppText style={[styles.noteText, { color: ink.text }]}>
+                                {answer.text}
+                            </AppText>
 
-            <View style={styles.options}>
-                {answers.map(answer => (
-                    <PickRow
-                        key={answer.slot}
-                        mode='radio'
-                        // A whole typed clue, so it is allowed to wrap: cut to one line it would be a thing voted on unread.
-                        lines={4}
-                        label={answer.text}
-                        active={voted ? myVoteSlot === answer.slot : picked === answer.slot}
-                        // Every slot is pickable, your own included: two identical answers must stay two options.
-                        disabled={busy || voted}
-                        onPress={() => setPicked(answer.slot)}
-                    />
-                ))}
-            </View>
+                            {own && (
+                                <View style={styles.badge}>
+                                    <AppText style={styles.badgeText}>
+                                        {t('oneOfUs.multiDevice.play.vote.mine')}
+                                    </AppText>
+                                </View>
+                            )}
 
-            {mayorName !== null && (
-                <View style={styles.mayor}>
-                    <AppText style={styles.kicker}>{t('oneOfUs.play.vote.mayorLabel')}</AppText>
-
-                    <AppText style={styles.mayorNote}>
-                        {t('oneOfUs.play.vote.mayorNote', { name: mayorName })}
-                    </AppText>
-                </View>
-            )}
-
-            {voted ? (
-                <AppText style={styles.waiting}>
-                    {t('oneOfUs.multiDevice.play.vote.waiting')}
-                </AppText>
-            ) : (
-                <ValidateButton
-                    label={busy
-                        ? t('common.busy')
-                        : t('oneOfUs.multiDevice.play.vote.confirm')}
-                    hint={picked === undefined
-                        ? t('oneOfUs.multiDevice.play.vote.locked')
-                        : t('oneOfUs.multiDevice.play.vote.confirmHint')}
-                    unlocked={!busy && picked !== undefined}
-                    onPress={() => {
-                        if (picked !== undefined) void onVote(round.number, picked);
-                    }}
-                />
-            )}
-
-            <AppText style={styles.progress}>
-                {t('oneOfUs.multiDevice.play.vote.progress', {
-                    done: round.votesIn,
-                    total: round.votesNeeded
+                            {active && (
+                                <View style={styles.check}>
+                                    <Feather name='check' size={14} color={Brand.ink} />
+                                </View>
+                            )}
+                        </PinnedNote>
+                    )
                 })}
-            </AppText>
+            </View>
+
+            <View style={styles.bottom}>
+                {mayorName !== null && (
+                    <AppText style={styles.tie}>
+                        {t('oneOfUs.multiDevice.play.vote.tie')}
+
+                        <AppText style={styles.tieName}>{` ${mayorName} `}</AppText>
+
+                        {t('oneOfUs.multiDevice.play.vote.tieTail')}
+                    </AppText>
+                )}
+
+                {voted ? (
+                    <AppText style={styles.waiting}>
+                        {t('oneOfUs.multiDevice.play.vote.waiting')}
+                    </AppText>
+                ) : (
+                    <PinButton
+                        text={busy
+                            ? t('common.busy')
+                            : t('oneOfUs.multiDevice.play.vote.confirm')}
+                        disabled={busy || picked === undefined}
+                        onPress={() => {
+                            if (picked !== undefined) void onVote(round.number, picked);
+                        }}
+                    />
+                )}
+            </View>
         </ScrollView>
     )
 }
@@ -110,57 +128,94 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
+
     content: {
+        flexGrow: 1,
         paddingHorizontal: Spacing.four,
         paddingTop: Spacing.three,
         paddingBottom: Spacing.five,
         gap: Spacing.three
     },
-    intro: {
-        gap: 4
-    },
-    kicker: {
-        fontSize: 11,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
+
     title: {
-        fontSize: 24,
+        fontSize: 21,
         fontWeight: 900,
-        letterSpacing: -0.5,
+        letterSpacing: -0.8,
+        lineHeight: 21 * 1.1,
         color: theme.colors.text
     },
-    lede: {
-        fontSize: 13.5,
-        lineHeight: 13.5 * 1.5,
-        fontWeight: 600,
-        color: theme.colors.textSecondary
+
+    notes: {
+        gap: 11
     },
-    options: {
+
+    note: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 13
+    },
+
+    noteText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 15.5,
+        lineHeight: 15.5 * 1.4,
+        fontWeight: 700
+    },
+
+    // Paper in the circle so the tick is ink on it, whichever fill the note is wearing.
+    check: {
+        width: 24,
+        height: 24,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent
+    },
+
+    badge: {
+        flexShrink: 0,
+        paddingVertical: 2,
+        paddingHorizontal: 7,
+        borderRadius: 999,
+        borderWidth: 1.5,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+
+    badgeText: {
+        fontSize: 9,
+        fontWeight: 900,
+        letterSpacing: 0.4,
+        color: Brand.ink
+    },
+
+    bottom: {
+        marginTop: 'auto',
         gap: Spacing.two
     },
-    mayor: {
-        gap: 3
+
+    tie: {
+        fontSize: 11,
+        lineHeight: 11 * 1.45,
+        fontWeight: 700,
+        color: theme.colors.textSecondary
     },
-    mayorNote: {
-        fontSize: 12,
-        lineHeight: 12 * 1.45,
-        fontWeight: 600,
-        color: theme.colors.textMuted
+
+    tieName: {
+        fontWeight: 900,
+        color: theme.colors.text
     },
+
     waiting: {
         textAlign: 'center',
         fontSize: 12.5,
         fontWeight: 700,
         color: theme.colors.textSecondary
-    },
-    progress: {
-        textAlign: 'center',
-        fontSize: 12,
-        fontWeight: 800,
-        fontVariant: ['tabular-nums'],
-        color: theme.colors.textMuted
     }
 }))

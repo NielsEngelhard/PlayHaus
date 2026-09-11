@@ -1105,49 +1105,51 @@ export const en = {
                 loading: 'Dealing the roles…',
                 noGame: 'No game',
                 waiting: 'Waiting for the table…',
-                // There is no round total to count against, so the band counts the round and the table beside it.
-                label: 'Round {{round}}',
+                // There is no round total to count against, so the band says what the table is doing instead.
+                phase: {
+                    deal: 'Round {{round}} · the word',
+                    answer: 'Round {{round}} · clue',
+                    vote: 'Round {{round}} · vote',
+                    reveal: 'Round {{round}} · result',
+                    waiting: 'Round {{round}}'
+                },
                 stillIn: '{{count}} still in',
+                progress: '{{done}} / {{total}}',
                 out: {
                     title: 'You are out',
                     message: 'The table voted you out. Stay and watch how it ends — you cannot answer or vote any more.'
                 },
                 deal: {
-                    label: 'Your prompt',
-                    title: 'This one is yours',
-                    intro: 'Only you see this. Keep it to yourself: every round you write a new answer about it.',
-                    action: 'I have got it'
+                    title: 'Take your note',
+                    action: 'Got it'
                 },
                 answer: {
-                    round: 'Round {{round}}',
-                    title: 'Write your answer',
-                    intro: 'One line about your own prompt. Enough to prove you have it, not enough to hand it over.',
-                    field: 'Your answer',
+                    title: 'Write your note',
+                    // The note's own heading, so it stays small: it is there as a reminder, not as an announcement.
+                    about: 'About: {{prompt}}',
+                    aboutBlank: 'You got a blank note',
+                    field: 'Your note',
                     placeholder: 'Something only somebody with your prompt would write',
-                    submit: 'Lock it in',
-                    yours: 'Your answer',
-                    waitingTitle: 'Yours is in',
-                    waitingMessage: 'Waiting for the rest of the table. Voting starts the moment the last answer lands.',
-                    progress: '{{done}} of {{total}} answers in'
+                    counter: '{{typed}} / {{max}} · anonymous on the board',
+                    submit: 'Pin it up',
+                    hung: 'Up on the board · anonymous',
+                    pinned: 'Already up',
+                    waitingMessage: 'Waiting for the rest of the table. Voting starts the moment the last note goes up.'
                 },
                 vote: {
-                    round: 'Round {{round}}',
-                    title: 'Which one does not fit?',
-                    intro: 'Every answer, and no names. Talk it over out loud, then pick the odd one out.',
-                    confirm: 'Cast my vote',
-                    confirmHint: 'This cannot be undone.',
-                    locked: 'Pick an answer first.',
-                    waiting: 'Your vote is in. Waiting for the rest of the table.',
-                    progress: '{{done}} of {{total}} votes in'
+                    title: 'Which note does not fit?',
+                    mine: 'YOU',
+                    // In two pieces, because the name between them is bold.
+                    tie: 'A tie?',
+                    tieTail: 'settles it.',
+                    confirm: 'Pin this note',
+                    waiting: 'Your vote is in. Waiting for the rest of the table.'
                 },
                 reveal: {
-                    round: 'Round {{round}}',
-                    title: 'Who wrote what',
-                    writtenBy: 'Written by {{name}}',
-                    pickedBy: 'Picked by {{names}}',
-                    nobodyPicked: 'Nobody picked this one',
+                    title: 'The notes turned over',
+                    votedOut: '{{name}} · voted out',
                     tieBroken: 'The vote tied, so the mayor settled it.',
-                    next: 'See who is out',
+                    next: 'Round {{round}}',
                     toResult: 'See how it ended'
                 }
             },
@@ -1199,6 +1201,15 @@ export const en = {
             roundDiscuss: 'Round {{round}} · discuss',
             roundVote: 'Round {{round}} · vote',
             roundResult: 'Round {{round}} · result',
+
+            // The note you drew. Both ways of playing share it.
+            note: {
+                label: 'Your word',
+                blurb: 'Somebody got a blank note.',
+                blurbBlank: 'You are that somebody. Build every turn out of what you hear.',
+                cover: 'Tap to read your note',
+                coverHint: 'Hold the phone so nobody else can read it.'
+            },
 
             // The pass-the-phone reveal, once per player before the first round.
             reveal: {
@@ -1266,26 +1277,23 @@ export const en = {
             },
 
             vote: {
-                title: 'Vote somebody out',
-                description: 'Tap a name, then confirm.',
-                /** Above the chosen name, in the middle of the ring. */
-                ringChosen: 'Chosen',
+                title: 'Who does not fit?',
                 nobody: 'Nobody chosen yet',
-                confirm: 'Vote for {{name}}',
+                confirm: 'Pin {{name}}',
                 confirmHint: 'This cannot be undone.',
-                locked: 'Tap a name first.',
-                /** The strip above the confirm button, on every round. */
-                mayorLabel: 'Mayor',
-                mayorNote: '{{name}} decides who goes if the vote ties. The mayor can be an imposter too.'
+                locked: 'Tap a name first.'
             },
 
             /** What the table is told the moment somebody leaves. */
             elimination: {
                 /** Above their name, on the seat that is about to disappear. */
                 ringLabel: 'Voted out',
-                civilian: '{{name}} was one of the civilians.',
-                imposter: '{{name}} was an imposter.',
-                nitwit: '{{name}} was the nitwit.',
+                civilian: '{{name}} was one of the civilians',
+                imposter: '{{name}} was an imposter',
+                nitwit: '{{name}} was the nitwit',
+                // Whether the table had the right one.
+                hit: 'hit',
+                miss: 'miss',
                 remaining: '{{players}} still in the game.',
                 next: 'Round {{round}}'
             },

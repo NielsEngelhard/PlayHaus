@@ -1,4 +1,4 @@
-import type { OOUGamePlayer } from '@/api/calls/one-of-us-multi-device';
+import type { OOUAnswer, OOUGamePlayer } from '@/api/calls/one-of-us-multi-device';
 import type { FinalPlayer } from '@/features/one-of-us/components/GameOverScreen';
 import { initialsOf, type Seat } from '@/features/table/seats';
 import { avatarColorById } from '@/utils/color-utils';
@@ -27,6 +27,16 @@ export function seatForUser(players: OOUGamePlayer[], userId: string | undefined
     const player = players.find(candidate => candidate.userId === userId);
 
     return player === undefined ? null : seatOf(player);
+}
+
+/** Which slot is the reader's own briefje, or null when the board cannot say for sure. */
+export function myAnswerSlot(answers: OOUAnswer[], myAnswer: string | undefined): number | null {
+    if (myAnswer === undefined) return null;
+
+    // Two identical answers must stay two options: striking one out would be a guess at which.
+    const mine = answers.filter(answer => answer.text === myAnswer);
+
+    return mine.length === 1 ? mine[0].slot : null;
 }
 
 /** How many are still in. The only progress signal a game with no round total has. */

@@ -1,13 +1,17 @@
 import type { OOUAnswer, OOUGamePlayer, OOUReveal } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
-import ActionButton from '@/components/ui/ActionButton';
-import Card from '@/components/ui/Card';
-import { Spacing } from '@/constants/theme';
+import SeatAvatar from '@/components/ui/SeatAvatar';
+import { Brand, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
-import EliminationScreen from '@/features/one-of-us/components/EliminationScreen';
-import { aliveCount, seatForUser, seatsOf } from '@/features/one-of-us/multi-device-flow';
+import { noteInkOf, type NoteTone } from '@/features/one-of-us/board-notes';
+import PinButton from '@/features/one-of-us/components/PinButton';
+import PinnedNote from '@/features/one-of-us/components/PinnedNote';
+import RoleVerdict from '@/features/one-of-us/components/RoleVerdict';
+import { seatForUser } from '@/features/one-of-us/multi-device-flow';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
-import { useState } from 'react';
+import { useTheme } from '@/features/theme/ThemeContext';
+import type { Seat } from '@/features/table/seats';
+import Feather from '@expo/vector-icons/Feather';
 import { ScrollView, View } from 'react-native';
 
 interface Props {
@@ -24,7 +28,7 @@ interface Props {
     userId: string
 }
 
-// The end of a round: who wrote what, and then who the table sent home.
+// The end of a round: the briefjes turned over, and who the table sent home on the back of them.
 export default function RoundReveal({
     busy,
     gameOver,
@@ -37,9 +41,6 @@ export default function RoundReveal({
     const t = useT();
     const styles = useStyles();
 
-    /** The authored list has been read and the verdict is up. */
-    const [verdict, setVerdict] = useState(false);
-
     const person = seatForUser(players, reveal.votedOut.userId);
 
     const nameOf = (id: string) => {
@@ -48,23 +49,10 @@ export default function RoundReveal({
         return players.find(player => player.userId === id)?.name ?? '?';
     };
 
-    // Most-voted first: the list reads as the table's own argument.
+    // Most-voted first: the board reads as the table's own argument.
     const ordered = [...reveal.answers].sort((left, right) => (
         (right.voters?.length ?? 0) - (left.voters?.length ?? 0)
     ));
-
-    if (verdict && person !== null) {
-        return (
-            <EliminationScreen
-                nextRound={reveal.roundNumber + 1}
-                onNext={onContinue}
-                person={person}
-                remaining={aliveCount(players)}
-                role={reveal.votedOut.role}
-                seats={seatsOf(players)}
-            />
-        )
-    }
 
     return (
         <ScrollView
@@ -72,21 +60,24 @@ export default function RoundReveal({
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.intro}>
-                <AppText style={styles.kicker}>
-                    {t('oneOfUs.multiDevice.play.reveal.round', { round: reveal.roundNumber })}
-                </AppText>
+            <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.reveal.title')}</AppText>
 
-                <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.reveal.title')}</AppText>
-            </View>
-
-            {ordered.map(answer => (
-                <AnswerResult
+            {ordered.map((answer, index) => (
+                <TurnedNote
                     key={answer.slot}
                     answer={answer}
-                    nameOf={nameOf}
+                    author={answer.authorId === undefined
+                        ? null
+                        : seatForUser(players, answer.authorId)}
+                    index={index}
+                    name={answer.authorId === undefined ? null : nameOf(answer.authorId)}
+                    out={answer.authorId !== undefined && answer.authorId === reveal.votedOut.userId}
                 />
             ))}
+
+            {person !== null && (
+                <RoleVerdict name={person.name} role={reveal.votedOut.role} />
+            )}
 
             {reveal.votedOut.tieBrokenByMayor && (
                 <AppText style={styles.tie}>
@@ -94,64 +85,67 @@ export default function RoundReveal({
                 </AppText>
             )}
 
-            <ActionButton
-                size='large'
-                icon='arrow-right'
+            <PinButton
+                style={styles.next}
+                icon="arrow-right"
                 text={busy
                     ? t('common.busy')
-                    : gameOver || person === null
+                    : gameOver
                         ? t('oneOfUs.multiDevice.play.reveal.toResult')
-                        : t('oneOfUs.multiDevice.play.reveal.next')}
+                        : t('oneOfUs.multiDevice.play.reveal.next', { round: reveal.roundNumber + 1 })}
                 disabled={busy}
-                onPress={() => {
-                    if (gameOver) {
-                        onFinish();
-                        return;
-                    }
-
-                    // Nobody to draw a verdict for, so the tap that would have opened it opens the round.
-                    if (person === null) {
-                        onContinue();
-                        return;
-                    }
-
-                    setVerdict(true);
-                }}
+                onPress={gameOver ? onFinish : onContinue}
             />
         </ScrollView>
     )
 }
 
-interface AnswerResultProps {
+interface TurnedNoteProps {
     answer: OOUAnswer
-    nameOf: (id: string) => string
+    /** Who wrote it, now that is sayable. */
+    author: Seat | null
+    index: number
+    name: string | null
+    /** This is the briefje the table pinned. */
+    out: boolean
 }
 
-/** One answer, with everything about it now sayable. */
-function AnswerResult({ answer, nameOf }: AnswerResultProps) {
+/** One briefje, turned over: what it said, who wrote it, and how many went for it. */
+function TurnedNote({ answer, author, index, name, out }: TurnedNoteProps) {
     const t = useT();
+    const theme = useTheme();
     const styles = useStyles();
 
-    const voters = answer.voters ?? [];
+    const tone: NoteTone = out ? 'out' : 'paper';
+    const ink = noteInkOf(tone, theme);
+    const votes = answer.voters?.length ?? 0;
 
     return (
-        <Card style={styles.answer}>
-            <AppText style={styles.text}>{answer.text}</AppText>
+        <PinnedNote index={index} tone={tone} style={styles.note}>
+            <View style={styles.noteHead}>
+                <AppText style={[styles.noteText, { color: ink.text }]}>{answer.text}</AppText>
 
-            {answer.authorId !== undefined && (
-                <AppText style={styles.byline}>
-                    {t('oneOfUs.multiDevice.play.reveal.writtenBy', { name: nameOf(answer.authorId) })}
-                </AppText>
+                {out && (
+                    <View style={styles.check}>
+                        <Feather name="check" size={14} color={Brand.ink} />
+                    </View>
+                )}
+            </View>
+
+            {name !== null && (
+                <View style={[styles.byline, { borderTopColor: ink.muted }]}>
+                    {author !== null && <SeatAvatar seat={author} size={22} />}
+
+                    <AppText style={[styles.name, { color: ink.text }]} numberOfLines={1}>
+                        {out ? t('oneOfUs.multiDevice.play.reveal.votedOut', { name }) : name}
+                    </AppText>
+
+                    <AppText style={[styles.votes, { color: votes === 0 ? ink.muted : ink.text }]}>
+                        {votes}
+                    </AppText>
+                </View>
             )}
-
-            <AppText style={styles.voters}>
-                {voters.length === 0
-                    ? t('oneOfUs.multiDevice.play.reveal.nobodyPicked')
-                    : t('oneOfUs.multiDevice.play.reveal.pickedBy', {
-                        names: voters.map(nameOf).join(', ')
-                    })}
-            </AppText>
-        </Card>
+        </PinnedNote>
     )
 }
 
@@ -160,52 +154,88 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
+
     content: {
+        flexGrow: 1,
         paddingHorizontal: Spacing.four,
         paddingTop: Spacing.three,
         paddingBottom: Spacing.five,
-        gap: Spacing.three
+        gap: 10
     },
-    intro: {
-        gap: 4
-    },
-    kicker: {
-        fontSize: 11,
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
+
     title: {
-        fontSize: 24,
+        marginBottom: 6,
+        fontSize: 21,
         fontWeight: 900,
-        letterSpacing: -0.5,
+        letterSpacing: -0.8,
+        lineHeight: 21 * 1.1,
         color: theme.colors.text
     },
-    answer: {
-        gap: 6
+
+    note: {
+        gap: 7,
+        paddingVertical: 12,
+        paddingHorizontal: 13
     },
-    text: {
-        fontSize: 16,
-        lineHeight: 16 * 1.5,
-        fontWeight: 700,
-        color: theme.colors.text
+
+    noteHead: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10
     },
+
+    noteText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 15.5,
+        lineHeight: 15.5 * 1.4,
+        fontWeight: 700
+    },
+
+    check: {
+        width: 24,
+        height: 24,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent
+    },
+
+    // Torn off the note above it rather than ruled: the author was not part of what was pinned.
     byline: {
-        fontSize: 12,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 7,
+        paddingTop: 6,
+        borderTopWidth: 1.5,
+        borderStyle: 'dashed'
     },
-    voters: {
-        fontSize: 12,
-        lineHeight: 12 * 1.45,
-        fontWeight: 600,
-        color: theme.colors.textMuted
+
+    name: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 11.5,
+        fontWeight: 900
     },
+
+    votes: {
+        flexShrink: 0,
+        fontSize: 12,
+        fontWeight: 900,
+        fontVariant: ['tabular-nums']
+    },
+
     tie: {
-        fontSize: 12.5,
-        lineHeight: 12.5 * 1.45,
+        fontSize: 11.5,
+        lineHeight: 11.5 * 1.45,
         fontWeight: 700,
         color: theme.colors.textSecondary
+    },
+
+    next: {
+        marginTop: 'auto'
     }
 }))

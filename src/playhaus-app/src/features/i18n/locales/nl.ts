@@ -993,48 +993,51 @@ export const nl: Catalog = {
                 loading: 'De rollen worden verdeeld…',
                 noGame: 'Geen spel',
                 waiting: 'Wachten op de tafel…',
-                label: 'Ronde {{round}}',
-                stillIn: 'Nog {{count}} in het spel',
+                // Er is geen rondetotaal om tegen af te tellen, dus de band zegt wat de tafel aan het doen is.
+                phase: {
+                    deal: 'Ronde {{round}} · het woord',
+                    answer: 'Ronde {{round}} · aanwijzing',
+                    vote: 'Ronde {{round}} · stemmen',
+                    reveal: 'Ronde {{round}} · uitslag',
+                    waiting: 'Ronde {{round}}'
+                },
+                stillIn: '{{count}} in spel',
+                progress: '{{done}} / {{total}}',
                 out: {
                     title: 'Je ligt eruit',
                     message: 'De tafel heeft je eruit gestemd. Blijf kijken hoe het eindigt — antwoorden en stemmen kan niet meer.'
                 },
                 deal: {
-                    label: 'Jouw opdracht',
-                    title: 'Deze is voor jou',
-                    intro: 'Alleen jij ziet dit. Hou het voor jezelf: elke ronde schrijf je er een nieuw antwoord over.',
-                    action: 'Ik heb hem'
+                    title: 'Trek je briefje',
+                    action: 'Onthouden'
                 },
                 answer: {
-                    round: 'Ronde {{round}}',
-                    title: 'Schrijf je antwoord',
-                    intro: 'Eén regel over je eigen opdracht. Genoeg om te bewijzen dat je hem hebt, niet genoeg om hem weg te geven.',
-                    field: 'Jouw antwoord',
+                    title: 'Schrijf je briefje',
+                    // De kop van het briefje zelf, dus kort en klein: het staat er als geheugensteun, niet als aankondiging.
+                    about: 'Over: {{prompt}}',
+                    aboutBlank: 'Je kreeg een leeg briefje',
+                    field: 'Jouw briefje',
                     placeholder: 'Iets wat alleen iemand met jouw opdracht zou schrijven',
-                    submit: 'Vastzetten',
-                    yours: 'Jouw antwoord',
-                    waitingTitle: 'De jouwe staat',
-                    waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste antwoord binnen is.',
-                    progress: '{{done}} van {{total}} antwoorden binnen'
+                    counter: '{{typed}} / {{max}} · anoniem op het bord',
+                    submit: 'Ophangen',
+                    hung: 'Hangt op het bord · anoniem',
+                    pinned: 'Al opgehangen',
+                    waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste briefje hangt.'
                 },
                 vote: {
-                    round: 'Ronde {{round}}',
-                    title: 'Welke past er niet bij?',
-                    intro: 'Alle antwoorden, geen namen. Bespreek het hardop en kies dan de vreemde eend.',
-                    confirm: 'Mijn stem uitbrengen',
-                    confirmHint: 'Dit kun je niet meer terugdraaien.',
-                    locked: 'Kies eerst een antwoord.',
-                    waiting: 'Je stem staat. Wachten op de rest van de tafel.',
-                    progress: '{{done}} van {{total}} stemmen binnen'
+                    title: 'Welk briefje klopt niet?',
+                    mine: 'JIJ',
+                    // In twee stukken, want de naam ertussen staat vet.
+                    tie: 'Gelijkspel?',
+                    tieTail: 'hakt de knoop door.',
+                    confirm: 'Prik dit briefje',
+                    waiting: 'Je stem staat. Wachten op de rest van de tafel.'
                 },
                 reveal: {
-                    round: 'Ronde {{round}}',
-                    title: 'Wie schreef wat',
-                    writtenBy: 'Geschreven door {{name}}',
-                    pickedBy: 'Gekozen door {{names}}',
-                    nobodyPicked: 'Niemand koos deze',
+                    title: 'De briefjes omgedraaid',
+                    votedOut: '{{name}} · eruit gestemd',
                     tieBroken: 'De stemmen stonden gelijk, dus de burgemeester besliste.',
-                    next: 'Kijk wie eruit ligt',
+                    next: 'Ronde {{round}}',
                     toResult: 'Kijk hoe het eindigde'
                 }
             },
@@ -1082,6 +1085,15 @@ export const nl: Catalog = {
             roundDiscuss: 'Ronde {{round}} · overleg',
             roundVote: 'Ronde {{round}} · stemmen',
             roundResult: 'Ronde {{round}} · uitslag',
+
+            // Het briefje dat je trok. Beide speelvormen delen het.
+            note: {
+                label: 'Jouw woord',
+                blurb: 'Laat deze aan niemand zien.',
+                blurbBlank: 'Jij bent die iemand. Bouw voort op wat je anderen hoort zeggen.',
+                cover: 'Tik om je briefje te lezen',
+                coverHint: 'Zorg dat niemand meekijkt.'
+            },
 
             reveal: {
                 step: 'Woord {{number}} van {{total}}',
@@ -1138,22 +1150,21 @@ export const nl: Catalog = {
             },
 
             vote: {
-                title: 'Stem iemand weg',
-                description: 'Tik een naam en bevestig daarna.',
-                ringChosen: 'Gekozen',
+                title: 'Wie klopt er niet?',
                 nobody: 'Nog niemand gekozen',
-                confirm: 'Stem op {{name}}',
+                confirm: 'Prik {{name}}',
                 confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
-                locked: 'Tik eerst op een naam.',
-                mayorLabel: 'Burgemeester',
-                mayorNote: '{{name}} beslist wie eruit gaat als de stemmen staken. De burgemeester kan ook een imposter zijn.'
+                locked: 'Tik eerst op een naam.'
             },
 
             elimination: {
                 ringLabel: 'Weggestemd',
-                civilian: '{{name}} was een burger.',
-                imposter: '{{name}} was een imposter.',
-                nitwit: '{{name}} was de onnozele.',
+                civilian: '{{name}} was een burger',
+                imposter: '{{name}} was een imposter',
+                nitwit: '{{name}} was de onnozele',
+                // Of de tafel de goede te pakken had.
+                hit: 'raak',
+                miss: 'mis',
                 remaining: 'Nog {{players}} in het spel.',
                 next: 'Ronde {{round}}'
             },

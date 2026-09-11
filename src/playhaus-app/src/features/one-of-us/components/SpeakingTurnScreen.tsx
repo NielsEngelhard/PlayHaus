@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
-import ActionButton from "@/components/ui/ActionButton";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import PinButton from "@/features/one-of-us/components/PinButton";
 import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -67,8 +67,7 @@ export default function SpeakingTurnScreen({
                 </View>
             </View>
 
-            <ActionButton
-                size="large"
+            <PinButton
                 icon={last ? 'message-circle' : 'arrow-right'}
                 text={last || nextUp === null
                     ? t('oneOfUs.play.speak.lastNext')

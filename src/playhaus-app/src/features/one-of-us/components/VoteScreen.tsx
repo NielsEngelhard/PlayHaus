@@ -1,17 +1,17 @@
 import AppText from "@/components/text/AppText";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
 import InlineNotification from "@/components/ui/InlineNotification";
 import SeatAvatar from "@/components/ui/SeatAvatar";
-import ValidateButton from "@/components/ui/ValidateButton";
-import { Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import SeatRing from "@/features/one-of-us/components/SeatRing";
+import { noteInkOf } from "@/features/one-of-us/board-notes";
+import PinButton from "@/features/one-of-us/components/PinButton";
+import PinnedNote from "@/features/one-of-us/components/PinnedNote";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface Props {
     busy: boolean
@@ -24,7 +24,7 @@ interface Props {
     seats: Seat[]
 }
 
-
+// The vote: one briefje per player still in, and the table pins one of them.
 export default function VoteScreen({
     busy,
     chosen,
@@ -41,11 +41,12 @@ export default function VoteScreen({
     const picked = seats.find(seat => seat.seat === chosen) ?? null;
 
     return (
-        <View style={styles.screen}>
-            <SimpleTextHero
-                title={t('oneOfUs.play.vote.title')}
-                description={t('oneOfUs.play.vote.description')}
-            />
+        <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.content}
+            showsVerticalScrollIndicator={false}
+        >
+            <AppText style={styles.title}>{t('oneOfUs.play.vote.title')}</AppText>
 
             {error !== null && (
                 <InlineNotification
@@ -56,119 +57,145 @@ export default function VoteScreen({
                 />
             )}
 
-            {/* The ring takes what the hero and the footer leave, and gives way first when there is not enough of it. */}
-            <View style={styles.middle}>
-                {/* The middle is the receipt for the tap. */}
-                <SeatRing
-                    seats={seats}
-                    markOf={seat => seat.seat === chosen ? 'chosen' : 'normal'}
-                    label={picked === null ? undefined : t('oneOfUs.play.vote.ringChosen')}
-                    headline={picked === null
-                        ? t('oneOfUs.play.vote.nobody')
-                        : picked.name}
-                    onPick={seat => onChoose(seat.seat)}
-                    disabled={busy}
-                />
+            <View style={styles.notes}>
+                {seats.map((seat, index) => {
+                    const active = seat.seat === chosen;
+                    const tone = active ? 'picked' : 'paper';
+                    const ink = noteInkOf(tone, theme);
+
+                    return (
+                        <PinnedNote
+                            key={seat.seat}
+                            index={index}
+                            tone={tone}
+                            style={styles.note}
+                            disabled={busy}
+                            accessibilityLabel={seat.name}
+                            onPress={() => onChoose(seat.seat)}
+                        >
+                            <SeatAvatar seat={seat} size={26} />
+
+                            <AppText
+                                style={[styles.name, { color: ink.text }]}
+                                numberOfLines={1}
+                            >
+                                {seat.name}
+                            </AppText>
+
+                            {active && (
+                                <View style={styles.check}>
+                                    <Feather name="check" size={14} color={Brand.ink} />
+                                </View>
+                            )}
+                        </PinnedNote>
+                    )
+                })}
             </View>
 
-            <View style={styles.footer}>
+            <View style={styles.bottom}>
                 {/* Every round, whether or not this one ends level. */}
                 {mayor !== null && (
-                    <View style={styles.mayor}>
-                        <SeatAvatar seat={mayor} size={26} />
+                    <AppText style={styles.tie}>
+                        {t('oneOfUs.multiDevice.play.vote.tie')}
 
-                        <View style={styles.mayorText}>
-                            <View style={styles.mayorLabelRow}>
-                                <Feather
-                                    name="award"
-                                    size={11}
-                                    color={theme.colors.textMuted}
-                                />
+                        <AppText style={styles.tieName}>{` ${mayor.name} `}</AppText>
 
-                                <AppText style={styles.mayorLabel}>
-                                    {t('oneOfUs.play.vote.mayorLabel')}
-                                </AppText>
-                            </View>
-
-                            <AppText style={styles.mayorNote} numberOfLines={2}>
-                                {t('oneOfUs.play.vote.mayorNote', { name: mayor.name })}
-                            </AppText>
-                        </View>
-                    </View>
+                        {t('oneOfUs.multiDevice.play.vote.tieTail')}
+                    </AppText>
                 )}
 
-                <ValidateButton
-                    label={picked === null
+                <PinButton
+                    text={picked === null
                         ? t('oneOfUs.play.vote.nobody')
                         : t('oneOfUs.play.vote.confirm', { name: picked.name })}
-                    hint={picked === null
-                        ? t('oneOfUs.play.vote.locked')
-                        : t('oneOfUs.play.vote.confirmHint')}
-                    unlocked={picked !== null && !busy}
+                    disabled={picked === null || busy}
                     onPress={onConfirm}
                 />
+
+                <AppText style={styles.hint}>
+                    {picked === null
+                        ? t('oneOfUs.play.vote.locked')
+                        : t('oneOfUs.play.vote.confirmHint')}
+                </AppText>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    screen: {
+    scroll: {
         flex: 1,
-        width: '100%',
+        width: '100%'
+    },
+
+    content: {
+        flexGrow: 1,
         paddingTop: Spacing.three,
+        paddingBottom: Spacing.two,
         gap: Spacing.three
     },
 
-    middle: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-
-    // `flexShrink: 0` rather than `marginTop: auto`: the room now comes from `middle` above.
-    footer: {
-        flexShrink: 0,
-        gap: Spacing.three,
-        paddingTop: Spacing.two
-    },
-
-    // The same dashed strip the reveal screen queues the table up in, for the same reason.
-    mayor: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
-        paddingVertical: 9,
-        paddingHorizontal: 12,
-        borderRadius: 16,
-        borderWidth: 2,
-        borderStyle: 'dashed',
-        borderColor: theme.colors.borderMuted
-    },
-
-    mayorText: {
-        flex: 1,
-        minWidth: 0
-    },
-
-    mayorLabelRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 5
-    },
-
-    mayorLabel: {
-        fontSize: 10,
+    title: {
+        fontSize: 21,
         fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
+        letterSpacing: -0.8,
+        lineHeight: 21 * 1.1,
+        color: theme.colors.text
     },
 
-    mayorNote: {
-        marginTop: 2,
-        fontSize: 11.5,
+    notes: {
+        gap: 11
+    },
+
+    note: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 11,
+        paddingVertical: 12,
+        paddingHorizontal: 13
+    },
+
+    name: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 16.5,
+        fontWeight: 800
+    },
+
+    // Paper in the circle so the tick is ink on it, whichever fill the note is wearing.
+    check: {
+        width: 24,
+        height: 24,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent
+    },
+
+    bottom: {
+        marginTop: 'auto',
+        gap: Spacing.two
+    },
+
+    tie: {
+        fontSize: 11,
+        lineHeight: 11 * 1.45,
         fontWeight: 700,
-        lineHeight: 11.5 * 1.4,
+        color: theme.colors.textSecondary
+    },
+
+    tieName: {
+        fontWeight: 900,
+        color: theme.colors.text
+    },
+
+    hint: {
+        textAlign: 'center',
+        fontSize: 11.5,
+        fontWeight: 600,
         color: theme.colors.textMuted
     }
 }))
