@@ -497,9 +497,10 @@ func dealQuestions(quiz *Quiz, players int, modes Modes) ([]dealtQuestion, error
 	// The running order of an evening.
 	for _, round := range []roundDeal{
 		{RoundOpen, all, toTheTable},
-		// Rounds 2, 3 and 5 are the three that walk the reading round the table one seat per question, so all three are dealt the same way.
+		// Rounds 2 and 5 both walk the reading round the table one seat per question, so both are dealt whole laps.
 		{RoundChoice, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
-		{RoundClosest, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
+		// Round 3 rotates the same way but plays a single lap: one question each, and four at the table of two whose reader guesses too.
+		{RoundClosest, func(int) int { return ClosestTurnsFor(players) }, toTheTable},
 		{RoundDescribe, func(a int) int { return DescribeWordsFor(players, a) }, inTurns},
 		{RoundList, func(a int) int { return WholeCyclesOf(players, a) }, toTheTable},
 		// Round 6 deals its whole pool however many are playing: the questions nobody gets round to are the choice.

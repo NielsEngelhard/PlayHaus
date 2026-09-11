@@ -86,7 +86,7 @@ func closestBody(t *testing.T, req closestGuessesRequest) string {
 // Nobody is "being asked" in round 3 -- the whole table guesses at once -- and the app
 // has to be told that rather than left to infer it from a seat that means nothing.
 func TestRoundThreeAsksTheWholeTable(t *testing.T) {
-	h, token, session := atRoundThree(t, 4)
+	_, _, session := atRoundThree(t, 4)
 
 	if session.AnsweringSeat != nil {
 		t.Errorf("answeringSeat = %d, want null in round 3", *session.AnsweringSeat)
@@ -97,11 +97,10 @@ func TestRoundThreeAsksTheWholeTable(t *testing.T) {
 	if got, want := len(session.TurnQuestionIDs), 1; got != want {
 		t.Errorf("turnQuestionIds = %d, want %d", got, want)
 	}
-	// As many whole laps of the table as the quiz carries closest questions for -- the
-	// rule rounds 2, 3 and 5 share, whatever the size of the table.
-	carried := carriedIn(t, h, token, session.QuizID, pubquizr.RoundClosest)
-	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), carried); got != want {
-		t.Errorf("turnsInRound = %d, want %d (of %d carried)", got, want, carried)
+	// One lap of the table and no more, whatever the quiz carries: everybody reads a
+	// closest question out exactly once.
+	if got, want := session.TurnsInRound, pubquizr.ClosestTurnsFor(len(session.Players)); got != want {
+		t.Errorf("turnsInRound = %d, want %d", got, want)
 	}
 }
 

@@ -178,6 +178,21 @@ func ClosestQuizmasterGuesses(players int) bool {
 	return players == MinPlayers
 }
 
+// ClosestTurnsAtATableOfTwo is round 3's length where the reader guesses too, because one lap of two would be over before it started.
+const ClosestTurnsAtATableOfTwo = 4
+
+// ClosestTurnsFor is how many goes round 3 plays: one each, so everybody reads exactly once.
+func ClosestTurnsFor(players int) int {
+	if players <= 0 {
+		return 0
+	}
+	if ClosestQuizmasterGuesses(players) {
+		return ClosestTurnsAtATableOfTwo
+	}
+
+	return players
+}
+
 func DescribeWordsPerPlayer(players, available int) int {
 	if players <= 0 {
 		return 0
@@ -206,10 +221,11 @@ func FinalePointsFor(players int) int {
 
 const (
 	MinOpenQuestions = 20
-	// The three floors below belong to the three rounds WholeCyclesOf governs, and they are all the same number for the same reason.
-	MinChoiceQuestions           = MaxPlayers
+	// The two floors below belong to the two rounds WholeCyclesOf governs, and they are the same number for the same reason.
+	MinChoiceQuestions = MaxPlayers
+	MinListQuestions   = MaxPlayers
+	// Round 3 plays one question per seat, so a full table needs one each.
 	MinClosestQuestions          = MaxPlayers
-	MinListQuestions             = MaxPlayers
 	MinDescribeWordsAtAFullTable = 2
 	MinDescribeWords             = MaxPlayers * MinDescribeWordsAtAFullTable
 	MinFinaleQuestions           = 4

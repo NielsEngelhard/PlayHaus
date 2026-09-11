@@ -121,8 +121,7 @@ func TestQuizWithoutZenPlaysEveryRound(t *testing.T) {
 func TestZenHandsRoundThreeStraightToRoundFive(t *testing.T) {
 	h, token, session := atZenRoundThree(t, 4)
 
-	closest := carriedIn(t, h, token, session.QuizID, pubquizr.RoundClosest)
-	if got, want := session.TurnsInRound, pubquizr.WholeCyclesOf(len(session.Players), closest); got != want {
+	if got, want := session.TurnsInRound, pubquizr.ClosestTurnsFor(len(session.Players)); got != want {
 		t.Fatalf("turnsInRound = %d, want %d -- round 3 is unchanged by the mode", got, want)
 	}
 

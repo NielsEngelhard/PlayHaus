@@ -110,14 +110,14 @@ func TestRoundFourSharesAThinShelfEvenly(t *testing.T) {
 	}
 }
 
-// Rounds 2, 3 and 5 are dealt whole laps of the table at every size of table -- no
+// Rounds 2 and 5 are dealt whole laps of the table at every size of table -- no
 // exception for the smallest one, and none for the largest.
 //
 // The property that matters is the one the deal is for: over the round every seat reads
-// the same number of times, because all three rounds move the reading on one seat per
+// the same number of times, because both rounds move the reading on one seat per
 // question. A deal that stopped part-way round would leave the seats it reached one
 // reading ahead of the ones it did not, which is the unfairness this is here to catch.
-func TestEveryTableIsDealtWholeLapsOfRoundsTwoThreeAndFive(t *testing.T) {
+func TestEveryTableIsDealtWholeLapsOfRoundsTwoAndFive(t *testing.T) {
 	// Wide enough to hand out the round 4 cap, so nothing here trips the too-small
 	// check on a different round.
 	quiz := quizCarrying(MaxPlayers * DescribeWordsPerTurn)
@@ -141,7 +141,7 @@ func TestEveryTableIsDealtWholeLapsOfRoundsTwoThreeAndFive(t *testing.T) {
 			counts[slot.round]++
 		}
 
-		for _, round := range []int{RoundChoice, RoundClosest, RoundList} {
+		for _, round := range []int{RoundChoice, RoundList} {
 			want := WholeCyclesOf(players, carried[round])
 			if got := counts[round]; got != want {
 				t.Errorf("%d players: round %d dealt %d of %d questions, want %d",
@@ -153,6 +153,60 @@ func TestEveryTableIsDealtWholeLapsOfRoundsTwoThreeAndFive(t *testing.T) {
 			}
 		}
 	}
+}
+
+// Round 3 is a single lap however much the quiz carries: everybody reads one out and
+// then the round is over. The table of two is the exception, because there the reader
+// guesses too and one lap would be two questions long.
+func TestEveryTableIsDealtOneClosestQuestionEach(t *testing.T) {
+	quiz := quizCarrying(MaxPlayers * DescribeWordsPerTurn)
+
+	for players := MinPlayers; players <= MaxPlayers; players++ {
+		deal, err := dealQuestions(quiz, players, Modes{})
+		if err != nil {
+			t.Fatalf("%d players: deal: %v", players, err)
+		}
+
+		dealt := 0
+		for _, slot := range deal {
+			if slot.round == RoundClosest {
+				dealt++
+			}
+		}
+
+		if want := ClosestTurnsFor(players); dealt != want {
+			t.Errorf("%d players: round 3 dealt %d questions, want %d", players, dealt, want)
+		}
+	}
+
+	// Spelled out against the shelf of eight every quiz carries, so a deal that quietly
+	// went back to playing the whole round has to be meant.
+	if got, want := closestSlotsFor(t, quiz, 3), 3; got != want {
+		t.Errorf("3 players: round 3 dealt %d questions, want %d -- one each", got, want)
+	}
+	if got, want := closestSlotsFor(t, quiz, MinPlayers), ClosestTurnsAtATableOfTwo; got != want {
+		t.Errorf("%d players: round 3 dealt %d questions, want %d -- the reader guesses too",
+			MinPlayers, got, want)
+	}
+}
+
+// closestSlotsFor is how many round 3 slots one size of table is dealt off a quiz.
+func closestSlotsFor(t *testing.T, quiz *Quiz, players int) int {
+	t.Helper()
+
+	deal, err := dealQuestions(quiz, players, Modes{})
+	if err != nil {
+		t.Fatalf("%d players: deal: %v", players, err)
+	}
+
+	slots := 0
+	for _, slot := range deal {
+		if slot.round == RoundClosest {
+			slots++
+		}
+	}
+
+	return slots
 }
 
 // Every other round belongs to the table, whatever the shelf holds. Round 4 is the only

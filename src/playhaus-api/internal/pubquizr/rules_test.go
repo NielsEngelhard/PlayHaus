@@ -91,6 +91,25 @@ func TestDescribeWordsPerPlayer(t *testing.T) {
 	}
 }
 
+// Round 3 gives everybody the reading exactly once, so its length is the table rather
+// than the shelf -- except at two, where the reader guesses too and one lap would be
+// over before it started.
+func TestClosestTurnsFor(t *testing.T) {
+	table := map[int]int{
+		0:          0,
+		MinPlayers: ClosestTurnsAtATableOfTwo,
+		3:          3,
+		5:          5,
+		MaxPlayers: MaxPlayers,
+	}
+
+	for players, want := range table {
+		if got := ClosestTurnsFor(players); got != want {
+			t.Errorf("ClosestTurnsFor(%d) = %d, want %d", players, got, want)
+		}
+	}
+}
+
 // Only the smallest table lets its round 3 reader guess -- everywhere else that would
 // be the reader marking their own homework.
 func TestClosestQuizmasterGuesses(t *testing.T) {
