@@ -21,7 +21,7 @@ const (
 	RoundClosest    = 3 // a number; nearest wins
 	RoundDescribe   = 4 // 30 seconds -- describe your words, the table guesses
 	RoundList       = 5 // one question, four answers we are looking for
-	RoundDoubleDown = 6 // easy for one point or hard for two -- the player picks before the question is read
+	RoundDoubleDown = 6 // easy for one point or hard for three -- the player picks before the question is read
 	RoundFinale     = 7 // head to head between the two highest scores, read by a third where the table has one to spare
 )
 

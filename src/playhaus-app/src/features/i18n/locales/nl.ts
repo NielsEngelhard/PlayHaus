@@ -1288,7 +1288,6 @@ export const nl: Catalog = {
                 truthReward: 'hem vinden is een punt waard',
                 truth: 'De waarheid',
                 fake: 'Verzonnen',
-                writtenBy: 'Geschreven door {{name}}',
                 nobodyPicked: 'Niemand koos deze',
                 pickedBy: 'Gekozen door {{names}}',
                 points: '+{{points}}',

@@ -1424,7 +1424,6 @@ export const en = {
                 truthReward: 'spotting it is worth a point',
                 truth: 'The truth',
                 fake: 'Fake',
-                writtenBy: 'Written by {{name}}',
                 nobodyPicked: 'Nobody picked this',
                 pickedBy: 'Picked by {{names}}',
                 points: '+{{points}}',

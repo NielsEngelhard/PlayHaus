@@ -164,18 +164,9 @@ function Fake({ option, line, game, nameOf }: FakeProps) {
                     lines={3}
                 />
 
-                <AppText style={styles.byline}>
-                    {[
-                        author === null
-                            ? null
-                            : t('fakeFiller.play.reveal.writtenBy', { name: author }),
-                        voters.length === 0
-                            ? t('fakeFiller.play.reveal.nobodyPicked')
-                            : t('fakeFiller.play.reveal.pickedBy', {
-                                names: voters.map(nameOf).join(', ')
-                            })
-                    ].filter(part => part !== null).join(' · ')}
-                </AppText>
+                {author !== null && (
+                    <AppText style={styles.byline}>{author}</AppText>
+                )}
             </View>
 
             {/* Only a fake pays its author, and only when somebody fell for it. */}
@@ -255,10 +246,10 @@ const useStyles = createThemedStyles(theme => ({
         gap: 2
     },
     byline: {
-        fontSize: 11,
-        lineHeight: 11 * 1.4,
-        fontWeight: 700,
-        color: theme.colors.textSecondary
+        fontSize: 12,
+        lineHeight: 12 * 1.4,
+        fontWeight: 900,
+        color: Brand.mint
     },
     points: {
         fontSize: 13,
