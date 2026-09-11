@@ -1356,7 +1356,7 @@ export const en = {
     },
     fakeFiller: {
         index: {
-            description: 'A sentence with a hole in it. Two of you secretly invent a filling; everyone else has to spot which one is real.',
+            description: 'A sentence with a hole in it. Some of you secretly invent a filling; everyone else has to spot which one is real.',
             multiplayer: {
                 title: 'Play together',
                 description: 'Everyone on their own phone. One opens the room, the rest come in with the code.',
@@ -1401,7 +1401,7 @@ export const en = {
             modeCreative: 'Anything goes',
             // The one setting worth a sentence.
             modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
-            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked.'
+            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked, and it takes three players.'
         },
         play: {
             loading: 'Dealing the prompts…',
@@ -1467,7 +1467,7 @@ export const en = {
             lobbyFull: 'This room is full.',
             lobbyGone: 'This room does not exist any more. Check the code.',
             alreadyStarted: 'This game has already started.',
-            notEnoughPlayers: 'You need at least three players to start.',
+            notEnoughPlayers: 'You need more players to start.',
             tooManyPlayers: 'That is too many players for one game.',
             // A short data file is a broken build rather than a broken request.
             noContent: 'There are not enough prompts to play in this language. Try the other one.',

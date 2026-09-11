@@ -30,7 +30,7 @@ export interface FFLobby {
     settings: FFLobbySettings
     /** Everyone in the room, in the order they sat down. The host is always the first. */
     players: FFLobbyPlayer[]
-    // What the room will and will not start on, as the server understands them.
+    // What the room will and will not start on, as the server understands them. `minPlayers` moves with the mode.
     minPlayers: number
     maxPlayers: number
     createdAt: string

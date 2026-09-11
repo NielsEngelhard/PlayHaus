@@ -108,9 +108,9 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 	for number := 1; number <= total; number++ {
 		voter, round := ffVoterFor(t, srv, game, number)
 
-		if len(round.Options) != fakefiller.OptionsPerRound(fakefiller.GameModeFacts) {
-			t.Fatalf("round %d shows %d options, want %d",
-				number, len(round.Options), fakefiller.OptionsPerRound(fakefiller.GameModeFacts))
+		options := fakefiller.OptionsPerRound(fakefiller.GameModeFacts, len(game.players))
+		if len(round.Options) != options {
+			t.Fatalf("round %d shows %d options, want %d", number, len(round.Options), options)
 		}
 
 		rec := castFFVote(t, srv, voter.Token, game.gameID, number, ffTruthSlot(t, round))
@@ -168,6 +168,66 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 		}
 		if truths != 1 {
 			t.Errorf("round %d reveals %d truths, want 1", round.Number, truths)
+		}
+	}
+}
+
+// The same arc two-handed, which is the table the game bends its pairing for: a prompt has
+// one author instead of two, so there are twice as many of them and the other player is the
+// only one left to guess between the fake and the truth.
+func TestFFATwoHandedGamePlaysThroughToGameOver(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := startFFGame(t, srv, newGuestSession(t, srv), newGuestSession(t, srv))
+	writeEveryFFAnswer(t, srv, game)
+
+	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
+	if want := fakefiller.RoundsFor(len(game.players)); total != want {
+		t.Fatalf("the game has %d rounds for %d players, want %d", total, len(game.players), want)
+	}
+
+	for number := 1; number <= total; number++ {
+		voter, round := ffVoterFor(t, srv, game, number)
+
+		if len(round.Options) != 2 {
+			t.Fatalf("round %d shows %d options, want 2 -- the truth and the other player's fake",
+				number, len(round.Options))
+		}
+
+		rec := castFFVote(t, srv, voter.Token, game.gameID, number, ffTruthSlot(t, round))
+		if rec.Code != http.StatusCreated {
+			t.Fatalf("vote on round %d: status = %d, want %d (body: %s)",
+				number, rec.Code, http.StatusCreated, rec.Body)
+		}
+
+		body := decodeBody[ffVoteResponse](t, rec)
+		if !body.RoundOver {
+			t.Fatalf("round %d: the only vote did not close it (%+v)", number, body)
+		}
+		if want := number == total; body.GameOver != want {
+			t.Errorf("round %d: gameOver = %v, want %v", number, body.GameOver, want)
+		}
+		if body.Reveal == nil {
+			t.Fatalf("round %d closed without a reveal", number)
+		}
+		if len(body.Reveal.Authors) != 1 {
+			t.Errorf("the reveal names %d authors, want 1", len(body.Reveal.Authors))
+		}
+		for _, author := range body.Reveal.Authors {
+			if author == voter.User.ID {
+				t.Errorf("round %d was written by the player who voted on it", number)
+			}
+		}
+	}
+
+	final := getFFGame(t, srv, game.host.Token, game.gameID)
+	if final.Status != string(fakefiller.GameCompleted) {
+		t.Fatalf("status = %q, want %q", final.Status, fakefiller.GameCompleted)
+	}
+
+	// Each of them guessed on half the rounds and found the truth every time.
+	for _, player := range final.Players {
+		if want := total / 2 * fakefiller.TruthPoints; player.Score != want {
+			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
 		}
 	}
 }
@@ -277,9 +337,9 @@ func TestFFCreativeRoundsHaveNoTruthToFind(t *testing.T) {
 	writeEveryFFAnswer(t, srv, game)
 
 	voter, round := ffVoterFor(t, srv, game, 1)
-	if len(round.Options) != fakefiller.OptionsPerRound(fakefiller.GameModeCreative) {
-		t.Fatalf("a creative round shows %d options, want %d",
-			len(round.Options), fakefiller.OptionsPerRound(fakefiller.GameModeCreative))
+	options := fakefiller.OptionsPerRound(fakefiller.GameModeCreative, len(game.players))
+	if len(round.Options) != options {
+		t.Fatalf("a creative round shows %d options, want %d", len(round.Options), options)
 	}
 	for _, option := range round.Options {
 		if len(option.Fills) > 0 && !strings.HasPrefix(option.Fills[0], "fake-") {

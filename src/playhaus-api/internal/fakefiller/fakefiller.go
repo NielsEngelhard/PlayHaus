@@ -210,7 +210,7 @@ type FFGamePlayer struct {
 
 func (FFGamePlayer) TableName() string { return "ff_game_players" }
 
-// FFRound is one prompt, its two assigned authors, the options that grew on it, and the votes cast for them.
+// FFRound is one prompt, the authors it was assigned to, the options that grew on it, and the votes cast for them.
 type FFRound struct {
 	ID     uuid.UUID `gorm:"primaryKey;type:text"`
 	GameID uuid.UUID `gorm:"type:text;not null;uniqueIndex:idx_ff_round_game_number,priority:1"`
@@ -222,6 +222,7 @@ type FFRound struct {
 	Blanks int `gorm:"not null"`
 
 	AuthorOneUserID string `gorm:"type:text;not null;index"`
+	// AuthorTwoUserID is empty at a table of two, where one player writes the fake and the other is the only one left to guess.
 	AuthorTwoUserID string `gorm:"type:text;not null;index"`
 
 	Options []FFOption `gorm:"foreignKey:RoundID;constraint:OnDelete:CASCADE"`
@@ -232,9 +233,21 @@ type FFRound struct {
 
 func (FFRound) TableName() string { return "ff_rounds" }
 
-// WrittenBy reports whether this prompt is one of the two that were dealt to a player.
+// WrittenBy reports whether this prompt is one of the two a player was dealt.
 func (r FFRound) WrittenBy(userID string) bool {
+	// Guarded, or the empty second author of a one-author round would match a caller with no id.
+	if userID == "" {
+		return false
+	}
 	return userID == r.AuthorOneUserID || userID == r.AuthorTwoUserID
+}
+
+// Authors is who was dealt this prompt: one player at a table of two, two everywhere else.
+func (r FFRound) Authors() []string {
+	if r.AuthorTwoUserID == "" {
+		return []string{r.AuthorOneUserID}
+	}
+	return []string{r.AuthorOneUserID, r.AuthorTwoUserID}
 }
 
 // Option finds the option filed under an author id, or nil.
@@ -260,9 +273,14 @@ func (r *FFRound) OptionInSlot(slot int) *FFOption {
 	return nil
 }
 
-// Answered reports whether both authors have written their fake.
+// Answered reports whether every author has written their fake.
 func (r FFRound) Answered() bool {
-	return r.Option(r.AuthorOneUserID) != nil && r.Option(r.AuthorTwoUserID) != nil
+	for _, author := range r.Authors() {
+		if r.Option(author) == nil {
+			return false
+		}
+	}
+	return true
 }
 
 // VoteBy finds a player's vote on this round, or nil.

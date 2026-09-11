@@ -346,7 +346,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 	if lobby.Status != LobbyWaiting {
 		return nil, nil, ErrLobbyStarted
 	}
-	if len(lobby.Players) < MinLobbyPlayers {
+	if len(lobby.Players) < MinPlayersFor(lobby.GameMode) {
 		return nil, nil, ErrNotEnoughPlayers
 	}
 	if len(lobby.Players) > MaxLobbyPlayers {
@@ -390,7 +390,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 	game.Rounds = make([]FFRound, len(lines))
 	for i, line := range lines {
 		number := i + 1
-		first, second := AuthorSeats(number, len(seated))
+		seats := AuthorSeats(number, len(seated))
 
 		round := FFRound{
 			ID:              uuid.New(),
@@ -398,9 +398,11 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 			Number:          number,
 			Line:            line.Line,
 			Blanks:          line.Blanks,
-			AuthorOneUserID: seated[first].UserID,
-			AuthorTwoUserID: seated[second].UserID,
+			AuthorOneUserID: seated[seats[0]].UserID,
 			CreatedAt:       now,
+		}
+		if len(seats) > 1 {
+			round.AuthorTwoUserID = seated[seats[1]].UserID
 		}
 
 		// The truth goes in as an option now rather than at the reveal, because it is one of the things being shuffled.

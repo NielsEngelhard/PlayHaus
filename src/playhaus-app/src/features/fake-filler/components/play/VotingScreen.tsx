@@ -54,11 +54,11 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                 </AppText>
             </View>
 
-            {/* The prompt as it was dealt, so the line-up below it reads as three answers to one question. */}
+            {/* The prompt as it was dealt, so the line-up below it reads as answers to one question. */}
             <FilledLine line={round.line} fills={null} size={17} color={theme.colors.textSecondary} />
 
             {!round.canVote && (
-                // One of this round's two authors, with nothing to do but watch.
+                // One of this round's authors, with nothing to do but watch.
                 <InlineNotification
                     icon='eye'
                     color={theme.colors.lemon}

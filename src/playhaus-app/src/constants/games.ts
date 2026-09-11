@@ -113,7 +113,7 @@ export const FAKE_FILLER: Game = {
     joinCodePrefix: 'F',
     roomRoute: ROUTES.fakeFillerRoom,
     // The backend's own floor and ceiling.
-    minMaxPlayersIndicator: "3-9",
+    minMaxPlayersIndicator: "2-9",
     minutesAverage: 10
 };
 

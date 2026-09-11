@@ -49,7 +49,7 @@ export interface FFRound {
     answered: boolean
     /** The reader's own answer, echoed back so a reconnect can redraw a filled prompt. */
     myFills?: string[]
-    /** How many of the two authors have written. Progress, never content. */
+    /** How many of the round's authors have written. Progress, never content. */
     answerCount: number
 
     // Whether the reader may vote on this round at all.
@@ -62,7 +62,7 @@ export interface FFRound {
     options?: FFOption[]
 
     revealed: boolean
-    /** The two players who wrote for this prompt. Revealed rounds only. */
+    /** The players who wrote for this prompt: one at a table of two, two everywhere else. Revealed rounds only. */
     authors?: string[]
 }
 
@@ -87,7 +87,7 @@ export interface FFGame {
     /** How many answers are in, and how many the whole game is waiting for. */
     answersIn: number
     answersNeeded: number
-    /** How many votes any one round waits for: everybody except its two authors. */
+    /** How many votes any one round waits for: everybody except its authors. */
     votesNeeded: number
 
     players: FFGamePlayer[]

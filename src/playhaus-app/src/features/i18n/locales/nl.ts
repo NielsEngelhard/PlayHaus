@@ -1224,7 +1224,7 @@ export const nl: Catalog = {
     },
     fakeFiller: {
         index: {
-            description: 'Een zin met een gat erin. Twee spelers verzinnen stiekem een invulling; de rest moet raden welke echt is.',
+            description: 'Een zin met een gat erin. Een paar spelers verzinnen stiekem een invulling; de rest moet raden welke echt is.',
             multiplayer: {
                 title: 'Multi device',
                 description: 'Iedereen op zijn eigen telefoon. Eén pseroon maak de lobby, de rest joined met de code.',
@@ -1267,7 +1267,7 @@ export const nl: Catalog = {
             modeFacts: 'Echte feiten',
             modeCreative: 'Alles mag',
             modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
-            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest.'
+            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest, en je hebt drie spelers nodig.'
         },
         play: {
             loading: 'Vragen uitdelen…',
@@ -1331,7 +1331,7 @@ export const nl: Catalog = {
             lobbyFull: 'Deze kamer is vol.',
             lobbyGone: 'Deze kamer bestaat niet meer. Controleer de code.',
             alreadyStarted: 'Dit spel is al begonnen.',
-            notEnoughPlayers: 'Je hebt minstens drie spelers nodig om te starten.',
+            notEnoughPlayers: 'Je hebt meer spelers nodig om te starten.',
             tooManyPlayers: 'Dat zijn te veel spelers voor één spel.',
             noContent: 'Er zijn niet genoeg vragen in deze taal. Probeer de andere.',
             notYourPrompt: 'Die vraag is niet aan jou uitgedeeld.',

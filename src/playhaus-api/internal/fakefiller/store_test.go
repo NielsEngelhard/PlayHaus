@@ -42,9 +42,9 @@ func newTestStore(t *testing.T) (*GormStore, *gorm.DB) {
 // poke at it. Built straight through the store rather than through the service, because
 // these tests are about what the rows do.
 //
-// Most of them seed three players, which is the table size where a round has exactly one
-// voter and so where the first vote is also the last. The tests that are about several
-// voters arriving at once ask for more.
+// Most of them seed three players, which is the smallest table where a round is written by
+// two and so where the first vote is also the last. The tests that are about several voters
+// arriving at once ask for more, and the ones about a table of two ask for two.
 type seededGame struct {
 	lobby   *FFLobby
 	game    *FFMultiDeviceGame
@@ -53,7 +53,7 @@ type seededGame struct {
 
 func seedGame(t *testing.T, store *GormStore, mode FFGameMode, createdAt time.Time) seededGame {
 	t.Helper()
-	return seedGameFor(t, store, mode, MinLobbyPlayers, createdAt)
+	return seedGameFor(t, store, mode, 3, createdAt)
 }
 
 func seedGameFor(t *testing.T, store *GormStore, mode FFGameMode, count int, createdAt time.Time) seededGame {
@@ -98,16 +98,18 @@ func seedGameFor(t *testing.T, store *GormStore, mode FFGameMode, count int, cre
 		game.Players = append(game.Players, FFGamePlayer{GameID: game.ID, UserID: userID, TurnOrder: i})
 	}
 	for number := 1; number <= RoundsFor(len(players)); number++ {
-		first, second := AuthorSeats(number, len(players))
+		seats := AuthorSeats(number, len(players))
 		round := FFRound{
 			ID:              uuid.New(),
 			GameID:          game.ID,
 			Number:          number,
 			Line:            "the " + Placeholder + " was won by " + Placeholder,
 			Blanks:          2,
-			AuthorOneUserID: players[first],
-			AuthorTwoUserID: players[second],
+			AuthorOneUserID: players[seats[0]],
 			CreatedAt:       createdAt,
+		}
+		if len(seats) > 1 {
+			round.AuthorTwoUserID = players[seats[1]]
 		}
 		if mode.HasTruth() {
 			round.Options = []FFOption{{
@@ -158,8 +160,9 @@ func writeEverything(t *testing.T, store *GormStore, seeded seededGame) *FFMulti
 	answered := 0
 
 	for i, round := range seeded.game.Rounds {
-		answered = answer(t, store, seeded, i, round.AuthorOneUserID)
-		answered = answer(t, store, seeded, i, round.AuthorTwoUserID)
+		for _, author := range round.Authors() {
+			answered = answer(t, store, seeded, i, author)
+		}
 	}
 	if answered != expected {
 		t.Fatalf("after writing everything the store counted %d answers, want %d", answered, expected)
@@ -647,8 +650,9 @@ func TestACreativeGameHasNoTruthRow(t *testing.T) {
 	game := writeEverything(t, store, seeded)
 
 	for _, round := range game.Rounds {
-		if got := len(round.Options); got != OptionsPerRound(GameModeCreative) {
-			t.Errorf("round %d has %d options, want %d", round.Number, got, OptionsPerRound(GameModeCreative))
+		want := OptionsPerRound(GameModeCreative, len(game.Players))
+		if got := len(round.Options); got != want {
+			t.Errorf("round %d has %d options, want %d", round.Number, got, want)
 		}
 		if round.Option(TruthAuthorID) != nil {
 			t.Errorf("round %d carries a truth in creative mode", round.Number)

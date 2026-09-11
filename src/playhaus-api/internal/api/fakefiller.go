@@ -126,7 +126,7 @@ type ffRoundResponse struct {
 	Answered bool `json:"answered"`
 	// MyFills is the reader's own answer, echoed back so a reconnect can redraw a prompt they had already filled in.
 	MyFills []string `json:"myFills,omitempty"`
-	// AnswerCount is how many of the two authors have written.
+	// AnswerCount is how many of the round's authors have written.
 	AnswerCount int `json:"answerCount"`
 
 	// CanVote is whether the reader is eligible to vote on this round at all.
@@ -139,7 +139,7 @@ type ffRoundResponse struct {
 	Options []ffOptionResponse `json:"options,omitempty"`
 
 	Revealed bool `json:"revealed"`
-	// Authors are the two players who wrote for this prompt, told only once the round is revealed.
+	// Authors are the players who wrote for this prompt, told only once the round is revealed.
 	Authors []string `json:"authors,omitempty"`
 }
 
@@ -248,8 +248,8 @@ func (s *Server) newFFLobbyResponse(ctx context.Context, lobby *fakefiller.FFLob
 			Locale:   lobby.Locale.String(),
 		},
 		Players: players,
-		// Carried rather than hardcoded in the app.
-		MinPlayers: fakefiller.MinLobbyPlayers,
+		// Carried rather than hardcoded in the app, and it moves with the mode: creative has no truth to pad a two-player line-up with.
+		MinPlayers: fakefiller.MinPlayersFor(lobby.GameMode),
 		MaxPlayers: fakefiller.MaxLobbyPlayers,
 		CreatedAt:  lobby.CreatedAt.Format(timeFormat),
 	}
@@ -333,7 +333,7 @@ func newFFRoundResponse(game *fakefiller.FFMultiDeviceGame, round fakefiller.FFR
 		body.Options = newFFOptionResponses(round, revealed)
 	}
 	if revealed {
-		body.Authors = []string{round.AuthorOneUserID, round.AuthorTwoUserID}
+		body.Authors = round.Authors()
 	}
 
 	return body
@@ -365,7 +365,7 @@ func newFFOptionResponses(round fakefiller.FFRound, revealed bool) []ffOptionRes
 	return options
 }
 
-// ffAnswerCount is how many of a round's two authors have written, which is every option on it except the truth.
+// ffAnswerCount is how many of a round's authors have written, which is every option on it except the truth.
 func ffAnswerCount(round fakefiller.FFRound) int {
 	count := 0
 	for _, option := range round.Options {
@@ -442,7 +442,7 @@ func (s *Server) newFFVoteResponse(ctx context.Context, outcome *fakefiller.Vote
 	reveal := ffRevealResponse{
 		RoundNumber: outcome.Round.Number,
 		Line:        outcome.Round.Line,
-		Authors:     []string{outcome.Round.AuthorOneUserID, outcome.Round.AuthorTwoUserID},
+		Authors:     outcome.Round.Authors(),
 		Options:     newFFOptionResponses(*outcome.Round, true),
 	}
 	body.Reveal = &reveal

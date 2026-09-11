@@ -353,7 +353,7 @@ func TestFFSettingsCannotMoveOnceTheGameHasStarted(t *testing.T) {
 // Starting
 // ---------------------------------------------------------------------------
 
-func TestFFStartingNeedsThreePlayersAndTheHost(t *testing.T) {
+func TestFFStartingNeedsTwoPlayersAndTheHost(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	host := newGuestSession(t, srv)
 	guest := newGuestSession(t, srv)
@@ -372,16 +372,8 @@ func TestFFStartingNeedsThreePlayersAndTheHost(t *testing.T) {
 	if rec := joinFFLobby(t, srv, guest.Token, lobby.Code); rec.Code != http.StatusOK {
 		t.Fatalf("join: %d", rec.Code)
 	}
-	if rec := do(t, srv, http.MethodPost, startPath, "", host.Token); rec.Code != http.StatusConflict {
-		t.Errorf("two players: status = %d, want %d", rec.Code, http.StatusConflict)
-	}
 
-	third := newGuestSession(t, srv)
-	if rec := joinFFLobby(t, srv, third.Token, lobby.Code); rec.Code != http.StatusOK {
-		t.Fatalf("join: %d", rec.Code)
-	}
-
-	// Three is enough, but only the host may press it.
+	// Two is enough in the mode a room opens on, but only the host may press it.
 	rec = do(t, srv, http.MethodPost, startPath, "", guest.Token)
 	if rec.Code != http.StatusForbidden {
 		t.Fatalf("guest starting: status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
@@ -392,9 +384,53 @@ func TestFFStartingNeedsThreePlayersAndTheHost(t *testing.T) {
 	}
 }
 
-// A game has as many rounds as it has players, and each player holds exactly two prompts.
-// Asserted over every table size the game allows, because the pairing is the one piece of
-// this game that has to hold for all of them at once.
+// creative has no truth to put in the line-up, so the one fake a table of two writes would
+// be the only thing on offer. The floor the room carries moves with the mode, and the start
+// is refused on it.
+func TestFFATableOfTwoCannotPlayTheModeWithNoTruth(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+	guest := newGuestSession(t, srv)
+
+	lobby := createFFLobby(t, srv, host.Token)
+	if lobby.MinPlayers != fakefiller.MinLobbyPlayers {
+		t.Fatalf("a facts room asks for %d players, want %d", lobby.MinPlayers, fakefiller.MinLobbyPlayers)
+	}
+
+	if rec := joinFFLobby(t, srv, guest.Token, lobby.Code); rec.Code != http.StatusOK {
+		t.Fatalf("join: %d", rec.Code)
+	}
+
+	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"creative"}`, host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("set creative: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	if got := decodeBody[ffLobbyResponse](t, rec); got.MinPlayers != fakefiller.MinPlayersWithoutTruth {
+		t.Errorf("a creative room asks for %d players, want %d", got.MinPlayers, fakefiller.MinPlayersWithoutTruth)
+	}
+
+	startPath := ffLobbyPathFor(lobby.Code) + "/start"
+	rec = do(t, srv, http.MethodPost, startPath, "", host.Token)
+	if rec.Code != http.StatusConflict {
+		t.Fatalf("two players on creative: status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
+	}
+	if code := errorCode(t, rec); code != "not_enough_players" {
+		t.Errorf("code = %q, want not_enough_players", code)
+	}
+
+	third := newGuestSession(t, srv)
+	if rec := joinFFLobby(t, srv, third.Token, lobby.Code); rec.Code != http.StatusOK {
+		t.Fatalf("join: %d", rec.Code)
+	}
+	if rec := do(t, srv, http.MethodPost, startPath, "", host.Token); rec.Code != http.StatusOK {
+		t.Fatalf("three players on creative: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+}
+
+// Each player holds exactly two prompts, whatever the table size. Asserted over every one
+// the game allows, because the pairing is the one piece of this game that has to hold for
+// all of them at once -- including the table of two, where a prompt has a single author and
+// so a game has twice as many rounds.
 func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 	for count := fakefiller.MinLobbyPlayers; count <= fakefiller.MaxLobbyPlayers; count++ {
 		t.Run(fmt.Sprintf("%d players", count), func(t *testing.T) {
@@ -409,8 +445,8 @@ func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 			for _, player := range sessions {
 				body := getFFGame(t, srv, player.Token, game.gameID)
 
-				if body.TotalRounds != count {
-					t.Fatalf("%s sees %d rounds, want %d", player.User.ID, body.TotalRounds, count)
+				if want := fakefiller.RoundsFor(count); body.TotalRounds != want {
+					t.Fatalf("%s sees %d rounds, want %d", player.User.ID, body.TotalRounds, want)
 				}
 				if body.Phase != string(fakefiller.PhaseWriting) {
 					t.Fatalf("phase = %q, want writing", body.Phase)
