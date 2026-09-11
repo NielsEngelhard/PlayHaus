@@ -9,7 +9,10 @@ import { initialsOf } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { avatarColorById } from "@/utils/color-utils";
+import { useEffect, useRef } from "react";
 import { ScrollView, View } from "react-native";
+
+const AUTO_ADVANCE_MS = 10_000;
 
 interface Props {
     game: FFGame,
@@ -24,6 +27,17 @@ interface Props {
 export default function RoundRevealScreen({ game, reveal, userId, more, onContinue }: Props) {
     const t = useT();
     const styles = useStyles();
+
+    // Kept in a ref so a re-render with a fresh onContinue closure doesn't restart the countdown.
+    const onContinueRef = useRef(onContinue);
+    useEffect(() => {
+        onContinueRef.current = onContinue;
+    });
+
+    useEffect(() => {
+        const timer = setTimeout(() => onContinueRef.current(), AUTO_ADVANCE_MS);
+        return () => clearTimeout(timer);
+    }, [reveal.roundNumber]);
 
     const nameOf = (id: string) => {
         if (id === userId) return t('common.you');

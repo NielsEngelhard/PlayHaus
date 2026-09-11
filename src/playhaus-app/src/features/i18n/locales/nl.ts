@@ -1025,7 +1025,7 @@ export const nl: Catalog = {
                     waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste briefje hangt.'
                 },
                 vote: {
-                    title: 'Welk briefje klopt niet?',
+                    title: 'Welk antwoord is sus?',
                     mine: 'JIJ',
                     // In twee stukken, want de naam ertussen staat vet.
                     tie: 'Gelijkspel?',
@@ -1277,8 +1277,8 @@ export const nl: Catalog = {
                 pick: 'Kies deze',
                 confirm: 'Zet mijn stem vast',
                 voted: 'Stem geteld',
-                yoursTitle: 'Deze is van jou',
-                yoursMessage: 'Hopelijk raden anderen jouw fake filler!',
+                yoursTitle: 'Jij moet wachten',
+                yoursMessage: 'Hopelijk raden anderen jouw fake filler! Dan scoor je punten.',
                 progress: '{{done}} van {{total}} stemmen binnen',
                 waiting: 'Wachten tot de rest gestemd heeft…'
             },
