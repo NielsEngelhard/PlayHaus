@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w23",
+  "title": "Weekquiz 23 2026",
+  "description": "De wekelijkse quiz van woensdag 3 juni 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het noordelijkste land van het Afrikaanse vasteland?", "category": "Aardrijkskunde", "answers": [{ "text": "Tunesie" }] },
+        { "prompt": "Bij welk orgaanstelsel hoort het hart?", "category": "Wetenschap", "answers": [{ "text": "De bloedsomloop", "aliases": ["bloedsomloop", "circulatiestelsel"] }] },
+        { "prompt": "Aan welke oorlog maakte de Vrede van Utrecht in 1713 een einde?", "category": "Geschiedenis", "answers": [{ "text": "De Spaanse Successieoorlog", "aliases": ["Spaanse Successieoorlog"] }] },
+        { "prompt": "Welk olympisch onderdeel zet zwemmen op muziek in het zwembad?", "category": "Sport", "answers": [{ "text": "Kunstzwemmen", "aliases": ["synchroonzwemmen"] }] },
+        { "prompt": "Welke beeldhouwer maakte het beeld van de kleine zeemeermin in Kopenhagen?", "category": "Kunst", "answers": [{ "text": "Edvard Eriksen", "aliases": ["Eriksen"] }] },
+        { "prompt": "Van welk dier bestaat de hoorn uit hetzelfde materiaal als jouw haar?", "category": "Natuur", "answers": [{ "text": "De neushoorn", "aliases": ["neushoorn"] }] },
+        { "prompt": "Welke ronde Nederlandse kaas is genoemd naar een stadje in Noord-Holland?", "category": "Nederland", "answers": [{ "text": "Edam" }] },
+        { "prompt": "Hoe heet de hoogste mannelijke zangstem?", "category": "Muziek", "answers": [{ "text": "De contratenor", "aliases": ["contratenor", "countertenor"] }] },
+        { "prompt": "In welke film uit 1959 wordt een wagenrace in een Romeinse arena gereden?", "category": "Film", "answers": [{ "text": "Ben-Hur" }] },
+        { "prompt": "Hoe noem je de vorm van een taal die in een streek wordt gesproken?", "category": "Taal", "answers": [{ "text": "Een dialect", "aliases": ["dialect", "streektaal"] }] },
+        { "prompt": "Welke specerij wordt de koningin der specerijen genoemd?", "category": "Eten", "answers": [{ "text": "Kardemom" }] },
+        { "prompt": "Hoe noemen we dieren die alleen vlees eten?", "category": "Wetenschap", "answers": [{ "text": "Carnivoren", "aliases": ["carnivoor", "vleeseters"] }] },
+        { "prompt": "Welk paleis op Kreta was het centrum van de Minoische wereld?", "category": "Geschiedenis", "answers": [{ "text": "Knossos" }] },
+        { "prompt": "Welke rivier voert meer water naar zee dan welke andere in Frankrijk ook?", "category": "Aardrijkskunde", "answers": [{ "text": "De Rhone", "aliases": ["Rhone"] }] },
+        { "prompt": "Welke Nederlandse spits kreeg de bijnaam de Zwaan van Utrecht?", "category": "Sport", "answers": [{ "text": "Marco van Basten", "aliases": ["Van Basten"] }] },
+        { "prompt": "Van welke paarse bloem worden de stampers als saffraan geoogst?", "category": "Natuur", "answers": [{ "text": "De krokus", "aliases": ["krokus"] }] },
+        { "prompt": "In welke Disneyfilm groeit een jong hertje op in het bos?", "category": "Film", "answers": [{ "text": "Bambi" }] },
+        { "prompt": "Welke Amerikaanse trompettist nam het album Kind of Blue op?", "category": "Muziek", "answers": [{ "text": "Miles Davis", "aliases": ["Davis"] }] },
+        { "prompt": "Waar staat de afkorting pin voor in pincode?", "category": "Techniek", "answers": [{ "text": "Personal Identification Number" }] },
+        { "prompt": "Welke twee landen vochten de Opiumoorlogen uit?", "category": "Geschiedenis", "answers": [{ "text": "Groot-Brittannie en China", "aliases": ["Engeland en China"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is het langste fjordenstelsel ter wereld?", "options": [{ "text": "Scoresby Sund", "correct": true }, { "text": "Sognefjord" }, { "text": "Milford Sound" }, { "text": "Geirangerfjord" }] },
+        { "prompt": "Welke van de zussen Bronte schreef Jane Eyre?", "options": [{ "text": "Charlotte Bronte", "correct": true }, { "text": "Emily Bronte" }, { "text": "Anne Bronte" }, { "text": "Mary Shelley" }] },
+        { "prompt": "Hoe heet de lichtstreep die wij een vallende ster noemen eigenlijk?", "options": [{ "text": "Een meteoor", "correct": true }, { "text": "Een komeet" }, { "text": "Een planetoide" }, { "text": "Een meteoriet" }] },
+        { "prompt": "Welke vis blaast zichzelf op tot een stekelige bal bij gevaar?", "options": [{ "text": "De kogelvis", "correct": true }, { "text": "De koraalduivel" }, { "text": "De steenvis" }, { "text": "De koffervis" }] },
+        { "prompt": "Welk keukenkruid hoort bij de uienfamilie?", "options": [{ "text": "Bieslook", "correct": true }, { "text": "Peterselie" }, { "text": "Oregano" }, { "text": "Dragon" }] },
+        { "prompt": "Om welke oudste nog bestaande trofee wordt internationaal gestreden?", "options": [{ "text": "De America's Cup", "correct": true }, { "text": "De Ashes-urn" }, { "text": "De Davis Cup" }, { "text": "De Ryder Cup" }] },
+        { "prompt": "Welke Amerikaanse schilder liet zijn verf op het doek druipen?", "options": [{ "text": "Jackson Pollock", "correct": true }, { "text": "Mark Rothko" }, { "text": "Willem de Kooning" }, { "text": "Franz Kline" }] },
+        { "prompt": "Welk deel van het oor zorgt voor je evenwicht?", "options": [{ "text": "De halfcirkelvormige kanalen", "correct": true }, { "text": "Het slakkenhuis" }, { "text": "Het trommelvlies" }, { "text": "De gehoorgang" }] },
+        { "prompt": "Welke wilde vogel komt in het grootste aantal ter wereld voor?", "options": [{ "text": "De roodbekwever", "correct": true }, { "text": "De huismus" }, { "text": "De spreeuw" }, { "text": "De duif" }] },
+        { "prompt": "Welke stad heeft meer wolkenkrabbers dan welke andere ook?", "options": [{ "text": "Hongkong", "correct": true }, { "text": "New York" }, { "text": "Dubai" }, { "text": "Tokio" }] },
+        { "prompt": "Welke legering ontstaat door koper met tin te mengen?", "options": [{ "text": "Brons", "correct": true }, { "text": "Messing" }, { "text": "Tinlegering" }, { "text": "Staal" }] },
+        { "prompt": "Wat is het drukste treinstation ter wereld?", "options": [{ "text": "Shinjuku", "correct": true }, { "text": "Grand Central" }, { "text": "Chatelet" }, { "text": "Utrecht Centraal" }] },
+        { "prompt": "Hoe heet het getal een gevolgd door honderd nullen?", "options": [{ "text": "Een googol", "correct": true }, { "text": "Een biljoen" }, { "text": "Een myriade" }, { "text": "Een quadriljoen" }] },
+        { "prompt": "Welke dinosaurus geldt als het grootste landdier dat ooit heeft geleefd?", "options": [{ "text": "Argentinosaurus", "correct": true }, { "text": "Brachiosaurus" }, { "text": "Diplodocus" }, { "text": "Spinosaurus" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter lang is de Oosterscheldekering?", "answer": 9000, "unit": "meter" },
+        { "prompt": "Hoeveel tanden heeft een tuimelaar?", "answer": 100, "unit": "tanden" },
+        { "prompt": "In welk jaar verbood Nederland roken in de horeca?", "answer": 2008, "unit": "" },
+        { "prompt": "Hoeveel kilometer dijk onderhoudt Nederland?", "answer": 17500, "unit": "kilometer" },
+        { "prompt": "Hoeveel spieren heb je nodig voor een enkele stap?", "answer": 200, "unit": "spieren" },
+        { "prompt": "Hoeveel jaar duurt het voor een eik zijn eerste eikels draagt?", "answer": 40, "unit": "jaar" },
+        { "prompt": "Hoeveel miljard mensen leven er op aarde?", "answer": 8, "unit": "miljard" },
+        { "prompt": "Hoeveel kilometer per uur haalt een gesmashte badmintonshuttle?", "answer": 400, "unit": "kilometer per uur" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Opblaasbadje" },
+        { "prompt": "Tuinhek" },
+        { "prompt": "Waterijsje" },
+        { "prompt": "Selfiestick" },
+        { "prompt": "Insectenspray" },
+        { "prompt": "Strandlaken" },
+        { "prompt": "Barbecuetang" },
+        { "prompt": "Strandhuisje" },
+        { "prompt": "Strohoed" },
+        { "prompt": "Teenslipper" },
+        { "prompt": "IJsemmer" },
+        { "prompt": "Picknickkleed" },
+        { "prompt": "Zwemband" },
+        { "prompt": "Zonnescherm" },
+        { "prompt": "Vogelnest" },
+        { "prompt": "Tuinbank" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Colombia grenzen.", "answers": [{ "text": "Venezuela" }, { "text": "Brazilie" }, { "text": "Peru" }, { "text": "Ecuador" }] },
+        { "prompt": "Noem vier Nederlandse gerechten.", "answers": [{ "text": "Stamppot" }, { "text": "Erwtensoep" }, { "text": "Bitterballen" }, { "text": "Poffertjes" }] },
+        { "prompt": "Noem vier olympische sporten zonder bal.", "answers": [{ "text": "Zwemmen" }, { "text": "Atletiek" }, { "text": "Judo" }, { "text": "Roeien" }] },
+        { "prompt": "Noem vier bladeren die je in een salade kunt doen.", "answers": [{ "text": "Sla" }, { "text": "Rucola" }, { "text": "Spinazie" }, { "text": "Andijvie" }] },
+        { "prompt": "Noem vier landen op het zuidelijk halfrond.", "answers": [{ "text": "Australie" }, { "text": "Argentinie" }, { "text": "Zuid-Afrika" }, { "text": "Chili" }] },
+        { "prompt": "Noem vier hoofdsteden in Zuid-Amerika.", "answers": [{ "text": "Lima" }, { "text": "Santiago" }, { "text": "Quito" }, { "text": "Brasilia" }] },
+        { "prompt": "Noem vier dingen die per paar komen.", "answers": [{ "text": "Schoenen" }, { "text": "Sokken" }, { "text": "Handschoenen" }, { "text": "Oorbellen" }] },
+        { "prompt": "Noem vier schrijvers van kinderboeken.", "answers": [{ "text": "Roald Dahl" }, { "text": "Astrid Lindgren" }, { "text": "Annie M.G. Schmidt" }, { "text": "J.K. Rowling" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel weken telt een jaar?", "difficulty": "easy", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
+        { "prompt": "Welk bevroren toetje eet je op een warme dag uit een hoorntje?", "difficulty": "easy", "answers": [{ "text": "Een ijsje", "aliases": ["ijsje", "roomijs"] }] },
+        { "prompt": "Welk huisdier wordt vaak in een kom gehouden?", "difficulty": "easy", "answers": [{ "text": "Een goudvis", "aliases": ["goudvis"] }] },
+        { "prompt": "Hoeveel uur zitten er in twee dagen?", "difficulty": "easy", "answers": [{ "text": "Achtenveertig", "aliases": ["48"] }] },
+        { "prompt": "Hoe noem je het haar dat op de kin van een man groeit?", "difficulty": "easy", "answers": [{ "text": "Een baard", "aliases": ["baard"] }] },
+        { "prompt": "Wat is de hoofdstad van Tanzania?", "difficulty": "hard", "answers": [{ "text": "Dodoma" }] },
+        { "prompt": "Welke Chileense dichter won in 1971 de Nobelprijs voor Literatuur?", "difficulty": "hard", "answers": [{ "text": "Pablo Neruda", "aliases": ["Neruda"] }] },
+        { "prompt": "Wat is qua lengte het kleinste zoogdier ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Etruskische spitsmuis", "aliases": ["Etruskische spitsmuis"] }] },
+        { "prompt": "Welk zuur spuit een mier als hij steekt?", "difficulty": "hard", "answers": [{ "text": "Mierenzuur" }] },
+        { "prompt": "Welke Amerikaanse staat grenst maar aan een andere staat?", "difficulty": "hard", "answers": [{ "text": "Maine" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse wiskundige grondvestte het intuitionisme?", "answers": [{ "text": "L.E.J. Brouwer", "aliases": ["Brouwer"] }] },
+        { "prompt": "Wat is de hoofdstad van Zimbabwe?", "answers": [{ "text": "Harare" }] },
+        { "prompt": "Welke Oostenrijkse logicus bewees de onvolledigheidsstellingen?", "answers": [{ "text": "Kurt Godel", "aliases": ["Godel"] }] },
+        { "prompt": "In welk jaar werd de eerste Grand Prix van Nederland op Zandvoort gereden?", "answers": [{ "text": "1952" }] },
+        { "prompt": "Welk Indonesisch meer is het grootste vulkanische meer ter wereld?", "answers": [{ "text": "Het Tobameer", "aliases": ["Toba"] }] },
+        { "prompt": "Welke Franse filosoof bedacht de coordinatenmeetkunde?", "answers": [{ "text": "Rene Descartes", "aliases": ["Descartes"] }] }
+      ]
+    }
+  ]
+}

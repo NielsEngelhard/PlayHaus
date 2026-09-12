@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w4",
+  "title": "Weekquiz 4 2026",
+  "description": "De wekelijkse quiz van woensdag 21 januari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke twee landen delen de langste landsgrens ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Canada en de Verenigde Staten", "aliases": ["Canada en Amerika", "de VS en Canada"] }] },
+        { "prompt": "Hoe heet het proces waarbij een vloeistof in gas overgaat?", "category": "Wetenschap", "answers": [{ "text": "Verdamping" }] },
+        { "prompt": "Welk rijk regeerde na 1453 vanuit Constantinopel?", "category": "Geschiedenis", "answers": [{ "text": "Het Ottomaanse Rijk", "aliases": ["Ottomaanse Rijk", "de Ottomanen"] }] },
+        { "prompt": "Welke bokser noemde zichzelf The Greatest?", "category": "Sport", "answers": [{ "text": "Muhammad Ali", "aliases": ["Ali", "Cassius Clay"] }] },
+        { "prompt": "In welke stad staat het Prado museum?", "category": "Kunst", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Welk dier wordt van alle gewervelden vermoedelijk het oudst?", "category": "Natuur", "answers": [{ "text": "De Groenlandse haai", "aliases": ["Groenlandse haai"] }] },
+        { "prompt": "Welke Nederlandse schrijver schreef de roman De aanslag?", "category": "Nederland", "answers": [{ "text": "Harry Mulisch", "aliases": ["Mulisch"] }] },
+        { "prompt": "Welke trom bespeelt een drummer met een voetpedaal?", "category": "Muziek", "answers": [{ "text": "De bassdrum", "aliases": ["bassdrum", "grote trom"] }] },
+        { "prompt": "In welke film fluistert een jongen dat hij dode mensen ziet?", "category": "Film", "answers": [{ "text": "The Sixth Sense", "aliases": ["Sixth Sense"] }] },
+        { "prompt": "In welke taal is sayonara een afscheidsgroet?", "category": "Taal", "answers": [{ "text": "Japans" }] },
+        { "prompt": "Welke kaas hoort op een pizza margherita?", "category": "Eten", "answers": [{ "text": "Mozzarella" }] },
+        { "prompt": "Welke ster staat na de zon het dichtst bij ons?", "category": "Wetenschap", "answers": [{ "text": "Proxima Centauri", "aliases": ["Proxima"] }] },
+        { "prompt": "Wie vloog als eerste in zijn eentje over de Atlantische Oceaan?", "category": "Geschiedenis", "answers": [{ "text": "Charles Lindbergh", "aliases": ["Lindbergh"] }] },
+        { "prompt": "Welk kanaal verbindt de Atlantische met de Stille Oceaan?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Panamakanaal", "aliases": ["Panamakanaal", "Panama"] }] },
+        { "prompt": "Welke teamsport wordt op het grootste veld van allemaal gespeeld?", "category": "Sport", "answers": [{ "text": "Polo" }] },
+        { "prompt": "Wat is de grootste pinguinsoort?", "category": "Natuur", "answers": [{ "text": "De keizerspinguin", "aliases": ["keizerspinguin"] }] },
+        { "prompt": "In welke film komt een groene boeman voor die in het Engels door Mike Myers wordt ingesproken?", "category": "Film", "answers": [{ "text": "Shrek" }] },
+        { "prompt": "Welke Amerikaanse zangeres wordt de koningin van de countrymuziek genoemd?", "category": "Muziek", "answers": [{ "text": "Dolly Parton", "aliases": ["Parton"] }] },
+        { "prompt": "Waar staat de afkorting CPU voor?", "category": "Techniek", "answers": [{ "text": "Central Processing Unit" }] },
+        { "prompt": "In welke Amerikaanse stad werd John F. Kennedy doodgeschoten?", "category": "Geschiedenis", "answers": [{ "text": "Dallas" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land hoort niet bij Scandinavie?", "options": [{ "text": "Estland", "correct": true }, { "text": "Noorwegen" }, { "text": "Zweden" }, { "text": "Denemarken" }] },
+        { "prompt": "Wie schreef de roman De oude man en de zee?", "options": [{ "text": "Ernest Hemingway", "correct": true }, { "text": "John Steinbeck" }, { "text": "William Faulkner" }, { "text": "Herman Melville" }] },
+        { "prompt": "Welke ruimtesonde landde als eerste op een komeet?", "options": [{ "text": "Rosetta", "correct": true }, { "text": "Cassini" }, { "text": "Galileo" }, { "text": "New Horizons" }] },
+        { "prompt": "Wat is het meest voorkomende metaal in de aardkorst?", "options": [{ "text": "Aluminium", "correct": true }, { "text": "Koper" }, { "text": "Zink" }, { "text": "Lood" }] },
+        { "prompt": "In welke stad staat het museum de Hermitage?", "options": [{ "text": "Sint-Petersburg", "correct": true }, { "text": "Moskou" }, { "text": "Kiev" }, { "text": "Riga" }] },
+        { "prompt": "In welke sport werd Simone Biles wereldberoemd?", "options": [{ "text": "Turnen", "correct": true }, { "text": "Schoonspringen" }, { "text": "Atletiek" }, { "text": "Kunstschaatsen" }] },
+        { "prompt": "Welk fabeldier is een nationaal symbool van Schotland?", "options": [{ "text": "De eenhoorn", "correct": true }, { "text": "De draak" }, { "text": "De griffioen" }, { "text": "De feniks" }] },
+        { "prompt": "Wat is de medische naam voor de knieschijf?", "options": [{ "text": "De patella", "correct": true }, { "text": "De meniscus" }, { "text": "Het scheenbeen" }, { "text": "Het borstbeen" }] },
+        { "prompt": "Wat is de munteenheid van India?", "options": [{ "text": "De roepie", "correct": true }, { "text": "De roepiah" }, { "text": "De taka" }, { "text": "De baht" }] },
+        { "prompt": "Welk marmeren beeld van Michelangelo staat in Florence?", "options": [{ "text": "David", "correct": true }, { "text": "De Pieta" }, { "text": "Mozes" }, { "text": "De stervende slaaf" }] },
+        { "prompt": "Welk zeedier laat een verloren arm weer aangroeien?", "options": [{ "text": "De zeester", "correct": true }, { "text": "De kwal" }, { "text": "De zee-egel" }, { "text": "De mossel" }] },
+        { "prompt": "In welk decennium werd het eerste gesprek met een draagbare mobiele telefoon gevoerd?", "options": [{ "text": "De jaren zeventig", "correct": true }, { "text": "De jaren zestig" }, { "text": "De jaren tachtig" }, { "text": "De jaren negentig" }] },
+        { "prompt": "Welke musical liep het langst van allemaal op Broadway?", "options": [{ "text": "The Phantom of the Opera", "correct": true }, { "text": "Cats" }, { "text": "Les Miserables" }, { "text": "Chicago" }] },
+        { "prompt": "Van welke vorm van koolstof is het schrijvende deel van een potlood gemaakt?", "options": [{ "text": "Grafiet", "correct": true }, { "text": "Houtskool" }, { "text": "Steenkool" }, { "text": "Roet" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel treden lopen er naar de top van het Empire State Building?", "answer": 1576, "unit": "treden" },
+        { "prompt": "Hoeveel kaarten zitten er in een spel zonder de jokers?", "answer": 52, "unit": "kaarten" },
+        { "prompt": "Hoeveel spelers heeft een waterpoloteam in het water?", "answer": 7, "unit": "spelers" },
+        { "prompt": "In welk jaar organiseerde Nederland de Olympische Spelen?", "answer": 1928, "unit": "", "explanation": "In Amsterdam, en het waren de eerste Spelen met een vuur dat de hele tijd brandde." },
+        { "prompt": "Hoeveel kilometer per uur mag je overdag op een Nederlandse snelweg rijden?", "answer": 100, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel kilo weegt een volwassen mannetjesleeuw?", "answer": 190, "unit": "kilo" },
+        { "prompt": "Hoeveel graden is elke hoek van een gelijkzijdige driehoek?", "answer": 60, "unit": "graden" },
+        { "prompt": "Hoeveel centimeter lang is de gemiddelde Nederlandse man?", "answer": 184, "unit": "centimeter" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Stopwatch" },
+        { "prompt": "Stoffer en blik" },
+        { "prompt": "Skateboard" },
+        { "prompt": "Surfplank" },
+        { "prompt": "Kleurpotlood" },
+        { "prompt": "Wereldbol" },
+        { "prompt": "Hangslot" },
+        { "prompt": "Zebrapad" },
+        { "prompt": "Gieter" },
+        { "prompt": "Deegroller" },
+        { "prompt": "Boomhut" },
+        { "prompt": "Kampvuur" },
+        { "prompt": "Verband" },
+        { "prompt": "Zoutvaatje" },
+        { "prompt": "Slaapzak" },
+        { "prompt": "Windmolen op zee" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen in Zuidoost-Azie.", "answers": [{ "text": "Thailand" }, { "text": "Vietnam" }, { "text": "Maleisie" }, { "text": "De Filipijnen" }] },
+        { "prompt": "Noem vier toestellen uit het turnen.", "answers": [{ "text": "Vloer" }, { "text": "Sprong" }, { "text": "Balk" }, { "text": "Brug" }] },
+        { "prompt": "Noem vier impressionistische schilders.", "answers": [{ "text": "Monet" }, { "text": "Renoir" }, { "text": "Degas" }, { "text": "Pissarro" }] },
+        { "prompt": "Noem vier citrusvruchten.", "answers": [{ "text": "Sinaasappel" }, { "text": "Citroen" }, { "text": "Limoen" }, { "text": "Grapefruit" }] },
+        { "prompt": "Noem vier hoofdsteden in Afrika.", "answers": [{ "text": "Cairo" }, { "text": "Nairobi" }, { "text": "Pretoria" }, { "text": "Accra" }] },
+        { "prompt": "Noem vier categorieen van de Nobelprijs.", "answers": [{ "text": "Natuurkunde" }, { "text": "Scheikunde" }, { "text": "Geneeskunde" }, { "text": "Literatuur" }] },
+        { "prompt": "Noem vier dansstijlen.", "answers": [{ "text": "Wals" }, { "text": "Salsa" }, { "text": "Ballet" }, { "text": "Hiphop" }] },
+        { "prompt": "Noem vier dingen waarmee je eet.", "answers": [{ "text": "Mes" }, { "text": "Vork" }, { "text": "Lepel" }, { "text": "Eetstokjes" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft de middelste baan van de Nederlandse vlag?", "difficulty": "easy", "answers": [{ "text": "Wit" }] },
+        { "prompt": "Welk boerderijdier zegt boe?", "difficulty": "easy", "answers": [{ "text": "De koe", "aliases": ["koe"] }] },
+        { "prompt": "Welke maaltijd eet je in de ochtend?", "difficulty": "easy", "answers": [{ "text": "Het ontbijt", "aliases": ["ontbijt"] }] },
+        { "prompt": "Waarmee knip je papier?", "difficulty": "easy", "answers": [{ "text": "Een schaar", "aliases": ["schaar"] }] },
+        { "prompt": "Hoe noem je de persoon die een vliegtuig vliegt?", "difficulty": "easy", "answers": [{ "text": "Een piloot", "aliases": ["piloot"] }] },
+        { "prompt": "Welke taal wordt door de meeste mensen in Oost-Afrika gesproken?", "difficulty": "hard", "answers": [{ "text": "Swahili" }] },
+        { "prompt": "Wie schreef samen met Friedrich Engels het Communistisch Manifest?", "difficulty": "hard", "answers": [{ "text": "Karl Marx", "aliases": ["Marx"] }] },
+        { "prompt": "Welk zuur gebruikt de maag om voedsel te verteren?", "difficulty": "hard", "answers": [{ "text": "Zoutzuur" }] },
+        { "prompt": "Bij welk land hoort het eiland Groenland?", "difficulty": "hard", "answers": [{ "text": "Denemarken" }] },
+        { "prompt": "Welke Japanse stad werd als eerste door een atoombom getroffen?", "difficulty": "hard", "answers": [{ "text": "Hiroshima" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Schotse uitvinder gaf de eerste openbare demonstratie van televisie?", "answers": [{ "text": "John Logie Baird", "aliases": ["Baird"] }] },
+        { "prompt": "Wat is de hoofdstad van Namibie?", "answers": [{ "text": "Windhoek" }] },
+        { "prompt": "Welke Oostenrijkse componist schreef het Forellenkwintet?", "answers": [{ "text": "Franz Schubert", "aliases": ["Schubert"] }] },
+        { "prompt": "In welk jaar opende in Londen de eerste metrolijn?", "answers": [{ "text": "1863" }] },
+        { "prompt": "Het leger van welke Perzische koning werd verslagen bij Marathon?", "answers": [{ "text": "Darius", "aliases": ["Darius I", "Darius de Grote"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Sb?", "answers": [{ "text": "Antimoon" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w9",
+  "title": "Weekly quiz 9 2026",
+  "description": "The weekly quiz of Wednesday 25 February 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the shallowest sea in the world?", "category": "Geography", "answers": [{ "text": "The Sea of Azov", "aliases": ["Sea of Azov", "Azov"] }] },
+        { "prompt": "What is the unit of temperature in the metric system?", "category": "Science", "answers": [{ "text": "The kelvin", "aliases": ["kelvin"] }] },
+        { "prompt": "Which English queen was known as the Virgin Queen?", "category": "History", "answers": [{ "text": "Elizabeth I", "aliases": ["Elizabeth the First"] }] },
+        { "prompt": "What is a tennis shot struck hard from above the head called?", "category": "Sport", "answers": [{ "text": "A smash", "aliases": ["smash"] }] },
+        { "prompt": "Which Dutch art movement did Piet Mondrian help found?", "category": "Art", "answers": [{ "text": "De Stijl" }] },
+        { "prompt": "Which is the heaviest bird that can still fly?", "category": "Nature", "answers": [{ "text": "The great bustard", "aliases": ["great bustard", "bustard"] }] },
+        { "prompt": "Which thick Dutch pea soup is eaten in the depths of winter?", "category": "The Netherlands", "answers": [{ "text": "Snert", "aliases": ["erwtensoep", "pea soup"] }] },
+        { "prompt": "Which music format did the compact disc push aside in the 1990s?", "category": "Music", "answers": [{ "text": "The cassette tape", "aliases": ["cassette", "tape"] }] },
+        { "prompt": "In which 2019 film does Joaquin Phoenix play a failed clown?", "category": "Film", "answers": [{ "text": "Joker" }] },
+        { "prompt": "Which two languages are official in Belgium alongside German?", "category": "Language", "answers": [{ "text": "Dutch and French" }] },
+        { "prompt": "Which country grows the most cocoa in the world?", "category": "Food", "answers": [{ "text": "Ivory Coast", "aliases": ["Cote d'Ivoire"] }] },
+        { "prompt": "What is the study of the weather called?", "category": "Science", "answers": [{ "text": "Meteorology" }] },
+        { "prompt": "Which revolution began with the storming of the Bastille?", "category": "History", "answers": [{ "text": "The French Revolution", "aliases": ["French Revolution"] }] },
+        { "prompt": "Which is the largest coral reef system in the world?", "category": "Geography", "answers": [{ "text": "The Great Barrier Reef", "aliases": ["Great Barrier Reef"] }] },
+        { "prompt": "In which country was the marathon runner Eliud Kipchoge born?", "category": "Sport", "answers": [{ "text": "Kenya" }] },
+        { "prompt": "Which bird of prey builds the largest nest of any bird?", "category": "Nature", "answers": [{ "text": "The bald eagle", "aliases": ["bald eagle"] }] },
+        { "prompt": "Which film company opens its films with a castle and a shooting star?", "category": "Film", "answers": [{ "text": "Disney", "aliases": ["Walt Disney"] }] },
+        { "prompt": "What is the lowest male singing voice called?", "category": "Music", "answers": [{ "text": "The bass", "aliases": ["bass"] }] },
+        { "prompt": "What does the abbreviation PDF stand for?", "category": "Technology", "answers": [{ "text": "Portable Document Format" }] },
+        { "prompt": "In which ancient city did the Hanging Gardens supposedly stand?", "category": "History", "answers": [{ "text": "Babylon" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the oldest surviving republic in the world?", "options": [{ "text": "San Marino", "correct": true }, { "text": "Switzerland" }, { "text": "Iceland" }, { "text": "Portugal" }] },
+        { "prompt": "Who wrote The Chronicles of Narnia?", "options": [{ "text": "C.S. Lewis", "correct": true }, { "text": "Roald Dahl" }, { "text": "Philip Pullman" }, { "text": "Kenneth Grahame" }] },
+        { "prompt": "Which space telescope took over from Hubble as the biggest in orbit?", "options": [{ "text": "The James Webb telescope", "correct": true }, { "text": "Kepler" }, { "text": "Spitzer" }, { "text": "Chandra" }] },
+        { "prompt": "Which part of the brain is responsible for producing speech?", "options": [{ "text": "Broca's area", "correct": true }, { "text": "The hippocampus" }, { "text": "The amygdala" }, { "text": "The thalamus" }] },
+        { "prompt": "Which instrument did Adolphe Sax invent?", "options": [{ "text": "The saxophone", "correct": true }, { "text": "The clarinet" }, { "text": "The oboe" }, { "text": "The euphonium" }] },
+        { "prompt": "Which airport handles more passengers than any other in the world?", "options": [{ "text": "Atlanta", "correct": true }, { "text": "Dubai" }, { "text": "Heathrow" }, { "text": "Tokyo Haneda" }] },
+        { "prompt": "Which sea creature has blue blood and is older than the dinosaurs?", "options": [{ "text": "The horseshoe crab", "correct": true }, { "text": "The lobster" }, { "text": "The nautilus" }, { "text": "The sea cucumber" }] },
+        { "prompt": "Which city will host the Summer Olympics of 2028?", "options": [{ "text": "Los Angeles", "correct": true }, { "text": "Brisbane" }, { "text": "Madrid" }, { "text": "Doha" }] },
+        { "prompt": "Which metal conducts heat better than any other common metal?", "options": [{ "text": "Copper", "correct": true }, { "text": "Iron" }, { "text": "Lead" }, { "text": "Titanium" }] },
+        { "prompt": "Which is the largest landlocked country in the world?", "options": [{ "text": "Kazakhstan", "correct": true }, { "text": "Mongolia" }, { "text": "Chad" }, { "text": "Bolivia" }] },
+        { "prompt": "Which man has won the most Wimbledon singles titles in the open era?", "options": [{ "text": "Roger Federer", "correct": true }, { "text": "Novak Djokovic" }, { "text": "Pete Sampras" }, { "text": "Bjorn Borg" }] },
+        { "prompt": "Which insect lives only a day or so once it becomes an adult?", "options": [{ "text": "The mayfly", "correct": true }, { "text": "The dragonfly" }, { "text": "The moth" }, { "text": "The cicada" }] },
+        { "prompt": "What is the capital of Nigeria?", "options": [{ "text": "Abuja", "correct": true }, { "text": "Lagos" }, { "text": "Kano" }, { "text": "Ibadan" }] },
+        { "prompt": "Which mineral does the body need most of to build strong bones?", "options": [{ "text": "Calcium", "correct": true }, { "text": "Iron" }, { "text": "Iodine" }, { "text": "Selenium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres do the Niagara Falls drop?", "answer": 51, "unit": "metres" },
+        { "prompt": "How many hearts does an earthworm have?", "answer": 5, "unit": "hearts" },
+        { "prompt": "In what year were the first Paralympic Games held?", "answer": 1960, "unit": "", "explanation": "In Rome, straight after the Olympic Games there." },
+        { "prompt": "How many metres deep is the deepest swimming pool in the world?", "answer": 60, "unit": "metres" },
+        { "prompt": "How many muscles are there in an elephant's trunk?", "answer": 40000, "unit": "muscles" },
+        { "prompt": "How many seeds does a strawberry carry on the outside, roughly?", "answer": 200, "unit": "seeds" },
+        { "prompt": "How many kilometres does the average Dutch person cycle in a year?", "answer": 1000, "unit": "kilometres" },
+        { "prompt": "How many bones does a cat have?", "answer": 230, "unit": "bones" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Trapdoor" },
+        { "prompt": "Manhole cover" },
+        { "prompt": "Clothesline" },
+        { "prompt": "Paint roller" },
+        { "prompt": "Thimble" },
+        { "prompt": "Windsock" },
+        { "prompt": "Car jack" },
+        { "prompt": "Fire extinguisher" },
+        { "prompt": "Sieve" },
+        { "prompt": "Egg timer" },
+        { "prompt": "Hula hoop" },
+        { "prompt": "Mousepad" },
+        { "prompt": "Flipper" },
+        { "prompt": "Garden gnome" },
+        { "prompt": "Bubble wrap" },
+        { "prompt": "Barn" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Poland.", "answers": [{ "text": "Germany" }, { "text": "Czechia" }, { "text": "Slovakia" }, { "text": "Lithuania" }] },
+        { "prompt": "Name four spices.", "answers": [{ "text": "Cinnamon" }, { "text": "Nutmeg" }, { "text": "Cumin" }, { "text": "Paprika" }] },
+        { "prompt": "Name four Greek islands.", "answers": [{ "text": "Crete" }, { "text": "Rhodes" }, { "text": "Corfu" }, { "text": "Santorini" }] },
+        { "prompt": "Name four famous physicists.", "answers": [{ "text": "Einstein" }, { "text": "Newton" }, { "text": "Curie" }, { "text": "Bohr" }] },
+        { "prompt": "Name four sports played over a net.", "answers": [{ "text": "Tennis" }, { "text": "Volleyball" }, { "text": "Badminton" }, { "text": "Table tennis" }] },
+        { "prompt": "Name four Italian dishes.", "answers": [{ "text": "Pizza" }, { "text": "Lasagne" }, { "text": "Risotto" }, { "text": "Carbonara" }] },
+        { "prompt": "Name four moons in our solar system.", "answers": [{ "text": "Titan" }, { "text": "Europa" }, { "text": "Phobos" }, { "text": "Triton" }] },
+        { "prompt": "Name four countries in the Middle East.", "answers": [{ "text": "Iran" }, { "text": "Iraq" }, { "text": "Saudi Arabia" }, { "text": "Israel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call water falling out of the clouds?", "difficulty": "easy", "answers": [{ "text": "Rain" }] },
+        { "prompt": "What do you call a baby horse?", "difficulty": "easy", "answers": [{ "text": "A foal", "aliases": ["foal"] }] },
+        { "prompt": "Which sea animal carries its house on its back and walks slowly?", "difficulty": "easy", "answers": [{ "text": "The turtle", "aliases": ["turtle", "tortoise"] }] },
+        { "prompt": "Which is the coldest season of the year?", "difficulty": "easy", "answers": [{ "text": "Winter" }] },
+        { "prompt": "What is the opposite of day?", "difficulty": "easy", "answers": [{ "text": "Night" }] },
+        { "prompt": "What is the currency of Sweden?", "difficulty": "hard", "answers": [{ "text": "The krona", "aliases": ["krona", "Swedish krona"] }] },
+        { "prompt": "Which Greek doctor is called the father of medicine?", "difficulty": "hard", "answers": [{ "text": "Hippocrates" }] },
+        { "prompt": "In which country are the Angel Falls?", "difficulty": "hard", "answers": [{ "text": "Venezuela" }] },
+        { "prompt": "What is the largest object in the asteroid belt called?", "difficulty": "hard", "answers": [{ "text": "Ceres" }] },
+        { "prompt": "Which Irish writer wrote The Picture of Dorian Gray?", "difficulty": "hard", "answers": [{ "text": "Oscar Wilde", "aliases": ["Wilde"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Swedish botanist invented the two-word naming system for species?", "answers": [{ "text": "Carl Linnaeus", "aliases": ["Linnaeus"] }] },
+        { "prompt": "What is the capital of Georgia?", "answers": [{ "text": "Tbilisi" }] },
+        { "prompt": "Which Italian pupil of Galileo invented the barometer?", "answers": [{ "text": "Evangelista Torricelli", "aliases": ["Torricelli"] }] },
+        { "prompt": "In which year was the oldest surviving photograph taken?", "answers": [{ "text": "1826" }] },
+        { "prompt": "Which eight thousand metre peak is the deadliest to climb?", "answers": [{ "text": "Annapurna" }] },
+        { "prompt": "Which French chemist showed that mass is conserved in a reaction?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
+      ]
+    }
+  ]
+}

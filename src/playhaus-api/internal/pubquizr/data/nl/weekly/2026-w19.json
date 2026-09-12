@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w19",
+  "title": "Weekquiz 19 2026",
+  "description": "De wekelijkse quiz van woensdag 6 mei 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de grootste zee ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Filipijnenzee", "aliases": ["Filipijnenzee"] }] },
+        { "prompt": "Wat is de medische naam voor de luchtpijp?", "category": "Wetenschap", "answers": [{ "text": "De trachea", "aliases": ["trachea"] }] },
+        { "prompt": "Op welke datum vieren de Nederlanders Bevrijdingsdag?", "category": "Geschiedenis", "answers": [{ "text": "5 mei", "aliases": ["vijf mei"] }] },
+        { "prompt": "In welke olympische sport probeer je de schouders van je tegenstander op de mat te drukken?", "category": "Sport", "answers": [{ "text": "Worstelen" }] },
+        { "prompt": "Hoe heet een alledaags voorwerp dat onveranderd als kunstwerk wordt getoond?", "category": "Kunst", "answers": [{ "text": "Een readymade", "aliases": ["readymade"] }] },
+        { "prompt": "Welk landzoogdier legt de langste trek af?", "category": "Natuur", "answers": [{ "text": "De kariboe", "aliases": ["kariboe", "rendier"] }] },
+        { "prompt": "Welke Nederlandse krant begon in 1943 als verzetsblad?", "category": "Nederland", "answers": [{ "text": "Trouw" }] },
+        { "prompt": "Hoe noem je een groep van vijf musici die samen spelen?", "category": "Muziek", "answers": [{ "text": "Een kwintet", "aliases": ["kwintet"] }] },
+        { "prompt": "Welke Nederlandse regisseur maakte Basic Instinct en RoboCop?", "category": "Film", "answers": [{ "text": "Paul Verhoeven", "aliases": ["Verhoeven"] }] },
+        { "prompt": "Welke taal wordt langer onafgebroken geschreven dan welke andere ook?", "category": "Taal", "answers": [{ "text": "Chinees" }] },
+        { "prompt": "Welke gefrituurde Nederlandse snack is een rol ragout in paneermeel?", "category": "Eten", "answers": [{ "text": "De kroket", "aliases": ["kroket"] }] },
+        { "prompt": "Hoe heet een figuur met acht rechte zijden?", "category": "Wetenschap", "answers": [{ "text": "Een achthoek", "aliases": ["achthoek", "octagon"] }] },
+        { "prompt": "In welke maand eindigde de Tweede Wereldoorlog in Europa?", "category": "Geschiedenis", "answers": [{ "text": "Mei" }] },
+        { "prompt": "Wat is het langste gebergte op aarde, verscholen onder zee?", "category": "Aardrijkskunde", "answers": [{ "text": "De Midatlantische Rug", "aliases": ["Midatlantische Rug"] }] },
+        { "prompt": "Welke sport is de Vierdaagse van Nijmegen?", "category": "Sport", "answers": [{ "text": "Wandelen", "aliases": ["lopen"] }] },
+        { "prompt": "Welke bloem opent haar bloemblaadjes pas na zonsondergang?", "category": "Natuur", "answers": [{ "text": "De maanbloem", "aliases": ["maanbloem"] }] },
+        { "prompt": "In welke Italiaanse film maakt een vader van een kamp een spel voor zijn zoon?", "category": "Film", "answers": [{ "text": "La vita e bella", "aliases": ["Life Is Beautiful"] }] },
+        { "prompt": "Welke Amerikaanse zanger schreef Blowin' in the Wind?", "category": "Muziek", "answers": [{ "text": "Bob Dylan", "aliases": ["Dylan"] }] },
+        { "prompt": "Waar staat de IP in IP-adres voor?", "category": "Techniek", "answers": [{ "text": "Internet Protocol" }] },
+        { "prompt": "Hoe heette de geallieerde luchtlandingsoperatie bij Arnhem in 1944?", "category": "Geschiedenis", "answers": [{ "text": "Operatie Market Garden", "aliases": ["Market Garden"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is het grootste eiland in een meer ter wereld?", "options": [{ "text": "Manitoulin", "correct": true }, { "text": "Gotland" }, { "text": "Olkhon" }, { "text": "Samosir" }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef Slachthuis vijf?", "options": [{ "text": "Kurt Vonnegut", "correct": true }, { "text": "Norman Mailer" }, { "text": "Joseph Heller" }, { "text": "Philip Roth" }] },
+        { "prompt": "Welke rover landde in februari 2021 op Mars?", "options": [{ "text": "Perseverance", "correct": true }, { "text": "Curiosity" }, { "text": "Spirit" }, { "text": "Zhurong" }] },
+        { "prompt": "Welk orgaan kun je zonder blijvende schade missen?", "options": [{ "text": "De blinde darm", "correct": true }, { "text": "De alvleesklier" }, { "text": "De lever" }, { "text": "De schildklier" }] },
+        { "prompt": "Welke Nederlandse brouwerij werd in 1864 in Amsterdam opgericht?", "options": [{ "text": "Heineken", "correct": true }, { "text": "Grolsch" }, { "text": "Bavaria" }, { "text": "Brand" }] },
+        { "prompt": "Welke Nieuw-Zeelander stond in 1953 op de top van de Everest?", "options": [{ "text": "Edmund Hillary", "correct": true }, { "text": "George Mallory" }, { "text": "John Hunt" }, { "text": "Eric Shipton" }] },
+        { "prompt": "In welk museum in Madrid hangt Guernica van Picasso?", "options": [{ "text": "Het Reina Sofia", "correct": true }, { "text": "Het Prado" }, { "text": "Het Thyssen" }, { "text": "Het Sorolla" }] },
+        { "prompt": "Welk mineraal heeft de schildklier nodig om te werken?", "options": [{ "text": "Jodium", "correct": true }, { "text": "Zink" }, { "text": "Magnesium" }, { "text": "Koper" }] },
+        { "prompt": "Wat is de heetste peper ter wereld?", "options": [{ "text": "De Carolina Reaper", "correct": true }, { "text": "De habanero" }, { "text": "De jalapeno" }, { "text": "De rawit" }] },
+        { "prompt": "Hoe heet het verzamelen en bestuderen van munten?", "options": [{ "text": "Numismatiek", "correct": true }, { "text": "Filatelie" }, { "text": "Vexillologie" }, { "text": "Cartografie" }] },
+        { "prompt": "Wat is de kleinste spier van het menselijk lichaam?", "options": [{ "text": "De stapediusspier", "correct": true }, { "text": "De sartorius" }, { "text": "De kauwspier" }, { "text": "De kuitspier" }] },
+        { "prompt": "Hoe noem je een woord dat hetzelfde wordt geschreven maar iets anders betekent?", "options": [{ "text": "Een homoniem", "correct": true }, { "text": "Een synoniem" }, { "text": "Een antoniem" }, { "text": "Een pseudoniem" }] },
+        { "prompt": "Welk dier heeft meer poten dan welk ander dier ook?", "options": [{ "text": "De miljoenpoot", "correct": true }, { "text": "De duizendpoot" }, { "text": "De rups" }, { "text": "De pissebed" }] },
+        { "prompt": "In welk land ligt de oudste woestijn ter wereld?", "options": [{ "text": "Namibie", "correct": true }, { "text": "Chili" }, { "text": "Egypte" }, { "text": "Mongolie" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter is de hoogste commerciele bungeejump ter wereld?", "answer": 233, "unit": "meter" },
+        { "prompt": "Hoeveel dagen hield het Nederlandse leger het in mei 1940 vol?", "answer": 5, "unit": "dagen" },
+        { "prompt": "In welk jaar voerde Nederland de postcode in?", "answer": 1978, "unit": "" },
+        { "prompt": "Bij hoeveel kilometer per uur heet een storm officieel een orkaan?", "answer": 119, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel sterren kun je op een heldere nacht met het blote oog zien?", "answer": 2500, "unit": "sterren" },
+        { "prompt": "Hoeveel pijpen heeft het grote orgel van de Bavokerk in Haarlem?", "answer": 5000, "unit": "pijpen" },
+        { "prompt": "Hoeveel mensen kwamen om bij de watersnoodramp van 1953?", "answer": 1836, "unit": "mensen" },
+        { "prompt": "Hoeveel kilometer lang is de Nederlandse grens met Duitsland?", "answer": 577, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Luchtalarm" },
+        { "prompt": "Vlaggenmast" },
+        { "prompt": "Gasmasker" },
+        { "prompt": "Veldtelefoon" },
+        { "prompt": "Tulpenbol" },
+        { "prompt": "Kerkklok" },
+        { "prompt": "Tandem" },
+        { "prompt": "Boterham" },
+        { "prompt": "Theepot" },
+        { "prompt": "Krant" },
+        { "prompt": "Vreugdevuur" },
+        { "prompt": "Ballon" },
+        { "prompt": "Confettikanon" },
+        { "prompt": "Tribune" },
+        { "prompt": "Brancard" },
+        { "prompt": "Megafoon" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die in de Tweede Wereldoorlog door Duitsland werden bezet.", "answers": [{ "text": "Nederland" }, { "text": "Belgie" }, { "text": "Frankrijk" }, { "text": "Denemarken" }] },
+        { "prompt": "Noem vier geallieerde leiders uit de Tweede Wereldoorlog.", "answers": [{ "text": "Churchill" }, { "text": "Roosevelt" }, { "text": "Stalin" }, { "text": "De Gaulle" }] },
+        { "prompt": "Noem vier soorten boten.", "answers": [{ "text": "Kano" }, { "text": "Jacht" }, { "text": "Veerboot" }, { "text": "Sleepboot" }] },
+        { "prompt": "Noem vier Nederlandse feestdagen.", "answers": [{ "text": "Koningsdag" }, { "text": "Bevrijdingsdag" }, { "text": "Kerst" }, { "text": "Pasen" }] },
+        { "prompt": "Noem vier instrumenten uit een marcherende band.", "answers": [{ "text": "Trompet" }, { "text": "Trombone" }, { "text": "Trom" }, { "text": "Bekkens" }] },
+        { "prompt": "Noem vier Europese landen die in de Tweede Wereldoorlog neutraal bleven.", "answers": [{ "text": "Zwitserland" }, { "text": "Zweden" }, { "text": "Spanje" }, { "text": "Portugal" }] },
+        { "prompt": "Noem vier manieren om een aardappel te bereiden.", "answers": [{ "text": "Friet" }, { "text": "Puree" }, { "text": "Gratin" }, { "text": "Rosti" }] },
+        { "prompt": "Noem vier dingen uit een ehbo-doos.", "answers": [{ "text": "Pleister" }, { "text": "Verband" }, { "text": "Schaar" }, { "text": "Ontsmettingsmiddel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke boerderijvogel legt eieren en zegt kwak?", "difficulty": "easy", "answers": [{ "text": "De eend", "aliases": ["eend"] }] },
+        { "prompt": "Welke dag van de week komt voor zaterdag?", "difficulty": "easy", "answers": [{ "text": "Vrijdag" }] },
+        { "prompt": "Hoe noem je een groot gebied vol bomen?", "difficulty": "easy", "answers": [{ "text": "Een bos", "aliases": ["bos", "woud"] }] },
+        { "prompt": "Welke zoete lekkernij wordt van cacaobonen gemaakt?", "difficulty": "easy", "answers": [{ "text": "Chocolade" }] },
+        { "prompt": "Hoe noem je de persoon die de leiding heeft over een school?", "difficulty": "easy", "answers": [{ "text": "De directeur", "aliases": ["directeur", "schoolhoofd"] }] },
+        { "prompt": "Wat is de hoofdstad van Servie?", "difficulty": "hard", "answers": [{ "text": "Belgrado" }] },
+        { "prompt": "Welke Duitse schrijver schreef Van het westelijk front geen nieuws?", "difficulty": "hard", "answers": [{ "text": "Erich Maria Remarque", "aliases": ["Remarque"] }] },
+        { "prompt": "Wat is de grootste kwallensoort ter wereld?", "difficulty": "hard", "answers": [{ "text": "De haarkwal", "aliases": ["haarkwal", "lion's mane"] }] },
+        { "prompt": "Welk zuur geeft azijn zijn scherpe smaak?", "difficulty": "hard", "answers": [{ "text": "Azijnzuur" }] },
+        { "prompt": "Welk Braziliaans eiland is het grootste riviereiland ter wereld?", "difficulty": "hard", "answers": [{ "text": "Bananal", "aliases": ["Ilha do Bananal"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse danseres werd in 1917 in Frankrijk als spion gefusilleerd?", "answers": [{ "text": "Mata Hari" }] },
+        { "prompt": "Wat is de hoofdstad van Kosovo?", "answers": [{ "text": "Pristina" }] },
+        { "prompt": "Welke Duitse veldmaarschalk kreeg de bijnaam Woestijnvos?", "answers": [{ "text": "Erwin Rommel", "aliases": ["Rommel"] }] },
+        { "prompt": "In welk Nederlands dorp staat het Airborne Museum?", "answers": [{ "text": "Oosterbeek" }] },
+        { "prompt": "Hoe heet het diepste punt van de Middellandse Zee?", "answers": [{ "text": "De Calypsodiepte", "aliases": ["Calypso Deep", "Calypsodiepte"] }] },
+        { "prompt": "Welke Poolse wiskundige kraakte de Enigma al voor de oorlog?", "answers": [{ "text": "Marian Rejewski", "aliases": ["Rejewski"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w8",
+  "title": "Weekly quiz 8 2026",
+  "description": "The weekly quiz of Wednesday 18 February 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which island country lies off the south-east coast of Africa?", "category": "Geography", "answers": [{ "text": "Madagascar" }] },
+        { "prompt": "What is the chemical symbol for silver?", "category": "Science", "answers": [{ "text": "Ag" }] },
+        { "prompt": "Who was the first woman to fly solo across the Atlantic?", "category": "History", "answers": [{ "text": "Amelia Earhart", "aliases": ["Earhart"] }] },
+        { "prompt": "In which sport would a competitor land a triple axel?", "category": "Sport", "answers": [{ "text": "Figure skating" }] },
+        { "prompt": "Which Austrian painter covered The Kiss in gold leaf?", "category": "Art", "answers": [{ "text": "Gustav Klimt", "aliases": ["Klimt"] }] },
+        { "prompt": "Which animal makes the loudest sound of any creature?", "category": "Nature", "answers": [{ "text": "The sperm whale", "aliases": ["sperm whale"] }] },
+        { "prompt": "Which open air museum near Zaandam is famous for its windmills?", "category": "The Netherlands", "answers": [{ "text": "The Zaanse Schans", "aliases": ["Zaanse Schans"] }] },
+        { "prompt": "What do you call a piece of music written for two performers?", "category": "Music", "answers": [{ "text": "A duet", "aliases": ["duet"] }] },
+        { "prompt": "In which Christopher Nolan film do thieves enter a dream inside a dream?", "category": "Film", "answers": [{ "text": "Inception" }] },
+        { "prompt": "What do we call words that mean the opposite of each other?", "category": "Language", "answers": [{ "text": "Antonyms", "aliases": ["antonym"] }] },
+        { "prompt": "Which vegetable is fermented to make Korean kimchi?", "category": "Food", "answers": [{ "text": "Cabbage" }] },
+        { "prompt": "What is the hardest substance the human body makes?", "category": "Science", "answers": [{ "text": "Tooth enamel", "aliases": ["enamel"] }] },
+        { "prompt": "Which of Columbus's three ships in 1492 was the flagship?", "category": "History", "answers": [{ "text": "The Santa Maria", "aliases": ["Santa Maria"] }] },
+        { "prompt": "Which is the smallest country in South America?", "category": "Geography", "answers": [{ "text": "Suriname" }] },
+        { "prompt": "Which three-week cycling race is simply called the Giro?", "category": "Sport", "answers": [{ "text": "The Giro d'Italia", "aliases": ["Giro d'Italia", "Giro"] }] },
+        { "prompt": "Which animal can keep up the highest speed over a long distance?", "category": "Nature", "answers": [{ "text": "The pronghorn", "aliases": ["pronghorn", "pronghorn antelope"] }] },
+        { "prompt": "In which animated film does a clownfish search for his son?", "category": "Film", "answers": [{ "text": "Finding Nemo" }] },
+        { "prompt": "Which Indian string instrument did Ravi Shankar make famous?", "category": "Music", "answers": [{ "text": "The sitar", "aliases": ["sitar"] }] },
+        { "prompt": "What does the abbreviation HTML stand for?", "category": "Technology", "answers": [{ "text": "HyperText Markup Language" }] },
+        { "prompt": "Which 1957 treaty founded the European Economic Community?", "category": "History", "answers": [{ "text": "The Treaty of Rome", "aliases": ["Treaty of Rome"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which European country has no rivers at all?", "options": [{ "text": "Malta", "correct": true }, { "text": "Cyprus" }, { "text": "Monaco" }, { "text": "San Marino" }] },
+        { "prompt": "What is the name of the little helicopter NASA flew on Mars?", "options": [{ "text": "Ingenuity", "correct": true }, { "text": "Perseverance" }, { "text": "Opportunity" }, { "text": "Curiosity" }] },
+        { "prompt": "Who wrote the play Waiting for Godot?", "options": [{ "text": "Samuel Beckett", "correct": true }, { "text": "Eugene Ionesco" }, { "text": "Harold Pinter" }, { "text": "Tom Stoppard" }] },
+        { "prompt": "Which element gives a ruby its red colour?", "options": [{ "text": "Chromium", "correct": true }, { "text": "Iron" }, { "text": "Cobalt" }, { "text": "Manganese" }] },
+        { "prompt": "Which is the fastest swimming bird in the world?", "options": [{ "text": "The gentoo penguin", "correct": true }, { "text": "The cormorant" }, { "text": "The puffin" }, { "text": "The eider duck" }] },
+        { "prompt": "Which Italian composer wrote The Barber of Seville?", "options": [{ "text": "Gioachino Rossini", "correct": true }, { "text": "Gaetano Donizetti" }, { "text": "Vincenzo Bellini" }, { "text": "Giacomo Meyerbeer" }] },
+        { "prompt": "In which country is the rock city of Petra?", "options": [{ "text": "Jordan", "correct": true }, { "text": "Israel" }, { "text": "Syria" }, { "text": "Egypt" }] },
+        { "prompt": "Which sprinter holds the world record over 100 metres?", "options": [{ "text": "Usain Bolt", "correct": true }, { "text": "Carl Lewis" }, { "text": "Tyson Gay" }, { "text": "Justin Gatlin" }] },
+        { "prompt": "Which system of the body includes the spleen and the lymph nodes?", "options": [{ "text": "The lymphatic system", "correct": true }, { "text": "The endocrine system" }, { "text": "The nervous system" }, { "text": "The digestive system" }] },
+        { "prompt": "Which drink is made by fermenting apples?", "options": [{ "text": "Cider", "correct": true }, { "text": "Perry" }, { "text": "Mead" }, { "text": "Port" }] },
+        { "prompt": "Which country has a dragon on its national flag?", "options": [{ "text": "Bhutan", "correct": true }, { "text": "Nepal" }, { "text": "Laos" }, { "text": "Mongolia" }] },
+        { "prompt": "What is the unit of energy in the metric system?", "options": [{ "text": "The joule", "correct": true }, { "text": "The pascal" }, { "text": "The tesla" }, { "text": "The coulomb" }] },
+        { "prompt": "Which American state is nicknamed the Sunshine State?", "options": [{ "text": "Florida", "correct": true }, { "text": "Arizona" }, { "text": "Hawaii" }, { "text": "Nevada" }] },
+        { "prompt": "Which country was the first in the world to ban thin plastic bags?", "options": [{ "text": "Bangladesh", "correct": true }, { "text": "Rwanda" }, { "text": "Ireland" }, { "text": "Denmark" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Empire State Building to the tip of its mast?", "answer": 443, "unit": "metres" },
+        { "prompt": "How many keys does a full size computer keyboard have?", "answer": 104, "unit": "keys" },
+        { "prompt": "In what year did the Tour de France first ride a stage in the Netherlands?", "answer": 1954, "unit": "" },
+        { "prompt": "How many bones make up the human skull?", "answer": 22, "unit": "bones" },
+        { "prompt": "How many kilometres per hour does a peregrine falcon reach in a dive?", "answer": 320, "unit": "kilometres per hour" },
+        { "prompt": "How many minutes does a football match last including half time?", "answer": 105, "unit": "minutes" },
+        { "prompt": "How many countries take part in the Eurovision Song Contest, roughly?", "answer": 37, "unit": "countries" },
+        { "prompt": "How many kilograms does a newborn elephant weigh?", "answer": 120, "unit": "kilograms" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Bunk bed" },
+        { "prompt": "Mop" },
+        { "prompt": "Sundial" },
+        { "prompt": "Ski lift" },
+        { "prompt": "Candy floss" },
+        { "prompt": "Roller blind" },
+        { "prompt": "Doormat" },
+        { "prompt": "Kazoo" },
+        { "prompt": "Skipping rope" },
+        { "prompt": "Watermill" },
+        { "prompt": "Deckchair" },
+        { "prompt": "Headlamp" },
+        { "prompt": "Tin foil" },
+        { "prompt": "Clothes peg" },
+        { "prompt": "Bird cage" },
+        { "prompt": "Swimming goggles" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries in Central Asia.", "answers": [{ "text": "Kazakhstan" }, { "text": "Uzbekistan" }, { "text": "Turkmenistan" }, { "text": "Kyrgyzstan" }] },
+        { "prompt": "Name four Olympic sports played on ice.", "answers": [{ "text": "Figure skating" }, { "text": "Speed skating" }, { "text": "Curling" }, { "text": "Ice hockey" }] },
+        { "prompt": "Name four operas.", "answers": [{ "text": "Carmen" }, { "text": "Aida" }, { "text": "La Boheme" }, { "text": "Tosca" }] },
+        { "prompt": "Name four kinds of mushroom.", "answers": [{ "text": "Button mushroom" }, { "text": "Chanterelle" }, { "text": "Porcini" }, { "text": "Oyster mushroom" }] },
+        { "prompt": "Name four rivers in Africa.", "answers": [{ "text": "Nile" }, { "text": "Congo" }, { "text": "Niger" }, { "text": "Zambezi" }] },
+        { "prompt": "Name four kinds of shoe.", "answers": [{ "text": "Trainer" }, { "text": "Boot" }, { "text": "Sandal" }, { "text": "Slipper" }] },
+        { "prompt": "Name four social media platforms.", "answers": [{ "text": "Facebook" }, { "text": "Instagram" }, { "text": "TikTok" }, { "text": "YouTube" }] },
+        { "prompt": "Name four vegetables that grow underground.", "answers": [{ "text": "Potato" }, { "text": "Carrot" }, { "text": "Beetroot" }, { "text": "Onion" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call a large group of fish swimming together?", "difficulty": "easy", "answers": [{ "text": "A school", "aliases": ["school", "shoal"] }] },
+        { "prompt": "What colour is a cloudless sky in the daytime?", "difficulty": "easy", "answers": [{ "text": "Blue" }] },
+        { "prompt": "Which day of the week comes after Monday?", "difficulty": "easy", "answers": [{ "text": "Tuesday" }] },
+        { "prompt": "Which rubber boots do you pull on to walk through the rain?", "difficulty": "easy", "answers": [{ "text": "Wellington boots", "aliases": ["wellies", "rubber boots"] }] },
+        { "prompt": "In which season do most flowers come into bloom?", "difficulty": "easy", "answers": [{ "text": "Spring" }] },
+        { "prompt": "Which sea lies between Turkey, Bulgaria and Georgia?", "difficulty": "hard", "answers": [{ "text": "The Black Sea", "aliases": ["Black Sea"] }] },
+        { "prompt": "Which Spanish painter made Las Meninas?", "difficulty": "hard", "answers": [{ "text": "Diego Velazquez", "aliases": ["Velazquez"] }] },
+        { "prompt": "Which letter of the alphabet appears in no chemical symbol at all?", "difficulty": "hard", "answers": [{ "text": "J" }] },
+        { "prompt": "What is the capital of Ecuador?", "difficulty": "hard", "answers": [{ "text": "Quito" }] },
+        { "prompt": "Which French composer wrote the music of the opera Carmen?", "difficulty": "hard", "answers": [{ "text": "Georges Bizet", "aliases": ["Bizet"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch physicist gave his name to the splitting of spectral lines in a magnetic field?", "answers": [{ "text": "Pieter Zeeman", "aliases": ["Zeeman"] }] },
+        { "prompt": "What is the capital of Myanmar?", "answers": [{ "text": "Naypyidaw" }] },
+        { "prompt": "Which Florentine sculptor made the bronze doors called the Gates of Paradise?", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
+        { "prompt": "In which year did Dutch men and women first vote in a general election on equal terms?", "answers": [{ "text": "1922" }] },
+        { "prompt": "Which is the longest glacier in the world?", "answers": [{ "text": "The Lambert Glacier", "aliases": ["Lambert Glacier", "Lambert"] }] },
+        { "prompt": "Which English mathematician is regarded as the first computer programmer?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w14",
+  "title": "Weekly quiz 14 2026",
+  "description": "The weekly quiz of Wednesday 1 April 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which African country is almost entirely surrounded by Senegal?", "category": "Geography", "answers": [{ "text": "The Gambia", "aliases": ["Gambia"] }] },
+        { "prompt": "What is it called when a solid turns into a liquid?", "category": "Science", "answers": [{ "text": "Melting" }] },
+        { "prompt": "Which 1648 peace treaty ended the Eighty Years War for the Dutch?", "category": "History", "answers": [{ "text": "The Peace of Munster", "aliases": ["Peace of Munster", "Vrede van Munster"] }] },
+        { "prompt": "In which sport do fighters compete in a flyweight division?", "category": "Sport", "answers": [{ "text": "Boxing" }] },
+        { "prompt": "Which painting technique builds a picture out of tiny dots of colour?", "category": "Art", "answers": [{ "text": "Pointillism" }] },
+        { "prompt": "Which is the largest species of lizard in the world?", "category": "Nature", "answers": [{ "text": "The Komodo dragon", "aliases": ["Komodo dragon"] }] },
+        { "prompt": "Which Dutch sea arm was closed off by a storm surge barrier after 1953?", "category": "The Netherlands", "answers": [{ "text": "The Oosterschelde", "aliases": ["Oosterschelde", "Eastern Scheldt"] }] },
+        { "prompt": "Which Italian term tells the whole orchestra to play together?", "category": "Music", "answers": [{ "text": "Tutti" }] },
+        { "prompt": "Which Pixar film follows toys that come alive when people leave the room?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
+        { "prompt": "What is the plural of the word cactus?", "category": "Language", "answers": [{ "text": "Cacti", "aliases": ["cactuses"] }] },
+        { "prompt": "Which sauce is made from tomatoes, vinegar and sugar?", "category": "Food", "answers": [{ "text": "Ketchup" }] },
+        { "prompt": "Which layer of the earth lies directly under the crust?", "category": "Science", "answers": [{ "text": "The mantle", "aliases": ["mantle"] }] },
+        { "prompt": "Which American document opens with the words We the People?", "category": "History", "answers": [{ "text": "The Constitution", "aliases": ["the American Constitution"] }] },
+        { "prompt": "Which South American country is named after the equator?", "category": "Geography", "answers": [{ "text": "Ecuador" }] },
+        { "prompt": "Which Alaskan race is run by teams of dogs pulling a sled?", "category": "Sport", "answers": [{ "text": "The Iditarod", "aliases": ["Iditarod"] }] },
+        { "prompt": "Which is the largest owl in Europe?", "category": "Nature", "answers": [{ "text": "The eagle-owl", "aliases": ["eagle owl", "Eurasian eagle-owl"] }] },
+        { "prompt": "Which actor played James Bond in Casino Royale?", "category": "Film", "answers": [{ "text": "Daniel Craig", "aliases": ["Craig"] }] },
+        { "prompt": "Which bowed string instrument sits between the violin and the cello?", "category": "Music", "answers": [{ "text": "The viola", "aliases": ["viola"] }] },
+        { "prompt": "What do the letters QR stand for in QR code?", "category": "Technology", "answers": [{ "text": "Quick Response" }] },
+        { "prompt": "Which American city was destroyed by earthquake and fire in 1906?", "category": "History", "answers": [{ "text": "San Francisco" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which African country has the most neighbouring countries?", "options": [{ "text": "The Democratic Republic of Congo", "correct": true }, { "text": "Sudan" }, { "text": "Niger" }, { "text": "Zambia" }] },
+        { "prompt": "Under which pen name did Mary Ann Evans write Middlemarch?", "options": [{ "text": "George Eliot", "correct": true }, { "text": "Currer Bell" }, { "text": "George Sand" }, { "text": "Ellis Bell" }] },
+        { "prompt": "What is the edge of the sun's bubble of particles in space called?", "options": [{ "text": "The heliopause", "correct": true }, { "text": "The magnetopause" }, { "text": "The corona" }, { "text": "The termination point" }] },
+        { "prompt": "Which animal can live its whole life without drinking any water?", "options": [{ "text": "The kangaroo rat", "correct": true }, { "text": "The meerkat" }, { "text": "The gerbil" }, { "text": "The fennec fox" }] },
+        { "prompt": "Which fruit is dried to make prunes?", "options": [{ "text": "The plum", "correct": true }, { "text": "The apricot" }, { "text": "The fig" }, { "text": "The date" }] },
+        { "prompt": "In which dance form does a dancer perform a grand jete?", "options": [{ "text": "Ballet", "correct": true }, { "text": "Tap dance" }, { "text": "Flamenco" }, { "text": "Modern dance" }] },
+        { "prompt": "Which insect makes the loudest sound of all?", "options": [{ "text": "The cicada", "correct": true }, { "text": "The cricket" }, { "text": "The bee" }, { "text": "The beetle" }] },
+        { "prompt": "Which grape variety is planted over more of the world than any other?", "options": [{ "text": "Cabernet Sauvignon", "correct": true }, { "text": "Merlot" }, { "text": "Chardonnay" }, { "text": "Tempranillo" }] },
+        { "prompt": "What is the capital of the Canadian province of Quebec?", "options": [{ "text": "Quebec City", "correct": true }, { "text": "Montreal" }, { "text": "Laval" }, { "text": "Gatineau" }] },
+        { "prompt": "Which element is named after the Norse god of thunder?", "options": [{ "text": "Thorium", "correct": true }, { "text": "Vanadium" }, { "text": "Niobium" }, { "text": "Tantalum" }] },
+        { "prompt": "Which sea creature has eight arms and two longer tentacles?", "options": [{ "text": "The squid", "correct": true }, { "text": "The octopus" }, { "text": "The starfish" }, { "text": "The jellyfish" }] },
+        { "prompt": "In which decade did rock and roll first sweep the charts?", "options": [{ "text": "The 1950s", "correct": true }, { "text": "The 1940s" }, { "text": "The 1960s" }, { "text": "The 1930s" }] },
+        { "prompt": "Which religion is practised in Japan alongside Buddhism?", "options": [{ "text": "Shinto", "correct": true }, { "text": "Taoism" }, { "text": "Confucianism" }, { "text": "Jainism" }] },
+        { "prompt": "Which layer of the sun is the bright surface we actually see?", "options": [{ "text": "The photosphere", "correct": true }, { "text": "The chromosphere" }, { "text": "The corona" }, { "text": "The core" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres long is a full size football pitch?", "answer": 105, "unit": "metres" },
+        { "prompt": "How many species of penguin are there?", "answer": 18, "unit": "species" },
+        { "prompt": "In what year did the Netherlands issue its first postage stamp?", "answer": 1852, "unit": "" },
+        { "prompt": "How many kilometres of railway track does the Netherlands have?", "answer": 3200, "unit": "kilometres" },
+        { "prompt": "How many octaves does a standard piano keyboard cover?", "answer": 7, "unit": "octaves" },
+        { "prompt": "How many kilograms of cheese does the average Dutch person eat in a year?", "answer": 21, "unit": "kilograms" },
+        { "prompt": "How many minutes does it take blood to travel right round the body?", "answer": 1, "unit": "minute" },
+        { "prompt": "How many kilometres per hour can an ostrich run?", "answer": 70, "unit": "kilometres per hour" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Cheese grater" },
+        { "prompt": "Tape dispenser" },
+        { "prompt": "Swimming cap" },
+        { "prompt": "Bird feeder" },
+        { "prompt": "Boxing glove" },
+        { "prompt": "Fire alarm" },
+        { "prompt": "Camping stove" },
+        { "prompt": "Pocket knife" },
+        { "prompt": "Dog kennel" },
+        { "prompt": "Rubber duck" },
+        { "prompt": "Sunbed" },
+        { "prompt": "Toothpaste" },
+        { "prompt": "Rope ladder" },
+        { "prompt": "Chimney sweep" },
+        { "prompt": "Tuning fork" },
+        { "prompt": "Greenhouse" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Greece.", "answers": [{ "text": "Albania" }, { "text": "North Macedonia" }, { "text": "Bulgaria" }, { "text": "Turkey" }] },
+        { "prompt": "Name four herbs.", "answers": [{ "text": "Basil" }, { "text": "Thyme" }, { "text": "Rosemary" }, { "text": "Parsley" }] },
+        { "prompt": "Name four capital cities in Asia.", "answers": [{ "text": "Tokyo" }, { "text": "Beijing" }, { "text": "Seoul" }, { "text": "Bangkok" }] },
+        { "prompt": "Name four kinds of cake.", "answers": [{ "text": "Sponge cake" }, { "text": "Cheesecake" }, { "text": "Carrot cake" }, { "text": "Apple pie" }] },
+        { "prompt": "Name four Olympic cycling disciplines.", "answers": [{ "text": "Road race" }, { "text": "Time trial" }, { "text": "Track cycling" }, { "text": "Mountain biking" }] },
+        { "prompt": "Name four ways of travelling.", "answers": [{ "text": "Train" }, { "text": "Bus" }, { "text": "Aeroplane" }, { "text": "Ship" }] },
+        { "prompt": "Name four famous volcanoes.", "answers": [{ "text": "Vesuvius" }, { "text": "Etna" }, { "text": "Krakatoa" }, { "text": "Fuji" }] },
+        { "prompt": "Name four things you would find in a garden.", "answers": [{ "text": "Lawn" }, { "text": "Hedge" }, { "text": "Shed" }, { "text": "Pond" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call a baby duck?", "difficulty": "easy", "answers": [{ "text": "A duckling", "aliases": ["duckling"] }] },
+        { "prompt": "How many minutes are there in half an hour?", "difficulty": "easy", "answers": [{ "text": "Thirty", "aliases": ["30"] }] },
+        { "prompt": "What do you call the main meal eaten in the evening?", "difficulty": "easy", "answers": [{ "text": "Dinner", "aliases": ["supper"] }] },
+        { "prompt": "Which sea creature has a shell, claws and walks sideways?", "difficulty": "easy", "answers": [{ "text": "The crab", "aliases": ["crab"] }] },
+        { "prompt": "What do you call a young pig?", "difficulty": "easy", "answers": [{ "text": "A piglet", "aliases": ["piglet"] }] },
+        { "prompt": "What is the capital of Bulgaria?", "difficulty": "hard", "answers": [{ "text": "Sofia" }] },
+        { "prompt": "Which American wrote the play A Streetcar Named Desire?", "difficulty": "hard", "answers": [{ "text": "Tennessee Williams", "aliases": ["Williams"] }] },
+        { "prompt": "Which element is the fuel in most nuclear power stations?", "difficulty": "hard", "answers": [{ "text": "Uranium" }] },
+        { "prompt": "Which sea creature is known to live for more than five hundred years?", "difficulty": "hard", "answers": [{ "text": "The ocean quahog", "aliases": ["quahog", "the clam"] }] },
+        { "prompt": "In which mountain range does K2 stand?", "difficulty": "hard", "answers": [{ "text": "The Karakoram", "aliases": ["Karakoram"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch Golden Age painter specialised in painting church interiors?", "answers": [{ "text": "Pieter Saenredam", "aliases": ["Saenredam"] }] },
+        { "prompt": "What is the capital of Estonia?", "answers": [{ "text": "Tallinn" }] },
+        { "prompt": "Which Russian composer wrote Pictures at an Exhibition?", "answers": [{ "text": "Modest Mussorgsky", "aliases": ["Mussorgsky"] }] },
+        { "prompt": "In which year did a telegraph cable first work properly across the Atlantic?", "answers": [{ "text": "1866" }] },
+        { "prompt": "Which body of water in Antarctica is the saltiest on earth?", "answers": [{ "text": "Don Juan Pond", "aliases": ["Don Juan"] }] },
+        { "prompt": "Which English scientist discovered electromagnetic induction?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
+      ]
+    }
+  ]
+}

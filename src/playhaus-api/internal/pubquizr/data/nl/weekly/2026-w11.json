@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w11",
+  "title": "Weekquiz 11 2026",
+  "description": "De wekelijkse quiz van woensdag 11 maart 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk land vormt het grootste deel van de Hoorn van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "Somalie" }] },
+        { "prompt": "Wat is het kleinste deeltje van een element dat nog steeds dat element is?", "category": "Wetenschap", "answers": [{ "text": "Het atoom", "aliases": ["atoom"] }] },
+        { "prompt": "Welke Italiaanse dictator stond bekend als Il Duce?", "category": "Geschiedenis", "answers": [{ "text": "Benito Mussolini", "aliases": ["Mussolini"] }] },
+        { "prompt": "Op welk Nederlands circuit wordt de Grand Prix van Nederland gereden?", "category": "Sport", "answers": [{ "text": "Zandvoort" }] },
+        { "prompt": "Hoe heet de techniek van schilderen op natte kalk?", "category": "Kunst", "answers": [{ "text": "Fresco" }] },
+        { "prompt": "Welk reptiel kan zijn staart afwerpen en een nieuwe laten groeien?", "category": "Natuur", "answers": [{ "text": "De hagedis", "aliases": ["hagedis"] }] },
+        { "prompt": "Welke Nederlandse koningin deed in 1948 afstand van de troon?", "category": "Nederland", "answers": [{ "text": "Wilhelmina" }] },
+        { "prompt": "Welk instrument is een kleinere en hogere versie van de dwarsfluit?", "category": "Muziek", "answers": [{ "text": "De piccolo", "aliases": ["piccolo"] }] },
+        { "prompt": "Welke Australische acteur speelt sinds 2000 Wolverine?", "category": "Film", "answers": [{ "text": "Hugh Jackman", "aliases": ["Jackman"] }] },
+        { "prompt": "Hoe zeg je overdag hallo in het Japans?", "category": "Taal", "answers": [{ "text": "Konnichiwa" }] },
+        { "prompt": "Welk Italiaans nagerecht betekent letterlijk beur me op?", "category": "Eten", "answers": [{ "text": "Tiramisu" }] },
+        { "prompt": "Hoe heet de gewone deling van een lichaamscel in tweeen?", "category": "Wetenschap", "answers": [{ "text": "Mitose" }] },
+        { "prompt": "Welke Britse ontdekkingsreiziger werd in 1779 op Hawai gedood?", "category": "Geschiedenis", "answers": [{ "text": "James Cook", "aliases": ["kapitein Cook", "Cook"] }] },
+        { "prompt": "Welke twee zeeen verbindt de Bosporus met elkaar?", "category": "Aardrijkskunde", "answers": [{ "text": "De Zwarte Zee en de Zee van Marmara", "aliases": ["Zwarte Zee en Marmara"] }] },
+        { "prompt": "Welk stok- en balspel is de nationale zomersport van Canada?", "category": "Sport", "answers": [{ "text": "Lacrosse" }] },
+        { "prompt": "Welke bloem wordt gedragen ter herdenking van de oorlogsdoden?", "category": "Natuur", "answers": [{ "text": "De klaproos", "aliases": ["klaproos", "papaver"] }] },
+        { "prompt": "In welke filmreeks meldt Katniss Everdeen zich vrijwillig als tribuut?", "category": "Film", "answers": [{ "text": "The Hunger Games", "aliases": ["Hunger Games"] }] },
+        { "prompt": "Hoe heet een groot orkestwerk dat meestal uit vier delen bestaat?", "category": "Muziek", "answers": [{ "text": "Een symfonie", "aliases": ["symfonie"] }] },
+        { "prompt": "Waar staat de afkorting LED voor?", "category": "Techniek", "answers": [{ "text": "Light Emitting Diode" }] },
+        { "prompt": "Bij welke zeeslag in 1805 sneuvelde admiraal Nelson?", "category": "Geschiedenis", "answers": [{ "text": "Trafalgar", "aliases": ["de slag bij Trafalgar"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft meer gletsjers dan waar ook buiten de poolgebieden?", "options": [{ "text": "Pakistan", "correct": true }, { "text": "Chili" }, { "text": "Noorwegen" }, { "text": "Nieuw-Zeeland" }] },
+        { "prompt": "Welke Schot vond de luchtband uit?", "options": [{ "text": "John Dunlop", "correct": true }, { "text": "Charles Macintosh" }, { "text": "John Boyd" }, { "text": "William Murdoch" }] },
+        { "prompt": "Welke kracht houdt de deeltjes van een atoomkern bij elkaar?", "options": [{ "text": "De sterke kernkracht", "correct": true }, { "text": "De zwakke kernkracht" }, { "text": "Elektromagnetisme" }, { "text": "Zwaartekracht" }] },
+        { "prompt": "Welk dier heeft de dikste vacht van alle dieren?", "options": [{ "text": "De zeeotter", "correct": true }, { "text": "De muskusos" }, { "text": "De poolvos" }, { "text": "De chinchilla" }] },
+        { "prompt": "De inwoners van welk land eten per hoofd de meeste vis?", "options": [{ "text": "IJsland", "correct": true }, { "text": "Portugal" }, { "text": "Noorwegen" }, { "text": "Japan" }] },
+        { "prompt": "In welke sport draagt een libero een shirt in een andere kleur?", "options": [{ "text": "Volleybal", "correct": true }, { "text": "Handbal" }, { "text": "Waterpolo" }, { "text": "Zaalvoetbal" }] },
+        { "prompt": "Welk museum in Bilbao bekleedde Frank Gehry met titanium?", "options": [{ "text": "Het Guggenheim", "correct": true }, { "text": "Het Prado" }, { "text": "Het Reina Sofia" }, { "text": "Het Thyssen" }] },
+        { "prompt": "Welk weefsel in je botten maakt nieuwe rode bloedcellen aan?", "options": [{ "text": "Het beenmerg", "correct": true }, { "text": "Het botvlies" }, { "text": "Kraakbeen" }, { "text": "De milt" }] },
+        { "prompt": "Welke Italiaanse autofabrikant heeft een steigerend paard als logo?", "options": [{ "text": "Ferrari", "correct": true }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] },
+        { "prompt": "In welk land is Tagalog een officiele taal?", "options": [{ "text": "De Filipijnen", "correct": true }, { "text": "Indonesie" }, { "text": "Maleisie" }, { "text": "Vietnam" }] },
+        { "prompt": "Van welke bittere vrucht wordt traditionele marmelade gemaakt?", "options": [{ "text": "De sinaasappel uit Sevilla", "correct": true }, { "text": "De citroen" }, { "text": "De kweepeer" }, { "text": "De grapefruit" }] },
+        { "prompt": "Hoe heet de grootste vulkaan van het zonnestelsel?", "options": [{ "text": "Olympus Mons", "correct": true }, { "text": "Maat Mons" }, { "text": "Mauna Kea" }, { "text": "Ascraeus Mons" }] },
+        { "prompt": "In welke stad werd de eerste WK-finale voetbal gespeeld?", "options": [{ "text": "Montevideo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Santiago" }] },
+        { "prompt": "Welk metaal heeft het scheikundige symbool Pb?", "options": [{ "text": "Lood", "correct": true }, { "text": "Tin" }, { "text": "Platina" }, { "text": "Palladium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel olympische gouden medailles won Michael Phelps in zijn loopbaan?", "answer": 23, "unit": "gouden medailles" },
+        { "prompt": "Hoeveel meter hoog is de hoogste zandduin ter wereld?", "answer": 383, "unit": "meter" },
+        { "prompt": "In welk jaar verloor Nederland zijn eerste WK-finale?", "answer": 1974, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur haalt een Formule 1-auto op volle snelheid?", "answer": 370, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel kiezen gebruikt een olifant tegelijk?", "answer": 4, "unit": "kiezen" },
+        { "prompt": "Hoeveel treden zitten er in het Vrijheidsbeeld tot aan de kroon?", "answer": 354, "unit": "treden" },
+        { "prompt": "Hoeveel liter melk geeft een melkkoe per dag?", "answer": 28, "unit": "liter" },
+        { "prompt": "Hoeveel woorden telt de Engelse taal ongeveer?", "answer": 170000, "unit": "woorden" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Badjas" },
+        { "prompt": "Klamboe" },
+        { "prompt": "Koelbox" },
+        { "prompt": "Waterfiets" },
+        { "prompt": "Schoolbord" },
+        { "prompt": "Koffiezetapparaat" },
+        { "prompt": "Vliegenmepper" },
+        { "prompt": "Haarborstel" },
+        { "prompt": "Broodtrommel" },
+        { "prompt": "Plectrum" },
+        { "prompt": "Reuzenrad" },
+        { "prompt": "Pylon" },
+        { "prompt": "Spons" },
+        { "prompt": "Vergrootglas" },
+        { "prompt": "Troffel" },
+        { "prompt": "Vogelhuisje" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Oostenrijk grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Italie" }, { "text": "Zwitserland" }, { "text": "Hongarije" }] },
+        { "prompt": "Noem vier vissen die je kunt eten.", "answers": [{ "text": "Kabeljauw" }, { "text": "Zalm" }, { "text": "Tonijn" }, { "text": "Haring" }] },
+        { "prompt": "Noem vier Romeinse cijfers.", "answers": [{ "text": "I" }, { "text": "V" }, { "text": "X" }, { "text": "L" }] },
+        { "prompt": "Noem de vier werponderdelen van de atletiek.", "answers": [{ "text": "Kogelstoten" }, { "text": "Discuswerpen" }, { "text": "Speerwerpen" }, { "text": "Kogelslingeren" }] },
+        { "prompt": "Noem vier landen in het Caribisch gebied.", "answers": [{ "text": "Cuba" }, { "text": "Jamaica" }, { "text": "Haiti" }, { "text": "Barbados" }] },
+        { "prompt": "Noem vier soorten chocolade.", "answers": [{ "text": "Melkchocolade" }, { "text": "Pure chocolade" }, { "text": "Witte chocolade" }, { "text": "Ruby chocolade" }] },
+        { "prompt": "Noem de vier planeten met ringen.", "answers": [{ "text": "Saturnus" }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
+        { "prompt": "Noem vier rivieren in Europa.", "answers": [{ "text": "Rijn" }, { "text": "Donau" }, { "text": "Seine" }, { "text": "Po" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een groep koeien in een wei?", "difficulty": "easy", "answers": [{ "text": "Een kudde", "aliases": ["kudde"] }] },
+        { "prompt": "Waarmee schrijf je op een schoolbord?", "difficulty": "easy", "answers": [{ "text": "Krijt" }] },
+        { "prompt": "Welke boerderijvogel legt de eieren die wij het vaakst eten?", "difficulty": "easy", "answers": [{ "text": "De kip", "aliases": ["kip", "hen"] }] },
+        { "prompt": "Hoe noem je de persoon die op school lesgeeft?", "difficulty": "easy", "answers": [{ "text": "Een leraar", "aliases": ["leraar", "juf", "meester"] }] },
+        { "prompt": "In welke maand valt kerst?", "difficulty": "easy", "answers": [{ "text": "December" }] },
+        { "prompt": "Welke taal spreken de meeste mensen in Iran?", "difficulty": "hard", "answers": [{ "text": "Farsi", "aliases": ["Perzisch"] }] },
+        { "prompt": "Aan welke Griekse dichter wordt de Odyssee toegeschreven?", "difficulty": "hard", "answers": [{ "text": "Homerus", "aliases": ["Homer"] }] },
+        { "prompt": "Welke ruimtesonde verliet als eerste ons zonnestelsel?", "difficulty": "hard", "answers": [{ "text": "Voyager 1", "aliases": ["Voyager"] }] },
+        { "prompt": "Welk element is naast kwik vloeibaar bij kamertemperatuur?", "difficulty": "hard", "answers": [{ "text": "Broom" }] },
+        { "prompt": "Welk land heette tot 1980 Rhodesie?", "difficulty": "hard", "answers": [{ "text": "Zimbabwe" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Oostenrijkse arts legde de basis voor de psychoanalyse?", "answers": [{ "text": "Sigmund Freud", "aliases": ["Freud"] }] },
+        { "prompt": "Wat is de hoofdstad van Senegal?", "answers": [{ "text": "Dakar" }] },
+        { "prompt": "Welke blinde Fransman bedacht een schrift dat je met je vingers leest?", "answers": [{ "text": "Louis Braille", "aliases": ["Braille"] }] },
+        { "prompt": "In welk jaar voer de Spaanse Armada tegen Engeland?", "answers": [{ "text": "1588" }] },
+        { "prompt": "Wat is het grootste meer van Zuid-Amerika?", "answers": [{ "text": "Het Titicacameer", "aliases": ["Titicaca"] }] },
+        { "prompt": "Welke Duitse scheikundige bedacht hoe je ammoniak uit lucht maakt?", "answers": [{ "text": "Fritz Haber", "aliases": ["Haber"] }] }
+      ]
+    }
+  ]
+}

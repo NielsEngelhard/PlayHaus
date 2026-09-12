@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w10",
+  "title": "Weekly quiz 10 2026",
+  "description": "The weekly quiz of Wednesday 4 March 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which river forms much of the border between the United States and Mexico?", "category": "Geography", "answers": [{ "text": "The Rio Grande", "aliases": ["Rio Grande"] }] },
+        { "prompt": "What does a Geiger counter measure?", "category": "Science", "answers": [{ "text": "Radioactivity", "aliases": ["radiation"] }] },
+        { "prompt": "Which American president resigned over the Watergate scandal?", "category": "History", "answers": [{ "text": "Richard Nixon", "aliases": ["Nixon"] }] },
+        { "prompt": "In which sport do riders race round a velodrome?", "category": "Sport", "answers": [{ "text": "Track cycling", "aliases": ["cycling on the track"] }] },
+        { "prompt": "Which Italian painter covered the Scrovegni Chapel in Padua with frescoes?", "category": "Art", "answers": [{ "text": "Giotto" }] },
+        { "prompt": "Which is the largest single flower in the world?", "category": "Nature", "answers": [{ "text": "The rafflesia", "aliases": ["rafflesia"] }] },
+        { "prompt": "Which is the largest national park in the Netherlands?", "category": "The Netherlands", "answers": [{ "text": "De Hoge Veluwe", "aliases": ["Hoge Veluwe"] }] },
+        { "prompt": "Which Italian city was home to the Stradivari family of violin makers?", "category": "Music", "answers": [{ "text": "Cremona" }] },
+        { "prompt": "Which actress played Mia in the film La La Land?", "category": "Film", "answers": [{ "text": "Emma Stone", "aliases": ["Stone"] }] },
+        { "prompt": "What does the Latin phrase carpe diem mean?", "category": "Language", "answers": [{ "text": "Seize the day", "aliases": ["pluck the day"] }] },
+        { "prompt": "Which grain is malted to brew beer?", "category": "Food", "answers": [{ "text": "Barley" }] },
+        { "prompt": "Which layer of the atmosphere shields us from ultraviolet light?", "category": "Science", "answers": [{ "text": "The ozone layer", "aliases": ["ozone layer", "ozone"] }] },
+        { "prompt": "Which two countries fought the Hundred Years War?", "category": "History", "answers": [{ "text": "England and France" }] },
+        { "prompt": "Which is the highest capital city in the world?", "category": "Geography", "answers": [{ "text": "La Paz" }] },
+        { "prompt": "Which athletics event is made up of ten disciplines over two days?", "category": "Sport", "answers": [{ "text": "The decathlon", "aliases": ["decathlon"] }] },
+        { "prompt": "Which bird makes the longest migration of any animal?", "category": "Nature", "answers": [{ "text": "The Arctic tern", "aliases": ["Arctic tern"] }] },
+        { "prompt": "In which animated film is a small robot left behind to tidy up the earth?", "category": "Film", "answers": [{ "text": "WALL-E" }] },
+        { "prompt": "Which Italian term tells a musician to play slowly and at ease?", "category": "Music", "answers": [{ "text": "Adagio" }] },
+        { "prompt": "What does the abbreviation VPN stand for?", "category": "Technology", "answers": [{ "text": "Virtual Private Network" }] },
+        { "prompt": "Which Italian navigator sailed for England and reached Newfoundland in 1497?", "category": "History", "answers": [{ "text": "John Cabot", "aliases": ["Giovanni Caboto", "Cabot"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country produces the most natural rubber in the world?", "options": [{ "text": "Thailand", "correct": true }, { "text": "Brazil" }, { "text": "Nigeria" }, { "text": "India" }] },
+        { "prompt": "Which poet wrote The Waste Land?", "options": [{ "text": "T.S. Eliot", "correct": true }, { "text": "Ezra Pound" }, { "text": "W.B. Yeats" }, { "text": "Robert Frost" }] },
+        { "prompt": "Which is the brightest star in the night sky?", "options": [{ "text": "Sirius", "correct": true }, { "text": "Vega" }, { "text": "Polaris" }, { "text": "Betelgeuse" }] },
+        { "prompt": "Which acid gives lemons their sour taste?", "options": [{ "text": "Citric acid", "correct": true }, { "text": "Lactic acid" }, { "text": "Acetic acid" }, { "text": "Oxalic acid" }] },
+        { "prompt": "Which country does the filled dumpling called pierogi come from?", "options": [{ "text": "Poland", "correct": true }, { "text": "Ukraine" }, { "text": "Czechia" }, { "text": "Hungary" }] },
+        { "prompt": "Which team won the first cricket World Cup in 1975?", "options": [{ "text": "The West Indies", "correct": true }, { "text": "Australia" }, { "text": "England" }, { "text": "India" }] },
+        { "prompt": "Which animal fells trees to build dams across streams?", "options": [{ "text": "The beaver", "correct": true }, { "text": "The otter" }, { "text": "The muskrat" }, { "text": "The capybara" }] },
+        { "prompt": "In which city would you walk across the Charles Bridge?", "options": [{ "text": "Prague", "correct": true }, { "text": "Budapest" }, { "text": "Vienna" }, { "text": "Krakow" }] },
+        { "prompt": "Which is the most common family name in the world?", "options": [{ "text": "Wang", "correct": true }, { "text": "Smith" }, { "text": "Garcia" }, { "text": "Patel" }] },
+        { "prompt": "Which line of latitude has the sun directly overhead at noon on 21 June?", "options": [{ "text": "The Tropic of Cancer", "correct": true }, { "text": "The Tropic of Capricorn" }, { "text": "The equator" }, { "text": "The Arctic Circle" }] },
+        { "prompt": "Which architect designed the glass pyramid in the courtyard of the Louvre?", "options": [{ "text": "I.M. Pei", "correct": true }, { "text": "Norman Foster" }, { "text": "Renzo Piano" }, { "text": "Rem Koolhaas" }] },
+        { "prompt": "Which vitamin does the body make from the beta-carotene in carrots?", "options": [{ "text": "Vitamin A", "correct": true }, { "text": "Vitamin B6" }, { "text": "Vitamin E" }, { "text": "Vitamin K" }] },
+        { "prompt": "Which country holds the longest suspension bridge in the world?", "options": [{ "text": "Turkey", "correct": true }, { "text": "Japan" }, { "text": "China" }, { "text": "Denmark" }] },
+        { "prompt": "Which language is written with the longest alphabet in the world?", "options": [{ "text": "Khmer", "correct": true }, { "text": "Russian" }, { "text": "Georgian" }, { "text": "Thai" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres is the world record for a ski jump?", "answer": 254, "unit": "metres" },
+        { "prompt": "How many bones does a horse have?", "answer": 205, "unit": "bones" },
+        { "prompt": "In what year did the Netherlands win Eurovision with the group Teach-In?", "answer": 1975, "unit": "" },
+        { "prompt": "How many bridges does Amsterdam have?", "answer": 1281, "unit": "bridges" },
+        { "prompt": "How many kilometres per hour does the air from a sneeze travel?", "answer": 160, "unit": "kilometres per hour" },
+        { "prompt": "How many different kinds of piece are there in a chess set?", "answer": 6, "unit": "kinds of piece" },
+        { "prompt": "How many years did the Hundred Years War actually last?", "answer": 116, "unit": "years", "explanation": "From 1337 to 1453, with long truces in between." },
+        { "prompt": "How many kilograms of coffee does the average Dutch person drink in a year?", "answer": 8, "unit": "kilograms" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Tea towel" },
+        { "prompt": "Oven glove" },
+        { "prompt": "Shoehorn" },
+        { "prompt": "Bookmark" },
+        { "prompt": "Pencil sharpener" },
+        { "prompt": "Letter opener" },
+        { "prompt": "Cat flap" },
+        { "prompt": "Garden hose" },
+        { "prompt": "Bike basket" },
+        { "prompt": "Parasol" },
+        { "prompt": "Seesaw" },
+        { "prompt": "Drawbridge" },
+        { "prompt": "Snow globe" },
+        { "prompt": "Wind chime" },
+        { "prompt": "Kettlebell" },
+        { "prompt": "Nail clippers" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Hungary.", "answers": [{ "text": "Austria" }, { "text": "Slovakia" }, { "text": "Romania" }, { "text": "Serbia" }] },
+        { "prompt": "Name four kinds of tree.", "answers": [{ "text": "Oak" }, { "text": "Beech" }, { "text": "Birch" }, { "text": "Maple" }] },
+        { "prompt": "Name four Dutch seaside resorts on the North Sea.", "answers": [{ "text": "Scheveningen" }, { "text": "Zandvoort" }, { "text": "Noordwijk" }, { "text": "Katwijk" }] },
+        { "prompt": "Name four kinds of weather.", "answers": [{ "text": "Rain" }, { "text": "Snow" }, { "text": "Fog" }, { "text": "Hail" }] },
+        { "prompt": "Name four instruments in a rock band.", "answers": [{ "text": "Guitar" }, { "text": "Bass guitar" }, { "text": "Drums" }, { "text": "Keyboard" }] },
+        { "prompt": "Name four of the five sports in the modern pentathlon.", "answers": [{ "text": "Fencing" }, { "text": "Swimming" }, { "text": "Riding" }, { "text": "Shooting" }] },
+        { "prompt": "Name four famous bridges.", "answers": [{ "text": "Golden Gate" }, { "text": "Tower Bridge" }, { "text": "Ponte Vecchio" }, { "text": "Erasmus Bridge" }] },
+        { "prompt": "Name four breeds of dog.", "answers": [{ "text": "Labrador" }, { "text": "Poodle" }, { "text": "Beagle" }, { "text": "Dachshund" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do bees collect from flowers to make honey?", "difficulty": "easy", "answers": [{ "text": "Nectar" }] },
+        { "prompt": "Which animal has long ears and hops on its back legs?", "difficulty": "easy", "answers": [{ "text": "The rabbit", "aliases": ["rabbit", "hare"] }] },
+        { "prompt": "What do you call the meal you eat in the middle of the day?", "difficulty": "easy", "answers": [{ "text": "Lunch" }] },
+        { "prompt": "What is the clear part of an egg around the yolk called?", "difficulty": "easy", "answers": [{ "text": "The egg white", "aliases": ["egg white", "white"] }] },
+        { "prompt": "Which colour light tells you to stop at a traffic light?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
+        { "prompt": "What is the capital of Malta?", "difficulty": "hard", "answers": [{ "text": "Valletta" }] },
+        { "prompt": "Which Florentine wrote the political handbook The Prince?", "difficulty": "hard", "answers": [{ "text": "Niccolo Machiavelli", "aliases": ["Machiavelli"] }] },
+        { "prompt": "Which bird has its nostrils at the very tip of its beak?", "difficulty": "hard", "answers": [{ "text": "The kiwi", "aliases": ["kiwi"] }] },
+        { "prompt": "Which is the densest naturally occurring element?", "difficulty": "hard", "answers": [{ "text": "Osmium" }] },
+        { "prompt": "Which Roman road ran from Rome down to Brindisi?", "difficulty": "hard", "answers": [{ "text": "The Appian Way", "aliases": ["Via Appia", "Appian Way"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which German engineer built the first petrol-driven motorcycle?", "answers": [{ "text": "Gottlieb Daimler", "aliases": ["Daimler"] }] },
+        { "prompt": "What is the capital of Cambodia?", "answers": [{ "text": "Phnom Penh" }] },
+        { "prompt": "Which Scottish physicist showed that light is an electromagnetic wave?", "answers": [{ "text": "James Clerk Maxwell", "aliases": ["Maxwell"] }] },
+        { "prompt": "In which year did the Wall Street Crash begin the Great Depression?", "answers": [{ "text": "1929" }] },
+        { "prompt": "Which is the deepest cave in the world?", "answers": [{ "text": "Veryovkina", "aliases": ["Veryovkina Cave"] }] },
+        { "prompt": "Which Japanese author wrote the novel Norwegian Wood?", "answers": [{ "text": "Haruki Murakami", "aliases": ["Murakami"] }] }
+      ]
+    }
+  ]
+}

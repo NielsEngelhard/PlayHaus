@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w15",
+  "title": "Weekquiz 15 2026",
+  "description": "De wekelijkse quiz van woensdag 8 april 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke zee ligt tussen Korea en Japan?", "category": "Aardrijkskunde", "answers": [{ "text": "De Zee van Japan", "aliases": ["Zee van Japan", "Japanse Zee"] }] },
+        { "prompt": "Hoe heten de allerkleinste bloedvaten van het lichaam?", "category": "Wetenschap", "answers": [{ "text": "Haarvaten", "aliases": ["capillairen", "haarvat"] }] },
+        { "prompt": "Welk eiland noemden de Romeinen Hibernia?", "category": "Geschiedenis", "answers": [{ "text": "Ierland" }] },
+        { "prompt": "In welke sport heeft een stadion een muur die de Green Monster heet?", "category": "Sport", "answers": [{ "text": "Honkbal" }] },
+        { "prompt": "Welke Italiaanse beeldhouwer hakte De roof van Proserpina uit marmer?", "category": "Kunst", "answers": [{ "text": "Gian Lorenzo Bernini", "aliases": ["Bernini"] }] },
+        { "prompt": "Welke plant klapt zijn bladeren dicht om insecten te vangen?", "category": "Natuur", "answers": [{ "text": "De venusvliegenval", "aliases": ["venusvliegenval"] }] },
+        { "prompt": "Welke Nederlandse stad gaf haar naam aan blauw-wit beschilderd aardewerk?", "category": "Nederland", "answers": [{ "text": "Delft" }] },
+        { "prompt": "Welk instrument perst lucht door pijpen als je op de toetsen drukt?", "category": "Muziek", "answers": [{ "text": "Het orgel", "aliases": ["orgel", "pijporgel"] }] },
+        { "prompt": "Welke Italiaanse regisseur maakte de dollartrilogie van westerns?", "category": "Film", "answers": [{ "text": "Sergio Leone", "aliases": ["Leone"] }] },
+        { "prompt": "Welke letter wordt in het Nederlands het vaakst geschreven?", "category": "Taal", "answers": [{ "text": "E" }] },
+        { "prompt": "Welke zoute Japanse pasta wordt van gefermenteerde sojabonen gemaakt?", "category": "Eten", "answers": [{ "text": "Miso" }] },
+        { "prompt": "Hoe heet het verlies van water via de bladeren van een plant?", "category": "Wetenschap", "answers": [{ "text": "Verdamping via de bladeren", "aliases": ["transpiratie"] }] },
+        { "prompt": "Welk land werd in 1945 in tweeen gedeeld langs de 38e breedtegraad?", "category": "Geschiedenis", "answers": [{ "text": "Korea" }] },
+        { "prompt": "Wat is het grootste meer dat volledig in Canada ligt?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Grote Berenmeer", "aliases": ["Great Bear Lake", "Grote Berenmeer"] }] },
+        { "prompt": "Welke sport houdt elk voorjaar zijn wereldkampioenschap in Sheffield?", "category": "Sport", "answers": [{ "text": "Snooker" }] },
+        { "prompt": "Wat is de grootste vlinder ter wereld?", "category": "Natuur", "answers": [{ "text": "De koningin-alexandravlinder", "aliases": ["birdwing", "koningin-alexandravlinder"] }] },
+        { "prompt": "In welke film van Studio Ghibli ontmoeten twee zusjes een grote bosgeest?", "category": "Film", "answers": [{ "text": "My Neighbour Totoro", "aliases": ["Totoro"] }] },
+        { "prompt": "Welke Duitse band maakte in de jaren zeventig de weg vrij voor elektronische pop?", "category": "Muziek", "answers": [{ "text": "Kraftwerk" }] },
+        { "prompt": "Waar staat de afkorting GIF voor?", "category": "Techniek", "answers": [{ "text": "Graphics Interchange Format" }] },
+        { "prompt": "Welke bibliotheek uit de oudheid was de grootste van haar tijd?", "category": "Geschiedenis", "answers": [{ "text": "De bibliotheek van Alexandrie", "aliases": ["bibliotheek van Alexandrie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de kleinste staat van de Verenigde Staten?", "options": [{ "text": "Rhode Island", "correct": true }, { "text": "Delaware" }, { "text": "Connecticut" }, { "text": "Vermont" }] },
+        { "prompt": "Welke Italiaanse schrijver schreef De naam van de roos?", "options": [{ "text": "Umberto Eco", "correct": true }, { "text": "Italo Calvino" }, { "text": "Primo Levi" }, { "text": "Alberto Moravia" }] },
+        { "prompt": "Welk klein sterrenstelsel is met het blote oog te zien vanaf het zuidelijk halfrond?", "options": [{ "text": "De Grote Magelhaense Wolk", "correct": true }, { "text": "Andromeda" }, { "text": "Centaurus A" }, { "text": "Het Sombrerostelsel" }] },
+        { "prompt": "Welk klein orgaan in de hersenen maakt melatonine aan?", "options": [{ "text": "De pijnappelklier", "correct": true }, { "text": "De schildklier" }, { "text": "De zwezerik" }, { "text": "De bijschildklier" }] },
+        { "prompt": "Waarvan wordt tofu gemaakt?", "options": [{ "text": "Van sojabonen", "correct": true }, { "text": "Van rijst" }, { "text": "Van kikkererwten" }, { "text": "Van tarwe" }] },
+        { "prompt": "In welke sport wordt de Zweedse Vasaloppet verreden?", "options": [{ "text": "Langlaufen", "correct": true }, { "text": "Schansspringen" }, { "text": "Biatlon" }, { "text": "Schaatsen" }] },
+        { "prompt": "Welke Griekse filosoof moest de gifbeker met scheerling drinken?", "options": [{ "text": "Socrates", "correct": true }, { "text": "Plato" }, { "text": "Epicurus" }, { "text": "Diogenes" }] },
+        { "prompt": "Welk klein bruin vogeltje staat bekend om zijn zang na zonsondergang?", "options": [{ "text": "De nachtegaal", "correct": true }, { "text": "De merel" }, { "text": "Het roodborstje" }, { "text": "Het winterkoninkje" }] },
+        { "prompt": "In welke stad houdt het Europees Parlement zijn plenaire zittingen?", "options": [{ "text": "Straatsburg", "correct": true }, { "text": "Luxemburg" }, { "text": "Den Haag" }, { "text": "Frankfurt" }] },
+        { "prompt": "Welk element geeft vuurwerk zijn felrode kleur?", "options": [{ "text": "Strontium", "correct": true }, { "text": "Barium" }, { "text": "Natrium" }, { "text": "Koper" }] },
+        { "prompt": "Welke eenheid meet hoe hard een geluid is?", "options": [{ "text": "De decibel", "correct": true }, { "text": "De hertz" }, { "text": "De lumen" }, { "text": "De candela" }] },
+        { "prompt": "Wat is de noordelijkste stad ter wereld?", "options": [{ "text": "Longyearbyen", "correct": true }, { "text": "Tromso" }, { "text": "Moermansk" }, { "text": "Nuuk" }] },
+        { "prompt": "Welke duursportwedstrijd combineert een lange zwemtocht, een fietsrit en een marathon?", "options": [{ "text": "De Ironman", "correct": true }, { "text": "De tienkamp" }, { "text": "De biatlon" }, { "text": "De zevenkamp" }] },
+        { "prompt": "In welke taal wordt de traditionele katholieke mis gelezen?", "options": [{ "text": "Latijn", "correct": true }, { "text": "Grieks" }, { "text": "Aramees" }, { "text": "Hebreeuws" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter breed is een tennisbaan voor het enkelspel?", "answer": 8, "unit": "meter" },
+        { "prompt": "Hoeveel mierensoorten bestaan er ongeveer?", "answer": 12000, "unit": "soorten" },
+        { "prompt": "In welk jaar organiseerde Rotterdam het Eurovisie Songfestival?", "answer": 2021, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is de Grand Canyon?", "answer": 446, "unit": "kilometer" },
+        { "prompt": "Hoeveel kamers heeft het hart van een vis?", "answer": 2, "unit": "kamers" },
+        { "prompt": "Hoeveel kilo bamboe eet een reuzenpanda per dag?", "answer": 12, "unit": "kilo" },
+        { "prompt": "Hoeveel sterren staan er op de vlag van de Verenigde Staten?", "answer": 50, "unit": "sterren" },
+        { "prompt": "Hoeveel jaar doet het licht van de dichtstbijzijnde ster na de zon erover om ons te bereiken?", "answer": 4, "unit": "jaar" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Breinaald" },
+        { "prompt": "Moersleutel" },
+        { "prompt": "Fietsketting" },
+        { "prompt": "Blender" },
+        { "prompt": "Schoensmeer" },
+        { "prompt": "Jampot" },
+        { "prompt": "Scheepsroer" },
+        { "prompt": "Papieren vliegtuigje" },
+        { "prompt": "Strandbal" },
+        { "prompt": "Brandtrap" },
+        { "prompt": "Lift" },
+        { "prompt": "Spijker" },
+        { "prompt": "Benzinepomp" },
+        { "prompt": "Haarspeld" },
+        { "prompt": "IJshoorntje" },
+        { "prompt": "Stoep" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier EU-landen die hun eigen munt hebben gehouden.", "answers": [{ "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Polen" }, { "text": "Tsjechie" }] },
+        { "prompt": "Noem vier Italiaanse kazen.", "answers": [{ "text": "Parmezaan" }, { "text": "Mozzarella" }, { "text": "Gorgonzola" }, { "text": "Ricotta" }] },
+        { "prompt": "Noem vier schilders die in Spanje zijn geboren.", "answers": [{ "text": "Picasso" }, { "text": "Dali" }, { "text": "Velazquez" }, { "text": "Goya" }] },
+        { "prompt": "Noem vier olympische sporten in of op het water.", "answers": [{ "text": "Zwemmen" }, { "text": "Schoonspringen" }, { "text": "Waterpolo" }, { "text": "Roeien" }] },
+        { "prompt": "Noem vier Europese hoofdsteden die met de letter B beginnen.", "answers": [{ "text": "Berlijn" }, { "text": "Brussel" }, { "text": "Boedapest" }, { "text": "Boekarest" }] },
+        { "prompt": "Noem vier stuks gereedschap uit een gereedschapskist.", "answers": [{ "text": "Hamer" }, { "text": "Schroevendraaier" }, { "text": "Tang" }, { "text": "Zaag" }] },
+        { "prompt": "Noem vier tennissers die een grandslamtitel hebben gewonnen.", "answers": [{ "text": "Federer" }, { "text": "Nadal" }, { "text": "Djokovic" }, { "text": "Serena Williams" }] },
+        { "prompt": "Noem vier dingen die op water blijven drijven.", "answers": [{ "text": "Hout" }, { "text": "Kurk" }, { "text": "IJs" }, { "text": "Plastic" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke maand komt na maart?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "Welke witte drank krijgen we van koeien?", "difficulty": "easy", "answers": [{ "text": "Melk" }] },
+        { "prompt": "Hoe noem je een dokter die dieren behandelt?", "difficulty": "easy", "answers": [{ "text": "Een dierenarts", "aliases": ["dierenarts"] }] },
+        { "prompt": "Welke dag is de eerste dag van het weekend?", "difficulty": "easy", "answers": [{ "text": "Zaterdag" }] },
+        { "prompt": "Wat draag je om je pols om de tijd te zien?", "difficulty": "easy", "answers": [{ "text": "Een horloge", "aliases": ["horloge"] }] },
+        { "prompt": "Wat is de hoofdstad van Litouwen?", "difficulty": "hard", "answers": [{ "text": "Vilnius" }] },
+        { "prompt": "Welke Rus schreef het toneelstuk De kersentuin?", "difficulty": "hard", "answers": [{ "text": "Anton Tsjechov", "aliases": ["Tsjechov", "Chekhov"] }] },
+        { "prompt": "Welke vitamine staat ook bekend als thiamine?", "difficulty": "hard", "answers": [{ "text": "Vitamine B1", "aliases": ["B1"] }] },
+        { "prompt": "Wat is de zeldzaamste grote katachtige ter wereld?", "difficulty": "hard", "answers": [{ "text": "Het amoerpanter", "aliases": ["amoerpanter", "amurluipaard"] }] },
+        { "prompt": "Welke Italiaanse stad organiseerde de Olympische Winterspelen van 2006?", "difficulty": "hard", "answers": [{ "text": "Turijn", "aliases": ["Torino"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke natuurkundige in de Republiek bedacht een temperatuurschaal die in Amerika nog steeds wordt gebruikt?", "answers": [{ "text": "Daniel Fahrenheit", "aliases": ["Fahrenheit"] }] },
+        { "prompt": "Wat is de hoofdstad van Armenie?", "answers": [{ "text": "Jerevan", "aliases": ["Yerevan"] }] },
+        { "prompt": "Welke Duitse schrijver schreef De blikken trommel?", "answers": [{ "text": "Gunter Grass", "aliases": ["Grass"] }] },
+        { "prompt": "In welk jaar reed de eerste elektrische tram in Nederland?", "answers": [{ "text": "1890" }] },
+        { "prompt": "Welke Zuid-Afrikaanse krater is de grootste inslagkrater op aarde?", "answers": [{ "text": "De Vredefortkrater", "aliases": ["Vredefort"] }] },
+        { "prompt": "Welke Italiaanse wiskundige gaf zijn naam aan een beroemde getallenreeks?", "answers": [{ "text": "Fibonacci" }] }
+      ]
+    }
+  ]
+}

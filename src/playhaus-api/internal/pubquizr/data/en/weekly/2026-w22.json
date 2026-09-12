@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w22",
+  "title": "Weekly quiz 22 2026",
+  "description": "The weekly quiz of Wednesday 27 May 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which strait separates Tasmania from mainland Australia?", "category": "Geography", "answers": [{ "text": "The Bass Strait", "aliases": ["Bass Strait"] }] },
+        { "prompt": "What is the science of rocks and the earth's crust called?", "category": "Science", "answers": [{ "text": "Geology" }] },
+        { "prompt": "Which American president bought Louisiana from France?", "category": "History", "answers": [{ "text": "Thomas Jefferson", "aliases": ["Jefferson"] }] },
+        { "prompt": "In which Olympic sport is there a lift called the clean and jerk?", "category": "Sport", "answers": [{ "text": "Weightlifting" }] },
+        { "prompt": "Which Austrian artist designed a Vienna house with uneven floors and trees in the windows?", "category": "Art", "answers": [{ "text": "Friedensreich Hundertwasser", "aliases": ["Hundertwasser"] }] },
+        { "prompt": "Which sea creature lives in a spiral shell and has barely changed in 500 million years?", "category": "Nature", "answers": [{ "text": "The nautilus", "aliases": ["nautilus"] }] },
+        { "prompt": "Which Dutch town holds the largest flower parade in the world each September?", "category": "The Netherlands", "answers": [{ "text": "Zundert" }] },
+        { "prompt": "What is a piece written for one soloist and an orchestra called?", "category": "Music", "answers": [{ "text": "A concerto", "aliases": ["concerto"] }] },
+        { "prompt": "In which horror film does a clown called Pennywise haunt a small town?", "category": "Film", "answers": [{ "text": "It" }] },
+        { "prompt": "In which language is a coffee break called a fika?", "category": "Language", "answers": [{ "text": "Swedish" }] },
+        { "prompt": "Which nut belongs in a Waldorf salad?", "category": "Food", "answers": [{ "text": "The walnut", "aliases": ["walnut"] }] },
+        { "prompt": "What is it called when a gas turns back into a liquid?", "category": "Science", "answers": [{ "text": "Condensation" }] },
+        { "prompt": "Which Chinese emperor was buried with an army of terracotta soldiers?", "category": "History", "answers": [{ "text": "Qin Shi Huang", "aliases": ["Qin Shihuang"] }] },
+        { "prompt": "Which river flows through Hamburg to the North Sea?", "category": "Geography", "answers": [{ "text": "The Elbe", "aliases": ["Elbe"] }] },
+        { "prompt": "Who was the first footballer to be given the Ballon d'Or?", "category": "Sport", "answers": [{ "text": "Stanley Matthews", "aliases": ["Matthews"] }] },
+        { "prompt": "Which is the fastest growing tree in the world?", "category": "Nature", "answers": [{ "text": "The paulownia", "aliases": ["paulownia", "empress tree"] }] },
+        { "prompt": "Which Dutch film won the Oscar for best foreign language film in 1996?", "category": "Film", "answers": [{ "text": "Antonia", "aliases": ["Antonia's Line"] }] },
+        { "prompt": "What is a slow, mournful piece of funeral music called?", "category": "Music", "answers": [{ "text": "A dirge", "aliases": ["dirge", "lament"] }] },
+        { "prompt": "What does the abbreviation OS stand for on a computer?", "category": "Technology", "answers": [{ "text": "Operating System" }] },
+        { "prompt": "Which sea battle of 1571 broke Ottoman naval power in the Mediterranean?", "category": "History", "answers": [{ "text": "Lepanto", "aliases": ["the Battle of Lepanto"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest inhabited castle in the world?", "options": [{ "text": "Windsor Castle", "correct": true }, { "text": "Prague Castle" }, { "text": "Edinburgh Castle" }, { "text": "Malbork Castle" }] },
+        { "prompt": "Which English novelist wrote Great Expectations?", "options": [{ "text": "Charles Dickens", "correct": true }, { "text": "Thomas Hardy" }, { "text": "Anthony Trollope" }, { "text": "William Thackeray" }] },
+        { "prompt": "Which spacecraft was the first to orbit Saturn?", "options": [{ "text": "Cassini", "correct": true }, { "text": "Galileo" }, { "text": "Juno" }, { "text": "Pioneer" }] },
+        { "prompt": "Which lizard can run across the surface of water?", "options": [{ "text": "The basilisk", "correct": true }, { "text": "The iguana" }, { "text": "The gecko" }, { "text": "The skink" }] },
+        { "prompt": "Which grain is polenta made from?", "options": [{ "text": "Maize", "correct": true }, { "text": "Barley" }, { "text": "Rye" }, { "text": "Millet" }] },
+        { "prompt": "In which sport do nations play for the Thomas Cup?", "options": [{ "text": "Badminton", "correct": true }, { "text": "Table tennis" }, { "text": "Squash" }, { "text": "Fencing" }] },
+        { "prompt": "Which Danish architect designed the Sydney Opera House?", "options": [{ "text": "Jorn Utzon", "correct": true }, { "text": "Arne Jacobsen" }, { "text": "Bjarke Ingels" }, { "text": "Henning Larsen" }] },
+        { "prompt": "Which hormone tells the body it is time to sleep?", "options": [{ "text": "Melatonin", "correct": true }, { "text": "Adrenaline" }, { "text": "Insulin" }, { "text": "Serotonin" }] },
+        { "prompt": "Which part of the body has no blood vessels of its own?", "options": [{ "text": "The cornea", "correct": true }, { "text": "The liver" }, { "text": "The tongue" }, { "text": "The kidney" }] },
+        { "prompt": "Which country has the longest bridge over water in the world?", "options": [{ "text": "China", "correct": true }, { "text": "The United States" }, { "text": "Japan" }, { "text": "Norway" }] },
+        { "prompt": "Which element forms both diamond and graphite?", "options": [{ "text": "Carbon", "correct": true }, { "text": "Silicon" }, { "text": "Boron" }, { "text": "Sulphur" }] },
+        { "prompt": "Which city is the capital of Sicily?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] },
+        { "prompt": "What do you call a language nobody speaks as a first language any more?", "options": [{ "text": "A dead language", "correct": true }, { "text": "A creole" }, { "text": "A pidgin" }, { "text": "A dialect" }] },
+        { "prompt": "Which tiny insect is the only creature that can pollinate a fig?", "options": [{ "text": "The fig wasp", "correct": true }, { "text": "The hoverfly" }, { "text": "The thrip" }, { "text": "The midge" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the tallest building in Europe?", "answer": 462, "unit": "metres" },
+        { "prompt": "How many hearts does a squid have?", "answer": 3, "unit": "hearts" },
+        { "prompt": "In what year did the Amsterdam canal ring become a World Heritage site?", "answer": 2010, "unit": "" },
+        { "prompt": "How many kilometres long is the longest non-stop flight in the world?", "answer": 15300, "unit": "kilometres" },
+        { "prompt": "How many billion nerve cells does the human brain contain?", "answer": 86, "unit": "billion" },
+        { "prompt": "How many million bicycles are there in the Netherlands?", "answer": 23, "unit": "million bicycles" },
+        { "prompt": "How many segments does an orange have, on average?", "answer": 10, "unit": "segments" },
+        { "prompt": "How many steps does the average person take in a day?", "answer": 5000, "unit": "steps" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Window box" },
+        { "prompt": "Butter dish" },
+        { "prompt": "Ice scraper" },
+        { "prompt": "Roof rack" },
+        { "prompt": "Intercom" },
+        { "prompt": "Boarding pass" },
+        { "prompt": "Shower head" },
+        { "prompt": "Vase" },
+        { "prompt": "Tablecloth" },
+        { "prompt": "Candle snuffer" },
+        { "prompt": "Tea light" },
+        { "prompt": "Wine glass" },
+        { "prompt": "Ashtray" },
+        { "prompt": "Pipe" },
+        { "prompt": "Walking boot" },
+        { "prompt": "Sun lounger" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Sudan.", "answers": [{ "text": "Egypt" }, { "text": "Chad" }, { "text": "Ethiopia" }, { "text": "Libya" }] },
+        { "prompt": "Name four sauces.", "answers": [{ "text": "Mayonnaise" }, { "text": "Ketchup" }, { "text": "Mustard" }, { "text": "Pesto" }] },
+        { "prompt": "Name four women who made their name in science.", "answers": [{ "text": "Marie Curie" }, { "text": "Rosalind Franklin" }, { "text": "Ada Lovelace" }, { "text": "Jane Goodall" }] },
+        { "prompt": "Name four sports added to the Olympics since 2000.", "answers": [{ "text": "Skateboarding" }, { "text": "Surfing" }, { "text": "Sport climbing" }, { "text": "Karate" }] },
+        { "prompt": "Name four countries in South Asia.", "answers": [{ "text": "India" }, { "text": "Pakistan" }, { "text": "Bangladesh" }, { "text": "Nepal" }] },
+        { "prompt": "Name four things in a bicycle repair kit.", "answers": [{ "text": "Tyre lever" }, { "text": "Patch" }, { "text": "Pump" }, { "text": "Spanner" }] },
+        { "prompt": "Name four famous castles.", "answers": [{ "text": "Windsor" }, { "text": "Neuschwanstein" }, { "text": "Edinburgh" }, { "text": "Muiderslot" }] },
+        { "prompt": "Name four kinds of paint an artist can use.", "answers": [{ "text": "Oil paint" }, { "text": "Acrylic" }, { "text": "Watercolour" }, { "text": "Gouache" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call a very young tree?", "difficulty": "easy", "answers": [{ "text": "A sapling", "aliases": ["sapling"] }] },
+        { "prompt": "Which insect flutters around a lamp at night?", "difficulty": "easy", "answers": [{ "text": "The moth", "aliases": ["moth"] }] },
+        { "prompt": "What is the opposite of wet?", "difficulty": "easy", "answers": [{ "text": "Dry" }] },
+        { "prompt": "What do you call the person who brings your food in a restaurant?", "difficulty": "easy", "answers": [{ "text": "A waiter", "aliases": ["waiter", "waitress"] }] },
+        { "prompt": "Which month has the fewest days?", "difficulty": "easy", "answers": [{ "text": "February" }] },
+        { "prompt": "What is the capital of Turkmenistan?", "difficulty": "hard", "answers": [{ "text": "Ashgabat" }] },
+        { "prompt": "Which Russian novelist wrote Fathers and Sons?", "difficulty": "hard", "answers": [{ "text": "Ivan Turgenev", "aliases": ["Turgenev"] }] },
+        { "prompt": "Which theory describes gravity as a bending of space and time?", "difficulty": "hard", "answers": [{ "text": "General relativity", "aliases": ["relativity"] }] },
+        { "prompt": "Which is the largest island of Japan?", "difficulty": "hard", "answers": [{ "text": "Honshu" }] },
+        { "prompt": "Which is the largest species of bat in the world?", "difficulty": "hard", "answers": [{ "text": "The flying fox", "aliases": ["flying fox"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch painter made The Threatened Swan?", "answers": [{ "text": "Jan Asselijn", "aliases": ["Asselijn"] }] },
+        { "prompt": "What is the capital of Bangladesh?", "answers": [{ "text": "Dhaka" }] },
+        { "prompt": "Which Finnish composer wrote Finlandia?", "answers": [{ "text": "Jean Sibelius", "aliases": ["Sibelius"] }] },
+        { "prompt": "Which Dutch fortress town is laid out as a twelve-pointed star?", "answers": [{ "text": "Naarden" }] },
+        { "prompt": "Which is the largest island in the Arctic Ocean?", "answers": [{ "text": "Baffin Island", "aliases": ["Baffin"] }] },
+        { "prompt": "Which English chemist is credited with discovering oxygen?", "answers": [{ "text": "Joseph Priestley", "aliases": ["Priestley"] }] }
+      ]
+    }
+  ]
+}

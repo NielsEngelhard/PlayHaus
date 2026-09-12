@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w6",
+  "title": "Weekly quiz 6 2026",
+  "description": "The weekly quiz of Wednesday 4 February 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest bay in the world?", "category": "Geography", "answers": [{ "text": "Hudson Bay" }] },
+        { "prompt": "What is it called when a solid turns straight into a gas?", "category": "Science", "answers": [{ "text": "Sublimation" }] },
+        { "prompt": "Which Chinese dynasty built most of the Great Wall as we know it?", "category": "History", "answers": [{ "text": "The Ming dynasty", "aliases": ["Ming", "Ming dynasty"] }] },
+        { "prompt": "Which American athlete won four gold medals at the 1936 Olympics?", "category": "Sport", "answers": [{ "text": "Jesse Owens", "aliases": ["Owens"] }] },
+        { "prompt": "What is the art of beautiful handwriting called?", "category": "Art", "answers": [{ "text": "Calligraphy" }] },
+        { "prompt": "Which whale is famous for the long songs the males sing?", "category": "Nature", "answers": [{ "text": "The humpback whale", "aliases": ["humpback", "humpback whale"] }] },
+        { "prompt": "Which Dutch football club plays its home matches in De Kuip?", "category": "The Netherlands", "answers": [{ "text": "Feyenoord" }] },
+        { "prompt": "What is a group of singers performing together called?", "category": "Music", "answers": [{ "text": "A choir", "aliases": ["choir"] }] },
+        { "prompt": "In which film does Clarice Starling interview Hannibal Lecter?", "category": "Film", "answers": [{ "text": "The Silence of the Lambs", "aliases": ["Silence of the Lambs"] }] },
+        { "prompt": "What do you call a word that imitates the sound it describes?", "category": "Language", "answers": [{ "text": "Onomatopoeia" }] },
+        { "prompt": "Which sauce of egg yolk and butter is poured over eggs benedict?", "category": "Food", "answers": [{ "text": "Hollandaise" }] },
+        { "prompt": "Which kind of rock is marble?", "category": "Science", "answers": [{ "text": "Metamorphic rock", "aliases": ["metamorphic"] }] },
+        { "prompt": "Which Portuguese explorer first sailed round Africa to India?", "category": "History", "answers": [{ "text": "Vasco da Gama", "aliases": ["Da Gama"] }] },
+        { "prompt": "In which mountain range does Mount Everest stand?", "category": "Geography", "answers": [{ "text": "The Himalayas", "aliases": ["Himalayas", "Himalaya"] }] },
+        { "prompt": "In which sport does the main group of riders form a peloton?", "category": "Sport", "answers": [{ "text": "Cycling" }] },
+        { "prompt": "Which is the tallest species of tree in the world?", "category": "Nature", "answers": [{ "text": "The redwood", "aliases": ["redwood", "sequoia"] }] },
+        { "prompt": "Which Japanese director made the film Seven Samurai?", "category": "Film", "answers": [{ "text": "Akira Kurosawa", "aliases": ["Kurosawa"] }] },
+        { "prompt": "Which Italian term tells a musician to grow gradually louder?", "category": "Music", "answers": [{ "text": "Crescendo" }] },
+        { "prompt": "What does the abbreviation USB stand for?", "category": "Technology", "answers": [{ "text": "Universal Serial Bus" }] },
+        { "prompt": "Which charter did King John of England seal in 1215?", "category": "History", "answers": [{ "text": "The Magna Carta", "aliases": ["Magna Carta"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has won the Eurovision Song Contest most often?", "options": [{ "text": "Ireland", "correct": true }, { "text": "Sweden" }, { "text": "France" }, { "text": "Israel" }] },
+        { "prompt": "Which sea lies between Sweden and Finland?", "options": [{ "text": "The Baltic Sea", "correct": true }, { "text": "The North Sea" }, { "text": "The Barents Sea" }, { "text": "The White Sea" }] },
+        { "prompt": "Which Italian was the first to study the night sky through a telescope?", "options": [{ "text": "Galileo Galilei", "correct": true }, { "text": "Giordano Bruno" }, { "text": "Tycho Brahe" }, { "text": "Christiaan Huygens" }] },
+        { "prompt": "Which gland sits under the brain and directs the other glands?", "options": [{ "text": "The pituitary gland", "correct": true }, { "text": "The thyroid" }, { "text": "The adrenal gland" }, { "text": "The thymus" }] },
+        { "prompt": "Which nut belongs in a traditional pesto alla genovese?", "options": [{ "text": "The pine nut", "correct": true }, { "text": "The cashew" }, { "text": "The peanut" }, { "text": "The macadamia" }] },
+        { "prompt": "Which film shares the record of eleven Oscars with Titanic and Ben-Hur?", "options": [{ "text": "The Return of the King", "correct": true }, { "text": "Gone with the Wind" }, { "text": "Schindler's List" }, { "text": "The Godfather" }] },
+        { "prompt": "What is the capital of Croatia?", "options": [{ "text": "Zagreb", "correct": true }, { "text": "Split" }, { "text": "Ljubljana" }, { "text": "Sarajevo" }] },
+        { "prompt": "Which animal's milk is traditional feta made from?", "options": [{ "text": "The sheep", "correct": true }, { "text": "The cow" }, { "text": "The buffalo" }, { "text": "The camel" }] },
+        { "prompt": "Which American composer wrote Rhapsody in Blue?", "options": [{ "text": "George Gershwin", "correct": true }, { "text": "Aaron Copland" }, { "text": "Leonard Bernstein" }, { "text": "Duke Ellington" }] },
+        { "prompt": "What is the name of the galaxy we live in?", "options": [{ "text": "The Milky Way", "correct": true }, { "text": "Andromeda" }, { "text": "The Magellanic Cloud" }, { "text": "The Local Group" }] },
+        { "prompt": "How many points does the bullseye score in darts?", "options": [{ "text": "50 points", "correct": true }, { "text": "25 points" }, { "text": "60 points" }, { "text": "100 points" }] },
+        { "prompt": "Which warm ocean current keeps western Europe mild?", "options": [{ "text": "The Gulf Stream", "correct": true }, { "text": "The Humboldt Current" }, { "text": "The Canary Current" }, { "text": "The Labrador Current" }] },
+        { "prompt": "Which Dutch province is made up largely of islands and peninsulas?", "options": [{ "text": "Zeeland", "correct": true }, { "text": "Friesland" }, { "text": "Flevoland" }, { "text": "Overijssel" }] },
+        { "prompt": "Which metal is steel coated with when it is galvanised?", "options": [{ "text": "Zinc", "correct": true }, { "text": "Tin" }, { "text": "Nickel" }, { "text": "Chrome" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many letters does the Greek alphabet have?", "answer": 24, "unit": "letters" },
+        { "prompt": "How many kilometres wide is the English Channel at its narrowest?", "answer": 34, "unit": "kilometres" },
+        { "prompt": "In what year did the Dutch women's football team become European champions?", "answer": 2017, "unit": "" },
+        { "prompt": "How many tiles does a player begin a game of Scrabble with?", "answer": 7, "unit": "tiles" },
+        { "prompt": "How many metres above the floor is a basketball hoop?", "answer": 3, "unit": "metres" },
+        { "prompt": "How many bones does a shark have?", "answer": 0, "unit": "bones", "explanation": "A shark's skeleton is cartilage from nose to tail." },
+        { "prompt": "How many islands does Greece have, roughly?", "answer": 6000, "unit": "islands" },
+        { "prompt": "How many spectators does the Johan Cruijff Arena hold?", "answer": 55000, "unit": "spectators" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Dominoes" },
+        { "prompt": "Roulette wheel" },
+        { "prompt": "Kaleidoscope" },
+        { "prompt": "Slingshot" },
+        { "prompt": "Spirit level" },
+        { "prompt": "Snorkel" },
+        { "prompt": "Beanbag" },
+        { "prompt": "Cradle" },
+        { "prompt": "Feather duster" },
+        { "prompt": "Ironing board" },
+        { "prompt": "Lightning rod" },
+        { "prompt": "Waffle iron" },
+        { "prompt": "Chewing gum" },
+        { "prompt": "Coat rack" },
+        { "prompt": "Fishing rod" },
+        { "prompt": "Hot air balloon" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries in the Balkans.", "answers": [{ "text": "Serbia" }, { "text": "Croatia" }, { "text": "Bosnia" }, { "text": "Albania" }] },
+        { "prompt": "Name four kinds of berry.", "answers": [{ "text": "Strawberry" }, { "text": "Raspberry" }, { "text": "Blueberry" }, { "text": "Blackberry" }] },
+        { "prompt": "Name the four presidents carved into Mount Rushmore.", "answers": [{ "text": "Washington" }, { "text": "Jefferson" }, { "text": "Roosevelt" }, { "text": "Lincoln" }] },
+        { "prompt": "Name four instruments you play by blowing.", "answers": [{ "text": "Flute" }, { "text": "Clarinet" }, { "text": "Trumpet" }, { "text": "Saxophone" }] },
+        { "prompt": "Name four kinds of bear.", "answers": [{ "text": "Brown bear" }, { "text": "Polar bear" }, { "text": "Panda" }, { "text": "Grizzly" }] },
+        { "prompt": "Name four Dutch cities with a university.", "answers": [{ "text": "Leiden" }, { "text": "Utrecht" }, { "text": "Groningen" }, { "text": "Delft" }] },
+        { "prompt": "Name four things you would find in a bathroom.", "answers": [{ "text": "Bath" }, { "text": "Shower" }, { "text": "Toilet" }, { "text": "Washbasin" }] },
+        { "prompt": "Name four countries that have hosted the football World Cup.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "France" }, { "text": "Russia" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which vegetable makes you cry when you cut it?", "difficulty": "easy", "answers": [{ "text": "The onion", "aliases": ["onion"] }] },
+        { "prompt": "How many days are there in a fortnight?", "difficulty": "easy", "answers": [{ "text": "Fourteen", "aliases": ["14"] }] },
+        { "prompt": "What is the capital of Belgium?", "difficulty": "easy", "answers": [{ "text": "Brussels" }] },
+        { "prompt": "What do you call a young sheep?", "difficulty": "easy", "answers": [{ "text": "A lamb", "aliases": ["lamb"] }] },
+        { "prompt": "Which sport is played with small bats and a net across a table?", "difficulty": "easy", "answers": [{ "text": "Table tennis", "aliases": ["ping pong"] }] },
+        { "prompt": "Which Italian traveller served the Mongol emperor Kublai Khan?", "difficulty": "hard", "answers": [{ "text": "Marco Polo" }] },
+        { "prompt": "What is the collective noun for a group of owls?", "difficulty": "hard", "answers": [{ "text": "A parliament", "aliases": ["parliament"] }] },
+        { "prompt": "Which country of the United Kingdom has the most castles for its size?", "difficulty": "hard", "answers": [{ "text": "Wales" }] },
+        { "prompt": "Who wrote The Canterbury Tales?", "difficulty": "hard", "answers": [{ "text": "Geoffrey Chaucer", "aliases": ["Chaucer"] }] },
+        { "prompt": "Which blood cells defend the body against infection?", "difficulty": "hard", "answers": [{ "text": "White blood cells", "aliases": ["white cells", "leukocytes"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which German astronomer worked out the laws of planetary motion?", "answers": [{ "text": "Johannes Kepler", "aliases": ["Kepler"] }] },
+        { "prompt": "What is the capital of Slovenia?", "answers": [{ "text": "Ljubljana" }] },
+        { "prompt": "Which Belgian painter filled his canvases with men in bowler hats?", "answers": [{ "text": "Rene Magritte", "aliases": ["Magritte"] }] },
+        { "prompt": "In which year did the Dutch found New Amsterdam?", "answers": [{ "text": "1625" }] },
+        { "prompt": "Which is the highest mountain in Japan?", "answers": [{ "text": "Mount Fuji", "aliases": ["Fuji", "Fujiyama"] }] },
+        { "prompt": "Which is the largest of the Greek islands?", "answers": [{ "text": "Crete" }] }
+      ]
+    }
+  ]
+}

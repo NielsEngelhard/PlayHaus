@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w9",
+  "title": "Weekquiz 9 2026",
+  "description": "De wekelijkse quiz van woensdag 25 februari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de ondiepste zee ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Zee van Azov", "aliases": ["Zee van Azov", "Azov"] }] },
+        { "prompt": "Wat is de eenheid van temperatuur in het metrieke stelsel?", "category": "Wetenschap", "answers": [{ "text": "De kelvin", "aliases": ["kelvin"] }] },
+        { "prompt": "Welke Engelse koningin stond bekend als de maagdelijke koningin?", "category": "Geschiedenis", "answers": [{ "text": "Elizabeth I", "aliases": ["Elizabeth de Eerste"] }] },
+        { "prompt": "Hoe heet een tennisslag die hard van boven het hoofd wordt geslagen?", "category": "Sport", "answers": [{ "text": "Een smash", "aliases": ["smash"] }] },
+        { "prompt": "Welke Nederlandse kunststroming hielp Piet Mondriaan oprichten?", "category": "Kunst", "answers": [{ "text": "De Stijl" }] },
+        { "prompt": "Wat is de zwaarste vogel die nog kan vliegen?", "category": "Natuur", "answers": [{ "text": "De grote trap", "aliases": ["grote trap"] }] },
+        { "prompt": "Welke dikke Nederlandse soep van spliterwten eet je in hartje winter?", "category": "Nederland", "answers": [{ "text": "Snert", "aliases": ["erwtensoep"] }] },
+        { "prompt": "Welk muziekformaat verdrong de cd in de jaren negentig?", "category": "Muziek", "answers": [{ "text": "Het cassettebandje", "aliases": ["cassette", "cassettebandje"] }] },
+        { "prompt": "In welke film uit 2019 speelt Joaquin Phoenix een mislukte clown?", "category": "Film", "answers": [{ "text": "Joker" }] },
+        { "prompt": "Welke twee talen zijn naast het Duits officieel in Belgie?", "category": "Taal", "answers": [{ "text": "Nederlands en Frans" }] },
+        { "prompt": "Welk land verbouwt de meeste cacao ter wereld?", "category": "Eten", "answers": [{ "text": "Ivoorkust", "aliases": ["Cote d'Ivoire"] }] },
+        { "prompt": "Hoe heet de wetenschap die het weer bestudeert?", "category": "Wetenschap", "answers": [{ "text": "Meteorologie" }] },
+        { "prompt": "Welke revolutie begon met de bestorming van de Bastille?", "category": "Geschiedenis", "answers": [{ "text": "De Franse Revolutie", "aliases": ["Franse Revolutie"] }] },
+        { "prompt": "Wat is het grootste koraalrifsysteem ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Groot Barriererif", "aliases": ["Great Barrier Reef", "Groot Barriererif"] }] },
+        { "prompt": "In welk land werd marathonloper Eliud Kipchoge geboren?", "category": "Sport", "answers": [{ "text": "Kenia" }] },
+        { "prompt": "Welke roofvogel bouwt het grootste nest van alle vogels?", "category": "Natuur", "answers": [{ "text": "De Amerikaanse zeearend", "aliases": ["zeearend", "bald eagle"] }] },
+        { "prompt": "Welke filmmaatschappij opent haar films met een kasteel en een vallende ster?", "category": "Film", "answers": [{ "text": "Disney", "aliases": ["Walt Disney"] }] },
+        { "prompt": "Hoe heet de laagste mannelijke zangstem?", "category": "Muziek", "answers": [{ "text": "De bas", "aliases": ["bas"] }] },
+        { "prompt": "Waar staat de afkorting PDF voor?", "category": "Techniek", "answers": [{ "text": "Portable Document Format" }] },
+        { "prompt": "In welke stad uit de oudheid zouden de Hangende Tuinen hebben gestaan?", "category": "Geschiedenis", "answers": [{ "text": "Babylon" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de oudste nog bestaande republiek ter wereld?", "options": [{ "text": "San Marino", "correct": true }, { "text": "Zwitserland" }, { "text": "IJsland" }, { "text": "Portugal" }] },
+        { "prompt": "Wie schreef De Kronieken van Narnia?", "options": [{ "text": "C.S. Lewis", "correct": true }, { "text": "Roald Dahl" }, { "text": "Philip Pullman" }, { "text": "Kenneth Grahame" }] },
+        { "prompt": "Welke ruimtetelescoop nam het van Hubble over als grootste in een baan om de aarde?", "options": [{ "text": "De James Webb-telescoop", "correct": true }, { "text": "Kepler" }, { "text": "Spitzer" }, { "text": "Chandra" }] },
+        { "prompt": "Welk deel van de hersenen zorgt voor het vormen van spraak?", "options": [{ "text": "Het gebied van Broca", "correct": true }, { "text": "De hippocampus" }, { "text": "De amygdala" }, { "text": "De thalamus" }] },
+        { "prompt": "Welk instrument vond Adolphe Sax uit?", "options": [{ "text": "De saxofoon", "correct": true }, { "text": "De klarinet" }, { "text": "De hobo" }, { "text": "De eufonium" }] },
+        { "prompt": "Welke luchthaven verwerkt meer passagiers dan welke andere ook?", "options": [{ "text": "Atlanta", "correct": true }, { "text": "Dubai" }, { "text": "Heathrow" }, { "text": "Tokio Haneda" }] },
+        { "prompt": "Welk zeedier heeft blauw bloed en is ouder dan de dinosaurussen?", "options": [{ "text": "De degenkrab", "correct": true }, { "text": "De kreeft" }, { "text": "De nautilus" }, { "text": "De zeekomkommer" }] },
+        { "prompt": "Welke stad organiseert de Olympische Zomerspelen van 2028?", "options": [{ "text": "Los Angeles", "correct": true }, { "text": "Brisbane" }, { "text": "Madrid" }, { "text": "Doha" }] },
+        { "prompt": "Welk metaal geleidt warmte beter dan andere gangbare metalen?", "options": [{ "text": "Koper", "correct": true }, { "text": "IJzer" }, { "text": "Lood" }, { "text": "Titanium" }] },
+        { "prompt": "Wat is het grootste land ter wereld zonder kust?", "options": [{ "text": "Kazachstan", "correct": true }, { "text": "Mongolie" }, { "text": "Tsjaad" }, { "text": "Bolivia" }] },
+        { "prompt": "Welke man won in het open tijdperk de meeste enkelspeltitels op Wimbledon?", "options": [{ "text": "Roger Federer", "correct": true }, { "text": "Novak Djokovic" }, { "text": "Pete Sampras" }, { "text": "Bjorn Borg" }] },
+        { "prompt": "Welk insect leeft als volwassen dier maar ongeveer een dag?", "options": [{ "text": "De eendagsvlieg", "correct": true }, { "text": "De libel" }, { "text": "De mot" }, { "text": "De cicade" }] },
+        { "prompt": "Wat is de hoofdstad van Nigeria?", "options": [{ "text": "Abuja", "correct": true }, { "text": "Lagos" }, { "text": "Kano" }, { "text": "Ibadan" }] },
+        { "prompt": "Welk mineraal heeft het lichaam het meest nodig voor sterke botten?", "options": [{ "text": "Calcium", "correct": true }, { "text": "IJzer" }, { "text": "Jodium" }, { "text": "Seleen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter vallen de Niagarawatervallen?", "answer": 51, "unit": "meter" },
+        { "prompt": "Hoeveel harten heeft een regenworm?", "answer": 5, "unit": "harten" },
+        { "prompt": "In welk jaar werden de eerste Paralympische Spelen gehouden?", "answer": 1960, "unit": "", "explanation": "In Rome, direct na de Olympische Spelen daar." },
+        { "prompt": "Hoeveel meter diep is het diepste zwembad ter wereld?", "answer": 60, "unit": "meter" },
+        { "prompt": "Hoeveel spieren zitten er in de slurf van een olifant?", "answer": 40000, "unit": "spieren" },
+        { "prompt": "Hoeveel pitjes draagt een aardbei ongeveer aan de buitenkant?", "answer": 200, "unit": "pitjes" },
+        { "prompt": "Hoeveel kilometer fietst de gemiddelde Nederlander per jaar?", "answer": 1000, "unit": "kilometer" },
+        { "prompt": "Hoeveel botten heeft een kat?", "answer": 230, "unit": "botten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Valluik" },
+        { "prompt": "Putdeksel" },
+        { "prompt": "Waslijn" },
+        { "prompt": "Verfroller" },
+        { "prompt": "Vingerhoed" },
+        { "prompt": "Windzak" },
+        { "prompt": "Krik" },
+        { "prompt": "Brandblusser" },
+        { "prompt": "Zeef" },
+        { "prompt": "Eierwekker" },
+        { "prompt": "Hoelahoep" },
+        { "prompt": "Muismat" },
+        { "prompt": "Zwemvlies" },
+        { "prompt": "Tuinkabouter" },
+        { "prompt": "Noppenfolie" },
+        { "prompt": "Schuur" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Polen grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Tsjechie" }, { "text": "Slowakije" }, { "text": "Litouwen" }] },
+        { "prompt": "Noem vier specerijen.", "answers": [{ "text": "Kaneel" }, { "text": "Nootmuskaat" }, { "text": "Komijn" }, { "text": "Paprikapoeder" }] },
+        { "prompt": "Noem vier Griekse eilanden.", "answers": [{ "text": "Kreta" }, { "text": "Rhodos" }, { "text": "Corfu" }, { "text": "Santorini" }] },
+        { "prompt": "Noem vier beroemde natuurkundigen.", "answers": [{ "text": "Einstein" }, { "text": "Newton" }, { "text": "Curie" }, { "text": "Bohr" }] },
+        { "prompt": "Noem vier sporten die over een net worden gespeeld.", "answers": [{ "text": "Tennis" }, { "text": "Volleybal" }, { "text": "Badminton" }, { "text": "Tafeltennis" }] },
+        { "prompt": "Noem vier Italiaanse gerechten.", "answers": [{ "text": "Pizza" }, { "text": "Lasagne" }, { "text": "Risotto" }, { "text": "Carbonara" }] },
+        { "prompt": "Noem vier manen in ons zonnestelsel.", "answers": [{ "text": "Titan" }, { "text": "Europa" }, { "text": "Phobos" }, { "text": "Triton" }] },
+        { "prompt": "Noem vier landen in het Midden-Oosten.", "answers": [{ "text": "Iran" }, { "text": "Irak" }, { "text": "Saoedi-Arabie" }, { "text": "Israel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je water dat uit de wolken valt?", "difficulty": "easy", "answers": [{ "text": "Regen" }] },
+        { "prompt": "Hoe noem je een jong paard?", "difficulty": "easy", "answers": [{ "text": "Een veulen", "aliases": ["veulen"] }] },
+        { "prompt": "Welk dier draagt zijn huis op zijn rug en loopt langzaam?", "difficulty": "easy", "answers": [{ "text": "De schildpad", "aliases": ["schildpad"] }] },
+        { "prompt": "Welk seizoen is het koudste van het jaar?", "difficulty": "easy", "answers": [{ "text": "De winter", "aliases": ["winter"] }] },
+        { "prompt": "Wat is het tegenovergestelde van dag?", "difficulty": "easy", "answers": [{ "text": "Nacht" }] },
+        { "prompt": "Wat is de munteenheid van Zweden?", "difficulty": "hard", "answers": [{ "text": "De kroon", "aliases": ["kroon", "Zweedse kroon"] }] },
+        { "prompt": "Welke Griekse arts wordt de vader van de geneeskunde genoemd?", "difficulty": "hard", "answers": [{ "text": "Hippocrates" }] },
+        { "prompt": "In welk land liggen de Angelwatervallen?", "difficulty": "hard", "answers": [{ "text": "Venezuela" }] },
+        { "prompt": "Hoe heet het grootste object in de planetoidengordel?", "difficulty": "hard", "answers": [{ "text": "Ceres" }] },
+        { "prompt": "Welke Ierse schrijver schreef Het portret van Dorian Gray?", "difficulty": "hard", "answers": [{ "text": "Oscar Wilde", "aliases": ["Wilde"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Zweedse botanicus bedacht het systeem van twee namen per soort?", "answers": [{ "text": "Carl Linnaeus", "aliases": ["Linnaeus", "Linnaeus"] }] },
+        { "prompt": "Wat is de hoofdstad van Georgie?", "answers": [{ "text": "Tbilisi" }] },
+        { "prompt": "Welke Italiaanse leerling van Galilei vond de barometer uit?", "answers": [{ "text": "Evangelista Torricelli", "aliases": ["Torricelli"] }] },
+        { "prompt": "In welk jaar werd de oudste bewaarde foto gemaakt?", "answers": [{ "text": "1826" }] },
+        { "prompt": "Welke achtduizender is het dodelijkst om te beklimmen?", "answers": [{ "text": "Annapurna" }] },
+        { "prompt": "Welke Franse scheikundige toonde aan dat massa bij een reactie behouden blijft?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w14",
+  "title": "Weekquiz 14 2026",
+  "description": "De wekelijkse quiz van woensdag 1 april 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk Afrikaans land wordt bijna helemaal omsloten door Senegal?", "category": "Aardrijkskunde", "answers": [{ "text": "Gambia", "aliases": ["De Gambia"] }] },
+        { "prompt": "Hoe heet het als een vaste stof in een vloeistof verandert?", "category": "Wetenschap", "answers": [{ "text": "Smelten" }] },
+        { "prompt": "Welk vredesverdrag uit 1648 maakte voor de Nederlanden een einde aan de Tachtigjarige Oorlog?", "category": "Geschiedenis", "answers": [{ "text": "De Vrede van Munster", "aliases": ["Vrede van Munster"] }] },
+        { "prompt": "In welke sport strijden vechters in de vlieggewichtklasse?", "category": "Sport", "answers": [{ "text": "Boksen" }] },
+        { "prompt": "Welke schildertechniek bouwt een beeld op uit kleine stipjes verf?", "category": "Kunst", "answers": [{ "text": "Pointillisme" }] },
+        { "prompt": "Wat is de grootste hagedissensoort ter wereld?", "category": "Natuur", "answers": [{ "text": "De komodovaraan", "aliases": ["komodovaraan"] }] },
+        { "prompt": "Welke Nederlandse zeearm werd na 1953 door een stormvloedkering afgesloten?", "category": "Nederland", "answers": [{ "text": "De Oosterschelde", "aliases": ["Oosterschelde"] }] },
+        { "prompt": "Welke Italiaanse term zegt dat het hele orkest samen moet spelen?", "category": "Muziek", "answers": [{ "text": "Tutti" }] },
+        { "prompt": "In welke Pixarfilm komt speelgoed tot leven zodra de mensen weg zijn?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
+        { "prompt": "Wat is het meervoud van het woord cactus?", "category": "Taal", "answers": [{ "text": "Cactussen", "aliases": ["cacti"] }] },
+        { "prompt": "Welke saus wordt gemaakt van tomaten, azijn en suiker?", "category": "Eten", "answers": [{ "text": "Ketchup" }] },
+        { "prompt": "Welke laag van de aarde ligt direct onder de korst?", "category": "Wetenschap", "answers": [{ "text": "De mantel", "aliases": ["mantel"] }] },
+        { "prompt": "Welk Amerikaans document begint met de woorden We the People?", "category": "Geschiedenis", "answers": [{ "text": "De grondwet", "aliases": ["de Amerikaanse grondwet", "constitution"] }] },
+        { "prompt": "Welk Zuid-Amerikaans land is naar de evenaar genoemd?", "category": "Aardrijkskunde", "answers": [{ "text": "Ecuador" }] },
+        { "prompt": "Welke race in Alaska wordt gereden door teams honden met een slee?", "category": "Sport", "answers": [{ "text": "De Iditarod", "aliases": ["Iditarod"] }] },
+        { "prompt": "Wat is de grootste uil van Europa?", "category": "Natuur", "answers": [{ "text": "De oehoe", "aliases": ["oehoe"] }] },
+        { "prompt": "Welke acteur speelde James Bond in Casino Royale?", "category": "Film", "answers": [{ "text": "Daniel Craig", "aliases": ["Craig"] }] },
+        { "prompt": "Welk strijkinstrument zit qua toonhoogte tussen viool en cello in?", "category": "Muziek", "answers": [{ "text": "De altviool", "aliases": ["altviool"] }] },
+        { "prompt": "Waar staan de letters QR voor in QR-code?", "category": "Techniek", "answers": [{ "text": "Quick Response" }] },
+        { "prompt": "Welke Amerikaanse stad werd in 1906 verwoest door aardbeving en brand?", "category": "Geschiedenis", "answers": [{ "text": "San Francisco" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk Afrikaans land heeft de meeste buurlanden?", "options": [{ "text": "De Democratische Republiek Congo", "correct": true }, { "text": "Soedan" }, { "text": "Niger" }, { "text": "Zambia" }] },
+        { "prompt": "Onder welk pseudoniem schreef Mary Ann Evans Middlemarch?", "options": [{ "text": "George Eliot", "correct": true }, { "text": "Currer Bell" }, { "text": "George Sand" }, { "text": "Ellis Bell" }] },
+        { "prompt": "Hoe heet de rand van de deeltjesbel van de zon in de ruimte?", "options": [{ "text": "De heliopauze", "correct": true }, { "text": "De magnetopauze" }, { "text": "De corona" }, { "text": "Het eindpunt" }] },
+        { "prompt": "Welk dier kan zijn hele leven zonder water drinken?", "options": [{ "text": "De kangoeroerat", "correct": true }, { "text": "De stokstaartje" }, { "text": "De gerbil" }, { "text": "De fennek" }] },
+        { "prompt": "Welke vrucht wordt gedroogd tot pruimen?", "options": [{ "text": "De pruim", "correct": true }, { "text": "De abrikoos" }, { "text": "De vijg" }, { "text": "De dadel" }] },
+        { "prompt": "In welke dansvorm maakt een danser een grand jete?", "options": [{ "text": "Ballet", "correct": true }, { "text": "Tapdans" }, { "text": "Flamenco" }, { "text": "Moderne dans" }] },
+        { "prompt": "Welk insect maakt het hardste geluid van allemaal?", "options": [{ "text": "De cicade", "correct": true }, { "text": "De krekel" }, { "text": "De bij" }, { "text": "De kever" }] },
+        { "prompt": "Welke druivensoort staat op meer wijngaarden dan welke andere ook?", "options": [{ "text": "Cabernet Sauvignon", "correct": true }, { "text": "Merlot" }, { "text": "Chardonnay" }, { "text": "Tempranillo" }] },
+        { "prompt": "Wat is de hoofdstad van de Canadese provincie Quebec?", "options": [{ "text": "Quebec-stad", "correct": true }, { "text": "Montreal" }, { "text": "Laval" }, { "text": "Gatineau" }] },
+        { "prompt": "Welk element is genoemd naar de Noorse god van de donder?", "options": [{ "text": "Thorium", "correct": true }, { "text": "Vanadium" }, { "text": "Niobium" }, { "text": "Tantaal" }] },
+        { "prompt": "Welk zeedier heeft acht armen en twee langere vangarmen?", "options": [{ "text": "De pijlinktvis", "correct": true }, { "text": "De octopus" }, { "text": "De zeester" }, { "text": "De kwal" }] },
+        { "prompt": "In welk decennium veroverde de rock-'n-roll de hitlijsten?", "options": [{ "text": "De jaren vijftig", "correct": true }, { "text": "De jaren veertig" }, { "text": "De jaren zestig" }, { "text": "De jaren dertig" }] },
+        { "prompt": "Welke godsdienst wordt in Japan naast het boeddhisme beleden?", "options": [{ "text": "Shinto", "correct": true }, { "text": "Taoisme" }, { "text": "Confucianisme" }, { "text": "Jainisme" }] },
+        { "prompt": "Welke laag van de zon is het heldere oppervlak dat wij zien?", "options": [{ "text": "De fotosfeer", "correct": true }, { "text": "De chromosfeer" }, { "text": "De corona" }, { "text": "De kern" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter lang is een voetbalveld op ware grootte?", "answer": 105, "unit": "meter" },
+        { "prompt": "Hoeveel pinguinsoorten bestaan er?", "answer": 18, "unit": "soorten" },
+        { "prompt": "In welk jaar gaf Nederland zijn eerste postzegel uit?", "answer": 1852, "unit": "" },
+        { "prompt": "Hoeveel kilometer spoor heeft Nederland?", "answer": 3200, "unit": "kilometer" },
+        { "prompt": "Hoeveel octaven beslaat een standaard pianoklavier?", "answer": 7, "unit": "octaven" },
+        { "prompt": "Hoeveel kilo kaas eet de gemiddelde Nederlander per jaar?", "answer": 21, "unit": "kilo" },
+        { "prompt": "Hoeveel minuten doet bloed erover om het hele lichaam rond te gaan?", "answer": 1, "unit": "minuut" },
+        { "prompt": "Hoeveel kilometer per uur kan een struisvogel rennen?", "answer": 70, "unit": "kilometer per uur" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Kaasrasp" },
+        { "prompt": "Plakbandhouder" },
+        { "prompt": "Badmuts" },
+        { "prompt": "Voedersilo" },
+        { "prompt": "Bokshandschoen" },
+        { "prompt": "Brandalarm" },
+        { "prompt": "Campingbrander" },
+        { "prompt": "Zakmes" },
+        { "prompt": "Hondenhok" },
+        { "prompt": "Badeendje" },
+        { "prompt": "Zonnebank" },
+        { "prompt": "Tandpasta" },
+        { "prompt": "Touwladder" },
+        { "prompt": "Schoorsteenveger" },
+        { "prompt": "Stemvork" },
+        { "prompt": "Kas" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Griekenland grenzen.", "answers": [{ "text": "Albanie" }, { "text": "Noord-Macedonie" }, { "text": "Bulgarije" }, { "text": "Turkije" }] },
+        { "prompt": "Noem vier kruiden.", "answers": [{ "text": "Basilicum" }, { "text": "Tijm" }, { "text": "Rozemarijn" }, { "text": "Peterselie" }] },
+        { "prompt": "Noem vier hoofdsteden in Azie.", "answers": [{ "text": "Tokio" }, { "text": "Peking" }, { "text": "Seoel" }, { "text": "Bangkok" }] },
+        { "prompt": "Noem vier soorten taart.", "answers": [{ "text": "Biscuittaart" }, { "text": "Cheesecake" }, { "text": "Worteltaart" }, { "text": "Appeltaart" }] },
+        { "prompt": "Noem vier olympische wieleronderdelen.", "answers": [{ "text": "Wegwedstrijd" }, { "text": "Tijdrit" }, { "text": "Baanwielrennen" }, { "text": "Mountainbiken" }] },
+        { "prompt": "Noem vier manieren om te reizen.", "answers": [{ "text": "Trein" }, { "text": "Bus" }, { "text": "Vliegtuig" }, { "text": "Schip" }] },
+        { "prompt": "Noem vier beroemde vulkanen.", "answers": [{ "text": "Vesuvius" }, { "text": "Etna" }, { "text": "Krakatau" }, { "text": "Fuji" }] },
+        { "prompt": "Noem vier dingen die je in een tuin vindt.", "answers": [{ "text": "Gazon" }, { "text": "Heg" }, { "text": "Schuurtje" }, { "text": "Vijver" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een jonge eend?", "difficulty": "easy", "answers": [{ "text": "Een eendenkuiken", "aliases": ["eendenkuiken", "kuiken"] }] },
+        { "prompt": "Hoeveel minuten zitten er in een half uur?", "difficulty": "easy", "answers": [{ "text": "Dertig", "aliases": ["30"] }] },
+        { "prompt": "Hoe noem je de warme maaltijd die je 's avonds eet?", "difficulty": "easy", "answers": [{ "text": "Het avondeten", "aliases": ["avondeten", "diner"] }] },
+        { "prompt": "Welk zeedier heeft een schild, scharen en loopt zijwaarts?", "difficulty": "easy", "answers": [{ "text": "De krab", "aliases": ["krab"] }] },
+        { "prompt": "Hoe noem je een jong varken?", "difficulty": "easy", "answers": [{ "text": "Een big", "aliases": ["big", "biggetje"] }] },
+        { "prompt": "Wat is de hoofdstad van Bulgarije?", "difficulty": "hard", "answers": [{ "text": "Sofia" }] },
+        { "prompt": "Welke Amerikaan schreef het toneelstuk A Streetcar Named Desire?", "difficulty": "hard", "answers": [{ "text": "Tennessee Williams", "aliases": ["Williams"] }] },
+        { "prompt": "Welk element is de brandstof in de meeste kerncentrales?", "difficulty": "hard", "answers": [{ "text": "Uranium" }] },
+        { "prompt": "Welk zeedier kan meer dan vijfhonderd jaar oud worden?", "difficulty": "hard", "answers": [{ "text": "De noordkromp", "aliases": ["noordkromp", "quahog"] }] },
+        { "prompt": "In welk gebergte ligt de K2?", "difficulty": "hard", "answers": [{ "text": "De Karakoram", "aliases": ["Karakoram"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse schilder uit de Gouden Eeuw schilderde vooral kerkinterieurs?", "answers": [{ "text": "Pieter Saenredam", "aliases": ["Saenredam"] }] },
+        { "prompt": "Wat is de hoofdstad van Estland?", "answers": [{ "text": "Tallinn" }] },
+        { "prompt": "Welke Russische componist schreef Schilderijen van een tentoonstelling?", "answers": [{ "text": "Modest Moessorgski", "aliases": ["Mussorgsky", "Moessorgski"] }] },
+        { "prompt": "In welk jaar werkte er voor het eerst een telegraafkabel dwars over de Atlantische Oceaan?", "answers": [{ "text": "1866" }] },
+        { "prompt": "Welk water op Antarctica is het zoutste ter wereld?", "answers": [{ "text": "Don Juan Pond", "aliases": ["Don Juan"] }] },
+        { "prompt": "Welke Engelse wetenschapper ontdekte de elektromagnetische inductie?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
+      ]
+    }
+  ]
+}

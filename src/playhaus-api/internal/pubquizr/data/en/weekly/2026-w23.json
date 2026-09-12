@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w23",
+  "title": "Weekly quiz 23 2026",
+  "description": "The weekly quiz of Wednesday 3 June 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the northernmost country of mainland Africa?", "category": "Geography", "answers": [{ "text": "Tunisia" }] },
+        { "prompt": "Which organ system does the heart belong to?", "category": "Science", "answers": [{ "text": "The circulatory system", "aliases": ["circulatory system", "blood circulation"] }] },
+        { "prompt": "Which war did the Treaty of Utrecht end in 1713?", "category": "History", "answers": [{ "text": "The War of the Spanish Succession", "aliases": ["Spanish Succession"] }] },
+        { "prompt": "Which Olympic discipline sets swimming to music in a pool?", "category": "Sport", "answers": [{ "text": "Artistic swimming", "aliases": ["synchronised swimming"] }] },
+        { "prompt": "Which sculptor made the Little Mermaid statue in Copenhagen?", "category": "Art", "answers": [{ "text": "Edvard Eriksen", "aliases": ["Eriksen"] }] },
+        { "prompt": "Which animal's horn is made of the same stuff as your hair?", "category": "Nature", "answers": [{ "text": "The rhinoceros", "aliases": ["rhinoceros", "rhino"] }] },
+        { "prompt": "Which round Dutch cheese is named after a town in North Holland?", "category": "The Netherlands", "answers": [{ "text": "Edam" }] },
+        { "prompt": "What is the highest male singing voice called?", "category": "Music", "answers": [{ "text": "The countertenor", "aliases": ["countertenor"] }] },
+        { "prompt": "Which 1959 epic film features a chariot race in a Roman arena?", "category": "Film", "answers": [{ "text": "Ben-Hur" }] },
+        { "prompt": "What do you call the form of a language spoken in one region?", "category": "Language", "answers": [{ "text": "A dialect", "aliases": ["dialect"] }] },
+        { "prompt": "Which spice is known as the queen of spices?", "category": "Food", "answers": [{ "text": "Cardamom" }] },
+        { "prompt": "What do we call animals that eat only meat?", "category": "Science", "answers": [{ "text": "Carnivores", "aliases": ["carnivore"] }] },
+        { "prompt": "Which palace on Crete was the centre of the Minoan world?", "category": "History", "answers": [{ "text": "Knossos" }] },
+        { "prompt": "Which river carries more water to the sea than any other in France?", "category": "Geography", "answers": [{ "text": "The Rhone", "aliases": ["Rhone"] }] },
+        { "prompt": "Which Dutch striker was nicknamed the Swan of Utrecht?", "category": "Sport", "answers": [{ "text": "Marco van Basten", "aliases": ["Van Basten"] }] },
+        { "prompt": "Which purple flower's threads are harvested as saffron?", "category": "Nature", "answers": [{ "text": "The crocus", "aliases": ["crocus"] }] },
+        { "prompt": "Which Disney film follows a young deer growing up in the forest?", "category": "Film", "answers": [{ "text": "Bambi" }] },
+        { "prompt": "Which American trumpeter recorded the album Kind of Blue?", "category": "Music", "answers": [{ "text": "Miles Davis", "aliases": ["Davis"] }] },
+        { "prompt": "What does the abbreviation PIN stand for?", "category": "Technology", "answers": [{ "text": "Personal Identification Number" }] },
+        { "prompt": "Which two countries fought the Opium Wars?", "category": "History", "answers": [{ "text": "Britain and China", "aliases": ["the United Kingdom and China"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the longest fjord system in the world?", "options": [{ "text": "Scoresby Sund", "correct": true }, { "text": "Sognefjord" }, { "text": "Milford Sound" }, { "text": "Geirangerfjord" }] },
+        { "prompt": "Which of the Bronte sisters wrote Jane Eyre?", "options": [{ "text": "Charlotte Bronte", "correct": true }, { "text": "Emily Bronte" }, { "text": "Anne Bronte" }, { "text": "Mary Shelley" }] },
+        { "prompt": "What is the streak of light we call a shooting star properly called?", "options": [{ "text": "A meteor", "correct": true }, { "text": "A comet" }, { "text": "An asteroid" }, { "text": "A meteorite" }] },
+        { "prompt": "Which fish blows itself up into a spiny ball when threatened?", "options": [{ "text": "The pufferfish", "correct": true }, { "text": "The lionfish" }, { "text": "The stonefish" }, { "text": "The boxfish" }] },
+        { "prompt": "Which kitchen herb belongs to the onion family?", "options": [{ "text": "Chives", "correct": true }, { "text": "Parsley" }, { "text": "Oregano" }, { "text": "Tarragon" }] },
+        { "prompt": "Which is the oldest trophy still competed for in international sport?", "options": [{ "text": "The America's Cup", "correct": true }, { "text": "The Ashes urn" }, { "text": "The Davis Cup" }, { "text": "The Ryder Cup" }] },
+        { "prompt": "Which American painter poured and dripped his paint onto the canvas?", "options": [{ "text": "Jackson Pollock", "correct": true }, { "text": "Mark Rothko" }, { "text": "Willem de Kooning" }, { "text": "Franz Kline" }] },
+        { "prompt": "Which part of the ear keeps you balanced?", "options": [{ "text": "The semicircular canals", "correct": true }, { "text": "The cochlea" }, { "text": "The eardrum" }, { "text": "The ear canal" }] },
+        { "prompt": "Which wild bird is the most numerous in the world?", "options": [{ "text": "The red-billed quelea", "correct": true }, { "text": "The house sparrow" }, { "text": "The starling" }, { "text": "The pigeon" }] },
+        { "prompt": "Which city has more skyscrapers than any other?", "options": [{ "text": "Hong Kong", "correct": true }, { "text": "New York" }, { "text": "Dubai" }, { "text": "Tokyo" }] },
+        { "prompt": "Which alloy is made by mixing copper and tin?", "options": [{ "text": "Bronze", "correct": true }, { "text": "Brass" }, { "text": "Pewter" }, { "text": "Steel" }] },
+        { "prompt": "Which is the busiest railway station in the world?", "options": [{ "text": "Shinjuku", "correct": true }, { "text": "Grand Central" }, { "text": "Chatelet" }, { "text": "Utrecht Centraal" }] },
+        { "prompt": "What is the name for the number one followed by a hundred zeros?", "options": [{ "text": "A googol", "correct": true }, { "text": "A billion" }, { "text": "A myriad" }, { "text": "A quadrillion" }] },
+        { "prompt": "Which dinosaur is thought to be the largest land animal that ever lived?", "options": [{ "text": "Argentinosaurus", "correct": true }, { "text": "Brachiosaurus" }, { "text": "Diplodocus" }, { "text": "Spinosaurus" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres long is the Oosterschelde storm surge barrier?", "answer": 9000, "unit": "metres" },
+        { "prompt": "How many teeth does a bottlenose dolphin have?", "answer": 100, "unit": "teeth" },
+        { "prompt": "In what year did the Netherlands ban smoking in bars and restaurants?", "answer": 2008, "unit": "" },
+        { "prompt": "How many kilometres of dyke does the Netherlands maintain?", "answer": 17500, "unit": "kilometres" },
+        { "prompt": "How many muscles does it take to make a single step?", "answer": 200, "unit": "muscles" },
+        { "prompt": "How many years does an oak need before it grows its first acorns?", "answer": 40, "unit": "years" },
+        { "prompt": "How many billion people live on earth?", "answer": 8, "unit": "billion" },
+        { "prompt": "How many kilometres per hour does a smashed badminton shuttle reach?", "answer": 400, "unit": "kilometres per hour" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Paddling pool" },
+        { "prompt": "Garden gate" },
+        { "prompt": "Ice lolly" },
+        { "prompt": "Selfie stick" },
+        { "prompt": "Insect repellent" },
+        { "prompt": "Beach towel" },
+        { "prompt": "Barbecue tongs" },
+        { "prompt": "Beach hut" },
+        { "prompt": "Straw hat" },
+        { "prompt": "Flip-flop" },
+        { "prompt": "Ice bucket" },
+        { "prompt": "Picnic blanket" },
+        { "prompt": "Swim ring" },
+        { "prompt": "Awning" },
+        { "prompt": "Bird's nest" },
+        { "prompt": "Garden bench" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Colombia.", "answers": [{ "text": "Venezuela" }, { "text": "Brazil" }, { "text": "Peru" }, { "text": "Ecuador" }] },
+        { "prompt": "Name four Dutch dishes.", "answers": [{ "text": "Stamppot" }, { "text": "Erwtensoep" }, { "text": "Bitterballen" }, { "text": "Poffertjes" }] },
+        { "prompt": "Name four Olympic sports played without a ball.", "answers": [{ "text": "Swimming" }, { "text": "Athletics" }, { "text": "Judo" }, { "text": "Rowing" }] },
+        { "prompt": "Name four leaves you can put in a salad.", "answers": [{ "text": "Lettuce" }, { "text": "Rocket" }, { "text": "Spinach" }, { "text": "Endive" }] },
+        { "prompt": "Name four countries in the southern hemisphere.", "answers": [{ "text": "Australia" }, { "text": "Argentina" }, { "text": "South Africa" }, { "text": "Chile" }] },
+        { "prompt": "Name four capital cities in South America.", "answers": [{ "text": "Lima" }, { "text": "Santiago" }, { "text": "Quito" }, { "text": "Brasilia" }] },
+        { "prompt": "Name four things that come in pairs.", "answers": [{ "text": "Shoes" }, { "text": "Socks" }, { "text": "Gloves" }, { "text": "Earrings" }] },
+        { "prompt": "Name four writers of children's books.", "answers": [{ "text": "Roald Dahl" }, { "text": "Astrid Lindgren" }, { "text": "Annie M.G. Schmidt" }, { "text": "J.K. Rowling" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many weeks are there in a year?", "difficulty": "easy", "answers": [{ "text": "Fifty-two", "aliases": ["52"] }] },
+        { "prompt": "Which frozen dessert do you eat from a cone on a hot day?", "difficulty": "easy", "answers": [{ "text": "Ice cream" }] },
+        { "prompt": "Which pet is often kept swimming in a bowl?", "difficulty": "easy", "answers": [{ "text": "A goldfish", "aliases": ["goldfish"] }] },
+        { "prompt": "How many hours are there in two days?", "difficulty": "easy", "answers": [{ "text": "Forty-eight", "aliases": ["48"] }] },
+        { "prompt": "What do you call the hair that grows on a man's chin?", "difficulty": "easy", "answers": [{ "text": "A beard", "aliases": ["beard"] }] },
+        { "prompt": "What is the capital of Tanzania?", "difficulty": "hard", "answers": [{ "text": "Dodoma" }] },
+        { "prompt": "Which Chilean poet won the Nobel Prize for literature in 1971?", "difficulty": "hard", "answers": [{ "text": "Pablo Neruda", "aliases": ["Neruda"] }] },
+        { "prompt": "Which is the smallest mammal in the world by length?", "difficulty": "hard", "answers": [{ "text": "The Etruscan shrew", "aliases": ["Etruscan shrew"] }] },
+        { "prompt": "Which acid does an ant inject when it stings?", "difficulty": "hard", "answers": [{ "text": "Formic acid", "aliases": ["formic"] }] },
+        { "prompt": "Which American state borders only one other state?", "difficulty": "hard", "answers": [{ "text": "Maine" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch mathematician founded the school of intuitionism?", "answers": [{ "text": "L.E.J. Brouwer", "aliases": ["Brouwer"] }] },
+        { "prompt": "What is the capital of Zimbabwe?", "answers": [{ "text": "Harare" }] },
+        { "prompt": "Which Austrian logician proved the incompleteness theorems?", "answers": [{ "text": "Kurt Godel", "aliases": ["Godel"] }] },
+        { "prompt": "In which year was the first Dutch Grand Prix run at Zandvoort?", "answers": [{ "text": "1952" }] },
+        { "prompt": "Which Indonesian lake is the largest volcanic lake in the world?", "answers": [{ "text": "Lake Toba", "aliases": ["Toba"] }] },
+        { "prompt": "Which French philosopher invented coordinate geometry?", "answers": [{ "text": "Rene Descartes", "aliases": ["Descartes"] }] }
+      ]
+    }
+  ]
+}

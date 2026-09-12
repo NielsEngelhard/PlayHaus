@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w1",
+  "title": "Weekly quiz 1 2026",
+  "description": "The weekly quiz of Wednesday 31 December 2025.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which desert covers much of Mongolia and northern China?", "category": "Geography", "answers": [{ "text": "The Gobi", "aliases": ["Gobi", "Gobi Desert"] }] },
+        { "prompt": "What is the chemical symbol for sodium?", "category": "Science", "answers": [{ "text": "Na" }] },
+        { "prompt": "Which empire was founded by Genghis Khan?", "category": "History", "answers": [{ "text": "The Mongol Empire", "aliases": ["Mongol Empire", "Mongolian Empire"] }] },
+        { "prompt": "In which sport would you perform a slam dunk?", "category": "Sport", "answers": [{ "text": "Basketball" }] },
+        { "prompt": "Which Spanish architect designed the Sagrada Familia?", "category": "Art", "answers": [{ "text": "Antoni Gaudi", "aliases": ["Gaudi"] }] },
+        { "prompt": "What is a group of wolves called?", "category": "Nature", "answers": [{ "text": "A pack", "aliases": ["pack"] }] },
+        { "prompt": "In which Dutch town is the largest flower auction in the world?", "category": "The Netherlands", "answers": [{ "text": "Aalsmeer" }] },
+        { "prompt": "Which song is traditionally sung at midnight on New Year's Eve?", "category": "Music", "answers": [{ "text": "Auld Lang Syne" }] },
+        { "prompt": "Who directed the 1997 film Titanic?", "category": "Film", "answers": [{ "text": "James Cameron", "aliases": ["Cameron"] }] },
+        { "prompt": "What does the abbreviation etc. stand for?", "category": "Language", "answers": [{ "text": "Et cetera" }] },
+        { "prompt": "Which nut is marzipan made from?", "category": "Food", "answers": [{ "text": "The almond", "aliases": ["almond", "almonds"] }] },
+        { "prompt": "What is the study of earthquakes called?", "category": "Science", "answers": [{ "text": "Seismology" }] },
+        { "prompt": "Whose expedition was the first to sail all the way around the world?", "category": "History", "answers": [{ "text": "Ferdinand Magellan", "aliases": ["Magellan"] }] },
+        { "prompt": "Which strait separates Europe from Asia at Istanbul?", "category": "Geography", "answers": [{ "text": "The Bosphorus", "aliases": ["Bosphorus", "Bosporus"] }] },
+        { "prompt": "In which sport is the Ryder Cup contested?", "category": "Sport", "answers": [{ "text": "Golf" }] },
+        { "prompt": "Which bird is the traditional symbol of peace?", "category": "Nature", "answers": [{ "text": "The dove", "aliases": ["dove"] }] },
+        { "prompt": "In which film series does the wizard Gandalf appear?", "category": "Film", "answers": [{ "text": "The Lord of the Rings", "aliases": ["Lord of the Rings"] }] },
+        { "prompt": "Which small four-stringed instrument comes from Hawaii?", "category": "Music", "answers": [{ "text": "The ukulele", "aliases": ["ukulele"] }] },
+        { "prompt": "What do the letters www stand for?", "category": "Technology", "answers": [{ "text": "World Wide Web" }] },
+        { "prompt": "In which country were the Olympic Games first held in antiquity?", "category": "History", "answers": [{ "text": "Greece" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these South American countries has no coastline?", "options": [{ "text": "Bolivia", "correct": true }, { "text": "Peru" }, { "text": "Ecuador" }, { "text": "Venezuela" }] },
+        { "prompt": "What is the capital of Iceland?", "options": [{ "text": "Reykjavik", "correct": true }, { "text": "Akureyri" }, { "text": "Bergen" }, { "text": "Tromso" }] },
+        { "prompt": "Who wrote the play A Doll's House?", "options": [{ "text": "Henrik Ibsen", "correct": true }, { "text": "August Strindberg" }, { "text": "Bertolt Brecht" }, { "text": "Knut Hamsun" }] },
+        { "prompt": "What is the largest species of shark?", "options": [{ "text": "The whale shark", "correct": true }, { "text": "The great white" }, { "text": "The tiger shark" }, { "text": "The hammerhead" }] },
+        { "prompt": "Which blood vessel carries blood from the heart to the lungs?", "options": [{ "text": "The pulmonary artery", "correct": true }, { "text": "The aorta" }, { "text": "The carotid artery" }, { "text": "The jugular vein" }] },
+        { "prompt": "Which mountain range forms the border between France and Spain?", "options": [{ "text": "The Pyrenees", "correct": true }, { "text": "The Apennines" }, { "text": "The Carpathians" }, { "text": "The Vosges" }] },
+        { "prompt": "Which country is the natural home of the kiwi bird?", "options": [{ "text": "New Zealand", "correct": true }, { "text": "Australia" }, { "text": "Papua New Guinea" }, { "text": "Fiji" }] },
+        { "prompt": "Which of these is not a primary colour of light?", "options": [{ "text": "Yellow", "correct": true }, { "text": "Blue" }, { "text": "Green" }, { "text": "Red" }] },
+        { "prompt": "In Greek mythology, who is the god of the sea?", "options": [{ "text": "Poseidon", "correct": true }, { "text": "Hades" }, { "text": "Hermes" }, { "text": "Hephaestus" }] },
+        { "prompt": "Which instrument has four strings and is played with a bow under the chin?", "options": [{ "text": "The violin", "correct": true }, { "text": "The cello" }, { "text": "The viola" }, { "text": "The double bass" }] },
+        { "prompt": "In which board game do players buy streets and build hotels?", "options": [{ "text": "Monopoly", "correct": true }, { "text": "Risk" }, { "text": "Cluedo" }, { "text": "Scrabble" }] },
+        { "prompt": "Which is the tallest breed of dog?", "options": [{ "text": "The Great Dane", "correct": true }, { "text": "The Saint Bernard" }, { "text": "The Newfoundland" }, { "text": "The mastiff" }] },
+        { "prompt": "Who was the first person to reach the South Pole?", "options": [{ "text": "Roald Amundsen", "correct": true }, { "text": "Robert Scott" }, { "text": "Ernest Shackleton" }, { "text": "Fridtjof Nansen" }] },
+        { "prompt": "What does a philatelist collect?", "options": [{ "text": "Stamps", "correct": true }, { "text": "Coins" }, { "text": "Butterflies" }, { "text": "Postcards" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many member states does the United Nations have?", "answer": 193, "unit": "countries", "explanation": "South Sudan was the last to join, in 2011." },
+        { "prompt": "How many metres tall is the Burj Khalifa in Dubai?", "answer": 828, "unit": "metres" },
+        { "prompt": "How many stars are on the flag of the European Union?", "answer": 12, "unit": "stars", "explanation": "Twelve from the start, and the number never changed as members joined." },
+        { "prompt": "How many islands does Indonesia have, roughly?", "answer": 17000, "unit": "islands" },
+        { "prompt": "How many teeth does an adult dog have?", "answer": 42, "unit": "teeth" },
+        { "prompt": "How many litres of water does a full bath hold, roughly?", "answer": 150, "unit": "litres" },
+        { "prompt": "How many minutes long is the film Titanic?", "answer": 194, "unit": "minutes" },
+        { "prompt": "How many players does a rugby union team have on the pitch?", "answer": 15, "unit": "players" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Fireworks" },
+        { "prompt": "Confetti" },
+        { "prompt": "Calendar" },
+        { "prompt": "Champagne" },
+        { "prompt": "Ice rink" },
+        { "prompt": "Mitten" },
+        { "prompt": "Chimney" },
+        { "prompt": "Toboggan" },
+        { "prompt": "Snowball" },
+        { "prompt": "Pine cone" },
+        { "prompt": "Hot chocolate" },
+        { "prompt": "Blanket" },
+        { "prompt": "Thermos flask" },
+        { "prompt": "Icicle" },
+        { "prompt": "Woolly hat" },
+        { "prompt": "Candlestick" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Brazil.", "answers": [{ "text": "Argentina" }, { "text": "Bolivia" }, { "text": "Peru" }, { "text": "Colombia" }] },
+        { "prompt": "Name the four states of matter.", "answers": [{ "text": "Solid" }, { "text": "Liquid" }, { "text": "Gas" }, { "text": "Plasma" }] },
+        { "prompt": "Name the four strings of a ukulele.", "answers": [{ "text": "G" }, { "text": "C" }, { "text": "E" }, { "text": "A" }] },
+        { "prompt": "Name four countries whose name begins with the letter I.", "answers": [{ "text": "Italy" }, { "text": "India" }, { "text": "Iceland" }, { "text": "Ireland" }] },
+        { "prompt": "Name the four phases of the moon.", "answers": [{ "text": "New moon" }, { "text": "First quarter" }, { "text": "Full moon" }, { "text": "Last quarter" }] },
+        { "prompt": "Name four kinds of pasta.", "answers": [{ "text": "Spaghetti" }, { "text": "Penne" }, { "text": "Fusilli" }, { "text": "Tagliatelle" }] },
+        { "prompt": "Name four animals that hibernate.", "answers": [{ "text": "Bear" }, { "text": "Hedgehog" }, { "text": "Bat" }, { "text": "Dormouse" }] },
+        { "prompt": "Name four sports at the Winter Olympics.", "answers": [{ "text": "Skiing" }, { "text": "Ice hockey" }, { "text": "Bobsleigh" }, { "text": "Speed skating" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many days does a leap year have?", "difficulty": "easy", "answers": [{ "text": "Three hundred and sixty-six", "aliases": ["366"] }] },
+        { "prompt": "Which animal is traditionally called man's best friend?", "difficulty": "easy", "answers": [{ "text": "The dog", "aliases": ["dog"] }] },
+        { "prompt": "What do bees make in their hive?", "difficulty": "easy", "answers": [{ "text": "Honey" }] },
+        { "prompt": "Which sport is played at the Super Bowl?", "difficulty": "easy", "answers": [{ "text": "American football" }] },
+        { "prompt": "What is the name of the fairy in Peter Pan?", "difficulty": "easy", "answers": [{ "text": "Tinker Bell", "aliases": ["Tinkerbell"] }] },
+        { "prompt": "What is the currency of Poland?", "difficulty": "hard", "answers": [{ "text": "The zloty", "aliases": ["zloty"] }] },
+        { "prompt": "Who wrote the novel Brave New World?", "difficulty": "hard", "answers": [{ "text": "Aldous Huxley", "aliases": ["Huxley"] }] },
+        { "prompt": "What is the chemical symbol for potassium?", "difficulty": "hard", "answers": [{ "text": "K" }] },
+        { "prompt": "Which town hosted the first Winter Olympic Games in 1924?", "difficulty": "hard", "answers": [{ "text": "Chamonix" }] },
+        { "prompt": "Which sea is the only one in the world with no coastline?", "difficulty": "hard", "answers": [{ "text": "The Sargasso Sea", "aliases": ["Sargasso Sea", "Sargasso"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Norwegian explorer sailed the polar ship Fram?", "answers": [{ "text": "Fridtjof Nansen", "aliases": ["Nansen"] }] },
+        { "prompt": "What is the capital of Bhutan?", "answers": [{ "text": "Thimphu" }] },
+        { "prompt": "Which Swiss mathematician gave us the symbol for pi as we write it today?", "answers": [{ "text": "Leonhard Euler", "aliases": ["Euler"] }] },
+        { "prompt": "Which German physicist first proved the existence of radio waves?", "answers": [{ "text": "Heinrich Hertz", "aliases": ["Hertz"] }] },
+        { "prompt": "In which year was the Suez Canal opened?", "answers": [{ "text": "1869" }] },
+        { "prompt": "Which Italian composer wrote the opera Tosca?", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] }
+      ]
+    }
+  ]
+}

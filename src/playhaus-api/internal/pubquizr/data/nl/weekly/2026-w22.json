@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w22",
+  "title": "Weekquiz 22 2026",
+  "description": "De wekelijkse quiz van woensdag 27 mei 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke zeestraat scheidt Tasmanie van het vasteland van Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Straat Bass", "aliases": ["Bass Strait", "Straat Bass"] }] },
+        { "prompt": "Hoe heet de wetenschap van gesteenten en de aardkorst?", "category": "Wetenschap", "answers": [{ "text": "Geologie" }] },
+        { "prompt": "Welke Amerikaanse president kocht Louisiana van Frankrijk?", "category": "Geschiedenis", "answers": [{ "text": "Thomas Jefferson", "aliases": ["Jefferson"] }] },
+        { "prompt": "In welke olympische sport bestaat de stoottechniek clean and jerk?", "category": "Sport", "answers": [{ "text": "Gewichtheffen" }] },
+        { "prompt": "Welke Oostenrijkse kunstenaar ontwierp een huis in Wenen met scheve vloeren en bomen in de ramen?", "category": "Kunst", "answers": [{ "text": "Friedensreich Hundertwasser", "aliases": ["Hundertwasser"] }] },
+        { "prompt": "Welk zeedier leeft in een spiraalschelp en is in 500 miljoen jaar nauwelijks veranderd?", "category": "Natuur", "answers": [{ "text": "De nautilus", "aliases": ["nautilus"] }] },
+        { "prompt": "Welke Nederlandse plaats houdt elk jaar in september het grootste bloemencorso ter wereld?", "category": "Nederland", "answers": [{ "text": "Zundert" }] },
+        { "prompt": "Hoe heet een stuk voor een solist met orkest?", "category": "Muziek", "answers": [{ "text": "Een concert", "aliases": ["concerto", "concert"] }] },
+        { "prompt": "In welke horrorfilm terroriseert een clown genaamd Pennywise een stadje?", "category": "Film", "answers": [{ "text": "It" }] },
+        { "prompt": "In welke taal heet een koffiepauze een fika?", "category": "Taal", "answers": [{ "text": "Zweeds" }] },
+        { "prompt": "Welke noot hoort in een waldorfsalade?", "category": "Eten", "answers": [{ "text": "De walnoot", "aliases": ["walnoot"] }] },
+        { "prompt": "Hoe heet het als een gas weer een vloeistof wordt?", "category": "Wetenschap", "answers": [{ "text": "Condensatie" }] },
+        { "prompt": "Welke Chinese keizer werd begraven met een leger van terracotta soldaten?", "category": "Geschiedenis", "answers": [{ "text": "Qin Shi Huang", "aliases": ["Qin Shihuang"] }] },
+        { "prompt": "Welke rivier stroomt door Hamburg naar de Noordzee?", "category": "Aardrijkskunde", "answers": [{ "text": "De Elbe", "aliases": ["Elbe"] }] },
+        { "prompt": "Wie was de eerste voetballer die de Gouden Bal kreeg?", "category": "Sport", "answers": [{ "text": "Stanley Matthews", "aliases": ["Matthews"] }] },
+        { "prompt": "Wat is de snelst groeiende boom ter wereld?", "category": "Natuur", "answers": [{ "text": "De paulownia", "aliases": ["paulownia", "anna-paulownaboom"] }] },
+        { "prompt": "Welke Nederlandse film won in 1996 de Oscar voor beste buitenlandse film?", "category": "Film", "answers": [{ "text": "Antonia", "aliases": ["Antonia's Line"] }] },
+        { "prompt": "Hoe heet een langzaam en treurig muziekstuk bij een begrafenis?", "category": "Muziek", "answers": [{ "text": "Een klaagzang", "aliases": ["klaagzang", "treurmars"] }] },
+        { "prompt": "Waar staat de afkorting OS voor op een computer?", "category": "Techniek", "answers": [{ "text": "Operating System", "aliases": ["besturingssysteem"] }] },
+        { "prompt": "Welke zeeslag uit 1571 brak de Ottomaanse macht op zee in de Middellandse Zee?", "category": "Geschiedenis", "answers": [{ "text": "Lepanto", "aliases": ["de slag bij Lepanto"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is het grootste bewoonde kasteel ter wereld?", "options": [{ "text": "Windsor Castle", "correct": true }, { "text": "De Praagse Burcht" }, { "text": "Edinburgh Castle" }, { "text": "Kasteel Malbork" }] },
+        { "prompt": "Welke Engelse schrijver schreef Grote verwachtingen?", "options": [{ "text": "Charles Dickens", "correct": true }, { "text": "Thomas Hardy" }, { "text": "Anthony Trollope" }, { "text": "William Thackeray" }] },
+        { "prompt": "Welke ruimtesonde kwam als eerste in een baan om Saturnus?", "options": [{ "text": "Cassini", "correct": true }, { "text": "Galileo" }, { "text": "Juno" }, { "text": "Pioneer" }] },
+        { "prompt": "Welke hagedis kan over het wateroppervlak rennen?", "options": [{ "text": "De basilisk", "correct": true }, { "text": "De leguaan" }, { "text": "De gekko" }, { "text": "De skink" }] },
+        { "prompt": "Van welk graan wordt polenta gemaakt?", "options": [{ "text": "Mais", "correct": true }, { "text": "Gerst" }, { "text": "Rogge" }, { "text": "Gierst" }] },
+        { "prompt": "In welke sport strijden landen om de Thomas Cup?", "options": [{ "text": "Badminton", "correct": true }, { "text": "Tafeltennis" }, { "text": "Squash" }, { "text": "Schermen" }] },
+        { "prompt": "Welke Deense architect ontwierp het operagebouw van Sydney?", "options": [{ "text": "Jorn Utzon", "correct": true }, { "text": "Arne Jacobsen" }, { "text": "Bjarke Ingels" }, { "text": "Henning Larsen" }] },
+        { "prompt": "Welk hormoon vertelt het lichaam dat het tijd is om te slapen?", "options": [{ "text": "Melatonine", "correct": true }, { "text": "Adrenaline" }, { "text": "Insuline" }, { "text": "Serotonine" }] },
+        { "prompt": "Welk lichaamsdeel heeft helemaal geen eigen bloedvaten?", "options": [{ "text": "Het hoornvlies", "correct": true }, { "text": "De lever" }, { "text": "De tong" }, { "text": "De nier" }] },
+        { "prompt": "In welk land staat de langste brug over water ter wereld?", "options": [{ "text": "China", "correct": true }, { "text": "De Verenigde Staten" }, { "text": "Japan" }, { "text": "Noorwegen" }] },
+        { "prompt": "Welk element vormt zowel diamant als grafiet?", "options": [{ "text": "Koolstof", "correct": true }, { "text": "Silicium" }, { "text": "Boor" }, { "text": "Zwavel" }] },
+        { "prompt": "Welke stad is de hoofdstad van Sicilie?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] },
+        { "prompt": "Hoe noem je een taal die niemand meer als moedertaal spreekt?", "options": [{ "text": "Een dode taal", "correct": true }, { "text": "Een creooltaal" }, { "text": "Een pidgin" }, { "text": "Een dialect" }] },
+        { "prompt": "Welk klein insect is het enige dat een vijg kan bestuiven?", "options": [{ "text": "De vijgenwesp", "correct": true }, { "text": "De zweefvlieg" }, { "text": "De trips" }, { "text": "De dansmug" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het hoogste gebouw van Europa?", "answer": 462, "unit": "meter" },
+        { "prompt": "Hoeveel harten heeft een inktvis?", "answer": 3, "unit": "harten" },
+        { "prompt": "In welk jaar werd de Amsterdamse grachtengordel werelderfgoed?", "answer": 2010, "unit": "" },
+        { "prompt": "Hoeveel kilometer lang is de langste non-stopvlucht ter wereld?", "answer": 15300, "unit": "kilometer" },
+        { "prompt": "Hoeveel miljard zenuwcellen telt het menselijk brein?", "answer": 86, "unit": "miljard" },
+        { "prompt": "Hoeveel miljoen fietsen zijn er in Nederland?", "answer": 23, "unit": "miljoen fietsen" },
+        { "prompt": "Hoeveel partjes heeft een sinaasappel gemiddeld?", "answer": 10, "unit": "partjes" },
+        { "prompt": "Hoeveel stappen zet een gemiddeld mens per dag?", "answer": 5000, "unit": "stappen" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Bloembak" },
+        { "prompt": "Botervloot" },
+        { "prompt": "IJskrabber" },
+        { "prompt": "Dakdrager" },
+        { "prompt": "Intercom" },
+        { "prompt": "Instapkaart" },
+        { "prompt": "Douchekop" },
+        { "prompt": "Vaas" },
+        { "prompt": "Tafelkleed" },
+        { "prompt": "Kaarsendover" },
+        { "prompt": "Waxinelichtje" },
+        { "prompt": "Wijnglas" },
+        { "prompt": "Asbak" },
+        { "prompt": "Pijp" },
+        { "prompt": "Wandelschoen" },
+        { "prompt": "Ligbed" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Soedan grenzen.", "answers": [{ "text": "Egypte" }, { "text": "Tsjaad" }, { "text": "Ethiopie" }, { "text": "Libie" }] },
+        { "prompt": "Noem vier sauzen.", "answers": [{ "text": "Mayonaise" }, { "text": "Ketchup" }, { "text": "Mosterd" }, { "text": "Pesto" }] },
+        { "prompt": "Noem vier vrouwen die naam maakten in de wetenschap.", "answers": [{ "text": "Marie Curie" }, { "text": "Rosalind Franklin" }, { "text": "Ada Lovelace" }, { "text": "Jane Goodall" }] },
+        { "prompt": "Noem vier sporten die sinds 2000 olympisch werden.", "answers": [{ "text": "Skateboarden" }, { "text": "Surfen" }, { "text": "Sportklimmen" }, { "text": "Karate" }] },
+        { "prompt": "Noem vier landen in Zuid-Azie.", "answers": [{ "text": "India" }, { "text": "Pakistan" }, { "text": "Bangladesh" }, { "text": "Nepal" }] },
+        { "prompt": "Noem vier dingen uit een fietsreparatieset.", "answers": [{ "text": "Bandenlichter" }, { "text": "Plakkertje" }, { "text": "Pomp" }, { "text": "Sleutel" }] },
+        { "prompt": "Noem vier beroemde kastelen.", "answers": [{ "text": "Windsor" }, { "text": "Neuschwanstein" }, { "text": "Edinburgh" }, { "text": "Muiderslot" }] },
+        { "prompt": "Noem vier soorten verf die een kunstenaar gebruikt.", "answers": [{ "text": "Olieverf" }, { "text": "Acryl" }, { "text": "Aquarel" }, { "text": "Gouache" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een heel jong boompje?", "difficulty": "easy", "answers": [{ "text": "Een zaailing", "aliases": ["zaailing", "jong boompje"] }] },
+        { "prompt": "Welk insect fladdert 's nachts rond een lamp?", "difficulty": "easy", "answers": [{ "text": "De mot", "aliases": ["mot", "nachtvlinder"] }] },
+        { "prompt": "Wat is het tegenovergestelde van nat?", "difficulty": "easy", "answers": [{ "text": "Droog" }] },
+        { "prompt": "Hoe noem je de persoon die je eten brengt in een restaurant?", "difficulty": "easy", "answers": [{ "text": "Een ober", "aliases": ["ober", "serveerster"] }] },
+        { "prompt": "Welke maand heeft de minste dagen?", "difficulty": "easy", "answers": [{ "text": "Februari" }] },
+        { "prompt": "Wat is de hoofdstad van Turkmenistan?", "difficulty": "hard", "answers": [{ "text": "Asjchabad", "aliases": ["Ashgabat"] }] },
+        { "prompt": "Welke Russische schrijver schreef Vaders en zonen?", "difficulty": "hard", "answers": [{ "text": "Ivan Toergenjev", "aliases": ["Toergenjev", "Turgenev"] }] },
+        { "prompt": "Welke theorie beschrijft zwaartekracht als een kromming van ruimte en tijd?", "difficulty": "hard", "answers": [{ "text": "De algemene relativiteitstheorie", "aliases": ["relativiteitstheorie"] }] },
+        { "prompt": "Wat is het grootste eiland van Japan?", "difficulty": "hard", "answers": [{ "text": "Honshu" }] },
+        { "prompt": "Wat is de grootste vleermuissoort ter wereld?", "difficulty": "hard", "answers": [{ "text": "De vliegende hond", "aliases": ["vliegende hond"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse schilder maakte De bedreigde zwaan?", "answers": [{ "text": "Jan Asselijn", "aliases": ["Asselijn"] }] },
+        { "prompt": "Wat is de hoofdstad van Bangladesh?", "answers": [{ "text": "Dhaka" }] },
+        { "prompt": "Welke Finse componist schreef Finlandia?", "answers": [{ "text": "Jean Sibelius", "aliases": ["Sibelius"] }] },
+        { "prompt": "Welke Nederlandse vestingstad is aangelegd als een twaalfpuntige ster?", "answers": [{ "text": "Naarden" }] },
+        { "prompt": "Wat is het grootste eiland in de Noordelijke IJszee?", "answers": [{ "text": "Baffineiland", "aliases": ["Baffin"] }] },
+        { "prompt": "Welke Engelse scheikundige wordt gezien als de ontdekker van zuurstof?", "answers": [{ "text": "Joseph Priestley", "aliases": ["Priestley"] }] }
+      ]
+    }
+  ]
+}

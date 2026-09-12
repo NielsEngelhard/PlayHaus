@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w10",
+  "title": "Weekquiz 10 2026",
+  "description": "De wekelijkse quiz van woensdag 4 maart 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke rivier vormt een groot deel van de grens tussen de Verenigde Staten en Mexico?", "category": "Aardrijkskunde", "answers": [{ "text": "De Rio Grande", "aliases": ["Rio Grande"] }] },
+        { "prompt": "Wat meet een geigerteller?", "category": "Wetenschap", "answers": [{ "text": "Radioactiviteit", "aliases": ["straling"] }] },
+        { "prompt": "Welke Amerikaanse president trad af door het Watergateschandaal?", "category": "Geschiedenis", "answers": [{ "text": "Richard Nixon", "aliases": ["Nixon"] }] },
+        { "prompt": "In welke sport rijden renners rondjes op een wielerbaan?", "category": "Sport", "answers": [{ "text": "Baanwielrennen", "aliases": ["baanwielrennen", "wielrennen op de baan"] }] },
+        { "prompt": "Welke Italiaanse schilder beschilderde de Scrovegnikapel in Padua met fresco's?", "category": "Kunst", "answers": [{ "text": "Giotto" }] },
+        { "prompt": "Wat is de grootste losse bloem ter wereld?", "category": "Natuur", "answers": [{ "text": "De rafflesia", "aliases": ["rafflesia"] }] },
+        { "prompt": "Wat is het grootste nationale park van Nederland?", "category": "Nederland", "answers": [{ "text": "De Hoge Veluwe", "aliases": ["Hoge Veluwe"] }] },
+        { "prompt": "In welke Italiaanse stad woonde de vioolbouwersfamilie Stradivari?", "category": "Muziek", "answers": [{ "text": "Cremona" }] },
+        { "prompt": "Welke actrice speelde Mia in de film La La Land?", "category": "Film", "answers": [{ "text": "Emma Stone", "aliases": ["Stone"] }] },
+        { "prompt": "Wat betekent de Latijnse uitdrukking carpe diem?", "category": "Taal", "answers": [{ "text": "Pluk de dag" }] },
+        { "prompt": "Welk graan wordt gemout om bier te brouwen?", "category": "Eten", "answers": [{ "text": "Gerst" }] },
+        { "prompt": "Welke laag van de atmosfeer beschermt ons tegen ultraviolet licht?", "category": "Wetenschap", "answers": [{ "text": "De ozonlaag", "aliases": ["ozonlaag", "ozon"] }] },
+        { "prompt": "Welke twee landen vochten de Honderdjarige Oorlog uit?", "category": "Geschiedenis", "answers": [{ "text": "Engeland en Frankrijk" }] },
+        { "prompt": "Wat is de hoogstgelegen hoofdstad ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "La Paz" }] },
+        { "prompt": "Welk atletiekonderdeel bestaat uit tien nummers in twee dagen?", "category": "Sport", "answers": [{ "text": "De tienkamp", "aliases": ["tienkamp", "decathlon"] }] },
+        { "prompt": "Welke vogel maakt de langste trek van alle dieren?", "category": "Natuur", "answers": [{ "text": "De noordse stern", "aliases": ["noordse stern"] }] },
+        { "prompt": "In welke animatiefilm blijft een klein robotje achter om de aarde op te ruimen?", "category": "Film", "answers": [{ "text": "WALL-E" }] },
+        { "prompt": "Welke Italiaanse term zegt een muzikant dat hij langzaam en rustig moet spelen?", "category": "Muziek", "answers": [{ "text": "Adagio" }] },
+        { "prompt": "Waar staat de afkorting VPN voor?", "category": "Techniek", "answers": [{ "text": "Virtual Private Network" }] },
+        { "prompt": "Welke Italiaanse zeevaarder voer voor Engeland en bereikte in 1497 Newfoundland?", "category": "Geschiedenis", "answers": [{ "text": "John Cabot", "aliases": ["Giovanni Caboto", "Cabot"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land produceert de meeste natuurrubber ter wereld?", "options": [{ "text": "Thailand", "correct": true }, { "text": "Brazilie" }, { "text": "Nigeria" }, { "text": "India" }] },
+        { "prompt": "Welke dichter schreef The Waste Land?", "options": [{ "text": "T.S. Eliot", "correct": true }, { "text": "Ezra Pound" }, { "text": "W.B. Yeats" }, { "text": "Robert Frost" }] },
+        { "prompt": "Wat is de helderste ster aan de nachtelijke hemel?", "options": [{ "text": "Sirius", "correct": true }, { "text": "Wega" }, { "text": "Poolster" }, { "text": "Betelgeuze" }] },
+        { "prompt": "Welk zuur geeft citroenen hun zure smaak?", "options": [{ "text": "Citroenzuur", "correct": true }, { "text": "Melkzuur" }, { "text": "Azijnzuur" }, { "text": "Oxaalzuur" }] },
+        { "prompt": "Uit welk land komt het gevulde deeghapje pierogi?", "options": [{ "text": "Polen", "correct": true }, { "text": "Oekraine" }, { "text": "Tsjechie" }, { "text": "Hongarije" }] },
+        { "prompt": "Welk team won in 1975 het eerste WK cricket?", "options": [{ "text": "West-Indie", "correct": true }, { "text": "Australie" }, { "text": "Engeland" }, { "text": "India" }] },
+        { "prompt": "Welk dier velt bomen om dammen in beken te bouwen?", "options": [{ "text": "De bever", "correct": true }, { "text": "De otter" }, { "text": "De muskusrat" }, { "text": "De capibara" }] },
+        { "prompt": "In welke stad loop je over de Karelsbrug?", "options": [{ "text": "Praag", "correct": true }, { "text": "Boedapest" }, { "text": "Wenen" }, { "text": "Krakau" }] },
+        { "prompt": "Wat is de meest voorkomende achternaam ter wereld?", "options": [{ "text": "Wang", "correct": true }, { "text": "Smith" }, { "text": "Garcia" }, { "text": "Patel" }] },
+        { "prompt": "Boven welke breedtegraad staat de zon op 21 juni om twaalf uur recht boven je hoofd?", "options": [{ "text": "De Kreeftskeerkring", "correct": true }, { "text": "De Steenbokskeerkring" }, { "text": "De evenaar" }, { "text": "De poolcirkel" }] },
+        { "prompt": "Welke architect ontwierp de glazen piramide op de binnenplaats van het Louvre?", "options": [{ "text": "I.M. Pei", "correct": true }, { "text": "Norman Foster" }, { "text": "Renzo Piano" }, { "text": "Rem Koolhaas" }] },
+        { "prompt": "Welke vitamine maakt het lichaam van het betacaroteen in wortels?", "options": [{ "text": "Vitamine A", "correct": true }, { "text": "Vitamine B6" }, { "text": "Vitamine E" }, { "text": "Vitamine K" }] },
+        { "prompt": "In welk land staat de langste hangbrug ter wereld?", "options": [{ "text": "Turkije", "correct": true }, { "text": "Japan" }, { "text": "China" }, { "text": "Denemarken" }] },
+        { "prompt": "Welke taal wordt geschreven met het langste alfabet ter wereld?", "options": [{ "text": "Khmer", "correct": true }, { "text": "Russisch" }, { "text": "Georgisch" }, { "text": "Thais" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter is het wereldrecord schansspringen?", "answer": 254, "unit": "meter" },
+        { "prompt": "Hoeveel botten heeft een paard?", "answer": 205, "unit": "botten" },
+        { "prompt": "In welk jaar won Nederland het songfestival met de groep Teach-In?", "answer": 1975, "unit": "" },
+        { "prompt": "Hoeveel bruggen heeft Amsterdam?", "answer": 1281, "unit": "bruggen" },
+        { "prompt": "Hoeveel kilometer per uur gaat de lucht uit een nies?", "answer": 160, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel verschillende soorten stukken kent een schaakspel?", "answer": 6, "unit": "soorten stukken" },
+        { "prompt": "Hoeveel jaar duurde de Honderdjarige Oorlog werkelijk?", "answer": 116, "unit": "jaar", "explanation": "Van 1337 tot 1453, met lange wapenstilstanden ertussen." },
+        { "prompt": "Hoeveel kilo koffie drinkt de gemiddelde Nederlander per jaar?", "answer": 8, "unit": "kilo" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Theedoek" },
+        { "prompt": "Ovenwant" },
+        { "prompt": "Schoenlepel" },
+        { "prompt": "Boekenlegger" },
+        { "prompt": "Puntenslijper" },
+        { "prompt": "Briefopener" },
+        { "prompt": "Kattenluik" },
+        { "prompt": "Tuinslang" },
+        { "prompt": "Fietsmandje" },
+        { "prompt": "Parasol" },
+        { "prompt": "Wip" },
+        { "prompt": "Ophaalbrug" },
+        { "prompt": "Sneeuwbol" },
+        { "prompt": "Windgong" },
+        { "prompt": "Kettlebell" },
+        { "prompt": "Nagelknipper" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Hongarije grenzen.", "answers": [{ "text": "Oostenrijk" }, { "text": "Slowakije" }, { "text": "Roemenie" }, { "text": "Servie" }] },
+        { "prompt": "Noem vier boomsoorten.", "answers": [{ "text": "Eik" }, { "text": "Beuk" }, { "text": "Berk" }, { "text": "Esdoorn" }] },
+        { "prompt": "Noem vier Nederlandse badplaatsen aan de Noordzee.", "answers": [{ "text": "Scheveningen" }, { "text": "Zandvoort" }, { "text": "Noordwijk" }, { "text": "Katwijk" }] },
+        { "prompt": "Noem vier soorten weer.", "answers": [{ "text": "Regen" }, { "text": "Sneeuw" }, { "text": "Mist" }, { "text": "Hagel" }] },
+        { "prompt": "Noem vier instrumenten uit een rockband.", "answers": [{ "text": "Gitaar" }, { "text": "Basgitaar" }, { "text": "Drums" }, { "text": "Keyboard" }] },
+        { "prompt": "Noem vier van de vijf sporten van de moderne vijfkamp.", "answers": [{ "text": "Schermen" }, { "text": "Zwemmen" }, { "text": "Paardrijden" }, { "text": "Schieten" }] },
+        { "prompt": "Noem vier beroemde bruggen.", "answers": [{ "text": "Golden Gate" }, { "text": "Tower Bridge" }, { "text": "Ponte Vecchio" }, { "text": "Erasmusbrug" }] },
+        { "prompt": "Noem vier hondenrassen.", "answers": [{ "text": "Labrador" }, { "text": "Poedel" }, { "text": "Beagle" }, { "text": "Teckel" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat halen bijen uit bloemen om honing te maken?", "difficulty": "easy", "answers": [{ "text": "Nectar" }] },
+        { "prompt": "Welk dier heeft lange oren en hipt op zijn achterpoten?", "difficulty": "easy", "answers": [{ "text": "Het konijn", "aliases": ["konijn", "haas"] }] },
+        { "prompt": "Hoe noem je de maaltijd die je midden op de dag eet?", "difficulty": "easy", "answers": [{ "text": "De lunch", "aliases": ["lunch", "middageten"] }] },
+        { "prompt": "Hoe heet het doorzichtige deel van een ei rond de dooier?", "difficulty": "easy", "answers": [{ "text": "Het eiwit", "aliases": ["eiwit"] }] },
+        { "prompt": "Welke kleur licht zegt je te stoppen bij een stoplicht?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Wat is de hoofdstad van Malta?", "difficulty": "hard", "answers": [{ "text": "Valletta" }] },
+        { "prompt": "Welke Florentijn schreef het politieke handboek De heerser?", "difficulty": "hard", "answers": [{ "text": "Niccolo Machiavelli", "aliases": ["Machiavelli"] }] },
+        { "prompt": "Welke vogel heeft zijn neusgaten helemaal aan de punt van zijn snavel?", "difficulty": "hard", "answers": [{ "text": "De kiwi", "aliases": ["kiwi"] }] },
+        { "prompt": "Welk natuurlijk element heeft de hoogste dichtheid?", "difficulty": "hard", "answers": [{ "text": "Osmium" }] },
+        { "prompt": "Welke Romeinse weg liep van Rome naar Brindisi?", "difficulty": "hard", "answers": [{ "text": "De Via Appia", "aliases": ["Via Appia", "Appische Weg"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Duitse ingenieur bouwde de eerste motorfiets op benzine?", "answers": [{ "text": "Gottlieb Daimler", "aliases": ["Daimler"] }] },
+        { "prompt": "Wat is de hoofdstad van Cambodja?", "answers": [{ "text": "Phnom Penh" }] },
+        { "prompt": "Welke Schotse natuurkundige toonde aan dat licht een elektromagnetische golf is?", "answers": [{ "text": "James Clerk Maxwell", "aliases": ["Maxwell"] }] },
+        { "prompt": "In welk jaar begon de beurskrach van Wall Street de Grote Depressie?", "answers": [{ "text": "1929" }] },
+        { "prompt": "Wat is de diepste grot ter wereld?", "answers": [{ "text": "Veryovkina", "aliases": ["Veryovkinagrot"] }] },
+        { "prompt": "Welke Japanse schrijver schreef de roman Norwegian Wood?", "answers": [{ "text": "Haruki Murakami", "aliases": ["Murakami"] }] }
+      ]
+    }
+  ]
+}

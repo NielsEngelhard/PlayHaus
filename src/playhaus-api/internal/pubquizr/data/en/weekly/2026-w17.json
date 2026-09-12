@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w17",
+  "title": "Weekly quiz 17 2026",
+  "description": "The weekly quiz of Wednesday 22 April 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest island in Asia?", "category": "Geography", "answers": [{ "text": "Borneo" }] },
+        { "prompt": "What does a thermometer measure?", "category": "Science", "answers": [{ "text": "Temperature" }] },
+        { "prompt": "Which American general commanded the Allied landings in Normandy?", "category": "History", "answers": [{ "text": "Dwight Eisenhower", "aliases": ["Eisenhower"] }] },
+        { "prompt": "In which sport can a player achieve a nine-dart finish?", "category": "Sport", "answers": [{ "text": "Darts" }] },
+        { "prompt": "Which Japanese artist made the print The Great Wave?", "category": "Art", "answers": [{ "text": "Hokusai" }] },
+        { "prompt": "Which is the largest primate in the world?", "category": "Nature", "answers": [{ "text": "The gorilla", "aliases": ["gorilla"] }] },
+        { "prompt": "What is the lower house of the Dutch parliament called?", "category": "The Netherlands", "answers": [{ "text": "The Tweede Kamer", "aliases": ["Tweede Kamer"] }] },
+        { "prompt": "Which Italian marking tells a musician to play very loudly?", "category": "Music", "answers": [{ "text": "Fortissimo" }] },
+        { "prompt": "Which film franchise follows Dominic Toretto and his fast cars?", "category": "Film", "answers": [{ "text": "The Fast and the Furious", "aliases": ["Fast and Furious"] }] },
+        { "prompt": "From which language did English take the words fjord and ski?", "category": "Language", "answers": [{ "text": "Norwegian" }] },
+        { "prompt": "Which animal's milk is traditional mozzarella made from?", "category": "Food", "answers": [{ "text": "The buffalo", "aliases": ["buffalo", "water buffalo"] }] },
+        { "prompt": "What is the chemical symbol for helium?", "category": "Science", "answers": [{ "text": "He" }] },
+        { "prompt": "Which wonder of the ancient world stood at Ephesus?", "category": "History", "answers": [{ "text": "The Temple of Artemis", "aliases": ["Temple of Artemis"] }] },
+        { "prompt": "Which African country has the largest population of wild elephants?", "category": "Geography", "answers": [{ "text": "Botswana" }] },
+        { "prompt": "Which Spanish cyclist won five Tours de France in the 1990s?", "category": "Sport", "answers": [{ "text": "Miguel Indurain", "aliases": ["Indurain"] }] },
+        { "prompt": "Which insect skates about on the surface of a pond?", "category": "Nature", "answers": [{ "text": "The pond skater", "aliases": ["pond skater", "water strider"] }] },
+        { "prompt": "Which 1993 Spielberg film is shot almost entirely in black and white?", "category": "Film", "answers": [{ "text": "Schindler's List" }] },
+        { "prompt": "Which bowed instrument is played with the body held between the knees?", "category": "Music", "answers": [{ "text": "The cello", "aliases": ["cello"] }] },
+        { "prompt": "What does the abbreviation SSD stand for?", "category": "Technology", "answers": [{ "text": "Solid State Drive" }] },
+        { "prompt": "Which Roman amphitheatre held fifty thousand spectators?", "category": "History", "answers": [{ "text": "The Colosseum", "aliases": ["Colosseum"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has more people per square kilometre than any other?", "options": [{ "text": "Monaco", "correct": true }, { "text": "Singapore" }, { "text": "Malta" }, { "text": "Bahrain" }] },
+        { "prompt": "Which Canadian author wrote The Handmaid's Tale?", "options": [{ "text": "Margaret Atwood", "correct": true }, { "text": "Alice Munro" }, { "text": "Anne Michaels" }, { "text": "Carol Shields" }] },
+        { "prompt": "What is the point in an orbit closest to the sun called?", "options": [{ "text": "The perihelion", "correct": true }, { "text": "The aphelion" }, { "text": "The apogee" }, { "text": "The equinox" }] },
+        { "prompt": "Which creature has thirty-two separate brains?", "options": [{ "text": "The leech", "correct": true }, { "text": "The earthworm" }, { "text": "The octopus" }, { "text": "The starfish" }] },
+        { "prompt": "Which herb belongs in a mojito?", "options": [{ "text": "Mint", "correct": true }, { "text": "Coriander" }, { "text": "Dill" }, { "text": "Sage" }] },
+        { "prompt": "In which sport is a penalty corner awarded?", "options": [{ "text": "Hockey", "correct": true }, { "text": "Rugby" }, { "text": "Water polo" }, { "text": "Handball" }] },
+        { "prompt": "In which Italian city is the Uffizi gallery?", "options": [{ "text": "Florence", "correct": true }, { "text": "Rome" }, { "text": "Milan" }, { "text": "Naples" }] },
+        { "prompt": "Which part of an egg grows into the chick?", "options": [{ "text": "The yolk", "correct": true }, { "text": "The white" }, { "text": "The shell" }, { "text": "The membrane" }] },
+        { "prompt": "Which tree is stripped of its bark to make cork?", "options": [{ "text": "The cork oak", "correct": true }, { "text": "The birch" }, { "text": "The plane tree" }, { "text": "The cedar" }] },
+        { "prompt": "How many letters does the Hawaiian alphabet have?", "options": [{ "text": "13", "correct": true }, { "text": "18" }, { "text": "21" }, { "text": "26" }] },
+        { "prompt": "Which artist made the mirrored sculpture Cloud Gate in Chicago?", "options": [{ "text": "Anish Kapoor", "correct": true }, { "text": "Jeff Koons" }, { "text": "Richard Serra" }, { "text": "Damien Hirst" }] },
+        { "prompt": "Which element did Marie Curie name after her homeland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] },
+        { "prompt": "Which canal carries more ships a year than any other in the world?", "options": [{ "text": "The Kiel Canal", "correct": true }, { "text": "The Suez Canal" }, { "text": "The Panama Canal" }, { "text": "The Corinth Canal" }] },
+        { "prompt": "What is a group of lions called?", "options": [{ "text": "A pride", "correct": true }, { "text": "A pack" }, { "text": "A troop" }, { "text": "A clan" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres long is a cricket pitch between the wickets?", "answer": 20, "unit": "metres" },
+        { "prompt": "How many kilometres per hour can a sailfish swim?", "answer": 110, "unit": "kilometres per hour" },
+        { "prompt": "In what year were the Olympic Games first held in Asia?", "answer": 1964, "unit": "" },
+        { "prompt": "How many bones are there in the human middle ear?", "answer": 3, "unit": "bones" },
+        { "prompt": "How many seeds does a pomegranate hold, roughly?", "answer": 600, "unit": "seeds" },
+        { "prompt": "How many metres does a sloth travel on the ground in a day?", "answer": 40, "unit": "metres" },
+        { "prompt": "How many rooms does Buckingham Palace have?", "answer": 775, "unit": "rooms" },
+        { "prompt": "How many litres of water does a dairy cow drink in a day?", "answer": 100, "unit": "litres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Pencil case" },
+        { "prompt": "Cutting board" },
+        { "prompt": "Loudspeaker" },
+        { "prompt": "Spare tyre" },
+        { "prompt": "Bin bag" },
+        { "prompt": "Extension cord" },
+        { "prompt": "Tea strainer" },
+        { "prompt": "Fishing net" },
+        { "prompt": "Lawn sprinkler" },
+        { "prompt": "Dishwasher" },
+        { "prompt": "Ruler" },
+        { "prompt": "Yoga mat" },
+        { "prompt": "Bolt" },
+        { "prompt": "Notebook" },
+        { "prompt": "Hairnet" },
+        { "prompt": "Whiteboard" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Romania.", "answers": [{ "text": "Hungary" }, { "text": "Serbia" }, { "text": "Bulgaria" }, { "text": "Moldova" }] },
+        { "prompt": "Name four varieties of apple.", "answers": [{ "text": "Elstar" }, { "text": "Granny Smith" }, { "text": "Jonagold" }, { "text": "Golden Delicious" }] },
+        { "prompt": "Name four composers born in Germany.", "answers": [{ "text": "Bach" }, { "text": "Beethoven" }, { "text": "Brahms" }, { "text": "Wagner" }] },
+        { "prompt": "Name four running distances at the Olympics.", "answers": [{ "text": "100 metres" }, { "text": "400 metres" }, { "text": "1500 metres" }, { "text": "The marathon" }] },
+        { "prompt": "Name four countries in West Africa.", "answers": [{ "text": "Ghana" }, { "text": "Senegal" }, { "text": "Mali" }, { "text": "Nigeria" }] },
+        { "prompt": "Name four French pastries or desserts.", "answers": [{ "text": "Croissant" }, { "text": "Eclair" }, { "text": "Macaron" }, { "text": "Creme brulee" }] },
+        { "prompt": "Name four things you can see in the night sky.", "answers": [{ "text": "The moon" }, { "text": "Stars" }, { "text": "Planets" }, { "text": "Comets" }] },
+        { "prompt": "Name four great rivers of Asia.", "answers": [{ "text": "Yangtze" }, { "text": "Ganges" }, { "text": "Mekong" }, { "text": "Indus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which season of the year has the most daylight?", "difficulty": "easy", "answers": [{ "text": "Summer" }] },
+        { "prompt": "Which small creature with eight legs spins a web?", "difficulty": "easy", "answers": [{ "text": "The spider", "aliases": ["spider"] }] },
+        { "prompt": "Which hot drink is made from roasted beans?", "difficulty": "easy", "answers": [{ "text": "Coffee" }] },
+        { "prompt": "What is the piece of furniture you sleep in called?", "difficulty": "easy", "answers": [{ "text": "A bed", "aliases": ["bed"] }] },
+        { "prompt": "Which hand do most people write with?", "difficulty": "easy", "answers": [{ "text": "The right hand", "aliases": ["right", "right hand"] }] },
+        { "prompt": "What is the capital of Madagascar?", "difficulty": "hard", "answers": [{ "text": "Antananarivo" }] },
+        { "prompt": "Which German-Swiss author wrote the novel Steppenwolf?", "difficulty": "hard", "answers": [{ "text": "Hermann Hesse", "aliases": ["Hesse"] }] },
+        { "prompt": "What is the largest moon of Neptune called?", "difficulty": "hard", "answers": [{ "text": "Triton" }] },
+        { "prompt": "Which hormone is released by the body under stress?", "difficulty": "hard", "answers": [{ "text": "Cortisol" }] },
+        { "prompt": "Which Nobel Prize is handed out in Oslo instead of Stockholm?", "difficulty": "hard", "answers": [{ "text": "The Peace Prize", "aliases": ["Peace Prize", "Nobel Peace Prize"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch chemist won the very first Nobel Prize in Chemistry?", "answers": [{ "text": "Jacobus van 't Hoff", "aliases": ["Van 't Hoff"] }] },
+        { "prompt": "Which city is the seat of Bolivia's supreme court?", "answers": [{ "text": "Sucre" }] },
+        { "prompt": "Which English architect rebuilt St Paul's Cathedral after the Great Fire?", "answers": [{ "text": "Christopher Wren", "aliases": ["Wren"] }] },
+        { "prompt": "In which year did the first officially recognised powered flight in Europe take place?", "answers": [{ "text": "1906" }] },
+        { "prompt": "Which is the largest volcano on earth by volume?", "answers": [{ "text": "Mauna Loa" }] },
+        { "prompt": "Which Italian physicist invented the electric battery?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] }
+      ]
+    }
+  ]
+}

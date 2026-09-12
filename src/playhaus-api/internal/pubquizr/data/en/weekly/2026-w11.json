@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w11",
+  "title": "Weekly quiz 11 2026",
+  "description": "The weekly quiz of Wednesday 11 March 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which country makes up most of the Horn of Africa?", "category": "Geography", "answers": [{ "text": "Somalia" }] },
+        { "prompt": "What is the smallest particle of an element that still is that element?", "category": "Science", "answers": [{ "text": "The atom", "aliases": ["atom"] }] },
+        { "prompt": "Which Italian dictator was known as Il Duce?", "category": "History", "answers": [{ "text": "Benito Mussolini", "aliases": ["Mussolini"] }] },
+        { "prompt": "At which Dutch circuit is the Formula 1 Dutch Grand Prix held?", "category": "Sport", "answers": [{ "text": "Zandvoort" }] },
+        { "prompt": "What is the technique of painting onto wet plaster called?", "category": "Art", "answers": [{ "text": "Fresco" }] },
+        { "prompt": "Which reptile can shed its tail and grow a new one?", "category": "Nature", "answers": [{ "text": "The lizard", "aliases": ["lizard"] }] },
+        { "prompt": "Which Dutch queen gave up the throne to her daughter in 1948?", "category": "The Netherlands", "answers": [{ "text": "Wilhelmina" }] },
+        { "prompt": "Which instrument is a smaller, higher version of the flute?", "category": "Music", "answers": [{ "text": "The piccolo", "aliases": ["piccolo"] }] },
+        { "prompt": "Which Australian actor has played Wolverine since 2000?", "category": "Film", "answers": [{ "text": "Hugh Jackman", "aliases": ["Jackman"] }] },
+        { "prompt": "How do you say hello in Japanese in the middle of the day?", "category": "Language", "answers": [{ "text": "Konnichiwa" }] },
+        { "prompt": "Which Italian dessert's name means pick me up?", "category": "Food", "answers": [{ "text": "Tiramisu" }] },
+        { "prompt": "What is the ordinary division of a body cell into two called?", "category": "Science", "answers": [{ "text": "Mitosis" }] },
+        { "prompt": "Which British explorer was killed in Hawaii in 1779?", "category": "History", "answers": [{ "text": "James Cook", "aliases": ["Captain Cook", "Cook"] }] },
+        { "prompt": "Which two seas does the Bosphorus join together?", "category": "Geography", "answers": [{ "text": "The Black Sea and the Sea of Marmara", "aliases": ["Black Sea and Marmara"] }] },
+        { "prompt": "Which stick and ball game is the national summer sport of Canada?", "category": "Sport", "answers": [{ "text": "Lacrosse" }] },
+        { "prompt": "Which flower is worn in remembrance of the war dead?", "category": "Nature", "answers": [{ "text": "The poppy", "aliases": ["poppy"] }] },
+        { "prompt": "In which film series does Katniss Everdeen volunteer as tribute?", "category": "Film", "answers": [{ "text": "The Hunger Games", "aliases": ["Hunger Games"] }] },
+        { "prompt": "What is the name for a large orchestral work usually in four movements?", "category": "Music", "answers": [{ "text": "A symphony", "aliases": ["symphony"] }] },
+        { "prompt": "What does the abbreviation LED stand for?", "category": "Technology", "answers": [{ "text": "Light Emitting Diode" }] },
+        { "prompt": "At which sea battle of 1805 was Admiral Nelson killed?", "category": "History", "answers": [{ "text": "Trafalgar", "aliases": ["the Battle of Trafalgar"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has more glaciers than anywhere outside the polar regions?", "options": [{ "text": "Pakistan", "correct": true }, { "text": "Chile" }, { "text": "Norway" }, { "text": "New Zealand" }] },
+        { "prompt": "Which Scot invented the pneumatic tyre?", "options": [{ "text": "John Dunlop", "correct": true }, { "text": "Charles Macintosh" }, { "text": "John Boyd" }, { "text": "William Murdoch" }] },
+        { "prompt": "Which force holds the particles of an atomic nucleus together?", "options": [{ "text": "The strong nuclear force", "correct": true }, { "text": "The weak nuclear force" }, { "text": "Electromagnetism" }, { "text": "Gravity" }] },
+        { "prompt": "Which animal has the thickest fur of any creature?", "options": [{ "text": "The sea otter", "correct": true }, { "text": "The musk ox" }, { "text": "The arctic fox" }, { "text": "The chinchilla" }] },
+        { "prompt": "The people of which country eat more fish per head than anyone else?", "options": [{ "text": "Iceland", "correct": true }, { "text": "Portugal" }, { "text": "Norway" }, { "text": "Japan" }] },
+        { "prompt": "In which sport does a libero wear a different coloured shirt?", "options": [{ "text": "Volleyball", "correct": true }, { "text": "Handball" }, { "text": "Water polo" }, { "text": "Futsal" }] },
+        { "prompt": "Which museum in Bilbao did Frank Gehry clad in titanium?", "options": [{ "text": "The Guggenheim", "correct": true }, { "text": "The Prado" }, { "text": "The Reina Sofia" }, { "text": "The Thyssen" }] },
+        { "prompt": "Which tissue inside your bones makes new red blood cells?", "options": [{ "text": "The bone marrow", "correct": true }, { "text": "The periosteum" }, { "text": "Cartilage" }, { "text": "The spleen" }] },
+        { "prompt": "Which Italian car maker uses a prancing horse as its badge?", "options": [{ "text": "Ferrari", "correct": true }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] },
+        { "prompt": "In which country is Tagalog an official language?", "options": [{ "text": "The Philippines", "correct": true }, { "text": "Indonesia" }, { "text": "Malaysia" }, { "text": "Vietnam" }] },
+        { "prompt": "Which bitter fruit is traditional marmalade made from?", "options": [{ "text": "The Seville orange", "correct": true }, { "text": "The lemon" }, { "text": "The quince" }, { "text": "The grapefruit" }] },
+        { "prompt": "What is the largest volcano in the solar system called?", "options": [{ "text": "Olympus Mons", "correct": true }, { "text": "Maat Mons" }, { "text": "Mauna Kea" }, { "text": "Ascraeus Mons" }] },
+        { "prompt": "In which city was the first football World Cup final played?", "options": [{ "text": "Montevideo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Santiago" }] },
+        { "prompt": "Which metal has the chemical symbol Pb?", "options": [{ "text": "Lead", "correct": true }, { "text": "Tin" }, { "text": "Platinum" }, { "text": "Palladium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many Olympic gold medals did Michael Phelps win in his career?", "answer": 23, "unit": "gold medals" },
+        { "prompt": "How many metres high is the tallest sand dune in the world?", "answer": 383, "unit": "metres" },
+        { "prompt": "In what year did the Netherlands lose its first World Cup final?", "answer": 1974, "unit": "" },
+        { "prompt": "How many kilometres per hour does a Formula 1 car reach flat out?", "answer": 370, "unit": "kilometres per hour" },
+        { "prompt": "How many teeth does an elephant use at any one time?", "answer": 4, "unit": "teeth" },
+        { "prompt": "How many steps are there inside the Statue of Liberty to the crown?", "answer": 354, "unit": "steps" },
+        { "prompt": "How many litres of milk does a dairy cow give in a day?", "answer": 28, "unit": "litres" },
+        { "prompt": "How many words does the English language have, roughly?", "answer": 170000, "unit": "words" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Dressing gown" },
+        { "prompt": "Mosquito net" },
+        { "prompt": "Cool box" },
+        { "prompt": "Pedalo" },
+        { "prompt": "Chalkboard" },
+        { "prompt": "Coffee machine" },
+        { "prompt": "Fly swatter" },
+        { "prompt": "Hairbrush" },
+        { "prompt": "Bread bin" },
+        { "prompt": "Guitar pick" },
+        { "prompt": "Ferris wheel" },
+        { "prompt": "Traffic cone" },
+        { "prompt": "Sponge" },
+        { "prompt": "Magnifying glass" },
+        { "prompt": "Trowel" },
+        { "prompt": "Birdhouse" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Austria.", "answers": [{ "text": "Germany" }, { "text": "Italy" }, { "text": "Switzerland" }, { "text": "Hungary" }] },
+        { "prompt": "Name four fish you can eat.", "answers": [{ "text": "Cod" }, { "text": "Salmon" }, { "text": "Tuna" }, { "text": "Herring" }] },
+        { "prompt": "Name four Roman numerals.", "answers": [{ "text": "I" }, { "text": "V" }, { "text": "X" }, { "text": "L" }] },
+        { "prompt": "Name the four throwing events in athletics.", "answers": [{ "text": "Shot put" }, { "text": "Discus" }, { "text": "Javelin" }, { "text": "Hammer" }] },
+        { "prompt": "Name four countries in the Caribbean.", "answers": [{ "text": "Cuba" }, { "text": "Jamaica" }, { "text": "Haiti" }, { "text": "Barbados" }] },
+        { "prompt": "Name four kinds of chocolate.", "answers": [{ "text": "Milk chocolate" }, { "text": "Dark chocolate" }, { "text": "White chocolate" }, { "text": "Ruby chocolate" }] },
+        { "prompt": "Name the four planets that have rings.", "answers": [{ "text": "Saturn" }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] },
+        { "prompt": "Name four rivers in Europe.", "answers": [{ "text": "Rhine" }, { "text": "Danube" }, { "text": "Seine" }, { "text": "Po" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call a group of cows together in a field?", "difficulty": "easy", "answers": [{ "text": "A herd", "aliases": ["herd"] }] },
+        { "prompt": "What do you write with on a blackboard?", "difficulty": "easy", "answers": [{ "text": "Chalk" }] },
+        { "prompt": "Which farm bird lays the eggs we eat most often?", "difficulty": "easy", "answers": [{ "text": "The chicken", "aliases": ["chicken", "hen"] }] },
+        { "prompt": "What do you call the person who gives lessons at a school?", "difficulty": "easy", "answers": [{ "text": "A teacher", "aliases": ["teacher"] }] },
+        { "prompt": "In which month is Christmas?", "difficulty": "easy", "answers": [{ "text": "December" }] },
+        { "prompt": "Which language is spoken by most people in Iran?", "difficulty": "hard", "answers": [{ "text": "Farsi", "aliases": ["Persian"] }] },
+        { "prompt": "Which Greek poet is credited with the Odyssey?", "difficulty": "hard", "answers": [{ "text": "Homer" }] },
+        { "prompt": "Which spacecraft was the first to leave the solar system?", "difficulty": "hard", "answers": [{ "text": "Voyager 1", "aliases": ["Voyager"] }] },
+        { "prompt": "Which element other than mercury is liquid at room temperature?", "difficulty": "hard", "answers": [{ "text": "Bromine" }] },
+        { "prompt": "Which country was called Rhodesia until 1980?", "difficulty": "hard", "answers": [{ "text": "Zimbabwe" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Austrian doctor founded psychoanalysis?", "answers": [{ "text": "Sigmund Freud", "aliases": ["Freud"] }] },
+        { "prompt": "What is the capital of Senegal?", "answers": [{ "text": "Dakar" }] },
+        { "prompt": "Which blind Frenchman invented a system of reading by touch?", "answers": [{ "text": "Louis Braille", "aliases": ["Braille"] }] },
+        { "prompt": "In which year did the Spanish Armada sail against England?", "answers": [{ "text": "1588" }] },
+        { "prompt": "Which is the largest lake in South America?", "answers": [{ "text": "Lake Titicaca", "aliases": ["Titicaca"] }] },
+        { "prompt": "Which German chemist worked out how to make ammonia from the air?", "answers": [{ "text": "Fritz Haber", "aliases": ["Haber"] }] }
+      ]
+    }
+  ]
+}

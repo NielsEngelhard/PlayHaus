@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w7",
+  "title": "Weekquiz 7 2026",
+  "description": "De wekelijkse quiz van woensdag 11 februari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welk land ligt de stad Timboektoe?", "category": "Aardrijkskunde", "answers": [{ "text": "Mali" }] },
+        { "prompt": "Welke kracht remt een voorwerp af dat over een oppervlak schuift?", "category": "Wetenschap", "answers": [{ "text": "Wrijving" }] },
+        { "prompt": "Welke Griekse stadstaat stond bekend om het opvoeden van jongens tot soldaten?", "category": "Geschiedenis", "answers": [{ "text": "Sparta" }] },
+        { "prompt": "Wat is de hoogste score die je met drie darts kunt gooien?", "category": "Sport", "answers": [{ "text": "180" }] },
+        { "prompt": "Welke manier van schilderen hielp Wassily Kandinsky uitvinden?", "category": "Kunst", "answers": [{ "text": "Abstracte kunst", "aliases": ["abstract"] }] },
+        { "prompt": "Wat is het kleinste zoogdier ter wereld qua gewicht?", "category": "Natuur", "answers": [{ "text": "De hommelvleermuis", "aliases": ["hommelvleermuis"] }] },
+        { "prompt": "Welke Nederlandse stormvloedkering sluit de Nieuwe Waterweg af?", "category": "Nederland", "answers": [{ "text": "De Maeslantkering", "aliases": ["Maeslantkering"] }] },
+        { "prompt": "Welke musical is helemaal opgebouwd uit nummers van ABBA?", "category": "Muziek", "answers": [{ "text": "Mamma Mia" }] },
+        { "prompt": "Welke acteur regisseerde zichzelf in de film Braveheart?", "category": "Film", "answers": [{ "text": "Mel Gibson", "aliases": ["Gibson"] }] },
+        { "prompt": "Welke kunsttaal publiceerde Zamenhof in 1887?", "category": "Taal", "answers": [{ "text": "Esperanto" }] },
+        { "prompt": "Welke peulvrucht wordt met sesampasta tot hummus gemalen?", "category": "Eten", "answers": [{ "text": "De kikkererwt", "aliases": ["kikkererwt", "kikkererwten"] }] },
+        { "prompt": "Hoe noemen we een dier dat 's nachts actief is?", "category": "Wetenschap", "answers": [{ "text": "Nachtdier", "aliases": ["nocturnaal", "nachtactief"] }] },
+        { "prompt": "Over welk rijk heerste Montezuma toen de Spanjaarden kwamen?", "category": "Geschiedenis", "answers": [{ "text": "De Azteken", "aliases": ["Azteken", "Aztekenrijk"] }] },
+        { "prompt": "In welk land ligt de Atacamawoestijn?", "category": "Aardrijkskunde", "answers": [{ "text": "Chili" }] },
+        { "prompt": "In welke olympische sport gebruiken ploegen scullriemen?", "category": "Sport", "answers": [{ "text": "Roeien" }] },
+        { "prompt": "Welke plant klapt zijn blaadjes dicht zodra je hem aanraakt?", "category": "Natuur", "answers": [{ "text": "De mimosa", "aliases": ["mimosa", "kruidje-roer-me-niet"] }] },
+        { "prompt": "In welke film beleeft een weerman steeds dezelfde dag opnieuw?", "category": "Film", "answers": [{ "text": "Groundhog Day" }] },
+        { "prompt": "Welke Franse componist schreef de Bolero?", "category": "Muziek", "answers": [{ "text": "Maurice Ravel", "aliases": ["Ravel"] }] },
+        { "prompt": "Welk bedrijf maakt het besturingssysteem Windows?", "category": "Techniek", "answers": [{ "text": "Microsoft" }] },
+        { "prompt": "Welk handelsvolk uit de oudheid gaf Europa de basis van zijn alfabet?", "category": "Geschiedenis", "answers": [{ "text": "De Feniciers", "aliases": ["Feniciers"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Op welke bewoonde plek op aarde valt de meeste regen per jaar?", "options": [{ "text": "Cherrapunji", "correct": true }, { "text": "Manaus" }, { "text": "Monrovia" }, { "text": "Bergen" }] },
+        { "prompt": "Welke Russisch-Amerikaanse schrijver schreef de roman Lolita?", "options": [{ "text": "Vladimir Nabokov", "correct": true }, { "text": "Ivan Toergenjev" }, { "text": "Michail Boelgakov" }, { "text": "Isaak Babel" }] },
+        { "prompt": "Welke komeet keert ongeveer elke 76 jaar terug?", "options": [{ "text": "De komeet van Halley", "correct": true }, { "text": "Hale-Bopp" }, { "text": "Encke" }, { "text": "Shoemaker-Levy" }] },
+        { "prompt": "Welke vitamine heeft het bloed nodig om te kunnen stollen?", "options": [{ "text": "Vitamine K", "correct": true }, { "text": "Vitamine A" }, { "text": "Vitamine B12" }, { "text": "Vitamine E" }] },
+        { "prompt": "Het mislukken van welk gewas veroorzaakte de Ierse hongersnood van de jaren veertig van de negentiende eeuw?", "options": [{ "text": "De aardappel", "correct": true }, { "text": "Tarwe" }, { "text": "Gerst" }, { "text": "Haver" }] },
+        { "prompt": "In welke sport is de Vendee Globe een race om de wereld?", "options": [{ "text": "Zeilen", "correct": true }, { "text": "Roeien" }, { "text": "Ballonvaren" }, { "text": "Autosport" }] },
+        { "prompt": "Welke roman begint met de woorden Call me Ishmael?", "options": [{ "text": "Moby-Dick", "correct": true }, { "text": "Schateiland" }, { "text": "Robinson Crusoe" }, { "text": "De zeewolf" }] },
+        { "prompt": "Welk land deelt de Victoriawatervallen met Zimbabwe?", "options": [{ "text": "Zambia", "correct": true }, { "text": "Botswana" }, { "text": "Mozambique" }, { "text": "Malawi" }] },
+        { "prompt": "Wat is de meest voorkomende bloedgroep ter wereld?", "options": [{ "text": "O positief", "correct": true }, { "text": "A positief" }, { "text": "B negatief" }, { "text": "AB positief" }] },
+        { "prompt": "Welke Australische vogel kan een kettingzaag of een camera nadoen?", "options": [{ "text": "De lierstaart", "correct": true }, { "text": "De kookaburra" }, { "text": "De kaketoe" }, { "text": "De ekster" }] },
+        { "prompt": "Welke Duitse stad is beroemd om haar kathedraal met twee torens?", "options": [{ "text": "Keulen", "correct": true }, { "text": "Aken" }, { "text": "Trier" }, { "text": "Mainz" }] },
+        { "prompt": "Wat is de scheikundige naam van gewoon keukenzout?", "options": [{ "text": "Natriumchloride", "correct": true }, { "text": "Kaliumchloride" }, { "text": "Calciumcarbonaat" }, { "text": "Natriumnitraat" }] },
+        { "prompt": "Welke muziekstijl ontstond rond 1900 in New Orleans?", "options": [{ "text": "Jazz", "correct": true }, { "text": "Soul" }, { "text": "Gospel" }, { "text": "Country" }] },
+        { "prompt": "Welk land gaf de eerste postzegel ter wereld uit?", "options": [{ "text": "Het Verenigd Koninkrijk", "correct": true }, { "text": "Frankrijk" }, { "text": "Oostenrijk" }, { "text": "De Verenigde Staten" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het Christusbeeld in Rio?", "answer": 30, "unit": "meter" },
+        { "prompt": "Hoeveel spelers heeft een honkbalteam in het veld?", "answer": 9, "unit": "spelers" },
+        { "prompt": "In welk jaar verscheen de eerste versie van Windows?", "answer": 1985, "unit": "" },
+        { "prompt": "Hoeveel aardse jaren doet Neptunus over een rondje om de zon?", "answer": 165, "unit": "jaar" },
+        { "prompt": "Hoeveel smaakpapillen heeft de menselijke tong ongeveer?", "answer": 8000, "unit": "smaakpapillen" },
+        { "prompt": "Hoeveel eieren legt een leghen ongeveer per jaar?", "answer": 300, "unit": "eieren" },
+        { "prompt": "Hoeveel treden telt de Spaanse Trappen in Rome?", "answer": 135, "unit": "treden" },
+        { "prompt": "Hoeveel kilometer lang was de Muur van Hadrianus?", "answer": 117, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Schommelstoel" },
+        { "prompt": "Dartbord" },
+        { "prompt": "Loopband" },
+        { "prompt": "Jukebox" },
+        { "prompt": "Fohn" },
+        { "prompt": "Kinderwagen" },
+        { "prompt": "Staande klok" },
+        { "prompt": "Gereedschapskist" },
+        { "prompt": "Voorhamer" },
+        { "prompt": "Spinnenweb" },
+        { "prompt": "Medaille" },
+        { "prompt": "Vogelverschrikker" },
+        { "prompt": "Vogelbadje" },
+        { "prompt": "Gitaarkoffer" },
+        { "prompt": "Pakketje" },
+        { "prompt": "Winkelwagen" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Frankrijk grenzen.", "answers": [{ "text": "Belgie" }, { "text": "Spanje" }, { "text": "Zwitserland" }, { "text": "Italie" }] },
+        { "prompt": "Noem vier soorten driehoeken.", "answers": [{ "text": "Gelijkzijdig" }, { "text": "Gelijkbenig" }, { "text": "Ongelijkzijdig" }, { "text": "Rechthoekig" }] },
+        { "prompt": "Noem vier vechtsporten.", "answers": [{ "text": "Karate" }, { "text": "Judo" }, { "text": "Aikido" }, { "text": "Kungfu" }] },
+        { "prompt": "Noem vier sterrenbeelden.", "answers": [{ "text": "Orion" }, { "text": "Grote Beer" }, { "text": "Cassiopeia" }, { "text": "Schorpioen" }] },
+        { "prompt": "Noem vier manieren om koffie te serveren.", "answers": [{ "text": "Espresso" }, { "text": "Cappuccino" }, { "text": "Latte" }, { "text": "Americano" }] },
+        { "prompt": "Noem de vier Noordse hoofdsteden op het vasteland.", "answers": [{ "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Kopenhagen" }, { "text": "Helsinki" }] },
+        { "prompt": "Noem vier soorten haaien.", "answers": [{ "text": "Witte haai" }, { "text": "Tijgerhaai" }, { "text": "Hamerhaai" }, { "text": "Walvishaai" }] },
+        { "prompt": "Noem vier apparaten met een scherm.", "answers": [{ "text": "Televisie" }, { "text": "Laptop" }, { "text": "Telefoon" }, { "text": "Tablet" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je jonge kikkers voordat ze pootjes krijgen?", "difficulty": "easy", "answers": [{ "text": "Kikkervisjes", "aliases": ["kikkervisje", "dikkopjes"] }] },
+        { "prompt": "Welke gele vrucht groeit in trossen en wordt gepeld voor je hem eet?", "difficulty": "easy", "answers": [{ "text": "De banaan", "aliases": ["banaan"] }] },
+        { "prompt": "Wat is de eerste maand van het jaar?", "difficulty": "easy", "answers": [{ "text": "Januari" }] },
+        { "prompt": "Wat voor dier is Winnie de Poeh?", "difficulty": "easy", "answers": [{ "text": "Een beer", "aliases": ["beer"] }] },
+        { "prompt": "Hoe noem je het geluid dat een hond maakt?", "difficulty": "easy", "answers": [{ "text": "Blaffen", "aliases": ["geblaf", "blaf"] }] },
+        { "prompt": "Welk land heeft meer eilanden dan welk ander land ook?", "difficulty": "hard", "answers": [{ "text": "Zweden" }] },
+        { "prompt": "Welke Noorse god draagt een hamer die Mjolnir heet?", "difficulty": "hard", "answers": [{ "text": "Thor" }] },
+        { "prompt": "Welk land heeft een parlement dat de Knesset heet?", "difficulty": "hard", "answers": [{ "text": "Israel" }] },
+        { "prompt": "Welke natuurkundige ontdekte in 1911 de atoomkern?", "difficulty": "hard", "answers": [{ "text": "Ernest Rutherford", "aliases": ["Rutherford"] }] },
+        { "prompt": "Hoe heet de langste spier van het menselijk lichaam?", "difficulty": "hard", "answers": [{ "text": "De sartorius", "aliases": ["sartorius", "kleermakersspier"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Romeinse keizer maakte het christendom legaal in het hele rijk?", "answers": [{ "text": "Constantijn", "aliases": ["Constantijn de Grote", "Constantine"] }] },
+        { "prompt": "Wat is de hoofdstad van Mozambique?", "answers": [{ "text": "Maputo" }] },
+        { "prompt": "Onder welk pseudoniem schreef Eduard Douwes Dekker Max Havelaar?", "answers": [{ "text": "Multatuli" }] },
+        { "prompt": "In welk jaar werd het eerste kunsthart bij een patient geplaatst?", "answers": [{ "text": "1982" }] },
+        { "prompt": "Wat is de hoogste berg van Australie?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
+        { "prompt": "Welke Duitse filosoof schreef Aldus sprak Zarathoestra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] }
+      ]
+    }
+  ]
+}

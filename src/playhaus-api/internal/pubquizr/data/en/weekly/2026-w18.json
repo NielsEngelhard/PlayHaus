@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w18",
+  "title": "Weekly quiz 18 2026",
+  "description": "The weekly quiz of Wednesday 29 April 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "On which two continents does Egypt lie?", "category": "Geography", "answers": [{ "text": "Africa and Asia" }] },
+        { "prompt": "What do we call animals without a backbone?", "category": "Science", "answers": [{ "text": "Invertebrates", "aliases": ["invertebrate"] }] },
+        { "prompt": "Which Greek king led the fleet that sailed against Troy?", "category": "History", "answers": [{ "text": "Agamemnon" }] },
+        { "prompt": "In which sport do teams practise their pit stops?", "category": "Sport", "answers": [{ "text": "Motor racing", "aliases": ["Formula 1", "racing"] }] },
+        { "prompt": "Which deep blue paint was ground from lapis lazuli?", "category": "Art", "answers": [{ "text": "Ultramarine" }] },
+        { "prompt": "Which fish can change from male to female during its life?", "category": "Nature", "answers": [{ "text": "The clownfish", "aliases": ["clownfish"] }] },
+        { "prompt": "What is the Dutch street market held all over the country on King's Day called?", "category": "The Netherlands", "answers": [{ "text": "The vrijmarkt", "aliases": ["vrijmarkt"] }] },
+        { "prompt": "What is a song for a single voice in an opera called?", "category": "Music", "answers": [{ "text": "An aria", "aliases": ["aria"] }] },
+        { "prompt": "In which 2014 film does a drummer face a brutal teacher?", "category": "Film", "answers": [{ "text": "Whiplash" }] },
+        { "prompt": "What is the study of where words come from called?", "category": "Language", "answers": [{ "text": "Etymology" }] },
+        { "prompt": "Which spice is harvested as the dried pods of an orchid?", "category": "Food", "answers": [{ "text": "Vanilla" }] },
+        { "prompt": "What is the smallest unit of a compound that is still that compound?", "category": "Science", "answers": [{ "text": "The molecule", "aliases": ["molecule"] }] },
+        { "prompt": "Which banking family ruled Renaissance Florence?", "category": "History", "answers": [{ "text": "The Medici", "aliases": ["Medici"] }] },
+        { "prompt": "Which is the largest country in the Balkans by area?", "category": "Geography", "answers": [{ "text": "Romania" }] },
+        { "prompt": "Which Olympic sport combines cross-country skiing with rifle shooting?", "category": "Sport", "answers": [{ "text": "The biathlon", "aliases": ["biathlon"] }] },
+        { "prompt": "Which seabird of the Galapagos is famous for its bright blue feet?", "category": "Nature", "answers": [{ "text": "The blue-footed booby", "aliases": ["blue-footed booby", "booby"] }] },
+        { "prompt": "In which film does a Roman general named Maximus become a gladiator?", "category": "Film", "answers": [{ "text": "Gladiator" }] },
+        { "prompt": "Which German composer wrote Carmina Burana?", "category": "Music", "answers": [{ "text": "Carl Orff", "aliases": ["Orff"] }] },
+        { "prompt": "What does the abbreviation URL stand for?", "category": "Technology", "answers": [{ "text": "Uniform Resource Locator" }] },
+        { "prompt": "Which document did the American colonies adopt on 4 July 1776?", "category": "History", "answers": [{ "text": "The Declaration of Independence", "aliases": ["Declaration of Independence"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest species of turtle in the world?", "options": [{ "text": "The leatherback", "correct": true }, { "text": "The green turtle" }, { "text": "The loggerhead" }, { "text": "The hawksbill" }] },
+        { "prompt": "Which Irish author wrote Dracula?", "options": [{ "text": "Bram Stoker", "correct": true }, { "text": "Sheridan Le Fanu" }, { "text": "Oscar Wilde" }, { "text": "Charles Maturin" }] },
+        { "prompt": "What is the distant shell of icy bodies where long comets come from?", "options": [{ "text": "The Oort cloud", "correct": true }, { "text": "The Kuiper belt" }, { "text": "The asteroid belt" }, { "text": "The heliosphere" }] },
+        { "prompt": "Which gland sits on top of the kidney and makes adrenaline?", "options": [{ "text": "The adrenal gland", "correct": true }, { "text": "The thyroid" }, { "text": "The pituitary" }, { "text": "The pancreas" }] },
+        { "prompt": "Which Italian sparkling wine comes from the Veneto?", "options": [{ "text": "Prosecco", "correct": true }, { "text": "Lambrusco" }, { "text": "Asti" }, { "text": "Franciacorta" }] },
+        { "prompt": "Which is the oldest football club in the world?", "options": [{ "text": "Sheffield FC", "correct": true }, { "text": "Notts County" }, { "text": "Genoa" }, { "text": "Ajax" }] },
+        { "prompt": "Which American sculptor invented the hanging mobile?", "options": [{ "text": "Alexander Calder", "correct": true }, { "text": "Louise Nevelson" }, { "text": "David Smith" }, { "text": "Isamu Noguchi" }] },
+        { "prompt": "What is the largest artery in the human body?", "options": [{ "text": "The aorta", "correct": true }, { "text": "The carotid" }, { "text": "The femoral artery" }, { "text": "The pulmonary artery" }] },
+        { "prompt": "The people of which country drink more beer per head than anyone else?", "options": [{ "text": "Czechia", "correct": true }, { "text": "Germany" }, { "text": "Austria" }, { "text": "Belgium" }] },
+        { "prompt": "What is the everyday name for sodium bicarbonate?", "options": [{ "text": "Baking soda", "correct": true }, { "text": "Cream of tartar" }, { "text": "Washing powder" }, { "text": "Vinegar salt" }] },
+        { "prompt": "Which city is often called the oldest continuously inhabited city on earth?", "options": [{ "text": "Damascus", "correct": true }, { "text": "Jericho" }, { "text": "Athens" }, { "text": "Byblos" }] },
+        { "prompt": "Which is the youngest country in the world?", "options": [{ "text": "South Sudan", "correct": true }, { "text": "Montenegro" }, { "text": "Kosovo" }, { "text": "East Timor" }] },
+        { "prompt": "Which bird has been recorded flying higher than any other?", "options": [{ "text": "Ruppell's vulture", "correct": true }, { "text": "The bar-headed goose" }, { "text": "The albatross" }, { "text": "The swan" }] },
+        { "prompt": "Which country pays with the ringgit?", "options": [{ "text": "Malaysia", "correct": true }, { "text": "Indonesia" }, { "text": "Brunei" }, { "text": "Thailand" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Westertoren in Amsterdam?", "answer": 85, "unit": "metres" },
+        { "prompt": "How many days does the moon take to go once round the earth?", "answer": 27, "unit": "days" },
+        { "prompt": "In what year was the first Dutch radio broadcast?", "answer": 1919, "unit": "" },
+        { "prompt": "How many kilometres per hour does the earth's surface turn at the equator?", "answer": 1670, "unit": "kilometres per hour" },
+        { "prompt": "How many times does a person blink in a minute, on average?", "answer": 15, "unit": "times" },
+        { "prompt": "How many million bricks were used to build the Empire State Building?", "answer": 10, "unit": "million bricks" },
+        { "prompt": "How many kilograms does an average newborn baby weigh?", "answer": 3, "unit": "kilograms" },
+        { "prompt": "How many species of bird are there in the world, roughly?", "answer": 11000, "unit": "species" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Coat hook" },
+        { "prompt": "Egg cup" },
+        { "prompt": "Shoe rack" },
+        { "prompt": "Fan" },
+        { "prompt": "Fishing float" },
+        { "prompt": "Baby bottle" },
+        { "prompt": "Rug" },
+        { "prompt": "Pliers" },
+        { "prompt": "Bunting" },
+        { "prompt": "Barrel" },
+        { "prompt": "Beer crate" },
+        { "prompt": "Picnic basket" },
+        { "prompt": "Rowing boat" },
+        { "prompt": "Pogo stick" },
+        { "prompt": "Bumper car" },
+        { "prompt": "Cash register" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Serbia.", "answers": [{ "text": "Hungary" }, { "text": "Croatia" }, { "text": "Bulgaria" }, { "text": "Montenegro" }] },
+        { "prompt": "Name four kinds of sausage.", "answers": [{ "text": "Bratwurst" }, { "text": "Chorizo" }, { "text": "Salami" }, { "text": "Frankfurter" }] },
+        { "prompt": "Name four European royal houses.", "answers": [{ "text": "Windsor" }, { "text": "Orange-Nassau" }, { "text": "Bourbon" }, { "text": "Habsburg" }] },
+        { "prompt": "Name four things you can find on a beach.", "answers": [{ "text": "Sand" }, { "text": "Shells" }, { "text": "Seaweed" }, { "text": "Driftwood" }] },
+        { "prompt": "Name four countries that have won the Eurovision Song Contest.", "answers": [{ "text": "Ireland" }, { "text": "Sweden" }, { "text": "Israel" }, { "text": "Norway" }] },
+        { "prompt": "Name four kinds of flower.", "answers": [{ "text": "Tulip" }, { "text": "Rose" }, { "text": "Daffodil" }, { "text": "Sunflower" }] },
+        { "prompt": "Name four programming languages.", "answers": [{ "text": "Python" }, { "text": "Java" }, { "text": "C" }, { "text": "JavaScript" }] },
+        { "prompt": "Name four cities that have hosted the Summer Olympics since 2000.", "answers": [{ "text": "Sydney" }, { "text": "Athens" }, { "text": "Beijing" }, { "text": "Rio de Janeiro" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many toes does a person have altogether?", "difficulty": "easy", "answers": [{ "text": "Ten", "aliases": ["10"] }] },
+        { "prompt": "What colour is coal?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "How many days are there in January?", "difficulty": "easy", "answers": [{ "text": "Thirty-one", "aliases": ["31"] }] },
+        { "prompt": "What do you call somebody who paints pictures for a living?", "difficulty": "easy", "answers": [{ "text": "An artist", "aliases": ["artist", "painter"] }] },
+        { "prompt": "What do you call a bundle of printed pages you read from cover to cover?", "difficulty": "easy", "answers": [{ "text": "A book", "aliases": ["book"] }] },
+        { "prompt": "What is the capital of Slovakia?", "difficulty": "hard", "answers": [{ "text": "Bratislava" }] },
+        { "prompt": "Which American author wrote the novel Catch-22?", "difficulty": "hard", "answers": [{ "text": "Joseph Heller", "aliases": ["Heller"] }] },
+        { "prompt": "Which star is the largest known in the galaxy by volume?", "difficulty": "hard", "answers": [{ "text": "UY Scuti" }] },
+        { "prompt": "Which bright red mineral is the main ore of mercury?", "difficulty": "hard", "answers": [{ "text": "Cinnabar" }] },
+        { "prompt": "Which French composer wrote Clair de Lune?", "difficulty": "hard", "answers": [{ "text": "Claude Debussy", "aliases": ["Debussy"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch engineer drew up the plan for the Afsluitdijk?", "answers": [{ "text": "Cornelis Lely", "aliases": ["Lely"] }] },
+        { "prompt": "What is the capital of Nicaragua?", "answers": [{ "text": "Managua" }] },
+        { "prompt": "Which Flemish painter made The Peasant Wedding?", "answers": [{ "text": "Pieter Bruegel", "aliases": ["Bruegel", "Brueghel"] }] },
+        { "prompt": "In which year did Concorde make its last passenger flight?", "answers": [{ "text": "2003" }] },
+        { "prompt": "Which Pacific island is the largest coral atoll in the world?", "answers": [{ "text": "Kiritimati", "aliases": ["Christmas Island"] }] },
+        { "prompt": "Which Roman goddess gave her name to the month of June?", "answers": [{ "text": "Juno" }] }
+      ]
+    }
+  ]
+}

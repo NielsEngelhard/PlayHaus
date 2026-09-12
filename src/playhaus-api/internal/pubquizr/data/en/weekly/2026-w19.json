@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w19",
+  "title": "Weekly quiz 19 2026",
+  "description": "The weekly quiz of Wednesday 6 May 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest sea in the world?", "category": "Geography", "answers": [{ "text": "The Philippine Sea", "aliases": ["Philippine Sea"] }] },
+        { "prompt": "What is the medical name for the windpipe?", "category": "Science", "answers": [{ "text": "The trachea", "aliases": ["trachea"] }] },
+        { "prompt": "On which date do the Dutch celebrate Liberation Day?", "category": "History", "answers": [{ "text": "5 May", "aliases": ["the fifth of May"] }] },
+        { "prompt": "In which Olympic sport do you try to pin your opponent's shoulders to the mat?", "category": "Sport", "answers": [{ "text": "Wrestling" }] },
+        { "prompt": "What is an everyday object presented unchanged as a work of art called?", "category": "Art", "answers": [{ "text": "A readymade", "aliases": ["readymade"] }] },
+        { "prompt": "Which animal makes the longest migration of any land mammal?", "category": "Nature", "answers": [{ "text": "The caribou", "aliases": ["caribou", "reindeer"] }] },
+        { "prompt": "Which Dutch newspaper began as an underground resistance paper in 1943?", "category": "The Netherlands", "answers": [{ "text": "Trouw" }] },
+        { "prompt": "What do you call a group of five musicians playing together?", "category": "Music", "answers": [{ "text": "A quintet", "aliases": ["quintet"] }] },
+        { "prompt": "Which Dutch director made Basic Instinct and RoboCop?", "category": "Film", "answers": [{ "text": "Paul Verhoeven", "aliases": ["Verhoeven"] }] },
+        { "prompt": "Which language has been written continuously for longer than any other?", "category": "Language", "answers": [{ "text": "Chinese" }] },
+        { "prompt": "Which deep-fried Dutch snack is a roll of meat ragout in breadcrumbs?", "category": "Food", "answers": [{ "text": "The kroket", "aliases": ["kroket", "croquette"] }] },
+        { "prompt": "What is a shape with eight straight sides called?", "category": "Science", "answers": [{ "text": "An octagon", "aliases": ["octagon"] }] },
+        { "prompt": "In which month did the Second World War end in Europe?", "category": "History", "answers": [{ "text": "May" }] },
+        { "prompt": "Which is the longest mountain range on earth, hidden under the sea?", "category": "Geography", "answers": [{ "text": "The Mid-Atlantic Ridge", "aliases": ["Mid-Atlantic Ridge", "mid-ocean ridge"] }] },
+        { "prompt": "Which sport is the Vierdaagse of Nijmegen?", "category": "Sport", "answers": [{ "text": "Walking", "aliases": ["hiking", "marching"] }] },
+        { "prompt": "Which flower opens its petals only after dark?", "category": "Nature", "answers": [{ "text": "The moonflower", "aliases": ["moonflower"] }] },
+        { "prompt": "Which Italian film has a father turning a camp into a game for his son?", "category": "Film", "answers": [{ "text": "Life Is Beautiful", "aliases": ["La vita e bella"] }] },
+        { "prompt": "Which American singer wrote Blowin' in the Wind?", "category": "Music", "answers": [{ "text": "Bob Dylan", "aliases": ["Dylan"] }] },
+        { "prompt": "What does the IP in IP address stand for?", "category": "Technology", "answers": [{ "text": "Internet Protocol" }] },
+        { "prompt": "What was the Allied airborne operation at Arnhem in 1944 called?", "category": "History", "answers": [{ "text": "Operation Market Garden", "aliases": ["Market Garden"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest island in a lake anywhere in the world?", "options": [{ "text": "Manitoulin", "correct": true }, { "text": "Gotland" }, { "text": "Olkhon" }, { "text": "Samosir" }] },
+        { "prompt": "Which American author wrote Slaughterhouse-Five?", "options": [{ "text": "Kurt Vonnegut", "correct": true }, { "text": "Norman Mailer" }, { "text": "Joseph Heller" }, { "text": "Philip Roth" }] },
+        { "prompt": "Which rover landed on Mars in February 2021?", "options": [{ "text": "Perseverance", "correct": true }, { "text": "Curiosity" }, { "text": "Spirit" }, { "text": "Zhurong" }] },
+        { "prompt": "Which organ can be removed without any lasting harm?", "options": [{ "text": "The appendix", "correct": true }, { "text": "The pancreas" }, { "text": "The liver" }, { "text": "The thyroid" }] },
+        { "prompt": "Which Dutch brewery was founded in Amsterdam in 1864?", "options": [{ "text": "Heineken", "correct": true }, { "text": "Grolsch" }, { "text": "Bavaria" }, { "text": "Brand" }] },
+        { "prompt": "Which New Zealander stood on the summit of Everest in 1953?", "options": [{ "text": "Edmund Hillary", "correct": true }, { "text": "George Mallory" }, { "text": "John Hunt" }, { "text": "Eric Shipton" }] },
+        { "prompt": "Which museum in Madrid holds Picasso's Guernica?", "options": [{ "text": "The Reina Sofia", "correct": true }, { "text": "The Prado" }, { "text": "The Thyssen" }, { "text": "The Sorolla" }] },
+        { "prompt": "Which mineral does the thyroid gland need to work?", "options": [{ "text": "Iodine", "correct": true }, { "text": "Zinc" }, { "text": "Magnesium" }, { "text": "Copper" }] },
+        { "prompt": "Which is the hottest chilli pepper in the world?", "options": [{ "text": "The Carolina Reaper", "correct": true }, { "text": "The habanero" }, { "text": "The jalapeno" }, { "text": "The bird's eye" }] },
+        { "prompt": "What is the study and collecting of coins called?", "options": [{ "text": "Numismatics", "correct": true }, { "text": "Philately" }, { "text": "Vexillology" }, { "text": "Cartography" }] },
+        { "prompt": "Which is the smallest muscle in the human body?", "options": [{ "text": "The stapedius", "correct": true }, { "text": "The sartorius" }, { "text": "The masseter" }, { "text": "The soleus" }] },
+        { "prompt": "What do you call a word spelled the same as another but with a different meaning?", "options": [{ "text": "A homonym", "correct": true }, { "text": "A synonym" }, { "text": "An antonym" }, { "text": "A pseudonym" }] },
+        { "prompt": "Which creature has more legs than any other animal?", "options": [{ "text": "The millipede", "correct": true }, { "text": "The centipede" }, { "text": "The caterpillar" }, { "text": "The woodlouse" }] },
+        { "prompt": "Which country has the oldest desert in the world?", "options": [{ "text": "Namibia", "correct": true }, { "text": "Chile" }, { "text": "Egypt" }, { "text": "Mongolia" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres is the highest commercial bungee jump in the world?", "answer": 233, "unit": "metres" },
+        { "prompt": "How many days did the Dutch army hold out in May 1940?", "answer": 5, "unit": "days" },
+        { "prompt": "In what year did the Netherlands introduce the postcode?", "answer": 1978, "unit": "" },
+        { "prompt": "At how many kilometres per hour does a storm officially become a hurricane?", "answer": 119, "unit": "kilometres per hour" },
+        { "prompt": "How many stars can you see with the naked eye on a clear night?", "answer": 2500, "unit": "stars" },
+        { "prompt": "How many pipes does the great organ of the Bavo church in Haarlem have?", "answer": 5000, "unit": "pipes" },
+        { "prompt": "How many people died in the Dutch flood disaster of 1953?", "answer": 1836, "unit": "people" },
+        { "prompt": "How many kilometres long is the Dutch border with Germany?", "answer": 577, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Air raid siren" },
+        { "prompt": "Flag pole" },
+        { "prompt": "Gas mask" },
+        { "prompt": "Field telephone" },
+        { "prompt": "Tulip bulb" },
+        { "prompt": "Church bell" },
+        { "prompt": "Tandem" },
+        { "prompt": "Sandwich" },
+        { "prompt": "Teapot" },
+        { "prompt": "Newspaper" },
+        { "prompt": "Bonfire" },
+        { "prompt": "Balloon" },
+        { "prompt": "Confetti cannon" },
+        { "prompt": "Grandstand" },
+        { "prompt": "Stretcher" },
+        { "prompt": "Megaphone" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries occupied by Germany in the Second World War.", "answers": [{ "text": "The Netherlands" }, { "text": "Belgium" }, { "text": "France" }, { "text": "Denmark" }] },
+        { "prompt": "Name four Allied leaders of the Second World War.", "answers": [{ "text": "Churchill" }, { "text": "Roosevelt" }, { "text": "Stalin" }, { "text": "De Gaulle" }] },
+        { "prompt": "Name four kinds of boat.", "answers": [{ "text": "Canoe" }, { "text": "Yacht" }, { "text": "Ferry" }, { "text": "Tugboat" }] },
+        { "prompt": "Name four Dutch public holidays.", "answers": [{ "text": "King's Day" }, { "text": "Liberation Day" }, { "text": "Christmas" }, { "text": "Easter" }] },
+        { "prompt": "Name four instruments in a marching band.", "answers": [{ "text": "Trumpet" }, { "text": "Trombone" }, { "text": "Drum" }, { "text": "Cymbals" }] },
+        { "prompt": "Name four European countries that stayed neutral in the Second World War.", "answers": [{ "text": "Switzerland" }, { "text": "Sweden" }, { "text": "Spain" }, { "text": "Portugal" }] },
+        { "prompt": "Name four ways of cooking a potato.", "answers": [{ "text": "Chips" }, { "text": "Mash" }, { "text": "Gratin" }, { "text": "Rosti" }] },
+        { "prompt": "Name four things in a first aid kit.", "answers": [{ "text": "Plaster" }, { "text": "Bandage" }, { "text": "Scissors" }, { "text": "Antiseptic" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which farm bird lays eggs and says quack?", "difficulty": "easy", "answers": [{ "text": "The duck", "aliases": ["duck"] }] },
+        { "prompt": "Which day of the week comes before Saturday?", "difficulty": "easy", "answers": [{ "text": "Friday" }] },
+        { "prompt": "What do you call a large area covered in trees?", "difficulty": "easy", "answers": [{ "text": "A forest", "aliases": ["forest", "wood"] }] },
+        { "prompt": "Which sweet food is made from cocoa beans?", "difficulty": "easy", "answers": [{ "text": "Chocolate" }] },
+        { "prompt": "What do you call the person in charge of a school?", "difficulty": "easy", "answers": [{ "text": "The headteacher", "aliases": ["headteacher", "head", "principal"] }] },
+        { "prompt": "What is the capital of Serbia?", "difficulty": "hard", "answers": [{ "text": "Belgrade" }] },
+        { "prompt": "Which German author wrote All Quiet on the Western Front?", "difficulty": "hard", "answers": [{ "text": "Erich Maria Remarque", "aliases": ["Remarque"] }] },
+        { "prompt": "Which is the largest species of jellyfish in the world?", "difficulty": "hard", "answers": [{ "text": "The lion's mane jellyfish", "aliases": ["lion's mane"] }] },
+        { "prompt": "Which acid gives vinegar its sharp taste?", "difficulty": "hard", "answers": [{ "text": "Acetic acid", "aliases": ["acetic"] }] },
+        { "prompt": "Which Brazilian island is the largest river island in the world?", "difficulty": "hard", "answers": [{ "text": "Bananal", "aliases": ["Ilha do Bananal"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch dancer was executed as a spy in France in 1917?", "answers": [{ "text": "Mata Hari" }] },
+        { "prompt": "What is the capital of Kosovo?", "answers": [{ "text": "Pristina" }] },
+        { "prompt": "Which German field marshal was nicknamed the Desert Fox?", "answers": [{ "text": "Erwin Rommel", "aliases": ["Rommel"] }] },
+        { "prompt": "In which Dutch village does the Airborne Museum stand?", "answers": [{ "text": "Oosterbeek" }] },
+        { "prompt": "What is the deepest point of the Mediterranean called?", "answers": [{ "text": "The Calypso Deep", "aliases": ["Calypso Deep"] }] },
+        { "prompt": "Which Polish mathematician first broke the Enigma cipher before the war?", "answers": [{ "text": "Marian Rejewski", "aliases": ["Rejewski"] }] }
+      ]
+    }
+  ]
+}

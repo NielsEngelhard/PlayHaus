@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w2",
+  "title": "Weekquiz 2 2026",
+  "description": "De wekelijkse quiz van woensdag 7 januari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste land van Afrika qua oppervlakte?", "category": "Aardrijkskunde", "answers": [{ "text": "Algerije" }] },
+        { "prompt": "Welk onderdeel van de cel wordt de energiefabriek genoemd?", "category": "Wetenschap", "answers": [{ "text": "De mitochondrien", "aliases": ["mitochondrien", "mitochondrium"] }] },
+        { "prompt": "Welke stad was de hoofdstad van het Incarijk?", "category": "Geschiedenis", "answers": [{ "text": "Cusco", "aliases": ["Cuzco"] }] },
+        { "prompt": "In welke sport strijden teams om de Stanley Cup?", "category": "Sport", "answers": [{ "text": "IJshockey" }] },
+        { "prompt": "In welk museum staat de Venus van Milo?", "category": "Kunst", "answers": [{ "text": "Het Louvre", "aliases": ["Louvre"] }] },
+        { "prompt": "Wat is de snelste vis van de zee?", "category": "Natuur", "answers": [{ "text": "De zeilvis", "aliases": ["zeilvis"] }] },
+        { "prompt": "Welk Nederlands dorp heeft grachten in plaats van straten?", "category": "Nederland", "answers": [{ "text": "Giethoorn" }] },
+        { "prompt": "Welk Italiaans woord vertelt een muzikant dat hij luid moet spelen?", "category": "Muziek", "answers": [{ "text": "Forte" }] },
+        { "prompt": "Welke acteur speelt kapitein Jack Sparrow?", "category": "Film", "answers": [{ "text": "Johnny Depp", "aliases": ["Depp"] }] },
+        { "prompt": "Wat is het meervoud van het woord muis?", "category": "Taal", "answers": [{ "text": "Muizen" }] },
+        { "prompt": "Welk Italiaans gerecht bestaat uit rijst die langzaam in bouillon gaart?", "category": "Eten", "answers": [{ "text": "Risotto" }] },
+        { "prompt": "Waar staat de afkorting DNA voor?", "category": "Wetenschap", "answers": [{ "text": "Desoxyribonucleinezuur", "aliases": ["deoxyribonucleinezuur"] }] },
+        { "prompt": "Wie was de eerste keizer van Rome?", "category": "Geschiedenis", "answers": [{ "text": "Augustus" }] },
+        { "prompt": "Welke zee ligt tussen Australie en Nieuw-Zeeland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Tasmanzee", "aliases": ["Tasmanzee", "Tasmanse Zee"] }] },
+        { "prompt": "Welke vechtsport betekent letterlijk de zachte weg?", "category": "Sport", "answers": [{ "text": "Judo" }] },
+        { "prompt": "Welke boom laat in de herfst kastanjes vallen?", "category": "Natuur", "answers": [{ "text": "De paardenkastanje", "aliases": ["paardenkastanje", "kastanje"] }] },
+        { "prompt": "Welke filmstudio heeft een brullende leeuw als logo?", "category": "Film", "answers": [{ "text": "MGM", "aliases": ["Metro-Goldwyn-Mayer"] }] },
+        { "prompt": "Welk album van de Beatles heeft een zebrapad op de hoes?", "category": "Muziek", "answers": [{ "text": "Abbey Road" }] },
+        { "prompt": "Waar staat de letter S voor in HTTPS?", "category": "Techniek", "answers": [{ "text": "Secure", "aliases": ["veilig"] }] },
+        { "prompt": "Welk verdrag maakte in 1919 formeel een einde aan de Eerste Wereldoorlog?", "category": "Geschiedenis", "answers": [{ "text": "Het Verdrag van Versailles", "aliases": ["Verdrag van Versailles", "Versailles"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk Scandinavisch land heeft veruit de langste kustlijn?", "options": [{ "text": "Noorwegen", "correct": true }, { "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Finland" }] },
+        { "prompt": "Wat is het kleinste land van Afrika qua oppervlakte?", "options": [{ "text": "De Seychellen", "correct": true }, { "text": "Gambia" }, { "text": "Djibouti" }, { "text": "Rwanda" }] },
+        { "prompt": "Welke kunstenaar schilderde de smeltende klokken van De volharding der herinnering?", "options": [{ "text": "Salvador Dali", "correct": true }, { "text": "Rene Magritte" }, { "text": "Joan Miro" }, { "text": "Max Ernst" }] },
+        { "prompt": "Welke dans ontstond in de volkswijken van Buenos Aires?", "options": [{ "text": "De tango", "correct": true }, { "text": "De samba" }, { "text": "De rumba" }, { "text": "De flamenco" }] },
+        { "prompt": "Wat is de hoofdstad van Kenia?", "options": [{ "text": "Nairobi", "correct": true }, { "text": "Mombasa" }, { "text": "Kampala" }, { "text": "Dar es Salaam" }] },
+        { "prompt": "Wat is de grootste maan van ons zonnestelsel?", "options": [{ "text": "Ganymedes", "correct": true }, { "text": "Titan" }, { "text": "Callisto" }, { "text": "Onze eigen maan" }] },
+        { "prompt": "Welke oorlog werd uitgevochten tussen de noordelijke en zuidelijke staten van Amerika?", "options": [{ "text": "De Amerikaanse Burgeroorlog", "correct": true }, { "text": "De Onafhankelijkheidsoorlog" }, { "text": "De Mexicaanse Oorlog" }, { "text": "De Spaans-Amerikaanse Oorlog" }] },
+        { "prompt": "Wat is de grootste spier van het menselijk lichaam?", "options": [{ "text": "De bilspier", "correct": true }, { "text": "De quadriceps" }, { "text": "De kuitspier" }, { "text": "De borstspier" }] },
+        { "prompt": "Welk instrument hoort bij de koperblazers?", "options": [{ "text": "De tuba", "correct": true }, { "text": "De fagot" }, { "text": "De saxofoon" }, { "text": "De blokfluit" }] },
+        { "prompt": "Wat is de hoogst mogelijke break in een frame snooker?", "options": [{ "text": "147", "correct": true }, { "text": "140" }, { "text": "155" }, { "text": "180" }] },
+        { "prompt": "In welk toneelstuk van Shakespeare komt de schurk Iago voor?", "options": [{ "text": "Othello", "correct": true }, { "text": "Macbeth" }, { "text": "Koning Lear" }, { "text": "Hamlet" }] },
+        { "prompt": "Hoe heet een groep kraaien in het Engels?", "options": [{ "text": "A murder", "correct": true }, { "text": "A parliament" }, { "text": "A gaggle" }, { "text": "A pride" }] },
+        { "prompt": "Welk land heette vroeger Ceylon?", "options": [{ "text": "Sri Lanka", "correct": true }, { "text": "Myanmar" }, { "text": "Thailand" }, { "text": "Bangladesh" }] },
+        { "prompt": "Welk gas heeft de formule CH4?", "options": [{ "text": "Methaan", "correct": true }, { "text": "Propaan" }, { "text": "Ammoniak" }, { "text": "Ozon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Met hoeveel botten wordt een baby geboren?", "answer": 300, "unit": "botten", "explanation": "Veel ervan groeien tijdens de jeugd aan elkaar vast." },
+        { "prompt": "Hoeveel kilometer lang is de Kanaaltunnel?", "answer": 50, "unit": "kilometer" },
+        { "prompt": "Hoeveel uur duurt een vlucht van Amsterdam naar New York ongeveer?", "answer": 8, "unit": "uur" },
+        { "prompt": "Met hoeveel stukken begint elke speler een partij schaak?", "answer": 16, "unit": "stukken" },
+        { "prompt": "In welk jaar werden de Olympische Spelen in Berlijn gehouden?", "answer": 1936, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur haalt een jachtluipaard in volle sprint?", "answer": 112, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel talen worden er ongeveer in de wereld gesproken?", "answer": 7000, "unit": "talen" },
+        { "prompt": "Hoeveel gram weegt een voetbal?", "answer": 430, "unit": "gram" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Vlieger" },
+        { "prompt": "Rolstoel" },
+        { "prompt": "Roltrap" },
+        { "prompt": "Ruitenwisser" },
+        { "prompt": "Brandkraan" },
+        { "prompt": "Stethoscoop" },
+        { "prompt": "Spaarvarken" },
+        { "prompt": "Pepermolen" },
+        { "prompt": "Koffer" },
+        { "prompt": "Stoplicht" },
+        { "prompt": "Schoenveter" },
+        { "prompt": "Schuimbad" },
+        { "prompt": "Legpuzzel" },
+        { "prompt": "Zandkasteel" },
+        { "prompt": "Notenkraker" },
+        { "prompt": "Bijenkorf" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die met de euro betalen.", "answers": [{ "text": "Duitsland" }, { "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Spanje" }] },
+        { "prompt": "Noem vier instrumenten uit het slagwerk van een orkest.", "answers": [{ "text": "Pauken" }, { "text": "Kleine trom" }, { "text": "Bekkens" }, { "text": "Triangel" }] },
+        { "prompt": "Noem vier landen die de Olympische Winterspelen hebben georganiseerd.", "answers": [{ "text": "Noorwegen" }, { "text": "Japan" }, { "text": "Italie" }, { "text": "Canada" }] },
+        { "prompt": "Noem vier soorten wolken.", "answers": [{ "text": "Cumulus" }, { "text": "Stratus" }, { "text": "Cirrus" }, { "text": "Nimbus" }] },
+        { "prompt": "Noem vier nummers van de Beatles.", "answers": [{ "text": "Hey Jude" }, { "text": "Yesterday" }, { "text": "Let It Be" }, { "text": "Help" }] },
+        { "prompt": "Noem vier leden van de kattenfamilie.", "answers": [{ "text": "Leeuw" }, { "text": "Tijger" }, { "text": "Luipaard" }, { "text": "Jachtluipaard" }] },
+        { "prompt": "Noem vier Europese landen aan de Middellandse Zee.", "answers": [{ "text": "Spanje" }, { "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Griekenland" }] },
+        { "prompt": "Noem vier kaartspellen.", "answers": [{ "text": "Poker" }, { "text": "Bridge" }, { "text": "Blackjack" }, { "text": "Rummy" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Hoeveel minuten zitten er in een uur?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
+        { "prompt": "Welk zeedier heeft acht armen?", "difficulty": "easy", "answers": [{ "text": "De octopus", "aliases": ["octopus", "inktvis"] }] },
+        { "prompt": "Hoe heet de speelgoedcowboy in Toy Story?", "difficulty": "easy", "answers": [{ "text": "Woody" }] },
+        { "prompt": "Hoe noem je een jonge kat?", "difficulty": "easy", "answers": [{ "text": "Een kitten", "aliases": ["kitten", "katje"] }] },
+        { "prompt": "Welke Griekse wiskundige schreef de Elementen?", "difficulty": "hard", "answers": [{ "text": "Euclides" }] },
+        { "prompt": "Welke rivier stroomt door Bagdad?", "difficulty": "hard", "answers": [{ "text": "De Tigris", "aliases": ["Tigris"] }] },
+        { "prompt": "Hoe heet de wetenschap die paddenstoelen bestudeert?", "difficulty": "hard", "answers": [{ "text": "Mycologie" }] },
+        { "prompt": "Welk land heeft als enige een nationale vlag die geen rechthoek is?", "difficulty": "hard", "answers": [{ "text": "Nepal" }] },
+        { "prompt": "Welke Russische schrijver schreef Dokter Zjivago?", "difficulty": "hard", "answers": [{ "text": "Boris Pasternak", "aliases": ["Pasternak"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Duitse wiskundige wordt de prins der wiskunde genoemd?", "answers": [{ "text": "Carl Friedrich Gauss", "aliases": ["Gauss"] }] },
+        { "prompt": "Wat is de hoofdstad van Paraguay?", "answers": [{ "text": "Asuncion" }] },
+        { "prompt": "Wat is de hoogste waterval ter wereld?", "answers": [{ "text": "De Angelwaterval", "aliases": ["Angel Falls", "Salto Angel"] }] },
+        { "prompt": "Welke Russische componist schreef Le Sacre du Printemps?", "answers": [{ "text": "Igor Stravinsky", "aliases": ["Stravinsky"] }] },
+        { "prompt": "In welk jaar werd IJsland volledig onafhankelijk van Denemarken?", "answers": [{ "text": "1944" }] },
+        { "prompt": "Welk element dankt zijn naam aan het Griekse woord voor zwaar?", "answers": [{ "text": "Barium" }] }
+      ]
+    }
+  ]
+}

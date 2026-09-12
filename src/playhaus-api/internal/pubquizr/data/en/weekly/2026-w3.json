@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w3",
+  "title": "Weekly quiz 3 2026",
+  "description": "The weekly quiz of Wednesday 14 January 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the longest mountain range in the world?", "category": "Geography", "answers": [{ "text": "The Andes", "aliases": ["Andes"] }] },
+        { "prompt": "What is the centre of an atom called?", "category": "Science", "answers": [{ "text": "The nucleus", "aliases": ["nucleus"] }] },
+        { "prompt": "Who led the Soviet Union during the Second World War?", "category": "History", "answers": [{ "text": "Joseph Stalin", "aliases": ["Stalin"] }] },
+        { "prompt": "In which city were the 2012 Summer Olympics held?", "category": "Sport", "answers": [{ "text": "London" }] },
+        { "prompt": "Which art movement is Andy Warhol associated with?", "category": "Art", "answers": [{ "text": "Pop art" }] },
+        { "prompt": "Which is the largest living reptile?", "category": "Nature", "answers": [{ "text": "The saltwater crocodile", "aliases": ["saltwater crocodile"] }] },
+        { "prompt": "Which Dutch lake was created by damming off the Zuiderzee?", "category": "The Netherlands", "answers": [{ "text": "The IJsselmeer", "aliases": ["IJsselmeer"] }] },
+        { "prompt": "Which country is the birthplace of reggae?", "category": "Music", "answers": [{ "text": "Jamaica" }] },
+        { "prompt": "In which film does the hacker Neo take a red pill?", "category": "Film", "answers": [{ "text": "The Matrix", "aliases": ["Matrix"] }] },
+        { "prompt": "In which language does hola mean hello?", "category": "Language", "answers": [{ "text": "Spanish" }] },
+        { "prompt": "Which fruit is the main ingredient of guacamole?", "category": "Food", "answers": [{ "text": "The avocado", "aliases": ["avocado"] }] },
+        { "prompt": "What is the unit of electric current called?", "category": "Science", "answers": [{ "text": "The ampere", "aliases": ["ampere", "amp"] }] },
+        { "prompt": "Which civilisation built Machu Picchu?", "category": "History", "answers": [{ "text": "The Incas", "aliases": ["Incas", "Inca"] }] },
+        { "prompt": "Which country lies directly south of the United States?", "category": "Geography", "answers": [{ "text": "Mexico" }] },
+        { "prompt": "In which country was curling invented?", "category": "Sport", "answers": [{ "text": "Scotland" }] },
+        { "prompt": "Which is the tallest kind of grass in the world?", "category": "Nature", "answers": [{ "text": "Bamboo" }] },
+        { "prompt": "Which animation studio made Shrek?", "category": "Film", "answers": [{ "text": "DreamWorks" }] },
+        { "prompt": "What is the highest female singing voice called?", "category": "Music", "answers": [{ "text": "The soprano", "aliases": ["soprano"] }] },
+        { "prompt": "What does the abbreviation GPS stand for?", "category": "Technology", "answers": [{ "text": "Global Positioning System" }] },
+        { "prompt": "Which Italian explorer gave his name to the American continent?", "category": "History", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the oldest university in the world still teaching today?", "options": [{ "text": "Bologna", "correct": true }, { "text": "Oxford" }, { "text": "Paris" }, { "text": "Salamanca" }] },
+        { "prompt": "What is the capital of Indonesia?", "options": [{ "text": "Jakarta", "correct": true }, { "text": "Surabaya" }, { "text": "Bandung" }, { "text": "Medan" }] },
+        { "prompt": "Which galaxy is our nearest large neighbour?", "options": [{ "text": "Andromeda", "correct": true }, { "text": "Triangulum" }, { "text": "The Whirlpool" }, { "text": "The Sombrero" }] },
+        { "prompt": "Who wrote the novel Frankenstein?", "options": [{ "text": "Mary Shelley", "correct": true }, { "text": "Bram Stoker" }, { "text": "Edgar Allan Poe" }, { "text": "Emily Bronte" }] },
+        { "prompt": "Which is the lightest metal on the periodic table?", "options": [{ "text": "Lithium", "correct": true }, { "text": "Aluminium" }, { "text": "Magnesium" }, { "text": "Titanium" }] },
+        { "prompt": "In which sport are the positions scrum-half and fly-half?", "options": [{ "text": "Rugby", "correct": true }, { "text": "Hockey" }, { "text": "Lacrosse" }, { "text": "Handball" }] },
+        { "prompt": "Which ocean lies between Africa and Australia?", "options": [{ "text": "The Indian Ocean", "correct": true }, { "text": "The Southern Ocean" }, { "text": "The Coral Sea" }, { "text": "The Arabian Sea" }] },
+        { "prompt": "Which animal has fingerprints almost indistinguishable from a human's?", "options": [{ "text": "The koala", "correct": true }, { "text": "The chimpanzee" }, { "text": "The gorilla" }, { "text": "The raccoon" }] },
+        { "prompt": "In which country is the temple complex of Angkor Wat?", "options": [{ "text": "Cambodia", "correct": true }, { "text": "Thailand" }, { "text": "Laos" }, { "text": "Vietnam" }] },
+        { "prompt": "In which film series does the agent Ethan Hunt appear?", "options": [{ "text": "Mission: Impossible", "correct": true }, { "text": "The Bourne films" }, { "text": "John Wick" }, { "text": "Jack Ryan" }] },
+        { "prompt": "Which rock forms when lava cools quickly?", "options": [{ "text": "Basalt", "correct": true }, { "text": "Granite" }, { "text": "Limestone" }, { "text": "Slate" }] },
+        { "prompt": "Which country eats the most chocolate per head?", "options": [{ "text": "Switzerland", "correct": true }, { "text": "Belgium" }, { "text": "Austria" }, { "text": "Ireland" }] },
+        { "prompt": "How many pairs of chromosomes does a human being have?", "options": [{ "text": "23 pairs", "correct": true }, { "text": "20 pairs" }, { "text": "24 pairs" }, { "text": "46 pairs" }] },
+        { "prompt": "Which Belgian city is the centre of the world diamond trade?", "options": [{ "text": "Antwerp", "correct": true }, { "text": "Bruges" }, { "text": "Ghent" }, { "text": "Liege" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many million kilometres is the earth from the sun?", "answer": 150, "unit": "million kilometres" },
+        { "prompt": "How many muscles does it take to smile?", "answer": 17, "unit": "muscles" },
+        { "prompt": "In what year did the Netherlands win the Eurovision Song Contest with Duncan Laurence?", "answer": 2019, "unit": "" },
+        { "prompt": "How many member states does the European Union have?", "answer": 27, "unit": "member states" },
+        { "prompt": "How many kilometres long is the Danube?", "answer": 2850, "unit": "kilometres" },
+        { "prompt": "How many calories are there in a banana, roughly?", "answer": 90, "unit": "calories" },
+        { "prompt": "How many million people live in greater Tokyo?", "answer": 37, "unit": "million people" },
+        { "prompt": "In how many days does Phileas Fogg travel around the world?", "answer": 80, "unit": "days", "explanation": "Jules Verne wrote it in 1872, when the schedule only just worked." }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Anvil" },
+        { "prompt": "Periscope" },
+        { "prompt": "Paperclip" },
+        { "prompt": "Stapler" },
+        { "prompt": "Fountain" },
+        { "prompt": "Tambourine" },
+        { "prompt": "Lawnmower" },
+        { "prompt": "Whisk" },
+        { "prompt": "Ladle" },
+        { "prompt": "Doorknob" },
+        { "prompt": "Curtain" },
+        { "prompt": "Mousetrap" },
+        { "prompt": "Bookshelf" },
+        { "prompt": "Sunflower" },
+        { "prompt": "Water slide" },
+        { "prompt": "Chandelier" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries in Central America.", "answers": [{ "text": "Costa Rica" }, { "text": "Panama" }, { "text": "Guatemala" }, { "text": "Honduras" }] },
+        { "prompt": "Name four tragedies by Shakespeare.", "answers": [{ "text": "Hamlet" }, { "text": "Macbeth" }, { "text": "Othello" }, { "text": "King Lear" }] },
+        { "prompt": "Name four gods of Greek mythology.", "answers": [{ "text": "Zeus" }, { "text": "Athena" }, { "text": "Apollo" }, { "text": "Ares" }] },
+        { "prompt": "Name four kinds of tea.", "answers": [{ "text": "Green tea" }, { "text": "Black tea" }, { "text": "White tea" }, { "text": "Oolong" }] },
+        { "prompt": "Name four countries that border Russia.", "answers": [{ "text": "China" }, { "text": "Finland" }, { "text": "Poland" }, { "text": "Norway" }] },
+        { "prompt": "Name four instruments played with a keyboard.", "answers": [{ "text": "Piano" }, { "text": "Organ" }, { "text": "Harpsichord" }, { "text": "Accordion" }] },
+        { "prompt": "Name four kinds of bread.", "answers": [{ "text": "Baguette" }, { "text": "Ciabatta" }, { "text": "Sourdough" }, { "text": "Rye bread" }] },
+        { "prompt": "Name four field events in athletics.", "answers": [{ "text": "Long jump" }, { "text": "High jump" }, { "text": "Shot put" }, { "text": "Javelin" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which planet do we live on?", "difficulty": "easy", "answers": [{ "text": "Earth" }] },
+        { "prompt": "What is frozen water called?", "difficulty": "easy", "answers": [{ "text": "Ice" }] },
+        { "prompt": "What is the name of Mickey Mouse's dog?", "difficulty": "easy", "answers": [{ "text": "Pluto" }] },
+        { "prompt": "Which ground-up grain is the main ingredient of bread?", "difficulty": "easy", "answers": [{ "text": "Flour" }] },
+        { "prompt": "What is the great bell of the clock tower at Westminster called?", "difficulty": "easy", "answers": [{ "text": "Big Ben" }] },
+        { "prompt": "Which African country was never colonised by a European power?", "difficulty": "hard", "answers": [{ "text": "Ethiopia" }] },
+        { "prompt": "Who wrote the poem The Raven?", "difficulty": "hard", "answers": [{ "text": "Edgar Allan Poe", "aliases": ["Poe"] }] },
+        { "prompt": "Which strait separates Alaska from Russia?", "difficulty": "hard", "answers": [{ "text": "The Bering Strait", "aliases": ["Bering Strait", "Bering"] }] },
+        { "prompt": "What is a group of jellyfish called?", "difficulty": "hard", "answers": [{ "text": "A smack", "aliases": ["smack"] }] },
+        { "prompt": "Which noble gas takes its name from the Greek word for lazy?", "difficulty": "hard", "answers": [{ "text": "Argon" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Danish physicist published his model of the atom in 1913?", "answers": [{ "text": "Niels Bohr", "aliases": ["Bohr"] }] },
+        { "prompt": "What is the capital of Uzbekistan?", "answers": [{ "text": "Tashkent" }] },
+        { "prompt": "Which French novelist wrote In Search of Lost Time?", "answers": [{ "text": "Marcel Proust", "aliases": ["Proust"] }] },
+        { "prompt": "Which volcanic eruption on Santorini helped end the Minoan civilisation?", "answers": [{ "text": "Thera", "aliases": ["Thira"] }] },
+        { "prompt": "In which year was the first successful human heart transplant carried out?", "answers": [{ "text": "1967" }] },
+        { "prompt": "Which country has more pyramids than any other?", "answers": [{ "text": "Sudan" }] }
+      ]
+    }
+  ]
+}

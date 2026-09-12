@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w7",
+  "title": "Weekly quiz 7 2026",
+  "description": "The weekly quiz of Wednesday 11 February 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which country is the city of Timbuktu?", "category": "Geography", "answers": [{ "text": "Mali" }] },
+        { "prompt": "Which force slows an object sliding across a surface?", "category": "Science", "answers": [{ "text": "Friction" }] },
+        { "prompt": "Which Greek city state was famous for raising its boys as soldiers?", "category": "History", "answers": [{ "text": "Sparta" }] },
+        { "prompt": "What is the highest score you can throw with three darts?", "category": "Sport", "answers": [{ "text": "180" }] },
+        { "prompt": "Which kind of painting did Wassily Kandinsky help to invent?", "category": "Art", "answers": [{ "text": "Abstract art", "aliases": ["abstract painting"] }] },
+        { "prompt": "Which is the smallest mammal in the world by weight?", "category": "Nature", "answers": [{ "text": "The bumblebee bat", "aliases": ["bumblebee bat"] }] },
+        { "prompt": "Which Dutch storm surge barrier closes off the Nieuwe Waterweg?", "category": "The Netherlands", "answers": [{ "text": "The Maeslantkering", "aliases": ["Maeslantkering"] }] },
+        { "prompt": "Which stage musical is built out of ABBA songs?", "category": "Music", "answers": [{ "text": "Mamma Mia" }] },
+        { "prompt": "Which actor directed himself in the film Braveheart?", "category": "Film", "answers": [{ "text": "Mel Gibson", "aliases": ["Gibson"] }] },
+        { "prompt": "Which invented language was published by Zamenhof in 1887?", "category": "Language", "answers": [{ "text": "Esperanto" }] },
+        { "prompt": "Which pulse is mashed with sesame paste to make hummus?", "category": "Food", "answers": [{ "text": "The chickpea", "aliases": ["chickpea", "chickpeas"] }] },
+        { "prompt": "What do we call an animal that is active at night?", "category": "Science", "answers": [{ "text": "Nocturnal" }] },
+        { "prompt": "Which empire did Montezuma rule when the Spanish arrived?", "category": "History", "answers": [{ "text": "The Aztecs", "aliases": ["Aztecs", "Aztec Empire"] }] },
+        { "prompt": "In which country is the Atacama desert?", "category": "Geography", "answers": [{ "text": "Chile" }] },
+        { "prompt": "In which Olympic sport do crews use sculls and sweep oars?", "category": "Sport", "answers": [{ "text": "Rowing" }] },
+        { "prompt": "Which plant folds its leaves shut the moment you touch it?", "category": "Nature", "answers": [{ "text": "The mimosa", "aliases": ["mimosa", "sensitive plant"] }] },
+        { "prompt": "In which film does a weatherman live the same day over and over?", "category": "Film", "answers": [{ "text": "Groundhog Day" }] },
+        { "prompt": "Which French composer wrote the Bolero?", "category": "Music", "answers": [{ "text": "Maurice Ravel", "aliases": ["Ravel"] }] },
+        { "prompt": "Which company makes the Windows operating system?", "category": "Technology", "answers": [{ "text": "Microsoft" }] },
+        { "prompt": "Which ancient trading people gave Europe the basis of its alphabet?", "category": "History", "answers": [{ "text": "The Phoenicians", "aliases": ["Phoenicians"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which inhabited place on earth gets the most rain in a year?", "options": [{ "text": "Cherrapunji", "correct": true }, { "text": "Manaus" }, { "text": "Monrovia" }, { "text": "Bergen" }] },
+        { "prompt": "Which Russian-American author wrote the novel Lolita?", "options": [{ "text": "Vladimir Nabokov", "correct": true }, { "text": "Ivan Turgenev" }, { "text": "Mikhail Bulgakov" }, { "text": "Isaac Babel" }] },
+        { "prompt": "Which comet comes back into view roughly every 76 years?", "options": [{ "text": "Halley's Comet", "correct": true }, { "text": "Hale-Bopp" }, { "text": "Encke" }, { "text": "Shoemaker-Levy" }] },
+        { "prompt": "Which vitamin does the blood need in order to clot?", "options": [{ "text": "Vitamin K", "correct": true }, { "text": "Vitamin A" }, { "text": "Vitamin B12" }, { "text": "Vitamin E" }] },
+        { "prompt": "The failure of which crop caused the Irish famine of the 1840s?", "options": [{ "text": "The potato", "correct": true }, { "text": "Wheat" }, { "text": "Barley" }, { "text": "Oats" }] },
+        { "prompt": "In which sport is the Vendee Globe a round the world race?", "options": [{ "text": "Sailing", "correct": true }, { "text": "Rowing" }, { "text": "Ballooning" }, { "text": "Motor racing" }] },
+        { "prompt": "Which novel opens with the words Call me Ishmael?", "options": [{ "text": "Moby-Dick", "correct": true }, { "text": "Treasure Island" }, { "text": "Robinson Crusoe" }, { "text": "The Sea-Wolf" }] },
+        { "prompt": "Which country shares the Victoria Falls with Zimbabwe?", "options": [{ "text": "Zambia", "correct": true }, { "text": "Botswana" }, { "text": "Mozambique" }, { "text": "Malawi" }] },
+        { "prompt": "Which is the most common blood group in the world?", "options": [{ "text": "O positive", "correct": true }, { "text": "A positive" }, { "text": "B negative" }, { "text": "AB positive" }] },
+        { "prompt": "Which Australian bird can imitate a chainsaw or a camera shutter?", "options": [{ "text": "The lyrebird", "correct": true }, { "text": "The kookaburra" }, { "text": "The cockatoo" }, { "text": "The magpie" }] },
+        { "prompt": "Which German city is famous for its cathedral with twin spires?", "options": [{ "text": "Cologne", "correct": true }, { "text": "Aachen" }, { "text": "Trier" }, { "text": "Mainz" }] },
+        { "prompt": "What is the chemical name of ordinary table salt?", "options": [{ "text": "Sodium chloride", "correct": true }, { "text": "Potassium chloride" }, { "text": "Calcium carbonate" }, { "text": "Sodium nitrate" }] },
+        { "prompt": "Which style of music grew up in New Orleans around 1900?", "options": [{ "text": "Jazz", "correct": true }, { "text": "Soul" }, { "text": "Gospel" }, { "text": "Country" }] },
+        { "prompt": "Which country issued the world's first postage stamp?", "options": [{ "text": "The United Kingdom", "correct": true }, { "text": "France" }, { "text": "Austria" }, { "text": "The United States" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the statue of Christ the Redeemer in Rio?", "answer": 30, "unit": "metres" },
+        { "prompt": "How many players does a baseball team have on the field?", "answer": 9, "unit": "players" },
+        { "prompt": "In what year did the first version of Windows appear?", "answer": 1985, "unit": "" },
+        { "prompt": "How many earth years does Neptune take to orbit the sun?", "answer": 165, "unit": "years" },
+        { "prompt": "How many taste buds does the human tongue have, roughly?", "answer": 8000, "unit": "taste buds" },
+        { "prompt": "How many eggs does a laying hen produce in a year, roughly?", "answer": 300, "unit": "eggs" },
+        { "prompt": "How many steps does the Spanish Steps in Rome have?", "answer": 135, "unit": "steps" },
+        { "prompt": "How many kilometres long was Hadrian's Wall?", "answer": 117, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Rocking chair" },
+        { "prompt": "Dartboard" },
+        { "prompt": "Treadmill" },
+        { "prompt": "Jukebox" },
+        { "prompt": "Hairdryer" },
+        { "prompt": "Pushchair" },
+        { "prompt": "Grandfather clock" },
+        { "prompt": "Toolbox" },
+        { "prompt": "Sledgehammer" },
+        { "prompt": "Spider web" },
+        { "prompt": "Medal" },
+        { "prompt": "Scarecrow" },
+        { "prompt": "Bird bath" },
+        { "prompt": "Guitar case" },
+        { "prompt": "Parcel" },
+        { "prompt": "Shopping trolley" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border France.", "answers": [{ "text": "Belgium" }, { "text": "Spain" }, { "text": "Switzerland" }, { "text": "Italy" }] },
+        { "prompt": "Name four kinds of triangle.", "answers": [{ "text": "Equilateral" }, { "text": "Isosceles" }, { "text": "Scalene" }, { "text": "Right-angled" }] },
+        { "prompt": "Name four martial arts.", "answers": [{ "text": "Karate" }, { "text": "Judo" }, { "text": "Aikido" }, { "text": "Kung fu" }] },
+        { "prompt": "Name four constellations.", "answers": [{ "text": "Orion" }, { "text": "Ursa Major" }, { "text": "Cassiopeia" }, { "text": "Scorpius" }] },
+        { "prompt": "Name four ways of serving coffee.", "answers": [{ "text": "Espresso" }, { "text": "Cappuccino" }, { "text": "Latte" }, { "text": "Americano" }] },
+        { "prompt": "Name the four Nordic capital cities on the mainland.", "answers": [{ "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Copenhagen" }, { "text": "Helsinki" }] },
+        { "prompt": "Name four kinds of shark.", "answers": [{ "text": "Great white" }, { "text": "Tiger shark" }, { "text": "Hammerhead" }, { "text": "Whale shark" }] },
+        { "prompt": "Name four things with a screen.", "answers": [{ "text": "Television" }, { "text": "Laptop" }, { "text": "Telephone" }, { "text": "Tablet" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call baby frogs before they grow legs?", "difficulty": "easy", "answers": [{ "text": "Tadpoles", "aliases": ["tadpole"] }] },
+        { "prompt": "Which yellow fruit grows in a bunch and is peeled before eating?", "difficulty": "easy", "answers": [{ "text": "The banana", "aliases": ["banana"] }] },
+        { "prompt": "Which is the first month of the year?", "difficulty": "easy", "answers": [{ "text": "January" }] },
+        { "prompt": "What kind of animal is Winnie the Pooh?", "difficulty": "easy", "answers": [{ "text": "A bear", "aliases": ["bear"] }] },
+        { "prompt": "What do you call the sound a dog makes?", "difficulty": "easy", "answers": [{ "text": "A bark", "aliases": ["bark", "barking"] }] },
+        { "prompt": "Which country has more islands than any other in the world?", "difficulty": "hard", "answers": [{ "text": "Sweden" }] },
+        { "prompt": "Which Norse god carries a hammer called Mjolnir?", "difficulty": "hard", "answers": [{ "text": "Thor" }] },
+        { "prompt": "Which country's parliament is called the Knesset?", "difficulty": "hard", "answers": [{ "text": "Israel" }] },
+        { "prompt": "Which physicist discovered the atomic nucleus in 1911?", "difficulty": "hard", "answers": [{ "text": "Ernest Rutherford", "aliases": ["Rutherford"] }] },
+        { "prompt": "What is the longest muscle in the human body called?", "difficulty": "hard", "answers": [{ "text": "The sartorius", "aliases": ["sartorius"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Roman emperor made Christianity legal across the empire?", "answers": [{ "text": "Constantine", "aliases": ["Constantine the Great"] }] },
+        { "prompt": "What is the capital of Mozambique?", "answers": [{ "text": "Maputo" }] },
+        { "prompt": "Under which pen name did Eduard Douwes Dekker write Max Havelaar?", "answers": [{ "text": "Multatuli" }] },
+        { "prompt": "In which year was the first artificial heart implanted in a patient?", "answers": [{ "text": "1982" }] },
+        { "prompt": "Which is the highest mountain in Australia?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
+        { "prompt": "Which German philosopher wrote Thus Spoke Zarathustra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] }
+      ]
+    }
+  ]
+}

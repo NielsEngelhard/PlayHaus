@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w20",
+  "title": "Weekquiz 20 2026",
+  "description": "De wekelijkse quiz van woensdag 13 mei 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke zee ligt tussen Griekenland en Turkije?", "category": "Aardrijkskunde", "answers": [{ "text": "De Egeische Zee", "aliases": ["Egeische Zee"] }] },
+        { "prompt": "Hoe heet het proces dat druivensap in wijn verandert?", "category": "Wetenschap", "answers": [{ "text": "Gisting", "aliases": ["fermentatie"] }] },
+        { "prompt": "Welke Russische keizerin regeerde van 1762 tot 1796?", "category": "Geschiedenis", "answers": [{ "text": "Catharina de Grote", "aliases": ["Catharina II"] }] },
+        { "prompt": "In welke olympische sport zit je in een kajak met een dubbele peddel?", "category": "Sport", "answers": [{ "text": "Kanovaren", "aliases": ["kajakken"] }] },
+        { "prompt": "Welke Duitse kunstenaar maakte de gravure Melencolia I?", "category": "Kunst", "answers": [{ "text": "Albrecht Durer", "aliases": ["Durer"] }] },
+        { "prompt": "Welke vogel legt haar eieren in de nesten van andere vogels?", "category": "Natuur", "answers": [{ "text": "De koekoek", "aliases": ["koekoek"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft de meeste inwoners?", "category": "Nederland", "answers": [{ "text": "Zuid-Holland" }] },
+        { "prompt": "Hoe heet de bladmuziek waaruit een heel orkest speelt?", "category": "Muziek", "answers": [{ "text": "De partituur", "aliases": ["partituur"] }] },
+        { "prompt": "In welk verhaal valt een meisje door een konijnenhol in een vreemde wereld?", "category": "Film", "answers": [{ "text": "Alice in Wonderland", "aliases": ["Alice"] }] },
+        { "prompt": "Hoe noem je twee woorden die hetzelfde klinken maar anders worden geschreven?", "category": "Taal", "answers": [{ "text": "Homofonen", "aliases": ["homofoon"] }] },
+        { "prompt": "Van welk graan wordt couscous gemaakt?", "category": "Eten", "answers": [{ "text": "Tarwe" }] },
+        { "prompt": "Wat is het woord voor hoe snel iets van snelheid verandert?", "category": "Wetenschap", "answers": [{ "text": "Versnelling", "aliases": ["acceleratie"] }] },
+        { "prompt": "Welke vikingnederzetting op Newfoundland bewijst dat zij Amerika bereikten?", "category": "Geschiedenis", "answers": [{ "text": "L'Anse aux Meadows" }] },
+        { "prompt": "Op welk Indonesisch eiland wonen meer mensen dan op welk eiland ter wereld ook?", "category": "Aardrijkskunde", "answers": [{ "text": "Java" }] },
+        { "prompt": "Bij welk atletiekonderdeel slinger je een zware bal aan een draad weg?", "category": "Sport", "answers": [{ "text": "Kogelslingeren", "aliases": ["het slingeren"] }] },
+        { "prompt": "Welke Zuid-Amerikaanse aap hangt aan zijn staart?", "category": "Natuur", "answers": [{ "text": "De slingeraap", "aliases": ["slingeraap"] }] },
+        { "prompt": "Welke Marvelfilm uit 2018 speelt in het koninkrijk Wakanda?", "category": "Film", "answers": [{ "text": "Black Panther" }] },
+        { "prompt": "Welke componist schreef het Halleluja uit zijn Messiah?", "category": "Muziek", "answers": [{ "text": "Handel", "aliases": ["Georg Friedrich Handel"] }] },
+        { "prompt": "Waar staat de afkorting HTTP voor?", "category": "Techniek", "answers": [{ "text": "HyperText Transfer Protocol" }] },
+        { "prompt": "Van welke stad vielen volgens de Bijbel de muren door de trompetten van Jozua?", "category": "Geschiedenis", "answers": [{ "text": "Jericho" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft Bogota als hoofdstad?", "options": [{ "text": "Colombia", "correct": true }, { "text": "Ecuador" }, { "text": "Peru" }, { "text": "Venezuela" }] },
+        { "prompt": "Welke Engelse schrijver schreef Robinson Crusoe?", "options": [{ "text": "Daniel Defoe", "correct": true }, { "text": "Jonathan Swift" }, { "text": "Samuel Richardson" }, { "text": "Henry Fielding" }] },
+        { "prompt": "Wat meet een lichtjaar?", "options": [{ "text": "Afstand", "correct": true }, { "text": "Tijd" }, { "text": "Helderheid" }, { "text": "Massa" }] },
+        { "prompt": "Welk piepklein dier overleeft het vacuum van de ruimte?", "options": [{ "text": "Het beerdiertje", "correct": true }, { "text": "De mijt" }, { "text": "De aaltje" }, { "text": "Het raderdiertje" }] },
+        { "prompt": "Welke Mexicaanse sterkedrank wordt van de blauwe agave gestookt?", "options": [{ "text": "Tequila", "correct": true }, { "text": "Mezcal" }, { "text": "Pisco" }, { "text": "Cachaca" }] },
+        { "prompt": "In welke Ierse sport slaan spelers een bal met een hurley?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Shinty" }, { "text": "Gaelic football" }, { "text": "Camogie" }] },
+        { "prompt": "Wat is de hoogste waterval van Europa?", "options": [{ "text": "De Vinnufossen", "correct": true }, { "text": "De Rjukanfossen" }, { "text": "Gavarnie" }, { "text": "Krimml" }] },
+        { "prompt": "Welke botten beschermen het hart en de longen?", "options": [{ "text": "De ribbenkast", "correct": true }, { "text": "Het bekken" }, { "text": "Het borstbeen" }, { "text": "De wervelkolom" }] },
+        { "prompt": "Van welke noot wordt wereldwijd de grootste hoeveelheid geteeld?", "options": [{ "text": "De pinda", "correct": true }, { "text": "De amandel" }, { "text": "De cashewnoot" }, { "text": "De walnoot" }] },
+        { "prompt": "Welk dier maakt de hardste roep van alle landdieren?", "options": [{ "text": "De brulaap", "correct": true }, { "text": "De leeuw" }, { "text": "De olifant" }, { "text": "De wolf" }] },
+        { "prompt": "Hoe heet het splijten van een atoomkern?", "options": [{ "text": "Kernsplijting", "correct": true }, { "text": "Kernfusie" }, { "text": "Ionisatie" }, { "text": "Verval" }] },
+        { "prompt": "Welke taal wordt naast het Arabisch van rechts naar links geschreven?", "options": [{ "text": "Hebreeuws", "correct": true }, { "text": "Grieks" }, { "text": "Turks" }, { "text": "Amhaars" }] },
+        { "prompt": "Welke stad heeft het grootste metronet ter wereld?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "Londen" }, { "text": "New York" }, { "text": "Moskou" }] },
+        { "prompt": "Wat is de kleinste vogel van Europa?", "options": [{ "text": "Het goudhaantje", "correct": true }, { "text": "Het winterkoninkje" }, { "text": "De pimpelmees" }, { "text": "De boomkruiper" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de hoogste boom ter wereld?", "answer": 116, "unit": "meter" },
+        { "prompt": "Hoeveel uur per dag slaapt een kat?", "answer": 15, "unit": "uur" },
+        { "prompt": "In welk jaar vond het eerste Pinkpopfestival plaats?", "answer": 1970, "unit": "" },
+        { "prompt": "Hoeveel kilometer gracht loopt er door Amsterdam?", "answer": 100, "unit": "kilometer" },
+        { "prompt": "Hoeveel botten heeft een olifant?", "answer": 350, "unit": "botten" },
+        { "prompt": "Hoeveel piepkleine tandjes heeft een tuinslak op zijn tong?", "answer": 14000, "unit": "tandjes" },
+        { "prompt": "Hoeveel landen gebruiken de euro als munt?", "answer": 20, "unit": "landen" },
+        { "prompt": "Hoeveel kilo chocolade eet de gemiddelde Nederlander per jaar?", "answer": 5, "unit": "kilo" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Zadel" },
+        { "prompt": "Theemuts" },
+        { "prompt": "Slacentrifuge" },
+        { "prompt": "Breiwol" },
+        { "prompt": "Gitaarversterker" },
+        { "prompt": "Weerballon" },
+        { "prompt": "Stoomtrein" },
+        { "prompt": "Skistok" },
+        { "prompt": "Zonneklep" },
+        { "prompt": "Veer" },
+        { "prompt": "Kam" },
+        { "prompt": "Wok" },
+        { "prompt": "Verfblik" },
+        { "prompt": "Kerkbank" },
+        { "prompt": "Misthoorn" },
+        { "prompt": "Kledingrek" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Argentinie grenzen.", "answers": [{ "text": "Chili" }, { "text": "Bolivia" }, { "text": "Paraguay" }, { "text": "Brazilie" }] },
+        { "prompt": "Noem vier patronen die je op kleding vindt.", "answers": [{ "text": "Strepen" }, { "text": "Ruiten" }, { "text": "Stippen" }, { "text": "Paisley" }] },
+        { "prompt": "Noem vier roofvogels.", "answers": [{ "text": "Arend" }, { "text": "Valk" }, { "text": "Havik" }, { "text": "Uil" }] },
+        { "prompt": "Noem vier olympische sporten op wielen.", "answers": [{ "text": "Wielrennen" }, { "text": "Skateboarden" }, { "text": "BMX" }, { "text": "Skeeleren" }] },
+        { "prompt": "Noem vier landen in en rond de Hoorn van Afrika.", "answers": [{ "text": "Ethiopie" }, { "text": "Somalie" }, { "text": "Eritrea" }, { "text": "Djibouti" }] },
+        { "prompt": "Noem vier dingen die je in een klaslokaal vindt.", "answers": [{ "text": "Tafel" }, { "text": "Stoel" }, { "text": "Schoolbord" }, { "text": "Klok" }] },
+        { "prompt": "Noem vier wereldberoemde schilderijen.", "answers": [{ "text": "De Mona Lisa" }, { "text": "De Nachtwacht" }, { "text": "De schreeuw" }, { "text": "Guernica" }] },
+        { "prompt": "Noem vier instrumenten van een weerstation.", "answers": [{ "text": "Thermometer" }, { "text": "Barometer" }, { "text": "Regenmeter" }, { "text": "Windmeter" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke drank krijg je door sinaasappels uit te persen?", "difficulty": "easy", "answers": [{ "text": "Sinaasappelsap", "aliases": ["jus d'orange", "sap"] }] },
+        { "prompt": "Hoe noem je de persoon die in een restaurant kookt?", "difficulty": "easy", "answers": [{ "text": "Een kok", "aliases": ["kok", "chef"] }] },
+        { "prompt": "Welke zure gele vrucht pers je uit voor limonade?", "difficulty": "easy", "answers": [{ "text": "De citroen", "aliases": ["citroen"] }] },
+        { "prompt": "Hoe noem je een gebouw vol winkels onder een dak?", "difficulty": "easy", "answers": [{ "text": "Een winkelcentrum", "aliases": ["winkelcentrum"] }] },
+        { "prompt": "Hoeveel minuten zitten er in een kwartier?", "difficulty": "easy", "answers": [{ "text": "Vijftien", "aliases": ["15"] }] },
+        { "prompt": "Wat is de hoofdstad van Cyprus?", "difficulty": "hard", "answers": [{ "text": "Nicosia" }] },
+        { "prompt": "Welke Engelse dichter schreef Ozymandias?", "difficulty": "hard", "answers": [{ "text": "Percy Bysshe Shelley", "aliases": ["Shelley"] }] },
+        { "prompt": "Wat is de grootste zoutvlakte ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Salar de Uyuni", "aliases": ["Uyuni", "Salar de Uyuni"] }] },
+        { "prompt": "Wat is de langste ader van het menselijk lichaam?", "difficulty": "hard", "answers": [{ "text": "De grote rozenader", "aliases": ["vena saphena magna"] }] },
+        { "prompt": "Welke Japanse kunst vouwt een vel papier tot een figuur zonder knippen?", "difficulty": "hard", "answers": [{ "text": "Origami" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse arts toonde aan dat beriberi ontstaat door iets dat in het eten ontbreekt?", "answers": [{ "text": "Christiaan Eijkman", "aliases": ["Eijkman"] }] },
+        { "prompt": "Wat is de hoofdstad van Panama?", "answers": [{ "text": "Panama-Stad", "aliases": ["Panama City"] }] },
+        { "prompt": "Welke Zwitsers-Franse architect ontwierp de Villa Savoye?", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
+        { "prompt": "In welk jaar speelde Nederland voor het eerst op een WK?", "answers": [{ "text": "1934" }] },
+        { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] },
+        { "prompt": "Welke Duits-Britse astronoom ontdekte de planeet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] }
+      ]
+    }
+  ]
+}

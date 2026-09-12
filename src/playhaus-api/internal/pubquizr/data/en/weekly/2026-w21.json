@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w21",
+  "title": "Weekly quiz 21 2026",
+  "description": "The weekly quiz of Wednesday 20 May 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the deepest lake in Africa?", "category": "Geography", "answers": [{ "text": "Lake Tanganyika", "aliases": ["Tanganyika"] }] },
+        { "prompt": "Which green pigment lets plants capture sunlight?", "category": "Science", "answers": [{ "text": "Chlorophyll" }] },
+        { "prompt": "Which English civil war was fought between the houses of York and Lancaster?", "category": "History", "answers": [{ "text": "The Wars of the Roses", "aliases": ["Wars of the Roses"] }] },
+        { "prompt": "In which winter sport do you race down an ice track head first?", "category": "Sport", "answers": [{ "text": "Skeleton" }] },
+        { "prompt": "Which Italian painter is known for portraits with long oval faces?", "category": "Art", "answers": [{ "text": "Amedeo Modigliani", "aliases": ["Modigliani"] }] },
+        { "prompt": "Which animal appears in the logo of the World Wide Fund for Nature?", "category": "Nature", "answers": [{ "text": "The giant panda", "aliases": ["panda", "giant panda"] }] },
+        { "prompt": "Which is the smallest inhabited Wadden island of the Netherlands?", "category": "The Netherlands", "answers": [{ "text": "Schiermonnikoog" }] },
+        { "prompt": "Which Italian marking tells a musician to play notes smoothly joined?", "category": "Music", "answers": [{ "text": "Legato" }] },
+        { "prompt": "Which 2018 film tells the story of Freddie Mercury and his band?", "category": "Film", "answers": [{ "text": "Bohemian Rhapsody" }] },
+        { "prompt": "What is a very short Japanese poem of three lines called?", "category": "Language", "answers": [{ "text": "A haiku", "aliases": ["haiku"] }] },
+        { "prompt": "Which small salty fish belongs in a classic Caesar dressing?", "category": "Food", "answers": [{ "text": "The anchovy", "aliases": ["anchovy", "anchovies"] }] },
+        { "prompt": "What is the negatively charged particle in an atom called?", "category": "Science", "answers": [{ "text": "The electron", "aliases": ["electron"] }] },
+        { "prompt": "Which 1494 treaty divided the newly found world between Spain and Portugal?", "category": "History", "answers": [{ "text": "The Treaty of Tordesillas", "aliases": ["Tordesillas"] }] },
+        { "prompt": "Which is the largest island in the Baltic Sea?", "category": "Geography", "answers": [{ "text": "Gotland" }] },
+        { "prompt": "Which board game ends when a king is put in checkmate?", "category": "Sport", "answers": [{ "text": "Chess" }] },
+        { "prompt": "Which conifer drops all its needles every autumn?", "category": "Nature", "answers": [{ "text": "The larch", "aliases": ["larch"] }] },
+        { "prompt": "In which animated film does a house fly away under a cloud of balloons?", "category": "Film", "answers": [{ "text": "Up" }] },
+        { "prompt": "Which American singer is known simply as the Boss?", "category": "Music", "answers": [{ "text": "Bruce Springsteen", "aliases": ["Springsteen"] }] },
+        { "prompt": "What does the abbreviation DNS stand for?", "category": "Technology", "answers": [{ "text": "Domain Name System" }] },
+        { "prompt": "Which Frankish king was crowned emperor in Rome in the year 800?", "category": "History", "answers": [{ "text": "Charlemagne", "aliases": ["Karel de Grote", "Charles the Great"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest species of frog in the world?", "options": [{ "text": "The goliath frog", "correct": true }, { "text": "The cane toad" }, { "text": "The bullfrog" }, { "text": "The Chilean frog" }] },
+        { "prompt": "Which American wrote the play Death of a Salesman?", "options": [{ "text": "Arthur Miller", "correct": true }, { "text": "Eugene O'Neill" }, { "text": "Edward Albee" }, { "text": "Sam Shepard" }] },
+        { "prompt": "What is it called when the moon blocks the sun completely?", "options": [{ "text": "A solar eclipse", "correct": true }, { "text": "A lunar eclipse" }, { "text": "A transit" }, { "text": "An occultation" }] },
+        { "prompt": "Which sea mammal has a long spiral tusk?", "options": [{ "text": "The narwhal", "correct": true }, { "text": "The walrus" }, { "text": "The beluga" }, { "text": "The dugong" }] },
+        { "prompt": "Which drink is made by fermenting honey?", "options": [{ "text": "Mead", "correct": true }, { "text": "Cider" }, { "text": "Sake" }, { "text": "Kvass" }] },
+        { "prompt": "Which is the largest freshwater fish in the world?", "options": [{ "text": "The beluga sturgeon", "correct": true }, { "text": "The catfish" }, { "text": "The arapaima" }, { "text": "The pike" }] },
+        { "prompt": "What are the giant stone heads of Easter Island called?", "options": [{ "text": "Moai", "correct": true }, { "text": "Totems" }, { "text": "Menhirs" }, { "text": "Stelae" }] },
+        { "prompt": "Which organ of the body stores urine?", "options": [{ "text": "The bladder", "correct": true }, { "text": "The kidney" }, { "text": "The gall bladder" }, { "text": "The ureter" }] },
+        { "prompt": "Which language is learned as a second language by more people than any other?", "options": [{ "text": "English", "correct": true }, { "text": "Spanish" }, { "text": "French" }, { "text": "Mandarin" }] },
+        { "prompt": "Which mountain rises highest of all measured from its own base?", "options": [{ "text": "Mauna Kea", "correct": true }, { "text": "Everest" }, { "text": "Denali" }, { "text": "Kilimanjaro" }] },
+        { "prompt": "Which noble gas takes its name from the Greek word for stranger?", "options": [{ "text": "Xenon", "correct": true }, { "text": "Krypton" }, { "text": "Neon" }, { "text": "Radon" }] },
+        { "prompt": "Which city is the seat of the Basque regional government?", "options": [{ "text": "Vitoria-Gasteiz", "correct": true }, { "text": "Bilbao" }, { "text": "San Sebastian" }, { "text": "Pamplona" }] },
+        { "prompt": "To which language family does Finnish belong?", "options": [{ "text": "Finno-Ugric", "correct": true }, { "text": "Germanic" }, { "text": "Slavic" }, { "text": "Baltic" }] },
+        { "prompt": "Which plant produces the largest seed in the world?", "options": [{ "text": "The coco de mer", "correct": true }, { "text": "The coconut palm" }, { "text": "The jackfruit" }, { "text": "The avocado" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the tallest statue in the world?", "answer": 182, "unit": "metres" },
+        { "prompt": "How many wings does a bee have?", "answer": 4, "unit": "wings" },
+        { "prompt": "In what year did Reinier Paping win the coldest Elfstedentocht ever?", "answer": 1963, "unit": "" },
+        { "prompt": "How many kilometres is it by road from Amsterdam to Paris?", "answer": 500, "unit": "kilometres" },
+        { "prompt": "How many players does a korfball team field?", "answer": 8, "unit": "players" },
+        { "prompt": "How many years did it take to build St Peter's Basilica in Rome?", "answer": 120, "unit": "years" },
+        { "prompt": "How many million litres of beer are drunk at Oktoberfest in Munich?", "answer": 7, "unit": "million litres" },
+        { "prompt": "How many islands does Sweden have?", "answer": 267570, "unit": "islands" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Beer mat" },
+        { "prompt": "Bottle opener" },
+        { "prompt": "Fire poker" },
+        { "prompt": "Deck of cards" },
+        { "prompt": "Recorder" },
+        { "prompt": "Sandpaper" },
+        { "prompt": "Wheelie bin" },
+        { "prompt": "Milk bottle" },
+        { "prompt": "Mug" },
+        { "prompt": "Bath plug" },
+        { "prompt": "Map" },
+        { "prompt": "Scoreboard" },
+        { "prompt": "Spade" },
+        { "prompt": "Rake" },
+        { "prompt": "Diving mask" },
+        { "prompt": "Tool belt" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Bolivia.", "answers": [{ "text": "Brazil" }, { "text": "Peru" }, { "text": "Chile" }, { "text": "Argentina" }] },
+        { "prompt": "Name four kinds of grain.", "answers": [{ "text": "Wheat" }, { "text": "Rice" }, { "text": "Maize" }, { "text": "Oats" }] },
+        { "prompt": "Name four English words that came from Dutch.", "answers": [{ "text": "Cookie" }, { "text": "Skipper" }, { "text": "Landscape" }, { "text": "Yacht" }] },
+        { "prompt": "Name four sports played indoors.", "answers": [{ "text": "Squash" }, { "text": "Badminton" }, { "text": "Judo" }, { "text": "Gymnastics" }] },
+        { "prompt": "Name four countries around the Baltic Sea.", "answers": [{ "text": "Estonia" }, { "text": "Latvia" }, { "text": "Lithuania" }, { "text": "Finland" }] },
+        { "prompt": "Name four things that have wheels.", "answers": [{ "text": "Car" }, { "text": "Bicycle" }, { "text": "Skateboard" }, { "text": "Wheelbarrow" }] },
+        { "prompt": "Name four inventions of the twentieth century.", "answers": [{ "text": "Television" }, { "text": "The computer" }, { "text": "Penicillin" }, { "text": "The jet engine" }] },
+        { "prompt": "Name four lakes anywhere in the world.", "answers": [{ "text": "Lake Victoria" }, { "text": "Lake Baikal" }, { "text": "Lake Superior" }, { "text": "Lake Geneva" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call twelve o'clock in the middle of the day?", "difficulty": "easy", "answers": [{ "text": "Noon", "aliases": ["midday"] }] },
+        { "prompt": "Which cake do you eat with candles on it once a year?", "difficulty": "easy", "answers": [{ "text": "A birthday cake", "aliases": ["birthday cake"] }] },
+        { "prompt": "What do you call a small river?", "difficulty": "easy", "answers": [{ "text": "A stream", "aliases": ["stream", "brook"] }] },
+        { "prompt": "Which large vehicle carries many passengers along a road?", "difficulty": "easy", "answers": [{ "text": "A bus", "aliases": ["bus"] }] },
+        { "prompt": "Which part of the day comes straight after the morning?", "difficulty": "easy", "answers": [{ "text": "The afternoon", "aliases": ["afternoon"] }] },
+        { "prompt": "What is the capital of Azerbaijan?", "difficulty": "hard", "answers": [{ "text": "Baku" }] },
+        { "prompt": "Which Italian writer wrote the Decameron?", "difficulty": "hard", "answers": [{ "text": "Giovanni Boccaccio", "aliases": ["Boccaccio"] }] },
+        { "prompt": "Which snake has the most toxic venom of any in the world?", "difficulty": "hard", "answers": [{ "text": "The inland taipan", "aliases": ["inland taipan", "taipan"] }] },
+        { "prompt": "What is the point of the sky directly above your head called?", "difficulty": "hard", "answers": [{ "text": "The zenith", "aliases": ["zenith"] }] },
+        { "prompt": "Which animal has the largest eye of any creature on earth?", "difficulty": "hard", "answers": [{ "text": "The colossal squid", "aliases": ["colossal squid"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch admiral destroyed the Spanish fleet at the Battle of the Downs?", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp"] }] },
+        { "prompt": "What is the capital of Belarus?", "answers": [{ "text": "Minsk" }] },
+        { "prompt": "Which French painter led the Fauvist movement?", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
+        { "prompt": "In which year did a man-made object first land on another planet?", "answers": [{ "text": "1966" }] },
+        { "prompt": "Which is the largest hot desert in Asia?", "answers": [{ "text": "The Arabian Desert", "aliases": ["Arabian Desert"] }] },
+        { "prompt": "Which Swiss psychiatrist founded analytical psychology?", "answers": [{ "text": "Carl Jung", "aliases": ["Jung"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w34",
+  "title": "Weekly quiz 34 2026",
+  "description": "The weekly quiz of Wednesday 19 August 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Australia?", "category": "Geography", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "How many provinces does the Netherlands have?", "category": "The Netherlands", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "Which animal is the largest mammal in the world?", "category": "Nature", "answers": [{ "text": "The blue whale", "aliases": ["blue whale"] }] },
+        { "prompt": "Who painted The Night Watch?", "category": "Art", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "How many players does each football team have on the pitch?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which chemical element has the symbol Au?", "category": "Science", "answers": [{ "text": "Gold" }] },
+        { "prompt": "In what year did the Berlin Wall fall?", "category": "History", "answers": [{ "text": "1989" }] },
+        { "prompt": "Which is the longest river in Europe?", "category": "Geography", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
+        { "prompt": "Which is the largest planet in our solar system?", "category": "Space", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Which Dutch city has a central station built in Cuypers' style?", "category": "The Netherlands", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "How many degrees are there in a right angle?", "category": "Mathematics", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
+        { "prompt": "Who wrote the diary published as The Secret Annex?", "category": "Literature", "answers": [{ "text": "Anne Frank" }] },
+        { "prompt": "Which country won the football World Cup of 2010?", "category": "Sport", "answers": [{ "text": "Spain" }] },
+        { "prompt": "Which is the smallest independent state in the world?", "category": "Geography", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
+        { "prompt": "How many bones does an adult human have, roughly?", "category": "Biology", "answers": [{ "text": "206" }] },
+        { "prompt": "Which sea lies between the Netherlands and England?", "category": "Geography", "answers": [{ "text": "The North Sea", "aliases": ["North Sea"] }] },
+        { "prompt": "What is the currency of Japan called?", "category": "Economics", "answers": [{ "text": "The yen", "aliases": ["yen"] }] },
+        { "prompt": "Which organ pumps blood around the body?", "category": "Biology", "answers": [{ "text": "The heart", "aliases": ["heart"] }] },
+        { "prompt": "In which country is Machu Picchu?", "category": "Geography", "answers": [{ "text": "Peru" }] },
+        { "prompt": "How many colours does a rainbow have in the classic list?", "category": "Nature", "answers": [{ "text": "Seven", "aliases": ["7"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has the most time zones?", "options": [{ "text": "Russia" }, { "text": "France", "correct": true }, { "text": "The United States" }, { "text": "China" }] },
+        { "prompt": "What is the deepest point of the ocean called?", "options": [{ "text": "The Puerto Rico Trench" }, { "text": "The Java Trench" }, { "text": "The Mariana Trench", "correct": true }, { "text": "The Tonga Trench" }] },
+        { "prompt": "How many hearts does an octopus have?", "options": [{ "text": "One" }, { "text": "Two" }, { "text": "Three", "correct": true }, { "text": "Four" }] },
+        { "prompt": "Which Dutch province is the largest by area?", "options": [{ "text": "Friesland" }, { "text": "Gelderland", "correct": true }, { "text": "North Brabant" }, { "text": "Groningen" }] },
+        { "prompt": "In which year did euro notes and coins arrive in people's pockets?", "options": [{ "text": "1999" }, { "text": "2002", "correct": true }, { "text": "2000" }, { "text": "2004" }] },
+        { "prompt": "Which planet is the only one that turns clockwise on its axis?", "options": [{ "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Neptune" }, { "text": "Mercury" }] },
+        { "prompt": "Who was the first secretary-general of the United Nations?", "options": [{ "text": "Dag Hammarskjold" }, { "text": "Trygve Lie", "correct": true }, { "text": "U Thant" }, { "text": "Kurt Waldheim" }] },
+        { "prompt": "How many keys does a standard QWERTY keyboard have, roughly?", "options": [{ "text": "104", "correct": true }, { "text": "88" }, { "text": "120" }, { "text": "96" }] },
+        { "prompt": "Which element is the most common in the universe?", "options": [{ "text": "Helium" }, { "text": "Hydrogen", "correct": true }, { "text": "Oxygen" }, { "text": "Carbon" }] },
+        { "prompt": "Which city hosted the Summer Olympics of 1928?", "options": [{ "text": "Antwerp" }, { "text": "Paris" }, { "text": "Amsterdam", "correct": true }, { "text": "Berlin" }] },
+        { "prompt": "How many languages are spoken worldwide, roughly?", "options": [{ "text": "About 700" }, { "text": "About 7000", "correct": true }, { "text": "About 70000" }, { "text": "About 200" }] },
+        { "prompt": "What is the scientific name for the voice box?", "options": [{ "text": "The pharynx" }, { "text": "The larynx", "correct": true }, { "text": "The trachea" }, { "text": "The bronchus" }] },
+        { "prompt": "Which animal has the longest pregnancy?", "options": [{ "text": "The blue whale" }, { "text": "The rhinoceros" }, { "text": "The elephant", "correct": true }, { "text": "The giraffe" }] },
+        { "prompt": "In which year was the first iPhone shown to the world?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2006" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many bones does a human body have at birth?", "answer": 270, "unit": "bones", "explanation": "Bones fuse together as you grow, so an adult is left with 206." },
+        { "prompt": "How many kilometres long is the Afsluitdijk?", "answer": 32, "unit": "kilometres" },
+        { "prompt": "How many bones does an adult have once the baby bones have fused?", "answer": 206, "unit": "bones" },
+        { "prompt": "In what year was the Zuiderzee Act passed that allowed the Afsluitdijk and the polders?", "answer": 1918, "unit": "" },
+        { "prompt": "How many bones are there in a human hand, wrist included?", "answer": 27, "unit": "bones" },
+        { "prompt": "In what year was the Afsluitdijk completed?", "answer": 1932, "unit": "" },
+        { "prompt": "How many square kilometres is the Flevopolder, the largest artificial polder in the world?", "answer": 970, "unit": "square kilometres" },
+        { "prompt": "How many bones are there in a human foot, ankle included?", "answer": 26, "unit": "bones" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Stroopwafel" },
+        { "prompt": "Max Verstappen" },
+        { "prompt": "Skyscraper" },
+        { "prompt": "Washing machine" },
+        { "prompt": "Sinterklaas" },
+        { "prompt": "Gravity" },
+        { "prompt": "Bicycle shed" },
+        { "prompt": "Penguin" },
+        { "prompt": "Birthday calendar" },
+        { "prompt": "Rembrandt" },
+        { "prompt": "Thunderstorm" },
+        { "prompt": "Carousel" },
+        { "prompt": "Cheese slicer" },
+        { "prompt": "Marathon" },
+        { "prompt": "Pole star" },
+        { "prompt": "Kruidnoten" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Germany.", "answers": [{ "text": "The Netherlands" }, { "text": "Belgium" }, { "text": "France" }, { "text": "Poland" }] },
+        { "prompt": "What do you know about Vincent van Gogh? Four key words.", "answers": [{ "text": "Dutch" }, { "text": "Painter" }, { "text": "Sunflowers" }, { "text": "Ear" }] },
+        { "prompt": "Name four planets of our solar system.", "answers": [{ "text": "Mercury" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Saturn" }] },
+        { "prompt": "Name four Dutch cities with more than 200,000 inhabitants.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
+        { "prompt": "Name four Olympic sports held on the water.", "answers": [{ "text": "Rowing" }, { "text": "Sailing" }, { "text": "Canoe slalom" }, { "text": "Water polo" }] },
+        { "prompt": "What do you know about the Second World War in the Netherlands? Four key words.", "answers": [{ "text": "1940" }, { "text": "Occupation" }, { "text": "Hunger winter" }, { "text": "Liberation" }] },
+        { "prompt": "Name four brands that make luxury handbags.", "answers": [{ "text": "Gucci" }, { "text": "Chanel" }, { "text": "Louis Vuitton" }, { "text": "Hermes" }] },
+        { "prompt": "Name four animals that live in the Dutch dunes.", "answers": [{ "text": "Rabbit" }, { "text": "Fox" }, { "text": "Roe deer" }, { "text": "Sand lizard" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the capital of Denmark?", "difficulty": "easy", "answers": [{ "text": "Copenhagen" }] },
+        { "prompt": "Which sea mammal is the largest animal ever to have lived on earth?", "difficulty": "easy", "answers": [{ "text": "The blue whale", "aliases": ["blue whale"] }] },
+        { "prompt": "Which currency is used in Switzerland?", "difficulty": "easy", "answers": [{ "text": "The Swiss franc", "aliases": ["Swiss franc"] }] },
+        { "prompt": "How many planets does our solar system have since Pluto was demoted in 2006?", "difficulty": "easy", "answers": [{ "text": "Eight" }] },
+        { "prompt": "Which city is known as the Eternal City?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
+        { "prompt": "Which instrument measures air pressure?", "difficulty": "hard", "answers": [{ "text": "The barometer", "aliases": ["barometer"] }] },
+        { "prompt": "Which city is the capital of New Zealand?", "difficulty": "hard", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Which sailor was the first to complete a voyage all the way round the world?", "difficulty": "hard", "answers": [{ "text": "Juan Sebastian Elcano", "aliases": ["Elcano", "Del Cano"] }] },
+        { "prompt": "How many degrees do the angles of a triangle add up to?", "difficulty": "hard", "answers": [{ "text": "One hundred and eighty", "aliases": ["180"] }] },
+        { "prompt": "Which organ did Johann Sebastian Bach play for years in Leipzig?", "difficulty": "hard", "answers": [{ "text": "The organ of the Thomaskirche", "aliases": ["Thomaskirche", "St Thomas Church"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "How many minutes does one half of a football match last?", "answers": [{ "text": "Forty-five", "aliases": ["45"] }] },
+        { "prompt": "What is the capital of Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "How many faces does a dodecahedron have?", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "Which Dutch speed skater won Olympic gold three times over 1500 metres?", "answers": [{ "text": "Kjeld Nuis", "aliases": ["Nuis"] }] },
+        { "prompt": "Which is the largest island in the world?", "answers": [{ "text": "Greenland" }] }
+      ]
+    }
+  ]
+}

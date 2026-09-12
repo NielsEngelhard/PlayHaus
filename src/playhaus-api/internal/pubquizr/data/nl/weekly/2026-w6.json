@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w6",
+  "title": "Weekquiz 6 2026",
+  "description": "De wekelijkse quiz van woensdag 4 februari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de grootste baai ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Hudsonbaai", "aliases": ["Hudsonbaai", "Hudson Bay"] }] },
+        { "prompt": "Hoe heet het als een vaste stof rechtstreeks in gas overgaat?", "category": "Wetenschap", "answers": [{ "text": "Sublimatie" }] },
+        { "prompt": "Welke Chinese dynastie bouwde het grootste deel van de Chinese Muur zoals wij die kennen?", "category": "Geschiedenis", "answers": [{ "text": "De Mingdynastie", "aliases": ["Ming", "Mingdynastie"] }] },
+        { "prompt": "Welke Amerikaanse atleet won vier gouden medailles op de Spelen van 1936?", "category": "Sport", "answers": [{ "text": "Jesse Owens", "aliases": ["Owens"] }] },
+        { "prompt": "Hoe heet de kunst van het mooie handschrift?", "category": "Kunst", "answers": [{ "text": "Kalligrafie" }] },
+        { "prompt": "Welke walvis staat bekend om de lange liederen die de mannetjes zingen?", "category": "Natuur", "answers": [{ "text": "De bultrug", "aliases": ["bultrug", "bultrugwalvis"] }] },
+        { "prompt": "Welke Nederlandse voetbalclub speelt zijn thuiswedstrijden in De Kuip?", "category": "Nederland", "answers": [{ "text": "Feyenoord" }] },
+        { "prompt": "Hoe noem je een groep mensen die samen zingt?", "category": "Muziek", "answers": [{ "text": "Een koor", "aliases": ["koor"] }] },
+        { "prompt": "In welke film ondervraagt Clarice Starling Hannibal Lecter?", "category": "Film", "answers": [{ "text": "The Silence of the Lambs", "aliases": ["Silence of the Lambs"] }] },
+        { "prompt": "Hoe noem je een woord dat het geluid nabootst dat het beschrijft?", "category": "Taal", "answers": [{ "text": "Onomatopee", "aliases": ["klanknabootsing"] }] },
+        { "prompt": "Welke saus van eidooier en boter hoort bij eggs benedict?", "category": "Eten", "answers": [{ "text": "Hollandaise" }] },
+        { "prompt": "Wat voor soort gesteente is marmer?", "category": "Wetenschap", "answers": [{ "text": "Metamorf gesteente", "aliases": ["metamorf"] }] },
+        { "prompt": "Welke Portugese ontdekkingsreiziger voer als eerste om Afrika naar India?", "category": "Geschiedenis", "answers": [{ "text": "Vasco da Gama", "aliases": ["Da Gama"] }] },
+        { "prompt": "In welk gebergte ligt de Mount Everest?", "category": "Aardrijkskunde", "answers": [{ "text": "De Himalaya", "aliases": ["Himalaya"] }] },
+        { "prompt": "In welke sport vormt de grote groep renners een peloton?", "category": "Sport", "answers": [{ "text": "Wielrennen" }] },
+        { "prompt": "Wat is de hoogste boomsoort ter wereld?", "category": "Natuur", "answers": [{ "text": "De sequoia", "aliases": ["sequoia", "mammoetboom"] }] },
+        { "prompt": "Welke Japanse regisseur maakte de film Seven Samurai?", "category": "Film", "answers": [{ "text": "Akira Kurosawa", "aliases": ["Kurosawa"] }] },
+        { "prompt": "Welke Italiaanse term zegt een muzikant dat hij geleidelijk luider moet spelen?", "category": "Muziek", "answers": [{ "text": "Crescendo" }] },
+        { "prompt": "Waar staat de afkorting USB voor?", "category": "Techniek", "answers": [{ "text": "Universal Serial Bus" }] },
+        { "prompt": "Welk handvest bezegelde de Engelse koning Jan zonder Land in 1215?", "category": "Geschiedenis", "answers": [{ "text": "De Magna Carta", "aliases": ["Magna Carta"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land won het Eurovisie Songfestival het vaakst?", "options": [{ "text": "Ierland", "correct": true }, { "text": "Zweden" }, { "text": "Frankrijk" }, { "text": "Israel" }] },
+        { "prompt": "Welke zee ligt tussen Zweden en Finland?", "options": [{ "text": "De Oostzee", "correct": true }, { "text": "De Noordzee" }, { "text": "De Barentszzee" }, { "text": "De Witte Zee" }] },
+        { "prompt": "Welke Italiaan bestudeerde als eerste de nachtelijke hemel door een telescoop?", "options": [{ "text": "Galileo Galilei", "correct": true }, { "text": "Giordano Bruno" }, { "text": "Tycho Brahe" }, { "text": "Christiaan Huygens" }] },
+        { "prompt": "Welke klier zit onder de hersenen en stuurt de andere klieren aan?", "options": [{ "text": "De hypofyse", "correct": true }, { "text": "De schildklier" }, { "text": "De bijnier" }, { "text": "De zwezerik" }] },
+        { "prompt": "Welke noot hoort in een traditionele pesto alla genovese?", "options": [{ "text": "De pijnboompit", "correct": true }, { "text": "De cashewnoot" }, { "text": "De pinda" }, { "text": "De macadamia" }] },
+        { "prompt": "Welke film deelt het record van elf Oscars met Titanic en Ben-Hur?", "options": [{ "text": "The Return of the King", "correct": true }, { "text": "Gone with the Wind" }, { "text": "Schindler's List" }, { "text": "The Godfather" }] },
+        { "prompt": "Wat is de hoofdstad van Kroatie?", "options": [{ "text": "Zagreb", "correct": true }, { "text": "Split" }, { "text": "Ljubljana" }, { "text": "Sarajevo" }] },
+        { "prompt": "Van welke diermelk wordt traditionele feta gemaakt?", "options": [{ "text": "Van het schaap", "correct": true }, { "text": "Van de koe" }, { "text": "Van de buffel" }, { "text": "Van de kameel" }] },
+        { "prompt": "Welke Amerikaanse componist schreef Rhapsody in Blue?", "options": [{ "text": "George Gershwin", "correct": true }, { "text": "Aaron Copland" }, { "text": "Leonard Bernstein" }, { "text": "Duke Ellington" }] },
+        { "prompt": "Hoe heet het sterrenstelsel waarin wij leven?", "options": [{ "text": "De Melkweg", "correct": true }, { "text": "Andromeda" }, { "text": "De Magelhaense Wolk" }, { "text": "De Lokale Groep" }] },
+        { "prompt": "Hoeveel punten levert de bullseye op bij darts?", "options": [{ "text": "50 punten", "correct": true }, { "text": "25 punten" }, { "text": "60 punten" }, { "text": "100 punten" }] },
+        { "prompt": "Welke warme zeestroom houdt West-Europa mild?", "options": [{ "text": "De Golfstroom", "correct": true }, { "text": "De Humboldtstroom" }, { "text": "De Canarische stroom" }, { "text": "De Labradorstroom" }] },
+        { "prompt": "Welke Nederlandse provincie bestaat grotendeels uit eilanden en schiereilanden?", "options": [{ "text": "Zeeland", "correct": true }, { "text": "Friesland" }, { "text": "Flevoland" }, { "text": "Overijssel" }] },
+        { "prompt": "Met welk metaal wordt staal bedekt als het verzinkt wordt?", "options": [{ "text": "Zink", "correct": true }, { "text": "Tin" }, { "text": "Nikkel" }, { "text": "Chroom" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel letters telt het Griekse alfabet?", "answer": 24, "unit": "letters" },
+        { "prompt": "Hoeveel kilometer breed is het Kanaal op zijn smalste punt?", "answer": 34, "unit": "kilometer" },
+        { "prompt": "In welk jaar werden de Nederlandse voetbalvrouwen Europees kampioen?", "answer": 2017, "unit": "" },
+        { "prompt": "Met hoeveel letters begint een speler een partij Scrabble?", "answer": 7, "unit": "letters" },
+        { "prompt": "Hoeveel meter boven de vloer hangt een basketbalring?", "answer": 3, "unit": "meter" },
+        { "prompt": "Hoeveel botten heeft een haai?", "answer": 0, "unit": "botten", "explanation": "Het skelet van een haai bestaat van kop tot staart uit kraakbeen." },
+        { "prompt": "Hoeveel eilanden heeft Griekenland ongeveer?", "answer": 6000, "unit": "eilanden" },
+        { "prompt": "Hoeveel toeschouwers kunnen er in de Johan Cruijff Arena?", "answer": 55000, "unit": "toeschouwers" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Domino" },
+        { "prompt": "Roulettewiel" },
+        { "prompt": "Caleidoscoop" },
+        { "prompt": "Katapult" },
+        { "prompt": "Waterpas" },
+        { "prompt": "Snorkel" },
+        { "prompt": "Zitzak" },
+        { "prompt": "Wieg" },
+        { "prompt": "Plumeau" },
+        { "prompt": "Strijkplank" },
+        { "prompt": "Bliksemafleider" },
+        { "prompt": "Wafelijzer" },
+        { "prompt": "Kauwgom" },
+        { "prompt": "Kapstok" },
+        { "prompt": "Hengel" },
+        { "prompt": "Luchtballon" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen op de Balkan.", "answers": [{ "text": "Servie" }, { "text": "Kroatie" }, { "text": "Bosnie" }, { "text": "Albanie" }] },
+        { "prompt": "Noem vier soorten bessen.", "answers": [{ "text": "Aardbei" }, { "text": "Framboos" }, { "text": "Bosbes" }, { "text": "Braam" }] },
+        { "prompt": "Noem de vier presidenten die in Mount Rushmore zijn uitgehakt.", "answers": [{ "text": "Washington" }, { "text": "Jefferson" }, { "text": "Roosevelt" }, { "text": "Lincoln" }] },
+        { "prompt": "Noem vier instrumenten die je bespeelt door te blazen.", "answers": [{ "text": "Fluit" }, { "text": "Klarinet" }, { "text": "Trompet" }, { "text": "Saxofoon" }] },
+        { "prompt": "Noem vier soorten beren.", "answers": [{ "text": "Bruine beer" }, { "text": "IJsbeer" }, { "text": "Panda" }, { "text": "Grizzlybeer" }] },
+        { "prompt": "Noem vier Nederlandse steden met een universiteit.", "answers": [{ "text": "Leiden" }, { "text": "Utrecht" }, { "text": "Groningen" }, { "text": "Delft" }] },
+        { "prompt": "Noem vier dingen die je in een badkamer vindt.", "answers": [{ "text": "Bad" }, { "text": "Douche" }, { "text": "Toilet" }, { "text": "Wastafel" }] },
+        { "prompt": "Noem vier landen die het WK voetbal hebben georganiseerd.", "answers": [{ "text": "Brazilie" }, { "text": "Duitsland" }, { "text": "Frankrijk" }, { "text": "Rusland" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Van welke groente moet je huilen als je hem snijdt?", "difficulty": "easy", "answers": [{ "text": "De ui", "aliases": ["ui"] }] },
+        { "prompt": "Hoeveel dagen zitten er in twee weken?", "difficulty": "easy", "answers": [{ "text": "Veertien", "aliases": ["14"] }] },
+        { "prompt": "Wat is de hoofdstad van Belgie?", "difficulty": "easy", "answers": [{ "text": "Brussel" }] },
+        { "prompt": "Hoe noem je een jong schaap?", "difficulty": "easy", "answers": [{ "text": "Een lam", "aliases": ["lam"] }] },
+        { "prompt": "Welke sport speel je met kleine batjes en een netje over een tafel?", "difficulty": "easy", "answers": [{ "text": "Tafeltennis", "aliases": ["pingpong"] }] },
+        { "prompt": "Welke Italiaanse reiziger diende de Mongoolse keizer Koeblai Khan?", "difficulty": "hard", "answers": [{ "text": "Marco Polo" }] },
+        { "prompt": "Hoe heet een groep uilen in het Engels?", "difficulty": "hard", "answers": [{ "text": "A parliament", "aliases": ["parliament"] }] },
+        { "prompt": "Welk land van het Verenigd Koninkrijk heeft naar verhouding de meeste kastelen?", "difficulty": "hard", "answers": [{ "text": "Wales" }] },
+        { "prompt": "Wie schreef The Canterbury Tales?", "difficulty": "hard", "answers": [{ "text": "Geoffrey Chaucer", "aliases": ["Chaucer"] }] },
+        { "prompt": "Welke bloedcellen verdedigen het lichaam tegen infecties?", "difficulty": "hard", "answers": [{ "text": "De witte bloedcellen", "aliases": ["witte bloedcellen", "leukocyten"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Duitse astronoom formuleerde de wetten van de planeetbanen?", "answers": [{ "text": "Johannes Kepler", "aliases": ["Kepler"] }] },
+        { "prompt": "Wat is de hoofdstad van Slovenie?", "answers": [{ "text": "Ljubljana" }] },
+        { "prompt": "Welke Belgische schilder vulde zijn doeken met mannen met bolhoeden?", "answers": [{ "text": "Rene Magritte", "aliases": ["Magritte"] }] },
+        { "prompt": "In welk jaar stichtten de Nederlanders Nieuw-Amsterdam?", "answers": [{ "text": "1625" }] },
+        { "prompt": "Wat is de hoogste berg van Japan?", "answers": [{ "text": "De Fuji", "aliases": ["Fuji", "Fujiyama", "Mount Fuji"] }] },
+        { "prompt": "Wat is het grootste Griekse eiland?", "answers": [{ "text": "Kreta" }] }
+      ]
+    }
+  ]
+}

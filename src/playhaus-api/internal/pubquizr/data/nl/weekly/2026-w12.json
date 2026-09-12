@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w12",
+  "title": "Weekquiz 12 2026",
+  "description": "De wekelijkse quiz van woensdag 18 maart 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke zeestraat scheidt Sicilie van de punt van Italie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Straat van Messina", "aliases": ["Straat van Messina", "Messina"] }] },
+        { "prompt": "Hoe noemen we dieren met een ruggengraat?", "category": "Wetenschap", "answers": [{ "text": "Gewervelden", "aliases": ["gewervelde dieren", "vertebraten"] }] },
+        { "prompt": "Welk oud volk uit Mesopotamie vond het spijkerschrift uit?", "category": "Geschiedenis", "answers": [{ "text": "De Sumeriers", "aliases": ["Sumeriers"] }] },
+        { "prompt": "Bij welk atletieknummer wordt de Fosbury Flop gebruikt?", "category": "Sport", "answers": [{ "text": "Hoogspringen", "aliases": ["het hoogspringen"] }] },
+        { "prompt": "Welke Franse beeldhouwer ontwierp het Vrijheidsbeeld?", "category": "Kunst", "answers": [{ "text": "Frederic Auguste Bartholdi", "aliases": ["Bartholdi"] }] },
+        { "prompt": "Wat is het grootste hertachtige dier ter wereld?", "category": "Natuur", "answers": [{ "text": "De eland", "aliases": ["eland"] }] },
+        { "prompt": "Welk Nederlands kanaal brengt zeeschepen van Amsterdam naar de Noordzee?", "category": "Nederland", "answers": [{ "text": "Het Noordzeekanaal", "aliases": ["Noordzeekanaal"] }] },
+        { "prompt": "Welke grote trommel met voetpedaal bespeelt een paukenist?", "category": "Muziek", "answers": [{ "text": "De pauk", "aliases": ["pauk", "pauken"] }] },
+        { "prompt": "In welke animatiefilm moet een gezin zijn superkrachten verbergen?", "category": "Film", "answers": [{ "text": "The Incredibles", "aliases": ["Incredibles"] }] },
+        { "prompt": "Hoe heet de wetenschap die taal bestudeert?", "category": "Taal", "answers": [{ "text": "Taalkunde", "aliases": ["linguistiek"] }] },
+        { "prompt": "Uit welk land komt het rauwevisgerecht ceviche?", "category": "Eten", "answers": [{ "text": "Peru" }] },
+        { "prompt": "Wat meet een barometer?", "category": "Wetenschap", "answers": [{ "text": "Luchtdruk", "aliases": ["de luchtdruk"] }] },
+        { "prompt": "Welke Chinese leider leidde in 1934 de Lange Mars?", "category": "Geschiedenis", "answers": [{ "text": "Mao Zedong", "aliases": ["Mao"] }] },
+        { "prompt": "Welk eilandland ligt tegelijk op alle vier de halfronden?", "category": "Aardrijkskunde", "answers": [{ "text": "Kiribati" }] },
+        { "prompt": "In welke sport werd Dafne Schippers in 2015 wereldkampioen?", "category": "Sport", "answers": [{ "text": "Atletiek" }] },
+        { "prompt": "Van welke plant wordt linnen gesponnen?", "category": "Natuur", "answers": [{ "text": "Vlas" }] },
+        { "prompt": "Welke film uit 1939 eindigt met de woorden there's no place like home?", "category": "Film", "answers": [{ "text": "The Wizard of Oz", "aliases": ["Wizard of Oz", "De tovenaar van Oz"] }] },
+        { "prompt": "Hoe heet zingen zonder instrumenten eronder?", "category": "Muziek", "answers": [{ "text": "A cappella" }] },
+        { "prompt": "Waar staat de afkorting SIM voor in simkaart?", "category": "Techniek", "answers": [{ "text": "Subscriber Identity Module" }] },
+        { "prompt": "Welke pestepidemie doodde in de veertiende eeuw misschien een derde van Europa?", "category": "Geschiedenis", "answers": [{ "text": "De Zwarte Dood", "aliases": ["Zwarte Dood", "de pest"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is het vlakste land ter wereld?", "options": [{ "text": "De Malediven", "correct": true }, { "text": "Denemarken" }, { "text": "Qatar" }, { "text": "Wit-Rusland" }] },
+        { "prompt": "Welke Nigeriaanse schrijver schreef Things Fall Apart?", "options": [{ "text": "Chinua Achebe", "correct": true }, { "text": "Wole Soyinka" }, { "text": "Ben Okri" }, { "text": "Buchi Emecheta" }] },
+        { "prompt": "Hoe heet de ring van ijzige objecten voorbij Neptunus?", "options": [{ "text": "De Kuipergordel", "correct": true }, { "text": "De Oortwolk" }, { "text": "De planetoidengordel" }, { "text": "De heliosfeer" }] },
+        { "prompt": "Welke vis kan het water uit en over boomwortels klimmen?", "options": [{ "text": "De slijkspringer", "correct": true }, { "text": "De meerval" }, { "text": "De longvis" }, { "text": "De paling" }] },
+        { "prompt": "Welke groente geeft borsjt zijn diepe rode kleur?", "options": [{ "text": "De rode biet", "correct": true }, { "text": "De rodekool" }, { "text": "De tomaat" }, { "text": "De rode paprika" }] },
+        { "prompt": "Welk van de vier grandslamtoernooien wordt op gravel gespeeld?", "options": [{ "text": "Roland Garros", "correct": true }, { "text": "Wimbledon" }, { "text": "De US Open" }, { "text": "De Australian Open" }] },
+        { "prompt": "Op welke berg zou de ark van Noach zijn gestrand?", "options": [{ "text": "De Ararat", "correct": true }, { "text": "De Sinai" }, { "text": "De Nebo" }, { "text": "De Karmel" }] },
+        { "prompt": "Welk soort instrument is het oudste dat archeologen ooit vonden?", "options": [{ "text": "De fluit", "correct": true }, { "text": "De trom" }, { "text": "De lier" }, { "text": "De hoorn" }] },
+        { "prompt": "Welke taal spreken de meeste Indiers als moedertaal?", "options": [{ "text": "Hindi", "correct": true }, { "text": "Bengaals" }, { "text": "Tamil" }, { "text": "Urdu" }] },
+        { "prompt": "In welke Italiaanse stad staat een beroemde scheve klokkentoren?", "options": [{ "text": "Pisa", "correct": true }, { "text": "Siena" }, { "text": "Lucca" }, { "text": "Bologna" }] },
+        { "prompt": "Welk orgaan ruimt versleten rode bloedcellen op uit het bloed?", "options": [{ "text": "De milt", "correct": true }, { "text": "De lever" }, { "text": "De alvleesklier" }, { "text": "De blinde darm" }] },
+        { "prompt": "Wat is het atoomnummer van koolstof?", "options": [{ "text": "6", "correct": true }, { "text": "4" }, { "text": "8" }, { "text": "12" }] },
+        { "prompt": "Welke Noorse stad staat bekend als de poort naar de fjorden?", "options": [{ "text": "Bergen", "correct": true }, { "text": "Stavanger" }, { "text": "Trondheim" }, { "text": "Alesund" }] },
+        { "prompt": "Welke specerij is de gedroogde binnenbast van een boom?", "options": [{ "text": "Kaneel", "correct": true }, { "text": "Gember" }, { "text": "Kruidnagel" }, { "text": "Kurkuma" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de scheve toren van Pisa?", "answer": 56, "unit": "meter" },
+        { "prompt": "Hoeveel botten heeft een slang ongeveer?", "answer": 400, "unit": "botten" },
+        { "prompt": "In welk jaar werd Nederland Europees kampioen voetbal?", "answer": 1988, "unit": "" },
+        { "prompt": "Hoeveel kilometer fietspad heeft Nederland?", "answer": 35000, "unit": "kilometer" },
+        { "prompt": "Hoeveel poten heeft een kreeft, de scharen meegerekend?", "answer": 10, "unit": "poten" },
+        { "prompt": "Hoeveel miljoen kleuren kan het menselijk oog onderscheiden?", "answer": 10, "unit": "miljoen kleuren" },
+        { "prompt": "Hoeveel minuten duurt een gemiddelde droom?", "answer": 20, "unit": "minuten" },
+        { "prompt": "Uit hoeveel eilanden bestaan de Malediven?", "answer": 1190, "unit": "eilanden" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Melkbus" },
+        { "prompt": "Koebel" },
+        { "prompt": "Portemonnee" },
+        { "prompt": "Bakvorm" },
+        { "prompt": "Speldenkussen" },
+        { "prompt": "Rollator" },
+        { "prompt": "Regenjas" },
+        { "prompt": "Emmer" },
+        { "prompt": "Trapje" },
+        { "prompt": "Theezakje" },
+        { "prompt": "Tandenborstel" },
+        { "prompt": "Riemgesp" },
+        { "prompt": "Vulpen" },
+        { "prompt": "Geodriehoek" },
+        { "prompt": "Kledingkast" },
+        { "prompt": "Deurklopper" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Turkije grenzen.", "answers": [{ "text": "Griekenland" }, { "text": "Bulgarije" }, { "text": "Syrie" }, { "text": "Iran" }] },
+        { "prompt": "Noem vier nootlengtes uit het notenschrift.", "answers": [{ "text": "Hele noot" }, { "text": "Halve noot" }, { "text": "Kwartnoot" }, { "text": "Achtste noot" }] },
+        { "prompt": "Noem vier woestijnen.", "answers": [{ "text": "Sahara" }, { "text": "Gobi" }, { "text": "Kalahari" }, { "text": "Atacama" }] },
+        { "prompt": "Noem vier soorten soep.", "answers": [{ "text": "Tomatensoep" }, { "text": "Kippensoep" }, { "text": "Uiensoep" }, { "text": "Minestrone" }] },
+        { "prompt": "Noem vier onderdelen van de paardensport.", "answers": [{ "text": "Dressuur" }, { "text": "Springen" }, { "text": "Eventing" }, { "text": "Voltige" }] },
+        { "prompt": "Noem vier zeeen rond Europa.", "answers": [{ "text": "Noordzee" }, { "text": "Oostzee" }, { "text": "Middellandse Zee" }, { "text": "Zwarte Zee" }] },
+        { "prompt": "Noem vier dingen die je in een auto vindt.", "answers": [{ "text": "Stuur" }, { "text": "Versnellingspook" }, { "text": "Pedalen" }, { "text": "Spiegel" }] },
+        { "prompt": "Noem vier wetenschappers die in Groot-Brittannie zijn geboren.", "answers": [{ "text": "Newton" }, { "text": "Darwin" }, { "text": "Hawking" }, { "text": "Faraday" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een jonge koe?", "difficulty": "easy", "answers": [{ "text": "Een kalf", "aliases": ["kalf"] }] },
+        { "prompt": "Welke kleur krijg je als je rood en blauw mengt?", "difficulty": "easy", "answers": [{ "text": "Paars" }] },
+        { "prompt": "Hoe noem je het midden van een appel waar de pitjes zitten?", "difficulty": "easy", "answers": [{ "text": "Het klokhuis", "aliases": ["klokhuis"] }] },
+        { "prompt": "Hoe noem je de dag na vandaag?", "difficulty": "easy", "answers": [{ "text": "Morgen" }] },
+        { "prompt": "Welke vorm heeft een voetbal?", "difficulty": "easy", "answers": [{ "text": "Een bol", "aliases": ["bol", "rond"] }] },
+        { "prompt": "Welk Afrikaans land heeft Kampala als hoofdstad?", "difficulty": "hard", "answers": [{ "text": "Oeganda" }] },
+        { "prompt": "Welke Engelse schilder maakte The Hay Wain?", "difficulty": "hard", "answers": [{ "text": "John Constable", "aliases": ["Constable"] }] },
+        { "prompt": "Welke Deense astronoom toonde als eerste aan dat licht een eindige snelheid heeft?", "difficulty": "hard", "answers": [{ "text": "Ole Romer", "aliases": ["Romer"] }] },
+        { "prompt": "Wat is de krachtigste arend ter wereld?", "difficulty": "hard", "answers": [{ "text": "De harpij", "aliases": ["harpij", "harpijarend"] }] },
+        { "prompt": "Wat is de zwaarste slang ter wereld?", "difficulty": "hard", "answers": [{ "text": "De groene anaconda", "aliases": ["anaconda"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Vlaamse cartograaf gaf in 1570 de eerste moderne wereldatlas uit?", "answers": [{ "text": "Abraham Ortelius", "aliases": ["Ortelius"] }] },
+        { "prompt": "Wat is de hoofdstad van Albanie?", "answers": [{ "text": "Tirana" }] },
+        { "prompt": "Welke Franse schrijver schreef Les Miserables?", "answers": [{ "text": "Victor Hugo", "aliases": ["Hugo"] }] },
+        { "prompt": "In welk jaar erkende de Republiek der Nederlanden de onafhankelijkheid van de Verenigde Staten?", "answers": [{ "text": "1782" }] },
+        { "prompt": "Wat is de hoogste actieve vulkaan van Europa?", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }] },
+        { "prompt": "Welke Engelse natuuronderzoeker kwam tegelijk met Darwin op natuurlijke selectie?", "answers": [{ "text": "Alfred Russel Wallace", "aliases": ["Wallace"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w17",
+  "title": "Weekquiz 17 2026",
+  "description": "De wekelijkse quiz van woensdag 22 april 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste eiland van Azie?", "category": "Aardrijkskunde", "answers": [{ "text": "Borneo" }] },
+        { "prompt": "Wat meet een thermometer?", "category": "Wetenschap", "answers": [{ "text": "Temperatuur", "aliases": ["de temperatuur"] }] },
+        { "prompt": "Welke Amerikaanse generaal voerde het bevel over de landing in Normandie?", "category": "Geschiedenis", "answers": [{ "text": "Dwight Eisenhower", "aliases": ["Eisenhower"] }] },
+        { "prompt": "In welke sport kan een speler een nine-darter gooien?", "category": "Sport", "answers": [{ "text": "Darts" }] },
+        { "prompt": "Welke Japanse kunstenaar maakte de prent De grote golf?", "category": "Kunst", "answers": [{ "text": "Hokusai" }] },
+        { "prompt": "Wat is de grootste primaat ter wereld?", "category": "Natuur", "answers": [{ "text": "De gorilla", "aliases": ["gorilla"] }] },
+        { "prompt": "Hoe heet het lagerhuis van het Nederlandse parlement?", "category": "Nederland", "answers": [{ "text": "De Tweede Kamer", "aliases": ["Tweede Kamer"] }] },
+        { "prompt": "Welke Italiaanse aanduiding zegt een muzikant heel luid te spelen?", "category": "Muziek", "answers": [{ "text": "Fortissimo" }] },
+        { "prompt": "Welke filmreeks draait om Dominic Toretto en zijn snelle auto's?", "category": "Film", "answers": [{ "text": "The Fast and the Furious", "aliases": ["Fast and Furious"] }] },
+        { "prompt": "Uit welke taal komen de woorden fjord en ski?", "category": "Taal", "answers": [{ "text": "Noors" }] },
+        { "prompt": "Van welke diermelk wordt traditionele mozzarella gemaakt?", "category": "Eten", "answers": [{ "text": "De buffel", "aliases": ["buffel", "waterbuffel"] }] },
+        { "prompt": "Wat is het scheikundige symbool voor helium?", "category": "Wetenschap", "answers": [{ "text": "He" }] },
+        { "prompt": "Welk wereldwonder uit de oudheid stond in Efeze?", "category": "Geschiedenis", "answers": [{ "text": "De tempel van Artemis", "aliases": ["tempel van Artemis"] }] },
+        { "prompt": "Welk Afrikaans land heeft de grootste populatie wilde olifanten?", "category": "Aardrijkskunde", "answers": [{ "text": "Botswana" }] },
+        { "prompt": "Welke Spaanse wielrenner won in de jaren negentig vijf keer de Tour?", "category": "Sport", "answers": [{ "text": "Miguel Indurain", "aliases": ["Indurain"] }] },
+        { "prompt": "Welk insect schaatst over het wateroppervlak van een vijver?", "category": "Natuur", "answers": [{ "text": "De schaatsenrijder", "aliases": ["schaatsenrijder"] }] },
+        { "prompt": "Welke film van Spielberg uit 1993 is vrijwel helemaal in zwart-wit opgenomen?", "category": "Film", "answers": [{ "text": "Schindler's List" }] },
+        { "prompt": "Welk instrument bespeel je met een strijkstok tussen je knieen?", "category": "Muziek", "answers": [{ "text": "De cello", "aliases": ["cello"] }] },
+        { "prompt": "Waar staat de afkorting SSD voor?", "category": "Techniek", "answers": [{ "text": "Solid State Drive" }] },
+        { "prompt": "In welk Romeins amfitheater pasten vijftigduizend toeschouwers?", "category": "Geschiedenis", "answers": [{ "text": "Het Colosseum", "aliases": ["Colosseum"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft meer mensen per vierkante kilometer dan welk ander ook?", "options": [{ "text": "Monaco", "correct": true }, { "text": "Singapore" }, { "text": "Malta" }, { "text": "Bahrein" }] },
+        { "prompt": "Welke Canadese schrijfster schreef The Handmaid's Tale?", "options": [{ "text": "Margaret Atwood", "correct": true }, { "text": "Alice Munro" }, { "text": "Anne Michaels" }, { "text": "Carol Shields" }] },
+        { "prompt": "Hoe heet het punt in een baan dat het dichtst bij de zon ligt?", "options": [{ "text": "Het perihelium", "correct": true }, { "text": "Het aphelium" }, { "text": "Het apogeum" }, { "text": "De equinox" }] },
+        { "prompt": "Welk dier heeft tweeendertig aparte hersenen?", "options": [{ "text": "De bloedzuiger", "correct": true }, { "text": "De regenworm" }, { "text": "De octopus" }, { "text": "De zeester" }] },
+        { "prompt": "Welk kruid hoort in een mojito?", "options": [{ "text": "Munt", "correct": true }, { "text": "Koriander" }, { "text": "Dille" }, { "text": "Salie" }] },
+        { "prompt": "In welke sport wordt een strafcorner toegekend?", "options": [{ "text": "Hockey", "correct": true }, { "text": "Rugby" }, { "text": "Waterpolo" }, { "text": "Handbal" }] },
+        { "prompt": "In welke Italiaanse stad staat het Uffizi?", "options": [{ "text": "Florence", "correct": true }, { "text": "Rome" }, { "text": "Milaan" }, { "text": "Napels" }] },
+        { "prompt": "Welk deel van een ei groeit uit tot het kuiken?", "options": [{ "text": "De dooier", "correct": true }, { "text": "Het eiwit" }, { "text": "De schaal" }, { "text": "Het vlies" }] },
+        { "prompt": "Van welke boom wordt de bast gehaald om kurk te maken?", "options": [{ "text": "De kurkeik", "correct": true }, { "text": "De berk" }, { "text": "De plataan" }, { "text": "De ceder" }] },
+        { "prompt": "Hoeveel letters telt het Hawaiaanse alfabet?", "options": [{ "text": "13", "correct": true }, { "text": "18" }, { "text": "21" }, { "text": "26" }] },
+        { "prompt": "Welke kunstenaar maakte het spiegelende beeld Cloud Gate in Chicago?", "options": [{ "text": "Anish Kapoor", "correct": true }, { "text": "Jeff Koons" }, { "text": "Richard Serra" }, { "text": "Damien Hirst" }] },
+        { "prompt": "Welk element noemde Marie Curie naar haar vaderland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] },
+        { "prompt": "Door welk kanaal varen jaarlijks meer schepen dan door welk ander ook?", "options": [{ "text": "Het Kielerkanaal", "correct": true }, { "text": "Het Suezkanaal" }, { "text": "Het Panamakanaal" }, { "text": "Het Kanaal van Korinthe" }] },
+        { "prompt": "Hoe heet een groep leeuwen?", "options": [{ "text": "Een troep", "correct": true }, { "text": "Een roedel" }, { "text": "Een kolonie" }, { "text": "Een clan" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter ligt er tussen de wickets op een cricketveld?", "answer": 20, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer per uur zwemt een zeilvis?", "answer": 110, "unit": "kilometer per uur" },
+        { "prompt": "In welk jaar werden de Olympische Spelen voor het eerst in Azie gehouden?", "answer": 1964, "unit": "" },
+        { "prompt": "Hoeveel botjes zitten er in het menselijke middenoor?", "answer": 3, "unit": "botjes" },
+        { "prompt": "Hoeveel pitjes zitten er ongeveer in een granaatappel?", "answer": 600, "unit": "pitjes" },
+        { "prompt": "Hoeveel meter legt een luiaard op de grond per dag af?", "answer": 40, "unit": "meter" },
+        { "prompt": "Hoeveel kamers heeft Buckingham Palace?", "answer": 775, "unit": "kamers" },
+        { "prompt": "Hoeveel liter water drinkt een melkkoe per dag?", "answer": 100, "unit": "liter" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Etui" },
+        { "prompt": "Snijplank" },
+        { "prompt": "Luidspreker" },
+        { "prompt": "Reservewiel" },
+        { "prompt": "Vuilniszak" },
+        { "prompt": "Verlengsnoer" },
+        { "prompt": "Theezeefje" },
+        { "prompt": "Schepnet" },
+        { "prompt": "Tuinsproeier" },
+        { "prompt": "Vaatwasser" },
+        { "prompt": "Liniaal" },
+        { "prompt": "Yogamat" },
+        { "prompt": "Bout" },
+        { "prompt": "Notitieboekje" },
+        { "prompt": "Haarnetje" },
+        { "prompt": "Whiteboard" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Roemenie grenzen.", "answers": [{ "text": "Hongarije" }, { "text": "Servie" }, { "text": "Bulgarije" }, { "text": "Moldavie" }] },
+        { "prompt": "Noem vier appelrassen.", "answers": [{ "text": "Elstar" }, { "text": "Granny Smith" }, { "text": "Jonagold" }, { "text": "Golden Delicious" }] },
+        { "prompt": "Noem vier componisten die in Duitsland zijn geboren.", "answers": [{ "text": "Bach" }, { "text": "Beethoven" }, { "text": "Brahms" }, { "text": "Wagner" }] },
+        { "prompt": "Noem vier loopafstanden van de Olympische Spelen.", "answers": [{ "text": "100 meter" }, { "text": "400 meter" }, { "text": "1500 meter" }, { "text": "De marathon" }] },
+        { "prompt": "Noem vier landen in West-Afrika.", "answers": [{ "text": "Ghana" }, { "text": "Senegal" }, { "text": "Mali" }, { "text": "Nigeria" }] },
+        { "prompt": "Noem vier Franse gebakjes of nagerechten.", "answers": [{ "text": "Croissant" }, { "text": "Eclair" }, { "text": "Macaron" }, { "text": "Creme brulee" }] },
+        { "prompt": "Noem vier dingen die je aan de nachtelijke hemel kunt zien.", "answers": [{ "text": "De maan" }, { "text": "Sterren" }, { "text": "Planeten" }, { "text": "Kometen" }] },
+        { "prompt": "Noem vier grote rivieren van Azie.", "answers": [{ "text": "Jangtsekiang" }, { "text": "Ganges" }, { "text": "Mekong" }, { "text": "Indus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "In welk seizoen is het het langst licht?", "difficulty": "easy", "answers": [{ "text": "De zomer", "aliases": ["zomer"] }] },
+        { "prompt": "Welk diertje met acht poten spint een web?", "difficulty": "easy", "answers": [{ "text": "De spin", "aliases": ["spin"] }] },
+        { "prompt": "Welke warme drank wordt van gebrande bonen gemaakt?", "difficulty": "easy", "answers": [{ "text": "Koffie" }] },
+        { "prompt": "Hoe heet het meubelstuk waarin je slaapt?", "difficulty": "easy", "answers": [{ "text": "Een bed", "aliases": ["bed"] }] },
+        { "prompt": "Met welke hand schrijven de meeste mensen?", "difficulty": "easy", "answers": [{ "text": "De rechterhand", "aliases": ["rechts", "rechterhand"] }] },
+        { "prompt": "Wat is de hoofdstad van Madagaskar?", "difficulty": "hard", "answers": [{ "text": "Antananarivo" }] },
+        { "prompt": "Welke Duits-Zwitserse schrijver schreef de roman De steppewolf?", "difficulty": "hard", "answers": [{ "text": "Hermann Hesse", "aliases": ["Hesse"] }] },
+        { "prompt": "Hoe heet de grootste maan van Neptunus?", "difficulty": "hard", "answers": [{ "text": "Triton" }] },
+        { "prompt": "Welk hormoon maakt het lichaam aan bij stress?", "difficulty": "hard", "answers": [{ "text": "Cortisol" }] },
+        { "prompt": "Welke Nobelprijs wordt in Oslo uitgereikt in plaats van in Stockholm?", "difficulty": "hard", "answers": [{ "text": "De Vredesprijs", "aliases": ["Vredesprijs", "Nobelprijs voor de Vrede"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse scheikundige won de allereerste Nobelprijs voor Scheikunde?", "answers": [{ "text": "Jacobus van 't Hoff", "aliases": ["Van 't Hoff"] }] },
+        { "prompt": "In welke stad zetelt het hooggerechtshof van Bolivia?", "answers": [{ "text": "Sucre" }] },
+        { "prompt": "Welke Engelse architect herbouwde de St Paul's Cathedral na de grote brand?", "answers": [{ "text": "Christopher Wren", "aliases": ["Wren"] }] },
+        { "prompt": "In welk jaar vond de eerste officieel erkende gemotoriseerde vlucht in Europa plaats?", "answers": [{ "text": "1906" }] },
+        { "prompt": "Wat is qua volume de grootste vulkaan op aarde?", "answers": [{ "text": "Mauna Loa" }] },
+        { "prompt": "Welke Italiaanse natuurkundige vond de elektrische batterij uit?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w16",
+  "title": "Weekly quiz 16 2026",
+  "description": "The weekly quiz of Wednesday 15 April 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the longest river in Australia?", "category": "Geography", "answers": [{ "text": "The Murray", "aliases": ["Murray", "Murray River"] }] },
+        { "prompt": "What do we call animals that eat both plants and meat?", "category": "Science", "answers": [{ "text": "Omnivores", "aliases": ["omnivore"] }] },
+        { "prompt": "Which British queen led a revolt against the Romans in AD 60?", "category": "History", "answers": [{ "text": "Boudica", "aliases": ["Boadicea"] }] },
+        { "prompt": "Which Dutch team sport is played with a basket on a tall pole?", "category": "Sport", "answers": [{ "text": "Korfball", "aliases": ["korfbal"] }] },
+        { "prompt": "Which anonymous street artist painted Girl with Balloon?", "category": "Art", "answers": [{ "text": "Banksy" }] },
+        { "prompt": "Which bird carries its catch in a pouch under its beak?", "category": "Nature", "answers": [{ "text": "The pelican", "aliases": ["pelican"] }] },
+        { "prompt": "Which Dutch tradition sends thousands into the freezing sea on 1 January?", "category": "The Netherlands", "answers": [{ "text": "The Nieuwjaarsduik", "aliases": ["nieuwjaarsduik", "New Year's dive"] }] },
+        { "prompt": "Which sign in written music raises a note by a semitone?", "category": "Music", "answers": [{ "text": "The sharp", "aliases": ["sharp"] }] },
+        { "prompt": "In which film does an onboard computer called HAL turn on the crew?", "category": "Film", "answers": [{ "text": "2001: A Space Odyssey", "aliases": ["2001 A Space Odyssey"] }] },
+        { "prompt": "What do you call a word made from the first letters of other words?", "category": "Language", "answers": [{ "text": "An acronym", "aliases": ["acronym"] }] },
+        { "prompt": "Which meat is a Wiener schnitzel traditionally made of?", "category": "Food", "answers": [{ "text": "Veal" }] },
+        { "prompt": "In which layer of the atmosphere does the ozone layer sit?", "category": "Science", "answers": [{ "text": "The stratosphere", "aliases": ["stratosphere"] }] },
+        { "prompt": "Which two Dutch cities were joined by the country's first railway?", "category": "History", "answers": [{ "text": "Amsterdam and Haarlem" }] },
+        { "prompt": "Which is the largest country in Central America?", "category": "Geography", "answers": [{ "text": "Nicaragua" }] },
+        { "prompt": "Which Brazilian martial art is performed to music and looks like a dance?", "category": "Sport", "answers": [{ "text": "Capoeira" }] },
+        { "prompt": "Which animal grows the widest horns of any living creature?", "category": "Nature", "answers": [{ "text": "The water buffalo", "aliases": ["water buffalo"] }] },
+        { "prompt": "In which 1982 film does a boy hide an alien in his bedroom?", "category": "Film", "answers": [{ "text": "E.T.", "aliases": ["ET", "E.T. the Extra-Terrestrial"] }] },
+        { "prompt": "Which Latin word numbers a composer's works in order?", "category": "Music", "answers": [{ "text": "Opus" }] },
+        { "prompt": "What does the abbreviation CD stand for?", "category": "Technology", "answers": [{ "text": "Compact Disc" }] },
+        { "prompt": "Which empire was said to be the one on which the sun never set?", "category": "History", "answers": [{ "text": "The British Empire", "aliases": ["British Empire"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest river delta in the world?", "options": [{ "text": "The Ganges delta", "correct": true }, { "text": "The Mekong delta" }, { "text": "The Amazon delta" }, { "text": "The Danube delta" }] },
+        { "prompt": "Which of the Bronte sisters wrote Wuthering Heights?", "options": [{ "text": "Emily Bronte", "correct": true }, { "text": "Charlotte Bronte" }, { "text": "Anne Bronte" }, { "text": "Elizabeth Gaskell" }] },
+        { "prompt": "Which effect makes a passing siren drop in pitch?", "options": [{ "text": "The Doppler effect", "correct": true }, { "text": "The Coriolis effect" }, { "text": "The Venturi effect" }, { "text": "The Magnus effect" }] },
+        { "prompt": "Which is the fastest flying insect in the world?", "options": [{ "text": "The dragonfly", "correct": true }, { "text": "The hornet" }, { "text": "The horsefly" }, { "text": "The hawk moth" }] },
+        { "prompt": "Which vegetable is the base of a Spanish gazpacho?", "options": [{ "text": "The tomato", "correct": true }, { "text": "The cucumber" }, { "text": "The pepper" }, { "text": "The courgette" }] },
+        { "prompt": "In which sport is the Melbourne Cup contested?", "options": [{ "text": "Horse racing", "correct": true }, { "text": "Sailing" }, { "text": "Motor racing" }, { "text": "Cricket" }] },
+        { "prompt": "Which Austrian composer wrote the Blue Danube waltz?", "options": [{ "text": "Johann Strauss", "correct": true }, { "text": "Franz Lehar" }, { "text": "Joseph Lanner" }, { "text": "Carl Michael Ziehrer" }] },
+        { "prompt": "Which writing system is used by more people than any other?", "options": [{ "text": "The Latin alphabet", "correct": true }, { "text": "Chinese characters" }, { "text": "The Arabic script" }, { "text": "The Devanagari script" }] },
+        { "prompt": "Which sense is processed in the occipital lobe at the back of the brain?", "options": [{ "text": "Sight", "correct": true }, { "text": "Smell" }, { "text": "Balance" }, { "text": "Touch" }] },
+        { "prompt": "Which renewable source generates the most electricity worldwide?", "options": [{ "text": "Hydropower", "correct": true }, { "text": "Wind" }, { "text": "Solar" }, { "text": "Geothermal" }] },
+        { "prompt": "Which is the largest city in Africa by population?", "options": [{ "text": "Lagos", "correct": true }, { "text": "Kinshasa" }, { "text": "Johannesburg" }, { "text": "Khartoum" }] },
+        { "prompt": "Which metal has the chemical symbol Sn?", "options": [{ "text": "Tin", "correct": true }, { "text": "Sodium" }, { "text": "Selenium" }, { "text": "Strontium" }] },
+        { "prompt": "Which currency is used in Turkey?", "options": [{ "text": "The lira", "correct": true }, { "text": "The dinar" }, { "text": "The dirham" }, { "text": "The drachma" }] },
+        { "prompt": "Which is the largest bird of prey in Europe?", "options": [{ "text": "The bearded vulture", "correct": true }, { "text": "The osprey" }, { "text": "The buzzard" }, { "text": "The kite" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the Atomium in Brussels?", "answer": 102, "unit": "metres" },
+        { "prompt": "How many muscles does a cat have in each ear?", "answer": 32, "unit": "muscles" },
+        { "prompt": "In what year was the first Formula 1 world championship held?", "answer": 1950, "unit": "" },
+        { "prompt": "How many kilometres per hour does a golf ball leave the club at?", "answer": 290, "unit": "kilometres per hour" },
+        { "prompt": "How many tonnes does an adult blue whale weigh?", "answer": 150, "unit": "tonnes" },
+        { "prompt": "How many strings does a banjo usually have?", "answer": 5, "unit": "strings" },
+        { "prompt": "How many teeth does a great white shark carry in its jaws at once?", "answer": 300, "unit": "teeth" },
+        { "prompt": "How many kilometres does a swallow fly on its yearly migration?", "answer": 10000, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Soap dispenser" },
+        { "prompt": "Bread knife" },
+        { "prompt": "Laundry basket" },
+        { "prompt": "Music stand" },
+        { "prompt": "Dart" },
+        { "prompt": "Drinking straw" },
+        { "prompt": "Bicycle helmet" },
+        { "prompt": "Table lamp" },
+        { "prompt": "Mirror ball" },
+        { "prompt": "Rubber band" },
+        { "prompt": "Garden fork" },
+        { "prompt": "Saucer" },
+        { "prompt": "Buoy" },
+        { "prompt": "Life jacket" },
+        { "prompt": "Slide" },
+        { "prompt": "Chess clock" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Ukraine.", "answers": [{ "text": "Poland" }, { "text": "Romania" }, { "text": "Hungary" }, { "text": "Slovakia" }] },
+        { "prompt": "Name four kinds of bean.", "answers": [{ "text": "Kidney bean" }, { "text": "Green bean" }, { "text": "Broad bean" }, { "text": "Black bean" }] },
+        { "prompt": "Name four sculptors.", "answers": [{ "text": "Michelangelo" }, { "text": "Rodin" }, { "text": "Bernini" }, { "text": "Henry Moore" }] },
+        { "prompt": "Name four Olympic sports played with a ball.", "answers": [{ "text": "Football" }, { "text": "Basketball" }, { "text": "Handball" }, { "text": "Volleyball" }] },
+        { "prompt": "Name four countries in the Alps.", "answers": [{ "text": "France" }, { "text": "Switzerland" }, { "text": "Austria" }, { "text": "Italy" }] },
+        { "prompt": "Name four things you can wear on your head.", "answers": [{ "text": "Helmet" }, { "text": "Cap" }, { "text": "Crown" }, { "text": "Headband" }] },
+        { "prompt": "Name four famous ships.", "answers": [{ "text": "The Titanic" }, { "text": "The Mayflower" }, { "text": "The Beagle" }, { "text": "The Victory" }] },
+        { "prompt": "Name four kinds of dinosaur.", "answers": [{ "text": "Tyrannosaurus" }, { "text": "Triceratops" }, { "text": "Stegosaurus" }, { "text": "Velociraptor" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which farm animal says oink?", "difficulty": "easy", "answers": [{ "text": "The pig", "aliases": ["pig"] }] },
+        { "prompt": "What is the opposite of big?", "difficulty": "easy", "answers": [{ "text": "Small", "aliases": ["little"] }] },
+        { "prompt": "Which part of your face do you see with?", "difficulty": "easy", "answers": [{ "text": "The eyes", "aliases": ["eyes"] }] },
+        { "prompt": "Which vehicle comes racing when a house is on fire?", "difficulty": "easy", "answers": [{ "text": "A fire engine", "aliases": ["fire engine", "fire truck"] }] },
+        { "prompt": "What do you eat soup with?", "difficulty": "easy", "answers": [{ "text": "A spoon", "aliases": ["spoon"] }] },
+        { "prompt": "What is the capital of Costa Rica?", "difficulty": "hard", "answers": [{ "text": "San Jose" }] },
+        { "prompt": "Which English poet wrote The Rime of the Ancient Mariner?", "difficulty": "hard", "answers": [{ "text": "Samuel Taylor Coleridge", "aliases": ["Coleridge"] }] },
+        { "prompt": "Which German scientist first proposed that the continents drift?", "difficulty": "hard", "answers": [{ "text": "Alfred Wegener", "aliases": ["Wegener"] }] },
+        { "prompt": "Which country has more living languages than any other?", "difficulty": "hard", "answers": [{ "text": "Papua New Guinea" }] },
+        { "prompt": "Which mammal has the shortest pregnancy of all?", "difficulty": "hard", "answers": [{ "text": "The opossum", "aliases": ["opossum"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch mathematician gave his name to the law of refraction?", "answers": [{ "text": "Willebrord Snell", "aliases": ["Snell", "Snellius"] }] },
+        { "prompt": "What is the capital of Ghana?", "answers": [{ "text": "Accra" }] },
+        { "prompt": "Which Renaissance architect built the dome of Florence cathedral?", "answers": [{ "text": "Filippo Brunelleschi", "aliases": ["Brunelleschi"] }] },
+        { "prompt": "In which year did the Louvre first open its doors as a museum?", "answers": [{ "text": "1793" }] },
+        { "prompt": "Which river in Botswana forms the world's largest inland delta?", "answers": [{ "text": "The Okavango", "aliases": ["Okavango"] }] },
+        { "prompt": "Which Roman historian wrote the Annals?", "answers": [{ "text": "Tacitus" }] }
+      ]
+    }
+  ]
+}

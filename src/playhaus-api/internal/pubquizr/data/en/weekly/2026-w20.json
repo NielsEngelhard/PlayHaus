@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w20",
+  "title": "Weekly quiz 20 2026",
+  "description": "The weekly quiz of Wednesday 13 May 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which sea lies between Greece and Turkey?", "category": "Geography", "answers": [{ "text": "The Aegean Sea", "aliases": ["Aegean", "Aegean Sea"] }] },
+        { "prompt": "What is the process called that turns grape juice into wine?", "category": "Science", "answers": [{ "text": "Fermentation" }] },
+        { "prompt": "Which Russian empress ruled from 1762 until 1796?", "category": "History", "answers": [{ "text": "Catherine the Great", "aliases": ["Catherine II"] }] },
+        { "prompt": "In which Olympic sport do you sit in a kayak and use a double paddle?", "category": "Sport", "answers": [{ "text": "Canoeing", "aliases": ["kayaking"] }] },
+        { "prompt": "Which German artist made the engraving Melencolia I?", "category": "Art", "answers": [{ "text": "Albrecht Durer", "aliases": ["Durer"] }] },
+        { "prompt": "Which bird leaves its eggs in the nests of other birds?", "category": "Nature", "answers": [{ "text": "The cuckoo", "aliases": ["cuckoo"] }] },
+        { "prompt": "Which Dutch province has the most inhabitants?", "category": "The Netherlands", "answers": [{ "text": "South Holland", "aliases": ["Zuid-Holland"] }] },
+        { "prompt": "What do you call the written music a whole orchestra plays from?", "category": "Music", "answers": [{ "text": "A score", "aliases": ["score"] }] },
+        { "prompt": "In which story does a girl fall down a rabbit hole into a strange world?", "category": "Film", "answers": [{ "text": "Alice in Wonderland", "aliases": ["Alice"] }] },
+        { "prompt": "What do you call two words that sound the same but are spelled differently?", "category": "Language", "answers": [{ "text": "Homophones", "aliases": ["homophone"] }] },
+        { "prompt": "Which grain is couscous made from?", "category": "Food", "answers": [{ "text": "Wheat" }] },
+        { "prompt": "What is the word for how quickly something changes speed?", "category": "Science", "answers": [{ "text": "Acceleration" }] },
+        { "prompt": "Which Viking settlement in Newfoundland proves they reached America?", "category": "History", "answers": [{ "text": "L'Anse aux Meadows" }] },
+        { "prompt": "Which Indonesian island has more people living on it than any other island on earth?", "category": "Geography", "answers": [{ "text": "Java" }] },
+        { "prompt": "In which athletics event is a heavy ball on a wire swung and released?", "category": "Sport", "answers": [{ "text": "The hammer throw", "aliases": ["hammer throw", "the hammer"] }] },
+        { "prompt": "Which South American monkey hangs by its tail?", "category": "Nature", "answers": [{ "text": "The spider monkey", "aliases": ["spider monkey"] }] },
+        { "prompt": "Which 2018 Marvel film is set in the kingdom of Wakanda?", "category": "Film", "answers": [{ "text": "Black Panther" }] },
+        { "prompt": "Which composer wrote the Hallelujah chorus in his Messiah?", "category": "Music", "answers": [{ "text": "Handel", "aliases": ["George Frideric Handel"] }] },
+        { "prompt": "What does the abbreviation HTTP stand for?", "category": "Technology", "answers": [{ "text": "HyperText Transfer Protocol" }] },
+        { "prompt": "Which city's walls fell to Joshua's trumpets in the Bible?", "category": "History", "answers": [{ "text": "Jericho" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has Bogota as its capital?", "options": [{ "text": "Colombia", "correct": true }, { "text": "Ecuador" }, { "text": "Peru" }, { "text": "Venezuela" }] },
+        { "prompt": "Which English author wrote Robinson Crusoe?", "options": [{ "text": "Daniel Defoe", "correct": true }, { "text": "Jonathan Swift" }, { "text": "Samuel Richardson" }, { "text": "Henry Fielding" }] },
+        { "prompt": "What does a light year measure?", "options": [{ "text": "Distance", "correct": true }, { "text": "Time" }, { "text": "Brightness" }, { "text": "Mass" }] },
+        { "prompt": "Which tiny animal can survive the vacuum of space?", "options": [{ "text": "The tardigrade", "correct": true }, { "text": "The mite" }, { "text": "The nematode" }, { "text": "The rotifer" }] },
+        { "prompt": "Which Mexican spirit is distilled from the blue agave?", "options": [{ "text": "Tequila", "correct": true }, { "text": "Mezcal" }, { "text": "Pisco" }, { "text": "Cachaca" }] },
+        { "prompt": "In which Irish sport do players strike a ball with a hurley?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Shinty" }, { "text": "Gaelic football" }, { "text": "Camogie" }] },
+        { "prompt": "Which is the tallest waterfall in Europe?", "options": [{ "text": "Vinnufossen", "correct": true }, { "text": "Rjukanfossen" }, { "text": "Gavarnie" }, { "text": "Krimml" }] },
+        { "prompt": "Which cage of bones protects the heart and lungs?", "options": [{ "text": "The ribcage", "correct": true }, { "text": "The pelvis" }, { "text": "The sternum" }, { "text": "The spine" }] },
+        { "prompt": "Which nut is grown in greater quantity than any other in the world?", "options": [{ "text": "The peanut", "correct": true }, { "text": "The almond" }, { "text": "The cashew" }, { "text": "The walnut" }] },
+        { "prompt": "Which animal makes the loudest call of any land animal?", "options": [{ "text": "The howler monkey", "correct": true }, { "text": "The lion" }, { "text": "The elephant" }, { "text": "The wolf" }] },
+        { "prompt": "What is the splitting of an atomic nucleus called?", "options": [{ "text": "Fission", "correct": true }, { "text": "Fusion" }, { "text": "Ionisation" }, { "text": "Decay" }] },
+        { "prompt": "Which language besides Arabic is written from right to left?", "options": [{ "text": "Hebrew", "correct": true }, { "text": "Greek" }, { "text": "Turkish" }, { "text": "Amharic" }] },
+        { "prompt": "Which city has the largest metro network in the world?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "London" }, { "text": "New York" }, { "text": "Moscow" }] },
+        { "prompt": "Which is the smallest bird in Europe?", "options": [{ "text": "The goldcrest", "correct": true }, { "text": "The wren" }, { "text": "The blue tit" }, { "text": "The treecreeper" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the tallest tree in the world?", "answer": 116, "unit": "metres" },
+        { "prompt": "How many hours a day does a cat sleep?", "answer": 15, "unit": "hours" },
+        { "prompt": "In what year was the first Pinkpop festival held?", "answer": 1970, "unit": "" },
+        { "prompt": "How many kilometres of canal run through Amsterdam?", "answer": 100, "unit": "kilometres" },
+        { "prompt": "How many bones does an elephant have?", "answer": 350, "unit": "bones" },
+        { "prompt": "How many tiny teeth does a garden snail have on its tongue?", "answer": 14000, "unit": "teeth" },
+        { "prompt": "How many countries use the euro as their currency?", "answer": 20, "unit": "countries" },
+        { "prompt": "How many kilograms of chocolate does the average Dutch person eat in a year?", "answer": 5, "unit": "kilograms" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Saddle" },
+        { "prompt": "Tea cosy" },
+        { "prompt": "Salad spinner" },
+        { "prompt": "Knitting wool" },
+        { "prompt": "Guitar amplifier" },
+        { "prompt": "Weather balloon" },
+        { "prompt": "Steam train" },
+        { "prompt": "Ski pole" },
+        { "prompt": "Sun visor" },
+        { "prompt": "Feather" },
+        { "prompt": "Comb" },
+        { "prompt": "Wok" },
+        { "prompt": "Paint tin" },
+        { "prompt": "Church pew" },
+        { "prompt": "Fog horn" },
+        { "prompt": "Clothes rail" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Argentina.", "answers": [{ "text": "Chile" }, { "text": "Bolivia" }, { "text": "Paraguay" }, { "text": "Brazil" }] },
+        { "prompt": "Name four patterns you find on clothes.", "answers": [{ "text": "Stripes" }, { "text": "Checks" }, { "text": "Polka dots" }, { "text": "Paisley" }] },
+        { "prompt": "Name four birds of prey.", "answers": [{ "text": "Eagle" }, { "text": "Falcon" }, { "text": "Hawk" }, { "text": "Owl" }] },
+        { "prompt": "Name four Olympic sports on wheels.", "answers": [{ "text": "Cycling" }, { "text": "Skateboarding" }, { "text": "BMX" }, { "text": "Roller skating" }] },
+        { "prompt": "Name four countries in the Horn of Africa and around it.", "answers": [{ "text": "Ethiopia" }, { "text": "Somalia" }, { "text": "Eritrea" }, { "text": "Djibouti" }] },
+        { "prompt": "Name four things you find in a classroom.", "answers": [{ "text": "Desk" }, { "text": "Chair" }, { "text": "Blackboard" }, { "text": "Clock" }] },
+        { "prompt": "Name four world famous paintings.", "answers": [{ "text": "The Mona Lisa" }, { "text": "The Night Watch" }, { "text": "The Scream" }, { "text": "Guernica" }] },
+        { "prompt": "Name four instruments a weather station uses.", "answers": [{ "text": "Thermometer" }, { "text": "Barometer" }, { "text": "Rain gauge" }, { "text": "Anemometer" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which drink do you get by squeezing oranges?", "difficulty": "easy", "answers": [{ "text": "Orange juice", "aliases": ["juice"] }] },
+        { "prompt": "What do you call the person who cooks in a restaurant?", "difficulty": "easy", "answers": [{ "text": "A chef", "aliases": ["chef", "cook"] }] },
+        { "prompt": "Which sour yellow fruit is squeezed to make lemonade?", "difficulty": "easy", "answers": [{ "text": "The lemon", "aliases": ["lemon"] }] },
+        { "prompt": "What do you call a building full of shops under one roof?", "difficulty": "easy", "answers": [{ "text": "A shopping centre", "aliases": ["shopping centre", "mall"] }] },
+        { "prompt": "How many minutes are there in a quarter of an hour?", "difficulty": "easy", "answers": [{ "text": "Fifteen", "aliases": ["15"] }] },
+        { "prompt": "What is the capital of Cyprus?", "difficulty": "hard", "answers": [{ "text": "Nicosia" }] },
+        { "prompt": "Which English poet wrote Ozymandias?", "difficulty": "hard", "answers": [{ "text": "Percy Bysshe Shelley", "aliases": ["Shelley"] }] },
+        { "prompt": "Which is the largest salt flat in the world?", "difficulty": "hard", "answers": [{ "text": "The Salar de Uyuni", "aliases": ["Uyuni", "Salar de Uyuni"] }] },
+        { "prompt": "Which is the longest vein in the human body?", "difficulty": "hard", "answers": [{ "text": "The great saphenous vein", "aliases": ["saphenous vein"] }] },
+        { "prompt": "Which Japanese art folds a sheet of paper into a shape without cutting?", "difficulty": "hard", "answers": [{ "text": "Origami" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch doctor showed that beriberi was caused by something missing from food?", "answers": [{ "text": "Christiaan Eijkman", "aliases": ["Eijkman"] }] },
+        { "prompt": "What is the capital of Panama?", "answers": [{ "text": "Panama City", "aliases": ["Panama-Stad"] }] },
+        { "prompt": "Which Swiss-French architect designed the Villa Savoye?", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
+        { "prompt": "In which year did the Netherlands first play at a World Cup?", "answers": [{ "text": "1934" }] },
+        { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] },
+        { "prompt": "Which German-British astronomer discovered the planet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] }
+      ]
+    }
+  ]
+}

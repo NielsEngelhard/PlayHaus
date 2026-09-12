@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w18",
+  "title": "Weekquiz 18 2026",
+  "description": "De wekelijkse quiz van woensdag 29 april 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Op welke twee continenten ligt Egypte?", "category": "Aardrijkskunde", "answers": [{ "text": "Afrika en Azie" }] },
+        { "prompt": "Hoe noemen we dieren zonder ruggengraat?", "category": "Wetenschap", "answers": [{ "text": "Ongewervelden", "aliases": ["ongewervelde dieren"] }] },
+        { "prompt": "Welke Griekse koning voerde de vloot aan die naar Troje voer?", "category": "Geschiedenis", "answers": [{ "text": "Agamemnon" }] },
+        { "prompt": "In welke sport oefenen teams hun pitstops?", "category": "Sport", "answers": [{ "text": "Autosport", "aliases": ["Formule 1", "racen"] }] },
+        { "prompt": "Welke diepblauwe verf werd gemalen uit lapis lazuli?", "category": "Kunst", "answers": [{ "text": "Ultramarijn" }] },
+        { "prompt": "Welke vis kan tijdens zijn leven van mannetje in vrouwtje veranderen?", "category": "Natuur", "answers": [{ "text": "De clownvis", "aliases": ["clownvis"] }] },
+        { "prompt": "Hoe heet de markt die op Koningsdag door heel Nederland op straat staat?", "category": "Nederland", "answers": [{ "text": "De vrijmarkt", "aliases": ["vrijmarkt"] }] },
+        { "prompt": "Hoe heet een lied voor een enkele stem in een opera?", "category": "Muziek", "answers": [{ "text": "Een aria", "aliases": ["aria"] }] },
+        { "prompt": "In welke film uit 2014 krijgt een drummer te maken met een meedogenloze leraar?", "category": "Film", "answers": [{ "text": "Whiplash" }] },
+        { "prompt": "Hoe heet de studie naar de herkomst van woorden?", "category": "Taal", "answers": [{ "text": "Etymologie" }] },
+        { "prompt": "Welke specerij wordt geoogst als de gedroogde peulen van een orchidee?", "category": "Eten", "answers": [{ "text": "Vanille" }] },
+        { "prompt": "Wat is het kleinste deeltje van een verbinding dat die verbinding nog is?", "category": "Wetenschap", "answers": [{ "text": "Het molecuul", "aliases": ["molecuul"] }] },
+        { "prompt": "Welke bankiersfamilie heerste over Florence in de renaissance?", "category": "Geschiedenis", "answers": [{ "text": "De Medici", "aliases": ["Medici"] }] },
+        { "prompt": "Wat is qua oppervlakte het grootste land van de Balkan?", "category": "Aardrijkskunde", "answers": [{ "text": "Roemenie" }] },
+        { "prompt": "Welke olympische sport combineert langlaufen met schieten?", "category": "Sport", "answers": [{ "text": "De biatlon", "aliases": ["biatlon"] }] },
+        { "prompt": "Welke zeevogel van de Galapagos staat bekend om zijn felblauwe poten?", "category": "Natuur", "answers": [{ "text": "De blauwvoetgent", "aliases": ["blauwvoetgent"] }] },
+        { "prompt": "In welke film wordt de Romeinse veldheer Maximus gladiator?", "category": "Film", "answers": [{ "text": "Gladiator" }] },
+        { "prompt": "Welke Duitse componist schreef Carmina Burana?", "category": "Muziek", "answers": [{ "text": "Carl Orff", "aliases": ["Orff"] }] },
+        { "prompt": "Waar staat de afkorting URL voor?", "category": "Techniek", "answers": [{ "text": "Uniform Resource Locator" }] },
+        { "prompt": "Welk document namen de Amerikaanse kolonien op 4 juli 1776 aan?", "category": "Geschiedenis", "answers": [{ "text": "De onafhankelijkheidsverklaring", "aliases": ["Declaration of Independence"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de grootste schildpaddensoort ter wereld?", "options": [{ "text": "De lederschildpad", "correct": true }, { "text": "De groene zeeschildpad" }, { "text": "De onechte karetschildpad" }, { "text": "De karetschildpad" }] },
+        { "prompt": "Welke Ierse schrijver schreef Dracula?", "options": [{ "text": "Bram Stoker", "correct": true }, { "text": "Sheridan Le Fanu" }, { "text": "Oscar Wilde" }, { "text": "Charles Maturin" }] },
+        { "prompt": "Hoe heet de verre schil van ijzige objecten waar lange kometen vandaan komen?", "options": [{ "text": "De Oortwolk", "correct": true }, { "text": "De Kuipergordel" }, { "text": "De planetoidengordel" }, { "text": "De heliosfeer" }] },
+        { "prompt": "Welke klier zit boven op de nier en maakt adrenaline?", "options": [{ "text": "De bijnier", "correct": true }, { "text": "De schildklier" }, { "text": "De hypofyse" }, { "text": "De alvleesklier" }] },
+        { "prompt": "Welke Italiaanse mousserende wijn komt uit Veneto?", "options": [{ "text": "Prosecco", "correct": true }, { "text": "Lambrusco" }, { "text": "Asti" }, { "text": "Franciacorta" }] },
+        { "prompt": "Wat is de oudste voetbalclub ter wereld?", "options": [{ "text": "Sheffield FC", "correct": true }, { "text": "Notts County" }, { "text": "Genoa" }, { "text": "Ajax" }] },
+        { "prompt": "Welke Amerikaanse beeldhouwer bedacht de hangende mobile?", "options": [{ "text": "Alexander Calder", "correct": true }, { "text": "Louise Nevelson" }, { "text": "David Smith" }, { "text": "Isamu Noguchi" }] },
+        { "prompt": "Wat is de grootste slagader van het menselijk lichaam?", "options": [{ "text": "De aorta", "correct": true }, { "text": "De halsslagader" }, { "text": "De liesslagader" }, { "text": "De longslagader" }] },
+        { "prompt": "De inwoners van welk land drinken per hoofd het meeste bier?", "options": [{ "text": "Tsjechie", "correct": true }, { "text": "Duitsland" }, { "text": "Oostenrijk" }, { "text": "Belgie" }] },
+        { "prompt": "Wat is de gewone naam voor natriumbicarbonaat?", "options": [{ "text": "Baksoda", "correct": true }, { "text": "Wijnsteenzuur" }, { "text": "Waspoeder" }, { "text": "Azijnzout" }] },
+        { "prompt": "Welke stad wordt vaak de oudste onafgebroken bewoonde stad ter wereld genoemd?", "options": [{ "text": "Damascus", "correct": true }, { "text": "Jericho" }, { "text": "Athene" }, { "text": "Byblos" }] },
+        { "prompt": "Wat is het jongste land ter wereld?", "options": [{ "text": "Zuid-Soedan", "correct": true }, { "text": "Montenegro" }, { "text": "Kosovo" }, { "text": "Oost-Timor" }] },
+        { "prompt": "Welke vogel is ooit hoger waargenomen dan welke andere ook?", "options": [{ "text": "De gier van Ruppell", "correct": true }, { "text": "De indische gans" }, { "text": "De albatros" }, { "text": "De zwaan" }] },
+        { "prompt": "Welk land betaalt met de ringgit?", "options": [{ "text": "Maleisie", "correct": true }, { "text": "Indonesie" }, { "text": "Brunei" }, { "text": "Thailand" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Westertoren in Amsterdam?", "answer": 85, "unit": "meter" },
+        { "prompt": "Hoeveel dagen doet de maan over een rondje om de aarde?", "answer": 27, "unit": "dagen" },
+        { "prompt": "In welk jaar was de eerste Nederlandse radio-uitzending?", "answer": 1919, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur draait het aardoppervlak op de evenaar?", "answer": 1670, "unit": "kilometer per uur" },
+        { "prompt": "Hoe vaak knippert een mens gemiddeld met zijn ogen per minuut?", "answer": 15, "unit": "keer" },
+        { "prompt": "Hoeveel miljoen bakstenen zitten er in het Empire State Building?", "answer": 10, "unit": "miljoen bakstenen" },
+        { "prompt": "Hoeveel kilo weegt een gemiddelde pasgeboren baby?", "answer": 3, "unit": "kilo" },
+        { "prompt": "Hoeveel vogelsoorten zijn er ongeveer ter wereld?", "answer": 11000, "unit": "soorten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Kledinghaak" },
+        { "prompt": "Eierdopje" },
+        { "prompt": "Schoenenrek" },
+        { "prompt": "Ventilator" },
+        { "prompt": "Dobber" },
+        { "prompt": "Babyfles" },
+        { "prompt": "Vloerkleed" },
+        { "prompt": "Tang" },
+        { "prompt": "Vlaggenlijn" },
+        { "prompt": "Ton" },
+        { "prompt": "Bierkrat" },
+        { "prompt": "Picknickmand" },
+        { "prompt": "Roeiboot" },
+        { "prompt": "Springstok" },
+        { "prompt": "Botsauto" },
+        { "prompt": "Kassa" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Servie grenzen.", "answers": [{ "text": "Hongarije" }, { "text": "Kroatie" }, { "text": "Bulgarije" }, { "text": "Montenegro" }] },
+        { "prompt": "Noem vier soorten worst.", "answers": [{ "text": "Bratwurst" }, { "text": "Chorizo" }, { "text": "Salami" }, { "text": "Frankfurter" }] },
+        { "prompt": "Noem vier Europese vorstenhuizen.", "answers": [{ "text": "Windsor" }, { "text": "Oranje-Nassau" }, { "text": "Bourbon" }, { "text": "Habsburg" }] },
+        { "prompt": "Noem vier dingen die je op het strand vindt.", "answers": [{ "text": "Zand" }, { "text": "Schelpen" }, { "text": "Zeewier" }, { "text": "Drijfhout" }] },
+        { "prompt": "Noem vier landen die het Eurovisie Songfestival hebben gewonnen.", "answers": [{ "text": "Ierland" }, { "text": "Zweden" }, { "text": "Israel" }, { "text": "Noorwegen" }] },
+        { "prompt": "Noem vier soorten bloemen.", "answers": [{ "text": "Tulp" }, { "text": "Roos" }, { "text": "Narcis" }, { "text": "Zonnebloem" }] },
+        { "prompt": "Noem vier programmeertalen.", "answers": [{ "text": "Python" }, { "text": "Java" }, { "text": "C" }, { "text": "JavaScript" }] },
+        { "prompt": "Noem vier steden die sinds 2000 de Olympische Zomerspelen hielden.", "answers": [{ "text": "Sydney" }, { "text": "Athene" }, { "text": "Peking" }, { "text": "Rio de Janeiro" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel tenen heeft een mens in totaal?", "difficulty": "easy", "answers": [{ "text": "Tien", "aliases": ["10"] }] },
+        { "prompt": "Welke kleur heeft steenkool?", "difficulty": "easy", "answers": [{ "text": "Zwart" }] },
+        { "prompt": "Hoeveel dagen telt januari?", "difficulty": "easy", "answers": [{ "text": "Eenendertig", "aliases": ["31"] }] },
+        { "prompt": "Hoe noem je iemand die voor zijn beroep schilderijen maakt?", "difficulty": "easy", "answers": [{ "text": "Een kunstenaar", "aliases": ["kunstenaar", "schilder"] }] },
+        { "prompt": "Hoe noem je een bundel bedrukte bladzijden die je van kaft tot kaft leest?", "difficulty": "easy", "answers": [{ "text": "Een boek", "aliases": ["boek"] }] },
+        { "prompt": "Wat is de hoofdstad van Slowakije?", "difficulty": "hard", "answers": [{ "text": "Bratislava" }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef de roman Catch-22?", "difficulty": "hard", "answers": [{ "text": "Joseph Heller", "aliases": ["Heller"] }] },
+        { "prompt": "Welke ster is qua volume de grootste die we kennen?", "difficulty": "hard", "answers": [{ "text": "UY Scuti" }] },
+        { "prompt": "Welk knalrood mineraal is het belangrijkste erts van kwik?", "difficulty": "hard", "answers": [{ "text": "Cinnaber" }] },
+        { "prompt": "Welke Franse componist schreef Clair de Lune?", "difficulty": "hard", "answers": [{ "text": "Claude Debussy", "aliases": ["Debussy"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse ingenieur maakte het plan voor de Afsluitdijk?", "answers": [{ "text": "Cornelis Lely", "aliases": ["Lely"] }] },
+        { "prompt": "Wat is de hoofdstad van Nicaragua?", "answers": [{ "text": "Managua" }] },
+        { "prompt": "Welke Vlaamse schilder maakte De boerenbruiloft?", "answers": [{ "text": "Pieter Bruegel", "aliases": ["Bruegel", "Brueghel"] }] },
+        { "prompt": "In welk jaar maakte de Concorde haar laatste passagiersvlucht?", "answers": [{ "text": "2003" }] },
+        { "prompt": "Welk eiland in de Stille Oceaan is het grootste koraalatol ter wereld?", "answers": [{ "text": "Kiritimati", "aliases": ["Christmaseiland"] }] },
+        { "prompt": "Welke Romeinse godin gaf haar naam aan de maand juni?", "answers": [{ "text": "Juno" }] }
+      ]
+    }
+  ]
+}

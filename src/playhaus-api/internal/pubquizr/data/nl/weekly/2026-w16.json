@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w16",
+  "title": "Weekquiz 16 2026",
+  "description": "De wekelijkse quiz van woensdag 15 april 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de langste rivier van Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Murray", "aliases": ["Murray"] }] },
+        { "prompt": "Hoe noemen we dieren die zowel planten als vlees eten?", "category": "Wetenschap", "answers": [{ "text": "Omnivoren", "aliases": ["omnivoor", "alleseters"] }] },
+        { "prompt": "Welke Britse koningin leidde in het jaar 60 een opstand tegen de Romeinen?", "category": "Geschiedenis", "answers": [{ "text": "Boudicca", "aliases": ["Boadicea", "Boudica"] }] },
+        { "prompt": "Welke Nederlandse teamsport wordt gespeeld met een mand op een hoge paal?", "category": "Sport", "answers": [{ "text": "Korfbal" }] },
+        { "prompt": "Welke anonieme straatkunstenaar maakte Girl with Balloon?", "category": "Kunst", "answers": [{ "text": "Banksy" }] },
+        { "prompt": "Welke vogel draagt zijn vangst in een zak onder zijn snavel?", "category": "Natuur", "answers": [{ "text": "De pelikaan", "aliases": ["pelikaan"] }] },
+        { "prompt": "Welke Nederlandse traditie jaagt op 1 januari duizenden mensen de ijskoude zee in?", "category": "Nederland", "answers": [{ "text": "De nieuwjaarsduik", "aliases": ["nieuwjaarsduik"] }] },
+        { "prompt": "Welk teken in het notenschrift verhoogt een noot met een halve toon?", "category": "Muziek", "answers": [{ "text": "Het kruis", "aliases": ["kruis", "sharp"] }] },
+        { "prompt": "In welke film keert een boordcomputer met de naam HAL zich tegen de bemanning?", "category": "Film", "answers": [{ "text": "2001: A Space Odyssey", "aliases": ["2001 A Space Odyssey"] }] },
+        { "prompt": "Hoe noem je een woord dat uit de beginletters van andere woorden is gemaakt?", "category": "Taal", "answers": [{ "text": "Een acroniem", "aliases": ["acroniem"] }] },
+        { "prompt": "Van welk vlees wordt een wienerschnitzel traditioneel gemaakt?", "category": "Eten", "answers": [{ "text": "Kalfsvlees", "aliases": ["kalf"] }] },
+        { "prompt": "In welke laag van de atmosfeer zit de ozonlaag?", "category": "Wetenschap", "answers": [{ "text": "De stratosfeer", "aliases": ["stratosfeer"] }] },
+        { "prompt": "Welke twee Nederlandse steden werden door de eerste spoorlijn van het land verbonden?", "category": "Geschiedenis", "answers": [{ "text": "Amsterdam en Haarlem" }] },
+        { "prompt": "Wat is het grootste land van Midden-Amerika?", "category": "Aardrijkskunde", "answers": [{ "text": "Nicaragua" }] },
+        { "prompt": "Welke Braziliaanse vechtkunst wordt op muziek uitgevoerd en lijkt op dansen?", "category": "Sport", "answers": [{ "text": "Capoeira" }] },
+        { "prompt": "Welk dier heeft de breedste horens van alle levende dieren?", "category": "Natuur", "answers": [{ "text": "De waterbuffel", "aliases": ["waterbuffel"] }] },
+        { "prompt": "In welke film uit 1982 verstopt een jongen een buitenaards wezen op zijn kamer?", "category": "Film", "answers": [{ "text": "E.T.", "aliases": ["ET"] }] },
+        { "prompt": "Welk Latijnse woord nummert de werken van een componist op volgorde?", "category": "Muziek", "answers": [{ "text": "Opus" }] },
+        { "prompt": "Waar staat de afkorting cd voor?", "category": "Techniek", "answers": [{ "text": "Compact Disc" }] },
+        { "prompt": "Over welk rijk werd gezegd dat de zon er nooit onderging?", "category": "Geschiedenis", "answers": [{ "text": "Het Britse Rijk", "aliases": ["Britse Rijk", "Brits Imperium"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de grootste rivierdelta ter wereld?", "options": [{ "text": "De Gangesdelta", "correct": true }, { "text": "De Mekongdelta" }, { "text": "De Amazonedelta" }, { "text": "De Donaudelta" }] },
+        { "prompt": "Welke van de zussen Bronte schreef Woeste Hoogten?", "options": [{ "text": "Emily Bronte", "correct": true }, { "text": "Charlotte Bronte" }, { "text": "Anne Bronte" }, { "text": "Elizabeth Gaskell" }] },
+        { "prompt": "Welk effect laat een voorbijrijdende sirene lager klinken?", "options": [{ "text": "Het dopplereffect", "correct": true }, { "text": "Het corioliseffect" }, { "text": "Het venturi-effect" }, { "text": "Het magnuseffect" }] },
+        { "prompt": "Welk insect vliegt het snelst ter wereld?", "options": [{ "text": "De libel", "correct": true }, { "text": "De hoornaar" }, { "text": "De daas" }, { "text": "De pijlstaartvlinder" }] },
+        { "prompt": "Welke groente vormt de basis van een Spaanse gazpacho?", "options": [{ "text": "De tomaat", "correct": true }, { "text": "De komkommer" }, { "text": "De paprika" }, { "text": "De courgette" }] },
+        { "prompt": "In welke sport wordt de Melbourne Cup verreden?", "options": [{ "text": "Paardenrennen", "correct": true }, { "text": "Zeilen" }, { "text": "Autosport" }, { "text": "Cricket" }] },
+        { "prompt": "Welke Oostenrijkse componist schreef de wals An der schonen blauen Donau?", "options": [{ "text": "Johann Strauss", "correct": true }, { "text": "Franz Lehar" }, { "text": "Joseph Lanner" }, { "text": "Carl Michael Ziehrer" }] },
+        { "prompt": "Welk schrift wordt door meer mensen gebruikt dan welk ander ook?", "options": [{ "text": "Het Latijnse alfabet", "correct": true }, { "text": "De Chinese karakters" }, { "text": "Het Arabische schrift" }, { "text": "Het devanagari" }] },
+        { "prompt": "Welk zintuig wordt verwerkt in de achterkwab van de hersenen?", "options": [{ "text": "Het zien", "correct": true }, { "text": "Het ruiken" }, { "text": "Het evenwicht" }, { "text": "Het voelen" }] },
+        { "prompt": "Welke duurzame bron levert wereldwijd de meeste elektriciteit?", "options": [{ "text": "Waterkracht", "correct": true }, { "text": "Wind" }, { "text": "Zon" }, { "text": "Aardwarmte" }] },
+        { "prompt": "Wat is de grootste stad van Afrika qua inwoners?", "options": [{ "text": "Lagos", "correct": true }, { "text": "Kinshasa" }, { "text": "Johannesburg" }, { "text": "Khartoem" }] },
+        { "prompt": "Welk metaal heeft het scheikundige symbool Sn?", "options": [{ "text": "Tin", "correct": true }, { "text": "Natrium" }, { "text": "Seleen" }, { "text": "Strontium" }] },
+        { "prompt": "Welke munteenheid wordt in Turkije gebruikt?", "options": [{ "text": "De lira", "correct": true }, { "text": "De dinar" }, { "text": "De dirham" }, { "text": "De drachme" }] },
+        { "prompt": "Wat is de grootste roofvogel van Europa?", "options": [{ "text": "De lammergier", "correct": true }, { "text": "De visarend" }, { "text": "De buizerd" }, { "text": "De wouw" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het Atomium in Brussel?", "answer": 102, "unit": "meter" },
+        { "prompt": "Hoeveel spieren heeft een kat in elk oor?", "answer": 32, "unit": "spieren" },
+        { "prompt": "In welk jaar werd het eerste wereldkampioenschap Formule 1 gehouden?", "answer": 1950, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur verlaat een golfbal de club?", "answer": 290, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel ton weegt een volwassen blauwe vinvis?", "answer": 150, "unit": "ton" },
+        { "prompt": "Hoeveel snaren heeft een banjo meestal?", "answer": 5, "unit": "snaren" },
+        { "prompt": "Hoeveel tanden heeft een witte haai tegelijk in zijn kaken?", "answer": 300, "unit": "tanden" },
+        { "prompt": "Hoeveel kilometer vliegt een zwaluw tijdens zijn jaarlijkse trek?", "answer": 10000, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Zeeppompje" },
+        { "prompt": "Broodmes" },
+        { "prompt": "Wasmand" },
+        { "prompt": "Muziekstandaard" },
+        { "prompt": "Dartpijl" },
+        { "prompt": "Rietje" },
+        { "prompt": "Fietshelm" },
+        { "prompt": "Schemerlamp" },
+        { "prompt": "Discobal" },
+        { "prompt": "Elastiekje" },
+        { "prompt": "Tuinvork" },
+        { "prompt": "Schoteltje" },
+        { "prompt": "Boei" },
+        { "prompt": "Zwemvest" },
+        { "prompt": "Glijbaan" },
+        { "prompt": "Schaakklok" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Oekraine grenzen.", "answers": [{ "text": "Polen" }, { "text": "Roemenie" }, { "text": "Hongarije" }, { "text": "Slowakije" }] },
+        { "prompt": "Noem vier soorten bonen.", "answers": [{ "text": "Kidneyboon" }, { "text": "Sperzieboon" }, { "text": "Tuinboon" }, { "text": "Zwarte boon" }] },
+        { "prompt": "Noem vier beeldhouwers.", "answers": [{ "text": "Michelangelo" }, { "text": "Rodin" }, { "text": "Bernini" }, { "text": "Henry Moore" }] },
+        { "prompt": "Noem vier olympische sporten met een bal.", "answers": [{ "text": "Voetbal" }, { "text": "Basketbal" }, { "text": "Handbal" }, { "text": "Volleybal" }] },
+        { "prompt": "Noem vier landen in de Alpen.", "answers": [{ "text": "Frankrijk" }, { "text": "Zwitserland" }, { "text": "Oostenrijk" }, { "text": "Italie" }] },
+        { "prompt": "Noem vier dingen die je op je hoofd kunt dragen.", "answers": [{ "text": "Helm" }, { "text": "Pet" }, { "text": "Kroon" }, { "text": "Haarband" }] },
+        { "prompt": "Noem vier beroemde schepen.", "answers": [{ "text": "De Titanic" }, { "text": "De Mayflower" }, { "text": "De Beagle" }, { "text": "De Victory" }] },
+        { "prompt": "Noem vier soorten dinosaurussen.", "answers": [{ "text": "Tyrannosaurus" }, { "text": "Triceratops" }, { "text": "Stegosaurus" }, { "text": "Velociraptor" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk boerderijdier zegt knor?", "difficulty": "easy", "answers": [{ "text": "Het varken", "aliases": ["varken"] }] },
+        { "prompt": "Wat is het tegenovergestelde van groot?", "difficulty": "easy", "answers": [{ "text": "Klein" }] },
+        { "prompt": "Met welk deel van je gezicht kijk je?", "difficulty": "easy", "answers": [{ "text": "De ogen", "aliases": ["ogen"] }] },
+        { "prompt": "Welk voertuig komt aanrijden als een huis in brand staat?", "difficulty": "easy", "answers": [{ "text": "Een brandweerauto", "aliases": ["brandweerauto", "brandweerwagen"] }] },
+        { "prompt": "Waarmee eet je soep?", "difficulty": "easy", "answers": [{ "text": "Een lepel", "aliases": ["lepel"] }] },
+        { "prompt": "Wat is de hoofdstad van Costa Rica?", "difficulty": "hard", "answers": [{ "text": "San Jose" }] },
+        { "prompt": "Welke Engelse dichter schreef The Rime of the Ancient Mariner?", "difficulty": "hard", "answers": [{ "text": "Samuel Taylor Coleridge", "aliases": ["Coleridge"] }] },
+        { "prompt": "Welke Duitse wetenschapper bedacht als eerste dat de continenten bewegen?", "difficulty": "hard", "answers": [{ "text": "Alfred Wegener", "aliases": ["Wegener"] }] },
+        { "prompt": "Welk land telt meer levende talen dan welk ander land ook?", "difficulty": "hard", "answers": [{ "text": "Papoea-Nieuw-Guinea" }] },
+        { "prompt": "Welk zoogdier heeft de kortste draagtijd van allemaal?", "difficulty": "hard", "answers": [{ "text": "De opossum", "aliases": ["opossum", "buidelrat"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse wiskundige gaf zijn naam aan de brekingswet?", "answers": [{ "text": "Willebrord Snellius", "aliases": ["Snell", "Snellius"] }] },
+        { "prompt": "Wat is de hoofdstad van Ghana?", "answers": [{ "text": "Accra" }] },
+        { "prompt": "Welke renaissancebouwmeester bouwde de koepel van de dom van Florence?", "answers": [{ "text": "Filippo Brunelleschi", "aliases": ["Brunelleschi"] }] },
+        { "prompt": "In welk jaar opende het Louvre voor het eerst als museum?", "answers": [{ "text": "1793" }] },
+        { "prompt": "Welke rivier in Botswana vormt de grootste binnendelta ter wereld?", "answers": [{ "text": "De Okavango", "aliases": ["Okavango"] }] },
+        { "prompt": "Welke Romeinse geschiedschrijver schreef de Annalen?", "answers": [{ "text": "Tacitus" }] }
+      ]
+    }
+  ]
+}

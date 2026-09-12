@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w21",
+  "title": "Weekquiz 21 2026",
+  "description": "De wekelijkse quiz van woensdag 20 mei 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het diepste meer van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Tanganyikameer", "aliases": ["Tanganyika"] }] },
+        { "prompt": "Welke groene kleurstof laat planten zonlicht opvangen?", "category": "Wetenschap", "answers": [{ "text": "Bladgroen", "aliases": ["chlorofyl"] }] },
+        { "prompt": "Welke Engelse burgeroorlog werd uitgevochten tussen de huizen York en Lancaster?", "category": "Geschiedenis", "answers": [{ "text": "De Rozenoorlogen", "aliases": ["Rozenoorlogen"] }] },
+        { "prompt": "In welke wintersport race je met je hoofd vooruit over een ijsbaan?", "category": "Sport", "answers": [{ "text": "Skeleton" }] },
+        { "prompt": "Welke Italiaanse schilder staat bekend om portretten met lange ovale gezichten?", "category": "Kunst", "answers": [{ "text": "Amedeo Modigliani", "aliases": ["Modigliani"] }] },
+        { "prompt": "Welk dier staat in het logo van het Wereld Natuur Fonds?", "category": "Natuur", "answers": [{ "text": "De reuzenpanda", "aliases": ["panda", "reuzenpanda"] }] },
+        { "prompt": "Wat is het kleinste bewoonde Waddeneiland van Nederland?", "category": "Nederland", "answers": [{ "text": "Schiermonnikoog" }] },
+        { "prompt": "Welke Italiaanse aanduiding zegt dat noten vloeiend aan elkaar moeten klinken?", "category": "Muziek", "answers": [{ "text": "Legato" }] },
+        { "prompt": "Welke film uit 2018 vertelt het verhaal van Freddie Mercury en zijn band?", "category": "Film", "answers": [{ "text": "Bohemian Rhapsody" }] },
+        { "prompt": "Hoe heet een heel kort Japans gedicht van drie regels?", "category": "Taal", "answers": [{ "text": "Een haiku", "aliases": ["haiku"] }] },
+        { "prompt": "Welk klein zout visje hoort in een klassieke caesardressing?", "category": "Eten", "answers": [{ "text": "De ansjovis", "aliases": ["ansjovis"] }] },
+        { "prompt": "Hoe heet het negatief geladen deeltje in een atoom?", "category": "Wetenschap", "answers": [{ "text": "Het elektron", "aliases": ["elektron"] }] },
+        { "prompt": "Welk verdrag uit 1494 verdeelde de nieuwe wereld tussen Spanje en Portugal?", "category": "Geschiedenis", "answers": [{ "text": "Het Verdrag van Tordesillas", "aliases": ["Tordesillas"] }] },
+        { "prompt": "Wat is het grootste eiland in de Oostzee?", "category": "Aardrijkskunde", "answers": [{ "text": "Gotland" }] },
+        { "prompt": "Welk bordspel eindigt als een koning schaakmat staat?", "category": "Sport", "answers": [{ "text": "Schaken" }] },
+        { "prompt": "Welke naaldboom verliest elk najaar al zijn naalden?", "category": "Natuur", "answers": [{ "text": "De lariks", "aliases": ["lariks", "larix"] }] },
+        { "prompt": "In welke animatiefilm vliegt een huis weg aan een wolk ballonnen?", "category": "Film", "answers": [{ "text": "Up" }] },
+        { "prompt": "Welke Amerikaanse zanger staat simpelweg bekend als the Boss?", "category": "Muziek", "answers": [{ "text": "Bruce Springsteen", "aliases": ["Springsteen"] }] },
+        { "prompt": "Waar staat de afkorting DNS voor?", "category": "Techniek", "answers": [{ "text": "Domain Name System" }] },
+        { "prompt": "Welke Frankische koning werd in het jaar 800 in Rome tot keizer gekroond?", "category": "Geschiedenis", "answers": [{ "text": "Karel de Grote", "aliases": ["Charlemagne"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de grootste kikkersoort ter wereld?", "options": [{ "text": "De goliathkikker", "correct": true }, { "text": "De reuzenpad" }, { "text": "De brulkikker" }, { "text": "De Chileense kikker" }] },
+        { "prompt": "Welke Amerikaan schreef het toneelstuk Dood van een handelsreiziger?", "options": [{ "text": "Arthur Miller", "correct": true }, { "text": "Eugene O'Neill" }, { "text": "Edward Albee" }, { "text": "Sam Shepard" }] },
+        { "prompt": "Hoe heet het als de maan de zon helemaal afdekt?", "options": [{ "text": "Een zonsverduistering", "correct": true }, { "text": "Een maansverduistering" }, { "text": "Een overgang" }, { "text": "Een bedekking" }] },
+        { "prompt": "Welk zeezoogdier heeft een lange gedraaide slagtand?", "options": [{ "text": "De narwal", "correct": true }, { "text": "De walrus" }, { "text": "De witte dolfijn" }, { "text": "De doejong" }] },
+        { "prompt": "Welke drank ontstaat door honing te laten gisten?", "options": [{ "text": "Mede", "correct": true }, { "text": "Cider" }, { "text": "Sake" }, { "text": "Kvas" }] },
+        { "prompt": "Wat is de grootste zoetwatervis ter wereld?", "options": [{ "text": "De belugasteur", "correct": true }, { "text": "De meerval" }, { "text": "De arapaima" }, { "text": "De snoek" }] },
+        { "prompt": "Hoe heten de reusachtige stenen koppen van Paaseiland?", "options": [{ "text": "Moai", "correct": true }, { "text": "Totems" }, { "text": "Menhirs" }, { "text": "Stelae" }] },
+        { "prompt": "Welk orgaan slaat urine op?", "options": [{ "text": "De blaas", "correct": true }, { "text": "De nier" }, { "text": "De galblaas" }, { "text": "De urineleider" }] },
+        { "prompt": "Welke taal leren meer mensen als tweede taal dan welke andere ook?", "options": [{ "text": "Engels", "correct": true }, { "text": "Spaans" }, { "text": "Frans" }, { "text": "Mandarijn" }] },
+        { "prompt": "Welke berg rijst vanaf zijn eigen voet het hoogst op?", "options": [{ "text": "Mauna Kea", "correct": true }, { "text": "De Everest" }, { "text": "Denali" }, { "text": "De Kilimanjaro" }] },
+        { "prompt": "Welk edelgas dankt zijn naam aan het Griekse woord voor vreemdeling?", "options": [{ "text": "Xenon", "correct": true }, { "text": "Krypton" }, { "text": "Neon" }, { "text": "Radon" }] },
+        { "prompt": "In welke stad zetelt de Baskische regionale regering?", "options": [{ "text": "Vitoria-Gasteiz", "correct": true }, { "text": "Bilbao" }, { "text": "San Sebastian" }, { "text": "Pamplona" }] },
+        { "prompt": "Tot welke taalfamilie behoort het Fins?", "options": [{ "text": "De Fins-Oegrische", "correct": true }, { "text": "De Germaanse" }, { "text": "De Slavische" }, { "text": "De Baltische" }] },
+        { "prompt": "Welke plant maakt het grootste zaad ter wereld?", "options": [{ "text": "De coco de mer", "correct": true }, { "text": "De kokospalm" }, { "text": "De jackfruit" }, { "text": "De avocado" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het hoogste standbeeld ter wereld?", "answer": 182, "unit": "meter" },
+        { "prompt": "Hoeveel vleugels heeft een bij?", "answer": 4, "unit": "vleugels" },
+        { "prompt": "In welk jaar won Reinier Paping de koudste Elfstedentocht ooit?", "answer": 1963, "unit": "" },
+        { "prompt": "Hoeveel kilometer is het over de weg van Amsterdam naar Parijs?", "answer": 500, "unit": "kilometer" },
+        { "prompt": "Hoeveel spelers heeft een korfbalteam in het veld?", "answer": 8, "unit": "spelers" },
+        { "prompt": "Hoeveel jaar duurde de bouw van de Sint-Pieter in Rome?", "answer": 120, "unit": "jaar" },
+        { "prompt": "Hoeveel miljoen liter bier gaat er op het Oktoberfest in Munchen doorheen?", "answer": 7, "unit": "miljoen liter" },
+        { "prompt": "Hoeveel eilanden heeft Zweden?", "answer": 267570, "unit": "eilanden" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Bierviltje" },
+        { "prompt": "Flesopener" },
+        { "prompt": "Pook" },
+        { "prompt": "Kaartspel" },
+        { "prompt": "Blokfluit" },
+        { "prompt": "Schuurpapier" },
+        { "prompt": "Kliko" },
+        { "prompt": "Melkfles" },
+        { "prompt": "Mok" },
+        { "prompt": "Badstop" },
+        { "prompt": "Landkaart" },
+        { "prompt": "Scorebord" },
+        { "prompt": "Schep" },
+        { "prompt": "Hark" },
+        { "prompt": "Duikbril" },
+        { "prompt": "Gereedschapsriem" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Bolivia grenzen.", "answers": [{ "text": "Brazilie" }, { "text": "Peru" }, { "text": "Chili" }, { "text": "Argentinie" }] },
+        { "prompt": "Noem vier graansoorten.", "answers": [{ "text": "Tarwe" }, { "text": "Rijst" }, { "text": "Mais" }, { "text": "Haver" }] },
+        { "prompt": "Noem vier Engelse woorden die uit het Nederlands komen.", "answers": [{ "text": "Cookie" }, { "text": "Skipper" }, { "text": "Landscape" }, { "text": "Yacht" }] },
+        { "prompt": "Noem vier sporten die binnen worden gespeeld.", "answers": [{ "text": "Squash" }, { "text": "Badminton" }, { "text": "Judo" }, { "text": "Turnen" }] },
+        { "prompt": "Noem vier landen rond de Oostzee.", "answers": [{ "text": "Estland" }, { "text": "Letland" }, { "text": "Litouwen" }, { "text": "Finland" }] },
+        { "prompt": "Noem vier dingen met wielen.", "answers": [{ "text": "Auto" }, { "text": "Fiets" }, { "text": "Skateboard" }, { "text": "Kruiwagen" }] },
+        { "prompt": "Noem vier uitvindingen uit de twintigste eeuw.", "answers": [{ "text": "Televisie" }, { "text": "De computer" }, { "text": "Penicilline" }, { "text": "De straalmotor" }] },
+        { "prompt": "Noem vier meren waar ook ter wereld.", "answers": [{ "text": "Victoriameer" }, { "text": "Baikalmeer" }, { "text": "Bovenmeer" }, { "text": "Meer van Geneve" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je twaalf uur midden op de dag?", "difficulty": "easy", "answers": [{ "text": "Middag", "aliases": ["twaalf uur 's middags"] }] },
+        { "prompt": "Welke taart eet je een keer per jaar met kaarsjes erop?", "difficulty": "easy", "answers": [{ "text": "Een verjaardagstaart", "aliases": ["verjaardagstaart"] }] },
+        { "prompt": "Hoe noem je een klein riviertje?", "difficulty": "easy", "answers": [{ "text": "Een beek", "aliases": ["beek", "stroompje"] }] },
+        { "prompt": "Welk groot voertuig vervoert veel passagiers over de weg?", "difficulty": "easy", "answers": [{ "text": "Een bus", "aliases": ["bus"] }] },
+        { "prompt": "Welk deel van de dag komt direct na de ochtend?", "difficulty": "easy", "answers": [{ "text": "De middag", "aliases": ["middag"] }] },
+        { "prompt": "Wat is de hoofdstad van Azerbeidzjan?", "difficulty": "hard", "answers": [{ "text": "Bakoe", "aliases": ["Baku"] }] },
+        { "prompt": "Welke Italiaanse schrijver schreef de Decamerone?", "difficulty": "hard", "answers": [{ "text": "Giovanni Boccaccio", "aliases": ["Boccaccio"] }] },
+        { "prompt": "Welke slang heeft het giftigste gif ter wereld?", "difficulty": "hard", "answers": [{ "text": "De binnenlandse taipan", "aliases": ["taipan", "inlandtaipan"] }] },
+        { "prompt": "Hoe heet het punt aan de hemel recht boven je hoofd?", "difficulty": "hard", "answers": [{ "text": "Het zenit", "aliases": ["zenit"] }] },
+        { "prompt": "Welk dier heeft het grootste oog van alle dieren op aarde?", "difficulty": "hard", "answers": [{ "text": "De reuzeninktvis", "aliases": ["kolossale inktvis"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse admiraal vernietigde de Spaanse vloot bij Duins?", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp"] }] },
+        { "prompt": "Wat is de hoofdstad van Belarus?", "answers": [{ "text": "Minsk" }] },
+        { "prompt": "Welke Franse schilder ging voorop in het fauvisme?", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
+        { "prompt": "In welk jaar landde er voor het eerst een door mensen gemaakt object op een andere planeet?", "answers": [{ "text": "1966" }] },
+        { "prompt": "Wat is de grootste hete woestijn van Azie?", "answers": [{ "text": "De Arabische woestijn", "aliases": ["Arabische woestijn"] }] },
+        { "prompt": "Welke Zwitserse psychiater grondvestte de analytische psychologie?", "answers": [{ "text": "Carl Jung", "aliases": ["Jung"] }] }
+      ]
+    }
+  ]
+}

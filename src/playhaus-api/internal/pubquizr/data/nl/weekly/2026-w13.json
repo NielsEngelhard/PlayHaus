@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w13",
+  "title": "Weekquiz 13 2026",
+  "description": "De wekelijkse quiz van woensdag 25 maart 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welk land ligt het grootste deel van de Serengeti?", "category": "Aardrijkskunde", "answers": [{ "text": "Tanzania" }] },
+        { "prompt": "Hoe noemen we een stof die een reactie versnelt zonder zelf op te raken?", "category": "Wetenschap", "answers": [{ "text": "Een katalysator", "aliases": ["katalysator"] }] },
+        { "prompt": "Welke twee broers tekenden het sprookje van Hans en Grietje op?", "category": "Geschiedenis", "answers": [{ "text": "De gebroeders Grimm", "aliases": ["Grimm", "gebroeders Grimm"] }] },
+        { "prompt": "In welke sport bestaan de posities goal attack en wing defence?", "category": "Sport", "answers": [{ "text": "Netbal" }] },
+        { "prompt": "Welke kunstenaar pakte de Rijksdag en andere gebouwen in stof in?", "category": "Kunst", "answers": [{ "text": "Christo" }] },
+        { "prompt": "Wat is de snelste vogel in horizontale vlucht?", "category": "Natuur", "answers": [{ "text": "De gierzwaluw", "aliases": ["gierzwaluw"] }] },
+        { "prompt": "Welk Nederlands bloemenpark bij Lisse is elk voorjaar een paar weken open?", "category": "Nederland", "answers": [{ "text": "De Keukenhof", "aliases": ["Keukenhof"] }] },
+        { "prompt": "Welk woord beschrijft de snelheid waarmee een muziekstuk wordt gespeeld?", "category": "Muziek", "answers": [{ "text": "Tempo" }] },
+        { "prompt": "In welke film drijft een jongen met een tijger in een reddingsboot?", "category": "Film", "answers": [{ "text": "Life of Pi" }] },
+        { "prompt": "In welke taal betekent merci dank je wel?", "category": "Taal", "answers": [{ "text": "Frans" }] },
+        { "prompt": "Welke Zwitserse kaas staat bekend om zijn gaten?", "category": "Eten", "answers": [{ "text": "Emmentaler", "aliases": ["emmental"] }] },
+        { "prompt": "Hoe heet de wetenschap die levende wezens bestudeert?", "category": "Wetenschap", "answers": [{ "text": "Biologie" }] },
+        { "prompt": "Welke oorlog uit de jaren vijftig van de negentiende eeuw werd uitgevochten op een schiereiland in de Zwarte Zee?", "category": "Geschiedenis", "answers": [{ "text": "De Krimoorlog", "aliases": ["Krimoorlog"] }] },
+        { "prompt": "Wat is het grootste zoetwatermeer van Europa?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Ladogameer", "aliases": ["Ladoga"] }] },
+        { "prompt": "In welke sport geef je een tegenstander een panna?", "category": "Sport", "answers": [{ "text": "Voetbal" }] },
+        { "prompt": "Wat is het grootste knaagdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De capibara", "aliases": ["capibara"] }] },
+        { "prompt": "In welke film uit 1984 belooft een machine uit de toekomst I'll be back?", "category": "Film", "answers": [{ "text": "The Terminator", "aliases": ["Terminator"] }] },
+        { "prompt": "Welke Amerikaanse zangeres kreeg de bijnaam Material Girl?", "category": "Muziek", "answers": [{ "text": "Madonna" }] },
+        { "prompt": "Waar staat de afkorting RAM voor in een computer?", "category": "Techniek", "answers": [{ "text": "Random Access Memory" }] },
+        { "prompt": "Welke Nederlandse handelscompagnie bestuurde de kolonien in Amerika en West-Afrika?", "category": "Geschiedenis", "answers": [{ "text": "De West-Indische Compagnie", "aliases": ["WIC", "West-Indische Compagnie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is het grootste schiereiland ter wereld?", "options": [{ "text": "Arabie", "correct": true }, { "text": "Scandinavie" }, { "text": "Het Iberisch schiereiland" }, { "text": "India" }] },
+        { "prompt": "Welke Amerikaanse schrijfster schreef de roman Beminde?", "options": [{ "text": "Toni Morrison", "correct": true }, { "text": "Maya Angelou" }, { "text": "Alice Walker" }, { "text": "Zora Neale Hurston" }] },
+        { "prompt": "Hoe heet een ster die plotseling veel helderder wordt?", "options": [{ "text": "Een nova", "correct": true }, { "text": "Een pulsar" }, { "text": "Een quasar" }, { "text": "Een magnetar" }] },
+        { "prompt": "Welk dier veroorzaakt jaarlijks de meeste menselijke doden?", "options": [{ "text": "De mug", "correct": true }, { "text": "De slang" }, { "text": "De krokodil" }, { "text": "Het nijlpaard" }] },
+        { "prompt": "Welke sterkedrank wordt van suikerriet gestookt?", "options": [{ "text": "Rum", "correct": true }, { "text": "Cognac" }, { "text": "Whisky" }, { "text": "Schnaps" }] },
+        { "prompt": "Welk land won de meeste olympische gouden medailles bij het roeien?", "options": [{ "text": "Groot-Brittannie", "correct": true }, { "text": "Duitsland" }, { "text": "De Verenigde Staten" }, { "text": "Roemenie" }] },
+        { "prompt": "Welke Mexicaanse schilderes vulde haar zelfportretten met bloemen en doornen?", "options": [{ "text": "Frida Kahlo", "correct": true }, { "text": "Remedios Varo" }, { "text": "Leonora Carrington" }, { "text": "Maria Izquierdo" }] },
+        { "prompt": "In welk lichaamsdeel zitten de meeste botten?", "options": [{ "text": "De hand", "correct": true }, { "text": "De wervelkolom" }, { "text": "Het hoofd" }, { "text": "De borstkas" }] },
+        { "prompt": "Wat is de zwaarste roofvogel ter wereld?", "options": [{ "text": "De Andescondor", "correct": true }, { "text": "De steenarend" }, { "text": "De zeearend" }, { "text": "De gier" }] },
+        { "prompt": "Welke Amerikaanse stad heeft de bijnaam Windy City?", "options": [{ "text": "Chicago", "correct": true }, { "text": "Boston" }, { "text": "Detroit" }, { "text": "Seattle" }] },
+        { "prompt": "Welke noot wordt gekarameliseerd tot praline?", "options": [{ "text": "De hazelnoot", "correct": true }, { "text": "De walnoot" }, { "text": "De pecannoot" }, { "text": "De kastanje" }] },
+        { "prompt": "Welk element is genoemd naar het Zweedse dorp Ytterby?", "options": [{ "text": "Yttrium", "correct": true }, { "text": "Scandium" }, { "text": "Thulium" }, { "text": "Hafnium" }] },
+        { "prompt": "Welk land heeft een vlag die er aan de voor- en achterkant anders uitziet?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldavie" }, { "text": "Servie" }] },
+        { "prompt": "Wat is de hoogstgelegen spoorlijn ter wereld?", "options": [{ "text": "De Qinghai-Tibetspoorlijn", "correct": true }, { "text": "De Trans-Andesspoorlijn" }, { "text": "De Jungfraubahn" }, { "text": "De Centrale spoorlijn van Peru" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de piramide van Cheops tegenwoordig?", "answer": 139, "unit": "meter" },
+        { "prompt": "Hoeveel landen grenzen aan Brazilie?", "answer": 10, "unit": "landen" },
+        { "prompt": "In welk jaar organiseerden Nederland en Belgie samen het EK voetbal?", "answer": 2000, "unit": "" },
+        { "prompt": "Hoeveel kilometer per uur was de snelste tennisservice ooit gemeten?", "answer": 263, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel haren zitten er ongeveer op een mensenhoofd?", "answer": 100000, "unit": "haren" },
+        { "prompt": "Hoeveel jaar kan een reuzenschildpad worden?", "answer": 150, "unit": "jaar" },
+        { "prompt": "Hoeveel kilometer lang is de Nederlandse kustlijn?", "answer": 451, "unit": "kilometer" },
+        { "prompt": "Uit hoeveel losse blokjes bestaat een rubiks kubus?", "answer": 26, "unit": "blokjes" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "IJsblokjesvorm" },
+        { "prompt": "Douchegordijn" },
+        { "prompt": "Luchthoorn" },
+        { "prompt": "Hobbelpaard" },
+        { "prompt": "Viskom" },
+        { "prompt": "Manchetknoop" },
+        { "prompt": "Hondenriem" },
+        { "prompt": "Bloempot" },
+        { "prompt": "Frisbee" },
+        { "prompt": "Heggenschaar" },
+        { "prompt": "Zonnebrandcreme" },
+        { "prompt": "Envelop" },
+        { "prompt": "Servet" },
+        { "prompt": "Kinderstoel" },
+        { "prompt": "Steelpan" },
+        { "prompt": "Lavalamp" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan Spanje grenzen.", "answers": [{ "text": "Frankrijk" }, { "text": "Portugal" }, { "text": "Andorra" }, { "text": "Marokko" }] },
+        { "prompt": "Noem vier bordspellen.", "answers": [{ "text": "Schaken" }, { "text": "Backgammon" }, { "text": "Mens erger je niet" }, { "text": "Cluedo" }] },
+        { "prompt": "Noem vier vogels die niet kunnen vliegen.", "answers": [{ "text": "Struisvogel" }, { "text": "Pinguin" }, { "text": "Emoe" }, { "text": "Kiwi" }] },
+        { "prompt": "Noem vier Nederlandse kunstenaars van na 1900.", "answers": [{ "text": "Mondriaan" }, { "text": "Escher" }, { "text": "Karel Appel" }, { "text": "Kees van Dongen" }] },
+        { "prompt": "Noem vier landen in Oceanie.", "answers": [{ "text": "Australie" }, { "text": "Nieuw-Zeeland" }, { "text": "Fiji" }, { "text": "Papoea-Nieuw-Guinea" }] },
+        { "prompt": "Noem vier producten die van melk worden gemaakt.", "answers": [{ "text": "Boter" }, { "text": "Kaas" }, { "text": "Yoghurt" }, { "text": "Room" }] },
+        { "prompt": "Noem vier beroemde torens.", "answers": [{ "text": "De Eiffeltoren" }, { "text": "Big Ben" }, { "text": "De toren van Pisa" }, { "text": "De Burj Khalifa" }] },
+        { "prompt": "Noem vier komedies van Shakespeare.", "answers": [{ "text": "Driekoningenavond" }, { "text": "Naar het u lijkt" }, { "text": "Veel drukte om niets" }, { "text": "Een midzomernachtsdroom" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je de zoete gang aan het eind van een maaltijd?", "difficulty": "easy", "answers": [{ "text": "Het toetje", "aliases": ["toetje", "dessert", "nagerecht"] }] },
+        { "prompt": "Wat valt er in de winter uit de lucht en maakt alles wit?", "difficulty": "easy", "answers": [{ "text": "Sneeuw" }] },
+        { "prompt": "Hoe noem je een vogeltje dat net uit het ei komt?", "difficulty": "easy", "answers": [{ "text": "Een kuiken", "aliases": ["kuiken"] }] },
+        { "prompt": "Waarmee droog je je af na het douchen?", "difficulty": "easy", "answers": [{ "text": "Een handdoek", "aliases": ["handdoek"] }] },
+        { "prompt": "Met welk deel van je gezicht ruik je?", "difficulty": "easy", "answers": [{ "text": "De neus", "aliases": ["neus"] }] },
+        { "prompt": "Welk land heeft Vientiane als hoofdstad?", "difficulty": "hard", "answers": [{ "text": "Laos" }] },
+        { "prompt": "Welke Oostenrijkse natuurkundige is beroemd om een gedachte-experiment met een kat?", "difficulty": "hard", "answers": [{ "text": "Erwin Schrodinger", "aliases": ["Schrodinger"] }] },
+        { "prompt": "Welke groene edelsteen is een variant van beril?", "difficulty": "hard", "answers": [{ "text": "De smaragd", "aliases": ["smaragd"] }] },
+        { "prompt": "Welke boomsoort wordt ouder dan welke andere ook?", "difficulty": "hard", "answers": [{ "text": "De borstelden", "aliases": ["bristlecone pine", "borstelden"] }] },
+        { "prompt": "Welke Belgische priester bedacht als eerste wat wij nu de oerknal noemen?", "difficulty": "hard", "answers": [{ "text": "Georges Lemaitre", "aliases": ["Lemaitre"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse humanist schreef Lof der zotheid?", "answers": [{ "text": "Erasmus", "aliases": ["Desiderius Erasmus"] }] },
+        { "prompt": "Wat is de hoofdstad van Jordanie?", "answers": [{ "text": "Amman" }] },
+        { "prompt": "Welke Noorse componist schreef de Peer Gynt-suites?", "answers": [{ "text": "Edvard Grieg", "aliases": ["Grieg"] }] },
+        { "prompt": "In welk jaar schafte Nederland de doodstraf voor gewone misdrijven af?", "answers": [{ "text": "1870" }] },
+        { "prompt": "Wat is de op een na hoogste berg ter wereld?", "answers": [{ "text": "K2" }] },
+        { "prompt": "Welke Griekse geleerde berekende als eerste de omtrek van de aarde?", "answers": [{ "text": "Eratosthenes" }] }
+      ]
+    }
+  ]
+}

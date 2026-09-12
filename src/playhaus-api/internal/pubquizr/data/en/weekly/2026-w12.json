@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w12",
+  "title": "Weekly quiz 12 2026",
+  "description": "The weekly quiz of Wednesday 18 March 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which strait separates Sicily from the toe of Italy?", "category": "Geography", "answers": [{ "text": "The Strait of Messina", "aliases": ["Strait of Messina", "Messina"] }] },
+        { "prompt": "What do we call animals that have a backbone?", "category": "Science", "answers": [{ "text": "Vertebrates", "aliases": ["vertebrate"] }] },
+        { "prompt": "Which ancient people of Mesopotamia invented cuneiform writing?", "category": "History", "answers": [{ "text": "The Sumerians", "aliases": ["Sumerians"] }] },
+        { "prompt": "In which athletics event is the Fosbury Flop used?", "category": "Sport", "answers": [{ "text": "The high jump", "aliases": ["high jump"] }] },
+        { "prompt": "Which French sculptor designed the Statue of Liberty?", "category": "Art", "answers": [{ "text": "Frederic Auguste Bartholdi", "aliases": ["Bartholdi"] }] },
+        { "prompt": "Which is the largest species of deer in the world?", "category": "Nature", "answers": [{ "text": "The moose", "aliases": ["moose", "elk"] }] },
+        { "prompt": "Which Dutch canal carries seagoing ships from Amsterdam to the North Sea?", "category": "The Netherlands", "answers": [{ "text": "The North Sea Canal", "aliases": ["Noordzeekanaal", "North Sea Canal"] }] },
+        { "prompt": "Which large drum with a foot pedal does a timpanist play?", "category": "Music", "answers": [{ "text": "The kettledrum", "aliases": ["kettledrum", "timpani"] }] },
+        { "prompt": "Which animated film follows a family who must hide their superpowers?", "category": "Film", "answers": [{ "text": "The Incredibles", "aliases": ["Incredibles"] }] },
+        { "prompt": "What is the scientific study of language called?", "category": "Language", "answers": [{ "text": "Linguistics" }] },
+        { "prompt": "Which country does the raw fish dish ceviche come from?", "category": "Food", "answers": [{ "text": "Peru" }] },
+        { "prompt": "What does a barometer measure?", "category": "Science", "answers": [{ "text": "Air pressure", "aliases": ["atmospheric pressure", "pressure"] }] },
+        { "prompt": "Which Chinese leader led the Long March in 1934?", "category": "History", "answers": [{ "text": "Mao Zedong", "aliases": ["Mao"] }] },
+        { "prompt": "Which island country lies in all four hemispheres at once?", "category": "Geography", "answers": [{ "text": "Kiribati" }] },
+        { "prompt": "In which sport did Dafne Schippers become world champion in 2015?", "category": "Sport", "answers": [{ "text": "Athletics", "aliases": ["track and field"] }] },
+        { "prompt": "Which plant is spun into linen?", "category": "Nature", "answers": [{ "text": "Flax" }] },
+        { "prompt": "Which 1939 film ends with the words there's no place like home?", "category": "Film", "answers": [{ "text": "The Wizard of Oz", "aliases": ["Wizard of Oz"] }] },
+        { "prompt": "What is the term for singing with no instruments behind it?", "category": "Music", "answers": [{ "text": "A cappella" }] },
+        { "prompt": "What does the abbreviation SIM stand for in a SIM card?", "category": "Technology", "answers": [{ "text": "Subscriber Identity Module" }] },
+        { "prompt": "Which plague killed perhaps a third of Europe in the 14th century?", "category": "History", "answers": [{ "text": "The Black Death", "aliases": ["Black Death", "the plague"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the flattest country in the world?", "options": [{ "text": "The Maldives", "correct": true }, { "text": "Denmark" }, { "text": "Qatar" }, { "text": "Belarus" }] },
+        { "prompt": "Which Nigerian author wrote Things Fall Apart?", "options": [{ "text": "Chinua Achebe", "correct": true }, { "text": "Wole Soyinka" }, { "text": "Ben Okri" }, { "text": "Buchi Emecheta" }] },
+        { "prompt": "What is the ring of icy bodies beyond Neptune called?", "options": [{ "text": "The Kuiper belt", "correct": true }, { "text": "The Oort cloud" }, { "text": "The asteroid belt" }, { "text": "The heliosphere" }] },
+        { "prompt": "Which fish can leave the water and climb about on tree roots?", "options": [{ "text": "The mudskipper", "correct": true }, { "text": "The catfish" }, { "text": "The lungfish" }, { "text": "The eel" }] },
+        { "prompt": "Which vegetable gives borscht its deep red colour?", "options": [{ "text": "The beetroot", "correct": true }, { "text": "The red cabbage" }, { "text": "The tomato" }, { "text": "The red pepper" }] },
+        { "prompt": "Which of the four tennis majors is played on clay?", "options": [{ "text": "The French Open", "correct": true }, { "text": "Wimbledon" }, { "text": "The US Open" }, { "text": "The Australian Open" }] },
+        { "prompt": "On which mountain is Noah's Ark said to have come to rest?", "options": [{ "text": "Mount Ararat", "correct": true }, { "text": "Mount Sinai" }, { "text": "Mount Nebo" }, { "text": "Mount Carmel" }] },
+        { "prompt": "Which kind of instrument is the oldest ever found by archaeologists?", "options": [{ "text": "The flute", "correct": true }, { "text": "The drum" }, { "text": "The lyre" }, { "text": "The horn" }] },
+        { "prompt": "Which language do most people in India speak as their first language?", "options": [{ "text": "Hindi", "correct": true }, { "text": "Bengali" }, { "text": "Tamil" }, { "text": "Urdu" }] },
+        { "prompt": "In which Italian city does a famous bell tower lean?", "options": [{ "text": "Pisa", "correct": true }, { "text": "Siena" }, { "text": "Lucca" }, { "text": "Bologna" }] },
+        { "prompt": "Which organ clears worn out red blood cells out of the blood?", "options": [{ "text": "The spleen", "correct": true }, { "text": "The liver" }, { "text": "The pancreas" }, { "text": "The appendix" }] },
+        { "prompt": "What is the atomic number of carbon?", "options": [{ "text": "6", "correct": true }, { "text": "4" }, { "text": "8" }, { "text": "12" }] },
+        { "prompt": "Which Norwegian city is known as the gateway to the fjords?", "options": [{ "text": "Bergen", "correct": true }, { "text": "Stavanger" }, { "text": "Trondheim" }, { "text": "Alesund" }] },
+        { "prompt": "Which spice is the dried inner bark of a tree?", "options": [{ "text": "Cinnamon", "correct": true }, { "text": "Ginger" }, { "text": "Cloves" }, { "text": "Turmeric" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the leaning tower of Pisa?", "answer": 56, "unit": "metres" },
+        { "prompt": "How many bones does a snake have, roughly?", "answer": 400, "unit": "bones" },
+        { "prompt": "In what year did the Netherlands become European football champions?", "answer": 1988, "unit": "" },
+        { "prompt": "How many kilometres of cycle path does the Netherlands have?", "answer": 35000, "unit": "kilometres" },
+        { "prompt": "How many legs does a lobster have, claws included?", "answer": 10, "unit": "legs" },
+        { "prompt": "How many million colours can the human eye tell apart?", "answer": 10, "unit": "million colours" },
+        { "prompt": "How many minutes does an average dream last?", "answer": 20, "unit": "minutes" },
+        { "prompt": "How many islands make up the Maldives?", "answer": 1190, "unit": "islands" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Milk churn" },
+        { "prompt": "Cowbell" },
+        { "prompt": "Wallet" },
+        { "prompt": "Cake tin" },
+        { "prompt": "Pin cushion" },
+        { "prompt": "Walking frame" },
+        { "prompt": "Raincoat" },
+        { "prompt": "Bucket" },
+        { "prompt": "Stepladder" },
+        { "prompt": "Tea bag" },
+        { "prompt": "Toothbrush" },
+        { "prompt": "Belt buckle" },
+        { "prompt": "Fountain pen" },
+        { "prompt": "Protractor" },
+        { "prompt": "Wardrobe" },
+        { "prompt": "Doorknocker" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Turkey.", "answers": [{ "text": "Greece" }, { "text": "Bulgaria" }, { "text": "Syria" }, { "text": "Iran" }] },
+        { "prompt": "Name four note lengths in written music.", "answers": [{ "text": "Whole note" }, { "text": "Half note" }, { "text": "Quarter note" }, { "text": "Eighth note" }] },
+        { "prompt": "Name four deserts.", "answers": [{ "text": "Sahara" }, { "text": "Gobi" }, { "text": "Kalahari" }, { "text": "Atacama" }] },
+        { "prompt": "Name four kinds of soup.", "answers": [{ "text": "Tomato soup" }, { "text": "Chicken soup" }, { "text": "Onion soup" }, { "text": "Minestrone" }] },
+        { "prompt": "Name four equestrian disciplines.", "answers": [{ "text": "Dressage" }, { "text": "Show jumping" }, { "text": "Eventing" }, { "text": "Vaulting" }] },
+        { "prompt": "Name four seas around Europe.", "answers": [{ "text": "North Sea" }, { "text": "Baltic Sea" }, { "text": "Mediterranean" }, { "text": "Black Sea" }] },
+        { "prompt": "Name four things you find inside a car.", "answers": [{ "text": "Steering wheel" }, { "text": "Gear stick" }, { "text": "Pedals" }, { "text": "Mirror" }] },
+        { "prompt": "Name four scientists born in Britain.", "answers": [{ "text": "Newton" }, { "text": "Darwin" }, { "text": "Hawking" }, { "text": "Faraday" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call a young cow?", "difficulty": "easy", "answers": [{ "text": "A calf", "aliases": ["calf"] }] },
+        { "prompt": "Which colour do you get when you mix red and blue?", "difficulty": "easy", "answers": [{ "text": "Purple" }] },
+        { "prompt": "What do you call the middle of an apple where the pips are?", "difficulty": "easy", "answers": [{ "text": "The core", "aliases": ["core"] }] },
+        { "prompt": "What do you call the day after today?", "difficulty": "easy", "answers": [{ "text": "Tomorrow" }] },
+        { "prompt": "Which shape is a football?", "difficulty": "easy", "answers": [{ "text": "A sphere", "aliases": ["sphere", "round"] }] },
+        { "prompt": "Which African country has Kampala as its capital?", "difficulty": "hard", "answers": [{ "text": "Uganda" }] },
+        { "prompt": "Which English painter made The Hay Wain?", "difficulty": "hard", "answers": [{ "text": "John Constable", "aliases": ["Constable"] }] },
+        { "prompt": "Which Danish astronomer first showed that light has a finite speed?", "difficulty": "hard", "answers": [{ "text": "Ole Romer", "aliases": ["Romer"] }] },
+        { "prompt": "Which is the most powerful eagle in the world?", "difficulty": "hard", "answers": [{ "text": "The harpy eagle", "aliases": ["harpy eagle", "harpy"] }] },
+        { "prompt": "Which is the heaviest snake in the world?", "difficulty": "hard", "answers": [{ "text": "The green anaconda", "aliases": ["anaconda"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Flemish cartographer published the first modern world atlas in 1570?", "answers": [{ "text": "Abraham Ortelius", "aliases": ["Ortelius"] }] },
+        { "prompt": "What is the capital of Albania?", "answers": [{ "text": "Tirana" }] },
+        { "prompt": "Which French writer wrote Les Miserables?", "answers": [{ "text": "Victor Hugo", "aliases": ["Hugo"] }] },
+        { "prompt": "In which year did the Dutch Republic recognise the independence of the United States?", "answers": [{ "text": "1782" }] },
+        { "prompt": "Which is the highest active volcano in Europe?", "answers": [{ "text": "Mount Etna", "aliases": ["Etna"] }] },
+        { "prompt": "Which English naturalist arrived at natural selection at the same time as Darwin?", "answers": [{ "text": "Alfred Russel Wallace", "aliases": ["Wallace"] }] }
+      ]
+    }
+  ]
+}

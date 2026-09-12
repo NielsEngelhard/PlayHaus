@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w5",
+  "title": "Weekly quiz 5 2026",
+  "description": "The weekly quiz of Wednesday 28 January 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest country lying entirely within Europe?", "category": "Geography", "answers": [{ "text": "Ukraine" }] },
+        { "prompt": "What is the chemical symbol for iron?", "category": "Science", "answers": [{ "text": "Fe" }] },
+        { "prompt": "Who was the British prime minister when the Second World War broke out?", "category": "History", "answers": [{ "text": "Neville Chamberlain", "aliases": ["Chamberlain"] }] },
+        { "prompt": "In which Olympic sport does a rider take a horse over a course of fences?", "category": "Sport", "answers": [{ "text": "Show jumping", "aliases": ["jumping"] }] },
+        { "prompt": "Which art form makes pictures from small pieces of coloured glass or stone?", "category": "Art", "answers": [{ "text": "Mosaic" }] },
+        { "prompt": "Which is the largest species of bear?", "category": "Nature", "answers": [{ "text": "The polar bear", "aliases": ["polar bear"] }] },
+        { "prompt": "In which Dutch village is the Efteling theme park?", "category": "The Netherlands", "answers": [{ "text": "Kaatsheuvel" }] },
+        { "prompt": "Which is the largest instrument of the string family?", "category": "Music", "answers": [{ "text": "The double bass", "aliases": ["double bass"] }] },
+        { "prompt": "Which Wes Anderson film is named after a pink hotel?", "category": "Film", "answers": [{ "text": "The Grand Budapest Hotel", "aliases": ["Grand Budapest Hotel"] }] },
+        { "prompt": "Which alphabet is Russian written in?", "category": "Language", "answers": [{ "text": "Cyrillic" }] },
+        { "prompt": "Which herb is the main ingredient of pesto?", "category": "Food", "answers": [{ "text": "Basil" }] },
+        { "prompt": "What do we call animals that eat only plants?", "category": "Science", "answers": [{ "text": "Herbivores", "aliases": ["herbivore"] }] },
+        { "prompt": "Which Roman general was murdered on the Ides of March?", "category": "History", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar"] }] },
+        { "prompt": "Which desert covers most of Botswana and eastern Namibia?", "category": "Geography", "answers": [{ "text": "The Kalahari", "aliases": ["Kalahari"] }] },
+        { "prompt": "Which sport is fought with a foil, an epee or a sabre?", "category": "Sport", "answers": [{ "text": "Fencing" }] },
+        { "prompt": "Which insect chews wood to build a nest of paper?", "category": "Nature", "answers": [{ "text": "The wasp", "aliases": ["wasp"] }] },
+        { "prompt": "In which 1985 film does a DeLorean travel through time?", "category": "Film", "answers": [{ "text": "Back to the Future" }] },
+        { "prompt": "Which word describes a piece of music played by one performer alone?", "category": "Music", "answers": [{ "text": "Solo" }] },
+        { "prompt": "What do the letters AI stand for?", "category": "Technology", "answers": [{ "text": "Artificial intelligence" }] },
+        { "prompt": "Which town was buried by Vesuvius alongside Pompeii?", "category": "History", "answers": [{ "text": "Herculaneum" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the least densely populated country in the world?", "options": [{ "text": "Mongolia", "correct": true }, { "text": "Iceland" }, { "text": "Libya" }, { "text": "Suriname" }] },
+        { "prompt": "Which American doctor developed the first polio vaccine?", "options": [{ "text": "Jonas Salk", "correct": true }, { "text": "Robert Koch" }, { "text": "Edward Jenner" }, { "text": "Joseph Lister" }] },
+        { "prompt": "Which country has a cedar tree on its national flag?", "options": [{ "text": "Lebanon", "correct": true }, { "text": "Cyprus" }, { "text": "Jordan" }, { "text": "Tunisia" }] },
+        { "prompt": "In which city does the Sagrada Familia stand?", "options": [{ "text": "Barcelona", "correct": true }, { "text": "Valencia" }, { "text": "Seville" }, { "text": "Bilbao" }] },
+        { "prompt": "In which opera is the Toreador Song sung?", "options": [{ "text": "Carmen", "correct": true }, { "text": "Aida" }, { "text": "La Traviata" }, { "text": "Rigoletto" }] },
+        { "prompt": "Which fish is cured with salt and dill to make gravlax?", "options": [{ "text": "Salmon", "correct": true }, { "text": "Cod" }, { "text": "Herring" }, { "text": "Mackerel" }] },
+        { "prompt": "What is the boundary around a black hole called?", "options": [{ "text": "The event horizon", "correct": true }, { "text": "The accretion disc" }, { "text": "The singularity" }, { "text": "The corona" }] },
+        { "prompt": "Which spirit is flavoured with juniper berries?", "options": [{ "text": "Gin", "correct": true }, { "text": "Vodka" }, { "text": "Rum" }, { "text": "Tequila" }] },
+        { "prompt": "Which bone runs from the shoulder to the elbow?", "options": [{ "text": "The humerus", "correct": true }, { "text": "The radius" }, { "text": "The ulna" }, { "text": "The scapula" }] },
+        { "prompt": "In which sport do England and Australia play for the Ashes?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Rugby" }, { "text": "Netball" }, { "text": "Squash" }] },
+        { "prompt": "Which English king was killed at the Battle of Hastings?", "options": [{ "text": "Harold", "correct": true }, { "text": "Edward" }, { "text": "Alfred" }, { "text": "Canute" }] },
+        { "prompt": "Which ore is aluminium mostly won from?", "options": [{ "text": "Bauxite", "correct": true }, { "text": "Hematite" }, { "text": "Galena" }, { "text": "Cinnabar" }] },
+        { "prompt": "Which bird has the largest wingspan of any living bird?", "options": [{ "text": "The wandering albatross", "correct": true }, { "text": "The condor" }, { "text": "The pelican" }, { "text": "The golden eagle" }] },
+        { "prompt": "Which state of the United States is the largest by area?", "options": [{ "text": "Alaska", "correct": true }, { "text": "Texas" }, { "text": "California" }, { "text": "Montana" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many strings does a concert harp have?", "answer": 47, "unit": "strings" },
+        { "prompt": "How many kilometres long is the coastline of Norway, fjords included?", "answer": 25000, "unit": "kilometres" },
+        { "prompt": "In what year was the first Dutch television broadcast?", "answer": 1951, "unit": "" },
+        { "prompt": "How many eyes does a honey bee have?", "answer": 5, "unit": "eyes", "explanation": "Two big compound eyes and three simple ones on top of the head." },
+        { "prompt": "How many kilograms did the heaviest pumpkin ever grown weigh?", "answer": 1200, "unit": "kilograms" },
+        { "prompt": "How many books does the Bible contain in the Protestant canon?", "answer": 66, "unit": "books" },
+        { "prompt": "How many hours a day does a koala sleep?", "answer": 20, "unit": "hours" },
+        { "prompt": "How many notes are there in a major scale, counting the octave?", "answer": 8, "unit": "notes" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Trapeze" },
+        { "prompt": "Diving board" },
+        { "prompt": "Lifebuoy" },
+        { "prompt": "Wetsuit" },
+        { "prompt": "Crutch" },
+        { "prompt": "Tripod" },
+        { "prompt": "Barbecue" },
+        { "prompt": "Typewriter" },
+        { "prompt": "Vending machine" },
+        { "prompt": "Hedge" },
+        { "prompt": "Puddle" },
+        { "prompt": "Fireplace" },
+        { "prompt": "Wheel clamp" },
+        { "prompt": "Cactus" },
+        { "prompt": "Aquarium" },
+        { "prompt": "Radiator" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border China.", "answers": [{ "text": "Mongolia" }, { "text": "Nepal" }, { "text": "Vietnam" }, { "text": "Kazakhstan" }] },
+        { "prompt": "Name four kinds of nut.", "answers": [{ "text": "Walnut" }, { "text": "Hazelnut" }, { "text": "Almond" }, { "text": "Pistachio" }] },
+        { "prompt": "Name four genres of music.", "answers": [{ "text": "Jazz" }, { "text": "Blues" }, { "text": "Rock" }, { "text": "Techno" }] },
+        { "prompt": "Name the four main parts of a plant.", "answers": [{ "text": "Root" }, { "text": "Stem" }, { "text": "Leaf" }, { "text": "Flower" }] },
+        { "prompt": "Name four countries where Spanish is the official language.", "answers": [{ "text": "Spain" }, { "text": "Mexico" }, { "text": "Argentina" }, { "text": "Chile" }] },
+        { "prompt": "Name four Olympic combat sports.", "answers": [{ "text": "Boxing" }, { "text": "Judo" }, { "text": "Taekwondo" }, { "text": "Wrestling" }] },
+        { "prompt": "Name four things you would expect to find in a kitchen.", "answers": [{ "text": "Oven" }, { "text": "Fridge" }, { "text": "Sink" }, { "text": "Kettle" }] },
+        { "prompt": "Name four planets you can see with the naked eye.", "answers": [{ "text": "Mercury" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Jupiter" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many days does February have in an ordinary year?", "difficulty": "easy", "answers": [{ "text": "Twenty-eight", "aliases": ["28"] }] },
+        { "prompt": "What do you call a young dog?", "difficulty": "easy", "answers": [{ "text": "A puppy", "aliases": ["puppy"] }] },
+        { "prompt": "Which shape has four sides of equal length and four right angles?", "difficulty": "easy", "answers": [{ "text": "A square", "aliases": ["square"] }] },
+        { "prompt": "Which toy goes up and down on a string?", "difficulty": "easy", "answers": [{ "text": "A yo-yo", "aliases": ["yo-yo", "yoyo"] }] },
+        { "prompt": "Which drink is made from crushed grapes?", "difficulty": "easy", "answers": [{ "text": "Wine" }] },
+        { "prompt": "By what name was Thailand known until 1939?", "difficulty": "hard", "answers": [{ "text": "Siam" }] },
+        { "prompt": "Who painted The Birth of Venus?", "difficulty": "hard", "answers": [{ "text": "Sandro Botticelli", "aliases": ["Botticelli"] }] },
+        { "prompt": "What is the capital of Iraq?", "difficulty": "hard", "answers": [{ "text": "Baghdad" }] },
+        { "prompt": "Which mammal has the most teeth of all?", "difficulty": "hard", "answers": [{ "text": "The giant armadillo", "aliases": ["giant armadillo", "armadillo"] }] },
+        { "prompt": "Which German city hosted the Summer Olympics of 1972?", "difficulty": "hard", "answers": [{ "text": "Munich", "aliases": ["Munchen"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Roman poet wrote the Metamorphoses?", "answers": [{ "text": "Ovid" }] },
+        { "prompt": "What is the capital of Latvia?", "answers": [{ "text": "Riga" }] },
+        { "prompt": "Which Italian physicist built the first working nuclear reactor?", "answers": [{ "text": "Enrico Fermi", "aliases": ["Fermi"] }] },
+        { "prompt": "In which year did the first Zeppelin airship fly?", "answers": [{ "text": "1900" }] },
+        { "prompt": "What is the deepest point of the Atlantic Ocean called?", "answers": [{ "text": "The Puerto Rico Trench", "aliases": ["Puerto Rico Trench"] }] },
+        { "prompt": "Which Czech composer wrote the New World Symphony?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] }
+      ]
+    }
+  ]
+}

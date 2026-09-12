@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w35",
+  "title": "Weekly quiz 35 2026",
+  "description": "The weekly quiz of Wednesday 26 August 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest lake in South East Asia?", "category": "Geography", "answers": [{ "text": "Tonle Sap" }] },
+        { "prompt": "What is the study of insects called?", "category": "Science", "answers": [{ "text": "Entomology" }] },
+        { "prompt": "Which German kingdom was ruled by the Hohenzollern family?", "category": "History", "answers": [{ "text": "Prussia" }] },
+        { "prompt": "In which Olympic sport do athletes perform with a hoop and a ribbon?", "category": "Sport", "answers": [{ "text": "Rhythmic gymnastics" }] },
+        { "prompt": "Which French artist made posters of the Moulin Rouge?", "category": "Art", "answers": [{ "text": "Toulouse-Lautrec", "aliases": ["Henri de Toulouse-Lautrec"] }] },
+        { "prompt": "Which is the largest crab in the world?", "category": "Nature", "answers": [{ "text": "The Japanese spider crab", "aliases": ["Japanese spider crab"] }] },
+        { "prompt": "Which fortress island guards the approach to Amsterdam in the IJmeer?", "category": "The Netherlands", "answers": [{ "text": "Pampus" }] },
+        { "prompt": "What is the orchestral piece that opens an opera called?", "category": "Music", "answers": [{ "text": "The overture", "aliases": ["overture"] }] },
+        { "prompt": "Which 2016 musical film is set among the jazz clubs of Los Angeles?", "category": "Film", "answers": [{ "text": "La La Land" }] },
+        { "prompt": "What do you call a new word made by blending two old ones?", "category": "Language", "answers": [{ "text": "A portmanteau", "aliases": ["portmanteau"] }] },
+        { "prompt": "Which paper-thin pastry is baklava built from?", "category": "Food", "answers": [{ "text": "Filo pastry", "aliases": ["filo"] }] },
+        { "prompt": "What is the temperature at which a liquid turns solid called?", "category": "Science", "answers": [{ "text": "The freezing point", "aliases": ["freezing point"] }] },
+        { "prompt": "Which Spanish conquistador brought down the Aztec empire?", "category": "History", "answers": [{ "text": "Hernan Cortes", "aliases": ["Cortes"] }] },
+        { "prompt": "Which country contains the westernmost point of mainland Europe?", "category": "Geography", "answers": [{ "text": "Portugal" }] },
+        { "prompt": "Which Dutch tennis player won Wimbledon in 1996?", "category": "Sport", "answers": [{ "text": "Richard Krajicek", "aliases": ["Krajicek"] }] },
+        { "prompt": "Which insect can pull over a thousand times its own weight?", "category": "Nature", "answers": [{ "text": "The dung beetle", "aliases": ["dung beetle"] }] },
+        { "prompt": "In which 1984 film do three scientists hunt ghosts in New York?", "category": "Film", "answers": [{ "text": "Ghostbusters" }] },
+        { "prompt": "What is a large religious work for choir and orchestra without staging called?", "category": "Music", "answers": [{ "text": "An oratorio", "aliases": ["oratorio"] }] },
+        { "prompt": "What does the abbreviation ATM stand for?", "category": "Technology", "answers": [{ "text": "Automated Teller Machine" }] },
+        { "prompt": "Which Indian dynasty built the Taj Mahal?", "category": "History", "answers": [{ "text": "The Mughals", "aliases": ["Mughal", "Mughal empire"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which bird has the longest beak in the world?", "options": [{ "text": "The Australian pelican", "correct": true }, { "text": "The toucan" }, { "text": "The stork" }, { "text": "The heron" }] },
+        { "prompt": "Which American author wrote The Grapes of Wrath?", "options": [{ "text": "John Steinbeck", "correct": true }, { "text": "Sinclair Lewis" }, { "text": "Willa Cather" }, { "text": "Upton Sinclair" }] },
+        { "prompt": "What is the huge canyon system on Mars called?", "options": [{ "text": "Valles Marineris", "correct": true }, { "text": "Hellas Planitia" }, { "text": "Tharsis" }, { "text": "Utopia" }] },
+        { "prompt": "Which mammal has no teeth at all?", "options": [{ "text": "The anteater", "correct": true }, { "text": "The sloth" }, { "text": "The armadillo" }, { "text": "The pangolin" }] },
+        { "prompt": "Which soft Italian cheese goes into a tiramisu?", "options": [{ "text": "Mascarpone", "correct": true }, { "text": "Ricotta" }, { "text": "Stracchino" }, { "text": "Robiola" }] },
+        { "prompt": "In which winter sport do crews push a sled and jump in feet first?", "options": [{ "text": "The bobsleigh", "correct": true }, { "text": "The luge" }, { "text": "Skeleton" }, { "text": "Curling" }] },
+        { "prompt": "Which American architect designed the spiral Guggenheim in New York?", "options": [{ "text": "Frank Lloyd Wright", "correct": true }, { "text": "Louis Sullivan" }, { "text": "Philip Johnson" }, { "text": "Eero Saarinen" }] },
+        { "prompt": "Which cells carry signals through the nervous system?", "options": [{ "text": "Neurons", "correct": true }, { "text": "Platelets" }, { "text": "Osteocytes" }, { "text": "Fibroblasts" }] },
+        { "prompt": "Which vegetable was carved into lanterns before pumpkins took over?", "options": [{ "text": "The turnip", "correct": true }, { "text": "The swede" }, { "text": "The marrow" }, { "text": "The beetroot" }] },
+        { "prompt": "Which Italian city has the oldest botanical garden still in its original place?", "options": [{ "text": "Padua", "correct": true }, { "text": "Pisa" }, { "text": "Bologna" }, { "text": "Verona" }] },
+        { "prompt": "Which metal is used alongside lithium in most rechargeable batteries?", "options": [{ "text": "Cobalt", "correct": true }, { "text": "Chromium" }, { "text": "Tungsten" }, { "text": "Silver" }] },
+        { "prompt": "What is the study of handwriting called?", "options": [{ "text": "Graphology", "correct": true }, { "text": "Calligraphy" }, { "text": "Palaeography" }, { "text": "Typography" }] },
+        { "prompt": "Which is the largest tortoise in the world?", "options": [{ "text": "The Galapagos tortoise", "correct": true }, { "text": "The leopard tortoise" }, { "text": "The Hermann's tortoise" }, { "text": "The gopher tortoise" }] },
+        { "prompt": "Which eye colour is the most common in the world?", "options": [{ "text": "Brown", "correct": true }, { "text": "Blue" }, { "text": "Green" }, { "text": "Grey" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall will the Sagrada Familia be when it is finished?", "answer": 172, "unit": "metres" },
+        { "prompt": "How many days does a housefly live?", "answer": 28, "unit": "days" },
+        { "prompt": "In what year did the Netherlands last host Eurovision before Rotterdam?", "answer": 1980, "unit": "" },
+        { "prompt": "How many kilometres long is the Great Rift Valley?", "answer": 6000, "unit": "kilometres" },
+        { "prompt": "How many arches does the outer wall of the Colosseum have?", "answer": 80, "unit": "arches" },
+        { "prompt": "How many kilograms of household waste does a Dutch person produce in a year?", "answer": 500, "unit": "kilograms" },
+        { "prompt": "How many species of orchid are there, roughly?", "answer": 28000, "unit": "species" },
+        { "prompt": "How many litres of water does it take to grow a kilogram of rice?", "answer": 2500, "unit": "litres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "School bag" },
+        { "prompt": "Exercise book" },
+        { "prompt": "School bus" },
+        { "prompt": "Lunch box" },
+        { "prompt": "Water bottle" },
+        { "prompt": "Timetable" },
+        { "prompt": "Locker" },
+        { "prompt": "Calculator" },
+        { "prompt": "Atlas" },
+        { "prompt": "Highlighter" },
+        { "prompt": "Glue stick" },
+        { "prompt": "Set square" },
+        { "prompt": "Gym mat" },
+        { "prompt": "Sports hall" },
+        { "prompt": "Bus stop" },
+        { "prompt": "Eraser" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Kazakhstan.", "answers": [{ "text": "Russia" }, { "text": "China" }, { "text": "Uzbekistan" }, { "text": "Kyrgyzstan" }] },
+        { "prompt": "Name four school subjects.", "answers": [{ "text": "Mathematics" }, { "text": "History" }, { "text": "Biology" }, { "text": "English" }] },
+        { "prompt": "Name four sauces for pasta.", "answers": [{ "text": "Bolognese" }, { "text": "Carbonara" }, { "text": "Pesto" }, { "text": "Arrabbiata" }] },
+        { "prompt": "Name four countries beginning with the letter M.", "answers": [{ "text": "Mexico" }, { "text": "Morocco" }, { "text": "Malaysia" }, { "text": "Malta" }] },
+        { "prompt": "Name four birds you might see in a Dutch garden.", "answers": [{ "text": "Sparrow" }, { "text": "Blackbird" }, { "text": "Blue tit" }, { "text": "Magpie" }] },
+        { "prompt": "Name four famous universities.", "answers": [{ "text": "Oxford" }, { "text": "Cambridge" }, { "text": "Harvard" }, { "text": "Leiden" }] },
+        { "prompt": "Name four things in a pencil case.", "answers": [{ "text": "Pen" }, { "text": "Pencil" }, { "text": "Ruler" }, { "text": "Rubber" }] },
+        { "prompt": "Name four seas with a colour in their name.", "answers": [{ "text": "The Red Sea" }, { "text": "The Black Sea" }, { "text": "The Yellow Sea" }, { "text": "The White Sea" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which grey city bird coos on window ledges?", "difficulty": "easy", "answers": [{ "text": "The pigeon", "aliases": ["pigeon"] }] },
+        { "prompt": "Which colour do you get by mixing black and white?", "difficulty": "easy", "answers": [{ "text": "Grey" }] },
+        { "prompt": "Which animal has a long tail and swings from branch to branch?", "difficulty": "easy", "answers": [{ "text": "The monkey", "aliases": ["monkey"] }] },
+        { "prompt": "What do you call a group of sheep together?", "difficulty": "easy", "answers": [{ "text": "A flock", "aliases": ["flock"] }] },
+        { "prompt": "Which day of the week do children go back to school after the weekend?", "difficulty": "easy", "answers": [{ "text": "Monday" }] },
+        { "prompt": "What is the capital of Angola?", "difficulty": "hard", "answers": [{ "text": "Luanda" }] },
+        { "prompt": "Which German philosopher wrote Being and Time?", "difficulty": "hard", "answers": [{ "text": "Martin Heidegger", "aliases": ["Heidegger"] }] },
+        { "prompt": "Which is the largest lake in Australia?", "difficulty": "hard", "answers": [{ "text": "Lake Eyre", "aliases": ["Eyre"] }] },
+        { "prompt": "Which gland above the eye produces tears?", "difficulty": "hard", "answers": [{ "text": "The lacrimal gland", "aliases": ["lacrimal gland", "tear gland"] }] },
+        { "prompt": "Which sea creature can turn itself back into a juvenile and start again?", "difficulty": "hard", "answers": [{ "text": "The immortal jellyfish", "aliases": ["immortal jellyfish"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutchman was world chess champion from 1935 to 1937?", "answers": [{ "text": "Max Euwe", "aliases": ["Euwe"] }] },
+        { "prompt": "What is the official capital of Sri Lanka?", "answers": [{ "text": "Sri Jayawardenepura Kotte", "aliases": ["Kotte"] }] },
+        { "prompt": "Which Italian poet wrote the Canzoniere?", "answers": [{ "text": "Petrarch", "aliases": ["Petrarca"] }] },
+        { "prompt": "In which year did the Netherlands appoint its first woman professor?", "answers": [{ "text": "1917" }] },
+        { "prompt": "Which is the largest desert in South America?", "answers": [{ "text": "The Patagonian Desert", "aliases": ["Patagonian Desert", "Patagonia"] }] },
+        { "prompt": "Which Danish astronomer built the observatory Uraniborg?", "answers": [{ "text": "Tycho Brahe", "aliases": ["Brahe"] }] }
+      ]
+    }
+  ]
+}

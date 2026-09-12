@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w2",
+  "title": "Weekly quiz 2 2026",
+  "description": "The weekly quiz of Wednesday 7 January 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest country in Africa by area?", "category": "Geography", "answers": [{ "text": "Algeria" }] },
+        { "prompt": "Which part of the cell is called its powerhouse?", "category": "Science", "answers": [{ "text": "The mitochondria", "aliases": ["mitochondria", "mitochondrion"] }] },
+        { "prompt": "Which city was the capital of the Inca empire?", "category": "History", "answers": [{ "text": "Cusco", "aliases": ["Cuzco"] }] },
+        { "prompt": "In which sport do teams compete for the Stanley Cup?", "category": "Sport", "answers": [{ "text": "Ice hockey" }] },
+        { "prompt": "In which museum can you see the Venus de Milo?", "category": "Art", "answers": [{ "text": "The Louvre", "aliases": ["Louvre"] }] },
+        { "prompt": "Which is the fastest fish in the sea?", "category": "Nature", "answers": [{ "text": "The sailfish", "aliases": ["sailfish"] }] },
+        { "prompt": "Which Dutch village has canals instead of roads?", "category": "The Netherlands", "answers": [{ "text": "Giethoorn" }] },
+        { "prompt": "Which Italian word tells a musician to play loudly?", "category": "Music", "answers": [{ "text": "Forte" }] },
+        { "prompt": "Which actor plays Captain Jack Sparrow?", "category": "Film", "answers": [{ "text": "Johnny Depp", "aliases": ["Depp"] }] },
+        { "prompt": "What is the plural of the word mouse?", "category": "Language", "answers": [{ "text": "Mice" }] },
+        { "prompt": "Which Italian dish is made of rice cooked slowly in stock?", "category": "Food", "answers": [{ "text": "Risotto" }] },
+        { "prompt": "What does the abbreviation DNA stand for?", "category": "Science", "answers": [{ "text": "Deoxyribonucleic acid" }] },
+        { "prompt": "Who was the first emperor of Rome?", "category": "History", "answers": [{ "text": "Augustus" }] },
+        { "prompt": "Which sea lies between Australia and New Zealand?", "category": "Geography", "answers": [{ "text": "The Tasman Sea", "aliases": ["Tasman Sea", "Tasman"] }] },
+        { "prompt": "Which martial art's name means the gentle way?", "category": "Sport", "answers": [{ "text": "Judo" }] },
+        { "prompt": "Which tree drops conkers in autumn?", "category": "Nature", "answers": [{ "text": "The horse chestnut", "aliases": ["horse chestnut", "chestnut"] }] },
+        { "prompt": "Which film studio has a roaring lion as its logo?", "category": "Film", "answers": [{ "text": "MGM", "aliases": ["Metro-Goldwyn-Mayer"] }] },
+        { "prompt": "Which Beatles album has a zebra crossing on its cover?", "category": "Music", "answers": [{ "text": "Abbey Road" }] },
+        { "prompt": "What does the letter S stand for in HTTPS?", "category": "Technology", "answers": [{ "text": "Secure" }] },
+        { "prompt": "Which treaty formally ended the First World War in 1919?", "category": "History", "answers": [{ "text": "The Treaty of Versailles", "aliases": ["Treaty of Versailles", "Versailles"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which Scandinavian country has by far the longest coastline?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
+        { "prompt": "Which is the smallest country in Africa by area?", "options": [{ "text": "The Seychelles", "correct": true }, { "text": "Gambia" }, { "text": "Djibouti" }, { "text": "Rwanda" }] },
+        { "prompt": "Which artist painted the melting clocks of The Persistence of Memory?", "options": [{ "text": "Salvador Dali", "correct": true }, { "text": "Rene Magritte" }, { "text": "Joan Miro" }, { "text": "Max Ernst" }] },
+        { "prompt": "Which dance came from the working-class districts of Buenos Aires?", "options": [{ "text": "The tango", "correct": true }, { "text": "The samba" }, { "text": "The rumba" }, { "text": "The flamenco" }] },
+        { "prompt": "What is the capital of Kenya?", "options": [{ "text": "Nairobi", "correct": true }, { "text": "Mombasa" }, { "text": "Kampala" }, { "text": "Dar es Salaam" }] },
+        { "prompt": "Which is the largest moon in the solar system?", "options": [{ "text": "Ganymede", "correct": true }, { "text": "Titan" }, { "text": "Callisto" }, { "text": "Our own moon" }] },
+        { "prompt": "Which war was fought between the northern and southern states of America?", "options": [{ "text": "The American Civil War", "correct": true }, { "text": "The War of Independence" }, { "text": "The Mexican War" }, { "text": "The Spanish-American War" }] },
+        { "prompt": "Which is the largest muscle in the human body?", "options": [{ "text": "The gluteus maximus", "correct": true }, { "text": "The quadriceps" }, { "text": "The calf muscle" }, { "text": "The chest muscle" }] },
+        { "prompt": "Which of these instruments belongs to the brass family?", "options": [{ "text": "The tuba", "correct": true }, { "text": "The bassoon" }, { "text": "The saxophone" }, { "text": "The recorder" }] },
+        { "prompt": "What is the highest possible break in a frame of snooker?", "options": [{ "text": "147", "correct": true }, { "text": "140" }, { "text": "155" }, { "text": "180" }] },
+        { "prompt": "In which Shakespeare play does the villain Iago appear?", "options": [{ "text": "Othello", "correct": true }, { "text": "Macbeth" }, { "text": "King Lear" }, { "text": "Hamlet" }] },
+        { "prompt": "What is a group of crows called?", "options": [{ "text": "A murder", "correct": true }, { "text": "A parliament" }, { "text": "A gaggle" }, { "text": "A pride" }] },
+        { "prompt": "Which country was formerly known as Ceylon?", "options": [{ "text": "Sri Lanka", "correct": true }, { "text": "Myanmar" }, { "text": "Thailand" }, { "text": "Bangladesh" }] },
+        { "prompt": "Which gas has the chemical formula CH4?", "options": [{ "text": "Methane", "correct": true }, { "text": "Propane" }, { "text": "Ammonia" }, { "text": "Ozone" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many bones is a newborn baby born with?", "answer": 300, "unit": "bones", "explanation": "Many of them fuse together as the child grows." },
+        { "prompt": "How many kilometres long is the Channel Tunnel?", "answer": 50, "unit": "kilometres" },
+        { "prompt": "How many hours does a flight from Amsterdam to New York take, roughly?", "answer": 8, "unit": "hours" },
+        { "prompt": "How many pieces does each player start with in a game of chess?", "answer": 16, "unit": "pieces" },
+        { "prompt": "In what year were the Olympic Games held in Berlin?", "answer": 1936, "unit": "" },
+        { "prompt": "How many kilometres per hour can a cheetah reach at full sprint?", "answer": 112, "unit": "kilometres per hour" },
+        { "prompt": "How many languages are spoken in the world, roughly?", "answer": 7000, "unit": "languages" },
+        { "prompt": "How many grams does a football weigh?", "answer": 430, "unit": "grams" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Kite" },
+        { "prompt": "Wheelchair" },
+        { "prompt": "Escalator" },
+        { "prompt": "Windscreen wiper" },
+        { "prompt": "Fire hydrant" },
+        { "prompt": "Stethoscope" },
+        { "prompt": "Piggy bank" },
+        { "prompt": "Pepper mill" },
+        { "prompt": "Suitcase" },
+        { "prompt": "Traffic light" },
+        { "prompt": "Shoelace" },
+        { "prompt": "Bubble bath" },
+        { "prompt": "Jigsaw puzzle" },
+        { "prompt": "Sandcastle" },
+        { "prompt": "Nutcracker" },
+        { "prompt": "Beehive" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that pay with the euro.", "answers": [{ "text": "Germany" }, { "text": "France" }, { "text": "Italy" }, { "text": "Spain" }] },
+        { "prompt": "Name four instruments in the percussion section of an orchestra.", "answers": [{ "text": "Timpani" }, { "text": "Snare drum" }, { "text": "Cymbals" }, { "text": "Triangle" }] },
+        { "prompt": "Name four countries that have hosted the Winter Olympics.", "answers": [{ "text": "Norway" }, { "text": "Japan" }, { "text": "Italy" }, { "text": "Canada" }] },
+        { "prompt": "Name four kinds of cloud.", "answers": [{ "text": "Cumulus" }, { "text": "Stratus" }, { "text": "Cirrus" }, { "text": "Nimbus" }] },
+        { "prompt": "Name four songs by the Beatles.", "answers": [{ "text": "Hey Jude" }, { "text": "Yesterday" }, { "text": "Let It Be" }, { "text": "Help" }] },
+        { "prompt": "Name four members of the cat family.", "answers": [{ "text": "Lion" }, { "text": "Tiger" }, { "text": "Leopard" }, { "text": "Cheetah" }] },
+        { "prompt": "Name four European countries on the Mediterranean.", "answers": [{ "text": "Spain" }, { "text": "France" }, { "text": "Italy" }, { "text": "Greece" }] },
+        { "prompt": "Name four card games.", "answers": [{ "text": "Poker" }, { "text": "Bridge" }, { "text": "Blackjack" }, { "text": "Rummy" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which colour do you get when you mix blue and yellow?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "How many minutes are there in an hour?", "difficulty": "easy", "answers": [{ "text": "Sixty", "aliases": ["60"] }] },
+        { "prompt": "Which sea creature has eight arms?", "difficulty": "easy", "answers": [{ "text": "The octopus", "aliases": ["octopus"] }] },
+        { "prompt": "What is the name of the toy cowboy in Toy Story?", "difficulty": "easy", "answers": [{ "text": "Woody" }] },
+        { "prompt": "What do you call a baby cat?", "difficulty": "easy", "answers": [{ "text": "A kitten", "aliases": ["kitten"] }] },
+        { "prompt": "Which Greek mathematician wrote the Elements?", "difficulty": "hard", "answers": [{ "text": "Euclid" }] },
+        { "prompt": "Which river flows through Baghdad?", "difficulty": "hard", "answers": [{ "text": "The Tigris", "aliases": ["Tigris"] }] },
+        { "prompt": "What is the study of fungi called?", "difficulty": "hard", "answers": [{ "text": "Mycology" }] },
+        { "prompt": "Which country has the only national flag that is not a rectangle?", "difficulty": "hard", "answers": [{ "text": "Nepal" }] },
+        { "prompt": "Which Russian author wrote Doctor Zhivago?", "difficulty": "hard", "answers": [{ "text": "Boris Pasternak", "aliases": ["Pasternak"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which German mathematician is known as the prince of mathematicians?", "answers": [{ "text": "Carl Friedrich Gauss", "aliases": ["Gauss"] }] },
+        { "prompt": "What is the capital of Paraguay?", "answers": [{ "text": "Asuncion" }] },
+        { "prompt": "Which is the highest waterfall in the world?", "answers": [{ "text": "Angel Falls", "aliases": ["Salto Angel"] }] },
+        { "prompt": "Which Russian composer wrote The Rite of Spring?", "answers": [{ "text": "Igor Stravinsky", "aliases": ["Stravinsky"] }] },
+        { "prompt": "In which year did Iceland become fully independent from Denmark?", "answers": [{ "text": "1944" }] },
+        { "prompt": "Which element takes its name from the Greek word for heavy?", "answers": [{ "text": "Barium" }] }
+      ]
+    }
+  ]
+}

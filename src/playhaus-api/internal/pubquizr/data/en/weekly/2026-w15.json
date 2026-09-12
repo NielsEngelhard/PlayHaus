@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w15",
+  "title": "Weekly quiz 15 2026",
+  "description": "The weekly quiz of Wednesday 8 April 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which sea lies between Korea and Japan?", "category": "Geography", "answers": [{ "text": "The Sea of Japan", "aliases": ["Sea of Japan", "East Sea"] }] },
+        { "prompt": "What are the smallest blood vessels in the body called?", "category": "Science", "answers": [{ "text": "Capillaries", "aliases": ["capillary"] }] },
+        { "prompt": "Which island did the Romans call Hibernia?", "category": "History", "answers": [{ "text": "Ireland" }] },
+        { "prompt": "In which sport does a ballpark have a wall called the Green Monster?", "category": "Sport", "answers": [{ "text": "Baseball" }] },
+        { "prompt": "Which Italian sculptor carved The Rape of Proserpina?", "category": "Art", "answers": [{ "text": "Gian Lorenzo Bernini", "aliases": ["Bernini"] }] },
+        { "prompt": "Which plant snaps its leaves shut to catch insects?", "category": "Nature", "answers": [{ "text": "The Venus flytrap", "aliases": ["Venus flytrap"] }] },
+        { "prompt": "Which Dutch city gave its name to blue and white painted pottery?", "category": "The Netherlands", "answers": [{ "text": "Delft" }] },
+        { "prompt": "Which instrument pushes air through pipes when you press its keys?", "category": "Music", "answers": [{ "text": "The organ", "aliases": ["organ", "pipe organ"] }] },
+        { "prompt": "Which Italian director made the Dollars trilogy of westerns?", "category": "Film", "answers": [{ "text": "Sergio Leone", "aliases": ["Leone"] }] },
+        { "prompt": "Which letter is used most often in written English?", "category": "Language", "answers": [{ "text": "E" }] },
+        { "prompt": "Which salty Japanese paste is made from fermented soya beans?", "category": "Food", "answers": [{ "text": "Miso" }] },
+        { "prompt": "What is the loss of water through the leaves of a plant called?", "category": "Science", "answers": [{ "text": "Transpiration" }] },
+        { "prompt": "Which country was split in two along the 38th parallel in 1945?", "category": "History", "answers": [{ "text": "Korea" }] },
+        { "prompt": "Which is the largest lake lying entirely inside Canada?", "category": "Geography", "answers": [{ "text": "Great Bear Lake", "aliases": ["Great Bear"] }] },
+        { "prompt": "Which sport holds its world championship in Sheffield every spring?", "category": "Sport", "answers": [{ "text": "Snooker" }] },
+        { "prompt": "Which is the largest butterfly in the world?", "category": "Nature", "answers": [{ "text": "The Queen Alexandra's birdwing", "aliases": ["birdwing", "Queen Alexandra's birdwing"] }] },
+        { "prompt": "In which Studio Ghibli film do two sisters meet a giant forest spirit?", "category": "Film", "answers": [{ "text": "My Neighbour Totoro", "aliases": ["Totoro"] }] },
+        { "prompt": "Which German band pioneered electronic pop music in the 1970s?", "category": "Music", "answers": [{ "text": "Kraftwerk" }] },
+        { "prompt": "What does the abbreviation GIF stand for?", "category": "Technology", "answers": [{ "text": "Graphics Interchange Format" }] },
+        { "prompt": "Which library of the ancient world was the largest of its age?", "category": "History", "answers": [{ "text": "The Library of Alexandria", "aliases": ["Library of Alexandria"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the smallest state of the United States?", "options": [{ "text": "Rhode Island", "correct": true }, { "text": "Delaware" }, { "text": "Connecticut" }, { "text": "Vermont" }] },
+        { "prompt": "Which Italian author wrote The Name of the Rose?", "options": [{ "text": "Umberto Eco", "correct": true }, { "text": "Italo Calvino" }, { "text": "Primo Levi" }, { "text": "Alberto Moravia" }] },
+        { "prompt": "Which small galaxy is visible to the naked eye from the southern hemisphere?", "options": [{ "text": "The Large Magellanic Cloud", "correct": true }, { "text": "Andromeda" }, { "text": "Centaurus A" }, { "text": "The Sombrero galaxy" }] },
+        { "prompt": "Which tiny gland in the brain produces melatonin?", "options": [{ "text": "The pineal gland", "correct": true }, { "text": "The thyroid" }, { "text": "The thymus" }, { "text": "The parathyroid" }] },
+        { "prompt": "What is tofu made from?", "options": [{ "text": "Soya beans", "correct": true }, { "text": "Rice" }, { "text": "Chickpeas" }, { "text": "Wheat" }] },
+        { "prompt": "In which sport is the Vasaloppet in Sweden contested?", "options": [{ "text": "Cross-country skiing", "correct": true }, { "text": "Ski jumping" }, { "text": "Biathlon" }, { "text": "Speed skating" }] },
+        { "prompt": "Which Greek philosopher was sentenced to drink hemlock?", "options": [{ "text": "Socrates", "correct": true }, { "text": "Plato" }, { "text": "Epicurus" }, { "text": "Diogenes" }] },
+        { "prompt": "Which small brown bird is famous for singing after dark?", "options": [{ "text": "The nightingale", "correct": true }, { "text": "The blackbird" }, { "text": "The robin" }, { "text": "The wren" }] },
+        { "prompt": "In which city does the European Parliament hold its plenary sessions?", "options": [{ "text": "Strasbourg", "correct": true }, { "text": "Luxembourg" }, { "text": "The Hague" }, { "text": "Frankfurt" }] },
+        { "prompt": "Which element gives fireworks their bright red colour?", "options": [{ "text": "Strontium", "correct": true }, { "text": "Barium" }, { "text": "Sodium" }, { "text": "Copper" }] },
+        { "prompt": "Which unit measures how loud a sound is?", "options": [{ "text": "The decibel", "correct": true }, { "text": "The hertz" }, { "text": "The lumen" }, { "text": "The candela" }] },
+        { "prompt": "Which is the most northerly town in the world?", "options": [{ "text": "Longyearbyen", "correct": true }, { "text": "Tromso" }, { "text": "Murmansk" }, { "text": "Nuuk" }] },
+        { "prompt": "Which endurance event combines a long swim, a bike ride and a marathon?", "options": [{ "text": "The Ironman", "correct": true }, { "text": "The decathlon" }, { "text": "The biathlon" }, { "text": "The heptathlon" }] },
+        { "prompt": "In which language is the traditional Catholic mass said?", "options": [{ "text": "Latin", "correct": true }, { "text": "Greek" }, { "text": "Aramaic" }, { "text": "Hebrew" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres wide is a tennis court for singles?", "answer": 8, "unit": "metres" },
+        { "prompt": "How many species of ant are there, roughly?", "answer": 12000, "unit": "species" },
+        { "prompt": "In what year did Rotterdam host the Eurovision Song Contest?", "answer": 2021, "unit": "" },
+        { "prompt": "How many kilometres long is the Grand Canyon?", "answer": 446, "unit": "kilometres" },
+        { "prompt": "How many chambers does a fish heart have?", "answer": 2, "unit": "chambers" },
+        { "prompt": "How many kilograms of bamboo does a giant panda eat in a day?", "answer": 12, "unit": "kilograms" },
+        { "prompt": "How many stars are there on the flag of the United States?", "answer": 50, "unit": "stars" },
+        { "prompt": "How many years does light from the nearest star after the sun take to reach us?", "answer": 4, "unit": "years" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Knitting needle" },
+        { "prompt": "Spanner" },
+        { "prompt": "Bike chain" },
+        { "prompt": "Blender" },
+        { "prompt": "Shoe polish" },
+        { "prompt": "Jam jar" },
+        { "prompt": "Ship's wheel" },
+        { "prompt": "Paper aeroplane" },
+        { "prompt": "Beach ball" },
+        { "prompt": "Fire escape" },
+        { "prompt": "Lift" },
+        { "prompt": "Nail" },
+        { "prompt": "Petrol pump" },
+        { "prompt": "Hairpin" },
+        { "prompt": "Ice cream cone" },
+        { "prompt": "Doorstep" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries in the European Union that kept their own currency.", "answers": [{ "text": "Sweden" }, { "text": "Denmark" }, { "text": "Poland" }, { "text": "Czechia" }] },
+        { "prompt": "Name four Italian cheeses.", "answers": [{ "text": "Parmesan" }, { "text": "Mozzarella" }, { "text": "Gorgonzola" }, { "text": "Ricotta" }] },
+        { "prompt": "Name four painters born in Spain.", "answers": [{ "text": "Picasso" }, { "text": "Dali" }, { "text": "Velazquez" }, { "text": "Goya" }] },
+        { "prompt": "Name four Olympic sports held in or on the water.", "answers": [{ "text": "Swimming" }, { "text": "Diving" }, { "text": "Water polo" }, { "text": "Rowing" }] },
+        { "prompt": "Name four European capital cities beginning with the letter B.", "answers": [{ "text": "Berlin" }, { "text": "Brussels" }, { "text": "Budapest" }, { "text": "Bucharest" }] },
+        { "prompt": "Name four tools you would find in a toolbox.", "answers": [{ "text": "Hammer" }, { "text": "Screwdriver" }, { "text": "Pliers" }, { "text": "Saw" }] },
+        { "prompt": "Name four tennis players who have won a Grand Slam title.", "answers": [{ "text": "Federer" }, { "text": "Nadal" }, { "text": "Djokovic" }, { "text": "Serena Williams" }] },
+        { "prompt": "Name four things that float on water.", "answers": [{ "text": "Wood" }, { "text": "Cork" }, { "text": "Ice" }, { "text": "Plastic" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which month comes after March?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "Which white drink do we get from cows?", "difficulty": "easy", "answers": [{ "text": "Milk" }] },
+        { "prompt": "What do you call a doctor who treats animals?", "difficulty": "easy", "answers": [{ "text": "A vet", "aliases": ["vet", "veterinarian"] }] },
+        { "prompt": "Which day is the first day of the weekend?", "difficulty": "easy", "answers": [{ "text": "Saturday" }] },
+        { "prompt": "What do you wear on your wrist to tell the time?", "difficulty": "easy", "answers": [{ "text": "A watch", "aliases": ["watch"] }] },
+        { "prompt": "What is the capital of Lithuania?", "difficulty": "hard", "answers": [{ "text": "Vilnius" }] },
+        { "prompt": "Which Russian wrote the play The Cherry Orchard?", "difficulty": "hard", "answers": [{ "text": "Anton Chekhov", "aliases": ["Chekhov"] }] },
+        { "prompt": "Which vitamin is also known as thiamine?", "difficulty": "hard", "answers": [{ "text": "Vitamin B1", "aliases": ["B1"] }] },
+        { "prompt": "Which is the rarest big cat in the world?", "difficulty": "hard", "answers": [{ "text": "The Amur leopard", "aliases": ["Amur leopard"] }] },
+        { "prompt": "Which Italian city hosted the Winter Olympics of 2006?", "difficulty": "hard", "answers": [{ "text": "Turin", "aliases": ["Torino"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which physicist working in the Dutch Republic devised a temperature scale still used in America?", "answers": [{ "text": "Daniel Fahrenheit", "aliases": ["Fahrenheit"] }] },
+        { "prompt": "What is the capital of Armenia?", "answers": [{ "text": "Yerevan" }] },
+        { "prompt": "Which German author wrote The Tin Drum?", "answers": [{ "text": "Gunter Grass", "aliases": ["Grass"] }] },
+        { "prompt": "In which year did the first electric tram run in the Netherlands?", "answers": [{ "text": "1890" }] },
+        { "prompt": "Which South African crater is the largest impact crater on earth?", "answers": [{ "text": "The Vredefort crater", "aliases": ["Vredefort"] }] },
+        { "prompt": "Which Italian mathematician gave his name to a famous sequence of numbers?", "answers": [{ "text": "Fibonacci" }] }
+      ]
+    }
+  ]
+}

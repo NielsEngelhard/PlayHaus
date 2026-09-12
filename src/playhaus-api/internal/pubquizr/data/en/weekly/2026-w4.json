@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w4",
+  "title": "Weekly quiz 4 2026",
+  "description": "The weekly quiz of Wednesday 21 January 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which two countries share the longest land border in the world?", "category": "Geography", "answers": [{ "text": "Canada and the United States", "aliases": ["Canada and America", "the US and Canada"] }] },
+        { "prompt": "What is the process by which a liquid turns into a gas called?", "category": "Science", "answers": [{ "text": "Evaporation" }] },
+        { "prompt": "Which empire ruled from Constantinople after 1453?", "category": "History", "answers": [{ "text": "The Ottoman Empire", "aliases": ["Ottoman Empire", "the Ottomans"] }] },
+        { "prompt": "Which boxer called himself The Greatest?", "category": "Sport", "answers": [{ "text": "Muhammad Ali", "aliases": ["Ali", "Cassius Clay"] }] },
+        { "prompt": "In which city is the Prado museum?", "category": "Art", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Which animal is thought to have the longest lifespan of any vertebrate?", "category": "Nature", "answers": [{ "text": "The Greenland shark", "aliases": ["Greenland shark"] }] },
+        { "prompt": "Which Dutch author wrote the novel The Assault?", "category": "The Netherlands", "answers": [{ "text": "Harry Mulisch", "aliases": ["Mulisch"] }] },
+        { "prompt": "Which drum does a drummer play with a foot pedal?", "category": "Music", "answers": [{ "text": "The bass drum", "aliases": ["bass drum"] }] },
+        { "prompt": "In which film does a boy whisper that he sees dead people?", "category": "Film", "answers": [{ "text": "The Sixth Sense", "aliases": ["Sixth Sense"] }] },
+        { "prompt": "In which language is sayonara a goodbye?", "category": "Language", "answers": [{ "text": "Japanese" }] },
+        { "prompt": "Which cheese belongs on a pizza margherita?", "category": "Food", "answers": [{ "text": "Mozzarella" }] },
+        { "prompt": "Which star is the nearest to us after the sun?", "category": "Science", "answers": [{ "text": "Proxima Centauri", "aliases": ["Proxima"] }] },
+        { "prompt": "Who was the first person to fly solo across the Atlantic?", "category": "History", "answers": [{ "text": "Charles Lindbergh", "aliases": ["Lindbergh"] }] },
+        { "prompt": "Which canal joins the Atlantic to the Pacific?", "category": "Geography", "answers": [{ "text": "The Panama Canal", "aliases": ["Panama Canal", "Panama"] }] },
+        { "prompt": "Which team sport is played on the largest pitch of all?", "category": "Sport", "answers": [{ "text": "Polo" }] },
+        { "prompt": "Which is the largest species of penguin?", "category": "Nature", "answers": [{ "text": "The emperor penguin", "aliases": ["emperor penguin"] }] },
+        { "prompt": "Which film features an ogre voiced by Mike Myers?", "category": "Film", "answers": [{ "text": "Shrek" }] },
+        { "prompt": "Which American singer is known as the queen of country music?", "category": "Music", "answers": [{ "text": "Dolly Parton", "aliases": ["Parton"] }] },
+        { "prompt": "What does the abbreviation CPU stand for?", "category": "Technology", "answers": [{ "text": "Central Processing Unit" }] },
+        { "prompt": "In which American city was John F. Kennedy shot?", "category": "History", "answers": [{ "text": "Dallas" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries is not part of Scandinavia?", "options": [{ "text": "Estonia", "correct": true }, { "text": "Norway" }, { "text": "Sweden" }, { "text": "Denmark" }] },
+        { "prompt": "Who wrote the novel The Old Man and the Sea?", "options": [{ "text": "Ernest Hemingway", "correct": true }, { "text": "John Steinbeck" }, { "text": "William Faulkner" }, { "text": "Herman Melville" }] },
+        { "prompt": "Which spacecraft was the first to land on a comet?", "options": [{ "text": "Rosetta", "correct": true }, { "text": "Cassini" }, { "text": "Galileo" }, { "text": "New Horizons" }] },
+        { "prompt": "Which is the most common metal in the earth's crust?", "options": [{ "text": "Aluminium", "correct": true }, { "text": "Copper" }, { "text": "Zinc" }, { "text": "Lead" }] },
+        { "prompt": "In which city is the Hermitage museum?", "options": [{ "text": "Saint Petersburg", "correct": true }, { "text": "Moscow" }, { "text": "Kyiv" }, { "text": "Riga" }] },
+        { "prompt": "In which sport did Simone Biles become world famous?", "options": [{ "text": "Gymnastics", "correct": true }, { "text": "Diving" }, { "text": "Athletics" }, { "text": "Figure skating" }] },
+        { "prompt": "Which mythical animal is a national symbol of Scotland?", "options": [{ "text": "The unicorn", "correct": true }, { "text": "The dragon" }, { "text": "The griffin" }, { "text": "The phoenix" }] },
+        { "prompt": "What is the medical name for the kneecap?", "options": [{ "text": "The patella", "correct": true }, { "text": "The meniscus" }, { "text": "The tibia" }, { "text": "The sternum" }] },
+        { "prompt": "What is the currency of India?", "options": [{ "text": "The rupee", "correct": true }, { "text": "The rupiah" }, { "text": "The taka" }, { "text": "The baht" }] },
+        { "prompt": "Which marble statue by Michelangelo stands in Florence?", "options": [{ "text": "David", "correct": true }, { "text": "The Pieta" }, { "text": "Moses" }, { "text": "The Dying Slave" }] },
+        { "prompt": "Which sea creature can grow a lost arm back?", "options": [{ "text": "The starfish", "correct": true }, { "text": "The jellyfish" }, { "text": "The sea urchin" }, { "text": "The clam" }] },
+        { "prompt": "In which decade was the first call made on a handheld mobile phone?", "options": [{ "text": "The 1970s", "correct": true }, { "text": "The 1960s" }, { "text": "The 1980s" }, { "text": "The 1990s" }] },
+        { "prompt": "Which musical ran longest of all on Broadway?", "options": [{ "text": "The Phantom of the Opera", "correct": true }, { "text": "Cats" }, { "text": "Les Miserables" }, { "text": "Chicago" }] },
+        { "prompt": "Which form of carbon is the writing part of a pencil made of?", "options": [{ "text": "Graphite", "correct": true }, { "text": "Charcoal" }, { "text": "Coal" }, { "text": "Soot" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many steps lead to the top of the Empire State Building?", "answer": 1576, "unit": "steps" },
+        { "prompt": "How many cards are in a deck without the jokers?", "answer": 52, "unit": "cards" },
+        { "prompt": "How many players does a water polo team have in the water?", "answer": 7, "unit": "players" },
+        { "prompt": "In what year did the Netherlands host the Olympic Games?", "answer": 1928, "unit": "", "explanation": "Amsterdam, and the first Games with a flame burning throughout." },
+        { "prompt": "How many kilometres per hour may you drive on a Dutch motorway during the day?", "answer": 100, "unit": "kilometres per hour" },
+        { "prompt": "How many kilograms does an adult male lion weigh?", "answer": 190, "unit": "kilograms" },
+        { "prompt": "How many degrees is each angle of an equilateral triangle?", "answer": 60, "unit": "degrees" },
+        { "prompt": "How many centimetres tall is the average Dutch man?", "answer": 184, "unit": "centimetres" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Stopwatch" },
+        { "prompt": "Dustpan" },
+        { "prompt": "Skateboard" },
+        { "prompt": "Surfboard" },
+        { "prompt": "Crayon" },
+        { "prompt": "Globe" },
+        { "prompt": "Padlock" },
+        { "prompt": "Zebra crossing" },
+        { "prompt": "Watering can" },
+        { "prompt": "Rolling pin" },
+        { "prompt": "Treehouse" },
+        { "prompt": "Campfire" },
+        { "prompt": "Bandage" },
+        { "prompt": "Salt cellar" },
+        { "prompt": "Sleeping bag" },
+        { "prompt": "Wind turbine" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries in South East Asia.", "answers": [{ "text": "Thailand" }, { "text": "Vietnam" }, { "text": "Malaysia" }, { "text": "The Philippines" }] },
+        { "prompt": "Name four pieces of apparatus in gymnastics.", "answers": [{ "text": "Floor" }, { "text": "Vault" }, { "text": "Beam" }, { "text": "Bars" }] },
+        { "prompt": "Name four impressionist painters.", "answers": [{ "text": "Monet" }, { "text": "Renoir" }, { "text": "Degas" }, { "text": "Pissarro" }] },
+        { "prompt": "Name four citrus fruits.", "answers": [{ "text": "Orange" }, { "text": "Lemon" }, { "text": "Lime" }, { "text": "Grapefruit" }] },
+        { "prompt": "Name four capital cities in Africa.", "answers": [{ "text": "Cairo" }, { "text": "Nairobi" }, { "text": "Pretoria" }, { "text": "Accra" }] },
+        { "prompt": "Name four categories of the Nobel Prize.", "answers": [{ "text": "Physics" }, { "text": "Chemistry" }, { "text": "Medicine" }, { "text": "Literature" }] },
+        { "prompt": "Name four kinds of dance.", "answers": [{ "text": "Waltz" }, { "text": "Salsa" }, { "text": "Ballet" }, { "text": "Hip-hop" }] },
+        { "prompt": "Name four things you eat with.", "answers": [{ "text": "Knife" }, { "text": "Fork" }, { "text": "Spoon" }, { "text": "Chopsticks" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is the middle stripe of the Dutch flag?", "difficulty": "easy", "answers": [{ "text": "White" }] },
+        { "prompt": "Which farm animal says moo?", "difficulty": "easy", "answers": [{ "text": "The cow", "aliases": ["cow"] }] },
+        { "prompt": "Which meal do you eat in the morning?", "difficulty": "easy", "answers": [{ "text": "Breakfast" }] },
+        { "prompt": "What do you use to cut paper?", "difficulty": "easy", "answers": [{ "text": "Scissors" }] },
+        { "prompt": "What do you call the person who flies an aeroplane?", "difficulty": "easy", "answers": [{ "text": "A pilot", "aliases": ["pilot"] }] },
+        { "prompt": "Which language is spoken by the most people across East Africa?", "difficulty": "hard", "answers": [{ "text": "Swahili" }] },
+        { "prompt": "Who wrote the Communist Manifesto together with Friedrich Engels?", "difficulty": "hard", "answers": [{ "text": "Karl Marx", "aliases": ["Marx"] }] },
+        { "prompt": "Which acid does the stomach use to digest food?", "difficulty": "hard", "answers": [{ "text": "Hydrochloric acid", "aliases": ["hydrochloric"] }] },
+        { "prompt": "Which country does the island of Greenland belong to?", "difficulty": "hard", "answers": [{ "text": "Denmark" }] },
+        { "prompt": "Which Japanese city was the first to be hit by an atomic bomb?", "difficulty": "hard", "answers": [{ "text": "Hiroshima" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Scottish inventor gave the first public demonstration of television?", "answers": [{ "text": "John Logie Baird", "aliases": ["Baird"] }] },
+        { "prompt": "What is the capital of Namibia?", "answers": [{ "text": "Windhoek" }] },
+        { "prompt": "Which Austrian composer wrote the Trout Quintet?", "answers": [{ "text": "Franz Schubert", "aliases": ["Schubert"] }] },
+        { "prompt": "In which year did the first underground railway open in London?", "answers": [{ "text": "1863" }] },
+        { "prompt": "Which Persian king's army was beaten at the Battle of Marathon?", "answers": [{ "text": "Darius", "aliases": ["Darius I", "Darius the Great"] }] },
+        { "prompt": "Which element has the chemical symbol Sb?", "answers": [{ "text": "Antimony" }] }
+      ]
+    }
+  ]
+}

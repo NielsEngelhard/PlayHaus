@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w8",
+  "title": "Weekquiz 8 2026",
+  "description": "De wekelijkse quiz van woensdag 18 februari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk eilandland ligt voor de zuidoostkust van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "Madagaskar" }] },
+        { "prompt": "Wat is het scheikundige symbool voor zilver?", "category": "Wetenschap", "answers": [{ "text": "Ag" }] },
+        { "prompt": "Wie was de eerste vrouw die alleen over de Atlantische Oceaan vloog?", "category": "Geschiedenis", "answers": [{ "text": "Amelia Earhart", "aliases": ["Earhart"] }] },
+        { "prompt": "In welke sport springt een deelnemer een triple axel?", "category": "Sport", "answers": [{ "text": "Kunstschaatsen" }] },
+        { "prompt": "Welke Oostenrijkse schilder bedekte De kus met bladgoud?", "category": "Kunst", "answers": [{ "text": "Gustav Klimt", "aliases": ["Klimt"] }] },
+        { "prompt": "Welk dier maakt het hardste geluid van alle dieren?", "category": "Natuur", "answers": [{ "text": "De potvis", "aliases": ["potvis"] }] },
+        { "prompt": "Welk openluchtmuseum bij Zaandam is beroemd om zijn molens?", "category": "Nederland", "answers": [{ "text": "De Zaanse Schans", "aliases": ["Zaanse Schans"] }] },
+        { "prompt": "Hoe noem je een muziekstuk dat voor twee uitvoerders is geschreven?", "category": "Muziek", "answers": [{ "text": "Een duet", "aliases": ["duet"] }] },
+        { "prompt": "In welke film van Christopher Nolan stappen dieven een droom in een droom binnen?", "category": "Film", "answers": [{ "text": "Inception" }] },
+        { "prompt": "Hoe noemen we woorden die het tegenovergestelde van elkaar betekenen?", "category": "Taal", "answers": [{ "text": "Antoniemen", "aliases": ["antoniem", "tegenstellingen"] }] },
+        { "prompt": "Welke groente wordt gefermenteerd tot Koreaanse kimchi?", "category": "Eten", "answers": [{ "text": "Kool", "aliases": ["witte kool", "Chinese kool"] }] },
+        { "prompt": "Wat is de hardste stof die het menselijk lichaam maakt?", "category": "Wetenschap", "answers": [{ "text": "Tandglazuur", "aliases": ["glazuur"] }] },
+        { "prompt": "Welk van de drie schepen van Columbus was in 1492 het vlaggenschip?", "category": "Geschiedenis", "answers": [{ "text": "De Santa Maria", "aliases": ["Santa Maria"] }] },
+        { "prompt": "Wat is het kleinste land van Zuid-Amerika?", "category": "Aardrijkskunde", "answers": [{ "text": "Suriname" }] },
+        { "prompt": "Welke wielerronde van drie weken wordt kortweg de Giro genoemd?", "category": "Sport", "answers": [{ "text": "De Ronde van Italie", "aliases": ["Giro d'Italia", "Giro"] }] },
+        { "prompt": "Welk dier houdt over lange afstand de hoogste snelheid vol?", "category": "Natuur", "answers": [{ "text": "De gaffelbok", "aliases": ["gaffelbok", "pronghorn"] }] },
+        { "prompt": "In welke animatiefilm zoekt een clownvis naar zijn zoon?", "category": "Film", "answers": [{ "text": "Finding Nemo" }] },
+        { "prompt": "Welk Indiaas snaarinstrument maakte Ravi Shankar beroemd?", "category": "Muziek", "answers": [{ "text": "De sitar", "aliases": ["sitar"] }] },
+        { "prompt": "Waar staat de afkorting HTML voor?", "category": "Techniek", "answers": [{ "text": "HyperText Markup Language" }] },
+        { "prompt": "Welk verdrag uit 1957 richtte de Europese Economische Gemeenschap op?", "category": "Geschiedenis", "answers": [{ "text": "Het Verdrag van Rome", "aliases": ["Verdrag van Rome"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk Europees land heeft helemaal geen rivieren?", "options": [{ "text": "Malta", "correct": true }, { "text": "Cyprus" }, { "text": "Monaco" }, { "text": "San Marino" }] },
+        { "prompt": "Hoe heet het kleine helikoptertje dat NASA op Mars liet vliegen?", "options": [{ "text": "Ingenuity", "correct": true }, { "text": "Perseverance" }, { "text": "Opportunity" }, { "text": "Curiosity" }] },
+        { "prompt": "Wie schreef het toneelstuk Wachten op Godot?", "options": [{ "text": "Samuel Beckett", "correct": true }, { "text": "Eugene Ionesco" }, { "text": "Harold Pinter" }, { "text": "Tom Stoppard" }] },
+        { "prompt": "Welk element geeft een robijn zijn rode kleur?", "options": [{ "text": "Chroom", "correct": true }, { "text": "IJzer" }, { "text": "Kobalt" }, { "text": "Mangaan" }] },
+        { "prompt": "Wat is de snelst zwemmende vogel ter wereld?", "options": [{ "text": "De ezelspinguin", "correct": true }, { "text": "De aalscholver" }, { "text": "De papegaaiduiker" }, { "text": "De eidereend" }] },
+        { "prompt": "Welke Italiaanse componist schreef De barbier van Sevilla?", "options": [{ "text": "Gioachino Rossini", "correct": true }, { "text": "Gaetano Donizetti" }, { "text": "Vincenzo Bellini" }, { "text": "Giacomo Meyerbeer" }] },
+        { "prompt": "In welk land ligt de rotsstad Petra?", "options": [{ "text": "Jordanie", "correct": true }, { "text": "Israel" }, { "text": "Syrie" }, { "text": "Egypte" }] },
+        { "prompt": "Welke sprinter heeft het wereldrecord op de 100 meter?", "options": [{ "text": "Usain Bolt", "correct": true }, { "text": "Carl Lewis" }, { "text": "Tyson Gay" }, { "text": "Justin Gatlin" }] },
+        { "prompt": "Bij welk stelsel van het lichaam horen de milt en de lymfeklieren?", "options": [{ "text": "Het lymfestelsel", "correct": true }, { "text": "Het hormoonstelsel" }, { "text": "Het zenuwstelsel" }, { "text": "Het spijsverteringsstelsel" }] },
+        { "prompt": "Welke drank wordt gemaakt door appels te laten gisten?", "options": [{ "text": "Cider", "correct": true }, { "text": "Perry" }, { "text": "Mede" }, { "text": "Port" }] },
+        { "prompt": "Welk land heeft een draak op zijn nationale vlag?", "options": [{ "text": "Bhutan", "correct": true }, { "text": "Nepal" }, { "text": "Laos" }, { "text": "Mongolie" }] },
+        { "prompt": "Wat is de eenheid van energie in het metrieke stelsel?", "options": [{ "text": "De joule", "correct": true }, { "text": "De pascal" }, { "text": "De tesla" }, { "text": "De coulomb" }] },
+        { "prompt": "Welke Amerikaanse staat heeft de bijnaam Sunshine State?", "options": [{ "text": "Florida", "correct": true }, { "text": "Arizona" }, { "text": "Hawai" }, { "text": "Nevada" }] },
+        { "prompt": "Welk land verbood als eerste ter wereld dunne plastic tasjes?", "options": [{ "text": "Bangladesh", "correct": true }, { "text": "Rwanda" }, { "text": "Ierland" }, { "text": "Denemarken" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het Empire State Building tot de top van de mast?", "answer": 443, "unit": "meter" },
+        { "prompt": "Hoeveel toetsen heeft een compleet computertoetsenbord?", "answer": 104, "unit": "toetsen" },
+        { "prompt": "In welk jaar reed de Tour de France voor het eerst een etappe in Nederland?", "answer": 1954, "unit": "" },
+        { "prompt": "Uit hoeveel botten bestaat de menselijke schedel?", "answer": 22, "unit": "botten" },
+        { "prompt": "Hoeveel kilometer per uur haalt een slechtvalk in een duikvlucht?", "answer": 320, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel minuten duurt een voetbalwedstrijd inclusief rust?", "answer": 105, "unit": "minuten" },
+        { "prompt": "Hoeveel landen doen er ongeveer mee aan het Eurovisie Songfestival?", "answer": 37, "unit": "landen" },
+        { "prompt": "Hoeveel kilo weegt een pasgeboren olifant?", "answer": 120, "unit": "kilo" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Stapelbed" },
+        { "prompt": "Dweil" },
+        { "prompt": "Zonnewijzer" },
+        { "prompt": "Skilift" },
+        { "prompt": "Suikerspin" },
+        { "prompt": "Rolgordijn" },
+        { "prompt": "Deurmat" },
+        { "prompt": "Kazoo" },
+        { "prompt": "Springtouw" },
+        { "prompt": "Watermolen" },
+        { "prompt": "Ligstoel" },
+        { "prompt": "Hoofdlamp" },
+        { "prompt": "Aluminiumfolie" },
+        { "prompt": "Wasknijper" },
+        { "prompt": "Vogelkooi" },
+        { "prompt": "Zwembril" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen in Centraal-Azie.", "answers": [{ "text": "Kazachstan" }, { "text": "Oezbekistan" }, { "text": "Turkmenistan" }, { "text": "Kirgizie" }] },
+        { "prompt": "Noem vier olympische sporten op het ijs.", "answers": [{ "text": "Kunstschaatsen" }, { "text": "Schaatsen" }, { "text": "Curling" }, { "text": "IJshockey" }] },
+        { "prompt": "Noem vier opera's.", "answers": [{ "text": "Carmen" }, { "text": "Aida" }, { "text": "La Boheme" }, { "text": "Tosca" }] },
+        { "prompt": "Noem vier soorten paddenstoelen.", "answers": [{ "text": "Champignon" }, { "text": "Cantharel" }, { "text": "Eekhoorntjesbrood" }, { "text": "Oesterzwam" }] },
+        { "prompt": "Noem vier rivieren in Afrika.", "answers": [{ "text": "Nijl" }, { "text": "Congo" }, { "text": "Niger" }, { "text": "Zambezi" }] },
+        { "prompt": "Noem vier soorten schoenen.", "answers": [{ "text": "Sportschoen" }, { "text": "Laars" }, { "text": "Sandaal" }, { "text": "Pantoffel" }] },
+        { "prompt": "Noem vier sociale netwerken.", "answers": [{ "text": "Facebook" }, { "text": "Instagram" }, { "text": "TikTok" }, { "text": "YouTube" }] },
+        { "prompt": "Noem vier groenten die onder de grond groeien.", "answers": [{ "text": "Aardappel" }, { "text": "Wortel" }, { "text": "Biet" }, { "text": "Ui" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een grote groep vissen die samen zwemt?", "difficulty": "easy", "answers": [{ "text": "Een school", "aliases": ["school", "scholen"] }] },
+        { "prompt": "Welke kleur heeft een wolkeloze hemel overdag?", "difficulty": "easy", "answers": [{ "text": "Blauw" }] },
+        { "prompt": "Welke dag van de week komt na maandag?", "difficulty": "easy", "answers": [{ "text": "Dinsdag" }] },
+        { "prompt": "Welke rubberen schoenen trek je aan om door de regen te lopen?", "difficulty": "easy", "answers": [{ "text": "Regenlaarzen", "aliases": ["laarzen", "kaplaarzen"] }] },
+        { "prompt": "In welk seizoen komen de meeste bloemen in bloei?", "difficulty": "easy", "answers": [{ "text": "De lente", "aliases": ["lente", "voorjaar"] }] },
+        { "prompt": "Welke zee ligt tussen Turkije, Bulgarije en Georgie?", "difficulty": "hard", "answers": [{ "text": "De Zwarte Zee", "aliases": ["Zwarte Zee"] }] },
+        { "prompt": "Welke Spaanse schilder maakte Las Meninas?", "difficulty": "hard", "answers": [{ "text": "Diego Velazquez", "aliases": ["Velazquez"] }] },
+        { "prompt": "Welke letter van het alfabet komt in geen enkel scheikundig symbool voor?", "difficulty": "hard", "answers": [{ "text": "J" }] },
+        { "prompt": "Wat is de hoofdstad van Ecuador?", "difficulty": "hard", "answers": [{ "text": "Quito" }] },
+        { "prompt": "Welke Franse componist schreef de muziek van de opera Carmen?", "difficulty": "hard", "answers": [{ "text": "Georges Bizet", "aliases": ["Bizet"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Nederlandse natuurkundige gaf zijn naam aan het splitsen van spectraallijnen in een magneetveld?", "answers": [{ "text": "Pieter Zeeman", "aliases": ["Zeeman"] }] },
+        { "prompt": "Wat is de hoofdstad van Myanmar?", "answers": [{ "text": "Naypyidaw" }] },
+        { "prompt": "Welke Florentijnse beeldhouwer maakte de bronzen Paradijsdeuren?", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
+        { "prompt": "In welk jaar stemden Nederlandse mannen en vrouwen voor het eerst op gelijke voet bij een Tweede Kamerverkiezing?", "answers": [{ "text": "1922" }] },
+        { "prompt": "Wat is de langste gletsjer ter wereld?", "answers": [{ "text": "De Lambertgletsjer", "aliases": ["Lambert", "Lambertgletsjer"] }] },
+        { "prompt": "Welke Engelse wiskundige geldt als de eerste programmeur ter wereld?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] }
+      ]
+    }
+  ]
+}

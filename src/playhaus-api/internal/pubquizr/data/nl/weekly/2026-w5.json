@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w5",
+  "title": "Weekquiz 5 2026",
+  "description": "De wekelijkse quiz van woensdag 28 januari 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste land dat volledig in Europa ligt?", "category": "Aardrijkskunde", "answers": [{ "text": "Oekraine" }] },
+        { "prompt": "Wat is het scheikundige symbool voor ijzer?", "category": "Wetenschap", "answers": [{ "text": "Fe" }] },
+        { "prompt": "Wie was de Britse premier bij het uitbreken van de Tweede Wereldoorlog?", "category": "Geschiedenis", "answers": [{ "text": "Neville Chamberlain", "aliases": ["Chamberlain"] }] },
+        { "prompt": "In welke olympische sport rijdt een ruiter met een paard over hindernissen?", "category": "Sport", "answers": [{ "text": "Springruiterij", "aliases": ["springconcours", "jumping"] }] },
+        { "prompt": "Welke kunstvorm maakt afbeeldingen van kleine stukjes gekleurd glas of steen?", "category": "Kunst", "answers": [{ "text": "Mozaiek" }] },
+        { "prompt": "Wat is de grootste berensoort?", "category": "Natuur", "answers": [{ "text": "De ijsbeer", "aliases": ["ijsbeer"] }] },
+        { "prompt": "In welk Nederlands dorp ligt attractiepark de Efteling?", "category": "Nederland", "answers": [{ "text": "Kaatsheuvel" }] },
+        { "prompt": "Welk instrument is het grootste van de strijkers?", "category": "Muziek", "answers": [{ "text": "De contrabas", "aliases": ["contrabas"] }] },
+        { "prompt": "Welke film van Wes Anderson is genoemd naar een roze hotel?", "category": "Film", "answers": [{ "text": "The Grand Budapest Hotel", "aliases": ["Grand Budapest Hotel"] }] },
+        { "prompt": "In welk alfabet wordt het Russisch geschreven?", "category": "Taal", "answers": [{ "text": "Het cyrillisch", "aliases": ["cyrillisch"] }] },
+        { "prompt": "Welk kruid is het hoofdbestanddeel van pesto?", "category": "Eten", "answers": [{ "text": "Basilicum" }] },
+        { "prompt": "Hoe noemen we dieren die alleen planten eten?", "category": "Wetenschap", "answers": [{ "text": "Herbivoren", "aliases": ["herbivoor", "planteneters"] }] },
+        { "prompt": "Welke Romeinse veldheer werd vermoord op de Iden van maart?", "category": "Geschiedenis", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar"] }] },
+        { "prompt": "Welke woestijn beslaat het grootste deel van Botswana en oostelijk Namibie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Kalahari", "aliases": ["Kalahari"] }] },
+        { "prompt": "Welke sport wordt beoefend met een floret, een degen of een sabel?", "category": "Sport", "answers": [{ "text": "Schermen" }] },
+        { "prompt": "Welk insect kauwt hout tot een nest van papier?", "category": "Natuur", "answers": [{ "text": "De wesp", "aliases": ["wesp"] }] },
+        { "prompt": "In welke film uit 1985 reist een DeLorean door de tijd?", "category": "Film", "answers": [{ "text": "Back to the Future" }] },
+        { "prompt": "Welk woord beschrijft muziek die door een enkele uitvoerder wordt gespeeld?", "category": "Muziek", "answers": [{ "text": "Solo" }] },
+        { "prompt": "Waar staan de letters AI voor?", "category": "Techniek", "answers": [{ "text": "Artificial intelligence", "aliases": ["kunstmatige intelligentie"] }] },
+        { "prompt": "Welke stad werd samen met Pompeii door de Vesuvius bedolven?", "category": "Geschiedenis", "answers": [{ "text": "Herculaneum" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft de laagste bevolkingsdichtheid ter wereld?", "options": [{ "text": "Mongolie", "correct": true }, { "text": "IJsland" }, { "text": "Libie" }, { "text": "Suriname" }] },
+        { "prompt": "Welke Amerikaanse arts ontwikkelde het eerste poliovaccin?", "options": [{ "text": "Jonas Salk", "correct": true }, { "text": "Robert Koch" }, { "text": "Edward Jenner" }, { "text": "Joseph Lister" }] },
+        { "prompt": "Welk land heeft een ceder op zijn nationale vlag?", "options": [{ "text": "Libanon", "correct": true }, { "text": "Cyprus" }, { "text": "Jordanie" }, { "text": "Tunesie" }] },
+        { "prompt": "In welke stad staat de Sagrada Familia?", "options": [{ "text": "Barcelona", "correct": true }, { "text": "Valencia" }, { "text": "Sevilla" }, { "text": "Bilbao" }] },
+        { "prompt": "In welke opera wordt het Toreadorlied gezongen?", "options": [{ "text": "Carmen", "correct": true }, { "text": "Aida" }, { "text": "La Traviata" }, { "text": "Rigoletto" }] },
+        { "prompt": "Welke vis wordt met zout en dille tot gravlax gemaakt?", "options": [{ "text": "Zalm", "correct": true }, { "text": "Kabeljauw" }, { "text": "Haring" }, { "text": "Makreel" }] },
+        { "prompt": "Hoe heet de grens rond een zwart gat?", "options": [{ "text": "De waarnemingshorizon", "correct": true }, { "text": "De accretieschijf" }, { "text": "De singulariteit" }, { "text": "De corona" }] },
+        { "prompt": "Welke sterkedrank wordt op smaak gebracht met jeneverbessen?", "options": [{ "text": "Gin", "correct": true }, { "text": "Wodka" }, { "text": "Rum" }, { "text": "Tequila" }] },
+        { "prompt": "Welk bot loopt van de schouder naar de elleboog?", "options": [{ "text": "Het opperarmbeen", "correct": true }, { "text": "Het spaakbeen" }, { "text": "De ellepijp" }, { "text": "Het schouderblad" }] },
+        { "prompt": "In welke sport spelen Engeland en Australie om de Ashes?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Rugby" }, { "text": "Netbal" }, { "text": "Squash" }] },
+        { "prompt": "Welke Engelse koning sneuvelde in de slag bij Hastings?", "options": [{ "text": "Harold", "correct": true }, { "text": "Edward" }, { "text": "Alfred" }, { "text": "Knoet" }] },
+        { "prompt": "Uit welk erts wordt aluminium vooral gewonnen?", "options": [{ "text": "Bauxiet", "correct": true }, { "text": "Hematiet" }, { "text": "Galeniet" }, { "text": "Cinnaber" }] },
+        { "prompt": "Welke vogel heeft de grootste spanwijdte van alle levende vogels?", "options": [{ "text": "De grote albatros", "correct": true }, { "text": "De condor" }, { "text": "De pelikaan" }, { "text": "De steenarend" }] },
+        { "prompt": "Welke staat van de Verenigde Staten is qua oppervlakte de grootste?", "options": [{ "text": "Alaska", "correct": true }, { "text": "Texas" }, { "text": "Californie" }, { "text": "Montana" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel snaren heeft een concertharp?", "answer": 47, "unit": "snaren" },
+        { "prompt": "Hoeveel kilometer lang is de kust van Noorwegen, fjorden meegerekend?", "answer": 25000, "unit": "kilometer" },
+        { "prompt": "In welk jaar was de eerste Nederlandse televisie-uitzending?", "answer": 1951, "unit": "" },
+        { "prompt": "Hoeveel ogen heeft een honingbij?", "answer": 5, "unit": "ogen", "explanation": "Twee grote facetogen en drie kleine ogen boven op de kop." },
+        { "prompt": "Hoeveel kilo woog de zwaarste pompoen ooit gekweekt?", "answer": 1200, "unit": "kilo" },
+        { "prompt": "Hoeveel boeken telt de Bijbel in de protestantse canon?", "answer": 66, "unit": "boeken" },
+        { "prompt": "Hoeveel uur per dag slaapt een koala?", "answer": 20, "unit": "uur" },
+        { "prompt": "Hoeveel noten telt een majeurtoonladder, het octaaf meegerekend?", "answer": 8, "unit": "noten" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Trapeze" },
+        { "prompt": "Duikplank" },
+        { "prompt": "Reddingsboei" },
+        { "prompt": "Wetsuit" },
+        { "prompt": "Kruk" },
+        { "prompt": "Statief" },
+        { "prompt": "Barbecue" },
+        { "prompt": "Typemachine" },
+        { "prompt": "Automaat" },
+        { "prompt": "Heg" },
+        { "prompt": "Plas" },
+        { "prompt": "Open haard" },
+        { "prompt": "Wielklem" },
+        { "prompt": "Cactus" },
+        { "prompt": "Aquarium" },
+        { "prompt": "Radiator" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem vier landen die aan China grenzen.", "answers": [{ "text": "Mongolie" }, { "text": "Nepal" }, { "text": "Vietnam" }, { "text": "Kazachstan" }] },
+        { "prompt": "Noem vier soorten noten.", "answers": [{ "text": "Walnoot" }, { "text": "Hazelnoot" }, { "text": "Amandel" }, { "text": "Pistache" }] },
+        { "prompt": "Noem vier muziekgenres.", "answers": [{ "text": "Jazz" }, { "text": "Blues" }, { "text": "Rock" }, { "text": "Techno" }] },
+        { "prompt": "Noem de vier hoofddelen van een plant.", "answers": [{ "text": "Wortel" }, { "text": "Stengel" }, { "text": "Blad" }, { "text": "Bloem" }] },
+        { "prompt": "Noem vier landen waar Spaans de officiele taal is.", "answers": [{ "text": "Spanje" }, { "text": "Mexico" }, { "text": "Argentinie" }, { "text": "Chili" }] },
+        { "prompt": "Noem vier olympische vechtsporten.", "answers": [{ "text": "Boksen" }, { "text": "Judo" }, { "text": "Taekwondo" }, { "text": "Worstelen" }] },
+        { "prompt": "Noem vier dingen die je in een keuken verwacht.", "answers": [{ "text": "Oven" }, { "text": "Koelkast" }, { "text": "Gootsteen" }, { "text": "Waterkoker" }] },
+        { "prompt": "Noem vier planeten die je met het blote oog kunt zien.", "answers": [{ "text": "Mercurius" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Jupiter" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel dagen telt februari in een gewoon jaar?", "difficulty": "easy", "answers": [{ "text": "Achtentwintig", "aliases": ["28"] }] },
+        { "prompt": "Hoe noem je een jonge hond?", "difficulty": "easy", "answers": [{ "text": "Een puppy", "aliases": ["puppy", "pup"] }] },
+        { "prompt": "Welke vorm heeft vier even lange zijden en vier rechte hoeken?", "difficulty": "easy", "answers": [{ "text": "Een vierkant", "aliases": ["vierkant"] }] },
+        { "prompt": "Welk speelgoed gaat op en neer aan een touwtje?", "difficulty": "easy", "answers": [{ "text": "Een jojo", "aliases": ["jojo"] }] },
+        { "prompt": "Welke drank wordt gemaakt van geperste druiven?", "difficulty": "easy", "answers": [{ "text": "Wijn" }] },
+        { "prompt": "Onder welke naam stond Thailand tot 1939 bekend?", "difficulty": "hard", "answers": [{ "text": "Siam" }] },
+        { "prompt": "Wie schilderde De geboorte van Venus?", "difficulty": "hard", "answers": [{ "text": "Sandro Botticelli", "aliases": ["Botticelli"] }] },
+        { "prompt": "Wat is de hoofdstad van Irak?", "difficulty": "hard", "answers": [{ "text": "Bagdad" }] },
+        { "prompt": "Welk zoogdier heeft de meeste tanden van allemaal?", "difficulty": "hard", "answers": [{ "text": "Het reuzengordeldier", "aliases": ["reuzengordeldier", "gordeldier"] }] },
+        { "prompt": "Welke Duitse stad organiseerde de Olympische Zomerspelen van 1972?", "difficulty": "hard", "answers": [{ "text": "Munchen", "aliases": ["Munich"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Romeinse dichter schreef de Metamorfosen?", "answers": [{ "text": "Ovidius", "aliases": ["Ovid"] }] },
+        { "prompt": "Wat is de hoofdstad van Letland?", "answers": [{ "text": "Riga" }] },
+        { "prompt": "Welke Italiaanse natuurkundige bouwde de eerste werkende kernreactor?", "answers": [{ "text": "Enrico Fermi", "aliases": ["Fermi"] }] },
+        { "prompt": "In welk jaar vloog het eerste zeppelinluchtschip?", "answers": [{ "text": "1900" }] },
+        { "prompt": "Hoe heet het diepste punt van de Atlantische Oceaan?", "answers": [{ "text": "De Puerto Ricotrog", "aliases": ["Puerto Rico Trench", "Puerto Ricotrog"] }] },
+        { "prompt": "Welke Tsjechische componist schreef de symfonie Uit de Nieuwe Wereld?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] }
+      ]
+    }
+  ]
+}

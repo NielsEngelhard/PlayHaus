@@ -1,0 +1,124 @@
+{
+  "slug": "2026-w13",
+  "title": "Weekly quiz 13 2026",
+  "description": "The weekly quiz of Wednesday 25 March 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which country is most of the Serengeti?", "category": "Geography", "answers": [{ "text": "Tanzania" }] },
+        { "prompt": "What do we call a substance that speeds up a reaction without being used up?", "category": "Science", "answers": [{ "text": "A catalyst", "aliases": ["catalyst"] }] },
+        { "prompt": "Which two brothers collected the tale of Hansel and Gretel?", "category": "History", "answers": [{ "text": "The Brothers Grimm", "aliases": ["Grimm", "the Grimms"] }] },
+        { "prompt": "In which sport are there positions called goal attack and wing defence?", "category": "Sport", "answers": [{ "text": "Netball" }] },
+        { "prompt": "Which artist wrapped the Reichstag and other buildings in fabric?", "category": "Art", "answers": [{ "text": "Christo" }] },
+        { "prompt": "Which is the fastest bird in level flight?", "category": "Nature", "answers": [{ "text": "The swift", "aliases": ["swift", "common swift"] }] },
+        { "prompt": "Which Dutch flower park near Lisse opens for a few weeks each spring?", "category": "The Netherlands", "answers": [{ "text": "The Keukenhof", "aliases": ["Keukenhof"] }] },
+        { "prompt": "Which word describes the speed at which a piece of music is played?", "category": "Music", "answers": [{ "text": "Tempo" }] },
+        { "prompt": "In which film is a boy adrift in a lifeboat with a tiger?", "category": "Film", "answers": [{ "text": "Life of Pi" }] },
+        { "prompt": "In which language does merci mean thank you?", "category": "Language", "answers": [{ "text": "French" }] },
+        { "prompt": "Which Swiss cheese is famous for the holes in it?", "category": "Food", "answers": [{ "text": "Emmental", "aliases": ["Emmentaler"] }] },
+        { "prompt": "What is the science of living things called?", "category": "Science", "answers": [{ "text": "Biology" }] },
+        { "prompt": "Which war of the 1850s was fought on a peninsula in the Black Sea?", "category": "History", "answers": [{ "text": "The Crimean War", "aliases": ["Crimean War"] }] },
+        { "prompt": "Which is the largest freshwater lake in Europe?", "category": "Geography", "answers": [{ "text": "Lake Ladoga", "aliases": ["Ladoga"] }] },
+        { "prompt": "In which sport does a player nutmeg an opponent?", "category": "Sport", "answers": [{ "text": "Football", "aliases": ["soccer"] }] },
+        { "prompt": "Which is the largest rodent in the world?", "category": "Nature", "answers": [{ "text": "The capybara", "aliases": ["capybara"] }] },
+        { "prompt": "In which 1984 film does a machine from the future promise I'll be back?", "category": "Film", "answers": [{ "text": "The Terminator", "aliases": ["Terminator"] }] },
+        { "prompt": "Which American singer was nicknamed the Material Girl?", "category": "Music", "answers": [{ "text": "Madonna" }] },
+        { "prompt": "What does the abbreviation RAM stand for in a computer?", "category": "Technology", "answers": [{ "text": "Random Access Memory" }] },
+        { "prompt": "Which Dutch trading company ran the colonies in the Americas and West Africa?", "category": "History", "answers": [{ "text": "The West India Company", "aliases": ["WIC", "West-Indische Compagnie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest peninsula in the world?", "options": [{ "text": "Arabia", "correct": true }, { "text": "Scandinavia" }, { "text": "The Iberian peninsula" }, { "text": "India" }] },
+        { "prompt": "Which American author wrote the novel Beloved?", "options": [{ "text": "Toni Morrison", "correct": true }, { "text": "Maya Angelou" }, { "text": "Alice Walker" }, { "text": "Zora Neale Hurston" }] },
+        { "prompt": "What is a star that suddenly flares up in brightness called?", "options": [{ "text": "A nova", "correct": true }, { "text": "A pulsar" }, { "text": "A quasar" }, { "text": "A magnetar" }] },
+        { "prompt": "Which animal is responsible for the most human deaths each year?", "options": [{ "text": "The mosquito", "correct": true }, { "text": "The snake" }, { "text": "The crocodile" }, { "text": "The hippopotamus" }] },
+        { "prompt": "Which spirit is distilled from sugar cane?", "options": [{ "text": "Rum", "correct": true }, { "text": "Brandy" }, { "text": "Whisky" }, { "text": "Schnapps" }] },
+        { "prompt": "Which country has won the most Olympic gold medals in rowing?", "options": [{ "text": "Great Britain", "correct": true }, { "text": "Germany" }, { "text": "The United States" }, { "text": "Romania" }] },
+        { "prompt": "Which Mexican painter filled her self-portraits with flowers and thorns?", "options": [{ "text": "Frida Kahlo", "correct": true }, { "text": "Remedios Varo" }, { "text": "Leonora Carrington" }, { "text": "Maria Izquierdo" }] },
+        { "prompt": "Which part of the body contains the most bones?", "options": [{ "text": "The hand", "correct": true }, { "text": "The spine" }, { "text": "The head" }, { "text": "The chest" }] },
+        { "prompt": "Which is the heaviest bird of prey in the world?", "options": [{ "text": "The Andean condor", "correct": true }, { "text": "The golden eagle" }, { "text": "The sea eagle" }, { "text": "The vulture" }] },
+        { "prompt": "Which American city is nicknamed the Windy City?", "options": [{ "text": "Chicago", "correct": true }, { "text": "Boston" }, { "text": "Detroit" }, { "text": "Seattle" }] },
+        { "prompt": "Which nut is caramelised to make praline?", "options": [{ "text": "The hazelnut", "correct": true }, { "text": "The walnut" }, { "text": "The pecan" }, { "text": "The chestnut" }] },
+        { "prompt": "Which element is named after the Swedish village of Ytterby?", "options": [{ "text": "Yttrium", "correct": true }, { "text": "Scandium" }, { "text": "Thulium" }, { "text": "Hafnium" }] },
+        { "prompt": "Which country's flag is different on its front and its back?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldova" }, { "text": "Serbia" }] },
+        { "prompt": "Which is the highest railway line in the world?", "options": [{ "text": "The Qinghai-Tibet railway", "correct": true }, { "text": "The Trans-Andean railway" }, { "text": "The Jungfrau railway" }, { "text": "The Peru Central railway" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Great Pyramid of Giza today?", "answer": 139, "unit": "metres" },
+        { "prompt": "How many countries share a border with Brazil?", "answer": 10, "unit": "countries" },
+        { "prompt": "In what year did the Netherlands and Belgium host the European football championship together?", "answer": 2000, "unit": "" },
+        { "prompt": "How many kilometres per hour was the fastest tennis serve ever measured?", "answer": 263, "unit": "kilometres per hour" },
+        { "prompt": "How many hairs does a human head carry, roughly?", "answer": 100000, "unit": "hairs" },
+        { "prompt": "How many years can a giant tortoise live?", "answer": 150, "unit": "years" },
+        { "prompt": "How many kilometres long is the Dutch coastline?", "answer": 451, "unit": "kilometres" },
+        { "prompt": "How many separate pieces does a Rubik's cube have?", "answer": 26, "unit": "pieces" }
+      ]
+    },
+    {
+      "round": 4,
+      "questions": [
+        { "prompt": "Ice cube tray" },
+        { "prompt": "Shower curtain" },
+        { "prompt": "Air horn" },
+        { "prompt": "Rocking horse" },
+        { "prompt": "Fishbowl" },
+        { "prompt": "Cufflink" },
+        { "prompt": "Dog lead" },
+        { "prompt": "Flowerpot" },
+        { "prompt": "Frisbee" },
+        { "prompt": "Hedge trimmer" },
+        { "prompt": "Sun cream" },
+        { "prompt": "Envelope" },
+        { "prompt": "Napkin" },
+        { "prompt": "Highchair" },
+        { "prompt": "Saucepan" },
+        { "prompt": "Lava lamp" }
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name four countries that border Spain.", "answers": [{ "text": "France" }, { "text": "Portugal" }, { "text": "Andorra" }, { "text": "Morocco" }] },
+        { "prompt": "Name four board games.", "answers": [{ "text": "Chess" }, { "text": "Backgammon" }, { "text": "Ludo" }, { "text": "Cluedo" }] },
+        { "prompt": "Name four birds that cannot fly.", "answers": [{ "text": "Ostrich" }, { "text": "Penguin" }, { "text": "Emu" }, { "text": "Kiwi" }] },
+        { "prompt": "Name four Dutch artists who worked after 1900.", "answers": [{ "text": "Mondrian" }, { "text": "Escher" }, { "text": "Karel Appel" }, { "text": "Kees van Dongen" }] },
+        { "prompt": "Name four countries in Oceania.", "answers": [{ "text": "Australia" }, { "text": "New Zealand" }, { "text": "Fiji" }, { "text": "Papua New Guinea" }] },
+        { "prompt": "Name four things made from milk.", "answers": [{ "text": "Butter" }, { "text": "Cheese" }, { "text": "Yoghurt" }, { "text": "Cream" }] },
+        { "prompt": "Name four famous towers.", "answers": [{ "text": "The Eiffel Tower" }, { "text": "Big Ben" }, { "text": "The tower of Pisa" }, { "text": "The Burj Khalifa" }] },
+        { "prompt": "Name four comedies by Shakespeare.", "answers": [{ "text": "Twelfth Night" }, { "text": "As You Like It" }, { "text": "Much Ado About Nothing" }, { "text": "A Midsummer Night's Dream" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you call the sweet course at the end of a meal?", "difficulty": "easy", "answers": [{ "text": "Dessert", "aliases": ["pudding"] }] },
+        { "prompt": "What falls out of the sky in winter and covers everything in white?", "difficulty": "easy", "answers": [{ "text": "Snow" }] },
+        { "prompt": "What do you call a bird that has just come out of the egg?", "difficulty": "easy", "answers": [{ "text": "A chick", "aliases": ["chick"] }] },
+        { "prompt": "What do you dry yourself with after a shower?", "difficulty": "easy", "answers": [{ "text": "A towel", "aliases": ["towel"] }] },
+        { "prompt": "Which part of your face do you smell with?", "difficulty": "easy", "answers": [{ "text": "The nose", "aliases": ["nose"] }] },
+        { "prompt": "Which country has Vientiane as its capital?", "difficulty": "hard", "answers": [{ "text": "Laos" }] },
+        { "prompt": "Which Austrian physicist is remembered for a thought experiment with a cat?", "difficulty": "hard", "answers": [{ "text": "Erwin Schrodinger", "aliases": ["Schrodinger"] }] },
+        { "prompt": "Which green gemstone is a variety of beryl?", "difficulty": "hard", "answers": [{ "text": "The emerald", "aliases": ["emerald"] }] },
+        { "prompt": "Which tree species lives longer than any other?", "difficulty": "hard", "answers": [{ "text": "The bristlecone pine", "aliases": ["bristlecone pine", "bristlecone"] }] },
+        { "prompt": "Which Belgian priest first proposed what we now call the Big Bang?", "difficulty": "hard", "answers": [{ "text": "Georges Lemaitre", "aliases": ["Lemaitre"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Dutch humanist wrote In Praise of Folly?", "answers": [{ "text": "Erasmus", "aliases": ["Desiderius Erasmus"] }] },
+        { "prompt": "What is the capital of Jordan?", "answers": [{ "text": "Amman" }] },
+        { "prompt": "Which Norwegian composer wrote the Peer Gynt suites?", "answers": [{ "text": "Edvard Grieg", "aliases": ["Grieg"] }] },
+        { "prompt": "In which year did the Netherlands abolish the death penalty for ordinary crimes?", "answers": [{ "text": "1870" }] },
+        { "prompt": "Which is the second highest mountain in the world?", "answers": [{ "text": "K2" }] },
+        { "prompt": "Which Greek scholar first calculated the circumference of the earth?", "answers": [{ "text": "Eratosthenes" }] }
+      ]
+    }
+  ]
+}
