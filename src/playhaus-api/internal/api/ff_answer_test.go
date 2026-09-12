@@ -85,7 +85,7 @@ func TestFFVotingOpensOnlyWhenEveryAnswerIsIn(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	game := threeHandedFFGame(t, srv)
 
-	expected := fakefiller.AnswersFor(len(game.players))
+	expected := fakefiller.AnswersFor(fakefiller.GameModeFacts, len(game.players))
 	written := 0
 
 	for _, player := range game.players {
@@ -328,8 +328,8 @@ func TestFFAnswerProgressCarriesCountsAndNoContent(t *testing.T) {
 	}
 
 	body := decodeBody[ffAnswerResponse](t, rec)
-	if body.AnswersIn != 1 || body.AnswersNeeded != fakefiller.AnswersFor(len(game.players)) {
-		t.Errorf("counts = %d/%d, want 1/%d", body.AnswersIn, body.AnswersNeeded, fakefiller.AnswersFor(len(game.players)))
+	if body.AnswersIn != 1 || body.AnswersNeeded != fakefiller.AnswersFor(fakefiller.GameModeFacts, len(game.players)) {
+		t.Errorf("counts = %d/%d, want 1/%d", body.AnswersIn, body.AnswersNeeded, fakefiller.AnswersFor(fakefiller.GameModeFacts, len(game.players)))
 	}
 	if body.Phase != string(fakefiller.PhaseWriting) {
 		t.Errorf("phase = %q, want writing", body.Phase)

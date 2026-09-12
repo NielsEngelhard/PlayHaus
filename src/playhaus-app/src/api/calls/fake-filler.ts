@@ -4,7 +4,7 @@ import type { LanguageCode } from '@/constants/languages';
 
 // The Fake Filler board.
 
-export type FFPhase = 'writing' | 'voting';
+export type FFPhase = 'writing' | 'voting' | 'reveal';
 export type FFGameStatus = 'in_progress' | 'completed' | 'abandoned';
 
 /** The author id the real answer is filed under. Never a player. */
@@ -130,14 +130,28 @@ export interface FFVoteResult {
     votes: number
     votesNeeded: number
     roundOver: boolean
-    gameOver: boolean
-    /** The round the game is on afterwards — not `roundNumber` if this vote closed it. */
+    /** Whether the reveal this vote opened is the final one. */
+    lastRound: boolean
+    /** The round the game is on — a closing vote holds it here rather than moving it. */
     currentRound: number
+    phase: FFPhase
     status: FFGameStatus
 
     players: FFGamePlayer[]
 
     reveal?: FFReveal
+}
+
+/** The table leaving a reveal behind, which only the host can do. */
+export interface FFAdvanceResult {
+    gameId: string
+    phase: FFPhase
+    currentRound: number
+    status: FFGameStatus
+
+    players: FFGamePlayer[]
+
+    /** The round that just opened, absent when the reveal was the last one. */
     nextRound?: FFPublicRound
 }
 
@@ -169,6 +183,17 @@ export async function castFFVote(
     return request<FFVoteResult>(`${gamePath(gameId)}/votes`, {
         method: 'POST',
         body: JSON.stringify({ roundNumber, slot })
+    });
+}
+
+// Leaves the reveal for the next round, or for the final scores. The host's alone.
+export async function advanceFFRound(
+    gameId: string,
+    roundNumber: number
+): Promise<FFAdvanceResult> {
+    return request<FFAdvanceResult>(`${gamePath(gameId)}/advance`, {
+        method: 'POST',
+        body: JSON.stringify({ roundNumber })
     });
 }
 

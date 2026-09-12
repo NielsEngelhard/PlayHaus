@@ -81,11 +81,14 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                     userId={userId}
                     // Whether there is another prompt behind this one.
                     more={reveal.roundNumber < game.totalRounds}
+                    // The pacing is the host's; everybody else waits to be moved.
+                    isHost={game.ownerId === userId}
+                    busy={table.advancing}
                     onContinue={() => {
-                        table.dismissReveal();
-
-                        // The last round has been read, so the room moves on to the result.
-                        if (reveal.roundNumber >= game.totalRounds) onFinish();
+                        void table.advance().then(moved => {
+                            // The last round has been read, so the room moves on to the result.
+                            if (moved && reveal.roundNumber >= game.totalRounds) onFinish();
+                        });
                     }}
                 />
             ) : game.phase === 'writing' ? (

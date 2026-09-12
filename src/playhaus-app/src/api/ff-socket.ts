@@ -1,4 +1,4 @@
-import type { FFAnswerResult, FFGame, FFGamePlayer, FFVoteResult } from '@/api/calls/fake-filler';
+import type { FFAdvanceResult, FFAnswerResult, FFGame, FFGamePlayer, FFVoteResult } from '@/api/calls/fake-filler';
 import type { FFLobby } from '@/api/calls/fake-filler-lobby';
 
 // The socket half of the Fake Filler API.
@@ -27,6 +27,8 @@ export type FFServerEvent =
     | { type: 'vote_progress', data: FFVoteResult }
     /** The reveal: who wrote what, which one was true, and the scores it moved. */
     | { type: 'round_result', data: FFVoteResult }
+    /** The host left the reveal behind. Nothing else ends it — there is no clock. */
+    | { type: 'round_advanced', data: FFAdvanceResult }
     | { type: 'game_over', data: { players: FFGamePlayer[] } }
     /** The host opened a fresh room for the same table. Everybody still here follows. */
     | { type: 'rematch', data: { code: string } }

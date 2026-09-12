@@ -1445,7 +1445,9 @@ export const en = {
                 points: '+{{points}}',
                 noScore: 'No points this round.',
                 next: 'Next round',
-                toResults: 'See the final scores'
+                toResults: 'See the final scores',
+                waitingForHost: 'Waiting for the host to move on…',
+                waitingForResults: 'Waiting for the host to show the final scores…'
             }
         },
         results: {

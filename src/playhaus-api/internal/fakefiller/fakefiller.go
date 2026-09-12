@@ -56,6 +56,8 @@ type GamePhase string
 const (
 	PhaseWriting GamePhase = "writing"
 	PhaseVoting  GamePhase = "voting"
+	// PhaseReveal is the round just decided, held there until the host moves the table on.
+	PhaseReveal GamePhase = "reveal"
 )
 
 // TruthAuthorID is the author id the real answer is filed under.
@@ -222,7 +224,7 @@ type FFRound struct {
 	Blanks int `gorm:"not null"`
 
 	AuthorOneUserID string `gorm:"type:text;not null;index"`
-	// AuthorTwoUserID is empty at a table of two, where one player writes the fake and the other is the only one left to guess.
+	// AuthorTwoUserID is empty on a round dealt a single fake, where the rest of the table is left to guess.
 	AuthorTwoUserID string `gorm:"type:text;not null;index"`
 
 	Options []FFOption `gorm:"foreignKey:RoundID;constraint:OnDelete:CASCADE"`
@@ -233,7 +235,7 @@ type FFRound struct {
 
 func (FFRound) TableName() string { return "ff_rounds" }
 
-// WrittenBy reports whether this prompt is one of the two a player was dealt.
+// WrittenBy reports whether this prompt is one of the ones a player was dealt.
 func (r FFRound) WrittenBy(userID string) bool {
 	// Guarded, or the empty second author of a one-author round would match a caller with no id.
 	if userID == "" {
@@ -242,7 +244,7 @@ func (r FFRound) WrittenBy(userID string) bool {
 	return userID == r.AuthorOneUserID || userID == r.AuthorTwoUserID
 }
 
-// Authors is who was dealt this prompt: one player at a table of two, two everywhere else.
+// Authors is who was dealt this prompt: one player on a single-fake round, two everywhere else.
 func (r FFRound) Authors() []string {
 	if r.AuthorTwoUserID == "" {
 		return []string{r.AuthorOneUserID}

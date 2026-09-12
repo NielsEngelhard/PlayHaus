@@ -1309,7 +1309,9 @@ export const nl: Catalog = {
                 points: '+{{points}}',
                 noScore: 'Geen punten deze ronde.',
                 next: 'Volgende ronde',
-                toResults: 'Naar de eindstand'
+                toResults: 'Naar de eindstand',
+                waitingForHost: 'Wachten tot de host verdergaat…',
+                waitingForResults: 'Wachten tot de host de eindstand laat zien…'
             }
         },
         results: {

@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 
+	"playhaus-api/internal/fakefiller"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/realtime"
 )
@@ -27,6 +28,8 @@ const (
 	typeVoteProgress = "vote_progress"
 	// typeRoundResult is the reveal: who wrote what, which one was true, who was fooled, and the scores it moved.
 	typeRoundResult = "round_result"
+	// typeRoundAdvanced is the host leaving the reveal behind, which is the only thing that ends it.
+	typeRoundAdvanced = "round_advanced"
 )
 
 // ffStatePayload is the whole picture, sent to one connection as it arrives.
@@ -158,7 +161,7 @@ func (s *Server) publishFFVotingStarted(code, gameID string) {
 	})
 }
 
-// publishFFVote sends the vote, the reveal and the game ending as one, so the three frames cannot go out of order.
+// publishFFVote sends the vote and the reveal it opened. The game ending waits for the host.
 func (s *Server) publishFFVote(code string, body ffVoteResponse) {
 	s.rt.In(ffRoom(code), func(room *realtime.Room) {
 		if !body.RoundOver {
@@ -167,8 +170,15 @@ func (s *Server) publishFFVote(code string, body ffVoteResponse) {
 		}
 
 		room.Broadcast(realtime.Message(typeRoundResult, body))
+	})
+}
 
-		if body.GameOver {
+// publishFFRoundAdvanced sends the move off the reveal and the game ending as one, so the two frames cannot go out of order.
+func (s *Server) publishFFRoundAdvanced(code string, body ffAdvanceResponse) {
+	s.rt.In(ffRoom(code), func(room *realtime.Room) {
+		room.Broadcast(realtime.Message(typeRoundAdvanced, body))
+
+		if body.Status == string(fakefiller.GameCompleted) {
 			room.Broadcast(realtime.Message(typeGameOver, ffGameOverPayload{Players: body.Players}))
 		}
 	})

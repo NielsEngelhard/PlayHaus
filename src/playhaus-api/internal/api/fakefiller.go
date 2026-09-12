@@ -63,6 +63,19 @@ func (req ffCastVoteRequest) Validate() map[string]string {
 	return problems
 }
 
+// ffAdvanceRequest names the round being left behind, not the one being opened.
+type ffAdvanceRequest struct {
+	RoundNumber int `json:"roundNumber"`
+}
+
+func (req ffAdvanceRequest) Validate() map[string]string {
+	problems := map[string]string{}
+	if req.RoundNumber < 1 {
+		problems["roundNumber"] = "is required"
+	}
+	return problems
+}
+
 type ffLobbySettingsResponse struct {
 	GameMode string `json:"gameMode"`
 	Locale   string `json:"locale"`
@@ -205,14 +218,28 @@ type ffVoteResponse struct {
 	Votes       int    `json:"votes"`
 	VotesNeeded int    `json:"votesNeeded"`
 	RoundOver   bool   `json:"roundOver"`
-	GameOver    bool   `json:"gameOver"`
-	// CurrentRound is the round the game is on afterwards, which is not RoundNumber if this vote closed it.
+	// LastRound is whether the reveal this vote opened is the final one.
+	LastRound bool `json:"lastRound"`
+	// CurrentRound is the round the game is on, which a closing vote holds rather than moves.
+	CurrentRound int    `json:"currentRound"`
+	Phase        string `json:"phase"`
+	Status       string `json:"status"`
+
+	Players []ffGamePlayerResponse `json:"players"`
+
+	Reveal *ffRevealResponse `json:"reveal,omitempty"`
+}
+
+// ffAdvanceResponse is the table leaving a reveal behind.
+type ffAdvanceResponse struct {
+	GameID       string `json:"gameId"`
+	Phase        string `json:"phase"`
 	CurrentRound int    `json:"currentRound"`
 	Status       string `json:"status"`
 
 	Players []ffGamePlayerResponse `json:"players"`
 
-	Reveal    *ffRevealResponse      `json:"reveal,omitempty"`
+	// NextRound is the round that just opened, absent when the reveal was the last one.
 	NextRound *ffPublicRoundResponse `json:"nextRound,omitempty"`
 }
 
@@ -292,10 +319,12 @@ func (s *Server) ffPlayers(ctx context.Context, game *fakefiller.FFMultiDeviceGa
 
 // ffRoundVisibility answers the two questions every redaction in this file turns on. open is the round being voted on right now.
 func ffRoundVisibility(game *fakefiller.FFMultiDeviceGame, number int) (open, revealed bool) {
-	if game.Phase != fakefiller.PhaseVoting {
+	if game.Phase == fakefiller.PhaseWriting {
 		return false, false
 	}
-	revealed = number < game.CurrentRound || game.Status == fakefiller.GameCompleted
+	// On a reveal the round the table is on is the one being told, so nothing is open.
+	told := game.Phase == fakefiller.PhaseReveal && number == game.CurrentRound
+	revealed = told || number < game.CurrentRound || game.Status == fakefiller.GameCompleted
 	open = !revealed && number == game.CurrentRound && game.Status == fakefiller.GameInProgress
 	return open, revealed
 }
@@ -401,8 +430,8 @@ func (s *Server) newFFGameResponse(
 		CreatedAt:     game.CreatedAt.Format(timeFormat),
 		Score:         game.Score(userID),
 		AnswersIn:     answersIn,
-		AnswersNeeded: fakefiller.AnswersFor(len(game.Players)),
-		VotesNeeded:   fakefiller.VotersFor(len(game.Players)),
+		AnswersNeeded: fakefiller.AnswersFor(game.GameMode, len(game.Players)),
+		VotesNeeded:   fakefiller.VotersFor(game.GameMode, len(game.Players)),
 		Players:       s.ffPlayers(ctx, game),
 		Rounds:        rounds,
 	}
@@ -429,8 +458,9 @@ func (s *Server) newFFVoteResponse(ctx context.Context, outcome *fakefiller.Vote
 		Votes:        outcome.Votes,
 		VotesNeeded:  outcome.VotesNeeded,
 		RoundOver:    outcome.RoundOver,
-		GameOver:     outcome.GameOver,
+		LastRound:    outcome.LastRound,
 		CurrentRound: game.CurrentRound,
+		Phase:        string(game.Phase),
 		Status:       string(game.Status),
 		Players:      s.ffPlayers(ctx, game),
 	}
@@ -447,18 +477,34 @@ func (s *Server) newFFVoteResponse(ctx context.Context, outcome *fakefiller.Vote
 	}
 	body.Reveal = &reveal
 
-	// A round that ended and a game that ended look the same from the vote that did it.
-	if !outcome.GameOver {
-		if next := game.Round(game.CurrentRound); next != nil {
-			opened := ffPublicRoundResponse{
-				ID:      next.ID.String(),
-				Number:  next.Number,
-				Line:    next.Line,
-				Blanks:  next.Blanks,
-				Options: newFFOptionResponses(*next, false),
-			}
-			body.NextRound = &opened
+	return body
+}
+
+// newFFAdvanceResponse is the frame the host's tap produces, and the next round's options with it.
+func (s *Server) newFFAdvanceResponse(ctx context.Context, outcome *fakefiller.AdvanceOutcome) ffAdvanceResponse {
+	game := outcome.Game
+
+	body := ffAdvanceResponse{
+		GameID:       game.ID.String(),
+		Phase:        string(game.Phase),
+		CurrentRound: game.CurrentRound,
+		Status:       string(game.Status),
+		Players:      s.ffPlayers(ctx, game),
+	}
+
+	if outcome.GameOver {
+		return body
+	}
+
+	if next := game.Round(game.CurrentRound); next != nil {
+		opened := ffPublicRoundResponse{
+			ID:      next.ID.String(),
+			Number:  next.Number,
+			Line:    next.Line,
+			Blanks:  next.Blanks,
+			Options: newFFOptionResponses(*next, false),
 		}
+		body.NextRound = &opened
 	}
 
 	return body
@@ -486,6 +532,7 @@ func (s *Server) AddFakeFillerHandlers() {
 	s.mux.HandleFunc("GET /api/v1/fake-filler/game/{gameID}", s.requireAuth(s.handleGetFFGame))
 	s.mux.HandleFunc("POST /api/v1/fake-filler/game/{gameID}/answers", s.requireAuth(s.handleSubmitFFAnswer))
 	s.mux.HandleFunc("POST /api/v1/fake-filler/game/{gameID}/votes", s.requireAuth(s.handleCastFFVote))
+	s.mux.HandleFunc("POST /api/v1/fake-filler/game/{gameID}/advance", s.requireAuth(s.handleAdvanceFFRound))
 }
 
 func (s *Server) handleCreateFFLobby(w http.ResponseWriter, r *http.Request) {
@@ -841,6 +888,49 @@ func (s *Server) handleCastFFVote(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusCreated, body)
 }
 
+func (s *Server) handleAdvanceFFRound(w http.ResponseWriter, r *http.Request) {
+	userID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleAdvanceFFRound reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	gameID, err := uuid.Parse(r.PathValue("gameID"))
+	if err != nil {
+		writeErrorCode(w, http.StatusNotFound, "game_not_found", "game not found")
+		return
+	}
+
+	req, problems, err := decode[ffAdvanceRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
+
+	outcome, err := s.fakeFiller.Advance(r.Context(), fakefiller.AdvanceInput{
+		GameID:      gameID,
+		UserID:      userID,
+		RoundNumber: req.RoundNumber,
+	})
+	if err != nil {
+		s.writeFFPlayError(w, "advance fake filler round", err)
+		return
+	}
+
+	body := s.newFFAdvanceResponse(r.Context(), outcome)
+	// Only the tap that actually moved the table tells the room, so nobody gets the frame twice.
+	if outcome.Advanced {
+		s.publishFFRoundAdvanced(outcome.Game.LobbyID, body)
+	}
+
+	writeJSON(w, http.StatusCreated, body)
+}
+
 // writeFFLobbyError turns a room error into a status and a machine-readable tag.
 func (s *Server) writeFFLobbyError(w http.ResponseWriter, what string, err error) {
 	switch {
@@ -878,6 +968,8 @@ func (s *Server) writeFFPlayError(w http.ResponseWriter, what string, err error)
 		writeErrorCode(w, http.StatusNotFound, "round_not_found", "that prompt is not in this game")
 	case errors.Is(err, fakefiller.ErrGameFinished):
 		writeErrorCode(w, http.StatusConflict, "game_finished", "this game is over")
+	case errors.Is(err, fakefiller.ErrNotHost):
+		writeErrorCode(w, http.StatusForbidden, "not_host", "only the host may do that")
 	case errors.Is(err, fakefiller.ErrWrongPhase):
 		writeErrorCode(w, http.StatusConflict, "wrong_phase", "the table is not doing that yet")
 	case errors.Is(err, fakefiller.ErrWrongRound):

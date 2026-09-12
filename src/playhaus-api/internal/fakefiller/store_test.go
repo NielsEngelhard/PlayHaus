@@ -42,9 +42,8 @@ func newTestStore(t *testing.T) (*GormStore, *gorm.DB) {
 // poke at it. Built straight through the store rather than through the service, because
 // these tests are about what the rows do.
 //
-// Most of them seed three players, which is the smallest table where a round is written by
-// two and so where the first vote is also the last. The tests that are about several voters
-// arriving at once ask for more, and the ones about a table of two ask for two.
+// Most of them seed three players. The tests that are about several voters arriving at
+// once ask for more, and the ones that want the first vote to also be the last ask for two.
 type seededGame struct {
 	lobby   *FFLobby
 	game    *FFMultiDeviceGame
@@ -97,8 +96,8 @@ func seedGameFor(t *testing.T, store *GormStore, mode FFGameMode, count int, cre
 	for i, userID := range players {
 		game.Players = append(game.Players, FFGamePlayer{GameID: game.ID, UserID: userID, TurnOrder: i})
 	}
-	for number := 1; number <= RoundsFor(len(players)); number++ {
-		seats := AuthorSeats(number, len(players))
+	for number := 1; number <= RoundsFor(mode, len(players)); number++ {
+		seats := AuthorSeats(mode, number, len(players))
 		round := FFRound{
 			ID:              uuid.New(),
 			GameID:          game.ID,
@@ -142,7 +141,7 @@ func answer(t *testing.T, store *GormStore, seeded seededGame, roundIndex int, a
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
 	})
 	if err != nil {
 		t.Fatalf("save answer for round %d by %s: %v", roundIndex+1, authorID, err)
@@ -156,7 +155,7 @@ func writeEverything(t *testing.T, store *GormStore, seeded seededGame) *FFMulti
 	t.Helper()
 
 	ctx := context.Background()
-	expected := AnswersFor(len(seeded.players))
+	expected := AnswersFor(seeded.game.GameMode, len(seeded.players))
 	answered := 0
 
 	for i, round := range seeded.game.Rounds {
@@ -216,7 +215,7 @@ func TestASecondAnswerToTheSamePromptIsRefused(t *testing.T) {
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
 	})
 	if !errors.Is(err, ErrAlreadyAnswered) {
 		t.Fatalf("second answer: err = %v, want ErrAlreadyAnswered", err)
@@ -232,7 +231,7 @@ func TestTheAnswerCountClimbsWithEachAnswerAndIgnoresTheTruth(t *testing.T) {
 
 	want := 0
 	for i, round := range seeded.game.Rounds {
-		for _, author := range []string{round.AuthorOneUserID, round.AuthorTwoUserID} {
+		for _, author := range round.Authors() {
 			want++
 			if got := answer(t, store, seeded, i, author); got != want {
 				t.Fatalf("after %d answers the store counted %d", want, got)
@@ -240,17 +239,16 @@ func TestTheAnswerCountClimbsWithEachAnswerAndIgnoresTheTruth(t *testing.T) {
 		}
 	}
 
-	if want != AnswersFor(len(seeded.players)) {
-		t.Fatalf("wrote %d answers, want %d", want, AnswersFor(len(seeded.players)))
+	if want != AnswersFor(seeded.game.GameMode, len(seeded.players)) {
+		t.Fatalf("wrote %d answers, want %d", want, AnswersFor(seeded.game.GameMode, len(seeded.players)))
 	}
 }
 
 // The (RoundID, VoterUserID) key is the same guard on the other half of the game.
 //
-// Seeded five-handed rather than three: with three players a round has one voter, so the
-// first vote also closes the round and a second one would be refused for having missed it
-// rather than for being a second. Five leaves the round open, which is the case the key is
-// actually there for.
+// Seeded five-handed: it is the smallest facts table whose rounds are written by two, and
+// three voters leave the round open after the first vote -- which is the case the key is
+// actually there for, rather than a vote refused for having missed a closed round.
 func TestASecondVoteOnTheSameRoundIsRefused(t *testing.T) {
 	store, _ := newTestStore(t)
 	seeded := seedGameFor(t, store, GameModeFacts, 5, time.Now().UTC())
@@ -264,7 +262,7 @@ func TestASecondVoteOnTheSameRoundIsRefused(t *testing.T) {
 		Vote:         &FFVote{RoundID: round.ID, VoterUserID: voter, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
 		RoundNumber:  round.Number,
 		TotalRounds:  len(game.Rounds),
-		VotersNeeded: VotersFor(len(seeded.players)),
+		VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
 	}
 	if _, err := store.RecordVote(context.Background(), in); err != nil {
 		t.Fatalf("first vote: %v", err)
@@ -278,11 +276,11 @@ func TestASecondVoteOnTheSameRoundIsRefused(t *testing.T) {
 	}
 }
 
-// With three players a round has exactly one voter, so the first vote is also the last:
-// it closes the round and moves the game on.
-func TestTheLastVoteClosesTheRoundAndMovesTheGameOn(t *testing.T) {
+// With two players a round has exactly one voter, so the first vote is also the last:
+// it closes the round onto its reveal, and AdvanceRound is what moves the game on.
+func TestTheLastVoteClosesTheRoundAndTheAdvanceMovesTheGameOn(t *testing.T) {
 	store, _ := newTestStore(t)
-	seeded := seedGame(t, store, GameModeFacts, time.Now().UTC())
+	seeded := seedGameFor(t, store, GameModeFacts, 2, time.Now().UTC())
 	game := writeEverything(t, store, seeded)
 
 	for i, round := range game.Rounds {
@@ -293,7 +291,7 @@ func TestTheLastVoteClosesTheRoundAndMovesTheGameOn(t *testing.T) {
 			Vote:          &FFVote{RoundID: round.ID, VoterUserID: voterFor(t, seeded.players, round), VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
 			RoundNumber:   round.Number,
 			TotalRounds:   len(game.Rounds),
-			VotersNeeded:  VotersFor(len(seeded.players)),
+			VotersNeeded:  VotersFor(seeded.game.GameMode, len(seeded.players)),
 			GuesserID:     voterFor(t, seeded.players, round),
 			GuesserPoints: TruthPoints,
 		})
@@ -303,8 +301,35 @@ func TestTheLastVoteClosesTheRoundAndMovesTheGameOn(t *testing.T) {
 		if !result.RoundOver {
 			t.Errorf("round %d: the only vote did not close it", round.Number)
 		}
-		if result.GameOver != last {
-			t.Errorf("round %d: GameOver = %v, want %v", round.Number, result.GameOver, last)
+		if result.LastRound != last {
+			t.Errorf("round %d: LastRound = %v, want %v", round.Number, result.LastRound, last)
+		}
+
+		// The vote parks the table on the reveal and leaves it there.
+		parked, err := store.GameByID(context.Background(), game.ID)
+		if err != nil {
+			t.Fatalf("read game after round %d: %v", round.Number, err)
+		}
+		if parked.Phase != PhaseReveal {
+			t.Errorf("round %d closed into phase %q, want %q", round.Number, parked.Phase, PhaseReveal)
+		}
+		if parked.CurrentRound != round.Number {
+			t.Errorf("round %d closed onto round %d, want the table held where it was", round.Number, parked.CurrentRound)
+		}
+		if parked.Status != GameInProgress {
+			t.Errorf("round %d closed into status %q, want %q", round.Number, parked.Status, GameInProgress)
+		}
+
+		advanced, err := store.AdvanceRound(context.Background(), AdvanceRoundInput{
+			GameID:      game.ID,
+			RoundNumber: round.Number,
+			TotalRounds: len(game.Rounds),
+		})
+		if err != nil {
+			t.Fatalf("advance past round %d: %v", round.Number, err)
+		}
+		if !advanced {
+			t.Errorf("round %d: the advance moved nothing", round.Number)
 		}
 	}
 
@@ -313,14 +338,15 @@ func TestTheLastVoteClosesTheRoundAndMovesTheGameOn(t *testing.T) {
 		t.Fatalf("read final game: %v", err)
 	}
 	if final.Status != GameCompleted {
-		t.Errorf("after the last vote the game is %q, want %q", final.Status, GameCompleted)
+		t.Errorf("after the last advance the game is %q, want %q", final.Status, GameCompleted)
 	}
 
-	// Each player is the sole voter on exactly one round, and each of them found the
-	// truth, so everybody is on one point.
+	// Each player is the sole voter on every round they did not write, and each of them
+	// found the truth, so the rounds split evenly into points.
+	want := len(final.Rounds) / len(final.Players) * TruthPoints
 	for _, player := range final.Players {
-		if player.Score != TruthPoints {
-			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, TruthPoints)
+		if player.Score != want {
+			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
 		}
 	}
 }
@@ -333,28 +359,121 @@ func TestAVoteOnARoundTheTableHasLeftIsRefused(t *testing.T) {
 	seeded := seedGame(t, store, GameModeFacts, time.Now().UTC())
 	game := writeEverything(t, store, seeded)
 
-	first, second := game.Rounds[0], game.Rounds[1]
+	first := game.Rounds[0]
 
-	if _, err := store.RecordVote(context.Background(), RecordVoteInput{
-		GameID:       game.ID,
-		Vote:         &FFVote{RoundID: first.ID, VoterUserID: voterFor(t, seeded.players, first), VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
-		RoundNumber:  first.Number,
-		TotalRounds:  len(game.Rounds),
-		VotersNeeded: VotersFor(len(seeded.players)),
+	for _, voter := range votersFor(t, seeded.players, first) {
+		if _, err := store.RecordVote(context.Background(), RecordVoteInput{
+			GameID:       game.ID,
+			Vote:         &FFVote{RoundID: first.ID, VoterUserID: voter, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
+			RoundNumber:  first.Number,
+			TotalRounds:  len(game.Rounds),
+			VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
+		}); err != nil {
+			t.Fatalf("close round 1: %v", err)
+		}
+	}
+
+	if _, err := store.AdvanceRound(context.Background(), AdvanceRoundInput{
+		GameID:      game.ID,
+		RoundNumber: first.Number,
+		TotalRounds: len(game.Rounds),
 	}); err != nil {
-		t.Fatalf("close round 1: %v", err)
+		t.Fatalf("advance past round 1: %v", err)
 	}
 
 	// The game is on round 2 now, so a straggler still voting on round 1 is too late.
 	_, err := store.RecordVote(context.Background(), RecordVoteInput{
 		GameID:       game.ID,
-		Vote:         &FFVote{RoundID: first.ID, VoterUserID: second.AuthorOneUserID, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
+		Vote:         &FFVote{RoundID: first.ID, VoterUserID: first.AuthorOneUserID, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
 		RoundNumber:  first.Number,
 		TotalRounds:  len(game.Rounds),
-		VotersNeeded: VotersFor(len(seeded.players)),
+		VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
 	})
 	if !errors.Is(err, ErrWrongRound) {
 		t.Fatalf("late vote: err = %v, want ErrWrongRound", err)
+	}
+}
+
+// While the reveal is up the table has not left the round, so a straggler is refused on
+// the phase rather than on the round number.
+func TestAVoteArrivingDuringTheRevealIsRefused(t *testing.T) {
+	store, _ := newTestStore(t)
+	seeded := seedGame(t, store, GameModeFacts, time.Now().UTC())
+	game := writeEverything(t, store, seeded)
+
+	first := game.Rounds[0]
+
+	for _, voter := range votersFor(t, seeded.players, first) {
+		if _, err := store.RecordVote(context.Background(), RecordVoteInput{
+			GameID:       game.ID,
+			Vote:         &FFVote{RoundID: first.ID, VoterUserID: voter, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
+			RoundNumber:  first.Number,
+			TotalRounds:  len(game.Rounds),
+			VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
+		}); err != nil {
+			t.Fatalf("close round 1: %v", err)
+		}
+	}
+
+	_, err := store.RecordVote(context.Background(), RecordVoteInput{
+		GameID:       game.ID,
+		Vote:         &FFVote{RoundID: first.ID, VoterUserID: first.AuthorOneUserID, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
+		RoundNumber:  first.Number,
+		TotalRounds:  len(game.Rounds),
+		VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
+	})
+	if !errors.Is(err, ErrWrongPhase) {
+		t.Fatalf("vote during the reveal: err = %v, want ErrWrongPhase", err)
+	}
+}
+
+// Everybody's tap arrives, so only the first one may move the table.
+func TestAdvancingPastARevealHappensOnlyOnce(t *testing.T) {
+	store, _ := newTestStore(t)
+	seeded := seedGame(t, store, GameModeFacts, time.Now().UTC())
+	game := writeEverything(t, store, seeded)
+
+	first := game.Rounds[0]
+
+	for _, voter := range votersFor(t, seeded.players, first) {
+		if _, err := store.RecordVote(context.Background(), RecordVoteInput{
+			GameID:       game.ID,
+			Vote:         &FFVote{RoundID: first.ID, VoterUserID: voter, VotedForAuthorID: TruthAuthorID, CreatedAt: time.Now().UTC()},
+			RoundNumber:  first.Number,
+			TotalRounds:  len(game.Rounds),
+			VotersNeeded: VotersFor(seeded.game.GameMode, len(seeded.players)),
+		}); err != nil {
+			t.Fatalf("close round 1: %v", err)
+		}
+	}
+
+	in := AdvanceRoundInput{GameID: game.ID, RoundNumber: first.Number, TotalRounds: len(game.Rounds)}
+
+	advanced, err := store.AdvanceRound(context.Background(), in)
+	if err != nil {
+		t.Fatalf("first advance: %v", err)
+	}
+	if !advanced {
+		t.Fatal("the first advance moved nothing")
+	}
+
+	again, err := store.AdvanceRound(context.Background(), in)
+	if err != nil {
+		t.Fatalf("second advance: %v", err)
+	}
+	if again {
+		t.Error("the second advance moved the table a second time")
+	}
+
+	after, err := store.GameByID(context.Background(), game.ID)
+	if err != nil {
+		t.Fatalf("read game: %v", err)
+	}
+	if after.CurrentRound != first.Number+1 {
+		t.Errorf("currentRound = %d, want %d", after.CurrentRound, first.Number+1)
+	}
+	if after.Phase != PhaseVoting {
+		t.Errorf("phase = %q, want %q", after.Phase, PhaseVoting)
 	}
 }
 
@@ -618,7 +737,7 @@ func TestFillsSurviveTheDatabase(t *testing.T) {
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
 	}); err != nil {
 		t.Fatalf("save answer: %v", err)
 	}

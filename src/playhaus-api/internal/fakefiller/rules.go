@@ -21,29 +21,32 @@ const (
 	FooledPoints = 1
 )
 
-// AuthorsPerRound is how many players write for one prompt: two, except at a table of two, where one writes and the other guesses.
-func AuthorsPerRound(players int) int {
-	if players <= 2 {
+// MaxPlayersWithOneFake is the biggest table that is still shown a single fake beside the truth; above it a round carries two.
+const MaxPlayersWithOneFake = 4
+
+// AuthorsPerRound is how many players write for one prompt: one at a small table in the mode that supplies a truth, two everywhere else.
+func AuthorsPerRound(mode FFGameMode, players int) int {
+	if mode.HasTruth() && players <= MaxPlayersWithOneFake {
 		return 1
 	}
 	return 2
 }
 
 // RoundsFor is how many prompts a game of this size deals.
-func RoundsFor(players int) int {
+func RoundsFor(mode FFGameMode, players int) int {
 	if players < MinLobbyPlayers {
 		return 0
 	}
-	return players * AnswersPerPlayer / AuthorsPerRound(players)
+	return players * AnswersPerPlayer / AuthorsPerRound(mode, players)
 }
 
 // AuthorSeats is which seats were dealt round n, as indices into the shuffled seating.
-func AuthorSeats(roundNumber, players int) []int {
+func AuthorSeats(mode FFGameMode, roundNumber, players int) []int {
 	if players < MinLobbyPlayers {
 		return nil
 	}
 	first := (roundNumber - 1) % players
-	if AuthorsPerRound(players) == 1 {
+	if AuthorsPerRound(mode, players) == 1 {
 		return []int{first}
 	}
 	return []int{first, (first + 1) % players}
@@ -52,14 +55,14 @@ func AuthorSeats(roundNumber, players int) []int {
 // OptionsPerRound is how many things a voter is shown: the fakes, plus the truth in the mode that has one.
 func OptionsPerRound(mode FFGameMode, players int) int {
 	if mode.HasTruth() {
-		return AuthorsPerRound(players) + 1
+		return AuthorsPerRound(mode, players) + 1
 	}
-	return AuthorsPerRound(players)
+	return AuthorsPerRound(mode, players)
 }
 
 // VotersFor is how many players are expected to vote on any one round: everybody except its authors.
-func VotersFor(players int) int {
-	voters := players - AuthorsPerRound(players)
+func VotersFor(mode FFGameMode, players int) int {
+	voters := players - AuthorsPerRound(mode, players)
 	if voters < 0 {
 		return 0
 	}
@@ -67,7 +70,9 @@ func VotersFor(players int) int {
 }
 
 // AnswersFor is how many fills a whole game is waiting on before voting can open.
-func AnswersFor(players int) int { return RoundsFor(players) * AuthorsPerRound(players) }
+func AnswersFor(mode FFGameMode, players int) int {
+	return RoundsFor(mode, players) * AuthorsPerRound(mode, players)
+}
 
 // MinPlayersFor is the floor a mode can be started on, which is not the same for both of them.
 func MinPlayersFor(mode FFGameMode) int {

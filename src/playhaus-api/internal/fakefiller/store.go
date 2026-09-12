@@ -449,22 +449,14 @@ func (s *GormStore) RecordVote(ctx context.Context, in RecordVoteInput) (*Record
 		}
 
 		result.RoundOver = true
+		result.LastRound = in.RoundNumber >= in.TotalRounds
 
-		// Past the last round there is nothing to advance to.
-		update := map[string]any{"current_round": in.RoundNumber + 1}
-		if in.RoundNumber >= in.TotalRounds {
-			update = map[string]any{"status": GameCompleted}
-			result.GameOver = true
-			result.CurrentRound = in.RoundNumber
-		} else {
-			result.CurrentRound = in.RoundNumber + 1
-		}
-
+		// The round is parked, not advanced: leaving the reveal is the host's to do.
 		res := tx.Model(&FFMultiDeviceGame{}).
-			Where("id = ? AND current_round = ? AND status = ?", in.GameID, in.RoundNumber, GameInProgress).
-			Updates(update)
+			Where("id = ? AND current_round = ? AND phase = ? AND status = ?", in.GameID, in.RoundNumber, PhaseVoting, GameInProgress).
+			Updates(map[string]any{"phase": PhaseReveal})
 		if res.Error != nil {
-			return fmt.Errorf("advance game: %w", res.Error)
+			return fmt.Errorf("close round: %w", res.Error)
 		}
 		if res.RowsAffected == 0 {
 			// Cannot happen: the read at the top of this transaction saw the game on this round.
@@ -478,6 +470,41 @@ func (s *GormStore) RecordVote(ctx context.Context, in RecordVoteInput) (*Record
 	}
 
 	return result, nil
+}
+
+// errPhaseAlreadyMoved unwinds a transaction that lost the race, without it being a failure.
+var errPhaseAlreadyMoved = errors.New("phase has already moved")
+
+// AdvanceRound leaves the reveal: on to the next round, or to the end of the game.
+func (s *GormStore) AdvanceRound(ctx context.Context, in AdvanceRoundInput) (bool, error) {
+	update := map[string]any{"phase": PhaseVoting, "current_round": in.RoundNumber + 1}
+	if in.RoundNumber >= in.TotalRounds {
+		// The phase is left on reveal, so the last round stays told once the game is over.
+		update = map[string]any{"status": GameCompleted}
+	}
+
+	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		res := tx.Model(&FFMultiDeviceGame{}).
+			Where("id = ? AND phase = ? AND current_round = ? AND status = ?", in.GameID, PhaseReveal, in.RoundNumber, GameInProgress).
+			Updates(update)
+		if res.Error != nil {
+			return fmt.Errorf("advance round: %w", res.Error)
+		}
+		if res.RowsAffected == 0 {
+			return errPhaseAlreadyMoved
+		}
+
+		return nil
+	})
+
+	if errors.Is(err, errPhaseAlreadyMoved) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 func addScore(tx *gorm.DB, gameID uuid.UUID, userID string, points int) error {

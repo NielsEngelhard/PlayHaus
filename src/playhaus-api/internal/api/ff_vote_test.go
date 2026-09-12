@@ -12,12 +12,13 @@ import (
 )
 
 // The voting phase: the table walks the rounds one at a time, everybody who did not write
-// for a round votes on it, and the last vote in reveals it and moves the game on by itself.
+// for a round votes on it, the last vote in reveals it, and the host's tap is what moves
+// the game on from there.
 //
-// Nearly all of these are played three-handed, which is the smallest table the game allows
-// and the one where a round has exactly one voter -- so the first vote is also the last,
-// and a test can drive a whole game without tracking who still owes one. The tests that
-// are about several voters arriving at the same round say so and seat five.
+// Nearly all of these are played three-handed, which in facts mode deals one fake per
+// prompt and leaves two voters on each round. closeFFRound walks all of them through and
+// playFFRound adds the host's tap, so a test can drive a whole game without tracking who
+// still owes one.
 
 func castFFVote(t *testing.T, h http.Handler, token, gameID string, roundNumber, slot int) *httptest.ResponseRecorder {
 	t.Helper()
@@ -29,9 +30,9 @@ func castFFVote(t *testing.T, h http.Handler, token, gameID string, roundNumber,
 	return do(t, h, http.MethodPost, ffVotesPath(gameID), string(body), token)
 }
 
-// ffVoterFor is the player who may vote on a round, and fails unless there is exactly one
-// -- a test using this on a bigger table would be silently picking one of several.
-func ffVoterFor(t *testing.T, h http.Handler, game startedFFGame, roundNumber int) (sessionResponse, ffRoundResponse) {
+// ffVotersFor is everybody who may vote on a round, and the round as they are shown it --
+// one persisted option order, so whose copy it came from does not matter.
+func ffVotersFor(t *testing.T, h http.Handler, game startedFFGame, roundNumber int) ([]sessionResponse, ffRoundResponse) {
 	t.Helper()
 
 	var found []sessionResponse
@@ -47,10 +48,65 @@ func ffVoterFor(t *testing.T, h http.Handler, game startedFFGame, roundNumber in
 		}
 	}
 
-	if len(found) != 1 {
-		t.Fatalf("round %d has %d eligible voters, want exactly 1", roundNumber, len(found))
+	if len(found) == 0 {
+		t.Fatalf("round %d has no eligible voter", roundNumber)
 	}
-	return found[0], round
+	return found, round
+}
+
+// ffVoterFor is one of them, for a test that only needs somebody to cast a single vote.
+func ffVoterFor(t *testing.T, h http.Handler, game startedFFGame, roundNumber int) (sessionResponse, ffRoundResponse) {
+	t.Helper()
+
+	voters, round := ffVotersFor(t, h, game, roundNumber)
+	return voters[0], round
+}
+
+// closeFFRound walks every voter through a round and answers the vote that closed it.
+func closeFFRound(t *testing.T, h http.Handler, game startedFFGame, roundNumber int, slot func(ffRoundResponse) int) ffVoteResponse {
+	t.Helper()
+
+	voters, round := ffVotersFor(t, h, game, roundNumber)
+
+	var last ffVoteResponse
+	for _, voter := range voters {
+		rec := castFFVote(t, h, voter.Token, game.gameID, roundNumber, slot(round))
+		if rec.Code != http.StatusCreated {
+			t.Fatalf("vote on round %d: status = %d, want %d (body: %s)",
+				roundNumber, rec.Code, http.StatusCreated, rec.Body)
+		}
+		last = decodeBody[ffVoteResponse](t, rec)
+	}
+
+	if !last.RoundOver {
+		t.Fatalf("round %d did not close after all %d votes were in (%+v)", roundNumber, len(voters), last)
+	}
+	return last
+}
+
+// advanceFFRound is the host leaving a reveal behind.
+func advanceFFRound(t *testing.T, h http.Handler, token, gameID string, roundNumber int) *httptest.ResponseRecorder {
+	t.Helper()
+
+	body, err := json.Marshal(map[string]any{"roundNumber": roundNumber})
+	if err != nil {
+		t.Fatalf("encode advance: %v", err)
+	}
+	return do(t, h, http.MethodPost, ffAdvancePath(gameID), string(body), token)
+}
+
+// playFFRound closes a round and has the host move the table off the reveal it opened.
+func playFFRound(t *testing.T, h http.Handler, game startedFFGame, roundNumber int, slot func(ffRoundResponse) int) (ffVoteResponse, ffAdvanceResponse) {
+	t.Helper()
+
+	closed := closeFFRound(t, h, game, roundNumber, slot)
+
+	rec := advanceFFRound(t, h, game.host.Token, game.gameID, roundNumber)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("advance past round %d: status = %d, want %d (body: %s)",
+			roundNumber, rec.Code, http.StatusCreated, rec.Body)
+	}
+	return closed, decodeBody[ffAdvanceResponse](t, rec)
 }
 
 // ffTruthSlot is where the real answer is sitting, worked out the only way a test can: the
@@ -89,42 +145,35 @@ func ffFakeSlot(t *testing.T, round ffRoundResponse, truthSlot int) int {
 // A whole game
 // ---------------------------------------------------------------------------
 
-// The full arc, three-handed: open a room, deal it, write six answers, vote three rounds,
+// The full arc, three-handed: open a room, deal it, write six answers, vote six rounds,
 // and end up completed with a scoreboard.
 //
-// Every voter picks the truth, which is the case with a known answer: each player is the
-// sole voter on exactly one round, so everybody ends on one point and nobody has fooled
-// anybody.
+// Every voter picks the truth, which is the case with a known answer: each player votes on
+// every round they did not write and finds it each time, so nobody has fooled anybody.
 func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	game := threeHandedFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
 	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
-	if total != len(game.players) {
-		t.Fatalf("the game has %d rounds for %d players", total, len(game.players))
+	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players)); total != want {
+		t.Fatalf("the game has %d rounds for %d players, want %d", total, len(game.players), want)
 	}
 
 	for number := 1; number <= total; number++ {
-		voter, round := ffVoterFor(t, srv, game, number)
+		_, round := ffVotersFor(t, srv, game, number)
 
 		options := fakefiller.OptionsPerRound(fakefiller.GameModeFacts, len(game.players))
 		if len(round.Options) != options {
 			t.Fatalf("round %d shows %d options, want %d", number, len(round.Options), options)
 		}
 
-		rec := castFFVote(t, srv, voter.Token, game.gameID, number, ffTruthSlot(t, round))
-		if rec.Code != http.StatusCreated {
-			t.Fatalf("vote on round %d: status = %d, want %d (body: %s)",
-				number, rec.Code, http.StatusCreated, rec.Body)
+		body, moved := playFFRound(t, srv, game, number, func(r ffRoundResponse) int { return ffTruthSlot(t, r) })
+		if want := number == total; body.LastRound != want {
+			t.Errorf("round %d: lastRound = %v, want %v", number, body.LastRound, want)
 		}
-
-		body := decodeBody[ffVoteResponse](t, rec)
-		if !body.RoundOver {
-			t.Fatalf("round %d: the only vote did not close it (%+v)", number, body)
-		}
-		if want := number == total; body.GameOver != want {
-			t.Errorf("round %d: gameOver = %v, want %v", number, body.GameOver, want)
+		if body.Phase != string(fakefiller.PhaseReveal) {
+			t.Errorf("round %d closed into phase %q, want %q", number, body.Phase, fakefiller.PhaseReveal)
 		}
 		if body.Reveal == nil {
 			t.Fatalf("round %d closed without a reveal", number)
@@ -132,11 +181,13 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 		if body.Reveal.RoundNumber != number {
 			t.Errorf("the reveal is for round %d, want %d", body.Reveal.RoundNumber, number)
 		}
-		if len(body.Reveal.Authors) != 2 {
-			t.Errorf("the reveal names %d authors, want 2", len(body.Reveal.Authors))
+		if want := fakefiller.AuthorsPerRound(fakefiller.GameModeFacts, len(game.players)); len(body.Reveal.Authors) != want {
+			t.Errorf("the reveal names %d authors, want %d", len(body.Reveal.Authors), want)
 		}
-		if body.GameOver != (body.NextRound == nil) {
-			t.Errorf("round %d: gameOver = %v but nextRound = %v", number, body.GameOver, body.NextRound)
+
+		// The next round arrives with the host's tap, not with the vote that ended the last one.
+		if want := number == total; (moved.NextRound == nil) != want {
+			t.Errorf("round %d: nextRound = %v after advancing, want present = %v", number, moved.NextRound, !want)
 		}
 	}
 
@@ -145,10 +196,10 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 		t.Fatalf("status = %q, want %q", final.Status, fakefiller.GameCompleted)
 	}
 
+	// Everybody voted on every round but the two they wrote, and was right every time.
 	for _, player := range final.Players {
-		if player.Score != fakefiller.TruthPoints {
-			t.Errorf("%s scored %d, want %d -- everybody found the truth exactly once",
-				player.UserID, player.Score, fakefiller.TruthPoints)
+		if want := (total - fakefiller.AnswersPerPlayer) * fakefiller.TruthPoints; player.Score != want {
+			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
 		}
 	}
 
@@ -181,7 +232,7 @@ func TestFFATwoHandedGamePlaysThroughToGameOver(t *testing.T) {
 	writeEveryFFAnswer(t, srv, game)
 
 	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
-	if want := fakefiller.RoundsFor(len(game.players)); total != want {
+	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players)); total != want {
 		t.Fatalf("the game has %d rounds for %d players, want %d", total, len(game.players), want)
 	}
 
@@ -203,8 +254,8 @@ func TestFFATwoHandedGamePlaysThroughToGameOver(t *testing.T) {
 		if !body.RoundOver {
 			t.Fatalf("round %d: the only vote did not close it (%+v)", number, body)
 		}
-		if want := number == total; body.GameOver != want {
-			t.Errorf("round %d: gameOver = %v, want %v", number, body.GameOver, want)
+		if want := number == total; body.LastRound != want {
+			t.Errorf("round %d: lastRound = %v, want %v", number, body.LastRound, want)
 		}
 		if body.Reveal == nil {
 			t.Fatalf("round %d closed without a reveal", number)
@@ -216,6 +267,10 @@ func TestFFATwoHandedGamePlaysThroughToGameOver(t *testing.T) {
 			if author == voter.User.ID {
 				t.Errorf("round %d was written by the player who voted on it", number)
 			}
+		}
+
+		if rec := advanceFFRound(t, srv, game.host.Token, game.gameID, number); rec.Code != http.StatusCreated {
+			t.Fatalf("advance past round %d: status = %d (body: %s)", number, rec.Code, rec.Body)
 		}
 	}
 
@@ -267,15 +322,10 @@ func TestFFBeingPickedScoresTheAuthorAlone(t *testing.T) {
 	game := threeHandedFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
-	voter, round := ffVoterFor(t, srv, game, 1)
+	voters, round := ffVotersFor(t, srv, game, 1)
 	fake := ffFakeSlot(t, round, ffTruthSlot(t, round))
 
-	rec := castFFVote(t, srv, voter.Token, game.gameID, 1, fake)
-	if rec.Code != http.StatusCreated {
-		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
-	}
-
-	body := decodeBody[ffVoteResponse](t, rec)
+	body := closeFFRound(t, srv, game, 1, func(ffRoundResponse) int { return fake })
 	if body.Reveal == nil {
 		t.Fatal("the round closed without a reveal")
 	}
@@ -293,14 +343,16 @@ func TestFFBeingPickedScoresTheAuthorAlone(t *testing.T) {
 	for _, player := range body.Players {
 		want := 0
 		if player.UserID == author {
-			want = fakefiller.FooledPoints
+			want = len(voters) * fakefiller.FooledPoints
 		}
 		if player.Score != want {
 			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
 		}
 	}
-	if author == voter.User.ID {
-		t.Error("the voter was paid for their own fake, which they cannot have voted for")
+	for _, voter := range voters {
+		if author == voter.User.ID {
+			t.Error("a voter was paid for their own fake, which they cannot have voted for")
+		}
 	}
 }
 
@@ -381,12 +433,14 @@ func TestFFAnAuthorCannotVoteOnTheirOwnPrompt(t *testing.T) {
 	game := threeHandedFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
-	voter, _ := ffVoterFor(t, srv, game, 1)
+	voters, _ := ffVotersFor(t, srv, game, 1)
 
+	authors := 0
 	for _, player := range game.players {
-		if player.User.ID == voter.User.ID {
+		if slices.ContainsFunc(voters, func(v sessionResponse) bool { return v.User.ID == player.User.ID }) {
 			continue
 		}
+		authors++
 
 		rec := castFFVote(t, srv, player.Token, game.gameID, 1, 0)
 		if rec.Code != http.StatusForbidden {
@@ -395,6 +449,10 @@ func TestFFAnAuthorCannotVoteOnTheirOwnPrompt(t *testing.T) {
 		if code := errorCode(t, rec); code != "cannot_vote_own_prompt" {
 			t.Errorf("code = %q, want cannot_vote_own_prompt", code)
 		}
+	}
+
+	if want := fakefiller.AuthorsPerRound(fakefiller.GameModeFacts, len(game.players)); authors != want {
+		t.Fatalf("round 1 was written by %d players, want %d", authors, want)
 	}
 }
 
@@ -415,14 +473,12 @@ func TestFFVotingOnARoundTheTableHasLeftIsRefused(t *testing.T) {
 	game := threeHandedFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
-	voter, round := ffVoterFor(t, srv, game, 1)
-	if rec := castFFVote(t, srv, voter.Token, game.gameID, 1, round.Options[0].Slot); rec.Code != http.StatusCreated {
-		t.Fatalf("close round 1: status = %d (body: %s)", rec.Code, rec.Body)
-	}
+	voters, _ := ffVotersFor(t, srv, game, 1)
+	playFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
 
-	// Round 1 is gone. Its voter has already voted, so try somebody who had not.
+	// Round 1 is gone. Its voters have already voted, so try the players who had not.
 	for _, player := range game.players {
-		if player.User.ID == voter.User.ID {
+		if slices.ContainsFunc(voters, func(v sessionResponse) bool { return v.User.ID == player.User.ID }) {
 			continue
 		}
 		rec := castFFVote(t, srv, player.Token, game.gameID, 1, 0)
@@ -442,9 +498,9 @@ func TestFFVotingOnARoundTheTableHasLeftIsRefused(t *testing.T) {
 	}
 }
 
-// Seated five-handed so the round stays open after the first vote: with three players the
-// first vote closes it, and a second would be refused for being late rather than for being
-// a second.
+// Seated five-handed so there are three voters and the round stays open after the first
+// vote -- a second vote on a closed round would be refused for being late rather than for
+// being a second.
 func TestFFAPlayerCannotVoteTwiceOnOneRound(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 
@@ -508,8 +564,8 @@ func TestFFVotingForASlotThatDoesNotExistIsRefused(t *testing.T) {
 // ---------------------------------------------------------------------------
 
 // While a round is open, an option is a slot and its fills and nothing else. An author id
-// would name the writer, and one of the three author ids is the string "__truth__" -- so
-// either would end the round before it was voted on.
+// would name the writer, and one of them is the string "__truth__" -- so either would end
+// the round before it was voted on.
 func TestFFAnOpenRoundNamesNoAuthors(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	game := threeHandedFFGame(t, srv)
@@ -612,4 +668,151 @@ func ffOptionOrder(t *testing.T, game ffGameResponse, roundNumber int) []string 
 
 	t.Fatalf("the game has no round %d", roundNumber)
 	return nil
+}
+
+// ---------------------------------------------------------------------------
+// Leaving the reveal
+// ---------------------------------------------------------------------------
+
+// The beat this whole route exists for: a closed round parks the table on its reveal and
+// leaves it there. No clock runs it out, so nobody reads it at their own speed.
+func TestFFAClosedRoundWaitsOnItsRevealUntilTheHostMovesOn(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	closeFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
+
+	for _, player := range game.players {
+		board := getFFGame(t, srv, player.Token, game.gameID)
+		if board.Phase != string(fakefiller.PhaseReveal) {
+			t.Errorf("phase = %q, want %q", board.Phase, fakefiller.PhaseReveal)
+		}
+		if board.CurrentRound != 1 {
+			t.Errorf("currentRound = %d, want the table held on the round it just read", board.CurrentRound)
+		}
+		if board.Status != string(fakefiller.GameInProgress) {
+			t.Errorf("status = %q, want %q", board.Status, fakefiller.GameInProgress)
+		}
+
+		// Round 1 is told, and round 2 is not open behind it.
+		for _, round := range board.Rounds {
+			if want := round.Number == 1; round.Revealed != want {
+				t.Errorf("round %d: revealed = %v, want %v", round.Number, round.Revealed, want)
+			}
+			if round.Number == 2 && len(round.Options) > 0 {
+				t.Errorf("round 2 was shown its options while the table was still on round 1's reveal")
+			}
+		}
+	}
+
+	if rec := advanceFFRound(t, srv, game.host.Token, game.gameID, 1); rec.Code != http.StatusCreated {
+		t.Fatalf("advance: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
+	}
+
+	after := getFFGame(t, srv, game.host.Token, game.gameID)
+	if after.Phase != string(fakefiller.PhaseVoting) {
+		t.Errorf("phase = %q, want %q", after.Phase, fakefiller.PhaseVoting)
+	}
+	if after.CurrentRound != 2 {
+		t.Errorf("currentRound = %d, want 2", after.CurrentRound)
+	}
+}
+
+// The pacing is the host's, so a player tapping their way past the reveal is refused --
+// the app hides the button, and the server is what makes that mean something.
+func TestFFOnlyTheHostMayMoveOnFromTheReveal(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	closeFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
+
+	for _, player := range game.players[1:] {
+		rec := advanceFFRound(t, srv, player.Token, game.gameID, 1)
+		if rec.Code != http.StatusForbidden {
+			t.Fatalf("guest advance: status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
+		}
+		if code := errorCode(t, rec); code != "not_host" {
+			t.Errorf("code = %q, want not_host", code)
+		}
+	}
+
+	// And the table did not move on the back of a refusal.
+	board := getFFGame(t, srv, game.host.Token, game.gameID)
+	if board.Phase != string(fakefiller.PhaseReveal) || board.CurrentRound != 1 {
+		t.Errorf("board = %q round %d, want the reveal of round 1", board.Phase, board.CurrentRound)
+	}
+}
+
+// A double tap is a slow connection, not a mistake, so the second one is answered rather
+// than refused -- and it must not skip a round.
+func TestFFAdvancingTwicePastOneRevealMovesTheTableOnce(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	closeFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
+
+	for i := range 2 {
+		rec := advanceFFRound(t, srv, game.host.Token, game.gameID, 1)
+		if rec.Code != http.StatusCreated {
+			t.Fatalf("advance %d: status = %d, want %d (body: %s)", i+1, rec.Code, http.StatusCreated, rec.Body)
+		}
+	}
+
+	board := getFFGame(t, srv, game.host.Token, game.gameID)
+	if board.CurrentRound != 2 {
+		t.Errorf("currentRound = %d, want 2", board.CurrentRound)
+	}
+}
+
+// Advancing while the table is still voting is refused, so a host who taps early cannot
+// cut the round short under the players who have not voted yet.
+func TestFFAdvancingBeforeTheRoundClosesIsRefused(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	rec := advanceFFRound(t, srv, game.host.Token, game.gameID, 1)
+	if rec.Code != http.StatusConflict {
+		t.Fatalf("early advance: status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
+	}
+	if code := errorCode(t, rec); code != "wrong_phase" {
+		t.Errorf("code = %q, want wrong_phase", code)
+	}
+}
+
+// The last round has no round behind it, so the host's tap is what ends the game.
+func TestFFTheHostMovingOnFromTheLastRevealEndsTheGame(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
+
+	for number := 1; number < total; number++ {
+		playFFRound(t, srv, game, number, func(r ffRoundResponse) int { return r.Options[0].Slot })
+	}
+
+	closeFFRound(t, srv, game, total, func(r ffRoundResponse) int { return r.Options[0].Slot })
+
+	// Still being played, so the last reveal is read rather than skipped past.
+	waiting := getFFGame(t, srv, game.host.Token, game.gameID)
+	if waiting.Status != string(fakefiller.GameInProgress) {
+		t.Fatalf("status after the last vote = %q, want %q", waiting.Status, fakefiller.GameInProgress)
+	}
+
+	rec := advanceFFRound(t, srv, game.host.Token, game.gameID, total)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("advance past the last reveal: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	if moved := decodeBody[ffAdvanceResponse](t, rec); moved.NextRound != nil {
+		t.Errorf("the last reveal opened a round %v", moved.NextRound)
+	}
+
+	final := getFFGame(t, srv, game.host.Token, game.gameID)
+	if final.Status != string(fakefiller.GameCompleted) {
+		t.Errorf("status = %q, want %q", final.Status, fakefiller.GameCompleted)
+	}
 }

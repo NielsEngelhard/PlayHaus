@@ -23,6 +23,7 @@ func ffLobbyPlayersPath(code string) string { return ffLobbyPathFor(code) + "/pl
 func ffGamePath(gameID string) string       { return "/api/v1/fake-filler/game/" + gameID }
 func ffAnswersPath(gameID string) string    { return ffGamePath(gameID) + "/answers" }
 func ffVotesPath(gameID string) string      { return ffGamePath(gameID) + "/votes" }
+func ffAdvancePath(gameID string) string    { return ffGamePath(gameID) + "/advance" }
 
 func createFFLobby(t *testing.T, h http.Handler, token string) ffLobbyResponse {
 	t.Helper()
@@ -48,9 +49,8 @@ type startedFFGame struct {
 }
 
 // startFFGame opens a room, walks everybody in, and starts it. Three players by default,
-// which is the smallest table the game allows and therefore the one where a round has
-// exactly one voter -- so a test can play a whole game without having to work out which of
-// several people still owe a vote.
+// which in the facts mode these tests play is a table dealt one fake per prompt: twice as
+// many rounds as players, and two voters on each of them.
 func startFFGame(t *testing.T, h http.Handler, host sessionResponse, others ...sessionResponse) startedFFGame {
 	t.Helper()
 
@@ -429,7 +429,7 @@ func TestFFATableOfTwoCannotPlayTheModeWithNoTruth(t *testing.T) {
 
 // Each player holds exactly two prompts, whatever the table size. Asserted over every one
 // the game allows, because the pairing is the one piece of this game that has to hold for
-// all of them at once -- including the table of two, where a prompt has a single author and
+// all of them at once -- including the small tables, where a prompt has a single author and
 // so a game has twice as many rounds.
 func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 	for count := fakefiller.MinLobbyPlayers; count <= fakefiller.MaxLobbyPlayers; count++ {
@@ -445,7 +445,7 @@ func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 			for _, player := range sessions {
 				body := getFFGame(t, srv, player.Token, game.gameID)
 
-				if want := fakefiller.RoundsFor(count); body.TotalRounds != want {
+				if want := fakefiller.RoundsFor(fakefiller.DefaultGameMode, count); body.TotalRounds != want {
 					t.Fatalf("%s sees %d rounds, want %d", player.User.ID, body.TotalRounds, want)
 				}
 				if body.Phase != string(fakefiller.PhaseWriting) {

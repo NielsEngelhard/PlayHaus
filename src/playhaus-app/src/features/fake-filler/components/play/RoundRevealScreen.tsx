@@ -1,6 +1,6 @@
 import { TRUTH_AUTHOR_ID, type FFGame, type FFOption, type FFReveal } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
-import { Badge } from "@/components/ui/Badge";
+import Card from "@/components/ui/Card";
 import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
@@ -10,10 +10,8 @@ import { initialsOf } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { avatarColorById } from "@/utils/color-utils";
-import { useEffect, useRef } from "react";
+import Feather from "@expo/vector-icons/Feather";
 import { ScrollView, View } from "react-native";
-
-const AUTO_ADVANCE_MS = 10_000;
 
 interface Props {
     game: FFGame,
@@ -21,24 +19,16 @@ interface Props {
     userId: string,
     /** Whether there is another round behind this one, which changes what the button says. */
     more: boolean,
+    /** Only the host leaves the reveal, and only their tap moves the table. */
+    isHost: boolean,
+    busy: boolean,
     onContinue: () => void
 }
 
-// The end of a round, with everything told at last.
-export default function RoundRevealScreen({ game, reveal, userId, more, onContinue }: Props) {
+// The end of a round, with everything told at last. Nothing here runs on a clock.
+export default function RoundRevealScreen({ game, reveal, userId, more, isHost, busy, onContinue }: Props) {
     const t = useT();
     const styles = useStyles();
-
-    // Kept in a ref so a re-render with a fresh onContinue closure doesn't restart the countdown.
-    const onContinueRef = useRef(onContinue);
-    useEffect(() => {
-        onContinueRef.current = onContinue;
-    });
-
-    useEffect(() => {
-        const timer = setTimeout(() => onContinueRef.current(), AUTO_ADVANCE_MS);
-        return () => clearTimeout(timer);
-    }, [reveal.roundNumber]);
 
     const nameOf = (id: string) => {
         if (id === userId) return t('common.you');
@@ -82,13 +72,24 @@ export default function RoundRevealScreen({ game, reveal, userId, more, onContin
             <PlayerScoreRow players={game.players} userId={userId} style={styles.scores} />
 
             <View style={styles.foot}>
-                <PlayButton
-                    text={more
-                        ? t('fakeFiller.play.reveal.next')
-                        : t('fakeFiller.play.reveal.toResults')}
-                    icon='arrow-right'
-                    onPress={onContinue}
-                />
+                {isHost ? (
+                    <PlayButton
+                        text={more
+                            ? t('fakeFiller.play.reveal.next')
+                            : t('fakeFiller.play.reveal.toResults')}
+                        icon='arrow-right'
+                        disabled={busy}
+                        onPress={onContinue}
+                    />
+                ) : (
+                    <Card style={styles.waiting}>
+                        <AppText style={styles.waitingText}>
+                            {more
+                                ? t('fakeFiller.play.reveal.waitingForHost')
+                                : t('fakeFiller.play.reveal.waitingForResults')}
+                        </AppText>
+                    </Card>
+                )}
             </View>
         </ScrollView>
     )
@@ -165,9 +166,7 @@ function Fake({ option, line, game, nameOf }: FakeProps) {
                     lines={3}
                 />
 
-                {author !== null && (
-                    <Badge text={author} color={Brand.mint} />
-                )}
+                {author !== null && <AuthorTag name={author} />}
             </View>
 
             {/* Only a fake pays its author, and only when somebody fell for it. */}
@@ -176,6 +175,20 @@ function Fake({ option, line, game, nameOf }: FakeProps) {
                     ? '0'
                     : t('fakeFiller.play.reveal.points', { points: voters.length })}
             </AppText>
+        </View>
+    )
+}
+
+/** Who wrote it, kept legible: the game's mint only outlines the pill, never the name. */
+function AuthorTag({ name }: { name: string }) {
+    const theme = useTheme();
+    const styles = useStyles();
+
+    return (
+        <View style={styles.authorTag}>
+            <Feather name='user' size={11} color={theme.colors.text} />
+
+            <AppText style={styles.authorName}>{name}</AppText>
         </View>
     )
 }
@@ -246,6 +259,24 @@ const useStyles = createThemedStyles(theme => ({
         minWidth: 0,
         gap: 2
     },
+    authorTag: {
+        alignSelf: 'flex-start',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.mint,
+        backgroundColor: theme.colors.backgroundElement,
+        paddingHorizontal: 8,
+        paddingVertical: 3
+    },
+    authorName: {
+        fontSize: 12,
+        fontWeight: 800,
+        letterSpacing: 0.2,
+        color: theme.colors.text
+    },
     points: {
         fontSize: 13,
         fontWeight: 900,
@@ -261,5 +292,15 @@ const useStyles = createThemedStyles(theme => ({
     },
     foot: {
         gap: Spacing.two
+    },
+    waiting: {
+        alignItems: 'center'
+    },
+    waitingText: {
+        fontSize: 13,
+        lineHeight: 13 * 1.45,
+        fontWeight: 700,
+        textAlign: 'center',
+        color: theme.colors.textSecondary
     }
 }))

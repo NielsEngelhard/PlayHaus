@@ -29,18 +29,18 @@ func TestEveryLocaleAndModeNamesAFileThatExists(t *testing.T) {
 }
 
 // Every prompt has to be playable by the biggest table the game allows, because the round
-// count is the player count and a short file is a game that cannot be dealt at all.
+// count rises with the table and a short file is a game that cannot be dealt at all.
 func TestEveryFileHoldsEnoughPromptsForAFullTable(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		for _, mode := range []FFGameMode{GameModeFacts, GameModeCreative} {
-			lines, err := GetContentLines(locale, mode, RoundsFor(MaxLobbyPlayers))
+		for _, mode := range allModes {
+			lines, err := GetContentLines(locale, mode, RoundsFor(mode, MaxLobbyPlayers))
 			if err != nil {
 				t.Errorf("GetContentLines(%s, %s) for a full table: %v", locale, mode, err)
 				continue
 			}
-			if len(lines) != RoundsFor(MaxLobbyPlayers) {
+			if len(lines) != RoundsFor(mode, MaxLobbyPlayers) {
 				t.Errorf("GetContentLines(%s, %s) returned %d lines, want %d",
-					locale, mode, len(lines), RoundsFor(MaxLobbyPlayers))
+					locale, mode, len(lines), RoundsFor(mode, MaxLobbyPlayers))
 			}
 		}
 	}
@@ -48,7 +48,7 @@ func TestEveryFileHoldsEnoughPromptsForAFullTable(t *testing.T) {
 
 func TestFactsPromptsCarryOneAnswerPerBlank(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		lines, err := GetContentLines(locale, GameModeFacts, RoundsFor(MaxLobbyPlayers))
+		lines, err := GetContentLines(locale, GameModeFacts, RoundsFor(GameModeFacts, MaxLobbyPlayers))
 		if err != nil {
 			t.Fatalf("GetContentLines(%s, facts): %v", locale, err)
 		}
@@ -73,7 +73,7 @@ func TestFactsPromptsCarryOneAnswerPerBlank(t *testing.T) {
 // options instead of three.
 func TestCreativePromptsHaveNoAnswers(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		lines, err := GetContentLines(locale, GameModeCreative, RoundsFor(MaxLobbyPlayers))
+		lines, err := GetContentLines(locale, GameModeCreative, RoundsFor(GameModeCreative, MaxLobbyPlayers))
 		if err != nil {
 			t.Fatalf("GetContentLines(%s, creative): %v", locale, err)
 		}

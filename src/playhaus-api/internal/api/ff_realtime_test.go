@@ -245,8 +245,8 @@ func TestFFSocketAnnouncesVotingOpening(t *testing.T) {
 }
 
 // The reveal is public -- who wrote what, which was true, who was fooled -- so the whole
-// table is sent the same body the voter was answered with.
-func TestFFSocketBroadcastsTheRevealAndTheGameEnding(t *testing.T) {
+// table is sent the same body the voter was answered with. The host's tap follows it.
+func TestFFSocketBroadcastsTheRevealAndTheHostMovingOn(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	live := liveServer(t, srv)
 
@@ -259,10 +259,7 @@ func TestFFSocketBroadcastsTheRevealAndTheGameEnding(t *testing.T) {
 	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
 
 	for number := 1; number <= total; number++ {
-		voter, round := ffVoterFor(t, srv, game, number)
-		if rec := castFFVote(t, srv, voter.Token, game.gameID, number, round.Options[0].Slot); rec.Code != http.StatusCreated {
-			t.Fatalf("vote on round %d: status = %d (body: %s)", number, rec.Code, rec.Body)
-		}
+		closeFFRound(t, srv, game, number, func(r ffRoundResponse) int { return r.Options[0].Slot })
 
 		result := into[ffVoteResponse](t, conn.await(typeRoundResult))
 		if result.RoundNumber != number {
@@ -277,11 +274,65 @@ func TestFFSocketBroadcastsTheRevealAndTheGameEnding(t *testing.T) {
 				t.Errorf("round %d slot %d was revealed without an author", number, option.Slot)
 			}
 		}
+
+		if rec := advanceFFRound(t, srv, game.host.Token, game.gameID, number); rec.Code != http.StatusCreated {
+			t.Fatalf("advance past round %d: status = %d (body: %s)", number, rec.Code, rec.Body)
+		}
+
+		moved := into[ffAdvanceResponse](t, conn.await(typeRoundAdvanced))
+		if want := number == total; (moved.NextRound == nil) != want {
+			t.Errorf("round %d: nextRound = %v, want present = %v", number, moved.NextRound, !want)
+		}
 	}
 
 	over := into[ffGameOverPayload](t, conn.await(typeGameOver))
 	if len(over.Players) != len(game.players) {
 		t.Errorf("the final scoreboard holds %d players, want %d", len(over.Players), len(game.players))
+	}
+}
+
+// Only the host may move the table on, so their tap is the frame that ends the reveal for
+// everybody -- which is the whole reason it goes over the socket rather than a clock.
+func TestFFSocketAnnouncesTheHostMovingOnFromTheReveal(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	live := liveServer(t, srv)
+
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	guest := dialFFRoom(t, live, game.lobbyCode, game.players[1].Token)
+	guest.await(typeState)
+
+	closeFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
+	guest.await(typeRoundResult)
+
+	// A player tapping it themselves tells nobody anything.
+	if rec := advanceFFRound(t, srv, game.players[1].Token, game.gameID, 1); rec.Code != http.StatusForbidden {
+		t.Fatalf("guest advance: status = %d, want %d (body: %s)", rec.Code, http.StatusForbidden, rec.Body)
+	}
+
+	if rec := advanceFFRound(t, srv, game.host.Token, game.gameID, 1); rec.Code != http.StatusCreated {
+		t.Fatalf("host advance: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	moved := into[ffAdvanceResponse](t, guest.await(typeRoundAdvanced))
+	if moved.CurrentRound != 2 {
+		t.Errorf("the frame moves the table to round %d, want 2", moved.CurrentRound)
+	}
+	if moved.Phase != string(fakefiller.PhaseVoting) {
+		t.Errorf("phase = %q, want %q", moved.Phase, fakefiller.PhaseVoting)
+	}
+	if moved.NextRound == nil {
+		t.Fatal("the table was moved on to no round")
+	}
+	if moved.NextRound.Number != 2 {
+		t.Errorf("the round opened is %d, want 2", moved.NextRound.Number)
+	}
+	// The round it opens is still a secret -- who wrote what waits for its own reveal.
+	for _, option := range moved.NextRound.Options {
+		if option.AuthorID != "" {
+			t.Errorf("round 2 slot %d was opened with its author named", option.Slot)
+		}
 	}
 }
 
@@ -303,12 +354,9 @@ func TestFFReconnectingMidVotingRestoresThePhaseRoundAndOptionOrder(t *testing.T
 	game := threeHandedFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
-	// Close round 1 so the table is somewhere other than where it started -- a snapshot
+	// Play round 1 out so the table is somewhere other than where it started -- a snapshot
 	// that always said "round 1" would pass this test without restoring anything.
-	voter, round := ffVoterFor(t, srv, game, 1)
-	if rec := castFFVote(t, srv, voter.Token, game.gameID, 1, round.Options[0].Slot); rec.Code != http.StatusCreated {
-		t.Fatalf("close round 1: status = %d (body: %s)", rec.Code, rec.Body)
-	}
+	playFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
 
 	player := game.players[1]
 
@@ -410,5 +458,58 @@ func TestFFReconnectingWhileWritingRestoresYourOwnAnswers(t *testing.T) {
 		if strings.Contains(string(otherEnv.Data), ffFill(author.User.ID, round.Number, 0)) {
 			t.Fatalf("%s's snapshot carried %s's answer", other.User.ID, author.User.ID)
 		}
+	}
+}
+
+
+// The reveal is a place the table stands in now, not a frame that has come and gone, so a
+// player who drops while reading it comes back to it rather than to the next vote.
+func TestFFReconnectingDuringTheRevealComesBackToIt(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	live := liveServer(t, srv)
+
+	game := threeHandedFFGame(t, srv)
+	writeEveryFFAnswer(t, srv, game)
+
+	closeFFRound(t, srv, game, 1, func(r ffRoundResponse) int { return r.Options[0].Slot })
+
+	player := game.players[1]
+
+	back := dialFFRoom(t, live, game.lobbyCode, player.Token)
+	snapshot := into[ffStatePayload](t, back.await(typeState))
+	if snapshot.Game == nil {
+		t.Fatal("the snapshot of a started game carried no game")
+	}
+
+	if snapshot.Game.Phase != string(fakefiller.PhaseReveal) {
+		t.Errorf("phase = %q, want %q", snapshot.Game.Phase, fakefiller.PhaseReveal)
+	}
+	if snapshot.Game.CurrentRound != 1 {
+		t.Errorf("currentRound = %d, want 1", snapshot.Game.CurrentRound)
+	}
+
+	// And the round it came back to is told in full, so the reveal can be drawn from the
+	// snapshot alone -- the frame that carried it has long since gone.
+	told := false
+	for _, round := range snapshot.Game.Rounds {
+		if round.Number != 1 {
+			continue
+		}
+		told = true
+
+		if !round.Revealed {
+			t.Error("round 1 came back unrevealed")
+		}
+		if len(round.Authors) == 0 {
+			t.Error("round 1 came back naming no authors")
+		}
+		for _, option := range round.Options {
+			if option.AuthorID == "" {
+				t.Errorf("round 1 slot %d came back without its author", option.Slot)
+			}
+		}
+	}
+	if !told {
+		t.Fatal("the snapshot has no round 1")
 	}
 }

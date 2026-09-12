@@ -67,6 +67,7 @@ type Store interface {
 	SaveAnswer(ctx context.Context, in SaveAnswerInput) (int, error)
 	OpenVoting(ctx context.Context, gameID uuid.UUID, slots []SlotAssignment) (bool, error)
 	RecordVote(ctx context.Context, in RecordVoteInput) (*RecordVoteResult, error)
+	AdvanceRound(ctx context.Context, in AdvanceRoundInput) (bool, error)
 }
 
 // SaveAnswerInput is one option row going down, plus what the game is waiting for.
@@ -104,9 +105,17 @@ type RecordVoteResult struct {
 	// Votes is how many are now on the round, this one included.
 	Votes     int
 	RoundOver bool
-	GameOver  bool
-	// CurrentRound is the round the game is on afterwards, which is not RoundNumber if this vote closed it.
+	// LastRound is the round it closed having been the final one, which is not the same as the game being over.
+	LastRound bool
+	// CurrentRound is the round the game is on afterwards, which the reveal holds at RoundNumber.
 	CurrentRound int
+}
+
+// AdvanceRoundInput is the reveal being left behind, named by the round it is showing.
+type AdvanceRoundInput struct {
+	GameID      uuid.UUID
+	RoundNumber int
+	TotalRounds int
 }
 
 type Service struct {
@@ -358,7 +367,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 	slices.SortFunc(seated, func(a, b FFLobbyPlayer) int { return a.Seat - b.Seat })
 	rand.Shuffle(len(seated), func(i, j int) { seated[i], seated[j] = seated[j], seated[i] })
 
-	lines, err := GetContentLines(lobby.Locale, lobby.GameMode, RoundsFor(len(seated)))
+	lines, err := GetContentLines(lobby.Locale, lobby.GameMode, RoundsFor(lobby.GameMode, len(seated)))
 	if err != nil {
 		return nil, nil, fmt.Errorf("draw prompts: %w", err)
 	}
@@ -390,7 +399,7 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 	game.Rounds = make([]FFRound, len(lines))
 	for i, line := range lines {
 		number := i + 1
-		seats := AuthorSeats(number, len(seated))
+		seats := AuthorSeats(game.GameMode, number, len(seated))
 
 		round := FFRound{
 			ID:              uuid.New(),
@@ -553,7 +562,7 @@ func (s *Service) SubmitAnswer(ctx context.Context, in SubmitAnswerInput) (*Answ
 		return nil, err
 	}
 
-	expected := AnswersFor(len(game.Players))
+	expected := AnswersFor(game.GameMode, len(game.Players))
 	answered, err := s.store.SaveAnswer(ctx, SaveAnswerInput{
 		GameID: game.ID,
 		Option: &FFOption{
@@ -654,7 +663,8 @@ type VoteOutcome struct {
 	Votes       int
 	VotesNeeded int
 	RoundOver   bool
-	GameOver    bool
+	// LastRound is whether the reveal now up is the final one.
+	LastRound bool
 }
 
 // CastVote records one player's pick on the round the table is on.
@@ -701,7 +711,7 @@ func (s *Service) CastVote(ctx context.Context, in CastVoteInput) (*VoteOutcome,
 		},
 		RoundNumber:  round.Number,
 		TotalRounds:  len(game.Rounds),
-		VotersNeeded: VotersFor(len(game.Players)),
+		VotersNeeded: VotersFor(game.GameMode, len(game.Players)),
 	}
 	if guesser != 0 {
 		input.GuesserID, input.GuesserPoints = in.UserID, guesser
@@ -729,6 +739,71 @@ func (s *Service) CastVote(ctx context.Context, in CastVoteInput) (*VoteOutcome,
 		Votes:       result.Votes,
 		VotesNeeded: input.VotersNeeded,
 		RoundOver:   result.RoundOver,
-		GameOver:    result.GameOver,
+		LastRound:   result.LastRound,
+	}, nil
+}
+
+// AdvanceInput is the host leaving a reveal, naming the round being left.
+type AdvanceInput struct {
+	GameID      uuid.UUID
+	UserID      string
+	RoundNumber int
+}
+
+// AdvanceOutcome is where the table went after the reveal.
+type AdvanceOutcome struct {
+	Game *FFMultiDeviceGame
+	// Advanced is false for a tap that arrived after the table had already moved, which is not a mistake.
+	Advanced bool
+	GameOver bool
+}
+
+// Advance leaves the reveal for the next round, or for the end of the game. The host's alone.
+func (s *Service) Advance(ctx context.Context, in AdvanceInput) (*AdvanceOutcome, error) {
+	game, err := s.Game(ctx, in.GameID, in.UserID)
+	if err != nil {
+		return nil, err
+	}
+	if game.OwnerID != in.UserID {
+		return nil, ErrNotHost
+	}
+
+	// A second tap on a table that has already moved is a no-op rather than a mistake.
+	if game.Phase == PhaseVoting && game.CurrentRound == in.RoundNumber+1 {
+		return &AdvanceOutcome{Game: game, Advanced: false}, nil
+	}
+	if game.Status == GameCompleted && game.CurrentRound == in.RoundNumber {
+		return &AdvanceOutcome{Game: game, Advanced: false, GameOver: true}, nil
+	}
+	if game.Status != GameInProgress {
+		return nil, ErrGameFinished
+	}
+	if game.Phase != PhaseReveal {
+		return nil, ErrWrongPhase
+	}
+	if game.CurrentRound != in.RoundNumber {
+		return nil, ErrWrongRound
+	}
+
+	total := len(game.Rounds)
+	advanced, err := s.store.AdvanceRound(ctx, AdvanceRoundInput{
+		GameID:      game.ID,
+		RoundNumber: in.RoundNumber,
+		TotalRounds: total,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Re-read for the same reason CastVote does.
+	fresh, err := s.Game(ctx, in.GameID, in.UserID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &AdvanceOutcome{
+		Game:     fresh,
+		Advanced: advanced,
+		GameOver: fresh.Status == GameCompleted,
 	}, nil
 }
