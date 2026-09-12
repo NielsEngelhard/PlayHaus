@@ -381,3 +381,32 @@ func TestAnOOURouteRefusesAnotherGamesCode(t *testing.T) {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusNotFound, rec.Body)
 	}
 }
+
+// The same three phones, dealt many times over, have to put the liar in every hand rather than in whoever joined last.
+func TestAMultiDeviceDealLandsTheImposterInEveryHand(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	table := guests(t, srv, 3)
+
+	const deals = 300
+	landed := map[string]int{}
+
+	for range deals {
+		game := startOOUGame(t, srv, table[0], table[1:]...)
+		for _, role := range []oneofus.Role{oneofus.Imposter, oneofus.Nitwit} {
+			for _, userID := range oouPlayersWithRole(t, db, game.gameID, role) {
+				landed[userID]++
+			}
+		}
+
+		if rec := do(t, srv, http.MethodDelete, oouLobbyPathFor(game.lobbyCode), "", table[0].Token); rec.Code >= 300 {
+			t.Fatalf("close one of us lobby: status = %d (body: %s)", rec.Code, rec.Body)
+		}
+	}
+
+	// A fair deal puts about a hundred in each hand; fifty is six standard deviations short.
+	for joined, player := range table {
+		if landed[player.User.ID] < deals/6 {
+			t.Errorf("player %d to join was dealt the liar %d times out of %d", joined+1, landed[player.User.ID], deals)
+		}
+	}
+}

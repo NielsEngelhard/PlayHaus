@@ -116,7 +116,7 @@ func newQuizResponse(q *pubquizr.Quiz, played bool) quizResponse {
 
 func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 	answers := make([]quizAnswerResponse, 0, len(q.Answers))
-	for _, answer := range q.Answers {
+	for _, answer := range q.ShownAnswers() {
 		answers = append(answers, quizAnswerResponse{
 			ID:       answer.ID.String(),
 			Position: answer.Position,

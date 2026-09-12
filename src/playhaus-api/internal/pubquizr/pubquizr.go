@@ -2,7 +2,10 @@
 package pubquizr
 
 import (
+	"encoding/binary"
 	"errors"
+	"math/rand/v2"
+	"slices"
 	"time"
 
 	"playhaus-api/internal/i18n"
@@ -196,6 +199,26 @@ func (q Question) CorrectAnswers() []Answer {
 		}
 	}
 	return correct
+}
+
+// ShownAnswers are the answers in the order the app lays them out: an ABCD question's options shuffled, so the right one is not wherever the quiz file put it.
+func (q Question) ShownAnswers() []Answer {
+	answers := slices.Clone(q.Answers)
+	if q.Kind != KindMultipleChoice {
+		return answers
+	}
+
+	slices.SortStableFunc(answers, func(a, b Answer) int { return a.Position - b.Position })
+
+	// Seeded off the question id, so every phone at the table and every reload deal the same letters.
+	shuffle := rand.New(rand.NewPCG(binary.BigEndian.Uint64(q.ID[:8]), binary.BigEndian.Uint64(q.ID[8:])))
+	shuffle.Shuffle(len(answers), func(i, j int) { answers[i], answers[j] = answers[j], answers[i] })
+
+	for i := range answers {
+		answers[i].Position = i
+	}
+
+	return answers
 }
 
 // Answer is one row under a question.
