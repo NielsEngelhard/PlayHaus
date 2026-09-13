@@ -807,9 +807,6 @@ export const en = {
             validate: 'Assess',
             validateHint: 'Then mark it right or wrong',
             validateLocked: 'Show the answer first',
-            /** Round 2's gate, which is `validate` and the reveal in one tap — see `HotSeatBoard`. */
-            gate: 'Check the answer',
-            gateHint: 'Wrong passes the question to the next player.',
             wrong: 'Wrong',
             correct: 'Correct',
             /** Read out for the buttons, which are two words on their own. */
@@ -824,15 +821,18 @@ export const en = {
             passOnHint: '{{name}} had it wrong · tap to continue',
             /** The button's accessibility label, said whole rather than split in two. */
             passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
-            // `QuickAssign`, the optional shortcut beside the hand-off.
-            quickAssign: 'Quick',
-            quickAssignSpoken: 'Quick assign: name who answered correctly',
-            quickAssignTitle: 'Who got it?',
-            quickAssignBody: 'Ask the table in a circle, then name who got it. Everyone you skip is marked wrong, the same as tapping Wrong down the line.',
-            quickAssignNobody: 'Nobody got it',
-            quickAssignConfirm: 'Assign',
-            quickAssignConfirmNamed: 'Assign to {{name}}',
-            quickAssignCancel: 'Back',
+            // `HotSeatBoard`'s band, card and `SeatPickRow`: the question is put to the table and ruled once.
+            tableRound: 'The table has gone round',
+            whoGotIt: 'Who got it right?',
+            answerLabel: 'Answer',
+            pickHint: 'Tap who got it right — everyone before them counts as wrong',
+            pickUndoHint: '{{name}} is already out — tap their badge to undo that',
+            pickLockHint: 'Tap {{name}} again to clear',
+            pickSpoken: '{{name}} got it right',
+            ruleOutSpoken: 'Mark {{name}} wrong',
+            ruleInSpoken: 'Let {{name}} back in',
+            nobodyGotIt: 'Nobody got it',
+            lockIn: 'Lock in {{name}}',
             // Round 2 only, replacing both lines above it.
             choiceAlwaysPasses: 'Either way, next up: {{name}}',
             // What Correct does, which is no longer only "score it".

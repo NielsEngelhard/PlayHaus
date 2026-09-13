@@ -6,6 +6,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     children: ReactNode,
+    // Hard against whatever sits above it, such as an `InGameHeader`: no reach up behind a header and no notch padding.
+    flush?: boolean,
     // The three stops the band is filled with, lightest first — `game.gradient`.
     gradient: readonly [string, string, string],
     // The side padding of the parent that the band reaches back out into: `Spacing.four` under `Chrome`, 0 on a chromeless page.
@@ -19,7 +21,7 @@ interface Props {
 }
 
 // A gradient band behind the top of a page, out to the window's edges.
-export default function AccentBand({ children, gradient, gutter = Spacing.four, overlap = 0, style, underHeader = true }: Props) {
+export default function AccentBand({ children, flush = false, gradient, gutter = Spacing.four, overlap = 0, style, underHeader = true }: Props) {
     const styles = useStyles();
     const insets = useSafeAreaInsets();
     const { width: windowWidth } = useWindowDimensions();
@@ -33,9 +35,9 @@ export default function AccentBand({ children, gradient, gutter = Spacing.four, 
         <View
             style={[
                 { marginHorizontal: -gutter },
-                underHeader
+                !flush && (underHeader
                     ? { marginTop: -HeaderHeight, paddingTop: HeaderHeight }
-                    : { paddingTop: insets.top }
+                    : { paddingTop: insets.top })
             ]}
         >
             {/* Drawn first so everything after it lands on top. */}
@@ -45,6 +47,8 @@ export default function AccentBand({ children, gradient, gutter = Spacing.four, 
                     styles.slab,
                     // Square once it runs off the sides of the window: a corner rounded against an edge it never touches reads as a mistake.
                     bleed > 0 && styles.slabWide,
+                    // Not up past its own top edge, where it would paint over the line the thing above it ends on.
+                    flush && styles.slabFlush,
                     { bottom: -overlap, left: -bleed, right: -bleed },
                     linearGradient(gradient)
                 ]}
@@ -66,6 +70,10 @@ const useStyles = createThemedStyles(theme => ({
         // Light cuts the band off with the same hard line every card wears.
         borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderBottomColor: theme.colors.border
+    },
+
+    slabFlush: {
+        top: 0
     },
 
     slabWide: {

@@ -120,7 +120,6 @@ export default function HotSeatControl({ busy, emit, error, onSettle, round, tur
             from={handedFrom}
             to={answering}
             busy={busy}
-            remaining={turn.remaining.slice(missed)}
             onContinue={() => moveTo('judging')}
         />
     );

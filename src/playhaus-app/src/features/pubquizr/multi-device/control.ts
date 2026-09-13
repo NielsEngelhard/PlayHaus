@@ -1,6 +1,6 @@
 // The phone's local stage is the only writer: a frame is a projection of it, emitted on transition and never read back.
 
-/** How far through one question's ritual the authoring phone is. Rounds 1, 2 and 7 use the first four, exactly as `HotSeatBoard` does. */
+/** How far through one question's ritual the authoring phone is. Rounds 1, 2 and 7 use the first four. */
 export type PQStage = 'covered' | 'revealed' | 'judging' | 'passed' | 'running' | 'settling';
 
 /** One tap on round 2's card, judged on the phone that made it. */

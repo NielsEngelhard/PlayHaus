@@ -7,7 +7,6 @@ import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
-import QuickAssign from "./QuickAssign";
 
 interface Props {
     /** Who just had it wrong. */
@@ -16,10 +15,6 @@ interface Props {
     to: Seat
     /** The ruling that got us here is still in the air. */
     busy: boolean
-    // Everybody the question can still be put to, `to` first.
-    remaining: Seat[]
-    // Offered the shortcut past the rest of the line — see `QuickAssign`.
-    onQuickAssign?: (seat: number | null) => void
     onContinue: () => void
 }
 
@@ -28,52 +23,37 @@ export default function PassOnPrompt({
     from,
     to,
     busy,
-    remaining,
-    onQuickAssign,
     onContinue
 }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Nothing to skip past means nothing to offer.
-    const shortcut = onQuickAssign !== undefined && remaining.length > 1;
-
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
-                <PopPressable
-                    onPress={onContinue}
-                    disabled={busy}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('pubquizr.play.passOnSpoken', {
-                        to: to.name,
-                        from: from.name
-                    })}
-                    accessibilityState={{ disabled: busy }}
-                    style={[styles.button, busy && styles.busy]}
-                >
-                    <View style={[styles.avatar, { backgroundColor: to.swatch.color }]}>
-                        <AppText style={[styles.initials, { color: to.swatch.foreground }]}>
-                            {to.initials}
-                        </AppText>
-                    </View>
-
-                    {/* Shrinks rather than pushing the icon off the end. */}
-                    <AppText style={styles.label} numberOfLines={1}>
-                        {t('pubquizr.play.passOn', { name: to.name })}
+            <PopPressable
+                onPress={onContinue}
+                disabled={busy}
+                accessibilityRole="button"
+                accessibilityLabel={t('pubquizr.play.passOnSpoken', {
+                    to: to.name,
+                    from: from.name
+                })}
+                accessibilityState={{ disabled: busy }}
+                style={[styles.button, busy && styles.busy]}
+            >
+                <View style={[styles.avatar, { backgroundColor: to.swatch.color }]}>
+                    <AppText style={[styles.initials, { color: to.swatch.foreground }]}>
+                        {to.initials}
                     </AppText>
+                </View>
 
-                    <Feather name="arrow-right" size={16} color={Brand.ink} />
-                </PopPressable>
+                {/* Shrinks rather than pushing the icon off the end. */}
+                <AppText style={styles.label} numberOfLines={1}>
+                    {t('pubquizr.play.passOn', { name: to.name })}
+                </AppText>
 
-                {shortcut && (
-                    <QuickAssign
-                        remaining={remaining}
-                        busy={busy}
-                        onAssign={onQuickAssign}
-                    />
-                )}
-            </View>
+                <Feather name="arrow-right" size={16} color={Brand.ink} />
+            </PopPressable>
 
             <TextHint text={t('pubquizr.play.passOnHint', { name: from.name })} />
         </View>
@@ -85,16 +65,8 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0
     },
 
-    row: {
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        gap: 11
-    },
-
-    // Lemon, the same accent `VerdictButtons`' own hand-off pill and the round 2 gate wear.
+    // Lemon, the same accent `VerdictButtons`' own hand-off pill wears.
     button: {
-        flex: 1,
-        minWidth: 0,
         height: 66,
         flexDirection: 'row',
         alignItems: 'center',

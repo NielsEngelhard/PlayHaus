@@ -306,13 +306,9 @@ export default function OneDeviceQuizPage() {
             {hotSeat !== null && (
                 <HotSeatBoard
                     turn={hotSeat}
-                    seats={seats}
                     round={round}
-                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    // Rounds 1 and 2 are the ones with a table to walk.
-                    quickAssign
                     onSettle={(missedSeats, correctSeat, from) => {
                         // Remembered before the ruling goes out, because the session that comes back may well have moved the phone on.
                         setHandedFrom(from);
@@ -414,13 +410,9 @@ export default function OneDeviceQuizPage() {
             {doubleDown !== null && (
                 <HotSeatBoard
                     turn={doubleDown}
-                    seats={seats}
                     round={round}
-                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    // The question walks the whole table on a wrong answer, so there is somebody to skip past.
-                    quickAssign
                     onSettle={(missedSeats, correctSeat, from) => {
                         setHandedFrom(from);
                         game.settleDoubleDown(doubleDown.dealt.id, missedSeats, correctSeat);
@@ -431,12 +423,9 @@ export default function OneDeviceQuizPage() {
             {finale !== null && (
                 <HotSeatBoard
                     turn={finale}
-                    seats={seats}
                     round={round}
-                    lead={copy.lead}
                     busy={game.ruling}
                     error={game.rulingError}
-                    // No quick assign here: the finale is between two people, so there is never anybody to skip past.
                     onSettle={(missedSeats, correctSeat, from) => {
                         setHandedFrom(from);
                         game.settleFinale(missedSeats, correctSeat);
