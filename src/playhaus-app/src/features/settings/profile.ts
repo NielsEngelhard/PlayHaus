@@ -22,20 +22,19 @@ export const SETTINGS: Setting[] = [
 
 const RANDOM_NAME_PARTS: Record<LanguageCode, { adjectives: string[], nouns: string[] }> = {
     nl: {
-        adjectives: ['Snelle', 'Stille', 'Gouden', 'Wilde', 'Slimme', 'Rode'],
-        nouns: ['Tijger', 'Vos', 'Uil', 'Haas', 'Mus', 'Das']
+        adjectives: ['Rode', 'Blauwe', 'Groene', 'Oranje', 'Roze', 'Gele', 'Grijze', 'Bruine', 'Zwarte'],
+        nouns: ['Banaan', 'Aardappel', 'Pannenkoek', 'Snotneus', 'Drol', 'Kaas', 'Boterham', 'Knakworst', 'Kipnugget', 'Schoen']
     },
     en: {
-        adjectives: ['Swift', 'Quiet', 'Golden', 'Wild', 'Clever', 'Red'],
-        nouns: ['Tiger', 'Fox', 'Owl', 'Hare', 'Wren', 'Badger']
+        adjectives: ['Red', 'Blue', 'Green', 'Orange', 'Pink', 'Yellow', 'Gray', 'Orange', 'Brown', 'Black'],
+        nouns: ['Banana', 'Potato', 'Pancake', 'Goofball', 'Dumpling', 'Cheese', 'Noodle', 'Meatball', 'Pickle', 'Shoe']
     }
 };
 
 export function randomName(language: LanguageCode): string {
     const parts = RANDOM_NAME_PARTS[language];
     const pick = <T,>(items: T[]) => items[Math.floor(Math.random() * items.length)];
-    const number = Math.floor(Math.random() * 90) + 10;
 
-    return `${pick(parts.adjectives)}${pick(parts.nouns)}${number}`
+    return `${pick(parts.adjectives)}${pick(parts.nouns)}`
         .slice(0, NAME_MAX_LENGTH);
 }

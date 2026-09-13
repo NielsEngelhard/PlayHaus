@@ -34,9 +34,8 @@ var wordLists = map[i18n.Locale]struct{ adjectives, nouns []string }{
 func generateUsername(locale i18n.Locale) string {
 	words := wordLists[locale]
 
-	return fmt.Sprintf("%s%s%d",
+	return fmt.Sprintf("%s%s",
 		words.adjectives[rand.IntN(len(words.adjectives))],
 		words.nouns[rand.IntN(len(words.nouns))],
-		rand.IntN(100),
 	)
 }
