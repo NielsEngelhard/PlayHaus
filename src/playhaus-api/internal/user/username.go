@@ -7,36 +7,23 @@ import (
 )
 
 var enAdjectives = []string{
-	"brave", "clever", "swift", "quiet", "lucky", "bold", "sly", "keen",
-	"calm", "mighty", "gentle", "wild", "proud", "cunning", "fresh",
-	"bright", "sturdy", "noble", "merry", "steady", "sharp", "nimble",
-	"handy", "sunny", "dreamy", "playful", "kind", "honest", "golden",
-	"silent",
+	"Red", "Blue", "Green", "Orange", "Pink", "Yellow", "Gray", "Orange", "Brown", "Black",
 }
 
 var enNouns = []string{
-	"otter", "falcon", "badger", "heron", "lynx", "marten", "raven",
-	"pike", "fox", "hare", "owl", "beaver", "hedgehog", "stag", "finch",
-	"starling", "buzzard", "seal", "polecat", "weasel", "frog", "newt",
-	"swan", "goose", "crow", "blackbird", "sparrow", "woodpecker",
-	"stoat", "boar",
+	"Banana", "Potato", "Pancake", "Goofball", "Dumpling",
+	"Cheese", "Noodle", "Meatball", "Pickle", "Shoe",
 }
 
 // --- Dutch -----------------------------------------------------------
 
 var nlAdjectives = []string{
-	"dapper", "slim", "snel", "stil", "vrolijk", "stoer", "wijs", "fel",
-	"kalm", "sterk", "zacht", "wild", "trots", "listig", "fris", "licht",
-	"stevig", "koen", "blij", "rustig", "scherp", "vlug", "handig",
-	"nobel", "zonnig", "dromerig", "speels", "gul", "eerlijk", "gouden",
+	"Rode", "Blauwe", "Groene", "Oranje", "Roze", "Gele", "Grijze", "Oranje", "Bruine", "Zwarte",
 }
 
 var nlNouns = []string{
-	"otter", "valk", "das", "reiger", "lynx", "marter", "raaf", "snoek",
-	"vos", "haas", "uil", "bever", "egel", "hert", "mees", "spreeuw",
-	"buizerd", "zeehond", "bunzing", "wezel", "kikker", "salamander",
-	"zwaan", "gans", "kraai", "merel", "vink", "specht", "hermelijn",
-	"steenmarter",
+	"Banaan", "Aardappel", "Pannenkoek", "Snotneus", "Drol",
+	"Kaas", "Boterham", "Knakworst", "Kipnugget", "Schoen",
 }
 
 var wordLists = map[i18n.Locale]struct{ adjectives, nouns []string }{

@@ -1035,7 +1035,7 @@ export const nl: Catalog = {
                     field: 'Jouw briefje',
                     placeholder: 'Iets wat alleen iemand met jouw opdracht zou schrijven',
                     counter: '{{typed}} / {{max}} · anoniem op het bord',
-                    submit: 'Ophangen',
+                    submit: 'Indienen',
                     hung: 'Hangt op het bord · anoniem',
                     pinned: 'Al opgehangen',
                     waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste briefje hangt.'
