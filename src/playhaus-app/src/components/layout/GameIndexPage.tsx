@@ -1,6 +1,7 @@
+import AccentBand from "@/components/layout/AccentBand";
 import AppText from "@/components/text/AppText";
 import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
-import { Brand, ContentWidth, HeaderHeight, linearGradient, Spacing, type AccentInk } from "@/constants/theme";
+import { Brand, Spacing, type AccentInk } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -56,9 +57,6 @@ const ASSUMED_ROW_HEIGHT = 160;
 // The window width the hero turns sideways at.
 const WIDE_BREAKPOINT = 900;
 
-// How wide the hero already is: the app's one column, plus the two gutters it has reached back out into — see `hero`.
-const HERO_WIDTH = ContentWidth + Spacing.four * 2;
-
 // Every game's front page: an accent slab carrying the game's mark, name, pitch and facts.
 export default function GameIndexPage({
     name,
@@ -77,11 +75,6 @@ export default function GameIndexPage({
     const { width: windowWidth } = useWindowDimensions();
 
     const on = ON_ACCENT[accentInk];
-
-    // How far past its own edges the band has to reach to make the window, and so also whether it is reaching at all.
-    const bleed = Platform.OS === 'web'
-        ? Math.max(0, Math.ceil((windowWidth - HERO_WIDTH) / 2))
-        : 0;
 
     /** Whether the hero turns sideways under it — see `WIDE_BREAKPOINT`. */
     const wide = Platform.OS === 'web' && windowWidth >= WIDE_BREAKPOINT;
@@ -169,19 +162,7 @@ export default function GameIndexPage({
 
     return (
         <View style={styles.container}>
-            <View style={styles.hero}>
-                {/* Drawn first so everything after it lands on top. */}
-                <View
-                    pointerEvents="none"
-                    style={[
-                        styles.slab,
-                        // Square once it runs off the sides of the window: a corner rounded against an edge it never touches reads as a mistake.
-                        bleed > 0 && styles.slabWide,
-                        { bottom: -overlap, left: -bleed, right: -bleed },
-                        linearGradient(gradient)
-                    ]}
-                />
-
+            <AccentBand gradient={gradient} overlap={overlap} style={styles.hero}>
                 {topRow}
 
                 {wide ? (
@@ -203,7 +184,7 @@ export default function GameIndexPage({
                         {pitch}
                     </>
                 )}
-            </View>
+            </AccentBand>
 
             {/* A wrapper only to hold `onLayout`. */}
             <View onLayout={measureRow}>{cards}</View>
@@ -234,36 +215,13 @@ function Fact({
     );
 }
 
-const useStyles = createThemedStyles(theme => ({
+const useStyles = createThemedStyles(() => ({
     container: {
         width: '100%'
     },
 
-    // The band, laid out rather than positioned.
     hero: {
-        marginTop: -HeaderHeight,
-        marginHorizontal: -Spacing.four,
-        paddingTop: HeaderHeight + Spacing.two,
-        paddingHorizontal: Spacing.four,
-        paddingBottom: Spacing.four,
-    },
-
-    // `bottom` is set inline, from the measured row — see `OVERLAP_FRACTION`.
-    slab: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: -Spacing.six,
-        borderBottomLeftRadius: 32,
-        borderBottomRightRadius: 32,
-        // Light cuts the band off with the same hard line every card wears.
-        borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
-        borderBottomColor: theme.colors.border
-    },
-
-    slabWide: {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0
+        paddingTop: Spacing.two
     },
 
     // The two columns the hero splits into on a desktop window.

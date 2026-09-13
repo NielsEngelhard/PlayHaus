@@ -1,3 +1,4 @@
+import AccentBand from "@/components/layout/AccentBand";
 import BackChip from "@/components/layout/BackChip";
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
@@ -8,12 +9,11 @@ import { accentInkColor, Spacing, withAlpha } from "@/constants/theme";
 import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
 import { Children, useEffect, useRef, type ReactNode } from "react";
-import { ScrollView, useWindowDimensions, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -48,11 +48,8 @@ interface Props {
     action: ReactNode
 }
 
-// The band's own side padding — the distance its contents keep from the column's edges once the fill has reached out past them (see `bleed`).
+// The distance the band's contents and the column below it keep from the column's edges.
 const HEADER_PADDING = 18;
-
-// How far the sheet climbs back up over the band.
-const BAND_TUCK = 18;
 
 // The page every game's setup screen *is*.
 export default function SettingsPageBase({ game, title, back, onBack, eyebrow, progress, intro, preview, previewCaption, children, enterKey, enterFrom, facts, error, action }: Props) {
@@ -62,12 +59,7 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
     // Claimed here so a page built on this cannot forget.
     useChromeless();
 
-    // The app's header used to hold the notch open. Nothing does now but this band.
     const insets = useSafeAreaInsets();
-
-    // How far past the column's edges the band has to reach to make the window.
-    const { width: windowWidth } = useWindowDimensions();
-    const reach = getReach(windowWidth)
 
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
@@ -103,17 +95,7 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
     return (
         <AccentProvider accent={accent}>
             <View style={styles.page}>
-                <View
-                    style={[
-                        styles.header,
-                        {
-                            backgroundColor: accent.color,
-                            paddingTop: insets.top + 14,
-                            marginHorizontal: -reach,
-                            paddingHorizontal: reach + HEADER_PADDING
-                        }
-                    ]}
-                >
+                <AccentBand gradient={game.gradient} gutter={0} underHeader={false} style={styles.header}>
                     {/* The chrome the app's header would have carried, on the page's own one. */}
                     <View style={styles.chrome}>
                         <BackChip href={back} onPress={onBack} variant='band' />
@@ -172,12 +154,9 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
                             </AppText>
                         </View>
                     )}
-                </View>
+                </AccentBand>
 
-                {/* The sheet: the page's own canvas pulled up over the band, corners rounded into the accent. */}
                 <View style={styles.sheet}>
-                    <View style={styles.grabber} />
-
                     {/* The only thing on the page that moves. */}
                     <ScrollView
                         ref={scroller}
@@ -226,9 +205,9 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         width: '100%'
     },
-    // No bottom border: the sheet's own top edge is what draws the line now, and the extra bottom padding is what the sheet climbs back over.
     header: {
-        paddingBottom: BAND_TUCK + 12,
+        paddingTop: 14,
+        paddingHorizontal: HEADER_PADDING,
         gap: Spacing.three
     },
     chrome: {
@@ -294,22 +273,7 @@ const useStyles = createThemedStyles(theme => ({
         minWidth: 0
     },
     sheet: {
-        flex: 1,
-        marginTop: -BAND_TUCK,
-        borderTopLeftRadius: 26,
-        borderTopRightRadius: 26,
-        overflow: 'hidden',
-        ...theme.pageBackground
-    },
-    grabber: {
-        alignSelf: 'center',
-        marginTop: 10,
-        width: 44,
-        height: 5,
-        borderRadius: 999,
-        backgroundColor: theme.scheme === 'dark'
-            ? withAlpha(theme.colors.text, 0.15)
-            : withAlpha(theme.colors.border, 0.15)
+        flex: 1
     },
     body: {
         flex: 1
