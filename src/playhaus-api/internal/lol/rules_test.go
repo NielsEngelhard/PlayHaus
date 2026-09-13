@@ -14,11 +14,11 @@ func TestRoundsForScalesWithTheTable(t *testing.T) {
 	for _, tc := range []struct {
 		players, want int
 	}{
-		{1, 3},  // solo: a sitting, not a session
-		{2, 4},  // two at two each
-		{3, 6},  // three at two each -- still the small-table rate
-		{4, 12}, // four crosses over to three each
-		{6, 18}, // a full room
+		{1, 3}, // solo: a sitting, not a session
+		{2, 4}, // two players get a fourth round to make up for the smaller table
+		{3, 3}, // beyond two, rounds match the number of players
+		{4, 4},
+		{6, 6}, // a full room
 	} {
 		if got := RoundsFor(tc.players); got != tc.want {
 			t.Errorf("RoundsFor(%d) = %d, want %d", tc.players, got, tc.want)

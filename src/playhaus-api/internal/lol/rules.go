@@ -53,20 +53,18 @@ const MaxGuesses = 6
 const multiplayerCommonWordsOnly = true
 
 const (
-	SoloRounds                = 3
-	SmallTableUpTo            = 3
-	RoundsPerPlayerSmallTable = 2
-	RoundsPerPlayer           = 3
+	SoloRounds      = 3
+	TwoPlayerRounds = 4
 )
 
 func RoundsFor(players int) int {
 	switch {
 	case players <= 1:
 		return SoloRounds
-	case players <= SmallTableUpTo:
-		return players * RoundsPerPlayerSmallTable
+	case players == 2:
+		return TwoPlayerRounds
 	default:
-		return players * RoundsPerPlayer
+		return players
 	}
 }
 
