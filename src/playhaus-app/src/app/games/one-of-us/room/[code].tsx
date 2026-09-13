@@ -125,22 +125,24 @@ function RoomGame({ leaving, onClose, onFinish, onLeave, onStay, table }: RoomGa
                 visible={leaving}
                 title={t('oneOfUs.multiDevice.lobby.confirmLeave.title')}
                 message={t('oneOfUs.multiDevice.lobby.confirmLeave.message')}
+                tone='danger'
                 onRequestClose={onStay}
-            >
-                <TextButton
-                    text={t('oneOfUs.multiDevice.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    onPress={onLeave}
-                />
+                actions={<>
+                    <TextButton
+                        text={t('oneOfUs.multiDevice.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        onPress={onLeave}
+                    />
 
-                <TextButton
-                    text={t('oneOfUs.multiDevice.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    onPress={onStay}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('oneOfUs.multiDevice.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        onPress={onStay}
+                    />
+                </>}
+            />
         </View>
     )
 }

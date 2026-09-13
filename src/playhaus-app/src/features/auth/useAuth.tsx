@@ -13,8 +13,8 @@ interface Auth {
     status: AuthStatus
     login: (email: string, password: string) => Promise<void>
     signup: (name: string, email: string, password: string) => Promise<void>
-    // The language is the only thing a guest chooses, and it is asked for before the account exists rather than corrected in the profile afterwards.
-    continueAsGuest: (locale: LanguageCode) => Promise<void>
+    // The language and the username are the only things a guest chooses, and both are asked for before the account exists rather than corrected in the profile afterwards.
+    continueAsGuest: (locale: LanguageCode, username: string) => Promise<void>
     // Turns the guest you are already signed in as into a real account, keeping the name, the colour and the games.
     upgradeGuest: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
@@ -101,9 +101,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await adopt(await authApi.signup(name, email, password));
     }, [adopt]);
 
-    /** A guest is named by the backend, from the language passed in here. */
-    const continueAsGuest = useCallback(async (locale: LanguageCode) => {
-        await adopt(await authApi.createGuest(locale));
+    /** A guest picks both the language and the username before the account exists. */
+    const continueAsGuest = useCallback(async (locale: LanguageCode, username: string) => {
+        await adopt(await authApi.createGuest(locale, username));
     }, [adopt]);
 
     // Only the user is touched, never the status.

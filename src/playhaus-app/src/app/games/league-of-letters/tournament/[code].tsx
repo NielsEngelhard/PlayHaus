@@ -137,22 +137,24 @@ export default function LeagueOfLettersTournamentRoomPage() {
                 visible={leaving}
                 title={t('lol.tournament.confirmLeave.title')}
                 message={t('lol.tournament.confirmLeave.message')}
+                tone='danger'
                 onRequestClose={() => setLeaving(false)}
-            >
-                <TextButton
-                    text={t('lol.tournament.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
-                />
+                actions={<>
+                    <TextButton
+                        text={t('lol.tournament.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
+                    />
 
-                <TextButton
-                    text={t('lol.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    onPress={() => setLeaving(false)}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('lol.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        onPress={() => setLeaving(false)}
+                    />
+                </>}
+            />
         </View>
     )
 }

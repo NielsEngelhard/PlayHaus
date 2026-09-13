@@ -110,27 +110,29 @@ export default function LobbyView({ onStarted, state }: Props) {
                     ? t('oneOfUs.multiDevice.lobby.confirmClose.message')
                     : t('oneOfUs.multiDevice.lobby.confirmLeave.message')}
                 onRequestClose={() => setLeaving(false)}
-            >
-                <TextButton
-                    text={closing
-                        ? t('common.busy')
-                        : isHost
-                            ? t('oneOfUs.multiDevice.lobby.confirmClose.action')
-                            : t('oneOfUs.multiDevice.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => void leave()}
-                />
+                tone='danger'
+                actions={<>
+                    <TextButton
+                        text={closing
+                            ? t('common.busy')
+                            : isHost
+                                ? t('oneOfUs.multiDevice.lobby.confirmClose.action')
+                                : t('oneOfUs.multiDevice.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => void leave()}
+                    />
 
-                <TextButton
-                    text={t('oneOfUs.multiDevice.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => setLeaving(false)}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('oneOfUs.multiDevice.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => setLeaving(false)}
+                    />
+                </>}
+            />
         </View>
     )
 }

@@ -4,7 +4,7 @@ import AppText from "@/components/text/AppText";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { lobbyErrorMessage } from "@/features/league-of-letters/game-errors";
 import { settleGiveBacks } from "@/features/league-of-letters/useLobby";
@@ -121,34 +121,36 @@ export default function CurrentRoomGuard({ children }: Props) {
                 message={playing
                     ? t('lol.lobby.running.gameMessage', { code: running.code })
                     : t('lol.lobby.running.lobbyMessage', { code: running.code })}
+                tone='danger'
+                actions={<>
+                    <TextButton
+                        text={playing ? t('lol.lobby.running.resumeGame') : t('lol.lobby.running.resumeLobby')}
+                        variant='primary'
+                        fullWidth
+                        disabled={abandoning}
+                        onPress={() => resume(running)}
+                    />
+
+                    <TextButton
+                        text={abandoning ? t('common.busy') : playing ? t('lol.lobby.running.stopGame') : t('lol.lobby.running.closeLobby')}
+                        variant='muted'
+                        fullWidth
+                        disabled={abandoning}
+                        onPress={() => void abandon(running)}
+                    />
+
+                    <TextButton
+                        text={t('common.backToGames')}
+                        variant='muted'
+                        fullWidth
+                        disabled={abandoning}
+                        onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
+                    />
+                </>}
             >
                 {abandonError && (
                     <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                 )}
-
-                <TextButton
-                    text={playing ? t('lol.lobby.running.resumeGame') : t('lol.lobby.running.resumeLobby')}
-                    variant='primary'
-                    fullWidth
-                    disabled={abandoning}
-                    onPress={() => resume(running)}
-                />
-
-                <TextButton
-                    text={abandoning ? t('common.busy') : playing ? t('lol.lobby.running.stopGame') : t('lol.lobby.running.closeLobby')}
-                    variant='muted'
-                    fullWidth
-                    disabled={abandoning}
-                    onPress={() => void abandon(running)}
-                />
-
-                <TextButton
-                    text={t('common.backToGames')}
-                    variant='muted'
-                    fullWidth
-                    disabled={abandoning}
-                    onPress={() => router.replace(ROUTES.leagueOfLettersIndex)}
-                />
             </PopupModal>
         </View>
     )
@@ -161,7 +163,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     abandonError: {
         // Inside the panel, where an `InlineNotification` would be a card within a card.
-        marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive

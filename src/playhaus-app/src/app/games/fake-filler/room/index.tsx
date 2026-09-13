@@ -4,7 +4,7 @@ import AppText from "@/components/text/AppText";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/fake-filler/components/LobbyView";
 import { ffLobbyErrorMessage } from "@/features/fake-filler/fake-filler-errors";
@@ -112,40 +112,42 @@ export default function FakeFillerCreateRoomPage() {
                     message={playing
                         ? t('fakeFiller.lobby.running.gameMessage', { code: running.code })
                         : t('fakeFiller.lobby.running.lobbyMessage', { code: running.code })}
+                    tone='danger'
+                    actions={<>
+                        <TextButton
+                            text={playing
+                                ? t('fakeFiller.lobby.running.resumeGame')
+                                : t('fakeFiller.lobby.running.resumeLobby')}
+                            variant='primary'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => resume(running)}
+                        />
+
+                        <TextButton
+                            text={abandoning
+                                ? t('common.busy')
+                                : playing
+                                    ? t('fakeFiller.lobby.running.stopGame')
+                                    : t('fakeFiller.lobby.running.closeLobby')}
+                            variant='muted'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => void abandon(running)}
+                        />
+
+                        <TextButton
+                            text={t('common.backToGames')}
+                            variant='muted'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => router.replace(ROUTES.fakeFillerIndex)}
+                        />
+                    </>}
                 >
                     {abandonError && (
                         <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                     )}
-
-                    <TextButton
-                        text={playing
-                            ? t('fakeFiller.lobby.running.resumeGame')
-                            : t('fakeFiller.lobby.running.resumeLobby')}
-                        variant='primary'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => resume(running)}
-                    />
-
-                    <TextButton
-                        text={abandoning
-                            ? t('common.busy')
-                            : playing
-                                ? t('fakeFiller.lobby.running.stopGame')
-                                : t('fakeFiller.lobby.running.closeLobby')}
-                        variant='muted'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => void abandon(running)}
-                    />
-
-                    <TextButton
-                        text={t('common.backToGames')}
-                        variant='muted'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => router.replace(ROUTES.fakeFillerIndex)}
-                    />
                 </PopupModal>
             </View>
         )
@@ -179,7 +181,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     abandonError: {
         // Inside the panel, where an `InlineNotification` would be a card within a card.
-        marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive

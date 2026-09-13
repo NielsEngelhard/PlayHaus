@@ -31,7 +31,6 @@ var wordLists = map[i18n.Locale]struct{ adjectives, nouns []string }{
 	i18n.NL: {nlAdjectives, nlNouns},
 }
 
-// generateUsername returns a random display name like "swiftotter42".
 func generateUsername(locale i18n.Locale) string {
 	words := wordLists[locale]
 

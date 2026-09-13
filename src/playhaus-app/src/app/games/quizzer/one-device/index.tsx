@@ -326,27 +326,29 @@ export default function OneDeviceQuizerSetup() {
                 visible={running !== null}
                 title={t('pubquizr.oneDevice.running.title')}
                 message={t('pubquizr.oneDevice.running.message')}
+                tone='danger'
+                actions={<>
+                    <TextButton
+                        text={t('pubquizr.oneDevice.running.resume')}
+                        variant='primary'
+                        fullWidth
+                        disabled={abandoning}
+                        // `running` cannot be null while the modal is up, but the close animation outlives it.
+                        onPress={() => running && resume(running)}
+                    />
+
+                    <TextButton
+                        text={abandoning ? t('common.busy') : t('pubquizr.oneDevice.running.discard')}
+                        variant='muted'
+                        fullWidth
+                        disabled={abandoning}
+                        onPress={() => running && void abandon(running)}
+                    />
+                </>}
             >
                 {abandonError !== null && (
                     <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                 )}
-
-                <TextButton
-                    text={t('pubquizr.oneDevice.running.resume')}
-                    variant='primary'
-                    fullWidth
-                    disabled={abandoning}
-                    // `running` cannot be null while the modal is up, but the close animation outlives it.
-                    onPress={() => running && resume(running)}
-                />
-
-                <TextButton
-                    text={abandoning ? t('common.busy') : t('pubquizr.oneDevice.running.discard')}
-                    variant='muted'
-                    fullWidth
-                    disabled={abandoning}
-                    onPress={() => running && void abandon(running)}
-                />
             </PopupModal>
         </View>
     )
@@ -387,7 +389,6 @@ const useStyles = createThemedStyles(theme => ({
 
     abandonError: {
         // Inside the modal, where the form's own `InlineNotification` would be a card within a card.
-        marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive

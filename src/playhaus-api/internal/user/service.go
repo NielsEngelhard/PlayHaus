@@ -42,6 +42,8 @@ type CreateUserInput struct {
 
 type CreateGuestUserInput struct {
 	Locale i18n.Locale
+	// Blank means the caller wants one generated from the locale's word lists.
+	Name string
 }
 
 func NormalizeEmail(email string) string {
@@ -130,13 +132,16 @@ func (s *Service) UpgradeGuestAccount(ctx context.Context, userID string, rawEma
 
 func (s *Service) CreateGuestUser(ctx context.Context, in *CreateGuestUserInput) (*User, error) {
 	id := uuid.NewString()
-
-	name := generateUsername(in.Locale)
 	email := id + "@guest.turingsolutions.com"
 
 	locale := in.Locale
 	if !locale.Valid() {
 		locale = i18n.Default
+	}
+
+	name := strings.TrimSpace(in.Name)
+	if name == "" {
+		name = generateUsername(locale)
 	}
 
 	u := &User{

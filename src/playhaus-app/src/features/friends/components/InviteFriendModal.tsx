@@ -35,10 +35,10 @@ export default function InviteFriendModal({ visible, onClose, code, seated }: Pr
             title={t('invite.title')}
             message={t('invite.message')}
             onRequestClose={onClose}
+            tone='invite'
+            actions={<TextButton text={t('common.close')} onPress={onClose} fullWidth />}
         >
             <InviteList code={code} seated={seated} />
-
-            <TextButton text={t('common.close')} onPress={onClose} fullWidth />
         </PopupModal>
     )
 }
@@ -125,14 +125,12 @@ function inviteLabelKey(here: boolean, state: Sending | undefined): TranslationK
 const useStyles = createThemedStyles(theme => ({
     list: {
         width: '100%',
-        maxHeight: MAX_LIST_HEIGHT,
-        marginBottom: Spacing.three
+        maxHeight: MAX_LIST_HEIGHT
     },
     rows: {
         gap: 8
     },
     note: {
-        marginBottom: Spacing.three,
         fontSize: 13,
         lineHeight: 13 * 1.45,
         textAlign: 'center',
@@ -140,8 +138,7 @@ const useStyles = createThemedStyles(theme => ({
     },
     failed: {
         alignItems: 'center',
-        gap: Spacing.two,
-        marginBottom: Spacing.three
+        gap: Spacing.two
     },
     state: {
         flexShrink: 0,

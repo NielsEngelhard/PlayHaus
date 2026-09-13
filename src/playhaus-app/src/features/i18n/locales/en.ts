@@ -178,8 +178,17 @@ export const en = {
         guestLanguage: {
             title: 'Welcome to Playhaus',
             description: 'Pick the language you want to play in.',
-            note: 'Picking a language will sign you up as a guest user. You can later upgrade your account for free to a regular user.',
+            note: 'Next you pick a username, and that signs you up as a guest. You can later upgrade your account for free to a regular user.',
             login: 'Already have an account? Log in'
+        },
+        guestUsername: {
+            title: 'Pick a username',
+            description: 'This is the name other players see in a lobby. You can change it later in your profile.',
+            placeholder: 'Your username',
+            random: 'Random username',
+            note: 'Min {{min}}, max {{max}} characters.',
+            submit: 'Continue',
+            submitting: 'Signing in…'
         },
         errors: {
             invalidCredentials: 'That email and password do not match an account.',

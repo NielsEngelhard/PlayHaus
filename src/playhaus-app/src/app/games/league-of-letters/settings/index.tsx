@@ -11,7 +11,7 @@ import TextButton from "@/components/ui/TextButton";
 import ToggleRow from "@/components/ui/ToggleRow";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
@@ -217,27 +217,29 @@ export default function LeagueOfLettersSettingsPage() {
                 visible={running !== null}
                 title={t('lol.settings.running.title')}
                 message={t('lol.settings.running.message')}
+                tone='danger'
+                actions={<>
+                    <TextButton
+                        text={t('lol.settings.running.resume')}
+                        variant='primary'
+                        fullWidth
+                        disabled={abandoning}
+                        // `running` cannot be null while the modal is up, but the close animation outlives it.
+                        onPress={() => running && resume(running)}
+                    />
+
+                    <TextButton
+                        text={abandoning ? t('common.busy') : t('lol.settings.running.discard')}
+                        variant='muted'
+                        fullWidth
+                        disabled={abandoning}
+                        onPress={() => running && void abandon(running)}
+                    />
+                </>}
             >
                 {abandonError && (
                     <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                 )}
-
-                <TextButton
-                    text={t('lol.settings.running.resume')}
-                    variant='primary'
-                    fullWidth
-                    disabled={abandoning}
-                    // `running` cannot be null while the modal is up, but the close animation outlives it.
-                    onPress={() => running && resume(running)}
-                />
-
-                <TextButton
-                    text={abandoning ? t('common.busy') : t('lol.settings.running.discard')}
-                    variant='muted'
-                    fullWidth
-                    disabled={abandoning}
-                    onPress={() => running && void abandon(running)}
-                />
             </PopupModal>
         </View>
     )
@@ -251,7 +253,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     abandonError: {
         // Inside the modal, where the form's own `InlineNotification` would be a card within a card.
-        marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive

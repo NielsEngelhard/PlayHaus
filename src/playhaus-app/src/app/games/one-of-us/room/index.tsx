@@ -4,7 +4,7 @@ import AppText from '@/components/text/AppText';
 import PopupModal from '@/components/ui/PopupModal';
 import TextButton from '@/components/ui/TextButton';
 import { ROUTES } from '@/constants/routes';
-import { FontSizes, Spacing } from '@/constants/theme';
+import { FontSizes } from '@/constants/theme';
 import { useAuth } from '@/features/auth/useAuth';
 import type { TranslationKey } from '@/features/i18n/keys';
 import { useT } from '@/features/i18n/LanguageContext';
@@ -111,40 +111,42 @@ export default function OneOfUsCreateRoomPage() {
                     message={playing
                         ? t('oneOfUs.multiDevice.lobby.running.gameMessage', { code: running.code })
                         : t('oneOfUs.multiDevice.lobby.running.lobbyMessage', { code: running.code })}
+                    tone='danger'
+                    actions={<>
+                        <TextButton
+                            text={playing
+                                ? t('oneOfUs.multiDevice.lobby.running.resumeGame')
+                                : t('oneOfUs.multiDevice.lobby.running.resumeLobby')}
+                            variant='primary'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => resume(running)}
+                        />
+
+                        <TextButton
+                            text={abandoning
+                                ? t('common.busy')
+                                : playing
+                                    ? t('oneOfUs.multiDevice.lobby.running.stopGame')
+                                    : t('oneOfUs.multiDevice.lobby.running.closeLobby')}
+                            variant='muted'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => void abandon(running)}
+                        />
+
+                        <TextButton
+                            text={t('common.backToGames')}
+                            variant='muted'
+                            fullWidth
+                            disabled={abandoning}
+                            onPress={() => router.replace(ROUTES.oneOfUsIndex)}
+                        />
+                    </>}
                 >
                     {abandonError && (
                         <AppText style={styles.abandonError}>{t(abandonError)}</AppText>
                     )}
-
-                    <TextButton
-                        text={playing
-                            ? t('oneOfUs.multiDevice.lobby.running.resumeGame')
-                            : t('oneOfUs.multiDevice.lobby.running.resumeLobby')}
-                        variant='primary'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => resume(running)}
-                    />
-
-                    <TextButton
-                        text={abandoning
-                            ? t('common.busy')
-                            : playing
-                                ? t('oneOfUs.multiDevice.lobby.running.stopGame')
-                                : t('oneOfUs.multiDevice.lobby.running.closeLobby')}
-                        variant='muted'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => void abandon(running)}
-                    />
-
-                    <TextButton
-                        text={t('common.backToGames')}
-                        variant='muted'
-                        fullWidth
-                        disabled={abandoning}
-                        onPress={() => router.replace(ROUTES.oneOfUsIndex)}
-                    />
                 </PopupModal>
             </View>
         )
@@ -178,7 +180,6 @@ const useStyles = createThemedStyles(theme => ({
     },
     abandonError: {
         // Inside the panel, where an `InlineNotification` would be a card within a card.
-        marginBottom: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.destructive

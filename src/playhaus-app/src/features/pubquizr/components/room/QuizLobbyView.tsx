@@ -107,28 +107,30 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
                 message={isHost
                     ? t('pubquizr.lobby.confirmClose.message')
                     : t('pubquizr.lobby.confirmLeave.message')}
+                tone='danger'
                 onRequestClose={() => setLeaving(false)}
-            >
-                <TextButton
-                    text={closing
-                        ? t('common.busy')
-                        : isHost
-                            ? t('pubquizr.lobby.confirmClose.action')
-                            : t('pubquizr.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => void leave()}
-                />
+                actions={<>
+                    <TextButton
+                        text={closing
+                            ? t('common.busy')
+                            : isHost
+                                ? t('pubquizr.lobby.confirmClose.action')
+                                : t('pubquizr.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => void leave()}
+                    />
 
-                <TextButton
-                    text={t('pubquizr.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => setLeaving(false)}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('pubquizr.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => setLeaving(false)}
+                    />
+                </>}
+            />
         </View>
     )
 }

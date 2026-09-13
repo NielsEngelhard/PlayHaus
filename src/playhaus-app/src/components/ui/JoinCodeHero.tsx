@@ -4,7 +4,7 @@ import PopupModal from "@/components/ui/PopupModal";
 import QrCode from "@/components/ui/QrCode";
 import TextButton from "@/components/ui/TextButton";
 import { accentOf, type Game } from "@/constants/games";
-import { Brand, FontSizes, Spacing, accentInkColor, withAlpha } from "@/constants/theme";
+import { Brand, FontSizes, accentInkColor, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { joinLink } from "@/features/join/join-link";
@@ -131,6 +131,15 @@ export default function JoinCodeHero({ game, code }: Props) {
                 title={t('lobby.qrTitle')}
                 message={t('lobby.qrCopy')}
                 onRequestClose={() => setEnlarged(false)}
+                tone='info'
+                actions={
+                    <TextButton
+                        text={t('common.close')}
+                        variant='muted'
+                        fullWidth
+                        onPress={() => setEnlarged(false)}
+                    />
+                }
             >
                 <View style={styles.qrStage}>
                     <QrCode value={joinUrl} size={QR_LARGE} />
@@ -138,13 +147,6 @@ export default function JoinCodeHero({ game, code }: Props) {
 
                 {/* The code again, under the grid. */}
                 <AppText style={styles.qrCode}>{code}</AppText>
-
-                <TextButton
-                    text={t('common.close')}
-                    variant='muted'
-                    fullWidth
-                    onPress={() => setEnlarged(false)}
-                />
             </PopupModal>
         </View>
     )
@@ -219,11 +221,9 @@ const useStyles = createThemedStyles(theme => ({
         boxShadow: '0 8px 18px -8px rgba(15, 13, 18, 0.8)'
     },
     qrStage: {
-        alignItems: 'center',
-        marginBottom: Spacing.three
+        alignItems: 'center'
     },
     qrCode: {
-        marginBottom: Spacing.three,
         textAlign: 'center',
         fontSize: FontSizes.xl,
         fontWeight: 900,

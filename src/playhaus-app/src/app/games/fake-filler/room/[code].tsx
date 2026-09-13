@@ -125,22 +125,24 @@ function RoomGame({ table, onClose, onFinish, leaving, onStay, onLeave }: RoomGa
                 visible={leaving}
                 title={t('fakeFiller.lobby.confirmLeave.title')}
                 message={t('fakeFiller.lobby.confirmLeave.message')}
+                tone='danger'
                 onRequestClose={onStay}
-            >
-                <TextButton
-                    text={t('fakeFiller.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    onPress={onLeave}
-                />
+                actions={<>
+                    <TextButton
+                        text={t('fakeFiller.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        onPress={onLeave}
+                    />
 
-                <TextButton
-                    text={t('fakeFiller.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    onPress={onStay}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('fakeFiller.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        onPress={onStay}
+                    />
+                </>}
+            />
         </View>
     )
 }

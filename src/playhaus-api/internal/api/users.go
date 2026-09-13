@@ -19,12 +19,18 @@ type createUserRequest struct {
 	Locale   string `json:"locale"`
 }
 
-// A guest supplies nothing but an optional locale.
+// A guest supplies nothing but an optional locale and an optional username; a blank username is filled in with a generated one.
 type createGuestUserRequest struct {
-	Locale *string `json:"locale"`
+	Locale   *string `json:"locale"`
+	Username *string `json:"username"`
 }
 
-func (createGuestUserRequest) Validate() map[string]string { return nil }
+func (r createGuestUserRequest) Validate() map[string]string {
+	if r.Username == nil || strings.TrimSpace(*r.Username) == "" {
+		return nil
+	}
+	return validateUsername(*r.Username)
+}
 
 type upgradeGuestUserRequest struct {
 	Email    string `json:"email"`
@@ -55,10 +61,14 @@ type updateUserUsernameRequest struct {
 }
 
 func (r updateUserUsernameRequest) Validate() map[string]string {
+	return validateUsername(r.Username)
+}
+
+// validateUsername measures the trimmed name, since that is what gets stored.
+func validateUsername(raw string) map[string]string {
 	problems := map[string]string{}
 
-	// Measured on the trimmed name, since that is what gets stored.
-	name := strings.TrimSpace(r.Username)
+	name := strings.TrimSpace(raw)
 
 	switch {
 	case len([]rune(name)) < NameMinLength:
@@ -321,9 +331,13 @@ func (s *Server) handleUpgradeGuestUser(w http.ResponseWriter, r *http.Request) 
 
 func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 	// Nothing is required of a guest, so an empty body is allowed.
-	req, _, err := decode[createGuestUserRequest](r)
+	req, problems, err := decode[createGuestUserRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
 		return
 	}
 
@@ -331,6 +345,7 @@ func (s *Server) handleCreateGuestUser(w http.ResponseWriter, r *http.Request) {
 
 	u, err := s.users.CreateGuestUser(r.Context(), &user.CreateGuestUserInput{
 		Locale: locale,
+		Name:   strings.TrimSpace(Deref(req.Username, "")),
 	})
 	if err != nil {
 		s.log.Error("create guest user", "err", err)

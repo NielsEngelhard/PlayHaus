@@ -392,23 +392,25 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                     : t('pubquizr.play.closest.missingMany', {
                         names: blank.map(seat => seat.name).join(', ')
                     })}
+                tone="info"
                 onRequestClose={() => setConfirming(false)}
-            >
-                <TextButton
-                    text={t('pubquizr.play.closest.missingBack')}
-                    variant="primary"
-                    fullWidth
-                    onPress={() => setConfirming(false)}
-                />
+                actions={<>
+                    <TextButton
+                        text={t('pubquizr.play.closest.missingBack')}
+                        variant="primary"
+                        fullWidth
+                        onPress={() => setConfirming(false)}
+                    />
 
-                <TextButton
-                    text={t('pubquizr.play.closest.missingAnyway')}
-                    variant="muted"
-                    fullWidth
-                    disabled={busy}
-                    onPress={send}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('pubquizr.play.closest.missingAnyway')}
+                        variant="muted"
+                        fullWidth
+                        disabled={busy}
+                        onPress={send}
+                    />
+                </>}
+            />
         </View>
     )
 }

@@ -170,8 +170,17 @@ export const nl: Catalog = {
         guestLanguage: {
             title: 'Welkom bij Playhaus',
             description: 'Kies de taal waarin je wilt spelen.',
-            note: 'Als je een taal kiest wordt je aangemeld met een gastaccount. Je kan dit account later gratis upgraden naar een normaal account.',
+            note: 'Hierna kies je een gebruikersnaam, en dat meldt je aan met een gastaccount. Je kan dit account later gratis upgraden naar een normaal account.',
             login: 'Heb je al een account? Log in'
+        },
+        guestUsername: {
+            title: 'Kies een gebruikersnaam',
+            description: 'Dit is de naam die medespelers in een lobby zien. Je kunt hem later aanpassen in je profiel.',
+            placeholder: 'Jouw gebruikersnaam',
+            random: 'Willekeurige gebruikersnaam',
+            note: 'Min {{min}}, max {{max}} tekens.',
+            submit: 'Doorgaan',
+            submitting: 'Bezig met aanmelden…'
         },
         errors: {
             invalidCredentials: 'Dit e-mailadres en wachtwoord horen niet bij een account.',

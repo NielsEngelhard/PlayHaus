@@ -112,27 +112,29 @@ export default function LobbyView({ state, onStarted }: Props) {
                     ? t('fakeFiller.lobby.confirmClose.message')
                     : t('fakeFiller.lobby.confirmLeave.message')}
                 onRequestClose={() => setLeaving(false)}
-            >
-                <TextButton
-                    text={closing
-                        ? t('common.busy')
-                        : isHost
-                            ? t('fakeFiller.lobby.confirmClose.action')
-                            : t('fakeFiller.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => void leave()}
-                />
+                tone='danger'
+                actions={<>
+                    <TextButton
+                        text={closing
+                            ? t('common.busy')
+                            : isHost
+                                ? t('fakeFiller.lobby.confirmClose.action')
+                                : t('fakeFiller.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => void leave()}
+                    />
 
-                <TextButton
-                    text={t('fakeFiller.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => setLeaving(false)}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('fakeFiller.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => setLeaving(false)}
+                    />
+                </>}
+            />
         </View>
     )
 }

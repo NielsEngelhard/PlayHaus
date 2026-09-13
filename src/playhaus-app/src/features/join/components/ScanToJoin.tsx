@@ -1,7 +1,7 @@
 import AppText from "@/components/text/AppText";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { codeFromScan } from "@/features/join/join-link";
@@ -57,6 +57,25 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
             title={t('join.scanTitle')}
             message={t('join.scanCopy')}
             onRequestClose={close}
+            tone='info'
+            actions={<>
+                {/* Only while there is a question left to answer. */}
+                {permission?.granted !== true && permission?.canAskAgain !== false && (
+                    <TextButton
+                        text={t('join.permissionGrant')}
+                        variant='primary'
+                        fullWidth
+                        onPress={() => void requestPermission()}
+                    />
+                )}
+
+                <TextButton
+                    text={t('join.scanCancel')}
+                    variant='muted'
+                    fullWidth
+                    onPress={close}
+                />
+            </>}
         >
             <View style={styles.stage}>
                 {permission?.granted
@@ -80,23 +99,6 @@ export default function ScanToJoin({ visible, onCode, onClose }: Props) {
                         : t('join.permissionAsk')}
                 </AppText>
             )}
-
-            {/* Only while there is a question left to answer. */}
-            {permission?.granted !== true && permission?.canAskAgain !== false && (
-                <TextButton
-                    text={t('join.permissionGrant')}
-                    variant='primary'
-                    fullWidth
-                    onPress={() => void requestPermission()}
-                />
-            )}
-
-            <TextButton
-                text={t('join.scanCancel')}
-                variant='muted'
-                fullWidth
-                onPress={close}
-            />
         </PopupModal>
     )
 }
@@ -113,7 +115,6 @@ const useStyles = createThemedStyles(theme => ({
         // Square, and the widest the panel allows.
         width: '100%',
         aspectRatio: 1,
-        marginBottom: Spacing.three,
         borderRadius: 18,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
@@ -129,7 +130,6 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundInput
     },
     note: {
-        marginBottom: Spacing.three,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.textSecondary

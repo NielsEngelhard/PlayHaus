@@ -109,24 +109,26 @@ export default function LobbyView({ state, onStarted }: Props) {
                 message={isHost
                     ? t('lol.lobby.confirmClose.message')
                     : t('lol.lobby.confirmLeave.message')}
+                tone='danger'
                 onRequestClose={() => setLeaving(false)}
-            >
-                <TextButton
-                    text={closing ? t('common.busy') : isHost ? t('lol.lobby.confirmClose.action') : t('lol.lobby.confirmLeave.action')}
-                    variant='primary'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => void leave()}
-                />
+                actions={<>
+                    <TextButton
+                        text={closing ? t('common.busy') : isHost ? t('lol.lobby.confirmClose.action') : t('lol.lobby.confirmLeave.action')}
+                        variant='primary'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => void leave()}
+                    />
 
-                <TextButton
-                    text={t('lol.lobby.stay')}
-                    variant='muted'
-                    fullWidth
-                    disabled={closing}
-                    onPress={() => setLeaving(false)}
-                />
-            </PopupModal>
+                    <TextButton
+                        text={t('lol.lobby.stay')}
+                        variant='muted'
+                        fullWidth
+                        disabled={closing}
+                        onPress={() => setLeaving(false)}
+                    />
+                </>}
+            />
         </View>
     )
 }

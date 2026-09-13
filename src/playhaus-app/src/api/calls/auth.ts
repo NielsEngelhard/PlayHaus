@@ -42,11 +42,10 @@ export function signup(name: string, email: string, password: string): Promise<A
 }
 
 // Creates a throwaway account and logs straight into it.
-export function createGuest(locale?: LanguageCode): Promise<AuthSession> {
+export function createGuest(locale: LanguageCode, username: string): Promise<AuthSession> {
     return request<AuthSession>('/api/v1/user/guest', {
         method: 'POST',
-        // `locale` and nothing else: the backend decodes with `DisallowUnknownFields`.
-        body: JSON.stringify(locale === undefined ? {} : { locale })
+        body: JSON.stringify({ locale, username })
     });
 }
 

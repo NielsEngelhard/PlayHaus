@@ -73,6 +73,26 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
                 title={t('pubquizr.play.quickAssignTitle')}
                 message={t('pubquizr.play.quickAssignBody')}
                 onRequestClose={close}
+                tone="info"
+                actions={<>
+                    {/* Locked until somebody is actually named. */}
+                    <TextButton
+                        text={chosenSeat
+                            ? t('pubquizr.play.quickAssignConfirmNamed', { name: chosenSeat.name })
+                            : t('pubquizr.play.quickAssignConfirm')}
+                        variant="primary"
+                        fullWidth
+                        disabled={busy || chosen === UNCHOSEN}
+                        onPress={assign}
+                    />
+
+                    <TextButton
+                        text={t('pubquizr.play.quickAssignCancel')}
+                        variant="muted"
+                        fullWidth
+                        onPress={close}
+                    />
+                </>}
             >
                 <View style={styles.grid}>
                     {remaining.map((seat, index) => {
@@ -119,24 +139,6 @@ export default function QuickAssign({ remaining, busy, onAssign }: Props) {
 
                     <AppText style={styles.nobodyText}>{t('pubquizr.play.quickAssignNobody')}</AppText>
                 </Pressable>
-
-                {/* Locked until somebody is actually named. */}
-                <TextButton
-                    text={chosenSeat
-                        ? t('pubquizr.play.quickAssignConfirmNamed', { name: chosenSeat.name })
-                        : t('pubquizr.play.quickAssignConfirm')}
-                    variant="primary"
-                    fullWidth
-                    disabled={busy || chosen === UNCHOSEN}
-                    onPress={assign}
-                />
-
-                <TextButton
-                    text={t('pubquizr.play.quickAssignCancel')}
-                    variant="muted"
-                    fullWidth
-                    onPress={close}
-                />
             </PopupModal>
         </>
     )
