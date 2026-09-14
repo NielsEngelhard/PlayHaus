@@ -8,10 +8,17 @@ import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { useState } from "react";
+import { Pressable, ScrollView, View } from "react-native";
 
 // Clears the 18dp badge out to a 42dp target.
 const BADGE_SLOP = { top: 12, right: 12, bottom: 12, left: 12 };
+
+const MAX_VISIBLE = 5;
+const GAP = 7;
+// How far the badge hangs past the chip's top and right edges.
+const BADGE_OVERHANG = 5;
+const SHADOW_REACH = 3;
 
 interface Props {
     // The answer is still covered, which is the reason the row is locked.
@@ -61,57 +68,76 @@ export default function SeatPickRow({
                 ? t('pubquizr.play.pickUndoHint', { name: firstOut.name })
                 : t('pubquizr.play.pickHint');
 
-    // 1-based places among the seats still in, renumbered as seats drop out.
-    const positions = remaining.reduce<number[]>((acc, seat, index) => {
+    // 1-based places among the seats still in, renumbered only once a seat is actually ruled out —
+    // an unconfirmed pick must not shift anyone else's badge.
+    const positions = remaining.reduce<number[]>((acc, seat) => {
         const previous = acc.length === 0 ? 0 : Math.max(...acc);
-        return [...acc, isOut(seat.seat, index) ? 0 : previous + 1];
+        return [...acc, ruledOut.includes(seat.seat) ? 0 : previous + 1];
     }, []);
 
-    return (
-        <View style={styles.block}>
-            <View style={[styles.row, covered && styles.dimmed]}>
-                {remaining.map((seat, index) => {
-                    const out = isOut(seat.seat, index);
-                    const chosen = seat.seat === picked;
-                    const ruled = ruledOut.includes(seat.seat);
+    const [width, setWidth] = useState(0);
+    const scrolls = remaining.length > MAX_VISIBLE;
+    // Leaves room for the fifth badge, which also puts the sixth chip just past the edge.
+    const slotWidth = (width - BADGE_OVERHANG - GAP * (MAX_VISIBLE - 1)) / MAX_VISIBLE;
 
-                    return (
-                        <View key={seat.seat} style={[styles.slot, out && styles.dimmed]}>
-                            <PopPressable
-                                onPress={() => onPick(seat.seat)}
-                                disabled={locked}
-                                accessibilityRole="button"
-                                accessibilityLabel={t('pubquizr.play.pickSpoken', { name: seat.name })}
-                                accessibilityState={{ disabled: locked, selected: chosen }}
-                                style={[styles.chip, out ? styles.chipOut : styles.chipIn, chosen && styles.chipPicked]}
-                            >
-                                <SeatAvatar seat={seat} size={28} />
+    const chips = remaining.map((seat, index) => {
+        const out = isOut(seat.seat, index);
+        const chosen = seat.seat === picked;
+        const ruled = ruledOut.includes(seat.seat);
 
-                                <AppText style={[styles.name, chosen && styles.nameOnMint]} numberOfLines={1}>{seat.name}</AppText>
-                            </PopPressable>
+        return (
+            <View key={seat.seat} style={[scrolls ? { width: slotWidth } : styles.slot, out && styles.dimmed]}>
+                <PopPressable
+                    onPress={() => onPick(seat.seat)}
+                    disabled={locked}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('pubquizr.play.pickSpoken', { name: seat.name })}
+                    accessibilityState={{ disabled: locked, selected: chosen }}
+                    style={[styles.chip, out ? styles.chipOut : styles.chipIn, chosen && styles.chipPicked]}
+                >
+                    <SeatAvatar seat={seat} size={28} />
 
-                            {/* A sibling of the body rather than its child, so a tap on it never also counts as a pick. */}
-                            <Pressable
-                                onPress={() => onToggleOut(seat.seat)}
-                                disabled={locked}
-                                hitSlop={BADGE_SLOP}
-                                accessibilityRole="button"
-                                accessibilityLabel={ruled
-                                    ? t('pubquizr.play.ruleInSpoken', { name: seat.name })
-                                    : t('pubquizr.play.ruleOutSpoken', { name: seat.name })}
-                                accessibilityState={{ disabled: locked }}
-                                style={[styles.badge, out && styles.badgeOut]}
-                            >
-                                {out ? (
-                                    <Feather name="x" size={9} color={Brand.ink} />
-                                ) : (
-                                    <AppText style={styles.badgeText}>{positions[index]}</AppText>
-                                )}
-                            </Pressable>
-                        </View>
-                    );
-                })}
+                    <AppText style={[styles.name, chosen && styles.nameOnMint]} numberOfLines={1}>{seat.name}</AppText>
+                </PopPressable>
+
+                {/* A sibling of the body rather than its child, so a tap on it never also counts as a pick. */}
+                <Pressable
+                    onPress={() => onToggleOut(seat.seat)}
+                    disabled={locked}
+                    hitSlop={BADGE_SLOP}
+                    accessibilityRole="button"
+                    accessibilityLabel={ruled
+                        ? t('pubquizr.play.ruleInSpoken', { name: seat.name })
+                        : t('pubquizr.play.ruleOutSpoken', { name: seat.name })}
+                    accessibilityState={{ disabled: locked }}
+                    style={[styles.badge, ruled && styles.badgeOut]}
+                >
+                    {ruled ? (
+                        <Feather name="x" size={9} color={Brand.ink} />
+                    ) : (
+                        <AppText style={styles.badgeText}>{positions[index]}</AppText>
+                    )}
+                </Pressable>
             </View>
+        );
+    });
+
+    return (
+        <View style={styles.block} onLayout={event => setWidth(event.nativeEvent.layout.width)}>
+            {scrolls ? (
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={[styles.scroller, covered && styles.dimmed]}
+                    contentContainerStyle={styles.scrollRow}
+                >
+                    {width > 0 && chips}
+                </ScrollView>
+            ) : (
+                <View style={[styles.row, covered && styles.dimmed]}>
+                    {chips}
+                </View>
+            )}
 
             {pickedSeat !== null ? (
                 <PopPressable
@@ -154,7 +180,21 @@ const useStyles = createThemedStyles(theme => ({
 
     row: {
         flexDirection: 'row',
-        gap: 7
+        gap: GAP
+    },
+
+    // Pulled back over the padding below, so the row sits where the unscrolled one would.
+    scroller: {
+        marginTop: -BADGE_OVERHANG,
+        marginBottom: -SHADOW_REACH
+    },
+
+    // Room for the badge and the picked chip's shadow, which the scroller would otherwise clip.
+    scrollRow: {
+        gap: GAP,
+        paddingTop: BADGE_OVERHANG,
+        paddingRight: BADGE_OVERHANG,
+        paddingBottom: SHADOW_REACH
     },
 
     dimmed: {

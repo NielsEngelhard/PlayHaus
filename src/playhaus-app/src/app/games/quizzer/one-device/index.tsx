@@ -4,7 +4,7 @@ import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
-import InlineNotification from "@/components/ui/InlineNotification";
+import PlayerNamesInputInOrder from "@/components/ui/PlayerNamesInputInOrder";
 import PopupModal from "@/components/ui/PopupModal";
 import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
@@ -30,11 +30,9 @@ import {
 import { readTable, writeTable } from "@/features/pubquizr/table-store";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Keyboard, View } from "react-native";
-import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
 
 const EMPTY_TABLE: string[] = Array.from({ length: MIN_PLAYERS }, () => '');
 
@@ -45,14 +43,13 @@ const STEPS = 3;
 const STEP_TRAVEL = 26;
 
 const STEP_TITLES: Record<Step, TranslationKey> = {
-    1: 'pubquizr.oneDevice.players.label',
+    1: 'pubquizr.oneDevice.steps.seatsTitle',
     2: 'pubquizr.oneDevice.steps.quizTitle',
     3: 'pubquizr.oneDevice.steps.settingsTitle'
 };
 
 export default function OneDeviceQuizerSetup() {
     const t = useT();
-    const theme = useTheme();
     const styles = useStyles();
 
     useChromeless();
@@ -244,19 +241,9 @@ export default function OneDeviceQuizerSetup() {
                     />
                 )}
             >
-                {/* Above the seats rather than below them. */}
-                {step === 1 && (
-                    <InlineNotification
-                        icon="repeat"
-                        color={theme.colors.mint}
-                        title={t('pubquizr.oneDevice.order.title')}
-                        message={t('pubquizr.oneDevice.order.message')}
-                    />
-                )}
-
                 {step === 1 && (
                     <>
-                        <PlayerNamesInput
+                        <PlayerNamesInputInOrder
                             minPlayers={MIN_PLAYERS}
                             maxPlayers={MAX_PLAYERS}
                             names={names}

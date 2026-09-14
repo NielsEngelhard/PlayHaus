@@ -41,9 +41,30 @@ export function initialsFor(quiz: QuizListItem): string {
     return [...(words[0] ?? '')].slice(0, 2).join('').toUpperCase() || '?';
 }
 
-// The one quiz the picker answers with instead of asking about.
-export function featuredQuiz(items: QuizListItem[]): QuizListItem | null {
-    return items.find(quiz => quiz.played !== true) ?? items[0] ?? null;
+// A shuffled copy, Fisher–Yates.
+export function shuffle<T>(items: readonly T[]): T[] {
+    const result = [...items];
+
+    for (let index = result.length - 1; index > 0; index--) {
+        const other = Math.floor(Math.random() * (index + 1));
+        [result[index], result[other]] = [result[other], result[index]];
+    }
+
+    return result;
+}
+
+// The id of the most recently published quiz, or null when none of them carries a date.
+export function newestQuizId(items: QuizListItem[]): string | null {
+    let newest: { id: string, at: number } | null = null;
+
+    for (const quiz of items) {
+        const at = quiz.publishedAt ? new Date(quiz.publishedAt).getTime() : NaN;
+        if (Number.isNaN(at)) continue;
+
+        if (newest === null || at > newest.at) newest = { id: quiz.id, at };
+    }
+
+    return newest?.id ?? null;
 }
 
 // The month names, as catalogue keys in calendar order.

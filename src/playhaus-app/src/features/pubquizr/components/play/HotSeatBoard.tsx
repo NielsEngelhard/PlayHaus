@@ -90,6 +90,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
     return (
         <View style={styles.turn}>
             <TableBand
+                answering={turn.answering}
                 quizmaster={turn.quizmaster}
                 round={round}
                 number={turn.number}

@@ -14,6 +14,7 @@ import { View } from "react-native";
 export const CARD_OVERLAP = 30;
 
 interface Props {
+    answering: Seat
     number: number
     quizmaster: Seat
     round: number
@@ -22,7 +23,7 @@ interface Props {
 }
 
 // The top of the hot seat board: who reads, how far into the round, and the one question put to the whole table.
-export default function TableBand({ number, quizmaster, round, total, worth }: Props) {
+export default function TableBand({ answering, number, quizmaster, round, total, worth }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -81,7 +82,7 @@ export default function TableBand({ number, quizmaster, round, total, worth }: P
                     </AppText>
 
                     <AppText style={styles.title} numberOfLines={1}>
-                        {t('pubquizr.play.whoGotIt')}
+                        {t('pubquizr.play.whoGotIt', { name: answering.name })}
                     </AppText>
                 </View>
 

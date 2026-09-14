@@ -545,14 +545,14 @@ export const nl: Catalog = {
             description: 'Een klassiek potje trivia in een speels jasje.',
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
             multiDevice: { title: 'Multi-device', description: 'Één scherm voor de tafel, ieder een telefoon.', action: 'Kamer openen' },
-            openTable: 'Scherm voor de tafel openen',
+            tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
+            allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
+            pickOne: 'Pak er een',
+            playThis: 'Speel deze',
+            newBadge: 'Nieuw',
             weekly: {
                 weekday: 'WOE',
                 promise: 'ELKE WEEK EEN\nNIEUWE QUIZ'
-            },
-            newQuiz: {
-                badge: 'Nieuw deze week',
-                play: 'Speel deze'
             },
             list: {
                 label: 'Alle quizzen',
@@ -565,10 +565,9 @@ export const nl: Catalog = {
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
-                seeAll: 'Bekijk alle quizzen',
                 browse: 'Blader door alle quizzen',
-                empty: 'Hier staat nog niks. Probeer een ander tabblad.',
-                filterEmpty: 'Hier staat nog niks op dit tabblad.',
+                empty: 'Hier staat nog niks om te laten zien.',
+                filterEmpty: 'Nog niks.',
                 failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
                 comingSoon: 'Coming soon...',
                 search: 'Zoek een quiz…',
@@ -584,23 +583,30 @@ export const nl: Catalog = {
         oneDevice: {
             title: '1 telefoon',
             description: 'Eén telefoon om het spel te spelen. De telefoon wordt doorgegeven.',
-            order: {
-                title: 'Op volgorde',
-                message: 'Vul de namen in de volgorde waarin je zit, van links naar rechts. De rol van quizmaster schuift namelijk door.'
-            },
             players: {
-                label: 'Wie doen er mee',
                 seat: 'Speler {{seat}}',
                 tooFew: 'Een quiz heeft minstens twee spelers nodig.',
                 tooMany: 'Acht spelers is het maximum rond één telefoon.',
                 duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.',
             },
+            seat: {
+                first: 'Jij, met de telefoon',
+                leftOf: 'Links van {{name}}',
+                fallback: 'Naast speler {{seat}}',
+                placeholder: 'Wie zit daar?',
+                add: 'Volgende stoel'
+            },
             quiz: {
                 selected: 'Jullie spelen',
+                empty: {
+                    title: 'Nog geen quiz gekozen',
+                    message: 'Kies er hieronder een om ze hier te zien.'
+                },
                 pick: 'Kies een quiz',
                 pickAnother: 'Of kies een andere quiz'
             },
             steps: {
+                seatsTitle: 'Wie zit naast wie?',
                 quizTitle: 'Welke quiz',
                 settingsTitle: 'Hoe jullie spelen',
                 table: 'Aan tafel',
@@ -767,10 +773,10 @@ export const nl: Catalog = {
             passOn: 'Nu mag {{name}} raden',
             passOnHint: '{{name}} had het fout · tik om verder te gaan',
             passOnSpoken: 'Nu mag {{to}} dezelfde vraag raden, omdat {{from}} het fout had. Tik om verder te gaan.',
-            tableRound: 'De tafel is rond',
-            whoGotIt: 'Wie had het goed?',
+            tableRound: 'Ga de tafel rond',
+            whoGotIt: 'Vraag eerst aan {{name}}',
             answerLabel: 'Antwoord',
-            pickHint: 'Tik op wie het goed had — de rest ervoor gaat automatisch als fout',
+            pickHint: 'Tik op wie het goed had',
             pickUndoHint: '{{name}} is al af — tik hem aan om dat terug te draaien',
             pickLockHint: 'Tik nog eens op {{name}} om te wissen',
             pickSpoken: '{{name}} had het goed',
@@ -809,6 +815,11 @@ export const nl: Catalog = {
                 filled: '{{filled}} van {{total}} ingevuld',
                 off: '{{off}} ernaast',
                 nearestOff: 'dichtstbij · {{off}} ernaast',
+                answerIs: 'Antwoord: {{answer}}',
+                points: '{{worth}} punten',
+                says: '{{name}} zegt…',
+                now: 'nu',
+                position: '{{number}} van {{total}}',
                 missingTitle: 'Niet iedereen heeft een getal',
                 missingOne: 'Bij {{names}} staat niets ingevuld, dus die kan deze niet winnen.',
                 missingMany: 'Bij {{names}} staat niets ingevuld, dus die kunnen deze niet winnen.',
@@ -1175,7 +1186,7 @@ export const nl: Catalog = {
             },
 
             vote: {
-                title: 'Wie klopt er niet?',
+                title: 'Wie wordt geëlimineerd?',
                 nobody: 'Nog niemand gekozen',
                 confirm: 'Prik {{name}}',
                 confirmHint: 'Dit kan niet ongedaan gemaakt worden.',

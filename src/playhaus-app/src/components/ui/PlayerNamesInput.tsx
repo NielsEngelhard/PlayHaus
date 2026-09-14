@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { fontFamilyForWeight, Spacing } from "@/constants/theme";
+import { fontFamilyForWeight } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -16,7 +16,7 @@ interface Props {
     disabled?: boolean
 }
 
-const BADGE_SIZE = 30;
+const BADGE_SIZE = 22;
 
 export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlayers, disabled = false }: Props) {
     const t = useT();
@@ -33,9 +33,9 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                 ...Array.from({ length: minPlayers - names.length }, () => ''),
             ]);
         }
-    }, [names, minPlayers, onChange]);    
+    }, [names, minPlayers, onChange]);
 
-    // Which seat is being typed into, so the field can trade its shadow for a halo.
+    // Which seat is being typed into, so the card can trade its shadow for a halo.
     const [focused, setFocused] = useState<number | null>(null);
 
     function rename(seat: number, name: string) {
@@ -55,69 +55,73 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
 
     return (
         <View style={styles.container}>
-            {names.map((name, seat) => {
-                const swatch = colorForSeat(seat);
+            <View style={styles.grid}>
+                {names.map((name, seat) => {
+                    const swatch = colorForSeat(seat);
 
-                return (
-                    <View key={seat} style={styles.seat}>
-                        <View style={[styles.badge, { backgroundColor: swatch.color }]}>
-                            <AppText style={[styles.badgeText, { color: swatch.foreground }]}>
-                                {seat + 1}
-                            </AppText>
+                    return (
+                        <View
+                            key={seat}
+                            style={[styles.card, focused === seat && styles.cardFocused, disabled && styles.dimmed]}
+                        >
+                            <View style={styles.cardHeader}>
+                                <View style={[styles.badge, { backgroundColor: swatch.color }]}>
+                                    <AppText style={[styles.badgeText, { color: swatch.foreground }]}>
+                                        {seat + 1}
+                                    </AppText>
+                                </View>
+
+                                {removable && (
+                                    <Pressable
+                                        onPress={() => remove(seat)}
+                                        disabled={disabled}
+                                        accessibilityRole="button"
+                                        accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
+                                        accessibilityState={{ disabled }}
+                                        style={styles.remove}
+                                    >
+                                        <Feather name="x" size={13} color={theme.colors.textFaint} />
+                                    </Pressable>
+                                )}
+                            </View>
+
+                            <TextInput
+                                value={name}
+                                onChangeText={value => rename(seat, value)}
+                                onFocus={() => setFocused(seat)}
+                                onBlur={() => setFocused(current => current === seat ? null : current)}
+                                placeholder={t('common.player.namePlaceholder')}
+                                placeholderTextColor={theme.colors.textFaint}
+                                autoCapitalize="words"
+                                autoCorrect={false}
+                                returnKeyType="next"
+                                editable={!disabled}
+                                accessibilityLabel={t('pubquizr.oneDevice.players.seat', { seat: seat + 1 })}
+                                style={styles.input}
+                            />
                         </View>
+                    )
+                })}
 
-                        <TextInput
-                            value={name}
-                            onChangeText={value => rename(seat, value)}
-                            onFocus={() => setFocused(seat)}
-                            onBlur={() => setFocused(current => current === seat ? null : current)}
-                            placeholder={t('common.player.namePlaceholder')}
-                            placeholderTextColor={theme.colors.textFaint}
-                            autoCapitalize="words"
-                            autoCorrect={false}
-                            returnKeyType="next"
-                            editable={!disabled}
-                            accessibilityLabel={t('pubquizr.oneDevice.players.seat', { seat: seat + 1 })}
-                            style={[styles.input, focused === seat && styles.inputFocused, disabled && styles.dimmed]}
-                        />
-
-                        {removable && (
-                            <Pressable
-                                onPress={() => remove(seat)}
-                                disabled={disabled}
-                                accessibilityRole="button"
-                                accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
-                                accessibilityState={{ disabled }}
-                                style={[styles.remove, disabled && styles.dimmed]}
-                            >
-                                <Feather name="x" size={16} color={theme.colors.textFaint} />
-                            </Pressable>
-                        )}
-                    </View>
-                )
-            })}
-
-            <View style={styles.footer}>
                 <Pressable
                     onPress={add}
                     disabled={disabled || full}
                     accessibilityRole="button"
+                    accessibilityLabel={t('common.player.add')}
                     accessibilityState={{ disabled: disabled || full }}
-                    style={[styles.add, (disabled || full) && styles.dimmed]}
+                    style={[styles.addCard, (disabled || full) && styles.dimmed]}
                 >
-                    <View style={styles.addDisc}>
-                        <Feather name="plus" size={12} color={theme.colors.text} />
-                    </View>
+                    <Feather name="plus" size={16} color={theme.colors.textSecondary} />
 
                     <AppText style={styles.addText}>
                         {t('common.player.add')}
                     </AppText>
                 </Pressable>
-
-                <AppText style={styles.count}>
-                    {names.length} / {maxPlayers}
-                </AppText>
             </View>
+
+            <AppText style={styles.count}>
+                {names.length} / {maxPlayers}
+            </AppText>
         </View>
     )
 }
@@ -128,10 +132,35 @@ const useStyles = createThemedStyles(theme => ({
         gap: 9
     },
 
-    seat: {
+    grid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 9
+    },
+
+    card: {
+        width: '48%',
+        height: 70,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        borderRadius: 14,
+        backgroundColor: theme.colors.backgroundSecondary,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        justifyContent: 'space-between',
+        // Written out rather than taken from `theme.shadows`, which is typed as a `ViewStyle`.
+        boxShadow: `3px 3px 0 0 ${theme.colors.shadow}`
+    },
+
+    // Typing presses the card down: the offset shadow goes and a halo comes up in its place.
+    cardFocused: {
+        boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
+    },
+
+    cardHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 9
+        justifyContent: 'space-between'
     },
 
     badge: {
@@ -144,81 +173,53 @@ const useStyles = createThemedStyles(theme => ({
         // A swatch is a colour rather than a surface.
         ...(theme.scheme === 'dark'
             ? {}
-            : { borderWidth: theme.borderWidth, borderColor: theme.colors.border })
+            : { borderWidth: 1.5, borderColor: theme.colors.border })
     },
 
     badgeText: {
-        fontSize: 13,
+        fontSize: 10,
         fontWeight: 900
     },
 
-    // The chrome `TextField` wears, minus its label.
-    input: {
-        flex: 1,
-        minWidth: 0,
-        height: 46,
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        borderRadius: 14,
-        backgroundColor: theme.colors.backgroundSecondary,
-        paddingHorizontal: Spacing.three,
-        fontSize: 15,
-        // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
-        fontFamily: fontFamilyForWeight(700),
-        color: theme.colors.text,
-        // Written out rather than taken from `theme.shadows`, which is typed as a `ViewStyle`.
-        boxShadow: `3px 3px 0 0 ${theme.colors.shadow}`
-    },
-
-    // Typing presses the field down: the offset shadow goes and a halo comes up in its place.
-    inputFocused: {
-        boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
-    },
-
     remove: {
-        width: 30,
-        height: 30,
+        width: 20,
+        height: 20,
         flexShrink: 0,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
-    footer: {
-        marginTop: 2,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-
-    add: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-        paddingVertical: Spacing.one,
-        // Indented by the badge column so the label starts where the names do.
-        paddingLeft: BADGE_SIZE + 9
-    },
-
-    // A small inked disc, in the same hand as the fields above it — the row reads as one more seat you can stamp into being.
-    addDisc: {
-        width: 22,
-        height: 22,
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-
-    addText: {
-        fontSize: 12.5,
-        fontWeight: 900,
+    // A TextInput isn't an `AppText`, so the Outfit family is applied by hand.
+    input: {
+        minWidth: 0,
+        padding: 0,
+        fontSize: 15,
+        letterSpacing: -0.2,
+        fontFamily: fontFamilyForWeight(800),
         color: theme.colors.text
     },
 
+    addCard: {
+        width: '48%',
+        height: 70,
+        borderWidth: theme.borderWidth,
+        borderStyle: 'dashed',
+        borderColor: theme.colors.borderDashed,
+        borderRadius: 14,
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 4
+    },
+
+    addText: {
+        fontSize: 11,
+        fontWeight: 900,
+        color: theme.colors.textSecondary
+    },
+
     count: {
+        alignSelf: 'flex-end',
         fontSize: 11,
         fontWeight: 900,
         letterSpacing: 1.2,

@@ -1,12 +1,12 @@
 import GameIndexPage from "@/components/layout/GameIndexPage";
 import ModeCard from "@/components/ui/ModeCard";
-import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import NewQuizCard from "@/features/pubquizr/components/NewQuizCard";
 import QuizSheet from "@/features/pubquizr/components/QuizSheet";
+import QuizzerQuickActionsRow from "@/features/pubquizr/components/QuizzerQuickActionsRow";
+import QuizzerRandomUnplayedQuizRow from "@/features/pubquizr/components/QuizzerRandomUnplayedQuizRow";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter, type RelativePathString } from "expo-router";
@@ -68,24 +68,10 @@ export default function QuizzerIndexPage() {
                 />
             </View>
 
-            {/* Not a card: a card reads as a third way to play, and this is a way to open a display. */}
-            <TextButton
-                text={t('pubquizr.index.openTable')}
-                onPress={() => router.push(ROUTES.quizzerTableDoor as RelativePathString)}
-                variant="neutral"
-                fullWidth
-                style={styles.tableDoor}
-            />
+            <View style={styles.rows}>
+                <QuizzerQuickActionsRow onBrowse={() => setBrowsing(true)} />
 
-            <View style={styles.list}>
-                <NewQuizCard />
-
-                <TextButton
-                    text={t('pubquizr.index.list.seeAll')}
-                    onPress={() => setBrowsing(true)}
-                    variant="neutral"
-                    fullWidth
-                />
+                <QuizzerRandomUnplayedQuizRow />
             </View>
 
             {/* The rows in here go where the rows on the page go, but by hand. */}
@@ -110,10 +96,8 @@ const useStyles = createThemedStyles(() => ({
         alignItems: 'stretch',
         gap: 11
     },
-    tableDoor: {
-        marginTop: Spacing.three
-    },
-    list: {
+    // A gap rather than margins on the rows, so a deck with nothing to deal leaves no space behind.
+    rows: {
         marginTop: Spacing.three,
         gap: Spacing.three
     }

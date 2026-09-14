@@ -565,17 +565,17 @@ export const en = {
             description: 'A classic pub quiz with a playful twist.',
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
-            openTable: 'Open the screen for the table',
+            tableScreen: { title: 'Table screen', subtitle: 'On the TV' },
+            allQuizzes: { title: 'All quizzes', subtitle: 'Browse the list' },
+            pickOne: 'Pick one',
+            playThis: 'Play this',
+            // Only ever on the newest quiz in the deck.
+            newBadge: 'New',
             // The sticker on the corner of the page.
             weekly: {
                 weekday: 'WED',
                 /** Broken by hand: the design sets it on two lines. */
                 promise: 'NEW GENERAL\nQUIZ WEEKLY'
-            },
-            // The hero above the shelf: the one quiz the picker answers with, unprompted, instead of leaving the pick to a browse.
-            newQuiz: {
-                badge: 'New this week',
-                play: 'Play this'
             },
             list: {
                 // The shelf's name, which no longer promises an order.
@@ -592,8 +592,6 @@ export const en = {
                 // The mark on a quiz this host has already had out of the box.
                 played: 'Played',
                 loadOlder: 'Load older',
-                /** The way off the index page and into the sheet that holds the shelf. */
-                seeAll: 'See all quizzes',
                 // The same way through, before there is a number to put in it.
                 browse: 'Browse all quizzes',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
@@ -618,24 +616,32 @@ export const en = {
         oneDevice: {
             title: 'One device',
             description: 'One phone for the whole table. Seat everyone, pick a quiz, and pass it round.',
-            order: {
-                title: 'Order matters',
-                message: 'Fill the names in the order people are sitting, left to right. The quiz master role moves along the table in that order.'
-            },
             players: {
-                label: 'Who is playing',
                 seat: 'Player {{seat}}',
                 tooFew: 'A quiz needs at least two players.',
                 tooMany: 'Eight players is the most that fit round one phone.',
                 duplicate: 'Two players cannot share a name.',
             },
+            // Each caption names the seat before it, so the seating order is part of every field.
+            seat: {
+                first: 'You, holding the phone',
+                leftOf: 'Left of {{name}}',
+                fallback: 'Next to player {{seat}}',
+                placeholder: 'Who sits there?',
+                add: 'Next seat'
+            },
             // `pick` and `pickAnother` title the row that opens the browse sheet, so they read as the thing pressing it will do.
             quiz: {
                 selected: 'Playing',
+                empty: {
+                    title: 'No quiz picked yet',
+                    message: 'Choose one below to see it here.'
+                },
                 pick: 'Pick a quiz',
                 pickAnother: 'Or pick another'
             },
             steps: {
+                seatsTitle: 'Who sits next to whom?',
                 quizTitle: 'Which quiz',
                 settingsTitle: 'How you play',
                 table: 'At the table',
@@ -823,7 +829,7 @@ export const en = {
             passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
             // `HotSeatBoard`'s band, card and `SeatPickRow`: the question is put to the table and ruled once.
             tableRound: 'The table has gone round',
-            whoGotIt: 'Who got it right?',
+            whoGotIt: 'Ask {{name}} first',
             answerLabel: 'Answer',
             pickHint: 'Tap who got it right — everyone before them counts as wrong',
             pickUndoHint: '{{name}} is already out — tap their badge to undo that',
@@ -879,6 +885,11 @@ export const en = {
                 // How far off each guess landed, under the name.
                 off: '{{off}} off',
                 nearestOff: 'nearest · {{off}} off',
+                answerIs: 'Answer: {{answer}}',
+                points: '{{worth}} points',
+                says: '{{name}} says…',
+                now: 'now',
+                position: '{{number}} of {{total}}',
                 // The check on the way out, when a row is still blank.
                 missingTitle: 'Not everybody has a number',
                 missingOne: '{{names}} has nothing written down, so they cannot win this one.',

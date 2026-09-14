@@ -6,6 +6,9 @@ export const QUIZ_CATEGORIES = ['weekly', 'official', 'community'] as const;
 
 export type QuizCategory = typeof QUIZ_CATEGORIES[number];
 
+// A shelf to ask for, or every shelf at once.
+export type QuizShelfQuery = QuizCategory | 'all';
+
 export interface QuizListResponse {
     items: QuizListItem[]
     page: number
@@ -29,12 +32,13 @@ export interface QuizListItem {
 
 // One page of a shelf, newest first.
 export async function getQuizzesRequest(
-    category: QuizCategory,
+    category: QuizShelfQuery,
     locale: LanguageCode,
     page: number = 1
 ): Promise<QuizListResponse> {
-    // Built by hand rather than with `URLSearchParams`.
-    const query = `category=${category}&locale=${locale}&page=${page}`;
+    // Built by hand rather than with `URLSearchParams`; the API reads a missing category as every shelf.
+    const shelf = category === 'all' ? '' : `category=${category}&`;
+    const query = `${shelf}locale=${locale}&page=${page}`;
 
     return request<QuizListResponse>(`/api/v1/pubquizr/quizzes?${query}`);
 }

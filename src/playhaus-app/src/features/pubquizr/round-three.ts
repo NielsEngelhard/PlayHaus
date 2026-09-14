@@ -164,6 +164,26 @@ export function offBy(value: number, answer: number): string {
     return String(Math.round(Math.abs(value - answer) * 100) / 100);
 }
 
+// Typed pad text with the language's thousands separators; a lone minus is still being typed.
+export function groupDigits(text: string, language: string): string {
+    const value = Number(text);
+    if (text === '' || text === '-' || !Number.isFinite(value)) return text;
+
+    return value.toLocaleString(language, { maximumFractionDigits: 20 });
+}
+
+// A number short enough for a badge: 120k, 1,5M. Written out because Hermes' compact notation is unreliable.
+export function compactNumber(value: number, language: string): string {
+    const size = Math.abs(value);
+    const short = (scaled: number, suffix: string) =>
+        scaled.toLocaleString(language, { maximumFractionDigits: Math.abs(scaled) < 10 ? 1 : 0 }) + suffix;
+
+    if (size < 10_000) return value.toLocaleString(language);
+    if (size < 1_000_000) return short(value / 1_000, 'k');
+    if (size < 1_000_000_000) return short(value / 1_000_000, 'M');
+    return short(value / 1_000_000_000, 'B');
+}
+
 // A settled turn, kept for the screen that says who was right.
 export interface ClosestResult {
     // The dealt question this settles.

@@ -1,21 +1,21 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
-import AnswerReveal from "@/components/ui/AnswerReveal";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopPressable from "@/components/ui/PopPressable";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
-import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
-import { useT } from "@/features/i18n/LanguageContext";
-import { reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
+import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
+import { groupDigits, reviewGuesses, type ClosestTurn } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, ScrollView, TextInput, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
+import GuessChips from "./GuessChips";
 import NumberPad from "./NumberPad";
 import ScriptCard from "./ScriptCard";
 import TurnStrip from "./TurnStrip";
@@ -49,6 +49,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const language = useUiLanguage();
 
     const [stage, setStage] = useState<Stage>('reading');
     const [typed, setTyped] = useState<Record<number, string>>({});
@@ -220,168 +221,268 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         )
     }
 
-    return (
-        <View style={styles.screen}>
-            <View style={styles.body}>
-                {strip}
+    const modeSwitch = (
+        <Pressable
+            onPress={() => { setByHand(current => !current); setPicked(null); }}
+            disabled={busy}
+            accessibilityRole="button"
+            style={styles.switch}
+        >
+            <Feather
+                name={byHand ? 'edit-3' : 'zap'}
+                size={13}
+                color={theme.colors.textMuted}
+            />
 
-                <Label label={turn.question.prompt} />
+            <AppText style={styles.switchText}>
+                {byHand
+                    ? t('pubquizr.play.closest.typeInstead')
+                    : t('pubquizr.play.closest.pickInstead')}
+            </AppText>
+        </Pressable>
+    );
 
-                {/* Hidden at the smallest table the game allows. */}
-                {!turn.quizmasterGuesses && (
-                    <AnswerReveal
-                        answer={turn.unit === ''
-                            ? String(turn.answer)
-                            : t('pubquizr.play.closest.answer', { answer: turn.answer, unit: turn.unit })}
-                        aliases={turn.explanation === '' ? [] : [turn.explanation]}
-                        compact
-                    />
-                )}
+    const failure = error !== null && (
+        <InlineNotification
+            icon="alert-triangle"
+            color={theme.colors.blush}
+            message={t(error)}
+        />
+    );
 
-                <View style={styles.sectionRule}>
-                    <AppText style={styles.sectionLabel}>
-                        {t('pubquizr.play.closest.theirNumbers')}
-                    </AppText>
+    if (byHand) {
+        return (
+            <View style={styles.screen}>
+                <View style={styles.body}>
+                    {strip}
 
-                    <View style={styles.rule} />
+                    <Label label={turn.question.prompt} />
 
-                    <AppText style={styles.sectionCount}>
-                        {t('pubquizr.play.closest.filled', {
-                            filled,
-                            total: turn.guessing.length
-                        })}
-                    </AppText>
-                </View>
+                    <View style={styles.sectionRule}>
+                        <AppText style={styles.sectionLabel}>
+                            {t('pubquizr.play.closest.theirNumbers')}
+                        </AppText>
 
-                {/* The one scroller on the screen, and a direct child of the board rather than something nested inside a flexed card. */}
-                <ScrollView
-                    style={styles.rows}
-                    contentContainerStyle={styles.rowsInner}
-                >
-                    {turn.guessing.map(seat => {
-                        const clashing = review.duplicates.includes(seat.seat);
-                        const chosen = byHand && picked === seat.seat;
-                        const holding = !byHand && focused === seat.seat;
+                        <View style={styles.rule} />
 
-                        return (
-                            <Pressable
-                                key={seat.seat}
-                                onPress={byHand
-                                    ? () => setPicked(seat.seat)
-                                    : () => setFocused(seat.seat)}
-                                disabled={busy}
-                                accessibilityRole={byHand ? 'radio' : 'button'}
-                                accessibilityState={byHand
-                                    ? { checked: chosen }
-                                    : { selected: holding }}
-                                accessibilityLabel={byHand
-                                    ? seat.name
-                                    : t('pubquizr.play.closest.entry', { name: seat.name })}
-                                style={[
-                                    styles.row,
-                                    // Only ever a row somebody has tapped.
-                                    chosen && styles.chosen,
-                                    // After the fill, so the row being typed into still says so.
-                                    holding && styles.holding,
-                                    clashing && styles.clashing
-                                ]}
-                            >
-                                <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
-                                    <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
-                                        {seat.initials}
-                                    </AppText>
-                                </View>
+                        <AppText style={styles.sectionCount}>
+                            {t('pubquizr.play.closest.filled', {
+                                filled,
+                                total: turn.guessing.length
+                            })}
+                        </AppText>
+                    </View>
 
-                                <View style={styles.who}>
-                                    {/* How far off used to be said here too, under the name. */}
-                                    <AppText
-                                        style={[styles.name, chosen && styles.onMint]}
-                                        numberOfLines={1}
-                                    >
-                                        {seat.name}
-                                    </AppText>
-                                </View>
+                    <ScrollView
+                        style={styles.rows}
+                        contentContainerStyle={styles.rowsInner}
+                    >
+                        {turn.guessing.map(seat => {
+                            const chosen = picked === seat.seat;
 
-                                {byHand ? (
+                            return (
+                                <Pressable
+                                    key={seat.seat}
+                                    onPress={() => setPicked(seat.seat)}
+                                    disabled={busy}
+                                    accessibilityRole="radio"
+                                    accessibilityState={{ checked: chosen }}
+                                    accessibilityLabel={seat.name}
+                                    style={[styles.row, chosen && styles.chosen]}
+                                >
+                                    <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
+                                        <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
+                                            {seat.initials}
+                                        </AppText>
+                                    </View>
+
+                                    <View style={styles.who}>
+                                        <AppText
+                                            style={[styles.name, chosen && styles.onMint]}
+                                            numberOfLines={1}
+                                        >
+                                            {seat.name}
+                                        </AppText>
+                                    </View>
+
                                     <Feather
                                         name={chosen ? 'check-circle' : 'circle'}
                                         size={20}
                                         color={chosen ? Brand.ink : theme.colors.textMuted}
                                     />
-                                ) : (
-                                    // Inert, and that is the point of it.
-                                    <View pointerEvents="none" style={styles.fieldWrap}>
-                                        <TextInput
-                                            value={typed[seat.seat] ?? ''}
-                                            editable={false}
-                                            showSoftInputOnFocus={false}
-                                            placeholder={t('pubquizr.play.closest.placeholder')}
-                                            placeholderTextColor={theme.colors.textFaint}
-                                            style={[styles.field, holding && styles.fieldHolding]}
-                                        />
+                                </Pressable>
+                            )
+                        })}
+                    </ScrollView>
 
-                                        {holding && <View style={styles.caret} />}
-                                    </View>
-                                )}
-                            </Pressable>
-                        )
-                    })}
-                </ScrollView>
+                    {failure}
 
-                {problem !== null && (
-                    <AppText style={styles.problem}>{t(problem)}</AppText>
-                )}
-
-                {error !== null && (
-                    <InlineNotification
-                        icon="alert-triangle"
-                        color={theme.colors.blush}
-                        message={t(error)}
-                    />
-                )}
-
-                <View style={styles.footer}>
-                    <ActionButton
-                        size="large"
-                        icon="award"
-                        // Never a name.
-                        text={byHand
-                            ? t('pubquizr.play.closest.award')
-                            : t('pubquizr.play.validate')}
-                        disabled={!ready || busy}
-                        onPress={settle}
-                    />
-
-                    <Pressable
-                        onPress={() => { setByHand(current => !current); setPicked(null); }}
-                        disabled={busy}
-                        accessibilityRole="button"
-                        style={styles.switch}
-                    >
-                        <Feather
-                            name={byHand ? 'edit-3' : 'zap'}
-                            size={13}
-                            color={theme.colors.textMuted}
+                    <View style={styles.footer}>
+                        <ActionButton
+                            size="large"
+                            icon="award"
+                            text={t('pubquizr.play.closest.award')}
+                            disabled={!ready || busy}
+                            onPress={settle}
                         />
 
-                        <AppText style={styles.switchText}>
-                            {byHand
-                                ? t('pubquizr.play.closest.typeInstead')
-                                : t('pubquizr.play.closest.pickInstead')}
+                        {modeSwitch}
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
+    const index = turn.guessing.findIndex(seat => seat.seat === focused);
+    const current = index === -1 ? null : turn.guessing[index];
+    const previous = index > 0 ? turn.guessing[index - 1] : null;
+    const next = index !== -1 && index < turn.guessing.length - 1 ? turn.guessing[index + 1] : null;
+
+    const text = current === null ? '' : typed[current.seat] ?? '';
+    const shown = groupDigits(text, language);
+    const value = Number(text.replace(',', '.'));
+    const readable = text.trim() !== '' && text !== '-' && Number.isFinite(value);
+    // Twelve digits have to fit on web too, where `adjustsFontSizeToFit` does nothing.
+    const numberSize = shown.length <= 7 ? 54 : shown.length <= 9 ? 44 : 34;
+
+    const subline = [
+        turn.unit,
+        !turn.quizmasterGuesses && readable
+            ? t('pubquizr.play.closest.off', { off: Math.abs(value - turn.answer).toLocaleString(language) })
+            : ''
+    ].filter(part => part !== '').join(' · ');
+
+    return (
+        <View style={styles.screen}>
+            <View style={styles.body}>
+                {strip}
+
+                <AppText style={styles.prompt}>{turn.question.prompt}</AppText>
+
+                {/* Hidden at the smallest table the game allows, where the reader guesses too. */}
+                {!turn.quizmasterGuesses && (
+                    <View style={styles.answer}>
+                        <Feather name="award" size={14} color={Brand.ink} />
+
+                        <AppText style={styles.answerText} numberOfLines={1}>
+                            {t('pubquizr.play.closest.answerIs', { answer: turn.answer.toLocaleString(language) })}
                         </AppText>
-                    </Pressable>
+
+                        <View style={styles.answerWorth}>
+                            <AppText style={styles.answerWorthText}>
+                                {t('pubquizr.play.closest.points', { worth: turn.worth })}
+                            </AppText>
+                        </View>
+                    </View>
+                )}
+
+                <GuessChips
+                    busy={busy}
+                    clashing={review.duplicates}
+                    focused={focused}
+                    guessing={turn.guessing}
+                    onFocus={setFocused}
+                    typed={typed}
+                />
+
+                <View style={styles.focus}>
+                    {current !== null && (
+                        <>
+                            <View style={styles.speaker}>
+                                <View style={[styles.avatar, { backgroundColor: current.swatch.color }]}>
+                                    <AppText style={[styles.initials, { color: current.swatch.foreground }]}>
+                                        {current.initials}
+                                    </AppText>
+                                </View>
+
+                                <AppText style={styles.says} numberOfLines={1}>
+                                    {t('pubquizr.play.closest.says', { name: current.name })}
+                                </AppText>
+                            </View>
+
+                            <View style={styles.number}>
+                                <AppText
+                                    style={[
+                                        styles.numberText,
+                                        { fontSize: numberSize, lineHeight: numberSize * 1.05 },
+                                        text === '' && styles.numberEmpty
+                                    ]}
+                                    numberOfLines={1}
+                                >
+                                    {text === '' ? t('pubquizr.play.closest.placeholder') : shown}
+                                </AppText>
+
+                                <View style={[styles.caret, { height: numberSize * 0.8 }]} />
+                            </View>
+
+                            {subline !== '' && (
+                                <AppText style={styles.subline}>{subline}</AppText>
+                            )}
+                        </>
+                    )}
+
+                    {problem !== null && (
+                        <AppText style={styles.problem}>{t(problem)}</AppText>
+                    )}
+                </View>
+
+                {failure}
+
+                <View style={styles.footer}>
+                    <View style={styles.nav}>
+                        {previous !== null && (
+                            <Pressable
+                                onPress={() => setFocused(previous.seat)}
+                                disabled={busy}
+                                accessibilityRole="button"
+                                accessibilityLabel={t('pubquizr.play.closest.entry', { name: previous.name })}
+                                style={styles.back}
+                            >
+                                <Feather name="chevron-left" size={15} color={theme.colors.textMuted} />
+
+                                <AppText style={styles.backText} numberOfLines={1}>{previous.name}</AppText>
+                            </Pressable>
+                        )}
+
+                        {next !== null ? (
+                            <PopPressable
+                                onPress={() => setFocused(next.seat)}
+                                disabled={busy}
+                                accessibilityRole="button"
+                                accessibilityLabel={t('pubquizr.play.closest.entry', { name: next.name })}
+                                style={styles.forward}
+                            >
+                                <AppText style={styles.forwardText} numberOfLines={1}>{next.name}</AppText>
+
+                                <Feather name="chevron-right" size={15} color={Brand.ink} />
+                            </PopPressable>
+                        ) : (
+                            <PopPressable
+                                onPress={settle}
+                                disabled={!ready || busy}
+                                accessibilityRole="button"
+                                accessibilityState={{ disabled: !ready || busy }}
+                                style={[styles.forward, (!ready || busy) && styles.forwardDisabled]}
+                            >
+                                <Feather name="award" size={15} color={Brand.ink} />
+
+                                <AppText style={styles.forwardText} numberOfLines={1}>
+                                    {t('pubquizr.play.validate')}
+                                </AppText>
+                            </PopPressable>
+                        )}
+                    </View>
+
+                    {modeSwitch}
                 </View>
             </View>
 
-            {/* By hand there is nothing to type, so there is no pad — and the rows get the height back to be tapped in. */}
-            {!byHand && (
-                <NumberPad
-                    onKey={press}
-                    onBackspace={backspace}
-                    disabled={busy || focused === null}
-                    style={styles.pad}
-                />
-            )}
+            <NumberPad
+                onKey={press}
+                onBackspace={backspace}
+                disabled={busy || focused === null}
+                style={styles.pad}
+            />
 
             {/* Dismissable, unlike the panels that stand in front of something dangerous. */}
             <PopupModal
@@ -399,7 +500,10 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                         text={t('pubquizr.play.closest.missingBack')}
                         variant="primary"
                         fullWidth
-                        onPress={() => setConfirming(false)}
+                        onPress={() => {
+                            setConfirming(false);
+                            if (blank.length > 0) setFocused(blank[0].seat);
+                        }}
                     />
 
                     <TextButton
@@ -437,7 +541,6 @@ const useStyles = createThemedStyles(theme => ({
         gap: 12
     },
 
-    /* The reading screen ------------------------------------------------------- */
 
     // Mint, because it is the same "this is what it pays" the badge on the strip wears in every other round.
     stake: {
@@ -530,7 +633,6 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    /* The collecting screen ---------------------------------------------------- */
 
     sectionRule: {
         flexShrink: 0,
@@ -586,21 +688,11 @@ const useStyles = createThemedStyles(theme => ({
         backgroundColor: theme.colors.backgroundSecondary
     },
 
-    // Where the pad is typing.
-    holding: {
-        borderColor: theme.colors.focus,
-        boxShadow: `0 0 0 4px ${theme.colors.focusRing}`
-    },
-
     // Mint in both schemes, the same "this one" the Correct button wears.
     chosen: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint,
         ...theme.shadows.hardSmall
-    },
-
-    clashing: {
-        borderColor: theme.colors.destructive
     },
 
     avatar: {
@@ -631,40 +723,108 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.text
     },
 
-    fieldWrap: {
+    prompt: {
         flexShrink: 0,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-
-    // 104 by 46, up from 96 by 38, and the number itself from 15 to 21.
-    field: {
-        width: 104,
-        height: 46,
-        paddingHorizontal: 12,
-        borderRadius: 12,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundInput,
-        textAlign: 'right',
-        fontSize: 21,
-        letterSpacing: -0.4,
-        fontFamily: fontFamilyForWeight(900),
+        fontSize: 15,
+        lineHeight: 15 * 1.3,
+        fontWeight: 800,
         color: theme.colors.text
     },
 
-    fieldHolding: {
-        borderColor: theme.colors.focus,
-        backgroundColor: theme.colors.backgroundFocus
+    // Mint in both schemes, the same "this is what it pays" the stake badge wears.
+    answer: {
+        flexShrink: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        paddingVertical: 7,
+        paddingHorizontal: 11,
+        borderRadius: 14,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.mint
     },
 
-    // Drawn rather than real: the field is not editable.
+    answerText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 12.5,
+        fontWeight: 900,
+        color: Brand.ink
+    },
+
+    answerWorth: {
+        flexShrink: 0,
+        paddingVertical: 1,
+        paddingHorizontal: 7,
+        borderRadius: 999,
+        borderWidth: 1.5,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent
+    },
+
+    answerWorthText: {
+        fontSize: 9.5,
+        fontWeight: 900,
+        letterSpacing: 0.6,
+        textTransform: 'uppercase',
+        color: Brand.ink
+    },
+
+    // The one part that grows, so the number sits in the middle of whatever room is left.
+    focus: {
+        flex: 1,
+        minHeight: 0,
+        justifyContent: 'center',
+        gap: 6
+    },
+
+    speaker: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 9
+    },
+
+    says: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 24,
+        fontWeight: 900,
+        letterSpacing: -0.7,
+        color: theme.colors.text
+    },
+
+    // Indented past the avatar, so the number reads as what the name said.
+    number: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        gap: 3,
+        paddingLeft: 45
+    },
+
+    numberText: {
+        flexShrink: 1,
+        fontWeight: 900,
+        letterSpacing: -2.4,
+        color: theme.colors.text
+    },
+
+    numberEmpty: {
+        color: theme.colors.textFaint
+    },
+
+    // Drawn rather than real: nothing here is a text field.
     caret: {
-        position: 'absolute',
-        right: 8,
-        width: 2,
-        height: 22,
+        width: 3,
+        marginBottom: 5,
         backgroundColor: theme.colors.focus
+    },
+
+    subline: {
+        paddingLeft: 45,
+        fontSize: 12,
+        fontWeight: 700,
+        color: theme.colors.textMuted
     },
 
     onMint: {
@@ -681,7 +841,62 @@ const useStyles = createThemedStyles(theme => ({
 
     footer: {
         flexShrink: 0,
-        gap: 8
+        gap: 2
+    },
+
+    nav: {
+        flexDirection: 'row',
+        gap: 9
+    },
+
+    back: {
+        flex: 1,
+        minWidth: 0,
+        height: 52,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 7,
+        paddingHorizontal: 10,
+        borderRadius: 14,
+        borderWidth: theme.borderWidth,
+        borderStyle: 'dashed',
+        borderColor: theme.colors.borderMuted
+    },
+
+    backText: {
+        flexShrink: 1,
+        fontSize: 13,
+        fontWeight: 900,
+        color: theme.colors.textMuted
+    },
+
+    // Lemon in both schemes, with ink on it in both.
+    forward: {
+        flex: 1.3,
+        minWidth: 0,
+        height: 52,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 7,
+        paddingHorizontal: 10,
+        borderRadius: 14,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon,
+        ...theme.shadows.hard
+    },
+
+    forwardDisabled: {
+        opacity: 0.5
+    },
+
+    forwardText: {
+        flexShrink: 1,
+        fontSize: 13.5,
+        fontWeight: 900,
+        color: Brand.ink
     },
 
     switch: {

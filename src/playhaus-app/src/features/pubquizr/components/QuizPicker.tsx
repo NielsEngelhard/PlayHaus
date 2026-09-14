@@ -6,6 +6,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
+import EmptyQuizCard from "./EmptyQuizCard";
 import QuizRow from "./QuizRow";
 import QuizSheet from "./QuizSheet";
 
@@ -37,13 +38,15 @@ export default function QuizPicker({ quiz, onSelect }: Props) {
 
     return (
         <View style={styles.container}>
-            {quiz !== null && (
+            {quiz !== null ? (
                 <View>
                     <Label label={t('pubquizr.oneDevice.quiz.selected')} />
 
                     {/* Still pressable, and it opens the browse. */}
                     <QuizRow quiz={quiz} onPress={() => setBrowsing(true)} selected />
                 </View>
+            ) : (
+                <EmptyQuizCard />
             )}
 
             {/* Same plain button the index page opens its own browse sheet with, rather than a bordered row of its own. */}
