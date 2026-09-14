@@ -49,12 +49,6 @@ export default function RoundRevealScreen({ game, reveal, userId, more, isHost, 
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <AppText style={styles.kicker}>
-                {truth === undefined
-                    ? t('fakeFiller.play.reveal.title')
-                    : t('fakeFiller.play.reveal.truthWas')}
-            </AppText>
-
             {truth !== undefined && <Truth option={truth} line={reveal.line} nameOf={nameOf} />}
 
             <View style={styles.rows}>
@@ -204,13 +198,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingTop: Spacing.three,
         paddingBottom: Spacing.four,
         gap: Spacing.two + Spacing.one
-    },
-    kicker: {
-        fontSize: 10,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
     },
     // The one surface on the screen with a colour, because it is the one thing everybody was after.
     truth: {

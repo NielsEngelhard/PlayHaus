@@ -838,6 +838,8 @@ export const en = {
             ruleOutSpoken: 'Mark {{name}} wrong',
             ruleInSpoken: 'Let {{name}} back in',
             nobodyGotIt: 'Nobody got it',
+            nobodyConfirm: 'Go to next question',
+            nobodyConfirmHint: 'Tap again to continue',
             lockIn: 'Lock in {{name}}',
             // Round 2 only, replacing both lines above it.
             choiceAlwaysPasses: 'Either way, next up: {{name}}',
@@ -1426,6 +1428,10 @@ export const en = {
         play: {
             loading: 'Dealing the prompts…',
             noGame: 'No game',
+            band: {
+                round: 'Round',
+                prompt: 'Prompt'
+            },
             writing: {
                 title: 'Fill in the blanks',
                 // Says the goal in one line, because it is the opposite of what a quiz trains people to do and is worth stating plainly.
@@ -1437,13 +1443,19 @@ export const en = {
                 locked: 'Locked in',
                 edit: 'Change it',
                 incomplete: 'Fill in every blank first.',
-                waitingTitle: 'Both of yours are in',
-                waitingMessage: 'Waiting for the rest of the table. Voting starts the moment the last answer lands.',
+                waitingTitle: 'Waiting for the others',
+                waitingMessage: 'Your answers are in. Voting starts once everyone has submitted theirs.',
                 progress: '{{done}} of {{total}} answers in'
             },
             voting: {
                 title: 'Which one is real?',
                 titleCreative: 'Which one do you like best?',
+                hint: 'Tap the one you think is real.',
+                hintCreative: 'Tap the one you like best.',
+                tapToPick: 'Tap to pick',
+                yourPick: 'Your pick',
+                option: 'Option {{letter}}',
+                or: 'or',
                 roundOf: 'Round {{round}} of {{total}}',
                 pick: 'Pick this one',
                 confirm: 'Lock in my vote',

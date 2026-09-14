@@ -1,13 +1,13 @@
-import type { FFGame, FFGamePlayer, FFRound } from "@/api/calls/fake-filler";
+import type { FFGame, FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
-import InlineNotification from "@/components/ui/InlineNotification";
-import { Spacing, withAlpha } from "@/constants/theme";
+import WaitingStage from "@/components/ui/WaitingStage";
+import { FAKE_FILLER } from "@/constants/games";
+import { Spacing } from "@/constants/theme";
 import PlayButton from "@/features/fake-filler/components/play/PlayButton";
 import PromptLine from "@/features/fake-filler/components/play/PromptLine";
-import { fillsComplete, normaliseFills } from "@/features/fake-filler/prompt";
+import { fillsComplete, normaliseFills, openPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useTheme } from "@/features/theme/ThemeContext";
 import { avatarColorById } from "@/utils/color-utils";
 import { useState } from "react";
 import { ScrollView, useWindowDimensions, View } from "react-native";
@@ -22,12 +22,9 @@ interface Props {
 
 // The writing phase: one prompt at a time, the other one behind it.
 export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
-    const t = useT();
     const styles = useStyles();
 
-    // The screen sits on the first prompt still open; once both are in it holds on the last.
-    const pending = rounds.findIndex(round => !round.answered);
-    const at = pending === -1 ? rounds.length - 1 : pending;
+    const { at, done } = openPrompt(rounds);
     const round = rounds[at];
 
     return (
@@ -38,68 +35,31 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
             // The keyboard is up for most of this screen.
             keyboardShouldPersistTaps='handled'
         >
-            {round === undefined ? (
-                <WaitingOnTable />
+            {done || round === undefined ? (
+                <WaitingOnTable game={game} />
             ) : (
-                <>
-                    <View style={styles.head}>
-                        <AppText style={styles.kicker}>
-                            {t('fakeFiller.play.writing.promptOf', {
-                                index: at + 1,
-                                total: rounds.length
-                            })}
-                        </AppText>
-
-                        <View style={styles.pips}>
-                            {rounds.map((one, index) => (
-                                <Pip key={one.id} done={one.answered} here={index === at} />
-                            ))}
-                        </View>
-                    </View>
-
-                    {/* The one thing a first-time player has to be told, and only until they have done it once. */}
-                    {pending === 0 && (
-                        <AppText style={styles.lede}>{t('fakeFiller.play.writing.intro')}</AppText>
-                    )}
-
-                    <PromptStage
-                        // Keyed by the prompt, so a half-written draft goes with the prompt it belonged to.
-                        key={round.id}
-                        game={game}
-                        round={round}
-                        done={pending === -1}
-                        busy={busy}
-                        onSubmit={onSubmit}
-                    />
-                </>
+                <PromptStage
+                    // Keyed by the prompt, so a half-written draft goes with the prompt it belonged to.
+                    key={round.id}
+                    game={game}
+                    round={round}
+                    busy={busy}
+                    onSubmit={onSubmit}
+                />
             )}
         </ScrollView>
     )
 }
 
-// One step of the two-prompt track.
-function Pip({ done, here }: { done: boolean, here: boolean }) {
-    const theme = useTheme();
-    const styles = useStyles();
-
-    const fill = done
-        ? theme.colors.text
-        : withAlpha(theme.colors.text, here ? 0.45 : 0.18);
-
-    return <View style={[styles.pip, { backgroundColor: fill }]} />;
-}
-
 interface StageProps {
     game: FFGame,
     round: FFRound,
-    /** Whether every prompt dealt to this player is in, which turns the screen into a wait. */
-    done: boolean,
     busy: boolean,
     onSubmit: (roundNumber: number, fills: string[]) => Promise<boolean>
 }
 
 // One prompt filling the screen, and whatever has been written into it so far.
-function PromptStage({ game, round, done, busy, onSubmit }: StageProps) {
+function PromptStage({ game, round, busy, onSubmit }: StageProps) {
     const t = useT();
     const styles = useStyles();
 
@@ -146,32 +106,20 @@ function PromptStage({ game, round, done, busy, onSubmit }: StageProps) {
             </View>
 
             <View style={styles.foot}>
-                {done ? (
-                    <WaitingOnTable />
-                ) : (
-                    <>
-                        {/* Said only once the player has asked to send, so it answers rather than warns. */}
-                        {tried && !complete && (
-                            <AppText style={styles.problem}>
-                                {t('fakeFiller.play.writing.incomplete')}
-                            </AppText>
-                        )}
-
-                        <TableProgress
-                            players={game.players}
-                            label={t('fakeFiller.play.writing.progress', {
-                                done: game.answersIn,
-                                total: game.answersNeeded
-                            })}
-                        />
-
-                        <PlayButton
-                            text={busy ? t('common.busy') : t('fakeFiller.play.writing.submit')}
-                            disabled={busy}
-                            onPress={() => void submit()}
-                        />
-                    </>
+                {/* Said only once the player has asked to send, so it answers rather than warns. */}
+                {tried && !complete && (
+                    <AppText style={styles.problem}>
+                        {t('fakeFiller.play.writing.incomplete')}
+                    </AppText>
                 )}
+
+                <TableProgress game={game} />
+
+                <PlayButton
+                    text={busy ? t('common.busy') : t('fakeFiller.play.writing.submit')}
+                    disabled={busy}
+                    onPress={() => void submit()}
+                />
             </View>
         </>
     )
@@ -183,11 +131,13 @@ const STACK_OVERLAP = -7;
 const STACK_SHOWN = 4;
 
 // The table, as a huddle of swatches, and how far along it is.
-function TableProgress({ players, label }: { players: FFGamePlayer[], label: string }) {
+function TableProgress({ game }: { game: FFGame }) {
+    const t = useT();
     const styles = useStyles();
 
-    const shown = players.slice(0, STACK_SHOWN);
-    const rest = players.length - shown.length;
+    const shown = game.players.slice(0, STACK_SHOWN);
+    const rest = game.players.length - shown.length;
+    const label = t('fakeFiller.play.writing.progress', { done: game.answersIn, total: game.answersNeeded });
 
     return (
         <View style={styles.progress}>
@@ -212,17 +162,20 @@ function TableProgress({ players, label }: { players: FFGamePlayer[], label: str
 }
 
 // Both of yours are in and the game is waiting on somebody else.
-function WaitingOnTable() {
+function WaitingOnTable({ game }: { game: FFGame }) {
     const t = useT();
-    const theme = useTheme();
+    const styles = useStyles();
 
     return (
-        <InlineNotification
-            icon='clock'
-            color={theme.colors.lemon}
-            title={t('fakeFiller.play.writing.waitingTitle')}
-            message={t('fakeFiller.play.writing.waitingMessage')}
-        />
+        <View style={styles.waiting}>
+            <WaitingStage
+                game={FAKE_FILLER}
+                title={t('fakeFiller.play.writing.waitingTitle')}
+                message={t('fakeFiller.play.writing.waitingMessage')}
+            />
+
+            <TableProgress game={game} />
+        </View>
     )
 }
 
@@ -239,34 +192,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: Spacing.four,
         gap: Spacing.two
     },
-    head: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: Spacing.two
-    },
-    kicker: {
-        fontSize: 10,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
-    pips: {
-        flexDirection: 'row',
-        gap: Spacing.one
-    },
-    pip: {
-        width: 18,
-        height: 5,
-        borderRadius: 999
-    },
-    lede: {
-        fontSize: 12.5,
-        lineHeight: 12.5 * 1.5,
-        fontWeight: 600,
-        color: theme.colors.textSecondary
-    },
     stage: {
         marginTop: Spacing.two
     },
@@ -275,6 +200,13 @@ const useStyles = createThemedStyles(theme => ({
         marginTop: 'auto',
         paddingTop: Spacing.four,
         gap: Spacing.two + Spacing.one
+    },
+    // Fills the scroll content, so the wait sits in the middle of the window.
+    waiting: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: Spacing.four
     },
     problem: {
         fontSize: 12,

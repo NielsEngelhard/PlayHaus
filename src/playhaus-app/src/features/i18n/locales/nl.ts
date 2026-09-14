@@ -594,7 +594,7 @@ export const nl: Catalog = {
                 leftOf: 'Links van {{name}}',
                 fallback: 'Naast speler {{seat}}',
                 placeholder: 'Wie zit daar?',
-                add: 'Volgende stoel'
+                add: 'Speler toevoegen'
             },
             quiz: {
                 selected: 'Jullie spelen',
@@ -783,6 +783,8 @@ export const nl: Catalog = {
             ruleOutSpoken: '{{name}} fout rekenen',
             ruleInSpoken: '{{name}} weer mee laten doen',
             nobodyGotIt: 'Niemand had het',
+            nobodyConfirm: 'Ga naar de volgende vraag',
+            nobodyConfirmHint: 'Tik nogmaals om verder te gaan',
             lockIn: '{{name}} vastleggen',
             choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
@@ -1292,6 +1294,10 @@ export const nl: Catalog = {
         play: {
             loading: 'Vragen uitdelen…',
             noGame: 'Geen spel',
+            band: {
+                round: 'Ronde',
+                prompt: 'Vraag'
+            },
             writing: {
                 title: 'Vul de gaten in',
                 intro: 'Twee vragen zijn van jou. Verzin iets geloofwaardigs — je scoort elke keer dat iemand jouw antwoord kiest.',
@@ -1302,13 +1308,19 @@ export const nl: Catalog = {
                 locked: 'Vastgezet',
                 edit: 'Aanpassen',
                 incomplete: 'Vul eerst elk gat in.',
-                waitingTitle: 'Allebei die van jou staan erin',
-                waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste antwoord binnen is.',
+                waitingTitle: 'Wachten op de rest',
+                waitingMessage: 'Jouw antwoorden staan erin. Het stemmen begint zodra iedereen de zijne heeft ingeleverd.',
                 progress: '{{done}} van {{total}} antwoorden binnen'
             },
             voting: {
                 title: 'Welke is echt?',
                 titleCreative: 'Welke vind jij de beste?',
+                hint: 'Tik de zin die volgens jou echt is.',
+                hintCreative: 'Tik de zin die jij het beste vindt.',
+                tapToPick: 'Tik om te kiezen',
+                yourPick: 'Jouw keuze',
+                option: 'Optie {{letter}}',
+                or: 'of',
                 roundOf: 'Ronde {{round}} van {{total}}',
                 pick: 'Kies deze',
                 confirm: 'Zet mijn stem vast',

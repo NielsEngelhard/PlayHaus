@@ -1,4 +1,4 @@
-import { FILL_PLACEHOLDER } from '@/api/calls/fake-filler';
+import { FILL_PLACEHOLDER, type FFRound } from '@/api/calls/fake-filler';
 
 // Taking a prompt apart at its blanks.
 
@@ -56,4 +56,13 @@ export function fillsComplete(fills: string[], blanks: number): boolean {
 /** The fills as the API wants them: trimmed, in blank order. */
 export function normaliseFills(fills: string[]): string[] {
     return fills.map(fill => fill.trim());
+}
+
+// The prompt a writer is on: the first still open, or the last once every one is in.
+export function openPrompt(rounds: FFRound[]): { at: number, done: boolean } {
+    const pending = rounds.findIndex(round => !round.answered);
+
+    return pending === -1
+        ? { at: rounds.length - 1, done: true }
+        : { at: pending, done: false };
 }

@@ -5,12 +5,12 @@ import PopPressable from "@/components/ui/PopPressable";
 import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
 import PlayButton from "@/features/fake-filler/components/play/PlayButton";
+import { fillPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { fillPrompt } from "@/features/fake-filler/prompt";
-import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { Fragment, useState } from "react";
+import { ScrollView, useWindowDimensions, View } from "react-native";
 
 interface Props {
     game: FFGame,
@@ -19,7 +19,9 @@ interface Props {
     onVote: (roundNumber: number, slot: number) => Promise<boolean>
 }
 
-// The voting phase, one round at a time.
+const LETTER_A = 65;
+
+// The voting phase, one round at a time: tap a card, then lock it in at the foot.
 export default function VotingScreen({ game, round, busy, onVote }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -29,7 +31,7 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
     const [picked, setPicked] = useState<number | undefined>(undefined);
 
     const voted = round.myVoteSlot !== undefined;
-    const options = round.options ?? [];
+    const options = [...(round.options ?? [])].sort((left, right) => left.slot - right.slot);
     const chosen = voted ? round.myVoteSlot : picked;
 
     return (
@@ -38,25 +40,6 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.head}>
-                <AppText style={styles.kicker}>
-                    {t('fakeFiller.play.voting.roundOf', {
-                        round: round.number,
-                        total: game.totalRounds
-                    })}
-                </AppText>
-
-                <AppText style={styles.question} numberOfLines={2}>
-                    {/* Creative mode has no truth to find, so asking which one is real would be asking a question with no answer. */}
-                    {game.gameMode === 'facts'
-                        ? t('fakeFiller.play.voting.title')
-                        : t('fakeFiller.play.voting.titleCreative')}
-                </AppText>
-            </View>
-
-            {/* The prompt as it was dealt, so the line-up below it reads as answers to one question. */}
-            <FilledLine line={round.line} fills={null} size={17} color={theme.colors.textSecondary} />
-
             {!round.canVote && (
                 // One of this round's authors, with nothing to do but watch.
                 <InlineNotification
@@ -67,20 +50,23 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
                 />
             )}
 
-            <View style={styles.options}>
-                {options.map(option => (
-                    <Option
-                        key={option.slot}
-                        line={round.line}
-                        option={option}
-                        active={chosen === option.slot}
-                        // Said on the card rather than under the list, where it would read as a fourth option.
-                        note={voted && chosen === option.slot ? t('fakeFiller.play.voting.voted') : undefined}
-                        // Once the vote is in, everything that was not picked steps back.
-                        faded={voted && chosen !== option.slot}
-                        disabled={busy || voted || !round.canVote}
-                        onPress={() => setPicked(option.slot)}
-                    />
+            <View style={styles.options} accessibilityRole='radiogroup'>
+                {options.map((option, index) => (
+                    <Fragment key={option.slot}>
+                        {index > 0 && <Or />}
+
+                        <Option
+                            letter={String.fromCharCode(LETTER_A + index)}
+                            line={round.line}
+                            option={option}
+                            active={chosen === option.slot}
+                            voted={voted}
+                            // Once the vote is in, everything that was not picked steps back.
+                            faded={voted && chosen !== option.slot}
+                            disabled={busy || voted || !round.canVote}
+                            onPress={() => setPicked(option.slot)}
+                        />
+                    </Fragment>
                 ))}
             </View>
 
@@ -111,21 +97,47 @@ export default function VotingScreen({ game, round, busy, onVote }: Props) {
     )
 }
 
+// The "or" between two cards, which is what makes a pair of them read as a duel.
+function Or() {
+    const t = useT();
+    const styles = useStyles();
+
+    return (
+        <View style={styles.or} accessibilityElementsHidden importantForAccessibility='no-hide-descendants'>
+            <View style={styles.orRule} />
+
+            <View style={styles.orChip}>
+                <AppText style={styles.orText}>{t('fakeFiller.play.voting.or')}</AppText>
+            </View>
+
+            <View style={styles.orRule} />
+        </View>
+    )
+}
+
 interface OptionProps {
+    letter: string,
     line: string,
     option: FFOption,
     active: boolean,
-    /** A word on the card itself, once there is something to say about it. */
-    note?: string,
+    voted: boolean,
     faded: boolean,
     disabled: boolean,
     onPress: () => void
 }
 
-/** One thing to vote for: the prompt as somebody answered it, with their words marked. */
-function Option({ line, option, active, note, faded, disabled, onPress }: OptionProps) {
-    const theme = useTheme();
+// One thing to vote for: the prompt as somebody answered it, with their words in a pill.
+function Option({ letter, line, option, active, voted, faded, disabled, onPress }: OptionProps) {
+    const t = useT();
     const styles = useStyles();
+
+    // A long prompt at the design's size would run off a small phone.
+    const { width } = useWindowDimensions();
+    const size = width < 380 ? 18 : 21;
+
+    const hint = !active
+        ? t('fakeFiller.play.voting.tapToPick')
+        : voted ? t('fakeFiller.play.voting.voted') : t('fakeFiller.play.voting.yourPick');
 
     return (
         <PopPressable
@@ -133,24 +145,29 @@ function Option({ line, option, active, note, faded, disabled, onPress }: Option
             disabled={disabled}
             accessibilityRole='radio'
             accessibilityState={{ checked: active, disabled }}
-            accessibilityLabel={fillPrompt(line, option.fills)}
+            accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}`}
             style={[styles.option, active && styles.optionActive, faded && styles.faded]}
         >
+            <View style={styles.optionHead}>
+                <View style={[styles.letter, active && styles.letterActive]}>
+                    <AppText style={[styles.letterText, active && styles.letterTextActive]}>{letter}</AppText>
+                </View>
+
+                {/* Dropped from the cards that lost once the vote is in, where "tap" would be a lie. */}
+                {!faded && <AppText style={[styles.hint, active && styles.hintActive]}>{hint}</AppText>}
+            </View>
+
             <FilledLine
                 line={line}
                 fills={option.fills}
-                // The marker pen changes colour on the mint, where lemon would disappear.
-                mark={active ? MARK_ON_MINT : theme.colors.lemon}
+                size={size}
+                leading={1.55}
+                pill
                 color={active ? Brand.ink : undefined}
             />
-
-            {note !== undefined && <AppText style={styles.picked}>{note}</AppText>}
         </PopPressable>
     )
 }
-
-/** Paper at three quarters: the one mark that still reads once the card underneath went mint. */
-const MARK_ON_MINT = withAlpha(Brand.textOnAccent, 0.75);
 
 const useStyles = createThemedStyles(theme => ({
     scroll: {
@@ -160,66 +177,98 @@ const useStyles = createThemedStyles(theme => ({
     content: {
         flexGrow: 1,
         paddingHorizontal: Spacing.four,
-        paddingTop: Spacing.three,
+        paddingTop: 18,
         paddingBottom: Spacing.four,
         gap: Spacing.three
     },
-    head: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: Spacing.two
-    },
-    kicker: {
-        fontSize: 10,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 1.4,
-        color: theme.colors.textMuted
-    },
-    // The question, said once at the top rather than as a heading over every option.
-    question: {
-        flexShrink: 1,
-        textAlign: 'right',
-        fontSize: 10,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 0.6,
-        color: theme.colors.text
-    },
+    // Grows into the window, so a short pair of cards splits the screen between them.
     options: {
-        gap: Spacing.two + 1
+        flexGrow: 1,
+        gap: 9
     },
     option: {
-        gap: Spacing.one,
-        paddingVertical: 12,
-        paddingHorizontal: 13,
-        borderRadius: 16,
+        flexGrow: 1,
+        justifyContent: 'center',
+        gap: 11,
+        padding: 17,
+        borderRadius: 22,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hardSmall
-    },
-    // The one card being voted for stands a step proud of the two beside it.
-    optionActive: {
-        borderWidth: 3,
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint,
         ...theme.shadows.hard
+    },
+    // A brand surface rather than a themed one, so its outline is ink in both schemes.
+    optionActive: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint
     },
     faded: {
         opacity: 0.5
     },
-    picked: {
-        fontSize: 10,
+    optionHead: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two
+    },
+    letter: {
+        width: 30,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+    letterActive: {
+        borderColor: Brand.ink,
+        backgroundColor: Brand.ink
+    },
+    letterText: {
+        fontSize: 14,
         fontWeight: 900,
+        color: theme.colors.text
+    },
+    letterTextActive: {
+        color: theme.colors.mint
+    },
+    hint: {
+        fontSize: 9.5,
+        fontWeight: 900,
+        letterSpacing: 1.3,
         textTransform: 'uppercase',
-        letterSpacing: 0.8,
-        color: withAlpha(Brand.ink, 0.55)
+        color: theme.colors.textMuted
+    },
+    hintActive: {
+        color: withAlpha(Brand.ink, 0.6)
+    },
+    or: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10
+    },
+    orRule: {
+        flex: 1,
+        height: 2,
+        backgroundColor: withAlpha(theme.colors.text, 0.18)
+    },
+    // Lemon in both schemes, so its outline and label are ink in both.
+    orChip: {
+        paddingVertical: 4,
+        paddingHorizontal: 12,
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+    orText: {
+        fontSize: 11,
+        fontWeight: 900,
+        letterSpacing: 1.2,
+        textTransform: 'uppercase',
+        color: Brand.ink
     },
     foot: {
-        marginTop: 'auto',
-        paddingTop: Spacing.three,
         gap: Spacing.two + 1
     },
     // Tabular, so the left-hand digit does not twitch as votes land.

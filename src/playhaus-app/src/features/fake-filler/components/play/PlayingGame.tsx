@@ -1,10 +1,11 @@
 import LoadingPage from "@/components/layout/LoadingPage";
-import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
+import PlayBand from "@/features/fake-filler/components/play/PlayBand";
 import RoundRevealScreen from "@/features/fake-filler/components/play/RoundRevealScreen";
 import VotingScreen from "@/features/fake-filler/components/play/VotingScreen";
 import WritingScreen from "@/features/fake-filler/components/play/WritingScreen";
+import { openPrompt } from "@/features/fake-filler/prompt";
 import type { FFGameState } from "@/features/fake-filler/useGame";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -47,21 +48,44 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
 
     // The round the band is counting, which is not always the one the game is on.
     const at = reveal?.roundNumber ?? game.currentRound;
+    const roundCount = {
+        at,
+        total: game.totalRounds,
+        spoken: t('fakeFiller.play.voting.roundOf', { round: at, total: game.totalRounds })
+    };
 
-    // During writing every round is open at once, so there is no position to draw.
-    const segments: SegmentState[] | undefined = game.phase === 'writing'
-        ? undefined
-        : Array.from({ length: game.totalRounds }, (_, index): SegmentState => (
-            index + 1 < at ? 'played' : 'upcoming'
-        ));
+    const prompt = openPrompt(myRounds);
+    const facts = game.gameMode === 'facts';
 
-    const label = game.phase === 'writing'
-        ? t('fakeFiller.play.writing.title')
-        : t('fakeFiller.play.voting.roundOf', { round: at, total: game.totalRounds });
+    const band = reveal !== null ? {
+        label: t('fakeFiller.play.band.round'),
+        count: roundCount,
+        title: reveal.options.some(option => option.isTruth === true)
+            ? t('fakeFiller.play.reveal.truthWas')
+            : t('fakeFiller.play.reveal.title')
+    } : game.phase === 'writing' ? {
+        label: t('fakeFiller.play.band.prompt'),
+        // During writing every round is open at once, so the count is the player's own prompts.
+        count: myRounds.length === 0 ? undefined : {
+            at: prompt.at + 1,
+            total: myRounds.length,
+            spoken: t('fakeFiller.play.writing.promptOf', { index: prompt.at + 1, total: myRounds.length })
+        },
+        title: t('fakeFiller.play.writing.title'),
+        // Only until the player has written once.
+        subtitle: prompt.at === 0 && !prompt.done ? t('fakeFiller.play.writing.intro') : undefined
+    } : {
+        label: t('fakeFiller.play.band.round'),
+        count: roundCount,
+        title: facts ? t('fakeFiller.play.voting.title') : t('fakeFiller.play.voting.titleCreative'),
+        subtitle: votingRound?.canVote === true
+            ? (facts ? t('fakeFiller.play.voting.hint') : t('fakeFiller.play.voting.hintCreative'))
+            : undefined
+    };
 
     return (
         <View style={styles.page}>
-            <InGameHeader onClose={onClose} closeLabel={t('lobby.leave')} label={label} segments={segments} />
+            <PlayBand onClose={onClose} closeLabel={t('lobby.leave')} {...band} />
 
             {actionError !== null && (
                 <View style={styles.notice}>
@@ -118,11 +142,11 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
 const useStyles = createThemedStyles(() => ({
     page: {
         flex: 1,
-        width: '100%',
-        gap: Spacing.two
+        width: '100%'
     },
     notice: {
-        paddingHorizontal: Spacing.four
+        paddingHorizontal: Spacing.four,
+        paddingTop: Spacing.three
     },
     // The board draws its own gutters: this page is chromeless, so it is handed the bare window.
     failed: {

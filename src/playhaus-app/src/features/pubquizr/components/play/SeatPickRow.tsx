@@ -9,22 +9,30 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { Animated, Platform, Pressable, View } from "react-native";
 
 // Clears the 18dp badge out to a 42dp target.
 const BADGE_SLOP = { top: 12, right: 12, bottom: 12, left: 12 };
 
+const useNativeDriver = Platform.OS !== 'web';
+
 const MAX_VISIBLE = 5;
+// A half chip cut off at the edge is what says the row scrolls.
+const VISIBLE_WHEN_SCROLLING = 4.5;
 const GAP = 7;
+const SCROLLBAR_HEIGHT = 3;
 // How far the badge hangs past the chip's top and right edges.
 const BADGE_OVERHANG = 5;
 const SHADOW_REACH = 3;
 
 interface Props {
+    // "Nobody got it" has been tapped once and is waiting for the confirm tap.
+    confirmingNobody: boolean
     // The answer is still covered, which is the reason the row is locked.
     covered: boolean
     // Until the answer is showing, or while a ruling is in the air.
     locked: boolean
+    onConfirmNobody: () => void
     onLockIn: () => void
     onNobody: () => void
     onPick: (seat: number) => void
@@ -38,8 +46,10 @@ interface Props {
 
 // One chip per seat still in: tap a body to name who got it, tap a badge to rule that seat out.
 export default function SeatPickRow({
+    confirmingNobody,
     covered,
     locked,
+    onConfirmNobody,
     onLockIn,
     onNobody,
     onPick,
@@ -64,9 +74,11 @@ export default function SeatPickRow({
         ? t('pubquizr.play.validateLocked')
         : pickedSeat !== null
             ? t('pubquizr.play.pickLockHint', { name: pickedSeat.name })
-            : firstOut !== null
-                ? t('pubquizr.play.pickUndoHint', { name: firstOut.name })
-                : t('pubquizr.play.pickHint');
+            : confirmingNobody
+                ? t('pubquizr.play.nobodyConfirmHint')
+                : firstOut !== null
+                    ? t('pubquizr.play.pickUndoHint', { name: firstOut.name })
+                    : t('pubquizr.play.pickHint');
 
     // 1-based places among the seats still in, renumbered only once a seat is actually ruled out —
     // an unconfirmed pick must not shift anyone else's badge.
@@ -76,9 +88,18 @@ export default function SeatPickRow({
     }, []);
 
     const [width, setWidth] = useState(0);
+    const [contentWidth, setContentWidth] = useState(0);
+    const [scrollX] = useState(() => new Animated.Value(0));
     const scrolls = remaining.length > MAX_VISIBLE;
-    // Leaves room for the fifth badge, which also puts the sixth chip just past the edge.
-    const slotWidth = (width - BADGE_OVERHANG - GAP * (MAX_VISIBLE - 1)) / MAX_VISIBLE;
+    const slotWidth = (width - GAP * Math.floor(VISIBLE_WHEN_SCROLLING)) / VISIBLE_WHEN_SCROLLING;
+
+    const showScrollbar = scrolls && width > 0 && contentWidth > width;
+    const thumbWidth = showScrollbar ? width * width / contentWidth : 0;
+    const thumbX = scrollX.interpolate({
+        inputRange: [0, Math.max(1, contentWidth - width)],
+        outputRange: [0, Math.max(0, width - thumbWidth)],
+        extrapolate: 'clamp'
+    });
 
     const chips = remaining.map((seat, index) => {
         const out = isOut(seat.seat, index);
@@ -125,14 +146,26 @@ export default function SeatPickRow({
     return (
         <View style={styles.block} onLayout={event => setWidth(event.nativeEvent.layout.width)}>
             {scrolls ? (
-                <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={[styles.scroller, covered && styles.dimmed]}
-                    contentContainerStyle={styles.scrollRow}
-                >
-                    {width > 0 && chips}
-                </ScrollView>
+                <>
+                    <Animated.ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        onContentSizeChange={contentW => setContentWidth(contentW)}
+                        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver })}
+                        scrollEventThrottle={16}
+                        style={[styles.scroller, covered && styles.dimmed]}
+                        contentContainerStyle={styles.scrollRow}
+                    >
+                        {width > 0 && chips}
+                    </Animated.ScrollView>
+
+                    {/* Drawn rather than native, since the platform indicators only show mid-scroll. */}
+                    {showScrollbar && (
+                        <View style={[styles.track, covered && styles.dimmed]}>
+                            <Animated.View style={[styles.thumb, { width: thumbWidth, transform: [{ translateX: thumbX }] }]} />
+                        </View>
+                    )}
+                </>
             ) : (
                 <View style={[styles.row, covered && styles.dimmed]}>
                     {chips}
@@ -151,6 +184,20 @@ export default function SeatPickRow({
 
                     <AppText style={styles.lockInLabel} numberOfLines={1}>
                         {t('pubquizr.play.lockIn', { name: pickedSeat.name })}
+                    </AppText>
+                </PopPressable>
+            ) : confirmingNobody ? (
+                <PopPressable
+                    onPress={onConfirmNobody}
+                    disabled={locked}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: locked }}
+                    style={[styles.lockIn, locked && styles.dimmed]}
+                >
+                    <Feather name="arrow-right" size={16} color={Brand.ink} />
+
+                    <AppText style={styles.lockInLabel} numberOfLines={1}>
+                        {t('pubquizr.play.nobodyConfirm')}
                     </AppText>
                 </PopPressable>
             ) : (
@@ -195,6 +242,19 @@ const useStyles = createThemedStyles(theme => ({
         paddingTop: BADGE_OVERHANG,
         paddingRight: BADGE_OVERHANG,
         paddingBottom: SHADOW_REACH
+    },
+
+    track: {
+        height: SCROLLBAR_HEIGHT,
+        borderRadius: 999,
+        overflow: 'hidden',
+        backgroundColor: theme.colors.borderDashed
+    },
+
+    thumb: {
+        height: SCROLLBAR_HEIGHT,
+        borderRadius: 999,
+        backgroundColor: theme.colors.textMuted
     },
 
     dimmed: {

@@ -37,11 +37,13 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
         ruledOut: number[]
         /** The seat named as having got it, waiting to be locked in. */
         picked: number | null
-    }>({ questionId: null, stage: 'covered', ruledOut: [], picked: null });
+        /** "Nobody got it" has been tapped once and is waiting for the confirm tap. */
+        confirmingNobody: boolean
+    }>({ questionId: null, stage: 'covered', ruledOut: [], picked: null, confirmingNobody: false });
 
     // Reset during render rather than from an effect.
     if (progress.questionId !== turn.dealt.id) {
-        setProgress({ questionId: turn.dealt.id, stage: 'covered', ruledOut: [], picked: null });
+        setProgress({ questionId: turn.dealt.id, stage: 'covered', ruledOut: [], picked: null, confirmingNobody: false });
     }
 
     // What this render is actually drawing.
@@ -49,6 +51,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
     const stage = fresh ? 'covered' : progress.stage;
     const ruledOut = fresh ? [] : progress.ruledOut;
     const picked = fresh ? null : progress.picked;
+    const confirmingNobody = fresh ? false : progress.confirmingNobody;
 
     // Captured rather than read off `turn` inside the callbacks.
     const questionId = turn.dealt.id;
@@ -58,7 +61,8 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
             questionId,
             stage,
             ruledOut: ruledOut.filter(out => out !== seat),
-            picked: picked === seat ? null : seat
+            picked: picked === seat ? null : seat,
+            confirmingNobody: false
         });
     }
 
@@ -67,7 +71,8 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
             questionId,
             stage,
             ruledOut: ruledOut.includes(seat) ? ruledOut.filter(out => out !== seat) : [...ruledOut, seat],
-            picked: picked === seat ? null : picked
+            picked: picked === seat ? null : picked,
+            confirmingNobody: false
         });
     }
 
@@ -81,7 +86,12 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
         onSettle(turn.remaining.slice(0, at).map(candidate => candidate.seat), picked, turn.quizmaster.seat);
     }
 
+    // Arms the confirm step rather than settling straight away, so a misclick doesn't skip the question.
     function onNobody() {
+        setProgress({ questionId, stage, ruledOut, picked, confirmingNobody: true });
+    }
+
+    function onConfirmNobody() {
         onSettle(turn.remaining.map(candidate => candidate.seat), null, turn.quizmaster.seat);
     }
 
@@ -107,7 +117,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
                 aliases={turn.aliases}
                 revealed={stage === 'open'}
                 showAnswerRow={!hasOptions}
-                onReveal={() => setProgress({ questionId, stage: 'open', ruledOut, picked })}
+                onReveal={() => setProgress({ questionId, stage: 'open', ruledOut, picked, confirmingNobody })}
             >
                 {hasOptions ? <ChoiceCard options={turn.options} revealed={stage === 'open'} /> : undefined}
             </QuestionStack>
@@ -127,11 +137,13 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
                     remaining={turn.remaining}
                     ruledOut={ruledOut}
                     picked={picked}
+                    confirmingNobody={confirmingNobody}
                     covered={stage === 'covered'}
                     locked={stage === 'covered' || busy}
                     onPick={onPick}
                     onToggleOut={onToggleOut}
                     onNobody={onNobody}
+                    onConfirmNobody={onConfirmNobody}
                     onLockIn={onLockIn}
                 />
             </View>

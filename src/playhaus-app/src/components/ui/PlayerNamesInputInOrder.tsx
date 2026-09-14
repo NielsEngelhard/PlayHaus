@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { fontFamilyForWeight, withAlpha } from "@/constants/theme";
+import { fontFamilyForWeight, FontSizes, withAlpha } from "@/constants/theme";
 import type { Phrase } from "@/features/i18n/keys";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -211,7 +211,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     badgeText: {
-        fontSize: 11.5,
+        fontSize: FontSizes.xs,
         fontWeight: 900
     },
 
@@ -222,7 +222,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     caption: {
-        fontSize: 9.5,
+        fontSize: FontSizes.xs,
         fontWeight: 900,
         letterSpacing: 1.1,
         textTransform: 'uppercase',
@@ -239,7 +239,7 @@ const useStyles = createThemedStyles(theme => ({
         padding: 0,
         borderWidth: 0,
         backgroundColor: 'transparent',
-        fontSize: 15,
+        fontSize: FontSizes.lg,
         fontFamily: fontFamilyForWeight(700),
         color: theme.colors.text
     },
@@ -276,13 +276,13 @@ const useStyles = createThemedStyles(theme => ({
 
     addText: {
         flex: 1,
-        fontSize: 12.5,
+        fontSize: FontSizes.sm,
         fontWeight: 900,
         color: theme.colors.text
     },
 
     count: {
-        fontSize: 11,
+        fontSize: FontSizes.xs,
         fontWeight: 900,
         letterSpacing: 1.2,
         color: theme.colors.textSecondary

@@ -14,6 +14,10 @@ interface Props {
     mark?: string,
     // Underline the fills rather than washing them.
     underline?: boolean,
+    // Box each fill in a lemon pill, the loudest thing in the sentence.
+    pill?: boolean,
+    // Line height as a multiple of `size`; a pill needs more room than a wash.
+    leading?: number,
     /** The ink of the words between the blanks. The fills are always full strength. */
     color?: string,
     /** How many lines it may run to before it is cut. */
@@ -27,12 +31,14 @@ export default function FilledLine({
     size = 16,
     mark,
     underline = false,
+    pill = false,
+    leading = 1.45,
     color,
     lines
 }: Props) {
     const styles = useStyles();
 
-    const type: TextStyle = { fontSize: size, lineHeight: Math.round(size * 1.45) };
+    const type: TextStyle = { fontSize: size, lineHeight: Math.round(size * leading) };
 
     return (
         <AppText style={[styles.line, type, color !== undefined && { color }]} numberOfLines={lines}>
@@ -58,7 +64,8 @@ export default function FilledLine({
                             type,
                             // Ink on the wash in both schemes: the marked word sits on the mark, not beside it.
                             mark !== undefined && { backgroundColor: mark, color: Brand.ink },
-                            underline && styles.underlined
+                            underline && styles.underlined,
+                            pill && styles.pill
                         ]}
                     >
                         {value}
@@ -85,5 +92,15 @@ const useStyles = createThemedStyles(theme => ({
     },
     underlined: {
         textDecorationLine: 'underline'
+    },
+    // Native nested text drops the border and padding and keeps the lemon, which still marks the seam.
+    pill: {
+        paddingHorizontal: 9,
+        paddingVertical: 1,
+        borderRadius: 9,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon,
+        color: Brand.ink
     }
 }))
