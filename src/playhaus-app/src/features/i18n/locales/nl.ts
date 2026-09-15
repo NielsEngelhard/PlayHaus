@@ -300,6 +300,21 @@ export const nl: Catalog = {
         closedTitle: 'Lobby gesloten',
         inviteFriend: 'Nodig een vriend uit'
     },
+    scoreboard: {
+        eyebrow: 'Eindstand',
+        subtitle: '{{game}} · {{rounds}} rondes',
+        tie: 'Gelijkspel op {{score}}',
+        youWin: 'Jij wint met {{score}}',
+        playerWins: '{{name}} wint met {{score}}',
+        places: {
+            first: '1E',
+            second: '2E',
+            third: '3E'
+        },
+        playAgain: 'Nog een spel',
+        waitingForHost: 'De host kan een nieuw spel starten — ',
+        stayHere: 'blijf hier'
+    },
     lol: {
         index: {
             description: 'Test je woordenschat en probeer het geheime woord te raden.',
@@ -544,7 +559,7 @@ export const nl: Catalog = {
         index: {
             description: 'Een klassiek potje trivia in een speels jasje.',
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
-            multiDevice: { title: 'Multi-device', description: 'Één scherm voor de tafel, ieder een telefoon.', action: 'Kamer openen' },
+            multiDevice: { title: 'Host scherm', description: 'Telefoons als controller op een TV met de quiz.', action: 'Kamer openen' },
             tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
             allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
             pickOne: 'Pak er een',

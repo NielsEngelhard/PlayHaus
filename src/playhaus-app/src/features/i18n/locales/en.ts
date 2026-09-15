@@ -312,6 +312,23 @@ export const en = {
         // The free seat, on the host's screen only.
         inviteFriend: 'Invite a friend'
     },
+    // The end-of-game podium every scored game shares.
+    scoreboard: {
+        eyebrow: 'Final standings',
+        // `{{rounds}}` rather than `{{count}}`, which would demand plural variants.
+        subtitle: '{{game}} · {{rounds}} rounds',
+        tie: 'A tie at {{score}}',
+        youWin: 'You win with {{score}}',
+        playerWins: '{{name}} wins with {{score}}',
+        places: {
+            first: '1ST',
+            second: '2ND',
+            third: '3RD'
+        },
+        playAgain: 'Another game',
+        waitingForHost: 'The host can start a new game — ',
+        stayHere: 'stay here'
+    },
     lol: {
         index: {
             description: 'Test your vocabulary and try to guess the secret word.',
