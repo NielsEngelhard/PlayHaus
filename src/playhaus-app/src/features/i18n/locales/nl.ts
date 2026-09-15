@@ -59,8 +59,8 @@ export const nl: Catalog = {
     chrome: {
         toDarkMode: 'Schakel over naar donkere modus',
         toLightMode: 'Schakel over naar lichte modus',
-        muteMusic: 'Zet de muziek uit',
-        unmuteMusic: 'Zet de muziek aan',
+        muteSound: 'Zet al het geluid uit',
+        unmuteSound: 'Zet het geluid aan',
         signedInAs: 'Ingelogd als {{name}}. Ga naar je profiel.'
     },
     notFound: {
@@ -406,7 +406,15 @@ export const nl: Catalog = {
             yourTurnNotice: 'JOUW BEURT!'
         },
         results: {
-            loading: 'Uitslag laden…'
+            loading: 'Uitslag laden…',
+            loadFailed: 'De uitslag kon niet worden geladen.',
+            title: 'Spel afgelopen',
+            summary: 'Rondes: {{rounds}} · Letters: {{length}}',
+            baseScore: 'Pogingen',
+            timeBonus: 'Tijdbonus',
+            total: 'Totaal',
+            newHighScore: 'Nieuw persoonlijk record op {{letters}} letters!',
+            again: 'Nog een keer'
         },
         lobby: {
             loading: 'Lobby zoeken…',

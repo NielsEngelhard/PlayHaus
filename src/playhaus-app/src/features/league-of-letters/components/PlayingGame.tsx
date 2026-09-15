@@ -1,5 +1,5 @@
 import type { Game, GameRound } from "@/api/calls/league-of-letters";
-import MusicToggle from "@/components/layout/MusicToggle";
+import SoundToggle from "@/components/layout/SoundToggle";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
@@ -327,7 +327,7 @@ export default function PlayingGame({
                 // The two switches the app's header carries everywhere else.
                 actions={
                     <>
-                        <MusicToggle variant='band' />
+                        <SoundToggle variant='band' />
                         <ThemeToggle variant='band' />
                     </>
                 }

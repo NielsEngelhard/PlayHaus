@@ -15,10 +15,14 @@ interface Profile {
     updateUsername: (username: string) => void
     updateColor: (color: string) => void
     updateLocale: (locale: LanguageCode) => void
+    updateEnableAllSound: (enabled: boolean) => void
     updateEnableSounds: (enabled: boolean) => void
     updateEnableMusic: (enabled: boolean) => void
     updateEnableVibration: (enabled: boolean) => void
 }
+
+// One PUT: the endpoint, and a body carrying exactly the one field it names.
+type Put = [path: string, body: object];
 
 // Which line a failed save deserves, as a catalogue key.
 function profileErrorMessage(error: unknown): TranslationKey {
@@ -40,8 +44,8 @@ export function useProfile(): Profile {
     // One save at a time, across the whole page.
     const inFlight = useRef(false);
 
-    // `body` carries exactly the one field its endpoint names.
-    const save = useCallback(async (path: string, body: object, patch: Partial<User>) => {
+    // Several puts go out as one save, since a second `save` call would be dropped by the guard above.
+    const save = useCallback(async (puts: readonly Put[], patch: Partial<User>) => {
         if (inFlight.current) return;
 
         inFlight.current = true;
@@ -49,7 +53,7 @@ export function useProfile(): Profile {
         setSaveError(null);
 
         try {
-            await request<null>(path, { method: 'PUT', body: JSON.stringify(body) });
+            await Promise.all(puts.map(([path, body]) => request<null>(path, { method: 'PUT', body: JSON.stringify(body) })));
             patchUser(patch);
         } catch (failure) {
             // Nothing moved on screen, so there is nothing to roll back.
@@ -63,28 +67,36 @@ export function useProfile(): Profile {
     // Trimmed, because that is what the backend stores and measures its length against.
     const updateUsername = useCallback((username: string) => {
         const name = username.trim();
-        void save('/api/v1/user/username', { username: name }, { name });
+        void save([['/api/v1/user/username', { username: name }]], { name });
     }, [save]);
 
     const updateColor = useCallback((color: string) => {
-        void save('/api/v1/user/color', { color }, { color });
+        void save([['/api/v1/user/color', { color }]], { color });
     }, [save]);
 
     // The flag in the header renders off the session's `locale`, so `patchUser` is what moves it.
     const updateLocale = useCallback((locale: LanguageCode) => {
-        void save('/api/v1/user/locale', { locale }, { locale });
+        void save([['/api/v1/user/locale', { locale }]], { locale });
+    }, [save]);
+
+    // The header's mute: music and sound effects together.
+    const updateEnableAllSound = useCallback((enabled: boolean) => {
+        void save([
+            ['/api/v1/user/enable-sounds', { enableSounds: enabled }],
+            ['/api/v1/user/enable-music', { enableMusic: enabled }]
+        ], { enableSounds: enabled, enableMusic: enabled });
     }, [save]);
 
     const updateEnableSounds = useCallback((enableSounds: boolean) => {
-        void save('/api/v1/user/enable-sounds', { enableSounds }, { enableSounds });
+        void save([['/api/v1/user/enable-sounds', { enableSounds }]], { enableSounds });
     }, [save]);
 
     const updateEnableMusic = useCallback((enableMusic: boolean) => {
-        void save('/api/v1/user/enable-music', { enableMusic }, { enableMusic });
+        void save([['/api/v1/user/enable-music', { enableMusic }]], { enableMusic });
     }, [save]);
 
     const updateEnableVibration = useCallback((enableVibration: boolean) => {
-        void save('/api/v1/user/enable-vibration', { enableVibration }, { enableVibration });
+        void save([['/api/v1/user/enable-vibration', { enableVibration }]], { enableVibration });
     }, [save]);
 
     return {
@@ -94,6 +106,7 @@ export function useProfile(): Profile {
         updateUsername,
         updateColor,
         updateLocale,
+        updateEnableAllSound,
         updateEnableSounds,
         updateEnableMusic,
         updateEnableVibration

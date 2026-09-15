@@ -63,8 +63,8 @@ export const en = {
     chrome: {
         toDarkMode: 'Switch to dark mode',
         toLightMode: 'Switch to light mode',
-        muteMusic: 'Turn the music off',
-        unmuteMusic: 'Turn the music on',
+        muteSound: 'Turn all sound off',
+        unmuteSound: 'Turn sound on',
         signedInAs: 'Signed in as {{name}}. Go to your profile.'
     },
     notFound: {
@@ -426,7 +426,15 @@ export const en = {
             yourTurnNotice: 'YOUR TURN!'
         },
         results: {
-            loading: 'Loading the result…'
+            loading: 'Loading the result…',
+            loadFailed: 'The result could not be loaded.',
+            title: 'Game over',
+            summary: 'Rounds: {{rounds}} · Letters: {{length}}',
+            baseScore: 'Guesses',
+            timeBonus: 'Time bonus',
+            total: 'Total',
+            newHighScore: 'A new personal best at {{letters}} letters!',
+            again: 'Once more'
         },
         lobby: {
             loading: 'Looking for your lobby…',

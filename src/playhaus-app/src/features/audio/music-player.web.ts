@@ -1,17 +1,18 @@
 import { FADE_MS, rampVolume, type Fade } from "@/features/audio/fade";
 import { loopsForever, pickTrack, SOURCES, type MusicScene, type TrackId } from "@/features/audio/music-tracks";
-import { Asset } from "expo-asset";
+import { context, forgetBuffer, hold, loadBuffer, release } from "@/features/audio/web-audio";
 
 // Web half of the background music — see `music-player.ts` for the contract and for why these are split at all.
 
 /** Matches `music-player.ts`. Every loop is mastered to −18.8 LUFS, so one number covers all. */
 const VOLUME = 0.2;
 
-/** One loop, and whichever knob this browser gave us for its level. */
+/** One loop: a gain that outlives the one-shot sources played through it. */
 type Voice = {
-    element: HTMLAudioElement,
-    /** `null` where the browser has no Web Audio, in which case the level is the element's own. */
-    gain: GainNode | null
+    gain: GainNode,
+    source: AudioBufferSourceNode | null,
+    /** Bumped by every start and stop, so a file that finishes decoding after a stop knows it is stale. */
+    token: number
 };
 
 const voices = new Map<TrackId, Voice>();
@@ -22,7 +23,7 @@ const levels = new Map<TrackId, number>();
 /** Ramps in flight, so starting one on a track cancels the one it replaces. */
 const fades = new Map<TrackId, Fade>();
 
-/** Which elements are actually rolling. See `music-player.ts`, whose `running` this mirrors. */
+/** Which tracks are rolling or decoding on their way to it. See `music-player.ts`, whose `running` this mirrors. */
 const running = new Set<TrackId>();
 
 // The scene and track a fade out is still working through.
@@ -31,75 +32,26 @@ let retired: { scene: MusicScene, track: TrackId } | null = null;
 let currentScene: MusicScene | null = null;
 let currentTrack: TrackId | null = null;
 
-/** Set once the browser has refused us audio, so we stop asking on every navigation. */
-let unavailable = false;
-
-// The shared `AudioContext`, or `null` if this browser has no Web Audio.
-let context: AudioContext | null = null;
-let contextBuilt = false;
-
-function browser(): boolean {
-    return typeof window !== 'undefined' && typeof document !== 'undefined';
-}
-
-function audioContext(): AudioContext | null {
-    if (contextBuilt) return context;
-    contextBuilt = true;
-
-    try {
-        const Ctor = window.AudioContext
-            ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (!Ctor) return null;
-
-        context = new Ctor();
-    } catch {
-        context = null;
-    }
-
-    return context;
-}
-
 function trackVoice(track: TrackId): Voice | undefined {
-    if (unavailable) return undefined;
-
     const existing = voices.get(track);
     if (existing) return existing;
 
+    const graph = context();
+    if (!graph) return undefined;
+
     try {
-        // `require` of an `.m4a` is an asset reference, not a URL, on every platform.
-        const element = new Audio(Asset.fromModule(SOURCES[track]).uri);
+        const gain = graph.createGain();
+        // Silent until something fades it in.
+        gain.gain.value = 0;
+        gain.connect(graph.destination);
 
-        element.loop = loopsForever(track);
-        element.preload = 'auto';
-
-        // A track that does not loop natively hands its ending to `rotate` instead of going quiet.
-        if (!element.loop) element.addEventListener('ended', () => rotate(track));
-
-        let gain: GainNode | null = null;
-
-        const ctx = audioContext();
-        if (ctx) {
-            gain = ctx.createGain();
-            // Silent until something fades it in.
-            gain.gain.value = 0;
-            gain.connect(ctx.destination);
-
-            // Routed through the graph, the element's own volume is upstream of the gain and would attenuate twice.
-            element.volume = 1;
-            ctx.createMediaElementSource(element).connect(gain);
-        } else {
-            element.volume = 0;
-        }
-
-        const voice = { element, gain };
+        const voice: Voice = { gain, source: null, token: 0 };
 
         voices.set(track, voice);
         levels.set(track, 0);
 
         return voice;
     } catch {
-        unavailable = true;
-
         return undefined;
     }
 }
@@ -112,8 +64,7 @@ function setLevel(track: TrackId, volume: number): void {
 
     try {
         // Written straight onto the param rather than scheduled with `linearRampToValueAtTime`.
-        if (voice.gain) voice.gain.gain.value = volume;
-        else voice.element.volume = volume;
+        voice.gain.gain.value = volume;
     } catch { }
 }
 
@@ -138,11 +89,30 @@ function fadeTo(track: TrackId, to: number, onDone?: () => void): void {
 }
 
 function stop(track: TrackId): void {
-    running.delete(track);
+    const wasRunning = running.delete(track);
 
-    try {
-        voices.get(track)?.element.pause();
-    } catch { }
+    const voice = voices.get(track);
+    if (voice) {
+        voice.token++;
+
+        const source = voice.source;
+        voice.source = null;
+
+        if (source) {
+            // Cleared first, or stopping a track that does not loop would read as it finishing and rotate.
+            source.onended = null;
+
+            try {
+                source.stop();
+                source.disconnect();
+            } catch { }
+        }
+    }
+
+    if (wasRunning) release();
+
+    // A decoded loop is tens of megabytes, so only the one meant to be playing stays in memory.
+    if (track !== currentTrack) forgetBuffer(SOURCES[track]);
 }
 
 /** Bring `track` up to level, starting it first if it is not already going. */
@@ -151,23 +121,48 @@ function start(track: TrackId): void {
     if (!voice) return;
 
     // Anything already rolling is a track being reclaimed mid-fade — see the same guard in `music-player.ts`.
-    if (!running.has(track)) {
-        try {
-            // Suspended until a gesture, and getting here took several. Harmless when running.
-            void audioContext()?.resume().catch(() => { });
+    if (running.has(track)) {
+        fadeTo(track, VOLUME);
 
-            voice.element.currentTime = 0;
-            setLevel(track, 0);
-            // Unlike the native player this hands back a promise.
-            void voice.element.play().catch(() => { });
-        } catch {
+        return;
+    }
+
+    running.add(track);
+    hold();
+    setLevel(track, 0);
+
+    const token = ++voice.token;
+
+    void loadBuffer(SOURCES[track]).then(buffer => {
+        if (voice.token !== token) return;
+
+        const graph = context();
+        if (!buffer || !graph) {
+            stop(track);
+
             return;
         }
 
-        running.add(track);
-    }
+        try {
+            const source = graph.createBufferSource();
+            source.buffer = buffer;
+            source.loop = loopsForever(track);
 
-    fadeTo(track, VOLUME);
+            // A track that does not loop natively hands its ending to `rotate` instead of going quiet.
+            if (!source.loop) source.onended = () => rotate(track);
+
+            source.connect(voice.gain);
+            source.start();
+            voice.source = source;
+        } catch {
+            stop(track);
+
+            return;
+        }
+
+        // Faded from when it becomes audible rather than from the request, which a decode can trail by a second.
+        if (currentTrack === track) fadeTo(track, VOLUME);
+    });
 }
 
 /** Take `track` down to silence and stop it once it gets there. */
@@ -177,26 +172,6 @@ function retire(track: TrackId): void {
 
         // Gone for good now, so there is nothing left to pick back up.
         if (retired?.track === track) retired = null;
-    });
-}
-
-// A tab that is not being looked at should not be playing a game's music.
-let watching = false;
-
-function watchVisibility(): void {
-    if (watching) return;
-    watching = true;
-
-    document.addEventListener('visibilitychange', () => {
-        for (const track of running) {
-            const voice = voices.get(track);
-            if (!voice) continue;
-
-            try {
-                if (document.hidden) voice.element.pause();
-                else void voice.element.play().catch(() => { });
-            } catch { }
-        }
     });
 }
 
@@ -225,7 +200,6 @@ function rotate(track: TrackId): void {
 
 // Play something suitable for `scene`, and make sure it is the only thing going.
 export function playScene(scene: MusicScene): void {
-    if (!browser()) return;
     if (currentScene === scene) return;
 
     const previous = currentTrack;
@@ -250,8 +224,6 @@ export function playScene(scene: MusicScene): void {
     currentScene = scene;
     currentTrack = track;
 
-    watchVisibility();
-
     // Both ramps run at once and cross in the middle — see the equal-power note in `fade.ts`.
     if (previous !== null && previous !== track) retire(previous);
 
@@ -260,8 +232,6 @@ export function playScene(scene: MusicScene): void {
 
 /** Silence, arrived at rather than dropped into. */
 export function stopMusic(): void {
-    if (!browser()) return;
-
     const scene = currentScene;
     const track = currentTrack;
 

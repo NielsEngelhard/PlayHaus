@@ -1,5 +1,5 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
-import MusicToggle from "@/components/layout/MusicToggle";
+import SoundToggle from "@/components/layout/SoundToggle";
 import AppText from "@/components/text/AppText";
 import JoinCodeHero from "@/components/ui/JoinCodeHero";
 import { accentOf, type Game } from "@/constants/games";
@@ -112,7 +112,7 @@ export default function LobbyPageBase({
 
                     <LivePill live={live} />
 
-                    <MusicToggle variant='subtle' />
+                    <SoundToggle variant='subtle' />
                 </View>
 
                 <ScrollView

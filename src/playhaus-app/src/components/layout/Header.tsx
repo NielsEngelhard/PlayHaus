@@ -7,7 +7,7 @@ import BackChip from "./BackChip";
 import ContextPill from "./ContextPill";
 import GameMark from "./GameMark";
 import Logo from "./Logo";
-import MusicToggle from "./MusicToggle";
+import SoundToggle from "./SoundToggle";
 import ThemeToggle from "./ThemeToggle";
 import UserPill from "./UserPill";
 
@@ -45,8 +45,8 @@ export default function Header() {
                     />
                 )}
 
-                {/* Renders nothing unless there is music to silence. */}
-                <MusicToggle />
+                {/* Renders nothing unless there is music playing. */}
+                <SoundToggle />
 
                 <ThemeToggle />
             </View>

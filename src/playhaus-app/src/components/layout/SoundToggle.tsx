@@ -18,11 +18,11 @@ const SIZE = 32;
 const SUBTLE_SIZE = 30;
 const BAND_SIZE = 34;
 
-// Turns the background music off and on, from wherever it is playing.
-export default function MusicToggle({ variant = 'chrome' }: Props) {
+// Turns every sound the app makes off and on — music, button pops and chimes — from wherever music is playing.
+export default function SoundToggle({ variant = 'chrome' }: Props) {
     const scene = useMusicScene();
     const { user } = useAuth();
-    const { updateEnableMusic, saving } = useProfile();
+    const { updateEnableAllSound, saving } = useProfile();
     const { colors } = useTheme();
     const styles = useStyles();
     const t = useT();
@@ -31,27 +31,28 @@ export default function MusicToggle({ variant = 'chrome' }: Props) {
     const accent = useAccent();
     const band = variant === 'band' && accent !== null;
 
-    const playing = user?.enableMusic === true;
+    // Either switch still on counts as unmuted, so one press always silences everything.
+    const playing = user?.enableMusic === true || user?.enableSounds === true;
 
     // After the hooks, never before: this component appears and disappears with the scene.
     if (scene === null || user === null) return null;
 
     return (
         <PopPressable
-            onPress={() => updateEnableMusic(!playing)}
+            onPress={() => updateEnableAllSound(!playing)}
             // The save is confirmed rather than optimistic, so the icon does not move until the account holds the new value.
             disabled={saving}
             accessibilityRole='switch'
             accessibilityState={{ checked: playing, disabled: saving }}
-            accessibilityLabel={playing ? t('chrome.muteMusic') : t('chrome.unmuteMusic')}
+            accessibilityLabel={playing ? t('chrome.muteSound') : t('chrome.unmuteSound')}
             style={band
                 ? [styles.buttonBand, { backgroundColor: withAlpha(Brand.ink, accent.ink === 'paper' ? 0.22 : 0.08) }]
                 : variant === 'subtle' ? styles.buttonSubtle : styles.button}
         >
             <Feather
-                name={playing ? 'music' : 'volume-x'}
+                name={playing ? 'volume-2' : 'volume-x'}
                 size={16}
-                // Muted music gets a muted icon: off is a resting state, not a warning, so it recedes rather than colouring itself in.
+                // Muted gets a muted icon: off is a resting state, not a warning, so it recedes rather than colouring itself in.
                 color={band
                     ? withAlpha(accentInkColor(accent.ink), playing ? 1 : 0.55)
                     : playing ? colors.text : colors.textMuted}

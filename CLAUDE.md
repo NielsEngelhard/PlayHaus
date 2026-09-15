@@ -205,6 +205,20 @@ module scope. Reach for `useTheme()` only when a colour is needed as a *value* (
 prop). `AccentProvider`/`useAccent()` is a per-screen colour identity and deliberately not part of
 `Theme`. `style` props are layout-only by convention — the look lives in the sheet.
 
+**Tokens, not literals.** Every spacing, font size, corner radius and colour in a new or touched
+component comes from `src/constants/theme.ts`: `Spacing`, `FontSizes`, `Radii`, `ShadowReach`,
+`Brand` / `theme.colors`, `theme.borderWidth`, `theme.shadows`. A design value that falls between
+two tokens snaps to the nearest one (a tie goes to the smaller) rather than being hard-coded —
+Claude Design exports use in-between values like `12.5px` or `27px` that have no place here. A
+dimension that belongs to one component and no scale (an avatar diameter, a bar height) is a
+named constant at the top of that file. Older files still carry literals; don't copy them.
+
+**End of game.** `components/ui/ScoreBoardScreen.tsx` is the shared podium for every game that
+ranks individual scores (League of Letters multiplayer, PubquizR, Fake Filler): pass the `Game`,
+players mapped to `ScoreBoardPlayer`, and either an `action` or `waitingForHost`. The caller claims
+`useChromeless()`. One of Us keeps its own `GameOverScreen`, because a team wins there, not a
+player.
+
 **i18n** — `react-i18next`, catalogs in `src/features/i18n/locales/{en,nl}.ts`, typed keys.
 
 **Aliases** — `@/*` → `./src/*`, `@/assets/*` → `./assets/*`.
