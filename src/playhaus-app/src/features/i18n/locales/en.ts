@@ -807,6 +807,7 @@ export const en = {
             /** The covered panel, before the quizmaster has asked to see the answer. */
             answer: {
                 reveal: 'Tap to see the answer',
+                hide: 'Tap to hide the answer',
                 revealHint: 'Keep the screen to yourself'
             },
             /** The gate in front of the verdict. */
@@ -887,8 +888,6 @@ export const en = {
                 // How far off each guess landed, under the name.
                 off: '{{off}} off',
                 nearestOff: 'nearest · {{off}} off',
-                answerIs: 'Answer: {{answer}}',
-                points: '{{worth}} points',
                 says: '{{name}} says…',
                 now: 'now',
                 position: '{{number}} of {{total}}',
@@ -1467,14 +1466,11 @@ export const en = {
             },
             reveal: {
                 title: 'The results',
-                truthWas: 'The real one was',
-                // What picking the truth is worth, which is not the same as what writing a good fake is worth.
-                truthReward: 'spotting it is worth a point',
                 truth: 'The truth',
                 fake: 'Fake',
                 nobodyPicked: 'Nobody picked this',
-                pickedBy: 'Picked by {{names}}',
                 points: '+{{points}}',
+                pointsEach: '+1 each',
                 noScore: 'No points this round.',
                 next: 'Next round',
                 toResults: 'See the final scores',

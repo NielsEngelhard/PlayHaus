@@ -51,8 +51,6 @@ export default function AnswerScreen({ busy, myAnswer, onSubmit, prompt, round }
             // The keyboard is up for most of this screen.
             keyboardShouldPersistTaps='handled'
         >
-            <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.answer.title')}</AppText>
-
             <PinnedNote style={styles.note}>
                 <View style={styles.head}>
                     <AppText style={styles.about} numberOfLines={2}>{about}</AppText>
@@ -127,14 +125,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingTop: Spacing.three,
         paddingBottom: Spacing.five,
         gap: Spacing.three
-    },
-
-    title: {
-        fontSize: 21,
-        fontWeight: 900,
-        letterSpacing: -0.8,
-        lineHeight: 21 * 1.1,
-        color: theme.colors.text
     },
 
     note: {

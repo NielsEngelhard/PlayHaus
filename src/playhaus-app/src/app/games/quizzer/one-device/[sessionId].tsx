@@ -17,6 +17,7 @@ import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
+import TableHero from "@/features/pubquizr/components/play/TableHero";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
@@ -193,6 +194,8 @@ export default function OneDeviceQuizPage() {
                         })}
                         // The round about to start has not started, so the track stops at the one behind it.
                         segments={roundTrack(session.totalRounds, ordinal - 1)}
+                        title={t('pubquizr.play.standings.title', { round: ordinal - 1 })}
+                        subtitle={t('pubquizr.play.standings.description')}
                     />
                 </View>
 
@@ -243,6 +246,8 @@ export default function OneDeviceQuizPage() {
                             total: session.totalRounds
                         })}
                         segments={roundTrack(session.totalRounds, ordinal - 1)}
+                        title={t('pubquizr.play.standings.title', { round: ordinal - 1 })}
+                        subtitle={t('pubquizr.play.standings.description')}
                     />
                 </View>
 
@@ -257,6 +262,9 @@ export default function OneDeviceQuizPage() {
     }
 
     const copy = roundCopy(t, round, holder.name, session.zenMode);
+
+    // The hot seat rounds put the table's question on the header band.
+    const walk = hotSeat ?? doubleDown ?? finale;
 
     // The round explains itself before anybody is handed the phone.
     if (introducedRound !== round && session.currentPosition === 0) {
@@ -301,12 +309,21 @@ export default function OneDeviceQuizPage() {
                 label={t('pubquizr.play.roundLabel', { round: ordinal, kind: copy.kind })}
                 // Up to and including this one: the round being drawn is under way.
                 segments={roundTrack(session.totalRounds, ordinal)}
+                hero={walk !== null && (
+                    <TableHero
+                        answering={walk.answering}
+                        quizmaster={walk.quizmaster}
+                        round={round}
+                        number={walk.number}
+                        total={walk.total}
+                        worth={walk.worth}
+                    />
+                )}
             />
 
             {hotSeat !== null && (
                 <HotSeatBoard
                     turn={hotSeat}
-                    round={round}
                     busy={game.ruling}
                     error={game.rulingError}
                     onSettle={(missedSeats, correctSeat, from) => {
@@ -410,7 +427,6 @@ export default function OneDeviceQuizPage() {
             {doubleDown !== null && (
                 <HotSeatBoard
                     turn={doubleDown}
-                    round={round}
                     busy={game.ruling}
                     error={game.rulingError}
                     onSettle={(missedSeats, correctSeat, from) => {
@@ -423,7 +439,6 @@ export default function OneDeviceQuizPage() {
             {finale !== null && (
                 <HotSeatBoard
                     turn={finale}
-                    round={round}
                     busy={game.ruling}
                     error={game.rulingError}
                     onSettle={(missedSeats, correctSeat, from) => {

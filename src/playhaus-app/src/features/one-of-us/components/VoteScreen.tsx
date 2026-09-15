@@ -46,8 +46,6 @@ export default function VoteScreen({
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <AppText style={styles.title}>{t('oneOfUs.play.vote.title')}</AppText>
-
             {error !== null && (
                 <InlineNotification
                     icon="alert-triangle"
@@ -133,14 +131,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingTop: Spacing.three,
         paddingBottom: Spacing.two,
         gap: Spacing.three
-    },
-
-    title: {
-        fontSize: 21,
-        fontWeight: 900,
-        letterSpacing: -0.8,
-        lineHeight: 21 * 1.1,
-        color: theme.colors.text
     },
 
     notes: {

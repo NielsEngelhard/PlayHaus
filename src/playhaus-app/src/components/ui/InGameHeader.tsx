@@ -1,15 +1,14 @@
+import AccentBand from "@/components/layout/AccentBand";
 import AppText from "@/components/text/AppText";
 import { accentOf, gameForPathname } from "@/constants/games";
-import { accentInkColor, Brand, ContentWidth, Spacing, withAlpha, type Accent, type Theme } from "@/constants/theme";
+import { accentInkColor, Brand, Spacing, withAlpha, type Accent, type Theme } from "@/constants/theme";
 import { AccentProvider, useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { getReach } from "@/utils/size-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { usePathname } from "expo-router";
 import type { ReactNode } from "react";
-import { Pressable, useWindowDimensions, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Pressable, View } from "react-native";
 
 /** How one step of the track has gone, or that it has not been played yet. */
 export type SegmentState = 'won' | 'lost' | 'played' | 'upcoming';
@@ -26,10 +25,17 @@ interface Props {
     children?: ReactNode
     // The far-right cluster: the chrome the app's header would have carried, on the board's own band.
     actions?: ReactNode
+    // The screen's headline, on the band under the row.
+    title?: string
+    subtitle?: string
+    // Whatever else the screen puts on the band, under the title.
+    hero?: ReactNode
+    // How far the fill runs on behind whatever follows the band.
+    overlap?: number
 }
 
 // The top of every board: the way out, where you are, and the game's own colour.
-export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions }: Props) {
+export default function InGameHeader({ onClose, closeLabel, label, segments, children, actions, title, subtitle, hero, overlap = Spacing.five }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const pathname = usePathname();
@@ -39,71 +45,65 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     const game = gameForPathname(pathname);
     const accent: Accent | null = lent ?? (game === null ? null : accentOf(game));
 
-    const fill = accent?.color ?? theme.colors.backgroundSecondary;
+    const fill = theme.colors.backgroundSecondary;
+    const gradient = accent?.gradient ?? [fill, fill, fill] as const;
     const ink = accent === null ? theme.colors.text : accentInkColor(accent.ink);
 
-    const { width: windowWidth } = useWindowDimensions();
-    const reach = getReach(windowWidth)
-
-    // The app's header used to hold the notch open. Nothing does now but this band.
-    const insets = useSafeAreaInsets();
-
+    // Chromeless boards have no app header, so the band clears the notch itself.
     const band = (
-        <View
-            style={[
-                styles.band,
-                {
-                    backgroundColor: fill,
-                    paddingTop: insets.top + BAND_PADDING,
-                    marginHorizontal: -reach,
-                    paddingHorizontal: reach + GUTTER
-                }
-            ]}
-        >
-            <Pressable
-                onPress={onClose}
-                accessibilityRole="button"
-                accessibilityLabel={closeLabel}
-                style={styles.leave}
-            >
-                <Feather name="arrow-left" size={16} color={Brand.ink} />
-            </Pressable>
+        <AccentBand gradient={gradient} overlap={overlap} underHeader={false} style={styles.band}>
+            <View style={styles.row}>
+                <Pressable
+                    onPress={onClose}
+                    accessibilityRole="button"
+                    accessibilityLabel={closeLabel}
+                    style={styles.leave}
+                >
+                    <Feather name="arrow-left" size={16} color={Brand.ink} />
+                </Pressable>
 
-            <View style={styles.body}>
-                <AppText style={[styles.label, { color: withAlpha(ink, 0.85) }]} numberOfLines={1}>
-                    {label}
-                </AppText>
+                <View style={styles.body}>
+                    <AppText style={[styles.label, { color: withAlpha(ink, 0.85) }]} numberOfLines={1}>
+                        {label}
+                    </AppText>
 
-                {segments !== undefined && segments.length > 0 && (
-                    <View style={[styles.track, segments.length > CROWDED && styles.trackTight]}>
-                        {segments.map((state, index) => (
-                            <View
-                                key={index}
-                                style={[styles.segment, { backgroundColor: segmentFill(state, ink, theme) }]}
-                            />
-                        ))}
-                    </View>
-                )}
+                    {segments !== undefined && segments.length > 0 && (
+                        <View style={[styles.track, segments.length > CROWDED && styles.trackTight]}>
+                            {segments.map((state, index) => (
+                                <View
+                                    key={index}
+                                    style={[styles.segment, { backgroundColor: segmentFill(state, ink, theme) }]}
+                                />
+                            ))}
+                        </View>
+                    )}
+                </View>
+
+                {children}
+
+                {actions !== undefined && <View style={styles.actions}>{actions}</View>}
             </View>
 
-            {children}
+            {(title !== undefined || subtitle !== undefined) && (
+                <View style={styles.heading} accessibilityRole="header">
+                    {title !== undefined && <AppText style={[styles.title, { color: ink }]}>{title}</AppText>}
 
-            {actions !== undefined && <View style={styles.actions}>{actions}</View>}
-        </View>
+                    {subtitle !== undefined && (
+                        <AppText style={[styles.subtitle, { color: withAlpha(ink, 0.72) }]}>{subtitle}</AppText>
+                    )}
+                </View>
+            )}
+
+            {hero}
+        </AccentBand>
     );
 
     // The colour is lent onward as well as painted.
     return accent === null ? band : <AccentProvider accent={accent}>{band}</AccentProvider>;
 }
 
-/** The band's own vertical padding, which the notch is then added on top of. */
+/** The band's top padding, which the notch is then added on top of. */
 const BAND_PADDING = 11;
-
-// The gutter kept between the band's contents and the column's edge, once the fill has bled past it.
-const GUTTER = Spacing.four;
-
-// How wide the band already is before it reaches out.
-const COLUMN_WIDTH = ContentWidth + Spacing.four * 2;
 
 /** Past this many steps the track closes up, so the gaps stop eating the segments. */
 const CROWDED = 6;
@@ -123,16 +123,28 @@ function segmentFill(state: SegmentState, ink: string, theme: Theme): string {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Square, and hard against the board below it.
     band: {
-        flexShrink: 0,
+        paddingTop: BAND_PADDING,
+        gap: 14
+    },
+    row: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 12,
-        // Only the bottom half.
-        paddingBottom: BAND_PADDING,
-        borderBottomWidth: theme.borderWidth,
-        borderBottomColor: theme.colors.border
+        gap: 12
+    },
+    heading: {
+        gap: 5
+    },
+    title: {
+        fontSize: 26,
+        lineHeight: 26 * 1.05,
+        fontWeight: 900,
+        letterSpacing: -0.9
+    },
+    subtitle: {
+        fontSize: 13,
+        lineHeight: 13 * 1.35,
+        fontWeight: 700
     },
     // A paper chip in every scheme and on every accent, so its glyph is ink in every scheme and on every accent.
     leave: {

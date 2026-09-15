@@ -759,6 +759,7 @@ export const nl: Catalog = {
             alsoAccept: 'Ook goed: {{answers}}',
             answer: {
                 reveal: 'Tik om het antwoord te zien',
+                hide: 'Tik om het antwoord te verbergen',
                 revealHint: 'Houd het scherm voor jezelf'
             },
             validate: 'Beoordelen',
@@ -817,8 +818,6 @@ export const nl: Catalog = {
                 filled: '{{filled}} van {{total}} ingevuld',
                 off: '{{off}} ernaast',
                 nearestOff: 'dichtstbij · {{off}} ernaast',
-                answerIs: 'Antwoord: {{answer}}',
-                points: '{{worth}} punten',
                 says: '{{name}} zegt…',
                 now: 'nu',
                 position: '{{number}} van {{total}}',
@@ -1332,13 +1331,11 @@ export const nl: Catalog = {
             },
             reveal: {
                 title: 'De uitslag',
-                truthWas: 'De echte regel was',
-                truthReward: 'hem vinden is een punt waard',
                 truth: 'De waarheid',
                 fake: 'Verzonnen',
                 nobodyPicked: 'Niemand koos deze',
-                pickedBy: 'Gekozen door {{names}}',
                 points: '+{{points}}',
+                pointsEach: '+1 per persoon',
                 noScore: 'Geen punten deze ronde.',
                 next: 'Volgende ronde',
                 toResults: 'Naar de eindstand',

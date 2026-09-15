@@ -7,7 +7,6 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import type { ReactNode } from "react";
 import { ScrollView, View } from "react-native";
-import { CARD_OVERLAP } from "./TableBand";
 
 interface Props {
     aliases: string[]
@@ -16,6 +15,8 @@ interface Props {
     // Round 2's four options, read out after the question.
     children?: ReactNode
     cue?: string
+    // Only reachable without the answer row: the reveal button stays and covers the answer again.
+    onHide?: () => void
     onReveal: () => void
     prompt: string
     revealed: boolean
@@ -31,6 +32,7 @@ export default function QuestionStack({
     category,
     children,
     cue,
+    onHide,
     onReveal,
     prompt,
     revealed,
@@ -78,20 +80,21 @@ export default function QuestionStack({
                     {hasOptions && <View style={styles.options}>{children}</View>}
                 </ScrollView>
 
-                {!revealed ? (
+                {/* Kept on screen once revealed when there is no answer row to take its place, so the card does not jump. */}
+                {!revealed || !showAnswerRow ? (
                     <PopPressable
-                        onPress={onReveal}
+                        onPress={revealed ? () => onHide?.() : onReveal}
                         accessibilityRole="button"
-                        accessibilityLabel={t('pubquizr.play.answer.reveal')}
+                        accessibilityLabel={revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
                         style={styles.covered}
                     >
                         <View style={styles.eye}>
-                            <Feather name="eye" size={15} color={Brand.ink} />
+                            <Feather name={revealed ? 'eye-off' : 'eye'} size={15} color={Brand.ink} />
                         </View>
 
                         <View style={styles.rowBody}>
                             <AppText style={styles.revealLabel} numberOfLines={1}>
-                                {t('pubquizr.play.answer.reveal')}
+                                {revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
                             </AppText>
 
                             <AppText style={styles.revealHint} numberOfLines={1}>
@@ -99,7 +102,7 @@ export default function QuestionStack({
                             </AppText>
                         </View>
                     </PopPressable>
-                ) : showAnswerRow && (
+                ) : (
                     <View style={styles.answerRow}>
                         <View style={styles.rowBody}>
                             <AppText style={styles.answerLabel}>{t('pubquizr.play.answerLabel')}</AppText>
@@ -126,7 +129,6 @@ const useStyles = createThemedStyles(theme => ({
     wrapper: {
         flex: 1,
         minHeight: 190,
-        marginTop: -CARD_OVERLAP,
         marginHorizontal: 4
     },
 

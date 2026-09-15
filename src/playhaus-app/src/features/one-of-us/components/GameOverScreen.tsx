@@ -47,6 +47,8 @@ export default function GameOverScreen({
                 onClose={onLeave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={t('oneOfUs.play.over.label')}
+                title={civiliansWon ? t('oneOfUs.play.over.civilians') : t('oneOfUs.play.over.imposters')}
+                subtitle={civiliansWon ? t('oneOfUs.play.over.civiliansWhy') : t('oneOfUs.play.over.impostersWhy')}
             />
 
             {/* Both sides get it. */}
@@ -57,18 +59,6 @@ export default function GameOverScreen({
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
             >
-                <AppText style={styles.title}>
-                    {civiliansWon
-                        ? t('oneOfUs.play.over.civilians')
-                        : t('oneOfUs.play.over.imposters')}
-                </AppText>
-
-                <AppText style={styles.why}>
-                    {civiliansWon
-                        ? t('oneOfUs.play.over.civiliansWhy')
-                        : t('oneOfUs.play.over.impostersWhy')}
-                </AppText>
-
                 <View style={styles.words}>
                     <View style={styles.word}>
                         <AppText style={styles.wordLabel}>
@@ -174,24 +164,7 @@ const useStyles = createThemedStyles(theme => ({
         paddingBottom: Spacing.three
     },
 
-    title: {
-        fontSize: 38,
-        fontWeight: 900,
-        lineHeight: 38 * 1.03,
-        letterSpacing: -1.5,
-        color: theme.colors.text
-    },
-
-    why: {
-        marginTop: 10,
-        fontSize: 15,
-        fontWeight: 600,
-        lineHeight: 15 * 1.5,
-        color: theme.colors.textSecondary
-    },
-
     words: {
-        marginTop: Spacing.four,
         gap: 8
     },
 

@@ -1,4 +1,3 @@
-import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InGameHeader from "@/components/ui/InGameHeader";
 import { Spacing } from "@/constants/theme";
@@ -23,13 +22,10 @@ export default function RolesBriefingScreen({ onDone, onLeave }: Props) {
                 onClose={onLeave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={t('oneOfUs.play.briefing.title')}
+                subtitle={t('oneOfUs.play.briefing.intro')}
             />
 
             <View style={styles.screen}>
-                <AppText style={styles.intro}>
-                    {t('oneOfUs.play.briefing.intro')}
-                </AppText>
-
                 <ScrollView
                     style={styles.list}
                     contentContainerStyle={styles.listContent}
@@ -69,13 +65,6 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%',
         paddingTop: Spacing.four,
         gap: Spacing.three
-    },
-
-    intro: {
-        fontSize: 15,
-        fontWeight: 700,
-        lineHeight: 15 * 1.45,
-        color: theme.colors.textSecondary
     },
 
     list: {

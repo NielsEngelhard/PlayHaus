@@ -1,5 +1,4 @@
 import InlineNotification from "@/components/ui/InlineNotification";
-import { Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { HotSeatTurn } from "@/features/pubquizr/hot-seat";
@@ -10,12 +9,9 @@ import { View } from "react-native";
 import ChoiceCard from "./ChoiceCard";
 import QuestionStack from "./QuestionStack";
 import SeatPickRow from "./SeatPickRow";
-import TableBand from "./TableBand";
 
 interface Props {
     turn: HotSeatTurn
-    /** Which round this is, for the band's pips. */
-    round: number
     /** A ruling is already in the air. */
     busy: boolean
     error: TranslationKey | null
@@ -24,7 +20,7 @@ interface Props {
 }
 
 // The board for the hot seat rounds: the question put to the table, its answer, and one row of seats to rule it with.
-export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Props) {
+export default function HotSeatBoard({ turn, busy, error, onSettle }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -33,22 +29,25 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
     const [progress, setProgress] = useState<{
         questionId: string | null
         stage: 'covered' | 'open'
+        // Whether the answer is on screen right now; hiding it again leaves `stage` open.
+        shown: boolean
         /** Seats the quizmaster has ruled out by badge, in the order they were tapped. */
         ruledOut: number[]
         /** The seat named as having got it, waiting to be locked in. */
         picked: number | null
         /** "Nobody got it" has been tapped once and is waiting for the confirm tap. */
         confirmingNobody: boolean
-    }>({ questionId: null, stage: 'covered', ruledOut: [], picked: null, confirmingNobody: false });
+    }>({ questionId: null, stage: 'covered', shown: false, ruledOut: [], picked: null, confirmingNobody: false });
 
     // Reset during render rather than from an effect.
     if (progress.questionId !== turn.dealt.id) {
-        setProgress({ questionId: turn.dealt.id, stage: 'covered', ruledOut: [], picked: null, confirmingNobody: false });
+        setProgress({ questionId: turn.dealt.id, stage: 'covered', shown: false, ruledOut: [], picked: null, confirmingNobody: false });
     }
 
     // What this render is actually drawing.
     const fresh = progress.questionId !== turn.dealt.id;
     const stage = fresh ? 'covered' : progress.stage;
+    const shown = fresh ? false : progress.shown;
     const ruledOut = fresh ? [] : progress.ruledOut;
     const picked = fresh ? null : progress.picked;
     const confirmingNobody = fresh ? false : progress.confirmingNobody;
@@ -60,6 +59,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
         setProgress({
             questionId,
             stage,
+            shown,
             ruledOut: ruledOut.filter(out => out !== seat),
             picked: picked === seat ? null : seat,
             confirmingNobody: false
@@ -70,6 +70,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
         setProgress({
             questionId,
             stage,
+            shown,
             ruledOut: ruledOut.includes(seat) ? ruledOut.filter(out => out !== seat) : [...ruledOut, seat],
             picked: picked === seat ? null : picked,
             confirmingNobody: false
@@ -88,7 +89,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
 
     // Arms the confirm step rather than settling straight away, so a misclick doesn't skip the question.
     function onNobody() {
-        setProgress({ questionId, stage, ruledOut, picked, confirmingNobody: true });
+        setProgress({ questionId, stage, shown, ruledOut, picked, confirmingNobody: true });
     }
 
     function onConfirmNobody() {
@@ -99,15 +100,6 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
 
     return (
         <View style={styles.turn}>
-            <TableBand
-                answering={turn.answering}
-                quizmaster={turn.quizmaster}
-                round={round}
-                number={turn.number}
-                total={turn.total}
-                worth={turn.worth}
-            />
-
             <QuestionStack
                 prompt={turn.question.prompt}
                 category={turn.question.category}
@@ -115,11 +107,12 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
                 size={hasOptions ? 21 : 23}
                 answer={turn.answer}
                 aliases={turn.aliases}
-                revealed={stage === 'open'}
+                revealed={shown}
                 showAnswerRow={!hasOptions}
-                onReveal={() => setProgress({ questionId, stage: 'open', ruledOut, picked, confirmingNobody })}
+                onReveal={() => setProgress({ questionId, stage: 'open', shown: true, ruledOut, picked, confirmingNobody })}
+                onHide={() => setProgress({ questionId, stage, shown: false, ruledOut, picked, confirmingNobody })}
             >
-                {hasOptions ? <ChoiceCard options={turn.options} revealed={stage === 'open'} /> : undefined}
+                {hasOptions ? <ChoiceCard options={turn.options} revealed={shown} /> : undefined}
             </QuestionStack>
 
             {error !== null && (
@@ -152,9 +145,7 @@ export default function HotSeatBoard({ turn, round, busy, error, onSettle }: Pro
 }
 
 const useStyles = createThemedStyles(() => ({
-    // Pulled up over the page's gap, so the band meets the header's bottom line; no gap of its own, so the card can overlap the band exactly.
     turn: {
-        marginTop: -(Spacing.three - 4),
         flex: 1,
         minHeight: 0
     },

@@ -27,8 +27,9 @@ export default function AccentBand({ children, flush = false, gradient, gutter =
     const { width: windowWidth } = useWindowDimensions();
 
     // How far past the column the fill has to reach to make the window, and so also whether it is reaching at all.
+    // The outer View's own `-gutter` margin already cancels the parent's gutter padding, so `gutter` plays no part here.
     const bleed = Platform.OS === 'web'
-        ? Math.max(0, Math.ceil((windowWidth - (ContentWidth + gutter * 2)) / 2))
+        ? Math.max(0, Math.ceil((windowWidth - ContentWidth) / 2))
         : 0;
 
     return (

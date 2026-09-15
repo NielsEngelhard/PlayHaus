@@ -147,6 +147,10 @@ export default function PlayingSingleDeviceGame() {
                 onClose={leave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={phrase(headerLabelFor(current))}
+                title={current.kind === 'discuss'
+                    ? t('oneOfUs.play.discuss.title')
+                    : current.kind === 'vote' ? t('oneOfUs.play.vote.title') : undefined}
+                subtitle={current.kind === 'discuss' ? t('oneOfUs.play.discuss.description') : undefined}
             >
                 {/* No round total to count against, so the band counts the table instead: it shrinks by one a round. */}
                 <View style={styles.chip}>

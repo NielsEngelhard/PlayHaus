@@ -65,6 +65,14 @@ export default function PlayingGame({ onClose, onFinish, table, userId }: Props)
     const answering = table.answering && round !== null;
     const mayor = mayorSeatOf(game.players);
 
+    // The same order the screens below are picked in.
+    const title = dealing ? t('oneOfUs.multiDevice.play.deal.title')
+        : reveal !== null ? t('oneOfUs.multiDevice.play.reveal.title')
+            : table.amOut ? undefined
+                : answering ? t('oneOfUs.multiDevice.play.answer.title')
+                    : votingRound !== null ? t('oneOfUs.multiDevice.play.vote.title')
+                        : undefined;
+
     return (
         <View style={styles.page}>
             <View style={styles.header}>
@@ -72,6 +80,7 @@ export default function PlayingGame({ onClose, onFinish, table, userId }: Props)
                     onClose={onClose}
                     closeLabel={t('oneOfUs.play.close')}
                     label={phrase(bandLabel(table, game.currentRound))}
+                    title={title}
                 >
                     <View style={styles.chip}>
                         <AppText style={styles.chipText}>

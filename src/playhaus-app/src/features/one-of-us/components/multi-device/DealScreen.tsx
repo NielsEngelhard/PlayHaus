@@ -1,4 +1,3 @@
-import AppText from '@/components/text/AppText';
 import { Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import PinButton from '@/features/one-of-us/components/PinButton';
@@ -24,8 +23,6 @@ export default function DealScreen({ amNitwit, onDone, prompt }: Props) {
 
     return (
         <View style={styles.screen}>
-            <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.deal.title')}</AppText>
-
             {/* Still covered until it is tapped: everybody is in one room, so a shoulder is the threat rather than the wire. */}
             <View style={styles.middle}>
                 <WordNote
@@ -62,15 +59,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: Spacing.two
     },
 
-    title: {
-        fontSize: 21,
-        fontWeight: 900,
-        letterSpacing: -0.8,
-        lineHeight: 21 * 1.1,
-        color: theme.colors.text
-    },
-
-    // The stack sits in the middle of whatever room the title and the button leave.
+    // The stack sits in the middle of whatever room the button leaves.
     middle: {
         flex: 1,
         width: '100%',

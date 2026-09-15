@@ -1,8 +1,8 @@
+import { ffRoundOf } from "@/api/calls/fake-filler";
 import LoadingPage from "@/components/layout/LoadingPage";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
 import PlayBand from "@/features/fake-filler/components/play/PlayBand";
-import RoundRevealScreen from "@/features/fake-filler/components/play/RoundRevealScreen";
 import VotingScreen from "@/features/fake-filler/components/play/VotingScreen";
 import WritingScreen from "@/features/fake-filler/components/play/WritingScreen";
 import { openPrompt } from "@/features/fake-filler/prompt";
@@ -57,12 +57,13 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
     const prompt = openPrompt(myRounds);
     const facts = game.gameMode === 'facts';
 
+    // The reveal is drawn on the voting round's own cards, so both phases show the same round.
+    const round = reveal !== null ? ffRoundOf(game, reveal.roundNumber) ?? null : votingRound;
+
     const band = reveal !== null ? {
         label: t('fakeFiller.play.band.round'),
         count: roundCount,
-        title: reveal.options.some(option => option.isTruth === true)
-            ? t('fakeFiller.play.reveal.truthWas')
-            : t('fakeFiller.play.reveal.title')
+        title: t('fakeFiller.play.reveal.title')
     } : game.phase === 'writing' ? {
         label: t('fakeFiller.play.band.prompt'),
         // During writing every round is open at once, so the count is the player's own prompts.
@@ -98,38 +99,32 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                 </View>
             )}
 
-            {reveal !== null ? (
-                <RoundRevealScreen
-                    game={game}
-                    reveal={reveal}
-                    userId={userId}
-                    // Whether there is another prompt behind this one.
-                    more={reveal.roundNumber < game.totalRounds}
-                    // The pacing is the host's; everybody else waits to be moved.
-                    isHost={game.ownerId === userId}
-                    busy={table.advancing}
-                    onContinue={() => {
-                        void table.advance().then(moved => {
-                            // The last round has been read, so the room moves on to the result.
-                            if (moved && reveal.roundNumber >= game.totalRounds) onFinish();
-                        });
-                    }}
-                />
-            ) : game.phase === 'writing' ? (
+            {game.phase === 'writing' ? (
                 <WritingScreen
                     game={game}
                     rounds={myRounds}
                     busy={table.submitting}
                     onSubmit={table.submitAnswer}
                 />
-            ) : votingRound !== null ? (
+            ) : round !== null ? (
                 <VotingScreen
-                    // Keyed by the round, so the half-made choice inside it is torn down with the round it belonged to.
-                    key={votingRound.id}
+                    // Keyed by the round, so the reveal updates these cards in place and the next round starts fresh.
+                    key={round.id}
                     game={game}
-                    round={votingRound}
+                    round={round}
+                    userId={userId}
                     busy={table.voting}
                     onVote={table.castVote}
+                    more={round.number < game.totalRounds}
+                    // The pacing is the host's; everybody else waits to be moved.
+                    isHost={game.ownerId === userId}
+                    advancing={table.advancing}
+                    onContinue={() => {
+                        void table.advance().then(moved => {
+                            // The last round has been read, so the room moves on to the result.
+                            if (moved && round.number >= game.totalRounds) onFinish();
+                        });
+                    }}
                 />
             ) : (
                 // Voting, but there is no round to show.

@@ -340,17 +340,8 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
 
     const text = current === null ? '' : typed[current.seat] ?? '';
     const shown = groupDigits(text, language);
-    const value = Number(text.replace(',', '.'));
-    const readable = text.trim() !== '' && text !== '-' && Number.isFinite(value);
     // Twelve digits have to fit on web too, where `adjustsFontSizeToFit` does nothing.
     const numberSize = shown.length <= 7 ? 54 : shown.length <= 9 ? 44 : 34;
-
-    const subline = [
-        turn.unit,
-        !turn.quizmasterGuesses && readable
-            ? t('pubquizr.play.closest.off', { off: Math.abs(value - turn.answer).toLocaleString(language) })
-            : ''
-    ].filter(part => part !== '').join(' · ');
 
     return (
         <View style={styles.screen}>
@@ -358,23 +349,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                 {strip}
 
                 <AppText style={styles.prompt}>{turn.question.prompt}</AppText>
-
-                {/* Hidden at the smallest table the game allows, where the reader guesses too. */}
-                {!turn.quizmasterGuesses && (
-                    <View style={styles.answer}>
-                        <Feather name="award" size={14} color={Brand.ink} />
-
-                        <AppText style={styles.answerText} numberOfLines={1}>
-                            {t('pubquizr.play.closest.answerIs', { answer: turn.answer.toLocaleString(language) })}
-                        </AppText>
-
-                        <View style={styles.answerWorth}>
-                            <AppText style={styles.answerWorthText}>
-                                {t('pubquizr.play.closest.points', { worth: turn.worth })}
-                            </AppText>
-                        </View>
-                    </View>
-                )}
 
                 <GuessChips
                     busy={busy}
@@ -415,8 +389,9 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                                 <View style={[styles.caret, { height: numberSize * 0.8 }]} />
                             </View>
 
-                            {subline !== '' && (
-                                <AppText style={styles.subline}>{subline}</AppText>
+                            {/* No distance from the answer here: a guess plus how far off it is gives the answer away. */}
+                            {turn.unit !== '' && (
+                                <AppText style={styles.subline}>{turn.unit}</AppText>
                             )}
                         </>
                     )}
@@ -729,46 +704,6 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: 15 * 1.3,
         fontWeight: 800,
         color: theme.colors.text
-    },
-
-    // Mint in both schemes, the same "this is what it pays" the stake badge wears.
-    answer: {
-        flexShrink: 0,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        paddingVertical: 7,
-        paddingHorizontal: 11,
-        borderRadius: 14,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.mint
-    },
-
-    answerText: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 12.5,
-        fontWeight: 900,
-        color: Brand.ink
-    },
-
-    answerWorth: {
-        flexShrink: 0,
-        paddingVertical: 1,
-        paddingHorizontal: 7,
-        borderRadius: 999,
-        borderWidth: 1.5,
-        borderColor: Brand.ink,
-        backgroundColor: Brand.textOnAccent
-    },
-
-    answerWorthText: {
-        fontSize: 9.5,
-        fontWeight: 900,
-        letterSpacing: 0.6,
-        textTransform: 'uppercase',
-        color: Brand.ink
     },
 
     // The one part that grows, so the number sits in the middle of whatever room is left.

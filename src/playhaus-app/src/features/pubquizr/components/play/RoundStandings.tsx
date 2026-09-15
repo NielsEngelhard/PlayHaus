@@ -1,5 +1,4 @@
 import AppText from "@/components/text/AppText";
-import SimpleTextHero from "@/components/text/SimpleTextHero";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Brand, Spacing } from "@/constants/theme";
@@ -31,11 +30,6 @@ export default function RoundStandings({ standings, round, onNext, onLeave }: Pr
 
     return (
         <View style={styles.screen}>
-            <SimpleTextHero
-                title={t('pubquizr.play.standings.title', { round })}
-                description={t('pubquizr.play.standings.description')}
-            />
-
             <View style={styles.list}>
                 {standings.map((seat, index) => {
                     const leading = index === 0 && outright;

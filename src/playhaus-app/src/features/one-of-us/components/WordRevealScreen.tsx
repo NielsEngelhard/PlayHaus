@@ -67,12 +67,10 @@ export default function WordRevealScreen({
                 onClose={onLeave}
                 closeLabel={t('oneOfUs.play.close')}
                 label={t('oneOfUs.play.reveal.step', { number, total })}
+                title={person.name}
             />
 
             <View style={styles.screen}>
-                <AppText style={styles.name}>{person.name}</AppText>
-
-                {/* The name stays pinned under the band. */}
                 <View style={styles.middle}>
                     <WordNote
                         key={person.seat}
@@ -137,13 +135,7 @@ const useStyles = createThemedStyles(theme => ({
         width: '100%',
         paddingTop: Spacing.four
     },
-    name: {
-        fontSize: 34,
-        fontWeight: 900,
-        letterSpacing: -1.2,
-        color: theme.colors.text
-    },
-    // Takes every point the name and the footer leave behind, and centres the stack in it.
+    // Takes every point the footer leaves behind, and centres the stack in it.
     middle: {
         flex: 1,
         justifyContent: 'center'

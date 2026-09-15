@@ -60,8 +60,6 @@ export default function RoundReveal({
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <AppText style={styles.title}>{t('oneOfUs.multiDevice.play.reveal.title')}</AppText>
-
             {ordered.map((answer, index) => (
                 <TurnedNote
                     key={answer.slot}
@@ -161,15 +159,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingTop: Spacing.three,
         paddingBottom: Spacing.five,
         gap: 10
-    },
-
-    title: {
-        marginBottom: 6,
-        fontSize: 21,
-        fontWeight: 900,
-        letterSpacing: -0.8,
-        lineHeight: 21 * 1.1,
-        color: theme.colors.text
     },
 
     note: {

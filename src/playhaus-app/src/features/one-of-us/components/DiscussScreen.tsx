@@ -1,4 +1,3 @@
-import SimpleTextHero from "@/components/text/SimpleTextHero";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -25,11 +24,6 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
             <SeatRing
                 seats={seats}
                 headline={t('oneOfUs.play.discuss.ring')}
-            />
-
-            <SimpleTextHero
-                title={t('oneOfUs.play.discuss.title')}
-                description={t('oneOfUs.play.discuss.description')}
             />
 
             <View style={styles.footer}>
