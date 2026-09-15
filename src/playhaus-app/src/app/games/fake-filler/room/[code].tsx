@@ -2,17 +2,19 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import PopupModal from "@/components/ui/PopupModal";
 import RoomClosedNotice from "@/components/ui/RoomClosedNotice";
+import ScoreBoardScreen from "@/components/ui/ScoreBoardScreen";
 import TextButton from "@/components/ui/TextButton";
+import { FAKE_FILLER } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/fake-filler/components/LobbyView";
 import PlayingGame from "@/features/fake-filler/components/play/PlayingGame";
-import Results from "@/features/fake-filler/components/play/Results";
 import { useGame } from "@/features/fake-filler/useGame";
 import { useLobby } from "@/features/fake-filler/useLobby";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import { avatarColorById } from "@/utils/color-utils";
 import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
@@ -155,24 +157,42 @@ interface RoomResultsProps {
 // The end of the game, still inside the room.
 function RoomResults({ state, table }: RoomResultsProps) {
     const { user } = useAuth();
+    const router = useRouter();
     const t = useT();
 
-    const { game, online } = table;
+    useChromeless();
+
+    const { game } = table;
 
     // Only while the board is still loading, which by this point it is not.
     if (game === null) {
         return <LoadingPage message={t('fakeFiller.results.loading')} />;
     }
 
+    const players = game.players.map(player => ({
+        id: player.userId,
+        name: player.name,
+        score: player.score,
+        swatch: avatarColorById(player.avatarColorId)
+    }));
+
     return (
-        <Results
-            players={game.players}
-            userId={user?.id ?? ''}
-            online={online}
-            isHost={state.isHost}
-            onPlayAgain={() => void state.rematch()}
-            playingAgain={state.rematching}
+        <ScoreBoardScreen
+            game={FAKE_FILLER}
+            players={players}
+            totalRounds={game.totalRounds}
+            youId={user?.id}
+            onClose={() => router.replace(ROUTES.fakeFillerIndex)}
+            action={state.isHost
+                ? {
+                    text: state.rematching ? t('fakeFiller.lobby.opening') : t('scoreboard.playAgain'),
+                    icon: 'rotate-ccw',
+                    disabled: state.rematching,
+                    onPress: () => void state.rematch()
+                }
+                : undefined}
             error={state.actionError}
+            waitingForHost={!state.isHost}
         />
     )
 }

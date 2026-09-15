@@ -26,7 +26,10 @@ export const Brand = {
     /** The struck-out grey a spent letter tile wears, in either scheme. */
     slate: '#4B4C58',
     // A neutral the game accents never touch, for the one card in One of Us that has to say nothing rather than something.
-    fog: '#DCDCE4'
+    fog: '#DCDCE4',
+    // Second and third place, beside `lemon` for first; both pale enough to carry ink.
+    silver: '#D5D8E0',
+    bronze: '#E6A56E'
 } as const;
 
 // Every colour that has to answer differently in light and dark.
@@ -193,6 +196,16 @@ export const Spacing = {
     four: 24,
     five: 32,
     six: 64,
+} as const;
+
+// Corner radii; a design value between two of these snaps to the nearest one.
+export const Radii = {
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 20,
+    band: 32,
+    full: 999
 } as const;
 
 // Build a hard shadow: `<offset>px <offset>px 0 0 <color>`.

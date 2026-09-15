@@ -426,15 +426,7 @@ export const en = {
             yourTurnNotice: 'YOUR TURN!'
         },
         results: {
-            loading: 'Loading the result…',
-            loadFailed: 'The result could not be loaded.',
-            title: 'Game over',
-            summary: 'Rounds: {{rounds}} · Letters: {{length}}',
-            baseScore: 'Guesses',
-            timeBonus: 'Time bonus',
-            total: 'Total',
-            newHighScore: 'A new personal best at {{letters}} letters!',
-            again: 'Once more'
+            loading: 'Loading the result…'
         },
         lobby: {
             loading: 'Looking for your lobby…',
@@ -470,17 +462,7 @@ export const en = {
             hostFallback: 'The host',
             settingsTitle: 'Game settings',
             timePerTurn: 'Time per turn',
-            timePerTurnOption: '{{seconds}} seconds',
-            results: {
-                title: 'Game over',
-                tie: 'A tie at {{score}} points.',
-                youWin: 'You win with {{score}} points.',
-                playerWins: '{{name}} wins with {{score}} points.',
-                againSamePlayers: 'Once more, same players',
-                autoJoin: 'Everyone still on this screen is taken along to the new lobby automatically.',
-                anotherRound: 'Another round?',
-                hostCanOpen: 'The game is done. The host can open a new lobby. Stay here and you come along automatically.'
-            }
+            timePerTurnOption: '{{seconds}} seconds'
         },
         wordOfTheDay: {
             eyebrow: 'Word of the day',
@@ -1062,9 +1044,7 @@ export const en = {
                 // Nobody won outright.
                 tieLabel: 'Shared first',
                 tieTitle: 'Too close to call',
-                tieDescription: 'Nobody finished ahead. The night is shared.',
-                /** The rest of the table, under the winner's card. */
-                restLabel: 'The rest of the table'
+                tieDescription: 'Nobody finished ahead. The night is shared.'
             }
         },
         // Written here rather than passed through from the API, for the reason `lol.errors` spells out.
@@ -1496,15 +1476,7 @@ export const en = {
             }
         },
         results: {
-            loading: 'Loading the result…',
-            title: 'Game over',
-            tie: 'A tie at {{score}} points.',
-            youWin: 'You win with {{score}} points.',
-            playerWins: '{{name}} wins with {{score}} points.',
-            againSamePlayers: 'Once more, same players',
-            autoJoin: 'Everyone still on this screen is taken along to the new room automatically.',
-            anotherRound: 'Another round?',
-            hostCanOpen: 'The game is done. The host can open a new room. Stay here and you come along automatically.'
+            loading: 'Loading the result…'
         },
         errors: {
             expired: 'Your session has expired. Log in again.',

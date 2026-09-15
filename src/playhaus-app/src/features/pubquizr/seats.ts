@@ -1,3 +1,4 @@
+import type { ScoreBoardPlayer } from "@/components/ui/ScoreBoardScreen";
 import { initialsOf, type Seat } from "@/features/table/seats";
 import { avatarColorById } from "@/utils/color-utils";
 import type { QuizSession, QuizSessionPlayer } from "./pubquizr-sessions";
@@ -42,4 +43,14 @@ export function seatsOf(session: QuizSession): Seat[] {
 /** The standings, best first, with ties left in seating order. */
 export function standingsOf(session: QuizSession): Seat[] {
     return seatsOf(session).sort((a, b) => b.score - a.score || a.seat - b.seat);
+}
+
+/** The table as the end-of-game scoreboard draws it, keyed by seat. */
+export function scoreBoardPlayersOf(session: QuizSession): ScoreBoardPlayer[] {
+    return seatsOf(session).map(seat => ({
+        id: String(seat.seat),
+        name: seat.name,
+        score: seat.score,
+        swatch: seat.swatch
+    }));
 }

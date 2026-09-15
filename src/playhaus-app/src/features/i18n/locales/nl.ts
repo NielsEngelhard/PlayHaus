@@ -406,15 +406,7 @@ export const nl: Catalog = {
             yourTurnNotice: 'JOUW BEURT!'
         },
         results: {
-            loading: 'Uitslag laden…',
-            loadFailed: 'De uitslag kon niet worden geladen.',
-            title: 'Spel afgelopen',
-            summary: 'Rondes: {{rounds}} · Letters: {{length}}',
-            baseScore: 'Pogingen',
-            timeBonus: 'Tijdbonus',
-            total: 'Totaal',
-            newHighScore: 'Nieuw persoonlijk record op {{letters}} letters!',
-            again: 'Nog een keer'
+            loading: 'Uitslag laden…'
         },
         lobby: {
             loading: 'Lobby zoeken…',
@@ -450,17 +442,7 @@ export const nl: Catalog = {
             hostFallback: 'De host',
             settingsTitle: 'Spelinstellingen',
             timePerTurn: 'Tijd per beurt',
-            timePerTurnOption: '{{seconds}} seconden',
-            results: {
-                title: 'Spel afgelopen',
-                tie: 'Gelijkspel op {{score}} punten.',
-                youWin: 'Jij wint met {{score}} punten.',
-                playerWins: '{{name}} wint met {{score}} punten.',
-                againSamePlayers: 'Nog een keer, zelfde spelers',
-                autoJoin: 'Iedereen die nog op dit scherm zit, gaat automatisch mee naar de nieuwe lobby.',
-                anotherRound: 'Nog een potje?',
-                hostCanOpen: 'Het spel zit erop. De host kan een nieuwe lobby openen. Blijf hier, dan word je er vanzelf in meegenomen.'
-            }
+            timePerTurnOption: '{{seconds}} seconden'
         },
         wordOfTheDay: {
             eyebrow: 'Woord van de dag',
@@ -953,8 +935,7 @@ export const nl: Catalog = {
                 points: '{{score}} punten',
                 tieLabel: 'Gedeelde eerste plaats',
                 tieTitle: 'Niemand liep uit',
-                tieDescription: 'Niemand eindigde bovenaan. De avond is gedeeld.',
-                restLabel: 'De rest van de tafel'
+                tieDescription: 'Niemand eindigde bovenaan. De avond is gedeeld.'
             }
         },
         errors: {
@@ -1359,15 +1340,7 @@ export const nl: Catalog = {
             }
         },
         results: {
-            loading: 'Uitslag laden…',
-            title: 'Spel afgelopen',
-            tie: 'Gelijkspel op {{score}} punten.',
-            youWin: 'Jij wint met {{score}} punten.',
-            playerWins: '{{name}} wint met {{score}} punten.',
-            againSamePlayers: 'Nog een keer, zelfde spelers',
-            autoJoin: 'Iedereen die nog op dit scherm zit gaat automatisch mee naar de nieuwe kamer.',
-            anotherRound: 'Nog een ronde?',
-            hostCanOpen: 'Het spel is klaar. De host kan een nieuwe kamer openen. Blijf hier en je gaat automatisch mee.'
+            loading: 'Uitslag laden…'
         },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',

@@ -4,14 +4,15 @@ import ActionButton from "@/components/ui/ActionButton";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
+import ScoreBoardScreen from "@/components/ui/ScoreBoardScreen";
 import TextButton from "@/components/ui/TextButton";
+import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
-import FinalResultsScreen from "@/features/pubquizr/components/play/FinalResultsScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
@@ -23,11 +24,11 @@ import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
-import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, EASY_POINTS, HARD_POINTS, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
-import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
+import { scoreBoardPlayersOf, seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -158,9 +159,12 @@ export default function OneDeviceQuizPage() {
     // The evening is over.
     if (session.status === 'completed') {
         return (
-            <FinalResultsScreen
-                standings={finalStandingsOf(session)}
-                onLeave={leave}
+            <ScoreBoardScreen
+                game={PUBQUIZR}
+                players={scoreBoardPlayersOf(session)}
+                totalRounds={session.totalRounds}
+                onClose={leave}
+                action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: leave }}
             />
         )
     }

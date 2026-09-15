@@ -3,19 +3,21 @@ import LoadingPage from "@/components/layout/LoadingPage";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
+import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
-import MultiplayerResults from "@/features/league-of-letters/components/MultiplayerResults";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
 import RoomClosedNotice from "@/components/ui/RoomClosedNotice";
+import ScoreBoardScreen from "@/components/ui/ScoreBoardScreen";
 import { useLobby } from "@/features/league-of-letters/useLobby";
 import { useMultiplayerGame, type MultiplayerGameState } from "@/features/league-of-letters/useMultiplayerGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
+import { avatarColorById } from "@/utils/color-utils";
 import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
@@ -174,26 +176,47 @@ interface RoomResultsProps {
 // The end of the game, still inside the room.
 function RoomResults({ table, isHost, onPlayAgain, playingAgain, error, tournamentCode, onBackToBracket }: RoomResultsProps) {
     const { user } = useAuth();
+    const router = useRouter();
     const t = useT();
 
-    const { game, online } = table;
+    useChromeless();
+
+    const { game } = table;
 
     // Only while the board is still loading, which by this point it is not.
     if (game === null) {
         return <LoadingPage message={t('lol.results.loading')} />;
     }
 
+    const players = (game.players ?? []).map(player => ({
+        id: player.userId,
+        name: player.name,
+        score: player.score,
+        swatch: avatarColorById(player.avatarColorId)
+    }));
+
+    // A tournament match ends by going back to its bracket, not by playing again.
+    const inTournament = tournamentCode !== undefined;
+
     return (
-        <MultiplayerResults
-            game={game}
-            userId={user?.id ?? ''}
-            online={online}
-            isHost={isHost}
-            onPlayAgain={onPlayAgain}
-            playingAgain={playingAgain}
-            error={error}
-            tournamentCode={tournamentCode}
-            onBackToBracket={onBackToBracket}
+        <ScoreBoardScreen
+            game={LEAGUE_OF_LETTERS}
+            players={players}
+            totalRounds={game.totalRounds}
+            youId={user?.id}
+            onClose={inTournament ? onBackToBracket : () => router.replace(ROUTES.leagueOfLettersIndex)}
+            action={inTournament
+                ? { text: t('lol.tournament.backToBracket'), icon: 'git-merge', onPress: onBackToBracket }
+                : isHost
+                    ? {
+                        text: playingAgain ? t('lol.lobby.opening') : t('scoreboard.playAgain'),
+                        icon: 'rotate-ccw',
+                        disabled: playingAgain,
+                        onPress: onPlayAgain
+                    }
+                    : undefined}
+            error={inTournament ? null : error}
+            waitingForHost={!inTournament && !isHost}
         />
     )
 }

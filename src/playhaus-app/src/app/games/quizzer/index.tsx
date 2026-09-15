@@ -56,7 +56,7 @@ export default function QuizzerIndexPage() {
                 <ModeCard
                     solid
                     watermark="10"
-                    icon='users'
+                    icon='monitor'
                     gradient={PUBQUIZR.gradient}
                     iconInk={Brand.ink}
                     highlight={0.35}
@@ -66,12 +66,6 @@ export default function QuizzerIndexPage() {
                     action={t('pubquizr.index.multiDevice.action')}
                     navigationUrl={ROUTES.quizzerMultiDeviceGameSettings}
                 />
-            </View>
-
-            <View style={styles.rows}>
-                <QuizzerQuickActionsRow onBrowse={() => setBrowsing(true)} />
-
-                <QuizzerRandomUnplayedQuizRow />
             </View>
 
             {/* The rows in here go where the rows on the page go, but by hand. */}
@@ -96,9 +90,4 @@ const useStyles = createThemedStyles(() => ({
         alignItems: 'stretch',
         gap: 11
     },
-    // A gap rather than margins on the rows, so a deck with nothing to deal leaves no space behind.
-    rows: {
-        marginTop: Spacing.three,
-        gap: Spacing.three
-    }
 }))
