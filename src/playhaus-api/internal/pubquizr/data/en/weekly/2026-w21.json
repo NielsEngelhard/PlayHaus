@@ -31,20 +31,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the largest species of frog in the world?", "options": [{ "text": "The goliath frog", "correct": true }, { "text": "The cane toad" }, { "text": "The bullfrog" }, { "text": "The Chilean frog" }] },
         { "prompt": "Which American wrote the play Death of a Salesman?", "options": [{ "text": "Arthur Miller", "correct": true }, { "text": "Eugene O'Neill" }, { "text": "Edward Albee" }, { "text": "Sam Shepard" }] },
         { "prompt": "What is it called when the moon blocks the sun completely?", "options": [{ "text": "A solar eclipse", "correct": true }, { "text": "A lunar eclipse" }, { "text": "A transit" }, { "text": "An occultation" }] },
         { "prompt": "Which sea mammal has a long spiral tusk?", "options": [{ "text": "The narwhal", "correct": true }, { "text": "The walrus" }, { "text": "The beluga" }, { "text": "The dugong" }] },
         { "prompt": "Which drink is made by fermenting honey?", "options": [{ "text": "Mead", "correct": true }, { "text": "Cider" }, { "text": "Sake" }, { "text": "Kvass" }] },
-        { "prompt": "Which is the largest freshwater fish in the world?", "options": [{ "text": "The beluga sturgeon", "correct": true }, { "text": "The catfish" }, { "text": "The arapaima" }, { "text": "The pike" }] },
         { "prompt": "What are the giant stone heads of Easter Island called?", "options": [{ "text": "Moai", "correct": true }, { "text": "Totems" }, { "text": "Menhirs" }, { "text": "Stelae" }] },
         { "prompt": "Which organ of the body stores urine?", "options": [{ "text": "The bladder", "correct": true }, { "text": "The kidney" }, { "text": "The gall bladder" }, { "text": "The ureter" }] },
         { "prompt": "Which language is learned as a second language by more people than any other?", "options": [{ "text": "English", "correct": true }, { "text": "Spanish" }, { "text": "French" }, { "text": "Mandarin" }] },
         { "prompt": "Which mountain rises highest of all measured from its own base?", "options": [{ "text": "Mauna Kea", "correct": true }, { "text": "Everest" }, { "text": "Denali" }, { "text": "Kilimanjaro" }] },
         { "prompt": "Which noble gas takes its name from the Greek word for stranger?", "options": [{ "text": "Xenon", "correct": true }, { "text": "Krypton" }, { "text": "Neon" }, { "text": "Radon" }] },
-        { "prompt": "Which city is the seat of the Basque regional government?", "options": [{ "text": "Vitoria-Gasteiz", "correct": true }, { "text": "Bilbao" }, { "text": "San Sebastian" }, { "text": "Pamplona" }] },
-        { "prompt": "To which language family does Finnish belong?", "options": [{ "text": "Finno-Ugric", "correct": true }, { "text": "Germanic" }, { "text": "Slavic" }, { "text": "Baltic" }] },
-        { "prompt": "Which plant produces the largest seed in the world?", "options": [{ "text": "The coco de mer", "correct": true }, { "text": "The coconut palm" }, { "text": "The jackfruit" }, { "text": "The avocado" }] }
+        { "prompt": "To which language family does Finnish belong?", "options": [{ "text": "Finno-Ugric", "correct": true }, { "text": "Germanic" }, { "text": "Slavic" }, { "text": "Baltic" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Beer mat" },
-        { "prompt": "Bottle opener" },
-        { "prompt": "Fire poker" },
-        { "prompt": "Deck of cards" },
-        { "prompt": "Recorder" },
-        { "prompt": "Sandpaper" },
-        { "prompt": "Wheelie bin" },
-        { "prompt": "Milk bottle" },
-        { "prompt": "Mug" },
-        { "prompt": "Bath plug" },
-        { "prompt": "Map" },
-        { "prompt": "Scoreboard" },
-        { "prompt": "Spade" },
-        { "prompt": "Rake" },
-        { "prompt": "Diving mask" },
-        { "prompt": "Tool belt" }
+      "words": [
+        "Mug",
+        "Map",
+        "Rake",
+        "Bottle opener",
+        "Scoreboard",
+        "Deck of cards",
+        "Butcher",
+        "Giraffe",
+        "Rainbow",
+        "Lemonade",
+        "Diving mask",
+        "Spider-Man",
+        "Beethoven",
+        "Amsterdam",
+        "Marathon",
+        "Barbecue",
+        "Hairdresser",
+        "Kangaroo",
+        "Abba",
+        "Rollercoaster",
+        "The Colosseum",
+        "Winston Churchill",
+        "Origami",
+        "The Trojan horse",
+        "Blacksmith",
+        "The Great Barrier Reef",
+        "Gravity",
+        "Casablanca",
+        "The Cold War",
+        "Diplomat"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Bolivia.", "answers": [{ "text": "Brazil" }, { "text": "Peru" }, { "text": "Chile" }, { "text": "Argentina" }] },
-        { "prompt": "Name four kinds of grain.", "answers": [{ "text": "Wheat" }, { "text": "Rice" }, { "text": "Maize" }, { "text": "Oats" }] },
-        { "prompt": "Name four English words that came from Dutch.", "answers": [{ "text": "Cookie" }, { "text": "Skipper" }, { "text": "Landscape" }, { "text": "Yacht" }] },
-        { "prompt": "Name four sports played indoors.", "answers": [{ "text": "Squash" }, { "text": "Badminton" }, { "text": "Judo" }, { "text": "Gymnastics" }] },
-        { "prompt": "Name four countries around the Baltic Sea.", "answers": [{ "text": "Estonia" }, { "text": "Latvia" }, { "text": "Lithuania" }, { "text": "Finland" }] },
-        { "prompt": "Name four things that have wheels.", "answers": [{ "text": "Car" }, { "text": "Bicycle" }, { "text": "Skateboard" }, { "text": "Wheelbarrow" }] },
-        { "prompt": "Name four inventions of the twentieth century.", "answers": [{ "text": "Television" }, { "text": "The computer" }, { "text": "Penicillin" }, { "text": "The jet engine" }] },
-        { "prompt": "Name four lakes anywhere in the world.", "answers": [{ "text": "Lake Victoria" }, { "text": "Lake Baikal" }, { "text": "Lake Superior" }, { "text": "Lake Geneva" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "The canals", "aliases": ["Canals", "Grachten"] }, { "text": "Bicycles", "aliases": ["Bikes", "Everyone cycles"] }, { "text": "The Anne Frank House", "aliases": ["Anne Frank"] }, { "text": "The Rijksmuseum", "aliases": ["Museums", "The Van Gogh Museum"] }] },
+        { "prompt": "What do you know about the sun? Four keywords.", "answers": [{ "text": "It is a star", "aliases": ["A star", "Star"] }, { "text": "It is very hot", "aliases": ["Hot", "Fire", "Burning"] }, { "text": "It rises in the east", "aliases": ["Sunrise", "Sunset", "East"] }, { "text": "Sunburn", "aliases": ["Suntan", "Sun cream", "Light"] }] },
+        { "prompt": "What do you know about Michael Jackson? Four keywords.", "answers": [{ "text": "The moonwalk", "aliases": ["Moonwalk"] }, { "text": "Thriller", "aliases": ["Billie Jean", "Beat It"] }, { "text": "The white glove", "aliases": ["One glove", "The hat", "The red jacket"] }, { "text": "The King of Pop", "aliases": ["King of Pop", "Neverland"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Checkmate", "aliases": ["Check", "Mate"] }, { "text": "Sixty-four squares", "aliases": ["64 squares", "A board of eight by eight"] }, { "text": "Black and white", "aliases": ["Black or white pieces"] }, { "text": "The queen is the strongest piece", "aliases": ["The queen", "King", "Knight", "Pawn"] }] },
+        { "prompt": "What do you know about Spain? Four keywords.", "answers": [{ "text": "Paella", "aliases": ["Tapas", "Sangria"] }, { "text": "Flamenco", "aliases": ["Flamenco dancing"] }, { "text": "Bullfighting", "aliases": ["Bulls", "The running of the bulls"] }, { "text": "Madrid", "aliases": ["Barcelona", "The Costa del Sol"] }] },
+        { "prompt": "What do you know about the Second World War? Four keywords.", "answers": [{ "text": "Adolf Hitler", "aliases": ["Hitler", "The Nazis"] }, { "text": "1939 to 1945", "aliases": ["1940-1945", "It lasted six years"] }, { "text": "D-Day", "aliases": ["The landing in Normandy", "Normandy"] }, { "text": "The atomic bomb", "aliases": ["Hiroshima", "The liberation"] }] },
+        { "prompt": "What do you know about bees? Four keywords.", "answers": [{ "text": "Honey" }, { "text": "They sting", "aliases": ["A sting", "Stinger"] }, { "text": "The queen bee", "aliases": ["Queen", "The hive", "Beekeeper"] }, { "text": "They pollinate flowers", "aliases": ["Pollen", "Flowers", "Nectar"] }] },
+        { "prompt": "What do you know about Harry Potter? Four keywords.", "answers": [{ "text": "Hogwarts", "aliases": ["The school for wizards"] }, { "text": "Magic", "aliases": ["Wizards", "Wands", "Broomsticks", "Quidditch"] }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }, { "text": "Voldemort", "aliases": ["The scar on his forehead", "Round glasses", "Hermione", "Ron"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch admiral destroyed the Spanish fleet at the Battle of the Downs?", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp"] }] },
-        { "prompt": "What is the capital of Belarus?", "answers": [{ "text": "Minsk" }] },
-        { "prompt": "Which French painter led the Fauvist movement?", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
-        { "prompt": "In which year did a man-made object first land on another planet?", "answers": [{ "text": "1966" }] },
-        { "prompt": "Which is the largest hot desert in Asia?", "answers": [{ "text": "The Arabian Desert", "aliases": ["Arabian Desert"] }] },
-        { "prompt": "Which Swiss psychiatrist founded analytical psychology?", "answers": [{ "text": "Carl Jung", "aliases": ["Jung"] }] }
+        { "prompt": "What is the capital of Australia?", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Which is the highest mountain in Africa?", "answers": [{ "text": "Kilimanjaro", "aliases": ["Mount Kilimanjaro"] }] },
+        { "prompt": "Who painted the ceiling of the Sistine Chapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "What is the hardest natural substance on earth?", "answers": [{ "text": "Diamond", "aliases": ["A diamond"] }] },
+        { "prompt": "In which country is the ancient rock city of Petra?", "answers": [{ "text": "Jordan" }] },
+        { "prompt": "Which is the saltiest body of water in the world?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Who was the first woman to win a Nobel Prize?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
       ]
     }
   ]

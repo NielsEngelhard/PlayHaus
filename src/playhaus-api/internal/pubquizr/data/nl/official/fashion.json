@@ -32,19 +32,15 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "In welk jaar opende Coco Chanel haar eerste modehuis?", "options": [{ "text": "1901" }, { "text": "1910", "correct": true }, { "text": "1921" }, { "text": "1930" }] },
         { "prompt": "In welk jaar kwam het parfum Chanel No. 5 op de markt?", "options": [{ "text": "1911" }, { "text": "1921", "correct": true }, { "text": "1931" }, { "text": "1941" }] },
         { "prompt": "Welk Spaans merk staat bekend om snelle mode?", "options": [{ "text": "Zara", "correct": true }, { "text": "Mango" }, { "text": "Desigual" }, { "text": "Loewe" }] },
-        { "prompt": "Welke ontwerper leidde Chanel van 1983 tot 2019?", "options": [{ "text": "Karl Lagerfeld", "correct": true }, { "text": "Tom Ford" }, { "text": "Marc Jacobs" }, { "text": "John Galliano" }] },
         { "prompt": "Uit welk land komt het modehuis Prada?", "options": [{ "text": "Italie", "correct": true }, { "text": "Frankrijk" }, { "text": "Spanje" }, { "text": "Duitsland" }] },
         { "prompt": "Welk merk gebruikt een krokodil als logo?", "options": [{ "text": "Lacoste", "correct": true }, { "text": "Fred Perry" }, { "text": "Ralph Lauren" }, { "text": "Puma" }] },
         { "prompt": "Hoe heet het jaarlijkse benefietgala van het kostuuminstituut in New York?", "options": [{ "text": "Met Gala", "correct": true }, { "text": "Fashion Awards" }, { "text": "Costume Ball" }, { "text": "Style Night" }] },
-        { "prompt": "Welke Britse ontwerper stond bekend om theatrale shows en overleed in 2010?", "options": [{ "text": "Alexander McQueen", "correct": true }, { "text": "Paul Smith" }, { "text": "Stella McCartney" }, { "text": "Ozwald Boateng" }] },
         { "prompt": "Welk Brits merk staat bekend om zijn beige ruitpatroon?", "options": [{ "text": "Burberry", "correct": true }, { "text": "Barbour" }, { "text": "Fred Perry" }, { "text": "Ben Sherman" }] },
         { "prompt": "Welke Amerikaanse ontwerper gebruikt een poloruiter als logo?", "options": [{ "text": "Ralph Lauren", "correct": true }, { "text": "Tommy Hilfiger" }, { "text": "Calvin Klein" }, { "text": "Michael Kors" }] },
         { "prompt": "Welke Franse ontwerper maakte het kegelvormige korset voor Madonna?", "options": [{ "text": "Jean Paul Gaultier", "correct": true }, { "text": "Thierry Mugler" }, { "text": "Christian Lacroix" }, { "text": "Azzedine Alaia" }] },
         { "prompt": "Welke Britse ontwerpster maakte de minirok in Londen populair?", "options": [{ "text": "Mary Quant", "correct": true }, { "text": "Vivienne Westwood" }, { "text": "Zandra Rhodes" }, { "text": "Laura Ashley" }] },
-        { "prompt": "Welke Franse term staat voor confectiekleding?", "options": [{ "text": "Pret-a-porter", "correct": true }, { "text": "Haute couture" }, { "text": "Sur mesure" }, { "text": "Demi-couture" }] },
         { "prompt": "Welke ontwerper werd in 2018 hoofd herenmode bij Louis Vuitton?", "options": [{ "text": "Virgil Abloh", "correct": true }, { "text": "Kim Jones" }, { "text": "Marc Jacobs" }, { "text": "Nicolas Ghesquiere" }] }
       ]
     },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Naaimachine" },
-        { "prompt": "Knoop" },
-        { "prompt": "Rits" },
-        { "prompt": "Naald" },
-        { "prompt": "Etalagepop" },
-        { "prompt": "Hoed" },
-        { "prompt": "Sjaal" },
-        { "prompt": "Handschoen" },
-        { "prompt": "Kleerhanger" },
-        { "prompt": "Meetlint" },
-        { "prompt": "Catwalk" },
-        { "prompt": "Zonnebril" },
-        { "prompt": "Leren jas" },
-        { "prompt": "Parfum" },
-        { "prompt": "Naaldhak" },
-        { "prompt": "Spiegel" }
+      "words": [
+        "Spijkerbroek",
+        "T-shirt",
+        "Zonnebril",
+        "Handtas",
+        "Hoed",
+        "Sneakers",
+        "Sjaal",
+        "Bikini",
+        "Rits",
+        "Trouwjurk",
+        "Catwalk",
+        "Etalagepop",
+        "Klompen",
+        "Naaimachine",
+        "Gucci",
+        "Smoking",
+        "Parijs",
+        "Kleine zwarte jurk",
+        "Leren jas",
+        "Vogue",
+        "Haute couture",
+        "Viktor & Rolf",
+        "Mart Visser",
+        "Anna Wintour",
+        "Met Gala",
+        "Coco Chanel",
+        "Kimono",
+        "Naaldhak",
+        "Trenchcoat",
+        "Tweed"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier Franse modehuizen.", "answers": [{ "text": "Chanel" }, { "text": "Dior" }, { "text": "Hermes" }, { "text": "Louis Vuitton" }] },
-        { "prompt": "Noem vier Italiaanse modehuizen.", "answers": [{ "text": "Gucci" }, { "text": "Prada" }, { "text": "Versace" }, { "text": "Armani" }] },
-        { "prompt": "Noem de vier grote modesteden.", "answers": [{ "text": "Parijs" }, { "text": "Milaan" }, { "text": "Londen" }, { "text": "New York" }] },
-        { "prompt": "Noem vier natuurlijke textielvezels.", "answers": [{ "text": "Katoen" }, { "text": "Wol" }, { "text": "Zijde" }, { "text": "Linnen" }] },
-        { "prompt": "Noem vier soorten hoeden.", "answers": [{ "text": "Hoge hoed" }, { "text": "Pet" }, { "text": "Baret" }, { "text": "Zonnehoed" }] },
-        { "prompt": "Noem vier Belgische modeontwerpers.", "answers": [{ "text": "Dries Van Noten" }, { "text": "Ann Demeulemeester" }, { "text": "Martin Margiela" }, { "text": "Raf Simons" }] },
-        { "prompt": "Noem vier modetijdschriften.", "answers": [{ "text": "Vogue" }, { "text": "Elle" }, { "text": "Harper's Bazaar" }, { "text": "Marie Claire" }] },
-        { "prompt": "Noem vier merken van sportschoenen.", "answers": [{ "text": "Nike" }, { "text": "Adidas" }, { "text": "Puma" }, { "text": "New Balance" }] }
+        { "prompt": "Wat weet je van Coco Chanel? Vier kernwoorden.", "answers": [{ "text": "Chanel No. 5", "aliases": ["No. 5", "Parfum"] }, { "text": "De kleine zwarte jurk", "aliases": ["Kleine zwarte jurk"] }, { "text": "Parels" }, { "text": "Parijs" }] },
+        { "prompt": "Wat weet je van de spijkerbroek? Vier kernwoorden.", "answers": [{ "text": "Denim" }, { "text": "Blauw" }, { "text": "Levi's", "aliases": ["Levi Strauss", "Levis"] }, { "text": "Klinknagels", "aliases": ["Nagels", "Klinknagel"] }] },
+        { "prompt": "Wat weet je van de catwalk? Vier kernwoorden.", "answers": [{ "text": "Modellen", "aliases": ["Mannequins"] }, { "text": "Modeshow" }, { "text": "Fotografen" }, { "text": "De eerste rij", "aliases": ["Eerste rij"] }] },
+        { "prompt": "Wat weet je van Vogue? Vier kernwoorden.", "answers": [{ "text": "Modetijdschrift", "aliases": ["Tijdschrift", "Modeblad"] }, { "text": "Anna Wintour", "aliases": ["Wintour"] }, { "text": "De cover", "aliases": ["Cover", "Omslag"] }, { "text": "Het septembernummer", "aliases": ["Septembernummer"] }] },
+        { "prompt": "Wat weet je van het Met Gala? Vier kernwoorden.", "answers": [{ "text": "New York" }, { "text": "De rode loper", "aliases": ["Rode loper"] }, { "text": "Een thema", "aliases": ["Thema"] }, { "text": "Beroemdheden", "aliases": ["Sterren", "Celebrities"] }] },
+        { "prompt": "Wat weet je van een trouwjurk? Vier kernwoorden.", "answers": [{ "text": "Wit" }, { "text": "Sluier" }, { "text": "Sleep" }, { "text": "Kant" }] },
+        { "prompt": "Wat weet je van Gucci? Vier kernwoorden.", "answers": [{ "text": "Italie", "aliases": ["Italiaans"] }, { "text": "De dubbele G", "aliases": ["Dubbele G", "GG"] }, { "text": "Handtassen", "aliases": ["Tassen"] }, { "text": "Luxe", "aliases": ["Duur"] }] },
+        { "prompt": "Wat weet je van sneakers? Vier kernwoorden.", "answers": [{ "text": "Nike" }, { "text": "Adidas" }, { "text": "Veters" }, { "text": "Rubberen zool", "aliases": ["Zool"] }] }
       ]
     },
     {
@@ -113,12 +123,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Engelsman opende in de negentiende eeuw het eerste modehuis in Parijs?", "answers": [{ "text": "Charles Frederick Worth", "aliases": ["Worth"] }] },
         { "prompt": "Naar welke Britse actrice en zangeres is de Birkin-tas vernoemd?", "answers": [{ "text": "Jane Birkin", "aliases": ["Birkin"] }] },
         { "prompt": "Welk Italiaans merk begon in 1913 in Milaan als lederwarenwinkel?", "answers": [{ "text": "Prada" }] },
-        { "prompt": "Welke hoofdredacteur nam in 1988 de leiding over de Amerikaanse Vogue?", "answers": [{ "text": "Anna Wintour", "aliases": ["Wintour"] }] },
-        { "prompt": "Welke Japanse ontwerpster richtte het merk Comme des Garcons op?", "answers": [{ "text": "Rei Kawakubo", "aliases": ["Kawakubo"] }] },
-        { "prompt": "Welke tas van Chanel is genoemd naar de maand en het jaar van haar ontwerp?", "answers": [{ "text": "De 2.55", "aliases": ["2.55"] }] }
+        { "prompt": "Welk Amerikaans schoenenmerk maakt de Chuck Taylor All Star?", "answers": [{ "text": "Converse" }] },
+        { "prompt": "In welke Italiaanse stad werd het modehuis Gucci opgericht?", "answers": [{ "text": "Florence" }] },
+        { "prompt": "Welke Franse ontwerper staat bekend om hoge hakken met een knalrode zool?", "answers": [{ "text": "Christian Louboutin", "aliases": ["Louboutin"] }] },
+        { "prompt": "Welk Brits model met jongenskapsel werd het gezicht van de mode van de jaren zestig?", "answers": [{ "text": "Twiggy" }] },
+        { "prompt": "Welke synthetische vezel introduceerde DuPont in 1938, eerst gebruikt voor kousen?", "answers": [{ "text": "Nylon" }] }
       ]
     }
   ]

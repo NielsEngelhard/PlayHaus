@@ -36,15 +36,11 @@
         { "prompt": "What does a light year measure?", "options": [{ "text": "Distance", "correct": true }, { "text": "Time" }, { "text": "Brightness" }, { "text": "Mass" }] },
         { "prompt": "Which tiny animal can survive the vacuum of space?", "options": [{ "text": "The tardigrade", "correct": true }, { "text": "The mite" }, { "text": "The nematode" }, { "text": "The rotifer" }] },
         { "prompt": "Which Mexican spirit is distilled from the blue agave?", "options": [{ "text": "Tequila", "correct": true }, { "text": "Mezcal" }, { "text": "Pisco" }, { "text": "Cachaca" }] },
-        { "prompt": "In which Irish sport do players strike a ball with a hurley?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Shinty" }, { "text": "Gaelic football" }, { "text": "Camogie" }] },
-        { "prompt": "Which is the tallest waterfall in Europe?", "options": [{ "text": "Vinnufossen", "correct": true }, { "text": "Rjukanfossen" }, { "text": "Gavarnie" }, { "text": "Krimml" }] },
-        { "prompt": "Which cage of bones protects the heart and lungs?", "options": [{ "text": "The ribcage", "correct": true }, { "text": "The pelvis" }, { "text": "The sternum" }, { "text": "The spine" }] },
         { "prompt": "Which nut is grown in greater quantity than any other in the world?", "options": [{ "text": "The peanut", "correct": true }, { "text": "The almond" }, { "text": "The cashew" }, { "text": "The walnut" }] },
         { "prompt": "Which animal makes the loudest call of any land animal?", "options": [{ "text": "The howler monkey", "correct": true }, { "text": "The lion" }, { "text": "The elephant" }, { "text": "The wolf" }] },
         { "prompt": "What is the splitting of an atomic nucleus called?", "options": [{ "text": "Fission", "correct": true }, { "text": "Fusion" }, { "text": "Ionisation" }, { "text": "Decay" }] },
         { "prompt": "Which language besides Arabic is written from right to left?", "options": [{ "text": "Hebrew", "correct": true }, { "text": "Greek" }, { "text": "Turkish" }, { "text": "Amharic" }] },
-        { "prompt": "Which city has the largest metro network in the world?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "London" }, { "text": "New York" }, { "text": "Moscow" }] },
-        { "prompt": "Which is the smallest bird in Europe?", "options": [{ "text": "The goldcrest", "correct": true }, { "text": "The wren" }, { "text": "The blue tit" }, { "text": "The treecreeper" }] }
+        { "prompt": "Which city has the largest metro network in the world?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "London" }, { "text": "New York" }, { "text": "Moscow" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Saddle" },
-        { "prompt": "Tea cosy" },
-        { "prompt": "Salad spinner" },
-        { "prompt": "Knitting wool" },
-        { "prompt": "Guitar amplifier" },
-        { "prompt": "Weather balloon" },
-        { "prompt": "Steam train" },
-        { "prompt": "Ski pole" },
-        { "prompt": "Sun visor" },
-        { "prompt": "Feather" },
-        { "prompt": "Comb" },
-        { "prompt": "Wok" },
-        { "prompt": "Paint tin" },
-        { "prompt": "Church pew" },
-        { "prompt": "Fog horn" },
-        { "prompt": "Clothes rail" }
+      "words": [
+        "Penguin",
+        "Hamburger",
+        "Piano",
+        "Thunderstorm",
+        "Swimming pool",
+        "Firefighter",
+        "Sunglasses",
+        "Birthday cake",
+        "Train station",
+        "Toothbrush",
+        "Pirate",
+        "Statue of Liberty",
+        "Jurassic Park",
+        "Marathon",
+        "Desert",
+        "Librarian",
+        "Circus",
+        "Hot air balloon",
+        "Traffic jam",
+        "Waterfall",
+        "Leonardo da Vinci",
+        "Taj Mahal",
+        "The Godfather",
+        "Beethoven",
+        "Acupuncture",
+        "Glacier",
+        "Auctioneer",
+        "Northern Lights",
+        "Samurai",
+        "Time zone"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Argentina.", "answers": [{ "text": "Chile" }, { "text": "Bolivia" }, { "text": "Paraguay" }, { "text": "Brazil" }] },
-        { "prompt": "Name four patterns you find on clothes.", "answers": [{ "text": "Stripes" }, { "text": "Checks" }, { "text": "Polka dots" }, { "text": "Paisley" }] },
-        { "prompt": "Name four birds of prey.", "answers": [{ "text": "Eagle" }, { "text": "Falcon" }, { "text": "Hawk" }, { "text": "Owl" }] },
-        { "prompt": "Name four Olympic sports on wheels.", "answers": [{ "text": "Cycling" }, { "text": "Skateboarding" }, { "text": "BMX" }, { "text": "Roller skating" }] },
-        { "prompt": "Name four countries in the Horn of Africa and around it.", "answers": [{ "text": "Ethiopia" }, { "text": "Somalia" }, { "text": "Eritrea" }, { "text": "Djibouti" }] },
-        { "prompt": "Name four things you find in a classroom.", "answers": [{ "text": "Desk" }, { "text": "Chair" }, { "text": "Blackboard" }, { "text": "Clock" }] },
-        { "prompt": "Name four world famous paintings.", "answers": [{ "text": "The Mona Lisa" }, { "text": "The Night Watch" }, { "text": "The Scream" }, { "text": "Guernica" }] },
-        { "prompt": "Name four instruments a weather station uses.", "answers": [{ "text": "Thermometer" }, { "text": "Barometer" }, { "text": "Rain gauge" }, { "text": "Anemometer" }] }
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pizza", "aliases": ["Pasta", "Spaghetti"] }, { "text": "Rome", "aliases": ["The Colosseum", "The Vatican", "Venice"] }, { "text": "The boot", "aliases": ["It looks like a boot", "Boot shape"] }, { "text": "Ferrari", "aliases": ["Fiat", "Vespa", "Fast cars"] }] },
+        { "prompt": "What do you know about Paris? Four keywords.", "answers": [{ "text": "The Eiffel Tower", "aliases": ["Eiffel Tower"] }, { "text": "The Louvre", "aliases": ["Louvre", "The Mona Lisa"] }, { "text": "Croissants", "aliases": ["Baguettes", "Cafes", "French food"] }, { "text": "The Seine", "aliases": ["Seine", "The river"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "Rock and roll", "aliases": ["Rock 'n' roll", "Singer"] }, { "text": "The King", "aliases": ["The King of rock and roll"] }, { "text": "His swinging hips", "aliases": ["Hip swinging", "The quiff", "The white jumpsuit"] }, { "text": "Las Vegas", "aliases": ["Graceland", "Memphis", "Blue Suede Shoes"] }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa", "aliases": ["Cocoa beans", "Cacao"] }, { "text": "Sweet", "aliases": ["Sugar", "It melts in your mouth"] }, { "text": "Belgium", "aliases": ["Switzerland", "Swiss chocolate", "Belgian chocolate"] }, { "text": "Easter eggs", "aliases": ["Chocolate bar", "Chocolate letter", "Hot chocolate"] }] },
+        { "prompt": "What do you know about dinosaurs? Four keywords.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T-rex"] }, { "text": "Extinct", "aliases": ["They died out", "Millions of years ago"] }, { "text": "The meteorite", "aliases": ["A meteor hit the earth", "Asteroid"] }, { "text": "Fossils", "aliases": ["Bones", "Skeletons in a museum", "Jurassic Park"] }] },
+        { "prompt": "What do you know about The Beatles? Four keywords.", "answers": [{ "text": "Liverpool", "aliases": ["England", "British band"] }, { "text": "John Lennon", "aliases": ["Paul McCartney", "Ringo Starr", "George Harrison"] }, { "text": "The four of them", "aliases": ["A band of four", "Fab Four"] }, { "text": "Abbey Road", "aliases": ["The zebra crossing", "Yellow Submarine", "Hey Jude"] }] },
+        { "prompt": "What do you know about Spain? Four keywords.", "answers": [{ "text": "Paella", "aliases": ["Tapas", "Sangria"] }, { "text": "Flamenco", "aliases": ["Flamenco dancing", "Guitar music"] }, { "text": "Bullfighting", "aliases": ["Bulls", "The running of the bulls"] }, { "text": "Barcelona", "aliases": ["Madrid", "The Sagrada Familia", "Real Madrid"] }] },
+        { "prompt": "What do you know about the Amazon? Four keywords.", "answers": [{ "text": "The rainforest", "aliases": ["Jungle", "Rainforest"] }, { "text": "Brazil", "aliases": ["South America"] }, { "text": "The river", "aliases": ["A huge river", "The longest river"] }, { "text": "Snakes", "aliases": ["Piranhas", "Monkeys", "Parrots", "Deforestation"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch doctor showed that beriberi was caused by something missing from food?", "answers": [{ "text": "Christiaan Eijkman", "aliases": ["Eijkman"] }] },
+        { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
+        { "prompt": "Which painter put the melting clocks in The Persistence of Memory?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
         { "prompt": "What is the capital of Panama?", "answers": [{ "text": "Panama City", "aliases": ["Panama-Stad"] }] },
-        { "prompt": "Which Swiss-French architect designed the Villa Savoye?", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
         { "prompt": "In which year did the Netherlands first play at a World Cup?", "answers": [{ "text": "1934" }] },
-        { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] },
-        { "prompt": "Which German-British astronomer discovered the planet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] }
+        { "prompt": "Which German-British astronomer discovered the planet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
+        { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] }
       ]
     }
   ]

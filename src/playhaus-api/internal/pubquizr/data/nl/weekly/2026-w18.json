@@ -36,14 +36,10 @@
         { "prompt": "Hoe heet de verre schil van ijzige objecten waar lange kometen vandaan komen?", "options": [{ "text": "De Oortwolk", "correct": true }, { "text": "De Kuipergordel" }, { "text": "De planetoidengordel" }, { "text": "De heliosfeer" }] },
         { "prompt": "Welke klier zit boven op de nier en maakt adrenaline?", "options": [{ "text": "De bijnier", "correct": true }, { "text": "De schildklier" }, { "text": "De hypofyse" }, { "text": "De alvleesklier" }] },
         { "prompt": "Welke Italiaanse mousserende wijn komt uit Veneto?", "options": [{ "text": "Prosecco", "correct": true }, { "text": "Lambrusco" }, { "text": "Asti" }, { "text": "Franciacorta" }] },
-        { "prompt": "Wat is de oudste voetbalclub ter wereld?", "options": [{ "text": "Sheffield FC", "correct": true }, { "text": "Notts County" }, { "text": "Genoa" }, { "text": "Ajax" }] },
-        { "prompt": "Welke Amerikaanse beeldhouwer bedacht de hangende mobile?", "options": [{ "text": "Alexander Calder", "correct": true }, { "text": "Louise Nevelson" }, { "text": "David Smith" }, { "text": "Isamu Noguchi" }] },
         { "prompt": "Wat is de grootste slagader van het menselijk lichaam?", "options": [{ "text": "De aorta", "correct": true }, { "text": "De halsslagader" }, { "text": "De liesslagader" }, { "text": "De longslagader" }] },
         { "prompt": "De inwoners van welk land drinken per hoofd het meeste bier?", "options": [{ "text": "Tsjechie", "correct": true }, { "text": "Duitsland" }, { "text": "Oostenrijk" }, { "text": "Belgie" }] },
         { "prompt": "Wat is de gewone naam voor natriumbicarbonaat?", "options": [{ "text": "Baksoda", "correct": true }, { "text": "Wijnsteenzuur" }, { "text": "Waspoeder" }, { "text": "Azijnzout" }] },
-        { "prompt": "Welke stad wordt vaak de oudste onafgebroken bewoonde stad ter wereld genoemd?", "options": [{ "text": "Damascus", "correct": true }, { "text": "Jericho" }, { "text": "Athene" }, { "text": "Byblos" }] },
         { "prompt": "Wat is het jongste land ter wereld?", "options": [{ "text": "Zuid-Soedan", "correct": true }, { "text": "Montenegro" }, { "text": "Kosovo" }, { "text": "Oost-Timor" }] },
-        { "prompt": "Welke vogel is ooit hoger waargenomen dan welke andere ook?", "options": [{ "text": "De gier van Ruppell", "correct": true }, { "text": "De indische gans" }, { "text": "De albatros" }, { "text": "De zwaan" }] },
         { "prompt": "Welk land betaalt met de ringgit?", "options": [{ "text": "Maleisie", "correct": true }, { "text": "Indonesie" }, { "text": "Brunei" }, { "text": "Thailand" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Kledinghaak" },
-        { "prompt": "Eierdopje" },
-        { "prompt": "Schoenenrek" },
-        { "prompt": "Ventilator" },
-        { "prompt": "Dobber" },
-        { "prompt": "Babyfles" },
-        { "prompt": "Vloerkleed" },
-        { "prompt": "Tang" },
-        { "prompt": "Vlaggenlijn" },
-        { "prompt": "Ton" },
-        { "prompt": "Bierkrat" },
-        { "prompt": "Picknickmand" },
-        { "prompt": "Roeiboot" },
-        { "prompt": "Springstok" },
-        { "prompt": "Botsauto" },
-        { "prompt": "Kassa" }
+      "words": [
+        "Zonnebril",
+        "Chocolade",
+        "Hond",
+        "Regen",
+        "Verjaardagstaart",
+        "Trein",
+        "Piano",
+        "Zwembad",
+        "IJsje",
+        "Vlinder",
+        "Vulkaan",
+        "Vrijheidsbeeld",
+        "Piraat",
+        "Dinosaurus",
+        "Kangoeroe",
+        "Verpleegkundige",
+        "Duikboot",
+        "Carnaval",
+        "Honing",
+        "Cowboy",
+        "Leonardo da Vinci",
+        "Stonehenge",
+        "De Mona Lisa",
+        "Recycling",
+        "Archeoloog",
+        "De Berlijnse Muur",
+        "Yoga",
+        "IJsland",
+        "Tijdzone",
+        "Poppenkast"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Servie grenzen.", "answers": [{ "text": "Hongarije" }, { "text": "Kroatie" }, { "text": "Bulgarije" }, { "text": "Montenegro" }] },
-        { "prompt": "Noem vier soorten worst.", "answers": [{ "text": "Bratwurst" }, { "text": "Chorizo" }, { "text": "Salami" }, { "text": "Frankfurter" }] },
-        { "prompt": "Noem vier Europese vorstenhuizen.", "answers": [{ "text": "Windsor" }, { "text": "Oranje-Nassau" }, { "text": "Bourbon" }, { "text": "Habsburg" }] },
-        { "prompt": "Noem vier dingen die je op het strand vindt.", "answers": [{ "text": "Zand" }, { "text": "Schelpen" }, { "text": "Zeewier" }, { "text": "Drijfhout" }] },
-        { "prompt": "Noem vier landen die het Eurovisie Songfestival hebben gewonnen.", "answers": [{ "text": "Ierland" }, { "text": "Zweden" }, { "text": "Israel" }, { "text": "Noorwegen" }] },
-        { "prompt": "Noem vier soorten bloemen.", "answers": [{ "text": "Tulp" }, { "text": "Roos" }, { "text": "Narcis" }, { "text": "Zonnebloem" }] },
-        { "prompt": "Noem vier programmeertalen.", "answers": [{ "text": "Python" }, { "text": "Java" }, { "text": "C" }, { "text": "JavaScript" }] },
-        { "prompt": "Noem vier steden die sinds 2000 de Olympische Zomerspelen hielden.", "answers": [{ "text": "Sydney" }, { "text": "Athene" }, { "text": "Peking" }, { "text": "Rio de Janeiro" }] }
+        { "prompt": "Wat weet je van Harry Potter? Vier kernwoorden.", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts", "De toverschool"] }, { "text": "Een toverstok", "aliases": ["Toverstok", "Magie"] }, { "text": "Voldemort", "aliases": ["Hij Die Niet Genoemd Mag Worden"] }, { "text": "J.K. Rowling", "aliases": ["Rowling", "JK Rowling"] }] },
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["De lift", "Het uitzicht"] }] },
+        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Koud", "Vorst"] }, { "text": "Kerst", "aliases": ["Kerstmis"] }, { "text": "Schaatsen", "aliases": ["IJs", "Schaatsen op het ijs"] }] },
+        { "prompt": "Wat weet je van het hart? Vier kernwoorden.", "answers": [{ "text": "Bloed" }, { "text": "Het klopt", "aliases": ["Kloppen", "Hartslag"] }, { "text": "Vier kamers", "aliases": ["Kamers", "Hartkleppen"] }, { "text": "De borstkas", "aliases": ["Borstkas", "Ribbenkast"] }] },
+        { "prompt": "Wat weet je van Japan? Vier kernwoorden.", "answers": [{ "text": "Sushi" }, { "text": "De Fuji", "aliases": ["Fuji", "Mount Fuji"] }, { "text": "Tokio", "aliases": ["Tokyo"] }, { "text": "Samoerai", "aliases": ["Ninja"] }] },
+        { "prompt": "Wat weet je van The Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "De jaren zestig", "aliases": ["Jaren zestig", "1960"] }] },
+        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Schaakmat", "aliases": ["Schaak", "Mat"] }, { "text": "De koning", "aliases": ["Koning"] }, { "text": "Vierenzestig velden", "aliases": ["64 velden", "Het bord"] }, { "text": "De dame", "aliases": ["Dame", "Koningin"] }] },
+        { "prompt": "Wat weet je van de Amazone? Vier kernwoorden.", "answers": [{ "text": "Het regenwoud", "aliases": ["Regenwoud", "Jungle"] }, { "text": "Brazilie" }, { "text": "De rivier", "aliases": ["Rivier"] }, { "text": "Piranha's", "aliases": ["Piranha", "Slangen"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse ingenieur maakte het plan voor de Afsluitdijk?", "answers": [{ "text": "Cornelis Lely", "aliases": ["Lely"] }] },
-        { "prompt": "Wat is de hoofdstad van Nicaragua?", "answers": [{ "text": "Managua" }] },
-        { "prompt": "Welke Vlaamse schilder maakte De boerenbruiloft?", "answers": [{ "text": "Pieter Bruegel", "aliases": ["Bruegel", "Brueghel"] }] },
-        { "prompt": "In welk jaar maakte de Concorde haar laatste passagiersvlucht?", "answers": [{ "text": "2003" }] },
-        { "prompt": "Welk eiland in de Stille Oceaan is het grootste koraalatol ter wereld?", "answers": [{ "text": "Kiritimati", "aliases": ["Christmaseiland"] }] },
-        { "prompt": "Welke Romeinse godin gaf haar naam aan de maand juni?", "answers": [{ "text": "Juno" }] }
+        { "prompt": "Wat is de hoofdstad van Australie?", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Welk Afrikaans land heeft de meeste inwoners?", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Welk zeedier heeft drie harten en blauw bloed?", "answers": [{ "text": "De octopus", "aliases": ["octopus", "inktvis"] }] },
+        { "prompt": "In welk land ligt de oude stad Machu Picchu?", "answers": [{ "text": "Peru" }] },
+        { "prompt": "Wat is de kleinste planeet van ons zonnestelsel?", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Wie was de eerste mens in de ruimte?", "answers": [{ "text": "Joeri Gagarin", "aliases": ["Gagarin", "Yuri Gagarin"] }] },
+        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "answers": [{ "text": "Mandarijn", "aliases": ["Chinees", "Mandarijn-Chinees"] }] }
       ]
     }
   ]

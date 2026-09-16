@@ -34,16 +34,12 @@
       "questions": [
         { "prompt": "Which country won the 1998 World Cup?", "options": [{ "text": "France", "correct": true }, { "text": "Brazil" }, { "text": "Italy" }, { "text": "Germany" }] },
         { "prompt": "Which country won the 2014 World Cup?", "options": [{ "text": "Germany", "correct": true }, { "text": "Argentina" }, { "text": "Brazil" }, { "text": "The Netherlands" }] },
-        { "prompt": "In which country was the 2014 World Cup held?", "options": [{ "text": "Brazil", "correct": true }, { "text": "Argentina" }, { "text": "Mexico" }, { "text": "Chile" }] },
         { "prompt": "How many times had Italy won the World Cup up to 2022?", "options": [{ "text": "Four", "correct": true }, { "text": "Two" }, { "text": "Three" }, { "text": "Five" }] },
         { "prompt": "Which player became world champion three times?", "options": [{ "text": "Pele", "correct": true }, { "text": "Diego Maradona" }, { "text": "Franz Beckenbauer" }, { "text": "Mario Zagallo" }] },
         { "prompt": "Which German became world champion as a player and as a manager?", "options": [{ "text": "Franz Beckenbauer", "correct": true }, { "text": "Helmut Schon" }, { "text": "Jurgen Klinsmann" }, { "text": "Lothar Matthaus" }] },
         { "prompt": "In what year was the World Cup held in Germany for the second time?", "options": [{ "text": "1974" }, { "text": "1990" }, { "text": "2002" }, { "text": "2006", "correct": true }] },
         { "prompt": "Which country won the 1978 World Cup on home soil?", "options": [{ "text": "Argentina", "correct": true }, { "text": "Brazil" }, { "text": "Uruguay" }, { "text": "Chile" }] },
-        { "prompt": "How many minutes does a match last without extra time?", "options": [{ "text": "80" }, { "text": "90", "correct": true }, { "text": "100" }, { "text": "120" }] },
-        { "prompt": "Which card means a player has to leave the pitch?", "options": [{ "text": "The red card", "correct": true }, { "text": "The yellow card" }, { "text": "The blue card" }, { "text": "The green card" }] },
         { "prompt": "Who was the manager of Germany for the 2014 title?", "options": [{ "text": "Joachim Low", "correct": true }, { "text": "Hansi Flick" }, { "text": "Rudi Voller" }, { "text": "Berti Vogts" }] },
-        { "prompt": "Which award does the top scorer of a World Cup receive?", "options": [{ "text": "The Golden Boot", "correct": true }, { "text": "The Golden Ball" }, { "text": "The Golden Glove" }, { "text": "The Golden Cup" }] },
         { "prompt": "Which country hosted the first World Cup in Africa, in 2010?", "options": [{ "text": "South Africa", "correct": true }, { "text": "Nigeria" }, { "text": "Egypt" }, { "text": "Kenya" }] },
         { "prompt": "How many goals did Geoff Hurst score in the 1966 final?", "options": [{ "text": "Three", "correct": true }, { "text": "One" }, { "text": "Two" }, { "text": "Four" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Goal" },
-        { "prompt": "Referee" },
-        { "prompt": "Stadium" },
-        { "prompt": "Penalty" },
-        { "prompt": "Goalkeeper" },
-        { "prompt": "Captain" },
-        { "prompt": "Flag" },
-        { "prompt": "Trophy" },
-        { "prompt": "Extra time" },
-        { "prompt": "Corner" },
-        { "prompt": "Manager" },
-        { "prompt": "Supporter" },
-        { "prompt": "Shirt" },
-        { "prompt": "Whistle" },
-        { "prompt": "Group stage" },
-        { "prompt": "Hat-trick" }
+      "words": [
+        "Goal",
+        "Referee",
+        "Stadium",
+        "Penalty",
+        "Goalkeeper",
+        "Captain",
+        "Trophy",
+        "Corner",
+        "Whistle",
+        "Supporter",
+        "Pele",
+        "Diego Maradona",
+        "Brazil",
+        "Wembley",
+        "Vuvuzela",
+        "Red card",
+        "Own goal",
+        "Hat-trick",
+        "Qatar",
+        "Lionel Messi",
+        "Extra time",
+        "Group stage",
+        "Golden Boot",
+        "Offside",
+        "Penalty shootout",
+        "The Hand of God",
+        "Jules Rimet",
+        "Maracana",
+        "Total Football",
+        "Panenka"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that have been world champions.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "Italy" }, { "text": "Argentina" }] },
-        { "prompt": "Name four countries that have hosted a World Cup.", "answers": [{ "text": "Mexico" }, { "text": "France" }, { "text": "Japan" }, { "text": "South Africa" }] },
-        { "prompt": "Name the four positions in a football team.", "answers": [{ "text": "Goalkeeper" }, { "text": "Defender" }, { "text": "Midfielder" }, { "text": "Forward" }] },
-        { "prompt": "Name four South American countries that have played at a World Cup.", "answers": [{ "text": "Brazil" }, { "text": "Argentina" }, { "text": "Uruguay" }, { "text": "Chile" }] },
-        { "prompt": "Name four Dutch players who have played at a World Cup.", "answers": [{ "text": "Johan Cruijff" }, { "text": "Dennis Bergkamp" }, { "text": "Arjen Robben" }, { "text": "Virgil van Dijk" }] },
-        { "prompt": "Name four European countries that have played a World Cup final.", "answers": [{ "text": "The Netherlands" }, { "text": "France" }, { "text": "Italy" }, { "text": "Germany" }] },
-        { "prompt": "Name four parts of a football pitch.", "answers": [{ "text": "Halfway line" }, { "text": "Penalty area" }, { "text": "Goal" }, { "text": "Corner flag" }] },
-        { "prompt": "Name four famous football stadiums.", "answers": [{ "text": "Maracana" }, { "text": "Wembley" }, { "text": "Camp Nou" }, { "text": "Santiago Bernabeu" }] }
+        { "prompt": "What do you know about Pele? Four keywords.", "answers": [{ "text": "Brazil", "aliases": ["Brazilian"] }, { "text": "Three world titles", "aliases": ["Three World Cups", "1958", "1962", "1970"] }, { "text": "Santos" }, { "text": "Shirt number ten", "aliases": ["Number 10", "Number ten", "10"] }] },
+        { "prompt": "What do you know about Diego Maradona? Four keywords.", "answers": [{ "text": "Argentina", "aliases": ["Argentinian"] }, { "text": "The Hand of God", "aliases": ["Hand of God"] }, { "text": "The 1986 World Cup", "aliases": ["1986", "World champion in 1986"] }, { "text": "Napoli", "aliases": ["Naples"] }] },
+        { "prompt": "What do you know about the Maracana? Four keywords.", "answers": [{ "text": "Rio de Janeiro", "aliases": ["Rio"] }, { "text": "Brazil" }, { "text": "The 2014 final", "aliases": ["2014", "The 1950 final", "1950"] }, { "text": "A huge crowd", "aliases": ["Enormous", "Very big", "Two hundred thousand people"] }] },
+        { "prompt": "What do you know about the 1974 World Cup final? Four keywords.", "answers": [{ "text": "The Netherlands", "aliases": ["Holland", "Oranje"] }, { "text": "West Germany", "aliases": ["Germany"] }, { "text": "Munich", "aliases": ["Olympic Stadium"] }, { "text": "A penalty in the first minute", "aliases": ["Penalty", "Neeskens", "Johan Neeskens"] }] },
+        { "prompt": "What do you know about Lionel Messi? Four keywords.", "answers": [{ "text": "Argentina", "aliases": ["Argentinian"] }, { "text": "World champion in 2022", "aliases": ["2022", "The 2022 World Cup"] }, { "text": "Barcelona", "aliases": ["FC Barcelona"] }, { "text": "The Ballon d'Or", "aliases": ["Golden Ball", "Best player in the world"] }] },
+        { "prompt": "What do you know about the World Cup trophy? Four keywords.", "answers": [{ "text": "Gold", "aliases": ["Golden", "It is made of gold"] }, { "text": "FIFA" }, { "text": "Jules Rimet", "aliases": ["The Jules Rimet Cup"] }, { "text": "It was once stolen", "aliases": ["Stolen", "Pickles", "Found by a dog"] }] },
+        { "prompt": "What do you know about the 2022 World Cup in Qatar? Four keywords.", "answers": [{ "text": "Qatar", "aliases": ["The desert", "Doha"] }, { "text": "Played in winter", "aliases": ["Winter", "November and December", "The heat"] }, { "text": "Argentina won it", "aliases": ["Argentina", "Messi"] }, { "text": "The Lusail Stadium", "aliases": ["Lusail"] }] },
+        { "prompt": "What do you know about the Dutch national team? Four keywords.", "answers": [{ "text": "Orange", "aliases": ["Oranje", "Orange shirts"] }, { "text": "Johan Cruijff", "aliases": ["Cruijff", "Cruyff"] }, { "text": "Three lost finals", "aliases": ["1974", "1978", "2010", "Never world champion"] }, { "text": "Total Football", "aliases": ["Rinus Michels"] }] }
       ]
     },
     {
@@ -113,12 +123,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which country was world champion in 1934 and 1938?", "answers": [{ "text": "Italy" }] },
-        { "prompt": "Which Brazilian was top scorer of the 2002 World Cup?", "answers": [{ "text": "Ronaldo" }] },
-        { "prompt": "Which Italian was top scorer of the 1982 World Cup?", "answers": [{ "text": "Paolo Rossi", "aliases": ["Rossi"] }] },
-        { "prompt": "What is the trophy the world champion has received since 1974 called?", "answers": [{ "text": "The FIFA World Cup Trophy", "aliases": ["World Cup Trophy"] }] },
-        { "prompt": "Which Asian country reached the semi-final in 2002?", "answers": [{ "text": "South Korea" }] },
-        { "prompt": "What was the dog that found the stolen World Cup trophy in 1966 called?", "answers": [{ "text": "Pickles" }] }
+        { "prompt": "Which country did England beat in the 1966 World Cup final?", "answers": [{ "text": "West Germany", "aliases": ["Germany"] }] },
+        { "prompt": "Which country is the only one to have played at every World Cup?", "answers": [{ "text": "Brazil" }] },
+        { "prompt": "In which city was the 2014 World Cup final played?", "answers": [{ "text": "Rio de Janeiro", "aliases": ["Rio"] }] },
+        { "prompt": "By what score did Germany beat Brazil in the 2014 semi-final?", "answers": [{ "text": "Seven-one", "aliases": ["7-1", "7 1", "Seven one"] }] },
+        { "prompt": "Which country played the World Cup final in both 2018 and 2022?", "answers": [{ "text": "France" }] },
+        { "prompt": "Which African country beat Argentina in the opening match of the 1990 World Cup?", "answers": [{ "text": "Cameroon" }] },
+        { "prompt": "In which stadium was the 1966 World Cup final played?", "answers": [{ "text": "Wembley", "aliases": ["Wembley Stadium"] }] }
       ]
     }
   ]

@@ -31,19 +31,15 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which inhabited place on earth gets the most rain in a year?", "options": [{ "text": "Cherrapunji", "correct": true }, { "text": "Manaus" }, { "text": "Monrovia" }, { "text": "Bergen" }] },
         { "prompt": "Which Russian-American author wrote the novel Lolita?", "options": [{ "text": "Vladimir Nabokov", "correct": true }, { "text": "Ivan Turgenev" }, { "text": "Mikhail Bulgakov" }, { "text": "Isaac Babel" }] },
         { "prompt": "Which comet comes back into view roughly every 76 years?", "options": [{ "text": "Halley's Comet", "correct": true }, { "text": "Hale-Bopp" }, { "text": "Encke" }, { "text": "Shoemaker-Levy" }] },
         { "prompt": "Which vitamin does the blood need in order to clot?", "options": [{ "text": "Vitamin K", "correct": true }, { "text": "Vitamin A" }, { "text": "Vitamin B12" }, { "text": "Vitamin E" }] },
-        { "prompt": "The failure of which crop caused the Irish famine of the 1840s?", "options": [{ "text": "The potato", "correct": true }, { "text": "Wheat" }, { "text": "Barley" }, { "text": "Oats" }] },
         { "prompt": "In which sport is the Vendee Globe a round the world race?", "options": [{ "text": "Sailing", "correct": true }, { "text": "Rowing" }, { "text": "Ballooning" }, { "text": "Motor racing" }] },
         { "prompt": "Which novel opens with the words Call me Ishmael?", "options": [{ "text": "Moby-Dick", "correct": true }, { "text": "Treasure Island" }, { "text": "Robinson Crusoe" }, { "text": "The Sea-Wolf" }] },
         { "prompt": "Which country shares the Victoria Falls with Zimbabwe?", "options": [{ "text": "Zambia", "correct": true }, { "text": "Botswana" }, { "text": "Mozambique" }, { "text": "Malawi" }] },
         { "prompt": "Which is the most common blood group in the world?", "options": [{ "text": "O positive", "correct": true }, { "text": "A positive" }, { "text": "B negative" }, { "text": "AB positive" }] },
         { "prompt": "Which Australian bird can imitate a chainsaw or a camera shutter?", "options": [{ "text": "The lyrebird", "correct": true }, { "text": "The kookaburra" }, { "text": "The cockatoo" }, { "text": "The magpie" }] },
         { "prompt": "Which German city is famous for its cathedral with twin spires?", "options": [{ "text": "Cologne", "correct": true }, { "text": "Aachen" }, { "text": "Trier" }, { "text": "Mainz" }] },
-        { "prompt": "What is the chemical name of ordinary table salt?", "options": [{ "text": "Sodium chloride", "correct": true }, { "text": "Potassium chloride" }, { "text": "Calcium carbonate" }, { "text": "Sodium nitrate" }] },
-        { "prompt": "Which style of music grew up in New Orleans around 1900?", "options": [{ "text": "Jazz", "correct": true }, { "text": "Soul" }, { "text": "Gospel" }, { "text": "Country" }] },
         { "prompt": "Which country issued the world's first postage stamp?", "options": [{ "text": "The United Kingdom", "correct": true }, { "text": "France" }, { "text": "Austria" }, { "text": "The United States" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Rocking chair" },
-        { "prompt": "Dartboard" },
-        { "prompt": "Treadmill" },
-        { "prompt": "Jukebox" },
-        { "prompt": "Hairdryer" },
-        { "prompt": "Pushchair" },
-        { "prompt": "Grandfather clock" },
-        { "prompt": "Toolbox" },
-        { "prompt": "Sledgehammer" },
-        { "prompt": "Spider web" },
-        { "prompt": "Medal" },
-        { "prompt": "Scarecrow" },
-        { "prompt": "Bird bath" },
-        { "prompt": "Guitar case" },
-        { "prompt": "Parcel" },
-        { "prompt": "Shopping trolley" }
+      "words": [
+        "Dartboard",
+        "Jukebox",
+        "Scarecrow",
+        "Lighthouse",
+        "Penguin",
+        "Pizza",
+        "Bicycle",
+        "Santa Claus",
+        "Firefighter",
+        "Rainbow",
+        "Taj Mahal",
+        "Sherlock Holmes",
+        "Submarine",
+        "Beekeeper",
+        "Vinyl record",
+        "Marathon",
+        "The Lion King",
+        "Volcano",
+        "Statue of Liberty",
+        "Windmill",
+        "Albert Einstein",
+        "The Great Wall of China",
+        "Jurassic Park",
+        "Archaeologist",
+        "Pirate",
+        "Hot air balloon",
+        "Circus",
+        "The Berlin Wall",
+        "Sudoku",
+        "Gravity"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border France.", "answers": [{ "text": "Belgium" }, { "text": "Spain" }, { "text": "Switzerland" }, { "text": "Italy" }] },
-        { "prompt": "Name four kinds of triangle.", "answers": [{ "text": "Equilateral" }, { "text": "Isosceles" }, { "text": "Scalene" }, { "text": "Right-angled" }] },
-        { "prompt": "Name four martial arts.", "answers": [{ "text": "Karate" }, { "text": "Judo" }, { "text": "Aikido" }, { "text": "Kung fu" }] },
-        { "prompt": "Name four constellations.", "answers": [{ "text": "Orion" }, { "text": "Ursa Major" }, { "text": "Cassiopeia" }, { "text": "Scorpius" }] },
-        { "prompt": "Name four ways of serving coffee.", "answers": [{ "text": "Espresso" }, { "text": "Cappuccino" }, { "text": "Latte" }, { "text": "Americano" }] },
-        { "prompt": "Name the four Nordic capital cities on the mainland.", "answers": [{ "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Copenhagen" }, { "text": "Helsinki" }] },
-        { "prompt": "Name four kinds of shark.", "answers": [{ "text": "Great white" }, { "text": "Tiger shark" }, { "text": "Hammerhead" }, { "text": "Whale shark" }] },
-        { "prompt": "Name four things with a screen.", "answers": [{ "text": "Television" }, { "text": "Laptop" }, { "text": "Telephone" }, { "text": "Tablet" }] }
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris" }, { "text": "Iron", "aliases": ["Steel", "Made of iron"] }, { "text": "1889", "aliases": ["World fair", "Nineteenth century"] }, { "text": "Tourists", "aliases": ["The lift", "Viewing platform"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "France", "aliases": ["French"] }, { "text": "Waterloo" }, { "text": "Emperor" }, { "text": "Short", "aliases": ["Small", "Hand in his coat", "Bicorne hat"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "Iceberg" }, { "text": "1912", "aliases": ["1912", "Before the first world war"] }, { "text": "Unsinkable", "aliases": ["Lifeboats", "Maiden voyage"] }, { "text": "Leonardo DiCaprio", "aliases": ["The film", "DiCaprio", "Kate Winslet"] }] },
+        { "prompt": "What do you know about ancient Egypt? Four keywords.", "answers": [{ "text": "Pyramids", "aliases": ["Pyramid"] }, { "text": "Pharaohs", "aliases": ["Pharaoh", "Tutankhamun"] }, { "text": "Mummies", "aliases": ["Mummy"] }, { "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine" }, { "text": "Espresso" }, { "text": "Brazil", "aliases": ["South America", "Colombia"] }] },
+        { "prompt": "What do you know about the moon? Four keywords.", "answers": [{ "text": "Craters", "aliases": ["Crater"] }, { "text": "Neil Armstrong", "aliases": ["The moon landing", "Apollo 11"] }, { "text": "The tides", "aliases": ["Tides", "Ebb and flow"] }, { "text": "Full moon", "aliases": ["Phases", "Crescent"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Rome" }, { "text": "Pasta", "aliases": ["Spaghetti", "Pizza"] }, { "text": "The boot", "aliases": ["Boot shape", "Shaped like a boot"] }, { "text": "The Colosseum", "aliases": ["Colosseum", "Leaning tower of Pisa"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "Five rings", "aliases": ["Rings", "The rings"] }, { "text": "Every four years", "aliases": ["Four years", "Once every four years"] }, { "text": "Gold medal", "aliases": ["Medals", "Gold"] }, { "text": "Ancient Greece", "aliases": ["Greece", "Olympia"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Which Roman emperor made Christianity legal across the empire?", "answers": [{ "text": "Constantine", "aliases": ["Constantine the Great"] }] },
         { "prompt": "What is the capital of Mozambique?", "answers": [{ "text": "Maputo" }] },
         { "prompt": "Under which pen name did Eduard Douwes Dekker write Max Havelaar?", "answers": [{ "text": "Multatuli" }] },
-        { "prompt": "In which year was the first artificial heart implanted in a patient?", "answers": [{ "text": "1982" }] },
         { "prompt": "Which is the highest mountain in Australia?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
-        { "prompt": "Which German philosopher wrote Thus Spoke Zarathustra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] }
+        { "prompt": "Which German philosopher wrote Thus Spoke Zarathustra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Hg"] }] },
+        { "prompt": "Which lake is the deepest in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] }
       ]
     }
   ]

@@ -34,17 +34,13 @@
         { "prompt": "Welk land heeft meer mensen per vierkante kilometer dan welk ander ook?", "options": [{ "text": "Monaco", "correct": true }, { "text": "Singapore" }, { "text": "Malta" }, { "text": "Bahrein" }] },
         { "prompt": "Welke Canadese schrijfster schreef The Handmaid's Tale?", "options": [{ "text": "Margaret Atwood", "correct": true }, { "text": "Alice Munro" }, { "text": "Anne Michaels" }, { "text": "Carol Shields" }] },
         { "prompt": "Hoe heet het punt in een baan dat het dichtst bij de zon ligt?", "options": [{ "text": "Het perihelium", "correct": true }, { "text": "Het aphelium" }, { "text": "Het apogeum" }, { "text": "De equinox" }] },
-        { "prompt": "Welk dier heeft tweeendertig aparte hersenen?", "options": [{ "text": "De bloedzuiger", "correct": true }, { "text": "De regenworm" }, { "text": "De octopus" }, { "text": "De zeester" }] },
         { "prompt": "Welk kruid hoort in een mojito?", "options": [{ "text": "Munt", "correct": true }, { "text": "Koriander" }, { "text": "Dille" }, { "text": "Salie" }] },
         { "prompt": "In welke sport wordt een strafcorner toegekend?", "options": [{ "text": "Hockey", "correct": true }, { "text": "Rugby" }, { "text": "Waterpolo" }, { "text": "Handbal" }] },
         { "prompt": "In welke Italiaanse stad staat het Uffizi?", "options": [{ "text": "Florence", "correct": true }, { "text": "Rome" }, { "text": "Milaan" }, { "text": "Napels" }] },
         { "prompt": "Welk deel van een ei groeit uit tot het kuiken?", "options": [{ "text": "De dooier", "correct": true }, { "text": "Het eiwit" }, { "text": "De schaal" }, { "text": "Het vlies" }] },
         { "prompt": "Van welke boom wordt de bast gehaald om kurk te maken?", "options": [{ "text": "De kurkeik", "correct": true }, { "text": "De berk" }, { "text": "De plataan" }, { "text": "De ceder" }] },
-        { "prompt": "Hoeveel letters telt het Hawaiaanse alfabet?", "options": [{ "text": "13", "correct": true }, { "text": "18" }, { "text": "21" }, { "text": "26" }] },
         { "prompt": "Welke kunstenaar maakte het spiegelende beeld Cloud Gate in Chicago?", "options": [{ "text": "Anish Kapoor", "correct": true }, { "text": "Jeff Koons" }, { "text": "Richard Serra" }, { "text": "Damien Hirst" }] },
-        { "prompt": "Welk element noemde Marie Curie naar haar vaderland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] },
-        { "prompt": "Door welk kanaal varen jaarlijks meer schepen dan door welk ander ook?", "options": [{ "text": "Het Kielerkanaal", "correct": true }, { "text": "Het Suezkanaal" }, { "text": "Het Panamakanaal" }, { "text": "Het Kanaal van Korinthe" }] },
-        { "prompt": "Hoe heet een groep leeuwen?", "options": [{ "text": "Een troep", "correct": true }, { "text": "Een roedel" }, { "text": "Een kolonie" }, { "text": "Een clan" }] }
+        { "prompt": "Welk element noemde Marie Curie naar haar vaderland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Etui" },
-        { "prompt": "Snijplank" },
-        { "prompt": "Luidspreker" },
-        { "prompt": "Reservewiel" },
-        { "prompt": "Vuilniszak" },
-        { "prompt": "Verlengsnoer" },
-        { "prompt": "Theezeefje" },
-        { "prompt": "Schepnet" },
-        { "prompt": "Tuinsproeier" },
-        { "prompt": "Vaatwasser" },
-        { "prompt": "Liniaal" },
-        { "prompt": "Yogamat" },
-        { "prompt": "Bout" },
-        { "prompt": "Notitieboekje" },
-        { "prompt": "Haarnetje" },
-        { "prompt": "Whiteboard" }
+      "words": [
+        "Paraplu",
+        "Sneeuwpop",
+        "Olifant",
+        "Tandenborstel",
+        "Zwembad",
+        "Verjaardagstaart",
+        "Postbode",
+        "File",
+        "Kangoeroe",
+        "IJsje",
+        "Carnaval",
+        "Achtbaan",
+        "Verpleegkundige",
+        "De piramides",
+        "James Bond",
+        "Schaken",
+        "Johan Cruijff",
+        "Onbewoond eiland",
+        "Tatoeage",
+        "Hollywood",
+        "Leonardo da Vinci",
+        "Het Amazonegebied",
+        "Astronaut",
+        "Snoepautomaat",
+        "De middeleeuwen",
+        "Origami",
+        "Mount Everest",
+        "Detective",
+        "Harry Potter",
+        "Zonsverduistering"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Roemenie grenzen.", "answers": [{ "text": "Hongarije" }, { "text": "Servie" }, { "text": "Bulgarije" }, { "text": "Moldavie" }] },
-        { "prompt": "Noem vier appelrassen.", "answers": [{ "text": "Elstar" }, { "text": "Granny Smith" }, { "text": "Jonagold" }, { "text": "Golden Delicious" }] },
-        { "prompt": "Noem vier componisten die in Duitsland zijn geboren.", "answers": [{ "text": "Bach" }, { "text": "Beethoven" }, { "text": "Brahms" }, { "text": "Wagner" }] },
-        { "prompt": "Noem vier loopafstanden van de Olympische Spelen.", "answers": [{ "text": "100 meter" }, { "text": "400 meter" }, { "text": "1500 meter" }, { "text": "De marathon" }] },
-        { "prompt": "Noem vier landen in West-Afrika.", "answers": [{ "text": "Ghana" }, { "text": "Senegal" }, { "text": "Mali" }, { "text": "Nigeria" }] },
-        { "prompt": "Noem vier Franse gebakjes of nagerechten.", "answers": [{ "text": "Croissant" }, { "text": "Eclair" }, { "text": "Macaron" }, { "text": "Creme brulee" }] },
-        { "prompt": "Noem vier dingen die je aan de nachtelijke hemel kunt zien.", "answers": [{ "text": "De maan" }, { "text": "Sterren" }, { "text": "Planeten" }, { "text": "Kometen" }] },
-        { "prompt": "Noem vier grote rivieren van Azie.", "answers": [{ "text": "Jangtsekiang" }, { "text": "Ganges" }, { "text": "Mekong" }, { "text": "Indus" }] }
+        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "E=mc2", "aliases": ["Zijn formule"] }, { "text": "Relativiteitstheorie", "aliases": ["Relativiteit"] }, { "text": "Wilde haren", "aliases": ["Haar", "Snor"] }, { "text": "Nobelprijs", "aliases": ["Natuurkunde", "Natuurkundige"] }] },
+        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Vorst", "IJs"] }, { "text": "Kerst", "aliases": ["December", "Kerstmis"] }, { "text": "Skien", "aliases": ["Ski", "Schaatsen"] }] },
+        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Wolkenkrabbers", "aliases": ["Empire State Building", "Wolkenkrabber"] }, { "text": "Times Square", "aliases": ["Broadway"] }, { "text": "Gele taxi's", "aliases": ["Taxi's", "Yellow cabs"] }] },
+        { "prompt": "Wat weet je van dinosaurussen? Vier kernwoorden.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T-rex"] }, { "text": "Uitgestorven", "aliases": ["Uitsterven"] }, { "text": "Meteoriet", "aliases": ["Asteroide", "Inslag"] }, { "text": "Fossielen", "aliases": ["Botten", "Fossiel"] }] },
+        { "prompt": "Wat weet je van de Tour de France? Vier kernwoorden.", "answers": [{ "text": "Wielrennen", "aliases": ["Fietsen", "Fietsers"] }, { "text": "De gele trui", "aliases": ["Gele trui"] }, { "text": "Juli" }, { "text": "De bergen", "aliases": ["Alpe d'Huez", "De Alpen", "Mont Ventoux"] }] },
+        { "prompt": "Wat weet je van chocolade? Vier kernwoorden.", "answers": [{ "text": "Cacao", "aliases": ["Cacaobonen"] }, { "text": "Zoet", "aliases": ["Suiker"] }, { "text": "Belgie", "aliases": ["Zwitserland"] }, { "text": "Paaseitjes", "aliases": ["Reep", "Pasen"] }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog? Vier kernwoorden.", "answers": [{ "text": "Hitler", "aliases": ["Nazis", "Duitsland"] }, { "text": "1940 tot 1945", "aliases": ["1939 tot 1945", "1945"] }, { "text": "D-Day", "aliases": ["Normandie", "De landing"] }, { "text": "Anne Frank", "aliases": ["Het achterhuis", "Het dagboek"] }] },
+        { "prompt": "Wat weet je van voetbal? Vier kernwoorden.", "answers": [{ "text": "Elf spelers", "aliases": ["Elf", "11 spelers"] }, { "text": "Het WK", "aliases": ["WK", "Wereldkampioenschap"] }, { "text": "De keeper", "aliases": ["Keeper", "Doelman"] }, { "text": "Rode kaart", "aliases": ["Gele kaart", "De scheidsrechter"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse scheikundige won de allereerste Nobelprijs voor Scheikunde?", "answers": [{ "text": "Jacobus van 't Hoff", "aliases": ["Van 't Hoff"] }] },
-        { "prompt": "In welke stad zetelt het hooggerechtshof van Bolivia?", "answers": [{ "text": "Sucre" }] },
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
         { "prompt": "Welke Engelse architect herbouwde de St Paul's Cathedral na de grote brand?", "answers": [{ "text": "Christopher Wren", "aliases": ["Wren"] }] },
-        { "prompt": "In welk jaar vond de eerste officieel erkende gemotoriseerde vlucht in Europa plaats?", "answers": [{ "text": "1906" }] },
+        { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga"] }] },
         { "prompt": "Wat is qua volume de grootste vulkaan op aarde?", "answers": [{ "text": "Mauna Loa" }] },
-        { "prompt": "Welke Italiaanse natuurkundige vond de elektrische batterij uit?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] }
+        { "prompt": "Welke componist schreef de opera Die Zauberflote?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Welke Italiaanse natuurkundige vond de elektrische batterij uit?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] },
+        { "prompt": "Bij welke zee ligt het laagste punt op het vasteland van de aarde?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] }
       ]
     }
   ]

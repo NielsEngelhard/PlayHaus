@@ -33,18 +33,14 @@
       "questions": [
         { "prompt": "Which is the smallest state of the United States?", "options": [{ "text": "Rhode Island", "correct": true }, { "text": "Delaware" }, { "text": "Connecticut" }, { "text": "Vermont" }] },
         { "prompt": "Which Italian author wrote The Name of the Rose?", "options": [{ "text": "Umberto Eco", "correct": true }, { "text": "Italo Calvino" }, { "text": "Primo Levi" }, { "text": "Alberto Moravia" }] },
-        { "prompt": "Which small galaxy is visible to the naked eye from the southern hemisphere?", "options": [{ "text": "The Large Magellanic Cloud", "correct": true }, { "text": "Andromeda" }, { "text": "Centaurus A" }, { "text": "The Sombrero galaxy" }] },
         { "prompt": "Which tiny gland in the brain produces melatonin?", "options": [{ "text": "The pineal gland", "correct": true }, { "text": "The thyroid" }, { "text": "The thymus" }, { "text": "The parathyroid" }] },
-        { "prompt": "What is tofu made from?", "options": [{ "text": "Soya beans", "correct": true }, { "text": "Rice" }, { "text": "Chickpeas" }, { "text": "Wheat" }] },
         { "prompt": "In which sport is the Vasaloppet in Sweden contested?", "options": [{ "text": "Cross-country skiing", "correct": true }, { "text": "Ski jumping" }, { "text": "Biathlon" }, { "text": "Speed skating" }] },
         { "prompt": "Which Greek philosopher was sentenced to drink hemlock?", "options": [{ "text": "Socrates", "correct": true }, { "text": "Plato" }, { "text": "Epicurus" }, { "text": "Diogenes" }] },
         { "prompt": "Which small brown bird is famous for singing after dark?", "options": [{ "text": "The nightingale", "correct": true }, { "text": "The blackbird" }, { "text": "The robin" }, { "text": "The wren" }] },
         { "prompt": "In which city does the European Parliament hold its plenary sessions?", "options": [{ "text": "Strasbourg", "correct": true }, { "text": "Luxembourg" }, { "text": "The Hague" }, { "text": "Frankfurt" }] },
-        { "prompt": "Which element gives fireworks their bright red colour?", "options": [{ "text": "Strontium", "correct": true }, { "text": "Barium" }, { "text": "Sodium" }, { "text": "Copper" }] },
         { "prompt": "Which unit measures how loud a sound is?", "options": [{ "text": "The decibel", "correct": true }, { "text": "The hertz" }, { "text": "The lumen" }, { "text": "The candela" }] },
         { "prompt": "Which is the most northerly town in the world?", "options": [{ "text": "Longyearbyen", "correct": true }, { "text": "Tromso" }, { "text": "Murmansk" }, { "text": "Nuuk" }] },
-        { "prompt": "Which endurance event combines a long swim, a bike ride and a marathon?", "options": [{ "text": "The Ironman", "correct": true }, { "text": "The decathlon" }, { "text": "The biathlon" }, { "text": "The heptathlon" }] },
-        { "prompt": "In which language is the traditional Catholic mass said?", "options": [{ "text": "Latin", "correct": true }, { "text": "Greek" }, { "text": "Aramaic" }, { "text": "Hebrew" }] }
+        { "prompt": "Which endurance event combines a long swim, a bike ride and a marathon?", "options": [{ "text": "The Ironman", "correct": true }, { "text": "The decathlon" }, { "text": "The biathlon" }, { "text": "The heptathlon" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Knitting needle" },
-        { "prompt": "Spanner" },
-        { "prompt": "Bike chain" },
-        { "prompt": "Blender" },
-        { "prompt": "Shoe polish" },
-        { "prompt": "Jam jar" },
-        { "prompt": "Ship's wheel" },
-        { "prompt": "Paper aeroplane" },
-        { "prompt": "Beach ball" },
-        { "prompt": "Fire escape" },
-        { "prompt": "Lift" },
-        { "prompt": "Nail" },
-        { "prompt": "Petrol pump" },
-        { "prompt": "Hairpin" },
-        { "prompt": "Ice cream cone" },
-        { "prompt": "Doorstep" }
+      "words": [
+        "Ladder",
+        "Chocolate",
+        "Penguin",
+        "Teacher",
+        "Birthday cake",
+        "Piano",
+        "Sunglasses",
+        "Train station",
+        "Dolphin",
+        "Postman",
+        "The Colosseum",
+        "The Lion King",
+        "Cleopatra",
+        "Mount Everest",
+        "Judge",
+        "The Great Wall of China",
+        "Harry Potter",
+        "Volcano",
+        "The Statue of Liberty",
+        "Michael Jackson",
+        "Leonardo da Vinci",
+        "The Cold War",
+        "Beekeeper",
+        "Stonehenge",
+        "The Silk Road",
+        "Inflation",
+        "Frida Kahlo",
+        "The Mona Lisa",
+        "Lighthouse keeper",
+        "Evolution"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries in the European Union that kept their own currency.", "answers": [{ "text": "Sweden" }, { "text": "Denmark" }, { "text": "Poland" }, { "text": "Czechia" }] },
-        { "prompt": "Name four Italian cheeses.", "answers": [{ "text": "Parmesan" }, { "text": "Mozzarella" }, { "text": "Gorgonzola" }, { "text": "Ricotta" }] },
-        { "prompt": "Name four painters born in Spain.", "answers": [{ "text": "Picasso" }, { "text": "Dali" }, { "text": "Velazquez" }, { "text": "Goya" }] },
-        { "prompt": "Name four Olympic sports held in or on the water.", "answers": [{ "text": "Swimming" }, { "text": "Diving" }, { "text": "Water polo" }, { "text": "Rowing" }] },
-        { "prompt": "Name four European capital cities beginning with the letter B.", "answers": [{ "text": "Berlin" }, { "text": "Brussels" }, { "text": "Budapest" }, { "text": "Bucharest" }] },
-        { "prompt": "Name four tools you would find in a toolbox.", "answers": [{ "text": "Hammer" }, { "text": "Screwdriver" }, { "text": "Pliers" }, { "text": "Saw" }] },
-        { "prompt": "Name four tennis players who have won a Grand Slam title.", "answers": [{ "text": "Federer" }, { "text": "Nadal" }, { "text": "Djokovic" }, { "text": "Serena Williams" }] },
-        { "prompt": "Name four things that float on water.", "answers": [{ "text": "Wood" }, { "text": "Cork" }, { "text": "Ice" }, { "text": "Plastic" }] }
+        { "prompt": "What do you know about the Mona Lisa? Four keywords.", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci", "Leonardo"] }, { "text": "The Louvre", "aliases": ["Louvre"] }, { "text": "Her smile", "aliases": ["Smile", "Mysterious smile"] }, { "text": "Paris" }] },
+        { "prompt": "What do you know about Mount Everest? Four keywords.", "answers": [{ "text": "The Himalayas", "aliases": ["Himalayas", "Himalaya"] }, { "text": "The highest mountain", "aliases": ["Highest mountain", "8848 metres"] }, { "text": "Nepal", "aliases": ["Tibet"] }, { "text": "Edmund Hillary", "aliases": ["Hillary", "Tenzing Norgay", "Sherpa"] }] },
+        { "prompt": "What do you know about the Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Abbey Road", "Hey Jude"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Desert" }, { "text": "Sand", "aliases": ["Sand dunes", "Dunes"] }, { "text": "Africa" }, { "text": "Camels", "aliases": ["Camel"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "France", "aliases": ["French"] }, { "text": "Waterloo" }, { "text": "Emperor" }, { "text": "Elba", "aliases": ["Exile", "Saint Helena", "Corsica"] }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "Christmas tree", "aliases": ["Tree"] }, { "text": "Presents", "aliases": ["Gifts", "Present"] }, { "text": "25 December", "aliases": ["December 25", "Christmas Day"] }, { "text": "Father Christmas", "aliases": ["Santa Claus", "Santa"] }] },
+        { "prompt": "What do you know about sharks? Four keywords.", "answers": [{ "text": "Teeth", "aliases": ["Rows of teeth"] }, { "text": "Jaws", "aliases": ["The film Jaws"] }, { "text": "Fin", "aliases": ["Dorsal fin", "Fins"] }, { "text": "Great white shark", "aliases": ["Great white", "Hammerhead"] }] },
+        { "prompt": "What do you know about the Second World War? Four keywords.", "answers": [{ "text": "Adolf Hitler", "aliases": ["Hitler"] }, { "text": "1939 to 1945", "aliases": ["1939-1945", "1940-1945", "1945"] }, { "text": "D-Day", "aliases": ["Normandy", "The landings"] }, { "text": "The atomic bomb", "aliases": ["Atomic bomb", "Hiroshima", "Anne Frank"] }] }
       ]
     },
     {
@@ -115,8 +125,9 @@
         { "prompt": "Which physicist working in the Dutch Republic devised a temperature scale still used in America?", "answers": [{ "text": "Daniel Fahrenheit", "aliases": ["Fahrenheit"] }] },
         { "prompt": "What is the capital of Armenia?", "answers": [{ "text": "Yerevan" }] },
         { "prompt": "Which German author wrote The Tin Drum?", "answers": [{ "text": "Gunter Grass", "aliases": ["Grass"] }] },
-        { "prompt": "In which year did the first electric tram run in the Netherlands?", "answers": [{ "text": "1890" }] },
-        { "prompt": "Which South African crater is the largest impact crater on earth?", "answers": [{ "text": "The Vredefort crater", "aliases": ["Vredefort"] }] },
+        { "prompt": "Which Mozart opera features the Queen of the Night?", "answers": [{ "text": "The Magic Flute", "aliases": ["Die Zauberflote", "Magic Flute"] }] },
+        { "prompt": "Which planet of our solar system rotates on its side?", "answers": [{ "text": "Uranus" }] },
+        { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily" }] },
         { "prompt": "Which Italian mathematician gave his name to a famous sequence of numbers?", "answers": [{ "text": "Fibonacci" }] }
       ]
     }

@@ -31,20 +31,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Wat is de grootste rivierdelta ter wereld?", "options": [{ "text": "De Gangesdelta", "correct": true }, { "text": "De Mekongdelta" }, { "text": "De Amazonedelta" }, { "text": "De Donaudelta" }] },
         { "prompt": "Welke van de zussen Bronte schreef Woeste Hoogten?", "options": [{ "text": "Emily Bronte", "correct": true }, { "text": "Charlotte Bronte" }, { "text": "Anne Bronte" }, { "text": "Elizabeth Gaskell" }] },
         { "prompt": "Welk effect laat een voorbijrijdende sirene lager klinken?", "options": [{ "text": "Het dopplereffect", "correct": true }, { "text": "Het corioliseffect" }, { "text": "Het venturi-effect" }, { "text": "Het magnuseffect" }] },
-        { "prompt": "Welk insect vliegt het snelst ter wereld?", "options": [{ "text": "De libel", "correct": true }, { "text": "De hoornaar" }, { "text": "De daas" }, { "text": "De pijlstaartvlinder" }] },
         { "prompt": "Welke groente vormt de basis van een Spaanse gazpacho?", "options": [{ "text": "De tomaat", "correct": true }, { "text": "De komkommer" }, { "text": "De paprika" }, { "text": "De courgette" }] },
         { "prompt": "In welke sport wordt de Melbourne Cup verreden?", "options": [{ "text": "Paardenrennen", "correct": true }, { "text": "Zeilen" }, { "text": "Autosport" }, { "text": "Cricket" }] },
         { "prompt": "Welke Oostenrijkse componist schreef de wals An der schonen blauen Donau?", "options": [{ "text": "Johann Strauss", "correct": true }, { "text": "Franz Lehar" }, { "text": "Joseph Lanner" }, { "text": "Carl Michael Ziehrer" }] },
-        { "prompt": "Welk schrift wordt door meer mensen gebruikt dan welk ander ook?", "options": [{ "text": "Het Latijnse alfabet", "correct": true }, { "text": "De Chinese karakters" }, { "text": "Het Arabische schrift" }, { "text": "Het devanagari" }] },
         { "prompt": "Welk zintuig wordt verwerkt in de achterkwab van de hersenen?", "options": [{ "text": "Het zien", "correct": true }, { "text": "Het ruiken" }, { "text": "Het evenwicht" }, { "text": "Het voelen" }] },
         { "prompt": "Welke duurzame bron levert wereldwijd de meeste elektriciteit?", "options": [{ "text": "Waterkracht", "correct": true }, { "text": "Wind" }, { "text": "Zon" }, { "text": "Aardwarmte" }] },
         { "prompt": "Wat is de grootste stad van Afrika qua inwoners?", "options": [{ "text": "Lagos", "correct": true }, { "text": "Kinshasa" }, { "text": "Johannesburg" }, { "text": "Khartoem" }] },
         { "prompt": "Welk metaal heeft het scheikundige symbool Sn?", "options": [{ "text": "Tin", "correct": true }, { "text": "Natrium" }, { "text": "Seleen" }, { "text": "Strontium" }] },
-        { "prompt": "Welke munteenheid wordt in Turkije gebruikt?", "options": [{ "text": "De lira", "correct": true }, { "text": "De dinar" }, { "text": "De dirham" }, { "text": "De drachme" }] },
-        { "prompt": "Wat is de grootste roofvogel van Europa?", "options": [{ "text": "De lammergier", "correct": true }, { "text": "De visarend" }, { "text": "De buizerd" }, { "text": "De wouw" }] }
+        { "prompt": "Welke munteenheid wordt in Turkije gebruikt?", "options": [{ "text": "De lira", "correct": true }, { "text": "De dinar" }, { "text": "De dirham" }, { "text": "De drachme" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Zeeppompje" },
-        { "prompt": "Broodmes" },
-        { "prompt": "Wasmand" },
-        { "prompt": "Muziekstandaard" },
-        { "prompt": "Dartpijl" },
-        { "prompt": "Rietje" },
-        { "prompt": "Fietshelm" },
-        { "prompt": "Schemerlamp" },
-        { "prompt": "Discobal" },
-        { "prompt": "Elastiekje" },
-        { "prompt": "Tuinvork" },
-        { "prompt": "Schoteltje" },
-        { "prompt": "Boei" },
-        { "prompt": "Zwemvest" },
-        { "prompt": "Glijbaan" },
-        { "prompt": "Schaakklok" }
+      "words": [
+        "Paraplu",
+        "Kangoeroe",
+        "Badmeester",
+        "Achtbaan",
+        "Chocolade",
+        "Skateboard",
+        "Kerstboom",
+        "Strandbal",
+        "Piano",
+        "Zwemvest",
+        "Big Ben",
+        "Cleopatra",
+        "Piraat",
+        "Amazoneregenwoud",
+        "Duikboot",
+        "Orkaan",
+        "Vincent van Gogh",
+        "Circus",
+        "Karaoke",
+        "Safari",
+        "Machu Picchu",
+        "Marie Curie",
+        "Transsiberische spoorlijn",
+        "Hierogliefen",
+        "Zonsverduistering",
+        "Taj Mahal",
+        "Stonehenge",
+        "Renaissance",
+        "Acupunctuur",
+        "Sherlock Holmes"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Oekraine grenzen.", "answers": [{ "text": "Polen" }, { "text": "Roemenie" }, { "text": "Hongarije" }, { "text": "Slowakije" }] },
-        { "prompt": "Noem vier soorten bonen.", "answers": [{ "text": "Kidneyboon" }, { "text": "Sperzieboon" }, { "text": "Tuinboon" }, { "text": "Zwarte boon" }] },
-        { "prompt": "Noem vier beeldhouwers.", "answers": [{ "text": "Michelangelo" }, { "text": "Rodin" }, { "text": "Bernini" }, { "text": "Henry Moore" }] },
-        { "prompt": "Noem vier olympische sporten met een bal.", "answers": [{ "text": "Voetbal" }, { "text": "Basketbal" }, { "text": "Handbal" }, { "text": "Volleybal" }] },
-        { "prompt": "Noem vier landen in de Alpen.", "answers": [{ "text": "Frankrijk" }, { "text": "Zwitserland" }, { "text": "Oostenrijk" }, { "text": "Italie" }] },
-        { "prompt": "Noem vier dingen die je op je hoofd kunt dragen.", "answers": [{ "text": "Helm" }, { "text": "Pet" }, { "text": "Kroon" }, { "text": "Haarband" }] },
-        { "prompt": "Noem vier beroemde schepen.", "answers": [{ "text": "De Titanic" }, { "text": "De Mayflower" }, { "text": "De Beagle" }, { "text": "De Victory" }] },
-        { "prompt": "Noem vier soorten dinosaurussen.", "answers": [{ "text": "Tyrannosaurus" }, { "text": "Triceratops" }, { "text": "Stegosaurus" }, { "text": "Velociraptor" }] }
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "IJsberg", "aliases": ["Ijsberg"] }, { "text": "Gezonken", "aliases": ["Schipbreuk", "Hij zonk"] }, { "text": "1912" }, { "text": "Reddingsboten", "aliases": ["Te weinig reddingsboten", "Reddingsboot"] }] },
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "Van ijzer", "aliases": ["IJzer", "Staal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["Toerist", "Lange rijen"] }] },
+        { "prompt": "Wat weet je van Nelson Mandela? Vier kernwoorden.", "answers": [{ "text": "Zuid-Afrika" }, { "text": "Zevenentwintig jaar cel", "aliases": ["Gevangenis", "Robbeneiland", "Cel"] }, { "text": "Apartheid" }, { "text": "President" }] },
+        { "prompt": "Wat weet je van een bij? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "Steek", "aliases": ["Angel", "Steken"] }, { "text": "Bijenkorf", "aliases": ["Korf"] }, { "text": "Bloemen", "aliases": ["Stuifmeel", "Bloem"] }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Afrika" }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }] },
+        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Kraters", "aliases": ["Krater"] }, { "text": "Volle maan" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "De maanlanding"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Hij trekt aan de zee"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "Mona Lisa", "aliases": ["De Mona Lisa"] }, { "text": "Italiaan", "aliases": ["Italie"] }, { "text": "Uitvinder", "aliases": ["Uitvindingen", "Vliegmachines"] }, { "text": "Het Laatste Avondmaal", "aliases": ["Laatste Avondmaal"] }] },
+        { "prompt": "Wat weet je van een voetbalwedstrijd? Vier kernwoorden.", "answers": [{ "text": "Elf spelers", "aliases": ["Elftal", "11 spelers"] }, { "text": "Doelpunt", "aliases": ["Goal", "Scoren"] }, { "text": "Scheidsrechter", "aliases": ["Scheids"] }, { "text": "Gele kaart", "aliases": ["Kaarten", "Rode kaart"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Welke Nederlandse wiskundige gaf zijn naam aan de brekingswet?", "answers": [{ "text": "Willebrord Snellius", "aliases": ["Snell", "Snellius"] }] },
         { "prompt": "Wat is de hoofdstad van Ghana?", "answers": [{ "text": "Accra" }] },
         { "prompt": "Welke renaissancebouwmeester bouwde de koepel van de dom van Florence?", "answers": [{ "text": "Filippo Brunelleschi", "aliases": ["Brunelleschi"] }] },
-        { "prompt": "In welk jaar opende het Louvre voor het eerst als museum?", "answers": [{ "text": "1793" }] },
         { "prompt": "Welke rivier in Botswana vormt de grootste binnendelta ter wereld?", "answers": [{ "text": "De Okavango", "aliases": ["Okavango"] }] },
-        { "prompt": "Welke Romeinse geschiedschrijver schreef de Annalen?", "answers": [{ "text": "Tacitus" }] }
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "In welke zee blijf je drijven omdat het water zo zout is?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] }
       ]
     }
   ]

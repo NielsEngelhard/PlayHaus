@@ -31,17 +31,13 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Welk land heeft meer gletsjers dan waar ook buiten de poolgebieden?", "options": [{ "text": "Pakistan", "correct": true }, { "text": "Chili" }, { "text": "Noorwegen" }, { "text": "Nieuw-Zeeland" }] },
         { "prompt": "Welke Schot vond de luchtband uit?", "options": [{ "text": "John Dunlop", "correct": true }, { "text": "Charles Macintosh" }, { "text": "John Boyd" }, { "text": "William Murdoch" }] },
         { "prompt": "Welke kracht houdt de deeltjes van een atoomkern bij elkaar?", "options": [{ "text": "De sterke kernkracht", "correct": true }, { "text": "De zwakke kernkracht" }, { "text": "Elektromagnetisme" }, { "text": "Zwaartekracht" }] },
-        { "prompt": "Welk dier heeft de dikste vacht van alle dieren?", "options": [{ "text": "De zeeotter", "correct": true }, { "text": "De muskusos" }, { "text": "De poolvos" }, { "text": "De chinchilla" }] },
-        { "prompt": "De inwoners van welk land eten per hoofd de meeste vis?", "options": [{ "text": "IJsland", "correct": true }, { "text": "Portugal" }, { "text": "Noorwegen" }, { "text": "Japan" }] },
         { "prompt": "In welke sport draagt een libero een shirt in een andere kleur?", "options": [{ "text": "Volleybal", "correct": true }, { "text": "Handbal" }, { "text": "Waterpolo" }, { "text": "Zaalvoetbal" }] },
         { "prompt": "Welk museum in Bilbao bekleedde Frank Gehry met titanium?", "options": [{ "text": "Het Guggenheim", "correct": true }, { "text": "Het Prado" }, { "text": "Het Reina Sofia" }, { "text": "Het Thyssen" }] },
         { "prompt": "Welk weefsel in je botten maakt nieuwe rode bloedcellen aan?", "options": [{ "text": "Het beenmerg", "correct": true }, { "text": "Het botvlies" }, { "text": "Kraakbeen" }, { "text": "De milt" }] },
         { "prompt": "Welke Italiaanse autofabrikant heeft een steigerend paard als logo?", "options": [{ "text": "Ferrari", "correct": true }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] },
         { "prompt": "In welk land is Tagalog een officiele taal?", "options": [{ "text": "De Filipijnen", "correct": true }, { "text": "Indonesie" }, { "text": "Maleisie" }, { "text": "Vietnam" }] },
-        { "prompt": "Van welke bittere vrucht wordt traditionele marmelade gemaakt?", "options": [{ "text": "De sinaasappel uit Sevilla", "correct": true }, { "text": "De citroen" }, { "text": "De kweepeer" }, { "text": "De grapefruit" }] },
         { "prompt": "Hoe heet de grootste vulkaan van het zonnestelsel?", "options": [{ "text": "Olympus Mons", "correct": true }, { "text": "Maat Mons" }, { "text": "Mauna Kea" }, { "text": "Ascraeus Mons" }] },
         { "prompt": "In welke stad werd de eerste WK-finale voetbal gespeeld?", "options": [{ "text": "Montevideo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Santiago" }] },
         { "prompt": "Welk metaal heeft het scheikundige symbool Pb?", "options": [{ "text": "Lood", "correct": true }, { "text": "Tin" }, { "text": "Platina" }, { "text": "Palladium" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Badjas" },
-        { "prompt": "Klamboe" },
-        { "prompt": "Koelbox" },
-        { "prompt": "Waterfiets" },
-        { "prompt": "Schoolbord" },
-        { "prompt": "Koffiezetapparaat" },
-        { "prompt": "Vliegenmepper" },
-        { "prompt": "Haarborstel" },
-        { "prompt": "Broodtrommel" },
-        { "prompt": "Plectrum" },
-        { "prompt": "Reuzenrad" },
-        { "prompt": "Pylon" },
-        { "prompt": "Spons" },
-        { "prompt": "Vergrootglas" },
-        { "prompt": "Troffel" },
-        { "prompt": "Vogelhuisje" }
+      "words": [
+        "Spons",
+        "Haarborstel",
+        "Koffiezetapparaat",
+        "Vogelhuisje",
+        "Reuzenrad",
+        "Zonnebril",
+        "Fiets",
+        "Pannenkoek",
+        "Brandweerman",
+        "Olifant",
+        "Vergrootglas",
+        "De Mount Everest",
+        "Het Vrijheidsbeeld",
+        "Piraat",
+        "Elvis Presley",
+        "Jurassic Park",
+        "Formule 1",
+        "Carnaval",
+        "Strandwacht",
+        "Molen",
+        "Prikkeldraad",
+        "De ijstijd",
+        "Acupunctuur",
+        "Cleopatra",
+        "Morsecode",
+        "De Zijderoute",
+        "Veilingmeester",
+        "Luchtballon",
+        "Camouflage",
+        "Het noorderlicht"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Oostenrijk grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Italie" }, { "text": "Zwitserland" }, { "text": "Hongarije" }] },
-        { "prompt": "Noem vier vissen die je kunt eten.", "answers": [{ "text": "Kabeljauw" }, { "text": "Zalm" }, { "text": "Tonijn" }, { "text": "Haring" }] },
-        { "prompt": "Noem vier Romeinse cijfers.", "answers": [{ "text": "I" }, { "text": "V" }, { "text": "X" }, { "text": "L" }] },
-        { "prompt": "Noem de vier werponderdelen van de atletiek.", "answers": [{ "text": "Kogelstoten" }, { "text": "Discuswerpen" }, { "text": "Speerwerpen" }, { "text": "Kogelslingeren" }] },
-        { "prompt": "Noem vier landen in het Caribisch gebied.", "answers": [{ "text": "Cuba" }, { "text": "Jamaica" }, { "text": "Haiti" }, { "text": "Barbados" }] },
-        { "prompt": "Noem vier soorten chocolade.", "answers": [{ "text": "Melkchocolade" }, { "text": "Pure chocolade" }, { "text": "Witte chocolade" }, { "text": "Ruby chocolade" }] },
-        { "prompt": "Noem de vier planeten met ringen.", "answers": [{ "text": "Saturnus" }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
-        { "prompt": "Noem vier rivieren in Europa.", "answers": [{ "text": "Rijn" }, { "text": "Donau" }, { "text": "Seine" }, { "text": "Po" }] }
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs", "aliases": ["Frankrijk"] }, { "text": "Hij is van ijzer", "aliases": ["IJzer", "Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Hij gaat 's avonds in de lichtjes", "aliases": ["Lichtjes", "Verlichting", "Het uitzicht van bovenaf"] }] },
+        { "prompt": "Wat weet je van Napoleon? Vier kernwoorden.", "answers": [{ "text": "Frankrijk", "aliases": ["Frans"] }, { "text": "Keizer", "aliases": ["Hij kroonde zichzelf tot keizer"] }, { "text": "Waterloo", "aliases": ["De slag bij Waterloo"] }, { "text": "Zijn hand in zijn jas", "aliases": ["Hand in zijn jasje", "Klein", "De steek", "De hoed"] }] },
+        { "prompt": "Wat weet je van Egypte? Vier kernwoorden.", "answers": [{ "text": "De piramides", "aliases": ["Piramides"] }, { "text": "De Nijl", "aliases": ["Nijl"] }, { "text": "Farao's", "aliases": ["Toetanchamon", "Farao"] }, { "text": "De Sfinx", "aliases": ["Sfinx", "Mummies"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "De vijf ringen", "aliases": ["Ringen", "De olympische ringen"] }, { "text": "Gouden medailles", "aliases": ["Medailles", "Gouden medaille"] }, { "text": "Om de vier jaar", "aliases": ["Eens in de vier jaar"] }, { "text": "De olympische vlam", "aliases": ["De fakkel", "Het oude Griekenland", "Athene"] }] },
+        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine", "aliases": ["Je blijft er wakker van"] }, { "text": "Brazilie", "aliases": ["Het groeit in Brazilie", "Colombia"] }, { "text": "Cappuccino", "aliases": ["Espresso", "Latte", "Zwart"] }] },
+        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-'n-roll", "aliases": ["Rock and roll"] }, { "text": "The King", "aliases": ["De koning van de rock-'n-roll"] }, { "text": "Graceland", "aliases": ["Memphis", "Las Vegas"] }, { "text": "Zijn heupen en zijn kuif", "aliases": ["Kuif", "Draaiende heupen", "Bakkebaarden", "Het witte pak"] }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn", "aliases": ["De grootste woestijn"] }, { "text": "Zand", "aliases": ["Duinen", "Zandduinen"] }, { "text": "Afrika", "aliases": ["Noord-Afrika"] }, { "text": "Kamelen", "aliases": ["Kameel", "Oase", "Heel heet"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "De Mona Lisa", "aliases": ["Mona Lisa"] }, { "text": "Het Laatste Avondmaal", "aliases": ["Laatste Avondmaal"] }, { "text": "Hij was uitvinder", "aliases": ["Uitvinder", "Vliegmachine", "Zijn tekeningen"] }, { "text": "Italie", "aliases": ["Italiaans", "De renaissance"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Oostenrijkse arts legde de basis voor de psychoanalyse?", "answers": [{ "text": "Sigmund Freud", "aliases": ["Freud"] }] },
-        { "prompt": "Wat is de hoofdstad van Senegal?", "answers": [{ "text": "Dakar" }] },
-        { "prompt": "Welke blinde Fransman bedacht een schrift dat je met je vingers leest?", "answers": [{ "text": "Louis Braille", "aliases": ["Braille"] }] },
-        { "prompt": "In welk jaar voer de Spaanse Armada tegen Engeland?", "answers": [{ "text": "1588" }] },
-        { "prompt": "Wat is het grootste meer van Zuid-Amerika?", "answers": [{ "text": "Het Titicacameer", "aliases": ["Titicaca"] }] },
-        { "prompt": "Welke Duitse scheikundige bedacht hoe je ammoniak uit lucht maakt?", "answers": [{ "text": "Fritz Haber", "aliases": ["Haber"] }] }
+        { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Wat is de langste rivier ter wereld?", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Welke Noorse schilder maakte De Schreeuw?", "answers": [{ "text": "Edvard Munch", "aliases": ["Munch"] }] },
+        { "prompt": "Wat is het kleinste land ter wereld?", "answers": [{ "text": "Vaticaanstad", "aliases": ["Het Vaticaan", "Vaticaan"] }] },
+        { "prompt": "Welk gebergte vormt meestal de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Het Oeralgebergte"] }] },
+        { "prompt": "Welke zee ligt tussen Italie en de Balkan?", "answers": [{ "text": "De Adriatische Zee", "aliases": ["De Adriatische", "Adriatische Zee"] }] },
+        { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] }
       ]
     }
   ]

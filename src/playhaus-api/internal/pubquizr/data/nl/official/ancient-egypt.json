@@ -32,20 +32,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Waarop schreven de Egyptenaren hun teksten?", "options": [{ "text": "Papyrus", "correct": true }, { "text": "Perkament" }, { "text": "Klei" }, { "text": "Zijde" }] },
         { "prompt": "Hoe heet het dal bij Luxor met de graven van farao's?", "options": [{ "text": "De Vallei der Koningen", "correct": true }, { "text": "De Vallei der Piramides" }, { "text": "De Vallei van de Nijl" }, { "text": "De Vallei der Goden" }] },
         { "prompt": "Welk orgaan lieten de balsemers in het lichaam zitten?", "options": [{ "text": "Het hart", "correct": true }, { "text": "De lever" }, { "text": "De hersenen" }, { "text": "De longen" }] },
         { "prompt": "Welke god heerste over de doden en de onderwereld?", "options": [{ "text": "Osiris", "correct": true }, { "text": "Ra" }, { "text": "Thoth" }, { "text": "Seth" }] },
-        { "prompt": "Hoeveel grote piramides staan er op het plateau van Gizeh?", "options": [{ "text": "Drie", "correct": true }, { "text": "Twee" }, { "text": "Vier" }, { "text": "Zes" }] },
         { "prompt": "Hoe heette de hoogste ambtenaar onder een farao?", "options": [{ "text": "De vizier", "correct": true }, { "text": "De schrijver" }, { "text": "De nomarch" }, { "text": "De hogepriester" }] },
         { "prompt": "In welke richting stroomt de Nijl?", "options": [{ "text": "Naar het noorden", "correct": true }, { "text": "Naar het zuiden" }, { "text": "Naar het oosten" }, { "text": "Naar het westen" }] },
         { "prompt": "Welke stad was de hoofdstad tijdens het Nieuwe Rijk?", "options": [{ "text": "Thebe", "correct": true }, { "text": "Memphis" }, { "text": "Alexandrie" }, { "text": "Cairo" }] },
         { "prompt": "Welk dier was heilig voor de godin Bastet?", "options": [{ "text": "De kat", "correct": true }, { "text": "De hond" }, { "text": "De koe" }, { "text": "De ibis" }] },
         { "prompt": "Welke farao verplaatste de hoofdstad en vereerde alleen de zon?", "options": [{ "text": "Achnaton", "correct": true }, { "text": "Toetmoses III" }, { "text": "Ramses III" }, { "text": "Snofroe" }] },
-        { "prompt": "Hoeveel jaar duurde de bouw van de grootste piramide ongeveer?", "options": [{ "text": "Twintig", "correct": true }, { "text": "Vijf" }, { "text": "Vijftig" }, { "text": "Honderd" }] },
         { "prompt": "Welke god met een ibiskop was de god van de wijsheid?", "options": [{ "text": "Thoth", "correct": true }, { "text": "Ptah" }, { "text": "Amon" }, { "text": "Sobek" }] },
-        { "prompt": "Wat betekent het woord farao oorspronkelijk?", "options": [{ "text": "Groot huis", "correct": true }, { "text": "Zonnekind" }, { "text": "Heer der aarde" }, { "text": "Levende god" }] },
-        { "prompt": "Welke zee ligt ten noorden van Egypte?", "options": [{ "text": "De Middellandse Zee", "correct": true }, { "text": "De Rode Zee" }, { "text": "De Zwarte Zee" }, { "text": "De Dode Zee" }] }
+        { "prompt": "Wat betekent het woord farao oorspronkelijk?", "options": [{ "text": "Groot huis", "correct": true }, { "text": "Zonnekind" }, { "text": "Heer der aarde" }, { "text": "Levende god" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Piramide" },
-        { "prompt": "Mummie" },
-        { "prompt": "Farao" },
-        { "prompt": "Woestijn" },
-        { "prompt": "Kameel" },
-        { "prompt": "Tempel" },
-        { "prompt": "Goud" },
-        { "prompt": "Sfinx" },
-        { "prompt": "Rivier" },
-        { "prompt": "Graf" },
-        { "prompt": "Masker" },
-        { "prompt": "Papyrus" },
-        { "prompt": "Schat" },
-        { "prompt": "Zon" },
-        { "prompt": "Slang" },
-        { "prompt": "Obelisk" }
+      "words": [
+        "Piramide",
+        "Mummie",
+        "Farao",
+        "Woestijn",
+        "Kameel",
+        "Goud",
+        "Sandalen",
+        "Kat",
+        "Slang",
+        "Zon",
+        "Sfinx",
+        "De Nijl",
+        "Hierogliefen",
+        "Cleopatra",
+        "Toetanchamon",
+        "Obelisk",
+        "Papyrus",
+        "Tempel",
+        "Sarcofaag",
+        "Scarabee",
+        "Anoebis",
+        "Ramses II",
+        "Nefertiti",
+        "Strijdwagen",
+        "Schorpioen",
+        "Aboe Simbel",
+        "Dodenboek",
+        "Krokodil",
+        "De vloek van de farao",
+        "Rijksmuseum van Oudheden"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier Egyptische goden.", "answers": [{ "text": "Ra" }, { "text": "Osiris" }, { "text": "Isis" }, { "text": "Anoebis" }] },
-        { "prompt": "Noem vier voorwerpen uit het graf van Toetanchamon.", "answers": [{ "text": "Het gouden masker" }, { "text": "De sarcofaag" }, { "text": "Een strijdwagen" }, { "text": "Sieraden" }] },
-        { "prompt": "Noem vier landen waar de Nijl door of langs stroomt.", "answers": [{ "text": "Egypte" }, { "text": "Soedan" }, { "text": "Zuid-Soedan" }, { "text": "Oeganda" }] },
-        { "prompt": "Noem vier soorten bouwwerken uit het oude Egypte.", "answers": [{ "text": "Piramide" }, { "text": "Tempel" }, { "text": "Obelisk" }, { "text": "Rotsgraf" }] },
-        { "prompt": "Noem vier dieren die in Egypte heilig waren.", "answers": [{ "text": "De kat" }, { "text": "De krokodil" }, { "text": "De ibis" }, { "text": "De stier" }] },
-        { "prompt": "Noem vier stappen van het mummificeren.", "answers": [{ "text": "De organen verwijderen" }, { "text": "Drogen met zout" }, { "text": "Inwikkelen met linnen" }, { "text": "In een sarcofaag leggen" }] },
-        { "prompt": "Noem vier farao's.", "answers": [{ "text": "Cheops" }, { "text": "Ramses II" }, { "text": "Toetanchamon" }, { "text": "Hatsjepsoet" }] },
-        { "prompt": "Noem vier steden in het huidige Egypte.", "answers": [{ "text": "Cairo" }, { "text": "Alexandrie" }, { "text": "Luxor" }, { "text": "Aswan" }] }
+        { "prompt": "Wat weet je van Toetanchamon? Vier kernwoorden.", "answers": [{ "text": "Het gouden masker", "aliases": ["Gouden masker", "Dodenmasker"] }, { "text": "Howard Carter", "aliases": ["Carter"] }, { "text": "Een kindkoning", "aliases": ["Kindkoning", "Jonge farao", "Hij stierf jong"] }, { "text": "De vloek", "aliases": ["Vloek van de farao", "Mummievloek"] }] },
+        { "prompt": "Wat weet je van de Nijl? Vier kernwoorden.", "answers": [{ "text": "Egypte" }, { "text": "Krokodillen", "aliases": ["Krokodil"] }, { "text": "De delta", "aliases": ["Delta"] }, { "text": "Overstromingen", "aliases": ["Hij overstroomt", "Overstroming"] }] },
+        { "prompt": "Wat weet je van de piramides van Gizeh? Vier kernwoorden.", "answers": [{ "text": "Cheops", "aliases": ["Khufu"] }, { "text": "Graven", "aliases": ["Graf", "Grafkamer"] }, { "text": "Stenen blokken", "aliases": ["Blokken steen", "Steen"] }, { "text": "Kamelen", "aliases": ["Kameel"] }] },
+        { "prompt": "Wat weet je van Cleopatra? Vier kernwoorden.", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar"] }, { "text": "Marcus Antonius", "aliases": ["Antonius"] }, { "text": "Een slang", "aliases": ["Slang", "Slangenbeet"] }, { "text": "De laatste farao", "aliases": ["Laatste farao"] }] },
+        { "prompt": "Wat weet je van mummies? Vier kernwoorden.", "answers": [{ "text": "Zwachtels", "aliases": ["Linnen", "Windsels"] }, { "text": "Een sarcofaag", "aliases": ["Sarcofaag", "Doodskist"] }, { "text": "De organen eruit", "aliases": ["Organen", "Organen verwijderd"] }, { "text": "Een museum", "aliases": ["Museum"] }] },
+        { "prompt": "Wat weet je van hierogliefen? Vier kernwoorden.", "answers": [{ "text": "Beeldschrift", "aliases": ["Plaatjes", "Symbolen"] }, { "text": "De steen van Rosetta", "aliases": ["Steen van Rosetta", "Rosetta"] }, { "text": "Tempelmuren", "aliases": ["Muren", "Grafmuren"] }, { "text": "Champollion", "aliases": ["Jean-Francois Champollion"] }] },
+        { "prompt": "Wat weet je van de Sfinx? Vier kernwoorden.", "answers": [{ "text": "Een leeuwenlichaam", "aliases": ["Leeuwenlichaam", "Leeuw"] }, { "text": "Een mensenhoofd", "aliases": ["Mensenhoofd", "Hoofd van een mens"] }, { "text": "Gizeh", "aliases": ["Giza"] }, { "text": "De afgebroken neus", "aliases": ["Afgebroken neus", "Geen neus"] }] },
+        { "prompt": "Wat weet je van Anoebis? Vier kernwoorden.", "answers": [{ "text": "Een jakhalskop", "aliases": ["Jakhals", "Jakhalskop", "Hondenkop"] }, { "text": "God van de doden", "aliases": ["De doden", "Onderwereld"] }, { "text": "Mummificatie", "aliases": ["Balsemen", "Mummies"] }, { "text": "De weging van het hart", "aliases": ["Weging van het hart", "De weegschaal"] }] }
       ]
     },
     {
@@ -113,12 +123,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Hoe heette de nieuwe hoofdstad die Achnaton liet bouwen?", "answers": [{ "text": "Achetaton", "aliases": ["Amarna"] }] },
-        { "prompt": "Hoe heten de vier kruiken waarin organen werden bewaard?", "answers": [{ "text": "Canopen", "aliases": ["canopische vazen"] }] },
-        { "prompt": "Welke Griekse geschiedschrijver noemde Egypte een geschenk van de Nijl?", "answers": [{ "text": "Herodotus" }] },
-        { "prompt": "Welke dynastie regeerde Egypte tussen Alexander en de Romeinen?", "answers": [{ "text": "De Ptolemaeen", "aliases": ["Ptolemaeen"] }] },
-        { "prompt": "Hoe heet het Egyptische teken van het leven?", "answers": [{ "text": "Het ankh-teken", "aliases": ["ankh"] }] },
-        { "prompt": "In welk jaar werd Egypte een provincie van Rome?", "answers": [{ "text": "30 voor Christus", "aliases": ["30 v.Chr."] }] }
+        { "prompt": "In welke Egyptische stad aan de Nijl staan de tempels van Karnak?", "answers": [{ "text": "Luxor" }] },
+        { "prompt": "Hoe heten de vier kruiken waarin de organen van een mummie werden bewaard?", "answers": [{ "text": "Canopen", "aliases": ["canopische vazen", "canope"] }] },
+        { "prompt": "Hoe heet het Egyptische teken van het leven, een kruis met een lus erboven?", "answers": [{ "text": "Het ankh-teken", "aliases": ["ankh"] }] },
+        { "prompt": "Welk schiereiland ten oosten van Egypte ontgonnen de farao's voor turkoois en koper?", "answers": [{ "text": "De Sinai", "aliases": ["Sinai"] }] },
+        { "prompt": "Welke stad bij het huidige Cairo was de hoofdstad van het Oude Rijk?", "answers": [{ "text": "Memphis" }] },
+        { "prompt": "Welke Egyptische god vermoordde zijn broer Osiris?", "answers": [{ "text": "Seth", "aliases": ["Set"] }] },
+        { "prompt": "Welke diepblauwe steen uit Afghanistan siert het masker van Toetanchamon?", "answers": [{ "text": "Lapis lazuli", "aliases": ["lapis"] }] }
       ]
     }
   ]

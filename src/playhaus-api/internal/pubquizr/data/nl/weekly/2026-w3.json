@@ -32,17 +32,13 @@
       "round": 2,
       "questions": [
         { "prompt": "Wat is de oudste universiteit ter wereld die nog steeds lesgeeft?", "options": [{ "text": "Bologna", "correct": true }, { "text": "Oxford" }, { "text": "Parijs" }, { "text": "Salamanca" }] },
-        { "prompt": "Wat is de hoofdstad van Indonesie?", "options": [{ "text": "Jakarta", "correct": true }, { "text": "Surabaya" }, { "text": "Bandung" }, { "text": "Medan" }] },
         { "prompt": "Welk sterrenstelsel is onze dichtstbijzijnde grote buur?", "options": [{ "text": "Andromeda", "correct": true }, { "text": "Triangulum" }, { "text": "De Draaikolk" }, { "text": "De Sombrero" }] },
         { "prompt": "Wie schreef de roman Frankenstein?", "options": [{ "text": "Mary Shelley", "correct": true }, { "text": "Bram Stoker" }, { "text": "Edgar Allan Poe" }, { "text": "Emily Bronte" }] },
         { "prompt": "Wat is het lichtste metaal van het periodiek systeem?", "options": [{ "text": "Lithium", "correct": true }, { "text": "Aluminium" }, { "text": "Magnesium" }, { "text": "Titanium" }] },
         { "prompt": "In welke sport bestaan de posities scrum-half en fly-half?", "options": [{ "text": "Rugby", "correct": true }, { "text": "Hockey" }, { "text": "Lacrosse" }, { "text": "Handbal" }] },
-        { "prompt": "Welke oceaan ligt tussen Afrika en Australie?", "options": [{ "text": "De Indische Oceaan", "correct": true }, { "text": "De Zuidelijke Oceaan" }, { "text": "De Koraalzee" }, { "text": "De Arabische Zee" }] },
         { "prompt": "Welk dier heeft vingerafdrukken die nauwelijks van die van een mens te onderscheiden zijn?", "options": [{ "text": "De koala", "correct": true }, { "text": "De chimpansee" }, { "text": "De gorilla" }, { "text": "De wasbeer" }] },
         { "prompt": "In welk land staat het tempelcomplex Angkor Wat?", "options": [{ "text": "Cambodja", "correct": true }, { "text": "Thailand" }, { "text": "Laos" }, { "text": "Vietnam" }] },
-        { "prompt": "In welke filmreeks komt agent Ethan Hunt voor?", "options": [{ "text": "Mission: Impossible", "correct": true }, { "text": "De Bourne-films" }, { "text": "John Wick" }, { "text": "Jack Ryan" }] },
         { "prompt": "Welk gesteente ontstaat als lava snel afkoelt?", "options": [{ "text": "Basalt", "correct": true }, { "text": "Graniet" }, { "text": "Kalksteen" }, { "text": "Leisteen" }] },
-        { "prompt": "In welk land wordt per hoofd de meeste chocolade gegeten?", "options": [{ "text": "Zwitserland", "correct": true }, { "text": "Belgie" }, { "text": "Oostenrijk" }, { "text": "Ierland" }] },
         { "prompt": "Hoeveel paar chromosomen heeft een mens?", "options": [{ "text": "23 paar", "correct": true }, { "text": "20 paar" }, { "text": "24 paar" }, { "text": "46 paar" }] },
         { "prompt": "Welke Belgische stad is het centrum van de wereldhandel in diamant?", "options": [{ "text": "Antwerpen", "correct": true }, { "text": "Brugge" }, { "text": "Gent" }, { "text": "Luik" }] }
       ]
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Aambeeld" },
-        { "prompt": "Periscoop" },
-        { "prompt": "Paperclip" },
-        { "prompt": "Nietmachine" },
-        { "prompt": "Fontein" },
-        { "prompt": "Tamboerijn" },
-        { "prompt": "Grasmaaier" },
-        { "prompt": "Garde" },
-        { "prompt": "Soeplepel" },
-        { "prompt": "Deurknop" },
-        { "prompt": "Gordijn" },
-        { "prompt": "Muizenval" },
-        { "prompt": "Boekenkast" },
-        { "prompt": "Zonnebloem" },
-        { "prompt": "Waterglijbaan" },
-        { "prompt": "Kroonluchter" }
+      "words": [
+        "Pizza",
+        "Regenboog",
+        "Olifant",
+        "Voetbal",
+        "Strand",
+        "Sinterklaas",
+        "Sneeuwpop",
+        "Gitaar",
+        "Dokter",
+        "Fiets",
+        "Vuurtoren",
+        "Piraat",
+        "Cleopatra",
+        "Het Vrijheidsbeeld",
+        "Sherlock Holmes",
+        "Astronaut",
+        "Vulkaan",
+        "Bruiloft",
+        "De Efteling",
+        "Karaoke",
+        "Nelson Mandela",
+        "De Chinese Muur",
+        "Imker",
+        "De Nachtwacht",
+        "Marathon",
+        "Max Verstappen",
+        "Democratie",
+        "Onderzeeboot",
+        "Windhoos",
+        "De Berlijnse Muur"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen in Midden-Amerika.", "answers": [{ "text": "Costa Rica" }, { "text": "Panama" }, { "text": "Guatemala" }, { "text": "Honduras" }] },
-        { "prompt": "Noem vier tragedies van Shakespeare.", "answers": [{ "text": "Hamlet" }, { "text": "Macbeth" }, { "text": "Othello" }, { "text": "Koning Lear" }] },
-        { "prompt": "Noem vier goden uit de Griekse mythologie.", "answers": [{ "text": "Zeus" }, { "text": "Athena" }, { "text": "Apollo" }, { "text": "Ares" }] },
-        { "prompt": "Noem vier soorten thee.", "answers": [{ "text": "Groene thee" }, { "text": "Zwarte thee" }, { "text": "Witte thee" }, { "text": "Oolong" }] },
-        { "prompt": "Noem vier landen die aan Rusland grenzen.", "answers": [{ "text": "China" }, { "text": "Finland" }, { "text": "Polen" }, { "text": "Noorwegen" }] },
-        { "prompt": "Noem vier instrumenten met een klavier.", "answers": [{ "text": "Piano" }, { "text": "Orgel" }, { "text": "Klavecimbel" }, { "text": "Accordeon" }] },
-        { "prompt": "Noem vier soorten brood.", "answers": [{ "text": "Stokbrood" }, { "text": "Ciabatta" }, { "text": "Zuurdesembrood" }, { "text": "Roggebrood" }] },
-        { "prompt": "Noem vier technische onderdelen van de atletiek.", "answers": [{ "text": "Verspringen" }, { "text": "Hoogspringen" }, { "text": "Kogelstoten" }, { "text": "Speerwerpen" }] }
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs", "aliases": ["Frankrijk"] }, { "text": "IJzer", "aliases": ["Staal", "Van ijzer"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["Toeristische trekpleister", "De rij", "De lift"] }] },
+        { "prompt": "Wat weet je van het oude Egypte? Vier kernwoorden.", "answers": [{ "text": "De piramides", "aliases": ["Piramides", "Piramide"] }, { "text": "Farao's", "aliases": ["Farao", "Toetanchamon"] }, { "text": "Mummies", "aliases": ["Mummie"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van de band Queen? Vier kernwoorden.", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury", "Freddie"] }, { "text": "Bohemian Rhapsody" }, { "text": "We Will Rock You", "aliases": ["We Are The Champions"] }, { "text": "Live Aid", "aliases": ["Wembley"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "De ijsberg", "aliases": ["IJsberg"] }, { "text": "1912", "aliases": ["Hij zonk in 1912"] }, { "text": "Onzinkbaar", "aliases": ["Hij kon niet zinken"] }, { "text": "De film met Leonardo DiCaprio", "aliases": ["De film", "Leonardo DiCaprio", "Kate Winslet"] }] },
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pasta", "aliases": ["Pizza", "Spaghetti"] }, { "text": "Rome", "aliases": ["De hoofdstad is Rome"] }, { "text": "Het Colosseum", "aliases": ["Colosseum", "De toren van Pisa"] }, { "text": "De vorm van een laars", "aliases": ["Een laars", "De laars"] }] },
+        { "prompt": "Wat weet je van de eerste maanlanding? Vier kernwoorden.", "answers": [{ "text": "1969" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "Buzz Aldrin"] }, { "text": "Apollo 11", "aliases": ["Apollo"] }, { "text": "Een kleine stap", "aliases": ["Een kleine stap voor de mens", "De vlag", "Voetafdrukken"] }] },
+        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw", "aliases": ["Het sneeuwt"] }, { "text": "Kerst", "aliases": ["Kerstmis", "De feestdagen"] }, { "text": "Kou", "aliases": ["Vorst", "Koud"] }, { "text": "Skien", "aliases": ["Schaatsen", "Wintersport"] }] },
+        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Espresso", "aliases": ["Cappuccino", "Latte"] }, { "text": "Brazilie", "aliases": ["Colombia", "Het groeit in Brazilie"] }] }
       ]
     },
     {
@@ -112,10 +122,11 @@
     {
       "round": 7,
       "questions": [
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
         { "prompt": "Welke Deense natuurkundige publiceerde in 1913 zijn atoommodel?", "answers": [{ "text": "Niels Bohr", "aliases": ["Bohr"] }] },
-        { "prompt": "Wat is de hoofdstad van Oezbekistan?", "answers": [{ "text": "Tasjkent", "aliases": ["Tashkent"] }] },
         { "prompt": "Welke Franse schrijver schreef Op zoek naar de verloren tijd?", "answers": [{ "text": "Marcel Proust", "aliases": ["Proust"] }] },
-        { "prompt": "Welke vulkaanuitbarsting op Santorini hielp de Minoische beschaving ten onder?", "answers": [{ "text": "Thera", "aliases": ["Thira"] }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
         { "prompt": "In welk jaar werd de eerste geslaagde harttransplantatie uitgevoerd?", "answers": [{ "text": "1967" }] },
         { "prompt": "Welk land heeft meer piramides dan welk ander land ook?", "answers": [{ "text": "Soedan" }] }
       ]

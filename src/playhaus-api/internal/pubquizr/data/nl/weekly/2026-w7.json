@@ -31,19 +31,15 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Op welke bewoonde plek op aarde valt de meeste regen per jaar?", "options": [{ "text": "Cherrapunji", "correct": true }, { "text": "Manaus" }, { "text": "Monrovia" }, { "text": "Bergen" }] },
         { "prompt": "Welke Russisch-Amerikaanse schrijver schreef de roman Lolita?", "options": [{ "text": "Vladimir Nabokov", "correct": true }, { "text": "Ivan Toergenjev" }, { "text": "Michail Boelgakov" }, { "text": "Isaak Babel" }] },
         { "prompt": "Welke komeet keert ongeveer elke 76 jaar terug?", "options": [{ "text": "De komeet van Halley", "correct": true }, { "text": "Hale-Bopp" }, { "text": "Encke" }, { "text": "Shoemaker-Levy" }] },
         { "prompt": "Welke vitamine heeft het bloed nodig om te kunnen stollen?", "options": [{ "text": "Vitamine K", "correct": true }, { "text": "Vitamine A" }, { "text": "Vitamine B12" }, { "text": "Vitamine E" }] },
-        { "prompt": "Het mislukken van welk gewas veroorzaakte de Ierse hongersnood van de jaren veertig van de negentiende eeuw?", "options": [{ "text": "De aardappel", "correct": true }, { "text": "Tarwe" }, { "text": "Gerst" }, { "text": "Haver" }] },
         { "prompt": "In welke sport is de Vendee Globe een race om de wereld?", "options": [{ "text": "Zeilen", "correct": true }, { "text": "Roeien" }, { "text": "Ballonvaren" }, { "text": "Autosport" }] },
         { "prompt": "Welke roman begint met de woorden Call me Ishmael?", "options": [{ "text": "Moby-Dick", "correct": true }, { "text": "Schateiland" }, { "text": "Robinson Crusoe" }, { "text": "De zeewolf" }] },
         { "prompt": "Welk land deelt de Victoriawatervallen met Zimbabwe?", "options": [{ "text": "Zambia", "correct": true }, { "text": "Botswana" }, { "text": "Mozambique" }, { "text": "Malawi" }] },
         { "prompt": "Wat is de meest voorkomende bloedgroep ter wereld?", "options": [{ "text": "O positief", "correct": true }, { "text": "A positief" }, { "text": "B negatief" }, { "text": "AB positief" }] },
         { "prompt": "Welke Australische vogel kan een kettingzaag of een camera nadoen?", "options": [{ "text": "De lierstaart", "correct": true }, { "text": "De kookaburra" }, { "text": "De kaketoe" }, { "text": "De ekster" }] },
         { "prompt": "Welke Duitse stad is beroemd om haar kathedraal met twee torens?", "options": [{ "text": "Keulen", "correct": true }, { "text": "Aken" }, { "text": "Trier" }, { "text": "Mainz" }] },
-        { "prompt": "Wat is de scheikundige naam van gewoon keukenzout?", "options": [{ "text": "Natriumchloride", "correct": true }, { "text": "Kaliumchloride" }, { "text": "Calciumcarbonaat" }, { "text": "Natriumnitraat" }] },
-        { "prompt": "Welke muziekstijl ontstond rond 1900 in New Orleans?", "options": [{ "text": "Jazz", "correct": true }, { "text": "Soul" }, { "text": "Gospel" }, { "text": "Country" }] },
         { "prompt": "Welk land gaf de eerste postzegel ter wereld uit?", "options": [{ "text": "Het Verenigd Koninkrijk", "correct": true }, { "text": "Frankrijk" }, { "text": "Oostenrijk" }, { "text": "De Verenigde Staten" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Schommelstoel" },
-        { "prompt": "Dartbord" },
-        { "prompt": "Loopband" },
-        { "prompt": "Jukebox" },
-        { "prompt": "Fohn" },
-        { "prompt": "Kinderwagen" },
-        { "prompt": "Staande klok" },
-        { "prompt": "Gereedschapskist" },
-        { "prompt": "Voorhamer" },
-        { "prompt": "Spinnenweb" },
-        { "prompt": "Medaille" },
-        { "prompt": "Vogelverschrikker" },
-        { "prompt": "Vogelbadje" },
-        { "prompt": "Gitaarkoffer" },
-        { "prompt": "Pakketje" },
-        { "prompt": "Winkelwagen" }
+      "words": [
+        "Dartbord",
+        "Jukebox",
+        "Vogelverschrikker",
+        "Vuurtoren",
+        "Pinguin",
+        "Pizza",
+        "Fiets",
+        "Sinterklaas",
+        "Brandweerman",
+        "Regenboog",
+        "Taj Mahal",
+        "Sherlock Holmes",
+        "Onderzeeboot",
+        "Imker",
+        "Efteling",
+        "Elfstedentocht",
+        "De Leeuwenkoning",
+        "Vulkaan",
+        "Vrijheidsbeeld",
+        "Molen",
+        "Albert Einstein",
+        "De Chinese Muur",
+        "De Nachtwacht",
+        "Archeoloog",
+        "Piraat",
+        "Luchtballon",
+        "Circus",
+        "De Berlijnse Muur",
+        "Deltawerken",
+        "Zwaartekracht"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Frankrijk grenzen.", "answers": [{ "text": "Belgie" }, { "text": "Spanje" }, { "text": "Zwitserland" }, { "text": "Italie" }] },
-        { "prompt": "Noem vier soorten driehoeken.", "answers": [{ "text": "Gelijkzijdig" }, { "text": "Gelijkbenig" }, { "text": "Ongelijkzijdig" }, { "text": "Rechthoekig" }] },
-        { "prompt": "Noem vier vechtsporten.", "answers": [{ "text": "Karate" }, { "text": "Judo" }, { "text": "Aikido" }, { "text": "Kungfu" }] },
-        { "prompt": "Noem vier sterrenbeelden.", "answers": [{ "text": "Orion" }, { "text": "Grote Beer" }, { "text": "Cassiopeia" }, { "text": "Schorpioen" }] },
-        { "prompt": "Noem vier manieren om koffie te serveren.", "answers": [{ "text": "Espresso" }, { "text": "Cappuccino" }, { "text": "Latte" }, { "text": "Americano" }] },
-        { "prompt": "Noem de vier Noordse hoofdsteden op het vasteland.", "answers": [{ "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Kopenhagen" }, { "text": "Helsinki" }] },
-        { "prompt": "Noem vier soorten haaien.", "answers": [{ "text": "Witte haai" }, { "text": "Tijgerhaai" }, { "text": "Hamerhaai" }, { "text": "Walvishaai" }] },
-        { "prompt": "Noem vier apparaten met een scherm.", "answers": [{ "text": "Televisie" }, { "text": "Laptop" }, { "text": "Telefoon" }, { "text": "Tablet" }] }
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Van ijzer"] }, { "text": "1889", "aliases": ["Wereldtentoonstelling", "Negentiende eeuw"] }, { "text": "Toeristen", "aliases": ["De lift", "Uitkijkplatform"] }] },
+        { "prompt": "Wat weet je van Napoleon? Vier kernwoorden.", "answers": [{ "text": "Frankrijk", "aliases": ["Frans"] }, { "text": "Waterloo" }, { "text": "Keizer" }, { "text": "Klein", "aliases": ["Kleine man", "Hand in zijn jas", "Steek"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "IJsberg" }, { "text": "1912", "aliases": ["Voor de Eerste Wereldoorlog"] }, { "text": "Onzinkbaar", "aliases": ["Reddingsboten", "Eerste reis"] }, { "text": "Leonardo DiCaprio", "aliases": ["De film", "DiCaprio", "Kate Winslet"] }] },
+        { "prompt": "Wat weet je van het oude Egypte? Vier kernwoorden.", "answers": [{ "text": "Piramides", "aliases": ["Piramide"] }, { "text": "Farao's", "aliases": ["Farao", "Toetanchamon"] }, { "text": "Mummies", "aliases": ["Mummie"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine", "aliases": ["Caffeine"] }, { "text": "Espresso" }, { "text": "Brazilie", "aliases": ["Zuid-Amerika", "Colombia"] }] },
+        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Kraters", "aliases": ["Krater"] }, { "text": "Neil Armstrong", "aliases": ["De maanlanding", "Apollo 11"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }, { "text": "Volle maan", "aliases": ["Maanstanden", "Halve maan"] }] },
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Rome" }, { "text": "Pasta", "aliases": ["Spaghetti", "Pizza"] }, { "text": "De laars", "aliases": ["Laars", "Vorm van een laars"] }, { "text": "Het Colosseum", "aliases": ["Colosseum", "Toren van Pisa"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen", "De ringen"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar", "Eens in de vier jaar"] }, { "text": "Gouden medaille", "aliases": ["Medailles", "Goud"] }, { "text": "Oude Grieken", "aliases": ["Griekenland", "Olympia"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Welke Romeinse keizer maakte het christendom legaal in het hele rijk?", "answers": [{ "text": "Constantijn", "aliases": ["Constantijn de Grote", "Constantine"] }] },
         { "prompt": "Wat is de hoofdstad van Mozambique?", "answers": [{ "text": "Maputo" }] },
         { "prompt": "Onder welk pseudoniem schreef Eduard Douwes Dekker Max Havelaar?", "answers": [{ "text": "Multatuli" }] },
-        { "prompt": "In welk jaar werd het eerste kunsthart bij een patient geplaatst?", "answers": [{ "text": "1982" }] },
         { "prompt": "Wat is de hoogste berg van Australie?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
-        { "prompt": "Welke Duitse filosoof schreef Aldus sprak Zarathoestra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] }
+        { "prompt": "Welke Duitse filosoof schreef Aldus sprak Zarathoestra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] },
+        { "prompt": "Welk metaal is bij kamertemperatuur vloeibaar?", "answers": [{ "text": "Kwik", "aliases": ["Hg", "Mercurius"] }] },
+        { "prompt": "Welk meer is het diepste ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] }
       ]
     }
   ]

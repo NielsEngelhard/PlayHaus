@@ -32,16 +32,12 @@
       "round": 2,
       "questions": [
         { "prompt": "Which of these South American countries has no coastline?", "options": [{ "text": "Bolivia", "correct": true }, { "text": "Peru" }, { "text": "Ecuador" }, { "text": "Venezuela" }] },
-        { "prompt": "What is the capital of Iceland?", "options": [{ "text": "Reykjavik", "correct": true }, { "text": "Akureyri" }, { "text": "Bergen" }, { "text": "Tromso" }] },
         { "prompt": "Who wrote the play A Doll's House?", "options": [{ "text": "Henrik Ibsen", "correct": true }, { "text": "August Strindberg" }, { "text": "Bertolt Brecht" }, { "text": "Knut Hamsun" }] },
         { "prompt": "What is the largest species of shark?", "options": [{ "text": "The whale shark", "correct": true }, { "text": "The great white" }, { "text": "The tiger shark" }, { "text": "The hammerhead" }] },
         { "prompt": "Which blood vessel carries blood from the heart to the lungs?", "options": [{ "text": "The pulmonary artery", "correct": true }, { "text": "The aorta" }, { "text": "The carotid artery" }, { "text": "The jugular vein" }] },
         { "prompt": "Which mountain range forms the border between France and Spain?", "options": [{ "text": "The Pyrenees", "correct": true }, { "text": "The Apennines" }, { "text": "The Carpathians" }, { "text": "The Vosges" }] },
-        { "prompt": "Which country is the natural home of the kiwi bird?", "options": [{ "text": "New Zealand", "correct": true }, { "text": "Australia" }, { "text": "Papua New Guinea" }, { "text": "Fiji" }] },
         { "prompt": "Which of these is not a primary colour of light?", "options": [{ "text": "Yellow", "correct": true }, { "text": "Blue" }, { "text": "Green" }, { "text": "Red" }] },
         { "prompt": "In Greek mythology, who is the god of the sea?", "options": [{ "text": "Poseidon", "correct": true }, { "text": "Hades" }, { "text": "Hermes" }, { "text": "Hephaestus" }] },
-        { "prompt": "Which instrument has four strings and is played with a bow under the chin?", "options": [{ "text": "The violin", "correct": true }, { "text": "The cello" }, { "text": "The viola" }, { "text": "The double bass" }] },
-        { "prompt": "In which board game do players buy streets and build hotels?", "options": [{ "text": "Monopoly", "correct": true }, { "text": "Risk" }, { "text": "Cluedo" }, { "text": "Scrabble" }] },
         { "prompt": "Which is the tallest breed of dog?", "options": [{ "text": "The Great Dane", "correct": true }, { "text": "The Saint Bernard" }, { "text": "The Newfoundland" }, { "text": "The mastiff" }] },
         { "prompt": "Who was the first person to reach the South Pole?", "options": [{ "text": "Roald Amundsen", "correct": true }, { "text": "Robert Scott" }, { "text": "Ernest Shackleton" }, { "text": "Fridtjof Nansen" }] },
         { "prompt": "What does a philatelist collect?", "options": [{ "text": "Stamps", "correct": true }, { "text": "Coins" }, { "text": "Butterflies" }, { "text": "Postcards" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Fireworks" },
-        { "prompt": "Confetti" },
-        { "prompt": "Calendar" },
-        { "prompt": "Champagne" },
-        { "prompt": "Ice rink" },
-        { "prompt": "Mitten" },
-        { "prompt": "Chimney" },
-        { "prompt": "Toboggan" },
-        { "prompt": "Snowball" },
-        { "prompt": "Pine cone" },
-        { "prompt": "Hot chocolate" },
-        { "prompt": "Blanket" },
-        { "prompt": "Thermos flask" },
-        { "prompt": "Icicle" },
-        { "prompt": "Woolly hat" },
-        { "prompt": "Candlestick" }
+      "words": [
+        "Fireworks",
+        "Champagne",
+        "Snowball",
+        "Chimney",
+        "Postman",
+        "Toothbrush",
+        "Penguin",
+        "Trampoline",
+        "Lighthouse",
+        "Umbrella",
+        "Albert Einstein",
+        "The Eiffel Tower",
+        "Titanic",
+        "Beekeeper",
+        "New York",
+        "Karaoke",
+        "Nelson Mandela",
+        "Ice hockey",
+        "The Beatles",
+        "Volcano",
+        "The Great Wall of China",
+        "Leap year",
+        "Archaeologist",
+        "The Mona Lisa",
+        "The Sahara",
+        "Auld Lang Syne",
+        "Sherlock Holmes",
+        "Vending machine",
+        "The moon landing",
+        "Hypnosis"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Brazil.", "answers": [{ "text": "Argentina" }, { "text": "Bolivia" }, { "text": "Peru" }, { "text": "Colombia" }] },
-        { "prompt": "Name the four states of matter.", "answers": [{ "text": "Solid" }, { "text": "Liquid" }, { "text": "Gas" }, { "text": "Plasma" }] },
-        { "prompt": "Name the four strings of a ukulele.", "answers": [{ "text": "G" }, { "text": "C" }, { "text": "E" }, { "text": "A" }] },
-        { "prompt": "Name four countries whose name begins with the letter I.", "answers": [{ "text": "Italy" }, { "text": "India" }, { "text": "Iceland" }, { "text": "Ireland" }] },
-        { "prompt": "Name the four phases of the moon.", "answers": [{ "text": "New moon" }, { "text": "First quarter" }, { "text": "Full moon" }, { "text": "Last quarter" }] },
-        { "prompt": "Name four kinds of pasta.", "answers": [{ "text": "Spaghetti" }, { "text": "Penne" }, { "text": "Fusilli" }, { "text": "Tagliatelle" }] },
-        { "prompt": "Name four animals that hibernate.", "answers": [{ "text": "Bear" }, { "text": "Hedgehog" }, { "text": "Bat" }, { "text": "Dormouse" }] },
-        { "prompt": "Name four sports at the Winter Olympics.", "answers": [{ "text": "Skiing" }, { "text": "Ice hockey" }, { "text": "Bobsleigh" }, { "text": "Speed skating" }] }
+        { "prompt": "What do you know about Vincent van Gogh? Four keywords.", "answers": [{ "text": "Sunflowers" }, { "text": "His ear", "aliases": ["Ear", "He cut off his ear"] }, { "text": "The Starry Night", "aliases": ["Starry Night"] }, { "text": "He was Dutch", "aliases": ["Dutch", "The Netherlands", "Zundert"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "An iceberg", "aliases": ["Iceberg"] }, { "text": "It sank", "aliases": ["Sank", "Shipwreck", "Went under"] }, { "text": "1912", "aliases": ["Nineteen twelve"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Jack and Rose", "Kate Winslet"] }] },
+        { "prompt": "What do you know about Australia? Four keywords.", "answers": [{ "text": "Kangaroos", "aliases": ["Kangaroo"] }, { "text": "The Sydney Opera House", "aliases": ["Sydney", "Opera House"] }, { "text": "The outback", "aliases": ["Desert", "Uluru", "Ayers Rock"] }, { "text": "The Great Barrier Reef", "aliases": ["Barrier Reef", "Coral reef"] }] },
+        { "prompt": "What do you know about the moon? Four keywords.", "answers": [{ "text": "The moon landing", "aliases": ["Neil Armstrong", "Apollo 11", "Astronauts"] }, { "text": "Craters", "aliases": ["Crater"] }, { "text": "The tides", "aliases": ["Tides", "Ebb and flow"] }, { "text": "Full moon", "aliases": ["Phases", "Crescent"] }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "The theory of relativity", "aliases": ["Relativity"] }, { "text": "E equals mc squared", "aliases": ["E=mc2", "E = mc2"] }, { "text": "His wild hair", "aliases": ["Wild hair", "Sticking out hair", "Moustache"] }, { "text": "The Nobel Prize", "aliases": ["Nobel Prize", "Nobel"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pizza", "aliases": ["Pasta", "Spaghetti"] }, { "text": "Rome", "aliases": ["The Colosseum", "Colosseum"] }, { "text": "The Leaning Tower of Pisa", "aliases": ["Pisa", "Leaning tower"] }, { "text": "It is shaped like a boot", "aliases": ["A boot", "Boot"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow", "aliases": ["Snowing"] }, { "text": "Cold", "aliases": ["Freezing", "Frost", "Ice"] }, { "text": "Short days", "aliases": ["Dark", "It gets dark early"] }, { "text": "Skating", "aliases": ["Skiing", "Winter sports", "Ice skating"] }] },
+        { "prompt": "What do you know about the Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney", "McCartney"] }, { "text": "There were four of them", "aliases": ["Four", "A foursome", "Four members"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Norwegian explorer sailed the polar ship Fram?", "answers": [{ "text": "Fridtjof Nansen", "aliases": ["Nansen"] }] },
-        { "prompt": "What is the capital of Bhutan?", "answers": [{ "text": "Thimphu" }] },
-        { "prompt": "Which Swiss mathematician gave us the symbol for pi as we write it today?", "answers": [{ "text": "Leonhard Euler", "aliases": ["Euler"] }] },
-        { "prompt": "Which German physicist first proved the existence of radio waves?", "answers": [{ "text": "Heinrich Hertz", "aliases": ["Hertz"] }] },
-        { "prompt": "In which year was the Suez Canal opened?", "answers": [{ "text": "1869" }] },
-        { "prompt": "Which Italian composer wrote the opera Tosca?", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] }
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which composer wrote the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Quicksilver"] }] },
+        { "prompt": "Which country gave the Statue of Liberty to the United States?", "answers": [{ "text": "France" }] },
+        { "prompt": "In which year did the Berlin Wall come down?", "answers": [{ "text": "1989" }] },
+        { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily" }] }
       ]
     }
   ]

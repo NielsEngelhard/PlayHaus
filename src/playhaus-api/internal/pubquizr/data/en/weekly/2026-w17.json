@@ -34,17 +34,13 @@
         { "prompt": "Which country has more people per square kilometre than any other?", "options": [{ "text": "Monaco", "correct": true }, { "text": "Singapore" }, { "text": "Malta" }, { "text": "Bahrain" }] },
         { "prompt": "Which Canadian author wrote The Handmaid's Tale?", "options": [{ "text": "Margaret Atwood", "correct": true }, { "text": "Alice Munro" }, { "text": "Anne Michaels" }, { "text": "Carol Shields" }] },
         { "prompt": "What is the point in an orbit closest to the sun called?", "options": [{ "text": "The perihelion", "correct": true }, { "text": "The aphelion" }, { "text": "The apogee" }, { "text": "The equinox" }] },
-        { "prompt": "Which creature has thirty-two separate brains?", "options": [{ "text": "The leech", "correct": true }, { "text": "The earthworm" }, { "text": "The octopus" }, { "text": "The starfish" }] },
         { "prompt": "Which herb belongs in a mojito?", "options": [{ "text": "Mint", "correct": true }, { "text": "Coriander" }, { "text": "Dill" }, { "text": "Sage" }] },
         { "prompt": "In which sport is a penalty corner awarded?", "options": [{ "text": "Hockey", "correct": true }, { "text": "Rugby" }, { "text": "Water polo" }, { "text": "Handball" }] },
         { "prompt": "In which Italian city is the Uffizi gallery?", "options": [{ "text": "Florence", "correct": true }, { "text": "Rome" }, { "text": "Milan" }, { "text": "Naples" }] },
         { "prompt": "Which part of an egg grows into the chick?", "options": [{ "text": "The yolk", "correct": true }, { "text": "The white" }, { "text": "The shell" }, { "text": "The membrane" }] },
         { "prompt": "Which tree is stripped of its bark to make cork?", "options": [{ "text": "The cork oak", "correct": true }, { "text": "The birch" }, { "text": "The plane tree" }, { "text": "The cedar" }] },
-        { "prompt": "How many letters does the Hawaiian alphabet have?", "options": [{ "text": "13", "correct": true }, { "text": "18" }, { "text": "21" }, { "text": "26" }] },
         { "prompt": "Which artist made the mirrored sculpture Cloud Gate in Chicago?", "options": [{ "text": "Anish Kapoor", "correct": true }, { "text": "Jeff Koons" }, { "text": "Richard Serra" }, { "text": "Damien Hirst" }] },
-        { "prompt": "Which element did Marie Curie name after her homeland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] },
-        { "prompt": "Which canal carries more ships a year than any other in the world?", "options": [{ "text": "The Kiel Canal", "correct": true }, { "text": "The Suez Canal" }, { "text": "The Panama Canal" }, { "text": "The Corinth Canal" }] },
-        { "prompt": "What is a group of lions called?", "options": [{ "text": "A pride", "correct": true }, { "text": "A pack" }, { "text": "A troop" }, { "text": "A clan" }] }
+        { "prompt": "Which element did Marie Curie name after her homeland?", "options": [{ "text": "Polonium", "correct": true }, { "text": "Radium" }, { "text": "Francium" }, { "text": "Curium" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Pencil case" },
-        { "prompt": "Cutting board" },
-        { "prompt": "Loudspeaker" },
-        { "prompt": "Spare tyre" },
-        { "prompt": "Bin bag" },
-        { "prompt": "Extension cord" },
-        { "prompt": "Tea strainer" },
-        { "prompt": "Fishing net" },
-        { "prompt": "Lawn sprinkler" },
-        { "prompt": "Dishwasher" },
-        { "prompt": "Ruler" },
-        { "prompt": "Yoga mat" },
-        { "prompt": "Bolt" },
-        { "prompt": "Notebook" },
-        { "prompt": "Hairnet" },
-        { "prompt": "Whiteboard" }
+      "words": [
+        "Umbrella",
+        "Snowman",
+        "Elephant",
+        "Toothbrush",
+        "Swimming pool",
+        "Birthday cake",
+        "Postman",
+        "Traffic jam",
+        "Kangaroo",
+        "Ice cream",
+        "Carnival",
+        "Roller coaster",
+        "Nurse",
+        "The pyramids",
+        "James Bond",
+        "Chess",
+        "The Beatles",
+        "Desert island",
+        "Tattoo",
+        "Hollywood",
+        "Leonardo da Vinci",
+        "The Amazon rainforest",
+        "Astronaut",
+        "Vending machine",
+        "The Middle Ages",
+        "Origami",
+        "Mount Everest",
+        "Detective",
+        "Harry Potter",
+        "Solar eclipse"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Romania.", "answers": [{ "text": "Hungary" }, { "text": "Serbia" }, { "text": "Bulgaria" }, { "text": "Moldova" }] },
-        { "prompt": "Name four varieties of apple.", "answers": [{ "text": "Elstar" }, { "text": "Granny Smith" }, { "text": "Jonagold" }, { "text": "Golden Delicious" }] },
-        { "prompt": "Name four composers born in Germany.", "answers": [{ "text": "Bach" }, { "text": "Beethoven" }, { "text": "Brahms" }, { "text": "Wagner" }] },
-        { "prompt": "Name four running distances at the Olympics.", "answers": [{ "text": "100 metres" }, { "text": "400 metres" }, { "text": "1500 metres" }, { "text": "The marathon" }] },
-        { "prompt": "Name four countries in West Africa.", "answers": [{ "text": "Ghana" }, { "text": "Senegal" }, { "text": "Mali" }, { "text": "Nigeria" }] },
-        { "prompt": "Name four French pastries or desserts.", "answers": [{ "text": "Croissant" }, { "text": "Eclair" }, { "text": "Macaron" }, { "text": "Creme brulee" }] },
-        { "prompt": "Name four things you can see in the night sky.", "answers": [{ "text": "The moon" }, { "text": "Stars" }, { "text": "Planets" }, { "text": "Comets" }] },
-        { "prompt": "Name four great rivers of Asia.", "answers": [{ "text": "Yangtze" }, { "text": "Ganges" }, { "text": "Mekong" }, { "text": "Indus" }] }
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "E=mc2", "aliases": ["E is mc squared", "His formula"] }, { "text": "Relativity", "aliases": ["Theory of relativity"] }, { "text": "Wild hair", "aliases": ["Hair", "Moustache"] }, { "text": "Nobel Prize", "aliases": ["Physics", "Physicist"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow" }, { "text": "Cold", "aliases": ["Frost", "Ice"] }, { "text": "Christmas", "aliases": ["December", "Holidays"] }, { "text": "Skiing", "aliases": ["Ski", "Skating"] }] },
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Skyscrapers", "aliases": ["Empire State Building", "Skyscraper"] }, { "text": "Times Square", "aliases": ["Broadway"] }, { "text": "Yellow taxis", "aliases": ["Taxis", "Yellow cabs"] }] },
+        { "prompt": "What do you know about dinosaurs? Four keywords.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T-rex"] }, { "text": "Extinct", "aliases": ["Died out"] }, { "text": "Meteorite", "aliases": ["Asteroid", "Meteor"] }, { "text": "Fossils", "aliases": ["Bones", "Fossil"] }] },
+        { "prompt": "What do you know about the Tour de France? Four keywords.", "answers": [{ "text": "Cycling", "aliases": ["Bikes", "Bicycles"] }, { "text": "The yellow jersey", "aliases": ["Yellow jersey"] }, { "text": "July" }, { "text": "The mountains", "aliases": ["Alpe d'Huez", "The Alps", "Mont Ventoux"] }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa", "aliases": ["Cocoa beans"] }, { "text": "Sweet", "aliases": ["Sugar"] }, { "text": "Belgium", "aliases": ["Switzerland"] }, { "text": "Easter eggs", "aliases": ["Chocolate bar", "Easter"] }] },
+        { "prompt": "What do you know about the Second World War? Four keywords.", "answers": [{ "text": "Hitler", "aliases": ["Nazis", "Germany"] }, { "text": "1940 to 1945", "aliases": ["1939 to 1945", "1945"] }, { "text": "D-Day", "aliases": ["Normandy", "The landings"] }, { "text": "Anne Frank", "aliases": ["The hiding place", "The diary"] }] },
+        { "prompt": "What do you know about football? Four keywords.", "answers": [{ "text": "Eleven players", "aliases": ["Eleven", "11 players"] }, { "text": "The World Cup", "aliases": ["World Cup"] }, { "text": "The goalkeeper", "aliases": ["Goalkeeper", "Keeper"] }, { "text": "Red card", "aliases": ["Yellow card", "The referee"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch chemist won the very first Nobel Prize in Chemistry?", "answers": [{ "text": "Jacobus van 't Hoff", "aliases": ["Van 't Hoff"] }] },
-        { "prompt": "Which city is the seat of Bolivia's supreme court?", "answers": [{ "text": "Sucre" }] },
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
         { "prompt": "Which English architect rebuilt St Paul's Cathedral after the Great Fire?", "answers": [{ "text": "Christopher Wren", "aliases": ["Wren"] }] },
-        { "prompt": "In which year did the first officially recognised powered flight in Europe take place?", "answers": [{ "text": "1906" }] },
+        { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
         { "prompt": "Which is the largest volcano on earth by volume?", "answers": [{ "text": "Mauna Loa" }] },
-        { "prompt": "Which Italian physicist invented the electric battery?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] }
+        { "prompt": "Which composer wrote the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Which Italian physicist invented the electric battery?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] },
+        { "prompt": "Which sea holds the lowest point of dry land on earth?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] }
       ]
     }
   ]

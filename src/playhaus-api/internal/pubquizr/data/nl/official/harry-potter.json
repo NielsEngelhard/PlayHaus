@@ -32,7 +32,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Hoeveel afdelingen heeft de school?", "options": [{ "text": "Vier", "correct": true }, { "text": "Drie" }, { "text": "Vijf" }, { "text": "Zes" }] },
         { "prompt": "Welk dier is het symbool van Zwadderich?", "options": [{ "text": "De slang", "correct": true }, { "text": "De leeuw" }, { "text": "De adelaar" }, { "text": "De das" }] },
         { "prompt": "Hoe heet de winkelstraat voor tovenaars in Londen?", "options": [{ "text": "De Wegisweg", "correct": true }, { "text": "De Toverlaan" }, { "text": "De Bezemstraat" }, { "text": "De Zijweg" }] },
         { "prompt": "Welke positie speelde Harry in het zwerkbalteam?", "options": [{ "text": "Zoeker", "correct": true }, { "text": "Wachter" }, { "text": "Jager" }, { "text": "Drijver" }] },
@@ -42,10 +41,7 @@
         { "prompt": "Welke wezens bewaken die gevangenis?", "options": [{ "text": "Dementors", "correct": true }, { "text": "Trollen" }, { "text": "Reuzen" }, { "text": "Draken" }] },
         { "prompt": "Welk voorwerp gebruikt Hermelien om meer lessen te volgen?", "options": [{ "text": "Een tijdverdrijver", "correct": true }, { "text": "Een bezem" }, { "text": "Een toverhoed" }, { "text": "Een kaart" }] },
         { "prompt": "Wie is de peetvader van Harry?", "options": [{ "text": "Sirius Zwarts", "correct": true }, { "text": "Filius Banning" }, { "text": "Arthur Wemel" }, { "text": "Alastor Dwaaloog" }] },
-        { "prompt": "Welke boom op het schoolterrein slaat terug?", "options": [{ "text": "De Beukwilg", "correct": true }, { "text": "De Verboden Eik" }, { "text": "De Treurwilg" }, { "text": "De Zingende Linde" }] },
-        { "prompt": "Hoe heet de kaart die laat zien waar iedereen op school is?", "options": [{ "text": "De Sluipwegwijzer", "correct": true }, { "text": "De Zweinsteinkaart" }, { "text": "De Toverkaart" }, { "text": "De Spiekkaart" }] },
-        { "prompt": "In welk jaar kwam de eerste Harry Potterfilm uit?", "options": [{ "text": "1999" }, { "text": "2001", "correct": true }, { "text": "2003" }, { "text": "2005" }] },
-        { "prompt": "Hoeveel films werden er van de zeven boeken gemaakt?", "options": [{ "text": "Acht", "correct": true }, { "text": "Zeven" }, { "text": "Zes" }, { "text": "Negen" }] }
+        { "prompt": "Welke boom op het schoolterrein slaat terug?", "options": [{ "text": "De Beukwilg", "correct": true }, { "text": "De Verboden Eik" }, { "text": "De Treurwilg" }, { "text": "De Zingende Linde" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Toverstok" },
-        { "prompt": "Bezem" },
-        { "prompt": "Uil" },
-        { "prompt": "Kasteel" },
-        { "prompt": "Trein" },
-        { "prompt": "Toverdrank" },
-        { "prompt": "Draak" },
-        { "prompt": "Spreuk" },
-        { "prompt": "Brief" },
-        { "prompt": "Bibliotheek" },
-        { "prompt": "Spiegel" },
-        { "prompt": "Hoed" },
-        { "prompt": "Kerstfeest" },
-        { "prompt": "Sleutel" },
-        { "prompt": "Ketel" },
-        { "prompt": "Trap" }
+      "words": [
+        "Toverstok",
+        "Bezemsteel",
+        "Uil",
+        "Draak",
+        "Spreuk",
+        "Dreuzel",
+        "Ketel",
+        "Harry Potter",
+        "Sorteerhoed",
+        "Zweinsteinexpres",
+        "Draco Malfidus",
+        "Collectebus",
+        "Slurk",
+        "Onzichtbaarheidsmantel",
+        "Toverschaak",
+        "Jammerende Jenny",
+        "Boterbier",
+        "Vuurbeker",
+        "Minerva Anderling",
+        "Loena Leeflang",
+        "Gruzielement",
+        "Kamer van Hoge Nood",
+        "Spiegel van Neregeb",
+        "Hersenpan",
+        "Thestral",
+        "Relieken van de Dood",
+        "Hippogrief",
+        "Wisseldrank",
+        "Bellatrix van Detta",
+        "Vuurflits"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier afdelingen van de school.", "answers": [{ "text": "Griffoendor" }, { "text": "Zwadderich" }, { "text": "Ravenklauw" }, { "text": "Huffelpuf" }] },
-        { "prompt": "Noem vier leden van de familie Wemel.", "answers": [{ "text": "Ron" }, { "text": "Ginny" }, { "text": "Fred" }, { "text": "George" }] },
-        { "prompt": "Noem vier spreuken uit de boeken.", "answers": [{ "text": "Expelliarmus" }, { "text": "Lumos" }, { "text": "Accio" }, { "text": "Wingardium Leviosa" }] },
-        { "prompt": "Noem vier leraren van de school.", "answers": [{ "text": "Perkamentus" }, { "text": "Sneep" }, { "text": "Anderling" }, { "text": "Hagrid" }] },
-        { "prompt": "Noem vier magische wezens uit de reeks.", "answers": [{ "text": "Draak" }, { "text": "Eenhoorn" }, { "text": "Huiself" }, { "text": "Reus" }] },
-        { "prompt": "Noem vier plekken op het schoolterrein.", "answers": [{ "text": "Het Verboden Bos" }, { "text": "Het zwerkbalveld" }, { "text": "Het meer" }, { "text": "De Grote Zaal" }] },
-        { "prompt": "Noem vier acteurs uit de Harry Potterfilms.", "answers": [{ "text": "Daniel Radcliffe" }, { "text": "Emma Watson" }, { "text": "Rupert Grint" }, { "text": "Maggie Smith" }] },
-        { "prompt": "Noem vier boeken uit de reeks.", "answers": [{ "text": "De Steen der Wijzen" }, { "text": "De Geheime Kamer" }, { "text": "De Gevangene van Azkaban" }, { "text": "De Relieken van de Dood" }] }
+        { "prompt": "Wat weet je van Zweinstein? Vier kernwoorden.", "answers": [{ "text": "Kasteel" }, { "text": "Vier afdelingen", "aliases": ["Afdelingen"] }, { "text": "De Grote Zaal", "aliases": ["Grote Zaal"] }, { "text": "Bewegende trappen", "aliases": ["Trappen", "Trappen die bewegen"] }] },
+        { "prompt": "Wat weet je van Harry Potter? Vier kernwoorden.", "answers": [{ "text": "Bliksemlitteken", "aliases": ["Litteken", "Litteken op zijn voorhoofd"] }, { "text": "Ronde bril", "aliases": ["Bril"] }, { "text": "Griffoendor" }, { "text": "De Jongen Die Bleef Leven", "aliases": ["Jongen Die Bleef Leven"] }] },
+        { "prompt": "Wat weet je van Voldemort? Vier kernwoorden.", "answers": [{ "text": "Geen neus", "aliases": ["Zonder neus"] }, { "text": "Duistere tovenaar", "aliases": ["Zwarte tovenaar", "Slechte tovenaar"] }, { "text": "De slang Nagini", "aliases": ["Nagini", "Zijn slang"] }, { "text": "Dooddoeners", "aliases": ["Dooddoener"] }] },
+        { "prompt": "Wat weet je van zwerkbal? Vier kernwoorden.", "answers": [{ "text": "Bezemstelen", "aliases": ["Bezem", "Bezems"] }, { "text": "De Snaai", "aliases": ["Snaai"] }, { "text": "Zoeker" }, { "text": "Doelringen", "aliases": ["Ringen"] }] },
+        { "prompt": "Wat weet je van Hagrid? Vier kernwoorden.", "answers": [{ "text": "Halfreus", "aliases": ["Reus", "Heel groot"] }, { "text": "Jachtopziener", "aliases": ["Sleutelbewaarder"] }, { "text": "Grote baard", "aliases": ["Baard"] }, { "text": "Zijn hut", "aliases": ["Hut", "Huisje"] }] },
+        { "prompt": "Wat weet je van Hermelien Griffel? Vier kernwoorden.", "answers": [{ "text": "Slim", "aliases": ["Knap", "Beste van de klas"] }, { "text": "Warrige haren", "aliases": ["Bos haar", "Kroeshaar"] }, { "text": "Dreuzeltelg", "aliases": ["Dreuzelouders"] }, { "text": "Altijd aan het lezen", "aliases": ["Boeken", "Bibliotheek"] }] },
+        { "prompt": "Wat weet je van Perkamentus? Vier kernwoorden.", "answers": [{ "text": "Schoolhoofd" }, { "text": "Lange witte baard", "aliases": ["Baard", "Witte baard"] }, { "text": "Halvemaanbril", "aliases": ["Bril"] }, { "text": "Vermoord door Sneep", "aliases": ["Hij gaat dood", "Sneep doodt hem"] }] },
+        { "prompt": "Wat weet je van de familie Wemel? Vier kernwoorden.", "answers": [{ "text": "Rood haar", "aliases": ["Rossig haar"] }, { "text": "Het Nest", "aliases": ["Nest"] }, { "text": "Ron" }, { "text": "Fred en George", "aliases": ["De tweeling", "Tweeling"] }] }
       ]
     },
     {
@@ -117,8 +127,9 @@
         { "prompt": "Hoe heet het dorp bij de school dat leerlingen mogen bezoeken?", "answers": [{ "text": "Zweinsveld", "aliases": ["Hogsmeade"] }] },
         { "prompt": "Welke alchemist maakte de steen uit het eerste boek?", "answers": [{ "text": "Nicolaas Vlamel", "aliases": ["Flamel"] }] },
         { "prompt": "Welk wezen leeft in de Geheime Kamer?", "answers": [{ "text": "Een basilisk", "aliases": ["basilisk"] }] },
-        { "prompt": "Welk dier is de patronus van Harry?", "answers": [{ "text": "Een hert", "aliases": ["hert"] }] },
-        { "prompt": "Wie doodde de slang Nagini?", "answers": [{ "text": "Marcel Lubbermans", "aliases": ["Lubbermans", "Neville Longbottom"] }] }
+        { "prompt": "Wie doodde de slang Nagini?", "answers": [{ "text": "Marcel Lubbermans", "aliases": ["Lubbermans", "Neville Longbottom"] }] },
+        { "prompt": "In welke winkel in de Wegisweg koopt Harry zijn eerste toverstok?", "answers": [{ "text": "Olivander", "aliases": ["Olivanders", "Ollivanders"] }] },
+        { "prompt": "Hoe heet de feniks van Perkamentus?", "answers": [{ "text": "Felix", "aliases": ["Fawkes"] }] }
       ]
     }
   ]

@@ -31,7 +31,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the largest island in a lake anywhere in the world?", "options": [{ "text": "Manitoulin", "correct": true }, { "text": "Gotland" }, { "text": "Olkhon" }, { "text": "Samosir" }] },
         { "prompt": "Which American author wrote Slaughterhouse-Five?", "options": [{ "text": "Kurt Vonnegut", "correct": true }, { "text": "Norman Mailer" }, { "text": "Joseph Heller" }, { "text": "Philip Roth" }] },
         { "prompt": "Which rover landed on Mars in February 2021?", "options": [{ "text": "Perseverance", "correct": true }, { "text": "Curiosity" }, { "text": "Spirit" }, { "text": "Zhurong" }] },
         { "prompt": "Which organ can be removed without any lasting harm?", "options": [{ "text": "The appendix", "correct": true }, { "text": "The pancreas" }, { "text": "The liver" }, { "text": "The thyroid" }] },
@@ -41,9 +40,6 @@
         { "prompt": "Which mineral does the thyroid gland need to work?", "options": [{ "text": "Iodine", "correct": true }, { "text": "Zinc" }, { "text": "Magnesium" }, { "text": "Copper" }] },
         { "prompt": "Which is the hottest chilli pepper in the world?", "options": [{ "text": "The Carolina Reaper", "correct": true }, { "text": "The habanero" }, { "text": "The jalapeno" }, { "text": "The bird's eye" }] },
         { "prompt": "What is the study and collecting of coins called?", "options": [{ "text": "Numismatics", "correct": true }, { "text": "Philately" }, { "text": "Vexillology" }, { "text": "Cartography" }] },
-        { "prompt": "Which is the smallest muscle in the human body?", "options": [{ "text": "The stapedius", "correct": true }, { "text": "The sartorius" }, { "text": "The masseter" }, { "text": "The soleus" }] },
-        { "prompt": "What do you call a word spelled the same as another but with a different meaning?", "options": [{ "text": "A homonym", "correct": true }, { "text": "A synonym" }, { "text": "An antonym" }, { "text": "A pseudonym" }] },
-        { "prompt": "Which creature has more legs than any other animal?", "options": [{ "text": "The millipede", "correct": true }, { "text": "The centipede" }, { "text": "The caterpillar" }, { "text": "The woodlouse" }] },
         { "prompt": "Which country has the oldest desert in the world?", "options": [{ "text": "Namibia", "correct": true }, { "text": "Chile" }, { "text": "Egypt" }, { "text": "Mongolia" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Air raid siren" },
-        { "prompt": "Flag pole" },
-        { "prompt": "Gas mask" },
-        { "prompt": "Field telephone" },
-        { "prompt": "Tulip bulb" },
-        { "prompt": "Church bell" },
-        { "prompt": "Tandem" },
-        { "prompt": "Sandwich" },
-        { "prompt": "Teapot" },
-        { "prompt": "Newspaper" },
-        { "prompt": "Bonfire" },
-        { "prompt": "Balloon" },
-        { "prompt": "Confetti cannon" },
-        { "prompt": "Grandstand" },
-        { "prompt": "Stretcher" },
-        { "prompt": "Megaphone" }
+      "words": [
+        "Toothpaste",
+        "Ladder",
+        "Rainbow",
+        "Postman",
+        "Suitcase",
+        "Ice cream",
+        "Penguin",
+        "Guitar",
+        "Campfire",
+        "Swimming pool",
+        "Hot air balloon",
+        "Submarine",
+        "Vending machine",
+        "Jigsaw puzzle",
+        "Lifeguard",
+        "Mona Lisa",
+        "Amsterdam",
+        "Traffic jam",
+        "James Bond",
+        "Fireworks",
+        "Cleopatra",
+        "Vincent van Gogh",
+        "The Cold War",
+        "Chess",
+        "The Sahara",
+        "Archaeologist",
+        "The Wizard of Oz",
+        "Gravity",
+        "Morse code",
+        "Mount Rushmore"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries occupied by Germany in the Second World War.", "answers": [{ "text": "The Netherlands" }, { "text": "Belgium" }, { "text": "France" }, { "text": "Denmark" }] },
-        { "prompt": "Name four Allied leaders of the Second World War.", "answers": [{ "text": "Churchill" }, { "text": "Roosevelt" }, { "text": "Stalin" }, { "text": "De Gaulle" }] },
-        { "prompt": "Name four kinds of boat.", "answers": [{ "text": "Canoe" }, { "text": "Yacht" }, { "text": "Ferry" }, { "text": "Tugboat" }] },
-        { "prompt": "Name four Dutch public holidays.", "answers": [{ "text": "King's Day" }, { "text": "Liberation Day" }, { "text": "Christmas" }, { "text": "Easter" }] },
-        { "prompt": "Name four instruments in a marching band.", "answers": [{ "text": "Trumpet" }, { "text": "Trombone" }, { "text": "Drum" }, { "text": "Cymbals" }] },
-        { "prompt": "Name four European countries that stayed neutral in the Second World War.", "answers": [{ "text": "Switzerland" }, { "text": "Sweden" }, { "text": "Spain" }, { "text": "Portugal" }] },
-        { "prompt": "Name four ways of cooking a potato.", "answers": [{ "text": "Chips" }, { "text": "Mash" }, { "text": "Gratin" }, { "text": "Rosti" }] },
-        { "prompt": "Name four things in a first aid kit.", "answers": [{ "text": "Plaster" }, { "text": "Bandage" }, { "text": "Scissors" }, { "text": "Antiseptic" }] }
+        { "prompt": "What do you know about Anne Frank? Four keywords.", "answers": [{ "text": "Her diary", "aliases": ["The diary", "Diary"] }, { "text": "The secret annex", "aliases": ["Het Achterhuis", "Hiding", "The hiding place"] }, { "text": "Amsterdam" }, { "text": "She died in a camp", "aliases": ["Bergen-Belsen", "The camps", "The war"] }] },
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Skyscrapers", "aliases": ["The Empire State Building", "Skyscraper"] }, { "text": "Yellow taxis", "aliases": ["Taxis", "Yellow cabs"] }, { "text": "Central Park" }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa beans", "aliases": ["Cocoa"] }, { "text": "Belgium and Switzerland", "aliases": ["Belgium", "Switzerland"] }, { "text": "Milk or dark", "aliases": ["Dark chocolate", "Milk chocolate"] }, { "text": "Easter eggs", "aliases": ["Easter bunny", "Easter"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "The five rings", "aliases": ["Rings", "The rings"] }, { "text": "Every four years", "aliases": ["Four years"] }, { "text": "Gold medals", "aliases": ["Medals", "Gold"] }, { "text": "The Olympic flame", "aliases": ["The torch", "Flame"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "The king of rock and roll", "aliases": ["The King", "Rock and roll"] }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock", "His songs"] }, { "text": "His hips", "aliases": ["Hip swinging", "His dancing"] }, { "text": "Graceland", "aliases": ["Died in 1977", "His death"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Sand dunes", "aliases": ["Sand", "Dunes"] }, { "text": "Camels", "aliases": ["Camel"] }, { "text": "North Africa", "aliases": ["Africa"] }, { "text": "Oases", "aliases": ["An oasis", "Oasis"] }] },
+        { "prompt": "What do you know about sharks? Four keywords.", "answers": [{ "text": "Rows of teeth", "aliases": ["Teeth", "Sharp teeth"] }, { "text": "The dorsal fin", "aliases": ["Fin", "Fins"] }, { "text": "The film Jaws", "aliases": ["Jaws"] }, { "text": "They smell blood", "aliases": ["Blood", "Hunting"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pasta and pizza", "aliases": ["Pasta", "Pizza"] }, { "text": "The Colosseum", "aliases": ["Rome", "Colosseum"] }, { "text": "Ferrari", "aliases": ["Vespa", "Fiat"] }, { "text": "Shaped like a boot", "aliases": ["A boot", "The boot"] }] }
       ]
     },
     {
@@ -116,8 +126,9 @@
         { "prompt": "What is the capital of Kosovo?", "answers": [{ "text": "Pristina" }] },
         { "prompt": "Which German field marshal was nicknamed the Desert Fox?", "answers": [{ "text": "Erwin Rommel", "aliases": ["Rommel"] }] },
         { "prompt": "In which Dutch village does the Airborne Museum stand?", "answers": [{ "text": "Oosterbeek" }] },
-        { "prompt": "What is the deepest point of the Mediterranean called?", "answers": [{ "text": "The Calypso Deep", "aliases": ["Calypso Deep"] }] },
-        { "prompt": "Which Polish mathematician first broke the Enigma cipher before the war?", "answers": [{ "text": "Marian Rejewski", "aliases": ["Rejewski"] }] }
+        { "prompt": "Which country has more islands than any other in the world?", "answers": [{ "text": "Sweden" }] },
+        { "prompt": "Which element has the chemical symbol K?", "answers": [{ "text": "Potassium" }] },
+        { "prompt": "Who painted The Persistence of Memory, with its melting clocks?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
       ]
     }
   ]

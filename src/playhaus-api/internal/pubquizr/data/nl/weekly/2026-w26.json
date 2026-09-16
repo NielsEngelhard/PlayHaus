@@ -31,7 +31,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Welk van deze dieren is GEEN zoogdier?", "options": [{ "text": "Dolfijn" }, { "text": "Vleermuis" }, { "text": "Pinguin", "correct": true }, { "text": "Walvis" }] },
         { "prompt": "Wat is de hoofdstad van Brazilie?", "options": [{ "text": "Rio de Janeiro" }, { "text": "Sao Paulo" }, { "text": "Brasilia", "correct": true }, { "text": "Salvador" }] },
         { "prompt": "Welke club won in 1956 de eerste Europacup I?", "options": [{ "text": "Real Madrid", "correct": true }, { "text": "Benfica" }, { "text": "AC Milan" }, { "text": "Ajax" }] },
         { "prompt": "Welk orgaan maakt insuline?", "options": [{ "text": "Lever" }, { "text": "Alvleesklier", "correct": true }, { "text": "Nier" }, { "text": "Milt" }] },
@@ -41,9 +40,6 @@
         { "prompt": "Welke stad was de hoofdstad van het Byzantijnse Rijk?", "options": [{ "text": "Athene" }, { "text": "Rome" }, { "text": "Constantinopel", "correct": true }, { "text": "Alexandrie" }] },
         { "prompt": "Welk gas vormt ongeveer 78 procent van de lucht die wij inademen?", "options": [{ "text": "Zuurstof" }, { "text": "Stikstof", "correct": true }, { "text": "Koolstofdioxide" }, { "text": "Argon" }] },
         { "prompt": "Welke schrijver bedacht de detective Hercule Poirot?", "options": [{ "text": "Arthur Conan Doyle" }, { "text": "Agatha Christie", "correct": true }, { "text": "Georges Simenon" }, { "text": "Dorothy Sayers" }] },
-        { "prompt": "Welk land heeft een vlag met een rode cirkel op een wit veld?", "options": [{ "text": "Zuid-Korea" }, { "text": "Japan", "correct": true }, { "text": "Bangladesh" }, { "text": "Laos" }] },
-        { "prompt": "Welk snaarinstrument staat rechtop en wordt met de vingers getokkeld?", "options": [{ "text": "Citer" }, { "text": "Harp", "correct": true }, { "text": "Luit" }, { "text": "Banjo" }] },
-        { "prompt": "In welk jaar viel het West-Romeinse Rijk?", "options": [{ "text": "410" }, { "text": "476", "correct": true }, { "text": "527" }, { "text": "622" }] },
         { "prompt": "Welke planeet heeft het heetste oppervlak?", "options": [{ "text": "Mercurius" }, { "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Jupiter" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Zeilboot" },
-        { "prompt": "Wekker" },
-        { "prompt": "Olifant" },
-        { "prompt": "Supermarkt" },
-        { "prompt": "Ananas" },
-        { "prompt": "Ridder" },
-        { "prompt": "Parachute" },
-        { "prompt": "Fietspomp" },
-        { "prompt": "Sneeuwvlok" },
-        { "prompt": "Kapper" },
-        { "prompt": "Woestijn" },
-        { "prompt": "Telescoop" },
-        { "prompt": "Ladder" },
-        { "prompt": "Kangoeroe" },
-        { "prompt": "Bruiloft" },
-        { "prompt": "Draaimolen" }
+      "words": [
+        "Olifant",
+        "Ananas",
+        "Parachute",
+        "Sneeuwvlok",
+        "Kapper",
+        "Bruiloft",
+        "Draaimolen",
+        "Zeilboot",
+        "File",
+        "IJsje",
+        "Mount Everest",
+        "Julius Caesar",
+        "Iglo",
+        "Vuurwerk",
+        "Ridder",
+        "Telescoop",
+        "Orkest",
+        "Wijngaard",
+        "Carnaval",
+        "Postbode",
+        "Christoffel Columbus",
+        "De Zijderoute",
+        "Noorderlicht",
+        "Elfstedentocht",
+        "Imker",
+        "Colosseum",
+        "Pompeii",
+        "Morsecode",
+        "Gletsjer",
+        "Veilingmeester"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste eilanden van de Middellandse Zee.", "answers": [{ "text": "Sicilie" }, { "text": "Sardinie" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
-        { "prompt": "Noem de vier grote landen die aan Zwitserland grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Oostenrijk" }] },
-        { "prompt": "Noem de vier basissmaken naast umami.", "answers": [{ "text": "Zoet" }, { "text": "Zuur" }, { "text": "Zout" }, { "text": "Bitter" }] },
-        { "prompt": "Noem de vier ruiters van de Apocalyps.", "answers": [{ "text": "Verovering" }, { "text": "Oorlog" }, { "text": "Hongersnood" }, { "text": "Dood" }] },
-        { "prompt": "Noem de vier grootste manen van Jupiter.", "answers": [{ "text": "Io" }, { "text": "Europa" }, { "text": "Ganymedes" }, { "text": "Callisto" }] },
-        { "prompt": "Noem de vier zwemslagen van de Olympische Spelen.", "answers": [{ "text": "Vlinderslag" }, { "text": "Rugslag" }, { "text": "Schoolslag" }, { "text": "Vrije slag" }] },
-        { "prompt": "Noem de vier gekleurde ringen van het olympische symbool naast de zwarte.", "answers": [{ "text": "Blauw" }, { "text": "Geel" }, { "text": "Groen" }, { "text": "Rood" }] },
-        { "prompt": "Noem de vier ingredienten van gewoon brood.", "answers": [{ "text": "Meel" }, { "text": "Water" }, { "text": "Gist" }, { "text": "Zout" }] }
+        { "prompt": "Wat weet je van de zee? Vier kernwoorden.", "answers": [{ "text": "Zout water", "aliases": ["zout"] }, { "text": "Golven" }, { "text": "Strand" }, { "text": "Vissen", "aliases": ["vis"] }] },
+        { "prompt": "Wat weet je van een boerderij? Vier kernwoorden.", "answers": [{ "text": "Koe" }, { "text": "Tractor", "aliases": ["trekker"] }, { "text": "Schuur", "aliases": ["stal"] }, { "text": "Hooi" }] },
+        { "prompt": "Wat weet je van Parijs? Vier kernwoorden.", "answers": [{ "text": "Eiffeltoren" }, { "text": "Louvre" }, { "text": "Seine" }, { "text": "Croissant" }] },
+        { "prompt": "Wat weet je van Kerst? Vier kernwoorden.", "answers": [{ "text": "Kerstboom", "aliases": ["boom"] }, { "text": "Cadeaus", "aliases": ["cadeautjes"] }, { "text": "Kerstman" }, { "text": "Sneeuw" }] },
+        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "Thriller" }, { "text": "Moonwalk" }, { "text": "Witte handschoen", "aliases": ["handschoen"] }, { "text": "King of Pop", "aliases": ["pop"] }] },
+        { "prompt": "Wat weet je van Rembrandt? Vier kernwoorden.", "answers": [{ "text": "Schilder" }, { "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Amsterdam" }, { "text": "Zelfportret" }] },
+        { "prompt": "Wat weet je van een vulkaan? Vier kernwoorden.", "answers": [{ "text": "Lava" }, { "text": "Uitbarsting", "aliases": ["eruptie"] }, { "text": "As" }, { "text": "Krater" }] },
+        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Madrid" }, { "text": "Stierenvechten", "aliases": ["stierengevecht"] }] }
       ]
     },
     {
@@ -116,8 +126,9 @@
         { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
         { "prompt": "Welk element heeft het symbool Fe?", "answers": [{ "text": "IJzer", "aliases": ["ijzer"] }] },
         { "prompt": "Wie schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo" }] },
-        { "prompt": "In welk jaar werd de euro als contant geld ingevoerd?", "answers": [{ "text": "2002" }] },
-        { "prompt": "Wat is de grootste woestijn ter wereld als koude woestijnen meetellen?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctische woestijn"] }] }
+        { "prompt": "Wat is de grootste woestijn ter wereld als koude woestijnen meetellen?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctische woestijn"] }] },
+        { "prompt": "Welke waterval is de hoogste ter wereld?", "answers": [{ "text": "Angel Falls", "aliases": ["Salto Angel"] }] },
+        { "prompt": "Welke Engelse toneelschrijver schreef Macbeth en King Lear?", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] }
       ]
     }
   ]

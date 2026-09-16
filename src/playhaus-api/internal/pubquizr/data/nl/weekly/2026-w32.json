@@ -34,17 +34,13 @@
         { "prompt": "Welk land grenst NIET aan Frankrijk?", "options": [{ "text": "Andorra" }, { "text": "Monaco" }, { "text": "Portugal", "correct": true }, { "text": "Zwitserland" }] },
         { "prompt": "Wie schreef Oorlog en vrede?", "options": [{ "text": "Tolstoj", "correct": true }, { "text": "Dostojevski" }, { "text": "Toergenjev" }, { "text": "Poesjkin" }] },
         { "prompt": "Welk element is het meest voorkomende in het heelal?", "options": [{ "text": "Waterstof", "correct": true }, { "text": "Helium" }, { "text": "Zuurstof" }, { "text": "Koolstof" }] },
-        { "prompt": "In welk jaar werd de Verenigde Naties opvolger van de Volkenbond?", "options": [{ "text": "1919" }, { "text": "1939" }, { "text": "1945", "correct": true }, { "text": "1949" }] },
         { "prompt": "Wat is de hoofdstad van Peru?", "options": [{ "text": "Cusco" }, { "text": "Lima", "correct": true }, { "text": "Arequipa" }, { "text": "Trujillo" }] },
         { "prompt": "Welk dier heeft geen maag?", "options": [{ "text": "Zeepaardje", "correct": true }, { "text": "Haai" }, { "text": "Rog" }, { "text": "Zalm" }] },
-        { "prompt": "Hoeveel spelers heeft een honkbalteam in het veld?", "options": [{ "text": "Acht" }, { "text": "Negen", "correct": true }, { "text": "Tien" }, { "text": "Elf" }] },
         { "prompt": "Welke planeet is bijna even groot als de aarde?", "options": [{ "text": "Mars" }, { "text": "Venus", "correct": true }, { "text": "Mercurius" }, { "text": "Neptunus" }] },
         { "prompt": "Welk land gebruikt de Zwitserse frank naast Zwitserland?", "options": [{ "text": "Oostenrijk" }, { "text": "Liechtenstein", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }] },
         { "prompt": "Welke Ierse schrijver schreef Ulysses?", "options": [{ "text": "James Joyce", "correct": true }, { "text": "Samuel Beckett" }, { "text": "Oscar Wilde" }, { "text": "W.B. Yeats" }] },
-        { "prompt": "Welk hormoon regelt de bloedsuikerspiegel?", "options": [{ "text": "Adrenaline" }, { "text": "Insuline", "correct": true }, { "text": "Testosteron" }, { "text": "Cortisol" }] },
         { "prompt": "Welke Nederlandse provincie grenst aan Belgie en Duitsland tegelijk?", "options": [{ "text": "Limburg", "correct": true }, { "text": "Zeeland" }, { "text": "Noord-Brabant" }, { "text": "Gelderland" }] },
-        { "prompt": "In welk jaar werd de eerste mens in een ruimtevaartuig om de aarde gebracht?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] },
-        { "prompt": "Welk instrument heeft geen snaren?", "options": [{ "text": "Harp" }, { "text": "Cello" }, { "text": "Trompet", "correct": true }, { "text": "Gitaar" }] }
+        { "prompt": "In welk jaar werd de eerste mens in een ruimtevaartuig om de aarde gebracht?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Ankerketting" },
-        { "prompt": "Fietsbel" },
-        { "prompt": "Wolf" },
-        { "prompt": "Politiebureau" },
-        { "prompt": "Banaan" },
-        { "prompt": "Detective" },
-        { "prompt": "Schroevendraaier" },
-        { "prompt": "Gong" },
-        { "prompt": "Bliksem" },
-        { "prompt": "Zeeman" },
-        { "prompt": "Rotonde" },
-        { "prompt": "Zandloper" },
-        { "prompt": "Kussen" },
-        { "prompt": "Slak" },
-        { "prompt": "Dierentuin" },
-        { "prompt": "Blikopener" }
+      "words": [
+        "Banaan",
+        "Kussen",
+        "Wolf",
+        "Slak",
+        "Dierentuin",
+        "Bliksem",
+        "Schroevendraaier",
+        "Fietsbel",
+        "Zeeman",
+        "Rotonde",
+        "Zandloper",
+        "Blikopener",
+        "Gong",
+        "Politiebureau",
+        "Detective",
+        "Ankerketting",
+        "Circus",
+        "Huwelijksreis",
+        "Vuurwerk",
+        "Strandwacht",
+        "Mount Rushmore",
+        "De gebroeders Wright",
+        "Piet Mondriaan",
+        "Het Amazonegebied",
+        "Gladiator",
+        "Morsecode",
+        "De Zijderoute",
+        "Beethoven",
+        "Het Paard van Troje",
+        "Het Wilhelmus"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste landen van Europa naar oppervlakte na Rusland.", "answers": [{ "text": "Oekraine" }, { "text": "Frankrijk" }, { "text": "Spanje" }, { "text": "Zweden" }] },
-        { "prompt": "Noem de vier leden van ABBA.", "answers": [{ "text": "Agnetha" }, { "text": "Bjorn" }, { "text": "Benny" }, { "text": "Anni-Frid" }] },
-        { "prompt": "Noem de vier landen die het WK voetbal het vaakst hebben gewonnen tot en met 2022.", "answers": [{ "text": "Brazilie" }, { "text": "Duitsland" }, { "text": "Italie" }, { "text": "Argentinie" }] },
-        { "prompt": "Noem de vier maanden van januari tot juli met eenendertig dagen.", "answers": [{ "text": "Januari" }, { "text": "Maart" }, { "text": "Mei" }, { "text": "Juli" }] },
-        { "prompt": "Noem vier kunststromingen uit het begin van de twintigste eeuw.", "answers": [{ "text": "Kubisme" }, { "text": "Expressionisme" }, { "text": "Surrealisme" }, { "text": "Dadaisme" }] },
-        { "prompt": "Noem vier klieren van het menselijk hormoonstelsel.", "answers": [{ "text": "Schildklier" }, { "text": "Bijnier" }, { "text": "Hypofyse" }, { "text": "Alvleesklier" }] },
-        { "prompt": "Noem de vier grootste steden van Belgie.", "answers": [{ "text": "Brussel" }, { "text": "Antwerpen" }, { "text": "Gent" }, { "text": "Charleroi" }] },
-        { "prompt": "Noem vier klassieke heldendichten.", "answers": [{ "text": "Ilias" }, { "text": "Odyssee" }, { "text": "Aeneis" }, { "text": "Metamorfosen" }] }
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Van ijzer"] }, { "text": "Driehonderd meter hoog", "aliases": ["300 meter", "Hoog"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }] },
+        { "prompt": "Wat weet je van de zee? Vier kernwoorden.", "answers": [{ "text": "Zout water", "aliases": ["Zout", "Zilt"] }, { "text": "Golven", "aliases": ["Golf"] }, { "text": "Vissen", "aliases": ["Vis"] }, { "text": "Schepen", "aliases": ["Boten", "Schip"] }] },
+        { "prompt": "Wat weet je van koningin Elizabeth II? Vier kernwoorden.", "answers": [{ "text": "Engeland", "aliases": ["Het Verenigd Koninkrijk", "Groot-Brittannie"] }, { "text": "De kroon", "aliases": ["Kroon"] }, { "text": "Corgis", "aliases": ["Honden", "Corgi"] }, { "text": "Buckingham Palace", "aliases": ["Paleis"] }] },
+        { "prompt": "Wat weet je van een trein? Vier kernwoorden.", "answers": [{ "text": "Rails", "aliases": ["Spoor", "Spoorrails"] }, { "text": "Het station", "aliases": ["Station"] }, { "text": "Locomotief", "aliases": ["Machinist"] }, { "text": "Conducteur", "aliases": ["Kaartje", "Treinkaartje"] }] },
+        { "prompt": "Wat weet je van de Tour de France? Vier kernwoorden.", "answers": [{ "text": "Wielrennen", "aliases": ["Fietsen", "Fietsers"] }, { "text": "De gele trui", "aliases": ["Gele trui"] }, { "text": "De bergen", "aliases": ["Bergen", "De Alpen"] }, { "text": "Juli", "aliases": ["Zomer"] }] },
+        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella" }, { "text": "Flamenco", "aliases": ["Dansen"] }, { "text": "Stierenvechten", "aliases": ["Stieren"] }, { "text": "Madrid", "aliases": ["Barcelona"] }] },
+        { "prompt": "Wat weet je van chocolade? Vier kernwoorden.", "answers": [{ "text": "Cacao" }, { "text": "Zoet", "aliases": ["Suiker"] }, { "text": "Bruin" }, { "text": "Paaseieren", "aliases": ["Pasen", "Reep"] }] },
+        { "prompt": "Wat weet je van een leeuw? Vier kernwoorden.", "answers": [{ "text": "Manen", "aliases": ["De manen"] }, { "text": "Brullen", "aliases": ["Gebrul"] }, { "text": "Afrika", "aliases": ["De savanne"] }, { "text": "Koning van de jungle", "aliases": ["Koning der dieren"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse filosoof schreef de Ethica en werd in 1656 uit de synagoge gezet?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
         { "prompt": "Wat is het grootste eiland van de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
-        { "prompt": "Welke Hongaarse componist schreef de Hongaarse rapsodieen?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
         { "prompt": "Wat is de hoofdstad van Ethiopie?", "answers": [{ "text": "Addis Abeba", "aliases": ["Addis Ababa"] }] },
         { "prompt": "Welke Britse natuurkundige schreef Een korte geschiedenis van de tijd?", "answers": [{ "text": "Stephen Hawking", "aliases": ["Hawking"] }] },
-        { "prompt": "In welk jaar werd de Vrede van Munster gesloten?", "answers": [{ "text": "1648" }] }
+        { "prompt": "In welke zee mondt de Donau uit?", "answers": [{ "text": "De Zwarte Zee", "aliases": ["Zwarte Zee"] }] },
+        { "prompt": "In welk land werden in 1896 de eerste moderne Olympische Spelen gehouden?", "answers": [{ "text": "Griekenland", "aliases": ["Athene, Griekenland"] }] },
+        { "prompt": "Welk metaal heeft het scheikundig symbool Pb?", "answers": [{ "text": "Lood" }] },
+        { "prompt": "Welke Italiaanse ontdekkingsreiziger gaf Amerika zijn naam?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
       ]
     }
   ]

@@ -31,7 +31,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which of these animals is NOT a mammal?", "options": [{ "text": "Dolphin" }, { "text": "Bat" }, { "text": "Penguin", "correct": true }, { "text": "Whale" }] },
         { "prompt": "What is the capital of Brazil?", "options": [{ "text": "Rio de Janeiro" }, { "text": "Sao Paulo" }, { "text": "Brasilia", "correct": true }, { "text": "Salvador" }] },
         { "prompt": "Which club won the first European Cup in 1956?", "options": [{ "text": "Real Madrid", "correct": true }, { "text": "Benfica" }, { "text": "AC Milan" }, { "text": "Ajax" }] },
         { "prompt": "Which organ makes insulin?", "options": [{ "text": "Liver" }, { "text": "Pancreas", "correct": true }, { "text": "Kidney" }, { "text": "Spleen" }] },
@@ -41,9 +40,6 @@
         { "prompt": "Which city was the capital of the Byzantine Empire?", "options": [{ "text": "Athens" }, { "text": "Rome" }, { "text": "Constantinople", "correct": true }, { "text": "Alexandria" }] },
         { "prompt": "Which gas makes up about 78 percent of the air we breathe?", "options": [{ "text": "Oxygen" }, { "text": "Nitrogen", "correct": true }, { "text": "Carbon dioxide" }, { "text": "Argon" }] },
         { "prompt": "Which writer created the detective Hercule Poirot?", "options": [{ "text": "Arthur Conan Doyle" }, { "text": "Agatha Christie", "correct": true }, { "text": "Georges Simenon" }, { "text": "Dorothy Sayers" }] },
-        { "prompt": "Which country has a flag with a red circle on a white field?", "options": [{ "text": "South Korea" }, { "text": "Japan", "correct": true }, { "text": "Bangladesh" }, { "text": "Laos" }] },
-        { "prompt": "Which string instrument stands upright and is plucked with the fingers?", "options": [{ "text": "Zither" }, { "text": "Harp", "correct": true }, { "text": "Lute" }, { "text": "Banjo" }] },
-        { "prompt": "In what year did the Western Roman Empire fall?", "options": [{ "text": "410" }, { "text": "476", "correct": true }, { "text": "527" }, { "text": "622" }] },
         { "prompt": "Which planet has the hottest surface?", "options": [{ "text": "Mercury" }, { "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Jupiter" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Sailing boat" },
-        { "prompt": "Alarm clock" },
-        { "prompt": "Elephant" },
-        { "prompt": "Supermarket" },
-        { "prompt": "Pineapple" },
-        { "prompt": "Knight" },
-        { "prompt": "Parachute" },
-        { "prompt": "Bicycle pump" },
-        { "prompt": "Snowflake" },
-        { "prompt": "Hairdresser" },
-        { "prompt": "Desert" },
-        { "prompt": "Telescope" },
-        { "prompt": "Ladder" },
-        { "prompt": "Kangaroo" },
-        { "prompt": "Wedding" },
-        { "prompt": "Carousel" }
+      "words": [
+        "Elephant",
+        "Pineapple",
+        "Parachute",
+        "Snowflake",
+        "Hairdresser",
+        "Wedding",
+        "Carousel",
+        "Sailing boat",
+        "Traffic jam",
+        "Ice cream",
+        "Mount Everest",
+        "Julius Caesar",
+        "Igloo",
+        "Fireworks",
+        "Knight",
+        "Telescope",
+        "Orchestra",
+        "Vineyard",
+        "Carnival",
+        "Postman",
+        "Christopher Columbus",
+        "The Silk Road",
+        "Northern Lights",
+        "Mount Rushmore",
+        "Beekeeper",
+        "Colosseum",
+        "Pompeii",
+        "Morse code",
+        "Glacier",
+        "Auctioneer"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest islands in the Mediterranean.", "answers": [{ "text": "Sicily" }, { "text": "Sardinia" }, { "text": "Cyprus" }, { "text": "Corsica" }] },
-        { "prompt": "Name the four large countries that border Switzerland.", "answers": [{ "text": "Germany" }, { "text": "France" }, { "text": "Italy" }, { "text": "Austria" }] },
-        { "prompt": "Name the four basic tastes besides umami.", "answers": [{ "text": "Sweet" }, { "text": "Sour" }, { "text": "Salty" }, { "text": "Bitter" }] },
-        { "prompt": "Name the four horsemen of the Apocalypse.", "answers": [{ "text": "Conquest" }, { "text": "War" }, { "text": "Famine" }, { "text": "Death" }] },
-        { "prompt": "Name the four largest moons of Jupiter.", "answers": [{ "text": "Io" }, { "text": "Europa" }, { "text": "Ganymede" }, { "text": "Callisto" }] },
-        { "prompt": "Name the four Olympic swimming strokes.", "answers": [{ "text": "Butterfly" }, { "text": "Backstroke" }, { "text": "Breaststroke" }, { "text": "Freestyle" }] },
-        { "prompt": "Name the four coloured Olympic rings besides the black one.", "answers": [{ "text": "Blue" }, { "text": "Yellow" }, { "text": "Green" }, { "text": "Red" }] },
-        { "prompt": "Name the four ingredients of plain bread.", "answers": [{ "text": "Flour" }, { "text": "Water" }, { "text": "Yeast" }, { "text": "Salt" }] }
+        { "prompt": "What do you know about the sea? Four keywords.", "answers": [{ "text": "Salt water", "aliases": ["salt", "salty"] }, { "text": "Waves" }, { "text": "Beach" }, { "text": "Fish" }] },
+        { "prompt": "What do you know about a farm? Four keywords.", "answers": [{ "text": "Cow" }, { "text": "Tractor" }, { "text": "Barn" }, { "text": "Hay" }] },
+        { "prompt": "What do you know about Paris? Four keywords.", "answers": [{ "text": "Eiffel Tower" }, { "text": "Louvre" }, { "text": "Seine" }, { "text": "Croissant" }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "Christmas tree", "aliases": ["tree"] }, { "text": "Presents", "aliases": ["gifts"] }, { "text": "Santa Claus", "aliases": ["Santa"] }, { "text": "Snow" }] },
+        { "prompt": "What do you know about Michael Jackson? Four keywords.", "answers": [{ "text": "Thriller" }, { "text": "Moonwalk" }, { "text": "White glove", "aliases": ["glove"] }, { "text": "King of Pop", "aliases": ["pop"] }] },
+        { "prompt": "What do you know about Rembrandt? Four keywords.", "answers": [{ "text": "Painter" }, { "text": "The Night Watch", "aliases": ["Night Watch"] }, { "text": "Amsterdam" }, { "text": "Self-portrait" }] },
+        { "prompt": "What do you know about a volcano? Four keywords.", "answers": [{ "text": "Lava" }, { "text": "Eruption" }, { "text": "Ash" }, { "text": "Crater" }] },
+        { "prompt": "What do you know about Spain? Four keywords.", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Madrid" }, { "text": "Bullfighting", "aliases": ["bullfight"] }] }
       ]
     },
     {
@@ -116,8 +126,9 @@
         { "prompt": "Which river flows through Vienna, Budapest and Belgrade?", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },
         { "prompt": "Which element has the symbol Fe?", "answers": [{ "text": "Iron" }] },
         { "prompt": "Who painted the ceiling of the Sistine Chapel?", "answers": [{ "text": "Michelangelo" }] },
-        { "prompt": "In what year was the euro introduced as cash?", "answers": [{ "text": "2002" }] },
-        { "prompt": "What is the largest desert in the world if cold deserts count?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctic desert"] }] }
+        { "prompt": "What is the largest desert in the world if cold deserts count?", "answers": [{ "text": "Antarctica", "aliases": ["Antarctic desert"] }] },
+        { "prompt": "Which waterfall is the highest in the world?", "answers": [{ "text": "Angel Falls", "aliases": ["Salto Angel"] }] },
+        { "prompt": "Which English playwright wrote Macbeth and King Lear?", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] }
       ]
     }
   ]

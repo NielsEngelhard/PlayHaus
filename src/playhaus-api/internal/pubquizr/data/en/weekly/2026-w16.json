@@ -31,20 +31,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the largest river delta in the world?", "options": [{ "text": "The Ganges delta", "correct": true }, { "text": "The Mekong delta" }, { "text": "The Amazon delta" }, { "text": "The Danube delta" }] },
         { "prompt": "Which of the Bronte sisters wrote Wuthering Heights?", "options": [{ "text": "Emily Bronte", "correct": true }, { "text": "Charlotte Bronte" }, { "text": "Anne Bronte" }, { "text": "Elizabeth Gaskell" }] },
         { "prompt": "Which effect makes a passing siren drop in pitch?", "options": [{ "text": "The Doppler effect", "correct": true }, { "text": "The Coriolis effect" }, { "text": "The Venturi effect" }, { "text": "The Magnus effect" }] },
-        { "prompt": "Which is the fastest flying insect in the world?", "options": [{ "text": "The dragonfly", "correct": true }, { "text": "The hornet" }, { "text": "The horsefly" }, { "text": "The hawk moth" }] },
         { "prompt": "Which vegetable is the base of a Spanish gazpacho?", "options": [{ "text": "The tomato", "correct": true }, { "text": "The cucumber" }, { "text": "The pepper" }, { "text": "The courgette" }] },
         { "prompt": "In which sport is the Melbourne Cup contested?", "options": [{ "text": "Horse racing", "correct": true }, { "text": "Sailing" }, { "text": "Motor racing" }, { "text": "Cricket" }] },
         { "prompt": "Which Austrian composer wrote the Blue Danube waltz?", "options": [{ "text": "Johann Strauss", "correct": true }, { "text": "Franz Lehar" }, { "text": "Joseph Lanner" }, { "text": "Carl Michael Ziehrer" }] },
-        { "prompt": "Which writing system is used by more people than any other?", "options": [{ "text": "The Latin alphabet", "correct": true }, { "text": "Chinese characters" }, { "text": "The Arabic script" }, { "text": "The Devanagari script" }] },
         { "prompt": "Which sense is processed in the occipital lobe at the back of the brain?", "options": [{ "text": "Sight", "correct": true }, { "text": "Smell" }, { "text": "Balance" }, { "text": "Touch" }] },
         { "prompt": "Which renewable source generates the most electricity worldwide?", "options": [{ "text": "Hydropower", "correct": true }, { "text": "Wind" }, { "text": "Solar" }, { "text": "Geothermal" }] },
         { "prompt": "Which is the largest city in Africa by population?", "options": [{ "text": "Lagos", "correct": true }, { "text": "Kinshasa" }, { "text": "Johannesburg" }, { "text": "Khartoum" }] },
         { "prompt": "Which metal has the chemical symbol Sn?", "options": [{ "text": "Tin", "correct": true }, { "text": "Sodium" }, { "text": "Selenium" }, { "text": "Strontium" }] },
-        { "prompt": "Which currency is used in Turkey?", "options": [{ "text": "The lira", "correct": true }, { "text": "The dinar" }, { "text": "The dirham" }, { "text": "The drachma" }] },
-        { "prompt": "Which is the largest bird of prey in Europe?", "options": [{ "text": "The bearded vulture", "correct": true }, { "text": "The osprey" }, { "text": "The buzzard" }, { "text": "The kite" }] }
+        { "prompt": "Which currency is used in Turkey?", "options": [{ "text": "The lira", "correct": true }, { "text": "The dinar" }, { "text": "The dirham" }, { "text": "The drachma" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Soap dispenser" },
-        { "prompt": "Bread knife" },
-        { "prompt": "Laundry basket" },
-        { "prompt": "Music stand" },
-        { "prompt": "Dart" },
-        { "prompt": "Drinking straw" },
-        { "prompt": "Bicycle helmet" },
-        { "prompt": "Table lamp" },
-        { "prompt": "Mirror ball" },
-        { "prompt": "Rubber band" },
-        { "prompt": "Garden fork" },
-        { "prompt": "Saucer" },
-        { "prompt": "Buoy" },
-        { "prompt": "Life jacket" },
-        { "prompt": "Slide" },
-        { "prompt": "Chess clock" }
+      "words": [
+        "Umbrella",
+        "Kangaroo",
+        "Lifeguard",
+        "Rollercoaster",
+        "Chocolate",
+        "Skateboard",
+        "Christmas tree",
+        "Beach ball",
+        "Piano",
+        "Life jacket",
+        "Big Ben",
+        "Cleopatra",
+        "Pirate",
+        "Amazon rainforest",
+        "Submarine",
+        "Hurricane",
+        "Vincent van Gogh",
+        "Circus",
+        "Karaoke",
+        "Safari",
+        "Machu Picchu",
+        "Marie Curie",
+        "Trans-Siberian Railway",
+        "Hieroglyphs",
+        "Solar eclipse",
+        "Taj Mahal",
+        "Stonehenge",
+        "Renaissance",
+        "Acupuncture",
+        "Sherlock Holmes"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Ukraine.", "answers": [{ "text": "Poland" }, { "text": "Romania" }, { "text": "Hungary" }, { "text": "Slovakia" }] },
-        { "prompt": "Name four kinds of bean.", "answers": [{ "text": "Kidney bean" }, { "text": "Green bean" }, { "text": "Broad bean" }, { "text": "Black bean" }] },
-        { "prompt": "Name four sculptors.", "answers": [{ "text": "Michelangelo" }, { "text": "Rodin" }, { "text": "Bernini" }, { "text": "Henry Moore" }] },
-        { "prompt": "Name four Olympic sports played with a ball.", "answers": [{ "text": "Football" }, { "text": "Basketball" }, { "text": "Handball" }, { "text": "Volleyball" }] },
-        { "prompt": "Name four countries in the Alps.", "answers": [{ "text": "France" }, { "text": "Switzerland" }, { "text": "Austria" }, { "text": "Italy" }] },
-        { "prompt": "Name four things you can wear on your head.", "answers": [{ "text": "Helmet" }, { "text": "Cap" }, { "text": "Crown" }, { "text": "Headband" }] },
-        { "prompt": "Name four famous ships.", "answers": [{ "text": "The Titanic" }, { "text": "The Mayflower" }, { "text": "The Beagle" }, { "text": "The Victory" }] },
-        { "prompt": "Name four kinds of dinosaur.", "answers": [{ "text": "Tyrannosaurus" }, { "text": "Triceratops" }, { "text": "Stegosaurus" }, { "text": "Velociraptor" }] }
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "Iceberg" }, { "text": "It sank", "aliases": ["Sank", "Shipwreck"] }, { "text": "1912" }, { "text": "Lifeboats", "aliases": ["Too few lifeboats", "Lifeboat"] }] },
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris" }, { "text": "Made of iron", "aliases": ["Iron", "Steel"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Tourists", "aliases": ["Tourist attraction", "Queues"] }] },
+        { "prompt": "What do you know about Nelson Mandela? Four keywords.", "answers": [{ "text": "South Africa" }, { "text": "Twenty-seven years in prison", "aliases": ["Prison", "Robben Island", "Jail"] }, { "text": "Apartheid" }, { "text": "President" }] },
+        { "prompt": "What do you know about a bee? Four keywords.", "answers": [{ "text": "Honey" }, { "text": "Sting", "aliases": ["Stings", "Stinger"] }, { "text": "Hive", "aliases": ["Beehive"] }, { "text": "Flowers", "aliases": ["Pollen", "Flower"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Desert" }, { "text": "Sand", "aliases": ["Sand dunes", "Dunes"] }, { "text": "Africa" }, { "text": "Camels", "aliases": ["Camel"] }] },
+        { "prompt": "What do you know about the Moon? Four keywords.", "answers": [{ "text": "Craters", "aliases": ["Crater"] }, { "text": "Full moon" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "The moon landing"] }, { "text": "The tides", "aliases": ["Tides", "It pulls the sea"] }] },
+        { "prompt": "What do you know about Leonardo da Vinci? Four keywords.", "answers": [{ "text": "Mona Lisa", "aliases": ["The Mona Lisa"] }, { "text": "Italian", "aliases": ["Italy"] }, { "text": "Inventor", "aliases": ["Inventions", "Flying machines"] }, { "text": "The Last Supper", "aliases": ["Last Supper"] }] },
+        { "prompt": "What do you know about a football match? Four keywords.", "answers": [{ "text": "Eleven players", "aliases": ["Eleven a side", "11 players"] }, { "text": "Goal", "aliases": ["Goals", "Scoring"] }, { "text": "Referee", "aliases": ["Ref"] }, { "text": "Yellow card", "aliases": ["Cards", "Red card"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Which Dutch mathematician gave his name to the law of refraction?", "answers": [{ "text": "Willebrord Snell", "aliases": ["Snell", "Snellius"] }] },
         { "prompt": "What is the capital of Ghana?", "answers": [{ "text": "Accra" }] },
         { "prompt": "Which Renaissance architect built the dome of Florence cathedral?", "answers": [{ "text": "Filippo Brunelleschi", "aliases": ["Brunelleschi"] }] },
-        { "prompt": "In which year did the Louvre first open its doors as a museum?", "answers": [{ "text": "1793" }] },
         { "prompt": "Which river in Botswana forms the world's largest inland delta?", "answers": [{ "text": "The Okavango", "aliases": ["Okavango"] }] },
-        { "prompt": "Which Roman historian wrote the Annals?", "answers": [{ "text": "Tacitus" }] }
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "In which sea can bathers float because the water is so salty?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] }
       ]
     }
   ]

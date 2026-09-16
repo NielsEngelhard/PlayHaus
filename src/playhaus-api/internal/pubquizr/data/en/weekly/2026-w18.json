@@ -36,14 +36,10 @@
         { "prompt": "What is the distant shell of icy bodies where long comets come from?", "options": [{ "text": "The Oort cloud", "correct": true }, { "text": "The Kuiper belt" }, { "text": "The asteroid belt" }, { "text": "The heliosphere" }] },
         { "prompt": "Which gland sits on top of the kidney and makes adrenaline?", "options": [{ "text": "The adrenal gland", "correct": true }, { "text": "The thyroid" }, { "text": "The pituitary" }, { "text": "The pancreas" }] },
         { "prompt": "Which Italian sparkling wine comes from the Veneto?", "options": [{ "text": "Prosecco", "correct": true }, { "text": "Lambrusco" }, { "text": "Asti" }, { "text": "Franciacorta" }] },
-        { "prompt": "Which is the oldest football club in the world?", "options": [{ "text": "Sheffield FC", "correct": true }, { "text": "Notts County" }, { "text": "Genoa" }, { "text": "Ajax" }] },
-        { "prompt": "Which American sculptor invented the hanging mobile?", "options": [{ "text": "Alexander Calder", "correct": true }, { "text": "Louise Nevelson" }, { "text": "David Smith" }, { "text": "Isamu Noguchi" }] },
         { "prompt": "What is the largest artery in the human body?", "options": [{ "text": "The aorta", "correct": true }, { "text": "The carotid" }, { "text": "The femoral artery" }, { "text": "The pulmonary artery" }] },
         { "prompt": "The people of which country drink more beer per head than anyone else?", "options": [{ "text": "Czechia", "correct": true }, { "text": "Germany" }, { "text": "Austria" }, { "text": "Belgium" }] },
         { "prompt": "What is the everyday name for sodium bicarbonate?", "options": [{ "text": "Baking soda", "correct": true }, { "text": "Cream of tartar" }, { "text": "Washing powder" }, { "text": "Vinegar salt" }] },
-        { "prompt": "Which city is often called the oldest continuously inhabited city on earth?", "options": [{ "text": "Damascus", "correct": true }, { "text": "Jericho" }, { "text": "Athens" }, { "text": "Byblos" }] },
         { "prompt": "Which is the youngest country in the world?", "options": [{ "text": "South Sudan", "correct": true }, { "text": "Montenegro" }, { "text": "Kosovo" }, { "text": "East Timor" }] },
-        { "prompt": "Which bird has been recorded flying higher than any other?", "options": [{ "text": "Ruppell's vulture", "correct": true }, { "text": "The bar-headed goose" }, { "text": "The albatross" }, { "text": "The swan" }] },
         { "prompt": "Which country pays with the ringgit?", "options": [{ "text": "Malaysia", "correct": true }, { "text": "Indonesia" }, { "text": "Brunei" }, { "text": "Thailand" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Coat hook" },
-        { "prompt": "Egg cup" },
-        { "prompt": "Shoe rack" },
-        { "prompt": "Fan" },
-        { "prompt": "Fishing float" },
-        { "prompt": "Baby bottle" },
-        { "prompt": "Rug" },
-        { "prompt": "Pliers" },
-        { "prompt": "Bunting" },
-        { "prompt": "Barrel" },
-        { "prompt": "Beer crate" },
-        { "prompt": "Picnic basket" },
-        { "prompt": "Rowing boat" },
-        { "prompt": "Pogo stick" },
-        { "prompt": "Bumper car" },
-        { "prompt": "Cash register" }
+      "words": [
+        "Sunglasses",
+        "Chocolate",
+        "Dog",
+        "Rain",
+        "Birthday cake",
+        "Train",
+        "Piano",
+        "Swimming pool",
+        "Ice cream",
+        "Butterfly",
+        "Volcano",
+        "Statue of Liberty",
+        "Pirate",
+        "Dinosaur",
+        "Kangaroo",
+        "Nurse",
+        "Submarine",
+        "Carnival",
+        "Honey",
+        "Cowboy",
+        "Leonardo da Vinci",
+        "Stonehenge",
+        "The Mona Lisa",
+        "Recycling",
+        "Archaeologist",
+        "The Berlin Wall",
+        "Yoga",
+        "Iceland",
+        "Time zone",
+        "Puppet show"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Serbia.", "answers": [{ "text": "Hungary" }, { "text": "Croatia" }, { "text": "Bulgaria" }, { "text": "Montenegro" }] },
-        { "prompt": "Name four kinds of sausage.", "answers": [{ "text": "Bratwurst" }, { "text": "Chorizo" }, { "text": "Salami" }, { "text": "Frankfurter" }] },
-        { "prompt": "Name four European royal houses.", "answers": [{ "text": "Windsor" }, { "text": "Orange-Nassau" }, { "text": "Bourbon" }, { "text": "Habsburg" }] },
-        { "prompt": "Name four things you can find on a beach.", "answers": [{ "text": "Sand" }, { "text": "Shells" }, { "text": "Seaweed" }, { "text": "Driftwood" }] },
-        { "prompt": "Name four countries that have won the Eurovision Song Contest.", "answers": [{ "text": "Ireland" }, { "text": "Sweden" }, { "text": "Israel" }, { "text": "Norway" }] },
-        { "prompt": "Name four kinds of flower.", "answers": [{ "text": "Tulip" }, { "text": "Rose" }, { "text": "Daffodil" }, { "text": "Sunflower" }] },
-        { "prompt": "Name four programming languages.", "answers": [{ "text": "Python" }, { "text": "Java" }, { "text": "C" }, { "text": "JavaScript" }] },
-        { "prompt": "Name four cities that have hosted the Summer Olympics since 2000.", "answers": [{ "text": "Sydney" }, { "text": "Athens" }, { "text": "Beijing" }, { "text": "Rio de Janeiro" }] }
+        { "prompt": "What do you know about Harry Potter? Four keywords.", "answers": [{ "text": "Hogwarts", "aliases": ["The school", "Wizard school"] }, { "text": "A wand", "aliases": ["Wand", "Magic"] }, { "text": "Voldemort", "aliases": ["He Who Must Not Be Named"] }, { "text": "J.K. Rowling", "aliases": ["Rowling", "JK Rowling"] }] },
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris" }, { "text": "Iron", "aliases": ["Steel", "Metal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Tourists", "aliases": ["The lift", "The view"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow" }, { "text": "Cold", "aliases": ["Freezing", "Frost"] }, { "text": "Christmas" }, { "text": "Ice skating", "aliases": ["Skating", "Ice"] }] },
+        { "prompt": "What do you know about the heart? Four keywords.", "answers": [{ "text": "Blood" }, { "text": "It beats", "aliases": ["Beating", "Heartbeat"] }, { "text": "Four chambers", "aliases": ["Chambers", "Valves"] }, { "text": "The chest", "aliases": ["Chest", "Ribcage"] }] },
+        { "prompt": "What do you know about Japan? Four keywords.", "answers": [{ "text": "Sushi" }, { "text": "Mount Fuji", "aliases": ["Fuji"] }, { "text": "Tokyo" }, { "text": "Samurai", "aliases": ["Ninja"] }] },
+        { "prompt": "What do you know about the Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "The sixties", "aliases": ["Sixties", "1960s"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Checkmate", "aliases": ["Check", "Mate"] }, { "text": "The king", "aliases": ["King"] }, { "text": "Sixty-four squares", "aliases": ["64 squares", "The board"] }, { "text": "The queen", "aliases": ["Queen"] }] },
+        { "prompt": "What do you know about the Amazon? Four keywords.", "answers": [{ "text": "The rainforest", "aliases": ["Rainforest", "Jungle"] }, { "text": "Brazil" }, { "text": "The river", "aliases": ["River"] }, { "text": "Piranhas", "aliases": ["Piranha", "Snakes"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch engineer drew up the plan for the Afsluitdijk?", "answers": [{ "text": "Cornelis Lely", "aliases": ["Lely"] }] },
-        { "prompt": "What is the capital of Nicaragua?", "answers": [{ "text": "Managua" }] },
-        { "prompt": "Which Flemish painter made The Peasant Wedding?", "answers": [{ "text": "Pieter Bruegel", "aliases": ["Bruegel", "Brueghel"] }] },
-        { "prompt": "In which year did Concorde make its last passenger flight?", "answers": [{ "text": "2003" }] },
-        { "prompt": "Which Pacific island is the largest coral atoll in the world?", "answers": [{ "text": "Kiritimati", "aliases": ["Christmas Island"] }] },
-        { "prompt": "Which Roman goddess gave her name to the month of June?", "answers": [{ "text": "Juno" }] }
+        { "prompt": "What is the capital of Australia?", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Which African country has the most inhabitants?", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Which sea creature has three hearts and blue blood?", "answers": [{ "text": "The octopus", "aliases": ["octopus"] }] },
+        { "prompt": "In which country does the ancient city of Machu Picchu lie?", "answers": [{ "text": "Peru" }] },
+        { "prompt": "Which is the smallest planet in our solar system?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "Who was the first person in space?", "answers": [{ "text": "Yuri Gagarin", "aliases": ["Gagarin"] }] },
+        { "prompt": "Which language has the most native speakers in the world?", "answers": [{ "text": "Mandarin Chinese", "aliases": ["Mandarin", "Chinese"] }] }
       ]
     }
   ]

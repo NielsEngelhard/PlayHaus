@@ -34,11 +34,7 @@
         { "prompt": "Welke toonsoort heeft geen kruisen of mollen?", "options": [{ "text": "C majeur", "correct": true }, { "text": "G majeur" }, { "text": "F majeur" }, { "text": "D majeur" }] },
         { "prompt": "Hoeveel symfonieen schreef Gustav Mahler die hij zelf voltooide?", "options": [{ "text": "Zeven" }, { "text": "Negen", "correct": true }, { "text": "Elf" }, { "text": "Vijf" }] },
         { "prompt": "Welk instrument speelde John Coltrane?", "options": [{ "text": "Piano" }, { "text": "Contrabas" }, { "text": "Saxofoon", "correct": true }, { "text": "Drums" }] },
-        { "prompt": "In welk jaar werd het eerste Eurovisie Songfestival gehouden?", "options": [{ "text": "1956", "correct": true }, { "text": "1961" }, { "text": "1949" }, { "text": "1965" }] },
-        { "prompt": "Welk album van Pink Floyd stond het langst in de Amerikaanse albumlijst?", "options": [{ "text": "The Wall" }, { "text": "Wish You Were Here" }, { "text": "The Dark Side of the Moon", "correct": true }, { "text": "Animals" }] },
         { "prompt": "Wie schreef de opera Der Ring des Nibelungen?", "options": [{ "text": "Richard Strauss" }, { "text": "Richard Wagner", "correct": true }, { "text": "Giuseppe Verdi" }, { "text": "Giacomo Puccini" }] },
-        { "prompt": "Hoeveel Grammy Awards won Beyonce in totaal in haar carriere, bij benadering?", "options": [{ "text": "Meer dan 30", "correct": true }, { "text": "Tussen de 10 en 20" }, { "text": "Minder dan 10" }, { "text": "Precies 25" }] },
-        { "prompt": "Welke Nederlandse band scoorde een wereldhit met Venus?", "options": [{ "text": "Focus" }, { "text": "Shocking Blue", "correct": true }, { "text": "Golden Earring" }, { "text": "The Cats" }] },
         { "prompt": "Wat betekent de muziekterm 'allegro'?", "options": [{ "text": "Langzaam" }, { "text": "Snel en levendig", "correct": true }, { "text": "Zacht" }, { "text": "Plechtig" }] },
         { "prompt": "Welk instrument is GEEN koperblazer?", "options": [{ "text": "Trombone" }, { "text": "Hoorn" }, { "text": "Klarinet", "correct": true }, { "text": "Tuba" }] },
         { "prompt": "In welk jaar viel de band The Beatles officieel uit elkaar?", "options": [{ "text": "1968" }, { "text": "1970", "correct": true }, { "text": "1972" }, { "text": "1969" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Drumstel" },
-        { "prompt": "Andre Rieu" },
-        { "prompt": "Karaoke" },
-        { "prompt": "Vinylplaat" },
-        { "prompt": "Beyonce" },
-        { "prompt": "Oordopjes" },
-        { "prompt": "Fanfare" },
-        { "prompt": "Songfestival" },
-        { "prompt": "Mondharmonica" },
-        { "prompt": "Koptelefoon" },
-        { "prompt": "Bladmuziek" },
-        { "prompt": "Rapper" },
-        { "prompt": "Kerkorgel" },
-        { "prompt": "Tourbus" },
-        { "prompt": "Metronoom" },
-        { "prompt": "Playback" }
+      "words": [
+        "Drumstel",
+        "Karaoke",
+        "Vinylplaat",
+        "Koptelefoon",
+        "Songfestival",
+        "Andre Rieu",
+        "Rapper",
+        "Microfoon",
+        "Bladmuziek",
+        "Opera",
+        "Mondharmonica",
+        "Kerkorgel",
+        "Playback",
+        "Tourbus",
+        "Lowlands",
+        "Pinkpop",
+        "Dirigent",
+        "Doedelzak",
+        "Fanfare",
+        "Bob Marley",
+        "Metronoom",
+        "Concertgebouw",
+        "Draaiorgel",
+        "Contrabas",
+        "Stemvork",
+        "Bohemian Rhapsody",
+        "Doe Maar",
+        "Gregoriaans",
+        "Zwarte Cross",
+        "Roadie"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier leden van The Beatles.", "answers": [{ "text": "John Lennon" }, { "text": "Paul McCartney" }, { "text": "George Harrison" }, { "text": "Ringo Starr" }] },
-        { "prompt": "Wat weet je van Wolfgang Amadeus Mozart? Vier kernwoorden.", "answers": [{ "text": "Oostenrijks" }, { "text": "Componist" }, { "text": "Wonderkind" }, { "text": "Requiem" }] },
-        { "prompt": "Noem vier instrumenten uit een symfonieorkest.", "answers": [{ "text": "Viool" }, { "text": "Cello" }, { "text": "Hobo" }, { "text": "Pauken" }] },
-        { "prompt": "Noem vier Nederlandse acts die het songfestival wonnen of in de top drie eindigden.", "answers": [{ "text": "Duncan Laurence" }, { "text": "Teach-In" }, { "text": "Anouk" }, { "text": "The Common Linnets" }] },
-        { "prompt": "Noem vier muziekgenres die in de jaren tachtig ontstonden of doorbraken.", "answers": [{ "text": "House" }, { "text": "Hiphop" }, { "text": "Synthpop" }, { "text": "Thrash metal" }] },
-        { "prompt": "Noem vier albums van David Bowie.", "answers": [{ "text": "Ziggy Stardust" }, { "text": "Heroes" }, { "text": "Let's Dance" }, { "text": "Blackstar" }] },
-        { "prompt": "Wat weet je van het Concertgebouw in Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Amsterdam" }, { "text": "Akoestiek" }, { "text": "1888" }, { "text": "Orkest" }] },
-        { "prompt": "Noem vier Nederlandse dj's die internationaal doorbraken.", "answers": [{ "text": "Tiesto" }, { "text": "Armin van Buuren" }, { "text": "Martin Garrix" }, { "text": "Hardwell" }] }
+        { "prompt": "Wat weet je van The Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Abbey Road" }] },
+        { "prompt": "Wat weet je van Wolfgang Amadeus Mozart? Vier kernwoorden.", "answers": [{ "text": "Oostenrijker", "aliases": ["Oostenrijk", "Oostenrijks", "Wenen"] }, { "text": "Componist" }, { "text": "Wonderkind" }, { "text": "Requiem" }] },
+        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "Moonwalk" }, { "text": "Thriller" }, { "text": "Witte handschoen", "aliases": ["Handschoen"] }, { "text": "King of Pop" }] },
+        { "prompt": "Wat weet je van Andre Rieu? Vier kernwoorden.", "answers": [{ "text": "Maastricht" }, { "text": "Viool" }, { "text": "Vrijthof" }, { "text": "Walsen", "aliases": ["Wals", "Johann Strauss Orkest"] }] },
+        { "prompt": "Wat weet je van het Eurovisie Songfestival? Vier kernwoorden.", "answers": [{ "text": "Twaalf punten", "aliases": ["12 punten", "Douze points"] }, { "text": "ABBA" }, { "text": "Arcade", "aliases": ["Duncan Laurence"] }, { "text": "Jury" }] },
+        { "prompt": "Wat weet je van Lowlands? Vier kernwoorden.", "answers": [{ "text": "Biddinghuizen" }, { "text": "Camping", "aliases": ["Tent", "Kamperen"] }, { "text": "Augustus" }, { "text": "Modder" }] },
+        { "prompt": "Wat weet je van de gitaar? Vier kernwoorden.", "answers": [{ "text": "Zes snaren", "aliases": ["Snaren", "Zes"] }, { "text": "Akkoorden", "aliases": ["Akkoord"] }, { "text": "Plectrum" }, { "text": "Elektrisch", "aliases": ["Elektrische gitaar", "Versterker"] }] },
+        { "prompt": "Wat weet je van Beyonce? Vier kernwoorden.", "answers": [{ "text": "Destiny's Child" }, { "text": "Single Ladies" }, { "text": "Jay-Z" }, { "text": "Grammy", "aliases": ["Grammy Awards"] }] }
       ]
     },
     {
@@ -112,11 +122,12 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke componist werd doof en bleef toch componeren?", "answers": [{ "text": "Beethoven" }] },
         { "prompt": "Welke band zong Stairway to Heaven?", "answers": [{ "text": "Led Zeppelin" }] },
+        { "prompt": "Welke componist schreef de Matthaus Passion?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "Hoeveel lijnen heeft een muzikale notenbalk?", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
-        { "prompt": "Welke Nederlandse zanger stond bekend als de Zangeres Zonder Naam haar mannelijke tegenhanger en zong Het Kleine Cafe aan de Haven?", "answers": [{ "text": "Vader Abraham" }] },
         { "prompt": "Welke stad organiseert jaarlijks het Sziget-festival?", "answers": [{ "text": "Boedapest" }] },
+        { "prompt": "Uit welk land komt de band AC/DC?", "answers": [{ "text": "Australie", "aliases": ["Australia"] }] },
+        { "prompt": "Welke Nederlandse band scoorde in 1973 een wereldhit met Hocus Pocus?", "answers": [{ "text": "Focus" }] },
         { "prompt": "Wie schreef De Vier Jaargetijden?", "answers": [{ "text": "Vivaldi", "aliases": ["Antonio Vivaldi"] }] }
       ]
     }

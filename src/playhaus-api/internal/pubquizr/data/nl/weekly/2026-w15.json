@@ -33,18 +33,14 @@
       "questions": [
         { "prompt": "Wat is de kleinste staat van de Verenigde Staten?", "options": [{ "text": "Rhode Island", "correct": true }, { "text": "Delaware" }, { "text": "Connecticut" }, { "text": "Vermont" }] },
         { "prompt": "Welke Italiaanse schrijver schreef De naam van de roos?", "options": [{ "text": "Umberto Eco", "correct": true }, { "text": "Italo Calvino" }, { "text": "Primo Levi" }, { "text": "Alberto Moravia" }] },
-        { "prompt": "Welk klein sterrenstelsel is met het blote oog te zien vanaf het zuidelijk halfrond?", "options": [{ "text": "De Grote Magelhaense Wolk", "correct": true }, { "text": "Andromeda" }, { "text": "Centaurus A" }, { "text": "Het Sombrerostelsel" }] },
         { "prompt": "Welk klein orgaan in de hersenen maakt melatonine aan?", "options": [{ "text": "De pijnappelklier", "correct": true }, { "text": "De schildklier" }, { "text": "De zwezerik" }, { "text": "De bijschildklier" }] },
-        { "prompt": "Waarvan wordt tofu gemaakt?", "options": [{ "text": "Van sojabonen", "correct": true }, { "text": "Van rijst" }, { "text": "Van kikkererwten" }, { "text": "Van tarwe" }] },
         { "prompt": "In welke sport wordt de Zweedse Vasaloppet verreden?", "options": [{ "text": "Langlaufen", "correct": true }, { "text": "Schansspringen" }, { "text": "Biatlon" }, { "text": "Schaatsen" }] },
         { "prompt": "Welke Griekse filosoof moest de gifbeker met scheerling drinken?", "options": [{ "text": "Socrates", "correct": true }, { "text": "Plato" }, { "text": "Epicurus" }, { "text": "Diogenes" }] },
         { "prompt": "Welk klein bruin vogeltje staat bekend om zijn zang na zonsondergang?", "options": [{ "text": "De nachtegaal", "correct": true }, { "text": "De merel" }, { "text": "Het roodborstje" }, { "text": "Het winterkoninkje" }] },
         { "prompt": "In welke stad houdt het Europees Parlement zijn plenaire zittingen?", "options": [{ "text": "Straatsburg", "correct": true }, { "text": "Luxemburg" }, { "text": "Den Haag" }, { "text": "Frankfurt" }] },
-        { "prompt": "Welk element geeft vuurwerk zijn felrode kleur?", "options": [{ "text": "Strontium", "correct": true }, { "text": "Barium" }, { "text": "Natrium" }, { "text": "Koper" }] },
         { "prompt": "Welke eenheid meet hoe hard een geluid is?", "options": [{ "text": "De decibel", "correct": true }, { "text": "De hertz" }, { "text": "De lumen" }, { "text": "De candela" }] },
         { "prompt": "Wat is de noordelijkste stad ter wereld?", "options": [{ "text": "Longyearbyen", "correct": true }, { "text": "Tromso" }, { "text": "Moermansk" }, { "text": "Nuuk" }] },
-        { "prompt": "Welke duursportwedstrijd combineert een lange zwemtocht, een fietsrit en een marathon?", "options": [{ "text": "De Ironman", "correct": true }, { "text": "De tienkamp" }, { "text": "De biatlon" }, { "text": "De zevenkamp" }] },
-        { "prompt": "In welke taal wordt de traditionele katholieke mis gelezen?", "options": [{ "text": "Latijn", "correct": true }, { "text": "Grieks" }, { "text": "Aramees" }, { "text": "Hebreeuws" }] }
+        { "prompt": "Welke duursportwedstrijd combineert een lange zwemtocht, een fietsrit en een marathon?", "options": [{ "text": "De Ironman", "correct": true }, { "text": "De tienkamp" }, { "text": "De biatlon" }, { "text": "De zevenkamp" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Breinaald" },
-        { "prompt": "Moersleutel" },
-        { "prompt": "Fietsketting" },
-        { "prompt": "Blender" },
-        { "prompt": "Schoensmeer" },
-        { "prompt": "Jampot" },
-        { "prompt": "Scheepsroer" },
-        { "prompt": "Papieren vliegtuigje" },
-        { "prompt": "Strandbal" },
-        { "prompt": "Brandtrap" },
-        { "prompt": "Lift" },
-        { "prompt": "Spijker" },
-        { "prompt": "Benzinepomp" },
-        { "prompt": "Haarspeld" },
-        { "prompt": "IJshoorntje" },
-        { "prompt": "Stoep" }
+      "words": [
+        "Ladder",
+        "Chocolade",
+        "Pinguin",
+        "Leraar",
+        "Verjaardagstaart",
+        "Piano",
+        "Zonnebril",
+        "Station",
+        "Dolfijn",
+        "Postbode",
+        "Het Colosseum",
+        "De Leeuwenkoning",
+        "Cleopatra",
+        "Mount Everest",
+        "Rechter",
+        "De Chinese Muur",
+        "Harry Potter",
+        "Vulkaan",
+        "Het Vrijheidsbeeld",
+        "Andre Hazes",
+        "Leonardo da Vinci",
+        "De Koude Oorlog",
+        "Imker",
+        "Stonehenge",
+        "De Zijderoute",
+        "Inflatie",
+        "Frida Kahlo",
+        "De Mona Lisa",
+        "Vuurtorenwachter",
+        "Evolutie"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier EU-landen die hun eigen munt hebben gehouden.", "answers": [{ "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Polen" }, { "text": "Tsjechie" }] },
-        { "prompt": "Noem vier Italiaanse kazen.", "answers": [{ "text": "Parmezaan" }, { "text": "Mozzarella" }, { "text": "Gorgonzola" }, { "text": "Ricotta" }] },
-        { "prompt": "Noem vier schilders die in Spanje zijn geboren.", "answers": [{ "text": "Picasso" }, { "text": "Dali" }, { "text": "Velazquez" }, { "text": "Goya" }] },
-        { "prompt": "Noem vier olympische sporten in of op het water.", "answers": [{ "text": "Zwemmen" }, { "text": "Schoonspringen" }, { "text": "Waterpolo" }, { "text": "Roeien" }] },
-        { "prompt": "Noem vier Europese hoofdsteden die met de letter B beginnen.", "answers": [{ "text": "Berlijn" }, { "text": "Brussel" }, { "text": "Boedapest" }, { "text": "Boekarest" }] },
-        { "prompt": "Noem vier stuks gereedschap uit een gereedschapskist.", "answers": [{ "text": "Hamer" }, { "text": "Schroevendraaier" }, { "text": "Tang" }, { "text": "Zaag" }] },
-        { "prompt": "Noem vier tennissers die een grandslamtitel hebben gewonnen.", "answers": [{ "text": "Federer" }, { "text": "Nadal" }, { "text": "Djokovic" }, { "text": "Serena Williams" }] },
-        { "prompt": "Noem vier dingen die op water blijven drijven.", "answers": [{ "text": "Hout" }, { "text": "Kurk" }, { "text": "IJs" }, { "text": "Plastic" }] }
+        { "prompt": "Wat weet je van de Mona Lisa? Vier kernwoorden.", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci", "Leonardo"] }, { "text": "Het Louvre", "aliases": ["Louvre"] }, { "text": "Haar glimlach", "aliases": ["Glimlach", "Raadselachtige glimlach"] }, { "text": "Parijs" }] },
+        { "prompt": "Wat weet je van Mount Everest? Vier kernwoorden.", "answers": [{ "text": "De Himalaya", "aliases": ["Himalaya"] }, { "text": "De hoogste berg", "aliases": ["Hoogste berg", "8848 meter"] }, { "text": "Nepal", "aliases": ["Tibet"] }, { "text": "Edmund Hillary", "aliases": ["Hillary", "Tenzing Norgay", "Sherpa"] }] },
+        { "prompt": "Wat weet je van The Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Abbey Road", "Hey Jude"] }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Afrika" }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }] },
+        { "prompt": "Wat weet je van Napoleon? Vier kernwoorden.", "answers": [{ "text": "Frankrijk", "aliases": ["Frans"] }, { "text": "Waterloo" }, { "text": "Keizer" }, { "text": "Elba", "aliases": ["Verbanning", "Sint-Helena", "Corsica"] }] },
+        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "Kerstboom", "aliases": ["Boom"] }, { "text": "Cadeaus", "aliases": ["Cadeau", "Kerstpakket"] }, { "text": "25 december", "aliases": ["25 December", "Eerste kerstdag"] }, { "text": "De Kerstman", "aliases": ["Kerstman", "Santa Claus"] }] },
+        { "prompt": "Wat weet je van haaien? Vier kernwoorden.", "answers": [{ "text": "Tanden", "aliases": ["Rijen tanden"] }, { "text": "Jaws", "aliases": ["De film Jaws"] }, { "text": "Rugvin", "aliases": ["Vin", "Vinnen"] }, { "text": "Witte haai", "aliases": ["Grote witte haai", "Hamerhaai"] }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog? Vier kernwoorden.", "answers": [{ "text": "Adolf Hitler", "aliases": ["Hitler"] }, { "text": "1939 tot 1945", "aliases": ["1939-1945", "1940-1945", "1945"] }, { "text": "D-Day", "aliases": ["Normandie", "De landing"] }, { "text": "De atoombom", "aliases": ["Atoombom", "Hiroshima", "Anne Frank"] }] }
       ]
     },
     {
@@ -115,8 +125,9 @@
         { "prompt": "Welke natuurkundige in de Republiek bedacht een temperatuurschaal die in Amerika nog steeds wordt gebruikt?", "answers": [{ "text": "Daniel Fahrenheit", "aliases": ["Fahrenheit"] }] },
         { "prompt": "Wat is de hoofdstad van Armenie?", "answers": [{ "text": "Jerevan", "aliases": ["Yerevan"] }] },
         { "prompt": "Welke Duitse schrijver schreef De blikken trommel?", "answers": [{ "text": "Gunter Grass", "aliases": ["Grass"] }] },
-        { "prompt": "In welk jaar reed de eerste elektrische tram in Nederland?", "answers": [{ "text": "1890" }] },
-        { "prompt": "Welke Zuid-Afrikaanse krater is de grootste inslagkrater op aarde?", "answers": [{ "text": "De Vredefortkrater", "aliases": ["Vredefort"] }] },
+        { "prompt": "In welke opera van Mozart komt de Koningin van de Nacht voor?", "answers": [{ "text": "Die Zauberflote", "aliases": ["De Toverfluit", "The Magic Flute"] }] },
+        { "prompt": "Welke planeet van ons zonnestelsel draait op zijn kant?", "answers": [{ "text": "Uranus" }] },
+        { "prompt": "Wat is het grootste eiland in de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
         { "prompt": "Welke Italiaanse wiskundige gaf zijn naam aan een beroemde getallenreeks?", "answers": [{ "text": "Fibonacci" }] }
       ]
     }

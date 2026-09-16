@@ -32,16 +32,12 @@
       "round": 2,
       "questions": [
         { "prompt": "Welk Zuid-Amerikaans land heeft geen kust?", "options": [{ "text": "Bolivia", "correct": true }, { "text": "Peru" }, { "text": "Ecuador" }, { "text": "Venezuela" }] },
-        { "prompt": "Wat is de hoofdstad van IJsland?", "options": [{ "text": "Reykjavik", "correct": true }, { "text": "Akureyri" }, { "text": "Bergen" }, { "text": "Tromso" }] },
         { "prompt": "Wie schreef het toneelstuk Nora of het poppenhuis?", "options": [{ "text": "Henrik Ibsen", "correct": true }, { "text": "August Strindberg" }, { "text": "Bertolt Brecht" }, { "text": "Knut Hamsun" }] },
         { "prompt": "Wat is de grootste haaiensoort?", "options": [{ "text": "De walvishaai", "correct": true }, { "text": "De witte haai" }, { "text": "De tijgerhaai" }, { "text": "De hamerhaai" }] },
         { "prompt": "Welk bloedvat vervoert bloed van het hart naar de longen?", "options": [{ "text": "De longslagader", "correct": true }, { "text": "De aorta" }, { "text": "De halsslagader" }, { "text": "De halsader" }] },
         { "prompt": "Welk gebergte vormt de grens tussen Frankrijk en Spanje?", "options": [{ "text": "De Pyreneeen", "correct": true }, { "text": "De Apennijnen" }, { "text": "De Karpaten" }, { "text": "De Vogezen" }] },
-        { "prompt": "In welk land leeft de kiwi van nature?", "options": [{ "text": "Nieuw-Zeeland", "correct": true }, { "text": "Australie" }, { "text": "Papoea-Nieuw-Guinea" }, { "text": "Fiji" }] },
         { "prompt": "Welke kleur is geen primaire kleur van licht?", "options": [{ "text": "Geel", "correct": true }, { "text": "Blauw" }, { "text": "Groen" }, { "text": "Rood" }] },
         { "prompt": "Wie is in de Griekse mythologie de god van de zee?", "options": [{ "text": "Poseidon", "correct": true }, { "text": "Hades" }, { "text": "Hermes" }, { "text": "Hephaistos" }] },
-        { "prompt": "Welk instrument heeft vier snaren en wordt met een strijkstok onder de kin bespeeld?", "options": [{ "text": "De viool", "correct": true }, { "text": "De cello" }, { "text": "De altviool" }, { "text": "De contrabas" }] },
-        { "prompt": "In welk bordspel koop je straten en bouw je hotels?", "options": [{ "text": "Monopoly", "correct": true }, { "text": "Risk" }, { "text": "Cluedo" }, { "text": "Scrabble" }] },
         { "prompt": "Welk hondenras is het grootst van stokmaat?", "options": [{ "text": "De Duitse dog", "correct": true }, { "text": "De sint-bernard" }, { "text": "De newfoundlander" }, { "text": "De mastiff" }] },
         { "prompt": "Wie bereikte als eerste de zuidpool?", "options": [{ "text": "Roald Amundsen", "correct": true }, { "text": "Robert Scott" }, { "text": "Ernest Shackleton" }, { "text": "Fridtjof Nansen" }] },
         { "prompt": "Wat verzamelt een filatelist?", "options": [{ "text": "Postzegels", "correct": true }, { "text": "Munten" }, { "text": "Vlinders" }, { "text": "Ansichtkaarten" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Vuurwerk" },
-        { "prompt": "Confetti" },
-        { "prompt": "Kalender" },
-        { "prompt": "Champagne" },
-        { "prompt": "IJsbaan" },
-        { "prompt": "Want" },
-        { "prompt": "Schoorsteen" },
-        { "prompt": "Slee" },
-        { "prompt": "Sneeuwbal" },
-        { "prompt": "Dennenappel" },
-        { "prompt": "Warme chocolademelk" },
-        { "prompt": "Deken" },
-        { "prompt": "Thermoskan" },
-        { "prompt": "IJspegel" },
-        { "prompt": "Wollen muts" },
-        { "prompt": "Kandelaar" }
+      "words": [
+        "Vuurwerk",
+        "Oliebol",
+        "Champagne",
+        "Sneeuwbal",
+        "Schoorsteen",
+        "Postbode",
+        "Tandenborstel",
+        "Pinguin",
+        "Trampoline",
+        "Paraplu",
+        "Sinterklaas",
+        "Albert Einstein",
+        "De Eiffeltoren",
+        "Titanic",
+        "Imker",
+        "New York",
+        "Karaoke",
+        "Max Verstappen",
+        "IJshockey",
+        "Vulkaan",
+        "De Nachtwacht",
+        "De Chinese Muur",
+        "Schrikkeljaar",
+        "Archeoloog",
+        "De Efteling",
+        "De Sahara",
+        "Sherlock Holmes",
+        "De Deltawerken",
+        "De maanlanding",
+        "Hypnose"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Brazilie grenzen.", "answers": [{ "text": "Argentinie" }, { "text": "Bolivia" }, { "text": "Peru" }, { "text": "Colombia" }] },
-        { "prompt": "Noem de vier aggregatietoestanden.", "answers": [{ "text": "Vast" }, { "text": "Vloeibaar" }, { "text": "Gas" }, { "text": "Plasma" }] },
-        { "prompt": "Noem de vier snaren van een ukelele.", "answers": [{ "text": "G" }, { "text": "C" }, { "text": "E" }, { "text": "A" }] },
-        { "prompt": "Noem vier landen die met de letter I beginnen.", "answers": [{ "text": "Italie" }, { "text": "India" }, { "text": "IJsland" }, { "text": "Ierland" }] },
-        { "prompt": "Noem de vier schijngestalten van de maan.", "answers": [{ "text": "Nieuwe maan" }, { "text": "Eerste kwartier" }, { "text": "Volle maan" }, { "text": "Laatste kwartier" }] },
-        { "prompt": "Noem vier soorten pasta.", "answers": [{ "text": "Spaghetti" }, { "text": "Penne" }, { "text": "Fusilli" }, { "text": "Tagliatelle" }] },
-        { "prompt": "Noem vier dieren die een winterslaap houden.", "answers": [{ "text": "Beer" }, { "text": "Egel" }, { "text": "Vleermuis" }, { "text": "Hazelmuis" }] },
-        { "prompt": "Noem vier sporten van de Olympische Winterspelen.", "answers": [{ "text": "Skien" }, { "text": "IJshockey" }, { "text": "Bobsleeen" }, { "text": "Schaatsen" }] }
+        { "prompt": "Wat weet je van Vincent van Gogh? Vier kernwoorden.", "answers": [{ "text": "Zonnebloemen" }, { "text": "Zijn oor", "aliases": ["Oor", "Hij sneed zijn oor af"] }, { "text": "De sterrennacht", "aliases": ["Sterrennacht", "The Starry Night"] }, { "text": "Hij was Nederlander", "aliases": ["Nederlander", "Nederland", "Zundert"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "Een ijsberg", "aliases": ["IJsberg"] }, { "text": "Het schip zonk", "aliases": ["Gezonken", "Zonk", "Scheepsramp"] }, { "text": "1912", "aliases": ["Negentientwaalf"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Jack en Rose", "Kate Winslet"] }] },
+        { "prompt": "Wat weet je van Australie? Vier kernwoorden.", "answers": [{ "text": "Kangoeroes", "aliases": ["Kangoeroe"] }, { "text": "Het Opera House in Sydney", "aliases": ["Sydney", "Opera House"] }, { "text": "De outback", "aliases": ["Woestijn", "Uluru", "Ayers Rock"] }, { "text": "Het Great Barrier Reef", "aliases": ["Barrier Reef", "Koraalrif"] }] },
+        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "De maanlanding", "aliases": ["Neil Armstrong", "Apollo 11", "Astronauten"] }, { "text": "Kraters", "aliases": ["Krater"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }, { "text": "Volle maan", "aliases": ["Schijngestalten", "Halve maan"] }] },
+        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "De relativiteitstheorie", "aliases": ["Relativiteit"] }, { "text": "E is mc kwadraat", "aliases": ["E=mc2", "E = mc2"] }, { "text": "Zijn wilde haar", "aliases": ["Wild haar", "Uitstaand haar", "Snor"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pizza", "aliases": ["Pasta", "Spaghetti"] }, { "text": "Rome", "aliases": ["Het Colosseum", "Colosseum"] }, { "text": "De toren van Pisa", "aliases": ["Pisa", "Scheve toren"] }, { "text": "Het land heeft de vorm van een laars", "aliases": ["Een laars", "Laars"] }] },
+        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw", "aliases": ["Het sneeuwt"] }, { "text": "Kou", "aliases": ["Koud", "Vorst", "IJs"] }, { "text": "Korte dagen", "aliases": ["Donker", "Het wordt vroeg donker"] }, { "text": "Schaatsen", "aliases": ["Skien", "Wintersport", "Elfstedentocht"] }] },
+        { "prompt": "Wat weet je van de Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney", "McCartney"] }, { "text": "Ze waren met zijn vieren", "aliases": ["Vier", "Viertal", "Vier leden"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Noorse ontdekkingsreiziger voer met het poolschip Fram?", "answers": [{ "text": "Fridtjof Nansen", "aliases": ["Nansen"] }] },
-        { "prompt": "Wat is de hoofdstad van Bhutan?", "answers": [{ "text": "Thimphu" }] },
-        { "prompt": "Welke Zwitserse wiskundige gaf ons het symbool voor pi zoals we het nu schrijven?", "answers": [{ "text": "Leonhard Euler", "aliases": ["Euler"] }] },
-        { "prompt": "Welke Duitse natuurkundige toonde als eerste het bestaan van radiogolven aan?", "answers": [{ "text": "Heinrich Hertz", "aliases": ["Hertz"] }] },
-        { "prompt": "In welk jaar werd het Suezkanaal geopend?", "answers": [{ "text": "1869" }] },
-        { "prompt": "Welke Italiaanse componist schreef de opera Tosca?", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] }
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Welke componist schreef de opera Die Zauberflote?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik", "aliases": ["Mercurius"] }] },
+        { "prompt": "Welk land schonk het Vrijheidsbeeld aan de Verenigde Staten?", "answers": [{ "text": "Frankrijk" }] },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answers": [{ "text": "1989" }] },
+        { "prompt": "Wat is het grootste eiland in de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] }
       ]
     }
   ]

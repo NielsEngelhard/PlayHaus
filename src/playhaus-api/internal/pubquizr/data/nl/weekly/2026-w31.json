@@ -35,15 +35,11 @@
         { "prompt": "Wie schreef Don Quichot?", "options": [{ "text": "Cervantes", "correct": true }, { "text": "Lope de Vega" }, { "text": "Calderon" }, { "text": "Quevedo" }] },
         { "prompt": "Welk gas ruikt naar rotte eieren?", "options": [{ "text": "Methaan" }, { "text": "Zwavelwaterstof", "correct": true }, { "text": "Ammoniak" }, { "text": "Ozon" }] },
         { "prompt": "In welk jaar begon de Amerikaanse Burgeroorlog?", "options": [{ "text": "1848" }, { "text": "1861", "correct": true }, { "text": "1865" }, { "text": "1870" }] },
-        { "prompt": "Wat is de hoofdstad van Argentinie?", "options": [{ "text": "Cordoba" }, { "text": "Rosario" }, { "text": "Buenos Aires", "correct": true }, { "text": "Mendoza" }] },
         { "prompt": "Welk dier legt de meeste eieren van deze vier?", "options": [{ "text": "Kip" }, { "text": "Zeeschildpad", "correct": true }, { "text": "Pinguin" }, { "text": "Struisvogel" }] },
-        { "prompt": "Hoeveel punten is een schot binnen de driepuntslijn waard in basketbal?", "options": [{ "text": "Een" }, { "text": "Twee", "correct": true }, { "text": "Drie" }, { "text": "Vier" }] },
         { "prompt": "Welke planeet heeft de kortste dag?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Aarde" }, { "text": "Mars" }, { "text": "Venus" }] },
         { "prompt": "Welk land heeft de meeste inwoners van deze vier?", "options": [{ "text": "Nigeria", "correct": true }, { "text": "Rusland" }, { "text": "Japan" }, { "text": "Mexico" }] },
         { "prompt": "Welke schrijfster schreef Pride and Prejudice?", "options": [{ "text": "Jane Austen", "correct": true }, { "text": "Emily Bronte" }, { "text": "George Eliot" }, { "text": "Elizabeth Gaskell" }] },
-        { "prompt": "Welk vitaminegebrek veroorzaakt scheurbuik?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine B12" }, { "text": "Vitamine C", "correct": true }, { "text": "Vitamine D" }] },
         { "prompt": "Welke Nederlandse rivier is de langste binnen de landsgrenzen?", "options": [{ "text": "Maas", "correct": true }, { "text": "IJssel" }, { "text": "Waal" }, { "text": "Vecht" }] },
-        { "prompt": "In welk jaar werd het Eurovisie Songfestival voor het eerst gehouden?", "options": [{ "text": "1950" }, { "text": "1956", "correct": true }, { "text": "1960" }, { "text": "1964" }] },
         { "prompt": "Welk van deze instrumenten is een koperblazer?", "options": [{ "text": "Hobo" }, { "text": "Trombone", "correct": true }, { "text": "Fagot" }, { "text": "Dwarsfluit" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Molen" },
-        { "prompt": "Schaakbord" },
-        { "prompt": "Dolfijn" },
-        { "prompt": "Postkantoor" },
-        { "prompt": "Perzik" },
-        { "prompt": "Tovenaar" },
-        { "prompt": "Steigerpijp" },
-        { "prompt": "Xylofoon" },
-        { "prompt": "Mist" },
-        { "prompt": "Imker" },
-        { "prompt": "Onderzeeboot" },
-        { "prompt": "Zonnepaneel" },
-        { "prompt": "Sok" },
-        { "prompt": "Vlinder" },
-        { "prompt": "Circus" },
-        { "prompt": "Broodrooster" }
+      "words": [
+        "Dolfijn",
+        "Vlinder",
+        "Sok",
+        "Broodrooster",
+        "Circus",
+        "Perzik",
+        "Mist",
+        "Postkantoor",
+        "Xylofoon",
+        "Zwembad",
+        "Onderzeeboot",
+        "Zonnepaneel",
+        "Astronaut",
+        "Schaakbord",
+        "Tovenaar",
+        "Napoleon",
+        "Stroopwafel",
+        "Judo",
+        "Venetie",
+        "Onweer",
+        "Het Suezkanaal",
+        "Gebarentaal",
+        "De Taj Mahal",
+        "Notaris",
+        "De Elfstedentocht",
+        "Echo",
+        "De Vesuvius",
+        "Kameleon",
+        "Het IJzeren Gordijn",
+        "Buikspreker"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Nederland of Belgie grenzen.", "answers": [{ "text": "Duitsland" }, { "text": "Belgie" }, { "text": "Frankrijk" }, { "text": "Luxemburg" }] },
-        { "prompt": "Noem de vier grootste steden van het Verenigd Koninkrijk.", "answers": [{ "text": "Londen" }, { "text": "Birmingham" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
-        { "prompt": "Noem de vier instrumenten van een strijkkwartet.", "answers": [{ "text": "Eerste viool" }, { "text": "Tweede viool" }, { "text": "Viola" }, { "text": "Cello" }] },
-        { "prompt": "Noem vier wereldgodsdiensten.", "answers": [{ "text": "Christendom" }, { "text": "Islam" }, { "text": "Jodendom" }, { "text": "Boeddhisme" }] },
-        { "prompt": "Noem de vier bloedvatsoorten van het menselijk lichaam naast de haarvaten.", "answers": [{ "text": "Slagader" }, { "text": "Ader" }, { "text": "Arteriole" }, { "text": "Venule" }] },
-        { "prompt": "Noem de vier grootste eilanden van de Nederlandse Waddenzee.", "answers": [{ "text": "Texel" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Vlieland" }] },
-        { "prompt": "Noem de vier hoofdgassen van de atmosfeer van de aarde.", "answers": [{ "text": "Stikstof" }, { "text": "Zuurstof" }, { "text": "Argon" }, { "text": "Koolstofdioxide" }] },
-        { "prompt": "Noem vier Italiaanse steden van de Renaissance.", "answers": [{ "text": "Florence" }, { "text": "Venetie" }, { "text": "Rome" }, { "text": "Milaan" }] }
+        { "prompt": "Wat weet je van Nederland? Vier kernwoorden.", "answers": [{ "text": "Tulpen", "aliases": ["Tulp", "Bloembollen"] }, { "text": "Molens", "aliases": ["Molen", "Windmolen"] }, { "text": "Kaas", "aliases": ["Gouda", "Edammer"] }, { "text": "Onder zeeniveau", "aliases": ["Dijken", "Water", "Fietsen"] }] },
+        { "prompt": "Wat weet je van Rembrandt? Vier kernwoorden.", "answers": [{ "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Schilder", "aliases": ["Schilderij", "Kunstenaar"] }, { "text": "Amsterdam", "aliases": ["Leiden"] }, { "text": "Zelfportretten", "aliases": ["Zelfportret", "Gouden Eeuw"] }] },
+        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Wolkenkrabbers", "aliases": ["Wolkenkrabber", "Empire State Building"] }, { "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Times Square", "aliases": ["Broadway", "Central Park"] }, { "text": "Gele taxis", "aliases": ["Taxis", "Yellow cabs"] }] },
+        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "De kerstboom", "aliases": ["Kerstboom", "Boom"] }, { "text": "Cadeaus", "aliases": ["Cadeau", "Pakjes"] }, { "text": "De Kerstman", "aliases": ["Kerstman", "Santa Claus"] }, { "text": "Kerstdiner", "aliases": ["Gourmetten", "Familie"] }] },
+        { "prompt": "Wat weet je van dinosaurussen? Vier kernwoorden.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T rex"] }, { "text": "Uitgestorven", "aliases": ["Uitsterven"] }, { "text": "Een meteoriet", "aliases": ["Meteoriet", "Asteroide", "Inslag"] }, { "text": "Fossielen", "aliases": ["Fossiel", "Botten", "Skelet"] }] },
+        { "prompt": "Wat weet je van Madonna? Vier kernwoorden.", "answers": [{ "text": "Popzangeres", "aliases": ["Zangeres", "Popster"] }, { "text": "Like a Virgin", "aliases": ["Material Girl", "Hung Up"] }, { "text": "Amerikaans", "aliases": ["Verenigde Staten", "Amerika"] }, { "text": "De jaren tachtig", "aliases": ["1980", "Jaren 80"] }] },
+        { "prompt": "Wat weet je van de zee? Vier kernwoorden.", "answers": [{ "text": "Zout water", "aliases": ["Zout", "Zilt"] }, { "text": "Golven", "aliases": ["Golf", "Getijden", "Eb en vloed"] }, { "text": "Vissen", "aliases": ["Vis", "Walvissen"] }, { "text": "Het strand", "aliases": ["Strand", "Zand", "Schepen"] }] },
+        { "prompt": "Wat weet je van katten? Vier kernwoorden.", "answers": [{ "text": "Spinnen", "aliases": ["Spinnend", "Miauwen"] }, { "text": "Snorharen", "aliases": ["Nagels", "Vacht"] }, { "text": "Negen levens", "aliases": ["Zeven levens"] }, { "text": "Muizen vangen", "aliases": ["Muizen", "Jagen"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse microscopist zag als eerste bacterien door een zelfgemaakte lens?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
-        { "prompt": "Wat is de langste rivier van Azie?", "answers": [{ "text": "De Jangtsekiang", "aliases": ["Jangtse", "Yangtze"] }] },
-        { "prompt": "Welke Duitse componist schreef de Brandenburgse concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
-        { "prompt": "Wat is de hoofdstad van Vietnam?", "answers": [{ "text": "Hanoi" }] },
-        { "prompt": "Welke Poolse natuurkundige kreeg twee Nobelprijzen in twee verschillende vakgebieden?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
-        { "prompt": "In welk jaar begon de Tachtigjarige Oorlog?", "answers": [{ "text": "1568" }] }
+        { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Welk zeedier heeft drie harten en blauw bloed?", "answers": [{ "text": "De octopus", "aliases": ["Octopus", "Inktvis"] }] },
+        { "prompt": "Welke Russische schrijver schreef Oorlog en Vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoi"] }] },
+        { "prompt": "Hoe heet de munteenheid van Japan?", "answers": [{ "text": "De yen", "aliases": ["Yen"] }] },
+        { "prompt": "Welke berg is de hoogste buiten Azie?", "answers": [{ "text": "De Aconcagua", "aliases": ["Aconcagua"] }] },
+        { "prompt": "In welk land werd componist Chopin geboren?", "answers": [{ "text": "Polen" }] },
+        { "prompt": "Welke Italiaanse ontdekkingsreiziger gaf zijn naam aan Amerika?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
       ]
     }
   ]

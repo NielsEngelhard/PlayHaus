@@ -80,6 +80,56 @@ func TestSeedLoadsEveryQuizThatShips(t *testing.T) {
 	}
 }
 
+// QuestionsIn is the exact content every quiz that ships has to carry. The validator
+// only enforces floors, which is how the shipped files drifted to fourteen ABCD
+// questions and six finale questions without anything noticing.
+var questionsIn = map[int]int{
+	RoundOpen:       20,
+	RoundChoice:     10,
+	RoundClosest:    8,
+	RoundDescribe:   30,
+	RoundList:       8,
+	RoundDoubleDown: 10,
+	RoundFinale:     7,
+}
+
+func TestEveryShippedQuizCarriesAFullRound(t *testing.T) {
+	store, db := newTestStore(t)
+
+	if err := Seed(context.Background(), store); err != nil {
+		t.Fatalf("seed: %v", err)
+	}
+
+	var loaded []*Quiz
+	if err := withContent(db).Find(&loaded).Error; err != nil {
+		t.Fatalf("load quizzes: %v", err)
+	}
+
+	for _, quiz := range loaded {
+		for round := 1; round <= Rounds; round++ {
+			questions := quiz.QuestionsIn(round)
+			if want := questionsIn[round]; len(questions) != want {
+				t.Errorf("%s/%s round %d has %d questions, wants exactly %d",
+					quiz.Locale, quiz.Slug, round, len(questions), want)
+			}
+		}
+
+		for _, question := range quiz.QuestionsIn(RoundDescribe) {
+			if len(question.Answers) > 0 {
+				t.Errorf("%s/%s round %d word %q came back with answers",
+					quiz.Locale, quiz.Slug, RoundDescribe, question.Prompt)
+			}
+		}
+
+		for _, question := range quiz.QuestionsIn(RoundList) {
+			if found := len(question.CorrectAnswers()); found != ListAnswersPerQuestion {
+				t.Errorf("%s/%s round %d question %q has %d answers, wants %d",
+					quiz.Locale, quiz.Slug, RoundList, question.Prompt, found, ListAnswersPerQuestion)
+			}
+		}
+	}
+}
+
 // TestSeedTwiceChangesNothing matters because the ids have to survive a restart:
 // a session points at a question, and rewriting the content under it would break
 // somebody halfway through a game.

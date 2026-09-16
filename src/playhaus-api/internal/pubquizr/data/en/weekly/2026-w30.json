@@ -37,14 +37,10 @@
         { "prompt": "In what year was the Maastricht Treaty signed?", "options": [{ "text": "1986" }, { "text": "1990" }, { "text": "1992", "correct": true }, { "text": "1995" }] },
         { "prompt": "What is the capital of Morocco?", "options": [{ "text": "Casablanca" }, { "text": "Rabat", "correct": true }, { "text": "Marrakech" }, { "text": "Fez" }] },
         { "prompt": "Which animal can change the colour of its skin?", "options": [{ "text": "Chameleon", "correct": true }, { "text": "Salamander" }, { "text": "Gecko" }, { "text": "Iguana" }] },
-        { "prompt": "How many players does a water polo team have in the water?", "options": [{ "text": "Six" }, { "text": "Seven", "correct": true }, { "text": "Eight" }, { "text": "Nine" }] },
-        { "prompt": "Which body is the earth's only natural satellite?", "options": [{ "text": "The moon", "correct": true }, { "text": "Phobos" }, { "text": "Titan" }, { "text": "Europa" }] },
         { "prompt": "Which country is made up of more than seventeen thousand islands?", "options": [{ "text": "Philippines" }, { "text": "Indonesia", "correct": true }, { "text": "Japan" }, { "text": "Malaysia" }] },
         { "prompt": "Which French painter made the series Water Lilies?", "options": [{ "text": "Claude Monet", "correct": true }, { "text": "Edgar Degas" }, { "text": "Paul Cezanne" }, { "text": "Pierre-Auguste Renoir" }] },
-        { "prompt": "Which mineral is the softest on the Mohs scale?", "options": [{ "text": "Gypsum" }, { "text": "Talc", "correct": true }, { "text": "Calcite" }, { "text": "Quartz" }] },
         { "prompt": "Which Dutch city lies on the river Waal?", "options": [{ "text": "Nijmegen", "correct": true }, { "text": "Deventer" }, { "text": "Zwolle" }, { "text": "Maastricht" }] },
-        { "prompt": "In what year was the first football World Cup held?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] },
-        { "prompt": "Which instrument does NOT belong to the strings of a symphony orchestra?", "options": [{ "text": "Violin" }, { "text": "Cello" }, { "text": "Clarinet", "correct": true }, { "text": "Double bass" }] }
+        { "prompt": "In what year was the first football World Cup held?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Blacksmith" },
-        { "prompt": "Ski boot" },
-        { "prompt": "Owl" },
-        { "prompt": "Castle" },
-        { "prompt": "Melon" },
-        { "prompt": "Clown" },
-        { "prompt": "Iron" },
-        { "prompt": "Drum" },
-        { "prompt": "Hailstone" },
-        { "prompt": "Fisherman" },
-        { "prompt": "Ferry" },
-        { "prompt": "Weather vane" },
-        { "prompt": "Glove" },
-        { "prompt": "Frog" },
-        { "prompt": "Playground" },
-        { "prompt": "Coffee grinder" }
+      "words": [
+        "Camel",
+        "Popcorn",
+        "Violin",
+        "Snowstorm",
+        "Rollercoaster",
+        "Nurse",
+        "Backpack",
+        "Wedding ring",
+        "Airport",
+        "Vampire",
+        "Colosseum",
+        "Star Wars",
+        "Chess",
+        "Jungle",
+        "Postman",
+        "Zoo",
+        "Submarine",
+        "Carnival",
+        "Igloo",
+        "Compass",
+        "Julius Caesar",
+        "The Grand Canyon",
+        "The Lion King",
+        "Harry Potter",
+        "Olympic torch",
+        "Lifeguard",
+        "Venice",
+        "Sahara",
+        "Tattoo",
+        "Cowboy"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest cities of the Netherlands.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
-        { "prompt": "Name the four original members of Led Zeppelin.", "answers": [{ "text": "Robert Plant" }, { "text": "Jimmy Page" }, { "text": "John Paul Jones" }, { "text": "John Bonham" }] },
-        { "prompt": "Name the four South American countries that have hosted the football World Cup.", "answers": [{ "text": "Uruguay" }, { "text": "Brazil" }, { "text": "Chile" }, { "text": "Argentina" }] },
-        { "prompt": "Name the four months that have thirty days.", "answers": [{ "text": "April" }, { "text": "June" }, { "text": "September" }, { "text": "November" }] },
-        { "prompt": "Name the four Great Lakes of North America besides Lake Michigan.", "answers": [{ "text": "Lake Superior" }, { "text": "Lake Huron" }, { "text": "Lake Erie" }, { "text": "Lake Ontario" }] },
-        { "prompt": "Name the four large bones of the human leg and hip.", "answers": [{ "text": "Femur" }, { "text": "Tibia" }, { "text": "Fibula" }, { "text": "Hip bone" }] },
-        { "prompt": "Name the four Alpine countries besides Switzerland and Austria.", "answers": [{ "text": "France" }, { "text": "Italy" }, { "text": "Germany" }, { "text": "Slovenia" }] },
-        { "prompt": "Name four composers of the baroque or classical era.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Vivaldi" }, { "text": "Mozart" }] }
+        { "prompt": "What do you know about London? Four keywords.", "answers": [{ "text": "Big Ben", "aliases": ["The clock tower", "Westminster"] }, { "text": "The Thames", "aliases": ["Thames", "The river"] }, { "text": "The red double-decker bus", "aliases": ["Double-decker", "Red bus", "Black cab"] }, { "text": "Buckingham Palace", "aliases": ["The King", "The royal family", "Tower Bridge"] }] },
+        { "prompt": "What do you know about Japan? Four keywords.", "answers": [{ "text": "Sushi", "aliases": ["Ramen", "Japanese food"] }, { "text": "Mount Fuji", "aliases": ["Fuji", "A volcano"] }, { "text": "Tokyo", "aliases": ["The capital", "The bullet train"] }, { "text": "Samurai", "aliases": ["Sumo", "Manga", "Cherry blossom"] }] },
+        { "prompt": "What do you know about Formula 1? Four keywords.", "answers": [{ "text": "Max Verstappen", "aliases": ["Lewis Hamilton", "The drivers"] }, { "text": "Ferrari", "aliases": ["Red Bull", "Mercedes", "The teams"] }, { "text": "The pit stop", "aliases": ["Changing tyres", "A fast tyre change"] }, { "text": "Monaco", "aliases": ["Zandvoort", "The circuits", "The chequered flag"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "The iceberg", "aliases": ["It hit an iceberg", "Iceberg"] }, { "text": "1912", "aliases": ["It sank", "The maiden voyage"] }, { "text": "Leonardo DiCaprio", "aliases": ["Kate Winslet", "The film", "Celine Dion"] }, { "text": "Too few lifeboats", "aliases": ["Lifeboats", "The North Atlantic"] }] },
+        { "prompt": "What do you know about the Vikings? Four keywords.", "answers": [{ "text": "Longships", "aliases": ["Dragon boats", "Ships"] }, { "text": "Scandinavia", "aliases": ["Norway", "Denmark", "Sweden"] }, { "text": "Horned helmets", "aliases": ["Helmets with horns", "Beards", "Axes"] }, { "text": "Raids", "aliases": ["Plundering", "They sailed to England", "Odin"] }] },
+        { "prompt": "What do you know about pirates? Four keywords.", "answers": [{ "text": "Treasure", "aliases": ["A treasure chest", "Gold"] }, { "text": "A parrot on the shoulder", "aliases": ["Parrot", "Wooden leg", "A hook for a hand"] }, { "text": "An eye patch", "aliases": ["Eye patch", "Skull and crossbones", "The Jolly Roger"] }, { "text": "The Caribbean", "aliases": ["Pirates of the Caribbean", "Jack Sparrow", "Sailing ships"] }] },
+        { "prompt": "What do you know about Michael Jackson? Four keywords.", "answers": [{ "text": "The moonwalk", "aliases": ["Moonwalking", "His dancing"] }, { "text": "Thriller", "aliases": ["Billie Jean", "Beat It", "His songs"] }, { "text": "The white glove", "aliases": ["One glove", "The hat", "The sequined glove"] }, { "text": "The King of Pop", "aliases": ["Neverland", "He died in 2009"] }] },
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Skyscrapers", "aliases": ["The Empire State Building", "Manhattan"] }, { "text": "Yellow taxis", "aliases": ["Yellow cabs", "Times Square", "Broadway"] }, { "text": "Central Park", "aliases": ["The Big Apple", "Nine eleven"] }] }
       ]
     },
     {
@@ -113,10 +123,11 @@
       "round": 7,
       "questions": [
         { "prompt": "Which Swedish chemist established the Nobel Prizes in his will?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
-        { "prompt": "What is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily", "aliases": ["Sicilia"] }] },
         { "prompt": "Which Italian composer wrote the opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },
-        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which country was known as Ceylon until 1972?", "answers": [{ "text": "Sri Lanka" }] },
         { "prompt": "Which French chemist gave his name to heating milk to kill bacteria?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "Which Russian author wrote War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },
         { "prompt": "In what year did the first railway line in the Netherlands open?", "answers": [{ "text": "1839" }] }
       ]
     }

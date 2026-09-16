@@ -35,16 +35,12 @@
         { "prompt": "Welke provincie grenst NIET aan het IJsselmeer?", "options": [{ "text": "Friesland" }, { "text": "Noord-Holland" }, { "text": "Groningen", "correct": true }, { "text": "Flevoland" }] },
         { "prompt": "Welke Nederlandse stad heeft de grootste zeehaven van Europa?", "options": [{ "text": "Rotterdam", "correct": true }, { "text": "Amsterdam" }, { "text": "Vlissingen" }, { "text": "Terneuzen" }] },
         { "prompt": "Hoeveel zetels heeft de Tweede Kamer?", "options": [{ "text": "100" }, { "text": "125" }, { "text": "150", "correct": true }, { "text": "175" }] },
-        { "prompt": "In welk jaar werd de Deltawerken officieel afgerond met de Maeslantkering?", "options": [{ "text": "1986" }, { "text": "1993" }, { "text": "1997", "correct": true }, { "text": "2002" }] },
         { "prompt": "Welke Nederlandse provincie heeft Arnhem als hoofdstad?", "options": [{ "text": "Gelderland", "correct": true }, { "text": "Overijssel" }, { "text": "Utrecht" }, { "text": "Limburg" }] },
-        { "prompt": "Welk Nederlands dier staat op het wapen van het Koninkrijk?", "options": [{ "text": "Adelaar" }, { "text": "Leeuw", "correct": true }, { "text": "Beer" }, { "text": "Hert" }] },
         { "prompt": "Welke Nederlandse wielrenner won de Tour de France in 1980?", "options": [{ "text": "Joop Zoetemelk", "correct": true }, { "text": "Jan Janssen" }, { "text": "Hennie Kuiper" }, { "text": "Gerrie Knetemann" }] },
         { "prompt": "Welke Nederlandse stad wordt om zijn universiteit sinds 1575 geroemd?", "options": [{ "text": "Leiden", "correct": true }, { "text": "Groningen" }, { "text": "Utrecht" }, { "text": "Amsterdam" }] },
         { "prompt": "Welk Nederlands product wordt op de markt van Alkmaar verhandeld?", "options": [{ "text": "Bloemen" }, { "text": "Kaas", "correct": true }, { "text": "Vis" }, { "text": "Vee" }] },
         { "prompt": "Wie was de eerste koning van Nederland?", "options": [{ "text": "Willem I", "correct": true }, { "text": "Willem II" }, { "text": "Willem III" }, { "text": "Willem-Alexander" }] },
-        { "prompt": "Welk Nederlands eiland hoort NIET bij de Waddeneilanden?", "options": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Goeree", "correct": true }, { "text": "Schiermonnikoog" }] },
         { "prompt": "Welke Nederlandse rivier stroomt door Nijmegen?", "options": [{ "text": "Waal", "correct": true }, { "text": "IJssel" }, { "text": "Maas" }, { "text": "Lek" }] },
-        { "prompt": "In welk jaar werd het Rijksmuseum in zijn huidige gebouw geopend?", "options": [{ "text": "1800" }, { "text": "1863" }, { "text": "1885", "correct": true }, { "text": "1901" }] },
         { "prompt": "Welke Nederlandse schrijver schreef De avonden?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] }
       ]
     },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Klompen" },
-        { "prompt": "Stroopwafel" },
-        { "prompt": "Gracht" },
-        { "prompt": "Poffertjes" },
-        { "prompt": "Dijk" },
-        { "prompt": "Windmolen" },
-        { "prompt": "Tulp" },
-        { "prompt": "Fietspad" },
-        { "prompt": "Haring" },
-        { "prompt": "Sinterklaas" },
-        { "prompt": "Oliebol" },
-        { "prompt": "Elfstedentocht" },
-        { "prompt": "Kaasmarkt" },
-        { "prompt": "Deltawerken" },
-        { "prompt": "Koningsdag" },
-        { "prompt": "Waterschap" }
+      "words": [
+        "Klompen",
+        "Windmolen",
+        "Tulp",
+        "Gracht",
+        "Dijk",
+        "Haring",
+        "Fiets",
+        "Amsterdam",
+        "Oranje",
+        "Kaasmarkt",
+        "Stroopwafel",
+        "Rembrandt",
+        "Vincent van Gogh",
+        "De Nachtwacht",
+        "Anne Frank",
+        "Sinterklaas",
+        "Koningsdag",
+        "Ajax",
+        "Max Verstappen",
+        "Afsluitdijk",
+        "Deltawerken",
+        "Elfstedentocht",
+        "Johan Cruijff",
+        "Waterschap",
+        "Michiel de Ruyter",
+        "Polder",
+        "Efteling",
+        "Waddenzee",
+        "Oliebol",
+        "De Gouden Eeuw"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste steden van Nederland.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
-        { "prompt": "Noem de vier bewoonde Waddeneilanden naast Schiermonnikoog.", "answers": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }] },
-        { "prompt": "Noem de vier grootste steden van Noord-Brabant.", "answers": [{ "text": "Eindhoven" }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "'s-Hertogenbosch" }] },
-        { "prompt": "Noem de vier grote rivieren van Nederland.", "answers": [{ "text": "Rijn" }, { "text": "Maas" }, { "text": "Waal" }, { "text": "IJssel" }] },
-        { "prompt": "Noem vier Nederlandse schilders uit de Gouden Eeuw.", "answers": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
-        { "prompt": "Noem de vier provincies die aan Duitsland grenzen behalve Limburg.", "answers": [{ "text": "Groningen" }, { "text": "Drenthe" }, { "text": "Overijssel" }, { "text": "Gelderland" }] },
-        { "prompt": "Noem vier Nederlandse kazen.", "answers": [{ "text": "Gouda" }, { "text": "Edam" }, { "text": "Leerdammer" }, { "text": "Maasdammer" }] },
-        { "prompt": "Noem de vier grootste provincies van Nederland naar oppervlakte.", "answers": [{ "text": "Friesland" }, { "text": "Gelderland" }, { "text": "Noord-Brabant" }, { "text": "Overijssel" }] }
+        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Grachten", "aliases": ["Gracht"] }, { "text": "Anne Frank Huis", "aliases": ["Anne Frank", "Achterhuis"] }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Het Rijksmuseum", "aliases": ["Rijksmuseum"] }] },
+        { "prompt": "Wat weet je van Rembrandt? Vier kernwoorden.", "answers": [{ "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Leiden" }, { "text": "De Gouden Eeuw", "aliases": ["Gouden Eeuw"] }, { "text": "Zelfportretten", "aliases": ["Zelfportret"] }] },
+        { "prompt": "Wat weet je van Vincent van Gogh? Vier kernwoorden.", "answers": [{ "text": "Zonnebloemen" }, { "text": "Zijn oor", "aliases": ["Oor", "Hij sneed zijn oor af"] }, { "text": "De Aardappeleters", "aliases": ["Aardappeleters"] }, { "text": "Zundert" }] },
+        { "prompt": "Wat weet je van de Afsluitdijk? Vier kernwoorden.", "answers": [{ "text": "Het IJsselmeer", "aliases": ["IJsselmeer", "Zuiderzee"] }, { "text": "Friesland" }, { "text": "Noord-Holland" }, { "text": "32 kilometer", "aliases": ["32", "Tweeendertig kilometer"] }] },
+        { "prompt": "Wat weet je van tulpen? Vier kernwoorden.", "answers": [{ "text": "Keukenhof" }, { "text": "Bollen", "aliases": ["Bol", "Bloembollen"] }, { "text": "Tulpenmanie", "aliases": ["Tulpengekte"] }, { "text": "Lente", "aliases": ["Voorjaar"] }] },
+        { "prompt": "Wat weet je van Koningsdag? Vier kernwoorden.", "answers": [{ "text": "27 april", "aliases": ["27 April"] }, { "text": "Oranje" }, { "text": "Vrijmarkt", "aliases": ["Kleedjesmarkt", "Rommelmarkt"] }, { "text": "Willem-Alexander", "aliases": ["De koning", "Koning"] }] },
+        { "prompt": "Wat weet je van Ajax? Vier kernwoorden.", "answers": [{ "text": "Amsterdam" }, { "text": "Voetbalclub", "aliases": ["Voetbal"] }, { "text": "Johan Cruijff", "aliases": ["Cruijff", "Cruyff"] }, { "text": "De Champions League", "aliases": ["Champions League", "Europacup"] }] },
+        { "prompt": "Wat weet je van de Waddenzee? Vier kernwoorden.", "answers": [{ "text": "Wadlopen" }, { "text": "Zeehonden", "aliases": ["Zeehond"] }, { "text": "De Waddeneilanden", "aliases": ["Waddeneilanden", "Texel", "Terschelling"] }, { "text": "Werelderfgoed", "aliases": ["UNESCO", "Unesco Werelderfgoed"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
       "questions": [
         { "prompt": "Welke Nederlandse zeevaarder bereikte in 1642 Nieuw-Zeeland?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "Hoe heet het Nederlandse volkslied?", "answers": [{ "text": "Het Wilhelmus", "aliases": ["Wilhelmus"] }] },
-        { "prompt": "Welke Nederlandse architect ontwierp de Rietveld Schroderhuis in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "Welke Delftse lakenhandelaar sleep zijn eigen lenzen en zag als eerste bacterien?", "answers": [{ "text": "Antonie van Leeuwenhoek", "aliases": ["Van Leeuwenhoek", "Leeuwenhoek"] }] },
         { "prompt": "In welk jaar werd de Republiek der Zeven Verenigde Nederlanden erkend door Spanje?", "answers": [{ "text": "1648" }] },
         { "prompt": "Welke Nederlandse dichter schreef het toneelstuk Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
+        { "prompt": "Welke in Amsterdam geboren filosoof schreef de Ethica en werd uit zijn Joodse gemeenschap verbannen?", "answers": [{ "text": "Baruch Spinoza", "aliases": ["Spinoza"] }] },
         { "prompt": "Welk Nederlands eiland in de Caribische Zee is het grootste van het Koninkrijk?", "answers": [{ "text": "Curacao" }] }
       ]
     }

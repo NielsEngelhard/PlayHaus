@@ -33,13 +33,9 @@
       "round": 2,
       "questions": [
         { "prompt": "Welk land was GEEN lid van het Warschaupact?", "options": [{ "text": "Joegoslavie", "correct": true }, { "text": "Polen" }, { "text": "Hongarije" }, { "text": "Bulgarije" }] },
-        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "options": [{ "text": "1955" }, { "text": "1961", "correct": true }, { "text": "1968" }, { "text": "1972" }] },
-        { "prompt": "Welke Sovjetleider hield in 1956 zijn geheime rede tegen Stalin?", "options": [{ "text": "Nikita Chroesjtsjov", "correct": true }, { "text": "Leonid Brezjnev" }, { "text": "Joeri Andropov" }, { "text": "Aleksej Kosygin" }] },
         { "prompt": "Hoe heette de mislukte invasie van Cuba in 1961?", "options": [{ "text": "De Varkensbaai", "correct": true }, { "text": "Guantanamo" }, { "text": "Santiago" }, { "text": "Matanzas" }] },
         { "prompt": "In welk jaar vond de Praagse Lente plaats?", "options": [{ "text": "1953" }, { "text": "1956" }, { "text": "1968", "correct": true }, { "text": "1970" }] },
         { "prompt": "Welke opstand werd in 1956 door Sovjettroepen neergeslagen?", "options": [{ "text": "De Hongaarse", "correct": true }, { "text": "De Poolse" }, { "text": "De Tsjechische" }, { "text": "De Roemeense" }] },
-        { "prompt": "Welke Amerikaanse president noemde de Sovjet-Unie het rijk van het kwaad?", "options": [{ "text": "Ronald Reagan", "correct": true }, { "text": "Jimmy Carter" }, { "text": "Richard Nixon" }, { "text": "Gerald Ford" }] },
-        { "prompt": "Welk hulpprogramma hielp West-Europa vanaf 1948 weer opbouwen?", "options": [{ "text": "Het Marshallplan", "correct": true }, { "text": "Het Trumanplan" }, { "text": "Het Dawesplan" }, { "text": "Het Schumanplan" }] },
         { "prompt": "Welk Aziatisch land werd in 1954 gedeeld bij de zeventiende breedtegraad?", "options": [{ "text": "Vietnam", "correct": true }, { "text": "Korea" }, { "text": "Laos" }, { "text": "Cambodja" }] },
         { "prompt": "Welke Amerikaanse senator leidde in de jaren vijftig de jacht op communisten?", "options": [{ "text": "Joseph McCarthy", "correct": true }, { "text": "Richard Nixon" }, { "text": "Robert Taft" }, { "text": "Estes Kefauver" }] },
         { "prompt": "In welk jaar hield Kennedy zijn rede Ich bin ein Berliner?", "options": [{ "text": "1958" }, { "text": "1961" }, { "text": "1963", "correct": true }, { "text": "1969" }] },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Muur" },
-        { "prompt": "Raket" },
-        { "prompt": "Spion" },
-        { "prompt": "Onderzeeboot" },
-        { "prompt": "Satelliet" },
-        { "prompt": "Prikkeldraad" },
-        { "prompt": "Bunker" },
-        { "prompt": "Wachttoren" },
-        { "prompt": "Tank" },
-        { "prompt": "Paspoort" },
-        { "prompt": "Ruimtepak" },
-        { "prompt": "Propaganda" },
-        { "prompt": "Ambassade" },
-        { "prompt": "Grenswacht" },
-        { "prompt": "Kortegolfradio" },
-        { "prompt": "Geheimschrift" }
+      "words": [
+        "Muur",
+        "Raket",
+        "Spion",
+        "Tank",
+        "Onderzeeboot",
+        "Satelliet",
+        "Bunker",
+        "Berlijn",
+        "Maanlanding",
+        "Paspoort",
+        "Checkpoint Charlie",
+        "Spoetnik",
+        "James Bond",
+        "Fidel Castro",
+        "Prikkeldraad",
+        "IJzeren Gordijn",
+        "Propaganda",
+        "Wachttoren",
+        "Kremlin",
+        "Ruimtewedloop",
+        "Kosmonaut",
+        "Rode Plein",
+        "Trabant",
+        "Luchtbrug",
+        "Rode telefoon",
+        "Goelag",
+        "Kruisraketten",
+        "Woensdrecht",
+        "Overloper",
+        "Schuilkelder"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen van het Warschaupact.", "answers": [{ "text": "Sovjet-Unie" }, { "text": "Polen" }, { "text": "Hongarije" }, { "text": "Bulgarije" }] },
-        { "prompt": "Noem de vier bezettingszones van Duitsland na 1945.", "answers": [{ "text": "Amerikaanse zone" }, { "text": "Britse zone" }, { "text": "Franse zone" }, { "text": "Sovjetzone" }] },
-        { "prompt": "Noem vier oprichtende landen van de NAVO.", "answers": [{ "text": "Verenigde Staten" }, { "text": "Verenigd Koninkrijk" }, { "text": "Frankrijk" }, { "text": "Nederland" }] },
-        { "prompt": "Noem vier leiders van de Sovjet-Unie.", "answers": [{ "text": "Stalin" }, { "text": "Chroesjtsjov" }, { "text": "Brezjnev" }, { "text": "Gorbatsjov" }] },
-        { "prompt": "Noem vier Amerikaanse presidenten uit de Koude Oorlog.", "answers": [{ "text": "Harry Truman" }, { "text": "Dwight Eisenhower" }, { "text": "John F. Kennedy" }, { "text": "Ronald Reagan" }] },
-        { "prompt": "Noem vier landen die in 1991 uit de Sovjet-Unie ontstonden.", "answers": [{ "text": "Rusland" }, { "text": "Oekraine" }, { "text": "Wit-Rusland" }, { "text": "Kazachstan" }] },
-        { "prompt": "Noem vier landen waar in 1989 de communistische regering viel.", "answers": [{ "text": "Polen" }, { "text": "Hongarije" }, { "text": "Tsjechoslowakije" }, { "text": "Roemenie" }] },
-        { "prompt": "Noem vier hoofdsteden achter het IJzeren Gordijn.", "answers": [{ "text": "Warschau" }, { "text": "Boedapest" }, { "text": "Praag" }, { "text": "Boekarest" }] }
+        { "prompt": "Wat weet je van de Berlijnse Muur? Vier kernwoorden.", "answers": [{ "text": "Berlijn" }, { "text": "1989", "aliases": ["De val van de Muur", "Hij viel in 1989"] }, { "text": "Oost-Duitsland", "aliases": ["DDR", "Oost-Berlijn"] }, { "text": "Checkpoint Charlie" }] },
+        { "prompt": "Wat weet je van de Cubacrisis? Vier kernwoorden.", "answers": [{ "text": "Cuba" }, { "text": "Kennedy", "aliases": ["John F. Kennedy", "JFK"] }, { "text": "Chroesjtsjov", "aliases": ["Nikita Chroesjtsjov"] }, { "text": "Kernoorlog", "aliases": ["Kernraketten", "Atoombom", "Rand van een kernoorlog"] }] },
+        { "prompt": "Wat weet je van de ruimtewedloop? Vier kernwoorden.", "answers": [{ "text": "Spoetnik" }, { "text": "Joeri Gagarin", "aliases": ["Gagarin", "Eerste mens in de ruimte"] }, { "text": "De maanlanding", "aliases": ["Maanlanding", "Neil Armstrong", "Apollo 11"] }, { "text": "NASA" }] },
+        { "prompt": "Wat weet je van Michail Gorbatsjov? Vier kernwoorden.", "answers": [{ "text": "De Sovjet-Unie", "aliases": ["Sovjet-Unie", "USSR", "Rusland"] }, { "text": "Glasnost" }, { "text": "Perestrojka" }, { "text": "De vlek op zijn hoofd", "aliases": ["Wijnvlek", "Moedervlek", "De vlek op zijn voorhoofd"] }] },
+        { "prompt": "Wat weet je van de NAVO? Vier kernwoorden.", "answers": [{ "text": "1949" }, { "text": "Brussel", "aliases": ["Hoofdkwartier in Brussel", "Belgie"] }, { "text": "Artikel 5", "aliases": ["Een aanval op een is een aanval op allen"] }, { "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }] },
+        { "prompt": "Wat weet je van de Vietnamoorlog? Vier kernwoorden.", "answers": [{ "text": "Jungle", "aliases": ["Rijstvelden", "Oerwoud"] }, { "text": "Napalm" }, { "text": "Helikopters", "aliases": ["Helikopter", "Huey"] }, { "text": "Apocalypse Now", "aliases": ["Platoon", "Full Metal Jacket", "Vietnamfilms"] }] },
+        { "prompt": "Wat weet je van Ronald Reagan? Vier kernwoorden.", "answers": [{ "text": "Amerikaanse president", "aliases": ["President van de Verenigde Staten", "President"] }, { "text": "Acteur", "aliases": ["Hollywood", "Cowboyfilms", "Filmster"] }, { "text": "Tear down this wall", "aliases": ["Mr Gorbachev, tear down this wall", "Breek die muur af"] }, { "text": "Star Wars", "aliases": ["SDI", "Het raketschild", "Raketschild"] }] },
+        { "prompt": "Wat weet je van Tsjernobyl? Vier kernwoorden.", "answers": [{ "text": "Kerncentrale", "aliases": ["Kernreactor", "Reactor", "Centrale"] }, { "text": "1986" }, { "text": "Oekraine", "aliases": ["Sovjet-Unie", "Pripjat"] }, { "text": "Straling", "aliases": ["Radioactiviteit", "Fall-out", "Radioactieve wolk"] }] }
       ]
     },
     {
@@ -113,12 +123,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welk Amerikaans spionagevliegtuig werd in 1960 boven de Sovjet-Unie neergehaald?", "answers": [{ "text": "De U-2", "aliases": ["U2", "U-2"] }] },
-        { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug"] }] },
+        { "prompt": "Welk land viel de Sovjet-Unie in december 1979 binnen?", "answers": [{ "text": "Afghanistan" }] },
+        { "prompt": "Hoe heette de geheime politie van Oost-Duitsland?", "answers": [{ "text": "De Stasi", "aliases": ["Stasi"] }] },
         { "prompt": "Hoe heette het Sovjetruimtestation dat in 1986 werd gelanceerd?", "answers": [{ "text": "Mir" }] },
-        { "prompt": "In welk jaar werd het Warschaupact ontbonden?", "answers": [{ "text": "1991" }] },
+        { "prompt": "Welke Sovjetleider regeerde van 1964 tot zijn dood in 1982?", "answers": [{ "text": "Leonid Brezjnev", "aliases": ["Brezjnev"] }] },
         { "prompt": "Welke Amerikaanse minister van Buitenlandse Zaken voerde in de jaren zeventig de ontspanningspolitiek?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
-        { "prompt": "Welke Tsjechische toneelschrijver werd in 1989 president?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] }
+        { "prompt": "Welke Tsjechische toneelschrijver werd in 1989 president?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] },
+        { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug", "Bridge of Spies"] }] }
       ]
     }
   ]

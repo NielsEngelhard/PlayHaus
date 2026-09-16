@@ -32,7 +32,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "How many houses does the school have?", "options": [{ "text": "Four", "correct": true }, { "text": "Three" }, { "text": "Five" }, { "text": "Six" }] },
         { "prompt": "Which animal is the symbol of Slytherin?", "options": [{ "text": "The snake", "correct": true }, { "text": "The lion" }, { "text": "The eagle" }, { "text": "The badger" }] },
         { "prompt": "What is the wizards' shopping street in London called?", "options": [{ "text": "Diagon Alley", "correct": true }, { "text": "Wizard Lane" }, { "text": "Broom Street" }, { "text": "Sidelong Alley" }] },
         { "prompt": "Which position did Harry play in the quidditch team?", "options": [{ "text": "Seeker", "correct": true }, { "text": "Keeper" }, { "text": "Chaser" }, { "text": "Beater" }] },
@@ -42,10 +41,7 @@
         { "prompt": "Which creatures guard that prison?", "options": [{ "text": "Dementors", "correct": true }, { "text": "Trolls" }, { "text": "Giants" }, { "text": "Dragons" }] },
         { "prompt": "Which object does Hermione use to attend more lessons?", "options": [{ "text": "A time-turner", "correct": true }, { "text": "A broom" }, { "text": "A magic hat" }, { "text": "A map" }] },
         { "prompt": "Who is Harry's godfather?", "options": [{ "text": "Sirius Black", "correct": true }, { "text": "Filius Flitwick" }, { "text": "Arthur Weasley" }, { "text": "Alastor Moody" }] },
-        { "prompt": "Which tree on the school grounds hits back?", "options": [{ "text": "The Whomping Willow", "correct": true }, { "text": "The Forbidden Oak" }, { "text": "The Weeping Willow" }, { "text": "The Singing Lime" }] },
-        { "prompt": "What is the map that shows where everyone in the school is called?", "options": [{ "text": "The Marauder's Map", "correct": true }, { "text": "The Hogwarts Chart" }, { "text": "The Wizard Map" }, { "text": "The Cheat Map" }] },
-        { "prompt": "In what year did the first Harry Potter film come out?", "options": [{ "text": "1999" }, { "text": "2001", "correct": true }, { "text": "2003" }, { "text": "2005" }] },
-        { "prompt": "How many films were made from the seven books?", "options": [{ "text": "Eight", "correct": true }, { "text": "Seven" }, { "text": "Six" }, { "text": "Nine" }] }
+        { "prompt": "Which tree on the school grounds hits back?", "options": [{ "text": "The Whomping Willow", "correct": true }, { "text": "The Forbidden Oak" }, { "text": "The Weeping Willow" }, { "text": "The Singing Lime" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Wand" },
-        { "prompt": "Broom" },
-        { "prompt": "Owl" },
-        { "prompt": "Castle" },
-        { "prompt": "Train" },
-        { "prompt": "Potion" },
-        { "prompt": "Dragon" },
-        { "prompt": "Spell" },
-        { "prompt": "Letter" },
-        { "prompt": "Library" },
-        { "prompt": "Mirror" },
-        { "prompt": "Hat" },
-        { "prompt": "Christmas" },
-        { "prompt": "Key" },
-        { "prompt": "Cauldron" },
-        { "prompt": "Staircase" }
+      "words": [
+        "Wand",
+        "Broomstick",
+        "Owl",
+        "Dragon",
+        "Spell",
+        "Muggle",
+        "Cauldron",
+        "Harry Potter",
+        "Sorting Hat",
+        "Hogwarts Express",
+        "Draco Malfoy",
+        "Knight Bus",
+        "Quaffle",
+        "Invisibility cloak",
+        "Wizard chess",
+        "Moaning Myrtle",
+        "Butterbeer",
+        "Goblet of Fire",
+        "Minerva McGonagall",
+        "Luna Lovegood",
+        "Horcrux",
+        "Room of Requirement",
+        "Mirror of Erised",
+        "Pensieve",
+        "Thestral",
+        "Deathly Hallows",
+        "Hippogriff",
+        "Polyjuice Potion",
+        "Bellatrix Lestrange",
+        "Firebolt"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four houses of the school.", "answers": [{ "text": "Gryffindor" }, { "text": "Slytherin" }, { "text": "Ravenclaw" }, { "text": "Hufflepuff" }] },
-        { "prompt": "Name four members of the Weasley family.", "answers": [{ "text": "Ron" }, { "text": "Ginny" }, { "text": "Fred" }, { "text": "George" }] },
-        { "prompt": "Name four spells from the books.", "answers": [{ "text": "Expelliarmus" }, { "text": "Lumos" }, { "text": "Accio" }, { "text": "Wingardium Leviosa" }] },
-        { "prompt": "Name four teachers of the school.", "answers": [{ "text": "Dumbledore" }, { "text": "Snape" }, { "text": "McGonagall" }, { "text": "Hagrid" }] },
-        { "prompt": "Name four magical creatures from the series.", "answers": [{ "text": "Dragon" }, { "text": "Unicorn" }, { "text": "House-elf" }, { "text": "Giant" }] },
-        { "prompt": "Name four places on the school grounds.", "answers": [{ "text": "The Forbidden Forest" }, { "text": "The quidditch pitch" }, { "text": "The lake" }, { "text": "The Great Hall" }] },
-        { "prompt": "Name four actors from the Harry Potter films.", "answers": [{ "text": "Daniel Radcliffe" }, { "text": "Emma Watson" }, { "text": "Rupert Grint" }, { "text": "Maggie Smith" }] },
-        { "prompt": "Name four books from the series.", "answers": [{ "text": "The Philosopher's Stone" }, { "text": "The Chamber of Secrets" }, { "text": "The Prisoner of Azkaban" }, { "text": "The Deathly Hallows" }] }
+        { "prompt": "What do you know about Hogwarts? Four keywords.", "answers": [{ "text": "Castle" }, { "text": "Four houses", "aliases": ["Houses"] }, { "text": "The Great Hall", "aliases": ["Great Hall"] }, { "text": "Moving staircases", "aliases": ["Staircases", "Stairs that move"] }] },
+        { "prompt": "What do you know about Harry Potter? Four keywords.", "answers": [{ "text": "Lightning scar", "aliases": ["Scar", "Scar on his forehead"] }, { "text": "Round glasses", "aliases": ["Glasses"] }, { "text": "Gryffindor" }, { "text": "The Boy Who Lived", "aliases": ["Boy Who Lived"] }] },
+        { "prompt": "What do you know about Voldemort? Four keywords.", "answers": [{ "text": "No nose", "aliases": ["Noseless"] }, { "text": "Dark wizard", "aliases": ["Evil wizard"] }, { "text": "Nagini the snake", "aliases": ["Nagini", "His snake"] }, { "text": "Death Eaters", "aliases": ["Death Eater"] }] },
+        { "prompt": "What do you know about quidditch? Four keywords.", "answers": [{ "text": "Broomsticks", "aliases": ["Broom", "Brooms"] }, { "text": "The Golden Snitch", "aliases": ["Snitch"] }, { "text": "Seeker" }, { "text": "Hoops", "aliases": ["Goal hoops", "Rings"] }] },
+        { "prompt": "What do you know about Hagrid? Four keywords.", "answers": [{ "text": "Half-giant", "aliases": ["Giant", "Very big"] }, { "text": "Gamekeeper", "aliases": ["Keeper of the keys"] }, { "text": "Big beard", "aliases": ["Beard"] }, { "text": "His hut", "aliases": ["Hut", "Cabin"] }] },
+        { "prompt": "What do you know about Hermione Granger? Four keywords.", "answers": [{ "text": "Clever", "aliases": ["Smart", "Best in the class"] }, { "text": "Bushy hair", "aliases": ["Frizzy hair", "Big hair"] }, { "text": "Muggle-born", "aliases": ["Muggle parents"] }, { "text": "Always reading", "aliases": ["Books", "Library"] }] },
+        { "prompt": "What do you know about Dumbledore? Four keywords.", "answers": [{ "text": "Headmaster" }, { "text": "Long white beard", "aliases": ["Beard", "White beard"] }, { "text": "Half-moon glasses", "aliases": ["Glasses"] }, { "text": "Killed by Snape", "aliases": ["He dies", "Snape kills him"] }] },
+        { "prompt": "What do you know about the Weasley family? Four keywords.", "answers": [{ "text": "Red hair", "aliases": ["Ginger", "Ginger hair"] }, { "text": "The Burrow", "aliases": ["Burrow"] }, { "text": "Ron" }, { "text": "Fred and George", "aliases": ["The twins", "Twins"] }] }
       ]
     },
     {
@@ -117,8 +127,9 @@
         { "prompt": "What is the village near the school that pupils may visit called?", "answers": [{ "text": "Hogsmeade", "aliases": ["Zweinsveld"] }] },
         { "prompt": "Which alchemist made the stone from the first book?", "answers": [{ "text": "Nicolas Flamel", "aliases": ["Flamel", "Vlamel"] }] },
         { "prompt": "Which creature lives in the Chamber of Secrets?", "answers": [{ "text": "A basilisk", "aliases": ["basilisk"] }] },
-        { "prompt": "Which animal is Harry's patronus?", "answers": [{ "text": "A stag", "aliases": ["stag"] }] },
-        { "prompt": "Who killed the snake Nagini?", "answers": [{ "text": "Neville Longbottom", "aliases": ["Longbottom", "Marcel Lubbermans"] }] }
+        { "prompt": "Who killed the snake Nagini?", "answers": [{ "text": "Neville Longbottom", "aliases": ["Longbottom", "Marcel Lubbermans"] }] },
+        { "prompt": "In which Diagon Alley shop does Harry buy his first wand?", "answers": [{ "text": "Ollivanders", "aliases": ["Ollivander"] }] },
+        { "prompt": "What is the name of Dumbledore's phoenix?", "answers": [{ "text": "Fawkes", "aliases": ["Felix"] }] }
       ]
     }
   ]

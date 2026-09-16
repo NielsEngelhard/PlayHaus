@@ -32,8 +32,8 @@ func listBody(t *testing.T, req listAwardsRequest) string {
 	return string(body)
 }
 
-// answersOfQuiz maps a quiz question id to the ids of its answers, which is what a round
-// 5 award has to name.
+// answersOfQuiz maps a quiz question id to the ids of the answers that score, which is what
+// a round 5 award has to name. Aliases come down the wire beside them and are not awardable.
 func answersOfQuiz(t *testing.T, h http.Handler, token, quizID string) map[string][]string {
 	t.Helper()
 
@@ -47,6 +47,9 @@ func answersOfQuiz(t *testing.T, h http.Handler, token, quizID string) map[strin
 	for _, round := range quiz.Rounds {
 		for _, question := range round.Questions {
 			for _, answer := range question.Answers {
+				if answer.Alias {
+					continue
+				}
 				answers[question.ID] = append(answers[question.ID], answer.ID)
 			}
 		}

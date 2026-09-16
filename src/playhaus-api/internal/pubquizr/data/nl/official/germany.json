@@ -33,17 +33,13 @@
       "round": 2,
       "questions": [
         { "prompt": "Welk land grenst NIET aan Duitsland?", "options": [{ "text": "Denemarken" }, { "text": "Tsjechie" }, { "text": "Slowakije", "correct": true }, { "text": "Polen" }] },
-        { "prompt": "Welke Duitse autofabrikant heeft vier ringen in zijn logo?", "options": [{ "text": "Audi", "correct": true }, { "text": "BMW" }, { "text": "Opel" }, { "text": "Mercedes-Benz" }] },
         { "prompt": "In welke Duitse stad staat de Frauenkirche die na 1945 in puin lag en werd herbouwd?", "options": [{ "text": "Dresden", "correct": true }, { "text": "Leipzig" }, { "text": "Neurenberg" }, { "text": "Erfurt" }] },
         { "prompt": "In welk jaar werd het Duitse Keizerrijk uitgeroepen in Versailles?", "options": [{ "text": "1848" }, { "text": "1866" }, { "text": "1871", "correct": true }, { "text": "1888" }] },
         { "prompt": "Welke Duitse rivier stroomt van zuidwest naar oost en verder naar de Zwarte Zee?", "options": [{ "text": "Donau", "correct": true }, { "text": "Elbe" }, { "text": "Wezer" }, { "text": "Oder" }] },
         { "prompt": "Welke Duitse deelstaat is een stadstaat?", "options": [{ "text": "Hessen" }, { "text": "Bremen", "correct": true }, { "text": "Saarland" }, { "text": "Thuringen" }] },
-        { "prompt": "Hoeveel keer heeft Duitsland het WK voetbal gewonnen tot en met 2022?", "options": [{ "text": "Twee" }, { "text": "Drie" }, { "text": "Vier", "correct": true }, { "text": "Vijf" }] },
         { "prompt": "Welke Duitse filosoof schreef Kritiek van de zuivere rede?", "options": [{ "text": "Immanuel Kant", "correct": true }, { "text": "Georg Hegel" }, { "text": "Arthur Schopenhauer" }, { "text": "Friedrich Nietzsche" }] },
         { "prompt": "Welk Duits kasteel in Beieren inspireerde tekenfilmkastelen?", "options": [{ "text": "Neuschwanstein", "correct": true }, { "text": "Hohenzollern" }, { "text": "Heidelberg" }, { "text": "Wartburg" }] },
-        { "prompt": "Welke Duitse uitvinder bouwde in 1885 een van de eerste auto's met benzinemotor?", "options": [{ "text": "Carl Benz", "correct": true }, { "text": "Rudolf Diesel" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
         { "prompt": "Welke Duitse stad staat bekend om zijn kerstmarkt met peperkoek?", "options": [{ "text": "Neurenberg", "correct": true }, { "text": "Keulen" }, { "text": "Kiel" }, { "text": "Rostock" }] },
-        { "prompt": "Welke Duitse componist werd in 1685 in Halle geboren en werkte later in Londen?", "options": [{ "text": "Georg Friedrich Handel", "correct": true }, { "text": "Johann Sebastian Bach" }, { "text": "Georg Philipp Telemann" }, { "text": "Heinrich Schutz" }] },
         { "prompt": "In welk jaar begonnen de Olympische Zomerspelen van Munchen?", "options": [{ "text": "1968" }, { "text": "1972", "correct": true }, { "text": "1976" }, { "text": "1980" }] },
         { "prompt": "Welke Duitse deelstaat grenst aan Nederland en Belgie?", "options": [{ "text": "Nedersaksen" }, { "text": "Noordrijnland-Westfalen", "correct": true }, { "text": "Rijnland-Palts" }, { "text": "Saarland" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Bratwurst" },
-        { "prompt": "Autobahn" },
-        { "prompt": "Oktoberfest" },
-        { "prompt": "Lederhose" },
-        { "prompt": "Pretzel" },
-        { "prompt": "Kerstmarkt" },
-        { "prompt": "Koekoeksklok" },
-        { "prompt": "Kasteel" },
-        { "prompt": "Bierpul" },
-        { "prompt": "Zuurkool" },
-        { "prompt": "Sportwagen" },
-        { "prompt": "Blaaskapel" },
-        { "prompt": "Alpenweide" },
-        { "prompt": "Muur" },
-        { "prompt": "Sprookjesbos" },
-        { "prompt": "Wijngaard" }
+      "words": [
+        "Bratwurst",
+        "Autobahn",
+        "Oktoberfest",
+        "Lederhose",
+        "Kerstmarkt",
+        "Zuurkool",
+        "Koekoeksklok",
+        "Berlijnse Muur",
+        "Biergarten",
+        "Duitse herder",
+        "Michael Schumacher",
+        "Angela Merkel",
+        "Neuschwanstein",
+        "Brandenburger Tor",
+        "Albert Einstein",
+        "Zwarte Woud",
+        "Bundesliga",
+        "Currywurst",
+        "Rammstein",
+        "Wintersport",
+        "Schlager",
+        "Ludwig van Beethoven",
+        "Gebroeders Grimm",
+        "Bauhaus",
+        "Hanze",
+        "Kraftwerk",
+        "Zeppelin",
+        "Johannes Gutenberg",
+        "Hereniging",
+        "Repelsteeltje"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste steden van Duitsland.", "answers": [{ "text": "Berlijn" }, { "text": "Hamburg" }, { "text": "Munchen" }, { "text": "Keulen" }] },
-        { "prompt": "Noem vier Duitse autofabrikanten.", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Audi" }, { "text": "Mercedes-Benz" }] },
-        { "prompt": "Noem vier rivieren die door Duitsland stromen.", "answers": [{ "text": "Rijn" }, { "text": "Elbe" }, { "text": "Donau" }, { "text": "Main" }] },
-        { "prompt": "Noem vier landen die in het zuiden of oosten aan Duitsland grenzen.", "answers": [{ "text": "Oostenrijk" }, { "text": "Zwitserland" }, { "text": "Tsjechie" }, { "text": "Polen" }] },
-        { "prompt": "Noem vier Duitse componisten.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Beethoven" }, { "text": "Wagner" }] },
-        { "prompt": "Noem de vier kleinste Duitse deelstaten naar oppervlakte.", "answers": [{ "text": "Bremen" }, { "text": "Hamburg" }, { "text": "Berlijn" }, { "text": "Saarland" }] },
-        { "prompt": "Noem vier Duitse schrijvers.", "answers": [{ "text": "Goethe" }, { "text": "Schiller" }, { "text": "Thomas Mann" }, { "text": "Gunter Grass" }] },
-        { "prompt": "Noem de vier jaren waarin Duitsland het WK voetbal won.", "answers": [{ "text": "1954" }, { "text": "1974" }, { "text": "1990" }, { "text": "2014" }] }
+        { "prompt": "Wat weet je van Berlijn? Vier kernwoorden.", "answers": [{ "text": "De Brandenburger Tor", "aliases": ["Brandenburger Tor"] }, { "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur", "De Muur"] }, { "text": "Hoofdstad van Duitsland", "aliases": ["Hoofdstad"] }, { "text": "De Reichstag", "aliases": ["Reichstag", "Rijksdag"] }] },
+        { "prompt": "Wat weet je van het Oktoberfest? Vier kernwoorden.", "answers": [{ "text": "Munchen" }, { "text": "Bier", "aliases": ["Biertenten", "Bierpullen"] }, { "text": "Lederhose", "aliases": ["Dirndl"] }, { "text": "Pretzels", "aliases": ["Pretzel", "Krakeling"] }] },
+        { "prompt": "Wat weet je van Volkswagen? Vier kernwoorden.", "answers": [{ "text": "De Kever", "aliases": ["Kever"] }, { "text": "Wolfsburg" }, { "text": "De Golf", "aliases": ["Golf"] }, { "text": "Het camperbusje", "aliases": ["Camperbusje", "Bulli", "Busje"] }] },
+        { "prompt": "Wat weet je van Angela Merkel? Vier kernwoorden.", "answers": [{ "text": "Bondskanselier", "aliases": ["Kanselier"] }, { "text": "De eerste vrouw aan het hoofd van Duitsland", "aliases": ["Eerste vrouwelijke kanselier", "Een vrouw"] }, { "text": "Groeide op in Oost-Duitsland", "aliases": ["Oost-Duitsland", "DDR"] }, { "text": "De CDU", "aliases": ["CDU", "Christen-democraten"] }] },
+        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit"] }, { "text": "E=mc2", "aliases": ["E is mc kwadraat"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobelprijs voor natuurkunde"] }, { "text": "Zijn wilde haar", "aliases": ["Haar", "Wilde haar"] }] },
+        { "prompt": "Wat weet je van de Rijn? Vier kernwoorden.", "answers": [{ "text": "Keulen" }, { "text": "Kastelen", "aliases": ["Kasteel"] }, { "text": "Vrachtschepen", "aliases": ["Binnenvaart", "Schepen"] }, { "text": "Mondt uit in de Noordzee", "aliases": ["Noordzee", "Nederland"] }] },
+        { "prompt": "Wat weet je van Bayern Munchen? Vier kernwoorden.", "answers": [{ "text": "Munchen" }, { "text": "De Bundesliga", "aliases": ["Bundesliga"] }, { "text": "De Allianz Arena", "aliases": ["Allianz Arena"] }, { "text": "Rood", "aliases": ["Rode shirts", "Rood tenue"] }] },
+        { "prompt": "Wat weet je van de gebroeders Grimm? Vier kernwoorden.", "answers": [{ "text": "Sprookjes", "aliases": ["Sprookje"] }, { "text": "Hans en Grietje" }, { "text": "Sneeuwwitje" }, { "text": "Roodkapje" }] }
       ]
     },
     {
@@ -114,11 +124,12 @@
       "round": 7,
       "questions": [
         { "prompt": "Welke Duitse stad was tot 1990 de hoofdstad van West-Duitsland?", "answers": [{ "text": "Bonn" }] },
-        { "prompt": "Welke Duitse dichter schreef samen met Schiller in Weimar en stierf in 1832?", "answers": [{ "text": "Johann Wolfgang von Goethe", "aliases": ["Goethe"] }] },
         { "prompt": "Hoe heet de Duitse hogesnelheidstrein?", "answers": [{ "text": "ICE", "aliases": ["InterCityExpress"] }] },
-        { "prompt": "In welk jaar werd de Bondsrepubliek Duitsland gesticht?", "answers": [{ "text": "1949" }] },
-        { "prompt": "Welke Duitse wetenschapper formuleerde de speciale relativiteitstheorie in 1905?", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
-        { "prompt": "Welk Duits eiland in de Noordzee ligt het verst van de kust?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] }
+        { "prompt": "In welke Duitse stad zetelt de Europese Centrale Bank?", "answers": [{ "text": "Frankfurt", "aliases": ["Frankfurt am Main"] }] },
+        { "prompt": "Welke zee grenst naast de Noordzee aan de Duitse kust?", "answers": [{ "text": "De Oostzee", "aliases": ["Oostzee", "Baltische Zee", "Ostsee"] }] },
+        { "prompt": "Welk Duits concern bezit Audi, Porsche en Skoda?", "answers": [{ "text": "Volkswagen", "aliases": ["VW", "Volkswagen Groep"] }] },
+        { "prompt": "In welke Duitse stad speelt het verhaal van de rattenvanger?", "answers": [{ "text": "Hameln", "aliases": ["Hamelen"] }] },
+        { "prompt": "Welke Duitse bondskanselier leidde het land door de hereniging van 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] }
       ]
     }
   ]

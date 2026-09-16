@@ -36,15 +36,11 @@
         { "prompt": "Wat meet een lichtjaar?", "options": [{ "text": "Afstand", "correct": true }, { "text": "Tijd" }, { "text": "Helderheid" }, { "text": "Massa" }] },
         { "prompt": "Welk piepklein dier overleeft het vacuum van de ruimte?", "options": [{ "text": "Het beerdiertje", "correct": true }, { "text": "De mijt" }, { "text": "De aaltje" }, { "text": "Het raderdiertje" }] },
         { "prompt": "Welke Mexicaanse sterkedrank wordt van de blauwe agave gestookt?", "options": [{ "text": "Tequila", "correct": true }, { "text": "Mezcal" }, { "text": "Pisco" }, { "text": "Cachaca" }] },
-        { "prompt": "In welke Ierse sport slaan spelers een bal met een hurley?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Shinty" }, { "text": "Gaelic football" }, { "text": "Camogie" }] },
-        { "prompt": "Wat is de hoogste waterval van Europa?", "options": [{ "text": "De Vinnufossen", "correct": true }, { "text": "De Rjukanfossen" }, { "text": "Gavarnie" }, { "text": "Krimml" }] },
-        { "prompt": "Welke botten beschermen het hart en de longen?", "options": [{ "text": "De ribbenkast", "correct": true }, { "text": "Het bekken" }, { "text": "Het borstbeen" }, { "text": "De wervelkolom" }] },
         { "prompt": "Van welke noot wordt wereldwijd de grootste hoeveelheid geteeld?", "options": [{ "text": "De pinda", "correct": true }, { "text": "De amandel" }, { "text": "De cashewnoot" }, { "text": "De walnoot" }] },
         { "prompt": "Welk dier maakt de hardste roep van alle landdieren?", "options": [{ "text": "De brulaap", "correct": true }, { "text": "De leeuw" }, { "text": "De olifant" }, { "text": "De wolf" }] },
         { "prompt": "Hoe heet het splijten van een atoomkern?", "options": [{ "text": "Kernsplijting", "correct": true }, { "text": "Kernfusie" }, { "text": "Ionisatie" }, { "text": "Verval" }] },
         { "prompt": "Welke taal wordt naast het Arabisch van rechts naar links geschreven?", "options": [{ "text": "Hebreeuws", "correct": true }, { "text": "Grieks" }, { "text": "Turks" }, { "text": "Amhaars" }] },
-        { "prompt": "Welke stad heeft het grootste metronet ter wereld?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "Londen" }, { "text": "New York" }, { "text": "Moskou" }] },
-        { "prompt": "Wat is de kleinste vogel van Europa?", "options": [{ "text": "Het goudhaantje", "correct": true }, { "text": "Het winterkoninkje" }, { "text": "De pimpelmees" }, { "text": "De boomkruiper" }] }
+        { "prompt": "Welke stad heeft het grootste metronet ter wereld?", "options": [{ "text": "Shanghai", "correct": true }, { "text": "Londen" }, { "text": "New York" }, { "text": "Moskou" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Zadel" },
-        { "prompt": "Theemuts" },
-        { "prompt": "Slacentrifuge" },
-        { "prompt": "Breiwol" },
-        { "prompt": "Gitaarversterker" },
-        { "prompt": "Weerballon" },
-        { "prompt": "Stoomtrein" },
-        { "prompt": "Skistok" },
-        { "prompt": "Zonneklep" },
-        { "prompt": "Veer" },
-        { "prompt": "Kam" },
-        { "prompt": "Wok" },
-        { "prompt": "Verfblik" },
-        { "prompt": "Kerkbank" },
-        { "prompt": "Misthoorn" },
-        { "prompt": "Kledingrek" }
+      "words": [
+        "Pinguin",
+        "Hamburger",
+        "Piano",
+        "Onweer",
+        "Zwembad",
+        "Brandweerman",
+        "Zonnebril",
+        "Verjaardagstaart",
+        "Station",
+        "Tandenborstel",
+        "Piraat",
+        "Vrijheidsbeeld",
+        "Jurassic Park",
+        "Marathon",
+        "Woestijn",
+        "Bibliothecaris",
+        "Circus",
+        "Luchtballon",
+        "File",
+        "Waterval",
+        "Rembrandt",
+        "Taj Mahal",
+        "Koningsdag",
+        "Beethoven",
+        "Acupunctuur",
+        "Gletsjer",
+        "Veilingmeester",
+        "Noorderlicht",
+        "Samoerai",
+        "Stamppot"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Argentinie grenzen.", "answers": [{ "text": "Chili" }, { "text": "Bolivia" }, { "text": "Paraguay" }, { "text": "Brazilie" }] },
-        { "prompt": "Noem vier patronen die je op kleding vindt.", "answers": [{ "text": "Strepen" }, { "text": "Ruiten" }, { "text": "Stippen" }, { "text": "Paisley" }] },
-        { "prompt": "Noem vier roofvogels.", "answers": [{ "text": "Arend" }, { "text": "Valk" }, { "text": "Havik" }, { "text": "Uil" }] },
-        { "prompt": "Noem vier olympische sporten op wielen.", "answers": [{ "text": "Wielrennen" }, { "text": "Skateboarden" }, { "text": "BMX" }, { "text": "Skeeleren" }] },
-        { "prompt": "Noem vier landen in en rond de Hoorn van Afrika.", "answers": [{ "text": "Ethiopie" }, { "text": "Somalie" }, { "text": "Eritrea" }, { "text": "Djibouti" }] },
-        { "prompt": "Noem vier dingen die je in een klaslokaal vindt.", "answers": [{ "text": "Tafel" }, { "text": "Stoel" }, { "text": "Schoolbord" }, { "text": "Klok" }] },
-        { "prompt": "Noem vier wereldberoemde schilderijen.", "answers": [{ "text": "De Mona Lisa" }, { "text": "De Nachtwacht" }, { "text": "De schreeuw" }, { "text": "Guernica" }] },
-        { "prompt": "Noem vier instrumenten van een weerstation.", "answers": [{ "text": "Thermometer" }, { "text": "Barometer" }, { "text": "Regenmeter" }, { "text": "Windmeter" }] }
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pizza", "aliases": ["Pasta", "Spaghetti"] }, { "text": "Rome", "aliases": ["Het Colosseum", "Het Vaticaan", "Venetie"] }, { "text": "De laars", "aliases": ["Het lijkt op een laars", "Laarsvorm"] }, { "text": "Ferrari", "aliases": ["Fiat", "Vespa", "Snelle auto's"] }] },
+        { "prompt": "Wat weet je van Parijs? Vier kernwoorden.", "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }, { "text": "Het Louvre", "aliases": ["Louvre", "De Mona Lisa"] }, { "text": "Croissants", "aliases": ["Stokbrood", "Terrasjes", "Franse keuken"] }, { "text": "De Seine", "aliases": ["Seine", "De rivier"] }] },
+        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-'n-roll", "aliases": ["Rock and roll", "Zanger"] }, { "text": "The King", "aliases": ["De koning van de rock-'n-roll"] }, { "text": "Zijn draaiende heupen", "aliases": ["Heupwiegen", "De kuif", "Het witte pak"] }, { "text": "Las Vegas", "aliases": ["Graceland", "Memphis", "Blue Suede Shoes"] }] },
+        { "prompt": "Wat weet je van chocolade? Vier kernwoorden.", "answers": [{ "text": "Cacao", "aliases": ["Cacaobonen"] }, { "text": "Zoet", "aliases": ["Suiker", "Het smelt op je tong"] }, { "text": "Belgie", "aliases": ["Zwitserland", "Zwitserse chocolade", "Belgische bonbons"] }, { "text": "Paaseitjes", "aliases": ["Reep", "Chocoladeletter", "Warme chocolademelk"] }] },
+        { "prompt": "Wat weet je van dinosaurussen? Vier kernwoorden.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T-rex"] }, { "text": "Uitgestorven", "aliases": ["Ze stierven uit", "Miljoenen jaren geleden"] }, { "text": "De meteoriet", "aliases": ["Een meteoor raakte de aarde", "Asteroide"] }, { "text": "Fossielen", "aliases": ["Botten", "Skeletten in een museum", "Jurassic Park"] }] },
+        { "prompt": "Wat weet je van The Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool", "aliases": ["Engeland", "Britse band"] }, { "text": "John Lennon", "aliases": ["Paul McCartney", "Ringo Starr", "George Harrison"] }, { "text": "Met zijn vieren", "aliases": ["Een band van vier", "Fab Four"] }, { "text": "Abbey Road", "aliases": ["Het zebrapad", "Yellow Submarine", "Hey Jude"] }] },
+        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella", "aliases": ["Tapas", "Sangria"] }, { "text": "Flamenco", "aliases": ["Flamencodansen", "Gitaarmuziek"] }, { "text": "Stierenvechten", "aliases": ["Stieren", "Het stierenrennen"] }, { "text": "Barcelona", "aliases": ["Madrid", "De Sagrada Familia", "Real Madrid"] }] },
+        { "prompt": "Wat weet je van de Amazone? Vier kernwoorden.", "answers": [{ "text": "Het regenwoud", "aliases": ["Jungle", "Oerwoud"] }, { "text": "Brazilie", "aliases": ["Zuid-Amerika"] }, { "text": "De rivier", "aliases": ["Een enorme rivier", "De langste rivier"] }, { "text": "Slangen", "aliases": ["Pirana's", "Apen", "Papegaaien", "Ontbossing"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse arts toonde aan dat beriberi ontstaat door iets dat in het eten ontbreekt?", "answers": [{ "text": "Christiaan Eijkman", "aliases": ["Eijkman"] }] },
+        { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga"] }] },
+        { "prompt": "Welke schilder zette de smeltende klokken op De volharding der herinnering?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
         { "prompt": "Wat is de hoofdstad van Panama?", "answers": [{ "text": "Panama-Stad", "aliases": ["Panama City"] }] },
-        { "prompt": "Welke Zwitsers-Franse architect ontwierp de Villa Savoye?", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
         { "prompt": "In welk jaar speelde Nederland voor het eerst op een WK?", "answers": [{ "text": "1934" }] },
-        { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] },
-        { "prompt": "Welke Duits-Britse astronoom ontdekte de planeet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] }
+        { "prompt": "Welke Duits-Britse astronoom ontdekte de planeet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
+        { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] }
       ]
     }
   ]

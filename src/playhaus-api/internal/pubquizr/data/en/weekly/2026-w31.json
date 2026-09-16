@@ -35,15 +35,11 @@
         { "prompt": "Who wrote Don Quixote?", "options": [{ "text": "Cervantes", "correct": true }, { "text": "Lope de Vega" }, { "text": "Calderon" }, { "text": "Quevedo" }] },
         { "prompt": "Which gas smells of rotten eggs?", "options": [{ "text": "Methane" }, { "text": "Hydrogen sulphide", "correct": true }, { "text": "Ammonia" }, { "text": "Ozone" }] },
         { "prompt": "In what year did the American Civil War begin?", "options": [{ "text": "1848" }, { "text": "1861", "correct": true }, { "text": "1865" }, { "text": "1870" }] },
-        { "prompt": "What is the capital of Argentina?", "options": [{ "text": "Cordoba" }, { "text": "Rosario" }, { "text": "Buenos Aires", "correct": true }, { "text": "Mendoza" }] },
         { "prompt": "Which of these four animals lays the most eggs?", "options": [{ "text": "Chicken" }, { "text": "Sea turtle", "correct": true }, { "text": "Penguin" }, { "text": "Ostrich" }] },
-        { "prompt": "How many points is a shot inside the three point line worth in basketball?", "options": [{ "text": "One" }, { "text": "Two", "correct": true }, { "text": "Three" }, { "text": "Four" }] },
         { "prompt": "Which planet has the shortest day?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Earth" }, { "text": "Mars" }, { "text": "Venus" }] },
         { "prompt": "Which of these four countries has the most inhabitants?", "options": [{ "text": "Nigeria", "correct": true }, { "text": "Russia" }, { "text": "Japan" }, { "text": "Mexico" }] },
         { "prompt": "Which writer wrote Pride and Prejudice?", "options": [{ "text": "Jane Austen", "correct": true }, { "text": "Emily Bronte" }, { "text": "George Eliot" }, { "text": "Elizabeth Gaskell" }] },
-        { "prompt": "Which vitamin deficiency causes scurvy?", "options": [{ "text": "Vitamin A" }, { "text": "Vitamin B12" }, { "text": "Vitamin C", "correct": true }, { "text": "Vitamin D" }] },
         { "prompt": "Which river is the longest within Dutch borders?", "options": [{ "text": "Meuse", "correct": true }, { "text": "IJssel" }, { "text": "Waal" }, { "text": "Vecht" }] },
-        { "prompt": "In what year was the Eurovision Song Contest first held?", "options": [{ "text": "1950" }, { "text": "1956", "correct": true }, { "text": "1960" }, { "text": "1964" }] },
         { "prompt": "Which of these is a brass instrument?", "options": [{ "text": "Oboe" }, { "text": "Trombone", "correct": true }, { "text": "Bassoon" }, { "text": "Flute" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Mill" },
-        { "prompt": "Chessboard" },
-        { "prompt": "Dolphin" },
-        { "prompt": "Post office" },
-        { "prompt": "Peach" },
-        { "prompt": "Wizard" },
-        { "prompt": "Scaffold pole" },
-        { "prompt": "Xylophone" },
-        { "prompt": "Fog" },
-        { "prompt": "Beekeeper" },
-        { "prompt": "Submarine" },
-        { "prompt": "Solar panel" },
-        { "prompt": "Sock" },
-        { "prompt": "Butterfly" },
-        { "prompt": "Circus" },
-        { "prompt": "Toaster" }
+      "words": [
+        "Dolphin",
+        "Butterfly",
+        "Sock",
+        "Toaster",
+        "Circus",
+        "Peach",
+        "Fog",
+        "Post office",
+        "Xylophone",
+        "Swimming pool",
+        "Submarine",
+        "Solar panel",
+        "Astronaut",
+        "Chessboard",
+        "Wizard",
+        "Napoleon",
+        "Venice",
+        "Judo",
+        "Jaws",
+        "Thunderstorm",
+        "The Suez Canal",
+        "Sign language",
+        "The Taj Mahal",
+        "Notary",
+        "The Renaissance",
+        "Echo",
+        "Mount Vesuvius",
+        "Chameleon",
+        "The Iron Curtain",
+        "Ventriloquist"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border the Netherlands or Belgium.", "answers": [{ "text": "Germany" }, { "text": "Belgium" }, { "text": "France" }, { "text": "Luxembourg" }] },
-        { "prompt": "Name the four largest cities of the United Kingdom.", "answers": [{ "text": "London" }, { "text": "Birmingham" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
-        { "prompt": "Name the four instruments of a classical string quartet.", "answers": [{ "text": "First violin" }, { "text": "Second violin" }, { "text": "Viola" }, { "text": "Cello" }] },
-        { "prompt": "Name four world religions.", "answers": [{ "text": "Christianity" }, { "text": "Islam" }, { "text": "Judaism" }, { "text": "Buddhism" }] },
-        { "prompt": "Name the four kinds of blood vessel besides capillaries.", "answers": [{ "text": "Artery" }, { "text": "Vein" }, { "text": "Arteriole" }, { "text": "Venule" }] },
-        { "prompt": "Name the four largest inhabited Dutch Wadden islands.", "answers": [{ "text": "Texel" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Vlieland" }] },
-        { "prompt": "Name the four main gases of the earth's atmosphere.", "answers": [{ "text": "Nitrogen" }, { "text": "Oxygen" }, { "text": "Argon" }, { "text": "Carbon dioxide" }] },
-        { "prompt": "Name four great Italian cities of the Renaissance.", "answers": [{ "text": "Florence" }, { "text": "Venice" }, { "text": "Rome" }, { "text": "Milan" }] }
+        { "prompt": "What do you know about the Netherlands? Four keywords.", "answers": [{ "text": "Tulips", "aliases": ["Tulip"] }, { "text": "Windmills", "aliases": ["Windmill", "Mills"] }, { "text": "Cheese", "aliases": ["Gouda", "Edam"] }, { "text": "Below sea level", "aliases": ["Dikes", "Dykes", "Flat"] }] },
+        { "prompt": "What do you know about Rembrandt? Four keywords.", "answers": [{ "text": "The Night Watch", "aliases": ["Night Watch"] }, { "text": "Painter", "aliases": ["Painting", "Artist"] }, { "text": "Amsterdam", "aliases": ["Leiden"] }, { "text": "Self-portraits", "aliases": ["Self portrait", "Golden Age"] }] },
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "Skyscrapers", "aliases": ["Empire State Building", "Skyscraper"] }, { "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Times Square", "aliases": ["Broadway", "Central Park"] }, { "text": "Yellow taxis", "aliases": ["Yellow cabs", "Taxis"] }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "A Christmas tree", "aliases": ["Christmas tree", "Tree"] }, { "text": "Presents", "aliases": ["Gifts"] }, { "text": "Father Christmas", "aliases": ["Santa Claus", "Santa"] }, { "text": "Christmas dinner", "aliases": ["Turkey", "Family"] }] },
+        { "prompt": "What do you know about dinosaurs? Four keywords.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "T rex"] }, { "text": "Extinct", "aliases": ["Extinction", "Died out"] }, { "text": "A meteorite", "aliases": ["Meteorite", "Asteroid", "Comet"] }, { "text": "Fossils", "aliases": ["Fossil", "Bones", "Skeleton"] }] },
+        { "prompt": "What do you know about Madonna? Four keywords.", "answers": [{ "text": "Pop singer", "aliases": ["Singer", "Pop star"] }, { "text": "Like a Virgin", "aliases": ["Material Girl", "Hung Up"] }, { "text": "American", "aliases": ["United States", "Michigan"] }, { "text": "The eighties", "aliases": ["1980s", "80s"] }] },
+        { "prompt": "What do you know about the sea? Four keywords.", "answers": [{ "text": "Salt water", "aliases": ["Salty", "Salt"] }, { "text": "Waves", "aliases": ["Wave", "Tides"] }, { "text": "Fish", "aliases": ["Fishing", "Whales"] }, { "text": "The beach", "aliases": ["Beach", "Sand", "Ships"] }] },
+        { "prompt": "What do you know about cats? Four keywords.", "answers": [{ "text": "Purring", "aliases": ["Purr", "Miaow", "Meow"] }, { "text": "Whiskers", "aliases": ["Claws", "Fur"] }, { "text": "Nine lives", "aliases": ["Seven lives"] }, { "text": "Catching mice", "aliases": ["Mice", "Hunting"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch microscopist was the first to see bacteria through a lens he made himself?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek"] }] },
-        { "prompt": "What is the longest river in Asia?", "answers": [{ "text": "The Yangtze", "aliases": ["Yangtze River"] }] },
-        { "prompt": "Which German composer wrote the Brandenburg Concertos?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
-        { "prompt": "What is the capital of Vietnam?", "answers": [{ "text": "Hanoi" }] },
-        { "prompt": "Which Polish physicist won Nobel Prizes in two different fields?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
-        { "prompt": "In what year did the Dutch Revolt against Spain begin?", "answers": [{ "text": "1568" }] }
+        { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Which sea creature has three hearts and blue blood?", "answers": [{ "text": "The octopus", "aliases": ["Octopus"] }] },
+        { "prompt": "Which Russian author wrote War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },
+        { "prompt": "What is the currency of Japan called?", "answers": [{ "text": "The yen", "aliases": ["Yen"] }] },
+        { "prompt": "Which mountain is the highest outside Asia?", "answers": [{ "text": "Aconcagua", "aliases": ["The Aconcagua"] }] },
+        { "prompt": "In which country was the composer Chopin born?", "answers": [{ "text": "Poland" }] },
+        { "prompt": "Which Italian explorer gave his name to the Americas?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
       ]
     }
   ]

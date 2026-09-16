@@ -32,11 +32,8 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the smallest bone in the human body?", "options": [{ "text": "Stirrup", "correct": true }, { "text": "Hammer" }, { "text": "Anvil" }, { "text": "Nasal bone" }] },
-        { "prompt": "About how many litres of blood does an adult have?", "options": [{ "text": "3" }, { "text": "5", "correct": true }, { "text": "8" }, { "text": "10" }] },
         { "prompt": "Which blood type is the universal donor for red blood cells?", "options": [{ "text": "O negative", "correct": true }, { "text": "AB positive" }, { "text": "A positive" }, { "text": "B negative" }] },
         { "prompt": "Which part of the brain controls breathing?", "options": [{ "text": "The brain stem", "correct": true }, { "text": "The cerebellum" }, { "text": "The cerebrum" }, { "text": "The pituitary" }] },
-        { "prompt": "How many ribs does a person usually have?", "options": [{ "text": "20" }, { "text": "22" }, { "text": "24", "correct": true }, { "text": "26" }] },
         { "prompt": "Which organ stores bile?", "options": [{ "text": "The gall bladder", "correct": true }, { "text": "The liver" }, { "text": "The spleen" }, { "text": "The pancreas" }] },
         { "prompt": "Which blood vessels carry blood away from the heart?", "options": [{ "text": "Arteries", "correct": true }, { "text": "Veins" }, { "text": "Capillaries" }, { "text": "Lymph vessels" }] },
         { "prompt": "How many vertebrae does the neck have?", "options": [{ "text": "5" }, { "text": "7", "correct": true }, { "text": "9" }, { "text": "12" }] },
@@ -44,8 +41,7 @@
         { "prompt": "Which sense sits in the cochlea of the ear?", "options": [{ "text": "Hearing", "correct": true }, { "text": "Smell" }, { "text": "Taste" }, { "text": "Touch" }] },
         { "prompt": "What is normal body temperature in degrees Celsius?", "options": [{ "text": "35" }, { "text": "36" }, { "text": "37", "correct": true }, { "text": "39" }] },
         { "prompt": "Which organ sits behind the breastbone and shrinks after childhood?", "options": [{ "text": "The thymus", "correct": true }, { "text": "The spleen" }, { "text": "The thyroid" }, { "text": "The pancreas" }] },
-        { "prompt": "How many bones do the human hand and wrist have together?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] },
-        { "prompt": "Which vitamin does the body make under sunlight?", "options": [{ "text": "Vitamin A" }, { "text": "Vitamin C" }, { "text": "Vitamin D", "correct": true }, { "text": "Vitamin K" }] }
+        { "prompt": "How many bones do the human hand and wrist have together?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Heart" },
-        { "prompt": "Skeleton" },
-        { "prompt": "Lungs" },
-        { "prompt": "Blood vessel" },
-        { "prompt": "Eye" },
-        { "prompt": "Ear" },
-        { "prompt": "Tooth" },
-        { "prompt": "Muscle" },
-        { "prompt": "Thumb" },
-        { "prompt": "Knee" },
-        { "prompt": "Brain" },
-        { "prompt": "Kidney" },
-        { "prompt": "Breathing" },
-        { "prompt": "Fingerprint" },
-        { "prompt": "Eyebrow" },
-        { "prompt": "Sneeze" }
+      "words": [
+        "Heart",
+        "Skeleton",
+        "Lungs",
+        "Eye",
+        "Tooth",
+        "Muscle",
+        "Thumb",
+        "Knee",
+        "Brain",
+        "Skin",
+        "Kidney",
+        "Fingerprint",
+        "Eyebrow",
+        "Sneeze",
+        "Elbow",
+        "Goosebumps",
+        "Yawn",
+        "Dentist",
+        "X-ray",
+        "Stethoscope",
+        "Spinal cord",
+        "Pancreas",
+        "Cartilage",
+        "Eardrum",
+        "Adam's apple",
+        "Hiccup",
+        "Collarbone",
+        "Bone marrow",
+        "Surgeon",
+        "Blood donation"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four chambers of the heart.", "answers": [{ "text": "Left atrium" }, { "text": "Right atrium" }, { "text": "Left ventricle" }, { "text": "Right ventricle" }] },
-        { "prompt": "Name the four basic tastes besides umami.", "answers": [{ "text": "Sweet" }, { "text": "Sour" }, { "text": "Salty" }, { "text": "Bitter" }] },
-        { "prompt": "Name the four senses besides sight.", "answers": [{ "text": "Hearing" }, { "text": "Smell" }, { "text": "Taste" }, { "text": "Touch" }] },
-        { "prompt": "Name the four blood groups of the ABO system.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
-        { "prompt": "Name four bones of the human body.", "answers": [{ "text": "Femur" }, { "text": "Skull" }, { "text": "Collarbone" }, { "text": "Shin bone" }] },
-        { "prompt": "Name four organs in the abdomen.", "answers": [{ "text": "Stomach" }, { "text": "Liver" }, { "text": "Kidneys" }, { "text": "Spleen" }] },
-        { "prompt": "Name the four kinds of teeth in the mouth.", "answers": [{ "text": "Incisors" }, { "text": "Canines" }, { "text": "Premolars" }, { "text": "Molars" }] },
-        { "prompt": "Name the four lobes of the cerebrum.", "answers": [{ "text": "Frontal lobe" }, { "text": "Parietal lobe" }, { "text": "Temporal lobe" }, { "text": "Occipital lobe" }] }
+        { "prompt": "What do you know about the heart? Four keywords.", "answers": [{ "text": "Blood", "aliases": ["Pumping blood"] }, { "text": "Heartbeat", "aliases": ["Beating", "Pulse"] }, { "text": "Chest" }, { "text": "Four chambers", "aliases": ["Chambers", "Ventricles"] }] },
+        { "prompt": "What do you know about the skeleton? Four keywords.", "answers": [{ "text": "Bones" }, { "text": "Skull" }, { "text": "Ribs", "aliases": ["Rib cage"] }, { "text": "Calcium" }] },
+        { "prompt": "What do you know about the eye? Four keywords.", "answers": [{ "text": "Pupil" }, { "text": "Iris" }, { "text": "Seeing", "aliases": ["Sight", "Vision"] }, { "text": "Tears", "aliases": ["Crying"] }] },
+        { "prompt": "What do you know about the lungs? Four keywords.", "answers": [{ "text": "Breathing", "aliases": ["Breath"] }, { "text": "Oxygen" }, { "text": "Air" }, { "text": "Smoking", "aliases": ["Cigarettes"] }] },
+        { "prompt": "What do you know about the brain? Four keywords.", "answers": [{ "text": "Thinking", "aliases": ["Thoughts"] }, { "text": "Memory" }, { "text": "Grey matter", "aliases": ["Gray matter"] }, { "text": "Neurons", "aliases": ["Nerve cells", "Nerves"] }] },
+        { "prompt": "What do you know about blood? Four keywords.", "answers": [{ "text": "Red" }, { "text": "Veins", "aliases": ["Arteries", "Blood vessels"] }, { "text": "Blood groups", "aliases": ["Blood types", "A B AB O"] }, { "text": "Donation", "aliases": ["Blood donor", "Giving blood"] }] },
+        { "prompt": "What do you know about the skin? Four keywords.", "answers": [{ "text": "Largest organ" }, { "text": "Sweat", "aliases": ["Sweating"] }, { "text": "Freckles", "aliases": ["Moles"] }, { "text": "Sunburn", "aliases": ["Tanning", "Suntan"] }] },
+        { "prompt": "What do you know about teeth? Four keywords.", "answers": [{ "text": "Dentist" }, { "text": "Brushing", "aliases": ["Toothbrush", "Toothpaste"] }, { "text": "Wisdom teeth" }, { "text": "Cavities", "aliases": ["Tooth decay", "Holes"] }] }
       ]
     },
     {
@@ -114,11 +124,12 @@
       "round": 7,
       "questions": [
         { "prompt": "What is the longest nerve in the human body called?", "answers": [{ "text": "The sciatic nerve", "aliases": ["sciatic nerve", "sciatic"] }] },
-        { "prompt": "Which bone in the neck connects to no other bone?", "answers": [{ "text": "The hyoid bone", "aliases": ["hyoid"] }] },
-        { "prompt": "Which English doctor described the circulation of the blood in 1628?", "answers": [{ "text": "William Harvey", "aliases": ["Harvey"] }] },
-        { "prompt": "What is the fluid that lubricates the joints called?", "answers": [{ "text": "Synovial fluid", "aliases": ["synovia"] }] },
         { "prompt": "What is the outer layer of the skin called?", "answers": [{ "text": "The epidermis", "aliases": ["epidermis"] }] },
-        { "prompt": "Which part of the eye changes shape to focus?", "answers": [{ "text": "The lens", "aliases": ["lens"] }] }
+        { "prompt": "Which part of the eye changes shape to focus?", "answers": [{ "text": "The lens", "aliases": ["lens"] }] },
+        { "prompt": "Which organ can grow back after part of it is removed?", "answers": [{ "text": "The liver", "aliases": ["liver"] }] },
+        { "prompt": "What is the medical name for the kneecap?", "answers": [{ "text": "The patella", "aliases": ["patella"] }] },
+        { "prompt": "A shortage of which vitamin causes scurvy?", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
+        { "prompt": "Which is the largest muscle in the human body?", "answers": [{ "text": "The gluteus maximus", "aliases": ["gluteus maximus", "buttock muscle"] }] }
       ]
     }
   ]

@@ -34,17 +34,13 @@
         { "prompt": "Welk land heeft de laagste bevolkingsdichtheid ter wereld?", "options": [{ "text": "Mongolie", "correct": true }, { "text": "IJsland" }, { "text": "Libie" }, { "text": "Suriname" }] },
         { "prompt": "Welke Amerikaanse arts ontwikkelde het eerste poliovaccin?", "options": [{ "text": "Jonas Salk", "correct": true }, { "text": "Robert Koch" }, { "text": "Edward Jenner" }, { "text": "Joseph Lister" }] },
         { "prompt": "Welk land heeft een ceder op zijn nationale vlag?", "options": [{ "text": "Libanon", "correct": true }, { "text": "Cyprus" }, { "text": "Jordanie" }, { "text": "Tunesie" }] },
-        { "prompt": "In welke stad staat de Sagrada Familia?", "options": [{ "text": "Barcelona", "correct": true }, { "text": "Valencia" }, { "text": "Sevilla" }, { "text": "Bilbao" }] },
         { "prompt": "In welke opera wordt het Toreadorlied gezongen?", "options": [{ "text": "Carmen", "correct": true }, { "text": "Aida" }, { "text": "La Traviata" }, { "text": "Rigoletto" }] },
         { "prompt": "Welke vis wordt met zout en dille tot gravlax gemaakt?", "options": [{ "text": "Zalm", "correct": true }, { "text": "Kabeljauw" }, { "text": "Haring" }, { "text": "Makreel" }] },
         { "prompt": "Hoe heet de grens rond een zwart gat?", "options": [{ "text": "De waarnemingshorizon", "correct": true }, { "text": "De accretieschijf" }, { "text": "De singulariteit" }, { "text": "De corona" }] },
-        { "prompt": "Welke sterkedrank wordt op smaak gebracht met jeneverbessen?", "options": [{ "text": "Gin", "correct": true }, { "text": "Wodka" }, { "text": "Rum" }, { "text": "Tequila" }] },
         { "prompt": "Welk bot loopt van de schouder naar de elleboog?", "options": [{ "text": "Het opperarmbeen", "correct": true }, { "text": "Het spaakbeen" }, { "text": "De ellepijp" }, { "text": "Het schouderblad" }] },
-        { "prompt": "In welke sport spelen Engeland en Australie om de Ashes?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Rugby" }, { "text": "Netbal" }, { "text": "Squash" }] },
         { "prompt": "Welke Engelse koning sneuvelde in de slag bij Hastings?", "options": [{ "text": "Harold", "correct": true }, { "text": "Edward" }, { "text": "Alfred" }, { "text": "Knoet" }] },
         { "prompt": "Uit welk erts wordt aluminium vooral gewonnen?", "options": [{ "text": "Bauxiet", "correct": true }, { "text": "Hematiet" }, { "text": "Galeniet" }, { "text": "Cinnaber" }] },
-        { "prompt": "Welke vogel heeft de grootste spanwijdte van alle levende vogels?", "options": [{ "text": "De grote albatros", "correct": true }, { "text": "De condor" }, { "text": "De pelikaan" }, { "text": "De steenarend" }] },
-        { "prompt": "Welke staat van de Verenigde Staten is qua oppervlakte de grootste?", "options": [{ "text": "Alaska", "correct": true }, { "text": "Texas" }, { "text": "Californie" }, { "text": "Montana" }] }
+        { "prompt": "Welke vogel heeft de grootste spanwijdte van alle levende vogels?", "options": [{ "text": "De grote albatros", "correct": true }, { "text": "De condor" }, { "text": "De pelikaan" }, { "text": "De steenarend" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Trapeze" },
-        { "prompt": "Duikplank" },
-        { "prompt": "Reddingsboei" },
-        { "prompt": "Wetsuit" },
-        { "prompt": "Kruk" },
-        { "prompt": "Statief" },
-        { "prompt": "Barbecue" },
-        { "prompt": "Typemachine" },
-        { "prompt": "Automaat" },
-        { "prompt": "Heg" },
-        { "prompt": "Plas" },
-        { "prompt": "Open haard" },
-        { "prompt": "Wielklem" },
-        { "prompt": "Cactus" },
-        { "prompt": "Aquarium" },
-        { "prompt": "Radiator" }
+      "words": [
+        "Pizza",
+        "Paraplu",
+        "Gitaar",
+        "Olifant",
+        "Vuurtoren",
+        "Dokter",
+        "Voetbal",
+        "Sinterklaas",
+        "Fiets",
+        "Regenboog",
+        "Eiffeltoren",
+        "Titanic",
+        "Brandweerman",
+        "De piramides",
+        "Sherlock Holmes",
+        "Jurassic Park",
+        "Venetie",
+        "Astronaut",
+        "Max Verstappen",
+        "The Beatles",
+        "Nelson Mandela",
+        "Tsjernobyl",
+        "Archeoloog",
+        "Machu Picchu",
+        "De Berlijnse Muur",
+        "Zwaartekracht",
+        "Rembrandt",
+        "Marie Curie",
+        "Veilingmeester",
+        "Democratie"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan China grenzen.", "answers": [{ "text": "Mongolie" }, { "text": "Nepal" }, { "text": "Vietnam" }, { "text": "Kazachstan" }] },
-        { "prompt": "Noem vier soorten noten.", "answers": [{ "text": "Walnoot" }, { "text": "Hazelnoot" }, { "text": "Amandel" }, { "text": "Pistache" }] },
-        { "prompt": "Noem vier muziekgenres.", "answers": [{ "text": "Jazz" }, { "text": "Blues" }, { "text": "Rock" }, { "text": "Techno" }] },
-        { "prompt": "Noem de vier hoofddelen van een plant.", "answers": [{ "text": "Wortel" }, { "text": "Stengel" }, { "text": "Blad" }, { "text": "Bloem" }] },
-        { "prompt": "Noem vier landen waar Spaans de officiele taal is.", "answers": [{ "text": "Spanje" }, { "text": "Mexico" }, { "text": "Argentinie" }, { "text": "Chili" }] },
-        { "prompt": "Noem vier olympische vechtsporten.", "answers": [{ "text": "Boksen" }, { "text": "Judo" }, { "text": "Taekwondo" }, { "text": "Worstelen" }] },
-        { "prompt": "Noem vier dingen die je in een keuken verwacht.", "answers": [{ "text": "Oven" }, { "text": "Koelkast" }, { "text": "Gootsteen" }, { "text": "Waterkoker" }] },
-        { "prompt": "Noem vier planeten die je met het blote oog kunt zien.", "answers": [{ "text": "Mercurius" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Jupiter" }] }
+        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "1889", "aliases": ["Wereldtentoonstelling"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "IJsberg" }, { "text": "1912" }, { "text": "Gezonken", "aliases": ["Zonk", "Scheepswrak"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet", "De film"] }] },
+        { "prompt": "Wat weet je van het oude Egypte? Vier kernwoorden.", "answers": [{ "text": "De piramides", "aliases": ["Piramides", "Piramide"] }, { "text": "Farao", "aliases": ["Faraos", "Toetanchamon"] }, { "text": "Mummies", "aliases": ["Mummie"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Boon", "Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Espresso" }, { "text": "Brazilie" }] },
+        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong", "Maanlanding"] }, { "text": "1969" }, { "text": "Kraters", "aliases": ["Krater"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }] },
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "De vorm van een laars", "aliases": ["Laars", "Laarsje"] }, { "text": "Pasta", "aliases": ["Spaghetti"] }] },
+        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit", "E=mc2"] }, { "text": "Natuurkundige", "aliases": ["Natuurkunde", "Wetenschapper"] }, { "text": "Zijn haar", "aliases": ["Wilde haren", "Haar"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen", "De ringen"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }, { "text": "Griekenland", "aliases": ["Oude Grieken", "Athene"] }, { "text": "Gouden medaille", "aliases": ["Medaille", "Medailles"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Welke Romeinse dichter schreef de Metamorfosen?", "answers": [{ "text": "Ovidius", "aliases": ["Ovid"] }] },
         { "prompt": "Wat is de hoofdstad van Letland?", "answers": [{ "text": "Riga" }] },
         { "prompt": "Welke Italiaanse natuurkundige bouwde de eerste werkende kernreactor?", "answers": [{ "text": "Enrico Fermi", "aliases": ["Fermi"] }] },
-        { "prompt": "In welk jaar vloog het eerste zeppelinluchtschip?", "answers": [{ "text": "1900" }] },
-        { "prompt": "Hoe heet het diepste punt van de Atlantische Oceaan?", "answers": [{ "text": "De Puerto Ricotrog", "aliases": ["Puerto Rico Trench", "Puerto Ricotrog"] }] },
-        { "prompt": "Welke Tsjechische componist schreef de symfonie Uit de Nieuwe Wereld?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] }
+        { "prompt": "Welk meer is het diepste ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
+        { "prompt": "Welke Tsjechische componist schreef de symfonie Uit de Nieuwe Wereld?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] },
+        { "prompt": "Welk gebergte geldt als de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
       ]
     }
   ]

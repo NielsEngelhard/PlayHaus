@@ -32,11 +32,8 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Welk bot is het kleinste van het menselijk lichaam?", "options": [{ "text": "Stijgbeugel", "correct": true }, { "text": "Hamer" }, { "text": "Aambeeld" }, { "text": "Neusbeen" }] },
-        { "prompt": "Hoeveel liter bloed heeft een volwassen mens ongeveer?", "options": [{ "text": "3" }, { "text": "5", "correct": true }, { "text": "8" }, { "text": "10" }] },
         { "prompt": "Welke bloedgroep is de universele donor voor rode bloedcellen?", "options": [{ "text": "O negatief", "correct": true }, { "text": "AB positief" }, { "text": "A positief" }, { "text": "B negatief" }] },
         { "prompt": "Welk deel van de hersenen regelt de ademhaling?", "options": [{ "text": "De hersenstam", "correct": true }, { "text": "De kleine hersenen" }, { "text": "De grote hersenen" }, { "text": "De hypofyse" }] },
-        { "prompt": "Hoeveel ribben heeft een mens gewoonlijk?", "options": [{ "text": "20" }, { "text": "22" }, { "text": "24", "correct": true }, { "text": "26" }] },
         { "prompt": "Welk orgaan slaat gal op?", "options": [{ "text": "De galblaas", "correct": true }, { "text": "De lever" }, { "text": "De milt" }, { "text": "De alvleesklier" }] },
         { "prompt": "Welke bloedvaten voeren bloed van het hart af?", "options": [{ "text": "Slagaders", "correct": true }, { "text": "Aders" }, { "text": "Haarvaten" }, { "text": "Lymfevaten" }] },
         { "prompt": "Hoeveel wervels heeft de halswervelkolom?", "options": [{ "text": "5" }, { "text": "7", "correct": true }, { "text": "9" }, { "text": "12" }] },
@@ -44,8 +41,7 @@
         { "prompt": "Welk zintuig zit in het slakkenhuis van het oor?", "options": [{ "text": "Gehoor", "correct": true }, { "text": "Reuk" }, { "text": "Smaak" }, { "text": "Tastzin" }] },
         { "prompt": "Wat is de normale lichaamstemperatuur in graden Celsius?", "options": [{ "text": "35" }, { "text": "36" }, { "text": "37", "correct": true }, { "text": "39" }] },
         { "prompt": "Welk orgaan zit achter het borstbeen en krimpt na de kindertijd?", "options": [{ "text": "De zwezerik", "correct": true }, { "text": "De milt" }, { "text": "De schildklier" }, { "text": "De alvleesklier" }] },
-        { "prompt": "Hoeveel botten heeft de menselijke hand en pols samen?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] },
-        { "prompt": "Welke vitamine maakt het lichaam aan onder invloed van zonlicht?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine C" }, { "text": "Vitamine D", "correct": true }, { "text": "Vitamine K" }] }
+        { "prompt": "Hoeveel botten heeft de menselijke hand en pols samen?", "options": [{ "text": "19" }, { "text": "23" }, { "text": "27", "correct": true }, { "text": "31" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Hart" },
-        { "prompt": "Skelet" },
-        { "prompt": "Longen" },
-        { "prompt": "Bloedvat" },
-        { "prompt": "Oog" },
-        { "prompt": "Oor" },
-        { "prompt": "Tand" },
-        { "prompt": "Spier" },
-        { "prompt": "Duim" },
-        { "prompt": "Knie" },
-        { "prompt": "Hersenen" },
-        { "prompt": "Nier" },
-        { "prompt": "Ademhaling" },
-        { "prompt": "Vingerafdruk" },
-        { "prompt": "Wenkbrauw" },
-        { "prompt": "Niezen" }
+      "words": [
+        "Hart",
+        "Skelet",
+        "Longen",
+        "Oog",
+        "Tand",
+        "Spier",
+        "Duim",
+        "Knie",
+        "Hersenen",
+        "Huid",
+        "Nier",
+        "Vingerafdruk",
+        "Wenkbrauw",
+        "Niezen",
+        "Elleboog",
+        "Kippenvel",
+        "Geeuwen",
+        "Tandarts",
+        "Rontgenfoto",
+        "Stethoscoop",
+        "Ruggenmerg",
+        "Alvleesklier",
+        "Kraakbeen",
+        "Trommelvlies",
+        "Adamsappel",
+        "Hik",
+        "Sleutelbeen",
+        "Beenmerg",
+        "Chirurg",
+        "Bloeddonatie"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier holtes van het hart.", "answers": [{ "text": "Linkerboezem" }, { "text": "Rechterboezem" }, { "text": "Linkerkamer" }, { "text": "Rechterkamer" }] },
-        { "prompt": "Noem de vier basissmaken naast umami.", "answers": [{ "text": "Zoet" }, { "text": "Zuur" }, { "text": "Zout" }, { "text": "Bitter" }] },
-        { "prompt": "Noem de vier zintuigen naast het gezichtsvermogen.", "answers": [{ "text": "Gehoor" }, { "text": "Reuk" }, { "text": "Smaak" }, { "text": "Tastzin" }] },
-        { "prompt": "Noem de vier bloedgroepen van het ABO-systeem.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
-        { "prompt": "Noem vier botten van het menselijk lichaam.", "answers": [{ "text": "Dijbeen" }, { "text": "Schedel" }, { "text": "Sleutelbeen" }, { "text": "Scheenbeen" }] },
-        { "prompt": "Noem vier organen in de buikholte.", "answers": [{ "text": "Maag" }, { "text": "Lever" }, { "text": "Nieren" }, { "text": "Milt" }] },
-        { "prompt": "Noem de vier soorten tanden in de mond.", "answers": [{ "text": "Snijtanden" }, { "text": "Hoektanden" }, { "text": "Premolaren" }, { "text": "Kiezen" }] },
-        { "prompt": "Noem de vier kwabben van de grote hersenen.", "answers": [{ "text": "Voorhoofdskwab" }, { "text": "Wandbeenkwab" }, { "text": "Slaapkwab" }, { "text": "Achterhoofdskwab" }] }
+        { "prompt": "Wat weet je van het hart? Vier kernwoorden.", "answers": [{ "text": "Bloed", "aliases": ["Bloed pompen"] }, { "text": "Hartslag", "aliases": ["Kloppen", "Pols"] }, { "text": "Borstkas", "aliases": ["Borst"] }, { "text": "Vier holtes", "aliases": ["Holtes", "Kamers"] }] },
+        { "prompt": "Wat weet je van het skelet? Vier kernwoorden.", "answers": [{ "text": "Botten" }, { "text": "Schedel" }, { "text": "Ribben", "aliases": ["Ribbenkast"] }, { "text": "Kalk", "aliases": ["Calcium"] }] },
+        { "prompt": "Wat weet je van het oog? Vier kernwoorden.", "answers": [{ "text": "Pupil" }, { "text": "Iris", "aliases": ["Regenboogvlies"] }, { "text": "Zien", "aliases": ["Gezichtsvermogen"] }, { "text": "Tranen", "aliases": ["Huilen"] }] },
+        { "prompt": "Wat weet je van de longen? Vier kernwoorden.", "answers": [{ "text": "Ademhalen", "aliases": ["Ademhaling", "Adem"] }, { "text": "Zuurstof" }, { "text": "Lucht" }, { "text": "Roken", "aliases": ["Sigaretten"] }] },
+        { "prompt": "Wat weet je van de hersenen? Vier kernwoorden.", "answers": [{ "text": "Denken", "aliases": ["Gedachten"] }, { "text": "Geheugen" }, { "text": "Grijze massa" }, { "text": "Neuronen", "aliases": ["Zenuwcellen", "Zenuwen"] }] },
+        { "prompt": "Wat weet je van bloed? Vier kernwoorden.", "answers": [{ "text": "Rood" }, { "text": "Aders", "aliases": ["Slagaders", "Bloedvaten"] }, { "text": "Bloedgroepen", "aliases": ["A B AB O"] }, { "text": "Bloeddonatie", "aliases": ["Donor", "Bloed geven"] }] },
+        { "prompt": "Wat weet je van de huid? Vier kernwoorden.", "answers": [{ "text": "Grootste orgaan" }, { "text": "Zweet", "aliases": ["Zweten"] }, { "text": "Sproeten", "aliases": ["Moedervlekken"] }, { "text": "Zonnebrand", "aliases": ["Bruinen", "Kleurtje"] }] },
+        { "prompt": "Wat weet je van tanden? Vier kernwoorden.", "answers": [{ "text": "Tandarts" }, { "text": "Poetsen", "aliases": ["Tandenborstel", "Tandpasta"] }, { "text": "Verstandskiezen" }, { "text": "Gaatjes", "aliases": ["Tandbederf"] }] }
       ]
     },
     {
@@ -114,11 +124,12 @@
       "round": 7,
       "questions": [
         { "prompt": "Hoe heet de langste zenuw van het menselijk lichaam?", "answers": [{ "text": "De heupzenuw", "aliases": ["heupzenuw", "ischiaszenuw"] }] },
-        { "prompt": "Welk bot in de hals is met geen enkel ander bot verbonden?", "answers": [{ "text": "Het tongbeen", "aliases": ["tongbeen"] }] },
-        { "prompt": "Welke Engelse arts beschreef in 1628 de bloedsomloop?", "answers": [{ "text": "William Harvey", "aliases": ["Harvey"] }] },
-        { "prompt": "Hoe heet de vloeistof die de gewrichten smeert?", "answers": [{ "text": "Gewrichtssmeer", "aliases": ["synoviaal vocht"] }] },
         { "prompt": "Hoe heet de buitenste laag van de huid?", "answers": [{ "text": "De opperhuid", "aliases": ["opperhuid", "epidermis"] }] },
-        { "prompt": "Welk deel van het oog verandert van vorm om scherp te stellen?", "answers": [{ "text": "De ooglens", "aliases": ["lens"] }] }
+        { "prompt": "Welk deel van het oog verandert van vorm om scherp te stellen?", "answers": [{ "text": "De ooglens", "aliases": ["lens"] }] },
+        { "prompt": "Welk orgaan kan weer aangroeien nadat er een deel van is weggehaald?", "answers": [{ "text": "De lever", "aliases": ["lever"] }] },
+        { "prompt": "Wat is de medische naam voor de knieschijf?", "answers": [{ "text": "De patella", "aliases": ["patella"] }] },
+        { "prompt": "Een tekort aan welke vitamine veroorzaakt scheurbuik?", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
+        { "prompt": "Welke spier is de grootste van het menselijk lichaam?", "answers": [{ "text": "De bilspier", "aliases": ["bilspier", "gluteus maximus", "grote bilspier"] }] }
       ]
     }
   ]

@@ -38,13 +38,9 @@
         { "prompt": "Wat is de snelst zwemmende vogel ter wereld?", "options": [{ "text": "De ezelspinguin", "correct": true }, { "text": "De aalscholver" }, { "text": "De papegaaiduiker" }, { "text": "De eidereend" }] },
         { "prompt": "Welke Italiaanse componist schreef De barbier van Sevilla?", "options": [{ "text": "Gioachino Rossini", "correct": true }, { "text": "Gaetano Donizetti" }, { "text": "Vincenzo Bellini" }, { "text": "Giacomo Meyerbeer" }] },
         { "prompt": "In welk land ligt de rotsstad Petra?", "options": [{ "text": "Jordanie", "correct": true }, { "text": "Israel" }, { "text": "Syrie" }, { "text": "Egypte" }] },
-        { "prompt": "Welke sprinter heeft het wereldrecord op de 100 meter?", "options": [{ "text": "Usain Bolt", "correct": true }, { "text": "Carl Lewis" }, { "text": "Tyson Gay" }, { "text": "Justin Gatlin" }] },
         { "prompt": "Bij welk stelsel van het lichaam horen de milt en de lymfeklieren?", "options": [{ "text": "Het lymfestelsel", "correct": true }, { "text": "Het hormoonstelsel" }, { "text": "Het zenuwstelsel" }, { "text": "Het spijsverteringsstelsel" }] },
-        { "prompt": "Welke drank wordt gemaakt door appels te laten gisten?", "options": [{ "text": "Cider", "correct": true }, { "text": "Perry" }, { "text": "Mede" }, { "text": "Port" }] },
         { "prompt": "Welk land heeft een draak op zijn nationale vlag?", "options": [{ "text": "Bhutan", "correct": true }, { "text": "Nepal" }, { "text": "Laos" }, { "text": "Mongolie" }] },
-        { "prompt": "Wat is de eenheid van energie in het metrieke stelsel?", "options": [{ "text": "De joule", "correct": true }, { "text": "De pascal" }, { "text": "De tesla" }, { "text": "De coulomb" }] },
-        { "prompt": "Welke Amerikaanse staat heeft de bijnaam Sunshine State?", "options": [{ "text": "Florida", "correct": true }, { "text": "Arizona" }, { "text": "Hawai" }, { "text": "Nevada" }] },
-        { "prompt": "Welk land verbood als eerste ter wereld dunne plastic tasjes?", "options": [{ "text": "Bangladesh", "correct": true }, { "text": "Rwanda" }, { "text": "Ierland" }, { "text": "Denemarken" }] }
+        { "prompt": "Wat is de eenheid van energie in het metrieke stelsel?", "options": [{ "text": "De joule", "correct": true }, { "text": "De pascal" }, { "text": "De tesla" }, { "text": "De coulomb" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Stapelbed" },
-        { "prompt": "Dweil" },
-        { "prompt": "Zonnewijzer" },
-        { "prompt": "Skilift" },
-        { "prompt": "Suikerspin" },
-        { "prompt": "Rolgordijn" },
-        { "prompt": "Deurmat" },
-        { "prompt": "Kazoo" },
-        { "prompt": "Springtouw" },
-        { "prompt": "Watermolen" },
-        { "prompt": "Ligstoel" },
-        { "prompt": "Hoofdlamp" },
-        { "prompt": "Aluminiumfolie" },
-        { "prompt": "Wasknijper" },
-        { "prompt": "Vogelkooi" },
-        { "prompt": "Zwembril" }
+      "words": [
+        "Pizza",
+        "Regenboog",
+        "Fiets",
+        "Olifant",
+        "Voetbal",
+        "Strand",
+        "Sneeuwpop",
+        "Gitaar",
+        "Tandenborstel",
+        "Ballon",
+        "Vuurtoren",
+        "Eiffeltoren",
+        "Brandweerman",
+        "Mount Everest",
+        "Sinterklaas",
+        "Titanic",
+        "Pinguin",
+        "Luchtballon",
+        "Karaoke",
+        "Efteling",
+        "Nelson Mandela",
+        "De Chinese Muur",
+        "Jurassic Park",
+        "De maanlanding",
+        "Anesthesist",
+        "Origami",
+        "Sherlock Holmes",
+        "Venetie",
+        "Zonsverduistering",
+        "Elfstedentocht"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen in Centraal-Azie.", "answers": [{ "text": "Kazachstan" }, { "text": "Oezbekistan" }, { "text": "Turkmenistan" }, { "text": "Kirgizie" }] },
-        { "prompt": "Noem vier olympische sporten op het ijs.", "answers": [{ "text": "Kunstschaatsen" }, { "text": "Schaatsen" }, { "text": "Curling" }, { "text": "IJshockey" }] },
-        { "prompt": "Noem vier opera's.", "answers": [{ "text": "Carmen" }, { "text": "Aida" }, { "text": "La Boheme" }, { "text": "Tosca" }] },
-        { "prompt": "Noem vier soorten paddenstoelen.", "answers": [{ "text": "Champignon" }, { "text": "Cantharel" }, { "text": "Eekhoorntjesbrood" }, { "text": "Oesterzwam" }] },
-        { "prompt": "Noem vier rivieren in Afrika.", "answers": [{ "text": "Nijl" }, { "text": "Congo" }, { "text": "Niger" }, { "text": "Zambezi" }] },
-        { "prompt": "Noem vier soorten schoenen.", "answers": [{ "text": "Sportschoen" }, { "text": "Laars" }, { "text": "Sandaal" }, { "text": "Pantoffel" }] },
-        { "prompt": "Noem vier sociale netwerken.", "answers": [{ "text": "Facebook" }, { "text": "Instagram" }, { "text": "TikTok" }, { "text": "YouTube" }] },
-        { "prompt": "Noem vier groenten die onder de grond groeien.", "answers": [{ "text": "Aardappel" }, { "text": "Wortel" }, { "text": "Biet" }, { "text": "Ui" }] }
+        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Grachten", "aliases": ["Gracht"] }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Het Anne Frank Huis", "aliases": ["Anne Frank"] }, { "text": "De Wallen", "aliases": ["Wallen", "Coffeeshops"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "Een ijsberg", "aliases": ["IJsberg"] }, { "text": "1912" }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet"] }, { "text": "Hij zonk", "aliases": ["Gezonken", "Scheepswrak"] }] },
+        { "prompt": "Wat weet je van voetbal? Vier kernwoorden.", "answers": [{ "text": "Een bal", "aliases": ["Bal"] }, { "text": "Een doelpunt", "aliases": ["Doelpunt", "Goal"] }, { "text": "Elf spelers", "aliases": ["Elf", "11 spelers"] }, { "text": "De scheidsrechter", "aliases": ["Scheidsrechter", "Rode kaart"] }] },
+        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "De kerstboom", "aliases": ["Kerstboom", "Boom"] }, { "text": "Cadeaus", "aliases": ["Kadootjes", "Presentjes"] }, { "text": "De kerstman", "aliases": ["Kerstman"] }, { "text": "Het kerstdiner", "aliases": ["Kerstdiner", "Gourmetten"] }] },
+        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Kraters", "aliases": ["Krater"] }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "De maanlanding"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }, { "text": "Volle maan", "aliases": ["Een volle maan"] }] },
+        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pasta", "aliases": ["Spaghetti"] }, { "text": "Het Colosseum", "aliases": ["Colosseum", "Rome"] }, { "text": "De vorm van een laars", "aliases": ["Een laars", "Laars"] }, { "text": "Pizza" }] },
+        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Melk", "aliases": ["Room"] }, { "text": "Espresso", "aliases": ["Cappuccino"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "Vijf ringen", "aliases": ["De ringen", "Ringen"] }, { "text": "Een gouden medaille", "aliases": ["Gouden medaille", "Medailles"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }, { "text": "De fakkel", "aliases": ["Fakkel", "Olympische vlam"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse natuurkundige gaf zijn naam aan het splitsen van spectraallijnen in een magneetveld?", "answers": [{ "text": "Pieter Zeeman", "aliases": ["Zeeman"] }] },
-        { "prompt": "Wat is de hoofdstad van Myanmar?", "answers": [{ "text": "Naypyidaw" }] },
-        { "prompt": "Welke Florentijnse beeldhouwer maakte de bronzen Paradijsdeuren?", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
-        { "prompt": "In welk jaar stemden Nederlandse mannen en vrouwen voor het eerst op gelijke voet bij een Tweede Kamerverkiezing?", "answers": [{ "text": "1922" }] },
-        { "prompt": "Wat is de langste gletsjer ter wereld?", "answers": [{ "text": "De Lambertgletsjer", "aliases": ["Lambert", "Lambertgletsjer"] }] },
-        { "prompt": "Welke Engelse wiskundige geldt als de eerste programmeur ter wereld?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] }
+        { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Welke Engelse wiskundige geldt als de eerste programmeur ter wereld?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] },
+        { "prompt": "Welke zee is de zoutste ter wereld en ligt op het laagste punt op aarde?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Welke planeet heeft de meeste manen in ons zonnestelsel?", "answers": [{ "text": "Saturnus" }] },
+        { "prompt": "Welke schrijfster bedacht de detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
+        { "prompt": "Welk gebergte vormt de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
       ]
     }
   ]

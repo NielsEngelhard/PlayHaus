@@ -33,13 +33,9 @@
       "round": 2,
       "questions": [
         { "prompt": "Which country was NOT a member of the Warsaw Pact?", "options": [{ "text": "Yugoslavia", "correct": true }, { "text": "Poland" }, { "text": "Hungary" }, { "text": "Bulgaria" }] },
-        { "prompt": "In what year was the Berlin Wall built?", "options": [{ "text": "1955" }, { "text": "1961", "correct": true }, { "text": "1968" }, { "text": "1972" }] },
-        { "prompt": "Which Soviet leader gave his secret speech against Stalin in 1956?", "options": [{ "text": "Nikita Khrushchev", "correct": true }, { "text": "Leonid Brezhnev" }, { "text": "Yuri Andropov" }, { "text": "Alexei Kosygin" }] },
         { "prompt": "What was the failed invasion of Cuba in 1961 called?", "options": [{ "text": "The Bay of Pigs", "correct": true }, { "text": "Guantanamo" }, { "text": "Santiago" }, { "text": "Matanzas" }] },
         { "prompt": "In what year did the Prague Spring take place?", "options": [{ "text": "1953" }, { "text": "1956" }, { "text": "1968", "correct": true }, { "text": "1970" }] },
         { "prompt": "Which uprising was crushed by Soviet troops in 1956?", "options": [{ "text": "The Hungarian one", "correct": true }, { "text": "The Polish one" }, { "text": "The Czech one" }, { "text": "The Romanian one" }] },
-        { "prompt": "Which American president called the Soviet Union the evil empire?", "options": [{ "text": "Ronald Reagan", "correct": true }, { "text": "Jimmy Carter" }, { "text": "Richard Nixon" }, { "text": "Gerald Ford" }] },
-        { "prompt": "Which aid programme helped rebuild western Europe from 1948?", "options": [{ "text": "The Marshall Plan", "correct": true }, { "text": "The Truman Plan" }, { "text": "The Dawes Plan" }, { "text": "The Schuman Plan" }] },
         { "prompt": "Which Asian country was divided at the seventeenth parallel in 1954?", "options": [{ "text": "Vietnam", "correct": true }, { "text": "Korea" }, { "text": "Laos" }, { "text": "Cambodja" }] },
         { "prompt": "Which American senator led the hunt for communists in the fifties?", "options": [{ "text": "Joseph McCarthy", "correct": true }, { "text": "Richard Nixon" }, { "text": "Robert Taft" }, { "text": "Estes Kefauver" }] },
         { "prompt": "In what year did Kennedy give his Ich bin ein Berliner speech?", "options": [{ "text": "1958" }, { "text": "1961" }, { "text": "1963", "correct": true }, { "text": "1969" }] },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Wall" },
-        { "prompt": "Missile" },
-        { "prompt": "Spy" },
-        { "prompt": "Submarine" },
-        { "prompt": "Satellite" },
-        { "prompt": "Barbed wire" },
-        { "prompt": "Bunker" },
-        { "prompt": "Watchtower" },
-        { "prompt": "Tank" },
-        { "prompt": "Passport" },
-        { "prompt": "Spacesuit" },
-        { "prompt": "Propaganda" },
-        { "prompt": "Embassy" },
-        { "prompt": "Border guard" },
-        { "prompt": "Shortwave radio" },
-        { "prompt": "Code" }
+      "words": [
+        "Wall",
+        "Missile",
+        "Spy",
+        "Tank",
+        "Submarine",
+        "Satellite",
+        "Bunker",
+        "Berlin",
+        "Moon landing",
+        "Passport",
+        "Checkpoint Charlie",
+        "Sputnik",
+        "James Bond",
+        "Fidel Castro",
+        "Barbed wire",
+        "Iron Curtain",
+        "Propaganda",
+        "Watchtower",
+        "Kremlin",
+        "Space race",
+        "Cosmonaut",
+        "Red Square",
+        "Trabant",
+        "Airlift",
+        "Hotline",
+        "Gulag",
+        "Defector",
+        "Double agent",
+        "Radio Free Europe",
+        "Fallout shelter"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries of the Warsaw Pact.", "answers": [{ "text": "Soviet Union" }, { "text": "Poland" }, { "text": "Hungary" }, { "text": "Bulgaria" }] },
-        { "prompt": "Name the four occupation zones of Germany after 1945.", "answers": [{ "text": "American zone" }, { "text": "British zone" }, { "text": "French zone" }, { "text": "Soviet zone" }] },
-        { "prompt": "Name four founding countries of NATO.", "answers": [{ "text": "United States" }, { "text": "United Kingdom" }, { "text": "France" }, { "text": "The Netherlands" }] },
-        { "prompt": "Name four leaders of the Soviet Union.", "answers": [{ "text": "Stalin" }, { "text": "Khrushchev" }, { "text": "Brezhnev" }, { "text": "Gorbachev" }] },
-        { "prompt": "Name four American presidents of the Cold War.", "answers": [{ "text": "Harry Truman" }, { "text": "Dwight Eisenhower" }, { "text": "John F. Kennedy" }, { "text": "Ronald Reagan" }] },
-        { "prompt": "Name four countries that emerged from the Soviet Union in 1991.", "answers": [{ "text": "Russia" }, { "text": "Ukraine" }, { "text": "Belarus" }, { "text": "Kazakhstan" }] },
-        { "prompt": "Name four countries where the communist government fell in 1989.", "answers": [{ "text": "Poland" }, { "text": "Hungary" }, { "text": "Czechoslovakia" }, { "text": "Romania" }] },
-        { "prompt": "Name four capitals behind the Iron Curtain.", "answers": [{ "text": "Warsaw" }, { "text": "Budapest" }, { "text": "Prague" }, { "text": "Bucharest" }] }
+        { "prompt": "What do you know about the Berlin Wall? Four keywords.", "answers": [{ "text": "Berlin" }, { "text": "1989", "aliases": ["The fall of the Wall", "It fell in 1989"] }, { "text": "East Germany", "aliases": ["DDR", "GDR", "East Berlin"] }, { "text": "Checkpoint Charlie" }] },
+        { "prompt": "What do you know about the Cuban Missile Crisis? Four keywords.", "answers": [{ "text": "Cuba" }, { "text": "Kennedy", "aliases": ["John F. Kennedy", "JFK"] }, { "text": "Khrushchev", "aliases": ["Nikita Khrushchev"] }, { "text": "Nuclear war", "aliases": ["Nuclear missiles", "Atom bomb", "Brink of nuclear war"] }] },
+        { "prompt": "What do you know about the space race? Four keywords.", "answers": [{ "text": "Sputnik" }, { "text": "Yuri Gagarin", "aliases": ["Gagarin", "First man in space"] }, { "text": "The moon landing", "aliases": ["Moon landing", "Neil Armstrong", "Apollo 11"] }, { "text": "NASA" }] },
+        { "prompt": "What do you know about Mikhail Gorbachev? Four keywords.", "answers": [{ "text": "The Soviet Union", "aliases": ["Soviet Union", "USSR", "Russia"] }, { "text": "Glasnost" }, { "text": "Perestroika" }, { "text": "The birthmark on his head", "aliases": ["Birthmark", "The mark on his forehead", "Bald head with a stain"] }] },
+        { "prompt": "What do you know about NATO? Four keywords.", "answers": [{ "text": "1949" }, { "text": "Brussels", "aliases": ["Headquarters in Brussels", "Belgium"] }, { "text": "Article 5", "aliases": ["An attack on one is an attack on all"] }, { "text": "The United States", "aliases": ["United States", "America", "USA"] }] },
+        { "prompt": "What do you know about the Vietnam War? Four keywords.", "answers": [{ "text": "Jungle", "aliases": ["Rice paddies", "Rainforest"] }, { "text": "Napalm" }, { "text": "Helicopters", "aliases": ["Helicopter", "Huey"] }, { "text": "Apocalypse Now", "aliases": ["Platoon", "Full Metal Jacket", "Vietnam films"] }] },
+        { "prompt": "What do you know about Ronald Reagan? Four keywords.", "answers": [{ "text": "American president", "aliases": ["President of the United States", "President"] }, { "text": "Actor", "aliases": ["Hollywood", "Cowboy films", "Film star"] }, { "text": "Tear down this wall", "aliases": ["Mr Gorbachev, tear down this wall"] }, { "text": "Star Wars", "aliases": ["SDI", "The missile shield", "Missile defence"] }] },
+        { "prompt": "What do you know about Chernobyl? Four keywords.", "answers": [{ "text": "Nuclear power station", "aliases": ["Nuclear reactor", "Power plant", "Reactor"] }, { "text": "1986" }, { "text": "Ukraine", "aliases": ["Soviet Union", "Pripyat"] }, { "text": "Radiation", "aliases": ["Radioactivity", "Fallout", "Nuclear cloud"] }] }
       ]
     },
     {
@@ -113,12 +123,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which American spy plane was shot down over the Soviet Union in 1960?", "answers": [{ "text": "The U-2", "aliases": ["U2", "U-2"] }] },
-        { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge"] }] },
+        { "prompt": "Which country did the Soviet Union invade in December 1979?", "answers": [{ "text": "Afghanistan" }] },
+        { "prompt": "What was the secret police of East Germany called?", "answers": [{ "text": "The Stasi", "aliases": ["Stasi"] }] },
         { "prompt": "What was the Soviet space station launched in 1986 called?", "answers": [{ "text": "Mir" }] },
-        { "prompt": "In what year was the Warsaw Pact dissolved?", "answers": [{ "text": "1991" }] },
+        { "prompt": "Which Soviet leader ruled from 1964 until his death in 1982?", "answers": [{ "text": "Leonid Brezhnev", "aliases": ["Brezhnev"] }] },
         { "prompt": "Which American secretary of state pursued detente in the seventies?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
-        { "prompt": "Which Czech playwright became president in 1989?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] }
+        { "prompt": "Which Czech playwright became president in 1989?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] },
+        { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge", "Bridge of Spies"] }] }
       ]
     }
   ]

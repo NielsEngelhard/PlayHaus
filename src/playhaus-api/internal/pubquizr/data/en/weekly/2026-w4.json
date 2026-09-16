@@ -35,13 +35,9 @@
         { "prompt": "Who wrote the novel The Old Man and the Sea?", "options": [{ "text": "Ernest Hemingway", "correct": true }, { "text": "John Steinbeck" }, { "text": "William Faulkner" }, { "text": "Herman Melville" }] },
         { "prompt": "Which spacecraft was the first to land on a comet?", "options": [{ "text": "Rosetta", "correct": true }, { "text": "Cassini" }, { "text": "Galileo" }, { "text": "New Horizons" }] },
         { "prompt": "Which is the most common metal in the earth's crust?", "options": [{ "text": "Aluminium", "correct": true }, { "text": "Copper" }, { "text": "Zinc" }, { "text": "Lead" }] },
-        { "prompt": "In which city is the Hermitage museum?", "options": [{ "text": "Saint Petersburg", "correct": true }, { "text": "Moscow" }, { "text": "Kyiv" }, { "text": "Riga" }] },
-        { "prompt": "In which sport did Simone Biles become world famous?", "options": [{ "text": "Gymnastics", "correct": true }, { "text": "Diving" }, { "text": "Athletics" }, { "text": "Figure skating" }] },
         { "prompt": "Which mythical animal is a national symbol of Scotland?", "options": [{ "text": "The unicorn", "correct": true }, { "text": "The dragon" }, { "text": "The griffin" }, { "text": "The phoenix" }] },
         { "prompt": "What is the medical name for the kneecap?", "options": [{ "text": "The patella", "correct": true }, { "text": "The meniscus" }, { "text": "The tibia" }, { "text": "The sternum" }] },
-        { "prompt": "What is the currency of India?", "options": [{ "text": "The rupee", "correct": true }, { "text": "The rupiah" }, { "text": "The taka" }, { "text": "The baht" }] },
         { "prompt": "Which marble statue by Michelangelo stands in Florence?", "options": [{ "text": "David", "correct": true }, { "text": "The Pieta" }, { "text": "Moses" }, { "text": "The Dying Slave" }] },
-        { "prompt": "Which sea creature can grow a lost arm back?", "options": [{ "text": "The starfish", "correct": true }, { "text": "The jellyfish" }, { "text": "The sea urchin" }, { "text": "The clam" }] },
         { "prompt": "In which decade was the first call made on a handheld mobile phone?", "options": [{ "text": "The 1970s", "correct": true }, { "text": "The 1960s" }, { "text": "The 1980s" }, { "text": "The 1990s" }] },
         { "prompt": "Which musical ran longest of all on Broadway?", "options": [{ "text": "The Phantom of the Opera", "correct": true }, { "text": "Cats" }, { "text": "Les Miserables" }, { "text": "Chicago" }] },
         { "prompt": "Which form of carbon is the writing part of a pencil made of?", "options": [{ "text": "Graphite", "correct": true }, { "text": "Charcoal" }, { "text": "Coal" }, { "text": "Soot" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Stopwatch" },
-        { "prompt": "Dustpan" },
-        { "prompt": "Skateboard" },
-        { "prompt": "Surfboard" },
-        { "prompt": "Crayon" },
-        { "prompt": "Globe" },
-        { "prompt": "Padlock" },
-        { "prompt": "Zebra crossing" },
-        { "prompt": "Watering can" },
-        { "prompt": "Rolling pin" },
-        { "prompt": "Treehouse" },
-        { "prompt": "Campfire" },
-        { "prompt": "Bandage" },
-        { "prompt": "Salt cellar" },
-        { "prompt": "Sleeping bag" },
-        { "prompt": "Wind turbine" }
+      "words": [
+        "Stopwatch",
+        "Skateboard",
+        "Globe",
+        "Campfire",
+        "Sleeping bag",
+        "Rainbow",
+        "Pizza",
+        "Elephant",
+        "Bicycle",
+        "Lighthouse",
+        "Eiffel Tower",
+        "Titanic",
+        "Pirate",
+        "Honeymoon",
+        "Beekeeper",
+        "The Beatles",
+        "Wind turbine",
+        "Rolling pin",
+        "Zebra crossing",
+        "Karaoke",
+        "Albert Einstein",
+        "The Great Wall of China",
+        "Jurassic Park",
+        "Morse code",
+        "Archaeologist",
+        "Gravity",
+        "Nelson Mandela",
+        "The Olympic flame",
+        "Hitchhiking",
+        "Camouflage"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries in South East Asia.", "answers": [{ "text": "Thailand" }, { "text": "Vietnam" }, { "text": "Malaysia" }, { "text": "The Philippines" }] },
-        { "prompt": "Name four pieces of apparatus in gymnastics.", "answers": [{ "text": "Floor" }, { "text": "Vault" }, { "text": "Beam" }, { "text": "Bars" }] },
-        { "prompt": "Name four impressionist painters.", "answers": [{ "text": "Monet" }, { "text": "Renoir" }, { "text": "Degas" }, { "text": "Pissarro" }] },
-        { "prompt": "Name four citrus fruits.", "answers": [{ "text": "Orange" }, { "text": "Lemon" }, { "text": "Lime" }, { "text": "Grapefruit" }] },
-        { "prompt": "Name four capital cities in Africa.", "answers": [{ "text": "Cairo" }, { "text": "Nairobi" }, { "text": "Pretoria" }, { "text": "Accra" }] },
-        { "prompt": "Name four categories of the Nobel Prize.", "answers": [{ "text": "Physics" }, { "text": "Chemistry" }, { "text": "Medicine" }, { "text": "Literature" }] },
-        { "prompt": "Name four kinds of dance.", "answers": [{ "text": "Waltz" }, { "text": "Salsa" }, { "text": "Ballet" }, { "text": "Hip-hop" }] },
-        { "prompt": "Name four things you eat with.", "answers": [{ "text": "Knife" }, { "text": "Fork" }, { "text": "Spoon" }, { "text": "Chopsticks" }] }
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris" }, { "text": "Made of iron", "aliases": ["Iron", "Steel"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "The world fair of 1889", "aliases": ["1889", "World fair"] }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "E = mc squared", "aliases": ["E=mc2", "Relativity"] }, { "text": "His wild hair", "aliases": ["Hair", "Sticking out his tongue"] }, { "text": "The Nobel Prize", "aliases": ["Nobel Prize"] }, { "text": "German", "aliases": ["He fled to America", "Germany"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "An iceberg", "aliases": ["Iceberg"] }, { "text": "It sank in 1912", "aliases": ["It sank", "1912"] }, { "text": "Leonardo DiCaprio", "aliases": ["The film", "Kate Winslet"] }, { "text": "Too few lifeboats", "aliases": ["Lifeboats", "They said it could not sink", "Unsinkable"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pasta", "aliases": ["Pizza", "Spaghetti"] }, { "text": "Rome", "aliases": ["The Colosseum"] }, { "text": "The leaning tower of Pisa", "aliases": ["Pisa"] }, { "text": "Venice", "aliases": ["Gondolas"] }] },
+        { "prompt": "What do you know about The Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Paul McCartney", "Lennon"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "The sixties", "aliases": ["1960s", "The 1960s"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Checkmate", "aliases": ["Check"] }, { "text": "A board of 64 squares", "aliases": ["The board", "Black and white squares"] }, { "text": "Pawns", "aliases": ["The pieces", "The king", "The queen"] }, { "text": "Grandmasters", "aliases": ["Magnus Carlsen", "Kasparov", "Grandmaster"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "The five rings", "aliases": ["The rings", "The logo"] }, { "text": "Gold medals", "aliases": ["Medals", "Gold"] }, { "text": "Every four years" }, { "text": "The torch", "aliases": ["The flame", "Greece"] }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine", "aliases": ["It keeps you awake"] }, { "text": "Black", "aliases": ["With milk", "Cappuccino", "Espresso"] }, { "text": "Brazil", "aliases": ["It grows in warm countries"] }] }
       ]
     },
     {
@@ -114,10 +124,11 @@
       "questions": [
         { "prompt": "Which Scottish inventor gave the first public demonstration of television?", "answers": [{ "text": "John Logie Baird", "aliases": ["Baird"] }] },
         { "prompt": "What is the capital of Namibia?", "answers": [{ "text": "Windhoek" }] },
-        { "prompt": "Which Austrian composer wrote the Trout Quintet?", "answers": [{ "text": "Franz Schubert", "aliases": ["Schubert"] }] },
-        { "prompt": "In which year did the first underground railway open in London?", "answers": [{ "text": "1863" }] },
-        { "prompt": "Which Persian king's army was beaten at the Battle of Marathon?", "answers": [{ "text": "Darius", "aliases": ["Darius I", "Darius the Great"] }] },
-        { "prompt": "Which element has the chemical symbol Sb?", "answers": [{ "text": "Antimony" }] }
+        { "prompt": "Which composer went deaf but kept on writing symphonies?", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "In which country is the ancient rock city of Petra?", "answers": [{ "text": "Jordan" }] },
+        { "prompt": "Which planet in our solar system is the hottest?", "answers": [{ "text": "Venus" }] }
       ]
     }
   ]

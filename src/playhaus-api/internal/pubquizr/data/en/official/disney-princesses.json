@@ -32,18 +32,14 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "In what year did Snow White and the Seven Dwarfs come out?", "options": [{ "text": "1928" }, { "text": "1937", "correct": true }, { "text": "1945" }, { "text": "1950" }] },
-        { "prompt": "What is the sea witch in The Little Mermaid called?", "options": [{ "text": "Ursula", "correct": true }, { "text": "Maleficent" }, { "text": "Cruella" }, { "text": "Yzma" }] },
         { "prompt": "Who is the wicked fairy in Sleeping Beauty?", "options": [{ "text": "Maleficent", "correct": true }, { "text": "Ursula" }, { "text": "Yzma" }, { "text": "Gothel" }] },
         { "prompt": "What is Ariel's father called?", "options": [{ "text": "Triton", "correct": true }, { "text": "Neptunus" }, { "text": "Poseidon" }, { "text": "Eric" }] },
-        { "prompt": "In which city does Tiana live?", "options": [{ "text": "New Orleans", "correct": true }, { "text": "Miami" }, { "text": "Savannah" }, { "text": "Charleston" }] },
         { "prompt": "What is the thief who takes Rapunzel from her tower called?", "options": [{ "text": "Flynn Rider", "correct": true }, { "text": "Aladdin" }, { "text": "Kristoff" }, { "text": "Naveen" }] },
         { "prompt": "Which Disney film is based on an old Chinese ballad?", "options": [{ "text": "Mulan", "correct": true }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Vaiana" }] },
         { "prompt": "Which Disney film is the song Let It Go from?", "options": [{ "text": "Frozen", "correct": true }, { "text": "Moana" }, { "text": "Tangled" }, { "text": "Brave" }] },
         { "prompt": "What is Elsa's sister in Frozen called?", "options": [{ "text": "Anna", "correct": true }, { "text": "Merida" }, { "text": "Rapunzel" }, { "text": "Belle" }] },
         { "prompt": "What is the snowman in Frozen called?", "options": [{ "text": "Olaf", "correct": true }, { "text": "Sven" }, { "text": "Kristoff" }, { "text": "Marshmallow" }] },
         { "prompt": "Which Disney princess ends her film without a prince?", "options": [{ "text": "Merida", "correct": true }, { "text": "Belle" }, { "text": "Ariel" }, { "text": "Tiana" }] },
-        { "prompt": "In what year did The Little Mermaid come out?", "options": [{ "text": "1985" }, { "text": "1989", "correct": true }, { "text": "1992" }, { "text": "1995" }] },
         { "prompt": "What is Jasmine's tiger called?", "options": [{ "text": "Rajah", "correct": true }, { "text": "Shere Khan" }, { "text": "Nala" }, { "text": "Bagheera" }] },
         { "prompt": "Which American actress sang Let It Go in the English version?", "options": [{ "text": "Idina Menzel", "correct": true }, { "text": "Kristen Bell" }, { "text": "Demi Lovato" }, { "text": "Julie Andrews" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Crown" },
-        { "prompt": "Glass slipper" },
-        { "prompt": "Castle" },
-        { "prompt": "Mirror" },
-        { "prompt": "Apple" },
-        { "prompt": "Tower" },
-        { "prompt": "Mermaid" },
-        { "prompt": "Magic carpet" },
-        { "prompt": "Snowman" },
-        { "prompt": "Rose" },
-        { "prompt": "Spinning wheel" },
-        { "prompt": "Bow and arrow" },
-        { "prompt": "Frog" },
-        { "prompt": "Ball gown" },
-        { "prompt": "Lantern" },
-        { "prompt": "Canoe" }
+      "words": [
+        "Crown",
+        "Castle",
+        "Glass slipper",
+        "Mermaid",
+        "Apple",
+        "Mirror",
+        "Tower",
+        "Rose",
+        "Snowman",
+        "Frog",
+        "Dragon",
+        "Spinning wheel",
+        "Ball gown",
+        "Pumpkin coach",
+        "Tiara",
+        "Lantern",
+        "Bow and arrow",
+        "Chameleon",
+        "Seven dwarfs",
+        "Fairy godmother",
+        "Elsa",
+        "Aladdin",
+        "Beast",
+        "Gaston",
+        "Prince Charming",
+        "Agrabah",
+        "Under the Sea",
+        "A Whole New World",
+        "Mrs Potts",
+        "Canoe"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four Disney princesses.", "answers": [{ "text": "Snow White" }, { "text": "Cinderella" }, { "text": "Ariel" }, { "text": "Belle" }] },
-        { "prompt": "Name the four princesses from films made before 1990.", "answers": [{ "text": "Snow White" }, { "text": "Cinderella" }, { "text": "Aurora" }, { "text": "Ariel" }] },
-        { "prompt": "Name four villains from Disney films.", "answers": [{ "text": "Ursula" }, { "text": "Maleficent" }, { "text": "Jafar" }, { "text": "Gaston" }] },
-        { "prompt": "Name four animals that help a Disney princess.", "answers": [{ "text": "Sebastian" }, { "text": "Mushu" }, { "text": "Pascal" }, { "text": "Rajah" }] },
-        { "prompt": "Name four songs from Disney films.", "answers": [{ "text": "Let It Go" }, { "text": "Under The Sea" }, { "text": "A Whole New World" }, { "text": "Colors Of The Wind" }] },
-        { "prompt": "Name four Disney princesses without a European background.", "answers": [{ "text": "Jasmine" }, { "text": "Mulan" }, { "text": "Pocahontas" }, { "text": "Tiana" }] },
-        { "prompt": "Name four Disney films with a princess from the nineties.", "answers": [{ "text": "Beauty and the Beast" }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Mulan" }] },
-        { "prompt": "Name four characters from Frozen.", "answers": [{ "text": "Elsa" }, { "text": "Anna" }, { "text": "Olaf" }, { "text": "Kristoff" }] }
+        { "prompt": "What do you know about Cinderella? Four keywords.", "answers": [{ "text": "The glass slipper", "aliases": ["Glass slipper", "Glass shoe"] }, { "text": "The pumpkin coach", "aliases": ["Pumpkin", "Coach", "Carriage"] }, { "text": "Midnight", "aliases": ["Twelve o'clock", "The clock strikes twelve"] }, { "text": "The wicked stepmother", "aliases": ["Stepmother", "Stepsisters", "The ugly stepsisters"] }] },
+        { "prompt": "What do you know about The Little Mermaid? Four keywords.", "answers": [{ "text": "Ariel" }, { "text": "Red hair", "aliases": ["Long red hair", "Redhead"] }, { "text": "Prince Eric", "aliases": ["Eric", "The prince"] }, { "text": "Sebastian the crab", "aliases": ["Sebastian", "The crab"] }] },
+        { "prompt": "What do you know about Frozen? Four keywords.", "answers": [{ "text": "Elsa", "aliases": ["Elsa and Anna", "Anna"] }, { "text": "Let It Go" }, { "text": "Olaf the snowman", "aliases": ["Olaf", "The snowman"] }, { "text": "Ice and snow", "aliases": ["Ice", "Snow", "Winter"] }] },
+        { "prompt": "What do you know about Snow White? Four keywords.", "answers": [{ "text": "The seven dwarfs", "aliases": ["Seven dwarfs", "Dwarfs"] }, { "text": "The poisoned apple", "aliases": ["Apple", "Poisoned apple"] }, { "text": "Mirror, mirror on the wall", "aliases": ["The magic mirror", "Mirror"] }, { "text": "The glass coffin", "aliases": ["Glass coffin", "The kiss that wakes her"] }] },
+        { "prompt": "What do you know about Aladdin? Four keywords.", "answers": [{ "text": "The genie", "aliases": ["Genie", "Djinn"] }, { "text": "The magic carpet", "aliases": ["Magic carpet", "Flying carpet"] }, { "text": "Jasmine", "aliases": ["Princess Jasmine"] }, { "text": "The lamp", "aliases": ["Magic lamp", "Oil lamp", "Rubbing the lamp"] }] },
+        { "prompt": "What do you know about Beauty and the Beast? Four keywords.", "answers": [{ "text": "Belle" }, { "text": "The Beast", "aliases": ["Beast", "The monster"] }, { "text": "The rose under a glass dome", "aliases": ["The rose", "Rose", "The wilting rose"] }, { "text": "Talking furniture", "aliases": ["The candlestick", "Lumiere", "The teapot", "The clock"] }] },
+        { "prompt": "What do you know about Mulan? Four keywords.", "answers": [{ "text": "China", "aliases": ["Chinese", "The Great Wall"] }, { "text": "She dresses as a soldier", "aliases": ["She pretends to be a man", "Disguised as a man", "Goes to war as a man"] }, { "text": "Mushu the dragon", "aliases": ["Mushu", "The little dragon"] }, { "text": "Her father", "aliases": ["She takes her father's place", "Her sick father"] }] },
+        { "prompt": "What do you know about Moana? Four keywords.", "answers": [{ "text": "The ocean", "aliases": ["The sea", "Sailing", "The water"] }, { "text": "Maui", "aliases": ["The demigod", "The tattooed giant"] }, { "text": "Hei Hei the rooster", "aliases": ["Hei Hei", "The stupid chicken", "The rooster"] }, { "text": "The island", "aliases": ["Motunui", "A Pacific island", "Polynesia"] }] }
       ]
     },
     {
@@ -116,9 +126,10 @@
         { "prompt": "What is the woman who locks Rapunzel in the tower called?", "answers": [{ "text": "Mother Gothel", "aliases": ["Gothel"] }] },
         { "prompt": "What is Flynn Rider's real name?", "answers": [{ "text": "Eugene Fitzherbert", "aliases": ["Eugene"] }] },
         { "prompt": "What is the kingdom of Elsa and Anna called?", "answers": [{ "text": "Arendelle" }] },
-        { "prompt": "What is Moana's grandmother called?", "answers": [{ "text": "Tala" }] },
+        { "prompt": "Which Disney princess film features the song Colors of the Wind?", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Which Hans Christian Andersen fairytale is Frozen loosely based on?", "answers": [{ "text": "The Snow Queen", "aliases": ["Snow Queen"] }] },
-        { "prompt": "What is the prince in The Princess and the Frog called?", "answers": [{ "text": "Naveen" }] }
+        { "prompt": "What is the prince in The Princess and the Frog called?", "answers": [{ "text": "Naveen" }] },
+        { "prompt": "What is Cinderella's cat called?", "answers": [{ "text": "Lucifer" }] }
       ]
     }
   ]

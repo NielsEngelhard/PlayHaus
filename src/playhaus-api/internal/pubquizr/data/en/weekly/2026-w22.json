@@ -37,14 +37,10 @@
         { "prompt": "Which lizard can run across the surface of water?", "options": [{ "text": "The basilisk", "correct": true }, { "text": "The iguana" }, { "text": "The gecko" }, { "text": "The skink" }] },
         { "prompt": "Which grain is polenta made from?", "options": [{ "text": "Maize", "correct": true }, { "text": "Barley" }, { "text": "Rye" }, { "text": "Millet" }] },
         { "prompt": "In which sport do nations play for the Thomas Cup?", "options": [{ "text": "Badminton", "correct": true }, { "text": "Table tennis" }, { "text": "Squash" }, { "text": "Fencing" }] },
-        { "prompt": "Which Danish architect designed the Sydney Opera House?", "options": [{ "text": "Jorn Utzon", "correct": true }, { "text": "Arne Jacobsen" }, { "text": "Bjarke Ingels" }, { "text": "Henning Larsen" }] },
         { "prompt": "Which hormone tells the body it is time to sleep?", "options": [{ "text": "Melatonin", "correct": true }, { "text": "Adrenaline" }, { "text": "Insulin" }, { "text": "Serotonin" }] },
         { "prompt": "Which part of the body has no blood vessels of its own?", "options": [{ "text": "The cornea", "correct": true }, { "text": "The liver" }, { "text": "The tongue" }, { "text": "The kidney" }] },
-        { "prompt": "Which country has the longest bridge over water in the world?", "options": [{ "text": "China", "correct": true }, { "text": "The United States" }, { "text": "Japan" }, { "text": "Norway" }] },
         { "prompt": "Which element forms both diamond and graphite?", "options": [{ "text": "Carbon", "correct": true }, { "text": "Silicon" }, { "text": "Boron" }, { "text": "Sulphur" }] },
-        { "prompt": "Which city is the capital of Sicily?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] },
-        { "prompt": "What do you call a language nobody speaks as a first language any more?", "options": [{ "text": "A dead language", "correct": true }, { "text": "A creole" }, { "text": "A pidgin" }, { "text": "A dialect" }] },
-        { "prompt": "Which tiny insect is the only creature that can pollinate a fig?", "options": [{ "text": "The fig wasp", "correct": true }, { "text": "The hoverfly" }, { "text": "The thrip" }, { "text": "The midge" }] }
+        { "prompt": "Which city is the capital of Sicily?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Window box" },
-        { "prompt": "Butter dish" },
-        { "prompt": "Ice scraper" },
-        { "prompt": "Roof rack" },
-        { "prompt": "Intercom" },
-        { "prompt": "Boarding pass" },
-        { "prompt": "Shower head" },
-        { "prompt": "Vase" },
-        { "prompt": "Tablecloth" },
-        { "prompt": "Candle snuffer" },
-        { "prompt": "Tea light" },
-        { "prompt": "Wine glass" },
-        { "prompt": "Ashtray" },
-        { "prompt": "Pipe" },
-        { "prompt": "Walking boot" },
-        { "prompt": "Sun lounger" }
+      "words": [
+        "Vase",
+        "Tablecloth",
+        "Wine glass",
+        "Umbrella",
+        "Guitar",
+        "Bicycle",
+        "Lion",
+        "Sunflower",
+        "Ice cream",
+        "Teacher",
+        "Ice scraper",
+        "Boarding pass",
+        "Shower head",
+        "Walking boot",
+        "Windmill",
+        "Hurricane",
+        "Detective",
+        "Vinyl record",
+        "Jazz",
+        "Blacksmith",
+        "The Pyramids",
+        "James Bond",
+        "The Olympic Games",
+        "Mona Lisa",
+        "Napoleon",
+        "The French Revolution",
+        "Tightrope walker",
+        "Marie Curie",
+        "Machu Picchu",
+        "The Northern Lights"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Sudan.", "answers": [{ "text": "Egypt" }, { "text": "Chad" }, { "text": "Ethiopia" }, { "text": "Libya" }] },
-        { "prompt": "Name four sauces.", "answers": [{ "text": "Mayonnaise" }, { "text": "Ketchup" }, { "text": "Mustard" }, { "text": "Pesto" }] },
-        { "prompt": "Name four women who made their name in science.", "answers": [{ "text": "Marie Curie" }, { "text": "Rosalind Franklin" }, { "text": "Ada Lovelace" }, { "text": "Jane Goodall" }] },
-        { "prompt": "Name four sports added to the Olympics since 2000.", "answers": [{ "text": "Skateboarding" }, { "text": "Surfing" }, { "text": "Sport climbing" }, { "text": "Karate" }] },
-        { "prompt": "Name four countries in South Asia.", "answers": [{ "text": "India" }, { "text": "Pakistan" }, { "text": "Bangladesh" }, { "text": "Nepal" }] },
-        { "prompt": "Name four things in a bicycle repair kit.", "answers": [{ "text": "Tyre lever" }, { "text": "Patch" }, { "text": "Pump" }, { "text": "Spanner" }] },
-        { "prompt": "Name four famous castles.", "answers": [{ "text": "Windsor" }, { "text": "Neuschwanstein" }, { "text": "Edinburgh" }, { "text": "Muiderslot" }] },
-        { "prompt": "Name four kinds of paint an artist can use.", "answers": [{ "text": "Oil paint" }, { "text": "Acrylic" }, { "text": "Watercolour" }, { "text": "Gouache" }] }
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Skyscrapers", "aliases": ["Empire State Building"] }, { "text": "Times Square" }, { "text": "Yellow taxis", "aliases": ["Taxis", "Yellow cabs"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow" }, { "text": "Cold", "aliases": ["Frost"] }, { "text": "Ice skating", "aliases": ["Skating", "Skates"] }, { "text": "Scarf", "aliases": ["Hat and gloves", "Gloves"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "Rock and roll", "aliases": ["Rock n roll"] }, { "text": "Graceland" }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock"] }, { "text": "His quiff", "aliases": ["Quiff", "His hair"] }] },
+        { "prompt": "What do you know about a hospital? Four keywords.", "answers": [{ "text": "Doctors", "aliases": ["Doctor", "Surgeon"] }, { "text": "Nurses", "aliases": ["Nurse"] }, { "text": "Ambulance" }, { "text": "Operating theatre", "aliases": ["Operation", "Surgery"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Checkmate", "aliases": ["Check"] }, { "text": "King and queen", "aliases": ["King", "Queen"] }, { "text": "Black and white squares", "aliases": ["Board", "Sixty-four squares"] }, { "text": "Grandmaster", "aliases": ["World champion"] }] },
+        { "prompt": "What do you know about the Second World War? Four keywords.", "answers": [{ "text": "Hitler" }, { "text": "D-Day", "aliases": ["Normandy"] }, { "text": "1945", "aliases": ["Liberation", "1940-1945"] }, { "text": "Churchill" }] },
+        { "prompt": "What do you know about France? Four keywords.", "answers": [{ "text": "The Eiffel Tower", "aliases": ["Eiffel Tower"] }, { "text": "Baguette", "aliases": ["Bread"] }, { "text": "Wine" }, { "text": "Paris" }] },
+        { "prompt": "What do you know about dogs? Four keywords.", "answers": [{ "text": "Barking", "aliases": ["Bark"] }, { "text": "Walkies", "aliases": ["Lead", "Leash", "Walking the dog"] }, { "text": "Tail", "aliases": ["Wagging tail"] }, { "text": "Puppy", "aliases": ["Puppies"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch painter made The Threatened Swan?", "answers": [{ "text": "Jan Asselijn", "aliases": ["Asselijn"] }] },
         { "prompt": "What is the capital of Bangladesh?", "answers": [{ "text": "Dhaka" }] },
         { "prompt": "Which Finnish composer wrote Finlandia?", "answers": [{ "text": "Jean Sibelius", "aliases": ["Sibelius"] }] },
-        { "prompt": "Which Dutch fortress town is laid out as a twelve-pointed star?", "answers": [{ "text": "Naarden" }] },
-        { "prompt": "Which is the largest island in the Arctic Ocean?", "answers": [{ "text": "Baffin Island", "aliases": ["Baffin"] }] },
-        { "prompt": "Which English chemist is credited with discovering oxygen?", "answers": [{ "text": "Joseph Priestley", "aliases": ["Priestley"] }] }
+        { "prompt": "Which is the saltiest body of water on earth?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "What is the currency of Poland?", "answers": [{ "text": "The zloty", "aliases": ["zloty"] }] },
+        { "prompt": "Which planet has the Great Red Spot?", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
+        { "prompt": "Which mountain range separates Europe from Asia?", "answers": [{ "text": "The Urals", "aliases": ["Urals", "Ural mountains"] }] }
       ]
     }
   ]

@@ -31,16 +31,12 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which country has won the Eurovision Song Contest most often?", "options": [{ "text": "Ireland", "correct": true }, { "text": "Sweden" }, { "text": "France" }, { "text": "Israel" }] },
-        { "prompt": "Which sea lies between Sweden and Finland?", "options": [{ "text": "The Baltic Sea", "correct": true }, { "text": "The North Sea" }, { "text": "The Barents Sea" }, { "text": "The White Sea" }] },
         { "prompt": "Which Italian was the first to study the night sky through a telescope?", "options": [{ "text": "Galileo Galilei", "correct": true }, { "text": "Giordano Bruno" }, { "text": "Tycho Brahe" }, { "text": "Christiaan Huygens" }] },
         { "prompt": "Which gland sits under the brain and directs the other glands?", "options": [{ "text": "The pituitary gland", "correct": true }, { "text": "The thyroid" }, { "text": "The adrenal gland" }, { "text": "The thymus" }] },
         { "prompt": "Which nut belongs in a traditional pesto alla genovese?", "options": [{ "text": "The pine nut", "correct": true }, { "text": "The cashew" }, { "text": "The peanut" }, { "text": "The macadamia" }] },
         { "prompt": "Which film shares the record of eleven Oscars with Titanic and Ben-Hur?", "options": [{ "text": "The Return of the King", "correct": true }, { "text": "Gone with the Wind" }, { "text": "Schindler's List" }, { "text": "The Godfather" }] },
-        { "prompt": "What is the capital of Croatia?", "options": [{ "text": "Zagreb", "correct": true }, { "text": "Split" }, { "text": "Ljubljana" }, { "text": "Sarajevo" }] },
         { "prompt": "Which animal's milk is traditional feta made from?", "options": [{ "text": "The sheep", "correct": true }, { "text": "The cow" }, { "text": "The buffalo" }, { "text": "The camel" }] },
         { "prompt": "Which American composer wrote Rhapsody in Blue?", "options": [{ "text": "George Gershwin", "correct": true }, { "text": "Aaron Copland" }, { "text": "Leonard Bernstein" }, { "text": "Duke Ellington" }] },
-        { "prompt": "What is the name of the galaxy we live in?", "options": [{ "text": "The Milky Way", "correct": true }, { "text": "Andromeda" }, { "text": "The Magellanic Cloud" }, { "text": "The Local Group" }] },
         { "prompt": "How many points does the bullseye score in darts?", "options": [{ "text": "50 points", "correct": true }, { "text": "25 points" }, { "text": "60 points" }, { "text": "100 points" }] },
         { "prompt": "Which warm ocean current keeps western Europe mild?", "options": [{ "text": "The Gulf Stream", "correct": true }, { "text": "The Humboldt Current" }, { "text": "The Canary Current" }, { "text": "The Labrador Current" }] },
         { "prompt": "Which Dutch province is made up largely of islands and peninsulas?", "options": [{ "text": "Zeeland", "correct": true }, { "text": "Friesland" }, { "text": "Flevoland" }, { "text": "Overijssel" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Dominoes" },
-        { "prompt": "Roulette wheel" },
-        { "prompt": "Kaleidoscope" },
-        { "prompt": "Slingshot" },
-        { "prompt": "Spirit level" },
-        { "prompt": "Snorkel" },
-        { "prompt": "Beanbag" },
-        { "prompt": "Cradle" },
-        { "prompt": "Feather duster" },
-        { "prompt": "Ironing board" },
-        { "prompt": "Lightning rod" },
-        { "prompt": "Waffle iron" },
-        { "prompt": "Chewing gum" },
-        { "prompt": "Coat rack" },
-        { "prompt": "Fishing rod" },
-        { "prompt": "Hot air balloon" }
+      "words": [
+        "Bicycle",
+        "Pizza",
+        "Rainbow",
+        "Elephant",
+        "Snowman",
+        "Teacher",
+        "Guitar",
+        "Birthday cake",
+        "Hot air balloon",
+        "Chewing gum",
+        "Eiffel Tower",
+        "Nelson Mandela",
+        "Astronaut",
+        "Volcano",
+        "Lighthouse",
+        "Marathon",
+        "The Beatles",
+        "Kaleidoscope",
+        "Detective",
+        "Roulette wheel",
+        "Moon landing",
+        "Leonardo da Vinci",
+        "Statue of Liberty",
+        "Archaeologist",
+        "Great Barrier Reef",
+        "Suez Canal",
+        "Mona Lisa",
+        "Blacksmith",
+        "Fall of the Berlin Wall",
+        "Origami"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries in the Balkans.", "answers": [{ "text": "Serbia" }, { "text": "Croatia" }, { "text": "Bosnia" }, { "text": "Albania" }] },
-        { "prompt": "Name four kinds of berry.", "answers": [{ "text": "Strawberry" }, { "text": "Raspberry" }, { "text": "Blueberry" }, { "text": "Blackberry" }] },
-        { "prompt": "Name the four presidents carved into Mount Rushmore.", "answers": [{ "text": "Washington" }, { "text": "Jefferson" }, { "text": "Roosevelt" }, { "text": "Lincoln" }] },
-        { "prompt": "Name four instruments you play by blowing.", "answers": [{ "text": "Flute" }, { "text": "Clarinet" }, { "text": "Trumpet" }, { "text": "Saxophone" }] },
-        { "prompt": "Name four kinds of bear.", "answers": [{ "text": "Brown bear" }, { "text": "Polar bear" }, { "text": "Panda" }, { "text": "Grizzly" }] },
-        { "prompt": "Name four Dutch cities with a university.", "answers": [{ "text": "Leiden" }, { "text": "Utrecht" }, { "text": "Groningen" }, { "text": "Delft" }] },
-        { "prompt": "Name four things you would find in a bathroom.", "answers": [{ "text": "Bath" }, { "text": "Shower" }, { "text": "Toilet" }, { "text": "Washbasin" }] },
-        { "prompt": "Name four countries that have hosted the football World Cup.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "France" }, { "text": "Russia" }] }
+        { "prompt": "What do you know about the Netherlands? Four keywords.", "answers": [{ "text": "Tulips", "aliases": ["Tulip"] }, { "text": "Windmills", "aliases": ["Windmill", "Mills"] }, { "text": "Cheese" }, { "text": "Bicycles", "aliases": ["Bicycle", "Cycling everywhere"] }] },
+        { "prompt": "What do you know about ancient Egypt? Four keywords.", "answers": [{ "text": "Pyramids", "aliases": ["Pyramid"] }, { "text": "Pharaohs", "aliases": ["Pharaoh", "Tutankhamun"] }, { "text": "Mummies", "aliases": ["Mummy"] }, { "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "Five rings", "aliases": ["Rings", "The rings"] }, { "text": "Gold medal", "aliases": ["Medals", "Medal"] }, { "text": "Every four years", "aliases": ["Four years", "Once every four years"] }, { "text": "The torch", "aliases": ["Torch", "Olympic flame"] }] },
+        { "prompt": "What do you know about Vincent van Gogh? Four keywords.", "answers": [{ "text": "Sunflowers" }, { "text": "His ear", "aliases": ["Ear", "He cut off his ear"] }, { "text": "The Starry Night", "aliases": ["Starry Night"] }, { "text": "Zundert" }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine" }, { "text": "Black" }, { "text": "Cappuccino" }] },
+        { "prompt": "What do you know about the human body? Four keywords.", "answers": [{ "text": "Heart" }, { "text": "Bones", "aliases": ["Skeleton"] }, { "text": "Brain" }, { "text": "Skin" }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "E=mc2", "aliases": ["E is mc squared"] }, { "text": "Relativity", "aliases": ["Theory of relativity"] }, { "text": "Wild hair", "aliases": ["Crazy hair", "Messy hair"] }, { "text": "Nobel Prize", "aliases": ["Nobel"] }] },
+        { "prompt": "What do you know about a hospital? Four keywords.", "answers": [{ "text": "Doctors", "aliases": ["Doctor"] }, { "text": "Nurses", "aliases": ["Nurse"] }, { "text": "Ambulance" }, { "text": "Operating theatre", "aliases": ["Operating room", "Surgery"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Which German astronomer worked out the laws of planetary motion?", "answers": [{ "text": "Johannes Kepler", "aliases": ["Kepler"] }] },
         { "prompt": "What is the capital of Slovenia?", "answers": [{ "text": "Ljubljana" }] },
         { "prompt": "Which Belgian painter filled his canvases with men in bowler hats?", "answers": [{ "text": "Rene Magritte", "aliases": ["Magritte"] }] },
-        { "prompt": "In which year did the Dutch found New Amsterdam?", "answers": [{ "text": "1625" }] },
         { "prompt": "Which is the highest mountain in Japan?", "answers": [{ "text": "Mount Fuji", "aliases": ["Fuji", "Fujiyama"] }] },
-        { "prompt": "Which is the largest of the Greek islands?", "answers": [{ "text": "Crete" }] }
+        { "prompt": "Which is the largest of the Greek islands?", "answers": [{ "text": "Crete" }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which metal is the only one that is liquid at room temperature?", "answers": [{ "text": "Mercury" }] }
       ]
     }
   ]
