@@ -27,10 +27,17 @@ export function swatchFor(quiz: QuizListItem): AvatarColor {
 /** The `YYYY-wNN` a weekly quiz's slug is built from — see `seed.go`'s `weeklySlug`. */
 const WEEKLY_SLUG = /^\d{4}-w(\d{1,2})$/;
 
+// The week a weekly quiz belongs to, unpadded, or null for any other quiz.
+export function weekNumberFor(quiz: QuizListItem): string | null {
+    const week = quiz.category === 'weekly' ? WEEKLY_SLUG.exec(quiz.slug) : null;
+
+    return week ? String(Number(week[1])) : null;
+}
+
 // What sits on a quiz's swatch: the week number for a weekly quiz.
 export function initialsFor(quiz: QuizListItem): string {
-    const week = quiz.category === 'weekly' ? WEEKLY_SLUG.exec(quiz.slug) : null;
-    if (week) return week[1].padStart(2, '0');
+    const week = weekNumberFor(quiz);
+    if (week !== null) return week.padStart(2, '0');
 
     const words = quiz.title.trim().split(/\s+/).filter(Boolean);
 

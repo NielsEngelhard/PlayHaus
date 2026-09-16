@@ -74,6 +74,9 @@ func (s *verdictStore) ListQuizzes(context.Context, QuizFilter) ([]*Quiz, int64,
 func (s *verdictStore) QuestionCounts(context.Context, []uuid.UUID) (map[uuid.UUID]int, error) {
 	return nil, nil
 }
+func (s *verdictStore) Teasers(context.Context, []uuid.UUID) (map[uuid.UUID]string, error) {
+	return nil, nil
+}
 func (s *verdictStore) ReplaceQuiz(context.Context, *Quiz) error        { return nil }
 func (s *verdictStore) RecordQuizPlay(context.Context, *QuizPlay) error { return nil }
 func (s *verdictStore) PlayedQuizIDs(context.Context, string, []uuid.UUID) (map[uuid.UUID]bool, error) {

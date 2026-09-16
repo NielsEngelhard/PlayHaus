@@ -597,12 +597,11 @@ export const en = {
                 // The shelf's name, which no longer promises an order.
                 label: 'All quizzes',
                 tabs: { weekly: 'Weekly', official: 'Official', community: 'Community' },
-                // The second row of tabs: what's left to play versus what's already been.
-                playedFilter: {
-                    all: 'All {{n}}',
-                    unplayed: 'New {{n}}',
-                    played: 'Played {{n}}'
-                },
+                // The switch beside the search field that hides what has already been played.
+                unplayedOnly: 'Unplayed',
+                weeklyCadence: 'A new one every Wednesday',
+                newThisWeek: 'New this week',
+                week: 'Week {{week}}',
                 /** A quiz's publication date, as the row shows it: "19 Aug 2025". */
                 published: '{{day}} {{month}} {{year}}',
                 // The mark on a quiz this host has already had out of the box.
@@ -611,7 +610,7 @@ export const en = {
                 // The same way through, before there is a number to put in it.
                 browse: 'Browse all quizzes',
                 empty: 'No quizzes on this shelf yet. Try another tab.',
-                // What the played/unplayed tabs say when one of them comes up empty with no search running.
+                // What the shelf says when the unplayed switch has hidden everything and no search is running.
                 filterEmpty: 'Nothing on this tab yet.',
                 failed: 'The quizzes could not be loaded. Check your connection.',
                 comingSoon: 'Coming soon...',

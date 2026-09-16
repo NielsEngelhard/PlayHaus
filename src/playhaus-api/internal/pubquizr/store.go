@@ -144,6 +144,34 @@ func (s *GormStore) QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (ma
 	return counts, nil
 }
 
+// Teasers is the first question of each of the given quizzes, keyed by quiz id.
+func (s *GormStore) Teasers(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]string, error) {
+	teasers := make(map[uuid.UUID]string, len(quizIDs))
+	if len(quizIDs) == 0 {
+		return teasers, nil
+	}
+
+	var rows []struct {
+		QuizID uuid.UUID
+		Prompt string
+	}
+	err := s.db.WithContext(ctx).
+		Table("(?) AS ranked", s.db.Model(&Question{}).
+			Select("quiz_id, prompt, ROW_NUMBER() OVER (PARTITION BY quiz_id ORDER BY round, position) AS rn").
+			Where("quiz_id IN ?", quizIDs)).
+		Select("quiz_id, prompt").
+		Where("rn = 1").
+		Scan(&rows).Error
+	if err != nil {
+		return nil, fmt.Errorf("select teasers: %w", err)
+	}
+
+	for _, row := range rows {
+		teasers[row.QuizID] = row.Prompt
+	}
+	return teasers, nil
+}
+
 // RecordQuizPlay remembers that user already played this quiz
 func (s *GormStore) RecordQuizPlay(ctx context.Context, play *QuizPlay) error {
 	err := s.db.WithContext(ctx).

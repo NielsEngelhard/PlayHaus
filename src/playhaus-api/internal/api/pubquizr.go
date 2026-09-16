@@ -24,6 +24,8 @@ type quizSummaryResponse struct {
 	Locale      string `json:"locale"`
 	PublishedAt string `json:"publishedAt,omitempty"`
 	Played      bool   `json:"played,omitempty"`
+	// Teaser is the quiz's first question, and only the list sends it.
+	Teaser string `json:"teaser,omitempty"`
 }
 
 type quizListResponse struct {
@@ -347,7 +349,9 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 
 	items := make([]quizSummaryResponse, 0, len(page.Quizzes))
 	for _, quiz := range page.Quizzes {
-		items = append(items, newQuizSummaryResponse(quiz, page.Played[quiz.ID]))
+		item := newQuizSummaryResponse(quiz, page.Played[quiz.ID])
+		item.Teaser = page.Teasers[quiz.ID]
+		items = append(items, item)
 	}
 
 	writeJSON(w, http.StatusOK, quizListResponse{

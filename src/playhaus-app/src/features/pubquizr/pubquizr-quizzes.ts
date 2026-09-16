@@ -28,6 +28,8 @@ export interface QuizListItem {
     publishedAt?: string
     played?: boolean
     imageUrl?: string
+    // The quiz's first question; only the list endpoint sends it.
+    teaser?: string
 }
 
 // One page of a shelf, newest first.

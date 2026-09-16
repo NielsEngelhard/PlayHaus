@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
 import Tabs from "@/components/ui/Tabs";
 import TextButton from "@/components/ui/TextButton";
-import { Spacing, fontFamilyForWeight } from "@/constants/theme";
+import { Brand, FontSizes, Radii, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -20,8 +20,9 @@ import {
     type ViewStyle
 } from "react-native";
 import { QUIZ_CATEGORIES, type QuizCategory, type QuizListItem } from "../pubquizr-quizzes";
+import { newestQuizId } from "../quiz-shelf";
 import { useQuizzes } from "../useQuizzes";
-import QuizRow from "./QuizRow";
+import QuizCard from "./QuizCard";
 import RuleButton from "./RuleButton";
 
 // The shelf whose name is not a shelf yet.
@@ -42,10 +43,14 @@ const END_SLACK = 4;
 // The two orders the shelf can be in.
 type Sort = 'newest' | 'alpha';
 
-// The three ways the shelf can be split by whether a quiz has been played.
-type PlayedFilter = 'all' | 'unplayed' | 'played';
-
-const PLAYED_FILTERS = ['all', 'unplayed', 'played'] as const satisfies readonly PlayedFilter[];
+const FIELD_HEIGHT = 42;
+const CADENCE_DISC_SIZE = 26;
+const SWITCH_WIDTH = 34;
+const SWITCH_HEIGHT = 20;
+const SWITCH_KNOB_SIZE = 13;
+const SKELETON_AVATAR_SIZE = 34;
+const SKELETON_LINE_HEIGHT = 10;
+const SKELETON_HEADLINE_HEIGHT = 18;
 
 /** What NFD leaves behind once an accent has been split off the letter it sat on. */
 const COMBINING_MARKS = /[\u0300-\u036f]/g;
@@ -86,7 +91,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState<Sort>('newest');
     // Defaults to the shelf's own reason for existing: what is left to play, not what has already been.
-    const [playedFilter, setPlayedFilter] = useState<PlayedFilter>('unplayed');
+    const [unplayedOnly, setUnplayedOnly] = useState(true);
 
     const quizzes = useQuizzes(category);
 
@@ -94,21 +99,16 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     function chooseCategory(next: QuizCategory) {
         setCategory(next);
         setQuery('');
-        setPlayedFilter('unplayed');
+        setUnplayedOnly(true);
     }
 
     const needle = fold(query.trim());
     const searching = needle !== '';
 
-    // Sub-counts for the played/unplayed tabs.
-    const unplayedCount = quizzes.items.filter(quiz => quiz.played !== true).length;
-    const playedCount = quizzes.items.filter(quiz => quiz.played === true).length;
-
     const visible = useMemo(() => {
-        const byPlayed = playedFilter === 'all'
-            ? quizzes.items
-            : quizzes.items.filter(quiz =>
-                playedFilter === 'played' ? quiz.played === true : quiz.played !== true);
+        const byPlayed = unplayedOnly
+            ? quizzes.items.filter(quiz => quiz.played !== true)
+            : quizzes.items;
 
         const matched = needle === ''
             ? byPlayed
@@ -124,7 +124,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
 
             return a < b ? -1 : a > b ? 1 : 0;
         });
-    }, [quizzes.items, playedFilter, needle, sort]);
+    }, [quizzes.items, unplayedOnly, needle, sort]);
 
     // The three measurements behind the fade, held as refs rather than as state.
     const viewport = useRef(0);
@@ -160,6 +160,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     }, [measure]);
 
     const shelf = category !== COMING_SOON && quizzes.status === 'ready' && quizzes.items.length > 0;
+    const featuredId = category === 'weekly' ? newestQuizId(quizzes.items) : null;
 
     return (
         <View style={styles.browser}>
@@ -198,19 +199,6 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                 getLabel={tab => t(`pubquizr.index.list.tabs.${tab}`)}
             />
 
-            {shelf && (
-                <Tabs
-                    tabs={PLAYED_FILTERS}
-                    activeTab={playedFilter}
-                    onClick={setPlayedFilter}
-                    getLabel={filter => t(`pubquizr.index.list.playedFilter.${filter}`, {
-                        n: filter === 'all'
-                            ? quizzes.total
-                            : filter === 'played' ? playedCount : unplayedCount
-                    })}
-                />
-            )}
-
             {!shelf ? (
                 // Nothing to search and nothing to scroll: whatever there is to say stands on its own, at the size it wants to be.
                 <View style={styles.plain}>
@@ -237,35 +225,6 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                 </View>
             ) : (
                 <>
-                    <View style={styles.search}>
-                        <Feather name="search" size={15} color={theme.colors.textMuted} />
-
-                        <TextInput
-                            value={query}
-                            onChangeText={setQuery}
-                            placeholder={t('pubquizr.index.list.search')}
-                            placeholderTextColor={theme.colors.textMuted}
-                            accessibilityLabel={t('pubquizr.index.list.searchLabel')}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            returnKeyType="search"
-                            style={styles.searchInput}
-                        />
-
-                        {/* Spelled as the order it would put the shelf in rather than the one it is in. */}
-                        <Pressable
-                            onPress={() => setSort(current => current === 'newest' ? 'alpha' : 'newest')}
-                            accessibilityRole="button"
-                            style={styles.sortChip}
-                        >
-                            <AppText style={styles.sortChipText}>
-                                {sort === 'newest'
-                                    ? t('pubquizr.index.list.sortAlpha')
-                                    : t('pubquizr.index.list.sortNewest')}
-                            </AppText>
-                        </Pressable>
-                    </View>
-
                     {/* Takes the rest of the sheet, so the rows are what fills it and the fade below has something to sit on the edge of. */}
                     <View style={styles.rows}>
                         <ScrollView
@@ -281,23 +240,83 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                             onScroll={onScroll}
                             scrollEventThrottle={16}
                         >
+                            {category === 'weekly' && (
+                                <View style={styles.cadence}>
+                                    <View style={styles.cadenceDisc}>
+                                        <Feather name="calendar" size={14} color={Brand.ink} />
+                                    </View>
+
+                                    <AppText style={styles.cadenceText}>
+                                        {t('pubquizr.index.list.weeklyCadence')}
+                                    </AppText>
+                                </View>
+                            )}
+
+                            <View style={styles.searchRow}>
+                                <View style={styles.search}>
+                                    <Feather name="search" size={15} color={theme.colors.textMuted} />
+
+                                    <TextInput
+                                        value={query}
+                                        onChangeText={setQuery}
+                                        placeholder={t('pubquizr.index.list.search')}
+                                        placeholderTextColor={theme.colors.textMuted}
+                                        accessibilityLabel={t('pubquizr.index.list.searchLabel')}
+                                        autoCapitalize="none"
+                                        autoCorrect={false}
+                                        returnKeyType="search"
+                                        style={styles.searchInput}
+                                    />
+
+                                    {/* Spelled as the order it would put the shelf in rather than the one it is in. */}
+                                    <Pressable
+                                        onPress={() => setSort(current => current === 'newest' ? 'alpha' : 'newest')}
+                                        accessibilityRole="button"
+                                        style={styles.sortChip}
+                                    >
+                                        <AppText style={styles.sortChipText}>
+                                            {sort === 'newest'
+                                                ? t('pubquizr.index.list.sortAlpha')
+                                                : t('pubquizr.index.list.sortNewest')}
+                                        </AppText>
+                                    </Pressable>
+                                </View>
+
+                                <Pressable
+                                    onPress={() => setUnplayedOnly(current => !current)}
+                                    accessibilityRole="switch"
+                                    accessibilityLabel={t('pubquizr.index.list.unplayedOnly')}
+                                    accessibilityState={{ checked: unplayedOnly }}
+                                    style={[styles.filter, unplayedOnly && styles.filterOn]}
+                                >
+                                    <AppText style={[styles.filterText, unplayedOnly && styles.filterTextOn]}>
+                                        {t('pubquizr.index.list.unplayedOnly')}
+                                    </AppText>
+
+                                    <View style={[styles.switchTrack, unplayedOnly && styles.switchTrackOn]}>
+                                        <View style={[styles.switchKnob, unplayedOnly && styles.switchKnobOn]} />
+                                    </View>
+                                </Pressable>
+                            </View>
+
                             {visible.length === 0 ? (
                                 // Not always a failed search — a shelf can simply have nothing on it yet.
                                 <InlineNotification
-                                    icon={searching ? 'search' : playedFilter !== 'all' ? 'filter' : 'inbox'}
+                                    icon={searching ? 'search' : unplayedOnly ? 'filter' : 'inbox'}
                                     message={searching
                                         ? (quizzes.hasMore
                                             ? t('pubquizr.index.list.noMatchesMore')
                                             : t('pubquizr.index.list.noMatches'))
-                                        : playedFilter !== 'all'
+                                        : unplayedOnly
                                             ? t('pubquizr.index.list.filterEmpty')
                                             : t('pubquizr.index.list.empty')}
                                 />
                             ) : (
                                 visible.map(quiz => (
-                                    <QuizRow
+                                    <QuizCard
                                         key={quiz.id}
                                         quiz={quiz}
+                                        featured={quiz.id === featuredId}
                                         onSelect={onSelect}
                                         onPress={onOpen}
                                         selected={quiz.id === selectedQuizId}
@@ -346,11 +365,15 @@ export function QuizSkeleton({ rows }: SkeletonProps) {
                         { opacity: Math.max(1 - index * 0.2, 0.15) }
                     ]}
                 >
-                    <View style={[styles.skeletonAvatar, { backgroundColor: theme.colors.boardEmpty }]} />
+                    <View style={[styles.skeletonLine, styles.skeletonHeadline]} />
 
-                    <View style={styles.skeletonBody}>
-                        <View style={[styles.skeletonLine, styles.skeletonTitle]} />
-                        <View style={[styles.skeletonLine, styles.skeletonDescription]} />
+                    <View style={styles.skeletonFooter}>
+                        <View style={[styles.skeletonAvatar, { backgroundColor: theme.colors.boardEmpty }]} />
+
+                        <View style={styles.skeletonBody}>
+                            <View style={[styles.skeletonLine, styles.skeletonTitle]} />
+                            <View style={[styles.skeletonLine, styles.skeletonDescription]} />
+                        </View>
                     </View>
                 </View>
             ))}
@@ -365,7 +388,7 @@ const useStyles = createThemedStyles(theme => ({
         // Without it a flex child on the web refuses to shrink below its content.
         minHeight: 0,
         width: '100%',
-        gap: 10
+        gap: Spacing.two
     },
 
     header: {
@@ -375,7 +398,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     headerLabel: {
-        fontSize: 11,
+        fontSize: FontSizes.xs,
         fontWeight: 800,
         textTransform: 'uppercase',
         letterSpacing: 1.8,
@@ -383,7 +406,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     headerCount: {
-        fontSize: 11,
+        fontSize: FontSizes.xs,
         fontWeight: 800,
         color: theme.colors.textSecondary
     },
@@ -399,22 +422,62 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 999,
+        borderRadius: Radii.full,
         backgroundColor: theme.colors.backgroundElement
     },
 
     plain: {
-        gap: 9
+        gap: Spacing.two
+    },
+
+    cadence: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two,
+        padding: Spacing.two,
+        borderRadius: Radii.lg,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+
+    cadenceDisc: {
+        width: CADENCE_DISC_SIZE,
+        height: CADENCE_DISC_SIZE,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: Radii.full,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+
+    cadenceText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: FontSizes.sm,
+        fontWeight: 900,
+        letterSpacing: -0.2,
+        color: theme.colors.text
+    },
+
+    searchRow: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        gap: Spacing.two
     },
 
     // Sunken, the way every field in the app reads: somewhere to put something rather than a button that does something.
     search: {
+        flex: 1,
+        minWidth: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 9,
-        height: 42,
-        paddingHorizontal: 12,
-        borderRadius: 14,
+        gap: Spacing.two,
+        height: FIELD_HEIGHT,
+        paddingHorizontal: Spacing.two,
+        borderRadius: Radii.md,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundInput
@@ -423,7 +486,7 @@ const useStyles = createThemedStyles(theme => ({
     searchInput: {
         flex: 1,
         minWidth: 0,
-        fontSize: 13,
+        fontSize: FontSizes.sm,
         // A `TextInput` is not an `AppText`, so the Outfit family is applied by hand.
         fontFamily: fontFamilyForWeight(700),
         color: theme.colors.text
@@ -431,17 +494,77 @@ const useStyles = createThemedStyles(theme => ({
 
     sortChip: {
         flexShrink: 0,
-        paddingHorizontal: 7,
-        paddingVertical: 3,
-        borderRadius: 7,
+        paddingHorizontal: Spacing.two,
+        paddingVertical: Spacing.one,
+        borderRadius: Radii.sm,
         backgroundColor: theme.colors.backgroundElement
     },
 
     sortChipText: {
-        fontSize: 10,
+        fontSize: FontSizes.xs,
         fontWeight: 900,
         letterSpacing: 0.6,
         color: theme.colors.textSecondary
+    },
+
+    filter: {
+        flexShrink: 0,
+        height: FIELD_HEIGHT,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two,
+        paddingHorizontal: Spacing.two,
+        borderRadius: Radii.md,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderDashed,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+
+    filterOn: {
+        borderColor: theme.colors.border
+    },
+
+    filterText: {
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        letterSpacing: -0.1,
+        color: theme.colors.textSecondary
+    },
+
+    filterTextOn: {
+        color: theme.colors.text
+    },
+
+    switchTrack: {
+        width: SWITCH_WIDTH,
+        height: SWITCH_HEIGHT,
+        flexShrink: 0,
+        justifyContent: 'center',
+        paddingHorizontal: Spacing.half,
+        borderRadius: Radii.full,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderDashed,
+        backgroundColor: theme.colors.backgroundElement
+    },
+
+    switchTrackOn: {
+        alignItems: 'flex-end',
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.primary
+    },
+
+    switchKnob: {
+        width: SWITCH_KNOB_SIZE,
+        height: SWITCH_KNOB_SIZE,
+        borderRadius: Radii.full,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.borderDashed,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+
+    switchKnobOn: {
+        borderColor: Brand.ink,
+        backgroundColor: Brand.textOnAccent
     },
 
     rows: {
@@ -454,11 +577,11 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     scrollerContent: {
-        gap: 9,
-        // The gutter the scrollbar lives in.
-        paddingRight: 8,
-        // Room under the last row for the fade to sit over something.
-        paddingBottom: 12
+        gap: Spacing.two,
+        // The gutter the scrollbar lives in, which also leaves the cards' hard shadows room.
+        paddingRight: Spacing.two,
+        // Room under the last card for the fade to sit over something.
+        paddingBottom: Spacing.two
     },
 
     fade: {
@@ -471,33 +594,42 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     skeletonRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        padding: 12,
-        borderRadius: 20,
+        gap: Spacing.two,
+        padding: Spacing.three,
+        borderRadius: Radii.xl,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderMuted,
         backgroundColor: theme.colors.backgroundSecondary
     },
 
+    skeletonFooter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two
+    },
+
     skeletonAvatar: {
-        width: 44,
-        height: 44,
+        width: SKELETON_AVATAR_SIZE,
+        height: SKELETON_AVATAR_SIZE,
         flexShrink: 0,
-        borderRadius: 999
+        borderRadius: Radii.full
     },
 
     skeletonBody: {
         flex: 1,
         minWidth: 0,
-        gap: 7
+        gap: Spacing.two
     },
 
     skeletonLine: {
-        height: 10,
-        borderRadius: 5,
+        height: SKELETON_LINE_HEIGHT,
+        borderRadius: Radii.sm,
         backgroundColor: theme.colors.boardEmpty
+    },
+
+    skeletonHeadline: {
+        width: '90%',
+        height: SKELETON_HEADLINE_HEIGHT
     },
 
     skeletonTitle: {

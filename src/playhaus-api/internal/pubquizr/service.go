@@ -29,6 +29,7 @@ type Store interface {
 	QuizBySlug(ctx context.Context, slug string, locale i18n.Locale) (*Quiz, error)
 	ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int64, error)
 	QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]int, error)
+	Teasers(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]string, error)
 	ReplaceQuiz(ctx context.Context, quiz *Quiz) error
 
 	RecordQuizPlay(ctx context.Context, play *QuizPlay) error
@@ -108,6 +109,7 @@ type QuizPage struct {
 	Quizzes  []*Quiz
 	Counts   map[uuid.UUID]int
 	Played   map[uuid.UUID]bool
+	Teasers  map[uuid.UUID]string
 	Page     int
 	PageSize int
 	Total    int64
@@ -178,10 +180,16 @@ func (s *Service) ListQuizzes(ctx context.Context, ownerID string, f QuizFilter)
 		return nil, err
 	}
 
+	teasers, err := s.store.Teasers(ctx, ids)
+	if err != nil {
+		return nil, err
+	}
+
 	return &QuizPage{
 		Quizzes:  quizzes,
 		Counts:   counts,
 		Played:   played,
+		Teasers:  teasers,
 		Page:     f.Page,
 		PageSize: f.PageSize,
 		Total:    total,

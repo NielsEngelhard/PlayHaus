@@ -570,11 +570,10 @@ export const nl: Catalog = {
             list: {
                 label: 'Alle quizzen',
                 tabs: { weekly: 'Wekelijks', official: 'Officieel', community: 'Community' },
-                playedFilter: {
-                    all: 'Alles {{n}}',
-                    unplayed: 'Nieuw {{n}}',
-                    played: 'Gespeeld {{n}}'
-                },
+                unplayedOnly: 'Ongespeeld',
+                weeklyCadence: 'Elke woensdag een nieuwe',
+                newThisWeek: 'Nieuw deze week',
+                week: 'Week {{week}}',
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
@@ -619,10 +618,10 @@ export const nl: Catalog = {
                 pickAnother: 'Of kies een andere quiz'
             },
             steps: {
-                seatsTitle: 'Wie zit naast wie?',
-                quizTitle: 'Welke quiz',
+                seatsTitle: 'Vul alle spelers in',
+                quizTitle: 'Selecteer quiz',
                 settingsTitle: 'Hoe jullie spelen',
-                table: 'Aan tafel',
+                table: 'Spelers',
             },
             zenMode: {
                 label: 'Zen-modus',

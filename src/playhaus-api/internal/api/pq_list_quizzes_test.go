@@ -82,6 +82,34 @@ func TestListQuizzesSendsSummariesWithoutContent(t *testing.T) {
 	}
 }
 
+func TestListQuizzesTeasesEachQuizWithItsFirstQuestion(t *testing.T) {
+	h, _ := newQuizServer(t)
+	session := newGuestSession(t, h)
+
+	list := listQuizzes(t, h, session.Token, "locale=nl&category=official")
+	if len(list.Items) == 0 {
+		t.Fatal("no official quizzes came back")
+	}
+	for _, item := range list.Items {
+		if item.Teaser == "" {
+			t.Errorf("quiz %q came back without a teaser", item.Slug)
+		}
+	}
+
+	first := list.Items[0]
+	rec := do(t, h, http.MethodGet, quizPath(first.ID), "", session.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("get quiz: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+	quiz := decodeBody[quizResponse](t, rec)
+	if len(quiz.Rounds) == 0 || len(quiz.Rounds[0].Questions) == 0 {
+		t.Fatalf("quiz %q has no questions", first.Slug)
+	}
+	if want := quiz.Rounds[0].Questions[0].Prompt; first.Teaser != want {
+		t.Errorf("teaser = %q, want the first question %q", first.Teaser, want)
+	}
+}
+
 // insertQuizzes writes n bare quizzes, enough to page over. They carry no questions:
 // paging is about rows on a shelf, not about what is inside them.
 func insertQuizzes(t *testing.T, db *gorm.DB, n int) {
