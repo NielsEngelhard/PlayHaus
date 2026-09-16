@@ -17,6 +17,8 @@ interface Props {
     onToggle: (role: OneOfUsRole) => void
     /** Locks the whole group, e.g. while the game is being created. */
     disabled?: boolean
+    /** Which roles this table may be dealt from at all, defaulting to every toggleable role. */
+    roles?: OneOfUsRole[]
 }
 
 // What a role's switch says about itself, which is not what its card says in the game.
@@ -31,7 +33,7 @@ function noteOf(role: OneOfUsRole): TranslationKey {
 }
 
 // Which roles this table is willing to be dealt.
-export default function RolesSettingRow({ enabled, onToggle, disabled = false }: Props) {
+export default function RolesSettingRow({ enabled, onToggle, disabled = false, roles = TOGGLEABLE_ROLES }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -44,7 +46,7 @@ export default function RolesSettingRow({ enabled, onToggle, disabled = false }:
                 label={t('oneOfUs.settings.roles.title')}
                 value={t('oneOfUs.settings.roles.count', {
                     enabled: enabled.length,
-                    total: TOGGLEABLE_ROLES.length
+                    total: roles.length
                 })}
             />
 
@@ -53,7 +55,7 @@ export default function RolesSettingRow({ enabled, onToggle, disabled = false }:
             </AppText>
 
             <View style={styles.list}>
-                {TOGGLEABLE_ROLES.map(role => {
+                {roles.map(role => {
                     const on = enabled.includes(role);
                     const face = faceOf(role);
 

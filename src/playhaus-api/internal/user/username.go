@@ -18,12 +18,17 @@ var enNouns = []string{
 // --- Dutch -----------------------------------------------------------
 
 var nlAdjectives = []string{
-	"Rode", "Blauwe", "Groene", "Oranje", "Roze", "Gele", "Grijze", "Oranje", "Bruine", "Zwarte",
+	"Rode", "Blauwe", "Groene", "Oranje", "Roze", "Gele", "Grijze",
+	"Bruine", "Zwarte", "Paarse",
+	"Boze", "Verwarde", "Knappe", "Krokante",
+	"Smerige", "Snelle", "Trage", "Natte", "Droge", "Harige", "Kale",
 }
 
 var nlNouns = []string{
 	"Banaan", "Aardappel", "Pannenkoek", "Snotneus", "Drol",
 	"Kaas", "Boterham", "Knakworst", "Kipnugget", "Schoen",
+	"Frikandel", "Stofzuiger", "Badeend", "Tosti", "Kroket",
+	"Fietsbel", "Sok",
 }
 
 var wordLists = map[i18n.Locale]struct{ adjectives, nouns []string }{

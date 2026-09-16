@@ -1304,7 +1304,7 @@ export const nl: Catalog = {
             },
             writing: {
                 title: 'Vul de gaten in',
-                intro: 'Twee vragen zijn van jou. Verzin iets geloofwaardigs — je scoort elke keer dat iemand jouw antwoord kiest.',
+                intro: 'Verzin iets wat onwaar is. Andere spelers moeten denken dat het waar is en zo misleid worden.',
                 promptOf: 'Vraag {{index}} van {{total}}',
                 blank: 'Gat {{index}}',
                 blankPlaceholder: 'Jouw antwoord',

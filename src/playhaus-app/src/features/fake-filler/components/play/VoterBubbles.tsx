@@ -15,7 +15,7 @@ interface Props {
     onBrand?: boolean
 }
 
-const BUBBLE_SIZE = 30;
+const BUBBLE_SIZE = 40;
 
 // Everyone who picked one option, as a swatch each with the name underneath.
 export default function VoterBubbles({ voters, players, userId, onBrand = false }: Props) {
@@ -54,7 +54,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: Spacing.two
     },
     voter: {
-        width: 52,
+        width: 64,
         alignItems: 'center',
         gap: 3
     },
@@ -64,16 +64,16 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 999,
-        borderWidth: 2,
+        borderWidth: 2.5,
         borderColor: Brand.ink
     },
     initials: {
-        fontSize: 11,
+        fontSize: 14,
         fontWeight: 900
     },
     name: {
         maxWidth: '100%',
-        fontSize: 10.5,
+        fontSize: 12.5,
         fontWeight: 800,
         color: theme.colors.textSecondary
     },

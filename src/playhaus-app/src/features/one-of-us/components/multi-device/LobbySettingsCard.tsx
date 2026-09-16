@@ -5,7 +5,7 @@ import ToggleRow from '@/components/ui/ToggleRow';
 import { languageByCode } from '@/constants/languages';
 import { useT } from '@/features/i18n/LanguageContext';
 import RolesSettingRow from '@/features/one-of-us/components/RolesSettingRow';
-import { toggleRole, TOGGLEABLE_ROLES } from '@/features/one-of-us/oou-settings';
+import { MULTI_DEVICE_TOGGLEABLE_ROLES, toggleRole } from '@/features/one-of-us/oou-settings';
 import { View } from 'react-native';
 
 interface Props {
@@ -19,7 +19,7 @@ export default function LobbySettingsCard({ onChange, settings }: Props) {
 
     const roles = t('oneOfUs.settings.roles.count', {
         enabled: settings.enabledRoles.length,
-        total: TOGGLEABLE_ROLES.length
+        total: MULTI_DEVICE_TOGGLEABLE_ROLES.length
     });
 
     return (
@@ -41,6 +41,7 @@ export default function LobbySettingsCard({ onChange, settings }: Props) {
 
             <RolesSettingRow
                 enabled={settings.enabledRoles}
+                roles={MULTI_DEVICE_TOGGLEABLE_ROLES}
                 onToggle={role => onChange({
                     ...settings,
                     enabledRoles: toggleRole(settings.enabledRoles, role)

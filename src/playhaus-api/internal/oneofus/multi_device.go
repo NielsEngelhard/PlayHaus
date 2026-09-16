@@ -33,6 +33,9 @@ func (in LobbySettings) validate() map[string]string {
 
 	if !ImposterRoleSetOK(in.EnabledRoles) {
 		problems["enabledRoles"] = "must be a set of distinct imposter roles"
+	} else if slices.Contains(in.EnabledRoles, Nitwit) {
+		// Nitwit is single-device only.
+		problems["enabledRoles"] = "nitwit is not playable multi-device"
 	}
 
 	return problems
@@ -163,7 +166,7 @@ func (s *Service) SweepStaleMultiDevice(ctx context.Context, cfg SweepConfig, ev
 
 // CreateLobby opens a room and puts the caller in it as the host, word-only to match the single-device setup screen's default.
 func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*OOULobby, error) {
-	return s.openLobby(ctx, ownerID, locale, Word, ImposterRoles())
+	return s.openLobby(ctx, ownerID, locale, Word, RoleSet{Imposter})
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and settings to sit at until somebody moves them.
@@ -177,8 +180,9 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 	if !mode.Valid() {
 		mode = DefaultMode
 	}
-	if !ImposterRoleSetOK(roles) {
-		roles = ImposterRoles()
+	// The nitwit is single-device only, so a multi-device room never falls back to it.
+	if !ImposterRoleSetOK(roles) || slices.Contains(roles, Nitwit) {
+		roles = RoleSet{Imposter}
 	}
 
 	code, err := s.freeJoinCode(ctx)

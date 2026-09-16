@@ -54,7 +54,7 @@ export const LEAGUE_OF_LETTERS: Game = {
     navigationUrl: ROUTES.leagueOfLettersIndex,
     joinCodePrefix: 'L',
     roomRoute: ROUTES.leagueOfLettersRoom,
-    minMaxPlayersIndicator: "1-4",
+    minMaxPlayersIndicator: "1-12",
     minutesAverage: 10
 };
 
@@ -93,8 +93,8 @@ export const ONE_OF_US: Game = {
     navigationUrl: ROUTES.oneOfUsIndex,
     joinCodePrefix: 'O',
     roomRoute: ROUTES.oneOfUsRoom,
-    minMaxPlayersIndicator: "3-9",
-    minutesAverage: 10
+    minMaxPlayersIndicator: "4-9",
+    minutesAverage: 7
 };
 
 export const FAKE_FILLER: Game = {
@@ -113,8 +113,8 @@ export const FAKE_FILLER: Game = {
     joinCodePrefix: 'F',
     roomRoute: ROUTES.fakeFillerRoom,
     // The backend's own floor and ceiling.
-    minMaxPlayersIndicator: "2-9",
-    minutesAverage: 10
+    minMaxPlayersIndicator: "2-8",
+    minutesAverage: 5
 };
 
 export const SKETCH_OFF: Game = {
@@ -133,7 +133,7 @@ export const SKETCH_OFF: Game = {
     // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game in `GAMES` that claims a character.
     joinCodePrefix: 'S',
     roomRoute: null,
-    minMaxPlayersIndicator: "2-6",
+    minMaxPlayersIndicator: "3-8",
     minutesAverage: 10,
 };
 

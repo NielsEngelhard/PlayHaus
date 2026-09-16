@@ -211,6 +211,19 @@ func TestOnlyTheOOUHostMayChangeTheSettings(t *testing.T) {
 	}
 }
 
+// The nitwit needs a phone passed hand to hand to stay private, so a multi-device room refuses to enable it.
+func TestAnOOULobbyRefusesTheNitwit(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+
+	lobby := createOOULobby(t, srv, host.Token)
+
+	rec := do(t, srv, http.MethodPatch, oouLobbyPathFor(lobby.Code), `{"enabledRoles":[1,2]}`, host.Token)
+	if rec.Code != http.StatusUnprocessableEntity {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)
+	}
+}
+
 // A knob the settings card left out keeps what the room is already playing, rather than reverting to the default.
 func TestAnOOUSettingsPatchLeavesWhatItDidNotSend(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)

@@ -255,29 +255,25 @@ func TestALivingOOUPlayerHasNoRoleOnTheWire(t *testing.T) {
 	}
 }
 
-// The nitwit is the one player who is told something about themselves, because they have to know why they were handed nothing.
-func TestOnlyTheOOUNitwitIsToldSo(t *testing.T) {
+// Multi-device never deals the nitwit, even at a full table, because a multi-device lobby cannot enable it.
+func TestOOUMultiDeviceNeverDealsTheNitwit(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
 
 	table := guests(t, srv, oneofus.MaxPlayers)
 	game := startOOUGame(t, srv, table[0], table[1:]...)
 
 	nitwits := oouPlayersWithRole(t, db, game.gameID, oneofus.Nitwit)
-	if len(nitwits) != 1 {
-		t.Fatalf("nitwits = %v, want exactly one at a full table", nitwits)
+	if len(nitwits) != 0 {
+		t.Fatalf("nitwits = %v, want none", nitwits)
 	}
 
 	for _, player := range game.players {
 		board := getOOUGame(t, srv, player.Token, game.gameID)
-		isNitwit := player.User.ID == nitwits[0]
 
-		if board.AmNitwit != isNitwit {
-			t.Errorf("%s: amNitwit = %v, want %v", player.User.ID, board.AmNitwit, isNitwit)
+		if board.AmNitwit {
+			t.Errorf("%s: amNitwit = true, want false", player.User.ID)
 		}
-		if isNitwit && board.MyPrompt != "" {
-			t.Errorf("the nitwit was handed %q", board.MyPrompt)
-		}
-		if !isNitwit && board.MyPrompt == "" {
+		if board.MyPrompt == "" {
 			t.Errorf("%s knows a word but was handed nothing", player.User.ID)
 		}
 	}

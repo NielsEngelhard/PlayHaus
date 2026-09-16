@@ -10,8 +10,14 @@ export const TOGGLEABLE_ROLES: OneOfUsRole[] = [
     OneOfUsRole.Nitwit
 ]
 
+// Nitwit is single-device only.
+export const MULTI_DEVICE_TOGGLEABLE_ROLES: OneOfUsRole[] = TOGGLEABLE_ROLES.filter(role => role !== OneOfUsRole.Nitwit)
+
 /** Everything on, which is the game as it was before the row existed. */
 export const DEFAULT_ENABLED_ROLES: OneOfUsRole[] = [...TOGGLEABLE_ROLES]
+
+/** Everything a multi-device table may be dealt from. */
+export const DEFAULT_MULTI_DEVICE_ENABLED_ROLES: OneOfUsRole[] = [...MULTI_DEVICE_TOGGLEABLE_ROLES]
 
 // The set with one role flipped, or the set unchanged when flipping it would empty it.
 export function toggleRole(enabled: OneOfUsRole[], role: OneOfUsRole): OneOfUsRole[] {

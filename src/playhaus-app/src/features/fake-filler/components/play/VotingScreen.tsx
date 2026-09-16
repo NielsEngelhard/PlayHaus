@@ -14,7 +14,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Fragment, useState } from "react";
-import { ScrollView, useWindowDimensions, View } from "react-native";
+import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
 
 interface Props {
     game: FFGame,
@@ -178,8 +178,11 @@ function Or() {
 // A long prompt at the design's size would run off a small phone.
 function useLineSize() {
     const { width } = useWindowDimensions();
+    const mobile = Platform.OS !== 'web';
 
-    return width < 380 ? 18 : 21;
+    if (width < 380) return mobile ? 16 : 18;
+
+    return mobile ? 19 : 21;
 }
 
 interface OptionProps {
@@ -284,17 +287,17 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
                 wrongMine && styles.optionWrongMine
             ]}
         >
+            {facts && !truth && <FakeBadge />}
+
             <View style={styles.optionHead}>
                 <View style={[styles.letter, truth && styles.letterActive]}>
                     <AppText style={[styles.letterText, truth && styles.letterTextActive]}>{letter}</AppText>
                 </View>
 
-                {truth ? (
+                {truth && (
                     <View style={styles.truthTag}>
                         <AppText style={styles.truthTagText}>{t('fakeFiller.play.reveal.truth')}</AppText>
                     </View>
-                ) : facts && (
-                    <AppText style={styles.hint}>{t('fakeFiller.play.reveal.fake')}</AppText>
                 )}
 
                 {authors.map((name, index) => <AuthorTag key={`${index}-${name}`} name={name} />)}
@@ -340,6 +343,18 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
     )
 }
 
+// Stamped over the card's corner, so a fake reads as fake before anything else on it does.
+function FakeBadge() {
+    const t = useT();
+    const styles = useStyles();
+
+    return (
+        <View style={styles.fakeBadge}>
+            <AppText style={styles.fakeBadgeText}>{t('fakeFiller.play.reveal.fakeBadge')}</AppText>
+        </View>
+    )
+}
+
 // Who wrote it, kept legible: the game's mint only outlines the pill, never the name.
 function AuthorTag({ name }: { name: string }) {
     const theme = useTheme();
@@ -347,7 +362,7 @@ function AuthorTag({ name }: { name: string }) {
 
     return (
         <View style={styles.authorTag}>
-            <Feather name='user' size={11} color={theme.colors.text} />
+            <Feather name='user' size={13} color={theme.colors.text} />
 
             <AppText style={styles.authorName} numberOfLines={1}>{name}</AppText>
         </View>
@@ -372,6 +387,7 @@ const useStyles = createThemedStyles(theme => ({
         gap: 9
     },
     option: {
+        position: 'relative',
         flexGrow: 1,
         justifyContent: 'center',
         gap: 11,
@@ -460,12 +476,12 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: Brand.mint,
         backgroundColor: theme.colors.backgroundElement,
-        paddingHorizontal: 8,
-        paddingVertical: 3
+        paddingHorizontal: 10,
+        paddingVertical: 4
     },
     authorName: {
         flexShrink: 1,
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 800,
         letterSpacing: 0.2,
         color: theme.colors.text
