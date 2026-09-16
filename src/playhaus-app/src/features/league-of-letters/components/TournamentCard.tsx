@@ -79,7 +79,7 @@ const useStyles = createThemedStyles(theme => ({
         borderRadius: 24,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.borderStrong,
-        backgroundColor: Brand.blush,
+        backgroundColor: theme.colors.background,
         ...theme.popShadow(theme.colors.shadow)
     },
 
@@ -115,7 +115,7 @@ const useStyles = createThemedStyles(theme => ({
         padding: 12,
         borderRadius: 16,
         // Paper at partial strength in both schemes: the ground under it is the card's own fill, not the page's.
-        backgroundColor: 'rgba(255, 255, 255, 0.65)'
+        backgroundColor: Brand.fog
     },
 
     seeds: {
