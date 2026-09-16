@@ -7,7 +7,6 @@ import { useT } from "@/features/i18n/LanguageContext";
 import QuizLibraryStack from "@/features/pubquizr/components/QuizLibraryStack";
 import QuizSheet from "@/features/pubquizr/components/QuizSheet";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
-import { useQuizzes } from "@/features/pubquizr/useQuizzes";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter, type RelativePathString } from "expo-router";
 import { useState } from "react";
@@ -19,7 +18,6 @@ export default function QuizzerIndexPage() {
     const router = useRouter();
 
     const [browsing, setBrowsing] = useState(false);
-    const quizzes = useQuizzes('all');
 
     return (
         <GameIndexPage
@@ -82,7 +80,7 @@ export default function QuizzerIndexPage() {
                 }}
             />
 
-            <QuizLibraryStack count={quizzes.total} onPress={() => setBrowsing(true)} />
+            <QuizLibraryStack onPress={() => setBrowsing(true)} />
         </GameIndexPage>
     )
 }

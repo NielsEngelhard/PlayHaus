@@ -578,10 +578,6 @@ export const en = {
             library: {
                 title: 'All quizzes',
                 subtitle: 'Music, film, history and more',
-                count_one: '{{count}} quiz',
-                count_other: '{{count}}',
-                a11y_one: 'All quizzes, {{count}} quiz',
-                a11y_other: 'All quizzes, {{count}} quizzes'
             },
             pickOne: 'Pick one',
             playThis: 'Play this',

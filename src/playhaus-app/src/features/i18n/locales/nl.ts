@@ -555,10 +555,6 @@ export const nl: Catalog = {
             library: {
                 title: 'Alle quizzen',
                 subtitle: 'Muziek, film, geschiedenis en meer',
-                count_one: '{{count}} quiz',
-                count_other: '{{count}}',
-                a11y_one: 'Alle quizzen, {{count}} quiz',
-                a11y_other: 'Alle quizzen, {{count}} quizzen'
             },
             pickOne: 'Pak er een',
             playThis: 'Speel deze',

@@ -7,22 +7,20 @@ import Feather from "@expo/vector-icons/Feather";
 import { Pressable, View } from "react-native";
 
 interface Props {
-    count: number,
     onPress: () => void
 }
 
 // Matches the mode tiles above it rather than the app's `Radii` scale.
 const CARD_RADIUS = 22;
+const ICON_SIZE = 28;
 const STACK_HEIGHT = 136;
 const TILE_SIZE = 64;
 
 // A stack of paper slips: two decorative ghosts behind one live front slip that opens the quiz library.
-export default function QuizLibraryStack({ count, onPress }: Props) {
+export default function QuizLibraryStack({ onPress }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
-
-    if (count === 0) return null;
 
     return (
         <View style={styles.stack}>
@@ -48,13 +46,11 @@ export default function QuizLibraryStack({ count, onPress }: Props) {
             <Pressable
                 onPress={onPress}
                 accessibilityRole="button"
-                accessibilityLabel={t('pubquizr.index.library.a11y', { count })}
+                accessibilityLabel={t('pubquizr.index.library.title')}
                 style={({ pressed }) => [styles.front, pressed && styles.frontPressed]}
             >
-                <View style={styles.countTile}>
-                    <AppText style={styles.countText}>
-                        {t('pubquizr.index.library.count', { count })}
-                    </AppText>
+                <View style={styles.iconTile}>
+                    <Feather name="list" size={ICON_SIZE} color={Brand.ink} />
                 </View>
 
                 <View style={styles.body}>
@@ -126,7 +122,7 @@ const useStyles = createThemedStyles(theme => ({
         ...hardShadow(ShadowReach.hardSmall, Brand.ink)
     },
 
-    countTile: {
+    iconTile: {
         width: TILE_SIZE,
         height: TILE_SIZE,
         flexShrink: 0,
@@ -136,14 +132,6 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: Brand.ink,
         backgroundColor: Brand.textOnAccent
-    },
-
-    countText: {
-        fontSize: 27,
-        lineHeight: 27,
-        fontWeight: 900,
-        letterSpacing: -1.2,
-        color: Brand.ink
     },
 
     body: {

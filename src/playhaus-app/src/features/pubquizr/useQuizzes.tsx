@@ -1,7 +1,7 @@
 import type { LanguageCode } from "@/constants/languages";
 import { useUiLanguage } from "@/features/i18n/LanguageContext";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getQuizzesRequest, type QuizCategory, type QuizListItem, type QuizListResponse, type QuizShelfQuery } from "./pubquizr-quizzes";
+import { getQuizzesRequest, type QuizCategory, type QuizListItem, type QuizListResponse } from "./pubquizr-quizzes";
 
 export type QuizzesStatus = 'loading' | 'ready' | 'failed';
 
@@ -22,7 +22,7 @@ export interface Quizzes {
 
 // A shelf, and the three things that say *which* shelf it is.
 interface Shelf {
-    category: QuizShelfQuery,
+    category: QuizCategory,
     locale: LanguageCode,
     attempt: number,
 
@@ -39,14 +39,14 @@ type CachedShelf = Pick<Shelf, 'items' | 'page' | 'total' | 'hasMore'>;
 // The last known state of every shelf that has been looked at this session.
 const CACHE = new Map<string, CachedShelf>();
 
-function cacheKey(category: QuizShelfQuery, locale: LanguageCode): string {
+function cacheKey(category: QuizCategory, locale: LanguageCode): string {
     return `${category}:${locale}`;
 }
 
 // First-page requests that have been sent and not yet answered, by shelf.
 const INFLIGHT = new Map<string, Promise<QuizListResponse>>();
 
-function firstPage(category: QuizShelfQuery, locale: LanguageCode): Promise<QuizListResponse> {
+function firstPage(category: QuizCategory, locale: LanguageCode): Promise<QuizListResponse> {
     const key = cacheKey(category, locale);
 
     const running = INFLIGHT.get(key);
@@ -64,7 +64,7 @@ function firstPage(category: QuizShelfQuery, locale: LanguageCode): Promise<Quiz
 }
 
 // The shelf to start from: whatever was last seen, or nothing and a run of placeholders.
-function startingShelf(category: QuizShelfQuery, locale: LanguageCode, attempt: number): Shelf {
+function startingShelf(category: QuizCategory, locale: LanguageCode, attempt: number): Shelf {
     const cached = CACHE.get(cacheKey(category, locale));
 
     return cached === undefined
@@ -72,35 +72,8 @@ function startingShelf(category: QuizShelfQuery, locale: LanguageCode, attempt: 
         : { category, locale, attempt, status: 'ready', ...cached };
 }
 
-// The shelves there is anything on.
-const PLAYABLE = ['weekly', 'official'] as const satisfies readonly QuizCategory[];
-
-export interface QuizShelves {
-    /** The newest weekly quizzes — what the index page shows a few of. */
-    weekly: Quizzes,
-    official: Quizzes,
-    /** Every quiz there is to play, across both shelves. */
-    total: number,
-    /** Whether `total` is a real number yet rather than the zero it starts at. */
-    ready: boolean
-}
-
-// Both playable shelves at once, and how many quizzes that adds up to.
-export function usePlayableQuizzes(): QuizShelves {
-    const weekly = useQuizzes(PLAYABLE[0]);
-    const official = useQuizzes(PLAYABLE[1]);
-
-    return {
-        weekly,
-        official,
-        total: weekly.total + official.total,
-        // Both, because a total half of whose shelves have answered is a number that is about to change.
-        ready: weekly.status === 'ready' && official.status === 'ready'
-    };
-}
-
 // One shelf of quizzes, a page at a time.
-export function useQuizzes(category: QuizShelfQuery): Quizzes {
+export function useQuizzes(category: QuizCategory): Quizzes {
     const locale = useUiLanguage();
 
     // Bumped by `reload`, and read below as one more thing that makes this a different list.
