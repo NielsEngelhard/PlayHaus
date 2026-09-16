@@ -35,16 +35,12 @@
         { "prompt": "Welk dier heeft de langste draagtijd?", "options": [{ "text": "Olifant", "correct": true }, { "text": "Walvis" }, { "text": "Giraf" }, { "text": "Neushoorn" }] },
         { "prompt": "Welke schrijver bedacht Hobbits?", "options": [{ "text": "J.R.R. Tolkien", "correct": true }, { "text": "C.S. Lewis" }, { "text": "Ursula Le Guin" }, { "text": "Terry Pratchett" }] },
         { "prompt": "Hoeveel graden Fahrenheit is het vriespunt van water?", "options": [{ "text": "0" }, { "text": "32", "correct": true }, { "text": "48" }, { "text": "64" }] },
-        { "prompt": "Welk land heeft de meeste tijdzones op zijn grondgebied?", "options": [{ "text": "Rusland" }, { "text": "Frankrijk", "correct": true }, { "text": "Verenigde Staten" }, { "text": "China" }] },
         { "prompt": "Wie componeerde De vier jaargetijden?", "options": [{ "text": "Vivaldi", "correct": true }, { "text": "Bach" }, { "text": "Handel" }, { "text": "Corelli" }] },
         { "prompt": "Welke stof geeft bloed zijn rode kleur?", "options": [{ "text": "Hemoglobine", "correct": true }, { "text": "Melanine" }, { "text": "Chlorofyl" }, { "text": "Keratine" }] },
         { "prompt": "Welke Nederlandse voetballer wordt de Zwarte Tulp genoemd?", "options": [{ "text": "Ruud Gullit", "correct": true }, { "text": "Frank Rijkaard" }, { "text": "Clarence Seedorf" }, { "text": "Patrick Kluivert" }] },
-        { "prompt": "In welke stad staat het Colosseum?", "options": [{ "text": "Rome", "correct": true }, { "text": "Napels" }, { "text": "Athene" }, { "text": "Istanbul" }] },
         { "prompt": "Welk orgaan filtert afvalstoffen uit het bloed?", "options": [{ "text": "Lever" }, { "text": "Nieren", "correct": true }, { "text": "Longen" }, { "text": "Darmen" }] },
         { "prompt": "In welk jaar werd Nederland bevrijd?", "options": [{ "text": "1943" }, { "text": "1944" }, { "text": "1945", "correct": true }, { "text": "1946" }] },
-        { "prompt": "Welk instrument bespeelt een cellist?", "options": [{ "text": "Contrabas" }, { "text": "Cello", "correct": true }, { "text": "Viola" }, { "text": "Viool" }] },
-        { "prompt": "Welke planeet heeft de meeste bekende manen?", "options": [{ "text": "Saturnus", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
-        { "prompt": "Welke zee ligt tussen Nederland en Engeland?", "options": [{ "text": "Noordzee", "correct": true }, { "text": "Oostzee" }, { "text": "Waddenzee" }, { "text": "Ierse Zee" }] }
+        { "prompt": "Welke planeet heeft de meeste bekende manen?", "options": [{ "text": "Saturnus", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Molensteen" },
-        { "prompt": "Trampoline" },
-        { "prompt": "Egel" },
-        { "prompt": "Vliegveld" },
-        { "prompt": "Waterval" },
-        { "prompt": "Piraat" },
-        { "prompt": "Naaimachine" },
-        { "prompt": "Aardbei" },
-        { "prompt": "Iglo" },
-        { "prompt": "Slager" },
-        { "prompt": "Metro" },
-        { "prompt": "Microscoop" },
-        { "prompt": "Schommel" },
-        { "prompt": "Zeehond" },
-        { "prompt": "Kerstboom" },
-        { "prompt": "Sleutelbos" }
+      "words": [
+        "Trampoline",
+        "Egel",
+        "Waterval",
+        "Aardbei",
+        "Vliegveld",
+        "Kerstboom",
+        "Slager",
+        "Schommel",
+        "Iglo",
+        "Kameel",
+        "Microscoop",
+        "Naaimachine",
+        "Robin Hood",
+        "Het Melkmeisje",
+        "Dierenverzorger",
+        "Vuurwerk",
+        "Vikingen",
+        "Koningsdag",
+        "Kompas",
+        "Reuzenrad",
+        "Molensteen",
+        "Charlie Chaplin",
+        "Tornado",
+        "Smid",
+        "Hierogliefen",
+        "Democratie",
+        "Het Suezkanaal",
+        "Frankenstein",
+        "Acupunctuur",
+        "Camouflage"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier landen van Scandinavie en Finland samen behalve IJsland.", "answers": [{ "text": "Noorwegen" }, { "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Finland" }] },
-        { "prompt": "Noem de vier evangelisten uit het Nieuwe Testament.", "answers": [{ "text": "Mattheus" }, { "text": "Marcus" }, { "text": "Lucas" }, { "text": "Johannes" }] },
-        { "prompt": "Noem de vier grootste planeten van ons zonnestelsel.", "answers": [{ "text": "Jupiter" }, { "text": "Saturnus" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
-        { "prompt": "Noem de vier grootste steden van Italie.", "answers": [{ "text": "Rome" }, { "text": "Milaan" }, { "text": "Napels" }, { "text": "Turijn" }] },
-        { "prompt": "Noem de vier windrichtingen tussen noord, oost, zuid en west.", "answers": [{ "text": "Noordoost" }, { "text": "Zuidoost" }, { "text": "Zuidwest" }, { "text": "Noordwest" }] },
-        { "prompt": "Noem de vier kamers van het menselijk hart.", "answers": [{ "text": "Linkerboezem" }, { "text": "Rechterboezem" }, { "text": "Linkerkamer" }, { "text": "Rechterkamer" }] },
-        { "prompt": "Noem de vier grootste landen van Zuid-Amerika.", "answers": [{ "text": "Brazilie" }, { "text": "Argentinie" }, { "text": "Peru" }, { "text": "Colombia" }] },
-        { "prompt": "Noem de vier grootste steden van Spanje.", "answers": [{ "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }, { "text": "Sevilla" }] }
+        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Grachten" }, { "text": "Fietsen" }, { "text": "Het Rijksmuseum" }, { "text": "Anne Frank Huis" }] },
+        { "prompt": "Wat weet je van koningin Elizabeth II? Vier kernwoorden.", "answers": [{ "text": "Engeland" }, { "text": "Buckingham Palace" }, { "text": "Zeventig jaar koningin" }, { "text": "Corgis" }] },
+        { "prompt": "Wat weet je van haaien? Vier kernwoorden.", "answers": [{ "text": "Tanden" }, { "text": "Rugvin" }, { "text": "Oceaan" }, { "text": "Witte haai" }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Zand" }, { "text": "Afrika" }, { "text": "Kamelen" }, { "text": "Oase" }] },
+        { "prompt": "Wat weet je van kaas? Vier kernwoorden.", "answers": [{ "text": "Melk" }, { "text": "Goudse kaas" }, { "text": "Kaasmarkt" }, { "text": "Schimmel" }] },
+        { "prompt": "Wat weet je van Rome? Vier kernwoorden.", "answers": [{ "text": "Colosseum" }, { "text": "Het Vaticaan" }, { "text": "Keizers" }, { "text": "Pasta" }] },
+        { "prompt": "Wat weet je van bijen? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "Koningin" }, { "text": "Steek" }, { "text": "Bestuiving" }] },
+        { "prompt": "Wat weet je van piraten? Vier kernwoorden.", "answers": [{ "text": "Schat" }, { "text": "Ooglapje" }, { "text": "Caribisch gebied" }, { "text": "Doodskopvlag" }] }
       ]
     },
     {
@@ -117,7 +127,8 @@
         { "prompt": "Welke Franse schrijver schreef De drie musketiers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },
         { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Welke wetenschapper ontdekte per ongeluk penicilline?", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
-        { "prompt": "In welk jaar werd de eerste Olympische Spelen van de moderne tijd gehouden?", "answers": [{ "text": "1896" }] }
+        { "prompt": "Welke kunstenaar schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "Uit hoeveel botten bestaat het lichaam van een volwassen mens?", "answers": [{ "text": "206", "aliases": ["Tweehonderdzes"] }] }
       ]
     }
   ]

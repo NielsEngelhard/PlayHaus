@@ -31,20 +31,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Wat is de grootste kikkersoort ter wereld?", "options": [{ "text": "De goliathkikker", "correct": true }, { "text": "De reuzenpad" }, { "text": "De brulkikker" }, { "text": "De Chileense kikker" }] },
         { "prompt": "Welke Amerikaan schreef het toneelstuk Dood van een handelsreiziger?", "options": [{ "text": "Arthur Miller", "correct": true }, { "text": "Eugene O'Neill" }, { "text": "Edward Albee" }, { "text": "Sam Shepard" }] },
         { "prompt": "Hoe heet het als de maan de zon helemaal afdekt?", "options": [{ "text": "Een zonsverduistering", "correct": true }, { "text": "Een maansverduistering" }, { "text": "Een overgang" }, { "text": "Een bedekking" }] },
         { "prompt": "Welk zeezoogdier heeft een lange gedraaide slagtand?", "options": [{ "text": "De narwal", "correct": true }, { "text": "De walrus" }, { "text": "De witte dolfijn" }, { "text": "De doejong" }] },
         { "prompt": "Welke drank ontstaat door honing te laten gisten?", "options": [{ "text": "Mede", "correct": true }, { "text": "Cider" }, { "text": "Sake" }, { "text": "Kvas" }] },
-        { "prompt": "Wat is de grootste zoetwatervis ter wereld?", "options": [{ "text": "De belugasteur", "correct": true }, { "text": "De meerval" }, { "text": "De arapaima" }, { "text": "De snoek" }] },
         { "prompt": "Hoe heten de reusachtige stenen koppen van Paaseiland?", "options": [{ "text": "Moai", "correct": true }, { "text": "Totems" }, { "text": "Menhirs" }, { "text": "Stelae" }] },
         { "prompt": "Welk orgaan slaat urine op?", "options": [{ "text": "De blaas", "correct": true }, { "text": "De nier" }, { "text": "De galblaas" }, { "text": "De urineleider" }] },
         { "prompt": "Welke taal leren meer mensen als tweede taal dan welke andere ook?", "options": [{ "text": "Engels", "correct": true }, { "text": "Spaans" }, { "text": "Frans" }, { "text": "Mandarijn" }] },
         { "prompt": "Welke berg rijst vanaf zijn eigen voet het hoogst op?", "options": [{ "text": "Mauna Kea", "correct": true }, { "text": "De Everest" }, { "text": "Denali" }, { "text": "De Kilimanjaro" }] },
         { "prompt": "Welk edelgas dankt zijn naam aan het Griekse woord voor vreemdeling?", "options": [{ "text": "Xenon", "correct": true }, { "text": "Krypton" }, { "text": "Neon" }, { "text": "Radon" }] },
-        { "prompt": "In welke stad zetelt de Baskische regionale regering?", "options": [{ "text": "Vitoria-Gasteiz", "correct": true }, { "text": "Bilbao" }, { "text": "San Sebastian" }, { "text": "Pamplona" }] },
-        { "prompt": "Tot welke taalfamilie behoort het Fins?", "options": [{ "text": "De Fins-Oegrische", "correct": true }, { "text": "De Germaanse" }, { "text": "De Slavische" }, { "text": "De Baltische" }] },
-        { "prompt": "Welke plant maakt het grootste zaad ter wereld?", "options": [{ "text": "De coco de mer", "correct": true }, { "text": "De kokospalm" }, { "text": "De jackfruit" }, { "text": "De avocado" }] }
+        { "prompt": "Tot welke taalfamilie behoort het Fins?", "options": [{ "text": "De Fins-Oegrische", "correct": true }, { "text": "De Germaanse" }, { "text": "De Slavische" }, { "text": "De Baltische" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Bierviltje" },
-        { "prompt": "Flesopener" },
-        { "prompt": "Pook" },
-        { "prompt": "Kaartspel" },
-        { "prompt": "Blokfluit" },
-        { "prompt": "Schuurpapier" },
-        { "prompt": "Kliko" },
-        { "prompt": "Melkfles" },
-        { "prompt": "Mok" },
-        { "prompt": "Badstop" },
-        { "prompt": "Landkaart" },
-        { "prompt": "Scorebord" },
-        { "prompt": "Schep" },
-        { "prompt": "Hark" },
-        { "prompt": "Duikbril" },
-        { "prompt": "Gereedschapsriem" }
+      "words": [
+        "Mok",
+        "Landkaart",
+        "Hark",
+        "Flesopener",
+        "Scorebord",
+        "Kaartspel",
+        "Slager",
+        "Giraf",
+        "Regenboog",
+        "Limonade",
+        "Duikbril",
+        "Spider-Man",
+        "Beethoven",
+        "Amsterdam",
+        "Marathon",
+        "Barbecue",
+        "Kapper",
+        "Kangoeroe",
+        "Abba",
+        "Achtbaan",
+        "Het Colosseum",
+        "Rembrandt",
+        "Origami",
+        "Het paard van Troje",
+        "Smid",
+        "Willem van Oranje",
+        "Zwaartekracht",
+        "Casablanca",
+        "De Koude Oorlog",
+        "Diplomaat"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Bolivia grenzen.", "answers": [{ "text": "Brazilie" }, { "text": "Peru" }, { "text": "Chili" }, { "text": "Argentinie" }] },
-        { "prompt": "Noem vier graansoorten.", "answers": [{ "text": "Tarwe" }, { "text": "Rijst" }, { "text": "Mais" }, { "text": "Haver" }] },
-        { "prompt": "Noem vier Engelse woorden die uit het Nederlands komen.", "answers": [{ "text": "Cookie" }, { "text": "Skipper" }, { "text": "Landscape" }, { "text": "Yacht" }] },
-        { "prompt": "Noem vier sporten die binnen worden gespeeld.", "answers": [{ "text": "Squash" }, { "text": "Badminton" }, { "text": "Judo" }, { "text": "Turnen" }] },
-        { "prompt": "Noem vier landen rond de Oostzee.", "answers": [{ "text": "Estland" }, { "text": "Letland" }, { "text": "Litouwen" }, { "text": "Finland" }] },
-        { "prompt": "Noem vier dingen met wielen.", "answers": [{ "text": "Auto" }, { "text": "Fiets" }, { "text": "Skateboard" }, { "text": "Kruiwagen" }] },
-        { "prompt": "Noem vier uitvindingen uit de twintigste eeuw.", "answers": [{ "text": "Televisie" }, { "text": "De computer" }, { "text": "Penicilline" }, { "text": "De straalmotor" }] },
-        { "prompt": "Noem vier meren waar ook ter wereld.", "answers": [{ "text": "Victoriameer" }, { "text": "Baikalmeer" }, { "text": "Bovenmeer" }, { "text": "Meer van Geneve" }] }
+        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "De grachten", "aliases": ["Grachten"] }, { "text": "Fietsen", "aliases": ["Iedereen fietst", "Fiets"] }, { "text": "Het Anne Frank Huis", "aliases": ["Anne Frank"] }, { "text": "Het Rijksmuseum", "aliases": ["Musea", "Het Van Gogh Museum"] }] },
+        { "prompt": "Wat weet je van de zon? Vier kernwoorden.", "answers": [{ "text": "Het is een ster", "aliases": ["Een ster", "Ster"] }, { "text": "Hij is heel heet", "aliases": ["Heet", "Vuur", "Brandend"] }, { "text": "Hij komt op in het oosten", "aliases": ["Zonsopgang", "Zonsondergang", "Oosten"] }, { "text": "Verbranden", "aliases": ["Bruin worden", "Zonnebrand", "Licht"] }] },
+        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "De moonwalk", "aliases": ["Moonwalk"] }, { "text": "Thriller", "aliases": ["Billie Jean", "Beat It"] }, { "text": "De witte handschoen", "aliases": ["Een handschoen", "De hoed", "Het rode jack"] }, { "text": "The King of Pop", "aliases": ["King of Pop", "Neverland"] }] },
+        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Schaakmat", "aliases": ["Schaak", "Mat"] }, { "text": "Vierenzestig velden", "aliases": ["64 velden", "Een bord van acht bij acht"] }, { "text": "Zwart en wit", "aliases": ["Zwarte of witte stukken"] }, { "text": "De koningin is het sterkste stuk", "aliases": ["De dame", "Koning", "Paard", "Pion"] }] },
+        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella", "aliases": ["Tapas", "Sangria"] }, { "text": "Flamenco", "aliases": ["Flamencodansen"] }, { "text": "Stierenvechten", "aliases": ["Stieren", "Het stierenrennen"] }, { "text": "Madrid", "aliases": ["Barcelona", "De Costa del Sol"] }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog? Vier kernwoorden.", "answers": [{ "text": "Adolf Hitler", "aliases": ["Hitler", "De nazi's"] }, { "text": "1940 tot 1945", "aliases": ["1939-1945", "Hij duurde vijf jaar"] }, { "text": "D-day", "aliases": ["De landing in Normandie", "Normandie"] }, { "text": "De bevrijding", "aliases": ["De atoombom", "Hiroshima", "Anne Frank"] }] },
+        { "prompt": "Wat weet je van bijen? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "Ze steken", "aliases": ["Een steek", "Angel"] }, { "text": "De koningin", "aliases": ["Bijenkoningin", "De korf", "Imker"] }, { "text": "Ze bestuiven bloemen", "aliases": ["Stuifmeel", "Bloemen", "Nectar"] }] },
+        { "prompt": "Wat weet je van Harry Potter? Vier kernwoorden.", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts", "De tovenaarsschool"] }, { "text": "Magie", "aliases": ["Tovenaars", "Toverstokken", "Bezemstelen", "Zwerkbal"] }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }, { "text": "Voldemort", "aliases": ["Het litteken op zijn voorhoofd", "Ronde bril", "Hermelien", "Ron"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse admiraal vernietigde de Spaanse vloot bij Duins?", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp"] }] },
-        { "prompt": "Wat is de hoofdstad van Belarus?", "answers": [{ "text": "Minsk" }] },
-        { "prompt": "Welke Franse schilder ging voorop in het fauvisme?", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
-        { "prompt": "In welk jaar landde er voor het eerst een door mensen gemaakt object op een andere planeet?", "answers": [{ "text": "1966" }] },
-        { "prompt": "Wat is de grootste hete woestijn van Azie?", "answers": [{ "text": "De Arabische woestijn", "aliases": ["Arabische woestijn"] }] },
-        { "prompt": "Welke Zwitserse psychiater grondvestte de analytische psychologie?", "answers": [{ "text": "Carl Jung", "aliases": ["Jung"] }] }
+        { "prompt": "Wat is de hoofdstad van Australie?", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Wat is de hoogste berg van Afrika?", "answers": [{ "text": "De Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
+        { "prompt": "Wie schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "Wat is de hardste natuurlijke stof op aarde?", "answers": [{ "text": "Diamant", "aliases": ["Een diamant"] }] },
+        { "prompt": "In welk land ligt de oude rotsstad Petra?", "answers": [{ "text": "Jordanie" }] },
+        { "prompt": "Wat is het zoutste water ter wereld?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
       ]
     }
   ]

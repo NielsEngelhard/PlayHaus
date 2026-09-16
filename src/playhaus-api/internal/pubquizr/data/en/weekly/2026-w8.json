@@ -38,13 +38,9 @@
         { "prompt": "Which is the fastest swimming bird in the world?", "options": [{ "text": "The gentoo penguin", "correct": true }, { "text": "The cormorant" }, { "text": "The puffin" }, { "text": "The eider duck" }] },
         { "prompt": "Which Italian composer wrote The Barber of Seville?", "options": [{ "text": "Gioachino Rossini", "correct": true }, { "text": "Gaetano Donizetti" }, { "text": "Vincenzo Bellini" }, { "text": "Giacomo Meyerbeer" }] },
         { "prompt": "In which country is the rock city of Petra?", "options": [{ "text": "Jordan", "correct": true }, { "text": "Israel" }, { "text": "Syria" }, { "text": "Egypt" }] },
-        { "prompt": "Which sprinter holds the world record over 100 metres?", "options": [{ "text": "Usain Bolt", "correct": true }, { "text": "Carl Lewis" }, { "text": "Tyson Gay" }, { "text": "Justin Gatlin" }] },
         { "prompt": "Which system of the body includes the spleen and the lymph nodes?", "options": [{ "text": "The lymphatic system", "correct": true }, { "text": "The endocrine system" }, { "text": "The nervous system" }, { "text": "The digestive system" }] },
-        { "prompt": "Which drink is made by fermenting apples?", "options": [{ "text": "Cider", "correct": true }, { "text": "Perry" }, { "text": "Mead" }, { "text": "Port" }] },
         { "prompt": "Which country has a dragon on its national flag?", "options": [{ "text": "Bhutan", "correct": true }, { "text": "Nepal" }, { "text": "Laos" }, { "text": "Mongolia" }] },
-        { "prompt": "What is the unit of energy in the metric system?", "options": [{ "text": "The joule", "correct": true }, { "text": "The pascal" }, { "text": "The tesla" }, { "text": "The coulomb" }] },
-        { "prompt": "Which American state is nicknamed the Sunshine State?", "options": [{ "text": "Florida", "correct": true }, { "text": "Arizona" }, { "text": "Hawaii" }, { "text": "Nevada" }] },
-        { "prompt": "Which country was the first in the world to ban thin plastic bags?", "options": [{ "text": "Bangladesh", "correct": true }, { "text": "Rwanda" }, { "text": "Ireland" }, { "text": "Denmark" }] }
+        { "prompt": "What is the unit of energy in the metric system?", "options": [{ "text": "The joule", "correct": true }, { "text": "The pascal" }, { "text": "The tesla" }, { "text": "The coulomb" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Bunk bed" },
-        { "prompt": "Mop" },
-        { "prompt": "Sundial" },
-        { "prompt": "Ski lift" },
-        { "prompt": "Candy floss" },
-        { "prompt": "Roller blind" },
-        { "prompt": "Doormat" },
-        { "prompt": "Kazoo" },
-        { "prompt": "Skipping rope" },
-        { "prompt": "Watermill" },
-        { "prompt": "Deckchair" },
-        { "prompt": "Headlamp" },
-        { "prompt": "Tin foil" },
-        { "prompt": "Clothes peg" },
-        { "prompt": "Bird cage" },
-        { "prompt": "Swimming goggles" }
+      "words": [
+        "Pizza",
+        "Rainbow",
+        "Bicycle",
+        "Elephant",
+        "Football",
+        "Beach",
+        "Snowman",
+        "Guitar",
+        "Toothbrush",
+        "Balloon",
+        "Lighthouse",
+        "Eiffel Tower",
+        "Firefighter",
+        "Mount Everest",
+        "The Beatles",
+        "Titanic",
+        "Penguin",
+        "Hot air balloon",
+        "Karaoke",
+        "Windmill",
+        "Nelson Mandela",
+        "The Great Wall of China",
+        "Jurassic Park",
+        "The moon landing",
+        "Anaesthetist",
+        "Origami",
+        "Sherlock Holmes",
+        "Venice",
+        "Solar eclipse",
+        "Marathon"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries in Central Asia.", "answers": [{ "text": "Kazakhstan" }, { "text": "Uzbekistan" }, { "text": "Turkmenistan" }, { "text": "Kyrgyzstan" }] },
-        { "prompt": "Name four Olympic sports played on ice.", "answers": [{ "text": "Figure skating" }, { "text": "Speed skating" }, { "text": "Curling" }, { "text": "Ice hockey" }] },
-        { "prompt": "Name four operas.", "answers": [{ "text": "Carmen" }, { "text": "Aida" }, { "text": "La Boheme" }, { "text": "Tosca" }] },
-        { "prompt": "Name four kinds of mushroom.", "answers": [{ "text": "Button mushroom" }, { "text": "Chanterelle" }, { "text": "Porcini" }, { "text": "Oyster mushroom" }] },
-        { "prompt": "Name four rivers in Africa.", "answers": [{ "text": "Nile" }, { "text": "Congo" }, { "text": "Niger" }, { "text": "Zambezi" }] },
-        { "prompt": "Name four kinds of shoe.", "answers": [{ "text": "Trainer" }, { "text": "Boot" }, { "text": "Sandal" }, { "text": "Slipper" }] },
-        { "prompt": "Name four social media platforms.", "answers": [{ "text": "Facebook" }, { "text": "Instagram" }, { "text": "TikTok" }, { "text": "YouTube" }] },
-        { "prompt": "Name four vegetables that grow underground.", "answers": [{ "text": "Potato" }, { "text": "Carrot" }, { "text": "Beetroot" }, { "text": "Onion" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "Canals", "aliases": ["Canal"] }, { "text": "Bikes", "aliases": ["Bicycles", "Cycling"] }, { "text": "The Anne Frank House", "aliases": ["Anne Frank"] }, { "text": "The red light district", "aliases": ["Red light district", "Coffee shops"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "An iceberg", "aliases": ["Iceberg"] }, { "text": "1912" }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet"] }, { "text": "It sank", "aliases": ["Sank", "Shipwreck"] }] },
+        { "prompt": "What do you know about football? Four keywords.", "answers": [{ "text": "A ball", "aliases": ["Ball"] }, { "text": "A goal", "aliases": ["Goal", "Goals"] }, { "text": "Eleven players", "aliases": ["Eleven", "11 players"] }, { "text": "The referee", "aliases": ["Referee", "Red card"] }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "The Christmas tree", "aliases": ["Christmas tree", "Tree"] }, { "text": "Presents", "aliases": ["Gifts"] }, { "text": "Santa Claus", "aliases": ["Father Christmas", "Santa"] }, { "text": "Christmas dinner", "aliases": ["Turkey", "Dinner"] }] },
+        { "prompt": "What do you know about the moon? Four keywords.", "answers": [{ "text": "Craters", "aliases": ["Crater"] }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "The moon landing"] }, { "text": "The tides", "aliases": ["Tides", "Ebb and flow"] }, { "text": "Full moon", "aliases": ["A full moon"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pasta", "aliases": ["Spaghetti"] }, { "text": "The Colosseum", "aliases": ["Colosseum", "Rome"] }, { "text": "Shaped like a boot", "aliases": ["A boot", "Boot"] }, { "text": "Pizza" }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine" }, { "text": "Milk", "aliases": ["Cream"] }, { "text": "Espresso", "aliases": ["Cappuccino"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "Five rings", "aliases": ["The rings", "Rings"] }, { "text": "A gold medal", "aliases": ["Gold medal", "Medals"] }, { "text": "Every four years", "aliases": ["Four years"] }, { "text": "The torch", "aliases": ["Torch", "Olympic flame"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch physicist gave his name to the splitting of spectral lines in a magnetic field?", "answers": [{ "text": "Pieter Zeeman", "aliases": ["Zeeman"] }] },
-        { "prompt": "What is the capital of Myanmar?", "answers": [{ "text": "Naypyidaw" }] },
-        { "prompt": "Which Florentine sculptor made the bronze doors called the Gates of Paradise?", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
-        { "prompt": "In which year did Dutch men and women first vote in a general election on equal terms?", "answers": [{ "text": "1922" }] },
-        { "prompt": "Which is the longest glacier in the world?", "answers": [{ "text": "The Lambert Glacier", "aliases": ["Lambert Glacier", "Lambert"] }] },
-        { "prompt": "Which English mathematician is regarded as the first computer programmer?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] }
+        { "prompt": "What is the capital of Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which English mathematician is regarded as the first computer programmer?", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] },
+        { "prompt": "Which sea, the saltiest in the world, lies at the lowest point on land?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Which planet has the most moons in our solar system?", "answers": [{ "text": "Saturn" }] },
+        { "prompt": "Which writer created the detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
+        { "prompt": "Which mountain range forms the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] }
       ]
     }
   ]

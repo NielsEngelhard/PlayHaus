@@ -37,13 +37,9 @@
         { "prompt": "What is the capital of Australia?", "options": [{ "text": "Sydney" }, { "text": "Melbourne" }, { "text": "Canberra", "correct": true }, { "text": "Perth" }] },
         { "prompt": "Which bird lays the largest egg?", "options": [{ "text": "Ostrich", "correct": true }, { "text": "Pelican" }, { "text": "Albatross" }, { "text": "Emu" }] },
         { "prompt": "In what year did the French Revolution begin?", "options": [{ "text": "1776" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1804" }] },
-        { "prompt": "Which river flows through London?", "options": [{ "text": "Severn" }, { "text": "Thames", "correct": true }, { "text": "Mersey" }, { "text": "Trent" }] },
-        { "prompt": "How many players does a basketball team have on court?", "options": [{ "text": "Four" }, { "text": "Five", "correct": true }, { "text": "Six" }, { "text": "Seven" }] },
         { "prompt": "Which component of blood carries oxygen?", "options": [{ "text": "Platelets" }, { "text": "Red blood cells", "correct": true }, { "text": "White blood cells" }, { "text": "Plasma" }] },
         { "prompt": "Which writer created Sherlock Holmes?", "options": [{ "text": "Agatha Christie" }, { "text": "Arthur Conan Doyle", "correct": true }, { "text": "Edgar Allan Poe" }, { "text": "Wilkie Collins" }] },
-        { "prompt": "Which currency is used in Japan?", "options": [{ "text": "Won" }, { "text": "Yen", "correct": true }, { "text": "Yuan" }, { "text": "Baht" }] },
         { "prompt": "Which Dutch city is nicknamed Mokum?", "options": [{ "text": "Rotterdam" }, { "text": "Amsterdam", "correct": true }, { "text": "Utrecht" }, { "text": "The Hague" }] },
-        { "prompt": "Which metal is liquid at room temperature?", "options": [{ "text": "Lead" }, { "text": "Mercury", "correct": true }, { "text": "Tin" }, { "text": "Zinc" }] },
         { "prompt": "Which ocean is the deepest?", "options": [{ "text": "The Atlantic" }, { "text": "The Pacific", "correct": true }, { "text": "The Indian Ocean" }, { "text": "The Arctic Ocean" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Windmill" },
-        { "prompt": "Vacuum cleaner" },
-        { "prompt": "Crocodile" },
-        { "prompt": "Library" },
-        { "prompt": "Orange" },
-        { "prompt": "Astronaut" },
-        { "prompt": "Mirror" },
-        { "prompt": "Avalanche" },
-        { "prompt": "Firefighter" },
-        { "prompt": "Volcano" },
-        { "prompt": "Dentist" },
-        { "prompt": "Hammock" },
-        { "prompt": "Candle" },
-        { "prompt": "Penguin" },
-        { "prompt": "Flashlight" },
-        { "prompt": "Train station" }
+      "words": [
+        "Suitcase",
+        "Ice cream",
+        "Kangaroo",
+        "Nurse",
+        "Helicopter",
+        "Parasol",
+        "Violin",
+        "Traffic light",
+        "Butterfly",
+        "Wedding",
+        "Big Ben",
+        "Star Wars",
+        "Julius Caesar",
+        "Iceland",
+        "Chef",
+        "The Amazon",
+        "The Simpsons",
+        "Earthquake",
+        "The Taj Mahal",
+        "Elvis Presley",
+        "Galileo",
+        "The French Revolution",
+        "Blacksmith",
+        "Antarctica",
+        "Hieroglyphs",
+        "Patience",
+        "Pablo Picasso",
+        "The Sphinx",
+        "Air traffic controller",
+        "Camouflage"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four grand slam tournaments in tennis.", "answers": [{ "text": "Australian Open" }, { "text": "Roland Garros" }, { "text": "Wimbledon" }, { "text": "US Open" }] },
-        { "prompt": "Name the four classical elements of the ancient Greeks.", "answers": [{ "text": "Earth" }, { "text": "Water" }, { "text": "Air" }, { "text": "Fire" }] },
-        { "prompt": "Name the four Teenage Mutant Ninja Turtles.", "answers": [{ "text": "Leonardo" }, { "text": "Donatello" }, { "text": "Raphael" }, { "text": "Michelangelo" }] },
-        { "prompt": "Name the four houses of Hogwarts from Harry Potter.", "answers": [{ "text": "Gryffindor" }, { "text": "Slytherin" }, { "text": "Ravenclaw" }, { "text": "Hufflepuff" }] },
-        { "prompt": "Name the four largest islands of Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
-        { "prompt": "Name the four voice parts in a mixed choir.", "answers": [{ "text": "Soprano" }, { "text": "Alto" }, { "text": "Tenor" }, { "text": "Bass" }] },
-        { "prompt": "Name the four bases of DNA.", "answers": [{ "text": "Adenine" }, { "text": "Thymine" }, { "text": "Guanine" }, { "text": "Cytosine" }] },
-        { "prompt": "Name the four musketeers from Alexandre Dumas' novel.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "d'Artagnan" }] }
+        { "prompt": "What do you know about pizza? Four keywords.", "answers": [{ "text": "Italy", "aliases": ["Italian"] }, { "text": "Cheese", "aliases": ["Mozzarella"] }, { "text": "Tomato sauce", "aliases": ["Tomato", "Tomatoes"] }, { "text": "Oven", "aliases": ["Wood-fired oven", "Baked"] }] },
+        { "prompt": "What do you know about the Amazon rainforest? Four keywords.", "answers": [{ "text": "Brazil", "aliases": ["South America"] }, { "text": "The Amazon river", "aliases": ["Amazon river", "River"] }, { "text": "Rainforest", "aliases": ["Jungle", "Trees"] }, { "text": "Deforestation", "aliases": ["Logging", "Burning"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "Rock and roll", "aliases": ["Rock 'n' roll"] }, { "text": "Graceland" }, { "text": "The King", "aliases": ["King of rock and roll"] }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock", "Hound Dog"] }] },
+        { "prompt": "What do you know about Australia? Four keywords.", "answers": [{ "text": "Kangaroos", "aliases": ["Kangaroo"] }, { "text": "The Sydney Opera House", "aliases": ["Sydney", "Opera House"] }, { "text": "The Great Barrier Reef", "aliases": ["Great Barrier Reef"] }, { "text": "The outback", "aliases": ["Outback", "Uluru", "Ayers Rock"] }] },
+        { "prompt": "What do you know about Wimbledon? Four keywords.", "answers": [{ "text": "Tennis" }, { "text": "London", "aliases": ["England"] }, { "text": "Grass courts", "aliases": ["Grass"] }, { "text": "Strawberries and cream", "aliases": ["Strawberries"] }] },
+        { "prompt": "What do you know about honey bees? Four keywords.", "answers": [{ "text": "Honey" }, { "text": "The hive", "aliases": ["Hive", "Beehive"] }, { "text": "Sting", "aliases": ["Stinger", "They sting"] }, { "text": "The queen bee", "aliases": ["Queen bee", "Queen"] }] },
+        { "prompt": "What do you know about the Vikings? Four keywords.", "answers": [{ "text": "Longships", "aliases": ["Longship", "Ships"] }, { "text": "Scandinavia", "aliases": ["Norway", "Denmark", "Sweden"] }, { "text": "Horned helmets", "aliases": ["Helmets", "Helmet"] }, { "text": "Raids", "aliases": ["Plunder", "Raiding"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Board game", "aliases": ["Board", "Chessboard"] }, { "text": "King and queen", "aliases": ["King", "Queen"] }, { "text": "Checkmate", "aliases": ["Check mate", "Mate"] }, { "text": "Pawn", "aliases": ["Pawns", "Knight", "Bishop"] }] }
       ]
     },
     {
@@ -117,6 +127,7 @@
         { "prompt": "Which element has the symbol W?", "answers": [{ "text": "Tungsten", "aliases": ["wolfram"] }] },
         { "prompt": "In what year was the Berlin Wall built?", "answers": [{ "text": "1961" }] },
         { "prompt": "Which Greek mathematician is said to have shouted Eureka in his bath?", "answers": [{ "text": "Archimedes" }] },
+        { "prompt": "Which German composer wrote the Brandenburg Concertos?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] }
       ]
     }

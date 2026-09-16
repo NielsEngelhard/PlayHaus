@@ -31,20 +31,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which bird has the longest beak in the world?", "options": [{ "text": "The Australian pelican", "correct": true }, { "text": "The toucan" }, { "text": "The stork" }, { "text": "The heron" }] },
         { "prompt": "Which American author wrote The Grapes of Wrath?", "options": [{ "text": "John Steinbeck", "correct": true }, { "text": "Sinclair Lewis" }, { "text": "Willa Cather" }, { "text": "Upton Sinclair" }] },
         { "prompt": "What is the huge canyon system on Mars called?", "options": [{ "text": "Valles Marineris", "correct": true }, { "text": "Hellas Planitia" }, { "text": "Tharsis" }, { "text": "Utopia" }] },
         { "prompt": "Which mammal has no teeth at all?", "options": [{ "text": "The anteater", "correct": true }, { "text": "The sloth" }, { "text": "The armadillo" }, { "text": "The pangolin" }] },
         { "prompt": "Which soft Italian cheese goes into a tiramisu?", "options": [{ "text": "Mascarpone", "correct": true }, { "text": "Ricotta" }, { "text": "Stracchino" }, { "text": "Robiola" }] },
         { "prompt": "In which winter sport do crews push a sled and jump in feet first?", "options": [{ "text": "The bobsleigh", "correct": true }, { "text": "The luge" }, { "text": "Skeleton" }, { "text": "Curling" }] },
         { "prompt": "Which American architect designed the spiral Guggenheim in New York?", "options": [{ "text": "Frank Lloyd Wright", "correct": true }, { "text": "Louis Sullivan" }, { "text": "Philip Johnson" }, { "text": "Eero Saarinen" }] },
-        { "prompt": "Which cells carry signals through the nervous system?", "options": [{ "text": "Neurons", "correct": true }, { "text": "Platelets" }, { "text": "Osteocytes" }, { "text": "Fibroblasts" }] },
         { "prompt": "Which vegetable was carved into lanterns before pumpkins took over?", "options": [{ "text": "The turnip", "correct": true }, { "text": "The swede" }, { "text": "The marrow" }, { "text": "The beetroot" }] },
         { "prompt": "Which Italian city has the oldest botanical garden still in its original place?", "options": [{ "text": "Padua", "correct": true }, { "text": "Pisa" }, { "text": "Bologna" }, { "text": "Verona" }] },
         { "prompt": "Which metal is used alongside lithium in most rechargeable batteries?", "options": [{ "text": "Cobalt", "correct": true }, { "text": "Chromium" }, { "text": "Tungsten" }, { "text": "Silver" }] },
-        { "prompt": "What is the study of handwriting called?", "options": [{ "text": "Graphology", "correct": true }, { "text": "Calligraphy" }, { "text": "Palaeography" }, { "text": "Typography" }] },
-        { "prompt": "Which is the largest tortoise in the world?", "options": [{ "text": "The Galapagos tortoise", "correct": true }, { "text": "The leopard tortoise" }, { "text": "The Hermann's tortoise" }, { "text": "The gopher tortoise" }] },
-        { "prompt": "Which eye colour is the most common in the world?", "options": [{ "text": "Brown", "correct": true }, { "text": "Blue" }, { "text": "Green" }, { "text": "Grey" }] }
+        { "prompt": "What is the study of handwriting called?", "options": [{ "text": "Graphology", "correct": true }, { "text": "Calligraphy" }, { "text": "Palaeography" }, { "text": "Typography" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "School bag" },
-        { "prompt": "Exercise book" },
-        { "prompt": "School bus" },
-        { "prompt": "Lunch box" },
-        { "prompt": "Water bottle" },
-        { "prompt": "Timetable" },
-        { "prompt": "Locker" },
-        { "prompt": "Calculator" },
-        { "prompt": "Atlas" },
-        { "prompt": "Highlighter" },
-        { "prompt": "Glue stick" },
-        { "prompt": "Set square" },
-        { "prompt": "Gym mat" },
-        { "prompt": "Sports hall" },
-        { "prompt": "Bus stop" },
-        { "prompt": "Eraser" }
+      "words": [
+        "Backpack",
+        "Chalkboard",
+        "Owl",
+        "Librarian",
+        "Trampoline",
+        "Passport",
+        "Saxophone",
+        "Thunderstorm",
+        "Pancake",
+        "Bicycle",
+        "The Colosseum",
+        "Indiana Jones",
+        "Albert Einstein",
+        "Norway",
+        "Lifeguard",
+        "The Nile",
+        "Sesame Street",
+        "Tornado",
+        "Mount Fuji",
+        "Freddie Mercury",
+        "Marco Polo",
+        "The Moon landing",
+        "Detective",
+        "The Panama Canal",
+        "Origami",
+        "Jealousy",
+        "Salvador Dali",
+        "The Northern Lights",
+        "Architect",
+        "Superstition"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Kazakhstan.", "answers": [{ "text": "Russia" }, { "text": "China" }, { "text": "Uzbekistan" }, { "text": "Kyrgyzstan" }] },
-        { "prompt": "Name four school subjects.", "answers": [{ "text": "Mathematics" }, { "text": "History" }, { "text": "Biology" }, { "text": "English" }] },
-        { "prompt": "Name four sauces for pasta.", "answers": [{ "text": "Bolognese" }, { "text": "Carbonara" }, { "text": "Pesto" }, { "text": "Arrabbiata" }] },
-        { "prompt": "Name four countries beginning with the letter M.", "answers": [{ "text": "Mexico" }, { "text": "Morocco" }, { "text": "Malaysia" }, { "text": "Malta" }] },
-        { "prompt": "Name four birds you might see in a Dutch garden.", "answers": [{ "text": "Sparrow" }, { "text": "Blackbird" }, { "text": "Blue tit" }, { "text": "Magpie" }] },
-        { "prompt": "Name four famous universities.", "answers": [{ "text": "Oxford" }, { "text": "Cambridge" }, { "text": "Harvard" }, { "text": "Leiden" }] },
-        { "prompt": "Name four things in a pencil case.", "answers": [{ "text": "Pen" }, { "text": "Pencil" }, { "text": "Ruler" }, { "text": "Rubber" }] },
-        { "prompt": "Name four seas with a colour in their name.", "answers": [{ "text": "The Red Sea" }, { "text": "The Black Sea" }, { "text": "The Yellow Sea" }, { "text": "The White Sea" }] }
+        { "prompt": "What do you know about the Colosseum? Four keywords.", "answers": [{ "text": "Rome", "aliases": ["Italy"] }, { "text": "Gladiators", "aliases": ["Gladiator"] }, { "text": "Amphitheatre", "aliases": ["Arena", "Stadium"] }, { "text": "Lions", "aliases": ["Wild animals", "Beasts"] }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "Relativity", "aliases": ["Theory of relativity", "E=mc2"] }, { "text": "Physicist", "aliases": ["Physics", "Scientist"] }, { "text": "The Nobel Prize", "aliases": ["Nobel Prize", "Nobel"] }, { "text": "Wild hair", "aliases": ["Moustache", "Tongue out", "Germany"] }] },
+        { "prompt": "What do you know about Iceland? Four keywords.", "answers": [{ "text": "Volcanoes", "aliases": ["Volcano", "Eyjafjallajokull"] }, { "text": "Geysers", "aliases": ["Geyser", "Hot springs"] }, { "text": "Reykjavik", "aliases": ["Capital"] }, { "text": "The northern lights", "aliases": ["Northern lights", "Glaciers", "Puffins"] }] },
+        { "prompt": "What do you know about the Tour de France? Four keywords.", "answers": [{ "text": "Cycling", "aliases": ["Bicycle", "Bikes"] }, { "text": "The yellow jersey", "aliases": ["Yellow jersey", "Maillot jaune"] }, { "text": "The Alpe d'Huez", "aliases": ["Mountains", "The Alps", "The Pyrenees"] }, { "text": "Paris", "aliases": ["The Champs-Elysees", "July"] }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa", "aliases": ["Cacao", "Cocoa beans"] }, { "text": "Switzerland", "aliases": ["Belgium", "Ghana"] }, { "text": "Milk chocolate", "aliases": ["Dark chocolate", "White chocolate"] }, { "text": "Easter eggs", "aliases": ["Chocolate bar", "Sweet"] }] },
+        { "prompt": "What do you know about penguins? Four keywords.", "answers": [{ "text": "Antarctica", "aliases": ["The South Pole", "Ice"] }, { "text": "They cannot fly", "aliases": ["Flightless", "Cannot fly"] }, { "text": "Swimming", "aliases": ["They swim", "Fish"] }, { "text": "Black and white", "aliases": ["Waddling", "Emperor penguin"] }] },
+        { "prompt": "What do you know about the Wild West? Four keywords.", "answers": [{ "text": "Cowboys", "aliases": ["Cowboy"] }, { "text": "Revolvers", "aliases": ["Guns", "Duels", "Shootout"] }, { "text": "The saloon", "aliases": ["Saloon", "Sheriff"] }, { "text": "The gold rush", "aliases": ["Gold rush", "Stagecoach", "Native Americans"] }] },
+        { "prompt": "What do you know about the internet? Four keywords.", "answers": [{ "text": "Google", "aliases": ["Search engine"] }, { "text": "Email", "aliases": ["E-mail"] }, { "text": "Wifi", "aliases": ["Cables", "Broadband", "Servers"] }, { "text": "Social media", "aliases": ["Websites", "Streaming"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Which Dutchman was world chess champion from 1935 to 1937?", "answers": [{ "text": "Max Euwe", "aliases": ["Euwe"] }] },
         { "prompt": "What is the official capital of Sri Lanka?", "answers": [{ "text": "Sri Jayawardenepura Kotte", "aliases": ["Kotte"] }] },
         { "prompt": "Which Italian poet wrote the Canzoniere?", "answers": [{ "text": "Petrarch", "aliases": ["Petrarca"] }] },
-        { "prompt": "In which year did the Netherlands appoint its first woman professor?", "answers": [{ "text": "1917" }] },
         { "prompt": "Which is the largest desert in South America?", "answers": [{ "text": "The Patagonian Desert", "aliases": ["Patagonian Desert", "Patagonia"] }] },
-        { "prompt": "Which Danish astronomer built the observatory Uraniborg?", "answers": [{ "text": "Tycho Brahe", "aliases": ["Brahe"] }] }
+        { "prompt": "Which Danish astronomer built the observatory Uraniborg?", "answers": [{ "text": "Tycho Brahe", "aliases": ["Brahe"] }] },
+        { "prompt": "Which sea lies between Australia and New Zealand?", "answers": [{ "text": "The Tasman Sea", "aliases": ["Tasman Sea", "Tasman"] }] },
+        { "prompt": "Which African country was formerly known as Abyssinia?", "answers": [{ "text": "Ethiopia" }] }
       ]
     }
   ]

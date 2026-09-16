@@ -33,14 +33,10 @@
       "questions": [
         { "prompt": "Which African country has the most neighbouring countries?", "options": [{ "text": "The Democratic Republic of Congo", "correct": true }, { "text": "Sudan" }, { "text": "Niger" }, { "text": "Zambia" }] },
         { "prompt": "Under which pen name did Mary Ann Evans write Middlemarch?", "options": [{ "text": "George Eliot", "correct": true }, { "text": "Currer Bell" }, { "text": "George Sand" }, { "text": "Ellis Bell" }] },
-        { "prompt": "What is the edge of the sun's bubble of particles in space called?", "options": [{ "text": "The heliopause", "correct": true }, { "text": "The magnetopause" }, { "text": "The corona" }, { "text": "The termination point" }] },
-        { "prompt": "Which animal can live its whole life without drinking any water?", "options": [{ "text": "The kangaroo rat", "correct": true }, { "text": "The meerkat" }, { "text": "The gerbil" }, { "text": "The fennec fox" }] },
-        { "prompt": "Which fruit is dried to make prunes?", "options": [{ "text": "The plum", "correct": true }, { "text": "The apricot" }, { "text": "The fig" }, { "text": "The date" }] },
         { "prompt": "In which dance form does a dancer perform a grand jete?", "options": [{ "text": "Ballet", "correct": true }, { "text": "Tap dance" }, { "text": "Flamenco" }, { "text": "Modern dance" }] },
         { "prompt": "Which insect makes the loudest sound of all?", "options": [{ "text": "The cicada", "correct": true }, { "text": "The cricket" }, { "text": "The bee" }, { "text": "The beetle" }] },
         { "prompt": "Which grape variety is planted over more of the world than any other?", "options": [{ "text": "Cabernet Sauvignon", "correct": true }, { "text": "Merlot" }, { "text": "Chardonnay" }, { "text": "Tempranillo" }] },
         { "prompt": "What is the capital of the Canadian province of Quebec?", "options": [{ "text": "Quebec City", "correct": true }, { "text": "Montreal" }, { "text": "Laval" }, { "text": "Gatineau" }] },
-        { "prompt": "Which element is named after the Norse god of thunder?", "options": [{ "text": "Thorium", "correct": true }, { "text": "Vanadium" }, { "text": "Niobium" }, { "text": "Tantalum" }] },
         { "prompt": "Which sea creature has eight arms and two longer tentacles?", "options": [{ "text": "The squid", "correct": true }, { "text": "The octopus" }, { "text": "The starfish" }, { "text": "The jellyfish" }] },
         { "prompt": "In which decade did rock and roll first sweep the charts?", "options": [{ "text": "The 1950s", "correct": true }, { "text": "The 1940s" }, { "text": "The 1960s" }, { "text": "The 1930s" }] },
         { "prompt": "Which religion is practised in Japan alongside Buddhism?", "options": [{ "text": "Shinto", "correct": true }, { "text": "Taoism" }, { "text": "Confucianism" }, { "text": "Jainism" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Cheese grater" },
-        { "prompt": "Tape dispenser" },
-        { "prompt": "Swimming cap" },
-        { "prompt": "Bird feeder" },
-        { "prompt": "Boxing glove" },
-        { "prompt": "Fire alarm" },
-        { "prompt": "Camping stove" },
-        { "prompt": "Pocket knife" },
-        { "prompt": "Dog kennel" },
-        { "prompt": "Rubber duck" },
-        { "prompt": "Sunbed" },
-        { "prompt": "Toothpaste" },
-        { "prompt": "Rope ladder" },
-        { "prompt": "Chimney sweep" },
-        { "prompt": "Tuning fork" },
-        { "prompt": "Greenhouse" }
+      "words": [
+        "Cheese grater",
+        "Toothpaste",
+        "Greenhouse",
+        "Rubber duck",
+        "Boxing glove",
+        "Umbrella",
+        "Snowman",
+        "Mirror",
+        "Hairdresser",
+        "Butterfly",
+        "Chimney sweep",
+        "Tuning fork",
+        "Pocket knife",
+        "Windmill",
+        "Amsterdam",
+        "Sherlock Holmes",
+        "Formula 1",
+        "Vampire",
+        "Lasagne",
+        "Postman",
+        "Leonardo da Vinci",
+        "The Mona Lisa",
+        "The Berlin Wall",
+        "Star Wars",
+        "Acupuncture",
+        "Astronomer",
+        "The Rolling Stones",
+        "Hibernation",
+        "Origami",
+        "Marathon"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Greece.", "answers": [{ "text": "Albania" }, { "text": "North Macedonia" }, { "text": "Bulgaria" }, { "text": "Turkey" }] },
-        { "prompt": "Name four herbs.", "answers": [{ "text": "Basil" }, { "text": "Thyme" }, { "text": "Rosemary" }, { "text": "Parsley" }] },
-        { "prompt": "Name four capital cities in Asia.", "answers": [{ "text": "Tokyo" }, { "text": "Beijing" }, { "text": "Seoul" }, { "text": "Bangkok" }] },
-        { "prompt": "Name four kinds of cake.", "answers": [{ "text": "Sponge cake" }, { "text": "Cheesecake" }, { "text": "Carrot cake" }, { "text": "Apple pie" }] },
-        { "prompt": "Name four Olympic cycling disciplines.", "answers": [{ "text": "Road race" }, { "text": "Time trial" }, { "text": "Track cycling" }, { "text": "Mountain biking" }] },
-        { "prompt": "Name four ways of travelling.", "answers": [{ "text": "Train" }, { "text": "Bus" }, { "text": "Aeroplane" }, { "text": "Ship" }] },
-        { "prompt": "Name four famous volcanoes.", "answers": [{ "text": "Vesuvius" }, { "text": "Etna" }, { "text": "Krakatoa" }, { "text": "Fuji" }] },
-        { "prompt": "Name four things you would find in a garden.", "answers": [{ "text": "Lawn" }, { "text": "Hedge" }, { "text": "Shed" }, { "text": "Pond" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "The canals", "aliases": ["Canals"] }, { "text": "Bicycles", "aliases": ["Bikes"] }, { "text": "The Anne Frank House", "aliases": ["Anne Frank"] }, { "text": "The Rijksmuseum", "aliases": ["Museums", "The Van Gogh Museum"] }] },
+        { "prompt": "What do you know about Leonardo da Vinci? Four keywords.", "answers": [{ "text": "The Mona Lisa" }, { "text": "The Last Supper" }, { "text": "He was an inventor", "aliases": ["Inventor", "Flying machines"] }, { "text": "Italian", "aliases": ["Italy", "The Renaissance"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Sand", "aliases": ["Dunes", "Sand dunes"] }, { "text": "Africa", "aliases": ["North Africa"] }, { "text": "Camels" }, { "text": "The biggest desert", "aliases": ["Desert", "Very hot"] }] },
+        { "prompt": "What do you know about the football World Cup? Four keywords.", "answers": [{ "text": "Every four years" }, { "text": "The golden trophy", "aliases": ["The cup", "The trophy"] }, { "text": "Brazil has won it most", "aliases": ["Brazil"] }, { "text": "Thirty-two countries", "aliases": ["Group stage", "The final"] }] },
+        { "prompt": "What do you know about Harry Potter? Four keywords.", "answers": [{ "text": "Hogwarts" }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }, { "text": "Wands and spells", "aliases": ["Magic", "Wand", "Spells"] }, { "text": "Voldemort", "aliases": ["Hermione", "Ron", "The scar", "Round glasses"] }] },
+        { "prompt": "What do you know about ancient Egypt? Four keywords.", "answers": [{ "text": "The pyramids", "aliases": ["Pyramids"] }, { "text": "Pharaohs", "aliases": ["Pharaoh", "Tutankhamun"] }, { "text": "Mummies" }, { "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What do you know about bees? Four keywords.", "answers": [{ "text": "Honey" }, { "text": "They sting", "aliases": ["A sting", "Stinging"] }, { "text": "The queen bee", "aliases": ["The queen", "The hive"] }, { "text": "They pollinate flowers", "aliases": ["Flowers", "Pollination"] }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "The Christmas tree", "aliases": ["Tree"] }, { "text": "Presents" }, { "text": "Santa Claus", "aliases": ["Father Christmas"] }, { "text": "Christmas dinner", "aliases": ["Turkey", "Family"] }] }
       ]
     },
     {
@@ -112,11 +122,12 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch Golden Age painter specialised in painting church interiors?", "answers": [{ "text": "Pieter Saenredam", "aliases": ["Saenredam"] }] },
+        { "prompt": "Which Dutch painter painted The Milkmaid?", "answers": [{ "text": "Johannes Vermeer", "aliases": ["Vermeer"] }] },
         { "prompt": "What is the capital of Estonia?", "answers": [{ "text": "Tallinn" }] },
-        { "prompt": "Which Russian composer wrote Pictures at an Exhibition?", "answers": [{ "text": "Modest Mussorgsky", "aliases": ["Mussorgsky"] }] },
-        { "prompt": "In which year did a telegraph cable first work properly across the Atlantic?", "answers": [{ "text": "1866" }] },
-        { "prompt": "Which body of water in Antarctica is the saltiest on earth?", "answers": [{ "text": "Don Juan Pond", "aliases": ["Don Juan"] }] },
+        { "prompt": "Which Russian composer wrote the ballet Swan Lake?", "answers": [{ "text": "Pyotr Tchaikovsky", "aliases": ["Tchaikovsky"] }] },
+        { "prompt": "Which is the largest island in the world?", "answers": [{ "text": "Greenland" }] },
+        { "prompt": "In which country are the Angel Falls, the highest waterfall in the world?", "answers": [{ "text": "Venezuela" }] },
+        { "prompt": "Which gas makes up about seventy-eight percent of the air we breathe?", "answers": [{ "text": "Nitrogen" }] },
         { "prompt": "Which English scientist discovered electromagnetic induction?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
       ]
     }

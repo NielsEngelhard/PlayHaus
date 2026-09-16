@@ -34,16 +34,12 @@
       "questions": [
         { "prompt": "Which Apollo mission was the first to fly around the moon?", "options": [{ "text": "Apollo 8", "correct": true }, { "text": "Apollo 7" }, { "text": "Apollo 9" }, { "text": "Apollo 10" }] },
         { "prompt": "Which Soviet probe was the first to reach the moon, in 1959?", "options": [{ "text": "Luna 2", "correct": true }, { "text": "Sputnik 2" }, { "text": "Vostok 1" }, { "text": "Zond 1" }] },
-        { "prompt": "In which spacecraft did Gagarin fly?", "options": [{ "text": "Vostok 1", "correct": true }, { "text": "Sojoez 1" }, { "text": "Loena 1" }, { "text": "Mercury 1" }] },
         { "prompt": "How many Apollo missions landed on the moon?", "options": [{ "text": "Four" }, { "text": "Six", "correct": true }, { "text": "Eight" }, { "text": "Ten" }] },
         { "prompt": "Which American president announced the moon mission in 1961?", "options": [{ "text": "John F. Kennedy", "correct": true }, { "text": "Dwight Eisenhower" }, { "text": "Lyndon Johnson" }, { "text": "Richard Nixon" }] },
-        { "prompt": "Which European space agency was founded in 1975?", "options": [{ "text": "ESA", "correct": true }, { "text": "NASA" }, { "text": "CNES" }, { "text": "DLR" }] },
-        { "prompt": "What was the joint American-Soviet mission of 1975 called?", "options": [{ "text": "Apollo-Soyuz", "correct": true }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "Gemini" }] },
         { "prompt": "Which Soviet space station flew from 1986 to 2001?", "options": [{ "text": "Mir", "correct": true }, { "text": "Saljoet" }, { "text": "Skylab" }, { "text": "Tiangong" }] },
         { "prompt": "Which probe sent the first images of Neptune, in 1989?", "options": [{ "text": "Voyager 2", "correct": true }, { "text": "Voyager 1" }, { "text": "Pioneer 11" }, { "text": "New Horizons" }] },
         { "prompt": "Which space shuttle was lost shortly after launch in 1986?", "options": [{ "text": "Challenger", "correct": true }, { "text": "Columbia" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
         { "prompt": "Which planet did the Cassini probe study?", "options": [{ "text": "Saturn", "correct": true }, { "text": "Jupiter" }, { "text": "Mars" }, { "text": "Venus" }] },
-        { "prompt": "About how long did the journey of Apollo 11 to the moon take?", "options": [{ "text": "Three days", "correct": true }, { "text": "One day" }, { "text": "One week" }, { "text": "One month" }] },
         { "prompt": "Which country became the third to launch a human into space on its own, in 2003?", "options": [{ "text": "China", "correct": true }, { "text": "Japan" }, { "text": "India" }, { "text": "France" }] },
         { "prompt": "Which Apollo mission was the first to carry a lunar rover?", "options": [{ "text": "Apollo 15", "correct": true }, { "text": "Apollo 11" }, { "text": "Apollo 13" }, { "text": "Apollo 12" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Rocket" },
-        { "prompt": "Moon" },
-        { "prompt": "Spacesuit" },
-        { "prompt": "Satellite" },
-        { "prompt": "Observatory" },
-        { "prompt": "Gravity" },
-        { "prompt": "Astronaut" },
-        { "prompt": "Telescope" },
-        { "prompt": "Lunar module" },
-        { "prompt": "Launch pad" },
-        { "prompt": "Comet" },
-        { "prompt": "Solar panel" },
-        { "prompt": "Countdown" },
-        { "prompt": "Weightlessness" },
-        { "prompt": "Orbit" },
-        { "prompt": "Meteorite" }
+      "words": [
+        "Rocket",
+        "Moon",
+        "Spacesuit",
+        "Satellite",
+        "Astronaut",
+        "Telescope",
+        "Countdown",
+        "Orbit",
+        "Gravity",
+        "Comet",
+        "Neil Armstrong",
+        "Apollo 11",
+        "NASA",
+        "Laika",
+        "Launch pad",
+        "Space station",
+        "Moon buggy",
+        "Solar panel",
+        "Meteorite",
+        "Cape Canaveral",
+        "Yuri Gagarin",
+        "Sputnik",
+        "Wernher von Braun",
+        "Mission control",
+        "Hubble telescope",
+        "Weightlessness",
+        "Heat shield",
+        "Soyuz",
+        "Mars rover",
+        "Re-entry"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four astronauts who walked on the moon.", "answers": [{ "text": "Neil Armstrong" }, { "text": "Buzz Aldrin" }, { "text": "Pete Conrad" }, { "text": "Alan Shepard" }] },
-        { "prompt": "Name four American space programmes.", "answers": [{ "text": "Mercury" }, { "text": "Gemini" }, { "text": "Apollo" }, { "text": "Space Shuttle" }] },
-        { "prompt": "Name four planets visited by space probes.", "answers": [{ "text": "Mars" }, { "text": "Venus" }, { "text": "Jupiter" }, { "text": "Saturn" }] },
-        { "prompt": "Name four space shuttles of NASA.", "answers": [{ "text": "Columbia" }, { "text": "Challenger" }, { "text": "Discovery" }, { "text": "Atlantis" }] },
-        { "prompt": "Name four countries with their own space agency.", "answers": [{ "text": "United States" }, { "text": "Russia" }, { "text": "China" }, { "text": "India" }] },
-        { "prompt": "Name four bodies a probe has landed on.", "answers": [{ "text": "The moon" }, { "text": "Mars" }, { "text": "Venus" }, { "text": "Titan" }] },
-        { "prompt": "Name four parts of a rocket.", "answers": [{ "text": "Engine" }, { "text": "Fuel tank" }, { "text": "Nose cone" }, { "text": "Fins" }] },
-        { "prompt": "Name four space stations.", "answers": [{ "text": "Salyut" }, { "text": "Skylab" }, { "text": "Mir" }, { "text": "ISS" }] }
+        { "prompt": "What do you know about Neil Armstrong? Four keywords.", "answers": [{ "text": "First man on the moon", "aliases": ["First on the moon"] }, { "text": "Apollo 11" }, { "text": "One small step", "aliases": ["One small step for man"] }, { "text": "American" }] },
+        { "prompt": "What do you know about the moon? Four keywords.", "answers": [{ "text": "Craters" }, { "text": "Tides", "aliases": ["It pulls the tides"] }, { "text": "Full moon" }, { "text": "The moon landing", "aliases": ["Moon landing", "Apollo 11"] }] },
+        { "prompt": "What do you know about NASA? Four keywords.", "answers": [{ "text": "American" }, { "text": "Apollo" }, { "text": "The space shuttle", "aliases": ["Space shuttle"] }, { "text": "Houston" }] },
+        { "prompt": "What do you know about Yuri Gagarin? Four keywords.", "answers": [{ "text": "First man in space", "aliases": ["First human in space"] }, { "text": "Russian", "aliases": ["Soviet", "Soviet Union"] }, { "text": "Vostok 1", "aliases": ["Vostok"] }, { "text": "1961" }] },
+        { "prompt": "What do you know about Apollo 13? Four keywords.", "answers": [{ "text": "Houston, we have a problem" }, { "text": "An exploding oxygen tank", "aliases": ["Explosion", "Oxygen tank"] }, { "text": "Tom Hanks" }, { "text": "They got home alive", "aliases": ["Everyone survived", "No moon landing"] }] },
+        { "prompt": "What do you know about the International Space Station? Four keywords.", "answers": [{ "text": "Weightlessness", "aliases": ["Floating"] }, { "text": "Astronauts" }, { "text": "Solar panels" }, { "text": "It orbits the earth", "aliases": ["Orbit", "It circles the earth"] }] },
+        { "prompt": "What do you know about Mars? Four keywords.", "answers": [{ "text": "The red planet", "aliases": ["Red"] }, { "text": "Rovers", "aliases": ["Mars rover"] }, { "text": "The fourth planet from the sun", "aliases": ["Fourth planet"] }, { "text": "Martians", "aliases": ["Aliens", "Little green men"] }] },
+        { "prompt": "What do you know about the space shuttle? Four keywords.", "answers": [{ "text": "Columbia" }, { "text": "The Challenger disaster", "aliases": ["Challenger"] }, { "text": "Reusable", "aliases": ["It could be flown again"] }, { "text": "It landed like a plane", "aliases": ["It glided back", "Wings"] }] }
       ]
     },
     {
@@ -117,8 +127,9 @@
         { "prompt": "Which Dutchman was the first to fly into space, in 1985?", "answers": [{ "text": "Wubbo Ockels", "aliases": ["Ockels"] }] },
         { "prompt": "Which space telescope was put into orbit in 1990?", "answers": [{ "text": "The Hubble", "aliases": ["Hubble"] }] },
         { "prompt": "Which Apollo mission was the last to land on the moon?", "answers": [{ "text": "Apollo 17" }] },
-        { "prompt": "What was the large Soviet moon rocket that never flew successfully called?", "answers": [{ "text": "The N1", "aliases": ["N1"] }] },
-        { "prompt": "Which probe landed on Saturn's moon Titan in 2005?", "answers": [{ "text": "Huygens" }] }
+        { "prompt": "From which space centre in Florida did the Apollo missions lift off?", "answers": [{ "text": "The Kennedy Space Center", "aliases": ["Kennedy Space Center", "Cape Canaveral", "Cape Kennedy"] }] },
+        { "prompt": "Which company of Elon Musk builds the Falcon 9 rocket?", "answers": [{ "text": "SpaceX" }] },
+        { "prompt": "Which American programme flew between Mercury and Apollo?", "answers": [{ "text": "Gemini", "aliases": ["Project Gemini"] }] }
       ]
     }
   ]

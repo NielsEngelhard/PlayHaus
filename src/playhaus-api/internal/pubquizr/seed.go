@@ -39,7 +39,9 @@ type quizFile struct {
 
 type roundFile struct {
 	Round     int            `json:"round"`
-	Questions []questionFile `json:"questions"`
+	Questions []questionFile `json:"questions,omitempty"`
+	// Words is round 4 whole: a word to describe carries nothing but itself.
+	Words []string `json:"words,omitempty"`
 }
 
 type questionFile struct {
@@ -232,6 +234,29 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 		kind := KindOf(round.Round)
 		if round.Round < 1 || round.Round > Rounds {
 			return nil, fmt.Errorf("round %d does not exist (1..%d)", round.Round, Rounds)
+		}
+
+		if len(round.Words) > 0 {
+			if round.Round != RoundDescribe {
+				return nil, fmt.Errorf("round %d carries words, which only round %d does", round.Round, RoundDescribe)
+			}
+			if len(round.Questions) > 0 {
+				return nil, fmt.Errorf("round %d carries both words and questions", round.Round)
+			}
+		}
+
+		for position, word := range round.Words {
+			if strings.TrimSpace(word) == "" {
+				return nil, fmt.Errorf("round %d word %d: needs a word", round.Round, position+1)
+			}
+			quiz.Questions = append(quiz.Questions, Question{
+				ID:       uuid.New(),
+				QuizID:   quiz.ID,
+				Round:    round.Round,
+				Kind:     kind,
+				Position: position,
+				Prompt:   word,
+			})
 		}
 
 		for position, question := range round.Questions {

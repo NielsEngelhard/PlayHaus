@@ -36,15 +36,11 @@
         { "prompt": "Which metal is the best conductor of electricity?", "options": [{ "text": "Copper" }, { "text": "Silver", "correct": true }, { "text": "Gold" }, { "text": "Aluminium" }] },
         { "prompt": "In what year was the Titanic launched?", "options": [{ "text": "1909" }, { "text": "1911", "correct": true }, { "text": "1912" }, { "text": "1914" }] },
         { "prompt": "What is the capital of South Korea?", "options": [{ "text": "Busan" }, { "text": "Seoul", "correct": true }, { "text": "Incheon" }, { "text": "Daegu" }] },
-        { "prompt": "Which animal carries its young in a pouch and can box?", "options": [{ "text": "Koala" }, { "text": "Kangaroo", "correct": true }, { "text": "Opossum" }, { "text": "Wallaby" }] },
         { "prompt": "How many players does an ice hockey team have on the ice including the goalie?", "options": [{ "text": "Five" }, { "text": "Six", "correct": true }, { "text": "Seven" }, { "text": "Eight" }] },
         { "prompt": "Which planet is the outermost of our solar system?", "options": [{ "text": "Uranus" }, { "text": "Neptune", "correct": true }, { "text": "Pluto" }, { "text": "Saturn" }] },
         { "prompt": "Which language has the most native speakers worldwide?", "options": [{ "text": "English" }, { "text": "Mandarin", "correct": true }, { "text": "Spanish" }, { "text": "Hindi" }] },
-        { "prompt": "Who led the Concertgebouw Orchestra for half a century from 1895?", "options": [{ "text": "Willem Mengelberg", "correct": true }, { "text": "Bernard Haitink" }, { "text": "Eduard van Beinum" }, { "text": "Riccardo Chailly" }] },
         { "prompt": "What is the largest organ of the human body?", "options": [{ "text": "Liver" }, { "text": "Skin", "correct": true }, { "text": "Lungs" }, { "text": "Intestine" }] },
-        { "prompt": "Which city is known as the City of Light?", "options": [{ "text": "Paris", "correct": true }, { "text": "Vienna" }, { "text": "Prague" }, { "text": "Venice" }] },
-        { "prompt": "In what year was the first satellite Sputnik 1 launched?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] },
-        { "prompt": "Which fruit is called Citrus limon in Latin?", "options": [{ "text": "Lime" }, { "text": "Lemon", "correct": true }, { "text": "Pomelo" }, { "text": "Mandarin" }] }
+        { "prompt": "In what year was the first satellite Sputnik 1 launched?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Walking stick" },
-        { "prompt": "Horseshoe" },
-        { "prompt": "Zebra" },
-        { "prompt": "Bakery" },
-        { "prompt": "Watermelon" },
-        { "prompt": "Cowboy" },
-        { "prompt": "Scales" },
-        { "prompt": "Flute" },
-        { "prompt": "Snow shovel" },
-        { "prompt": "Plumber" },
-        { "prompt": "Roller coaster" },
-        { "prompt": "Binoculars" },
-        { "prompt": "Doorbell" },
-        { "prompt": "Ostrich" },
-        { "prompt": "Backpack" },
-        { "prompt": "Rubbish bin" }
+      "words": [
+        "Zebra",
+        "Watermelon",
+        "Horseshoe",
+        "Bakery",
+        "Roller coaster",
+        "Binoculars",
+        "Ostrich",
+        "Backpack",
+        "Plumber",
+        "Traffic light",
+        "Hot dog",
+        "Saxophone",
+        "Umbrella",
+        "Skateboard",
+        "Campfire",
+        "Astronaut",
+        "Windsurfing",
+        "Napoleon",
+        "Mount Fuji",
+        "Niagara Falls",
+        "Charlie Chaplin",
+        "The Colosseum",
+        "Judge",
+        "The Wizard of Oz",
+        "Thunderstorm",
+        "Vincent van Gogh",
+        "The World Cup",
+        "Lifeguard",
+        "Trampoline",
+        "Salsa dancing"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest cities of Germany.", "answers": [{ "text": "Berlin" }, { "text": "Hamburg" }, { "text": "Munich" }, { "text": "Cologne" }] },
-        { "prompt": "Name the four oceans besides the Southern Ocean.", "answers": [{ "text": "Pacific" }, { "text": "Atlantic" }, { "text": "Indian Ocean" }, { "text": "Arctic Ocean" }] },
-        { "prompt": "Name the four members of the Fantastic Four.", "answers": [{ "text": "Mister Fantastic" }, { "text": "Invisible Woman" }, { "text": "Human Torch" }, { "text": "The Thing" }] },
-        { "prompt": "Name the four great Athenian dramatists besides Menander.", "answers": [{ "text": "Aeschylus" }, { "text": "Sophocles" }, { "text": "Euripides" }, { "text": "Aristophanes" }] },
-        { "prompt": "Name the four countries that border Belgium by land.", "answers": [{ "text": "The Netherlands" }, { "text": "Germany" }, { "text": "Luxembourg" }, { "text": "France" }] },
-        { "prompt": "Name the four kinds of tissue in the human body.", "answers": [{ "text": "Muscle tissue" }, { "text": "Nervous tissue" }, { "text": "Epithelium" }, { "text": "Connective tissue" }] },
-        { "prompt": "Name the four largest islands of the British Isles.", "answers": [{ "text": "Great Britain" }, { "text": "Ireland" }, { "text": "Lewis and Harris" }, { "text": "Skye" }] },
-        { "prompt": "Name the four concertos of Vivaldi's Four Seasons.", "answers": [{ "text": "Spring" }, { "text": "Summer" }, { "text": "Autumn" }, { "text": "Winter" }] }
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "Statue of Liberty" }, { "text": "Broadway" }, { "text": "Manhattan" }, { "text": "Yellow taxis" }] },
+        { "prompt": "What do you know about Star Wars? Four keywords.", "answers": [{ "text": "Darth Vader" }, { "text": "Jedi" }, { "text": "Lightsaber" }, { "text": "The Force" }] },
+        { "prompt": "What do you know about pizza? Four keywords.", "answers": [{ "text": "Italy" }, { "text": "Cheese" }, { "text": "Margherita" }, { "text": "Wood oven" }] },
+        { "prompt": "What do you know about the desert? Four keywords.", "answers": [{ "text": "Sand" }, { "text": "Camel" }, { "text": "Cactus" }, { "text": "Oasis" }] },
+        { "prompt": "What do you know about Spain? Four keywords.", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Barcelona" }, { "text": "Tapas" }] },
+        { "prompt": "What do you know about dinosaurs? Four keywords.", "answers": [{ "text": "Tyrannosaurus rex" }, { "text": "Fossils" }, { "text": "Extinct" }, { "text": "Jurassic Park" }] },
+        { "prompt": "What do you know about wine? Four keywords.", "answers": [{ "text": "Grapes" }, { "text": "France" }, { "text": "Vineyard" }, { "text": "Corkscrew" }] },
+        { "prompt": "What do you know about the Vikings? Four keywords.", "answers": [{ "text": "Longship" }, { "text": "Scandinavia" }, { "text": "Raids" }, { "text": "Odin" }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Polish astronomer put the sun at the centre of the solar system?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus"] }] },
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago" }] },
+        { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "What is the largest lake in Africa?", "answers": [{ "text": "Lake Victoria", "aliases": ["Victoria"] }] },
-        { "prompt": "Which Russian composer wrote the ballet Swan Lake?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Tchaikovsky", "Pyotr Tchaikovsky"] }] },
-        { "prompt": "What is the capital of Turkey?", "answers": [{ "text": "Ankara" }] },
-        { "prompt": "Which two scientists described the DNA double helix in 1953?", "answers": [{ "text": "Watson and Crick", "aliases": ["James Watson and Francis Crick"] }] },
-        { "prompt": "In what year did the Dutch constitution introduce ministerial responsibility?", "answers": [{ "text": "1848" }] }
+        { "prompt": "In which country is the ancient rock city of Petra?", "answers": [{ "text": "Jordan" }] },
+        { "prompt": "Which two scientists described the DNA double helix in 1953?", "answers": [{ "text": "Watson and Crick", "aliases": ["James Watson and Francis Crick", "Watson en Crick"] }] },
+        { "prompt": "Who was the first woman to win a Nobel Prize?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Which of the seven wonders of the ancient world stood at the harbour of Rhodes?", "answers": [{ "text": "The Colossus of Rhodes", "aliases": ["Colossus of Rhodes", "the Colossus"] }] }
       ]
     }
   ]

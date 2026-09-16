@@ -37,14 +37,10 @@
         { "prompt": "Welke hagedis kan over het wateroppervlak rennen?", "options": [{ "text": "De basilisk", "correct": true }, { "text": "De leguaan" }, { "text": "De gekko" }, { "text": "De skink" }] },
         { "prompt": "Van welk graan wordt polenta gemaakt?", "options": [{ "text": "Mais", "correct": true }, { "text": "Gerst" }, { "text": "Rogge" }, { "text": "Gierst" }] },
         { "prompt": "In welke sport strijden landen om de Thomas Cup?", "options": [{ "text": "Badminton", "correct": true }, { "text": "Tafeltennis" }, { "text": "Squash" }, { "text": "Schermen" }] },
-        { "prompt": "Welke Deense architect ontwierp het operagebouw van Sydney?", "options": [{ "text": "Jorn Utzon", "correct": true }, { "text": "Arne Jacobsen" }, { "text": "Bjarke Ingels" }, { "text": "Henning Larsen" }] },
         { "prompt": "Welk hormoon vertelt het lichaam dat het tijd is om te slapen?", "options": [{ "text": "Melatonine", "correct": true }, { "text": "Adrenaline" }, { "text": "Insuline" }, { "text": "Serotonine" }] },
         { "prompt": "Welk lichaamsdeel heeft helemaal geen eigen bloedvaten?", "options": [{ "text": "Het hoornvlies", "correct": true }, { "text": "De lever" }, { "text": "De tong" }, { "text": "De nier" }] },
-        { "prompt": "In welk land staat de langste brug over water ter wereld?", "options": [{ "text": "China", "correct": true }, { "text": "De Verenigde Staten" }, { "text": "Japan" }, { "text": "Noorwegen" }] },
         { "prompt": "Welk element vormt zowel diamant als grafiet?", "options": [{ "text": "Koolstof", "correct": true }, { "text": "Silicium" }, { "text": "Boor" }, { "text": "Zwavel" }] },
-        { "prompt": "Welke stad is de hoofdstad van Sicilie?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] },
-        { "prompt": "Hoe noem je een taal die niemand meer als moedertaal spreekt?", "options": [{ "text": "Een dode taal", "correct": true }, { "text": "Een creooltaal" }, { "text": "Een pidgin" }, { "text": "Een dialect" }] },
-        { "prompt": "Welk klein insect is het enige dat een vijg kan bestuiven?", "options": [{ "text": "De vijgenwesp", "correct": true }, { "text": "De zweefvlieg" }, { "text": "De trips" }, { "text": "De dansmug" }] }
+        { "prompt": "Welke stad is de hoofdstad van Sicilie?", "options": [{ "text": "Palermo", "correct": true }, { "text": "Catania" }, { "text": "Messina" }, { "text": "Syracuse" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Bloembak" },
-        { "prompt": "Botervloot" },
-        { "prompt": "IJskrabber" },
-        { "prompt": "Dakdrager" },
-        { "prompt": "Intercom" },
-        { "prompt": "Instapkaart" },
-        { "prompt": "Douchekop" },
-        { "prompt": "Vaas" },
-        { "prompt": "Tafelkleed" },
-        { "prompt": "Kaarsendover" },
-        { "prompt": "Waxinelichtje" },
-        { "prompt": "Wijnglas" },
-        { "prompt": "Asbak" },
-        { "prompt": "Pijp" },
-        { "prompt": "Wandelschoen" },
-        { "prompt": "Ligbed" }
+      "words": [
+        "Vaas",
+        "Tafelkleed",
+        "Wijnglas",
+        "Paraplu",
+        "Gitaar",
+        "Fiets",
+        "Leeuw",
+        "Zonnebloem",
+        "Stroopwafel",
+        "Juf",
+        "IJskrabber",
+        "Instapkaart",
+        "Douchekop",
+        "Wandelschoen",
+        "Molen",
+        "Orkaan",
+        "Detective",
+        "Elpee",
+        "Andre Hazes",
+        "Smid",
+        "De piramides",
+        "James Bond",
+        "De Olympische Spelen",
+        "Mona Lisa",
+        "Napoleon",
+        "De Gouden Eeuw",
+        "Koorddanser",
+        "Marie Curie",
+        "Het Rijksmuseum",
+        "Het noorderlicht"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Soedan grenzen.", "answers": [{ "text": "Egypte" }, { "text": "Tsjaad" }, { "text": "Ethiopie" }, { "text": "Libie" }] },
-        { "prompt": "Noem vier sauzen.", "answers": [{ "text": "Mayonaise" }, { "text": "Ketchup" }, { "text": "Mosterd" }, { "text": "Pesto" }] },
-        { "prompt": "Noem vier vrouwen die naam maakten in de wetenschap.", "answers": [{ "text": "Marie Curie" }, { "text": "Rosalind Franklin" }, { "text": "Ada Lovelace" }, { "text": "Jane Goodall" }] },
-        { "prompt": "Noem vier sporten die sinds 2000 olympisch werden.", "answers": [{ "text": "Skateboarden" }, { "text": "Surfen" }, { "text": "Sportklimmen" }, { "text": "Karate" }] },
-        { "prompt": "Noem vier landen in Zuid-Azie.", "answers": [{ "text": "India" }, { "text": "Pakistan" }, { "text": "Bangladesh" }, { "text": "Nepal" }] },
-        { "prompt": "Noem vier dingen uit een fietsreparatieset.", "answers": [{ "text": "Bandenlichter" }, { "text": "Plakkertje" }, { "text": "Pomp" }, { "text": "Sleutel" }] },
-        { "prompt": "Noem vier beroemde kastelen.", "answers": [{ "text": "Windsor" }, { "text": "Neuschwanstein" }, { "text": "Edinburgh" }, { "text": "Muiderslot" }] },
-        { "prompt": "Noem vier soorten verf die een kunstenaar gebruikt.", "answers": [{ "text": "Olieverf" }, { "text": "Acryl" }, { "text": "Aquarel" }, { "text": "Gouache" }] }
+        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Wolkenkrabbers", "aliases": ["Empire State Building"] }, { "text": "Times Square" }, { "text": "Gele taxis", "aliases": ["Taxis", "Yellow cab"] }] },
+        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Vorst"] }, { "text": "Schaatsen", "aliases": ["Ijs", "Schaatsen op natuurijs"] }, { "text": "Sjaal", "aliases": ["Muts", "Handschoenen"] }] },
+        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-and-roll", "aliases": ["Rock n roll"] }, { "text": "Graceland" }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock"] }, { "text": "Zijn kuif", "aliases": ["Kuif", "Zijn haar"] }] },
+        { "prompt": "Wat weet je van een ziekenhuis? Vier kernwoorden.", "answers": [{ "text": "Dokters", "aliases": ["Dokter", "Chirurg"] }, { "text": "Verpleegkundigen", "aliases": ["Verpleegster", "Zuster"] }, { "text": "Ambulance" }, { "text": "Operatiekamer", "aliases": ["Operatie"] }] },
+        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Schaakmat", "aliases": ["Mat", "Schaak"] }, { "text": "Koning en koningin", "aliases": ["Koning", "Dame"] }, { "text": "Zwarte en witte velden", "aliases": ["Bord", "Vierenzestig velden"] }, { "text": "Grootmeester", "aliases": ["Wereldkampioen"] }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog? Vier kernwoorden.", "answers": [{ "text": "Hitler" }, { "text": "D-Day", "aliases": ["Normandie"] }, { "text": "1945", "aliases": ["De bevrijding", "1940-1945"] }, { "text": "Churchill" }] },
+        { "prompt": "Wat weet je van Frankrijk? Vier kernwoorden.", "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }, { "text": "Stokbrood", "aliases": ["Baguette"] }, { "text": "Wijn" }, { "text": "Parijs" }] },
+        { "prompt": "Wat weet je van honden? Vier kernwoorden.", "answers": [{ "text": "Blaffen", "aliases": ["Blaf"] }, { "text": "Uitlaten", "aliases": ["Riem", "Lijn"] }, { "text": "Staart", "aliases": ["Kwispelen"] }, { "text": "Puppy", "aliases": ["Pup", "Puppies"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse schilder maakte De bedreigde zwaan?", "answers": [{ "text": "Jan Asselijn", "aliases": ["Asselijn"] }] },
         { "prompt": "Wat is de hoofdstad van Bangladesh?", "answers": [{ "text": "Dhaka" }] },
         { "prompt": "Welke Finse componist schreef Finlandia?", "answers": [{ "text": "Jean Sibelius", "aliases": ["Sibelius"] }] },
-        { "prompt": "Welke Nederlandse vestingstad is aangelegd als een twaalfpuntige ster?", "answers": [{ "text": "Naarden" }] },
-        { "prompt": "Wat is het grootste eiland in de Noordelijke IJszee?", "answers": [{ "text": "Baffineiland", "aliases": ["Baffin"] }] },
-        { "prompt": "Welke Engelse scheikundige wordt gezien als de ontdekker van zuurstof?", "answers": [{ "text": "Joseph Priestley", "aliases": ["Priestley"] }] }
+        { "prompt": "Welk water is het zoutste ter wereld?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Wat is de munteenheid van Polen?", "answers": [{ "text": "De zloty", "aliases": ["zloty"] }] },
+        { "prompt": "Welke planeet heeft de Grote Rode Vlek?", "answers": [{ "text": "Jupiter" }] },
+        { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
+        { "prompt": "Welk gebergte scheidt Europa van Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
       ]
     }
   ]

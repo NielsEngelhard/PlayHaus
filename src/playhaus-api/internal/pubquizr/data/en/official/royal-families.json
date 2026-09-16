@@ -38,13 +38,9 @@
         { "prompt": "Which British king abdicated in 1936?", "options": [{ "text": "Edward VIII", "correct": true }, { "text": "George V" }, { "text": "George VI" }, { "text": "Edward VII" }] },
         { "prompt": "Which English king had six wives?", "options": [{ "text": "Henry VIII", "correct": true }, { "text": "Charles I" }, { "text": "James I" }, { "text": "Richard III" }] },
         { "prompt": "Who was the last tsar of Russia?", "options": [{ "text": "Nicholas II", "correct": true }, { "text": "Alexander III" }, { "text": "Peter III" }, { "text": "Paul I" }] },
-        { "prompt": "Which country has an emperor as head of state?", "options": [{ "text": "Japan", "correct": true }, { "text": "China" }, { "text": "Thailand" }, { "text": "Morocco" }] },
-        { "prompt": "Which Swedish king founded the present royal house in 1818?", "options": [{ "text": "Charles XIV John", "correct": true }, { "text": "Gustav III" }, { "text": "Oscar I" }, { "text": "Charles XII" }] },
-        { "prompt": "Which French queen was beheaded together with her husband in 1793?", "options": [{ "text": "Marie Antoinette", "correct": true }, { "text": "Madame de Pompadour" }, { "text": "Josephine" }, { "text": "Catherine de Medici" }] },
         { "prompt": "Which British king reigned during the American War of Independence?", "options": [{ "text": "George III", "correct": true }, { "text": "George II" }, { "text": "George IV" }, { "text": "William IV" }] },
         { "prompt": "Which Austrian empress reigned from 1740 to 1780?", "options": [{ "text": "Maria Theresa", "correct": true }, { "text": "Maria Anna" }, { "text": "Marie Louise" }, { "text": "Zita" }] },
         { "prompt": "Which country is ruled by a king of the house of Al Saud?", "options": [{ "text": "Saudi Arabia", "correct": true }, { "text": "Jordan" }, { "text": "Morocco" }, { "text": "Oman" }] },
-        { "prompt": "Which British prince married Meghan Markle in 2018?", "options": [{ "text": "Harry", "correct": true }, { "text": "William" }, { "text": "Andrew" }, { "text": "Edward" }] },
         { "prompt": "Which castle is the residence of the British monarch in Scotland?", "options": [{ "text": "Balmoral", "correct": true }, { "text": "Holyrood" }, { "text": "Stirling" }, { "text": "Edinburgh" }] }
       ]
     },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Crown" },
-        { "prompt": "Throne" },
-        { "prompt": "Palace" },
-        { "prompt": "Sceptre" },
-        { "prompt": "Orb" },
-        { "prompt": "Carriage" },
-        { "prompt": "Coat of arms" },
-        { "prompt": "Heir" },
-        { "prompt": "Wedding" },
-        { "prompt": "Balcony" },
-        { "prompt": "Bodyguard" },
-        { "prompt": "Castle" },
-        { "prompt": "Tiara" },
-        { "prompt": "Portrait" },
-        { "prompt": "Anthem" },
-        { "prompt": "State visit" }
+      "words": [
+        "Crown",
+        "Throne",
+        "Palace",
+        "Castle",
+        "Tiara",
+        "Carriage",
+        "Royal wedding",
+        "Balcony",
+        "Sceptre",
+        "Prince",
+        "Buckingham Palace",
+        "Queen Elizabeth II",
+        "Coronation",
+        "Versailles",
+        "Princess Diana",
+        "Corgi",
+        "Windsor Castle",
+        "Bodyguard",
+        "Crown jewels",
+        "King Charles III",
+        "Abdication",
+        "Henry VIII",
+        "Tower of London",
+        "Marie Antoinette",
+        "Chrysanthemum Throne",
+        "Grace Kelly",
+        "Regent",
+        "Dynasty",
+        "State visit",
+        "Coat of arms"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four European countries with a king or queen.", "answers": [{ "text": "The Netherlands" }, { "text": "Belgium" }, { "text": "Spain" }, { "text": "Sweden" }] },
-        { "prompt": "Name four British royal houses.", "answers": [{ "text": "Tudor" }, { "text": "Stuart" }, { "text": "Hanover" }, { "text": "Windsor" }] },
-        { "prompt": "Name the four children of Elizabeth II.", "answers": [{ "text": "Charles" }, { "text": "Anne" }, { "text": "Andrew" }, { "text": "Edward" }] },
-        { "prompt": "Name the four Dutch monarchs since 1890.", "answers": [{ "text": "Wilhelmina" }, { "text": "Juliana" }, { "text": "Beatrix" }, { "text": "Willem-Alexander" }] },
-        { "prompt": "Name four French kings named Louis.", "answers": [{ "text": "Louis XIII" }, { "text": "Louis XIV" }, { "text": "Louis XV" }, { "text": "Louis XVI" }] },
-        { "prompt": "Name four parts of a set of crown jewels.", "answers": [{ "text": "Crown" }, { "text": "Sceptre" }, { "text": "Orb" }, { "text": "Sword" }] },
-        { "prompt": "Name four capitals of European monarchies.", "answers": [{ "text": "Amsterdam" }, { "text": "Brussels" }, { "text": "Madrid" }, { "text": "Stockholm" }] },
-        { "prompt": "Name four titles of nobility.", "answers": [{ "text": "Duke" }, { "text": "Count" }, { "text": "Baron" }, { "text": "Marquess" }] }
+        { "prompt": "What do you know about Queen Elizabeth II? Four keywords.", "answers": [{ "text": "The longest reign in British history", "aliases": ["Seventy years on the throne", "Longest reign"] }, { "text": "Corgis", "aliases": ["Corgi", "Her dogs"] }, { "text": "Buckingham Palace" }, { "text": "Her husband Prince Philip", "aliases": ["Prince Philip", "Philip"] }] },
+        { "prompt": "What do you know about Queen Maxima? Four keywords.", "answers": [{ "text": "She is Argentinian", "aliases": ["Argentina", "From Argentina"] }, { "text": "Married to Willem-Alexander", "aliases": ["Willem-Alexander", "The king"] }, { "text": "Her hats", "aliases": ["Hats", "Big hats"] }, { "text": "Three daughters", "aliases": ["Amalia", "Her daughters"] }] },
+        { "prompt": "What do you know about Versailles? Four keywords.", "answers": [{ "text": "Louis XIV", "aliases": ["The Sun King", "Sun King"] }, { "text": "The Hall of Mirrors", "aliases": ["Hall of Mirrors"] }, { "text": "Near Paris", "aliases": ["Paris", "France"] }, { "text": "The gardens and fountains", "aliases": ["Gardens", "Fountains"] }] },
+        { "prompt": "What do you know about Princess Diana? Four keywords.", "answers": [{ "text": "Married Prince Charles", "aliases": ["Charles", "Her wedding"] }, { "text": "Died in a car crash in Paris", "aliases": ["Car crash", "1997", "Paris"] }, { "text": "William and Harry", "aliases": ["Her sons", "Two sons"] }, { "text": "Her charity work", "aliases": ["Charity", "Landmines"] }] },
+        { "prompt": "What do you know about Monaco? Four keywords.", "answers": [{ "text": "Grace Kelly" }, { "text": "A tiny country on the Mediterranean", "aliases": ["Tiny country", "Mediterranean", "Riviera"] }, { "text": "The Formula 1 Grand Prix", "aliases": ["Grand Prix", "Formula 1"] }, { "text": "The Monte Carlo casino", "aliases": ["Monte Carlo", "Casino"] }] },
+        { "prompt": "What do you know about Tsar Nicholas II? Four keywords.", "answers": [{ "text": "The last tsar of Russia", "aliases": ["Last tsar", "Tsar"] }, { "text": "Shot with his family in 1918", "aliases": ["Executed", "Murdered", "1918"] }, { "text": "His daughter Anastasia", "aliases": ["Anastasia"] }, { "text": "The Russian Revolution", "aliases": ["Revolution", "Bolsheviks"] }] },
+        { "prompt": "What do you know about the Tower of London? Four keywords.", "answers": [{ "text": "The crown jewels", "aliases": ["Crown jewels"] }, { "text": "Ravens", "aliases": ["The ravens"] }, { "text": "Executions", "aliases": ["Beheadings", "Anne Boleyn"] }, { "text": "The Beefeaters", "aliases": ["Beefeaters", "Yeoman Warders"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "Emperor of the French", "aliases": ["Emperor"] }, { "text": "Waterloo" }, { "text": "He crowned himself", "aliases": ["Crowned himself", "His own coronation"] }, { "text": "Exiled to Elba and Saint Helena", "aliases": ["Elba", "Saint Helena", "Exile"] }] }
       ]
     },
     {
@@ -114,11 +124,12 @@
       "round": 7,
       "questions": [
         { "prompt": "In which palace in The Hague does the Dutch king work?", "answers": [{ "text": "Noordeinde Palace", "aliases": ["Noordeinde"] }] },
-        { "prompt": "What is the crown placed on the head at a British coronation called?", "answers": [{ "text": "St Edward's Crown", "aliases": ["St Edward"] }] },
         { "prompt": "Which Austrian empress was known as Sisi?", "answers": [{ "text": "Elisabeth of Austria", "aliases": ["Elisabeth"] }] },
         { "prompt": "In what year was the Kingdom of the Netherlands founded?", "answers": [{ "text": "1815" }] },
         { "prompt": "Which English queen reigned for nine days in 1553?", "answers": [{ "text": "Jane Grey", "aliases": ["Lady Jane Grey"] }] },
-        { "prompt": "Which Japanese imperial era began in 2019?", "answers": [{ "text": "Reiwa" }] }
+        { "prompt": "Which country's royal family lives in the Amalienborg palace?", "answers": [{ "text": "Denmark" }] },
+        { "prompt": "Which Russian empress, born a German princess, ruled from 1762 to 1796?", "answers": [{ "text": "Catherine the Great", "aliases": ["Catherine II", "Catherine"] }] },
+        { "prompt": "Who is the king of Belgium today?", "answers": [{ "text": "Philippe", "aliases": ["Filip", "King Philippe"] }] }
       ]
     }
   ]

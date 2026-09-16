@@ -33,17 +33,13 @@
       "round": 2,
       "questions": [
         { "prompt": "Which country does NOT border Germany?", "options": [{ "text": "Denmark" }, { "text": "Czechia" }, { "text": "Slovakia", "correct": true }, { "text": "Poland" }] },
-        { "prompt": "Which German car maker has four rings in its logo?", "options": [{ "text": "Audi", "correct": true }, { "text": "BMW" }, { "text": "Opel" }, { "text": "Mercedes-Benz" }] },
         { "prompt": "In which German city was the Frauenkirche rebuilt from rubble after 1945?", "options": [{ "text": "Dresden", "correct": true }, { "text": "Leipzig" }, { "text": "Nuremberg" }, { "text": "Erfurt" }] },
         { "prompt": "In what year was the German Empire proclaimed at Versailles?", "options": [{ "text": "1848" }, { "text": "1866" }, { "text": "1871", "correct": true }, { "text": "1888" }] },
         { "prompt": "Which German river flows east towards the Black Sea?", "options": [{ "text": "Danube", "correct": true }, { "text": "Elbe" }, { "text": "Weser" }, { "text": "Oder" }] },
         { "prompt": "Which German state is a city state?", "options": [{ "text": "Hesse" }, { "text": "Bremen", "correct": true }, { "text": "Saarland" }, { "text": "Thuringia" }] },
-        { "prompt": "How many times had Germany won the football World Cup up to 2022?", "options": [{ "text": "Two" }, { "text": "Three" }, { "text": "Four", "correct": true }, { "text": "Five" }] },
         { "prompt": "Which German philosopher wrote Critique of Pure Reason?", "options": [{ "text": "Immanuel Kant", "correct": true }, { "text": "Georg Hegel" }, { "text": "Arthur Schopenhauer" }, { "text": "Friedrich Nietzsche" }] },
         { "prompt": "Which Bavarian castle inspired cartoon castles?", "options": [{ "text": "Neuschwanstein", "correct": true }, { "text": "Hohenzollern" }, { "text": "Heidelberg" }, { "text": "Wartburg" }] },
-        { "prompt": "Which German inventor built one of the first petrol cars in 1885?", "options": [{ "text": "Carl Benz", "correct": true }, { "text": "Rudolf Diesel" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
         { "prompt": "Which German city is known for its gingerbread Christmas market?", "options": [{ "text": "Nuremberg", "correct": true }, { "text": "Cologne" }, { "text": "Kiel" }, { "text": "Rostock" }] },
-        { "prompt": "Which German composer was born in Halle in 1685 and later worked in London?", "options": [{ "text": "Georg Friedrich Handel", "correct": true }, { "text": "Johann Sebastian Bach" }, { "text": "Georg Philipp Telemann" }, { "text": "Heinrich Schutz" }] },
         { "prompt": "In what year were the Munich summer Olympics held?", "options": [{ "text": "1968" }, { "text": "1972", "correct": true }, { "text": "1976" }, { "text": "1980" }] },
         { "prompt": "Which German state borders both the Netherlands and Belgium?", "options": [{ "text": "Lower Saxony" }, { "text": "North Rhine-Westphalia", "correct": true }, { "text": "Rhineland-Palatinate" }, { "text": "Saarland" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Bratwurst" },
-        { "prompt": "Autobahn" },
-        { "prompt": "Oktoberfest" },
-        { "prompt": "Lederhosen" },
-        { "prompt": "Pretzel" },
-        { "prompt": "Christmas market" },
-        { "prompt": "Cuckoo clock" },
-        { "prompt": "Castle" },
-        { "prompt": "Beer stein" },
-        { "prompt": "Sauerkraut" },
-        { "prompt": "Sports car" },
-        { "prompt": "Brass band" },
-        { "prompt": "Alpine meadow" },
-        { "prompt": "Wall" },
-        { "prompt": "Fairytale forest" },
-        { "prompt": "Vineyard" }
+      "words": [
+        "Bratwurst",
+        "Autobahn",
+        "Oktoberfest",
+        "Lederhosen",
+        "Pretzel",
+        "Christmas market",
+        "Cuckoo clock",
+        "Sauerkraut",
+        "Berlin Wall",
+        "Beer garden",
+        "Brandenburg Gate",
+        "Neuschwanstein",
+        "Angela Merkel",
+        "Albert Einstein",
+        "Porsche 911",
+        "Bundesliga",
+        "Dachshund",
+        "Black Forest",
+        "Ludwig van Beethoven",
+        "Brothers Grimm",
+        "Currywurst",
+        "Bauhaus",
+        "Hanseatic League",
+        "Kraftwerk",
+        "Zeppelin",
+        "Johannes Gutenberg",
+        "Glockenspiel",
+        "Reunification",
+        "Rumpelstiltskin",
+        "Das Boot"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest cities of Germany.", "answers": [{ "text": "Berlin" }, { "text": "Hamburg" }, { "text": "Munich" }, { "text": "Cologne" }] },
-        { "prompt": "Name four German car makers.", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Audi" }, { "text": "Mercedes-Benz" }] },
-        { "prompt": "Name four rivers that flow through Germany.", "answers": [{ "text": "Rhine" }, { "text": "Elbe" }, { "text": "Danube" }, { "text": "Main" }] },
-        { "prompt": "Name four countries that border Germany to the south or east.", "answers": [{ "text": "Austria" }, { "text": "Switzerland" }, { "text": "Czechia" }, { "text": "Poland" }] },
-        { "prompt": "Name four German composers.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Beethoven" }, { "text": "Wagner" }] },
-        { "prompt": "Name the four smallest German states by area.", "answers": [{ "text": "Bremen" }, { "text": "Hamburg" }, { "text": "Berlin" }, { "text": "Saarland" }] },
-        { "prompt": "Name four German writers.", "answers": [{ "text": "Goethe" }, { "text": "Schiller" }, { "text": "Thomas Mann" }, { "text": "Gunter Grass" }] },
-        { "prompt": "Name the four years in which Germany won the football World Cup.", "answers": [{ "text": "1954" }, { "text": "1974" }, { "text": "1990" }, { "text": "2014" }] }
+        { "prompt": "What do you know about Berlin? Four keywords.", "answers": [{ "text": "The Brandenburg Gate", "aliases": ["Brandenburg Gate"] }, { "text": "The Berlin Wall", "aliases": ["Berlin Wall", "The Wall"] }, { "text": "Capital of Germany", "aliases": ["Capital"] }, { "text": "The Reichstag", "aliases": ["Reichstag"] }] },
+        { "prompt": "What do you know about the Oktoberfest? Four keywords.", "answers": [{ "text": "Munich" }, { "text": "Beer", "aliases": ["Beer tents", "Beer steins"] }, { "text": "Lederhosen", "aliases": ["Dirndl"] }, { "text": "Pretzels", "aliases": ["Pretzel"] }] },
+        { "prompt": "What do you know about Volkswagen? Four keywords.", "answers": [{ "text": "The Beetle", "aliases": ["Beetle"] }, { "text": "Wolfsburg" }, { "text": "The Golf", "aliases": ["Golf"] }, { "text": "The camper van", "aliases": ["Camper van", "Bulli", "Van"] }] },
+        { "prompt": "What do you know about Angela Merkel? Four keywords.", "answers": [{ "text": "Chancellor", "aliases": ["Federal Chancellor", "Bundeskanzler"] }, { "text": "The first woman to lead Germany", "aliases": ["First female chancellor", "A woman"] }, { "text": "Grew up in East Germany", "aliases": ["East Germany", "DDR", "GDR"] }, { "text": "The CDU", "aliases": ["CDU", "Christian Democrats"] }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "Relativity", "aliases": ["Theory of relativity"] }, { "text": "E=mc2", "aliases": ["E equals mc squared"] }, { "text": "The Nobel Prize", "aliases": ["Nobel Prize", "Nobel Prize for Physics"] }, { "text": "His wild hair", "aliases": ["Hair", "Wild hair"] }] },
+        { "prompt": "What do you know about the Rhine? Four keywords.", "answers": [{ "text": "Cologne" }, { "text": "Castles", "aliases": ["Castle"] }, { "text": "Barges", "aliases": ["Cargo ships", "Shipping"] }, { "text": "Flows into the North Sea", "aliases": ["North Sea", "The Netherlands"] }] },
+        { "prompt": "What do you know about Bayern Munich? Four keywords.", "answers": [{ "text": "Munich" }, { "text": "The Bundesliga", "aliases": ["Bundesliga"] }, { "text": "The Allianz Arena", "aliases": ["Allianz Arena"] }, { "text": "Red", "aliases": ["Red shirts", "Red kit"] }] },
+        { "prompt": "What do you know about the Brothers Grimm? Four keywords.", "answers": [{ "text": "Fairy tales", "aliases": ["Fairytales"] }, { "text": "Hansel and Gretel" }, { "text": "Snow White" }, { "text": "Little Red Riding Hood", "aliases": ["Red Riding Hood"] }] }
       ]
     },
     {
@@ -114,11 +124,12 @@
       "round": 7,
       "questions": [
         { "prompt": "Which German city was the capital of West Germany until 1990?", "answers": [{ "text": "Bonn" }] },
-        { "prompt": "Which German poet worked with Schiller in Weimar and died in 1832?", "answers": [{ "text": "Johann Wolfgang von Goethe", "aliases": ["Goethe"] }] },
         { "prompt": "What is the German high speed train called?", "answers": [{ "text": "ICE", "aliases": ["InterCityExpress"] }] },
-        { "prompt": "In what year was the Federal Republic of Germany founded?", "answers": [{ "text": "1949" }] },
-        { "prompt": "Which German scientist formulated special relativity in 1905?", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
-        { "prompt": "Which German North Sea island lies furthest from the coast?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] }
+        { "prompt": "In which German city does the European Central Bank sit?", "answers": [{ "text": "Frankfurt", "aliases": ["Frankfurt am Main"] }] },
+        { "prompt": "Besides the North Sea, which sea washes the German coast?", "answers": [{ "text": "The Baltic Sea", "aliases": ["Baltic Sea", "Baltic", "Ostsee"] }] },
+        { "prompt": "Which German group owns Audi, Porsche and Skoda?", "answers": [{ "text": "Volkswagen", "aliases": ["VW", "Volkswagen Group"] }] },
+        { "prompt": "In which German town is the tale of the Pied Piper set?", "answers": [{ "text": "Hamelin", "aliases": ["Hameln"] }] },
+        { "prompt": "Which German chancellor led the country through reunification in 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] }
       ]
     }
   ]

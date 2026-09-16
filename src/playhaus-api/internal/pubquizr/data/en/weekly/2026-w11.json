@@ -31,17 +31,13 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which country has more glaciers than anywhere outside the polar regions?", "options": [{ "text": "Pakistan", "correct": true }, { "text": "Chile" }, { "text": "Norway" }, { "text": "New Zealand" }] },
         { "prompt": "Which Scot invented the pneumatic tyre?", "options": [{ "text": "John Dunlop", "correct": true }, { "text": "Charles Macintosh" }, { "text": "John Boyd" }, { "text": "William Murdoch" }] },
         { "prompt": "Which force holds the particles of an atomic nucleus together?", "options": [{ "text": "The strong nuclear force", "correct": true }, { "text": "The weak nuclear force" }, { "text": "Electromagnetism" }, { "text": "Gravity" }] },
-        { "prompt": "Which animal has the thickest fur of any creature?", "options": [{ "text": "The sea otter", "correct": true }, { "text": "The musk ox" }, { "text": "The arctic fox" }, { "text": "The chinchilla" }] },
-        { "prompt": "The people of which country eat more fish per head than anyone else?", "options": [{ "text": "Iceland", "correct": true }, { "text": "Portugal" }, { "text": "Norway" }, { "text": "Japan" }] },
         { "prompt": "In which sport does a libero wear a different coloured shirt?", "options": [{ "text": "Volleyball", "correct": true }, { "text": "Handball" }, { "text": "Water polo" }, { "text": "Futsal" }] },
         { "prompt": "Which museum in Bilbao did Frank Gehry clad in titanium?", "options": [{ "text": "The Guggenheim", "correct": true }, { "text": "The Prado" }, { "text": "The Reina Sofia" }, { "text": "The Thyssen" }] },
         { "prompt": "Which tissue inside your bones makes new red blood cells?", "options": [{ "text": "The bone marrow", "correct": true }, { "text": "The periosteum" }, { "text": "Cartilage" }, { "text": "The spleen" }] },
         { "prompt": "Which Italian car maker uses a prancing horse as its badge?", "options": [{ "text": "Ferrari", "correct": true }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] },
         { "prompt": "In which country is Tagalog an official language?", "options": [{ "text": "The Philippines", "correct": true }, { "text": "Indonesia" }, { "text": "Malaysia" }, { "text": "Vietnam" }] },
-        { "prompt": "Which bitter fruit is traditional marmalade made from?", "options": [{ "text": "The Seville orange", "correct": true }, { "text": "The lemon" }, { "text": "The quince" }, { "text": "The grapefruit" }] },
         { "prompt": "What is the largest volcano in the solar system called?", "options": [{ "text": "Olympus Mons", "correct": true }, { "text": "Maat Mons" }, { "text": "Mauna Kea" }, { "text": "Ascraeus Mons" }] },
         { "prompt": "In which city was the first football World Cup final played?", "options": [{ "text": "Montevideo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Santiago" }] },
         { "prompt": "Which metal has the chemical symbol Pb?", "options": [{ "text": "Lead", "correct": true }, { "text": "Tin" }, { "text": "Platinum" }, { "text": "Palladium" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Dressing gown" },
-        { "prompt": "Mosquito net" },
-        { "prompt": "Cool box" },
-        { "prompt": "Pedalo" },
-        { "prompt": "Chalkboard" },
-        { "prompt": "Coffee machine" },
-        { "prompt": "Fly swatter" },
-        { "prompt": "Hairbrush" },
-        { "prompt": "Bread bin" },
-        { "prompt": "Guitar pick" },
-        { "prompt": "Ferris wheel" },
-        { "prompt": "Traffic cone" },
-        { "prompt": "Sponge" },
-        { "prompt": "Magnifying glass" },
-        { "prompt": "Trowel" },
-        { "prompt": "Birdhouse" }
+      "words": [
+        "Sponge",
+        "Hairbrush",
+        "Coffee machine",
+        "Birdhouse",
+        "Ferris wheel",
+        "Sunglasses",
+        "Bicycle",
+        "Pancake",
+        "Firefighter",
+        "Elephant",
+        "Magnifying glass",
+        "Mount Everest",
+        "The Statue of Liberty",
+        "Pirate",
+        "Elvis Presley",
+        "Jurassic Park",
+        "Formula 1",
+        "Carnival",
+        "Lifeguard",
+        "Windmill",
+        "Barbed wire",
+        "The ice age",
+        "Acupuncture",
+        "Cleopatra",
+        "Morse code",
+        "The Silk Road",
+        "Auctioneer",
+        "Hot air balloon",
+        "Camouflage",
+        "The northern lights"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Austria.", "answers": [{ "text": "Germany" }, { "text": "Italy" }, { "text": "Switzerland" }, { "text": "Hungary" }] },
-        { "prompt": "Name four fish you can eat.", "answers": [{ "text": "Cod" }, { "text": "Salmon" }, { "text": "Tuna" }, { "text": "Herring" }] },
-        { "prompt": "Name four Roman numerals.", "answers": [{ "text": "I" }, { "text": "V" }, { "text": "X" }, { "text": "L" }] },
-        { "prompt": "Name the four throwing events in athletics.", "answers": [{ "text": "Shot put" }, { "text": "Discus" }, { "text": "Javelin" }, { "text": "Hammer" }] },
-        { "prompt": "Name four countries in the Caribbean.", "answers": [{ "text": "Cuba" }, { "text": "Jamaica" }, { "text": "Haiti" }, { "text": "Barbados" }] },
-        { "prompt": "Name four kinds of chocolate.", "answers": [{ "text": "Milk chocolate" }, { "text": "Dark chocolate" }, { "text": "White chocolate" }, { "text": "Ruby chocolate" }] },
-        { "prompt": "Name the four planets that have rings.", "answers": [{ "text": "Saturn" }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] },
-        { "prompt": "Name four rivers in Europe.", "answers": [{ "text": "Rhine" }, { "text": "Danube" }, { "text": "Seine" }, { "text": "Po" }] }
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris", "aliases": ["France"] }, { "text": "It is made of iron", "aliases": ["Iron", "Steel", "Metal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "It lights up at night", "aliases": ["Lights", "Sparkling lights", "The view from the top"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "France", "aliases": ["French"] }, { "text": "Emperor", "aliases": ["He crowned himself emperor"] }, { "text": "Waterloo", "aliases": ["The Battle of Waterloo"] }, { "text": "His hand inside his coat", "aliases": ["Hand in his jacket", "Short", "The hat"] }] },
+        { "prompt": "What do you know about Egypt? Four keywords.", "answers": [{ "text": "The pyramids", "aliases": ["Pyramids"] }, { "text": "The Nile", "aliases": ["Nile"] }, { "text": "Pharaohs", "aliases": ["Tutankhamun", "Pharaoh"] }, { "text": "The Sphinx", "aliases": ["Sphinx", "Mummies"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "The five rings", "aliases": ["Rings", "The Olympic rings"] }, { "text": "Gold medals", "aliases": ["Medals", "Gold medal"] }, { "text": "Every four years", "aliases": ["Once every four years"] }, { "text": "The Olympic flame", "aliases": ["The torch", "Ancient Greece", "Athens"] }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine", "aliases": ["It keeps you awake"] }, { "text": "Brazil", "aliases": ["It grows in Brazil", "Colombia"] }, { "text": "Cappuccino", "aliases": ["Espresso", "Latte", "Black"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "Rock and roll", "aliases": ["Rock 'n' roll"] }, { "text": "The King", "aliases": ["King of rock and roll"] }, { "text": "Graceland", "aliases": ["Memphis", "Las Vegas"] }, { "text": "His hips and his quiff", "aliases": ["Quiff", "Swinging hips", "Sideburns", "The white suit"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Desert", "aliases": ["The largest desert"] }, { "text": "Sand", "aliases": ["Dunes", "Sand dunes"] }, { "text": "Africa", "aliases": ["North Africa"] }, { "text": "Camels", "aliases": ["Camel", "Oasis", "Very hot"] }] },
+        { "prompt": "What do you know about Leonardo da Vinci? Four keywords.", "answers": [{ "text": "The Mona Lisa", "aliases": ["Mona Lisa"] }, { "text": "The Last Supper", "aliases": ["Last Supper"] }, { "text": "He was an inventor", "aliases": ["Inventor", "Flying machine", "His drawings"] }, { "text": "Italy", "aliases": ["Italian", "The Renaissance"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Austrian doctor founded psychoanalysis?", "answers": [{ "text": "Sigmund Freud", "aliases": ["Freud"] }] },
-        { "prompt": "What is the capital of Senegal?", "answers": [{ "text": "Dakar" }] },
-        { "prompt": "Which blind Frenchman invented a system of reading by touch?", "answers": [{ "text": "Louis Braille", "aliases": ["Braille"] }] },
-        { "prompt": "In which year did the Spanish Armada sail against England?", "answers": [{ "text": "1588" }] },
-        { "prompt": "Which is the largest lake in South America?", "answers": [{ "text": "Lake Titicaca", "aliases": ["Titicaca"] }] },
-        { "prompt": "Which German chemist worked out how to make ammonia from the air?", "answers": [{ "text": "Fritz Haber", "aliases": ["Haber"] }] }
+        { "prompt": "What is the capital of Canada?", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Which is the longest river in the world?", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "Which Norwegian painter made The Scream?", "answers": [{ "text": "Edvard Munch", "aliases": ["Munch"] }] },
+        { "prompt": "Which is the smallest country in the world?", "answers": [{ "text": "Vatican City", "aliases": ["The Vatican", "Vatican"] }] },
+        { "prompt": "Which mountain range is the usual border between Europe and Asia?", "answers": [{ "text": "The Ural Mountains", "aliases": ["The Urals", "Urals", "Ural"] }] },
+        { "prompt": "Which sea lies between Italy and the Balkans?", "answers": [{ "text": "The Adriatic Sea", "aliases": ["The Adriatic", "Adriatic"] }] },
+        { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] }
       ]
     }
   ]

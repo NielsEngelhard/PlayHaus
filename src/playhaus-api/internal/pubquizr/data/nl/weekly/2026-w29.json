@@ -35,10 +35,6 @@
         { "prompt": "Wie schreef 1984?", "options": [{ "text": "George Orwell", "correct": true }, { "text": "Aldous Huxley" }, { "text": "Ray Bradbury" }, { "text": "H.G. Wells" }] },
         { "prompt": "Welk gas gebruiken wij om ballonnen te laten zweven?", "options": [{ "text": "Waterstof" }, { "text": "Helium", "correct": true }, { "text": "Neon" }, { "text": "Methaan" }] },
         { "prompt": "In welk jaar viel de Sovjet-Unie uiteen?", "options": [{ "text": "1989" }, { "text": "1990" }, { "text": "1991", "correct": true }, { "text": "1993" }] },
-        { "prompt": "Wat is de hoofdstad van Egypte?", "options": [{ "text": "Alexandrie" }, { "text": "Cairo", "correct": true }, { "text": "Luxor" }, { "text": "Aswan" }] },
-        { "prompt": "Welk dier is het hoogste ter wereld?", "options": [{ "text": "Olifant" }, { "text": "Giraf", "correct": true }, { "text": "Kameel" }, { "text": "Struisvogel" }] },
-        { "prompt": "Hoeveel vakken heeft een schaakbord?", "options": [{ "text": "36" }, { "text": "49" }, { "text": "64", "correct": true }, { "text": "81" }] },
-        { "prompt": "Welke planeet wordt de rode planeet genoemd?", "options": [{ "text": "Mercurius" }, { "text": "Mars", "correct": true }, { "text": "Venus" }, { "text": "Jupiter" }] },
         { "prompt": "Welk land vierde in 1776 zijn onafhankelijkheidsverklaring?", "options": [{ "text": "Mexico" }, { "text": "Verenigde Staten", "correct": true }, { "text": "Brazilie" }, { "text": "Canada" }] },
         { "prompt": "Welke schrijver bedacht Pippi Langkous?", "options": [{ "text": "Astrid Lindgren", "correct": true }, { "text": "Selma Lagerlof" }, { "text": "Tove Jansson" }, { "text": "Annie Schmidt" }] },
         { "prompt": "Welke vitamine maakt het lichaam aan onder invloed van zonlicht?", "options": [{ "text": "Vitamine A" }, { "text": "Vitamine C" }, { "text": "Vitamine D", "correct": true }, { "text": "Vitamine K" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Hooiberg" },
-        { "prompt": "Kurkentrekker" },
-        { "prompt": "Papegaai" },
-        { "prompt": "Museum" },
-        { "prompt": "Kokosnoot" },
-        { "prompt": "Zeemeermin" },
-        { "prompt": "Rolschaats" },
-        { "prompt": "Doedelzak" },
-        { "prompt": "Sneeuwketting" },
-        { "prompt": "Boswachter" },
-        { "prompt": "Kabelbaan" },
-        { "prompt": "Zonnebril" },
-        { "prompt": "Brievenbus" },
-        { "prompt": "Nijlpaard" },
-        { "prompt": "Tentstok" },
-        { "prompt": "Waterkoker" }
+      "words": [
+        "Kurkentrekker",
+        "Papegaai",
+        "Kokosnoot",
+        "Zeemeermin",
+        "Rolschaats",
+        "Doedelzak",
+        "Kabelbaan",
+        "Brievenbus",
+        "Nijlpaard",
+        "Waterkoker",
+        "Vogelverschrikker",
+        "Trampoline",
+        "Iglo",
+        "Kruiwagen",
+        "Microscoop",
+        "Brandweerman",
+        "Circus",
+        "Harry Potter",
+        "Venetie",
+        "Johan Cruijff",
+        "The Beatles",
+        "Dracula",
+        "Robin Hood",
+        "De Sfinx",
+        "Ballerina",
+        "Maanlanding",
+        "Andre Hazes",
+        "Vikingen",
+        "Carnaval",
+        "Grand Canyon"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste landen ter wereld naar oppervlakte.", "answers": [{ "text": "Rusland" }, { "text": "Canada" }, { "text": "China" }, { "text": "Verenigde Staten" }] },
-        { "prompt": "Noem de vier snaren van een viool van laag naar hoog.", "answers": [{ "text": "G" }, { "text": "D" }, { "text": "A" }, { "text": "E" }] },
-        { "prompt": "Noem de vier steden die van 1992 tot 2004 de Olympische Zomerspelen hielden.", "answers": [{ "text": "Barcelona" }, { "text": "Atlanta" }, { "text": "Sydney" }, { "text": "Athene" }] },
-        { "prompt": "Noem de vier randzeeen van de Middellandse Zee behalve de Egeische.", "answers": [{ "text": "Adriatische Zee" }, { "text": "Tyrreense Zee" }, { "text": "Ionische Zee" }, { "text": "Ligurische Zee" }] },
-        { "prompt": "Noem de vier delen van het spijsverteringskanaal naast de maag.", "answers": [{ "text": "Mond" }, { "text": "Slokdarm" }, { "text": "Dunne darm" }, { "text": "Dikke darm" }] },
-        { "prompt": "Noem de vier grootste steden van Frankrijk.", "answers": [{ "text": "Parijs" }, { "text": "Marseille" }, { "text": "Lyon" }, { "text": "Toulouse" }] },
-        { "prompt": "Noem de vier zwaarste stukken in het schaakspel naast de koning en de pion.", "answers": [{ "text": "Koningin" }, { "text": "Toren" }, { "text": "Paard" }, { "text": "Loper" }] },
-        { "prompt": "Noem de vier wielermonumenten behalve Milaan-Sanremo.", "answers": [{ "text": "Ronde van Vlaanderen" }, { "text": "Parijs-Roubaix" }, { "text": "Luik-Bastenaken-Luik" }, { "text": "Ronde van Lombardije" }] }
+        { "prompt": "Wat weet je van het oude Rome? Vier kernwoorden.", "answers": [{ "text": "Het Colosseum", "aliases": ["Colosseum"] }, { "text": "Julius Caesar", "aliases": ["Caesar"] }, { "text": "Gladiatoren", "aliases": ["Gladiator"] }, { "text": "Latijn" }] },
+        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "Thriller" }, { "text": "De moonwalk", "aliases": ["Moonwalk"] }, { "text": "The Jackson 5", "aliases": ["Jackson Five", "Jackson 5"] }, { "text": "Neverland" }] },
+        { "prompt": "Wat weet je van het Amazoneregenwoud? Vier kernwoorden.", "answers": [{ "text": "Brazilie" }, { "text": "De jaguar", "aliases": ["Jaguar"] }, { "text": "Ontbossing", "aliases": ["Kappen van bomen"] }, { "text": "De Amazone", "aliases": ["Amazone", "De rivier"] }] },
+        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "De kerstboom", "aliases": ["Kerstboom", "Boom"] }, { "text": "De Kerstman", "aliases": ["Kerstman"] }, { "text": "Cadeaus", "aliases": ["Kerstcadeaus"] }, { "text": "Rendieren", "aliases": ["Rendier", "Rudolf"] }] },
+        { "prompt": "Wat weet je van de Formule 1? Vier kernwoorden.", "answers": [{ "text": "Max Verstappen", "aliases": ["Verstappen"] }, { "text": "Ferrari" }, { "text": "Monaco", "aliases": ["Monte Carlo"] }, { "text": "De pitstop", "aliases": ["Pitstop", "Pitstraat"] }] },
+        { "prompt": "Wat weet je van Japan? Vier kernwoorden.", "answers": [{ "text": "Tokio" }, { "text": "Sushi" }, { "text": "De Fuji", "aliases": ["Fuji", "Fujiyama"] }, { "text": "Samoerai", "aliases": ["Sumo"] }] },
+        { "prompt": "Wat weet je van de Tour de France? Vier kernwoorden.", "answers": [{ "text": "De gele trui", "aliases": ["Gele trui"] }, { "text": "Parijs", "aliases": ["De Champs-Elysees"] }, { "text": "Alpe d'Huez", "aliases": ["De Alpen"] }, { "text": "Eddy Merckx", "aliases": ["Merckx"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "De Mona Lisa", "aliases": ["Mona Lisa"] }, { "text": "Het Laatste Avondmaal", "aliases": ["Laatste Avondmaal"] }, { "text": "Uitvinder", "aliases": ["Uitvindingen", "Vliegmachine"] }, { "text": "Italie", "aliases": ["Italiaans", "Florence"] }] }
       ]
     },
     {
@@ -116,8 +126,9 @@
         { "prompt": "Wat is de hoogste berg van Zuid-Amerika?", "answers": [{ "text": "De Aconcagua", "aliases": ["Aconcagua"] }] },
         { "prompt": "Welke Oostenrijkse componist schreef meer dan honderd symfonieen en wordt de vader van de symfonie genoemd?", "answers": [{ "text": "Joseph Haydn", "aliases": ["Haydn"] }] },
         { "prompt": "Wat is de hoofdstad van Kazachstan?", "answers": [{ "text": "Astana", "aliases": ["Nur-Sultan"] }] },
-        { "prompt": "Welke Engelse natuurkundige formuleerde de drie bewegingswetten?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
-        { "prompt": "In welk jaar viel Constantinopel in handen van de Ottomanen?", "answers": [{ "text": "1453" }] }
+        { "prompt": "Welke zee ter wereld heeft als enige geen kustlijn?", "answers": [{ "text": "De Sargassozee", "aliases": ["Sargassozee", "Sargasso"] }] },
+        { "prompt": "Welk land heeft als enige een nationale vlag die geen rechthoek is?", "answers": [{ "text": "Nepal" }] },
+        { "prompt": "Welke Nederlandse schilder maakte het drieluik De tuin der lusten?", "answers": [{ "text": "Jheronimus Bosch", "aliases": ["Hieronymus Bosch", "Bosch"] }] }
       ]
     }
   ]

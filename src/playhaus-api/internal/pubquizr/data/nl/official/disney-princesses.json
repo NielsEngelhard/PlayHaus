@@ -32,18 +32,14 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "In welk jaar kwam Sneeuwwitje en de zeven dwergen uit?", "options": [{ "text": "1928" }, { "text": "1937", "correct": true }, { "text": "1945" }, { "text": "1950" }] },
-        { "prompt": "Hoe heet de zeeheks in De kleine zeemeermin?", "options": [{ "text": "Ursula", "correct": true }, { "text": "Maleficent" }, { "text": "Cruella" }, { "text": "Yzma" }] },
         { "prompt": "Wie is de slechte fee in Doornroosje?", "options": [{ "text": "Maleficent", "correct": true }, { "text": "Ursula" }, { "text": "Yzma" }, { "text": "Gothel" }] },
         { "prompt": "Hoe heet de vader van Ariel?", "options": [{ "text": "Triton", "correct": true }, { "text": "Neptunus" }, { "text": "Poseidon" }, { "text": "Eric" }] },
-        { "prompt": "In welke stad woont Tiana?", "options": [{ "text": "New Orleans", "correct": true }, { "text": "Miami" }, { "text": "Savannah" }, { "text": "Charleston" }] },
         { "prompt": "Hoe heet de dief die Rapunzel uit haar toren meeneemt?", "options": [{ "text": "Flynn Rider", "correct": true }, { "text": "Aladdin" }, { "text": "Kristoff" }, { "text": "Naveen" }] },
         { "prompt": "Welke Disneyfilm is op een oude Chinese ballade gebaseerd?", "options": [{ "text": "Mulan", "correct": true }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Vaiana" }] },
         { "prompt": "Uit welke Disneyfilm komt het lied Let It Go?", "options": [{ "text": "Frozen", "correct": true }, { "text": "Vaiana" }, { "text": "Rapunzel" }, { "text": "Merida" }] },
         { "prompt": "Hoe heet de zus van Elsa in Frozen?", "options": [{ "text": "Anna", "correct": true }, { "text": "Merida" }, { "text": "Rapunzel" }, { "text": "Belle" }] },
         { "prompt": "Hoe heet de sneeuwpop in Frozen?", "options": [{ "text": "Olaf", "correct": true }, { "text": "Sven" }, { "text": "Kristoff" }, { "text": "Marshmallow" }] },
         { "prompt": "Welke Disneyprinses krijgt aan het eind van haar film geen prins?", "options": [{ "text": "Merida", "correct": true }, { "text": "Belle" }, { "text": "Ariel" }, { "text": "Tiana" }] },
-        { "prompt": "In welk jaar kwam De kleine zeemeermin uit?", "options": [{ "text": "1985" }, { "text": "1989", "correct": true }, { "text": "1992" }, { "text": "1995" }] },
         { "prompt": "Hoe heet de tijger van Jasmine?", "options": [{ "text": "Rajah", "correct": true }, { "text": "Shere Khan" }, { "text": "Nala" }, { "text": "Bagheera" }] },
         { "prompt": "Welke Amerikaanse actrice zong Let It Go in de Engelse versie?", "options": [{ "text": "Idina Menzel", "correct": true }, { "text": "Kristen Bell" }, { "text": "Demi Lovato" }, { "text": "Julie Andrews" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Kroon" },
-        { "prompt": "Glazen muiltje" },
-        { "prompt": "Kasteel" },
-        { "prompt": "Spiegel" },
-        { "prompt": "Appel" },
-        { "prompt": "Toren" },
-        { "prompt": "Zeemeermin" },
-        { "prompt": "Vliegend tapijt" },
-        { "prompt": "Sneeuwpop" },
-        { "prompt": "Roos" },
-        { "prompt": "Spinnenwiel" },
-        { "prompt": "Pijl en boog" },
-        { "prompt": "Kikker" },
-        { "prompt": "Baljurk" },
-        { "prompt": "Lantaarn" },
-        { "prompt": "Kano" }
+      "words": [
+        "Kroon",
+        "Kasteel",
+        "Glazen muiltje",
+        "Zeemeermin",
+        "Appel",
+        "Spiegel",
+        "Toren",
+        "Roos",
+        "Sneeuwpop",
+        "Kikker",
+        "Draak",
+        "Spinnenwiel",
+        "Baljurk",
+        "Pompoenkoets",
+        "Tiara",
+        "Lantaarn",
+        "Pijl en boog",
+        "Kameleon",
+        "Zeven dwergen",
+        "Goede fee",
+        "Elsa",
+        "Aladdin",
+        "Het Beest",
+        "Gaston",
+        "Prins op het witte paard",
+        "Agrabah",
+        "Onder de zee",
+        "Een wereld vol fantasie",
+        "Mevrouw Tas",
+        "Kano"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier Disneyprinsessen.", "answers": [{ "text": "Sneeuwwitje" }, { "text": "Assepoester" }, { "text": "Ariel" }, { "text": "Belle" }] },
-        { "prompt": "Noem de vier prinsessen uit films van voor 1990.", "answers": [{ "text": "Sneeuwwitje" }, { "text": "Assepoester" }, { "text": "Doornroosje" }, { "text": "Ariel" }] },
-        { "prompt": "Noem vier slechteriken uit Disneyfilms.", "answers": [{ "text": "Ursula" }, { "text": "Maleficent" }, { "text": "Jafar" }, { "text": "Gaston" }] },
-        { "prompt": "Noem vier dieren die een Disneyprinses bijstaan.", "answers": [{ "text": "Sebastiaan" }, { "text": "Mushu" }, { "text": "Pascal" }, { "text": "Rajah" }] },
-        { "prompt": "Noem vier liedjes uit Disneyfilms.", "answers": [{ "text": "Let It Go" }, { "text": "Under The Sea" }, { "text": "A Whole New World" }, { "text": "Colors Of The Wind" }] },
-        { "prompt": "Noem vier Disneyprinsessen zonder Europese achtergrond.", "answers": [{ "text": "Jasmine" }, { "text": "Mulan" }, { "text": "Pocahontas" }, { "text": "Tiana" }] },
-        { "prompt": "Noem vier Disneyfilms met een prinses uit de jaren negentig.", "answers": [{ "text": "Belle en het Beest" }, { "text": "Aladdin" }, { "text": "Pocahontas" }, { "text": "Mulan" }] },
-        { "prompt": "Noem vier personages uit Frozen.", "answers": [{ "text": "Elsa" }, { "text": "Anna" }, { "text": "Olaf" }, { "text": "Kristoff" }] }
+        { "prompt": "Wat weet je van Assepoester? Vier kernwoorden.", "answers": [{ "text": "Het glazen muiltje", "aliases": ["Glazen muiltje", "Glazen schoentje"] }, { "text": "De pompoenkoets", "aliases": ["Pompoen", "Koets"] }, { "text": "Middernacht", "aliases": ["Twaalf uur", "De klok slaat twaalf"] }, { "text": "De boze stiefmoeder", "aliases": ["Stiefmoeder", "Stiefzussen", "De lelijke stiefzussen"] }] },
+        { "prompt": "Wat weet je van De kleine zeemeermin? Vier kernwoorden.", "answers": [{ "text": "Ariel" }, { "text": "Rood haar", "aliases": ["Lang rood haar", "Roodharig"] }, { "text": "Prins Erik", "aliases": ["Erik", "De prins"] }, { "text": "Sebastiaan de krab", "aliases": ["Sebastiaan", "De krab"] }] },
+        { "prompt": "Wat weet je van Frozen? Vier kernwoorden.", "answers": [{ "text": "Elsa", "aliases": ["Elsa en Anna", "Anna"] }, { "text": "Let It Go", "aliases": ["Laat het los"] }, { "text": "Olaf de sneeuwpop", "aliases": ["Olaf", "De sneeuwpop"] }, { "text": "IJs en sneeuw", "aliases": ["IJs", "Sneeuw", "Winter"] }] },
+        { "prompt": "Wat weet je van Sneeuwwitje? Vier kernwoorden.", "answers": [{ "text": "De zeven dwergen", "aliases": ["Zeven dwergen", "Dwergen"] }, { "text": "De vergiftigde appel", "aliases": ["Appel", "Vergiftigde appel"] }, { "text": "Spiegeltje, spiegeltje aan de wand", "aliases": ["De toverspiegel", "Spiegel"] }, { "text": "De glazen kist", "aliases": ["Glazen kist", "De kus die haar wakker maakt"] }] },
+        { "prompt": "Wat weet je van Aladdin? Vier kernwoorden.", "answers": [{ "text": "De geest", "aliases": ["Geest", "Djinn"] }, { "text": "Het vliegend tapijt", "aliases": ["Vliegend tapijt", "Tapijt"] }, { "text": "Jasmine", "aliases": ["Prinses Jasmine"] }, { "text": "De wonderlamp", "aliases": ["Lamp", "Olielamp", "Over de lamp wrijven"] }] },
+        { "prompt": "Wat weet je van Belle en het Beest? Vier kernwoorden.", "answers": [{ "text": "Belle" }, { "text": "Het Beest", "aliases": ["Beest", "Het monster"] }, { "text": "De roos onder een stolp", "aliases": ["De roos", "Roos", "De verwelkende roos"] }, { "text": "Pratend meubilair", "aliases": ["De kandelaar", "Lumiere", "De theepot", "De klok"] }] },
+        { "prompt": "Wat weet je van Mulan? Vier kernwoorden.", "answers": [{ "text": "China", "aliases": ["Chinees", "De Chinese Muur"] }, { "text": "Ze verkleedt zich als soldaat", "aliases": ["Ze doet zich voor als man", "Vermomd als man", "Als man ten strijde"] }, { "text": "Mushu de draak", "aliases": ["Mushu", "Het draakje"] }, { "text": "Haar vader", "aliases": ["Ze neemt de plaats van haar vader in", "Haar zieke vader"] }] },
+        { "prompt": "Wat weet je van Vaiana? Vier kernwoorden.", "answers": [{ "text": "De oceaan", "aliases": ["De zee", "Zeilen", "Het water"] }, { "text": "Maui", "aliases": ["De halfgod", "De getatoeeerde reus"] }, { "text": "Hei Hei de haan", "aliases": ["Hei Hei", "De domme kip", "De haan"] }, { "text": "Het eiland", "aliases": ["Motunui", "Een eiland in de Stille Oceaan", "Polynesie"] }] }
       ]
     },
     {
@@ -116,9 +126,10 @@
         { "prompt": "Hoe heet de vrouw die Rapunzel in de toren opsluit?", "answers": [{ "text": "Moeder Gothel", "aliases": ["Gothel"] }] },
         { "prompt": "Wat is de echte naam van Flynn Rider?", "answers": [{ "text": "Eugene Fitzherbert", "aliases": ["Eugene"] }] },
         { "prompt": "Hoe heet het koninkrijk van Elsa en Anna?", "answers": [{ "text": "Arendelle" }] },
-        { "prompt": "Hoe heet de grootmoeder van Vaiana?", "answers": [{ "text": "Tala" }] },
+        { "prompt": "In welke Disney-prinsessenfilm komt het lied Colors of the Wind voor?", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Op welk sprookje van Hans Christian Andersen is Frozen losjes gebaseerd?", "answers": [{ "text": "De sneeuwkoningin", "aliases": ["sneeuwkoningin"] }] },
-        { "prompt": "Hoe heet de prins in De prinses en de kikker?", "answers": [{ "text": "Naveen" }] }
+        { "prompt": "Hoe heet de prins in De prinses en de kikker?", "answers": [{ "text": "Naveen" }] },
+        { "prompt": "Hoe heet de kat van Assepoester?", "answers": [{ "text": "Lucifer" }] }
       ]
     }
   ]

@@ -32,19 +32,15 @@
       "round": 2,
       "questions": [
         { "prompt": "Which Scandinavian country has by far the longest coastline?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
-        { "prompt": "Which is the smallest country in Africa by area?", "options": [{ "text": "The Seychelles", "correct": true }, { "text": "Gambia" }, { "text": "Djibouti" }, { "text": "Rwanda" }] },
         { "prompt": "Which artist painted the melting clocks of The Persistence of Memory?", "options": [{ "text": "Salvador Dali", "correct": true }, { "text": "Rene Magritte" }, { "text": "Joan Miro" }, { "text": "Max Ernst" }] },
         { "prompt": "Which dance came from the working-class districts of Buenos Aires?", "options": [{ "text": "The tango", "correct": true }, { "text": "The samba" }, { "text": "The rumba" }, { "text": "The flamenco" }] },
-        { "prompt": "What is the capital of Kenya?", "options": [{ "text": "Nairobi", "correct": true }, { "text": "Mombasa" }, { "text": "Kampala" }, { "text": "Dar es Salaam" }] },
         { "prompt": "Which is the largest moon in the solar system?", "options": [{ "text": "Ganymede", "correct": true }, { "text": "Titan" }, { "text": "Callisto" }, { "text": "Our own moon" }] },
         { "prompt": "Which war was fought between the northern and southern states of America?", "options": [{ "text": "The American Civil War", "correct": true }, { "text": "The War of Independence" }, { "text": "The Mexican War" }, { "text": "The Spanish-American War" }] },
         { "prompt": "Which is the largest muscle in the human body?", "options": [{ "text": "The gluteus maximus", "correct": true }, { "text": "The quadriceps" }, { "text": "The calf muscle" }, { "text": "The chest muscle" }] },
         { "prompt": "Which of these instruments belongs to the brass family?", "options": [{ "text": "The tuba", "correct": true }, { "text": "The bassoon" }, { "text": "The saxophone" }, { "text": "The recorder" }] },
         { "prompt": "What is the highest possible break in a frame of snooker?", "options": [{ "text": "147", "correct": true }, { "text": "140" }, { "text": "155" }, { "text": "180" }] },
         { "prompt": "In which Shakespeare play does the villain Iago appear?", "options": [{ "text": "Othello", "correct": true }, { "text": "Macbeth" }, { "text": "King Lear" }, { "text": "Hamlet" }] },
-        { "prompt": "What is a group of crows called?", "options": [{ "text": "A murder", "correct": true }, { "text": "A parliament" }, { "text": "A gaggle" }, { "text": "A pride" }] },
-        { "prompt": "Which country was formerly known as Ceylon?", "options": [{ "text": "Sri Lanka", "correct": true }, { "text": "Myanmar" }, { "text": "Thailand" }, { "text": "Bangladesh" }] },
-        { "prompt": "Which gas has the chemical formula CH4?", "options": [{ "text": "Methane", "correct": true }, { "text": "Propane" }, { "text": "Ammonia" }, { "text": "Ozone" }] }
+        { "prompt": "Which country was formerly known as Ceylon?", "options": [{ "text": "Sri Lanka", "correct": true }, { "text": "Myanmar" }, { "text": "Thailand" }, { "text": "Bangladesh" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Kite" },
-        { "prompt": "Wheelchair" },
-        { "prompt": "Escalator" },
-        { "prompt": "Windscreen wiper" },
-        { "prompt": "Fire hydrant" },
-        { "prompt": "Stethoscope" },
-        { "prompt": "Piggy bank" },
-        { "prompt": "Pepper mill" },
-        { "prompt": "Suitcase" },
-        { "prompt": "Traffic light" },
-        { "prompt": "Shoelace" },
-        { "prompt": "Bubble bath" },
-        { "prompt": "Jigsaw puzzle" },
-        { "prompt": "Sandcastle" },
-        { "prompt": "Nutcracker" },
-        { "prompt": "Beehive" }
+      "words": [
+        "Kite",
+        "Suitcase",
+        "Traffic light",
+        "Sandcastle",
+        "Shoelace",
+        "Rainbow",
+        "Elephant",
+        "Pizza",
+        "Snowman",
+        "Beehive",
+        "Escalator",
+        "Piggy bank",
+        "Jigsaw puzzle",
+        "Lighthouse",
+        "Firefighter",
+        "Eiffel Tower",
+        "The Titanic",
+        "Jurassic Park",
+        "Karaoke",
+        "Marathon",
+        "Mount Everest",
+        "Stethoscope",
+        "Cleopatra",
+        "The moon landing",
+        "Sherlock Holmes",
+        "Archaeologist",
+        "Colosseum",
+        "The Great Wall of China",
+        "Albert Einstein",
+        "Windscreen wiper"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that pay with the euro.", "answers": [{ "text": "Germany" }, { "text": "France" }, { "text": "Italy" }, { "text": "Spain" }] },
-        { "prompt": "Name four instruments in the percussion section of an orchestra.", "answers": [{ "text": "Timpani" }, { "text": "Snare drum" }, { "text": "Cymbals" }, { "text": "Triangle" }] },
-        { "prompt": "Name four countries that have hosted the Winter Olympics.", "answers": [{ "text": "Norway" }, { "text": "Japan" }, { "text": "Italy" }, { "text": "Canada" }] },
-        { "prompt": "Name four kinds of cloud.", "answers": [{ "text": "Cumulus" }, { "text": "Stratus" }, { "text": "Cirrus" }, { "text": "Nimbus" }] },
-        { "prompt": "Name four songs by the Beatles.", "answers": [{ "text": "Hey Jude" }, { "text": "Yesterday" }, { "text": "Let It Be" }, { "text": "Help" }] },
-        { "prompt": "Name four members of the cat family.", "answers": [{ "text": "Lion" }, { "text": "Tiger" }, { "text": "Leopard" }, { "text": "Cheetah" }] },
-        { "prompt": "Name four European countries on the Mediterranean.", "answers": [{ "text": "Spain" }, { "text": "France" }, { "text": "Italy" }, { "text": "Greece" }] },
-        { "prompt": "Name four card games.", "answers": [{ "text": "Poker" }, { "text": "Bridge" }, { "text": "Blackjack" }, { "text": "Rummy" }] }
+        { "prompt": "What do you know about the Netherlands? Four keywords.", "answers": [{ "text": "Tulips" }, { "text": "Windmills", "aliases": ["Windmill"] }, { "text": "Cheese", "aliases": ["Gouda"] }, { "text": "Cycling", "aliases": ["Bikes", "Bicycles"] }] },
+        { "prompt": "What do you know about ancient Egypt? Four keywords.", "answers": [{ "text": "Pyramids" }, { "text": "Mummies" }, { "text": "Pharaohs", "aliases": ["Tutankhamun"] }, { "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What do you know about the Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Yellow Submarine" }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "Pasta", "aliases": ["Spaghetti"] }, { "text": "Ferrari" }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "Christmas tree", "aliases": ["Tree"] }, { "text": "Santa Claus", "aliases": ["Father Christmas", "Santa"] }, { "text": "Presents", "aliases": ["Gifts"] }, { "text": "Snow" }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "Five rings", "aliases": ["Rings"] }, { "text": "Gold medal", "aliases": ["Medals"] }, { "text": "The olympic flame", "aliases": ["Torch", "Flame"] }, { "text": "Every four years", "aliases": ["Four years"] }] },
+        { "prompt": "What do you know about Harry Potter? Four keywords.", "answers": [{ "text": "Hogwarts" }, { "text": "Wand", "aliases": ["Magic wand", "Magic"] }, { "text": "Voldemort" }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "Waterloo" }, { "text": "France" }, { "text": "Emperor" }, { "text": "Short", "aliases": ["Small"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which German mathematician is known as the prince of mathematicians?", "answers": [{ "text": "Carl Friedrich Gauss", "aliases": ["Gauss"] }] },
-        { "prompt": "What is the capital of Paraguay?", "answers": [{ "text": "Asuncion" }] },
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["quicksilver"] }] },
         { "prompt": "Which is the highest waterfall in the world?", "answers": [{ "text": "Angel Falls", "aliases": ["Salto Angel"] }] },
-        { "prompt": "Which Russian composer wrote The Rite of Spring?", "answers": [{ "text": "Igor Stravinsky", "aliases": ["Stravinsky"] }] },
-        { "prompt": "In which year did Iceland become fully independent from Denmark?", "answers": [{ "text": "1944" }] },
-        { "prompt": "Which element takes its name from the Greek word for heavy?", "answers": [{ "text": "Barium" }] }
+        { "prompt": "In which country is the ancient city of Petra?", "answers": [{ "text": "Jordan" }] },
+        { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] }
       ]
     }
   ]

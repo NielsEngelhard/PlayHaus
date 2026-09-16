@@ -32,20 +32,16 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Hoeveel seconden duurde de eerste vlucht van de broers Wright?", "options": [{ "text": "12", "correct": true }, { "text": "30" }, { "text": "59" }, { "text": "120" }] },
         { "prompt": "Welke Engelsman bouwde de locomotief Rocket?", "options": [{ "text": "George Stephenson", "correct": true }, { "text": "James Watt" }, { "text": "Richard Trevithick" }, { "text": "Isambard Brunel" }] },
         { "prompt": "Welk bedrijf bracht in 1888 de eerste rolfilmcamera voor het grote publiek?", "options": [{ "text": "Kodak", "correct": true }, { "text": "Zeiss" }, { "text": "Agfa" }, { "text": "Leica" }] },
         { "prompt": "Wie bedacht het alfabet van punten en strepen voor de telegraaf?", "options": [{ "text": "Samuel Morse", "correct": true }, { "text": "Alexander Graham Bell" }, { "text": "Guglielmo Marconi" }, { "text": "Thomas Edison" }] },
         { "prompt": "In welk jaar werd de eerste iPhone verkocht?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2011" }] },
-        { "prompt": "Welk schrijfgerei bracht de Hongaar Laszlo Biro op de markt?", "options": [{ "text": "De balpen", "correct": true }, { "text": "De vulpen" }, { "text": "Het potlood" }, { "text": "De viltstift" }] },
         { "prompt": "Welke kunststof vond Leo Baekeland in 1907 uit?", "options": [{ "text": "Bakeliet", "correct": true }, { "text": "Nylon" }, { "text": "Teflon" }, { "text": "Pvc" }] },
         { "prompt": "Wie vond in 1935 nylon uit bij DuPont?", "options": [{ "text": "Wallace Carothers", "correct": true }, { "text": "Leo Baekeland" }, { "text": "Charles Goodyear" }, { "text": "Roy Plunkett" }] },
         { "prompt": "Welk medisch apparaat maakte de Nederlander Willem Einthoven beroemd?", "options": [{ "text": "Het elektrocardiogram", "correct": true }, { "text": "Het rontgenapparaat" }, { "text": "De microscoop" }, { "text": "De thermometer" }] },
         { "prompt": "Welke Duitser bouwde in 1941 een programmeerbare rekenmachine?", "options": [{ "text": "Konrad Zuse", "correct": true }, { "text": "Alan Turing" }, { "text": "John von Neumann" }, { "text": "Charles Babbage" }] },
-        { "prompt": "Welk Nederlands bedrijf ontwikkelde samen met Sony de compact disc?", "options": [{ "text": "Philips", "correct": true }, { "text": "Grundig" }, { "text": "Siemens" }, { "text": "Bose" }] },
         { "prompt": "Wie vond de motor uit die naar hem werd genoemd en op zware olie loopt?", "options": [{ "text": "Rudolf Diesel", "correct": true }, { "text": "Carl Benz" }, { "text": "Nikolaus Otto" }, { "text": "Gottlieb Daimler" }] },
-        { "prompt": "Welke Engelse wiskundige beschreef in 1936 een theoretische rekenmachine?", "options": [{ "text": "Alan Turing", "correct": true }, { "text": "Charles Babbage" }, { "text": "George Boole" }, { "text": "John Napier" }] },
-        { "prompt": "Welke Amerikaanse uitvinder had meer dan duizend patenten op zijn naam?", "options": [{ "text": "Thomas Edison", "correct": true }, { "text": "Nikola Tesla" }, { "text": "Alexander Graham Bell" }, { "text": "Henry Ford" }] }
+        { "prompt": "Welke Engelse wiskundige beschreef in 1936 een theoretische rekenmachine?", "options": [{ "text": "Alan Turing", "correct": true }, { "text": "Charles Babbage" }, { "text": "George Boole" }, { "text": "John Napier" }] }
       ]
     },
     {
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Gloeilamp" },
-        { "prompt": "Wiel" },
-        { "prompt": "Drukpers" },
-        { "prompt": "Telefoon" },
-        { "prompt": "Stoommachine" },
-        { "prompt": "Microscoop" },
-        { "prompt": "Kompas" },
-        { "prompt": "Batterij" },
-        { "prompt": "Vliegtuig" },
-        { "prompt": "Koelkast" },
-        { "prompt": "Fiets" },
-        { "prompt": "Klok" },
-        { "prompt": "Schroef" },
-        { "prompt": "Magneet" },
-        { "prompt": "Patent" },
-        { "prompt": "Laboratorium" }
+      "words": [
+        "Gloeilamp",
+        "Wiel",
+        "Telefoon",
+        "Fiets",
+        "Koelkast",
+        "Drukpers",
+        "Fototoestel",
+        "Paraplu",
+        "Magnetron",
+        "Thomas Edison",
+        "Stoommachine",
+        "Microscoop",
+        "Kompas",
+        "Klittenband",
+        "Ritssluiting",
+        "Parachute",
+        "Stoplicht",
+        "Onderzeeboot",
+        "Streepjescode",
+        "Philips",
+        "Antoni van Leeuwenhoek",
+        "Bakeliet",
+        "Seismograaf",
+        "Deltawerken",
+        "Luchtballon",
+        "Telegraaf",
+        "Transistor",
+        "Octrooibureau",
+        "Lopende band",
+        "Flitspaal"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier uitvindingen uit de negentiende eeuw.", "answers": [{ "text": "Telefoon" }, { "text": "Gloeilamp" }, { "text": "Fotografie" }, { "text": "Dynamiet" }] },
-        { "prompt": "Noem vier soorten motoren.", "answers": [{ "text": "Stoommachine" }, { "text": "Benzinemotor" }, { "text": "Dieselmotor" }, { "text": "Elektromotor" }] },
-        { "prompt": "Noem vier Amerikaanse uitvinders.", "answers": [{ "text": "Thomas Edison" }, { "text": "Alexander Graham Bell" }, { "text": "Benjamin Franklin" }, { "text": "Orville Wright" }] },
-        { "prompt": "Noem vier kunststoffen.", "answers": [{ "text": "Bakeliet" }, { "text": "Nylon" }, { "text": "Polyetheen" }, { "text": "Teflon" }] },
-        { "prompt": "Noem vier eenheden die naar een wetenschapper zijn genoemd.", "answers": [{ "text": "Watt" }, { "text": "Volt" }, { "text": "Newton" }, { "text": "Ampere" }] },
-        { "prompt": "Noem vier communicatiemiddelen uit de twintigste eeuw.", "answers": [{ "text": "Radio" }, { "text": "Televisie" }, { "text": "Fax" }, { "text": "Mobiele telefoon" }] },
-        { "prompt": "Noem vier Nederlandse wetenschappers of uitvinders.", "answers": [{ "text": "Antoni van Leeuwenhoek" }, { "text": "Christiaan Huygens" }, { "text": "Willem Einthoven" }, { "text": "Heike Kamerlingh Onnes" }] },
-        { "prompt": "Noem vier onderdelen van een fiets.", "answers": [{ "text": "Wiel" }, { "text": "Zadel" }, { "text": "Ketting" }, { "text": "Stuur" }] }
+        { "prompt": "Wat weet je van Thomas Edison? Vier kernwoorden.", "answers": [{ "text": "De gloeilamp", "aliases": ["Gloeilamp", "Lamp"] }, { "text": "De fonograaf", "aliases": ["Fonograaf", "Grammofoon", "Platenspeler"] }, { "text": "Menlo Park" }, { "text": "Meer dan duizend patenten", "aliases": ["Patenten", "Octrooien", "Patent"] }] },
+        { "prompt": "Wat weet je van de gebroeders Wright? Vier kernwoorden.", "answers": [{ "text": "De eerste gemotoriseerde vlucht", "aliases": ["Eerste vlucht", "Gemotoriseerde vlucht", "Vliegen"] }, { "text": "1903" }, { "text": "Kitty Hawk", "aliases": ["North Carolina"] }, { "text": "Hun fietsenwinkel", "aliases": ["Fietsenwinkel", "Fietsen", "Ze maakten fietsen"] }] },
+        { "prompt": "Wat weet je van de boekdrukkunst? Vier kernwoorden.", "answers": [{ "text": "Gutenberg", "aliases": ["Johannes Gutenberg"] }, { "text": "Losse letters", "aliases": ["Loden letters", "Letters"] }, { "text": "De bijbel", "aliases": ["Bijbel", "Gutenbergbijbel"] }, { "text": "Boeken", "aliases": ["Boek", "Drukken"] }] },
+        { "prompt": "Wat weet je van penicilline? Vier kernwoorden.", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }, { "text": "Schimmel", "aliases": ["Schimmels", "Zwam"] }, { "text": "Antibioticum", "aliases": ["Antibiotica"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
+        { "prompt": "Wat weet je van de telefoon? Vier kernwoorden.", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Bell"] }, { "text": "1876" }, { "text": "De draaischijf", "aliases": ["Draaischijf", "Kiezen", "Draaien"] }, { "text": "De mobiele telefoon", "aliases": ["Mobiele telefoon", "Smartphone", "Gsm"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "De Mona Lisa", "aliases": ["Mona Lisa"] }, { "text": "Zijn vliegmachines", "aliases": ["Vliegmachine", "Vliegmachines", "Helikopter"] }, { "text": "Zijn schetsboeken", "aliases": ["Schetsboeken", "Schetsen", "Spiegelschrift"] }, { "text": "Italie", "aliases": ["Italiaans", "De renaissance", "Renaissance"] }] },
+        { "prompt": "Wat weet je van Nikola Tesla? Vier kernwoorden.", "answers": [{ "text": "Wisselstroom", "aliases": ["Wisselspanning", "AC"] }, { "text": "De teslaspoel", "aliases": ["Teslaspoel", "Spoel"] }, { "text": "Zijn ruzie met Edison", "aliases": ["Edison", "Thomas Edison", "Ruzie met Edison"] }, { "text": "Servie", "aliases": ["Servisch", "Servier"] }] },
+        { "prompt": "Wat weet je van de fiets? Vier kernwoorden.", "answers": [{ "text": "Twee wielen", "aliases": ["Wielen", "Wiel"] }, { "text": "De ketting", "aliases": ["Ketting"] }, { "text": "De trappers", "aliases": ["Trappers", "Pedalen", "Trapper"] }, { "text": "Het zadel", "aliases": ["Zadel"] }] }
       ]
     },
     {
@@ -113,9 +123,10 @@
     {
       "round": 7,
       "questions": [
+        { "prompt": "Welke Duitse natuurkundige ontdekte in 1895 de rontgenstraling?", "answers": [{ "text": "Wilhelm Rontgen", "aliases": ["Rontgen", "Roentgen"] }] },
         { "prompt": "Welke Franse gebroeders toonden in 1895 als eersten een film aan publiek?", "answers": [{ "text": "De gebroeders Lumiere", "aliases": ["Lumiere"] }] },
-        { "prompt": "Welke Nederlandse natuurkundige kreeg in 1902 de Nobelprijs voor zijn werk aan elektronen?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz"] }] },
-        { "prompt": "In welk jaar werd de transistor uitgevonden?", "answers": [{ "text": "1947" }] },
+        { "prompt": "Welke Schot demonstreerde in 1926 een werkend televisiesysteem?", "answers": [{ "text": "John Logie Baird", "aliases": ["Baird"] }] },
+        { "prompt": "Welke Zweedse autofabrikant gaf de driepuntsgordel gratis aan de wereld?", "answers": [{ "text": "Volvo" }] },
         { "prompt": "Welk Amerikaans bedrijf bouwde in 1971 de eerste microprocessor?", "answers": [{ "text": "Intel" }] },
         { "prompt": "Welke Engelse natuurkundige formuleerde de drie bewegingswetten?", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
         { "prompt": "Welke Hongaar bedacht de kubus met gekleurde vlakken?", "answers": [{ "text": "Erno Rubik", "aliases": ["Rubik"] }] }

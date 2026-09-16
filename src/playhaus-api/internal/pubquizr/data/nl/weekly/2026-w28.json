@@ -36,15 +36,11 @@
         { "prompt": "Welk metaal is het beste geleider van elektriciteit?", "options": [{ "text": "Koper" }, { "text": "Zilver", "correct": true }, { "text": "Goud" }, { "text": "Aluminium" }] },
         { "prompt": "In welk jaar werd de Titanic gebouwd en te water gelaten?", "options": [{ "text": "1909" }, { "text": "1911", "correct": true }, { "text": "1912" }, { "text": "1914" }] },
         { "prompt": "Wat is de hoofdstad van Zuid-Korea?", "options": [{ "text": "Busan" }, { "text": "Seoul", "correct": true }, { "text": "Incheon" }, { "text": "Daegu" }] },
-        { "prompt": "Welk dier draagt zijn jongen in een buidel en boksen kan?", "options": [{ "text": "Koala" }, { "text": "Kangoeroe", "correct": true }, { "text": "Opossum" }, { "text": "Wallaby" }] },
         { "prompt": "Hoeveel spelers heeft een ijshockeyteam in het veld inclusief de keeper?", "options": [{ "text": "Vijf" }, { "text": "Zes", "correct": true }, { "text": "Zeven" }, { "text": "Acht" }] },
         { "prompt": "Welke planeet is de buitenste van ons zonnestelsel?", "options": [{ "text": "Uranus" }, { "text": "Neptunus", "correct": true }, { "text": "Pluto" }, { "text": "Saturnus" }] },
         { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "options": [{ "text": "Engels" }, { "text": "Mandarijn", "correct": true }, { "text": "Spaans" }, { "text": "Hindi" }] },
-        { "prompt": "Wie leidde het Concertgebouworkest vanaf 1895 een halve eeuw lang?", "options": [{ "text": "Willem Mengelberg", "correct": true }, { "text": "Bernard Haitink" }, { "text": "Eduard van Beinum" }, { "text": "Riccardo Chailly" }] },
         { "prompt": "Wat is het grootste orgaan van het menselijk lichaam?", "options": [{ "text": "Lever" }, { "text": "Huid", "correct": true }, { "text": "Longen" }, { "text": "Darm" }] },
-        { "prompt": "Welke stad staat bekend als de Stad van het Licht?", "options": [{ "text": "Parijs", "correct": true }, { "text": "Wenen" }, { "text": "Praag" }, { "text": "Venetie" }] },
-        { "prompt": "In welk jaar werd de eerste kunstmaan Spoetnik 1 gelanceerd?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] },
-        { "prompt": "Welke vrucht heet in het Latijn Citrus limon?", "options": [{ "text": "Limoen" }, { "text": "Citroen", "correct": true }, { "text": "Pomelo" }, { "text": "Mandarijn" }] }
+        { "prompt": "In welk jaar werd de eerste kunstmaan Spoetnik 1 gelanceerd?", "options": [{ "text": "1955" }, { "text": "1957", "correct": true }, { "text": "1959" }, { "text": "1961" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Wandelstok" },
-        { "prompt": "Hoefijzer" },
-        { "prompt": "Zebra" },
-        { "prompt": "Bakkerij" },
-        { "prompt": "Watermeloen" },
-        { "prompt": "Cowboy" },
-        { "prompt": "Weegschaal" },
-        { "prompt": "Fluit" },
-        { "prompt": "Sneeuwschuiver" },
-        { "prompt": "Loodgieter" },
-        { "prompt": "Achtbaan" },
-        { "prompt": "Verrekijker" },
-        { "prompt": "Deurbel" },
-        { "prompt": "Struisvogel" },
-        { "prompt": "Rugzak" },
-        { "prompt": "Vuilnisbak" }
+      "words": [
+        "Zebra",
+        "Watermeloen",
+        "Hoefijzer",
+        "Bakkerij",
+        "Achtbaan",
+        "Verrekijker",
+        "Struisvogel",
+        "Rugzak",
+        "Loodgieter",
+        "Stoplicht",
+        "Frikandel",
+        "Saxofoon",
+        "Paraplu",
+        "Skateboard",
+        "Kampvuur",
+        "Astronaut",
+        "Windsurfen",
+        "Napoleon",
+        "Mount Fuji",
+        "Niagarawatervallen",
+        "Charlie Chaplin",
+        "Het Colosseum",
+        "Rechter",
+        "De Tovenaar van Oz",
+        "Koningsdag",
+        "Vincent van Gogh",
+        "Het WK voetbal",
+        "Strandwacht",
+        "Trampoline",
+        "Salsadansen"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste steden van Duitsland.", "answers": [{ "text": "Berlijn" }, { "text": "Hamburg" }, { "text": "Munchen" }, { "text": "Keulen" }] },
-        { "prompt": "Noem de vier oceanen behalve de Zuidelijke Oceaan.", "answers": [{ "text": "Stille Oceaan" }, { "text": "Atlantische Oceaan" }, { "text": "Indische Oceaan" }, { "text": "Noordelijke IJszee" }] },
-        { "prompt": "Noem de vier hoofdrolspelers van de Fantastic Four.", "answers": [{ "text": "Mister Fantastic" }, { "text": "Invisible Woman" }, { "text": "Human Torch" }, { "text": "The Thing" }] },
-        { "prompt": "Noem de vier grote Atheense toneeldichters behalve Menander.", "answers": [{ "text": "Aeschylus" }, { "text": "Sophocles" }, { "text": "Euripides" }, { "text": "Aristophanes" }] },
-        { "prompt": "Noem de vier buurlanden van Belgie.", "answers": [{ "text": "Nederland" }, { "text": "Duitsland" }, { "text": "Luxemburg" }, { "text": "Frankrijk" }] },
-        { "prompt": "Noem de vier soorten weefsel die het menselijk lichaam opbouwen.", "answers": [{ "text": "Spierweefsel" }, { "text": "Zenuwweefsel" }, { "text": "Epitheel" }, { "text": "Bindweefsel" }] },
-        { "prompt": "Noem de vier grootste eilanden van de Britse eilandengroep.", "answers": [{ "text": "Groot-Brittannie" }, { "text": "Ierland" }, { "text": "Lewis and Harris" }, { "text": "Skye" }] },
-        { "prompt": "Noem de vier concerten van De vier jaargetijden van Vivaldi.", "answers": [{ "text": "Lente" }, { "text": "Zomer" }, { "text": "Herfst" }, { "text": "Winter" }] }
+        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Vrijheidsbeeld" }, { "text": "Broadway" }, { "text": "Manhattan" }, { "text": "Gele taxi's" }] },
+        { "prompt": "Wat weet je van Star Wars? Vier kernwoorden.", "answers": [{ "text": "Darth Vader" }, { "text": "Jedi" }, { "text": "Lichtzwaard" }, { "text": "The Force" }] },
+        { "prompt": "Wat weet je van pizza? Vier kernwoorden.", "answers": [{ "text": "Italie" }, { "text": "Kaas" }, { "text": "Margherita" }, { "text": "Houtoven" }] },
+        { "prompt": "Wat weet je van de woestijn? Vier kernwoorden.", "answers": [{ "text": "Zand" }, { "text": "Kameel" }, { "text": "Cactus" }, { "text": "Oase" }] },
+        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Barcelona" }, { "text": "Tapas" }] },
+        { "prompt": "Wat weet je van dinosaurussen? Vier kernwoorden.", "answers": [{ "text": "Tyrannosaurus rex" }, { "text": "Fossielen" }, { "text": "Uitgestorven" }, { "text": "Jurassic Park" }] },
+        { "prompt": "Wat weet je van wijn? Vier kernwoorden.", "answers": [{ "text": "Druiven" }, { "text": "Frankrijk" }, { "text": "Wijngaard" }, { "text": "Kurkentrekker" }] },
+        { "prompt": "Wat weet je van de Vikingen? Vier kernwoorden.", "answers": [{ "text": "Drakenschip" }, { "text": "Scandinavie" }, { "text": "Plundertochten" }, { "text": "Odin" }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Poolse astronoom zette de zon in het midden van het zonnestelsel?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus", "Kopernikus"] }] },
+        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago" }] },
+        { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Wat is het grootste meer van Afrika?", "answers": [{ "text": "Het Victoriameer", "aliases": ["Victoriameer"] }] },
-        { "prompt": "Welke Russische componist schreef het ballet Het Zwanenmeer?", "answers": [{ "text": "Tsjaikovski", "aliases": ["Pjotr Tsjaikovski"] }] },
-        { "prompt": "Wat is de hoofdstad van Turkije?", "answers": [{ "text": "Ankara" }] },
+        { "prompt": "In welk land ligt de oude rotsstad Petra?", "answers": [{ "text": "Jordanie", "aliases": ["Jordan"] }] },
         { "prompt": "Welke twee wetenschappers beschreven in 1953 de dubbele helix van DNA?", "answers": [{ "text": "Watson en Crick", "aliases": ["James Watson en Francis Crick"] }] },
-        { "prompt": "In welk jaar werd de Nederlandse Grondwet met het huidige stelsel van ministeriele verantwoordelijkheid ingevoerd?", "answers": [{ "text": "1848" }] }
+        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Welk van de zeven wereldwonderen van de oudheid stond bij de haven van Rhodos?", "answers": [{ "text": "De Kolossus van Rhodos", "aliases": ["Kolossus van Rhodos", "de Kolossus"] }] }
       ]
     }
   ]

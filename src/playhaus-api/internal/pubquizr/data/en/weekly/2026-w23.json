@@ -31,18 +31,14 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the longest fjord system in the world?", "options": [{ "text": "Scoresby Sund", "correct": true }, { "text": "Sognefjord" }, { "text": "Milford Sound" }, { "text": "Geirangerfjord" }] },
         { "prompt": "Which of the Bronte sisters wrote Jane Eyre?", "options": [{ "text": "Charlotte Bronte", "correct": true }, { "text": "Emily Bronte" }, { "text": "Anne Bronte" }, { "text": "Mary Shelley" }] },
         { "prompt": "What is the streak of light we call a shooting star properly called?", "options": [{ "text": "A meteor", "correct": true }, { "text": "A comet" }, { "text": "An asteroid" }, { "text": "A meteorite" }] },
         { "prompt": "Which fish blows itself up into a spiny ball when threatened?", "options": [{ "text": "The pufferfish", "correct": true }, { "text": "The lionfish" }, { "text": "The stonefish" }, { "text": "The boxfish" }] },
-        { "prompt": "Which kitchen herb belongs to the onion family?", "options": [{ "text": "Chives", "correct": true }, { "text": "Parsley" }, { "text": "Oregano" }, { "text": "Tarragon" }] },
         { "prompt": "Which is the oldest trophy still competed for in international sport?", "options": [{ "text": "The America's Cup", "correct": true }, { "text": "The Ashes urn" }, { "text": "The Davis Cup" }, { "text": "The Ryder Cup" }] },
         { "prompt": "Which American painter poured and dripped his paint onto the canvas?", "options": [{ "text": "Jackson Pollock", "correct": true }, { "text": "Mark Rothko" }, { "text": "Willem de Kooning" }, { "text": "Franz Kline" }] },
         { "prompt": "Which part of the ear keeps you balanced?", "options": [{ "text": "The semicircular canals", "correct": true }, { "text": "The cochlea" }, { "text": "The eardrum" }, { "text": "The ear canal" }] },
-        { "prompt": "Which wild bird is the most numerous in the world?", "options": [{ "text": "The red-billed quelea", "correct": true }, { "text": "The house sparrow" }, { "text": "The starling" }, { "text": "The pigeon" }] },
         { "prompt": "Which city has more skyscrapers than any other?", "options": [{ "text": "Hong Kong", "correct": true }, { "text": "New York" }, { "text": "Dubai" }, { "text": "Tokyo" }] },
         { "prompt": "Which alloy is made by mixing copper and tin?", "options": [{ "text": "Bronze", "correct": true }, { "text": "Brass" }, { "text": "Pewter" }, { "text": "Steel" }] },
-        { "prompt": "Which is the busiest railway station in the world?", "options": [{ "text": "Shinjuku", "correct": true }, { "text": "Grand Central" }, { "text": "Chatelet" }, { "text": "Utrecht Centraal" }] },
         { "prompt": "What is the name for the number one followed by a hundred zeros?", "options": [{ "text": "A googol", "correct": true }, { "text": "A billion" }, { "text": "A myriad" }, { "text": "A quadrillion" }] },
         { "prompt": "Which dinosaur is thought to be the largest land animal that ever lived?", "options": [{ "text": "Argentinosaurus", "correct": true }, { "text": "Brachiosaurus" }, { "text": "Diplodocus" }, { "text": "Spinosaurus" }] }
       ]
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Paddling pool" },
-        { "prompt": "Garden gate" },
-        { "prompt": "Ice lolly" },
-        { "prompt": "Selfie stick" },
-        { "prompt": "Insect repellent" },
-        { "prompt": "Beach towel" },
-        { "prompt": "Barbecue tongs" },
-        { "prompt": "Beach hut" },
-        { "prompt": "Straw hat" },
-        { "prompt": "Flip-flop" },
-        { "prompt": "Ice bucket" },
-        { "prompt": "Picnic blanket" },
-        { "prompt": "Swim ring" },
-        { "prompt": "Awning" },
-        { "prompt": "Bird's nest" },
-        { "prompt": "Garden bench" }
+      "words": [
+        "Sunglasses",
+        "Watermelon",
+        "Giraffe",
+        "Tennis",
+        "Camping",
+        "Postman",
+        "Ghost",
+        "Rainbow",
+        "Motorbike",
+        "Wedding cake",
+        "Venice",
+        "Robin Hood",
+        "Chef",
+        "The Sphinx",
+        "Superhero",
+        "Hot air balloon",
+        "Karate",
+        "Mount Rushmore",
+        "Snow White",
+        "Lasagne",
+        "Winston Churchill",
+        "The Silk Road",
+        "Archaeologist",
+        "Beethoven",
+        "The Northern Lights",
+        "Quarantine",
+        "The Trojan Horse",
+        "Bagpipes",
+        "Frida Kahlo",
+        "Inflation"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Colombia.", "answers": [{ "text": "Venezuela" }, { "text": "Brazil" }, { "text": "Peru" }, { "text": "Ecuador" }] },
-        { "prompt": "Name four Dutch dishes.", "answers": [{ "text": "Stamppot" }, { "text": "Erwtensoep" }, { "text": "Bitterballen" }, { "text": "Poffertjes" }] },
-        { "prompt": "Name four Olympic sports played without a ball.", "answers": [{ "text": "Swimming" }, { "text": "Athletics" }, { "text": "Judo" }, { "text": "Rowing" }] },
-        { "prompt": "Name four leaves you can put in a salad.", "answers": [{ "text": "Lettuce" }, { "text": "Rocket" }, { "text": "Spinach" }, { "text": "Endive" }] },
-        { "prompt": "Name four countries in the southern hemisphere.", "answers": [{ "text": "Australia" }, { "text": "Argentina" }, { "text": "South Africa" }, { "text": "Chile" }] },
-        { "prompt": "Name four capital cities in South America.", "answers": [{ "text": "Lima" }, { "text": "Santiago" }, { "text": "Quito" }, { "text": "Brasilia" }] },
-        { "prompt": "Name four things that come in pairs.", "answers": [{ "text": "Shoes" }, { "text": "Socks" }, { "text": "Gloves" }, { "text": "Earrings" }] },
-        { "prompt": "Name four writers of children's books.", "answers": [{ "text": "Roald Dahl" }, { "text": "Astrid Lindgren" }, { "text": "Annie M.G. Schmidt" }, { "text": "J.K. Rowling" }] }
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "The Statue of Liberty", "aliases": ["Statue of Liberty"] }, { "text": "Skyscrapers", "aliases": ["Skyscraper", "The Empire State Building"] }, { "text": "Times Square", "aliases": ["Broadway", "Central Park"] }, { "text": "Yellow taxis", "aliases": ["Yellow cabs", "Taxis"] }] },
+        { "prompt": "What do you know about football? Four keywords.", "answers": [{ "text": "Goals", "aliases": ["Goal", "The goalkeeper"] }, { "text": "Eleven players", "aliases": ["Eleven a side", "Two teams"] }, { "text": "The World Cup", "aliases": ["World Cup", "The Champions League"] }, { "text": "The referee", "aliases": ["Referee", "Red card", "Yellow card"] }] },
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "France", "aliases": ["French", "Corsica"] }, { "text": "Waterloo", "aliases": ["The battle of Waterloo"] }, { "text": "Emperor", "aliases": ["He crowned himself emperor"] }, { "text": "His hand in his coat", "aliases": ["Hand in his jacket", "He was short", "Short"] }] },
+        { "prompt": "What do you know about the sea? Four keywords.", "answers": [{ "text": "Waves", "aliases": ["Wave", "Surf"] }, { "text": "Salt", "aliases": ["Salt water", "Salty"] }, { "text": "Fish", "aliases": ["Whales", "Dolphins"] }, { "text": "The beach", "aliases": ["Beach", "Sand", "Ships"] }] },
+        { "prompt": "What do you know about Christmas? Four keywords.", "answers": [{ "text": "The tree", "aliases": ["Christmas tree", "Tree"] }, { "text": "Presents", "aliases": ["Gifts", "Present"] }, { "text": "Father Christmas", "aliases": ["Santa Claus", "Santa"] }, { "text": "Christmas dinner", "aliases": ["Dinner", "Turkey", "Family"] }] },
+        { "prompt": "What do you know about Michael Jackson? Four keywords.", "answers": [{ "text": "Thriller", "aliases": ["Billie Jean", "Beat It"] }, { "text": "The moonwalk", "aliases": ["Moonwalk"] }, { "text": "The white glove", "aliases": ["Glove", "One glove"] }, { "text": "The King of Pop", "aliases": ["King of Pop", "Neverland"] }] },
+        { "prompt": "What do you know about a hospital? Four keywords.", "answers": [{ "text": "Doctors", "aliases": ["Doctor", "Surgeon"] }, { "text": "Nurses", "aliases": ["Nurse"] }, { "text": "The ambulance", "aliases": ["Ambulance", "Accident and emergency"] }, { "text": "The operating theatre", "aliases": ["Operating theatre", "Surgery", "Beds"] }] },
+        { "prompt": "What do you know about Africa? Four keywords.", "answers": [{ "text": "Safari", "aliases": ["Wild animals", "Elephants", "Lions"] }, { "text": "The Sahara", "aliases": ["Sahara", "Desert"] }, { "text": "The Nile", "aliases": ["Nile", "The Kilimanjaro"] }, { "text": "Fifty-four countries", "aliases": ["Many countries", "The second largest continent"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch mathematician founded the school of intuitionism?", "answers": [{ "text": "L.E.J. Brouwer", "aliases": ["Brouwer"] }] },
         { "prompt": "What is the capital of Zimbabwe?", "answers": [{ "text": "Harare" }] },
-        { "prompt": "Which Austrian logician proved the incompleteness theorems?", "answers": [{ "text": "Kurt Godel", "aliases": ["Godel"] }] },
-        { "prompt": "In which year was the first Dutch Grand Prix run at Zandvoort?", "answers": [{ "text": "1952" }] },
-        { "prompt": "Which Indonesian lake is the largest volcanic lake in the world?", "answers": [{ "text": "Lake Toba", "aliases": ["Toba"] }] },
-        { "prompt": "Which French philosopher invented coordinate geometry?", "answers": [{ "text": "Rene Descartes", "aliases": ["Descartes"] }] }
+        { "prompt": "Which French philosopher invented coordinate geometry?", "answers": [{ "text": "Rene Descartes", "aliases": ["Descartes"] }] },
+        { "prompt": "Which body of water on earth is the saltiest?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Which country has more time zones than any other?", "answers": [{ "text": "France" }] },
+        { "prompt": "Which Italian astronomer was the first to see the moons of Jupiter?", "answers": [{ "text": "Galileo Galilei", "aliases": ["Galileo"] }] },
+        { "prompt": "Which is the longest river in Asia?", "answers": [{ "text": "The Yangtze", "aliases": ["Yangtze"] }] },
+        { "prompt": "Which country was formerly known as Persia?", "answers": [{ "text": "Iran" }] }
       ]
     }
   ]

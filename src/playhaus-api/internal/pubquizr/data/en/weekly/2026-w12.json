@@ -31,8 +31,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "Which is the flattest country in the world?", "options": [{ "text": "The Maldives", "correct": true }, { "text": "Denmark" }, { "text": "Qatar" }, { "text": "Belarus" }] },
-        { "prompt": "Which Nigerian author wrote Things Fall Apart?", "options": [{ "text": "Chinua Achebe", "correct": true }, { "text": "Wole Soyinka" }, { "text": "Ben Okri" }, { "text": "Buchi Emecheta" }] },
         { "prompt": "What is the ring of icy bodies beyond Neptune called?", "options": [{ "text": "The Kuiper belt", "correct": true }, { "text": "The Oort cloud" }, { "text": "The asteroid belt" }, { "text": "The heliosphere" }] },
         { "prompt": "Which fish can leave the water and climb about on tree roots?", "options": [{ "text": "The mudskipper", "correct": true }, { "text": "The catfish" }, { "text": "The lungfish" }, { "text": "The eel" }] },
         { "prompt": "Which vegetable gives borscht its deep red colour?", "options": [{ "text": "The beetroot", "correct": true }, { "text": "The red cabbage" }, { "text": "The tomato" }, { "text": "The red pepper" }] },
@@ -40,9 +38,7 @@
         { "prompt": "On which mountain is Noah's Ark said to have come to rest?", "options": [{ "text": "Mount Ararat", "correct": true }, { "text": "Mount Sinai" }, { "text": "Mount Nebo" }, { "text": "Mount Carmel" }] },
         { "prompt": "Which kind of instrument is the oldest ever found by archaeologists?", "options": [{ "text": "The flute", "correct": true }, { "text": "The drum" }, { "text": "The lyre" }, { "text": "The horn" }] },
         { "prompt": "Which language do most people in India speak as their first language?", "options": [{ "text": "Hindi", "correct": true }, { "text": "Bengali" }, { "text": "Tamil" }, { "text": "Urdu" }] },
-        { "prompt": "In which Italian city does a famous bell tower lean?", "options": [{ "text": "Pisa", "correct": true }, { "text": "Siena" }, { "text": "Lucca" }, { "text": "Bologna" }] },
         { "prompt": "Which organ clears worn out red blood cells out of the blood?", "options": [{ "text": "The spleen", "correct": true }, { "text": "The liver" }, { "text": "The pancreas" }, { "text": "The appendix" }] },
-        { "prompt": "What is the atomic number of carbon?", "options": [{ "text": "6", "correct": true }, { "text": "4" }, { "text": "8" }, { "text": "12" }] },
         { "prompt": "Which Norwegian city is known as the gateway to the fjords?", "options": [{ "text": "Bergen", "correct": true }, { "text": "Stavanger" }, { "text": "Trondheim" }, { "text": "Alesund" }] },
         { "prompt": "Which spice is the dried inner bark of a tree?", "options": [{ "text": "Cinnamon", "correct": true }, { "text": "Ginger" }, { "text": "Cloves" }, { "text": "Turmeric" }] }
       ]
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Milk churn" },
-        { "prompt": "Cowbell" },
-        { "prompt": "Wallet" },
-        { "prompt": "Cake tin" },
-        { "prompt": "Pin cushion" },
-        { "prompt": "Walking frame" },
-        { "prompt": "Raincoat" },
-        { "prompt": "Bucket" },
-        { "prompt": "Stepladder" },
-        { "prompt": "Tea bag" },
-        { "prompt": "Toothbrush" },
-        { "prompt": "Belt buckle" },
-        { "prompt": "Fountain pen" },
-        { "prompt": "Protractor" },
-        { "prompt": "Wardrobe" },
-        { "prompt": "Doorknocker" }
+      "words": [
+        "Bucket",
+        "Toothbrush",
+        "Raincoat",
+        "Wallet",
+        "Wardrobe",
+        "Penguin",
+        "Chocolate",
+        "Beach",
+        "Birthday cake",
+        "Postman",
+        "Stepladder",
+        "Fountain pen",
+        "Cowbell",
+        "Lawnmower",
+        "Hot air balloon",
+        "Venice",
+        "Pirate",
+        "Roller coaster",
+        "Submarine",
+        "Chess",
+        "The Statue of Liberty",
+        "The Lion King",
+        "Leonardo da Vinci",
+        "The Berlin Wall",
+        "Nelson Mandela",
+        "Volcano",
+        "Astronaut",
+        "Stonehenge",
+        "Niagara Falls",
+        "Charlie Chaplin"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Turkey.", "answers": [{ "text": "Greece" }, { "text": "Bulgaria" }, { "text": "Syria" }, { "text": "Iran" }] },
-        { "prompt": "Name four note lengths in written music.", "answers": [{ "text": "Whole note" }, { "text": "Half note" }, { "text": "Quarter note" }, { "text": "Eighth note" }] },
-        { "prompt": "Name four deserts.", "answers": [{ "text": "Sahara" }, { "text": "Gobi" }, { "text": "Kalahari" }, { "text": "Atacama" }] },
-        { "prompt": "Name four kinds of soup.", "answers": [{ "text": "Tomato soup" }, { "text": "Chicken soup" }, { "text": "Onion soup" }, { "text": "Minestrone" }] },
-        { "prompt": "Name four equestrian disciplines.", "answers": [{ "text": "Dressage" }, { "text": "Show jumping" }, { "text": "Eventing" }, { "text": "Vaulting" }] },
-        { "prompt": "Name four seas around Europe.", "answers": [{ "text": "North Sea" }, { "text": "Baltic Sea" }, { "text": "Mediterranean" }, { "text": "Black Sea" }] },
-        { "prompt": "Name four things you find inside a car.", "answers": [{ "text": "Steering wheel" }, { "text": "Gear stick" }, { "text": "Pedals" }, { "text": "Mirror" }] },
-        { "prompt": "Name four scientists born in Britain.", "answers": [{ "text": "Newton" }, { "text": "Darwin" }, { "text": "Hawking" }, { "text": "Faraday" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "Canals" }, { "text": "Bicycles", "aliases": ["Bikes", "Cycling"] }, { "text": "Anne Frank", "aliases": ["Anne Frank House"] }, { "text": "The red light district", "aliases": ["Red light district"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Desert" }, { "text": "Sand", "aliases": ["Sand dunes", "Dunes"] }, { "text": "Camels", "aliases": ["Camel"] }, { "text": "Africa" }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "Relativity", "aliases": ["Theory of relativity", "E=mc2"] }, { "text": "Wild hair", "aliases": ["Hair", "Moustache"] }, { "text": "Physics", "aliases": ["Physicist"] }, { "text": "Germany", "aliases": ["German"] }] },
+        { "prompt": "What do you know about football? Four keywords.", "answers": [{ "text": "Goal" }, { "text": "Eleven players", "aliases": ["Eleven", "Team of eleven"] }, { "text": "The World Cup", "aliases": ["World Cup"] }, { "text": "Referee", "aliases": ["Red card", "Yellow card"] }] },
+        { "prompt": "What do you know about the moon? Four keywords.", "answers": [{ "text": "Neil Armstrong", "aliases": ["The moon landing", "Armstrong"] }, { "text": "Craters" }, { "text": "The tides", "aliases": ["Tides"] }, { "text": "Full moon" }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine" }, { "text": "Black" }, { "text": "Cappuccino", "aliases": ["Espresso", "Latte"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "Iceberg" }, { "text": "1912", "aliases": ["Nineteen twelve"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet"] }, { "text": "It sank", "aliases": ["Sank", "Shipwreck"] }] },
+        { "prompt": "What do you know about a wedding? Four keywords.", "answers": [{ "text": "Wedding dress", "aliases": ["The bride", "Bride"] }, { "text": "Rings", "aliases": ["Wedding ring"] }, { "text": "Wedding cake", "aliases": ["Cake"] }, { "text": "Church", "aliases": ["Town hall"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Flemish cartographer published the first modern world atlas in 1570?", "answers": [{ "text": "Abraham Ortelius", "aliases": ["Ortelius"] }] },
         { "prompt": "What is the capital of Albania?", "answers": [{ "text": "Tirana" }] },
         { "prompt": "Which French writer wrote Les Miserables?", "answers": [{ "text": "Victor Hugo", "aliases": ["Hugo"] }] },
-        { "prompt": "In which year did the Dutch Republic recognise the independence of the United States?", "answers": [{ "text": "1782" }] },
         { "prompt": "Which is the highest active volcano in Europe?", "answers": [{ "text": "Mount Etna", "aliases": ["Etna"] }] },
-        { "prompt": "Which English naturalist arrived at natural selection at the same time as Darwin?", "answers": [{ "text": "Alfred Russel Wallace", "aliases": ["Wallace"] }] }
+        { "prompt": "What is the deepest ocean trench in the world called?", "answers": [{ "text": "The Mariana Trench", "aliases": ["Mariana Trench", "Marianas Trench"] }] },
+        { "prompt": "In which city is the Prado museum?", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Who painted The Night Watch?", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
+        { "prompt": "Which gas makes up about 78 percent of the air we breathe?", "answers": [{ "text": "Nitrogen" }] }
       ]
     }
   ]

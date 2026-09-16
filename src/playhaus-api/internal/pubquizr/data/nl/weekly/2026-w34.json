@@ -33,15 +33,11 @@
       "questions": [
         { "prompt": "Welk land heeft de meeste tijdzones?", "options": [{ "text": "Rusland" }, { "text": "Frankrijk", "correct": true }, { "text": "Verenigde Staten" }, { "text": "China" }] },
         { "prompt": "Wat is het diepste punt van de oceaan?", "options": [{ "text": "Puerto Rico Trog" }, { "text": "Java Trog" }, { "text": "Marianentrog", "correct": true }, { "text": "Tonga Trog" }] },
-        { "prompt": "Hoeveel hartkamers heeft een octopus?", "options": [{ "text": "Een" }, { "text": "Twee" }, { "text": "Drie", "correct": true }, { "text": "Vier" }] },
         { "prompt": "Welke Nederlandse provincie is qua oppervlakte het grootst?", "options": [{ "text": "Friesland" }, { "text": "Gelderland", "correct": true }, { "text": "Noord-Brabant" }, { "text": "Groningen" }] },
         { "prompt": "In welk jaar werd de euro als contant geld ingevoerd?", "options": [{ "text": "1999" }, { "text": "2002", "correct": true }, { "text": "2000" }, { "text": "2004" }] },
         { "prompt": "Welke planeet draait als enige met de klok mee om zijn as?", "options": [{ "text": "Venus", "correct": true }, { "text": "Mars" }, { "text": "Neptunus" }, { "text": "Mercurius" }] },
-        { "prompt": "Wie was de eerste secretaris-generaal van de Verenigde Naties?", "options": [{ "text": "Dag Hammarskjold" }, { "text": "Trygve Lie", "correct": true }, { "text": "U Thant" }, { "text": "Kurt Waldheim" }] },
-        { "prompt": "Hoeveel toetsen heeft een standaard QWERTY-toetsenbord ongeveer?", "options": [{ "text": "104", "correct": true }, { "text": "88" }, { "text": "120" }, { "text": "96" }] },
         { "prompt": "Welk element is het meest voorkomend in het heelal?", "options": [{ "text": "Helium" }, { "text": "Waterstof", "correct": true }, { "text": "Zuurstof" }, { "text": "Koolstof" }] },
         { "prompt": "Welke stad was in 1928 gastheer van de Olympische Zomerspelen?", "options": [{ "text": "Antwerpen" }, { "text": "Parijs" }, { "text": "Amsterdam", "correct": true }, { "text": "Berlijn" }] },
-        { "prompt": "Hoeveel talen worden er wereldwijd ongeveer gesproken?", "options": [{ "text": "Ongeveer 700" }, { "text": "Ongeveer 7000", "correct": true }, { "text": "Ongeveer 70000" }, { "text": "Ongeveer 200" }] },
         { "prompt": "Wat is de wetenschappelijke naam voor het strottenhoofd?", "options": [{ "text": "Farynx" }, { "text": "Larynx", "correct": true }, { "text": "Trachea" }, { "text": "Bronchus" }] },
         { "prompt": "Welk dier heeft de langste draagtijd?", "options": [{ "text": "Blauwe vinvis" }, { "text": "Neushoorn" }, { "text": "Olifant", "correct": true }, { "text": "Giraffe" }] },
         { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "options": [{ "text": "2005" }, { "text": "2007", "correct": true }, { "text": "2009" }, { "text": "2006" }] }
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Stroopwafel" },
-        { "prompt": "Max Verstappen" },
-        { "prompt": "Wolkenkrabber" },
-        { "prompt": "Wasmachine" },
-        { "prompt": "Sinterklaas" },
-        { "prompt": "Zwaartekracht" },
-        { "prompt": "Fietsenstalling" },
-        { "prompt": "Pinguin" },
-        { "prompt": "Verjaardagskalender" },
-        { "prompt": "Rembrandt" },
-        { "prompt": "Onweer" },
-        { "prompt": "Draaimolen" },
-        { "prompt": "Kaasschaaf" },
-        { "prompt": "Marathon" },
-        { "prompt": "Poolster" },
-        { "prompt": "Kruidnoten" }
+      "words": [
+        "Stroopwafel",
+        "Max Verstappen",
+        "Wolkenkrabber",
+        "Sinterklaas",
+        "Pinguin",
+        "Onweer",
+        "Draaimolen",
+        "Kaasschaaf",
+        "Poolster",
+        "Kruidnoten",
+        "Vulkaan",
+        "Onderzeeboot",
+        "Cactus",
+        "Doedelzak",
+        "Trampoline",
+        "Tandarts",
+        "Paraplu",
+        "Karaoke",
+        "File op de snelweg",
+        "Luchtballon",
+        "Charlie Chaplin",
+        "Cleopatra",
+        "Mount Everest",
+        "Het Wilde Westen",
+        "Koningsdag",
+        "Reddingsbrigade",
+        "Slaapwandelen",
+        "James Bond",
+        "Windsurfen",
+        "Het paard van Troje"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Duitsland grenzen.", "answers": [{ "text": "Nederland" }, { "text": "Belgie" }, { "text": "Frankrijk" }, { "text": "Polen" }] },
         { "prompt": "Wat weet je van Vincent van Gogh? Vier kernwoorden.", "answers": [{ "text": "Nederlands" }, { "text": "Schilder" }, { "text": "Zonnebloemen" }, { "text": "Oor" }] },
-        { "prompt": "Noem vier planeten uit ons zonnestelsel.", "answers": [{ "text": "Mercurius" }, { "text": "Venus" }, { "text": "Mars" }, { "text": "Saturnus" }] },
-        { "prompt": "Noem vier Nederlandse steden met meer dan 200.000 inwoners.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
-        { "prompt": "Noem vier Olympische sporten die op het water worden beoefend.", "answers": [{ "text": "Roeien" }, { "text": "Zeilen" }, { "text": "Kanoslalom" }, { "text": "Waterpolo" }] },
         { "prompt": "Wat weet je van de Tweede Wereldoorlog in Nederland? Vier kernwoorden.", "answers": [{ "text": "1940" }, { "text": "Bezetting" }, { "text": "Hongerwinter" }, { "text": "Bevrijding" }] },
-        { "prompt": "Noem vier merken die luxe handtassen maken.", "answers": [{ "text": "Gucci" }, { "text": "Chanel" }, { "text": "Louis Vuitton" }, { "text": "Hermes" }] },
-        { "prompt": "Noem vier dieren die in de Nederlandse duinen leven.", "answers": [{ "text": "Konijn" }, { "text": "Vos" }, { "text": "Ree" }, { "text": "Zandhagedis" }] }
+        { "prompt": "Wat weet je van Duitsland? Vier kernwoorden.", "answers": [{ "text": "Berlijn" }, { "text": "Bier" }, { "text": "De autobahn" }, { "text": "Beieren" }] },
+        { "prompt": "Wat weet je van het Romeinse Rijk? Vier kernwoorden.", "answers": [{ "text": "Rome" }, { "text": "Julius Caesar" }, { "text": "Het Colosseum" }, { "text": "Gladiatoren" }] },
+        { "prompt": "Wat weet je van de Noordzee? Vier kernwoorden.", "answers": [{ "text": "Zout water" }, { "text": "Golven" }, { "text": "Windmolenparken" }, { "text": "Veerboten" }] },
+        { "prompt": "Wat weet je van de Formule 1? Vier kernwoorden.", "answers": [{ "text": "Max Verstappen" }, { "text": "Pitstop" }, { "text": "Circuit" }, { "text": "Zandvoort" }] },
+        { "prompt": "Wat weet je van katten? Vier kernwoorden.", "answers": [{ "text": "Spinnen" }, { "text": "Snorharen" }, { "text": "Muizen" }, { "text": "Krabpaal" }] },
+        { "prompt": "Wat weet je van de zomervakantie? Vier kernwoorden.", "answers": [{ "text": "Strand" }, { "text": "Camping" }, { "text": "Zonnebrand" }, { "text": "Koffer" }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Hoeveel minuten duurt een halve voetbalwedstrijd?", "answers": [{ "text": "Vijfenveertig", "aliases": ["45"] }] },
-        { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
-        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
-        { "prompt": "Hoeveel zijden heeft een dodecaeder?", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
-        { "prompt": "Welke Nederlandse schaatser won drie keer olympisch goud op de 1500 meter?", "answers": [{ "text": "Kjeld Nuis" }] },
-        { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] }
+        { "prompt": "Wat is de hoofdstad van Marokko?", "answers": [{ "text": "Rabat" }] },
+        { "prompt": "Wie schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo", "aliases": ["Michelangelo Buonarroti"] }] },
+        { "prompt": "Welke rivier stroomt door Wenen, Boedapest en Belgrado?", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
+        { "prompt": "Welke schrijfster bedacht de detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
+        { "prompt": "Welk metaal geleidt elektriciteit het beste?", "answers": [{ "text": "Zilver" }] },
+        { "prompt": "Welke Nederlander sleep zijn eigen lenzen en zag als eerste bacterien door een microscoop?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek", "Leeuwenhoek"] }] },
+        { "prompt": "Welk instrument bespeelde Miles Davis?", "answers": [{ "text": "De trompet", "aliases": ["trompet"] }] }
       ]
     }
   ]

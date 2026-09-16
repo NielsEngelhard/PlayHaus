@@ -35,16 +35,12 @@
         { "prompt": "Welke Amerikaanse schrijfster schreef de roman Beminde?", "options": [{ "text": "Toni Morrison", "correct": true }, { "text": "Maya Angelou" }, { "text": "Alice Walker" }, { "text": "Zora Neale Hurston" }] },
         { "prompt": "Hoe heet een ster die plotseling veel helderder wordt?", "options": [{ "text": "Een nova", "correct": true }, { "text": "Een pulsar" }, { "text": "Een quasar" }, { "text": "Een magnetar" }] },
         { "prompt": "Welk dier veroorzaakt jaarlijks de meeste menselijke doden?", "options": [{ "text": "De mug", "correct": true }, { "text": "De slang" }, { "text": "De krokodil" }, { "text": "Het nijlpaard" }] },
-        { "prompt": "Welke sterkedrank wordt van suikerriet gestookt?", "options": [{ "text": "Rum", "correct": true }, { "text": "Cognac" }, { "text": "Whisky" }, { "text": "Schnaps" }] },
         { "prompt": "Welk land won de meeste olympische gouden medailles bij het roeien?", "options": [{ "text": "Groot-Brittannie", "correct": true }, { "text": "Duitsland" }, { "text": "De Verenigde Staten" }, { "text": "Roemenie" }] },
         { "prompt": "Welke Mexicaanse schilderes vulde haar zelfportretten met bloemen en doornen?", "options": [{ "text": "Frida Kahlo", "correct": true }, { "text": "Remedios Varo" }, { "text": "Leonora Carrington" }, { "text": "Maria Izquierdo" }] },
         { "prompt": "In welk lichaamsdeel zitten de meeste botten?", "options": [{ "text": "De hand", "correct": true }, { "text": "De wervelkolom" }, { "text": "Het hoofd" }, { "text": "De borstkas" }] },
         { "prompt": "Wat is de zwaarste roofvogel ter wereld?", "options": [{ "text": "De Andescondor", "correct": true }, { "text": "De steenarend" }, { "text": "De zeearend" }, { "text": "De gier" }] },
-        { "prompt": "Welke Amerikaanse stad heeft de bijnaam Windy City?", "options": [{ "text": "Chicago", "correct": true }, { "text": "Boston" }, { "text": "Detroit" }, { "text": "Seattle" }] },
         { "prompt": "Welke noot wordt gekarameliseerd tot praline?", "options": [{ "text": "De hazelnoot", "correct": true }, { "text": "De walnoot" }, { "text": "De pecannoot" }, { "text": "De kastanje" }] },
-        { "prompt": "Welk element is genoemd naar het Zweedse dorp Ytterby?", "options": [{ "text": "Yttrium", "correct": true }, { "text": "Scandium" }, { "text": "Thulium" }, { "text": "Hafnium" }] },
-        { "prompt": "Welk land heeft een vlag die er aan de voor- en achterkant anders uitziet?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldavie" }, { "text": "Servie" }] },
-        { "prompt": "Wat is de hoogstgelegen spoorlijn ter wereld?", "options": [{ "text": "De Qinghai-Tibetspoorlijn", "correct": true }, { "text": "De Trans-Andesspoorlijn" }, { "text": "De Jungfraubahn" }, { "text": "De Centrale spoorlijn van Peru" }] }
+        { "prompt": "Welk land heeft een vlag die er aan de voor- en achterkant anders uitziet?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldavie" }, { "text": "Servie" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "IJsblokjesvorm" },
-        { "prompt": "Douchegordijn" },
-        { "prompt": "Luchthoorn" },
-        { "prompt": "Hobbelpaard" },
-        { "prompt": "Viskom" },
-        { "prompt": "Manchetknoop" },
-        { "prompt": "Hondenriem" },
-        { "prompt": "Bloempot" },
-        { "prompt": "Frisbee" },
-        { "prompt": "Heggenschaar" },
-        { "prompt": "Zonnebrandcreme" },
-        { "prompt": "Envelop" },
-        { "prompt": "Servet" },
-        { "prompt": "Kinderstoel" },
-        { "prompt": "Steelpan" },
-        { "prompt": "Lavalamp" }
+      "words": [
+        "Zandkasteel",
+        "Dinosaurus",
+        "Spaghetti",
+        "Verjaardag",
+        "Brandweerman",
+        "Pinguin",
+        "Zwembad",
+        "Snor",
+        "Ballon",
+        "Achtbaan",
+        "Molen",
+        "Vampier",
+        "Cowboy",
+        "Koningsdag",
+        "Mount Everest",
+        "IJshockey",
+        "Kapper",
+        "File",
+        "Titanic",
+        "Harry Potter",
+        "Vincent van Gogh",
+        "De Grand Canyon",
+        "Acupunctuur",
+        "De Franse Revolutie",
+        "Elfstedentocht",
+        "Jazz",
+        "De Sixtijnse Kapel",
+        "Camouflage",
+        "Andre Rieu",
+        "Origami"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Spanje grenzen.", "answers": [{ "text": "Frankrijk" }, { "text": "Portugal" }, { "text": "Andorra" }, { "text": "Marokko" }] },
-        { "prompt": "Noem vier bordspellen.", "answers": [{ "text": "Schaken" }, { "text": "Backgammon" }, { "text": "Mens erger je niet" }, { "text": "Cluedo" }] },
-        { "prompt": "Noem vier vogels die niet kunnen vliegen.", "answers": [{ "text": "Struisvogel" }, { "text": "Pinguin" }, { "text": "Emoe" }, { "text": "Kiwi" }] },
-        { "prompt": "Noem vier Nederlandse kunstenaars van na 1900.", "answers": [{ "text": "Mondriaan" }, { "text": "Escher" }, { "text": "Karel Appel" }, { "text": "Kees van Dongen" }] },
-        { "prompt": "Noem vier landen in Oceanie.", "answers": [{ "text": "Australie" }, { "text": "Nieuw-Zeeland" }, { "text": "Fiji" }, { "text": "Papoea-Nieuw-Guinea" }] },
-        { "prompt": "Noem vier producten die van melk worden gemaakt.", "answers": [{ "text": "Boter" }, { "text": "Kaas" }, { "text": "Yoghurt" }, { "text": "Room" }] },
-        { "prompt": "Noem vier beroemde torens.", "answers": [{ "text": "De Eiffeltoren" }, { "text": "Big Ben" }, { "text": "De toren van Pisa" }, { "text": "De Burj Khalifa" }] },
-        { "prompt": "Noem vier komedies van Shakespeare.", "answers": [{ "text": "Driekoningenavond" }, { "text": "Naar het u lijkt" }, { "text": "Veel drukte om niets" }, { "text": "Een midzomernachtsdroom" }] }
+        { "prompt": "Wat weet je van Nederland? Vier kernwoorden.", "answers": [{ "text": "Tulpen", "aliases": ["Tulp", "Bloemen"] }, { "text": "Molens", "aliases": ["Molen", "Windmolens"] }, { "text": "Kaas", "aliases": ["Gouda", "Edammer"] }, { "text": "Fietsen", "aliases": ["Fiets", "Iedereen fietst"] }] },
+        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "E is mc kwadraat", "aliases": ["E=mc2", "Zijn formule"] }, { "text": "De relativiteitstheorie", "aliases": ["Relativiteitstheorie", "Relativiteit"] }, { "text": "Zijn wilde haar", "aliases": ["Haar", "Gek haar", "Zijn snor"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
+        { "prompt": "Wat weet je van de Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney", "Ringo Starr", "George Harrison"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "Abbey Road", "aliases": ["Het zebrapad"] }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn", "aliases": ["Een woestijn", "De grootste woestijn"] }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Afrika", "aliases": ["Noord-Afrika"] }, { "text": "Kamelen", "aliases": ["Kameel", "Karavaan"] }] },
+        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Vierenzestig velden", "aliases": ["64 velden", "Zwarte en witte velden", "Het bord"] }, { "text": "De koning en de dame", "aliases": ["Koning", "Dame", "Pionnen"] }, { "text": "Schaakmat", "aliases": ["Schaak", "Mat"] }, { "text": "Grootmeesters", "aliases": ["Grootmeester", "Magnus Carlsen", "Kasparov"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "De vijf ringen", "aliases": ["Vijf ringen", "De ringen"] }, { "text": "Elke vier jaar", "aliases": ["Eens in de vier jaar"] }, { "text": "Gouden medailles", "aliases": ["Gouden medaille", "Medailles"] }, { "text": "Het oude Griekenland", "aliases": ["Griekenland", "Olympia", "De fakkel"] }] },
+        { "prompt": "Wat weet je van het Romeinse Rijk? Vier kernwoorden.", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar", "Keizers", "Augustus"] }, { "text": "Gladiatoren", "aliases": ["Gladiator", "Het Colosseum"] }, { "text": "Latijn" }, { "text": "Wegen en aquaducten", "aliases": ["Wegen", "Aquaducten", "Legioenen"] }] },
+        { "prompt": "Wat weet je van onweer? Vier kernwoorden.", "answers": [{ "text": "Bliksem", "aliases": ["Een bliksemschicht"] }, { "text": "Donder", "aliases": ["Gerommel"] }, { "text": "Regen", "aliases": ["Stortbui", "Hagel"] }, { "text": "Seconden tellen", "aliases": ["Tellen", "Donkere wolken"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Welke Nederlandse humanist schreef Lof der zotheid?", "answers": [{ "text": "Erasmus", "aliases": ["Desiderius Erasmus"] }] },
         { "prompt": "Wat is de hoofdstad van Jordanie?", "answers": [{ "text": "Amman" }] },
         { "prompt": "Welke Noorse componist schreef de Peer Gynt-suites?", "answers": [{ "text": "Edvard Grieg", "aliases": ["Grieg"] }] },
-        { "prompt": "In welk jaar schafte Nederland de doodstraf voor gewone misdrijven af?", "answers": [{ "text": "1870" }] },
+        { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Wat is de op een na hoogste berg ter wereld?", "answers": [{ "text": "K2" }] },
-        { "prompt": "Welke Griekse geleerde berekende als eerste de omtrek van de aarde?", "answers": [{ "text": "Eratosthenes" }] }
+        { "prompt": "Wat is het grootste eiland van de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
+        { "prompt": "Uit welk land komt de tango?", "answers": [{ "text": "Argentinie" }] }
       ]
     }
   ]

@@ -37,13 +37,9 @@
         { "prompt": "Wat is de hoofdstad van Australie?", "options": [{ "text": "Sydney" }, { "text": "Melbourne" }, { "text": "Canberra", "correct": true }, { "text": "Perth" }] },
         { "prompt": "Welke vogel legt het grootste ei?", "options": [{ "text": "Struisvogel", "correct": true }, { "text": "Pelikaan" }, { "text": "Albatros" }, { "text": "Emoe" }] },
         { "prompt": "In welk jaar begon de Franse Revolutie?", "options": [{ "text": "1776" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1804" }] },
-        { "prompt": "Welke rivier stroomt door Londen?", "options": [{ "text": "Severn" }, { "text": "Theems", "correct": true }, { "text": "Mersey" }, { "text": "Trent" }] },
-        { "prompt": "Hoeveel spelers heeft een basketbalteam in het veld?", "options": [{ "text": "Vier" }, { "text": "Vijf", "correct": true }, { "text": "Zes" }, { "text": "Zeven" }] },
         { "prompt": "Welk bestanddeel van bloed vervoert zuurstof?", "options": [{ "text": "Bloedplaatjes" }, { "text": "Rode bloedcellen", "correct": true }, { "text": "Witte bloedcellen" }, { "text": "Plasma" }] },
         { "prompt": "Welke schrijver bedacht Sherlock Holmes?", "options": [{ "text": "Agatha Christie" }, { "text": "Arthur Conan Doyle", "correct": true }, { "text": "Edgar Allan Poe" }, { "text": "Wilkie Collins" }] },
-        { "prompt": "Welke munteenheid wordt in Japan gebruikt?", "options": [{ "text": "Won" }, { "text": "Yen", "correct": true }, { "text": "Yuan" }, { "text": "Baht" }] },
         { "prompt": "Welke Nederlandse stad heeft de bijnaam Mokum?", "options": [{ "text": "Rotterdam" }, { "text": "Amsterdam", "correct": true }, { "text": "Utrecht" }, { "text": "Den Haag" }] },
-        { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "options": [{ "text": "Lood" }, { "text": "Kwik", "correct": true }, { "text": "Tin" }, { "text": "Zink" }] },
         { "prompt": "Welke oceaan is de diepste?", "options": [{ "text": "Atlantische Oceaan" }, { "text": "Stille Oceaan", "correct": true }, { "text": "Indische Oceaan" }, { "text": "Noordelijke IJszee" }] }
       ]
     },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Windmolen" },
-        { "prompt": "Stofzuiger" },
-        { "prompt": "Krokodil" },
-        { "prompt": "Bibliotheek" },
-        { "prompt": "Sinaasappel" },
-        { "prompt": "Astronaut" },
-        { "prompt": "Spiegel" },
-        { "prompt": "Lawine" },
-        { "prompt": "Brandweerman" },
-        { "prompt": "Vulkaan" },
-        { "prompt": "Tandarts" },
-        { "prompt": "Hangmat" },
-        { "prompt": "Kaars" },
-        { "prompt": "Pinguin" },
-        { "prompt": "Zaklamp" },
-        { "prompt": "Treinstation" }
+      "words": [
+        "Koffer",
+        "IJsje",
+        "Kangoeroe",
+        "Verpleegkundige",
+        "Helikopter",
+        "Parasol",
+        "Viool",
+        "Stoplicht",
+        "Vlinder",
+        "Bruiloft",
+        "De Dom van Utrecht",
+        "Star Wars",
+        "Julius Caesar",
+        "IJsland",
+        "Kok",
+        "De Amazone",
+        "Wie is de Mol",
+        "Aardbeving",
+        "De Taj Mahal",
+        "Elvis Presley",
+        "Galileo Galilei",
+        "De Franse Revolutie",
+        "Smid",
+        "Antarctica",
+        "Hierogliefen",
+        "Geduld",
+        "Pablo Picasso",
+        "De Sfinx",
+        "Luchtverkeersleider",
+        "Camouflage"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grandslamtoernooien in het tennis.", "answers": [{ "text": "Australian Open" }, { "text": "Roland Garros" }, { "text": "Wimbledon" }, { "text": "US Open" }] },
-        { "prompt": "Noem de vier klassieke elementen van de oude Grieken.", "answers": [{ "text": "Aarde" }, { "text": "Water" }, { "text": "Lucht" }, { "text": "Vuur" }] },
-        { "prompt": "Noem de vier Teenage Mutant Ninja Turtles.", "answers": [{ "text": "Leonardo" }, { "text": "Donatello" }, { "text": "Raphael" }, { "text": "Michelangelo" }] },
-        { "prompt": "Noem de vier afdelingen van Zweinstein uit Harry Potter.", "answers": [{ "text": "Griffoendor" }, { "text": "Zwadderich" }, { "text": "Ravenklauw" }, { "text": "Huffelpuf" }] },
-        { "prompt": "Noem de vier grootste eilanden van Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
-        { "prompt": "Noem de vier stemsoorten in een gemengd koor.", "answers": [{ "text": "Sopraan" }, { "text": "Alt" }, { "text": "Tenor" }, { "text": "Bas" }] },
-        { "prompt": "Noem de vier basen van DNA.", "answers": [{ "text": "Adenine" }, { "text": "Thymine" }, { "text": "Guanine" }, { "text": "Cytosine" }] },
-        { "prompt": "Noem de vier musketiers uit het boek van Alexandre Dumas.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "d'Artagnan" }] }
+        { "prompt": "Wat weet je van pizza? Vier kernwoorden.", "answers": [{ "text": "Italie", "aliases": ["Italiaans"] }, { "text": "Kaas", "aliases": ["Mozzarella"] }, { "text": "Tomatensaus", "aliases": ["Tomaat", "Tomaten"] }, { "text": "Oven", "aliases": ["Houtoven", "Gebakken"] }] },
+        { "prompt": "Wat weet je van het Amazoneregenwoud? Vier kernwoorden.", "answers": [{ "text": "Brazilie", "aliases": ["Zuid-Amerika"] }, { "text": "De rivier de Amazone", "aliases": ["Amazone", "Rivier"] }, { "text": "Regenwoud", "aliases": ["Jungle", "Bomen"] }, { "text": "Ontbossing", "aliases": ["Houtkap", "Branden"] }] },
+        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-and-roll", "aliases": ["Rock", "Rock-n-roll"] }, { "text": "Graceland" }, { "text": "The King", "aliases": ["De King", "Koning van de rock-and-roll"] }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock", "Hound Dog"] }] },
+        { "prompt": "Wat weet je van Australie? Vier kernwoorden.", "answers": [{ "text": "Kangoeroes", "aliases": ["Kangoeroe"] }, { "text": "Het Sydney Opera House", "aliases": ["Sydney", "Opera House"] }, { "text": "Het Great Barrier Reef", "aliases": ["Great Barrier Reef"] }, { "text": "De outback", "aliases": ["Outback", "Uluru", "Ayers Rock"] }] },
+        { "prompt": "Wat weet je van Wimbledon? Vier kernwoorden.", "answers": [{ "text": "Tennis" }, { "text": "Londen", "aliases": ["Engeland"] }, { "text": "Grasbanen", "aliases": ["Gras"] }, { "text": "Aardbeien met slagroom", "aliases": ["Aardbeien"] }] },
+        { "prompt": "Wat weet je van honingbijen? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "De bijenkorf", "aliases": ["Bijenkorf", "Korf"] }, { "text": "Steken", "aliases": ["Angel", "Ze steken"] }, { "text": "De bijenkoningin", "aliases": ["Koningin", "Bijenkoningin"] }] },
+        { "prompt": "Wat weet je van de Vikingen? Vier kernwoorden.", "answers": [{ "text": "Drakenschepen", "aliases": ["Langschepen", "Schepen"] }, { "text": "Scandinavie", "aliases": ["Noorwegen", "Denemarken", "Zweden"] }, { "text": "Gehoornde helmen", "aliases": ["Helmen", "Helm"] }, { "text": "Plundertochten", "aliases": ["Plunderen", "Rooftochten"] }] },
+        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Bordspel", "aliases": ["Bord", "Schaakbord"] }, { "text": "Koning en koningin", "aliases": ["Koning", "Dame"] }, { "text": "Schaakmat", "aliases": ["Mat", "Schaak"] }, { "text": "Pion", "aliases": ["Pionnen", "Paard", "Loper"] }] }
       ]
     },
     {
@@ -117,6 +127,7 @@
         { "prompt": "Welk element heeft het symbool W?", "answers": [{ "text": "Wolfraam", "aliases": ["tungsteen"] }] },
         { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answers": [{ "text": "1961" }] },
         { "prompt": "Welke Griekse wiskundige zou Eureka hebben geroepen in zijn bad?", "answers": [{ "text": "Archimedes" }] },
+        { "prompt": "Welke Duitse componist schreef de Brandenburgse Concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] }
       ]
     }

@@ -34,13 +34,9 @@
         { "prompt": "Which of these countries does NOT border Germany?", "options": [{ "text": "Belgium" }, { "text": "Czechia" }, { "text": "Hungary", "correct": true }, { "text": "Denmark" }] },
         { "prompt": "Who wrote the novel Crime and Punishment?", "options": [{ "text": "Dostoevsky", "correct": true }, { "text": "Tolstoy" }, { "text": "Chekhov" }, { "text": "Gogol" }] },
         { "prompt": "Which element has atomic number 1?", "options": [{ "text": "Helium" }, { "text": "Hydrogen", "correct": true }, { "text": "Lithium" }, { "text": "Carbon" }] },
-        { "prompt": "In what year did the Titanic sink?", "options": [{ "text": "1905" }, { "text": "1912", "correct": true }, { "text": "1918" }, { "text": "1923" }] },
         { "prompt": "What is the capital of Canada?", "options": [{ "text": "Toronto" }, { "text": "Vancouver" }, { "text": "Ottawa", "correct": true }, { "text": "Montreal" }] },
         { "prompt": "Which of these animals is a marsupial?", "options": [{ "text": "Otter" }, { "text": "Wombat", "correct": true }, { "text": "Lemming" }, { "text": "Ferret" }] },
-        { "prompt": "How many strings does a standard violin have?", "options": [{ "text": "Three" }, { "text": "Four", "correct": true }, { "text": "Five" }, { "text": "Six" }] },
         { "prompt": "Which planet is known for its great red spot?", "options": [{ "text": "Jupiter", "correct": true }, { "text": "Saturn" }, { "text": "Mars" }, { "text": "Neptune" }] },
-        { "prompt": "Which country gave the Statue of Liberty to the United States?", "options": [{ "text": "England" }, { "text": "France", "correct": true }, { "text": "Spain" }, { "text": "Italy" }] },
-        { "prompt": "Which Dutch painter cut off part of his own ear?", "options": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Van Gogh", "correct": true }, { "text": "Mondrian" }] },
         { "prompt": "What is the longest bone in the human body?", "options": [{ "text": "Shin bone" }, { "text": "Femur", "correct": true }, { "text": "Humerus" }, { "text": "Fibula" }] },
         { "prompt": "Which of these seas is really a lake?", "options": [{ "text": "Caspian Sea", "correct": true }, { "text": "Black Sea" }, { "text": "Red Sea" }, { "text": "Adriatic Sea" }] },
         { "prompt": "In what year did the First World War begin?", "options": [{ "text": "1912" }, { "text": "1914", "correct": true }, { "text": "1916" }, { "text": "1918" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Umbrella" },
-        { "prompt": "Lighthouse" },
-        { "prompt": "Wheelbarrow" },
-        { "prompt": "Washing machine" },
-        { "prompt": "Snowman" },
-        { "prompt": "Harmonica" },
-        { "prompt": "Swimming pool" },
-        { "prompt": "Compass" },
-        { "prompt": "Birthday" },
-        { "prompt": "Camel" },
-        { "prompt": "Postman" },
-        { "prompt": "Glacier" },
-        { "prompt": "Ice skates" },
-        { "prompt": "Hospital" },
-        { "prompt": "Rainbow" },
-        { "prompt": "Tractor" }
+      "words": [
+        "Lighthouse",
+        "Wheelbarrow",
+        "Washing machine",
+        "Swimming pool",
+        "Birthday",
+        "Camel",
+        "Tractor",
+        "Ice skates",
+        "Hospital",
+        "Guitar",
+        "Glacier",
+        "Harmonica",
+        "Compass",
+        "Firefighter",
+        "The pyramids",
+        "Cinderella",
+        "Tour de France",
+        "Sushi",
+        "The Statue of Liberty",
+        "Referee",
+        "Napoleon",
+        "The Great Barrier Reef",
+        "The Godfather",
+        "Hypnosis",
+        "Michael Jackson",
+        "The Silk Road",
+        "Democracy",
+        "Lightning conductor",
+        "Sign language",
+        "Carnival"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four seasons.", "answers": [{ "text": "Spring" }, { "text": "Summer" }, { "text": "Autumn" }, { "text": "Winter" }] },
-        { "prompt": "Name the four Beatles.", "answers": [{ "text": "John Lennon" }, { "text": "Paul McCartney" }, { "text": "George Harrison" }, { "text": "Ringo Starr" }] },
-        { "prompt": "Name the four largest cities of the Dutch Randstad.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
-        { "prompt": "Name the four cardinal directions.", "answers": [{ "text": "North" }, { "text": "East" }, { "text": "South" }, { "text": "West" }] },
-        { "prompt": "Name the four blood groups of the ABO system.", "answers": [{ "text": "A" }, { "text": "B" }, { "text": "AB" }, { "text": "O" }] },
-        { "prompt": "Name the four countries of the United Kingdom.", "answers": [{ "text": "England" }, { "text": "Scotland" }, { "text": "Wales" }, { "text": "Northern Ireland" }] },
-        { "prompt": "Name the four suits in a deck of cards.", "answers": [{ "text": "Hearts" }, { "text": "Diamonds" }, { "text": "Clubs" }, { "text": "Spades" }] },
-        { "prompt": "Name the four gas planets of our solar system.", "answers": [{ "text": "Jupiter" }, { "text": "Saturn" }, { "text": "Uranus" }, { "text": "Neptune" }] }
+        { "prompt": "What do you know about Napoleon? Four keywords.", "answers": [{ "text": "French", "aliases": ["France"] }, { "text": "Waterloo", "aliases": ["He lost at Waterloo"] }, { "text": "Emperor", "aliases": ["He crowned himself emperor"] }, { "text": "His hand inside his coat", "aliases": ["Hand in his jacket", "He was short", "Elba"] }] },
+        { "prompt": "What do you know about the Netherlands? Four keywords.", "answers": [{ "text": "Tulips", "aliases": ["Flowers"] }, { "text": "Windmills", "aliases": ["Windmill"] }, { "text": "Cheese", "aliases": ["Gouda", "Edam"] }, { "text": "Bicycles", "aliases": ["Everyone cycles", "Below sea level"] }] },
+        { "prompt": "What do you know about Elvis Presley? Four keywords.", "answers": [{ "text": "The King", "aliases": ["The king of rock and roll"] }, { "text": "His swinging hips", "aliases": ["Hips", "His dancing"] }, { "text": "Graceland", "aliases": ["Memphis"] }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock", "Hound Dog"] }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa beans", "aliases": ["Cocoa", "Cacao"] }, { "text": "Brown" }, { "text": "Milk chocolate", "aliases": ["Dark chocolate", "White chocolate"] }, { "text": "Switzerland", "aliases": ["Belgium", "Easter eggs"] }] },
+        { "prompt": "What do you know about pizza? Four keywords.", "answers": [{ "text": "Italy", "aliases": ["Italian"] }, { "text": "Cheese", "aliases": ["Mozzarella"] }, { "text": "Tomato sauce", "aliases": ["Tomato"] }, { "text": "Margherita", "aliases": ["Pepperoni", "Toppings", "The oven"] }] },
+        { "prompt": "What do you know about dinosaurs? Four keywords.", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "Brontosaurus"] }, { "text": "They died out", "aliases": ["Extinct", "A meteorite killed them"] }, { "text": "Fossils", "aliases": ["Bones", "Skeletons"] }, { "text": "Jurassic Park", "aliases": ["The film"] }] },
+        { "prompt": "What do you know about New York? Four keywords.", "answers": [{ "text": "Skyscrapers", "aliases": ["The Empire State Building"] }, { "text": "Central Park" }, { "text": "Yellow taxis", "aliases": ["Taxis", "Cabs"] }, { "text": "Times Square", "aliases": ["Broadway"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow" }, { "text": "Cold", "aliases": ["Frost", "Ice"] }, { "text": "Christmas", "aliases": ["December"] }, { "text": "Skiing", "aliases": ["Ice skating", "Sledging"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch physicist won the 1913 Nobel Prize for his work at very low temperatures?", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
-        { "prompt": "What is the longest river in South America?", "answers": [{ "text": "The Amazon", "aliases": ["Amazon"] }] },
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which mountain range is the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural mountains", "Urals"] }] },
         { "prompt": "Which composer wrote the opera The Magic Flute?", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
         { "prompt": "What is the capital of Mongolia?", "answers": [{ "text": "Ulaanbaatar", "aliases": ["Ulan Bator"] }] },
         { "prompt": "On which ship did Charles Darwin make his voyage around the world?", "answers": [{ "text": "The Beagle", "aliases": ["Beagle"] }] },
-        { "prompt": "In what year were the United Nations founded?", "answers": [{ "text": "1945" }] }
+        { "prompt": "In what year were the United Nations founded?", "answers": [{ "text": "1945" }] },
+        { "prompt": "Which Spanish artist painted the melting clocks of The Persistence of Memory?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
       ]
     }
   ]

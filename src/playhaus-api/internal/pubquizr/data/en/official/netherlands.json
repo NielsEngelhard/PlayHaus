@@ -35,16 +35,12 @@
         { "prompt": "Which province does NOT border the IJsselmeer?", "options": [{ "text": "Friesland" }, { "text": "North Holland" }, { "text": "Groningen", "correct": true }, { "text": "Flevoland" }] },
         { "prompt": "Which Dutch city has the largest seaport in Europe?", "options": [{ "text": "Rotterdam", "correct": true }, { "text": "Amsterdam" }, { "text": "Vlissingen" }, { "text": "Terneuzen" }] },
         { "prompt": "How many seats does the Dutch House of Representatives have?", "options": [{ "text": "100" }, { "text": "125" }, { "text": "150", "correct": true }, { "text": "175" }] },
-        { "prompt": "In what year were the Delta Works completed with the Maeslant barrier?", "options": [{ "text": "1986" }, { "text": "1993" }, { "text": "1997", "correct": true }, { "text": "2002" }] },
         { "prompt": "Which Dutch province has Arnhem as its capital?", "options": [{ "text": "Gelderland", "correct": true }, { "text": "Overijssel" }, { "text": "Utrecht" }, { "text": "Limburg" }] },
-        { "prompt": "Which animal stands on the coat of arms of the Kingdom?", "options": [{ "text": "Eagle" }, { "text": "Lion", "correct": true }, { "text": "Bear" }, { "text": "Stag" }] },
         { "prompt": "Which Dutch cyclist won the Tour de France in 1980?", "options": [{ "text": "Joop Zoetemelk", "correct": true }, { "text": "Jan Janssen" }, { "text": "Hennie Kuiper" }, { "text": "Gerrie Knetemann" }] },
         { "prompt": "Which Dutch city has had a university since 1575?", "options": [{ "text": "Leiden", "correct": true }, { "text": "Groningen" }, { "text": "Utrecht" }, { "text": "Amsterdam" }] },
         { "prompt": "Which Dutch product is traded at the market of Alkmaar?", "options": [{ "text": "Flowers" }, { "text": "Cheese", "correct": true }, { "text": "Fish" }, { "text": "Cattle" }] },
         { "prompt": "Who was the first king of the Netherlands?", "options": [{ "text": "Willem I", "correct": true }, { "text": "Willem II" }, { "text": "Willem III" }, { "text": "Willem-Alexander" }] },
-        { "prompt": "Which Dutch island is NOT one of the Wadden islands?", "options": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Goeree", "correct": true }, { "text": "Schiermonnikoog" }] },
         { "prompt": "Which Dutch river flows through Nijmegen?", "options": [{ "text": "Waal", "correct": true }, { "text": "IJssel" }, { "text": "Maas" }, { "text": "Lek" }] },
-        { "prompt": "In what year did the Rijksmuseum open in its present building?", "options": [{ "text": "1800" }, { "text": "1863" }, { "text": "1885", "correct": true }, { "text": "1901" }] },
         { "prompt": "Which Dutch writer wrote The Evenings?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] }
       ]
     },
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Clogs" },
-        { "prompt": "Stroopwafel" },
-        { "prompt": "Canal" },
-        { "prompt": "Poffertjes" },
-        { "prompt": "Dyke" },
-        { "prompt": "Windmill" },
-        { "prompt": "Tulip" },
-        { "prompt": "Cycle path" },
-        { "prompt": "Herring" },
-        { "prompt": "Sinterklaas" },
-        { "prompt": "Doughnut" },
-        { "prompt": "Skating tour" },
-        { "prompt": "Cheese market" },
-        { "prompt": "Delta Works" },
-        { "prompt": "King's Day" },
-        { "prompt": "Water board" }
+      "words": [
+        "Clogs",
+        "Windmill",
+        "Tulip",
+        "Canal",
+        "Dyke",
+        "Herring",
+        "Bicycle",
+        "Amsterdam",
+        "Orange",
+        "Cheese market",
+        "Stroopwafel",
+        "Rembrandt",
+        "Vincent van Gogh",
+        "The Night Watch",
+        "Anne Frank",
+        "Sinterklaas",
+        "King's Day",
+        "Ajax",
+        "Max Verstappen",
+        "Afsluitdijk",
+        "Delta Works",
+        "Elfstedentocht",
+        "Johan Cruyff",
+        "Water board",
+        "Michiel de Ruyter",
+        "Polder",
+        "Keukenhof",
+        "Wadden Sea",
+        "Gerrit Rietveld",
+        "The Golden Age"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest cities of the Netherlands.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "The Hague" }, { "text": "Utrecht" }] },
-        { "prompt": "Name the four inhabited Wadden islands besides Schiermonnikoog.", "answers": [{ "text": "Texel" }, { "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }] },
-        { "prompt": "Name the four largest cities of North Brabant.", "answers": [{ "text": "Eindhoven" }, { "text": "Tilburg" }, { "text": "Breda" }, { "text": "'s-Hertogenbosch" }] },
-        { "prompt": "Name the four large rivers of the Netherlands.", "answers": [{ "text": "Rhine" }, { "text": "Meuse" }, { "text": "Waal" }, { "text": "IJssel" }] },
-        { "prompt": "Name four Dutch painters of the Golden Age.", "answers": [{ "text": "Rembrandt" }, { "text": "Vermeer" }, { "text": "Frans Hals" }, { "text": "Jan Steen" }] },
-        { "prompt": "Name the four provinces that border Germany besides Limburg.", "answers": [{ "text": "Groningen" }, { "text": "Drenthe" }, { "text": "Overijssel" }, { "text": "Gelderland" }] },
-        { "prompt": "Name four Dutch cheeses.", "answers": [{ "text": "Gouda" }, { "text": "Edam" }, { "text": "Leerdammer" }, { "text": "Maasdam" }] },
-        { "prompt": "Name the four largest provinces of the Netherlands by area.", "answers": [{ "text": "Friesland" }, { "text": "Gelderland" }, { "text": "North Brabant" }, { "text": "Overijssel" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "Canals", "aliases": ["Canal", "Grachten"] }, { "text": "Anne Frank House", "aliases": ["Anne Frank"] }, { "text": "Bicycles", "aliases": ["Bikes", "Bicycle"] }, { "text": "The Rijksmuseum", "aliases": ["Rijksmuseum"] }] },
+        { "prompt": "What do you know about Rembrandt? Four keywords.", "answers": [{ "text": "The Night Watch", "aliases": ["Night Watch"] }, { "text": "Leiden" }, { "text": "The Golden Age", "aliases": ["Golden Age"] }, { "text": "Self-portraits", "aliases": ["Self-portrait"] }] },
+        { "prompt": "What do you know about Vincent van Gogh? Four keywords.", "answers": [{ "text": "Sunflowers" }, { "text": "His ear", "aliases": ["Ear", "He cut off his ear"] }, { "text": "The Potato Eaters", "aliases": ["Potato Eaters"] }, { "text": "Zundert" }] },
+        { "prompt": "What do you know about the Afsluitdijk? Four keywords.", "answers": [{ "text": "The IJsselmeer", "aliases": ["IJsselmeer", "Zuiderzee"] }, { "text": "Friesland" }, { "text": "North Holland", "aliases": ["Noord-Holland"] }, { "text": "32 kilometres", "aliases": ["32", "Thirty-two kilometres"] }] },
+        { "prompt": "What do you know about tulips? Four keywords.", "answers": [{ "text": "Keukenhof" }, { "text": "Bulbs", "aliases": ["Bulb"] }, { "text": "Tulip mania", "aliases": ["Tulipmania"] }, { "text": "Spring" }] },
+        { "prompt": "What do you know about King's Day? Four keywords.", "answers": [{ "text": "27 April", "aliases": ["April 27"] }, { "text": "Orange" }, { "text": "Flea market", "aliases": ["Vrijmarkt", "Free market"] }, { "text": "Willem-Alexander", "aliases": ["The King", "King"] }] },
+        { "prompt": "What do you know about Ajax? Four keywords.", "answers": [{ "text": "Amsterdam" }, { "text": "Football club", "aliases": ["Football", "Soccer club"] }, { "text": "Johan Cruyff", "aliases": ["Cruyff", "Cruijff"] }, { "text": "The Champions League", "aliases": ["Champions League", "European Cup"] }] },
+        { "prompt": "What do you know about the Wadden Sea? Four keywords.", "answers": [{ "text": "Mudflat walking", "aliases": ["Wadlopen"] }, { "text": "Seals", "aliases": ["Seal"] }, { "text": "The Wadden islands", "aliases": ["Wadden islands", "Texel", "Terschelling"] }, { "text": "UNESCO World Heritage", "aliases": ["UNESCO", "World Heritage"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
       "questions": [
         { "prompt": "Which Dutch navigator reached New Zealand in 1642?", "answers": [{ "text": "Abel Tasman", "aliases": ["Tasman"] }] },
         { "prompt": "What is the Dutch national anthem called?", "answers": [{ "text": "The Wilhelmus", "aliases": ["Wilhelmus"] }] },
-        { "prompt": "Which Dutch architect designed the Rietveld Schroder House in Utrecht?", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "Which Delft cloth merchant ground his own lenses and was the first to see bacteria?", "answers": [{ "text": "Antonie van Leeuwenhoek", "aliases": ["Van Leeuwenhoek", "Leeuwenhoek"] }] },
         { "prompt": "In what year did Spain recognise the Dutch Republic?", "answers": [{ "text": "1648" }] },
         { "prompt": "Which Dutch poet wrote the play Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
+        { "prompt": "Which Amsterdam-born philosopher wrote the Ethics and was expelled from his Jewish community?", "answers": [{ "text": "Baruch Spinoza", "aliases": ["Spinoza"] }] },
         { "prompt": "Which Caribbean island of the Dutch Kingdom is the largest?", "answers": [{ "text": "Curacao" }] }
       ]
     }

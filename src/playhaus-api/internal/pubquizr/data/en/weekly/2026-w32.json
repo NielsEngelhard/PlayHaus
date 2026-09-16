@@ -34,17 +34,13 @@
         { "prompt": "Which country does NOT border France?", "options": [{ "text": "Andorra" }, { "text": "Monaco" }, { "text": "Portugal", "correct": true }, { "text": "Switzerland" }] },
         { "prompt": "Who wrote War and Peace?", "options": [{ "text": "Tolstoy", "correct": true }, { "text": "Dostoevsky" }, { "text": "Turgenev" }, { "text": "Pushkin" }] },
         { "prompt": "Which element is the most common in the universe?", "options": [{ "text": "Hydrogen", "correct": true }, { "text": "Helium" }, { "text": "Oxygen" }, { "text": "Carbon" }] },
-        { "prompt": "In what year did the United Nations replace the League of Nations?", "options": [{ "text": "1919" }, { "text": "1939" }, { "text": "1945", "correct": true }, { "text": "1949" }] },
         { "prompt": "What is the capital of Peru?", "options": [{ "text": "Cusco" }, { "text": "Lima", "correct": true }, { "text": "Arequipa" }, { "text": "Trujillo" }] },
         { "prompt": "Which animal has no stomach?", "options": [{ "text": "Seahorse", "correct": true }, { "text": "Shark" }, { "text": "Ray" }, { "text": "Salmon" }] },
-        { "prompt": "How many players does a baseball team have on the field?", "options": [{ "text": "Eight" }, { "text": "Nine", "correct": true }, { "text": "Ten" }, { "text": "Eleven" }] },
         { "prompt": "Which planet is almost the same size as the earth?", "options": [{ "text": "Mars" }, { "text": "Venus", "correct": true }, { "text": "Mercury" }, { "text": "Neptune" }] },
         { "prompt": "Which country uses the Swiss franc besides Switzerland?", "options": [{ "text": "Austria" }, { "text": "Liechtenstein", "correct": true }, { "text": "Monaco" }, { "text": "Andorra" }] },
         { "prompt": "Which Irish writer wrote Ulysses?", "options": [{ "text": "James Joyce", "correct": true }, { "text": "Samuel Beckett" }, { "text": "Oscar Wilde" }, { "text": "W.B. Yeats" }] },
-        { "prompt": "Which hormone regulates blood sugar?", "options": [{ "text": "Adrenaline" }, { "text": "Insulin", "correct": true }, { "text": "Testosterone" }, { "text": "Cortisol" }] },
         { "prompt": "Which Dutch province borders both Belgium and Germany?", "options": [{ "text": "Limburg", "correct": true }, { "text": "Zeeland" }, { "text": "North Brabant" }, { "text": "Gelderland" }] },
-        { "prompt": "In what year did a human first orbit the earth?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] },
-        { "prompt": "Which instrument has no strings?", "options": [{ "text": "Harp" }, { "text": "Cello" }, { "text": "Trumpet", "correct": true }, { "text": "Guitar" }] }
+        { "prompt": "In what year did a human first orbit the earth?", "options": [{ "text": "1957" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1969" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Anchor chain" },
-        { "prompt": "Bicycle bell" },
-        { "prompt": "Wolf" },
-        { "prompt": "Police station" },
-        { "prompt": "Banana" },
-        { "prompt": "Detective" },
-        { "prompt": "Screwdriver" },
-        { "prompt": "Gong" },
-        { "prompt": "Lightning" },
-        { "prompt": "Sailor" },
-        { "prompt": "Roundabout" },
-        { "prompt": "Hourglass" },
-        { "prompt": "Pillow" },
-        { "prompt": "Snail" },
-        { "prompt": "Zoo" },
-        { "prompt": "Tin opener" }
+      "words": [
+        "Banana",
+        "Pillow",
+        "Wolf",
+        "Snail",
+        "Zoo",
+        "Lightning",
+        "Screwdriver",
+        "Bicycle bell",
+        "Sailor",
+        "Roundabout",
+        "Hourglass",
+        "Tin opener",
+        "Gong",
+        "Police station",
+        "Detective",
+        "Anchor chain",
+        "Circus",
+        "Honeymoon",
+        "Firework",
+        "Lifeguard",
+        "Mount Rushmore",
+        "The Wright brothers",
+        "Vincent van Gogh",
+        "The Amazon rainforest",
+        "Gladiator",
+        "Morse code",
+        "The Silk Road",
+        "Beethoven",
+        "The Trojan Horse",
+        "The Great Barrier Reef"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four largest countries in Europe by area after Russia.", "answers": [{ "text": "Ukraine" }, { "text": "France" }, { "text": "Spain" }, { "text": "Sweden" }] },
-        { "prompt": "Name the four members of ABBA.", "answers": [{ "text": "Agnetha" }, { "text": "Bjorn" }, { "text": "Benny" }, { "text": "Anni-Frid" }] },
-        { "prompt": "Name the four countries that have won the football World Cup most often up to 2022.", "answers": [{ "text": "Brazil" }, { "text": "Germany" }, { "text": "Italy" }, { "text": "Argentina" }] },
-        { "prompt": "Name the four months from January to July that have thirty-one days.", "answers": [{ "text": "January" }, { "text": "March" }, { "text": "May" }, { "text": "July" }] },
-        { "prompt": "Name four art movements of the early twentieth century.", "answers": [{ "text": "Cubism" }, { "text": "Expressionism" }, { "text": "Surrealism" }, { "text": "Dadaism" }] },
-        { "prompt": "Name four glands of the human endocrine system.", "answers": [{ "text": "Thyroid" }, { "text": "Adrenal gland" }, { "text": "Pituitary gland" }, { "text": "Pancreas" }] },
-        { "prompt": "Name the four largest cities of Belgium.", "answers": [{ "text": "Brussels" }, { "text": "Antwerp" }, { "text": "Ghent" }, { "text": "Charleroi" }] },
-        { "prompt": "Name four classical epic poems.", "answers": [{ "text": "The Iliad" }, { "text": "The Odyssey" }, { "text": "The Aeneid" }, { "text": "Metamorphoses" }] }
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris" }, { "text": "Iron", "aliases": ["Steel", "Made of iron"] }, { "text": "Three hundred metres tall", "aliases": ["300 metres", "Tall"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }] },
+        { "prompt": "What do you know about the sea? Four keywords.", "answers": [{ "text": "Salt water", "aliases": ["Salty", "Salt"] }, { "text": "Waves", "aliases": ["Wave"] }, { "text": "Fish", "aliases": ["Fishes"] }, { "text": "Ships", "aliases": ["Boats", "Ship"] }] },
+        { "prompt": "What do you know about Queen Elizabeth II? Four keywords.", "answers": [{ "text": "England", "aliases": ["The United Kingdom", "Britain"] }, { "text": "The crown", "aliases": ["Crown"] }, { "text": "Corgis", "aliases": ["Dogs", "Corgi"] }, { "text": "Buckingham Palace", "aliases": ["Palace"] }] },
+        { "prompt": "What do you know about a train? Four keywords.", "answers": [{ "text": "Rails", "aliases": ["Tracks", "Rail"] }, { "text": "The station", "aliases": ["Station"] }, { "text": "Locomotive", "aliases": ["Engine"] }, { "text": "Conductor", "aliases": ["Ticket", "Ticket inspector"] }] },
+        { "prompt": "What do you know about the Tour de France? Four keywords.", "answers": [{ "text": "Cycling", "aliases": ["Bicycles", "Bikes"] }, { "text": "The yellow jersey", "aliases": ["Yellow jersey"] }, { "text": "The mountains", "aliases": ["Mountains", "The Alps"] }, { "text": "July", "aliases": ["Summer"] }] },
+        { "prompt": "What do you know about Spain? Four keywords.", "answers": [{ "text": "Paella" }, { "text": "Flamenco", "aliases": ["Dancing"] }, { "text": "Bullfighting", "aliases": ["Bulls"] }, { "text": "Madrid", "aliases": ["Barcelona"] }] },
+        { "prompt": "What do you know about chocolate? Four keywords.", "answers": [{ "text": "Cocoa", "aliases": ["Cacao"] }, { "text": "Sweet", "aliases": ["Sugar"] }, { "text": "Brown" }, { "text": "Easter eggs", "aliases": ["Easter", "Chocolate bar"] }] },
+        { "prompt": "What do you know about a lion? Four keywords.", "answers": [{ "text": "Mane", "aliases": ["The mane"] }, { "text": "Roaring", "aliases": ["Roar"] }, { "text": "Africa", "aliases": ["The savannah"] }, { "text": "King of the jungle", "aliases": ["King of the animals"] }] }
       ]
     },
     {
@@ -112,12 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which Dutch philosopher wrote the Ethics and was expelled from the synagogue in 1656?", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza"] }] },
         { "prompt": "What is the largest island in the Mediterranean?", "answers": [{ "text": "Sicily" }] },
-        { "prompt": "Which Hungarian composer wrote the Hungarian Rhapsodies?", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
         { "prompt": "What is the capital of Ethiopia?", "answers": [{ "text": "Addis Abeba", "aliases": ["Addis Ababa"] }] },
         { "prompt": "Which British physicist wrote A Brief History of Time?", "answers": [{ "text": "Stephen Hawking", "aliases": ["Hawking"] }] },
-        { "prompt": "In what year was the Peace of Munster signed?", "answers": [{ "text": "1648" }] }
+        { "prompt": "Into which sea does the river Danube flow?", "answers": [{ "text": "The Black Sea", "aliases": ["Black Sea"] }] },
+        { "prompt": "In which country were the first modern Olympic Games held in 1896?", "answers": [{ "text": "Greece", "aliases": ["Athens, Greece"] }] },
+        { "prompt": "Which metal has the chemical symbol Pb?", "answers": [{ "text": "Lead" }] },
+        { "prompt": "Which Italian explorer gave his name to America?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
       ]
     }
   ]

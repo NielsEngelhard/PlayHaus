@@ -33,14 +33,10 @@
       "questions": [
         { "prompt": "Welk Afrikaans land heeft de meeste buurlanden?", "options": [{ "text": "De Democratische Republiek Congo", "correct": true }, { "text": "Soedan" }, { "text": "Niger" }, { "text": "Zambia" }] },
         { "prompt": "Onder welk pseudoniem schreef Mary Ann Evans Middlemarch?", "options": [{ "text": "George Eliot", "correct": true }, { "text": "Currer Bell" }, { "text": "George Sand" }, { "text": "Ellis Bell" }] },
-        { "prompt": "Hoe heet de rand van de deeltjesbel van de zon in de ruimte?", "options": [{ "text": "De heliopauze", "correct": true }, { "text": "De magnetopauze" }, { "text": "De corona" }, { "text": "Het eindpunt" }] },
-        { "prompt": "Welk dier kan zijn hele leven zonder water drinken?", "options": [{ "text": "De kangoeroerat", "correct": true }, { "text": "De stokstaartje" }, { "text": "De gerbil" }, { "text": "De fennek" }] },
-        { "prompt": "Welke vrucht wordt gedroogd tot pruimen?", "options": [{ "text": "De pruim", "correct": true }, { "text": "De abrikoos" }, { "text": "De vijg" }, { "text": "De dadel" }] },
         { "prompt": "In welke dansvorm maakt een danser een grand jete?", "options": [{ "text": "Ballet", "correct": true }, { "text": "Tapdans" }, { "text": "Flamenco" }, { "text": "Moderne dans" }] },
         { "prompt": "Welk insect maakt het hardste geluid van allemaal?", "options": [{ "text": "De cicade", "correct": true }, { "text": "De krekel" }, { "text": "De bij" }, { "text": "De kever" }] },
         { "prompt": "Welke druivensoort staat op meer wijngaarden dan welke andere ook?", "options": [{ "text": "Cabernet Sauvignon", "correct": true }, { "text": "Merlot" }, { "text": "Chardonnay" }, { "text": "Tempranillo" }] },
         { "prompt": "Wat is de hoofdstad van de Canadese provincie Quebec?", "options": [{ "text": "Quebec-stad", "correct": true }, { "text": "Montreal" }, { "text": "Laval" }, { "text": "Gatineau" }] },
-        { "prompt": "Welk element is genoemd naar de Noorse god van de donder?", "options": [{ "text": "Thorium", "correct": true }, { "text": "Vanadium" }, { "text": "Niobium" }, { "text": "Tantaal" }] },
         { "prompt": "Welk zeedier heeft acht armen en twee langere vangarmen?", "options": [{ "text": "De pijlinktvis", "correct": true }, { "text": "De octopus" }, { "text": "De zeester" }, { "text": "De kwal" }] },
         { "prompt": "In welk decennium veroverde de rock-'n-roll de hitlijsten?", "options": [{ "text": "De jaren vijftig", "correct": true }, { "text": "De jaren veertig" }, { "text": "De jaren zestig" }, { "text": "De jaren dertig" }] },
         { "prompt": "Welke godsdienst wordt in Japan naast het boeddhisme beleden?", "options": [{ "text": "Shinto", "correct": true }, { "text": "Taoisme" }, { "text": "Confucianisme" }, { "text": "Jainisme" }] },
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Kaasrasp" },
-        { "prompt": "Plakbandhouder" },
-        { "prompt": "Badmuts" },
-        { "prompt": "Voedersilo" },
-        { "prompt": "Bokshandschoen" },
-        { "prompt": "Brandalarm" },
-        { "prompt": "Campingbrander" },
-        { "prompt": "Zakmes" },
-        { "prompt": "Hondenhok" },
-        { "prompt": "Badeendje" },
-        { "prompt": "Zonnebank" },
-        { "prompt": "Tandpasta" },
-        { "prompt": "Touwladder" },
-        { "prompt": "Schoorsteenveger" },
-        { "prompt": "Stemvork" },
-        { "prompt": "Kas" }
+      "words": [
+        "Kaasrasp",
+        "Tandpasta",
+        "Kas",
+        "Badeendje",
+        "Bokshandschoen",
+        "Paraplu",
+        "Sneeuwpop",
+        "Spiegel",
+        "Kapper",
+        "Vlinder",
+        "Schoorsteenveger",
+        "Stemvork",
+        "Zakmes",
+        "Molen",
+        "Amsterdam",
+        "Sherlock Holmes",
+        "Formule 1",
+        "Vampier",
+        "Lasagne",
+        "Postbode",
+        "Leonardo da Vinci",
+        "De Mona Lisa",
+        "De Berlijnse Muur",
+        "Star Wars",
+        "Acupunctuur",
+        "Sterrenkundige",
+        "De Rolling Stones",
+        "Winterslaap",
+        "Origami",
+        "Elfstedentocht"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem vier landen die aan Griekenland grenzen.", "answers": [{ "text": "Albanie" }, { "text": "Noord-Macedonie" }, { "text": "Bulgarije" }, { "text": "Turkije" }] },
-        { "prompt": "Noem vier kruiden.", "answers": [{ "text": "Basilicum" }, { "text": "Tijm" }, { "text": "Rozemarijn" }, { "text": "Peterselie" }] },
-        { "prompt": "Noem vier hoofdsteden in Azie.", "answers": [{ "text": "Tokio" }, { "text": "Peking" }, { "text": "Seoel" }, { "text": "Bangkok" }] },
-        { "prompt": "Noem vier soorten taart.", "answers": [{ "text": "Biscuittaart" }, { "text": "Cheesecake" }, { "text": "Worteltaart" }, { "text": "Appeltaart" }] },
-        { "prompt": "Noem vier olympische wieleronderdelen.", "answers": [{ "text": "Wegwedstrijd" }, { "text": "Tijdrit" }, { "text": "Baanwielrennen" }, { "text": "Mountainbiken" }] },
-        { "prompt": "Noem vier manieren om te reizen.", "answers": [{ "text": "Trein" }, { "text": "Bus" }, { "text": "Vliegtuig" }, { "text": "Schip" }] },
-        { "prompt": "Noem vier beroemde vulkanen.", "answers": [{ "text": "Vesuvius" }, { "text": "Etna" }, { "text": "Krakatau" }, { "text": "Fuji" }] },
-        { "prompt": "Noem vier dingen die je in een tuin vindt.", "answers": [{ "text": "Gazon" }, { "text": "Heg" }, { "text": "Schuurtje" }, { "text": "Vijver" }] }
+        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "De grachten", "aliases": ["Grachten"] }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Het Anne Frank Huis", "aliases": ["Anne Frank"] }, { "text": "Het Rijksmuseum", "aliases": ["Musea", "Het Van Gogh Museum"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "De Mona Lisa" }, { "text": "Het Laatste Avondmaal" }, { "text": "Hij was uitvinder", "aliases": ["Uitvinder", "Vliegmachines"] }, { "text": "Italiaans", "aliases": ["Italie", "De renaissance"] }] },
+        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Zand", "aliases": ["Duinen", "Zandduinen"] }, { "text": "Afrika", "aliases": ["Noord-Afrika"] }, { "text": "Kamelen" }, { "text": "De grootste woestijn", "aliases": ["Woestijn", "Heel heet"] }] },
+        { "prompt": "Wat weet je van het WK voetbal? Vier kernwoorden.", "answers": [{ "text": "Om de vier jaar" }, { "text": "De gouden beker", "aliases": ["De beker", "De cup"] }, { "text": "Brazilie won het het vaakst", "aliases": ["Brazilie"] }, { "text": "Oranje haalde drie keer de finale", "aliases": ["Oranje", "Nederland", "De finale"] }] },
+        { "prompt": "Wat weet je van Harry Potter? Vier kernwoorden.", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }, { "text": "Toverstokken en spreuken", "aliases": ["Magie", "Toverstok", "Spreuken"] }, { "text": "Voldemort", "aliases": ["Hermelien", "Ron", "Het litteken", "Ronde bril"] }] },
+        { "prompt": "Wat weet je van het oude Egypte? Vier kernwoorden.", "answers": [{ "text": "De piramides", "aliases": ["Piramides"] }, { "text": "Farao's", "aliases": ["Farao", "Toetanchamon"] }, { "text": "Mummies" }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van bijen? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "Ze steken", "aliases": ["Een steek", "Steken"] }, { "text": "De koningin", "aliases": ["De bijenkoningin", "De korf"] }, { "text": "Ze bestuiven bloemen", "aliases": ["Bloemen", "Bestuiving"] }] },
+        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "De kerstboom", "aliases": ["Kerstboom"] }, { "text": "Cadeaus", "aliases": ["Kerstpakket"] }, { "text": "De kerstman", "aliases": ["Kerstman"] }, { "text": "Het kerstdiner", "aliases": ["Gourmetten", "Familie"] }] }
       ]
     },
     {
@@ -112,11 +122,12 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welke Nederlandse schilder uit de Gouden Eeuw schilderde vooral kerkinterieurs?", "answers": [{ "text": "Pieter Saenredam", "aliases": ["Saenredam"] }] },
+        { "prompt": "Welke Nederlandse schilder schilderde Het melkmeisje?", "answers": [{ "text": "Johannes Vermeer", "aliases": ["Vermeer"] }] },
         { "prompt": "Wat is de hoofdstad van Estland?", "answers": [{ "text": "Tallinn" }] },
-        { "prompt": "Welke Russische componist schreef Schilderijen van een tentoonstelling?", "answers": [{ "text": "Modest Moessorgski", "aliases": ["Mussorgsky", "Moessorgski"] }] },
-        { "prompt": "In welk jaar werkte er voor het eerst een telegraafkabel dwars over de Atlantische Oceaan?", "answers": [{ "text": "1866" }] },
-        { "prompt": "Welk water op Antarctica is het zoutste ter wereld?", "answers": [{ "text": "Don Juan Pond", "aliases": ["Don Juan"] }] },
+        { "prompt": "Welke Russische componist schreef het ballet Het Zwanenmeer?", "answers": [{ "text": "Pjotr Tsjaikovski", "aliases": ["Tsjaikovski", "Tchaikovsky"] }] },
+        { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] },
+        { "prompt": "In welk land liggen de Angelwatervallen, de hoogste waterval ter wereld?", "answers": [{ "text": "Venezuela" }] },
+        { "prompt": "Welk gas vormt ongeveer achtenzeventig procent van de lucht die we inademen?", "answers": [{ "text": "Stikstof" }] },
         { "prompt": "Welke Engelse wetenschapper ontdekte de elektromagnetische inductie?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
       ]
     }

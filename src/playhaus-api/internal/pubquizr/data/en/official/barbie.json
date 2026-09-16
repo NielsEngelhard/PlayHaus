@@ -32,8 +32,6 @@
     {
       "round": 2,
       "questions": [
-        { "prompt": "In what year was Ken introduced?", "options": [{ "text": "1959" }, { "text": "1961", "correct": true }, { "text": "1965" }, { "text": "1970" }] },
-        { "prompt": "Which German doll was Barbie based on?", "options": [{ "text": "Bild Lilli", "correct": true }, { "text": "Kathe Kruse" }, { "text": "Steiff" }, { "text": "Schildkrot" }] },
         { "prompt": "In which city was Barbie presented in 1959?", "options": [{ "text": "New York", "correct": true }, { "text": "Chicago" }, { "text": "Los Angeles" }, { "text": "Nuremberg" }] },
         { "prompt": "Which American rapper sang Barbie World with Ice Spice?", "options": [{ "text": "Nicki Minaj", "correct": true }, { "text": "Doja Cat" }, { "text": "Cardi B" }, { "text": "Megan Thee Stallion" }] },
         { "prompt": "What is the friend who appeared in 1968 as the first black doll of the line called?", "options": [{ "text": "Christie", "correct": true }, { "text": "Midge" }, { "text": "Teresa" }, { "text": "Nikki" }] },
@@ -42,8 +40,6 @@
         { "prompt": "Which actress voiced the narrator in the 2023 film?", "options": [{ "text": "Helen Mirren", "correct": true }, { "text": "Judi Dench" }, { "text": "Meryl Streep" }, { "text": "Emma Thompson" }] },
         { "prompt": "Which company launched the rival Bratz dolls in 2001?", "options": [{ "text": "MGA Entertainment", "correct": true }, { "text": "Hasbro" }, { "text": "Lego" }, { "text": "Playmobil" }] },
         { "prompt": "What is Barbie's sister who appeared in 1992 called?", "options": [{ "text": "Stacie", "correct": true }, { "text": "Skipper" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
-        { "prompt": "Which singer won an Oscar for the song What Was I Made For?", "options": [{ "text": "Billie Eilish", "correct": true }, { "text": "Dua Lipa" }, { "text": "Lana Del Rey" }, { "text": "Olivia Rodrigo" }] },
-        { "prompt": "How many centimetres tall is a standard Barbie doll?", "options": [{ "text": "25" }, { "text": "29", "correct": true }, { "text": "33" }, { "text": "37" }] },
         { "prompt": "Which profession did Barbie first take up in 1973?", "options": [{ "text": "Surgeon", "correct": true }, { "text": "Pilot" }, { "text": "Judge" }, { "text": "Firefighter" }] },
         { "prompt": "In which American state is Mattel's head office?", "options": [{ "text": "California", "correct": true }, { "text": "New York" }, { "text": "Texas" }, { "text": "Illinois" }] }
       ]
@@ -63,36 +59,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Doll" },
-        { "prompt": "Dream house" },
-        { "prompt": "Convertible" },
-        { "prompt": "High heels" },
-        { "prompt": "Handbag" },
-        { "prompt": "Sunglasses" },
-        { "prompt": "Swimming pool" },
-        { "prompt": "Glitter" },
-        { "prompt": "Doll house" },
-        { "prompt": "Horse" },
-        { "prompt": "Beach" },
-        { "prompt": "Dress" },
-        { "prompt": "Hairstyle" },
-        { "prompt": "Toy shop" },
-        { "prompt": "Roller skates" },
-        { "prompt": "Film premiere" }
+      "words": [
+        "Ken",
+        "Pink",
+        "Dreamhouse",
+        "Mattel",
+        "High heels",
+        "Beach",
+        "Glitter",
+        "Horse",
+        "Convertible",
+        "Toy shop",
+        "Margot Robbie",
+        "Ryan Gosling",
+        "Greta Gerwig",
+        "Barbieland",
+        "Aqua",
+        "Barbie Girl",
+        "Hot Wheels",
+        "Astronaut",
+        "Roller skates",
+        "Dua Lipa",
+        "Ruth Handler",
+        "Bild Lilli",
+        "Skipper",
+        "Allan",
+        "Weird Barbie",
+        "Bratz",
+        "Willows",
+        "Barbie and the Rockers",
+        "America Ferrera",
+        "Malibu"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four actors from the 2023 Barbie film.", "answers": [{ "text": "Margot Robbie" }, { "text": "Ryan Gosling" }, { "text": "America Ferrera" }, { "text": "Will Ferrell" }] },
-        { "prompt": "Name the four sisters of Barbie.", "answers": [{ "text": "Skipper" }, { "text": "Stacie" }, { "text": "Chelsea" }, { "text": "Krissy" }] },
-        { "prompt": "Name four professions Barbie has had.", "answers": [{ "text": "Astronaut" }, { "text": "Doctor" }, { "text": "Pilot" }, { "text": "President" }] },
-        { "prompt": "Name four friends of Barbie.", "answers": [{ "text": "Midge" }, { "text": "Christie" }, { "text": "Teresa" }, { "text": "Nikki" }] },
-        { "prompt": "Name four artists from the soundtrack of the 2023 Barbie film.", "answers": [{ "text": "Dua Lipa" }, { "text": "Billie Eilish" }, { "text": "Nicki Minaj" }, { "text": "Ice Spice" }] },
-        { "prompt": "Name four toy brands of Mattel.", "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Fisher-Price" }, { "text": "Uno" }] },
-        { "prompt": "Name four films starring Margot Robbie.", "answers": [{ "text": "Barbie" }, { "text": "The Wolf of Wall Street" }, { "text": "I, Tonya" }, { "text": "Suicide Squad" }] },
-        { "prompt": "Name four films starring Ryan Gosling.", "answers": [{ "text": "La La Land" }, { "text": "Drive" }, { "text": "The Notebook" }, { "text": "Blade Runner 2049" }] }
+        { "prompt": "What do you know about Margot Robbie? Four keywords.", "answers": [{ "text": "Barbie" }, { "text": "Australian", "aliases": ["Australia"] }, { "text": "The Wolf of Wall Street" }, { "text": "Harley Quinn", "aliases": ["Suicide Squad"] }] },
+        { "prompt": "What do you know about Ryan Gosling? Four keywords.", "answers": [{ "text": "Ken" }, { "text": "La La Land" }, { "text": "The Notebook" }, { "text": "Canadian", "aliases": ["Canada"] }] },
+        { "prompt": "What do you know about Ken? Four keywords.", "answers": [{ "text": "Barbie's boyfriend", "aliases": ["Boyfriend", "Barbie"] }, { "text": "Ryan Gosling" }, { "text": "Blond hair", "aliases": ["Blond", "Blonde"] }, { "text": "Beach" }] },
+        { "prompt": "What do you know about Mattel? Four keywords.", "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Toy company", "aliases": ["Toys", "Toymaker"] }, { "text": "American", "aliases": ["America", "USA", "California"] }] },
+        { "prompt": "What do you know about the Dreamhouse? Four keywords.", "answers": [{ "text": "Pink" }, { "text": "Slide" }, { "text": "Swimming pool", "aliases": ["Pool"] }, { "text": "Wardrobe", "aliases": ["Closet"] }] },
+        { "prompt": "What do you know about Greta Gerwig? Four keywords.", "answers": [{ "text": "Barbie" }, { "text": "Director", "aliases": ["Film director"] }, { "text": "Lady Bird" }, { "text": "Little Women" }] },
+        { "prompt": "What do you know about the song Barbie Girl? Four keywords.", "answers": [{ "text": "Aqua" }, { "text": "1997" }, { "text": "Danish", "aliases": ["Denmark"] }, { "text": "Life in plastic, it's fantastic", "aliases": ["Life in plastic", "Plastic"] }] },
+        { "prompt": "What do you know about Ruth Handler? Four keywords.", "answers": [{ "text": "Mattel" }, { "text": "Invented Barbie", "aliases": ["Barbie", "Creator of Barbie"] }, { "text": "Her daughter Barbara", "aliases": ["Barbara"] }, { "text": "American", "aliases": ["America", "USA"] }] }
       ]
     },
     {
@@ -113,11 +123,12 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "How many dollars did the first Barbie doll cost in 1959?", "answers": [{ "text": "Three dollars", "aliases": ["3"] }] },
+        { "prompt": "How many dollars did the first Barbie doll cost in 1959?", "answers": [{ "text": "Three dollars", "aliases": ["3", "Three"] }] },
         { "prompt": "Who was Ruth Handler's husband and co-founder of Mattel?", "answers": [{ "text": "Elliot Handler", "aliases": ["Elliot"] }] },
-        { "prompt": "In what year did the first Barbie animated film, Barbie in the Nutcracker, appear?", "answers": [{ "text": "2001" }] },
-        { "prompt": "Which actress played the mother Gloria in the 2023 film?", "answers": [{ "text": "America Ferrera", "aliases": ["Ferrera"] }] },
+        { "prompt": "Which power ballad did Ryan Gosling sing as Ken in the 2023 film?", "answers": [{ "text": "I'm Just Ken", "aliases": ["Just Ken"] }] },
+        { "prompt": "Which actress played Gloria, the Mattel employee, in the 2023 film?", "answers": [{ "text": "America Ferrera", "aliases": ["Ferrera"] }] },
         { "prompt": "What is the fictional world Barbie lives in in the 2023 film called?", "answers": [{ "text": "Barbieland" }] },
+        { "prompt": "Which actor played Allan, the only Allan, in the 2023 film?", "answers": [{ "text": "Michael Cera", "aliases": ["Cera"] }] },
         { "prompt": "Which American pop artist painted a portrait of Barbie in the eighties?", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] }
       ]
     }

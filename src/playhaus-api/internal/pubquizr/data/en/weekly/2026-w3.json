@@ -32,17 +32,13 @@
       "round": 2,
       "questions": [
         { "prompt": "Which is the oldest university in the world still teaching today?", "options": [{ "text": "Bologna", "correct": true }, { "text": "Oxford" }, { "text": "Paris" }, { "text": "Salamanca" }] },
-        { "prompt": "What is the capital of Indonesia?", "options": [{ "text": "Jakarta", "correct": true }, { "text": "Surabaya" }, { "text": "Bandung" }, { "text": "Medan" }] },
         { "prompt": "Which galaxy is our nearest large neighbour?", "options": [{ "text": "Andromeda", "correct": true }, { "text": "Triangulum" }, { "text": "The Whirlpool" }, { "text": "The Sombrero" }] },
         { "prompt": "Who wrote the novel Frankenstein?", "options": [{ "text": "Mary Shelley", "correct": true }, { "text": "Bram Stoker" }, { "text": "Edgar Allan Poe" }, { "text": "Emily Bronte" }] },
         { "prompt": "Which is the lightest metal on the periodic table?", "options": [{ "text": "Lithium", "correct": true }, { "text": "Aluminium" }, { "text": "Magnesium" }, { "text": "Titanium" }] },
         { "prompt": "In which sport are the positions scrum-half and fly-half?", "options": [{ "text": "Rugby", "correct": true }, { "text": "Hockey" }, { "text": "Lacrosse" }, { "text": "Handball" }] },
-        { "prompt": "Which ocean lies between Africa and Australia?", "options": [{ "text": "The Indian Ocean", "correct": true }, { "text": "The Southern Ocean" }, { "text": "The Coral Sea" }, { "text": "The Arabian Sea" }] },
         { "prompt": "Which animal has fingerprints almost indistinguishable from a human's?", "options": [{ "text": "The koala", "correct": true }, { "text": "The chimpanzee" }, { "text": "The gorilla" }, { "text": "The raccoon" }] },
         { "prompt": "In which country is the temple complex of Angkor Wat?", "options": [{ "text": "Cambodia", "correct": true }, { "text": "Thailand" }, { "text": "Laos" }, { "text": "Vietnam" }] },
-        { "prompt": "In which film series does the agent Ethan Hunt appear?", "options": [{ "text": "Mission: Impossible", "correct": true }, { "text": "The Bourne films" }, { "text": "John Wick" }, { "text": "Jack Ryan" }] },
         { "prompt": "Which rock forms when lava cools quickly?", "options": [{ "text": "Basalt", "correct": true }, { "text": "Granite" }, { "text": "Limestone" }, { "text": "Slate" }] },
-        { "prompt": "Which country eats the most chocolate per head?", "options": [{ "text": "Switzerland", "correct": true }, { "text": "Belgium" }, { "text": "Austria" }, { "text": "Ireland" }] },
         { "prompt": "How many pairs of chromosomes does a human being have?", "options": [{ "text": "23 pairs", "correct": true }, { "text": "20 pairs" }, { "text": "24 pairs" }, { "text": "46 pairs" }] },
         { "prompt": "Which Belgian city is the centre of the world diamond trade?", "options": [{ "text": "Antwerp", "correct": true }, { "text": "Bruges" }, { "text": "Ghent" }, { "text": "Liege" }] }
       ]
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Anvil" },
-        { "prompt": "Periscope" },
-        { "prompt": "Paperclip" },
-        { "prompt": "Stapler" },
-        { "prompt": "Fountain" },
-        { "prompt": "Tambourine" },
-        { "prompt": "Lawnmower" },
-        { "prompt": "Whisk" },
-        { "prompt": "Ladle" },
-        { "prompt": "Doorknob" },
-        { "prompt": "Curtain" },
-        { "prompt": "Mousetrap" },
-        { "prompt": "Bookshelf" },
-        { "prompt": "Sunflower" },
-        { "prompt": "Water slide" },
-        { "prompt": "Chandelier" }
+      "words": [
+        "Pizza",
+        "Rainbow",
+        "Elephant",
+        "Football",
+        "Beach",
+        "Father Christmas",
+        "Snowman",
+        "Guitar",
+        "Doctor",
+        "Bicycle",
+        "Lighthouse",
+        "Pirate",
+        "Cleopatra",
+        "The Statue of Liberty",
+        "Sherlock Holmes",
+        "Astronaut",
+        "Volcano",
+        "Wedding",
+        "Jurassic Park",
+        "Karaoke",
+        "Nelson Mandela",
+        "The Great Wall of China",
+        "Beekeeper",
+        "The Mona Lisa",
+        "Marathon",
+        "Casablanca",
+        "Democracy",
+        "Submarine",
+        "Tornado",
+        "The Berlin Wall"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries in Central America.", "answers": [{ "text": "Costa Rica" }, { "text": "Panama" }, { "text": "Guatemala" }, { "text": "Honduras" }] },
-        { "prompt": "Name four tragedies by Shakespeare.", "answers": [{ "text": "Hamlet" }, { "text": "Macbeth" }, { "text": "Othello" }, { "text": "King Lear" }] },
-        { "prompt": "Name four gods of Greek mythology.", "answers": [{ "text": "Zeus" }, { "text": "Athena" }, { "text": "Apollo" }, { "text": "Ares" }] },
-        { "prompt": "Name four kinds of tea.", "answers": [{ "text": "Green tea" }, { "text": "Black tea" }, { "text": "White tea" }, { "text": "Oolong" }] },
-        { "prompt": "Name four countries that border Russia.", "answers": [{ "text": "China" }, { "text": "Finland" }, { "text": "Poland" }, { "text": "Norway" }] },
-        { "prompt": "Name four instruments played with a keyboard.", "answers": [{ "text": "Piano" }, { "text": "Organ" }, { "text": "Harpsichord" }, { "text": "Accordion" }] },
-        { "prompt": "Name four kinds of bread.", "answers": [{ "text": "Baguette" }, { "text": "Ciabatta" }, { "text": "Sourdough" }, { "text": "Rye bread" }] },
-        { "prompt": "Name four field events in athletics.", "answers": [{ "text": "Long jump" }, { "text": "High jump" }, { "text": "Shot put" }, { "text": "Javelin" }] }
+        { "prompt": "What do you know about the Eiffel Tower? Four keywords.", "answers": [{ "text": "Paris", "aliases": ["France"] }, { "text": "Iron", "aliases": ["Steel", "Made of iron"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Tourists", "aliases": ["A tourist attraction", "Queues", "The lift"] }] },
+        { "prompt": "What do you know about ancient Egypt? Four keywords.", "answers": [{ "text": "The pyramids", "aliases": ["Pyramids", "Pyramid"] }, { "text": "Pharaohs", "aliases": ["Pharaoh", "Tutankhamun"] }, { "text": "Mummies", "aliases": ["Mummy"] }, { "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "What do you know about the band Queen? Four keywords.", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury", "Freddie"] }, { "text": "Bohemian Rhapsody" }, { "text": "We Will Rock You", "aliases": ["We Are The Champions"] }, { "text": "Live Aid", "aliases": ["Wembley"] }] },
+        { "prompt": "What do you know about the Titanic? Four keywords.", "answers": [{ "text": "The iceberg", "aliases": ["Iceberg"] }, { "text": "1912", "aliases": ["It sank in 1912"] }, { "text": "Unsinkable", "aliases": ["They said it could not sink"] }, { "text": "The film with Leonardo DiCaprio", "aliases": ["The film", "Leonardo DiCaprio", "Kate Winslet"] }] },
+        { "prompt": "What do you know about Italy? Four keywords.", "answers": [{ "text": "Pasta", "aliases": ["Pizza", "Spaghetti"] }, { "text": "Rome", "aliases": ["The capital is Rome"] }, { "text": "The Colosseum", "aliases": ["Colosseum", "The Leaning Tower of Pisa"] }, { "text": "Shaped like a boot", "aliases": ["A boot", "The boot"] }] },
+        { "prompt": "What do you know about the first moon landing? Four keywords.", "answers": [{ "text": "1969" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "Buzz Aldrin"] }, { "text": "Apollo 11", "aliases": ["Apollo"] }, { "text": "One small step", "aliases": ["That is one small step for man", "The flag", "Footprints"] }] },
+        { "prompt": "What do you know about winter? Four keywords.", "answers": [{ "text": "Snow", "aliases": ["Snowing"] }, { "text": "Christmas", "aliases": ["The holidays"] }, { "text": "Cold", "aliases": ["Frost", "Freezing"] }, { "text": "Skiing", "aliases": ["Ice skating", "Skating"] }] },
+        { "prompt": "What do you know about coffee? Four keywords.", "answers": [{ "text": "Beans", "aliases": ["Coffee beans"] }, { "text": "Caffeine" }, { "text": "Espresso", "aliases": ["Cappuccino", "Latte"] }, { "text": "Brazil", "aliases": ["Colombia", "It grows in Brazil"] }] }
       ]
     },
     {
@@ -112,10 +122,11 @@
     {
       "round": 7,
       "questions": [
+        { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
         { "prompt": "Which Danish physicist published his model of the atom in 1913?", "answers": [{ "text": "Niels Bohr", "aliases": ["Bohr"] }] },
-        { "prompt": "What is the capital of Uzbekistan?", "answers": [{ "text": "Tashkent" }] },
         { "prompt": "Which French novelist wrote In Search of Lost Time?", "answers": [{ "text": "Marcel Proust", "aliases": ["Proust"] }] },
-        { "prompt": "Which volcanic eruption on Santorini helped end the Minoan civilisation?", "answers": [{ "text": "Thera", "aliases": ["Thira"] }] },
+        { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Quicksilver"] }] },
         { "prompt": "In which year was the first successful human heart transplant carried out?", "answers": [{ "text": "1967" }] },
         { "prompt": "Which country has more pyramids than any other?", "answers": [{ "text": "Sudan" }] }
       ]

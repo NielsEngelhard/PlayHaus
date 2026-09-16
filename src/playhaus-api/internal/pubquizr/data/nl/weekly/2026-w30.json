@@ -37,14 +37,10 @@
         { "prompt": "In welk jaar werd het Verdrag van Maastricht ondertekend?", "options": [{ "text": "1986" }, { "text": "1990" }, { "text": "1992", "correct": true }, { "text": "1995" }] },
         { "prompt": "Wat is de hoofdstad van Marokko?", "options": [{ "text": "Casablanca" }, { "text": "Rabat", "correct": true }, { "text": "Marrakech" }, { "text": "Fez" }] },
         { "prompt": "Welk dier kan zijn huid van kleur laten veranderen?", "options": [{ "text": "Kameleon", "correct": true }, { "text": "Salamander" }, { "text": "Gekko" }, { "text": "Leguaan" }] },
-        { "prompt": "Hoeveel spelers heeft een waterpoloteam in het water?", "options": [{ "text": "Zes" }, { "text": "Zeven", "correct": true }, { "text": "Acht" }, { "text": "Negen" }] },
-        { "prompt": "Wat is de enige natuurlijke satelliet van de aarde?", "options": [{ "text": "De maan", "correct": true }, { "text": "Phobos" }, { "text": "Titan" }, { "text": "Europa" }] },
         { "prompt": "Welk land bestaat uit meer dan zeventienduizend eilanden?", "options": [{ "text": "Filipijnen" }, { "text": "Indonesie", "correct": true }, { "text": "Japan" }, { "text": "Maleisie" }] },
         { "prompt": "Welke Franse schilder maakte de reeks Waterlelies?", "options": [{ "text": "Claude Monet", "correct": true }, { "text": "Edgar Degas" }, { "text": "Paul Cezanne" }, { "text": "Pierre-Auguste Renoir" }] },
-        { "prompt": "Welk mineraal is het zachtste op de schaal van Mohs?", "options": [{ "text": "Gips" }, { "text": "Talk", "correct": true }, { "text": "Calciet" }, { "text": "Kwarts" }] },
         { "prompt": "Welke Nederlandse stad ligt aan de Waal?", "options": [{ "text": "Nijmegen", "correct": true }, { "text": "Deventer" }, { "text": "Zwolle" }, { "text": "Maastricht" }] },
-        { "prompt": "In welk jaar werd het eerste Wereldkampioenschap voetbal gehouden?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] },
-        { "prompt": "Welk instrument hoort NIET bij de strijkers van een symfonieorkest?", "options": [{ "text": "Viool" }, { "text": "Cello" }, { "text": "Klarinet", "correct": true }, { "text": "Contrabas" }] }
+        { "prompt": "In welk jaar werd het eerste Wereldkampioenschap voetbal gehouden?", "options": [{ "text": "1926" }, { "text": "1930", "correct": true }, { "text": "1934" }, { "text": "1938" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Hoefsmid" },
-        { "prompt": "Skischoen" },
-        { "prompt": "Uil" },
-        { "prompt": "Kasteel" },
-        { "prompt": "Meloen" },
-        { "prompt": "Clown" },
-        { "prompt": "Strijkijzer" },
-        { "prompt": "Trommel" },
-        { "prompt": "Hagelsteen" },
-        { "prompt": "Visser" },
-        { "prompt": "Veerboot" },
-        { "prompt": "Weerhaan" },
-        { "prompt": "Handschoen" },
-        { "prompt": "Kikker" },
-        { "prompt": "Speeltuin" },
-        { "prompt": "Koffiemolen" }
+      "words": [
+        "Kameel",
+        "Popcorn",
+        "Viool",
+        "Sneeuwstorm",
+        "Achtbaan",
+        "Verpleegkundige",
+        "Rugzak",
+        "Trouwring",
+        "Vliegveld",
+        "Vampier",
+        "Colosseum",
+        "Star Wars",
+        "Schaken",
+        "Jungle",
+        "Postbode",
+        "Dierentuin",
+        "Onderzeeboot",
+        "Carnaval",
+        "Iglo",
+        "Kompas",
+        "Julius Caesar",
+        "Keukenhof",
+        "The Lion King",
+        "Harry Potter",
+        "Olympische vlam",
+        "Strandwacht",
+        "Venetie",
+        "Sahara",
+        "Anne Frank",
+        "Stroopwafel"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Noem de vier grootste steden van Nederland.", "answers": [{ "text": "Amsterdam" }, { "text": "Rotterdam" }, { "text": "Den Haag" }, { "text": "Utrecht" }] },
-        { "prompt": "Noem de vier oorspronkelijke leden van Led Zeppelin.", "answers": [{ "text": "Robert Plant" }, { "text": "Jimmy Page" }, { "text": "John Paul Jones" }, { "text": "John Bonham" }] },
-        { "prompt": "Noem de vier Zuid-Amerikaanse landen die het WK voetbal hebben gehouden.", "answers": [{ "text": "Uruguay" }, { "text": "Brazilie" }, { "text": "Chili" }, { "text": "Argentinie" }] },
-        { "prompt": "Noem de vier maanden met dertig dagen.", "answers": [{ "text": "April" }, { "text": "Juni" }, { "text": "September" }, { "text": "November" }] },
-        { "prompt": "Noem de vier Grote Meren van Noord-Amerika naast het Michiganmeer.", "answers": [{ "text": "Bovenmeer" }, { "text": "Huronmeer" }, { "text": "Eriemeer" }, { "text": "Ontariomeer" }] },
-        { "prompt": "Noem de vier grote botten van het menselijk been en de heup.", "answers": [{ "text": "Dijbeen" }, { "text": "Scheenbeen" }, { "text": "Kuitbeen" }, { "text": "Heupbeen" }] },
-        { "prompt": "Noem de vier landen waar de Alpen doorheen lopen naast Zwitserland en Oostenrijk.", "answers": [{ "text": "Frankrijk" }, { "text": "Italie" }, { "text": "Duitsland" }, { "text": "Slovenie" }] },
-        { "prompt": "Noem vier componisten uit de barok of de klassieke tijd.", "answers": [{ "text": "Bach" }, { "text": "Handel" }, { "text": "Vivaldi" }, { "text": "Mozart" }] }
+        { "prompt": "Wat weet je van Londen? Vier kernwoorden.", "answers": [{ "text": "Big Ben", "aliases": ["De klokkentoren", "Westminster"] }, { "text": "De Theems", "aliases": ["Theems", "De rivier"] }, { "text": "De rode dubbeldekker", "aliases": ["Dubbeldekker", "Rode bus", "Zwarte taxi"] }, { "text": "Buckingham Palace", "aliases": ["De koning", "De koninklijke familie", "Tower Bridge"] }] },
+        { "prompt": "Wat weet je van Japan? Vier kernwoorden.", "answers": [{ "text": "Sushi", "aliases": ["Ramen", "Japans eten"] }, { "text": "De Fuji", "aliases": ["Mount Fuji", "Een vulkaan"] }, { "text": "Tokio", "aliases": ["De hoofdstad", "De hogesnelheidstrein"] }, { "text": "Samoerai", "aliases": ["Sumo", "Manga", "Kersenbloesem"] }] },
+        { "prompt": "Wat weet je van de Formule 1? Vier kernwoorden.", "answers": [{ "text": "Max Verstappen", "aliases": ["Lewis Hamilton", "De coureurs"] }, { "text": "Ferrari", "aliases": ["Red Bull", "Mercedes", "De teams"] }, { "text": "De pitstop", "aliases": ["Banden wisselen", "Snel banden wisselen"] }, { "text": "Monaco", "aliases": ["Zandvoort", "De circuits", "De finishvlag"] }] },
+        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "De ijsberg", "aliases": ["Hij raakte een ijsberg", "IJsberg"] }, { "text": "1912", "aliases": ["Hij zonk", "De eerste reis"] }, { "text": "Leonardo DiCaprio", "aliases": ["Kate Winslet", "De film", "Celine Dion"] }, { "text": "Te weinig reddingsboten", "aliases": ["Reddingsboten", "De Atlantische Oceaan"] }] },
+        { "prompt": "Wat weet je van de Vikingen? Vier kernwoorden.", "answers": [{ "text": "Langschepen", "aliases": ["Drakenschepen", "Schepen"] }, { "text": "Scandinavie", "aliases": ["Noorwegen", "Denemarken", "Zweden"] }, { "text": "Helmen met hoorns", "aliases": ["Hoornhelmen", "Baarden", "Bijlen"] }, { "text": "Plundertochten", "aliases": ["Plunderen", "Ze voeren naar Engeland", "Odin"] }] },
+        { "prompt": "Wat weet je van piraten? Vier kernwoorden.", "answers": [{ "text": "Schatten", "aliases": ["Een schatkist", "Goud"] }, { "text": "Een papegaai op de schouder", "aliases": ["Papegaai", "Houten been", "Een haak als hand"] }, { "text": "Een ooglapje", "aliases": ["Ooglapje", "Doodshoofd", "De piratenvlag"] }, { "text": "De Cariben", "aliases": ["Pirates of the Caribbean", "Jack Sparrow", "Zeilschepen"] }] },
+        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "De moonwalk", "aliases": ["Moonwalken", "Zijn dansjes"] }, { "text": "Thriller", "aliases": ["Billie Jean", "Beat It", "Zijn nummers"] }, { "text": "De witte handschoen", "aliases": ["Een handschoen", "De hoed", "De glitterhandschoen"] }, { "text": "The King of Pop", "aliases": ["Neverland", "Hij stierf in 2009"] }] },
+        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Wolkenkrabbers", "aliases": ["Het Empire State Building", "Manhattan"] }, { "text": "Gele taxis", "aliases": ["Yellow cabs", "Times Square", "Broadway"] }, { "text": "Central Park", "aliases": ["The Big Apple", "Elf september"] }] }
       ]
     },
     {
@@ -113,10 +123,11 @@
       "round": 7,
       "questions": [
         { "prompt": "Welke Zweedse scheikundige stelde de Nobelprijzen in zijn testament in?", "answers": [{ "text": "Alfred Nobel", "aliases": ["Nobel"] }] },
-        { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Wat is het grootste eiland in de Middellandse Zee?", "answers": [{ "text": "Sicilie", "aliases": ["Sicily"] }] },
         { "prompt": "Welke Italiaanse componist schreef de opera Nabucco?", "answers": [{ "text": "Giuseppe Verdi", "aliases": ["Verdi"] }] },
-        { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
+        { "prompt": "Welk land heette tot 1972 Ceylon?", "answers": [{ "text": "Sri Lanka" }] },
         { "prompt": "Welke Franse scheikundige gaf zijn naam aan het verhitten van melk om bacterien te doden?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
+        { "prompt": "Welke Russische schrijver schreef Oorlog en vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
         { "prompt": "In welk jaar werd de eerste treinverbinding in Nederland geopend?", "answers": [{ "text": "1839" }] }
       ]
     }

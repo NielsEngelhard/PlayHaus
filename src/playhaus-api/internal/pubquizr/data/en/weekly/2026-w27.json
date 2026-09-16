@@ -35,16 +35,12 @@
         { "prompt": "Which animal has the longest pregnancy?", "options": [{ "text": "Elephant", "correct": true }, { "text": "Whale" }, { "text": "Giraffe" }, { "text": "Rhinoceros" }] },
         { "prompt": "Which writer invented Hobbits?", "options": [{ "text": "J.R.R. Tolkien", "correct": true }, { "text": "C.S. Lewis" }, { "text": "Ursula Le Guin" }, { "text": "Terry Pratchett" }] },
         { "prompt": "How many degrees Fahrenheit is the freezing point of water?", "options": [{ "text": "0" }, { "text": "32", "correct": true }, { "text": "48" }, { "text": "64" }] },
-        { "prompt": "Which country has the most time zones on its territory?", "options": [{ "text": "Russia" }, { "text": "France", "correct": true }, { "text": "United States" }, { "text": "China" }] },
         { "prompt": "Who composed The Four Seasons?", "options": [{ "text": "Vivaldi", "correct": true }, { "text": "Bach" }, { "text": "Handel" }, { "text": "Corelli" }] },
         { "prompt": "Which substance gives blood its red colour?", "options": [{ "text": "Haemoglobin", "correct": true }, { "text": "Melanin" }, { "text": "Chlorophyll" }, { "text": "Keratin" }] },
         { "prompt": "Which Dutch footballer is nicknamed the Black Tulip?", "options": [{ "text": "Ruud Gullit", "correct": true }, { "text": "Frank Rijkaard" }, { "text": "Clarence Seedorf" }, { "text": "Patrick Kluivert" }] },
-        { "prompt": "In which city is the Colosseum?", "options": [{ "text": "Rome", "correct": true }, { "text": "Naples" }, { "text": "Athens" }, { "text": "Istanbul" }] },
         { "prompt": "Which organ filters waste out of the blood?", "options": [{ "text": "Liver" }, { "text": "Kidneys", "correct": true }, { "text": "Lungs" }, { "text": "Intestines" }] },
         { "prompt": "In what year were the Netherlands liberated?", "options": [{ "text": "1943" }, { "text": "1944" }, { "text": "1945", "correct": true }, { "text": "1946" }] },
-        { "prompt": "Which instrument does a cellist play?", "options": [{ "text": "Double bass" }, { "text": "Cello", "correct": true }, { "text": "Viola" }, { "text": "Violin" }] },
-        { "prompt": "Which planet has the most known moons?", "options": [{ "text": "Saturn", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] },
-        { "prompt": "Which sea lies between the Netherlands and England?", "options": [{ "text": "North Sea", "correct": true }, { "text": "Baltic Sea" }, { "text": "Wadden Sea" }, { "text": "Irish Sea" }] }
+        { "prompt": "Which planet has the most known moons?", "options": [{ "text": "Saturn", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Millstone" },
-        { "prompt": "Trampoline" },
-        { "prompt": "Hedgehog" },
-        { "prompt": "Airport" },
-        { "prompt": "Waterfall" },
-        { "prompt": "Pirate" },
-        { "prompt": "Sewing machine" },
-        { "prompt": "Strawberry" },
-        { "prompt": "Igloo" },
-        { "prompt": "Butcher" },
-        { "prompt": "Subway" },
-        { "prompt": "Microscope" },
-        { "prompt": "Swing" },
-        { "prompt": "Seal" },
-        { "prompt": "Christmas tree" },
-        { "prompt": "Keyring" }
+      "words": [
+        "Trampoline",
+        "Hedgehog",
+        "Waterfall",
+        "Strawberry",
+        "Airport",
+        "Christmas tree",
+        "Butcher",
+        "Swing",
+        "Igloo",
+        "Camel",
+        "Microscope",
+        "Sewing machine",
+        "Robin Hood",
+        "Mona Lisa",
+        "Zookeeper",
+        "Fireworks",
+        "Vikings",
+        "Mount Fuji",
+        "Compass",
+        "Ferris wheel",
+        "Millstone",
+        "Charlie Chaplin",
+        "Tornado",
+        "Blacksmith",
+        "Hieroglyphs",
+        "Democracy",
+        "The Suez Canal",
+        "Frankenstein",
+        "Acupuncture",
+        "Camouflage"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name the four Nordic mainland countries besides Iceland.", "answers": [{ "text": "Norway" }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
-        { "prompt": "Name the four evangelists of the New Testament.", "answers": [{ "text": "Matthew" }, { "text": "Mark" }, { "text": "Luke" }, { "text": "John" }] },
-        { "prompt": "Name the four largest planets in our solar system.", "answers": [{ "text": "Jupiter" }, { "text": "Saturn" }, { "text": "Uranus" }, { "text": "Neptune" }] },
-        { "prompt": "Name the four largest cities of Italy.", "answers": [{ "text": "Rome" }, { "text": "Milan" }, { "text": "Naples" }, { "text": "Turin" }] },
-        { "prompt": "Name the four directions between north, east, south and west.", "answers": [{ "text": "Northeast" }, { "text": "Southeast" }, { "text": "Southwest" }, { "text": "Northwest" }] },
-        { "prompt": "Name the four chambers of the human heart.", "answers": [{ "text": "Left atrium" }, { "text": "Right atrium" }, { "text": "Left ventricle" }, { "text": "Right ventricle" }] },
-        { "prompt": "Name the four largest countries in South America.", "answers": [{ "text": "Brazil" }, { "text": "Argentina" }, { "text": "Peru" }, { "text": "Colombia" }] },
-        { "prompt": "Name the four largest cities of Spain.", "answers": [{ "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }, { "text": "Seville" }] }
+        { "prompt": "What do you know about Amsterdam? Four keywords.", "answers": [{ "text": "Canals" }, { "text": "Bicycles" }, { "text": "The Rijksmuseum" }, { "text": "Anne Frank House" }] },
+        { "prompt": "What do you know about Queen Elizabeth II? Four keywords.", "answers": [{ "text": "United Kingdom" }, { "text": "Buckingham Palace" }, { "text": "Seventy year reign" }, { "text": "Corgis" }] },
+        { "prompt": "What do you know about sharks? Four keywords.", "answers": [{ "text": "Teeth" }, { "text": "Fin" }, { "text": "Ocean" }, { "text": "Great white" }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Sand" }, { "text": "Africa" }, { "text": "Camels" }, { "text": "Oasis" }] },
+        { "prompt": "What do you know about cheese? Four keywords.", "answers": [{ "text": "Milk" }, { "text": "Gouda" }, { "text": "Cheese market" }, { "text": "Mould" }] },
+        { "prompt": "What do you know about Rome? Four keywords.", "answers": [{ "text": "Colosseum" }, { "text": "The Vatican" }, { "text": "Emperors" }, { "text": "Pasta" }] },
+        { "prompt": "What do you know about bees? Four keywords.", "answers": [{ "text": "Honey" }, { "text": "Queen bee" }, { "text": "Sting" }, { "text": "Pollination" }] },
+        { "prompt": "What do you know about pirates? Four keywords.", "answers": [{ "text": "Treasure" }, { "text": "Eye patch" }, { "text": "Caribbean" }, { "text": "Skull flag" }] }
       ]
     },
     {
@@ -117,7 +127,8 @@
         { "prompt": "Which French writer wrote The Three Musketeers?", "answers": [{ "text": "Alexandre Dumas", "aliases": ["Dumas"] }] },
         { "prompt": "What is the capital of Canada?", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Which scientist discovered penicillin by accident?", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
-        { "prompt": "In what year were the first modern Olympic Games held?", "answers": [{ "text": "1896" }] }
+        { "prompt": "Which artist painted the ceiling of the Sistine Chapel?", "answers": [{ "text": "Michelangelo" }] },
+        { "prompt": "How many bones does an adult human body have?", "answers": [{ "text": "206", "aliases": ["Two hundred and six"] }] }
       ]
     }
   ]

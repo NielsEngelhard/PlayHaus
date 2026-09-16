@@ -35,16 +35,12 @@
         { "prompt": "Which American author wrote the novel Beloved?", "options": [{ "text": "Toni Morrison", "correct": true }, { "text": "Maya Angelou" }, { "text": "Alice Walker" }, { "text": "Zora Neale Hurston" }] },
         { "prompt": "What is a star that suddenly flares up in brightness called?", "options": [{ "text": "A nova", "correct": true }, { "text": "A pulsar" }, { "text": "A quasar" }, { "text": "A magnetar" }] },
         { "prompt": "Which animal is responsible for the most human deaths each year?", "options": [{ "text": "The mosquito", "correct": true }, { "text": "The snake" }, { "text": "The crocodile" }, { "text": "The hippopotamus" }] },
-        { "prompt": "Which spirit is distilled from sugar cane?", "options": [{ "text": "Rum", "correct": true }, { "text": "Brandy" }, { "text": "Whisky" }, { "text": "Schnapps" }] },
         { "prompt": "Which country has won the most Olympic gold medals in rowing?", "options": [{ "text": "Great Britain", "correct": true }, { "text": "Germany" }, { "text": "The United States" }, { "text": "Romania" }] },
         { "prompt": "Which Mexican painter filled her self-portraits with flowers and thorns?", "options": [{ "text": "Frida Kahlo", "correct": true }, { "text": "Remedios Varo" }, { "text": "Leonora Carrington" }, { "text": "Maria Izquierdo" }] },
         { "prompt": "Which part of the body contains the most bones?", "options": [{ "text": "The hand", "correct": true }, { "text": "The spine" }, { "text": "The head" }, { "text": "The chest" }] },
         { "prompt": "Which is the heaviest bird of prey in the world?", "options": [{ "text": "The Andean condor", "correct": true }, { "text": "The golden eagle" }, { "text": "The sea eagle" }, { "text": "The vulture" }] },
-        { "prompt": "Which American city is nicknamed the Windy City?", "options": [{ "text": "Chicago", "correct": true }, { "text": "Boston" }, { "text": "Detroit" }, { "text": "Seattle" }] },
         { "prompt": "Which nut is caramelised to make praline?", "options": [{ "text": "The hazelnut", "correct": true }, { "text": "The walnut" }, { "text": "The pecan" }, { "text": "The chestnut" }] },
-        { "prompt": "Which element is named after the Swedish village of Ytterby?", "options": [{ "text": "Yttrium", "correct": true }, { "text": "Scandium" }, { "text": "Thulium" }, { "text": "Hafnium" }] },
-        { "prompt": "Which country's flag is different on its front and its back?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldova" }, { "text": "Serbia" }] },
-        { "prompt": "Which is the highest railway line in the world?", "options": [{ "text": "The Qinghai-Tibet railway", "correct": true }, { "text": "The Trans-Andean railway" }, { "text": "The Jungfrau railway" }, { "text": "The Peru Central railway" }] }
+        { "prompt": "Which country's flag is different on its front and its back?", "options": [{ "text": "Paraguay", "correct": true }, { "text": "Uruguay" }, { "text": "Moldova" }, { "text": "Serbia" }] }
       ]
     },
     {
@@ -62,36 +58,50 @@
     },
     {
       "round": 4,
-      "questions": [
-        { "prompt": "Ice cube tray" },
-        { "prompt": "Shower curtain" },
-        { "prompt": "Air horn" },
-        { "prompt": "Rocking horse" },
-        { "prompt": "Fishbowl" },
-        { "prompt": "Cufflink" },
-        { "prompt": "Dog lead" },
-        { "prompt": "Flowerpot" },
-        { "prompt": "Frisbee" },
-        { "prompt": "Hedge trimmer" },
-        { "prompt": "Sun cream" },
-        { "prompt": "Envelope" },
-        { "prompt": "Napkin" },
-        { "prompt": "Highchair" },
-        { "prompt": "Saucepan" },
-        { "prompt": "Lava lamp" }
+      "words": [
+        "Sandcastle",
+        "Dinosaur",
+        "Spaghetti",
+        "Birthday",
+        "Firefighter",
+        "Penguin",
+        "Swimming pool",
+        "Moustache",
+        "Balloon",
+        "Rollercoaster",
+        "Windmill",
+        "Vampire",
+        "Cowboy",
+        "Amsterdam",
+        "Mount Everest",
+        "Ice hockey",
+        "Hairdresser",
+        "Traffic jam",
+        "Titanic",
+        "Harry Potter",
+        "Vincent van Gogh",
+        "The Grand Canyon",
+        "Acupuncture",
+        "The French Revolution",
+        "Lighthouse keeper",
+        "Jazz",
+        "The Sistine Chapel",
+        "Camouflage",
+        "Charlie Chaplin",
+        "Origami"
       ]
     },
     {
       "round": 5,
       "questions": [
-        { "prompt": "Name four countries that border Spain.", "answers": [{ "text": "France" }, { "text": "Portugal" }, { "text": "Andorra" }, { "text": "Morocco" }] },
-        { "prompt": "Name four board games.", "answers": [{ "text": "Chess" }, { "text": "Backgammon" }, { "text": "Ludo" }, { "text": "Cluedo" }] },
-        { "prompt": "Name four birds that cannot fly.", "answers": [{ "text": "Ostrich" }, { "text": "Penguin" }, { "text": "Emu" }, { "text": "Kiwi" }] },
-        { "prompt": "Name four Dutch artists who worked after 1900.", "answers": [{ "text": "Mondrian" }, { "text": "Escher" }, { "text": "Karel Appel" }, { "text": "Kees van Dongen" }] },
-        { "prompt": "Name four countries in Oceania.", "answers": [{ "text": "Australia" }, { "text": "New Zealand" }, { "text": "Fiji" }, { "text": "Papua New Guinea" }] },
-        { "prompt": "Name four things made from milk.", "answers": [{ "text": "Butter" }, { "text": "Cheese" }, { "text": "Yoghurt" }, { "text": "Cream" }] },
-        { "prompt": "Name four famous towers.", "answers": [{ "text": "The Eiffel Tower" }, { "text": "Big Ben" }, { "text": "The tower of Pisa" }, { "text": "The Burj Khalifa" }] },
-        { "prompt": "Name four comedies by Shakespeare.", "answers": [{ "text": "Twelfth Night" }, { "text": "As You Like It" }, { "text": "Much Ado About Nothing" }, { "text": "A Midsummer Night's Dream" }] }
+        { "prompt": "What do you know about the Netherlands? Four keywords.", "answers": [{ "text": "Tulips", "aliases": ["Tulip", "Flowers"] }, { "text": "Windmills", "aliases": ["Windmill", "Mills"] }, { "text": "Cheese", "aliases": ["Gouda", "Edam"] }, { "text": "Bicycles", "aliases": ["Bikes", "Cycling", "Everyone cycles"] }] },
+        { "prompt": "What do you know about Albert Einstein? Four keywords.", "answers": [{ "text": "E equals mc squared", "aliases": ["E=mc2", "His formula"] }, { "text": "Relativity", "aliases": ["The theory of relativity"] }, { "text": "His wild hair", "aliases": ["Hair", "Crazy hair", "His moustache"] }, { "text": "The Nobel Prize", "aliases": ["Nobel Prize", "Nobel"] }] },
+        { "prompt": "What do you know about the Beatles? Four keywords.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney", "Ringo Starr", "George Harrison"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "Abbey Road", "aliases": ["The zebra crossing"] }] },
+        { "prompt": "What do you know about the Sahara? Four keywords.", "answers": [{ "text": "Desert", "aliases": ["A desert", "The largest desert"] }, { "text": "Sand", "aliases": ["Sand dunes", "Dunes"] }, { "text": "Africa", "aliases": ["North Africa"] }, { "text": "Camels", "aliases": ["Camel", "Caravan"] }] },
+        { "prompt": "What do you know about chess? Four keywords.", "answers": [{ "text": "Sixty-four squares", "aliases": ["64 squares", "Black and white squares", "The board"] }, { "text": "The king and the queen", "aliases": ["King", "Queen", "Pawns"] }, { "text": "Checkmate", "aliases": ["Check", "Mate"] }, { "text": "Grandmasters", "aliases": ["Grandmaster", "Magnus Carlsen", "Kasparov"] }] },
+        { "prompt": "What do you know about the Olympic Games? Four keywords.", "answers": [{ "text": "The five rings", "aliases": ["Five rings", "The rings"] }, { "text": "Every four years", "aliases": ["Once every four years"] }, { "text": "Gold medals", "aliases": ["Gold medal", "Medals"] }, { "text": "Ancient Greece", "aliases": ["Greece", "Olympia", "The torch"] }] },
+        { "prompt": "What do you know about the Roman Empire? Four keywords.", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar", "Emperors", "Augustus"] }, { "text": "Gladiators", "aliases": ["Gladiator", "The Colosseum"] }, { "text": "Latin" }, { "text": "Roads and aqueducts", "aliases": ["Roads", "Aqueducts", "Legions"] }] },
+        { "prompt": "What do you know about a thunderstorm? Four keywords.", "answers": [{ "text": "Lightning", "aliases": ["A bolt of lightning"] }, { "text": "Thunder", "aliases": ["Rumbling"] }, { "text": "Rain", "aliases": ["A downpour", "Hail"] }, { "text": "Counting the seconds", "aliases": ["Counting", "Dark clouds"] }] }
       ]
     },
     {
@@ -115,9 +125,10 @@
         { "prompt": "Which Dutch humanist wrote In Praise of Folly?", "answers": [{ "text": "Erasmus", "aliases": ["Desiderius Erasmus"] }] },
         { "prompt": "What is the capital of Jordan?", "answers": [{ "text": "Amman" }] },
         { "prompt": "Which Norwegian composer wrote the Peer Gynt suites?", "answers": [{ "text": "Edvard Grieg", "aliases": ["Grieg"] }] },
-        { "prompt": "In which year did the Netherlands abolish the death penalty for ordinary crimes?", "answers": [{ "text": "1870" }] },
+        { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Which is the second highest mountain in the world?", "answers": [{ "text": "K2" }] },
-        { "prompt": "Which Greek scholar first calculated the circumference of the earth?", "answers": [{ "text": "Eratosthenes" }] }
+        { "prompt": "Which is the largest island in the Mediterranean?", "answers": [{ "text": "Sicily" }] },
+        { "prompt": "Which country gave the world the tango?", "answers": [{ "text": "Argentina" }] }
       ]
     }
   ]
