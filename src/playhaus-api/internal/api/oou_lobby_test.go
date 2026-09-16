@@ -87,11 +87,11 @@ func guests(t *testing.T, h http.Handler, count int) []sessionResponse {
 	return sessions
 }
 
-// threeHandedOOUGame is the smallest table the game allows, and the one where round one is also the last round: after a single elimination two players are left, which ends it whichever side went.
-func threeHandedOOUGame(t *testing.T, h http.Handler) startedOOUGame {
+// fourHandedOOUGame is the smallest table the game allows.
+func fourHandedOOUGame(t *testing.T, h http.Handler) startedOOUGame {
 	t.Helper()
 
-	table := guests(t, h, 3)
+	table := guests(t, h, 4)
 	return startOOUGame(t, h, table[0], table[1:]...)
 }
 
@@ -255,7 +255,7 @@ func TestAnOOULobbyWillNotStartShortHanded(t *testing.T) {
 // Starting deals the whole table in one go: a seat each, one prompt pair for the game, and the first round open for answers.
 func TestStartingAnOOULobbyDealsEverybodyIn(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	board := getOOUGame(t, srv, game.host.Token, game.gameID)
 
@@ -279,7 +279,7 @@ func TestStartingAnOOULobbyDealsEverybodyIn(t *testing.T) {
 // A dealt room is one nobody else can walk into.
 func TestAStartedOOULobbyRefusesANewPlayer(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	late := newGuestSession(t, srv)
 
 	rec := joinOOULobby(t, srv, late.Token, game.lobbyCode)
@@ -294,7 +294,7 @@ func TestAStartedOOULobbyRefusesANewPlayer(t *testing.T) {
 // Somebody who is already at the table gets back in, which is what a reconnect is.
 func TestAMemberIsLetBackIntoAStartedOOULobby(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	rec := joinOOULobby(t, srv, game.players[1].Token, game.lobbyCode)
 	if rec.Code != http.StatusOK {
@@ -382,10 +382,10 @@ func TestAnOOURouteRefusesAnotherGamesCode(t *testing.T) {
 	}
 }
 
-// The same three phones, dealt many times over, have to put the liar in every hand rather than in whoever joined last.
+// The same four phones, dealt many times over, have to put the liar in every hand rather than in whoever joined last.
 func TestAMultiDeviceDealLandsTheImposterInEveryHand(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
-	table := guests(t, srv, 3)
+	table := guests(t, srv, 4)
 
 	const deals = 300
 	landed := map[string]int{}

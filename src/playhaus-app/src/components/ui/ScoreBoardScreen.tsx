@@ -105,7 +105,6 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
     const ranked = rank(players);
     // Second on the left and third on the right of the winner, the way a podium stands.
     const podium = [ranked[1], ranked[0], ranked[2]].filter((entry): entry is Placed => entry !== undefined);
-    const rest = ranked.slice(PODIUM_SIZE);
 
     const [best, runnerUp] = ranked;
     const drawn = best !== undefined && runnerUp !== undefined && runnerUp.player.score === best.player.score;
@@ -173,9 +172,9 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
             >
-                {rest.length > 0 && (
+                {ranked.length > 0 && (
                     <View style={styles.list}>
-                        {rest.map((entry, index) => (
+                        {ranked.map((entry, index) => (
                             <View key={entry.player.id} style={[styles.line, index > 0 && styles.divided]}>
                                 <AppText style={styles.linePlace}>{entry.place}</AppText>
 

@@ -1,7 +1,7 @@
 import { OneOfUsRole } from "@/features/one-of-us/models"
 
 // The table One of Us is played at.
-export const MIN_PLAYERS: number = 3
+export const MIN_PLAYERS: number = 4
 export const MAX_PLAYERS: number = 9
 
 // The roles a table is allowed to switch off, in the order the settings row lists them.

@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	MinPlayers = 3
+	MinPlayers = 4
 	MaxPlayers = 9
 )
 

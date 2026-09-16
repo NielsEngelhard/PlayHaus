@@ -76,7 +76,7 @@ func TestOOUSocketSnapshotCarriesTheReadersOwnBoard(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	live := liveServer(t, srv)
 
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	writer := game.players[1]
 	if rec := submitOOUAnswer(t, srv, writer.Token, game.gameID, 1, oouAnswerText(writer)); rec.Code != http.StatusCreated {
 		t.Fatalf("submit: status = %d (body: %s)", rec.Code, rec.Body)
@@ -134,7 +134,7 @@ func TestTheOOUAnswerProgressFrameNamesNobody(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	live := liveServer(t, srv)
 
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	watcher := game.players[0]
 	writer := game.players[1]
 
@@ -167,7 +167,7 @@ func TestTheOOUVotingStartedFrameCarriesOnlyIDs(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	live := liveServer(t, srv)
 
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	conn := dialOOURoom(t, live, game.lobbyCode, game.players[0].Token)
 	conn.await(typeState)
 
@@ -194,7 +194,7 @@ func TestAClosedOOURoundReachesTheRoomAsAReveal(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
 	live := liveServer(t, srv)
 
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	conn := dialOOURoom(t, live, game.lobbyCode, game.players[0].Token)
 	conn.await(typeState)
 

@@ -74,7 +74,7 @@ func slotOf(t *testing.T, round *oouRoundResponse, text string) int {
 // The vote opens on the last answer and not a moment before, because until then somebody is still writing.
 func TestOOUVotingOpensOnTheLastAnswer(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	for index, player := range game.players {
 		rec := submitOOUAnswer(t, srv, player.Token, game.gameID, 1, oouAnswerText(player))
@@ -105,7 +105,7 @@ func TestOOUVotingOpensOnTheLastAnswer(t *testing.T) {
 // Nobody's text has left this process while the table is still writing, and the raw body is what proves it.
 func TestNoOOUAnswerIsVisibleWhileTheTableIsWriting(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	writers := game.players[:2]
 	for _, player := range writers {
@@ -143,7 +143,7 @@ func TestNoOOUAnswerIsVisibleWhileTheTableIsWriting(t *testing.T) {
 // Your own answer comes back to you, so a reconnect redraws the box you had already filled in.
 func TestAnOOUPlayerIsToldTheirOwnAnswer(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	writer := game.players[0]
 	if rec := submitOOUAnswer(t, srv, writer.Token, game.gameID, 1, oouAnswerText(writer)); rec.Code != http.StatusCreated {
@@ -160,7 +160,7 @@ func TestAnOOUPlayerIsToldTheirOwnAnswer(t *testing.T) {
 
 func TestAnOOUPlayerMayNotAnswerTwice(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	writer := game.players[0]
 	if rec := submitOOUAnswer(t, srv, writer.Token, game.gameID, 1, "first"); rec.Code != http.StatusCreated {
@@ -179,7 +179,7 @@ func TestAnOOUPlayerMayNotAnswerTwice(t *testing.T) {
 // A round that has not been opened yet is not one you may write into.
 func TestAnOOUAnswerMustBeForARoundThatExists(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	rec := submitOOUAnswer(t, srv, game.host.Token, game.gameID, 2, "early")
 	if rec.Code != http.StatusNotFound {
@@ -193,7 +193,7 @@ func TestAnOOUAnswerMustBeForARoundThatExists(t *testing.T) {
 // Somebody who is not at the table reads the same as no such game.
 func TestAnOOUBoardIsOnlyForItsOwnTable(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	stranger := newGuestSession(t, srv)
 
 	rec := do(t, srv, http.MethodGet, oouGamePath(game.gameID), "", stranger.Token)
@@ -208,11 +208,11 @@ func TestAnOOUBoardIsOnlyForItsOwnTable(t *testing.T) {
 // The heart of it: a civilian and an imposter are handed the same board with one line different, so neither can work out which they are by comparing notes.
 func TestALivingOOUCivilianAndImposterSeeTheSameBoard(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	imposters := oouPlayersWithRole(t, db, game.gameID, oneofus.Imposter)
 	if len(imposters) != 1 {
-		t.Fatalf("imposters = %v, want exactly one at a three-handed table", imposters)
+		t.Fatalf("imposters = %v, want exactly one at a four-handed table", imposters)
 	}
 	civilians := oouPlayersWithRole(t, db, game.gameID, oneofus.Civilian)
 	if len(civilians) == 0 {
@@ -243,7 +243,7 @@ func TestALivingOOUCivilianAndImposterSeeTheSameBoard(t *testing.T) {
 // No living player's role is on the wire, whoever is reading.
 func TestALivingOOUPlayerHasNoRoleOnTheWire(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	for _, reader := range game.players {
 		board := getOOUGame(t, srv, reader.Token, game.gameID)

@@ -54,7 +54,7 @@ func voteOOUPlayerOut(t *testing.T, h http.Handler, game startedOOUGame, board o
 // An open vote is answers with nothing attached to them, which is the whole of what "anonymously" means here.
 func TestAnOpenOOUVoteNamesNobody(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	answerOOURound(t, srv, game, getOOUGame(t, srv, game.host.Token, game.gameID))
 
 	for _, reader := range game.players {
@@ -86,7 +86,7 @@ func TestAnOpenOOUVoteNamesNobody(t *testing.T) {
 // A vote names a slot, so every slot on the board is pickable — a table where two players wrote the same thing would otherwise leave a voter with nothing to pick.
 func TestAnOOUPlayerMayVoteForTheirOwnAnswer(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	answerOOURound(t, srv, game, getOOUGame(t, srv, game.host.Token, game.gameID))
 
 	voter := game.players[0]
@@ -127,7 +127,7 @@ func TestAnOOUPlayerMayNotVoteTwice(t *testing.T) {
 // A vote nobody wrote is not a vote.
 func TestAnOOUVoteMustNameASlotThatExists(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	answerOOURound(t, srv, game, getOOUGame(t, srv, game.host.Token, game.gameID))
 
 	rec := castOOUVote(t, srv, game.host.Token, game.gameID, 1, len(game.players)+5)
@@ -337,10 +337,10 @@ func TestAnEliminatedOOUPlayerMayNoLongerAct(t *testing.T) {
 	}
 }
 
-// A three-handed table cannot survive a round: two players left is the end whichever side went.
-func TestAThreeHandedOOUGameEndsOnItsFirstElimination(t *testing.T) {
+// Catching the table's only imposter always ends the game, whatever the table size.
+func TestAFourHandedOOUGameEndsWhenTheImposterIsCaught(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 	answerOOURound(t, srv, game, getOOUGame(t, srv, game.host.Token, game.gameID))
 
 	imposters := oouPlayersWithRole(t, db, game.gameID, oneofus.Imposter)
@@ -372,7 +372,7 @@ func TestAThreeHandedOOUGameEndsOnItsFirstElimination(t *testing.T) {
 // The room can be played again once, and only once it is actually over.
 func TestAnOOURematchWaitsForTheGameToFinish(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	rec := do(t, srv, http.MethodPost, oouLobbyPathFor(game.lobbyCode)+"/rematch", "", game.host.Token)
 	if rec.Code != http.StatusConflict {
@@ -417,7 +417,7 @@ func continueOOURound(t *testing.T, h http.Handler, token, gameID string, roundN
 // The pair the game was played on is the whole secret while it runs, and public the moment it is over.
 func TestTheOOUWordsAreOnlyToldOnceTheGameIsOver(t *testing.T) {
 	srv, db := newTestServerWithDB(t)
-	game := threeHandedOOUGame(t, srv)
+	game := fourHandedOOUGame(t, srv)
 
 	running := oouBoardAsMap(t, srv, game.host.Token, game.gameID)
 	if _, told := running["word"]; told {

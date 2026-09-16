@@ -575,7 +575,7 @@ func TestCreateSingleDeviceOneOfUsGameRejectsAnUndealableRoleSet(t *testing.T) {
 	}
 }
 
-// A three-handed table, dealt many times over, has to put the liar on every seat rather than on whoever was typed in last.
+// A four-handed table, dealt many times over, has to put the liar on every seat rather than on whoever was typed in last.
 func TestASingleDeviceDealLandsTheImposterOnEverySeat(t *testing.T) {
 	h := newTestServer(t)
 	session := newGuestSession(t, h)
@@ -584,7 +584,7 @@ func TestASingleDeviceDealLandsTheImposterOnEverySeat(t *testing.T) {
 	landed := map[int]int{}
 
 	for range deals {
-		game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom")
+		game := startedOouGame(t, h, session.Token, "Niels", "Sanne", "Tom", "Eva")
 		for seat, player := range game.Players {
 			if player.Role != int(oneofus.Civilian) {
 				landed[seat]++
@@ -593,7 +593,7 @@ func TestASingleDeviceDealLandsTheImposterOnEverySeat(t *testing.T) {
 	}
 
 	// A fair deal puts about a hundred on each seat; fifty is six standard deviations short.
-	for seat := range 3 {
+	for seat := range 4 {
 		if landed[seat] < deals/6 {
 			t.Errorf("seat %d was dealt the liar %d times out of %d (%v)", seat, landed[seat], deals, landed)
 		}
