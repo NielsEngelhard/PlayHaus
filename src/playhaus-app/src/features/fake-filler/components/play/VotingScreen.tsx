@@ -254,18 +254,22 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
     const voters = option.voters ?? [];
 
     // A fake always has an author; the guard is for a round that arrives without one.
-    const author = truth || option.authorId === undefined || option.authorId === TRUTH_AUTHOR_ID
-        ? null
-        : nameOf(option.authorId);
+    const authorIds = option.authorIds ?? (option.authorId === undefined ? [] : [option.authorId]);
+    const authors = truth ? [] : authorIds.filter(id => id !== TRUTH_AUTHOR_ID).map(nameOf);
+    const shared = authors.length > 1;
 
     // Only a fake pays its author; the truth pays each of the people who spotted it.
     const points = truth
         ? (facts && voters.length > 0 ? t('fakeFiller.play.reveal.pointsEach') : null)
-        : voters.length === 0 ? '0' : t('fakeFiller.play.reveal.points', { points: voters.length });
+        : voters.length === 0
+            ? '0'
+            : t(shared ? 'fakeFiller.play.reveal.pointsShared' : 'fakeFiller.play.reveal.points', { points: voters.length });
 
     const verdict = truth
         ? t('fakeFiller.play.reveal.truth')
-        : [facts ? t('fakeFiller.play.reveal.fake') : null, author].filter(part => part !== null).join(', ');
+        : [facts ? t('fakeFiller.play.reveal.fake') : null, ...authors, shared ? t('fakeFiller.play.reveal.greatMinds') : null]
+            .filter(part => part !== null)
+            .join(', ');
 
     return (
         <View
@@ -286,7 +290,11 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
                     <AppText style={styles.hint}>{t('fakeFiller.play.reveal.fake')}</AppText>
                 )}
 
-                {author !== null && <AuthorTag name={author} />}
+                {authors.map((name, index) => <AuthorTag key={`${index}-${name}`} name={name} />)}
+
+                {shared && (
+                    <AppText style={styles.hint}>{t('fakeFiller.play.reveal.greatMinds')}</AppText>
+                )}
 
                 {mine && (
                     <AppText style={[styles.hint, truth && styles.hintActive]}>

@@ -93,10 +93,10 @@ type RecordVoteInput struct {
 	TotalRounds  int
 	VotersNeeded int
 
-	// GuesserID is paid GuesserPoints for finding the truth; AuthorID is paid AuthorPoints for having been picked.
+	// GuesserID is paid GuesserPoints for finding the truth; each of AuthorIDs is paid AuthorPoints for having been picked.
 	GuesserID     string
 	GuesserPoints int
-	AuthorID      string
+	AuthorIDs     []string
 	AuthorPoints  int
 }
 
@@ -561,6 +561,9 @@ func (s *Service) SubmitAnswer(ctx context.Context, in SubmitAnswerInput) (*Answ
 	if err != nil {
 		return nil, err
 	}
+	if truth := round.Option(TruthAuthorID); truth != nil && SameFills(fills, truth.Fills) {
+		return nil, ErrAnswerIsTruth
+	}
 
 	expected := AnswersFor(game.GameMode, len(game.Players))
 	answered, err := s.store.SaveAnswer(ctx, SaveAnswerInput{
@@ -628,13 +631,16 @@ func (s *Service) openVoting(ctx context.Context, gameID uuid.UUID) (bool, error
 
 	var slots []SlotAssignment
 	for _, round := range game.Rounds {
-		order := rand.Perm(len(round.Options))
-		for i, option := range round.Options {
-			slots = append(slots, SlotAssignment{
-				RoundID:  round.ID,
-				AuthorID: option.AuthorID,
-				Slot:     order[i],
-			})
+		groups := GroupSameFills(round.Options)
+		order := rand.Perm(len(groups))
+		for i, group := range groups {
+			for _, option := range group {
+				slots = append(slots, SlotAssignment{
+					RoundID:  round.ID,
+					AuthorID: option.AuthorID,
+					Slot:     order[i],
+				})
+			}
 		}
 	}
 
@@ -716,9 +722,12 @@ func (s *Service) CastVote(ctx context.Context, in CastVoteInput) (*VoteOutcome,
 	if guesser != 0 {
 		input.GuesserID, input.GuesserPoints = in.UserID, guesser
 	}
-	// The truth has no author to pay.
+	// The truth has no author to pay; a merged slot pays everybody who wrote it.
 	if author != 0 && !option.IsTruth() {
-		input.AuthorID, input.AuthorPoints = option.AuthorID, author
+		for _, shared := range round.OptionsInSlot(in.Slot) {
+			input.AuthorIDs = append(input.AuthorIDs, shared.AuthorID)
+		}
+		input.AuthorPoints = author
 	}
 
 	result, err := s.store.RecordVote(ctx, input)

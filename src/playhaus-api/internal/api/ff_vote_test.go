@@ -360,32 +360,7 @@ func TestFFBeingPickedScoresTheAuthorAlone(t *testing.T) {
 // picked.
 func TestFFCreativeRoundsHaveNoTruthToFind(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
-
-	host := newGuestSession(t, srv)
-	lobby := createFFLobby(t, srv, host.Token)
-
-	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"creative"}`, host.Token)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("set creative: status = %d (body: %s)", rec.Code, rec.Body)
-	}
-
-	others := []sessionResponse{newGuestSession(t, srv), newGuestSession(t, srv)}
-	for _, other := range others {
-		if rec := joinFFLobby(t, srv, other.Token, lobby.Code); rec.Code != http.StatusOK {
-			t.Fatalf("join: %d", rec.Code)
-		}
-	}
-	rec = do(t, srv, http.MethodPost, ffLobbyPathFor(lobby.Code)+"/start", "", host.Token)
-	if rec.Code != http.StatusOK {
-		t.Fatalf("start: status = %d (body: %s)", rec.Code, rec.Body)
-	}
-
-	game := startedFFGame{
-		lobbyCode: lobby.Code,
-		gameID:    decodeBody[ffLobbyResponse](t, rec).GameID,
-		host:      host,
-		players:   append([]sessionResponse{host}, others...),
-	}
+	game := creativeFFGame(t, srv)
 	writeEveryFFAnswer(t, srv, game)
 
 	voter, round := ffVoterFor(t, srv, game, 1)
@@ -399,7 +374,7 @@ func TestFFCreativeRoundsHaveNoTruthToFind(t *testing.T) {
 		}
 	}
 
-	rec = castFFVote(t, srv, voter.Token, game.gameID, 1, round.Options[0].Slot)
+	rec := castFFVote(t, srv, voter.Token, game.gameID, 1, round.Options[0].Slot)
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("vote: status = %d (body: %s)", rec.Code, rec.Body)
 	}
@@ -814,5 +789,99 @@ func TestFFTheHostMovingOnFromTheLastRevealEndsTheGame(t *testing.T) {
 	final := getFFGame(t, srv, game.host.Token, game.gameID)
 	if final.Status != string(fakefiller.GameCompleted) {
 		t.Errorf("status = %q, want %q", final.Status, fakefiller.GameCompleted)
+	}
+}
+
+func creativeFFGame(t *testing.T, h http.Handler) startedFFGame {
+	t.Helper()
+
+	host := newGuestSession(t, h)
+	lobby := createFFLobby(t, h, host.Token)
+
+	rec := do(t, h, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"creative"}`, host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("set creative: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	others := []sessionResponse{newGuestSession(t, h), newGuestSession(t, h)}
+	for _, other := range others {
+		if rec := joinFFLobby(t, h, other.Token, lobby.Code); rec.Code != http.StatusOK {
+			t.Fatalf("join: %d", rec.Code)
+		}
+	}
+	rec = do(t, h, http.MethodPost, ffLobbyPathFor(lobby.Code)+"/start", "", host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("start: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+
+	return startedFFGame{
+		lobbyCode: lobby.Code,
+		gameID:    decodeBody[ffLobbyResponse](t, rec).GameID,
+		host:      host,
+		players:   append([]sessionResponse{host}, others...),
+	}
+}
+
+func TestFFIdenticalFakesShareOneSlotAndBothAuthorsScore(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	game := creativeFFGame(t, srv)
+
+	var authors []string
+	for _, player := range game.players {
+		for _, round := range getFFGame(t, srv, player.Token, game.gameID).Rounds {
+			if !round.Mine || round.Answered {
+				continue
+			}
+			if round.Number != 1 {
+				answerOnePrompt(t, srv, player, game.gameID, round)
+				continue
+			}
+			fills := make([]string, round.Blanks)
+			for i := range fills {
+				fills[i] = "Great Minds"
+				if len(authors) > 0 {
+					fills[i] = "great minds"
+				}
+			}
+			if rec := submitFFAnswer(t, srv, player.Token, game.gameID, 1, fills); rec.Code != http.StatusCreated {
+				t.Fatalf("submit shared fake: status = %d (body: %s)", rec.Code, rec.Body)
+			}
+			authors = append(authors, player.User.ID)
+		}
+	}
+	if len(authors) != 2 {
+		t.Fatalf("round 1 had %d authors, want 2", len(authors))
+	}
+
+	voter, round := ffVoterFor(t, srv, game, 1)
+	if len(round.Options) != 1 || round.Options[0].Slot != 0 {
+		t.Fatalf("round 1 options = %+v, want one merged option in slot 0", round.Options)
+	}
+
+	rec := castFFVote(t, srv, voter.Token, game.gameID, 1, 0)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("vote: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	body := decodeBody[ffVoteResponse](t, rec)
+
+	for _, player := range body.Players {
+		want := 0
+		if slices.Contains(authors, player.UserID) {
+			want = fakefiller.FooledPoints
+		}
+		if player.Score != want {
+			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
+		}
+	}
+
+	if body.Reveal == nil || len(body.Reveal.Options) != 1 {
+		t.Fatalf("reveal = %+v, want one option", body.Reveal)
+	}
+	revealed := body.Reveal.Options[0]
+	if !slices.Equal(revealed.AuthorIDs, authors) && !slices.Equal(revealed.AuthorIDs, []string{authors[1], authors[0]}) {
+		t.Errorf("authorIds = %v, want %v", revealed.AuthorIDs, authors)
+	}
+	if len(revealed.Voters) != 1 || revealed.Voters[0] != voter.User.ID {
+		t.Errorf("voters = %v, want just %s", revealed.Voters, voter.User.ID)
 	}
 }

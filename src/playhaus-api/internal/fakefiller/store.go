@@ -431,9 +431,11 @@ func (s *GormStore) RecordVote(ctx context.Context, in RecordVoteInput) (*Record
 				return err
 			}
 		}
-		if in.AuthorID != "" && in.AuthorPoints != 0 {
-			if err := addScore(tx, in.GameID, in.AuthorID, in.AuthorPoints); err != nil {
-				return err
+		if in.AuthorPoints != 0 {
+			for _, authorID := range in.AuthorIDs {
+				if err := addScore(tx, in.GameID, authorID, in.AuthorPoints); err != nil {
+					return err
+				}
 			}
 		}
 

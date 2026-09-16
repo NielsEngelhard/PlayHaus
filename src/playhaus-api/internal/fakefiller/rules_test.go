@@ -273,3 +273,40 @@ func TestTheOnlyAuthorOfAOneAuthorRoundIsTheOnlyOneKeptFromVoting(t *testing.T) 
 		t.Errorf("round.Authors() = %v, want [a]", got)
 	}
 }
+
+func TestSameFillsIgnoresCaseOnly(t *testing.T) {
+	cases := []struct {
+		a, b Fills
+		want bool
+	}{
+		{Fills{"Amsterdam"}, Fills{"amsterdam"}, true},
+		{Fills{"algae", "GREEN"}, Fills{"Algae", "green"}, true},
+		{Fills{"algae", "green"}, Fills{"green", "algae"}, false},
+		{Fills{"algae"}, Fills{"algae", "green"}, false},
+		{Fills{"Den Haag"}, Fills{"Den-Haag"}, false},
+		{Fills{"café"}, Fills{"CAFÉ"}, true},
+	}
+	for _, c := range cases {
+		if got := SameFills(c.a, c.b); got != c.want {
+			t.Errorf("SameFills(%q, %q) = %v, want %v", c.a, c.b, got, c.want)
+		}
+	}
+}
+
+func TestIdenticalFakesAreGroupedAndTheRestStandAlone(t *testing.T) {
+	options := []FFOption{
+		{AuthorID: TruthAuthorID, Fills: Fills{"Paris"}},
+		{AuthorID: "a", Fills: Fills{"Lyon"}},
+		{AuthorID: "b", Fills: Fills{"LYON"}},
+	}
+	groups := GroupSameFills(options)
+	if len(groups) != 2 {
+		t.Fatalf("got %d groups, want 2: %+v", len(groups), groups)
+	}
+	if len(groups[0]) != 1 || groups[0][0].AuthorID != TruthAuthorID {
+		t.Errorf("first group = %+v, want the truth alone", groups[0])
+	}
+	if len(groups[1]) != 2 || groups[1][0].AuthorID != "a" || groups[1][1].AuthorID != "b" {
+		t.Errorf("second group = %+v, want a and b together", groups[1])
+	}
+}

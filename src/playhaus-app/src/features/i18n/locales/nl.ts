@@ -549,7 +549,7 @@ export const nl: Catalog = {
         index: {
             description: 'Een klassiek potje trivia in een speels jasje.',
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
-            multiDevice: { title: 'Host scherm', description: 'Telefoons als controller op een TV met de quiz.', action: 'Kamer openen' },
+            multiDevice: { title: 'Centraal scherm', description: 'Telefoons als controller op een TV met de quiz.', action: 'Kamer openen' },
             tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
             allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
             library: {
@@ -1341,6 +1341,8 @@ export const nl: Catalog = {
                 nobodyPicked: 'Niemand koos deze',
                 points: '+{{points}}',
                 pointsEach: '+1 per persoon',
+                pointsShared: '+{{points}} per persoon',
+                greatMinds: 'Great minds denken hetzelfde!',
                 noScore: 'Geen punten deze ronde.',
                 next: 'Volgende ronde',
                 toResults: 'Naar de eindstand',
@@ -1369,6 +1371,7 @@ export const nl: Catalog = {
             wrongRound: 'De tafel is al naar de volgende ronde.',
             wrongPhase: 'Zo ver is de tafel nog niet.',
             badAnswer: 'Vul elk gat in voordat je vastzet.',
+            answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin nu een nepantwoord.',
             gameFinished: 'Dit spel is afgelopen.'
         }
     },

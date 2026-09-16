@@ -120,9 +120,11 @@ type ffOptionResponse struct {
 	Slot  int      `json:"slot"`
 	Fills []string `json:"fills"`
 
-	AuthorID string   `json:"authorId,omitempty"`
-	IsTruth  bool     `json:"isTruth,omitempty"`
-	Voters   []string `json:"voters,omitempty"`
+	AuthorID string `json:"authorId,omitempty"`
+	// AuthorIDs is everybody who wrote this exact fake; more than one when identical answers were merged.
+	AuthorIDs []string `json:"authorIds,omitempty"`
+	IsTruth   bool     `json:"isTruth,omitempty"`
+	Voters    []string `json:"voters,omitempty"`
 }
 
 // ffRoundResponse is one prompt as it looks to one reader, which is the important part.
@@ -374,16 +376,26 @@ func newFFOptionResponses(round fakefiller.FFRound, revealed bool) []ffOptionRes
 	slices.SortFunc(sorted, func(a, b fakefiller.FFOption) int { return a.Slot - b.Slot })
 
 	options := make([]ffOptionResponse, 0, len(sorted))
-	for _, option := range sorted {
+	for i, option := range sorted {
+		// Merged fakes share a slot and are sorted together, so only the first of them makes an entry.
+		if i > 0 && sorted[i-1].Slot == option.Slot {
+			continue
+		}
 		body := ffOptionResponse{
 			Slot:  option.Slot,
 			Fills: option.Fills,
 		}
 		if revealed {
+			shared := round.OptionsInSlot(option.Slot)
+			authors := make([]string, 0, len(shared))
+			for _, o := range shared {
+				authors = append(authors, o.AuthorID)
+			}
 			body.AuthorID = option.AuthorID
+			body.AuthorIDs = authors
 			body.IsTruth = option.IsTruth()
 			for _, vote := range round.Votes {
-				if vote.VotedForAuthorID == option.AuthorID {
+				if slices.Contains(authors, vote.VotedForAuthorID) {
 					body.Voters = append(body.Voters, vote.VoterUserID)
 				}
 			}
@@ -978,6 +990,8 @@ func (s *Server) writeFFPlayError(w http.ResponseWriter, what string, err error)
 		writeErrorCode(w, http.StatusForbidden, "not_your_prompt", "that prompt was not dealt to you")
 	case errors.Is(err, fakefiller.ErrAlreadyAnswered):
 		writeErrorCode(w, http.StatusConflict, "already_answered", "you have already filled that one in")
+	case errors.Is(err, fakefiller.ErrAnswerIsTruth):
+		writeErrorCode(w, http.StatusUnprocessableEntity, "answer_is_truth", "that is the real answer; write a fake")
 	case errors.Is(err, fakefiller.ErrAlreadyVoted):
 		writeErrorCode(w, http.StatusConflict, "already_voted", "you have already voted on that one")
 	case errors.Is(err, fakefiller.ErrCannotVoteOwnPrompt):

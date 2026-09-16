@@ -30,6 +30,8 @@ export interface FFOption {
 
     /** Revealed rounds only. May be `TRUTH_AUTHOR_ID`. */
     authorId?: string
+    /** Revealed rounds only: everybody who wrote this exact fake, more than one when identical answers were merged. */
+    authorIds?: string[]
     /** Revealed rounds only. */
     isTruth?: boolean
     /** Revealed rounds only: who picked this one. */

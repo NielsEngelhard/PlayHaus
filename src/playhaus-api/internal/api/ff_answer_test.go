@@ -349,3 +349,33 @@ func firstMineFFRound(t *testing.T, game ffGameResponse) ffRoundResponse {
 	t.Fatal("the reader holds no unanswered prompt")
 	return ffRoundResponse{}
 }
+
+func TestFFAFakeThatMatchesTheTruthIsRefusedAndCanBeRewritten(t *testing.T) {
+	srv, db := newTestServerWithDB(t)
+	game := threeHandedFFGame(t, srv)
+
+	player := game.players[0]
+	round := firstMineFFRound(t, getFFGame(t, srv, player.Token, game.gameID))
+
+	var truth fakefiller.FFOption
+	if err := db.Where("round_id = ? AND author_id = ?", round.ID, fakefiller.TruthAuthorID).First(&truth).Error; err != nil {
+		t.Fatalf("load truth: %v", err)
+	}
+	shouted := make([]string, len(truth.Fills))
+	for i, fill := range truth.Fills {
+		shouted[i] = "  " + strings.ToUpper(fill) + " "
+	}
+
+	rec := submitFFAnswer(t, srv, player.Token, game.gameID, round.Number, shouted)
+	if rec.Code != http.StatusUnprocessableEntity {
+		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnprocessableEntity, rec.Body)
+	}
+	if code := errorCode(t, rec); code != "answer_is_truth" {
+		t.Errorf("code = %q, want answer_is_truth", code)
+	}
+
+	answered := answerOnePrompt(t, srv, player, game.gameID, round)
+	if answered.AnswersIn != 1 {
+		t.Errorf("answersIn = %d after the rewrite, want 1", answered.AnswersIn)
+	}
+}

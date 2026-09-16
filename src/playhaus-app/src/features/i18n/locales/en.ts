@@ -1477,6 +1477,8 @@ export const en = {
                 nobodyPicked: 'Nobody picked this',
                 points: '+{{points}}',
                 pointsEach: '+1 each',
+                pointsShared: '+{{points}} each',
+                greatMinds: 'Great minds!',
                 noScore: 'No points this round.',
                 next: 'Next round',
                 toResults: 'See the final scores',
@@ -1506,6 +1508,7 @@ export const en = {
             wrongRound: 'The table has moved on to the next round.',
             wrongPhase: 'The table is not doing that yet.',
             badAnswer: 'Fill in every blank before locking it in.',
+            answerIsTruth: 'Psst… that is the real answer! Now make up a fake.',
             gameFinished: 'This game is over.'
         }
     },

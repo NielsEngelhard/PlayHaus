@@ -1,5 +1,7 @@
 package fakefiller
 
+import "strings"
+
 // The rules of Fake Filler, as functions of nothing but their arguments: no context, no store, no clock.
 
 const (
@@ -87,6 +89,19 @@ func ValidPlayerCount(mode FFGameMode, players int) bool {
 	return players >= MinPlayersFor(mode) && players <= MaxLobbyPlayers
 }
 
+// SameFills reports whether two answers read the same, ignoring case; fills arrive already trimmed.
+func SameFills(a, b Fills) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if !strings.EqualFold(a[i], b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
 // ScoreVote is what one vote is worth, split between the person who cast it and the person who wrote the thing they picked.
 func ScoreVote(mode FFGameMode, votedForAuthorID string) (guesser, author int) {
 	if votedForAuthorID == TruthAuthorID {
@@ -101,4 +116,23 @@ func ScoreVote(mode FFGameMode, votedForAuthorID string) (guesser, author int) {
 // EligibleVoter reports whether a player may vote on a round: everybody except the people who wrote for it.
 func EligibleVoter(round FFRound, userID string) bool {
 	return !round.WrittenBy(userID)
+}
+
+// GroupSameFills buckets options that read the same, keeping first-seen order, so identical fakes share one slot.
+func GroupSameFills(options []FFOption) [][]FFOption {
+	var groups [][]FFOption
+	for _, option := range options {
+		placed := false
+		for i := range groups {
+			if SameFills(groups[i][0].Fills, option.Fills) {
+				groups[i] = append(groups[i], option)
+				placed = true
+				break
+			}
+		}
+		if !placed {
+			groups = append(groups, []FFOption{option})
+		}
+	}
+	return groups
 }

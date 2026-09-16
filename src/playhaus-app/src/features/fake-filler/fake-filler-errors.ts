@@ -64,6 +64,8 @@ export function ffPlayErrorMessage(error: unknown): TranslationKey {
             return 'fakeFiller.errors.wrongRound';
         case 'wrong_phase':
             return 'fakeFiller.errors.wrongPhase';
+        case 'answer_is_truth':
+            return 'fakeFiller.errors.answerIsTruth';
         case 'invalid_answer':
             return 'fakeFiller.errors.badAnswer';
         case 'game_finished':

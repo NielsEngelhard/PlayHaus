@@ -275,6 +275,17 @@ func (r *FFRound) OptionInSlot(slot int) *FFOption {
 	return nil
 }
 
+// OptionsInSlot is every option shown in a given position, which is more than one when identical fakes were merged.
+func (r FFRound) OptionsInSlot(slot int) []FFOption {
+	var out []FFOption
+	for _, option := range r.Options {
+		if slot >= 0 && option.Slot == slot {
+			out = append(out, option)
+		}
+	}
+	return out
+}
+
 // Answered reports whether every author has written their fake.
 func (r FFRound) Answered() bool {
 	for _, author := range r.Authors() {
@@ -355,6 +366,7 @@ var (
 	ErrRoundNotFound       = errors.New("no such round")
 	ErrNotYourPrompt       = errors.New("that prompt was not dealt to you")
 	ErrAlreadyAnswered     = errors.New("you have already answered that prompt")
+	ErrAnswerIsTruth       = errors.New("that is the real answer, not a fake")
 	ErrAlreadyVoted        = errors.New("you have already voted on that round")
 	ErrCannotVoteOwnPrompt = errors.New("you wrote for that prompt, so you cannot vote on it")
 	ErrOptionNotFound      = errors.New("no such option on that round")
