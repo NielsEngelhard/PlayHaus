@@ -32,7 +32,6 @@ type quizListResponse struct {
 	Items    []quizSummaryResponse `json:"items"`
 	Page     int                   `json:"page"`
 	PageSize int                   `json:"pageSize"`
-	Total    int64                 `json:"total"`
 	HasMore  bool                  `json:"hasMore"`
 }
 
@@ -358,8 +357,7 @@ func (s *Server) handleListQuizzes(w http.ResponseWriter, r *http.Request) {
 		Items:    items,
 		Page:     page.Page,
 		PageSize: page.PageSize,
-		Total:    page.Total,
-		HasMore:  page.HasMore(),
+		HasMore:  page.HasMore,
 	})
 }
 

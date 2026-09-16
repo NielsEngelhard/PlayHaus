@@ -86,62 +86,31 @@ func (s *GormStore) QuizBySlug(ctx context.Context, slug string, locale i18n.Loc
 	return &quizzes[0], nil
 }
 
-// ListQuizzes is one page of the shelf, newest first, plus how many there are in total so the caller can say whether there is more.
-func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int64, error) {
-	// Built once and reused for both the count and the page, so the two can never disagree about what they are counting.
-	query := func() *gorm.DB {
-		q := s.db.WithContext(ctx).Model(&Quiz{}).
-			Where("locale = ?", f.Locale)
-		if f.Category != "" {
-			q = q.Where("category = ?", f.Category)
-		}
-		return q
-	}
-
-	var total int64
-	if err := query().Count(&total).Error; err != nil {
-		return nil, 0, fmt.Errorf("count quizzes: %w", err)
+// ListQuizzes is one page of the shelf, newest first, and whether another page follows it.
+func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, bool, error) {
+	query := s.db.WithContext(ctx).Model(&Quiz{}).
+		Where("locale = ?", f.Locale)
+	if f.Category != "" {
+		query = query.Where("category = ?", f.Category)
 	}
 
 	var quizzes []*Quiz
-	err := query().
+	err := query.
 		// A weekly quiz is placed by the Wednesday it belongs to and everything else by when it went up.
 		Order("COALESCE(published_at, created_at) DESC, id DESC").
-		Limit(f.PageSize).
+		// One past the page, so whether there is more comes back without counting the shelf.
+		Limit(f.PageSize + 1).
 		Offset(f.Offset()).
 		Find(&quizzes).Error
 	if err != nil {
-		return nil, 0, fmt.Errorf("select quizzes: %w", err)
+		return nil, false, fmt.Errorf("select quizzes: %w", err)
 	}
 
-	return quizzes, total, nil
-}
-
-// QuestionCounts is how many questions each of the given quizzes has, keyed by quiz id.
-func (s *GormStore) QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]int, error) {
-	counts := make(map[uuid.UUID]int, len(quizIDs))
-	if len(quizIDs) == 0 {
-		return counts, nil
+	hasMore := len(quizzes) > f.PageSize
+	if hasMore {
+		quizzes = quizzes[:f.PageSize]
 	}
-
-	var rows []struct {
-		QuizID uuid.UUID
-		Total  int
-	}
-	err := s.db.WithContext(ctx).
-		Model(&Question{}).
-		Select("quiz_id, count(*) as total").
-		Where("quiz_id IN ?", quizIDs).
-		Group("quiz_id").
-		Scan(&rows).Error
-	if err != nil {
-		return nil, fmt.Errorf("count questions: %w", err)
-	}
-
-	for _, row := range rows {
-		counts[row.QuizID] = row.Total
-	}
-	return counts, nil
+	return quizzes, hasMore, nil
 }
 
 // Teasers is the first question of each of the given quizzes, keyed by quiz id.

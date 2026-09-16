@@ -68,11 +68,8 @@ func (s *verdictStore) QuizByID(context.Context, uuid.UUID) (*Quiz, error) { ret
 func (s *verdictStore) QuizBySlug(context.Context, string, i18n.Locale) (*Quiz, error) {
 	return nil, nil
 }
-func (s *verdictStore) ListQuizzes(context.Context, QuizFilter) ([]*Quiz, int64, error) {
-	return nil, 0, nil
-}
-func (s *verdictStore) QuestionCounts(context.Context, []uuid.UUID) (map[uuid.UUID]int, error) {
-	return nil, nil
+func (s *verdictStore) ListQuizzes(context.Context, QuizFilter) ([]*Quiz, bool, error) {
+	return nil, false, nil
 }
 func (s *verdictStore) Teasers(context.Context, []uuid.UUID) (map[uuid.UUID]string, error) {
 	return nil, nil

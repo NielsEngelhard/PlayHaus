@@ -580,10 +580,8 @@ export const nl: Catalog = {
                 comingSoon: 'Coming soon...',
                 search: 'Zoek een quiz…',
                 searchLabel: 'Zoek in de quizzen op deze lijst',
-                total: '{{quizzes}} in totaal',
-                matches: '{{quizzes}} gevonden',
                 noMatches: 'Hier staat niks dat daarop lijkt.',
-                noMatchesMore: 'Nog niks gevonden — oudere quizzen komen per pagina binnen. Laad er meer en kijk nog eens.',
+                noMatchesMore: 'Nog niks gevonden — oudere quizzen worden erbij geladen.',
                 sortNewest: 'Nieuwste',
                 sortAlpha: 'A–Z'
             }

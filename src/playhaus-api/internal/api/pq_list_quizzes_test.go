@@ -23,6 +23,23 @@ func listQuizzes(t *testing.T, h http.Handler, token, query string) quizListResp
 	return decodeBody[quizListResponse](t, rec)
 }
 
+// allQuizzes walks a shelf page by page until it says there is no more.
+func allQuizzes(t *testing.T, h http.Handler, token, query string) []quizSummaryResponse {
+	t.Helper()
+
+	var items []quizSummaryResponse
+	for page := 1; ; page++ {
+		list := listQuizzes(t, h, token, fmt.Sprintf("%s&pageSize=%d&page=%d", query, pubquizr.MaxPageSize, page))
+		items = append(items, list.Items...)
+		if !list.HasMore {
+			return items
+		}
+		if page > 100 {
+			t.Fatalf("%q still has more after %d pages", query, page)
+		}
+	}
+}
+
 func TestListQuizzesFiltersByLocale(t *testing.T) {
 	h, _ := newQuizServer(t)
 	session := newGuestSession(t, h)
@@ -63,10 +80,17 @@ func TestListQuizzesFiltersByCategory(t *testing.T) {
 		}
 	}
 
-	// No category is every shelf, so it cannot be smaller than one of them.
-	all := listQuizzes(t, h, session.Token, "locale=nl")
-	if all.Total < weekly.Total+official.Total {
-		t.Errorf("total without a category = %d, want at least %d", all.Total, weekly.Total+official.Total)
+	// No category is every shelf, so everything on either one turns up in it.
+	all := map[string]bool{}
+	for _, item := range allQuizzes(t, h, session.Token, "locale=nl") {
+		all[item.ID] = true
+	}
+	for _, shelf := range []string{"weekly", "official"} {
+		for _, item := range allQuizzes(t, h, session.Token, "locale=nl&category="+shelf) {
+			if !all[item.ID] {
+				t.Errorf("%s quiz %q is missing without a category", shelf, item.Slug)
+			}
+		}
 	}
 }
 
@@ -151,7 +175,7 @@ func TestListQuizzesPages(t *testing.T) {
 		t.Errorf("page/pageSize = %d/%d, want 1/10", first.Page, first.PageSize)
 	}
 	if !first.HasMore {
-		t.Errorf("hasMore = false with %d of %d shown", len(first.Items), first.Total)
+		t.Error("hasMore = false on page 1 of at least 25")
 	}
 
 	second := listQuizzes(t, h, session.Token, "locale=en&pageSize=10&page=2")
@@ -171,10 +195,25 @@ func TestListQuizzesPages(t *testing.T) {
 		}
 	}
 
-	// The last page runs out, and says so.
-	last := listQuizzes(t, h, session.Token, fmt.Sprintf("locale=en&pageSize=10&page=%d", (first.Total+9)/10))
-	if last.HasMore {
-		t.Errorf("hasMore = true on the last page (total %d)", last.Total)
+	// Walked to the end, the shelf runs out, says so, and has nothing past it.
+	page, seenAll := 1, 0
+	for {
+		list := listQuizzes(t, h, session.Token, fmt.Sprintf("locale=en&pageSize=10&page=%d", page))
+		seenAll += len(list.Items)
+		if !list.HasMore {
+			break
+		}
+		page++
+		if page > 100 {
+			t.Fatal("hasMore never turned false")
+		}
+	}
+	if seenAll < 25 {
+		t.Errorf("walked %d quizzes, want at least 25", seenAll)
+	}
+	past := listQuizzes(t, h, session.Token, fmt.Sprintf("locale=en&pageSize=10&page=%d", page+1))
+	if len(past.Items) != 0 || past.HasMore {
+		t.Errorf("page past the end = %d items, hasMore %v; want none", len(past.Items), past.HasMore)
 	}
 }
 

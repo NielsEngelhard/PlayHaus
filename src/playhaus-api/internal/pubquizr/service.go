@@ -27,8 +27,7 @@ type LobbySetup struct {
 type Store interface {
 	QuizByID(ctx context.Context, id uuid.UUID) (*Quiz, error)
 	QuizBySlug(ctx context.Context, slug string, locale i18n.Locale) (*Quiz, error)
-	ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, int64, error)
-	QuestionCounts(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]int, error)
+	ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, bool, error)
 	Teasers(ctx context.Context, quizIDs []uuid.UUID) (map[uuid.UUID]string, error)
 	ReplaceQuiz(ctx context.Context, quiz *Quiz) error
 
@@ -107,16 +106,11 @@ func (f QuizFilter) Offset() int { return (f.Page - 1) * f.PageSize }
 // QuizPage is a page of the shelf and enough to draw the pager around it.
 type QuizPage struct {
 	Quizzes  []*Quiz
-	Counts   map[uuid.UUID]int
 	Played   map[uuid.UUID]bool
 	Teasers  map[uuid.UUID]string
 	Page     int
 	PageSize int
-	Total    int64
-}
-
-func (p QuizPage) HasMore() bool {
-	return int64(p.Page*p.PageSize) < p.Total
+	HasMore  bool
 }
 
 type Service struct {
@@ -161,7 +155,7 @@ func (s *Service) Quiz(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 func (s *Service) ListQuizzes(ctx context.Context, ownerID string, f QuizFilter) (*QuizPage, error) {
 	f = f.normalize()
 
-	quizzes, total, err := s.store.ListQuizzes(ctx, f)
+	quizzes, hasMore, err := s.store.ListQuizzes(ctx, f)
 	if err != nil {
 		return nil, err
 	}
@@ -169,10 +163,6 @@ func (s *Service) ListQuizzes(ctx context.Context, ownerID string, f QuizFilter)
 	ids := make([]uuid.UUID, 0, len(quizzes))
 	for _, quiz := range quizzes {
 		ids = append(ids, quiz.ID)
-	}
-	counts, err := s.store.QuestionCounts(ctx, ids)
-	if err != nil {
-		return nil, err
 	}
 
 	played, err := s.store.PlayedQuizIDs(ctx, ownerID, ids)
@@ -187,12 +177,11 @@ func (s *Service) ListQuizzes(ctx context.Context, ownerID string, f QuizFilter)
 
 	return &QuizPage{
 		Quizzes:  quizzes,
-		Counts:   counts,
 		Played:   played,
 		Teasers:  teasers,
 		Page:     f.Page,
 		PageSize: f.PageSize,
-		Total:    total,
+		HasMore:  hasMore,
 	}, nil
 }
 

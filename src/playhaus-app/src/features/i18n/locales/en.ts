@@ -613,12 +613,9 @@ export const en = {
                 search: 'Search quizzes…',
                 /** Read out for the search field, which shows only its icon. */
                 searchLabel: 'Search the quizzes on this shelf',
-                // How many quizzes the shelf holds, and how many of them a search found.
-                total: '{{quizzes}} total',
-                matches: '{{quizzes}} found',
                 noMatches: 'Nothing on this shelf matches that.',
-                // The same miss, with older pages still unfetched behind it.
-                noMatchesMore: 'Nothing matches that yet — older quizzes arrive a page at a time. Load some more and look again.',
+                // The same miss, with older pages still being fetched behind it.
+                noMatchesMore: 'Nothing yet — older quizzes are being loaded.',
                 /** The sort switch, spelled as the order it would put the shelf in. */
                 sortNewest: 'Newest',
                 sortAlpha: 'A–Z',

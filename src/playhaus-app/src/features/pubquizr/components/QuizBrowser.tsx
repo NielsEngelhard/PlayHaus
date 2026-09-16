@@ -7,7 +7,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
     Platform,
     Pressable,
@@ -39,6 +39,9 @@ const FADE_HEIGHT = 34;
 
 // How close to the bottom counts as the bottom.
 const END_SLACK = 4;
+
+// How far short of the bottom the next page is already asked for.
+const LOAD_AHEAD = 240;
 
 // The two orders the shelf can be in.
 type Sort = 'newest' | 'alpha';
@@ -133,6 +136,9 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
 
     const [faded, setFaded] = useState(false);
 
+    // The shelf as the last render saw it, for `measure` to read without being rebuilt on every page.
+    const pager = useRef(quizzes);
+
     const measure = useCallback(() => {
         const below = content.current - viewport.current - offset.current;
 
@@ -142,7 +148,19 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
 
             return next === previous ? previous : next;
         });
+
+        // Also fires while the column is too short to scroll at all, so a filtered shelf keeps filling itself.
+        const { hasMore, loadingMore, moreFailed, loadMore } = pager.current;
+        if (viewport.current > 0 && below < LOAD_AHEAD && hasMore && !loadingMore && !moreFailed) {
+            loadMore();
+        }
     }, []);
+
+    // Filtering can change what is shown without changing the content height, so the check runs again whenever either might have moved.
+    useEffect(() => {
+        pager.current = quizzes;
+        measure();
+    }, [quizzes, visible.length, measure]);
 
     const onLayout = useCallback((event: LayoutChangeEvent) => {
         viewport.current = event.nativeEvent.layout.height;
@@ -169,14 +187,6 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                 <AppText style={styles.headerLabel}>
                     {t('pubquizr.index.list.label')}
                 </AppText>
-
-                {shelf && (
-                    <AppText style={styles.headerCount}>
-                        {searching
-                            ? t('pubquizr.index.list.matches', { quizzes: visible.length })
-                            : t('pubquizr.index.list.total', { quizzes: quizzes.total })}
-                    </AppText>
-                )}
 
                 <View style={styles.headerSpacer} />
 
@@ -324,8 +334,8 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                                 ))
                             )}
 
-                            {/* At the end of the rows — including the end of no rows at all. */}
-                            {quizzes.hasMore && (
+                            {/* Older pages arrive on their own; the rule only shows one on its way, or offers a retry once one did not arrive. */}
+                            {quizzes.hasMore && (quizzes.loadingMore || quizzes.moreFailed) && (
                                 <RuleButton
                                     text={quizzes.loadingMore ? t('common.busy') : t('pubquizr.index.list.loadOlder')}
                                     busy={quizzes.loadingMore}
@@ -405,13 +415,7 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
-    headerCount: {
-        fontSize: FontSizes.xs,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
-    },
-
-    // Pushes the close to the far end without the label and the count drifting apart.
+    // Pushes the close to the far end.
     headerSpacer: {
         flex: 1
     },

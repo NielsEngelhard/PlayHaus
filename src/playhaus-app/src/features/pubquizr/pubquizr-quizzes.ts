@@ -10,7 +10,6 @@ export interface QuizListResponse {
     items: QuizListItem[]
     page: number
     pageSize: number
-    total: number
     hasMore: boolean
 }
 
