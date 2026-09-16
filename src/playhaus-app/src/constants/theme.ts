@@ -74,6 +74,9 @@ export interface Palette {
     // The wash behind a modal, and the heavier one behind the auth sheet.
     scrim: string,
     scrimStrong: string,
+    // The two paper tints stacked behind a card meant to read as a stack of slips, back to front.
+    paperGhostBack: string,
+    paperGhostMiddle: string,
 
     primary: string,
     secondary: string,
@@ -115,7 +118,9 @@ const Colors: Record<Scheme, Palette> = {
         backgroundFocus: '#FFFFFF',
         muted: '#EEE7DB',
         scrim: 'rgba(15, 13, 18, 0.45)',
-        scrimStrong: 'rgba(15, 13, 18, 0.6)'
+        scrimStrong: 'rgba(15, 13, 18, 0.6)',
+        paperGhostBack: '#F2EDE2',
+        paperGhostMiddle: '#F7F2E8'
     },
     dark: {
         ...Brand,
@@ -146,7 +151,10 @@ const Colors: Record<Scheme, Palette> = {
         backgroundFocus: '#2E2C3A',
         muted: '#3A3644',
         scrim: 'rgba(0, 0, 0, 0.6)',
-        scrimStrong: 'rgba(0, 0, 0, 0.75)'
+        scrimStrong: 'rgba(0, 0, 0, 0.75)',
+        // Reuses the surface steps rather than inventing a warm paper tint that would fight the dark canvas.
+        paperGhostBack: '#211F29',
+        paperGhostMiddle: '#333140'
     }
 };
 

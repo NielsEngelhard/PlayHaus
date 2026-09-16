@@ -222,6 +222,8 @@ const useStyles = createThemedStyles(theme => ({
     maxWidth: ContentWidth,
     width: '100%',
     flexDirection: 'column',
+    // Lets a page's own trailing content reach the scroller's flexGrown height with `marginTop: 'auto'`, rather than leaving spare height stranded below `content`.
+    flexGrow: 1,
   },
   // Lifts the header over the page below it, for the routes whose page paints up into the header's 66dp.
   headerAbove: {
@@ -238,6 +240,7 @@ const useStyles = createThemedStyles(theme => ({
   // The transition wrapper stands between `content` and the page, so it has to pass both of those down untouched.
   pageSlot: {
     width: '100%',
+    flexGrow: 1,
   },
   // Carries the height ceiling through in full-screen mode.
   pageSlotFullScreen: {

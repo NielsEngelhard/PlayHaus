@@ -217,7 +217,9 @@ function Fact({
 
 const useStyles = createThemedStyles(() => ({
     container: {
-        width: '100%'
+        width: '100%',
+        // Lets a game push its own trailing content to the bottom of the page with `marginTop: 'auto'`.
+        flexGrow: 1
     },
 
     hero: {

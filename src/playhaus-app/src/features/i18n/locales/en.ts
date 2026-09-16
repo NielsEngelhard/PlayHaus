@@ -574,6 +574,15 @@ export const en = {
             multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
             tableScreen: { title: 'Table screen', subtitle: 'On the TV' },
             allQuizzes: { title: 'All quizzes', subtitle: 'Browse the list' },
+            // The stack of slips at the foot of the page.
+            library: {
+                title: 'All quizzes',
+                subtitle: 'Music, film, history and more',
+                count_one: '{{count}} quiz',
+                count_other: '{{count}}',
+                a11y_one: 'All quizzes, {{count}} quiz',
+                a11y_other: 'All quizzes, {{count}} quizzes'
+            },
             pickOne: 'Pick one',
             playThis: 'Play this',
             // Only ever on the newest quiz in the deck.
