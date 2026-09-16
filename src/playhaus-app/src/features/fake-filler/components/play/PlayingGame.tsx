@@ -1,5 +1,6 @@
 import { ffRoundOf } from "@/api/calls/fake-filler";
 import LoadingPage from "@/components/layout/LoadingPage";
+import Confetti from "@/components/ui/Confetti";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
 import PlayBand from "@/features/fake-filler/components/play/PlayBand";
@@ -59,6 +60,10 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
 
     // The reveal is drawn on the voting round's own cards, so both phases show the same round.
     const round = reveal !== null ? ffRoundOf(game, reveal.roundNumber) ?? null : votingRound;
+
+    // True only while a reveal is showing and the truth was this viewer's own pick.
+    const wonReveal = reveal !== null && round !== null && round.myVoteSlot !== undefined
+        && round.options?.some(option => option.slot === round.myVoteSlot && option.isTruth === true) === true;
 
     const band = reveal !== null ? {
         label: t('fakeFiller.play.band.round'),
@@ -130,6 +135,9 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
                 // Voting, but there is no round to show.
                 <LoadingPage message={t('fakeFiller.results.loading')} />
             )}
+
+            {/* Last, so it falls in front of everything. */}
+            <Confetti active={wonReveal} />
         </View>
     )
 }

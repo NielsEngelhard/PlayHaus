@@ -251,6 +251,8 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
 
     const facts = game.gameMode === 'facts';
     const truth = option.isTruth === true;
+    const correctMine = truth && mine;
+    const wrongMine = !truth && mine;
     const voters = option.voters ?? [];
 
     // A fake always has an author; the guard is for a round that arrives without one.
@@ -275,7 +277,12 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
         <View
             accessible
             accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}. ${verdict}`}
-            style={[styles.option, truth && styles.optionActive]}
+            style={[
+                styles.option,
+                truth && styles.optionActive,
+                correctMine && styles.optionCorrectMine,
+                wrongMine && styles.optionWrongMine
+            ]}
         >
             <View style={styles.optionHead}>
                 <View style={[styles.letter, truth && styles.letterActive]}>
@@ -379,6 +386,16 @@ const useStyles = createThemedStyles(theme => ({
     optionActive: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
+    },
+    // The truth, when it was also your pick — one shade past optionActive's mint.
+    optionCorrectMine: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.available
+    },
+    // The one you picked, once the truth turned out to be a different card.
+    optionWrongMine: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.blush
     },
     faded: {
         opacity: 0.5
