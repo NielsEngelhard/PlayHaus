@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { ROUTES } from "@/constants/routes";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Link } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 // The three tones the card's contents wear on blush, in either scheme.
 const ON_BLUSH = {
@@ -21,9 +23,16 @@ const SECOND_ROUND = 2;
 export default function TournamentCard() {
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     const card = (
-        <Pressable style={styles.card}>
+        <AnimatedPressable
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            style={[styles.card, pop.animatedStyle]}
+        >
             <View>
                 <AppText style={styles.eyebrow}>{t('lol.index.tournament.badge')}</AppText>
 
@@ -62,7 +71,7 @@ export default function TournamentCard() {
             <View style={styles.action}>
                 <AppText style={styles.actionText}>{t('lol.index.tournament.action')}</AppText>
             </View>
-        </Pressable>
+        </AnimatedPressable>
     );
 
     return (

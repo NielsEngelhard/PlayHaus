@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PickRow, { AwardRow } from "@/components/ui/PickRow";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -19,7 +21,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import BonusRoundScreen from "../play/BonusRoundScreen";
 import TurnRulesScreen, { type TurnRule } from "../play/TurnRulesScreen";
 import TurnStrip from "../play/TurnStrip";
@@ -43,6 +45,7 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const popAgain = usePressPop();
 
     const [stage, setStage] = useState<Stage>('ready');
     /** What became of each word: the seat credited with it, or null for one nobody got. */
@@ -209,19 +212,14 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
                         const guessed = (awards[word.dealt.id] ?? null) !== null;
 
                         return (
-                            <Pressable
+                            <WordTileButton
                                 key={word.dealt.id}
+                                word={word.word}
+                                guessed={guessed}
+                                busy={busy}
                                 onPress={() => toggleInTime(word.dealt.id)}
-                                disabled={busy}
-                                accessibilityRole="checkbox"
-                                accessibilityState={{ checked: guessed, disabled: busy }}
-                                accessibilityLabel={word.word}
-                                style={[styles.word, guessed && styles.wordGuessed, busy && styles.dimmed]}
-                            >
-                                <AppText style={[styles.wordText, guessed && styles.wordTextGuessed]}>
-                                    {word.word}
-                                </AppText>
-                            </Pressable>
+                                styles={styles}
+                            />
                         )
                     })}
                 </ScrollView>
@@ -347,7 +345,7 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
             )}
 
             {/* The way back, because the two scoring screens are a walk rather than a form. */}
-            <Pressable
+            <AnimatedPressable
                 onPress={() => {
                     if (busy) return;
                     apply({});
@@ -356,15 +354,19 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
                     setStage('inTime');
                 }}
                 disabled={busy}
+                onPressIn={popAgain.onPressIn}
+                onPressOut={popAgain.onPressOut}
+                onHoverIn={popAgain.onHoverIn}
+                onHoverOut={popAgain.onHoverOut}
                 accessibilityRole="button"
-                style={[styles.again, busy && styles.dimmed]}
+                style={[styles.again, busy && styles.dimmed, popAgain.animatedStyle]}
             >
                 <Feather name="rotate-ccw" size={14} color={theme.colors.textMuted} />
 
                 <AppText style={styles.againText}>
                     {t('pubquizr.play.describe.scoreAgain')}
                 </AppText>
-            </Pressable>
+            </AnimatedPressable>
 
             <ActionButton
                 size="large"
@@ -390,6 +392,38 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
 // The timer, kept behind a component of its own so it mounts once per turn.
 function TurnTimerSlot({ onDone }: { onDone: () => void }) {
     return <TurnTimer seconds={DESCRIBE_SECONDS} onDone={onDone} />;
+}
+
+interface WordTileButtonProps {
+    word: string
+    guessed: boolean
+    busy: boolean
+    onPress: () => void
+    styles: ReturnType<typeof useStyles>
+}
+
+// Its own component so each word tile gets its own press/hover animation state.
+function WordTileButton({ word, guessed, busy, onPress, styles }: WordTileButtonProps) {
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            disabled={busy}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: guessed, disabled: busy }}
+            accessibilityLabel={word}
+            style={[styles.word, guessed && styles.wordGuessed, busy && styles.dimmed, pop.animatedStyle]}
+        >
+            <AppText style={[styles.wordText, guessed && styles.wordTextGuessed]}>
+                {word}
+            </AppText>
+        </AnimatedPressable>
+    )
 }
 
 const useStyles = createThemedStyles(theme => ({

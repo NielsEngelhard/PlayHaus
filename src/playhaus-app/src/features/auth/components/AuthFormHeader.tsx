@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     title: string
@@ -19,19 +21,24 @@ export default function AuthFormHeader({ title, onBack, disabled = false }: Prop
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     return (
         <View style={styles.row}>
             {onBack !== undefined && (
-                <Pressable
+                <AnimatedPressable
                     onPress={onBack}
                     disabled={disabled}
+                    onPressIn={pop.onPressIn}
+                    onPressOut={pop.onPressOut}
+                    onHoverIn={pop.onHoverIn}
+                    onHoverOut={pop.onHoverOut}
                     accessibilityRole='button'
                     accessibilityLabel={t('common.back')}
-                    style={[styles.backButton, disabled && styles.disabled]}
+                    style={[styles.backButton, disabled && styles.disabled, pop.animatedStyle]}
                 >
                     <Feather name='arrow-left' size={18} color={theme.colors.text} />
-                </Pressable>
+                </AnimatedPressable>
             )}
 
             <AppText style={styles.title}>{title}</AppText>

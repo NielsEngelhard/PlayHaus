@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import Card from "@/components/ui/Card";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -75,6 +77,7 @@ export default function SelectInput<T extends string>({
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     const field = useRef<View>(null);
     const [anchor, setAnchor] = useState<Anchor | null>(null);
@@ -137,10 +140,14 @@ export default function SelectInput<T extends string>({
                 <Label label={label} />
             )}
 
-            <Pressable
+            <AnimatedPressable
                 ref={field}
                 onPress={show}
                 disabled={disabled}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole='button'
                 accessibilityLabel={t('common.selectValue', { label, value: selected?.label ?? t('common.nothingSelected') })}
                 // `aria-expanded` rather than `accessibilityState={{ expanded }}`.
@@ -148,7 +155,8 @@ export default function SelectInput<T extends string>({
                 style={[
                     row ? styles.fieldRow : styles.field,
                     disabled && !row && styles.fieldDisabled,
-                    disabled && row && styles.dimmed
+                    disabled && row && styles.dimmed,
+                    pop.animatedStyle
                 ]}
             >
                 {withIcons && (
@@ -180,7 +188,7 @@ export default function SelectInput<T extends string>({
                                 : theme.colors.text
                     }
                 />
-            </Pressable>
+            </AnimatedPressable>
 
             {present && anchor !== null && (
                 <Modal
@@ -260,18 +268,23 @@ interface OptionRowProps<T extends string> {
 function OptionRow<T extends string>({ option, selected, divided, withIcon, onPress }: OptionRowProps<T>) {
     const theme = useTheme();
     const styles = useStyles();
+    const pop = usePressPop();
 
     const [hovered, setHovered] = useState(false);
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='radio'
             accessibilityLabel={option.label}
             aria-checked={selected}
             onPointerEnter={() => setHovered(true)}
             onPointerLeave={() => setHovered(false)}
-            style={[styles.row, divided && styles.rowDivided, hovered && styles.rowHovered]}
+            style={[styles.row, divided && styles.rowDivided, hovered && styles.rowHovered, pop.animatedStyle]}
         >
             {withIcon && <View style={styles.rowIcon}>{option.icon}</View>}
 
@@ -288,7 +301,7 @@ function OptionRow<T extends string>({ option, selected, divided, withIcon, onPr
                     <Feather name='check' size={16} color={theme.colors.textOnAccent} />
                 )}
             </View>
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

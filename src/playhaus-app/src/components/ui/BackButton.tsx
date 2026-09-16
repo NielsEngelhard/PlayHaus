@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing, type ButtonVariant } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 
 interface Props {
     href: Href,
@@ -19,6 +21,7 @@ export default function BackButton({ href, label, variant = 'secondary', style }
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     const text = label ?? t('common.back');
 
@@ -26,15 +29,19 @@ export default function BackButton({ href, label, variant = 'secondary', style }
 
     return (
         <Link href={href} asChild>
-            <Pressable
+            <AnimatedPressable
                 accessibilityRole='link'
                 accessibilityLabel={text}
-                // `style` comes last so a caller can trim the standing margin below without having to reach into this file for the rest of the look.
-                style={StyleSheet.flatten([styles.button, { backgroundColor: fill }, style])}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
+                // `style` comes last so a caller can trim the standing margin below without having to reach into this file for the rest of the look. Flattened to one object: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that trip.
+                style={StyleSheet.flatten([styles.button, { backgroundColor: fill }, style, pop.animatedStyle])}
             >
                 <Feather name='arrow-left' size={18} color={ink} />
                 <AppText style={[styles.text, { color: ink }]}>{text}</AppText>
-            </Pressable>
+            </AnimatedPressable>
         </Link>
     )
 }

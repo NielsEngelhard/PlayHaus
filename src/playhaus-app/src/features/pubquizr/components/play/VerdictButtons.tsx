@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     /** Whoever the question is with right now. */
@@ -33,6 +35,8 @@ export default function VerdictButtons({
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const popWrong = usePressPop();
+    const popCorrect = usePressPop();
 
     const scoring = worth > 0;
 
@@ -41,31 +45,39 @@ export default function VerdictButtons({
 
     return (
         <View style={styles.buttons}>
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onVerdict(false)}
                 disabled={busy}
+                onPressIn={popWrong.onPressIn}
+                onPressOut={popWrong.onPressOut}
+                onHoverIn={popWrong.onHoverIn}
+                onHoverOut={popWrong.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={t('pubquizr.play.markWrong', { name: answering.name })}
                 accessibilityState={{ disabled: busy }}
-                style={[styles.button, styles.wrong, busy && styles.dimmed]}
+                style={[styles.button, styles.wrong, busy && styles.dimmed, popWrong.animatedStyle]}
             >
                 <Feather name="x" size={20} color={theme.colors.destructive} />
 
                 <AppText style={styles.wrongLabel}>{t('pubquizr.play.wrong')}</AppText>
-            </Pressable>
+            </AnimatedPressable>
 
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onVerdict(true)}
                 disabled={busy}
+                onPressIn={popCorrect.onPressIn}
+                onPressOut={popCorrect.onPressOut}
+                onHoverIn={popCorrect.onHoverIn}
+                onHoverOut={popCorrect.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={t('pubquizr.play.markCorrect', { name: answering.name })}
                 accessibilityState={{ disabled: busy }}
-                style={[styles.button, styles.correct, busy && styles.dimmed]}
+                style={[styles.button, styles.correct, busy && styles.dimmed, popCorrect.animatedStyle]}
             >
                 <Feather name="check" size={22} color={Brand.ink} />
 
                 <AppText style={styles.correctLabel}>{t('pubquizr.play.correct')}</AppText>
-            </Pressable>
+            </AnimatedPressable>
         </View>
     )
 }

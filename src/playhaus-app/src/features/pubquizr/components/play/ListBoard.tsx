@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import InlineNotification from "@/components/ui/InlineNotification";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -19,7 +21,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
 import PickRow, { AwardRow } from "@/components/ui/PickRow";
 import ScriptCard from "./ScriptCard";
@@ -43,6 +45,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const popAgain = usePressPop();
 
     const [stage, setStage] = useState<Stage>('ready');
     /** What became of each answer: the seat credited with it, or null for one nobody got. */
@@ -383,7 +386,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             )}
 
             {/* The way back, because the scoring is a walk rather than a form. */}
-            <Pressable
+            <AnimatedPressable
                 onPress={() => {
                     if (busy) return;
                     setAwards({});
@@ -392,15 +395,19 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     setStage('inTime');
                 }}
                 disabled={busy}
+                onPressIn={popAgain.onPressIn}
+                onPressOut={popAgain.onPressOut}
+                onHoverIn={popAgain.onHoverIn}
+                onHoverOut={popAgain.onHoverOut}
                 accessibilityRole="button"
-                style={[styles.again, busy && styles.dimmed]}
+                style={[styles.again, busy && styles.dimmed, popAgain.animatedStyle]}
             >
                 <Feather name="rotate-ccw" size={14} color={theme.colors.textMuted} />
 
                 <AppText style={styles.againText}>
                     {t('pubquizr.play.list.scoreAgain')}
                 </AppText>
-            </Pressable>
+            </AnimatedPressable>
 
             <ActionButton
                 size="large"

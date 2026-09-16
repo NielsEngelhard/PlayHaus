@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { ROUTES } from "@/constants/routes";
 import { Brand, FontSizes, Radii, ShadowReach, Spacing, hardShadow } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -6,7 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { Image, Pressable, View, type ImageStyle } from "react-native";
+import { Image, View, type ImageStyle } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
 import { initialsFor, swatchFor, weekNumberFor } from "../quiz-shelf";
 
@@ -47,6 +49,7 @@ export default function QuizCard({ quiz, onSelect, onPress, selected = false, fe
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const pop = usePressPop();
 
     const played = quiz.played === true;
     const swatch = swatchFor(quiz);
@@ -157,32 +160,40 @@ export default function QuizCard({ quiz, onSelect, onPress, selected = false, fe
         </>
     );
 
-    const cardStyle = [styles.card, featured && styles.cardFeatured, selected && styles.cardSelected];
+    const cardStyle = [styles.card, featured && styles.cardFeatured, selected && styles.cardSelected, pop.animatedStyle];
 
     if (onSelect) {
         return (
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onSelect(quiz)}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="radio"
                 accessibilityLabel={label}
                 accessibilityState={{ selected, checked: selected }}
                 style={cardStyle}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         )
     }
 
     if (onPress) {
         return (
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onPress(quiz)}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={label}
                 style={cardStyle}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         )
     }
 
@@ -194,13 +205,17 @@ export default function QuizCard({ quiz, onSelect, onPress, selected = false, fe
             }}
             asChild
         >
-            <Pressable
+            <AnimatedPressable
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={label}
                 style={cardStyle}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         </Link>
     )
 }

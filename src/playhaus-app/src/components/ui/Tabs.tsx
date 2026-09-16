@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText"
+import AnimatedPressable from "@/components/ui/AnimatedPressable"
+import { usePressPop } from "@/components/ui/usePressPop"
 import { Brand } from "@/constants/theme"
 import { createThemedStyles } from "@/features/theme/createThemedStyles"
-import { Pressable, View } from "react-native"
+import { View } from "react-native"
 
 interface Props<T extends string> {
     activeTab: T
@@ -19,26 +21,44 @@ export default function Tabs<T extends string>({ activeTab, tabs, onClick, getLa
 
     return (
         <View style={styles.track} accessibilityRole="tablist">
-            {tabs.map(tab => {
-                const active = tab === activeTab;
-                const label = getLabel?.(tab) ?? tab;
-
-                return (
-                    <Pressable
-                        key={tab}
-                        onPress={() => onClick(tab)}
-                        accessibilityRole="tab"
-                        accessibilityLabel={label}
-                        aria-selected={active}
-                        style={[styles.tab, active && styles.tabActive]}
-                    >
-                        <AppText style={active ? styles.labelActive : styles.label}>
-                            {label}
-                        </AppText>
-                    </Pressable>
-                )
-            })}
+            {tabs.map(tab => (
+                <TabItem
+                    key={tab}
+                    active={tab === activeTab}
+                    label={getLabel?.(tab) ?? tab}
+                    onPress={() => onClick(tab)}
+                />
+            ))}
         </View>
+    )
+}
+
+interface TabItemProps {
+    active: boolean
+    label: string
+    onPress: () => void
+}
+
+function TabItem({ active, label, onPress }: TabItemProps) {
+    const styles = useStyles();
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="tab"
+            accessibilityLabel={label}
+            aria-selected={active}
+            style={[styles.tab, active && styles.tabActive, pop.animatedStyle]}
+        >
+            <AppText style={active ? styles.labelActive : styles.label}>
+                {label}
+            </AppText>
+        </AnimatedPressable>
     )
 }
 

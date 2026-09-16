@@ -2,6 +2,8 @@ import AccentBand from "@/components/layout/AccentBand";
 import GameMark from "@/components/layout/GameMark";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { accentOf, type Game } from "@/constants/games";
 import { accentInkColor, Brand, FontSizes, Radii, ShadowReach, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -10,7 +12,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { AvatarColor } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Pressable, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 // One finisher, in whatever ids the game deals in.
 export interface ScoreBoardPlayer {
@@ -95,6 +97,7 @@ function initialOf(name: string): string {
 export default function ScoreBoardScreen({ action, error, game, onClose, players, totalRounds, waitingForHost = false, youId }: Props) {
     const styles = useStyles();
     const t = useT();
+    const closePop = usePressPop();
 
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
@@ -131,14 +134,18 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
                         </AppText>
                     </View>
 
-                    <Pressable
+                    <AnimatedPressable
                         onPress={onClose}
+                        onPressIn={closePop.onPressIn}
+                        onPressOut={closePop.onPressOut}
+                        onHoverIn={closePop.onHoverIn}
+                        onHoverOut={closePop.onHoverOut}
                         accessibilityRole="button"
                         accessibilityLabel={t('common.close')}
-                        style={[styles.close, { backgroundColor: withAlpha(ink, 0.16) }]}
+                        style={[styles.close, { backgroundColor: withAlpha(ink, 0.16) }, closePop.animatedStyle]}
                     >
                         <Feather name="x" size={CLOSE_GLYPH} color={ink} />
-                    </Pressable>
+                    </AnimatedPressable>
                 </View>
 
                 {headline !== undefined && (

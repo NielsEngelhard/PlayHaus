@@ -1,9 +1,11 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     label: string
@@ -28,15 +30,20 @@ export default function PickRow({
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole={mode === 'radio' ? 'radio' : 'checkbox'}
             accessibilityState={{ checked: active, disabled }}
             accessibilityLabel={label}
-            style={[styles.pick, active && styles.pickActive, disabled && styles.dimmed]}
+            style={[styles.pick, active && styles.pickActive, disabled && styles.dimmed, pop.animatedStyle]}
         >
             <AppText
                 style={[styles.pickText, active && styles.pickTextActive]}
@@ -50,7 +57,7 @@ export default function PickRow({
                 size={18}
                 color={active ? Brand.ink : theme.colors.textMuted}
             />
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

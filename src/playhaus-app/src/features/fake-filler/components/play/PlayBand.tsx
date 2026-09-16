@@ -1,10 +1,12 @@
 import AccentBand from "@/components/layout/AccentBand";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FAKE_FILLER } from "@/constants/games";
 import { accentInkColor, Spacing, withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     onClose: () => void,
@@ -24,18 +26,23 @@ const CHIP = 30;
 // The top of every board screen: the way out, where the table is, and what this screen is asking.
 export default function PlayBand({ onClose, closeLabel, label, count, title, subtitle }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
         <AccentBand gradient={FAKE_FILLER.gradient} gutter={0} underHeader={false} style={styles.band}>
             <View style={styles.row}>
-                <Pressable
+                <AnimatedPressable
                     onPress={onClose}
+                    onPressIn={pop.onPressIn}
+                    onPressOut={pop.onPressOut}
+                    onHoverIn={pop.onHoverIn}
+                    onHoverOut={pop.onHoverOut}
                     accessibilityRole='button'
                     accessibilityLabel={closeLabel}
-                    style={styles.leave}
+                    style={[styles.leave, pop.animatedStyle]}
                 >
                     <Feather name='arrow-left' size={15} color={INK} />
-                </Pressable>
+                </AnimatedPressable>
 
                 <AppText style={styles.label} numberOfLines={1}>{label}</AppText>
 

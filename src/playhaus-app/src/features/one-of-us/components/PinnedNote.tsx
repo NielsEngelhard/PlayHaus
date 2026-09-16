@@ -1,8 +1,10 @@
+import AnimatedPressable from '@/components/ui/AnimatedPressable';
+import { usePressPop } from '@/components/ui/usePressPop';
 import { Brand } from '@/constants/theme';
 import { tiltFor, type NoteTone } from '@/features/one-of-us/board-notes';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import type { ReactNode } from 'react';
-import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
+import { View, type StyleProp, type ViewStyle } from 'react-native';
 
 interface Props {
     accessibilityLabel?: string
@@ -27,6 +29,7 @@ export default function PinnedNote({
     tone = 'paper'
 }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     const look = [
         styles.note,
@@ -42,16 +45,25 @@ export default function PinnedNote({
     }
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityLabel={accessibilityLabel}
             accessibilityState={{ disabled }}
-            style={[look, disabled && tone === 'paper' && styles.dimmed]}
+            // A plain `pop.animatedStyle` last would wipe out the tilt above it — RN merges `transform` whole, not element by element — so the tilt is folded into the same transform array as the animated scale instead.
+            style={[
+                look,
+                disabled && tone === 'paper' && styles.dimmed,
+                { transform: [{ rotate: tiltFor(index) }, ...pop.animatedStyle.transform] }
+            ]}
         >
             {children}
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

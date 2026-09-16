@@ -1,11 +1,12 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { useCooldown } from "@/hooks/useCooldown";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { copyText } from "@/utils/share";
 import { useT } from "@/features/i18n/LanguageContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable } from "react-native";
 
 interface Props {
     /** The code that got this player in here. */
@@ -22,6 +23,7 @@ export default function RoomCodeFooter({ code }: Props) {
     const styles = useStyles();
 
     const [confirmed, confirm] = useCooldown(CONFIRMED_MS);
+    const pop = usePressPop();
 
     async function copy() {
         // Only a real copy is worth confirming.
@@ -29,11 +31,15 @@ export default function RoomCodeFooter({ code }: Props) {
     }
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={() => void copy()}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityLabel={t('lobby.copyCode', { characters: [...code].join(' ') })}
-            style={styles.footer}
+            style={[styles.footer, pop.animatedStyle]}
         >
             <AppText style={styles.label}>{confirmed ? t('lobby.copied') : t('lobby.code')}</AppText>
 
@@ -44,7 +50,7 @@ export default function RoomCodeFooter({ code }: Props) {
                 size={15}
                 color={confirmed ? theme.colors.available : theme.colors.textMuted}
             />
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

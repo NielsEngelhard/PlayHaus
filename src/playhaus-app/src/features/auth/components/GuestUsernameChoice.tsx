@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import TextButton from "@/components/ui/TextButton";
+import { usePressPop } from "@/components/ui/usePressPop";
 import type { LanguageCode } from "@/constants/languages";
 import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { authErrorMessage } from "@/features/auth/auth-errors";
@@ -13,7 +15,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 
 interface Props {
     // Chosen on the screen before this one; the account does not exist until this step submits.
@@ -26,6 +28,7 @@ export default function GuestUsernameChoice({ locale, onBack }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     const { continueAsGuest } = useAuth();
 
@@ -76,15 +79,19 @@ export default function GuestUsernameChoice({ locale, onBack }: Props) {
                     style={[styles.input, busy && styles.dimmed]}
                 />
 
-                <Pressable
+                <AnimatedPressable
                     onPress={() => setName(randomName(locale))}
                     disabled={busy}
+                    onPressIn={pop.onPressIn}
+                    onPressOut={pop.onPressOut}
+                    onHoverIn={pop.onHoverIn}
+                    onHoverOut={pop.onHoverOut}
                     accessibilityRole='button'
                     accessibilityLabel={t('auth.guestUsername.random')}
-                    style={[styles.diceButton, busy && styles.dimmed]}
+                    style={[styles.diceButton, busy && styles.dimmed, pop.animatedStyle]}
                 >
                     <Feather name='shuffle' size={20} color={theme.colors.text} />
-                </Pressable>
+                </AnimatedPressable>
             </View>
 
             <AppText style={styles.hint}>

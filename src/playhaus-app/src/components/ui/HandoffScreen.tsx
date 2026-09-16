@@ -1,12 +1,14 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing } from "@/constants/theme";
 import { handoffToneFor, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
-import { Animated, Easing, Platform, Pressable, View } from "react-native";
+import { Animated, Easing, Platform, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -49,6 +51,7 @@ export default function HandoffScreen({
     onReady
 }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     const insets = useSafeAreaInsets();
 
@@ -132,15 +135,19 @@ export default function HandoffScreen({
                 </Animated.View>
             )}
 
-            <Pressable
+            <AnimatedPressable
                 onPress={onReady}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
-                style={styles.button}
+                style={[styles.button, pop.animatedStyle]}
             >
                 <AppText style={styles.buttonText}>
                     {action}
                 </AppText>
-            </Pressable>
+            </AnimatedPressable>
         </View>
     )
 }

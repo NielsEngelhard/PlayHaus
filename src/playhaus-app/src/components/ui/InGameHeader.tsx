@@ -1,5 +1,7 @@
 import AccentBand from "@/components/layout/AccentBand";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { accentOf, gameForPathname } from "@/constants/games";
 import { accentInkColor, Brand, Spacing, withAlpha, type Accent, type Theme } from "@/constants/theme";
 import { AccentProvider, useAccent } from "@/features/theme/AccentContext";
@@ -8,7 +10,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { usePathname } from "expo-router";
 import type { ReactNode } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 /** How one step of the track has gone, or that it has not been played yet. */
 export type SegmentState = 'won' | 'lost' | 'played' | 'upcoming';
@@ -39,6 +41,7 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     const theme = useTheme();
     const styles = useStyles();
     const pathname = usePathname();
+    const pop = usePressPop();
 
     // Whose colour this is.
     const lent = useAccent();
@@ -53,14 +56,18 @@ export default function InGameHeader({ onClose, closeLabel, label, segments, chi
     const band = (
         <AccentBand gradient={gradient} overlap={overlap} underHeader={false} style={styles.band}>
             <View style={styles.row}>
-                <Pressable
+                <AnimatedPressable
                     onPress={onClose}
+                    onPressIn={pop.onPressIn}
+                    onPressOut={pop.onPressOut}
+                    onHoverIn={pop.onHoverIn}
+                    onHoverOut={pop.onHoverOut}
                     accessibilityRole="button"
                     accessibilityLabel={closeLabel}
-                    style={styles.leave}
+                    style={[styles.leave, pop.animatedStyle]}
                 >
                     <Feather name="arrow-left" size={16} color={Brand.ink} />
-                </Pressable>
+                </AnimatedPressable>
 
                 <View style={styles.body}>
                     <AppText style={[styles.label, { color: withAlpha(ink, 0.85) }]} numberOfLines={1}>

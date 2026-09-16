@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import Card from "@/components/ui/Card";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     onLogout: () => void
@@ -15,21 +17,26 @@ export default function LogoutCard({ onLogout }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     return (
         <Card>
             <AppText style={styles.label}>{t('profile.logout')}</AppText>
 
             <View style={styles.buttonRow}>
-                <Pressable
+                <AnimatedPressable
                     onPress={onLogout}
+                    onPressIn={pop.onPressIn}
+                    onPressOut={pop.onPressOut}
+                    onHoverIn={pop.onHoverIn}
+                    onHoverOut={pop.onHoverOut}
                     accessibilityRole='button'
                     accessibilityLabel={t('profile.logout')}
-                    style={styles.button}
+                    style={[styles.button, pop.animatedStyle]}
                 >
                     <Feather name='log-out' size={16} color={theme.colors.textOnAccent} />
                     <AppText style={styles.buttonText}>{t('profile.logout')}</AppText>
-                </Pressable>
+                </AnimatedPressable>
             </View>
         </Card>
     )

@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { ROUTES } from "@/constants/routes";
 import { Brand, BottomBarHeight, Spacing, withAlpha } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -7,7 +9,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, RelativePathString, usePathname, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Tab {
@@ -64,33 +66,53 @@ export default function BottomBar() {
                         : tab.prominent ? theme.colors.text : theme.colors.textMuted
 
                     return (
-                        <Link key={tab.labelKey} href={tab.href} asChild>
-                            <Pressable
-                                // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that merge.
-                                style={StyleSheet.flatten([styles.item, tab.prominent && styles.itemProminent])}
-                                accessibilityRole='link'
-                                accessibilityLabel={t(tab.labelKey)}
-                                accessibilityState={{ selected: active }}
-                            >
-                                {tab.prominent ? (
-                                    <View style={[styles.pill, active ? styles.pillActive : styles.pillIdle]}>
-                                        <Feather name={tab.icon} size={19} color={ink} />
-
-                                        <AppText style={[styles.pillLabel, { color: ink }]} numberOfLines={1}>
-                                            {t(tab.labelKey)}
-                                        </AppText>
-                                    </View>
-                                ) : (
-                                    <View style={[styles.icon, active && styles.iconActive]}>
-                                        <Feather name={tab.icon} size={21} color={ink} />
-                                    </View>
-                                )}
-                            </Pressable>
-                        </Link>
+                        <BarItem key={tab.labelKey} tab={tab} active={active} ink={ink} label={t(tab.labelKey)} />
                     )
                 })}
             </View>
         </View>
+    )
+}
+
+interface BarItemProps {
+    tab: Tab
+    active: boolean
+    ink: string
+    label: string
+}
+
+function BarItem({ tab, active, ink, label }: BarItemProps) {
+    const styles = useStyles();
+    const pop = usePressPop();
+
+    return (
+        <Link href={tab.href} asChild>
+            <AnimatedPressable
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
+                // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that merge.
+                style={StyleSheet.flatten([styles.item, tab.prominent && styles.itemProminent, pop.animatedStyle])}
+                accessibilityRole='link'
+                accessibilityLabel={label}
+                accessibilityState={{ selected: active }}
+            >
+                {tab.prominent ? (
+                    <View style={[styles.pill, active ? styles.pillActive : styles.pillIdle]}>
+                        <Feather name={tab.icon} size={19} color={ink} />
+
+                        <AppText style={[styles.pillLabel, { color: ink }]} numberOfLines={1}>
+                            {label}
+                        </AppText>
+                    </View>
+                ) : (
+                    <View style={[styles.icon, active && styles.iconActive]}>
+                        <Feather name={tab.icon} size={21} color={ink} />
+                    </View>
+                )}
+            </AnimatedPressable>
+        </Link>
     )
 }
 

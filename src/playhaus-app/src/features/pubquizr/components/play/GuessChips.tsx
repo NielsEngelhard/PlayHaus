@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand } from "@/constants/theme";
 import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
 import { compactNumber } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useEffect, useRef } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { useEffect, useRef, type ReactNode } from "react";
+import { ScrollView, View, type LayoutChangeEvent } from "react-native";
 
 interface Props {
     busy: boolean
@@ -49,15 +51,13 @@ export default function GuessChips({ busy, clashing, focused, guessing, onFocus,
                     const clash = clashing.includes(seat.seat);
 
                     return (
-                        <Pressable
+                        <GuessChip
                             key={seat.seat}
                             onPress={() => onFocus(seat.seat)}
                             onLayout={event => { offsets.current[seat.seat] = event.nativeEvent.layout.x; }}
                             disabled={busy}
-                            hitSlop={4}
-                            accessibilityRole="button"
-                            accessibilityState={{ selected: current }}
                             accessibilityLabel={t('pubquizr.play.closest.entry', { name: seat.name })}
+                            current={current}
                         >
                             {current || text !== '' ? (
                                 <View style={[styles.chip, current && styles.chipCurrent, clash && styles.chipClash]}>
@@ -78,7 +78,7 @@ export default function GuessChips({ busy, clashing, focused, guessing, onFocus,
                                     <AppText style={styles.emptyInitials}>{seat.initials}</AppText>
                                 </View>
                             )}
-                        </Pressable>
+                        </GuessChip>
                     )
                 })}
             </ScrollView>
@@ -87,6 +87,39 @@ export default function GuessChips({ busy, clashing, focused, guessing, onFocus,
                 {t('pubquizr.play.closest.position', { number: index + 1, total: guessing.length })}
             </AppText>
         </View>
+    )
+}
+
+interface GuessChipProps {
+    onPress: () => void
+    onLayout: (event: LayoutChangeEvent) => void
+    disabled: boolean
+    accessibilityLabel: string
+    current: boolean
+    children: ReactNode
+}
+
+// Its own component so each chip gets its own press/hover animation state.
+function GuessChip({ onPress, onLayout, disabled, accessibilityLabel, current, children }: GuessChipProps) {
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            onLayout={onLayout}
+            disabled={disabled}
+            hitSlop={4}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="button"
+            accessibilityState={{ selected: current }}
+            accessibilityLabel={accessibilityLabel}
+            style={pop.animatedStyle}
+        >
+            {children}
+        </AnimatedPressable>
     )
 }
 

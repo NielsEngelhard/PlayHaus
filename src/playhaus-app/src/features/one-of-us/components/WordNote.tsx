@@ -1,10 +1,12 @@
 import AppText from '@/components/text/AppText';
+import AnimatedPressable from '@/components/ui/AnimatedPressable';
+import { usePressPop } from '@/components/ui/usePressPop';
 import { Brand, Gradients } from '@/constants/theme';
 import PinnedNote, { NotePin } from '@/features/one-of-us/components/PinnedNote';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import Feather from '@expo/vector-icons/Feather';
 import { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 interface Props {
     /** The line under the word — who else is holding what. */
@@ -33,6 +35,7 @@ export default function WordNote({
     word
 }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     const [revealed, setRevealed] = useState(initiallyRevealed);
 
@@ -72,11 +75,15 @@ export default function WordNote({
                         <AppText style={styles.blurb}>{blurb}</AppText>
                     </>
                 ) : (
-                    <Pressable
+                    <AnimatedPressable
                         onPress={reveal}
+                        onPressIn={pop.onPressIn}
+                        onPressOut={pop.onPressOut}
+                        onHoverIn={pop.onHoverIn}
+                        onHoverOut={pop.onHoverOut}
                         accessibilityRole='button'
                         accessibilityLabel={coverLabel}
-                        style={styles.cover}
+                        style={[styles.cover, pop.animatedStyle]}
                     >
                         <View style={styles.eye}>
                             <Feather name='eye' size={18} color={Brand.ink} />
@@ -85,7 +92,7 @@ export default function WordNote({
                         <AppText style={styles.coverLabel}>{coverLabel}</AppText>
 
                         <AppText style={styles.blurb}>{coverHint}</AppText>
-                    </Pressable>
+                    </AnimatedPressable>
                 )}
             </PinnedNote>
         </View>

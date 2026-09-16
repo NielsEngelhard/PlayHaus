@@ -1,8 +1,10 @@
 import AppText from '@/components/text/AppText';
+import AnimatedPressable from '@/components/ui/AnimatedPressable';
+import { usePressPop } from '@/components/ui/usePressPop';
 import { Brand } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import Feather from '@expo/vector-icons/Feather';
-import { Pressable, type StyleProp, type ViewStyle } from 'react-native';
+import { type StyleProp, type ViewStyle } from 'react-native';
 
 interface Props {
     disabled?: boolean
@@ -17,19 +19,24 @@ interface Props {
 // The board's one committing button: the game's own violet, and ink on it in both schemes.
 export default function PinButton({ disabled = false, icon, onPress, style, text }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityState={{ disabled }}
-            style={[styles.button, disabled && styles.disabled, style]}
+            style={[styles.button, disabled && styles.disabled, style, pop.animatedStyle]}
         >
             <AppText style={styles.label}>{text}</AppText>
 
             {icon !== undefined && <Feather name={icon} size={17} color={Brand.ink} />}
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

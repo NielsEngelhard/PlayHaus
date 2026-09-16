@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { fontFamilyForWeight, FontSizes, withAlpha } from "@/constants/theme";
 import type { Phrase } from "@/features/i18n/keys";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
@@ -7,7 +9,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useRef, useState } from "react";
-import { Keyboard, Pressable, TextInput, View } from "react-native";
+import { Keyboard, TextInput, View } from "react-native";
 
 interface Props {
     names: string[]
@@ -33,6 +35,7 @@ export default function PlayerNamesInputInOrder({ names, onChange, minPlayers, m
     const phrase = usePhrase();
     const theme = useTheme();
     const styles = useStyles();
+    const addPop = usePressPop();
 
     const removable = names.length > minPlayers;
     const full = names.length >= maxPlayers;
@@ -125,30 +128,28 @@ export default function PlayerNamesInputInOrder({ names, onChange, minPlayers, m
                         </View>
 
                         {removable && (
-                            <Pressable
+                            <RemoveButton
                                 onPress={() => remove(seat)}
                                 disabled={disabled}
-                                hitSlop={8}
-                                accessibilityRole="button"
-                                accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
-                                accessibilityState={{ disabled }}
-                                style={styles.remove}
-                            >
-                                <Feather name="x" size={15} color={theme.colors.textFaint} />
-                            </Pressable>
+                                label={t('common.player.remove', { seat: seat + 1 })}
+                            />
                         )}
                     </View>
                 )
             })}
 
             {!full && (
-                <Pressable
+                <AnimatedPressable
                     onPress={add}
                     disabled={disabled}
+                    onPressIn={addPop.onPressIn}
+                    onPressOut={addPop.onPressOut}
+                    onHoverIn={addPop.onHoverIn}
+                    onHoverOut={addPop.onHoverOut}
                     accessibilityRole="button"
                     accessibilityLabel={t('pubquizr.oneDevice.seat.add')}
                     accessibilityState={{ disabled }}
-                    style={styles.addRow}
+                    style={[styles.addRow, addPop.animatedStyle]}
                 >
                     <View style={styles.addIcon}>
                         <Feather name="plus" size={12} color={theme.colors.text} />
@@ -161,9 +162,39 @@ export default function PlayerNamesInputInOrder({ names, onChange, minPlayers, m
                     <AppText style={styles.count}>
                         {names.length} / {maxPlayers}
                     </AppText>
-                </Pressable>
+                </AnimatedPressable>
             )}
         </View>
+    )
+}
+
+interface RemoveButtonProps {
+    onPress: () => void
+    disabled: boolean
+    label: string
+}
+
+function RemoveButton({ onPress, disabled, label }: RemoveButtonProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            disabled={disabled}
+            hitSlop={8}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="button"
+            accessibilityLabel={label}
+            accessibilityState={{ disabled }}
+            style={[styles.remove, pop.animatedStyle]}
+        >
+            <Feather name="x" size={15} color={theme.colors.textFaint} />
+        </AnimatedPressable>
     )
 }
 

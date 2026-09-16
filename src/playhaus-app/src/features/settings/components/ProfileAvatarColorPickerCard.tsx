@@ -1,12 +1,14 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import Card from "@/components/ui/Card";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { AVATAR_COLORS, type AvatarColor } from "@/utils/color-utils";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { intoRows } from "@/utils/rows";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     value: string,
@@ -55,11 +57,16 @@ interface SwatchProps {
 function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='radio'
             accessibilityLabel={t(avatar.labelKey)}
             accessibilityState={{ selected, disabled }}
@@ -67,13 +74,14 @@ function Swatch({ avatar, selected, disabled, onPress }: SwatchProps) {
                 styles.swatch,
                 { backgroundColor: avatar.color },
                 selected ? styles.swatchSelected : styles.swatchUnselected,
-                disabled && styles.swatchDisabled
+                disabled && styles.swatchDisabled,
+                pop.animatedStyle
             ]}
         >
             {selected && (
                 <Feather name='check' size={20} color={avatar.foreground} />
             )}
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

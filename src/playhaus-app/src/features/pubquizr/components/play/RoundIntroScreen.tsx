@@ -1,11 +1,13 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { roundIntroToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -27,6 +29,7 @@ interface Props {
 export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, quizmaster, onStart }: Props) {
     const t = useT();
     const styles = useStyles();
+    const pop = usePressPop();
 
     // Nothing above this holds the notch open — the board's band is not drawn on the screens that stand in front of it.
     const insets = useSafeAreaInsets();
@@ -109,17 +112,21 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                 </AppText>
             </View>
 
-            <Pressable
+            <AnimatedPressable
                 onPress={onStart}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
-                style={styles.button}
+                style={[styles.button, pop.animatedStyle]}
             >
                 <AppText style={styles.buttonText}>
                     {t('pubquizr.play.intro.action', { round })}
                 </AppText>
 
                 <Feather name="arrow-right" size={20} color={Brand.textOnAccent} />
-            </Pressable>
+            </AnimatedPressable>
         </View>
     )
 }

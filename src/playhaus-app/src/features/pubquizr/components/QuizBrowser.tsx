@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import InlineNotification from "@/components/ui/InlineNotification";
 import Tabs from "@/components/ui/Tabs";
 import TextButton from "@/components/ui/TextButton";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, FontSizes, Radii, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -10,7 +12,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
     Platform,
-    Pressable,
     ScrollView,
     TextInput,
     View,
@@ -89,6 +90,9 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const popClose = usePressPop();
+    const popSort = usePressPop();
+    const popFilter = usePressPop();
 
     const [category, setCategory] = useState<QuizCategory>('weekly');
     const [query, setQuery] = useState('');
@@ -191,14 +195,18 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                 <View style={styles.headerSpacer} />
 
                 {onClose !== undefined && (
-                    <Pressable
+                    <AnimatedPressable
                         onPress={onClose}
+                        onPressIn={popClose.onPressIn}
+                        onPressOut={popClose.onPressOut}
+                        onHoverIn={popClose.onHoverIn}
+                        onHoverOut={popClose.onHoverOut}
                         accessibilityRole="button"
                         accessibilityLabel={t('common.close')}
-                        style={styles.close}
+                        style={[styles.close, popClose.animatedStyle]}
                     >
                         <Feather name="x" size={17} color={theme.colors.textSecondary} />
-                    </Pressable>
+                    </AnimatedPressable>
                 )}
             </View>
 
@@ -279,25 +287,33 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                                     />
 
                                     {/* Spelled as the order it would put the shelf in rather than the one it is in. */}
-                                    <Pressable
+                                    <AnimatedPressable
                                         onPress={() => setSort(current => current === 'newest' ? 'alpha' : 'newest')}
+                                        onPressIn={popSort.onPressIn}
+                                        onPressOut={popSort.onPressOut}
+                                        onHoverIn={popSort.onHoverIn}
+                                        onHoverOut={popSort.onHoverOut}
                                         accessibilityRole="button"
-                                        style={styles.sortChip}
+                                        style={[styles.sortChip, popSort.animatedStyle]}
                                     >
                                         <AppText style={styles.sortChipText}>
                                             {sort === 'newest'
                                                 ? t('pubquizr.index.list.sortAlpha')
                                                 : t('pubquizr.index.list.sortNewest')}
                                         </AppText>
-                                    </Pressable>
+                                    </AnimatedPressable>
                                 </View>
 
-                                <Pressable
+                                <AnimatedPressable
                                     onPress={() => setUnplayedOnly(current => !current)}
+                                    onPressIn={popFilter.onPressIn}
+                                    onPressOut={popFilter.onPressOut}
+                                    onHoverIn={popFilter.onHoverIn}
+                                    onHoverOut={popFilter.onHoverOut}
                                     accessibilityRole="switch"
                                     accessibilityLabel={t('pubquizr.index.list.unplayedOnly')}
                                     accessibilityState={{ checked: unplayedOnly }}
-                                    style={[styles.filter, unplayedOnly && styles.filterOn]}
+                                    style={[styles.filter, unplayedOnly && styles.filterOn, popFilter.animatedStyle]}
                                 >
                                     <AppText style={[styles.filterText, unplayedOnly && styles.filterTextOn]}>
                                         {t('pubquizr.index.list.unplayedOnly')}
@@ -306,7 +322,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                                     <View style={[styles.switchTrack, unplayedOnly && styles.switchTrackOn]}>
                                         <View style={[styles.switchKnob, unplayedOnly && styles.switchKnobOn]} />
                                     </View>
-                                </Pressable>
+                                </AnimatedPressable>
                             </View>
 
                             {visible.length === 0 ? (

@@ -1,10 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, hardShadow, ShadowReach, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, View } from "react-native";
+import { useState } from "react";
+import { View } from "react-native";
 
 interface Props {
     onPress: () => void
@@ -21,6 +24,9 @@ export default function QuizLibraryStack({ onPress }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    // Its own hard-shadow press effect already carries the click, so the shared hook only adds the web hover.
+    const pop = usePressPop({ pressEnabled: false });
+    const [pressed, setPressed] = useState(false);
 
     return (
         <View style={styles.stack}>
@@ -43,11 +49,16 @@ export default function QuizLibraryStack({ onPress }: Props) {
                 style={styles.ghostMiddle}
             />
 
-            <Pressable
+            <AnimatedPressable
                 onPress={onPress}
+                onPressIn={() => setPressed(true)}
+                onPressOut={() => setPressed(false)}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={t('pubquizr.index.library.title')}
-                style={({ pressed }) => [styles.front, pressed && styles.frontPressed]}
+                // frontPressed comes last: its own translate must win over the hover scale, since a mouse is already hovering by the time it's down.
+                style={[styles.front, pop.animatedStyle, pressed && styles.frontPressed]}
             >
                 <View style={styles.iconTile}>
                     <Feather name="list" size={ICON_SIZE} color={Brand.ink} />
@@ -64,7 +75,7 @@ export default function QuizLibraryStack({ onPress }: Props) {
                 </View>
 
                 <Feather name="chevron-right" size={19} color={Brand.ink} style={styles.chevron} />
-            </Pressable>
+            </AnimatedPressable>
         </View>
     )
 }

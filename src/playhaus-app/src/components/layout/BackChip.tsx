@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, accentInkColor, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useAccent } from "@/features/theme/AccentContext";
@@ -6,7 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 interface Props {
     /** Where up is. Worked out by `Header` from the route, not by the page. */
@@ -24,6 +26,7 @@ export default function BackChip({ href, onPress, variant = 'chrome' }: Props) {
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     // The band variant colours itself from the accent the page lent.
     const accent = useAccent();
@@ -34,15 +37,20 @@ export default function BackChip({ href, onPress, variant = 'chrome' }: Props) {
         : undefined;
 
     const chip = (
-        <Pressable
+        <AnimatedPressable
             // A step back is a button and an anchor is a link.
             accessibilityRole={onPress === undefined ? 'link' : 'button'}
             accessibilityLabel={t('common.back')}
             onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that trip.
             style={StyleSheet.flatten([
                 band ? styles.bandChip : styles.chip,
-                band && { backgroundColor: bandFill }
+                band && { backgroundColor: bandFill },
+                pop.animatedStyle
             ])}
         >
             <Feather name='arrow-left' size={band ? 16 : 17} color={bandGlyph} />
@@ -52,7 +60,7 @@ export default function BackChip({ href, onPress, variant = 'chrome' }: Props) {
                     {t('common.back')}
                 </AppText>
             )}
-        </Pressable>
+        </AnimatedPressable>
     );
 
     // Only wrapped when the way back really is another page.

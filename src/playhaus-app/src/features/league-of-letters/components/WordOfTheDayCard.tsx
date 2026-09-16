@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { ROUTES } from "@/constants/routes";
 import { Brand } from "@/constants/theme";
 import { useNow } from "@/hooks/useNow";
@@ -8,7 +10,7 @@ import { resetDay, untilReset } from "@/features/league-of-letters/word-of-the-d
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 // The two tones the card's contents wear on lemon, in either scheme.
 const ON_LEMON = {
@@ -31,6 +33,7 @@ export default function WordOfTheDayCard() {
     const t = useT();
     const language = useUiLanguage();
     const router = useRouter();
+    const pop = usePressPop();
 
     const now = useNow(TICK_MS);
 
@@ -55,12 +58,16 @@ export default function WordOfTheDayCard() {
     };
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={press}
             disabled={starting}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityLabel={t('lol.index.wordOfTheDay.title')}
-            style={[styles.card, starting && styles.starting]}
+            style={[styles.card, starting && styles.starting, pop.animatedStyle]}
         >
             <View style={styles.date}>
                 <AppText style={styles.month}>{monthLabel(now, language)}</AppText>
@@ -79,7 +86,7 @@ export default function WordOfTheDayCard() {
             <View style={styles.chevron}>
                 <Feather name="chevron-right" size={15} color={Brand.textOnAccent} />
             </View>
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

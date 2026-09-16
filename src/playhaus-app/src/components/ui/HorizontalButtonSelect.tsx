@@ -1,8 +1,10 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Spacing, withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 export interface HorizontalButtonSelectProps<T> {
     options: readonly T[];
@@ -89,17 +91,23 @@ function ButtonTile({
     onPress
 }: ButtonTileProps) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole="radio"
             accessibilityLabel={accessibilityLabel}
             aria-checked={selected}
             style={[
                 styles.tile,
                 compact && styles.tileCompact,
-                selected && styles.tileSelected
+                selected && styles.tileSelected,
+                pop.animatedStyle
             ]}
         >
             <AppText
@@ -113,7 +121,7 @@ function ButtonTile({
             >
                 {label}
             </AppText>
-        </Pressable>
+        </AnimatedPressable>
     );
 }
 

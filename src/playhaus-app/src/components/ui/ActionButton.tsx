@@ -1,9 +1,11 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, type StyleProp, type ViewStyle } from "react-native";
+import { type StyleProp, type ViewStyle } from "react-native";
 
 // How much room the button is given.
 type Size = 'regular' | 'large';
@@ -35,14 +37,19 @@ export default function ActionButton({
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const pop = usePressPop();
 
     const metrics = SIZES[size];
     const ink = theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent;
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityState={{ disabled }}
             style={[
@@ -53,7 +60,8 @@ export default function ActionButton({
                     gap: metrics.gap
                 },
                 disabled && styles.disabled,
-                style
+                style,
+                pop.animatedStyle
             ]}
         >
             <AppText
@@ -63,7 +71,7 @@ export default function ActionButton({
             </AppText>
 
             <Feather name={icon} size={metrics.icon} color={ink} />
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

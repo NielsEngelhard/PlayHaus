@@ -1,6 +1,8 @@
 import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import InlineNotification from "@/components/ui/InlineNotification";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -11,7 +13,7 @@ import type { PQEmit, PQPick } from "@/features/pubquizr/multi-device/control";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     /** A settle is already in the air. */
@@ -125,32 +127,19 @@ export default function ChoicePadControl({ busy, emit, error, missed, onSettle, 
                     const judged = mine === option.id;
 
                     return (
-                        <Pressable
+                        <ChoiceOptionButton
                             key={option.id}
+                            option={option}
+                            gone={gone}
+                            judged={judged}
                             disabled={busy || mine !== null || gone}
                             onPress={() => pick(option)}
-                            accessibilityRole="button"
-                            accessibilityLabel={t('pubquizr.play.choice.spoken', {
+                            label={t('pubquizr.play.choice.spoken', {
                                 letter: option.letter,
                                 text: option.text
                             })}
-                            style={({ pressed }) => [
-                                styles.option,
-                                gone && styles.gone,
-                                judged && (option.correct ? styles.right : styles.wrong),
-                                pressed && styles.pressed
-                            ]}
-                        >
-                            <View style={styles.letter}>
-                                <AppText style={[styles.letterText, judged && styles.onFill]}>
-                                    {option.letter}
-                                </AppText>
-                            </View>
-
-                            <AppText style={[styles.text, judged && styles.onFill, gone && styles.struck]}>
-                                {option.text}
-                            </AppText>
-                        </Pressable>
+                            styles={styles}
+                        />
                     )
                 })}
             </View>
@@ -161,6 +150,50 @@ export default function ChoicePadControl({ busy, emit, error, missed, onSettle, 
                     : t('pubquizr.play.wrongPassesTo', { name: nextUp.name })}
             />
         </View>
+    )
+}
+
+interface OptionButtonProps {
+    option: ChoiceOption
+    gone: boolean
+    judged: boolean
+    disabled: boolean
+    onPress: () => void
+    label: string
+    styles: ReturnType<typeof useStyles>
+}
+
+// Its own component so each option in the pad gets its own press/hover animation state.
+function ChoiceOptionButton({ option, gone, judged, disabled, onPress, label, styles }: OptionButtonProps) {
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            disabled={disabled}
+            onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="button"
+            accessibilityLabel={label}
+            style={[
+                styles.option,
+                gone && styles.gone,
+                judged && (option.correct ? styles.right : styles.wrong),
+                pop.animatedStyle
+            ]}
+        >
+            <View style={styles.letter}>
+                <AppText style={[styles.letterText, judged && styles.onFill]}>
+                    {option.letter}
+                </AppText>
+            </View>
+
+            <AppText style={[styles.text, judged && styles.onFill, gone && styles.struck]}>
+                {option.text}
+            </AppText>
+        </AnimatedPressable>
     )
 }
 
@@ -192,10 +225,6 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundElement,
         ...theme.shadows.hardSmall
-    },
-
-    pressed: {
-        opacity: 0.85
     },
 
     // An option an earlier seat already tried, which is not a way to be wrong twice.

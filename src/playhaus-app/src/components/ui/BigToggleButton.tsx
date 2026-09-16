@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing, accentInkColor, hardShadow, withAlpha } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useAccent } from "@/features/theme/AccentContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable, StyleProp, View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 export interface BigToggleOption<T> {
     icon: keyof typeof Feather.glyphMap,
@@ -70,27 +72,33 @@ function Tile({ icon, label, onPress, selected }: TileProps) {
     const styles = useStyles();
     const theme = useTheme();
     const accent = useAccent();
+    const pop = usePressPop();
 
     const fill = accent?.color ?? Brand.primary;
     const ink = accentInkColor(accent?.ink ?? 'ink');
 
     return (
-        <Pressable
+        <AnimatedPressable
             accessibilityLabel={label}
             accessibilityRole="radio"
             aria-checked={selected}
             onPress={onPress}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             style={[
                 styles.tile,
                 selected && styles.tileSelected,
                 selected && { backgroundColor: fill },
-                selected && hardShadow(2, theme.colors.shadow)
+                selected && hardShadow(2, theme.colors.shadow),
+                pop.animatedStyle
             ]}
         >
             <Feather name={icon} size={18} color={selected ? ink : theme.colors.textMuted} />
 
             <AppText style={[styles.tileLabel, selected && { color: ink }]}>{label}</AppText>
-        </Pressable>
+        </AnimatedPressable>
     );
 }
 

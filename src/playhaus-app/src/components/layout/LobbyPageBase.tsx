@@ -1,7 +1,9 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import SoundToggle from "@/components/layout/SoundToggle";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import JoinCodeHero from "@/components/ui/JoinCodeHero";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { accentOf, type Game } from "@/constants/games";
 import { Brand, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -11,7 +13,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import { useEffect, useState, type ReactNode } from "react";
-import { Animated, Easing, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native";
+import { Animated, Easing, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -61,6 +63,7 @@ export default function LobbyPageBase({
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     useChromeless();
 
@@ -99,14 +102,18 @@ export default function LobbyPageBase({
                 </View>
 
                 <View style={styles.bar}>
-                    <Pressable
+                    <AnimatedPressable
                         onPress={onBack}
+                        onPressIn={pop.onPressIn}
+                        onPressOut={pop.onPressOut}
+                        onHoverIn={pop.onHoverIn}
+                        onHoverOut={pop.onHoverOut}
                         accessibilityRole='button'
                         accessibilityLabel={backLabel}
-                        style={styles.chip}
+                        style={[styles.chip, pop.animatedStyle]}
                     >
                         <Feather name='arrow-left' size={17} color={theme.colors.text} />
-                    </Pressable>
+                    </AnimatedPressable>
 
                     <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
 

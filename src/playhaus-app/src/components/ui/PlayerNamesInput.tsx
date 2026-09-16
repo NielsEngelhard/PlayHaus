@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { fontFamilyForWeight } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -6,7 +8,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { colorForSeat } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 
 interface Props {
     names: string[]
@@ -22,6 +24,7 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+    const addPop = usePressPop();
 
     const removable = names.length > minPlayers;
     const full = names.length >= maxPlayers;
@@ -72,16 +75,11 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                                 </View>
 
                                 {removable && (
-                                    <Pressable
+                                    <RemoveButton
                                         onPress={() => remove(seat)}
                                         disabled={disabled}
-                                        accessibilityRole="button"
-                                        accessibilityLabel={t('common.player.remove', { seat: seat + 1 })}
-                                        accessibilityState={{ disabled }}
-                                        style={styles.remove}
-                                    >
-                                        <Feather name="x" size={13} color={theme.colors.textFaint} />
-                                    </Pressable>
+                                        label={t('common.player.remove', { seat: seat + 1 })}
+                                    />
                                 )}
                             </View>
 
@@ -103,26 +101,59 @@ export default function PlayerNamesInput({ names, onChange, minPlayers, maxPlaye
                     )
                 })}
 
-                <Pressable
+                <AnimatedPressable
                     onPress={add}
                     disabled={disabled || full}
+                    onPressIn={addPop.onPressIn}
+                    onPressOut={addPop.onPressOut}
+                    onHoverIn={addPop.onHoverIn}
+                    onHoverOut={addPop.onHoverOut}
                     accessibilityRole="button"
                     accessibilityLabel={t('common.player.add')}
                     accessibilityState={{ disabled: disabled || full }}
-                    style={[styles.addCard, (disabled || full) && styles.dimmed]}
+                    style={[styles.addCard, (disabled || full) && styles.dimmed, addPop.animatedStyle]}
                 >
                     <Feather name="plus" size={16} color={theme.colors.textSecondary} />
 
                     <AppText style={styles.addText}>
                         {t('common.player.add')}
                     </AppText>
-                </Pressable>
+                </AnimatedPressable>
             </View>
 
             <AppText style={styles.count}>
                 {names.length} / {maxPlayers}
             </AppText>
         </View>
+    )
+}
+
+interface RemoveButtonProps {
+    onPress: () => void
+    disabled: boolean
+    label: string
+}
+
+function RemoveButton({ onPress, disabled, label }: RemoveButtonProps) {
+    const theme = useTheme();
+    const styles = useStyles();
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="button"
+            accessibilityLabel={label}
+            accessibilityState={{ disabled }}
+            style={[styles.remove, pop.animatedStyle]}
+        >
+            <Feather name="x" size={13} color={theme.colors.textFaint} />
+        </AnimatedPressable>
     )
 }
 

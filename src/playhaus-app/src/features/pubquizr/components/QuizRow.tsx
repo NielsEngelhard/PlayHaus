@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { ROUTES } from "@/constants/routes";
 import { Brand } from "@/constants/theme";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
@@ -6,7 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { Image, Pressable, View, type ImageStyle } from "react-native";
+import { Image, View, type ImageStyle } from "react-native";
 import type { QuizListItem } from "../pubquizr-quizzes";
 import { initialsFor, publishedAtPhrase, swatchFor } from "../quiz-shelf";
 
@@ -35,6 +37,7 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
     const theme = useTheme();
     const styles = useStyles();
     const phrase = usePhrase();
+    const pop = usePressPop();
 
     const swatch = swatchFor(quiz);
     const published = publishedAtPhrase(quiz.publishedAt);
@@ -107,28 +110,36 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
     // Three different targets rather than one that branches inside `onPress`.
     if (onSelect) {
         return (
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onSelect(quiz)}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="radio"
                 accessibilityLabel={label}
                 accessibilityState={{ selected, checked: selected }}
-                style={[styles.row, selected && styles.rowSelected]}
+                style={[styles.row, selected && styles.rowSelected, pop.animatedStyle]}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         )
     }
 
     if (onPress) {
         return (
-            <Pressable
+            <AnimatedPressable
                 onPress={() => onPress(quiz)}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={label}
-                style={[styles.row, selected && styles.rowSelected]}
+                style={[styles.row, selected && styles.rowSelected, pop.animatedStyle]}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         )
     }
 
@@ -140,13 +151,17 @@ export default function QuizRow({ quiz, onSelect, onPress, selected = false }: P
             }}
             asChild
         >
-            <Pressable
+            <AnimatedPressable
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole="button"
                 accessibilityLabel={label}
-                style={styles.row}
+                style={[styles.row, pop.animatedStyle]}
             >
                 {body}
-            </Pressable>
+            </AnimatedPressable>
         </Link>
     )
 }

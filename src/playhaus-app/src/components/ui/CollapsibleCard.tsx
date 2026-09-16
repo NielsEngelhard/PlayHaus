@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Children, Fragment, useEffect, useState, type ReactNode } from "react";
-import { AccessibilityInfo, Animated, Easing, Pressable, View, type LayoutChangeEvent } from "react-native";
+import { AccessibilityInfo, Animated, Easing, View, type LayoutChangeEvent } from "react-native";
 
 interface Props {
     /** What the card is about, on the header row. */
@@ -25,6 +27,7 @@ const CLOSE_MS = 160;
 export default function CollapsibleCard({ title, summary, defaultOpen = false, children }: Props) {
     const styles = useStyles();
     const theme = useTheme();
+    const pop = usePressPop();
 
     const [open, setOpen] = useState(defaultOpen);
 
@@ -86,13 +89,17 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
 
     return (
         <View style={styles.card}>
-            <Pressable
+            <AnimatedPressable
                 onPress={toggle}
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 accessibilityRole='button'
                 accessibilityLabel={`${title}: ${summary}`}
                 // `aria-expanded` rather than `accessibilityState={{ expanded }}`.
                 aria-expanded={open}
-                style={styles.header}
+                style={[styles.header, pop.animatedStyle]}
             >
                 <View style={styles.headerText}>
                     <AppText style={styles.title}>{title}</AppText>
@@ -115,7 +122,7 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
                 >
                     <Feather name='chevron-down' size={20} color={theme.colors.text} />
                 </Animated.View>
-            </Pressable>
+            </AnimatedPressable>
 
             <Animated.View
                 style={settled ? styles.bodyOpen : [

@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import Card from "@/components/ui/Card";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing, fontFamilyForWeight } from "@/constants/theme";
 import { useT, useUiLanguage } from "@/features/i18n/LanguageContext";
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, randomName } from "@/features/settings/profile";
@@ -7,7 +9,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { ActivityIndicator, Pressable, TextInput, View } from "react-native";
+import { ActivityIndicator, TextInput, View } from "react-native";
 
 interface Props {
     name: string,
@@ -22,6 +24,8 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
     const styles = useStyles();
     const t = useT();
     const language = useUiLanguage();
+    const popSave = usePressPop();
+    const popDice = usePressPop();
 
     const [draft, setDraft] = useState(name);
 
@@ -54,27 +58,35 @@ export default function ProfileNameCard({ name, onSave, saving = false }: Props)
                 />
 
                 <View style={styles.buttons}>
-                    <Pressable
+                    <AnimatedPressable
                         onPress={save}
                         disabled={!canSave}
+                        onPressIn={popSave.onPressIn}
+                        onPressOut={popSave.onPressOut}
+                        onHoverIn={popSave.onHoverIn}
+                        onHoverOut={popSave.onHoverOut}
                         accessibilityRole='button'
                         accessibilityState={{ disabled: !canSave, busy: saving }}
-                        style={[styles.saveButton, !canSave && styles.buttonDisabled]}
+                        style={[styles.saveButton, !canSave && styles.buttonDisabled, popSave.animatedStyle]}
                     >
                         {saving
                             ? <ActivityIndicator size='small' color={theme.colors.textOnAccent} />
                             : <AppText style={styles.saveText}>{t('common.save')}</AppText>}
-                    </Pressable>
+                    </AnimatedPressable>
 
-                    <Pressable
+                    <AnimatedPressable
                         onPress={() => setDraft(randomName(language))}
                         disabled={saving}
+                        onPressIn={popDice.onPressIn}
+                        onPressOut={popDice.onPressOut}
+                        onHoverIn={popDice.onHoverIn}
+                        onHoverOut={popDice.onHoverOut}
                         accessibilityRole='button'
                         accessibilityLabel={t('profile.name.random')}
-                        style={[styles.diceButton, saving && styles.buttonDisabled]}
+                        style={[styles.diceButton, saving && styles.buttonDisabled, popDice.animatedStyle]}
                     >
                         <Feather name='shuffle' size={20} color={theme.colors.text} />
-                    </Pressable>
+                    </AnimatedPressable>
                 </View>
             </View>
 

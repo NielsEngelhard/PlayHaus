@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { initialsOf, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { colorForSeat } from "@/utils/color-utils";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     // The name fields as typed.
@@ -20,13 +22,18 @@ const SEAT = 26;
 export default function TableRecap({ names, onEdit }: Props) {
     const t = useT();
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             accessibilityRole='button'
             accessibilityLabel="Tap to change"
             onPress={onEdit}
-            style={styles.table}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            style={[styles.table, pop.animatedStyle]}
         >
             {/* Indexed over the fields rather than over the names that survived them. */}
             {names.map((name, i) => name.trim() === '' ? null : (
@@ -36,7 +43,7 @@ export default function TableRecap({ names, onEdit }: Props) {
                     <AppText style={styles.name}>{name}</AppText>
                 </View>
             ))}
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

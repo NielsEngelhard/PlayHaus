@@ -1,10 +1,12 @@
 import AppText from "@/components/text/AppText";
 import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import AnswerReveal from "@/components/ui/AnswerReveal";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PopupModal from "@/components/ui/PopupModal";
 import TextButton from "@/components/ui/TextButton";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -16,7 +18,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { Pressable, ScrollView, TextInput, View } from "react-native";
+import { ScrollView, TextInput, View } from "react-native";
 
 // The gutters `ControlFrame` puts on, which the pad has to undo to reach the glass.
 const PAGE_PADDING = Spacing.four;
@@ -174,54 +176,20 @@ export default function ClosestSettleControl({ busy, error, onSettle, round, sea
                         const field = holding || overridden || !seatsIn.includes(seat.seat);
 
                         return (
-                            <Pressable
+                            <GuessRowButton
                                 key={seat.seat}
+                                seat={seat}
+                                holding={holding}
+                                clashing={clashing}
+                                field={field}
+                                busy={busy}
+                                typed={typed[seat.seat] ?? ''}
                                 onPress={() => setFocused(seat.seat)}
-                                disabled={busy}
-                                accessibilityRole="button"
-                                accessibilityState={{ selected: holding }}
-                                accessibilityLabel={t('pubquizr.play.closest.entry', { name: seat.name })}
-                                style={[
-                                    styles.row,
-                                    !field && styles.chosen,
-                                    // After the fill, so the row being typed into still says so.
-                                    holding && styles.holding,
-                                    clashing && styles.clashing
-                                ]}
-                            >
-                                <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
-                                    <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
-                                        {seat.initials}
-                                    </AppText>
-                                </View>
-
-                                <View style={styles.who}>
-                                    <AppText
-                                        style={[styles.name, !field && styles.onMint]}
-                                        numberOfLines={1}
-                                    >
-                                        {seat.name}
-                                    </AppText>
-                                </View>
-
-                                {field ? (
-                                    // Inert, and that is the point of it.
-                                    <View pointerEvents="none" style={styles.fieldWrap}>
-                                        <TextInput
-                                            value={typed[seat.seat] ?? ''}
-                                            editable={false}
-                                            showSoftInputOnFocus={false}
-                                            placeholder={t('pubquizr.play.closest.placeholder')}
-                                            placeholderTextColor={theme.colors.textFaint}
-                                            style={[styles.field, holding && styles.fieldHolding]}
-                                        />
-
-                                        {holding && <View style={styles.caret} />}
-                                    </View>
-                                ) : (
-                                    <Feather name="check-circle" size={20} color={Brand.ink} />
-                                )}
-                            </Pressable>
+                                label={t('pubquizr.play.closest.entry', { name: seat.name })}
+                                placeholder={t('pubquizr.play.closest.placeholder')}
+                                styles={styles}
+                                theme={theme}
+                            />
                         )
                     })}
                 </ScrollView>
@@ -286,6 +254,80 @@ export default function ClosestSettleControl({ busy, error, onSettle, round, sea
                 </>}
             />
         </View>
+    )
+}
+
+interface GuessRowButtonProps {
+    seat: ClosestTurn['guessing'][number]
+    holding: boolean
+    clashing: boolean
+    field: boolean
+    busy: boolean
+    typed: string
+    onPress: () => void
+    label: string
+    placeholder: string
+    styles: ReturnType<typeof useStyles>
+    theme: ReturnType<typeof useTheme>
+}
+
+// Its own component so each seat's row gets its own press/hover animation state.
+function GuessRowButton({ seat, holding, clashing, field, busy, typed, onPress, label, placeholder, styles, theme }: GuessRowButtonProps) {
+    const pop = usePressPop();
+
+    return (
+        <AnimatedPressable
+            onPress={onPress}
+            disabled={busy}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            accessibilityRole="button"
+            accessibilityState={{ selected: holding }}
+            accessibilityLabel={label}
+            style={[
+                styles.row,
+                !field && styles.chosen,
+                // After the fill, so the row being typed into still says so.
+                holding && styles.holding,
+                clashing && styles.clashing,
+                pop.animatedStyle
+            ]}
+        >
+            <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
+                <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
+                    {seat.initials}
+                </AppText>
+            </View>
+
+            <View style={styles.who}>
+                <AppText
+                    style={[styles.name, !field && styles.onMint]}
+                    numberOfLines={1}
+                >
+                    {seat.name}
+                </AppText>
+            </View>
+
+            {field ? (
+                // Inert, and that is the point of it.
+                <View pointerEvents="none" style={styles.fieldWrap}>
+                    <TextInput
+                        value={typed}
+                        editable={false}
+                        showSoftInputOnFocus={false}
+                        placeholder={placeholder}
+                        placeholderTextColor={theme.colors.textFaint}
+                        style={[styles.field, holding && styles.fieldHolding]}
+                    />
+
+                    {holding && <View style={styles.caret} />}
+                </View>
+            ) : (
+                <Feather name="check-circle" size={20} color={Brand.ink} />
+            )}
+        </AnimatedPressable>
     )
 }
 

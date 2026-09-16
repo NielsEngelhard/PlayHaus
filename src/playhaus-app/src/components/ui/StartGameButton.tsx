@@ -1,9 +1,10 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, accentInkColor, withAlpha } from "@/constants/theme";
 import { useAccent } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Pressable } from "react-native";
 
 interface Props {
     text: string,
@@ -14,6 +15,7 @@ interface Props {
 // The one thing a setup screen is for, at the bottom of it.
 export default function StartGameButton({ text, onPress, disabled = false }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     // The colour it starts.
     const accent = useAccent();
@@ -21,9 +23,13 @@ export default function StartGameButton({ text, onPress, disabled = false }: Pro
     const ink = accent === null ? Brand.textOnAccent : accentInkColor(accent.ink);
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityState={{ disabled }}
             style={[
@@ -32,13 +38,14 @@ export default function StartGameButton({ text, onPress, disabled = false }: Pro
                     backgroundColor: flat,
                     boxShadow: `0 12px 24px -12px ${withAlpha(flat, 0.9)}`
                 },
-                disabled && styles.disabled
+                disabled && styles.disabled,
+                pop.animatedStyle
             ]}
         >
             <AppText style={[styles.label, { color: ink }]}>{text}</AppText>
 
             <Feather name='arrow-right' size={18} color={ink} />
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

@@ -1,5 +1,7 @@
 import type { ReconnectableGame } from "@/api/calls/reconnect";
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing } from "@/constants/theme";
 import { usePhrase, useT } from "@/features/i18n/LanguageContext";
 import { startedAgo, type GameKind } from "@/features/reconnect/game-kinds";
@@ -7,7 +9,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     game: ReconnectableGame,
@@ -20,12 +22,20 @@ export default function StillRunningCard({ game, kind }: Props) {
     const styles = useStyles();
     const t = useT();
     const phrase = usePhrase();
+    const pop = usePressPop();
 
     const started = startedAgo(game.createdAt);
 
     return (
         <Link href={kind.href(game)} asChild>
-            <Pressable style={styles.card} accessibilityRole='link'>
+            <AnimatedPressable
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
+                style={[styles.card, pop.animatedStyle]}
+                accessibilityRole='link'
+            >
                 <View style={styles.tile}>
                     <Feather name='rotate-ccw' size={16} color={Brand.ink} />
                 </View>
@@ -45,7 +55,7 @@ export default function StillRunningCard({ game, kind }: Props) {
                 </View>
 
                 <Feather name='arrow-right' size={18} color={theme.colors.text} />
-            </Pressable>
+            </AnimatedPressable>
         </Link>
     )
 }

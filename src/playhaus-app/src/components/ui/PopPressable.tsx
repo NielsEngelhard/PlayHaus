@@ -1,20 +1,8 @@
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { playBubble } from "@/utils/bubble-sound";
-import { useEffect, useState, type ReactNode } from "react";
-import { Animated, Easing, Platform, Pressable, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
-
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
-// react-native-web has no native animation module, so asking for one there is a console warning and nothing else.
-const useNativeDriver = Platform.OS !== 'web';
-
-// How far in the press pushes, and how far back past resting size it comes on the way out.
-const PRESSED_SCALE = 0.95;
-const POP_SCALE = 1.04;
-
-/** Down under the finger, out past resting size, then back down to rest. */
-const PRESS_MS = 90;
-const POP_MS = 120;
-const SETTLE_MS = 150;
+import type { ReactNode } from "react";
+import type { PressableProps, StyleProp, ViewStyle } from "react-native";
 
 interface Props extends Omit<PressableProps, 'style' | 'children'> {
     children: ReactNode
@@ -22,59 +10,26 @@ interface Props extends Omit<PressableProps, 'style' | 'children'> {
     style?: StyleProp<ViewStyle>
 }
 
-// A `Pressable` that squashes under the finger and pops back out a hair proud of where it started, with a bubble to go with it.
-export default function PopPressable({ children, style, onPressIn, onPressOut, ...rest }: Props) {
-    // How far the control is pushed in.
-    const [push] = useState(() => new Animated.Value(0));
-
-    // A press released as the screen goes away would otherwise animate a dead value.
-    useEffect(() => () => push.stopAnimation(), [push]);
+// A `Pressable` that squashes under the finger and pops back out a hair proud of where it started, with a bubble to go with it. Scales up a hair on web hover too.
+export default function PopPressable({ children, style, onPressIn, onPressOut, disabled, ...rest }: Props) {
+    const pop = usePressPop();
 
     return (
         <AnimatedPressable
             {...rest}
+            disabled={disabled}
             onPressIn={event => {
                 playBubble();
-
-                Animated.timing(push, {
-                    toValue: 1,
-                    duration: PRESS_MS,
-                    easing: Easing.out(Easing.quad),
-                    useNativeDriver
-                }).start();
-
+                pop.onPressIn(event);
                 onPressIn?.(event);
             }}
             onPressOut={event => {
-                // A tap is usually over long before the press-in finishes, so this runs from a half-pressed key more often than not.
-                Animated.sequence([
-                    Animated.timing(push, {
-                        toValue: -1,
-                        duration: POP_MS,
-                        easing: Easing.out(Easing.quad),
-                        useNativeDriver
-                    }),
-                    Animated.timing(push, {
-                        toValue: 0,
-                        duration: SETTLE_MS,
-                        easing: Easing.out(Easing.quad),
-                        useNativeDriver
-                    })
-                ]).start();
-
+                pop.onPressOut(event);
                 onPressOut?.(event);
             }}
-            style={[
-                style,
-                {
-                    transform: [{
-                        scale: push.interpolate({
-                            inputRange: [-1, 0, 1],
-                            outputRange: [POP_SCALE, 1, PRESSED_SCALE]
-                        })
-                    }]
-                }
-            ]}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
+            style={[style, pop.animatedStyle]}
         >
             {children}
         </AnimatedPressable>

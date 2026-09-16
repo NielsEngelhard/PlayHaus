@@ -1,10 +1,11 @@
 import AppText from "@/components/text/AppText";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { accentInkColor } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useAccent } from "@/features/theme/AccentContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { Pressable, View } from "react-native";
+import { Animated, Pressable } from "react-native";
 
 interface Props {
     value: boolean,
@@ -23,6 +24,8 @@ export default function Toggle({ value, onValueChange, label, disabled = false }
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
+    // A switch already has its own physicality — the rotated stamp — so only hover animates here.
+    const pop = usePressPop({ pressEnabled: false });
 
     // What "on" looks like, in the colour of whatever this switch belongs to.
     const accent = useAccent();
@@ -35,25 +38,29 @@ export default function Toggle({ value, onValueChange, label, disabled = false }
         <Pressable
             onPress={() => onValueChange(!value)}
             disabled={disabled}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             hitSlop={{ top: 4, bottom: 4 }}
             accessibilityRole='switch'
             accessibilityLabel={label}
             accessibilityState={{ checked: value, disabled }}
             style={[styles.hit, disabled && styles.disabled]}
         >
-            <View
+            <Animated.View
                 style={[
                     styles.stamp,
                     value
                         // The fill is inline rather than in the sheet because it comes from the accent this switch was lent.
                         ? [styles.stampOn, { backgroundColor: fill }]
-                        : styles.stampOff
+                        : styles.stampOff,
+                    // A plain `pop.animatedStyle` here would wipe out stampOn's own rotate — RN merges `transform` whole, not element by element — so the rotate is folded into the same transform array as the hover scale instead.
+                    { transform: [...(value ? [{ rotate: '-3deg' }] : []), ...pop.animatedStyle.transform] }
                 ]}
             >
                 <AppText style={[styles.word, { color: value ? ink : theme.colors.textFaint }]}>
                     {value ? t('common.on') : t('common.off')}
                 </AppText>
-            </View>
+            </Animated.View>
         </Pressable>
     )
 }
@@ -82,7 +89,7 @@ const useStyles = createThemedStyles(theme => ({
     },
     stampOn: {
         borderColor: theme.colors.border,
-        transform: [{ rotate: '-3deg' }],
+        // The rotate itself is applied inline, folded into the same transform array as the hover scale.
         ...theme.shadows.hard
     },
     // No fill and no shadow: an unset switch is a box waiting to be stamped.

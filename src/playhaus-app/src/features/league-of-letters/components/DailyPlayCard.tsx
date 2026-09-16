@@ -1,8 +1,10 @@
 import AppText from '@/components/text/AppText';
+import AnimatedPressable from '@/components/ui/AnimatedPressable';
+import { usePressPop } from '@/components/ui/usePressPop';
 import { Brand } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import Feather from '@expo/vector-icons/Feather';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 interface Props {
     title: string,
@@ -16,14 +18,19 @@ const CHEVRON_SIZE = 40;
 // The way into a day that is still open, in the row the finished day's card would have taken.
 export default function DailyPlayCard({ title, subtitle, onPress, disabled = false }: Props) {
     const styles = useStyles();
+    const pop = usePressPop();
 
     return (
-        <Pressable
+        <AnimatedPressable
             onPress={onPress}
             disabled={disabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             accessibilityRole='button'
             accessibilityLabel={title}
-            style={[styles.card, disabled && styles.disabled]}
+            style={[styles.card, disabled && styles.disabled, pop.animatedStyle]}
         >
             <View style={styles.lines}>
                 <AppText style={styles.title}>{title}</AppText>
@@ -34,7 +41,7 @@ export default function DailyPlayCard({ title, subtitle, onPress, disabled = fal
             <View style={styles.chevron}>
                 <Feather name='chevron-right' size={15} color={Brand.ink} />
             </View>
-        </Pressable>
+        </AnimatedPressable>
     )
 }
 

@@ -1,4 +1,6 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { DEVICE_MODE_KEYS, type DeviceMode } from "@/constants/games";
 import { Brand, Spacing, hardShadow, linearGradient } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -7,7 +9,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { Image, type ImageSource } from "expo-image";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 interface Props {
     color: string,
@@ -44,14 +46,20 @@ export default function GameTeaserCard({
     const theme = useTheme();
     const styles = useStyles();
     const t = useT();
+    const pop = usePressPop();
 
     return (
         <Link href={navigationUrl} asChild>
-            <Pressable
+            <AnimatedPressable
+                onPressIn={pop.onPressIn}
+                onPressOut={pop.onPressOut}
+                onHoverIn={pop.onHoverIn}
+                onHoverOut={pop.onHoverOut}
                 // Flattened, not an array.
                 style={StyleSheet.flatten([
                     styles.card,
-                    playable ? hardShadow(3, color) : styles.cardDim
+                    playable ? hardShadow(3, color) : styles.cardDim,
+                    pop.animatedStyle
                 ])}
             >
                 {icon ? (
@@ -110,7 +118,7 @@ export default function GameTeaserCard({
                     size={19}
                     color={theme.colors.textMuted}
                 />
-            </Pressable>
+            </AnimatedPressable>
         </Link>
     )
 }

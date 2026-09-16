@@ -1,11 +1,13 @@
 import AppText from "@/components/text/AppText";
+import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import { Badge } from "@/components/ui/Badge";
+import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing, linearGradient } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Link, type Href } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 interface Props {
     icon: keyof typeof Feather.glyphMap,
@@ -70,20 +72,26 @@ export default function ModeCard({
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
+    const pop = usePressPop();
 
     const fill = gradient[1];
     const on = ON_FILL[onFill];
 
     const card = (
-        <Pressable
+        <AnimatedPressable
             disabled={isDisabled}
+            onPressIn={pop.onPressIn}
+            onPressOut={pop.onPressOut}
+            onHoverIn={pop.onHoverIn}
+            onHoverOut={pop.onHoverOut}
             // Flattened: `Link asChild` clones this onto the anchor it renders, and a style array does not survive that trip.
             style={StyleSheet.flatten([
                 styles.card,
                 solid && styles.cardSolid,
                 // Inline because the fill is the caller's.
                 solid && { backgroundColor: fill },
-                isDisabled && styles.cardDisabled
+                isDisabled && styles.cardDisabled,
+                pop.animatedStyle
             ])}
         >
             {solid && watermark !== undefined && (
@@ -168,7 +176,7 @@ export default function ModeCard({
                     </View>
                 )}
             </View>
-        </Pressable>
+        </AnimatedPressable>
     );
 
     // A disabled card should not be wrapped in Link.
