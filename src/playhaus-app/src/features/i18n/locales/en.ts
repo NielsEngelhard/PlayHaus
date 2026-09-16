@@ -1545,9 +1545,12 @@ export const en = {
         loadFailed: 'Your friends could not be loaded.'
     },
     notifications: {
-        invite: '{{name}} invited you to {{game}}',
+        inviteEyebrow: 'Invite',
+        inviteHeadline: '{{name}} wants to play',
+        inviteRoom: "{{game}} · {{name}}'s room",
+        inviteTournament: "{{game}} · {{name}}'s tournament",
         inviteGeneric: '{{name}} invited you to a game',
         join: 'Join',
-        dismiss: 'Dismiss'
+        ignore: 'Ignore'
     }
 } as const;

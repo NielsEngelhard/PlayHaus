@@ -1405,9 +1405,12 @@ export const nl: Catalog = {
         loadFailed: 'Je vrienden konden niet worden geladen.'
     },
     notifications: {
-        invite: '{{name}} nodigt je uit voor {{game}}',
+        inviteEyebrow: 'Uitnodiging',
+        inviteHeadline: '{{name}} wil met je spelen',
+        inviteRoom: '{{game}} · kamer van {{name}}',
+        inviteTournament: '{{game}} · toernooi van {{name}}',
         inviteGeneric: '{{name}} nodigt je uit voor een spel',
         join: 'Meedoen',
-        dismiss: 'Wegklikken'
+        ignore: 'Negeren'
     }
 };
