@@ -1338,6 +1338,7 @@ export const nl: Catalog = {
                 title: 'De uitslag',
                 truth: 'De waarheid',
                 fake: 'Verzonnen',
+                fakeBadge: 'Verzonnen antwoord',
                 nobodyPicked: 'Niemand koos deze',
                 points: '+{{points}}',
                 pointsEach: '+1 per persoon',

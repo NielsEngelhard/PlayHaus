@@ -467,6 +467,28 @@ const useStyles = createThemedStyles(theme => ({
         textTransform: 'uppercase',
         color: theme.colors.mint
     },
+    // Sits half off the card and tilted, so it reads as a stamp rather than a label.
+    fakeBadge: {
+        position: 'absolute',
+        top: -10,
+        right: -8,
+        zIndex: 1,
+        transform: [{ rotate: '10deg' }],
+        borderRadius: 999,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.destructive,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        ...theme.shadows.hard
+    },
+    fakeBadgeText: {
+        fontSize: 10.5,
+        fontWeight: 900,
+        letterSpacing: 0.8,
+        textTransform: 'uppercase',
+        color: Brand.textOnAccent
+    },
     authorTag: {
         flexShrink: 1,
         flexDirection: 'row',

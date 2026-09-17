@@ -1474,6 +1474,7 @@ export const en = {
                 title: 'The results',
                 truth: 'The truth',
                 fake: 'Fake',
+                fakeBadge: 'Fake answer',
                 nobodyPicked: 'Nobody picked this',
                 points: '+{{points}}',
                 pointsEach: '+1 each',
