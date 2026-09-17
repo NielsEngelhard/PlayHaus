@@ -315,7 +315,6 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
 
     const authors = truth ? [] : authorsOf(option, nameOf);
     const shared = authors.length > 1;
-    const author = joinNames(authors, t('common.and'));
 
     // Only a mode with a truth tints anything, because only there does one card mean something the other does not.
     const fill = !facts ? styles.optionNeutral : truth ? styles.optionTruth : styles.optionFake;
@@ -328,14 +327,6 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
                 ? t('fakeFiller.play.reveal.stamp.more', { name: authors[0], count: authors.length - 1 })
                 : authors[0];
 
-    const meta = truth
-        ? t('fakeFiller.play.reveal.meta.real')
-        : authors.length === 0
-            ? null
-            : facts
-                ? t(shared ? 'fakeFiller.play.reveal.meta.fakeShared' : 'fakeFiller.play.reveal.meta.fake', { author })
-                : t(shared ? 'fakeFiller.play.reveal.meta.answerShared' : 'fakeFiller.play.reveal.meta.answer', { author });
-
     const votersLabel = !facts
         ? t('fakeFiller.play.reveal.voters.chose')
         : truth ? t('fakeFiller.play.reveal.voters.knew') : t('fakeFiller.play.reveal.voters.fell');
@@ -343,7 +334,7 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
     return (
         <View
             accessible
-            accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}. ${meta ?? ''}`}
+            accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}. ${stamp ?? ''}`}
             style={[styles.option, fill]}
         >
             {/* The stamp rides in the flow, so the row reserves its height and it can never land on the sentence. */}
@@ -377,21 +368,6 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
                 pill
                 color={facts ? Brand.ink : undefined}
             />
-
-            {meta !== null && (
-                <View style={styles.meta}>
-                    <AppText style={[styles.metaText, facts && styles.metaTextOnBrand]}>{meta}</AppText>
-
-                    {/* Only a fake pays, and it pays its author a point per person it fooled. */}
-                    {!truth && (
-                        <View style={styles.metaPoints}>
-                            <AppText style={styles.metaPointsText}>
-                                {t('fakeFiller.play.reveal.points', { points: voters.length })}
-                            </AppText>
-                        </View>
-                    )}
-                </View>
-            )}
 
             <VoterBubbles
                 voters={voters}
@@ -540,40 +516,6 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: 1.4,
         textTransform: 'uppercase',
         color: theme.colors.text
-    },
-    meta: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10
-    },
-    metaText: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 13,
-        lineHeight: 17,
-        fontWeight: 800,
-        color: theme.colors.textSecondary
-    },
-    metaTextOnBrand: {
-        color: withAlpha(Brand.ink, 0.72)
-    },
-    metaPoints: {
-        flexShrink: 0,
-        height: 34,
-        minWidth: 44,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-        borderRadius: Radii.md,
-        borderWidth: theme.borderWidth,
-        borderColor: Brand.ink,
-        backgroundColor: Brand.lemon
-    },
-    metaPointsText: {
-        fontSize: 15,
-        fontWeight: 900,
-        fontVariant: ['tabular-nums'],
-        color: Brand.ink
     },
     or: {
         flexDirection: 'row',

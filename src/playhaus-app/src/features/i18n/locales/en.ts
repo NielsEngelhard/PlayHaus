@@ -1487,13 +1487,6 @@ export const en = {
                     real: 'Real',
                     more: '{{name}} +{{count}}'
                 },
-                meta: {
-                    real: 'This was the real answer',
-                    fake: '{{author}} wrote this fake',
-                    fakeShared: '{{author}} wrote this same fake',
-                    answer: '{{author}} wrote this answer',
-                    answerShared: '{{author}} wrote this same answer'
-                },
                 voters: {
                     fell: 'Who fell for it',
                     knew: 'Who knew',

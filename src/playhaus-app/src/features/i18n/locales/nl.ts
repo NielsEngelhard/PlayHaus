@@ -1351,15 +1351,8 @@ export const nl: Catalog = {
                     real: 'Echt',
                     more: '{{name}} +{{count}}'
                 },
-                meta: {
-                    real: 'Dit was het echte antwoord',
-                    fake: '{{author}} schreef deze nep',
-                    fakeShared: '{{author}} schreven deze nep',
-                    answer: '{{author}} schreef dit antwoord',
-                    answerShared: '{{author}} schreven dit antwoord'
-                },
                 voters: {
-                    fell: 'Wie erin viel',
+                    fell: 'Trapte er in',
                     knew: 'Wie het wist',
                     chose: 'Wie dit koos',
                     none: 'Niemand'
