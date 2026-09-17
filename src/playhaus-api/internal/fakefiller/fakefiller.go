@@ -105,15 +105,17 @@ func (Fills) GormDataType() string { return "string" }
 
 // FFLobby is the room, keyed by its own join code.
 type FFLobby struct {
-	ID          string          `gorm:"primaryKey;type:text"`
-	OwnerID     string          `gorm:"type:text;index;not null"`
-	Locale      i18n.Locale     `gorm:"type:text;not null"`
-	GameMode    FFGameMode      `gorm:"type:text;not null"`
-	Status      LobbyStatus     `gorm:"type:text;not null"`
-	GameID      *uuid.UUID      `gorm:"type:text;index"`
-	RematchCode *string         `gorm:"type:text;index"`
-	Players     []FFLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
-	CreatedAt   time.Time       `gorm:"not null"`
+	ID       string      `gorm:"primaryKey;type:text"`
+	OwnerID  string      `gorm:"type:text;index;not null"`
+	Locale   i18n.Locale `gorm:"type:text;not null"`
+	GameMode FFGameMode  `gorm:"type:text;not null"`
+	// AnswersPerPlayer is how many prompts each player is dealt to write for.
+	AnswersPerPlayer int             `gorm:"not null;default:2"`
+	Status           LobbyStatus     `gorm:"type:text;not null"`
+	GameID           *uuid.UUID      `gorm:"type:text;index"`
+	RematchCode      *string         `gorm:"type:text;index"`
+	Players          []FFLobbyPlayer `gorm:"foreignKey:LobbyID;constraint:OnDelete:CASCADE"`
+	CreatedAt        time.Time       `gorm:"not null"`
 }
 
 func (FFLobby) TableName() string { return "ff_lobbies" }
@@ -157,6 +159,8 @@ type FFMultiDeviceGame struct {
 	OwnerID  string      `gorm:"type:text;index;not null"`
 	Locale   i18n.Locale `gorm:"type:text;not null"`
 	GameMode FFGameMode  `gorm:"type:text;not null"`
+	// AnswersPerPlayer is the setting the room was started on, kept here so the board does not have to read the lobby back.
+	AnswersPerPlayer int `gorm:"not null;default:2"`
 
 	Phase GamePhase `gorm:"type:text;not null"`
 

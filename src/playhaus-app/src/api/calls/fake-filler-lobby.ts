@@ -17,6 +17,8 @@ export interface FFLobbyPlayer {
 
 export interface FFLobbySettings {
     gameMode: FFGameMode
+    // How many prompts each player is dealt to write for.
+    answersPerPlayer: number
     locale: LanguageCode
 }
 
@@ -33,6 +35,9 @@ export interface FFLobby {
     // What the room will and will not start on, as the server understands them. `minPlayers` moves with the mode.
     minPlayers: number
     maxPlayers: number
+    // The bounds `settings.answersPerPlayer` is offered between, the server's rather than the app's.
+    minAnswersPerPlayer: number
+    maxAnswersPerPlayer: number
     createdAt: string
     /** The game to open, present only once `status` is `started`. */
     gameId?: string
@@ -81,6 +86,7 @@ export async function updateFFLobbySettings(code: string, settings: FFLobbySetti
     return request<FFLobby>(lobbyPath(code), {
         method: 'PATCH',
         body: JSON.stringify({
+            answersPerPlayer: settings.answersPerPlayer,
             gameMode: settings.gameMode,
             locale: settings.locale
         })

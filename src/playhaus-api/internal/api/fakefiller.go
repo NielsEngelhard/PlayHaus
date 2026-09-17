@@ -23,8 +23,9 @@ func (ffNewLobbyRequest) Validate() map[string]string { return nil }
 
 // ffLobbySettingsRequest is what the host gets to decide, on the way in.
 type ffLobbySettingsRequest struct {
-	GameMode *string `json:"gameMode"`
-	Locale   *string `json:"locale"`
+	GameMode         *string `json:"gameMode"`
+	Locale           *string `json:"locale"`
+	AnswersPerPlayer *int    `json:"answersPerPlayer"`
 }
 
 func (ffLobbySettingsRequest) Validate() map[string]string { return nil }
@@ -77,8 +78,9 @@ func (req ffAdvanceRequest) Validate() map[string]string {
 }
 
 type ffLobbySettingsResponse struct {
-	GameMode string `json:"gameMode"`
-	Locale   string `json:"locale"`
+	GameMode         string `json:"gameMode"`
+	Locale           string `json:"locale"`
+	AnswersPerPlayer int    `json:"answersPerPlayer"`
 }
 
 // ffLobbyPlayerResponse is somebody in the room, and is deliberately the front half of ffGamePlayerResponse.
@@ -100,7 +102,10 @@ type ffLobbyResponse struct {
 	Players    []ffLobbyPlayerResponse `json:"players"`
 	MinPlayers int                     `json:"minPlayers"`
 	MaxPlayers int                     `json:"maxPlayers"`
-	CreatedAt  string                  `json:"createdAt"`
+	// The bounds the answers-per-player setting is offered between, carried rather than hardcoded in the app.
+	MinAnswersPerPlayer int    `json:"minAnswersPerPlayer"`
+	MaxAnswersPerPlayer int    `json:"maxAnswersPerPlayer"`
+	CreatedAt           string `json:"createdAt"`
 	// GameID is the game to open, set only once the host has started the room.
 	GameID string `json:"gameId,omitempty"`
 	// RematchCode is the room this one's table has moved on to.
@@ -273,14 +278,17 @@ func (s *Server) newFFLobbyResponse(ctx context.Context, lobby *fakefiller.FFLob
 		HostID: lobby.OwnerID,
 		Status: string(lobby.Status),
 		Settings: ffLobbySettingsResponse{
-			GameMode: string(lobby.GameMode),
-			Locale:   lobby.Locale.String(),
+			GameMode:         string(lobby.GameMode),
+			Locale:           lobby.Locale.String(),
+			AnswersPerPlayer: lobby.AnswersPerPlayer,
 		},
 		Players: players,
 		// Carried rather than hardcoded in the app, and it moves with the mode: creative has no truth to pad a two-player line-up with.
-		MinPlayers: fakefiller.MinPlayersFor(lobby.GameMode),
-		MaxPlayers: fakefiller.MaxLobbyPlayers,
-		CreatedAt:  lobby.CreatedAt.Format(timeFormat),
+		MinPlayers:          fakefiller.MinPlayersFor(lobby.GameMode),
+		MaxPlayers:          fakefiller.MaxLobbyPlayers,
+		MinAnswersPerPlayer: fakefiller.MinAnswersPerPlayer,
+		MaxAnswersPerPlayer: fakefiller.MaxAnswersPerPlayer,
+		CreatedAt:           lobby.CreatedAt.Format(timeFormat),
 	}
 	if lobby.GameID != nil {
 		body.GameID = lobby.GameID.String()
@@ -442,7 +450,7 @@ func (s *Server) newFFGameResponse(
 		CreatedAt:     game.CreatedAt.Format(timeFormat),
 		Score:         game.Score(userID),
 		AnswersIn:     answersIn,
-		AnswersNeeded: fakefiller.AnswersFor(game.GameMode, len(game.Players)),
+		AnswersNeeded: fakefiller.AnswersFor(game.GameMode, len(game.Players), game.AnswersPerPlayer),
 		VotesNeeded:   fakefiller.VotersFor(game.GameMode, len(game.Players)),
 		Players:       s.ffPlayers(ctx, game),
 		Rounds:        rounds,
@@ -656,8 +664,9 @@ func (s *Server) handleUpdateFFLobbySettings(w http.ResponseWriter, r *http.Requ
 	}
 
 	lobby, problems, err := s.fakeFiller.UpdateLobbySettings(r.Context(), code, userID, fakefiller.LobbySettings{
-		GameMode: fakefiller.FFGameMode(Deref(req.GameMode, string(current.GameMode))),
-		Locale:   localeFrom(Deref(req.Locale, current.Locale.String()), r),
+		GameMode:         fakefiller.FFGameMode(Deref(req.GameMode, string(current.GameMode))),
+		Locale:           localeFrom(Deref(req.Locale, current.Locale.String()), r),
+		AnswersPerPlayer: Deref(req.AnswersPerPlayer, current.AnswersPerPlayer),
 	})
 	if err != nil {
 		s.writeFFLobbyError(w, "update fake filler lobby settings", err)

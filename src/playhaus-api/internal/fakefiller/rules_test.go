@@ -13,8 +13,8 @@ func TestAGameHasAsManyRoundsAsPlayers(t *testing.T) {
 			if AuthorsPerRound(mode, players) != 2 {
 				continue
 			}
-			if got := RoundsFor(mode, players); got != players {
-				t.Errorf("RoundsFor(%s, %d) = %d, want %d", mode, players, got, players)
+			if got := RoundsFor(mode, players, DefaultAnswersPerPlayer); got != players {
+				t.Errorf("RoundsFor(%s, %d, DefaultAnswersPerPlayer) = %d, want %d", mode, players, got, players)
 			}
 		}
 	}
@@ -27,8 +27,8 @@ func TestASmallTableDealsAPromptPerAnswer(t *testing.T) {
 		if got := AuthorsPerRound(GameModeFacts, players); got != 1 {
 			t.Errorf("AuthorsPerRound(facts, %d) = %d, want 1", players, got)
 		}
-		if got := RoundsFor(GameModeFacts, players); got != players*AnswersPerPlayer {
-			t.Errorf("RoundsFor(facts, %d) = %d, want %d", players, got, players*AnswersPerPlayer)
+		if got := RoundsFor(GameModeFacts, players, DefaultAnswersPerPlayer); got != players*DefaultAnswersPerPlayer {
+			t.Errorf("RoundsFor(facts, %d, DefaultAnswersPerPlayer) = %d, want %d", players, got, players*DefaultAnswersPerPlayer)
 		}
 	}
 }
@@ -54,8 +54,8 @@ func TestTheModeWithoutATruthAlwaysDealsTwoFakes(t *testing.T) {
 func TestATableTooSmallToPlayHasNoRounds(t *testing.T) {
 	for _, mode := range allModes {
 		for _, players := range []int{0, 1} {
-			if got := RoundsFor(mode, players); got != 0 {
-				t.Errorf("RoundsFor(%s, %d) = %d, want 0", mode, players, got)
+			if got := RoundsFor(mode, players, DefaultAnswersPerPlayer); got != 0 {
+				t.Errorf("RoundsFor(%s, %d, DefaultAnswersPerPlayer) = %d, want 0", mode, players, got)
 			}
 		}
 	}
@@ -69,16 +69,16 @@ func TestEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 		for players := MinPlayersFor(mode); players <= MaxLobbyPlayers; players++ {
 			dealt := make([]int, players)
 
-			for round := 1; round <= RoundsFor(mode, players); round++ {
+			for round := 1; round <= RoundsFor(mode, players, DefaultAnswersPerPlayer); round++ {
 				for _, seat := range AuthorSeats(mode, round, players) {
 					dealt[seat]++
 				}
 			}
 
 			for seat, count := range dealt {
-				if count != AnswersPerPlayer {
+				if count != DefaultAnswersPerPlayer {
 					t.Errorf("%s, %d players: seat %d was dealt %d prompts, want %d",
-						mode, players, seat, count, AnswersPerPlayer)
+						mode, players, seat, count, DefaultAnswersPerPlayer)
 				}
 			}
 		}
@@ -90,7 +90,7 @@ func TestEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 func TestNoRoundIsDealtToTheSamePlayerTwice(t *testing.T) {
 	for _, mode := range allModes {
 		for players := MinPlayersFor(mode); players <= MaxLobbyPlayers; players++ {
-			for round := 1; round <= RoundsFor(mode, players); round++ {
+			for round := 1; round <= RoundsFor(mode, players, DefaultAnswersPerPlayer); round++ {
 				seats := AuthorSeats(mode, round, players)
 				if len(seats) != AuthorsPerRound(mode, players) {
 					t.Errorf("%s, %d players: round %d was dealt to %d seats, want %d",
@@ -126,7 +126,7 @@ func TestNoTwoRoundsAreDealtToTheSamePair(t *testing.T) {
 			type pair struct{ a, b int }
 			seen := map[pair]int{}
 
-			for round := 1; round <= RoundsFor(mode, players); round++ {
+			for round := 1; round <= RoundsFor(mode, players, DefaultAnswersPerPlayer); round++ {
 				seats := AuthorSeats(mode, round, players)
 				first, second := seats[0], seats[1]
 				if first > second {
@@ -184,9 +184,9 @@ func TestOptionsPerRoundCountsTheTruthOnlyWhereThereIsOne(t *testing.T) {
 func TestAnswersForIsTwoPerPlayer(t *testing.T) {
 	for _, mode := range allModes {
 		for players := MinPlayersFor(mode); players <= MaxLobbyPlayers; players++ {
-			want := players * AnswersPerPlayer
-			if got := AnswersFor(mode, players); got != want {
-				t.Errorf("AnswersFor(%s, %d) = %d, want %d", mode, players, got, want)
+			want := players * DefaultAnswersPerPlayer
+			if got := AnswersFor(mode, players, DefaultAnswersPerPlayer); got != want {
+				t.Errorf("AnswersFor(%s, %d, DefaultAnswersPerPlayer) = %d, want %d", mode, players, got, want)
 			}
 		}
 	}

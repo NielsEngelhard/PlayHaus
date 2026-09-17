@@ -10,6 +10,8 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
 interface Props {
+    maxAnswersPerPlayer: number,
+    minAnswersPerPlayer: number,
     settings: FFLobbySettings,
     onChange: (settings: FFLobbySettings) => void
 }
@@ -17,10 +19,17 @@ interface Props {
 /** In the order they are offered. `facts` is the server's default, so it leads. */
 const MODES: readonly FFGameMode[] = ['facts', 'creative'];
 
+// Every count the server will take, which is a handful of buttons rather than a stepper.
+const countsBetween = (min: number, max: number): number[] => (
+    Array.from({ length: Math.max(max - min + 1, 1) }, (_, index) => min + index)
+);
+
 // What the host is about to start a game on, folded away until they want it.
-export default function LobbySettingsCard({ settings, onChange }: Props) {
+export default function LobbySettingsCard({ maxAnswersPerPlayer, minAnswersPerPlayer, settings, onChange }: Props) {
     const t = useT();
     const styles = useStyles();
+
+    const answerCounts = countsBetween(minAnswersPerPlayer, maxAnswersPerPlayer);
 
     const modeLabel = (mode: FFGameMode) => (
         mode === 'facts' ? t('fakeFiller.lobby.modeFacts') : t('fakeFiller.lobby.modeCreative')
@@ -30,7 +39,7 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
         <CollapsibleCard
             title={t('fakeFiller.lobby.settingsTitle')}
             // The language is the only half not translated.
-            summary={`${modeLabel(settings.gameMode)} · ${languageByCode(settings.locale).label}`}
+            summary={`${modeLabel(settings.gameMode)} · ${t('fakeFiller.lobby.answersSummary', { amount: settings.answersPerPlayer })} · ${languageByCode(settings.locale).label}`}
         >
             {/* One child per ruled section, the same shape `SettingsPageBase` uses. */}
             <View>
@@ -47,6 +56,21 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                     {settings.gameMode === 'facts'
                         ? t('fakeFiller.lobby.modeFactsHint')
                         : t('fakeFiller.lobby.modeCreativeHint')}
+                </AppText>
+            </View>
+
+            <View>
+                <HorizontalButtonSelect
+                    variant='inline'
+                    label={t('fakeFiller.lobby.answersPerPlayer')}
+                    options={answerCounts}
+                    value={settings.answersPerPlayer}
+                    getLabel={count => String(count)}
+                    onChange={answersPerPlayer => onChange({ ...settings, answersPerPlayer })}
+                />
+
+                <AppText style={styles.hint}>
+                    {t('fakeFiller.lobby.answersPerPlayerHint')}
                 </AppText>
             </View>
 

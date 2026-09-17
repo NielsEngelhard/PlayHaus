@@ -75,6 +75,8 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
             />
 
             <LobbySettingsCard
+                maxAnswersPerPlayer={lobby.maxAnswersPerPlayer}
+                minAnswersPerPlayer={lobby.minAnswersPerPlayer}
                 settings={lobby.settings}
                 onChange={state.updateSettings}
             />

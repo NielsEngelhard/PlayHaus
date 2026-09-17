@@ -156,7 +156,7 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 	writeEveryFFAnswer(t, srv, game)
 
 	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
-	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players)); total != want {
+	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players), fakefiller.DefaultAnswersPerPlayer); total != want {
 		t.Fatalf("the game has %d rounds for %d players, want %d", total, len(game.players), want)
 	}
 
@@ -198,7 +198,7 @@ func TestFFAThreeHandedGamePlaysThroughToGameOver(t *testing.T) {
 
 	// Everybody voted on every round but the two they wrote, and was right every time.
 	for _, player := range final.Players {
-		if want := (total - fakefiller.AnswersPerPlayer) * fakefiller.TruthPoints; player.Score != want {
+		if want := (total - fakefiller.DefaultAnswersPerPlayer) * fakefiller.TruthPoints; player.Score != want {
 			t.Errorf("%s scored %d, want %d", player.UserID, player.Score, want)
 		}
 	}
@@ -232,7 +232,7 @@ func TestFFATwoHandedGamePlaysThroughToGameOver(t *testing.T) {
 	writeEveryFFAnswer(t, srv, game)
 
 	total := getFFGame(t, srv, game.host.Token, game.gameID).TotalRounds
-	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players)); total != want {
+	if want := fakefiller.RoundsFor(fakefiller.GameModeFacts, len(game.players), fakefiller.DefaultAnswersPerPlayer); total != want {
 		t.Fatalf("the game has %d rounds for %d players, want %d", total, len(game.players), want)
 	}
 

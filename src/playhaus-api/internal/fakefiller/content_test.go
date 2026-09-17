@@ -33,14 +33,14 @@ func TestEveryLocaleAndModeNamesAFileThatExists(t *testing.T) {
 func TestEveryFileHoldsEnoughPromptsForAFullTable(t *testing.T) {
 	for _, locale := range i18n.Locales {
 		for _, mode := range allModes {
-			lines, err := GetContentLines(locale, mode, RoundsFor(mode, MaxLobbyPlayers))
+			lines, err := GetContentLines(locale, mode, RoundsFor(mode, MaxLobbyPlayers, DefaultAnswersPerPlayer))
 			if err != nil {
 				t.Errorf("GetContentLines(%s, %s) for a full table: %v", locale, mode, err)
 				continue
 			}
-			if len(lines) != RoundsFor(mode, MaxLobbyPlayers) {
+			if len(lines) != RoundsFor(mode, MaxLobbyPlayers, DefaultAnswersPerPlayer) {
 				t.Errorf("GetContentLines(%s, %s) returned %d lines, want %d",
-					locale, mode, len(lines), RoundsFor(mode, MaxLobbyPlayers))
+					locale, mode, len(lines), RoundsFor(mode, MaxLobbyPlayers, DefaultAnswersPerPlayer))
 			}
 		}
 	}
@@ -48,7 +48,7 @@ func TestEveryFileHoldsEnoughPromptsForAFullTable(t *testing.T) {
 
 func TestFactsPromptsCarryOneAnswerPerBlank(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		lines, err := GetContentLines(locale, GameModeFacts, RoundsFor(GameModeFacts, MaxLobbyPlayers))
+		lines, err := GetContentLines(locale, GameModeFacts, RoundsFor(GameModeFacts, MaxLobbyPlayers, DefaultAnswersPerPlayer))
 		if err != nil {
 			t.Fatalf("GetContentLines(%s, facts): %v", locale, err)
 		}
@@ -73,7 +73,7 @@ func TestFactsPromptsCarryOneAnswerPerBlank(t *testing.T) {
 // options instead of three.
 func TestCreativePromptsHaveNoAnswers(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		lines, err := GetContentLines(locale, GameModeCreative, RoundsFor(GameModeCreative, MaxLobbyPlayers))
+		lines, err := GetContentLines(locale, GameModeCreative, RoundsFor(GameModeCreative, MaxLobbyPlayers, DefaultAnswersPerPlayer))
 		if err != nil {
 			t.Fatalf("GetContentLines(%s, creative): %v", locale, err)
 		}

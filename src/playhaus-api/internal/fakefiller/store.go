@@ -136,8 +136,9 @@ func (s *GormStore) SaveLobbySettings(ctx context.Context, code string, in Lobby
 		Model(&FFLobby{}).
 		Where("id = ?", code).
 		Updates(map[string]any{
-			"locale":    in.Locale,
-			"game_mode": in.GameMode,
+			"locale":             in.Locale,
+			"game_mode":          in.GameMode,
+			"answers_per_player": in.AnswersPerPlayer,
 		}).Error
 	if err != nil {
 		return fmt.Errorf("update lobby settings: %w", err)

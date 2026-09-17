@@ -445,7 +445,7 @@ func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 			for _, player := range sessions {
 				body := getFFGame(t, srv, player.Token, game.gameID)
 
-				if want := fakefiller.RoundsFor(fakefiller.DefaultGameMode, count); body.TotalRounds != want {
+				if want := fakefiller.RoundsFor(fakefiller.DefaultGameMode, count, fakefiller.DefaultAnswersPerPlayer); body.TotalRounds != want {
 					t.Fatalf("%s sees %d rounds, want %d", player.User.ID, body.TotalRounds, want)
 				}
 				if body.Phase != string(fakefiller.PhaseWriting) {
@@ -461,8 +461,8 @@ func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 						t.Errorf("round %d is both mine and votable (or neither)", round.Number)
 					}
 				}
-				if mine != fakefiller.AnswersPerPlayer {
-					t.Errorf("%s holds %d prompts, want %d", player.User.ID, mine, fakefiller.AnswersPerPlayer)
+				if mine != fakefiller.DefaultAnswersPerPlayer {
+					t.Errorf("%s holds %d prompts, want %d", player.User.ID, mine, fakefiller.DefaultAnswersPerPlayer)
 				}
 			}
 		})

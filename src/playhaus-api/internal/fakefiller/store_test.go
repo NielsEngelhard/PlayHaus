@@ -96,7 +96,7 @@ func seedGameFor(t *testing.T, store *GormStore, mode FFGameMode, count int, cre
 	for i, userID := range players {
 		game.Players = append(game.Players, FFGamePlayer{GameID: game.ID, UserID: userID, TurnOrder: i})
 	}
-	for number := 1; number <= RoundsFor(mode, len(players)); number++ {
+	for number := 1; number <= RoundsFor(mode, len(players), DefaultAnswersPerPlayer); number++ {
 		seats := AuthorSeats(mode, number, len(players))
 		round := FFRound{
 			ID:              uuid.New(),
@@ -141,7 +141,7 @@ func answer(t *testing.T, store *GormStore, seeded seededGame, roundIndex int, a
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer),
 	})
 	if err != nil {
 		t.Fatalf("save answer for round %d by %s: %v", roundIndex+1, authorID, err)
@@ -155,7 +155,7 @@ func writeEverything(t *testing.T, store *GormStore, seeded seededGame) *FFMulti
 	t.Helper()
 
 	ctx := context.Background()
-	expected := AnswersFor(seeded.game.GameMode, len(seeded.players))
+	expected := AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer)
 	answered := 0
 
 	for i, round := range seeded.game.Rounds {
@@ -215,7 +215,7 @@ func TestASecondAnswerToTheSamePromptIsRefused(t *testing.T) {
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer),
 	})
 	if !errors.Is(err, ErrAlreadyAnswered) {
 		t.Fatalf("second answer: err = %v, want ErrAlreadyAnswered", err)
@@ -239,8 +239,8 @@ func TestTheAnswerCountClimbsWithEachAnswerAndIgnoresTheTruth(t *testing.T) {
 		}
 	}
 
-	if want != AnswersFor(seeded.game.GameMode, len(seeded.players)) {
-		t.Fatalf("wrote %d answers, want %d", want, AnswersFor(seeded.game.GameMode, len(seeded.players)))
+	if want != AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer) {
+		t.Fatalf("wrote %d answers, want %d", want, AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer))
 	}
 }
 
@@ -737,7 +737,7 @@ func TestFillsSurviveTheDatabase(t *testing.T) {
 			Slot:      UnassignedSlot,
 			CreatedAt: time.Now().UTC(),
 		},
-		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players)),
+		Expected: AnswersFor(seeded.game.GameMode, len(seeded.players), DefaultAnswersPerPlayer),
 	}); err != nil {
 		t.Fatalf("save answer: %v", err)
 	}

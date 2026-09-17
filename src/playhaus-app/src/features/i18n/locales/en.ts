@@ -1428,7 +1428,10 @@ export const en = {
             modeCreative: 'Anything goes',
             // The one setting worth a sentence.
             modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
-            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked, and it takes three players.'
+            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked, and it takes three players.',
+            answersPerPlayer: 'Prompts each',
+            answersPerPlayerHint: 'How many sentences every player fills in at the start. More prompts, longer game.',
+            answersSummary: '{{amount}} prompts each'
         },
         play: {
             loading: 'Dealing the prompts…',

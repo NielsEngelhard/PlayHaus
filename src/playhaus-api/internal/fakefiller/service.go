@@ -20,14 +20,18 @@ import (
 
 // LobbySettings is what the host gets to decide once the room exists.
 type LobbySettings struct {
-	GameMode FFGameMode
-	Locale   i18n.Locale
+	GameMode         FFGameMode
+	Locale           i18n.Locale
+	AnswersPerPlayer int
 }
 
 func (in LobbySettings) validate() map[string]string {
 	problems := map[string]string{}
 	if !in.GameMode.Valid() {
 		problems["gameMode"] = fmt.Sprintf("must be %q or %q", GameModeFacts, GameModeCreative)
+	}
+	if !ValidAnswersPerPlayer(in.AnswersPerPlayer) {
+		problems["answersPerPlayer"] = fmt.Sprintf("must be between %d and %d", MinAnswersPerPlayer, MaxAnswersPerPlayer)
 	}
 	return problems
 }
@@ -36,11 +40,22 @@ func (in LobbySettings) normalised() LobbySettings {
 	if !in.Locale.Valid() {
 		in.Locale = i18n.Default
 	}
+	if in.AnswersPerPlayer == 0 {
+		in.AnswersPerPlayer = DefaultAnswersPerPlayer
+	}
 	return in
 }
 
 // DefaultGameMode is what a room plays until its host says otherwise. facts rather than creative because it is the mode with a right answer.
 const DefaultGameMode = GameModeFacts
+
+// answersPerPlayer falls back to the default, so a row written before the setting existed still deals a game.
+func answersPerPlayer(stored int) int {
+	if !ValidAnswersPerPlayer(stored) {
+		return DefaultAnswersPerPlayer
+	}
+	return stored
+}
 
 // Store is declared next to its consumer, as everywhere else in this codebase.
 type Store interface {
@@ -161,11 +176,11 @@ func (s *Service) SweepStale(ctx context.Context, cfg SweepConfig, every time.Du
 
 // CreateLobby opens a room and puts the caller in it as the host.
 func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*FFLobby, error) {
-	return s.openLobby(ctx, ownerID, locale, DefaultGameMode)
+	return s.openLobby(ctx, ownerID, locale, DefaultGameMode, DefaultAnswersPerPlayer)
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and a mode to sit at until somebody moves it.
-func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, mode FFGameMode) (*FFLobby, error) {
+func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Locale, mode FFGameMode, answersPerPlayer int) (*FFLobby, error) {
 	if ownerID == "" {
 		return nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
 	}
@@ -175,6 +190,9 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 	if !mode.Valid() {
 		mode = DefaultGameMode
 	}
+	if !ValidAnswersPerPlayer(answersPerPlayer) {
+		answersPerPlayer = DefaultAnswersPerPlayer
+	}
 
 	code, err := s.freeJoinCode(ctx)
 	if err != nil {
@@ -183,11 +201,12 @@ func (s *Service) openLobby(ctx context.Context, ownerID string, locale i18n.Loc
 
 	now := time.Now().UTC()
 	lobby := &FFLobby{
-		ID:       code,
-		OwnerID:  ownerID,
-		Locale:   locale,
-		GameMode: mode,
-		Status:   LobbyWaiting,
+		ID:               code,
+		OwnerID:          ownerID,
+		Locale:           locale,
+		GameMode:         mode,
+		AnswersPerPlayer: answersPerPlayer,
+		Status:           LobbyWaiting,
 		// The host is a player like any other, and the first one.
 		Players:   []FFLobbyPlayer{{LobbyID: code, UserID: ownerID, Seat: 0, JoinedAt: now}},
 		CreatedAt: now,
@@ -234,6 +253,7 @@ func (s *Service) UpdateLobbySettings(ctx context.Context, code, userID string, 
 
 	lobby.Locale = in.Locale
 	lobby.GameMode = in.GameMode
+	lobby.AnswersPerPlayer = in.AnswersPerPlayer
 
 	return lobby, nil, nil
 }
@@ -367,19 +387,20 @@ func (s *Service) StartLobby(ctx context.Context, code, userID string) (*FFLobby
 	slices.SortFunc(seated, func(a, b FFLobbyPlayer) int { return a.Seat - b.Seat })
 	rand.Shuffle(len(seated), func(i, j int) { seated[i], seated[j] = seated[j], seated[i] })
 
-	lines, err := GetContentLines(lobby.Locale, lobby.GameMode, RoundsFor(lobby.GameMode, len(seated)))
+	lines, err := GetContentLines(lobby.Locale, lobby.GameMode, RoundsFor(lobby.GameMode, len(seated), answersPerPlayer(lobby.AnswersPerPlayer)))
 	if err != nil {
 		return nil, nil, fmt.Errorf("draw prompts: %w", err)
 	}
 
 	now := time.Now().UTC()
 	game := &FFMultiDeviceGame{
-		ID:       uuid.New(),
-		LobbyID:  lobby.ID,
-		OwnerID:  lobby.OwnerID,
-		Locale:   lobby.Locale,
-		GameMode: lobby.GameMode,
-		Phase:    PhaseWriting,
+		ID:               uuid.New(),
+		LobbyID:          lobby.ID,
+		OwnerID:          lobby.OwnerID,
+		Locale:           lobby.Locale,
+		GameMode:         lobby.GameMode,
+		AnswersPerPlayer: answersPerPlayer(lobby.AnswersPerPlayer),
+		Phase:            PhaseWriting,
 		// Meaningless until voting opens -- every round is written at once -- but a column that is 1 from the start is one nobody has to wonder about.
 		CurrentRound: 1,
 		Status:       GameInProgress,
@@ -472,7 +493,7 @@ func (s *Service) Rematch(ctx context.Context, code, userID string) (*FFLobby, e
 		return nil, ErrGameNotOver
 	}
 
-	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.GameMode)
+	next, err := s.openLobby(ctx, userID, lobby.Locale, lobby.GameMode, lobby.AnswersPerPlayer)
 	if err != nil {
 		return nil, err
 	}
@@ -565,7 +586,7 @@ func (s *Service) SubmitAnswer(ctx context.Context, in SubmitAnswerInput) (*Answ
 		return nil, ErrAnswerIsTruth
 	}
 
-	expected := AnswersFor(game.GameMode, len(game.Players))
+	expected := AnswersFor(game.GameMode, len(game.Players), answersPerPlayer(game.AnswersPerPlayer))
 	answered, err := s.store.SaveAnswer(ctx, SaveAnswerInput{
 		GameID: game.ID,
 		Option: &FFOption{

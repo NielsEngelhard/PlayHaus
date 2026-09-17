@@ -1293,7 +1293,10 @@ export const nl: Catalog = {
             modeFacts: 'Echte feiten',
             modeCreative: 'Alles mag',
             modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
-            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest, en je hebt drie spelers nodig.'
+            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest, en je hebt drie spelers nodig.',
+            answersPerPlayer: 'Vragen per speler',
+            answersPerPlayerHint: 'Hoeveel zinnen iedere speler aan het begin invult. Meer vragen, langer spel.',
+            answersSummary: '{{amount}} vragen p.p.'
         },
         play: {
             loading: 'Vragen uitdelen…',

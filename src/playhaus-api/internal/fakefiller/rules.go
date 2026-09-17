@@ -13,8 +13,17 @@ const (
 // MinPlayersWithoutTruth is the floor for a mode whose line-up is nothing but the fakes, where a table of two would leave the guesser one thing to pick from.
 const MinPlayersWithoutTruth = 3
 
-// AnswersPerPlayer is how many prompts each player writes for.
-const AnswersPerPlayer = 2
+// How many prompts each player writes for: the host's choice, between the two bounds.
+const (
+	DefaultAnswersPerPlayer = 2
+	MinAnswersPerPlayer     = 2
+	MaxAnswersPerPlayer     = 4
+)
+
+// ValidAnswersPerPlayer reports whether a table can be dealt this many prompts each.
+func ValidAnswersPerPlayer(answersPerPlayer int) bool {
+	return answersPerPlayer >= MinAnswersPerPlayer && answersPerPlayer <= MaxAnswersPerPlayer
+}
 
 const (
 	// TruthPoints is for picking the real answer out of the line-up.
@@ -34,12 +43,13 @@ func AuthorsPerRound(mode FFGameMode, players int) int {
 	return 2
 }
 
-// RoundsFor is how many prompts a game of this size deals.
-func RoundsFor(mode FFGameMode, players int) int {
-	if players < MinLobbyPlayers {
+// RoundsFor is how many prompts a game of this size deals. Rounded up, so an odd number of answers each costs nobody a turn.
+func RoundsFor(mode FFGameMode, players, answersPerPlayer int) int {
+	if players < MinLobbyPlayers || answersPerPlayer <= 0 {
 		return 0
 	}
-	return players * AnswersPerPlayer / AuthorsPerRound(mode, players)
+	authors := AuthorsPerRound(mode, players)
+	return (players*answersPerPlayer + authors - 1) / authors
 }
 
 // AuthorSeats is which seats were dealt round n, as indices into the shuffled seating.
@@ -72,8 +82,8 @@ func VotersFor(mode FFGameMode, players int) int {
 }
 
 // AnswersFor is how many fills a whole game is waiting on before voting can open.
-func AnswersFor(mode FFGameMode, players int) int {
-	return RoundsFor(mode, players) * AuthorsPerRound(mode, players)
+func AnswersFor(mode FFGameMode, players, answersPerPlayer int) int {
+	return RoundsFor(mode, players, answersPerPlayer) * AuthorsPerRound(mode, players)
 }
 
 // MinPlayersFor is the floor a mode can be started on, which is not the same for both of them.
