@@ -1336,24 +1336,12 @@ export const nl: Catalog = {
             },
             reveal: {
                 title: 'De uitslag',
-                points: '+{{points}}',
                 noScore: 'Geen punten deze ronde.',
-                verdict: {
-                    missTitle: 'Mis!',
-                    missReason: 'Die was van {{author}}',
-                    hitTitle: 'Goed!',
-                    hitReason: 'Je had het echte antwoord',
-                    pickedTitle: 'Je koos {{author}}',
-                    pickedReason_one: 'Dat antwoord kreeg {{count}} stem',
-                    pickedReason_other: 'Dat antwoord kreeg {{count}} stemmen'
-                },
                 stamp: {
                     real: 'Echt',
                     more: '{{name}} +{{count}}'
                 },
                 voters: {
-                    fell: 'Trapte er in',
-                    knew: 'Wie het wist',
                     chose: 'Wie dit koos',
                     none: 'Niemand'
                 },

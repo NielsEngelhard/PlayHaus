@@ -7,11 +7,9 @@ import PopPressable from "@/components/ui/PopPressable";
 import { Brand, Radii, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
 import PlayButton from "@/features/fake-filler/components/play/PlayButton";
-import RoundVerdict, { type Verdict } from "@/features/fake-filler/components/play/RoundVerdict";
 import VoterBubbles from "@/features/fake-filler/components/play/VoterBubbles";
 import { fillPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
-import { joinNames } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { Fragment, useState } from "react";
@@ -33,11 +31,16 @@ interface Props {
 
 const LETTER_A = 65;
 
-// How wide a stamped name may get before it is cut.
-const STAMP_MAX_WIDTH = 170;
+// How many letters of a name the stamp shows before it cuts.
+const STAMP_MAX_LETTERS = 18;
 
-// What spotting the real answer pays, kept in step with the server's own `TruthPoints`.
-const TRUTH_POINTS = 1;
+// Wide enough for that many uppercase letters plus the ellipsis, so the width never cuts a name the letter count would have let through.
+const STAMP_MAX_WIDTH = 232;
+
+// Cut by letters rather than by width, so every name that is too long loses its tail at the same place.
+function clipName(name: string): string {
+    return name.length > STAMP_MAX_LETTERS ? `${name.slice(0, STAMP_MAX_LETTERS)}…` : name;
+}
 
 // A fake always has an author; the guard is for a round that arrives without one.
 function authorsOf(option: FFOption, nameOf: (id: string) => string): string[] {
@@ -67,34 +70,6 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
         return game.players.find(player => player.userId === id)?.name ?? '?';
     };
 
-    const facts = game.gameMode === 'facts';
-
-    // The card this viewer picked. A round's own authors never voted on it, so they get no verdict.
-    const myCard = revealed && round.myVoteSlot !== undefined
-        ? options.find(option => option.slot === round.myVoteSlot)
-        : undefined;
-
-    const myAuthor = myCard === undefined ? '' : joinNames(authorsOf(myCard, nameOf), t('common.and'));
-
-    const verdict: VerdictContent | null = myCard === undefined
-        ? null
-        // Nothing is right or wrong without a truth to be right about, so the strip only names who you picked.
-        : !facts ? {
-            verdict: 'picked',
-            title: t('fakeFiller.play.reveal.verdict.pickedTitle', { author: myAuthor }),
-            reason: t('fakeFiller.play.reveal.verdict.pickedReason', { count: myCard.voters?.length ?? 0 })
-        } : myCard.isTruth === true ? {
-            verdict: 'hit',
-            title: t('fakeFiller.play.reveal.verdict.hitTitle'),
-            reason: t('fakeFiller.play.reveal.verdict.hitReason'),
-            points: t('fakeFiller.play.reveal.points', { points: TRUTH_POINTS })
-        } : {
-            verdict: 'miss',
-            title: t('fakeFiller.play.reveal.verdict.missTitle'),
-            reason: t('fakeFiller.play.reveal.verdict.missReason', { author: myAuthor }),
-            points: t('fakeFiller.play.reveal.points', { points: 0 })
-        };
-
     return (
         <ScrollView
             style={styles.scroll}
@@ -112,8 +87,6 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
             )}
 
             <View style={styles.options} accessibilityRole={revealed ? undefined : 'radiogroup'}>
-                {verdict !== null && <RoundVerdict {...verdict} />}
-
                 {options.map((option, index) => {
                     const letter = String.fromCharCode(LETTER_A + index);
 
@@ -283,14 +256,6 @@ function Option({ letter, line, option, active, voted, faded, disabled, onPress 
     )
 }
 
-/** Everything the strip above the cards says, built where the round is known. */
-interface VerdictContent {
-    verdict: Verdict,
-    title: string,
-    reason: string,
-    points?: string
-}
-
 interface RevealedOptionProps {
     // Which way the stamp leans.
     index: number,
@@ -324,13 +289,8 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
         : authors.length === 0
             ? null
             : shared
-                ? t('fakeFiller.play.reveal.stamp.more', { name: authors[0], count: authors.length - 1 })
-                : authors[0];
-
-    const votersLabel = !facts
-        ? t('fakeFiller.play.reveal.voters.chose')
-        : truth ? t('fakeFiller.play.reveal.voters.knew') : t('fakeFiller.play.reveal.voters.fell');
-
+                ? t('fakeFiller.play.reveal.stamp.more', { name: clipName(authors[0]), count: authors.length - 1 })
+                : clipName(authors[0]);
     return (
         <View
             accessible
@@ -348,8 +308,6 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
                         <AppText style={styles.mineTagText}>{t('fakeFiller.play.voting.yourPick')}</AppText>
                     </View>
                 )}
-
-                <View style={styles.headSpacer} />
 
                 {stamp !== null && (
                     <View style={[styles.stamp, index % 2 === 0 ? styles.stampLeaning : styles.stampCounter]}>
@@ -373,7 +331,6 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
                 voters={voters}
                 players={game.players}
                 userId={userId}
-                label={votersLabel}
                 onBrand={facts}
             />
         </View>
@@ -397,8 +354,10 @@ const useStyles = createThemedStyles(theme => ({
         flexGrow: 1,
         gap: 9
     },
+    // A basis of zero rather than the content's own height, so the cards split the stack evenly however much is written on either.
     option: {
         flexGrow: 1,
+        flexBasis: 0,
         justifyContent: 'center',
         gap: Spacing.two + Spacing.one,
         padding: Spacing.three,
@@ -436,15 +395,13 @@ const useStyles = createThemedStyles(theme => ({
         alignItems: 'center',
         gap: Spacing.two
     },
-    // Never wraps: the stamp overhangs the card's padding, and the row reserves the height it leans into.
+    // The stamp overhangs the card's padding, and the row reserves the height it leans into.
     revealHead: {
         flexDirection: 'row',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
         gap: 9,
         marginRight: -22
-    },
-    headSpacer: {
-        flex: 1
     },
     letter: {
         width: 30,
@@ -492,8 +449,10 @@ const useStyles = createThemedStyles(theme => ({
         textTransform: 'uppercase',
         color: Brand.lemon
     },
+    // Wraps onto its own line rather than shrinking, so a full name never loses letters to the badge beside it.
     stamp: {
-        flexShrink: 1,
+        flexShrink: 0,
+        marginLeft: 'auto',
         maxWidth: STAMP_MAX_WIDTH,
         paddingVertical: Spacing.one + 2,
         paddingHorizontal: 13,

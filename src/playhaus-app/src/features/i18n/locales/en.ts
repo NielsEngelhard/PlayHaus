@@ -1472,24 +1472,12 @@ export const en = {
             },
             reveal: {
                 title: 'The results',
-                points: '+{{points}}',
                 noScore: 'No points this round.',
-                verdict: {
-                    missTitle: 'Missed!',
-                    missReason: "You picked {{author}}'s fake",
-                    hitTitle: 'Nailed it!',
-                    hitReason: 'You had the real answer',
-                    pickedTitle: 'You picked {{author}}',
-                    pickedReason_one: 'That answer got {{count}} vote',
-                    pickedReason_other: 'That answer got {{count}} votes'
-                },
                 stamp: {
                     real: 'Real',
                     more: '{{name}} +{{count}}'
                 },
                 voters: {
-                    fell: 'Who fell for it',
-                    knew: 'Who knew',
                     chose: 'Who picked this',
                     none: 'Nobody'
                 },

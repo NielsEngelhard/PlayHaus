@@ -1,24 +1,27 @@
 import type { FFGamePlayer } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
-import { Brand, Radii, Spacing, withAlpha } from "@/constants/theme";
+import { Brand, Radii, ShadowReach, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { initialsOf } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { avatarColorById } from "@/utils/color-utils";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface Props {
     voters: string[],
     players: FFGamePlayer[],
     userId: string,
     /** What picking this card meant, which is not the same sentence on the truth as on a fake. */
-    label: string,
+    label?: string,
     // Sitting on a brand surface, where the themed text colour would vanish in dark mode.
     onBrand?: boolean
 }
 
 const AVATAR_SIZE = 26;
+
+// How wide one voter's name may get before it is cut, so no single tag fills the scroller on its own.
+const NAME_MAX_WIDTH = 132;
 
 // Everyone who picked one option, named under a label that says what picking it meant.
 export default function VoterBubbles({ voters, players, userId, label, onBrand = false }: Props) {
@@ -26,15 +29,22 @@ export default function VoterBubbles({ voters, players, userId, label, onBrand =
     const styles = useStyles();
 
     return (
-        <View style={[styles.block, onBrand ? styles.blockOnBrand : styles.blockThemed]}>
-            <AppText style={[styles.label, onBrand && styles.labelOnBrand]}>{label}</AppText>
+        <View style={styles.block}>
+            {label && (
+                <AppText style={[styles.label, onBrand && styles.labelOnBrand]}>{label}</AppText>
+            )}
 
             {voters.length === 0 ? (
                 <AppText style={[styles.none, onBrand && styles.noneOnBrand]}>
                     {t('fakeFiller.play.reveal.voters.none')}
                 </AppText>
             ) : (
-                <View style={styles.row}>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.scroll}
+                    contentContainerStyle={styles.row}
+                >
                     {voters.map(voterId => {
                         const player = players.find(candidate => candidate.userId === voterId);
                         const name = player?.name ?? '?';
@@ -59,25 +69,15 @@ export default function VoterBubbles({ voters, players, userId, label, onBrand =
                             </View>
                         );
                     })}
-                </View>
+                </ScrollView>
             )}
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
-    // Android draws a one-sided dashed border solid; everywhere else it is the seam the mock asks for.
     block: {
-        gap: 7,
-        paddingTop: 11,
-        borderTopWidth: theme.borderWidth,
-        borderStyle: 'dashed'
-    },
-    blockOnBrand: {
-        borderTopColor: withAlpha(Brand.ink, 0.3)
-    },
-    blockThemed: {
-        borderTopColor: theme.colors.borderDashed
+        gap: 7
     },
     label: {
         fontSize: 10.5,
@@ -97,14 +97,20 @@ const useStyles = createThemedStyles(theme => ({
     noneOnBrand: {
         color: withAlpha(Brand.ink, 0.72)
     },
-    // Six players is two lines, and that is the row working rather than failing.
+    // A horizontal ScrollView stretches to its content's height otherwise.
+    scroll: {
+        flexGrow: 0
+    },
+    // Scrolls rather than wraps: a second line of tags would cost the cards height a phone has not got.
     row: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: Spacing.two - Spacing.half
+        gap: Spacing.two - Spacing.half,
+        // Room for the hard shadow, which the scroller would otherwise cut off.
+        paddingRight: ShadowReach.hardSmall,
+        paddingBottom: ShadowReach.hardSmall
     },
     tag: {
-        flexShrink: 1,
+        flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',
         gap: Spacing.two - Spacing.half,
@@ -118,7 +124,7 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hardSmall
     },
     name: {
-        flexShrink: 1,
+        maxWidth: NAME_MAX_WIDTH,
         fontSize: 13,
         fontWeight: 900,
         letterSpacing: -0.1,
