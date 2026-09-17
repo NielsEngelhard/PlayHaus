@@ -1472,15 +1472,34 @@ export const en = {
             },
             reveal: {
                 title: 'The results',
-                truth: 'The truth',
-                fake: 'Fake',
-                fakeBadge: 'Fake answer',
-                nobodyPicked: 'Nobody picked this',
                 points: '+{{points}}',
-                pointsEach: '+1 each',
-                pointsShared: '+{{points}} each',
-                greatMinds: 'Great minds!',
                 noScore: 'No points this round.',
+                verdict: {
+                    missTitle: 'Missed!',
+                    missReason: "You picked {{author}}'s fake",
+                    hitTitle: 'Nailed it!',
+                    hitReason: 'You had the real answer',
+                    pickedTitle: 'You picked {{author}}',
+                    pickedReason_one: 'That answer got {{count}} vote',
+                    pickedReason_other: 'That answer got {{count}} votes'
+                },
+                stamp: {
+                    real: 'Real',
+                    more: '{{name}} +{{count}}'
+                },
+                meta: {
+                    real: 'This was the real answer',
+                    fake: '{{author}} wrote this fake',
+                    fakeShared: '{{author}} wrote this same fake',
+                    answer: '{{author}} wrote this answer',
+                    answerShared: '{{author}} wrote this same answer'
+                },
+                voters: {
+                    fell: 'Who fell for it',
+                    knew: 'Who knew',
+                    chose: 'Who picked this',
+                    none: 'Nobody'
+                },
                 next: 'Next round',
                 toResults: 'See the final scores',
                 waitingForHost: 'Waiting for the host to move on…',

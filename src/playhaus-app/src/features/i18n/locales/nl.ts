@@ -1336,15 +1336,34 @@ export const nl: Catalog = {
             },
             reveal: {
                 title: 'De uitslag',
-                truth: 'De waarheid',
-                fake: 'Verzonnen',
-                fakeBadge: 'Verzonnen antwoord',
-                nobodyPicked: 'Niemand koos deze',
                 points: '+{{points}}',
-                pointsEach: '+1 per persoon',
-                pointsShared: '+{{points}} per persoon',
-                greatMinds: 'Great minds denken hetzelfde!',
                 noScore: 'Geen punten deze ronde.',
+                verdict: {
+                    missTitle: 'Mis!',
+                    missReason: 'Die was van {{author}}',
+                    hitTitle: 'Goed!',
+                    hitReason: 'Je had het echte antwoord',
+                    pickedTitle: 'Je koos {{author}}',
+                    pickedReason_one: 'Dat antwoord kreeg {{count}} stem',
+                    pickedReason_other: 'Dat antwoord kreeg {{count}} stemmen'
+                },
+                stamp: {
+                    real: 'Echt',
+                    more: '{{name}} +{{count}}'
+                },
+                meta: {
+                    real: 'Dit was het echte antwoord',
+                    fake: '{{author}} schreef deze nep',
+                    fakeShared: '{{author}} schreven deze nep',
+                    answer: '{{author}} schreef dit antwoord',
+                    answerShared: '{{author}} schreven dit antwoord'
+                },
+                voters: {
+                    fell: 'Wie erin viel',
+                    knew: 'Wie het wist',
+                    chose: 'Wie dit koos',
+                    none: 'Niemand'
+                },
                 next: 'Volgende ronde',
                 toResults: 'Naar de eindstand',
                 waitingForHost: 'Wachten tot de host verdergaat…',

@@ -4,15 +4,16 @@ import Card from "@/components/ui/Card";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import PopPressable from "@/components/ui/PopPressable";
-import { Brand, Spacing, withAlpha } from "@/constants/theme";
+import { Brand, Radii, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
 import PlayButton from "@/features/fake-filler/components/play/PlayButton";
+import RoundVerdict, { type Verdict } from "@/features/fake-filler/components/play/RoundVerdict";
 import VoterBubbles from "@/features/fake-filler/components/play/VoterBubbles";
 import { fillPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
+import { joinNames } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import Feather from "@expo/vector-icons/Feather";
 import { Fragment, useState } from "react";
 import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
 
@@ -31,6 +32,19 @@ interface Props {
 }
 
 const LETTER_A = 65;
+
+// How wide a stamped name may get before it is cut.
+const STAMP_MAX_WIDTH = 170;
+
+// What spotting the real answer pays, kept in step with the server's own `TruthPoints`.
+const TRUTH_POINTS = 1;
+
+// A fake always has an author; the guard is for a round that arrives without one.
+function authorsOf(option: FFOption, nameOf: (id: string) => string): string[] {
+    const ids = option.authorIds ?? (option.authorId === undefined ? [] : [option.authorId]);
+
+    return ids.filter(id => id !== TRUTH_AUTHOR_ID).map(nameOf);
+}
 
 // One round from vote to verdict: tap a card and lock it in, then the same cards turn over to show who wrote what.
 export default function VotingScreen({ game, round, userId, busy, onVote, more, isHost, advancing, onContinue }: Props) {
@@ -53,6 +67,34 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
         return game.players.find(player => player.userId === id)?.name ?? '?';
     };
 
+    const facts = game.gameMode === 'facts';
+
+    // The card this viewer picked. A round's own authors never voted on it, so they get no verdict.
+    const myCard = revealed && round.myVoteSlot !== undefined
+        ? options.find(option => option.slot === round.myVoteSlot)
+        : undefined;
+
+    const myAuthor = myCard === undefined ? '' : joinNames(authorsOf(myCard, nameOf), t('common.and'));
+
+    const verdict: VerdictContent | null = myCard === undefined
+        ? null
+        // Nothing is right or wrong without a truth to be right about, so the strip only names who you picked.
+        : !facts ? {
+            verdict: 'picked',
+            title: t('fakeFiller.play.reveal.verdict.pickedTitle', { author: myAuthor }),
+            reason: t('fakeFiller.play.reveal.verdict.pickedReason', { count: myCard.voters?.length ?? 0 })
+        } : myCard.isTruth === true ? {
+            verdict: 'hit',
+            title: t('fakeFiller.play.reveal.verdict.hitTitle'),
+            reason: t('fakeFiller.play.reveal.verdict.hitReason'),
+            points: t('fakeFiller.play.reveal.points', { points: TRUTH_POINTS })
+        } : {
+            verdict: 'miss',
+            title: t('fakeFiller.play.reveal.verdict.missTitle'),
+            reason: t('fakeFiller.play.reveal.verdict.missReason', { author: myAuthor }),
+            points: t('fakeFiller.play.reveal.points', { points: 0 })
+        };
+
     return (
         <ScrollView
             style={styles.scroll}
@@ -70,6 +112,8 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
             )}
 
             <View style={styles.options} accessibilityRole={revealed ? undefined : 'radiogroup'}>
+                {verdict !== null && <RoundVerdict {...verdict} />}
+
                 {options.map((option, index) => {
                     const letter = String.fromCharCode(LETTER_A + index);
 
@@ -79,6 +123,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
 
                             {revealed ? (
                                 <RevealedOption
+                                    index={index}
                                     letter={letter}
                                     line={round.line}
                                     option={option}
@@ -111,6 +156,8 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
 
                     {isHost ? (
                         <PlayButton
+                            // Ink, so the only mint on a reveal is the band and the real answer.
+                            tone='ink'
                             text={more
                                 ? t('fakeFiller.play.reveal.next')
                                 : t('fakeFiller.play.reveal.toResults')}
@@ -236,7 +283,17 @@ function Option({ letter, line, option, active, voted, faded, disabled, onPress 
     )
 }
 
+/** Everything the strip above the cards says, built where the round is known. */
+interface VerdictContent {
+    verdict: Verdict,
+    title: string,
+    reason: string,
+    points?: string
+}
+
 interface RevealedOptionProps {
+    // Which way the stamp leans.
+    index: number,
     letter: string,
     line: string,
     option: FFOption,
@@ -246,80 +303,69 @@ interface RevealedOptionProps {
     nameOf: (id: string) => string
 }
 
-// The same card once the round is told: truth or fake, who wrote it, what it earned, and who fell for it.
-function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
+// The same card once the round is told: the fill says what the answer was, the stamp says who wrote it.
+function RevealedOption({ index, letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
     const t = useT();
     const styles = useStyles();
     const size = useLineSize();
 
     const facts = game.gameMode === 'facts';
     const truth = option.isTruth === true;
-    const correctMine = truth && mine;
-    const wrongMine = !truth && mine;
     const voters = option.voters ?? [];
 
-    // A fake always has an author; the guard is for a round that arrives without one.
-    const authorIds = option.authorIds ?? (option.authorId === undefined ? [] : [option.authorId]);
-    const authors = truth ? [] : authorIds.filter(id => id !== TRUTH_AUTHOR_ID).map(nameOf);
+    const authors = truth ? [] : authorsOf(option, nameOf);
     const shared = authors.length > 1;
+    const author = joinNames(authors, t('common.and'));
 
-    // Only a fake pays its author; the truth pays each of the people who spotted it.
-    const points = truth
-        ? (facts && voters.length > 0 ? t('fakeFiller.play.reveal.pointsEach') : null)
-        : voters.length === 0
-            ? '0'
-            : t(shared ? 'fakeFiller.play.reveal.pointsShared' : 'fakeFiller.play.reveal.points', { points: voters.length });
+    // Only a mode with a truth tints anything, because only there does one card mean something the other does not.
+    const fill = !facts ? styles.optionNeutral : truth ? styles.optionTruth : styles.optionFake;
 
-    const verdict = truth
-        ? t('fakeFiller.play.reveal.truth')
-        : [facts ? t('fakeFiller.play.reveal.fake') : null, ...authors, shared ? t('fakeFiller.play.reveal.greatMinds') : null]
-            .filter(part => part !== null)
-            .join(', ');
+    const stamp = truth
+        ? t('fakeFiller.play.reveal.stamp.real')
+        : authors.length === 0
+            ? null
+            : shared
+                ? t('fakeFiller.play.reveal.stamp.more', { name: authors[0], count: authors.length - 1 })
+                : authors[0];
+
+    const meta = truth
+        ? t('fakeFiller.play.reveal.meta.real')
+        : authors.length === 0
+            ? null
+            : facts
+                ? t(shared ? 'fakeFiller.play.reveal.meta.fakeShared' : 'fakeFiller.play.reveal.meta.fake', { author })
+                : t(shared ? 'fakeFiller.play.reveal.meta.answerShared' : 'fakeFiller.play.reveal.meta.answer', { author });
+
+    const votersLabel = !facts
+        ? t('fakeFiller.play.reveal.voters.chose')
+        : truth ? t('fakeFiller.play.reveal.voters.knew') : t('fakeFiller.play.reveal.voters.fell');
 
     return (
         <View
             accessible
-            accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}. ${verdict}`}
-            style={[
-                styles.option,
-                truth && styles.optionActive,
-                correctMine && styles.optionCorrectMine,
-                wrongMine && styles.optionWrongMine
-            ]}
+            accessibilityLabel={`${t('fakeFiller.play.voting.option', { letter })}: ${fillPrompt(line, option.fills)}. ${meta ?? ''}`}
+            style={[styles.option, fill]}
         >
-            {facts && !truth && <FakeBadge />}
-
-            <View style={styles.optionHead}>
-                <View style={[styles.letter, truth && styles.letterActive]}>
-                    <AppText style={[styles.letterText, truth && styles.letterTextActive]}>{letter}</AppText>
+            {/* The stamp rides in the flow, so the row reserves its height and it can never land on the sentence. */}
+            <View style={styles.revealHead}>
+                <View style={styles.letter}>
+                    <AppText style={styles.letterText}>{letter}</AppText>
                 </View>
 
-                {truth && (
-                    <View style={styles.truthTag}>
-                        <AppText style={styles.truthTagText}>{t('fakeFiller.play.reveal.truth')}</AppText>
+                {mine && (
+                    <View style={styles.mineTag}>
+                        <AppText style={styles.mineTagText}>{t('fakeFiller.play.voting.yourPick')}</AppText>
                     </View>
                 )}
 
-                {authors.map((name, index) => <AuthorTag key={`${index}-${name}`} name={name} />)}
+                <View style={styles.headSpacer} />
 
-                {shared && (
-                    <AppText style={styles.hint}>{t('fakeFiller.play.reveal.greatMinds')}</AppText>
-                )}
-
-                {mine && (
-                    <AppText style={[styles.hint, truth && styles.hintActive]}>
-                        {t('fakeFiller.play.voting.yourPick')}
-                    </AppText>
-                )}
-
-                {points !== null && (
-                    <AppText style={[
-                        styles.points,
-                        truth && styles.pointsOnBrand,
-                        voters.length === 0 && styles.pointsNone
-                    ]}>
-                        {points}
-                    </AppText>
+                {stamp !== null && (
+                    <View style={[styles.stamp, index % 2 === 0 ? styles.stampLeaning : styles.stampCounter]}>
+                        <AppText style={styles.stampText} numberOfLines={1} ellipsizeMode='tail'>
+                            {stamp}
+                        </AppText>
+                    </View>
                 )}
             </View>
 
@@ -329,42 +375,31 @@ function RevealedOption({ letter, line, option, game, userId, mine, nameOf }: Re
                 size={size}
                 leading={1.55}
                 pill
-                color={truth ? Brand.ink : undefined}
+                color={facts ? Brand.ink : undefined}
             />
 
-            {voters.length === 0 ? (
-                <AppText style={[styles.nobody, truth && styles.nobodyOnBrand]}>
-                    {t('fakeFiller.play.reveal.nobodyPicked')}
-                </AppText>
-            ) : (
-                <VoterBubbles voters={voters} players={game.players} userId={userId} onBrand={truth} />
+            {meta !== null && (
+                <View style={styles.meta}>
+                    <AppText style={[styles.metaText, facts && styles.metaTextOnBrand]}>{meta}</AppText>
+
+                    {/* Only a fake pays, and it pays its author a point per person it fooled. */}
+                    {!truth && (
+                        <View style={styles.metaPoints}>
+                            <AppText style={styles.metaPointsText}>
+                                {t('fakeFiller.play.reveal.points', { points: voters.length })}
+                            </AppText>
+                        </View>
+                    )}
+                </View>
             )}
-        </View>
-    )
-}
 
-// Stamped over the card's corner, so a fake reads as fake before anything else on it does.
-function FakeBadge() {
-    const t = useT();
-    const styles = useStyles();
-
-    return (
-        <View style={styles.fakeBadge}>
-            <AppText style={styles.fakeBadgeText}>{t('fakeFiller.play.reveal.fakeBadge')}</AppText>
-        </View>
-    )
-}
-
-// Who wrote it, kept legible: the game's mint only outlines the pill, never the name.
-function AuthorTag({ name }: { name: string }) {
-    const theme = useTheme();
-    const styles = useStyles();
-
-    return (
-        <View style={styles.authorTag}>
-            <Feather name='user' size={13} color={theme.colors.text} />
-
-            <AppText style={styles.authorName} numberOfLines={1}>{name}</AppText>
+            <VoterBubbles
+                voters={voters}
+                players={game.players}
+                userId={userId}
+                label={votersLabel}
+                onBrand={facts}
+            />
         </View>
     )
 }
@@ -387,11 +422,10 @@ const useStyles = createThemedStyles(theme => ({
         gap: 9
     },
     option: {
-        position: 'relative',
         flexGrow: 1,
         justifyContent: 'center',
-        gap: 11,
-        padding: 17,
+        gap: Spacing.two + Spacing.one,
+        padding: Spacing.three,
         borderRadius: 22,
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
@@ -403,15 +437,19 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
     },
-    // The truth, when it was also your pick — one shade past optionActive's mint.
-    optionCorrectMine: {
+    // The real answer, whoever picked it.
+    optionTruth: {
         borderColor: Brand.ink,
-        backgroundColor: theme.colors.available
+        backgroundColor: theme.colors.mint
     },
-    // The one you picked, once the truth turned out to be a different card.
-    optionWrongMine: {
+    // Somebody made this one up, whoever fell for it.
+    optionFake: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.blush
+    },
+    // No truth exists in this mode, so no card has anything to be tinted for.
+    optionNeutral: {
+        backgroundColor: theme.colors.backgroundElement
     },
     faded: {
         opacity: 0.5
@@ -421,6 +459,16 @@ const useStyles = createThemedStyles(theme => ({
         flexWrap: 'wrap',
         alignItems: 'center',
         gap: Spacing.two
+    },
+    // Never wraps: the stamp overhangs the card's padding, and the row reserves the height it leans into.
+    revealHead: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 9,
+        marginRight: -22
+    },
+    headSpacer: {
+        flex: 1
     },
     letter: {
         width: 30,
@@ -454,82 +502,78 @@ const useStyles = createThemedStyles(theme => ({
     hintActive: {
         color: withAlpha(Brand.ink, 0.6)
     },
-    truthTag: {
-        paddingVertical: 3,
-        paddingHorizontal: 9,
-        borderRadius: 999,
+    // The one thing on the reveal that says anything about the viewer, so it has to sit on either fill.
+    mineTag: {
+        paddingVertical: Spacing.one,
+        paddingHorizontal: 10,
+        borderRadius: Radii.full,
         backgroundColor: Brand.ink
     },
-    truthTagText: {
-        fontSize: 9.5,
-        fontWeight: 900,
-        letterSpacing: 1.3,
-        textTransform: 'uppercase',
-        color: theme.colors.mint
-    },
-    // Sits half off the card and tilted, so it reads as a stamp rather than a label.
-    fakeBadge: {
-        position: 'absolute',
-        top: -10,
-        right: -8,
-        zIndex: 1,
-        transform: [{ rotate: '10deg' }],
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: Brand.ink,
-        backgroundColor: Brand.destructive,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        ...theme.shadows.hard
-    },
-    fakeBadgeText: {
+    mineTagText: {
         fontSize: 10.5,
         fontWeight: 900,
-        letterSpacing: 0.8,
+        letterSpacing: 1.1,
         textTransform: 'uppercase',
-        color: Brand.textOnAccent
+        color: Brand.lemon
     },
-    authorTag: {
+    stamp: {
         flexShrink: 1,
+        maxWidth: STAMP_MAX_WIDTH,
+        paddingVertical: Spacing.one + 2,
+        paddingHorizontal: 13,
+        borderRadius: 9,
+        borderWidth: 2.5,
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardSmall
+    },
+    stampLeaning: {
+        transform: [{ rotate: '6deg' }]
+    },
+    stampCounter: {
+        transform: [{ rotate: '-5deg' }]
+    },
+    // Truncates rather than wraps: a second line would grow the head and jog the card.
+    stampText: {
+        fontSize: 14,
+        fontWeight: 900,
+        letterSpacing: 1.4,
+        textTransform: 'uppercase',
+        color: theme.colors.text
+    },
+    meta: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 4,
-        borderRadius: 999,
-        borderWidth: theme.borderWidth,
-        borderColor: Brand.mint,
-        backgroundColor: theme.colors.backgroundElement,
-        paddingHorizontal: 10,
-        paddingVertical: 4
+        gap: 10
     },
-    authorName: {
-        flexShrink: 1,
-        fontSize: 15,
-        fontWeight: 800,
-        letterSpacing: 0.2,
-        color: theme.colors.text
-    },
-    // Pushed to the far end of the head, wherever the row wraps.
-    points: {
-        marginLeft: 'auto',
+    metaText: {
+        flex: 1,
+        minWidth: 0,
         fontSize: 13,
+        lineHeight: 17,
+        fontWeight: 800,
+        color: theme.colors.textSecondary
+    },
+    metaTextOnBrand: {
+        color: withAlpha(Brand.ink, 0.72)
+    },
+    metaPoints: {
+        flexShrink: 0,
+        height: 34,
+        minWidth: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        borderRadius: Radii.md,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+    metaPointsText: {
+        fontSize: 15,
         fontWeight: 900,
         fontVariant: ['tabular-nums'],
-        color: theme.colors.text
-    },
-    pointsOnBrand: {
         color: Brand.ink
-    },
-    // Nothing earned, so the number is there to be read past rather than read.
-    pointsNone: {
-        color: theme.colors.textMuted
-    },
-    nobody: {
-        fontSize: 11.5,
-        fontWeight: 700,
-        color: theme.colors.textMuted
-    },
-    nobodyOnBrand: {
-        color: withAlpha(Brand.ink, 0.6)
     },
     or: {
         flexDirection: 'row',
@@ -543,9 +587,9 @@ const useStyles = createThemedStyles(theme => ({
     },
     // Lemon in both schemes, so its outline and label are ink in both.
     orChip: {
-        paddingVertical: 4,
+        paddingVertical: Spacing.one,
         paddingHorizontal: 12,
-        borderRadius: 999,
+        borderRadius: Radii.full,
         borderWidth: theme.borderWidth,
         borderColor: Brand.ink,
         backgroundColor: Brand.lemon
