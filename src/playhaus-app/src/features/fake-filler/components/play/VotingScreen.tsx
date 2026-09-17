@@ -63,6 +63,8 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
     // Slot order in both phases, so no card moves when the round is told.
     const options = [...(round.options ?? [])].sort((left, right) => left.slot - right.slot);
     const chosen = voted ? round.myVoteSlot : picked;
+    // Fun mode has no real answer to tint, so mint goes to whatever the table picked most instead.
+    const topVotes = Math.max(0, ...options.map(option => option.voters?.length ?? 0));
 
     const nameOf = (id: string) => {
         if (id === userId) return t('common.you');
@@ -97,6 +99,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
                             {revealed ? (
                                 <RevealedOption
                                     index={index}
+                                    topVotes={topVotes}
                                     letter={letter}
                                     line={round.line}
                                     option={option}
@@ -259,6 +262,8 @@ function Option({ letter, line, option, active, voted, faded, disabled, onPress 
 interface RevealedOptionProps {
     // Which way the stamp leans.
     index: number,
+    /** The best vote count on the round, which is what wins where no answer is the real one. */
+    topVotes: number,
     letter: string,
     line: string,
     option: FFOption,
@@ -269,7 +274,7 @@ interface RevealedOptionProps {
 }
 
 // The same card once the round is told: the fill says what the answer was, the stamp says who wrote it.
-function RevealedOption({ index, letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
+function RevealedOption({ index, topVotes, letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
     const t = useT();
     const styles = useStyles();
     const size = useLineSize();
@@ -281,8 +286,12 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
     const authors = truth ? [] : authorsOf(option, nameOf);
     const shared = authors.length > 1;
 
-    // Only a mode with a truth tints anything, because only there does one card mean something the other does not.
-    const fill = !facts ? styles.optionNeutral : truth ? styles.optionTruth : styles.optionFake;
+    // Nothing is true in fun mode, so the card the table liked best is what comes out on top there.
+    const won = facts ? truth : voters.length > 0 && voters.length === topVotes;
+    const fill = won ? styles.optionWinner : facts ? styles.optionFake : styles.optionNeutral;
+
+    // A brand fill rather than a themed one, which is what decides whether the ink on it may follow the scheme.
+    const onBrand = facts || won;
 
     const stamp = truth
         ? t('fakeFiller.play.reveal.stamp.real')
@@ -324,14 +333,14 @@ function RevealedOption({ index, letter, line, option, game, userId, mine, nameO
                 size={size}
                 leading={1.55}
                 pill
-                color={facts ? Brand.ink : undefined}
+                color={onBrand ? Brand.ink : undefined}
             />
 
             <VoterBubbles
                 voters={voters}
                 players={game.players}
                 userId={userId}
-                onBrand={facts}
+                onBrand={onBrand}
             />
         </View>
     )
@@ -372,8 +381,8 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
     },
-    // The real answer, whoever picked it.
-    optionTruth: {
+    // The card that came out on top: the real answer where there is one, the most-picked where there is not.
+    optionWinner: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
     },
