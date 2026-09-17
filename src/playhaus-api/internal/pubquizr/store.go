@@ -178,16 +178,17 @@ func (s *GormStore) PlayedQuizIDs(ctx context.Context, ownerID string, quizIDs [
 // ReplaceQuiz writes a seeded quiz and the content under it, replacing whatever was there before.
 func (s *GormStore) ReplaceQuiz(ctx context.Context, quiz *Quiz) error {
 	err := s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		var existingID uuid.UUID
+		var existingIDs []uuid.UUID
 		err := tx.Model(&Quiz{}).
 			Where("slug = ? AND locale = ?", quiz.Slug, quiz.Locale).
 			Limit(1).
-			Pluck("id", &existingID).Error
+			Pluck("id", &existingIDs).Error
 		if err != nil {
 			return fmt.Errorf("select existing quiz: %w", err)
 		}
 
-		if existingID != uuid.Nil {
+		if len(existingIDs) > 0 {
+			existingID := existingIDs[0]
 			// Keep the id: a session already points at it, and a reseed should not break somebody halfway through a game.
 			quiz.ID = existingID
 
