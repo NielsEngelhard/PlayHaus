@@ -1,4 +1,5 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
+import { ScrollContainerProvider, useScrollContainer } from "@/components/layout/ScrollContainerContext";
 import SoundToggle from "@/components/layout/SoundToggle";
 import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
@@ -67,6 +68,9 @@ export default function LobbyPageBase({
 
     useChromeless();
 
+    // Published to the page, so a card deep in it can bring itself into view.
+    const scroll = useScrollContainer();
+
     const insets = useSafeAreaInsets();
 
     // Static prerender sees a width of zero and renders the phone branch.
@@ -122,16 +126,19 @@ export default function LobbyPageBase({
                     <SoundToggle variant='subtle' />
                 </View>
 
-                <ScrollView
-                    style={[styles.scroll, framed && styles.scrollFramed]}
-                    showsVerticalScrollIndicator={false}
-                >
-                    <View style={styles.content}>
-                        {handsOutCode && <JoinCodeHero game={game} code={code} />}
+                <ScrollContainerProvider container={scroll}>
+                    <ScrollView
+                        {...scroll.viewport}
+                        style={[styles.scroll, framed && styles.scrollFramed]}
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <View {...scroll.content} style={styles.content}>
+                            {handsOutCode && <JoinCodeHero game={game} code={code} />}
 
-                        {children}
-                    </View>
-                </ScrollView>
+                            {children}
+                        </View>
+                    </ScrollView>
+                </ScrollContainerProvider>
 
                 <AccentProvider accent={accent}>
                     <View style={[

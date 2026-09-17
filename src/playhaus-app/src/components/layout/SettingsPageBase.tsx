@@ -1,6 +1,7 @@
 import AccentBand from "@/components/layout/AccentBand";
 import BackChip from "@/components/layout/BackChip";
 import { useChromeless } from "@/components/layout/FullScreenContext";
+import { ScrollContainerProvider, useScrollContainer } from "@/components/layout/ScrollContainerContext";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import AppText from "@/components/text/AppText";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
@@ -12,7 +13,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Image } from "expo-image";
 import type { Href } from "expo-router";
-import { Children, useEffect, useRef, type ReactNode } from "react";
+import { Children, useEffect, type ReactNode } from "react";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -64,13 +65,16 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
     const accent = accentOf(game);
     const ink = accentInkColor(accent.ink);
 
+    // Published to the page, so a card deep in it can bring itself into view.
+    const scroll = useScrollContainer();
+
     // Back to the top whenever the contents change underneath the scroller.
-    const scroller = useRef<ScrollView>(null);
+    const { scroller } = scroll;
     useEffect(() => {
         if (enterKey === undefined) return;
 
         scroller.current?.scrollTo({ y: 0, animated: false });
-    }, [enterKey]);
+    }, [enterKey, scroller]);
 
     // Nulls and falses drop out here, so a section the page decided not to render takes
     const sections = Children.toArray(children);
@@ -158,22 +162,26 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
 
                 <View style={styles.sheet}>
                     {/* The only thing on the page that moves. */}
-                    <ScrollView
-                        ref={scroller}
-                        style={styles.body}
-                        contentContainerStyle={styles.bodyContent}
-                        showsVerticalScrollIndicator={false}
-                    >
-                        {enterKey === undefined ? column : (
-                            <SlideFadeIn
-                                replayKey={enterKey}
-                                offsetX={enterFrom}
-                                durationMs={260}
-                            >
-                                {column}
-                            </SlideFadeIn>
-                        )}
-                    </ScrollView>
+                    <ScrollContainerProvider container={scroll}>
+                        <ScrollView
+                            {...scroll.viewport}
+                            style={styles.body}
+                            contentContainerStyle={styles.bodyContent}
+                            showsVerticalScrollIndicator={false}
+                        >
+                            <View {...scroll.content}>
+                                {enterKey === undefined ? column : (
+                                    <SlideFadeIn
+                                        replayKey={enterKey}
+                                        offsetX={enterFrom}
+                                        durationMs={260}
+                                    >
+                                        {column}
+                                    </SlideFadeIn>
+                                )}
+                            </View>
+                        </ScrollView>
+                    </ScrollContainerProvider>
                 </View>
 
                 <View style={[styles.footer, { paddingBottom: insets.bottom + 16 }]}>

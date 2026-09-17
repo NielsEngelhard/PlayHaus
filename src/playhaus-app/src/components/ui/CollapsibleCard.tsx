@@ -1,3 +1,4 @@
+import { useReveal } from "@/components/layout/ScrollContainerContext";
 import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import { usePressPop } from "@/components/ui/usePressPop";
@@ -5,7 +6,7 @@ import { Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { Children, Fragment, useEffect, useState, type ReactNode } from "react";
+import { Children, Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { AccessibilityInfo, Animated, Easing, View, type LayoutChangeEvent } from "react-native";
 
 interface Props {
@@ -28,8 +29,12 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
     const styles = useStyles();
     const theme = useTheme();
     const pop = usePressPop();
+    const reveal = useReveal();
 
     const [open, setOpen] = useState(defaultOpen);
+
+    // Asked into view once it has finished unfolding, not before: the height animation grows the scroller's content frame by frame.
+    const card = useRef<View>(null);
 
     /** The body's natural height, once there has been a layout pass to read it off. */
     const [height, setHeight] = useState<number | null>(null);
@@ -51,6 +56,8 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
             if (reduced) {
                 motion.setValue(open ? 1 : 0);
                 setSettled(open);
+
+                if (open) reveal(card.current);
                 return;
             }
 
@@ -63,14 +70,20 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
             });
 
             // Interrupted means it was tapped again and the next run owns the card.
-            run.start(({ finished }) => { if (finished) setSettled(open); });
+            run.start(({ finished }) => {
+                if (!finished) return;
+
+                setSettled(open);
+
+                if (open) reveal(card.current);
+            });
         });
 
         return () => {
             cancelled = true;
             run?.stop();
         };
-    }, [open, motion]);
+    }, [open, motion, reveal]);
 
     function toggle() {
         // Dropped before the state flips rather than in the effect.
@@ -88,7 +101,7 @@ export default function CollapsibleCard({ title, summary, defaultOpen = false, c
     const sections = Children.toArray(children);
 
     return (
-        <View style={styles.card}>
+        <View ref={card} style={styles.card}>
             <AnimatedPressable
                 onPress={toggle}
                 onPressIn={pop.onPressIn}

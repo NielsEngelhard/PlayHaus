@@ -2,6 +2,7 @@ import BottomBar from '@/components/layout/BottomBar';
 import { FullScreenProvider, useChromelessValue, useFullScreenValue, useWideValue } from '@/components/layout/FullScreenContext';
 import Header from '@/components/layout/Header';
 import { PageToneProvider, usePageToneValue } from '@/components/layout/PageToneContext';
+import { ScrollContainerProvider, useScrollContainer } from '@/components/layout/ScrollContainerContext';
 import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { APP_NAME } from '@/constants/global-constants';
 import { headerOverAccent } from '@/constants/header-context';
@@ -123,6 +124,9 @@ function Chrome() {
   const styles = useStyles();
   const pathname = usePathname();
 
+  // Published to the page, so a card deep in it can bring itself into view.
+  const scroll = useScrollContainer();
+
   // Which way the next page comes in from.
   const [seen, setSeen] = useState(() => ({ path: pathname, from: 0 }));
   if (seen.path !== pathname) {
@@ -135,7 +139,7 @@ function Chrome() {
   const enterFrom = seen.path === pathname ? seen.from : 0;
 
   const body = (
-    <View style={[styles.content, fullScreen && styles.contentFullScreen, wide && styles.contentWide]}>
+    <View {...scroll.content} style={[styles.content, fullScreen && styles.contentFullScreen, wide && styles.contentWide]}>
       {/* Outside the animation: the header is the app's chrome rather than part of the page. */}
       {!chromeless && (
         <View style={headerOverAccent(pathname) && styles.headerAbove}>
@@ -163,18 +167,21 @@ function Chrome() {
       )}
 
       {/* One scroller for both modes, switched rather than swapped. */}
-      <ScrollView
-        style={[styles.scroll, fullScreen && styles.scrollFullScreen]}
-        contentContainerStyle={
-          chromeless
-            ? styles.chromelessContent
-            : fullScreen ? styles.fullScreenContent : styles.scrollContent
-        }
-        scrollEnabled={!fullScreen}
-        showsVerticalScrollIndicator={false}
-      >
-        {body}
-      </ScrollView>
+      <ScrollContainerProvider container={scroll}>
+        <ScrollView
+          {...scroll.viewport}
+          style={[styles.scroll, fullScreen && styles.scrollFullScreen]}
+          contentContainerStyle={
+            chromeless
+              ? styles.chromelessContent
+              : fullScreen ? styles.fullScreenContent : styles.scrollContent
+          }
+          scrollEnabled={!fullScreen}
+          showsVerticalScrollIndicator={false}
+        >
+          {body}
+        </ScrollView>
+      </ScrollContainerProvider>
 
       {/* Sibling of the scroller, not a child: it stays put while the page moves. */}
       {!fullScreen && <BottomBar />}
