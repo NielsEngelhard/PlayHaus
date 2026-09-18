@@ -9,7 +9,10 @@ The site is one $6/month DigitalOcean droplet in Amsterdam running three contain
               app        nginx: the static Expo export, and /api/ proxied onward
                 |
                 v
-              api        the Go binary, and sqlite on the api-data volume
+              api        the Go binary
+                |
+                v
+              Postgres   external, reached through DATABASE_URL; not on the droplet
 ```
 
 Only Caddy is reachable from outside. The app and API answer on **one origin**, which is
@@ -109,7 +112,19 @@ Settings → Secrets and variables → Actions.
 | --- | --- | --- |
 | Secret | `DEPLOY_HOST` | the reserved IP |
 | Secret | `DEPLOY_SSH_KEY` | the **private** key — the whole file, `BEGIN`/`END` lines included (see below) |
+| Secret | `DATABASE_URL` | the Postgres connection string, e.g. `postgres://user:pass@host:25060/playhausdb?sslmode=require` |
 | Variable | `PUBLIC_ORIGIN` | `https://playhaus.site` |
+
+`DATABASE_URL` is written into `/opt/playhaus/.env` (mode 600) on every API deploy, sent
+over ssh's stdin so it never appears in a log or in `ps`. So rotating the password means
+updating the secret and re-running **Deploy API**. Three things to get right about the
+database itself:
+
+- **Let the droplet in.** A managed Postgres refuses connections by default. Add the
+  droplet (or its reserved IP) to the database's trusted sources.
+- **`sslmode=require`**, or stricter. The connection leaves the droplet.
+- **URL-encode the password** if it contains `@`, `:`, `/`, `?` or `#`. A single quote
+  cannot be stored at all, and `set-env.sh` refuses it rather than mangling it.
 
 The private key is the one **without** the `.pub`. Copy it to the clipboard whole, rather
 than reading it off the screen and retyping it:
@@ -167,9 +182,17 @@ Actions tab → **Deploy API** or **Deploy Web App** → Run workflow. Pick the 
 changed; run both if you changed both. Each builds from whatever commit is on the branch
 you select in the Run workflow dialog, so you can also ship an older commit deliberately.
 
-Each run builds, pushes `sha-<12 chars>` and `latest` to GHCR, writes the exact sha tag
-into `/opt/playhaus/.env`, and recreates **only its own container** with `--no-deps`.
+Each run builds, pushes `sha-<12 chars>` and `latest` to GHCR, recreates **only its own
+container** with `--no-deps`, and then records the exact sha tag in `/opt/playhaus/.env`.
 Shipping a backend fix does not reload anyone's open page.
+
+**Deploy API migrates, and nothing else does.** Before the `api` container is touched,
+`deploy.sh` runs `/app/ph-migrate` from the new image in a throwaway container. It
+applies every pending migration in
+`src/playhaus-api/internal/platform/database/migrations/`, then seeds the quizzes. A quiz
+file that is new or has changed is written, and an unchanged one is skipped by its hash.
+If either step fails the workflow goes red, and the old container is still serving. The
+API never migrates by itself: it refuses to start while a migration is pending.
 
 Both runs also copy the current `deployment/server/` files up to the droplet, so a change
 to the compose file or the Caddyfile takes effect on the next deploy of either half —
@@ -177,8 +200,8 @@ whichever you happen to run.
 
 **A deploy is not verified.** `docker compose up -d` returns as soon as the container has
 been *created*, so a green run means the image was built, pushed, and recreated on the
-droplet — not that it serves. A binary that panics on a bad migration starts perfectly
-well and then stops, and nothing here would notice.
+droplet — not that it serves. A failed migration does stop the run, but a binary that
+panics a minute after starting would not, and nothing here would notice.
 
 So check by hand after shipping something you are unsure of:
 
@@ -209,6 +232,12 @@ docker compose up -d --no-deps api
 
 Then re-run the workflow for the good commit so the repository and the box agree again.
 
+**Rolling back the code does not roll back the schema.** Migrations have no down step in
+this pipeline. The older image starts against the newer schema, and its `ph-migrate`
+treats it as already up to date. That only works because a migration never removes what
+the previous release still reads. Drop or rename a column in a release of its own, once
+the code has stopped using it.
+
 ---
 
 ## Day to day
@@ -229,27 +258,25 @@ free -m                            # 1 GB plus 2 GB of swap
 
 ### The database
 
-`/var/lib/docker/volumes/playhaus_api-data/_data/app.db`, plus its `-wal` and `-shm`
-files. **There is no backup.** `docker compose down -v` deletes it, and so does destroying
-the droplet — note that `terraform apply` will never do that on its own: the droplet has
-`ignore_changes = [user_data, image]` precisely so an edit to the cloud-init template
-cannot quietly replace it.
+An external Postgres, reached through `DATABASE_URL`. Nothing about it lives on the
+droplet, so destroying the droplet no longer loses data. Backups are whatever its host
+provides.
 
-Migrations are GORM `AutoMigrate` on every boot, with nothing to run in reverse, so a
-model change that loses a column loses the data in it.
+The schema is versioned goose SQL files in
+`src/playhaus-api/internal/platform/database/migrations/`. The `goose_db_version` table
+records which ones have been applied. A model change needs a new file there, and
+`TestMigrationsMatchTheModels` fails until it has one. Never edit a file that has already
+been deployed: goose will not run it again.
 
-To turn on DigitalOcean's weekly whole-droplet backups (~$1.20/month), set
-`enable_backups = true` in `terraform.tfvars` and `terraform apply`.
-
-To take a copy by hand — WAL-safe and with no downtime, since `.backup` is a proper online
-backup rather than a file copy:
+To see where production is, run this from the droplet:
 
 ```
-docker run --rm -v playhaus_api-data:/data -v "$PWD:/out" alpine:3.20 sh -c \
-  'apk add --no-cache sqlite >/dev/null && sqlite3 /data/app.db ".backup /out/playhaus.db"'
+docker compose run --rm --no-deps --entrypoint /app/ph-migrate api   # idempotent: applies nothing new, re-seeds nothing unchanged
 ```
 
-Then move it off the box — a copy that lives on the same disk is not a backup.
+The droplet's `playhaus_api-data` volume still holds the SQLite file from before Postgres.
+Nothing mounts it any more, and nothing was copied out of it. Once you are sure you do not
+want it back: `docker volume rm playhaus_api-data`.
 
 ### The site answers 502
 
@@ -307,8 +334,11 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Then <http://localhost:3000>. To exercise the *production* file instead — the compose
-wiring, not the certificate path:
+Then <http://localhost:3000>. That stack brings its own Postgres (`db`) and runs
+`ph-migrate` as a one-shot `migrate` service before `api` starts, the same order a deploy
+uses.
+
+To exercise the *production* file instead — the compose wiring, not the certificate path:
 
 ```powershell
 docker build -t ph-api:local src/playhaus-api
@@ -317,6 +347,8 @@ docker build -t ph-app:local --build-arg EXPO_PUBLIC_API_URL=http://localhost sr
 cd deployment/server
 $env:API_IMAGE = "ph-api:local"; $env:APP_IMAGE = "ph-app:local"
 $env:DOMAIN = "localhost"; $env:ACME_EMAIL = "you@example.com"
+$env:DATABASE_URL = "postgres://postgres:<password>@host.docker.internal:5432/playhausdb?sslmode=disable"
+docker compose run --rm --no-deps --entrypoint /app/ph-migrate api
 docker compose up -d
 curl.exe http://localhost/api/v1/health
 ```
@@ -324,18 +356,17 @@ curl.exe http://localhost/api/v1/health
 PowerShell has no `VAR=value command` prefix, so the variables are set first and stay set
 for the rest of the session — which is what you want, since `docker compose down` needs
 them too. The Git Bash one-liner equivalent is
-`API_IMAGE=... APP_IMAGE=... DOMAIN=localhost ACME_EMAIL=... docker compose up -d`.
+`API_IMAGE=... APP_IMAGE=... DOMAIN=localhost ACME_EMAIL=... DATABASE_URL=... docker compose up -d`.
 
 Caddy issues itself a local certificate for `localhost`, so expect a browser warning on
 the HTTPS port. Tear it down with `docker compose down` — **not** `down -v`, which takes
-the database with it.
+the certificates with it.
 
 ---
 
 ## Two things knowingly left undone
 
-- **No backups.** Deliberate. The database has exactly one copy; see above for the two
-  ways to change that.
+- **Backups are the database host's.** Nothing in this directory takes one.
 - **`ssh-keyscan` in CI** accepts the droplet's host key on first sight each run rather
   than pinning it. To pin it: run `ssh-keyscan -H <ip>` locally, store the output as a
   `DEPLOY_HOST_KEY` secret, and replace the keyscan line in both workflows with

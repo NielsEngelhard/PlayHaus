@@ -4,24 +4,23 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/glebarez/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-func Open(path string) (*gorm.DB, error) {
-	dsn := fmt.Sprintf(
-		"file:%s?_pragma=foreign_keys(1)&_pragma=journal_mode(WAL)&_pragma=busy_timeout(5000)&_pragma=synchronous(NORMAL)",
-		path,
-	)
-
-	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{
+// Open connects to Postgres. It never touches the schema: that is MigrateUp's job,
+// and only cmd/migrate calls it.
+func Open(dsn string, maxConns int) (*gorm.DB, error) {
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		TranslateError: true, // maps driver errors onto gorm.ErrDuplicatedKey etc.
 		Logger:         logger.Default.LogMode(logger.Warn),
-		NowFunc:        func() time.Time { return time.Now().UTC() },
+		// timestamptz keeps microseconds. A nanosecond-precise value written here
+		// would read back as a different instant and fail every equality check.
+		NowFunc: func() time.Time { return time.Now().UTC().Truncate(time.Microsecond) },
 	})
 	if err != nil {
-		return nil, fmt.Errorf("open sqlite: %w", err)
+		return nil, fmt.Errorf("open postgres: %w", err)
 	}
 
 	sqlDB, err := db.DB()
@@ -29,23 +28,25 @@ func Open(path string) (*gorm.DB, error) {
 		return nil, fmt.Errorf("get sql.DB: %w", err)
 	}
 
-	// SQLite allows exactly one writer. A single connection removes lock
-	// contention entirely and is plenty for a small API.
-	sqlDB.SetMaxOpenConns(1)
-	sqlDB.SetMaxIdleConns(1)
-	sqlDB.SetConnMaxLifetime(0) // connections never expire; the file is local
+	// One connection by default, and that is load-bearing rather than frugal. The
+	// stores were written against SQLite's single writer, and several of their
+	// transactions read a row and then write based on what they read (taking a
+	// seat, joining a lobby). One connection runs those one at a time, exactly as
+	// before. Raise DB_MAX_CONNS only after those transactions take row locks
+	// (SELECT ... FOR UPDATE); without them two requests can both see the same
+	// free seat.
+	if maxConns < 1 {
+		maxConns = 1
+	}
+	sqlDB.SetMaxOpenConns(maxConns)
+	sqlDB.SetMaxIdleConns(maxConns)
+	// Recycled now and then so a managed database's failover or proxy restart
+	// cannot leave a connection that is dead but still pooled.
+	sqlDB.SetConnMaxLifetime(30 * time.Minute)
+
+	if err := sqlDB.Ping(); err != nil {
+		return nil, fmt.Errorf("ping postgres: %w", err)
+	}
 
 	return db, nil
-}
-
-// Migrate brings the schema up to date for the given models. The models are
-// passed in rather than imported so this package stays free of domain types.
-//
-// The first model is a separate parameter on purpose: it makes Migrate(db) a
-// compile error instead of a silent no-op that leaves you with no tables.
-func Migrate(db *gorm.DB, model any, more ...any) error {
-	if err := db.AutoMigrate(append([]any{model}, more...)...); err != nil {
-		return fmt.Errorf("auto migrate: %w", err)
-	}
-	return nil
 }

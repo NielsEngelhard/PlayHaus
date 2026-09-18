@@ -718,7 +718,7 @@ func TestLobbyRoutesRefuseTheOldFormat(t *testing.T) {
 // arrive in is not the case they were handed out in.
 //
 // This one guards a load-bearing detail with no compiler behind it: the code is the
-// lobby table's primary key and SQLite compares TEXT byte for byte, so the room only
+// lobby table's primary key and Postgres compares text exactly, so the room only
 // answers to the spelling it was stored under. Everything that touches a code
 // uppercases it on the way in; drop that in one place and lowercase simply stops
 // finding rooms.

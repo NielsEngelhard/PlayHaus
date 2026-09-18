@@ -21,6 +21,6 @@ admin_ssh_public_key = "ssh-ed25519 AAAA... you@yourmachine"
 #   Get-Content "$env:USERPROFILE\.ssh\playhaus_ci.pub"
 ci_ssh_public_key = "ssh-ed25519 AAAA... playhaus-ci"
 
-# DigitalOcean weekly droplet backups, ~$1.20/month. The SQLite database has no other
-# copy; this is the one line that changes that.
+# DigitalOcean weekly droplet backups, ~$1.20/month. The droplet only; the Postgres
+# database is external, and its backups are its host's business.
 # enable_backups = true

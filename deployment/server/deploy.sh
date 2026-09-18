@@ -6,8 +6,8 @@
 #   usage: deploy.sh <VAR> <image ref> <service>
 #   e.g.   deploy.sh API_IMAGE ghcr.io/nielsengelhard/playhaus-api:sha-1a2b3c4d5e6f api
 #
-# The image reference is written into /opt/playhaus/.env and the service is recreated
-# from it. Two things about that are deliberate:
+# The service is recreated from the image reference, which is then recorded in
+# /opt/playhaus/.env. For the api, ph-migrate runs first. Two things are deliberate:
 #
 #   * The tag is an exact commit sha, not :latest. Chasing :latest would mean a backend
 #     deploy could quietly also ship whatever frontend build happened to be newest, and
@@ -31,16 +31,29 @@ service=$3
 
 cd /opt/playhaus
 
-# Rewrite the one line, keeping every other. Not `sed -i`, because that quietly does
-# nothing when the key is absent -- which is the first-deploy case -- and because an
-# image reference contains slashes and colons that would have to be escaped.
-touch .env
-grep -v "^${var}=" .env > .env.tmp || true
-printf '%s=%s\n' "$var" "$image" >> .env.tmp
-mv .env.tmp .env
+# Exported rather than written to .env yet: compose prefers the shell over .env, so this
+# deploy runs the new image while .env still names the old one. It is written below, once
+# the container is up -- a failed migration therefore leaves .env pointing at a version
+# the schema still suits, not at one a later `docker compose up` would start unmigrated.
+export "$var=$image"
 
 docker compose pull "$service"
+
+# The api image carries ph-migrate next to ph-api. It runs here, from the exact image about
+# to be started and before the running container is touched, so a migration or seed that
+# fails stops the deploy under set -e and the old version keeps serving. This is the only
+# place migrations run: the API never applies them, it refuses to start while any are
+# pending.
+#
+# A migration is not undone by rolling back. Old code on a newer schema has to cope, so a
+# migration that drops or renames something wants a release of its own, after the code
+# has stopped using it.
+if [ "$service" = api ]; then
+	docker compose run --rm --no-deps --entrypoint /app/ph-migrate api
+fi
+
 docker compose up -d --no-deps "$service"
+printf '%s' "$image" | ./set-env.sh "$var"
 
 # Caddy belongs to neither workflow, so nobody would start it otherwise. A no-op once it
 # is up.

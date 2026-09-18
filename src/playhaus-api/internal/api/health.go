@@ -7,10 +7,11 @@ import "net/http"
 // This is the only handler with no token in front of it, and the only one that
 // touches nothing. That is deliberate: a container healthcheck and an uptime
 // monitor both need an answer that means "the process is up and serving", and
-// nothing more. Reaching into SQLite here would fold a second question into the
-// first -- the database has one writer and a busy_timeout, so a probe that ran a
-// query would occasionally time out behind a write and hand Docker a reason to
-// restart a server that was working perfectly.
+// nothing more. Reaching into Postgres here would fold a second question into the
+// first -- the database sits across a network behind a single pooled connection,
+// so a probe that ran a query would time out whenever a slow request held that
+// connection, and hand Docker a reason to restart a server that was working
+// perfectly.
 //
 // Everything else in this package is registered behind s.requireAuth. The
 // alternative to this route, before it existed, was POST /api/v1/user/guest,

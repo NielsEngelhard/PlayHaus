@@ -38,10 +38,10 @@ resource "digitalocean_droplet" "playhaus" {
   lifecycle {
     # cloud-init runs once, on first boot, and never again. Terraform cannot know that,
     # so an edit to the template -- or a new Ubuntu image under the same slug -- would
-    # show up as a replacement. Replacing this droplet destroys its disk, and the disk is
-    # where the entire SQLite database lives. Changes to the template are therefore
-    # applied by hand over ssh, or by deliberately tainting the droplet once the data has
-    # been moved somewhere.
+    # show up as a replacement. Replacing this droplet destroys its disk, and with it the
+    # Caddy volume -- whose certificates Let's Encrypt rate-limits re-issuing -- and
+    # /opt/playhaus/.env with it. Changes to the template are therefore applied by hand
+    # over ssh, or by deliberately tainting the droplet.
     ignore_changes = [user_data, image]
   }
 }

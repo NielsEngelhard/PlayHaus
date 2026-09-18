@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Two independent modules under `src/`, with no workspace tooling joining them. Run each from its
 own directory.
 
-- **`src/playhaus-api`** — Go 1.26, module `playhaus-api`. Stdlib `net/http` + GORM/SQLite.
+- **`src/playhaus-api`** — Go 1.26, module `playhaus-api`. Stdlib `net/http` + GORM/Postgres (pgx).
 - **`src/playhaus-app`** — Expo SDK 57 / React Native 0.86 / React 19, expo-router.
 
 The app reaches the API through `EXPO_PUBLIC_API_URL` (`src/playhaus-app/.env`, default
@@ -24,6 +24,7 @@ A nested `src/playhaus-app/CLAUDE.md` (→ `AGENTS.md`) also loads when working 
 ### API — `cd src/playhaus-api`
 
 ```
+go run ./cmd/migrate             # apply migrations + seed quizzes; the API will not start until this has run
 go run ./cmd/api                 # run
 go build -o ph-api ./cmd/api     # build (the binary name .gitignore expects)
 go vet ./...
@@ -31,6 +32,11 @@ go test ./...                    # everything
 go test ./internal/lol           # one package
 go test ./internal/api -run TestLogoutRevokesOnlyThatToken -v   # one test
 ```
+
+Both commands need `DATABASE_URL`, and `go test` needs `TEST_DATABASE_URL`, pointing at a
+*separate* scratch database (for example `playhausdb_test`). See `.env.example`. Both commands
+load the nearest `.env` themselves (`config.LoadDotEnv`); `go test` does not.
+Without these the commands stop immediately.
 
 VS Code has a "Debug API" launch config at the repo root. Note it sets `PORT=8080`, which
 `internal/config/config.go` does **not** read — the port comes from `ADDR`.
@@ -61,22 +67,27 @@ predate this file, so treat a *new* error as yours and an existing one as inheri
 ## API architecture
 
 **Startup** (`cmd/api/main.go` → `run() error`): `config.Load` → slog JSON logger →
-`database.Open` → `database.Migrate` over `user.User`, `auth.Session` and each game's
-`Models()` → `pubquizr.Seed` → services → `realtime.NewHub` → `api.NewServer(...)` →
-`http.Server`. On shutdown `hub.Close()` runs **before** `srv.Shutdown` — `Shutdown` neither
+`database.Open` → `database.Pending` (refuses to start while a migration is unapplied) →
+services → `realtime.NewHub` → `api.NewServer(...)` → `http.Server`. On shutdown `hub.Close()` runs **before** `srv.Shutdown` — `Shutdown` neither
 closes nor waits for hijacked websocket connections.
 
-**Config** (`internal/config/config.go`) — `ADDR` (`:8080`), `DB_PATH` (`data/app.db`, resolved
-to an absolute path), `SHUTDOWN_TIMEOUT` (`10s`; an unparseable value is a hard startup
+**Config** (`internal/config/config.go`) — `ADDR` (`:8080`), `DATABASE_URL` (**required**, no
+default), `DB_MAX_CONNS` (`1`), `SHUTDOWN_TIMEOUT` (`10s`; an unparseable value is a hard startup
 failure), `DEBUG`, `ALLOWED_ORIGINS` (comma list; an explicit empty string means no origins and
 disables CORS), `LOL_DEV_MODE` (**defaults true** — every League of Letters round plays the
 same word).
 
-**Database** (`internal/platform/database`) — SQLite via `glebarez/sqlite` (pure Go, no cgo),
-WAL + `foreign_keys` + `busy_timeout`, and `SetMaxOpenConns(1)` on purpose. Schema is GORM
-`AutoMigrate` only: no migration files, no versioning. The package never imports domain types;
-models are passed in from `main` and from tests. Every model declares `TableName()` with a game
-prefix (`solo_lol_games`, `mp_lol_lobbies`, `pq_quizzes`, `oou_single_device_games`).
+**Database** (`internal/platform/database`) — Postgres through `gorm.io/driver/postgres` (pgx, pure
+Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)` is deliberate: the stores were
+written for SQLite's single writer, and some transactions read a row and then write based on
+it. Add `SELECT … FOR UPDATE` before raising `DB_MAX_CONNS`. `NowFunc` truncates to
+microseconds, which is what `timestamptz` keeps. The schema is **versioned goose SQL**
+(`migrations/NNNNN_*.sql`, embedded). Only `cmd/migrate` applies it (`MigrateUp`), followed by
+`pubquizr.Seed`, and only the deploy runs that. A model change needs a new migration file, and
+`TestMigrationsMatchTheModels` (`internal/api/schema_test.go`) fails until the SQL and the
+models agree. Never edit a migration that has already been deployed. The package never imports
+domain types. Every model declares `TableName()` with a game prefix (`solo_lol_games`,
+`mp_lol_lobbies`, `pq_quizzes`, `oou_single_device_games`).
 
 **Per-package layering**, identical across `lol`, `pubquizr`, `oneofus`, `user`, `auth`:
 
@@ -117,7 +128,7 @@ wire format for timestamps. Handler errors are an `errors.Is` switch ending in l
 **Join codes** (`internal/joincode`) — five characters: the first names the game (`L`/`P`/`O`),
 four drawn with `crypto/rand` from a 32-character ambiguity-free alphabet (no I/1/O/0).
 `Normalize` folds a leading `0`→`O` and `1`→`L`, **only in position 0**. The code is the lobby's
-primary key, so normalisation is load-bearing under SQLite's byte-wise text comparison.
+primary key, so normalisation is load-bearing under exact (byte-wise) text equality.
 `Game.Namespace()` derives the realtime namespace, so key and code cannot disagree.
 
 **Realtime** (`internal/realtime`, on `coder/websocket`) — a game-agnostic `Hub` of rooms keyed
@@ -140,13 +151,14 @@ and refuses to store an unsupported value.
 `internal/lol/data/README.md` is **stale** — it documents an older `-allowed.txt` naming that no
 longer matches `words.go` or the files on disk.
 
-**Tests** — 43 files, stdlib only: no mocks, no fakes, no assertion library. Everything runs
-against a real SQLite file in `t.TempDir()`; the helpers are `newTestServer(t)` /
+**Tests** — 78 files, stdlib only: no mocks, no fakes, no assertion library. Everything runs
+against real Postgres: `databasetest.Open(t)` (`internal/platform/database/databasetest`) gives
+each test its own schema in `TEST_DATABASE_URL`, built by the real migrations and dropped in
+`t.Cleanup`. The helpers wrapping it are `newTestServer(t)` /
 `newTestServerWithDB(t)` in `internal/api/api_test.go` and `newTestStore(t)` in
-`internal/lol/store_test.go`. Both close the `*sql.DB` in `t.Cleanup` — Windows will not delete
-the temp dir while the file is open. HTTP tests go through the full middleware chain via
-`httptest` (`do`, `post`, `decodeBody[T]`, `newGuestSession`). No `t.Parallel()` anywhere, since
-SQLite has one writer. Names are sentence-like and behavioural
+`internal/lol/store_test.go`. HTTP tests go through the full middleware chain via
+`httptest` (`do`, `post`, `decodeBody[T]`, `newGuestSession`). No `t.Parallel()` anywhere.
+Names are sentence-like and behavioural
 (`TestCurrentLobbyIsTheHostsOnly`), not `TestFunc_Case`. Files in `internal/api` are named by
 feature with a game prefix: `mp_lol_*`, `solo_lol_*`, `pq_*`, `oou_*`.
 
@@ -239,6 +251,7 @@ it explains how the process is assembled rather than what a game rule does. Only
 multi-line comments:
 
 - `src/playhaus-api/cmd/api/main.go`
+- `src/playhaus-api/cmd/migrate/main.go`
 - `src/playhaus-api/internal/api/` — `cors.go`, `middleware.go`, `websocket.go`, `health.go`
 - `src/playhaus-api/internal/config/config.go`
 - `src/playhaus-api/internal/platform/database/`
@@ -284,15 +297,21 @@ why `ALLOWED_ORIGINS` is set to the empty string in production and why the webso
 - `deployment/terraform/` — droplet, firewall, reserved IP, and a `cloud-init.yaml.tftpl`
   that runs **only on first boot**. The droplet carries
   `lifecycle { ignore_changes = [user_data, image] }` so that editing the template cannot
-  replace the box; its disk is the entire database.
-- `deployment/server/` — the compose file, `Caddyfile` and `deploy.sh` that live on the
-  droplet. Copied up by CI on every deploy, so the repo is the only definition of them.
+  replace the box. The database is not on it: it is an external Postgres reached through
+  `DATABASE_URL`.
+- `deployment/server/` — the compose file, `Caddyfile`, `deploy.sh` and `set-env.sh` that live
+  on the droplet. Copied up by CI on every deploy, so the repo is the only definition of them.
 - `deployment/docker-compose.yml` — the *local* stack, which builds from source. Not what
   production runs.
 - `.github/workflows/deploy-{api,app}.yml` — build, push to GHCR tagged `sha-<12>`, and
   recreate **only** that one container (`--no-deps`). A backend deploy never reloads a
   player's open page. Both are `workflow_dispatch` only: **nothing deploys on a push to
   `main`**, so do not describe merging as shipping.
+- Deploy API is the **only** place migrations run. It writes the `DATABASE_URL` secret into
+  the droplet's `.env` over ssh stdin, and then `deploy.sh` runs `/app/ph-migrate` from the new
+  image before replacing the container. A failed migration stops the deploy with the old
+  container still up. Rollbacks do not undo migrations, so never drop or rename in the same
+  release that stops using it.
 
 Two things worth knowing before changing anything here:
 
@@ -301,9 +320,9 @@ Two things worth knowing before changing anything here:
   environment variable.
 - `GET /api/v1/health` (`internal/api/health.go`) is the only route with no token in front
   of it. It deliberately touches no storage: it answers the container healthcheck, and a
-  probe that queried SQLite would fail behind a write and restart a healthy server. The
-  deploy workflows do **not** check it — they ship and stop, so a green run does not mean
-  the container serves.
+  probe that queried the database would time out behind a slow request and restart a
+  healthy server. The deploy workflows do **not** check it — they ship and stop, so a green
+  run does not mean the container serves.
 
-There are **no backups** — a deliberate choice. The SQLite file has exactly one copy, on
-the droplet's disk.
+Backups are the Postgres host's job: nothing in this repo takes one. The pre-Postgres SQLite
+file is still in the droplet's `playhaus_api-data` volume, and nothing mounts or reads it.

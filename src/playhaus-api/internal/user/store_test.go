@@ -3,12 +3,11 @@ package user
 import (
 	"context"
 	"errors"
-	"path/filepath"
 	"testing"
 	"time"
 
 	"playhaus-api/internal/i18n"
-	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/platform/database/databasetest"
 
 	"gorm.io/gorm"
 )
@@ -16,20 +15,7 @@ import (
 func newTestDB(t *testing.T) *gorm.DB {
 	t.Helper()
 
-	db, err := database.Open(filepath.Join(t.TempDir(), "test.db"))
-	if err != nil {
-		t.Fatalf("open db: %v", err)
-	}
-	// Windows won't delete t.TempDir() while the file is still open.
-	t.Cleanup(func() {
-		if sqlDB, err := db.DB(); err == nil {
-			_ = sqlDB.Close()
-		}
-	})
-
-	if err := database.Migrate(db, &User{}); err != nil {
-		t.Fatalf("migrate: %v", err)
-	}
+	db := databasetest.Open(t)
 	return db
 }
 

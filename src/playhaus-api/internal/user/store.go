@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"strings"
 
 	"playhaus-api/internal/i18n"
 
+	"github.com/jackc/pgx/v5/pgconn"
 	"gorm.io/gorm"
 )
 
@@ -150,6 +150,7 @@ func isUniqueViolation(err error) bool {
 	if errors.Is(err, gorm.ErrDuplicatedKey) {
 		return true
 	}
-	// Fallback: driver-level message, in case TranslateError misses it.
-	return strings.Contains(err.Error(), "UNIQUE constraint failed")
+	// Fallback for a wrapped error TranslateError never saw: 23505 is unique_violation.
+	var pgErr *pgconn.PgError
+	return errors.As(err, &pgErr) && pgErr.Code == "23505"
 }

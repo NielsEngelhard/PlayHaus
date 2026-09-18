@@ -1,4 +1,4 @@
-# Build the Go API, publish it to GHCR, and roll the `api` container on the droplet.
+# Build the Go API, publish it to GHCR, migrate and seed the database, and roll the `api` container on the droplet.
 name: Deploy API
 
 on:
@@ -54,6 +54,7 @@ jobs:
               env:
                   DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
                   DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
               run: |
                   set -euo pipefail
 
@@ -72,7 +73,20 @@ jobs:
                   scp deployment/server/docker-compose.yml \
                       deployment/server/Caddyfile \
                       deployment/server/deploy.sh \
+                      deployment/server/set-env.sh \
                       "deploy@$DEPLOY_HOST:/opt/playhaus/"
+                  ssh "deploy@$DEPLOY_HOST" "chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh"
 
-                  ssh "deploy@$DEPLOY_HOST" \
-                      "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh API_IMAGE '$IMAGE:$TAG' api"
+                  # The connection string goes over stdin, never on a command line: an
+                  # argument would show in `ps` on the droplet and in this job's log. It is
+                  # written before deploy.sh runs because ph-migrate reads it from the same
+                  # .env as the api. Rewritten every deploy, so rotating the password is
+                  # updating the secret and re-running this workflow.
+                  if [ -z "$DATABASE_URL" ]; then
+                      echo "::error::The DATABASE_URL repository secret is not set" >&2
+                      exit 1
+                  fi
+                  printf '%s' "$DATABASE_URL" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh DATABASE_URL"
+
+                  # Migrates and seeds before replacing the container; see deploy.sh.
+                  ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/deploy.sh API_IMAGE '$IMAGE:$TAG' api"

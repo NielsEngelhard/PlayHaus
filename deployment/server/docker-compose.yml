@@ -8,16 +8,16 @@
 #
 # Three containers, one network, one of them reachable from outside:
 #
-#     :80/:443 -> caddy -> app (nginx: static export + /api/ proxy) -> api (Go + sqlite)
+#     :80/:443 -> caddy -> app (nginx: static export + /api/ proxy) -> api (Go) -> Postgres (external, DATABASE_URL)
 #
 # The app image already fronts the API on its own origin -- see src/playhaus-app/nginx.conf
 # -- so caddy is a pure TLS terminator in front of it rather than a second router. Adding a
 # layer instead of replacing nginx keeps the image identical in every environment, which
 # means the thing tested locally is the thing that ships.
 
-# Fixed, so the volume names are playhaus_api-data and playhaus_caddy-data no matter what
-# the directory on disk happens to be called. Compose otherwise derives the project name
-# from the folder, and a renamed folder silently orphans the database.
+# Fixed, so the volume names are playhaus_caddy-data and so on no matter what the directory
+# on disk happens to be called. Compose otherwise derives the project name from the folder,
+# and a renamed folder silently orphans the certificates.
 name: playhaus
 
 services:
@@ -25,7 +25,11 @@ services:
         image: ${API_IMAGE}
         environment:
             ADDR: ':8080'
-            DB_PATH: /app/data/app.db
+            # The whole database connection, password included. Written into .env by the
+            # Deploy API workflow from the DATABASE_URL repository secret. The api container
+            # never migrates: deploy.sh runs ph-migrate from the same image first, and the
+            # API refuses to start on a schema that is behind.
+            DATABASE_URL: ${DATABASE_URL}
             DEBUG: 'false'
 
             # config.go defaults this to true, and true means every League of Letters
@@ -38,13 +42,6 @@ services:
             # nginx, so CORS never comes into it, and the websocket handshake falls back
             # to coder/websocket's default of requiring Origin's host to equal Host.
             ALLOWED_ORIGINS: ''
-        volumes:
-            # The sqlite file plus the -wal/-shm files WAL mode keeps beside it -- all
-            # three have to share one filesystem. The API creates the directory itself on
-            # boot, so an empty volume is fine.
-            #
-            # This volume is the entire database. `docker compose down -v` deletes it.
-            - api-data:/app/data
         healthcheck:
             # busybox wget, already in the alpine runtime image; nothing had to be added
             # to the API image for this. Liveness only -- the endpoint touches no storage.
@@ -97,6 +94,5 @@ services:
         restart: unless-stopped
 
 volumes:
-    api-data:
     caddy-data:
     caddy-config:

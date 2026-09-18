@@ -6,7 +6,6 @@ import (
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
-	"path/filepath"
 	"strings"
 	"testing"
 
@@ -15,7 +14,7 @@ import (
 	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
-	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/platform/database/databasetest"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
@@ -35,27 +34,7 @@ func newTestServer(t *testing.T) http.Handler {
 func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	t.Helper()
 
-	db, err := database.Open(filepath.Join(t.TempDir(), "test.db"))
-	if err != nil {
-		t.Fatalf("open db: %v", err)
-	}
-	// Windows won't delete t.TempDir() while the file is still open,
-	// so close it explicitly before cleanup runs.
-	t.Cleanup(func() {
-		if sqlDB, err := db.DB(); err == nil {
-			_ = sqlDB.Close()
-		}
-	})
-
-	models := append([]any{&user.User{}, &auth.Session{}}, lol.Models()...)
-	models = append(models, pubquizr.Models()...)
-	models = append(models, oneofus.Models()...)
-	models = append(models, fakefiller.Models()...)
-	models = append(models, friend.Models()...)
-	models = append(models, push.Models()...)
-	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
-		t.Fatalf("migrate: %v", err)
-	}
+	db := databasetest.Open(t)
 
 	users := user.NewService(user.NewGormStore(db))
 	authSvc := auth.NewService(auth.NewGormStore(db), users)

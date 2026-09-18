@@ -4,11 +4,10 @@ import (
 	"context"
 	"io/fs"
 	"path"
-	"path/filepath"
 	"testing"
 	"time"
 
-	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/platform/database/databasetest"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -17,21 +16,7 @@ import (
 func newTestStore(t *testing.T) (*GormStore, *gorm.DB) {
 	t.Helper()
 
-	db, err := database.Open(filepath.Join(t.TempDir(), "test.db"))
-	if err != nil {
-		t.Fatalf("open db: %v", err)
-	}
-	// Windows won't delete t.TempDir() while the file is still open.
-	t.Cleanup(func() {
-		if sqlDB, err := db.DB(); err == nil {
-			_ = sqlDB.Close()
-		}
-	})
-
-	models := Models()
-	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
-		t.Fatalf("migrate: %v", err)
-	}
+	db := databasetest.Open(t)
 
 	return NewGormStore(db), db
 }

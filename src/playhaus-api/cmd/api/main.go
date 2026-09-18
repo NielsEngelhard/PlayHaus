@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"path/filepath"
 	"syscall"
 	"time"
 
@@ -41,6 +40,13 @@ func main() {
 
 func run() error {
 	// --- config -------------------------------------------------------
+	// Local development only: the nearest .env fills in whatever the environment
+	// has not set. Loaded before config.Load so DATABASE_URL is there to be read.
+	envFile, err := config.LoadDotEnv()
+	if err != nil {
+		return fmt.Errorf("error loading .env: %w", err)
+	}
+
 	cfg, err := config.Load()
 	if err != nil {
 		return fmt.Errorf("error loading config: %w", err)
@@ -55,13 +61,12 @@ func run() error {
 		Level: level,
 	}))
 	slog.SetDefault(logger)
-
-	// --- database -----------------------------------------------------
-	if err := os.MkdirAll(filepath.Dir(cfg.DBPath), 0o755); err != nil {
-		return fmt.Errorf("create data dir: %w", err)
+	if envFile != "" {
+		logger.Info("loaded environment file", "path", envFile)
 	}
 
-	db, err := database.Open(cfg.DBPath)
+	// --- database -----------------------------------------------------
+	db, err := database.Open(cfg.Database.URL, cfg.Database.MaxConns)
 	if err != nil {
 		return fmt.Errorf("open database: %w", err)
 	}
@@ -71,21 +76,18 @@ func run() error {
 		}
 	}()
 
-	models := append([]any{&user.User{}, &auth.Session{}}, lol.Models()...)
-	models = append(models, pubquizr.Models()...)
-	models = append(models, oneofus.Models()...)
-	models = append(models, fakefiller.Models()...)
-	models = append(models, friend.Models()...)
-	models = append(models, push.Models()...)
-	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
-		return fmt.Errorf("migrate database: %w", err)
+	// The API never migrates or seeds: cmd/migrate does both, and only the deploy
+	// runs it, before this container replaces the old one. Here it is only checked.
+	// Starting on a schema that is behind would look healthy and then fail on the
+	// first query that touches a column the code expects and the table lacks.
+	pending, err := database.Pending(context.Background(), db)
+	if err != nil {
+		return fmt.Errorf("check migrations: %w", err)
 	}
-	logger.Info("database ready", "path", cfg.DBPath)
-
-	pubquizrStore := pubquizr.NewGormStore(db)
-	if err := pubquizr.Seed(context.Background(), pubquizrStore); err != nil {
-		return fmt.Errorf("seed quizzes: %w", err)
+	if pending {
+		return errors.New("database has migrations pending; run ph-migrate (locally: go run ./cmd/migrate) first")
 	}
+	logger.Info("database ready", "max_conns", cfg.Database.MaxConns)
 
 	// --- wiring -------------------------------------------------------
 	userService := user.NewService(user.NewGormStore(db))
@@ -94,7 +96,7 @@ func run() error {
 		DevMode:    cfg.LeagueOfLettersDevMode,
 		DailyReset: cfg.DailyResetLocation,
 	})
-	pubquizrService := pubquizr.NewService(pubquizrStore)
+	pubquizrService := pubquizr.NewService(pubquizr.NewGormStore(db))
 	oneOfUsStore := oneofus.NewGormStore(db)
 	oneOfUsService := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFillerService := fakefiller.NewService(fakefiller.NewGormStore(db))

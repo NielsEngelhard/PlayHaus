@@ -11,9 +11,19 @@
             "mode": "debug",
             "program": "${workspaceFolder}/src/playhaus-api/cmd/api",
             "cwd": "${workspaceFolder}/src/playhaus-api",
+            "envFile": "${workspaceFolder}/src/playhaus-api/.env",
             "env": {
                 "PORT": "8080"
             }
+        },
+        {
+            "name": "Migrate",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/src/playhaus-api/cmd/migrate",
+            "cwd": "${workspaceFolder}/src/playhaus-api",
+            "envFile": "${workspaceFolder}/src/playhaus-api/.env"
         }
     ]
 }

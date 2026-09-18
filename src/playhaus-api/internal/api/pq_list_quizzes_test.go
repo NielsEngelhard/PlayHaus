@@ -141,7 +141,7 @@ func insertQuizzes(t *testing.T, db *gorm.DB, n int) {
 
 	now := time.Now().UTC()
 	for i := range n {
-		// Spaced apart so the ordering is deterministic rather than however SQLite
+		// Spaced apart so the ordering is deterministic rather than however the database
 		// felt about a tie.
 		published := now.Add(time.Duration(-i) * time.Hour)
 		quiz := &pubquizr.Quiz{

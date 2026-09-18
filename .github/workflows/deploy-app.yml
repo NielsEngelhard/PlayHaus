@@ -87,7 +87,8 @@ jobs:
                   scp deployment/server/docker-compose.yml \
                       deployment/server/Caddyfile \
                       deployment/server/deploy.sh \
+                      deployment/server/set-env.sh \
                       "deploy@$DEPLOY_HOST:/opt/playhaus/"
 
                   ssh "deploy@$DEPLOY_HOST" \
-                      "chmod +x /opt/playhaus/deploy.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"
+                      "chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"

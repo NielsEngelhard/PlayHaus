@@ -3,7 +3,6 @@ package config
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -11,7 +10,7 @@ import (
 
 type Config struct {
 	Addr                   string
-	DBPath                 string
+	Database               Database
 	ShutdownTimeout        time.Duration
 	Debug                  bool
 	AllowedOrigins         []string
@@ -33,14 +32,9 @@ func Load() (Config, error) {
 		return Config{}, err
 	}
 
-	// Resolved here rather than left relative. The default is relative to the working
-	// directory, so `go run ./cmd/api` from the module root and the same binary run
-	// from cmd/api are two different databases -- which looks like a server that
-	// forgot everything rather than one reading a different file. Absolute means the
-	// path main logs at startup is the file actually opened.
-	dbPath, err := filepath.Abs(env("DB_PATH", "data/app.db"))
+	database, err := LoadDatabase()
 	if err != nil {
-		return Config{}, fmt.Errorf("resolve DB_PATH: %w", err)
+		return Config{}, err
 	}
 
 	resetLocation, err := envLocation("DAILY_RESET_TZ", "Europe/Amsterdam")
@@ -50,7 +44,7 @@ func Load() (Config, error) {
 
 	return Config{
 		Addr:                   env("ADDR", ":8080"),
-		DBPath:                 dbPath,
+		Database:               database,
 		ShutdownTimeout:        shutdownTimeout,
 		Debug:                  envBool("DEBUG", false),
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
@@ -134,4 +128,32 @@ func envDuration(key string, fallback time.Duration) (time.Duration, error) {
 		return 0, fmt.Errorf("%s=%q is not a duration (try %q): %w", key, raw, "30s", err)
 	}
 	return v, nil
+}
+
+// Database is the part of Config that cmd/migrate needs too.
+type Database struct {
+	URL      string // DATABASE_URL, e.g. postgres://user:pass@host:5432/playhausdb?sslmode=require
+	MaxConns int    // DB_MAX_CONNS; see database.Open before raising it above 1
+}
+
+// LoadDatabase has no fallback for the URL. A default would point a production
+// container at a database that does not exist and fail on the first request
+// instead of at boot.
+func LoadDatabase() (Database, error) {
+	url := os.Getenv("DATABASE_URL")
+	if url == "" {
+		return Database{}, fmt.Errorf("DATABASE_URL is not set (try %q)",
+			"postgres://postgres:<password>@localhost:5432/playhausdb?sslmode=disable")
+	}
+
+	maxConns := 1
+	if raw := os.Getenv("DB_MAX_CONNS"); raw != "" {
+		v, err := strconv.Atoi(raw)
+		if err != nil || v < 1 {
+			return Database{}, fmt.Errorf("DB_MAX_CONNS=%q is not a positive whole number", raw)
+		}
+		maxConns = v
+	}
+
+	return Database{URL: url, MaxConns: maxConns}, nil
 }

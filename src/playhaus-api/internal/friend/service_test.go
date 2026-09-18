@@ -3,12 +3,11 @@ package friend
 import (
 	"context"
 	"errors"
-	"path/filepath"
 	"slices"
 	"testing"
 	"time"
 
-	"playhaus-api/internal/platform/database"
+	"playhaus-api/internal/platform/database/databasetest"
 
 	"gorm.io/gorm"
 )
@@ -16,21 +15,7 @@ import (
 func newTestService(t *testing.T) (*Service, *gorm.DB) {
 	t.Helper()
 
-	db, err := database.Open(filepath.Join(t.TempDir(), "test.db"))
-	if err != nil {
-		t.Fatalf("open db: %v", err)
-	}
-	// Windows won't delete t.TempDir() while the file is still open, so close it explicitly before cleanup runs.
-	t.Cleanup(func() {
-		if sqlDB, err := db.DB(); err == nil {
-			_ = sqlDB.Close()
-		}
-	})
-
-	models := Models()
-	if err := database.Migrate(db, models[0], models[1:]...); err != nil {
-		t.Fatalf("migrate: %v", err)
-	}
+	db := databasetest.Open(t)
 
 	return NewService(NewGormStore(db)), db
 }

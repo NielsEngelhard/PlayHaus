@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v5/pgconn"
 	"gorm.io/gorm"
 )
 
@@ -48,7 +48,9 @@ func isUniqueViolation(err error) bool {
 		return true
 	}
 
-	return strings.Contains(err.Error(), "UNIQUE constraint failed")
+	// Fallback for a wrapped error TranslateError never saw: 23505 is unique_violation.
+	var pgErr *pgconn.PgError
+	return errors.As(err, &pgErr) && pgErr.Code == "23505"
 }
 
 func (s *GormStore) CreateLobby(ctx context.Context, lobby *OOULobby) error {

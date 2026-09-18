@@ -44,7 +44,7 @@ variable "ssh_allowed_cidrs" {
 }
 
 variable "enable_backups" {
-  description = "DigitalOcean's weekly whole-droplet backups, billed at 20% of the droplet (about $1.20/month). Off by choice. The SQLite database lives on this droplet's disk and there is no other copy of it, so this is the single line that changes that."
+  description = "DigitalOcean's weekly whole-droplet backups, billed at 20% of the droplet (about $1.20/month). Off by choice. It covers the droplet only: the database is an external Postgres, backed up (or not) wherever it is hosted."
   type        = bool
   default     = false
 }
