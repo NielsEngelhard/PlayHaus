@@ -26,7 +26,7 @@ export interface Game {
     gradient: readonly [string, string, string],
     accentInk: AccentInk,
     glyphInk: Record<'light' | 'dark', string>,
-    icon: ImageSource | undefined,
+    icon: ImageSource,
     descriptionKey: TranslationKey,
     mainCategoryIndicatorKey: TranslationKey,
     playable: boolean,

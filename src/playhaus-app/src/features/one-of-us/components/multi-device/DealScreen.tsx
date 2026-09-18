@@ -1,3 +1,4 @@
+import SlideFadeIn from '@/components/ui/SlideFadeIn';
 import { Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import PinButton from '@/features/one-of-us/components/PinButton';
@@ -39,15 +40,22 @@ export default function DealScreen({ amNitwit, onDone, prompt }: Props) {
             </View>
 
             {seen && (
-                <PinButton
-                    icon='arrow-right'
-                    text={t('oneOfUs.multiDevice.play.deal.action')}
-                    onPress={onDone}
-                />
+                <SlideFadeIn offsetY={BUTTON_RISE} durationMs={BUTTON_MS} delayMs={BUTTON_DELAY_MS}>
+                    <PinButton
+                        icon='arrow-right'
+                        text={t('oneOfUs.multiDevice.play.deal.action')}
+                        onPress={onDone}
+                    />
+                </SlideFadeIn>
             )}
         </View>
     )
 }
+
+const BUTTON_RISE = 16;
+const BUTTON_MS = 280;
+// Waits for the card to finish landing.
+const BUTTON_DELAY_MS = 200;
 
 const useStyles = createThemedStyles(theme => ({
     screen: {

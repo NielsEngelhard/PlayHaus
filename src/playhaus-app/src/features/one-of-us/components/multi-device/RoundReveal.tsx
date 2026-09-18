@@ -8,11 +8,12 @@ import PinButton from '@/features/one-of-us/components/PinButton';
 import PinnedNote from '@/features/one-of-us/components/PinnedNote';
 import RoleVerdict from '@/features/one-of-us/components/RoleVerdict';
 import { seatForUser } from '@/features/one-of-us/multi-device-flow';
+import { useEntrance } from '@/features/one-of-us/useEntrance';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import type { Seat } from '@/features/table/seats';
 import Feather from '@expo/vector-icons/Feather';
-import { ScrollView, View } from 'react-native';
+import { Animated, ScrollView, View } from 'react-native';
 
 interface Props {
     busy: boolean
@@ -74,7 +75,11 @@ export default function RoundReveal({
             ))}
 
             {person !== null && (
-                <RoleVerdict name={person.name} role={reveal.votedOut.role} />
+                <RoleVerdict
+                    name={person.name}
+                    role={reveal.votedOut.role}
+                    delayMs={ordered.length * TURN_STAGGER_MS + TURN_MS}
+                />
             )}
 
             {reveal.votedOut.tieBrokenByMayor && (
@@ -118,34 +123,50 @@ function TurnedNote({ answer, author, index, name, out }: TurnedNoteProps) {
     const ink = noteInkOf(tone, theme);
     const votes = answer.voters?.length ?? 0;
 
-    return (
-        <PinnedNote index={index} tone={tone} style={styles.note}>
-            <View style={styles.noteHead}>
-                <AppText style={[styles.noteText, { color: ink.text }]}>{answer.text}</AppText>
+    const turn = useEntrance({ delayMs: index * TURN_STAGGER_MS, durationMs: TURN_MS });
 
-                {out && (
-                    <View style={styles.check}>
-                        <Feather name="check" size={14} color={Brand.ink} />
+    return (
+        <Animated.View
+            style={{
+                opacity: turn.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0, 1, 1] }),
+                transform: [
+                    { perspective: TURN_PERSPECTIVE },
+                    { rotateX: turn.interpolate({ inputRange: [0, 1], outputRange: ['-90deg', '0deg'] }) }
+                ]
+            }}
+        >
+            <PinnedNote index={index} tone={tone} style={styles.note}>
+                <View style={styles.noteHead}>
+                    <AppText style={[styles.noteText, { color: ink.text }]}>{answer.text}</AppText>
+
+                    {out && (
+                        <View style={styles.check}>
+                            <Feather name="check" size={14} color={Brand.ink} />
+                        </View>
+                    )}
+                </View>
+
+                {name !== null && (
+                    <View style={[styles.byline, { borderTopColor: ink.muted }]}>
+                        {author !== null && <SeatAvatar seat={author} size={22} />}
+
+                        <AppText style={[styles.name, { color: ink.text }]} numberOfLines={1}>
+                            {out ? t('oneOfUs.multiDevice.play.reveal.votedOut', { name }) : name}
+                        </AppText>
+
+                        <AppText style={[styles.votes, { color: votes === 0 ? ink.muted : ink.text }]}>
+                            {votes}
+                        </AppText>
                     </View>
                 )}
-            </View>
-
-            {name !== null && (
-                <View style={[styles.byline, { borderTopColor: ink.muted }]}>
-                    {author !== null && <SeatAvatar seat={author} size={22} />}
-
-                    <AppText style={[styles.name, { color: ink.text }]} numberOfLines={1}>
-                        {out ? t('oneOfUs.multiDevice.play.reveal.votedOut', { name }) : name}
-                    </AppText>
-
-                    <AppText style={[styles.votes, { color: votes === 0 ? ink.muted : ink.text }]}>
-                        {votes}
-                    </AppText>
-                </View>
-            )}
-        </PinnedNote>
+            </PinnedNote>
+        </Animated.View>
     )
 }
+
+const TURN_MS = 420;
+const TURN_STAGGER_MS = 160;
+const TURN_PERSPECTIVE = 700;
 
 const useStyles = createThemedStyles(theme => ({
     scroll: {

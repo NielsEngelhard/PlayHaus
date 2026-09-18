@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader from "@/components/ui/InGameHeader";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import PinButton from "@/features/one-of-us/components/PinButton";
@@ -109,19 +110,26 @@ export default function WordRevealScreen({
                     )}
 
                     {seen && (
-                        <PinButton
-                            icon={next === null ? 'play' : 'arrow-right'}
-                            text={next === null
-                                ? t('oneOfUs.play.reveal.lastDone')
-                                : t('oneOfUs.play.reveal.done', { name: next.name })}
-                            onPress={onDone}
-                        />
+                        <SlideFadeIn offsetY={BUTTON_RISE} durationMs={BUTTON_MS} delayMs={BUTTON_DELAY_MS}>
+                            <PinButton
+                                icon={next === null ? 'play' : 'arrow-right'}
+                                text={next === null
+                                    ? t('oneOfUs.play.reveal.lastDone')
+                                    : t('oneOfUs.play.reveal.done', { name: next.name })}
+                                onPress={onDone}
+                            />
+                        </SlideFadeIn>
                     )}
                 </View>
             </View>
         </View>
     )
 }
+
+const BUTTON_RISE = 16;
+const BUTTON_MS = 280;
+// Waits for the card to finish landing.
+const BUTTON_DELAY_MS = 200;
 
 const useStyles = createThemedStyles(theme => ({
     page: {

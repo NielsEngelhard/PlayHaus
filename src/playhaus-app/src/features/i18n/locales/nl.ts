@@ -549,7 +549,8 @@ export const nl: Catalog = {
         index: {
             description: 'Een klassiek potje trivia in een speels jasje.',
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
-            multiDevice: { title: 'Centraal scherm', description: 'Telefoons als controller op een TV met de quiz.', action: 'Kamer openen' },
+            multiDevice: { title: 'Per speler', description: '1 telefoon per speler', action: 'Kamer openen' },
+            centralScreen: { title: 'Centraal scherm', description: 'Stream de quiz naar je tv. Iedereen gebruikt een telefoon als controller.', action: 'Opzetten'},
             tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
             allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
             library: {
@@ -1291,9 +1292,9 @@ export const nl: Catalog = {
             settingsTitle: 'Spelinstellingen',
             mode: 'Vragen',
             modeFacts: 'Echte feiten',
-            modeCreative: 'Alles mag',
+            modeCreative: 'Grappigste',
             modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
-            modeCreativeHint: 'Geen goed antwoord — alleen verzinsels. Je scoort alleen als iemand jou kiest, en je hebt drie spelers nodig.',
+            modeCreativeHint: 'Wie verzint het grappigste antwoord?.',
             answersPerPlayer: 'Vragen per speler',
             answersPerPlayerHint: 'Hoeveel zinnen iedere speler aan het begin invult. Meer vragen, langer spel.',
             answersSummary: '{{amount}} vragen p.p.'

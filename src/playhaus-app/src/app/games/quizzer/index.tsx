@@ -1,5 +1,6 @@
 import GameIndexPage from "@/components/layout/GameIndexPage";
 import ModeCard from "@/components/ui/ModeCard";
+import SimpleButton from "@/components/ui/SimpleButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
@@ -37,33 +38,43 @@ export default function QuizzerIndexPage() {
                 />
             }
         >
-            <View style={styles.modes}>
-                <ModeCard
-                    solid
-                    watermark="1"
-                    icon='smartphone'
-                    gradient={Gradients.lemon}
-                    iconInk={Brand.ink}
-                    highlight={0.5}
-                    onFill="ink"
-                    title={t('pubquizr.index.oneDevice.title')}
-                    description={t('pubquizr.index.oneDevice.description')}
-                    action={t('pubquizr.index.oneDevice.action')}
-                    navigationUrl={ROUTES.quizzerOneDeviceGameSettings}
-                />
+            <View style={styles.container}>
+                <View style={styles.modes}>
+                    <ModeCard
+                        solid
+                        watermark="1"
+                        icon='smartphone'
+                        gradient={Gradients.lemon}
+                        iconInk={Brand.ink}
+                        highlight={0.5}
+                        onFill="ink"
+                        title={t('pubquizr.index.oneDevice.title')}
+                        description={t('pubquizr.index.oneDevice.description')}
+                        action={t('pubquizr.index.oneDevice.action')}
+                        navigationUrl={ROUTES.quizzerOneDeviceGameSettings}
+                    />
 
-                <ModeCard
-                    solid
-                    watermark="10"
-                    icon='monitor'
-                    gradient={PUBQUIZR.gradient}
-                    iconInk={Brand.ink}
-                    highlight={0.35}
-                    onFill="paper"
-                    title={t('pubquizr.index.multiDevice.title')}
-                    description={t('pubquizr.index.multiDevice.description')}
-                    action={t('pubquizr.index.multiDevice.action')}
-                    navigationUrl={ROUTES.quizzerMultiDeviceGameSettings}
+                    <ModeCard
+                        solid
+                        watermark="10"
+                        icon='monitor'
+                        gradient={PUBQUIZR.gradient}
+                        iconInk={Brand.ink}
+                        highlight={0.35}
+                        onFill="paper"
+                        title={t('pubquizr.index.multiDevice.title')}
+                        description={t('pubquizr.index.multiDevice.description')}
+                        action={t('pubquizr.index.multiDevice.action')}
+                        navigationUrl={ROUTES.quizzerMultiDeviceGameSettings}
+                    />
+                </View>
+
+                <SimpleButton
+                    action={t('pubquizr.index.centralScreen.action')}
+                    description={t('pubquizr.index.centralScreen.description')}
+                    icon='tv'
+                    onPress={() => {}} // Central screen flow isn't built yet.
+                    title={t('pubquizr.index.centralScreen.title')}
                 />
             </View>
 
@@ -86,6 +97,10 @@ export default function QuizzerIndexPage() {
 }
 
 const useStyles = createThemedStyles(() => ({
+    container: {
+        gap: 11
+    },
+
     modes: {
         flexDirection: 'row',
         alignItems: 'stretch',

@@ -572,6 +572,7 @@ export const en = {
             description: 'A classic pub quiz with a playful twist.',
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
+            centralScreen: { title: 'Central screen', description: 'Stream the quiz to your tv. Everyone uses their phone as controller', action: 'Set up'},
             tableScreen: { title: 'Table screen', subtitle: 'On the TV' },
             allQuizzes: { title: 'All quizzes', subtitle: 'Browse the list' },
             // The stack of slips at the foot of the page.
@@ -1425,10 +1426,9 @@ export const en = {
             settingsTitle: 'Game settings',
             mode: 'Prompts',
             modeFacts: 'True facts',
-            modeCreative: 'Anything goes',
-            // The one setting worth a sentence.
+            modeCreative: 'Funniest',
             modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
-            modeCreativeHint: 'No right answer — just the fakes. The only points are for being picked, and it takes three players.',
+            modeCreativeHint: 'Who comes up with the funniest answers?',
             answersPerPlayer: 'Prompts each',
             answersPerPlayerHint: 'How many sentences every player fills in at the start. More prompts, longer game.',
             answersSummary: '{{amount}} prompts each'
