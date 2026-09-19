@@ -1,9 +1,12 @@
 import { TRUTH_AUTHOR_ID, type FFGame, type FFOption, type FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
+import FlipOver from "@/components/ui/FlipOver";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PlayerScoreRow from "@/components/ui/PlayerScoreRow";
 import PopPressable from "@/components/ui/PopPressable";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand, Radii, Spacing, withAlpha } from "@/constants/theme";
 import FilledLine from "@/features/fake-filler/components/play/FilledLine";
 import PlayButton from "@/features/fake-filler/components/play/PlayButton";
@@ -12,8 +15,8 @@ import { fillPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { Fragment, useState } from "react";
-import { Platform, ScrollView, useWindowDimensions, View } from "react-native";
+import { Fragment, useState, type ReactNode } from "react";
+import { Animated, Easing, Platform, ScrollView, useWindowDimensions, View } from "react-native";
 
 interface Props {
     game: FFGame,
@@ -30,6 +33,26 @@ interface Props {
 }
 
 const LETTER_A = 65;
+
+const DEAL_MS = 460;
+const DEAL_STAGGER_MS = 110;
+const DEAL_DROP = 48;
+const DEAL_TILT = 4;
+
+const FLIP_STAGGER_MS = 260;
+// Both halves of a FlipOver turn, rounded up.
+const FLIP_MS = 400;
+
+const STAMP_DELAY_MS = 120;
+const STAMP_MS = 360;
+const STAMP_SCALE = 1.9;
+const STAMP_LEAN = 6;
+const STAMP_COUNTER = -5;
+
+const VOTERS_DELAY_MS = STAMP_DELAY_MS + STAMP_MS;
+
+const FOOT_RISE = 16;
+const FOOT_MS = 320;
 
 // How many letters of a name the stamp shows before it cuts.
 const STAMP_MAX_LETTERS = 18;
@@ -94,40 +117,54 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
 
                     return (
                         <Fragment key={option.slot}>
-                            {index > 0 && <Or />}
+                            {index > 0 && <Or index={index} />}
 
-                            {revealed ? (
-                                <RevealedOption
-                                    index={index}
-                                    topVotes={topVotes}
-                                    letter={letter}
-                                    line={round.line}
-                                    option={option}
-                                    game={game}
-                                    userId={userId}
-                                    mine={round.myVoteSlot === option.slot}
-                                    nameOf={nameOf}
+                            <DealtCard index={index}>
+                                <FlipOver
+                                    style={styles.slotFill}
+                                    turned={revealed}
+                                    delayMs={index * FLIP_STAGGER_MS}
+                                    front={(
+                                        <Option
+                                            letter={letter}
+                                            line={round.line}
+                                            option={option}
+                                            active={chosen === option.slot}
+                                            voted={voted}
+                                            // Once the vote is in, everything that was not picked steps back.
+                                            faded={voted && chosen !== option.slot}
+                                            disabled={busy || voted || !round.canVote}
+                                            onPress={() => setPicked(option.slot)}
+                                        />
+                                    )}
+                                    back={(
+                                        <RevealedOption
+                                            index={index}
+                                            topVotes={topVotes}
+                                            letter={letter}
+                                            line={round.line}
+                                            option={option}
+                                            game={game}
+                                            userId={userId}
+                                            mine={round.myVoteSlot === option.slot}
+                                            nameOf={nameOf}
+                                        />
+                                    )}
                                 />
-                            ) : (
-                                <Option
-                                    letter={letter}
-                                    line={round.line}
-                                    option={option}
-                                    active={chosen === option.slot}
-                                    voted={voted}
-                                    // Once the vote is in, everything that was not picked steps back.
-                                    faded={voted && chosen !== option.slot}
-                                    disabled={busy || voted || !round.canVote}
-                                    onPress={() => setPicked(option.slot)}
-                                />
-                            )}
+                            </DealtCard>
                         </Fragment>
                     );
                 })}
             </View>
 
             {revealed ? (
-                <View style={styles.foot}>
+                // Waits for the last card to finish turning.
+                <SlideFadeIn
+                    offsetY={FOOT_RISE}
+                    durationMs={FOOT_MS}
+                    delayMs={options.length * FLIP_STAGGER_MS + FLIP_MS}
+                    style={styles.foot}
+                >
                     <PlayerScoreRow players={game.players} userId={userId} />
 
                     {isHost ? (
@@ -150,7 +187,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
                             </AppText>
                         </Card>
                     )}
-                </View>
+                </SlideFadeIn>
             ) : (
                 <View style={styles.foot}>
                     <AppText style={styles.progress}>
@@ -180,18 +217,55 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
     )
 }
 
+// One card slot, dealt onto the table in turn when the round opens.
+function DealtCard({ index, children }: { index: number, children: ReactNode }) {
+    const styles = useStyles();
+
+    const deal = useEntrance({
+        delayMs: index * DEAL_STAGGER_MS,
+        durationMs: DEAL_MS,
+        easing: Easing.out(Easing.back(1.3))
+    });
+
+    const tilt = index % 2 === 0 ? -DEAL_TILT : DEAL_TILT;
+
+    return (
+        <Animated.View
+            style={[
+                styles.slot,
+                {
+                    opacity: deal.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1], extrapolate: 'clamp' }),
+                    transform: [
+                        { translateY: deal.interpolate({ inputRange: [0, 1], outputRange: [DEAL_DROP, 0] }) },
+                        { rotate: deal.interpolate({ inputRange: [0, 1], outputRange: [`${tilt}deg`, '0deg'] }) }
+                    ]
+                }
+            ]}
+        >
+            {children}
+        </Animated.View>
+    )
+}
+
 // The "or" between two cards, which is what makes a pair of them read as a duel.
-function Or() {
+function Or({ index }: { index: number }) {
     const t = useT();
     const styles = useStyles();
+
+    // Pops up between the two cards once the second has landed.
+    const pop = useEntrance({
+        delayMs: index * DEAL_STAGGER_MS + DEAL_MS / 2,
+        durationMs: DEAL_MS,
+        easing: Easing.out(Easing.back(2.5))
+    });
 
     return (
         <View style={styles.or} accessibilityElementsHidden importantForAccessibility='no-hide-descendants'>
             <View style={styles.orRule} />
 
-            <View style={styles.orChip}>
+            <Animated.View style={[styles.orChip, { transform: [{ scale: pop }] }]}>
                 <AppText style={styles.orText}>{t('fakeFiller.play.voting.or')}</AppText>
-            </View>
+            </Animated.View>
 
             <View style={styles.orRule} />
         </View>
@@ -300,6 +374,15 @@ function RevealedOption({ index, topVotes, letter, line, option, game, userId, m
             : shared
                 ? t('fakeFiller.play.reveal.stamp.more', { name: clipName(authors[0]), count: authors.length - 1 })
                 : clipName(authors[0]);
+
+    // Slammed down once the card has turned: the name is the punchline.
+    const slam = useEntrance({
+        delayMs: STAMP_DELAY_MS,
+        durationMs: STAMP_MS,
+        easing: Easing.out(Easing.back(2))
+    });
+    const lean = index % 2 === 0 ? STAMP_LEAN : STAMP_COUNTER;
+
     return (
         <View
             accessible
@@ -319,11 +402,22 @@ function RevealedOption({ index, topVotes, letter, line, option, game, userId, m
                 )}
 
                 {stamp !== null && (
-                    <View style={[styles.stamp, index % 2 === 0 ? styles.stampLeaning : styles.stampCounter]}>
+                    <Animated.View
+                        style={[
+                            styles.stamp,
+                            {
+                                opacity: slam.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0, 1, 1], extrapolate: 'clamp' }),
+                                transform: [
+                                    { scale: slam.interpolate({ inputRange: [0, 1], outputRange: [STAMP_SCALE, 1] }) },
+                                    { rotate: slam.interpolate({ inputRange: [0, 1], outputRange: [`${lean * 3}deg`, `${lean}deg`] }) }
+                                ]
+                            }
+                        ]}
+                    >
                         <AppText style={styles.stampText} numberOfLines={1} ellipsizeMode='tail'>
                             {stamp}
                         </AppText>
-                    </View>
+                    </Animated.View>
                 )}
             </View>
 
@@ -341,6 +435,7 @@ function RevealedOption({ index, topVotes, letter, line, option, game, userId, m
                 players={game.players}
                 userId={userId}
                 onBrand={onBrand}
+                delayMs={VOTERS_DELAY_MS}
             />
         </View>
     )
@@ -364,6 +459,14 @@ const useStyles = createThemedStyles(theme => ({
         gap: 9
     },
     // A basis of zero rather than the content's own height, so the cards split the stack evenly however much is written on either.
+    // Carries the card's share of the stack, so the dealing and the turning can wrap it without changing the split.
+    slot: {
+        flexGrow: 1,
+        flexBasis: 0
+    },
+    slotFill: {
+        flexGrow: 1
+    },
     option: {
         flexGrow: 1,
         flexBasis: 0,
@@ -470,12 +573,6 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: Brand.ink,
         backgroundColor: theme.colors.backgroundSecondary,
         ...theme.shadows.hardSmall
-    },
-    stampLeaning: {
-        transform: [{ rotate: '6deg' }]
-    },
-    stampCounter: {
-        transform: [{ rotate: '-5deg' }]
     },
     // Truncates rather than wraps: a second line would grow the head and jog the card.
     stampText: {

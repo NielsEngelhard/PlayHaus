@@ -1,9 +1,9 @@
 import AppText from '@/components/text/AppText';
 import AnimatedPressable from '@/components/ui/AnimatedPressable';
+import { useEntrance } from '@/components/ui/useEntrance';
 import { useNativeDriver, usePressPop } from '@/components/ui/usePressPop';
 import { Brand, Gradients } from '@/constants/theme';
 import PinnedNote, { NotePin } from '@/features/one-of-us/components/PinnedNote';
-import { useEntrance } from '@/features/one-of-us/useEntrance';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import Feather from '@expo/vector-icons/Feather';
 import { useEffect, useState } from 'react';

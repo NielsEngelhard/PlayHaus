@@ -1,5 +1,6 @@
 import type { FFGame, FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import WaitingStage from "@/components/ui/WaitingStage";
 import { FAKE_FILLER } from "@/constants/games";
 import { Spacing } from "@/constants/theme";
@@ -92,7 +93,8 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
 
     return (
         <>
-            <View style={styles.stage}>
+            {/* Keyed by the prompt above, so the second one comes in like the next card off the deck. */}
+            <SlideFadeIn offsetX={PROMPT_SLIDE} durationMs={PROMPT_MS} style={styles.stage}>
                 <PromptLine
                     line={round.line}
                     fills={round.answered ? (round.myFills ?? fills) : fills}
@@ -103,7 +105,7 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
                     disabled={busy}
                     size={size}
                 />
-            </View>
+            </SlideFadeIn>
 
             <View style={styles.foot}>
                 {/* Said only once the player has asked to send, so it answers rather than warns. */}
@@ -124,6 +126,9 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
         </>
     )
 }
+
+const PROMPT_SLIDE = 56;
+const PROMPT_MS = 380;
 
 /** How far each swatch in the stack sits over the one before it. */
 const STACK_OVERLAP = -7;
@@ -161,13 +166,16 @@ function TableProgress({ game }: { game: FFGame }) {
     )
 }
 
+const WAIT_RISE = 24;
+const WAIT_MS = 420;
+
 // Both of yours are in and the game is waiting on somebody else.
 function WaitingOnTable({ game }: { game: FFGame }) {
     const t = useT();
     const styles = useStyles();
 
     return (
-        <View style={styles.waiting}>
+        <SlideFadeIn offsetY={WAIT_RISE} durationMs={WAIT_MS} style={styles.waiting}>
             <WaitingStage
                 game={FAKE_FILLER}
                 title={t('fakeFiller.play.writing.waitingTitle')}
@@ -175,7 +183,7 @@ function WaitingOnTable({ game }: { game: FFGame }) {
             />
 
             <TableProgress game={game} />
-        </View>
+        </SlideFadeIn>
     )
 }
 

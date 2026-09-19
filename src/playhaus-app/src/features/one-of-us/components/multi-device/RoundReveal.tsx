@@ -1,6 +1,7 @@
 import type { OOUAnswer, OOUGamePlayer, OOUReveal } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
 import SeatAvatar from '@/components/ui/SeatAvatar';
+import { useEntrance } from '@/components/ui/useEntrance';
 import { Brand, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import { noteInkOf, type NoteTone } from '@/features/one-of-us/board-notes';
@@ -8,7 +9,6 @@ import PinButton from '@/features/one-of-us/components/PinButton';
 import PinnedNote from '@/features/one-of-us/components/PinnedNote';
 import RoleVerdict from '@/features/one-of-us/components/RoleVerdict';
 import { seatForUser } from '@/features/one-of-us/multi-device-flow';
-import { useEntrance } from '@/features/one-of-us/useEntrance';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import type { Seat } from '@/features/table/seats';

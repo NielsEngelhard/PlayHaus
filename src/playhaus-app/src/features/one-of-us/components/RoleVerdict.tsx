@@ -1,9 +1,9 @@
 import AppText from '@/components/text/AppText';
+import { useEntrance } from '@/components/ui/useEntrance';
 import { Brand } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import { OneOfUsRole, withCivilians } from '@/features/one-of-us/models';
 import { faceOf } from '@/features/one-of-us/roles';
-import { useEntrance } from '@/features/one-of-us/useEntrance';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import Feather from '@expo/vector-icons/Feather';
 import { Animated, Easing, View, type StyleProp, type ViewStyle } from 'react-native';

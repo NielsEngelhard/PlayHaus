@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
 import PopPressable from "@/components/ui/PopPressable";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import { useDragScroll } from "@/components/ui/useDragScroll";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
@@ -90,6 +91,7 @@ export default function SeatPickRow({
     const [width, setWidth] = useState(0);
     const [contentWidth, setContentWidth] = useState(0);
     const [scrollX] = useState(() => new Animated.Value(0));
+    const dragScroll = useDragScroll();
     const scrolls = remaining.length > MAX_VISIBLE;
     const slotWidth = (width - GAP * Math.floor(VISIBLE_WHEN_SCROLLING)) / VISIBLE_WHEN_SCROLLING;
 
@@ -148,6 +150,7 @@ export default function SeatPickRow({
             {scrolls ? (
                 <>
                     <Animated.ScrollView
+                        ref={dragScroll}
                         horizontal
                         showsHorizontalScrollIndicator={false}
                         onContentSizeChange={contentW => setContentWidth(contentW)}
