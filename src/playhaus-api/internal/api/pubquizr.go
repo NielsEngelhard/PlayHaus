@@ -178,6 +178,8 @@ type quizSessionResponse struct {
 	// ZenMode and TriviaMode are the two toggles this evening was set up with.
 	ZenMode    bool `json:"zenMode"`
 	TriviaMode bool `json:"triviaMode"`
+	// HostScreen says a shared screen carries the question, so a phone is a controller rather than a whole board.
+	HostScreen bool `json:"hostScreen"`
 	// AnsweringSeat is whose turn it is to answer the current question, and null when nobody is being asked anything.
 	AnsweringSeat *int `json:"answeringSeat"`
 	// HotSeat is the seat the current question was first asked to.
@@ -302,6 +304,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		Rounds:           order,
 		ZenMode:          s.ZenMode,
 		TriviaMode:       s.TriviaMode,
+		HostScreen:       s.HostScreen,
 		AnsweringSeat:    asked,
 		HotSeat:          s.HotSeatOrFirst(),
 		FinalistSeats:    finalists,

@@ -34,7 +34,9 @@ export type PQControlFrame =
     // Round 5 sends the ids it has credited; round 4 sends the count alone, because the words are the describer's secret.
     | PQFrameBase & { kind: 'awards', awarded: number, ids: string[] }
     // The round has been opened by the phone that reads its questions: the table has read the rules and play can start.
-    | PQFrameBase & { kind: 'gate', round: number };
+    | PQFrameBase & { kind: 'gate', round: number }
+    // Without a shared screen: the seats that have read this turn's rules and said so. Merged rather than replaced, because each phone only says itself.
+    | PQFrameBase & { kind: 'ready', seats: number[] };
 
 // One frame as the phone that made it hands it over: the server stamps the seat and the clock is read on the way out.
 type Authored<F> = F extends unknown ? Omit<F, 'at' | 'seat'> : never;
@@ -53,6 +55,8 @@ export interface ControlState {
     picks: PQPick[]
     /** Which question all of the above is about, and null before any frame has arrived. */
     questionId: string | null
+    /** Every seat that has said it is ready for this question's turn. */
+    ready: number[]
     revealed: boolean
     stage: PQStage
     walk: { answeringSeat: number, missedSeats: number[] } | null
@@ -66,6 +70,7 @@ export const EMPTY_CONTROL: ControlState = {
     gate: null,
     picks: [],
     questionId: null,
+    ready: [],
     revealed: false,
     stage: 'covered',
     walk: null
@@ -83,7 +88,7 @@ export function applyControl(state: ControlState, frame: PQControlFrame): Contro
 
     const base: ControlState = sameQuestion
         ? { ...state, at: Math.max(state.at, frame.at) }
-        : { ...EMPTY_CONTROL, questionId: frame.questionId, at: frame.at };
+        : { ...EMPTY_CONTROL, gate: state.gate, questionId: frame.questionId, at: frame.at };
 
     switch (frame.kind) {
         case 'flow':
@@ -101,6 +106,8 @@ export function applyControl(state: ControlState, frame: PQControlFrame): Contro
             return { ...base, endsAt: frame.endsAt };
         case 'awards':
             return { ...base, awarded: frame.awarded, awardedIds: frame.ids };
+        case 'ready':
+            return { ...base, ready: [...new Set([...base.ready, ...frame.seats])] };
     }
 }
 
@@ -149,4 +156,11 @@ export function endsAtOn(state: ControlState, questionId: string): number | null
 /** Whether the round has been opened, which is what tells the rules the table is reading from the question it is about to be asked. */
 export function roundOpenOn(state: ControlState, round: number): boolean {
     return state.gate === round;
+}
+
+/** The seats that have said they are ready for this question's turn, and empty when the frames are about another question. */
+export function readySeatsOn(state: ControlState, questionId: string): number[] {
+    if (state.questionId !== questionId) return [];
+
+    return state.ready;
 }

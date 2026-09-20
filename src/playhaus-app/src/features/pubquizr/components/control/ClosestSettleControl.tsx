@@ -27,6 +27,8 @@ const PAGE_PADDING = Spacing.four;
 const MAX_DIGITS = 12;
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
     /** The settle is already in the air. */
     busy: boolean
     error: TranslationKey | null
@@ -40,7 +42,7 @@ interface Props {
 }
 
 // Round 3 on the reader's phone: who is in, who is not, and the button that closes the question.
-export default function ClosestSettleControl({ busy, error, onSettle, round, seatsIn, turn }: Props) {
+export default function ClosestSettleControl({ bare, busy, error, onSettle, round, seatsIn, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -124,16 +126,18 @@ export default function ClosestSettleControl({ busy, error, onSettle, round, sea
         <View style={styles.screen}>
             <View style={styles.body}>
                 {/* Drawn here rather than by `ControlFrame`, because round 3 asks the whole table and so names nobody. */}
-                <TurnStrip
-                    quizmaster={turn.quizmaster}
-                    answering={null}
-                    lead={t('pubquizr.play.leadClosest', { name: turn.quizmaster.name })}
-                    run={0}
-                    round={round}
-                    number={turn.number}
-                    total={turn.total}
-                    worth={turn.worth}
-                />
+                {!bare && (
+                    <TurnStrip
+                        quizmaster={turn.quizmaster}
+                        answering={null}
+                        lead={t('pubquizr.play.leadClosest', { name: turn.quizmaster.name })}
+                        run={0}
+                        round={round}
+                        number={turn.number}
+                        total={turn.total}
+                        worth={turn.worth}
+                    />
+                )}
 
                 <Label label={turn.question.prompt} />
 

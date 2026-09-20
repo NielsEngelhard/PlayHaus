@@ -249,6 +249,8 @@ type PQLobby struct {
 	// ZenMode and TriviaMode wait here until the deal freezes them onto the session.
 	ZenMode    bool `gorm:"not null;default:false"`
 	TriviaMode bool `gorm:"not null;default:false"`
+	// HostScreen says a shared screen carries the question, so the phones are controllers rather than whole boards.
+	HostScreen bool `gorm:"not null;default:false"`
 
 	// SessionID is the evening this room dealt, set once and only by the start.
 	SessionID *uuid.UUID `gorm:"type:text;index"`
@@ -330,6 +332,8 @@ type Session struct {
 	// ZenMode and TriviaMode are the setup form's two toggles, frozen here at the deal.
 	ZenMode    bool `gorm:"not null;default:false"`
 	TriviaMode bool `gorm:"not null;default:false"`
+	// HostScreen is the room's choice of a shared screen, frozen here at the deal.
+	HostScreen bool `gorm:"not null;default:false"`
 
 	Players   []SessionPlayer   `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`
 	Questions []SessionQuestion `gorm:"foreignKey:SessionID;constraint:OnDelete:CASCADE"`

@@ -29,6 +29,7 @@ type pqLobbySetupRequest struct {
 	Locale     *string `json:"locale"`
 	ZenMode    *bool   `json:"zenMode"`
 	TriviaMode *bool   `json:"triviaMode"`
+	HostScreen *bool   `json:"hostScreen"`
 }
 
 func (req pqLobbySetupRequest) Validate() map[string]string {
@@ -62,6 +63,7 @@ type pqLobbySetupResponse struct {
 	Locale     string `json:"locale"`
 	ZenMode    bool   `json:"zenMode"`
 	TriviaMode bool   `json:"triviaMode"`
+	HostScreen bool   `json:"hostScreen"`
 }
 
 type pqLobbyResponse struct {
@@ -106,6 +108,7 @@ func newPQLobbyResponse(lobby *pubquizr.PQLobby) pqLobbyResponse {
 			Locale:     lobby.Locale.String(),
 			ZenMode:    lobby.ZenMode,
 			TriviaMode: lobby.TriviaMode,
+			HostScreen: lobby.HostScreen,
 		},
 		Players: players,
 		// Carried rather than hardcoded in the app.
@@ -271,6 +274,7 @@ func (s *Server) handleUpdatePQLobbySetup(w http.ResponseWriter, r *http.Request
 		Locale:     localeFrom(Deref(req.Locale, current.Locale.String()), r),
 		ZenMode:    Deref(req.ZenMode, current.ZenMode),
 		TriviaMode: Deref(req.TriviaMode, current.TriviaMode),
+		HostScreen: Deref(req.HostScreen, current.HostScreen),
 	}
 	if req.QuizID != nil {
 		// An explicit empty string is how the host puts the quiz back.

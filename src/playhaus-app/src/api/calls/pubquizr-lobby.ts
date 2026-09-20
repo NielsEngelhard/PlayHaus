@@ -20,6 +20,8 @@ export interface PQLobbySetup {
     locale: LanguageCode
     zenMode: boolean
     triviaMode: boolean
+    /** Whether a shared screen carries the question. Without one every phone is a whole board. */
+    hostScreen: boolean
 }
 
 export interface PQLobby {

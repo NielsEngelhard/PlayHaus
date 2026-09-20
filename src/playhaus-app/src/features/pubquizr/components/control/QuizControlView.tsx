@@ -8,6 +8,7 @@ import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import QuizBoardView from "@/features/pubquizr/components/board/QuizBoardView";
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
 import ChoiceReadOut from "@/features/pubquizr/components/control/ChoiceReadOut";
 import ClosestGuessControl from "@/features/pubquizr/components/control/ClosestGuessControl";
@@ -74,7 +75,7 @@ interface Props {
     code: string
 }
 
-// The phone half of multi device. A controller and nothing more: the question, the scores and the walk are all on the shared screen.
+// The phone half of multi device. With a shared screen a controller and nothing more: the question, the scores and the walk are all on the screen.
 export default function QuizControlView({ code }: Props) {
     const styles = useStyles();
     const t = useT();
@@ -126,6 +127,11 @@ export default function QuizControlView({ code }: Props) {
                 action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: leave }}
             />
         )
+    }
+
+    // Without a shared screen the question has to be on every phone, so each one is a whole board rather than a controller.
+    if (!session.hostScreen) {
+        return <QuizBoardView onLeave={leave} quiz={quiz} session={session} table={table} />;
     }
 
     const seats = seatsOf(session);

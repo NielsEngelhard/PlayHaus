@@ -28,6 +28,10 @@ import TurnStrip from "../play/TurnStrip";
 import TurnTimer from "../play/TurnTimer";
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
+    /** Somebody the turn cannot start without. The rules screen waits while this is set. */
+    holdBack?: { message: string, seat: Seat } | null
     busy: boolean
     emit: (frame: PQEmit) => void
     error: TranslationKey | null
@@ -41,7 +45,7 @@ interface Props {
 type Stage = 'ready' | 'running' | 'inTime' | 'bonus' | 'settle';
 
 // The describer's phone in multi device. `DescribeBoard`'s twin, and the round where the phone stays a whole board: the words are its owner's secret.
-export default function DescribeControl({ busy, emit, error, onSettle, round, turn }: Props) {
+export default function DescribeControl({ bare, busy, holdBack = null, emit, error, onSettle, round, turn }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -144,7 +148,7 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
     }
 
     // The same strip every other round wears, across every stage of this one -- including the stopwatch.
-    const strip = (
+    const strip = bare ? null : (
         <TurnStrip
             quizmaster={turn.describer}
             answering={turn.guesser}
@@ -195,6 +199,7 @@ export default function DescribeControl({ busy, emit, error, onSettle, round, tu
                 guesser={turn.guesser}
                 rules={rules}
                 action={t('pubquizr.play.describe.start')}
+                holdBack={holdBack}
                 onStart={startTimer}
             />
         )

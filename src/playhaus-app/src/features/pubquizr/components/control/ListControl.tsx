@@ -31,6 +31,10 @@ import TurnStrip from "../play/TurnStrip";
 import TurnTimer from "../play/TurnTimer";
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
+    /** Somebody the turn cannot start without. The rules screen waits while this is set. */
+    holdBack?: { message: string, seat: Seat } | null
     busy: boolean
     emit: (frame: PQEmit) => void
     error: TranslationKey | null
@@ -43,7 +47,7 @@ interface Props {
 type Stage = 'ready' | 'preTimer' | 'running' | 'inTime' | 'bonus' | 'settle'
 
 // The quizmaster's phone in multi device. `ListBoard`'s twin, and the round where a credited answer belongs on the screen the moment it is ticked.
-export default function ListControl({ busy, emit, error, onSettle, round, turn }: Props) {
+export default function ListControl({ bare, busy, holdBack = null, emit, error, onSettle, round, turn }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -148,7 +152,7 @@ export default function ListControl({ busy, emit, error, onSettle, round, turn }
         nextBonus(unclaimed.length - 1);
     }
 
-    const strip = (
+    const strip = bare ? null : (
         <TurnStrip
             quizmaster={turn.quizmaster}
             answering={turn.guesser}
@@ -200,6 +204,7 @@ export default function ListControl({ busy, emit, error, onSettle, round, turn }
                 guesser={turn.guesser}
                 rules={rules}
                 action={t('pubquizr.play.list.start')}
+                holdBack={holdBack}
                 onStart={() => setStage(turn.guesses === null ? 'preTimer' : 'running')}
             />
         )

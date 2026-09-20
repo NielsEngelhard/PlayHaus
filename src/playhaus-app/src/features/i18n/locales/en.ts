@@ -683,6 +683,10 @@ export const en = {
             hostStoppedQuiz: 'The host stopped the quiz. Ask for a new code for another one.',
             // The phone, for the moment between the deal and the controller.
             dealt: 'The quiz is starting…',
+            hostScreen: {
+                label: 'Host screen',
+                description: 'Put the question on a TV or laptop and play the phones as controllers. Off, every phone shows the whole board.'
+            },
             screenHint: {
                 title: 'Put a screen up first',
                 message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.'
@@ -747,6 +751,57 @@ export const en = {
             over: 'That is the quiz.'
         },
         // The phone, which in this mode is a controller and not much else.
+        // Without a shared screen: every phone is a whole board, and these are the words only a board needs.
+        board: {
+            answerNow: '{{name}} answers out loud',
+            choiceAppears: 'As soon as they choose, the question is on every phone',
+            choosing: '{{name}} is choosing an easy or a hard question',
+            clockSoon: 'The clock starts in a moment',
+            closestHint: 'Doubles are fine · {{name}} has the answer',
+            describes: 'Describes',
+            describing: '{{describer}} describes, {{guesser}} guesses',
+            easy: 'Easy',
+            everyoneAtOnce: 'Everyone at once',
+            gotIt: 'Got it',
+            guesses: 'Guesses',
+            hard: 'Hard',
+            imReady: 'I am ready',
+            isUp: '{{name}} is up',
+            judges: '{{master}} decides whether it was right.',
+            judgesThenNext: '{{master}} decides whether it was right. Wrong? Then the question goes to {{next}}.',
+            listFooter: '{{guesser}} names them · {{master}} ticks them off',
+            listRules: 'One player gets a question with four answers and {{seconds}} seconds. The quizmaster ticks off what is right. Then every other player gets one bonus guess at whatever is left.',
+            masterHasIt: '{{name}} has the question and the answer',
+            missed: '{{name}} missed it · the question is with {{next}} now',
+            missedToYou: '{{name}} missed it · the question is yours now',
+            mustGuess: 'You have to guess',
+            mustGuessRules: '{{describer}} describes {{words}} words. You have {{seconds}} seconds together. Every word you get is a point for you both.',
+            namesFour: '{{name}} names four',
+            neverSeeWords: 'You never see the words, not even afterwards',
+            noQuizmaster: 'No quizmaster',
+            notReadyYet: '{{name}} is not ready yet',
+            numbersIn: '{{done}} / {{total}} in',
+            onlyMasterMovesOn: 'Only {{name}} can move on',
+            picking: '{{name}} is picking',
+            picksOnOwnPhone: '{{name}} picks on their own phone',
+            onePoint: '1 point',
+            pointsWorth: '{{points}} points',
+            questionOf: 'Question {{number}} / {{total}}',
+            quizmaster: 'Quizmaster',
+            readAhead: 'Read the question now: {{seconds}} seconds once the clock runs',
+            readyCount: '{{done}} of {{total}} players are ready',
+            readyToStart: 'Ready to start',
+            readyWaiting: 'Ready. {{name}} starts the clock',
+            sayIt: 'Say it out loud',
+            tapYourself: 'you tap it yourself',
+            theirTurn: '{{name}} is up',
+            turnOf: 'Turn {{number}} / {{total}}',
+            wordsGuessed: '{{done}} of {{total}} guessed',
+            wordsSecret: "The words are only on {{name}}'s phone",
+            you: 'You',
+            yourChoiceCue: 'Pick one and your question is on every phone',
+            yourTurn: 'Your turn'
+        },
         control: {
             changeGuess: 'Change it',
             guessSent: 'Your number is in',

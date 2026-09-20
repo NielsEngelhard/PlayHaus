@@ -57,6 +57,8 @@ export interface QuizSession {
     zenMode: boolean
     // Trivia only: rounds 4 and 5 — the describing game and the four-answer hunt — were left out of the evening.
     triviaMode: boolean
+    // Multi device only: a shared screen carries the question, so each phone is a controller rather than a whole board.
+    hostScreen: boolean
     // Whose turn it is to answer the question on screen, and null when nobody is being asked anything.
     answeringSeat: number | null
 

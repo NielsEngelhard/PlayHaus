@@ -3,7 +3,7 @@ import { pqRoom, type PQClientEvent, type PQServerEvent } from '@/api/pq-socket'
 import type { SocketStatus } from '@/api/socket';
 import { useAuth } from '@/features/auth/useAuth';
 import type { TranslationKey } from '@/features/i18n/keys';
-import { applyControl, EMPTY_CONTROL, type ControlState, type PQEmit } from '@/features/pubquizr/multi-device/control';
+import { applyControl, EMPTY_CONTROL, type ControlState, type PQControlFrame, type PQEmit } from '@/features/pubquizr/multi-device/control';
 import { pqLobbyErrorMessage } from '@/features/pubquizr/multi-device/pubquizr-lobby-errors';
 import { quizErrorMessage } from '@/features/pubquizr/pubquizr-errors';
 import { getQuizRequest, type QuizDetail } from '@/features/pubquizr/pubquizr-quizzes';
@@ -272,8 +272,15 @@ export function useQuizTable(code: string): PQTableState {
     });
 
     // The seat is a claim the server overwrites with the one it knows, so a phone cannot author as anybody else.
+    // Applied here as well, because the room relays a frame to everybody but its author -- and a reload replays it to the author anyway.
     const emit = useCallback((frame: PQEmit) => {
-        send({ type: 'control', data: { ...frame, seat: mySeat ?? -1, at: Date.now() } });
+        const stamped = { ...frame, seat: mySeat ?? -1, at: Date.now() } as PQControlFrame;
+
+        send({ type: 'control', data: stamped });
+        setControl(current => applyControl(current, stamped));
+        setReveal(current => current === null || current.sessionQuestionId === stamped.questionId
+            ? current
+            : null);
     }, [send, mySeat]);
 
     // One way to move the evening on, whichever round is doing it.

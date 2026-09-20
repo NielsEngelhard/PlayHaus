@@ -16,6 +16,8 @@ import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
     /** A settle is already in the air. */
     busy: boolean
     /** Says one thing about the question this phone is looking at. */
@@ -33,7 +35,7 @@ interface Props {
 }
 
 // Round 2 on the answerer's own phone: four options, judged the instant one is tapped, because `correct` is already in the quiz every device holds.
-export default function ChoicePadControl({ busy, emit, error, missed, onSettle, picks, round, turn }: Props) {
+export default function ChoicePadControl({ bare, busy, emit, error, missed, onSettle, picks, round, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -95,16 +97,18 @@ export default function ChoicePadControl({ busy, emit, error, missed, onSettle, 
     return (
         <View style={styles.turn}>
             {/* Drawn here rather than by `ControlFrame`, because the walk this phone is on is its own local state. */}
-            <TurnStrip
-                quizmaster={turn.quizmaster}
-                answering={answering}
-                lead=""
-                run={run}
-                round={round}
-                number={turn.number}
-                total={turn.total}
-                worth={turn.worth}
-            />
+            {!bare && (
+                <TurnStrip
+                    quizmaster={turn.quizmaster}
+                    answering={answering}
+                    lead=""
+                    run={run}
+                    round={round}
+                    number={turn.number}
+                    total={turn.total}
+                    worth={turn.worth}
+                />
+            )}
 
             <ScriptCard
                 prompt={turn.question.prompt}

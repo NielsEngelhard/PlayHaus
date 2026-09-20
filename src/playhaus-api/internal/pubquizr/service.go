@@ -22,6 +22,7 @@ type LobbySetup struct {
 	Locale     i18n.Locale
 	ZenMode    bool
 	TriviaMode bool
+	HostScreen bool
 }
 
 type Store interface {

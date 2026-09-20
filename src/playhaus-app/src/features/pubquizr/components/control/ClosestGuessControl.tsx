@@ -23,6 +23,8 @@ const PAGE_PADDING = Spacing.four;
 const MAX_DIGITS = 12;
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
     /** A number is already on its way to the server. */
     busy: boolean
     error: TranslationKey | null
@@ -36,7 +38,7 @@ interface Props {
 }
 
 // Round 3 on one guessing phone. It never draws `turn.answer`: the number the table is hunting is the quizmaster's alone.
-export default function ClosestGuessControl({ busy, error, onGuess, round, sent, turn }: Props) {
+export default function ClosestGuessControl({ bare, busy, error, onGuess, round, sent, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -86,16 +88,18 @@ export default function ClosestGuessControl({ busy, error, onGuess, round, sent,
         <View style={styles.screen}>
             <View style={styles.body}>
                 {/* Drawn here rather than by `ControlFrame`, because round 3 asks the whole table and so names nobody. */}
-                <TurnStrip
-                    quizmaster={turn.quizmaster}
-                    answering={null}
-                    lead={t('pubquizr.play.leadClosest', { name: turn.quizmaster.name })}
-                    run={0}
-                    round={round}
-                    number={turn.number}
-                    total={turn.total}
-                    worth={turn.worth}
-                />
+                {!bare && (
+                    <TurnStrip
+                        quizmaster={turn.quizmaster}
+                        answering={null}
+                        lead={t('pubquizr.play.leadClosest', { name: turn.quizmaster.name })}
+                        run={0}
+                        round={round}
+                        number={turn.number}
+                        total={turn.total}
+                        worth={turn.worth}
+                    />
+                )}
 
                 <ScriptCard
                     prompt={turn.question.prompt}
@@ -159,7 +163,9 @@ export default function ClosestGuessControl({ busy, error, onGuess, round, sent,
                         />
                     )}
 
-                    <TextHint text={t('pubquizr.control.theScreenHasIt')} />
+                    <TextHint text={bare
+                        ? t('pubquizr.board.closestHint', { name: turn.quizmaster.name })
+                        : t('pubquizr.control.theScreenHasIt')} />
                 </View>
             </View>
 

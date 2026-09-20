@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
-import { Brand, FontSizes, Spacing } from "@/constants/theme";
+import SeatAvatar from "@/components/ui/SeatAvatar";
+import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -25,11 +26,13 @@ interface Props {
     rules: TurnRule[]
     /** What the button says, e.g. "Show my words and start". */
     action: string
+    /** Somebody the turn cannot start without, and what to say about them. The button waits while this is set. */
+    holdBack?: { message: string, seat: Seat } | null
     onStart: () => void
 }
 
 // The screen a turn opens on: who is asking, who is answering, and what the round is about to do to them.
-export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, action, onStart }: Props) {
+export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, action, holdBack = null, onStart }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
@@ -85,10 +88,20 @@ export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, act
                 </View>
             </ScrollView>
 
-            <ActionButton size="large" icon="play" text={action} onPress={onStart} />
+            {holdBack !== null && (
+                <View style={styles.holdBack}>
+                    <SeatAvatar seat={holdBack.seat} size={HOLD_BACK_AVATAR} />
+
+                    <AppText style={styles.holdBackText} numberOfLines={2}>{holdBack.message}</AppText>
+                </View>
+            )}
+
+            <ActionButton size="large" icon="play" text={action} disabled={holdBack !== null} onPress={onStart} />
         </View>
     )
 }
+
+const HOLD_BACK_AVATAR = 26;
 
 const useStyles = createThemedStyles(theme => ({
     turn: {
@@ -179,6 +192,27 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center',
         borderRadius: 999,
         backgroundColor: theme.colors.mint
+    },
+
+    // Lemon in both schemes, so the ink on it reads the same everywhere.
+    holdBack: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two,
+        paddingVertical: Spacing.two,
+        paddingHorizontal: Spacing.three,
+        borderRadius: Radii.lg,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+
+    holdBackText: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: FontSizes.sm,
+        fontWeight: 800,
+        color: Brand.ink
     },
 
     ruleText: {

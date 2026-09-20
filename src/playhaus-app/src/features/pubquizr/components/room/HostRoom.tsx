@@ -72,12 +72,15 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                 </View>
             }
         >
-            <InlineNotification
-                icon='airplay'
-                color={theme.colors.mint}
-                title={t('pubquizr.lobby.screenHint.title')}
-                message={t('pubquizr.lobby.screenHint.message')}
-            />
+            {/* Only worth saying when there is going to be a screen to put up. */}
+            {lobby.setup.hostScreen && (
+                <InlineNotification
+                    icon='airplay'
+                    color={theme.colors.mint}
+                    title={t('pubquizr.lobby.screenHint.title')}
+                    message={t('pubquizr.lobby.screenHint.message')}
+                />
+            )}
 
             <LobbySeatGrid
                 players={lobby.players}
@@ -119,6 +122,14 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                     description={t('pubquizr.oneDevice.zenMode.description')}
                 />
             )}
+
+            <ToggleRow
+                flush
+                value={lobby.setup.hostScreen}
+                onChange={hostScreen => state.updateSetup({ hostScreen })}
+                label={t('pubquizr.lobby.hostScreen.label')}
+                description={t('pubquizr.lobby.hostScreen.description')}
+            />
 
             {state.actionError !== null && (
                 <InlineNotification

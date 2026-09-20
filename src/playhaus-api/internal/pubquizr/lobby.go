@@ -97,6 +97,7 @@ func (s *Service) UpdateLobbySetup(ctx context.Context, code, userID string, in 
 	lobby.Locale = in.Locale
 	lobby.ZenMode = in.ZenMode
 	lobby.TriviaMode = in.TriviaMode
+	lobby.HostScreen = in.HostScreen
 
 	return lobby, nil, nil
 }
@@ -224,6 +225,7 @@ func (s *Service) StartMultiDeviceSession(ctx context.Context, code, userID stri
 
 	now := time.Now().UTC()
 	session := buildSession(quiz, roster, modes, ModeMultiDevice, lobby.OwnerID, &lobby.ID, deal, now)
+	session.HostScreen = lobby.HostScreen
 
 	// One row per phone rather than one for the host, so the shelf's played mark is right for everybody who was here.
 	plays := make([]*QuizPlay, 0, len(roster))

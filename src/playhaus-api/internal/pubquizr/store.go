@@ -306,6 +306,7 @@ func (s *GormStore) SaveLobbySetup(ctx context.Context, code string, in LobbySet
 			"locale":      in.Locale,
 			"zen_mode":    in.ZenMode,
 			"trivia_mode": in.TriviaMode,
+			"host_screen": in.HostScreen,
 		}).Error
 	if err != nil {
 		return fmt.Errorf("update lobby setup: %w", err)

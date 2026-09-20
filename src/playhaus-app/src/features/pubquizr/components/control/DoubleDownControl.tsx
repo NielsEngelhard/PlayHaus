@@ -13,6 +13,8 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { View } from "react-native";
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
     /** Whoever is being asked, which is whose phone this is. */
     answering: Seat
     /** A choice is already in the air. */
@@ -32,6 +34,7 @@ interface Props {
 
 // Round 6 on the phone whose turn it is: two buttons, and whichever one is pressed is the question that goes on the screen.
 export default function DoubleDownControl({
+    bare,
     answering,
     busy,
     error,
@@ -52,21 +55,23 @@ export default function DoubleDownControl({
 
     return (
         <View style={styles.turn}>
-            <TurnStrip
-                quizmaster={quizmaster}
-                answering={answering}
-                lead=""
-                run={0}
-                round={round}
-                number={number}
-                total={total}
-                // Nothing is decided yet: what it pays is the question being asked.
-                worth={0}
-            />
+            {!bare && (
+                <TurnStrip
+                    quizmaster={quizmaster}
+                    answering={answering}
+                    lead=""
+                    run={0}
+                    round={round}
+                    number={number}
+                    total={total}
+                    // Nothing is decided yet: what it pays is the question being asked.
+                    worth={0}
+                />
+            )}
 
             <ScriptCard
                 prompt={t('pubquizr.control.yourChoice')}
-                cue={t('pubquizr.control.yourChoiceCue')}
+                cue={bare ? t('pubquizr.board.yourChoiceCue') : t('pubquizr.control.yourChoiceCue')}
             >
                 <View style={styles.choice}>
                     <ActionButton
@@ -95,7 +100,7 @@ export default function DoubleDownControl({
                 />
             )}
 
-            <TextHint text={t('pubquizr.control.theScreenHasIt')} />
+            <TextHint text={bare ? t('pubquizr.board.choiceAppears') : t('pubquizr.control.theScreenHasIt')} />
         </View>
     )
 }

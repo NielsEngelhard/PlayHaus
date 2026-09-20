@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
+import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
 import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -11,7 +12,10 @@ import { ScrollView, View } from "react-native";
 
 interface Props {
     result: ClosestResult
-    onContinue: () => void
+    /** Absent on a phone that only watches: somebody else moves the table on. */
+    onContinue?: () => void
+    /** Said in place of the button when there is no `onContinue`. */
+    waitingNote?: string
 }
 
 /** One line of the list: who, what they said, and whether it took the points. */
@@ -23,7 +27,7 @@ interface Row {
 }
 
 // The beat between settling a round 3 question and the next turn: who was right.
-export default function ClosestResultScreen({ result, onContinue }: Props) {
+export default function ClosestResultScreen({ result, onContinue, waitingNote }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -138,12 +142,16 @@ export default function ClosestResultScreen({ result, onContinue }: Props) {
             </ScrollView>
 
             <View style={styles.footer}>
-                <ActionButton
-                    size="large"
-                    icon="arrow-right"
-                    text={t('pubquizr.play.closest.result.continue')}
-                    onPress={onContinue}
-                />
+                {onContinue !== undefined ? (
+                    <ActionButton
+                        size="large"
+                        icon="arrow-right"
+                        text={t('pubquizr.play.closest.result.continue')}
+                        onPress={onContinue}
+                    />
+                ) : waitingNote !== undefined && (
+                    <TextHint text={waitingNote} />
+                )}
             </View>
         </View>
     )

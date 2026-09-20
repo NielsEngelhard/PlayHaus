@@ -15,6 +15,8 @@ import { useState } from "react";
 import { View } from "react-native";
 
 interface Props {
+    /** The frame draws the strip, so this board leaves it out. */
+    bare?: boolean
     /** A ruling is already in the air. */
     busy: boolean
     /** Says one thing about the question this phone is looking at. */
@@ -28,7 +30,7 @@ interface Props {
 }
 
 // The quizmaster's controller for rounds 1 and 7: a question to read out, a covered answer, and the one decision on the phone.
-export default function HotSeatControl({ busy, emit, error, onSettle, round, turn }: Props) {
+export default function HotSeatControl({ bare, busy, emit, error, onSettle, round, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -127,16 +129,18 @@ export default function HotSeatControl({ busy, emit, error, onSettle, round, tur
     return (
         <View style={styles.turn}>
             {/* Drawn here rather than by `ControlFrame`, because the walk this phone is on is its own local state. */}
-            <TurnStrip
-                quizmaster={turn.quizmaster}
-                answering={answering}
-                lead=""
-                run={run}
-                round={round}
-                number={turn.number}
-                total={turn.total}
-                worth={turn.worth}
-            />
+            {!bare && (
+                <TurnStrip
+                    quizmaster={turn.quizmaster}
+                    answering={answering}
+                    lead=""
+                    run={run}
+                    round={round}
+                    number={turn.number}
+                    total={turn.total}
+                    worth={turn.worth}
+                />
+            )}
 
             {/* No score strip: the shared screen has the scores in its corner. */}
             <ScriptCard prompt={turn.question.prompt} />
