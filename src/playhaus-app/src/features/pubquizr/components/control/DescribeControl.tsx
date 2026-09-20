@@ -83,6 +83,12 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
 
         // The count alone: the words are the describer's secret, so the screen never learns one.
         emit({ kind: 'awards', questionId, awarded: got, ids: [] });
+        // Seats only, for the recap the screen draws once the turn is over -- it reads the words themselves off the quiz.
+        emit({
+            kind: 'recap',
+            questionId,
+            words: turn.words.map(word => ({ id: word.dealt.id, seat: next[word.dealt.id] ?? null }))
+        });
     }
 
     /** Credit a word to one seat, or to nobody. */
@@ -101,16 +107,21 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
     // The clock the table reads is this one: the phone says when it ends and the screen counts down to it.
     function startTimer() {
         setStage('running');
+        emit({ kind: 'flow', questionId, stage: 'running' });
         emit({ kind: 'timer', questionId, endsAt: Date.now() + DESCRIBE_SECONDS * 1000 });
     }
 
     function endTimer() {
         setStage('inTime');
+        emit({ kind: 'flow', questionId, stage: 'judging' });
         emit({ kind: 'timer', questionId, endsAt: null });
     }
 
     // The clock's half of the turn is ruled on.
     function openBonus() {
+        // The clock's half is ruled on, which is the moment the words stop being a secret and the screen may say them.
+        emit({ kind: 'flow', questionId, stage: 'settling' });
+
         if (unclaimed.length === 0 || turn.bonus.length === 0) {
             setStage('settle');
             return;

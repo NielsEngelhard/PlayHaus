@@ -689,7 +689,8 @@ export const en = {
             },
             screenHint: {
                 title: 'Put a screen up first',
-                message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.'
+                message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.',
+                messageUrl: 'On the tv, open {{url}} and type {{code}}. A laptop on HDMI, a cast tab or screen mirroring all work too — everybody still plays from their own phone.'
             },
             running: {
                 quizTitle: 'You are already playing',
@@ -728,6 +729,39 @@ export const en = {
                 placeholder: 'PXK7Q',
                 open: 'Open the screen',
                 rejected: 'That is not a quiz code. Check it on the host phone.'
+            },
+            // The four ways a table gets a screen: two browsers opening a page, and two ways of mirroring that same page.
+            setup: {
+                title: 'Ways to put this on a tv',
+                wayBrowser: "Open {{url}} in the tv's own browser and type the code",
+                wayBrowserPlain: "Open this page in the tv's own browser and type the code",
+                wayHdmi: 'Or plug a laptop into the tv with an HDMI cable',
+                wayCast: 'Or cast this tab from Chrome, and leave the tab in front',
+                wayMirror: 'Or mirror this device with AirPlay or screen casting',
+                fullScreen: 'Full screen',
+                exitFullScreen: 'Leave full screen',
+                alreadyPlayingTitle: 'This device is playing',
+                alreadyPlaying: 'It holds a seat at the table, so it would miss half the evening. Open the screen on the tv instead, in its own browser.',
+                signingIn: 'Getting the screen ready…',
+                signInFailed: 'This screen could not reach the game.'
+            },
+            roundOf: 'Round {{round}} of {{total}}',
+            playAlong: 'Play along',
+            numbersInLabel: 'numbers in',
+            recapTitle: 'The words',
+            recapPoints: '{{name}} takes {{points}} for the words that were guessed',
+            weightChip: '{{weight}} · {{points}} points',
+            wordsSecret: "The words are only on {{name}}'s phone — everybody else still gets a bonus guess",
+            // One word per card on the players bar: what that player is doing right now.
+            status: {
+                quizmaster: 'Quizmaster',
+                turn: 'Their turn',
+                missed: 'Missed it',
+                sent: 'Number in',
+                typing: 'Still typing',
+                describing: 'Describing',
+                guessing: 'Guessing',
+                choosing: 'Choosing'
             },
             connecting: 'Finding the room…',
             closed: 'The host closed the room, so this screen is done.',
@@ -803,6 +837,23 @@ export const en = {
             yourTurn: 'Your turn'
         },
         control: {
+            alsoOnScreen: 'It is on the screen as well — you only have to judge it',
+            isUpNow: '{{name}} is up now',
+            lettersCue: 'The options are on the screen',
+            onScreen: 'TV',
+            // Said as a word rather than a number, because {{count}} would put i18next into plural mode.
+            ordinal: {
+                first: '1st',
+                second: '2nd',
+                third: '3rd',
+                fourth: '4th',
+                fifth: '5th',
+                sixth: '6th',
+                seventh: '7th',
+                eighth: '8th'
+            },
+            watchScreen: 'Look at the screen',
+            yourPlace: 'You are {{place}} this turn',
             changeGuess: 'Change it',
             guessSent: 'Your number is in',
             onTheScreen: 'On the screen',
@@ -821,6 +872,16 @@ export const en = {
             loading: 'Setting up the table…',
             close: 'Leave the quiz',
             roundLabel: 'Round {{round}} · {{kind}}',
+            // The one sentence under the shared screen's stage, which says what this round asks of the table.
+            rules: {
+                open: 'The quizmaster reads the question out and decides on their phone who had it. Wrong? It passes to the next player.',
+                choice: 'No quizmaster this round. Whoever is up taps a letter on their own phone. Wrong? It passes on, and the spent option stays gone.',
+                closest: 'Everybody types one number. Doubles are fine. Nearest takes 2 points, and a tie pays both.',
+                describe: 'The describer has 30 seconds. Every word guessed is a point for both of them. Then one bonus guess each for everybody else.',
+                list: 'One player names four, the quizmaster ticks them off. 20 seconds, a point per answer. What is left goes to the bonus guesses.',
+                doubleDown: 'Whoever is up picks their own weight. Then the quizmaster reads it out and judges it — wrong passes to the next player.',
+                finale: 'Six open questions, turn by turn. Wrong? It goes to the other one. Whoever leads after the last question wins the evening.'
+            },
             rounds: {
                 open: 'Open',
                 choice: 'Multiple choice',

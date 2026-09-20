@@ -1,67 +1,36 @@
 import AppText from "@/components/text/AppText";
-import SeatAvatar from "@/components/ui/SeatAvatar";
-import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
+const COUNT_SIZE = 64;
+const LABEL_SIZE = 20;
+const HINT_SIZE = 14;
+
 interface Props {
-    /** Everybody round 3 lets type a number, in the order the table answers in. */
-    guessing: Seat[]
+    /** How many numbers are in. Seats and never numbers: this screen is read by the people still typing. */
+    done: number
     /** The shared screen's type scale -- see `table-scale.ts`. */
     scale: number
-    /** Whose numbers are in. Seats and never numbers: this screen is read by the people still typing. */
-    seatsIn: number[]
+    total: number
 }
 
-// Round 3 while it is being typed: a tick per phone that is done, and no number anywhere.
-export default function TableClosestProgress({ guessing, scale, seatsIn }: Props) {
+// Round 3 while it is being typed. Who is in is on the players bar in green, so this is the count alone.
+export default function TableClosestProgress({ done, scale, total }: Props) {
     const styles = useStyles();
     const t = useT();
 
-    const done = guessing.filter(seat => seatsIn.includes(seat.seat)).length;
-
     return (
-        <View style={[styles.stage, { gap: Math.round(16 * scale) }]}>
-            <View style={[styles.row, { gap: Math.round(12 * scale) }]}>
-                {guessing.map(seat => {
-                    const isIn = seatsIn.includes(seat.seat);
-
-                    return (
-                        <View key={seat.seat} style={[styles.seat, !isIn && styles.waiting]}>
-                            <SeatAvatar raised={isIn} seat={seat} size={Math.round(56 * scale)} />
-
-                            {isIn && (
-                                <View
-                                    style={[
-                                        styles.badge,
-                                        {
-                                            width: Math.round(22 * scale),
-                                            height: Math.round(22 * scale),
-                                            right: -Math.round(2 * scale),
-                                            bottom: -Math.round(2 * scale)
-                                        }
-                                    ]}
-                                >
-                                    <Feather
-                                        name="check"
-                                        size={Math.round(13 * scale)}
-                                        color={Brand.ink}
-                                    />
-                                </View>
-                            )}
-                        </View>
-                    )
-                })}
-            </View>
-
-            <AppText style={[styles.count, { fontSize: Math.round(20 * scale) }]}>
-                {t('pubquizr.table.numbersIn', { done, total: guessing.length })}
+        <View style={[styles.stage, { gap: Math.round(8 * scale) }]}>
+            <AppText style={[styles.count, { fontSize: Math.round(COUNT_SIZE * scale) }]}>
+                {`${done} / ${total}`}
             </AppText>
 
-            <AppText style={[styles.hint, { fontSize: Math.round(14 * scale) }]}>
+            <AppText style={[styles.label, { fontSize: Math.round(LABEL_SIZE * scale) }]}>
+                {t('pubquizr.table.numbersInLabel')}
+            </AppText>
+
+            <AppText style={[styles.hint, { fontSize: Math.round(HINT_SIZE * scale) }]}>
                 {t('pubquizr.table.typeYours')}
             </AppText>
         </View>
@@ -72,34 +41,21 @@ const useStyles = createThemedStyles(theme => ({
     stage: {
         alignItems: 'center'
     },
-    row: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    // The badge hangs off the avatar, so the wrapper is what it hangs off.
-    seat: {
-        position: 'relative'
-    },
-    // Nothing has arrived from this phone yet, which is a thing to read at a glance and not a thing to worry about.
-    waiting: {
-        opacity: 0.35
-    },
-    badge: {
-        position: 'absolute',
-        borderRadius: 999,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Brand.ink,
-        backgroundColor: theme.colors.mint
-    },
+
+    // Tabular figures, so the count does not jitter sideways as numbers land.
     count: {
+        fontWeight: 900,
+        letterSpacing: -2,
+        fontVariant: ['tabular-nums'],
+        color: theme.colors.text
+    },
+
+    label: {
         fontWeight: 900,
         textAlign: 'center',
         color: theme.colors.text
     },
+
     hint: {
         fontWeight: 700,
         textAlign: 'center',

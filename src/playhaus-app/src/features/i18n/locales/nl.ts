@@ -651,7 +651,8 @@ export const nl: Catalog = {
             },
             screenHint: {
                 title: 'Zet eerst een scherm klaar',
-                message: 'Open de kamer op een laptop of tv — HDMI, Chromecast of AirPlay werkt allemaal — en iedereen speelt mee vanaf zijn eigen telefoon.'
+                message: 'Open de kamer op een laptop of tv — HDMI, Chromecast of AirPlay werkt allemaal — en iedereen speelt mee vanaf zijn eigen telefoon.',
+                messageUrl: 'Open op de tv {{url}} en typ {{code}}. Een laptop op HDMI, een gecast tabblad of schermspiegelen kan ook — iedereen speelt mee vanaf zijn eigen telefoon.'
             },
             running: {
                 quizTitle: 'Je bent al aan het spelen',
@@ -690,6 +691,39 @@ export const nl: Catalog = {
                 placeholder: 'PXK7Q',
                 open: 'Scherm openen',
                 rejected: 'Dat is geen quizcode. Check hem op de telefoon van de host.'
+            },
+            // De vier manieren waarop een tafel een scherm krijgt: twee browsers die een pagina openen, en twee manieren om diezelfde pagina te spiegelen.
+            setup: {
+                title: 'Zo zet je dit op een tv',
+                wayBrowser: 'Open {{url}} in de browser van de tv en typ de code',
+                wayBrowserPlain: 'Open deze pagina in de browser van de tv en typ de code',
+                wayHdmi: 'Of hang een laptop met een HDMI-kabel aan de tv',
+                wayCast: 'Of cast dit tabblad vanuit Chrome, en laat het tabblad vooraan staan',
+                wayMirror: 'Of spiegel dit toestel met AirPlay of schermcasten',
+                fullScreen: 'Volledig scherm',
+                exitFullScreen: 'Volledig scherm sluiten',
+                alreadyPlayingTitle: 'Dit toestel speelt mee',
+                alreadyPlaying: 'Het heeft een stoel aan tafel en zou de helft van de avond missen. Open het scherm op de tv zelf, in een eigen browser.',
+                signingIn: 'Het scherm klaarzetten…',
+                signInFailed: 'Dit scherm kon het spel niet bereiken.'
+            },
+            roundOf: 'Ronde {{round}} van {{total}}',
+            playAlong: 'Meespelen',
+            numbersInLabel: 'getallen binnen',
+            recapTitle: 'De woorden',
+            recapPoints: '{{name}} pakt {{points}} voor de woorden die geraden zijn',
+            weightChip: '{{weight}} · {{points}} punten',
+            wordsSecret: 'De woorden staan alleen op de telefoon van {{name}} — de anderen krijgen straks nog een bonusgok',
+            // Eén woord per kaart op de spelersbalk: wat die speler nu doet.
+            status: {
+                quizmaster: 'Quizmaster',
+                turn: 'Aan de beurt',
+                missed: 'Zat ernaast',
+                sent: 'Ingestuurd',
+                typing: 'Typt nog',
+                describing: 'Omschrijft',
+                guessing: 'Raadt',
+                choosing: 'Kiest'
             },
             connecting: 'De kamer zoeken…',
             closed: 'De host heeft de kamer gesloten, dus dit scherm is klaar.',
@@ -765,6 +799,23 @@ export const nl: Catalog = {
             yourTurn: 'Jouw beurt'
         },
         control: {
+            alsoOnScreen: 'Staat ook op het scherm — jij hoeft alleen te beoordelen',
+            isUpNow: '{{name}} is nu aan de beurt',
+            lettersCue: 'De opties staan op het scherm',
+            onScreen: 'TV',
+            // Als woord en niet als getal, want {{count}} zet i18next in meervoudsmodus.
+            ordinal: {
+                first: '1e',
+                second: '2e',
+                third: '3e',
+                fourth: '4e',
+                fifth: '5e',
+                sixth: '6e',
+                seventh: '7e',
+                eighth: '8e'
+            },
+            watchScreen: 'Kijk naar het scherm',
+            yourPlace: 'Jij bent de {{place}} deze beurt',
             changeGuess: 'Aanpassen',
             guessSent: 'Je getal is binnen',
             onTheScreen: 'Op het scherm',
@@ -783,6 +834,16 @@ export const nl: Catalog = {
             loading: 'De tafel klaarzetten…',
             close: 'Quiz verlaten',
             roundLabel: 'Ronde {{round}} · {{kind}}',
+            // De ene zin onder het speelveld van het gedeelde scherm, die zegt wat deze ronde van de tafel vraagt.
+            rules: {
+                open: 'De quizmaster leest voor en bepaalt op de telefoon wie het goed had. Fout? De vraag schuift door naar de volgende speler.',
+                choice: 'Geen quizmaster deze ronde. Wie aan de beurt is tikt zelf een letter op de telefoon. Fout? De vraag schuift door, de vergooide optie blijft weg.',
+                closest: 'Iedereen tikt één getal in. Dubbele getallen mogen. Wie er het dichtst bij zit pakt 2 punten — bij gelijke afstand krijgen ze het allebei.',
+                describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor allebei. Daarna één bonusgok per overige speler.',
+                list: 'Eén speler noemt er vier, de quizmaster vinkt af. 20 seconden, 1 punt per goed antwoord. Wat overblijft gaat naar de bonusgokken.',
+                doubleDown: 'Wie aan de beurt is kiest zelf de zwaarte. Daarna leest de quizmaster de vraag voor en beoordeelt die — fout schuift door naar de volgende speler.',
+                finale: 'Zes open vragen, om en om. Fout? De vraag gaat naar de ander. Wie na de laatste vraag voorstaat wint de avond.'
+            },
             rounds: {
                 open: 'Open',
                 choice: 'Meerkeuze',

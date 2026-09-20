@@ -73,7 +73,8 @@ export default function QuizzerIndexPage() {
                     action={t('pubquizr.index.centralScreen.action')}
                     description={t('pubquizr.index.centralScreen.description')}
                     icon='tv'
-                    onPress={() => {}} // Central screen flow isn't built yet.
+                    // The room opens with the screen switched on, so the host never has to find the toggle.
+                    onPress={() => router.push(ROUTES.quizzerScreenRoom as RelativePathString)}
                     title={t('pubquizr.index.centralScreen.title')}
                 />
             </View>

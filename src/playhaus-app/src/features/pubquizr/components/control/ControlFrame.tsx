@@ -1,3 +1,4 @@
+import TextHint from "@/components/text/TextHint";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -24,7 +25,11 @@ export interface ControlTurn {
 
 interface Props {
     children: ReactNode
+    /** The band's right-hand slot: the screen pill, when the table has a screen. */
+    chip?: ReactNode
     label: string
+    /** One line under the band, for a phone whose job the screen has taken over. */
+    note?: string
     onClose: () => void
     segments: SegmentState[]
     /** The turn as the room knows it, and null on a phone whose own board draws the strip. */
@@ -32,7 +37,7 @@ interface Props {
 }
 
 // The top of every controller: the way out, where the evening has got to, and the turn.
-export default function ControlFrame({ children, label, onClose, segments, turn }: Props) {
+export default function ControlFrame({ children, chip, label, note, onClose, segments, turn }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -42,8 +47,14 @@ export default function ControlFrame({ children, label, onClose, segments, turn 
                 onClose={onClose}
                 closeLabel={t('pubquizr.play.close')}
                 label={label}
+                // A note reads right under the band, which the fill would otherwise run across.
+                overlap={note === undefined ? undefined : 0}
                 segments={segments}
-            />
+            >
+                {chip}
+            </InGameHeader>
+
+            {note !== undefined && <TextHint text={note} />}
 
             {turn !== null && <TurnStrip {...turn} />}
 

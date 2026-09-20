@@ -4,16 +4,21 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import RoomClosedNotice from "@/components/ui/RoomClosedNotice";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
+import { useScreenGuest } from "@/features/auth/useScreenGuest";
 import { useT } from "@/features/i18n/LanguageContext";
 import TableBoard from "@/features/pubquizr/components/table/TableBoard";
 import TableFrame from "@/features/pubquizr/components/table/TableFrame";
 import TableLobby from "@/features/pubquizr/components/table/TableLobby";
 import { useTableScale } from "@/features/pubquizr/multi-device/table-scale";
 import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
+import { lobbyPlayersOf } from "@/features/pubquizr/multi-device/table-players";
 import { lobbySeatsOf } from "@/features/pubquizr/seats";
+import { useLandscape } from "@/features/screen/use-landscape";
+import { useScreenLanguage } from "@/features/screen/useScreenLanguage";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { useLocalSearchParams } from "expo-router";
+import { useKeepAwake } from "expo-keep-awake";
+import { useLocalSearchParams, type RelativePathString } from "expo-router";
 import { View } from "react-native";
 
 // The shared screen. It reads the room and never writes to it, so it holds no seat and closing it costs the table nothing.
@@ -23,10 +28,39 @@ export default function QuizzerTablePage() {
     const theme = useTheme();
     const t = useT();
 
+    // Nobody types on a television, nobody wakes it up again, and the board is drawn wider than it is tall.
+    const guest = useScreenGuest();
+    useKeepAwake();
+    useLandscape();
+
     const scale = useTableScale();
     const state = useQuizTable(code);
 
     const { lobby } = state;
+
+    // The room was set up in a language, and the screen is read by the people sitting in it.
+    useScreenLanguage(lobby?.setup.locale);
+
+    if (guest.failed) {
+        return (
+            <View style={styles.screen}>
+                <BackButton href={ROUTES.tvDoor as RelativePathString} />
+
+                <InlineNotification
+                    icon='alert-triangle'
+                    color={theme.colors.blush}
+                    title={t('common.failed')}
+                    message={t('pubquizr.table.setup.signInFailed')}
+                >
+                    <TextButton text={t('common.retry')} onPress={guest.retry} />
+                </InlineNotification>
+            </View>
+        )
+    }
+
+    if (guest.signing) {
+        return <LoadingPage message={t('pubquizr.table.setup.signingIn')} />;
+    }
 
     if (state.closed) {
         return (
@@ -58,11 +92,27 @@ export default function QuizzerTablePage() {
         return <LoadingPage message={t('pubquizr.table.connecting')} />;
     }
 
+    // A device holding a seat is skipped by its own phone's frames, so this screen would quietly miss half the evening.
+    if (state.mySeat !== null && state.mySeat >= 0) {
+        return (
+            <View style={styles.screen}>
+                <BackButton href={ROUTES.quizzerTableDoor} />
+
+                <InlineNotification
+                    icon='tv'
+                    color={theme.colors.lemon}
+                    title={t('pubquizr.table.setup.alreadyPlayingTitle')}
+                    message={t('pubquizr.table.setup.alreadyPlaying')}
+                />
+            </View>
+        )
+    }
+
     const seats = lobbySeatsOf(lobby.players);
 
     if (state.sessionId === undefined) {
         return (
-            <TableFrame code={lobby.code} scale={scale} seats={seats}>
+            <TableFrame code={lobby.code} players={lobbyPlayersOf(seats)} scale={scale}>
                 <TableLobby
                     code={lobby.code}
                     minPlayers={lobby.minPlayers}

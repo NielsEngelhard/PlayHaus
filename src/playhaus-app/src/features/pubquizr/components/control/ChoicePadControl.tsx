@@ -3,13 +3,15 @@ import TextHint from "@/components/text/TextHint";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { Brand } from "@/constants/theme";
+import { Brand, FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
+import SeatAvatar from "@/components/ui/SeatAvatar";
 import type { ChoiceOption, HotSeatTurn } from "@/features/pubquizr/hot-seat";
 import type { PQEmit, PQPick } from "@/features/pubquizr/multi-device/control";
+import { seatAt, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
@@ -18,6 +20,8 @@ import { View } from "react-native";
 interface Props {
     /** The frame draws the strip, so this board leaves it out. */
     bare?: boolean
+    /** With a shared screen the options are on it, so this pad is four letters and nothing else. */
+    letters?: boolean
     /** A settle is already in the air. */
     busy: boolean
     /** Says one thing about the question this phone is looking at. */
@@ -29,13 +33,15 @@ interface Props {
     onSettle: (missedSeats: number[], correctSeat: number | null, chosenAnswerId: string) => void
     /** Every pick taken on this question, whoever's phone took it. */
     picks: PQPick[]
+    /** The table, for naming whoever spent an option. Only the letters pad needs it. */
+    seats?: Seat[]
     /** Which round this is, for the strip. */
     round: number
     turn: HotSeatTurn
 }
 
 // Round 2 on the answerer's own phone: four options, judged the instant one is tapped, because `correct` is already in the quiz every device holds.
-export default function ChoicePadControl({ bare, busy, emit, error, missed, onSettle, picks, round, turn }: Props) {
+export default function ChoicePadControl({ bare, busy, emit, error, letters = false, missed, onSettle, picks, round, seats, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -61,6 +67,12 @@ export default function ChoicePadControl({ bare, busy, emit, error, missed, onSe
 
     // Whatever an earlier seat already tried, which is no longer worth offering.
     const spent = new Set(picks.map(pick => pick.answerId));
+    // Who burned each one, which the letters pad says out loud because the text is on the screen rather than here.
+    const spentBy = new Map(picks.flatMap(pick => {
+        const seat = seatAt(seats ?? [], pick.seat);
+
+        return seat === null ? [] : [[pick.answerId, seat] as const];
+    }));
 
     function pick(option: ChoiceOption) {
         if (busy || mine !== null || spent.has(option.id)) return;
@@ -110,12 +122,16 @@ export default function ChoicePadControl({ bare, busy, emit, error, missed, onSe
                 />
             )}
 
-            <ScriptCard
-                prompt={turn.question.prompt}
-                cue={t('pubquizr.control.pickAnswer')}
-                fills={false}
-                size={21}
-            />
+            {letters ? (
+                <AppText style={styles.cue}>{t('pubquizr.control.lettersCue')}</AppText>
+            ) : (
+                <ScriptCard
+                    prompt={turn.question.prompt}
+                    cue={t('pubquizr.control.pickAnswer')}
+                    fills={false}
+                    size={21}
+                />
+            )}
 
             {error !== null && (
                 <InlineNotification
@@ -134,6 +150,8 @@ export default function ChoicePadControl({ bare, busy, emit, error, missed, onSe
                         <ChoiceOptionButton
                             key={option.id}
                             option={option}
+                            letters={letters}
+                            spentBy={spentBy.get(option.id) ?? null}
                             gone={gone}
                             judged={judged}
                             disabled={busy || mine !== null || gone}
@@ -159,6 +177,10 @@ export default function ChoicePadControl({ bare, busy, emit, error, missed, onSe
 
 interface OptionButtonProps {
     option: ChoiceOption
+    /** The letter alone, big enough to hit without looking, because the option's text is on the screen. */
+    letters: boolean
+    /** Who spent it, for the line under a letters pad. */
+    spentBy: Seat | null
     gone: boolean
     judged: boolean
     disabled: boolean
@@ -168,7 +190,7 @@ interface OptionButtonProps {
 }
 
 // Its own component so each option in the pad gets its own press/hover animation state.
-function ChoiceOptionButton({ option, gone, judged, disabled, onPress, label, styles }: OptionButtonProps) {
+function ChoiceOptionButton({ option, letters, spentBy, gone, judged, disabled, onPress, label, styles }: OptionButtonProps) {
     const pop = usePressPop();
 
     return (
@@ -188,18 +210,30 @@ function ChoiceOptionButton({ option, gone, judged, disabled, onPress, label, st
                 pop.animatedStyle
             ]}
         >
-            <View style={styles.letter}>
-                <AppText style={[styles.letterText, judged && styles.onFill]}>
+            {letters ? (
+                <AppText style={[styles.bigLetter, judged && styles.onFill, gone && styles.struck]}>
                     {option.letter}
                 </AppText>
-            </View>
+            ) : (
+                <>
+                    <View style={styles.letter}>
+                        <AppText style={[styles.letterText, judged && styles.onFill]}>
+                            {option.letter}
+                        </AppText>
+                    </View>
 
-            <AppText style={[styles.text, judged && styles.onFill, gone && styles.struck]}>
-                {option.text}
-            </AppText>
+                    <AppText style={[styles.text, judged && styles.onFill, gone && styles.struck]}>
+                        {option.text}
+                    </AppText>
+                </>
+            )}
+
+            {letters && spentBy !== null && <SeatAvatar seat={spentBy} size={SPENT_AVATAR} />}
         </AnimatedPressable>
     )
 }
+
+const SPENT_AVATAR = 24;
 
 const useStyles = createThemedStyles(theme => ({
     // The middle of the board grows and everything else does not.
@@ -214,6 +248,24 @@ const useStyles = createThemedStyles(theme => ({
         flex: 1,
         minHeight: 0,
         gap: 10
+    },
+
+    cue: {
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        letterSpacing: 1.4,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        color: theme.colors.focus
+    },
+
+    // The letter carries the whole button when the option's text is on the screen instead.
+    bigLetter: {
+        flex: 1,
+        fontSize: 44,
+        fontWeight: 900,
+        textAlign: 'center',
+        color: theme.colors.text
     },
 
     // Every option is the same size, so the pad can be tapped without looking at it.

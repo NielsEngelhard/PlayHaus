@@ -12,6 +12,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
 import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
+import { screenUrl } from "@/features/screen/screen-url";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
@@ -35,6 +36,9 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
     const { user } = useAuth();
 
     const [inviting, setInviting] = useState(false);
+
+    // What to read out to whoever is holding the television remote, and null on a build that knows no address.
+    const screen = screenUrl();
 
     // Seeded from the room, so a host coming back to it sees what they already picked.
     const selected = useSelectedQuiz(lobby.setup.quizId);
@@ -78,7 +82,9 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                     icon='airplay'
                     color={theme.colors.mint}
                     title={t('pubquizr.lobby.screenHint.title')}
-                    message={t('pubquizr.lobby.screenHint.message')}
+                    message={screen === null
+                        ? t('pubquizr.lobby.screenHint.message')
+                        : t('pubquizr.lobby.screenHint.messageUrl', { code: lobby.code, url: screen })}
                 />
             )}
 

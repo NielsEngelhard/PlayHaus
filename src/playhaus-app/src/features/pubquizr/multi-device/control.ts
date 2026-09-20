@@ -36,7 +36,9 @@ export type PQControlFrame =
     // The round has been opened by the phone that reads its questions: the table has read the rules and play can start.
     | PQFrameBase & { kind: 'gate', round: number }
     // Without a shared screen: the seats that have read this turn's rules and said so. Merged rather than replaced, because each phone only says itself.
-    | PQFrameBase & { kind: 'ready', seats: number[] };
+    | PQFrameBase & { kind: 'ready', seats: number[] }
+    // Round 4 only: what became of each word, by seat. Never a word itself -- the screen reads those off the quiz, and the wire has no business carrying them.
+    | PQFrameBase & { kind: 'recap', words: { id: string, seat: number | null }[] };
 
 // One frame as the phone that made it hands it over: the server stamps the seat and the clock is read on the way out.
 type Authored<F> = F extends unknown ? Omit<F, 'at' | 'seat'> : never;
@@ -57,6 +59,8 @@ export interface ControlState {
     questionId: string | null
     /** Every seat that has said it is ready for this question's turn. */
     ready: number[]
+    /** Round 4's words and who was credited with each, once the describer has ruled on them. */
+    recap: { id: string, seat: number | null }[]
     revealed: boolean
     stage: PQStage
     walk: { answeringSeat: number, missedSeats: number[] } | null
@@ -71,6 +75,7 @@ export const EMPTY_CONTROL: ControlState = {
     picks: [],
     questionId: null,
     ready: [],
+    recap: [],
     revealed: false,
     stage: 'covered',
     walk: null
@@ -108,6 +113,8 @@ export function applyControl(state: ControlState, frame: PQControlFrame): Contro
             return { ...base, awarded: frame.awarded, awardedIds: frame.ids };
         case 'ready':
             return { ...base, ready: [...new Set([...base.ready, ...frame.seats])] };
+        case 'recap':
+            return { ...base, recap: frame.words };
     }
 }
 
@@ -163,4 +170,11 @@ export function readySeatsOn(state: ControlState, questionId: string): number[] 
     if (state.questionId !== questionId) return [];
 
     return state.ready;
+}
+
+/** What became of each of round 4's words, and empty when the frames are about another turn. */
+export function recapOn(state: ControlState, questionId: string): { id: string, seat: number | null }[] {
+    if (state.questionId !== questionId) return [];
+
+    return state.recap;
 }

@@ -1,12 +1,14 @@
-import AppText from "@/components/text/AppText";
-import SeatAvatar from "@/components/ui/SeatAvatar";
 import { useT } from "@/features/i18n/LanguageContext";
 import TableAnswer from "@/features/pubquizr/components/table/TableAnswer";
 import TableClosestProgress from "@/features/pubquizr/components/table/TableClosestProgress";
+import TableChoosing from "@/features/pubquizr/components/table/TableChoosing";
 import TableClosestResult from "@/features/pubquizr/components/table/TableClosestResult";
+import TableDescribeClock from "@/features/pubquizr/components/table/TableDescribeClock";
+import TableDescribeRecap from "@/features/pubquizr/components/table/TableDescribeRecap";
 import TableFinalists from "@/features/pubquizr/components/table/TableFinalists";
 import TableFinalResults from "@/features/pubquizr/components/table/TableFinalResults";
 import TableList from "@/features/pubquizr/components/table/TableList";
+import TableMissed from "@/features/pubquizr/components/table/TableMissed";
 import TableOptions from "@/features/pubquizr/components/table/TableOptions";
 import TableQuestion from "@/features/pubquizr/components/table/TableQuestion";
 import TableRoundIntro from "@/features/pubquizr/components/table/TableRoundIntro";
@@ -20,21 +22,20 @@ import {
     endsAtOn,
     missedSeatsOf,
     picksOf,
+    recapOn,
     roundOpenOn,
     type ControlState
 } from "@/features/pubquizr/multi-device/control";
 import type { QuizDetail } from "@/features/pubquizr/pubquizr-quizzes";
 import type { PQClosestProgress, PQClosestReveal, QuizSession } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
-import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
+import { DESCRIBE_WORD_POINTS, describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { View } from "react-native";
 
 interface Props {
     /** How far round 3's typing has got, and null in every other round. */
@@ -51,7 +52,6 @@ interface Props {
 
 // The only per-round logic on the shared screen. Every branch reads, and none of them can be pressed.
 export default function TableStage({ closest, control, quiz, reveal, scale, session }: Props) {
-    const styles = useStyles();
     const t = useT();
 
     if (session.status === 'completed') {
@@ -106,8 +106,16 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
         // The finale is the one round the table wants both names at once, which the roles corner cannot give them.
         const finalists = round === ROUND_FINALE ? finalistsOf(session, seats) : null;
 
+        // Round 6's question carries the weight the player asked for rather than what every question of its round pays.
+        const weight = hotSeat.question.difficulty;
+        const note = weight === undefined ? undefined : t('pubquizr.table.weightChip', {
+            weight: weight === 'hard' ? t('pubquizr.board.hard') : t('pubquizr.board.easy'),
+            points: hotSeat.worth
+        });
+
         return (
             <TableQuestion
+                note={note}
                 number={hotSeat.number}
                 prompt={hotSeat.question.prompt}
                 scale={scale}
@@ -126,7 +134,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                             seats={seats}
                         />
                     )
-                    : missed.length > 0 && <Missed missed={missed} scale={scale} />}
+                    : missed.length > 0 && <TableMissed missed={missed} scale={scale} />}
 
                 {revealed && (
                     <TableAnswer
@@ -142,17 +150,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
 
     // Round 6 before anybody has picked: whose choice it is, and nothing of the question, because there is not one yet.
     if (round === ROUND_DOUBLE_DOWN) {
-        const asking = seatAt(seats, session.answeringSeat);
-
-        return (
-            <TableWaiting
-                message={asking === null
-                    ? t('pubquizr.table.followPhones')
-                    : t('pubquizr.table.choosing', { name: asking.name })}
-                scale={scale}
-                seat={asking}
-            />
-        )
+        return <TableChoosing asking={seatAt(seats, session.answeringSeat)} scale={scale} />;
     }
 
     const closestTurn = round === ROUND_CLOSEST ? closestTurnOf(session, quiz) : null;
@@ -172,9 +170,9 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                 worth={closestTurn.worth}
             >
                 <TableClosestProgress
-                    guessing={closestTurn.guessing}
+                    done={closestTurn.guessing.filter(seat => seatsIn.includes(seat.seat)).length}
                     scale={scale}
-                    seatsIn={seatsIn}
+                    total={closestTurn.guessing.length}
                 />
             </TableQuestion>
         )
@@ -187,26 +185,38 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
         const questionId = describe.words[0].dealt.id;
         const endsAt = endsAtOn(control, questionId);
         const awarded = awardedOn(control, questionId);
-        const { brief, kind } = roundKindAndRule(t, round, session.zenMode);
+        const settled = control.questionId === questionId && control.stage === 'settling';
+
+        // Only once the describer has ruled on the clock: until then the words are theirs alone.
+        if (settled) {
+            const credited = recapOn(control, questionId);
+            const words = describe.words.map(word => ({
+                word: word.word,
+                winner: seatAt(seats, credited.find(entry => entry.id === word.dealt.id)?.seat ?? null)
+            }));
+
+            // What the describer takes is a point per word guessed, not what the turn pays the pair of them.
+            const won = words.filter(word => word.winner !== null).length * DESCRIBE_WORD_POINTS;
+
+            return (
+                <TableDescribeRecap
+                    describer={describe.describer}
+                    points={won === 1 ? t('pubquizr.board.onePoint') : t('pubquizr.board.pointsWorth', { points: won })}
+                    scale={scale}
+                    words={words}
+                />
+            )
+        }
 
         return (
-            <TableRoundIntro
-                brief={brief}
-                kind={kind}
-                quizmaster={describe.describer}
-                round={roundOrdinalOf(session)}
+            <TableDescribeClock
+                awarded={awarded}
+                describer={describe.describer}
+                endsAt={endsAt}
+                guesser={describe.guesser}
                 scale={scale}
-                totalRounds={session.totalRounds}
-            >
-                {endsAt !== null && <TableTimer endsAt={endsAt} scale={scale} />}
-
-                {/* A count and never a word: the list is the describer's secret, so the rules are all the table gets. */}
-                {awarded > 0 && (
-                    <AppText style={[styles.count, { fontSize: Math.round(22 * scale) }]}>
-                        {t('pubquizr.table.gotSoFar', { awarded, total: describe.words.length })}
-                    </AppText>
-                )}
-            </TableRoundIntro>
+                total={describe.words.length}
+            />
         )
     }
 
@@ -238,49 +248,3 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
     return <TableWaiting message={t('pubquizr.table.followPhones')} scale={scale} />;
 }
 
-interface MissedProps {
-    missed: Seat[]
-    scale: number
-}
-
-// Everybody the question has already beaten, in the order it reached them.
-function Missed({ missed, scale }: MissedProps) {
-    const styles = useStyles();
-    const t = useT();
-
-    return (
-        <View style={[styles.row, { gap: Math.round(10 * scale) }]}>
-            <AppText style={[styles.label, { fontSize: Math.round(10 * scale) }]}>
-                {t('pubquizr.table.missed')}
-            </AppText>
-
-            {missed.map(seat => (
-                <View key={seat.seat} style={styles.faded}>
-                    <SeatAvatar seat={seat} size={Math.round(30 * scale)} />
-                </View>
-            ))}
-        </View>
-    )
-}
-
-const useStyles = createThemedStyles(theme => ({
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    label: {
-        fontWeight: 800,
-        textTransform: 'uppercase',
-        letterSpacing: 1.8,
-        color: theme.colors.textMuted
-    },
-    // Struck out is not a thing an avatar can be, so a miss reads as faded instead.
-    faded: {
-        opacity: 0.45
-    },
-    count: {
-        fontWeight: 900,
-        textAlign: 'center',
-        color: theme.colors.text
-    }
-}))

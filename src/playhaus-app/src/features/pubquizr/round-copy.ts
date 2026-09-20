@@ -21,43 +21,43 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen 
         case ROUND_CHOICE:
             return {
                 kind: t('pubquizr.play.rounds.choice'),
-                rule: '',
+                rule: t('pubquizr.play.rules.choice'),
                 brief: t('pubquizr.play.intro.briefChoice')
             };
         case ROUND_CLOSEST:
             return {
                 kind: t('pubquizr.play.rounds.closest'),
-                rule: '',
+                rule: t('pubquizr.play.rules.closest'),
                 brief: t('pubquizr.play.intro.briefClosest')
             };
         case ROUND_DESCRIBE:
             return {
                 kind: t('pubquizr.play.rounds.describe'),
-                rule: '',
+                rule: t('pubquizr.play.rules.describe'),
                 brief: t('pubquizr.play.intro.briefDescribe')
             };
         case ROUND_LIST:
             return {
                 kind: t('pubquizr.play.rounds.list'),
-                rule: '',
+                rule: t('pubquizr.play.rules.list'),
                 brief: zen ? t('pubquizr.play.intro.briefListZen') : t('pubquizr.play.intro.briefList')
             };
         case ROUND_DOUBLE_DOWN:
             return {
                 kind: t('pubquizr.play.rounds.doubleDown'),
-                rule: '',
+                rule: t('pubquizr.play.rules.doubleDown'),
                 brief: t('pubquizr.play.intro.briefDoubleDown')
             };
         case ROUND_FINALE:
             return {
                 kind: t('pubquizr.play.rounds.finale'),
-                rule: '',
+                rule: t('pubquizr.play.rules.finale'),
                 brief: t('pubquizr.play.intro.briefFinale')
             };
         default:
             return {
                 kind: t('pubquizr.play.rounds.open'),
-                rule: '',
+                rule: t('pubquizr.play.rules.open'),
                 brief: t('pubquizr.play.intro.briefOpen')
             };
     }

@@ -19,8 +19,13 @@ export const ROUTES = {
     quizzerOneDeviceGameSettings: "/games/quizzer/one-device",
     quizzerOneDeviceSession: (sessionId: string) => `/games/quizzer/one-device/${sessionId}`,
     quizzerMultiDeviceGameSettings: "/games/quizzer/room",
+    // The same room maker, opened for a table that is putting the quiz on a screen.
+    quizzerScreenRoom: "/games/quizzer/screen",
     quizzerRoom: (code: string) => `/games/quizzer/room/${code}`,
     quizzerTableDoor: "/games/quizzer/table",
+    // The short way in for a television remote, which lands on the same door.
+    tvDoor: "/tv",
+    tv: (code: string) => `/tv/${code}`,
     quizzerTable: (code: string) => `/games/quizzer/table/${code}`,
 
     // One of us

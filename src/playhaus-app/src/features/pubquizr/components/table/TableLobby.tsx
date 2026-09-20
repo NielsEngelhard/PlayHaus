@@ -1,6 +1,5 @@
 import AppText from "@/components/text/AppText";
 import QrCode from "@/components/ui/QrCode";
-import SeatAvatar from "@/components/ui/SeatAvatar";
 import { PUBQUIZR } from "@/constants/games";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -18,7 +17,7 @@ interface Props {
     seats: Seat[]
 }
 
-// The waiting room, on the shared screen: how to get in, and who already is.
+// The waiting room, on the shared screen: how to get in. Who already is in is on the bar above it.
 export default function TableLobby({ code, minPlayers, scale, seats }: Props) {
     const styles = useStyles();
     const t = useT();
@@ -44,18 +43,6 @@ export default function TableLobby({ code, minPlayers, scale, seats }: Props) {
                 </View>
 
                 <QrCode value={link} size={Math.round(200 * scale)} />
-            </View>
-
-            <View style={[styles.roster, { gap: Math.round(Spacing.four * scale) }]}>
-                {seats.map(seat => (
-                    <View key={seat.seat} style={[styles.player, { maxWidth: Math.round(140 * scale) }]}>
-                        <SeatAvatar raised seat={seat} size={Math.round(52 * scale)} />
-
-                        <AppText numberOfLines={1} style={[styles.name, { fontSize: Math.round(15 * scale) }]}>
-                            {seat.name}
-                        </AppText>
-                    </View>
-                ))}
             </View>
 
             <AppText style={[styles.waiting, { fontSize: Math.round(16 * scale) }]}>
@@ -94,19 +81,6 @@ const useStyles = createThemedStyles(theme => ({
         marginTop: Spacing.two,
         fontWeight: 500,
         color: theme.colors.textSecondary
-    },
-    roster: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-    },
-    player: {
-        alignItems: 'center',
-        gap: Spacing.two
-    },
-    name: {
-        fontWeight: 800,
-        color: theme.colors.text
     },
     waiting: {
         fontWeight: 700,

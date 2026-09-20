@@ -4,7 +4,9 @@ import GuestLanguageChoice from "@/features/auth/components/GuestLanguageChoice"
 import GuestUsernameChoice from "@/features/auth/components/GuestUsernameChoice";
 import LoginForm from "@/features/auth/components/LoginForm";
 import SignupForm from "@/features/auth/components/SignupForm";
+import { isScreenRoute } from "@/features/auth/silent-routes";
 import { useAuth } from "@/features/auth/useAuth";
+import { usePathname } from "expo-router";
 import { useState } from "react";
 
 type GateView = 'guest' | 'username' | 'login' | 'signup';
@@ -12,9 +14,13 @@ type GateView = 'guest' | 'username' | 'login' | 'signup';
 // The popup that stands in front of the app until you are signed in.
 export default function AuthGate() {
     const { status } = useAuth();
+    const pathname = usePathname();
 
     // Gone entirely rather than merely hidden, for two reasons.
     if (status !== 'signedOut') return null;
+
+    // A shared screen never sees the sheet: the door needs no account, and the room behind it signs itself in.
+    if (isScreenRoute(pathname)) return null;
 
     return <AuthGateSheet />;
 }

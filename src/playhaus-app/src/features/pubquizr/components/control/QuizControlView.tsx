@@ -7,6 +7,7 @@ import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
+import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuizBoardView from "@/features/pubquizr/components/board/QuizBoardView";
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
@@ -14,13 +15,14 @@ import ChoiceReadOut from "@/features/pubquizr/components/control/ChoiceReadOut"
 import ClosestGuessControl from "@/features/pubquizr/components/control/ClosestGuessControl";
 import ClosestSettleControl from "@/features/pubquizr/components/control/ClosestSettleControl";
 import ControlFrame, { type ControlTurn } from "@/features/pubquizr/components/control/ControlFrame";
-import ControlWaiting from "@/features/pubquizr/components/control/ControlWaiting";
+import ControlWatch from "@/features/pubquizr/components/control/ControlWatch";
+import ScreenChip from "@/features/pubquizr/components/control/ScreenChip";
 import DescribeControl from "@/features/pubquizr/components/control/DescribeControl";
 import DoubleDownControl from "@/features/pubquizr/components/control/DoubleDownControl";
 import HotSeatControl from "@/features/pubquizr/components/control/HotSeatControl";
 import ListControl from "@/features/pubquizr/components/control/ListControl";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
-import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
+import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE, type HotSeatTurn } from "@/features/pubquizr/hot-seat";
 import { missedSeatsOf, picksOf, roundOpenOn } from "@/features/pubquizr/multi-device/control";
 import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
@@ -61,6 +63,27 @@ function stripOf(
         total: turn.total,
         worth: turn.worth
     };
+}
+
+/** Where this phone comes in the walk, as a word rather than a number, which keeps i18next out of plural mode. */
+function placeIn(t: ReturnType<typeof useT>, walking: HotSeatTurn | null, mySeat: number | null): string | null {
+    if (walking === null || mySeat === null) return null;
+
+    const place = walking.remaining.findIndex(seat => seat.seat === mySeat);
+    const words: TranslationKey[] = [
+        'pubquizr.control.ordinal.first',
+        'pubquizr.control.ordinal.second',
+        'pubquizr.control.ordinal.third',
+        'pubquizr.control.ordinal.fourth',
+        'pubquizr.control.ordinal.fifth',
+        'pubquizr.control.ordinal.sixth',
+        'pubquizr.control.ordinal.seventh',
+        'pubquizr.control.ordinal.eighth'
+    ];
+
+    const word = words[place];
+
+    return word === undefined ? null : t(word);
 }
 
 // What a phone with nothing to press is waiting for.
@@ -167,10 +190,10 @@ export default function QuizControlView({ code }: Props) {
         }
 
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
-                <ControlWaiting
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
+                <ControlWatch
                     message={t('pubquizr.control.roundStarting', { name: master.name })}
-                    prompt={null}
+                    place={null}
                     seat={master}
                 />
             </ControlFrame>
@@ -216,11 +239,13 @@ export default function QuizControlView({ code }: Props) {
     // Round 2 is scored on the answerer's own phone, which is the one round where the pad follows the walk instead of a seat.
     if (hotSeat !== null && round === ROUND_CHOICE && asked !== null && table.mySeat === asked.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <ChoicePadControl
                     busy={table.ruling}
                     emit={table.emit}
                     error={table.rulingError}
+                    letters
+                    seats={seats}
                     missed={walked}
                     picks={picksOf(control, hotSeat.dealt.id)}
                     round={round}
@@ -234,7 +259,7 @@ export default function QuizControlView({ code }: Props) {
     // Round 2's quizmaster reads it out and judges nothing, so their phone has nothing on it to press.
     if (hotSeat !== null && round === ROUND_CHOICE && table.mySeat === hotSeat.quizmaster.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <ChoiceReadOut
                     answering={asked ?? hotSeat.answering}
                     round={round}
@@ -247,7 +272,7 @@ export default function QuizControlView({ code }: Props) {
     // The quizmaster's own walk lives on their phone, so their board brings its own strip.
     if (hotSeat !== null && round !== ROUND_CHOICE && table.mySeat === hotSeat.quizmaster.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} note={t('pubquizr.control.alsoOnScreen')} onClose={leave} segments={segments} turn={null}>
                 <HotSeatControl
                     busy={table.ruling}
                     emit={table.emit}
@@ -263,7 +288,7 @@ export default function QuizControlView({ code }: Props) {
     // The one round whose phone is still a whole board, because the words on it are its owner's secret.
     if (describe !== null && table.mySeat === describe.describer.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <DescribeControl
                     busy={table.ruling}
                     emit={table.emit}
@@ -278,7 +303,7 @@ export default function QuizControlView({ code }: Props) {
 
     if (list !== null && table.mySeat === list.quizmaster.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} note={t('pubquizr.control.alsoOnScreen')} onClose={leave} segments={segments} turn={null}>
                 <ListControl
                     busy={table.ruling}
                     emit={table.emit}
@@ -294,7 +319,7 @@ export default function QuizControlView({ code }: Props) {
     // The reader closes round 3, and at the smallest table that is somebody who guessed too -- so their own number goes in by hand.
     if (closest !== null && table.mySeat === closest.quizmaster.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} note={t('pubquizr.control.alsoOnScreen')} onClose={leave} segments={segments} turn={null}>
                 <ClosestSettleControl
                     busy={table.ruling}
                     error={table.rulingError}
@@ -309,7 +334,7 @@ export default function QuizControlView({ code }: Props) {
 
     if (closest !== null && closest.guessing.some(seat => seat.seat === table.mySeat)) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <ClosestGuessControl
                     busy={table.guessing}
                     error={table.guessError}
@@ -326,7 +351,7 @@ export default function QuizControlView({ code }: Props) {
     if (asking !== null && asking.answering !== null && asking.quizmaster !== null
         && table.mySeat === asking.answering.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <DoubleDownControl
                     answering={asking.answering}
                     busy={table.ruling}
@@ -345,7 +370,7 @@ export default function QuizControlView({ code }: Props) {
     // Once it is pinned round 6 is an open question like any other, walked and judged on the reader's phone.
     if (doubleDown !== null && table.mySeat === doubleDown.quizmaster.seat) {
         return (
-            <ControlFrame label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame chip={<ScreenChip />} label={label} note={t('pubquizr.control.alsoOnScreen')} onClose={leave} segments={segments} turn={null}>
                 <HotSeatControl
                     busy={table.ruling}
                     emit={table.emit}
@@ -375,11 +400,10 @@ export default function QuizControlView({ code }: Props) {
     }
 
     return (
-        <ControlFrame label={label} onClose={leave} segments={segments} turn={turn}>
-            <ControlWaiting
+        <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={turn}>
+            <ControlWatch
                 message={waitingMessage(t, answering, table.mySeat)}
-                // Never round 4's words, which belong to the describer alone.
-                prompt={walking?.question.prompt ?? list?.question.prompt ?? null}
+                place={placeIn(t, walking, table.mySeat)}
                 seat={answering}
             />
         </ControlFrame>

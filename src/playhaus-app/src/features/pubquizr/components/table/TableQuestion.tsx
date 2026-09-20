@@ -8,6 +8,8 @@ import { View } from "react-native";
 interface Props {
     // Whatever belongs under the question: the walk it has been on, the reveal, round 2's options.
     children?: ReactNode
+    /** Said on the chip instead of what the question pays, for round 6's weight. */
+    note?: string
     /** 1-based: question 3 of 8. */
     number: number
     prompt: string
@@ -19,7 +21,7 @@ interface Props {
 }
 
 // The question as the whole table reads it. No cue: "read this out" belongs on the quizmaster's phone.
-export default function TableQuestion({ children, number, prompt, scale, total, worth }: Props) {
+export default function TableQuestion({ children, note, number, prompt, scale, total, worth }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -31,7 +33,7 @@ export default function TableQuestion({ children, number, prompt, scale, total, 
                     {t('pubquizr.play.questionTotal', { total })}
                 </AppText>
 
-                {worth > 0 && (
+                {(note !== undefined || worth > 0) && (
                     <View
                         style={[
                             styles.chip,
@@ -42,7 +44,7 @@ export default function TableQuestion({ children, number, prompt, scale, total, 
                         ]}
                     >
                         <AppText style={[styles.worth, { fontSize: Math.round(11 * scale) }]}>
-                            {t('pubquizr.play.worthPoints', { worth })}
+                            {note ?? t('pubquizr.play.worthPoints', { worth })}
                         </AppText>
                     </View>
                 )}
