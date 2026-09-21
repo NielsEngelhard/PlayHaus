@@ -36,7 +36,7 @@ export default function SketchOffIndexPage() {
                     chip={SKETCH_OFF.minMaxPlayersIndicator}
                     description={t('sketchOff.index.multiplayer.description')}
                     action={t('sketchOff.index.multiplayer.action')}
-                    navigationUrl={ROUTES.fakeFillerCreateRoom}
+                    navigationUrl={ROUTES.sketchOffCreateRoom}
                 />
             </View>
 

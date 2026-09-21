@@ -128,7 +128,7 @@ export const SKETCH_OFF: Game = {
     mainCategoryIndicatorKey: 'games.sketchOff.mainCategory',
     descriptionKey: 'games.sketchOff.description',
     deviceMode: 'perPlayer',
-    playable: false,
+    playable: true,
     navigationUrl: ROUTES.sketchOffIndex,
     // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game in `GAMES` that claims a character.
     joinCodePrefix: 'S',
