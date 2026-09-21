@@ -834,13 +834,12 @@ export const nl: Catalog = {
             loading: 'De tafel klaarzetten…',
             close: 'Quiz verlaten',
             roundLabel: 'Ronde {{round}} · {{kind}}',
-            // De ene zin onder het speelveld van het gedeelde scherm, die zegt wat deze ronde van de tafel vraagt.
             rules: {
                 open: 'De quizmaster leest voor en bepaalt op de telefoon wie het goed had. Fout? De vraag schuift door naar de volgende speler.',
                 choice: 'Geen quizmaster deze ronde. Wie aan de beurt is tikt zelf een letter op de telefoon. Fout? De vraag schuift door, de vergooide optie blijft weg.',
                 closest: 'Iedereen tikt één getal in. Dubbele getallen mogen. Wie er het dichtst bij zit pakt 2 punten — bij gelijke afstand krijgen ze het allebei.',
                 describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor allebei. Daarna één bonusgok per overige speler.',
-                list: 'Eén speler noemt er vier, de quizmaster vinkt af. 20 seconden, 1 punt per goed antwoord. Wat overblijft gaat naar de bonusgokken.',
+                list: 'Eén onderwerp. Vier trefwoorden.',
                 doubleDown: 'Wie aan de beurt is kiest zelf de zwaarte. Daarna leest de quizmaster de vraag voor en beoordeelt die — fout schuift door naar de volgende speler.',
                 finale: 'Zes open vragen, om en om. Fout? De vraag gaat naar de ander. Wie na de laatste vraag voorstaat wint de avond.'
             },
@@ -849,7 +848,7 @@ export const nl: Catalog = {
                 choice: 'Meerkeuze',
                 closest: 'Wie zit er het dichtst bij',
                 describe: 'Omschrijven',
-                list: 'Noem er vier',
+                list: 'Wat weet je over ... ?',
                 doubleDown: 'Dubbel Spel',
                 finale: 'De finale'
             },
@@ -995,7 +994,7 @@ export const nl: Catalog = {
                 runningReminder: 'Vink elk antwoord af dat {{guesser}} noemt. De rest telt nog niet mee.',
                 zenNotice: 'Geen tijdsdruk hier. {{guesser}} mag {{nGuesses}} keer gokken, en daarna krijgt elke andere speler één bonusgok op een antwoord dat niemand had.',
                 inTimeTitle: 'Wat had {{guesser}}?',
-                inTimeHint: 'Tik elk antwoord aan dat {{guesser}} goed had — ook het antwoord dat er helemaal aan het eind nog uit kwam',
+                inTimeHint: 'Tik elk antwoord aan dat {{guesser}} goed had',
                 toBonus: 'Bonusronde · nog {{left}} over',
                 toSettle: 'Door naar de punten',
                 bonusHint: 'Eén gok op een van deze. Goed geraden en het punt is van jou.',

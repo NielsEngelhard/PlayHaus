@@ -878,7 +878,7 @@ export const en = {
                 choice: 'No quizmaster this round. Whoever is up taps a letter on their own phone. Wrong? It passes on, and the spent option stays gone.',
                 closest: 'Everybody types one number. Doubles are fine. Nearest takes 2 points, and a tie pays both.',
                 describe: 'The describer has 30 seconds. Every word guessed is a point for both of them. Then one bonus guess each for everybody else.',
-                list: 'One player names four, the quizmaster ticks them off. 20 seconds, a point per answer. What is left goes to the bonus guesses.',
+                list: 'One subject. Four keywords.',
                 doubleDown: 'Whoever is up picks their own weight. Then the quizmaster reads it out and judges it — wrong passes to the next player.',
                 finale: 'Six open questions, turn by turn. Wrong? It goes to the other one. Whoever leads after the last question wins the evening.'
             },
@@ -887,7 +887,7 @@ export const en = {
                 choice: 'Multiple choice',
                 closest: 'Closest guess',
                 describe: 'Describe it',
-                list: 'Name four',
+                list: 'What do you know about ... ?',
                 doubleDown: 'Double Down',
                 finale: 'The final'
             },
@@ -1081,7 +1081,7 @@ export const en = {
                 zenNotice: 'No time pressure here. {{guesser}} can guess {{nGuesses}} times, and afterwards everybody else gets one bonus guess at an answer nobody got.',
                 /** The confirm screen: one last look before the leftovers go round the table. */
                 inTimeTitle: 'What did {{guesser}} get?',
-                inTimeHint: "Tap every answer {{guesser}} got — including the one they named right at the end",
+                inTimeHint: "Tap every answer {{guesser}} got",
                 toBonus: 'Bonus round · {{left}} left over',
                 toSettle: 'On to the points',
                 bonusHint: 'One guess at one of these. Get it and the point is yours.',

@@ -36,3 +36,9 @@ encoder padding turns the seam at the loop point into an audible gap.
 - 44.1 kHz mono 16-bit, 130 ms.
 - Levelled to match the `click.wav` it replaced, so the app got a new sound and not a
   louder one.
+
+`sounds/time-up.wav` — the buzzer when round 4's clock runs out.
+- `error_003.ogg` from *Interface Sounds* by Kenney (www.kenney.nl).
+- Source: https://kenney.nl/assets/interface-sounds
+- Licence: **CC0**. No attribution required.
+- Decoded to 44.1 kHz mono 16-bit WAV and trimmed to a 0.55 peak so it stays subtle.

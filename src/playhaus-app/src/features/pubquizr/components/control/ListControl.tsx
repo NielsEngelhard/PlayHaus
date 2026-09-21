@@ -216,7 +216,7 @@ export default function ListControl({ bare, busy, holdBack = null, emit, error, 
             <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                 {strip}
 
-                <ScriptCard prompt={turn.question.prompt} fills={false} />
+                <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
 
                 <AppText style={styles.recap}>
                     {t('pubquizr.play.list.preTimerHint', { guesser: turn.guesser.name })}
@@ -261,7 +261,7 @@ export default function ListControl({ bare, busy, holdBack = null, emit, error, 
                 <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                     {strip}
 
-                    <ScriptCard prompt={turn.question.prompt} fills={false} />
+                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
 
                     {/* The rule, said once and quietly. */}
                     <TextHint
@@ -294,7 +294,7 @@ export default function ListControl({ bare, busy, holdBack = null, emit, error, 
 
                 {/* `fills={false}` still carries a `flexGrow`. */}
                 <View style={styles.question}>
-                    <ScriptCard prompt={turn.question.prompt} fills={false} />
+                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
                 </View>
 
                 <ListTimerSlot key={turn.dealt.id} onDone={endTimer} />

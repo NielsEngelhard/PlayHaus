@@ -1,4 +1,3 @@
-import AppText from "@/components/text/AppText";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { haptic } from "@/utils/haptics";
@@ -6,22 +5,20 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, View } from "react-native";
 
 interface Props {
-    /** Whether the seconds are written out above the bar; false leaves the bar alone. */
-    digits?: boolean
     /** How long the turn is. */
     seconds: number
     /** Fired once, when it runs out. */
     onDone: () => void
 }
 
-/** The last stretch, where the bar turns and the digits start to matter. */
+/** The last stretch, where the bar turns red. */
 const HURRY_SECONDS = 10;
 
 // react-native-web has no native animation module, and a transform is the one thing that is driver-safe everywhere else.
 const useNativeDriver = Platform.OS !== 'web';
 
 // A turn's clock, drawn as it goes.
-export default function TurnTimer({ digits = true, seconds, onDone }: Props) {
+export default function TurnTimer({ seconds, onDone }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -69,20 +66,9 @@ export default function TurnTimer({ digits = true, seconds, onDone }: Props) {
     }, [progress, seconds, width]);
 
     const hurrying = left <= HURRY_SECONDS;
-    const ink = hurrying ? theme.colors.destructive : theme.colors.text;
 
     return (
         <View style={styles.timer}>
-            {digits && (
-                <AppText
-                    style={[styles.digits, { color: ink }]}
-                    // Read out as a whole, and only as it changes.
-                    accessibilityLiveRegion="polite"
-                >
-                    {left}
-                </AppText>
-            )}
-
             <View style={styles.track} onLayout={measure}>
                 <Animated.View
                     style={[
@@ -113,14 +99,6 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         alignItems: 'center',
         gap: 10
-    },
-
-    // Tabular figures, so the number does not jitter sideways as it counts down.
-    digits: {
-        fontSize: 52,
-        fontWeight: 900,
-        letterSpacing: -2,
-        fontVariant: ['tabular-nums']
     },
 
     track: {

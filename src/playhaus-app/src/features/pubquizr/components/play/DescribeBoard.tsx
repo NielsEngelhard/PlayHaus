@@ -17,6 +17,7 @@ import {
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
+import { playTimeUp } from "@/utils/time-up-sound";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
@@ -367,7 +368,15 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
 
 // The timer, kept behind a component of its own so it mounts once per turn.
 function TurnTimerSlot({ onDone }: { onDone: () => void }) {
-    return <TurnTimer digits={false} seconds={DESCRIBE_SECONDS} onDone={onDone} />;
+    return (
+        <TurnTimer
+            seconds={DESCRIBE_SECONDS}
+            onDone={() => {
+                playTimeUp();
+                onDone();
+            }}
+        />
+    );
 }
 
 interface WordTileButtonProps {
