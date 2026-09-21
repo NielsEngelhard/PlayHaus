@@ -1093,9 +1093,7 @@ export const en = {
             },
             // Round 6: easy or hard, asked before there is a question to read.
             doubleDown: {
-                ask: 'Easy or hard, {{name}}?',
-                /** Said out loud, because the choice is made at the table rather than on screen. */
-                cue: 'Ask out loud, then tap what they pick',
+                ask: 'Does {{name}} want an easy or hard question?',
                 easy: 'Easy · {{points}} point',
                 hard: 'Hard · {{points}} points'
             },

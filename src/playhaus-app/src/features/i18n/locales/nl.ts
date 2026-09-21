@@ -1004,8 +1004,7 @@ export const nl: Catalog = {
                 settle: 'Verder gaan'
             },
             doubleDown: {
-                ask: 'Makkelijk of moeilijk, {{name}}?',
-                cue: 'Vraag het hardop en tik aan wat er gekozen wordt',
+                ask: 'Wil {{name}} een makkelijke of moeilijke vraag?',
                 easy: 'Makkelijk · {{points}} punt',
                 hard: 'Moeilijk · {{points}} punten'
             },

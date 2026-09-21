@@ -1,5 +1,6 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
+import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
@@ -8,7 +9,7 @@ import ScoreBoardScreen from "@/components/ui/ScoreBoardScreen";
 import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
-import { Spacing } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
@@ -17,7 +18,6 @@ import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
-import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
 import TableHero from "@/features/pubquizr/components/play/TableHero";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
@@ -395,18 +395,18 @@ export default function OneDeviceQuizPage() {
                         worth={0}
                     />
 
-                    <ScriptCard
-                        prompt={t('pubquizr.play.doubleDown.ask', { name: asking.answering.name })}
-                        cue={t('pubquizr.play.doubleDown.cue')}
-                        seats={seats}
-                    >
-                        {/* One tap for the whole choice, and a side the table has spent is a button that will not press. */}
+                    <View style={styles.choiceBody}>
+                        <AppText style={styles.choiceTitle} accessibilityRole="header">
+                            {t('pubquizr.play.doubleDown.ask', { name: asking.answering.name })}
+                        </AppText>
+
+                        {/* A side the table has spent is a button that will not press. */}
                         <View style={styles.choice}>
                             <ActionButton
                                 text={t('pubquizr.play.doubleDown.easy', { points: EASY_POINTS })}
                                 icon="feather"
+                                size="large"
                                 disabled={asking.pool.easy.length === 0}
-                                style={styles.choiceButton}
                                 onPress={() => setPick({
                                     turn: session.currentPosition,
                                     questionId: asking.pool.easy[0] ?? null
@@ -416,15 +416,15 @@ export default function OneDeviceQuizPage() {
                             <ActionButton
                                 text={t('pubquizr.play.doubleDown.hard', { points: HARD_POINTS })}
                                 icon="zap"
+                                size="large"
                                 disabled={asking.pool.hard.length === 0}
-                                style={styles.choiceButton}
                                 onPress={() => setPick({
                                     turn: session.currentPosition,
                                     questionId: asking.pool.hard[0] ?? null
                                 })}
                             />
                         </View>
-                    </ScriptCard>
+                    </View>
                 </View>
             )}
 
@@ -455,7 +455,7 @@ export default function OneDeviceQuizPage() {
     )
 }
 
-const useStyles = createThemedStyles(() => ({
+const useStyles = createThemedStyles(theme => ({
     // The gap is the header's: its band ends on a hard line rather than in the slack the old 58pt row carried inside itself.
     board: {
         flex: 1,
@@ -480,14 +480,23 @@ const useStyles = createThemedStyles(() => ({
         gap: 12
     },
 
-    // Round 6's easy-or-hard buttons, side by side inside the script card.
-    choice: {
-        flexDirection: 'row',
-        gap: Spacing.two
+    choiceBody: {
+        flex: 1,
+        justifyContent: 'center',
+        gap: Spacing.five
     },
 
-    choiceButton: {
-        flex: 1
+    choiceTitle: {
+        fontSize: FontSizes.xxl,
+        lineHeight: FontSizes.xxl * 1.16,
+        fontWeight: 900,
+        letterSpacing: -0.8,
+        textAlign: 'center',
+        color: theme.colors.text
+    },
+
+    choice: {
+        gap: Spacing.three
     },
 
     message: {
