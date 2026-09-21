@@ -840,7 +840,7 @@ export const nl: Catalog = {
                 closest: 'Iedereen tikt één getal in. Dubbele getallen mogen. Wie er het dichtst bij zit pakt 2 punten — bij gelijke afstand krijgen ze het allebei.',
                 describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor allebei. Daarna één bonusgok per overige speler.',
                 list: 'Eén onderwerp. Vier trefwoorden.',
-                doubleDown: 'Wie aan de beurt is kiest zelf de zwaarte. Daarna leest de quizmaster de vraag voor en beoordeelt die — fout schuift door naar de volgende speler.',
+                doubleDown: 'Wie aan de beurt is kiest een makkelijk (1p) vraag of een moeilijke (3p) vraag.',
                 finale: 'Zes open vragen, om en om. Fout? De vraag gaat naar de ander. Wie na de laatste vraag voorstaat wint de avond.'
             },
             rounds: {
@@ -849,7 +849,7 @@ export const nl: Catalog = {
                 closest: 'Wie zit er het dichtst bij',
                 describe: 'Omschrijven',
                 list: 'Wat weet je over ... ?',
-                doubleDown: 'Dubbel Spel',
+                doubleDown: 'Makkelijk of Moeilijk?',
                 finale: 'De finale'
             },
             questionNumber: 'Vraag {{number}}',

@@ -211,12 +211,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             />
         ));
 
-        const hint = (
-            <AppText style={styles.hint}>
-                {t('pubquizr.play.onlyYouSeeThis')}
-            </AppText>
-        );
-
         const reminder = (
             <AppText style={styles.recap}>
                 {t('pubquizr.play.list.runningReminder', { guesser: turn.guesser.name })}
@@ -238,8 +232,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                             nGuesses: ZEN_LIST_GUESSES
                         })}
                     />
-
-                    {hint}
 
                     <View style={styles.rowsColumn}>{rows}</View>
 
@@ -266,8 +258,6 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 </View>
 
                 <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
-
-                {hint}
 
                 <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {rows}
@@ -486,13 +476,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 4
     },
 
-    hint: {
-        flexShrink: 0,
-        textAlign: 'center',
-        fontSize: 11.5,
-        fontWeight: 700,
-        color: theme.colors.textMuted
-    },
     recap: {
         flexShrink: 0,
         textAlign: 'center',

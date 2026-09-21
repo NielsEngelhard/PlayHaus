@@ -879,7 +879,7 @@ export const en = {
                 closest: 'Everybody types one number. Doubles are fine. Nearest takes 2 points, and a tie pays both.',
                 describe: 'The describer has 30 seconds. Every word guessed is a point for both of them. Then one bonus guess each for everybody else.',
                 list: 'One subject. Four keywords.',
-                doubleDown: 'Whoever is up picks their own weight. Then the quizmaster reads it out and judges it — wrong passes to the next player.',
+                doubleDown: 'Pick an easy question (1p) or a hard question (3p).',
                 finale: 'Six open questions, turn by turn. Wrong? It goes to the other one. Whoever leads after the last question wins the evening.'
             },
             rounds: {
@@ -888,7 +888,7 @@ export const en = {
                 closest: 'Closest guess',
                 describe: 'Describe it',
                 list: 'What do you know about ... ?',
-                doubleDown: 'Double Down',
+                doubleDown: 'Easy or hard?',
                 finale: 'The final'
             },
             // Split in two so the total can be greyed out beside the number.
