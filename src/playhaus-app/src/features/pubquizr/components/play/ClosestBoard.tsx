@@ -55,8 +55,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     const [typed, setTyped] = useState<Record<number, string>>({});
     /** Whose field the pad is typing into. */
     const [focused, setFocused] = useState<number | null>(null);
-    /** Dropped out of typing and picking the winner by hand instead. */
-    const [byHand, setByHand] = useState(false);
     const [picked, setPicked] = useState<number | null>(null);
     /** Standing in front of a settle that would leave somebody's row blank. */
     const [confirming, setConfirming] = useState(false);
@@ -68,7 +66,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         setStage('reading');
         setTyped({});
         setFocused(null);
-        setByHand(false);
         setPicked(null);
         setConfirming(false);
     }
@@ -84,9 +81,7 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             ? 'pubquizr.play.closest.unreadable'
             : null;
 
-    const ready = byHand
-        ? picked !== null
-        : review.guesses.length > 0 && problem === null;
+    const ready = review.guesses.length > 0 && problem === null;
 
     /** Everybody whose row is still empty, and how many are not. */
     const blank = turn.guessing.filter(seat => (typed[seat.seat] ?? '').trim() === '');
@@ -95,14 +90,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
     function settle() {
         if (!ready || busy) return;
 
-        if (byHand) {
-            if (picked === null) return;
-            const seat = turn.guessing.find(candidate => candidate.seat === picked);
-            onSettle({ winningSeats: [picked] }, seat === undefined ? [] : [seat]);
-            return;
-        }
-
-        // A blank row is legal — `reviewGuesses` drops it rather than complaining.
         if (blank.length > 0) {
             setConfirming(true);
             return;
@@ -221,27 +208,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
         )
     }
 
-    const modeSwitch = (
-        <Pressable
-            onPress={() => { setByHand(current => !current); setPicked(null); }}
-            disabled={busy}
-            accessibilityRole="button"
-            style={styles.switch}
-        >
-            <Feather
-                name={byHand ? 'edit-3' : 'zap'}
-                size={13}
-                color={theme.colors.textMuted}
-            />
-
-            <AppText style={styles.switchText}>
-                {byHand
-                    ? t('pubquizr.play.closest.typeInstead')
-                    : t('pubquizr.play.closest.pickInstead')}
-            </AppText>
-        </Pressable>
-    );
-
     const failure = error !== null && (
         <InlineNotification
             icon="alert-triangle"
@@ -249,89 +215,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
             message={t(error)}
         />
     );
-
-    if (byHand) {
-        return (
-            <View style={styles.screen}>
-                <View style={styles.body}>
-                    {strip}
-
-                    <Label label={turn.question.prompt} />
-
-                    <View style={styles.sectionRule}>
-                        <AppText style={styles.sectionLabel}>
-                            {t('pubquizr.play.closest.theirNumbers')}
-                        </AppText>
-
-                        <View style={styles.rule} />
-
-                        <AppText style={styles.sectionCount}>
-                            {t('pubquizr.play.closest.filled', {
-                                filled,
-                                total: turn.guessing.length
-                            })}
-                        </AppText>
-                    </View>
-
-                    <ScrollView
-                        style={styles.rows}
-                        contentContainerStyle={styles.rowsInner}
-                    >
-                        {turn.guessing.map(seat => {
-                            const chosen = picked === seat.seat;
-
-                            return (
-                                <Pressable
-                                    key={seat.seat}
-                                    onPress={() => setPicked(seat.seat)}
-                                    disabled={busy}
-                                    accessibilityRole="radio"
-                                    accessibilityState={{ checked: chosen }}
-                                    accessibilityLabel={seat.name}
-                                    style={[styles.row, chosen && styles.chosen]}
-                                >
-                                    <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
-                                        <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
-                                            {seat.initials}
-                                        </AppText>
-                                    </View>
-
-                                    <View style={styles.who}>
-                                        <AppText
-                                            style={[styles.name, chosen && styles.onMint]}
-                                            numberOfLines={1}
-                                        >
-                                            {seat.name}
-                                        </AppText>
-                                    </View>
-
-                                    <Feather
-                                        name={chosen ? 'check-circle' : 'circle'}
-                                        size={20}
-                                        color={chosen ? Brand.ink : theme.colors.textMuted}
-                                    />
-                                </Pressable>
-                            )
-                        })}
-                    </ScrollView>
-
-                    {failure}
-
-                    <View style={styles.footer}>
-                        <ActionButton
-                            size="large"
-                            icon="award"
-                            text={t('pubquizr.play.closest.award')}
-                            disabled={!ready || busy}
-                            onPress={settle}
-                        />
-
-                        {modeSwitch}
-                    </View>
-                </View>
-            </View>
-        )
-    }
 
     const index = turn.guessing.findIndex(seat => seat.seat === focused);
     const current = index === -1 ? null : turn.guessing[index];
@@ -447,8 +330,6 @@ export default function ClosestBoard({ turn, round, lead, busy, error, onSettle 
                             </PopPressable>
                         )}
                     </View>
-
-                    {modeSwitch}
                 </View>
             </View>
 
@@ -842,14 +723,6 @@ const useStyles = createThemedStyles(theme => ({
         paddingVertical: 6,
         paddingHorizontal: 8
     },
-
-    switchText: {
-        fontSize: 11.5,
-        fontWeight: 700,
-        color: theme.colors.textMuted
-    },
-
-    // Out to the glass on three sides.
     pad: {
         marginTop: 12,
         marginHorizontal: -PAGE_PADDING,

@@ -407,7 +407,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
 
 // The timer, kept behind a component of its own so it mounts once per turn.
 function TurnTimerSlot({ onDone }: { onDone: () => void }) {
-    return <TurnTimer seconds={DESCRIBE_SECONDS} onDone={onDone} />;
+    return <TurnTimer digits={false} seconds={DESCRIBE_SECONDS} onDone={onDone} />;
 }
 
 interface WordTileButtonProps {

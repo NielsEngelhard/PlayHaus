@@ -917,7 +917,6 @@ export const nl: Catalog = {
             scores: 'Stand',
             choice: {
                 options: 'De vier opties',
-                readAll: 'Lees de vraag hardop voor en daarna de opties',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}}, dit is de goede'
             },
@@ -927,7 +926,6 @@ export const nl: Catalog = {
                 entry: 'De gok van {{name}}',
                 duplicate: 'Twee spelers hebben hetzelfde getal. Vraag er een om een ander.',
                 unreadable: 'Daar staat geen getal.',
-                pickInstead: 'Sla de getallen over, tik gewoon wie won',
                 typeInstead: 'Vul de gokken toch in',
                 award: 'Geef ze de punten',
                 nearestTakes: 'Dichtstbij pakt {{worth}}p',
@@ -966,7 +964,7 @@ export const nl: Catalog = {
                 backspace: 'Wissen'
             },
             describe: {
-                readyRuleOnlyGuesser: 'Je omschrijft aan {{guesser}}. Zolang de klok loopt telt alleen wat zij zeggen',
+                readyRuleOnlyGuesser: 'Je omschrijft aan {{guesser}}. Zolang de klok loopt telt alleen wat {{guesser}} zegt',
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te omschrijven',
                 readyRuleNoSaying: 'Zeg het woord zelf nooit. Anders telt het niet.',
                 readyRuleBothScore: 'Elk woord dat {{guesser}} raadt is een punt voor hen én een punt voor jou',
@@ -1018,7 +1016,7 @@ export const nl: Catalog = {
                 briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke tweede vraag levert een punt op.',
                 briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
-                briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling) — aan de speler links van je, en aan niemand anders. Elk woord dat die raadt is een punt voor hen én voor jou. Daarna krijgt de rest van de tafel ieder één gok op een gemist woord.',
+                briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling).',
                 briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
                 briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die geen klok heeft en acht gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
                 briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 3. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',

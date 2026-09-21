@@ -979,8 +979,6 @@ export const en = {
             /** Round 2: the four options, read out loud. */
             choice: {
                 options: 'The four options',
-                // The cue above the question while it is being read.
-                readAll: 'Read out loud: question and all four',
                 spoken: '{{letter}}. {{text}}',
                 spokenCorrect: '{{letter}}. {{text}}, this is the right one'
             },
@@ -993,8 +991,6 @@ export const en = {
                 // Copying is not guessing, so the second person to say a number has to pick another one.
                 duplicate: 'Two players have the same number. Ask one of them for another.',
                 unreadable: 'One of those is not a number.',
-                /** The way out for a table that has already agreed out loud. */
-                pickInstead: 'Skip the numbers, just tap who won',
                 typeInstead: 'Type the guesses instead',
                 award: 'Give them the points',
                 /** The reading screen: what is at stake, and who is playing for it. */
@@ -1047,8 +1043,8 @@ export const en = {
             /** Round 4: thirty seconds to describe your own words to the player on your left. */
             describe: {
                 /** The ready screen's rules list, one row each rather than one paragraph. */
-                readyRuleOnlyGuesser: 'You describe to {{guesser}}, and only their answers count while the clock is running',
-                readyRuleTime: '{{seconds}} seconds to get through as many of your {{words}} words as you can',
+                readyRuleOnlyGuesser: 'You describe to {{guesser}}, and only {{guesser}} can guess while the clock is running',
+                readyRuleTime: '{{seconds}} seconds to get through as many of your words as you can',
                 readyRuleNoSaying: 'Never say the word itself — it will not count',
                 readyRuleBothScore: 'Every word {{guesser}} gets is a point for them and a point for you',
                 readyRuleBonus: 'When time is up, the other {{others}} each get one guess at a word nobody got',
@@ -1068,9 +1064,7 @@ export const en = {
                 scoreAgain: 'Score this turn again',
                 settle: 'Hand out the points'
             },
-            // Round 5: one question, four answers, and twenty seconds with the player on the reader's left.
             list: {
-                /** The ready screen's rules list, one row each rather than one paragraph. */
                 readyRuleOnlyGuesser: 'You ask {{guesser}}, and until their turn is over only their answers count',
                 readyRuleTime: '{{seconds}} seconds to name as many of the {{answers}} answers as they can',
                 readyRuleGuesses: '{{guesses}} guesses to name as many of the {{answers}} answers as they can',

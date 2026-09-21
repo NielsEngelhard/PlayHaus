@@ -14,7 +14,8 @@ interface Props {
     category?: string
     // Round 2's four options, read out after the question.
     children?: ReactNode
-    cue?: string
+    // Null leaves the cue out; undefined falls back to the read-aloud line.
+    cue?: string | null
     // Only reachable without the answer row: the reveal button stays and covers the answer again.
     onHide?: () => void
     onReveal: () => void
@@ -52,16 +53,18 @@ export default function QuestionStack({
 
             <View style={styles.card}>
                 <View style={styles.cueRow}>
-                    <View style={styles.cue}>
-                        <Feather name="volume-2" size={14} color={theme.colors.focus} />
+                    {cue !== null && (
+                        <View style={styles.cue}>
+                            <Feather name="volume-2" size={14} color={theme.colors.focus} />
 
-                        <AppText style={styles.cueText} numberOfLines={2}>
-                            {cue ?? t('pubquizr.play.readAloud')}
-                        </AppText>
-                    </View>
+                            <AppText style={styles.cueText} numberOfLines={2}>
+                                {cue ?? t('pubquizr.play.readAloud')}
+                            </AppText>
+                        </View>
+                    )}
 
                     {category !== undefined && category !== '' && (
-                        <View style={styles.category}>
+                        <View style={[styles.category, cue === null && styles.categoryAlone]}>
                             <AppText style={styles.categoryText} numberOfLines={1}>{category}</AppText>
                         </View>
                     )}
@@ -205,6 +208,10 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.background
+    },
+
+    categoryAlone: {
+        marginLeft: 'auto'
     },
 
     categoryText: {

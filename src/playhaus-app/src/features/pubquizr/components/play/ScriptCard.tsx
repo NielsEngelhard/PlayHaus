@@ -9,8 +9,8 @@ import { View } from "react-native";
 
 interface Props {
     prompt: string
-    // The line above the question.
-    cue?: string
+    // The line above the question; null leaves it out.
+    cue?: string | null
     // How big the question is set.
     size?: number
     // Everybody at the table, in seating order, for the score strip along the bottom.
@@ -39,17 +39,20 @@ export default function ScriptCard({
 
     return (
         <View style={[styles.wrapper, !fills && styles.grows]}>
-            <View style={styles.cue}>
-                <Feather name="volume-2" size={15} color={theme.colors.primary} />
+            {cue !== null && (
+                <View style={styles.cue}>
+                    <Feather name="volume-2" size={15} color={theme.colors.primary} />
 
-                <AppText style={styles.cueText}>
-                    {cue ?? t('pubquizr.play.readAloud')}
-                </AppText>
-            </View>
+                    <AppText style={styles.cueText}>
+                        {cue ?? t('pubquizr.play.readAloud')}
+                    </AppText>
+                </View>
+            )}
 
             <View
                 style={[
                     styles.card,
+                    cue !== null && styles.cardBelowCue,
                     align === 'top' && styles.cardTop,
                     !fills && styles.grows
                 ]}
@@ -109,8 +112,11 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.primary
     },
 
+    cardBelowCue: {
+        marginTop: 10
+    },
+
     card: {
-        marginTop: 10,
         flex: 1,
         minHeight: 0,
         justifyContent: 'center',

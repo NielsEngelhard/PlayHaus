@@ -36,7 +36,7 @@ export default function ChoiceReadOut({ answering, round, turn }: Props) {
 
             <ScriptCard
                 prompt={turn.question.prompt}
-                cue={t('pubquizr.play.choice.readAll')}
+                cue={null}
             >
                 {/* Never revealed: nobody judges anything on this phone, so the right one is not its business. */}
                 <ChoiceCard options={turn.options} revealed={false} />

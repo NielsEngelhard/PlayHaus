@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, LayoutChangeEvent, Platform, View } from "react-native";
 
 interface Props {
+    /** Whether the seconds are written out above the bar; false leaves the bar alone. */
+    digits?: boolean
     /** How long the turn is. */
     seconds: number
     /** Fired once, when it runs out. */
@@ -19,7 +21,7 @@ const HURRY_SECONDS = 10;
 const useNativeDriver = Platform.OS !== 'web';
 
 // A turn's clock, drawn as it goes.
-export default function TurnTimer({ seconds, onDone }: Props) {
+export default function TurnTimer({ digits = true, seconds, onDone }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -71,13 +73,15 @@ export default function TurnTimer({ seconds, onDone }: Props) {
 
     return (
         <View style={styles.timer}>
-            <AppText
-                style={[styles.digits, { color: ink }]}
-                // Read out as a whole, and only as it changes.
-                accessibilityLiveRegion="polite"
-            >
-                {left}
-            </AppText>
+            {digits && (
+                <AppText
+                    style={[styles.digits, { color: ink }]}
+                    // Read out as a whole, and only as it changes.
+                    accessibilityLiveRegion="polite"
+                >
+                    {left}
+                </AppText>
+            )}
 
             <View style={styles.track} onLayout={measure}>
                 <Animated.View

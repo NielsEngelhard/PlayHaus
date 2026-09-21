@@ -103,7 +103,7 @@ export default function HotSeatBoard({ turn, busy, error, onSettle }: Props) {
             <QuestionStack
                 prompt={turn.question.prompt}
                 category={turn.question.category}
-                cue={hasOptions ? t('pubquizr.play.choice.readAll') : undefined}
+                cue={hasOptions ? null : undefined}
                 size={hasOptions ? 21 : 23}
                 answer={turn.answer}
                 aliases={turn.aliases}
