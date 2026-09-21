@@ -909,7 +909,7 @@ export const nl: Catalog = {
             nobodyGotIt: 'Niemand had het',
             nobodyConfirm: 'Ga naar de volgende vraag',
             nobodyConfirmHint: 'Tik nogmaals om verder te gaan',
-            lockIn: '{{name}} vastleggen',
+            lockIn: 'Bevestigen',
             choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoints: '{{worth}}p',
@@ -1494,6 +1494,16 @@ export const nl: Catalog = {
             badAnswer: 'Vul elk gat in voordat je vastzet.',
             answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin nu een nepantwoord.',
             gameFinished: 'Dit spel is afgelopen.'
+        }
+    },
+    sketchOff: {
+        index: {
+            description: "description",
+            multiplayer: {
+                title: "Sketch off",
+                description: "description",
+                action: "action"
+            }
         }
     },
     friends: {

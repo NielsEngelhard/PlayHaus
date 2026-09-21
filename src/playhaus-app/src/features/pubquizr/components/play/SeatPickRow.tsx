@@ -186,7 +186,7 @@ export default function SeatPickRow({
                     <Feather name="check" size={16} color={Brand.ink} />
 
                     <AppText style={styles.lockInLabel} numberOfLines={1}>
-                        {t('pubquizr.play.lockIn', { name: pickedSeat.name })}
+                        {t('pubquizr.play.lockIn')}
                     </AppText>
                 </PopPressable>
             ) : confirmingNobody ? (

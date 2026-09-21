@@ -966,7 +966,7 @@ export const en = {
             nobodyGotIt: 'Nobody got it',
             nobodyConfirm: 'Go to next question',
             nobodyConfirmHint: 'Tap again to continue',
-            lockIn: 'Lock in {{name}}',
+            lockIn: 'Confirm',
             // Round 2 only, replacing both lines above it.
             choiceAlwaysPasses: 'Either way, next up: {{name}}',
             // What Correct does, which is no longer only "score it".
@@ -1632,6 +1632,16 @@ export const en = {
             gameFinished: 'This game is over.'
         }
     },
+    sketchOff: {
+        index: {
+            description: "description",
+            multiplayer: {
+                title: "Sketch off",
+                description: "description",
+                action: "action"
+            }
+        }
+    },    
     friends: {
         title: 'Friends',
         description: 'Play together, keep track of who wins and challenge each other.',

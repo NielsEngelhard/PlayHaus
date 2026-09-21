@@ -41,7 +41,8 @@ export const ROUTES = {
     fakeFillerRoom: (code: string) => `/games/fake-filler/room/${code}`,
 
     // Sketch OFF
-    sketchOffIndex: "/games/sketch-off",    
+    sketchOffIndex: "/games/sketch-off",
+    sketchOffCreateRoom: "/games/sketch-off/room",
 
     // User
     reconnect: "/reconnect",
