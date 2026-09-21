@@ -184,7 +184,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
             <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                 {strip}
 
-                <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
+                <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} size={25} />
 
                 <AppText style={styles.recap}>
                     {t('pubquizr.play.list.preTimerHint', { guesser: turn.guesser.name })}
@@ -229,7 +229,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                     {strip}
 
-                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
+                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} size={25} />
 
                     {/* The rule, said once and quietly. */}
                     <TextHint
@@ -262,7 +262,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                 {/* `fills={false}` still carries a `flexGrow`. */}
                 <View style={styles.question}>
-                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} />
+                    <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} size={25} />
                 </View>
 
                 <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
