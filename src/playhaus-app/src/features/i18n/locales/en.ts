@@ -1109,7 +1109,7 @@ export const en = {
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
                 briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
                 briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
-                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 3. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
+                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 4. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
                 briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
@@ -1136,7 +1136,7 @@ export const en = {
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
-                ruleDoubleDown: 'Easy pays 1, hard pays 3, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
+                ruleDoubleDown: 'Easy pays 1, hard pays 4, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
                 ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
                 action: 'Show the question'
             },

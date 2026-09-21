@@ -1017,7 +1017,7 @@ export const nl: Catalog = {
                 briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling).',
                 briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
                 briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die geen klok heeft en acht gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
-                briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 3. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',
+                briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 4. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',
                 briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is 100 punten waard. De persoon met de minste punten begint steeds.',
                 versus: 'vs',
                 quizmaster: '{{name}} is quiz master',
@@ -1038,7 +1038,7 @@ export const nl: Catalog = {
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
                 ruleDescribe: 'Dertig seconden, gespeeld met de speler links van je. Elk woord dat die raadt is een punt voor hen én een punt voor jou.',
                 ruleList: 'Twintig seconden, en alleen de speler links van je antwoordt. Wat zij missen gaat daarna de tafel rond, ieder één gok.',
-                ruleDoubleDown: 'Makkelijk levert 1 punt op, moeilijk 3, en er zijn er vijf van elk — dus een soort kan opraken. Fout? Dan gaat de vraag voor de volle waarde de tafel rond.',
+                ruleDoubleDown: 'Makkelijk levert 1 punt op, moeilijk 4, en er zijn er vijf van elk — dus een soort kan opraken. Fout? Dan gaat de vraag voor de volle waarde de tafel rond.',
                 ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. 100 punten per goed antwoord, en de meeste punten wint de avond.',
                 action: 'Laat de vraag zien'
             },
