@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Amsterdam? Vier kernwoorden.", "answers": [{ "text": "Grachten" }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Anne Frank", "aliases": ["Anne Frank Huis"] }, { "text": "De Wallen", "aliases": ["Wallen", "Rosse buurt"] }] },
-        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }, { "text": "Afrika" }] },
-        { "prompt": "Wat weet je van Albert Einstein? Vier kernwoorden.", "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit", "E=mc2"] }, { "text": "Wilde haren", "aliases": ["Haar", "Snor"] }, { "text": "Natuurkunde", "aliases": ["Natuurkundige"] }, { "text": "Duitsland", "aliases": ["Duits"] }] },
-        { "prompt": "Wat weet je van voetbal? Vier kernwoorden.", "answers": [{ "text": "Doelpunt", "aliases": ["Goal"] }, { "text": "Elf spelers", "aliases": ["Elf", "Elftal"] }, { "text": "Het WK", "aliases": ["WK", "Wereldkampioenschap"] }, { "text": "Scheidsrechter", "aliases": ["Rode kaart", "Gele kaart"] }] },
-        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Neil Armstrong", "aliases": ["De maanlanding", "Armstrong"] }, { "text": "Kraters" }, { "text": "Eb en vloed", "aliases": ["Getijden"] }, { "text": "Volle maan" }] },
-        { "prompt": "Wat weet je van koffie? Vier kernwoorden.", "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Zwart" }, { "text": "Cappuccino", "aliases": ["Espresso", "Latte"] }] },
-        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "IJsberg" }, { "text": "1912", "aliases": ["Negentien twaalf"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet"] }, { "text": "Gezonken", "aliases": ["Zinken", "Scheepswrak"] }] },
-        { "prompt": "Wat weet je van een bruiloft? Vier kernwoorden.", "answers": [{ "text": "Trouwjurk", "aliases": ["De bruid", "Bruid"] }, { "text": "Ringen", "aliases": ["Trouwring"] }, { "text": "Bruidstaart", "aliases": ["Taart"] }, { "text": "Kerk", "aliases": ["Gemeentehuis", "Stadhuis"] }] }
+        { "prompt": "Wat weet je van Amsterdam, "answers": [{ "text": "Grachten" }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Anne Frank", "aliases": ["Anne Frank Huis"] }, { "text": "De Wallen", "aliases": ["Wallen", "Rosse buurt"] }] },
+        { "prompt": "Wat weet je van de Sahara, "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }, { "text": "Afrika" }] },
+        { "prompt": "Wat weet je van Albert Einstein, "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit", "E=mc2"] }, { "text": "Wilde haren", "aliases": ["Haar", "Snor"] }, { "text": "Natuurkunde", "aliases": ["Natuurkundige"] }, { "text": "Duitsland", "aliases": ["Duits"] }] },
+        { "prompt": "Wat weet je van voetbal, "answers": [{ "text": "Doelpunt", "aliases": ["Goal"] }, { "text": "Elf spelers", "aliases": ["Elf", "Elftal"] }, { "text": "Het WK", "aliases": ["WK", "Wereldkampioenschap"] }, { "text": "Scheidsrechter", "aliases": ["Rode kaart", "Gele kaart"] }] },
+        { "prompt": "Wat weet je van de maan, "answers": [{ "text": "Neil Armstrong", "aliases": ["De maanlanding", "Armstrong"] }, { "text": "Kraters" }, { "text": "Eb en vloed", "aliases": ["Getijden"] }, { "text": "Volle maan" }] },
+        { "prompt": "Wat weet je van koffie, "answers": [{ "text": "Bonen", "aliases": ["Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Zwart" }, { "text": "Cappuccino", "aliases": ["Espresso", "Latte"] }] },
+        { "prompt": "Wat weet je van de Titanic, "answers": [{ "text": "IJsberg" }, { "text": "1912", "aliases": ["Negentien twaalf"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet"] }, { "text": "Gezonken", "aliases": ["Zinken", "Scheepswrak"] }] },
+        { "prompt": "Wat weet je van een bruiloft, "answers": [{ "text": "Trouwjurk", "aliases": ["De bruid", "Bruid"] }, { "text": "Ringen", "aliases": ["Trouwring"] }, { "text": "Bruidstaart", "aliases": ["Taart"] }, { "text": "Kerk", "aliases": ["Gemeentehuis", "Stadhuis"] }] }
       ]
     },
     {

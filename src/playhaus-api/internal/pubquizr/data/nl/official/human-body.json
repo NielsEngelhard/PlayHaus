@@ -95,14 +95,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van het hart? Vier kernwoorden.", "answers": [{ "text": "Bloed", "aliases": ["Bloed pompen"] }, { "text": "Hartslag", "aliases": ["Kloppen", "Pols"] }, { "text": "Borstkas", "aliases": ["Borst"] }, { "text": "Vier holtes", "aliases": ["Holtes", "Kamers"] }] },
-        { "prompt": "Wat weet je van het skelet? Vier kernwoorden.", "answers": [{ "text": "Botten" }, { "text": "Schedel" }, { "text": "Ribben", "aliases": ["Ribbenkast"] }, { "text": "Kalk", "aliases": ["Calcium"] }] },
-        { "prompt": "Wat weet je van het oog? Vier kernwoorden.", "answers": [{ "text": "Pupil" }, { "text": "Iris", "aliases": ["Regenboogvlies"] }, { "text": "Zien", "aliases": ["Gezichtsvermogen"] }, { "text": "Tranen", "aliases": ["Huilen"] }] },
-        { "prompt": "Wat weet je van de longen? Vier kernwoorden.", "answers": [{ "text": "Ademhalen", "aliases": ["Ademhaling", "Adem"] }, { "text": "Zuurstof" }, { "text": "Lucht" }, { "text": "Roken", "aliases": ["Sigaretten"] }] },
-        { "prompt": "Wat weet je van de hersenen? Vier kernwoorden.", "answers": [{ "text": "Denken", "aliases": ["Gedachten"] }, { "text": "Geheugen" }, { "text": "Grijze massa" }, { "text": "Neuronen", "aliases": ["Zenuwcellen", "Zenuwen"] }] },
-        { "prompt": "Wat weet je van bloed? Vier kernwoorden.", "answers": [{ "text": "Rood" }, { "text": "Aders", "aliases": ["Slagaders", "Bloedvaten"] }, { "text": "Bloedgroepen", "aliases": ["A B AB O"] }, { "text": "Bloeddonatie", "aliases": ["Donor", "Bloed geven"] }] },
-        { "prompt": "Wat weet je van de huid? Vier kernwoorden.", "answers": [{ "text": "Grootste orgaan" }, { "text": "Zweet", "aliases": ["Zweten"] }, { "text": "Sproeten", "aliases": ["Moedervlekken"] }, { "text": "Zonnebrand", "aliases": ["Bruinen", "Kleurtje"] }] },
-        { "prompt": "Wat weet je van tanden? Vier kernwoorden.", "answers": [{ "text": "Tandarts" }, { "text": "Poetsen", "aliases": ["Tandenborstel", "Tandpasta"] }, { "text": "Verstandskiezen" }, { "text": "Gaatjes", "aliases": ["Tandbederf"] }] }
+        { "prompt": "Wat weet je van het hart, "answers": [{ "text": "Bloed", "aliases": ["Bloed pompen"] }, { "text": "Hartslag", "aliases": ["Kloppen", "Pols"] }, { "text": "Borstkas", "aliases": ["Borst"] }, { "text": "Vier holtes", "aliases": ["Holtes", "Kamers"] }] },
+        { "prompt": "Wat weet je van het skelet, "answers": [{ "text": "Botten" }, { "text": "Schedel" }, { "text": "Ribben", "aliases": ["Ribbenkast"] }, { "text": "Kalk", "aliases": ["Calcium"] }] },
+        { "prompt": "Wat weet je van het oog, "answers": [{ "text": "Pupil" }, { "text": "Iris", "aliases": ["Regenboogvlies"] }, { "text": "Zien", "aliases": ["Gezichtsvermogen"] }, { "text": "Tranen", "aliases": ["Huilen"] }] },
+        { "prompt": "Wat weet je van de longen, "answers": [{ "text": "Ademhalen", "aliases": ["Ademhaling", "Adem"] }, { "text": "Zuurstof" }, { "text": "Lucht" }, { "text": "Roken", "aliases": ["Sigaretten"] }] },
+        { "prompt": "Wat weet je van de hersenen, "answers": [{ "text": "Denken", "aliases": ["Gedachten"] }, { "text": "Geheugen" }, { "text": "Grijze massa" }, { "text": "Neuronen", "aliases": ["Zenuwcellen", "Zenuwen"] }] },
+        { "prompt": "Wat weet je van bloed, "answers": [{ "text": "Rood" }, { "text": "Aders", "aliases": ["Slagaders", "Bloedvaten"] }, { "text": "Bloedgroepen", "aliases": ["A B AB O"] }, { "text": "Bloeddonatie", "aliases": ["Donor", "Bloed geven"] }] },
+        { "prompt": "Wat weet je van de huid, "answers": [{ "text": "Grootste orgaan" }, { "text": "Zweet", "aliases": ["Zweten"] }, { "text": "Sproeten", "aliases": ["Moedervlekken"] }, { "text": "Zonnebrand", "aliases": ["Bruinen", "Kleurtje"] }] },
+        { "prompt": "Wat weet je van tanden, "answers": [{ "text": "Tandarts" }, { "text": "Poetsen", "aliases": ["Tandenborstel", "Tandpasta"] }, { "text": "Verstandskiezen" }, { "text": "Gaatjes", "aliases": ["Tandbederf"] }] }
       ]
     },
     {

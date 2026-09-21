@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Van ijzer"] }, { "text": "Driehonderd meter hoog", "aliases": ["300 meter", "Hoog"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }] },
-        { "prompt": "Wat weet je van de zee? Vier kernwoorden.", "answers": [{ "text": "Zout water", "aliases": ["Zout", "Zilt"] }, { "text": "Golven", "aliases": ["Golf"] }, { "text": "Vissen", "aliases": ["Vis"] }, { "text": "Schepen", "aliases": ["Boten", "Schip"] }] },
-        { "prompt": "Wat weet je van koningin Elizabeth II? Vier kernwoorden.", "answers": [{ "text": "Engeland", "aliases": ["Het Verenigd Koninkrijk", "Groot-Brittannie"] }, { "text": "De kroon", "aliases": ["Kroon"] }, { "text": "Corgis", "aliases": ["Honden", "Corgi"] }, { "text": "Buckingham Palace", "aliases": ["Paleis"] }] },
-        { "prompt": "Wat weet je van een trein? Vier kernwoorden.", "answers": [{ "text": "Rails", "aliases": ["Spoor", "Spoorrails"] }, { "text": "Het station", "aliases": ["Station"] }, { "text": "Locomotief", "aliases": ["Machinist"] }, { "text": "Conducteur", "aliases": ["Kaartje", "Treinkaartje"] }] },
-        { "prompt": "Wat weet je van de Tour de France? Vier kernwoorden.", "answers": [{ "text": "Wielrennen", "aliases": ["Fietsen", "Fietsers"] }, { "text": "De gele trui", "aliases": ["Gele trui"] }, { "text": "De bergen", "aliases": ["Bergen", "De Alpen"] }, { "text": "Juli", "aliases": ["Zomer"] }] },
-        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella" }, { "text": "Flamenco", "aliases": ["Dansen"] }, { "text": "Stierenvechten", "aliases": ["Stieren"] }, { "text": "Madrid", "aliases": ["Barcelona"] }] },
-        { "prompt": "Wat weet je van chocolade? Vier kernwoorden.", "answers": [{ "text": "Cacao" }, { "text": "Zoet", "aliases": ["Suiker"] }, { "text": "Bruin" }, { "text": "Paaseieren", "aliases": ["Pasen", "Reep"] }] },
-        { "prompt": "Wat weet je van een leeuw? Vier kernwoorden.", "answers": [{ "text": "Manen", "aliases": ["De manen"] }, { "text": "Brullen", "aliases": ["Gebrul"] }, { "text": "Afrika", "aliases": ["De savanne"] }, { "text": "Koning van de jungle", "aliases": ["Koning der dieren"] }] }
+        { "prompt": "Wat weet je van de Eiffeltoren, "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Van ijzer"] }, { "text": "Driehonderd meter hoog", "aliases": ["300 meter", "Hoog"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }] },
+        { "prompt": "Wat weet je van de zee, "answers": [{ "text": "Zout water", "aliases": ["Zout", "Zilt"] }, { "text": "Golven", "aliases": ["Golf"] }, { "text": "Vissen", "aliases": ["Vis"] }, { "text": "Schepen", "aliases": ["Boten", "Schip"] }] },
+        { "prompt": "Wat weet je van koningin Elizabeth II, "answers": [{ "text": "Engeland", "aliases": ["Het Verenigd Koninkrijk", "Groot-Brittannie"] }, { "text": "De kroon", "aliases": ["Kroon"] }, { "text": "Corgis", "aliases": ["Honden", "Corgi"] }, { "text": "Buckingham Palace", "aliases": ["Paleis"] }] },
+        { "prompt": "Wat weet je van een trein, "answers": [{ "text": "Rails", "aliases": ["Spoor", "Spoorrails"] }, { "text": "Het station", "aliases": ["Station"] }, { "text": "Locomotief", "aliases": ["Machinist"] }, { "text": "Conducteur", "aliases": ["Kaartje", "Treinkaartje"] }] },
+        { "prompt": "Wat weet je van de Tour de France, "answers": [{ "text": "Wielrennen", "aliases": ["Fietsen", "Fietsers"] }, { "text": "De gele trui", "aliases": ["Gele trui"] }, { "text": "De bergen", "aliases": ["Bergen", "De Alpen"] }, { "text": "Juli", "aliases": ["Zomer"] }] },
+        { "prompt": "Wat weet je van Spanje, "answers": [{ "text": "Paella" }, { "text": "Flamenco", "aliases": ["Dansen"] }, { "text": "Stierenvechten", "aliases": ["Stieren"] }, { "text": "Madrid", "aliases": ["Barcelona"] }] },
+        { "prompt": "Wat weet je van chocolade, "answers": [{ "text": "Cacao" }, { "text": "Zoet", "aliases": ["Suiker"] }, { "text": "Bruin" }, { "text": "Paaseieren", "aliases": ["Pasen", "Reep"] }] },
+        { "prompt": "Wat weet je van een leeuw, "answers": [{ "text": "Manen", "aliases": ["De manen"] }, { "text": "Brullen", "aliases": ["Gebrul"] }, { "text": "Afrika", "aliases": ["De savanne"] }, { "text": "Koning van de jungle", "aliases": ["Koning der dieren"] }] }
       ]
     },
     {

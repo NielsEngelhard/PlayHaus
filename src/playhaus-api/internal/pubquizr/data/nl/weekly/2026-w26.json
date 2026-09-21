@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van de zee? Vier kernwoorden.", "answers": [{ "text": "Zout water", "aliases": ["zout"] }, { "text": "Golven" }, { "text": "Strand" }, { "text": "Vissen", "aliases": ["vis"] }] },
-        { "prompt": "Wat weet je van een boerderij? Vier kernwoorden.", "answers": [{ "text": "Koe" }, { "text": "Tractor", "aliases": ["trekker"] }, { "text": "Schuur", "aliases": ["stal"] }, { "text": "Hooi" }] },
-        { "prompt": "Wat weet je van Parijs? Vier kernwoorden.", "answers": [{ "text": "Eiffeltoren" }, { "text": "Louvre" }, { "text": "Seine" }, { "text": "Croissant" }] },
-        { "prompt": "Wat weet je van Kerst? Vier kernwoorden.", "answers": [{ "text": "Kerstboom", "aliases": ["boom"] }, { "text": "Cadeaus", "aliases": ["cadeautjes"] }, { "text": "Kerstman" }, { "text": "Sneeuw" }] },
-        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "Thriller" }, { "text": "Moonwalk" }, { "text": "Witte handschoen", "aliases": ["handschoen"] }, { "text": "King of Pop", "aliases": ["pop"] }] },
-        { "prompt": "Wat weet je van Rembrandt? Vier kernwoorden.", "answers": [{ "text": "Schilder" }, { "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Amsterdam" }, { "text": "Zelfportret" }] },
-        { "prompt": "Wat weet je van een vulkaan? Vier kernwoorden.", "answers": [{ "text": "Lava" }, { "text": "Uitbarsting", "aliases": ["eruptie"] }, { "text": "As" }, { "text": "Krater" }] },
-        { "prompt": "Wat weet je van Spanje? Vier kernwoorden.", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Madrid" }, { "text": "Stierenvechten", "aliases": ["stierengevecht"] }] }
+        { "prompt": "Wat weet je van de zee, "answers": [{ "text": "Zout water", "aliases": ["zout"] }, { "text": "Golven" }, { "text": "Strand" }, { "text": "Vissen", "aliases": ["vis"] }] },
+        { "prompt": "Wat weet je van een boerderij, "answers": [{ "text": "Koe" }, { "text": "Tractor", "aliases": ["trekker"] }, { "text": "Schuur", "aliases": ["stal"] }, { "text": "Hooi" }] },
+        { "prompt": "Wat weet je van Parijs, "answers": [{ "text": "Eiffeltoren" }, { "text": "Louvre" }, { "text": "Seine" }, { "text": "Croissant" }] },
+        { "prompt": "Wat weet je van Kerst, "answers": [{ "text": "Kerstboom", "aliases": ["boom"] }, { "text": "Cadeaus", "aliases": ["cadeautjes"] }, { "text": "Kerstman" }, { "text": "Sneeuw" }] },
+        { "prompt": "Wat weet je van Michael Jackson, "answers": [{ "text": "Thriller" }, { "text": "Moonwalk" }, { "text": "Witte handschoen", "aliases": ["handschoen"] }, { "text": "King of Pop", "aliases": ["pop"] }] },
+        { "prompt": "Wat weet je van Rembrandt, "answers": [{ "text": "Schilder" }, { "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Amsterdam" }, { "text": "Zelfportret" }] },
+        { "prompt": "Wat weet je van een vulkaan, "answers": [{ "text": "Lava" }, { "text": "Uitbarsting", "aliases": ["eruptie"] }, { "text": "As" }, { "text": "Krater" }] },
+        { "prompt": "Wat weet je van Spanje, "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Madrid" }, { "text": "Stierenvechten", "aliases": ["stierengevecht"] }] }
       ]
     },
     {

@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Zwitserland? Vier kernwoorden.", "answers": [{ "text": "De Alpen" }, { "text": "Chocolade" }, { "text": "Horloges" }, { "text": "Banken" }] },
-        { "prompt": "Wat weet je van de Vikingen? Vier kernwoorden.", "answers": [{ "text": "Langschip" }, { "text": "Scandinavie" }, { "text": "Plundertochten" }, { "text": "Odin" }] },
-        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-'n-roll" }, { "text": "Graceland" }, { "text": "Las Vegas" }, { "text": "Blue Suede Shoes" }] },
-        { "prompt": "Wat weet je van India? Vier kernwoorden.", "answers": [{ "text": "Curry" }, { "text": "Bollywood" }, { "text": "De Taj Mahal" }, { "text": "Cricket" }] },
-        { "prompt": "Wat weet je van het circus? Vier kernwoorden.", "answers": [{ "text": "Clown" }, { "text": "Trapeze" }, { "text": "Circustent" }, { "text": "Leeuwentemmer" }] },
-        { "prompt": "Wat weet je van William Shakespeare? Vier kernwoorden.", "answers": [{ "text": "Hamlet" }, { "text": "Romeo en Julia" }, { "text": "Het Globe Theatre" }, { "text": "Sonnetten" }] },
-        { "prompt": "Wat weet je van het Amazoneregenwoud? Vier kernwoorden.", "answers": [{ "text": "Brazilie" }, { "text": "Jungle" }, { "text": "De Amazone" }, { "text": "Ontbossing" }] },
-        { "prompt": "Wat weet je van de Formule 1? Vier kernwoorden.", "answers": [{ "text": "Max Verstappen" }, { "text": "Pitstop" }, { "text": "Ferrari" }, { "text": "Monaco" }] }
+        { "prompt": "Wat weet je van Zwitserland, "answers": [{ "text": "De Alpen" }, { "text": "Chocolade" }, { "text": "Horloges" }, { "text": "Banken" }] },
+        { "prompt": "Wat weet je van de Vikingen, "answers": [{ "text": "Langschip" }, { "text": "Scandinavie" }, { "text": "Plundertochten" }, { "text": "Odin" }] },
+        { "prompt": "Wat weet je van Elvis Presley, "answers": [{ "text": "Rock-'n-roll" }, { "text": "Graceland" }, { "text": "Las Vegas" }, { "text": "Blue Suede Shoes" }] },
+        { "prompt": "Wat weet je van India, "answers": [{ "text": "Curry" }, { "text": "Bollywood" }, { "text": "De Taj Mahal" }, { "text": "Cricket" }] },
+        { "prompt": "Wat weet je van het circus, "answers": [{ "text": "Clown" }, { "text": "Trapeze" }, { "text": "Circustent" }, { "text": "Leeuwentemmer" }] },
+        { "prompt": "Wat weet je van William Shakespeare, "answers": [{ "text": "Hamlet" }, { "text": "Romeo en Julia" }, { "text": "Het Globe Theatre" }, { "text": "Sonnetten" }] },
+        { "prompt": "Wat weet je van het Amazoneregenwoud, "answers": [{ "text": "Brazilie" }, { "text": "Jungle" }, { "text": "De Amazone" }, { "text": "Ontbossing" }] },
+        { "prompt": "Wat weet je van de Formule 1, "answers": [{ "text": "Max Verstappen" }, { "text": "Pitstop" }, { "text": "Ferrari" }, { "text": "Monaco" }] }
       ]
     },
     {

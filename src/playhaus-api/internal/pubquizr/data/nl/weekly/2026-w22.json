@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van New York? Vier kernwoorden.", "answers": [{ "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Wolkenkrabbers", "aliases": ["Empire State Building"] }, { "text": "Times Square" }, { "text": "Gele taxis", "aliases": ["Taxis", "Yellow cab"] }] },
-        { "prompt": "Wat weet je van de winter? Vier kernwoorden.", "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Vorst"] }, { "text": "Schaatsen", "aliases": ["Ijs", "Schaatsen op natuurijs"] }, { "text": "Sjaal", "aliases": ["Muts", "Handschoenen"] }] },
-        { "prompt": "Wat weet je van Elvis Presley? Vier kernwoorden.", "answers": [{ "text": "Rock-and-roll", "aliases": ["Rock n roll"] }, { "text": "Graceland" }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock"] }, { "text": "Zijn kuif", "aliases": ["Kuif", "Zijn haar"] }] },
-        { "prompt": "Wat weet je van een ziekenhuis? Vier kernwoorden.", "answers": [{ "text": "Dokters", "aliases": ["Dokter", "Chirurg"] }, { "text": "Verpleegkundigen", "aliases": ["Verpleegster", "Zuster"] }, { "text": "Ambulance" }, { "text": "Operatiekamer", "aliases": ["Operatie"] }] },
-        { "prompt": "Wat weet je van schaken? Vier kernwoorden.", "answers": [{ "text": "Schaakmat", "aliases": ["Mat", "Schaak"] }, { "text": "Koning en koningin", "aliases": ["Koning", "Dame"] }, { "text": "Zwarte en witte velden", "aliases": ["Bord", "Vierenzestig velden"] }, { "text": "Grootmeester", "aliases": ["Wereldkampioen"] }] },
-        { "prompt": "Wat weet je van de Tweede Wereldoorlog? Vier kernwoorden.", "answers": [{ "text": "Hitler" }, { "text": "D-Day", "aliases": ["Normandie"] }, { "text": "1945", "aliases": ["De bevrijding", "1940-1945"] }, { "text": "Churchill" }] },
-        { "prompt": "Wat weet je van Frankrijk? Vier kernwoorden.", "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }, { "text": "Stokbrood", "aliases": ["Baguette"] }, { "text": "Wijn" }, { "text": "Parijs" }] },
-        { "prompt": "Wat weet je van honden? Vier kernwoorden.", "answers": [{ "text": "Blaffen", "aliases": ["Blaf"] }, { "text": "Uitlaten", "aliases": ["Riem", "Lijn"] }, { "text": "Staart", "aliases": ["Kwispelen"] }, { "text": "Puppy", "aliases": ["Pup", "Puppies"] }] }
+        { "prompt": "Wat weet je van New York, "answers": [{ "text": "Het Vrijheidsbeeld", "aliases": ["Vrijheidsbeeld"] }, { "text": "Wolkenkrabbers", "aliases": ["Empire State Building"] }, { "text": "Times Square" }, { "text": "Gele taxis", "aliases": ["Taxis", "Yellow cab"] }] },
+        { "prompt": "Wat weet je van de winter, "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Vorst"] }, { "text": "Schaatsen", "aliases": ["Ijs", "Schaatsen op natuurijs"] }, { "text": "Sjaal", "aliases": ["Muts", "Handschoenen"] }] },
+        { "prompt": "Wat weet je van Elvis Presley, "answers": [{ "text": "Rock-and-roll", "aliases": ["Rock n roll"] }, { "text": "Graceland" }, { "text": "Blue Suede Shoes", "aliases": ["Jailhouse Rock"] }, { "text": "Zijn kuif", "aliases": ["Kuif", "Zijn haar"] }] },
+        { "prompt": "Wat weet je van een ziekenhuis, "answers": [{ "text": "Dokters", "aliases": ["Dokter", "Chirurg"] }, { "text": "Verpleegkundigen", "aliases": ["Verpleegster", "Zuster"] }, { "text": "Ambulance" }, { "text": "Operatiekamer", "aliases": ["Operatie"] }] },
+        { "prompt": "Wat weet je van schaken, "answers": [{ "text": "Schaakmat", "aliases": ["Mat", "Schaak"] }, { "text": "Koning en koningin", "aliases": ["Koning", "Dame"] }, { "text": "Zwarte en witte velden", "aliases": ["Bord", "Vierenzestig velden"] }, { "text": "Grootmeester", "aliases": ["Wereldkampioen"] }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog, "answers": [{ "text": "Hitler" }, { "text": "D-Day", "aliases": ["Normandie"] }, { "text": "1945", "aliases": ["De bevrijding", "1940-1945"] }, { "text": "Churchill" }] },
+        { "prompt": "Wat weet je van Frankrijk, "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }, { "text": "Stokbrood", "aliases": ["Baguette"] }, { "text": "Wijn" }, { "text": "Parijs" }] },
+        { "prompt": "Wat weet je van honden, "answers": [{ "text": "Blaffen", "aliases": ["Blaf"] }, { "text": "Uitlaten", "aliases": ["Riem", "Lijn"] }, { "text": "Staart", "aliases": ["Kwispelen"] }, { "text": "Puppy", "aliases": ["Pup", "Puppies"] }] }
       ]
     },
     {

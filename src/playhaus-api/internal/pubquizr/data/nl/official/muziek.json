@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van The Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Abbey Road" }] },
-        { "prompt": "Wat weet je van Wolfgang Amadeus Mozart? Vier kernwoorden.", "answers": [{ "text": "Oostenrijker", "aliases": ["Oostenrijk", "Oostenrijks", "Wenen"] }, { "text": "Componist" }, { "text": "Wonderkind" }, { "text": "Requiem" }] },
-        { "prompt": "Wat weet je van Michael Jackson? Vier kernwoorden.", "answers": [{ "text": "Moonwalk" }, { "text": "Thriller" }, { "text": "Witte handschoen", "aliases": ["Handschoen"] }, { "text": "King of Pop" }] },
-        { "prompt": "Wat weet je van Andre Rieu? Vier kernwoorden.", "answers": [{ "text": "Maastricht" }, { "text": "Viool" }, { "text": "Vrijthof" }, { "text": "Walsen", "aliases": ["Wals", "Johann Strauss Orkest"] }] },
-        { "prompt": "Wat weet je van het Eurovisie Songfestival? Vier kernwoorden.", "answers": [{ "text": "Twaalf punten", "aliases": ["12 punten", "Douze points"] }, { "text": "ABBA" }, { "text": "Arcade", "aliases": ["Duncan Laurence"] }, { "text": "Jury" }] },
-        { "prompt": "Wat weet je van Lowlands? Vier kernwoorden.", "answers": [{ "text": "Biddinghuizen" }, { "text": "Camping", "aliases": ["Tent", "Kamperen"] }, { "text": "Augustus" }, { "text": "Modder" }] },
-        { "prompt": "Wat weet je van de gitaar? Vier kernwoorden.", "answers": [{ "text": "Zes snaren", "aliases": ["Snaren", "Zes"] }, { "text": "Akkoorden", "aliases": ["Akkoord"] }, { "text": "Plectrum" }, { "text": "Elektrisch", "aliases": ["Elektrische gitaar", "Versterker"] }] },
-        { "prompt": "Wat weet je van Beyonce? Vier kernwoorden.", "answers": [{ "text": "Destiny's Child" }, { "text": "Single Ladies" }, { "text": "Jay-Z" }, { "text": "Grammy", "aliases": ["Grammy Awards"] }] }
+        { "prompt": "Wat weet je van The Beatles, "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Abbey Road" }] },
+        { "prompt": "Wat weet je van Wolfgang Amadeus Mozart, "answers": [{ "text": "Oostenrijker", "aliases": ["Oostenrijk", "Oostenrijks", "Wenen"] }, { "text": "Componist" }, { "text": "Wonderkind" }, { "text": "Requiem" }] },
+        { "prompt": "Wat weet je van Michael Jackson, "answers": [{ "text": "Moonwalk" }, { "text": "Thriller" }, { "text": "Witte handschoen", "aliases": ["Handschoen"] }, { "text": "King of Pop" }] },
+        { "prompt": "Wat weet je van Andre Rieu, "answers": [{ "text": "Maastricht" }, { "text": "Viool" }, { "text": "Vrijthof" }, { "text": "Walsen", "aliases": ["Wals", "Johann Strauss Orkest"] }] },
+        { "prompt": "Wat weet je van het Eurovisie Songfestival, "answers": [{ "text": "Twaalf punten", "aliases": ["12 punten", "Douze points"] }, { "text": "ABBA" }, { "text": "Arcade", "aliases": ["Duncan Laurence"] }, { "text": "Jury" }] },
+        { "prompt": "Wat weet je van Lowlands, "answers": [{ "text": "Biddinghuizen" }, { "text": "Camping", "aliases": ["Tent", "Kamperen"] }, { "text": "Augustus" }, { "text": "Modder" }] },
+        { "prompt": "Wat weet je van de gitaar, "answers": [{ "text": "Zes snaren", "aliases": ["Snaren", "Zes"] }, { "text": "Akkoorden", "aliases": ["Akkoord"] }, { "text": "Plectrum" }, { "text": "Elektrisch", "aliases": ["Elektrische gitaar", "Versterker"] }] },
+        { "prompt": "Wat weet je van Beyonce, "answers": [{ "text": "Destiny's Child" }, { "text": "Single Ladies" }, { "text": "Jay-Z" }, { "text": "Grammy", "aliases": ["Grammy Awards"] }] }
       ]
     },
     {

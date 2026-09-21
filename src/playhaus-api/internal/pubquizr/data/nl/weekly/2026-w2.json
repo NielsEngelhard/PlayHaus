@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Nederland? Vier kernwoorden.", "answers": [{ "text": "Tulpen" }, { "text": "Molens", "aliases": ["Windmolens"] }, { "text": "Kaas", "aliases": ["Gouda"] }, { "text": "Fietsen", "aliases": ["Fiets"] }] },
-        { "prompt": "Wat weet je van het oude Egypte? Vier kernwoorden.", "answers": [{ "text": "Piramides" }, { "text": "Mummies" }, { "text": "Faraos", "aliases": ["Farao", "Toetanchamon"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
-        { "prompt": "Wat weet je van de Beatles? Vier kernwoorden.", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Yellow Submarine" }] },
-        { "prompt": "Wat weet je van Italie? Vier kernwoorden.", "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "Pasta", "aliases": ["Spaghetti"] }, { "text": "Ferrari" }] },
-        { "prompt": "Wat weet je van Kerstmis? Vier kernwoorden.", "answers": [{ "text": "Kerstboom", "aliases": ["Boom"] }, { "text": "De kerstman", "aliases": ["Kerstman"] }, { "text": "Cadeaus", "aliases": ["Kerstpakket"] }, { "text": "Sneeuw" }] },
-        { "prompt": "Wat weet je van de Olympische Spelen? Vier kernwoorden.", "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen"] }, { "text": "Gouden medaille", "aliases": ["Medailles"] }, { "text": "De olympische vlam", "aliases": ["Fakkel", "Vlam"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }] },
-        { "prompt": "Wat weet je van Harry Potter? Vier kernwoorden.", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }, { "text": "Toverstok", "aliases": ["Toverstaf", "Magie"] }, { "text": "Voldemort" }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }] },
-        { "prompt": "Wat weet je van Napoleon? Vier kernwoorden.", "answers": [{ "text": "Waterloo" }, { "text": "Frankrijk" }, { "text": "Keizer" }, { "text": "Klein", "aliases": ["Kleine man"] }] }
+        { "prompt": "Wat weet je van Nederland, "answers": [{ "text": "Tulpen" }, { "text": "Molens", "aliases": ["Windmolens"] }, { "text": "Kaas", "aliases": ["Gouda"] }, { "text": "Fietsen", "aliases": ["Fiets"] }] },
+        { "prompt": "Wat weet je van het oude Egypte, "answers": [{ "text": "Piramides" }, { "text": "Mummies" }, { "text": "Faraos", "aliases": ["Farao", "Toetanchamon"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van de Beatles, "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "Yellow Submarine" }] },
+        { "prompt": "Wat weet je van Italie, "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "Pasta", "aliases": ["Spaghetti"] }, { "text": "Ferrari" }] },
+        { "prompt": "Wat weet je van Kerstmis, "answers": [{ "text": "Kerstboom", "aliases": ["Boom"] }, { "text": "De kerstman", "aliases": ["Kerstman"] }, { "text": "Cadeaus", "aliases": ["Kerstpakket"] }, { "text": "Sneeuw" }] },
+        { "prompt": "Wat weet je van de Olympische Spelen, "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen"] }, { "text": "Gouden medaille", "aliases": ["Medailles"] }, { "text": "De olympische vlam", "aliases": ["Fakkel", "Vlam"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }] },
+        { "prompt": "Wat weet je van Harry Potter, "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }, { "text": "Toverstok", "aliases": ["Toverstaf", "Magie"] }, { "text": "Voldemort" }, { "text": "J.K. Rowling", "aliases": ["Rowling"] }] },
+        { "prompt": "Wat weet je van Napoleon, "answers": [{ "text": "Waterloo" }, { "text": "Frankrijk" }, { "text": "Keizer" }, { "text": "Klein", "aliases": ["Kleine man"] }] }
       ]
     },
     {

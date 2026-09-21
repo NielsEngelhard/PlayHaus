@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van de Titanic? Vier kernwoorden.", "answers": [{ "text": "IJsberg", "aliases": ["Ijsberg"] }, { "text": "Gezonken", "aliases": ["Schipbreuk", "Hij zonk"] }, { "text": "1912" }, { "text": "Reddingsboten", "aliases": ["Te weinig reddingsboten", "Reddingsboot"] }] },
-        { "prompt": "Wat weet je van de Eiffeltoren? Vier kernwoorden.", "answers": [{ "text": "Parijs" }, { "text": "Van ijzer", "aliases": ["IJzer", "Staal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["Toerist", "Lange rijen"] }] },
-        { "prompt": "Wat weet je van Nelson Mandela? Vier kernwoorden.", "answers": [{ "text": "Zuid-Afrika" }, { "text": "Zevenentwintig jaar cel", "aliases": ["Gevangenis", "Robbeneiland", "Cel"] }, { "text": "Apartheid" }, { "text": "President" }] },
-        { "prompt": "Wat weet je van een bij? Vier kernwoorden.", "answers": [{ "text": "Honing" }, { "text": "Steek", "aliases": ["Angel", "Steken"] }, { "text": "Bijenkorf", "aliases": ["Korf"] }, { "text": "Bloemen", "aliases": ["Stuifmeel", "Bloem"] }] },
-        { "prompt": "Wat weet je van de Sahara? Vier kernwoorden.", "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Afrika" }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }] },
-        { "prompt": "Wat weet je van de maan? Vier kernwoorden.", "answers": [{ "text": "Kraters", "aliases": ["Krater"] }, { "text": "Volle maan" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "De maanlanding"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Hij trekt aan de zee"] }] },
-        { "prompt": "Wat weet je van Leonardo da Vinci? Vier kernwoorden.", "answers": [{ "text": "Mona Lisa", "aliases": ["De Mona Lisa"] }, { "text": "Italiaan", "aliases": ["Italie"] }, { "text": "Uitvinder", "aliases": ["Uitvindingen", "Vliegmachines"] }, { "text": "Het Laatste Avondmaal", "aliases": ["Laatste Avondmaal"] }] },
-        { "prompt": "Wat weet je van een voetbalwedstrijd? Vier kernwoorden.", "answers": [{ "text": "Elf spelers", "aliases": ["Elftal", "11 spelers"] }, { "text": "Doelpunt", "aliases": ["Goal", "Scoren"] }, { "text": "Scheidsrechter", "aliases": ["Scheids"] }, { "text": "Gele kaart", "aliases": ["Kaarten", "Rode kaart"] }] }
+        { "prompt": "Wat weet je van de Titanic, "answers": [{ "text": "IJsberg", "aliases": ["Ijsberg"] }, { "text": "Gezonken", "aliases": ["Schipbreuk", "Hij zonk"] }, { "text": "1912" }, { "text": "Reddingsboten", "aliases": ["Te weinig reddingsboten", "Reddingsboot"] }] },
+        { "prompt": "Wat weet je van de Eiffeltoren, "answers": [{ "text": "Parijs" }, { "text": "Van ijzer", "aliases": ["IJzer", "Staal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["Toerist", "Lange rijen"] }] },
+        { "prompt": "Wat weet je van Nelson Mandela, "answers": [{ "text": "Zuid-Afrika" }, { "text": "Zevenentwintig jaar cel", "aliases": ["Gevangenis", "Robbeneiland", "Cel"] }, { "text": "Apartheid" }, { "text": "President" }] },
+        { "prompt": "Wat weet je van een bij, "answers": [{ "text": "Honing" }, { "text": "Steek", "aliases": ["Angel", "Steken"] }, { "text": "Bijenkorf", "aliases": ["Korf"] }, { "text": "Bloemen", "aliases": ["Stuifmeel", "Bloem"] }] },
+        { "prompt": "Wat weet je van de Sahara, "answers": [{ "text": "Woestijn" }, { "text": "Zand", "aliases": ["Zandduinen", "Duinen"] }, { "text": "Afrika" }, { "text": "Kamelen", "aliases": ["Kameel", "Dromedaris"] }] },
+        { "prompt": "Wat weet je van de maan, "answers": [{ "text": "Kraters", "aliases": ["Krater"] }, { "text": "Volle maan" }, { "text": "Neil Armstrong", "aliases": ["Armstrong", "De maanlanding"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Hij trekt aan de zee"] }] },
+        { "prompt": "Wat weet je van Leonardo da Vinci, "answers": [{ "text": "Mona Lisa", "aliases": ["De Mona Lisa"] }, { "text": "Italiaan", "aliases": ["Italie"] }, { "text": "Uitvinder", "aliases": ["Uitvindingen", "Vliegmachines"] }, { "text": "Het Laatste Avondmaal", "aliases": ["Laatste Avondmaal"] }] },
+        { "prompt": "Wat weet je van een voetbalwedstrijd, "answers": [{ "text": "Elf spelers", "aliases": ["Elftal", "11 spelers"] }, { "text": "Doelpunt", "aliases": ["Goal", "Scoren"] }, { "text": "Scheidsrechter", "aliases": ["Scheids"] }, { "text": "Gele kaart", "aliases": ["Kaarten", "Rode kaart"] }] }
       ]
     },
     {

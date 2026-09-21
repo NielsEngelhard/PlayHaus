@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Vincent van Gogh? Vier kernwoorden.", "answers": [{ "text": "Nederlands" }, { "text": "Schilder" }, { "text": "Zonnebloemen" }, { "text": "Oor" }] },
-        { "prompt": "Wat weet je van de Tweede Wereldoorlog in Nederland? Vier kernwoorden.", "answers": [{ "text": "1940" }, { "text": "Bezetting" }, { "text": "Hongerwinter" }, { "text": "Bevrijding" }] },
-        { "prompt": "Wat weet je van Duitsland? Vier kernwoorden.", "answers": [{ "text": "Berlijn" }, { "text": "Bier" }, { "text": "De autobahn" }, { "text": "Beieren" }] },
-        { "prompt": "Wat weet je van het Romeinse Rijk? Vier kernwoorden.", "answers": [{ "text": "Rome" }, { "text": "Julius Caesar" }, { "text": "Het Colosseum" }, { "text": "Gladiatoren" }] },
-        { "prompt": "Wat weet je van de Noordzee? Vier kernwoorden.", "answers": [{ "text": "Zout water" }, { "text": "Golven" }, { "text": "Windmolenparken" }, { "text": "Veerboten" }] },
-        { "prompt": "Wat weet je van de Formule 1? Vier kernwoorden.", "answers": [{ "text": "Max Verstappen" }, { "text": "Pitstop" }, { "text": "Circuit" }, { "text": "Zandvoort" }] },
-        { "prompt": "Wat weet je van katten? Vier kernwoorden.", "answers": [{ "text": "Spinnen" }, { "text": "Snorharen" }, { "text": "Muizen" }, { "text": "Krabpaal" }] },
-        { "prompt": "Wat weet je van de zomervakantie? Vier kernwoorden.", "answers": [{ "text": "Strand" }, { "text": "Camping" }, { "text": "Zonnebrand" }, { "text": "Koffer" }] }
+        { "prompt": "Wat weet je van Vincent van Gogh, "answers": [{ "text": "Nederlands" }, { "text": "Schilder" }, { "text": "Zonnebloemen" }, { "text": "Oor" }] },
+        { "prompt": "Wat weet je van de Tweede Wereldoorlog in Nederland, "answers": [{ "text": "1940" }, { "text": "Bezetting" }, { "text": "Hongerwinter" }, { "text": "Bevrijding" }] },
+        { "prompt": "Wat weet je van Duitsland, "answers": [{ "text": "Berlijn" }, { "text": "Bier" }, { "text": "De autobahn" }, { "text": "Beieren" }] },
+        { "prompt": "Wat weet je van het Romeinse Rijk, "answers": [{ "text": "Rome" }, { "text": "Julius Caesar" }, { "text": "Het Colosseum" }, { "text": "Gladiatoren" }] },
+        { "prompt": "Wat weet je van de Noordzee, "answers": [{ "text": "Zout water" }, { "text": "Golven" }, { "text": "Windmolenparken" }, { "text": "Veerboten" }] },
+        { "prompt": "Wat weet je van de Formule 1, "answers": [{ "text": "Max Verstappen" }, { "text": "Pitstop" }, { "text": "Circuit" }, { "text": "Zandvoort" }] },
+        { "prompt": "Wat weet je van katten, "answers": [{ "text": "Spinnen" }, { "text": "Snorharen" }, { "text": "Muizen" }, { "text": "Krabpaal" }] },
+        { "prompt": "Wat weet je van de zomervakantie, "answers": [{ "text": "Strand" }, { "text": "Camping" }, { "text": "Zonnebrand" }, { "text": "Koffer" }] }
       ]
     },
     {
