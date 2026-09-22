@@ -1469,6 +1469,11 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 		return nil, ErrWrongRound
 	}
 
+	// A tie for a place is still being played for, so there is nobody to ask yet.
+	if _, _, seated := session.Finalists(); !seated {
+		return nil, ErrStaleTurn
+	}
+
 	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
 	if question == nil || question.ID != in.SessionQuestionID {
 		return nil, ErrStaleTurn
@@ -1548,6 +1553,47 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 	session.UpdatedAt = now
 
 	if err := s.store.RecordTurn(ctx, session, out); err != nil {
+		return nil, err
+	}
+
+	return s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
+}
+
+// FinalistsInput is the quizmaster naming who won a tie for a place in the finale.
+type FinalistsInput struct {
+	SessionID uuid.UUID
+	OwnerID   string
+	ActorID   string
+	// Seats are the winners of the draw, as many as there were places left.
+	Seats []int
+}
+
+// ChooseFinalists breaks a finale tie with the winners the table played for, and opens the finale on them.
+func (s *Service) ChooseFinalists(ctx context.Context, in FinalistsInput) (*Session, error) {
+	session, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
+	if err != nil {
+		return nil, err
+	}
+
+	if session.Status != SessionInProgress {
+		return nil, ErrSessionOver
+	}
+	if session.CurrentRound != RoundFinale {
+		return nil, ErrWrongRound
+	}
+	if !session.FinaleUndecided() {
+		return nil, ErrStaleTurn
+	}
+	if err := s.requireSeat(session, in.ActorID, session.QuizMasterSeat); err != nil {
+		return nil, err
+	}
+
+	if err := session.SeatFinalists(in.Seats); err != nil {
+		return nil, err
+	}
+	session.UpdatedAt = time.Now().UTC()
+
+	if err := s.store.RecordTurn(ctx, session, TurnOutcome{}); err != nil {
 		return nil, err
 	}
 
@@ -1785,6 +1831,10 @@ func (s *Service) AnsweringSeatFor(ctx context.Context, session *Session) (int, 
 	}
 
 	if session.CurrentRound == RoundFinale {
+		if _, _, seated := session.Finalists(); !seated {
+			return -1, nil
+		}
+
 		question := session.QuestionAt(RoundFinale, session.CurrentPosition)
 		if question == nil {
 			return -1, nil

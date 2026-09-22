@@ -8,6 +8,7 @@ import { pqLobbyErrorMessage } from '@/features/pubquizr/multi-device/pubquizr-l
 import { quizErrorMessage } from '@/features/pubquizr/pubquizr-errors';
 import { getQuizRequest, type QuizDetail } from '@/features/pubquizr/pubquizr-quizzes';
 import {
+    chooseMultiDeviceFinalistsRequest,
     getMultiDeviceSessionRequest,
     recordMultiDeviceClosestGuessesRequest,
     recordMultiDeviceClosestGuessRequest,
@@ -80,6 +81,8 @@ export interface PQTableState {
     settleDoubleDown: (sessionQuestionId: string, missedSeats: number[], correctSeat: number | null) => void
     /** Round 7: the same as a hot seat turn, down a two seat line. */
     settleFinale: (missedSeats: number[], correctSeat: number | null) => void
+    // Round 7: the winners of a tie for a place in it.
+    chooseFinalists: (seats: number[]) => void
 }
 
 // This hook never joins: reading a room is what having the code entitles you to, and the screen must not take a seat.
@@ -401,6 +404,10 @@ export function useQuizTable(code: string): PQTableState {
         });
     }, [submit, code]);
 
+    const chooseFinalists = useCallback((seats: number[]) => {
+        submit(() => chooseMultiDeviceFinalistsRequest(code, seats));
+    }, [submit, code]);
+
     const reload = useCallback(() => {
         setLoading(true);
         void load();
@@ -436,6 +443,7 @@ export function useQuizTable(code: string): PQTableState {
         settleList,
         chooseDoubleDown,
         settleDoubleDown,
-        settleFinale
+        settleFinale,
+        chooseFinalists
     };
 }

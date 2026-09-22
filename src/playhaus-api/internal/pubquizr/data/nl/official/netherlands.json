@@ -95,14 +95,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Amsterdam, "answers": [{ "text": "Grachten", "aliases": ["Gracht"] }, { "text": "Anne Frank Huis", "aliases": ["Anne Frank", "Achterhuis"] }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Het Rijksmuseum", "aliases": ["Rijksmuseum"] }] },
-        { "prompt": "Wat weet je van Rembrandt, "answers": [{ "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Leiden" }, { "text": "De Gouden Eeuw", "aliases": ["Gouden Eeuw"] }, { "text": "Zelfportretten", "aliases": ["Zelfportret"] }] },
-        { "prompt": "Wat weet je van Vincent van Gogh, "answers": [{ "text": "Zonnebloemen" }, { "text": "Zijn oor", "aliases": ["Oor", "Hij sneed zijn oor af"] }, { "text": "De Aardappeleters", "aliases": ["Aardappeleters"] }, { "text": "Zundert" }] },
-        { "prompt": "Wat weet je van de Afsluitdijk, "answers": [{ "text": "Het IJsselmeer", "aliases": ["IJsselmeer", "Zuiderzee"] }, { "text": "Friesland" }, { "text": "Noord-Holland" }, { "text": "32 kilometer", "aliases": ["32", "Tweeendertig kilometer"] }] },
-        { "prompt": "Wat weet je van tulpen, "answers": [{ "text": "Keukenhof" }, { "text": "Bollen", "aliases": ["Bol", "Bloembollen"] }, { "text": "Tulpenmanie", "aliases": ["Tulpengekte"] }, { "text": "Lente", "aliases": ["Voorjaar"] }] },
-        { "prompt": "Wat weet je van Koningsdag, "answers": [{ "text": "27 april", "aliases": ["27 April"] }, { "text": "Oranje" }, { "text": "Vrijmarkt", "aliases": ["Kleedjesmarkt", "Rommelmarkt"] }, { "text": "Willem-Alexander", "aliases": ["De koning", "Koning"] }] },
-        { "prompt": "Wat weet je van Ajax, "answers": [{ "text": "Amsterdam" }, { "text": "Voetbalclub", "aliases": ["Voetbal"] }, { "text": "Johan Cruijff", "aliases": ["Cruijff", "Cruyff"] }, { "text": "De Champions League", "aliases": ["Champions League", "Europacup"] }] },
-        { "prompt": "Wat weet je van de Waddenzee, "answers": [{ "text": "Wadlopen" }, { "text": "Zeehonden", "aliases": ["Zeehond"] }, { "text": "De Waddeneilanden", "aliases": ["Waddeneilanden", "Texel", "Terschelling"] }, { "text": "Werelderfgoed", "aliases": ["UNESCO", "Unesco Werelderfgoed"] }] }
+        { "prompt": "Wat weet je van Amsterdam?", "answers": [{ "text": "Grachten", "aliases": ["Gracht"] }, { "text": "Anne Frank Huis", "aliases": ["Anne Frank", "Achterhuis"] }, { "text": "Fietsen", "aliases": ["Fiets"] }, { "text": "Het Rijksmuseum", "aliases": ["Rijksmuseum"] }] },
+        { "prompt": "Wat weet je van Rembrandt?", "answers": [{ "text": "De Nachtwacht", "aliases": ["Nachtwacht"] }, { "text": "Leiden" }, { "text": "De Gouden Eeuw", "aliases": ["Gouden Eeuw"] }, { "text": "Zelfportretten", "aliases": ["Zelfportret"] }] },
+        { "prompt": "Wat weet je van Vincent van Gogh?", "answers": [{ "text": "Zonnebloemen" }, { "text": "Zijn oor", "aliases": ["Oor", "Hij sneed zijn oor af"] }, { "text": "De Aardappeleters", "aliases": ["Aardappeleters"] }, { "text": "Zundert" }] },
+        { "prompt": "Wat weet je van de Afsluitdijk?", "answers": [{ "text": "Het IJsselmeer", "aliases": ["IJsselmeer", "Zuiderzee"] }, { "text": "Friesland" }, { "text": "Noord-Holland" }, { "text": "32 kilometer", "aliases": ["32", "Tweeendertig kilometer"] }] },
+        { "prompt": "Wat weet je van tulpen?", "answers": [{ "text": "Keukenhof" }, { "text": "Bollen", "aliases": ["Bol", "Bloembollen"] }, { "text": "Tulpenmanie", "aliases": ["Tulpengekte"] }, { "text": "Lente", "aliases": ["Voorjaar"] }] },
+        { "prompt": "Wat weet je van Koningsdag?", "answers": [{ "text": "27 april", "aliases": ["27 April"] }, { "text": "Oranje" }, { "text": "Vrijmarkt", "aliases": ["Kleedjesmarkt", "Rommelmarkt"] }, { "text": "Willem-Alexander", "aliases": ["De koning", "Koning"] }] },
+        { "prompt": "Wat weet je van Ajax?", "answers": [{ "text": "Amsterdam" }, { "text": "Voetbalclub", "aliases": ["Voetbal"] }, { "text": "Johan Cruijff", "aliases": ["Cruijff", "Cruyff"] }, { "text": "De Champions League", "aliases": ["Champions League", "Europacup"] }] },
+        { "prompt": "Wat weet je van de Waddenzee?", "answers": [{ "text": "Wadlopen" }, { "text": "Zeehonden", "aliases": ["Zeehond"] }, { "text": "De Waddeneilanden", "aliases": ["Waddeneilanden", "Texel", "Terschelling"] }, { "text": "Werelderfgoed", "aliases": ["UNESCO", "Unesco Werelderfgoed"] }] }
       ]
     },
     {

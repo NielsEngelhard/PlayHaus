@@ -21,6 +21,7 @@ import DescribeControl from "@/features/pubquizr/components/control/DescribeCont
 import DoubleDownControl from "@/features/pubquizr/components/control/DoubleDownControl";
 import HotSeatControl from "@/features/pubquizr/components/control/HotSeatControl";
 import ListControl from "@/features/pubquizr/components/control/ListControl";
+import FinaleTieBreakScreen from "@/features/pubquizr/components/play/FinaleTieBreakScreen";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE, type HotSeatTurn } from "@/features/pubquizr/hot-seat";
 import { missedSeatsOf, picksOf, roundOpenOn } from "@/features/pubquizr/multi-device/control";
@@ -28,7 +29,7 @@ import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -168,6 +169,21 @@ export default function QuizControlView({ code }: Props) {
     // The question the round opens on, which is the one a gate frame is authored about.
     const [opening] = session.turnQuestionIds;
     const master = seatAt(seats, session.quizMasterSeat);
+
+    // A shared place in the finale is played for first, and only the quizmaster's phone taps the winners in.
+    const tie = round === ROUND_FINALE ? finaleTieOf(session, seats) : null;
+    if (tie !== null) {
+        return (
+            <FinaleTieBreakScreen
+                round={ordinal}
+                tie={tie}
+                quizmaster={master}
+                busy={table.ruling}
+                error={table.rulingError}
+                onConfirm={master !== null && table.mySeat === master.seat ? table.chooseFinalists : undefined}
+            />
+        )
+    }
 
     // A round states itself before it starts, and the phone that reads the questions is the one that says go.
     if (session.currentPosition === 0 && opening !== undefined && master !== null

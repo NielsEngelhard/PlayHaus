@@ -40,6 +40,8 @@ export interface QuizSession {
     hotSeat: number
     // The two seats round 6 is between, and null until the finale opens.
     finalistSeats: number[] | null
+    // A draw for a place in the finale the table has to play out first, and null when there is none.
+    finaleTie: FinaleTie | null
     // How many questions in a row the hot seat has taken.
     hotSeatRun: number
     // How many goes this round holds.
@@ -200,6 +202,24 @@ export async function recordDoubleDownTurnRequest(
     );
 }
 
+/** Who is level for a place in the finale, who is through outright, and how many of the level ones go. */
+export interface FinaleTie {
+    places: number
+    seats: number[]
+    through: number[]
+}
+
+// The winners of a finale tie, which seats the finale on them.
+export async function chooseFinalistsRequest(sessionId: string, seats: number[]): Promise<QuizSession> {
+    return request<QuizSession>(
+        `/api/v1/pubquizr/single-device/${encodeURIComponent(sessionId)}/finalists`,
+        {
+            method: 'POST',
+            body: JSON.stringify({ seats })
+        }
+    );
+}
+
 // One whole finale question, settled, and the finale one step further on.
 export async function recordFinaleTurnRequest(
     sessionId: string,
@@ -326,6 +346,14 @@ export async function recordMultiDeviceDoubleDownTurnRequest(
     return request<QuizSession>(multiDevicePath(code, '/double-down'), {
         method: 'POST',
         body: JSON.stringify({ sessionQuestionId, missedSeats, correctSeat })
+    });
+}
+
+// The winners of a finale tie. The quizmaster's phone only.
+export async function chooseMultiDeviceFinalistsRequest(code: string, seats: number[]): Promise<QuizSession> {
+    return request<QuizSession>(multiDevicePath(code, '/finalists'), {
+        method: 'POST',
+        body: JSON.stringify({ seats })
     });
 }
 

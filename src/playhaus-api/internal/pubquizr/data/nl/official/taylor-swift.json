@@ -95,14 +95,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van de Eras Tour, "answers": [{ "text": "Vriendschapsbandjes", "aliases": ["Vriendschapsbandje", "Bandjes"] }, { "text": "Stadions", "aliases": ["Stadion"] }, { "text": "Verrassingsnummers", "aliases": ["Verrassingsnummer", "Geheime nummers"] }, { "text": "2023" }] },
-        { "prompt": "Wat weet je van het album folklore, "answers": [{ "text": "Lockdown", "aliases": ["Pandemie", "Corona"] }, { "text": "Cardigan" }, { "text": "Bon Iver", "aliases": ["Exile"] }, { "text": "2020" }] },
-        { "prompt": "Wat weet je van het album 1989, "answers": [{ "text": "Pop", "aliases": ["Popalbum", "Overstap naar pop"] }, { "text": "Shake It Off" }, { "text": "Blank Space" }, { "text": "New York", "aliases": ["Welcome To New York"] }] },
-        { "prompt": "Wat weet je van Taylor's Version, "answers": [{ "text": "Heropnames", "aliases": ["Opnieuw opgenomen", "Heropgenomen"] }, { "text": "Fearless" }, { "text": "From The Vault", "aliases": ["Vault-nummers"] }, { "text": "Big Machine", "aliases": ["Masters", "Masterbanden"] }] },
-        { "prompt": "Wat weet je van Travis Kelce, "answers": [{ "text": "American football", "aliases": ["Football", "NFL"] }, { "text": "Kansas City Chiefs", "aliases": ["Chiefs", "Kansas City"] }, { "text": "Super Bowl" }, { "text": "Haar vriend", "aliases": ["Vriend", "Partner"] }] },
-        { "prompt": "Wat weet je van het nummer All Too Well, "answers": [{ "text": "Tien minuten", "aliases": ["10 minuten", "De lange versie"] }, { "text": "Red" }, { "text": "De sjaal", "aliases": ["Sjaal"] }, { "text": "Korte film", "aliases": ["Videoclip", "Film"] }] },
-        { "prompt": "Wat weet je van Nashville, "answers": [{ "text": "Tennessee" }, { "text": "Countrymuziek", "aliases": ["Country"] }, { "text": "Grand Ole Opry", "aliases": ["Music City"] }, { "text": "Cowboylaarzen", "aliases": ["Cowboyhoed", "Cowboys"] }] },
-        { "prompt": "Wat weet je van het album reputation, "answers": [{ "text": "Slangen", "aliases": ["Slang"] }, { "text": "Look What You Made Me Do" }, { "text": "Kanye West", "aliases": ["Kanye", "De ruzie"] }, { "text": "2017" }] }
+        { "prompt": "Wat weet je van de Eras Tour?", "answers": [{ "text": "Vriendschapsbandjes", "aliases": ["Vriendschapsbandje", "Bandjes"] }, { "text": "Stadions", "aliases": ["Stadion"] }, { "text": "Verrassingsnummers", "aliases": ["Verrassingsnummer", "Geheime nummers"] }, { "text": "2023" }] },
+        { "prompt": "Wat weet je van het album folklore?", "answers": [{ "text": "Lockdown", "aliases": ["Pandemie", "Corona"] }, { "text": "Cardigan" }, { "text": "Bon Iver", "aliases": ["Exile"] }, { "text": "2020" }] },
+        { "prompt": "Wat weet je van het album 1989?", "answers": [{ "text": "Pop", "aliases": ["Popalbum", "Overstap naar pop"] }, { "text": "Shake It Off" }, { "text": "Blank Space" }, { "text": "New York", "aliases": ["Welcome To New York"] }] },
+        { "prompt": "Wat weet je van Taylor's Version?", "answers": [{ "text": "Heropnames", "aliases": ["Opnieuw opgenomen", "Heropgenomen"] }, { "text": "Fearless" }, { "text": "From The Vault", "aliases": ["Vault-nummers"] }, { "text": "Big Machine", "aliases": ["Masters", "Masterbanden"] }] },
+        { "prompt": "Wat weet je van Travis Kelce?", "answers": [{ "text": "American football", "aliases": ["Football", "NFL"] }, { "text": "Kansas City Chiefs", "aliases": ["Chiefs", "Kansas City"] }, { "text": "Super Bowl" }, { "text": "Haar vriend", "aliases": ["Vriend", "Partner"] }] },
+        { "prompt": "Wat weet je van het nummer All Too Well?", "answers": [{ "text": "Tien minuten", "aliases": ["10 minuten", "De lange versie"] }, { "text": "Red" }, { "text": "De sjaal", "aliases": ["Sjaal"] }, { "text": "Korte film", "aliases": ["Videoclip", "Film"] }] },
+        { "prompt": "Wat weet je van Nashville?", "answers": [{ "text": "Tennessee" }, { "text": "Countrymuziek", "aliases": ["Country"] }, { "text": "Grand Ole Opry", "aliases": ["Music City"] }, { "text": "Cowboylaarzen", "aliases": ["Cowboyhoed", "Cowboys"] }] },
+        { "prompt": "Wat weet je van het album reputation?", "answers": [{ "text": "Slangen", "aliases": ["Slang"] }, { "text": "Look What You Made Me Do" }, { "text": "Kanye West", "aliases": ["Kanye", "De ruzie"] }, { "text": "2017" }] }
       ]
     },
     {

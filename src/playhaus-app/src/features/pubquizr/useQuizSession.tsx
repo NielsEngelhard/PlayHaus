@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { getQuizRequest, type QuizDetail } from "./pubquizr-quizzes";
 import { quizErrorMessage } from "./pubquizr-errors";
 import {
+    chooseFinalistsRequest,
     getSingleDeviceSessionRequest,
     recordClosestGuessesRequest,
     recordDescribeAwardsRequest,
@@ -43,6 +44,8 @@ export interface PlayableSession {
     settleDoubleDown: (sessionQuestionId: string, missedSeats: number[], correctSeat: number | null) => void
     /** Round 7: the same as a hot seat turn, down a two seat line. Its own call — see `round-seven.ts`. */
     settleFinale: (missedSeats: number[], correctSeat: number | null) => void
+    // Round 7: the winners of a tie for a place in it.
+    chooseFinalists: (seats: number[]) => void
     reload: () => void
 }
 
@@ -173,6 +176,10 @@ export function useQuizSession(sessionId: string): PlayableSession {
         });
     }, [submit, sessionId]);
 
+    const chooseFinalists = useCallback((seats: number[]) => {
+        submit(() => chooseFinalistsRequest(sessionId, seats));
+    }, [submit, sessionId]);
+
     const reload = useCallback(() => setAttempt(previous => previous + 1), []);
 
     return {
@@ -188,6 +195,7 @@ export function useQuizSession(sessionId: string): PlayableSession {
         settleList,
         settleDoubleDown,
         settleFinale,
+        chooseFinalists,
         reload
     };
 }

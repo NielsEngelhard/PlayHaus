@@ -186,6 +186,8 @@ type quizSessionResponse struct {
 	HotSeat int `json:"hotSeat"`
 	// FinalistSeats are the two players the finale is between, and null until it opens.
 	FinalistSeats []int `json:"finalistSeats"`
+	// FinaleTie is a draw for a place in the finale the table has to play out first, and null when there is none to play.
+	FinaleTie *finaleTieResponse `json:"finaleTie"`
 	// HotSeatRun is how many questions in a row the hot seat has taken.
 	HotSeatRun int `json:"hotSeatRun"`
 	// TurnsInRound is how many goes this round holds.
@@ -207,6 +209,13 @@ type quizSessionResponse struct {
 	Questions []quizSessionQuestionResponse `json:"questions"`
 
 	CreatedAt string `json:"createdAt"`
+}
+
+// finaleTieResponse is who is level for a place in the finale, and how many of them go.
+type finaleTieResponse struct {
+	Seats   []int `json:"seats"`
+	Through []int `json:"through"`
+	Places  int   `json:"places"`
 }
 
 // newQuizSessionResponse draws a session for the app. answeringSeat is passed in rather than worked out here because it needs the attempt count.
@@ -260,6 +269,16 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		finalists = []int{a, b}
 	}
 
+	var tie *finaleTieResponse
+	if s.FinaleUndecided() {
+		through, tied, places, _ := s.FinaleTie()
+		// Never null on the wire: a clear number 1 is the only reason through has anybody in it.
+		if through == nil {
+			through = []int{}
+		}
+		tie = &finaleTieResponse{Seats: tied, Through: through, Places: places}
+	}
+
 	// The one question a round 6 player has pinned for themselves by asking for its difficulty.
 	pinned := s.ActiveQuestion(pubquizr.RoundDoubleDown)
 
@@ -308,6 +327,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		AnsweringSeat:    asked,
 		HotSeat:          s.HotSeatOrFirst(),
 		FinalistSeats:    finalists,
+		FinaleTie:        tie,
 		HotSeatRun:       s.HotSeatRun,
 		TurnsInRound:     s.TurnsInRound(s.CurrentRound),
 		DescriberSeat:    describing,
@@ -946,6 +966,65 @@ func (s *Server) handleFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	in.OwnerID = ownerID
 
 	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), in)
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.writeSession(w, r, session, http.StatusOK)
+}
+
+// finalistsRequest names the winners of a draw for a place in the finale.
+type finalistsRequest struct {
+	Seats []int `json:"seats"`
+}
+
+func (req finalistsRequest) Validate() map[string]string {
+	if len(req.Seats) == 0 {
+		return map[string]string{"seats": "is required"}
+	}
+
+	return nil
+}
+
+// finalistsInput decodes a finalists body, and has already answered when false.
+func (s *Server) finalistsInput(w http.ResponseWriter, r *http.Request) (pubquizr.FinalistsInput, bool) {
+	req, problems, err := decode[finalistsRequest](r)
+	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid JSON body")
+		return pubquizr.FinalistsInput{}, false
+	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return pubquizr.FinalistsInput{}, false
+	}
+
+	return pubquizr.FinalistsInput{Seats: req.Seats}, true
+}
+
+// handleFinalists is the quizmaster naming who won a tie for a place in the finale.
+func (s *Server) handleFinalists(w http.ResponseWriter, r *http.Request) {
+	ownerID, ok := UserIDFrom(r.Context())
+	if !ok {
+		s.log.Error("handleFinalists reached without an authenticated user")
+		writeError(w, http.StatusInternalServerError, "something went wrong")
+		return
+	}
+
+	sessionID, err := uuid.Parse(r.PathValue("sessionID"))
+	if err != nil {
+		writeError(w, http.StatusNotFound, "session not found")
+		return
+	}
+
+	in, parsed := s.finalistsInput(w, r)
+	if !parsed {
+		return
+	}
+	in.SessionID = sessionID
+	in.OwnerID = ownerID
+
+	session, err := s.pubquizr.ChooseFinalists(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return

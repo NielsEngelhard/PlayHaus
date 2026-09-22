@@ -1,6 +1,8 @@
 package pubquizr
 
 import (
+	"fmt"
+	"slices"
 	"sort"
 
 	"github.com/google/uuid"
@@ -332,10 +334,11 @@ func (s *Session) FinaleLine(attempts int) []int {
 	return line
 }
 
-// OpenFinale seats the finale for the first time.
-func (s *Session) OpenFinale() {
-	type ranked struct{ seat, score int }
+// ranked is one seat on the scoreboard the finale is drawn from.
+type ranked struct{ seat, score int }
 
+// finaleRanks is the table highest score first, ties by seat.
+func (s *Session) finaleRanks() []ranked {
 	ranks := make([]ranked, 0, len(s.Players))
 	for _, player := range s.Players {
 		ranks = append(ranks, ranked{player.Seat, player.Score})
@@ -348,6 +351,86 @@ func (s *Session) OpenFinale() {
 		return ranks[i].seat < ranks[j].seat
 	})
 
+	return ranks
+}
+
+// FinaleTie is a draw for a place in the finale: who is through outright, who is level for what is left, and how many of them go.
+func (s *Session) FinaleTie() (through, tied []int, places int, ok bool) {
+	ranks := s.finaleRanks()
+	// A table of two is the finale whatever the scores say.
+	if !FinaleHasReferee(len(ranks)) {
+		return nil, nil, 0, false
+	}
+
+	cut := ranks[FinalistCount-1].score
+	for _, rank := range ranks {
+		switch {
+		case rank.score > cut:
+			through = append(through, rank.seat)
+		case rank.score == cut:
+			tied = append(tied, rank.seat)
+		}
+	}
+
+	places = FinalistCount - len(through)
+	if len(tied) <= places {
+		return nil, nil, 0, false
+	}
+
+	return through, tied, places, true
+}
+
+// FinaleUndecided is whether round 7 is waiting on a tie to be broken before it can seat anybody.
+func (s *Session) FinaleUndecided() bool {
+	if s.Status != SessionInProgress || s.CurrentRound != RoundFinale {
+		return false
+	}
+	if _, _, ok := s.Finalists(); ok {
+		return false
+	}
+
+	_, _, _, tie := s.FinaleTie()
+	return tie
+}
+
+// SeatFinalists breaks a finale tie with the winners the table played for, and seats the finale.
+func (s *Session) SeatFinalists(winners []int) error {
+	through, tied, places, ok := s.FinaleTie()
+	if !ok {
+		return ErrStaleTurn
+	}
+	if len(winners) != places {
+		return fmt.Errorf("%w: %d finalists named, %d wanted", ErrInvalidInput, len(winners), places)
+	}
+
+	finalists := append([]int{}, through...)
+	for _, seat := range winners {
+		if !slices.Contains(tied, seat) {
+			return fmt.Errorf("%w: seat %d is not in the tie", ErrInvalidInput, seat)
+		}
+		if slices.Contains(finalists, seat) {
+			return fmt.Errorf("%w: seat %d named twice", ErrInvalidInput, seat)
+		}
+		finalists = append(finalists, seat)
+	}
+
+	// The referee is the best placed of everybody left, which is usually whoever lost the draw.
+	referee := -1
+	for _, rank := range s.finaleRanks() {
+		if !slices.Contains(finalists, rank.seat) {
+			referee = rank.seat
+			break
+		}
+	}
+
+	s.SeatFinale(finalists[0], finalists[1], referee)
+	return nil
+}
+
+// OpenFinale seats the finale for the first time, unless a tie for a place has to be broken at the table first.
+func (s *Session) OpenFinale() {
+	ranks := s.finaleRanks()
+
 	if len(ranks) < FinalistCount {
 		// Arithmetic on a slice, not a rule about how many people may sit down -- but there is nobody to seat a finale between.
 		return
@@ -357,6 +440,12 @@ func (s *Session) OpenFinale() {
 		// The smallest table the game allows: both players are already the finale, and there is nobody spare to hold the phone.
 		s.FinalistSeatA, s.FinalistSeatB = ranks[0].seat, ranks[1].seat
 		s.OpenFinaleQuestion()
+		return
+	}
+
+	// Left unseated, with the quizmaster round 6 ended on, who is the one that names the winners.
+	if _, _, _, tie := s.FinaleTie(); tie {
+		s.FinalistSeatA, s.FinalistSeatB = -1, -1
 		return
 	}
 

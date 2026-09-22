@@ -95,14 +95,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Margot Robbie, "answers": [{ "text": "Barbie" }, { "text": "Australisch", "aliases": ["Australie", "Australier"] }, { "text": "The Wolf of Wall Street" }, { "text": "Harley Quinn", "aliases": ["Suicide Squad"] }] },
-        { "prompt": "Wat weet je van Ryan Gosling, "answers": [{ "text": "Ken" }, { "text": "La La Land" }, { "text": "The Notebook" }, { "text": "Canadees", "aliases": ["Canada"] }] },
-        { "prompt": "Wat weet je van Ken, "answers": [{ "text": "Het vriendje van Barbie", "aliases": ["Vriendje", "Barbie"] }, { "text": "Ryan Gosling" }, { "text": "Blond haar", "aliases": ["Blond"] }, { "text": "Strand" }] },
-        { "prompt": "Wat weet je van Mattel, "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Speelgoedbedrijf", "aliases": ["Speelgoed", "Speelgoedfabrikant"] }, { "text": "Amerikaans", "aliases": ["Amerika", "VS", "Californie"] }] },
-        { "prompt": "Wat weet je van het Droomhuis, "answers": [{ "text": "Roze" }, { "text": "Glijbaan" }, { "text": "Zwembad" }, { "text": "Kledingkast", "aliases": ["Kast", "Garderobe"] }] },
-        { "prompt": "Wat weet je van Greta Gerwig, "answers": [{ "text": "Barbie" }, { "text": "Regisseur", "aliases": ["Filmregisseur"] }, { "text": "Lady Bird" }, { "text": "Little Women" }] },
-        { "prompt": "Wat weet je van het nummer Barbie Girl, "answers": [{ "text": "Aqua" }, { "text": "1997" }, { "text": "Deens", "aliases": ["Denemarken"] }, { "text": "Life in plastic, it's fantastic", "aliases": ["Life in plastic", "Plastic"] }] },
-        { "prompt": "Wat weet je van Ruth Handler, "answers": [{ "text": "Mattel" }, { "text": "Bedacht Barbie", "aliases": ["Barbie", "Bedenker van Barbie"] }, { "text": "Haar dochter Barbara", "aliases": ["Barbara"] }, { "text": "Amerikaans", "aliases": ["Amerika", "VS"] }] }
+        { "prompt": "Wat weet je van Margot Robbie?", "answers": [{ "text": "Barbie" }, { "text": "Australisch", "aliases": ["Australie", "Australier"] }, { "text": "The Wolf of Wall Street" }, { "text": "Harley Quinn", "aliases": ["Suicide Squad"] }] },
+        { "prompt": "Wat weet je van Ryan Gosling?", "answers": [{ "text": "Ken" }, { "text": "La La Land" }, { "text": "The Notebook" }, { "text": "Canadees", "aliases": ["Canada"] }] },
+        { "prompt": "Wat weet je van Ken?", "answers": [{ "text": "Het vriendje van Barbie", "aliases": ["Vriendje", "Barbie"] }, { "text": "Ryan Gosling" }, { "text": "Blond haar", "aliases": ["Blond"] }, { "text": "Strand" }] },
+        { "prompt": "Wat weet je van Mattel?", "answers": [{ "text": "Barbie" }, { "text": "Hot Wheels" }, { "text": "Speelgoedbedrijf", "aliases": ["Speelgoed", "Speelgoedfabrikant"] }, { "text": "Amerikaans", "aliases": ["Amerika", "VS", "Californie"] }] },
+        { "prompt": "Wat weet je van het Droomhuis?", "answers": [{ "text": "Roze" }, { "text": "Glijbaan" }, { "text": "Zwembad" }, { "text": "Kledingkast", "aliases": ["Kast", "Garderobe"] }] },
+        { "prompt": "Wat weet je van Greta Gerwig?", "answers": [{ "text": "Barbie" }, { "text": "Regisseur", "aliases": ["Filmregisseur"] }, { "text": "Lady Bird" }, { "text": "Little Women" }] },
+        { "prompt": "Wat weet je van het nummer Barbie Girl?", "answers": [{ "text": "Aqua" }, { "text": "1997" }, { "text": "Deens", "aliases": ["Denemarken"] }, { "text": "Life in plastic, it's fantastic", "aliases": ["Life in plastic", "Plastic"] }] },
+        { "prompt": "Wat weet je van Ruth Handler?", "answers": [{ "text": "Mattel" }, { "text": "Bedacht Barbie", "aliases": ["Barbie", "Bedenker van Barbie"] }, { "text": "Haar dochter Barbara", "aliases": ["Barbara"] }, { "text": "Amerikaans", "aliases": ["Amerika", "VS"] }] }
       ]
     },
     {

@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van de Eiffeltoren, "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "1889", "aliases": ["Wereldtentoonstelling"] }] },
-        { "prompt": "Wat weet je van de Titanic, "answers": [{ "text": "IJsberg" }, { "text": "1912" }, { "text": "Gezonken", "aliases": ["Zonk", "Scheepswrak"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet", "De film"] }] },
-        { "prompt": "Wat weet je van het oude Egypte, "answers": [{ "text": "De piramides", "aliases": ["Piramides", "Piramide"] }, { "text": "Farao", "aliases": ["Faraos", "Toetanchamon"] }, { "text": "Mummies", "aliases": ["Mummie"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
-        { "prompt": "Wat weet je van koffie, "answers": [{ "text": "Bonen", "aliases": ["Boon", "Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Espresso" }, { "text": "Brazilie" }] },
-        { "prompt": "Wat weet je van de maan, "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong", "Maanlanding"] }, { "text": "1969" }, { "text": "Kraters", "aliases": ["Krater"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }] },
-        { "prompt": "Wat weet je van Italie, "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "De vorm van een laars", "aliases": ["Laars", "Laarsje"] }, { "text": "Pasta", "aliases": ["Spaghetti"] }] },
-        { "prompt": "Wat weet je van Albert Einstein, "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit", "E=mc2"] }, { "text": "Natuurkundige", "aliases": ["Natuurkunde", "Wetenschapper"] }, { "text": "Zijn haar", "aliases": ["Wilde haren", "Haar"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
-        { "prompt": "Wat weet je van de Olympische Spelen, "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen", "De ringen"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }, { "text": "Griekenland", "aliases": ["Oude Grieken", "Athene"] }, { "text": "Gouden medaille", "aliases": ["Medaille", "Medailles"] }] }
+        { "prompt": "Wat weet je van de Eiffeltoren?", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "1889", "aliases": ["Wereldtentoonstelling"] }] },
+        { "prompt": "Wat weet je van de Titanic?", "answers": [{ "text": "IJsberg" }, { "text": "1912" }, { "text": "Gezonken", "aliases": ["Zonk", "Scheepswrak"] }, { "text": "Leonardo DiCaprio", "aliases": ["DiCaprio", "Kate Winslet", "De film"] }] },
+        { "prompt": "Wat weet je van het oude Egypte?", "answers": [{ "text": "De piramides", "aliases": ["Piramides", "Piramide"] }, { "text": "Farao", "aliases": ["Faraos", "Toetanchamon"] }, { "text": "Mummies", "aliases": ["Mummie"] }, { "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Wat weet je van koffie?", "answers": [{ "text": "Bonen", "aliases": ["Boon", "Koffiebonen"] }, { "text": "Cafeine" }, { "text": "Espresso" }, { "text": "Brazilie" }] },
+        { "prompt": "Wat weet je van de maan?", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong", "Maanlanding"] }, { "text": "1969" }, { "text": "Kraters", "aliases": ["Krater"] }, { "text": "Eb en vloed", "aliases": ["Getijden", "Vloed"] }] },
+        { "prompt": "Wat weet je van Italie?", "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "De vorm van een laars", "aliases": ["Laars", "Laarsje"] }, { "text": "Pasta", "aliases": ["Spaghetti"] }] },
+        { "prompt": "Wat weet je van Albert Einstein?", "answers": [{ "text": "Relativiteitstheorie", "aliases": ["Relativiteit", "E=mc2"] }, { "text": "Natuurkundige", "aliases": ["Natuurkunde", "Wetenschapper"] }, { "text": "Zijn haar", "aliases": ["Wilde haren", "Haar"] }, { "text": "De Nobelprijs", "aliases": ["Nobelprijs", "Nobel"] }] },
+        { "prompt": "Wat weet je van de Olympische Spelen?", "answers": [{ "text": "Vijf ringen", "aliases": ["Ringen", "De ringen"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }, { "text": "Griekenland", "aliases": ["Oude Grieken", "Athene"] }, { "text": "Gouden medaille", "aliases": ["Medaille", "Medailles"] }] }
       ]
     },
     {

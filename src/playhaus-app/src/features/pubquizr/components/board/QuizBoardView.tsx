@@ -20,6 +20,7 @@ import DoubleDownControl from "@/features/pubquizr/components/control/DoubleDown
 import HotSeatControl from "@/features/pubquizr/components/control/HotSeatControl";
 import ListControl from "@/features/pubquizr/components/control/ListControl";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
+import FinaleTieBreakScreen from "@/features/pubquizr/components/play/FinaleTieBreakScreen";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
@@ -38,7 +39,7 @@ import type { QuizSession } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -149,6 +150,21 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                     onLeave={onLeave}
                 />
             </>
+        ))
+    }
+
+    // A shared place in the finale is played for first, and only the quizmaster's phone taps the winners in.
+    const tie = round === ROUND_FINALE ? finaleTieOf(session, seats) : null;
+    if (tie !== null) {
+        return fade('tie-break', (
+            <FinaleTieBreakScreen
+                round={ordinal}
+                tie={tie}
+                quizmaster={master}
+                busy={table.ruling}
+                error={table.rulingError}
+                onConfirm={master !== null && me === master.seat ? table.chooseFinalists : undefined}
+            />
         ))
     }
 

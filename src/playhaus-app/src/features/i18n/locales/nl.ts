@@ -1008,6 +1008,16 @@ export const nl: Catalog = {
                 easy: 'Makkelijk · {{points}} punt',
                 hard: 'Moeilijk · {{points}} punten'
             },
+            tieBreak: {
+                kicker: 'Voor de finale',
+                title: 'Gelijkspel!',
+                bodyOne: '{{names}} hebben evenveel punten. Speel in het echt steen-papier-schaar: de winnaar gaat door naar de finale.',
+                bodyTwo: '{{names}} hebben evenveel punten. Speel in het echt steen-papier-schaar: de twee winnaars gaan door naar de finale.',
+                through: '{{name}} staat al in de finale.',
+                pickOne: 'Winnaar naar de finale',
+                pickTwo: 'Winnaars naar de finale',
+                waiting: '{{name}} tikt aan wie er won.'
+            },
             intro: {
                 of: 'van {{total}}',
                 round: 'Ronde {{round}}',

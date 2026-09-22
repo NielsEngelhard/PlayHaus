@@ -1098,6 +1098,16 @@ export const en = {
                 hard: 'Hard · {{points}} points'
             },
             // The screen that opens every round, before the phone is handed to anybody.
+            tieBreak: {
+                kicker: 'Before the finale',
+                title: "It's a tie!",
+                bodyOne: '{{names}} have the same score. Play rock paper scissors for real: the winner goes to the finale.',
+                bodyTwo: '{{names}} have the same score. Play rock paper scissors for real: the two winners go to the finale.',
+                through: '{{name}} is already through.',
+                pickOne: 'Winner to the finale',
+                pickTwo: 'Winners to the finale',
+                waiting: '{{name}} taps in who won.'
+            },
             intro: {
                 /** Under the number: "of 6". */
                 of: 'of {{total}}',

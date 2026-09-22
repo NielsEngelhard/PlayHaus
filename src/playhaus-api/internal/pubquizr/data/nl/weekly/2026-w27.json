@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Amsterdam, "answers": [{ "text": "Grachten" }, { "text": "Fietsen" }, { "text": "Het Rijksmuseum" }, { "text": "Anne Frank Huis" }] },
-        { "prompt": "Wat weet je van koningin Elizabeth II, "answers": [{ "text": "Engeland" }, { "text": "Buckingham Palace" }, { "text": "Zeventig jaar koningin" }, { "text": "Corgis" }] },
-        { "prompt": "Wat weet je van haaien, "answers": [{ "text": "Tanden" }, { "text": "Rugvin" }, { "text": "Oceaan" }, { "text": "Witte haai" }] },
-        { "prompt": "Wat weet je van de Sahara, "answers": [{ "text": "Zand" }, { "text": "Afrika" }, { "text": "Kamelen" }, { "text": "Oase" }] },
-        { "prompt": "Wat weet je van kaas, "answers": [{ "text": "Melk" }, { "text": "Goudse kaas" }, { "text": "Kaasmarkt" }, { "text": "Schimmel" }] },
-        { "prompt": "Wat weet je van Rome, "answers": [{ "text": "Colosseum" }, { "text": "Het Vaticaan" }, { "text": "Keizers" }, { "text": "Pasta" }] },
-        { "prompt": "Wat weet je van bijen, "answers": [{ "text": "Honing" }, { "text": "Koningin" }, { "text": "Steek" }, { "text": "Bestuiving" }] },
-        { "prompt": "Wat weet je van piraten, "answers": [{ "text": "Schat" }, { "text": "Ooglapje" }, { "text": "Caribisch gebied" }, { "text": "Doodskopvlag" }] }
+        { "prompt": "Wat weet je van Amsterdam?", "answers": [{ "text": "Grachten" }, { "text": "Fietsen" }, { "text": "Het Rijksmuseum" }, { "text": "Anne Frank Huis" }] },
+        { "prompt": "Wat weet je van koningin Elizabeth II?", "answers": [{ "text": "Engeland" }, { "text": "Buckingham Palace" }, { "text": "Zeventig jaar koningin" }, { "text": "Corgis" }] },
+        { "prompt": "Wat weet je van haaien?", "answers": [{ "text": "Tanden" }, { "text": "Rugvin" }, { "text": "Oceaan" }, { "text": "Witte haai" }] },
+        { "prompt": "Wat weet je van de Sahara?", "answers": [{ "text": "Zand" }, { "text": "Afrika" }, { "text": "Kamelen" }, { "text": "Oase" }] },
+        { "prompt": "Wat weet je van kaas?", "answers": [{ "text": "Melk" }, { "text": "Goudse kaas" }, { "text": "Kaasmarkt" }, { "text": "Schimmel" }] },
+        { "prompt": "Wat weet je van Rome?", "answers": [{ "text": "Colosseum" }, { "text": "Het Vaticaan" }, { "text": "Keizers" }, { "text": "Pasta" }] },
+        { "prompt": "Wat weet je van bijen?", "answers": [{ "text": "Honing" }, { "text": "Koningin" }, { "text": "Steek" }, { "text": "Bestuiving" }] },
+        { "prompt": "Wat weet je van piraten?", "answers": [{ "text": "Schat" }, { "text": "Ooglapje" }, { "text": "Caribisch gebied" }, { "text": "Doodskopvlag" }] }
       ]
     },
     {

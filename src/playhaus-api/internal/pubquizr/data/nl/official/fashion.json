@@ -95,14 +95,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Coco Chanel, "answers": [{ "text": "Chanel No. 5", "aliases": ["No. 5", "Parfum"] }, { "text": "De kleine zwarte jurk", "aliases": ["Kleine zwarte jurk"] }, { "text": "Parels" }, { "text": "Parijs" }] },
-        { "prompt": "Wat weet je van de spijkerbroek, "answers": [{ "text": "Denim" }, { "text": "Blauw" }, { "text": "Levi's", "aliases": ["Levi Strauss", "Levis"] }, { "text": "Klinknagels", "aliases": ["Nagels", "Klinknagel"] }] },
-        { "prompt": "Wat weet je van de catwalk, "answers": [{ "text": "Modellen", "aliases": ["Mannequins"] }, { "text": "Modeshow" }, { "text": "Fotografen" }, { "text": "De eerste rij", "aliases": ["Eerste rij"] }] },
-        { "prompt": "Wat weet je van Vogue, "answers": [{ "text": "Modetijdschrift", "aliases": ["Tijdschrift", "Modeblad"] }, { "text": "Anna Wintour", "aliases": ["Wintour"] }, { "text": "De cover", "aliases": ["Cover", "Omslag"] }, { "text": "Het septembernummer", "aliases": ["Septembernummer"] }] },
-        { "prompt": "Wat weet je van het Met Gala, "answers": [{ "text": "New York" }, { "text": "De rode loper", "aliases": ["Rode loper"] }, { "text": "Een thema", "aliases": ["Thema"] }, { "text": "Beroemdheden", "aliases": ["Sterren", "Celebrities"] }] },
-        { "prompt": "Wat weet je van een trouwjurk, "answers": [{ "text": "Wit" }, { "text": "Sluier" }, { "text": "Sleep" }, { "text": "Kant" }] },
-        { "prompt": "Wat weet je van Gucci, "answers": [{ "text": "Italie", "aliases": ["Italiaans"] }, { "text": "De dubbele G", "aliases": ["Dubbele G", "GG"] }, { "text": "Handtassen", "aliases": ["Tassen"] }, { "text": "Luxe", "aliases": ["Duur"] }] },
-        { "prompt": "Wat weet je van sneakers, "answers": [{ "text": "Nike" }, { "text": "Adidas" }, { "text": "Veters" }, { "text": "Rubberen zool", "aliases": ["Zool"] }] }
+        { "prompt": "Wat weet je van Coco Chanel?", "answers": [{ "text": "Chanel No. 5", "aliases": ["No. 5", "Parfum"] }, { "text": "De kleine zwarte jurk", "aliases": ["Kleine zwarte jurk"] }, { "text": "Parels" }, { "text": "Parijs" }] },
+        { "prompt": "Wat weet je van de spijkerbroek?", "answers": [{ "text": "Denim" }, { "text": "Blauw" }, { "text": "Levi's", "aliases": ["Levi Strauss", "Levis"] }, { "text": "Klinknagels", "aliases": ["Nagels", "Klinknagel"] }] },
+        { "prompt": "Wat weet je van de catwalk?", "answers": [{ "text": "Modellen", "aliases": ["Mannequins"] }, { "text": "Modeshow" }, { "text": "Fotografen" }, { "text": "De eerste rij", "aliases": ["Eerste rij"] }] },
+        { "prompt": "Wat weet je van Vogue?", "answers": [{ "text": "Modetijdschrift", "aliases": ["Tijdschrift", "Modeblad"] }, { "text": "Anna Wintour", "aliases": ["Wintour"] }, { "text": "De cover", "aliases": ["Cover", "Omslag"] }, { "text": "Het septembernummer", "aliases": ["Septembernummer"] }] },
+        { "prompt": "Wat weet je van het Met Gala?", "answers": [{ "text": "New York" }, { "text": "De rode loper", "aliases": ["Rode loper"] }, { "text": "Een thema", "aliases": ["Thema"] }, { "text": "Beroemdheden", "aliases": ["Sterren", "Celebrities"] }] },
+        { "prompt": "Wat weet je van een trouwjurk?", "answers": [{ "text": "Wit" }, { "text": "Sluier" }, { "text": "Sleep" }, { "text": "Kant" }] },
+        { "prompt": "Wat weet je van Gucci?", "answers": [{ "text": "Italie", "aliases": ["Italiaans"] }, { "text": "De dubbele G", "aliases": ["Dubbele G", "GG"] }, { "text": "Handtassen", "aliases": ["Tassen"] }, { "text": "Luxe", "aliases": ["Duur"] }] },
+        { "prompt": "Wat weet je van sneakers?", "answers": [{ "text": "Nike" }, { "text": "Adidas" }, { "text": "Veters" }, { "text": "Rubberen zool", "aliases": ["Zool"] }] }
       ]
     },
     {

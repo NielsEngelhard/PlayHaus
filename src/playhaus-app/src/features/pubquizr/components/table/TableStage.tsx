@@ -14,6 +14,7 @@ import TableOptions from "@/features/pubquizr/components/table/TableOptions";
 import TableQuestion from "@/features/pubquizr/components/table/TableQuestion";
 import TableRoundIntro from "@/features/pubquizr/components/table/TableRoundIntro";
 import TableStandings from "@/features/pubquizr/components/table/TableStandings";
+import TableTieBreak from "@/features/pubquizr/components/table/TableTieBreak";
 import TableTimer from "@/features/pubquizr/components/table/TableTimer";
 import TableWaiting from "@/features/pubquizr/components/table/TableWaiting";
 import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
@@ -32,7 +33,7 @@ import type { PQClosestProgress, PQClosestReveal, QuizSession } from "@/features
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { DESCRIBE_WORD_POINTS, describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleTieOf, finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -66,6 +67,12 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
 
     const round = session.currentRound;
     const seats = seatsOf(session);
+
+    // A shared place in the finale is settled at the table before round 7 can state itself.
+    const tie = round === ROUND_FINALE ? finaleTieOf(session, seats) : null;
+    if (tie !== null) {
+        return fade('tie-break', <TableTieBreak quizmaster={seatAt(seats, session.quizMasterSeat)} scale={scale} tie={tie} />);
+    }
 
     // A round states itself until the phone that reads its questions says go, which is the one moment the table is between questions rather than on one.
     if (session.currentPosition === 0 && !roundOpenOn(control, round)) {

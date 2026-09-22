@@ -153,6 +153,7 @@ func (s *Server) AddPubquizRMultiDeviceHandlers() {
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/double-down/choice", room(s.handlePQDoubleDownChoice))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/double-down", room(s.handlePQDoubleDownVerdict))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/finale", room(s.handlePQFinaleVerdict))
+	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/finalists", room(s.handlePQFinalists))
 }
 
 func (s *Server) handleCreatePQLobby(w http.ResponseWriter, r *http.Request) {
@@ -751,6 +752,29 @@ func (s *Server) handlePQFinaleVerdict(w http.ResponseWriter, r *http.Request) {
 	in.ActorID = actorID
 
 	session, err := s.pubquizr.RecordFinaleTurn(r.Context(), in)
+	if err != nil {
+		s.writePubquizRError(w, err)
+		return
+	}
+
+	s.settlePQTurn(w, r, session)
+}
+
+// handlePQFinalists names who won a tie for a place in the finale. The quizmaster's phone only.
+func (s *Server) handlePQFinalists(w http.ResponseWriter, r *http.Request) {
+	sessionID, actorID, ok := s.pqTable(w, r)
+	if !ok {
+		return
+	}
+
+	in, parsed := s.finalistsInput(w, r)
+	if !parsed {
+		return
+	}
+	in.SessionID = sessionID
+	in.ActorID = actorID
+
+	session, err := s.pubquizr.ChooseFinalists(r.Context(), in)
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return

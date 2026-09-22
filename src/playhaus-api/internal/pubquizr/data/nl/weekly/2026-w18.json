@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van Harry Potter, "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts", "De toverschool"] }, { "text": "Een toverstok", "aliases": ["Toverstok", "Magie"] }, { "text": "Voldemort", "aliases": ["Hij Die Niet Genoemd Mag Worden"] }, { "text": "J.K. Rowling", "aliases": ["Rowling", "JK Rowling"] }] },
-        { "prompt": "Wat weet je van de Eiffeltoren, "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["De lift", "Het uitzicht"] }] },
-        { "prompt": "Wat weet je van de winter, "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Koud", "Vorst"] }, { "text": "Kerst", "aliases": ["Kerstmis"] }, { "text": "Schaatsen", "aliases": ["IJs", "Schaatsen op het ijs"] }] },
-        { "prompt": "Wat weet je van het hart, "answers": [{ "text": "Bloed" }, { "text": "Het klopt", "aliases": ["Kloppen", "Hartslag"] }, { "text": "Vier kamers", "aliases": ["Kamers", "Hartkleppen"] }, { "text": "De borstkas", "aliases": ["Borstkas", "Ribbenkast"] }] },
-        { "prompt": "Wat weet je van Japan, "answers": [{ "text": "Sushi" }, { "text": "De Fuji", "aliases": ["Fuji", "Mount Fuji"] }, { "text": "Tokio", "aliases": ["Tokyo"] }, { "text": "Samoerai", "aliases": ["Ninja"] }] },
-        { "prompt": "Wat weet je van The Beatles, "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "De jaren zestig", "aliases": ["Jaren zestig", "1960"] }] },
-        { "prompt": "Wat weet je van schaken, "answers": [{ "text": "Schaakmat", "aliases": ["Schaak", "Mat"] }, { "text": "De koning", "aliases": ["Koning"] }, { "text": "Vierenzestig velden", "aliases": ["64 velden", "Het bord"] }, { "text": "De dame", "aliases": ["Dame", "Koningin"] }] },
-        { "prompt": "Wat weet je van de Amazone, "answers": [{ "text": "Het regenwoud", "aliases": ["Regenwoud", "Jungle"] }, { "text": "Brazilie" }, { "text": "De rivier", "aliases": ["Rivier"] }, { "text": "Piranha's", "aliases": ["Piranha", "Slangen"] }] }
+        { "prompt": "Wat weet je van Harry Potter?", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts", "De toverschool"] }, { "text": "Een toverstok", "aliases": ["Toverstok", "Magie"] }, { "text": "Voldemort", "aliases": ["Hij Die Niet Genoemd Mag Worden"] }, { "text": "J.K. Rowling", "aliases": ["Rowling", "JK Rowling"] }] },
+        { "prompt": "Wat weet je van de Eiffeltoren?", "answers": [{ "text": "Parijs" }, { "text": "IJzer", "aliases": ["Staal", "Metaal"] }, { "text": "Gustave Eiffel", "aliases": ["Eiffel"] }, { "text": "Toeristen", "aliases": ["De lift", "Het uitzicht"] }] },
+        { "prompt": "Wat weet je van de winter?", "answers": [{ "text": "Sneeuw" }, { "text": "Kou", "aliases": ["Koud", "Vorst"] }, { "text": "Kerst", "aliases": ["Kerstmis"] }, { "text": "Schaatsen", "aliases": ["IJs", "Schaatsen op het ijs"] }] },
+        { "prompt": "Wat weet je van het hart?", "answers": [{ "text": "Bloed" }, { "text": "Het klopt", "aliases": ["Kloppen", "Hartslag"] }, { "text": "Vier kamers", "aliases": ["Kamers", "Hartkleppen"] }, { "text": "De borstkas", "aliases": ["Borstkas", "Ribbenkast"] }] },
+        { "prompt": "Wat weet je van Japan?", "answers": [{ "text": "Sushi" }, { "text": "De Fuji", "aliases": ["Fuji", "Mount Fuji"] }, { "text": "Tokio", "aliases": ["Tokyo"] }, { "text": "Samoerai", "aliases": ["Ninja"] }] },
+        { "prompt": "Wat weet je van The Beatles?", "answers": [{ "text": "Liverpool" }, { "text": "John Lennon", "aliases": ["Lennon", "Paul McCartney"] }, { "text": "Yellow Submarine", "aliases": ["Hey Jude", "Let It Be"] }, { "text": "De jaren zestig", "aliases": ["Jaren zestig", "1960"] }] },
+        { "prompt": "Wat weet je van schaken?", "answers": [{ "text": "Schaakmat", "aliases": ["Schaak", "Mat"] }, { "text": "De koning", "aliases": ["Koning"] }, { "text": "Vierenzestig velden", "aliases": ["64 velden", "Het bord"] }, { "text": "De dame", "aliases": ["Dame", "Koningin"] }] },
+        { "prompt": "Wat weet je van de Amazone?", "answers": [{ "text": "Het regenwoud", "aliases": ["Regenwoud", "Jungle"] }, { "text": "Brazilie" }, { "text": "De rivier", "aliases": ["Rivier"] }, { "text": "Piranha's", "aliases": ["Piranha", "Slangen"] }] }
       ]
     },
     {

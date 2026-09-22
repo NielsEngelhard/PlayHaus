@@ -2,6 +2,7 @@ package pubquizr
 
 import (
 	"errors"
+	"slices"
 	"testing"
 
 	"github.com/google/uuid"
@@ -324,15 +325,15 @@ func TestOpenFinalePicksTheTopTwoScoresAndThirdPlaceReads(t *testing.T) {
 // Neither finalist may be handed the quizmaster's chair, whatever the scores look like.
 func TestOpenFinaleNeverSeatsAFinalistAsQuizmaster(t *testing.T) {
 	session := &Session{Players: []SessionPlayer{
-		{Seat: 0, Score: 5}, {Seat: 1, Score: 5}, {Seat: 2, Score: 5}, {Seat: 3, Score: 0},
+		{Seat: 0, Score: 5}, {Seat: 1, Score: 5}, {Seat: 2, Score: 3}, {Seat: 3, Score: 0},
 	}}
 
 	session.OpenFinale()
 
-	// Ties go the way LowestScoringSeat's do: to whoever sits nearest the head.
+	// Level at the top is no tie-break: both of them go.
 	a, b, _ := session.Finalists()
 	if a != 0 || b != 1 {
-		t.Errorf("Finalists() = %d, %d -- want 0, 1; ties favour the lower seat", a, b)
+		t.Errorf("Finalists() = %d, %d -- want 0, 1", a, b)
 	}
 	if got, want := session.QuizMasterSeat, 2; got != want {
 		t.Errorf("QuizMasterSeat = %d, want %d", got, want)
@@ -451,5 +452,196 @@ func TestFinaleOpenerBreaksTiesBySeat(t *testing.T) {
 
 	if got, want := session.FinaleOpener(), 1; got != want {
 		t.Errorf("FinaleOpener() = %d, want %d", got, want)
+	}
+}
+
+// --- FinaleTie --------------------------------------------------------------------
+
+func TestFinaleTieOnlyWhenAPlaceIsShared(t *testing.T) {
+	for _, tc := range []struct {
+		name    string
+		scores  []int
+		tie     bool
+		through []int
+		tied    []int
+		places  int
+	}{
+		{name: "clear top two", scores: []int{10, 8, 5}},
+		{name: "level at the top", scores: []int{10, 10, 5}},
+		{name: "level at the top of four", scores: []int{3, 10, 10, 5}},
+		{name: "second place shared", scores: []int{10, 5, 5}, tie: true, through: []int{0}, tied: []int{1, 2}, places: 1},
+		{name: "second place shared three ways", scores: []int{5, 5, 9, 5}, tie: true, through: []int{2}, tied: []int{0, 1, 3}, places: 1},
+		{name: "top shared three ways", scores: []int{5, 5, 5, 1}, tie: true, tied: []int{0, 1, 2}, places: 2},
+		{name: "everybody level", scores: []int{0, 0, 0, 0, 0}, tie: true, tied: []int{0, 1, 2, 3, 4}, places: 2},
+		{name: "table of two level", scores: []int{4, 4}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			session := &Session{}
+			for seat, score := range tc.scores {
+				session.Players = append(session.Players, SessionPlayer{Seat: seat, Score: score})
+			}
+
+			through, tied, places, tie := session.FinaleTie()
+			if tie != tc.tie {
+				t.Fatalf("FinaleTie() tie = %v, want %v", tie, tc.tie)
+			}
+			if !slices.Equal(through, tc.through) || !slices.Equal(tied, tc.tied) || places != tc.places {
+				t.Errorf("FinaleTie() = %v, %v, %d -- want %v, %v, %d", through, tied, places, tc.through, tc.tied, tc.places)
+			}
+		})
+	}
+}
+
+func TestOpenFinaleWaitsOnATie(t *testing.T) {
+	session := &Session{QuizMasterSeat: 3, Players: []SessionPlayer{
+		{Seat: 0, Score: 10}, {Seat: 1, Score: 5}, {Seat: 2, Score: 5}, {Seat: 3, Score: 0},
+	}}
+	session.FinalistSeatA, session.FinalistSeatB = -1, -1
+
+	session.OpenFinale()
+
+	if _, _, ok := session.Finalists(); ok {
+		t.Error("a finale with a place still shared was seated anyway")
+	}
+	if got, want := session.QuizMasterSeat, 3; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- whoever round 6 ended on names the winners", got, want)
+	}
+}
+
+func TestSeatFinalistsPutsTheWinnerAgainstTheLeader(t *testing.T) {
+	session := &Session{Players: []SessionPlayer{
+		{Seat: 0, Score: 10}, {Seat: 1, Score: 5}, {Seat: 2, Score: 5}, {Seat: 3, Score: 0},
+	}}
+
+	if err := session.SeatFinalists([]int{2}); err != nil {
+		t.Fatalf("SeatFinalists: %v", err)
+	}
+
+	a, b, ok := session.Finalists()
+	if !ok || a != 0 || b != 2 {
+		t.Errorf("Finalists() = %d, %d, %v -- want 0, 2, true", a, b, ok)
+	}
+	// The loser of the draw outranks seat 3, so they read.
+	if got, want := session.QuizMasterSeat, 1; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d", got, want)
+	}
+}
+
+func TestSeatFinalistsWhenEverybodyIsLevel(t *testing.T) {
+	session := &Session{Players: []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}}}
+
+	if err := session.SeatFinalists([]int{2, 0}); err != nil {
+		t.Fatalf("SeatFinalists: %v", err)
+	}
+
+	a, b, ok := session.Finalists()
+	if !ok || a != 2 || b != 0 {
+		t.Errorf("Finalists() = %d, %d, %v -- want 2, 0, true", a, b, ok)
+	}
+	if got, want := session.QuizMasterSeat, 1; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- the only one left reads", got, want)
+	}
+	if session.FinaleRival(session.HotSeat) < 0 {
+		t.Errorf("HotSeat = %d, which is not a finalist", session.HotSeat)
+	}
+}
+
+func TestSeatFinalistsRefusesWhatTheTieDidNotOffer(t *testing.T) {
+	for _, tc := range []struct {
+		name    string
+		winners []int
+	}{
+		{name: "too few", winners: []int{}},
+		{name: "too many", winners: []int{1, 2}},
+		{name: "the leader", winners: []int{0}},
+		{name: "not in the tie", winners: []int{3}},
+		{name: "not at the table", winners: []int{9}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			session := &Session{Players: []SessionPlayer{
+				{Seat: 0, Score: 10}, {Seat: 1, Score: 5}, {Seat: 2, Score: 5}, {Seat: 3, Score: 0},
+			}}
+			session.FinalistSeatA, session.FinalistSeatB = -1, -1
+
+			if err := session.SeatFinalists(tc.winners); !errors.Is(err, ErrInvalidInput) {
+				t.Errorf("SeatFinalists(%v) = %v, want ErrInvalidInput", tc.winners, err)
+			}
+		})
+	}
+
+	level := &Session{Players: []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}}}
+	if err := level.SeatFinalists([]int{1, 1}); !errors.Is(err, ErrInvalidInput) {
+		t.Errorf("SeatFinalists([1 1]) = %v, want ErrInvalidInput", err)
+	}
+}
+
+func TestSeatFinalistsRefusesATableWithNoTie(t *testing.T) {
+	session := &Session{Players: []SessionPlayer{{Seat: 0, Score: 3}, {Seat: 1, Score: 2}, {Seat: 2, Score: 1}}}
+
+	if err := session.SeatFinalists([]int{1}); !errors.Is(err, ErrStaleTurn) {
+		t.Errorf("SeatFinalists = %v, want ErrStaleTurn", err)
+	}
+}
+
+func TestFinaleTurnWaitsForTheTieToBeBroken(t *testing.T) {
+	session := newVerdictSession(3, 0, 0, 2)
+	session.CurrentRound = RoundFinale
+	session.FinalistSeatA, session.FinalistSeatB = -1, -1
+	for i := range session.Questions {
+		session.Questions[i].Round = RoundFinale
+	}
+	store := &verdictStore{session: session}
+
+	question := session.QuestionAt(RoundFinale, 0)
+	seat := 0
+	_, err := NewService(store).RecordFinaleTurn(t.Context(), TurnInput{
+		SessionID:         session.ID,
+		OwnerID:           verdictOwner,
+		SessionQuestionID: question.ID,
+		CorrectSeat:       &seat,
+	})
+	if !errors.Is(err, ErrStaleTurn) {
+		t.Errorf("RecordFinaleTurn = %v, want ErrStaleTurn", err)
+	}
+}
+
+func TestChooseFinalistsOpensTheFinale(t *testing.T) {
+	session := newVerdictSession(3, 0, 0, 2)
+	session.CurrentRound = RoundFinale
+	session.FinalistSeatA, session.FinalistSeatB = -1, -1
+	for i := range session.Questions {
+		session.Questions[i].Round = RoundFinale
+	}
+	// Everybody level on nothing: four players, two places.
+	store := &verdictStore{session: session}
+
+	got, err := NewService(store).ChooseFinalists(t.Context(), FinalistsInput{
+		SessionID: session.ID,
+		OwnerID:   verdictOwner,
+		Seats:     []int{1, 3},
+	})
+	if err != nil {
+		t.Fatalf("ChooseFinalists: %v", err)
+	}
+
+	a, b, ok := got.Finalists()
+	if !ok || a != 1 || b != 3 {
+		t.Errorf("Finalists() = %d, %d, %v -- want 1, 3, true", a, b, ok)
+	}
+	if got.FinaleUndecided() {
+		t.Error("the finale still says it is waiting on a tie")
+	}
+	if got.QuizMasterSeat == 1 || got.QuizMasterSeat == 3 {
+		t.Errorf("QuizMasterSeat = %d, which is a finalist", got.QuizMasterSeat)
+	}
+
+	// And not a second time.
+	_, err = NewService(store).ChooseFinalists(t.Context(), FinalistsInput{
+		SessionID: session.ID,
+		OwnerID:   verdictOwner,
+		Seats:     []int{0, 2},
+	})
+	if !errors.Is(err, ErrStaleTurn) {
+		t.Errorf("second ChooseFinalists = %v, want ErrStaleTurn", err)
 	}
 }

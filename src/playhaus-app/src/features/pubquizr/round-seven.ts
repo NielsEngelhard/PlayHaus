@@ -32,6 +32,27 @@ export function finalistsOf(session: QuizSession, seats: Seat[]): [Seat, Seat] |
     return [a, b];
 }
 
+/** A tie for a place in the finale, as the table sees it. */
+export interface FinaleTieBreak {
+    /** How many of `tied` go through: one beside a clear leader, two when nobody leads. */
+    places: number
+    tied: Seat[]
+    through: Seat[]
+}
+
+// The rock paper scissors the finale waits on, or null when it has nothing to wait for.
+export function finaleTieOf(session: QuizSession, seats: Seat[]): FinaleTieBreak | null {
+    const tie = session.finaleTie;
+    if (tie === null || tie === undefined) return null;
+    if (session.status !== 'in_progress' || session.currentRound !== ROUND_FINALE) return null;
+
+    const tied = tie.seats.map(seat => seatAt(seats, seat)).filter((seat): seat is Seat => seat !== null);
+    const through = tie.through.map(seat => seatAt(seats, seat)).filter((seat): seat is Seat => seat !== null);
+    if (tied.length <= tie.places) return null;
+
+    return { places: tie.places, tied, through };
+}
+
 // What is on screen right now, or null when the finale is not what is being played.
 export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTurn | null {
     if (session.status !== 'in_progress') return null;

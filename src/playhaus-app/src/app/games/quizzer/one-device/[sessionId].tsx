@@ -15,6 +15,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import ClosestBoard from "@/features/pubquizr/components/play/ClosestBoard";
 import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResultScreen";
 import DescribeBoard from "@/features/pubquizr/components/play/DescribeBoard";
+import FinaleTieBreakScreen from "@/features/pubquizr/components/play/FinaleTieBreakScreen";
 import HotSeatBoard from "@/features/pubquizr/components/play/HotSeatBoard";
 import ListBoard from "@/features/pubquizr/components/play/ListBoard";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
@@ -25,7 +26,7 @@ import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
-import { finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, EASY_POINTS, HARD_POINTS, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -219,6 +220,21 @@ export default function OneDeviceQuizPage() {
                     onLeave={leave}
                 />
             </>
+        ))
+    }
+
+    // A place in the finale is shared, and the table settles it with rock paper scissors before round 7 can open.
+    const tie = round === ROUND_FINALE ? finaleTieOf(session, seats) : null;
+    if (tie !== null) {
+        return fade('tie-break', (
+            <FinaleTieBreakScreen
+                round={ordinal}
+                tie={tie}
+                quizmaster={seatAt(seats, session.quizMasterSeat)}
+                busy={game.ruling}
+                error={game.rulingError}
+                onConfirm={game.chooseFinalists}
+            />
         ))
     }
 

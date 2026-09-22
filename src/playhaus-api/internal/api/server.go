@@ -174,6 +174,7 @@ func (s *Server) AddPubquizRHandlers() {
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/double-down", s.requireAuth(s.handleDoubleDownVerdict))
 	// The finale is not one of the hot seat rounds' rounds.
 	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/finale", s.requireAuth(s.handleFinaleVerdict))
+	s.mux.HandleFunc("POST /api/v1/pubquizr/single-device/{sessionID}/finalists", s.requireAuth(s.handleFinalists))
 }
 
 func (s *Server) AddOneOfUsHandlers() {

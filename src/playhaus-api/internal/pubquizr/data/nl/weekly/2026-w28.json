@@ -94,14 +94,14 @@
     {
       "round": 5,
       "questions": [
-        { "prompt": "Wat weet je van New York, "answers": [{ "text": "Vrijheidsbeeld" }, { "text": "Broadway" }, { "text": "Manhattan" }, { "text": "Gele taxi's" }] },
-        { "prompt": "Wat weet je van Star Wars, "answers": [{ "text": "Darth Vader" }, { "text": "Jedi" }, { "text": "Lichtzwaard" }, { "text": "The Force" }] },
-        { "prompt": "Wat weet je van pizza, "answers": [{ "text": "Italie" }, { "text": "Kaas" }, { "text": "Margherita" }, { "text": "Houtoven" }] },
-        { "prompt": "Wat weet je van de woestijn, "answers": [{ "text": "Zand" }, { "text": "Kameel" }, { "text": "Cactus" }, { "text": "Oase" }] },
-        { "prompt": "Wat weet je van Spanje, "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Barcelona" }, { "text": "Tapas" }] },
-        { "prompt": "Wat weet je van dinosaurussen, "answers": [{ "text": "Tyrannosaurus rex" }, { "text": "Fossielen" }, { "text": "Uitgestorven" }, { "text": "Jurassic Park" }] },
-        { "prompt": "Wat weet je van wijn, "answers": [{ "text": "Druiven" }, { "text": "Frankrijk" }, { "text": "Wijngaard" }, { "text": "Kurkentrekker" }] },
-        { "prompt": "Wat weet je van de Vikingen, "answers": [{ "text": "Drakenschip" }, { "text": "Scandinavie" }, { "text": "Plundertochten" }, { "text": "Odin" }] }
+        { "prompt": "Wat weet je van New York?", "answers": [{ "text": "Vrijheidsbeeld" }, { "text": "Broadway" }, { "text": "Manhattan" }, { "text": "Gele taxi's" }] },
+        { "prompt": "Wat weet je van Star Wars?", "answers": [{ "text": "Darth Vader" }, { "text": "Jedi" }, { "text": "Lichtzwaard" }, { "text": "The Force" }] },
+        { "prompt": "Wat weet je van pizza?", "answers": [{ "text": "Italie" }, { "text": "Kaas" }, { "text": "Margherita" }, { "text": "Houtoven" }] },
+        { "prompt": "Wat weet je van de woestijn?", "answers": [{ "text": "Zand" }, { "text": "Kameel" }, { "text": "Cactus" }, { "text": "Oase" }] },
+        { "prompt": "Wat weet je van Spanje?", "answers": [{ "text": "Paella" }, { "text": "Flamenco" }, { "text": "Barcelona" }, { "text": "Tapas" }] },
+        { "prompt": "Wat weet je van dinosaurussen?", "answers": [{ "text": "Tyrannosaurus rex" }, { "text": "Fossielen" }, { "text": "Uitgestorven" }, { "text": "Jurassic Park" }] },
+        { "prompt": "Wat weet je van wijn?", "answers": [{ "text": "Druiven" }, { "text": "Frankrijk" }, { "text": "Wijngaard" }, { "text": "Kurkentrekker" }] },
+        { "prompt": "Wat weet je van de Vikingen?", "answers": [{ "text": "Drakenschip" }, { "text": "Scandinavie" }, { "text": "Plundertochten" }, { "text": "Odin" }] }
       ]
     },
     {
