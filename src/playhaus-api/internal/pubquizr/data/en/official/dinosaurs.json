@@ -1,0 +1,136 @@
+{
+  "slug": "dinosaurs",
+  "title": "Dinosaurs",
+  "description": "A whole pub quiz about the dinosaurs: the species, the fossils and the day it all ended.",
+  "publishedAt": "2026-09-19",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which dinosaur's name means 'tyrant lizard king'?", "category": "Names", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "Tyrannosaurus"] }] },
+        { "prompt": "Which dinosaur had three horns on its head and a large bony frill around its neck?", "category": "Species", "answers": [{ "text": "Triceratops" }] },
+        { "prompt": "Which long-necked dinosaur's name means 'thunder lizard'?", "category": "Names", "answers": [{ "text": "Brontosaurus" }] },
+        { "prompt": "Which dinosaur had two rows of bony plates along its back and spikes on its tail?", "category": "Species", "answers": [{ "text": "Stegosaurus" }] },
+        { "prompt": "What is a scientist who studies fossils called?", "category": "Science", "answers": [{ "text": "A palaeontologist", "aliases": ["Palaeontologist", "Paleontologist"] }] },
+        { "prompt": "Which armoured dinosaur had a heavy club on the end of its tail?", "category": "Species", "answers": [{ "text": "Ankylosaurus", "aliases": ["Ankylosaur"] }] },
+        { "prompt": "In which geological period did Tyrannosaurus rex live?", "category": "Periods", "answers": [{ "text": "The Cretaceous", "aliases": ["Cretaceous"] }] },
+        { "prompt": "What word describes an animal that eats only plants?", "category": "Diet", "answers": [{ "text": "A herbivore", "aliases": ["Herbivore", "Plant eater"] }] },
+        { "prompt": "Which American author wrote the 1990 novel Jurassic Park?", "category": "Pop culture", "answers": [{ "text": "Michael Crichton", "aliases": ["Crichton"] }] },
+        { "prompt": "What is the general name for the winged reptiles that flew in the age of the dinosaurs?", "category": "Flying reptiles", "answers": [{ "text": "Pterosaurs", "aliases": ["Pterosaur", "Flying reptiles"] }] },
+        { "prompt": "Which small pack-hunting dinosaur with a sickle-shaped claw became famous through Jurassic Park?", "category": "Species", "answers": [{ "text": "Velociraptor", "aliases": ["Raptor"] }] },
+        { "prompt": "What is the preserved remains of an animal or a plant in rock called?", "category": "Fossils", "answers": [{ "text": "A fossil", "aliases": ["Fossil"] }] },
+        { "prompt": "Which group of animals alive today is descended from the dinosaurs?", "category": "Descendants", "answers": [{ "text": "Birds", "aliases": ["Bird"] }] },
+        { "prompt": "Which long-necked dinosaur's name means 'arm lizard'?", "category": "Names", "answers": [{ "text": "Brachiosaurus" }] },
+        { "prompt": "What is fossilised dinosaur dung called?", "category": "Fossils", "answers": [{ "text": "A coprolite", "aliases": ["Coprolite"] }] },
+        { "prompt": "Which period of the Mesozoic came between the Triassic and the Cretaceous?", "category": "Periods", "answers": [{ "text": "The Jurassic", "aliases": ["Jurassic"] }] },
+        { "prompt": "In which Dutch city can you see the Tyrannosaurus rex skeleton named Trix?", "category": "Museums", "answers": [{ "text": "Leiden", "aliases": ["Naturalis in Leiden"] }] },
+        { "prompt": "What was the name of the single supercontinent that existed at the start of the age of the dinosaurs?", "category": "Geography", "answers": [{ "text": "Pangaea", "aliases": ["Pangea"] }] },
+        { "prompt": "Which large Jurassic predator's name means 'different lizard'?", "category": "Names", "answers": [{ "text": "Allosaurus" }] },
+        { "prompt": "Which duck-billed dinosaur had a long tube-shaped crest sweeping back from its head?", "category": "Species", "answers": [{ "text": "Parasaurolophus" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "The Triassic, the Jurassic and the Cretaceous together make up which era?", "options": [{ "text": "The Mesozoic", "correct": true }, { "text": "The Palaeozoic" }, { "text": "The Cenozoic" }, { "text": "The Precambrian" }] },
+        { "prompt": "Roughly how many years ago did the dinosaurs die out?", "options": [{ "text": "145 million" }, { "text": "100 million" }, { "text": "66 million", "correct": true }, { "text": "25 million" }] },
+        { "prompt": "In which present-day country is the Chicxulub crater?", "options": [{ "text": "Mexico", "correct": true }, { "text": "Brazil" }, { "text": "Canada" }, { "text": "Australia" }] },
+        { "prompt": "Tyrannosaurus rex belongs to which group of dinosaurs?", "options": [{ "text": "The theropods", "correct": true }, { "text": "The sauropods" }, { "text": "The ornithopods" }, { "text": "The ceratopsians" }] },
+        { "prompt": "Which animal of the dinosaur age is often called the earliest known bird?", "options": [{ "text": "Archaeopteryx", "correct": true }, { "text": "Iguanodon" }, { "text": "Compsognathus" }, { "text": "Hypsilophodon" }] },
+        { "prompt": "Which English scientist invented the word 'dinosaur' in 1842?", "options": [{ "text": "Richard Owen", "correct": true }, { "text": "Charles Darwin" }, { "text": "Gideon Mantell" }, { "text": "William Buckland" }] },
+        { "prompt": "Which fossil collector from Lyme Regis found the first complete ichthyosaur skeleton?", "options": [{ "text": "Mary Anning", "correct": true }, { "text": "Mary Leakey" }, { "text": "Jane Goodall" }, { "text": "Dorothy Hodgkin" }] },
+        { "prompt": "Which meat-eating dinosaur carried a tall sail of spines along its back?", "options": [{ "text": "Spinosaurus", "correct": true }, { "text": "Carnotaurus" }, { "text": "Giganotosaurus" }, { "text": "Baryonyx" }] },
+        { "prompt": "What does the name Velociraptor mean?", "options": [{ "text": "Swift thief", "correct": true }, { "text": "Roof lizard" }, { "text": "Sickle claw" }, { "text": "Three-horned face" }] },
+        { "prompt": "In which country's Gobi Desert were the first widely recognised dinosaur eggs found in the 1920s?", "options": [{ "text": "Mongolia", "correct": true }, { "text": "China" }, { "text": "Kazakhstan" }, { "text": "Russia" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres long was a full-grown Tyrannosaurus rex from nose to tail?", "answer": 12, "unit": "metres", "explanation": "About the length of a city bus, and roughly four metres tall at the hip." },
+        { "prompt": "How many millions of years ago did the Mesozoic era begin?", "answer": 252, "unit": "million years" },
+        { "prompt": "How many bony plates ran along the back of Stegosaurus?", "answer": 17, "unit": "plates" },
+        { "prompt": "In what year was the film Jurassic Park released?", "answer": 1993 },
+        { "prompt": "For roughly how many millions of years did the dinosaurs walk the Earth?", "answer": 165, "unit": "million years" },
+        { "prompt": "How many metres long was Argentinosaurus, one of the biggest dinosaurs ever found?", "answer": 35, "unit": "metres" },
+        { "prompt": "How many fingers did Tyrannosaurus rex have on each hand?", "answer": 2, "unit": "fingers", "explanation": "Its close relatives had three, so the third finger was lost somewhere along the way." },
+        { "prompt": "How many millions of years ago did the Jurassic period begin?", "answer": 201, "unit": "million years" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Triceratops",
+        "Stegosaurus",
+        "Velociraptor",
+        "Brachiosaurus",
+        "Pterodactyl",
+        "Dinosaur egg",
+        "Amber",
+        "Claw",
+        "Tail spike",
+        "Tail club",
+        "Toy dinosaur",
+        "Swamp",
+        "Fern",
+        "Footprint",
+        "Natural history museum",
+        "Excavation",
+        "Skull",
+        "Jawbone",
+        "Dinosaur tooth",
+        "Scales",
+        "Feather",
+        "Nest",
+        "Crater",
+        "Palaeontologist",
+        "Pickaxe",
+        "Fossil hunter",
+        "Tar pit",
+        "Neck frill",
+        "Bone",
+        "Roar"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four groups of reptiles that are still alive today.", "answers": [{ "text": "Turtles and tortoises", "aliases": ["Turtles", "Tortoises"] }, { "text": "Crocodilians", "aliases": ["Crocodiles", "Crocodiles and alligators"] }, { "text": "Lizards and snakes", "aliases": ["Squamates", "Scaled reptiles"] }, { "text": "The tuatara", "aliases": ["Tuatara"] }] },
+        { "prompt": "Name the four films of the Jurassic Park and Jurassic World series released before 2018.", "answers": [{ "text": "Jurassic Park" }, { "text": "The Lost World: Jurassic Park", "aliases": ["The Lost World"] }, { "text": "Jurassic Park III" }, { "text": "Jurassic World" }] },
+        { "prompt": "Name the four continents, besides Africa, Asia and Europe, where dinosaur fossils have been found.", "answers": [{ "text": "North America" }, { "text": "South America" }, { "text": "Australia" }, { "text": "Antarctica" }] },
+        { "prompt": "Name the four great groups of sea reptiles of the dinosaur age.", "answers": [{ "text": "Ichthyosaurs", "aliases": ["Ichthyosaur"] }, { "text": "Plesiosaurs", "aliases": ["Plesiosaur"] }, { "text": "Pliosaurs", "aliases": ["Pliosaur"] }, { "text": "Mosasaurs", "aliases": ["Mosasaur"] }] },
+        { "prompt": "Name the four dinosaurs whose names mean 'double beam', 'deceptive lizard', 'terrible claw' and 'egg thief'.", "answers": [{ "text": "Diplodocus" }, { "text": "Apatosaurus" }, { "text": "Deinonychus" }, { "text": "Oviraptor" }] },
+        { "prompt": "Name the four features that show birds are descended from dinosaurs.", "answers": [{ "text": "Feathers", "aliases": ["Feather"] }, { "text": "Hollow bones", "aliases": ["Air-filled bones", "Light bones"] }, { "text": "Building nests", "aliases": ["Nests", "Nest building"] }, { "text": "A wishbone", "aliases": ["Wishbone", "Furcula"] }] },
+        { "prompt": "Name the four mass extinctions of the Big Five that came before the one that killed the dinosaurs.", "answers": [{ "text": "The Ordovician-Silurian extinction", "aliases": ["Ordovician", "End-Ordovician"] }, { "text": "The Late Devonian extinction", "aliases": ["Devonian", "Late Devonian"] }, { "text": "The Permian-Triassic extinction", "aliases": ["Permian", "The Great Dying", "End-Permian"] }, { "text": "The Triassic-Jurassic extinction", "aliases": ["Triassic-Jurassic", "End-Triassic"] }] },
+        { "prompt": "Name the four best-known pterosaurs.", "answers": [{ "text": "Pteranodon" }, { "text": "Quetzalcoatlus" }, { "text": "Pterodactylus" }, { "text": "Rhamphorhynchus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a dinosaur that has just come out of its egg called?", "difficulty": "easy", "answers": [{ "text": "A hatchling", "aliases": ["Hatchling", "Baby dinosaur"] }] },
+        { "prompt": "What word describes a species that no longer exists anywhere on Earth?", "difficulty": "easy", "answers": [{ "text": "Extinct", "aliases": ["Extinction", "Died out"] }] },
+        { "prompt": "In which kind of rock are dinosaur fossils almost always found?", "difficulty": "easy", "answers": [{ "text": "Sedimentary rock", "aliases": ["Sedimentary", "Sediment"] }] },
+        { "prompt": "Dinosaurs belong to which class of animals, along with lizards, snakes and crocodiles?", "difficulty": "easy", "answers": [{ "text": "Reptiles", "aliases": ["Reptile", "Reptilia"] }] },
+        { "prompt": "What kind of object from space is thought to have struck the Earth and ended the age of the dinosaurs?", "difficulty": "easy", "answers": [{ "text": "An asteroid", "aliases": ["Asteroid", "Meteorite", "Comet"] }] },
+        { "prompt": "What is the thin layer in the rock that marks the end of the dinosaur age called?", "difficulty": "hard", "answers": [{ "text": "The K-Pg boundary", "aliases": ["K-Pg boundary", "K-T boundary", "KT boundary"] }] },
+        { "prompt": "Which rare metal is found in unusually high amounts in that layer?", "difficulty": "hard", "answers": [{ "text": "Iridium" }] },
+        { "prompt": "What is the nickname of the famous Tyrannosaurus rex skeleton in the Field Museum in Chicago?", "difficulty": "hard", "answers": [{ "text": "Sue" }] },
+        { "prompt": "What is the Latin name for the 'bird-hipped' group of dinosaurs?", "difficulty": "hard", "answers": [{ "text": "Ornithischia", "aliases": ["Ornithischians"] }] },
+        { "prompt": "In which Belgian village were dozens of Iguanodon skeletons found in a coal mine in 1878?", "difficulty": "hard", "answers": [{ "text": "Bernissart" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What name is given to the bitter fossil-hunting rivalry between Edward Drinker Cope and Othniel Charles Marsh?", "answers": [{ "text": "The Bone Wars", "aliases": ["Bone Wars"] }] },
+        { "prompt": "Which dinosaur, described in 1824, was the first ever to be given a scientific name?", "answers": [{ "text": "Megalosaurus" }] },
+        { "prompt": "Which rock formation in the western United States has produced most of North America's famous Jurassic dinosaurs?", "answers": [{ "text": "The Morrison Formation", "aliases": ["Morrison Formation", "Morrison"] }] },
+        { "prompt": "Which small feathered dinosaur from China had flight feathers on all four limbs?", "answers": [{ "text": "Microraptor" }] },
+        { "prompt": "Which Mongolian dinosaur, whose name means 'terrible hand', was known for decades from little more than a pair of enormous arms?", "answers": [{ "text": "Deinocheirus" }] },
+        { "prompt": "Which dinosaur had a thick dome of solid bone on top of its skull?", "answers": [{ "text": "Pachycephalosaurus", "aliases": ["Pachycephalosaur"] }] },
+        { "prompt": "Near which Dutch city was the skull found that gave the mosasaurs their name?", "answers": [{ "text": "Maastricht" }] }
+      ]
+    }
+  ]
+}

@@ -274,10 +274,6 @@ To see where production is, run this from the droplet:
 docker compose run --rm --no-deps --entrypoint /app/ph-migrate api   # idempotent: applies nothing new, re-seeds nothing unchanged
 ```
 
-The droplet's `playhaus_api-data` volume still holds the SQLite file from before Postgres.
-Nothing mounts it any more, and nothing was copied out of it. Once you are sure you do not
-want it back: `docker volume rm playhaus_api-data`.
-
 ### The site answers 502
 
 Caddy is running and TLS is fine — it has simply got nothing to forward to. Check which

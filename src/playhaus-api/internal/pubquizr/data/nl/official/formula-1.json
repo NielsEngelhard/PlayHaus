@@ -1,0 +1,136 @@
+{
+  "slug": "formula-1",
+  "title": "Formule 1",
+  "description": "Een hele pubquiz over de Formule 1: coureurs, teams, circuits en de regels van de race.",
+  "publishedAt": "2026-07-29",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk Italiaans team, met een steigerend paard in het logo, reed sinds 1950 in elk Formule 1-seizoen?", "category": "Teams", "answers": [{ "text": "Ferrari", "aliases": ["Scuderia Ferrari"] }] },
+        { "prompt": "Welke Britse coureur had eind 2020 zeven wereldtitels op zijn naam?", "category": "Coureurs", "answers": [{ "text": "Lewis Hamilton", "aliases": ["Hamilton"] }] },
+        { "prompt": "Op welk circuit wordt de Grand Prix van Nederland verreden?", "category": "Circuits", "answers": [{ "text": "Zandvoort", "aliases": ["Circuit Zandvoort"] }] },
+        { "prompt": "Welke Duitse coureur won vanaf 2000 vijf wereldtitels op rij met Ferrari?", "category": "Coureurs", "answers": [{ "text": "Michael Schumacher", "aliases": ["Schumacher"] }] },
+        { "prompt": "Welk energiedrankmerk is eigenaar van het team waarmee Max Verstappen zijn wereldtitels won?", "category": "Teams", "answers": [{ "text": "Red Bull", "aliases": ["Red Bull Racing"] }] },
+        { "prompt": "Welk Italiaans circuit bij Milaan staat bekend als de Tempel van de Snelheid?", "category": "Circuits", "answers": [{ "text": "Monza", "aliases": ["Autodromo Nazionale Monza"] }] },
+        { "prompt": "Op welk Brits circuit wordt de Grand Prix van Groot-Brittannie verreden?", "category": "Circuits", "answers": [{ "text": "Silverstone" }] },
+        { "prompt": "Op welk Belgisch circuit ligt de bocht Eau Rouge?", "category": "Circuits", "answers": [{ "text": "Spa-Francorchamps", "aliases": ["Spa"] }] },
+        { "prompt": "Hoe heet de plek helemaal vooraan op de startopstelling?", "category": "Racetermen", "answers": [{ "text": "Pole position", "aliases": ["Pole"] }] },
+        { "prompt": "Welke Duitse fabrikant won vanaf 2014 acht constructeurstitels op rij?", "category": "Teams", "answers": [{ "text": "Mercedes", "aliases": ["Mercedes-AMG", "Mercedes-Benz"] }] },
+        { "prompt": "Hoeveel punten krijgt de winnaar van een Grand Prix sinds het seizoen 2010?", "category": "Punten", "answers": [{ "text": "Vijfentwintig", "aliases": ["25"] }] },
+        { "prompt": "Welke coureur uit Monaco werd in 2019 racepiloot bij Ferrari?", "category": "Coureurs", "answers": [{ "text": "Charles Leclerc", "aliases": ["Leclerc"] }] },
+        { "prompt": "Welke auto rijdt voor het veld uit als het te gevaarlijk is om te racen?", "category": "Regels", "answers": [{ "text": "De safetycar", "aliases": ["Safetycar", "Safety car"] }] },
+        { "prompt": "Welke Spaanse coureur werd wereldkampioen in 2005 en opnieuw in 2006?", "category": "Coureurs", "answers": [{ "text": "Fernando Alonso", "aliases": ["Alonso"] }] },
+        { "prompt": "Hoe heet het afgesloten gebied achter de pits waar de teams hun trucks en gasten hebben?", "category": "Racetermen", "answers": [{ "text": "De paddock", "aliases": ["Paddock"] }] },
+        { "prompt": "Welke Franse coureur won vier wereldtitels in de jaren tachtig en negentig?", "category": "Coureurs", "answers": [{ "text": "Alain Prost", "aliases": ["Prost"] }] },
+        { "prompt": "Welk Brits team, opgericht door Frank Williams, won negen constructeurstitels?", "category": "Teams", "answers": [{ "text": "Williams", "aliases": ["Williams Racing"] }] },
+        { "prompt": "Hoe heet de ronde die voor de start wordt gereden om de banden op te warmen?", "category": "Regels", "answers": [{ "text": "De formatieronde", "aliases": ["Formatieronde", "Opwarmronde"] }] },
+        { "prompt": "In welk land ligt het circuit van Suzuka?", "category": "Circuits", "answers": [{ "text": "Japan" }] },
+        { "prompt": "Welke Duitse coureur won tussen 2010 en 2013 vier wereldtitels met Red Bull?", "category": "Coureurs", "answers": [{ "text": "Sebastian Vettel", "aliases": ["Vettel"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar werd het eerste Formule 1-wereldkampioenschap verreden?", "options": [{ "text": "1946" }, { "text": "1950", "correct": true }, { "text": "1954" }, { "text": "1962" }] },
+        { "prompt": "Welke coureur won in de jaren vijftig vijf wereldtitels?", "options": [{ "text": "Juan Manuel Fangio", "correct": true }, { "text": "Alberto Ascari" }, { "text": "Stirling Moss" }, { "text": "Jack Brabham" }] },
+        { "prompt": "Welke motorleverancier bracht Red Bull van 2010 tot 2013 vier wereldtitels?", "options": [{ "text": "Renault", "correct": true }, { "text": "Honda" }, { "text": "Ferrari" }, { "text": "Mercedes" }] },
+        { "prompt": "Welke Finse coureur werd in 2007 wereldkampioen?", "options": [{ "text": "Kimi Raikkonen", "correct": true }, { "text": "Mika Hakkinen" }, { "text": "Valtteri Bottas" }, { "text": "Keke Rosberg" }] },
+        { "prompt": "Welke Grand Prix was in 2008 de eerste Formule 1-race onder kunstlicht?", "options": [{ "text": "Singapore", "correct": true }, { "text": "Bahrein" }, { "text": "Abu Dhabi" }, { "text": "Las Vegas" }] },
+        { "prompt": "In welke stad ligt het circuit van Interlagos?", "options": [{ "text": "Sao Paulo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Montevideo" }] },
+        { "prompt": "Welke veiligheidsvoorziening, een gebogen titanium beugel boven de cockpit, werd in 2018 verplicht?", "options": [{ "text": "De halo", "correct": true }, { "text": "De HANS-device" }, { "text": "De rolbeugel" }, { "text": "De survival cell" }] },
+        { "prompt": "Welke Britse coureur werd in 1992 wereldkampioen in een Williams?", "options": [{ "text": "Nigel Mansell", "correct": true }, { "text": "Nelson Piquet" }, { "text": "Riccardo Patrese" }, { "text": "Gerhard Berger" }] },
+        { "prompt": "Met welk team boekte Sebastian Vettel in 2008 op Monza zijn eerste Grand Prix-zege?", "options": [{ "text": "Toro Rosso", "correct": true }, { "text": "BMW Sauber" }, { "text": "Jordan" }, { "text": "Minardi" }] },
+        { "prompt": "Wat wordt een coureur duidelijk gemaakt als hij de zwart-oranje vlag krijgt?", "options": [{ "text": "Zijn auto is beschadigd en hij moet de pits in", "correct": true }, { "text": "Hij is uit de race gediskwalificeerd" }, { "text": "Een snellere auto gaat hem inhalen" }, { "text": "De race is stilgelegd" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd Max Verstappen de jongste coureur ooit die aan een Formule 1-race startte?", "answer": 2015, "explanation": "Hij was zeventien bij de Grand Prix van Australie; kort daarna ging de minimumleeftijd omhoog." },
+        { "prompt": "Hoeveel bochten heeft het circuit van Zandvoort?", "answer": 14, "unit": "bochten" },
+        { "prompt": "Over hoeveel ronden wordt de Grand Prix van Monaco verreden?", "answer": 78, "unit": "ronden" },
+        { "prompt": "Hoeveel Grands Prix won Michael Schumacher in zijn loopbaan?", "answer": 91, "unit": "zeges" },
+        { "prompt": "Wat is de minimumafstand van een Grand Prix in kilometers?", "answer": 305, "unit": "kilometer", "explanation": "Monaco is de enige uitzondering, met ongeveer tweehonderdzestig kilometer." },
+        { "prompt": "Uit hoeveel auto's bestond een volle startopstelling in het seizoen 2024?", "answer": 20, "unit": "auto's" },
+        { "prompt": "Hoeveel seconden duurt een snelle pitstop met vier nieuwe banden?", "answer": 2, "unit": "seconden" },
+        { "prompt": "Hoeveel races stonden er in 1950, het eerste WK-seizoen, op de kalender?", "answer": 7, "unit": "races" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Helm",
+        "Stuur",
+        "Slickband",
+        "Podium",
+        "Startopstelling",
+        "Voorvleugel",
+        "Achtervleugel",
+        "Cockpit",
+        "Wielmoersleutel",
+        "Pitcrew",
+        "Beker",
+        "Racepak",
+        "Boordradio",
+        "Tribune",
+        "Baancommissaris",
+        "Grindbak",
+        "Pitmuur",
+        "Sponsorlogo",
+        "Startlichten",
+        "Remschijf",
+        "Kerbstone",
+        "Bandenwarmer",
+        "Motorhome",
+        "Brandblusser",
+        "Raceschoenen",
+        "Stopwatch",
+        "Garage",
+        "Pitbord",
+        "Windtunnel",
+        "Simulator"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier Grands Prix uit het eerste wereldkampioenschap van 1950 die in het seizoen 2024 nog op de kalender stonden.", "answers": [{ "text": "De Grand Prix van Groot-Brittannie", "aliases": ["Groot-Brittannie", "Engeland"] }, { "text": "De Grand Prix van Monaco", "aliases": ["Monaco"] }, { "text": "De Grand Prix van Belgie", "aliases": ["Belgie"] }, { "text": "De Grand Prix van Italie", "aliases": ["Italie"] }] },
+        { "prompt": "Noem de vier vlaggenkleuren die betekenen: gevaar op de baan, sessie stilgelegd, baan weer vrij, en laat een snellere auto voorbij.", "answers": [{ "text": "Geel" }, { "text": "Rood" }, { "text": "Groen" }, { "text": "Blauw" }] },
+        { "prompt": "Noem de vier Formule 1-wereldkampioenen van wie de vader ook in de Formule 1 reed.", "answers": [{ "text": "Damon Hill" }, { "text": "Jacques Villeneuve" }, { "text": "Nico Rosberg" }, { "text": "Max Verstappen", "aliases": ["Verstappen"] }] },
+        { "prompt": "Noem de vier Grands Prix die in het seizoen 2024 in het Midden-Oosten werden verreden.", "answers": [{ "text": "Bahrein" }, { "text": "Saoedi-Arabie", "aliases": ["Jeddah"] }, { "text": "Qatar" }, { "text": "Abu Dhabi", "aliases": ["Yas Marina"] }] },
+        { "prompt": "Noem de vier Japanse fabrikanten die motoren hebben geleverd in de Formule 1.", "answers": [{ "text": "Honda" }, { "text": "Toyota" }, { "text": "Yamaha" }, { "text": "Subaru" }] },
+        { "prompt": "Noem de vier sessies die op een gewoon Grand Prix-weekend voor de race worden gehouden.", "answers": [{ "text": "Eerste vrije training", "aliases": ["VT1", "Vrije training 1"] }, { "text": "Tweede vrije training", "aliases": ["VT2", "Vrije training 2"] }, { "text": "Derde vrije training", "aliases": ["VT3", "Vrije training 3"] }, { "text": "De kwalificatie", "aliases": ["Kwalificatie"] }] },
+        { "prompt": "Noem de vier landen in Amerika waar in het seizoen 2024 een Grand Prix werd verreden.", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }, { "text": "Canada" }, { "text": "Mexico" }, { "text": "Brazilie" }] },
+        { "prompt": "Noem de vier decennia waarin een Ferrari-coureur wereldkampioen werd.", "answers": [{ "text": "De jaren vijftig", "aliases": ["1950", "Jaren 50"] }, { "text": "De jaren zestig", "aliases": ["1960", "Jaren 60"] }, { "text": "De jaren zeventig", "aliases": ["1970", "Jaren 70"] }, { "text": "De jaren 2000", "aliases": ["Jaren nul"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel wielen heeft een Formule 1-auto?", "difficulty": "easy", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Hoe heet de vlag die bij de winnaar van een Grand Prix wordt gezwaaid?", "difficulty": "easy", "answers": [{ "text": "De zwart-witgeblokte vlag", "aliases": ["Zwart-wit geblokte vlag", "Finishvlag"] }] },
+        { "prompt": "Uit welk land komt het team Ferrari?", "difficulty": "easy", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Waarmee sproeien de coureurs elkaar traditioneel nat op het podium?", "difficulty": "easy", "answers": [{ "text": "Champagne" }] },
+        { "prompt": "Hoe heet de strook waar de auto's stoppen voor nieuwe banden?", "difficulty": "easy", "answers": [{ "text": "De pitstraat", "aliases": ["Pitstraat", "De pits"] }] },
+        { "prompt": "Welke Braziliaanse coureur werd wereldkampioen in 1988, 1990 en 1991?", "difficulty": "hard", "answers": [{ "text": "Ayrton Senna", "aliases": ["Senna"] }] },
+        { "prompt": "In welk jaar won Max Verstappen zijn eerste wereldtitel?", "difficulty": "hard", "answers": [{ "text": "2021", "aliases": ["Tweeduizendeenentwintig"] }] },
+        { "prompt": "Met welk team won Lewis Hamilton in 2008 zijn eerste wereldtitel?", "difficulty": "hard", "answers": [{ "text": "McLaren" }] },
+        { "prompt": "Waar staat de afkorting DRS voor?", "difficulty": "hard", "answers": [{ "text": "Drag Reduction System" }] },
+        { "prompt": "Welke Oostenrijker won drie wereldtitels en richtte later zijn eigen luchtvaartmaatschappij op?", "difficulty": "hard", "answers": [{ "text": "Niki Lauda", "aliases": ["Lauda"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wie werd in 1950 de allereerste wereldkampioen in de Formule 1?", "answers": [{ "text": "Giuseppe Farina", "aliases": ["Nino Farina", "Farina"] }] },
+        { "prompt": "Welke Italiaanse coureur werd twee jaar op rij wereldkampioen, in 1952 en 1953?", "answers": [{ "text": "Alberto Ascari", "aliases": ["Ascari"] }] },
+        { "prompt": "Welk team won in 2009 de constructeurstitel in het enige seizoen dat het ooit racete?", "answers": [{ "text": "Brawn GP", "aliases": ["Brawn"] }] },
+        { "prompt": "Op welk Duits circuit had Niki Lauda in 1976 zijn bijna fatale crash?", "answers": [{ "text": "De Nurburgring", "aliases": ["Nurburgring", "Nordschleife"] }] },
+        { "prompt": "Welke Britse coureur werd in 1976 wereldkampioen?", "answers": [{ "text": "James Hunt", "aliases": ["Hunt"] }] },
+        { "prompt": "Wie was teambaas van Ferrari tijdens alle vijf de wereldtitels van Michael Schumacher?", "answers": [{ "text": "Jean Todt", "aliases": ["Todt"] }] },
+        { "prompt": "Op welk circuit kwam Ayrton Senna in 1994 om het leven?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] }
+      ]
+    }
+  ]
+}

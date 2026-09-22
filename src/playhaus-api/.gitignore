@@ -1,6 +1,3 @@
-# Leftovers from when the API ran on a local SQLite file.
-/data/
-
 # Built binaries
 /ph-api
 /ph-api.exe

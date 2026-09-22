@@ -87,16 +87,7 @@ disables CORS), `LOL_DEV_MODE` (**defaults true** — every League of Letters ro
 same word).
 
 **Database** (`internal/platform/database`) — Postgres through `gorm.io/driver/postgres` (pgx, pure
-Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)` is deliberate: the stores were
-written for SQLite's single writer, and some transactions read a row and then write based on
-it. Add `SELECT … FOR UPDATE` before raising `DB_MAX_CONNS`. `NowFunc` truncates to
-microseconds, which is what `timestamptz` keeps. The schema is **versioned goose SQL**
-(`migrations/NNNNN_*.sql`, embedded). Only `cmd/migrate` applies it (`MigrateUp`), followed by
-`pubquizr.Seed`, and only the deploy runs that. A model change needs a new migration file, and
-`TestMigrationsMatchTheModels` (`internal/api/schema_test.go`) fails until the SQL and the
-models agree. Never edit a migration that has already been deployed. The package never imports
-domain types. Every model declares `TableName()` with a game prefix (`solo_lol_games`,
-`mp_lol_lobbies`, `pq_quizzes`, `oou_single_device_games`).
+Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)`
 
 **Per-package layering**, identical across `lol`, `pubquizr`, `oneofus`, `user`, `auth`:
 
@@ -165,8 +156,9 @@ round at a time, and never touches a database. `specs.go` holds one strict tool 
 `prompt.go` the system and per-round prompts; `corpus.go` the dedupe that reads the shipped files
 back through `pubquizr.ShippedFiles()`; `writer.go` an encoder that reproduces the corpus's
 one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 99 files).
-`pubquizr.QuestionsIn` is the single definition of the exact per-round counts, and
-`docs/QUIZZER_QUIZ_PROMPT.md` now covers only hand-written **official** quizzes. `nl` is generated
+`pubquizr.QuestionsIn` is the single definition of the exact per-round counts,
+`docs/WEEKLY_QUIZ_FALLBACK.md` is the runbook for doing a week by hand when the schedule misses
+one, and `docs/QUIZZER_QUIZ_PROMPT.md` now covers only hand-written **official** quizzes. `nl` is generated
 and `en` is a translation of it (`-from`): the two locales are question for question the same quiz,
 and the app switches between them mid-session.
 
@@ -348,5 +340,4 @@ Two things worth knowing before changing anything here:
   healthy server. The deploy workflows do **not** check it — they ship and stop, so a green
   run does not mean the container serves.
 
-Backups are the Postgres host's job: nothing in this repo takes one. The pre-Postgres SQLite
-file is still in the droplet's `playhaus_api-data` volume, and nothing mounts or reads it.
+Backups are the Postgres host's job: nothing in this repo takes one.

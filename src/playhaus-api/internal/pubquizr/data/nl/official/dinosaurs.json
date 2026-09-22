@@ -1,0 +1,136 @@
+{
+  "slug": "dinosaurs",
+  "title": "Dinosaurussen",
+  "description": "Een hele pubquiz over de dinosaurussen: de soorten, de fossielen en de dag dat het voorbij was.",
+  "publishedAt": "2026-09-19",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke dinosaurus heet naar het 'tirannenhagediskoning'?", "category": "Namen", "answers": [{ "text": "Tyrannosaurus rex", "aliases": ["T. rex", "Tyrannosaurus"] }] },
+        { "prompt": "Welke dinosaurus had drie hoorns op zijn kop en een groot benen schild om zijn nek?", "category": "Soorten", "answers": [{ "text": "Triceratops" }] },
+        { "prompt": "Welke langnekkige dinosaurus heeft een naam die 'donderhagedis' betekent?", "category": "Namen", "answers": [{ "text": "Brontosaurus" }] },
+        { "prompt": "Welke dinosaurus had twee rijen benen platen op zijn rug en stekels aan zijn staart?", "category": "Soorten", "answers": [{ "text": "Stegosaurus" }] },
+        { "prompt": "Hoe noem je een wetenschapper die fossielen onderzoekt?", "category": "Wetenschap", "answers": [{ "text": "Een paleontoloog", "aliases": ["Paleontoloog"] }] },
+        { "prompt": "Welke gepantserde dinosaurus had een zware knots aan het eind van zijn staart?", "category": "Soorten", "answers": [{ "text": "Ankylosaurus", "aliases": ["Ankylosaurier"] }] },
+        { "prompt": "In welk geologisch tijdperk leefde Tyrannosaurus rex?", "category": "Tijdperken", "answers": [{ "text": "Het Krijt", "aliases": ["Krijt", "Krijttijd"] }] },
+        { "prompt": "Welk woord gebruik je voor een dier dat alleen planten eet?", "category": "Voeding", "answers": [{ "text": "Een herbivoor", "aliases": ["Herbivoor", "Planteneter"] }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef in 1990 de roman Jurassic Park?", "category": "Popcultuur", "answers": [{ "text": "Michael Crichton", "aliases": ["Crichton"] }] },
+        { "prompt": "Hoe heet de groep gevleugelde reptielen die vloog in de tijd van de dinosaurussen?", "category": "Vliegende reptielen", "answers": [{ "text": "Pterosauriers", "aliases": ["Pterosaurier", "Vliegende reptielen"] }] },
+        { "prompt": "Welke kleine roofdinosaurus met een sikkelvormige klauw werd beroemd door Jurassic Park?", "category": "Soorten", "answers": [{ "text": "Velociraptor", "aliases": ["Raptor"] }] },
+        { "prompt": "Hoe heten de resten van een dier of een plant die in steen bewaard zijn gebleven?", "category": "Fossielen", "answers": [{ "text": "Een fossiel", "aliases": ["Fossiel"] }] },
+        { "prompt": "Welke diergroep van nu is afstammeling van de dinosaurussen?", "category": "Nazaten", "answers": [{ "text": "Vogels", "aliases": ["Vogel"] }] },
+        { "prompt": "Welke langnekkige dinosaurus heeft een naam die 'armhagedis' betekent?", "category": "Namen", "answers": [{ "text": "Brachiosaurus" }] },
+        { "prompt": "Hoe heet gefossiliseerde dinosaurusmest?", "category": "Fossielen", "answers": [{ "text": "Een coproliet", "aliases": ["Coproliet"] }] },
+        { "prompt": "Welk tijdperk van het Mesozoicum lag tussen het Trias en het Krijt?", "category": "Tijdperken", "answers": [{ "text": "De Jura", "aliases": ["Jura"] }] },
+        { "prompt": "In welke Nederlandse stad staat het Tyrannosaurus rex-skelet Trix?", "category": "Musea", "answers": [{ "text": "Leiden", "aliases": ["Naturalis in Leiden"] }] },
+        { "prompt": "Hoe heette het ene supercontinent dat bestond aan het begin van de tijd van de dinosaurussen?", "category": "Aardrijkskunde", "answers": [{ "text": "Pangea", "aliases": ["Pangaea"] }] },
+        { "prompt": "Welke grote roofdinosaurus uit de Jura heeft een naam die 'andere hagedis' betekent?", "category": "Namen", "answers": [{ "text": "Allosaurus" }] },
+        { "prompt": "Welke dinosaurus met een eendenbek had een lange buisvormige kam naar achteren op zijn kop?", "category": "Soorten", "answers": [{ "text": "Parasaurolophus" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Het Trias, de Jura en het Krijt vormen samen welk era?", "options": [{ "text": "Het Mesozoicum", "correct": true }, { "text": "Het Paleozoicum" }, { "text": "Het Cenozoicum" }, { "text": "Het Precambrium" }] },
+        { "prompt": "Hoeveel jaar geleden stierven de dinosaurussen ongeveer uit?", "options": [{ "text": "145 miljoen" }, { "text": "100 miljoen" }, { "text": "66 miljoen", "correct": true }, { "text": "25 miljoen" }] },
+        { "prompt": "In welk huidig land ligt de Chicxulub-krater?", "options": [{ "text": "Mexico", "correct": true }, { "text": "Brazilie" }, { "text": "Canada" }, { "text": "Australie" }] },
+        { "prompt": "Tot welke groep dinosaurussen hoort Tyrannosaurus rex?", "options": [{ "text": "De theropoden", "correct": true }, { "text": "De sauropoden" }, { "text": "De ornithopoden" }, { "text": "De ceratopsiden" }] },
+        { "prompt": "Welk dier uit de tijd van de dinosaurussen wordt vaak de oudst bekende vogel genoemd?", "options": [{ "text": "Archaeopteryx", "correct": true }, { "text": "Iguanodon" }, { "text": "Compsognathus" }, { "text": "Hypsilophodon" }] },
+        { "prompt": "Welke Engelse wetenschapper verzon in 1842 het woord 'dinosaurus'?", "options": [{ "text": "Richard Owen", "correct": true }, { "text": "Charles Darwin" }, { "text": "Gideon Mantell" }, { "text": "William Buckland" }] },
+        { "prompt": "Welke fossielenzoekster uit Lyme Regis vond het eerste complete skelet van een ichthyosaurus?", "options": [{ "text": "Mary Anning", "correct": true }, { "text": "Mary Leakey" }, { "text": "Jane Goodall" }, { "text": "Dorothy Hodgkin" }] },
+        { "prompt": "Welke vleesetende dinosaurus droeg een hoog zeil van stekels op zijn rug?", "options": [{ "text": "Spinosaurus", "correct": true }, { "text": "Carnotaurus" }, { "text": "Giganotosaurus" }, { "text": "Baryonyx" }] },
+        { "prompt": "Wat betekent de naam Velociraptor?", "options": [{ "text": "Snelle rover", "correct": true }, { "text": "Dakhagedis" }, { "text": "Sikkelklauw" }, { "text": "Driehoornig gezicht" }] },
+        { "prompt": "In de Gobiwoestijn van welk land werden in de jaren twintig de eerste algemeen erkende dinosauruseieren gevonden?", "options": [{ "text": "Mongolie", "correct": true }, { "text": "China" }, { "text": "Kazachstan" }, { "text": "Rusland" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter lang was een volwassen Tyrannosaurus rex van snuit tot staart?", "answer": 12, "unit": "meter", "explanation": "Ongeveer de lengte van een stadsbus, en bij de heup zo'n vier meter hoog." },
+        { "prompt": "Hoeveel miljoen jaar geleden begon het Mesozoicum?", "answer": 252, "unit": "miljoen jaar" },
+        { "prompt": "Hoeveel benen platen liepen er over de rug van Stegosaurus?", "answer": 17, "unit": "platen" },
+        { "prompt": "In welk jaar kwam de film Jurassic Park uit?", "answer": 1993 },
+        { "prompt": "Hoeveel miljoen jaar hebben de dinosaurussen ongeveer op aarde geleefd?", "answer": 165, "unit": "miljoen jaar" },
+        { "prompt": "Hoeveel meter lang was Argentinosaurus, een van de grootste dinosaurussen ooit gevonden?", "answer": 35, "unit": "meter" },
+        { "prompt": "Hoeveel vingers had Tyrannosaurus rex aan elke hand?", "answer": 2, "unit": "vingers", "explanation": "Zijn naaste verwanten hadden er drie, dus de derde vinger is onderweg verdwenen." },
+        { "prompt": "Hoeveel miljoen jaar geleden begon de Jura?", "answer": 201, "unit": "miljoen jaar" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Triceratops",
+        "Stegosaurus",
+        "Velociraptor",
+        "Brachiosaurus",
+        "Pterodactylus",
+        "Dinosaurusei",
+        "Barnsteen",
+        "Klauw",
+        "Staartstekel",
+        "Staartknots",
+        "Speelgoeddinosaurus",
+        "Moeras",
+        "Varen",
+        "Voetspoor",
+        "Natuurhistorisch museum",
+        "Opgraving",
+        "Schedel",
+        "Kaakbeen",
+        "Dinosaurustand",
+        "Schubben",
+        "Veer",
+        "Nest",
+        "Krater",
+        "Paleontoloog",
+        "Pikhouweel",
+        "Fossielenjager",
+        "Teerput",
+        "Nekschild",
+        "Bot",
+        "Gebrul"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier groepen reptielen die vandaag nog bestaan.", "answers": [{ "text": "Schildpadden", "aliases": ["Zeeschildpadden", "Landschildpadden"] }, { "text": "Krokodilachtigen", "aliases": ["Krokodillen", "Krokodillen en alligators"] }, { "text": "Hagedissen en slangen", "aliases": ["Schubreptielen", "Squamata"] }, { "text": "De tuatara", "aliases": ["Tuatara", "Brughagedis"] }] },
+        { "prompt": "Noem de vier films uit de reeks Jurassic Park en Jurassic World die voor 2018 uitkwamen.", "answers": [{ "text": "Jurassic Park" }, { "text": "The Lost World: Jurassic Park", "aliases": ["The Lost World"] }, { "text": "Jurassic Park III" }, { "text": "Jurassic World" }] },
+        { "prompt": "Noem de vier werelddelen, naast Afrika, Azie en Europa, waar dinosaurusfossielen zijn gevonden.", "answers": [{ "text": "Noord-Amerika" }, { "text": "Zuid-Amerika" }, { "text": "Australie" }, { "text": "Antarctica" }] },
+        { "prompt": "Noem de vier grote groepen zeereptielen uit de tijd van de dinosaurussen.", "answers": [{ "text": "Ichthyosauriers", "aliases": ["Ichthyosaurus"] }, { "text": "Plesiosauriers", "aliases": ["Plesiosaurus"] }, { "text": "Pliosauriers", "aliases": ["Pliosaurus"] }, { "text": "Mosasauriers", "aliases": ["Mosasaurus"] }] },
+        { "prompt": "Noem de vier dinosaurussen waarvan de naam 'dubbele balk', 'bedrieglijke hagedis', 'verschrikkelijke klauw' en 'eierdief' betekent.", "answers": [{ "text": "Diplodocus" }, { "text": "Apatosaurus" }, { "text": "Deinonychus" }, { "text": "Oviraptor" }] },
+        { "prompt": "Noem de vier kenmerken waaruit blijkt dat vogels van dinosaurussen afstammen.", "answers": [{ "text": "Veren" }, { "text": "Holle botten", "aliases": ["Luchtgevulde botten", "Lichte botten"] }, { "text": "Nesten bouwen", "aliases": ["Nesten", "Nestbouw"] }, { "text": "Een vorkbeen", "aliases": ["Vorkbeen", "Furcula"] }] },
+        { "prompt": "Noem de vier massa-extincties uit de Big Five die voor die van de dinosaurussen kwamen.", "answers": [{ "text": "De Ordovicium-Siluurextinctie", "aliases": ["Ordovicium", "Eind-Ordovicium"] }, { "text": "De Laat-Devoonextinctie", "aliases": ["Devoon", "Laat-Devoon"] }, { "text": "De Perm-Triasextinctie", "aliases": ["Perm", "The Great Dying", "Eind-Perm"] }, { "text": "De Trias-Jura-extinctie", "aliases": ["Trias-Jura", "Eind-Trias"] }] },
+        { "prompt": "Noem de vier bekendste pterosauriers.", "answers": [{ "text": "Pteranodon" }, { "text": "Quetzalcoatlus" }, { "text": "Pterodactylus" }, { "text": "Rhamphorhynchus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noem je een dinosaurus die net uit zijn ei is gekropen?", "difficulty": "easy", "answers": [{ "text": "Een nestjong", "aliases": ["Nestjong", "Babydinosaurus", "Jonkie"] }] },
+        { "prompt": "Welk woord gebruik je voor een soort die nergens op aarde meer bestaat?", "difficulty": "easy", "answers": [{ "text": "Uitgestorven", "aliases": ["Extinct", "Uitsterven"] }] },
+        { "prompt": "In welk soort gesteente worden dinosaurusfossielen bijna altijd gevonden?", "difficulty": "easy", "answers": [{ "text": "Sedimentair gesteente", "aliases": ["Sedimentgesteente", "Sediment"] }] },
+        { "prompt": "Tot welke klasse van dieren horen dinosaurussen, net als hagedissen, slangen en krokodillen?", "difficulty": "easy", "answers": [{ "text": "Reptielen", "aliases": ["Reptiel", "Reptilia"] }] },
+        { "prompt": "Wat voor object uit de ruimte zou de aarde hebben geraakt en zo een eind hebben gemaakt aan de dinosaurussen?", "difficulty": "easy", "answers": [{ "text": "Een asteroide", "aliases": ["Asteroide", "Meteoriet", "Komeet"] }] },
+        { "prompt": "Hoe heet de dunne laag in het gesteente die het eind van de dinosaurustijd markeert?", "difficulty": "hard", "answers": [{ "text": "De K-Pg-grens", "aliases": ["K-Pg-grens", "K-T-grens", "KT-grens"] }] },
+        { "prompt": "Welk zeldzaam metaal zit in ongewoon hoge hoeveelheden in die laag?", "difficulty": "hard", "answers": [{ "text": "Iridium" }] },
+        { "prompt": "Wat is de bijnaam van het beroemde Tyrannosaurus rex-skelet in het Field Museum in Chicago?", "difficulty": "hard", "answers": [{ "text": "Sue" }] },
+        { "prompt": "Wat is de Latijnse naam voor de groep dinosaurussen met een vogelbekken?", "difficulty": "hard", "answers": [{ "text": "Ornithischia", "aliases": ["Ornithischiers"] }] },
+        { "prompt": "In welk Belgisch dorp werden in 1878 tientallen Iguanodon-skeletten in een kolenmijn gevonden?", "difficulty": "hard", "answers": [{ "text": "Bernissart" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe wordt de bittere fossielenstrijd tussen Edward Drinker Cope en Othniel Charles Marsh genoemd?", "answers": [{ "text": "De Bone Wars", "aliases": ["Bone Wars", "Bottenoorlog"] }] },
+        { "prompt": "Welke dinosaurus, beschreven in 1824, kreeg als eerste ooit een wetenschappelijke naam?", "answers": [{ "text": "Megalosaurus" }] },
+        { "prompt": "Welke gesteentelaag in het westen van de Verenigde Staten leverde de meeste beroemde Jura-dinosaurussen van Noord-Amerika op?", "answers": [{ "text": "De Morrison-formatie", "aliases": ["Morrison-formatie", "Morrison"] }] },
+        { "prompt": "Welke kleine gevederde dinosaurus uit China had slagpennen aan alle vier zijn ledematen?", "answers": [{ "text": "Microraptor" }] },
+        { "prompt": "Welke Mongoolse dinosaurus, wiens naam 'verschrikkelijke hand' betekent, was tientallen jaren alleen bekend van een paar enorme armen?", "answers": [{ "text": "Deinocheirus" }] },
+        { "prompt": "Welke dinosaurus had een dikke koepel van massief bot boven op zijn schedel?", "answers": [{ "text": "Pachycephalosaurus", "aliases": ["Pachycephalosaurier"] }] },
+        { "prompt": "Bij welke Nederlandse stad werd de schedel gevonden die de mosasauriers hun naam gaf?", "answers": [{ "text": "Maastricht" }] }
+      ]
+    }
+  ]
+}

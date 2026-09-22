@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import FlipOver from "@/components/ui/FlipOver";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
