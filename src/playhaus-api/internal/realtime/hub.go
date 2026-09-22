@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"strings"
 	"sync"
+	"sync/atomic"
 
 	"github.com/coder/websocket"
 )
@@ -68,6 +69,7 @@ type Hub struct {
 	mu       sync.Mutex
 	rooms    map[Key]*Room
 	handlers map[string]Handler
+	conns    atomic.Int64
 
 	log    *slog.Logger
 	ctx    context.Context
@@ -135,9 +137,12 @@ func (h *Hub) Serve(ctx context.Context, key Key, userID string, conn *websocket
 	case room.join <- client:
 	}
 
+	h.conns.Add(1)
+
 	// However this connection ends, the room has to be told, and it has to be told
 	// exactly once.
 	defer func() {
+		h.conns.Add(-1)
 		client.abort()
 		select {
 		case <-room.done:
@@ -176,6 +181,35 @@ func (h *Hub) Has(key Key) bool {
 
 	_, live := h.rooms[key]
 	return live
+}
+
+// Stats is what the hub is holding right now: rooms per namespace, and every live
+// connection in the process.
+type Stats struct {
+	Rooms       map[string]int
+	Connections int64
+}
+
+// Stats snapshots the hub for the operator stats route.
+//
+// The lock is held for the map walk and nothing else, which is the same bargain Has
+// and forget already make -- it never spans a channel send, so this cannot block a
+// room. The connection count is read outside it, so the two halves may disagree by a
+// connection under load. That is the right trade for a gauge: rooms and connections
+// are each individually exact, and nothing here is load-bearing enough to want a
+// consistent snapshot at the cost of holding the hub lock longer.
+//
+// Rooms are opened on first arrival and forgotten after the last departure, so this
+// is a live audience, never a history.
+func (h *Hub) Stats() Stats {
+	h.mu.Lock()
+	rooms := make(map[string]int, len(h.handlers))
+	for key := range h.rooms {
+		rooms[key.Namespace]++
+	}
+	h.mu.Unlock()
+
+	return Stats{Rooms: rooms, Connections: h.conns.Load()}
 }
 
 // room finds or opens one.

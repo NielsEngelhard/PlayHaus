@@ -87,14 +87,20 @@ it is gitignored. Copy it somewhere safe.
 `terraform output dns_records` prints exactly what to create at your registrar:
 
 ```
-A   @     <reserved ip>   TTL 300
-A   www   <reserved ip>   TTL 300
+A   @       <reserved ip>   TTL 300
+A   www     <reserved ip>   TTL 300
+A   stats   <reserved ip>   TTL 300
 ```
+
+`stats` is the Beszel dashboard (see **Monitoring**). Caddy asks for its certificate the
+moment the `stats.{$DOMAIN}` block loads, which is the first deploy after this file
+changed — so the record has to exist before then, not after.
 
 Then wait, and check:
 
 ```powershell
 Resolve-DnsName playhaus.site -Type A | Select-Object Name, IPAddress
+Resolve-DnsName stats.playhaus.site -Type A | Select-Object Name, IPAddress
 ```
 
 (`dig` is not on Windows. In Git Bash, `nslookup playhaus.site` does the same job.)
@@ -113,6 +119,7 @@ Settings → Secrets and variables → Actions.
 | Secret | `DEPLOY_HOST` | the reserved IP |
 | Secret | `DEPLOY_SSH_KEY` | the **private** key — the whole file, `BEGIN`/`END` lines included (see below) |
 | Secret | `DATABASE_URL` | the Postgres connection string, e.g. `postgres://user:pass@host:25060/playhausdb?sslmode=require` |
+| Secret | `STATS_TOKEN` | **optional** — a long random string guarding `GET /api/v1/admin/stats`. Leave it unset and the route does not exist. |
 | Variable | `PUBLIC_ORIGIN` | `https://playhaus.site` |
 
 `DATABASE_URL` is written into `/opt/playhaus/.env` (mode 600) on every API deploy, sent
@@ -201,9 +208,12 @@ whichever you happen to run.
 **A deploy is not verified.** `docker compose up -d` returns as soon as the container has
 been *created*, so a green run means the image was built, pushed, and recreated on the
 droplet — not that it serves. A failed migration does stop the run, but a binary that
-panics a minute after starting would not, and nothing here would notice.
+panics a minute after starting would not, and the workflow would not notice.
 
-So check by hand after shipping something you are unsure of:
+Something else does now: the DigitalOcean uptime check in `terraform/monitoring.tf` polls
+`https://playhaus.site/api/v1/health` from outside and emails within a few minutes. That
+closes the hole rather than the workflow closing it — a bad deploy still goes green, you
+just hear about it. So check by hand after shipping something you are unsure of:
 
 ```powershell
 curl.exe https://playhaus.site/api/v1/health
@@ -307,13 +317,125 @@ re-issuing counts against the weekly rate limit.
 
 ---
 
+## Monitoring
+
+Four things watch this box, deliberately small ones. A Prometheus and Grafana stack wants
+more memory than the droplet has to spare, so none of this collects a time series longer
+than it needs.
+
+### Where to look
+
+| Question | Where |
+| --- | --- |
+| Is the site up, seen from outside? | DigitalOcean → Monitoring → Uptime, plus an email when it is not |
+| Is the droplet running out of memory, CPU or disk? | DigitalOcean → Monitoring → Alerts, plus an email |
+| Which *container* is using it? | `https://stats.playhaus.site` |
+| Is the Go process leaking goroutines or rooms? | `GET /api/v1/admin/stats` |
+
+### The DigitalOcean half — Terraform
+
+`terraform/monitoring.tf` owns all of it, so changing a threshold is an edit and an
+`apply`, not a click. Three alert policies (memory > 90% for 10m, CPU > 80% for 30m, disk
+> 80% for 5m) and one uptime check against `/api/v1/health` from two regions, with a
+`down_global` alert and an SSL-expiry alert.
+
+The check targets the **health endpoint, not `/`**. Per the 502 section above, `/` is
+served by nginx off its own disk and keeps answering 200 with the API dead — it would
+report the site up during exactly the outage worth knowing about. `/api/v1/health` proves
+caddy → app → api.
+
+Two things to confirm once, by hand, because neither fails loudly:
+
+- **That the email arrives.** DigitalOcean delivers alerts to account and team member
+  addresses; another address is accepted by the API and then silently never delivered.
+  Force one: `ssh deploy@<ip>` then `stress-ng --vm 1 --vm-bytes 700M --timeout 700s`.
+- **That `do-agent` is running** — `systemctl status do-agent`. The memory and disk
+  metrics come from it, and an agent-dependent alert with no agent never fires and never
+  errors.
+
+These are account-level resources, so they sit outside the PlayHaus project in the
+console rather than beside the droplet. Expected.
+
+### Beszel — the per-container dashboard
+
+`https://stats.playhaus.site`, basic auth first and then Beszel's own login. One system,
+with `playhaus-api-1`, `playhaus-app-1`, `playhaus-caddy-1` and the two Beszel containers
+charted individually. Retention is fixed at about 30 days, averaged as it ages.
+
+Two containers in the compose file: `beszel` (the hub, a PocketBase app on SQLite) and
+`beszel-agent` (host-networked, reading the Docker socket). Nothing builds them.
+
+**They ship exactly the way `caddy` does.** Both deploy workflows copy
+`deployment/server/` up on every run, so the definition arrives with the next deploy of
+either half; `deploy.sh` then starts them by name, because neither workflow would
+otherwise. **Upgrading is editing both pinned tags — hub and agent must match — and
+running either workflow.** Rollback is the same edit in reverse.
+
+First run, once:
+
+1. Deploy. The hub starts; the agent does not, and says so, because there is no token yet.
+2. Open `https://stats.playhaus.site`, get past basic auth, create the admin account
+   **immediately** — the setup wizard belongs to whoever reaches it first, which is the
+   main thing the basic auth in front of it is buying.
+3. Add a system: name it, host `127.0.0.1`, port `45876`. Copy the token it generates.
+4. On the droplet: `printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN`
+5. `docker compose up -d --no-deps beszel-agent`, then
+   `docker compose logs beszel-agent` for a clean registration.
+
+The agent registers by dialing *out* to the hub over a websocket, so port 45876 is never
+opened in the firewall and nothing new is reachable from the internet.
+
+Worth knowing: the agent mounts the Docker socket, and `:ro` on a unix socket stops the
+file being replaced and nothing else. That is full Docker API access, which is root on the
+host. The narrower option is a socket proxy via `DOCKER_HOST`, which the agent supports;
+not done here.
+
+### The Go stats endpoint
+
+The numbers no container can see: goroutines, heap, GC, and the realtime hub's live room
+and connection counts. A leaked room is invisible in container memory until the box OOMs,
+because Go returns memory to the OS lazily.
+
+```
+curl.exe -H "X-Stats-Token: <token>" https://playhaus.site/api/v1/admin/stats
+```
+
+Not behind `requireAuth`: that proves only that *some* session is valid, and
+`POST /api/v1/user/guest` hands one to anyone who asks. There is no admin role in this
+codebase, so the route carries its own shared secret and compares it in constant time.
+**Unset `STATS_TOKEN` means the route is never registered** — a 404, indistinguishable
+from a build that never had it, which is what development and CI run with.
+
+`connections` should return to zero after a game ends and `rooms` should empty with it. A
+count that only climbs is the leak this endpoint exists to show.
+
+### Memory limits
+
+Every service in the compose file carries a `mem_limit`. They are ceilings, not
+reservations, and their sum exceeds 1 GB on purpose. The point is *who dies*: without
+them the host OOM killer picks the largest process, which is always the API, and leaves
+nothing explaining why. With them the runaway container is the one that dies and
+`docker inspect <container> | grep -i oom` says so.
+
+Check the numbers against reality before changing one:
+
+```
+ssh deploy@<ip> "cd /opt/playhaus && docker stats --no-stream"
+```
+
+The LIMIT column should show the ceilings; each should sit at roughly a third of its own.
+
+---
+
 ## Changing the domain
 
 Three places, and the last one is the one people forget:
 
-1. `domain` in `terraform.tfvars`, then `terraform apply` — this only affects the outputs.
+1. `domain` in `terraform.tfvars`, then `terraform apply` — this affects the outputs, and
+   the uptime check in `monitoring.tf`, which is targeted by name.
 2. `DOMAIN=` in `/opt/playhaus/.env` on the droplet, then
-   `docker compose up -d --no-deps caddy`.
+   `docker compose up -d --no-deps caddy`. All three A records — `@`, `www` and `stats` —
+   have to exist on the new name first, for the reason in step 5 of the first-time setup.
 3. The `PUBLIC_ORIGIN` repository variable, **and then a rebuild of the web app**.
    `EXPO_PUBLIC_API_URL` is inlined into the bundle by Metro at build time; changing the
    variable without re-running Deploy Web App leaves every page calling the old host.

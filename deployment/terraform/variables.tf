@@ -15,6 +15,11 @@ variable "acme_email" {
   type        = string
 }
 
+variable "alert_email" {
+  description = "Where DigitalOcean sends the monitoring and uptime alerts in monitoring.tf. DigitalOcean delivers these to account and team member addresses only -- an unrelated address is accepted by the API and then silently never delivered, so trigger one alert on purpose after the first apply and confirm it arrives."
+  type        = string
+}
+
 variable "region" {
   description = "DigitalOcean region slug. ams3 is Amsterdam, which is where the players are."
   type        = string

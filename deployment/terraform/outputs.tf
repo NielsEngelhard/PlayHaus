@@ -32,9 +32,13 @@ output "dns_records" {
     before the first deploy -- Caddy's certificate request fails while the name does not
     yet point here, and Let's Encrypt rate-limits repeated failures.
 
-      TYPE  NAME  VALUE                                              TTL
-      A     @     ${digitalocean_reserved_ip.playhaus.ip_address}    300
-      A     www   ${digitalocean_reserved_ip.playhaus.ip_address}    300
+      TYPE  NAME   VALUE                                              TTL
+      A     @      ${digitalocean_reserved_ip.playhaus.ip_address}    300
+      A     www    ${digitalocean_reserved_ip.playhaus.ip_address}    300
+      A     stats  ${digitalocean_reserved_ip.playhaus.ip_address}    300
+
+    `stats` serves the Beszel dashboard. Caddy asks for its certificate the moment the
+    site block loads, so create the record before the deploy that ships it -- not after.
 
     Check with:  dig +short ${var.domain}
   EOT
