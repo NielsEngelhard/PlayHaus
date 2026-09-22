@@ -1,0 +1,136 @@
+{
+  "slug": "australia",
+  "title": "Australia",
+  "description": "A whole pub quiz about Australia: its cities and states, its animals, its history and its icons.",
+  "publishedAt": "2026-08-27",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which city became the seat of the Australian parliament in 1927, as a compromise between Sydney and Melbourne?", "category": "Cities", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Which Australian city hosted the Summer Olympic Games in 2000?", "category": "Sport", "answers": [{ "text": "Sydney" }] },
+        { "prompt": "Which giant sandstone rock in the red centre of Australia was long known as Ayers Rock?", "category": "Landmarks", "answers": [{ "text": "Uluru", "aliases": ["Ayers Rock"] }] },
+        { "prompt": "Which building in Sydney is famous for its white sail-shaped roofs?", "category": "Landmarks", "answers": [{ "text": "The Sydney Opera House", "aliases": ["Sydney Opera House", "Opera House"] }] },
+        { "prompt": "What is the name of the world's largest coral reef system, off the coast of Queensland?", "category": "Nature", "answers": [{ "text": "The Great Barrier Reef", "aliases": ["Great Barrier Reef"] }] },
+        { "prompt": "Which wild dog roams the Australian bush?", "category": "Animals", "answers": [{ "text": "The dingo", "aliases": ["dingo"] }] },
+        { "prompt": "Which large flightless bird stands beside the kangaroo on Australia's coat of arms?", "category": "Animals", "answers": [{ "text": "The emu", "aliases": ["emu"] }] },
+        { "prompt": "Which long wooden wind instrument is traditionally played by Aboriginal Australians?", "category": "Culture", "answers": [{ "text": "The didgeridoo", "aliases": ["didgeridoo"] }] },
+        { "prompt": "Which curved wooden throwing stick comes back to the thrower?", "category": "Culture", "answers": [{ "text": "The boomerang", "aliases": ["boomerang"] }] },
+        { "prompt": "The leaves of which tree make up almost the whole diet of the koala?", "category": "Nature", "answers": [{ "text": "The eucalyptus", "aliases": ["eucalyptus", "gum tree"] }] },
+        { "prompt": "What is the name of Australia's national airline?", "category": "Everyday life", "answers": [{ "text": "Qantas" }] },
+        { "prompt": "What is the currency of Australia called?", "category": "Everyday life", "answers": [{ "text": "The Australian dollar", "aliases": ["Australian dollar", "dollar"] }] },
+        { "prompt": "Which British explorer charted the east coast of Australia in 1770 and claimed it for Britain?", "category": "History", "answers": [{ "text": "James Cook", "aliases": ["Captain Cook", "Cook"] }] },
+        { "prompt": "Which Australian singer had a worldwide hit in 2001 with Can't Get You Out of My Head?", "category": "Music", "answers": [{ "text": "Kylie Minogue", "aliases": ["Kylie"] }] },
+        { "prompt": "Which Australian actor plays Thor in the Marvel films?", "category": "Film", "answers": [{ "text": "Chris Hemsworth", "aliases": ["Hemsworth"] }] },
+        { "prompt": "Which Australian state is an island lying south of the mainland?", "category": "Geography", "answers": [{ "text": "Tasmania" }] },
+        { "prompt": "What name is given to the vast, dry interior of Australia?", "category": "Geography", "answers": [{ "text": "The outback", "aliases": ["outback"] }] },
+        { "prompt": "Which Australian band had a worldwide hit in the early 1980s with Down Under?", "category": "Music", "answers": [{ "text": "Men at Work" }] },
+        { "prompt": "Which sport is Bondi Beach in Sydney best known for?", "category": "Sport", "answers": [{ "text": "Surfing", "aliases": ["Surf", "Surfboarding"] }] },
+        { "prompt": "Which ocean lies off the west coast of Australia?", "category": "Geography", "answers": [{ "text": "The Indian Ocean", "aliases": ["Indian Ocean"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did the Australian colonies federate into one Commonwealth?", "options": [{ "text": "1861" }, { "text": "1901", "correct": true }, { "text": "1931" }, { "text": "1945" }] },
+        { "prompt": "Which Dutch navigator was the first European known to have set foot on the Australian mainland, in 1606?", "options": [{ "text": "Willem Janszoon", "correct": true }, { "text": "Abel Tasman" }, { "text": "Dirk Hartog" }, { "text": "Willem Barentsz" }] },
+        { "prompt": "Which city is the capital of Tasmania?", "options": [{ "text": "Hobart", "correct": true }, { "text": "Launceston" }, { "text": "Devonport" }, { "text": "Geelong" }] },
+        { "prompt": "In which state or territory does Uluru stand?", "options": [{ "text": "The Northern Territory", "correct": true }, { "text": "Western Australia" }, { "text": "South Australia" }, { "text": "Queensland" }] },
+        { "prompt": "In which year did Australia replace the pound with the dollar?", "options": [{ "text": "1949" }, { "text": "1966", "correct": true }, { "text": "1975" }, { "text": "1984" }] },
+        { "prompt": "Which is the largest desert in Australia?", "options": [{ "text": "The Great Victoria Desert", "correct": true }, { "text": "The Simpson Desert" }, { "text": "The Great Sandy Desert" }, { "text": "The Gibson Desert" }] },
+        { "prompt": "In which year did the Sydney Opera House open?", "options": [{ "text": "1962" }, { "text": "1973", "correct": true }, { "text": "1981" }, { "text": "1988" }] },
+        { "prompt": "What is the lower house of the Australian federal parliament called?", "options": [{ "text": "The House of Representatives", "correct": true }, { "text": "The House of Commons" }, { "text": "The Legislative Council" }, { "text": "The National Assembly" }] },
+        { "prompt": "Which city is the capital of the Northern Territory?", "options": [{ "text": "Darwin", "correct": true }, { "text": "Alice Springs" }, { "text": "Broome" }, { "text": "Townsville" }] },
+        { "prompt": "Which Australian won the Formula 1 world championship in 1980?", "options": [{ "text": "Alan Jones", "correct": true }, { "text": "Jack Brabham" }, { "text": "Mark Webber" }, { "text": "Daniel Ricciardo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many states does Australia have, not counting its territories?", "answer": 6, "unit": "states", "explanation": "The six states are joined by two mainland territories: the Northern Territory and the Australian Capital Territory." },
+        { "prompt": "How many metres high is Mount Kosciuszko, the highest mountain in Australia?", "answer": 2228, "unit": "metres" },
+        { "prompt": "In what year did the Sydney Harbour Bridge open?", "answer": 1932 },
+        { "prompt": "How many time zones does the Australian mainland have?", "answer": 3, "unit": "time zones" },
+        { "prompt": "In what year did women win the right to vote in Australian federal elections?", "answer": 1902, "explanation": "New Zealand had done the same nine years earlier, in 1893." },
+        { "prompt": "How many players from each side are on the field in a game of Australian rules football?", "answer": 18, "unit": "players" },
+        { "prompt": "In what year was Uluru handed back to its traditional Aboriginal owners?", "answer": 1985 },
+        { "prompt": "How many times have the Summer Olympic Games been held in Australia so far?", "answer": 2, "unit": "times" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Koala",
+        "Didgeridoo",
+        "Platypus",
+        "Uluru",
+        "Sydney Opera House",
+        "Emu",
+        "Wombat",
+        "Dingo",
+        "Kookaburra",
+        "Wallaby",
+        "Echidna",
+        "Tasmanian devil",
+        "Cane toad",
+        "Eucalyptus",
+        "Vegemite",
+        "Lamington",
+        "Pavlova",
+        "Meat pie",
+        "Surfboard",
+        "Bondi Beach",
+        "Harbour Bridge",
+        "Cork hat",
+        "Road train",
+        "Sheep shearing",
+        "Opal",
+        "Steve Irwin",
+        "Bushfire",
+        "Billabong",
+        "Southern Cross",
+        "Crocodile Dundee"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four largest Australian states by area.", "answers": [{ "text": "Western Australia" }, { "text": "Queensland" }, { "text": "South Australia" }, { "text": "New South Wales" }] },
+        { "prompt": "Name the four countries that lie nearest to Australia across the sea.", "answers": [{ "text": "Papua New Guinea" }, { "text": "Indonesia" }, { "text": "East Timor", "aliases": ["Timor-Leste"] }, { "text": "New Zealand" }] },
+        { "prompt": "Name the four capital cities of the Australian mainland states other than Sydney.", "answers": [{ "text": "Melbourne" }, { "text": "Brisbane" }, { "text": "Perth" }, { "text": "Adelaide" }] },
+        { "prompt": "Name the four Australian animals described here: an egg-laying mammal with a duck's bill, a spiny egg-laying anteater, a marsupial that lives in eucalyptus trees, and a stocky burrowing marsupial.", "answers": [{ "text": "The platypus", "aliases": ["platypus"] }, { "text": "The echidna", "aliases": ["echidna", "spiny anteater"] }, { "text": "The koala", "aliases": ["koala"] }, { "text": "The wombat", "aliases": ["wombat"] }] },
+        { "prompt": "Name the four seas off the northern and eastern coasts of Australia.", "answers": [{ "text": "The Timor Sea", "aliases": ["Timor Sea"] }, { "text": "The Arafura Sea", "aliases": ["Arafura Sea"] }, { "text": "The Coral Sea", "aliases": ["Coral Sea"] }, { "text": "The Tasman Sea", "aliases": ["Tasman Sea"] }] },
+        { "prompt": "Name the four Australian birds described here: a laughing kingfisher, a white parrot with a crest, a pink and grey parrot, and a bird that mimics almost any sound.", "answers": [{ "text": "The kookaburra", "aliases": ["kookaburra"] }, { "text": "The cockatoo", "aliases": ["cockatoo", "sulphur-crested cockatoo"] }, { "text": "The galah", "aliases": ["galah", "rose-breasted cockatoo"] }, { "text": "The lyrebird", "aliases": ["lyrebird"] }] },
+        { "prompt": "Name the four classic Australian foods: a dark yeast spread, a small coconut sponge cake, a meringue dessert with cream and fruit, and a hand-held pastry filled with minced meat.", "answers": [{ "text": "Vegemite" }, { "text": "Lamington" }, { "text": "Pavlova" }, { "text": "Meat pie", "aliases": ["pie"] }] },
+        { "prompt": "Name the four longest rivers of Australia.", "answers": [{ "text": "The Murray", "aliases": ["Murray"] }, { "text": "The Murrumbidgee", "aliases": ["Murrumbidgee"] }, { "text": "The Darling", "aliases": ["Darling"] }, { "text": "The Lachlan", "aliases": ["Lachlan"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which hopping animal is the best-known symbol of Australia?", "difficulty": "easy", "answers": [{ "text": "The kangaroo", "aliases": ["kangaroo"] }] },
+        { "prompt": "Which two colours do Australia's national sports teams wear?", "difficulty": "easy", "answers": [{ "text": "Green and gold", "aliases": ["Green and yellow", "Gold and green"] }] },
+        { "prompt": "Which ocean lies off the east coast of Australia?", "difficulty": "easy", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific Ocean", "Pacific"] }] },
+        { "prompt": "Which country's flag appears in the corner of the Australian flag?", "difficulty": "easy", "answers": [{ "text": "The United Kingdom", "aliases": ["Britain", "Great Britain", "The Union Jack"] }] },
+        { "prompt": "In which hemisphere does Australia lie?", "difficulty": "easy", "answers": [{ "text": "The southern hemisphere", "aliases": ["southern hemisphere", "south"] }] },
+        { "prompt": "What is the Aboriginal term for the spiritual world of the creation stories?", "difficulty": "hard", "answers": [{ "text": "The Dreamtime", "aliases": ["Dreamtime", "The Dreaming"] }] },
+        { "prompt": "Which treeless plain, whose name means no trees, is crossed by the world's longest straight stretch of railway?", "difficulty": "hard", "answers": [{ "text": "The Nullarbor Plain", "aliases": ["Nullarbor", "Nullarbor Plain"] }] },
+        { "prompt": "Which Australian prime minister vanished while swimming in the sea in 1967?", "difficulty": "hard", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] },
+        { "prompt": "What is the name of the fleet of eleven ships that brought the first convicts to Australia in 1788?", "difficulty": "hard", "answers": [{ "text": "The First Fleet", "aliases": ["First Fleet"] }] },
+        { "prompt": "Which mountain range separates Australia's east coast from the interior?", "difficulty": "hard", "answers": [{ "text": "The Great Dividing Range", "aliases": ["Great Dividing Range"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Danish architect designed the Sydney Opera House?", "answers": [{ "text": "Jorn Utzon", "aliases": ["Utzon", "Jørn Utzon"] }] },
+        { "prompt": "Which bushranger, hanged in 1880, fought his last battle in homemade plate armour?", "answers": [{ "text": "Ned Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "In which year did the Australian gold rush begin in New South Wales and Victoria?", "answers": [{ "text": "1851" }] },
+        { "prompt": "Which vast salt lake in South Australia is usually dry and fills with water only rarely?", "answers": [{ "text": "Lake Eyre", "aliases": ["Eyre", "Kati Thanda"] }] },
+        { "prompt": "Which Australian author wrote the novel The Thorn Birds?", "answers": [{ "text": "Colleen McCullough", "aliases": ["McCullough"] }] },
+        { "prompt": "Which Australian swimmer won three gold medals at the 2000 Olympic Games?", "answers": [{ "text": "Ian Thorpe", "aliases": ["Thorpe", "Thorpedo"] }] },
+        { "prompt": "Which Australian writer won the Nobel Prize in Literature in 1973?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] }
+      ]
+    }
+  ]
+}

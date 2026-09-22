@@ -1,0 +1,136 @@
+{
+  "slug": "fruit",
+  "title": "Fruit",
+  "description": "A whole pub quiz about fruit: from the orchard and the citrus grove to the fruit bowl.",
+  "publishedAt": "2026-09-20",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which fruit is pressed to make cider?", "category": "Orchard", "answers": [{ "text": "The apple", "aliases": ["Apple", "Apples"] }] },
+        { "prompt": "A prune is the dried form of which fruit?", "category": "Dried fruit", "answers": [{ "text": "The plum", "aliases": ["Plum", "Plums"] }] },
+        { "prompt": "Which yellow fruit is peeled by pulling the skin down in strips?", "category": "Tropical", "answers": [{ "text": "The banana", "aliases": ["Banana", "Bananas"] }] },
+        { "prompt": "Which small blue-black berry grows on a low bush and is often baked into muffins?", "category": "Berries", "answers": [{ "text": "The blueberry", "aliases": ["Blueberry", "Blueberries"] }] },
+        { "prompt": "Which citrus fruit gives Earl Grey tea its flavour?", "category": "Citrus", "answers": [{ "text": "The bergamot", "aliases": ["Bergamot", "Bergamot orange"] }] },
+        { "prompt": "Which citrus fruit is the main flavouring of the Italian liqueur limoncello?", "category": "Citrus", "answers": [{ "text": "The lemon", "aliases": ["Lemon", "Lemons"] }] },
+        { "prompt": "Which fruit is the main ingredient of guacamole?", "category": "Tropical", "answers": [{ "text": "The avocado", "aliases": ["Avocado", "Avocados"] }] },
+        { "prompt": "Which fruit is topped with a crown of stiff spiky leaves?", "category": "Tropical", "answers": [{ "text": "The pineapple", "aliases": ["Pineapple", "Pineapples"] }] },
+        { "prompt": "A nectarine is the smooth-skinned variety of which fruit?", "category": "Stone fruit", "answers": [{ "text": "The peach", "aliases": ["Peach", "Peaches"] }] },
+        { "prompt": "Wine is made from the fermented juice of which fruit?", "category": "Vineyard", "answers": [{ "text": "The grape", "aliases": ["Grape", "Grapes"] }] },
+        { "prompt": "Which is the largest of all citrus fruits, with a very thick rind?", "category": "Citrus", "answers": [{ "text": "The pomelo", "aliases": ["Pomelo", "Pummelo"] }] },
+        { "prompt": "Which large melon has a green rind and red flesh dotted with black seeds?", "category": "Melons", "answers": [{ "text": "The watermelon", "aliases": ["Watermelon"] }] },
+        { "prompt": "Which sour red berry grows in bogs and is made into a sauce eaten with turkey?", "category": "Berries", "answers": [{ "text": "The cranberry", "aliases": ["Cranberry", "Cranberries"] }] },
+        { "prompt": "Which Dutch region is famous for its apple and pear orchards in blossom?", "category": "Growing", "answers": [{ "text": "The Betuwe", "aliases": ["Betuwe"] }] },
+        { "prompt": "Conference is a well-known variety of which fruit?", "category": "Orchard", "answers": [{ "text": "The pear", "aliases": ["Pear", "Pears"] }] },
+        { "prompt": "Which fruit is used to make traditional bitter Seville marmalade?", "category": "Citrus", "answers": [{ "text": "The orange", "aliases": ["Orange", "Oranges", "Seville orange"] }] },
+        { "prompt": "Which Southeast Asian fruit is banned on public transport in Singapore because of its smell?", "category": "Tropical", "answers": [{ "text": "The durian", "aliases": ["Durian"] }] },
+        { "prompt": "Which fruit sits on top of a Black Forest gateau and flavours its filling?", "category": "Stone fruit", "answers": [{ "text": "The cherry", "aliases": ["Cherry", "Cherries"] }] },
+        { "prompt": "Which fruit is named after a flightless bird of New Zealand?", "category": "Botany", "answers": [{ "text": "The kiwi", "aliases": ["Kiwi", "Kiwifruit"] }] },
+        { "prompt": "Which fruit grows at the top of a palm tree and holds a liquid inside?", "category": "Tropical", "answers": [{ "text": "The coconut", "aliases": ["Coconut", "Coconuts"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which country did the peach originate?", "options": [{ "text": "China", "correct": true }, { "text": "Iran" }, { "text": "Turkey" }, { "text": "Greece" }] },
+        { "prompt": "In which country was the Granny Smith apple first grown?", "options": [{ "text": "Australia", "correct": true }, { "text": "New Zealand" }, { "text": "South Africa" }, { "text": "The United States" }] },
+        { "prompt": "Which enzyme in fresh pineapple stops a gelatine dessert from setting?", "options": [{ "text": "Bromelain", "correct": true }, { "text": "Papain" }, { "text": "Pepsin" }, { "text": "Amylase" }] },
+        { "prompt": "What is the correct name for the juicy seed coverings of a pomegranate?", "options": [{ "text": "Arils", "correct": true }, { "text": "Drupes" }, { "text": "Carpels" }, { "text": "Locules" }] },
+        { "prompt": "Botanically, which of these is a true berry?", "options": [{ "text": "The tomato", "correct": true }, { "text": "The strawberry" }, { "text": "The raspberry" }, { "text": "The cherry" }] },
+        { "prompt": "The Bramley is an apple variety grown mainly for what purpose?", "options": [{ "text": "Cooking", "correct": true }, { "text": "Cider" }, { "text": "Eating raw" }, { "text": "Juice" }] },
+        { "prompt": "Which of these fruits contains the most vitamin C per hundred grams?", "options": [{ "text": "The guava", "correct": true }, { "text": "The orange" }, { "text": "The strawberry" }, { "text": "The lemon" }] },
+        { "prompt": "Which of these fruits is botanically a drupe?", "options": [{ "text": "The olive", "correct": true }, { "text": "The grape" }, { "text": "The blueberry" }, { "text": "The fig" }] },
+        { "prompt": "The mango shares a plant family with the cashew and the pistachio. Which family is that?", "options": [{ "text": "The cashew family", "correct": true }, { "text": "The rose family" }, { "text": "The citrus family" }, { "text": "The nightshade family" }] },
+        { "prompt": "Bananas are very slightly radioactive because of which element they contain?", "options": [{ "text": "Potassium", "correct": true }, { "text": "Calcium" }, { "text": "Iron" }, { "text": "Magnesium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many calories are there in an average banana?", "answer": 105, "unit": "calories" },
+        { "prompt": "What percentage of a watermelon is water?", "answer": 92, "unit": "percent", "explanation": "Almost all of the weight of a watermelon is water, which is why it keeps so badly once it is cut." },
+        { "prompt": "Roughly how many varieties of apple are grown worldwide?", "answer": 7500, "unit": "varieties" },
+        { "prompt": "In what year did New Zealand growers rename the Chinese gooseberry the kiwifruit?", "answer": 1959, "explanation": "The new name was chosen for the export market, after the bird rather than the fruit's Chinese origin." },
+        { "prompt": "Roughly how many seeds does a pomegranate contain?", "answer": 600, "unit": "seeds" },
+        { "prompt": "How many petals does an apple blossom have?", "answer": 5, "unit": "petals" },
+        { "prompt": "How many metres tall can a coconut palm grow?", "answer": 30, "unit": "metres" },
+        { "prompt": "How many months does a pineapple plant need to bring a single fruit to ripeness?", "answer": 18, "unit": "months" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Apple core",
+        "Banana split",
+        "Rhubarb",
+        "Pineapple ring",
+        "Melon slice",
+        "Grapes",
+        "Lemon",
+        "Coconut shell",
+        "Cherry",
+        "Pear",
+        "Peach stone",
+        "Mango",
+        "Blueberry",
+        "Fig",
+        "Raisin",
+        "Avocado",
+        "Banana peel",
+        "Fruit bowl",
+        "Fruit salad",
+        "Smoothie",
+        "Marmalade",
+        "Apple pie",
+        "Orchard",
+        "Fruit knife",
+        "Blender",
+        "Lemon squeezer",
+        "Fruit picker",
+        "Fruit stall",
+        "Fruit fly",
+        "Jam jar"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four parts of an apple.", "answers": [{ "text": "The skin", "aliases": ["Skin", "Peel"] }, { "text": "The stalk", "aliases": ["Stalk", "Stem"] }, { "text": "The core", "aliases": ["Core"] }, { "text": "The pips", "aliases": ["Pips", "Seeds"] }] },
+        { "prompt": "Name the four fruits most often found in a bag of mixed dried fruit.", "answers": [{ "text": "Raisins", "aliases": ["Raisin", "Sultanas"] }, { "text": "Dried apricots", "aliases": ["Apricots", "Apricot"] }, { "text": "Dates", "aliases": ["Date"] }, { "text": "Figs", "aliases": ["Fig"] }] },
+        { "prompt": "Name the four soft red berries that go into a red fruit dessert.", "answers": [{ "text": "Strawberry", "aliases": ["Strawberries"] }, { "text": "Raspberry", "aliases": ["Raspberries"] }, { "text": "Blackberry", "aliases": ["Blackberries"] }, { "text": "Redcurrant", "aliases": ["Redcurrants", "Red currant"] }] },
+        { "prompt": "Name the four best-known apple varieties in a Dutch supermarket.", "answers": [{ "text": "Elstar" }, { "text": "Jonagold" }, { "text": "Granny Smith" }, { "text": "Golden Delicious" }] },
+        { "prompt": "Name the four citrus fruits in a supermarket other than the orange and the lemon.", "answers": [{ "text": "Lime", "aliases": ["Limes"] }, { "text": "Grapefruit", "aliases": ["Grapefruits"] }, { "text": "Mandarin", "aliases": ["Mandarins", "Tangerine"] }, { "text": "Clementine", "aliases": ["Clementines"] }] },
+        { "prompt": "Name the four kitchen vegetables that are botanically fruits, other than the tomato.", "answers": [{ "text": "Cucumber", "aliases": ["Cucumbers"] }, { "text": "Courgette", "aliases": ["Courgettes", "Zucchini"] }, { "text": "Pepper", "aliases": ["Peppers", "Bell pepper"] }, { "text": "Aubergine", "aliases": ["Aubergines", "Eggplant"] }] },
+        { "prompt": "Name the four melons sold in European supermarkets other than the watermelon.", "answers": [{ "text": "Cantaloupe", "aliases": ["Cantaloupe melon"] }, { "text": "Honeydew melon", "aliases": ["Honeydew"] }, { "text": "Galia melon", "aliases": ["Galia"] }, { "text": "Ogen melon", "aliases": ["Ogen"] }] },
+        { "prompt": "Name the four exotic fruits flown into Europe, other than the banana and the pineapple.", "answers": [{ "text": "Mango", "aliases": ["Mangoes"] }, { "text": "Papaya", "aliases": ["Papayas", "Pawpaw"] }, { "text": "Passion fruit", "aliases": ["Passionfruit", "Maracuja"] }, { "text": "Lychee", "aliases": ["Lychees", "Litchi"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the sweet spread made by boiling fruit with sugar called?", "difficulty": "easy", "answers": [{ "text": "Jam", "aliases": ["Preserve"] }] },
+        { "prompt": "What is the hard part in the middle of a peach called?", "difficulty": "easy", "answers": [{ "text": "The stone", "aliases": ["Stone", "Pit", "Kernel"] }] },
+        { "prompt": "Which vitamin is citrus fruit best known for?", "difficulty": "easy", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
+        { "prompt": "What is the liquid squeezed out of a fruit called?", "difficulty": "easy", "answers": [{ "text": "Juice" }] },
+        { "prompt": "What colour is the flesh of a ripe kiwi?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "What is the study and cultivation of fruit trees called?", "difficulty": "hard", "answers": [{ "text": "Pomology" }] },
+        { "prompt": "Which gas do ripening fruits give off that makes the fruit around them ripen faster?", "difficulty": "hard", "answers": [{ "text": "Ethylene", "aliases": ["Ethene"] }] },
+        { "prompt": "What is the botanical term for a fruit such as the raspberry, made up of many tiny drupes?", "difficulty": "hard", "answers": [{ "text": "An aggregate fruit", "aliases": ["Aggregate fruit"] }] },
+        { "prompt": "What is the white spongy layer between a citrus fruit's peel and its flesh called?", "difficulty": "hard", "answers": [{ "text": "The pith", "aliases": ["Pith", "Albedo"] }] },
+        { "prompt": "Which acid gives apples their sharp taste?", "difficulty": "hard", "answers": [{ "text": "Malic acid", "aliases": ["Malic"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the botanical name for the fruit type of a citrus, a berry with a leathery rind?", "answers": [{ "text": "A hesperidium", "aliases": ["Hesperidium"] }] },
+        { "prompt": "What are the tiny seeds on the outside of a strawberry called botanically?", "answers": [{ "text": "Achenes", "aliases": ["Achene"] }] },
+        { "prompt": "What is a cluster of bananas growing together on the plant called?", "answers": [{ "text": "A hand", "aliases": ["Hand"] }] },
+        { "prompt": "Which berry, first grown in California, is a cross between a blackberry and a raspberry?", "answers": [{ "text": "The loganberry", "aliases": ["Loganberry"] }] },
+        { "prompt": "What is the fruit of the rose called, used in syrups and teas?", "answers": [{ "text": "The rose hip", "aliases": ["Rose hip", "Rosehip", "Hip"] }] },
+        { "prompt": "The seeds of which fruit are fermented and roasted to make chocolate?", "answers": [{ "text": "The cacao pod", "aliases": ["Cacao", "Cocoa", "Cocoa pod"] }] },
+        { "prompt": "Which acid gives lemons their sour taste?", "answers": [{ "text": "Citric acid", "aliases": ["Citric"] }] }
+      ]
+    }
+  ]
+}

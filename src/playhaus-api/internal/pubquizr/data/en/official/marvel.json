@@ -1,0 +1,136 @@
+{
+  "slug": "marvel",
+  "title": "Marvel",
+  "description": "A whole pub quiz about the Marvel universe: heroes, villains, comics and films.",
+  "publishedAt": "2026-09-12",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is Spider-Man's real name?", "category": "Heroes", "answers": [{ "text": "Peter Parker", "aliases": ["Parker"] }] },
+        { "prompt": "What is Captain America's real name?", "category": "Heroes", "answers": [{ "text": "Steve Rogers", "aliases": ["Steven Rogers", "Rogers"] }] },
+        { "prompt": "What is Iron Man's real name?", "category": "Heroes", "answers": [{ "text": "Tony Stark", "aliases": ["Anthony Stark", "Stark"] }] },
+        { "prompt": "What is the Hulk's real name?", "category": "Heroes", "answers": [{ "text": "Bruce Banner", "aliases": ["Banner"] }] },
+        { "prompt": "What is Black Widow's real name?", "category": "Heroes", "answers": [{ "text": "Natasha Romanoff", "aliases": ["Natasha Romanova", "Romanoff"] }] },
+        { "prompt": "What is the name of Thor's hammer?", "category": "Weapons", "answers": [{ "text": "Mjolnir", "aliases": ["Mjollnir"] }] },
+        { "prompt": "Captain America's shield is made of which fictional metal?", "category": "Weapons", "answers": [{ "text": "Vibranium" }] },
+        { "prompt": "Who is Thor's adoptive brother?", "category": "Villains", "answers": [{ "text": "Loki" }] },
+        { "prompt": "Which villain sets out to collect all the Infinity Stones?", "category": "Villains", "answers": [{ "text": "Thanos" }] },
+        { "prompt": "Which city does Spider-Man protect?", "category": "Locations", "answers": [{ "text": "New York", "aliases": ["New York City"] }] },
+        { "prompt": "Which fictional African country does the Black Panther rule?", "category": "Locations", "answers": [{ "text": "Wakanda" }] },
+        { "prompt": "Which Marvel hero fights with a bow and arrow?", "category": "Heroes", "answers": [{ "text": "Hawkeye", "aliases": ["Clint Barton"] }] },
+        { "prompt": "Which team of space adventurers does Star-Lord lead?", "category": "Teams", "answers": [{ "text": "The Guardians of the Galaxy", "aliases": ["Guardians of the Galaxy"] }] },
+        { "prompt": "What is the name of Tony Stark's computer assistant in the first Iron Man film?", "category": "Technology", "answers": [{ "text": "JARVIS", "aliases": ["Jarvis"] }] },
+        { "prompt": "Which Marvel hero can shrink to the size of an insect?", "category": "Heroes", "answers": [{ "text": "Ant-Man", "aliases": ["Antman", "Ant Man"] }] },
+        { "prompt": "Which secret organisation does Nick Fury lead?", "category": "Organisations", "answers": [{ "text": "S.H.I.E.L.D.", "aliases": ["SHIELD", "Shield"] }] },
+        { "prompt": "Which actor plays Iron Man in the Marvel films?", "category": "Actors", "answers": [{ "text": "Robert Downey Jr.", "aliases": ["Robert Downey Junior", "Downey"] }] },
+        { "prompt": "Which Marvel writer and editor became famous for his cameos in the films?", "category": "Comics", "answers": [{ "text": "Stan Lee", "aliases": ["Lee"] }] },
+        { "prompt": "Which team of mutants is led by Professor X?", "category": "Teams", "answers": [{ "text": "The X-Men", "aliases": ["X-Men", "X Men"] }] },
+        { "prompt": "How many Infinity Stones are there?", "category": "Infinity Stones", "answers": [{ "text": "Six", "aliases": ["6"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year was the first Iron Man film released?", "options": [{ "text": "2006" }, { "text": "2008", "correct": true }, { "text": "2010" }, { "text": "2012" }] },
+        { "prompt": "Which Infinity Stone is hidden in Loki's sceptre in the first Avengers film?", "options": [{ "text": "The Mind Stone", "correct": true }, { "text": "The Soul Stone" }, { "text": "The Power Stone" }, { "text": "The Reality Stone" }] },
+        { "prompt": "Which actor plays Thor?", "options": [{ "text": "Chris Hemsworth", "correct": true }, { "text": "Chris Evans" }, { "text": "Chris Pratt" }, { "text": "Chris Pine" }] },
+        { "prompt": "Which superhero team did Stan Lee and Jack Kirby create in 1961?", "options": [{ "text": "The Fantastic Four", "correct": true }, { "text": "The Defenders" }, { "text": "The Inhumans" }, { "text": "The Invaders" }] },
+        { "prompt": "What is the name of the axe Thor has forged in Avengers: Infinity War?", "options": [{ "text": "Stormbreaker", "correct": true }, { "text": "Gungnir" }, { "text": "Hofund" }, { "text": "Jarnbjorn" }] },
+        { "prompt": "In which year did Disney buy Marvel Entertainment?", "options": [{ "text": "2005" }, { "text": "2009", "correct": true }, { "text": "2012" }, { "text": "2015" }] },
+        { "prompt": "What is the real name of the Winter Soldier?", "options": [{ "text": "Bucky Barnes", "correct": true }, { "text": "Sam Wilson" }, { "text": "Brock Rumlow" }, { "text": "Everett Ross" }] },
+        { "prompt": "Who directed Avengers: Endgame?", "options": [{ "text": "The Russo brothers", "correct": true }, { "text": "Joss Whedon" }, { "text": "James Gunn" }, { "text": "Taika Waititi" }] },
+        { "prompt": "Which actress plays Captain Marvel?", "options": [{ "text": "Brie Larson", "correct": true }, { "text": "Scarlett Johansson" }, { "text": "Elizabeth Olsen" }, { "text": "Karen Gillan" }] },
+        { "prompt": "What is the real name of the villain the Abomination?", "options": [{ "text": "Emil Blonsky", "correct": true }, { "text": "Samuel Sterns" }, { "text": "Thaddeus Ross" }, { "text": "Leonard Samson" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year did Spider-Man first appear in a comic?", "answer": 1962, "explanation": "He made his debut in Amazing Fantasy number 15, in August 1962." },
+        { "prompt": "In which year was the first X-Men film released?", "answer": 2000 },
+        { "prompt": "In which year was the film Black Panther released?", "answer": 2018 },
+        { "prompt": "In which year was Stan Lee born?", "answer": 1922 },
+        { "prompt": "How many minutes long is Avengers: Endgame?", "answer": 181, "unit": "minutes", "explanation": "Three hours and one minute, the longest film in the series." },
+        { "prompt": "How many films make up the Infinity Saga, the first three phases of the Marvel Cinematic Universe?", "answer": 23, "unit": "films" },
+        { "prompt": "How many members did the Avengers have in their first comic in 1963?", "answer": 5, "unit": "members" },
+        { "prompt": "In which year was the first Deadpool film released?", "answer": 2016 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Shield",
+        "Hammer",
+        "Spider web",
+        "Web-shooter",
+        "Cape",
+        "Mask",
+        "Comic book",
+        "Raccoon",
+        "Talking tree",
+        "Eye patch",
+        "Horned helmet",
+        "Rainbow bridge",
+        "Infinity Gauntlet",
+        "Arc reactor",
+        "Flying suit",
+        "Bow and arrow",
+        "Claws",
+        "Magic portal",
+        "Time machine",
+        "Spaceship",
+        "Skyscraper",
+        "Newspaper",
+        "Photographer",
+        "Laboratory",
+        "Lightning bolt",
+        "Ant",
+        "Goatee",
+        "Snap of the fingers",
+        "Cinema ticket",
+        "Action figure"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four members of the Fantastic Four.", "answers": [{ "text": "Mister Fantastic", "aliases": ["Reed Richards"] }, { "text": "The Invisible Woman", "aliases": ["Invisible Woman", "Sue Storm"] }, { "text": "The Human Torch", "aliases": ["Human Torch", "Johnny Storm"] }, { "text": "The Thing", "aliases": ["Ben Grimm"] }] },
+        { "prompt": "Name the four Avengers films released between 2012 and 2019.", "answers": [{ "text": "The Avengers", "aliases": ["Avengers Assemble"] }, { "text": "Avengers: Age of Ultron", "aliases": ["Age of Ultron"] }, { "text": "Avengers: Infinity War", "aliases": ["Infinity War"] }, { "text": "Avengers: Endgame", "aliases": ["Endgame"] }] },
+        { "prompt": "Name the four members of Thanos's Black Order in Avengers: Infinity War.", "answers": [{ "text": "Ebony Maw" }, { "text": "Corvus Glaive" }, { "text": "Proxima Midnight" }, { "text": "Cull Obsidian" }] },
+        { "prompt": "Name the four Captain America films released up to 2025.", "answers": [{ "text": "Captain America: The First Avenger", "aliases": ["The First Avenger"] }, { "text": "Captain America: The Winter Soldier", "aliases": ["The Winter Soldier"] }, { "text": "Captain America: Civil War", "aliases": ["Civil War"] }, { "text": "Captain America: Brave New World", "aliases": ["Brave New World"] }] },
+        { "prompt": "Name the four heroes who join forces in the series The Defenders.", "answers": [{ "text": "Daredevil", "aliases": ["Matt Murdock"] }, { "text": "Jessica Jones" }, { "text": "Luke Cage" }, { "text": "Iron Fist", "aliases": ["Danny Rand"] }] },
+        { "prompt": "Name the four Infinity Stones other than the Mind Stone and the Soul Stone.", "answers": [{ "text": "The Space Stone", "aliases": ["Space Stone", "Space"] }, { "text": "The Reality Stone", "aliases": ["Reality Stone", "Reality"] }, { "text": "The Power Stone", "aliases": ["Power Stone", "Power"] }, { "text": "The Time Stone", "aliases": ["Time Stone", "Time"] }] },
+        { "prompt": "Name the four Guardians who travel with Star-Lord in the 2014 film Guardians of the Galaxy.", "answers": [{ "text": "Gamora" }, { "text": "Drax", "aliases": ["Drax the Destroyer"] }, { "text": "Rocket", "aliases": ["Rocket Raccoon"] }, { "text": "Groot" }] },
+        { "prompt": "Name the four Marvel Cinematic Universe films released in cinemas in 2021.", "answers": [{ "text": "Black Widow" }, { "text": "Shang-Chi and the Legend of the Ten Rings", "aliases": ["Shang-Chi"] }, { "text": "Eternals", "aliases": ["The Eternals"] }, { "text": "Spider-Man: No Way Home", "aliases": ["No Way Home"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is the Hulk?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "Which Marvel hero wears a suit of red and gold armour?", "difficulty": "easy", "answers": [{ "text": "Iron Man" }] },
+        { "prompt": "Which relative raises Peter Parker together with his uncle?", "difficulty": "easy", "answers": [{ "text": "Aunt May", "aliases": ["May", "May Parker"] }] },
+        { "prompt": "Which Marvel hero fights with a round shield?", "difficulty": "easy", "answers": [{ "text": "Captain America", "aliases": ["Cap"] }] },
+        { "prompt": "What is the name of Thor's home world?", "difficulty": "easy", "answers": [{ "text": "Asgard" }] },
+        { "prompt": "Which artificial intelligence takes over from JARVIS in Tony Stark's suits?", "difficulty": "hard", "answers": [{ "text": "FRIDAY", "aliases": ["Friday"] }] },
+        { "prompt": "What is the real name of Professor X?", "difficulty": "hard", "answers": [{ "text": "Charles Xavier", "aliases": ["Xavier"] }] },
+        { "prompt": "Which shape-shifting alien race appears in the film Captain Marvel?", "difficulty": "hard", "answers": [{ "text": "The Skrulls", "aliases": ["Skrulls"] }] },
+        { "prompt": "Which Marvel hero's real name is Wanda Maximoff?", "difficulty": "hard", "answers": [{ "text": "Scarlet Witch", "aliases": ["The Scarlet Witch"] }] },
+        { "prompt": "Who is Thor's father?", "difficulty": "hard", "answers": [{ "text": "Odin" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which artist created Spider-Man together with Stan Lee?", "answers": [{ "text": "Steve Ditko", "aliases": ["Ditko"] }] },
+        { "prompt": "Which fictional metal coats Wolverine's skeleton?", "answers": [{ "text": "Adamantium" }] },
+        { "prompt": "What is the name of Thanos's home world?", "answers": [{ "text": "Titan" }] },
+        { "prompt": "What is the name of the Guardians of the Galaxy's ship in the 2014 film?", "answers": [{ "text": "The Milano", "aliases": ["Milano"] }] },
+        { "prompt": "Which plant gives the Black Panther his strength?", "answers": [{ "text": "The heart-shaped herb", "aliases": ["Heart-shaped herb", "Heart shaped herb"] }] },
+        { "prompt": "Who directed the 2008 film Iron Man?", "answers": [{ "text": "Jon Favreau", "aliases": ["Favreau"] }] },
+        { "prompt": "What is the name of Nick Fury's cat in the film Captain Marvel?", "answers": [{ "text": "Goose" }] }
+      ]
+    }
+  ]
+}

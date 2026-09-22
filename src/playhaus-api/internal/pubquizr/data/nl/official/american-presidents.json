@@ -1,0 +1,136 @@
+{
+  "slug": "american-presidents",
+  "title": "Amerikaanse Presidenten",
+  "description": "Een pubquiz over de presidenten van de Verenigde Staten: het Witte Huis, de grote namen en de grote schandalen.",
+  "publishedAt": "2026-09-06",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wie was de eerste Afro-Amerikaanse president van de Verenigde Staten?", "category": "Mijlpalen", "answers": [{ "text": "Barack Obama", "aliases": ["Obama"] }] },
+        { "prompt": "In welke Amerikaanse stad werd John F. Kennedy in 1963 doodgeschoten?", "category": "Aanslagen", "answers": [{ "text": "Dallas" }] },
+        { "prompt": "Welk schandaal dwong Richard Nixon in 1974 tot aftreden?", "category": "Schandalen", "answers": [{ "text": "Watergate", "aliases": ["Het Watergateschandaal"] }] },
+        { "prompt": "Wat was het beroep van Ronald Reagan voordat hij de politiek in ging?", "category": "Voor het Witte Huis", "answers": [{ "text": "Filmacteur", "aliases": ["Acteur", "Hollywoodacteur"] }] },
+        { "prompt": "Hoe heette het programma waarmee Franklin D. Roosevelt Amerika uit de Grote Depressie trok?", "category": "De jaren dertig", "answers": [{ "text": "De New Deal", "aliases": ["New Deal"] }] },
+        { "prompt": "Welke president gaf het bevel om de atoombommen op Hiroshima en Nagasaki te gooien?", "category": "Presidenten in oorlogstijd", "answers": [{ "text": "Harry S. Truman", "aliases": ["Truman", "Harry Truman"] }] },
+        { "prompt": "Hoeveel jaar duurt een ambtstermijn van een president?", "category": "Het ambt", "answers": [{ "text": "Vier jaar", "aliases": ["Vier", "4"] }] },
+        { "prompt": "Welke titel draagt de president als hoofd van de strijdkrachten?", "category": "Het ambt", "answers": [{ "text": "Opperbevelhebber", "aliases": ["Commander-in-chief"] }] },
+        { "prompt": "Bij welke van de twee grote Amerikaanse partijen hoorden Barack Obama en Bill Clinton?", "category": "Partijen", "answers": [{ "text": "De Democratische Partij", "aliases": ["De Democraten", "Democraten"] }] },
+        { "prompt": "Welk dier is het symbool van de Republikeinse Partij?", "category": "Partijen", "answers": [{ "text": "De olifant", "aliases": ["Olifant"] }] },
+        { "prompt": "Op welk Amerikaans bankbiljet staat Abraham Lincoln?", "category": "Geld", "answers": [{ "text": "Het biljet van vijf dollar", "aliases": ["Vijf dollar", "Het briefje van vijf", "5 dollar"] }] },
+        { "prompt": "Welke Duitse zin sprak John F. Kennedy uit in zijn Berlijnse toespraak van 1963?", "category": "Toespraken", "answers": [{ "text": "Ich bin ein Berliner", "aliases": ["Ik ben een Berlijner"] }] },
+        { "prompt": "Van welke Amerikaanse staat was Ronald Reagan gouverneur voordat hij president werd?", "category": "Voor het Witte Huis", "answers": [{ "text": "Californie", "aliases": ["California"] }] },
+        { "prompt": "Met welke stagiaire in het Witte Huis had Bill Clinton de affaire die hem bijna het presidentschap kostte?", "category": "Schandalen", "answers": [{ "text": "Monica Lewinsky", "aliases": ["Lewinsky", "Monica"] }] },
+        { "prompt": "Welk gewas verbouwde Jimmy Carter op zijn boerderij in Georgia voordat hij gekozen werd?", "category": "Voor het Witte Huis", "answers": [{ "text": "Pinda's", "aliases": ["Pinda", "Aardnoten"] }] },
+        { "prompt": "Welk knuffeldier is vernoemd naar president Theodore Roosevelt?", "category": "Bijnamen", "answers": [{ "text": "De teddybeer", "aliases": ["Teddybeer", "Teddy"] }] },
+        { "prompt": "Hoe heet de Amerikaanse dienst waarvan de agenten de president bewaken?", "category": "Veiligheid", "answers": [{ "text": "De Secret Service", "aliases": ["Secret Service"] }] },
+        { "prompt": "In welke maand wordt een pas gekozen Amerikaanse president beedigd?", "category": "Het ambt", "answers": [{ "text": "Januari" }] },
+        { "prompt": "Welke hoge witte obelisk op de National Mall eert de eerste president?", "category": "Monumenten", "answers": [{ "text": "Het Washington Monument", "aliases": ["Washington Monument"] }] },
+        { "prompt": "In welk monument in Washington zit een reusachtig marmeren beeld van Abraham Lincoln?", "category": "Monumenten", "answers": [{ "text": "Het Lincoln Memorial", "aliases": ["Lincoln Memorial"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke president woonde als eerste in het Witte Huis?", "options": [{ "text": "John Adams", "correct": true }, { "text": "George Washington" }, { "text": "Thomas Jefferson" }, { "text": "James Madison" }] },
+        { "prompt": "Welke president zat het kortst in het ambt, nauwelijks een maand?", "options": [{ "text": "William Henry Harrison", "correct": true }, { "text": "Zachary Taylor" }, { "text": "James Garfield" }, { "text": "Warren Harding" }] },
+        { "prompt": "Welke president bracht de Verenigde Staten in 1917 in de Eerste Wereldoorlog?", "options": [{ "text": "Woodrow Wilson", "correct": true }, { "text": "William Howard Taft" }, { "text": "Calvin Coolidge" }, { "text": "Herbert Hoover" }] },
+        { "prompt": "Welke generaal van het noorden uit de Amerikaanse Burgeroorlog werd later president?", "options": [{ "text": "Ulysses S. Grant", "correct": true }, { "text": "William Sherman" }, { "text": "George McClellan" }, { "text": "Winfield Scott" }] },
+        { "prompt": "Van welk land kochten de Verenigde Staten in 1803 het gebied Louisiana?", "options": [{ "text": "Frankrijk", "correct": true }, { "text": "Spanje" }, { "text": "Groot-Brittannie" }, { "text": "Rusland" }] },
+        { "prompt": "Welke president was voor zijn verkiezing opperbevelhebber van de geallieerde troepen in Europa?", "options": [{ "text": "Dwight D. Eisenhower", "correct": true }, { "text": "Harry S. Truman" }, { "text": "John F. Kennedy" }, { "text": "Lyndon B. Johnson" }] },
+        { "prompt": "In welk jaar werd George Washington beedigd als eerste president?", "options": [{ "text": "1789", "correct": true }, { "text": "1776" }, { "text": "1783" }, { "text": "1800" }] },
+        { "prompt": "Welke president staat op het Amerikaanse biljet van twintig dollar?", "options": [{ "text": "Andrew Jackson", "correct": true }, { "text": "James Madison" }, { "text": "James Monroe" }, { "text": "Andrew Johnson" }] },
+        { "prompt": "Welke negentiende-eeuwse president diende twee termijnen die niet op elkaar aansloten?", "options": [{ "text": "Grover Cleveland", "correct": true }, { "text": "Benjamin Harrison" }, { "text": "Chester Arthur" }, { "text": "Rutherford B. Hayes" }] },
+        { "prompt": "Welke first lady werd later senator en daarna minister van Buitenlandse Zaken?", "options": [{ "text": "Hillary Clinton", "correct": true }, { "text": "Laura Bush" }, { "text": "Betty Ford" }, { "text": "Rosalynn Carter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kamers telt het Witte Huis?", "answer": 132, "unit": "kamers", "explanation": "Het gebouw telt daarnaast 35 badkamers en 412 deuren." },
+        { "prompt": "Hoe oud was John F. Kennedy toen hij als president werd beedigd?", "answer": 43, "unit": "jaar" },
+        { "prompt": "In welk jaar werd Abraham Lincoln neergeschoten in een theater in Washington?", "answer": 1865 },
+        { "prompt": "Hoeveel sterren had de Amerikaanse vlag toen George Washington president werd?", "answer": 13, "unit": "sterren" },
+        { "prompt": "Hoeveel jaar was Franklin D. Roosevelt president?", "answer": 12, "unit": "jaar", "explanation": "Hij werd vier keer gekozen; na hem beperkte de grondwet een president tot twee termijnen." },
+        { "prompt": "In welk jaar trok voor het eerst een president in het Witte Huis?", "answer": 1800 },
+        { "prompt": "In welk jaar trad Barack Obama aan als president?", "answer": 2009 },
+        { "prompt": "Hoeveel dollar per jaar verdient de Amerikaanse president?", "answer": 400000, "unit": "dollar" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Spreekgestoelte",
+        "Limousine",
+        "Autocolonne",
+        "Amerikaanse zeearend",
+        "Verkiezingsposter",
+        "Dollarbiljet",
+        "Dollarcent",
+        "Portret",
+        "Standbeeld",
+        "Schrijfbureau",
+        "Handtekening",
+        "Journalist",
+        "Stropdas",
+        "Handdruk",
+        "First lady",
+        "Rozentuin",
+        "Parade",
+        "Cilinderhoed",
+        "Presidentieel zegel",
+        "Sigaar",
+        "Rolstoel",
+        "Golfclub",
+        "Bowlingbaan",
+        "Blokhut",
+        "Manchetknopen",
+        "Postzegel",
+        "Stemhokje",
+        "Ranch",
+        "Schommelstoel",
+        "Campagnebus"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier presidenten wier hoofden in de Mount Rushmore zijn uitgehakt.", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }, { "text": "Thomas Jefferson", "aliases": ["Jefferson"] }, { "text": "Abraham Lincoln", "aliases": ["Lincoln"] }, { "text": "Theodore Roosevelt", "aliases": ["Teddy Roosevelt"] }] },
+        { "prompt": "Noem de vier mannen die tussen 1963 en 1981 president van de Verenigde Staten waren.", "answers": [{ "text": "Lyndon B. Johnson", "aliases": ["Johnson", "LBJ"] }, { "text": "Richard Nixon", "aliases": ["Nixon"] }, { "text": "Gerald Ford", "aliases": ["Ford"] }, { "text": "Jimmy Carter", "aliases": ["Carter"] }] },
+        { "prompt": "Noem de vier mannen die tussen 1981 en 2009 het presidentschap bekleedden.", "answers": [{ "text": "Ronald Reagan", "aliases": ["Reagan"] }, { "text": "George H. W. Bush", "aliases": ["Bush senior", "George Bush senior"] }, { "text": "Bill Clinton", "aliases": ["Clinton"] }, { "text": "George W. Bush", "aliases": ["Bush junior"] }] },
+        { "prompt": "Noem de vier zaken van de president: zijn vliegtuig, zijn kantoor in het Witte Huis, zijn buitenverblijf en zijn helikopter.", "answers": [{ "text": "Air Force One" }, { "text": "Het Oval Office", "aliases": ["Oval Office", "Het Ovale Kantoor"] }, { "text": "Camp David" }, { "text": "Marine One" }] },
+        { "prompt": "Noem de vier first ladies die getrouwd waren met Franklin D. Roosevelt, John F. Kennedy, Ronald Reagan en Barack Obama.", "answers": [{ "text": "Eleanor Roosevelt", "aliases": ["Eleanor"] }, { "text": "Jacqueline Kennedy", "aliases": ["Jackie Kennedy", "Jackie"] }, { "text": "Nancy Reagan", "aliases": ["Nancy"] }, { "text": "Michelle Obama", "aliases": ["Michelle"] }] },
+        { "prompt": "Noem de vier presidenten die in de twintigste eeuw tijdens hun ambtstermijn overleden.", "answers": [{ "text": "William McKinley", "aliases": ["McKinley"] }, { "text": "Warren Harding", "aliases": ["Harding"] }, { "text": "Franklin D. Roosevelt", "aliases": ["Roosevelt", "FDR"] }, { "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Noem de vier oorlogen waarin Amerikaanse soldaten vochten in deze jaren: 1861, 1917, 1950 en 1965.", "answers": [{ "text": "De Amerikaanse Burgeroorlog", "aliases": ["Burgeroorlog"] }, { "text": "De Eerste Wereldoorlog", "aliases": ["Eerste Wereldoorlog", "WO I"] }, { "text": "De Koreaoorlog", "aliases": ["Korea"] }, { "text": "De Vietnamoorlog", "aliases": ["Vietnam"] }] },
+        { "prompt": "Noem de vier bekende plekken in en rond Washington: de woning van de president, de zetel van het Congres, het hoofdkwartier van de strijdkrachten en de begraafplaats waar John F. Kennedy ligt.", "answers": [{ "text": "Het Witte Huis", "aliases": ["Witte Huis"] }, { "text": "Het Capitool", "aliases": ["Capitool"] }, { "text": "Het Pentagon", "aliases": ["Pentagon"] }, { "text": "Arlington National Cemetery", "aliases": ["Arlington"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Van welk land riepen de Verenigde Staten in 1776 hun onafhankelijkheid uit, voordat George Washington de eerste president werd?", "difficulty": "easy", "answers": [{ "text": "Groot-Brittannie", "aliases": ["Engeland", "Het Verenigd Koninkrijk"] }] },
+        { "prompt": "Hoe heet het Amerikaanse parlement dat de president elk jaar toespreekt?", "difficulty": "easy", "answers": [{ "text": "Het Congres", "aliases": ["Congres"] }] },
+        { "prompt": "Hoe heet de plaatsvervanger van de president?", "difficulty": "easy", "answers": [{ "text": "De vicepresident", "aliases": ["Vicepresident"] }] },
+        { "prompt": "Op welke datum vieren de Amerikanen hun onafhankelijkheid?", "difficulty": "easy", "answers": [{ "text": "Vier juli", "aliases": ["4 juli", "Independence Day", "Onafhankelijkheidsdag"] }] },
+        { "prompt": "Welke prijs kreeg Barack Obama in 2009, nog geen jaar na zijn aantreden?", "difficulty": "easy", "answers": [{ "text": "De Nobelprijs voor de Vrede", "aliases": ["Nobelprijs voor de Vrede", "De Nobelprijs"] }] },
+        { "prompt": "Wie schoot Abraham Lincoln in 1865 neer in Ford's Theatre?", "difficulty": "hard", "answers": [{ "text": "John Wilkes Booth", "aliases": ["Booth"] }] },
+        { "prompt": "Hoe heet de beroemde korte toespraak die Abraham Lincoln in 1863 hield?", "difficulty": "hard", "answers": [{ "text": "De Gettysburg Address", "aliases": ["Gettysburg Address", "De Gettysburg-toespraak"] }] },
+        { "prompt": "Hoe heet de ruimte onder het Witte Huis van waaruit de president militaire operaties volgt?", "difficulty": "hard", "answers": [{ "text": "De Situation Room", "aliases": ["Situation Room"] }] },
+        { "prompt": "Welk amendement op de Amerikaanse grondwet beperkt een president tot twee termijnen?", "difficulty": "hard", "answers": [{ "text": "Het 22e amendement", "aliases": ["22e amendement", "Het tweeentwintigste amendement", "Amendement 22"] }] },
+        { "prompt": "Hoe heet het landgoed van Thomas Jefferson in Virginia, dat op de munt van vijf cent staat?", "difficulty": "hard", "answers": [{ "text": "Monticello" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke president trouwde nooit en was de enige vrijgezel in het Witte Huis?", "answers": [{ "text": "James Buchanan", "aliases": ["Buchanan"] }] },
+        { "prompt": "Hoe heet het bureau in het Oval Office dat de meeste moderne presidenten hebben gebruikt?", "answers": [{ "text": "Het Resolute desk", "aliases": ["Resolute desk", "Resolute"] }] },
+        { "prompt": "Tegen welke president begon het Huis van Afgevaardigden in 1868 een afzettingsprocedure, drie jaar na de Burgeroorlog?", "answers": [{ "text": "Andrew Johnson" }] },
+        { "prompt": "Welke zittende vicepresident doodde Alexander Hamilton in 1804 in een duel?", "answers": [{ "text": "Aaron Burr", "aliases": ["Burr"] }] },
+        { "prompt": "Welke president was in functie toen de Titanic in 1912 zonk?", "answers": [{ "text": "William Howard Taft", "aliases": ["Taft"] }] },
+        { "prompt": "Welke president zat in het Witte Huis toen de beurs in 1929 crashte?", "answers": [{ "text": "Herbert Hoover", "aliases": ["Hoover"] }] },
+        { "prompt": "Welke Amerikaanse staat is de geboortegrond van acht presidenten, meer dan elke andere?", "answers": [{ "text": "Virginia" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "ancient-rome",
+  "title": "Ancient Rome",
+  "description": "A whole pub quiz about ancient Rome: emperors, legions, gods and the city itself.",
+  "publishedAt": "2026-09-05",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "According to legend, which twin brothers founded the city of Rome?", "category": "Legend", "answers": [{ "text": "Romulus and Remus", "aliases": ["Romulus & Remus"] }] },
+        { "prompt": "Which animal is said to have suckled those twin brothers?", "category": "Legend", "answers": [{ "text": "A she-wolf", "aliases": ["she-wolf", "wolf", "a wolf"] }] },
+        { "prompt": "Who became the first emperor of Rome?", "category": "Emperors", "answers": [{ "text": "Augustus", "aliases": ["Octavian", "Octavianus"] }] },
+        { "prompt": "What was the large open square at the heart of Roman public life called?", "category": "The city", "answers": [{ "text": "The Forum", "aliases": ["Forum", "Forum Romanum", "Roman Forum"] }] },
+        { "prompt": "Which great amphitheatre in Rome was built for gladiator fights?", "category": "Buildings", "answers": [{ "text": "The Colosseum", "aliases": ["Colosseum"] }] },
+        { "prompt": "Which structures did the Romans build to carry fresh water into their cities?", "category": "Buildings", "answers": [{ "text": "Aqueducts", "aliases": ["aqueduct"] }] },
+        { "prompt": "Which river flows through the city of Rome?", "category": "Geography", "answers": [{ "text": "The Tiber", "aliases": ["Tiber"] }] },
+        { "prompt": "Which volcano buried the city of Pompeii?", "category": "Disasters", "answers": [{ "text": "Vesuvius", "aliases": ["Mount Vesuvius", "Vesuvio"] }] },
+        { "prompt": "What was the Roman army unit of several thousand soldiers called?", "category": "The army", "answers": [{ "text": "A legion", "aliases": ["legion"] }] },
+        { "prompt": "What was the officer who commanded about eighty legionaries called?", "category": "The army", "answers": [{ "text": "A centurion", "aliases": ["centurion"] }] },
+        { "prompt": "Who was the king of the Roman gods?", "category": "Gods", "answers": [{ "text": "Jupiter", "aliases": ["Iuppiter"] }] },
+        { "prompt": "Which Roman god of war gave his name to a planet?", "category": "Gods", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Which Roman goddess of love is the counterpart of the Greek Aphrodite?", "category": "Gods", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Which Carthaginian general crossed the Alps with war elephants?", "category": "Wars", "answers": [{ "text": "Hannibal" }] },
+        { "prompt": "What was the council of leading citizens that governed Rome called?", "category": "Politics", "answers": [{ "text": "The Senate", "aliases": ["Senate"] }] },
+        { "prompt": "What was the draped woollen garment worn by Roman citizens called?", "category": "Daily life", "answers": [{ "text": "A toga", "aliases": ["toga"] }] },
+        { "prompt": "What were the armed fighters who performed in the arena called?", "category": "Daily life", "answers": [{ "text": "Gladiators", "aliases": ["gladiator"] }] },
+        { "prompt": "Which wall across the north of Britain is named after a Roman emperor?", "category": "Frontiers", "answers": [{ "text": "Hadrian's Wall", "aliases": ["the Wall of Hadrian"] }] },
+        { "prompt": "Which drink did the Romans usually mix with water before serving it?", "category": "Food and drink", "answers": [{ "text": "Wine", "aliases": ["wine"] }] },
+        { "prompt": "Which language did the ancient Romans speak and write?", "category": "Language", "answers": [{ "text": "Latin" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year was Julius Caesar murdered?", "options": [{ "text": "63 BC" }, { "text": "49 BC" }, { "text": "44 BC", "correct": true }, { "text": "31 BC" }] },
+        { "prompt": "Which river did Caesar cross in 49 BC to march on Rome?", "options": [{ "text": "The Rubicon", "correct": true }, { "text": "The Po" }, { "text": "The Arno" }, { "text": "The Tiber" }] },
+        { "prompt": "Which battle decided the war between Octavian and Mark Antony in 31 BC?", "options": [{ "text": "Actium", "correct": true }, { "text": "Cannae" }, { "text": "Pharsalus" }, { "text": "Philippi" }] },
+        { "prompt": "Which Roman road ran from Rome south to the port of Brindisi?", "options": [{ "text": "The Via Appia", "correct": true }, { "text": "The Via Flaminia" }, { "text": "The Via Aurelia" }, { "text": "The Via Salaria" }] },
+        { "prompt": "Which emperor made Christianity legal in the Roman Empire?", "options": [{ "text": "Constantine the Great", "correct": true }, { "text": "Theodosius" }, { "text": "Domitian" }, { "text": "Septimius Severus" }] },
+        { "prompt": "In which year did the western Roman Empire come to an end?", "options": [{ "text": "410" }, { "text": "455" }, { "text": "476", "correct": true }, { "text": "527" }] },
+        { "prompt": "Which building in Rome has a huge dome with a round opening in the middle?", "options": [{ "text": "The Pantheon", "correct": true }, { "text": "The Baths of Caracalla" }, { "text": "The Basilica of Maxentius" }, { "text": "The Mausoleum of Augustus" }] },
+        { "prompt": "Which Roman goddess guarded the eternal flame in the heart of Rome?", "options": [{ "text": "Vesta", "correct": true }, { "text": "Juno" }, { "text": "Diana" }, { "text": "Fortuna" }] },
+        { "prompt": "Which Roman poet wrote the Aeneid?", "options": [{ "text": "Virgil", "correct": true }, { "text": "Horace" }, { "text": "Catullus" }, { "text": "Propertius" }] },
+        { "prompt": "Whose victory column in Rome shows the wars against the Dacians?", "options": [{ "text": "Trajan", "correct": true }, { "text": "Domitian" }, { "text": "Caracalla" }, { "text": "Aurelian" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "On how many hills is Rome traditionally said to be built?", "answer": 7, "unit": "hills" },
+        { "prompt": "In which year AD did Vesuvius bury the city of Pompeii?", "answer": 79 },
+        { "prompt": "Roughly how many spectators could the Colosseum hold?", "answer": 50000, "unit": "spectators", "explanation": "Estimates run from fifty to eighty thousand; fifty thousand is the figure most often given." },
+        { "prompt": "How many aqueducts supplied the city of Rome at the height of the empire?", "answer": 11, "unit": "aqueducts" },
+        { "prompt": "How many days did the year have in the calendar of Julius Caesar?", "answer": 365, "unit": "days", "explanation": "His reform of 46 BC gave the year 365 days with a leap day every fourth year, and it stood for sixteen centuries." },
+        { "prompt": "In which year BC was Rome founded, according to tradition?", "answer": 753 },
+        { "prompt": "How many letters did the classical Latin alphabet have?", "answer": 23, "unit": "letters" },
+        { "prompt": "How many kilometres long is Hadrian's Wall?", "answer": 117, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Amphitheatre",
+        "Legionary",
+        "Toga",
+        "Aqueduct",
+        "Centurion",
+        "Laurel wreath",
+        "Emperor",
+        "Senate",
+        "Forum",
+        "Marble statue",
+        "Scroll",
+        "Mosaic",
+        "Fresco",
+        "Breastplate",
+        "Eagle standard",
+        "Javelin",
+        "Bathhouse",
+        "Roman road",
+        "Column",
+        "Triumphal arch",
+        "Olive oil",
+        "Amphora",
+        "She-wolf",
+        "Chariot race",
+        "Siege tower",
+        "Slave",
+        "Roman numerals",
+        "Wax tablet",
+        "Sundial",
+        "Villa"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four emperors who ruled Rome in the year AD 69.", "answers": [{ "text": "Galba" }, { "text": "Otho" }, { "text": "Vitellius" }, { "text": "Vespasian", "aliases": ["Vespasianus"] }] },
+        { "prompt": "Name the four Julio-Claudian emperors who came after Augustus.", "answers": [{ "text": "Tiberius" }, { "text": "Caligula", "aliases": ["Gaius"] }, { "text": "Claudius" }, { "text": "Nero" }] },
+        { "prompt": "Name the four Roman gods matching the Greek Poseidon, Hades, Athena and Demeter.", "answers": [{ "text": "Neptune", "aliases": ["Neptunus"] }, { "text": "Pluto" }, { "text": "Minerva" }, { "text": "Ceres" }] },
+        { "prompt": "Name the four months of our calendar that are named after Roman gods.", "answers": [{ "text": "January", "aliases": ["Janus"] }, { "text": "March" }, { "text": "May" }, { "text": "June" }] },
+        { "prompt": "Name the four colours of the chariot racing teams of Rome.", "answers": [{ "text": "Red", "aliases": ["the Reds"] }, { "text": "White", "aliases": ["the Whites"] }, { "text": "Blue", "aliases": ["the Blues"] }, { "text": "Green", "aliases": ["the Greens"] }] },
+        { "prompt": "Name the four Roman numerals that stand for 50, 100, 500 and 1000.", "answers": [{ "text": "L", "aliases": ["fifty"] }, { "text": "C", "aliases": ["a hundred"] }, { "text": "D", "aliases": ["five hundred"] }, { "text": "M", "aliases": ["a thousand"] }] },
+        { "prompt": "Name the four Roman provinces covering what are now Spain, France, Britain and Egypt.", "answers": [{ "text": "Hispania" }, { "text": "Gallia", "aliases": ["Gaul"] }, { "text": "Britannia" }, { "text": "Aegyptus", "aliases": ["Egypt"] }] },
+        { "prompt": "Name the four towns buried by the eruption of Vesuvius in AD 79.", "answers": [{ "text": "Pompeii" }, { "text": "Herculaneum", "aliases": ["Ercolano"] }, { "text": "Stabiae", "aliases": ["Castellammare di Stabia"] }, { "text": "Oplontis", "aliases": ["Torre Annunziata"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which slave and gladiator led a great revolt against Rome from 73 BC?", "difficulty": "easy", "answers": [{ "text": "Spartacus" }] },
+        { "prompt": "Which north African city was Rome's great rival, destroyed in 146 BC?", "difficulty": "easy", "answers": [{ "text": "Carthage", "aliases": ["Carthago"] }] },
+        { "prompt": "Which three Latin words did Julius Caesar use to report a swift victory?", "difficulty": "easy", "answers": [{ "text": "Veni, vidi, vici", "aliases": ["I came, I saw, I conquered"] }] },
+        { "prompt": "In which arena of Rome were the chariot races held?", "difficulty": "easy", "answers": [{ "text": "The Circus Maximus", "aliases": ["Circus Maximus"] }] },
+        { "prompt": "Which Roman family name later became the imperial titles Kaiser and Tsar?", "difficulty": "easy", "answers": [{ "text": "Caesar" }] },
+        { "prompt": "Which Germanic people of the Rhine delta rose against Rome in AD 69 under Julius Civilis?", "difficulty": "hard", "answers": [{ "text": "The Batavians", "aliases": ["Batavians", "Batavi"] }] },
+        { "prompt": "Which emperor divided the rule of the empire between four men in AD 293?", "difficulty": "hard", "answers": [{ "text": "Diocletian", "aliases": ["Diocletianus"] }] },
+        { "prompt": "Which emperor had Roman law collected in the sixth century in a code bearing his name?", "difficulty": "hard", "answers": [{ "text": "Justinian", "aliases": ["Justinianus"] }] },
+        { "prompt": "Which Visigothic king sacked Rome in AD 410?", "difficulty": "hard", "answers": [{ "text": "Alaric", "aliases": ["Alarik"] }] },
+        { "prompt": "Which emperor and Stoic philosopher wrote the Meditations?", "difficulty": "hard", "answers": [{ "text": "Marcus Aurelius" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Germanic chieftain destroyed three Roman legions in the Teutoburg Forest in AD 9?", "answers": [{ "text": "Arminius", "aliases": ["Hermann"] }] },
+        { "prompt": "What was the Roman settlement on the site of present-day Nijmegen called?", "answers": [{ "text": "Noviomagus", "aliases": ["Ulpia Noviomagus Batavorum"] }] },
+        { "prompt": "Which consul and orator exposed the conspiracy of Catiline in 63 BC?", "answers": [{ "text": "Cicero", "aliases": ["Marcus Tullius Cicero"] }] },
+        { "prompt": "What was the Latin name for the fortified frontier line of the Roman Empire?", "answers": [{ "text": "The limes", "aliases": ["limes"] }] },
+        { "prompt": "Which Roman poet wrote the Metamorphoses?", "answers": [{ "text": "Ovid", "aliases": ["Publius Ovidius Naso", "Ovidius"] }] },
+        { "prompt": "Which Roman aqueduct bridge over the river Gardon in southern France still stands?", "answers": [{ "text": "The Pont du Gard", "aliases": ["Pont du Gard"] }] },
+        { "prompt": "Which emperor opened the Colosseum in AD 80 with a hundred days of games?", "answers": [{ "text": "Titus" }] }
+      ]
+    }
+  ]
+}

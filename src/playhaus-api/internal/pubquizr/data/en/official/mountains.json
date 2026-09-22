@@ -1,0 +1,136 @@
+{
+  "slug": "mountains",
+  "title": "Mountains",
+  "description": "A whole pub quiz about mountains: ranges, passes, glaciers and the people who climb them.",
+  "publishedAt": "2026-08-23",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which mountain is the highest in the world above sea level?", "category": "Peaks", "answers": [{ "text": "Mount Everest", "aliases": ["Everest"] }] },
+        { "prompt": "In which mountain range does Mount Everest stand?", "category": "Ranges", "answers": [{ "text": "The Himalaya", "aliases": ["Himalaya", "Himalayas", "The Himalayas"] }] },
+        { "prompt": "Which mountain range runs down the whole western side of South America?", "category": "Ranges", "answers": [{ "text": "The Andes", "aliases": ["Andes"] }] },
+        { "prompt": "Which is the highest mountain in the Alps?", "category": "The Alps", "answers": [{ "text": "Mont Blanc", "aliases": ["The Mont Blanc"] }] },
+        { "prompt": "Which Alpine peak with four steep faces rises above the village of Zermatt?", "category": "The Alps", "answers": [{ "text": "The Matterhorn", "aliases": ["Matterhorn"] }] },
+        { "prompt": "Who stood on the summit of Everest together with Edmund Hillary in 1953?", "category": "Climbing", "answers": [{ "text": "Tenzing Norgay", "aliases": ["Tenzing"] }] },
+        { "prompt": "Which mountain range forms the border between France and Spain?", "category": "Ranges", "answers": [{ "text": "The Pyrenees", "aliases": ["Pyrenees"] }] },
+        { "prompt": "Which Russian mountain range is taken as the boundary between Europe and Asia?", "category": "Ranges", "answers": [{ "text": "The Ural Mountains", "aliases": ["Urals", "The Urals", "Ural"] }] },
+        { "prompt": "Which mountain range runs across north-west Africa through Morocco and Algeria?", "category": "Ranges", "answers": [{ "text": "The Atlas Mountains", "aliases": ["Atlas", "The Atlas"] }] },
+        { "prompt": "What is the highest point of the European Netherlands?", "category": "The Netherlands", "answers": [{ "text": "The Vaalserberg", "aliases": ["Vaalserberg"] }] },
+        { "prompt": "What is the highest mountain in the United Kingdom?", "category": "Peaks", "answers": [{ "text": "Ben Nevis" }] },
+        { "prompt": "Which mountain range runs along the eastern side of the United States?", "category": "Ranges", "answers": [{ "text": "The Appalachians", "aliases": ["Appalachians", "Appalachian Mountains"] }] },
+        { "prompt": "What is the metal loop with a spring-loaded gate that climbers clip their rope into called?", "category": "Climbing gear", "answers": [{ "text": "A carabiner", "aliases": ["carabiner", "karabiner"] }] },
+        { "prompt": "Which Alpine climb in the Tour de France is famous for its 21 numbered hairpin bends?", "category": "Cycling", "answers": [{ "text": "Alpe d'Huez", "aliases": ["L'Alpe d'Huez"] }] },
+        { "prompt": "What is a slow-moving river of ice in a mountain valley called?", "category": "Glaciers", "answers": [{ "text": "A glacier", "aliases": ["glacier"] }] },
+        { "prompt": "What is the word for a mass of snow that suddenly slides down a mountainside?", "category": "Snow", "answers": [{ "text": "An avalanche", "aliases": ["avalanche"] }] },
+        { "prompt": "Which flat-topped mountain rises above Cape Town?", "category": "Peaks", "answers": [{ "text": "Table Mountain" }] },
+        { "prompt": "In which mountain range does K2 stand?", "category": "Ranges", "answers": [{ "text": "The Karakoram", "aliases": ["Karakoram", "Karakorum"] }] },
+        { "prompt": "Which Alpine pass between Switzerland and Italy shares its name with a breed of rescue dog?", "category": "Passes", "answers": [{ "text": "The Great St Bernard Pass", "aliases": ["St Bernard Pass", "Great Saint Bernard", "Saint Bernard Pass"] }] },
+        { "prompt": "Which people of Nepal are famous for guiding and carrying on Himalayan expeditions?", "category": "Climbing", "answers": [{ "text": "The Sherpas", "aliases": ["Sherpa", "Sherpas"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "The Cresta Run, the old skeleton toboggan course, belongs to which Alpine resort?", "options": [{ "text": "St Moritz", "correct": true }, { "text": "Davos" }, { "text": "Chamonix" }, { "text": "Cortina d'Ampezzo" }] },
+        { "prompt": "Which mountain is the highest in Germany?", "options": [{ "text": "The Zugspitze", "correct": true }, { "text": "The Watzmann" }, { "text": "The Feldberg" }, { "text": "The Brocken" }] },
+        { "prompt": "Which mountaineer was the first to climb all fourteen eight-thousand-metre peaks?", "options": [{ "text": "Reinhold Messner", "correct": true }, { "text": "Jerzy Kukuczka" }, { "text": "Walter Bonatti" }, { "text": "Chris Bonington" }] },
+        { "prompt": "Which mountain has the north face nicknamed the Mordwand, first climbed in 1938?", "options": [{ "text": "The Eiger", "correct": true }, { "text": "The Grandes Jorasses" }, { "text": "The Piz Badile" }, { "text": "The Grossvenediger" }] },
+        { "prompt": "Which is the highest paved mountain pass in the Alps?", "options": [{ "text": "The Col de l'Iseran", "correct": true }, { "text": "The Col du Galibier" }, { "text": "The Col de la Bonette" }, { "text": "The Furka Pass" }] },
+        { "prompt": "Which mountain is the highest in Austria?", "options": [{ "text": "The Grossglockner", "correct": true }, { "text": "The Wildspitze" }, { "text": "The Dachstein" }, { "text": "The Hochkoenig" }] },
+        { "prompt": "Which mountain range lies between the Black Sea and the Caspian Sea?", "options": [{ "text": "The Caucasus", "correct": true }, { "text": "The Carpathians" }, { "text": "The Balkan Mountains" }, { "text": "The Taurus Mountains" }] },
+        { "prompt": "Which is the highest mountain in the Pyrenees?", "options": [{ "text": "The Aneto", "correct": true }, { "text": "The Monte Perdido" }, { "text": "The Vignemale" }, { "text": "The Pic du Midi d'Ossau" }] },
+        { "prompt": "The mountain road Trollstigen and the rock ledge Trolltunga are both in which country?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Iceland" }, { "text": "Finland" }] },
+        { "prompt": "Which mountain range forms much of the border between Poland and Slovakia?", "options": [{ "text": "The Tatra Mountains", "correct": true }, { "text": "The Sudetes" }, { "text": "The Apennines" }, { "text": "The Dinaric Alps" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Everest?", "answer": 8849, "unit": "metres", "explanation": "China and Nepal jointly announced 8,848.86 metres in 2020, after years of disagreeing by a few metres." },
+        { "prompt": "How many metres high is Mont Blanc?", "answer": 4808, "unit": "metres" },
+        { "prompt": "In what year was the Matterhorn climbed for the first time?", "answer": 1865 },
+        { "prompt": "How many mountains on earth are higher than eight thousand metres?", "answer": 14, "unit": "mountains" },
+        { "prompt": "How many kilometres long is the Alps range from end to end, roughly?", "answer": 1200, "unit": "kilometres" },
+        { "prompt": "How many metres high is the Vaalserberg?", "answer": 322, "unit": "metres", "explanation": "322.4 metres, with the point where the Netherlands, Belgium and Germany meet standing right beside it." },
+        { "prompt": "In what year were the first Winter Olympic Games held in Chamonix?", "answer": 1924 },
+        { "prompt": "How many metres high is Ben Nevis?", "answer": 1345, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Ice axe",
+        "Crampons",
+        "Climbing rope",
+        "Chairlift",
+        "Cable car",
+        "Ski pole",
+        "Snowboard",
+        "Mountain hut",
+        "Chalet",
+        "Cowbell",
+        "Alpenhorn",
+        "Edelweiss",
+        "Ibex",
+        "Marmot",
+        "Golden eagle",
+        "Llama",
+        "Sledge",
+        "Snowshoes",
+        "Compass",
+        "Hiking boots",
+        "Summit cross",
+        "Hairpin bend",
+        "Mountain pass",
+        "Ravine",
+        "Waterfall",
+        "Ridge",
+        "Yeti",
+        "Yodelling",
+        "Base camp",
+        "Oxygen bottle"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four highest mountains in the world after Mount Everest.", "answers": [{ "text": "K2" }, { "text": "Kangchenjunga" }, { "text": "Lhotse" }, { "text": "Makalu" }] },
+        { "prompt": "Name the four countries that have a mountain of over eight thousand metres on their territory.", "answers": [{ "text": "Nepal" }, { "text": "China", "aliases": ["Tibet"] }, { "text": "Pakistan" }, { "text": "India" }] },
+        { "prompt": "Name the highest mountain of each of these four countries: Poland, Norway, Sweden and Greece.", "answers": [{ "text": "Rysy" }, { "text": "Galdhopiggen", "aliases": ["Galdhoppigen"] }, { "text": "Kebnekaise" }, { "text": "Mount Olympus", "aliases": ["Olympus", "Mytikas"] }] },
+        { "prompt": "Name the highest mountain of each of these four continents: South America, North America, Antarctica and Australia.", "answers": [{ "text": "Aconcagua" }, { "text": "Denali", "aliases": ["Mount McKinley"] }, { "text": "Mount Vinson", "aliases": ["Vinson", "Vinson Massif"] }, { "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
+        { "prompt": "The Rhine rises in the Swiss Alps. Name the four countries it flows through or along between Switzerland and the Netherlands.", "answers": [{ "text": "Liechtenstein" }, { "text": "Austria" }, { "text": "Germany" }, { "text": "France" }] },
+        { "prompt": "Name the four countries of the Caucasus.", "answers": [{ "text": "Russia" }, { "text": "Georgia" }, { "text": "Armenia" }, { "text": "Azerbaijan" }] },
+        { "prompt": "Name the four main disciplines of Alpine ski racing, leaving out the combined.", "answers": [{ "text": "Downhill" }, { "text": "Super-G", "aliases": ["Super G", "Super giant slalom"] }, { "text": "Giant slalom" }, { "text": "Slalom" }] },
+        { "prompt": "Name the four faces of the Matterhorn, which point at the four points of the compass.", "answers": [{ "text": "The north face", "aliases": ["north"] }, { "text": "The east face", "aliases": ["east"] }, { "text": "The south face", "aliases": ["south"] }, { "text": "The west face", "aliases": ["west"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the word for the highest point of a mountain?", "difficulty": "easy", "answers": [{ "text": "The summit", "aliases": ["summit", "peak", "top"] }] },
+        { "prompt": "Which winter sport is done standing sideways on a single board?", "difficulty": "easy", "answers": [{ "text": "Snowboarding", "aliases": ["snowboard"] }] },
+        { "prompt": "On which continent are the Alps?", "difficulty": "easy", "answers": [{ "text": "Europe" }] },
+        { "prompt": "What does the jersey of the best climber in the Tour de France look like?", "difficulty": "easy", "answers": [{ "text": "White with red polka dots", "aliases": ["polka dot jersey", "red polka dots", "white with red dots"] }] },
+        { "prompt": "Apart from Alpine skiing, what is the other main form of skiing, done over flat and rolling ground?", "difficulty": "easy", "answers": [{ "text": "Cross-country skiing", "aliases": ["cross country", "langlauf", "nordic skiing"] }] },
+        { "prompt": "Which Italian town lies at the southern end of the Mont Blanc Tunnel?", "difficulty": "hard", "answers": [{ "text": "Courmayeur" }] },
+        { "prompt": "Which climber disappeared high on Everest in 1924 and was found there again in 1999?", "difficulty": "hard", "answers": [{ "text": "George Mallory", "aliases": ["Mallory"] }] },
+        { "prompt": "What is the name of the highest railway station in Europe, beneath the Jungfrau?", "difficulty": "hard", "answers": [{ "text": "Jungfraujoch" }] },
+        { "prompt": "Which Austrian mountaineer, one of the first up the Eiger north face, wrote Seven Years in Tibet?", "difficulty": "hard", "answers": [{ "text": "Heinrich Harrer", "aliases": ["Harrer"] }] },
+        { "prompt": "Who was the first woman to reach the summit of Everest, in 1975?", "difficulty": "hard", "answers": [{ "text": "Junko Tabei", "aliases": ["Tabei"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which glacier in the Karakoram is known as the highest battlefield in the world?", "answers": [{ "text": "The Siachen Glacier", "aliases": ["Siachen"] }] },
+        { "prompt": "Which is the longest glacier in the Alps?", "answers": [{ "text": "The Aletsch Glacier", "aliases": ["Aletsch", "Great Aletsch Glacier"] }] },
+        { "prompt": "Which English mountaineer led the first ascent of the Matterhorn?", "answers": [{ "text": "Edward Whymper", "aliases": ["Whymper"] }] },
+        { "prompt": "Which mountain in Pakistan is nicknamed the Killer Mountain and was first climbed solo by Hermann Buhl?", "answers": [{ "text": "Nanga Parbat", "aliases": ["The Nanga Parbat"] }] },
+        { "prompt": "What is the name for the zone above roughly eight thousand metres in which the human body can no longer acclimatise?", "answers": [{ "text": "The death zone", "aliases": ["death zone"] }] },
+        { "prompt": "Which Italian mountain pass is famous for the 48 numbered hairpin bends on its northern side?", "answers": [{ "text": "The Stelvio Pass", "aliases": ["Stelvio", "Passo dello Stelvio"] }] },
+        { "prompt": "What is the sharp ridge that forms between two glaciers called, by its French name?", "answers": [{ "text": "An arete", "aliases": ["arete", "arête"] }] }
+      ]
+    }
+  ]
+}

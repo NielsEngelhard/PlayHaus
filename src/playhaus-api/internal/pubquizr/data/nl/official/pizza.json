@@ -1,0 +1,136 @@
+{
+  "slug": "pizza",
+  "title": "Pizza",
+  "description": "Een hele pubquiz over pizza: Napels, de oven, het beleg en de bezorgdoos.",
+  "publishedAt": "2026-09-17",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welk land is de pizza bedacht?", "category": "Oorsprong", "answers": [{ "text": "Italie", "aliases": ["Italien"] }] },
+        { "prompt": "Welke Italiaanse stad geldt als de bakermat van de pizza?", "category": "Oorsprong", "answers": [{ "text": "Napels", "aliases": ["Napoli"] }] },
+        { "prompt": "Welke pizza wordt dubbelgevouwen tot een halve maan en dichtgeknepen?", "category": "Soorten", "answers": [{ "text": "De calzone", "aliases": ["Calzone"] }] },
+        { "prompt": "Welke tropische vrucht op een pizza verdeelt de wereld?", "category": "Beleg", "answers": [{ "text": "Ananas" }] },
+        { "prompt": "Welke pittige worst in schijfjes is het bekendste Amerikaanse beleg?", "category": "Beleg", "answers": [{ "text": "Pepperoni" }] },
+        { "prompt": "Welk klein zout visje is een klassiek pizzabeleg?", "category": "Beleg", "answers": [{ "text": "Ansjovis", "aliases": ["Ansjovisjes"] }] },
+        { "prompt": "Wat betekent het Italiaanse quattro formaggi?", "category": "Italiaans", "answers": [{ "text": "Vier kazen", "aliases": ["4 kazen", "Vier soorten kaas"] }] },
+        { "prompt": "Welk peperig groen blad wordt na het bakken over een pizza gestrooid?", "category": "Beleg", "answers": [{ "text": "Rucola", "aliases": ["Raketblad"] }] },
+        { "prompt": "Welke harde Italiaanse kaas uit de streek rond Parma wordt over een pizza geraspt?", "category": "Kaas", "answers": [{ "text": "Parmezaan", "aliases": ["Parmezaanse kaas", "Parmigiano"] }] },
+        { "prompt": "Welke Italiaanse blauwschimmelkaas duikt op in een quattro formaggi?", "category": "Kaas", "answers": [{ "text": "Gorgonzola" }] },
+        { "prompt": "Wat wordt er gestookt om een traditionele Napolitaanse pizzaoven te verhitten?", "category": "Bereiding", "answers": [{ "text": "Hout", "aliases": ["Brandhout", "Houtblokken"] }] },
+        { "prompt": "Welk plat Italiaans brood met olijfolie en zout is de naaste familie van de pizza?", "category": "Italiaans", "answers": [{ "text": "Focaccia" }] },
+        { "prompt": "Welke pizzaketen heeft een dominosteen in het logo?", "category": "Ketens", "answers": [{ "text": "Domino's", "aliases": ["Dominos", "Domino's Pizza"] }] },
+        { "prompt": "Welke pizzaketen heeft een rood dak in het logo?", "category": "Ketens", "answers": [{ "text": "Pizza Hut" }] },
+        { "prompt": "In welke Amerikaanse stad is de deep dish pizza ontstaan?", "category": "De wereld over", "answers": [{ "text": "Chicago" }] },
+        { "prompt": "Welk land maakte na de Tweede Wereldoorlog wereldwijd fastfood van de pizza?", "category": "De wereld over", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }] },
+        { "prompt": "Welke groente gaat in ringen op de pizza en is een van de meest gebruikte soorten beleg?", "category": "Beleg", "answers": [{ "text": "Ui", "aliases": ["Uien", "Uiringen"] }] },
+        { "prompt": "De drie kleuren van welke vlag zitten volgens het verhaal in de tomaat, de mozzarella en de basilicum van een margherita?", "category": "Geschiedenis", "answers": [{ "text": "De Italiaanse vlag", "aliases": ["Italiaanse vlag", "De vlag van Italie"] }] },
+        { "prompt": "Hoe heet de platte kartonnen verpakking waarin een bezorgde pizza aankomt?", "category": "Bezorgen", "answers": [{ "text": "Een pizzadoos", "aliases": ["Pizzadoos"] }] },
+        { "prompt": "Wat betekent frutti di mare op een pizzakaart?", "category": "Italiaans", "answers": [{ "text": "Zeevruchten", "aliases": ["Vruchten van de zee", "Schaal- en schelpdieren"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar zette UNESCO het vak van de Napolitaanse pizzaiuolo op de lijst van immaterieel erfgoed?", "options": [{ "text": "2011" }, { "text": "2014" }, { "text": "2017", "correct": true }, { "text": "2020" }] },
+        { "prompt": "Welke soort Italiaanse bloem wordt traditioneel gebruikt voor Napolitaans pizzadeeg?", "options": [{ "text": "Tipo 00", "correct": true }, { "text": "Tipo 0" }, { "text": "Tipo 1" }, { "text": "Tipo 2" }] },
+        { "prompt": "Bij ongeveer welke temperatuur in graden Celsius bakt een Napolitaanse houtoven een pizza?", "options": [{ "text": "250" }, { "text": "350" }, { "text": "450", "correct": true }, { "text": "550" }] },
+        { "prompt": "Op welke klassieke Napolitaanse pizza zit helemaal geen kaas?", "options": [{ "text": "De capricciosa" }, { "text": "De marinara", "correct": true }, { "text": "De margherita" }, { "text": "De quattro stagioni" }] },
+        { "prompt": "Welk beleg maakt van een pizza een diavola?", "options": [{ "text": "Tonijn" }, { "text": "Mais" }, { "text": "Aubergine" }, { "text": "Pittige salami", "correct": true }] },
+        { "prompt": "Napels is de hoofdstad van welke Italiaanse regio?", "options": [{ "text": "Campanie", "correct": true }, { "text": "Lazio" }, { "text": "Puglia" }, { "text": "Calabrie" }] },
+        { "prompt": "In welke Italiaanse stad is pizza al taglio, pizza per stuk op gewicht verkocht, ontstaan?", "options": [{ "text": "Florence" }, { "text": "Turijn" }, { "text": "Rome", "correct": true }, { "text": "Palermo" }] },
+        { "prompt": "Mozzarella di bufala wordt gemaakt van de melk van welk dier?", "options": [{ "text": "De koe" }, { "text": "De waterbuffel", "correct": true }, { "text": "De geit" }, { "text": "Het schaap" }] },
+        { "prompt": "Welke tomatensoort, gekweekt in de schaduw van de Vesuvius, hoort op een echte Napolitaanse pizza?", "options": [{ "text": "Datterino" }, { "text": "Cuore di bue" }, { "text": "Roma" }, { "text": "San Marzano", "correct": true }] },
+        { "prompt": "Welke mozzarella van koemelk mag naast buffelmozzarella op een echte pizza napoletana?", "options": [{ "text": "Fior di latte", "correct": true }, { "text": "Burrata" }, { "text": "Scamorza" }, { "text": "Stracchino" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar opende Antica Pizzeria Port'Alba in Napels, de oudste pizzeria ter wereld, haar deuren?", "answer": 1830, "explanation": "De zaak verkocht al sinds 1738 pizza aan voorbijgangers vanaf een kraam; in 1830 kwamen er tafels en werd het een restaurant." },
+        { "prompt": "In welk jaar werd de pizza margherita gemaakt voor koningin Margherita van Savoye?", "answer": 1889 },
+        { "prompt": "Hoeveel centimeter mag een echte Napolitaanse pizza maximaal in doorsnede zijn?", "answer": 35, "unit": "centimeter", "explanation": "Hetzelfde reglement houdt de opstaande rand onder de twee centimeter." },
+        { "prompt": "Hoeveel seconden heeft een Napolitaanse pizza nodig in de houtoven?", "answer": 90, "unit": "seconden" },
+        { "prompt": "In welk jaar opende de eerste Pizza Hut in Wichita, Kansas?", "answer": 1958 },
+        { "prompt": "In welk jaar is de pizza hawai in Canada bedacht?", "answer": 1962 },
+        { "prompt": "In hoeveel punten wordt een grote pizza meestal gesneden?", "answer": 8, "unit": "punten" },
+        { "prompt": "Hoeveel graden Celsius haalt een gewone huishoudoven op de hoogste stand?", "answer": 250, "unit": "graden" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Pizzaoven",
+        "Pizzasteen",
+        "Bezorgscooter",
+        "Pizzakoerier",
+        "Warmhoudtas",
+        "Korst",
+        "Ricotta",
+        "Paprika",
+        "Mais",
+        "Tonijn",
+        "Aubergine",
+        "Courgette",
+        "Rode peper",
+        "Spek",
+        "Kip",
+        "Servet",
+        "Schort",
+        "Ovenwant",
+        "Brandhout",
+        "Diepvriespizza",
+        "Vriezer",
+        "Afhaalmenu",
+        "Espresso",
+        "Ober",
+        "Kookwekker",
+        "Pepermolen",
+        "Bord",
+        "Diavola",
+        "Quattro stagioni",
+        "Bruschetta"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier dingen die op een pizza margherita gaan, de bodem niet meegerekend.", "answers": [{ "text": "Tomaat", "aliases": ["Tomatensaus", "Tomaten"] }, { "text": "Mozzarella" }, { "text": "Basilicum" }, { "text": "Olijfolie", "aliases": ["Olie"] }] },
+        { "prompt": "Noem de vier ingredienten van gewoon pizzadeeg.", "answers": [{ "text": "Bloem", "aliases": ["Meel"] }, { "text": "Water" }, { "text": "Zout" }, { "text": "Gist" }] },
+        { "prompt": "Noem de vier soorten beleg van een pizza capricciosa, tomaat en kaas niet meegerekend.", "answers": [{ "text": "Ham", "aliases": ["Prosciutto"] }, { "text": "Champignons", "aliases": ["Champignon", "Paddenstoelen"] }, { "text": "Artisjokken", "aliases": ["Artisjok", "Artisjokharten"] }, { "text": "Olijven", "aliases": ["Olijf"] }] },
+        { "prompt": "Noem de vier seizoenen waaraan de pizza quattro stagioni haar naam heeft.", "answers": [{ "text": "Lente", "aliases": ["Voorjaar"] }, { "text": "Zomer" }, { "text": "Herfst", "aliases": ["Najaar"] }, { "text": "Winter" }] },
+        { "prompt": "Noem de vier stappen van het pizza maken, van bloem tot tafel.", "answers": [{ "text": "Kneden", "aliases": ["Deeg maken"] }, { "text": "Rijzen", "aliases": ["Laten rusten"] }, { "text": "Beleggen", "aliases": ["Het beleg erop doen"] }, { "text": "Bakken", "aliases": ["De oven in"] }] },
+        { "prompt": "Noem de vier Italiaanse woorden voor: de pizzabakker, de pizzazaak, de oven en de opstaande rand van de korst.", "answers": [{ "text": "Pizzaiolo", "aliases": ["Pizzaiuolo"] }, { "text": "Pizzeria" }, { "text": "Forno" }, { "text": "Cornicione" }] },
+        { "prompt": "Noem de vier hulpmiddelen die je nodig hebt om thuis een pizza te maken.", "answers": [{ "text": "Mengkom", "aliases": ["Kom", "Beslagkom"] }, { "text": "Deegroller" }, { "text": "Bakplaat", "aliases": ["Ovenplaat"] }, { "text": "Pizzasnijder", "aliases": ["Pizzawiel", "Pizzames"] }] },
+        { "prompt": "Noem de vier kruiden en specerijen die, naast basilicum, het vaakst op een pizza belanden.", "answers": [{ "text": "Oregano" }, { "text": "Knoflook" }, { "text": "Chilivlokken", "aliases": ["Chili", "Pepervlokken"] }, { "text": "Rozemarijn" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke pizza met tomaat, mozzarella en basilicum is de bekendste van allemaal?", "difficulty": "easy", "answers": [{ "text": "De margherita", "aliases": ["Margherita"] }] },
+        { "prompt": "Op welke pizza liggen ham en ananas?", "difficulty": "easy", "answers": [{ "text": "De hawai", "aliases": ["Hawai", "Hawaii", "Pizza hawai"] }] },
+        { "prompt": "Welke vorm heeft een pizza van oudsher?", "difficulty": "easy", "answers": [{ "text": "Rond" }] },
+        { "prompt": "Hoe noem je een stuk dat uit een hele pizza is gesneden?", "difficulty": "easy", "answers": [{ "text": "Een punt", "aliases": ["Punt", "Een stuk"] }] },
+        { "prompt": "Hoe heet het gekneede mengsel van bloem en water waarop een pizza wordt gebouwd?", "difficulty": "easy", "answers": [{ "text": "Deeg", "aliases": ["Het deeg", "Pizzadeeg"] }] },
+        { "prompt": "Hoe heet de platte schep waarmee je een pizza in en uit de oven schuift?", "difficulty": "hard", "answers": [{ "text": "Een pizzaschep", "aliases": ["Pizzaschep", "Ovenschep", "Pizzaspatel"] }] },
+        { "prompt": "Hoe heet het plastic tafeltje met drie pootjes dat midden op een bezorgde pizza staat?", "difficulty": "hard", "answers": [{ "text": "Een pizzatafeltje", "aliases": ["Pizzatafeltje", "Pizza saver"] }] },
+        { "prompt": "Welke Napolitaanse vereniging stelt de regels vast voor een echte Napolitaanse pizza?", "difficulty": "hard", "answers": [{ "text": "Associazione Verace Pizza Napoletana", "aliases": ["AVPN"] }] },
+        { "prompt": "Onder welke naam opende Domino's Pizza haar allereerste zaak?", "difficulty": "hard", "answers": [{ "text": "DomiNick's", "aliases": ["Dominick's", "DomiNicks"] }] },
+        { "prompt": "Welk Duits bedrijf verkoopt het diepvriespizzamerk Ristorante?", "difficulty": "hard", "answers": [{ "text": "Dr. Oetker", "aliases": ["Oetker", "Dr Oetker"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "In welke Canadese provincie is de pizza hawai bedacht?", "answers": [{ "text": "Ontario" }] },
+        { "prompt": "Welke in Griekenland geboren Canadese kok legde voor het eerst ananas op een pizza?", "answers": [{ "text": "Sam Panopoulos", "aliases": ["Panopoulos"] }] },
+        { "prompt": "Welke Napolitaanse pizzabakker zou de eerste margherita voor de koningin hebben gebakken?", "answers": [{ "text": "Raffaele Esposito", "aliases": ["Esposito"] }] },
+        { "prompt": "Welk restaurant in Napels, geopend in 1830, geldt als de oudste pizzeria ter wereld?", "answers": [{ "text": "Antica Pizzeria Port'Alba", "aliases": ["Port'Alba", "Pizzeria Port'Alba"] }] },
+        { "prompt": "Sinds 2010 draagt de pizza napoletana een Europees beschermd label. Hoe heet dat label in het Nederlands?", "answers": [{ "text": "Gegarandeerde Traditionele Specialiteit", "aliases": ["GTS", "STG"] }] },
+        { "prompt": "Welke Nederlandse pizzabezorgketen, opgericht in Amsterdam, is vernoemd naar een Amerikaanse stad?", "answers": [{ "text": "New York Pizza" }] },
+        { "prompt": "Hoe heet de gefrituurde pizza die in de straten van Napels wordt verkocht?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "islands",
+  "title": "Eilanden",
+  "description": "Een pubquiz over eilanden: de Wadden, de Cariben, de Middellandse Zee en de verste uithoeken van de kaart.",
+  "publishedAt": "2026-08-26",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk eiland delen Haiti en de Dominicaanse Republiek?", "category": "Aardrijkskunde", "answers": [{ "text": "Hispaniola" }] },
+        { "prompt": "Welk eiland is verdeeld tussen Indonesie en Papoea-Nieuw-Guinea?", "category": "Aardrijkskunde", "answers": [{ "text": "Nieuw-Guinea", "aliases": ["Papoea", "Nieuw Guinea"] }] },
+        { "prompt": "Welk eilandland heeft Reykjavik als hoofdstad?", "category": "Europa", "answers": [{ "text": "IJsland" }] },
+        { "prompt": "Op welk eiland in de Middellandse Zee werd Napoleon Bonaparte geboren?", "category": "Europa", "answers": [{ "text": "Corsica" }] },
+        { "prompt": "Welk eiland is na Sicilie en Sardinie het grootste van de Middellandse Zee?", "category": "Middellandse Zee", "answers": [{ "text": "Cyprus" }] },
+        { "prompt": "Welk Italiaans eiland ligt direct ten zuiden van Corsica?", "category": "Middellandse Zee", "answers": [{ "text": "Sardinie", "aliases": ["Sardinia"] }] },
+        { "prompt": "Welk eilandland heeft Valletta als hoofdstad?", "category": "Middellandse Zee", "answers": [{ "text": "Malta" }] },
+        { "prompt": "Welk voormalig Zuiderzee-eiland kwam aan het vasteland te liggen toen de Noordoostpolder droogviel?", "category": "Nederland", "answers": [{ "text": "Urk" }] },
+        { "prompt": "Op welk Zeeuws eiland liggen Middelburg en Vlissingen?", "category": "Nederland", "answers": [{ "text": "Walcheren" }] },
+        { "prompt": "Welk voormalig Zuiderzee-eiland bij Volendam ligt sinds 1957 met een dijk aan het vasteland?", "category": "Nederland", "answers": [{ "text": "Marken" }] },
+        { "prompt": "Welk van de ABC-eilanden ligt het verst naar het westen?", "category": "Cariben", "answers": [{ "text": "Aruba" }] },
+        { "prompt": "Welk eiland van het Koninkrijk der Nederlanden wordt gedeeld met Frankrijk?", "category": "Cariben", "answers": [{ "text": "Sint Maarten", "aliases": ["Saint Martin", "St. Maarten"] }] },
+        { "prompt": "Op welk Caribisch eiland is de reggae ontstaan?", "category": "Cariben", "answers": [{ "text": "Jamaica" }] },
+        { "prompt": "Welk eilandland ligt voor de zuidoostkust van India?", "category": "Azie", "answers": [{ "text": "Sri Lanka", "aliases": ["Ceylon"] }] },
+        { "prompt": "Welk Indonesisch eiland is overwegend hindoeistisch en de bekendste vakantiebestemming van het land?", "category": "Azie", "answers": [{ "text": "Bali" }] },
+        { "prompt": "Op welk afgelegen eiland in de Zuidelijke Atlantische Oceaan stierf Napoleon in 1821?", "category": "Geschiedenis", "answers": [{ "text": "Sint-Helena", "aliases": ["Sint Helena", "St. Helena"] }] },
+        { "prompt": "Welke eilandengroep voor de kust van Ecuador bracht Darwin op het spoor van zijn vinken?", "category": "Natuur", "answers": [{ "text": "De Galapagoseilanden", "aliases": ["Galapagos", "Galapagoseilanden"] }] },
+        { "prompt": "Welk Grieks eiland geldt van oudsher als het thuis van Odysseus?", "category": "Oudheid", "answers": [{ "text": "Ithaka", "aliases": ["Ithaca"] }] },
+        { "prompt": "Welke eilandengroep voor de noordwestkust van Afrika hoort bij Spanje en telt Tenerife mee?", "category": "Afrika", "answers": [{ "text": "De Canarische Eilanden", "aliases": ["Canarische Eilanden", "Canarien"] }] },
+        { "prompt": "Welk eilandland voor de kust van West-Afrika was een Portugese kolonie en is genoemd naar een groene kaap?", "category": "Afrika", "answers": [{ "text": "Kaapverdie", "aliases": ["Kaapverdische Eilanden"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk Caribisch eiland ligt het verst naar het zuiden, vlak voor de kust van Venezuela?", "options": [{ "text": "Trinidad", "correct": true }, { "text": "Barbados" }, { "text": "Grenada" }, { "text": "Saint Lucia" }] },
+        { "prompt": "Bij welk land hoort het eiland Bornholm in de Oostzee?", "options": [{ "text": "Denemarken", "correct": true }, { "text": "Zweden" }, { "text": "Duitsland" }, { "text": "Polen" }] },
+        { "prompt": "Bij welk land hoort Socotra, het eiland van de drakenbloedbomen?", "options": [{ "text": "Jemen", "correct": true }, { "text": "Oman" }, { "text": "Somalie" }, { "text": "Eritrea" }] },
+        { "prompt": "Bij de Vrede van Breda in 1667 gaven de Nederlanders Nieuw-Amsterdam op en hielden ze welk nootmuskaateiland?", "options": [{ "text": "Run", "correct": true }, { "text": "Ternate" }, { "text": "Tidore" }, { "text": "Ambon" }] },
+        { "prompt": "Welke eilandengroep is een zelfbesturend deel van Denemarken en ligt tussen Schotland, Noorwegen en IJsland?", "options": [{ "text": "De Faeroer", "correct": true }, { "text": "Shetland" }, { "text": "Orkney" }, { "text": "Aland" }] },
+        { "prompt": "Wat is het grootste eiland van de Filipijnen?", "options": [{ "text": "Luzon", "correct": true }, { "text": "Mindanao" }, { "text": "Palawan" }, { "text": "Cebu" }] },
+        { "prompt": "Welk eiland in de Indische Oceaan is een overzees departement van Frankrijk?", "options": [{ "text": "Reunion", "correct": true }, { "text": "Mauritius" }, { "text": "De Seychellen" }, { "text": "De Comoren" }] },
+        { "prompt": "Op welk eiland streken de muiters van de Bounty uiteindelijk neer?", "options": [{ "text": "Pitcairn", "correct": true }, { "text": "Tahiti" }, { "text": "Norfolk" }, { "text": "Paaseiland" }] },
+        { "prompt": "Welk eiland in de Golf van Napels is beroemd om zijn Blauwe Grot?", "options": [{ "text": "Capri", "correct": true }, { "text": "Ischia" }, { "text": "Procida" }, { "text": "Stromboli" }] },
+        { "prompt": "Welke eilandengroep in de Atlantische Oceaan ligt ongeveer 1.400 kilometer ten westen van het Portugese vasteland?", "options": [{ "text": "De Azoren", "correct": true }, { "text": "Madeira" }, { "text": "De Canarische Eilanden" }, { "text": "Kaapverdie" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd IJsland een volledig onafhankelijke republiek?", "answer": 1944 },
+        { "prompt": "Hoeveel meter hoog is de Pico del Teide, het hoogste punt van Tenerife?", "answer": 3715, "unit": "meter" },
+        { "prompt": "In welk jaar trof de watersnoodramp de eilanden van Zeeland?", "answer": 1953 },
+        { "prompt": "Hoeveel bruggen verbinden het eiland Sicilie met het Italiaanse vasteland?", "answer": 0, "unit": "bruggen", "explanation": "Een brug over de Straat van Messina is keer op keer getekend en is er nog altijd niet." },
+        { "prompt": "Hoeveel eilanden heeft het Koninkrijk der Nederlanden in de Cariben?", "answer": 6, "unit": "eilanden" },
+        { "prompt": "In welk jaar werden de Nederlandse Antillen opgeheven?", "answer": 2010 },
+        { "prompt": "Hoeveel kilometer lang is de Waddenzee van Den Helder tot de Deense kust?", "answer": 500, "unit": "kilometer" },
+        { "prompt": "Hoeveel meter boven zeeniveau ligt Mount Scenery, het hoogste punt van het Koninkrijk der Nederlanden?", "answer": 887, "unit": "meter", "explanation": "Hij staat op een van de Caribische eilanden van het Koninkrijk, bijna drie keer zo hoog als de Vaalserberg." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Palmboom",
+        "Veerboot",
+        "Misthoorn",
+        "Steiger",
+        "Zeemeeuw",
+        "Krab",
+        "Zeester",
+        "Schelp",
+        "Hangmat",
+        "Snorkel",
+        "Strandhuisje",
+        "Slippers",
+        "Scheepswrak",
+        "Flessenpost",
+        "Atol",
+        "Koraalrif",
+        "Lagune",
+        "Duin",
+        "Wadlopen",
+        "Zeehond",
+        "Boei",
+        "Visnet",
+        "Cruiseschip",
+        "Schipbreukeling",
+        "Zeeschildpad",
+        "Zeewier",
+        "Strohoed",
+        "Ukelele",
+        "Zoutpan",
+        "Cranberry"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier Nederlandse Waddeneilanden behalve Texel.", "answers": [{ "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Schiermonnikoog" }] },
+        { "prompt": "Noem de vier eilanden van het Koninkrijk der Nederlanden in de Cariben naast Aruba en Sint Maarten.", "answers": [{ "text": "Curacao" }, { "text": "Bonaire" }, { "text": "Saba" }, { "text": "Sint Eustatius", "aliases": ["Statia", "St. Eustatius"] }] },
+        { "prompt": "Noem de vier Balearen.", "answers": [{ "text": "Mallorca", "aliases": ["Majorca"] }, { "text": "Menorca", "aliases": ["Minorca"] }, { "text": "Ibiza" }, { "text": "Formentera" }] },
+        { "prompt": "Noem de vier grootste Canarische Eilanden na Tenerife.", "answers": [{ "text": "Fuerteventura" }, { "text": "Gran Canaria" }, { "text": "Lanzarote" }, { "text": "La Palma" }] },
+        { "prompt": "Noem de vier grootste Griekse eilanden.", "answers": [{ "text": "Kreta" }, { "text": "Euboea", "aliases": ["Evia"] }, { "text": "Lesbos" }, { "text": "Rhodos" }] },
+        { "prompt": "Noem de vier Kanaaleilanden.", "answers": [{ "text": "Jersey" }, { "text": "Guernsey" }, { "text": "Alderney" }, { "text": "Sark" }] },
+        { "prompt": "Noem de vier Grote Soenda-eilanden.", "answers": [{ "text": "Sumatra" }, { "text": "Java" }, { "text": "Borneo", "aliases": ["Kalimantan"] }, { "text": "Sulawesi", "aliases": ["Celebes"] }] },
+        { "prompt": "Noem de vier bekendste eilanden in de lagune van Venetie.", "answers": [{ "text": "Murano" }, { "text": "Burano" }, { "text": "Torcello" }, { "text": "Lido" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Op welk Italiaans eiland ligt de stad Palermo?", "difficulty": "easy", "answers": [{ "text": "Sicilie", "aliases": ["Sicily"] }] },
+        { "prompt": "Op welk eiland leven maki's in het wild?", "difficulty": "easy", "answers": [{ "text": "Madagaskar", "aliases": ["Madagascar"] }] },
+        { "prompt": "Welk eiland in de Stille Oceaan staat vol met reusachtige stenen koppen?", "difficulty": "easy", "answers": [{ "text": "Paaseiland", "aliases": ["Rapa Nui"] }] },
+        { "prompt": "Welk groot eiland ligt direct ten westen van Groot-Brittannie?", "difficulty": "easy", "answers": [{ "text": "Ierland" }] },
+        { "prompt": "Op welk Waddeneiland ligt het dorp Den Burg?", "difficulty": "easy", "answers": [{ "text": "Texel" }] },
+        { "prompt": "Op welk eiland in de Indische Oceaan leefde de dodo?", "difficulty": "hard", "answers": [{ "text": "Mauritius" }] },
+        { "prompt": "Wat is het grootste eiland van Canada?", "difficulty": "hard", "answers": [{ "text": "Baffineiland", "aliases": ["Baffin", "Baffin Island"] }] },
+        { "prompt": "Welk eiland voor de kust van Tanzania is een halfautonoom deel van dat land?", "difficulty": "hard", "answers": [{ "text": "Zanzibar" }] },
+        { "prompt": "Welk eiland in de Zuidelijke Atlantische Oceaan geldt als het meest afgelegen bewoonde eiland ter wereld?", "difficulty": "hard", "answers": [{ "text": "Tristan da Cunha" }] },
+        { "prompt": "Om welke eilanden voerden Groot-Brittannie en Argentinie in 1982 oorlog?", "difficulty": "hard", "answers": [{ "text": "De Falklandeilanden", "aliases": ["Falklandeilanden", "Falklands", "Malvinas"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Over welk eiland in de Middellandse Zee mocht Napoleon heersen na zijn eerste troonsafstand in 1814?", "answers": [{ "text": "Elba" }] },
+        { "prompt": "Welke onbewoonde rots in de Noord-Atlantische Oceaan wordt geclaimd door het Verenigd Koninkrijk, Ierland, IJsland en Denemarken?", "answers": [{ "text": "Rockall" }] },
+        { "prompt": "Welk eiland bestuurde de VOC in de zeventiende eeuw vanuit Fort Zeelandia?", "answers": [{ "text": "Taiwan", "aliases": ["Formosa"] }] },
+        { "prompt": "Welk Noordzee-eiland stond Groot-Brittannie in 1890 af aan Duitsland in ruil voor rechten in Oost-Afrika?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] },
+        { "prompt": "Wat is het grootste eiland van Denemarken, het eiland waarop Kopenhagen ligt?", "answers": [{ "text": "Seeland", "aliases": ["Sjaelland", "Zealand"] }] },
+        { "prompt": "Welk eiland in het Huronmeer is het grootste eiland in een zoetwatermeer ter wereld?", "answers": [{ "text": "Manitoulin", "aliases": ["Manitoulineiland", "Manitoulin Island"] }] },
+        { "prompt": "Welk eiland in de Stille Oceaan is de kleinste republiek ter wereld?", "answers": [{ "text": "Nauru" }] }
+      ]
+    }
+  ]
+}

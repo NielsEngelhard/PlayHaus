@@ -1,0 +1,136 @@
+{
+  "slug": "world-capitals",
+  "title": "World Capitals",
+  "description": "A tour of the capital cities of the world, from the obvious ones to the ones nobody remembers.",
+  "publishedAt": "2026-09-01",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which city is the capital of Spain?", "category": "Europe", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Which city is the capital of Portugal?", "category": "Europe", "answers": [{ "text": "Lisbon" }] },
+        { "prompt": "Which city is the capital of Egypt?", "category": "Africa", "answers": [{ "text": "Cairo" }] },
+        { "prompt": "Which city is the capital of Argentina?", "category": "The Americas", "answers": [{ "text": "Buenos Aires" }] },
+        { "prompt": "Which city is the capital of Canada?", "category": "The Americas", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Which city is the capital of Kenya?", "category": "Africa", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "Which city is the capital of Greece?", "category": "Europe", "answers": [{ "text": "Athens" }] },
+        { "prompt": "Which city is the capital of Russia?", "category": "Europe", "answers": [{ "text": "Moscow" }] },
+        { "prompt": "Which city is the capital of China?", "category": "Asia", "answers": [{ "text": "Beijing", "aliases": ["Peking"] }] },
+        { "prompt": "Which city is the capital of India?", "category": "Asia", "answers": [{ "text": "New Delhi", "aliases": ["Delhi"] }] },
+        { "prompt": "Which city is the capital of Brazil?", "category": "The Americas", "answers": [{ "text": "Brasilia" }] },
+        { "prompt": "Which city is the capital of New Zealand?", "category": "Oceania", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Which city is the capital of Turkey?", "category": "Asia", "answers": [{ "text": "Ankara" }] },
+        { "prompt": "Which city is the capital of Morocco?", "category": "Africa", "answers": [{ "text": "Rabat" }] },
+        { "prompt": "Which city is the capital of Cuba?", "category": "The Americas", "answers": [{ "text": "Havana" }] },
+        { "prompt": "Which is the northernmost capital city in the world?", "category": "Records", "answers": [{ "text": "Reykjavik" }] },
+        { "prompt": "Which city is the capital of Belgium?", "category": "Europe", "answers": [{ "text": "Brussels" }] },
+        { "prompt": "Which city is the capital of Poland?", "category": "Europe", "answers": [{ "text": "Warsaw" }] },
+        { "prompt": "Which city is the capital of Germany?", "category": "Europe", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "Which city is the capital of the United States?", "category": "The Americas", "answers": [{ "text": "Washington, D.C.", "aliases": ["Washington", "Washington DC"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which city is the capital of Switzerland?", "options": [{ "text": "Bern", "correct": true }, { "text": "Zurich" }, { "text": "Geneva" }, { "text": "Basel" }] },
+        { "prompt": "Which city is the official capital of Tanzania?", "options": [{ "text": "Dodoma", "correct": true }, { "text": "Dar es Salaam" }, { "text": "Arusha" }, { "text": "Mwanza" }] },
+        { "prompt": "Which city was the capital of Kazakhstan until 1997?", "options": [{ "text": "Almaty", "correct": true }, { "text": "Astana" }, { "text": "Shymkent" }, { "text": "Aktobe" }] },
+        { "prompt": "Which city has been the capital of Myanmar since 2005?", "options": [{ "text": "Naypyidaw", "correct": true }, { "text": "Yangon" }, { "text": "Mandalay" }, { "text": "Bago" }] },
+        { "prompt": "Which city is the constitutional capital of Bolivia?", "options": [{ "text": "Sucre", "correct": true }, { "text": "La Paz" }, { "text": "Santa Cruz de la Sierra" }, { "text": "Cochabamba" }] },
+        { "prompt": "Which city is the capital of Vietnam?", "options": [{ "text": "Hanoi", "correct": true }, { "text": "Ho Chi Minh City" }, { "text": "Da Nang" }, { "text": "Hue" }] },
+        { "prompt": "Which city is the capital of Cameroon?", "options": [{ "text": "Yaounde", "correct": true }, { "text": "Douala" }, { "text": "Garoua" }, { "text": "Bamenda" }] },
+        { "prompt": "Which city is the capital of Jordan?", "options": [{ "text": "Amman", "correct": true }, { "text": "Aqaba" }, { "text": "Zarqa" }, { "text": "Irbid" }] },
+        { "prompt": "Which capital city stands on the river Vltava?", "options": [{ "text": "Prague", "correct": true }, { "text": "Bratislava" }, { "text": "Ljubljana" }, { "text": "Zagreb" }] },
+        { "prompt": "Which city is the capital of Chile?", "options": [{ "text": "Santiago", "correct": true }, { "text": "Valparaiso" }, { "text": "Concepcion" }, { "text": "Antofagasta" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year did Brasilia become the capital of Brazil?", "answer": 1960 },
+        { "prompt": "In what year did the federal government of the United States move to Washington, D.C.?", "answer": 1800 },
+        { "prompt": "How many capital cities does South Africa have?", "answer": 3, "unit": "capitals", "explanation": "Pretoria is the executive capital, Cape Town the legislative one and Bloemfontein the judicial one." },
+        { "prompt": "La Paz is the highest seat of government in the world. How many metres above sea level does it lie, roughly?", "answer": 3600, "unit": "metres", "explanation": "Visitors regularly need a day or two to get used to the thin air." },
+        { "prompt": "In what year did Moscow replace Saint Petersburg as the capital of Russia?", "answer": 1918 },
+        { "prompt": "How many kilometres apart are Madrid and Lisbon in a straight line, roughly?", "answer": 500, "unit": "kilometres" },
+        { "prompt": "Since 2020, how many member states does the European Union have, each with its own capital?", "answer": 27, "unit": "countries" },
+        { "prompt": "In what year did Ankara replace Istanbul as the capital of Turkey?", "answer": 1923 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Embassy",
+        "Parliament building",
+        "Skyline",
+        "Boulevard",
+        "Cathedral",
+        "Guided tour",
+        "Souvenir shop",
+        "City map",
+        "Fountain",
+        "Harbour",
+        "Street sign",
+        "Ambassador",
+        "Metro station",
+        "Ring road",
+        "Taxi",
+        "Flagpole",
+        "Triumphal arch",
+        "Presidential palace",
+        "City wall",
+        "Guidebook",
+        "Botanical garden",
+        "National museum",
+        "Central station",
+        "Double-decker bus",
+        "Border post",
+        "Hotel lobby",
+        "Neon sign",
+        "Street vendor",
+        "War memorial",
+        "National flag"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four capital cities that stand on the river Danube.", "answers": [{ "text": "Vienna" }, { "text": "Bratislava" }, { "text": "Budapest" }, { "text": "Belgrade" }] },
+        { "prompt": "Name the four capitals of Georgia, Armenia, Azerbaijan and Uzbekistan.", "answers": [{ "text": "Tbilisi" }, { "text": "Yerevan" }, { "text": "Baku" }, { "text": "Tashkent" }] },
+        { "prompt": "Name the four rivers on which Cairo, Baghdad, Washington and Warsaw stand.", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }, { "text": "The Tigris", "aliases": ["Tigris"] }, { "text": "The Potomac", "aliases": ["Potomac"] }, { "text": "The Vistula", "aliases": ["Vistula"] }] },
+        { "prompt": "Name the four countries whose capitals are Ulaanbaatar, Ouagadougou, Tegucigalpa and Kathmandu.", "answers": [{ "text": "Mongolia" }, { "text": "Burkina Faso" }, { "text": "Honduras" }, { "text": "Nepal" }] },
+        { "prompt": "Name the four capitals of Guatemala, Nicaragua, Costa Rica and Panama.", "answers": [{ "text": "Guatemala City" }, { "text": "Managua" }, { "text": "San Jose" }, { "text": "Panama City" }] },
+        { "prompt": "Name the four capitals of Lebanon, Syria, Saudi Arabia and Iran.", "answers": [{ "text": "Beirut" }, { "text": "Damascus" }, { "text": "Riyadh" }, { "text": "Tehran" }] },
+        { "prompt": "Name the four capitals of the island countries Ireland, Malta, Cyprus and Madagascar.", "answers": [{ "text": "Dublin" }, { "text": "Valletta" }, { "text": "Nicosia" }, { "text": "Antananarivo" }] },
+        { "prompt": "Name the four capitals of Thailand, South Korea, Malaysia and the Philippines.", "answers": [{ "text": "Bangkok" }, { "text": "Seoul" }, { "text": "Kuala Lumpur", "aliases": ["KL"] }, { "text": "Manila" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which city is the capital of Sweden?", "difficulty": "easy", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Which city is the capital of Denmark?", "difficulty": "easy", "answers": [{ "text": "Copenhagen" }] },
+        { "prompt": "Which city is the capital of Mexico?", "difficulty": "easy", "answers": [{ "text": "Mexico City" }] },
+        { "prompt": "Which city is the capital of Peru?", "difficulty": "easy", "answers": [{ "text": "Lima" }] },
+        { "prompt": "Which city is the capital of Ukraine?", "difficulty": "easy", "answers": [{ "text": "Kyiv", "aliases": ["Kiev"] }] },
+        { "prompt": "Which city replaced Lagos as the capital of Nigeria in 1991?", "difficulty": "hard", "answers": [{ "text": "Abuja" }] },
+        { "prompt": "Which city is the capital of Bhutan?", "difficulty": "hard", "answers": [{ "text": "Thimphu" }] },
+        { "prompt": "Which city is the capital of Ghana?", "difficulty": "hard", "answers": [{ "text": "Accra" }] },
+        { "prompt": "Which city is the capital of Slovenia?", "difficulty": "hard", "answers": [{ "text": "Ljubljana" }] },
+        { "prompt": "Which city is the capital of Ethiopia and the seat of the African Union?", "difficulty": "hard", "answers": [{ "text": "Addis Ababa" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which city is the capital of Kyrgyzstan?", "answers": [{ "text": "Bishkek" }] },
+        { "prompt": "Which capital city, famous for its Italian modernist architecture, is the capital of Eritrea?", "answers": [{ "text": "Asmara" }] },
+        { "prompt": "Which capital city on the Mekong is the capital of Laos?", "answers": [{ "text": "Vientiane" }] },
+        { "prompt": "Which city is the seat of government of Papua New Guinea?", "answers": [{ "text": "Port Moresby" }] },
+        { "prompt": "Which city is the capital of the principality of Liechtenstein?", "answers": [{ "text": "Vaduz" }] },
+        { "prompt": "Which purpose-built city became the capital of Belize in 1970?", "answers": [{ "text": "Belmopan" }] },
+        { "prompt": "Which city is the capital of Moldova?", "answers": [{ "text": "Chisinau" }] }
+      ]
+    }
+  ]
+}

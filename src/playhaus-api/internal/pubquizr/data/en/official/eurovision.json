@@ -1,0 +1,136 @@
+{
+  "slug": "eurovision",
+  "title": "The Eurovision Song Contest",
+  "description": "Seven rounds on the Eurovision Song Contest: winners, songs, host cities and the voting.",
+  "publishedAt": "2026-09-13",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "With which song did the Swedish group ABBA win the contest in 1974?", "category": "Songs", "answers": [{ "text": "Waterloo" }] },
+        { "prompt": "Which organisation, abbreviated to EBU, organises the Eurovision Song Contest?", "category": "Organisation", "answers": [{ "text": "The European Broadcasting Union", "aliases": ["EBU", "European Broadcasting Union"] }] },
+        { "prompt": "In which Dutch city was the contest held in 2021?", "category": "Host cities", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Which Irish singer won the contest twice as a performer, in 1980 and in 1987?", "category": "Winners", "answers": [{ "text": "Johnny Logan" }] },
+        { "prompt": "Which Canadian singer won the 1988 contest for Switzerland?", "category": "Performers", "answers": [{ "text": "Céline Dion", "aliases": ["Celine Dion", "Dion"] }] },
+        { "prompt": "Which Finnish band won in 2006 dressed as monsters?", "category": "Winners", "answers": [{ "text": "Lordi" }] },
+        { "prompt": "How many points is the highest score one country can award another?", "category": "Voting", "answers": [{ "text": "Twelve", "aliases": ["12", "Douze points"] }] },
+        { "prompt": "Which French term is used for a country that finishes without a single point?", "category": "Voting", "answers": [{ "text": "Nul points", "aliases": ["Nul point", "No points"] }] },
+        { "prompt": "Which Austrian act won in 2014 with Rise Like a Phoenix?", "category": "Winners", "answers": [{ "text": "Conchita Wurst", "aliases": ["Conchita", "Tom Neuwirth"] }] },
+        { "prompt": "Which Ukrainian singer won the 2016 contest with 1944?", "category": "Winners", "answers": [{ "text": "Jamala" }] },
+        { "prompt": "In which city was the 2019 contest held?", "category": "Host cities", "answers": [{ "text": "Tel Aviv" }] },
+        { "prompt": "Which Irish dance show was the interval act at the 1994 contest?", "category": "Interval acts", "answers": [{ "text": "Riverdance" }] },
+        { "prompt": "In which month of the year is the final traditionally held?", "category": "Traditions", "answers": [{ "text": "May" }] },
+        { "prompt": "Which Norwegian violinist won the 2009 contest?", "category": "Performers", "answers": [{ "text": "Alexander Rybak", "aliases": ["Rybak"] }] },
+        { "prompt": "Which Israeli singer won the 1998 contest in Birmingham?", "category": "Winners", "answers": [{ "text": "Dana International" }] },
+        { "prompt": "Which singer gave Portugal its first victory, in 2017?", "category": "Winners", "answers": [{ "text": "Salvador Sobral", "aliases": ["Sobral"] }] },
+        { "prompt": "In which year was the contest cancelled because of the coronavirus pandemic?", "category": "History", "answers": [{ "text": "2020", "aliases": ["Twenty twenty"] }] },
+        { "prompt": "Which country outside Europe made its debut in the contest in 2015?", "category": "Countries", "answers": [{ "text": "Australia" }] },
+        { "prompt": "Which German singer won the 2010 contest in Oslo?", "category": "Winners", "answers": [{ "text": "Lena", "aliases": ["Lena Meyer-Landrut"] }] },
+        { "prompt": "Which Ukrainian group won the 2022 contest with Stefania?", "category": "Winners", "answers": [{ "text": "Kalush Orchestra", "aliases": ["Kalush"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which English seaside town did ABBA win the contest in 1974?", "options": [{ "text": "Brighton", "correct": true }, { "text": "Blackpool" }, { "text": "Bournemouth" }, { "text": "Blackburn" }] },
+        { "prompt": "Which Italian singer won the 1990 contest with Insieme: 1992?", "options": [{ "text": "Toto Cutugno", "correct": true }, { "text": "Eros Ramazzotti" }, { "text": "Umberto Tozzi" }, { "text": "Gianni Morandi" }] },
+        { "prompt": "Who won the very first Eurovision Song Contest, in 1956?", "options": [{ "text": "Lys Assia", "correct": true }, { "text": "Jacqueline Boyer" }, { "text": "Isabelle Aubret" }, { "text": "Gigliola Cinquetti" }] },
+        { "prompt": "Which French singer won for Luxembourg in 1965 with Poupée de cire, poupée de son?", "options": [{ "text": "France Gall", "correct": true }, { "text": "Françoise Hardy" }, { "text": "Sylvie Vartan" }, { "text": "Mireille Mathieu" }] },
+        { "prompt": "In which year did the contest hold a semi-final for the first time?", "options": [{ "text": "1998" }, { "text": "2001" }, { "text": "2004", "correct": true }, { "text": "2008" }] },
+        { "prompt": "In which British city was the 2023 contest held on behalf of Ukraine?", "options": [{ "text": "Liverpool", "correct": true }, { "text": "Manchester" }, { "text": "Glasgow" }, { "text": "Birmingham" }] },
+        { "prompt": "Which German singer won the 1982 contest with Ein bisschen Frieden?", "options": [{ "text": "Nicole", "correct": true }, { "text": "Nena" }, { "text": "Katja Ebstein" }, { "text": "Marianne Rosenberg" }] },
+        { "prompt": "In which language was the 2017 winning song Amar pelos dois sung?", "options": [{ "text": "Portuguese", "correct": true }, { "text": "Spanish" }, { "text": "Italian" }, { "text": "Catalan" }] },
+        { "prompt": "Which Swedish singer won the contest in both 2012 and 2023?", "options": [{ "text": "Loreen", "correct": true }, { "text": "Carola" }, { "text": "Charlotte Perrelli" }, { "text": "Sanna Nielsen" }] },
+        { "prompt": "With which song did Katrina and the Waves win for the United Kingdom in 1997?", "options": [{ "text": "Love Shine a Light", "correct": true }, { "text": "Ordinary Girl" }, { "text": "Better the Devil You Know" }, { "text": "One Step Out of Time" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many times has the Netherlands won the Eurovision Song Contest?", "answer": 5, "unit": "times", "explanation": "The Netherlands won in 1957, 1959, 1969, 1975 and 2019." },
+        { "prompt": "In which year did Ireland win the contest for the third year in a row?", "answer": 1994 },
+        { "prompt": "How many countries took part in the 2021 grand final in Rotterdam?", "answer": 26, "unit": "countries" },
+        { "prompt": "How many points did Salvador Sobral score when he won in 2017?", "answer": 758, "unit": "points", "explanation": "Portugal had taken part since 1964 and had never won before." },
+        { "prompt": "In which year did Sweden host the contest in Malmo, fifty years after ABBA's victory?", "answer": 2024 },
+        { "prompt": "How many points did Alexander Rybak score when he won in 2009?", "answer": 387, "unit": "points" },
+        { "prompt": "How many times has Ireland won the contest?", "answer": 7, "unit": "times" },
+        { "prompt": "How many countries shared first place in the famous tie of 1969?", "answer": 4, "unit": "countries" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Glass microphone",
+        "Running order",
+        "Confetti",
+        "Wind machine",
+        "Dry ice",
+        "Green room",
+        "Postcard",
+        "Semi-final",
+        "Jury",
+        "Televoting",
+        "Spokesperson",
+        "Backing singers",
+        "Key change",
+        "Feather boa",
+        "Flag",
+        "Sequins",
+        "Autocue",
+        "Presenter",
+        "Rehearsal",
+        "Ballad",
+        "Duet",
+        "Costume change",
+        "Dressing room",
+        "Spotlight",
+        "Accordion",
+        "Bookmaker",
+        "Earpiece",
+        "Boyband",
+        "Folk costume",
+        "Applause"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four countries beginning with the letter S that have won the contest.", "answers": [{ "text": "Sweden" }, { "text": "Switzerland" }, { "text": "Serbia" }, { "text": "Spain" }] },
+        { "prompt": "Name the four members of ABBA.", "answers": [{ "text": "Agnetha Fältskog", "aliases": ["Agnetha Faltskog", "Agnetha"] }, { "text": "Björn Ulvaeus", "aliases": ["Bjorn Ulvaeus", "Björn"] }, { "text": "Benny Andersson", "aliases": ["Benny"] }, { "text": "Anni-Frid Lyngstad", "aliases": ["Frida", "Anni-Frid"] }] },
+        { "prompt": "Name the four Dutch acts that won the contest before Duncan Laurence.", "answers": [{ "text": "Corry Brokken" }, { "text": "Teddy Scholten" }, { "text": "Lenny Kuhr" }, { "text": "Teach-In", "aliases": ["Teach In"] }] },
+        { "prompt": "Name the four Nordic capital cities that have hosted the contest.", "answers": [{ "text": "Stockholm" }, { "text": "Oslo" }, { "text": "Copenhagen" }, { "text": "Helsinki" }] },
+        { "prompt": "Name the four winning songs of Loreen in 2012, Alexander Rybak in 2009, Netta in 2018 and Ruslana in 2004.", "answers": [{ "text": "Euphoria" }, { "text": "Fairytale" }, { "text": "Toy" }, { "text": "Wild Dances" }] },
+        { "prompt": "Name the four countries of the Big Five other than Spain.", "answers": [{ "text": "France" }, { "text": "Germany" }, { "text": "Italy" }, { "text": "The United Kingdom", "aliases": ["United Kingdom", "Great Britain", "England"] }] },
+        { "prompt": "Name the four presenters of the 2021 contest in Rotterdam.", "answers": [{ "text": "Chantal Janzen" }, { "text": "Edsilia Rombley" }, { "text": "Jan Smit" }, { "text": "Nikkie de Jager", "aliases": ["NikkieTutorials", "Nikkie"] }] },
+        { "prompt": "Name the four one-word winning songs of Israel in 1998, Serbia in 2007, Germany in 2010 and the Netherlands in 2019.", "answers": [{ "text": "Diva" }, { "text": "Molitva" }, { "text": "Satellite" }, { "text": "Arcade" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which Swedish group won the contest in 1974?", "difficulty": "easy", "answers": [{ "text": "ABBA" }] },
+        { "prompt": "Which country won the contest in 2019?", "difficulty": "easy", "answers": [{ "text": "The Netherlands", "aliases": ["Netherlands", "Holland"] }] },
+        { "prompt": "How long may a Eurovision entry last at most?", "difficulty": "easy", "answers": [{ "text": "Three minutes", "aliases": ["3 minutes"] }] },
+        { "prompt": "Which Italian rock band won the contest in 2021 with Zitti e buoni?", "difficulty": "easy", "answers": [{ "text": "Måneskin", "aliases": ["Maneskin"] }] },
+        { "prompt": "What is the minimum age for a performer at Eurovision?", "difficulty": "easy", "answers": [{ "text": "Sixteen", "aliases": ["16"] }] },
+        { "prompt": "In which Swiss town was the first contest held, in 1956?", "difficulty": "hard", "answers": [{ "text": "Lugano" }] },
+        { "prompt": "Which thirteen-year-old won the contest for Belgium in 1986?", "difficulty": "hard", "answers": [{ "text": "Sandra Kim" }] },
+        { "prompt": "Which country won the 2011 contest with Running Scared?", "difficulty": "hard", "answers": [{ "text": "Azerbaijan" }] },
+        { "prompt": "Which piece of baroque music is used as the Eurovision anthem?", "difficulty": "hard", "answers": [{ "text": "Te Deum", "aliases": ["Te Deum by Charpentier", "Charpentier's Te Deum"] }] },
+        { "prompt": "With which song did Gigliola Cinquetti win the 1964 contest for Italy?", "difficulty": "hard", "answers": [{ "text": "Non ho l'età", "aliases": ["Non ho l'eta"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which small principality won the contest in 1971, its only victory?", "answers": [{ "text": "Monaco" }] },
+        { "prompt": "Who wrote the 1965 winning song Poupée de cire, poupée de son?", "answers": [{ "text": "Serge Gainsbourg", "aliases": ["Gainsbourg"] }] },
+        { "prompt": "In which German city was the 1983 contest held?", "answers": [{ "text": "Munich", "aliases": ["München", "Munchen"] }] },
+        { "prompt": "Which Israeli group won the 1979 contest with Hallelujah?", "answers": [{ "text": "Milk and Honey", "aliases": ["Gali Atari and Milk and Honey", "Milk & Honey"] }] },
+        { "prompt": "In which year was the free choice of language permanently restored?", "answers": [{ "text": "1999", "aliases": ["Nineteen ninety-nine"] }] },
+        { "prompt": "Which country won the 2005 contest with My Number One?", "answers": [{ "text": "Greece" }] },
+        { "prompt": "Which Swedish city hosted the contest in 1985?", "answers": [{ "text": "Gothenburg", "aliases": ["Göteborg", "Goteborg"] }] }
+      ]
+    }
+  ]
+}

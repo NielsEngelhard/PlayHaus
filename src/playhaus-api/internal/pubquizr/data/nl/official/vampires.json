@@ -1,0 +1,136 @@
+{
+  "slug": "vampires",
+  "title": "Vampiers",
+  "description": "Een hele pubquiz over vampiers: de folklore, de romans, de films en de televisieseries.",
+  "publishedAt": "2026-09-08",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wie schreef de roman Dracula uit 1897?", "category": "Literatuur", "answers": [{ "text": "Bram Stoker", "aliases": ["Stoker"] }] },
+        { "prompt": "In welke streek van Roemenie plaatst Bram Stoker het kasteel van graaf Dracula?", "category": "Literatuur", "answers": [{ "text": "Transsylvanie", "aliases": ["Transsylvanie", "Transylvanie"] }] },
+        { "prompt": "Wat is de voornaam van de verloofde en latere echtgenote van Jonathan Harker in Dracula?", "category": "Literatuur", "answers": [{ "text": "Mina", "aliases": ["Mina Murray", "Mina Harker"] }] },
+        { "prompt": "Welke professor leidt in de roman de jacht op Dracula?", "category": "Literatuur", "answers": [{ "text": "Van Helsing", "aliases": ["Abraham van Helsing", "Professor Van Helsing"] }] },
+        { "prompt": "Welke sterk ruikende bol is de klassieke bescherming tegen vampiers?", "category": "Folklore", "answers": [{ "text": "Knoflook" }] },
+        { "prompt": "Wat wordt er traditioneel door het hart van een vampier gedreven om hem te doden?", "category": "Folklore", "answers": [{ "text": "Een houten staak", "aliases": ["Houten staak", "Een staak", "Staak"] }] },
+        { "prompt": "In welk alledaags voorwerp heeft een vampier geen spiegelbeeld?", "category": "Folklore", "answers": [{ "text": "Een spiegel", "aliases": ["Spiegel", "De spiegel"] }] },
+        { "prompt": "In welk vliegend dier kan Dracula zich veranderen?", "category": "Folklore", "answers": [{ "text": "Een vleermuis", "aliases": ["Vleermuis", "De vleermuis"] }] },
+        { "prompt": "Welke vijftiende-eeuwse Roemeense heerser, berucht om het spietsen van zijn vijanden, zou de inspiratie voor Dracula zijn geweest?", "category": "Geschiedenis", "answers": [{ "text": "Vlad de Spietser", "aliases": ["Vlad Tepes", "Vlad III", "Vlad Dracula"] }] },
+        { "prompt": "Welke Duitse stomme film uit 1922 was een ongeautoriseerde versie van Dracula?", "category": "Film", "answers": [{ "text": "Nosferatu" }] },
+        { "prompt": "In welke film uit 1994 spelen Tom Cruise en Brad Pitt vampiers?", "category": "Film", "answers": [{ "text": "Interview met de vampier", "aliases": ["Interview with the Vampire"] }] },
+        { "prompt": "Wie schreef de roman Interview met de vampier?", "category": "Literatuur", "answers": [{ "text": "Anne Rice", "aliases": ["Rice"] }] },
+        { "prompt": "Wie schreef de Twilight-boeken?", "category": "Literatuur", "answers": [{ "text": "Stephenie Meyer", "aliases": ["Meyer"] }] },
+        { "prompt": "Welke vampier wordt in Twilight verliefd op Bella Swan?", "category": "Twilight", "answers": [{ "text": "Edward Cullen", "aliases": ["Edward"] }] },
+        { "prompt": "In welke televisieserie speelde Sarah Michelle Gellar een vampierjaagster?", "category": "Televisie", "answers": [{ "text": "Buffy the Vampire Slayer", "aliases": ["Buffy"] }] },
+        { "prompt": "Welke televisieserie volgt de vampierbroers Stefan en Damon Salvatore?", "category": "Televisie", "answers": [{ "text": "The Vampire Diaries", "aliases": ["Vampire Diaries"] }] },
+        { "prompt": "Welk personage uit Sesamstraat is een vampier die niets liever doet dan tellen?", "category": "Televisie", "answers": [{ "text": "Graaf Tel", "aliases": ["De graaf", "Count von Count"] }] },
+        { "prompt": "Welke half-menselijke vampierjager uit de Marvel-strips werd gespeeld door Wesley Snipes?", "category": "Film", "answers": [{ "text": "Blade" }] },
+        { "prompt": "Welke film uit 1987 volgt een bende tienervampiers in het kustplaatsje Santa Carla?", "category": "Film", "answers": [{ "text": "The Lost Boys", "aliases": ["Lost Boys"] }] },
+        { "prompt": "Welke Zweedse roman en film gaat over een eenzame jongen die bevriend raakt met het vampiermeisje Eli?", "category": "Film", "answers": [{ "text": "Let the Right One In", "aliases": ["Lat den ratte komma in"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Hoe heet het schip dat Dracula naar Engeland brengt?", "options": [{ "text": "De Demeter", "correct": true }, { "text": "De Persephone" }, { "text": "De Hesperus" }, { "text": "De Medusa" }] },
+        { "prompt": "In welke Engelse havenplaats komt Dracula aan land?", "options": [{ "text": "Whitby", "correct": true }, { "text": "Scarborough" }, { "text": "Bridlington" }, { "text": "Hartlepool" }] },
+        { "prompt": "In welk land werd Bram Stoker geboren?", "options": [{ "text": "Ierland", "correct": true }, { "text": "Schotland" }, { "text": "Engeland" }, { "text": "Wales" }] },
+        { "prompt": "Wie regisseerde de film Bram Stoker's Dracula uit 1992?", "options": [{ "text": "Francis Ford Coppola", "correct": true }, { "text": "Brian De Palma" }, { "text": "Ridley Scott" }, { "text": "John Carpenter" }] },
+        { "prompt": "Over welk vorstendom heerste de historische Vlad III?", "options": [{ "text": "Walachije", "correct": true }, { "text": "Moldavie" }, { "text": "Transsylvanie" }, { "text": "Boekovina" }] },
+        { "prompt": "Hoe heet de insecten etende patient in het gesticht van dokter Seward?", "options": [{ "text": "Renfield", "correct": true }, { "text": "Swales" }, { "text": "Hawkins" }, { "text": "Westenra" }] },
+        { "prompt": "Welke vampier vertelt in Interview met de vampier zijn levensverhaal aan een verslaggever?", "options": [{ "text": "Louis", "correct": true }, { "text": "Lestat" }, { "text": "Armand" }, { "text": "Marius" }] },
+        { "prompt": "Hoe heet in de Twilight-boeken de heersende vampierclan in Italie?", "options": [{ "text": "De Volturi", "correct": true }, { "text": "De Denali" }, { "text": "De Cullens" }, { "text": "De Quileute" }] },
+        { "prompt": "In welke stad wonen de vampiers uit de film What We Do in the Shadows uit 2014 samen in een huis?", "options": [{ "text": "Wellington", "correct": true }, { "text": "Auckland" }, { "text": "Sydney" }, { "text": "Melbourne" }] },
+        { "prompt": "Welke vampiernovelle van Sheridan Le Fanu verscheen een kwart eeuw voor Dracula?", "options": [{ "text": "Carmilla", "correct": true }, { "text": "The Vampyre" }, { "text": "Varney the Vampire" }, { "text": "The Bride of Corinth" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar verscheen Dracula van Bram Stoker voor het eerst?", "answer": 1897 },
+        { "prompt": "In welk jaar kwam de stomme film Nosferatu uit?", "answer": 1922 },
+        { "prompt": "Uit hoeveel hoofdstukken bestaat Dracula van Bram Stoker?", "answer": 27, "unit": "hoofdstukken", "explanation": "Het hele verhaal wordt verteld in dagboeken, brieven, telegrammen en krantenknipsels." },
+        { "prompt": "Hoeveel seizoenen van Buffy the Vampire Slayer zijn er gemaakt?", "answer": 7, "unit": "seizoenen" },
+        { "prompt": "Hoeveel seizoenen van The Vampire Diaries zijn er gemaakt?", "answer": 8, "unit": "seizoenen" },
+        { "prompt": "Uit hoeveel romans bestaat de oorspronkelijke Twilight-reeks van Stephenie Meyer?", "answer": 4, "unit": "boeken" },
+        { "prompt": "In welk jaar kwam de eerste Twilight-film uit?", "answer": 2008 },
+        { "prompt": "Hoeveel vleermuissoorten voeden zich met bloed?", "answer": 3, "unit": "soorten", "explanation": "Van de ruim veertienhonderd vleermuissoorten drinken er maar drie bloed, en die leven alle drie in Amerika." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Doodskist",
+        "Hoektanden",
+        "Crucifix",
+        "Zwarte cape",
+        "Nepbloed",
+        "Valluik",
+        "Wijwater",
+        "Begraafplaats",
+        "Zonsopgang",
+        "Kandelaar",
+        "Beetwond",
+        "Bloedzak",
+        "Lijkwagen",
+        "Zwarte kat",
+        "Hooivork",
+        "Kelder",
+        "Olielamp",
+        "IJzeren hek",
+        "Volle maan",
+        "Mausoleum",
+        "Vleermuisvleugels",
+        "Monnikskap",
+        "Gordijnen",
+        "Bleke huid",
+        "Raaf",
+        "Kerker",
+        "Slotgracht",
+        "Rat",
+        "Nachtjapon",
+        "Bloedtransfusie"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier mannen die zich in de roman bij Van Helsing aansluiten in de jacht op Dracula.", "answers": [{ "text": "Jonathan Harker", "aliases": ["Harker"] }, { "text": "John Seward", "aliases": ["Dokter Seward", "Seward"] }, { "text": "Arthur Holmwood", "aliases": ["Holmwood", "Lord Godalming"] }, { "text": "Quincey Morris", "aliases": ["Morris"] }] },
+        { "prompt": "Noem de vier romans uit de Twilight-reeks van Stephenie Meyer.", "answers": [{ "text": "Twilight" }, { "text": "New Moon" }, { "text": "Eclipse" }, { "text": "Breaking Dawn" }] },
+        { "prompt": "Noem de vier vampiers die in de film What We Do in the Shadows uit 2014 samen een huis delen.", "answers": [{ "text": "Viago" }, { "text": "Vladislav" }, { "text": "Deacon" }, { "text": "Petyr" }] },
+        { "prompt": "Noem de vier vaste leden van de Scooby Gang uit de eerste seizoenen van Buffy the Vampire Slayer.", "answers": [{ "text": "Buffy Summers", "aliases": ["Buffy"] }, { "text": "Willow Rosenberg", "aliases": ["Willow"] }, { "text": "Xander Harris", "aliases": ["Xander"] }, { "text": "Rupert Giles", "aliases": ["Giles"] }] },
+        { "prompt": "Noem de vier landen waarin deze vampierfilms spelen: The Lost Boys, What We Do in the Shadows, Let the Right One In en Nosferatu uit 1922.", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }, { "text": "Nieuw-Zeeland", "aliases": ["Nieuw Zeeland"] }, { "text": "Zweden" }, { "text": "Duitsland" }] },
+        { "prompt": "Noem de vier acteurs die de vampier speelden in Nosferatu uit 1922, Dracula uit 1931, Horror of Dracula uit 1958 en Bram Stoker's Dracula uit 1992.", "answers": [{ "text": "Max Schreck", "aliases": ["Schreck"] }, { "text": "Bela Lugosi", "aliases": ["Lugosi"] }, { "text": "Christopher Lee", "aliases": ["Lee"] }, { "text": "Gary Oldman", "aliases": ["Oldman"] }] },
+        { "prompt": "Noem de vier aangenomen Cullen-kinderen naast Edward in Twilight.", "answers": [{ "text": "Alice" }, { "text": "Emmett" }, { "text": "Jasper" }, { "text": "Rosalie" }] },
+        { "prompt": "Noem de vier andere klassieke filmmonsters van Universal die in de jaren dertig en veertig naast Dracula stonden.", "answers": [{ "text": "Het monster van Frankenstein", "aliases": ["Frankenstein", "Monster van Frankenstein"] }, { "text": "De weerwolf", "aliases": ["Weerwolf", "The Wolf Man"] }, { "text": "De mummie", "aliases": ["Mummie", "The Mummy"] }, { "text": "De onzichtbare man", "aliases": ["Onzichtbare man", "The Invisible Man"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat drinkt een vampier?", "difficulty": "easy", "answers": [{ "text": "Bloed" }] },
+        { "prompt": "In wat voor kist slaapt een vampier traditioneel?", "difficulty": "easy", "answers": [{ "text": "Een doodskist", "aliases": ["Doodskist", "Kist"] }] },
+        { "prompt": "Wat vernietigt een vampier zodra het 's ochtends boven de horizon komt?", "difficulty": "easy", "answers": [{ "text": "Zonlicht", "aliases": ["De zon", "Daglicht"] }] },
+        { "prompt": "In welk land ligt de streek Transsylvanie?", "difficulty": "easy", "answers": [{ "text": "Roemenie" }] },
+        { "prompt": "Welk religieus symbool houd je omhoog om een vampier terug te drijven?", "difficulty": "easy", "answers": [{ "text": "Een kruis", "aliases": ["Kruis", "Een crucifix", "Crucifix"] }] },
+        { "prompt": "Door welke pas in de Karpaten reist Jonathan Harker naar het kasteel van Dracula?", "difficulty": "hard", "answers": [{ "text": "De Borgopas", "aliases": ["Borgopas", "Borgo Pass", "Borgo"] }] },
+        { "prompt": "Wat is de achternaam van Lucy, het eerste Engelse slachtoffer van Dracula?", "difficulty": "hard", "answers": [{ "text": "Westenra" }] },
+        { "prompt": "Hoe heet in Buffy the Vampire Slayer de vampier met een ziel die gespeeld wordt door David Boreanaz?", "difficulty": "hard", "answers": [{ "text": "Angel" }] },
+        { "prompt": "Hoe heet het vampiermeisje dat Kirsten Dunst speelt in Interview met de vampier?", "difficulty": "hard", "answers": [{ "text": "Claudia" }] },
+        { "prompt": "Hoe heet de energievampier uit de televisieserie What We Do in the Shadows?", "difficulty": "hard", "answers": [{ "text": "Colin Robinson", "aliases": ["Colin"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het Londense landgoed dat Dracula koopt naast het gesticht van dokter Seward?", "answers": [{ "text": "Carfax", "aliases": ["Carfax Abbey"] }] },
+        { "prompt": "Wie schreef The Vampyre uit 1819, het eerste vampierverhaal in Engels proza?", "answers": [{ "text": "John Polidori", "aliases": ["Polidori"] }] },
+        { "prompt": "Wat is de volledige naam van Anne Rice's vampier Lestat?", "answers": [{ "text": "Lestat de Lioncourt", "aliases": ["De Lioncourt"] }] },
+        { "prompt": "Hoe heet de vampiergraaf uit de film Nosferatu uit 1922?", "answers": [{ "text": "Graaf Orlok", "aliases": ["Orlok", "Count Orlok"] }] },
+        { "prompt": "Welke kleine dingen houden een vampier in de Slavische folklore op, omdat hij ze eerst allemaal moet tellen als je ze op de grond strooit?", "answers": [{ "text": "Zaadjes", "aliases": ["Papaverzaad", "Korrels", "Gierst", "Zaden"] }] },
+        { "prompt": "Wat is de familienaam van de Originals, de oervampiers uit The Vampire Diaries en de spin-off The Originals?", "answers": [{ "text": "Mikaelson" }] },
+        { "prompt": "Welke Duitse regisseur maakte Nosferatu the Vampyre uit 1979 met Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "italy",
+  "title": "Italie",
+  "description": "Een quiz over Italie: de streken en de steden, de kunst en de opera, het eten, de films en de taal.",
+  "publishedAt": "2026-08-29",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke stad is de hoofdstad van Italie?", "category": "Steden", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
+        { "prompt": "Welk gebergte vormt de noordgrens van Italie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Alpen", "aliases": ["Alpen"] }] },
+        { "prompt": "Welk gebergte loopt over de hele lengte van het Italiaanse schiereiland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Apennijnen", "aliases": ["Apennijnen"] }] },
+        { "prompt": "Wat is de langste rivier van Italie?", "category": "Rivieren en meren", "answers": [{ "text": "De Po", "aliases": ["Po"] }] },
+        { "prompt": "Welk groot eiland ten westen van het vasteland is het op een na grootste eiland van Italie?", "category": "Eilanden", "answers": [{ "text": "Sardinie", "aliases": ["Sardegna"] }] },
+        { "prompt": "In welke Italiaanse stad vind je het Dogenpaleis en het San Marcoplein?", "category": "Steden", "answers": [{ "text": "Venetie", "aliases": ["Venezia"] }] },
+        { "prompt": "Welke Italiaanse stad was gastheer van de Olympische Winterspelen van 2006?", "category": "Sport", "answers": [{ "text": "Turijn", "aliases": ["Torino"] }] },
+        { "prompt": "Welke Italiaanse stad gaf haar naam aan de vleessaus ragu alla bolognese?", "category": "Eten en drinken", "answers": [{ "text": "Bologna" }] },
+        { "prompt": "In welke kapel in Vaticaanstad schilderde Michelangelo zijn beroemde plafond?", "category": "Kunst", "answers": [{ "text": "De Sixtijnse Kapel", "aliases": ["Sixtijnse Kapel"] }] },
+        { "prompt": "In welk museum in Florence hangt De geboorte van Venus van Botticelli?", "category": "Kunst", "answers": [{ "text": "De Uffizi", "aliases": ["Uffizi", "Galleria degli Uffizi"] }] },
+        { "prompt": "Welke Italiaanse componist schreef de opera's La Boheme, Tosca en Madama Butterfly?", "category": "Opera", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] },
+        { "prompt": "Welke Italiaanse regisseur maakte de film La Dolce Vita uit 1960?", "category": "Film", "answers": [{ "text": "Federico Fellini", "aliases": ["Fellini"] }] },
+        { "prompt": "Wat is het Italiaanse woord voor dank je wel?", "category": "Taal", "answers": [{ "text": "Grazie" }] },
+        { "prompt": "Welke wielerronde van drie weken is de Italiaanse grote ronde?", "category": "Sport", "answers": [{ "text": "De Giro d'Italia", "aliases": ["Giro d'Italia", "Giro"] }] },
+        { "prompt": "Welke generaal leidde de Duizend, de vrijwilligers in rode hemden, tijdens de eenwording van Italie?", "category": "Geschiedenis", "answers": [{ "text": "Giuseppe Garibaldi", "aliases": ["Garibaldi"] }] },
+        { "prompt": "Uit welke drie kleuren bestaat de Italiaanse vlag?", "category": "Symbolen", "answers": [{ "text": "Groen, wit en rood", "aliases": ["groen wit rood", "rood wit en groen"] }] },
+        { "prompt": "Welke Italiaanse voetbalclub heeft de bijnaam de Oude Dame?", "category": "Voetbal", "answers": [{ "text": "Juventus", "aliases": ["Juve"] }] },
+        { "prompt": "Welke onafhankelijke republiek op de berg Titano is volledig omringd door Italie?", "category": "Aardrijkskunde", "answers": [{ "text": "San Marino" }] },
+        { "prompt": "Welke Toscaanse rode wijn werd vroeger verkocht in een met stro omwikkelde fles?", "category": "Eten en drinken", "answers": [{ "text": "Chianti" }] },
+        { "prompt": "In welke Italiaanse stad bouwde Brunelleschi de grote koepel van de kathedraal?", "category": "Architectuur", "answers": [{ "text": "Florence", "aliases": ["Firenze"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar werd het koninkrijk Italie uitgeroepen?", "options": [{ "text": "1861", "correct": true }, { "text": "1815" }, { "text": "1848" }, { "text": "1871" }] },
+        { "prompt": "Van welke Italiaanse regio is Palermo de hoofdstad?", "options": [{ "text": "Sicilie", "correct": true }, { "text": "Sardinie" }, { "text": "Calabrie" }, { "text": "Campanie" }] },
+        { "prompt": "Welk operahuis, in 1778 geopend in Milaan, is een van de beroemdste ter wereld?", "options": [{ "text": "La Scala", "correct": true }, { "text": "La Fenice" }, { "text": "Teatro San Carlo" }, { "text": "Teatro Massimo" }] },
+        { "prompt": "Welke Italiaanse regio vormt de hak van de laars?", "options": [{ "text": "Puglia", "correct": true }, { "text": "Calabrie" }, { "text": "Basilicata" }, { "text": "Molise" }] },
+        { "prompt": "Welke Italiaanse film won in 1999 de Oscar voor beste buitenlandse film?", "options": [{ "text": "La vita e bella", "correct": true }, { "text": "Cinema Paradiso" }, { "text": "Il Postino" }, { "text": "Mediterraneo" }] },
+        { "prompt": "Welke Italiaanse zeevaarder gaf zijn naam aan het werelddeel Amerika?", "options": [{ "text": "Amerigo Vespucci", "correct": true }, { "text": "Giovanni Caboto" }, { "text": "Marco Polo" }, { "text": "Giovanni da Verrazzano" }] },
+        { "prompt": "In welke Italiaanse havenstad werd Christoffel Columbus geboren?", "options": [{ "text": "Genua", "correct": true }, { "text": "Venetie" }, { "text": "Pisa" }, { "text": "Amalfi" }] },
+        { "prompt": "De naam van welk Italiaans gerecht betekent springt in de mond?", "options": [{ "text": "Saltimbocca", "correct": true }, { "text": "Arrabbiata" }, { "text": "Puttanesca" }, { "text": "Cacciatore" }] },
+        { "prompt": "Welke Italiaanse geleerde werd in 1633 veroordeeld door de Inquisitie?", "options": [{ "text": "Galileo Galilei", "correct": true }, { "text": "Giordano Bruno" }, { "text": "Evangelista Torricelli" }, { "text": "Alessandro Volta" }] },
+        { "prompt": "Welke club deelt het San Siro-stadion met AC Milan?", "options": [{ "text": "Internazionale", "correct": true }, { "text": "Juventus" }, { "text": "AS Roma" }, { "text": "Napoli" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel regio's telt Italie?", "answer": 20, "unit": "regio's" },
+        { "prompt": "In welk jaar begon de bouw van de scheve toren van Pisa?", "answer": 1173, "explanation": "De toren helde al bij de derde verdieping, omdat de grond aan een kant zacht is." },
+        { "prompt": "Hoeveel bruggen gaan er over het Canal Grande in Venetie?", "answer": 4, "unit": "bruggen", "explanation": "De nieuwste, de Ponte della Costituzione, ging open in 2008." },
+        { "prompt": "In welk jaar was Italie voor de tweede keer gastland van het WK voetbal?", "answer": 1990 },
+        { "prompt": "Hoeveel treden telt de Spaanse Trappen in Rome?", "answer": 135, "unit": "treden" },
+        { "prompt": "In welk jaar maakte het Verdrag van Lateranen Vaticaanstad tot een onafhankelijke staat?", "answer": 1929 },
+        { "prompt": "Uit hoeveel hoofdeilanden bestaat de archipel van de Eolische Eilanden?", "answer": 7, "unit": "eilanden" },
+        { "prompt": "In welk jaar werd de David van Michelangelo onthuld in Florence?", "answer": 1504 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Gondel",
+        "Vespa",
+        "Trevifontein",
+        "Gondelier",
+        "Carnavalsmasker",
+        "Cannoli",
+        "Mozzarella",
+        "Piazza",
+        "Cappuccino",
+        "Parmaham",
+        "Parmezaanse kaas",
+        "Pesto",
+        "Espressokannetje",
+        "Mandoline",
+        "Operazanger",
+        "Fiat 500",
+        "Citroenboom",
+        "Truffel",
+        "Wijnkelder",
+        "Ponte Vecchio",
+        "Canal Grande",
+        "Risotto",
+        "Panettone",
+        "Cipres",
+        "Olijfgaard",
+        "Gelato",
+        "De Dolomieten",
+        "De Amalfikust",
+        "Terracotta dakpannen",
+        "Marmergroeve"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier landen die, naast San Marino en Vaticaanstad, aan Italie grenzen.", "answers": [{ "text": "Frankrijk" }, { "text": "Zwitserland" }, { "text": "Oostenrijk" }, { "text": "Slovenie" }] },
+        { "prompt": "Noem de vier zeeen rond Italie.", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee"] }, { "text": "De Ionische Zee", "aliases": ["Ionische Zee"] }, { "text": "De Tyrreense Zee", "aliases": ["Tyrreense Zee"] }, { "text": "De Ligurische Zee", "aliases": ["Ligurische Zee"] }] },
+        { "prompt": "Noem de vier Italiaanse renaissancekunstenaars naar wie de Teenage Mutant Ninja Turtles zijn genoemd.", "answers": [{ "text": "Leonardo" }, { "text": "Michelangelo" }, { "text": "Donatello" }, { "text": "Rafael", "aliases": ["Raphael", "Raffaello"] }] },
+        { "prompt": "Noem de vier pastasoorten waarvan de naam tongetjes, wormpjes, vlinders en oortjes betekent.", "answers": [{ "text": "Linguine" }, { "text": "Vermicelli" }, { "text": "Farfalle" }, { "text": "Orecchiette" }] },
+        { "prompt": "Noem de vier actieve vulkanen van Italie.", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }, { "text": "De Vesuvius", "aliases": ["Vesuvius"] }, { "text": "Stromboli" }, { "text": "Vulcano" }] },
+        { "prompt": "Noem de vier grootste meren van Italie.", "answers": [{ "text": "Het Gardameer", "aliases": ["Gardameer", "Garda"] }, { "text": "Lago Maggiore", "aliases": ["Maggiore"] }, { "text": "Comomeer", "aliases": ["Como"] }, { "text": "Trasimeense Meer", "aliases": ["Trasimeno"] }] },
+        { "prompt": "Noem de vier zangstemmen van een klassiek koor, allemaal met een Italiaanse naam.", "answers": [{ "text": "Sopraan", "aliases": ["soprano"] }, { "text": "Alt", "aliases": ["contralto"] }, { "text": "Tenor", "aliases": ["tenore"] }, { "text": "Bas", "aliases": ["basso"] }] },
+        { "prompt": "Noem de vier bekendste Italiaanse merken sportwagens.", "answers": [{ "text": "Ferrari" }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "In welke Italiaanse stad staat de beroemde scheve toren?", "difficulty": "easy", "answers": [{ "text": "Pisa" }] },
+        { "prompt": "Met welk schoeisel wordt de vorm van Italie op de kaart vergeleken?", "difficulty": "easy", "answers": [{ "text": "Een laars", "aliases": ["laars"] }] },
+        { "prompt": "Welk Italiaans nagerecht wordt gemaakt met mascarpone en in koffie gedrenkte koekjes?", "difficulty": "easy", "answers": [{ "text": "Tiramisu" }] },
+        { "prompt": "Welke zee spoelt langs de kusten van Italie?", "difficulty": "easy", "answers": [{ "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }] },
+        { "prompt": "Welke Italiaanse groet wordt zowel bij aankomst als bij afscheid gebruikt?", "difficulty": "easy", "answers": [{ "text": "Ciao" }] },
+        { "prompt": "Van welke Italiaanse regio is Perugia de hoofdstad?", "difficulty": "hard", "answers": [{ "text": "Umbrie", "aliases": ["Umbria"] }] },
+        { "prompt": "Wie schreef de roman De tijgerkat, in het Italiaans Il Gattopardo?", "difficulty": "hard", "answers": [{ "text": "Giuseppe Tomasi di Lampedusa", "aliases": ["Tomasi di Lampedusa", "Lampedusa"] }] },
+        { "prompt": "In welke Italiaanse stad staat de grootste kathedraal van het land, met haar woud van marmeren torentjes?", "difficulty": "hard", "answers": [{ "text": "Milaan", "aliases": ["Milano"] }] },
+        { "prompt": "Welke Italiaanse componist schreef de muziek voor The Good, the Bad and the Ugly?", "difficulty": "hard", "answers": [{ "text": "Ennio Morricone", "aliases": ["Morricone"] }] },
+        { "prompt": "Hoe heet het lagerhuis van het Italiaanse parlement?", "difficulty": "hard", "answers": [{ "text": "De Kamer van Afgevaardigden", "aliases": ["Kamer van Afgevaardigden", "Camera dei Deputati"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Italiaanse natuurkundige leidde het team dat in 1942 in Chicago de eerste kernreactor bouwde?", "answers": [{ "text": "Enrico Fermi", "aliases": ["Fermi"] }] },
+        { "prompt": "In welke Italiaanse stad wordt de Palio gehouden, een paardenrace die elke zomer twee keer rond het hoofdplein gaat?", "answers": [{ "text": "Siena" }] },
+        { "prompt": "Welke Italiaanse regio is qua oppervlakte de kleinste?", "answers": [{ "text": "Valle d'Aosta", "aliases": ["Aostadal"] }] },
+        { "prompt": "Wie schreef de roman De naam van de roos uit 1980?", "answers": [{ "text": "Umberto Eco", "aliases": ["Eco"] }] },
+        { "prompt": "Welke film van Vittorio De Sica uit 1948 volgt een vader en zoon op zoek naar een gestolen fiets?", "answers": [{ "text": "Fietsendieven", "aliases": ["Ladri di biciclette", "Bicycle Thieves"] }] },
+        { "prompt": "Welke berg is de hoogste die volledig op Italiaans grondgebied ligt?", "answers": [{ "text": "Gran Paradiso" }] },
+        { "prompt": "Welke Italiaanse dichter schreef zijn leven lang sonnetten aan een vrouw die Laura heette?", "answers": [{ "text": "Petrarca", "aliases": ["Francesco Petrarca"] }] }
+      ]
+    }
+  ]
+}

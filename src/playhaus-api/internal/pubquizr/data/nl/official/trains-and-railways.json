@@ -1,0 +1,136 @@
+{
+  "slug": "trains-and-railways",
+  "title": "Treinen en Spoorwegen",
+  "description": "Een hele pubquiz over treinen, stations, tunnels en de mensen die het spoor aanlegden.",
+  "publishedAt": "2026-09-22",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk bedrijf rijdt bijna alle reizigerstreinen in Nederland?", "category": "Nederland", "answers": [{ "text": "De Nederlandse Spoorwegen", "aliases": ["NS", "Nederlandse Spoorwegen"] }] },
+        { "prompt": "Welke tunnel brengt treinen tussen Engeland en Frankrijk?", "category": "Tunnels", "answers": [{ "text": "De Kanaaltunnel", "aliases": ["Kanaaltunnel", "Channel Tunnel", "Eurotunnel"] }] },
+        { "prompt": "Van welk perron vertrekt de Zweinsteinexpress in de boeken over Harry Potter?", "category": "Boeken en film", "answers": [{ "text": "Perron negen driekwart", "aliases": ["9 3/4", "Negen driekwart", "Perron 9 3/4"] }] },
+        { "prompt": "Van welk metaal zijn spoorstaven gemaakt?", "category": "Techniek", "answers": [{ "text": "Staal" }] },
+        { "prompt": "Welke luxe trein reed beroemd tussen Parijs en Istanbul?", "category": "Beroemde treinen", "answers": [{ "text": "De Orient-Express", "aliases": ["Orient-Express", "Orient Express"] }] },
+        { "prompt": "Welke brandstof stookten de meeste stoomlocomotieven?", "category": "Stoom", "answers": [{ "text": "Kolen", "aliases": ["Steenkool", "Kool"] }] },
+        { "prompt": "Onder welke bijnaam staat de metro van Londen bekend?", "category": "Metro", "answers": [{ "text": "The Tube", "aliases": ["Tube"] }] },
+        { "prompt": "Welke Engelse ingenieur wordt de vader van de spoorwegen genoemd?", "category": "Mensen", "answers": [{ "text": "George Stephenson", "aliases": ["Stephenson"] }] },
+        { "prompt": "Welke architect ontwierp zowel het Rijksmuseum als station Amsterdam Centraal?", "category": "Architectuur", "answers": [{ "text": "Pierre Cuypers", "aliases": ["Cuypers", "P.J.H. Cuypers"] }] },
+        { "prompt": "Hoe heet het terrein waar treinen 's nachts staan en onderhouden worden?", "category": "Bedrijfsvoering", "answers": [{ "text": "Het depot", "aliases": ["Depot", "Opstelterrein", "Remise"] }] },
+        { "prompt": "In welke hoofdstad kom je aan op het station Termini?", "category": "Stations", "answers": [{ "text": "Rome" }] },
+        { "prompt": "Welke twee kleuren dragen de intercity's van de Nederlandse Spoorwegen?", "category": "Nederland", "answers": [{ "text": "Geel en blauw", "aliases": ["Blauw en geel"] }] },
+        { "prompt": "Wat betekent een rood sein voor een machinist?", "category": "Seinen", "answers": [{ "text": "Stoppen", "aliases": ["Stop", "Halt houden"] }] },
+        { "prompt": "Hoe heet een trein die goederen vervoert in plaats van reizigers?", "category": "Goederenvervoer", "answers": [{ "text": "Een goederentrein", "aliases": ["Goederentrein"] }] },
+        { "prompt": "Wat is de langste spoortunnel ter wereld, in 2016 geopend in Zwitserland?", "category": "Records", "answers": [{ "text": "De Gotthard-basistunnel", "aliases": ["Gotthard-basistunnel", "Gotthardtunnel", "Gotthard"] }] },
+        { "prompt": "Hoe heet het hogesnelheidsnet van Japan?", "category": "Japan", "answers": [{ "text": "De Shinkansen", "aliases": ["Shinkansen", "Kogeltrein"] }] },
+        { "prompt": "Welke naam geven de Nederlandse Spoorwegen aan hun treinen die op elk station stoppen?", "category": "Nederland", "answers": [{ "text": "Sprinter" }] },
+        { "prompt": "Hoe heet een lange brug op bogen die een spoorlijn over een dal draagt?", "category": "Bruggen", "answers": [{ "text": "Een viaduct", "aliases": ["Viaduct", "Spoorviaduct"] }] },
+        { "prompt": "Met welke kaart check je in en uit in de Nederlandse trein?", "category": "Nederland", "answers": [{ "text": "De OV-chipkaart", "aliases": ["OV-chipkaart", "OV chipkaart"] }] },
+        { "prompt": "Welk Duits spoorbedrijf staat bekend onder de letters DB?", "category": "Europa", "answers": [{ "text": "Deutsche Bahn" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke stad is het oostelijke eindpunt van de Trans-Siberische spoorlijn?", "options": [{ "text": "Vladivostok", "correct": true }, { "text": "Irkoetsk" }, { "text": "Chabarovsk" }, { "text": "Novosibirsk" }] },
+        { "prompt": "Welke spoorwijdte is de standaard in vrijwel heel West-Europa?", "options": [{ "text": "1000 mm" }, { "text": "1435 mm", "correct": true }, { "text": "1524 mm" }, { "text": "1668 mm" }] },
+        { "prompt": "Welke locomotief vestigde in 1938 het wereldsnelheidsrecord voor stoom?", "options": [{ "text": "Mallard", "correct": true }, { "text": "Flying Scotsman" }, { "text": "City of Truro" }, { "text": "Evening Star" }] },
+        { "prompt": "In welk jaar opende Japan de eerste hogesnelheidslijn ter wereld, tussen Tokio en Osaka?", "options": [{ "text": "1954" }, { "text": "1964", "correct": true }, { "text": "1974" }, { "text": "1984" }] },
+        { "prompt": "Welke Zwitserse trein tussen Zermatt en St. Moritz staat bekend als de langzaamste sneltrein ter wereld?", "options": [{ "text": "De Glacier Express", "correct": true }, { "text": "De Bernina Express" }, { "text": "De GoldenPass Express" }, { "text": "De Centovalli Express" }] },
+        { "prompt": "De eerste spoorlijn op het Europese vasteland liep van Brussel naar welke stad?", "options": [{ "text": "Mechelen", "correct": true }, { "text": "Antwerpen" }, { "text": "Gent" }, { "text": "Leuven" }] },
+        { "prompt": "De eerste spoorlijn van Nederland liep van Amsterdam naar welke stad?", "options": [{ "text": "Haarlem", "correct": true }, { "text": "Utrecht" }, { "text": "Rotterdam" }, { "text": "Den Haag" }] },
+        { "prompt": "In welk jaar reden de eerste reizigerstreinen door de tunnel onder het Kanaal?", "options": [{ "text": "1984" }, { "text": "1990" }, { "text": "1994", "correct": true }, { "text": "1998" }] },
+        { "prompt": "Welke naam hoort bij een locomotief met de wielindeling 4-6-2?", "options": [{ "text": "Pacific", "correct": true }, { "text": "Atlantic" }, { "text": "Mikado" }, { "text": "Mogul" }] },
+        { "prompt": "De Flying Scotsman is zowel een locomotief als een treindienst van Londen naar welke stad?", "options": [{ "text": "Edinburgh", "correct": true }, { "text": "Glasgow" }, { "text": "Aberdeen" }, { "text": "York" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is de Kanaaltunnel?", "answer": 50, "unit": "kilometer", "explanation": "Vijftig en een halve kilometer, waarvan ongeveer achtendertig onder zee liggen." },
+        { "prompt": "In welk jaar werd de eerste spoorlijn van Nederland geopend?", "answer": 1839 },
+        { "prompt": "Hoeveel kilometer lang is de Gotthard-basistunnel?", "answer": 57, "unit": "kilometer" },
+        { "prompt": "Welke snelheid in kilometer per uur haalde een Franse TGV bij zijn recordrit in 2007?", "answer": 574, "unit": "kilometer per uur", "explanation": "574,8 kilometer per uur op de lijn ten oosten van Parijs, en nog altijd het record voor een trein op rails." },
+        { "prompt": "In welk jaar maakte de Orient-Express zijn eerste rit?", "answer": 1883 },
+        { "prompt": "Hoeveel kilometer spoor legt de Trans-Siberische lijn af tussen Moskou en Vladivostok?", "answer": 9289, "unit": "kilometer" },
+        { "prompt": "In welk jaar reed British Railways zijn laatste stoomtrein in de dienstregeling?", "answer": 1968 },
+        { "prompt": "Hoeveel kilometer spoorlijn heeft Nederland ongeveer?", "answer": 3200, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Locomotief",
+        "Perron",
+        "Conducteur",
+        "Fluitje",
+        "Overweg",
+        "Dienstregeling",
+        "Restauratiewagen",
+        "Seinhuis",
+        "Kaartautomaat",
+        "Stationsklok",
+        "Bagagerek",
+        "Draaischijf",
+        "Ketelwagen",
+        "Spoorbrug",
+        "Koffer",
+        "Modelspoorbaan",
+        "Machinist",
+        "Vertrekbord",
+        "Wachtkamer",
+        "Karretje",
+        "Treinspotter",
+        "Container",
+        "Coupe",
+        "Noodrem",
+        "Slagboom",
+        "Schoorsteen",
+        "Watertoren",
+        "Rangeerterrein",
+        "Abonnement",
+        "Fiets"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grote steden die de Thalys verbond, een in Frankrijk, een in Belgie, een in Nederland en een in Duitsland.", "answers": [{ "text": "Parijs" }, { "text": "Brussel" }, { "text": "Amsterdam" }, { "text": "Keulen", "aliases": ["Koln", "Cologne"] }] },
+        { "prompt": "Noem de vier vormen van openbaar vervoer waar je in Nederland met een OV-chipkaart in stapt.", "answers": [{ "text": "Trein" }, { "text": "Bus" }, { "text": "Tram" }, { "text": "Metro" }] },
+        { "prompt": "Noem de vier basisonderdelen van een stuk spoor.", "answers": [{ "text": "Rails", "aliases": ["Spoorstaven", "Spoorstaaf"] }, { "text": "Dwarsliggers", "aliases": ["Biels", "Bielzen"] }, { "text": "Ballast", "aliases": ["Grind", "Split"] }, { "text": "Bevestigingen", "aliases": ["Klemmen", "Bouten", "Lasplaten"] }] },
+        { "prompt": "Noem de vier manieren waarop een trein aangedreven kan worden.", "answers": [{ "text": "Stoom" }, { "text": "Diesel" }, { "text": "Elektriciteit", "aliases": ["Elektrisch", "Stroom"] }, { "text": "Waterstof" }] },
+        { "prompt": "Noem de vier merken hogesnelheidstreinen van Frankrijk, Duitsland, Spanje en Italie.", "answers": [{ "text": "TGV" }, { "text": "ICE", "aliases": ["InterCity Express"] }, { "text": "AVE" }, { "text": "Frecciarossa", "aliases": ["Freccia"] }] },
+        { "prompt": "Noem de vier Londense stations op het Britse Monopoly-bord.", "answers": [{ "text": "King's Cross", "aliases": ["Kings Cross"] }, { "text": "Marylebone" }, { "text": "Fenchurch Street", "aliases": ["Fenchurch"] }, { "text": "Liverpool Street" }] },
+        { "prompt": "Noem de vier landen waar een Eurostar-reiziger doorheen komt tussen Londen en Amsterdam.", "answers": [{ "text": "Het Verenigd Koninkrijk", "aliases": ["Verenigd Koninkrijk", "Engeland", "Groot-Brittannie"] }, { "text": "Frankrijk" }, { "text": "Belgie" }, { "text": "Nederland" }] },
+        { "prompt": "Noem de vier landen met de meeste kilometers spoor ter wereld.", "answers": [{ "text": "De Verenigde Staten", "aliases": ["Verenigde Staten", "Amerika", "VS"] }, { "text": "China" }, { "text": "Rusland" }, { "text": "India" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel spoorstaven heeft een gewoon spoor?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Hoe heet de treindienst tussen Londen en Parijs door de Kanaaltunnel?", "difficulty": "easy", "answers": [{ "text": "Eurostar" }] },
+        { "prompt": "Welke kleur sein zegt tegen een trein dat hij mag rijden?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Wat moet je kopen voordat je in de trein mag stappen?", "difficulty": "easy", "answers": [{ "text": "Een kaartje", "aliases": ["Kaartje", "Treinkaartje", "Vervoerbewijs"] }] },
+        { "prompt": "Welk dier trok de wagens op de vroegste spoorwegen, voor de stoom?", "difficulty": "easy", "answers": [{ "text": "Het paard", "aliases": ["Paard", "Paarden"] }] },
+        { "prompt": "Hoe heet de beugel op het dak van een elektrische trein die stroom van de bovenleiding haalt?", "difficulty": "hard", "answers": [{ "text": "De stroomafnemer", "aliases": ["Stroomafnemer", "Pantograaf"] }] },
+        { "prompt": "Hoe heet de Nederlandse hogesnelheidslijn tussen Amsterdam en de Belgische grens?", "difficulty": "hard", "answers": [{ "text": "HSL-Zuid", "aliases": ["HSL Zuid", "Hogesnelheidslijn Zuid"] }] },
+        { "prompt": "Welke Tibetaanse stad is het eindpunt van de hoogste spoorlijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "Lhasa" }] },
+        { "prompt": "Welke Zwitserse bergspoorlijn klimt naar het hoogste station van Europa?", "difficulty": "hard", "answers": [{ "text": "De Jungfraubahn", "aliases": ["Jungfraubahn", "Jungfraujochbahn"] }] },
+        { "prompt": "Welke organisatie beheert en onderhoudt het spoor in Nederland?", "difficulty": "hard", "answers": [{ "text": "ProRail" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke twee Engelse plaatsen verbond de eerste openbare stoomspoorlijn van 1825?", "answers": [{ "text": "Stockton en Darlington", "aliases": ["Darlington en Stockton", "Stockton and Darlington"] }] },
+        { "prompt": "Welke locomotief won in 1829 de Rainhill Trials?", "answers": [{ "text": "De Rocket", "aliases": ["Rocket", "Stephensons Rocket"] }] },
+        { "prompt": "Welke Italiaanse spoorwegmaatschappij rijdt met de Frecciarossa?", "answers": [{ "text": "Trenitalia" }] },
+        { "prompt": "Hoe noem je een spoorlijn met een kleinere spoorwijdte dan de standaard?", "answers": [{ "text": "Smalspoor", "aliases": ["Smalspoorlijn"] }] },
+        { "prompt": "Welke Duitse stad heeft het grootste station van Europa qua vloeroppervlak?", "answers": [{ "text": "Leipzig" }] },
+        { "prompt": "Hoe heet de Belgische nationale spoorwegmaatschappij in het Nederlands?", "answers": [{ "text": "NMBS", "aliases": ["SNCB", "Nationale Maatschappij der Belgische Spoorwegen"] }] },
+        { "prompt": "Welke ingenieur, beroemd om zijn hoge hoed, bouwde de Great Western Railway in Groot-Brittannie?", "answers": [{ "text": "Isambard Kingdom Brunel", "aliases": ["Brunel"] }] }
+      ]
+    }
+  ]
+}

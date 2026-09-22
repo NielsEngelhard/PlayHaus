@@ -1,0 +1,136 @@
+{
+  "slug": "japan",
+  "title": "Japan",
+  "description": "Een hele pubquiz over Japan: de eilanden, de geschiedenis, het eten en de cultuur.",
+  "publishedAt": "2026-08-28",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Japan?", "category": "Aardrijkskunde", "answers": [{ "text": "Tokio", "aliases": ["Tokyo"] }] },
+        { "prompt": "Welke berg is de hoogste van Japan?", "category": "Aardrijkskunde", "answers": [{ "text": "De Fuji", "aliases": ["Fuji", "Fujiyama", "Mount Fuji", "Berg Fuji"] }] },
+        { "prompt": "Hoe heet de munteenheid van Japan?", "category": "Geld", "answers": [{ "text": "De yen", "aliases": ["yen"] }] },
+        { "prompt": "Welk Japans gerecht bestaat uit rijst met azijn, belegd of gerold met rauwe vis?", "category": "Eten", "answers": [{ "text": "Sushi" }] },
+        { "prompt": "Welke Japanse worstelsport wordt beoefend in een ring die dohyo heet?", "category": "Sport", "answers": [{ "text": "Sumo", "aliases": ["sumoworstelen"] }] },
+        { "prompt": "Hoe heet de Japanse kunst van het bloemschikken?", "category": "Kunst", "answers": [{ "text": "Ikebana" }] },
+        { "prompt": "Wat is het Japanse woord voor een lunchtrommel met vakjes?", "category": "Eten", "answers": [{ "text": "Bento", "aliases": ["bentobox"] }] },
+        { "prompt": "De Japanse vlag toont een rode schijf op een wit veld. Waar staat die schijf voor?", "category": "De vlag", "answers": [{ "text": "De zon", "aliases": ["zon", "de opkomende zon"] }] },
+        { "prompt": "Welke Japanse stad staat bekend om de wijk Dotonbori en om het straatvoedsel?", "category": "Steden", "answers": [{ "text": "Osaka" }] },
+        { "prompt": "Welke Japanse alcoholische drank wordt gebrouwen van rijst?", "category": "Drank", "answers": [{ "text": "Sake", "aliases": ["nihonshu"] }] },
+        { "prompt": "Op welke Japanse stad viel op 6 augustus 1945 een atoombom?", "category": "Geschiedenis", "answers": [{ "text": "Hiroshima" }] },
+        { "prompt": "Welk traditioneel Japans gewaad heeft wijde mouwen en wordt dichtgebonden met een obi?", "category": "Kleding", "answers": [{ "text": "De kimono", "aliases": ["kimono"] }] },
+        { "prompt": "De bloesem van welke boom trekt elk voorjaar drommen mensen naar de Japanse parken?", "category": "Natuur", "answers": [{ "text": "De kersenboom", "aliases": ["kers", "kersenboom", "kersenbloesem", "sakura"] }] },
+        { "prompt": "Hoe worden Japanse strips genoemd?", "category": "Strips", "answers": [{ "text": "Manga" }] },
+        { "prompt": "Welke Japanse vechtsport heeft een naam die lege hand betekent?", "category": "Sport", "answers": [{ "text": "Karate" }] },
+        { "prompt": "Welke Japanse autofabrikant bouwt de Corolla?", "category": "Auto's", "answers": [{ "text": "Toyota" }] },
+        { "prompt": "Welk Japans gerecht bestaat uit zeevruchten en groenten in een luchtig beslag, gefrituurd?", "category": "Eten", "answers": [{ "text": "Tempura" }] },
+        { "prompt": "Welke stad was van 794 tot 1868 de keizerlijke hoofdstad van Japan?", "category": "Geschiedenis", "answers": [{ "text": "Kyoto" }] },
+        { "prompt": "Welk reuzenmonster verscheen in 1954 voor het eerst in een Japanse film?", "category": "Film", "answers": [{ "text": "Godzilla", "aliases": ["Gojira"] }] },
+        { "prompt": "Hoe wordt Japanse animatie in het algemeen genoemd?", "category": "Televisie", "answers": [{ "text": "Anime" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar hield Tokio voor het eerst de Olympische Zomerspelen?", "options": [{ "text": "1956" }, { "text": "1960" }, { "text": "1964", "correct": true }, { "text": "1968" }] },
+        { "prompt": "Welke Japanse stad hield de Olympische Winterspelen van 1998?", "options": [{ "text": "Nagano", "correct": true }, { "text": "Sendai" }, { "text": "Niigata" }, { "text": "Nagoya" }] },
+        { "prompt": "Welke Japanse schrijver won in 1968 de Nobelprijs voor Literatuur?", "options": [{ "text": "Yasunari Kawabata", "correct": true }, { "text": "Yukio Mishima" }, { "text": "Kenzaburo Oe" }, { "text": "Haruki Murakami" }] },
+        { "prompt": "Welke periode uit de Japanse geschiedenis liep van 1603 tot 1868?", "options": [{ "text": "De Edoperiode", "correct": true }, { "text": "De Heianperiode" }, { "text": "De Kamakuraperiode" }, { "text": "De Muromachiperiode" }] },
+        { "prompt": "In welk jaar bereikte commodore Matthew Perry met zijn zwarte schepen voor het eerst Japan?", "options": [{ "text": "1803" }, { "text": "1853", "correct": true }, { "text": "1868" }, { "text": "1894" }] },
+        { "prompt": "Welke Japanse regisseur won in 2018 de Gouden Palm met de film Shoplifters?", "options": [{ "text": "Hirokazu Kore-eda", "correct": true }, { "text": "Takeshi Kitano" }, { "text": "Naomi Kawase" }, { "text": "Shinya Tsukamoto" }] },
+        { "prompt": "Welk Japans gerecht bestaat uit gefermenteerde sojabonen en staat bekend om de kleverige draden?", "options": [{ "text": "Natto", "correct": true }, { "text": "Tofu" }, { "text": "Edamame" }, { "text": "Mochi" }] },
+        { "prompt": "Welke hartige pannenkoek is een specialiteit van zowel Osaka als Hiroshima?", "options": [{ "text": "Okonomiyaki", "correct": true }, { "text": "Takoyaki" }, { "text": "Yakitori" }, { "text": "Onigiri" }] },
+        { "prompt": "Welke Japanse eilandengroep bleef tot 1972 onder Amerikaans bestuur?", "options": [{ "text": "Okinawa", "correct": true }, { "text": "Sado" }, { "text": "Awaji" }, { "text": "Yakushima" }] },
+        { "prompt": "Welke Japanse vechtsport wordt beoefend met bamboezwaarden en beschermend harnas?", "options": [{ "text": "Kendo", "correct": true }, { "text": "Aikido" }, { "text": "Kyudo" }, { "text": "Iaido" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Fuji?", "answer": 3776, "unit": "meter", "explanation": "De Fuji barstte voor het laatst uit in 1707 en is sindsdien stil." },
+        { "prompt": "Hoeveel prefecturen telt Japan?", "answer": 47, "unit": "prefecturen" },
+        { "prompt": "In welk jaar gaf de Meiji-restauratie de macht terug aan de keizer?", "answer": 1868 },
+        { "prompt": "Hoeveel meter hoog is de Tokyo Tower?", "answer": 333, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Seikantunnel?", "answer": 54, "unit": "kilometer", "explanation": "Hij loopt onder de Straat Tsugaru door en was tot 2016 de langste spoortunnel ter wereld." },
+        { "prompt": "In welk jaar legde de grote aardbeving van Kanto een groot deel van Tokio en Yokohama plat?", "answer": 1923 },
+        { "prompt": "Uit hoeveel lettergrepen bestaat een traditionele haiku in totaal?", "answer": 17, "unit": "lettergrepen" },
+        { "prompt": "Hoeveel snaren heeft een shamisen?", "answer": 3, "unit": "snaren" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Rotstuin",
+        "Eetstokjes",
+        "Ninja",
+        "Geisha",
+        "Taikotrom",
+        "Rijstbal",
+        "Rijstveld",
+        "Mondkapje",
+        "Gelukskat",
+        "Papieren kraanvogel",
+        "Pagode",
+        "Torii-poort",
+        "Koikarper",
+        "Bamboe",
+        "Waaier",
+        "Papieren lampion",
+        "Chrysant",
+        "Wasabi",
+        "Sojasaus",
+        "Groene thee",
+        "Hogesnelheidstrein",
+        "Schuifdeur",
+        "Tatamimat",
+        "Warmwaterbron",
+        "Sneeuwaap",
+        "Robot",
+        "Kalligrafiepenseel",
+        "Emoji",
+        "Vismarkt",
+        "Houten sandalen"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier hoofdeilanden van Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
+        { "prompt": "Noem de vier zeeen en oceanen rond Japan.", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan"] }, { "text": "De Japanse Zee", "aliases": ["Japanse Zee"] }, { "text": "De Oost-Chinese Zee", "aliases": ["Oost-Chinese Zee"] }, { "text": "De Zee van Ochotsk", "aliases": ["Zee van Ochotsk", "Ochotsk"] }] },
+        { "prompt": "Noem de vier schriftsystemen waarmee Japans wordt geschreven.", "answers": [{ "text": "Kanji" }, { "text": "Hiragana" }, { "text": "Katakana" }, { "text": "Romaji" }] },
+        { "prompt": "Noem de vier Japanse keizerlijke tijdperken tussen 1868 en 2019.", "answers": [{ "text": "Meiji" }, { "text": "Taisho" }, { "text": "Showa" }, { "text": "Heisei" }] },
+        { "prompt": "Noem de vier standen van de maatschappelijke orde in Japan tijdens de Edoperiode.", "answers": [{ "text": "Samoerai", "aliases": ["samurai", "krijgers"] }, { "text": "Boeren" }, { "text": "Ambachtslieden", "aliases": ["ambachtslui", "handwerkslieden"] }, { "text": "Kooplieden", "aliases": ["handelaren"] }] },
+        { "prompt": "Noem de vier traditionele vormen van het klassieke Japanse theater.", "answers": [{ "text": "Noh" }, { "text": "Kabuki" }, { "text": "Bunraku", "aliases": ["poppentheater"] }, { "text": "Kyogen" }] },
+        { "prompt": "Noem de vier prefecturen op het eiland Shikoku.", "answers": [{ "text": "Tokushima" }, { "text": "Kagawa" }, { "text": "Ehime" }, { "text": "Kochi" }] },
+        { "prompt": "Noem de vier bekendste soorten Japanse noedels.", "answers": [{ "text": "Ramen" }, { "text": "Udon" }, { "text": "Soba" }, { "text": "Somen" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet rauwe vis die in Japan zonder rijst wordt geserveerd?", "difficulty": "easy", "answers": [{ "text": "Sashimi" }] },
+        { "prompt": "Hoe heet de Japanse kunst van het kweken van miniatuurboompjes in potten?", "difficulty": "easy", "answers": [{ "text": "Bonsai" }] },
+        { "prompt": "Wat is het Japanse woord voor dank je wel?", "difficulty": "easy", "answers": [{ "text": "Arigato", "aliases": ["arigatou", "arigato gozaimasu", "domo arigato"] }] },
+        { "prompt": "Welk Japans bordspel wordt gespeeld met zwarte en witte stenen op een raster van lijnen?", "difficulty": "easy", "answers": [{ "text": "Go", "aliases": ["igo"] }] },
+        { "prompt": "Wat is het Japanse woord voor een verwoestende vloedgolf na een zeebeving?", "difficulty": "easy", "answers": [{ "text": "Tsunami" }] },
+        { "prompt": "Welk verdrag uit 1854 stelde twee Japanse havens open voor Amerikaanse schepen?", "difficulty": "hard", "answers": [{ "text": "Het Verdrag van Kanagawa", "aliases": ["Verdrag van Kanagawa", "Conventie van Kanagawa", "Kanagawa"] }] },
+        { "prompt": "Welke krijgsheer werd in 1603 shogun en stichtte het geslacht dat Japan tot 1868 bestuurde?", "difficulty": "hard", "answers": [{ "text": "Tokugawa Ieyasu", "aliases": ["Ieyasu", "Tokugawa"] }] },
+        { "prompt": "Wat is de Japanse term voor een samoerai zonder meester?", "difficulty": "hard", "answers": [{ "text": "Ronin" }] },
+        { "prompt": "Hoe heet de Japanse theeceremonie?", "difficulty": "hard", "answers": [{ "text": "Chanoyu", "aliases": ["sado", "chado"] }] },
+        { "prompt": "Hoe heet het nationale parlement van Japan?", "difficulty": "hard", "answers": [{ "text": "De Diet", "aliases": ["Diet", "Nationale Diet", "Kokkai"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Japanse hofdame schreef rond het jaar 1000 Het verhaal van Genji?", "answers": [{ "text": "Murasaki Shikibu", "aliases": ["Murasaki", "Shikibu"] }] },
+        { "prompt": "Welke naam kregen de tyfoons die in 1274 en 1281 de Mongoolse invasievloten vernietigden?", "answers": [{ "text": "Kamikaze", "aliases": ["goddelijke wind"] }] },
+        { "prompt": "Op welk kunstmatige eiland in de haven van Nagasaki zaten de Nederlandse handelaren tijdens het Japanse isolement?", "answers": [{ "text": "Deshima", "aliases": ["Dejima"] }] },
+        { "prompt": "Wat is de Japanse naam voor het beleid van nationale afzondering dat duurde van de jaren 1630 tot 1853?", "answers": [{ "text": "Sakoku" }] },
+        { "prompt": "Welke stad was van 710 tot 784 de hoofdstad van Japan?", "answers": [{ "text": "Nara" }] },
+        { "prompt": "Welke Japanse natuurkundige werd in 1949 de eerste Nobelprijswinnaar van zijn land?", "answers": [{ "text": "Hideki Yukawa", "aliases": ["Yukawa"] }] },
+        { "prompt": "Van welke zonnegodin uit het shintoisme zou de keizerlijke familie afstammen?", "answers": [{ "text": "Amaterasu" }] }
+      ]
+    }
+  ]
+}

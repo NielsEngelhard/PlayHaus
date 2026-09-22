@@ -1,0 +1,136 @@
+{
+  "slug": "australia",
+  "title": "Australie",
+  "description": "Een hele pubquiz over Australie: de steden en staten, de dieren, de geschiedenis en de iconen.",
+  "publishedAt": "2026-08-27",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke stad werd in 1927 de zetel van het Australische parlement, als compromis tussen Sydney en Melbourne?", "category": "Steden", "answers": [{ "text": "Canberra" }] },
+        { "prompt": "Welke Australische stad was in 2000 gastheer van de Olympische Zomerspelen?", "category": "Sport", "answers": [{ "text": "Sydney" }] },
+        { "prompt": "Welke enorme zandsteenrots in het rode hart van Australie heette lange tijd Ayers Rock?", "category": "Bezienswaardigheden", "answers": [{ "text": "Uluru", "aliases": ["Ayers Rock"] }] },
+        { "prompt": "Welk gebouw in Sydney is beroemd om zijn witte daken in de vorm van zeilen?", "category": "Bezienswaardigheden", "answers": [{ "text": "Het Sydney Opera House", "aliases": ["Sydney Opera House", "Opera House", "Het Opera House in Sydney"] }] },
+        { "prompt": "Hoe heet het grootste koraalrif ter wereld, voor de kust van Queensland?", "category": "Natuur", "answers": [{ "text": "Het Groot Barriererif", "aliases": ["Groot Barriererif"] }] },
+        { "prompt": "Welke wilde hond zwerft door de Australische bush?", "category": "Dieren", "answers": [{ "text": "De dingo", "aliases": ["dingo"] }] },
+        { "prompt": "Welke grote loopvogel staat samen met de kangoeroe op het wapen van Australie?", "category": "Dieren", "answers": [{ "text": "De emoe", "aliases": ["emoe"] }] },
+        { "prompt": "Welk lang houten blaasinstrument wordt van oudsher door Aboriginals bespeeld?", "category": "Cultuur", "answers": [{ "text": "De didgeridoo", "aliases": ["didgeridoo"] }] },
+        { "prompt": "Welk gebogen houten werphout komt terug naar de werper?", "category": "Cultuur", "answers": [{ "text": "De boemerang", "aliases": ["boemerang"] }] },
+        { "prompt": "De bladeren van welke boom vormen bijna het hele menu van de koala?", "category": "Natuur", "answers": [{ "text": "De eucalyptus", "aliases": ["eucalyptus", "gomboom"] }] },
+        { "prompt": "Hoe heet de nationale luchtvaartmaatschappij van Australie?", "category": "Dagelijks leven", "answers": [{ "text": "Qantas" }] },
+        { "prompt": "Hoe heet de munteenheid van Australie?", "category": "Dagelijks leven", "answers": [{ "text": "De Australische dollar", "aliases": ["Australische dollar", "dollar"] }] },
+        { "prompt": "Welke Britse ontdekkingsreiziger bracht in 1770 de oostkust van Australie in kaart en claimde die voor Groot-Brittannie?", "category": "Geschiedenis", "answers": [{ "text": "James Cook", "aliases": ["Kapitein Cook", "Cook"] }] },
+        { "prompt": "Welke Australische zangeres scoorde in 2001 een wereldhit met Can't Get You Out of My Head?", "category": "Muziek", "answers": [{ "text": "Kylie Minogue", "aliases": ["Kylie"] }] },
+        { "prompt": "Welke Australische acteur speelt Thor in de Marvel-films?", "category": "Film", "answers": [{ "text": "Chris Hemsworth", "aliases": ["Hemsworth"] }] },
+        { "prompt": "Welke Australische staat is een eiland ten zuiden van het vasteland?", "category": "Aardrijkskunde", "answers": [{ "text": "Tasmanie" }] },
+        { "prompt": "Hoe wordt het uitgestrekte droge binnenland van Australie genoemd?", "category": "Aardrijkskunde", "answers": [{ "text": "De outback", "aliases": ["outback"] }] },
+        { "prompt": "Welke Australische band scoorde begin jaren tachtig een wereldhit met Down Under?", "category": "Muziek", "answers": [{ "text": "Men at Work" }] },
+        { "prompt": "Om welke sport staat Bondi Beach in Sydney het meest bekend?", "category": "Sport", "answers": [{ "text": "Surfen", "aliases": ["Surfing", "Golfsurfen"] }] },
+        { "prompt": "Welke oceaan ligt voor de westkust van Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Indische Oceaan", "aliases": ["Indische Oceaan"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar sloten de Australische kolonies zich aaneen tot een gemenebest?", "options": [{ "text": "1861" }, { "text": "1901", "correct": true }, { "text": "1931" }, { "text": "1945" }] },
+        { "prompt": "Welke Nederlandse zeevaarder zette in 1606 als eerste bekende Europeaan voet op het Australische vasteland?", "options": [{ "text": "Willem Janszoon", "correct": true }, { "text": "Abel Tasman" }, { "text": "Dirk Hartog" }, { "text": "Willem Barentsz" }] },
+        { "prompt": "Welke stad is de hoofdstad van Tasmanie?", "options": [{ "text": "Hobart", "correct": true }, { "text": "Launceston" }, { "text": "Devonport" }, { "text": "Geelong" }] },
+        { "prompt": "In welke staat of welk territorium staat Uluru?", "options": [{ "text": "Het Northern Territory", "correct": true }, { "text": "West-Australie" }, { "text": "Zuid-Australie" }, { "text": "Queensland" }] },
+        { "prompt": "In welk jaar verving Australie het pond door de dollar?", "options": [{ "text": "1949" }, { "text": "1966", "correct": true }, { "text": "1975" }, { "text": "1984" }] },
+        { "prompt": "Wat is de grootste woestijn van Australie?", "options": [{ "text": "De Grote Victoriawoestijn", "correct": true }, { "text": "De Simpsonwoestijn" }, { "text": "De Grote Zandwoestijn" }, { "text": "De Gibsonwoestijn" }] },
+        { "prompt": "In welk jaar werd het Sydney Opera House geopend?", "options": [{ "text": "1962" }, { "text": "1973", "correct": true }, { "text": "1981" }, { "text": "1988" }] },
+        { "prompt": "Hoe heet het lagerhuis van het Australische federale parlement?", "options": [{ "text": "Het Huis van Afgevaardigden", "correct": true }, { "text": "Het Lagerhuis" }, { "text": "De Wetgevende Raad" }, { "text": "De Nationale Vergadering" }] },
+        { "prompt": "Welke stad is de hoofdstad van het Northern Territory?", "options": [{ "text": "Darwin", "correct": true }, { "text": "Alice Springs" }, { "text": "Broome" }, { "text": "Townsville" }] },
+        { "prompt": "Welke Australier werd in 1980 wereldkampioen Formule 1?", "options": [{ "text": "Alan Jones", "correct": true }, { "text": "Jack Brabham" }, { "text": "Mark Webber" }, { "text": "Daniel Ricciardo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel staten telt Australie, de territoria niet meegerekend?", "answer": 6, "unit": "staten", "explanation": "Naast de zes staten liggen op het vasteland nog twee territoria: het Northern Territory en het Australian Capital Territory." },
+        { "prompt": "Hoeveel meter hoog is Mount Kosciuszko, de hoogste berg van Australie?", "answer": 2228, "unit": "meter" },
+        { "prompt": "In welk jaar werd de Sydney Harbour Bridge geopend?", "answer": 1932 },
+        { "prompt": "Hoeveel tijdzones kent het Australische vasteland?", "answer": 3, "unit": "tijdzones" },
+        { "prompt": "In welk jaar kregen vrouwen in Australie stemrecht bij federale verkiezingen?", "answer": 1902, "explanation": "Nieuw-Zeeland was negen jaar eerder, in 1893." },
+        { "prompt": "Hoeveel spelers per ploeg staan er bij Australian football op het veld?", "answer": 18, "unit": "spelers" },
+        { "prompt": "In welk jaar werd Uluru teruggegeven aan de Aboriginals die er van oudsher wonen?", "answer": 1985 },
+        { "prompt": "Hoe vaak zijn de Olympische Zomerspelen tot nu toe in Australie gehouden?", "answer": 2, "unit": "keer" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Koala",
+        "Didgeridoo",
+        "Vogelbekdier",
+        "Uluru",
+        "Sydney Opera House",
+        "Emoe",
+        "Wombat",
+        "Dingo",
+        "Kookaburra",
+        "Wallaby",
+        "Mierenegel",
+        "Tasmaanse duivel",
+        "Reuzenpad",
+        "Eucalyptus",
+        "Vegemite",
+        "Lamington",
+        "Pavlova",
+        "Vleespastei",
+        "Surfplank",
+        "Bondi Beach",
+        "Harbour Bridge",
+        "Kurkenhoed",
+        "Road train",
+        "Schapen scheren",
+        "Opaal",
+        "Steve Irwin",
+        "Bosbrand",
+        "Billabong",
+        "Zuiderkruis",
+        "Crocodile Dundee"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier grootste staten van Australie qua oppervlakte.", "answers": [{ "text": "West-Australie" }, { "text": "Queensland" }, { "text": "Zuid-Australie" }, { "text": "Nieuw-Zuid-Wales" }] },
+        { "prompt": "Noem de vier landen die over zee het dichtst bij Australie liggen.", "answers": [{ "text": "Papoea-Nieuw-Guinea" }, { "text": "Indonesie" }, { "text": "Oost-Timor", "aliases": ["Timor-Leste"] }, { "text": "Nieuw-Zeeland" }] },
+        { "prompt": "Noem de vier hoofdsteden van de Australische staten op het vasteland, Sydney niet meegerekend.", "answers": [{ "text": "Melbourne" }, { "text": "Brisbane" }, { "text": "Perth" }, { "text": "Adelaide" }] },
+        { "prompt": "Noem de vier Australische dieren die hier beschreven worden: een eierleggend zoogdier met een eendenbek, een stekelige eierleggende miereneter, een buideldier dat in eucalyptusbomen leeft en een gedrongen buideldier dat holen graaft.", "answers": [{ "text": "Het vogelbekdier", "aliases": ["vogelbekdier"] }, { "text": "De mierenegel", "aliases": ["mierenegel", "echidna"] }, { "text": "De koala", "aliases": ["koala"] }, { "text": "De wombat", "aliases": ["wombat"] }] },
+        { "prompt": "Noem de vier zeeen voor de noord- en oostkust van Australie.", "answers": [{ "text": "De Timorzee", "aliases": ["Timorzee"] }, { "text": "De Arafurazee", "aliases": ["Arafurazee"] }, { "text": "De Koraalzee", "aliases": ["Koraalzee"] }, { "text": "De Tasmanzee", "aliases": ["Tasmanzee", "Tasmanse Zee"] }] },
+        { "prompt": "Noem de vier Australische vogels die hier beschreven worden: een lachende ijsvogel, een witte kaketoe met kuif, een roze met grijze papegaai en een vogel die bijna elk geluid nadoet.", "answers": [{ "text": "De kookaburra", "aliases": ["kookaburra", "lachvogel"] }, { "text": "De kaketoe", "aliases": ["kaketoe", "geelkuifkaketoe"] }, { "text": "De galah", "aliases": ["galah", "roze kaketoe"] }, { "text": "De leiervogel", "aliases": ["leiervogel"] }] },
+        { "prompt": "Noem de vier klassieke Australische lekkernijen: een donker gistextract voor op brood, een klein cakeje met kokos, een meringuetaart met slagroom en fruit, en een handzaam pasteitje met gehakt.", "answers": [{ "text": "Vegemite" }, { "text": "Lamington" }, { "text": "Pavlova" }, { "text": "De meat pie", "aliases": ["meat pie", "vleespastei"] }] },
+        { "prompt": "Noem de vier langste rivieren van Australie.", "answers": [{ "text": "De Murray", "aliases": ["Murray"] }, { "text": "De Murrumbidgee", "aliases": ["Murrumbidgee"] }, { "text": "De Darling", "aliases": ["Darling"] }, { "text": "De Lachlan", "aliases": ["Lachlan"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk springend dier is het bekendste symbool van Australie?", "difficulty": "easy", "answers": [{ "text": "De kangoeroe", "aliases": ["kangoeroe"] }] },
+        { "prompt": "Welke twee kleuren dragen de Australische nationale sportploegen?", "difficulty": "easy", "answers": [{ "text": "Groen en goud", "aliases": ["Groen en geel", "Goud en groen"] }] },
+        { "prompt": "Welke oceaan ligt voor de oostkust van Australie?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan"] }] },
+        { "prompt": "De vlag van welk land staat in de hoek van de Australische vlag?", "difficulty": "easy", "answers": [{ "text": "Het Verenigd Koninkrijk", "aliases": ["Groot-Brittannie", "Engeland", "De Union Jack"] }] },
+        { "prompt": "Op welk halfrond ligt Australie?", "difficulty": "easy", "answers": [{ "text": "Het zuidelijk halfrond", "aliases": ["zuidelijk halfrond", "zuiden"] }] },
+        { "prompt": "Hoe heet de spirituele scheppingswereld uit de verhalen van de Aboriginals?", "difficulty": "hard", "answers": [{ "text": "De Droomtijd", "aliases": ["Droomtijd", "Dreamtime", "The Dreaming"] }] },
+        { "prompt": "Welke boomloze vlakte, waarvan de naam geen bomen betekent, wordt doorkruist door het langste rechte stuk spoor ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Nullarborvlakte", "aliases": ["Nullarbor", "Nullarborvlakte"] }] },
+        { "prompt": "Welke Australische premier verdween in 1967 tijdens het zwemmen in zee?", "difficulty": "hard", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] },
+        { "prompt": "Hoe heet de vloot van elf schepen die in 1788 de eerste veroordeelden naar Australie bracht?", "difficulty": "hard", "answers": [{ "text": "De First Fleet", "aliases": ["First Fleet", "Eerste Vloot"] }] },
+        { "prompt": "Welk gebergte scheidt de oostkust van Australie van het binnenland?", "difficulty": "hard", "answers": [{ "text": "De Great Dividing Range", "aliases": ["Great Dividing Range", "Australisch Scheidingsgebergte"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Deense architect ontwierp het Sydney Opera House?", "answers": [{ "text": "Jorn Utzon", "aliases": ["Utzon"] }] },
+        { "prompt": "Welke bushranger, in 1880 opgehangen, leverde zijn laatste gevecht in een zelfgemaakt harnas van ijzeren platen?", "answers": [{ "text": "Ned Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "In welk jaar begon de Australische goldrush in Nieuw-Zuid-Wales en Victoria?", "answers": [{ "text": "1851" }] },
+        { "prompt": "Welk uitgestrekte zoutmeer in Zuid-Australie staat meestal droog en loopt maar zelden vol water?", "answers": [{ "text": "Lake Eyre", "aliases": ["Eyre", "Het Eyremeer", "Kati Thanda"] }] },
+        { "prompt": "Welke Australische schrijfster schreef de roman The Thorn Birds, in het Nederlands Dorens in de wind?", "answers": [{ "text": "Colleen McCullough", "aliases": ["McCullough"] }] },
+        { "prompt": "Welke Australische zwemmer won drie gouden medailles op de Olympische Spelen van 2000?", "answers": [{ "text": "Ian Thorpe", "aliases": ["Thorpe", "Thorpedo"] }] },
+        { "prompt": "Welke Australische schrijver won in 1973 de Nobelprijs voor Literatuur?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] }
+      ]
+    }
+  ]
+}

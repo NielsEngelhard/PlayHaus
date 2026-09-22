@@ -1,0 +1,136 @@
+{
+  "slug": "rock-music",
+  "title": "Rockmuziek",
+  "description": "Een hele pubquiz over rockmuziek: bands, albums, gitaristen en festivals.",
+  "publishedAt": "2026-09-14",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Britse band bracht in 1979 het album The Wall uit?", "category": "Albums", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Wie was de zanger van Queen?", "category": "Zangers", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury"] }] },
+        { "prompt": "Welke band nam Whole Lotta Love op?", "category": "Nummers", "answers": [{ "text": "Led Zeppelin", "aliases": ["Zeppelin"] }] },
+        { "prompt": "Welke gitarist nam Purple Haze op?", "category": "Gitaristen", "answers": [{ "text": "Jimi Hendrix", "aliases": ["Hendrix"] }] },
+        { "prompt": "Welke Ierse band heeft Bono als zanger?", "category": "Bands", "answers": [{ "text": "U2" }] },
+        { "prompt": "Welke band bracht in 1966 het album Revolver uit?", "category": "Albums", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
+        { "prompt": "Welke Australische band nam Back in Black op?", "category": "Bands", "answers": [{ "text": "AC/DC", "aliases": ["ACDC", "AC DC"] }] },
+        { "prompt": "Welke Amerikaanse band werd geleid door Kurt Cobain?", "category": "Bands", "answers": [{ "text": "Nirvana" }] },
+        { "prompt": "Welk festival werd in augustus 1969 gehouden op een boerderij in de staat New York?", "category": "Festivals", "answers": [{ "text": "Woodstock" }] },
+        { "prompt": "Welke Nederlandse band scoorde een hit met Twilight Zone?", "category": "Nederlandse rock", "answers": [{ "text": "Golden Earring" }] },
+        { "prompt": "In welke band drumt Lars Ulrich?", "category": "Bands", "answers": [{ "text": "Metallica" }] },
+        { "prompt": "Wie is de zanger van The Rolling Stones?", "category": "Zangers", "answers": [{ "text": "Mick Jagger", "aliases": ["Jagger"] }] },
+        { "prompt": "Welke band bracht in 1975 het album A Night at the Opera uit?", "category": "Nummers", "answers": [{ "text": "Queen" }] },
+        { "prompt": "Welke Amerikaanse zanger staat bekend als The Boss?", "category": "Zangers", "answers": [{ "text": "Bruce Springsteen", "aliases": ["Springsteen"] }] },
+        { "prompt": "Welke band nam Hotel California op?", "category": "Nummers", "answers": [{ "text": "The Eagles", "aliases": ["Eagles"] }] },
+        { "prompt": "Welke Britse gitarist had de bijnaam Slowhand?", "category": "Gitaristen", "answers": [{ "text": "Eric Clapton", "aliases": ["Clapton"] }] },
+        { "prompt": "In welke band speelt gitarist Slash?", "category": "Bands", "answers": [{ "text": "Guns N' Roses", "aliases": ["Guns and Roses", "Guns N Roses"] }] },
+        { "prompt": "Welk Nederlands rockfestival vindt rond Pinksteren plaats in Landgraaf?", "category": "Festivals", "answers": [{ "text": "Pinkpop" }] },
+        { "prompt": "Welke band bracht in 1997 het album OK Computer uit?", "category": "Albums", "answers": [{ "text": "Radiohead" }] },
+        { "prompt": "Wie was de zanger van The Doors?", "category": "Zangers", "answers": [{ "text": "Jim Morrison", "aliases": ["Morrison"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke band bracht in 1970 het album Paranoid uit?", "options": [{ "text": "Black Sabbath", "correct": true }, { "text": "Uriah Heep" }, { "text": "Free" }, { "text": "Ten Years After" }] },
+        { "prompt": "In welk jaar brachten The Beatles Sgt. Pepper's Lonely Hearts Club Band uit?", "options": [{ "text": "1965" }, { "text": "1966" }, { "text": "1967", "correct": true }, { "text": "1969" }] },
+        { "prompt": "Welke band nam de rockopera Tommy op?", "options": [{ "text": "The Who", "correct": true }, { "text": "The Kinks" }, { "text": "Small Faces" }, { "text": "The Yardbirds" }] },
+        { "prompt": "Van welke band was Ten uit 1991 het debuutalbum?", "options": [{ "text": "Pearl Jam", "correct": true }, { "text": "Alice in Chains" }, { "text": "Stone Temple Pilots" }, { "text": "Mother Love Bone" }] },
+        { "prompt": "In welke Engelse stad werd de band Oasis opgericht?", "options": [{ "text": "Manchester", "correct": true }, { "text": "Birmingham" }, { "text": "Leeds" }, { "text": "Sheffield" }] },
+        { "prompt": "Welke band wordt geleid door Dave Grohl?", "options": [{ "text": "Foo Fighters", "correct": true }, { "text": "Queens of the Stone Age" }, { "text": "Weezer" }, { "text": "Green Day" }] },
+        { "prompt": "Welke band bracht in 1977 het album Rumours uit?", "options": [{ "text": "Fleetwood Mac", "correct": true }, { "text": "Steely Dan" }, { "text": "The Doobie Brothers" }, { "text": "Crosby, Stills and Nash" }] },
+        { "prompt": "Wie was de zanger van Joy Division?", "options": [{ "text": "Ian Curtis", "correct": true }, { "text": "Mark E. Smith" }, { "text": "Robert Smith" }, { "text": "Morrissey" }] },
+        { "prompt": "Welke band uit Seattle had Chris Cornell als zanger?", "options": [{ "text": "Soundgarden", "correct": true }, { "text": "Mudhoney" }, { "text": "Screaming Trees" }, { "text": "Temple of the Dog" }] },
+        { "prompt": "Welk festival wordt gehouden op Worthy Farm in Somerset?", "options": [{ "text": "Glastonbury", "correct": true }, { "text": "Reading" }, { "text": "Isle of Wight" }, { "text": "Download" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werden The Rolling Stones opgericht?", "answer": 1962 },
+        { "prompt": "Hoeveel studioalbums brachten The Beatles uit in het Verenigd Koninkrijk?", "answer": 12, "unit": "albums" },
+        { "prompt": "Hoeveel snaren heeft een gewone basgitaar?", "answer": 4, "unit": "snaren" },
+        { "prompt": "In welk jaar gaven The Beatles hun laatste openbare optreden, op een dak in Londen?", "answer": 1969 },
+        { "prompt": "Hoeveel mensen kwamen er ongeveer op Woodstock af in 1969?", "answer": 400000, "unit": "mensen", "explanation": "De boerderij was op een fractie daarvan ingericht, en daarom gingen de hekken om en werd het een gratis festival." },
+        { "prompt": "In welk jaar vonden de Live Aid-concerten plaats?", "answer": 1985 },
+        { "prompt": "Hoe oud was Jimi Hendrix toen hij overleed?", "answer": 27, "unit": "jaar", "explanation": "Janis Joplin, Jim Morrison en Kurt Cobain stierven op dezelfde leeftijd, en daar komt het idee van de Club van 27 vandaan." },
+        { "prompt": "In welk jaar werd het eerste Pinkpop gehouden?", "answer": 1970 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Elektrische gitaar",
+        "Bekken",
+        "Microfoonstandaard",
+        "Versterker",
+        "Stagedive",
+        "Gitaarsolo",
+        "Bandshirt",
+        "Festivalbandje",
+        "Moshpit",
+        "Tamboerijn",
+        "Basgitaar",
+        "Drumstokken",
+        "Crowdsurfen",
+        "Gitaarkoffer",
+        "Toegift",
+        "Backstagepas",
+        "Luchtgitaar",
+        "Headbangen",
+        "Lang haar",
+        "Gitaarband",
+        "Setlist",
+        "Concertposter",
+        "Groupie",
+        "Aansteker in de lucht",
+        "Plectrum",
+        "Cassettebandje",
+        "Platenhoes",
+        "Drumsolo",
+        "Rookmachine",
+        "Oordopjes"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier leden van The Beatles.", "answers": [{ "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "George Harrison", "aliases": ["Harrison"] }, { "text": "Ringo Starr", "aliases": ["Ringo"] }] },
+        { "prompt": "Noem de vier leden van Led Zeppelin.", "answers": [{ "text": "Robert Plant", "aliases": ["Plant"] }, { "text": "Jimmy Page", "aliases": ["Page"] }, { "text": "John Paul Jones" }, { "text": "John Bonham", "aliases": ["Bonham", "Bonzo"] }] },
+        { "prompt": "Noem de vier leden van Pink Floyd die The Dark Side of the Moon maakten.", "answers": [{ "text": "Roger Waters", "aliases": ["Waters"] }, { "text": "David Gilmour", "aliases": ["Gilmour"] }, { "text": "Nick Mason", "aliases": ["Mason"] }, { "text": "Richard Wright", "aliases": ["Rick Wright", "Wright"] }] },
+        { "prompt": "Noem de vier leden van U2.", "answers": [{ "text": "Bono" }, { "text": "The Edge", "aliases": ["Edge"] }, { "text": "Adam Clayton", "aliases": ["Clayton"] }, { "text": "Larry Mullen Jr.", "aliases": ["Larry Mullen", "Mullen"] }] },
+        { "prompt": "Noem de vier leden van The Who.", "answers": [{ "text": "Roger Daltrey", "aliases": ["Daltrey"] }, { "text": "Pete Townshend", "aliases": ["Townshend"] }, { "text": "John Entwistle", "aliases": ["Entwistle"] }, { "text": "Keith Moon", "aliases": ["Moon"] }] },
+        { "prompt": "Noem de vier leden van Coldplay.", "answers": [{ "text": "Chris Martin" }, { "text": "Jonny Buckland", "aliases": ["Buckland"] }, { "text": "Guy Berryman", "aliases": ["Berryman"] }, { "text": "Will Champion", "aliases": ["Champion"] }] },
+        { "prompt": "Noem de vier leden van Metallica die het Black Album maakten.", "answers": [{ "text": "James Hetfield", "aliases": ["Hetfield"] }, { "text": "Lars Ulrich", "aliases": ["Ulrich"] }, { "text": "Kirk Hammett", "aliases": ["Hammett"] }, { "text": "Jason Newsted", "aliases": ["Newsted"] }] },
+        { "prompt": "Noem de vier leden van de oorspronkelijke bezetting van Kiss.", "answers": [{ "text": "Gene Simmons", "aliases": ["Simmons"] }, { "text": "Paul Stanley", "aliases": ["Stanley"] }, { "text": "Ace Frehley", "aliases": ["Frehley"] }, { "text": "Peter Criss", "aliases": ["Criss"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Britse band bracht in 1995 Wonderwall uit?", "difficulty": "easy", "answers": [{ "text": "Oasis" }] },
+        { "prompt": "Welke band nam Smoke on the Water op?", "difficulty": "easy", "answers": [{ "text": "Deep Purple" }] },
+        { "prompt": "Welke Amerikaanse zanger nam Jailhouse Rock en Hound Dog op?", "difficulty": "easy", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
+        { "prompt": "Welke band heeft een rode tong met lippen als logo?", "difficulty": "easy", "answers": [{ "text": "The Rolling Stones", "aliases": ["Rolling Stones", "De Stones"] }] },
+        { "prompt": "Welke Britse band nam het nummer Yellow op?", "difficulty": "easy", "answers": [{ "text": "Coldplay" }] },
+        { "prompt": "Welke band bracht in 1979 het album London Calling uit?", "difficulty": "hard", "answers": [{ "text": "The Clash", "aliases": ["Clash"] }] },
+        { "prompt": "Welke gitarist speelde de solo op Beat It van Michael Jackson?", "difficulty": "hard", "answers": [{ "text": "Eddie Van Halen", "aliases": ["Van Halen"] }] },
+        { "prompt": "Wie was de drummer van The Beatles voordat Ringo Starr in 1962 kwam?", "difficulty": "hard", "answers": [{ "text": "Pete Best", "aliases": ["Best"] }] },
+        { "prompt": "Welk platenlabel bracht de platen van The Beatles uit in het Verenigd Koninkrijk?", "difficulty": "hard", "answers": [{ "text": "Parlophone" }] },
+        { "prompt": "Welke Nederlandse band had Mariska Veres als zangeres?", "difficulty": "hard", "answers": [{ "text": "Shocking Blue" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Duitse band bracht in 1974 het album Autobahn uit?", "answers": [{ "text": "Kraftwerk" }] },
+        { "prompt": "Welke muzikant nam het album Tubular Bells uit 1973 vrijwel helemaal alleen op?", "answers": [{ "text": "Mike Oldfield", "aliases": ["Oldfield"] }] },
+        { "prompt": "Welke Amerikaanse gitarist schreef en nam Johnny B. Goode op?", "answers": [{ "text": "Chuck Berry", "aliases": ["Berry"] }] },
+        { "prompt": "Welk Canadees trio bracht in 1976 het album 2112 uit?", "answers": [{ "text": "Rush" }] },
+        { "prompt": "Welke zanger van AC/DC overleed in 1980 en werd opgevolgd door Brian Johnson?", "answers": [{ "text": "Bon Scott", "aliases": ["Scott"] }] },
+        { "prompt": "Welke Nederlandse band met Sharon den Adel als zangeres bracht in 2000 het album Mother Earth uit?", "answers": [{ "text": "Within Temptation" }] },
+        { "prompt": "Wat is de echte voor- en achternaam van zanger Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "sherlock-holmes",
+  "title": "Sherlock Holmes",
+  "description": "A whole pub quiz about the great detective of Baker Street, his cases, his creator and his many screen lives.",
+  "publishedAt": "2026-09-09",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which writer created Sherlock Holmes?", "category": "Author", "answers": [{ "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle", "Sir Arthur Conan Doyle"] }] },
+        { "prompt": "At which London address does Sherlock Holmes live?", "category": "Places", "answers": [{ "text": "221B Baker Street", "aliases": ["221B", "Baker Street 221B"] }] },
+        { "prompt": "Who is Holmes's friend, flatmate and the narrator of his cases?", "category": "Characters", "answers": [{ "text": "Doctor Watson", "aliases": ["Watson", "Dr Watson"] }] },
+        { "prompt": "Which animal is said to haunt the Baskerville family on the moor?", "category": "Novels", "answers": [{ "text": "A hound", "aliases": ["A dog", "Hound", "Dog"] }] },
+        { "prompt": "Which woman is always simply 'the woman' to Holmes?", "category": "Characters", "answers": [{ "text": "Irene Adler", "aliases": ["Adler"] }] },
+        { "prompt": "In which story does that woman outwit Holmes?", "category": "Stories", "answers": [{ "text": "A Scandal in Bohemia", "aliases": ["Scandal in Bohemia"] }] },
+        { "prompt": "What does Holmes call his own profession, a job he says he invented?", "category": "Method", "answers": [{ "text": "Consulting detective", "aliases": ["A consulting detective"] }] },
+        { "prompt": "Which actor played Holmes in the Granada television series of the 1980s?", "category": "Adaptations", "answers": [{ "text": "Jeremy Brett", "aliases": ["Brett"] }] },
+        { "prompt": "In which Scottish city was Arthur Conan Doyle born?", "category": "Author", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "Which famous line is always put in Holmes's mouth, though it appears nowhere in the books?", "category": "Quotes", "answers": [{ "text": "Elementary, my dear Watson", "aliases": ["Elementary my dear Watson"] }] },
+        { "prompt": "In what does Holmes keep his pipe tobacco at Baker Street?", "category": "Habits", "answers": [{ "text": "A Persian slipper", "aliases": ["Persian slipper", "A slipper"] }] },
+        { "prompt": "Which other Conan Doyle character leads an expedition to a plateau full of dinosaurs?", "category": "Author", "answers": [{ "text": "Professor Challenger", "aliases": ["Challenger", "George Challenger"] }] },
+        { "prompt": "Which British monarch was on the throne when the first Holmes stories appeared?", "category": "History", "answers": [{ "text": "Queen Victoria", "aliases": ["Victoria"] }] },
+        { "prompt": "Which 2015 film shows a very old, retired Holmes played by Ian McKellen?", "category": "Adaptations", "answers": [{ "text": "Mr Holmes", "aliases": ["Mr. Holmes"] }] },
+        { "prompt": "Which subject does Professor Moriarty teach?", "category": "Characters", "answers": [{ "text": "Mathematics", "aliases": ["Maths", "Math"] }] },
+        { "prompt": "What is the name of the dog Holmes borrows to follow a scent through London?", "category": "Method", "answers": [{ "text": "Toby" }] },
+        { "prompt": "Which German word is found written in blood on the wall in A Study in Scarlet?", "category": "Stories", "answers": [{ "text": "Rache", "aliases": ["RACHE", "Revenge"] }] },
+        { "prompt": "In which story is the code made of little stick figures?", "category": "Stories", "answers": [{ "text": "The Dancing Men", "aliases": ["The Adventure of the Dancing Men", "Dancing Men"] }] },
+        { "prompt": "In the BBC series Sherlock, what does Sherlock call the mental technique he uses to store everything he knows?", "category": "Adaptations", "answers": [{ "text": "His mind palace", "aliases": ["Mind palace", "Memory palace"] }] },
+        { "prompt": "What is the word for drawing a conclusion from small details, the thing Holmes is famous for?", "category": "Method", "answers": [{ "text": "Deduction", "aliases": ["Deductive reasoning", "Deducing"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which Baskerville heir does Holmes have to protect in The Hound of the Baskervilles?", "options": [{ "text": "Sir Charles Baskerville" }, { "text": "Sir Henry Baskerville", "correct": true }, { "text": "Sir Hugo Baskerville" }, { "text": "Sir Roger Baskerville" }] },
+        { "prompt": "Which Edinburgh surgeon and teacher is said to have been the model for Holmes?", "options": [{ "text": "Joseph Lister" }, { "text": "James Young Simpson" }, { "text": "Joseph Bell", "correct": true }, { "text": "Robert Knox" }] },
+        { "prompt": "On which English moor is The Hound of the Baskervilles set?", "options": [{ "text": "Dartmoor", "correct": true }, { "text": "Exmoor" }, { "text": "Bodmin Moor" }, { "text": "Ilkley Moor" }] },
+        { "prompt": "The second half of A Study in Scarlet moves to Utah and tells the story of which religious community?", "options": [{ "text": "The Quakers" }, { "text": "The Amish" }, { "text": "The Shakers" }, { "text": "The Mormons", "correct": true }] },
+        { "prompt": "Which make of violin does Holmes say he picked up cheaply at a pawnbroker's?", "options": [{ "text": "An Amati" }, { "text": "A Guarneri" }, { "text": "A Stradivarius", "correct": true }, { "text": "A Bergonzi" }] },
+        { "prompt": "What is Professor Moriarty's first name?", "options": [{ "text": "James", "correct": true }, { "text": "John" }, { "text": "Charles" }, { "text": "Robert" }] },
+        { "prompt": "Which actor played Holmes in fourteen Hollywood films between 1939 and 1946?", "options": [{ "text": "Peter Cushing" }, { "text": "Christopher Lee" }, { "text": "Basil Rathbone", "correct": true }, { "text": "Ronald Howard" }] },
+        { "prompt": "In which year did Conan Doyle bring Holmes back from the dead in print?", "options": [{ "text": "1893" }, { "text": "1898" }, { "text": "1903", "correct": true }, { "text": "1912" }] },
+        { "prompt": "What is the name of the butler at Baskerville Hall?", "options": [{ "text": "Brunton" }, { "text": "Barrymore", "correct": true }, { "text": "Bunter" }, { "text": "Bates" }] },
+        { "prompt": "Which chemical test does Holmes claim to have invented when Watson first meets him?", "options": [{ "text": "A test for arsenic" }, { "text": "A test to detect bloodstains", "correct": true }, { "text": "A test for gunpowder" }, { "text": "A test for opium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year was the very first Sherlock Holmes story published?", "answer": 1887 },
+        { "prompt": "How many Sherlock Holmes short stories did Conan Doyle write?", "answer": 56, "unit": "stories" },
+        { "prompt": "How many steps lead up from the hall to the sitting room at 221B Baker Street?", "answer": 17, "unit": "steps", "explanation": "Holmes points out that Watson has climbed them hundreds of times and never once counted them." },
+        { "prompt": "What strength of cocaine solution does Holmes inject at the start of The Sign of the Four, in per cent?", "answer": 7, "unit": "per cent" },
+        { "prompt": "In which year was The Hound of the Baskervilles published as a book?", "answer": 1902 },
+        { "prompt": "In which year was the first episode of the BBC series Sherlock broadcast?", "answer": 2010 },
+        { "prompt": "In which year did Arthur Conan Doyle die?", "answer": 1930 },
+        { "prompt": "How many years is Holmes missing between the Reichenbach Falls and his return?", "answer": 3, "unit": "years", "explanation": "Readers call it the Great Hiatus: Holmes stays away from 1891 until 1894." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Monocle",
+        "Top hat",
+        "Cigar ash",
+        "Constable",
+        "Padlock",
+        "Disguise",
+        "Telegram",
+        "Hansom cab",
+        "Gaslight",
+        "Suspect",
+        "Clue",
+        "Poison",
+        "Revolver",
+        "Alibi",
+        "Notebook",
+        "Opium den",
+        "Bloodhound",
+        "Police whistle",
+        "Pocket watch",
+        "Wax seal",
+        "Crime scene",
+        "Fireplace",
+        "Coroner",
+        "Inkwell",
+        "Secret passage",
+        "Wig",
+        "Candle",
+        "Armchair",
+        "Cobblestones",
+        "Walking stick"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Sherlock Holmes novels.", "answers": [{ "text": "A Study in Scarlet" }, { "text": "The Sign of the Four", "aliases": ["The Sign of Four"] }, { "text": "The Hound of the Baskervilles" }, { "text": "The Valley of Fear" }] },
+        { "prompt": "Name the four: Holmes's brother, his landlady, his contact at Scotland Yard and his great adversary.", "answers": [{ "text": "Mycroft Holmes", "aliases": ["Mycroft"] }, { "text": "Mrs Hudson", "aliases": ["Hudson"] }, { "text": "Inspector Lestrade", "aliases": ["Lestrade"] }, { "text": "Professor Moriarty", "aliases": ["Moriarty"] }] },
+        { "prompt": "Name the four actors who played Holmes and Watson in the BBC series Sherlock and in Guy Ritchie's two films.", "answers": [{ "text": "Benedict Cumberbatch", "aliases": ["Cumberbatch"] }, { "text": "Martin Freeman", "aliases": ["Freeman"] }, { "text": "Robert Downey Jr", "aliases": ["Robert Downey Junior", "Downey"] }, { "text": "Jude Law", "aliases": ["Law"] }] },
+        { "prompt": "Name the four: the story in which Holmes seems to die, the waterfall where it happens, the country that waterfall is in, and the story in which he comes back.", "answers": [{ "text": "The Final Problem" }, { "text": "The Reichenbach Falls", "aliases": ["Reichenbach"] }, { "text": "Switzerland" }, { "text": "The Adventure of the Empty House", "aliases": ["The Empty House"] }] },
+        { "prompt": "Name the four: the London police headquarters in the stories, the magazine that printed them, the city they are set in, and the hospital where Holmes and Watson first meet.", "answers": [{ "text": "Scotland Yard" }, { "text": "The Strand Magazine", "aliases": ["The Strand", "Strand"] }, { "text": "London" }, { "text": "St Bartholomew's Hospital", "aliases": ["Barts", "Bart's", "Saint Bartholomew's"] }] },
+        { "prompt": "Name the four Sherlock Holmes short story collections that appeared before 1920.", "answers": [{ "text": "The Adventures of Sherlock Holmes", "aliases": ["The Adventures"] }, { "text": "The Memoirs of Sherlock Holmes", "aliases": ["The Memoirs"] }, { "text": "The Return of Sherlock Holmes", "aliases": ["The Return"] }, { "text": "His Last Bow" }] },
+        { "prompt": "Name the four: the drug Holmes injects, the instrument he plays, the gang of street children he pays for information, and the silent club his brother helped found.", "answers": [{ "text": "Cocaine" }, { "text": "The violin", "aliases": ["Violin"] }, { "text": "The Baker Street Irregulars", "aliases": ["Baker Street Irregulars", "The Irregulars"] }, { "text": "The Diogenes Club", "aliases": ["Diogenes Club", "Diogenes"] }] },
+        { "prompt": "Name the four things we know about Doctor Watson: his first name, his profession, the country where he was wounded in the army, and the woman he marries.", "answers": [{ "text": "John" }, { "text": "Doctor", "aliases": ["Physician", "Army doctor", "Surgeon"] }, { "text": "Afghanistan" }, { "text": "Mary Morstan", "aliases": ["Morstan", "Mary"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which kind of hat is Sherlock Holmes almost always drawn wearing?", "difficulty": "easy", "answers": [{ "text": "A deerstalker", "aliases": ["Deerstalker", "Deerstalker cap"] }] },
+        { "prompt": "What does Sherlock Holmes traditionally smoke?", "difficulty": "easy", "answers": [{ "text": "A pipe", "aliases": ["Pipe"] }] },
+        { "prompt": "In which country are the Sherlock Holmes stories set?", "difficulty": "easy", "answers": [{ "text": "England", "aliases": ["Great Britain", "The United Kingdom", "Britain"] }] },
+        { "prompt": "Which unidentified murderer terrorised Whitechapel in 1888, in the same London as the early Holmes stories?", "difficulty": "easy", "answers": [{ "text": "Jack the Ripper", "aliases": ["The Ripper"] }] },
+        { "prompt": "On which river does the boat chase in The Sign of the Four take place?", "difficulty": "easy", "answers": [{ "text": "The Thames", "aliases": ["Thames"] }] },
+        { "prompt": "Who is Moriarty's right-hand man, a big game hunter and the best marksman in London?", "difficulty": "hard", "answers": [{ "text": "Colonel Sebastian Moran", "aliases": ["Sebastian Moran", "Moran"] }] },
+        { "prompt": "What is the title of the last collection of Holmes stories, published in 1927?", "difficulty": "hard", "answers": [{ "text": "The Case-Book of Sherlock Holmes", "aliases": ["The Casebook of Sherlock Holmes", "The Case-Book"] }] },
+        { "prompt": "What does Holmes take up as an occupation after he retires to the Sussex countryside?", "difficulty": "hard", "answers": [{ "text": "Keeping bees", "aliases": ["Beekeeping", "Bees", "He keeps bees"] }] },
+        { "prompt": "In which story does the curious incident of the dog in the night-time occur?", "difficulty": "hard", "answers": [{ "text": "Silver Blaze", "aliases": ["The Adventure of Silver Blaze"] }] },
+        { "prompt": "Whose illustrations in The Strand Magazine gave Holmes his familiar look?", "difficulty": "hard", "answers": [{ "text": "Sidney Paget", "aliases": ["Paget"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the page boy who answers the door at Baker Street in the later stories?", "answers": [{ "text": "Billy" }] },
+        { "prompt": "Which of his own Holmes stories did Conan Doyle name as his favourite?", "answers": [{ "text": "The Speckled Band", "aliases": ["The Adventure of the Speckled Band", "Speckled Band"] }] },
+        { "prompt": "Which stolen treasure is at the heart of The Sign of the Four?", "answers": [{ "text": "The Agra treasure", "aliases": ["Agra treasure", "The treasure of Agra"] }] },
+        { "prompt": "What is the title of the book on higher mathematics that Moriarty wrote?", "answers": [{ "text": "The Dynamics of an Asteroid", "aliases": ["Dynamics of an Asteroid"] }] },
+        { "prompt": "Which American actor played Holmes on stage more than a thousand times and shaped the popular image of him?", "answers": [{ "text": "William Gillette", "aliases": ["Gillette"] }] },
+        { "prompt": "Holmes mentions the giant rat of which island as a story the world is not yet prepared for?", "answers": [{ "text": "Sumatra" }] },
+        { "prompt": "In which magazine did the first Sherlock Holmes story appear in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] }
+      ]
+    }
+  ]
+}

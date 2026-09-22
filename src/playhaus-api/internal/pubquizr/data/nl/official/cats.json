@@ -1,0 +1,136 @@
+{
+  "slug": "cats",
+  "title": "Katten",
+  "description": "Een hele pubquiz over de huiskat: rassen, gedrag, anatomie en beroemde katten.",
+  "publishedAt": "2026-09-16",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe noem je een jonge kat?", "category": "Termen", "answers": [{ "text": "Een kitten", "aliases": ["Kitten", "Katje"] }] },
+        { "prompt": "Hoe noem je een vrouwtjeskat, zeker als ze voor de fok wordt gehouden?", "category": "Termen", "answers": [{ "text": "Een poes", "aliases": ["Poes", "Moederpoes"] }] },
+        { "prompt": "Hoe noem je een niet-gecastreerde mannetjeskat?", "category": "Termen", "answers": [{ "text": "Een kater", "aliases": ["Kater"] }] },
+        { "prompt": "Welk kattenras staat bekend om zijn vrijwel kale vacht?", "category": "Rassen", "answers": [{ "text": "De Sphynx", "aliases": ["Sphynx"] }] },
+        { "prompt": "Welk langharig ras met een platte snuit is vernoemd naar het land dat nu Iran heet?", "category": "Rassen", "answers": [{ "text": "De Pers", "aliases": ["Pers", "Perzische kat", "Perzen"] }] },
+        { "prompt": "Welk ras is beroemd om zijn blauwe ogen en de donkere punten op snuit, oren, poten en staart?", "category": "Rassen", "answers": [{ "text": "De Siamees", "aliases": ["Siamees", "Siamese kat"] }] },
+        { "prompt": "Welk zeer groot langharig ras is vernoemd naar een Amerikaanse staat?", "category": "Rassen", "answers": [{ "text": "De Maine Coon", "aliases": ["Maine Coon"] }] },
+        { "prompt": "Hoe heet het lage brommende geluid dat een tevreden kat maakt?", "category": "Gedrag", "answers": [{ "text": "Spinnen", "aliases": ["Het spinnen", "Spinnend"] }] },
+        { "prompt": "Hoe heet het gedrag waarbij een kat met haar voorpoten ritmisch in een zachte ondergrond duwt?", "category": "Gedrag", "answers": [{ "text": "Melktrappelen", "aliases": ["Trappelen", "Kneden"] }] },
+        { "prompt": "Welke plant zorgt ervoor dat veel katten gaan rollen en speels worden?", "category": "Gedrag", "answers": [{ "text": "Kattenkruid", "aliases": ["Catnip", "Nepeta"] }] },
+        { "prompt": "Welk lichaamsdeel houdt een kat recht omhoog als ze zelfverzekerd naar je toe loopt?", "category": "Anatomie", "answers": [{ "text": "De staart", "aliases": ["Staart"] }] },
+        { "prompt": "Via welk deel van haar lichaam zweet een kat?", "category": "Anatomie", "answers": [{ "text": "De voetzooltjes", "aliases": ["Voetzooltjes", "Zoolkussentjes", "De pootjes"] }] },
+        { "prompt": "Vrijwel elke lapjeskat is van welk geslacht?", "category": "Genetica", "answers": [{ "text": "Vrouwelijk", "aliases": ["Een poes", "Vrouwtje"] }] },
+        { "prompt": "Hoe heet de prop ingeslikte haren die een kat uitbraakt?", "category": "Gezondheid", "answers": [{ "text": "Een haarbal", "aliases": ["Haarbal", "Haarballen"] }] },
+        { "prompt": "Welke kleine springende parasieten zijn de meest voorkomende ongenode gasten in een kattenvacht?", "category": "Gezondheid", "answers": [{ "text": "Vlooien", "aliases": ["Vlo", "Kattenvlooien"] }] },
+        { "prompt": "Welke oranje tekenfilmkat met een voorliefde voor lasagne is bedacht door Jim Davis?", "category": "Cultuur", "answers": [{ "text": "Garfield" }] },
+        { "prompt": "Welke kat uit Alice in Wonderland verdwijnt en laat alleen zijn grijns achter?", "category": "Cultuur", "answers": [{ "text": "De Cheshire Kat", "aliases": ["Cheshire Kat", "De grijnzende kat", "Cheshire Cat"] }] },
+        { "prompt": "Welke kat met laarzen komt voor in een sprookje van Charles Perrault en in de Shrek-films?", "category": "Cultuur", "answers": [{ "text": "De Gelaarsde Kat", "aliases": ["Gelaarsde Kat", "Puss in Boots"] }] },
+        { "prompt": "In welke oude beschaving was de kat een heilig dier dat bij de godin Bastet hoorde?", "category": "Geschiedenis", "answers": [{ "text": "Het oude Egypte", "aliases": ["Egypte", "De Egyptenaren"] }] },
+        { "prompt": "Welke musical van Andrew Lloyd Webber is gebaseerd op een dichtbundel van T. S. Eliot?", "category": "Cultuur", "answers": [{ "text": "Cats" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Hoeveel tanden en kiezen heeft een volwassen kat?", "options": [{ "text": "26" }, { "text": "30", "correct": true }, { "text": "34" }, { "text": "38" }] },
+        { "prompt": "Welk ras staat bekend om zijn korte, golvende, krullende vacht?", "options": [{ "text": "Cornish Rex", "correct": true }, { "text": "Russisch Blauw" }, { "text": "Bombay" }, { "text": "Korat" }] },
+        { "prompt": "Welke oud-Egyptische godin werd afgebeeld met de kop van een kat?", "options": [{ "text": "Bastet", "correct": true }, { "text": "Sekhmet" }, { "text": "Hathor" }, { "text": "Isis" }] },
+        { "prompt": "De Siamees komt uit het land dat vroeger Siam heette. Hoe heet dat land nu?", "options": [{ "text": "Thailand", "correct": true }, { "text": "Vietnam" }, { "text": "Cambodja" }, { "text": "Maleisie" }] },
+        { "prompt": "Wat is de wetenschappelijke naam van de huiskat?", "options": [{ "text": "Felis catus", "correct": true }, { "text": "Felis silvestris" }, { "text": "Felis domestica maior" }, { "text": "Lynx lynx" }] },
+        { "prompt": "Welk ras wordt van oudsher zonder staart geboren?", "options": [{ "text": "Manx", "correct": true }, { "text": "Birmaan" }, { "text": "Burmees" }, { "text": "Bombay" }] },
+        { "prompt": "Wat is de normale lichaamstemperatuur van een kat in graden Celsius?", "options": [{ "text": "36,5" }, { "text": "37,5" }, { "text": "38,5", "correct": true }, { "text": "40,5" }] },
+        { "prompt": "Welk personage uit Harry Potter heeft de kat Knikkebeen?", "options": [{ "text": "Hermelien Griffel", "correct": true }, { "text": "Ron Wemel" }, { "text": "Harry Potter" }, { "text": "Marcel Lubbermans" }] },
+        { "prompt": "Welk ras staat erom bekend helemaal slap te worden als je het optilt?", "options": [{ "text": "Ragdoll", "correct": true }, { "text": "Birmaan" }, { "text": "Balinees" }, { "text": "Somali" }] },
+        { "prompt": "Welk Japans geluksbeeldje toont een kat met een opgeheven pootje?", "options": [{ "text": "Maneki-neko", "correct": true }, { "text": "Daruma" }, { "text": "Kokeshi" }, { "text": "Tanuki" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel uur per dag slaapt een gemiddelde volwassen kat?", "answer": 16, "unit": "uur", "explanation": "Twaalf tot zestien uur per dag is normaal, en kittens en oude katten slapen nog meer." },
+        { "prompt": "Hoeveel snorharen heeft een kat in totaal rond haar snuit?", "answer": 24, "unit": "snorharen" },
+        { "prompt": "Hoeveel tenen heeft een kat in totaal?", "answer": 18, "unit": "tenen", "explanation": "Vijf aan elke voorpoot en vier aan elke achterpoot." },
+        { "prompt": "Uit ongeveer hoeveel botten bestaat het skelet van een kat?", "answer": 230, "unit": "botten" },
+        { "prompt": "In welk jaar ging de musical Cats in Londen in premiere?", "answer": 1981 },
+        { "prompt": "Hoeveel dagen duurt de dracht van een kat?", "answer": 64, "unit": "dagen" },
+        { "prompt": "Hoeveel kittens zitten er in een gemiddeld nest?", "answer": 4, "unit": "kittens" },
+        { "prompt": "Hoeveel spieren heeft een kat in elk oor?", "answer": 32, "unit": "spieren" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Kattenbak",
+        "Krabpaal",
+        "Kattenluik",
+        "Kartonnen doos",
+        "Bol wol",
+        "Laserpen",
+        "Kattenmand",
+        "Visgraat",
+        "Halsband met belletje",
+        "Reismand",
+        "Voerbakje",
+        "Schoteltje melk",
+        "Snorhaar",
+        "Dierenasiel",
+        "Kattenshow",
+        "Kat in een boom",
+        "Dutje",
+        "Ruwe tong",
+        "Cyperse kat",
+        "Kattenpension",
+        "Kattensnoepjes",
+        "Kattenhaar",
+        "Kattengras",
+        "Zwerfkat",
+        "Kattenoppas",
+        "Vensterbank",
+        "Radiator",
+        "Schoot",
+        "Kattengevecht",
+        "Muis"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier katten van de familie uit de Disneyfilm De Aristokatten.", "answers": [{ "text": "Duchess", "aliases": ["Duchesse"] }, { "text": "Marie" }, { "text": "Toulouse" }, { "text": "Berlioz" }] },
+        { "prompt": "Noem de vier soorten tanden en kiezen in de bek van een kat.", "answers": [{ "text": "Snijtanden" }, { "text": "Hoektanden" }, { "text": "Voorkiezen", "aliases": ["Premolaren"] }, { "text": "Kiezen", "aliases": ["Molaren"] }] },
+        { "prompt": "Noem de vier klassieke puntkleuren van de Siamees.", "answers": [{ "text": "Seal point", "aliases": ["Seal"] }, { "text": "Blue point", "aliases": ["Blue", "Blauw"] }, { "text": "Chocolate point", "aliases": ["Chocolate", "Chocolade"] }, { "text": "Lilac point", "aliases": ["Lilac", "Lila"] }] },
+        { "prompt": "Noem de vier tabbypatronen.", "answers": [{ "text": "Mackerel", "aliases": ["Gestroomd"] }, { "text": "Classic", "aliases": ["Gemarmerd", "Blotched"] }, { "text": "Spotted", "aliases": ["Gevlekt"] }, { "text": "Ticked", "aliases": ["Agouti"] }] },
+        { "prompt": "Noem de vier plekken op het lichaam van een kat waar snorharen groeien.", "answers": [{ "text": "De snuit", "aliases": ["Snuit", "Wangen"] }, { "text": "Boven de ogen", "aliases": ["Wenkbrauwen"] }, { "text": "De kin", "aliases": ["Kin"] }, { "text": "De achterkant van de voorpoten", "aliases": ["Voorpoten", "Polsen"] }] },
+        { "prompt": "Noem de vier dieren uit het sprookje De Bremer Stadsmuzikanten.", "answers": [{ "text": "De ezel", "aliases": ["Ezel"] }, { "text": "De hond", "aliases": ["Hond"] }, { "text": "De kat", "aliases": ["Kat"] }, { "text": "De haan", "aliases": ["Haan"] }] },
+        { "prompt": "Noem de vier geluiden die een kat maakt, behalve miauwen en spinnen.", "answers": [{ "text": "Blazen", "aliases": ["Sissen"] }, { "text": "Grommen", "aliases": ["Grauwen"] }, { "text": "Tjilpen", "aliases": ["Kwetteren", "Tsjirpen"] }, { "text": "Janken", "aliases": ["Krijsen", "Jammeren"] }] },
+        { "prompt": "Noem de vier katten uit Pinokkio, Assepoester, De Smurfen en Sabrina de Tienerheks.", "answers": [{ "text": "Figaro" }, { "text": "Lucifer" }, { "text": "Azrael", "aliases": ["Azraeel"] }, { "text": "Salem" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel levens heeft een kat volgens het Nederlandse gezegde?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
+        { "prompt": "Wat is het gewone Nederlandse woord voor het geluid dat een kat maakt?", "difficulty": "easy", "answers": [{ "text": "Miauw", "aliases": ["Miauwen"] }] },
+        { "prompt": "Een kat van welke kleur brengt volgens het bijgeloof ongeluk als ze je pad kruist?", "difficulty": "easy", "answers": [{ "text": "Zwart", "aliases": ["Een zwarte kat"] }] },
+        { "prompt": "Welke tekenfilmmuis wordt eeuwig achtervolgd door de kat Tom?", "difficulty": "easy", "answers": [{ "text": "Jerry" }] },
+        { "prompt": "Waarmee wast een kat haar eigen vacht?", "difficulty": "easy", "answers": [{ "text": "Met haar tong", "aliases": ["Tong", "De tong"] }] },
+        { "prompt": "Hoe heet een kat die met meer tenen dan normaal geboren wordt?", "difficulty": "hard", "answers": [{ "text": "Polydactyl", "aliases": ["Polydactylie", "Polydactyle kat"] }] },
+        { "prompt": "Hoe heet de weerkaatsende laag achter het netvlies waardoor kattenogen oplichten in het donker?", "difficulty": "hard", "answers": [{ "text": "Het tapetum lucidum", "aliases": ["Tapetum lucidum", "Tapetum"] }] },
+        { "prompt": "Welke stof in kattenkruid veroorzaakt de reactie bij katten?", "difficulty": "hard", "answers": [{ "text": "Nepetalacton", "aliases": ["Nepetalactone"] }] },
+        { "prompt": "Wat is de vakterm voor de snorharen van een kat?", "difficulty": "hard", "answers": [{ "text": "Vibrissae", "aliases": ["Vibrissen", "Vibrissa"] }] },
+        { "prompt": "Hoe heet de losse huidplooi op de onderbuik van een kat?", "difficulty": "hard", "answers": [{ "text": "De primordiale buidel", "aliases": ["Primordiale buidel", "Primordial pouch"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat is het Engelse verzamelwoord voor een groep katten?", "answers": [{ "text": "Clowder", "aliases": ["Een clowder"] }] },
+        { "prompt": "Welk Turks meer gaf zijn naam aan een kattenras dat bekendstaat om zijn liefde voor water?", "answers": [{ "text": "Het Vanmeer", "aliases": ["Vanmeer", "Van", "Lake Van"] }] },
+        { "prompt": "Hoe heette de kat die Frankrijk in 1963 de ruimte in schoot, de enige kat die ooit vloog?", "answers": [{ "text": "Felicette" }] },
+        { "prompt": "Welke oud-Egyptische stad was het centrum van de cultus rond de kattengodin Bastet?", "answers": [{ "text": "Bubastis", "aliases": ["Per-Bast", "Tell Basta"] }] },
+        { "prompt": "Op welk eiland in de Middellandse Zee is een graf gevonden van een mens die zo'n negenduizendvijfhonderd jaar geleden samen met een kat begraven werd?", "answers": [{ "text": "Cyprus" }] },
+        { "prompt": "Hoe heet het derde ooglid van de kat?", "answers": [{ "text": "Het knipvlies", "aliases": ["Knipvlies", "Nictiterende membraan", "Derde ooglid"] }] },
+        { "prompt": "Welke Amerikaanse schrijver hield tientallen zestenige katten in zijn huis in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] }
+      ]
+    }
+  ]
+}

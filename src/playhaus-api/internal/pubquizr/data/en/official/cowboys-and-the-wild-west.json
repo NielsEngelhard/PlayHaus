@@ -1,0 +1,136 @@
+{
+  "slug": "cowboys-and-the-wild-west",
+  "title": "Cowboys and the Wild West",
+  "description": "Outlaws, lawmen, cattle trails and the western on film, from Tombstone to Sergio Leone.",
+  "publishedAt": "2026-09-02",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which outlaw was shot dead in 1882 by Robert Ford, a member of his own gang?", "category": "Outlaws", "answers": [{ "text": "Jesse James", "aliases": ["James"] }] },
+        { "prompt": "By what nickname was the outlaw Henry McCarty better known?", "category": "Outlaws", "answers": [{ "text": "Billy the Kid", "aliases": ["The Kid"] }] },
+        { "prompt": "Which lawman fought at the gunfight at the O.K. Corral alongside his brothers Virgil and Morgan?", "category": "Lawmen", "answers": [{ "text": "Wyatt Earp", "aliases": ["Earp"] }] },
+        { "prompt": "Which gambler and former dentist stood with the Earps at the O.K. Corral?", "category": "Lawmen", "answers": [{ "text": "Doc Holliday", "aliases": ["Holliday", "John Henry Holliday"] }] },
+        { "prompt": "In which Arizona town did the gunfight at the O.K. Corral take place?", "category": "Towns", "answers": [{ "text": "Tombstone" }] },
+        { "prompt": "Which Belgian comic strip cowboy shoots faster than his own shadow?", "category": "Comics", "answers": [{ "text": "Lucky Luke" }] },
+        { "prompt": "Which German writer created the Apache chief Winnetou?", "category": "Books", "answers": [{ "text": "Karl May", "aliases": ["May"] }] },
+        { "prompt": "Which actor played the Man with No Name in Sergio Leone's Dollars trilogy?", "category": "Actors", "answers": [{ "text": "Clint Eastwood", "aliases": ["Eastwood"] }] },
+        { "prompt": "Which Italian director made The Good, the Bad and the Ugly?", "category": "Directors", "answers": [{ "text": "Sergio Leone", "aliases": ["Leone"] }] },
+        { "prompt": "Who wrote the music for The Good, the Bad and the Ugly?", "category": "Music", "answers": [{ "text": "Ennio Morricone", "aliases": ["Morricone"] }] },
+        { "prompt": "By what stage name was the showman William Frederick Cody known?", "category": "Wild West show", "answers": [{ "text": "Buffalo Bill" }] },
+        { "prompt": "Which markswoman was the star attraction of Buffalo Bill's Wild West show?", "category": "Wild West show", "answers": [{ "text": "Annie Oakley", "aliases": ["Oakley"] }] },
+        { "prompt": "At which battle of 1876 was George Custer killed?", "category": "History", "answers": [{ "text": "The Battle of the Little Bighorn", "aliases": ["Little Bighorn", "Little Big Horn"] }] },
+        { "prompt": "Which Apache leader surrendered to the American army in 1886?", "category": "Native peoples", "answers": [{ "text": "Geronimo" }] },
+        { "prompt": "What was the name of the Lone Ranger's horse?", "category": "Television", "answers": [{ "text": "Silver" }] },
+        { "prompt": "What was the name of the Lone Ranger's Native American companion?", "category": "Television", "answers": [{ "text": "Tonto" }] },
+        { "prompt": "Which service carried the mail across the West in 1860 and 1861 using relays of riders?", "category": "Frontier life", "answers": [{ "text": "The Pony Express", "aliases": ["Pony Express"] }] },
+        { "prompt": "Which wide-brimmed cowboy hat is named after its maker, John B. Stetson?", "category": "Clothing", "answers": [{ "text": "The Stetson", "aliases": ["Stetson"] }] },
+        { "prompt": "Which American gunmaker built the Single Action Army revolver, nicknamed the Peacemaker?", "category": "Weapons", "answers": [{ "text": "Colt" }] },
+        { "prompt": "Which 1969 film starred Paul Newman and Robert Redford as two robbers on the run?", "category": "Film", "answers": [{ "text": "Butch Cassidy and the Sundance Kid" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Who directed the 1956 western The Searchers?", "options": [{ "text": "John Ford", "correct": true }, { "text": "Howard Hawks" }, { "text": "Anthony Mann" }, { "text": "Raoul Walsh" }] },
+        { "prompt": "Which actor played Winnetou in the German films of the 1960s?", "options": [{ "text": "Pierre Brice", "correct": true }, { "text": "Lex Barker" }, { "text": "Stewart Granger" }, { "text": "Terence Hill" }] },
+        { "prompt": "In which year was gold found at Sutter's Mill, setting off the California Gold Rush?", "options": [{ "text": "1828" }, { "text": "1848", "correct": true }, { "text": "1868" }, { "text": "1888" }] },
+        { "prompt": "Which 1952 western with Gary Cooper plays out almost in real time before the noon train arrives?", "options": [{ "text": "High Noon", "correct": true }, { "text": "Shane" }, { "text": "Rio Bravo" }, { "text": "The Ox-Bow Incident" }] },
+        { "prompt": "Which actor played the harmonica-playing stranger in Once Upon a Time in the West?", "options": [{ "text": "Charles Bronson", "correct": true }, { "text": "Lee Van Cleef" }, { "text": "Eli Wallach" }, { "text": "Jason Robards" }] },
+        { "prompt": "Which Lakota war leader fought at the Little Bighorn and was killed the year after?", "options": [{ "text": "Crazy Horse", "correct": true }, { "text": "Sitting Bull" }, { "text": "Red Cloud" }, { "text": "Chief Joseph" }] },
+        { "prompt": "Which company made the lever-action Model 1873 repeating rifle?", "options": [{ "text": "Winchester", "correct": true }, { "text": "Remington" }, { "text": "Springfield" }, { "text": "Sharps" }] },
+        { "prompt": "Which western did Kevin Costner direct and star in, winning the Oscar for best picture?", "options": [{ "text": "Dances with Wolves", "correct": true }, { "text": "Silverado" }, { "text": "Young Guns" }, { "text": "Pale Rider" }] },
+        { "prompt": "In which present-day American state lies Deadwood, the town where Wild Bill Hickok was shot?", "options": [{ "text": "South Dakota", "correct": true }, { "text": "Montana" }, { "text": "Wyoming" }, { "text": "Nebraska" }] },
+        { "prompt": "Which invention, patented in the 1870s, fenced in the open range?", "options": [{ "text": "Barbed wire", "correct": true }, { "text": "The steel plough" }, { "text": "The windpump" }, { "text": "The telegraph" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many seconds did the gunfight at the O.K. Corral last, by most accounts?", "answer": 30, "unit": "seconds", "explanation": "About half a minute of shooting settled a feud that had been running for months." },
+        { "prompt": "In which year was Stagecoach released, the John Ford western that made John Wayne a star?", "answer": 1939 },
+        { "prompt": "How old was Billy the Kid when he was shot dead in 1881?", "answer": 21, "unit": "years" },
+        { "prompt": "How many days did the Pony Express need to carry mail from Missouri to California?", "answer": 10, "unit": "days", "explanation": "Ten days was the promise, and the telegraph put the whole service out of business after eighteen months." },
+        { "prompt": "In how many films did Clint Eastwood play the Man with No Name?", "answer": 3, "unit": "films" },
+        { "prompt": "In which year did Lucky Luke first appear in print?", "answer": 1946 },
+        { "prompt": "In which year did the first transcontinental railroad meet at Promontory Summit?", "answer": 1869 },
+        { "prompt": "In which year did Buffalo Bill's Wild West show open for the first time?", "answer": 1883 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Bucking bronco",
+        "Swinging doors",
+        "Sheriff's badge",
+        "Spittoon",
+        "Spurs",
+        "Wanted poster",
+        "Covered wagon",
+        "Saddlebag",
+        "Holster",
+        "Poncho",
+        "Chaps",
+        "Bandana",
+        "Rattlesnake",
+        "Tumbleweed",
+        "Gold nugget",
+        "Mine shaft",
+        "Steam locomotive",
+        "Rodeo",
+        "Bison",
+        "Coyote",
+        "Canyon",
+        "Gallows",
+        "Bugle",
+        "Jail cell",
+        "Branding iron",
+        "Playing cards",
+        "Tipi",
+        "Feather headdress",
+        "Bounty hunter",
+        "Whip"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Dalton brothers from Lucky Luke.", "answers": [{ "text": "Joe" }, { "text": "William" }, { "text": "Jack" }, { "text": "Averell" }] },
+        { "prompt": "Name the four pieces of gear a cowboy puts on his horse before riding out.", "answers": [{ "text": "Saddle" }, { "text": "Bridle" }, { "text": "Reins" }, { "text": "Stirrups" }] },
+        { "prompt": "Name the four suits in a pack of playing cards.", "answers": [{ "text": "Hearts" }, { "text": "Diamonds" }, { "text": "Clubs" }, { "text": "Spades" }] },
+        { "prompt": "Name the four American states that border Mexico.", "answers": [{ "text": "California" }, { "text": "Arizona" }, { "text": "New Mexico" }, { "text": "Texas" }] },
+        { "prompt": "Name the four westerns Sergio Leone directed between 1964 and 1968.", "answers": [{ "text": "A Fistful of Dollars" }, { "text": "For a Few Dollars More" }, { "text": "The Good, the Bad and the Ugly" }, { "text": "Once Upon a Time in the West" }] },
+        { "prompt": "Name the four westerns Clint Eastwood both directed and starred in between 1973 and 1992.", "answers": [{ "text": "High Plains Drifter" }, { "text": "The Outlaw Josey Wales" }, { "text": "Pale Rider" }, { "text": "Unforgiven" }] },
+        { "prompt": "Name the four presidents carved into Mount Rushmore in the Black Hills.", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }, { "text": "Thomas Jefferson", "aliases": ["Jefferson"] }, { "text": "Theodore Roosevelt", "aliases": ["Roosevelt", "Teddy Roosevelt"] }, { "text": "Abraham Lincoln", "aliases": ["Lincoln"] }] },
+        { "prompt": "Name the four Oscars won by the western Unforgiven.", "answers": [{ "text": "Best picture" }, { "text": "Best director" }, { "text": "Best supporting actor" }, { "text": "Best film editing", "aliases": ["Editing"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which actor, born Marion Morrison, became Hollywood's best-known cowboy star?", "difficulty": "easy", "answers": [{ "text": "John Wayne", "aliases": ["Wayne"] }] },
+        { "prompt": "What is the name of Lucky Luke's horse?", "difficulty": "easy", "answers": [{ "text": "Jolly Jumper" }] },
+        { "prompt": "What is the name of the dog in Lucky Luke, said to be the stupidest dog in the West?", "difficulty": "easy", "answers": [{ "text": "Rantanplan", "aliases": ["Rin Tin Can"] }] },
+        { "prompt": "Which cigarette brand built its advertising around a cowboy?", "difficulty": "easy", "answers": [{ "text": "Marlboro" }] },
+        { "prompt": "Which spirit, distilled from grain, is the drink of the western saloon?", "difficulty": "easy", "answers": [{ "text": "Whiskey", "aliases": ["Whisky", "Bourbon"] }] },
+        { "prompt": "What is the name of the ranch in the television series Bonanza?", "difficulty": "hard", "answers": [{ "text": "The Ponderosa", "aliases": ["Ponderosa"] }] },
+        { "prompt": "Which poker hand is known as the dead man's hand?", "difficulty": "hard", "answers": [{ "text": "Aces and eights", "aliases": ["Two pair aces and eights", "Aces over eights"] }] },
+        { "prompt": "Under which pen name did the Belgian artist Maurice De Bevere draw Lucky Luke?", "difficulty": "hard", "answers": [{ "text": "Morris" }] },
+        { "prompt": "Which sheriff shot Billy the Kid?", "difficulty": "hard", "answers": [{ "text": "Pat Garrett", "aliases": ["Garrett"] }] },
+        { "prompt": "Which Lakota holy man toured with Buffalo Bill's Wild West show in 1885?", "difficulty": "hard", "answers": [{ "text": "Sitting Bull" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which gang of train and bank robbers did Butch Cassidy lead?", "answers": [{ "text": "The Wild Bunch", "aliases": ["Wild Bunch", "Hole-in-the-Wall Gang"] }] },
+        { "prompt": "In which South American country were Butch Cassidy and the Sundance Kid said to have been killed in 1908?", "answers": [{ "text": "Bolivia" }] },
+        { "prompt": "Which actor played Old Shatterhand in the Winnetou films of the 1960s?", "answers": [{ "text": "Lex Barker", "aliases": ["Barker"] }] },
+        { "prompt": "What was Calamity Jane's real name?", "answers": [{ "text": "Martha Jane Cannary", "aliases": ["Martha Jane Canary", "Martha Cannary", "Martha Canary"] }] },
+        { "prompt": "Who shot Wild Bill Hickok in the back in a Deadwood saloon in 1876?", "answers": [{ "text": "Jack McCall", "aliases": ["McCall"] }] },
+        { "prompt": "Which 1903 film, one of the first to tell a story, is regarded as the first western?", "answers": [{ "text": "The Great Train Robbery" }] },
+        { "prompt": "In which valley on the border of Arizona and Utah did John Ford shoot many of his westerns?", "answers": [{ "text": "Monument Valley" }] }
+      ]
+    }
+  ]
+}

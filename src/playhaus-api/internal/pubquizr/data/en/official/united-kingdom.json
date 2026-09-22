@@ -1,0 +1,136 @@
+{
+  "slug": "united-kingdom",
+  "title": "The United Kingdom",
+  "description": "A whole pub quiz about the United Kingdom: its four countries, its landscape, its history and its habits.",
+  "publishedAt": "2026-08-31",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Scotland?", "category": "Cities", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "What is the capital of Wales?", "category": "Cities", "answers": [{ "text": "Cardiff" }] },
+        { "prompt": "What is the capital of Northern Ireland?", "category": "Cities", "answers": [{ "text": "Belfast" }] },
+        { "prompt": "Which river flows through London?", "category": "Rivers", "answers": [{ "text": "The Thames", "aliases": ["Thames"] }] },
+        { "prompt": "In which English city did The Beatles form?", "category": "Music", "answers": [{ "text": "Liverpool" }] },
+        { "prompt": "Which prehistoric stone circle stands on Salisbury Plain?", "category": "Landmarks", "answers": [{ "text": "Stonehenge" }] },
+        { "prompt": "In which year did the United Kingdom formally leave the European Union?", "category": "History", "answers": [{ "text": "2020", "aliases": ["Twenty twenty"] }] },
+        { "prompt": "What is the currency of the United Kingdom?", "category": "Money", "answers": [{ "text": "The pound sterling", "aliases": ["Pound", "Pound sterling", "British pound"] }] },
+        { "prompt": "Which British band released the album The Dark Side of the Moon?", "category": "Music", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Which English playwright wrote Hamlet?", "category": "Literature", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Which London tennis tournament is played on grass?", "category": "Sport", "answers": [{ "text": "Wimbledon" }] },
+        { "prompt": "By what nickname is the London underground railway known?", "category": "Transport", "answers": [{ "text": "The Tube", "aliases": ["Tube"] }] },
+        { "prompt": "Which dish of battered fish served with chips is a British classic?", "category": "Food", "answers": [{ "text": "Fish and chips" }] },
+        { "prompt": "Which mountain range is known as the backbone of England?", "category": "Geography", "answers": [{ "text": "The Pennines", "aliases": ["Pennines"] }] },
+        { "prompt": "Which company delivers the post in the United Kingdom?", "category": "Everyday life", "answers": [{ "text": "Royal Mail" }] },
+        { "prompt": "Which English city has the oldest university in the English-speaking world?", "category": "Education", "answers": [{ "text": "Oxford", "aliases": ["University of Oxford"] }] },
+        { "prompt": "What is the largest island of the British Isles called?", "category": "Geography", "answers": [{ "text": "Great Britain", "aliases": ["Britain"] }] },
+        { "prompt": "Which Celtic language is spoken in Wales?", "category": "Language", "answers": [{ "text": "Welsh" }] },
+        { "prompt": "Who was British Prime Minister for most of the Second World War?", "category": "History", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
+        { "prompt": "Which British series follows a time traveller who flies a blue police box?", "category": "Television", "answers": [{ "text": "Doctor Who" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the highest mountain in the United Kingdom?", "options": [{ "text": "Ben Nevis", "correct": true }, { "text": "Snowdon" }, { "text": "Scafell Pike" }, { "text": "Slieve Donard" }] },
+        { "prompt": "In which year did the Act of Union join England and Scotland into one kingdom?", "options": [{ "text": "1603" }, { "text": "1707", "correct": true }, { "text": "1745" }, { "text": "1801" }] },
+        { "prompt": "Which is the longest river in the United Kingdom?", "options": [{ "text": "The Severn", "correct": true }, { "text": "The Thames" }, { "text": "The Trent" }, { "text": "The Great Ouse" }] },
+        { "prompt": "Which English county is known as the Garden of England?", "options": [{ "text": "Kent", "correct": true }, { "text": "Surrey" }, { "text": "Sussex" }, { "text": "Devon" }] },
+        { "prompt": "Which Scottish author wrote Treasure Island?", "options": [{ "text": "Robert Louis Stevenson", "correct": true }, { "text": "Walter Scott" }, { "text": "J M Barrie" }, { "text": "Robert Burns" }] },
+        { "prompt": "In which year was the National Health Service founded?", "options": [{ "text": "1918" }, { "text": "1939" }, { "text": "1948", "correct": true }, { "text": "1956" }] },
+        { "prompt": "What is the northernmost point of the British mainland?", "options": [{ "text": "Dunnet Head", "correct": true }, { "text": "John o' Groats" }, { "text": "Cape Wrath" }, { "text": "Duncansby Head" }] },
+        { "prompt": "Which British band released the album OK Computer in 1997?", "options": [{ "text": "Radiohead", "correct": true }, { "text": "Blur" }, { "text": "Oasis" }, { "text": "Pulp" }] },
+        { "prompt": "Which city hosted the 2014 Commonwealth Games?", "options": [{ "text": "Glasgow", "correct": true }, { "text": "Manchester" }, { "text": "Birmingham" }, { "text": "Cardiff" }] },
+        { "prompt": "Which is the largest lake in the United Kingdom by surface area?", "options": [{ "text": "Lough Neagh", "correct": true }, { "text": "Loch Lomond" }, { "text": "Loch Ness" }, { "text": "Windermere" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many spectators does Wembley Stadium hold?", "answer": 90000, "unit": "spectators" },
+        { "prompt": "How many kilometres long is the Channel Tunnel?", "answer": 50, "unit": "kilometres", "explanation": "About thirty-eight of those kilometres run under the sea, the longest undersea stretch of any tunnel in the world." },
+        { "prompt": "In which year did the Great Fire of London break out?", "answer": 1666 },
+        { "prompt": "How many seats does the House of Commons have?", "answer": 650, "unit": "seats" },
+        { "prompt": "How many metres tall is The Shard in London?", "answer": 310, "unit": "metres" },
+        { "prompt": "In which year did the Titanic leave Southampton on its maiden voyage?", "answer": 1912 },
+        { "prompt": "In which year did London host the Olympic Games for the first time?", "answer": 1908 },
+        { "prompt": "How many kilometres long is Hadrian's Wall?", "answer": 117, "unit": "kilometres", "explanation": "It ran clean across the island, from the Solway Firth in the west to the North Sea coast in the east." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Double-decker bus",
+        "Red telephone box",
+        "Black cab",
+        "Bagpipes",
+        "Kilt",
+        "Bowler hat",
+        "Umbrella",
+        "Teapot",
+        "Scone",
+        "Shortbread",
+        "Haggis",
+        "Full English breakfast",
+        "Loch Ness Monster",
+        "Beefeater",
+        "Tower Bridge",
+        "London Eye",
+        "Cricket bat",
+        "Dartboard",
+        "Pub",
+        "Pint of beer",
+        "Rugby ball",
+        "Kettle",
+        "Wellington boots",
+        "White cliffs of Dover",
+        "Sheep",
+        "Tartan",
+        "Union Jack",
+        "Police helmet",
+        "Marmalade",
+        "Crumpet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four countries of the United Kingdom.", "answers": [{ "text": "England" }, { "text": "Scotland" }, { "text": "Wales" }, { "text": "Northern Ireland" }] },
+        { "prompt": "Name the four members of The Beatles.", "answers": [{ "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "George Harrison", "aliases": ["Harrison"] }, { "text": "Ringo Starr", "aliases": ["Ringo"] }] },
+        { "prompt": "Name the four patron saints of the countries of the United Kingdom.", "answers": [{ "text": "Saint George", "aliases": ["George"] }, { "text": "Saint Andrew", "aliases": ["Andrew"] }, { "text": "Saint David", "aliases": ["David"] }, { "text": "Saint Patrick", "aliases": ["Patrick"] }] },
+        { "prompt": "Name the four waters that surround the United Kingdom.", "answers": [{ "text": "The Atlantic Ocean", "aliases": ["Atlantic"] }, { "text": "The North Sea", "aliases": ["North Sea"] }, { "text": "The Irish Sea", "aliases": ["Irish Sea"] }, { "text": "The English Channel", "aliases": ["Channel"] }] },
+        { "prompt": "Name the four members of the band Queen.", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury"] }, { "text": "Brian May", "aliases": ["May"] }, { "text": "Roger Taylor", "aliases": ["Taylor"] }, { "text": "John Deacon", "aliases": ["Deacon"] }] },
+        { "prompt": "Name the four railway stations on the British Monopoly board.", "answers": [{ "text": "King's Cross", "aliases": ["Kings Cross"] }, { "text": "Marylebone" }, { "text": "Fenchurch Street", "aliases": ["Fenchurch"] }, { "text": "Liverpool Street" }] },
+        { "prompt": "Name the four plants that stand as national emblems of the countries of the United Kingdom.", "answers": [{ "text": "The rose", "aliases": ["Rose"] }, { "text": "The thistle", "aliases": ["Thistle"] }, { "text": "The daffodil", "aliases": ["Daffodil", "Leek"] }, { "text": "The shamrock", "aliases": ["Shamrock", "Clover"] }] },
+        { "prompt": "Name the four Teletubbies.", "answers": [{ "text": "Tinky Winky" }, { "text": "Dipsy" }, { "text": "Laa-Laa" }, { "text": "Po" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the capital of the United Kingdom?", "difficulty": "easy", "answers": [{ "text": "London" }] },
+        { "prompt": "Which three colours appear on the Union Jack?", "difficulty": "easy", "answers": [{ "text": "Red, white and blue", "aliases": ["Red white blue"] }] },
+        { "prompt": "On which side of the road do the British drive?", "difficulty": "easy", "answers": [{ "text": "The left", "aliases": ["Left", "Left-hand side"] }] },
+        { "prompt": "Which sport is played at Lord's in London?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
+        { "prompt": "Which bear from Peru comes to live with the Brown family in London?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Paddington Bear"] }] },
+        { "prompt": "Which is the largest island of Scotland?", "difficulty": "hard", "answers": [{ "text": "Lewis and Harris", "aliases": ["Lewis", "Harris"] }] },
+        { "prompt": "Which motorway connects London with Leeds?", "difficulty": "hard", "answers": [{ "text": "The M1", "aliases": ["M1"] }] },
+        { "prompt": "Which Scottish city is known as the Granite City?", "difficulty": "hard", "answers": [{ "text": "Aberdeen" }] },
+        { "prompt": "Which is the highest mountain in Wales?", "difficulty": "hard", "answers": [{ "text": "Snowdon", "aliases": ["Yr Wyddfa"] }] },
+        { "prompt": "Which is the smallest historic county of England?", "difficulty": "hard", "answers": [{ "text": "Rutland" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which English cathedral has the tallest spire in Britain?", "answers": [{ "text": "Salisbury Cathedral", "aliases": ["Salisbury"] }] },
+        { "prompt": "What is the official name of the clock tower at the Houses of Parliament, given to it in 2012?", "answers": [{ "text": "The Elizabeth Tower", "aliases": ["Elizabeth Tower"] }] },
+        { "prompt": "Which battle of 1746 was the last pitched battle fought on British soil?", "answers": [{ "text": "The Battle of Culloden", "aliases": ["Culloden"] }] },
+        { "prompt": "Which strait separates the Isle of Wight from the English mainland?", "answers": [{ "text": "The Solent", "aliases": ["Solent"] }] },
+        { "prompt": "Which English city did the Romans call Eboracum?", "answers": [{ "text": "York" }] },
+        { "prompt": "Who is generally regarded as the first British Prime Minister?", "answers": [{ "text": "Robert Walpole", "aliases": ["Walpole"] }] },
+        { "prompt": "Which national park was the first to be designated in the United Kingdom, in 1951?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] }
+      ]
+    }
+  ]
+}

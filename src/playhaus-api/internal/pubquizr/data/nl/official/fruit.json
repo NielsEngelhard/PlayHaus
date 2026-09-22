@@ -1,0 +1,136 @@
+{
+  "slug": "fruit",
+  "title": "Fruit",
+  "description": "Een hele pubquiz over fruit: van de boomgaard en de citrusgaard tot de fruitschaal.",
+  "publishedAt": "2026-09-20",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke vrucht wordt geperst om cider te maken?", "category": "Boomgaard", "answers": [{ "text": "De appel", "aliases": ["Appel", "Appels"] }] },
+        { "prompt": "Een pruimedant is de gedroogde vorm van welke vrucht?", "category": "Gedroogd fruit", "answers": [{ "text": "De pruim", "aliases": ["Pruim", "Pruimen"] }] },
+        { "prompt": "Welke gele vrucht pel je door de schil in repen naar beneden te trekken?", "category": "Tropisch", "answers": [{ "text": "De banaan", "aliases": ["Banaan", "Bananen"] }] },
+        { "prompt": "Welke kleine blauwzwarte bes groeit aan een lage struik en gaat vaak in muffins?", "category": "Bessen", "answers": [{ "text": "De bosbes", "aliases": ["Bosbes", "Bosbessen", "Blauwe bes"] }] },
+        { "prompt": "Welke citrusvrucht geeft Earl Grey-thee zijn smaak?", "category": "Citrus", "answers": [{ "text": "De bergamot", "aliases": ["Bergamot", "Bergamotsinaasappel"] }] },
+        { "prompt": "Welke citrusvrucht is de hoofdsmaak van de Italiaanse likeur limoncello?", "category": "Citrus", "answers": [{ "text": "De citroen", "aliases": ["Citroen", "Citroenen"] }] },
+        { "prompt": "Welke vrucht is het hoofdbestanddeel van guacamole?", "category": "Tropisch", "answers": [{ "text": "De avocado", "aliases": ["Avocado", "Avocados"] }] },
+        { "prompt": "Welke vrucht draagt een kroon van stugge, stekelige bladeren?", "category": "Tropisch", "answers": [{ "text": "De ananas", "aliases": ["Ananas", "Ananassen"] }] },
+        { "prompt": "Een nectarine is de gladde variant van welke vrucht?", "category": "Steenvrucht", "answers": [{ "text": "De perzik", "aliases": ["Perzik", "Perziken"] }] },
+        { "prompt": "Wijn wordt gemaakt van het gegiste sap van welke vrucht?", "category": "Wijngaard", "answers": [{ "text": "De druif", "aliases": ["Druif", "Druiven"] }] },
+        { "prompt": "Wat is de grootste van alle citrusvruchten, met een zeer dikke schil?", "category": "Citrus", "answers": [{ "text": "De pomelo", "aliases": ["Pomelo"] }] },
+        { "prompt": "Welke grote meloen heeft een groene schil en rood vruchtvlees met zwarte pitten?", "category": "Meloenen", "answers": [{ "text": "De watermeloen", "aliases": ["Watermeloen"] }] },
+        { "prompt": "Welke zure rode bes groeit op veengrond en wordt tot saus bij kalkoen verwerkt?", "category": "Bessen", "answers": [{ "text": "De cranberry", "aliases": ["Cranberry", "Cranberries", "Veenbes"] }] },
+        { "prompt": "Welke Nederlandse streek staat bekend om zijn appel- en perenboomgaarden in bloei?", "category": "Teelt", "answers": [{ "text": "De Betuwe", "aliases": ["Betuwe"] }] },
+        { "prompt": "Conference is een bekend ras van welke vrucht?", "category": "Boomgaard", "answers": [{ "text": "De peer", "aliases": ["Peer", "Peren"] }] },
+        { "prompt": "Welke vrucht wordt gebruikt voor de traditionele bittere marmelade uit Sevilla?", "category": "Citrus", "answers": [{ "text": "De sinaasappel", "aliases": ["Sinaasappel", "Sinaasappels", "Bittersinaasappel"] }] },
+        { "prompt": "Welke Zuidoost-Aziatische vrucht is in Singapore verboden in het openbaar vervoer vanwege de geur?", "category": "Tropisch", "answers": [{ "text": "De doerian", "aliases": ["Doerian", "Durian"] }] },
+        { "prompt": "Welke vrucht ligt boven op een Zwarte Woud-taart en zit ook in de vulling?", "category": "Steenvrucht", "answers": [{ "text": "De kers", "aliases": ["Kers", "Kersen"] }] },
+        { "prompt": "Welke vrucht is vernoemd naar een loopvogel uit Nieuw-Zeeland?", "category": "Plantkunde", "answers": [{ "text": "De kiwi", "aliases": ["Kiwi", "Kiwis"] }] },
+        { "prompt": "Welke vrucht groeit boven in een palmboom en heeft vocht binnenin?", "category": "Tropisch", "answers": [{ "text": "De kokosnoot", "aliases": ["Kokosnoot", "Kokos"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk land ligt de oorsprong van de perzik?", "options": [{ "text": "China", "correct": true }, { "text": "Iran" }, { "text": "Turkije" }, { "text": "Griekenland" }] },
+        { "prompt": "In welk land werd de Granny Smith-appel voor het eerst gekweekt?", "options": [{ "text": "Australie", "correct": true }, { "text": "Nieuw-Zeeland" }, { "text": "Zuid-Afrika" }, { "text": "De Verenigde Staten" }] },
+        { "prompt": "Welk enzym in verse ananas zorgt ervoor dat een gelatinepudding niet opstijft?", "options": [{ "text": "Bromelaine", "correct": true }, { "text": "Papaine" }, { "text": "Pepsine" }, { "text": "Amylase" }] },
+        { "prompt": "Hoe heten de sappige zaadmantels van een granaatappel officieel?", "options": [{ "text": "Arillen", "correct": true }, { "text": "Steenvruchten" }, { "text": "Vruchtbladen" }, { "text": "Hokjes" }] },
+        { "prompt": "Welke van deze vruchten is botanisch gezien een echte bes?", "options": [{ "text": "De tomaat", "correct": true }, { "text": "De aardbei" }, { "text": "De framboos" }, { "text": "De kers" }] },
+        { "prompt": "De Bramley is een appelras dat vooral wordt geteeld waarvoor?", "options": [{ "text": "Koken en bakken", "correct": true }, { "text": "Cider" }, { "text": "Rauw eten" }, { "text": "Sap" }] },
+        { "prompt": "Welke van deze vruchten bevat de meeste vitamine C per honderd gram?", "options": [{ "text": "De guave", "correct": true }, { "text": "De sinaasappel" }, { "text": "De aardbei" }, { "text": "De citroen" }] },
+        { "prompt": "Welke van deze vruchten is botanisch gezien een steenvrucht?", "options": [{ "text": "De olijf", "correct": true }, { "text": "De druif" }, { "text": "De bosbes" }, { "text": "De vijg" }] },
+        { "prompt": "De mango zit in dezelfde plantenfamilie als de cashew en de pistache. Welke familie is dat?", "options": [{ "text": "De cashewfamilie", "correct": true }, { "text": "De rozenfamilie" }, { "text": "De citrusfamilie" }, { "text": "De nachtschadefamilie" }] },
+        { "prompt": "Bananen zijn heel licht radioactief door welk element dat erin zit?", "options": [{ "text": "Kalium", "correct": true }, { "text": "Calcium" }, { "text": "IJzer" }, { "text": "Magnesium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel calorieen zitten er in een gemiddelde banaan?", "answer": 105, "unit": "calorieen" },
+        { "prompt": "Welk percentage van een watermeloen bestaat uit water?", "answer": 92, "unit": "procent", "explanation": "Bijna al het gewicht van een watermeloen is water, en daarom blijft hij aangesneden zo slecht goed." },
+        { "prompt": "Hoeveel appelrassen worden er wereldwijd ongeveer geteeld?", "answer": 7500, "unit": "rassen" },
+        { "prompt": "In welk jaar doopten Nieuw-Zeelandse telers de Chinese kruisbes om tot kiwi?", "answer": 1959, "explanation": "De nieuwe naam was bedoeld voor de export en verwijst naar de vogel, niet naar de Chinese herkomst." },
+        { "prompt": "Hoeveel zaden zitten er ongeveer in een granaatappel?", "answer": 600, "unit": "zaden" },
+        { "prompt": "Hoeveel bloemblaadjes heeft een appelbloesem?", "answer": 5, "unit": "bloemblaadjes" },
+        { "prompt": "Hoeveel meter hoog kan een kokospalm worden?", "answer": 30, "unit": "meter" },
+        { "prompt": "Hoeveel maanden heeft een ananasplant nodig om een enkele vrucht te laten rijpen?", "answer": 18, "unit": "maanden" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Appelklokhuis",
+        "Bananensplit",
+        "Rabarber",
+        "Ananasring",
+        "Meloenpartje",
+        "Druiven",
+        "Citroen",
+        "Kokosnootdop",
+        "Kers",
+        "Peer",
+        "Perzikpit",
+        "Mango",
+        "Bosbes",
+        "Vijg",
+        "Rozijn",
+        "Avocado",
+        "Bananenschil",
+        "Fruitschaal",
+        "Fruitsalade",
+        "Smoothie",
+        "Marmelade",
+        "Appeltaart",
+        "Boomgaard",
+        "Fruitmesje",
+        "Blender",
+        "Citruspers",
+        "Fruitplukker",
+        "Fruitkraam",
+        "Fruitvliegje",
+        "Jampot"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier onderdelen van een appel.", "answers": [{ "text": "De schil", "aliases": ["Schil"] }, { "text": "Het steeltje", "aliases": ["Steeltje", "Steel"] }, { "text": "Het klokhuis", "aliases": ["Klokhuis"] }, { "text": "De pitjes", "aliases": ["Pitjes", "Pitten", "Zaden"] }] },
+        { "prompt": "Noem de vier vruchten die het vaakst in een zak gemengd gedroogd fruit zitten.", "answers": [{ "text": "Rozijnen", "aliases": ["Rozijn", "Krenten"] }, { "text": "Gedroogde abrikozen", "aliases": ["Abrikozen", "Abrikoos"] }, { "text": "Dadels", "aliases": ["Dadel"] }, { "text": "Vijgen", "aliases": ["Vijg"] }] },
+        { "prompt": "Noem de vier zachte rode vruchten die in een rodevruchtendessert gaan.", "answers": [{ "text": "Aardbei", "aliases": ["Aardbeien"] }, { "text": "Framboos", "aliases": ["Frambozen"] }, { "text": "Braam", "aliases": ["Bramen"] }, { "text": "Rode bes", "aliases": ["Rode bessen", "Aalbes"] }] },
+        { "prompt": "Noem de vier bekendste appelrassen in de Nederlandse supermarkt.", "answers": [{ "text": "Elstar" }, { "text": "Jonagold" }, { "text": "Granny Smith" }, { "text": "Golden Delicious" }] },
+        { "prompt": "Noem de vier citrusvruchten in de supermarkt, behalve de sinaasappel en de citroen.", "answers": [{ "text": "Limoen", "aliases": ["Limoenen"] }, { "text": "Grapefruit", "aliases": ["Grapefruits", "Pompelmoes"] }, { "text": "Mandarijn", "aliases": ["Mandarijnen"] }, { "text": "Clementine", "aliases": ["Clementines", "Clementien"] }] },
+        { "prompt": "Noem de vier groenten uit de keuken die botanisch gezien vruchten zijn, behalve de tomaat.", "answers": [{ "text": "Komkommer", "aliases": ["Komkommers"] }, { "text": "Courgette", "aliases": ["Courgettes"] }, { "text": "Paprika", "aliases": ["Paprikas"] }, { "text": "Aubergine", "aliases": ["Aubergines"] }] },
+        { "prompt": "Noem de vier meloenen die in Europese supermarkten liggen, behalve de watermeloen.", "answers": [{ "text": "Cantaloupemeloen", "aliases": ["Cantaloupe"] }, { "text": "Honingmeloen", "aliases": ["Honingdauwmeloen", "Honeydew"] }, { "text": "Galiameloen", "aliases": ["Galia"] }, { "text": "Ogenmeloen", "aliases": ["Ogen"] }] },
+        { "prompt": "Noem de vier exotische vruchten die naar Europa worden gevlogen, behalve de banaan en de ananas.", "answers": [{ "text": "Mango", "aliases": ["Mangos"] }, { "text": "Papaja", "aliases": ["Papajas"] }, { "text": "Passievrucht", "aliases": ["Passievruchten", "Maracuja"] }, { "text": "Lychee", "aliases": ["Lychees", "Litchi"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het zoete broodbeleg dat je maakt door fruit met suiker in te koken?", "difficulty": "easy", "answers": [{ "text": "Jam", "aliases": ["Confituur"] }] },
+        { "prompt": "Hoe heet het harde deel in het midden van een perzik?", "difficulty": "easy", "answers": [{ "text": "De pit", "aliases": ["Pit", "Steen"] }] },
+        { "prompt": "Om welke vitamine staat citrusfruit het meest bekend?", "difficulty": "easy", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
+        { "prompt": "Hoe heet de vloeistof die je uit een vrucht perst?", "difficulty": "easy", "answers": [{ "text": "Sap", "aliases": ["Vruchtensap"] }] },
+        { "prompt": "Welke kleur heeft het vruchtvlees van een rijpe kiwi?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Hoe heet de kennis en teelt van fruitbomen?", "difficulty": "hard", "answers": [{ "text": "Pomologie" }] },
+        { "prompt": "Welk gas geven rijpende vruchten af waardoor het fruit eromheen sneller rijpt?", "difficulty": "hard", "answers": [{ "text": "Etheen", "aliases": ["Ethyleen"] }] },
+        { "prompt": "Wat is de botanische term voor een vrucht als de framboos, die uit veel kleine steenvruchtjes bestaat?", "difficulty": "hard", "answers": [{ "text": "Een verzamelvrucht", "aliases": ["Verzamelvrucht"] }] },
+        { "prompt": "Hoe heet de witte sponzige laag tussen de schil en het vruchtvlees van een citrusvrucht?", "difficulty": "hard", "answers": [{ "text": "Het wit", "aliases": ["Wit", "Albedo"] }] },
+        { "prompt": "Welk zuur geeft appels hun frisse smaak?", "difficulty": "hard", "answers": [{ "text": "Appelzuur", "aliases": ["Malaatzuur"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het vruchttype van een citrusvrucht botanisch: een bes met een leerachtige schil?", "answers": [{ "text": "Een hesperidium", "aliases": ["Hesperidium"] }] },
+        { "prompt": "Hoe heten de kleine zaadjes aan de buitenkant van een aardbei botanisch?", "answers": [{ "text": "Nootjes", "aliases": ["Nootje", "Achenen", "Dopvruchtjes"] }] },
+        { "prompt": "Hoe heet een tros bananen die samen aan de plant groeit?", "answers": [{ "text": "Een hand", "aliases": ["Hand"] }] },
+        { "prompt": "Welke bes, voor het eerst gekweekt in Californie, is een kruising tussen een braam en een framboos?", "answers": [{ "text": "De loganbes", "aliases": ["Loganbes", "Loganberry"] }] },
+        { "prompt": "Hoe heet de vrucht van de roos, die in siroop en thee wordt gebruikt?", "answers": [{ "text": "De rozenbottel", "aliases": ["Rozenbottel", "Bottel"] }] },
+        { "prompt": "Van welke vrucht worden de zaden gefermenteerd en geroosterd om chocolade te maken?", "answers": [{ "text": "De cacaovrucht", "aliases": ["Cacao", "Cacaopeul"] }] },
+        { "prompt": "Welk zuur geeft citroenen hun zure smaak?", "answers": [{ "text": "Citroenzuur", "aliases": ["Citroen zuur"] }] }
+      ]
+    }
+  ]
+}

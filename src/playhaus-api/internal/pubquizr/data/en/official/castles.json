@@ -1,0 +1,136 @@
+{
+  "slug": "castles",
+  "title": "Castles",
+  "description": "A whole pub quiz about castles: moats and keeps, sieges and the great fortresses of Europe.",
+  "publishedAt": "2026-09-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the strongest tower of a castle, its last place of refuge, called?", "category": "Parts of a castle", "answers": [{ "text": "The keep", "aliases": ["keep", "donjon"] }] },
+        { "prompt": "What is the wall that runs between a castle's towers and encloses the courtyard called?", "category": "Parts of a castle", "answers": [{ "text": "The curtain wall", "aliases": ["curtain wall", "ring wall"] }] },
+        { "prompt": "What is the notched top of a castle wall called?", "category": "Parts of a castle", "answers": [{ "text": "The battlements", "aliases": ["battlements", "crenellations", "battlement"] }] },
+        { "prompt": "What is the underground prison of a castle called?", "category": "Parts of a castle", "answers": [{ "text": "The dungeon", "aliases": ["dungeon"] }] },
+        { "prompt": "Which fortress on the Thames guards the British crown jewels?", "category": "English castles", "answers": [{ "text": "The Tower of London", "aliases": ["Tower of London", "the Tower"] }] },
+        { "prompt": "Which English castle above the shortest crossing to France is known as the key to England?", "category": "English castles", "answers": [{ "text": "Dover Castle", "aliases": ["Dover"] }] },
+        { "prompt": "Which castle west of London is the largest inhabited castle in the world?", "category": "Royal castles", "answers": [{ "text": "Windsor Castle", "aliases": ["Windsor"] }] },
+        { "prompt": "Which castle stands on a volcanic rock above the capital of Scotland?", "category": "Scottish castles", "answers": [{ "text": "Edinburgh Castle", "aliases": ["Edinburgh"] }] },
+        { "prompt": "Which Bavarian castle of King Ludwig the Second inspired the Disney fairy-tale castle?", "category": "German castles", "answers": [{ "text": "Neuschwanstein", "aliases": ["Neuschwanstein Castle", "Schloss Neuschwanstein"] }] },
+        { "prompt": "Along which French river do the chateaux of Blois, Amboise and Chinon stand?", "category": "French castles", "answers": [{ "text": "The Loire", "aliases": ["Loire", "Loire valley"] }] },
+        { "prompt": "Which castle in Transylvania is sold to visitors as the castle of Dracula?", "category": "Castles and legends", "answers": [{ "text": "Bran Castle", "aliases": ["Bran"] }] },
+        { "prompt": "Which Danish castle is the Elsinore of Shakespeare's Hamlet?", "category": "Scandinavian castles", "answers": [{ "text": "Kronborg", "aliases": ["Kronborg Castle"] }] },
+        { "prompt": "Which Moorish palace and fortress looks out over the city of Granada?", "category": "Spanish castles", "answers": [{ "text": "The Alhambra", "aliases": ["Alhambra"] }] },
+        { "prompt": "Which castle is the official seat of the president of the Czech Republic?", "category": "Central European castles", "answers": [{ "text": "Prague Castle", "aliases": ["Hradcany", "the castle of Prague"] }] },
+        { "prompt": "Which thirteenth-century castle guards the mouth of the Vecht just east of Amsterdam?", "category": "Dutch castles", "answers": [{ "text": "The Muiderslot", "aliases": ["Muiderslot", "Muiden Castle"] }] },
+        { "prompt": "Which castle near the village of Haarzuilens is the largest in the Netherlands?", "category": "Dutch castles", "answers": [{ "text": "Kasteel de Haar", "aliases": ["De Haar", "Castle de Haar"] }] },
+        { "prompt": "From which castle did Hugo de Groot escape in a book chest?", "category": "Dutch castles", "answers": [{ "text": "Slot Loevestein", "aliases": ["Loevestein", "Loevestein Castle"] }] },
+        { "prompt": "Which castle of the counts of Flanders stands in the middle of Ghent?", "category": "Belgian castles", "answers": [{ "text": "The Gravensteen", "aliases": ["Gravensteen", "Castle of the Counts"] }] },
+        { "prompt": "Which fortress and prison in Paris was stormed on the fourteenth of July 1789?", "category": "Fortresses", "answers": [{ "text": "The Bastille", "aliases": ["Bastille"] }] },
+        { "prompt": "What is the name of the castle school in the Harry Potter books?", "category": "Castles in fiction", "answers": [{ "text": "Hogwarts", "aliases": ["Hogwarts School"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year was the foundation stone of Neuschwanstein laid?", "options": [{ "text": "1869", "correct": true }, { "text": "1839" }, { "text": "1886" }, { "text": "1892" }] },
+        { "prompt": "Which chateau of the Loire is built as a gallery spanning the river Cher?", "options": [{ "text": "Chenonceau", "correct": true }, { "text": "Chambord" }, { "text": "Amboise" }, { "text": "Blois" }] },
+        { "prompt": "Which English king built the ring of castles around Snowdonia in Wales?", "options": [{ "text": "Edward the First", "correct": true }, { "text": "Henry the Second" }, { "text": "Richard the First" }, { "text": "John" }] },
+        { "prompt": "In which country does the crusader castle Krak des Chevaliers stand?", "options": [{ "text": "Syria", "correct": true }, { "text": "Lebanon" }, { "text": "Jordan" }, { "text": "Turkey" }] },
+        { "prompt": "Which military order built Malbork Castle, the largest castle in the world by area?", "options": [{ "text": "The Teutonic Order", "correct": true }, { "text": "The Knights Templar" }, { "text": "The Knights Hospitaller" }, { "text": "The Order of Santiago" }] },
+        { "prompt": "Which castle, despite its name, stands in Kent and was a home of Catherine of Aragon?", "options": [{ "text": "Leeds Castle", "correct": true }, { "text": "Hever Castle" }, { "text": "Arundel Castle" }, { "text": "Warwick Castle" }] },
+        { "prompt": "Which Japanese castle is known as the White Heron?", "options": [{ "text": "Himeji", "correct": true }, { "text": "Osaka" }, { "text": "Matsumoto" }, { "text": "Nagoya" }] },
+        { "prompt": "In which year did a great fire badly damage Windsor Castle?", "options": [{ "text": "1992", "correct": true }, { "text": "1972" }, { "text": "1984" }, { "text": "1998" }] },
+        { "prompt": "In a motte-and-bailey castle, what is the motte?", "options": [{ "text": "The raised mound of earth", "correct": true }, { "text": "The ditch dug around it" }, { "text": "The enclosed yard below" }, { "text": "The wooden palisade on top" }] },
+        { "prompt": "Which chateau has the double-helix staircase often attributed to Leonardo da Vinci?", "options": [{ "text": "Chambord", "correct": true }, { "text": "Villandry" }, { "text": "Azay-le-Rideau" }, { "text": "Cheverny" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year was the Muiderslot first built?", "answer": 1285 },
+        { "prompt": "In which year did Hugo de Groot escape from Slot Loevestein in a book chest?", "answer": 1621 },
+        { "prompt": "In which year did the second defenestration of Prague take place at Prague Castle?", "answer": 1618, "explanation": "The men thrown from the window survived the fall, and the Thirty Years War followed within months." },
+        { "prompt": "How many rooms does the chateau of Chambord have?", "answer": 440, "unit": "rooms" },
+        { "prompt": "How many towers does the walled city of Carcassonne have?", "answer": 52, "unit": "towers" },
+        { "prompt": "How many prisoners were being held in the Bastille when it was stormed in 1789?", "answer": 7, "unit": "prisoners", "explanation": "Four forgers, two men held as insane and one aristocrat." },
+        { "prompt": "How many metres tall is the White Tower at the Tower of London?", "answer": 27, "unit": "metres" },
+        { "prompt": "How many hectares does Malbork Castle in Poland cover?", "answer": 21, "unit": "hectares" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Gargoyle",
+        "Turret",
+        "Arrow slit",
+        "Catapult",
+        "Armour",
+        "Rampart",
+        "Bell tower",
+        "Sword",
+        "Archer",
+        "Crossbow",
+        "Stained glass",
+        "Banner",
+        "Spiral staircase",
+        "Courtyard",
+        "Torch",
+        "Tapestry",
+        "Stables",
+        "Well",
+        "Jester",
+        "Ruin",
+        "Chandelier",
+        "Cannon",
+        "Weathervane",
+        "Princess",
+        "Treasure chest",
+        "Lance",
+        "Siege ladder",
+        "Crypt",
+        "Falcon",
+        "Fireplace"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four castles of Edward the First in Gwynedd that UNESCO lists together.", "answers": [{ "text": "Caernarfon" }, { "text": "Conwy" }, { "text": "Harlech" }, { "text": "Beaumaris" }] },
+        { "prompt": "Name the four houses of Hogwarts.", "answers": [{ "text": "Gryffindor" }, { "text": "Hufflepuff" }, { "text": "Ravenclaw" }, { "text": "Slytherin" }] },
+        { "prompt": "Name the four countries in which Bran Castle, Kronborg, Malbork and the Alhambra stand.", "answers": [{ "text": "Romania" }, { "text": "Denmark" }, { "text": "Poland" }, { "text": "Spain" }] },
+        { "prompt": "Name the four pieces of a knight's armour that cover the head, the chest, the hands and the shins.", "answers": [{ "text": "Helmet", "aliases": ["helm"] }, { "text": "Breastplate", "aliases": ["cuirass"] }, { "text": "Gauntlets", "aliases": ["gauntlet"] }, { "text": "Greaves", "aliases": ["shin plates"] }] },
+        { "prompt": "Name the four siege weapons: the one that hurls with a counterweight, the giant crossbow, the tower on wheels and the beam swung at the gate.", "answers": [{ "text": "Trebuchet" }, { "text": "Ballista" }, { "text": "Siege tower", "aliases": ["belfry"] }, { "text": "Battering ram", "aliases": ["ram"] }] },
+        { "prompt": "Name the four defences an attacker met at a castle gate: the water-filled ditch, the bridge that lifts, the iron grille and the outwork standing in front of it.", "answers": [{ "text": "Moat" }, { "text": "Drawbridge" }, { "text": "Portcullis" }, { "text": "Barbican" }] },
+        { "prompt": "Name the four craftsmen who built a castle: the one who cut the stone, the one who worked the wood, the one who forged the iron and the one who set the glass.", "answers": [{ "text": "Stonemason", "aliases": ["mason"] }, { "text": "Carpenter" }, { "text": "Blacksmith", "aliases": ["smith"] }, { "text": "Glazier" }] },
+        { "prompt": "Name the four rooms of a castle: where the lord feasted, where he slept, where he prayed and where the food was cooked.", "answers": [{ "text": "The great hall", "aliases": ["great hall", "hall"] }, { "text": "The bedchamber", "aliases": ["bedchamber", "solar", "bedroom"] }, { "text": "The chapel", "aliases": ["chapel"] }, { "text": "The kitchen", "aliases": ["kitchen"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which chess piece is shaped like a castle tower?", "difficulty": "easy", "answers": [{ "text": "The rook", "aliases": ["rook", "castle"] }] },
+        { "prompt": "Which black birds are kept at the Tower of London by tradition?", "difficulty": "easy", "answers": [{ "text": "Ravens", "aliases": ["raven"] }] },
+        { "prompt": "Which fairy-tale princess pricked her finger on a spindle and slept for a hundred years?", "difficulty": "easy", "answers": [{ "text": "Sleeping Beauty", "aliases": ["Briar Rose"] }] },
+        { "prompt": "What do we call an armoured warrior on horseback who served a lord?", "difficulty": "easy", "answers": [{ "text": "A knight", "aliases": ["knight"] }] },
+        { "prompt": "Which legendary king held court with his round table at Camelot?", "difficulty": "easy", "answers": [{ "text": "King Arthur", "aliases": ["Arthur"] }] },
+        { "prompt": "What is the medieval castle toilet, a shaft built into the thickness of the wall, called?", "difficulty": "hard", "answers": [{ "text": "A garderobe", "aliases": ["garderobe", "privy"] }] },
+        { "prompt": "What are the openings in the floor above a gateway through which defenders dropped stones called?", "difficulty": "hard", "answers": [{ "text": "Murder holes", "aliases": ["machicolations", "murder hole"] }] },
+        { "prompt": "Which castle above the Seine in Normandy did Richard the Lionheart build in about two years?", "difficulty": "hard", "answers": [{ "text": "Chateau Gaillard", "aliases": ["Gaillard"] }] },
+        { "prompt": "Which moated castle in East Sussex was built in the 1380s and sits square in the middle of its lake?", "difficulty": "hard", "answers": [{ "text": "Bodiam Castle", "aliases": ["Bodiam"] }] },
+        { "prompt": "Which count of Holland had the Muiderslot built and was murdered in 1296?", "difficulty": "hard", "answers": [{ "text": "Floris the Fifth", "aliases": ["Floris V", "Floris"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which German castle served in the Second World War as a high-security camp for prisoners of war who kept escaping?", "answers": [{ "text": "Colditz", "aliases": ["Colditz Castle", "Schloss Colditz"] }] },
+        { "prompt": "Which castle above the Rhine near Koblenz is the only hill castle on the middle Rhine never to have been destroyed?", "answers": [{ "text": "The Marksburg", "aliases": ["Marksburg"] }] },
+        { "prompt": "In which island castle was Mary, Queen of Scots imprisoned and forced to abdicate in 1567?", "answers": [{ "text": "Loch Leven Castle", "aliases": ["Loch Leven", "Lochleven"] }] },
+        { "prompt": "In which manor house at Amboise did Leonardo da Vinci spend his last years and die in 1519?", "answers": [{ "text": "Clos Luce", "aliases": ["Le Clos Luce", "Chateau du Clos Luce"] }] },
+        { "prompt": "Which fortress in Rome began as the mausoleum of the emperor Hadrian and became a stronghold of the popes?", "answers": [{ "text": "Castel Sant'Angelo", "aliases": ["Sant'Angelo", "Castle of the Holy Angel"] }] },
+        { "prompt": "Which brightly coloured romantic palace stands on a hilltop above Sintra in Portugal?", "answers": [{ "text": "The Pena Palace", "aliases": ["Pena Palace", "Pena", "Palacio da Pena"] }] },
+        { "prompt": "Which fortress looking down on Salzburg is one of the largest fully preserved castles in Europe?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Hohensalzburg Fortress", "Festung Hohensalzburg"] }] }
+      ]
+    }
+  ]
+}

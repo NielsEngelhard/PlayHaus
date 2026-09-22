@@ -1,0 +1,136 @@
+{
+  "slug": "eurovision",
+  "title": "Het Eurovisie Songfestival",
+  "description": "Zeven rondes over het Eurovisie Songfestival: winnaars, liedjes, gaststeden en het stemmen.",
+  "publishedAt": "2026-09-13",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Met welk lied won de Zweedse groep ABBA het songfestival in 1974?", "category": "Liedjes", "answers": [{ "text": "Waterloo" }] },
+        { "prompt": "Welke organisatie, afgekort EBU, organiseert het Eurovisie Songfestival?", "category": "Organisatie", "answers": [{ "text": "De European Broadcasting Union", "aliases": ["EBU", "European Broadcasting Union", "Europese Radio-unie"] }] },
+        { "prompt": "In welke Nederlandse stad werd het songfestival in 2021 gehouden?", "category": "Gaststeden", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Welke Ierse zanger won het songfestival twee keer als artiest, in 1980 en in 1987?", "category": "Winnaars", "answers": [{ "text": "Johnny Logan" }] },
+        { "prompt": "Welke Canadese zangeres won het songfestival van 1988 voor Zwitserland?", "category": "Artiesten", "answers": [{ "text": "Celine Dion", "aliases": ["Céline Dion", "Dion"] }] },
+        { "prompt": "Welke Finse band won in 2006 verkleed als monsters?", "category": "Winnaars", "answers": [{ "text": "Lordi" }] },
+        { "prompt": "Hoeveel punten zijn het hoogste aantal dat een land aan een ander land kan geven?", "category": "Stemmen", "answers": [{ "text": "Twaalf", "aliases": ["12", "Douze points"] }] },
+        { "prompt": "Welke Franse term wordt gebruikt voor een land dat eindigt zonder ook maar een punt?", "category": "Stemmen", "answers": [{ "text": "Nul points", "aliases": ["Nul point", "Nul punten"] }] },
+        { "prompt": "Welke Oostenrijkse act won in 2014 met Rise Like a Phoenix?", "category": "Winnaars", "answers": [{ "text": "Conchita Wurst", "aliases": ["Conchita", "Tom Neuwirth"] }] },
+        { "prompt": "Welke Oekraiense zangeres won het songfestival van 2016 met 1944?", "category": "Winnaars", "answers": [{ "text": "Jamala" }] },
+        { "prompt": "In welke stad werd het songfestival van 2019 gehouden?", "category": "Gaststeden", "answers": [{ "text": "Tel Aviv" }] },
+        { "prompt": "Welke Ierse dansshow was de pauzeact van het songfestival in 1994?", "category": "Pauzeacts", "answers": [{ "text": "Riverdance" }] },
+        { "prompt": "In welke maand van het jaar wordt de finale traditioneel gehouden?", "category": "Tradities", "answers": [{ "text": "Mei" }] },
+        { "prompt": "Welke Noorse violist won het songfestival van 2009?", "category": "Artiesten", "answers": [{ "text": "Alexander Rybak", "aliases": ["Rybak"] }] },
+        { "prompt": "Welke Israelische zangeres won het songfestival van 1998 in Birmingham?", "category": "Winnaars", "answers": [{ "text": "Dana International" }] },
+        { "prompt": "Welke zanger bezorgde Portugal in 2017 zijn eerste overwinning?", "category": "Winnaars", "answers": [{ "text": "Salvador Sobral", "aliases": ["Sobral"] }] },
+        { "prompt": "In welk jaar ging het songfestival niet door vanwege de coronapandemie?", "category": "Geschiedenis", "answers": [{ "text": "2020", "aliases": ["Tweeduizend twintig"] }] },
+        { "prompt": "Welk land buiten Europa deed in 2015 voor het eerst mee?", "category": "Landen", "answers": [{ "text": "Australie", "aliases": ["Australië"] }] },
+        { "prompt": "Welke Duitse zangeres won het songfestival van 2010 in Oslo?", "category": "Winnaars", "answers": [{ "text": "Lena", "aliases": ["Lena Meyer-Landrut"] }] },
+        { "prompt": "Welke Oekraiense groep won het songfestival van 2022 met Stefania?", "category": "Winnaars", "answers": [{ "text": "Kalush Orchestra", "aliases": ["Kalush"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welke Engelse badplaats won ABBA het songfestival in 1974?", "options": [{ "text": "Brighton", "correct": true }, { "text": "Blackpool" }, { "text": "Bournemouth" }, { "text": "Blackburn" }] },
+        { "prompt": "Welke Italiaanse zanger won het songfestival van 1990 met Insieme: 1992?", "options": [{ "text": "Toto Cutugno", "correct": true }, { "text": "Eros Ramazzotti" }, { "text": "Umberto Tozzi" }, { "text": "Gianni Morandi" }] },
+        { "prompt": "Wie won het allereerste Eurovisie Songfestival, in 1956?", "options": [{ "text": "Lys Assia", "correct": true }, { "text": "Jacqueline Boyer" }, { "text": "Isabelle Aubret" }, { "text": "Gigliola Cinquetti" }] },
+        { "prompt": "Welke Franse zangeres won in 1965 voor Luxemburg met Poupée de cire, poupée de son?", "options": [{ "text": "France Gall", "correct": true }, { "text": "Françoise Hardy" }, { "text": "Sylvie Vartan" }, { "text": "Mireille Mathieu" }] },
+        { "prompt": "In welk jaar kende het songfestival voor het eerst een halve finale?", "options": [{ "text": "1998" }, { "text": "2001" }, { "text": "2004", "correct": true }, { "text": "2008" }] },
+        { "prompt": "In welke Britse stad werd het songfestival van 2023 namens Oekraine gehouden?", "options": [{ "text": "Liverpool", "correct": true }, { "text": "Manchester" }, { "text": "Glasgow" }, { "text": "Birmingham" }] },
+        { "prompt": "Welke Duitse zangeres won het songfestival van 1982 met Ein bisschen Frieden?", "options": [{ "text": "Nicole", "correct": true }, { "text": "Nena" }, { "text": "Katja Ebstein" }, { "text": "Marianne Rosenberg" }] },
+        { "prompt": "In welke taal werd het winnende lied van 2017, Amar pelos dois, gezongen?", "options": [{ "text": "Portugees", "correct": true }, { "text": "Spaans" }, { "text": "Italiaans" }, { "text": "Catalaans" }] },
+        { "prompt": "Welke Zweedse zangeres won het songfestival zowel in 2012 als in 2023?", "options": [{ "text": "Loreen", "correct": true }, { "text": "Carola" }, { "text": "Charlotte Perrelli" }, { "text": "Sanna Nielsen" }] },
+        { "prompt": "Met welk lied won Katrina and the Waves in 1997 voor het Verenigd Koninkrijk?", "options": [{ "text": "Love Shine a Light", "correct": true }, { "text": "Ordinary Girl" }, { "text": "Better the Devil You Know" }, { "text": "One Step Out of Time" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoe vaak heeft Nederland het Eurovisie Songfestival gewonnen?", "answer": 5, "unit": "keer", "explanation": "Nederland won in 1957, 1959, 1969, 1975 en 2019." },
+        { "prompt": "In welk jaar won Ierland het songfestival voor het derde jaar op rij?", "answer": 1994 },
+        { "prompt": "Hoeveel landen deden mee aan de finale van 2021 in Rotterdam?", "answer": 26, "unit": "landen" },
+        { "prompt": "Hoeveel punten haalde Salvador Sobral toen hij in 2017 won?", "answer": 758, "unit": "punten", "explanation": "Portugal deed sinds 1964 mee en had nog nooit gewonnen." },
+        { "prompt": "In welk jaar hield Zweden het songfestival in Malmo, vijftig jaar na de overwinning van ABBA?", "answer": 2024 },
+        { "prompt": "Hoeveel punten haalde Alexander Rybak toen hij in 2009 won?", "answer": 387, "unit": "punten" },
+        { "prompt": "Hoe vaak heeft Ierland het songfestival gewonnen?", "answer": 7, "unit": "keer" },
+        { "prompt": "Hoeveel landen deelden de eerste plaats bij de beroemde gelijkspel van 1969?", "answer": 4, "unit": "landen" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Glazen microfoon",
+        "Startvolgorde",
+        "Confetti",
+        "Windmachine",
+        "Droogijs",
+        "Green room",
+        "Ansichtkaart",
+        "Halve finale",
+        "Jury",
+        "Televoting",
+        "Woordvoerder",
+        "Achtergrondzangers",
+        "Modulatie",
+        "Verenboa",
+        "Vlag",
+        "Pailletten",
+        "Autocue",
+        "Presentator",
+        "Repetitie",
+        "Ballade",
+        "Duet",
+        "Kostuumwissel",
+        "Kleedkamer",
+        "Schijnwerper",
+        "Accordeon",
+        "Bookmaker",
+        "Oortje",
+        "Boyband",
+        "Klederdracht",
+        "Applaus"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier landen met een S aan het begin die het songfestival hebben gewonnen.", "answers": [{ "text": "Zweden" }, { "text": "Zwitserland" }, { "text": "Servie", "aliases": ["Servië"] }, { "text": "Spanje" }] },
+        { "prompt": "Noem de vier leden van ABBA.", "answers": [{ "text": "Agnetha Faltskog", "aliases": ["Agnetha Fältskog", "Agnetha"] }, { "text": "Bjorn Ulvaeus", "aliases": ["Björn Ulvaeus", "Bjorn"] }, { "text": "Benny Andersson", "aliases": ["Benny"] }, { "text": "Anni-Frid Lyngstad", "aliases": ["Frida", "Anni-Frid"] }] },
+        { "prompt": "Noem de vier Nederlandse acts die het songfestival wonnen voor Duncan Laurence.", "answers": [{ "text": "Corry Brokken" }, { "text": "Teddy Scholten" }, { "text": "Lenny Kuhr" }, { "text": "Teach-In", "aliases": ["Teach In"] }] },
+        { "prompt": "Noem de vier Noordse hoofdsteden waar het songfestival is gehouden.", "answers": [{ "text": "Stockholm" }, { "text": "Oslo" }, { "text": "Kopenhagen" }, { "text": "Helsinki" }] },
+        { "prompt": "Noem de vier winnende liedjes van Loreen in 2012, Alexander Rybak in 2009, Netta in 2018 en Ruslana in 2004.", "answers": [{ "text": "Euphoria" }, { "text": "Fairytale" }, { "text": "Toy" }, { "text": "Wild Dances" }] },
+        { "prompt": "Noem de vier landen van de Big Five naast Spanje.", "answers": [{ "text": "Frankrijk" }, { "text": "Duitsland" }, { "text": "Italie", "aliases": ["Italië"] }, { "text": "Het Verenigd Koninkrijk", "aliases": ["Verenigd Koninkrijk", "Engeland", "Groot-Brittannie"] }] },
+        { "prompt": "Noem de vier presentatoren van het songfestival van 2021 in Rotterdam.", "answers": [{ "text": "Chantal Janzen" }, { "text": "Edsilia Rombley" }, { "text": "Jan Smit" }, { "text": "Nikkie de Jager", "aliases": ["NikkieTutorials", "Nikkie"] }] },
+        { "prompt": "Noem de vier winnende liedjes van een woord: Israel in 1998, Servie in 2007, Duitsland in 2010 en Nederland in 2019.", "answers": [{ "text": "Diva" }, { "text": "Molitva" }, { "text": "Satellite" }, { "text": "Arcade" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Zweedse groep won het songfestival in 1974?", "difficulty": "easy", "answers": [{ "text": "ABBA" }] },
+        { "prompt": "Welk land won het songfestival in 2019?", "difficulty": "easy", "answers": [{ "text": "Nederland" }] },
+        { "prompt": "Hoe lang mag een songfestivallied hoogstens duren?", "difficulty": "easy", "answers": [{ "text": "Drie minuten", "aliases": ["3 minuten"] }] },
+        { "prompt": "Welke Italiaanse rockband won het songfestival in 2021 met Zitti e buoni?", "difficulty": "easy", "answers": [{ "text": "Maneskin", "aliases": ["Måneskin"] }] },
+        { "prompt": "Wat is de minimumleeftijd voor een artiest op het songfestival?", "difficulty": "easy", "answers": [{ "text": "Zestien", "aliases": ["16"] }] },
+        { "prompt": "In welke Zwitserse plaats werd het eerste songfestival gehouden, in 1956?", "difficulty": "hard", "answers": [{ "text": "Lugano" }] },
+        { "prompt": "Welke dertienjarige won het songfestival in 1986 voor Belgie?", "difficulty": "hard", "answers": [{ "text": "Sandra Kim" }] },
+        { "prompt": "Welk land won het songfestival van 2011 met Running Scared?", "difficulty": "hard", "answers": [{ "text": "Azerbeidzjan" }] },
+        { "prompt": "Welk barokmuziekstuk wordt gebruikt als de herkenningsmelodie van het songfestival?", "difficulty": "hard", "answers": [{ "text": "Te Deum", "aliases": ["Te Deum van Charpentier"] }] },
+        { "prompt": "Met welk lied won Gigliola Cinquetti het songfestival van 1964 voor Italie?", "difficulty": "hard", "answers": [{ "text": "Non ho l'eta", "aliases": ["Non ho l'età"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk klein vorstendom won het songfestival in 1971, zijn enige overwinning?", "answers": [{ "text": "Monaco" }] },
+        { "prompt": "Wie schreef het winnende lied van 1965, Poupée de cire, poupée de son?", "answers": [{ "text": "Serge Gainsbourg", "aliases": ["Gainsbourg"] }] },
+        { "prompt": "In welke Duitse stad werd het songfestival van 1983 gehouden?", "answers": [{ "text": "Munchen", "aliases": ["München", "Munich"] }] },
+        { "prompt": "Welke Israelische groep won het songfestival van 1979 met Hallelujah?", "answers": [{ "text": "Milk and Honey", "aliases": ["Gali Atari en Milk and Honey", "Milk & Honey"] }] },
+        { "prompt": "In welk jaar werd de vrije taalkeuze definitief hersteld?", "answers": [{ "text": "1999", "aliases": ["Negentienhonderdnegenennegentig"] }] },
+        { "prompt": "Welk land won het songfestival van 2005 met My Number One?", "answers": [{ "text": "Griekenland" }] },
+        { "prompt": "Welke Zweedse stad was in 1985 gastheer van het songfestival?", "answers": [{ "text": "Goteborg", "aliases": ["Göteborg", "Gothenburg"] }] }
+      ]
+    }
+  ]
+}

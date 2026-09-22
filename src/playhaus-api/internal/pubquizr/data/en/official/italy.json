@@ -1,0 +1,136 @@
+{
+  "slug": "italy",
+  "title": "Italy",
+  "description": "A quiz about Italy: its regions and cities, its art and opera, its food, its films and its language.",
+  "publishedAt": "2026-08-29",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which city is the capital of Italy?", "category": "Cities", "answers": [{ "text": "Rome", "aliases": ["Roma"] }] },
+        { "prompt": "Which mountain range forms the northern border of Italy?", "category": "Geography", "answers": [{ "text": "The Alps", "aliases": ["Alps"] }] },
+        { "prompt": "Which mountain range runs down the whole length of the Italian peninsula?", "category": "Geography", "answers": [{ "text": "The Apennines", "aliases": ["Apennines"] }] },
+        { "prompt": "What is the longest river in Italy?", "category": "Rivers and lakes", "answers": [{ "text": "The Po", "aliases": ["Po"] }] },
+        { "prompt": "Which large island west of the mainland is the second largest island of Italy?", "category": "Islands", "answers": [{ "text": "Sardinia", "aliases": ["Sardegna"] }] },
+        { "prompt": "In which Italian city do you find the Doge's Palace and Saint Mark's Square?", "category": "Cities", "answers": [{ "text": "Venice", "aliases": ["Venezia"] }] },
+        { "prompt": "Which Italian city hosted the Winter Olympics of 2006?", "category": "Sport", "answers": [{ "text": "Turin", "aliases": ["Torino"] }] },
+        { "prompt": "Which Italian city gave its name to the meat sauce ragu alla bolognese?", "category": "Food and drink", "answers": [{ "text": "Bologna" }] },
+        { "prompt": "In which chapel in Vatican City did Michelangelo paint his famous ceiling?", "category": "Art", "answers": [{ "text": "The Sistine Chapel", "aliases": ["Sistine Chapel"] }] },
+        { "prompt": "In which Florence gallery does Botticelli's The Birth of Venus hang?", "category": "Art", "answers": [{ "text": "The Uffizi", "aliases": ["Uffizi", "Uffizi Gallery", "Galleria degli Uffizi"] }] },
+        { "prompt": "Which Italian composer wrote the operas La Boheme, Tosca and Madama Butterfly?", "category": "Opera", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] },
+        { "prompt": "Which Italian director made the 1960 film La Dolce Vita?", "category": "Cinema", "answers": [{ "text": "Federico Fellini", "aliases": ["Fellini"] }] },
+        { "prompt": "What is the Italian word for thank you?", "category": "Language", "answers": [{ "text": "Grazie" }] },
+        { "prompt": "Which three-week cycling race is the Italian grand tour?", "category": "Sport", "answers": [{ "text": "The Giro d'Italia", "aliases": ["Giro d'Italia", "Giro"] }] },
+        { "prompt": "Which general led the Thousand, the volunteers in red shirts, during the unification of Italy?", "category": "History", "answers": [{ "text": "Giuseppe Garibaldi", "aliases": ["Garibaldi"] }] },
+        { "prompt": "Which three colours make up the Italian flag?", "category": "Symbols", "answers": [{ "text": "Green, white and red", "aliases": ["green white red", "red white and green"] }] },
+        { "prompt": "Which Italian football club is nicknamed the Old Lady?", "category": "Football", "answers": [{ "text": "Juventus", "aliases": ["Juve"] }] },
+        { "prompt": "Which independent republic on Mount Titano is completely surrounded by Italy?", "category": "Geography", "answers": [{ "text": "San Marino" }] },
+        { "prompt": "Which Tuscan red wine used to be sold in a straw-covered flask?", "category": "Food and drink", "answers": [{ "text": "Chianti" }] },
+        { "prompt": "In which Italian city did Brunelleschi build the great dome of the cathedral?", "category": "Architecture", "answers": [{ "text": "Florence", "aliases": ["Firenze"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year was the Kingdom of Italy proclaimed?", "options": [{ "text": "1861", "correct": true }, { "text": "1815" }, { "text": "1848" }, { "text": "1871" }] },
+        { "prompt": "Of which Italian region is Palermo the capital?", "options": [{ "text": "Sicily", "correct": true }, { "text": "Sardinia" }, { "text": "Calabria" }, { "text": "Campania" }] },
+        { "prompt": "Which opera house, opened in Milan in 1778, is one of the most famous in the world?", "options": [{ "text": "La Scala", "correct": true }, { "text": "La Fenice" }, { "text": "Teatro San Carlo" }, { "text": "Teatro Massimo" }] },
+        { "prompt": "Which Italian region forms the heel of the boot?", "options": [{ "text": "Puglia", "correct": true }, { "text": "Calabria" }, { "text": "Basilicata" }, { "text": "Molise" }] },
+        { "prompt": "Which Italian film won the Oscar for best foreign language film in 1999?", "options": [{ "text": "Life Is Beautiful", "correct": true }, { "text": "Cinema Paradiso" }, { "text": "Il Postino" }, { "text": "Mediterraneo" }] },
+        { "prompt": "Which Italian navigator gave his name to the continent of America?", "options": [{ "text": "Amerigo Vespucci", "correct": true }, { "text": "Giovanni Caboto" }, { "text": "Marco Polo" }, { "text": "Giovanni da Verrazzano" }] },
+        { "prompt": "In which Italian port city was Christopher Columbus born?", "options": [{ "text": "Genoa", "correct": true }, { "text": "Venice" }, { "text": "Pisa" }, { "text": "Amalfi" }] },
+        { "prompt": "The name of which Italian dish means jumps in the mouth?", "options": [{ "text": "Saltimbocca", "correct": true }, { "text": "Arrabbiata" }, { "text": "Puttanesca" }, { "text": "Cacciatore" }] },
+        { "prompt": "Which Italian scientist was condemned by the Inquisition in 1633?", "options": [{ "text": "Galileo Galilei", "correct": true }, { "text": "Giordano Bruno" }, { "text": "Evangelista Torricelli" }, { "text": "Alessandro Volta" }] },
+        { "prompt": "Which club shares the San Siro stadium with AC Milan?", "options": [{ "text": "Inter Milan", "correct": true }, { "text": "Juventus" }, { "text": "AS Roma" }, { "text": "Napoli" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many regions does Italy have?", "answer": 20, "unit": "regions" },
+        { "prompt": "In which year did building start on the leaning tower of Pisa?", "answer": 1173, "explanation": "The tower was already tilting by the time the third floor was finished, because the ground on one side is soft." },
+        { "prompt": "How many bridges cross the Grand Canal in Venice?", "answer": 4, "unit": "bridges", "explanation": "The newest of them, the Ponte della Costituzione, opened in 2008." },
+        { "prompt": "In which year did Italy host the football World Cup for the second time?", "answer": 1990 },
+        { "prompt": "How many steps does the Spanish Steps in Rome have?", "answer": 135, "unit": "steps" },
+        { "prompt": "In which year did the Lateran Treaty make Vatican City an independent state?", "answer": 1929 },
+        { "prompt": "How many main islands make up the Aeolian archipelago?", "answer": 7, "unit": "islands" },
+        { "prompt": "In which year was Michelangelo's David unveiled in Florence?", "answer": 1504 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Gondola",
+        "Vespa",
+        "Trevi Fountain",
+        "Gondolier",
+        "Carnival mask",
+        "Cannoli",
+        "Mozzarella",
+        "Piazza",
+        "Cappuccino",
+        "Prosciutto",
+        "Parmesan",
+        "Pesto",
+        "Moka pot",
+        "Mandolin",
+        "Opera singer",
+        "Fiat 500",
+        "Lemon tree",
+        "Truffle",
+        "Wine cellar",
+        "Ponte Vecchio",
+        "Grand Canal",
+        "Risotto",
+        "Panettone",
+        "Cypress tree",
+        "Olive grove",
+        "Gelato",
+        "Dolomites",
+        "Amalfi Coast",
+        "Terracotta roof",
+        "Marble quarry"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four countries, apart from San Marino and Vatican City, that share a land border with Italy.", "answers": [{ "text": "France" }, { "text": "Switzerland" }, { "text": "Austria" }, { "text": "Slovenia" }] },
+        { "prompt": "Name the four seas around Italy.", "answers": [{ "text": "The Adriatic Sea", "aliases": ["Adriatic"] }, { "text": "The Ionian Sea", "aliases": ["Ionian"] }, { "text": "The Tyrrhenian Sea", "aliases": ["Tyrrhenian"] }, { "text": "The Ligurian Sea", "aliases": ["Ligurian"] }] },
+        { "prompt": "Name the four Italian Renaissance artists whose names the Teenage Mutant Ninja Turtles carry.", "answers": [{ "text": "Leonardo" }, { "text": "Michelangelo" }, { "text": "Donatello" }, { "text": "Raphael", "aliases": ["Raffaello"] }] },
+        { "prompt": "Name the four pasta shapes whose names mean little tongues, little worms, butterflies and little ears.", "answers": [{ "text": "Linguine" }, { "text": "Vermicelli" }, { "text": "Farfalle" }, { "text": "Orecchiette" }] },
+        { "prompt": "Name the four active volcanoes of Italy.", "answers": [{ "text": "Etna", "aliases": ["Mount Etna"] }, { "text": "Vesuvius", "aliases": ["Mount Vesuvius"] }, { "text": "Stromboli" }, { "text": "Vulcano" }] },
+        { "prompt": "Name the four largest lakes of Italy.", "answers": [{ "text": "Lake Garda", "aliases": ["Garda"] }, { "text": "Lake Maggiore", "aliases": ["Maggiore"] }, { "text": "Lake Como", "aliases": ["Como"] }, { "text": "Lake Trasimeno", "aliases": ["Trasimeno"] }] },
+        { "prompt": "Name the four singing voices of a classical choir, all of them named with Italian words.", "answers": [{ "text": "Soprano" }, { "text": "Alto", "aliases": ["contralto"] }, { "text": "Tenor", "aliases": ["tenore"] }, { "text": "Bass", "aliases": ["basso"] }] },
+        { "prompt": "Name the four best known Italian makers of sports cars.", "answers": [{ "text": "Ferrari" }, { "text": "Lamborghini" }, { "text": "Maserati" }, { "text": "Alfa Romeo" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "In which Italian city does the famous leaning tower stand?", "difficulty": "easy", "answers": [{ "text": "Pisa" }] },
+        { "prompt": "Which piece of footwear is the shape of Italy on the map compared to?", "difficulty": "easy", "answers": [{ "text": "A boot", "aliases": ["boot"] }] },
+        { "prompt": "Which Italian dessert is made with mascarpone and biscuits soaked in coffee?", "difficulty": "easy", "answers": [{ "text": "Tiramisu" }] },
+        { "prompt": "Which sea washes the coasts of Italy?", "difficulty": "easy", "answers": [{ "text": "The Mediterranean Sea", "aliases": ["Mediterranean"] }] },
+        { "prompt": "Which Italian greeting is used for both hello and goodbye?", "difficulty": "easy", "answers": [{ "text": "Ciao" }] },
+        { "prompt": "Of which Italian region is Perugia the capital?", "difficulty": "hard", "answers": [{ "text": "Umbria" }] },
+        { "prompt": "Who wrote the novel The Leopard?", "difficulty": "hard", "answers": [{ "text": "Giuseppe Tomasi di Lampedusa", "aliases": ["Tomasi di Lampedusa", "Lampedusa"] }] },
+        { "prompt": "In which Italian city does the largest cathedral of the country stand, with its forest of marble spires?", "difficulty": "hard", "answers": [{ "text": "Milan", "aliases": ["Milano"] }] },
+        { "prompt": "Which Italian composer wrote the music for The Good, the Bad and the Ugly?", "difficulty": "hard", "answers": [{ "text": "Ennio Morricone", "aliases": ["Morricone"] }] },
+        { "prompt": "What is the lower house of the Italian parliament called?", "difficulty": "hard", "answers": [{ "text": "The Chamber of Deputies", "aliases": ["Chamber of Deputies", "Camera dei Deputati"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Italian physicist led the team that built the first nuclear reactor, in Chicago in 1942?", "answers": [{ "text": "Enrico Fermi", "aliases": ["Fermi"] }] },
+        { "prompt": "In which Italian city is the Palio, a horse race run around the main square twice every summer?", "answers": [{ "text": "Siena" }] },
+        { "prompt": "Which is the smallest Italian region by area?", "answers": [{ "text": "Valle d'Aosta", "aliases": ["Aosta Valley"] }] },
+        { "prompt": "Who wrote the 1980 novel The Name of the Rose?", "answers": [{ "text": "Umberto Eco", "aliases": ["Eco"] }] },
+        { "prompt": "Which 1948 film by Vittorio De Sica follows a father and son searching for a stolen bicycle?", "answers": [{ "text": "Bicycle Thieves", "aliases": ["Ladri di biciclette", "The Bicycle Thief"] }] },
+        { "prompt": "Which is the highest mountain that lies entirely within Italy?", "answers": [{ "text": "Gran Paradiso" }] },
+        { "prompt": "Which Italian poet wrote a lifetime of sonnets to a woman called Laura?", "answers": [{ "text": "Petrarch", "aliases": ["Francesco Petrarca", "Petrarca"] }] }
+      ]
+    }
+  ]
+}

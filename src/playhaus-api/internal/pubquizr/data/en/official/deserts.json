@@ -1,0 +1,136 @@
+{
+  "slug": "deserts",
+  "title": "Deserts",
+  "description": "A whole pub quiz about the deserts of the world: sand, heat, camels and the people who live there.",
+  "publishedAt": "2026-08-22",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest hot desert in the world?", "category": "Deserts of the world", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Which desert stretches across Botswana, Namibia and South Africa?", "category": "Deserts of the world", "answers": [{ "text": "The Kalahari", "aliases": ["Kalahari", "Kalahari Desert"] }] },
+        { "prompt": "Which desert covers southern Mongolia and northern China?", "category": "Deserts of the world", "answers": [{ "text": "The Gobi", "aliases": ["Gobi", "Gobi Desert"] }] },
+        { "prompt": "Which desert in South America is known as the driest place on Earth?", "category": "Deserts of the world", "answers": [{ "text": "The Atacama", "aliases": ["Atacama", "Atacama Desert"] }] },
+        { "prompt": "What is the hump of a camel filled with?", "category": "Desert animals", "answers": [{ "text": "Fat", "aliases": ["Body fat"] }] },
+        { "prompt": "How many humps does a dromedary have?", "category": "Desert animals", "answers": [{ "text": "One", "aliases": ["1"] }] },
+        { "prompt": "What is a green spot in the desert with water and palms called?", "category": "Desert life", "answers": [{ "text": "An oasis", "aliases": ["Oasis"] }] },
+        { "prompt": "What is the name for a hill of sand piled up by the wind?", "category": "Landscape", "answers": [{ "text": "A dune", "aliases": ["Dune", "Sand dune"] }] },
+        { "prompt": "Which spiny plant is typical of the deserts of North America?", "category": "Plants", "answers": [{ "text": "The cactus", "aliases": ["Cactus", "Cacti"] }] },
+        { "prompt": "What do we call the illusion of water shimmering on a hot desert horizon?", "category": "Desert life", "answers": [{ "text": "A mirage", "aliases": ["Mirage", "Fata morgana"] }] },
+        { "prompt": "In which American state does Death Valley mostly lie?", "category": "North America", "answers": [{ "text": "California" }] },
+        { "prompt": "Which desert runs along the Atlantic coast of Namibia?", "category": "Deserts of the world", "answers": [{ "text": "The Namib", "aliases": ["Namib", "Namib Desert"] }] },
+        { "prompt": "What is the name of the nomadic Arab peoples of the desert?", "category": "Peoples", "answers": [{ "text": "The Bedouin", "aliases": ["Bedouin", "Bedouins"] }] },
+        { "prompt": "Which city in the United Arab Emirates, built in the desert, has the Burj Khalifa?", "category": "Desert cities", "answers": [{ "text": "Dubai" }] },
+        { "prompt": "Which gambling city lies in the Mojave Desert?", "category": "Desert cities", "answers": [{ "text": "Las Vegas" }] },
+        { "prompt": "What word describes fertile land slowly turning into desert?", "category": "Geography", "answers": [{ "text": "Desertification" }] },
+        { "prompt": "Which small fox of the Sahara is known for its enormous ears?", "category": "Desert animals", "answers": [{ "text": "The fennec fox", "aliases": ["Fennec", "Fennec fox"] }] },
+        { "prompt": "What is the dry interior of Australia commonly called?", "category": "Australia", "answers": [{ "text": "The Outback", "aliases": ["Outback"] }] },
+        { "prompt": "Which Arabic word describes a dry river bed that only carries water after rain?", "category": "Landscape", "answers": [{ "text": "A wadi", "aliases": ["Wadi"] }] },
+        { "prompt": "Which 1962 epic film follows a British officer among the Arab desert tribes?", "category": "Film", "answers": [{ "text": "Lawrence of Arabia" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which is the largest desert in the world if cold deserts are counted as well?", "options": [{ "text": "Antarctica", "correct": true }, { "text": "The Sahara" }, { "text": "The Arabian Desert" }, { "text": "The Gobi" }] },
+        { "prompt": "In which country does the Atacama Desert lie?", "options": [{ "text": "Chile", "correct": true }, { "text": "Peru" }, { "text": "Argentina" }, { "text": "Bolivia" }] },
+        { "prompt": "What is the Rub al Khali in Arabia known as in English?", "options": [{ "text": "The Empty Quarter", "correct": true }, { "text": "The Red Quarter" }, { "text": "The Great Sand Sea" }, { "text": "The Burning Plain" }] },
+        { "prompt": "Which tall, branching cactus is the symbol of the Sonoran Desert?", "options": [{ "text": "The saguaro", "correct": true }, { "text": "The prickly pear" }, { "text": "The barrel cactus" }, { "text": "The agave" }] },
+        { "prompt": "Which inland sea in Central Asia dried up almost entirely into a salt desert?", "options": [{ "text": "The Aral Sea", "correct": true }, { "text": "The Caspian Sea" }, { "text": "The Dead Sea" }, { "text": "Lake Balkhash" }] },
+        { "prompt": "Which city on the southern edge of the Sahara was a centre of trade and learning in medieval Mali?", "options": [{ "text": "Timbuktu", "correct": true }, { "text": "Marrakesh" }, { "text": "Khartoum" }, { "text": "Agadez" }] },
+        { "prompt": "Which animal has two humps?", "options": [{ "text": "The Bactrian camel", "correct": true }, { "text": "The dromedary" }, { "text": "The guanaco" }, { "text": "The alpaca" }] },
+        { "prompt": "The Thar Desert lies mostly in which country?", "options": [{ "text": "India", "correct": true }, { "text": "Iran" }, { "text": "Afghanistan" }, { "text": "Kazakhstan" }] },
+        { "prompt": "In which country is the Salar de Uyuni, the largest salt flat in the world?", "options": [{ "text": "Bolivia", "correct": true }, { "text": "Mexico" }, { "text": "Namibia" }, { "text": "Iran" }] },
+        { "prompt": "On which desert planet does Luke Skywalker grow up in Star Wars?", "options": [{ "text": "Tatooine", "correct": true }, { "text": "Hoth" }, { "text": "Endor" }, { "text": "Naboo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Rounded to whole degrees, what is the highest air temperature ever officially recorded on Earth, in degrees Celsius?", "answer": 57, "unit": "degrees Celsius", "explanation": "56.7 degrees was measured at Furnace Creek in Death Valley in 1913." },
+        { "prompt": "Below how many millimetres of rain a year does an area count as a desert?", "answer": 250, "unit": "millimetres", "explanation": "That threshold is why Antarctica counts as a desert as well." },
+        { "prompt": "How many metres tall is the Burj Khalifa in Dubai?", "answer": 828, "unit": "metres" },
+        { "prompt": "In what year was Frank Herbert's novel Dune first published?", "answer": 1965 },
+        { "prompt": "How many years did the Israelites wander the desert according to the Bible?", "answer": 40, "unit": "years" },
+        { "prompt": "What percentage of the Sahara is covered by sand dunes, roughly?", "answer": 25, "unit": "percent" },
+        { "prompt": "In what year was the film Mad Max: Fury Road released?", "answer": 2015 },
+        { "prompt": "How many metres below sea level is Badwater Basin, the lowest point of Death Valley?", "answer": 86, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Sandstorm",
+        "Quicksand",
+        "Caravan",
+        "Tent",
+        "Turban",
+        "Canteen",
+        "Vulture",
+        "Jackal",
+        "Meerkat",
+        "Roadrunner",
+        "Quad bike",
+        "Jeep",
+        "Salt flat",
+        "Tarantula",
+        "Dates",
+        "Goggles",
+        "Sunscreen",
+        "Cowboy hat",
+        "Nomad",
+        "Petra",
+        "Route 66",
+        "Monument Valley",
+        "Joshua tree",
+        "Prickly pear",
+        "Lizard",
+        "Gecko",
+        "Adobe house",
+        "Souk",
+        "Dust devil",
+        "Air conditioning"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four great deserts of the United States.", "answers": [{ "text": "The Great Basin", "aliases": ["Great Basin"] }, { "text": "The Mojave", "aliases": ["Mojave"] }, { "text": "The Sonoran", "aliases": ["Sonoran"] }, { "text": "The Chihuahuan", "aliases": ["Chihuahuan"] }] },
+        { "prompt": "Name the four countries that share the Empty Quarter.", "answers": [{ "text": "Saudi Arabia" }, { "text": "Oman" }, { "text": "The United Arab Emirates", "aliases": ["United Arab Emirates", "UAE"] }, { "text": "Yemen" }] },
+        { "prompt": "Name the four American states that meet at the Four Corners.", "answers": [{ "text": "Utah" }, { "text": "Colorado" }, { "text": "Arizona" }, { "text": "New Mexico" }] },
+        { "prompt": "Name the four capital cities of Morocco, Algeria, Tunisia and Libya.", "answers": [{ "text": "Rabat" }, { "text": "Algiers" }, { "text": "Tunis" }, { "text": "Tripoli" }] },
+        { "prompt": "Name the four camel relatives of South America.", "answers": [{ "text": "The llama", "aliases": ["Llama"] }, { "text": "The alpaca", "aliases": ["Alpaca"] }, { "text": "The guanaco", "aliases": ["Guanaco"] }, { "text": "The vicuna", "aliases": ["Vicuna", "Vicuña"] }] },
+        { "prompt": "Name the four largest countries of Africa by area.", "answers": [{ "text": "Algeria" }, { "text": "Congo-Kinshasa", "aliases": ["DR Congo", "Democratic Republic of the Congo", "Congo"] }, { "text": "Sudan" }, { "text": "Libya" }] },
+        { "prompt": "Name the four everyday things made with sand.", "answers": [{ "text": "Glass" }, { "text": "Concrete", "aliases": ["Cement"] }, { "text": "Computer chips", "aliases": ["Silicon chips", "Microchips"] }, { "text": "Sandpaper" }] },
+        { "prompt": "Name the four capital cities of Saudi Arabia, Iraq, Jordan and Qatar.", "answers": [{ "text": "Riyadh" }, { "text": "Baghdad" }, { "text": "Amman" }, { "text": "Doha" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do we call a long period with no rain at all?", "difficulty": "easy", "answers": [{ "text": "A drought", "aliases": ["Drought"] }] },
+        { "prompt": "On which continent is the Gobi Desert?", "difficulty": "easy", "answers": [{ "text": "Asia" }] },
+        { "prompt": "What is the capital of Egypt?", "difficulty": "easy", "answers": [{ "text": "Cairo" }] },
+        { "prompt": "Which fuel is pumped out of the ground in the deserts of the Middle East?", "difficulty": "easy", "answers": [{ "text": "Oil", "aliases": ["Crude oil", "Petroleum"] }] },
+        { "prompt": "Which large flightless bird lives on the dry plains of Africa?", "difficulty": "easy", "answers": [{ "text": "The ostrich", "aliases": ["Ostrich"] }] },
+        { "prompt": "Which hot wind carries Saharan dust across the Mediterranean to Europe?", "difficulty": "hard", "answers": [{ "text": "The sirocco", "aliases": ["Sirocco", "Scirocco"] }] },
+        { "prompt": "What is the Arabic term for a vast sea of sand dunes?", "difficulty": "hard", "answers": [{ "text": "An erg", "aliases": ["Erg", "Sand sea"] }] },
+        { "prompt": "Which desert in western China is nicknamed the Sea of Death?", "difficulty": "hard", "answers": [{ "text": "The Taklamakan", "aliases": ["Taklamakan", "Taklamakan Desert"] }] },
+        { "prompt": "Which Saharan people are known as the blue men of the desert?", "difficulty": "hard", "answers": [{ "text": "The Tuareg", "aliases": ["Tuareg", "Touareg"] }] },
+        { "prompt": "Who directed the film Lawrence of Arabia?", "difficulty": "hard", "answers": [{ "text": "David Lean", "aliases": ["Lean"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the desert planet in Frank Herbert's Dune?", "answers": [{ "text": "Arrakis" }] },
+        { "prompt": "Which British explorer crossed the Empty Quarter in the 1940s and wrote Arabian Sands?", "answers": [{ "text": "Wilfred Thesiger", "aliases": ["Thesiger"] }] },
+        { "prompt": "Which mountain range in Chad holds the highest peak of the Sahara?", "answers": [{ "text": "The Tibesti Mountains", "aliases": ["Tibesti", "Tibesti Mountains"] }] },
+        { "prompt": "Which lake on the southern edge of the Sahara has shrunk to a fraction of its size since the 1960s?", "answers": [{ "text": "Lake Chad", "aliases": ["Chad"] }] },
+        { "prompt": "What is the fog-bound stretch of the Namibian coastline called, named after the wrecks and bones washed up there?", "answers": [{ "text": "The Skeleton Coast", "aliases": ["Skeleton Coast"] }] },
+        { "prompt": "What are the giant figures scratched into the desert floor of southern Peru called?", "answers": [{ "text": "The Nazca Lines", "aliases": ["Nazca Lines", "Nasca Lines"] }] },
+        { "prompt": "Which ancient caravan city in the Syrian desert is known as the bride of the desert?", "answers": [{ "text": "Palmyra" }] }
+      ]
+    }
+  ]
+}

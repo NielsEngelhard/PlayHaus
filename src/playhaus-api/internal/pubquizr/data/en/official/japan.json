@@ -1,0 +1,136 @@
+{
+  "slug": "japan",
+  "title": "Japan",
+  "description": "A whole pub quiz about Japan: its islands, its history, its food and its culture.",
+  "publishedAt": "2026-08-28",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of Japan?", "category": "Geography", "answers": [{ "text": "Tokyo" }] },
+        { "prompt": "Which mountain is the highest in Japan?", "category": "Geography", "answers": [{ "text": "Mount Fuji", "aliases": ["Fuji", "Fujiyama"] }] },
+        { "prompt": "What is the currency of Japan called?", "category": "Money", "answers": [{ "text": "The yen", "aliases": ["yen"] }] },
+        { "prompt": "Which Japanese dish is made of vinegared rice topped or rolled with raw fish?", "category": "Food", "answers": [{ "text": "Sushi" }] },
+        { "prompt": "Which Japanese form of wrestling is fought in a ring called a dohyo?", "category": "Sport", "answers": [{ "text": "Sumo", "aliases": ["sumo wrestling"] }] },
+        { "prompt": "What is the Japanese art of flower arranging called?", "category": "Art", "answers": [{ "text": "Ikebana" }] },
+        { "prompt": "What is the Japanese word for a packed lunch box?", "category": "Food", "answers": [{ "text": "Bento", "aliases": ["bento box"] }] },
+        { "prompt": "The Japanese flag shows a red disc on a white field. What does the disc stand for?", "category": "The flag", "answers": [{ "text": "The sun", "aliases": ["sun", "the rising sun"] }] },
+        { "prompt": "Which Japanese city is famous for its Dotonbori district and its street food?", "category": "Cities", "answers": [{ "text": "Osaka" }] },
+        { "prompt": "Which Japanese alcoholic drink is brewed from rice?", "category": "Drink", "answers": [{ "text": "Sake", "aliases": ["nihonshu"] }] },
+        { "prompt": "Which Japanese city was hit by an atomic bomb on 6 August 1945?", "category": "History", "answers": [{ "text": "Hiroshima" }] },
+        { "prompt": "Which traditional Japanese robe has wide sleeves and is tied with a sash called an obi?", "category": "Clothing", "answers": [{ "text": "The kimono", "aliases": ["kimono"] }] },
+        { "prompt": "The blossom of which tree draws crowds to Japanese parks every spring?", "category": "Nature", "answers": [{ "text": "The cherry tree", "aliases": ["cherry", "cherry tree", "cherry blossom", "sakura"] }] },
+        { "prompt": "What are Japanese comics called?", "category": "Comics", "answers": [{ "text": "Manga" }] },
+        { "prompt": "Which Japanese martial art has a name meaning empty hand?", "category": "Sport", "answers": [{ "text": "Karate" }] },
+        { "prompt": "Which Japanese carmaker builds the Corolla?", "category": "Cars", "answers": [{ "text": "Toyota" }] },
+        { "prompt": "Which Japanese dish is seafood and vegetables in a light batter, deep fried?", "category": "Food", "answers": [{ "text": "Tempura" }] },
+        { "prompt": "Which city was the imperial capital of Japan from 794 until 1868?", "category": "History", "answers": [{ "text": "Kyoto" }] },
+        { "prompt": "Which giant monster first appeared in a Japanese film in 1954?", "category": "Film", "answers": [{ "text": "Godzilla", "aliases": ["Gojira"] }] },
+        { "prompt": "What is Japanese animation generally called?", "category": "Television", "answers": [{ "text": "Anime" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did Tokyo host the Summer Olympic Games for the first time?", "options": [{ "text": "1956" }, { "text": "1960" }, { "text": "1964", "correct": true }, { "text": "1968" }] },
+        { "prompt": "Which Japanese city hosted the 1998 Winter Olympic Games?", "options": [{ "text": "Nagano", "correct": true }, { "text": "Sendai" }, { "text": "Niigata" }, { "text": "Nagoya" }] },
+        { "prompt": "Which Japanese writer won the Nobel Prize in Literature in 1968?", "options": [{ "text": "Yasunari Kawabata", "correct": true }, { "text": "Yukio Mishima" }, { "text": "Kenzaburo Oe" }, { "text": "Haruki Murakami" }] },
+        { "prompt": "Which period of Japanese history ran from 1603 to 1868?", "options": [{ "text": "The Edo period", "correct": true }, { "text": "The Heian period" }, { "text": "The Kamakura period" }, { "text": "The Muromachi period" }] },
+        { "prompt": "In which year did Commodore Matthew Perry and his black ships first reach Japan?", "options": [{ "text": "1803" }, { "text": "1853", "correct": true }, { "text": "1868" }, { "text": "1894" }] },
+        { "prompt": "Which Japanese director won the Palme d'Or in 2018 with the film Shoplifters?", "options": [{ "text": "Hirokazu Kore-eda", "correct": true }, { "text": "Takeshi Kitano" }, { "text": "Naomi Kawase" }, { "text": "Shinya Tsukamoto" }] },
+        { "prompt": "Which Japanese dish is made of fermented soybeans and known for its sticky strings?", "options": [{ "text": "Natto", "correct": true }, { "text": "Tofu" }, { "text": "Edamame" }, { "text": "Mochi" }] },
+        { "prompt": "Which savoury pancake is a speciality of both Osaka and Hiroshima?", "options": [{ "text": "Okonomiyaki", "correct": true }, { "text": "Takoyaki" }, { "text": "Yakitori" }, { "text": "Onigiri" }] },
+        { "prompt": "Which Japanese island group stayed under American administration until 1972?", "options": [{ "text": "Okinawa", "correct": true }, { "text": "Sado" }, { "text": "Awaji" }, { "text": "Yakushima" }] },
+        { "prompt": "Which Japanese martial art is practised with bamboo swords and armour?", "options": [{ "text": "Kendo", "correct": true }, { "text": "Aikido" }, { "text": "Kyudo" }, { "text": "Iaido" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Fuji?", "answer": 3776, "unit": "metres", "explanation": "Fuji last erupted in 1707 and has been quiet ever since." },
+        { "prompt": "How many prefectures does Japan have?", "answer": 47, "unit": "prefectures" },
+        { "prompt": "In what year did the Meiji Restoration return power to the emperor?", "answer": 1868 },
+        { "prompt": "How many metres tall is Tokyo Tower?", "answer": 333, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Seikan Tunnel?", "answer": 54, "unit": "kilometres", "explanation": "It runs under the Tsugaru Strait and was the longest rail tunnel in the world until 2016." },
+        { "prompt": "In what year did the Great Kanto earthquake flatten much of Tokyo and Yokohama?", "answer": 1923 },
+        { "prompt": "How many syllables does a traditional haiku have in total?", "answer": 17, "unit": "syllables" },
+        { "prompt": "How many strings does a shamisen have?", "answer": 3, "unit": "strings" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Rock garden",
+        "Chopsticks",
+        "Ninja",
+        "Geisha",
+        "Taiko drum",
+        "Rice ball",
+        "Rice paddy",
+        "Face mask",
+        "Lucky cat",
+        "Paper crane",
+        "Pagoda",
+        "Torii gate",
+        "Koi carp",
+        "Bamboo",
+        "Folding fan",
+        "Paper lantern",
+        "Chrysanthemum",
+        "Wasabi",
+        "Soy sauce",
+        "Green tea",
+        "Bullet train",
+        "Sliding door",
+        "Tatami mat",
+        "Hot spring",
+        "Snow monkey",
+        "Robot",
+        "Calligraphy brush",
+        "Emoji",
+        "Fish market",
+        "Wooden sandals"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four main islands of Japan.", "answers": [{ "text": "Honshu" }, { "text": "Hokkaido" }, { "text": "Kyushu" }, { "text": "Shikoku" }] },
+        { "prompt": "Name the four seas and oceans that surround Japan.", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific"] }, { "text": "The Sea of Japan", "aliases": ["Sea of Japan"] }, { "text": "The East China Sea", "aliases": ["East China Sea"] }, { "text": "The Sea of Okhotsk", "aliases": ["Sea of Okhotsk", "Okhotsk"] }] },
+        { "prompt": "Name the four writing systems used to write Japanese.", "answers": [{ "text": "Kanji" }, { "text": "Hiragana" }, { "text": "Katakana" }, { "text": "Romaji" }] },
+        { "prompt": "Name the four Japanese imperial eras between 1868 and 2019.", "answers": [{ "text": "Meiji" }, { "text": "Taisho" }, { "text": "Showa" }, { "text": "Heisei" }] },
+        { "prompt": "Name the four classes of the social order of Edo period Japan.", "answers": [{ "text": "Samurai", "aliases": ["warriors"] }, { "text": "Farmers", "aliases": ["peasants"] }, { "text": "Artisans", "aliases": ["craftsmen"] }, { "text": "Merchants", "aliases": ["traders"] }] },
+        { "prompt": "Name the four traditional forms of Japanese classical theatre.", "answers": [{ "text": "Noh" }, { "text": "Kabuki" }, { "text": "Bunraku", "aliases": ["puppet theatre"] }, { "text": "Kyogen" }] },
+        { "prompt": "Name the four prefectures on the island of Shikoku.", "answers": [{ "text": "Tokushima" }, { "text": "Kagawa" }, { "text": "Ehime" }, { "text": "Kochi" }] },
+        { "prompt": "Name the four best known kinds of Japanese noodle.", "answers": [{ "text": "Ramen" }, { "text": "Udon" }, { "text": "Soba" }, { "text": "Somen" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is raw fish served without rice called in Japan?", "difficulty": "easy", "answers": [{ "text": "Sashimi" }] },
+        { "prompt": "What is the Japanese art of growing miniature trees in pots called?", "difficulty": "easy", "answers": [{ "text": "Bonsai" }] },
+        { "prompt": "What is the Japanese word for thank you?", "difficulty": "easy", "answers": [{ "text": "Arigato", "aliases": ["arigatou", "arigato gozaimasu", "domo arigato"] }] },
+        { "prompt": "Which Japanese board game is played with black and white stones on a grid of lines?", "difficulty": "easy", "answers": [{ "text": "Go", "aliases": ["igo"] }] },
+        { "prompt": "What is the Japanese word for a destructive wave set off by an earthquake at sea?", "difficulty": "easy", "answers": [{ "text": "Tsunami" }] },
+        { "prompt": "Which treaty of 1854 opened two Japanese ports to American ships?", "difficulty": "hard", "answers": [{ "text": "The Convention of Kanagawa", "aliases": ["Convention of Kanagawa", "Treaty of Kanagawa", "Kanagawa"] }] },
+        { "prompt": "Which warlord became shogun in 1603 and founded the dynasty that ruled Japan until 1868?", "difficulty": "hard", "answers": [{ "text": "Tokugawa Ieyasu", "aliases": ["Ieyasu", "Tokugawa"] }] },
+        { "prompt": "What is the Japanese term for a samurai without a master?", "difficulty": "hard", "answers": [{ "text": "Ronin" }] },
+        { "prompt": "What is the Japanese tea ceremony called?", "difficulty": "hard", "answers": [{ "text": "Chanoyu", "aliases": ["sado", "chado", "chanoyu"] }] },
+        { "prompt": "What is the national parliament of Japan called?", "difficulty": "hard", "answers": [{ "text": "The Diet", "aliases": ["Diet", "National Diet", "Kokkai"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Japanese noblewoman wrote The Tale of Genji around the year 1000?", "answers": [{ "text": "Murasaki Shikibu", "aliases": ["Murasaki", "Shikibu"] }] },
+        { "prompt": "What name was given to the typhoons that wrecked the Mongol invasion fleets in 1274 and 1281?", "answers": [{ "text": "Kamikaze", "aliases": ["divine wind"] }] },
+        { "prompt": "On which artificial island in Nagasaki harbour were Dutch traders confined during Japan's isolation?", "answers": [{ "text": "Dejima", "aliases": ["Deshima"] }] },
+        { "prompt": "What is the Japanese name for the policy of national isolation that lasted from the 1630s until 1853?", "answers": [{ "text": "Sakoku" }] },
+        { "prompt": "Which city was the capital of Japan from 710 until 784?", "answers": [{ "text": "Nara" }] },
+        { "prompt": "Which Japanese physicist became his country's first Nobel laureate, in 1949?", "answers": [{ "text": "Hideki Yukawa", "aliases": ["Yukawa"] }] },
+        { "prompt": "Which sun goddess of the Shinto religion is the imperial family said to descend from?", "answers": [{ "text": "Amaterasu" }] }
+      ]
+    }
+  ]
+}

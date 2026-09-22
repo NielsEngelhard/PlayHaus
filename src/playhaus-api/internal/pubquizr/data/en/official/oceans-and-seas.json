@@ -1,0 +1,136 @@
+{
+  "slug": "oceans-and-seas",
+  "title": "Oceans and Seas",
+  "description": "A quiz about the waters of the world: depths and trenches, currents and tides, straits and the people who crossed them.",
+  "publishedAt": "2026-08-24",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which is the largest ocean on Earth?", "category": "Oceans", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific", "Pacific Ocean"] }] },
+        { "prompt": "Which almost landlocked sea separates southern Europe from northern Africa?", "category": "Seas", "answers": [{ "text": "The Mediterranean Sea", "aliases": ["Mediterranean", "Mediterranean Sea"] }] },
+        { "prompt": "Which inland sea between Israel and Jordan is so salty that swimmers float on it?", "category": "Seas", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Which sea lies between Sweden, Poland and the Baltic states?", "category": "Seas", "answers": [{ "text": "The Baltic Sea", "aliases": ["Baltic", "Baltic Sea"] }] },
+        { "prompt": "What is the name of the deepest known point in any ocean?", "category": "Depths", "answers": [{ "text": "The Challenger Deep", "aliases": ["Challenger Deep"] }] },
+        { "prompt": "Which warm current carries water from the Gulf of Mexico towards western Europe?", "category": "Currents", "answers": [{ "text": "The Gulf Stream", "aliases": ["Gulf Stream"] }] },
+        { "prompt": "The gravity of which body is chiefly responsible for the tides?", "category": "Tides", "answers": [{ "text": "The Moon", "aliases": ["Moon"] }] },
+        { "prompt": "What is the name for the extra high tide that comes at full moon and new moon?", "category": "Tides", "answers": [{ "text": "Spring tide", "aliases": ["A spring tide", "Spring tides"] }] },
+        { "prompt": "Which Portuguese navigator sailed round Africa and reached India in 1498?", "category": "Exploration", "answers": [{ "text": "Vasco da Gama", "aliases": ["Da Gama"] }] },
+        { "prompt": "Which strait separates Spain from Morocco?", "category": "Straits", "answers": [{ "text": "The Strait of Gibraltar", "aliases": ["Strait of Gibraltar", "Gibraltar"] }] },
+        { "prompt": "Which Egyptian canal lets ships sail from Europe to Asia without going round Africa?", "category": "Canals", "answers": [{ "text": "The Suez Canal", "aliases": ["Suez Canal", "Suez"] }] },
+        { "prompt": "Which Dutch dam, completed in 1932, closed off the Zuiderzee?", "category": "The Netherlands", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk", "Enclosure Dam"] }] },
+        { "prompt": "What is the scientific study of the sea called?", "category": "Science", "answers": [{ "text": "Oceanography", "aliases": ["Oceanology"] }] },
+        { "prompt": "Which Atlantic sea has no coastline at all and is bounded only by currents?", "category": "Seas", "answers": [{ "text": "The Sargasso Sea", "aliases": ["Sargasso Sea", "Sargasso"] }] },
+        { "prompt": "Which body of water is the largest lake on Earth, even though it is called a sea?", "category": "Seas", "answers": [{ "text": "The Caspian Sea", "aliases": ["Caspian Sea", "Caspian"] }] },
+        { "prompt": "What is the name for a huge wave set off by an undersea earthquake?", "category": "Waves", "answers": [{ "text": "A tsunami", "aliases": ["Tsunami"] }] },
+        { "prompt": "Which sea washes the coasts of the Netherlands, Denmark and eastern England?", "category": "Seas", "answers": [{ "text": "The North Sea", "aliases": ["North Sea"] }] },
+        { "prompt": "What is the name for a long, narrow sea inlet carved out by a glacier, of the kind Norway is famous for?", "category": "Coasts", "answers": [{ "text": "A fjord", "aliases": ["Fjord"] }] },
+        { "prompt": "Which Norwegian crossed the Pacific on the raft Kon-Tiki in 1947?", "category": "Exploration", "answers": [{ "text": "Thor Heyerdahl", "aliases": ["Heyerdahl"] }] },
+        { "prompt": "What is the word for water that is part fresh and part salt, as found where a river meets the sea?", "category": "Water", "answers": [{ "text": "Brackish water", "aliases": ["Brackish"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which ocean trench does the deepest point of the sea lie?", "options": [{ "text": "The Mariana Trench", "correct": true }, { "text": "The Tonga Trench" }, { "text": "The Java Trench" }, { "text": "The Puerto Rico Trench" }] },
+        { "prompt": "Roughly what share of the Earth's surface is covered by ocean?", "options": [{ "text": "61 percent" }, { "text": "71 percent", "correct": true }, { "text": "81 percent" }, { "text": "91 percent" }] },
+        { "prompt": "In which year was the Suez Canal opened to shipping?", "options": [{ "text": "1849" }, { "text": "1869", "correct": true }, { "text": "1889" }, { "text": "1909" }] },
+        { "prompt": "Which cold current flows northward along the west coast of South America?", "options": [{ "text": "The Humboldt Current", "correct": true }, { "text": "The Gulf Stream" }, { "text": "The Kuroshio Current" }, { "text": "The Agulhas Current" }] },
+        { "prompt": "Which strait separates Alaska from Russia?", "options": [{ "text": "The Bering Strait", "correct": true }, { "text": "The Strait of Hormuz" }, { "text": "The Bosporus" }, { "text": "The Kattegat" }] },
+        { "prompt": "Who brought the first voyage around the world home after Magellan was killed in the Philippines?", "options": [{ "text": "Juan Sebastian Elcano", "correct": true }, { "text": "Francis Drake" }, { "text": "Amerigo Vespucci" }, { "text": "Bartolomeu Dias" }] },
+        { "prompt": "Which of these seas is an arm of the Indian Ocean?", "options": [{ "text": "The Arabian Sea", "correct": true }, { "text": "The Sea of Okhotsk" }, { "text": "The Coral Sea" }, { "text": "The Bering Sea" }] },
+        { "prompt": "In which country does the boundary between the North American and Eurasian plates rise above the surface of the Atlantic?", "options": [{ "text": "Iceland", "correct": true }, { "text": "Ireland" }, { "text": "Malta" }, { "text": "Cyprus" }] },
+        { "prompt": "What is the deepest layer of the ocean, below six thousand metres, called?", "options": [{ "text": "The hadal zone", "correct": true }, { "text": "The abyssal zone" }, { "text": "The bathyal zone" }, { "text": "The pelagic zone" }] },
+        { "prompt": "Which Dutch navigator gave his name to a sea and to an island south of Australia?", "options": [{ "text": "Abel Tasman", "correct": true }, { "text": "Jacob Roggeveen" }, { "text": "Michiel de Ruyter" }, { "text": "Willem Janszoon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres deep is the world ocean on average?", "answer": 3700, "unit": "metres", "explanation": "Most of the sea floor lies between three and five kilometres down, far below the shallow shelf along the coasts." },
+        { "prompt": "How many grams of salt are dissolved in one litre of average seawater?", "answer": 35, "unit": "grams", "explanation": "That works out at about three and a half percent salt by weight." },
+        { "prompt": "What percentage of all the water on Earth is held in the oceans?", "answer": 97, "unit": "percent" },
+        { "prompt": "How many kilometres long is the Panama Canal, roughly?", "answer": 82, "unit": "kilometres" },
+        { "prompt": "How many kilometres wide is the Strait of Gibraltar at its narrowest, roughly?", "answer": 14, "unit": "kilometres" },
+        { "prompt": "How many high tides does the Dutch coast get in twenty-four hours?", "answer": 2, "unit": "high tides" },
+        { "prompt": "In which year did the great flood disaster strike Zeeland and South Holland?", "answer": 1953 },
+        { "prompt": "In which year did HMS Challenger set out on the voyage that founded modern sea science?", "answer": 1872 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Whirlpool",
+        "Sea salt",
+        "Foghorn",
+        "Pearl",
+        "Horizon",
+        "Sea breeze",
+        "Cliff",
+        "Pier",
+        "Jellyfish",
+        "Plankton",
+        "Oil rig",
+        "Undertow",
+        "Sea foam",
+        "Sea chart",
+        "Breakwater",
+        "Dike",
+        "Estuary",
+        "Sandbank",
+        "Tide pool",
+        "Coral",
+        "Kelp",
+        "Barnacle",
+        "Flipper",
+        "Periscope",
+        "Sextant",
+        "Quay",
+        "Salt marsh",
+        "Mudflat",
+        "Seasickness",
+        "Diver"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four oceans other than the Pacific Ocean.", "answers": [{ "text": "The Atlantic Ocean", "aliases": ["Atlantic"] }, { "text": "The Indian Ocean", "aliases": ["Indian"] }, { "text": "The Arctic Ocean", "aliases": ["Arctic"] }, { "text": "The Southern Ocean", "aliases": ["Southern", "Antarctic Ocean"] }] },
+        { "prompt": "Name the four seas that are named after a colour.", "answers": [{ "text": "The Red Sea", "aliases": ["Red Sea"] }, { "text": "The Black Sea", "aliases": ["Black Sea"] }, { "text": "The White Sea", "aliases": ["White Sea"] }, { "text": "The Yellow Sea", "aliases": ["Yellow Sea"] }] },
+        { "prompt": "Name the four countries with a North Sea coast other than the Netherlands, Belgium and France.", "answers": [{ "text": "The United Kingdom", "aliases": ["Britain", "Great Britain", "England"] }, { "text": "Germany" }, { "text": "Denmark" }, { "text": "Norway" }] },
+        { "prompt": "Name the four countries other than Turkey and Georgia that have a coast on the Black Sea.", "answers": [{ "text": "Ukraine" }, { "text": "Russia" }, { "text": "Romania" }, { "text": "Bulgaria" }] },
+        { "prompt": "Name the four seas that surround Italy.", "answers": [{ "text": "The Adriatic Sea", "aliases": ["Adriatic"] }, { "text": "The Ionian Sea", "aliases": ["Ionian"] }, { "text": "The Tyrrhenian Sea", "aliases": ["Tyrrhenian"] }, { "text": "The Ligurian Sea", "aliases": ["Ligurian"] }] },
+        { "prompt": "Name the four countries other than Russia that border the Caspian Sea.", "answers": [{ "text": "Kazakhstan" }, { "text": "Turkmenistan" }, { "text": "Iran" }, { "text": "Azerbaijan" }] },
+        { "prompt": "Name the four stages of the tide.", "answers": [{ "text": "High water", "aliases": ["High tide"] }, { "text": "Low water", "aliases": ["Low tide"] }, { "text": "Flood tide", "aliases": ["Flood", "Rising tide"] }, { "text": "Ebb tide", "aliases": ["Ebb", "Falling tide"] }] },
+        { "prompt": "Name the four inhabited continents with an Atlantic coastline.", "answers": [{ "text": "Europe" }, { "text": "Africa" }, { "text": "North America" }, { "text": "South America" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which sea lies between Great Britain and Ireland?", "difficulty": "easy", "answers": [{ "text": "The Irish Sea", "aliases": ["Irish Sea"] }] },
+        { "prompt": "Which Italian explorer crossed the Atlantic in 1492?", "difficulty": "easy", "answers": [{ "text": "Christopher Columbus", "aliases": ["Columbus"] }] },
+        { "prompt": "Off the coast of which country does the Great Barrier Reef lie?", "difficulty": "easy", "answers": [{ "text": "Australia" }] },
+        { "prompt": "Which sea lies between Greece and Turkey?", "difficulty": "easy", "answers": [{ "text": "The Aegean Sea", "aliases": ["Aegean Sea", "Aegean"] }] },
+        { "prompt": "What is the largest animal living in the sea?", "difficulty": "easy", "answers": [{ "text": "The blue whale", "aliases": ["Blue whale"] }] },
+        { "prompt": "What is the underwater mountain range running down the middle of the Atlantic called?", "difficulty": "hard", "answers": [{ "text": "The Mid-Atlantic Ridge", "aliases": ["Mid-Atlantic Ridge"] }] },
+        { "prompt": "What is the shallow submerged rim of a continent called, where it ends before the deep sea begins?", "difficulty": "hard", "answers": [{ "text": "The continental shelf", "aliases": ["Continental shelf"] }] },
+        { "prompt": "Which strait separates Sumatra from the Malay Peninsula?", "difficulty": "hard", "answers": [{ "text": "The Strait of Malacca", "aliases": ["Strait of Malacca", "Malacca"] }] },
+        { "prompt": "Which sea lies between Vietnam, the Philippines and Malaysia?", "difficulty": "hard", "answers": [{ "text": "The South China Sea", "aliases": ["South China Sea"] }] },
+        { "prompt": "Which cold current flows along the west coast of southern Africa?", "difficulty": "hard", "answers": [{ "text": "The Benguela Current", "aliases": ["Benguela Current", "Benguela"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the deepest trench of the Atlantic Ocean called?", "answers": [{ "text": "The Puerto Rico Trench", "aliases": ["Puerto Rico Trench"] }] },
+        { "prompt": "What is the name for one of the great circular systems of currents that turn in each ocean basin?", "answers": [{ "text": "A gyre", "aliases": ["Gyre", "Ocean gyre"] }] },
+        { "prompt": "Which Dutch navigator has a sea north of Russia named after him?", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents", "Willem Barents"] }] },
+        { "prompt": "What is the worldwide circulation of seawater driven by differences in temperature and salinity called?", "answers": [{ "text": "The thermohaline circulation", "aliases": ["Thermohaline circulation", "Ocean conveyor belt"] }] },
+        { "prompt": "Which strait separates Sicily from the Italian mainland?", "answers": [{ "text": "The Strait of Messina", "aliases": ["Strait of Messina", "Messina"] }] },
+        { "prompt": "What is the periodic warming of the eastern Pacific that upsets weather across the world called?", "answers": [{ "text": "El Nino", "aliases": ["El Niño"] }] },
+        { "prompt": "Which strait separates Denmark from Sweden and is spanned by the bridge to Malmo?", "answers": [{ "text": "The Oresund", "aliases": ["Oresund", "The Sound", "Oresund Strait"] }] }
+      ]
+    }
+  ]
+}
