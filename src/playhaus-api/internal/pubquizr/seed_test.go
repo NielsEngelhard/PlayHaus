@@ -43,7 +43,7 @@ func TestSeedLoadsEveryQuizThatShips(t *testing.T) {
 	// slug. A quiz is keyed on (locale, slug) and the slug is read out of the file
 	// rather than off its name, so a copied file with its slug left behind does not
 	// fail: it replaces the quiz it was copied from, and the boot is silent about it.
-	files, err := fs.Glob(quizFiles, path.Join(seedRoot, "*", "*", "*.json"))
+	files, err := fs.Glob(ShippedFiles(), path.Join(SeedRoot, "*", "*", "*.json"))
 	if err != nil {
 		t.Fatalf("glob quiz files: %v", err)
 	}
@@ -65,19 +65,6 @@ func TestSeedLoadsEveryQuizThatShips(t *testing.T) {
 	}
 }
 
-// QuestionsIn is the exact content every quiz that ships has to carry. The validator
-// only enforces floors, which is how the shipped files drifted to fourteen ABCD
-// questions and six finale questions without anything noticing.
-var questionsIn = map[int]int{
-	RoundOpen:       20,
-	RoundChoice:     10,
-	RoundClosest:    8,
-	RoundDescribe:   30,
-	RoundList:       8,
-	RoundDoubleDown: 10,
-	RoundFinale:     7,
-}
-
 func TestEveryShippedQuizCarriesAFullRound(t *testing.T) {
 	store, db := newTestStore(t)
 
@@ -93,7 +80,7 @@ func TestEveryShippedQuizCarriesAFullRound(t *testing.T) {
 	for _, quiz := range loaded {
 		for round := 1; round <= Rounds; round++ {
 			questions := quiz.QuestionsIn(round)
-			if want := questionsIn[round]; len(questions) != want {
+			if want := QuestionsIn(round); len(questions) != want {
 				t.Errorf("%s/%s round %d has %d questions, wants exactly %d",
 					quiz.Locale, quiz.Slug, round, len(questions), want)
 			}

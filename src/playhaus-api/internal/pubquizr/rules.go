@@ -254,6 +254,38 @@ func MinQuestionsIn(round int) int {
 	}
 }
 
+const (
+	OpenQuestions       = 20
+	ChoiceQuestions     = 10
+	ClosestQuestions    = 8
+	DescribeWords       = 30
+	ListQuestions       = 8
+	DoubleDownQuestions = DoubleDownPerDifficulty * 2
+	FinaleQuestions     = 7
+)
+
+// QuestionsIn is exactly how many questions a round carries. MinQuestionsIn is what a table needs to play; this is what a quiz has to ship, and the difference is how the corpus once drifted to fourteen ABCD questions without anything noticing.
+func QuestionsIn(round int) int {
+	switch round {
+	case RoundOpen:
+		return OpenQuestions
+	case RoundChoice:
+		return ChoiceQuestions
+	case RoundClosest:
+		return ClosestQuestions
+	case RoundDescribe:
+		return DescribeWords
+	case RoundList:
+		return ListQuestions
+	case RoundDoubleDown:
+		return DoubleDownQuestions
+	case RoundFinale:
+		return FinaleQuestions
+	default:
+		return 0
+	}
+}
+
 // KindOf is the one kind of question a round is made of.
 func KindOf(round int) QuestionKind {
 	switch round {

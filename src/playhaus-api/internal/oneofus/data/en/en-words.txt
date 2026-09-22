@@ -998,3 +998,1003 @@ Stream --- Waterfall
 Traffic light --- Fence
 Baby monitor --- Nappy
 Villa --- Chalet
+Watermelon --- Cantaloupe
+Honeydew melon --- Galia melon
+Guava --- Papaya
+Dragon fruit --- Starfruit
+Rambutan --- Lychee
+Longan --- Rambutan
+Jackfruit --- Durian
+Soursop --- Custard apple
+Persimmon --- Quince
+Loquat --- Apricot
+Medjool date --- Fig
+Damson --- Mirabelle plum
+Greengage --- Plum
+Mulberry --- Blackberry
+Gooseberry --- Redcurrant
+Elderberry --- Blueberry
+Cloudberry --- Raspberry
+Lingonberry --- Cranberry
+Boysenberry --- Blackberry
+Tayberry --- Raspberry
+Kumquat --- Clementine
+Yuzu --- Bergamot
+Blood orange --- Satsuma
+Ugli fruit --- Citron
+Avocado --- Olive
+Tamarind --- Date
+Kiwano --- Passion fruit
+Feijoa --- Guava
+Pawpaw --- Papaya
+Mangosteen --- Lychee
+Breadfruit --- Jackfruit
+Physalis --- Gooseberry
+Sea buckthorn --- Cranberry
+Bilberry --- Blueberry
+Plantain --- Banana
+Tangerine --- Mandarin
+Nashi pear --- Quince
+Prickly pear --- Dragon fruit
+Star apple --- Persimmon
+Horned melon --- Kiwi
+Salak --- Lychee
+Miracle fruit --- Gooseberry
+Ackee --- Lychee
+Custard banana --- Plantain
+Sloe --- Damson
+Blackthorn berry --- Sloe
+Quince --- Apple
+White peach --- Nectarine
+Yellow plum --- Greengage
+Blackcurrant --- Blueberry
+Pumpkin --- Butternut squash
+Kale --- Spinach
+Artichoke --- Cauliflower
+Asparagus --- Green beans
+Celery --- Fennel
+Turnip --- Swede
+Okra --- Green beans
+Sweetcorn --- Peas
+Brussels sprouts --- Cabbage
+Red cabbage --- White cabbage
+Mushroom --- Truffle
+Garlic --- Shallot
+Onion --- Leek
+Chili pepper --- Bell pepper
+Ginger --- Turmeric
+Watercress --- Rocket
+Radish --- Turnip
+Beetroot --- Carrot
+Parsnip --- Swede
+Courgette --- Cucumber
+Sweet potato --- Pumpkin
+Spring onion --- Chive
+Chive --- Parsley
+Broccoli --- Cauliflower
+Kohlrabi --- Turnip
+Kohlrabi --- Celeriac
+Samphire --- Watercress
+Bok choy --- Spinach
+Pak choi --- Kale
+Jerusalem artichoke --- Potato
+Yam --- Sweet potato
+Cassava --- Yam
+Pea shoots --- Watercress
+Spring greens --- Kale
+Runner beans --- Green beans
+Broad beans --- Peas
+Sugar snap peas --- Mangetout
+Mangetout --- Green beans
+Salsify --- Parsnip
+Kabocha squash --- Pumpkin
+Acorn squash --- Butternut squash
+Corn on the cob --- Sweetcorn
+Red onion --- White onion
+Garlic bulb --- Shallot
+Horseradish --- Ginger
+Rhubarb --- Celery
+Fennel bulb --- Celeriac
+Baby carrot --- Radish
+Tiramisu --- Cheesecake
+Panna cotta --- Custard
+Creme brulee --- Panna cotta
+Baklava --- Millefeuille
+Millefeuille --- Napoleon slice
+Profiterole --- Cream puff
+Macaron --- Meringue
+Meringue --- Pavlova
+Pavlova --- Cheesecake
+Tart --- Pie
+Apple pie --- Apple turnover
+Cherry pie --- Cherry cake
+Trifle --- Tiramisu
+Rice pudding --- Semolina pudding
+Bread pudding --- Rice pudding
+Sticky toffee pudding --- Treacle pudding
+Treacle tart --- Custard tart
+Custard tart --- Egg tart
+Brownie --- Blondie
+Blondie --- Flapjack
+Flapjack --- Granola bar
+Fudge --- Toffee
+Toffee --- Caramel
+Caramel --- Butterscotch
+Nougat --- Marzipan
+Marzipan --- Fondant
+Fondant fancy --- Cupcake
+Doughnut --- Churro
+Churro --- Beignet
+Beignet --- Doughnut
+Gingerbread --- Speculaas
+Shortbread --- Biscuit
+Biscotti --- Shortbread
+Waffle --- Pancake
+Crepe --- Pancake
+Eclair --- Profiterole
+Croquembouche --- Profiterole
+Baklava --- Turkish delight
+Turkish delight --- Marshmallow
+Liquorice --- Marshmallow
+Jelly beans --- Gummy bears
+Gummy bears --- Jelly babies
+Sherbet --- Popping candy
+Candy floss --- Popcorn
+Popcorn --- Toffee popcorn
+Ice lolly --- Ice cream
+Sorbet --- Ice cream
+Frozen yoghurt --- Ice cream
+Gelato --- Ice cream
+Sundae --- Milkshake
+Espresso martini --- Whisky sour
+Mojito --- Daiquiri
+Margarita --- Daiquiri
+Pina colada --- Mojito
+Bloody mary --- Virgin mary
+Mimosa --- Bellini
+Bellini --- Spritz
+Aperol spritz --- Mimosa
+Gin and tonic --- Vodka tonic
+Whisky sour --- Sidecar
+Old fashioned --- Manhattan
+Manhattan --- Negroni
+Negroni --- Campari soda
+Cosmopolitan --- Sex on the beach
+Sex on the beach --- Tequila sunrise
+Tequila sunrise --- Mai tai
+Mai tai --- Pina colada
+Long island iced tea --- Iced tea
+Iced tea --- Lemonade
+Lemonade --- Ginger beer
+Ginger beer --- Ginger ale
+Root beer --- Ginger ale
+Tonic water --- Soda water
+Soda water --- Sparkling water
+Milkshake --- Smoothie
+Smoothie --- Protein shake
+Protein shake --- Milkshake
+Hot chocolate --- Mocha
+Mocha --- Latte
+Flat white --- Latte
+Cappuccino --- Flat white
+Macchiato --- Espresso
+Americano --- Filter coffee
+Filter coffee --- Instant coffee
+Chai latte --- Herbal tea
+Matcha latte --- Green tea
+Bubble tea --- Iced tea
+Kombucha --- Ginger beer
+Prosecco --- Champagne
+Champagne --- Cava
+Cava --- Prosecco
+Rose wine --- White wine
+White wine --- Red wine
+Red wine --- Port
+Port --- Sherry
+Sherry --- Vermouth
+Vermouth --- Gin
+Sangria --- Mulled wine
+Mulled wine --- Hot toddy
+Hot toddy --- Irish coffee
+Irish coffee --- Espresso martini
+Dairy cow --- Beef cattle
+Goat --- Sheep
+Piglet --- Lamb
+Rooster --- Hen
+Duckling --- Gosling
+Donkey --- Mule
+Pony --- Foal
+Llama --- Alpaca
+Rabbit --- Hare
+Ferret --- Chinchilla
+Guinea pig --- Gerbil
+Hamster --- Mouse
+Budgie --- Canary
+Cockatiel --- Parakeet
+Tortoise --- Terrapin
+Koi --- Goldfish
+Sheepdog --- Collie
+Terrier --- Spaniel
+Labrador --- Retriever
+Bulldog --- Pug
+Persian cat --- Siamese cat
+Tabby cat --- Ginger cat
+Shetland pony --- Miniature horse
+Turkey --- Goose
+Peacock --- Pheasant
+Bison --- Yak
+Reindeer --- Elk
+Moose --- Elk
+Wild boar --- Warthog
+Badger --- Otter
+Beaver --- Muskrat
+Raccoon --- Skunk
+Opossum --- Sloth
+Armadillo --- Anteater
+Hedgehog --- Porcupine
+Meerkat --- Prairie dog
+Wolverine --- Badger
+Lynx --- Bobcat
+Panther --- Puma
+Cheetah --- Leopard
+Hyena --- Jackal
+Antelope --- Gazelle
+Zebra --- Wildebeest
+Rhino --- Hippo
+Orangutan --- Chimpanzee
+Gorilla --- Baboon
+Lemur --- Sloth
+Koala --- Panda
+Kangaroo --- Wallaby
+Platypus --- Echidna
+Tapir --- Peccary
+Ocelot --- Margay
+Serval --- Caracal
+Fennec fox --- Arctic fox
+Red fox --- Coyote
+Chipmunk --- Squirrel
+Vole --- Field mouse
+Shrew --- Mole
+Pelican --- Cormorant
+Kingfisher --- Woodpecker
+Toucan --- Macaw
+Parrot --- Cockatoo
+Swan --- Goose
+Robin --- Sparrow
+Wren --- Finch
+Nightingale --- Blackbird
+Vulture --- Buzzard
+Eagle --- Hawk
+Falcon --- Kestrel
+Puffin --- Penguin
+Albatross --- Seagull
+Stork --- Crane
+Ibis --- Heron
+Woodpecker --- Jay
+Magpie --- Jackdaw
+Dove --- Pigeon
+Cuckoo --- Magpie
+Grasshopper --- Cricket
+Cockroach --- Beetle
+Centipede --- Millipede
+Termite --- Ant
+Ladybird --- Beetle
+Firefly --- Moth
+Moth --- Butterfly
+Praying mantis --- Grasshopper
+Stag beetle --- Rhino beetle
+Tick --- Flea
+Earwig --- Woodlouse
+Slug --- Snail
+Starfish --- Sea urchin
+Jellyfish --- Sea anemone
+Octopus --- Squid
+Cuttlefish --- Octopus
+Clam --- Mussel
+Scallop --- Oyster
+Barnacle --- Limpet
+Sea horse --- Pipefish
+Manta ray --- Stingray
+Eel --- Lamprey
+Pike --- Perch
+Carp --- Trout
+Herring --- Sardine
+Mackerel --- Tuna
+Anchovy --- Sardine
+Haddock --- Cod
+Plaice --- Sole
+Swordfish --- Marlin
+Piranha --- Catfish
+Puffer fish --- Clown fish
+Seahorse --- Starfish
+Walrus --- Sea lion
+Narwhal --- Dolphin
+Beluga whale --- Orca
+Hammerhead shark --- Great white shark
+Nurse shark --- Reef shark
+Vet --- Zookeeper
+Zookeeper --- Farmer
+Farmer --- Fisherman
+Fisherman --- Sailor
+Sailor --- Pilot
+Pilot --- Air traffic controller
+Air hostess --- Pilot
+Train driver --- Bus driver
+Tram driver --- Train driver
+Postman --- Delivery driver
+Butcher --- Baker
+Fishmonger --- Butcher
+Greengrocer --- Fishmonger
+Florist --- Gardener
+Gardener --- Landscaper
+Locksmith --- Handyman
+Roofer --- Bricklayer
+Painter --- Decorator
+Upholsterer --- Carpenter
+Blacksmith --- Welder
+Tailor --- Seamstress
+Cobbler --- Tailor
+Jeweller --- Watchmaker
+Optician --- Dentist
+Vet nurse --- Nurse
+Midwife --- Paediatrician
+Paramedic --- Firefighter
+Coastguard --- Lifeguard
+Customs officer --- Border guard
+Detective --- Police officer
+Judge --- Barrister
+Solicitor --- Notary
+Estate agent --- Surveyor
+Architect --- Engineer
+Civil engineer --- Architect
+Accountant --- Auditor
+Banker --- Stockbroker
+Economist --- Statistician
+Translator --- Interpreter
+Librarian --- Archivist
+Curator --- Historian
+Archaeologist --- Palaeontologist
+Geologist --- Meteorologist
+Astronomer --- Physicist
+Chemist --- Biologist
+Pharmacist --- Chemist
+Surgeon --- Anaesthetist
+Radiologist --- Surgeon
+Physiotherapist --- Osteopath
+Chiropractor --- Physiotherapist
+Dietitian --- Nutritionist
+Personal trainer --- Yoga instructor
+Lifeguard --- Swimming coach
+Referee --- Linesman
+Umpire --- Referee
+Coach --- Manager
+Scout --- Talent agent
+Agent --- Manager
+Publicist --- Journalist
+Editor --- Proofreader
+Novelist --- Poet
+Illustrator --- Cartoonist
+Animator --- Graphic designer
+Sculptor --- Potter
+Weaver --- Knitter
+Florist --- Beekeeper
+Beekeeper --- Farmer
+Winemaker --- Brewer
+Brewer --- Distiller
+Chocolatier --- Baker
+Cheesemaker --- Dairy farmer
+Falconer --- Zookeeper
+Trumpet --- Trombone
+Trombone --- Tuba
+Tuba --- French horn
+French horn --- Trumpet
+Saxophone --- Clarinet
+Oboe --- Bassoon
+Bagpipes --- Accordion
+Sitar --- Ukulele
+Ukulele --- Mandolin
+Xylophone --- Marimba
+Bongo --- Djembe
+Djembe --- Tabla
+Tambourine --- Maracas
+Triangle --- Cowbell
+Gong --- Cymbal
+Harmonica --- Melodica
+Bagpipe --- Bugle
+Bugle --- Trumpet
+Viola --- Violin
+Synthesizer --- Keyboard
+Turntable --- Mixer
+Disco --- Funk
+Funk --- Soul
+Soul --- Motown
+Motown --- Blues
+Blues --- Country
+Country --- Folk
+Folk --- Bluegrass
+Bluegrass --- Country
+Punk --- Grunge
+Grunge --- Rock
+Indie --- Alternative
+Alternative --- Grunge
+Ska --- Reggae
+Dubstep --- Drum and bass
+Drum and bass --- Garage
+Garage --- House
+Trance --- Techno
+Ambient --- Trance
+Opera --- Musical
+Ballet --- Contemporary dance
+Tap dance --- Ballet
+Salsa --- Bachata
+Tango --- Waltz
+Waltz --- Foxtrot
+Foxtrot --- Tango
+Breakdancing --- Hip hop dance
+Football --- Rugby
+Rugby --- American football
+Cricket --- Baseball
+Baseball --- Softball
+Tennis --- Squash
+Squash --- Badminton
+Jai alai --- Racquetball
+Golf --- Mini golf
+Snooker --- Pool
+Pool --- Billiards
+Darts --- Skittles
+Bowling --- Skittles
+Netball --- Basketball
+Basketball --- Handball
+Handball --- Volleyball
+Volleyball --- Beach volleyball
+Hockey --- Ice hockey
+Ice hockey --- Bandy
+Lacrosse --- Hockey
+Polo --- Horseball
+Curling --- Bowls
+Bowls --- Petanque
+Petanque --- Boules
+Boxing --- Kickboxing
+Kickboxing --- Muay Thai
+Aikido --- Jiu-jitsu
+Wrestling --- Sumo
+Fencing --- Sword fighting
+Archery --- Crossbow shooting
+Javelin --- Discus
+Discus --- Shot put
+Shot put --- Hammer throw
+High jump --- Long jump
+Long jump --- Triple jump
+Hurdles --- Sprint
+Sprint --- Relay race
+Marathon --- Half marathon
+Triathlon --- Duathlon
+Decathlon --- Pentathlon
+Rowing --- Canoeing
+Canoeing --- Kayaking
+Sailing --- Windsurfing
+Windsurfing --- Kitesurfing
+Surfing --- Bodyboarding
+Water polo --- Synchronised swimming
+Free diving --- Apnea diving
+Snorkelling --- Scuba diving
+Alpine skiing --- Freestyle skiing
+Cross-country skiing --- Downhill skiing
+Ice skating --- Roller skating
+Roller skating --- Rollerblading
+Figure skating --- Speed skating
+Cycling --- Mountain biking
+Mountain biking --- BMX
+BMX --- Motocross
+Motocross --- Rally driving
+Formula 1 --- Karting
+Horse racing --- Greyhound racing
+Show jumping --- Dressage
+Gymnastics --- Rhythmic gymnastics
+Trampolining --- Gymnastics
+Climbing --- Bouldering
+Abseiling --- Climbing
+Paragliding --- Hang gliding
+Skydiving --- Base jumping
+Bungee jumping --- Skydiving
+Shogi --- Xiangqi
+Draughts --- Checkers
+Backgammon --- Chess
+Scrabble --- Boggle
+Monopoly --- The Game of Life
+Cluedo --- Mystery board game
+Risk --- Monopoly
+Jenga --- Pick-up sticks
+Dominoes --- Mahjong
+Poker --- Blackjack
+Blackjack --- Baccarat
+Bridge --- Whist
+Rummy --- Poker
+Solitaire --- Patience
+Charades --- Pictionary
+Trivial Pursuit --- Quiz night
+Darts --- Table football
+Table football --- Air hockey
+Air hockey --- Table tennis
+Video games --- Board games
+Cap --- Beanie
+Beanie --- Bobble hat
+Fedora --- Trilby
+Trilby --- Panama hat
+Beret --- Flat cap
+Sun hat --- Straw hat
+Balaclava --- Ski mask
+Scarf --- Shawl
+Shawl --- Poncho
+Poncho --- Cape
+Cape --- Cloak
+Gloves --- Mittens
+Mittens --- Fingerless gloves
+Wellies --- Rain boots
+Trainers --- Sneakers
+Loafers --- Moccasins
+Brogues --- Oxfords
+Sandals --- Flip flops
+Flip flops --- Slides
+Slippers --- House shoes
+Boots --- Ankle boots
+Heels --- Wedges
+Wedges --- Platforms
+Flats --- Ballet pumps
+Trench coat --- Overcoat
+Overcoat --- Duffel coat
+Duffel coat --- Parka
+Parka --- Anorak
+Anorak --- Windbreaker
+Windbreaker --- Bomber jacket
+Bomber jacket --- Denim jacket
+Leather jacket --- Biker jacket
+Blazer --- Suit jacket
+Waistcoat --- Gilet
+Gilet --- Vest
+Cardigan --- Jumper
+Jumper --- Sweater
+Sweater --- Sweatshirt
+Sweatshirt --- Hoodie
+Hoodie --- Tracksuit top
+Polo shirt --- T-shirt
+T-shirt --- Vest top
+Blouse --- Shirt
+Tunic --- Kaftan
+Kaftan --- Dress
+Dress --- Gown
+Gown --- Ball gown
+Skirt --- Kilt
+Kilt --- Sarong
+Sarong --- Skirt
+Jeans --- Chinos
+Chinos --- Trousers
+Trousers --- Slacks
+Leggings --- Jeggings
+Shorts --- Bermuda shorts
+Dungarees --- Overalls
+Overalls --- Boilersuit
+Tie --- Bow tie
+Bow tie --- Cravat
+Cravat --- Tie
+Braces --- Belt
+Belt --- Sash
+Clutch bag --- Crossbody bag
+Tote bag --- Satchel
+Satchel --- Briefcase
+Briefcase --- Rucksack
+Rucksack --- Backpack
+Backpack --- Duffel bag
+Wallet --- Purse
+Purse --- Coin pouch
+Sunglasses --- Reading glasses
+Reading glasses --- Bifocals
+Bracelet --- Bangle
+Bangle --- Anklet
+Necklace --- Choker
+Choker --- Pendant
+Earrings --- Studs
+Studs --- Hoops
+Brooch --- Pin badge
+Sofa bed --- Futon
+Armchair --- Recliner
+Recliner --- Chaise longue
+Chaise longue --- Ottoman
+Ottoman --- Footstool
+Footstool --- Pouffe
+Coffee table --- Side table
+Side table --- Console table
+Bookshelf --- Bookcase
+Bookcase --- Cabinet
+Cabinet --- Sideboard
+Sideboard --- Dresser
+Dresser --- Chest of drawers
+Wardrobe --- Closet
+Closet --- Cupboard
+Bunk bed --- Loft bed
+Four-poster bed --- Canopy bed
+Bean bag --- Floor cushion
+Floor cushion --- Cushion
+Rug --- Carpet
+Carpet --- Doormat
+Curtain --- Blind
+Blind --- Shutter
+Shutter --- Curtain
+Chandelier --- Pendant light
+Pendant light --- Ceiling light
+Table lamp --- Floor lamp
+Floor lamp --- Desk lamp
+Mirror --- Wall mirror
+Fireplace --- Wood burner
+Vase --- Flowerpot
+Flowerpot --- Planter
+Saucepan --- Stockpot
+Stockpot --- Wok
+Wok --- Frying pan
+Kettle --- Coffee maker
+Coffee maker --- Espresso machine
+Toaster --- Sandwich maker
+Sandwich maker --- Panini press
+Blender --- Food processor
+Food processor --- Mixer
+Mixer --- Whisk
+Whisk --- Beater
+Grater --- Peeler
+Peeler --- Zester
+Rolling pin --- Pastry brush
+Colander --- Sieve
+Sieve --- Strainer
+Ladle --- Spatula
+Spatula --- Tongs
+Tongs --- Skewer
+Chopping board --- Cutting mat
+Bread knife --- Carving knife
+Carving knife --- Cleaver
+Cleaver --- Chopper
+Hammer --- Mallet
+Mallet --- Sledgehammer
+Screwdriver --- Chisel
+Chisel --- File
+File --- Rasp
+Spanner --- Wrench
+Wrench --- Socket set
+Pliers --- Wire cutters
+Wire cutters --- Snips
+Drill --- Impact driver
+Impact driver --- Angle grinder
+Angle grinder --- Circular saw
+Circular saw --- Jigsaw
+Jigsaw --- Handsaw
+Handsaw --- Hacksaw
+Hacksaw --- Coping saw
+Level --- Plumb line
+Tape measure --- Ruler
+Ruler --- Set square
+Set square --- Protractor
+Vice --- Clamp
+Clamp --- G-clamp
+Sandpaper --- Sanding block
+Sanding block --- Sander
+Paintbrush --- Roller
+Roller --- Paint tray
+Ladder --- Step stool
+Step stool --- Stepladder
+Wheelbarrow --- Handcart
+Handcart --- Trolley
+Spade --- Shovel
+Shovel --- Trowel
+Trowel --- Fork
+Rake --- Hoe
+Hoe --- Cultivator
+Hedge trimmer --- Shears
+Shears --- Secateurs
+Secateurs --- Pruning saw
+Lawn mower --- Strimmer
+Strimmer --- Leaf blower
+Chainsaw --- Axe
+Axe --- Hatchet
+Toolbox --- Tool belt
+Tool belt --- Tool bag
+Nail --- Screw
+Screw --- Bolt
+Bolt --- Rivet
+Rivet --- Staple
+Washer --- Nut
+Nut --- Bolt
+Superglue --- Wood glue
+Wood glue --- Epoxy
+Duct tape --- Masking tape
+Masking tape --- Electrical tape
+Sellotape --- Duct tape
+Bicycle --- Tricycle
+Tricycle --- Unicycle
+Penny farthing --- Unicycle
+Segway --- Hoverboard
+Motorbike --- Scooter
+Motorcycle --- Quad bike
+Quad bike --- Buggy
+Car --- Van
+Van --- Minibus
+Minibus --- Coach
+Bus --- Tram
+Monorail --- Tram
+Train --- Underground
+Underground --- Metro
+Lorry --- Truck
+Truck --- Pickup truck
+Pickup truck --- Flatbed truck
+Tractor --- Combine harvester
+Forklift --- Crane
+Crane --- Excavator
+Excavator --- Bulldozer
+Bulldozer --- Digger
+Cement mixer --- Dump truck
+Caravan --- Motorhome
+Motorhome --- Campervan
+Campervan --- Caravan
+Rowing boat --- Canoe
+Canoe --- Kayak
+Yacht --- Sailboat
+Sailboat --- Dinghy
+Dinghy --- Rowing boat
+Speedboat --- Jet ski
+Ferry --- Cruise ship
+Cruise ship --- Ocean liner
+Submarine --- Speedboat
+Helicopter --- Plane
+Plane --- Glider
+Glider --- Microlight
+Microlight --- Hang glider
+Hot air balloon --- Airship
+Rocket --- Space shuttle
+Space shuttle --- Satellite
+House --- Bungalow
+Bungalow --- Cottage
+Cottage --- Cabin
+Cabin --- Chalet
+Villa --- Mansion
+Mansion --- Manor
+Manor --- Castle
+Castle --- Palace
+Palace --- Fortress
+Fortress --- Citadel
+Flat --- Apartment
+Apartment --- Studio flat
+Studio flat --- Bedsit
+Terraced house --- Semi-detached house
+Semi-detached house --- Detached house
+Detached house --- Townhouse
+Townhouse --- Terraced house
+Skyscraper --- Tower block
+Tower block --- High-rise
+Barn --- Shed
+Shed --- Garage
+Garage --- Carport
+Greenhouse --- Conservatory
+Windmill --- Watermill
+Lighthouse --- Watchtower
+Church --- Chapel
+Chapel --- Cathedral
+Cathedral --- Basilica
+Mosque --- Temple
+Temple --- Shrine
+Synagogue --- Temple
+Monastery --- Convent
+Museum --- Gallery
+Theatre --- Cinema
+Stadium --- Arena
+Town hall --- City hall
+City hall --- Courthouse
+Courthouse --- Town hall
+Police station --- Fire station
+Fire station --- Ambulance station
+Hospital --- Clinic
+Clinic --- Surgery
+School --- College
+College --- University
+University --- Academy
+Nursery --- Kindergarten
+Supermarket --- Corner shop
+Corner shop --- Convenience store
+Department store --- Shopping mall
+Shopping mall --- Retail park
+Market --- Bazaar
+Warehouse --- Depot
+Factory --- Mill
+Power station --- Substation
+Airport --- Train station
+Train station --- Bus station
+Bus station --- Airport
+Harbour --- Marina
+Marina --- Port
+Port --- Harbour
+Bridge --- Viaduct
+Viaduct --- Aqueduct
+Aqueduct --- Bridge
+Tunnel --- Underpass
+Underpass --- Overpass
+Overpass --- Flyover
+Roundabout --- Junction
+Junction --- Crossroads
+Crossroads --- Roundabout
+Motorway --- Dual carriageway
+Alleyway --- Side street
+Cul-de-sac --- Dead end
+Square --- Piazza
+Piazza --- Plaza
+Plaza --- Square
+Park --- Garden
+Garden --- Allotment
+Playground --- Play park
+Zoo --- Safari park
+Safari park --- Wildlife reserve
+Aquarium --- Sea life centre
+Botanical garden --- Arboretum
+Cemetery --- Graveyard
+Forest --- Woodland
+Jungle --- Rainforest
+Desert --- Savannah
+Savannah --- Prairie
+Prairie --- Plains
+Mountain --- Hill
+Valley --- Ravine
+Ravine --- Gorge
+Gorge --- Canyon
+Cliff --- Bluff
+Beach --- Shore
+Shore --- Coast
+Coast --- Shoreline
+Lake --- Pond
+Pond --- Lagoon
+River --- Stream
+Stream --- Brook
+Brook --- Creek
+Creek --- Stream
+Waterfall --- Cascade
+Marsh --- Swamp
+Swamp --- Bog
+Bog --- Marsh
+Glacier --- Ice sheet
+Volcano --- Geyser
+Cave --- Cavern
+Cavern --- Grotto
+Grotto --- Cave
+Island --- Peninsula
+Peninsula --- Isthmus
+Reef --- Atoll
+Smartphone --- Tablet
+Kindle --- E-reader
+Gaming PC --- Games console
+Smartwatch --- Fitness tracker
+Earbuds --- Headphones
+Bluetooth speaker --- Soundbar
+Soundbar --- Home cinema system
+Router --- Modem
+Webcam --- Microphone
+Microphone --- Speaker
+Games console --- Handheld console
+Virtual reality headset --- Augmented reality glasses
+Drone --- Remote control helicopter
+Power bank --- Charger
+Charger --- Cable
+USB stick --- Memory card
+Memory card --- Hard drive
+Hard drive --- Solid state drive
+Printer --- Scanner
+Scanner --- Photocopier
+Projector --- Television
+Television --- Monitor
+Remote control --- Universal remote
+Smart plug --- Smart bulb
+Doorbell camera --- Security camera
+Security camera --- CCTV
+Satnav --- GPS tracker
+Calculator --- Abacus
+Typewriter --- Word processor
+Fax machine --- Photocopier
+Landline --- Mobile phone
+Walkie talkie --- Two-way radio
+Dragon --- Wyvern
+Unicorn --- Pegasus
+Griffin --- Phoenix
+Mermaid --- Siren
+Centaur --- Minotaur
+Werewolf --- Vampire
+Zombie --- Ghoul
+Ghost --- Poltergeist
+Witch --- Sorceress
+Wizard --- Warlock
+Elf --- Fairy
+Fairy --- Pixie
+Pixie --- Elf
+Goblin --- Troll
+Troll --- Ogre
+Ogre --- Giant
+Giant --- Troll
+Leprechaun --- Gnome
+Kraken --- Sea serpent
+Yeti --- Bigfoot
+Cyclops --- Giant
+Sphinx --- Chimera
+Christmas --- Boxing Day
+Boxing Day --- New Year's Eve
+New Year's Eve --- New Year's Day
+Easter --- Good Friday
+Good Friday --- Easter Monday
+Halloween --- Bonfire Night
+Valentine's Day --- Mother's Day
+Mother's Day --- Father's Day
+Father's Day --- Valentine's Day
+Thanksgiving --- Harvest festival
+Diwali --- Eid
+Hanukkah --- Christmas
+St Patrick's Day --- St George's Day
+St George's Day --- St Andrew's Day
+Pancake Day --- Pancake Tuesday
+April Fools' Day --- April Fools
+Remembrance Day --- Armistice Day
+May Day --- Bank holiday
+Birthday party --- Anniversary party
+Wedding --- Engagement party
+Baby shower --- Christening
+Graduation --- Prom
+Fireworks --- Sparklers
+Bonfire --- Campfire
+Carnival --- Fair
+Fete --- Fair
+Parade --- Procession
+Festival --- Fete
+Rainbow --- Aurora
+Frost --- Dew
+Mist --- Haze
+Smog --- Haze
+Drizzle --- Downpour
+Blizzard --- Sandstorm
+Monsoon --- Typhoon
+Whirlwind --- Waterspout
+Sleet --- Hailstone
+Heatwave --- Cold snap
+Baguette --- Ciabatta
+Pretzel --- Bagel
+Naan --- Pitta
+Focaccia --- Flatbread
+Sourdough --- Rye bread
+Brioche --- Danish pastry
+Puff pastry --- Filo pastry
+Breadstick --- Crouton
+Goulash --- Stew
+Chowder --- Bisque
+Dumpling --- Wonton
+Sushi --- Sashimi
+Paella --- Jambalaya
+Curry --- Chilli con carne
+Casserole --- Hotpot
+Consomme --- Bouillon
+Granite --- Marble
+Limestone --- Sandstone
+Slate --- Flint
+Lava --- Magma
+Obsidian --- Basalt
+Chalk --- Clay
+Pumice --- Coal
+Amber --- Jet
+Anchor --- Buoy
+Mast --- Rudder
+Sail --- Tarpaulin
+Weather vane --- Sundial
+Lifebuoy --- Life jacket
+Porthole --- Periscope
+Gangplank --- Drawbridge
+Harpoon --- Fishing net
+Thimble --- Bobbin
+Knitting needle --- Crochet hook
+Embroidery hoop --- Loom
+Zip --- Button
+Safety pin --- Paperclip
+Sewing machine --- Overlocker
+Stapler --- Hole punch
+Binder clip --- Paperclip
+Marker pen --- Highlighter
+Envelope --- Parcel
+Filing cabinet --- Shredder
+Whiteboard --- Flipchart

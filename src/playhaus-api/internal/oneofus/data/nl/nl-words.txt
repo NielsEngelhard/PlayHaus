@@ -998,3 +998,1003 @@ Beek --- Waterval
 Verkeerslicht --- Hek
 Babyfoon --- Luier
 Villa --- Chalet
+Watermeloen --- Meloen
+Honingmeloen --- Galiameloen
+Guave --- Papaja
+Dragon fruit --- Sterfruit
+Rambutan --- Lychee
+Longan --- Rambutan
+Jackfruit --- Doerian
+Zuurzak --- Suikerappel
+Persimoen --- Kweepeer
+Loquat --- Abrikoos
+Medjouldadel --- Vijg
+Kwets --- Mirabelle
+Reine-claude --- Pruim
+Moerbei --- Braam
+Kruisbes --- Rode bes
+Vlierbes --- Bosbes
+Wolfsbes --- Framboos
+Vossenbes --- Cranberry
+Boysenbes --- Braam
+Taybes --- Framboos
+Kumquat --- Clementine
+Yuzu --- Bergamot
+Bloedsinaasappel --- Satsuma
+Ugli-vrucht --- Citroen
+Avocado --- Olijf
+Tamarinde --- Dadel
+Kiwano --- Passievrucht
+Feijoa --- Guave
+Pawpaw --- Papaja
+Mangistan --- Lychee
+Broodvrucht --- Jackfruit
+Physalis --- Kruisbes
+Duindoornbes --- Cranberry
+Blauwe bosbes --- Bosbes
+Bakbanaan --- Banaan
+Tangerine --- Mandarijn
+Nashipeer --- Kweepeer
+Cactusvijg --- Dragon fruit
+Sterappel --- Persimoen
+Hoornkomkommer --- Kiwi
+Salak --- Lychee
+Wondervrucht --- Kruisbes
+Ackee --- Lychee
+Kleine bakbanaan --- Bakbanaan
+Sleepruim --- Kwets
+Sleedoornbes --- Sleepruim
+Kweepeer --- Appel
+Witte perzik --- Nectarine
+Gele pruim --- Reine-claude
+Zwarte bes --- Bosbes
+Pompoen --- Flespompoen
+Boerenkool --- Spinazie
+Artisjok --- Bloemkool
+Asperge --- Sperziebonen
+Selderij --- Venkel
+Raap --- Koolraap
+Okra --- Sperziebonen
+Suikermais --- Doperwten
+Spruitjes --- Kool
+Rode kool --- Witte kool
+Champignon --- Truffel
+Knoflook --- Sjalot
+Ui --- Prei
+Chilipeper --- Paprika
+Gember --- Kurkuma
+Waterkers --- Rucola
+Radijs --- Raap
+Biet --- Wortel
+Pastinaak --- Koolraap
+Courgette --- Komkommer
+Zoete aardappel --- Pompoen
+Bosui --- Bieslook
+Bieslook --- Peterselie
+Broccoli --- Bloemkool
+Koolrabi --- Raap
+Koolraap --- Knolselderij
+Zeekraal --- Waterkers
+Paksoi --- Spinazie
+Paksoi --- Boerenkool
+Aardpeer --- Aardappel
+Yamswortel --- Zoete aardappel
+Cassave --- Yamswortel
+Erwtenscheuten --- Waterkers
+Lentekool --- Boerenkool
+Snijbonen --- Sperziebonen
+Tuinbonen --- Doperwten
+Suikerpeultjes --- Peultjes
+Peultjes --- Sperziebonen
+Schorseneer --- Pastinaak
+Kabochapompoen --- Pompoen
+Eikelpompoen --- Flespompoen
+Maiskolf --- Suikermais
+Rode ui --- Witte ui
+Knoflookbol --- Sjalot
+Mierikswortel --- Gember
+Rabarber --- Selderij
+Venkelknol --- Knolselderij
+Worteltje --- Radijs
+Tiramisu --- Cheesecake
+Panna cotta --- Vla
+Crème brûlée --- Panna cotta
+Baklava --- Millefeuille
+Millefeuille --- Tompouce
+Profiterol --- Soesje
+Macaron --- Schuimgebak
+Schuimgebak --- Pavlova
+Pavlova --- Cheesecake
+Vlaai --- Taart
+Appeltaart --- Appelflap
+Kersentaart --- Kersencake
+Trifle --- Tiramisu
+Rijstepap --- Griesmeelpudding
+Broodpudding --- Rijstepap
+Toffeepudding --- Karamelpudding
+Stroopvlaai --- Vlaflip
+Vlaflip --- Eiertaart
+Brownie --- Blondie
+Blondie --- Flapjack
+Flapjack --- Granolareep
+Fudge --- Toffee
+Toffee --- Karamel
+Karamel --- Butterscotch
+Noga --- Marsepein
+Marsepein --- Fondant
+Fondantgebakje --- Cupcake
+Donut --- Churro
+Churro --- Beignet
+Beignet --- Donut
+Peperkoek --- Speculaas
+Shortbread --- Koekje
+Biscotti --- Shortbread
+Wafel --- Pannenkoek
+Crêpe --- Pannenkoek
+Eclair --- Profiterol
+Croquembouche --- Profiterol
+Baklava --- Turks fruit
+Turks fruit --- Marshmallow
+Drop --- Marshmallow
+Jellybeans --- Winegums
+Winegums --- Zuurtjes
+Sherbetpoeder --- Knettersuiker
+Suikerspin --- Popcorn
+Popcorn --- Toffeepopcorn
+Waterijsje --- IJsje
+Sorbet --- IJsje
+Frozen yoghurt --- IJsje
+Gelato --- IJsje
+Sundae --- Milkshake
+Espresso martini --- Whisky sour
+Mojito --- Daiquiri
+Margarita --- Daiquiri
+Piña colada --- Mojito
+Bloody mary --- Virgin mary
+Mimosa --- Bellini
+Bellini --- Spritz
+Aperol spritz --- Mimosa
+Gin-tonic --- Wodka-tonic
+Whisky sour --- Sidecar
+Old fashioned --- Manhattan
+Manhattan --- Negroni
+Negroni --- Campari soda
+Cosmopolitan --- Sex on the beach
+Sex on the beach --- Tequila sunrise
+Tequila sunrise --- Mai tai
+Mai tai --- Piña colada
+Long island iced tea --- Ice tea
+Ice tea --- Limonade
+Limonade --- Gemberbier
+Gemberbier --- Gember ale
+Root beer --- Gember ale
+Tonic --- Bruiswater
+Bruiswater --- Spuitwater
+Milkshake --- Smoothie
+Smoothie --- Eiwitshake
+Eiwitshake --- Milkshake
+Warme chocolademelk --- Mocha
+Mocha --- Latte
+Flat white --- Latte
+Cappuccino --- Flat white
+Macchiato --- Espresso
+Americano --- Filterkoffie
+Filterkoffie --- Oploskoffie
+Chai latte --- Kruidenthee
+Matcha latte --- Groene thee
+Bubbletea --- Ice tea
+Kombucha --- Gemberbier
+Prosecco --- Champagne
+Champagne --- Cava
+Cava --- Prosecco
+Rosé --- Witte wijn
+Witte wijn --- Rode wijn
+Rode wijn --- Port
+Port --- Sherry
+Sherry --- Vermout
+Vermout --- Gin
+Sangria --- Glühwein
+Glühwein --- Hot toddy
+Hot toddy --- Irish coffee
+Irish coffee --- Espresso martini
+Melkkoe --- Vleeskoe
+Geit --- Schaap
+Big --- Lam
+Haan --- Kip
+Eendenkuiken --- Ganzenkuiken
+Ezel --- Muilezel
+Pony --- Veulen
+Lama --- Alpaca
+Konijn --- Haas
+Fret --- Chinchilla
+Cavia --- Gerbil
+Hamster --- Muis
+Parkiet --- Kanarie
+Kuifparkiet --- Grasparkiet
+Schildpad --- Waterschildpad
+Koi --- Goudvis
+Herdershond --- Collie
+Terriër --- Spaniël
+Labrador --- Retriever
+Bulldog --- Pug
+Perzische kat --- Siamese kat
+Cyperse kat --- Rode kat
+Shetlandpony --- Miniatuurpaard
+Kalkoen --- Gans
+Pauw --- Fazant
+Bizon --- Yak
+Rendier --- Eland
+Elandhert --- Eland
+Wild zwijn --- Wrattenzwijn
+Das --- Otter
+Bever --- Muskusrat
+Wasbeer --- Stinkdier
+Opossum --- Luiaard
+Gordeldier --- Miereneter
+Egel --- Stekelvarken
+Stokstaartje --- Prairiehond
+Veelvraat --- Das
+Lynx --- Bobcat
+Panter --- Poema
+Cheetah --- Luipaard
+Hyena --- Jakhals
+Antilope --- Gazelle
+Zebra --- Wildebeest
+Neushoorn --- Nijlpaard
+Orang-oetan --- Chimpansee
+Gorilla --- Baviaan
+Lemur --- Luiaard
+Koala --- Panda
+Kangoeroe --- Wallaby
+Vogelbekdier --- Wangzakhamster
+Tapir --- Pekari
+Ocelot --- Margay
+Serval --- Karakal
+Fennec --- Polarvos
+Rode vos --- Coyote
+Aardeekhoorn --- Eekhoorn
+Woelmuis --- Bosmuis
+Spitsmuis --- Mol
+Pelikaan --- Aalscholver
+IJsvogel --- Specht
+Toekan --- Ara
+Papegaai --- Kaketoe
+Zwaan --- Gans
+Roodborstje --- Mus
+Winterkoninkje --- Vink
+Nachtegaal --- Merel
+Gier --- Buizerd
+Arend --- Havik
+Valk --- Torenvalk
+Papegaaiduiker --- Pinguïn
+Albatros --- Zeemeeuw
+Ooievaar --- Kraanvogel
+Ibis --- Reiger
+Specht --- Gaai
+Ekster --- Kauw
+Duif --- Postduif
+Koekoek --- Ekster
+Sprinkhaan --- Krekel
+Kakkerlak --- Kever
+Duizendpoot --- Miljoenpoot
+Termiet --- Mier
+Lieveheersbeestje --- Kever
+Glimworm --- Nachtvlinder
+Nachtvlinder --- Vlinder
+Bidsprinkhaan --- Sprinkhaan
+Vliegend hert --- Neushoornkever
+Teek --- Vlo
+Oorwurm --- Pissebed
+Slak --- Huisjesslak
+Zeester --- Zee-egel
+Kwal --- Zeeanemoon
+Octopus --- Inktvis
+Zeekat --- Octopus
+Tapmossel --- Mossel
+Sint-jakobsschelp --- Oester
+Zeepok --- Alikruik
+Zeepaardje --- Pijlstaartvis
+Roggenvis --- Pijlstaartrog
+Paling --- Zeepaling
+Snoek --- Baars
+Karper --- Forel
+Haring --- Sardine
+Makreel --- Tonijn
+Ansjovis --- Sardine
+Schelvis --- Kabeljauw
+Schol --- Tong
+Zwaardvis --- Marlijn
+Piranha --- Meerval
+Kogelvis --- Clownvis
+Zeepaardje --- Zeester
+Walrus --- Zeeleeuw
+Narwal --- Dolfijn
+Beluga --- Orka
+Hamerhaai --- Witte haai
+Verpleegsterhaai --- Rifhaai
+Dierenarts --- Dierentuinmedewerker
+Dierentuinmedewerker --- Boer
+Boer --- Visser
+Visser --- Zeeman
+Zeeman --- Piloot
+Piloot --- Luchtverkeersleider
+Stewardess --- Piloot
+Treinbestuurder --- Buschauffeur
+Trambestuurder --- Treinbestuurder
+Postbode --- Pakketbezorger
+Slager --- Bakker
+Visboer --- Slager
+Groenteboer --- Visboer
+Bloemist --- Tuinman
+Tuinman --- Hovenier
+Slotenmaker --- Klusjesman
+Dakdekker --- Metselaar
+Schilder --- Behanger
+Stoffeerder --- Timmerman
+Smid --- Lasser
+Kleermaker --- Naaister
+Schoenmaker --- Kleermaker
+Juwelier --- Horlogemaker
+Opticien --- Tandarts
+Dierenverpleegkundige --- Verpleegkundige
+Vroedvrouw --- Kinderarts
+Ambulancebroeder --- Brandweerman
+Kustwacht --- Strandwacht
+Douanebeambte --- Grenswacht
+Detective --- Politieagent
+Rechter --- Advocaat
+Notaris --- Advocaat
+Makelaar --- Landmeter
+Architect --- Ingenieur
+Civiel ingenieur --- Architect
+Accountant --- Auditor
+Bankier --- Effectenhandelaar
+Econoom --- Statisticus
+Vertaler --- Tolk
+Bibliothecaris --- Archivaris
+Curator --- Historicus
+Archeoloog --- Paleontoloog
+Geoloog --- Meteoroloog
+Astronoom --- Natuurkundige
+Scheikundige --- Bioloog
+Apotheker --- Scheikundige
+Chirurg --- Anesthesist
+Radioloog --- Chirurg
+Fysiotherapeut --- Osteopaat
+Chiropractor --- Fysiotherapeut
+Diëtist --- Voedingsdeskundige
+Personal trainer --- Yogadocent
+Strandwacht --- Zwemcoach
+Scheidsrechter --- Grensrechter
+Umpire --- Scheidsrechter
+Coach --- Manager
+Scout --- Talentenmanager
+Agent --- Manager
+Publicist --- Journalist
+Redacteur --- Corrector
+Romanschrijver --- Dichter
+Illustrator --- Cartoonist
+Animator --- Grafisch ontwerper
+Beeldhouwer --- Pottenbakker
+Wever --- Breister
+Bloemist --- Imker
+Imker --- Boer
+Wijnmaker --- Brouwer
+Brouwer --- Distilleerder
+Chocolatier --- Bakker
+Kaasmaker --- Melkveehouder
+Valkenier --- Dierentuinmedewerker
+Trompet --- Trombone
+Trombone --- Tuba
+Tuba --- Waldhoorn
+Waldhoorn --- Trompet
+Saxofoon --- Klarinet
+Hobo --- Fagot
+Doedelzak --- Accordeon
+Sitar --- Ukelele
+Ukelele --- Mandoline
+Xylofoon --- Marimba
+Bongo --- Djembé
+Djembé --- Tabla
+Tamboerijn --- Maracas
+Triangel --- Koebel
+Gong --- Cimbaal
+Mondharmonica --- Melodica
+Doedelzak --- Bugel
+Bugel --- Trompet
+Altviool --- Violin
+Synthesizer --- Keyboard
+Draaitafel --- Mengpaneel
+Disco --- Funk
+Funk --- Soul
+Soul --- Motown
+Motown --- Blues
+Blues --- Country
+Country --- Folk
+Folk --- Bluegrass
+Bluegrass --- Country
+Punk --- Grunge
+Grunge --- Rock
+Indie --- Alternative
+Alternative --- Grunge
+Ska --- Reggae
+Dubstep --- Drum and bass
+Drum and bass --- Garage
+Garage --- House
+Trance --- Techno
+Ambient --- Trance
+Opera --- Musical
+Ballet --- Moderne dans
+Tapdans --- Ballet
+Salsa --- Bachata
+Tango --- Wals
+Wals --- Foxtrot
+Foxtrot --- Tango
+Breakdance --- Hiphopdans
+Voetbal --- Rugby
+Rugby --- American football
+Cricket --- Honkbal
+Honkbal --- Softbal
+Tennis --- Squash
+Squash --- Badminton
+Jai alai --- Racketball
+Golf --- Minigolf
+Snooker --- Pool
+Pool --- Biljart
+Darts --- Kegelen
+Bowlen --- Kegelen
+Netbal --- Basketbal
+Basketbal --- Handbal
+Handbal --- Volleybal
+Volleybal --- Beachvolleybal
+Hockey --- IJshockey
+IJshockey --- Bandy
+Lacrosse --- Hockey
+Polo --- Horseball
+Curling --- Jeu de boules
+Jeu de boules --- Petanque
+Petanque --- Boules
+Boksen --- Kickboksen
+Kickboksen --- Muay Thai
+Aikido --- Jiujitsu
+Worstelen --- Sumo
+Schermen --- Zwaardvechten
+Boogschieten --- Kruisboogschieten
+Speerwerpen --- Discuswerpen
+Discuswerpen --- Kogelstoten
+Kogelstoten --- Hamerslingeren
+Hoogspringen --- Verspringen
+Verspringen --- Hink-stap-springen
+Hordelopen --- Sprint
+Sprinten --- Estafette
+Marathon --- Halve marathon
+Triatlon --- Duatlon
+Tienkamp --- Vijfkamp
+Roeien --- Kanoën
+Kanoën --- Kajakken
+Zeilen --- Windsurfen
+Windsurfen --- Kitesurfen
+Surfen --- Bodyboarden
+Waterpolo --- Synchroonzwemmen
+Vrij duiken --- Apneeduiken
+Snorkelen --- Scubaduiken
+Alpineskiën --- Freestyleskiën
+Langlaufen --- Afdalen
+Schaatsen --- Skeeleren
+Skeeleren --- Inline skaten
+Kunstschaatsen --- Snelschaatsen
+Wielrennen --- Mountainbiken
+Mountainbiken --- BMX
+BMX --- Motorcross
+Motorcross --- Rally rijden
+Formule 1 --- Karten
+Paardenrennen --- Hondenrennen
+Springen --- Dressuur
+Turnen --- Ritmische gymnastiek
+Trampolinespringen --- Turnen
+Klimmen --- Boulderen
+Abseilen --- Klimmen
+Paragliden --- Deltavliegen
+Parachutespringen --- Base jumpen
+Bungeejumpen --- Parachutespringen
+Shogi --- Xiangqi
+Dammen --- Checkers
+Backgammon --- Schaken
+Scrabble --- Boggle
+Monopoly --- Levensweg
+Cluedo --- Detectivespel
+Risk --- Monopoly
+Jenga --- Sjanghai
+Domino --- Mahjong
+Poker --- Blackjack
+Blackjack --- Bakkarat
+Bridge --- Whist
+Rummikub --- Poker
+Patience --- Solitaire
+Charades --- Pictionary
+Triviant --- Pubquiz
+Darts --- Tafelvoetbal
+Tafelvoetbal --- Airhockey
+Airhockey --- Tafeltennis
+Videogames --- Bordspellen
+Pet --- Muts
+Muts --- Bobbelmuts
+Fedora --- Trilby
+Trilby --- Panamahoed
+Baret --- Flat cap
+Zonnehoed --- Strohoed
+Bivakmuts --- Skimasker
+Sjaal --- Omslagdoek
+Omslagdoek --- Poncho
+Poncho --- Cape
+Cape --- Mantel
+Handschoenen --- Wanten
+Wanten --- Vingerloze handschoenen
+Regenlaarzen --- Kaplaarzen
+Sneakers --- Gympen
+Instappers --- Mocassins
+Brogues --- Oxfords
+Sandalen --- Slippers
+Slippers --- Teenslippers
+Pantoffels --- Huisschoenen
+Laarzen --- Enkellaarzen
+Hakken --- Sleehakken
+Sleehakken --- Plateauzolen
+Platte schoenen --- Balletschoenen
+Trenchcoat --- Overjas
+Overjas --- Duffelcoat
+Duffelcoat --- Parka
+Parka --- Anorak
+Anorak --- Windjack
+Windjack --- Bomberjack
+Bomberjack --- Spijkerjas
+Leren jas --- Motorjack
+Blazer --- Colbert
+Gilet --- Bodywarmer
+Bodywarmer --- Hemdje
+Vest --- Trui
+Trui --- Pullover
+Pullover --- Sweater
+Sweater --- Hoodie
+Hoodie --- Trainingsjack
+Poloshirt --- T-shirt
+T-shirt --- Hemdje
+Blouse --- Overhemd
+Tuniek --- Kaftan
+Kaftan --- Jurk
+Jurk --- Gala-jurk
+Gala-jurk --- Baljurk
+Rok --- Kilt
+Kilt --- Sarong
+Sarong --- Rok
+Spijkerbroek --- Chino
+Chino --- Broek
+Broek --- Pantalon
+Legging --- Jegging
+Korte broek --- Bermudashort
+Tuinbroek --- Overall
+Overall --- Overall pak
+Stropdas --- Vlinderdas
+Vlinderdas --- Sjaaldas
+Sjaaldas --- Stropdas
+Bretels --- Riem
+Riem --- Sjerp
+Clutch --- Crossbody tas
+Shopper --- Schoudertas
+Schoudertas --- Aktetas
+Aktetas --- Rugzak
+Rugzak --- Backpack
+Backpack --- Weekendtas
+Portemonnee --- Beurs
+Beurs --- Muntzakje
+Zonnebril --- Leesbril
+Leesbril --- Bifocale bril
+Armband --- Bangle
+Bangle --- Voetkettinkje
+Ketting --- Choker
+Choker --- Hanger
+Oorbellen --- Oorknopjes
+Oorknopjes --- Oorringen
+Broche --- Speldje
+Slaapbank --- Futon
+Fauteuil --- Relaxstoel
+Relaxstoel --- Chaise longue
+Chaise longue --- Poef
+Poef --- Voetenbankje
+Voetenbankje --- Zitzak
+Salontafel --- Bijzettafel
+Bijzettafel --- Sidetable
+Boekenrek --- Boekenkast
+Boekenkast --- Kabinet
+Kabinet --- Dressoir
+Dressoir --- Buffetkast
+Ladekast --- Commode
+Kledingkast --- Kast
+Kast --- Kastje
+Stapelbed --- Hoogslaper
+Hemelbed --- Baldakijnbed
+Zitzak --- Vloerkussen
+Vloerkussen --- Kussen
+Vloerkleed --- Tapijt
+Tapijt --- Deurmat
+Gordijn --- Jaloezie
+Rolgordijn --- Luik
+Luik --- Gordijn
+Kroonluchter --- Hanglamp
+Hanglamp --- Plafondlamp
+Tafellamp --- Vloerlamp
+Vloerlamp --- Bureaulamp
+Spiegel --- Wandspiegel
+Open haard --- Houtkachel
+Vaas --- Bloempot
+Bloempot --- Plantenbak
+Steelpan --- Grote pan
+Grote pan --- Wok
+Wok --- Koekenpan
+Waterkoker --- Koffiezetapparaat
+Koffiezetapparaat --- Espressomachine
+Broodrooster --- Tosti-ijzer
+Tosti-ijzer --- Panini-grill
+Blender --- Keukenmachine
+Keukenmachine --- Mixer
+Mixer --- Garde
+Garde --- Klopper
+Rasp --- Dunschiller
+Dunschiller --- Zester
+Deegroller --- Bakkwast
+Vergiet --- Zeef
+Zeef --- Passeerzeef
+Opscheplepel --- Spatel
+Spatel --- Keukentang
+Keukentang --- Spies
+Snijplank --- Snijmat
+Broodmes --- Trancheermes
+Trancheermes --- Hakmes
+Hakmes --- Kapmes
+Hamer --- Moker
+Moker --- Voorhamer
+Schroevendraaier --- Beitel
+Beitel --- Vijl
+Vijl --- Rasp
+Steeksleutel --- Moersleutel
+Moersleutel --- Doppenset
+Tang --- Draadkniptang
+Draadkniptang --- Kniptang
+Boormachine --- Slagschroevendraaier
+Slagschroevendraaier --- Haakse slijper
+Haakse slijper --- Cirkelzaag
+Cirkelzaag --- Decoupeerzaag
+Decoupeerzaag --- Handzaag
+Handzaag --- IJzerzaag
+IJzerzaag --- Figuurzaag
+Waterpas --- Schietlood
+Rolmaat --- Liniaal
+Liniaal --- Winkelhaak
+Winkelhaak --- Gradenboog
+Bankschroef --- Klem
+Klem --- Lijmklem
+Schuurpapier --- Schuurblok
+Schuurblok --- Schuurmachine
+Kwast --- Roller
+Roller --- Verfbak
+Ladder --- Opstapje
+Opstapje --- Trapladder
+Kruiwagen --- Handkar
+Handkar --- Steekwagen
+Spade --- Schop
+Schop --- Plantenschepje
+Plantenschepje --- Hark
+Hark --- Schoffel
+Schoffel --- Cultivator
+Heggenschaar --- Snoeischaar
+Snoeischaar --- Tuinschaar
+Tuinschaar --- Snoeizaag
+Grasmaaier --- Bosmaaier
+Bosmaaier --- Bladblazer
+Kettingzaag --- Bijl
+Bijl --- Handbijl
+Gereedschapskist --- Gereedschapsriem
+Gereedschapsriem --- Gereedschapstas
+Spijker --- Schroef
+Schroef --- Bout
+Bout --- Klinknagel
+Klinknagel --- Nietje
+Sluitring --- Moer
+Moer --- Bout
+Superlijm --- Houtlijm
+Houtlijm --- Epoxy
+Ducttape --- Schilderstape
+Schilderstape --- Isolatietape
+Plakband --- Ducttape
+Fiets --- Driewieler
+Driewieler --- Eenwieler
+Hoge bi --- Eenwieler
+Segway --- Hoverboard
+Motor --- Scooter
+Motorfiets --- Quad
+Quad --- Buggy
+Auto --- Bestelbus
+Bestelbus --- Minibus
+Minibus --- Touringcar
+Bus --- Tram
+Monorail --- Tram
+Trein --- Metro
+Metro --- Sneltram
+Vrachtwagen --- Truck
+Truck --- Pick-up
+Pick-up --- Open laadbak
+Tractor --- Maaidorser
+Vorkheftruck --- Kraan
+Kraan --- Graafmachine
+Graafmachine --- Bulldozer
+Bulldozer --- Grondverzetmachine
+Betonmolen --- Kiepwagen
+Caravan --- Camper
+Camper --- Kampeerbusje
+Kampeerbusje --- Caravan
+Roeiboot --- Kano
+Kano --- Kajak
+Jacht --- Zeilboot
+Zeilboot --- Rubberboot
+Rubberboot --- Roeiboot
+Speedboot --- Jetski
+Veerboot --- Cruiseschip
+Cruiseschip --- Lijnschip
+Onderzeeër --- Speedboot
+Helikopter --- Vliegtuig
+Vliegtuig --- Zweefvliegtuig
+Zweefvliegtuig --- Ultralicht
+Ultralicht --- Deltavlieger
+Heteluchtballon --- Luchtschip
+Raket --- Spaceshuttle
+Spaceshuttle --- Satelliet
+Huis --- Bungalow
+Bungalow --- Cottage
+Cottage --- Blokhut
+Blokhut --- Chalet
+Villa --- Herenhuis
+Herenhuis --- Landhuis
+Landhuis --- Kasteel
+Kasteel --- Paleis
+Paleis --- Fort
+Fort --- Citadel
+Flat --- Appartement
+Appartement --- Studio
+Studio --- Zit-slaapkamer
+Rijtjeshuis --- Twee-onder-een-kapwoning
+Twee-onder-een-kapwoning --- Vrijstaande woning
+Vrijstaande woning --- Stadswoning
+Stadswoning --- Rijtjeshuis
+Wolkenkrabber --- Torenflat
+Torenflat --- Flatgebouw
+Schuur --- Schuurtje
+Schuurtje --- Garage
+Garage --- Carport
+Broeikas --- Serre
+Windmolen --- Watermolen
+Vuurtoren --- Wachttoren
+Kerk --- Kapel
+Kapel --- Kathedraal
+Kathedraal --- Basiliek
+Moskee --- Tempel
+Tempel --- Heiligdom
+Synagoge --- Tempel
+Klooster --- Nonnenklooster
+Museum --- Galerie
+Theater --- Bioscoop
+Stadion --- Arena
+Gemeentehuis --- Stadhuis
+Stadhuis --- Rechtbank
+Rechtbank --- Gemeentehuis
+Politiebureau --- Brandweerkazerne
+Brandweerkazerne --- Ambulancepost
+Ziekenhuis --- Kliniek
+Kliniek --- Praktijk
+School --- Hogeschool
+Hogeschool --- Universiteit
+Universiteit --- Academie
+Kinderdagverblijf --- Kleuterschool
+Supermarkt --- Buurtwinkel
+Buurtwinkel --- Avondwinkel
+Warenhuis --- Winkelcentrum
+Winkelcentrum --- Winkelpark
+Markt --- Bazaar
+Magazijn --- Depot
+Fabriek --- Spinnerij
+Energiecentrale --- Onderstation
+Luchthaven --- Treinstation
+Treinstation --- Busstation
+Busstation --- Luchthaven
+Haven --- Jachthaven
+Jachthaven --- Zeehaven
+Zeehaven --- Haven
+Brug --- Viaduct
+Viaduct --- Aquaduct
+Aquaduct --- Brug
+Tunnel --- Onderdoorgang
+Onderdoorgang --- Verkeersviaduct
+Verkeersviaduct --- Flyover
+Rotonde --- Kruispunt
+Kruispunt --- Kruising
+Kruising --- Rotonde
+Snelweg --- Autoweg
+Steegje --- Zijstraat
+Doodlopende straat --- Blinde steeg
+Plein --- Piazza
+Piazza --- Plaza
+Plaza --- Plein
+Park --- Tuin
+Tuin --- Volkstuin
+Speeltuin --- Speelpark
+Dierentuin --- Safaripark
+Safaripark --- Wildreservaat
+Aquarium --- Onderwaterwereld
+Botanische tuin --- Arboretum
+Begraafplaats --- Kerkhof
+Bos --- Bosgebied
+Jungle --- Regenwoud
+Woestijn --- Savanne
+Savanne --- Prairie
+Prairie --- Vlakte
+Berg --- Heuvel
+Vallei --- Ravijn
+Ravijn --- Kloof
+Kloof --- Canyon
+Klif --- Rotswand
+Strand --- Oever
+Oever --- Kust
+Kust --- Kustlijn
+Meer --- Vijver
+Vijver --- Lagune
+Rivier --- Stroom
+Stroom --- Beek
+Beek --- Kreek
+Kreek --- Stroom
+Waterval --- Stroomversnelling
+Moerasland --- Moeras
+Moeras --- Veen
+Veen --- Moerasland
+IJskap --- Gletsjer
+Vulkaan --- Geiser
+Grot --- Spelonk
+Spelonk --- Grotto
+Grotto --- Grot
+Eiland --- Schiereiland
+Schiereiland --- Landengte
+Rif --- Atol
+Smartphone --- Tablet
+Kindle --- E-reader
+Gaming pc --- Spelcomputer
+Smartwatch --- Fitnesstracker
+Oordopjes --- Koptelefoon
+Bluetooth-speaker --- Soundbar
+Soundbar --- Thuisbioscoopsysteem
+Router --- Modem
+Webcam --- Microfoon
+Microfoon --- Luidspreker
+Spelcomputer --- Handheldconsole
+Virtual-realitybril --- Augmented-realitybril
+Drone --- Modelhelikopter
+Powerbank --- Oplader
+Oplader --- Kabel
+USB-stick --- Geheugenkaart
+Geheugenkaart --- Harde schijf
+Harde schijf --- SSD
+Printer --- Scanner
+Scanner --- Kopieerapparaat
+Beamer --- Televisie
+Televisie --- Monitor
+Afstandsbediening --- Universele afstandsbediening
+Slimme stekker --- Slimme lamp
+Deurbelcamera --- Beveiligingscamera
+Beveiligingscamera --- CCTV
+Navigatiesysteem --- GPS-tracker
+Rekenmachine --- Telraam
+Typemachine --- Tekstverwerker
+Faxapparaat --- Kopieerapparaat
+Vaste telefoon --- Mobiele telefoon
+Portofoon --- Walkietalkie
+Draak --- Wyvern
+Eenhoorn --- Pegasus
+Griffioen --- Feniks
+Zeemeermin --- Sirene
+Centaur --- Minotaurus
+Weerwolf --- Vampier
+Zombie --- Ghoul
+Geest --- Poltergeist
+Heks --- Tovenares
+Tovenaar --- Duivelskunstenaar
+Elf --- Fee
+Fee --- Pixie
+Pixie --- Elf
+Goblin --- Trol
+Trol --- Ogre
+Ogre --- Reus
+Reus --- Trol
+Leprechaun --- Gnoom
+Kraken --- Zeeslang
+Yeti --- Bigfoot
+Cycloop --- Reus
+Sfinx --- Chimera
+Kerstmis --- Tweede kerstdag
+Tweede kerstdag --- Oudjaarsavond
+Oudjaarsavond --- Nieuwjaarsdag
+Pasen --- Goede Vrijdag
+Goede Vrijdag --- Tweede paasdag
+Halloween --- Vuurwerkavond
+Valentijnsdag --- Moederdag
+Moederdag --- Vaderdag
+Vaderdag --- Valentijnsdag
+Thanksgiving --- Oogstfeest
+Diwali --- Eid
+Chanoeka --- Kerstmis
+Sint-Patricksdag --- Sint-Joris
+Sint-Joris --- Sint-Andries
+Pannenkoekendag --- Vastenavond
+Aprilgrap --- 1 aprilgrap
+Wapenstilstandsdag --- Dodenherdenking
+Dag van de Arbeid --- Vrije dag
+Verjaardagsfeest --- Jubileumfeest
+Bruiloft --- Verlovingsfeest
+Babyshower --- Doop
+Diploma-uitreiking --- Eindfeest
+Vuurwerk --- Sterretjes
+Vreugdevuur --- Kampvuur
+Carnaval --- Kermis
+Braderie --- Kermis
+Optocht --- Parade
+Festival --- Braderie
+Regenboog --- Noorderlicht
+Vorst --- Dauw
+Mist --- Nevel
+Smog --- Nevel
+Motregen --- Stortbui
+Sneeuwstorm --- Zandstorm
+Monsun --- Tyfoon
+Wervelwind --- Waterhoos
+IJzel --- Hagelsteen
+Hittegolf --- Vorstperiode
+Stokbrood --- Ciabatta
+Krakeling --- Bagel
+Naan --- Pitabroodje
+Focaccia --- Plat brood
+Zuurdesembrood --- Roggebrood
+Brioche --- Deens gebak
+Bladerdeeg --- Filodeeg
+Broodstengel --- Crouton
+Goulash --- Stoofpot
+Chowder --- Bisque
+Dumpling --- Wonton
+Sushi --- Sashimi
+Paella --- Jambalaya
+Curry --- Chili con carne
+Ovenschotel --- Hotpot
+Consommé --- Bouillon
+Granit --- Marmer
+Kalksteen --- Zandsteen
+Leisteen --- Vuursteen
+Lava --- Magma
+Obsidiaan --- Basalt
+Krijt --- Klei
+Puimsteen --- Steenkool
+Amber --- Git
+Anker --- Boei
+Mast --- Roer
+Zeil --- Dekzeil
+Windwijzer --- Zonnewijzer
+Reddingsboei --- Reddingsvest
+Patrijspoort --- Periscoop
+Loopplank --- Ophaalbrug
+Harpoen --- Visnet
+Vingerhoed --- Klosje
+Breinaald --- Haaknaald
+Borduurring --- Weefgetouw
+Rits --- Knoop
+Veiligheidsspeld --- Paperclip
+Naaimachine --- Overlockmachine
+Nietmachine --- Perforator
+Papierklem --- Paperclip
+Viltstift --- Markeerstift
+Envelop --- Pakketje
+Archiefkast --- Papierversnipperaar
+Whiteboard --- Flipover

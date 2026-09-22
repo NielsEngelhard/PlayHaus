@@ -1,6 +1,7 @@
 package pubquizr
 
 import (
+	"bytes"
 	"context"
 	"crypto/sha256"
 	"embed"
@@ -25,42 +26,50 @@ import (
 //go:embed data
 var quizFiles embed.FS
 
-const seedRoot = "data"
+// SeedRoot is where the shipped quizzes sit inside ShippedFiles.
+const SeedRoot = "data"
 
-// quizFile is the shape of one file on disk.
-type quizFile struct {
+// ShippedFiles is the embedded corpus, so a generator can read the same files the loader does.
+func ShippedFiles() fs.FS {
+	return quizFiles
+}
+
+// QuizFile is the shape of one file on disk.
+type QuizFile struct {
 	Slug  string `json:"slug"`
 	Title string `json:"title"`
 	// PublishedAt is the day the quiz went up, written as 2006-01-02.
 	PublishedAt string      `json:"publishedAt,omitempty"`
 	Description string      `json:"description"`
-	Rounds      []roundFile `json:"rounds"`
+	Rounds      []RoundFile `json:"rounds"`
 }
 
-type roundFile struct {
+type RoundFile struct {
 	Round     int            `json:"round"`
-	Questions []questionFile `json:"questions,omitempty"`
+	Questions []QuestionFile `json:"questions,omitempty"`
 	// Words is round 4 whole: a word to describe carries nothing but itself.
 	Words []string `json:"words,omitempty"`
 }
 
-type questionFile struct {
-	Prompt      string       `json:"prompt"`
-	Category    string       `json:"category,omitempty"`
-	Explanation string       `json:"explanation,omitempty"`
-	Difficulty  string       `json:"difficulty,omitempty"` // round 6 only
+// The field order is the key order the corpus is written in, which is what the generator's encoder reproduces.
+type QuestionFile struct {
+	Prompt     string `json:"prompt"`
+	Category   string `json:"category,omitempty"`
+	Difficulty string `json:"difficulty,omitempty"` // round 6 only
+	// Answer is a pointer because zero is a real closest-guess answer -- a shark has no bones.
+	Answer      *float64     `json:"answer,omitempty"`
 	Unit        string       `json:"unit,omitempty"`
-	Answer      float64      `json:"answer,omitempty"` // closest-guess questions
-	Options     []optionFile `json:"options,omitempty"`
-	Answers     []answerFile `json:"answers,omitempty"`
+	Explanation string       `json:"explanation,omitempty"`
+	Options     []OptionFile `json:"options,omitempty"`
+	Answers     []AnswerFile `json:"answers,omitempty"`
 }
 
-type optionFile struct {
+type OptionFile struct {
 	Text    string `json:"text"`
 	Correct bool   `json:"correct,omitempty"`
 }
 
-type answerFile struct {
+type AnswerFile struct {
 	Text string `json:"text"`
 	// Aliases are wordings that also count. They never appear on screen.
 	Aliases []string `json:"aliases,omitempty"`
@@ -68,7 +77,7 @@ type answerFile struct {
 
 // Seed brings the quizzes that ship with the app into the database.
 func Seed(ctx context.Context, store Store) error {
-	files, err := fs.Glob(quizFiles, path.Join(seedRoot, "*", "*", "*.json"))
+	files, err := fs.Glob(quizFiles, path.Join(SeedRoot, "*", "*", "*.json"))
 	if err != nil {
 		return fmt.Errorf("walk quiz files: %w", err)
 	}
@@ -83,7 +92,7 @@ func Seed(ctx context.Context, store Store) error {
 }
 
 func seedOne(ctx context.Context, store Store, file string) error {
-	locale, category, err := shelfOf(file)
+	locale, category, err := ShelfOf(file)
 	if err != nil {
 		return err
 	}
@@ -93,24 +102,39 @@ func seedOne(ctx context.Context, store Store, file string) error {
 		return fmt.Errorf("read: %w", err)
 	}
 
-	var parsed quizFile
-	decoder := json.NewDecoder(strings.NewReader(string(raw)))
+	return SeedQuiz(ctx, store, raw, locale, category)
+}
+
+// ParseQuizFile turns the bytes of one quiz file into a validated quiz, with no database in reach.
+func ParseQuizFile(raw []byte, locale i18n.Locale, category Category) (*Quiz, error) {
+	var parsed QuizFile
+	decoder := json.NewDecoder(bytes.NewReader(raw))
 	decoder.DisallowUnknownFields() // a typo in a key is a question that silently vanishes
 	if err := decoder.Decode(&parsed); err != nil {
-		return fmt.Errorf("parse: %w", err)
+		return nil, fmt.Errorf("parse: %w", err)
 	}
 
 	quiz, err := parsed.toQuiz(locale, category)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	if err := validate(quiz); err != nil {
-		return err
+		return nil, err
 	}
 
 	// The digest of the file rather than of the built quiz.
 	sum := sha256.Sum256(raw)
 	quiz.ContentHash = hex.EncodeToString(sum[:])
+
+	return quiz, nil
+}
+
+// SeedQuiz writes one quiz file's worth of content, leaving the ids alone where the bytes have not changed.
+func SeedQuiz(ctx context.Context, store Store, raw []byte, locale i18n.Locale, category Category) error {
+	quiz, err := ParseQuizFile(raw, locale, category)
+	if err != nil {
+		return err
+	}
 
 	existing, err := store.QuizBySlug(ctx, quiz.Slug, quiz.Locale)
 	switch {
@@ -126,8 +150,8 @@ func seedOne(ctx context.Context, store Store, file string) error {
 	return store.ReplaceQuiz(ctx, quiz)
 }
 
-// shelfOf reads the locale and category out of a file's path.
-func shelfOf(file string) (i18n.Locale, Category, error) {
+// ShelfOf reads the locale and category out of a file's path.
+func ShelfOf(file string) (i18n.Locale, Category, error) {
 	parts := strings.Split(path.Clean(file), "/")
 	if len(parts) != 4 {
 		return "", "", fmt.Errorf("expected data/{locale}/{category}/{slug}.json, got %q", file)
@@ -179,6 +203,11 @@ func publishedAtFor(slug, declared string, now time.Time) (*time.Time, error) {
 	return &now, nil
 }
 
+// WednesdayOfWeek is the day a weekly quiz belongs to, so a generator dates a week the way the loader reads it.
+func WednesdayOfWeek(year, week int) (time.Time, error) {
+	return wednesdayOfWeek(strconv.Itoa(year), strconv.Itoa(week))
+}
+
 // wednesdayOfWeek is the Wednesday of one ISO week, which is the day a weekly quiz belongs to.
 func wednesdayOfWeek(year, week string) (time.Time, error) {
 	y, err := strconv.Atoi(year)
@@ -202,7 +231,7 @@ func wednesdayOfWeek(year, week string) (time.Time, error) {
 	return monday.AddDate(0, 0, (w-1)*7+2), nil
 }
 
-func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
+func (f QuizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 	if strings.TrimSpace(f.Slug) == "" {
 		return nil, fmt.Errorf("needs a slug")
 	}
@@ -271,7 +300,7 @@ func (f quizFile) toQuiz(locale i18n.Locale, category Category) (*Quiz, error) {
 	return quiz, nil
 }
 
-func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind QuestionKind) (*Question, error) {
+func (f QuestionFile) toQuestion(quizID uuid.UUID, round, position int, kind QuestionKind) (*Question, error) {
 	if strings.TrimSpace(f.Prompt) == "" {
 		return nil, fmt.Errorf("needs a prompt")
 	}
@@ -295,8 +324,7 @@ func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind Que
 
 	switch kind {
 	case KindClosest:
-		answer := f.Answer
-		question.NumericAnswer = &answer
+		question.NumericAnswer = f.Answer
 		if f.Unit != "" {
 			question.Unit = &f.Unit
 		}
@@ -344,26 +372,41 @@ func (f questionFile) toQuestion(quizID uuid.UUID, round, position int, kind Que
 // validate is the gate a quiz file has to get through to become a quiz.
 func validate(quiz *Quiz) error {
 	for round := 1; round <= Rounds; round++ {
-		questions := quiz.QuestionsIn(round)
-
-		if minimum := MinQuestionsIn(round); len(questions) < minimum {
-			return fmt.Errorf("round %d has %d questions, needs at least %d to seat %d players",
-				round, len(questions), minimum, MaxPlayers)
-		}
-
-		for _, question := range questions {
-			if err := validateQuestion(question); err != nil {
-				return fmt.Errorf("round %d question %d (%q): %w",
-					round, question.Position+1, question.Prompt, err)
-			}
-		}
-
-		if err := validateDifficulties(round, questions); err != nil {
+		if err := checkRound(round, quiz.QuestionsIn(round)); err != nil {
 			return fmt.Errorf("round %d %w", round, err)
 		}
 	}
 
 	return nil
+}
+
+// CheckRound is validate's per-round half, so a generator can retry one round rather than a whole quiz.
+func CheckRound(file RoundFile) error {
+	if file.Round < 1 || file.Round > Rounds {
+		return fmt.Errorf("round %d does not exist (1..%d)", file.Round, Rounds)
+	}
+
+	quiz, err := (QuizFile{Slug: "check", Title: "check", Rounds: []RoundFile{file}}).toQuiz(i18n.Default, CategoryWeekly)
+	if err != nil {
+		return err
+	}
+
+	return checkRound(file.Round, quiz.QuestionsIn(file.Round))
+}
+
+// checkRound is what one round has to carry: the exact count, every question well formed, and round 6's split.
+func checkRound(round int, questions []Question) error {
+	if want := QuestionsIn(round); len(questions) != want {
+		return fmt.Errorf("has %d questions, needs exactly %d", len(questions), want)
+	}
+
+	for _, question := range questions {
+		if err := validateQuestion(question); err != nil {
+			return fmt.Errorf("question %d (%q): %w", question.Position+1, question.Prompt, err)
+		}
+	}
+
+	return validateDifficulties(round, questions)
 }
 
 // validateDifficulties is round 6's own rule -- five easy and five hard -- and every other round's, which is to claim no difficulty at all.
