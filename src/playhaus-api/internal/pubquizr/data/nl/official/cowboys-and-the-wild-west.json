@@ -1,0 +1,136 @@
+{
+  "slug": "cowboys-and-the-wild-west",
+  "title": "Cowboys en het Wilde Westen",
+  "description": "Bandieten, sheriffs, goudzoekers en de western op het witte doek, van Tombstone tot Sergio Leone.",
+  "publishedAt": "2026-09-02",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke bandiet werd in 1882 doodgeschoten door Robert Ford, een lid van zijn eigen bende?", "category": "Bandieten", "answers": [{ "text": "Jesse James", "aliases": ["James"] }] },
+        { "prompt": "Onder welke bijnaam was de bandiet Henry McCarty beter bekend?", "category": "Bandieten", "answers": [{ "text": "Billy the Kid", "aliases": ["The Kid"] }] },
+        { "prompt": "Welke wetsdienaar vocht bij het vuurgevecht bij de O.K. Corral samen met zijn broers Virgil en Morgan?", "category": "Wetsdienaars", "answers": [{ "text": "Wyatt Earp", "aliases": ["Earp"] }] },
+        { "prompt": "Welke gokker en voormalig tandarts stond bij de O.K. Corral aan de kant van de Earps?", "category": "Wetsdienaars", "answers": [{ "text": "Doc Holliday", "aliases": ["Holliday", "John Henry Holliday"] }] },
+        { "prompt": "In welk stadje in Arizona vond het vuurgevecht bij de O.K. Corral plaats?", "category": "Steden", "answers": [{ "text": "Tombstone" }] },
+        { "prompt": "Welke Belgische stripcowboy schiet sneller dan zijn eigen schaduw?", "category": "Strips", "answers": [{ "text": "Lucky Luke" }] },
+        { "prompt": "Welke Duitse schrijver bedacht het Apachenopperhoofd Winnetou?", "category": "Boeken", "answers": [{ "text": "Karl May", "aliases": ["May"] }] },
+        { "prompt": "Welke acteur speelde de man zonder naam in de dollartrilogie van Sergio Leone?", "category": "Acteurs", "answers": [{ "text": "Clint Eastwood", "aliases": ["Eastwood"] }] },
+        { "prompt": "Welke Italiaanse regisseur maakte The Good, the Bad and the Ugly?", "category": "Regisseurs", "answers": [{ "text": "Sergio Leone", "aliases": ["Leone"] }] },
+        { "prompt": "Wie schreef de muziek voor The Good, the Bad and the Ugly?", "category": "Muziek", "answers": [{ "text": "Ennio Morricone", "aliases": ["Morricone"] }] },
+        { "prompt": "Onder welke artiestennaam stond showman William Frederick Cody bekend?", "category": "Wildwestshow", "answers": [{ "text": "Buffalo Bill" }] },
+        { "prompt": "Welke scherpschutster was de grote publiekstrekker van de Wild West show van Buffalo Bill?", "category": "Wildwestshow", "answers": [{ "text": "Annie Oakley", "aliases": ["Oakley"] }] },
+        { "prompt": "Bij welke veldslag uit 1876 kwam George Custer om?", "category": "Geschiedenis", "answers": [{ "text": "De slag bij Little Bighorn", "aliases": ["Little Bighorn", "Little Big Horn"] }] },
+        { "prompt": "Welke Apachenleider gaf zich in 1886 over aan het Amerikaanse leger?", "category": "Inheemse volken", "answers": [{ "text": "Geronimo" }] },
+        { "prompt": "Hoe heette het paard van de Lone Ranger?", "category": "Televisie", "answers": [{ "text": "Silver" }] },
+        { "prompt": "Hoe heette de trouwe metgezel van de Lone Ranger?", "category": "Televisie", "answers": [{ "text": "Tonto" }] },
+        { "prompt": "Welke postdienst bracht in 1860 en 1861 de post door het Westen met estafettes van ruiters?", "category": "Leven in het Westen", "answers": [{ "text": "De Pony Express", "aliases": ["Pony Express"] }] },
+        { "prompt": "Welke breedgerande cowboyhoed is vernoemd naar zijn maker John B. Stetson?", "category": "Kleding", "answers": [{ "text": "De stetson", "aliases": ["Stetson"] }] },
+        { "prompt": "Welke Amerikaanse wapenfabrikant maakte de Single Action Army revolver, bijgenaamd de Peacemaker?", "category": "Wapens", "answers": [{ "text": "Colt" }] },
+        { "prompt": "In welke film uit 1969 speelden Paul Newman en Robert Redford twee vluchtende overvallers?", "category": "Film", "answers": [{ "text": "Butch Cassidy and the Sundance Kid" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wie regisseerde de western The Searchers uit 1956?", "options": [{ "text": "John Ford", "correct": true }, { "text": "Howard Hawks" }, { "text": "Anthony Mann" }, { "text": "Raoul Walsh" }] },
+        { "prompt": "Welke acteur speelde Winnetou in de Duitse films uit de jaren zestig?", "options": [{ "text": "Pierre Brice", "correct": true }, { "text": "Lex Barker" }, { "text": "Stewart Granger" }, { "text": "Terence Hill" }] },
+        { "prompt": "In welk jaar werd er goud gevonden bij Sutter's Mill, het begin van de Californische goudkoorts?", "options": [{ "text": "1828" }, { "text": "1848", "correct": true }, { "text": "1868" }, { "text": "1888" }] },
+        { "prompt": "Welke western uit 1952 met Gary Cooper speelt zich bijna in realtime af tot de trein van twaalf uur binnenrijdt?", "options": [{ "text": "High Noon", "correct": true }, { "text": "Shane" }, { "text": "Rio Bravo" }, { "text": "The Ox-Bow Incident" }] },
+        { "prompt": "Welke acteur speelde de mondharmonica spelende vreemdeling in Once Upon a Time in the West?", "options": [{ "text": "Charles Bronson", "correct": true }, { "text": "Lee Van Cleef" }, { "text": "Eli Wallach" }, { "text": "Jason Robards" }] },
+        { "prompt": "Welke Lakota-oorlogsleider vocht bij Little Bighorn en werd het jaar daarna gedood?", "options": [{ "text": "Crazy Horse", "correct": true }, { "text": "Sitting Bull" }, { "text": "Red Cloud" }, { "text": "Chief Joseph" }] },
+        { "prompt": "Welk merk maakte het repeteergeweer Model 1873 met hefboom?", "options": [{ "text": "Winchester", "correct": true }, { "text": "Remington" }, { "text": "Springfield" }, { "text": "Sharps" }] },
+        { "prompt": "Welke western regisseerde Kevin Costner, met zichzelf in de hoofdrol, en won de Oscar voor beste film?", "options": [{ "text": "Dances with Wolves", "correct": true }, { "text": "Silverado" }, { "text": "Young Guns" }, { "text": "Pale Rider" }] },
+        { "prompt": "In welke huidige Amerikaanse staat ligt Deadwood, het stadje waar Wild Bill Hickok werd doodgeschoten?", "options": [{ "text": "Zuid-Dakota", "correct": true }, { "text": "Montana" }, { "text": "Wyoming" }, { "text": "Nebraska" }] },
+        { "prompt": "Welke uitvinding, gepatenteerd in de jaren zeventig van de negentiende eeuw, maakte een einde aan de open prairie?", "options": [{ "text": "Prikkeldraad", "correct": true }, { "text": "De stalen ploeg" }, { "text": "De windmolenpomp" }, { "text": "De telegraaf" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel seconden duurde het vuurgevecht bij de O.K. Corral volgens de meeste verslagen?", "answer": 30, "unit": "seconden", "explanation": "Een halve minuut schieten besliste een vete die al maanden liep." },
+        { "prompt": "In welk jaar kwam Stagecoach uit, de western van John Ford die van John Wayne een ster maakte?", "answer": 1939 },
+        { "prompt": "Hoe oud was Billy the Kid toen hij in 1881 werd doodgeschoten?", "answer": 21, "unit": "jaar" },
+        { "prompt": "Hoeveel dagen had de Pony Express nodig om post van Missouri naar Californie te brengen?", "answer": 10, "unit": "dagen", "explanation": "Tien dagen was de belofte, en na achttien maanden maakte de telegraaf de hele dienst overbodig." },
+        { "prompt": "In hoeveel films speelde Clint Eastwood de man zonder naam?", "answer": 3, "unit": "films" },
+        { "prompt": "In welk jaar verscheen Lucky Luke voor het eerst in druk?", "answer": 1946 },
+        { "prompt": "In welk jaar kwamen bij Promontory Summit de twee helften van de eerste spoorlijn dwars door Amerika samen?", "answer": 1869 },
+        { "prompt": "In welk jaar ging de Wild West show van Buffalo Bill voor het eerst in premiere?", "answer": 1883 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Bokkende mustang",
+        "Klapdeurtjes",
+        "Sheriffster",
+        "Kwispedoor",
+        "Sporen",
+        "Wanted-poster",
+        "Huifkar",
+        "Zadeltas",
+        "Holster",
+        "Poncho",
+        "Chaps",
+        "Bandana",
+        "Ratelslang",
+        "Tumbleweed",
+        "Goudklomp",
+        "Mijnschacht",
+        "Stoomlocomotief",
+        "Rodeo",
+        "Bizon",
+        "Coyote",
+        "Canyon",
+        "Galg",
+        "Bugel",
+        "Cachot",
+        "Brandijzer",
+        "Speelkaarten",
+        "Tipi",
+        "Verentooi",
+        "Premiejager",
+        "Zweep"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier broers Dalton uit Lucky Luke.", "answers": [{ "text": "Joe" }, { "text": "William" }, { "text": "Jack" }, { "text": "Averell" }] },
+        { "prompt": "Noem de vier onderdelen van het tuig die een cowboy zijn paard omdoet voor hij wegrijdt.", "answers": [{ "text": "Zadel" }, { "text": "Hoofdstel" }, { "text": "Teugels" }, { "text": "Stijgbeugels" }] },
+        { "prompt": "Noem de vier kleuren in een pak speelkaarten.", "answers": [{ "text": "Harten" }, { "text": "Ruiten" }, { "text": "Klaveren" }, { "text": "Schoppen" }] },
+        { "prompt": "Noem de vier Amerikaanse staten die aan Mexico grenzen.", "answers": [{ "text": "Californie" }, { "text": "Arizona" }, { "text": "New Mexico" }, { "text": "Texas" }] },
+        { "prompt": "Noem de vier westerns die Sergio Leone tussen 1964 en 1968 regisseerde.", "answers": [{ "text": "A Fistful of Dollars", "aliases": ["Voor een handvol dollars", "Per un pugno di dollari"] }, { "text": "For a Few Dollars More", "aliases": ["Voor een paar dollar meer"] }, { "text": "The Good, the Bad and the Ugly" }, { "text": "Once Upon a Time in the West" }] },
+        { "prompt": "Noem de vier westerns die Clint Eastwood tussen 1973 en 1992 zelf regisseerde en waarin hij ook zelf speelde.", "answers": [{ "text": "High Plains Drifter" }, { "text": "The Outlaw Josey Wales" }, { "text": "Pale Rider" }, { "text": "Unforgiven" }] },
+        { "prompt": "Noem de vier presidenten die in Mount Rushmore zijn uitgehakt.", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }, { "text": "Thomas Jefferson", "aliases": ["Jefferson"] }, { "text": "Theodore Roosevelt", "aliases": ["Roosevelt", "Teddy Roosevelt"] }, { "text": "Abraham Lincoln", "aliases": ["Lincoln"] }] },
+        { "prompt": "Noem de vier Oscars die de western Unforgiven won.", "answers": [{ "text": "Beste film" }, { "text": "Beste regie", "aliases": ["Beste regisseur"] }, { "text": "Beste mannelijke bijrol", "aliases": ["Beste bijrol"] }, { "text": "Beste montage", "aliases": ["Montage"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke acteur, geboren als Marion Morrison, werd de bekendste cowboyster van Hollywood?", "difficulty": "easy", "answers": [{ "text": "John Wayne", "aliases": ["Wayne"] }] },
+        { "prompt": "Hoe heet het paard van Lucky Luke?", "difficulty": "easy", "answers": [{ "text": "Jolly Jumper" }] },
+        { "prompt": "Hoe heet de hond uit Lucky Luke, de domste hond van het Westen?", "difficulty": "easy", "answers": [{ "text": "Rataplan", "aliases": ["Rantanplan"] }] },
+        { "prompt": "Welk sigarettenmerk bouwde zijn reclame op rond een cowboy?", "difficulty": "easy", "answers": [{ "text": "Marlboro" }] },
+        { "prompt": "Welke sterkedrank, gestookt uit graan, is de drank van de westernsaloon?", "difficulty": "easy", "answers": [{ "text": "Whiskey", "aliases": ["Whisky", "Bourbon"] }] },
+        { "prompt": "Hoe heet de ranch uit de televisieserie Bonanza?", "difficulty": "hard", "answers": [{ "text": "De Ponderosa", "aliases": ["Ponderosa"] }] },
+        { "prompt": "Welke pokerhand staat bekend als de dead man's hand?", "difficulty": "hard", "answers": [{ "text": "Azen en achten", "aliases": ["Twee paar azen en achten"] }] },
+        { "prompt": "Onder welk pseudoniem tekende de Belg Maurice De Bevere Lucky Luke?", "difficulty": "hard", "answers": [{ "text": "Morris" }] },
+        { "prompt": "Welke sheriff schoot Billy the Kid dood?", "difficulty": "hard", "answers": [{ "text": "Pat Garrett", "aliases": ["Garrett"] }] },
+        { "prompt": "Welke Lakota-medicijnman trok in 1885 mee met de Wild West show van Buffalo Bill?", "difficulty": "hard", "answers": [{ "text": "Sitting Bull" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke bende van trein- en bankovervallers leidde Butch Cassidy?", "answers": [{ "text": "De Wild Bunch", "aliases": ["Wild Bunch", "Hole-in-the-Wall Gang"] }] },
+        { "prompt": "In welk Zuid-Amerikaans land zouden Butch Cassidy en de Sundance Kid in 1908 zijn omgekomen?", "answers": [{ "text": "Bolivia" }] },
+        { "prompt": "Welke acteur speelde Old Shatterhand in de Winnetou-films uit de jaren zestig?", "answers": [{ "text": "Lex Barker", "aliases": ["Barker"] }] },
+        { "prompt": "Wat was de echte naam van Calamity Jane?", "answers": [{ "text": "Martha Jane Cannary", "aliases": ["Martha Jane Canary", "Martha Cannary", "Martha Canary"] }] },
+        { "prompt": "Wie schoot Wild Bill Hickok in 1876 in een saloon in Deadwood van achteren neer?", "answers": [{ "text": "Jack McCall", "aliases": ["McCall"] }] },
+        { "prompt": "Welke film uit 1903, een van de eerste met een verhaallijn, geldt als de eerste western?", "answers": [{ "text": "The Great Train Robbery" }] },
+        { "prompt": "In welke vallei op de grens van Arizona en Utah filmde John Ford veel van zijn westerns?", "answers": [{ "text": "Monument Valley" }] }
+      ]
+    }
+  ]
+}

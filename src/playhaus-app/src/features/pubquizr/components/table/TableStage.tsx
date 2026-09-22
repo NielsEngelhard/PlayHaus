@@ -1,3 +1,4 @@
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { useT } from "@/features/i18n/LanguageContext";
 import TableAnswer from "@/features/pubquizr/components/table/TableAnswer";
 import TableClosestProgress from "@/features/pubquizr/components/table/TableClosestProgress";
@@ -36,6 +37,7 @@ import { doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-s
 import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
+import type { ReactNode } from "react";
 
 interface Props {
     /** How far round 3's typing has got, and null in every other round. */
@@ -55,12 +57,12 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
     const t = useT();
 
     if (session.status === 'completed') {
-        return <TableFinalResults scale={scale} standings={finalStandingsOf(session)} />;
+        return fade('completed', <TableFinalResults scale={scale} standings={finalStandingsOf(session)} />);
     }
 
     // Before the round, because a result is about a question that is over and the table has already moved past it.
     const result = reveal === null ? null : closestRevealOf(session, quiz, reveal);
-    if (result !== null) return <TableClosestResult result={result} scale={scale} />;
+    if (result !== null) return fade(`closest:${result.dealtId}`, <TableClosestResult result={result} scale={scale} />);
 
     const round = session.currentRound;
     const seats = seatsOf(session);
@@ -69,7 +71,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
     if (session.currentPosition === 0 && !roundOpenOn(control, round)) {
         const { brief, kind } = roundKindAndRule(t, round, session.zenMode);
 
-        return (
+        return fade(`intro:${round}`, (
             <TableRoundIntro
                 brief={brief}
                 finalists={round === ROUND_FINALE ? finalistsOf(session, seats) : null}
@@ -84,7 +86,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                     <TableStandings scale={scale} standings={standingsOf(session)} />
                 )}
             </TableRoundIntro>
-        )
+        ))
     }
 
     // Rounds 1, 2, 6 and 7 are the same question down a different line, and the screen draws all four the same way.
@@ -113,7 +115,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
             points: hotSeat.worth
         });
 
-        return (
+        return fade(`question:${hotSeat.dealt.id}`, (
             <TableQuestion
                 note={note}
                 number={hotSeat.number}
@@ -137,20 +139,22 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                     : missed.length > 0 && <TableMissed missed={missed} scale={scale} />}
 
                 {revealed && (
-                    <TableAnswer
-                        aliases={hotSeat.aliases}
-                        answer={hotSeat.answer}
-                        label={t('pubquizr.table.answer')}
-                        scale={scale}
-                    />
+                    <SlideFadeIn offsetY={10} durationMs={240}>
+                        <TableAnswer
+                            aliases={hotSeat.aliases}
+                            answer={hotSeat.answer}
+                            label={t('pubquizr.table.answer')}
+                            scale={scale}
+                        />
+                    </SlideFadeIn>
                 )}
             </TableQuestion>
-        )
+        ))
     }
 
     // Round 6 before anybody has picked: whose choice it is, and nothing of the question, because there is not one yet.
     if (round === ROUND_DOUBLE_DOWN) {
-        return <TableChoosing asking={seatAt(seats, session.answeringSeat)} scale={scale} />;
+        return fade(`choosing:${session.currentPosition}`, <TableChoosing asking={seatAt(seats, session.answeringSeat)} scale={scale} />);
     }
 
     const closestTurn = round === ROUND_CLOSEST ? closestTurnOf(session, quiz) : null;
@@ -161,7 +165,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
             ? closest.seatsIn
             : [];
 
-        return (
+        return fade(`question:${closestTurn.dealt.id}`, (
             <TableQuestion
                 number={closestTurn.number}
                 prompt={closestTurn.question.prompt}
@@ -175,7 +179,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                     total={closestTurn.guessing.length}
                 />
             </TableQuestion>
-        )
+        ))
     }
 
     const describe = round === ROUND_DESCRIBE ? describeTurnOf(session, quiz) : null;
@@ -198,17 +202,17 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
             // What the describer takes is a point per word guessed, not what the turn pays the pair of them.
             const won = words.filter(word => word.winner !== null).length * DESCRIBE_WORD_POINTS;
 
-            return (
+            return fade(`describe-recap:${questionId}`, (
                 <TableDescribeRecap
                     describer={describe.describer}
                     points={won === 1 ? t('pubquizr.board.onePoint') : t('pubquizr.board.pointsWorth', { points: won })}
                     scale={scale}
                     words={words}
                 />
-            )
+            ))
         }
 
-        return (
+        return fade(`describe-clock:${questionId}`, (
             <TableDescribeClock
                 awarded={awarded}
                 describer={describe.describer}
@@ -217,7 +221,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                 scale={scale}
                 total={describe.words.length}
             />
-        )
+        ))
     }
 
     const list = round === ROUND_LIST ? listTurnOf(session, quiz) : null;
@@ -225,7 +229,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
     if (list !== null) {
         const endsAt = endsAtOn(control, list.dealt.id);
 
-        return (
+        return fade(`question:${list.dealt.id}`, (
             <TableQuestion
                 number={list.number}
                 prompt={list.question.prompt}
@@ -241,10 +245,18 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                     scale={scale}
                 />
             </TableQuestion>
-        )
+        ))
     }
 
     // A round this build's screen has nothing of its own to say about yet.
-    return <TableWaiting message={t('pubquizr.table.followPhones')} scale={scale} />;
+    return fade(`waiting:${round}`, <TableWaiting message={t('pubquizr.table.followPhones')} scale={scale} />);
+}
+
+function fade(key: string, node: ReactNode) {
+    return (
+        <SlideFadeIn offsetY={14} durationMs={240} replayKey={key}>
+            {node}
+        </SlideFadeIn>
+    )
 }
 

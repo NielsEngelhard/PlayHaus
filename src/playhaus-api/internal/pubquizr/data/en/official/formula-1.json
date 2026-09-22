@@ -1,0 +1,136 @@
+{
+  "slug": "formula-1",
+  "title": "Formula 1",
+  "description": "A whole pub quiz about Formula 1: drivers, teams, circuits and the rules of the race.",
+  "publishedAt": "2026-07-29",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Italian team, with a prancing horse on its badge, has raced in every Formula 1 season since 1950?", "category": "Teams", "answers": [{ "text": "Ferrari", "aliases": ["Scuderia Ferrari"] }] },
+        { "prompt": "Which British driver had won seven world championships by the end of 2020?", "category": "Drivers", "answers": [{ "text": "Lewis Hamilton", "aliases": ["Hamilton"] }] },
+        { "prompt": "At which circuit is the Dutch Grand Prix held?", "category": "Circuits", "answers": [{ "text": "Zandvoort", "aliases": ["Circuit Zandvoort"] }] },
+        { "prompt": "Which German driver won five world championships in a row with Ferrari from 2000 onwards?", "category": "Drivers", "answers": [{ "text": "Michael Schumacher", "aliases": ["Schumacher"] }] },
+        { "prompt": "Which energy drink company owns the team Max Verstappen won his world championships with?", "category": "Teams", "answers": [{ "text": "Red Bull", "aliases": ["Red Bull Racing"] }] },
+        { "prompt": "Which Italian circuit near Milan is known as the Temple of Speed?", "category": "Circuits", "answers": [{ "text": "Monza", "aliases": ["Autodromo Nazionale Monza"] }] },
+        { "prompt": "Which British circuit hosts the British Grand Prix?", "category": "Circuits", "answers": [{ "text": "Silverstone" }] },
+        { "prompt": "Which Belgian circuit has the Eau Rouge corner?", "category": "Circuits", "answers": [{ "text": "Spa-Francorchamps", "aliases": ["Spa"] }] },
+        { "prompt": "What is the place at the very front of the starting grid called?", "category": "Racing terms", "answers": [{ "text": "Pole position", "aliases": ["Pole"] }] },
+        { "prompt": "Which German manufacturer won eight constructors' championships in a row from 2014?", "category": "Teams", "answers": [{ "text": "Mercedes", "aliases": ["Mercedes-AMG", "Mercedes-Benz"] }] },
+        { "prompt": "How many points has the winner of a Grand Prix scored since the 2010 season?", "category": "Points", "answers": [{ "text": "Twenty-five", "aliases": ["25"] }] },
+        { "prompt": "Which driver from Monaco became a Ferrari race driver in 2019?", "category": "Drivers", "answers": [{ "text": "Charles Leclerc", "aliases": ["Leclerc"] }] },
+        { "prompt": "Which car leads the field around the track when conditions are too dangerous to race?", "category": "Rules", "answers": [{ "text": "The safety car", "aliases": ["Safety car"] }] },
+        { "prompt": "Which Spanish driver won the world championship in 2005 and again in 2006?", "category": "Drivers", "answers": [{ "text": "Fernando Alonso", "aliases": ["Alonso"] }] },
+        { "prompt": "What is the closed-off area behind the pits where the teams have their trucks and hospitality called?", "category": "Racing terms", "answers": [{ "text": "The paddock", "aliases": ["Paddock"] }] },
+        { "prompt": "Which French driver won four world championships in the 1980s and 1990s?", "category": "Drivers", "answers": [{ "text": "Alain Prost", "aliases": ["Prost"] }] },
+        { "prompt": "Which British team founded by Frank Williams won nine constructors' championships?", "category": "Teams", "answers": [{ "text": "Williams", "aliases": ["Williams Racing"] }] },
+        { "prompt": "What is the lap driven before the start, to warm up the tyres, called?", "category": "Rules", "answers": [{ "text": "The formation lap", "aliases": ["Formation lap", "Warm-up lap"] }] },
+        { "prompt": "In which country is the Suzuka circuit?", "category": "Circuits", "answers": [{ "text": "Japan" }] },
+        { "prompt": "Which German driver won four world championships with Red Bull between 2010 and 2013?", "category": "Drivers", "answers": [{ "text": "Sebastian Vettel", "aliases": ["Vettel"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year was the first Formula 1 world championship held?", "options": [{ "text": "1946" }, { "text": "1950", "correct": true }, { "text": "1954" }, { "text": "1962" }] },
+        { "prompt": "Which driver won five world championships during the 1950s?", "options": [{ "text": "Juan Manuel Fangio", "correct": true }, { "text": "Alberto Ascari" }, { "text": "Stirling Moss" }, { "text": "Jack Brabham" }] },
+        { "prompt": "Which engine manufacturer powered Red Bull to their four championships from 2010 to 2013?", "options": [{ "text": "Renault", "correct": true }, { "text": "Honda" }, { "text": "Ferrari" }, { "text": "Mercedes" }] },
+        { "prompt": "Which Finnish driver won the world championship in 2007?", "options": [{ "text": "Kimi Raikkonen", "correct": true }, { "text": "Mika Hakkinen" }, { "text": "Valtteri Bottas" }, { "text": "Keke Rosberg" }] },
+        { "prompt": "Which Grand Prix became the first Formula 1 race held at night, in 2008?", "options": [{ "text": "Singapore", "correct": true }, { "text": "Bahrain" }, { "text": "Abu Dhabi" }, { "text": "Las Vegas" }] },
+        { "prompt": "In which city is the Interlagos circuit?", "options": [{ "text": "Sao Paulo", "correct": true }, { "text": "Rio de Janeiro" }, { "text": "Buenos Aires" }, { "text": "Montevideo" }] },
+        { "prompt": "Which safety device, a curved titanium bar above the cockpit, became compulsory in 2018?", "options": [{ "text": "The halo", "correct": true }, { "text": "The HANS device" }, { "text": "The roll hoop" }, { "text": "The survival cell" }] },
+        { "prompt": "Which British driver won the world championship in 1992 driving a Williams?", "options": [{ "text": "Nigel Mansell", "correct": true }, { "text": "Nelson Piquet" }, { "text": "Riccardo Patrese" }, { "text": "Gerhard Berger" }] },
+        { "prompt": "With which team did Sebastian Vettel take his first Grand Prix win, at Monza in 2008?", "options": [{ "text": "Toro Rosso", "correct": true }, { "text": "BMW Sauber" }, { "text": "Jordan" }, { "text": "Minardi" }] },
+        { "prompt": "What is a driver being told when the black and orange flag is shown to him?", "options": [{ "text": "His car is damaged and he must come into the pits", "correct": true }, { "text": "He has been disqualified from the race" }, { "text": "A faster car is about to lap him" }, { "text": "The race has been suspended" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year did Max Verstappen become the youngest driver ever to start a Formula 1 Grand Prix?", "answer": 2015, "explanation": "He was seventeen years old at the Australian Grand Prix, and the minimum age was raised soon afterwards." },
+        { "prompt": "How many corners does the Zandvoort circuit have?", "answer": 14, "unit": "corners" },
+        { "prompt": "Over how many laps is the Monaco Grand Prix run?", "answer": 78, "unit": "laps" },
+        { "prompt": "How many Grands Prix did Michael Schumacher win in his career?", "answer": 91, "unit": "wins" },
+        { "prompt": "What is the minimum distance of a Grand Prix in kilometres?", "answer": 305, "unit": "kilometres", "explanation": "Monaco is the one exception, at about two hundred and sixty kilometres." },
+        { "prompt": "How many cars made up a full starting grid in the 2024 season?", "answer": 20, "unit": "cars" },
+        { "prompt": "How many seconds does a quick pit stop with four new tyres take?", "answer": 2, "unit": "seconds" },
+        { "prompt": "How many races were on the calendar in the first world championship season, in 1950?", "answer": 7, "unit": "races" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Crash helmet",
+        "Steering wheel",
+        "Slick tyre",
+        "Podium",
+        "Starting grid",
+        "Front wing",
+        "Rear wing",
+        "Cockpit",
+        "Wheel gun",
+        "Pit crew",
+        "Trophy",
+        "Racing overalls",
+        "Team radio",
+        "Grandstand",
+        "Track marshal",
+        "Gravel trap",
+        "Pit wall",
+        "Sponsor logo",
+        "Starting lights",
+        "Brake disc",
+        "Kerb",
+        "Tyre blanket",
+        "Motorhome",
+        "Fire extinguisher",
+        "Racing boots",
+        "Stopwatch",
+        "Garage",
+        "Pit board",
+        "Wind tunnel",
+        "Simulator"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Grands Prix from the first world championship of 1950 that were still on the calendar in the 2024 season.", "answers": [{ "text": "The British Grand Prix", "aliases": ["Britain", "Great Britain"] }, { "text": "The Monaco Grand Prix", "aliases": ["Monaco"] }, { "text": "The Belgian Grand Prix", "aliases": ["Belgium"] }, { "text": "The Italian Grand Prix", "aliases": ["Italy"] }] },
+        { "prompt": "Name the four flag colours that mean: danger ahead, session stopped, track clear again, and let a faster car past.", "answers": [{ "text": "Yellow" }, { "text": "Red" }, { "text": "Green" }, { "text": "Blue" }] },
+        { "prompt": "Name the four Formula 1 world champions whose fathers also drove in Formula 1.", "answers": [{ "text": "Damon Hill" }, { "text": "Jacques Villeneuve" }, { "text": "Nico Rosberg" }, { "text": "Max Verstappen", "aliases": ["Verstappen"] }] },
+        { "prompt": "Name the four Grands Prix that were held in the Middle East in the 2024 season.", "answers": [{ "text": "Bahrain" }, { "text": "Saudi Arabia", "aliases": ["Jeddah"] }, { "text": "Qatar" }, { "text": "Abu Dhabi", "aliases": ["Yas Marina"] }] },
+        { "prompt": "Name the four Japanese manufacturers that have supplied engines in Formula 1.", "answers": [{ "text": "Honda" }, { "text": "Toyota" }, { "text": "Yamaha" }, { "text": "Subaru" }] },
+        { "prompt": "Name the four sessions held before the race on an ordinary Grand Prix weekend.", "answers": [{ "text": "First practice", "aliases": ["Free practice 1", "FP1"] }, { "text": "Second practice", "aliases": ["Free practice 2", "FP2"] }, { "text": "Third practice", "aliases": ["Free practice 3", "FP3"] }, { "text": "Qualifying" }] },
+        { "prompt": "Name the four countries in the Americas that hosted a Grand Prix in the 2024 season.", "answers": [{ "text": "The United States", "aliases": ["United States", "USA", "America"] }, { "text": "Canada" }, { "text": "Mexico" }, { "text": "Brazil" }] },
+        { "prompt": "Name the four decades in which a Ferrari driver won the drivers' world championship.", "answers": [{ "text": "The 1950s", "aliases": ["1950s", "Fifties"] }, { "text": "The 1960s", "aliases": ["1960s", "Sixties"] }, { "text": "The 1970s", "aliases": ["1970s", "Seventies"] }, { "text": "The 2000s", "aliases": ["2000s"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many wheels does a Formula 1 car have?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "What is the flag waved at the winner of a Grand Prix called?", "difficulty": "easy", "answers": [{ "text": "The chequered flag", "aliases": ["Chequered flag", "Checkered flag", "Black and white flag"] }] },
+        { "prompt": "Which country does the Ferrari team come from?", "difficulty": "easy", "answers": [{ "text": "Italy" }] },
+        { "prompt": "What do the drivers traditionally spray over each other on the podium?", "difficulty": "easy", "answers": [{ "text": "Champagne" }] },
+        { "prompt": "What is the lane where cars stop for new tyres called?", "difficulty": "easy", "answers": [{ "text": "The pit lane", "aliases": ["Pit lane", "The pits"] }] },
+        { "prompt": "Which Brazilian driver won the world championship in 1988, 1990 and 1991?", "difficulty": "hard", "answers": [{ "text": "Ayrton Senna", "aliases": ["Senna"] }] },
+        { "prompt": "In which year did Max Verstappen win his first world championship?", "difficulty": "hard", "answers": [{ "text": "2021", "aliases": ["Twenty twenty-one"] }] },
+        { "prompt": "With which team did Lewis Hamilton win his first world championship, in 2008?", "difficulty": "hard", "answers": [{ "text": "McLaren" }] },
+        { "prompt": "What do the letters DRS stand for?", "difficulty": "hard", "answers": [{ "text": "Drag Reduction System" }] },
+        { "prompt": "Which Austrian won three world championships and later founded his own airline?", "difficulty": "hard", "answers": [{ "text": "Niki Lauda", "aliases": ["Lauda"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Who won the very first Formula 1 world championship, in 1950?", "answers": [{ "text": "Giuseppe Farina", "aliases": ["Nino Farina", "Farina"] }] },
+        { "prompt": "Which Italian driver won the world championship two years running, in 1952 and 1953?", "answers": [{ "text": "Alberto Ascari", "aliases": ["Ascari"] }] },
+        { "prompt": "Which team won the constructors' championship in 2009, in the only season it ever raced?", "answers": [{ "text": "Brawn GP", "aliases": ["Brawn"] }] },
+        { "prompt": "At which German circuit did Niki Lauda have his near-fatal crash in 1976?", "answers": [{ "text": "The Nurburgring", "aliases": ["Nurburgring", "Nordschleife"] }] },
+        { "prompt": "Which British driver won the world championship in 1976?", "answers": [{ "text": "James Hunt", "aliases": ["Hunt"] }] },
+        { "prompt": "Who was the Ferrari team principal throughout Michael Schumacher's five championships?", "answers": [{ "text": "Jean Todt", "aliases": ["Todt"] }] },
+        { "prompt": "At which circuit did Ayrton Senna suffer his fatal crash in 1994?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "dogs",
+  "title": "Honden",
+  "description": "Een hele pubquiz over honden: rassen, werkhonden, beroemde honden en alles wat een hond doet.",
+  "publishedAt": "2026-09-15",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk ras zetten monniken in de Zwitserse Alpen in als reddingshond?", "category": "Rassen", "answers": [{ "text": "De sint-bernardshond", "aliases": ["Sint-bernard", "Sint-bernardshond", "Bernhardiner"] }] },
+        { "prompt": "Hoe heet het witte hondje van Kuifje?", "category": "Strips", "answers": [{ "text": "Bobbie", "aliases": ["Milou"] }] },
+        { "prompt": "Welke hond was in 1957 het eerste dier dat om de aarde draaide?", "category": "Ruimtevaart", "answers": [{ "text": "Laika" }] },
+        { "prompt": "Welke beagle uit de strips is de hond van Charlie Brown?", "category": "Tekenfilms", "answers": [{ "text": "Snoopy" }] },
+        { "prompt": "Van welk wild dier stamt de hond af?", "category": "Biologie", "answers": [{ "text": "De wolf", "aliases": ["Wolf", "De grijze wolf"] }] },
+        { "prompt": "Welk klein Nederlands ras werd gefokt om eenden een eendenkooi in te lokken?", "category": "Rassen", "answers": [{ "text": "Het kooikerhondje", "aliases": ["Kooikerhondje", "Kooiker"] }] },
+        { "prompt": "Welk gevlekt ras speelt de hoofdrol in een Disneyfilm over honderdeneen ervan?", "category": "Rassen", "answers": [{ "text": "De dalmatier", "aliases": ["Dalmatier"] }] },
+        { "prompt": "Welk zintuig is bij een hond verreweg het sterkst?", "category": "Zintuigen", "answers": [{ "text": "De reuk", "aliases": ["Reuk", "Ruiken", "De neus"] }] },
+        { "prompt": "Welke driekoppige hond bewaakt in de Griekse mythologie de onderwereld?", "category": "Mythologie", "answers": [{ "text": "Cerberus" }] },
+        { "prompt": "Welk klein ras is vernoemd naar een Mexicaanse deelstaat?", "category": "Rassen", "answers": [{ "text": "De chihuahua", "aliases": ["Chihuahua"] }] },
+        { "prompt": "Hoe heet het hondje van Dorothy in De Tovenaar van Oz?", "category": "Film", "answers": [{ "text": "Toto" }] },
+        { "prompt": "Welk ras met een lang lijf en korte pootjes heet in het Duits 'dassenhond'?", "category": "Rassen", "answers": [{ "text": "De teckel", "aliases": ["Teckel", "Dashond", "Dachshund"] }] },
+        { "prompt": "Hoe noem je een vrouwtjeshond?", "category": "Taal", "answers": [{ "text": "Een teef", "aliases": ["Teef"] }] },
+        { "prompt": "Wat voor hond is Lady in Lady en de Vagebond?", "category": "Film", "answers": [{ "text": "Een cockerspaniel", "aliases": ["Cockerspaniel", "Spaniel"] }] },
+        { "prompt": "Welk ras, vernoemd naar een Canadees gebied, is een van de populairste gezins- en geleidehonden?", "category": "Rassen", "answers": [{ "text": "De labrador retriever", "aliases": ["Labrador", "Labrador retriever"] }] },
+        { "prompt": "Welke beroemde collie is de heldin van boeken, films en een lange televisieserie?", "category": "Televisie", "answers": [{ "text": "Lassie" }] },
+        { "prompt": "Welk ras staat bekend om zijn blauwzwarte tong?", "category": "Rassen", "answers": [{ "text": "De chowchow", "aliases": ["Chowchow", "Chow"] }] },
+        { "prompt": "Welke zwijgende hond is de kompaan van Wallace in de films van Aardman?", "category": "Animatie", "answers": [{ "text": "Gromit" }] },
+        { "prompt": "Welk Duits herdersras werd de klassieke politie- en waakhond?", "category": "Werkhonden", "answers": [{ "text": "De Duitse herder", "aliases": ["Duitse herder", "Duitse herdershond"] }] },
+        { "prompt": "Hoe noem je een hond die tot geen enkel ras behoort?", "category": "Taal", "answers": [{ "text": "Een bastaard", "aliases": ["Bastaard", "Vuilnisbakkenras", "Kruising"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk ras is over korte afstand de snelste hond?", "options": [{ "text": "De greyhound", "correct": true }, { "text": "De whippet" }, { "text": "De saluki" }, { "text": "De dobermann" }] },
+        { "prompt": "Van welk Japans ras was Hachiko, de hond die jaren op station Shibuya wachtte?", "options": [{ "text": "De akita", "correct": true }, { "text": "De shiba inu" }, { "text": "De tosa" }, { "text": "De kishu" }] },
+        { "prompt": "Welk Hongaars ras is een kortharige, roestbruine staande hond?", "options": [{ "text": "De vizsla", "correct": true }, { "text": "De komondor" }, { "text": "De puli" }, { "text": "De kuvasz" }] },
+        { "prompt": "Wat is de normale lichaamstemperatuur van een hond in graden Celsius?", "options": [{ "text": "36,5" }, { "text": "37,5" }, { "text": "38,5", "correct": true }, { "text": "40,5" }] },
+        { "prompt": "Hoe heet de hond die in Peter Pan op de kinderen past?", "options": [{ "text": "Nana", "correct": true }, { "text": "Bruno" }, { "text": "Jip" }, { "text": "Rex" }] },
+        { "prompt": "Welke hazewind hielden de Russische tsaren?", "options": [{ "text": "De borzoi", "correct": true }, { "text": "De Afghaanse windhond" }, { "text": "De saluki" }, { "text": "De Ibizahond" }] },
+        { "prompt": "Hoe lang duurt de dracht van een hond ongeveer?", "options": [{ "text": "43 dagen" }, { "text": "53 dagen" }, { "text": "63 dagen", "correct": true }, { "text": "73 dagen" }] },
+        { "prompt": "Welk ras is gemiddeld het zwaarste van allemaal?", "options": [{ "text": "De Engelse mastiff", "correct": true }, { "text": "De Tibetaanse mastiff" }, { "text": "De rottweiler" }, { "text": "De newfoundlander" }] },
+        { "prompt": "Hoe ziet een hond kleuren?", "options": [{ "text": "Vooral in blauw en geel", "correct": true }, { "text": "Helemaal niet, alleen in grijstinten" }, { "text": "Volledig, net als mensen" }, { "text": "Vooral in rood en groen" }] },
+        { "prompt": "Welk ras is Scooby-Doo?", "options": [{ "text": "Een Duitse dog", "correct": true }, { "text": "Een mastiff" }, { "text": "Een boxer" }, { "text": "Een bloedhond" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel tanden en kiezen heeft een volwassen hond?", "answer": 42, "unit": "tanden", "explanation": "Een pup begint met achtentwintig melktanden en wisselt die in voor tweeenveertig blijvende." },
+        { "prompt": "Hoeveel chromosomen heeft een hond?", "answer": 78, "unit": "chromosomen", "explanation": "Een mens heeft er zesenveertig, dus een hond draagt er flink meer mee." },
+        { "prompt": "In welk jaar bracht Disney de tekenfilm Honderdeneen Dalmatiers voor het eerst uit?", "answer": 1961 },
+        { "prompt": "In welk jaar werd de eerste hondenshow van Crufts in Londen gehouden?", "answer": 1891 },
+        { "prompt": "Hoeveel uur per dag slaapt een volwassen hond gemiddeld?", "answer": 12, "unit": "uur" },
+        { "prompt": "Hoeveel kilometer per uur haalt een greyhound op volle snelheid?", "answer": 70, "unit": "km/u" },
+        { "prompt": "Hoeveel botten heeft het skelet van een hond ongeveer?", "answer": 320, "unit": "botten" },
+        { "prompt": "Hoeveel spieren gebruikt een hond ongeveer om een oor te bewegen?", "answer": 18, "unit": "spieren" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Kennel",
+        "Hondenriem",
+        "Halsband",
+        "Muilkorf",
+        "Poot",
+        "Staart",
+        "Voerbak",
+        "Hondenhok",
+        "Apporteren",
+        "Puppy",
+        "Dierenarts",
+        "Schaapshond",
+        "Blindengeleidehond",
+        "Sledehond",
+        "Hondenshow",
+        "Vlo",
+        "Blaffen",
+        "Poedel",
+        "Mopshond",
+        "Snuit",
+        "Hondenkoekje",
+        "Hondenuitlater",
+        "Tennisbal",
+        "Janken",
+        "Hijgen",
+        "Kauwspeeltje",
+        "Pootafdruk",
+        "Hondenpenning",
+        "Beagle",
+        "Bulldog"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier maten waarin de poedel officieel wordt gefokt.", "answers": [{ "text": "De koningspoedel", "aliases": ["Koningspoedel", "Grote poedel"] }, { "text": "De middenslagpoedel", "aliases": ["Middenslagpoedel", "Middenslag"] }, { "text": "De dwergpoedel", "aliases": ["Dwergpoedel"] }, { "text": "De toypoedel", "aliases": ["Toypoedel", "Toy"] }] },
+        { "prompt": "Noem de vier varianten van de Belgische herdershond.", "answers": [{ "text": "De groenendaeler", "aliases": ["Groenendaeler", "Groenendael"] }, { "text": "De Tervuerense herder", "aliases": ["Tervueren", "Tervuren"] }, { "text": "De Mechelse herder", "aliases": ["Mechelaar", "Malinois"] }, { "text": "De Laekense herder", "aliases": ["Laekenois", "Laekense herder"] }] },
+        { "prompt": "Noem de vier soorten tanden in de bek van een hond.", "answers": [{ "text": "Snijtanden" }, { "text": "Hoektanden" }, { "text": "Voorkiezen", "aliases": ["Premolaren"] }, { "text": "Kiezen", "aliases": ["Molaren"] }] },
+        { "prompt": "Noem de vier bekendste Nederlandse hondenrassen naast het kooikerhondje.", "answers": [{ "text": "De Hollandse herder", "aliases": ["Hollandse herder"] }, { "text": "De stabij", "aliases": ["Stabij", "Stabyhoun", "Friese stabij"] }, { "text": "De wetterhoun", "aliases": ["Wetterhoun", "Otterhoun"] }, { "text": "De Drentsche patrijshond", "aliases": ["Drentsche patrijshond", "Drentse patrijshond"] }] },
+        { "prompt": "Noem de vier commando's die de meeste baasjes een hond als eerste leren.", "answers": [{ "text": "Zit" }, { "text": "Blijf" }, { "text": "Hier", "aliases": ["Kom"] }, { "text": "Volg", "aliases": ["Voet"] }] },
+        { "prompt": "Noem de vier bekendste herdersrassen van de Britse eilanden.", "answers": [{ "text": "De bordercollie", "aliases": ["Bordercollie", "Border collie"] }, { "text": "De bobtail", "aliases": ["Bobtail", "Old English sheepdog"] }, { "text": "De shetland sheepdog", "aliases": ["Shetland sheepdog", "Sheltie"] }, { "text": "De welsh corgi", "aliases": ["Welsh corgi", "Corgi"] }] },
+        { "prompt": "Noem de vier bekendste tekenfilms van Disney met een hond in de hoofdrol.", "answers": [{ "text": "Honderdeneen Dalmatiers", "aliases": ["101 Dalmatiers", "Honderd en een Dalmatiers"] }, { "text": "Lady en de Vagebond", "aliases": ["Lady and the Tramp"] }, { "text": "De Vos en de Hond", "aliases": ["Frank en Frey", "The Fox and the Hound"] }, { "text": "Bolt" }] },
+        { "prompt": "Noem de vier bekendste sledehondenrassen.", "answers": [{ "text": "De Siberische husky", "aliases": ["Siberische husky", "Husky"] }, { "text": "De Alaska malamute", "aliases": ["Alaskan malamute", "Malamute"] }, { "text": "De samojeed", "aliases": ["Samojeed"] }, { "text": "De Groenlandse hond", "aliases": ["Groenlandse hond"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet de hond van Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Pluto" }] },
+        { "prompt": "Hoe heet het hondje van Obelix in de strips van Asterix?", "difficulty": "easy", "answers": [{ "text": "Idefix", "aliases": ["Dogmatix"] }] },
+        { "prompt": "Welke tekenfilmhond lost raadsels op met Shaggy en Velma?", "difficulty": "easy", "answers": [{ "text": "Scooby-Doo", "aliases": ["Scooby Doo", "Scooby"] }] },
+        { "prompt": "Tegen welke ziekte, die via een beet wordt overgedragen, worden honden ingeent voor een reis?", "difficulty": "easy", "answers": [{ "text": "Hondsdolheid", "aliases": ["Rabies", "Rabies-virus"] }] },
+        { "prompt": "Met welk lichaamsdeel koelt een hond zichzelf af, omdat hij niet door zijn huid kan zweten?", "difficulty": "easy", "answers": [{ "text": "De tong", "aliases": ["Tong", "Zijn tong"] }] },
+        { "prompt": "Welke sledehond liep de laatste etappe van de serumrun naar Nome in 1925 en heeft een standbeeld in Central Park?", "difficulty": "hard", "answers": [{ "text": "Balto" }] },
+        { "prompt": "Welk ras heeft op zijn rug een streep haar die de verkeerde kant op groeit?", "difficulty": "hard", "answers": [{ "text": "De Rhodesische pronkrug", "aliases": ["Rhodesian ridgeback", "Ridgeback", "Pronkrug"] }] },
+        { "prompt": "Welk Chinees ras staat bekend om zijn diepe plooien van losse huid?", "difficulty": "hard", "answers": [{ "text": "De shar pei", "aliases": ["Shar pei"] }] },
+        { "prompt": "Welk Centraal-Afrikaans ras wordt de blafloze hond genoemd?", "difficulty": "hard", "answers": [{ "text": "De basenji", "aliases": ["Basenji"] }] },
+        { "prompt": "Wat is de wetenschappelijke naam van de tamme hond?", "difficulty": "hard", "answers": [{ "text": "Canis familiaris", "aliases": ["Canis lupus familiaris"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de hond die op het handelsmerk His Master's Voice naar de grammofoon luistert?", "answers": [{ "text": "Nipper" }] },
+        { "prompt": "Welke Russische fysioloog toonde met honden de voorwaardelijke reflex aan?", "answers": [{ "text": "Ivan Pavlov", "aliases": ["Pavlov"] }] },
+        { "prompt": "Welke twee honden gingen in 1960 met Spoetnik 5 de ruimte in en kwamen levend terug?", "answers": [{ "text": "Belka en Strelka", "aliases": ["Strelka en Belka"] }] },
+        { "prompt": "Welk haarloos Mexicaans ras is vernoemd naar een Azteekse god?", "answers": [{ "text": "De xoloitzcuintli", "aliases": ["Xoloitzcuintli", "Xolo", "Mexicaanse naakthond"] }] },
+        { "prompt": "Welke grote witte Hongaarse kuddebewaker heeft een lange vacht in koorden, als een dweil?", "answers": [{ "text": "De komondor", "aliases": ["Komondor"] }] },
+        { "prompt": "Hoe heet in de Odyssee van Homerus de oude hond die Odysseus bij thuiskomst herkent?", "answers": [{ "text": "Argos", "aliases": ["Argus"] }] },
+        { "prompt": "Hoe heette de eerste gekloonde hond, in 2005 geboren in Zuid-Korea?", "answers": [{ "text": "Snuppy" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "american-presidents",
+  "title": "American Presidents",
+  "description": "A pub quiz about the presidents of the United States: the White House, the famous names and the famous scandals.",
+  "publishedAt": "2026-09-06",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Who was the first African-American president of the United States?", "category": "Milestones", "answers": [{ "text": "Barack Obama", "aliases": ["Obama"] }] },
+        { "prompt": "In which American city was John F. Kennedy shot dead in 1963?", "category": "Assassinations", "answers": [{ "text": "Dallas" }] },
+        { "prompt": "Which scandal forced Richard Nixon to resign in 1974?", "category": "Scandals", "answers": [{ "text": "Watergate", "aliases": ["The Watergate scandal"] }] },
+        { "prompt": "What was Ronald Reagan's job before he went into politics?", "category": "Before the White House", "answers": [{ "text": "Film actor", "aliases": ["Actor", "Hollywood actor"] }] },
+        { "prompt": "What was the name of Franklin D. Roosevelt's programme to pull America out of the Great Depression?", "category": "The 1930s", "answers": [{ "text": "The New Deal", "aliases": ["New Deal"] }] },
+        { "prompt": "Which president gave the order to drop the atomic bombs on Hiroshima and Nagasaki?", "category": "Wartime presidents", "answers": [{ "text": "Harry S. Truman", "aliases": ["Truman", "Harry Truman"] }] },
+        { "prompt": "How many years does one presidential term last?", "category": "The office", "answers": [{ "text": "Four years", "aliases": ["Four", "4"] }] },
+        { "prompt": "Which title does the president hold as head of the armed forces?", "category": "The office", "answers": [{ "text": "Commander-in-chief", "aliases": ["Commander in chief"] }] },
+        { "prompt": "Which of the two big American parties did Barack Obama and Bill Clinton belong to?", "category": "Parties", "answers": [{ "text": "The Democratic Party", "aliases": ["The Democrats", "Democrats"] }] },
+        { "prompt": "Which animal is the symbol of the Republican Party?", "category": "Parties", "answers": [{ "text": "The elephant", "aliases": ["Elephant"] }] },
+        { "prompt": "On which American banknote does Abraham Lincoln appear?", "category": "Money", "answers": [{ "text": "The five-dollar bill", "aliases": ["Five dollars", "The five dollar note", "5 dollars"] }] },
+        { "prompt": "Which German sentence did John F. Kennedy say in his Berlin speech of 1963?", "category": "Speeches", "answers": [{ "text": "Ich bin ein Berliner", "aliases": ["I am a Berliner"] }] },
+        { "prompt": "Which American state was Ronald Reagan governor of before he became president?", "category": "Before the White House", "answers": [{ "text": "California" }] },
+        { "prompt": "With which White House intern did Bill Clinton have the affair that nearly cost him the presidency?", "category": "Scandals", "answers": [{ "text": "Monica Lewinsky", "aliases": ["Lewinsky", "Monica"] }] },
+        { "prompt": "Which crop did Jimmy Carter grow on his farm in Georgia before he was elected?", "category": "Before the White House", "answers": [{ "text": "Peanuts", "aliases": ["Peanut", "Groundnuts"] }] },
+        { "prompt": "Which cuddly toy was named after president Theodore Roosevelt?", "category": "Nicknames", "answers": [{ "text": "The teddy bear", "aliases": ["Teddy bear", "Teddy"] }] },
+        { "prompt": "What is the name of the American service whose agents guard the president?", "category": "Security", "answers": [{ "text": "The Secret Service", "aliases": ["Secret Service"] }] },
+        { "prompt": "In which month is a newly elected American president sworn in?", "category": "The office", "answers": [{ "text": "January" }] },
+        { "prompt": "Which tall white obelisk on the National Mall honours the first president?", "category": "Monuments", "answers": [{ "text": "The Washington Monument", "aliases": ["Washington Monument"] }] },
+        { "prompt": "In which Washington memorial does a giant seated statue of Abraham Lincoln sit?", "category": "Monuments", "answers": [{ "text": "The Lincoln Memorial", "aliases": ["Lincoln Memorial"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which president was the first to live in the White House?", "options": [{ "text": "John Adams", "correct": true }, { "text": "George Washington" }, { "text": "Thomas Jefferson" }, { "text": "James Madison" }] },
+        { "prompt": "Which president served the shortest term, barely a month?", "options": [{ "text": "William Henry Harrison", "correct": true }, { "text": "Zachary Taylor" }, { "text": "James Garfield" }, { "text": "Warren Harding" }] },
+        { "prompt": "Which president took the United States into the First World War in 1917?", "options": [{ "text": "Woodrow Wilson", "correct": true }, { "text": "William Howard Taft" }, { "text": "Calvin Coolidge" }, { "text": "Herbert Hoover" }] },
+        { "prompt": "Which Union general from the Civil War later became president?", "options": [{ "text": "Ulysses S. Grant", "correct": true }, { "text": "William Sherman" }, { "text": "George McClellan" }, { "text": "Winfield Scott" }] },
+        { "prompt": "From which country did the United States buy the Louisiana territory in 1803?", "options": [{ "text": "France", "correct": true }, { "text": "Spain" }, { "text": "Britain" }, { "text": "Russia" }] },
+        { "prompt": "Which president had been supreme commander of the Allied forces in Europe before his election?", "options": [{ "text": "Dwight D. Eisenhower", "correct": true }, { "text": "Harry S. Truman" }, { "text": "John F. Kennedy" }, { "text": "Lyndon B. Johnson" }] },
+        { "prompt": "In which year was George Washington sworn in as the first president?", "options": [{ "text": "1789", "correct": true }, { "text": "1776" }, { "text": "1783" }, { "text": "1800" }] },
+        { "prompt": "Which president appears on the American twenty-dollar bill?", "options": [{ "text": "Andrew Jackson", "correct": true }, { "text": "James Madison" }, { "text": "James Monroe" }, { "text": "Andrew Johnson" }] },
+        { "prompt": "Which nineteenth-century president served two terms that did not follow on from each other?", "options": [{ "text": "Grover Cleveland", "correct": true }, { "text": "Benjamin Harrison" }, { "text": "Chester Arthur" }, { "text": "Rutherford B. Hayes" }] },
+        { "prompt": "Which first lady later became a senator and then secretary of state?", "options": [{ "text": "Hillary Clinton", "correct": true }, { "text": "Laura Bush" }, { "text": "Betty Ford" }, { "text": "Rosalynn Carter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many rooms does the White House have?", "answer": 132, "unit": "rooms", "explanation": "The building also counts 35 bathrooms and 412 doors." },
+        { "prompt": "How old was John F. Kennedy when he was sworn in as president?", "answer": 43, "unit": "years" },
+        { "prompt": "In which year was Abraham Lincoln shot in a theatre in Washington?", "answer": 1865 },
+        { "prompt": "How many stars did the American flag have when George Washington became president?", "answer": 13, "unit": "stars" },
+        { "prompt": "How many years was Franklin D. Roosevelt president?", "answer": 12, "unit": "years", "explanation": "He was elected four times; after him the constitution limited a president to two terms." },
+        { "prompt": "In which year did a president first move into the White House?", "answer": 1800 },
+        { "prompt": "In which year did Barack Obama take office as president?", "answer": 2009 },
+        { "prompt": "How many dollars a year does the American president earn?", "answer": 400000, "unit": "dollars" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Lectern",
+        "Limousine",
+        "Motorcade",
+        "Bald eagle",
+        "Election poster",
+        "Dollar bill",
+        "Penny",
+        "Portrait",
+        "Statue",
+        "Writing desk",
+        "Signature",
+        "Journalist",
+        "Necktie",
+        "Handshake",
+        "First lady",
+        "Rose garden",
+        "Parade",
+        "Stovepipe hat",
+        "Presidential seal",
+        "Cigar",
+        "Wheelchair",
+        "Golf club",
+        "Bowling alley",
+        "Log cabin",
+        "Cufflinks",
+        "Postage stamp",
+        "Voting booth",
+        "Ranch",
+        "Rocking chair",
+        "Campaign bus"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four presidents whose heads are carved into Mount Rushmore.", "answers": [{ "text": "George Washington", "aliases": ["Washington"] }, { "text": "Thomas Jefferson", "aliases": ["Jefferson"] }, { "text": "Abraham Lincoln", "aliases": ["Lincoln"] }, { "text": "Theodore Roosevelt", "aliases": ["Teddy Roosevelt"] }] },
+        { "prompt": "Name the four men who were president of the United States between 1963 and 1981.", "answers": [{ "text": "Lyndon B. Johnson", "aliases": ["Johnson", "LBJ"] }, { "text": "Richard Nixon", "aliases": ["Nixon"] }, { "text": "Gerald Ford", "aliases": ["Ford"] }, { "text": "Jimmy Carter", "aliases": ["Carter"] }] },
+        { "prompt": "Name the four men who held the presidency between 1981 and 2009.", "answers": [{ "text": "Ronald Reagan", "aliases": ["Reagan"] }, { "text": "George H. W. Bush", "aliases": ["Bush senior", "George Bush senior"] }, { "text": "Bill Clinton", "aliases": ["Clinton"] }, { "text": "George W. Bush", "aliases": ["Bush junior"] }] },
+        { "prompt": "Name the four of these that belong to the president: his aeroplane, his office in the White House, his country retreat and his helicopter.", "answers": [{ "text": "Air Force One" }, { "text": "The Oval Office", "aliases": ["Oval Office"] }, { "text": "Camp David" }, { "text": "Marine One" }] },
+        { "prompt": "Name the four first ladies who were married to Franklin D. Roosevelt, John F. Kennedy, Ronald Reagan and Barack Obama.", "answers": [{ "text": "Eleanor Roosevelt", "aliases": ["Eleanor"] }, { "text": "Jacqueline Kennedy", "aliases": ["Jackie Kennedy", "Jackie"] }, { "text": "Nancy Reagan", "aliases": ["Nancy"] }, { "text": "Michelle Obama", "aliases": ["Michelle"] }] },
+        { "prompt": "Name the four presidents who died in office during the twentieth century.", "answers": [{ "text": "William McKinley", "aliases": ["McKinley"] }, { "text": "Warren Harding", "aliases": ["Harding"] }, { "text": "Franklin D. Roosevelt", "aliases": ["Roosevelt", "FDR"] }, { "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Name the four wars in which American soldiers were fighting in these years: 1861, 1917, 1950 and 1965.", "answers": [{ "text": "The American Civil War", "aliases": ["Civil War"] }, { "text": "The First World War", "aliases": ["World War One", "WWI"] }, { "text": "The Korean War", "aliases": ["Korea"] }, { "text": "The Vietnam War", "aliases": ["Vietnam"] }] },
+        { "prompt": "Name the four landmarks in and around Washington: the president's residence, the seat of Congress, the headquarters of the armed forces and the cemetery where John F. Kennedy is buried.", "answers": [{ "text": "The White House", "aliases": ["White House"] }, { "text": "The Capitol", "aliases": ["Capitol"] }, { "text": "The Pentagon", "aliases": ["Pentagon"] }, { "text": "Arlington National Cemetery", "aliases": ["Arlington"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "From which country did the United States declare independence in 1776, before George Washington became its first president?", "difficulty": "easy", "answers": [{ "text": "Great Britain", "aliases": ["Britain", "England", "The United Kingdom"] }] },
+        { "prompt": "What is the name of the American parliament that the president addresses every year?", "difficulty": "easy", "answers": [{ "text": "Congress", "aliases": ["The Congress"] }] },
+        { "prompt": "What is the president's deputy called?", "difficulty": "easy", "answers": [{ "text": "The vice president", "aliases": ["Vice president"] }] },
+        { "prompt": "On which date do Americans celebrate their independence?", "difficulty": "easy", "answers": [{ "text": "The Fourth of July", "aliases": ["4 July", "July 4", "Independence Day"] }] },
+        { "prompt": "Which prize was Barack Obama awarded in 2009, less than a year after taking office?", "difficulty": "easy", "answers": [{ "text": "The Nobel Peace Prize", "aliases": ["Nobel Peace Prize", "The Nobel prize for peace"] }] },
+        { "prompt": "Who shot Abraham Lincoln in Ford's Theatre in 1865?", "difficulty": "hard", "answers": [{ "text": "John Wilkes Booth", "aliases": ["Booth"] }] },
+        { "prompt": "What is the name of Abraham Lincoln's famous short speech of 1863?", "difficulty": "hard", "answers": [{ "text": "The Gettysburg Address", "aliases": ["Gettysburg Address", "The Gettysburg speech"] }] },
+        { "prompt": "What is the name of the room under the White House from which the president follows military operations?", "difficulty": "hard", "answers": [{ "text": "The Situation Room", "aliases": ["Situation Room"] }] },
+        { "prompt": "Which amendment to the American constitution limits a president to two terms?", "difficulty": "hard", "answers": [{ "text": "The 22nd Amendment", "aliases": ["22nd Amendment", "The twenty-second amendment", "Amendment 22"] }] },
+        { "prompt": "What is the name of Thomas Jefferson's estate in Virginia, pictured on the five-cent coin?", "difficulty": "hard", "answers": [{ "text": "Monticello" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which president never married and was the only bachelor in the White House?", "answers": [{ "text": "James Buchanan", "aliases": ["Buchanan"] }] },
+        { "prompt": "What is the name of the desk in the Oval Office that most modern presidents have used?", "answers": [{ "text": "The Resolute desk", "aliases": ["Resolute desk", "Resolute"] }] },
+        { "prompt": "Which president was impeached by the House of Representatives in 1868, three years after the Civil War?", "answers": [{ "text": "Andrew Johnson" }] },
+        { "prompt": "Which sitting vice president killed Alexander Hamilton in a duel in 1804?", "answers": [{ "text": "Aaron Burr", "aliases": ["Burr"] }] },
+        { "prompt": "Which president was in office when the Titanic sank in 1912?", "answers": [{ "text": "William Howard Taft", "aliases": ["Taft"] }] },
+        { "prompt": "Which president was in the White House when the stock market crashed in 1929?", "answers": [{ "text": "Herbert Hoover", "aliases": ["Hoover"] }] },
+        { "prompt": "Which American state is the birthplace of eight presidents, more than any other?", "answers": [{ "text": "Virginia" }] }
+      ]
+    }
+  ]
+}

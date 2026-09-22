@@ -1,0 +1,136 @@
+{
+  "slug": "dc-comics",
+  "title": "DC Comics",
+  "description": "A pub quiz about the heroes, villains and cities of DC Comics, from Superman and Batman to the Justice League.",
+  "publishedAt": "2026-09-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is Superman called in his everyday life on Earth?", "category": "Superman", "answers": [{ "text": "Clark Kent", "aliases": ["Kent"] }] },
+        { "prompt": "Which green mineral robs Superman of his powers?", "category": "Superman", "answers": [{ "text": "Kryptonite" }] },
+        { "prompt": "Which billionaire hides behind the mask of Batman?", "category": "Batman", "answers": [{ "text": "Bruce Wayne", "aliases": ["Wayne"] }] },
+        { "prompt": "In which city does Batman fight crime?", "category": "Cities", "answers": [{ "text": "Gotham City", "aliases": ["Gotham"] }] },
+        { "prompt": "In which city does Superman work as a reporter?", "category": "Cities", "answers": [{ "text": "Metropolis" }] },
+        { "prompt": "What is the name of the butler at Wayne Manor?", "category": "Batman", "answers": [{ "text": "Alfred Pennyworth", "aliases": ["Alfred", "Pennyworth"] }] },
+        { "prompt": "Which enemy of Batman has a white face, green hair and a red grin?", "category": "Villains", "answers": [{ "text": "The Joker", "aliases": ["Joker"] }] },
+        { "prompt": "Which island is Wonder Woman's homeland?", "category": "Wonder Woman", "answers": [{ "text": "Themyscira", "aliases": ["Paradise Island"] }] },
+        { "prompt": "Wonder Woman belongs to a people of warrior women. What are they called?", "category": "Wonder Woman", "answers": [{ "text": "The Amazons", "aliases": ["Amazons"] }] },
+        { "prompt": "Which enemy of Batman is a scientist who has to live in the cold and carries a freeze gun?", "category": "Villains", "answers": [{ "text": "Mister Freeze", "aliases": ["Mr Freeze", "Mr. Freeze", "Victor Fries"] }] },
+        { "prompt": "On which planet was Superman born?", "category": "Superman", "answers": [{ "text": "Krypton" }] },
+        { "prompt": "For which newspaper does Clark Kent write?", "category": "Superman", "answers": [{ "text": "The Daily Planet", "aliases": ["Daily Planet"] }] },
+        { "prompt": "Which bald businessman from Metropolis is Superman's greatest enemy?", "category": "Villains", "answers": [{ "text": "Lex Luthor", "aliases": ["Luthor"] }] },
+        { "prompt": "What is Batman's car called?", "category": "Batman", "answers": [{ "text": "The Batmobile", "aliases": ["Batmobile"] }] },
+        { "prompt": "Which villain began as a psychiatrist in Arkham and fell for the Joker?", "category": "Villains", "answers": [{ "text": "Harley Quinn", "aliases": ["Harley"] }] },
+        { "prompt": "In which Gotham institution are the criminally insane locked up?", "category": "Gotham", "answers": [{ "text": "Arkham Asylum", "aliases": ["Arkham"] }] },
+        { "prompt": "Which superhero team counts Superman, Batman and Wonder Woman among its members?", "category": "Teams", "answers": [{ "text": "The Justice League", "aliases": ["Justice League"] }] },
+        { "prompt": "Which reporter is the great love of Superman?", "category": "Superman", "answers": [{ "text": "Lois Lane", "aliases": ["Lois"] }] },
+        { "prompt": "Under which ordinary name does Wonder Woman live among people?", "category": "Wonder Woman", "answers": [{ "text": "Diana Prince", "aliases": ["Diana"] }] },
+        { "prompt": "Which Gotham villain wears a green suit covered in question marks?", "category": "Villains", "answers": [{ "text": "The Riddler", "aliases": ["Riddler"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did Superman first appear, in Action Comics number one?", "options": [{ "text": "1932" }, { "text": "1938", "correct": true }, { "text": "1945" }, { "text": "1952" }] },
+        { "prompt": "Which actor played Batman in Tim Burton's film of 1989?", "options": [{ "text": "Michael Keaton", "correct": true }, { "text": "Val Kilmer" }, { "text": "George Clooney" }, { "text": "Christian Bale" }] },
+        { "prompt": "Who invented Superman together with the artist Joe Shuster?", "options": [{ "text": "Jerry Siegel", "correct": true }, { "text": "Bob Kane" }, { "text": "Bill Finger" }, { "text": "Gardner Fox" }] },
+        { "prompt": "What is the day job of Barry Allen, the man behind the Flash?", "options": [{ "text": "Forensic scientist", "correct": true }, { "text": "Journalist" }, { "text": "Lawyer" }, { "text": "Paramedic" }] },
+        { "prompt": "In which film did Heath Ledger play the Joker?", "options": [{ "text": "The Dark Knight", "correct": true }, { "text": "Batman Begins" }, { "text": "The Dark Knight Rises" }, { "text": "Suicide Squad" }] },
+        { "prompt": "Which actress played Wonder Woman in the film of 2017?", "options": [{ "text": "Gal Gadot", "correct": true }, { "text": "Margot Robbie" }, { "text": "Amy Adams" }, { "text": "Anne Hathaway" }] },
+        { "prompt": "Which enemy of Batman is a man with the skin of a crocodile?", "options": [{ "text": "Killer Croc", "correct": true }, { "text": "Clayface" }, { "text": "Man-Bat" }, { "text": "Bane" }] },
+        { "prompt": "Which city does the Flash protect?", "options": [{ "text": "Central City", "correct": true }, { "text": "Star City" }, { "text": "Coast City" }, { "text": "Keystone City" }] },
+        { "prompt": "Which superhero is the other identity of Oliver Queen?", "options": [{ "text": "Green Arrow", "correct": true }, { "text": "Green Lantern" }, { "text": "Blue Beetle" }, { "text": "Booster Gold" }] },
+        { "prompt": "In which year was the cartoon series Batman: The Animated Series first broadcast?", "options": [{ "text": "1989" }, { "text": "1992", "correct": true }, { "text": "1995" }, { "text": "1998" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year did the first Superman film with Christopher Reeve reach the cinemas?", "answer": 1978 },
+        { "prompt": "In which year did Batman first appear, in Detective Comics number twenty-seven?", "answer": 1939 },
+        { "prompt": "In which year did the film The Dark Knight come out?", "answer": 2008 },
+        { "prompt": "How many Batman films did Christopher Nolan direct?", "answer": 3, "unit": "films", "explanation": "Batman Begins, The Dark Knight and The Dark Knight Rises." },
+        { "prompt": "How many seasons did the television series Arrow run for?", "answer": 8, "unit": "seasons" },
+        { "prompt": "How many Academy Awards did The Dark Knight win?", "answer": 2, "unit": "Oscars", "explanation": "Heath Ledger won best supporting actor, and the film also took the award for sound editing." },
+        { "prompt": "How many seasons did the television series Smallville run for?", "answer": 10, "unit": "seasons" },
+        { "prompt": "How many issues did the comic series Watchmen originally have?", "answer": 12, "unit": "issues" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Batcave",
+        "Bat-signal",
+        "Batarang",
+        "Red boots",
+        "Utility belt",
+        "Phone booth",
+        "Smoke bomb",
+        "Laughing gas",
+        "Batwing",
+        "Cornfield",
+        "Jester hat",
+        "Handcuffs",
+        "Ice gun",
+        "Trident",
+        "Power ring",
+        "Alien",
+        "Clown make-up",
+        "Straitjacket",
+        "Question mark",
+        "Police badge",
+        "Butler",
+        "Grappling hook",
+        "Seahorse",
+        "Cat mask",
+        "Cell door",
+        "Mansion",
+        "Chemical vat",
+        "Playing card",
+        "Mallet",
+        "Crowbar"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four founding members of the Justice League besides Superman, Batman and Wonder Woman.", "answers": [{ "text": "The Flash", "aliases": ["Flash", "Barry Allen"] }, { "text": "Green Lantern", "aliases": ["Hal Jordan"] }, { "text": "Aquaman" }, { "text": "Martian Manhunter", "aliases": ["The Martian Manhunter", "J'onn J'onzz"] }] },
+        { "prompt": "Name the four young men who have worn the mask of Robin in the comics.", "answers": [{ "text": "Dick Grayson", "aliases": ["Grayson"] }, { "text": "Jason Todd", "aliases": ["Todd"] }, { "text": "Tim Drake", "aliases": ["Drake"] }, { "text": "Damian Wayne", "aliases": ["Damian"] }] },
+        { "prompt": "Name the four actors who have played Superman in a cinema film since 1978.", "answers": [{ "text": "Christopher Reeve", "aliases": ["Reeve"] }, { "text": "Brandon Routh", "aliases": ["Routh"] }, { "text": "Henry Cavill", "aliases": ["Cavill"] }, { "text": "David Corenswet", "aliases": ["Corenswet"] }] },
+        { "prompt": "Name the four actors who have played the Joker in a live action cinema film since 1989.", "answers": [{ "text": "Jack Nicholson", "aliases": ["Nicholson"] }, { "text": "Heath Ledger", "aliases": ["Ledger"] }, { "text": "Jared Leto", "aliases": ["Leto"] }, { "text": "Joaquin Phoenix", "aliases": ["Phoenix"] }] },
+        { "prompt": "Name the four Batman films that were made between 1989 and 1997.", "answers": [{ "text": "Batman" }, { "text": "Batman Returns" }, { "text": "Batman Forever" }, { "text": "Batman and Robin", "aliases": ["Batman & Robin"] }] },
+        { "prompt": "Name the four Superman films in which Christopher Reeve took the lead.", "answers": [{ "text": "Superman" }, { "text": "Superman II", "aliases": ["Superman 2", "Superman Two"] }, { "text": "Superman III", "aliases": ["Superman 3", "Superman Three"] }, { "text": "Superman IV", "aliases": ["Superman 4", "Superman Four", "Superman IV: The Quest for Peace"] }] },
+        { "prompt": "Name the four classic pieces of Wonder Woman's equipment.", "answers": [{ "text": "The lasso of truth", "aliases": ["Lasso of truth", "Lasso"] }, { "text": "The bracelets", "aliases": ["Bracelets", "Bulletproof bracelets"] }, { "text": "The tiara", "aliases": ["Tiara", "Crown"] }, { "text": "The invisible plane", "aliases": ["Invisible plane", "Invisible jet"] }] },
+        { "prompt": "Name the four Kryptonians: Superman's birth name, his father, his mother and the banished general.", "answers": [{ "text": "Kal-El", "aliases": ["Kal El"] }, { "text": "Jor-El", "aliases": ["Jor El"] }, { "text": "Lara", "aliases": ["Lara Lor-Van"] }, { "text": "General Zod", "aliases": ["Zod"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is Superman's cape?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
+        { "prompt": "Which animal is shown in the emblem on Batman's chest?", "difficulty": "easy", "answers": [{ "text": "A bat", "aliases": ["Bat"] }] },
+        { "prompt": "Which enemy of Batman looks like a bird and walks with an umbrella?", "difficulty": "easy", "answers": [{ "text": "The Penguin", "aliases": ["Penguin"] }] },
+        { "prompt": "Which company does Bruce Wayne own?", "difficulty": "easy", "answers": [{ "text": "Wayne Enterprises", "aliases": ["Wayne Industries"] }] },
+        { "prompt": "Which DC heroine is Superman's cousin from Krypton?", "difficulty": "easy", "answers": [{ "text": "Supergirl" }] },
+        { "prompt": "What is Superman's hideaway in the Arctic called?", "difficulty": "hard", "answers": [{ "text": "The Fortress of Solitude", "aliases": ["Fortress of Solitude"] }] },
+        { "prompt": "Who wrote and drew the comic The Dark Knight Returns in 1986?", "difficulty": "hard", "answers": [{ "text": "Frank Miller", "aliases": ["Miller"] }] },
+        { "prompt": "What is the real name of the Riddler?", "difficulty": "hard", "answers": [{ "text": "Edward Nygma", "aliases": ["Edward Nigma", "Nygma", "Nigma"] }] },
+        { "prompt": "Which magician and occult detective is the hero of the comic Hellblazer?", "difficulty": "hard", "answers": [{ "text": "John Constantine", "aliases": ["Constantine"] }] },
+        { "prompt": "Which comic event from 1985 rewrote the whole DC multiverse?", "difficulty": "hard", "answers": [{ "text": "Crisis on Infinite Earths", "aliases": ["Crisis"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What do the letters DC in DC Comics stand for?", "answers": [{ "text": "Detective Comics" }] },
+        { "prompt": "Who wrote the graphic novel Watchmen?", "answers": [{ "text": "Alan Moore", "aliases": ["Moore"] }] },
+        { "prompt": "What is the real name of Harley Quinn?", "answers": [{ "text": "Harleen Quinzel", "aliases": ["Quinzel", "Harleen Frances Quinzel"] }] },
+        { "prompt": "Who is the editor in chief of the Daily Planet?", "answers": [{ "text": "Perry White", "aliases": ["White"] }] },
+        { "prompt": "Which tyrant rules the planet Apokolips?", "answers": [{ "text": "Darkseid" }] },
+        { "prompt": "Which one-eyed mercenary in orange and blue armour is really called Slade Wilson?", "answers": [{ "text": "Deathstroke", "aliases": ["Deathstroke the Terminator"] }] },
+        { "prompt": "Who is the queen of the Amazons and the mother of Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Queen Hippolyta"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "lord-of-the-rings",
+  "title": "The Lord of the Rings",
+  "description": "A whole pub quiz about Tolkien's Middle-earth and Peter Jackson's film trilogy.",
+  "publishedAt": "2026-09-10",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which dark lord forged the One Ring in secret?", "category": "Characters", "answers": [{ "text": "Sauron" }] },
+        { "prompt": "Which grey-robed wizard leads the Fellowship at the start of the story?", "category": "Characters", "answers": [{ "text": "Gandalf", "aliases": ["Gandalf the Grey"] }] },
+        { "prompt": "What is the green, hilly homeland of the hobbits called?", "category": "Places", "answers": [{ "text": "The Shire", "aliases": ["Shire"] }] },
+        { "prompt": "In which mountain must the One Ring be destroyed?", "category": "Places", "answers": [{ "text": "Mount Doom", "aliases": ["Orodruin"] }] },
+        { "prompt": "Which creature calls the Ring his precious?", "category": "Creatures", "answers": [{ "text": "Gollum" }] },
+        { "prompt": "Which wizard betrays the Fellowship and takes Sauron's side?", "category": "Characters", "answers": [{ "text": "Saruman", "aliases": ["Saruman the White"] }] },
+        { "prompt": "Who directed the three Lord of the Rings films?", "category": "Films", "answers": [{ "text": "Peter Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "In which country was the film trilogy shot?", "category": "Filming", "answers": [{ "text": "New Zealand" }] },
+        { "prompt": "Which actor plays Aragorn in the film trilogy?", "category": "Actors", "answers": [{ "text": "Viggo Mortensen", "aliases": ["Mortensen"] }] },
+        { "prompt": "Which British actor plays the wizard in both Jackson trilogies?", "category": "Actors", "answers": [{ "text": "Ian McKellen", "aliases": ["McKellen"] }] },
+        { "prompt": "What is the name of Bilbo's hobbit hole in Hobbiton?", "category": "Places", "answers": [{ "text": "Bag End" }] },
+        { "prompt": "What is the title of the second film in the trilogy?", "category": "Films", "answers": [{ "text": "The Two Towers", "aliases": ["Two Towers"] }] },
+        { "prompt": "Which black land does Sauron rule from his tower?", "category": "Places", "answers": [{ "text": "Mordor" }] },
+        { "prompt": "Which hobbit finds the Ring in Gollum's cave and later leaves it to Frodo?", "category": "Characters", "answers": [{ "text": "Bilbo Baggins", "aliases": ["Bilbo"] }] },
+        { "prompt": "Which giant spider attacks Frodo on the way into Mordor?", "category": "Creatures", "answers": [{ "text": "Shelob" }] },
+        { "prompt": "What is the name of the white horse that Gandalf rides?", "category": "Animals", "answers": [{ "text": "Shadowfax" }] },
+        { "prompt": "Which ancient tree-like giant do Merry and Pippin meet in Fangorn?", "category": "Creatures", "answers": [{ "text": "Treebeard" }] },
+        { "prompt": "Who is the Lady of Lothlorien who gives the Fellowship parting gifts?", "category": "Characters", "answers": [{ "text": "Galadriel" }] },
+        { "prompt": "Through which abandoned dwarf realm under the mountains does the Fellowship pass?", "category": "Places", "answers": [{ "text": "Moria", "aliases": ["The Mines of Moria", "Mines of Moria"] }] },
+        { "prompt": "Aragorn is crowned king of which realm at the end of the story?", "category": "Places", "answers": [{ "text": "Gondor" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which language is the inscription on the One Ring written?", "options": [{ "text": "The Black Speech", "correct": true }, { "text": "Quenya" }, { "text": "Sindarin" }, { "text": "Khuzdul" }] },
+        { "prompt": "Which actor plays Boromir in the film trilogy?", "options": [{ "text": "Sean Bean", "correct": true }, { "text": "Karl Urban" }, { "text": "David Wenham" }, { "text": "Bernard Hill" }] },
+        { "prompt": "Who provides the voice and the movements of Gollum?", "options": [{ "text": "Andy Serkis", "correct": true }, { "text": "Hugo Weaving" }, { "text": "John Rhys-Davies" }, { "text": "Brad Dourif" }] },
+        { "prompt": "In which inn at Bree do the hobbits first meet Aragorn?", "options": [{ "text": "The Prancing Pony", "correct": true }, { "text": "The Green Dragon" }, { "text": "The Ivy Bush" }, { "text": "The Golden Perch" }] },
+        { "prompt": "What is the name of Saruman's black tower at Isengard?", "options": [{ "text": "Orthanc", "correct": true }, { "text": "Minas Morgul" }, { "text": "Dol Guldur" }, { "text": "Amon Hen" }] },
+        { "prompt": "Who composed the music for the film trilogy?", "options": [{ "text": "Howard Shore", "correct": true }, { "text": "Hans Zimmer" }, { "text": "John Williams" }, { "text": "James Horner" }] },
+        { "prompt": "Who sings Into the West over the closing credits of The Return of the King?", "options": [{ "text": "Annie Lennox", "correct": true }, { "text": "Enya" }, { "text": "Kate Bush" }, { "text": "Sinead O'Connor" }] },
+        { "prompt": "What is the name of the great river the Fellowship rows down?", "options": [{ "text": "The Anduin", "correct": true }, { "text": "The Brandywine" }, { "text": "The Isen" }, { "text": "The Entwash" }] },
+        { "prompt": "Who is the Steward of Gondor during the War of the Ring?", "options": [{ "text": "Denethor", "correct": true }, { "text": "Faramir" }, { "text": "Imrahil" }, { "text": "Beregond" }] },
+        { "prompt": "Which creature does Gandalf face on the bridge of Khazad-dum?", "options": [{ "text": "A Balrog", "correct": true }, { "text": "A cave troll" }, { "text": "The Watcher in the Water" }, { "text": "A warg" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In the verse of the Rings, how many rings were made for mortal Men?", "answer": 9, "unit": "rings" },
+        { "prompt": "How many Academy Awards did the three films win between them?", "answer": 17, "unit": "Oscars", "explanation": "The Return of the King took eleven of them and won every category it was nominated in." },
+        { "prompt": "In what year did The Fellowship of the Ring reach cinemas?", "answer": 2001 },
+        { "prompt": "In what year was the first volume of the novel first published?", "answer": 1954 },
+        { "prompt": "How many minutes long is the cinema version of The Fellowship of the Ring?", "answer": 178, "unit": "minutes" },
+        { "prompt": "How old is Bilbo Baggins at the birthday party where he leaves the Shire?", "answer": 111, "unit": "years", "explanation": "He calls it his eleventy-first birthday." },
+        { "prompt": "In how many volumes was The Lord of the Rings first published?", "answer": 3, "unit": "volumes" },
+        { "prompt": "How many Middle-earth films has Peter Jackson made in total?", "answer": 6, "unit": "films" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Hobbit hole",
+        "Wizard's staff",
+        "Pipe-weed",
+        "Elven cloak",
+        "Moth",
+        "Cave troll",
+        "Warg",
+        "Orc",
+        "Ent",
+        "Beacon fire",
+        "Watch tower",
+        "Battering ram",
+        "Catapult",
+        "Longbow",
+        "Battle axe",
+        "Broken sword",
+        "Round green door",
+        "Barrel",
+        "Rowing boat",
+        "Stone bridge",
+        "Signpost",
+        "Castle gate",
+        "Banner",
+        "Cave",
+        "Pony",
+        "Chainmail",
+        "Helmet",
+        "Hunting horn",
+        "Mushroom",
+        "Quiver"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four hobbits in the Fellowship of the Ring.", "answers": [{ "text": "Frodo Baggins", "aliases": ["Frodo"] }, { "text": "Samwise Gamgee", "aliases": ["Sam", "Sam Gamgee"] }, { "text": "Meriadoc Brandybuck", "aliases": ["Merry"] }, { "text": "Peregrin Took", "aliases": ["Pippin"] }] },
+        { "prompt": "Name the four members of the Fellowship who are neither hobbit nor wizard.", "answers": [{ "text": "Aragorn", "aliases": ["Strider"] }, { "text": "Legolas" }, { "text": "Gimli" }, { "text": "Boromir" }] },
+        { "prompt": "Name the four named swords of Middle-earth.", "answers": [{ "text": "Anduril", "aliases": ["Narsil"] }, { "text": "Sting" }, { "text": "Glamdring" }, { "text": "Orcrist" }] },
+        { "prompt": "Name the four actors who play the hobbits of the Fellowship.", "answers": [{ "text": "Elijah Wood" }, { "text": "Sean Astin" }, { "text": "Dominic Monaghan" }, { "text": "Billy Boyd" }] },
+        { "prompt": "Name the four elven places of Middle-earth.", "answers": [{ "text": "Rivendell" }, { "text": "Lothlorien" }, { "text": "Mirkwood" }, { "text": "The Grey Havens", "aliases": ["Grey Havens"] }] },
+        { "prompt": "Name the four peoples the members of the Fellowship belong to, leaving the wizard aside.", "answers": [{ "text": "Hobbits" }, { "text": "Men" }, { "text": "Elves" }, { "text": "Dwarves" }] },
+        { "prompt": "Name the four great strongholds of the film trilogy.", "answers": [{ "text": "Minas Tirith" }, { "text": "Isengard" }, { "text": "Barad-dur" }, { "text": "Helm's Deep", "aliases": ["Helms Deep"] }] },
+        { "prompt": "Name the four members of the royal house of Rohan seen in the films.", "answers": [{ "text": "Theoden" }, { "text": "Eowyn" }, { "text": "Eomer" }, { "text": "Theodred" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the ring that must be destroyed usually called?", "difficulty": "easy", "answers": [{ "text": "The One Ring", "aliases": ["One Ring"] }] },
+        { "prompt": "What is the title of the first film in the trilogy?", "difficulty": "easy", "answers": [{ "text": "The Fellowship of the Ring", "aliases": ["Fellowship of the Ring"] }] },
+        { "prompt": "In which forest do Merry and Pippin meet the walking trees?", "difficulty": "easy", "answers": [{ "text": "Fangorn Forest", "aliases": ["Fangorn"] }] },
+        { "prompt": "Which elf lord holds the council where the Fellowship is formed?", "difficulty": "easy", "answers": [{ "text": "Elrond" }] },
+        { "prompt": "Which flying animals carry Frodo and Sam off the slopes of Mount Doom?", "difficulty": "easy", "answers": [{ "text": "The Eagles", "aliases": ["Eagles", "Giant eagles"] }] },
+        { "prompt": "What is the name of the pass into Mordor where Shelob has her lair?", "difficulty": "hard", "answers": [{ "text": "Cirith Ungol" }] },
+        { "prompt": "What is the name of the adviser who poisons the mind of the king of Rohan?", "difficulty": "hard", "answers": [{ "text": "Grima Wormtongue", "aliases": ["Wormtongue", "Grima"] }] },
+        { "prompt": "Which precious metal is the mail shirt Bilbo gives to Frodo made of?", "difficulty": "hard", "answers": [{ "text": "Mithril" }] },
+        { "prompt": "What is a seeing-stone, such as the one Saruman and Denethor use, called?", "difficulty": "hard", "answers": [{ "text": "A palantir", "aliases": ["Palantir"] }] },
+        { "prompt": "What is the capital of Rohan, where the golden hall stands?", "difficulty": "hard", "answers": [{ "text": "Edoras" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "By which elvish name is Gandalf known in Middle-earth?", "answers": [{ "text": "Mithrandir" }] },
+        { "prompt": "Which title is given to Sauron's herald who parleys at the Black Gate?", "answers": [{ "text": "The Mouth of Sauron", "aliases": ["Mouth of Sauron"] }] },
+        { "prompt": "What is the name of Aragorn's father?", "answers": [{ "text": "Arathorn" }] },
+        { "prompt": "Which realm was the leader of the Ringwraiths once the witch-king of?", "answers": [{ "text": "Angmar" }] },
+        { "prompt": "What is the name of the landlord of the inn at Bree?", "answers": [{ "text": "Barliman Butterbur", "aliases": ["Butterbur", "Barliman"] }] },
+        { "prompt": "Which character from the book was left out of the films entirely?", "answers": [{ "text": "Tom Bombadil", "aliases": ["Bombadil"] }] },
+        { "prompt": "What do the Ents call the gathering at which they decide to go to war?", "answers": [{ "text": "An Entmoot", "aliases": ["Entmoot"] }] }
+      ]
+    }
+  ]
+}

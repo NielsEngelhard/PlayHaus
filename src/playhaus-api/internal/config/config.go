@@ -18,6 +18,15 @@ type Config struct {
 
 	PushEnabled bool // Off until a build ships with expo-notifications and store credentials behind it
 
+	// StatsToken guards GET /api/v1/admin/stats. Empty is the default and means the
+	// route is not registered at all, so it does not exist in development or in tests
+	// and production has to opt in by setting it.
+	//
+	// A shared secret rather than requireAuth because requireAuth only proves that
+	// some session is valid, and POST /api/v1/user/guest hands one of those to anyone
+	// who asks. There is no admin role in this codebase to check instead.
+	StatsToken string
+
 	// DailyResetLocation is the one zone the word of the day turns over in, for
 	// everybody. A per-device midnight would give a traveller two words in a day
 	// and make one player's streak mean something different from another's.
@@ -50,6 +59,7 @@ func Load() (Config, error) {
 		AllowedOrigins:         envList("ALLOWED_ORIGINS", defaultAllowedOrigins),
 		LeagueOfLettersDevMode: envBool("LOL_DEV_MODE", true), // Same word every round
 		PushEnabled:            envBool("PUSH_ENABLED", false),
+		StatsToken:             os.Getenv("STATS_TOKEN"),
 		DailyResetLocation:     resetLocation,
 	}, nil
 }

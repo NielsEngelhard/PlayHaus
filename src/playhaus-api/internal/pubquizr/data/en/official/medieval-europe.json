@@ -1,0 +1,136 @@
+{
+  "slug": "medieval-europe",
+  "title": "Medieval Europe",
+  "description": "A whole pub quiz about the Middle Ages: the plague, monasteries, guilds, knights, trade and the crusades.",
+  "publishedAt": "2026-09-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the name of the plague that swept across Europe in the fourteenth century and killed perhaps a third of its people?", "category": "The plague", "answers": [{ "text": "The Black Death", "aliases": ["Black Death", "The plague"] }] },
+        { "prompt": "What is a house where monks live together under an abbot called?", "category": "Monks and nuns", "answers": [{ "text": "A monastery", "aliases": ["Monastery", "An abbey", "Abbey"] }] },
+        { "prompt": "Which league of trading cities in northern Germany and around the Baltic dominated medieval sea trade?", "category": "Trade", "answers": [{ "text": "The Hanseatic League", "aliases": ["Hanseatic League", "The Hansa", "Hansa"] }] },
+        { "prompt": "Which English king was forced by his barons to seal the Magna Carta?", "category": "Kings and queens", "answers": [{ "text": "King John", "aliases": ["John", "John Lackland"] }] },
+        { "prompt": "Which duke of Normandy defeated King Harold at Hastings and became king of England?", "category": "War", "answers": [{ "text": "William the Conqueror", "aliases": ["William", "Duke William"] }] },
+        { "prompt": "What is a handwritten medieval book decorated with gold leaf and painted pictures called?", "category": "Books", "answers": [{ "text": "An illuminated manuscript", "aliases": ["Illuminated manuscript", "An illuminated book"] }] },
+        { "prompt": "Which city did the First Crusade capture in 1099?", "category": "The crusades", "answers": [{ "text": "Jerusalem" }] },
+        { "prompt": "In which language was the mass said and were books written across western Europe in the Middle Ages?", "category": "The church", "answers": [{ "text": "Latin" }] },
+        { "prompt": "What is an association of the craftsmen of one trade in a medieval town called?", "category": "Towns", "answers": [{ "text": "A guild", "aliases": ["Guild"] }] },
+        { "prompt": "What is a young man in training under a knight called?", "category": "Knights", "answers": [{ "text": "A squire", "aliases": ["Squire"] }] },
+        { "prompt": "What is the contest in which two knights on horseback charge at each other with lances called?", "category": "Knights", "answers": [{ "text": "Jousting", "aliases": ["A joust", "Joust", "Tilting"] }] },
+        { "prompt": "Which French peasant girl led the army that relieved Orleans and was burned at the stake in 1431?", "category": "War", "answers": [{ "text": "Joan of Arc", "aliases": ["Jeanne d'Arc", "Joan", "The Maid of Orleans"] }] },
+        { "prompt": "Which overland trade route brought silk from China to Europe?", "category": "Trade", "answers": [{ "text": "The Silk Road", "aliases": ["Silk Road", "The Silk Route"] }] },
+        { "prompt": "Which Gothic cathedral on an island in the Seine in Paris was begun in 1163?", "category": "Churches", "answers": [{ "text": "Notre-Dame", "aliases": ["Notre Dame", "Notre-Dame de Paris"] }] },
+        { "prompt": "What writing material made from treated animal skin were medieval books written on?", "category": "Books", "answers": [{ "text": "Parchment", "aliases": ["Vellum"] }] },
+        { "prompt": "What is the system called in which a peasant worked a lord's land in exchange for his protection?", "category": "Daily life", "answers": [{ "text": "The feudal system", "aliases": ["Feudalism", "Feudal system"] }] },
+        { "prompt": "What is a woman who lives in a convent under religious vows called?", "category": "Monks and nuns", "answers": [{ "text": "A nun", "aliases": ["Nun"] }] },
+        { "prompt": "What is armour made of thousands of interlinked iron rings called?", "category": "Knights", "answers": [{ "text": "Chainmail", "aliases": ["Chain mail", "Mail", "A coat of mail"] }] },
+        { "prompt": "Which outlaw of English legend robbed the rich from Sherwood Forest?", "category": "Legends", "answers": [{ "text": "Robin Hood" }] },
+        { "prompt": "Which alcoholic drink brewed from honey was drunk all over medieval Europe?", "category": "Food and drink", "answers": [{ "text": "Mead", "aliases": ["Honey wine"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which emperor waited three days in the snow at Canossa in 1077 for the pope to pardon him?", "options": [{ "text": "Henry the Fourth", "correct": true }, { "text": "Otto the First" }, { "text": "Henry the Third" }, { "text": "Conrad the Second" }] },
+        { "prompt": "At which battle in 1415 did the archers of Henry the Fifth defeat a far larger French army?", "options": [{ "text": "Agincourt", "correct": true }, { "text": "Crecy" }, { "text": "Bouvines" }, { "text": "Castillon" }] },
+        { "prompt": "Which order of friars was founded by Francis of Assisi in 1209?", "options": [{ "text": "The Franciscans", "correct": true }, { "text": "The Dominicans" }, { "text": "The Benedictines" }, { "text": "The Cistercians" }] },
+        { "prompt": "In which city did the popes reside from 1309 to 1377?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Ravenna" }, { "text": "Florence" }, { "text": "Lyon" }] },
+        { "prompt": "Which English king was defeated and killed at Bosworth Field in 1485?", "options": [{ "text": "Richard the Third", "correct": true }, { "text": "Edward the Fourth" }, { "text": "Henry the Sixth" }, { "text": "Richard the Second" }] },
+        { "prompt": "Which people sacked Rome in the year 410?", "options": [{ "text": "The Visigoths", "correct": true }, { "text": "The Vandals" }, { "text": "The Ostrogoths" }, { "text": "The Huns" }] },
+        { "prompt": "Which Italian wrote the Decameron, a book of tales told by Florentines fleeing the plague?", "options": [{ "text": "Giovanni Boccaccio", "correct": true }, { "text": "Dante Alighieri" }, { "text": "Francesco Petrarca" }, { "text": "Niccolo Machiavelli" }] },
+        { "prompt": "Which battle of 1302 saw Flemish townsmen defeat the French knights near Kortrijk?", "options": [{ "text": "The Battle of the Golden Spurs", "correct": true }, { "text": "The Battle of Cassel" }, { "text": "The Battle of Bouvines" }, { "text": "The Battle of Westrozebeke" }] },
+        { "prompt": "On which sea did the Hanseatic League carry most of its trade?", "options": [{ "text": "The Baltic Sea", "correct": true }, { "text": "The Adriatic Sea" }, { "text": "The Black Sea" }, { "text": "The Mediterranean Sea" }] },
+        { "prompt": "Who led the Peasants' Revolt that reached London in 1381?", "options": [{ "text": "Wat Tyler", "correct": true }, { "text": "Jack Cade" }, { "text": "Simon de Montfort" }, { "text": "Owain Glyndwr" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year was the Battle of Hastings fought?", "answer": 1066 },
+        { "prompt": "In which year did the Black Death reach Europe?", "answer": 1347, "explanation": "It came ashore at Messina in Sicily with ships from the Black Sea and took about three years to cross the continent." },
+        { "prompt": "In which year did Constantinople fall to the Ottoman Turks?", "answer": 1453 },
+        { "prompt": "In which year was Charlemagne crowned emperor in Rome?", "answer": 800 },
+        { "prompt": "In which year was the Domesday Book completed?", "answer": 1086 },
+        { "prompt": "How many metres long is the Bayeux Tapestry?", "answer": 68, "unit": "metres", "explanation": "It is just under seventy metres long and only half a metre high." },
+        { "prompt": "How many cantos does Dante's Divine Comedy have?", "answer": 100, "unit": "cantos" },
+        { "prompt": "How many kilometres long is the Camino Frances, the main pilgrim route to Santiago de Compostela?", "answer": 780, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Monk",
+        "Scroll",
+        "Tournament",
+        "Pilgrim",
+        "Relic",
+        "Plague doctor",
+        "Water mill",
+        "Church bell",
+        "Minstrel",
+        "Lute",
+        "Alchemist",
+        "Apothecary",
+        "Market square",
+        "Chalice",
+        "Rosary",
+        "Sundial",
+        "Plough",
+        "Scythe",
+        "Loom",
+        "Herald",
+        "Ox cart",
+        "Beggar",
+        "Leper",
+        "Cloister",
+        "Feast",
+        "Crusader",
+        "Warhorse",
+        "Anvil",
+        "Shepherd",
+        "Holy Grail"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four horsemen of the Apocalypse.", "answers": [{ "text": "Conquest", "aliases": ["Pestilence", "Plague"] }, { "text": "War" }, { "text": "Famine", "aliases": ["Hunger"] }, { "text": "Death" }] },
+        { "prompt": "Name the four evangelists whose gospels medieval monks copied out.", "answers": [{ "text": "Matthew" }, { "text": "Mark" }, { "text": "Luke" }, { "text": "John" }] },
+        { "prompt": "Name the four bodily humours of medieval medicine.", "answers": [{ "text": "Blood" }, { "text": "Phlegm" }, { "text": "Yellow bile" }, { "text": "Black bile" }] },
+        { "prompt": "Name the four foreign cities where the Hanseatic League kept its great trading posts.", "answers": [{ "text": "Bruges" }, { "text": "London" }, { "text": "Bergen" }, { "text": "Novgorod" }] },
+        { "prompt": "Name the four cardinal virtues of the medieval church.", "answers": [{ "text": "Prudence", "aliases": ["Wisdom"] }, { "text": "Justice" }, { "text": "Fortitude", "aliases": ["Courage"] }, { "text": "Temperance", "aliases": ["Moderation"] }] },
+        { "prompt": "Name the four spices that merchants brought to Europe from the East.", "answers": [{ "text": "Pepper" }, { "text": "Cinnamon" }, { "text": "Nutmeg" }, { "text": "Cloves" }] },
+        { "prompt": "Name the four maritime republics of medieval Italy.", "answers": [{ "text": "Venice" }, { "text": "Genoa" }, { "text": "Pisa" }, { "text": "Amalfi" }] },
+        { "prompt": "Name the four ranks of the medieval church, from the parish up to Rome.", "answers": [{ "text": "Priest" }, { "text": "Bishop" }, { "text": "Cardinal" }, { "text": "Pope" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do we call the period of European history between the fall of the Roman Empire and the Renaissance?", "difficulty": "easy", "answers": [{ "text": "The Middle Ages", "aliases": ["Middle Ages", "The medieval period"] }] },
+        { "prompt": "What is the church of a bishop, usually the largest church of a city, called?", "difficulty": "easy", "answers": [{ "text": "A cathedral", "aliases": ["Cathedral"] }] },
+        { "prompt": "What did medieval scribes write with, cut from the feather of a goose?", "difficulty": "easy", "answers": [{ "text": "A quill", "aliases": ["Quill", "A quill pen", "A feather pen"] }] },
+        { "prompt": "What do we call the coloured church windows that tell Bible stories in pictures?", "difficulty": "easy", "answers": [{ "text": "Stained glass", "aliases": ["Stained glass windows"] }] },
+        { "prompt": "Which animal carried the fleas that spread the plague?", "difficulty": "easy", "answers": [{ "text": "The rat", "aliases": ["Rat", "Rats"] }] },
+        { "prompt": "What is the tax of a tenth of his produce that a peasant paid to the church called?", "difficulty": "hard", "answers": [{ "text": "A tithe", "aliases": ["Tithe", "The tithe"] }] },
+        { "prompt": "Which military religious order was arrested across France on Friday the thirteenth of October 1307?", "difficulty": "hard", "answers": [{ "text": "The Knights Templar", "aliases": ["The Templars", "Templars"] }] },
+        { "prompt": "Which clear rounded script, spread through the empire of Charlemagne, is the ancestor of our lower-case letters?", "difficulty": "hard", "answers": [{ "text": "Carolingian minuscule", "aliases": ["Caroline minuscule", "Carolingian script"] }] },
+        { "prompt": "What do we call an unfree peasant who was bound to the land he worked?", "difficulty": "hard", "answers": [{ "text": "A serf", "aliases": ["Serf", "A villein"] }] },
+        { "prompt": "Which duke of Burgundy was killed at Nancy in 1477?", "difficulty": "hard", "answers": [{ "text": "Charles the Bold", "aliases": ["Charles"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which pope called the First Crusade at Clermont in 1095?", "answers": [{ "text": "Urban the Second", "aliases": ["Urban II", "Pope Urban the Second", "Urban"] }] },
+        { "prompt": "Which abbess of the Rhineland wrote music, books on medicine and accounts of her visions in the twelfth century?", "answers": [{ "text": "Hildegard of Bingen", "aliases": ["Hildegard"] }] },
+        { "prompt": "Which treaty of 843 divided the empire of Charlemagne between his three grandsons?", "answers": [{ "text": "The Treaty of Verdun", "aliases": ["Verdun", "Treaty of Verdun"] }] },
+        { "prompt": "Which archbishop was murdered in his own cathedral at Canterbury in 1170?", "answers": [{ "text": "Thomas Becket", "aliases": ["Becket", "Thomas a Becket"] }] },
+        { "prompt": "Which Frankish commander defeated an Arab army near Poitiers in 732?", "answers": [{ "text": "Charles Martel", "aliases": ["Martel"] }] },
+        { "prompt": "Which emperor drowned in a river in Anatolia on his way to the Third Crusade in 1190?", "answers": [{ "text": "Frederick Barbarossa", "aliases": ["Barbarossa", "Frederick the First"] }] },
+        { "prompt": "Which theologian, teaching in Paris in the thirteenth century, wrote the Summa Theologica?", "answers": [{ "text": "Thomas Aquinas", "aliases": ["Aquinas"] }] }
+      ]
+    }
+  ]
+}

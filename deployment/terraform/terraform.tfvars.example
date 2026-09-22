@@ -7,6 +7,11 @@ do_token = "dop_v1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 domain     = "playhaus.site"
 acme_email = "engelhardniels@gmail.com"
 
+# Where the alert policies and the uptime check in monitoring.tf send email. DigitalOcean
+# only delivers to account and team member addresses -- anything else is accepted and then
+# never arrives, so confirm it once for real rather than assuming.
+alert_email = "niels.engelhard@turingsolutions.nl"
+
 # Defaults are ams3 and the $6/month s-1vcpu-1gb. Uncomment to change.
 region       = "ams3"
 droplet_size = "s-1vcpu-1gb"

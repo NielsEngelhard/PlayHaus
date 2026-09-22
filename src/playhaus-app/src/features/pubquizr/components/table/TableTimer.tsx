@@ -1,7 +1,9 @@
 import AppText from "@/components/text/AppText";
+import { useNativeDriver } from "@/components/ui/usePressPop";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useEffect, useState } from "react";
+import { AccessibilityInfo, Animated, Easing } from "react-native";
 
 interface Props {
     /** When the clock runs out, as epoch ms, so the screen and the phone agree to within a frame. */
@@ -11,6 +13,8 @@ interface Props {
 }
 
 const HURRY_SECONDS = 10;
+// The digits' hurry pulse, one way.
+const PULSE_MS = 500;
 
 // The turn's clock as the whole table reads it. Not `TurnTimer`, which starts on mount: this one is told when the phone's clock ends.
 export default function TableTimer({ endsAt, scale }: Props) {
@@ -18,6 +22,7 @@ export default function TableTimer({ endsAt, scale }: Props) {
     const theme = useTheme();
 
     const [left, setLeft] = useState(() => secondsLeft(endsAt));
+    const [pulse] = useState(() => new Animated.Value(1));
 
     // No `setLeft` in the body: the initialiser covers the mount, and the interval corrects a changed `endsAt` within a frame.
     useEffect(() => {
@@ -26,12 +31,43 @@ export default function TableTimer({ endsAt, scale }: Props) {
         return () => clearInterval(tick);
     }, [endsAt]);
 
-    const ink = left <= HURRY_SECONDS ? theme.colors.destructive : theme.colors.text;
+    const hurrying = left <= HURRY_SECONDS;
+    const ink = hurrying ? theme.colors.destructive : theme.colors.text;
+
+    useEffect(() => {
+        if (!hurrying) {
+            pulse.setValue(1);
+            return;
+        }
+
+        let cancelled = false;
+        let loop: Animated.CompositeAnimation | undefined;
+
+        AccessibilityInfo.isReduceMotionEnabled().then(reduced => {
+            if (cancelled || reduced) return;
+
+            loop = Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulse, { toValue: 1.05, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver }),
+                    Animated.timing(pulse, { toValue: 1, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver })
+                ])
+            );
+            loop.start();
+        });
+
+        return () => {
+            cancelled = true;
+            loop?.stop();
+            pulse.setValue(1);
+        };
+    }, [hurrying, pulse]);
 
     return (
-        <AppText style={[styles.digits, { color: ink, fontSize: Math.round(64 * scale) }]}>
-            {left}
-        </AppText>
+        <Animated.View style={{ transform: [{ scale: pulse }] }}>
+            <AppText style={[styles.digits, { color: ink, fontSize: Math.round(64 * scale) }]}>
+                {left}
+            </AppText>
+        </Animated.View>
     )
 }
 

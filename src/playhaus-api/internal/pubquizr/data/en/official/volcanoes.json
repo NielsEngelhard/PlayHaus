@@ -1,0 +1,136 @@
+{
+  "slug": "volcanoes",
+  "title": "Volcanoes",
+  "description": "A whole pub quiz about volcanoes: eruptions, lava, craters and the people who study them.",
+  "publishedAt": "2026-08-25",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Italian volcano erupted in AD 79 and buried two Roman towns?", "category": "Famous eruptions", "answers": [{ "text": "Mount Vesuvius", "aliases": ["Vesuvius", "The Vesuvius"] }] },
+        { "prompt": "Which volcano on the island of Sicily is the highest active volcano in Europe?", "category": "Europe", "answers": [{ "text": "Mount Etna", "aliases": ["Etna", "The Etna"] }] },
+        { "prompt": "What is molten rock called while it is still underground?", "category": "Terminology", "answers": [{ "text": "Magma" }] },
+        { "prompt": "Which Greek island with its white houses is really the rim of a flooded volcanic caldera?", "category": "Europe", "answers": [{ "text": "Santorini", "aliases": ["Thera"] }] },
+        { "prompt": "The ash cloud of which Icelandic volcano grounded flights across Europe in 2010?", "category": "Iceland", "answers": [{ "text": "Eyjafjallajokull", "aliases": ["Eyjafjallajoekull"] }] },
+        { "prompt": "What is the bowl-shaped hollow at the top of a volcano called?", "category": "Anatomy of a volcano", "answers": [{ "text": "The crater", "aliases": ["Crater"] }] },
+        { "prompt": "Which horseshoe-shaped zone around the Pacific holds most of the world's active volcanoes?", "category": "Geography", "answers": [{ "text": "The Ring of Fire", "aliases": ["Ring of Fire"] }] },
+        { "prompt": "Which volcano is the highest mountain in Japan?", "category": "Asia", "answers": [{ "text": "Mount Fuji", "aliases": ["Fuji", "Fujiyama"] }] },
+        { "prompt": "Which volcano in the American state of Washington erupted violently in May 1980?", "category": "Famous eruptions", "answers": [{ "text": "Mount St Helens", "aliases": ["St Helens", "Mount Saint Helens"] }] },
+        { "prompt": "Which volcanic rock is light enough to float on water?", "category": "Rocks", "answers": [{ "text": "Pumice", "aliases": ["Pumice stone"] }] },
+        { "prompt": "What is a scientist who studies volcanoes called?", "category": "Science", "answers": [{ "text": "A volcanologist", "aliases": ["Volcanologist", "Vulcanologist"] }] },
+        { "prompt": "What is the fast-moving cloud of scorching gas and rock that races down a volcano's slopes called?", "category": "Hazards", "answers": [{ "text": "A pyroclastic flow", "aliases": ["Pyroclastic flow"] }] },
+        { "prompt": "Which volcano is the highest mountain in Africa?", "category": "Africa", "answers": [{ "text": "Kilimanjaro", "aliases": ["Mount Kilimanjaro"] }] },
+        { "prompt": "What word describes a volcano that has been quiet for a long time but could erupt again?", "category": "Terminology", "answers": [{ "text": "Dormant", "aliases": ["Sleeping"] }] },
+        { "prompt": "Which Indonesian volcano erupted in 1883 with a blast heard thousands of kilometres away?", "category": "Famous eruptions", "answers": [{ "text": "Krakatoa", "aliases": ["Krakatau"] }] },
+        { "prompt": "Which volcano on the Caribbean island of Saba is the highest point of the Kingdom of the Netherlands?", "category": "The Netherlands", "answers": [{ "text": "Mount Scenery", "aliases": ["Scenery"] }] },
+        { "prompt": "Which black volcanic glass forms when lava cools very quickly?", "category": "Rocks", "answers": [{ "text": "Obsidian" }] },
+        { "prompt": "Which small Italian island volcano, nicknamed the lighthouse of the Mediterranean, erupts almost constantly?", "category": "Europe", "answers": [{ "text": "Stromboli" }] },
+        { "prompt": "What is the name for the mudflow of ash, rock and water that rushes down a volcano after an eruption?", "category": "Hazards", "answers": [{ "text": "A lahar", "aliases": ["Lahar"] }] },
+        { "prompt": "What is the name of the largest volcano in the solar system, which stands on Mars?", "category": "Beyond Earth", "answers": [{ "text": "Olympus Mons" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which scale is used to measure the size of a volcanic eruption?", "options": [{ "text": "The Volcanic Explosivity Index", "correct": true }, { "text": "The Richter scale" }, { "text": "The Mercalli scale" }, { "text": "The Beaufort scale" }] },
+        { "prompt": "The eruption of which volcano in 1815 led to the year without a summer?", "options": [{ "text": "Tambora", "correct": true }, { "text": "Krakatoa" }, { "text": "Cotopaxi" }, { "text": "Vesuvius" }] },
+        { "prompt": "Which volcano in the Philippines produced the second largest eruption of the twentieth century, in 1991?", "options": [{ "text": "Mount Pinatubo", "correct": true }, { "text": "Mount Mayon" }, { "text": "Taal" }, { "text": "Mount Apo" }] },
+        { "prompt": "What is a steep-sided volcano built up from alternating layers of lava and ash called?", "options": [{ "text": "A stratovolcano", "correct": true }, { "text": "A shield volcano" }, { "text": "A cinder cone" }, { "text": "A lava dome" }] },
+        { "prompt": "Which volcano is the highest mountain in Spain?", "options": [{ "text": "Teide", "correct": true }, { "text": "Cumbre Vieja" }, { "text": "Teneguia" }, { "text": "Timanfaya" }] },
+        { "prompt": "The word volcano comes from the name of which Roman god?", "options": [{ "text": "Vulcan", "correct": true }, { "text": "Mars" }, { "text": "Neptune" }, { "text": "Jupiter" }] },
+        { "prompt": "Under which American national park does a supervolcano caldera lie?", "options": [{ "text": "Yellowstone", "correct": true }, { "text": "Yosemite" }, { "text": "Grand Canyon" }, { "text": "Everglades" }] },
+        { "prompt": "Which Portuguese island group in the mid-Atlantic includes Pico, the country's highest mountain?", "options": [{ "text": "The Azores", "correct": true }, { "text": "Madeira" }, { "text": "The Canary Islands" }, { "text": "Cape Verde" }] },
+        { "prompt": "On which Caribbean island did the Soufriere Hills volcano bury the capital Plymouth in the 1990s?", "options": [{ "text": "Montserrat", "correct": true }, { "text": "Saint Lucia" }, { "text": "Dominica" }, { "text": "Martinique" }] },
+        { "prompt": "What is the large depression called that forms when a volcano collapses into its emptied magma chamber?", "options": [{ "text": "A caldera", "correct": true }, { "text": "A crater" }, { "text": "A vent" }, { "text": "A fissure" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Fuji?", "answer": 3776, "unit": "metres" },
+        { "prompt": "In which year did the Laki fissure eruption in Iceland begin?", "answer": 1783 },
+        { "prompt": "How many degrees Celsius can flowing basaltic lava reach?", "answer": 1200, "unit": "degrees Celsius", "explanation": "Hot enough to melt copper, and about five times the temperature of a domestic oven." },
+        { "prompt": "How many kilometres high does Olympus Mons on Mars rise, roughly?", "answer": 22, "unit": "kilometres", "explanation": "Around two and a half times the height of Mount Everest." },
+        { "prompt": "In which year did Mount Vesuvius last erupt?", "answer": 1944 },
+        { "prompt": "How many metres of height did Mount St Helens lose in the 1980 eruption?", "answer": 400, "unit": "metres" },
+        { "prompt": "How many metres high is Ojos del Salado, the highest volcano on Earth?", "answer": 6893, "unit": "metres" },
+        { "prompt": "Roughly how many kilometres long is the Ring of Fire?", "answer": 40000, "unit": "kilometres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Ash cloud",
+        "Lava lamp",
+        "Lava flow",
+        "Lava tube",
+        "Lava fountain",
+        "Crater lake",
+        "Crater rim",
+        "Cinder cone",
+        "Shield volcano",
+        "Magma chamber",
+        "Volcanic vent",
+        "Fissure",
+        "Warning siren",
+        "Evacuation",
+        "Molten rock",
+        "Geothermal power station",
+        "Black sand beach",
+        "Sulphur crystals",
+        "Protective suit",
+        "Volcanic island",
+        "Tectonic plate",
+        "Steam",
+        "Volcanic soil",
+        "Eruption",
+        "Rock sample",
+        "Tsunami",
+        "Seismometer",
+        "Rescue helicopter",
+        "Thermal camera",
+        "Volcano observatory"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four layers of the Earth, from the outside in.", "answers": [{ "text": "The crust", "aliases": ["Crust"] }, { "text": "The mantle", "aliases": ["Mantle"] }, { "text": "The outer core", "aliases": ["Outer core"] }, { "text": "The inner core", "aliases": ["Inner core"] }] },
+        { "prompt": "Name the four gases that volcanoes release in the greatest quantities.", "answers": [{ "text": "Water vapour", "aliases": ["Steam", "Water"] }, { "text": "Carbon dioxide", "aliases": ["CO2"] }, { "text": "Sulphur dioxide", "aliases": ["SO2", "Sulfur dioxide"] }, { "text": "Hydrogen sulphide", "aliases": ["H2S", "Hydrogen sulfide"] }] },
+        { "prompt": "Name the four ingredients of the model volcano children make at school.", "answers": [{ "text": "Baking soda", "aliases": ["Bicarbonate of soda", "Baking powder"] }, { "text": "Vinegar" }, { "text": "Washing-up liquid", "aliases": ["Dish soap", "Soap"] }, { "text": "Food colouring", "aliases": ["Red food colouring", "Food coloring"] }] },
+        { "prompt": "Name the four volcanic rocks: the dark rock of the ocean floor, the grey rock named after a South American mountain range, the pale rock rich in silica, and the rock formed from welded ash.", "answers": [{ "text": "Basalt" }, { "text": "Andesite" }, { "text": "Rhyolite" }, { "text": "Tuff", "aliases": ["Tufa"] }] },
+        { "prompt": "Name the four countries in which the volcanoes Popocatepetl, Cotopaxi, Teide and Fuji stand.", "answers": [{ "text": "Mexico" }, { "text": "Ecuador" }, { "text": "Spain" }, { "text": "Japan" }] },
+        { "prompt": "Name the four features you find in a geothermal area.", "answers": [{ "text": "A geyser", "aliases": ["Geyser"] }, { "text": "A hot spring", "aliases": ["Hot spring"] }, { "text": "A mud pool", "aliases": ["Mud pool", "Mud pot", "Boiling mud"] }, { "text": "A fumarole", "aliases": ["Fumarole", "Steam vent"] }] },
+        { "prompt": "Name the four towns destroyed by volcanoes: two Roman towns buried in AD 79, the town on Martinique wiped out in 1902, and the Colombian town swept away by a mudflow in 1985.", "answers": [{ "text": "Pompeii" }, { "text": "Herculaneum", "aliases": ["Ercolano"] }, { "text": "Saint-Pierre", "aliases": ["St Pierre"] }, { "text": "Armero" }] },
+        { "prompt": "Name the four kinds of fragment thrown out by a volcano: the finest dust, stones the size of peas to walnuts, rounded lumps of molten rock, and angular chunks of solid rock.", "answers": [{ "text": "Ash" }, { "text": "Lapilli" }, { "text": "Volcanic bombs", "aliases": ["Bombs"] }, { "text": "Blocks" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is molten rock called once it has flowed out onto the surface?", "difficulty": "easy", "answers": [{ "text": "Lava" }] },
+        { "prompt": "Which Italian city lies at the foot of Mount Vesuvius?", "difficulty": "easy", "answers": [{ "text": "Naples", "aliases": ["Napoli"] }] },
+        { "prompt": "Which ocean is ringed by the Ring of Fire?", "difficulty": "easy", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific", "Pacific Ocean"] }] },
+        { "prompt": "What word describes a volcano that will never erupt again?", "difficulty": "easy", "answers": [{ "text": "Extinct", "aliases": ["Dead"] }] },
+        { "prompt": "Which island country in the North Atlantic is famous for its volcanoes, geysers and hot springs?", "difficulty": "easy", "answers": [{ "text": "Iceland" }] },
+        { "prompt": "Which Antarctic volcano has a permanent lava lake in its crater?", "difficulty": "hard", "answers": [{ "text": "Mount Erebus", "aliases": ["Erebus"] }] },
+        { "prompt": "Which volcanic island rose out of the sea off Iceland in 1963 and is now a protected nature reserve?", "difficulty": "hard", "answers": [{ "text": "Surtsey" }] },
+        { "prompt": "Which volcano on the Spanish island of La Palma erupted for three months in 2021?", "difficulty": "hard", "answers": [{ "text": "Cumbre Vieja", "aliases": ["Tajogaite"] }] },
+        { "prompt": "What is the name for a flat-topped volcano that erupted underneath a sheet of ice?", "difficulty": "hard", "answers": [{ "text": "A tuya", "aliases": ["Tuya", "Table mountain"] }] },
+        { "prompt": "Which Indonesian volcano is known as the child of Krakatoa?", "difficulty": "hard", "answers": [{ "text": "Anak Krakatau", "aliases": ["Anak Krakatoa"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Tanzanian volcano erupts an unusual carbonatite lava, the coolest lava on Earth?", "answers": [{ "text": "Ol Doinyo Lengai", "aliases": ["Oldoinyo Lengai"] }] },
+        { "prompt": "What is the name of the large volcanic caldera area immediately west of Naples?", "answers": [{ "text": "Campi Flegrei", "aliases": ["The Phlegraean Fields", "Phlegraean Fields"] }] },
+        { "prompt": "Which German volcanic region west of the Rhine is dotted with maars and crater lakes?", "answers": [{ "text": "The Eifel", "aliases": ["Eifel"] }] },
+        { "prompt": "What is the Hawaiian word for smooth, ropy lava?", "answers": [{ "text": "Pahoehoe" }] },
+        { "prompt": "What is an underwater volcano that does not reach the surface called?", "answers": [{ "text": "A seamount", "aliases": ["Seamount"] }] },
+        { "prompt": "Which Peruvian volcano produced the largest eruption in South America in historic times, in 1600?", "answers": [{ "text": "Huaynaputina" }] },
+        { "prompt": "Which African volcano sent lava towards the city of Goma in 2021?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] }
+      ]
+    }
+  ]
+}

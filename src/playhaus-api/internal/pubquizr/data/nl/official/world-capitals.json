@@ -1,0 +1,136 @@
+{
+  "slug": "world-capitals",
+  "title": "Hoofdsteden van de wereld",
+  "description": "Een rondreis langs de hoofdsteden van de wereld, van de voor de hand liggende tot de vergeten steden.",
+  "publishedAt": "2026-09-01",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Spanje?", "category": "Europa", "answers": [{ "text": "Madrid" }] },
+        { "prompt": "Wat is de hoofdstad van Portugal?", "category": "Europa", "answers": [{ "text": "Lissabon" }] },
+        { "prompt": "Wat is de hoofdstad van Egypte?", "category": "Afrika", "answers": [{ "text": "Cairo" }] },
+        { "prompt": "Wat is de hoofdstad van Argentinie?", "category": "Amerika", "answers": [{ "text": "Buenos Aires" }] },
+        { "prompt": "Wat is de hoofdstad van Canada?", "category": "Amerika", "answers": [{ "text": "Ottawa" }] },
+        { "prompt": "Wat is de hoofdstad van Kenia?", "category": "Afrika", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "Wat is de hoofdstad van Griekenland?", "category": "Europa", "answers": [{ "text": "Athene" }] },
+        { "prompt": "Wat is de hoofdstad van Rusland?", "category": "Europa", "answers": [{ "text": "Moskou" }] },
+        { "prompt": "Wat is de hoofdstad van China?", "category": "Azie", "answers": [{ "text": "Peking", "aliases": ["Beijing"] }] },
+        { "prompt": "Wat is de hoofdstad van India?", "category": "Azie", "answers": [{ "text": "New Delhi", "aliases": ["Delhi"] }] },
+        { "prompt": "Wat is de hoofdstad van Brazilie?", "category": "Amerika", "answers": [{ "text": "Brasilia" }] },
+        { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "category": "Oceanie", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Wat is de hoofdstad van Turkije?", "category": "Azie", "answers": [{ "text": "Ankara" }] },
+        { "prompt": "Wat is de hoofdstad van Marokko?", "category": "Afrika", "answers": [{ "text": "Rabat" }] },
+        { "prompt": "Wat is de hoofdstad van Cuba?", "category": "Amerika", "answers": [{ "text": "Havana" }] },
+        { "prompt": "Welke hoofdstad ligt het noordelijkst van alle hoofdsteden ter wereld?", "category": "Records", "answers": [{ "text": "Reykjavik" }] },
+        { "prompt": "Wat is de hoofdstad van Belgie?", "category": "Europa", "answers": [{ "text": "Brussel" }] },
+        { "prompt": "Wat is de hoofdstad van Polen?", "category": "Europa", "answers": [{ "text": "Warschau" }] },
+        { "prompt": "Wat is de hoofdstad van Duitsland?", "category": "Europa", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Wat is de hoofdstad van de Verenigde Staten?", "category": "Amerika", "answers": [{ "text": "Washington D.C.", "aliases": ["Washington", "Washington DC"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Zwitserland?", "options": [{ "text": "Bern", "correct": true }, { "text": "Zurich" }, { "text": "Geneve" }, { "text": "Bazel" }] },
+        { "prompt": "Wat is de officiele hoofdstad van Tanzania?", "options": [{ "text": "Dodoma", "correct": true }, { "text": "Dar es Salaam" }, { "text": "Arusha" }, { "text": "Mwanza" }] },
+        { "prompt": "Welke stad was tot 1997 de hoofdstad van Kazachstan?", "options": [{ "text": "Almaty", "correct": true }, { "text": "Astana" }, { "text": "Shymkent" }, { "text": "Aktobe" }] },
+        { "prompt": "Welke stad is sinds 2005 de hoofdstad van Myanmar?", "options": [{ "text": "Naypyidaw", "correct": true }, { "text": "Yangon" }, { "text": "Mandalay" }, { "text": "Bago" }] },
+        { "prompt": "Wat is de grondwettelijke hoofdstad van Bolivia?", "options": [{ "text": "Sucre", "correct": true }, { "text": "La Paz" }, { "text": "Santa Cruz de la Sierra" }, { "text": "Cochabamba" }] },
+        { "prompt": "Wat is de hoofdstad van Vietnam?", "options": [{ "text": "Hanoi", "correct": true }, { "text": "Ho Chi Minhstad" }, { "text": "Da Nang" }, { "text": "Hue" }] },
+        { "prompt": "Wat is de hoofdstad van Kameroen?", "options": [{ "text": "Yaounde", "correct": true }, { "text": "Douala" }, { "text": "Garoua" }, { "text": "Bamenda" }] },
+        { "prompt": "Wat is de hoofdstad van Jordanie?", "options": [{ "text": "Amman", "correct": true }, { "text": "Aqaba" }, { "text": "Zarqa" }, { "text": "Irbid" }] },
+        { "prompt": "Welke hoofdstad ligt aan de rivier de Moldau?", "options": [{ "text": "Praag", "correct": true }, { "text": "Bratislava" }, { "text": "Ljubljana" }, { "text": "Zagreb" }] },
+        { "prompt": "Wat is de hoofdstad van Chili?", "options": [{ "text": "Santiago", "correct": true }, { "text": "Valparaiso" }, { "text": "Concepcion" }, { "text": "Antofagasta" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd Brasilia de hoofdstad van Brazilie?", "answer": 1960 },
+        { "prompt": "In welk jaar verhuisde de federale regering van de Verenigde Staten naar Washington D.C.?", "answer": 1800 },
+        { "prompt": "Hoeveel hoofdsteden heeft Zuid-Afrika?", "answer": 3, "unit": "hoofdsteden", "explanation": "Pretoria is de bestuurlijke hoofdstad, Kaapstad de wetgevende en Bloemfontein de rechterlijke." },
+        { "prompt": "La Paz is de hoogstgelegen regeringszetel ter wereld. Op hoeveel meter boven zeeniveau ligt de stad ongeveer?", "answer": 3600, "unit": "meter", "explanation": "Bezoekers hebben er doorgaans een dag of twee voor nodig om aan de ijle lucht te wennen." },
+        { "prompt": "In welk jaar nam Moskou de rol van hoofdstad van Rusland over van Sint-Petersburg?", "answer": 1918 },
+        { "prompt": "Hoeveel kilometer liggen Madrid en Lissabon hemelsbreed ongeveer uit elkaar?", "answer": 500, "unit": "kilometer" },
+        { "prompt": "Hoeveel lidstaten telt de Europese Unie sinds 2020, elk met een eigen hoofdstad?", "answer": 27, "unit": "landen" },
+        { "prompt": "In welk jaar nam Ankara de rol van hoofdstad van Turkije over van Istanboel?", "answer": 1923 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Ambassade",
+        "Parlementsgebouw",
+        "Skyline",
+        "Boulevard",
+        "Kathedraal",
+        "Rondleiding",
+        "Souvenirwinkel",
+        "Stadsplattegrond",
+        "Fontein",
+        "Haven",
+        "Straatnaambord",
+        "Ambassadeur",
+        "Metrostation",
+        "Ringweg",
+        "Taxi",
+        "Vlaggenmast",
+        "Triomfboog",
+        "Presidentieel paleis",
+        "Stadsmuur",
+        "Reisgids",
+        "Botanische tuin",
+        "Nationaal museum",
+        "Centraal station",
+        "Dubbeldekkerbus",
+        "Grenspost",
+        "Hotellobby",
+        "Neonreclame",
+        "Straatverkoper",
+        "Oorlogsmonument",
+        "Nationale vlag"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier hoofdsteden die aan de Donau liggen.", "answers": [{ "text": "Wenen" }, { "text": "Bratislava" }, { "text": "Boedapest" }, { "text": "Belgrado" }] },
+        { "prompt": "Noem de vier hoofdsteden van Georgie, Armenie, Azerbeidzjan en Oezbekistan.", "answers": [{ "text": "Tbilisi" }, { "text": "Jerevan", "aliases": ["Yerevan"] }, { "text": "Bakoe", "aliases": ["Baku"] }, { "text": "Tasjkent", "aliases": ["Tashkent"] }] },
+        { "prompt": "Noem de vier rivieren waaraan Cairo, Bagdad, Washington en Warschau liggen.", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }, { "text": "De Tigris", "aliases": ["Tigris"] }, { "text": "De Potomac", "aliases": ["Potomac"] }, { "text": "De Wisla", "aliases": ["Wisla", "Weichsel"] }] },
+        { "prompt": "Noem de vier landen met Ulaanbaatar, Ouagadougou, Tegucigalpa en Kathmandu als hoofdstad.", "answers": [{ "text": "Mongolie" }, { "text": "Burkina Faso" }, { "text": "Honduras" }, { "text": "Nepal" }] },
+        { "prompt": "Noem de vier hoofdsteden van Guatemala, Nicaragua, Costa Rica en Panama.", "answers": [{ "text": "Guatemala-Stad", "aliases": ["Guatemala Stad"] }, { "text": "Managua" }, { "text": "San Jose" }, { "text": "Panama-Stad", "aliases": ["Panama Stad"] }] },
+        { "prompt": "Noem de vier hoofdsteden van Libanon, Syrie, Saoedi-Arabie en Iran.", "answers": [{ "text": "Beiroet" }, { "text": "Damascus" }, { "text": "Riyad", "aliases": ["Riyadh"] }, { "text": "Teheran" }] },
+        { "prompt": "Noem de vier hoofdsteden van de eilandstaten Ierland, Malta, Cyprus en Madagaskar.", "answers": [{ "text": "Dublin" }, { "text": "Valletta" }, { "text": "Nicosia" }, { "text": "Antananarivo" }] },
+        { "prompt": "Noem de vier hoofdsteden van Thailand, Zuid-Korea, Maleisie en de Filipijnen.", "answers": [{ "text": "Bangkok" }, { "text": "Seoel", "aliases": ["Seoul"] }, { "text": "Kuala Lumpur", "aliases": ["KL"] }, { "text": "Manilla", "aliases": ["Manila"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Zweden?", "difficulty": "easy", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Wat is de hoofdstad van Denemarken?", "difficulty": "easy", "answers": [{ "text": "Kopenhagen" }] },
+        { "prompt": "Wat is de hoofdstad van Mexico?", "difficulty": "easy", "answers": [{ "text": "Mexico-Stad", "aliases": ["Mexico Stad", "Mexico City"] }] },
+        { "prompt": "Wat is de hoofdstad van Peru?", "difficulty": "easy", "answers": [{ "text": "Lima" }] },
+        { "prompt": "Wat is de hoofdstad van Oekraine?", "difficulty": "easy", "answers": [{ "text": "Kyiv", "aliases": ["Kiev"] }] },
+        { "prompt": "Welke stad nam in 1991 de rol van hoofdstad van Nigeria over van Lagos?", "difficulty": "hard", "answers": [{ "text": "Abuja" }] },
+        { "prompt": "Wat is de hoofdstad van Bhutan?", "difficulty": "hard", "answers": [{ "text": "Thimphu" }] },
+        { "prompt": "Wat is de hoofdstad van Ghana?", "difficulty": "hard", "answers": [{ "text": "Accra" }] },
+        { "prompt": "Wat is de hoofdstad van Slovenie?", "difficulty": "hard", "answers": [{ "text": "Ljubljana" }] },
+        { "prompt": "Welke stad is de hoofdstad van Ethiopie en de zetel van de Afrikaanse Unie?", "difficulty": "hard", "answers": [{ "text": "Addis Abeba" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Kirgizie?", "answers": [{ "text": "Bisjkek", "aliases": ["Bishkek"] }] },
+        { "prompt": "Welke hoofdstad van Eritrea staat bekend om haar Italiaanse modernistische architectuur?", "answers": [{ "text": "Asmara" }] },
+        { "prompt": "Welke hoofdstad van Laos ligt aan de Mekong?", "answers": [{ "text": "Vientiane" }] },
+        { "prompt": "Welke stad is de regeringszetel van Papoea-Nieuw-Guinea?", "answers": [{ "text": "Port Moresby" }] },
+        { "prompt": "Wat is de hoofdstad van het vorstendom Liechtenstein?", "answers": [{ "text": "Vaduz" }] },
+        { "prompt": "Welke speciaal gebouwde stad werd in 1970 de hoofdstad van Belize?", "answers": [{ "text": "Belmopan" }] },
+        { "prompt": "Wat is de hoofdstad van Moldavie?", "answers": [{ "text": "Chisinau" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "pizza",
+  "title": "Pizza",
+  "description": "A whole pub quiz about pizza: Naples, the oven, the toppings and the delivery box.",
+  "publishedAt": "2026-09-17",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which country was the pizza invented?", "category": "Origins", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which Italian city is seen as the cradle of the pizza?", "category": "Origins", "answers": [{ "text": "Naples", "aliases": ["Napoli"] }] },
+        { "prompt": "Which pizza is folded double into a half moon and closed?", "category": "Varieties", "answers": [{ "text": "The calzone", "aliases": ["Calzone"] }] },
+        { "prompt": "Which tropical fruit on a pizza divides the world?", "category": "Toppings", "answers": [{ "text": "Pineapple" }] },
+        { "prompt": "Which spicy sliced sausage is the best known American topping?", "category": "Toppings", "answers": [{ "text": "Pepperoni" }] },
+        { "prompt": "Which small salty fish is a classic pizza topping?", "category": "Toppings", "answers": [{ "text": "Anchovies", "aliases": ["Anchovy"] }] },
+        { "prompt": "What does the Italian quattro formaggi mean?", "category": "Italian", "answers": [{ "text": "Four cheeses", "aliases": ["4 cheeses"] }] },
+        { "prompt": "Which peppery green leaf is scattered over a pizza after baking?", "category": "Toppings", "answers": [{ "text": "Rocket", "aliases": ["Arugula", "Rucola"] }] },
+        { "prompt": "Which hard Italian cheese from the area around Parma is grated over a pizza?", "category": "Cheese", "answers": [{ "text": "Parmesan", "aliases": ["Parmigiano", "Parmigiano Reggiano"] }] },
+        { "prompt": "Which blue veined Italian cheese turns up on a quattro formaggi?", "category": "Cheese", "answers": [{ "text": "Gorgonzola" }] },
+        { "prompt": "What is burned to heat a traditional Neapolitan pizza oven?", "category": "Making it", "answers": [{ "text": "Wood", "aliases": ["Logs", "Firewood"] }] },
+        { "prompt": "Which flat Italian bread with olive oil and salt is the pizza's closest relative?", "category": "Italian", "answers": [{ "text": "Focaccia" }] },
+        { "prompt": "Which pizza chain carries a domino tile in its logo?", "category": "Chains", "answers": [{ "text": "Domino's", "aliases": ["Dominos", "Domino's Pizza"] }] },
+        { "prompt": "Which pizza chain carries a red roof in its logo?", "category": "Chains", "answers": [{ "text": "Pizza Hut" }] },
+        { "prompt": "In which American city was the deep dish pizza born?", "category": "Around the world", "answers": [{ "text": "Chicago" }] },
+        { "prompt": "Which country turned pizza into worldwide fast food after the Second World War?", "category": "Around the world", "answers": [{ "text": "The United States", "aliases": ["United States", "America", "USA"] }] },
+        { "prompt": "Which vegetable is cut into rings and is one of the most common pizza toppings?", "category": "Toppings", "answers": [{ "text": "Onion", "aliases": ["Onions"] }] },
+        { "prompt": "The three colours of which flag are said to be echoed by the tomato, the mozzarella and the basil of a Margherita?", "category": "History", "answers": [{ "text": "The Italian flag", "aliases": ["Italian flag", "Italy's flag"] }] },
+        { "prompt": "What is the flat cardboard container a delivered pizza arrives in called?", "category": "Delivery", "answers": [{ "text": "A pizza box", "aliases": ["Pizza box"] }] },
+        { "prompt": "What does frutti di mare mean on a pizza menu?", "category": "Italian", "answers": [{ "text": "Seafood", "aliases": ["Fruits of the sea", "Shellfish and fish"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did UNESCO add the art of the Neapolitan pizzaiuolo to its intangible heritage list?", "options": [{ "text": "2011" }, { "text": "2014" }, { "text": "2017", "correct": true }, { "text": "2020" }] },
+        { "prompt": "Which grade of Italian flour is traditionally used for Neapolitan pizza dough?", "options": [{ "text": "Tipo 00", "correct": true }, { "text": "Tipo 0" }, { "text": "Tipo 1" }, { "text": "Tipo 2" }] },
+        { "prompt": "At roughly what temperature in degrees Celsius does a Neapolitan wood oven bake a pizza?", "options": [{ "text": "250" }, { "text": "350" }, { "text": "450", "correct": true }, { "text": "550" }] },
+        { "prompt": "Which classic Neapolitan pizza carries no cheese at all?", "options": [{ "text": "The capricciosa" }, { "text": "The marinara", "correct": true }, { "text": "The margherita" }, { "text": "The quattro stagioni" }] },
+        { "prompt": "Which topping makes a pizza a diavola?", "options": [{ "text": "Tuna" }, { "text": "Sweetcorn" }, { "text": "Aubergine" }, { "text": "Spicy salami", "correct": true }] },
+        { "prompt": "Naples is the capital of which Italian region?", "options": [{ "text": "Campania", "correct": true }, { "text": "Lazio" }, { "text": "Puglia" }, { "text": "Calabria" }] },
+        { "prompt": "In which Italian city was pizza al taglio, pizza by the slice sold by weight, born?", "options": [{ "text": "Florence" }, { "text": "Turin" }, { "text": "Rome", "correct": true }, { "text": "Palermo" }] },
+        { "prompt": "Mozzarella di bufala is made from the milk of which animal?", "options": [{ "text": "The cow" }, { "text": "The water buffalo", "correct": true }, { "text": "The goat" }, { "text": "The sheep" }] },
+        { "prompt": "Which tomato variety, grown in the shadow of Vesuvius, belongs on a true Neapolitan pizza?", "options": [{ "text": "Datterino" }, { "text": "Cuore di bue" }, { "text": "Roma" }, { "text": "San Marzano", "correct": true }] },
+        { "prompt": "Besides buffalo mozzarella, which cow's milk mozzarella may go on a true pizza napoletana?", "options": [{ "text": "Fior di latte", "correct": true }, { "text": "Burrata" }, { "text": "Scamorza" }, { "text": "Stracchino" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year did Antica Pizzeria Port'Alba in Naples, called the world's first pizzeria, open its doors?", "answer": 1830, "explanation": "The place had been selling pizza to passers-by from a stall since 1738; in 1830 it got tables and became a restaurant." },
+        { "prompt": "In which year was the pizza Margherita made for Queen Margherita of Savoy?", "answer": 1889 },
+        { "prompt": "How many centimetres across may a true Neapolitan pizza be at most?", "answer": 35, "unit": "centimetres", "explanation": "The same rulebook keeps the raised rim under two centimetres." },
+        { "prompt": "How many seconds does a Neapolitan pizza need in the wood fired oven?", "answer": 90, "unit": "seconds" },
+        { "prompt": "In which year did the first Pizza Hut open in Wichita, Kansas?", "answer": 1958 },
+        { "prompt": "In which year was the pizza Hawaii invented in Canada?", "answer": 1962 },
+        { "prompt": "Into how many slices is a large pizza usually cut?", "answer": 8, "unit": "slices" },
+        { "prompt": "How many degrees Celsius does an ordinary home oven reach on its highest setting?", "answer": 250, "unit": "degrees" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Pizza oven",
+        "Pizza stone",
+        "Delivery scooter",
+        "Delivery driver",
+        "Insulated bag",
+        "Crust",
+        "Ricotta",
+        "Bell pepper",
+        "Sweetcorn",
+        "Tuna",
+        "Aubergine",
+        "Courgette",
+        "Chilli pepper",
+        "Bacon",
+        "Chicken",
+        "Napkin",
+        "Apron",
+        "Oven glove",
+        "Firewood",
+        "Frozen pizza",
+        "Freezer",
+        "Takeaway menu",
+        "Espresso",
+        "Waiter",
+        "Kitchen timer",
+        "Pepper mill",
+        "Plate",
+        "Diavola",
+        "Quattro stagioni",
+        "Bruschetta"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four things that go on a pizza Margherita, apart from the base.", "answers": [{ "text": "Tomato", "aliases": ["Tomato sauce", "Tomatoes"] }, { "text": "Mozzarella" }, { "text": "Basil" }, { "text": "Olive oil", "aliases": ["Oil"] }] },
+        { "prompt": "Name the four ingredients of plain pizza dough.", "answers": [{ "text": "Flour" }, { "text": "Water" }, { "text": "Salt" }, { "text": "Yeast" }] },
+        { "prompt": "Name the four toppings of a pizza capricciosa, apart from the tomato and the cheese.", "answers": [{ "text": "Ham", "aliases": ["Prosciutto"] }, { "text": "Mushrooms", "aliases": ["Mushroom"] }, { "text": "Artichokes", "aliases": ["Artichoke", "Artichoke hearts"] }, { "text": "Olives", "aliases": ["Olive"] }] },
+        { "prompt": "Name the four seasons that give the pizza quattro stagioni its name.", "answers": [{ "text": "Spring" }, { "text": "Summer" }, { "text": "Autumn", "aliases": ["Fall"] }, { "text": "Winter" }] },
+        { "prompt": "Name the four steps of making a pizza, from flour to table.", "answers": [{ "text": "Kneading", "aliases": ["Knead", "Mixing the dough"] }, { "text": "Rising", "aliases": ["Proving", "Resting"] }, { "text": "Topping", "aliases": ["Dressing it", "Putting the toppings on"] }, { "text": "Baking", "aliases": ["Bake", "Into the oven"] }] },
+        { "prompt": "Name the four Italian words for these: the pizza maker, the pizza shop, the oven and the raised rim of the crust.", "answers": [{ "text": "Pizzaiolo", "aliases": ["Pizzaiuolo"] }, { "text": "Pizzeria" }, { "text": "Forno" }, { "text": "Cornicione" }] },
+        { "prompt": "Name the four tools you need to make a pizza at home.", "answers": [{ "text": "Mixing bowl", "aliases": ["Bowl"] }, { "text": "Rolling pin" }, { "text": "Baking tray", "aliases": ["Oven tray", "Baking sheet"] }, { "text": "Pizza cutter", "aliases": ["Pizza wheel", "Cutting wheel"] }] },
+        { "prompt": "Name the four herbs and spices, apart from basil, that most often end up on a pizza.", "answers": [{ "text": "Oregano" }, { "text": "Garlic" }, { "text": "Chilli flakes", "aliases": ["Chilli", "Pepper flakes"] }, { "text": "Rosemary" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which pizza with tomato, mozzarella and basil is the best known of all?", "difficulty": "easy", "answers": [{ "text": "The margherita", "aliases": ["Margherita"] }] },
+        { "prompt": "Which pizza carries ham and pineapple?", "difficulty": "easy", "answers": [{ "text": "The Hawaii", "aliases": ["Hawaii", "Hawaiian"] }] },
+        { "prompt": "What shape is a pizza traditionally?", "difficulty": "easy", "answers": [{ "text": "Round" }] },
+        { "prompt": "What do you call one piece cut out of a whole pizza?", "difficulty": "easy", "answers": [{ "text": "A slice", "aliases": ["Slice", "A wedge"] }] },
+        { "prompt": "What is the kneaded mixture of flour and water that a pizza is built on called?", "difficulty": "easy", "answers": [{ "text": "Dough", "aliases": ["The dough", "Pizza dough"] }] },
+        { "prompt": "What is the flat shovel used to slide a pizza into and out of the oven called?", "difficulty": "hard", "answers": [{ "text": "A peel", "aliases": ["Peel", "Pizza peel", "Pizza shovel"] }] },
+        { "prompt": "What is the little three legged plastic table in the middle of a delivered pizza called?", "difficulty": "hard", "answers": [{ "text": "A pizza saver", "aliases": ["Pizza saver", "Pizza table"] }] },
+        { "prompt": "Which Naples association lays down the rules for a true Neapolitan pizza?", "difficulty": "hard", "answers": [{ "text": "Associazione Verace Pizza Napoletana", "aliases": ["AVPN", "True Neapolitan Pizza Association"] }] },
+        { "prompt": "Under which name did Domino's Pizza open its very first shop?", "difficulty": "hard", "answers": [{ "text": "DomiNick's", "aliases": ["Dominick's", "DomiNicks"] }] },
+        { "prompt": "Which German company sells the frozen pizza brand Ristorante?", "difficulty": "hard", "answers": [{ "text": "Dr. Oetker", "aliases": ["Oetker", "Dr Oetker"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "In which Canadian province was the pizza Hawaii invented?", "answers": [{ "text": "Ontario" }] },
+        { "prompt": "Which Greek born Canadian cook put pineapple on a pizza for the first time?", "answers": [{ "text": "Sam Panopoulos", "aliases": ["Panopoulos"] }] },
+        { "prompt": "Which Neapolitan pizza maker is said to have baked the first Margherita for the queen?", "answers": [{ "text": "Raffaele Esposito", "aliases": ["Esposito"] }] },
+        { "prompt": "Which Naples restaurant, opened in 1830, is called the oldest pizzeria in the world?", "answers": [{ "text": "Antica Pizzeria Port'Alba", "aliases": ["Port'Alba", "Pizzeria Port'Alba"] }] },
+        { "prompt": "Since 2010 the pizza napoletana has carried a European protected label. What is that label called in English?", "answers": [{ "text": "Traditional Speciality Guaranteed", "aliases": ["TSG", "STG"] }] },
+        { "prompt": "Which Dutch pizza delivery chain, founded in Amsterdam, is named after an American city?", "answers": [{ "text": "New York Pizza" }] },
+        { "prompt": "What is the deep fried pizza sold in the streets of Naples called?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] }
+      ]
+    }
+  ]
+}

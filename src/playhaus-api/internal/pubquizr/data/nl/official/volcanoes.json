@@ -1,0 +1,136 @@
+{
+  "slug": "volcanoes",
+  "title": "Vulkanen",
+  "description": "Een hele pubquiz over vulkanen: uitbarstingen, lava, kraters en de mensen die ze bestuderen.",
+  "publishedAt": "2026-08-25",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Italiaanse vulkaan barstte in het jaar 79 uit en bedolf twee Romeinse steden?", "category": "Beroemde uitbarstingen", "answers": [{ "text": "De Vesuvius", "aliases": ["Vesuvius"] }] },
+        { "prompt": "Welke vulkaan op het eiland Sicilie is de hoogste actieve vulkaan van Europa?", "category": "Europa", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }] },
+        { "prompt": "Hoe heet gesmolten gesteente zolang het nog onder de grond zit?", "category": "Vaktaal", "answers": [{ "text": "Magma" }] },
+        { "prompt": "Welk Grieks eiland met zijn witte huizen is eigenlijk de rand van een ondergelopen vulkaankrater?", "category": "Europa", "answers": [{ "text": "Santorini", "aliases": ["Thera"] }] },
+        { "prompt": "De aswolk van welke IJslandse vulkaan legde in 2010 het vliegverkeer boven Europa plat?", "category": "IJsland", "answers": [{ "text": "Eyjafjallajokull", "aliases": ["Eyjafjallajoekull"] }] },
+        { "prompt": "Hoe heet de komvormige holte boven in een vulkaan?", "category": "Bouw van een vulkaan", "answers": [{ "text": "De krater", "aliases": ["Krater"] }] },
+        { "prompt": "Welke hoefijzervormige zone rond de Stille Oceaan telt de meeste actieve vulkanen ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Ring van Vuur", "aliases": ["Ring van Vuur", "Pacific Ring of Fire"] }] },
+        { "prompt": "Welke vulkaan is de hoogste berg van Japan?", "category": "Azie", "answers": [{ "text": "De Fuji", "aliases": ["Fuji", "Mount Fuji", "Fujiyama"] }] },
+        { "prompt": "Welke vulkaan in de Amerikaanse staat Washington barstte in mei 1980 hevig uit?", "category": "Beroemde uitbarstingen", "answers": [{ "text": "Mount St. Helens", "aliases": ["St. Helens", "Mount Saint Helens"] }] },
+        { "prompt": "Welk vulkanisch gesteente is zo licht dat het op water blijft drijven?", "category": "Gesteenten", "answers": [{ "text": "Puimsteen", "aliases": ["Puim"] }] },
+        { "prompt": "Hoe heet een wetenschapper die vulkanen bestudeert?", "category": "Wetenschap", "answers": [{ "text": "Een vulkanoloog", "aliases": ["Vulkanoloog"] }] },
+        { "prompt": "Hoe heet de razendsnelle wolk van gloeiend gas en gesteente die langs de flank van een vulkaan naar beneden stort?", "category": "Gevaren", "answers": [{ "text": "Een pyroclastische stroom", "aliases": ["Pyroclastische stroom", "Gloedwolk"] }] },
+        { "prompt": "Welke vulkaan is de hoogste berg van Afrika?", "category": "Afrika", "answers": [{ "text": "De Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
+        { "prompt": "Welk woord beschrijft een vulkaan die al lang stil is maar opnieuw kan uitbarsten?", "category": "Vaktaal", "answers": [{ "text": "Slapend", "aliases": ["Sluimerend", "Dormant"] }] },
+        { "prompt": "Welke Indonesische vulkaan barstte in 1883 uit met een knal die duizenden kilometers verderop te horen was?", "category": "Beroemde uitbarstingen", "answers": [{ "text": "Krakatau", "aliases": ["Krakatoa"] }] },
+        { "prompt": "Welke vulkaan op het Caribische eiland Saba is het hoogste punt van het Koninkrijk der Nederlanden?", "category": "Nederland", "answers": [{ "text": "Mount Scenery", "aliases": ["Scenery"] }] },
+        { "prompt": "Welk zwart vulkanisch glas ontstaat als lava heel snel afkoelt?", "category": "Gesteenten", "answers": [{ "text": "Obsidiaan" }] },
+        { "prompt": "Welke kleine Italiaanse eilandvulkaan, bijgenaamd de vuurtoren van de Middellandse Zee, barst bijna onophoudelijk uit?", "category": "Europa", "answers": [{ "text": "Stromboli" }] },
+        { "prompt": "Hoe heet de modderstroom van as, gesteente en water die na een uitbarsting van een vulkaan af raast?", "category": "Gevaren", "answers": [{ "text": "Een lahar", "aliases": ["Lahar", "Modderstroom"] }] },
+        { "prompt": "Hoe heet de grootste vulkaan van het zonnestelsel, die op Mars staat?", "category": "Buiten de aarde", "answers": [{ "text": "Olympus Mons" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke schaal wordt gebruikt om de kracht van een vulkaanuitbarsting te meten?", "options": [{ "text": "De Vulkanische Explosiviteitsindex", "correct": true }, { "text": "De schaal van Richter" }, { "text": "De schaal van Mercalli" }, { "text": "De schaal van Beaufort" }] },
+        { "prompt": "De uitbarsting van welke vulkaan zorgde in 1815 voor het jaar zonder zomer?", "options": [{ "text": "Tambora", "correct": true }, { "text": "Krakatau" }, { "text": "Cotopaxi" }, { "text": "Vesuvius" }] },
+        { "prompt": "Welke vulkaan op de Filipijnen zorgde in 1991 voor de op een na grootste uitbarsting van de twintigste eeuw?", "options": [{ "text": "De Pinatubo", "correct": true }, { "text": "De Mayon" }, { "text": "De Taal" }, { "text": "De Apo" }] },
+        { "prompt": "Hoe heet een steile vulkaan die is opgebouwd uit afwisselende lagen lava en as?", "options": [{ "text": "Een stratovulkaan", "correct": true }, { "text": "Een schildvulkaan" }, { "text": "Een sintelkegel" }, { "text": "Een lavadome" }] },
+        { "prompt": "Welke vulkaan is de hoogste berg van Spanje?", "options": [{ "text": "De Teide", "correct": true }, { "text": "De Cumbre Vieja" }, { "text": "De Teneguia" }, { "text": "De Timanfaya" }] },
+        { "prompt": "Het woord vulkaan komt van de naam van welke Romeinse god?", "options": [{ "text": "Vulcanus", "correct": true }, { "text": "Mars" }, { "text": "Neptunus" }, { "text": "Jupiter" }] },
+        { "prompt": "Onder welk Amerikaans nationaal park ligt een supervulkaankrater?", "options": [{ "text": "Yellowstone", "correct": true }, { "text": "Yosemite" }, { "text": "Grand Canyon" }, { "text": "Everglades" }] },
+        { "prompt": "Bij welke Portugese eilandengroep midden in de Atlantische Oceaan hoort de Pico, de hoogste berg van het land?", "options": [{ "text": "De Azoren", "correct": true }, { "text": "Madeira" }, { "text": "De Canarische Eilanden" }, { "text": "Kaapverdie" }] },
+        { "prompt": "Op welk Caribisch eiland bedolf de vulkaan Soufriere Hills in de jaren negentig de hoofdstad Plymouth?", "options": [{ "text": "Montserrat", "correct": true }, { "text": "Saint Lucia" }, { "text": "Dominica" }, { "text": "Martinique" }] },
+        { "prompt": "Hoe heet de grote inzakking die ontstaat als een vulkaan in zijn leeggelopen magmakamer stort?", "options": [{ "text": "Een caldera", "correct": true }, { "text": "Een krater" }, { "text": "Een schoorsteen" }, { "text": "Een spleet" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Fuji?", "answer": 3776, "unit": "meter" },
+        { "prompt": "In welk jaar begon de uitbarsting van de Laki-spleet op IJsland?", "answer": 1783 },
+        { "prompt": "Hoeveel graden Celsius kan stromende basaltlava worden?", "answer": 1200, "unit": "graden Celsius", "explanation": "Heet genoeg om koper te smelten, ongeveer vijf keer zo heet als een oven thuis." },
+        { "prompt": "Hoeveel kilometer hoog rijst Olympus Mons op Mars ongeveer op?", "answer": 22, "unit": "kilometer", "explanation": "Ongeveer tweeenhalf keer de hoogte van de Mount Everest." },
+        { "prompt": "In welk jaar barstte de Vesuvius voor het laatst uit?", "answer": 1944 },
+        { "prompt": "Hoeveel meter hoogte verloor Mount St. Helens bij de uitbarsting van 1980?", "answer": 400, "unit": "meter" },
+        { "prompt": "Hoeveel meter hoog is de Ojos del Salado, de hoogste vulkaan op aarde?", "answer": 6893, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Ring van Vuur ongeveer?", "answer": 40000, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Aswolk",
+        "Lavalamp",
+        "Lavastroom",
+        "Lavatunnel",
+        "Lavafontein",
+        "Kratermeer",
+        "Kraterrand",
+        "Sintelkegel",
+        "Schildvulkaan",
+        "Magmakamer",
+        "Vulkaanopening",
+        "Spleet",
+        "Waarschuwingssirene",
+        "Evacuatie",
+        "Gesmolten gesteente",
+        "Geothermische centrale",
+        "Zwart zandstrand",
+        "Zwavelkristallen",
+        "Beschermpak",
+        "Vulkanisch eiland",
+        "Tektonische plaat",
+        "Stoom",
+        "Vulkanische grond",
+        "Uitbarsting",
+        "Gesteentemonster",
+        "Tsunami",
+        "Seismometer",
+        "Reddingshelikopter",
+        "Warmtebeeldcamera",
+        "Vulkaanobservatorium"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier lagen van de aarde, van buiten naar binnen.", "answers": [{ "text": "De aardkorst", "aliases": ["Aardkorst", "Korst"] }, { "text": "De mantel", "aliases": ["Mantel", "Aardmantel"] }, { "text": "De buitenkern", "aliases": ["Buitenkern"] }, { "text": "De binnenkern", "aliases": ["Binnenkern"] }] },
+        { "prompt": "Noem de vier gassen die vulkanen in de grootste hoeveelheden uitstoten.", "answers": [{ "text": "Waterdamp", "aliases": ["Stoom", "Water"] }, { "text": "Koolstofdioxide", "aliases": ["CO2", "Koolzuurgas"] }, { "text": "Zwaveldioxide", "aliases": ["SO2"] }, { "text": "Waterstofsulfide", "aliases": ["H2S", "Zwavelwaterstof"] }] },
+        { "prompt": "Noem de vier ingredienten van de knutselvulkaan die kinderen op school maken.", "answers": [{ "text": "Baksoda", "aliases": ["Natriumbicarbonaat", "Zuiveringszout", "Bakpoeder"] }, { "text": "Azijn" }, { "text": "Afwasmiddel", "aliases": ["Zeep"] }, { "text": "Levensmiddelenkleurstof", "aliases": ["Kleurstof", "Rode kleurstof"] }] },
+        { "prompt": "Noem de vier vulkanische gesteenten: het donkere gesteente van de oceaanbodem, het grijze gesteente dat naar een Zuid-Amerikaans gebergte is genoemd, het lichte gesteente vol silica, en het gesteente dat uit samengebakken as ontstaat.", "answers": [{ "text": "Basalt" }, { "text": "Andesiet" }, { "text": "Ryoliet", "aliases": ["Rhyoliet"] }, { "text": "Tufsteen", "aliases": ["Tuf"] }] },
+        { "prompt": "Noem de vier landen waarin de vulkanen Popocatepetl, Cotopaxi, Teide en Fuji staan.", "answers": [{ "text": "Mexico" }, { "text": "Ecuador" }, { "text": "Spanje" }, { "text": "Japan" }] },
+        { "prompt": "Noem de vier verschijnselen die je in een geothermisch gebied aantreft.", "answers": [{ "text": "Een geiser", "aliases": ["Geiser"] }, { "text": "Een warmwaterbron", "aliases": ["Warmwaterbron", "Hete bron"] }, { "text": "Een modderpoel", "aliases": ["Modderpoel", "Kokende modder"] }, { "text": "Een fumarole", "aliases": ["Fumarole", "Stoomopening"] }] },
+        { "prompt": "Noem de vier steden die door vulkanen zijn verwoest: twee Romeinse steden bedolven in het jaar 79, de stad op Martinique die in 1902 werd weggevaagd, en het Colombiaanse stadje dat in 1985 door een modderstroom werd verzwolgen.", "answers": [{ "text": "Pompeii" }, { "text": "Herculaneum", "aliases": ["Ercolano"] }, { "text": "Saint-Pierre", "aliases": ["St. Pierre"] }, { "text": "Armero" }] },
+        { "prompt": "Noem de vier soorten brokstukken die een vulkaan uitspuwt: het fijnste stof, steentjes ter grootte van erwten tot walnoten, ronde klompen gesmolten gesteente, en hoekige brokken vast gesteente.", "answers": [{ "text": "As", "aliases": ["Vulkanische as"] }, { "text": "Lapilli" }, { "text": "Vulkanische bommen", "aliases": ["Bommen"] }, { "text": "Blokken" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet gesmolten gesteente zodra het aan de oppervlakte naar buiten stroomt?", "difficulty": "easy", "answers": [{ "text": "Lava" }] },
+        { "prompt": "Welke Italiaanse stad ligt aan de voet van de Vesuvius?", "difficulty": "easy", "answers": [{ "text": "Napels", "aliases": ["Napoli"] }] },
+        { "prompt": "Welke oceaan wordt omringd door de Ring van Vuur?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan", "Pacific"] }] },
+        { "prompt": "Welk woord beschrijft een vulkaan die nooit meer zal uitbarsten?", "difficulty": "easy", "answers": [{ "text": "Uitgedoofd", "aliases": ["Dood", "Extinct"] }] },
+        { "prompt": "Welk eilandland in het noorden van de Atlantische Oceaan staat bekend om zijn vulkanen, geisers en warmwaterbronnen?", "difficulty": "easy", "answers": [{ "text": "IJsland" }] },
+        { "prompt": "Welke vulkaan op Antarctica heeft een permanent lavameer in zijn krater?", "difficulty": "hard", "answers": [{ "text": "Mount Erebus", "aliases": ["Erebus"] }] },
+        { "prompt": "Welk vulkanisch eiland rees in 1963 voor de kust van IJsland uit zee op en is nu een beschermd natuurgebied?", "difficulty": "hard", "answers": [{ "text": "Surtsey" }] },
+        { "prompt": "Welke vulkaan op het Spaanse eiland La Palma barstte in 2021 drie maanden lang uit?", "difficulty": "hard", "answers": [{ "text": "Cumbre Vieja", "aliases": ["Tajogaite"] }] },
+        { "prompt": "Hoe heet een vulkaan met een vlakke top die onder een ijskap is uitgebarsten?", "difficulty": "hard", "answers": [{ "text": "Een tuya", "aliases": ["Tuya", "Tafelberg"] }] },
+        { "prompt": "Welke Indonesische vulkaan staat bekend als het kind van Krakatau?", "difficulty": "hard", "answers": [{ "text": "Anak Krakatau", "aliases": ["Anak Krakatoa"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Tanzaniaanse vulkaan spuwt een bijzondere carbonatietlava uit, de koudste lava op aarde?", "answers": [{ "text": "Ol Doinyo Lengai", "aliases": ["Oldoinyo Lengai"] }] },
+        { "prompt": "Hoe heet het grote vulkanische calderagebied direct ten westen van Napels?", "answers": [{ "text": "Campi Flegrei", "aliases": ["Flegreische Velden", "Phlegreische Velden"] }] },
+        { "prompt": "Welke Duitse vulkanische streek ten westen van de Rijn is bezaaid met maren en kratermeren?", "answers": [{ "text": "De Eifel", "aliases": ["Eifel"] }] },
+        { "prompt": "Wat is het Hawaiiaanse woord voor gladde, touwachtige lava?", "answers": [{ "text": "Pahoehoe" }] },
+        { "prompt": "Hoe heet een onderzeese vulkaan die de zeespiegel niet haalt?", "answers": [{ "text": "Een zeeberg", "aliases": ["Zeeberg", "Seamount"] }] },
+        { "prompt": "Welke Peruaanse vulkaan zorgde in 1600 voor de grootste uitbarsting in Zuid-Amerika in historische tijden?", "answers": [{ "text": "Huaynaputina" }] },
+        { "prompt": "Welke Afrikaanse vulkaan stuurde in 2021 lava richting de stad Goma?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] }
+      ]
+    }
+  ]
+}

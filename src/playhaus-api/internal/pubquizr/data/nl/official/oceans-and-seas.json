@@ -1,0 +1,136 @@
+{
+  "slug": "oceans-and-seas",
+  "title": "Oceanen en zeeen",
+  "description": "Een quiz over het water van de wereld: diepten en troggen, stromingen en getijden, zeestraten en de mensen die ze overstaken.",
+  "publishedAt": "2026-08-24",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de grootste oceaan op aarde?", "category": "Oceanen", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan", "Pacific"] }] },
+        { "prompt": "Welke bijna volledig door land omsloten zee scheidt Zuid-Europa van Noord-Afrika?", "category": "Zeeen", "answers": [{ "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }] },
+        { "prompt": "Welke binnenzee tussen Israel en Jordanie is zo zout dat je er vanzelf op blijft drijven?", "category": "Zeeen", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Welke zee ligt tussen Zweden, Polen en de Baltische staten?", "category": "Zeeen", "answers": [{ "text": "De Oostzee", "aliases": ["Oostzee", "Baltische Zee"] }] },
+        { "prompt": "Hoe heet het diepste bekende punt van de zee?", "category": "Diepten", "answers": [{ "text": "De Challengerdiepte", "aliases": ["Challengerdiepte", "Challenger Deep", "Challengerdiep"] }] },
+        { "prompt": "Welke warme zeestroom voert water van de Golf van Mexico naar West-Europa?", "category": "Zeestromen", "answers": [{ "text": "De Golfstroom", "aliases": ["Golfstroom"] }] },
+        { "prompt": "De zwaartekracht van welk hemellichaam veroorzaakt voor het grootste deel de getijden?", "category": "Getijden", "answers": [{ "text": "De maan", "aliases": ["Maan"] }] },
+        { "prompt": "Hoe heet het extra hoge tij bij volle maan en nieuwe maan?", "category": "Getijden", "answers": [{ "text": "Springtij", "aliases": ["Springvloed", "Spring tij"] }] },
+        { "prompt": "Welke Portugese zeevaarder voer om Afrika heen en bereikte in 1498 India?", "category": "Ontdekkingsreizen", "answers": [{ "text": "Vasco da Gama", "aliases": ["Da Gama"] }] },
+        { "prompt": "Welke zeestraat scheidt Spanje van Marokko?", "category": "Zeestraten", "answers": [{ "text": "De Straat van Gibraltar", "aliases": ["Straat van Gibraltar", "Gibraltar"] }] },
+        { "prompt": "Welk Egyptisch kanaal laat schepen van Europa naar Azie varen zonder om Afrika heen te gaan?", "category": "Kanalen", "answers": [{ "text": "Het Suezkanaal", "aliases": ["Suezkanaal", "Suez"] }] },
+        { "prompt": "Welke Nederlandse dijk, in 1932 voltooid, sloot de Zuiderzee af?", "category": "Nederland", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Hoe heet de wetenschap die de zee bestudeert?", "category": "Wetenschap", "answers": [{ "text": "Oceanografie", "aliases": ["Oceanologie", "Zeewetenschap"] }] },
+        { "prompt": "Welke zee in de Atlantische Oceaan heeft helemaal geen kust en wordt alleen door stromingen begrensd?", "category": "Zeeen", "answers": [{ "text": "De Sargassozee", "aliases": ["Sargassozee", "Sargasso"] }] },
+        { "prompt": "Welk water is het grootste meer ter wereld, ook al heet het een zee?", "category": "Zeeen", "answers": [{ "text": "De Kaspische Zee", "aliases": ["Kaspische Zee"] }] },
+        { "prompt": "Hoe heet een enorme golf die ontstaat door een zeebeving?", "category": "Golven", "answers": [{ "text": "Een tsunami", "aliases": ["Tsunami", "Vloedgolf"] }] },
+        { "prompt": "Welke zee spoelt langs de kusten van Nederland, Denemarken en Oost-Engeland?", "category": "Zeeen", "answers": [{ "text": "De Noordzee", "aliases": ["Noordzee"] }] },
+        { "prompt": "Hoe heet een lange, smalle zeearm die door een gletsjer is uitgesleten, zoals je die in Noorwegen vindt?", "category": "Kusten", "answers": [{ "text": "Een fjord", "aliases": ["Fjord"] }] },
+        { "prompt": "Welke Noor stak in 1947 op het vlot Kon-Tiki de Stille Oceaan over?", "category": "Ontdekkingsreizen", "answers": [{ "text": "Thor Heyerdahl", "aliases": ["Heyerdahl"] }] },
+        { "prompt": "Hoe noem je water dat deels zoet en deels zout is, zoals waar een rivier in zee stroomt?", "category": "Water", "answers": [{ "text": "Brak water", "aliases": ["Brak"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welke oceaantrog ligt het diepste punt van de zee?", "options": [{ "text": "De Marianentrog", "correct": true }, { "text": "De Tongatrog" }, { "text": "De Javatrog" }, { "text": "De Puerto Ricotrog" }] },
+        { "prompt": "Welk deel van het aardoppervlak is ongeveer met oceaan bedekt?", "options": [{ "text": "61 procent" }, { "text": "71 procent", "correct": true }, { "text": "81 procent" }, { "text": "91 procent" }] },
+        { "prompt": "In welk jaar ging het Suezkanaal open voor de scheepvaart?", "options": [{ "text": "1849" }, { "text": "1869", "correct": true }, { "text": "1889" }, { "text": "1909" }] },
+        { "prompt": "Welke koude zeestroom loopt langs de westkust van Zuid-Amerika naar het noorden?", "options": [{ "text": "De Humboldtstroom", "correct": true }, { "text": "De Golfstroom" }, { "text": "De Kuroshiostroom" }, { "text": "De Agulhasstroom" }] },
+        { "prompt": "Welke zeestraat scheidt Alaska van Rusland?", "options": [{ "text": "De Beringstraat", "correct": true }, { "text": "De Straat van Hormuz" }, { "text": "De Bosporus" }, { "text": "Het Kattegat" }] },
+        { "prompt": "Wie bracht de eerste reis om de wereld thuis nadat Magellaan op de Filipijnen was gedood?", "options": [{ "text": "Juan Sebastian Elcano", "correct": true }, { "text": "Francis Drake" }, { "text": "Amerigo Vespucci" }, { "text": "Bartolomeu Dias" }] },
+        { "prompt": "Welke van deze zeeen is een arm van de Indische Oceaan?", "options": [{ "text": "De Arabische Zee", "correct": true }, { "text": "De Zee van Ochotsk" }, { "text": "De Koraalzee" }, { "text": "De Beringzee" }] },
+        { "prompt": "In welk land komt de grens tussen de Noord-Amerikaanse en de Euraziatische plaat midden in de Atlantische Oceaan boven water?", "options": [{ "text": "IJsland", "correct": true }, { "text": "Ierland" }, { "text": "Malta" }, { "text": "Cyprus" }] },
+        { "prompt": "Hoe heet de diepste laag van de oceaan, beneden de zesduizend meter?", "options": [{ "text": "De hadale zone", "correct": true }, { "text": "De abyssale zone" }, { "text": "De bathyale zone" }, { "text": "De pelagische zone" }] },
+        { "prompt": "Welke Nederlandse zeevaarder gaf zijn naam aan een zee en aan een eiland ten zuiden van Australie?", "options": [{ "text": "Abel Tasman", "correct": true }, { "text": "Jacob Roggeveen" }, { "text": "Michiel de Ruyter" }, { "text": "Willem Janszoon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter diep is de wereldzee gemiddeld?", "answer": 3700, "unit": "meter", "explanation": "Het grootste deel van de zeebodem ligt drie tot vijf kilometer diep, ver onder het ondiepe plat langs de kusten." },
+        { "prompt": "Hoeveel gram zout zit er opgelost in een liter gemiddeld zeewater?", "answer": 35, "unit": "gram", "explanation": "Dat komt neer op ongeveer drieeneenhalf procent zout." },
+        { "prompt": "Hoeveel procent van al het water op aarde zit in de oceanen?", "answer": 97, "unit": "procent" },
+        { "prompt": "Hoeveel kilometer lang is het Panamakanaal ongeveer?", "answer": 82, "unit": "kilometer" },
+        { "prompt": "Hoeveel kilometer breed is de Straat van Gibraltar op het smalste punt ongeveer?", "answer": 14, "unit": "kilometer" },
+        { "prompt": "Hoe vaak is het in vierentwintig uur hoogwater aan de Nederlandse kust?", "answer": 2, "unit": "keer" },
+        { "prompt": "In welk jaar trof de watersnoodramp Zeeland en Zuid-Holland?", "answer": 1953 },
+        { "prompt": "In welk jaar vertrok de HMS Challenger op de reis waarmee de moderne zeewetenschap begon?", "answer": 1872 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Draaikolk",
+        "Zeezout",
+        "Misthoorn",
+        "Parel",
+        "Horizon",
+        "Zeewind",
+        "Klif",
+        "Pier",
+        "Kwal",
+        "Plankton",
+        "Booreiland",
+        "Onderstroom",
+        "Zeeschuim",
+        "Zeekaart",
+        "Golfbreker",
+        "Dijk",
+        "Riviermonding",
+        "Zandbank",
+        "Getijdenpoel",
+        "Koraal",
+        "Kelp",
+        "Zeepok",
+        "Zwemvlies",
+        "Periscoop",
+        "Sextant",
+        "Kade",
+        "Kwelder",
+        "Wad",
+        "Zeeziekte",
+        "Duiker"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier oceanen naast de Stille Oceaan.", "answers": [{ "text": "De Atlantische Oceaan", "aliases": ["Atlantische Oceaan"] }, { "text": "De Indische Oceaan", "aliases": ["Indische Oceaan"] }, { "text": "De Noordelijke IJszee", "aliases": ["Noordelijke IJszee", "Arctische Oceaan"] }, { "text": "De Zuidelijke Oceaan", "aliases": ["Zuidelijke IJszee", "Antarctische Oceaan"] }] },
+        { "prompt": "Noem de vier zeeen die naar een kleur genoemd zijn.", "answers": [{ "text": "De Rode Zee", "aliases": ["Rode Zee"] }, { "text": "De Zwarte Zee", "aliases": ["Zwarte Zee"] }, { "text": "De Witte Zee", "aliases": ["Witte Zee"] }, { "text": "De Gele Zee", "aliases": ["Gele Zee"] }] },
+        { "prompt": "Noem de vier landen met een Noordzeekust naast Nederland, Belgie en Frankrijk.", "answers": [{ "text": "Het Verenigd Koninkrijk", "aliases": ["Verenigd Koninkrijk", "Groot-Brittannie", "Engeland"] }, { "text": "Duitsland" }, { "text": "Denemarken" }, { "text": "Noorwegen" }] },
+        { "prompt": "Noem de vier landen die naast Turkije en Georgie aan de Zwarte Zee liggen.", "answers": [{ "text": "Oekraine" }, { "text": "Rusland" }, { "text": "Roemenie" }, { "text": "Bulgarije" }] },
+        { "prompt": "Noem de vier zeeen die Italie omringen.", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee"] }, { "text": "De Ionische Zee", "aliases": ["Ionische Zee"] }, { "text": "De Tyrreense Zee", "aliases": ["Tyrreense Zee"] }, { "text": "De Ligurische Zee", "aliases": ["Ligurische Zee"] }] },
+        { "prompt": "Noem de vier landen die naast Rusland aan de Kaspische Zee liggen.", "answers": [{ "text": "Kazachstan" }, { "text": "Turkmenistan" }, { "text": "Iran" }, { "text": "Azerbeidzjan" }] },
+        { "prompt": "Noem de vier fasen van het getij.", "answers": [{ "text": "Hoogwater", "aliases": ["Hoog water", "Hoogtij"] }, { "text": "Laagwater", "aliases": ["Laag water", "Laagtij"] }, { "text": "Vloed", "aliases": ["Opkomend tij"] }, { "text": "Eb", "aliases": ["Aflopend tij"] }] },
+        { "prompt": "Noem de vier bewoonde continenten met een Atlantische kust.", "answers": [{ "text": "Europa" }, { "text": "Afrika" }, { "text": "Noord-Amerika" }, { "text": "Zuid-Amerika" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke zee ligt tussen Groot-Brittannie en Ierland?", "difficulty": "easy", "answers": [{ "text": "De Ierse Zee", "aliases": ["Ierse Zee"] }] },
+        { "prompt": "Welke Italiaanse ontdekkingsreiziger stak in 1492 de Atlantische Oceaan over?", "difficulty": "easy", "answers": [{ "text": "Christoffel Columbus", "aliases": ["Columbus"] }] },
+        { "prompt": "Voor de kust van welk land ligt het Groot Barriererif?", "difficulty": "easy", "answers": [{ "text": "Australie" }] },
+        { "prompt": "Welke zee ligt tussen Griekenland en Turkije?", "difficulty": "easy", "answers": [{ "text": "De Egeische Zee", "aliases": ["Egeische Zee", "Aegeische Zee"] }] },
+        { "prompt": "Wat is het grootste dier dat in zee leeft?", "difficulty": "easy", "answers": [{ "text": "De blauwe vinvis", "aliases": ["Blauwe vinvis", "Blauwe walvis"] }] },
+        { "prompt": "Hoe heet de onderzeese bergketen die midden door de Atlantische Oceaan loopt?", "difficulty": "hard", "answers": [{ "text": "De Mid-Atlantische Rug", "aliases": ["Mid-Atlantische Rug", "Midatlantische Rug"] }] },
+        { "prompt": "Hoe heet de ondiepe onderzeese rand van een continent, daar waar die eindigt en de diepzee begint?", "difficulty": "hard", "answers": [{ "text": "Het continentaal plat", "aliases": ["Continentaal plat", "Continentaal plateau"] }] },
+        { "prompt": "Welke zeestraat scheidt Sumatra van het Maleisisch schiereiland?", "difficulty": "hard", "answers": [{ "text": "De Straat Malakka", "aliases": ["Straat Malakka", "Straat van Malakka", "Malakka"] }] },
+        { "prompt": "Welke zee ligt tussen Vietnam, de Filipijnen en Maleisie?", "difficulty": "hard", "answers": [{ "text": "De Zuid-Chinese Zee", "aliases": ["Zuid-Chinese Zee"] }] },
+        { "prompt": "Welke koude zeestroom loopt langs de westkust van zuidelijk Afrika?", "difficulty": "hard", "answers": [{ "text": "De Benguelastroom", "aliases": ["Benguelastroom", "Benguela"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de diepste trog van de Atlantische Oceaan?", "answers": [{ "text": "De Puerto Ricotrog", "aliases": ["Puerto Ricotrog", "Puerto Rico Trog"] }] },
+        { "prompt": "Hoe heet een van de grote draaiende stroomsystemen die in elk oceaanbekken rondgaan?", "answers": [{ "text": "Een gyre", "aliases": ["Gyre", "Oceaanwervel", "Oceanische wervel"] }] },
+        { "prompt": "Welke Nederlandse zeevaarder heeft een zee ten noorden van Rusland naar zich vernoemd?", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents", "Willem Barents"] }] },
+        { "prompt": "Hoe heet de wereldwijde circulatie van zeewater die wordt aangedreven door verschillen in temperatuur en zoutgehalte?", "answers": [{ "text": "De thermohaliene circulatie", "aliases": ["Thermohaliene circulatie", "Oceanische lopende band"] }] },
+        { "prompt": "Welke zeestraat scheidt Sicilie van het Italiaanse vasteland?", "answers": [{ "text": "De Straat van Messina", "aliases": ["Straat van Messina", "Messina"] }] },
+        { "prompt": "Hoe heet de periodieke opwarming van de oostelijke Stille Oceaan die het weer over de hele wereld verstoort?", "answers": [{ "text": "El Nino", "aliases": ["El Nino-effect"] }] },
+        { "prompt": "Welke zeestraat scheidt Denemarken van Zweden en wordt overspannen door de brug naar Malmo?", "answers": [{ "text": "De Sont", "aliases": ["Sont", "Oresund", "Oeresund"] }] }
+      ]
+    }
+  ]
+}

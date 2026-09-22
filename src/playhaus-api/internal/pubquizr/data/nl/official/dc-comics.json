@@ -1,0 +1,136 @@
+{
+  "slug": "dc-comics",
+  "title": "DC Comics",
+  "description": "Een pubquiz over de helden, schurken en steden van DC Comics, van Superman en Batman tot de Justice League.",
+  "publishedAt": "2026-09-11",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe heet Superman in zijn dagelijks leven op aarde?", "category": "Superman", "answers": [{ "text": "Clark Kent", "aliases": ["Kent"] }] },
+        { "prompt": "Welk groen mineraal ontneemt Superman zijn krachten?", "category": "Superman", "answers": [{ "text": "Kryptoniet", "aliases": ["Kryptonite"] }] },
+        { "prompt": "Welke miljardair gaat schuil achter het masker van Batman?", "category": "Batman", "answers": [{ "text": "Bruce Wayne", "aliases": ["Wayne"] }] },
+        { "prompt": "In welke stad bestrijdt Batman de misdaad?", "category": "Steden", "answers": [{ "text": "Gotham City", "aliases": ["Gotham"] }] },
+        { "prompt": "In welke stad werkt Superman als verslaggever?", "category": "Steden", "answers": [{ "text": "Metropolis" }] },
+        { "prompt": "Hoe heet de butler van Wayne Manor?", "category": "Batman", "answers": [{ "text": "Alfred Pennyworth", "aliases": ["Alfred", "Pennyworth"] }] },
+        { "prompt": "Welke vijand van Batman heeft een wit gezicht, groen haar en een rode grijns?", "category": "Schurken", "answers": [{ "text": "The Joker", "aliases": ["Joker"] }] },
+        { "prompt": "Welk eiland is het thuisland van Wonder Woman?", "category": "Wonder Woman", "answers": [{ "text": "Themyscira", "aliases": ["Paradise Island"] }] },
+        { "prompt": "Wonder Woman hoort bij een volk van strijdsters. Hoe heet dat volk?", "category": "Wonder Woman", "answers": [{ "text": "De Amazones", "aliases": ["Amazones"] }] },
+        { "prompt": "Welke vijand van Batman is een wetenschapper die in de kou moet leven en een vrieskanon draagt?", "category": "Schurken", "answers": [{ "text": "Mister Freeze", "aliases": ["Mr Freeze", "Mr. Freeze", "Victor Fries"] }] },
+        { "prompt": "Op welke planeet is Superman geboren?", "category": "Superman", "answers": [{ "text": "Krypton" }] },
+        { "prompt": "Voor welke krant schrijft Clark Kent?", "category": "Superman", "answers": [{ "text": "The Daily Planet", "aliases": ["Daily Planet"] }] },
+        { "prompt": "Welke kale zakenman uit Metropolis is de grootste vijand van Superman?", "category": "Schurken", "answers": [{ "text": "Lex Luthor", "aliases": ["Luthor"] }] },
+        { "prompt": "Hoe heet de auto van Batman?", "category": "Batman", "answers": [{ "text": "De Batmobile", "aliases": ["Batmobile"] }] },
+        { "prompt": "Welke schurk begon als psychiater in Arkham en werd verliefd op de Joker?", "category": "Schurken", "answers": [{ "text": "Harley Quinn", "aliases": ["Harley"] }] },
+        { "prompt": "In welke inrichting in Gotham worden de gestoorde criminelen opgesloten?", "category": "Gotham", "answers": [{ "text": "Arkham Asylum", "aliases": ["Arkham"] }] },
+        { "prompt": "Welk superheldenteam telt Superman, Batman en Wonder Woman onder zijn leden?", "category": "Teams", "answers": [{ "text": "De Justice League", "aliases": ["Justice League"] }] },
+        { "prompt": "Welke journaliste is de grote liefde van Superman?", "category": "Superman", "answers": [{ "text": "Lois Lane", "aliases": ["Lois"] }] },
+        { "prompt": "Onder welke gewone naam leeft Wonder Woman tussen de mensen?", "category": "Wonder Woman", "answers": [{ "text": "Diana Prince", "aliases": ["Diana"] }] },
+        { "prompt": "Welke schurk uit Gotham draagt een groen pak vol vraagtekens?", "category": "Schurken", "answers": [{ "text": "The Riddler", "aliases": ["Riddler", "De Raadselman"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar verscheen Superman voor het eerst, in Action Comics nummer een?", "options": [{ "text": "1932" }, { "text": "1938", "correct": true }, { "text": "1945" }, { "text": "1952" }] },
+        { "prompt": "Welke acteur speelde Batman in de film van Tim Burton uit 1989?", "options": [{ "text": "Michael Keaton", "correct": true }, { "text": "Val Kilmer" }, { "text": "George Clooney" }, { "text": "Christian Bale" }] },
+        { "prompt": "Wie bedacht Superman samen met tekenaar Joe Shuster?", "options": [{ "text": "Jerry Siegel", "correct": true }, { "text": "Bob Kane" }, { "text": "Bill Finger" }, { "text": "Gardner Fox" }] },
+        { "prompt": "Wat is het dagelijks beroep van Barry Allen, de man achter de Flash?", "options": [{ "text": "Forensisch onderzoeker", "correct": true }, { "text": "Journalist" }, { "text": "Advocaat" }, { "text": "Ambulanceverpleegkundige" }] },
+        { "prompt": "In welke film speelde Heath Ledger de Joker?", "options": [{ "text": "The Dark Knight", "correct": true }, { "text": "Batman Begins" }, { "text": "The Dark Knight Rises" }, { "text": "Suicide Squad" }] },
+        { "prompt": "Welke actrice speelde Wonder Woman in de film uit 2017?", "options": [{ "text": "Gal Gadot", "correct": true }, { "text": "Margot Robbie" }, { "text": "Amy Adams" }, { "text": "Anne Hathaway" }] },
+        { "prompt": "Welke vijand van Batman is een man met de huid van een krokodil?", "options": [{ "text": "Killer Croc", "correct": true }, { "text": "Clayface" }, { "text": "Man-Bat" }, { "text": "Bane" }] },
+        { "prompt": "Welke stad beschermt de Flash?", "options": [{ "text": "Central City", "correct": true }, { "text": "Star City" }, { "text": "Coast City" }, { "text": "Keystone City" }] },
+        { "prompt": "Welke superheld is de andere identiteit van Oliver Queen?", "options": [{ "text": "Green Arrow", "correct": true }, { "text": "Green Lantern" }, { "text": "Blue Beetle" }, { "text": "Booster Gold" }] },
+        { "prompt": "In welk jaar werd de tekenfilmserie Batman: The Animated Series voor het eerst uitgezonden?", "options": [{ "text": "1989" }, { "text": "1992", "correct": true }, { "text": "1995" }, { "text": "1998" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar kwam de eerste Supermanfilm met Christopher Reeve in de bioscoop?", "answer": 1978 },
+        { "prompt": "In welk jaar verscheen Batman voor het eerst, in Detective Comics nummer zevenentwintig?", "answer": 1939 },
+        { "prompt": "In welk jaar kwam de film The Dark Knight uit?", "answer": 2008 },
+        { "prompt": "Hoeveel Batmanfilms heeft Christopher Nolan geregisseerd?", "answer": 3, "unit": "films", "explanation": "Batman Begins, The Dark Knight en The Dark Knight Rises." },
+        { "prompt": "Hoeveel seizoenen heeft de televisieserie Arrow gelopen?", "answer": 8, "unit": "seizoenen" },
+        { "prompt": "Hoeveel Oscars heeft The Dark Knight gewonnen?", "answer": 2, "unit": "Oscars", "explanation": "Heath Ledger won die voor beste mannelijke bijrol en de film kreeg er ook een voor geluidsmontage." },
+        { "prompt": "Hoeveel seizoenen heeft de televisieserie Smallville gelopen?", "answer": 10, "unit": "seizoenen" },
+        { "prompt": "Uit hoeveel nummers bestond de stripreeks Watchmen oorspronkelijk?", "answer": 12, "unit": "nummers" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Batcave",
+        "Bat-signaal",
+        "Batarang",
+        "Rode laarzen",
+        "Gereedschapsriem",
+        "Telefooncel",
+        "Rookbom",
+        "Lachgas",
+        "Batwing",
+        "Maisveld",
+        "Narrenmuts",
+        "Handboeien",
+        "Vrieskanon",
+        "Drietand",
+        "Krachtring",
+        "Buitenaards wezen",
+        "Clownsschmink",
+        "Dwangbuis",
+        "Vraagteken",
+        "Politiepenning",
+        "Butler",
+        "Enterhaak",
+        "Zeepaardje",
+        "Kattenmasker",
+        "Celdeur",
+        "Landhuis",
+        "Chemisch vat",
+        "Speelkaart",
+        "Houten hamer",
+        "Koevoet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier oprichters van de Justice League naast Superman, Batman en Wonder Woman.", "answers": [{ "text": "The Flash", "aliases": ["Flash", "Barry Allen"] }, { "text": "Green Lantern", "aliases": ["Groene Lantaarn", "Hal Jordan"] }, { "text": "Aquaman" }, { "text": "Martian Manhunter", "aliases": ["J'onn J'onzz"] }] },
+        { "prompt": "Noem de vier jongens die in de strips het masker van Robin hebben gedragen.", "answers": [{ "text": "Dick Grayson", "aliases": ["Grayson"] }, { "text": "Jason Todd", "aliases": ["Todd"] }, { "text": "Tim Drake", "aliases": ["Drake"] }, { "text": "Damian Wayne", "aliases": ["Damian"] }] },
+        { "prompt": "Noem de vier acteurs die sinds 1978 Superman hebben gespeeld in een bioscoopfilm.", "answers": [{ "text": "Christopher Reeve", "aliases": ["Reeve"] }, { "text": "Brandon Routh", "aliases": ["Routh"] }, { "text": "Henry Cavill", "aliases": ["Cavill"] }, { "text": "David Corenswet", "aliases": ["Corenswet"] }] },
+        { "prompt": "Noem de vier acteurs die sinds 1989 de Joker hebben gespeeld in een bioscoopfilm.", "answers": [{ "text": "Jack Nicholson", "aliases": ["Nicholson"] }, { "text": "Heath Ledger", "aliases": ["Ledger"] }, { "text": "Jared Leto", "aliases": ["Leto"] }, { "text": "Joaquin Phoenix", "aliases": ["Phoenix"] }] },
+        { "prompt": "Noem de vier Batmanfilms die tussen 1989 en 1997 zijn gemaakt.", "answers": [{ "text": "Batman" }, { "text": "Batman Returns" }, { "text": "Batman Forever" }, { "text": "Batman and Robin", "aliases": ["Batman & Robin"] }] },
+        { "prompt": "Noem de vier Supermanfilms waarin Christopher Reeve de hoofdrol speelde.", "answers": [{ "text": "Superman" }, { "text": "Superman II", "aliases": ["Superman 2", "Superman Twee"] }, { "text": "Superman III", "aliases": ["Superman 3", "Superman Drie"] }, { "text": "Superman IV", "aliases": ["Superman 4", "Superman Vier", "Superman IV: The Quest for Peace"] }] },
+        { "prompt": "Noem de vier klassieke uitrustingsstukken van Wonder Woman.", "answers": [{ "text": "De lasso van de waarheid", "aliases": ["Lasso van de waarheid", "Lasso"] }, { "text": "De armbanden", "aliases": ["Armbanden", "Kogelvrije armbanden"] }, { "text": "De tiara", "aliases": ["Tiara", "Kroontje"] }, { "text": "Het onzichtbare vliegtuig", "aliases": ["Onzichtbaar vliegtuig", "Onzichtbare jet"] }] },
+        { "prompt": "Noem de vier Kryptonianen: de geboortenaam van Superman, zijn vader, zijn moeder en de verbannen generaal.", "answers": [{ "text": "Kal-El", "aliases": ["Kal El"] }, { "text": "Jor-El", "aliases": ["Jor El"] }, { "text": "Lara", "aliases": ["Lara Lor-Van"] }, { "text": "Generaal Zod", "aliases": ["Zod", "General Zod"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft de cape van Superman?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Welk dier staat er in het embleem op de borst van Batman?", "difficulty": "easy", "answers": [{ "text": "Een vleermuis", "aliases": ["Vleermuis"] }] },
+        { "prompt": "Welke vijand van Batman lijkt op een vogel en loopt met een paraplu?", "difficulty": "easy", "answers": [{ "text": "The Penguin", "aliases": ["Penguin", "De Pinguin", "Pinguin"] }] },
+        { "prompt": "Welk bedrijf is eigendom van Bruce Wayne?", "difficulty": "easy", "answers": [{ "text": "Wayne Enterprises", "aliases": ["Wayne Industries"] }] },
+        { "prompt": "Welke DC-heldin is de nicht van Superman en komt ook van Krypton?", "difficulty": "easy", "answers": [{ "text": "Supergirl" }] },
+        { "prompt": "Hoe heet de schuilplaats van Superman op de noordpool?", "difficulty": "hard", "answers": [{ "text": "Het Fort der Eenzaamheid", "aliases": ["Fort der Eenzaamheid", "Fortress of Solitude", "The Fortress of Solitude"] }] },
+        { "prompt": "Wie schreef en tekende in 1986 de strip The Dark Knight Returns?", "difficulty": "hard", "answers": [{ "text": "Frank Miller", "aliases": ["Miller"] }] },
+        { "prompt": "Wat is de echte naam van The Riddler?", "difficulty": "hard", "answers": [{ "text": "Edward Nygma", "aliases": ["Edward Nigma", "Nygma", "Nigma"] }] },
+        { "prompt": "Welke magier en occulte detective is de held van de strip Hellblazer?", "difficulty": "hard", "answers": [{ "text": "John Constantine", "aliases": ["Constantine"] }] },
+        { "prompt": "Welke stripgebeurtenis uit 1985 schreef het hele multiversum van DC opnieuw?", "difficulty": "hard", "answers": [{ "text": "Crisis on Infinite Earths", "aliases": ["Crisis", "Crisis op oneindig veel aardes"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Waar staan de letters DC in DC Comics voor?", "answers": [{ "text": "Detective Comics" }] },
+        { "prompt": "Wie schreef de graphic novel Watchmen?", "answers": [{ "text": "Alan Moore", "aliases": ["Moore"] }] },
+        { "prompt": "Wat is de echte naam van Harley Quinn?", "answers": [{ "text": "Harleen Quinzel", "aliases": ["Quinzel", "Harleen Frances Quinzel"] }] },
+        { "prompt": "Wie is de hoofdredacteur van The Daily Planet?", "answers": [{ "text": "Perry White", "aliases": ["White"] }] },
+        { "prompt": "Welke tiran heerst over de planeet Apokolips?", "answers": [{ "text": "Darkseid" }] },
+        { "prompt": "Welke eenogige huurling in oranje met blauw harnas heet eigenlijk Slade Wilson?", "answers": [{ "text": "Deathstroke", "aliases": ["Deathstroke the Terminator"] }] },
+        { "prompt": "Wie is de koningin van de Amazones en de moeder van Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Koningin Hippolyta"] }] }
+      ]
+    }
+  ]
+}

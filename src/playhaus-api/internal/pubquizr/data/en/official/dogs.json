@@ -1,0 +1,136 @@
+{
+  "slug": "dogs",
+  "title": "Dogs",
+  "description": "A whole pub quiz about dogs: breeds, working dogs, famous dogs and everything a dog does.",
+  "publishedAt": "2026-09-15",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which breed did monks in the Swiss Alps use as a rescue dog?", "category": "Breeds", "answers": [{ "text": "The Saint Bernard", "aliases": ["Saint Bernard", "St Bernard"] }] },
+        { "prompt": "What is the name of Tintin's little white dog?", "category": "Comics", "answers": [{ "text": "Snowy", "aliases": ["Milou", "Bobbie"] }] },
+        { "prompt": "Which dog was the first animal to orbit the Earth, in 1957?", "category": "Space", "answers": [{ "text": "Laika" }] },
+        { "prompt": "Which cartoon beagle belongs to Charlie Brown?", "category": "Cartoons", "answers": [{ "text": "Snoopy" }] },
+        { "prompt": "Which wild animal is the dog descended from?", "category": "Biology", "answers": [{ "text": "The wolf", "aliases": ["Wolf", "The grey wolf"] }] },
+        { "prompt": "Which small Dutch breed was bred to lure ducks into a decoy trap?", "category": "Breeds", "answers": [{ "text": "The Kooikerhondje", "aliases": ["Kooikerhondje", "Kooiker"] }] },
+        { "prompt": "Which spotted breed stars in a Disney film about a hundred and one of them?", "category": "Breeds", "answers": [{ "text": "The Dalmatian", "aliases": ["Dalmatian"] }] },
+        { "prompt": "Which sense is by far a dog's sharpest?", "category": "Senses", "answers": [{ "text": "Smell", "aliases": ["Sense of smell", "Its nose"] }] },
+        { "prompt": "Which three-headed dog guards the underworld in Greek mythology?", "category": "Mythology", "answers": [{ "text": "Cerberus" }] },
+        { "prompt": "Which small breed is named after a Mexican state?", "category": "Breeds", "answers": [{ "text": "The Chihuahua", "aliases": ["Chihuahua"] }] },
+        { "prompt": "What is the name of Dorothy's little dog in The Wizard of Oz?", "category": "Film", "answers": [{ "text": "Toto" }] },
+        { "prompt": "Which long-bodied, short-legged breed is nicknamed the sausage dog?", "category": "Breeds", "answers": [{ "text": "The dachshund", "aliases": ["Dachshund", "Teckel"] }] },
+        { "prompt": "What is a female dog called?", "category": "Language", "answers": [{ "text": "A bitch", "aliases": ["Bitch"] }] },
+        { "prompt": "What kind of dog is Lady in Lady and the Tramp?", "category": "Film", "answers": [{ "text": "A cocker spaniel", "aliases": ["Cocker spaniel", "Spaniel"] }] },
+        { "prompt": "Which breed, named after a region of Canada, is one of the most popular family and guide dogs?", "category": "Breeds", "answers": [{ "text": "The Labrador retriever", "aliases": ["Labrador", "Labrador retriever"] }] },
+        { "prompt": "Which famous collie is the heroine of books, films and a long-running television series?", "category": "Television", "answers": [{ "text": "Lassie" }] },
+        { "prompt": "Which breed is known for its blue-black tongue?", "category": "Breeds", "answers": [{ "text": "The chow chow", "aliases": ["Chow chow", "Chow"] }] },
+        { "prompt": "Which silent dog is Wallace's companion in the Aardman films?", "category": "Animation", "answers": [{ "text": "Gromit" }] },
+        { "prompt": "Which German herding breed became the classic police and guard dog?", "category": "Working dogs", "answers": [{ "text": "The German shepherd", "aliases": ["German shepherd", "Alsatian"] }] },
+        { "prompt": "What do you call a dog that belongs to no particular breed?", "category": "Language", "answers": [{ "text": "A mongrel", "aliases": ["Mongrel", "Mutt", "Crossbreed"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which breed is the fastest dog over a short distance?", "options": [{ "text": "The greyhound", "correct": true }, { "text": "The whippet" }, { "text": "The saluki" }, { "text": "The Doberman" }] },
+        { "prompt": "Which Japanese breed was Hachiko, the dog who waited years at Shibuya station?", "options": [{ "text": "The Akita", "correct": true }, { "text": "The Shiba Inu" }, { "text": "The Tosa" }, { "text": "The Kishu" }] },
+        { "prompt": "Which Hungarian breed is a short-haired, rust-coloured pointer?", "options": [{ "text": "The Vizsla", "correct": true }, { "text": "The Komondor" }, { "text": "The Puli" }, { "text": "The Kuvasz" }] },
+        { "prompt": "What is the normal body temperature of a dog, in degrees Celsius?", "options": [{ "text": "36.5" }, { "text": "37.5" }, { "text": "38.5", "correct": true }, { "text": "40.5" }] },
+        { "prompt": "What is the name of the dog who acts as nursemaid to the children in Peter Pan?", "options": [{ "text": "Nana", "correct": true }, { "text": "Bruno" }, { "text": "Jip" }, { "text": "Rex" }] },
+        { "prompt": "Which sighthound was kept by the Russian tsars?", "options": [{ "text": "The borzoi", "correct": true }, { "text": "The Afghan hound" }, { "text": "The saluki" }, { "text": "The Ibizan hound" }] },
+        { "prompt": "How long does a dog's pregnancy last, roughly?", "options": [{ "text": "43 days" }, { "text": "53 days" }, { "text": "63 days", "correct": true }, { "text": "73 days" }] },
+        { "prompt": "Which breed is on average the heaviest of all?", "options": [{ "text": "The English mastiff", "correct": true }, { "text": "The Tibetan mastiff" }, { "text": "The Rottweiler" }, { "text": "The Newfoundland" }] },
+        { "prompt": "How does a dog see colour?", "options": [{ "text": "Mainly in blues and yellows", "correct": true }, { "text": "Not at all, only in shades of grey" }, { "text": "In the full range, just as people do" }, { "text": "Mainly in reds and greens" }] },
+        { "prompt": "Which breed is Scooby-Doo?", "options": [{ "text": "A Great Dane", "correct": true }, { "text": "A mastiff" }, { "text": "A boxer" }, { "text": "A bloodhound" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many teeth does an adult dog have?", "answer": 42, "unit": "teeth", "explanation": "A puppy starts with twenty-eight milk teeth and swaps them for forty-two adult ones." },
+        { "prompt": "How many chromosomes does a dog have?", "answer": 78, "unit": "chromosomes", "explanation": "A person has forty-six, so a dog carries a good deal more." },
+        { "prompt": "In which year did Disney first release the animated film One Hundred and One Dalmatians?", "answer": 1961 },
+        { "prompt": "In which year was the first Crufts dog show held in London?", "answer": 1891 },
+        { "prompt": "How many hours a day does an adult dog sleep, on average?", "answer": 12, "unit": "hours" },
+        { "prompt": "How many kilometres an hour can a greyhound reach at full speed?", "answer": 70, "unit": "km/h" },
+        { "prompt": "How many bones does a dog's skeleton have, roughly?", "answer": 320, "unit": "bones" },
+        { "prompt": "How many muscles does a dog use to move one ear, roughly?", "answer": 18, "unit": "muscles" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Kennel",
+        "Leash",
+        "Collar",
+        "Muzzle",
+        "Paw",
+        "Tail",
+        "Dog bowl",
+        "Doghouse",
+        "Fetch",
+        "Puppy",
+        "Vet",
+        "Sheepdog",
+        "Guide dog",
+        "Sled dog",
+        "Dog show",
+        "Flea",
+        "Bark",
+        "Poodle",
+        "Pug",
+        "Snout",
+        "Dog biscuit",
+        "Dog walker",
+        "Tennis ball",
+        "Howling",
+        "Panting",
+        "Chew toy",
+        "Paw print",
+        "Dog tag",
+        "Beagle",
+        "Bulldog"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four sizes in which the poodle is officially bred.", "answers": [{ "text": "Standard" }, { "text": "Medium" }, { "text": "Miniature", "aliases": ["Dwarf"] }, { "text": "Toy" }] },
+        { "prompt": "Name the four varieties of the Belgian shepherd dog.", "answers": [{ "text": "Groenendael" }, { "text": "Tervuren" }, { "text": "Malinois" }, { "text": "Laekenois" }] },
+        { "prompt": "Name the four kinds of teeth in a dog's mouth.", "answers": [{ "text": "Incisors" }, { "text": "Canines", "aliases": ["Fangs"] }, { "text": "Premolars" }, { "text": "Molars" }] },
+        { "prompt": "Name the four best-known Dutch dog breeds apart from the kooikerhondje.", "answers": [{ "text": "The Dutch shepherd", "aliases": ["Dutch shepherd", "Hollandse herder"] }, { "text": "The Stabyhoun", "aliases": ["Stabyhoun"] }, { "text": "The Wetterhoun", "aliases": ["Wetterhoun"] }, { "text": "The Drentsche partridge dog", "aliases": ["Drentsche patrijshond", "Drentse patrijshond"] }] },
+        { "prompt": "Name the four commands most owners teach a dog first.", "answers": [{ "text": "Sit" }, { "text": "Stay" }, { "text": "Come", "aliases": ["Here"] }, { "text": "Heel" }] },
+        { "prompt": "Name the four best-known herding breeds of the British Isles.", "answers": [{ "text": "The border collie", "aliases": ["Border collie"] }, { "text": "The Old English sheepdog", "aliases": ["Old English sheepdog", "Bobtail"] }, { "text": "The Shetland sheepdog", "aliases": ["Shetland sheepdog", "Sheltie"] }, { "text": "The Welsh corgi", "aliases": ["Welsh corgi", "Corgi"] }] },
+        { "prompt": "Name the four best-known Disney animated films with a dog in a leading role.", "answers": [{ "text": "One Hundred and One Dalmatians", "aliases": ["101 Dalmatians"] }, { "text": "Lady and the Tramp" }, { "text": "The Fox and the Hound" }, { "text": "Bolt" }] },
+        { "prompt": "Name the four best-known sled dog breeds.", "answers": [{ "text": "The Siberian husky", "aliases": ["Siberian husky", "Husky"] }, { "text": "The Alaskan malamute", "aliases": ["Alaskan malamute", "Malamute"] }, { "text": "The Samoyed", "aliases": ["Samoyed"] }, { "text": "The Greenland dog", "aliases": ["Greenland dog"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the name of Mickey Mouse's dog?", "difficulty": "easy", "answers": [{ "text": "Pluto" }] },
+        { "prompt": "What is the name of Obelix's little dog in the Asterix comics?", "difficulty": "easy", "answers": [{ "text": "Dogmatix", "aliases": ["Idefix"] }] },
+        { "prompt": "Which cartoon dog solves mysteries with Shaggy and Velma?", "difficulty": "easy", "answers": [{ "text": "Scooby-Doo", "aliases": ["Scooby Doo", "Scooby"] }] },
+        { "prompt": "Which disease, spread by a bite, is the reason dogs are vaccinated before travelling?", "difficulty": "easy", "answers": [{ "text": "Rabies" }] },
+        { "prompt": "Which part of the body does a dog use to cool itself down, since it cannot sweat through its skin?", "difficulty": "easy", "answers": [{ "text": "The tongue", "aliases": ["Tongue", "Its tongue"] }] },
+        { "prompt": "Which sled dog ran the last leg of the 1925 serum run to Nome and has a statue in Central Park?", "difficulty": "hard", "answers": [{ "text": "Balto" }] },
+        { "prompt": "Which breed has a ridge of hair growing the wrong way along its back?", "difficulty": "hard", "answers": [{ "text": "The Rhodesian ridgeback", "aliases": ["Rhodesian ridgeback", "Ridgeback"] }] },
+        { "prompt": "Which Chinese breed is known for its deep folds of loose skin?", "difficulty": "hard", "answers": [{ "text": "The shar pei", "aliases": ["Shar pei"] }] },
+        { "prompt": "Which Central African breed is called the barkless dog?", "difficulty": "hard", "answers": [{ "text": "The basenji", "aliases": ["Basenji"] }] },
+        { "prompt": "What is the scientific name of the domestic dog?", "difficulty": "hard", "answers": [{ "text": "Canis familiaris", "aliases": ["Canis lupus familiaris"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the dog listening to the gramophone in the His Master's Voice trademark?", "answers": [{ "text": "Nipper" }] },
+        { "prompt": "Which Russian physiologist used dogs to demonstrate the conditioned reflex?", "answers": [{ "text": "Ivan Pavlov", "aliases": ["Pavlov"] }] },
+        { "prompt": "Which two dogs went into orbit aboard Sputnik 5 in 1960 and came back alive?", "answers": [{ "text": "Belka and Strelka", "aliases": ["Belka en Strelka", "Strelka and Belka"] }] },
+        { "prompt": "Which hairless Mexican breed is named after an Aztec god?", "answers": [{ "text": "The Xoloitzcuintli", "aliases": ["Xoloitzcuintli", "Xolo", "Mexican hairless"] }] },
+        { "prompt": "Which large white Hungarian livestock guardian has a long corded coat like a mop?", "answers": [{ "text": "The Komondor", "aliases": ["Komondor"] }] },
+        { "prompt": "In Homer's Odyssey, what is the name of the old dog who recognises Odysseus on his return?", "answers": [{ "text": "Argos", "aliases": ["Argus"] }] },
+        { "prompt": "What was the name of the first cloned dog, born in South Korea in 2005?", "answers": [{ "text": "Snuppy" }] }
+      ]
+    }
+  ]
+}

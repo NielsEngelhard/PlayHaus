@@ -6,6 +6,7 @@ import (
 	"playhaus-api/internal/fakefiller"
 	"playhaus-api/internal/oneofus"
 	"slices"
+	"time"
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/friend"
@@ -35,6 +36,11 @@ type Server struct {
 	// Kept for the socket handshake, which has to answer the same origin question CORS does but cannot go through the CORS middleware to do it.
 	allowedOrigins   []string
 	anyOriginAllowed bool
+
+	// startedAt is process start, not first request: the stats route reports uptime.
+	startedAt time.Time
+	// statsToken empty means AddStatsHandlers registers nothing, so the route does not exist.
+	statsToken string
 }
 
 func NewServer(
@@ -49,6 +55,7 @@ func NewServer(
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
+	statsToken string,
 ) http.Handler {
 	s := &Server{
 		mux:              http.NewServeMux(),
@@ -64,6 +71,8 @@ func NewServer(
 		log:              log,
 		allowedOrigins:   allowedOrigins,
 		anyOriginAllowed: slices.Contains(allowedOrigins, AnyOrigin),
+		startedAt:        time.Now(),
+		statsToken:       statsToken,
 	}
 
 	// The socket layer knows nothing about any game.
@@ -85,6 +94,7 @@ func NewServer(
 	s.AddFakeFillerHandlers()
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
+	s.AddStatsHandlers()
 
 	// cors sits innermost so a preflight.
 	return chain(s.mux, requestID, recoverPanic(log), logRequests(log), cors(allowedOrigins))

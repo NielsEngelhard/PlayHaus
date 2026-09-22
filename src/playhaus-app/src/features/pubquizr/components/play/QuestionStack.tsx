@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import FlipOver from "@/components/ui/FlipOver";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -84,44 +85,48 @@ export default function QuestionStack({
                 </ScrollView>
 
                 {/* Kept on screen once revealed when there is no answer row to take its place, so the card does not jump. */}
-                {!revealed || !showAnswerRow ? (
-                    <PopPressable
-                        onPress={revealed ? () => onHide?.() : onReveal}
-                        accessibilityRole="button"
-                        accessibilityLabel={revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
-                        style={styles.covered}
-                    >
-                        <View style={styles.eye}>
-                            <Feather name={revealed ? 'eye-off' : 'eye'} size={15} color={Brand.ink} />
-                        </View>
+                <FlipOver
+                    turned={revealed && showAnswerRow}
+                    front={(
+                        <PopPressable
+                            onPress={revealed ? () => onHide?.() : onReveal}
+                            accessibilityRole="button"
+                            accessibilityLabel={revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
+                            style={styles.covered}
+                        >
+                            <View style={styles.eye}>
+                                <Feather name={revealed ? 'eye-off' : 'eye'} size={15} color={Brand.ink} />
+                            </View>
 
-                        <View style={styles.rowBody}>
-                            <AppText style={styles.revealLabel} numberOfLines={1}>
-                                {revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
-                            </AppText>
-
-                            <AppText style={styles.revealHint} numberOfLines={1}>
-                                {t('pubquizr.play.answer.revealHint')}
-                            </AppText>
-                        </View>
-                    </PopPressable>
-                ) : (
-                    <View style={styles.answerRow}>
-                        <View style={styles.rowBody}>
-                            <AppText style={styles.answerLabel}>{t('pubquizr.play.answerLabel')}</AppText>
-
-                            <AppText style={styles.answer}>{answer}</AppText>
-
-                            {aliases.length > 0 && (
-                                <AppText style={styles.aliases}>
-                                    {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
+                            <View style={styles.rowBody}>
+                                <AppText style={styles.revealLabel} numberOfLines={1}>
+                                    {revealed ? t('pubquizr.play.answer.hide') : t('pubquizr.play.answer.reveal')}
                                 </AppText>
-                            )}
-                        </View>
 
-                        <Feather name="check" size={18} color={Brand.ink} />
-                    </View>
-                )}
+                                <AppText style={styles.revealHint} numberOfLines={1}>
+                                    {t('pubquizr.play.answer.revealHint')}
+                                </AppText>
+                            </View>
+                        </PopPressable>
+                    )}
+                    back={(
+                        <View style={styles.answerRow}>
+                            <View style={styles.rowBody}>
+                                <AppText style={styles.answerLabel}>{t('pubquizr.play.answerLabel')}</AppText>
+
+                                <AppText style={styles.answer}>{answer}</AppText>
+
+                                {aliases.length > 0 && (
+                                    <AppText style={styles.aliases}>
+                                        {t('pubquizr.play.alsoAccept', { answers: aliases.join(', ') })}
+                                    </AppText>
+                                )}
+                            </View>
+
+                            <Feather name="check" size={18} color={Brand.ink} />
+                        </View>
+                    )}
+                />
             </View>
         </View>
     )

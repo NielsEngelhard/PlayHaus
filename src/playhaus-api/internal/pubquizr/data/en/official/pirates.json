@@ -1,0 +1,136 @@
+{
+  "slug": "pirates",
+  "title": "Pirates",
+  "description": "A whole pub quiz about pirates: the golden age, the buccaneers and the films that made them famous.",
+  "publishedAt": "2026-09-03",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "By what nickname is the English pirate Edward Teach better known?", "category": "Captains", "answers": [{ "text": "Blackbeard" }] },
+        { "prompt": "What is the black pirate flag with the skull and crossbones called?", "category": "Flags", "answers": [{ "text": "The Jolly Roger", "aliases": ["Jolly Roger"] }] },
+        { "prompt": "What is the name of Jack Sparrow's ship in Pirates of the Caribbean?", "category": "Film", "answers": [{ "text": "The Black Pearl", "aliases": ["Black Pearl"] }] },
+        { "prompt": "Which Robert Louis Stevenson novel has a one-legged ship's cook named Long John Silver?", "category": "Books", "answers": [{ "text": "Treasure Island" }] },
+        { "prompt": "In Peter Pan, which pirate captain is Peter's great enemy?", "category": "Books", "answers": [{ "text": "Captain Hook", "aliases": ["Hook"] }] },
+        { "prompt": "Which drink is most closely associated with pirates?", "category": "Drink", "answers": [{ "text": "Rum" }] },
+        { "prompt": "What is the punishment called in which a prisoner is forced off a board into the sea?", "category": "Punishment", "answers": [{ "text": "Walking the plank", "aliases": ["The plank"] }] },
+        { "prompt": "In which sea did the Barbary corsairs raid ships and coastal villages?", "category": "Places", "answers": [{ "text": "The Mediterranean", "aliases": ["Mediterranean", "The Mediterranean Sea"] }] },
+        { "prompt": "Which word for a Caribbean pirate comes from the French boucanier, the men who smoked meat on the islands?", "category": "Terms", "answers": [{ "text": "A buccaneer", "aliases": ["Buccaneer"] }] },
+        { "prompt": "Which Welsh raider sacked Panama in 1671 and later became Lieutenant Governor of Jamaica?", "category": "Captains", "answers": [{ "text": "Henry Morgan", "aliases": ["Morgan", "Captain Morgan"] }] },
+        { "prompt": "What do you call a pirate who robbed enemy ships with a licence from his own government?", "category": "Terms", "answers": [{ "text": "A privateer", "aliases": ["Privateer"] }] },
+        { "prompt": "Which legendary sea monster drags a ship under in the second Pirates of the Caribbean film?", "category": "Legends", "answers": [{ "text": "The Kraken", "aliases": ["Kraken"] }] },
+        { "prompt": "Which bird traditionally sits on a pirate's shoulder?", "category": "Animals", "answers": [{ "text": "A parrot", "aliases": ["Parrot"] }] },
+        { "prompt": "In the second and third Pirates of the Caribbean films, who captains the Flying Dutchman?", "category": "Film", "answers": [{ "text": "Davy Jones" }] },
+        { "prompt": "Off the coast of which African country did pirates hijack tankers and cargo ships in the late 2000s?", "category": "Modern piracy", "answers": [{ "text": "Somalia" }] },
+        { "prompt": "In which comic series does a band of pirates lose their ship in almost every album?", "category": "Comics", "answers": [{ "text": "Asterix", "aliases": ["Asterix and Obelix"] }] },
+        { "prompt": "Which Japanese manga and anime series follows the pirate crew of Monkey D. Luffy?", "category": "Anime", "answers": [{ "text": "One Piece" }] },
+        { "prompt": "What were the Spanish gold coins called that pirates hunted in the Caribbean?", "category": "Treasure", "answers": [{ "text": "Doubloons", "aliases": ["Doubloon"] }] },
+        { "prompt": "Which Dutch rebel privateers took Den Briel in 1572?", "category": "The Low Countries", "answers": [{ "text": "The Sea Beggars", "aliases": ["Sea Beggars", "Watergeuzen", "The Watergeuzen"] }] },
+        { "prompt": "Which Roman was captured by pirates as a young man and had them crucified after his release?", "category": "Antiquity", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "What was the name of Blackbeard's flagship?", "options": [{ "text": "Queen Anne's Revenge", "correct": true }, { "text": "Royal Fortune" }, { "text": "The Fancy" }, { "text": "The Ranger" }] },
+        { "prompt": "In which year was Blackbeard killed in a boarding fight off North Carolina?", "options": [{ "text": "1714" }, { "text": "1718", "correct": true }, { "text": "1722" }, { "text": "1726" }] },
+        { "prompt": "Which pirate was hanged at Execution Dock in London in 1701?", "options": [{ "text": "William Kidd", "correct": true }, { "text": "Edward Low" }, { "text": "Charles Vane" }, { "text": "Calico Jack Rackham" }] },
+        { "prompt": "Which pirate took more ships than any other of his day and was killed off West Africa in 1722?", "options": [{ "text": "Bartholomew Roberts", "correct": true }, { "text": "Blackbeard" }, { "text": "Jean Lafitte" }, { "text": "Benjamin Hornigold" }] },
+        { "prompt": "Which pirate, known as Black Sam, drowned when his flagship went down off Cape Cod in 1717?", "options": [{ "text": "Samuel Bellamy", "correct": true }, { "text": "Thomas Tew" }, { "text": "Edward England" }, { "text": "Christopher Condent" }] },
+        { "prompt": "Who directed the first three Pirates of the Caribbean films?", "options": [{ "text": "Gore Verbinski", "correct": true }, { "text": "Rob Marshall" }, { "text": "Sam Mendes" }, { "text": "Ridley Scott" }] },
+        { "prompt": "Which 1995 pirate film starring Geena Davis became one of the biggest box office failures ever made?", "options": [{ "text": "Cutthroat Island", "correct": true }, { "text": "Waterworld" }, { "text": "The Sea Hawk" }, { "text": "Treasure Planet" }] },
+        { "prompt": "Which English pirate seized a Mughal treasure ship in 1695 and then vanished with the loot?", "options": [{ "text": "Henry Every", "correct": true }, { "text": "Howell Davis" }, { "text": "John Taylor" }, { "text": "Olivier Levasseur" }] },
+        { "prompt": "Which English sailor did the Spanish call El Draque as he raided their treasure ports?", "options": [{ "text": "Francis Drake", "correct": true }, { "text": "Walter Raleigh" }, { "text": "John Hawkins" }, { "text": "Martin Frobisher" }] },
+        { "prompt": "In Treasure Island, what is the name of the ship that carries the treasure hunters?", "options": [{ "text": "The Hispaniola", "correct": true }, { "text": "The Walrus" }, { "text": "The Arabella" }, { "text": "The Dauntless" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many Pirates of the Caribbean films had been released by 2025?", "answer": 5, "unit": "films" },
+        { "prompt": "In what year was Treasure Island first published as a book?", "answer": 1883 },
+        { "prompt": "How many guns did Blackbeard's flagship carry?", "answer": 40, "unit": "guns", "explanation": "She was a captured French slave ship, refitted and given a new name." },
+        { "prompt": "In what year did Somali pirates hijack the Maersk Alabama?", "answer": 2009 },
+        { "prompt": "In what year did Barbary corsairs raid the Irish village of Baltimore?", "answer": 1631, "explanation": "More than a hundred villagers were carried off to North Africa and sold." },
+        { "prompt": "How many ships is Bartholomew Roberts said to have captured in his career?", "answer": 400, "unit": "ships" },
+        { "prompt": "How many men are on the dead man's chest in the song from Treasure Island?", "answer": 15, "unit": "men" },
+        { "prompt": "In what year was the play Peter Pan first performed on stage?", "answer": 1904 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Treasure map",
+        "Hook hand",
+        "Skull and crossbones",
+        "Gold tooth",
+        "Pieces of eight",
+        "Buried treasure",
+        "Cabin boy",
+        "Crow's nest",
+        "Ship's rat",
+        "Cannonball",
+        "Sea shanty",
+        "Stowaway",
+        "Gunpowder",
+        "Pirate cove",
+        "Boarding party",
+        "Rum barrel",
+        "Grog",
+        "Musket",
+        "Black spot",
+        "Scurvy",
+        "Iron shackles",
+        "Rope ladder",
+        "Ship's cat",
+        "Tavern",
+        "Ransom note",
+        "Dagger",
+        "Pistol",
+        "Boarding axe",
+        "Ship's biscuit",
+        "Sword fight"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Pirates of the Caribbean films released between 2003 and 2011.", "answers": [{ "text": "The Curse of the Black Pearl" }, { "text": "Dead Man's Chest" }, { "text": "At World's End" }, { "text": "On Stranger Tides" }] },
+        { "prompt": "Name the four famous women of piracy: the Irish sea captain, the Chinese fleet commander and the two who sailed with Calico Jack.", "answers": [{ "text": "Grace O'Malley", "aliases": ["Grainne Mhaol", "O'Malley"] }, { "text": "Ching Shih", "aliases": ["Zheng Yi Sao"] }, { "text": "Anne Bonny", "aliases": ["Bonny"] }, { "text": "Mary Read", "aliases": ["Read"] }] },
+        { "prompt": "Name the four actors who play Jack Sparrow, Will Turner, Elizabeth Swann and Barbossa.", "answers": [{ "text": "Johnny Depp", "aliases": ["Depp"] }, { "text": "Orlando Bloom", "aliases": ["Bloom"] }, { "text": "Keira Knightley", "aliases": ["Knightley"] }, { "text": "Geoffrey Rush", "aliases": ["Rush"] }] },
+        { "prompt": "Name the four pirate havens: the Jamaican port wrecked by an earthquake, the island off Hispaniola, the Bahamian town and the great island east of Mozambique.", "answers": [{ "text": "Port Royal" }, { "text": "Tortuga" }, { "text": "Nassau" }, { "text": "Madagascar" }] },
+        { "prompt": "Name the four North African corsair ports.", "answers": [{ "text": "Algiers" }, { "text": "Tunis" }, { "text": "Tripoli" }, { "text": "Sale", "aliases": ["Salee", "Sallee"] }] },
+        { "prompt": "Name the four characters of Treasure Island: the boy who tells the story, the ship's cook, the squire who pays for the voyage and the doctor.", "answers": [{ "text": "Jim Hawkins", "aliases": ["Hawkins", "Jim"] }, { "text": "Long John Silver", "aliases": ["Silver"] }, { "text": "Squire Trelawney", "aliases": ["Trelawney"] }, { "text": "Doctor Livesey", "aliases": ["Livesey", "Dr Livesey"] }] },
+        { "prompt": "Name the four punishments at sea: left alone on an island, dragged under the hull, whipped on deck and put to the rope.", "answers": [{ "text": "Marooning", "aliases": ["Being marooned"] }, { "text": "Keelhauling" }, { "text": "Flogging", "aliases": ["Whipping", "The lash"] }, { "text": "Hanging" }] },
+        { "prompt": "Name the four pieces of the storybook pirate's outfit: over one eye, below one knee, on the head and in the hand.", "answers": [{ "text": "An eye patch", "aliases": ["Eye patch"] }, { "text": "A wooden leg", "aliases": ["Wooden leg", "Peg leg"] }, { "text": "A tricorn hat", "aliases": ["Tricorn", "Three-cornered hat"] }, { "text": "A cutlass", "aliases": ["Cutlass"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is the classic pirate flag?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "Which sea gives the Pirates of the Caribbean films their name?", "difficulty": "easy", "answers": [{ "text": "The Caribbean", "aliases": ["Caribbean", "The Caribbean Sea"] }] },
+        { "prompt": "Which precious metal did pirates want above all others?", "difficulty": "easy", "answers": [{ "text": "Gold" }] },
+        { "prompt": "Which greeting do storybook pirates shout when they hail another ship?", "difficulty": "easy", "answers": [{ "text": "Ahoy" }] },
+        { "prompt": "In Peter Pan, what does the crocodile swallow that makes it tick?", "difficulty": "easy", "answers": [{ "text": "A clock", "aliases": ["Clock", "Alarm clock", "An alarm clock"] }] },
+        { "prompt": "Which strait between Malaysia and Indonesia is the busiest waterway for modern piracy?", "difficulty": "hard", "answers": [{ "text": "The Strait of Malacca", "aliases": ["Strait of Malacca", "Malacca"] }] },
+        { "prompt": "In which year did King George the First offer pirates a royal pardon?", "difficulty": "hard", "answers": [{ "text": "1717" }] },
+        { "prompt": "Which pirate was called the Gentleman Pirate and was hanged at Charleston in 1718?", "difficulty": "hard", "answers": [{ "text": "Stede Bonnet", "aliases": ["Bonnet"] }] },
+        { "prompt": "Under which pen name was A General History of the Pyrates published in 1724?", "difficulty": "hard", "answers": [{ "text": "Captain Charles Johnson", "aliases": ["Charles Johnson"] }] },
+        { "prompt": "Which corsair known as Barbarossa ruled Algiers and became admiral of the Ottoman fleet?", "difficulty": "hard", "answers": [{ "text": "Hayreddin Barbarossa", "aliases": ["Hayreddin", "Khair ad-Din"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What was the name of the ship William Kidd sailed on his privateering voyage of 1696?", "answers": [{ "text": "The Adventure Galley", "aliases": ["Adventure Galley"] }] },
+        { "prompt": "Which Mughal treasure ship did Henry Every capture in 1695?", "answers": [{ "text": "The Ganj-i-Sawai", "aliases": ["Ganj-i-Sawai", "Gunsway"] }] },
+        { "prompt": "Which pirate ship sank off Cape Cod in 1717 and was found again in 1984?", "answers": [{ "text": "The Whydah", "aliases": ["Whydah", "Whydah Gally"] }] },
+        { "prompt": "What is the name of the pirate utopia on Madagascar described in A General History of the Pyrates?", "answers": [{ "text": "Libertalia", "aliases": ["Libertatia"] }] },
+        { "prompt": "Which Royal Navy lieutenant led the boarding party that killed Blackbeard in 1718?", "answers": [{ "text": "Robert Maynard", "aliases": ["Maynard"] }] },
+        { "prompt": "In Treasure Island, what is the name of Long John Silver's parrot?", "answers": [{ "text": "Captain Flint", "aliases": ["Flint"] }] },
+        { "prompt": "Which 1935 pirate film made a star of Errol Flynn?", "answers": [{ "text": "Captain Blood" }] }
+      ]
+    }
+  ]
+}

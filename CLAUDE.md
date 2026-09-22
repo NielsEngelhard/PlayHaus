@@ -33,6 +33,15 @@ go test ./internal/lol           # one package
 go test ./internal/api -run TestLogoutRevokesOnlyThatToken -v   # one test
 ```
 
+Two one-shot commands exist for the weekly PubquizR quiz and are not part of the build surface —
+neither is in the Dockerfile, and CI runs both with `go run`:
+
+```
+ANTHROPIC_API_KEY=... go run ./cmd/quizgen -locale nl -week 2026-w40   # writes the JSON file, no database
+ANTHROPIC_API_KEY=... go run ./cmd/quizgen -locale en -from internal/pubquizr/data/nl/weekly/2026-w40.json
+DATABASE_URL=... go run ./cmd/quizseed internal/pubquizr/data/{nl,en}/weekly/2026-w40.json
+```
+
 Both commands need `DATABASE_URL`, and `go test` needs `TEST_DATABASE_URL`, pointing at a
 *separate* scratch database (for example `playhausdb_test`). See `.env.example`. Both commands
 load the nearest `.env` themselves (`config.LoadDotEnv`); `go test` does not.
@@ -78,16 +87,7 @@ disables CORS), `LOL_DEV_MODE` (**defaults true** — every League of Letters ro
 same word).
 
 **Database** (`internal/platform/database`) — Postgres through `gorm.io/driver/postgres` (pgx, pure
-Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)` is deliberate: the stores were
-written for SQLite's single writer, and some transactions read a row and then write based on
-it. Add `SELECT … FOR UPDATE` before raising `DB_MAX_CONNS`. `NowFunc` truncates to
-microseconds, which is what `timestamptz` keeps. The schema is **versioned goose SQL**
-(`migrations/NNNNN_*.sql`, embedded). Only `cmd/migrate` applies it (`MigrateUp`), followed by
-`pubquizr.Seed`, and only the deploy runs that. A model change needs a new migration file, and
-`TestMigrationsMatchTheModels` (`internal/api/schema_test.go`) fails until the SQL and the
-models agree. Never edit a migration that has already been deployed. The package never imports
-domain types. Every model declares `TableName()` with a game prefix (`solo_lol_games`,
-`mp_lol_lobbies`, `pq_quizzes`, `oou_single_device_games`).
+Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)`
 
 **Per-package layering**, identical across `lol`, `pubquizr`, `oneofus`, `user`, `auth`:
 
@@ -150,6 +150,17 @@ and refuses to store an unsupported value.
 
 `internal/lol/data/README.md` is **stale** — it documents an older `-allowed.txt` naming that no
 longer matches `words.go` or the files on disk.
+
+**Quiz generation** (`internal/quizgen`) — writes one week of PubquizR with a language model, a
+round at a time, and never touches a database. `specs.go` holds one strict tool schema per round;
+`prompt.go` the system and per-round prompts; `corpus.go` the dedupe that reads the shipped files
+back through `pubquizr.ShippedFiles()`; `writer.go` an encoder that reproduces the corpus's
+one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 99 files).
+`pubquizr.QuestionsIn` is the single definition of the exact per-round counts,
+`docs/WEEKLY_QUIZ_FALLBACK.md` is the runbook for doing a week by hand when the schedule misses
+one, and `docs/QUIZZER_QUIZ_PROMPT.md` now covers only hand-written **official** quizzes. `nl` is generated
+and `en` is a translation of it (`-from`): the two locales are question for question the same quiz,
+and the app switches between them mid-session.
 
 **Tests** — 78 files, stdlib only: no mocks, no fakes, no assertion library. Everything runs
 against real Postgres: `databasetest.Open(t)` (`internal/platform/database/databasetest`) gives
@@ -303,9 +314,14 @@ why `ALLOWED_ORIGINS` is set to the empty string in production and why the webso
   on the droplet. Copied up by CI on every deploy, so the repo is the only definition of them.
 - `deployment/docker-compose.yml` — the *local* stack, which builds from source. Not what
   production runs.
+- `.github/workflows/weekly-quiz.yml` — the one scheduled workflow (`cron: '0 5 * * 3'`). It
+  generates the week with `cmd/quizgen`, proves it against a `postgres:17-alpine` service
+  container, commits it to `main`, and seeds it into the live database with `cmd/quizseed` over
+  `DATABASE_URL`. It ships no image and touches no container, so a new week is playable without a
+  deploy. It needs an `ANTHROPIC_API_KEY` repository secret.
 - `.github/workflows/deploy-{api,app}.yml` — build, push to GHCR tagged `sha-<12>`, and
   recreate **only** that one container (`--no-deps`). A backend deploy never reloads a
-  player's open page. Both are `workflow_dispatch` only: **nothing deploys on a push to
+  player's open page. Both deploys are `workflow_dispatch` only: **nothing deploys on a push to
   `main`**, so do not describe merging as shipping.
 - Deploy API is the **only** place migrations run. It writes the `DATABASE_URL` secret into
   the droplet's `.env` over ssh stdin, and then `deploy.sh` runs `/app/ph-migrate` from the new
@@ -324,5 +340,4 @@ Two things worth knowing before changing anything here:
   healthy server. The deploy workflows do **not** check it — they ship and stop, so a green
   run does not mean the container serves.
 
-Backups are the Postgres host's job: nothing in this repo takes one. The pre-Postgres SQLite
-file is still in the droplet's `playhaus_api-data` volume, and nothing mounts or reads it.
+Backups are the Postgres host's job: nothing in this repo takes one.

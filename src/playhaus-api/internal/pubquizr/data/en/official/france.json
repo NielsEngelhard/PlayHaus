@@ -1,0 +1,136 @@
+{
+  "slug": "france",
+  "title": "France",
+  "description": "A whole pub quiz about France: its landmarks, its history, its language and its people.",
+  "publishedAt": "2026-08-30",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Paris avenue is the best known shopping street in France?", "category": "Paris", "answers": [{ "text": "The Champs-Elysees", "aliases": ["Champs-Elysees", "Avenue des Champs-Elysees"] }] },
+        { "prompt": "Which river flows through the centre of Paris?", "category": "Rivers", "answers": [{ "text": "The Seine", "aliases": ["Seine"] }] },
+        { "prompt": "What is the French national anthem called?", "category": "Symbols", "answers": [{ "text": "La Marseillaise", "aliases": ["Marseillaise"] }] },
+        { "prompt": "Which iron tower is the symbol of Paris?", "category": "Landmarks", "answers": [{ "text": "The Eiffel Tower", "aliases": ["Eiffel Tower"] }] },
+        { "prompt": "Which three colours make up the French flag?", "category": "Symbols", "answers": [{ "text": "Blue, white and red", "aliases": ["Red, white and blue", "Blue white red"] }] },
+        { "prompt": "In which Paris museum does the Mona Lisa hang?", "category": "Museums", "answers": [{ "text": "The Louvre", "aliases": ["Louvre", "Musee du Louvre"] }] },
+        { "prompt": "What is the three-word motto of the French Republic?", "category": "Symbols", "answers": [{ "text": "Liberty, equality, fraternity", "aliases": ["Liberte, egalite, fraternite", "Freedom, equality, brotherhood"] }] },
+        { "prompt": "Which mountain range forms the border between France and Spain?", "category": "Geography", "answers": [{ "text": "The Pyrenees", "aliases": ["Pyrenees"] }] },
+        { "prompt": "Which city on the Cote d'Azur holds a famous film festival every May?", "category": "Cities", "answers": [{ "text": "Cannes" }] },
+        { "prompt": "Which currency did France use before the euro?", "category": "Money", "answers": [{ "text": "The franc", "aliases": ["franc", "French franc"] }] },
+        { "prompt": "Which French emperor was defeated at Waterloo in 1815?", "category": "History", "answers": [{ "text": "Napoleon Bonaparte", "aliases": ["Napoleon", "Napoleon I"] }] },
+        { "prompt": "On which date does France celebrate its national holiday?", "category": "Holidays", "answers": [{ "text": "14 July", "aliases": ["July 14", "The fourteenth of July", "Bastille Day"] }] },
+        { "prompt": "Which Paris cathedral was badly damaged by fire in 2019?", "category": "Landmarks", "answers": [{ "text": "Notre-Dame", "aliases": ["Notre Dame", "Notre-Dame de Paris"] }] },
+        { "prompt": "Which French painter filled canvas after canvas with water lilies?", "category": "Art", "answers": [{ "text": "Claude Monet", "aliases": ["Monet"] }] },
+        { "prompt": "Which palace did Louis XIV build as his seat of government outside Paris?", "category": "Palaces", "answers": [{ "text": "Versailles", "aliases": ["The Palace of Versailles", "Chateau de Versailles"] }] },
+        { "prompt": "Which crescent-shaped pastry is a French breakfast staple?", "category": "Food", "answers": [{ "text": "The croissant", "aliases": ["croissant"] }] },
+        { "prompt": "What is the French word for thank you?", "category": "Language", "answers": [{ "text": "Merci" }] },
+        { "prompt": "By which three letters is the French high-speed train known?", "category": "Transport", "answers": [{ "text": "TGV", "aliases": ["The TGV"] }] },
+        { "prompt": "Which French writer wrote Les Miserables?", "category": "Literature", "answers": [{ "text": "Victor Hugo", "aliases": ["Hugo"] }] },
+        { "prompt": "Which region in the north-west of France is known for its cider and its landing beaches?", "category": "Regions", "answers": [{ "text": "Normandy", "aliases": ["Normandie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did the French Revolution begin with the storming of the Bastille?", "options": [{ "text": "1769" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1815" }] },
+        { "prompt": "Which French king was sent to the guillotine during the Revolution?", "options": [{ "text": "Louis XIV" }, { "text": "Louis XV" }, { "text": "Louis XVI", "correct": true }, { "text": "Louis XVIII" }] },
+        { "prompt": "Which is the longest river that runs entirely within France?", "options": [{ "text": "The Loire", "correct": true }, { "text": "The Seine" }, { "text": "The Rhone" }, { "text": "The Garonne" }] },
+        { "prompt": "Which French author wrote In Search of Lost Time?", "options": [{ "text": "Marcel Proust", "correct": true }, { "text": "Gustave Flaubert" }, { "text": "Honore de Balzac" }, { "text": "Stendhal" }] },
+        { "prompt": "In which French city does the European Parliament sit?", "options": [{ "text": "Strasbourg", "correct": true }, { "text": "Lyon" }, { "text": "Lille" }, { "text": "Nantes" }] },
+        { "prompt": "Which French physicist shared the 1903 Nobel Prize in Physics with Marie Curie?", "options": [{ "text": "Pierre Curie", "correct": true }, { "text": "Henri Poincare" }, { "text": "Louis de Broglie" }, { "text": "Paul Langevin" }] },
+        { "prompt": "Which island in the Mediterranean is part of France?", "options": [{ "text": "Corsica", "correct": true }, { "text": "Sardinia" }, { "text": "Sicily" }, { "text": "Malta" }] },
+        { "prompt": "Which French designer presented the New Look in 1947?", "options": [{ "text": "Christian Dior", "correct": true }, { "text": "Coco Chanel" }, { "text": "Yves Saint Laurent" }, { "text": "Pierre Cardin" }] },
+        { "prompt": "In which French city does the Palais des Papes, the palace of the popes, stand?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Arles" }, { "text": "Nimes" }, { "text": "Montpellier" }] },
+        { "prompt": "Which French marshal led the government that collaborated with Germany from 1940?", "options": [{ "text": "Philippe Petain", "correct": true }, { "text": "Pierre Laval" }, { "text": "Maxime Weygand" }, { "text": "Ferdinand Foch" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year was the Eiffel Tower completed?", "answer": 1889 },
+        { "prompt": "How many arrondissements does Paris have?", "answer": 20, "unit": "arrondissements" },
+        { "prompt": "How many countries does France border on the European mainland?", "answer": 8, "unit": "countries", "explanation": "Belgium, Luxembourg, Germany, Switzerland, Italy, Monaco, Spain and Andorra." },
+        { "prompt": "How many departments does metropolitan France have?", "answer": 96, "unit": "departments" },
+        { "prompt": "How many metres high is Mont Blanc?", "answer": 4808, "unit": "metres", "explanation": "The figure shifts a few metres from one measurement to the next, because the summit is a cap of snow." },
+        { "prompt": "How many kilometres long is the rail tunnel under the Channel?", "answer": 50, "unit": "kilometres" },
+        { "prompt": "In which year did the Louvre open its doors as a museum?", "answer": 1793 },
+        { "prompt": "In which year did France win the football World Cup for the first time?", "answer": 1998 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Brioche",
+        "Beret",
+        "Guillotine",
+        "Bistro",
+        "Escargot",
+        "Mime",
+        "Lavender",
+        "Musketeer",
+        "Abbey",
+        "Macaron",
+        "Boulevard",
+        "Crepe",
+        "Fleur-de-lis",
+        "Chateau",
+        "Cafe terrace",
+        "Onion soup",
+        "Croque monsieur",
+        "Kiosk",
+        "Quiche",
+        "Olive tree",
+        "Moulin Rouge",
+        "Aqueduct",
+        "Petanque",
+        "Striped sailor shirt",
+        "Sabre",
+        "Cobblestone",
+        "Deck chair",
+        "Picnic basket",
+        "Toll booth",
+        "Cancan"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four French cities that have hosted the Olympic Games.", "answers": [{ "text": "Paris" }, { "text": "Chamonix" }, { "text": "Grenoble" }, { "text": "Albertville" }] },
+        { "prompt": "Name the four seas and oceans that wash the coast of mainland France.", "answers": [{ "text": "The Atlantic Ocean", "aliases": ["Atlantic"] }, { "text": "The Mediterranean Sea", "aliases": ["Mediterranean"] }, { "text": "The English Channel", "aliases": ["Channel", "La Manche"] }, { "text": "The North Sea", "aliases": ["North Sea"] }] },
+        { "prompt": "Name the four swordsmen at the heart of Dumas's The Three Musketeers.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "D'Artagnan", "aliases": ["Dartagnan"] }] },
+        { "prompt": "Name the four best known villagers from the Asterix comics.", "answers": [{ "text": "Asterix" }, { "text": "Obelix" }, { "text": "Getafix", "aliases": ["Panoramix"] }, { "text": "Dogmatix", "aliases": ["Idefix"] }] },
+        { "prompt": "Name the four suits of the French deck of playing cards.", "answers": [{ "text": "Hearts" }, { "text": "Diamonds" }, { "text": "Clubs" }, { "text": "Spades" }] },
+        { "prompt": "Name the four men elected president of the French Fifth Republic before 1995.", "answers": [{ "text": "Charles de Gaulle", "aliases": ["De Gaulle"] }, { "text": "Georges Pompidou", "aliases": ["Pompidou"] }, { "text": "Valery Giscard d'Estaing", "aliases": ["Giscard d'Estaing", "Giscard"] }, { "text": "Francois Mitterrand", "aliases": ["Mitterrand"] }] },
+        { "prompt": "Name the four central characters of Les Miserables.", "answers": [{ "text": "Jean Valjean", "aliases": ["Valjean"] }, { "text": "Javert" }, { "text": "Fantine" }, { "text": "Cosette" }] },
+        { "prompt": "Name the four seasons in French.", "answers": [{ "text": "Printemps" }, { "text": "Ete" }, { "text": "Automne" }, { "text": "Hiver" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the French word for yes?", "difficulty": "easy", "answers": [{ "text": "Oui" }] },
+        { "prompt": "Which sport is played at Roland Garros in Paris?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Which city is the largest port in France?", "difficulty": "easy", "answers": [{ "text": "Marseille", "aliases": ["Marseilles"] }] },
+        { "prompt": "By which one-word nickname is the French flag known?", "difficulty": "easy", "answers": [{ "text": "The Tricolore", "aliases": ["Tricolore", "Tricolour"] }] },
+        { "prompt": "Which triumphal arch in Paris stands over the tomb of the Unknown Soldier?", "difficulty": "easy", "answers": [{ "text": "The Arc de Triomphe", "aliases": ["Arc de Triomphe"] }] },
+        { "prompt": "Which architect designed the glass pyramid in the courtyard of the Louvre?", "difficulty": "hard", "answers": [{ "text": "Ieoh Ming Pei", "aliases": ["I.M. Pei", "IM Pei", "Pei"] }] },
+        { "prompt": "Which French overseas department lies in the Indian Ocean east of Madagascar?", "difficulty": "hard", "answers": [{ "text": "Reunion", "aliases": ["La Reunion"] }] },
+        { "prompt": "Which French writer wrote The Second Sex?", "difficulty": "hard", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir"] }] },
+        { "prompt": "In which year did France test its first atomic bomb?", "difficulty": "hard", "answers": [{ "text": "1960" }] },
+        { "prompt": "Which French composer wrote the opera Carmen?", "difficulty": "hard", "answers": [{ "text": "Georges Bizet", "aliases": ["Bizet"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which French mathematician gave his name to a last theorem that went unproved for centuries?", "answers": [{ "text": "Pierre de Fermat", "aliases": ["Fermat"] }] },
+        { "prompt": "In which year was the Edict of Nantes signed, granting French Protestants their rights?", "answers": [{ "text": "1598" }] },
+        { "prompt": "Which French chemist, regarded as the father of modern chemistry, was guillotined in 1794?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] },
+        { "prompt": "Which French novelist published the open letter J'accuse in defence of Alfred Dreyfus?", "answers": [{ "text": "Emile Zola", "aliases": ["Zola"] }] },
+        { "prompt": "Which cave in the Dordogne, discovered in 1940, is famous for its prehistoric paintings?", "answers": [{ "text": "Lascaux" }] },
+        { "prompt": "Which French sculptor made The Thinker?", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
+        { "prompt": "Which French king was crowned at Reims in 1429 with the help of Joan of Arc?", "answers": [{ "text": "Charles VII", "aliases": ["Charles the Seventh"] }] }
+      ]
+    }
+  ]
+}

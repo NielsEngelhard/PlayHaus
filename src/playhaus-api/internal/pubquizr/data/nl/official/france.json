@@ -1,0 +1,136 @@
+{
+  "slug": "france",
+  "title": "Frankrijk",
+  "description": "Een hele pubquiz over Frankrijk: de bezienswaardigheden, de geschiedenis, de taal en de mensen.",
+  "publishedAt": "2026-08-30",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Parijse laan is de bekendste winkelstraat van Frankrijk?", "category": "Parijs", "answers": [{ "text": "De Champs-Elysees", "aliases": ["Champs-Elysees", "Avenue des Champs-Elysees"] }] },
+        { "prompt": "Welke rivier stroomt dwars door het centrum van Parijs?", "category": "Rivieren", "answers": [{ "text": "De Seine", "aliases": ["Seine"] }] },
+        { "prompt": "Hoe heet het Franse volkslied?", "category": "Symbolen", "answers": [{ "text": "La Marseillaise", "aliases": ["Marseillaise"] }] },
+        { "prompt": "Welke ijzeren toren is het symbool van Parijs?", "category": "Bezienswaardigheden", "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }] },
+        { "prompt": "Uit welke drie kleuren bestaat de Franse vlag?", "category": "Symbolen", "answers": [{ "text": "Blauw, wit en rood", "aliases": ["Rood, wit en blauw", "Blauw wit rood"] }] },
+        { "prompt": "In welk Parijs museum hangt de Mona Lisa?", "category": "Musea", "answers": [{ "text": "Het Louvre", "aliases": ["Louvre", "Musee du Louvre"] }] },
+        { "prompt": "Wat is de driewoordige wapenspreuk van de Franse Republiek?", "category": "Symbolen", "answers": [{ "text": "Vrijheid, gelijkheid, broederschap", "aliases": ["Liberte, egalite, fraternite"] }] },
+        { "prompt": "Welk gebergte vormt de grens tussen Frankrijk en Spanje?", "category": "Aardrijkskunde", "answers": [{ "text": "De Pyreneeen", "aliases": ["Pyreneeen"] }] },
+        { "prompt": "In welke stad aan de Cote d'Azur wordt elk jaar in mei een beroemd filmfestival gehouden?", "category": "Steden", "answers": [{ "text": "Cannes" }] },
+        { "prompt": "Welke munt gebruikte Frankrijk voor de euro?", "category": "Geld", "answers": [{ "text": "De frank", "aliases": ["frank", "Franse frank"] }] },
+        { "prompt": "Welke Franse keizer werd in 1815 verslagen bij Waterloo?", "category": "Geschiedenis", "answers": [{ "text": "Napoleon Bonaparte", "aliases": ["Napoleon", "Napoleon I"] }] },
+        { "prompt": "Op welke datum viert Frankrijk zijn nationale feestdag?", "category": "Feestdagen", "answers": [{ "text": "14 juli", "aliases": ["veertien juli", "Quatorze Juillet", "Bastilledag"] }] },
+        { "prompt": "Welke Parijse kathedraal werd in 2019 zwaar beschadigd door brand?", "category": "Bezienswaardigheden", "answers": [{ "text": "De Notre-Dame", "aliases": ["Notre-Dame", "Notre Dame"] }] },
+        { "prompt": "Welke Franse schilder schilderde doek na doek met waterlelies?", "category": "Kunst", "answers": [{ "text": "Claude Monet", "aliases": ["Monet"] }] },
+        { "prompt": "Welk paleis liet Lodewijk XIV buiten Parijs bouwen als regeringszetel?", "category": "Paleizen", "answers": [{ "text": "Versailles", "aliases": ["Paleis van Versailles", "Chateau de Versailles"] }] },
+        { "prompt": "Welk halvemaanvormig broodje hoort bij het Franse ontbijt?", "category": "Eten", "answers": [{ "text": "De croissant", "aliases": ["croissant"] }] },
+        { "prompt": "Wat is het Franse woord voor dank je wel?", "category": "Taal", "answers": [{ "text": "Merci" }] },
+        { "prompt": "Onder welke drie letters staat de Franse hogesnelheidstrein bekend?", "category": "Vervoer", "answers": [{ "text": "TGV", "aliases": ["De TGV"] }] },
+        { "prompt": "Welke Franse schrijver schreef Les Miserables?", "category": "Literatuur", "answers": [{ "text": "Victor Hugo", "aliases": ["Hugo"] }] },
+        { "prompt": "Welke streek in het noordwesten van Frankrijk staat bekend om zijn cider en zijn landingsstranden?", "category": "Streken", "answers": [{ "text": "Normandie", "aliases": ["Normandy"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar begon de Franse Revolutie met de bestorming van de Bastille?", "options": [{ "text": "1769" }, { "text": "1789", "correct": true }, { "text": "1799" }, { "text": "1815" }] },
+        { "prompt": "Welke Franse koning ging tijdens de Revolutie onder de guillotine?", "options": [{ "text": "Lodewijk XIV" }, { "text": "Lodewijk XV" }, { "text": "Lodewijk XVI", "correct": true }, { "text": "Lodewijk XVIII" }] },
+        { "prompt": "Wat is de langste rivier die volledig binnen Frankrijk stroomt?", "options": [{ "text": "De Loire", "correct": true }, { "text": "De Seine" }, { "text": "De Rhone" }, { "text": "De Garonne" }] },
+        { "prompt": "Welke Franse schrijver schreef Op zoek naar de verloren tijd?", "options": [{ "text": "Marcel Proust", "correct": true }, { "text": "Gustave Flaubert" }, { "text": "Honore de Balzac" }, { "text": "Stendhal" }] },
+        { "prompt": "In welke Franse stad zetelt het Europees Parlement?", "options": [{ "text": "Straatsburg", "correct": true }, { "text": "Lyon" }, { "text": "Rijsel" }, { "text": "Nantes" }] },
+        { "prompt": "Welke Franse natuurkundige deelde in 1903 de Nobelprijs voor de Natuurkunde met Marie Curie?", "options": [{ "text": "Pierre Curie", "correct": true }, { "text": "Henri Poincare" }, { "text": "Louis de Broglie" }, { "text": "Paul Langevin" }] },
+        { "prompt": "Welk eiland in de Middellandse Zee hoort bij Frankrijk?", "options": [{ "text": "Corsica", "correct": true }, { "text": "Sardinie" }, { "text": "Sicilie" }, { "text": "Malta" }] },
+        { "prompt": "Welke Franse ontwerper presenteerde in 1947 de New Look?", "options": [{ "text": "Christian Dior", "correct": true }, { "text": "Coco Chanel" }, { "text": "Yves Saint Laurent" }, { "text": "Pierre Cardin" }] },
+        { "prompt": "In welke Franse stad staat het Palais des Papes, het pauselijk paleis?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Arles" }, { "text": "Nimes" }, { "text": "Montpellier" }] },
+        { "prompt": "Welke Franse maarschalk leidde vanaf 1940 de regering die met Duitsland samenwerkte?", "options": [{ "text": "Philippe Petain", "correct": true }, { "text": "Pierre Laval" }, { "text": "Maxime Weygand" }, { "text": "Ferdinand Foch" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd de Eiffeltoren voltooid?", "answer": 1889 },
+        { "prompt": "Hoeveel arrondissementen heeft Parijs?", "answer": 20, "unit": "arrondissementen" },
+        { "prompt": "Aan hoeveel landen grenst Frankrijk op het Europese vasteland?", "answer": 8, "unit": "landen", "explanation": "Belgie, Luxemburg, Duitsland, Zwitserland, Italie, Monaco, Spanje en Andorra." },
+        { "prompt": "Hoeveel departementen telt het Europese deel van Frankrijk?", "answer": 96, "unit": "departementen" },
+        { "prompt": "Hoeveel meter hoog is de Mont Blanc?", "answer": 4808, "unit": "meter", "explanation": "Het getal verschuift per meting een paar meter, want de top bestaat uit een sneeuwkap." },
+        { "prompt": "Hoeveel kilometer lang is de spoortunnel onder het Kanaal?", "answer": 50, "unit": "kilometer" },
+        { "prompt": "In welk jaar opende het Louvre zijn deuren als museum?", "answer": 1793 },
+        { "prompt": "In welk jaar won Frankrijk voor het eerst het wereldkampioenschap voetbal?", "answer": 1998 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Brioche",
+        "Baret",
+        "Guillotine",
+        "Bistro",
+        "Escargot",
+        "Mime",
+        "Lavendel",
+        "Musketier",
+        "Abdij",
+        "Macaron",
+        "Boulevard",
+        "Crepe",
+        "Fleur-de-lis",
+        "Chateau",
+        "Terrasje",
+        "Uiensoep",
+        "Croque monsieur",
+        "Kiosk",
+        "Quiche",
+        "Olijfboom",
+        "Moulin Rouge",
+        "Aquaduct",
+        "Jeu de boules",
+        "Gestreept matrozenshirt",
+        "Sabel",
+        "Kinderkopje",
+        "Strandstoel",
+        "Picknickmand",
+        "Tolpoort",
+        "Cancan"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier Franse steden die de Olympische Spelen hebben georganiseerd.", "answers": [{ "text": "Parijs" }, { "text": "Chamonix" }, { "text": "Grenoble" }, { "text": "Albertville" }] },
+        { "prompt": "Noem de vier zeeen en oceanen die de kust van het Europese Frankrijk bespoelen.", "answers": [{ "text": "De Atlantische Oceaan", "aliases": ["Atlantische Oceaan"] }, { "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }, { "text": "Het Kanaal", "aliases": ["Kanaal", "La Manche"] }, { "text": "De Noordzee", "aliases": ["Noordzee"] }] },
+        { "prompt": "Noem de vier zwaardvechters uit De drie musketiers van Dumas.", "answers": [{ "text": "Athos" }, { "text": "Porthos" }, { "text": "Aramis" }, { "text": "D'Artagnan", "aliases": ["Dartagnan"] }] },
+        { "prompt": "Noem de vier bekendste dorpsbewoners uit de Asterix-strips.", "answers": [{ "text": "Asterix" }, { "text": "Obelix" }, { "text": "Panoramix" }, { "text": "Idefix" }] },
+        { "prompt": "Noem de vier kleuren van een Frans kaartspel.", "answers": [{ "text": "Harten" }, { "text": "Ruiten" }, { "text": "Klaveren" }, { "text": "Schoppen" }] },
+        { "prompt": "Noem de vier mannen die voor 1995 tot president van de Vijfde Franse Republiek zijn gekozen.", "answers": [{ "text": "Charles de Gaulle", "aliases": ["De Gaulle"] }, { "text": "Georges Pompidou", "aliases": ["Pompidou"] }, { "text": "Valery Giscard d'Estaing", "aliases": ["Giscard d'Estaing", "Giscard"] }, { "text": "Francois Mitterrand", "aliases": ["Mitterrand"] }] },
+        { "prompt": "Noem de vier hoofdpersonen uit Les Miserables.", "answers": [{ "text": "Jean Valjean", "aliases": ["Valjean"] }, { "text": "Javert" }, { "text": "Fantine" }, { "text": "Cosette" }] },
+        { "prompt": "Noem de vier seizoenen in het Frans.", "answers": [{ "text": "Printemps" }, { "text": "Ete" }, { "text": "Automne" }, { "text": "Hiver" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat is het Franse woord voor ja?", "difficulty": "easy", "answers": [{ "text": "Oui" }] },
+        { "prompt": "Welke sport wordt gespeeld op Roland Garros in Parijs?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Welke stad is de grootste haven van Frankrijk?", "difficulty": "easy", "answers": [{ "text": "Marseille" }] },
+        { "prompt": "Onder welke bijnaam van een woord staat de Franse vlag bekend?", "difficulty": "easy", "answers": [{ "text": "De Tricolore", "aliases": ["Tricolore", "Driekleur"] }] },
+        { "prompt": "Welke triomfboog in Parijs staat boven het graf van de onbekende soldaat?", "difficulty": "easy", "answers": [{ "text": "De Arc de Triomphe", "aliases": ["Arc de Triomphe", "Triomfboog"] }] },
+        { "prompt": "Welke architect ontwierp de glazen piramide op de binnenplaats van het Louvre?", "difficulty": "hard", "answers": [{ "text": "Ieoh Ming Pei", "aliases": ["I.M. Pei", "IM Pei", "Pei"] }] },
+        { "prompt": "Welk Frans overzees departement ligt in de Indische Oceaan ten oosten van Madagaskar?", "difficulty": "hard", "answers": [{ "text": "Reunion", "aliases": ["La Reunion"] }] },
+        { "prompt": "Welke Franse schrijfster schreef De tweede sekse?", "difficulty": "hard", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir"] }] },
+        { "prompt": "In welk jaar voerde Frankrijk zijn eerste kernproef uit?", "difficulty": "hard", "answers": [{ "text": "1960" }] },
+        { "prompt": "Welke Franse componist schreef de opera Carmen?", "difficulty": "hard", "answers": [{ "text": "Georges Bizet", "aliases": ["Bizet"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Franse wiskundige gaf zijn naam aan een laatste stelling die eeuwenlang onbewezen bleef?", "answers": [{ "text": "Pierre de Fermat", "aliases": ["Fermat"] }] },
+        { "prompt": "In welk jaar werd het Edict van Nantes ondertekend, dat de Franse protestanten hun rechten gaf?", "answers": [{ "text": "1598" }] },
+        { "prompt": "Welke Franse scheikundige, de grondlegger van de moderne scheikunde, werd in 1794 onthoofd?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] },
+        { "prompt": "Welke Franse romanschrijver publiceerde de open brief J'accuse ter verdediging van Alfred Dreyfus?", "answers": [{ "text": "Emile Zola", "aliases": ["Zola"] }] },
+        { "prompt": "Welke grot in de Dordogne, ontdekt in 1940, is beroemd om zijn prehistorische schilderingen?", "answers": [{ "text": "Lascaux" }] },
+        { "prompt": "Welke Franse beeldhouwer maakte De Denker?", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
+        { "prompt": "Welke Franse koning werd in 1429 met hulp van Jeanne d'Arc gekroond in Reims?", "answers": [{ "text": "Karel VII", "aliases": ["Charles VII", "Karel de Zevende"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "feminism",
+  "title": "Feminism",
+  "description": "A quiz about the women's movement, from the fight for the vote to the icons of today.",
+  "publishedAt": "2026-09-21",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which country was the first in the world to give women the vote in national elections, in 1893?", "category": "Suffrage", "answers": [{ "text": "New Zealand" }] },
+        { "prompt": "In which year did women in the Netherlands gain the right to vote in national elections?", "category": "Netherlands", "answers": [{ "text": "1919", "aliases": ["Nineteen nineteen"] }] },
+        { "prompt": "Which woman was the first to be elected to the Dutch Tweede Kamer, in 1918?", "category": "Netherlands", "answers": [{ "text": "Suze Groeneweg", "aliases": ["Groeneweg"] }] },
+        { "prompt": "Which action group, founded in 1970, became the best-known face of second-wave feminism in the Netherlands?", "category": "Netherlands", "answers": [{ "text": "Dolle Mina" }] },
+        { "prompt": "Which woman was the first in the Netherlands to complete a university degree and become a doctor?", "category": "Netherlands", "answers": [{ "text": "Aletta Jacobs", "aliases": ["Jacobs"] }] },
+        { "prompt": "Who wrote the 1949 book The Second Sex?", "category": "Books", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir", "Beauvoir"] }] },
+        { "prompt": "Who wrote A Vindication of the Rights of Woman in 1792?", "category": "Books", "answers": [{ "text": "Mary Wollstonecraft", "aliases": ["Wollstonecraft"] }] },
+        { "prompt": "Which American writer published The Feminine Mystique in 1963?", "category": "Books", "answers": [{ "text": "Betty Friedan", "aliases": ["Friedan"] }] },
+        { "prompt": "Which English writer wrote the essay A Room of One's Own?", "category": "Books", "answers": [{ "text": "Virginia Woolf", "aliases": ["Woolf"] }] },
+        { "prompt": "Who was the first woman to win a Nobel Prize?", "category": "Science", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Who was the first woman in space?", "category": "Science", "answers": [{ "text": "Valentina Tereshkova", "aliases": ["Tereshkova"] }] },
+        { "prompt": "Who became the first female Prime Minister of the United Kingdom in 1979?", "category": "Politics", "answers": [{ "text": "Margaret Thatcher", "aliases": ["Thatcher"] }] },
+        { "prompt": "Who was the first female Chancellor of Germany?", "category": "Politics", "answers": [{ "text": "Angela Merkel", "aliases": ["Merkel"] }] },
+        { "prompt": "Which Pakistani campaigner for girls' education won the Nobel Peace Prize in 2014?", "category": "Activism", "answers": [{ "text": "Malala Yousafzai", "aliases": ["Malala"] }] },
+        { "prompt": "Which hashtag against sexual harassment spread around the world in 2017?", "category": "Activism", "answers": [{ "text": "MeToo", "aliases": ["#MeToo", "Me Too"] }] },
+        { "prompt": "Which American tennis player beat Bobby Riggs in the 1973 Battle of the Sexes?", "category": "Sport", "answers": [{ "text": "Billie Jean King", "aliases": ["King"] }] },
+        { "prompt": "Which Dutch athlete won four gold medals at the 1948 Olympic Games in London?", "category": "Sport", "answers": [{ "text": "Fanny Blankers-Koen", "aliases": ["Blankers-Koen"] }] },
+        { "prompt": "Which Mexican painter of self-portraits became a feminist icon?", "category": "Art", "answers": [{ "text": "Frida Kahlo", "aliases": ["Kahlo"] }] },
+        { "prompt": "What is the name for the invisible barrier that keeps women out of the top jobs?", "category": "Symbols", "answers": [{ "text": "The glass ceiling", "aliases": ["Glass ceiling"] }] },
+        { "prompt": "On which date is International Women's Day held every year?", "category": "Symbols", "answers": [{ "text": "8 March", "aliases": ["March 8", "The eighth of March"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which year did women in Switzerland get the vote in federal elections?", "options": [{ "text": "1948" }, { "text": "1959" }, { "text": "1971", "correct": true }, { "text": "1984" }] },
+        { "prompt": "Which organisation did Emmeline Pankhurst lead in the fight for the vote?", "options": [{ "text": "The Women's Social and Political Union", "correct": true }, { "text": "The National Union of Women's Suffrage Societies" }, { "text": "The Women's Freedom League" }, { "text": "The Women's Institute" }] },
+        { "prompt": "Who wrote the essay We Should All Be Feminists?", "options": [{ "text": "Chimamanda Ngozi Adichie", "correct": true }, { "text": "Toni Morrison" }, { "text": "Zadie Smith" }, { "text": "Bernardine Evaristo" }] },
+        { "prompt": "Which French minister pushed through the law that legalised abortion in France in 1975?", "options": [{ "text": "Simone Veil", "correct": true }, { "text": "Edith Cresson" }, { "text": "Segolene Royal" }, { "text": "Christiane Taubira" }] },
+        { "prompt": "Which convention on the rights of women did the United Nations adopt in 1979?", "options": [{ "text": "CEDAW", "correct": true }, { "text": "The Beijing Declaration" }, { "text": "The Istanbul Convention" }, { "text": "The Geneva Convention" }] },
+        { "prompt": "Which suffragette died of her injuries after stepping in front of the King's horse at the 1913 Epsom Derby?", "options": [{ "text": "Emily Davison", "correct": true }, { "text": "Annie Kenney" }, { "text": "Mary Richardson" }, { "text": "Edith New" }] },
+        { "prompt": "Which three colours did the British suffragette movement adopt?", "options": [{ "text": "Purple, white and green", "correct": true }, { "text": "Red, white and blue" }, { "text": "Green, yellow and black" }, { "text": "Purple, gold and white" }] },
+        { "prompt": "Which Dutch feminist magazine was founded in 1972?", "options": [{ "text": "Opzij", "correct": true }, { "text": "Libelle" }, { "text": "Margriet" }, { "text": "Viva" }] },
+        { "prompt": "Which country was the first in Europe to give women the vote in national elections?", "options": [{ "text": "Finland", "correct": true }, { "text": "Norway" }, { "text": "Denmark" }, { "text": "Sweden" }] },
+        { "prompt": "Which book did Germaine Greer publish in 1970?", "options": [{ "text": "The Female Eunuch", "correct": true }, { "text": "Sexual Politics" }, { "text": "The Dialectic of Sex" }, { "text": "The Golden Notebook" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many Nobel Prizes did Marie Curie win?", "answer": 2, "unit": "prizes", "explanation": "She is still the only person to have won in two different sciences." },
+        { "prompt": "In which year was the first International Women's Day held?", "answer": 1911 },
+        { "prompt": "In which year did women over the age of thirty get the vote in the United Kingdom?", "answer": 1918 },
+        { "prompt": "How old was Malala Yousafzai when she was awarded the Nobel Peace Prize?", "answer": 17, "unit": "years" },
+        { "prompt": "In which year did women in Saudi Arabia vote for the first time?", "answer": 2015 },
+        { "prompt": "How many years after the first modern Olympic Games did women first take part?", "answer": 4, "unit": "years", "explanation": "The first Games in Athens in 1896 were for men only; women competed in Paris in 1900." },
+        { "prompt": "How many women have been President of the United States?", "answer": 0, "unit": "women" },
+        { "prompt": "In which year did women in the United States get the vote nationwide?", "answer": 1920 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Suffragette",
+        "Ballot box",
+        "Protest banner",
+        "Sash",
+        "Megaphone",
+        "Petition",
+        "Hunger strike",
+        "Prison cell",
+        "Corset",
+        "Trouser suit",
+        "Bra",
+        "Lipstick",
+        "Typewriter",
+        "Midwife",
+        "Boardroom",
+        "Pay slip",
+        "Contraceptive pill",
+        "Pram",
+        "Purple ribbon",
+        "Briefcase",
+        "Ironing board",
+        "Picket line",
+        "Nail polish",
+        "Dungarees",
+        "Hard hat",
+        "Knitting needles",
+        "Shoulder pads",
+        "Graduation cap",
+        "Bus seat",
+        "Beauty pageant"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Pankhursts who led the British campaign for women's suffrage.", "answers": [{ "text": "Emmeline", "aliases": ["Emmeline Pankhurst"] }, { "text": "Christabel", "aliases": ["Christabel Pankhurst"] }, { "text": "Sylvia", "aliases": ["Sylvia Pankhurst"] }, { "text": "Adela", "aliases": ["Adela Pankhurst"] }] },
+        { "prompt": "Name the four March sisters in Louisa May Alcott's Little Women.", "answers": [{ "text": "Meg", "aliases": ["Margaret"] }, { "text": "Jo", "aliases": ["Josephine"] }, { "text": "Beth", "aliases": ["Elizabeth"] }, { "text": "Amy" }] },
+        { "prompt": "Name the four Spice Girls other than Victoria Beckham.", "answers": [{ "text": "Geri Halliwell", "aliases": ["Ginger Spice"] }, { "text": "Melanie Brown", "aliases": ["Mel B", "Scary Spice"] }, { "text": "Melanie Chisholm", "aliases": ["Mel C", "Sporty Spice"] }, { "text": "Emma Bunton", "aliases": ["Baby Spice"] }] },
+        { "prompt": "Name the four tennis Grand Slam tournaments, which all now pay women and men the same prize money.", "answers": [{ "text": "The Australian Open", "aliases": ["Australian Open"] }, { "text": "Roland Garros", "aliases": ["The French Open", "French Open"] }, { "text": "Wimbledon" }, { "text": "The US Open", "aliases": ["US Open"] }] },
+        { "prompt": "Name the four main characters in the series Sex and the City.", "answers": [{ "text": "Carrie Bradshaw", "aliases": ["Carrie"] }, { "text": "Samantha Jones", "aliases": ["Samantha"] }, { "text": "Charlotte York", "aliases": ["Charlotte"] }, { "text": "Miranda Hobbes", "aliases": ["Miranda"] }] },
+        { "prompt": "Name the four women who wrote Pride and Prejudice, Frankenstein, Jane Eyre and Wuthering Heights.", "answers": [{ "text": "Jane Austen", "aliases": ["Austen"] }, { "text": "Mary Shelley", "aliases": ["Shelley"] }, { "text": "Charlotte Bronte" }, { "text": "Emily Bronte" }] },
+        { "prompt": "Name the four women who led the Dutch monarchy between 1890 and 2013: one regent and three queens.", "answers": [{ "text": "Emma", "aliases": ["Queen Emma", "Regent Emma"] }, { "text": "Wilhelmina", "aliases": ["Queen Wilhelmina"] }, { "text": "Juliana", "aliases": ["Queen Juliana"] }, { "text": "Beatrix", "aliases": ["Queen Beatrix"] }] },
+        { "prompt": "Name the four women who in 2024 headed the European Commission, the European Central Bank, the European Parliament and the International Monetary Fund.", "answers": [{ "text": "Ursula von der Leyen", "aliases": ["Von der Leyen"] }, { "text": "Christine Lagarde", "aliases": ["Lagarde"] }, { "text": "Roberta Metsola", "aliases": ["Metsola"] }, { "text": "Kristalina Georgieva", "aliases": ["Georgieva"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which American singer had a hit in 1967 with Respect, a song that became a feminist anthem?", "difficulty": "easy", "answers": [{ "text": "Aretha Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Which country's women won the 2017 European football championship on home soil?", "difficulty": "easy", "answers": [{ "text": "The Netherlands", "aliases": ["Netherlands", "Holland"] }] },
+        { "prompt": "Who was the first woman to fly solo across the Atlantic Ocean?", "difficulty": "easy", "answers": [{ "text": "Amelia Earhart", "aliases": ["Earhart"] }] },
+        { "prompt": "During which war did the We Can Do It poster of Rosie the Riveter appear?", "difficulty": "easy", "answers": [{ "text": "The Second World War", "aliases": ["Second World War", "World War Two", "WWII"] }] },
+        { "prompt": "The symbol for the female sex is also the symbol of which planet?", "difficulty": "easy", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Which American feminist co-founded the magazine Ms. in 1971?", "difficulty": "hard", "answers": [{ "text": "Gloria Steinem", "aliases": ["Steinem"] }] },
+        { "prompt": "Which nineteenth-century Dutch feminist was nicknamed Iron Mina?", "difficulty": "hard", "answers": [{ "text": "Wilhelmina Drucker", "aliases": ["Drucker"] }] },
+        { "prompt": "Whose notes on Charles Babbage's Analytical Engine are regarded as the first computer program?", "difficulty": "hard", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] },
+        { "prompt": "Which physicist, passed over for the Nobel Prize that went to Otto Hahn, helped explain nuclear fission?", "difficulty": "hard", "answers": [{ "text": "Lise Meitner", "aliases": ["Meitner"] }] },
+        { "prompt": "Who was the first woman to take her seat in the British House of Commons?", "difficulty": "hard", "answers": [{ "text": "Nancy Astor", "aliases": ["Astor", "Lady Astor"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Who became the world's first female prime minister when she took office in Ceylon in 1960?", "answers": [{ "text": "Sirimavo Bandaranaike", "aliases": ["Bandaranaike"] }] },
+        { "prompt": "Which French writer published the Declaration of the Rights of Woman and of the Female Citizen in 1791 and was guillotined two years later?", "answers": [{ "text": "Olympe de Gouges", "aliases": ["De Gouges", "Gouges"] }] },
+        { "prompt": "Which American abolitionist gave the 1851 speech known as Ain't I a Woman?", "answers": [{ "text": "Sojourner Truth", "aliases": ["Truth"] }] },
+        { "prompt": "Who was the first woman to be awarded the Fields Medal for mathematics?", "answers": [{ "text": "Maryam Mirzakhani", "aliases": ["Mirzakhani"] }] },
+        { "prompt": "Which country became the first in the world with a majority of women in its parliament, after its 2008 election?", "answers": [{ "text": "Rwanda" }] },
+        { "prompt": "Which American wrote the 1892 short story The Yellow Wallpaper?", "answers": [{ "text": "Charlotte Perkins Gilman", "aliases": ["Perkins Gilman", "Gilman"] }] },
+        { "prompt": "Who was the first woman to serve as a minister in a Dutch cabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] }
+      ]
+    }
+  ]
+}

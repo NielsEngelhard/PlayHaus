@@ -1,0 +1,136 @@
+{
+  "slug": "pirates",
+  "title": "Piraten",
+  "description": "Een hele pubquiz over piraten: de gouden eeuw van de zeerovers, de boekaniers en de films die hen beroemd maakten.",
+  "publishedAt": "2026-09-03",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Onder welke bijnaam kennen we de Engelse piraat Edward Teach?", "category": "Kapiteins", "answers": [{ "text": "Blackbeard", "aliases": ["Zwartbaard"] }] },
+        { "prompt": "Hoe heet de zwarte piratenvlag met de doodskop en de gekruiste botten?", "category": "Vlaggen", "answers": [{ "text": "De Jolly Roger", "aliases": ["Jolly Roger"] }] },
+        { "prompt": "Hoe heet het schip van Jack Sparrow in Pirates of the Caribbean?", "category": "Film", "answers": [{ "text": "De Black Pearl", "aliases": ["Black Pearl", "De Zwarte Parel"] }] },
+        { "prompt": "In welke roman van Robert Louis Stevenson komt de eenbenige scheepskok Long John Silver voor?", "category": "Boeken", "answers": [{ "text": "Schateiland", "aliases": ["Treasure Island", "Het schateiland"] }] },
+        { "prompt": "Welke piratenkapitein is in Peter Pan de grote vijand van Peter?", "category": "Boeken", "answers": [{ "text": "Kapitein Haak", "aliases": ["Haak", "Captain Hook"] }] },
+        { "prompt": "Welke drank wordt het sterkst met piraten geassocieerd?", "category": "Drank", "answers": [{ "text": "Rum" }] },
+        { "prompt": "Hoe heet de straf waarbij een gevangene over een plank de zee in moet lopen?", "category": "Straf", "answers": [{ "text": "Over de plank lopen", "aliases": ["De plank", "Over de loopplank lopen"] }] },
+        { "prompt": "Op welke zee overvielen de Barbarijse kapers schepen en kustdorpen?", "category": "Plaatsen", "answers": [{ "text": "De Middellandse Zee", "aliases": ["Middellandse Zee"] }] },
+        { "prompt": "Welk woord voor een Caribische zeerover komt van het Franse boucanier, de mannen die vlees rookten op de eilanden?", "category": "Termen", "answers": [{ "text": "Een boekanier", "aliases": ["Boekanier", "Buccaneer"] }] },
+        { "prompt": "Welke Welshe zeerover plunderde Panama in 1671 en werd later luitenant-gouverneur van Jamaica?", "category": "Kapiteins", "answers": [{ "text": "Henry Morgan", "aliases": ["Morgan", "Captain Morgan"] }] },
+        { "prompt": "Hoe noem je een zeerover die vijandelijke schepen beroofde met een vergunning van zijn eigen regering?", "category": "Termen", "answers": [{ "text": "Een kaper", "aliases": ["Kaper", "Kaapvaarder"] }] },
+        { "prompt": "Welk legendarische zeemonster trekt een schip naar de diepte in de tweede Pirates of the Caribbean-film?", "category": "Legendes", "answers": [{ "text": "De Kraken", "aliases": ["Kraken"] }] },
+        { "prompt": "Welke vogel zit traditioneel op de schouder van een piraat?", "category": "Dieren", "answers": [{ "text": "Een papegaai", "aliases": ["Papegaai"] }] },
+        { "prompt": "Wie is in de tweede en derde Pirates of the Caribbean-film de kapitein van de Vliegende Hollander?", "category": "Film", "answers": [{ "text": "Davy Jones" }] },
+        { "prompt": "Voor de kust van welk Afrikaans land kaapten piraten eind jaren nul tankers en vrachtschepen?", "category": "Moderne piraterij", "answers": [{ "text": "Somalie", "aliases": ["Somalia"] }] },
+        { "prompt": "In welke stripreeks raakt een bende piraten in bijna elk album hun schip kwijt?", "category": "Strips", "answers": [{ "text": "Asterix", "aliases": ["Asterix en Obelix"] }] },
+        { "prompt": "Welke Japanse manga- en animereeks volgt de piratenbemanning van Monkey D. Luffy?", "category": "Anime", "answers": [{ "text": "One Piece" }] },
+        { "prompt": "Hoe heetten de Spaanse gouden munten waar piraten in het Caribisch gebied op joegen?", "category": "Schatten", "answers": [{ "text": "Dubloenen", "aliases": ["Dubloen", "Doubloons"] }] },
+        { "prompt": "Welke Nederlandse opstandige kapers namen in 1572 Den Briel in?", "category": "Lage Landen", "answers": [{ "text": "De watergeuzen", "aliases": ["Watergeuzen", "Geuzen"] }] },
+        { "prompt": "Welke Romein werd als jongeman door piraten gegijzeld en liet hen na zijn vrijlating kruisigen?", "category": "Oudheid", "answers": [{ "text": "Julius Caesar", "aliases": ["Caesar"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Hoe heette het vlaggenschip van Blackbeard?", "options": [{ "text": "Queen Anne's Revenge", "correct": true }, { "text": "Royal Fortune" }, { "text": "The Fancy" }, { "text": "The Ranger" }] },
+        { "prompt": "In welk jaar sneuvelde Blackbeard in een entergevecht voor de kust van North Carolina?", "options": [{ "text": "1714" }, { "text": "1718", "correct": true }, { "text": "1722" }, { "text": "1726" }] },
+        { "prompt": "Welke piraat werd in 1701 opgehangen aan Execution Dock in Londen?", "options": [{ "text": "William Kidd", "correct": true }, { "text": "Edward Low" }, { "text": "Charles Vane" }, { "text": "Calico Jack Rackham" }] },
+        { "prompt": "Welke piraat kaapte meer schepen dan wie ook in zijn tijd en sneuvelde in 1722 voor de kust van West-Afrika?", "options": [{ "text": "Bartholomew Roberts", "correct": true }, { "text": "Blackbeard" }, { "text": "Jean Lafitte" }, { "text": "Benjamin Hornigold" }] },
+        { "prompt": "Welke piraat, bekend als Black Sam, verdronk toen zijn vlaggenschip in 1717 bij Cape Cod verging?", "options": [{ "text": "Samuel Bellamy", "correct": true }, { "text": "Thomas Tew" }, { "text": "Edward England" }, { "text": "Christopher Condent" }] },
+        { "prompt": "Wie regisseerde de eerste drie Pirates of the Caribbean-films?", "options": [{ "text": "Gore Verbinski", "correct": true }, { "text": "Rob Marshall" }, { "text": "Sam Mendes" }, { "text": "Ridley Scott" }] },
+        { "prompt": "Welke piratenfilm uit 1995 met Geena Davis werd een van de grootste kassaflops ooit?", "options": [{ "text": "Cutthroat Island", "correct": true }, { "text": "Waterworld" }, { "text": "The Sea Hawk" }, { "text": "Treasure Planet" }] },
+        { "prompt": "Welke Engelse piraat kaapte in 1695 een schatschip van de Mogols en verdween daarna met de buit?", "options": [{ "text": "Henry Every", "correct": true }, { "text": "Howell Davis" }, { "text": "John Taylor" }, { "text": "Olivier Levasseur" }] },
+        { "prompt": "Welke Engelse zeevaarder noemden de Spanjaarden El Draque terwijl hij hun schathavens plunderde?", "options": [{ "text": "Francis Drake", "correct": true }, { "text": "Walter Raleigh" }, { "text": "John Hawkins" }, { "text": "Martin Frobisher" }] },
+        { "prompt": "Hoe heet in Schateiland het schip dat de schatzoekers vervoert?", "options": [{ "text": "De Hispaniola", "correct": true }, { "text": "De Walrus" }, { "text": "De Arabella" }, { "text": "De Dauntless" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel Pirates of the Caribbean-films waren er in 2025 uitgebracht?", "answer": 5, "unit": "films" },
+        { "prompt": "In welk jaar verscheen Schateiland voor het eerst als boek?", "answer": 1883 },
+        { "prompt": "Hoeveel kanonnen had het vlaggenschip van Blackbeard aan boord?", "answer": 40, "unit": "kanonnen", "explanation": "Het was een gekaapt Frans slavenschip dat werd omgebouwd en hernoemd." },
+        { "prompt": "In welk jaar kaapten Somalische piraten de Maersk Alabama?", "answer": 2009 },
+        { "prompt": "In welk jaar overvielen Barbarijse kapers het Ierse dorp Baltimore?", "answer": 1631, "explanation": "Ruim honderd dorpelingen werden meegevoerd naar Noord-Afrika en verkocht." },
+        { "prompt": "Hoeveel schepen zou Bartholomew Roberts in zijn loopbaan hebben gekaapt?", "answer": 400, "unit": "schepen" },
+        { "prompt": "Hoeveel mannen zitten er op de kist van de dode man in het lied uit Schateiland?", "answer": 15, "unit": "mannen" },
+        { "prompt": "In welk jaar ging het toneelstuk Peter Pan voor het eerst in premiere?", "answer": 1904 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Schatkaart",
+        "Haakhand",
+        "Doodskop met gekruiste botten",
+        "Gouden tand",
+        "Stuk van achten",
+        "Begraven schat",
+        "Scheepsjongen",
+        "Kraaiennest",
+        "Scheepsrat",
+        "Kanonskogel",
+        "Zeemanslied",
+        "Verstekeling",
+        "Buskruit",
+        "Piratenbaai",
+        "Enterploeg",
+        "Rumvat",
+        "Grog",
+        "Musket",
+        "Het zwarte teken",
+        "Scheurbuik",
+        "IJzeren boeien",
+        "Touwladder",
+        "Scheepskat",
+        "Kroeg",
+        "Losgeldbrief",
+        "Dolk",
+        "Pistool",
+        "Enterbijl",
+        "Scheepsbeschuit",
+        "Zwaardgevecht"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier Pirates of the Caribbean-films die tussen 2003 en 2011 uitkwamen.", "answers": [{ "text": "The Curse of the Black Pearl" }, { "text": "Dead Man's Chest" }, { "text": "At World's End" }, { "text": "On Stranger Tides" }] },
+        { "prompt": "Noem de vier beroemde vrouwen uit de piraterij: de Ierse zeekapitein, de Chinese vlootcommandant en de twee die met Calico Jack voeren.", "answers": [{ "text": "Grace O'Malley", "aliases": ["Grainne Mhaol", "O'Malley"] }, { "text": "Ching Shih", "aliases": ["Zheng Yi Sao"] }, { "text": "Anne Bonny", "aliases": ["Bonny"] }, { "text": "Mary Read", "aliases": ["Read"] }] },
+        { "prompt": "Noem de vier acteurs die Jack Sparrow, Will Turner, Elizabeth Swann en Barbossa spelen.", "answers": [{ "text": "Johnny Depp", "aliases": ["Depp"] }, { "text": "Orlando Bloom", "aliases": ["Bloom"] }, { "text": "Keira Knightley", "aliases": ["Knightley"] }, { "text": "Geoffrey Rush", "aliases": ["Rush"] }] },
+        { "prompt": "Noem de vier piratennesten: de Jamaicaanse haven die door een aardbeving verwoest werd, het eiland bij Hispaniola, de Bahamaanse stad en het grote eiland ten oosten van Mozambique.", "answers": [{ "text": "Port Royal" }, { "text": "Tortuga" }, { "text": "Nassau" }, { "text": "Madagaskar", "aliases": ["Madagascar"] }] },
+        { "prompt": "Noem de vier Noord-Afrikaanse kapershavens.", "answers": [{ "text": "Algiers" }, { "text": "Tunis" }, { "text": "Tripoli" }, { "text": "Sale", "aliases": ["Salee"] }] },
+        { "prompt": "Noem de vier personages uit Schateiland: de jongen die het verhaal vertelt, de scheepskok, de landjonker die de reis betaalt en de dokter.", "answers": [{ "text": "Jim Hawkins", "aliases": ["Hawkins", "Jim"] }, { "text": "Long John Silver", "aliases": ["Silver", "Lange John Silver"] }, { "text": "Landjonker Trelawney", "aliases": ["Trelawney", "Jonker Trelawney"] }, { "text": "Dokter Livesey", "aliases": ["Livesey", "Dr. Livesey"] }] },
+        { "prompt": "Noem de vier straffen op zee: alleen achtergelaten op een eiland, onder de kiel door getrokken, gegeseld op het dek en opgeknoopt.", "answers": [{ "text": "Achterlaten op een onbewoond eiland", "aliases": ["Marooning", "Achterlaten"] }, { "text": "Kielhalen" }, { "text": "Geselen", "aliases": ["Zweepslagen", "De zweep"] }, { "text": "Ophangen", "aliases": ["Opknopen"] }] },
+        { "prompt": "Noem de vier onderdelen van het piratenpak uit de verhalen: over een oog, onder een knie, op het hoofd en in de hand.", "answers": [{ "text": "Een ooglapje", "aliases": ["Ooglapje"] }, { "text": "Een houten been", "aliases": ["Houten been", "Houten poot"] }, { "text": "Een driekantige hoed", "aliases": ["Driekantige hoed", "Steek"] }, { "text": "Een sabel", "aliases": ["Sabel", "Entermes"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft de klassieke piratenvlag?", "difficulty": "easy", "answers": [{ "text": "Zwart" }] },
+        { "prompt": "Welke zee geeft de Pirates of the Caribbean-films hun naam?", "difficulty": "easy", "answers": [{ "text": "De Caribische Zee", "aliases": ["Caribische Zee", "De Caraiben", "Het Caribisch gebied"] }] },
+        { "prompt": "Welk edelmetaal wilden piraten het liefst van alles buitmaken?", "difficulty": "easy", "answers": [{ "text": "Goud" }] },
+        { "prompt": "Welke groet roepen piraten in de verhalen als ze een ander schip praaien?", "difficulty": "easy", "answers": [{ "text": "Ahoy" }] },
+        { "prompt": "Wat heeft de krokodil in Peter Pan ingeslikt, waardoor hij tikt?", "difficulty": "easy", "answers": [{ "text": "Een klok", "aliases": ["Klok", "Wekker", "Een wekker"] }] },
+        { "prompt": "Welke zeestraat tussen Maleisie en Indonesie is de drukste plek voor moderne piraterij?", "difficulty": "hard", "answers": [{ "text": "Straat Malakka", "aliases": ["De Straat Malakka", "Malakka"] }] },
+        { "prompt": "In welk jaar bood koning George de Eerste piraten gratie aan?", "difficulty": "hard", "answers": [{ "text": "1717" }] },
+        { "prompt": "Welke piraat werd de Gentleman Pirate genoemd en werd in 1718 in Charleston opgehangen?", "difficulty": "hard", "answers": [{ "text": "Stede Bonnet", "aliases": ["Bonnet"] }] },
+        { "prompt": "Onder welk pseudoniem verscheen in 1724 het boek A General History of the Pyrates?", "difficulty": "hard", "answers": [{ "text": "Captain Charles Johnson", "aliases": ["Charles Johnson", "Kapitein Charles Johnson"] }] },
+        { "prompt": "Welke kaper die Barbarossa werd genoemd heerste over Algiers en werd admiraal van de Ottomaanse vloot?", "difficulty": "hard", "answers": [{ "text": "Hayreddin Barbarossa", "aliases": ["Hayreddin", "Chaireddin"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heette het schip waarmee William Kidd in 1696 op kaapvaart ging?", "answers": [{ "text": "De Adventure Galley", "aliases": ["Adventure Galley"] }] },
+        { "prompt": "Welk schatschip van de Mogols kaapte Henry Every in 1695?", "answers": [{ "text": "De Ganj-i-Sawai", "aliases": ["Ganj-i-Sawai", "Gunsway"] }] },
+        { "prompt": "Welk piratenschip zonk in 1717 bij Cape Cod en werd in 1984 teruggevonden?", "answers": [{ "text": "De Whydah", "aliases": ["Whydah", "Whydah Gally"] }] },
+        { "prompt": "Hoe heet de piratenutopie op Madagaskar die in A General History of the Pyrates wordt beschreven?", "answers": [{ "text": "Libertalia", "aliases": ["Libertatia"] }] },
+        { "prompt": "Welke luitenant van de Royal Navy leidde de enterploeg die Blackbeard in 1718 doodde?", "answers": [{ "text": "Robert Maynard", "aliases": ["Maynard"] }] },
+        { "prompt": "Hoe heet de papegaai van Long John Silver in Schateiland?", "answers": [{ "text": "Kapitein Flint", "aliases": ["Flint", "Captain Flint"] }] },
+        { "prompt": "Welke piratenfilm uit 1935 maakte van Errol Flynn een ster?", "answers": [{ "text": "Captain Blood", "aliases": ["Kapitein Blood"] }] }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
 import ScoreBoardScreen from "@/components/ui/ScoreBoardScreen";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
@@ -33,7 +34,7 @@ import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { View } from "react-native";
 
 /** The rounds this build can play. Past the last of them the evening stops on a board. */
@@ -111,6 +112,14 @@ export default function OneDeviceQuizPage() {
         router.replace(ROUTES.quizzerIndex);
     }
 
+    function fade(key: string, node: ReactNode) {
+        return (
+            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key}>
+                {node}
+            </SlideFadeIn>
+        )
+    }
+
     /** The table says it has read the scores and is ready for what comes next. */
     function startRound(next: number) {
         setStartedRound(next);
@@ -158,7 +167,7 @@ export default function OneDeviceQuizPage() {
 
     // The evening is over.
     if (session.status === 'completed') {
-        return (
+        return fade('completed', (
             <ScoreBoardScreen
                 game={PUBQUIZR}
                 players={scoreBoardPlayersOf(session)}
@@ -166,17 +175,17 @@ export default function OneDeviceQuizPage() {
                 onClose={leave}
                 action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: leave }}
             />
-        )
+        ))
     }
 
     // Round 3 stops on its result before it moves anywhere else.
     if (closestResult !== null && !session.turnQuestionIds.includes(closestResult.dealtId)) {
-        return (
+        return fade(`closest:${closestResult.dealtId}`, (
             <ClosestResultScreen
                 result={closestResult}
                 onContinue={() => setClosestResult(null)}
             />
-        )
+        ))
     }
 
     // The scoreboard between rounds.
@@ -185,7 +194,7 @@ export default function OneDeviceQuizPage() {
         && startedRound !== round;
 
     if (between || !playable) {
-        return (
+        return fade(`standings:${ordinal - 1}`, (
             <>
                 {/* The band gets gutters of its own here rather than the board's, because `RoundStandings` below already lays its own down. */}
                 <View style={styles.band}>
@@ -210,7 +219,7 @@ export default function OneDeviceQuizPage() {
                     onLeave={leave}
                 />
             </>
-        )
+        ))
     }
 
     const hotSeat = hotSeatTurnOf(session, quiz);
@@ -238,7 +247,7 @@ export default function OneDeviceQuizPage() {
 
     // A round the session says it is on but no board can draw is a deal this build does not understand.
     if (holder === null) {
-        return (
+        return fade(`standings:${ordinal - 1}`, (
             <>
                 {/* The scoreboard again, so the band it wears is the scoreboard's. */}
                 <View style={styles.band}>
@@ -262,7 +271,7 @@ export default function OneDeviceQuizPage() {
                     onLeave={leave}
                 />
             </>
-        )
+        ))
     }
 
     const copy = roundCopy(t, round, holder.name, session.zenMode);
@@ -276,7 +285,7 @@ export default function OneDeviceQuizPage() {
         const finalists = round === ROUND_FINALE ? finalistsOf(session, seats) : null;
         const finaleMaster = round === ROUND_FINALE ? holder : null;
 
-        return (
+        return fade(`intro:${round}`, (
             <RoundIntroScreen
                 round={ordinal}
                 totalRounds={session.totalRounds}
@@ -286,11 +295,11 @@ export default function OneDeviceQuizPage() {
                 quizmaster={finaleMaster}
                 onStart={() => setIntroducedRound(round)}
             />
-        )
+        ))
     }
 
     if (claimedBy !== holder.seat) {
-        return (
+        return fade(`handoff:${holder.seat}`, (
             <HandoffScreen
                 person={holder}
                 from={seatAt(seats, handedFrom)}
@@ -302,10 +311,10 @@ export default function OneDeviceQuizPage() {
                 action={t('pubquizr.play.handoff.action')}
                 onReady={() => setClaimedBy(holder.seat)}
             />
-        )
+        ))
     }
 
-    return (
+    return fade(`board:${holder.seat}:${number}`, (
         <View style={styles.board}>
             <InGameHeader
                 onClose={leave}
@@ -452,7 +461,7 @@ export default function OneDeviceQuizPage() {
                 />
             )}
         </View>
-    )
+    ))
 }
 
 const useStyles = createThemedStyles(theme => ({

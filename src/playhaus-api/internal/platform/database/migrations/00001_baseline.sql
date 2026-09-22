@@ -1,6 +1,3 @@
--- The schema as GORM's AutoMigrate built it from the models on the day Postgres replaced SQLite.
--- Unqualified on purpose: every table lands in the connection's search_path, which is how the tests get a schema each.
-
 -- +goose Up
 CREATE TABLE daily_lol_games (
     id text NOT NULL,

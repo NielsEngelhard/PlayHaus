@@ -29,6 +29,30 @@
 	reverse_proxy app:80
 }
 
+stats.{$DOMAIN} {
+	# No `encode` here, unlike the block above. Beszel pushes live figures over SSE, and
+	# compressing text/event-stream buffers it -- the charts simply stop updating.
+
+	# Belt and braces over Beszel's own login, and the only thing covering the window
+	# before that login exists: the hub's first-run wizard hands the admin account to
+	# whoever reaches it first. Hash with `caddy hash-password`.
+	basic_auth {
+		niels $2a$14$2a$14$ni12RCyH8RDkqMexKh.3reQiCatnU27.3XXZ0FzmDbzu5bhbGk7BO
+	}
+
+	request_body {
+		max_size 10MB
+	}
+
+	reverse_proxy beszel:8090 {
+		transport http {
+			# Beszel's own recommendation. A shorter timeout cuts the agent's long-lived
+			# connection and the system flaps between up and down.
+			read_timeout 360s
+		}
+	}
+}
+
 www.{$DOMAIN} {
 	# One canonical origin. It matters more than tidiness here: the app bundle is built
 	# with a single EXPO_PUBLIC_API_URL baked in, so a player who arrived on www would

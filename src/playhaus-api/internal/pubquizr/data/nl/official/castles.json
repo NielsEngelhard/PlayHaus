@@ -1,0 +1,136 @@
+{
+  "slug": "castles",
+  "title": "Kastelen",
+  "description": "Een hele pubquiz over kastelen: slotgrachten en donjons, belegeringen en de grote burchten van Europa.",
+  "publishedAt": "2026-09-18",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe heet de sterkste toren van een kasteel, het laatste toevluchtsoord?", "category": "Onderdelen van een kasteel", "answers": [{ "text": "De donjon", "aliases": ["donjon", "woontoren"] }] },
+        { "prompt": "Hoe heet de muur die tussen de torens van een kasteel loopt en de binnenplaats omsluit?", "category": "Onderdelen van een kasteel", "answers": [{ "text": "De ringmuur", "aliases": ["ringmuur", "weermuur"] }] },
+        { "prompt": "Hoe heet de getande bovenrand van een kasteelmuur?", "category": "Onderdelen van een kasteel", "answers": [{ "text": "De kantelen", "aliases": ["kantelen", "tinnen"] }] },
+        { "prompt": "Hoe heet de ondergrondse gevangenis van een kasteel?", "category": "Onderdelen van een kasteel", "answers": [{ "text": "De kerker", "aliases": ["kerker"] }] },
+        { "prompt": "Welke vesting aan de Theems bewaart de Britse kroonjuwelen?", "category": "Engelse kastelen", "answers": [{ "text": "De Tower of London", "aliases": ["Tower of London", "de Tower"] }] },
+        { "prompt": "Welk Engels kasteel boven de kortste oversteek naar Frankrijk staat bekend als de sleutel tot Engeland?", "category": "Engelse kastelen", "answers": [{ "text": "Dover Castle", "aliases": ["Dover", "kasteel van Dover"] }] },
+        { "prompt": "Welk kasteel ten westen van Londen is het grootste bewoonde kasteel ter wereld?", "category": "Koninklijke kastelen", "answers": [{ "text": "Windsor Castle", "aliases": ["Windsor", "kasteel Windsor"] }] },
+        { "prompt": "Welk kasteel staat op een vulkanische rots boven de hoofdstad van Schotland?", "category": "Schotse kastelen", "answers": [{ "text": "Edinburgh Castle", "aliases": ["Edinburgh", "kasteel van Edinburgh"] }] },
+        { "prompt": "Welk Beiers kasteel van koning Lodewijk de Tweede was het voorbeeld voor het sprookjeskasteel van Disney?", "category": "Duitse kastelen", "answers": [{ "text": "Neuschwanstein", "aliases": ["Slot Neuschwanstein", "Schloss Neuschwanstein"] }] },
+        { "prompt": "Langs welke Franse rivier staan de kastelen van Blois, Amboise en Chinon?", "category": "Franse kastelen", "answers": [{ "text": "De Loire", "aliases": ["Loire", "Loirevallei"] }] },
+        { "prompt": "Welk kasteel in Transsylvanie wordt aan bezoekers verkocht als het kasteel van Dracula?", "category": "Kastelen en legendes", "answers": [{ "text": "Kasteel Bran", "aliases": ["Bran", "Bran Castle"] }] },
+        { "prompt": "Welk Deens kasteel is het Elsinore uit Shakespeares Hamlet?", "category": "Scandinavische kastelen", "answers": [{ "text": "Kronborg", "aliases": ["kasteel Kronborg"] }] },
+        { "prompt": "Welk Moors paleis en fort kijkt uit over de stad Granada?", "category": "Spaanse kastelen", "answers": [{ "text": "Het Alhambra", "aliases": ["Alhambra"] }] },
+        { "prompt": "Welk kasteel is de officiele zetel van de president van Tsjechie?", "category": "Midden-Europese kastelen", "answers": [{ "text": "De Praagse Burcht", "aliases": ["Praagse Burcht", "Hradcany", "kasteel van Praag"] }] },
+        { "prompt": "Welk dertiende-eeuws kasteel bewaakt de monding van de Vecht net ten oosten van Amsterdam?", "category": "Nederlandse kastelen", "answers": [{ "text": "Het Muiderslot", "aliases": ["Muiderslot"] }] },
+        { "prompt": "Welk kasteel bij het dorp Haarzuilens is het grootste van Nederland?", "category": "Nederlandse kastelen", "answers": [{ "text": "Kasteel de Haar", "aliases": ["De Haar"] }] },
+        { "prompt": "Uit welk kasteel ontsnapte Hugo de Groot in een boekenkist?", "category": "Nederlandse kastelen", "answers": [{ "text": "Slot Loevestein", "aliases": ["Loevestein"] }] },
+        { "prompt": "Welk kasteel van de graven van Vlaanderen staat midden in Gent?", "category": "Belgische kastelen", "answers": [{ "text": "Het Gravensteen", "aliases": ["Gravensteen"] }] },
+        { "prompt": "Welke vesting en gevangenis in Parijs werd op 14 juli 1789 bestormd?", "category": "Vestingen", "answers": [{ "text": "De Bastille", "aliases": ["Bastille"] }] },
+        { "prompt": "Hoe heet de kasteelschool uit de Harry Potter-boeken?", "category": "Kastelen in de fictie", "answers": [{ "text": "Zweinstein", "aliases": ["Zweinsteins Hogeschool", "Hogwarts"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar werd de eerste steen van Neuschwanstein gelegd?", "options": [{ "text": "1869", "correct": true }, { "text": "1839" }, { "text": "1886" }, { "text": "1892" }] },
+        { "prompt": "Welk kasteel aan de Loire is gebouwd als een galerij over de rivier de Cher?", "options": [{ "text": "Chenonceau", "correct": true }, { "text": "Chambord" }, { "text": "Amboise" }, { "text": "Blois" }] },
+        { "prompt": "Welke Engelse koning bouwde de ring van kastelen rond Snowdonia in Wales?", "options": [{ "text": "Eduard de Eerste", "correct": true }, { "text": "Hendrik de Tweede" }, { "text": "Richard de Eerste" }, { "text": "Jan zonder Land" }] },
+        { "prompt": "In welk land staat het kruisvaarderskasteel Krak des Chevaliers?", "options": [{ "text": "Syrie", "correct": true }, { "text": "Libanon" }, { "text": "Jordanie" }, { "text": "Turkije" }] },
+        { "prompt": "Welke ridderorde bouwde kasteel Malbork, qua oppervlakte het grootste kasteel ter wereld?", "options": [{ "text": "De Duitse Orde", "correct": true }, { "text": "De Tempeliers" }, { "text": "De Johannieters" }, { "text": "De Orde van Santiago" }] },
+        { "prompt": "Welk kasteel staat ondanks zijn naam in Kent en was een verblijf van Catharina van Aragon?", "options": [{ "text": "Leeds Castle", "correct": true }, { "text": "Hever Castle" }, { "text": "Arundel Castle" }, { "text": "Warwick Castle" }] },
+        { "prompt": "Welk Japans kasteel staat bekend als de Witte Reiger?", "options": [{ "text": "Himeji", "correct": true }, { "text": "Osaka" }, { "text": "Matsumoto" }, { "text": "Nagoya" }] },
+        { "prompt": "In welk jaar richtte een grote brand zware schade aan in Windsor Castle?", "options": [{ "text": "1992", "correct": true }, { "text": "1972" }, { "text": "1984" }, { "text": "1998" }] },
+        { "prompt": "Wat is de motte bij een mottekasteel?", "options": [{ "text": "De opgeworpen aarden heuvel", "correct": true }, { "text": "De gracht die eromheen ligt" }, { "text": "De omheinde voorburcht" }, { "text": "De houten palissade erbovenop" }] },
+        { "prompt": "Welk kasteel heeft de dubbele wenteltrap die vaak aan Leonardo da Vinci wordt toegeschreven?", "options": [{ "text": "Chambord", "correct": true }, { "text": "Villandry" }, { "text": "Azay-le-Rideau" }, { "text": "Cheverny" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd het Muiderslot voor het eerst gebouwd?", "answer": 1285 },
+        { "prompt": "In welk jaar ontsnapte Hugo de Groot in een boekenkist uit Slot Loevestein?", "answer": 1621 },
+        { "prompt": "In welk jaar vond de Tweede Praagse Defenestratie plaats op de Praagse Burcht?", "answer": 1618, "explanation": "De mannen die uit het raam werden gegooid overleefden de val, en binnen enkele maanden begon de Dertigjarige Oorlog." },
+        { "prompt": "Hoeveel kamers telt het kasteel van Chambord?", "answer": 440, "unit": "kamers" },
+        { "prompt": "Hoeveel torens heeft de ommuurde stad Carcassonne?", "answer": 52, "unit": "torens" },
+        { "prompt": "Hoeveel gevangenen zaten er in de Bastille toen die in 1789 werd bestormd?", "answer": 7, "unit": "gevangenen", "explanation": "Vier valsemunters, twee mannen die als krankzinnig waren opgesloten en een edelman." },
+        { "prompt": "Hoeveel meter hoog is de White Tower in de Tower of London?", "answer": 27, "unit": "meter" },
+        { "prompt": "Hoeveel hectare beslaat kasteel Malbork in Polen?", "answer": 21, "unit": "hectare" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Waterspuwer",
+        "Torentje",
+        "Schietgat",
+        "Katapult",
+        "Harnas",
+        "Borstwering",
+        "Klokkentoren",
+        "Zwaard",
+        "Boogschutter",
+        "Kruisboog",
+        "Glas-in-lood",
+        "Banier",
+        "Wenteltrap",
+        "Binnenplaats",
+        "Fakkel",
+        "Wandtapijt",
+        "Paardenstal",
+        "Waterput",
+        "Nar",
+        "Ruine",
+        "Kroonluchter",
+        "Kanon",
+        "Windwijzer",
+        "Prinses",
+        "Schatkist",
+        "Lans",
+        "Stormladder",
+        "Grafkelder",
+        "Valk",
+        "Haard"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier kastelen van Eduard de Eerste in Gwynedd die UNESCO samen op de werelderfgoedlijst heeft gezet.", "answers": [{ "text": "Caernarfon" }, { "text": "Conwy" }, { "text": "Harlech" }, { "text": "Beaumaris" }] },
+        { "prompt": "Noem de vier afdelingen van Zweinstein.", "answers": [{ "text": "Griffoendor" }, { "text": "Huffelpuf" }, { "text": "Ravenklauw" }, { "text": "Zwadderich" }] },
+        { "prompt": "Noem de vier landen waarin kasteel Bran, Kronborg, Malbork en het Alhambra staan.", "answers": [{ "text": "Roemenie" }, { "text": "Denemarken" }, { "text": "Polen" }, { "text": "Spanje" }] },
+        { "prompt": "Noem de vier onderdelen van een ridderharnas die het hoofd, de borst, de handen en de scheenbenen bedekken.", "answers": [{ "text": "Helm" }, { "text": "Borstplaat", "aliases": ["kuras"] }, { "text": "Pantserhandschoenen", "aliases": ["handschoenen"] }, { "text": "Beenplaten", "aliases": ["scheenplaten"] }] },
+        { "prompt": "Noem de vier belegeringswapens: het wapen met een tegengewicht, de reuzenkruisboog, de toren op wielen en de balk die tegen de poort wordt gebeukt.", "answers": [{ "text": "Trebuchet", "aliases": ["blijde"] }, { "text": "Ballista" }, { "text": "Belegeringstoren" }, { "text": "Stormram", "aliases": ["ram"] }] },
+        { "prompt": "Noem de vier verdedigingswerken die een aanvaller bij de kasteelpoort tegenkwam: de gracht met water, de brug die omhoog gaat, het ijzeren hek en het bouwwerk dat er vlak voor staat.", "answers": [{ "text": "Slotgracht", "aliases": ["gracht"] }, { "text": "Ophaalbrug" }, { "text": "Valhek" }, { "text": "Barbacane", "aliases": ["barbicane"] }] },
+        { "prompt": "Noem de vier ambachtslieden die een kasteel bouwden: wie de steen hakte, wie het hout bewerkte, wie het ijzer smeedde en wie het glas zette.", "answers": [{ "text": "Steenhouwer", "aliases": ["metselaar"] }, { "text": "Timmerman" }, { "text": "Smid", "aliases": ["hoefsmid"] }, { "text": "Glazenmaker" }] },
+        { "prompt": "Noem de vier ruimtes van een kasteel: waar de heer feestvierde, waar hij sliep, waar hij bad en waar het eten werd bereid.", "answers": [{ "text": "De ridderzaal", "aliases": ["ridderzaal", "grote zaal"] }, { "text": "De slaapkamer", "aliases": ["slaapkamer", "slaapvertrek"] }, { "text": "De kapel", "aliases": ["kapel"] }, { "text": "De keuken", "aliases": ["keuken"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk schaakstuk heeft de vorm van een kasteeltoren?", "difficulty": "easy", "answers": [{ "text": "De toren", "aliases": ["toren", "kasteel"] }] },
+        { "prompt": "Welke zwarte vogels worden volgens de traditie in de Tower of London gehouden?", "difficulty": "easy", "answers": [{ "text": "Raven", "aliases": ["raaf", "kraaien"] }] },
+        { "prompt": "Welke sprookjesprinses prikte zich aan een spinnewiel en sliep honderd jaar?", "difficulty": "easy", "answers": [{ "text": "Doornroosje" }] },
+        { "prompt": "Hoe noemen we een geharnaste krijger te paard die een heer diende?", "difficulty": "easy", "answers": [{ "text": "Een ridder", "aliases": ["ridder"] }] },
+        { "prompt": "Welke legendarische koning hield met zijn ronde tafel hof in Camelot?", "difficulty": "easy", "answers": [{ "text": "Koning Arthur", "aliases": ["Arthur"] }] },
+        { "prompt": "Hoe heet het middeleeuwse kasteeltoilet, een schacht in de dikte van de muur?", "difficulty": "hard", "answers": [{ "text": "Een secreet", "aliases": ["secreet", "garderobe", "gemak"] }] },
+        { "prompt": "Hoe heten de openingen in de vloer boven een poort waardoor verdedigers stenen lieten vallen?", "difficulty": "hard", "answers": [{ "text": "Moordgaten", "aliases": ["moordgat", "machicoulis"] }] },
+        { "prompt": "Welk kasteel boven de Seine in Normandie liet Richard Leeuwenhart in ongeveer twee jaar bouwen?", "difficulty": "hard", "answers": [{ "text": "Chateau Gaillard", "aliases": ["Gaillard"] }] },
+        { "prompt": "Welk omgracht kasteel in East Sussex werd in de jaren 1380 gebouwd en ligt vierkant midden in zijn meer?", "difficulty": "hard", "answers": [{ "text": "Bodiam Castle", "aliases": ["Bodiam"] }] },
+        { "prompt": "Welke graaf van Holland liet het Muiderslot bouwen en werd in 1296 vermoord?", "difficulty": "hard", "answers": [{ "text": "Floris de Vijfde", "aliases": ["Floris V", "Floris"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk Duits kasteel diende in de Tweede Wereldoorlog als zwaarbewaakt kamp voor krijgsgevangenen die steeds weer probeerden te ontsnappen?", "answers": [{ "text": "Colditz", "aliases": ["kasteel Colditz", "Schloss Colditz"] }] },
+        { "prompt": "Welk kasteel boven de Rijn bij Koblenz is de enige hoogteburcht aan de Middenrijn die nooit verwoest is?", "answers": [{ "text": "De Marksburg", "aliases": ["Marksburg"] }] },
+        { "prompt": "In welk kasteel op een eiland werd Maria Stuart in 1567 gevangengezet en gedwongen af te treden?", "answers": [{ "text": "Loch Leven Castle", "aliases": ["Loch Leven", "Lochleven"] }] },
+        { "prompt": "In welk landhuis bij Amboise bracht Leonardo da Vinci zijn laatste jaren door en stierf hij in 1519?", "answers": [{ "text": "Clos Luce", "aliases": ["Le Clos Luce", "Chateau du Clos Luce"] }] },
+        { "prompt": "Welke vesting in Rome begon als het mausoleum van keizer Hadrianus en werd een bolwerk van de pausen?", "answers": [{ "text": "De Engelenburcht", "aliases": ["Engelenburcht", "Castel Sant'Angelo"] }] },
+        { "prompt": "Welk felgekleurd romantisch paleis staat op een heuveltop boven Sintra in Portugal?", "answers": [{ "text": "Het Palacio da Pena", "aliases": ["Palacio da Pena", "Pena", "paleis van Pena"] }] },
+        { "prompt": "Welke vesting die uitkijkt over Salzburg is een van de grootste volledig bewaarde burchten van Europa?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Festung Hohensalzburg", "vesting Hohensalzburg"] }] }
+      ]
+    }
+  ]
+}

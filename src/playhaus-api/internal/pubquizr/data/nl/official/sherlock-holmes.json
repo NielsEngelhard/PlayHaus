@@ -1,0 +1,136 @@
+{
+  "slug": "sherlock-holmes",
+  "title": "Sherlock Holmes",
+  "description": "Een hele pubquiz over de grote speurder van Baker Street, zijn zaken, zijn bedenker en zijn vele verfilmingen.",
+  "publishedAt": "2026-09-09",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke schrijver bedacht Sherlock Holmes?", "category": "Schrijver", "answers": [{ "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle", "Sir Arthur Conan Doyle"] }] },
+        { "prompt": "Op welk Londens adres woont Sherlock Holmes?", "category": "Plaatsen", "answers": [{ "text": "221B Baker Street", "aliases": ["221B", "Baker Street 221B"] }] },
+        { "prompt": "Wie is de vriend en huisgenoot van Holmes die zijn zaken opschrijft?", "category": "Personages", "answers": [{ "text": "Dokter Watson", "aliases": ["Watson", "Dr. Watson"] }] },
+        { "prompt": "Welk dier zou de familie Baskerville op de heide achtervolgen?", "category": "Romans", "answers": [{ "text": "Een hond", "aliases": ["Hond", "Een jachthond"] }] },
+        { "prompt": "Welke vrouw is voor Holmes altijd simpelweg 'de vrouw'?", "category": "Personages", "answers": [{ "text": "Irene Adler", "aliases": ["Adler"] }] },
+        { "prompt": "In welk verhaal is die vrouw Holmes te slim af?", "category": "Verhalen", "answers": [{ "text": "Een schandaal in Bohemen", "aliases": ["A Scandal in Bohemia", "Schandaal in Bohemen"] }] },
+        { "prompt": "Hoe noemt Holmes zijn eigen beroep, een vak dat hij naar eigen zeggen heeft uitgevonden?", "category": "Methode", "answers": [{ "text": "Adviserend detective", "aliases": ["Consulting detective", "Raadgevend detective"] }] },
+        { "prompt": "Welke acteur speelde Holmes in de Granada-televisieserie uit de jaren tachtig?", "category": "Verfilmingen", "answers": [{ "text": "Jeremy Brett", "aliases": ["Brett"] }] },
+        { "prompt": "In welke Schotse stad werd Arthur Conan Doyle geboren?", "category": "Schrijver", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "Welke beroemde zin wordt Holmes altijd in de mond gelegd, terwijl die nergens in de boeken staat?", "category": "Citaten", "answers": [{ "text": "Elementair, beste Watson", "aliases": ["Elementary, my dear Watson", "Elementair mijn beste Watson"] }] },
+        { "prompt": "Waarin bewaart Holmes zijn pijptabak in Baker Street?", "category": "Gewoontes", "answers": [{ "text": "Een Perzische slof", "aliases": ["Perzische slof", "Een pantoffel", "Een slof"] }] },
+        { "prompt": "Welk ander personage van Conan Doyle leidt een expeditie naar een hoogvlakte vol dinosaurussen?", "category": "Schrijver", "answers": [{ "text": "Professor Challenger", "aliases": ["Challenger", "George Challenger"] }] },
+        { "prompt": "Welke Britse vorst zat op de troon toen de eerste Holmes-verhalen verschenen?", "category": "Geschiedenis", "answers": [{ "text": "Koningin Victoria", "aliases": ["Victoria"] }] },
+        { "prompt": "In welke film uit 2015 speelt Ian McKellen een stokoude, gepensioneerde Holmes?", "category": "Verfilmingen", "answers": [{ "text": "Mr. Holmes", "aliases": ["Mr Holmes"] }] },
+        { "prompt": "In welk vak is professor Moriarty hoogleraar?", "category": "Personages", "answers": [{ "text": "Wiskunde" }] },
+        { "prompt": "Hoe heet de hond die Holmes leent om een spoor door Londen te volgen?", "category": "Methode", "answers": [{ "text": "Toby" }] },
+        { "prompt": "Welk Duitse woord staat in bloed op de muur geschreven in Een studie in rood?", "category": "Verhalen", "answers": [{ "text": "Rache", "aliases": ["RACHE", "Wraak"] }] },
+        { "prompt": "In welk verhaal bestaat de geheimtaal uit kleine dansende poppetjes?", "category": "Verhalen", "answers": [{ "text": "De dansende mannetjes", "aliases": ["The Dancing Men", "The Adventure of the Dancing Men"] }] },
+        { "prompt": "Hoe noemt Sherlock in de BBC-serie Sherlock de techniek waarmee hij alles wat hij weet opslaat?", "category": "Verfilmingen", "answers": [{ "text": "Zijn geheugenpaleis", "aliases": ["Geheugenpaleis", "Gedachtenpaleis", "Mind palace"] }] },
+        { "prompt": "Hoe heet het trekken van een conclusie uit kleine details, waar Holmes beroemd om is?", "category": "Methode", "answers": [{ "text": "Deductie", "aliases": ["Deduceren", "Deductief redeneren"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke erfgenaam van Baskerville moet Holmes beschermen in De hond van de Baskervilles?", "options": [{ "text": "Sir Charles Baskerville" }, { "text": "Sir Henry Baskerville", "correct": true }, { "text": "Sir Hugo Baskerville" }, { "text": "Sir Roger Baskerville" }] },
+        { "prompt": "Welke chirurg en docent uit Edinburgh gold als het voorbeeld voor Holmes?", "options": [{ "text": "Joseph Lister" }, { "text": "James Young Simpson" }, { "text": "Joseph Bell", "correct": true }, { "text": "Robert Knox" }] },
+        { "prompt": "Op welke Engelse heidevlakte speelt De hond van de Baskervilles zich af?", "options": [{ "text": "Dartmoor", "correct": true }, { "text": "Exmoor" }, { "text": "Bodmin Moor" }, { "text": "Ilkley Moor" }] },
+        { "prompt": "De tweede helft van Een studie in rood speelt in Utah en gaat over welke geloofsgemeenschap?", "options": [{ "text": "De quakers" }, { "text": "De amish" }, { "text": "De shakers" }, { "text": "De mormonen", "correct": true }] },
+        { "prompt": "Van welke vioolbouwer is de viool die Holmes naar eigen zeggen goedkoop bij een lommerd kocht?", "options": [{ "text": "Een Amati" }, { "text": "Een Guarneri" }, { "text": "Een Stradivarius", "correct": true }, { "text": "Een Bergonzi" }] },
+        { "prompt": "Wat is de voornaam van professor Moriarty?", "options": [{ "text": "James", "correct": true }, { "text": "John" }, { "text": "Charles" }, { "text": "Robert" }] },
+        { "prompt": "Welke acteur speelde Holmes in veertien Hollywoodfilms tussen 1939 en 1946?", "options": [{ "text": "Peter Cushing" }, { "text": "Christopher Lee" }, { "text": "Basil Rathbone", "correct": true }, { "text": "Ronald Howard" }] },
+        { "prompt": "In welk jaar liet Conan Doyle Holmes in druk terugkeren uit de dood?", "options": [{ "text": "1893" }, { "text": "1898" }, { "text": "1903", "correct": true }, { "text": "1912" }] },
+        { "prompt": "Hoe heet de butler van Baskerville Hall?", "options": [{ "text": "Brunton" }, { "text": "Barrymore", "correct": true }, { "text": "Bunter" }, { "text": "Bates" }] },
+        { "prompt": "Welke scheikundige test zegt Holmes te hebben uitgevonden als Watson hem voor het eerst ontmoet?", "options": [{ "text": "Een test op arsenicum" }, { "text": "Een test om bloedvlekken aan te tonen", "correct": true }, { "text": "Een test op buskruit" }, { "text": "Een test op opium" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar verscheen het allereerste verhaal over Sherlock Holmes?", "answer": 1887 },
+        { "prompt": "Hoeveel korte verhalen over Sherlock Holmes schreef Conan Doyle?", "answer": 56, "unit": "verhalen" },
+        { "prompt": "Hoeveel treden lopen er van de hal naar de huiskamer op 221B Baker Street?", "answer": 17, "unit": "treden", "explanation": "Holmes wijst Watson erop dat hij ze honderden keren op is gelopen en ze nooit heeft geteld." },
+        { "prompt": "Hoeveel procent cocaine bevat de oplossing die Holmes zich inspuit aan het begin van Het teken van vier?", "answer": 7, "unit": "procent" },
+        { "prompt": "In welk jaar verscheen De hond van de Baskervilles als boek?", "answer": 1902 },
+        { "prompt": "In welk jaar werd de eerste aflevering van de BBC-serie Sherlock uitgezonden?", "answer": 2010 },
+        { "prompt": "In welk jaar overleed Arthur Conan Doyle?", "answer": 1930 },
+        { "prompt": "Hoeveel jaar is Holmes spoorloos tussen de Reichenbachwatervallen en zijn terugkeer?", "answer": 3, "unit": "jaar", "explanation": "Lezers noemen het de Grote Onderbreking: Holmes blijft weg van 1891 tot 1894." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Monocle",
+        "Hoge hoed",
+        "Sigarenas",
+        "Agent",
+        "Hangslot",
+        "Vermomming",
+        "Telegram",
+        "Huurrijtuig",
+        "Gaslantaarn",
+        "Verdachte",
+        "Aanwijzing",
+        "Gif",
+        "Revolver",
+        "Alibi",
+        "Notitieboekje",
+        "Opiumhol",
+        "Bloedhond",
+        "Politiefluitje",
+        "Zakhorloge",
+        "Lakzegel",
+        "Plaats delict",
+        "Open haard",
+        "Lijkschouwer",
+        "Inktpot",
+        "Geheime gang",
+        "Pruik",
+        "Kaars",
+        "Leunstoel",
+        "Kinderkopjes",
+        "Wandelstok"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier romans over Sherlock Holmes.", "answers": [{ "text": "Een studie in rood", "aliases": ["A Study in Scarlet", "Studie in rood"] }, { "text": "Het teken van vier", "aliases": ["The Sign of the Four", "Het teken van de vier"] }, { "text": "De hond van de Baskervilles", "aliases": ["The Hound of the Baskervilles"] }, { "text": "De vallei van de angst", "aliases": ["The Valley of Fear", "Het dal van de angst"] }] },
+        { "prompt": "Noem de vier: de broer van Holmes, zijn hospita, zijn contact bij Scotland Yard en zijn grote tegenstander.", "answers": [{ "text": "Mycroft Holmes", "aliases": ["Mycroft"] }, { "text": "Mevrouw Hudson", "aliases": ["Mrs Hudson", "Hudson"] }, { "text": "Inspecteur Lestrade", "aliases": ["Lestrade"] }, { "text": "Professor Moriarty", "aliases": ["Moriarty"] }] },
+        { "prompt": "Noem de vier acteurs die Holmes en Watson speelden in de BBC-serie Sherlock en in de twee films van Guy Ritchie.", "answers": [{ "text": "Benedict Cumberbatch", "aliases": ["Cumberbatch"] }, { "text": "Martin Freeman", "aliases": ["Freeman"] }, { "text": "Robert Downey Jr.", "aliases": ["Robert Downey Junior", "Downey"] }, { "text": "Jude Law", "aliases": ["Law"] }] },
+        { "prompt": "Noem de vier: het verhaal waarin Holmes lijkt te sterven, de waterval waar dat gebeurt, het land waar die waterval ligt en het verhaal waarin hij terugkeert.", "answers": [{ "text": "Het laatste probleem", "aliases": ["The Final Problem"] }, { "text": "De Reichenbachwatervallen", "aliases": ["Reichenbach", "The Reichenbach Falls"] }, { "text": "Zwitserland" }, { "text": "Het lege huis", "aliases": ["The Empty House", "The Adventure of the Empty House"] }] },
+        { "prompt": "Noem de vier: het hoofdbureau van de Londense politie in de verhalen, het tijdschrift dat ze afdrukte, de stad waarin ze spelen en het ziekenhuis waar Holmes en Watson elkaar leren kennen.", "answers": [{ "text": "Scotland Yard" }, { "text": "The Strand Magazine", "aliases": ["The Strand", "Strand"] }, { "text": "Londen" }, { "text": "St Bartholomew's Hospital", "aliases": ["Barts", "Bart's", "Saint Bartholomew's"] }] },
+        { "prompt": "Noem de vier verhalenbundels over Sherlock Holmes die voor 1920 verschenen.", "answers": [{ "text": "De avonturen van Sherlock Holmes", "aliases": ["The Adventures of Sherlock Holmes", "De avonturen"] }, { "text": "De memoires van Sherlock Holmes", "aliases": ["The Memoirs of Sherlock Holmes", "De memoires"] }, { "text": "De terugkeer van Sherlock Holmes", "aliases": ["The Return of Sherlock Holmes", "De terugkeer"] }, { "text": "His Last Bow", "aliases": ["Zijn laatste buiging"] }] },
+        { "prompt": "Noem de vier: het middel dat Holmes zich inspuit, het instrument dat hij bespeelt, het groepje straatjongens dat hij betaalt voor informatie en de zwijgzame club die zijn broer mee oprichtte.", "answers": [{ "text": "Cocaine" }, { "text": "De viool", "aliases": ["Viool"] }, { "text": "De Baker Street Irregulars", "aliases": ["Baker Street Irregulars", "De straatjongens van Baker Street"] }, { "text": "De Diogenes Club", "aliases": ["Diogenes Club", "Diogenes"] }] },
+        { "prompt": "Noem de vier dingen die we van dokter Watson weten: zijn voornaam, zijn beroep, het land waar hij als legerarts gewond raakte en de vrouw met wie hij trouwt.", "answers": [{ "text": "John" }, { "text": "Arts", "aliases": ["Dokter", "Legerarts", "Chirurg"] }, { "text": "Afghanistan" }, { "text": "Mary Morstan", "aliases": ["Morstan", "Mary"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk soort pet draagt Sherlock Holmes op vrijwel elke tekening?", "difficulty": "easy", "answers": [{ "text": "Een deerstalker", "aliases": ["Deerstalker", "Jagerspet"] }] },
+        { "prompt": "Wat rookt Sherlock Holmes van oudsher?", "difficulty": "easy", "answers": [{ "text": "Een pijp", "aliases": ["Pijp"] }] },
+        { "prompt": "In welk land spelen de verhalen over Sherlock Holmes zich af?", "difficulty": "easy", "answers": [{ "text": "Engeland", "aliases": ["Groot-Brittannie", "Het Verenigd Koninkrijk"] }] },
+        { "prompt": "Welke onbekende moordenaar hield in 1888 huis in Whitechapel, in hetzelfde Londen als de eerste Holmes-verhalen?", "difficulty": "easy", "answers": [{ "text": "Jack the Ripper", "aliases": ["Jack de Ripper", "De Ripper"] }] },
+        { "prompt": "Op welke rivier vindt de achtervolging per boot plaats in Het teken van vier?", "difficulty": "easy", "answers": [{ "text": "De Theems", "aliases": ["Theems"] }] },
+        { "prompt": "Wie is de rechterhand van Moriarty, een grootwildjager en de beste scherpschutter van Londen?", "difficulty": "hard", "answers": [{ "text": "Kolonel Sebastian Moran", "aliases": ["Sebastian Moran", "Moran", "Colonel Sebastian Moran"] }] },
+        { "prompt": "Hoe heet de laatste verhalenbundel over Holmes, uit 1927?", "difficulty": "hard", "answers": [{ "text": "The Case-Book of Sherlock Holmes", "aliases": ["The Casebook of Sherlock Holmes", "The Case-Book"] }] },
+        { "prompt": "Welke bezigheid neemt Holmes ter hand nadat hij zich op het platteland van Sussex heeft teruggetrokken?", "difficulty": "hard", "answers": [{ "text": "Bijen houden", "aliases": ["Imkeren", "Bijen", "Hij houdt bijen"] }] },
+        { "prompt": "In welk verhaal komt het merkwaardige voorval van de hond in de nacht voor?", "difficulty": "hard", "answers": [{ "text": "Silver Blaze", "aliases": ["The Adventure of Silver Blaze"] }] },
+        { "prompt": "Wiens tekeningen in The Strand Magazine gaven Holmes zijn vertrouwde uiterlijk?", "difficulty": "hard", "answers": [{ "text": "Sidney Paget", "aliases": ["Paget"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het loopjongetje dat in de latere verhalen de deur opendoet in Baker Street?", "answers": [{ "text": "Billy" }] },
+        { "prompt": "Welk van zijn eigen Holmes-verhalen noemde Conan Doyle zijn favoriet?", "answers": [{ "text": "The Speckled Band", "aliases": ["De gevlekte band", "De bonte band", "The Adventure of the Speckled Band"] }] },
+        { "prompt": "Welke gestolen schat staat centraal in Het teken van vier?", "answers": [{ "text": "De schat van Agra", "aliases": ["Agra", "De Agra-schat"] }] },
+        { "prompt": "Hoe heet het boek over hogere wiskunde dat Moriarty schreef?", "answers": [{ "text": "The Dynamics of an Asteroid", "aliases": ["De dynamica van een asteroide", "Dynamics of an Asteroid"] }] },
+        { "prompt": "Welke Amerikaanse acteur speelde Holmes meer dan duizend keer op het toneel en bepaalde daarmee het populaire beeld van hem?", "answers": [{ "text": "William Gillette", "aliases": ["Gillette"] }] },
+        { "prompt": "Holmes noemt de reuzenrat van welk eiland als een zaak waar de wereld nog niet klaar voor is?", "answers": [{ "text": "Sumatra" }] },
+        { "prompt": "In welk tijdschrift verscheen het eerste verhaal over Sherlock Holmes in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] }
+      ]
+    }
+  ]
+}

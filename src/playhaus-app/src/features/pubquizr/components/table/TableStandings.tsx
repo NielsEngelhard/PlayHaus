@@ -1,10 +1,14 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { View } from "react-native";
+import { Animated, Easing, View } from "react-native";
+
+const CHIP_STAGGER_MS = 45;
 
 interface Props {
     /** The shared screen's type scale -- see `table-scale.ts`. */
@@ -32,49 +36,75 @@ export default function TableStandings({ scale, standings }: Props) {
             </AppText>
 
             <View style={[styles.chips, { gap: Math.round(8 * scale) }]}>
-                {standings.map(seat => {
-                    const lead = seat.seat === leading;
-
-                    return (
-                        <View
-                            key={seat.seat}
-                            style={[
-                                styles.chip,
-                                lead && styles.leading,
-                                {
-                                    gap: Math.round(8 * scale),
-                                    paddingVertical: Math.round(6 * scale),
-                                    paddingHorizontal: Math.round(10 * scale)
-                                }
-                            ]}
-                        >
-                            <SeatAvatar seat={seat} size={Math.round(28 * scale)} />
-
-                            <AppText
-                                numberOfLines={1}
-                                style={[
-                                    styles.name,
-                                    lead && styles.onLemon,
-                                    { fontSize: Math.round(15 * scale) }
-                                ]}
-                            >
-                                {seat.name}
-                            </AppText>
-
-                            <AppText
-                                style={[
-                                    styles.score,
-                                    lead && styles.onLemon,
-                                    { fontSize: Math.round(20 * scale) }
-                                ]}
-                            >
-                                {seat.score}
-                            </AppText>
-                        </View>
-                    )
-                })}
+                {standings.map((seat, index) => (
+                    <Chip
+                        key={seat.seat}
+                        index={index}
+                        leading={seat.seat === leading}
+                        scale={scale}
+                        seat={seat}
+                    />
+                ))}
             </View>
         </View>
+    )
+}
+
+interface ChipProps {
+    index: number
+    leading: boolean
+    scale: number
+    seat: Seat
+}
+
+// One chip, staggered in behind the ones before it, with the leader given a small settle-in pop.
+function Chip({ index, leading, scale, seat }: ChipProps) {
+    const styles = useStyles();
+
+    const highlight = useEntrance({
+        delayMs: index * CHIP_STAGGER_MS + 180,
+        durationMs: 260,
+        easing: Easing.out(Easing.back(1.8))
+    });
+
+    return (
+        <SlideFadeIn offsetY={8} durationMs={220} delayMs={index * CHIP_STAGGER_MS}>
+            <Animated.View
+                style={[
+                    styles.chip,
+                    leading && styles.leading,
+                    {
+                        gap: Math.round(8 * scale),
+                        paddingVertical: Math.round(6 * scale),
+                        paddingHorizontal: Math.round(10 * scale)
+                    },
+                    leading && { transform: [{ scale: highlight.interpolate({ inputRange: [0, 1], outputRange: [1.04, 1] }) }] }
+                ]}
+            >
+                <SeatAvatar seat={seat} size={Math.round(28 * scale)} />
+
+                <AppText
+                    numberOfLines={1}
+                    style={[
+                        styles.name,
+                        leading && styles.onLemon,
+                        { fontSize: Math.round(15 * scale) }
+                    ]}
+                >
+                    {seat.name}
+                </AppText>
+
+                <AppText
+                    style={[
+                        styles.score,
+                        leading && styles.onLemon,
+                        { fontSize: Math.round(20 * scale) }
+                    ]}
+                >
+                    {seat.score}
+                </AppText>
+            </Animated.View>
+        </SlideFadeIn>
     )
 }
 

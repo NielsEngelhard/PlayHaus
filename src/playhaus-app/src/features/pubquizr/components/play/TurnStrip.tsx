@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
@@ -89,7 +90,6 @@ export default function TurnStrip({
             </View>
 
             <View
-                style={styles.spotlight}
                 // Read out as the one sentence it is, rather than as three separate scraps.
                 accessibilityRole="text"
                 accessibilityLabel={run >= RUN_WORTH_SAYING
@@ -103,26 +103,34 @@ export default function TurnStrip({
                         player: answering.name
                     })}
             >
-                <Avatar seat={answering} size="lg" />
+                {/* Swings in from the side on a handoff, keyed by seat so a re-render mid-turn does not replay it. */}
+                <SlideFadeIn
+                    style={styles.spotlight}
+                    offsetX={18}
+                    durationMs={260}
+                    replayKey={String(answering.seat)}
+                >
+                    <Avatar seat={answering} size="lg" />
 
-                {/* `minWidth: 0` is what lets a long name truncate instead of pushing the badge off the end of the row. */}
-                <View style={styles.spotlightBody}>
-                    <AppText style={styles.spotlightLabel}>
-                        {t('pubquizr.play.turn.answeringNow')}
-                    </AppText>
+                    {/* `minWidth: 0` is what lets a long name truncate instead of pushing the badge off the end of the row. */}
+                    <View style={styles.spotlightBody}>
+                        <AppText style={styles.spotlightLabel}>
+                            {t('pubquizr.play.turn.answeringNow')}
+                        </AppText>
 
-                    <AppText style={styles.spotlightName} numberOfLines={1}>
-                        {answering.name}
-                    </AppText>
-                </View>
+                        <AppText style={styles.spotlightName} numberOfLines={1}>
+                            {answering.name}
+                        </AppText>
+                    </View>
 
-                <View style={[styles.badge, scoring && styles.badgeScoring]}>
-                    <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
-                        {scoring
-                            ? t('pubquizr.play.worthPoints', { worth })
-                            : t('pubquizr.play.noPoint')}
-                    </AppText>
-                </View>
+                    <View style={[styles.badge, scoring && styles.badgeScoring]}>
+                        <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
+                            {scoring
+                                ? t('pubquizr.play.worthPoints', { worth })
+                                : t('pubquizr.play.noPoint')}
+                        </AppText>
+                    </View>
+                </SlideFadeIn>
             </View>
 
             <View style={styles.progress}>

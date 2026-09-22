@@ -1,5 +1,6 @@
 import type { SegmentState } from "@/components/ui/InGameHeader";
 import InGameHeader from "@/components/ui/InGameHeader";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -86,11 +87,19 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
     const [opening] = session.turnQuestionIds;
     const master = seatAt(seats, session.quizMasterSeat);
 
-    function frame(strip: ReactNode | null, board: ReactNode) {
-        return (
+    function frame(key: string, strip: ReactNode | null, board: ReactNode) {
+        return fade(key, (
             <BoardFrame label={label} onClose={onLeave} segments={segments} strip={strip}>
                 {board}
             </BoardFrame>
+        ))
+    }
+
+    function fade(key: string, node: ReactNode) {
+        return (
+            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key}>
+                {node}
+            </SlideFadeIn>
         )
     }
 
@@ -104,7 +113,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
     // Round 3's result stays up on every phone until the host moves the table on.
     const result = table.reveal === null ? null : closestRevealOf(session, quiz, table.reveal);
     if (result !== null) {
-        return (
+        return fade(`closest:${result.dealtId}`, (
             <ClosestResultScreen
                 result={result}
                 onContinue={hosting && opening !== undefined
@@ -112,7 +121,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                     : undefined}
                 waitingNote={t('pubquizr.board.onlyMasterMovesOn', { name: hostName })}
             />
-        )
+        ))
     }
 
     const unopened = session.currentPosition === 0 && opening !== undefined && master !== null
@@ -120,7 +129,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
     // The finale opens on where everybody stands, before it names the two it is between.
     if (unopened && round === ROUND_FINALE && !standingsSeen) {
-        return (
+        return fade(`standings:${ordinal - 1}`, (
             <>
                 <View style={styles.band}>
                     <InGameHeader
@@ -140,13 +149,13 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                     onLeave={onLeave}
                 />
             </>
-        )
+        ))
     }
 
     // A round states itself before it starts, and the phone that reads the questions is the one that says go.
     if (unopened && opening !== undefined && master !== null) {
         if (me === master.seat) {
-            return (
+            return fade(`intro:${round}`, (
                 <RoundIntroScreen
                     round={ordinal}
                     totalRounds={session.totalRounds}
@@ -159,10 +168,10 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                         table.emit({ kind: 'gate', questionId: opening, round });
                     }}
                 />
-            )
+            ))
         }
 
-        return frame(null, (
+        return frame(`waiting:${round}`, null, (
             <BoardSpotlight
                 seat={master}
                 title={kind}
@@ -215,7 +224,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         // Round 2 is played on the answerer's own phone, and watched on everybody else's.
         if (choice && hotSeat !== null) {
             if (me === asked.seat) {
-                return frame(strip, (
+                return frame(`choice-control:${hotSeat.dealt.id}`, strip, (
                     <ChoicePadControl
                         bare
                         busy={table.ruling}
@@ -230,7 +239,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                 ))
             }
 
-            return frame(strip, (
+            return frame(`choice-watch:${hotSeat.dealt.id}`, strip, (
                 <ChoiceWatchBoard
                     answering={asked}
                     picks={picksOf(control, hotSeat.dealt.id)}
@@ -247,7 +256,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                 }
                 : round === ROUND_FINALE ? table.settleFinale : table.settleTurn;
 
-            return frame(strip, (
+            return frame(`hotseat-control:${walking.dealt.id}`, strip, (
                 <HotSeatControl
                     bare
                     busy={table.ruling}
@@ -260,7 +269,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(strip, <WalkWatchBoard mySeat={me} turn={walking} walked={walked} />);
+        return frame(`walk-watch:${walking.dealt.id}`, strip, <WalkWatchBoard mySeat={me} turn={walking} walked={walked} />);
     }
 
     if (closest !== null) {
@@ -282,7 +291,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
         // The reader closes round 3, and at the smallest table that is somebody who guessed too.
         if (me === closest.quizmaster.seat) {
-            return frame(strip, (
+            return frame(`closest-control:${closest.dealt.id}`, strip, (
                 <ClosestSettleControl
                     bare
                     busy={table.ruling}
@@ -295,7 +304,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(strip, (
+        return frame(`closest-guess:${closest.dealt.id}`, strip, (
             <ClosestGuessControl
                 bare
                 busy={table.guessing}
@@ -322,7 +331,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         const strip = <TurnOrderStrip mySeat={me} pair={pair} />;
 
         if (me === describe.describer.seat) {
-            return frame(strip, (
+            return frame(`describe-control:${questionId}`, strip, (
                 <DescribeControl
                     bare
                     busy={table.ruling}
@@ -338,7 +347,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(strip, (
+        return frame(`describe-watch:${questionId}`, strip, (
             <DescribeWatchBoard
                 awarded={awardedOn(control, questionId)}
                 endsAt={endsAtOn(control, questionId)}
@@ -370,7 +379,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         if (me === list.quizmaster.seat) {
             const done = readers.filter(seat => ready.includes(seat.seat)).length;
 
-            return frame(strip, (
+            return frame(`list-control:${questionId}`, strip, (
                 <ListControl
                     bare
                     busy={table.ruling}
@@ -386,7 +395,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(strip, (
+        return frame(`list-watch:${questionId}`, strip, (
             <ListWatchBoard
                 awardedIds={awardedIdsOn(control, questionId)}
                 endsAt={endsAtOn(control, questionId)}
@@ -414,7 +423,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         const strip = <TurnOrderStrip mySeat={me} order={order} />;
 
         if (me === asking.answering.seat) {
-            return frame(strip, (
+            return frame(`doubledown-control:${session.currentPosition}`, strip, (
                 <DoubleDownControl
                     bare
                     answering={asking.answering}
@@ -430,11 +439,11 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(strip, <DoubleDownWatchBoard answering={asking.answering} />);
+        return frame(`doubledown-watch:${session.currentPosition}`, strip, <DoubleDownWatchBoard answering={asking.answering} />);
     }
 
     // A round this build cannot draw a board for: say whose it is rather than nothing.
-    return frame(null, (
+    return frame(`spotlight:${round}`, null, (
         <BoardSpotlight seat={master} title={kind} message={brief} />
     ))
 }

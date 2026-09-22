@@ -14,7 +14,7 @@ import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 interface Props {
@@ -39,6 +39,13 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
     /** The confirm panel is up. Leaving is destructive for the host and rude otherwise. */
     const [leaving, setLeaving] = useState(false);
 
+    // A code that is gone and a code that was never right are the same answer, and a retry cannot fix either.
+    useEffect(() => {
+        if (state.error !== 'pubquizr.errors.lobbyGone') return;
+
+        router.replace(ROUTES.reconnect);
+    }, [state.error, router]);
+
     // The host shut the room while this player was sitting in it.
     if (state.closed) {
         return (
@@ -47,6 +54,10 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
                 href={ROUTES.quizzerIndex}
             />
         );
+    }
+
+    if (state.error === 'pubquizr.errors.lobbyGone') {
+        return null;
     }
 
     if (state.error !== null) {

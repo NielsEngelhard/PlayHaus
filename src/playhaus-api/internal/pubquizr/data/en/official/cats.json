@@ -1,0 +1,136 @@
+{
+  "slug": "cats",
+  "title": "Cats",
+  "description": "A whole pub quiz about the domestic cat: breeds, behaviour, anatomy and famous felines.",
+  "publishedAt": "2026-09-16",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is a young cat called?", "category": "Terminology", "answers": [{ "text": "A kitten", "aliases": ["Kitten"] }] },
+        { "prompt": "What is the word for a female cat, especially one kept for breeding?", "category": "Terminology", "answers": [{ "text": "A queen", "aliases": ["Queen"] }] },
+        { "prompt": "What is an uncastrated male cat called?", "category": "Terminology", "answers": [{ "text": "A tom", "aliases": ["Tom", "Tomcat"] }] },
+        { "prompt": "Which cat breed is known for having almost no fur at all?", "category": "Breeds", "answers": [{ "text": "The Sphynx", "aliases": ["Sphynx"] }] },
+        { "prompt": "Which long-haired breed with a flat face is named after the country now called Iran?", "category": "Breeds", "answers": [{ "text": "The Persian", "aliases": ["Persian", "Persian cat"] }] },
+        { "prompt": "Which breed is famous for its blue eyes and the dark points on its face, ears, paws and tail?", "category": "Breeds", "answers": [{ "text": "The Siamese", "aliases": ["Siamese"] }] },
+        { "prompt": "Which very large long-haired breed is named after an American state?", "category": "Breeds", "answers": [{ "text": "The Maine Coon", "aliases": ["Maine Coon"] }] },
+        { "prompt": "What is the low rumbling sound a contented cat makes called?", "category": "Behaviour", "answers": [{ "text": "Purring", "aliases": ["A purr", "Purr"] }] },
+        { "prompt": "What is the name for the behaviour where a cat pushes its front paws in and out against a soft surface?", "category": "Behaviour", "answers": [{ "text": "Kneading", "aliases": ["Knead"] }] },
+        { "prompt": "Which plant makes many cats roll around and turn playful?", "category": "Behaviour", "answers": [{ "text": "Catnip", "aliases": ["Catmint", "Nepeta"] }] },
+        { "prompt": "Which part of a cat is held straight up in the air when it walks towards you confidently?", "category": "Anatomy", "answers": [{ "text": "The tail", "aliases": ["Tail"] }] },
+        { "prompt": "Through which part of its body does a cat sweat?", "category": "Anatomy", "answers": [{ "text": "The paw pads", "aliases": ["Paw pads", "The pads of its paws", "Its paws"] }] },
+        { "prompt": "Nearly every tortoiseshell cat is of which sex?", "category": "Genetics", "answers": [{ "text": "Female", "aliases": ["A female", "She-cat"] }] },
+        { "prompt": "What is the name for the wad of swallowed fur that a cat coughs up?", "category": "Health", "answers": [{ "text": "A hairball", "aliases": ["Hairball", "Furball"] }] },
+        { "prompt": "Which tiny jumping parasites are the most common unwanted guests in a cat's coat?", "category": "Health", "answers": [{ "text": "Fleas", "aliases": ["Flea"] }] },
+        { "prompt": "Which orange, lasagne-loving cartoon cat was created by Jim Davis?", "category": "Culture", "answers": [{ "text": "Garfield" }] },
+        { "prompt": "Which cat in Alice's Adventures in Wonderland vanishes and leaves only its grin behind?", "category": "Culture", "answers": [{ "text": "The Cheshire Cat", "aliases": ["Cheshire Cat", "The grinning cat"] }] },
+        { "prompt": "Which booted cat is both a Charles Perrault fairy tale character and a hero of the Shrek films?", "category": "Culture", "answers": [{ "text": "Puss in Boots", "aliases": ["Puss-in-Boots"] }] },
+        { "prompt": "In which ancient civilisation was the cat a sacred animal linked to the goddess Bastet?", "category": "History", "answers": [{ "text": "Ancient Egypt", "aliases": ["Egypt", "The Egyptians"] }] },
+        { "prompt": "Which Andrew Lloyd Webber musical is based on a poetry collection by T. S. Eliot?", "category": "Culture", "answers": [{ "text": "Cats" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "How many teeth does an adult cat have?", "options": [{ "text": "26" }, { "text": "30", "correct": true }, { "text": "34" }, { "text": "38" }] },
+        { "prompt": "Which breed is known for its short, wavy, curly coat?", "options": [{ "text": "Cornish Rex", "correct": true }, { "text": "Russian Blue" }, { "text": "Bombay" }, { "text": "Korat" }] },
+        { "prompt": "Which ancient Egyptian goddess was shown with the head of a cat?", "options": [{ "text": "Bastet", "correct": true }, { "text": "Sekhmet" }, { "text": "Hathor" }, { "text": "Isis" }] },
+        { "prompt": "The Siamese cat comes from the country once called Siam. What is that country called today?", "options": [{ "text": "Thailand", "correct": true }, { "text": "Vietnam" }, { "text": "Cambodia" }, { "text": "Malaysia" }] },
+        { "prompt": "What is the scientific name of the domestic cat?", "options": [{ "text": "Felis catus", "correct": true }, { "text": "Felis silvestris" }, { "text": "Felis domestica maior" }, { "text": "Lynx lynx" }] },
+        { "prompt": "Which breed is traditionally born without a tail?", "options": [{ "text": "Manx", "correct": true }, { "text": "Birman" }, { "text": "Burmese" }, { "text": "Bombay" }] },
+        { "prompt": "What is a cat's normal body temperature in degrees Celsius?", "options": [{ "text": "36.5" }, { "text": "37.5" }, { "text": "38.5", "correct": true }, { "text": "40.5" }] },
+        { "prompt": "Which Harry Potter character owns the cat Crookshanks?", "options": [{ "text": "Hermione Granger", "correct": true }, { "text": "Ron Weasley" }, { "text": "Harry Potter" }, { "text": "Neville Longbottom" }] },
+        { "prompt": "Which breed is known for going completely limp when you pick it up?", "options": [{ "text": "Ragdoll", "correct": true }, { "text": "Birman" }, { "text": "Balinese" }, { "text": "Somali" }] },
+        { "prompt": "Which Japanese good-luck figurine shows a cat with one paw raised?", "options": [{ "text": "Maneki-neko", "correct": true }, { "text": "Daruma" }, { "text": "Kokeshi" }, { "text": "Tanuki" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many hours a day does an average adult cat sleep?", "answer": 16, "unit": "hours", "explanation": "Twelve to sixteen hours a day is normal, and kittens and elderly cats sleep even more." },
+        { "prompt": "How many whiskers does a cat usually have around its muzzle in total?", "answer": 24, "unit": "whiskers" },
+        { "prompt": "How many toes does a cat have in total?", "answer": 18, "unit": "toes", "explanation": "Five on each front paw and four on each back paw." },
+        { "prompt": "Roughly how many bones does a cat's skeleton have?", "answer": 230, "unit": "bones" },
+        { "prompt": "In what year did the musical Cats open in the West End in London?", "answer": 1981 },
+        { "prompt": "How many days does a cat's pregnancy last?", "answer": 64, "unit": "days" },
+        { "prompt": "How many kittens are there in an average litter?", "answer": 4, "unit": "kittens" },
+        { "prompt": "How many muscles does a cat have in each ear?", "answer": 32, "unit": "muscles" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Litter box",
+        "Scratching post",
+        "Cat flap",
+        "Cardboard box",
+        "Ball of wool",
+        "Laser pointer",
+        "Cat basket",
+        "Fish bone",
+        "Collar with a bell",
+        "Cat carrier",
+        "Feeding bowl",
+        "Saucer of milk",
+        "Whisker",
+        "Animal shelter",
+        "Cat show",
+        "Cat up a tree",
+        "Cat nap",
+        "Sandpaper tongue",
+        "Tabby cat",
+        "Cattery",
+        "Cat treats",
+        "Cat hair",
+        "Cat grass",
+        "Stray cat",
+        "Cat sitter",
+        "Windowsill",
+        "Radiator",
+        "Lap",
+        "Cat fight",
+        "Mouse"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four cats of the Aristocats family in the Disney film.", "answers": [{ "text": "Duchess", "aliases": ["Duchesse"] }, { "text": "Marie" }, { "text": "Toulouse" }, { "text": "Berlioz" }] },
+        { "prompt": "Name the four kinds of teeth in a cat's mouth.", "answers": [{ "text": "Incisors" }, { "text": "Canines", "aliases": ["Fangs"] }, { "text": "Premolars" }, { "text": "Molars" }] },
+        { "prompt": "Name the four classic point colours of the Siamese cat.", "answers": [{ "text": "Seal point", "aliases": ["Seal"] }, { "text": "Blue point", "aliases": ["Blue"] }, { "text": "Chocolate point", "aliases": ["Chocolate"] }, { "text": "Lilac point", "aliases": ["Lilac"] }] },
+        { "prompt": "Name the four tabby coat patterns.", "answers": [{ "text": "Mackerel", "aliases": ["Striped"] }, { "text": "Classic", "aliases": ["Blotched", "Marbled"] }, { "text": "Spotted" }, { "text": "Ticked", "aliases": ["Agouti"] }] },
+        { "prompt": "Name the four places on a cat's body where whiskers grow.", "answers": [{ "text": "The muzzle", "aliases": ["Muzzle", "Cheeks"] }, { "text": "Above the eyes", "aliases": ["Eyebrows"] }, { "text": "The chin", "aliases": ["Chin"] }, { "text": "The back of the front legs", "aliases": ["Front legs", "Wrists"] }] },
+        { "prompt": "Name the four animals in the fairy tale The Bremen Town Musicians.", "answers": [{ "text": "The donkey", "aliases": ["Donkey"] }, { "text": "The dog", "aliases": ["Dog"] }, { "text": "The cat", "aliases": ["Cat"] }, { "text": "The cockerel", "aliases": ["Cockerel", "Rooster", "Cock"] }] },
+        { "prompt": "Name the four sounds a cat makes other than the meow and the purr.", "answers": [{ "text": "Hissing", "aliases": ["Hiss"] }, { "text": "Growling", "aliases": ["Growl"] }, { "text": "Chirping", "aliases": ["Chirp", "Trilling"] }, { "text": "Yowling", "aliases": ["Yowl", "Caterwauling"] }] },
+        { "prompt": "Name the four cats from Pinocchio, Cinderella, The Smurfs and Sabrina the Teenage Witch.", "answers": [{ "text": "Figaro" }, { "text": "Lucifer" }, { "text": "Azrael" }, { "text": "Salem" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many lives is a cat said to have in the English saying?", "difficulty": "easy", "answers": [{ "text": "Nine", "aliases": ["9"] }] },
+        { "prompt": "What is the usual English word for the sound a cat makes?", "difficulty": "easy", "answers": [{ "text": "Meow", "aliases": ["Miaow", "Mew"] }] },
+        { "prompt": "A cat of which colour is superstitiously said to bring bad luck when it crosses your path?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "Which cartoon mouse is forever chased by the cat Tom?", "difficulty": "easy", "answers": [{ "text": "Jerry" }] },
+        { "prompt": "What does a cat use to wash its own coat?", "difficulty": "easy", "answers": [{ "text": "Its tongue", "aliases": ["Tongue"] }] },
+        { "prompt": "What is the term for a cat born with more toes than usual?", "difficulty": "hard", "answers": [{ "text": "Polydactyl", "aliases": ["Polydactyly", "Polydactyl cat"] }] },
+        { "prompt": "What is the reflective layer behind a cat's retina that makes its eyes glow in the dark called?", "difficulty": "hard", "answers": [{ "text": "The tapetum lucidum", "aliases": ["Tapetum lucidum", "Tapetum"] }] },
+        { "prompt": "Which compound in catnip sets off the reaction in cats?", "difficulty": "hard", "answers": [{ "text": "Nepetalactone" }] },
+        { "prompt": "What is the technical term for a cat's whiskers?", "difficulty": "hard", "answers": [{ "text": "Vibrissae", "aliases": ["Vibrissa"] }] },
+        { "prompt": "What is the loose flap of skin on a cat's lower belly called?", "difficulty": "hard", "answers": [{ "text": "The primordial pouch", "aliases": ["Primordial pouch"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the collective noun in English for a group of cats?", "answers": [{ "text": "A clowder", "aliases": ["Clowder"] }] },
+        { "prompt": "Which Turkish lake gives its name to a cat breed that is known for liking water?", "answers": [{ "text": "Lake Van", "aliases": ["Van", "Van Golu"] }] },
+        { "prompt": "What was the name of the cat that France launched into space in 1963, the only cat ever to fly?", "answers": [{ "text": "Felicette", "aliases": ["Félicette"] }] },
+        { "prompt": "Which ancient Egyptian city was the centre of the cult of the cat goddess Bastet?", "answers": [{ "text": "Bubastis", "aliases": ["Per-Bast", "Tell Basta"] }] },
+        { "prompt": "On which Mediterranean island was a grave found of a person buried together with a cat some nine and a half thousand years ago?", "answers": [{ "text": "Cyprus" }] },
+        { "prompt": "What is the name of the cat's third eyelid?", "answers": [{ "text": "The nictitating membrane", "aliases": ["Nictitating membrane", "Haw", "Third eyelid"] }] },
+        { "prompt": "Which American writer kept dozens of six-toed cats at his house in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] }
+      ]
+    }
+  ]
+}

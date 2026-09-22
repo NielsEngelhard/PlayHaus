@@ -28,13 +28,7 @@ func Open(dsn string, maxConns int) (*gorm.DB, error) {
 		return nil, fmt.Errorf("get sql.DB: %w", err)
 	}
 
-	// One connection by default, and that is load-bearing rather than frugal. The
-	// stores were written against SQLite's single writer, and several of their
-	// transactions read a row and then write based on what they read (taking a
-	// seat, joining a lobby). One connection runs those one at a time, exactly as
-	// before. Raise DB_MAX_CONNS only after those transactions take row locks
-	// (SELECT ... FOR UPDATE); without them two requests can both see the same
-	// free seat.
+	// One connection by default
 	if maxConns < 1 {
 		maxConns = 1
 	}

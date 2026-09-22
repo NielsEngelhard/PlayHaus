@@ -108,7 +108,7 @@ func run() error {
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, friendService, pushService, hub, logger, cfg.AllowedOrigins)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, friendService, pushService, hub, logger, cfg.AllowedOrigins, cfg.StatsToken)
 	logger.Info("word of the day reset zone", "tz", cfg.DailyResetLocation.String())
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 

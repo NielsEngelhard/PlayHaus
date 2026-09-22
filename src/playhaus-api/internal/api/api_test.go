@@ -33,6 +33,13 @@ func newTestServer(t *testing.T) http.Handler {
 // assert on what was actually written rather than on the response.
 func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	t.Helper()
+	return newTestServerWithStatsToken(t, "")
+}
+
+// newTestServerWithStatsToken is the same server with the operator stats route
+// switched on. An empty token leaves it unregistered, which is the default.
+func newTestServerWithStatsToken(t *testing.T, statsToken string) (http.Handler, *gorm.DB) {
+	t.Helper()
 
 	db := databasetest.Open(t)
 
@@ -53,7 +60,7 @@ func newTestServerWithDB(t *testing.T) (http.Handler, *gorm.DB) {
 	hub := realtime.NewHub(log)
 	t.Cleanup(hub.Close)
 
-	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, friends, pushes, hub, log, testOrigins)
+	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, friends, pushes, hub, log, testOrigins, statsToken)
 	return handler, db
 }
 

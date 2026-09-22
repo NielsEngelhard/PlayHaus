@@ -1,0 +1,136 @@
+{
+  "slug": "islands",
+  "title": "Islands",
+  "description": "A pub quiz about islands: the Wadden, the Dutch Caribbean, the Mediterranean and the far corners of the map.",
+  "publishedAt": "2026-08-26",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which island do Haiti and the Dominican Republic share?", "category": "Geography", "answers": [{ "text": "Hispaniola" }] },
+        { "prompt": "Which island is divided between Indonesia and Papua New Guinea?", "category": "Geography", "answers": [{ "text": "New Guinea", "aliases": ["Papua"] }] },
+        { "prompt": "Which island country has Reykjavik as its capital?", "category": "Europe", "answers": [{ "text": "Iceland" }] },
+        { "prompt": "On which Mediterranean island was Napoleon Bonaparte born?", "category": "Europe", "answers": [{ "text": "Corsica" }] },
+        { "prompt": "Which island is the largest in the Mediterranean after Sicily and Sardinia?", "category": "Mediterranean", "answers": [{ "text": "Cyprus" }] },
+        { "prompt": "Which Italian island lies directly south of Corsica?", "category": "Mediterranean", "answers": [{ "text": "Sardinia" }] },
+        { "prompt": "Which island country has Valletta as its capital?", "category": "Mediterranean", "answers": [{ "text": "Malta" }] },
+        { "prompt": "Which former Zuiderzee island became part of the mainland when the Noordoostpolder was drained?", "category": "The Netherlands", "answers": [{ "text": "Urk" }] },
+        { "prompt": "On which island in Zeeland do Middelburg and Vlissingen lie?", "category": "The Netherlands", "answers": [{ "text": "Walcheren" }] },
+        { "prompt": "Which former Zuiderzee island near Volendam has been joined to the mainland by a causeway since 1957?", "category": "The Netherlands", "answers": [{ "text": "Marken" }] },
+        { "prompt": "Which of the ABC islands lies furthest to the west?", "category": "Caribbean", "answers": [{ "text": "Aruba" }] },
+        { "prompt": "Which island of the Kingdom of the Netherlands is shared with France?", "category": "Caribbean", "answers": [{ "text": "Sint Maarten", "aliases": ["Saint Martin", "St Maarten"] }] },
+        { "prompt": "On which Caribbean island did reggae begin?", "category": "Caribbean", "answers": [{ "text": "Jamaica" }] },
+        { "prompt": "Which island country lies off the south-east coast of India?", "category": "Asia", "answers": [{ "text": "Sri Lanka", "aliases": ["Ceylon"] }] },
+        { "prompt": "Which Indonesian island is largely Hindu and the best known holiday destination in the country?", "category": "Asia", "answers": [{ "text": "Bali" }] },
+        { "prompt": "On which remote island in the South Atlantic did Napoleon die in 1821?", "category": "History", "answers": [{ "text": "Saint Helena", "aliases": ["St Helena"] }] },
+        { "prompt": "Which island group off the coast of Ecuador gave Darwin his finches?", "category": "Wildlife", "answers": [{ "text": "The Galapagos Islands", "aliases": ["Galapagos", "Galapagos Islands"] }] },
+        { "prompt": "Which Greek island is traditionally the home of Odysseus?", "category": "Antiquity", "answers": [{ "text": "Ithaca", "aliases": ["Ithaka"] }] },
+        { "prompt": "Which island group off the north-west coast of Africa belongs to Spain and includes Tenerife?", "category": "Africa", "answers": [{ "text": "The Canary Islands", "aliases": ["Canary Islands", "Canaries"] }] },
+        { "prompt": "Which island country off West Africa was a Portuguese colony and is named after a green cape?", "category": "Africa", "answers": [{ "text": "Cape Verde" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which Caribbean island lies furthest south, just off the coast of Venezuela?", "options": [{ "text": "Trinidad", "correct": true }, { "text": "Barbados" }, { "text": "Grenada" }, { "text": "Saint Lucia" }] },
+        { "prompt": "The island of Bornholm in the Baltic Sea belongs to which country?", "options": [{ "text": "Denmark", "correct": true }, { "text": "Sweden" }, { "text": "Germany" }, { "text": "Poland" }] },
+        { "prompt": "Socotra, the island of the dragon blood trees, belongs to which country?", "options": [{ "text": "Yemen", "correct": true }, { "text": "Oman" }, { "text": "Somalia" }, { "text": "Eritrea" }] },
+        { "prompt": "Under the Treaty of Breda in 1667 the Dutch gave up New Amsterdam and kept which nutmeg island?", "options": [{ "text": "Run", "correct": true }, { "text": "Ternate" }, { "text": "Tidore" }, { "text": "Ambon" }] },
+        { "prompt": "Which island group is a self-governing part of Denmark and lies between Scotland, Norway and Iceland?", "options": [{ "text": "The Faroe Islands", "correct": true }, { "text": "Shetland" }, { "text": "Orkney" }, { "text": "Aland" }] },
+        { "prompt": "Which is the largest island of the Philippines?", "options": [{ "text": "Luzon", "correct": true }, { "text": "Mindanao" }, { "text": "Palawan" }, { "text": "Cebu" }] },
+        { "prompt": "Which island in the Indian Ocean is an overseas department of France?", "options": [{ "text": "Reunion", "correct": true }, { "text": "Mauritius" }, { "text": "Seychelles" }, { "text": "Comoros" }] },
+        { "prompt": "On which island did the mutineers of the Bounty finally settle?", "options": [{ "text": "Pitcairn", "correct": true }, { "text": "Tahiti" }, { "text": "Norfolk Island" }, { "text": "Easter Island" }] },
+        { "prompt": "Which island in the Bay of Naples is famous for its Blue Grotto?", "options": [{ "text": "Capri", "correct": true }, { "text": "Ischia" }, { "text": "Procida" }, { "text": "Stromboli" }] },
+        { "prompt": "Which Atlantic archipelago lies about 1,400 kilometres west of mainland Portugal?", "options": [{ "text": "The Azores", "correct": true }, { "text": "Madeira" }, { "text": "The Canary Islands" }, { "text": "Cape Verde" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year did Iceland become a fully independent republic?", "answer": 1944 },
+        { "prompt": "How many metres high is the Pico del Teide, the highest point of Tenerife?", "answer": 3715, "unit": "metres" },
+        { "prompt": "In what year did the great North Sea flood strike the islands of Zeeland?", "answer": 1953 },
+        { "prompt": "How many bridges connect the island of Sicily to the Italian mainland?", "answer": 0, "unit": "bridges", "explanation": "A bridge across the Strait of Messina has been drawn up again and again and has still never been built." },
+        { "prompt": "How many islands does the Kingdom of the Netherlands have in the Caribbean?", "answer": 6, "unit": "islands" },
+        { "prompt": "In what year was the Netherlands Antilles dissolved?", "answer": 2010 },
+        { "prompt": "How many kilometres long is the Wadden Sea from Den Helder to the Danish coast?", "answer": 500, "unit": "kilometres" },
+        { "prompt": "How many metres above sea level is Mount Scenery, the highest point of the Kingdom of the Netherlands?", "answer": 887, "unit": "metres", "explanation": "It stands on one of the Kingdom's Caribbean islands, almost three times the height of the Vaalserberg." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Palm tree",
+        "Ferry",
+        "Foghorn",
+        "Jetty",
+        "Seagull",
+        "Crab",
+        "Starfish",
+        "Seashell",
+        "Hammock",
+        "Snorkel",
+        "Beach hut",
+        "Flip-flops",
+        "Shipwreck",
+        "Message in a bottle",
+        "Atoll",
+        "Coral reef",
+        "Lagoon",
+        "Sand dune",
+        "Mudflat walking",
+        "Seal",
+        "Buoy",
+        "Fishing net",
+        "Cruise ship",
+        "Castaway",
+        "Sea turtle",
+        "Seaweed",
+        "Straw hat",
+        "Ukulele",
+        "Salt pan",
+        "Cranberry"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four Dutch Wadden islands other than Texel.", "answers": [{ "text": "Vlieland" }, { "text": "Terschelling" }, { "text": "Ameland" }, { "text": "Schiermonnikoog" }] },
+        { "prompt": "Name the four islands of the Kingdom of the Netherlands in the Caribbean besides Aruba and Sint Maarten.", "answers": [{ "text": "Curacao" }, { "text": "Bonaire" }, { "text": "Saba" }, { "text": "Sint Eustatius", "aliases": ["Statia", "St Eustatius"] }] },
+        { "prompt": "Name the four Balearic Islands.", "answers": [{ "text": "Mallorca", "aliases": ["Majorca"] }, { "text": "Menorca", "aliases": ["Minorca"] }, { "text": "Ibiza" }, { "text": "Formentera" }] },
+        { "prompt": "Name the four largest Canary Islands after Tenerife.", "answers": [{ "text": "Fuerteventura" }, { "text": "Gran Canaria" }, { "text": "Lanzarote" }, { "text": "La Palma" }] },
+        { "prompt": "Name the four largest Greek islands.", "answers": [{ "text": "Crete" }, { "text": "Euboea", "aliases": ["Evia"] }, { "text": "Lesbos" }, { "text": "Rhodes", "aliases": ["Rhodos"] }] },
+        { "prompt": "Name the four Channel Islands.", "answers": [{ "text": "Jersey" }, { "text": "Guernsey" }, { "text": "Alderney" }, { "text": "Sark" }] },
+        { "prompt": "Name the four Greater Sunda Islands.", "answers": [{ "text": "Sumatra" }, { "text": "Java" }, { "text": "Borneo", "aliases": ["Kalimantan"] }, { "text": "Sulawesi", "aliases": ["Celebes"] }] },
+        { "prompt": "Name the four best known islands of the Venetian lagoon.", "answers": [{ "text": "Murano" }, { "text": "Burano" }, { "text": "Torcello" }, { "text": "Lido" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "On which Italian island does the city of Palermo stand?", "difficulty": "easy", "answers": [{ "text": "Sicily" }] },
+        { "prompt": "On which island do lemurs live in the wild?", "difficulty": "easy", "answers": [{ "text": "Madagascar" }] },
+        { "prompt": "Which island in the Pacific is covered with giant carved stone heads?", "difficulty": "easy", "answers": [{ "text": "Easter Island", "aliases": ["Rapa Nui"] }] },
+        { "prompt": "Which large island lies directly west of Great Britain?", "difficulty": "easy", "answers": [{ "text": "Ireland" }] },
+        { "prompt": "On which Wadden island is the village of Den Burg?", "difficulty": "easy", "answers": [{ "text": "Texel" }] },
+        { "prompt": "On which island in the Indian Ocean did the dodo live?", "difficulty": "hard", "answers": [{ "text": "Mauritius" }] },
+        { "prompt": "Which is the largest island of Canada?", "difficulty": "hard", "answers": [{ "text": "Baffin Island", "aliases": ["Baffin"] }] },
+        { "prompt": "Which island off the coast of Tanzania is a semi-autonomous part of that country?", "difficulty": "hard", "answers": [{ "text": "Zanzibar" }] },
+        { "prompt": "Which island in the South Atlantic is usually called the most remote inhabited island in the world?", "difficulty": "hard", "answers": [{ "text": "Tristan da Cunha" }] },
+        { "prompt": "Over which islands did Britain and Argentina fight a war in 1982?", "difficulty": "hard", "answers": [{ "text": "The Falkland Islands", "aliases": ["Falklands", "Falkland Islands", "Malvinas"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which Mediterranean island was Napoleon given to rule after his first abdication in 1814?", "answers": [{ "text": "Elba" }] },
+        { "prompt": "Which uninhabited rock in the North Atlantic is claimed by the United Kingdom, Ireland, Iceland and Denmark?", "answers": [{ "text": "Rockall" }] },
+        { "prompt": "Which island did the Dutch East India Company govern from Fort Zeelandia in the seventeenth century?", "answers": [{ "text": "Taiwan", "aliases": ["Formosa"] }] },
+        { "prompt": "Which North Sea island did Britain hand to Germany in 1890 in exchange for rights in East Africa?", "answers": [{ "text": "Heligoland", "aliases": ["Helgoland"] }] },
+        { "prompt": "Which is the largest island of Denmark, the one Copenhagen stands on?", "answers": [{ "text": "Zealand", "aliases": ["Sjaelland", "Sealand"] }] },
+        { "prompt": "Which island in Lake Huron is the largest island in a freshwater lake in the world?", "answers": [{ "text": "Manitoulin Island", "aliases": ["Manitoulin"] }] },
+        { "prompt": "Which island in the Pacific is the smallest republic in the world?", "answers": [{ "text": "Nauru" }] }
+      ]
+    }
+  ]
+}

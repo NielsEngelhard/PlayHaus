@@ -1,0 +1,136 @@
+{
+  "slug": "medieval-europe",
+  "title": "Middeleeuws Europa",
+  "description": "Een hele pubquiz over de middeleeuwen: de pest, kloosters, gilden, ridders, handel en de kruistochten.",
+  "publishedAt": "2026-09-04",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe heet de pestepidemie die in de veertiende eeuw door Europa trok en misschien een derde van de bevolking doodde?", "category": "De pest", "answers": [{ "text": "De Zwarte Dood", "aliases": ["Zwarte Dood", "De pest"] }] },
+        { "prompt": "Hoe heet een huis waar monniken onder een abt samenleven?", "category": "Monniken en nonnen", "answers": [{ "text": "Een klooster", "aliases": ["Klooster", "Een abdij", "Abdij"] }] },
+        { "prompt": "Welk verbond van handelssteden in Noord-Duitsland en rond de Oostzee beheerste de middeleeuwse zeehandel?", "category": "Handel", "answers": [{ "text": "De Hanze", "aliases": ["Hanze", "Het Hanzeverbond", "Hanzeverbond"] }] },
+        { "prompt": "Welke Engelse koning werd door zijn baronnen gedwongen de Magna Carta te bezegelen?", "category": "Koningen en koninginnen", "answers": [{ "text": "Jan zonder Land", "aliases": ["Koning Jan", "Jan"] }] },
+        { "prompt": "Welke hertog van Normandie versloeg koning Harold bij Hastings en werd koning van Engeland?", "category": "Oorlog", "answers": [{ "text": "Willem de Veroveraar", "aliases": ["Willem", "Hertog Willem"] }] },
+        { "prompt": "Hoe heet een middeleeuws handschrift dat met bladgoud en geschilderde afbeeldingen is versierd?", "category": "Boeken", "answers": [{ "text": "Een verlucht handschrift", "aliases": ["Verlucht handschrift", "Een miniatuurhandschrift"] }] },
+        { "prompt": "Welke stad veroverde de Eerste Kruistocht in 1099?", "category": "De kruistochten", "answers": [{ "text": "Jeruzalem" }] },
+        { "prompt": "In welke taal werd in West-Europa in de middeleeuwen de mis gelezen en werden boeken geschreven?", "category": "De kerk", "answers": [{ "text": "Latijn" }] },
+        { "prompt": "Hoe heet een vereniging van de ambachtslieden van een beroep in een middeleeuwse stad?", "category": "Steden", "answers": [{ "text": "Een gilde", "aliases": ["Gilde"] }] },
+        { "prompt": "Hoe heet een jongeman die in opleiding is bij een ridder?", "category": "Ridders", "answers": [{ "text": "Een schildknaap", "aliases": ["Schildknaap"] }] },
+        { "prompt": "Hoe heet de wedstrijd waarbij twee ridders te paard met een lans op elkaar afstormen?", "category": "Ridders", "answers": [{ "text": "Het steekspel", "aliases": ["Steekspel", "Riddersteekspel"] }] },
+        { "prompt": "Welk Frans boerenmeisje leidde het leger dat Orleans ontzette en werd in 1431 op de brandstapel gezet?", "category": "Oorlog", "answers": [{ "text": "Jeanne d'Arc", "aliases": ["De Maagd van Orleans", "Johanna van Arc"] }] },
+        { "prompt": "Welke handelsroute over land bracht zijde van China naar Europa?", "category": "Handel", "answers": [{ "text": "De Zijderoute", "aliases": ["Zijderoute"] }] },
+        { "prompt": "Welke gotische kathedraal op een eiland in de Seine in Parijs werd in 1163 begonnen?", "category": "Kerken", "answers": [{ "text": "De Notre-Dame", "aliases": ["Notre-Dame", "Notre Dame"] }] },
+        { "prompt": "Op welk schrijfmateriaal van bewerkte dierenhuid werden middeleeuwse boeken geschreven?", "category": "Boeken", "answers": [{ "text": "Perkament" }] },
+        { "prompt": "Hoe heet het stelsel waarin een boer het land van een heer bewerkte in ruil voor diens bescherming?", "category": "Dagelijks leven", "answers": [{ "text": "Het leenstelsel", "aliases": ["Leenstelsel", "Feodalisme", "Het feodale stelsel"] }] },
+        { "prompt": "Hoe heet een vrouw die onder religieuze geloften in een klooster leeft?", "category": "Monniken en nonnen", "answers": [{ "text": "Een non", "aliases": ["Non", "Een kloosterzuster"] }] },
+        { "prompt": "Hoe heet een harnas van duizenden in elkaar gehaakte ijzeren ringen?", "category": "Ridders", "answers": [{ "text": "Een malienkolder", "aliases": ["Malienkolder", "Maliekolder"] }] },
+        { "prompt": "Welke vogelvrijverklaarde uit de Engelse legende beroofde de rijken vanuit het Sherwoodwoud?", "category": "Legendes", "answers": [{ "text": "Robin Hood" }] },
+        { "prompt": "Welke alcoholische drank van honing werd in heel middeleeuws Europa gedronken?", "category": "Eten en drinken", "answers": [{ "text": "Mede", "aliases": ["Honingwijn", "Honingdrank"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke keizer stond in 1077 dagenlang in de sneeuw bij Canossa te wachten op vergiffenis van de paus?", "options": [{ "text": "Hendrik de Vierde", "correct": true }, { "text": "Otto de Eerste" }, { "text": "Hendrik de Derde" }, { "text": "Koenraad de Tweede" }] },
+        { "prompt": "Bij welke slag versloegen de boogschutters van Hendrik de Vijfde in 1415 een veel groter Frans leger?", "options": [{ "text": "Azincourt", "correct": true }, { "text": "Crecy" }, { "text": "Bouvines" }, { "text": "Castillon" }] },
+        { "prompt": "Welke bedelorde werd in 1209 gesticht door Franciscus van Assisi?", "options": [{ "text": "De franciscanen", "correct": true }, { "text": "De dominicanen" }, { "text": "De benedictijnen" }, { "text": "De cisterciensers" }] },
+        { "prompt": "In welke stad woonden de pausen van 1309 tot 1377?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Ravenna" }, { "text": "Florence" }, { "text": "Lyon" }] },
+        { "prompt": "Welke Engelse koning werd in 1485 verslagen en gedood bij Bosworth Field?", "options": [{ "text": "Richard de Derde", "correct": true }, { "text": "Eduard de Vierde" }, { "text": "Hendrik de Zesde" }, { "text": "Richard de Tweede" }] },
+        { "prompt": "Welk volk plunderde Rome in het jaar 410?", "options": [{ "text": "De Visigoten", "correct": true }, { "text": "De Vandalen" }, { "text": "De Ostrogoten" }, { "text": "De Hunnen" }] },
+        { "prompt": "Welke Italiaan schreef de Decamerone, verhalen verteld door Florentijnen op de vlucht voor de pest?", "options": [{ "text": "Giovanni Boccaccio", "correct": true }, { "text": "Dante Alighieri" }, { "text": "Francesco Petrarca" }, { "text": "Niccolo Machiavelli" }] },
+        { "prompt": "Bij welke slag versloegen Vlaamse stedelingen in 1302 de Franse ridders bij Kortrijk?", "options": [{ "text": "De Guldensporenslag", "correct": true }, { "text": "De Slag bij Kassel" }, { "text": "De Slag bij Bouvines" }, { "text": "De Slag bij Westrozebeke" }] },
+        { "prompt": "Op welke zee dreef de Hanze het grootste deel van haar handel?", "options": [{ "text": "De Oostzee", "correct": true }, { "text": "De Adriatische Zee" }, { "text": "De Zwarte Zee" }, { "text": "De Middellandse Zee" }] },
+        { "prompt": "Wie leidde de boerenopstand die in 1381 Londen bereikte?", "options": [{ "text": "Wat Tyler", "correct": true }, { "text": "Jack Cade" }, { "text": "Simon de Montfort" }, { "text": "Owain Glyndwr" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar werd de Slag bij Hastings uitgevochten?", "answer": 1066 },
+        { "prompt": "In welk jaar bereikte de Zwarte Dood Europa?", "answer": 1347, "explanation": "Hij kwam aan land in Messina op Sicilie met schepen uit de Zwarte Zee en deed er zo'n drie jaar over om heel Europa te bereiken." },
+        { "prompt": "In welk jaar viel Constantinopel in handen van de Ottomaanse Turken?", "answer": 1453 },
+        { "prompt": "In welk jaar werd Karel de Grote in Rome tot keizer gekroond?", "answer": 800 },
+        { "prompt": "In welk jaar werd het Domesday Book voltooid?", "answer": 1086 },
+        { "prompt": "Hoeveel meter lang is het tapijt van Bayeux?", "answer": 68, "unit": "meter", "explanation": "Het is net geen zeventig meter lang en maar een halve meter hoog." },
+        { "prompt": "Hoeveel zangen telt de Goddelijke Komedie van Dante?", "answer": 100, "unit": "zangen" },
+        { "prompt": "Hoeveel kilometer lang is de Camino Frances, de belangrijkste pelgrimsroute naar Santiago de Compostela?", "answer": 780, "unit": "kilometer" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Monnik",
+        "Boekrol",
+        "Toernooi",
+        "Pelgrim",
+        "Relikwie",
+        "Pestdokter",
+        "Watermolen",
+        "Kerkklok",
+        "Minstreel",
+        "Luit",
+        "Alchemist",
+        "Apotheker",
+        "Marktplein",
+        "Kelk",
+        "Rozenkrans",
+        "Zonnewijzer",
+        "Ploeg",
+        "Zeis",
+        "Weefgetouw",
+        "Heraut",
+        "Ossenkar",
+        "Bedelaar",
+        "Melaatse",
+        "Kloostergang",
+        "Feestmaal",
+        "Kruisvaarder",
+        "Strijdros",
+        "Aambeeld",
+        "Herder",
+        "Heilige Graal"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier ruiters van de Apocalyps.", "answers": [{ "text": "Verovering", "aliases": ["Pest", "Ziekte"] }, { "text": "Oorlog" }, { "text": "Hongersnood", "aliases": ["Honger"] }, { "text": "Dood" }] },
+        { "prompt": "Noem de vier evangelisten wier evangelien middeleeuwse monniken overschreven.", "answers": [{ "text": "Mattheus" }, { "text": "Marcus" }, { "text": "Lucas" }, { "text": "Johannes" }] },
+        { "prompt": "Noem de vier lichaamssappen uit de middeleeuwse geneeskunde.", "answers": [{ "text": "Bloed" }, { "text": "Slijm" }, { "text": "Gele gal" }, { "text": "Zwarte gal" }] },
+        { "prompt": "Noem de vier buitenlandse steden waar de Hanze haar grote handelskantoren had.", "answers": [{ "text": "Brugge" }, { "text": "Londen" }, { "text": "Bergen" }, { "text": "Novgorod" }] },
+        { "prompt": "Noem de vier kardinale deugden van de middeleeuwse kerk.", "answers": [{ "text": "Voorzichtigheid", "aliases": ["Wijsheid"] }, { "text": "Rechtvaardigheid" }, { "text": "Moed", "aliases": ["Standvastigheid", "Sterkte"] }, { "text": "Matigheid" }] },
+        { "prompt": "Noem de vier specerijen die kooplieden uit het Oosten naar Europa brachten.", "answers": [{ "text": "Peper" }, { "text": "Kaneel" }, { "text": "Nootmuskaat" }, { "text": "Kruidnagel" }] },
+        { "prompt": "Noem de vier zeerepublieken van middeleeuws Italie.", "answers": [{ "text": "Venetie" }, { "text": "Genua" }, { "text": "Pisa" }, { "text": "Amalfi" }] },
+        { "prompt": "Noem de vier rangen van de middeleeuwse kerk, van de parochie tot Rome.", "answers": [{ "text": "Priester" }, { "text": "Bisschop" }, { "text": "Kardinaal" }, { "text": "Paus" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe noemen we de periode van de Europese geschiedenis tussen de val van het Romeinse Rijk en de renaissance?", "difficulty": "easy", "answers": [{ "text": "De middeleeuwen", "aliases": ["Middeleeuwen"] }] },
+        { "prompt": "Hoe heet de kerk van een bisschop, meestal de grootste kerk van een stad?", "difficulty": "easy", "answers": [{ "text": "Een kathedraal", "aliases": ["Kathedraal", "Een dom"] }] },
+        { "prompt": "Waarmee schreven middeleeuwse schrijvers, gesneden uit de veer van een gans?", "difficulty": "easy", "answers": [{ "text": "Een ganzenveer", "aliases": ["Ganzenveer", "Een schrijfveer", "Veer"] }] },
+        { "prompt": "Hoe noemen we de gekleurde kerkramen die Bijbelverhalen in beeld vertellen?", "difficulty": "easy", "answers": [{ "text": "Glas-in-lood", "aliases": ["Glas in lood", "Gebrandschilderd glas"] }] },
+        { "prompt": "Welk dier droeg de vlooien die de pest verspreidden?", "difficulty": "easy", "answers": [{ "text": "De rat", "aliases": ["Rat", "Ratten"] }] },
+        { "prompt": "Hoe heet de belasting van een tiende van zijn opbrengst die een boer aan de kerk betaalde?", "difficulty": "hard", "answers": [{ "text": "De tiende", "aliases": ["Tiende", "Tienden"] }] },
+        { "prompt": "Welke geestelijke ridderorde werd op vrijdag dertien oktober 1307 in heel Frankrijk gearresteerd?", "difficulty": "hard", "answers": [{ "text": "De tempeliers", "aliases": ["Tempeliers", "De Orde van de Tempel"] }] },
+        { "prompt": "Welk heldere ronde schrift, verspreid in het rijk van Karel de Grote, is de voorloper van onze kleine letters?", "difficulty": "hard", "answers": [{ "text": "De Karolingische minuskel", "aliases": ["Karolingische minuskel", "Karolingisch schrift"] }] },
+        { "prompt": "Hoe noemen we een onvrije boer die gebonden was aan het land waarop hij werkte?", "difficulty": "hard", "answers": [{ "text": "Een lijfeigene", "aliases": ["Lijfeigene", "Een horige", "Horige"] }] },
+        { "prompt": "Welke hertog van Bourgondie werd in 1477 bij Nancy gedood?", "difficulty": "hard", "answers": [{ "text": "Karel de Stoute", "aliases": ["Karel"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke paus riep in 1095 in Clermont op tot de Eerste Kruistocht?", "answers": [{ "text": "Urbanus de Tweede", "aliases": ["Urbanus II", "Paus Urbanus de Tweede", "Urbanus"] }] },
+        { "prompt": "Welke abdis uit het Rijnland schreef in de twaalfde eeuw muziek, boeken over geneeskunde en verslagen van haar visioenen?", "answers": [{ "text": "Hildegard van Bingen", "aliases": ["Hildegard"] }] },
+        { "prompt": "Welk verdrag verdeelde in 843 het rijk van Karel de Grote onder zijn drie kleinzonen?", "answers": [{ "text": "Het Verdrag van Verdun", "aliases": ["Verdrag van Verdun", "Verdun"] }] },
+        { "prompt": "Welke aartsbisschop werd in 1170 in zijn eigen kathedraal in Canterbury vermoord?", "answers": [{ "text": "Thomas Becket", "aliases": ["Becket"] }] },
+        { "prompt": "Welke Frankische legeraanvoerder versloeg in 732 een Arabisch leger bij Poitiers?", "answers": [{ "text": "Karel Martel", "aliases": ["Martel"] }] },
+        { "prompt": "Welke keizer verdronk in 1190 in een rivier in Anatolie op weg naar de Derde Kruistocht?", "answers": [{ "text": "Frederik Barbarossa", "aliases": ["Barbarossa", "Frederik de Eerste"] }] },
+        { "prompt": "Welke theoloog, die in de dertiende eeuw in Parijs doceerde, schreef de Summa Theologica?", "answers": [{ "text": "Thomas van Aquino", "aliases": ["Aquino"] }] }
+      ]
+    }
+  ]
+}

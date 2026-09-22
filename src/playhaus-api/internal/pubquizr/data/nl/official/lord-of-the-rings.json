@@ -1,0 +1,136 @@
+{
+  "slug": "lord-of-the-rings",
+  "title": "In de Ban van de Ring",
+  "description": "Een hele pubquiz over Tolkiens Midden-aarde en de filmtrilogie van Peter Jackson.",
+  "publishedAt": "2026-09-10",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke duistere heerser smeedde in het geheim de Ene Ring?", "category": "Personages", "answers": [{ "text": "Sauron" }] },
+        { "prompt": "Welke tovenaar in grijze mantel leidt het Reisgenootschap aan het begin van het verhaal?", "category": "Personages", "answers": [{ "text": "Gandalf", "aliases": ["Gandalf de Grijze"] }] },
+        { "prompt": "Hoe heet het groene, heuvelachtige thuisland van de hobbits?", "category": "Plaatsen", "answers": [{ "text": "De Gouw", "aliases": ["Gouw", "The Shire", "Shire"] }] },
+        { "prompt": "In welke berg moet de Ene Ring vernietigd worden?", "category": "Plaatsen", "answers": [{ "text": "Mount Doom", "aliases": ["Doemberg", "Orodruin"] }] },
+        { "prompt": "Welk wezen noemt de Ring zijn liefje?", "category": "Wezens", "answers": [{ "text": "Gollum", "aliases": ["Gollem"] }] },
+        { "prompt": "Welke tovenaar verraadt het Reisgenootschap en kiest de kant van Sauron?", "category": "Personages", "answers": [{ "text": "Saruman", "aliases": ["Saruman de Witte", "Saruman de Wijze"] }] },
+        { "prompt": "Wie regisseerde de drie Lord of the Rings-films?", "category": "Films", "answers": [{ "text": "Peter Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "In welk land werd de filmtrilogie opgenomen?", "category": "Opnames", "answers": [{ "text": "Nieuw-Zeeland", "aliases": ["Nieuw Zeeland"] }] },
+        { "prompt": "Welke acteur speelt Aragorn in de filmtrilogie?", "category": "Acteurs", "answers": [{ "text": "Viggo Mortensen", "aliases": ["Mortensen"] }] },
+        { "prompt": "Welke Britse acteur speelt de tovenaar in beide trilogieen van Jackson?", "category": "Acteurs", "answers": [{ "text": "Ian McKellen", "aliases": ["McKellen"] }] },
+        { "prompt": "Hoe heet het hobbitshol van Bilbo in Hobbitstee?", "category": "Plaatsen", "answers": [{ "text": "Bag End", "aliases": ["Balingshoek"] }] },
+        { "prompt": "Wat is de titel van de tweede film uit de trilogie?", "category": "Films", "answers": [{ "text": "The Two Towers", "aliases": ["Two Towers", "De Twee Torens"] }] },
+        { "prompt": "Over welk zwart land heerst Sauron vanuit zijn toren?", "category": "Plaatsen", "answers": [{ "text": "Mordor" }] },
+        { "prompt": "Welke hobbit vindt de Ring in de grot van Gollum en laat hem later na aan Frodo?", "category": "Personages", "answers": [{ "text": "Bilbo Baggins", "aliases": ["Bilbo", "Bilbo Balings"] }] },
+        { "prompt": "Welke reuzenspin valt Frodo aan op de weg naar Mordor?", "category": "Wezens", "answers": [{ "text": "Shelob" }] },
+        { "prompt": "Hoe heet het witte paard waarop Gandalf rijdt?", "category": "Dieren", "answers": [{ "text": "Shadowfax", "aliases": ["Schaduwvacht"] }] },
+        { "prompt": "Welke eeuwenoude boomreus ontmoeten Merry en Pippin in Fangorn?", "category": "Wezens", "answers": [{ "text": "Treebeard", "aliases": ["Boombaard"] }] },
+        { "prompt": "Wie is de vrouwe van Lothlorien die het Reisgenootschap geschenken meegeeft?", "category": "Personages", "answers": [{ "text": "Galadriel" }] },
+        { "prompt": "Door welk verlaten dwergenrijk onder de bergen trekt het Reisgenootschap?", "category": "Plaatsen", "answers": [{ "text": "Moria", "aliases": ["De Mijnen van Moria", "Mijnen van Moria"] }] },
+        { "prompt": "Aragorn wordt aan het eind van het verhaal gekroond tot koning van welk rijk?", "category": "Plaatsen", "answers": [{ "text": "Gondor" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welke taal is de inscriptie op de Ene Ring geschreven?", "options": [{ "text": "De Zwarte Spraak", "correct": true }, { "text": "Quenya" }, { "text": "Sindarijns" }, { "text": "Khuzdul" }] },
+        { "prompt": "Welke acteur speelt Boromir in de filmtrilogie?", "options": [{ "text": "Sean Bean", "correct": true }, { "text": "Karl Urban" }, { "text": "David Wenham" }, { "text": "Bernard Hill" }] },
+        { "prompt": "Wie levert de stem en de bewegingen van Gollum?", "options": [{ "text": "Andy Serkis", "correct": true }, { "text": "Hugo Weaving" }, { "text": "John Rhys-Davies" }, { "text": "Brad Dourif" }] },
+        { "prompt": "In welke herberg in Breeg ontmoeten de hobbits Aragorn voor het eerst?", "options": [{ "text": "The Prancing Pony", "correct": true }, { "text": "The Green Dragon" }, { "text": "The Ivy Bush" }, { "text": "The Golden Perch" }] },
+        { "prompt": "Hoe heet de zwarte toren van Saruman in Isengard?", "options": [{ "text": "Orthanc", "correct": true }, { "text": "Minas Morgul" }, { "text": "Dol Guldur" }, { "text": "Amon Hen" }] },
+        { "prompt": "Wie componeerde de muziek voor de filmtrilogie?", "options": [{ "text": "Howard Shore", "correct": true }, { "text": "Hans Zimmer" }, { "text": "John Williams" }, { "text": "James Horner" }] },
+        { "prompt": "Wie zingt Into the West over de aftiteling van The Return of the King?", "options": [{ "text": "Annie Lennox", "correct": true }, { "text": "Enya" }, { "text": "Kate Bush" }, { "text": "Sinead O'Connor" }] },
+        { "prompt": "Hoe heet de grote rivier waarover het Reisgenootschap roeit?", "options": [{ "text": "De Anduin", "correct": true }, { "text": "De Brandewijn" }, { "text": "De Isen" }, { "text": "De Entwas" }] },
+        { "prompt": "Wie is de stadhouder van Gondor ten tijde van de Oorlog om de Ring?", "options": [{ "text": "Denethor", "correct": true }, { "text": "Faramir" }, { "text": "Imrahil" }, { "text": "Beregond" }] },
+        { "prompt": "Welk wezen staat Gandalf tegenover op de brug van Khazad-dum?", "options": [{ "text": "Een Balrog", "correct": true }, { "text": "Een grottrol" }, { "text": "De Waker in het Water" }, { "text": "Een warg" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel ringen werden er volgens het ringvers gemaakt voor de sterfelijke Mensen?", "answer": 9, "unit": "ringen" },
+        { "prompt": "Hoeveel Oscars wonnen de drie films bij elkaar?", "answer": 17, "unit": "Oscars", "explanation": "The Return of the King pakte er elf en won elke categorie waarvoor de film genomineerd was." },
+        { "prompt": "In welk jaar kwam The Fellowship of the Ring in de bioscoop?", "answer": 2001 },
+        { "prompt": "In welk jaar verscheen het eerste deel van het boek voor het eerst?", "answer": 1954 },
+        { "prompt": "Hoeveel minuten duurt de bioscoopversie van The Fellowship of the Ring?", "answer": 178, "unit": "minuten" },
+        { "prompt": "Hoe oud is Bilbo Baggins op het verjaardagsfeest waarop hij de Gouw verlaat?", "answer": 111, "unit": "jaar", "explanation": "Hij noemt het zelf zijn elfenelfste verjaardag." },
+        { "prompt": "In hoeveel delen werd In de Ban van de Ring oorspronkelijk uitgegeven?", "answer": 3, "unit": "delen" },
+        { "prompt": "Hoeveel films over Midden-aarde heeft Peter Jackson in totaal gemaakt?", "answer": 6, "unit": "films" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Hobbitshol",
+        "Tovenaarsstaf",
+        "Pijptabak",
+        "Elfenmantel",
+        "Nachtvlinder",
+        "Grottrol",
+        "Warg",
+        "Ork",
+        "Ent",
+        "Vuurbaken",
+        "Wachttoren",
+        "Stormram",
+        "Katapult",
+        "Handboog",
+        "Strijdbijl",
+        "Gebroken zwaard",
+        "Ronde groene deur",
+        "Vat",
+        "Roeiboot",
+        "Stenen brug",
+        "Wegwijzer",
+        "Kasteelpoort",
+        "Vaandel",
+        "Grot",
+        "Pony",
+        "Malienkolder",
+        "Helm",
+        "Jachthoorn",
+        "Paddenstoel",
+        "Pijlkoker"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier hobbits uit het Reisgenootschap van de Ring.", "answers": [{ "text": "Frodo Baggins", "aliases": ["Frodo", "Frodo Balings"] }, { "text": "Samwise Gamgee", "aliases": ["Sam", "Sam Gewissies"] }, { "text": "Meriadoc Brandybuck", "aliases": ["Merry", "Merijn Brandebok"] }, { "text": "Peregrin Took", "aliases": ["Pippin", "Peregrijn Toek"] }] },
+        { "prompt": "Noem de vier leden van het Reisgenootschap die geen hobbit en geen tovenaar zijn.", "answers": [{ "text": "Aragorn", "aliases": ["Stapper", "Strider"] }, { "text": "Legolas" }, { "text": "Gimli" }, { "text": "Boromir" }] },
+        { "prompt": "Noem de vier zwaarden met een naam uit Midden-aarde.", "answers": [{ "text": "Anduril", "aliases": ["Narsil"] }, { "text": "Sting", "aliases": ["Prik"] }, { "text": "Glamdring" }, { "text": "Orcrist" }] },
+        { "prompt": "Noem de vier acteurs die de hobbits van het Reisgenootschap spelen.", "answers": [{ "text": "Elijah Wood" }, { "text": "Sean Astin" }, { "text": "Dominic Monaghan" }, { "text": "Billy Boyd" }] },
+        { "prompt": "Noem de vier elfenplaatsen van Midden-aarde.", "answers": [{ "text": "Rivendell", "aliases": ["Rivendel"] }, { "text": "Lothlorien" }, { "text": "Mirkwood", "aliases": ["Demsterwold"] }, { "text": "De Grijze Havens", "aliases": ["Grijze Havens", "The Grey Havens"] }] },
+        { "prompt": "Noem de vier volken waartoe de leden van het Reisgenootschap behoren, de tovenaar daargelaten.", "answers": [{ "text": "Hobbits" }, { "text": "Mensen" }, { "text": "Elfen" }, { "text": "Dwergen" }] },
+        { "prompt": "Noem de vier grote vestingen uit de filmtrilogie.", "answers": [{ "text": "Minas Tirith" }, { "text": "Isengard" }, { "text": "Barad-dur" }, { "text": "Helm's Deep", "aliases": ["Helmsdiepte", "Helms Deep"] }] },
+        { "prompt": "Noem de vier leden van het koningshuis van Rohan die in de films te zien zijn.", "answers": [{ "text": "Theoden" }, { "text": "Eowyn" }, { "text": "Eomer" }, { "text": "Theodred" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe wordt de ring die vernietigd moet worden meestal genoemd?", "difficulty": "easy", "answers": [{ "text": "De Ene Ring", "aliases": ["Ene Ring", "The One Ring"] }] },
+        { "prompt": "Wat is de titel van de eerste film uit de trilogie?", "difficulty": "easy", "answers": [{ "text": "The Fellowship of the Ring", "aliases": ["Fellowship of the Ring", "Het Reisgenootschap van de Ring"] }] },
+        { "prompt": "In welk bos ontmoeten Merry en Pippin de lopende bomen?", "difficulty": "easy", "answers": [{ "text": "Het Fangornwoud", "aliases": ["Fangorn", "Fangornwoud"] }] },
+        { "prompt": "Welke elfenheer houdt de raad waar het Reisgenootschap wordt gevormd?", "difficulty": "easy", "answers": [{ "text": "Elrond" }] },
+        { "prompt": "Welke vliegende dieren dragen Frodo en Sam weg van de hellingen van Mount Doom?", "difficulty": "easy", "answers": [{ "text": "De adelaars", "aliases": ["Adelaars", "Reuzenadelaars"] }] },
+        { "prompt": "Hoe heet de bergpas naar Mordor waar Shelob haar hol heeft?", "difficulty": "hard", "answers": [{ "text": "Cirith Ungol" }] },
+        { "prompt": "Hoe heet de raadsman die de koning van Rohan vergiftigt met zijn woorden?", "difficulty": "hard", "answers": [{ "text": "Grima Wormtongue", "aliases": ["Wormtongue", "Grima", "Slangtong"] }] },
+        { "prompt": "Van welk kostbaar metaal is de malienkolder die Bilbo aan Frodo geeft gemaakt?", "difficulty": "hard", "answers": [{ "text": "Mithril" }] },
+        { "prompt": "Hoe heet een ziensteen, zoals Saruman en Denethor er een gebruiken?", "difficulty": "hard", "answers": [{ "text": "Een palantir", "aliases": ["Palantir"] }] },
+        { "prompt": "Wat is de hoofdstad van Rohan, waar de gouden hal staat?", "difficulty": "hard", "answers": [{ "text": "Edoras" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Onder welke elfennaam staat Gandalf bekend in Midden-aarde?", "answers": [{ "text": "Mithrandir" }] },
+        { "prompt": "Welke titel draagt de heraut van Sauron die bij de Zwarte Poort komt onderhandelen?", "answers": [{ "text": "De Mond van Sauron", "aliases": ["Mond van Sauron", "The Mouth of Sauron"] }] },
+        { "prompt": "Hoe heet de vader van Aragorn?", "answers": [{ "text": "Arathorn" }] },
+        { "prompt": "Van welk rijk was de aanvoerder van de Nazgul ooit de tovenaar-koning?", "answers": [{ "text": "Angmar" }] },
+        { "prompt": "Hoe heet de waard van de herberg in Breeg?", "answers": [{ "text": "Barliman Butterbur", "aliases": ["Butterbur", "Barliman", "Barlieman Boterbloem"] }] },
+        { "prompt": "Welk personage uit het boek is volledig uit de films weggelaten?", "answers": [{ "text": "Tom Bombadil", "aliases": ["Bombadil"] }] },
+        { "prompt": "Hoe noemen de Enten de bijeenkomst waarop zij besluiten ten strijde te trekken?", "answers": [{ "text": "Een Entberaad", "aliases": ["Entberaad", "Entmoet", "Entmoot"] }] }
+      ]
+    }
+  ]
+}

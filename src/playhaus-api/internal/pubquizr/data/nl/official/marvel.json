@@ -1,0 +1,136 @@
+{
+  "slug": "marvel",
+  "title": "Marvel",
+  "description": "Een hele pubquiz over het Marvel-universum: helden, schurken, strips en films.",
+  "publishedAt": "2026-09-12",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de echte naam van Spider-Man?", "category": "Helden", "answers": [{ "text": "Peter Parker", "aliases": ["Parker"] }] },
+        { "prompt": "Wat is de echte naam van Captain America?", "category": "Helden", "answers": [{ "text": "Steve Rogers", "aliases": ["Steven Rogers", "Rogers"] }] },
+        { "prompt": "Wat is de echte naam van Iron Man?", "category": "Helden", "answers": [{ "text": "Tony Stark", "aliases": ["Anthony Stark", "Stark"] }] },
+        { "prompt": "Wat is de echte naam van de Hulk?", "category": "Helden", "answers": [{ "text": "Bruce Banner", "aliases": ["Banner"] }] },
+        { "prompt": "Wat is de echte naam van Black Widow?", "category": "Helden", "answers": [{ "text": "Natasha Romanoff", "aliases": ["Natasha Romanova", "Romanoff"] }] },
+        { "prompt": "Hoe heet de hamer van Thor?", "category": "Wapens", "answers": [{ "text": "Mjolnir", "aliases": ["Mjollnir"] }] },
+        { "prompt": "Van welk fictieve metaal is het schild van Captain America gemaakt?", "category": "Wapens", "answers": [{ "text": "Vibranium" }] },
+        { "prompt": "Wie is de geadopteerde broer van Thor?", "category": "Schurken", "answers": [{ "text": "Loki" }] },
+        { "prompt": "Welke schurk wil alle Infinity Stones verzamelen?", "category": "Schurken", "answers": [{ "text": "Thanos" }] },
+        { "prompt": "Welke stad beschermt Spider-Man?", "category": "Locaties", "answers": [{ "text": "New York", "aliases": ["New York City"] }] },
+        { "prompt": "Over welk fictieve Afrikaanse land regeert de Black Panther?", "category": "Locaties", "answers": [{ "text": "Wakanda" }] },
+        { "prompt": "Welke Marvel-held vecht met pijl en boog?", "category": "Helden", "answers": [{ "text": "Hawkeye", "aliases": ["Clint Barton"] }] },
+        { "prompt": "Welk team van ruimteavonturiers wordt geleid door Star-Lord?", "category": "Teams", "answers": [{ "text": "De Guardians of the Galaxy", "aliases": ["Guardians of the Galaxy"] }] },
+        { "prompt": "Hoe heet de computerassistent van Tony Stark in de eerste Iron Man-film?", "category": "Technologie", "answers": [{ "text": "JARVIS", "aliases": ["Jarvis"] }] },
+        { "prompt": "Welke Marvel-held kan krimpen tot het formaat van een insect?", "category": "Helden", "answers": [{ "text": "Ant-Man", "aliases": ["Antman", "Ant Man"] }] },
+        { "prompt": "Welke geheime organisatie wordt geleid door Nick Fury?", "category": "Organisaties", "answers": [{ "text": "S.H.I.E.L.D.", "aliases": ["SHIELD", "Shield"] }] },
+        { "prompt": "Welke acteur speelt Iron Man in de Marvel-films?", "category": "Acteurs", "answers": [{ "text": "Robert Downey Jr.", "aliases": ["Robert Downey Junior", "Downey"] }] },
+        { "prompt": "Welke Marvel-schrijver en -redacteur werd beroemd om zijn cameos in de films?", "category": "Strips", "answers": [{ "text": "Stan Lee", "aliases": ["Lee"] }] },
+        { "prompt": "Welk team van mutanten wordt geleid door Professor X?", "category": "Teams", "answers": [{ "text": "De X-Men", "aliases": ["X-Men", "X Men"] }] },
+        { "prompt": "Hoeveel Infinity Stones zijn er?", "category": "Infinity Stones", "answers": [{ "text": "Zes", "aliases": ["6"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar kwam de eerste Iron Man-film uit?", "options": [{ "text": "2006" }, { "text": "2008", "correct": true }, { "text": "2010" }, { "text": "2012" }] },
+        { "prompt": "Welke Infinity Stone zit verborgen in de scepter van Loki in de eerste Avengers-film?", "options": [{ "text": "De Mind Stone", "correct": true }, { "text": "De Soul Stone" }, { "text": "De Power Stone" }, { "text": "De Reality Stone" }] },
+        { "prompt": "Welke acteur speelt Thor?", "options": [{ "text": "Chris Hemsworth", "correct": true }, { "text": "Chris Evans" }, { "text": "Chris Pratt" }, { "text": "Chris Pine" }] },
+        { "prompt": "Welk superheldenteam bedachten Stan Lee en Jack Kirby in 1961?", "options": [{ "text": "De Fantastic Four", "correct": true }, { "text": "De Defenders" }, { "text": "De Inhumans" }, { "text": "De Invaders" }] },
+        { "prompt": "Hoe heet de bijl die voor Thor wordt gesmeed in Avengers: Infinity War?", "options": [{ "text": "Stormbreaker", "correct": true }, { "text": "Gungnir" }, { "text": "Hofund" }, { "text": "Jarnbjorn" }] },
+        { "prompt": "In welk jaar kocht Disney Marvel Entertainment?", "options": [{ "text": "2005" }, { "text": "2009", "correct": true }, { "text": "2012" }, { "text": "2015" }] },
+        { "prompt": "Wat is de echte naam van de Winter Soldier?", "options": [{ "text": "Bucky Barnes", "correct": true }, { "text": "Sam Wilson" }, { "text": "Brock Rumlow" }, { "text": "Everett Ross" }] },
+        { "prompt": "Wie regisseerde Avengers: Endgame?", "options": [{ "text": "De broers Russo", "correct": true }, { "text": "Joss Whedon" }, { "text": "James Gunn" }, { "text": "Taika Waititi" }] },
+        { "prompt": "Welke actrice speelt Captain Marvel?", "options": [{ "text": "Brie Larson", "correct": true }, { "text": "Scarlett Johansson" }, { "text": "Elizabeth Olsen" }, { "text": "Karen Gillan" }] },
+        { "prompt": "Wat is de echte naam van de schurk Abomination?", "options": [{ "text": "Emil Blonsky", "correct": true }, { "text": "Samuel Sterns" }, { "text": "Thaddeus Ross" }, { "text": "Leonard Samson" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In welk jaar verscheen Spider-Man voor het eerst in een strip?", "answer": 1962, "explanation": "Hij maakte zijn debuut in Amazing Fantasy nummer 15, in augustus 1962." },
+        { "prompt": "In welk jaar kwam de eerste X-Men-film uit?", "answer": 2000 },
+        { "prompt": "In welk jaar kwam de film Black Panther uit?", "answer": 2018 },
+        { "prompt": "In welk jaar werd Stan Lee geboren?", "answer": 1922 },
+        { "prompt": "Hoeveel minuten duurt Avengers: Endgame?", "answer": 181, "unit": "minuten", "explanation": "Drie uur en een minuut, de langste film uit de reeks." },
+        { "prompt": "Uit hoeveel films bestaat de Infinity Saga, de eerste drie fases van het Marvel Cinematic Universe?", "answer": 23, "unit": "films" },
+        { "prompt": "Hoeveel leden hadden de Avengers in hun eerste strip uit 1963?", "answer": 5, "unit": "leden" },
+        { "prompt": "In welk jaar kwam de eerste Deadpool-film uit?", "answer": 2016 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Schild",
+        "Hamer",
+        "Spinnenweb",
+        "Webschieter",
+        "Cape",
+        "Masker",
+        "Stripboek",
+        "Wasbeer",
+        "Pratende boom",
+        "Ooglapje",
+        "Gehoornde helm",
+        "Regenboogbrug",
+        "Infinity Gauntlet",
+        "Arcreactor",
+        "Vliegend pak",
+        "Pijl en boog",
+        "Klauwen",
+        "Magisch portaal",
+        "Tijdmachine",
+        "Ruimteschip",
+        "Wolkenkrabber",
+        "Krant",
+        "Fotograaf",
+        "Laboratorium",
+        "Bliksemschicht",
+        "Mier",
+        "Sik",
+        "Vingerknip",
+        "Bioscoopkaartje",
+        "Actiefiguur"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier leden van de Fantastic Four.", "answers": [{ "text": "Mister Fantastic", "aliases": ["Mr. Fantastic", "Reed Richards"] }, { "text": "Invisible Woman", "aliases": ["De Invisible Woman", "Sue Storm"] }, { "text": "Human Torch", "aliases": ["De Human Torch", "Johnny Storm"] }, { "text": "The Thing", "aliases": ["Thing", "Ben Grimm"] }] },
+        { "prompt": "Noem de vier Avengers-films die tussen 2012 en 2019 uitkwamen.", "answers": [{ "text": "The Avengers", "aliases": ["Avengers Assemble"] }, { "text": "Avengers: Age of Ultron", "aliases": ["Age of Ultron"] }, { "text": "Avengers: Infinity War", "aliases": ["Infinity War"] }, { "text": "Avengers: Endgame", "aliases": ["Endgame"] }] },
+        { "prompt": "Noem de vier leden van de Black Order van Thanos in Avengers: Infinity War.", "answers": [{ "text": "Ebony Maw" }, { "text": "Corvus Glaive" }, { "text": "Proxima Midnight" }, { "text": "Cull Obsidian" }] },
+        { "prompt": "Noem de vier Captain America-films die tot en met 2025 uitkwamen.", "answers": [{ "text": "Captain America: The First Avenger", "aliases": ["The First Avenger"] }, { "text": "Captain America: The Winter Soldier", "aliases": ["The Winter Soldier"] }, { "text": "Captain America: Civil War", "aliases": ["Civil War"] }, { "text": "Captain America: Brave New World", "aliases": ["Brave New World"] }] },
+        { "prompt": "Noem de vier helden die samen optrekken in de serie The Defenders.", "answers": [{ "text": "Daredevil", "aliases": ["Matt Murdock"] }, { "text": "Jessica Jones" }, { "text": "Luke Cage" }, { "text": "Iron Fist", "aliases": ["Danny Rand"] }] },
+        { "prompt": "Noem de vier Infinity Stones naast de Mind Stone en de Soul Stone.", "answers": [{ "text": "De Space Stone", "aliases": ["Space Stone", "Space"] }, { "text": "De Reality Stone", "aliases": ["Reality Stone", "Reality"] }, { "text": "De Power Stone", "aliases": ["Power Stone", "Power"] }, { "text": "De Time Stone", "aliases": ["Time Stone", "Time"] }] },
+        { "prompt": "Noem de vier Guardians die met Star-Lord meereizen in de film Guardians of the Galaxy uit 2014.", "answers": [{ "text": "Gamora" }, { "text": "Drax", "aliases": ["Drax the Destroyer"] }, { "text": "Rocket", "aliases": ["Rocket Raccoon"] }, { "text": "Groot" }] },
+        { "prompt": "Noem de vier films uit het Marvel Cinematic Universe die in 2021 in de bioscoop kwamen.", "answers": [{ "text": "Black Widow" }, { "text": "Shang-Chi and the Legend of the Ten Rings", "aliases": ["Shang-Chi"] }, { "text": "Eternals", "aliases": ["The Eternals"] }, { "text": "Spider-Man: No Way Home", "aliases": ["No Way Home"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft de Hulk?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Welke Marvel-held draagt een rood met goud pantserpak?", "difficulty": "easy", "answers": [{ "text": "Iron Man" }] },
+        { "prompt": "Welk familielid voedt Peter Parker samen met zijn oom op?", "difficulty": "easy", "answers": [{ "text": "Tante May", "aliases": ["May", "May Parker"] }] },
+        { "prompt": "Welke Marvel-held vecht met een rond schild?", "difficulty": "easy", "answers": [{ "text": "Captain America", "aliases": ["Cap"] }] },
+        { "prompt": "Hoe heet de thuiswereld van Thor?", "difficulty": "easy", "answers": [{ "text": "Asgard" }] },
+        { "prompt": "Welke kunstmatige intelligentie neemt het in de pakken van Tony Stark over van JARVIS?", "difficulty": "hard", "answers": [{ "text": "FRIDAY", "aliases": ["Friday"] }] },
+        { "prompt": "Wat is de echte naam van Professor X?", "difficulty": "hard", "answers": [{ "text": "Charles Xavier", "aliases": ["Xavier"] }] },
+        { "prompt": "Welk ras van gedaanteverwisselende aliens komt voor in de film Captain Marvel?", "difficulty": "hard", "answers": [{ "text": "De Skrulls", "aliases": ["Skrulls"] }] },
+        { "prompt": "Welke Marvel-held heet in het echt Wanda Maximoff?", "difficulty": "hard", "answers": [{ "text": "Scarlet Witch", "aliases": ["De Scarlet Witch"] }] },
+        { "prompt": "Wie is de vader van Thor?", "difficulty": "hard", "answers": [{ "text": "Odin" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke tekenaar bedacht Spider-Man samen met Stan Lee?", "answers": [{ "text": "Steve Ditko", "aliases": ["Ditko"] }] },
+        { "prompt": "Met welk fictief metaal is het skelet van Wolverine bekleed?", "answers": [{ "text": "Adamantium" }] },
+        { "prompt": "Hoe heet de thuiswereld van Thanos?", "answers": [{ "text": "Titan" }] },
+        { "prompt": "Hoe heet het ruimteschip van de Guardians of the Galaxy in de film uit 2014?", "answers": [{ "text": "De Milano", "aliases": ["Milano"] }] },
+        { "prompt": "Welke plant geeft de Black Panther zijn kracht?", "answers": [{ "text": "Het hartvormige kruid", "aliases": ["Hartvormige kruid", "Hartvormig kruid"] }] },
+        { "prompt": "Wie regisseerde de film Iron Man uit 2008?", "answers": [{ "text": "Jon Favreau", "aliases": ["Favreau"] }] },
+        { "prompt": "Hoe heet de kat van Nick Fury in de film Captain Marvel?", "answers": [{ "text": "Goose" }] }
+      ]
+    }
+  ]
+}

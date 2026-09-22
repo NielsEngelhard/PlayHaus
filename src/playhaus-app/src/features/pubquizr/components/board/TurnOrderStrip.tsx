@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
@@ -108,7 +109,14 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
                         const out = missed.has(seat.seat);
 
                         return (
-                            <View key={seat.seat} style={styles.stop}>
+                            // Keyed on the seat's `now` status, so the marker visibly lifts as the turn walks onto it.
+                            <SlideFadeIn
+                                key={seat.seat}
+                                style={styles.stop}
+                                offsetY={-6}
+                                durationMs={220}
+                                replayKey={`${seat.seat}-${now}`}
+                            >
                                 <View style={out && styles.faded}>
                                     <SeatAvatar seat={seat} size={PATH_AVATAR} raised={now} />
 
@@ -125,7 +133,7 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
                                 >
                                     {nameOf(seat)}
                                 </AppText>
-                            </View>
+                            </SlideFadeIn>
                         )
                     })}
                 </View>

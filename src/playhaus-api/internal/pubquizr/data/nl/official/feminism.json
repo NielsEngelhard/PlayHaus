@@ -1,0 +1,136 @@
+{
+  "slug": "feminism",
+  "title": "Feminisme",
+  "description": "Een quiz over de vrouwenbeweging, van de strijd om het kiesrecht tot de iconen van nu.",
+  "publishedAt": "2026-09-21",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk land gaf als eerste ter wereld vrouwen stemrecht bij landelijke verkiezingen, in 1893?", "category": "Kiesrecht", "answers": [{ "text": "Nieuw-Zeeland" }] },
+        { "prompt": "In welk jaar kregen vrouwen in Nederland het actief kiesrecht?", "category": "Nederland", "answers": [{ "text": "1919", "aliases": ["Negentienhonderdnegentien"] }] },
+        { "prompt": "Welke vrouw werd in 1918 als eerste gekozen in de Tweede Kamer?", "category": "Nederland", "answers": [{ "text": "Suze Groeneweg", "aliases": ["Groeneweg"] }] },
+        { "prompt": "Welke actiegroep, opgericht in 1970, werd het bekendste gezicht van de tweede feministische golf in Nederland?", "category": "Nederland", "answers": [{ "text": "Dolle Mina" }] },
+        { "prompt": "Welke vrouw studeerde als eerste in Nederland af aan een universiteit en werd arts?", "category": "Nederland", "answers": [{ "text": "Aletta Jacobs", "aliases": ["Jacobs"] }] },
+        { "prompt": "Wie schreef in 1949 het boek De tweede sekse?", "category": "Boeken", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir", "Beauvoir"] }] },
+        { "prompt": "Wie schreef in 1792 het Pleidooi voor de rechten van de vrouw?", "category": "Boeken", "answers": [{ "text": "Mary Wollstonecraft", "aliases": ["Wollstonecraft"] }] },
+        { "prompt": "Welke Amerikaanse schrijfster publiceerde in 1963 The Feminine Mystique?", "category": "Boeken", "answers": [{ "text": "Betty Friedan", "aliases": ["Friedan"] }] },
+        { "prompt": "Welke Engelse schrijfster schreef het essay Een kamer voor jezelf?", "category": "Boeken", "answers": [{ "text": "Virginia Woolf", "aliases": ["Woolf"] }] },
+        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "category": "Wetenschap", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Wie was de eerste vrouw in de ruimte?", "category": "Wetenschap", "answers": [{ "text": "Valentina Tereshkova", "aliases": ["Tereshkova"] }] },
+        { "prompt": "Wie werd in 1979 de eerste vrouwelijke premier van het Verenigd Koninkrijk?", "category": "Politiek", "answers": [{ "text": "Margaret Thatcher", "aliases": ["Thatcher"] }] },
+        { "prompt": "Wie was de eerste vrouwelijke bondskanselier van Duitsland?", "category": "Politiek", "answers": [{ "text": "Angela Merkel", "aliases": ["Merkel"] }] },
+        { "prompt": "Welke Pakistaanse strijdster voor onderwijs aan meisjes won in 2014 de Nobelprijs voor de Vrede?", "category": "Activisme", "answers": [{ "text": "Malala Yousafzai", "aliases": ["Malala"] }] },
+        { "prompt": "Welke hashtag tegen seksuele intimidatie ging in 2017 de hele wereld over?", "category": "Activisme", "answers": [{ "text": "MeToo", "aliases": ["#MeToo", "Me Too"] }] },
+        { "prompt": "Welke Amerikaanse tennisster versloeg Bobby Riggs in de Battle of the Sexes van 1973?", "category": "Sport", "answers": [{ "text": "Billie Jean King", "aliases": ["King"] }] },
+        { "prompt": "Welke Nederlandse atlete won vier gouden medailles op de Olympische Spelen van 1948 in Londen?", "category": "Sport", "answers": [{ "text": "Fanny Blankers-Koen", "aliases": ["Blankers-Koen"] }] },
+        { "prompt": "Welke Mexicaanse schilderes van zelfportretten werd een feministisch icoon?", "category": "Kunst", "answers": [{ "text": "Frida Kahlo", "aliases": ["Kahlo"] }] },
+        { "prompt": "Hoe heet de onzichtbare barriere die vrouwen uit de topfuncties houdt?", "category": "Symbolen", "answers": [{ "text": "Het glazen plafond", "aliases": ["Glazen plafond"] }] },
+        { "prompt": "Op welke datum is elk jaar Internationale Vrouwendag?", "category": "Symbolen", "answers": [{ "text": "8 maart", "aliases": ["De achtste maart"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk jaar kregen vrouwen in Zwitserland stemrecht bij federale verkiezingen?", "options": [{ "text": "1948" }, { "text": "1959" }, { "text": "1971", "correct": true }, { "text": "1984" }] },
+        { "prompt": "Welke organisatie leidde Emmeline Pankhurst in de strijd om het vrouwenkiesrecht?", "options": [{ "text": "De Women's Social and Political Union", "correct": true }, { "text": "De National Union of Women's Suffrage Societies" }, { "text": "De Women's Freedom League" }, { "text": "Het Women's Institute" }] },
+        { "prompt": "Wie schreef het essay We Should All Be Feminists?", "options": [{ "text": "Chimamanda Ngozi Adichie", "correct": true }, { "text": "Toni Morrison" }, { "text": "Zadie Smith" }, { "text": "Bernardine Evaristo" }] },
+        { "prompt": "Welke Franse minister loodste in 1975 de wet door die abortus in Frankrijk legaliseerde?", "options": [{ "text": "Simone Veil", "correct": true }, { "text": "Edith Cresson" }, { "text": "Segolene Royal" }, { "text": "Christiane Taubira" }] },
+        { "prompt": "Welk verdrag over de rechten van vrouwen namen de Verenigde Naties in 1979 aan?", "options": [{ "text": "CEDAW", "correct": true }, { "text": "De Verklaring van Peking" }, { "text": "Het Verdrag van Istanbul" }, { "text": "De Conventie van Geneve" }] },
+        { "prompt": "Welke suffragette overleed aan haar verwondingen nadat ze tijdens de Derby van Epsom in 1913 voor het paard van de koning was gestapt?", "options": [{ "text": "Emily Davison", "correct": true }, { "text": "Annie Kenney" }, { "text": "Mary Richardson" }, { "text": "Edith New" }] },
+        { "prompt": "Welke drie kleuren koos de Britse suffragettebeweging?", "options": [{ "text": "Paars, wit en groen", "correct": true }, { "text": "Rood, wit en blauw" }, { "text": "Groen, geel en zwart" }, { "text": "Paars, goud en wit" }] },
+        { "prompt": "Welk Nederlands feministisch tijdschrift werd in 1972 opgericht?", "options": [{ "text": "Opzij", "correct": true }, { "text": "Libelle" }, { "text": "Margriet" }, { "text": "Viva" }] },
+        { "prompt": "Welk land gaf als eerste in Europa vrouwen stemrecht bij landelijke verkiezingen?", "options": [{ "text": "Finland", "correct": true }, { "text": "Noorwegen" }, { "text": "Denemarken" }, { "text": "Zweden" }] },
+        { "prompt": "Welk boek publiceerde Germaine Greer in 1970?", "options": [{ "text": "The Female Eunuch", "correct": true }, { "text": "Sexual Politics" }, { "text": "The Dialectic of Sex" }, { "text": "The Golden Notebook" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel Nobelprijzen won Marie Curie?", "answer": 2, "unit": "prijzen", "explanation": "Zij is nog altijd de enige die won in twee verschillende wetenschappen." },
+        { "prompt": "In welk jaar werd de eerste Internationale Vrouwendag gehouden?", "answer": 1911 },
+        { "prompt": "In welk jaar kregen vrouwen boven de dertig stemrecht in het Verenigd Koninkrijk?", "answer": 1918 },
+        { "prompt": "Hoe oud was Malala Yousafzai toen ze de Nobelprijs voor de Vrede kreeg?", "answer": 17, "unit": "jaar" },
+        { "prompt": "In welk jaar stemden vrouwen in Saoedi-Arabie voor het eerst?", "answer": 2015 },
+        { "prompt": "Hoeveel jaar na de eerste moderne Olympische Spelen deden vrouwen voor het eerst mee?", "answer": 4, "unit": "jaar", "explanation": "De eerste Spelen in Athene in 1896 waren alleen voor mannen; in 1900 deden in Parijs vrouwen mee." },
+        { "prompt": "Hoeveel vrouwen zijn er president van de Verenigde Staten geweest?", "answer": 0, "unit": "vrouwen" },
+        { "prompt": "In welk jaar kregen vrouwen in de Verenigde Staten landelijk stemrecht?", "answer": 1920 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Suffragette",
+        "Stembus",
+        "Protestspandoek",
+        "Sjerp",
+        "Megafoon",
+        "Petitie",
+        "Hongerstaking",
+        "Gevangeniscel",
+        "Korset",
+        "Broekpak",
+        "Beha",
+        "Lippenstift",
+        "Typemachine",
+        "Verloskundige",
+        "Bestuurskamer",
+        "Loonstrookje",
+        "De pil",
+        "Kinderwagen",
+        "Paars lintje",
+        "Aktetas",
+        "Strijkplank",
+        "Stakingspost",
+        "Nagellak",
+        "Tuinbroek",
+        "Bouwhelm",
+        "Breinaalden",
+        "Schoudervullingen",
+        "Universiteitsdiploma",
+        "Zitplaats in de bus",
+        "Missverkiezing"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier Pankhursts die de Britse strijd om het vrouwenkiesrecht leidden.", "answers": [{ "text": "Emmeline", "aliases": ["Emmeline Pankhurst"] }, { "text": "Christabel", "aliases": ["Christabel Pankhurst"] }, { "text": "Sylvia", "aliases": ["Sylvia Pankhurst"] }, { "text": "Adela", "aliases": ["Adela Pankhurst"] }] },
+        { "prompt": "Noem de vier zussen March uit Onder moeders vleugels van Louisa May Alcott.", "answers": [{ "text": "Meg", "aliases": ["Margaret"] }, { "text": "Jo", "aliases": ["Josephine"] }, { "text": "Beth", "aliases": ["Elizabeth"] }, { "text": "Amy" }] },
+        { "prompt": "Noem de vier Spice Girls naast Victoria Beckham.", "answers": [{ "text": "Geri Halliwell", "aliases": ["Ginger Spice"] }, { "text": "Melanie Brown", "aliases": ["Mel B", "Scary Spice"] }, { "text": "Melanie Chisholm", "aliases": ["Mel C", "Sporty Spice"] }, { "text": "Emma Bunton", "aliases": ["Baby Spice"] }] },
+        { "prompt": "Noem de vier grandslamtoernooien in het tennis, waar vrouwen en mannen inmiddels evenveel prijzengeld krijgen.", "answers": [{ "text": "De Australian Open", "aliases": ["Australian Open"] }, { "text": "Roland Garros", "aliases": ["De French Open", "French Open"] }, { "text": "Wimbledon" }, { "text": "De US Open", "aliases": ["US Open"] }] },
+        { "prompt": "Noem de vier hoofdpersonen uit de serie Sex and the City.", "answers": [{ "text": "Carrie Bradshaw", "aliases": ["Carrie"] }, { "text": "Samantha Jones", "aliases": ["Samantha"] }, { "text": "Charlotte York", "aliases": ["Charlotte"] }, { "text": "Miranda Hobbes", "aliases": ["Miranda"] }] },
+        { "prompt": "Noem de vier vrouwen die Trots en vooroordeel, Frankenstein, Jane Eyre en Woeste hoogten schreven.", "answers": [{ "text": "Jane Austen", "aliases": ["Austen"] }, { "text": "Mary Shelley", "aliases": ["Shelley"] }, { "text": "Charlotte Bronte" }, { "text": "Emily Bronte" }] },
+        { "prompt": "Noem de vier vrouwen die tussen 1890 en 2013 aan het hoofd van het Nederlandse koningshuis stonden: een regentes en drie koninginnen.", "answers": [{ "text": "Emma", "aliases": ["Koningin Emma", "Regentes Emma"] }, { "text": "Wilhelmina", "aliases": ["Koningin Wilhelmina"] }, { "text": "Juliana", "aliases": ["Koningin Juliana"] }, { "text": "Beatrix", "aliases": ["Koningin Beatrix"] }] },
+        { "prompt": "Noem de vier vrouwen die in 2024 de Europese Commissie, de Europese Centrale Bank, het Europees Parlement en het Internationaal Monetair Fonds leidden.", "answers": [{ "text": "Ursula von der Leyen", "aliases": ["Von der Leyen"] }, { "text": "Christine Lagarde", "aliases": ["Lagarde"] }, { "text": "Roberta Metsola", "aliases": ["Metsola"] }, { "text": "Kristalina Georgieva", "aliases": ["Georgieva"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke Amerikaanse zangeres scoorde in 1967 een hit met Respect, een lied dat een feministisch strijdlied werd?", "difficulty": "easy", "answers": [{ "text": "Aretha Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "De vrouwen van welk land wonnen in 2017 het Europees kampioenschap voetbal in eigen land?", "difficulty": "easy", "answers": [{ "text": "Nederland", "aliases": ["Oranje"] }] },
+        { "prompt": "Wie was de eerste vrouw die solo over de Atlantische Oceaan vloog?", "difficulty": "easy", "answers": [{ "text": "Amelia Earhart", "aliases": ["Earhart"] }] },
+        { "prompt": "Uit welke oorlog stamt de poster We Can Do It met Rosie the Riveter?", "difficulty": "easy", "answers": [{ "text": "De Tweede Wereldoorlog", "aliases": ["Tweede Wereldoorlog"] }] },
+        { "prompt": "Het symbool voor het vrouwelijk geslacht is ook het symbool van welke planeet?", "difficulty": "easy", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Welke Amerikaanse feministe richtte in 1971 mede het tijdschrift Ms. op?", "difficulty": "hard", "answers": [{ "text": "Gloria Steinem", "aliases": ["Steinem"] }] },
+        { "prompt": "Welke negentiende-eeuwse Nederlandse feministe kreeg de bijnaam IJzeren Mina?", "difficulty": "hard", "answers": [{ "text": "Wilhelmina Drucker", "aliases": ["Drucker"] }] },
+        { "prompt": "Wiens aantekeningen bij de Analytical Engine van Charles Babbage gelden als het eerste computerprogramma?", "difficulty": "hard", "answers": [{ "text": "Ada Lovelace", "aliases": ["Lovelace"] }] },
+        { "prompt": "Welke natuurkundige, gepasseerd voor de Nobelprijs die naar Otto Hahn ging, hielp kernsplijting verklaren?", "difficulty": "hard", "answers": [{ "text": "Lise Meitner", "aliases": ["Meitner"] }] },
+        { "prompt": "Wie was de eerste vrouw die zitting nam in het Britse Lagerhuis?", "difficulty": "hard", "answers": [{ "text": "Nancy Astor", "aliases": ["Astor", "Lady Astor"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wie werd in 1960 in Ceylon de eerste vrouwelijke premier ter wereld?", "answers": [{ "text": "Sirimavo Bandaranaike", "aliases": ["Bandaranaike"] }] },
+        { "prompt": "Welke Franse schrijfster publiceerde in 1791 de Verklaring van de rechten van de vrouw en de burgeres en werd twee jaar later onthoofd?", "answers": [{ "text": "Olympe de Gouges", "aliases": ["De Gouges", "Gouges"] }] },
+        { "prompt": "Welke Amerikaanse abolitioniste hield in 1851 de toespraak die bekendstaat als Ain't I a Woman?", "answers": [{ "text": "Sojourner Truth", "aliases": ["Truth"] }] },
+        { "prompt": "Wie was de eerste vrouw die de Fields-medaille voor wiskunde kreeg?", "answers": [{ "text": "Maryam Mirzakhani", "aliases": ["Mirzakhani"] }] },
+        { "prompt": "Welk land kreeg na de verkiezingen van 2008 als eerste ter wereld een parlement met een vrouwelijke meerderheid?", "answers": [{ "text": "Rwanda" }] },
+        { "prompt": "Welke Amerikaanse schreef in 1892 het korte verhaal Het gele behang?", "answers": [{ "text": "Charlotte Perkins Gilman", "aliases": ["Perkins Gilman", "Gilman"] }] },
+        { "prompt": "Wie was de eerste vrouwelijke minister in een Nederlands kabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] }
+      ]
+    }
+  ]
+}

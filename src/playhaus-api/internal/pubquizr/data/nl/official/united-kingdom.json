@@ -1,0 +1,136 @@
+{
+  "slug": "united-kingdom",
+  "title": "Het Verenigd Koninkrijk",
+  "description": "Een hele pubquiz over het Verenigd Koninkrijk: de vier landen, het landschap, de geschiedenis en de gewoontes.",
+  "publishedAt": "2026-08-31",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van Schotland?", "category": "Steden", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "Wat is de hoofdstad van Wales?", "category": "Steden", "answers": [{ "text": "Cardiff" }] },
+        { "prompt": "Wat is de hoofdstad van Noord-Ierland?", "category": "Steden", "answers": [{ "text": "Belfast" }] },
+        { "prompt": "Welke rivier stroomt door Londen?", "category": "Rivieren", "answers": [{ "text": "De Theems", "aliases": ["Theems"] }] },
+        { "prompt": "In welke Engelse stad is The Beatles ontstaan?", "category": "Muziek", "answers": [{ "text": "Liverpool" }] },
+        { "prompt": "Welke prehistorische steencirkel staat op Salisbury Plain?", "category": "Bezienswaardigheden", "answers": [{ "text": "Stonehenge" }] },
+        { "prompt": "In welk jaar verliet het Verenigd Koninkrijk officieel de Europese Unie?", "category": "Geschiedenis", "answers": [{ "text": "2020", "aliases": ["Tweeduizend twintig"] }] },
+        { "prompt": "Wat is de munteenheid van het Verenigd Koninkrijk?", "category": "Geld", "answers": [{ "text": "Het pond sterling", "aliases": ["Pond", "Pond sterling", "Britse pond"] }] },
+        { "prompt": "Welke Britse band bracht het album The Dark Side of the Moon uit?", "category": "Muziek", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Welke Engelse toneelschrijver schreef Hamlet?", "category": "Literatuur", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Welk Londens tennistoernooi wordt op gras gespeeld?", "category": "Sport", "answers": [{ "text": "Wimbledon" }] },
+        { "prompt": "Onder welke bijnaam staat de metro van Londen bekend?", "category": "Vervoer", "answers": [{ "text": "The Tube", "aliases": ["Tube"] }] },
+        { "prompt": "Welk gerecht van gefrituurde vis met friet is een Britse klassieker?", "category": "Eten", "answers": [{ "text": "Fish and chips" }] },
+        { "prompt": "Welk gebergte staat bekend als de ruggengraat van Engeland?", "category": "Geografie", "answers": [{ "text": "De Pennines", "aliases": ["Pennines"] }] },
+        { "prompt": "Welk bedrijf bezorgt de post in het Verenigd Koninkrijk?", "category": "Dagelijks leven", "answers": [{ "text": "Royal Mail" }] },
+        { "prompt": "In welke Engelse stad staat de oudste universiteit van de Engelstalige wereld?", "category": "Onderwijs", "answers": [{ "text": "Oxford", "aliases": ["Universiteit van Oxford"] }] },
+        { "prompt": "Hoe heet het grootste eiland van de Britse Eilanden?", "category": "Geografie", "answers": [{ "text": "Groot-Brittannie", "aliases": ["Brittannie"] }] },
+        { "prompt": "Welke Keltische taal wordt in Wales gesproken?", "category": "Taal", "answers": [{ "text": "Welsh", "aliases": ["Wels"] }] },
+        { "prompt": "Wie was tijdens het grootste deel van de Tweede Wereldoorlog de Britse premier?", "category": "Geschiedenis", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
+        { "prompt": "Welke Britse serie volgt een tijdreiziger die reist in een blauwe politietelefooncel?", "category": "Televisie", "answers": [{ "text": "Doctor Who" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Wat is de hoogste berg van het Verenigd Koninkrijk?", "options": [{ "text": "Ben Nevis", "correct": true }, { "text": "Snowdon" }, { "text": "Scafell Pike" }, { "text": "Slieve Donard" }] },
+        { "prompt": "In welk jaar werden Engeland en Schotland door de Act of Union een koninkrijk?", "options": [{ "text": "1603" }, { "text": "1707", "correct": true }, { "text": "1745" }, { "text": "1801" }] },
+        { "prompt": "Wat is de langste rivier van het Verenigd Koninkrijk?", "options": [{ "text": "De Severn", "correct": true }, { "text": "De Theems" }, { "text": "De Trent" }, { "text": "De Great Ouse" }] },
+        { "prompt": "Welk Engels graafschap staat bekend als de tuin van Engeland?", "options": [{ "text": "Kent", "correct": true }, { "text": "Surrey" }, { "text": "Sussex" }, { "text": "Devon" }] },
+        { "prompt": "Welke Schotse schrijver schreef Schateiland?", "options": [{ "text": "Robert Louis Stevenson", "correct": true }, { "text": "Walter Scott" }, { "text": "J M Barrie" }, { "text": "Robert Burns" }] },
+        { "prompt": "In welk jaar werd de National Health Service opgericht?", "options": [{ "text": "1918" }, { "text": "1939" }, { "text": "1948", "correct": true }, { "text": "1956" }] },
+        { "prompt": "Wat is het meest noordelijke punt van het Britse vasteland?", "options": [{ "text": "Dunnet Head", "correct": true }, { "text": "John o' Groats" }, { "text": "Cape Wrath" }, { "text": "Duncansby Head" }] },
+        { "prompt": "Welke Britse band bracht in 1997 het album OK Computer uit?", "options": [{ "text": "Radiohead", "correct": true }, { "text": "Blur" }, { "text": "Oasis" }, { "text": "Pulp" }] },
+        { "prompt": "Welke stad was in 2014 gastheer van de Gemenebestspelen?", "options": [{ "text": "Glasgow", "correct": true }, { "text": "Manchester" }, { "text": "Birmingham" }, { "text": "Cardiff" }] },
+        { "prompt": "Wat is qua oppervlakte het grootste meer van het Verenigd Koninkrijk?", "options": [{ "text": "Lough Neagh", "correct": true }, { "text": "Loch Lomond" }, { "text": "Loch Ness" }, { "text": "Windermere" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel toeschouwers kunnen er in Wembley Stadium?", "answer": 90000, "unit": "toeschouwers" },
+        { "prompt": "Hoeveel kilometer lang is de Kanaaltunnel?", "answer": 50, "unit": "kilometer", "explanation": "Ongeveer achtendertig van die kilometers liggen onder zee, het langste stuk onder water van welke tunnel ook ter wereld." },
+        { "prompt": "In welk jaar brak de Grote Brand van Londen uit?", "answer": 1666 },
+        { "prompt": "Hoeveel zetels telt het Lagerhuis?", "answer": 650, "unit": "zetels" },
+        { "prompt": "Hoeveel meter hoog is The Shard in Londen?", "answer": 310, "unit": "meter" },
+        { "prompt": "In welk jaar vertrok de Titanic uit Southampton voor haar eerste reis?", "answer": 1912 },
+        { "prompt": "In welk jaar organiseerde Londen voor het eerst de Olympische Spelen?", "answer": 1908 },
+        { "prompt": "Hoeveel kilometer lang is de Muur van Hadrianus?", "answer": 117, "unit": "kilometer", "explanation": "Hij liep dwars over het eiland, van de Solway Firth in het westen tot aan de Noordzeekust in het oosten." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Dubbeldekkerbus",
+        "Rode telefooncel",
+        "Zwarte taxi",
+        "Doedelzak",
+        "Kilt",
+        "Bolhoed",
+        "Paraplu",
+        "Theepot",
+        "Scone",
+        "Shortbread",
+        "Haggis",
+        "Engels ontbijt",
+        "Monster van Loch Ness",
+        "Beefeater",
+        "Tower Bridge",
+        "London Eye",
+        "Cricketbat",
+        "Dartbord",
+        "Pub",
+        "Pint bier",
+        "Rugbybal",
+        "Waterkoker",
+        "Regenlaarzen",
+        "Witte krijtrotsen van Dover",
+        "Schaap",
+        "Schotse ruit",
+        "Union Jack",
+        "Politiehelm",
+        "Marmelade",
+        "Crumpet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Noem de vier landen van het Verenigd Koninkrijk.", "answers": [{ "text": "Engeland" }, { "text": "Schotland" }, { "text": "Wales" }, { "text": "Noord-Ierland" }] },
+        { "prompt": "Noem de vier leden van The Beatles.", "answers": [{ "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "George Harrison", "aliases": ["Harrison"] }, { "text": "Ringo Starr", "aliases": ["Ringo"] }] },
+        { "prompt": "Noem de vier beschermheiligen van de landen van het Verenigd Koninkrijk.", "answers": [{ "text": "Sint-Joris", "aliases": ["Joris", "George"] }, { "text": "Sint-Andreas", "aliases": ["Andreas", "Andrew"] }, { "text": "Sint-David", "aliases": ["David"] }, { "text": "Sint-Patrick", "aliases": ["Patrick"] }] },
+        { "prompt": "Noem de vier wateren die het Verenigd Koninkrijk omringen.", "answers": [{ "text": "De Atlantische Oceaan", "aliases": ["Atlantische Oceaan"] }, { "text": "De Noordzee", "aliases": ["Noordzee"] }, { "text": "De Ierse Zee", "aliases": ["Ierse Zee"] }, { "text": "Het Kanaal", "aliases": ["Kanaal", "Het Nauw van Calais"] }] },
+        { "prompt": "Noem de vier leden van de band Queen.", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury"] }, { "text": "Brian May", "aliases": ["May"] }, { "text": "Roger Taylor", "aliases": ["Taylor"] }, { "text": "John Deacon", "aliases": ["Deacon"] }] },
+        { "prompt": "Noem de vier treinstations op het Britse Monopolybord.", "answers": [{ "text": "King's Cross", "aliases": ["Kings Cross"] }, { "text": "Marylebone" }, { "text": "Fenchurch Street", "aliases": ["Fenchurch"] }, { "text": "Liverpool Street" }] },
+        { "prompt": "Noem de vier planten die als nationaal symbool gelden van de landen van het Verenigd Koninkrijk.", "answers": [{ "text": "De roos", "aliases": ["Roos"] }, { "text": "De distel", "aliases": ["Distel"] }, { "text": "De narcis", "aliases": ["Narcis", "Prei"] }, { "text": "Het klaverblad", "aliases": ["Klaver", "Klaverblad", "Shamrock"] }] },
+        { "prompt": "Noem de vier Teletubbies.", "answers": [{ "text": "Tinky Winky" }, { "text": "Dipsy" }, { "text": "Laa-Laa" }, { "text": "Po" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van het Verenigd Koninkrijk?", "difficulty": "easy", "answers": [{ "text": "Londen" }] },
+        { "prompt": "Welke drie kleuren staan er op de Union Jack?", "difficulty": "easy", "answers": [{ "text": "Rood, wit en blauw", "aliases": ["Rood wit blauw"] }] },
+        { "prompt": "Aan welke kant van de weg rijden de Britten?", "difficulty": "easy", "answers": [{ "text": "Links", "aliases": ["De linkerkant", "Linkerkant"] }] },
+        { "prompt": "Welke sport wordt gespeeld op Lord's in Londen?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
+        { "prompt": "Welke beer uit Peru komt in Londen bij de familie Brown wonen?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Beertje Paddington"] }] },
+        { "prompt": "Wat is het grootste eiland van Schotland?", "difficulty": "hard", "answers": [{ "text": "Lewis and Harris", "aliases": ["Lewis", "Harris"] }] },
+        { "prompt": "Welke snelweg verbindt Londen met Leeds?", "difficulty": "hard", "answers": [{ "text": "De M1", "aliases": ["M1"] }] },
+        { "prompt": "Welke Schotse stad staat bekend als de granieten stad?", "difficulty": "hard", "answers": [{ "text": "Aberdeen" }] },
+        { "prompt": "Wat is de hoogste berg van Wales?", "difficulty": "hard", "answers": [{ "text": "Snowdon", "aliases": ["Yr Wyddfa"] }] },
+        { "prompt": "Wat is het kleinste historische graafschap van Engeland?", "difficulty": "hard", "answers": [{ "text": "Rutland" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke Engelse kathedraal heeft de hoogste torenspits van Groot-Brittannie?", "answers": [{ "text": "De kathedraal van Salisbury", "aliases": ["Salisbury"] }] },
+        { "prompt": "Wat is de officiele naam van de klokkentoren bij het parlementsgebouw in Londen, in 2012 gegeven?", "answers": [{ "text": "De Elizabeth Tower", "aliases": ["Elizabeth Tower"] }] },
+        { "prompt": "Welke veldslag uit 1746 was de laatste die op Britse bodem werd uitgevochten?", "answers": [{ "text": "De slag bij Culloden", "aliases": ["Culloden"] }] },
+        { "prompt": "Welke zeestraat scheidt het eiland Wight van het Engelse vasteland?", "answers": [{ "text": "The Solent", "aliases": ["Solent"] }] },
+        { "prompt": "Welke Engelse stad noemden de Romeinen Eboracum?", "answers": [{ "text": "York" }] },
+        { "prompt": "Wie wordt algemeen gezien als de eerste Britse premier?", "answers": [{ "text": "Robert Walpole", "aliases": ["Walpole"] }] },
+        { "prompt": "Welk nationaal park werd in 1951 als eerste van het Verenigd Koninkrijk aangewezen?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] }
+      ]
+    }
+  ]
+}

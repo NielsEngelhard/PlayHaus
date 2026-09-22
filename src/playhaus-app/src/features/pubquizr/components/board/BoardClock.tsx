@@ -1,13 +1,17 @@
 import AppText from "@/components/text/AppText";
+import { useNativeDriver } from "@/components/ui/usePressPop";
 import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { View } from "react-native";
+import { useEffect, useState } from "react";
+import { AccessibilityInfo, Animated, Easing, type LayoutChangeEvent, View } from "react-native";
 
 const DIGITS_SIZE = 44;
 const BAR_HEIGHT = 12;
 /** The last stretch, where the digits and the bar turn red. */
 const HURRY_SECONDS = 10;
+// The digits' hurry pulse, one way.
+const PULSE_MS = 500;
 
 interface Props {
     left: number
@@ -21,21 +25,90 @@ export default function BoardClock({ left, seconds, trailing }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
+    const [width, setWidth] = useState(0);
+    // 0 → 1 across the turn, driven by one smooth run rather than restarted every 250ms tick.
+    const [progress] = useState(() => new Animated.Value(seconds > 0 ? 1 - left / seconds : 0));
+    const [pulse] = useState(() => new Animated.Value(1));
+
     const hurry = left <= HURRY_SECONDS;
-    const fill = hurry ? theme.colors.destructive : Brand.lemon;
-    const share = seconds > 0 ? left / seconds : 0;
+    const barFill = hurry ? theme.colors.destructive : Brand.lemon;
+
+    useEffect(() => {
+        if (width <= 0 || seconds <= 0) return;
+
+        progress.setValue(1 - left / seconds);
+        const run = Animated.timing(progress, {
+            toValue: 1,
+            duration: left * 1000,
+            easing: Easing.linear,
+            useNativeDriver
+        });
+        run.start();
+
+        return () => run.stop();
+        // Restarted only when a new turn hands this a new `seconds`; per-tick `left` just keeps the digits honest.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [progress, seconds, width]);
+
+    useEffect(() => {
+        if (!hurry) {
+            pulse.setValue(1);
+            return;
+        }
+
+        let cancelled = false;
+        let loop: Animated.CompositeAnimation | undefined;
+
+        AccessibilityInfo.isReduceMotionEnabled().then(reduced => {
+            if (cancelled || reduced) return;
+
+            loop = Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulse, { toValue: 1.05, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver }),
+                    Animated.timing(pulse, { toValue: 1, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver })
+                ])
+            );
+            loop.start();
+        });
+
+        return () => {
+            cancelled = true;
+            loop?.stop();
+            pulse.setValue(1);
+        };
+    }, [hurry, pulse]);
 
     return (
         <View style={styles.clock}>
-            <AppText style={[styles.digits, hurry && { color: theme.colors.destructive }]}>{left}</AppText>
+            <Animated.View style={{ transform: [{ scale: pulse }] }}>
+                <AppText style={[styles.digits, hurry && { color: theme.colors.destructive }]}>{left}</AppText>
+            </Animated.View>
 
-            <View style={styles.bar}>
-                <View style={[styles.fill, { width: `${Math.round(share * 100)}%`, backgroundColor: fill }]} />
+            <View style={styles.bar} onLayout={measure}>
+                <Animated.View
+                    style={[
+                        styles.fill,
+                        { backgroundColor: barFill },
+                        {
+                            transform: [{
+                                translateX: progress.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [0, -width]
+                                })
+                            }]
+                        }
+                    ]}
+                />
             </View>
 
             {trailing !== undefined && <AppText style={styles.trailing}>{trailing}</AppText>}
         </View>
     )
+
+    function measure(event: LayoutChangeEvent) {
+        const next = event.nativeEvent.layout.width;
+        setWidth(current => (current === next ? current : next));
+    }
 }
 
 const useStyles = createThemedStyles(theme => ({
@@ -66,6 +139,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     fill: {
+        width: '100%',
         height: '100%'
     },
 

@@ -1,0 +1,136 @@
+{
+  "slug": "vampires",
+  "title": "Vampires",
+  "description": "A whole pub quiz about vampires: the folklore, the novels, the films and the television series.",
+  "publishedAt": "2026-09-08",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Who wrote the 1897 novel Dracula?", "category": "Literature", "answers": [{ "text": "Bram Stoker", "aliases": ["Stoker"] }] },
+        { "prompt": "In which region of Romania does Bram Stoker place the castle of Count Dracula?", "category": "Literature", "answers": [{ "text": "Transylvania" }] },
+        { "prompt": "What is the first name of Jonathan Harker's fiancee, later his wife, in Dracula?", "category": "Literature", "answers": [{ "text": "Mina", "aliases": ["Mina Murray", "Mina Harker"] }] },
+        { "prompt": "Which professor leads the hunt for Dracula in the novel?", "category": "Literature", "answers": [{ "text": "Van Helsing", "aliases": ["Abraham van Helsing", "Professor Van Helsing"] }] },
+        { "prompt": "Which strong-smelling bulb is the classic protection against vampires?", "category": "Folklore", "answers": [{ "text": "Garlic" }] },
+        { "prompt": "What is traditionally driven through a vampire's heart to destroy it?", "category": "Folklore", "answers": [{ "text": "A wooden stake", "aliases": ["Wooden stake", "A stake", "Stake"] }] },
+        { "prompt": "In which everyday object does a vampire cast no reflection?", "category": "Folklore", "answers": [{ "text": "A mirror", "aliases": ["Mirror", "The mirror"] }] },
+        { "prompt": "Into which flying animal is Dracula famously able to change?", "category": "Folklore", "answers": [{ "text": "A bat", "aliases": ["Bat", "The bat"] }] },
+        { "prompt": "Which fifteenth-century Romanian ruler, notorious for impaling his enemies, is said to have inspired the figure of Dracula?", "category": "History", "answers": [{ "text": "Vlad the Impaler", "aliases": ["Vlad Tepes", "Vlad III", "Vlad Dracula"] }] },
+        { "prompt": "Which 1922 German silent film was an unauthorised version of Dracula?", "category": "Film", "answers": [{ "text": "Nosferatu" }] },
+        { "prompt": "Which 1994 film stars Tom Cruise and Brad Pitt as vampires?", "category": "Film", "answers": [{ "text": "Interview with the Vampire" }] },
+        { "prompt": "Who wrote the novel Interview with the Vampire?", "category": "Literature", "answers": [{ "text": "Anne Rice", "aliases": ["Rice"] }] },
+        { "prompt": "Who wrote the Twilight books?", "category": "Literature", "answers": [{ "text": "Stephenie Meyer", "aliases": ["Meyer"] }] },
+        { "prompt": "Which vampire falls in love with Bella Swan in Twilight?", "category": "Twilight", "answers": [{ "text": "Edward Cullen", "aliases": ["Edward"] }] },
+        { "prompt": "Which television series starred Sarah Michelle Gellar as a vampire slayer?", "category": "Television", "answers": [{ "text": "Buffy the Vampire Slayer", "aliases": ["Buffy"] }] },
+        { "prompt": "Which television series follows the vampire brothers Stefan and Damon Salvatore?", "category": "Television", "answers": [{ "text": "The Vampire Diaries", "aliases": ["Vampire Diaries"] }] },
+        { "prompt": "Which Sesame Street character is a vampire obsessed with counting?", "category": "Television", "answers": [{ "text": "Count von Count", "aliases": ["The Count"] }] },
+        { "prompt": "Which half-human vampire hunter from the Marvel comics was played by Wesley Snipes?", "category": "Film", "answers": [{ "text": "Blade" }] },
+        { "prompt": "Which 1987 film follows a gang of teenage vampires in the seaside town of Santa Carla?", "category": "Film", "answers": [{ "text": "The Lost Boys", "aliases": ["Lost Boys"] }] },
+        { "prompt": "Which Swedish novel and film tells of a lonely boy who befriends the child vampire Eli?", "category": "Film", "answers": [{ "text": "Let the Right One In", "aliases": ["Lat den ratte komma in"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "What is the name of the ship that carries Dracula to England?", "options": [{ "text": "The Demeter", "correct": true }, { "text": "The Persephone" }, { "text": "The Hesperus" }, { "text": "The Medusa" }] },
+        { "prompt": "At which English harbour town does Dracula come ashore?", "options": [{ "text": "Whitby", "correct": true }, { "text": "Scarborough" }, { "text": "Bridlington" }, { "text": "Hartlepool" }] },
+        { "prompt": "In which country was Bram Stoker born?", "options": [{ "text": "Ireland", "correct": true }, { "text": "Scotland" }, { "text": "England" }, { "text": "Wales" }] },
+        { "prompt": "Who directed the 1992 film Bram Stoker's Dracula?", "options": [{ "text": "Francis Ford Coppola", "correct": true }, { "text": "Brian De Palma" }, { "text": "Ridley Scott" }, { "text": "John Carpenter" }] },
+        { "prompt": "Which principality did the historical Vlad III rule?", "options": [{ "text": "Wallachia", "correct": true }, { "text": "Moldavia" }, { "text": "Transylvania" }, { "text": "Bukovina" }] },
+        { "prompt": "What is the name of the insect-eating patient in Doctor Seward's asylum?", "options": [{ "text": "Renfield", "correct": true }, { "text": "Swales" }, { "text": "Hawkins" }, { "text": "Westenra" }] },
+        { "prompt": "Which vampire tells his life story to a reporter in Interview with the Vampire?", "options": [{ "text": "Louis", "correct": true }, { "text": "Lestat" }, { "text": "Armand" }, { "text": "Marius" }] },
+        { "prompt": "In the Twilight books, what is the ruling vampire coven in Italy called?", "options": [{ "text": "The Volturi", "correct": true }, { "text": "The Denali" }, { "text": "The Cullens" }, { "text": "The Quileute" }] },
+        { "prompt": "In which city do the vampire flatmates of the 2014 film What We Do in the Shadows live?", "options": [{ "text": "Wellington", "correct": true }, { "text": "Auckland" }, { "text": "Sydney" }, { "text": "Melbourne" }] },
+        { "prompt": "Which vampire novella by Sheridan Le Fanu appeared a quarter of a century before Dracula?", "options": [{ "text": "Carmilla", "correct": true }, { "text": "The Vampyre" }, { "text": "Varney the Vampire" }, { "text": "The Bride of Corinth" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In what year was Bram Stoker's Dracula first published?", "answer": 1897 },
+        { "prompt": "In what year was the silent film Nosferatu released?", "answer": 1922 },
+        { "prompt": "How many chapters does Bram Stoker's Dracula have?", "answer": 27, "unit": "chapters", "explanation": "The whole story is told through diaries, letters, telegrams and newspaper cuttings." },
+        { "prompt": "How many seasons of Buffy the Vampire Slayer were made?", "answer": 7, "unit": "seasons" },
+        { "prompt": "How many seasons of The Vampire Diaries were made?", "answer": 8, "unit": "seasons" },
+        { "prompt": "How many novels are there in Stephenie Meyer's original Twilight series?", "answer": 4, "unit": "books" },
+        { "prompt": "In what year was the first Twilight film released?", "answer": 2008 },
+        { "prompt": "How many species of bat feed on blood?", "answer": 3, "unit": "species", "explanation": "Of the more than fourteen hundred species of bat only three drink blood, and all three live in the Americas." }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Coffin",
+        "Fangs",
+        "Crucifix",
+        "Black cape",
+        "Fake blood",
+        "Trapdoor",
+        "Holy water",
+        "Graveyard",
+        "Sunrise",
+        "Candlestick",
+        "Bite mark",
+        "Blood bag",
+        "Hearse",
+        "Black cat",
+        "Pitchfork",
+        "Cellar",
+        "Oil lamp",
+        "Iron gate",
+        "Full moon",
+        "Mausoleum",
+        "Bat wings",
+        "Wolfsbane",
+        "Curtains",
+        "Pale skin",
+        "Raven",
+        "Dungeon",
+        "Moat",
+        "Rat",
+        "Nightgown",
+        "Blood transfusion"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four men who join Van Helsing in hunting Dracula in the novel.", "answers": [{ "text": "Jonathan Harker", "aliases": ["Harker"] }, { "text": "John Seward", "aliases": ["Doctor Seward", "Seward"] }, { "text": "Arthur Holmwood", "aliases": ["Holmwood", "Lord Godalming"] }, { "text": "Quincey Morris", "aliases": ["Morris"] }] },
+        { "prompt": "Name the four novels of Stephenie Meyer's Twilight series.", "answers": [{ "text": "Twilight" }, { "text": "New Moon" }, { "text": "Eclipse" }, { "text": "Breaking Dawn" }] },
+        { "prompt": "Name the four vampires who share a house in the 2014 film What We Do in the Shadows.", "answers": [{ "text": "Viago" }, { "text": "Vladislav" }, { "text": "Deacon" }, { "text": "Petyr" }] },
+        { "prompt": "Name the four core members of the Scooby Gang in the first seasons of Buffy the Vampire Slayer.", "answers": [{ "text": "Buffy Summers", "aliases": ["Buffy"] }, { "text": "Willow Rosenberg", "aliases": ["Willow"] }, { "text": "Xander Harris", "aliases": ["Xander"] }, { "text": "Rupert Giles", "aliases": ["Giles"] }] },
+        { "prompt": "Name the four countries in which these vampire films are set: The Lost Boys, What We Do in the Shadows, Let the Right One In and the 1922 Nosferatu.", "answers": [{ "text": "The United States", "aliases": ["United States", "America", "USA"] }, { "text": "New Zealand" }, { "text": "Sweden" }, { "text": "Germany" }] },
+        { "prompt": "Name the four actors who played the vampire in Nosferatu of 1922, Dracula of 1931, Horror of Dracula of 1958 and Bram Stoker's Dracula of 1992.", "answers": [{ "text": "Max Schreck", "aliases": ["Schreck"] }, { "text": "Bela Lugosi", "aliases": ["Lugosi"] }, { "text": "Christopher Lee", "aliases": ["Lee"] }, { "text": "Gary Oldman", "aliases": ["Oldman"] }] },
+        { "prompt": "Name the four adopted Cullen children besides Edward in Twilight.", "answers": [{ "text": "Alice" }, { "text": "Emmett" }, { "text": "Jasper" }, { "text": "Rosalie" }] },
+        { "prompt": "Name the four other classic Universal film monsters that stood beside Dracula in the nineteen thirties and forties.", "answers": [{ "text": "Frankenstein's monster", "aliases": ["Frankenstein"] }, { "text": "The Wolf Man", "aliases": ["Wolf Man", "The werewolf"] }, { "text": "The Mummy", "aliases": ["Mummy"] }, { "text": "The Invisible Man", "aliases": ["Invisible Man"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What does a vampire drink?", "difficulty": "easy", "answers": [{ "text": "Blood" }] },
+        { "prompt": "In what kind of box does a vampire traditionally sleep?", "difficulty": "easy", "answers": [{ "text": "A coffin", "aliases": ["Coffin"] }] },
+        { "prompt": "What destroys a vampire when it comes up over the horizon in the morning?", "difficulty": "easy", "answers": [{ "text": "Sunlight", "aliases": ["The sun", "Daylight"] }] },
+        { "prompt": "In which country does the region of Transylvania lie?", "difficulty": "easy", "answers": [{ "text": "Romania" }] },
+        { "prompt": "Which religious symbol is held up to drive a vampire back?", "difficulty": "easy", "answers": [{ "text": "A cross", "aliases": ["Cross", "A crucifix", "Crucifix"] }] },
+        { "prompt": "Through which pass in the Carpathians does Jonathan Harker travel to reach Dracula's castle?", "difficulty": "hard", "answers": [{ "text": "The Borgo Pass", "aliases": ["Borgo Pass", "Borgo"] }] },
+        { "prompt": "What is the surname of Lucy, Dracula's first English victim?", "difficulty": "hard", "answers": [{ "text": "Westenra" }] },
+        { "prompt": "In Buffy the Vampire Slayer, what is the name of the vampire with a soul played by David Boreanaz?", "difficulty": "hard", "answers": [{ "text": "Angel" }] },
+        { "prompt": "What is the name of the child vampire played by Kirsten Dunst in Interview with the Vampire?", "difficulty": "hard", "answers": [{ "text": "Claudia" }] },
+        { "prompt": "What is the name of the energy vampire in the television series What We Do in the Shadows?", "difficulty": "hard", "answers": [{ "text": "Colin Robinson", "aliases": ["Colin"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the London estate that Dracula buys next to Doctor Seward's asylum?", "answers": [{ "text": "Carfax", "aliases": ["Carfax Abbey"] }] },
+        { "prompt": "Who wrote The Vampyre of 1819, the first vampire story in English prose?", "answers": [{ "text": "John Polidori", "aliases": ["Polidori"] }] },
+        { "prompt": "What is the full name of Anne Rice's vampire Lestat?", "answers": [{ "text": "Lestat de Lioncourt", "aliases": ["De Lioncourt"] }] },
+        { "prompt": "What is the name of the vampire count in the 1922 film Nosferatu?", "answers": [{ "text": "Count Orlok", "aliases": ["Orlok"] }] },
+        { "prompt": "In Slavic folklore, scattering which small things on the ground delays a vampire, because it has to stop and count them?", "answers": [{ "text": "Seeds", "aliases": ["Poppy seeds", "Grains", "Millet"] }] },
+        { "prompt": "What is the family name of the Original vampires in The Vampire Diaries and its spin-off The Originals?", "answers": [{ "text": "Mikaelson" }] },
+        { "prompt": "Which German director made Nosferatu the Vampyre of 1979 with Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] }
+      ]
+    }
+  ]
+}

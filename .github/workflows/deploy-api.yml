@@ -55,6 +55,7 @@ jobs:
                   DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
                   DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+                  STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
               run: |
                   set -euo pipefail
 
@@ -87,6 +88,16 @@ jobs:
                       exit 1
                   fi
                   printf '%s' "$DATABASE_URL" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh DATABASE_URL"
+
+                  # Same stdin rule, but optional rather than required: with no STATS_TOKEN
+                  # secret the API simply never registers GET /api/v1/admin/stats. Guarded
+                  # because set-env.sh refuses an empty value by design, and an unset
+                  # optional secret must not fail the deploy. Unsetting it again means
+                  # deleting the secret *and* the line in /opt/playhaus/.env -- nothing here
+                  # removes a key it did not write.
+                  if [ -n "$STATS_TOKEN" ]; then
+                      printf '%s' "$STATS_TOKEN" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh STATS_TOKEN"
+                  fi
 
                   # Migrates and seeds before replacing the container; see deploy.sh.
                   ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/deploy.sh API_IMAGE '$IMAGE:$TAG' api"

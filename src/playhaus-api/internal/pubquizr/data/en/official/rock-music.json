@@ -1,0 +1,136 @@
+{
+  "slug": "rock-music",
+  "title": "Rock Music",
+  "description": "A whole pub quiz about rock music: bands, albums, guitarists and festivals.",
+  "publishedAt": "2026-09-14",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which British band released the album The Wall in 1979?", "category": "Albums", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Who was the lead singer of Queen?", "category": "Singers", "answers": [{ "text": "Freddie Mercury", "aliases": ["Mercury"] }] },
+        { "prompt": "Which band recorded Whole Lotta Love?", "category": "Songs", "answers": [{ "text": "Led Zeppelin", "aliases": ["Zeppelin"] }] },
+        { "prompt": "Which guitarist recorded Purple Haze?", "category": "Guitarists", "answers": [{ "text": "Jimi Hendrix", "aliases": ["Hendrix"] }] },
+        { "prompt": "Which Irish band has Bono as its singer?", "category": "Bands", "answers": [{ "text": "U2" }] },
+        { "prompt": "Which band released the album Revolver in 1966?", "category": "Albums", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
+        { "prompt": "Which Australian band recorded Back in Black?", "category": "Bands", "answers": [{ "text": "AC/DC", "aliases": ["ACDC", "AC DC"] }] },
+        { "prompt": "Which American band was led by Kurt Cobain?", "category": "Bands", "answers": [{ "text": "Nirvana" }] },
+        { "prompt": "Which festival was held on a farm in New York State in August 1969?", "category": "Festivals", "answers": [{ "text": "Woodstock" }] },
+        { "prompt": "Which Dutch band had a hit with Twilight Zone?", "category": "Dutch rock", "answers": [{ "text": "Golden Earring" }] },
+        { "prompt": "In which band does Lars Ulrich play the drums?", "category": "Bands", "answers": [{ "text": "Metallica" }] },
+        { "prompt": "Who is the lead singer of The Rolling Stones?", "category": "Singers", "answers": [{ "text": "Mick Jagger", "aliases": ["Jagger"] }] },
+        { "prompt": "Which band released the album A Night at the Opera in 1975?", "category": "Songs", "answers": [{ "text": "Queen" }] },
+        { "prompt": "Which American singer is known as The Boss?", "category": "Singers", "answers": [{ "text": "Bruce Springsteen", "aliases": ["Springsteen"] }] },
+        { "prompt": "Which band recorded Hotel California?", "category": "Songs", "answers": [{ "text": "The Eagles", "aliases": ["Eagles"] }] },
+        { "prompt": "Which British guitarist was nicknamed Slowhand?", "category": "Guitarists", "answers": [{ "text": "Eric Clapton", "aliases": ["Clapton"] }] },
+        { "prompt": "In which band does the guitarist Slash play?", "category": "Bands", "answers": [{ "text": "Guns N' Roses", "aliases": ["Guns and Roses", "Guns N Roses"] }] },
+        { "prompt": "Which Dutch rock festival takes place around Whitsun in Landgraaf?", "category": "Festivals", "answers": [{ "text": "Pinkpop" }] },
+        { "prompt": "Which band released the album OK Computer in 1997?", "category": "Albums", "answers": [{ "text": "Radiohead" }] },
+        { "prompt": "Who was the lead singer of The Doors?", "category": "Singers", "answers": [{ "text": "Jim Morrison", "aliases": ["Morrison"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which band released the album Paranoid in 1970?", "options": [{ "text": "Black Sabbath", "correct": true }, { "text": "Uriah Heep" }, { "text": "Free" }, { "text": "Ten Years After" }] },
+        { "prompt": "In which year did The Beatles release Sgt. Pepper's Lonely Hearts Club Band?", "options": [{ "text": "1965" }, { "text": "1966" }, { "text": "1967", "correct": true }, { "text": "1969" }] },
+        { "prompt": "Which band recorded the rock opera Tommy?", "options": [{ "text": "The Who", "correct": true }, { "text": "The Kinks" }, { "text": "Small Faces" }, { "text": "The Yardbirds" }] },
+        { "prompt": "Which band's debut album was Ten, released in 1991?", "options": [{ "text": "Pearl Jam", "correct": true }, { "text": "Alice in Chains" }, { "text": "Stone Temple Pilots" }, { "text": "Mother Love Bone" }] },
+        { "prompt": "In which English city was the band Oasis formed?", "options": [{ "text": "Manchester", "correct": true }, { "text": "Birmingham" }, { "text": "Leeds" }, { "text": "Sheffield" }] },
+        { "prompt": "Which band is fronted by Dave Grohl?", "options": [{ "text": "Foo Fighters", "correct": true }, { "text": "Queens of the Stone Age" }, { "text": "Weezer" }, { "text": "Green Day" }] },
+        { "prompt": "Which band released the album Rumours in 1977?", "options": [{ "text": "Fleetwood Mac", "correct": true }, { "text": "Steely Dan" }, { "text": "The Doobie Brothers" }, { "text": "Crosby, Stills and Nash" }] },
+        { "prompt": "Who was the singer of Joy Division?", "options": [{ "text": "Ian Curtis", "correct": true }, { "text": "Mark E. Smith" }, { "text": "Robert Smith" }, { "text": "Morrissey" }] },
+        { "prompt": "Which band from Seattle was fronted by Chris Cornell?", "options": [{ "text": "Soundgarden", "correct": true }, { "text": "Mudhoney" }, { "text": "Screaming Trees" }, { "text": "Temple of the Dog" }] },
+        { "prompt": "Which festival is held at Worthy Farm in Somerset?", "options": [{ "text": "Glastonbury", "correct": true }, { "text": "Reading" }, { "text": "Isle of Wight" }, { "text": "Download" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "In which year were The Rolling Stones formed?", "answer": 1962 },
+        { "prompt": "How many studio albums did The Beatles release in the United Kingdom?", "answer": 12, "unit": "albums" },
+        { "prompt": "How many strings does a standard bass guitar have?", "answer": 4, "unit": "strings" },
+        { "prompt": "In which year did The Beatles give their last public performance, on a rooftop in London?", "answer": 1969 },
+        { "prompt": "Roughly how many people came to Woodstock in 1969?", "answer": 400000, "unit": "people", "explanation": "The farm was set up for a fraction of that, which is why the fences came down and it became a free festival." },
+        { "prompt": "In which year did the Live Aid concerts take place?", "answer": 1985 },
+        { "prompt": "How old was Jimi Hendrix when he died?", "answer": 27, "unit": "years", "explanation": "Janis Joplin, Jim Morrison and Kurt Cobain all died at the same age, which is where the idea of the 27 Club comes from." },
+        { "prompt": "In which year was the first Pinkpop festival held?", "answer": 1970 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Electric guitar",
+        "Cymbal",
+        "Microphone stand",
+        "Amplifier",
+        "Stage dive",
+        "Guitar solo",
+        "Band T-shirt",
+        "Festival wristband",
+        "Mosh pit",
+        "Tambourine",
+        "Bass guitar",
+        "Drumsticks",
+        "Crowd surfing",
+        "Guitar case",
+        "Encore",
+        "Backstage pass",
+        "Air guitar",
+        "Headbanging",
+        "Long hair",
+        "Guitar strap",
+        "Setlist",
+        "Concert poster",
+        "Groupie",
+        "Lighter in the air",
+        "Guitar pick",
+        "Cassette tape",
+        "Record sleeve",
+        "Drum solo",
+        "Smoke machine",
+        "Earplugs"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Name the four members of The Beatles.", "answers": [{ "text": "John Lennon", "aliases": ["Lennon"] }, { "text": "Paul McCartney", "aliases": ["McCartney"] }, { "text": "George Harrison", "aliases": ["Harrison"] }, { "text": "Ringo Starr", "aliases": ["Ringo"] }] },
+        { "prompt": "Name the four members of Led Zeppelin.", "answers": [{ "text": "Robert Plant", "aliases": ["Plant"] }, { "text": "Jimmy Page", "aliases": ["Page"] }, { "text": "John Paul Jones" }, { "text": "John Bonham", "aliases": ["Bonham", "Bonzo"] }] },
+        { "prompt": "Name the four members of Pink Floyd who made The Dark Side of the Moon.", "answers": [{ "text": "Roger Waters", "aliases": ["Waters"] }, { "text": "David Gilmour", "aliases": ["Gilmour"] }, { "text": "Nick Mason", "aliases": ["Mason"] }, { "text": "Richard Wright", "aliases": ["Rick Wright", "Wright"] }] },
+        { "prompt": "Name the four members of U2.", "answers": [{ "text": "Bono" }, { "text": "The Edge", "aliases": ["Edge"] }, { "text": "Adam Clayton", "aliases": ["Clayton"] }, { "text": "Larry Mullen Jr.", "aliases": ["Larry Mullen", "Mullen"] }] },
+        { "prompt": "Name the four members of The Who.", "answers": [{ "text": "Roger Daltrey", "aliases": ["Daltrey"] }, { "text": "Pete Townshend", "aliases": ["Townshend"] }, { "text": "John Entwistle", "aliases": ["Entwistle"] }, { "text": "Keith Moon", "aliases": ["Moon"] }] },
+        { "prompt": "Name the four members of Coldplay.", "answers": [{ "text": "Chris Martin" }, { "text": "Jonny Buckland", "aliases": ["Buckland"] }, { "text": "Guy Berryman", "aliases": ["Berryman"] }, { "text": "Will Champion", "aliases": ["Champion"] }] },
+        { "prompt": "Name the four members of Metallica who made the Black Album.", "answers": [{ "text": "James Hetfield", "aliases": ["Hetfield"] }, { "text": "Lars Ulrich", "aliases": ["Ulrich"] }, { "text": "Kirk Hammett", "aliases": ["Hammett"] }, { "text": "Jason Newsted", "aliases": ["Newsted"] }] },
+        { "prompt": "Name the four members of the original line-up of Kiss.", "answers": [{ "text": "Gene Simmons", "aliases": ["Simmons"] }, { "text": "Paul Stanley", "aliases": ["Stanley"] }, { "text": "Ace Frehley", "aliases": ["Frehley"] }, { "text": "Peter Criss", "aliases": ["Criss"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which British band released Wonderwall in 1995?", "difficulty": "easy", "answers": [{ "text": "Oasis" }] },
+        { "prompt": "Which band recorded Smoke on the Water?", "difficulty": "easy", "answers": [{ "text": "Deep Purple" }] },
+        { "prompt": "Which American singer recorded Jailhouse Rock and Hound Dog?", "difficulty": "easy", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
+        { "prompt": "Which band uses a red tongue and lips as its logo?", "difficulty": "easy", "answers": [{ "text": "The Rolling Stones", "aliases": ["Rolling Stones", "The Stones"] }] },
+        { "prompt": "Which British band recorded the song Yellow?", "difficulty": "easy", "answers": [{ "text": "Coldplay" }] },
+        { "prompt": "Which band released the album London Calling in 1979?", "difficulty": "hard", "answers": [{ "text": "The Clash", "aliases": ["Clash"] }] },
+        { "prompt": "Which guitarist played the solo on Michael Jackson's Beat It?", "difficulty": "hard", "answers": [{ "text": "Eddie Van Halen", "aliases": ["Van Halen"] }] },
+        { "prompt": "Who was the drummer of The Beatles before Ringo Starr joined in 1962?", "difficulty": "hard", "answers": [{ "text": "Pete Best", "aliases": ["Best"] }] },
+        { "prompt": "Which record label released the records of The Beatles in the United Kingdom?", "difficulty": "hard", "answers": [{ "text": "Parlophone" }] },
+        { "prompt": "Which Dutch band had Mariska Veres as its singer?", "difficulty": "hard", "answers": [{ "text": "Shocking Blue" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which German band released the album Autobahn in 1974?", "answers": [{ "text": "Kraftwerk" }] },
+        { "prompt": "Which musician recorded the 1973 album Tubular Bells almost entirely on his own?", "answers": [{ "text": "Mike Oldfield", "aliases": ["Oldfield"] }] },
+        { "prompt": "Which American guitarist wrote and recorded Johnny B. Goode?", "answers": [{ "text": "Chuck Berry", "aliases": ["Berry"] }] },
+        { "prompt": "Which Canadian trio released the album 2112 in 1976?", "answers": [{ "text": "Rush" }] },
+        { "prompt": "Which singer of AC/DC died in 1980 and was replaced by Brian Johnson?", "answers": [{ "text": "Bon Scott", "aliases": ["Scott"] }] },
+        { "prompt": "Which Dutch band fronted by Sharon den Adel released the album Mother Earth in 2000?", "answers": [{ "text": "Within Temptation" }] },
+        { "prompt": "What is the real first and last name of the singer Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] }
+      ]
+    }
+  ]
+}
