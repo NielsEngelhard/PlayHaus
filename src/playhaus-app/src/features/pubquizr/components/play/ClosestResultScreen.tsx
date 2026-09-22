@@ -2,13 +2,17 @@ import AppText from "@/components/text/AppText";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { offBy, type ClosestResult } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { ScrollView, View } from "react-native";
+import { Animated, Easing, ScrollView, View } from "react-native";
+
+const ROW_STAGGER_MS = 45;
 
 interface Props {
     result: ClosestResult
@@ -93,51 +97,8 @@ export default function ClosestResultScreen({ result, onContinue, waitingNote }:
 
             {/* The one scroller on the screen. */}
             <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
-                {rows.map(row => (
-                    <View
-                        key={row.seat.seat}
-                        style={[styles.row, row.won && styles.won]}
-                        accessibilityRole="text"
-                    >
-                        <View style={[styles.avatar, { backgroundColor: row.seat.swatch.color }]}>
-                            <AppText style={[styles.initials, { color: row.seat.swatch.foreground }]}>
-                                {row.seat.initials}
-                            </AppText>
-                        </View>
-
-                        <View style={styles.who}>
-                            <AppText
-                                style={[styles.name, row.won && styles.onMint]}
-                                numberOfLines={1}
-                            >
-                                {row.seat.name}
-                            </AppText>
-
-                            {row.value !== null && (
-                                <View style={styles.gap}>
-                                    {row.won && (
-                                        <Feather name="award" size={11} color={Brand.ink} />
-                                    )}
-
-                                    <AppText style={[styles.gapText, row.won && styles.onMint]}>
-                                        {row.won
-                                            ? t('pubquizr.play.closest.nearestOff', {
-                                                off: offBy(row.value, result.answer)
-                                            })
-                                            : t('pubquizr.play.closest.off', {
-                                                off: offBy(row.value, result.answer)
-                                            })}
-                                    </AppText>
-                                </View>
-                            )}
-                        </View>
-
-                        {row.value !== null && (
-                            <AppText style={[styles.value, row.won && styles.onMint]}>
-                                {row.value}
-                            </AppText>
-                        )}
-                    </View>
+                {rows.map((row, index) => (
+                    <ResultRow key={row.seat.seat} answer={result.answer} index={index} row={row} />
                 ))}
             </ScrollView>
 
@@ -154,6 +115,76 @@ export default function ClosestResultScreen({ result, onContinue, waitingNote }:
                 )}
             </View>
         </View>
+    )
+}
+
+interface ResultRowProps {
+    answer: number
+    index: number
+    row: Row
+}
+
+// One guess, staggered in behind the ones above it, with the winning row given a small settle-in pop.
+function ResultRow({ answer, index, row }: ResultRowProps) {
+    const t = useT();
+    const styles = useStyles();
+
+    const highlight = useEntrance({
+        delayMs: index * ROW_STAGGER_MS + 180,
+        durationMs: 260,
+        easing: Easing.out(Easing.back(1.8))
+    });
+
+    return (
+        <SlideFadeIn offsetY={10} durationMs={220} delayMs={index * ROW_STAGGER_MS}>
+            <Animated.View
+                style={[
+                    styles.row,
+                    row.won && styles.won,
+                    row.won && { transform: [{ scale: highlight.interpolate({ inputRange: [0, 1], outputRange: [1.04, 1] }) }] }
+                ]}
+                accessibilityRole="text"
+            >
+                <View style={[styles.avatar, { backgroundColor: row.seat.swatch.color }]}>
+                    <AppText style={[styles.initials, { color: row.seat.swatch.foreground }]}>
+                        {row.seat.initials}
+                    </AppText>
+                </View>
+
+                <View style={styles.who}>
+                    <AppText
+                        style={[styles.name, row.won && styles.onMint]}
+                        numberOfLines={1}
+                    >
+                        {row.seat.name}
+                    </AppText>
+
+                    {row.value !== null && (
+                        <View style={styles.gap}>
+                            {row.won && (
+                                <Feather name="award" size={11} color={Brand.ink} />
+                            )}
+
+                            <AppText style={[styles.gapText, row.won && styles.onMint]}>
+                                {row.won
+                                    ? t('pubquizr.play.closest.nearestOff', {
+                                        off: offBy(row.value, answer)
+                                    })
+                                    : t('pubquizr.play.closest.off', {
+                                        off: offBy(row.value, answer)
+                                    })}
+                            </AppText>
+                        </View>
+                    )}
+                </View>
+
+                {row.value !== null && (
+                    <AppText style={[styles.value, row.won && styles.onMint]}>
+                        {row.value}
+                    </AppText>
+                )}
+            </Animated.View>
+        </SlideFadeIn>
     )
 }
 

@@ -1,14 +1,19 @@
 import { usePageTone } from "@/components/layout/PageToneContext";
 import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { roundIntroToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { Animated, Easing, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+// The two finalist portraits land this far apart, and the "vs" pops in once both have.
+const FINALIST_STAGGER_MS = 140;
+const FINALIST_ENTER_MS = 320;
 
 interface Props {
     round: number
@@ -39,6 +44,19 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
     // The window's colour, not just this page's — the same reason the hand-off asks for it.
     usePageTone(tone.fill);
 
+    // Called unconditionally even on rounds with no finalists — harmless, and keeps the hook order fixed.
+    const firstEntrance = useEntrance({ durationMs: FINALIST_ENTER_MS, easing: Easing.out(Easing.back(1.6)) });
+    const secondEntrance = useEntrance({
+        delayMs: FINALIST_STAGGER_MS,
+        durationMs: FINALIST_ENTER_MS,
+        easing: Easing.out(Easing.back(1.6))
+    });
+    const versusEntrance = useEntrance({
+        delayMs: FINALIST_STAGGER_MS + FINALIST_ENTER_MS,
+        durationMs: 240,
+        easing: Easing.out(Easing.back(2.2))
+    });
+
     return (
         <View style={[styles.screen, { backgroundColor: tone.fill, paddingTop: insets.top }]}>
             <View style={styles.header} />
@@ -62,7 +80,15 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                 {/* The finale only. */}
                 {finalists !== null && finalists !== undefined && (
                     <View style={styles.finalists}>
-                        <View style={styles.finalist}>
+                        <Animated.View
+                            style={[
+                                styles.finalist,
+                                {
+                                    opacity: firstEntrance,
+                                    transform: [{ scale: firstEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }]
+                                }
+                            ]}
+                        >
                             <View style={[styles.portrait, { backgroundColor: finalists[0].swatch.color }]}>
                                 <AppText style={[styles.portraitText, { color: finalists[0].swatch.foreground }]}>
                                     {finalists[0].initials}
@@ -72,13 +98,28 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                             <AppText style={[styles.finalistName, { color: tone.ink }]} numberOfLines={1}>
                                 {finalists[0].name}
                             </AppText>
-                        </View>
+                        </Animated.View>
 
-                        <AppText style={[styles.versus, { color: tone.muted }]}>
-                            {t('pubquizr.play.intro.versus')}
-                        </AppText>
+                        <Animated.View
+                            style={{
+                                opacity: versusEntrance,
+                                transform: [{ scale: versusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }) }]
+                            }}
+                        >
+                            <AppText style={[styles.versus, { color: tone.muted }]}>
+                                {t('pubquizr.play.intro.versus')}
+                            </AppText>
+                        </Animated.View>
 
-                        <View style={styles.finalist}>
+                        <Animated.View
+                            style={[
+                                styles.finalist,
+                                {
+                                    opacity: secondEntrance,
+                                    transform: [{ scale: secondEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }]
+                                }
+                            ]}
+                        >
                             <View style={[styles.portrait, { backgroundColor: finalists[1].swatch.color }]}>
                                 <AppText style={[styles.portraitText, { color: finalists[1].swatch.foreground }]}>
                                     {finalists[1].initials}
@@ -88,7 +129,7 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                             <AppText style={[styles.finalistName, { color: tone.ink }]} numberOfLines={1}>
                                 {finalists[1].name}
                             </AppText>
-                        </View>
+                        </Animated.View>
                     </View>
                 )}
 

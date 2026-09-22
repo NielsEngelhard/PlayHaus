@@ -1,15 +1,34 @@
 import AppText from "@/components/text/AppText";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { ChoiceOption } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { View } from "react-native";
+import { Animated, Easing, View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
+
+const STAMP_MS = 220;
 
 interface Props {
     options: ChoiceOption[]
     /** Whether the quizmaster has uncovered the answer yet. */
     revealed: boolean
+}
+
+// Mounts fresh the instant the right option is revealed, so it always stamps in rather than just appearing.
+function CorrectCheck() {
+    const entrance = useEntrance({ durationMs: STAMP_MS, easing: Easing.out(Easing.back(2)) });
+
+    return (
+        <Animated.View
+            style={{
+                opacity: entrance,
+                transform: [{ scale: entrance.interpolate({ inputRange: [0, 1], outputRange: [1.3, 1] }) }]
+            }}
+        >
+            <Feather name="check" size={18} color={Brand.ink} />
+        </Animated.View>
+    )
 }
 
 // Round 2's four options, set as four options to read out.
@@ -54,9 +73,7 @@ export default function ChoiceCard({ options, revealed }: Props) {
                         </AppText>
 
                         {/* Only ever on the right one, so the row does not reserve space for a tick that is never coming. */}
-                        {right && (
-                            <Feather name="check" size={18} color={Brand.ink} />
-                        )}
+                        {right && <CorrectCheck />}
                     </View>
                 )
             })}

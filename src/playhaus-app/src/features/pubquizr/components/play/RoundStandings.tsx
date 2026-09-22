@@ -1,12 +1,16 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
-import { View } from "react-native";
+import { Animated, Easing, View } from "react-native";
+
+const ROW_STAGGER_MS = 45;
 
 interface Props {
     /** Best first. Ties keep their seating order. */
@@ -31,34 +35,14 @@ export default function RoundStandings({ standings, round, onNext, onLeave }: Pr
     return (
         <View style={styles.screen}>
             <View style={styles.list}>
-                {standings.map((seat, index) => {
-                    const leading = index === 0 && outright;
-
-                    return (
-                        <View key={seat.seat} style={[styles.row, leading && styles.leader]}>
-                            <AppText style={[styles.place, leading && styles.onLemonMuted]}>
-                                {index + 1}
-                            </AppText>
-
-                            <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
-                                <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
-                                    {seat.initials}
-                                </AppText>
-                            </View>
-
-                            <AppText
-                                style={[styles.name, leading && styles.onLemon]}
-                                numberOfLines={1}
-                            >
-                                {seat.name}
-                            </AppText>
-
-                            <AppText style={[styles.score, leading && styles.onLemon]}>
-                                {seat.score}
-                            </AppText>
-                        </View>
-                    )
-                })}
+                {standings.map((seat, index) => (
+                    <StandingsRow
+                        key={seat.seat}
+                        index={index}
+                        leading={index === 0 && outright}
+                        seat={seat}
+                    />
+                ))}
             </View>
 
             <View style={styles.footer}>
@@ -87,6 +71,56 @@ export default function RoundStandings({ standings, round, onNext, onLeave }: Pr
                 )}
             </View>
         </View>
+    )
+}
+
+interface StandingsRowProps {
+    index: number
+    leading: boolean
+    seat: Seat
+}
+
+// One row of the list, staggered in behind the ones above it, with the leader given a small settle-in pop.
+function StandingsRow({ index, leading, seat }: StandingsRowProps) {
+    const styles = useStyles();
+
+    const highlight = useEntrance({
+        delayMs: index * ROW_STAGGER_MS + 180,
+        durationMs: 260,
+        easing: Easing.out(Easing.back(1.8))
+    });
+
+    return (
+        <SlideFadeIn offsetY={10} durationMs={220} delayMs={index * ROW_STAGGER_MS}>
+            <Animated.View
+                style={[
+                    styles.row,
+                    leading && styles.leader,
+                    leading && { transform: [{ scale: highlight.interpolate({ inputRange: [0, 1], outputRange: [1.04, 1] }) }] }
+                ]}
+            >
+                <AppText style={[styles.place, leading && styles.onLemonMuted]}>
+                    {index + 1}
+                </AppText>
+
+                <View style={[styles.avatar, { backgroundColor: seat.swatch.color }]}>
+                    <AppText style={[styles.initials, { color: seat.swatch.foreground }]}>
+                        {seat.initials}
+                    </AppText>
+                </View>
+
+                <AppText
+                    style={[styles.name, leading && styles.onLemon]}
+                    numberOfLines={1}
+                >
+                    {seat.name}
+                </AppText>
+
+                <AppText style={[styles.score, leading && styles.onLemon]}>
+                    {seat.score}
+                </AppText>
+            </Animated.View>
+        </SlideFadeIn>
     )
 }
 

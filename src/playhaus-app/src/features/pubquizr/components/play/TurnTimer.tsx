@@ -3,7 +3,10 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { haptic } from "@/utils/haptics";
 import { useEffect, useRef, useState } from "react";
-import { Animated, Easing, LayoutChangeEvent, Platform, View } from "react-native";
+import { AccessibilityInfo, Animated, Easing, LayoutChangeEvent, Platform, View } from "react-native";
+
+// The digits' hurry pulse, one way.
+const PULSE_MS = 500;
 
 interface Props {
     /** How long the turn is. */
@@ -26,6 +29,7 @@ export default function TurnTimer({ seconds, onDone }: Props) {
     const [left, setLeft] = useState(seconds);
     const [width, setWidth] = useState(0);
     const [progress] = useState(() => new Animated.Value(0));
+    const [pulse] = useState(() => new Animated.Value(1));
 
     // Kept in a ref, and updated from an effect rather than during render.
     const done = useRef(onDone);
@@ -69,15 +73,45 @@ export default function TurnTimer({ seconds, onDone }: Props) {
     const hurrying = left <= HURRY_SECONDS;
     const ink = hurrying ? theme.colors.destructive : theme.colors.text;
 
+    useEffect(() => {
+        if (!hurrying) {
+            pulse.setValue(1);
+            return;
+        }
+
+        let cancelled = false;
+        let loop: Animated.CompositeAnimation | undefined;
+
+        AccessibilityInfo.isReduceMotionEnabled().then(reduced => {
+            if (cancelled || reduced) return;
+
+            loop = Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulse, { toValue: 1.05, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver }),
+                    Animated.timing(pulse, { toValue: 1, duration: PULSE_MS, easing: Easing.inOut(Easing.quad), useNativeDriver })
+                ])
+            );
+            loop.start();
+        });
+
+        return () => {
+            cancelled = true;
+            loop?.stop();
+            pulse.setValue(1);
+        };
+    }, [hurrying, pulse]);
+
     return (
         <View style={styles.timer}>
-            <AppText
-                style={[styles.digits, { color: ink }]}
-                // Read out as a whole, and only as it changes.
-                accessibilityLiveRegion="polite"
-            >
-                {left}
-            </AppText>
+            <Animated.View style={{ transform: [{ scale: pulse }] }}>
+                <AppText
+                    style={[styles.digits, { color: ink }]}
+                    // Read out as a whole, and only as it changes.
+                    accessibilityLiveRegion="polite"
+                >
+                    {left}
+                </AppText>
+            </Animated.View>
 
             <View style={styles.track} onLayout={measure}>
                 <Animated.View

@@ -1,12 +1,16 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
+import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import TableAnswer from "@/features/pubquizr/components/table/TableAnswer";
 import { offBy, type ClosestResult } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { View } from "react-native";
+import { Animated, Easing, View } from "react-native";
+
+const ROW_STAGGER_MS = 45;
 
 interface Props {
     result: ClosestResult
@@ -76,62 +80,87 @@ export default function TableClosestResult({ result, scale }: Props) {
             {/* Nothing to list when the question closed with nobody having typed. */}
             {rows.length > 0 && (
                 <View style={[styles.rows, { gap: Math.round(8 * scale), width: Math.round(620 * scale) }]}>
-                    {rows.map(row => (
-                        <View
-                            key={row.seat.seat}
-                            style={[
-                                styles.row,
-                                row.won && styles.won,
-                                {
-                                    gap: Math.round(12 * scale),
-                                    paddingVertical: Math.round(8 * scale),
-                                    paddingHorizontal: Math.round(12 * scale)
-                                }
-                            ]}
-                        >
-                            <SeatAvatar seat={row.seat} size={Math.round(34 * scale)} />
-
-                            <AppText
-                                style={[
-                                    styles.name,
-                                    row.won && styles.onMint,
-                                    { fontSize: Math.round(17 * scale) }
-                                ]}
-                                numberOfLines={1}
-                            >
-                                {row.seat.name}
-                            </AppText>
-
-                            <AppText
-                                style={[
-                                    styles.off,
-                                    row.won && styles.onMint,
-                                    { fontSize: Math.round(12 * scale) }
-                                ]}
-                            >
-                                {row.won
-                                    ? t('pubquizr.play.closest.nearestOff', {
-                                        off: offBy(row.value, result.answer)
-                                    })
-                                    : t('pubquizr.play.closest.off', {
-                                        off: offBy(row.value, result.answer)
-                                    })}
-                            </AppText>
-
-                            <AppText
-                                style={[
-                                    styles.value,
-                                    row.won && styles.onMint,
-                                    { fontSize: Math.round(22 * scale) }
-                                ]}
-                            >
-                                {row.value}
-                            </AppText>
-                        </View>
+                    {rows.map((row, index) => (
+                        <ResultRow key={row.seat.seat} answer={result.answer} index={index} row={row} scale={scale} />
                     ))}
                 </View>
             )}
         </View>
+    )
+}
+
+interface ResultRowProps {
+    answer: number
+    index: number
+    row: Row
+    scale: number
+}
+
+// One guess, staggered in behind the ones before it, with the winning row given a small settle-in pop.
+function ResultRow({ answer, index, row, scale }: ResultRowProps) {
+    const t = useT();
+    const styles = useStyles();
+
+    const highlight = useEntrance({
+        delayMs: index * ROW_STAGGER_MS + 180,
+        durationMs: 260,
+        easing: Easing.out(Easing.back(1.8))
+    });
+
+    return (
+        <SlideFadeIn offsetY={10} durationMs={220} delayMs={index * ROW_STAGGER_MS}>
+            <Animated.View
+                style={[
+                    styles.row,
+                    row.won && styles.won,
+                    {
+                        gap: Math.round(12 * scale),
+                        paddingVertical: Math.round(8 * scale),
+                        paddingHorizontal: Math.round(12 * scale)
+                    },
+                    row.won && { transform: [{ scale: highlight.interpolate({ inputRange: [0, 1], outputRange: [1.04, 1] }) }] }
+                ]}
+            >
+                <SeatAvatar seat={row.seat} size={Math.round(34 * scale)} />
+
+                <AppText
+                    style={[
+                        styles.name,
+                        row.won && styles.onMint,
+                        { fontSize: Math.round(17 * scale) }
+                    ]}
+                    numberOfLines={1}
+                >
+                    {row.seat.name}
+                </AppText>
+
+                <AppText
+                    style={[
+                        styles.off,
+                        row.won && styles.onMint,
+                        { fontSize: Math.round(12 * scale) }
+                    ]}
+                >
+                    {row.won
+                        ? t('pubquizr.play.closest.nearestOff', {
+                            off: offBy(row.value, answer)
+                        })
+                        : t('pubquizr.play.closest.off', {
+                            off: offBy(row.value, answer)
+                        })}
+                </AppText>
+
+                <AppText
+                    style={[
+                        styles.value,
+                        row.won && styles.onMint,
+                        { fontSize: Math.round(22 * scale) }
+                    ]}
+                >
+                    {row.value}
+                </AppText>
+            </Animated.View>
+        </SlideFadeIn>
     )
 }
 
