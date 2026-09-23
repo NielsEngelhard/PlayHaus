@@ -236,13 +236,13 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         const choice = round === ROUND_CHOICE;
 
         const order: TurnOrder = {
-            label: choice ? t('pubquizr.board.noQuizmaster') : t('pubquizr.board.quizmaster'),
+            label: t('pubquizr.board.noQuizmaster'),
             lead: choice ? null : walking.quizmaster,
-            leadNote: asked.seat === me ? t('pubquizr.board.tapYourself') : t('pubquizr.board.isUp', { name: asked.name }),
-            count: t('pubquizr.board.turnOf', { number: walked + 1, total: walking.remaining.length }),
+            count: t('pubquizr.board.turnOrder.position', { number: walked + 1, total: walking.remaining.length }),
             path: walking.remaining,
             current: asked.seat,
-            missed
+            number: walking.number,
+            total: walking.total
         };
         const strip = <TurnOrderStrip mySeat={me} order={order} />;
 
@@ -257,6 +257,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                         error={table.rulingError}
                         missed={walked}
                         picks={picksOf(control, hotSeat.dealt.id)}
+                        previous={previousRulingOf(session, quiz)}
                         round={round}
                         turn={hotSeat}
                         onSettle={table.settleTurn}
@@ -267,7 +268,9 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             return frame(`choice-watch:${hotSeat.dealt.id}`, strip, (
                 <ChoiceWatchBoard
                     answering={asked}
+                    mySeat={me}
                     picks={picksOf(control, hotSeat.dealt.id)}
+                    previous={previousRulingOf(session, quiz)}
                     seats={seats}
                     turn={hotSeat}
                 />
@@ -305,14 +308,15 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             : [];
 
         const order: TurnOrder = {
-            label: t('pubquizr.board.quizmaster'),
+            label: t('pubquizr.board.noQuizmaster'),
             lead: closest.quizmaster,
             count: seatsIn.length > 0
                 ? t('pubquizr.board.numbersIn', { done: seatsIn.length, total: closest.guessing.length })
                 : t('pubquizr.board.everyoneAtOnce'),
             path: [],
             current: null,
-            missed: []
+            number: closest.number,
+            total: closest.total
         };
         const strip = <TurnOrderStrip mySeat={me} order={order} />;
 
@@ -353,7 +357,8 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             fromLabel: t('pubquizr.board.describes'),
             to: describe.guesser,
             toLabel: t('pubquizr.board.guesses'),
-            count: t('pubquizr.board.turnOf', { number: describe.number, total: describe.total })
+            number: describe.number,
+            total: describe.total
         };
         const strip = <TurnOrderStrip mySeat={me} pair={pair} />;
 
@@ -399,7 +404,8 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             fromLabel: t('pubquizr.board.quizmaster'),
             to: list.guesser,
             toLabel: t('pubquizr.board.guesses'),
-            count: t('pubquizr.board.turnOf', { number: list.number, total: list.total })
+            number: list.number,
+            total: list.total
         };
         const strip = <TurnOrderStrip mySeat={me} pair={pair} />;
 
@@ -440,12 +446,13 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
     // Round 6 is the one round a player chooses their own question, and they choose it on their own phone.
     if (asking !== null && asking.answering !== null && asking.quizmaster !== null) {
         const order: TurnOrder = {
-            label: t('pubquizr.board.quizmaster'),
+            label: t('pubquizr.board.noQuizmaster'),
             lead: asking.quizmaster,
             count: t('pubquizr.board.turnOf', { number: session.currentPosition + 1, total: session.turnsInRound }),
             path: [],
             current: null,
-            missed: []
+            number: session.currentPosition + 1,
+            total: session.turnsInRound
         };
         const strip = <TurnOrderStrip mySeat={me} order={order} />;
 

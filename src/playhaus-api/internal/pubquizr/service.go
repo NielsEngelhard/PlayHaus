@@ -659,7 +659,7 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 
 	hot := session.HotSeatOrFirst()
 
-	line := PassLine(session.QuizMasterSeat, hot, attempts, len(session.Players))
+	line := PassLine(session.PassLineReader(), hot, attempts, len(session.Players))
 	if len(line) == 0 {
 		// The question has already been round the whole table.
 		return nil, ErrStaleTurn
@@ -1825,9 +1825,9 @@ func (s *Service) advance(session *Session) {
 	session.OpenRoundOn(session.CurrentRound, session.LowestScoringSeat())
 }
 
-// PreviousRuling is the walk round's last settled question and who took it, and nil outside a walk round or before its first settle.
+// PreviousRuling is the last settled question of a round that walks one down the line, and who took it; nil before its first settle.
 func (s *Service) PreviousRuling(ctx context.Context, session *Session) (*Ruling, error) {
-	if session.Status != SessionInProgress || !IsWalkRound(session.CurrentRound) {
+	if session.Status != SessionInProgress || !(IsWalkRound(session.CurrentRound) || session.CurrentRound == RoundChoice) {
 		return nil, nil
 	}
 

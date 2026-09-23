@@ -6,10 +6,11 @@ import { usePressPop } from "@/components/ui/usePressPop";
 import { Brand, FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
+import BoardQuestionCard from "@/features/pubquizr/components/board/BoardQuestionCard";
+import PreviousQuestion from "@/features/pubquizr/components/board/PreviousQuestion";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import SeatAvatar from "@/components/ui/SeatAvatar";
-import type { ChoiceOption, HotSeatTurn } from "@/features/pubquizr/hot-seat";
+import type { ChoiceOption, HotSeatTurn, PreviousRuling } from "@/features/pubquizr/hot-seat";
 import type { PQEmit, PQPick } from "@/features/pubquizr/multi-device/control";
 import { seatAt, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -33,6 +34,8 @@ interface Props {
     onSettle: (missedSeats: number[], correctSeat: number | null, chosenAnswerId: string) => void
     /** Every pick taken on this question, whoever's phone took it. */
     picks: PQPick[]
+    /** How the question before this one ended; only a phone with no shared screen shows it. */
+    previous?: PreviousRuling | null
     /** The table, for naming whoever spent an option. Only the letters pad needs it. */
     seats?: Seat[]
     /** Which round this is, for the strip. */
@@ -41,7 +44,7 @@ interface Props {
 }
 
 // Round 2 on the answerer's own phone: four options, judged the instant one is tapped, because `correct` is already in the quiz every device holds.
-export default function ChoicePadControl({ bare, busy, emit, error, letters = false, missed, onSettle, picks, round, seats, turn }: Props) {
+export default function ChoicePadControl({ bare, busy, emit, error, letters = false, missed, onSettle, picks, previous = null, round, seats, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -87,7 +90,8 @@ export default function ChoicePadControl({ bare, busy, emit, error, letters = fa
         });
 
         if (option.correct) {
-            onSettle(turn.remaining.slice(0, missed).map(seat => seat.seat), answering.seat, option.id);
+            // Not cleared on unmount: the pick is already out, and only this phone can move the table on.
+            setTimeout(() => onSettle(turn.remaining.slice(0, missed).map(seat => seat.seat), answering.seat, option.id), CORRECT_HOLD_MS);
             return;
         }
 
@@ -125,11 +129,12 @@ export default function ChoicePadControl({ bare, busy, emit, error, letters = fa
             {letters ? (
                 <AppText style={styles.cue}>{t('pubquizr.control.lettersCue')}</AppText>
             ) : (
-                <ScriptCard
-                    prompt={turn.question.prompt}
+                <BoardQuestionCard
                     cue={t('pubquizr.control.pickAnswer')}
-                    fills={false}
-                    size={21}
+                    number={null}
+                    prompt={turn.question.prompt}
+                    total={turn.total}
+                    worth={turn.worth}
                 />
             )}
 
@@ -143,8 +148,9 @@ export default function ChoicePadControl({ bare, busy, emit, error, letters = fa
 
             <View style={styles.pad}>
                 {turn.options.map(option => {
-                    const gone = spent.has(option.id);
-                    const judged = mine === option.id;
+                    // The right answer stays lit rather than spent while the table takes it in.
+                    const gone = spent.has(option.id) && !option.correct;
+                    const judged = mine === option.id || (spent.has(option.id) && option.correct);
 
                     return (
                         <ChoiceOptionButton
@@ -171,6 +177,8 @@ export default function ChoicePadControl({ bare, busy, emit, error, letters = fa
                     ? t('pubquizr.play.wrongEndsQuestion')
                     : t('pubquizr.play.wrongPassesTo', { name: nextUp.name })}
             />
+
+            {previous !== null && <PreviousQuestion mySeat={answering.seat} previous={previous} />}
         </View>
     )
 }
@@ -211,18 +219,18 @@ function ChoiceOptionButton({ option, letters, spentBy, gone, judged, disabled, 
             ]}
         >
             {letters ? (
-                <AppText style={[styles.bigLetter, judged && styles.onFill, gone && styles.struck]}>
+                <AppText style={[styles.bigLetter, (judged || gone) && styles.onFill, gone && styles.struck]}>
                     {option.letter}
                 </AppText>
             ) : (
                 <>
                     <View style={styles.letter}>
-                        <AppText style={[styles.letterText, judged && styles.onFill]}>
+                        <AppText style={[styles.letterText, (judged || gone) && styles.onFill]}>
                             {option.letter}
                         </AppText>
                     </View>
 
-                    <AppText style={[styles.text, judged && styles.onFill, gone && styles.struck]}>
+                    <AppText style={[styles.text, (judged || gone) && styles.onFill, gone && styles.struck]}>
                         {option.text}
                     </AppText>
                 </>
@@ -234,6 +242,7 @@ function ChoiceOptionButton({ option, letters, spentBy, gone, judged, disabled, 
 }
 
 const SPENT_AVATAR = 24;
+const CORRECT_HOLD_MS = 3000;
 
 const useStyles = createThemedStyles(theme => ({
     // The middle of the board grows and everything else does not.
@@ -283,10 +292,10 @@ const useStyles = createThemedStyles(theme => ({
         ...theme.shadows.hardSmall
     },
 
-    // An option an earlier seat already tried, which is not a way to be wrong twice.
+    // An option an earlier seat already tried, which is not a way to be wrong twice; blush under the fade reads as a quiet red.
     gone: {
         opacity: 0.4,
-        backgroundColor: theme.colors.background
+        backgroundColor: theme.colors.blush
     },
 
     struck: {

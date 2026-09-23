@@ -1,43 +1,50 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
-import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Radii, ShadowReach, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import QuestionCount from "@/features/pubquizr/components/play/QuestionCount";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ScrollView, View } from "react-native";
+import { Platform, ScrollView, View, type ViewStyle } from "react-native";
 
-const LEAD_AVATAR = 20;
-const PATH_AVATAR = 34;
+const QUIZMASTER_AVATAR = 22;
+const SEAT_AVATAR = 30;
+const CURRENT_AVATAR = 38;
+const CURRENT_BORDER = 2;
+// Tall enough for the current seat's avatar plus its shadow, so every column's name sits on one line.
+const AVATAR_SLOT = 40;
+// Five of these and their chevrons fit a 366dp phone without scrolling.
+const COLUMN = 48;
+const CHEVRON = 9;
+const RING = 3;
+const FADE = 28;
+const HAIRLINE = 1.5;
 const PAIR_AVATAR = 26;
-const BADGE = 18;
-// Wide enough for a name under the avatar without the five of them touching.
-const STOP_WIDTH = 52;
 // The strip's micro-type sits below the smallest step of `FontSizes`.
-const CAPS_SIZE = 9;
-const SMALL_SIZE = 10;
-const RING_WIDTH = 1.5;
-const ARROW = 14;
+const NAME_SIZE = 11;
+const CHIP_SIZE = 10;
+// Stands in for the name while the sentence is split around it, so the name can be set bold in any language's word order.
+const NAME_MARK = '\u0000';
 
 /** The turn as one line of people: who asks, and the order the question walks the table in. */
 export interface TurnOrder {
-    /** The small caps word before the lead: "Quizmaster", "No quizmaster". */
+    /** Said in place of the quizmaster line when there is no lead: "No quizmaster". */
     label: string
     /** Whoever runs the turn, and null in a round nobody does. */
     lead: Seat | null
-    /** Said instead of a lead's name, when there is no lead. */
-    leadNote?: string
-    /** The far right of the top row: "Turn 2 / 5", "Everyone at once". */
+    /** The chip on the lead's own phone ("2 / 5"), or the status line when there is no path to walk. */
     count: string
     /** The seats the question walks, in order. Empty in the rounds where it does not walk. */
     path: Seat[]
     /** Who the question is with now. */
     current: number | null
-    /** Everybody it has already beaten. */
-    missed: number[]
+    /** 1-based: question 3 of 8 in the round. */
+    number: number
+    total: number
 }
 
 /** The two people a round 4 or 5 turn is between, drawn instead of a path. */
@@ -46,7 +53,8 @@ export interface TurnPair {
     fromLabel: string
     to: Seat
     toLabel: string
-    count: string
+    number: number
+    total: number
 }
 
 interface Props {
@@ -56,7 +64,17 @@ interface Props {
     pair?: TurnPair
 }
 
-// The strip every phone wears under the band when there is no shared screen: the whole turn order, at a glance.
+// A wash from nothing into a fill, left to right.
+function washToRight(color: string): ViewStyle {
+    const gradient = `linear-gradient(to right, ${color}00, ${color})`;
+
+    return Platform.select<ViewStyle>({
+        web: { backgroundImage: gradient } as ViewStyle,
+        default: { experimental_backgroundImage: gradient } as ViewStyle
+    })!;
+}
+
+// The card every phone wears under the band when there is no shared screen: who asks, and the whole turn order at a glance.
 export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
     const t = useT();
     const theme = useTheme();
@@ -65,18 +83,20 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
     const scroller = useRef<ScrollView>(null);
     const stops = useRef(new Map<number, number>());
     const [viewWidth, setViewWidth] = useState(0);
+    const [contentWidth, setContentWidth] = useState(0);
 
     const current = order?.current ?? null;
 
-    // Brings whoever has the question into view on a table too long for one row; a row that fits has nowhere to scroll.
+    // Brings whoever has the question into the middle on a table too long for one row; a row that fits has nowhere to scroll.
     useEffect(() => {
         const x = current === null ? undefined : stops.current.get(current);
         if (x === undefined || viewWidth === 0) return;
 
-        scroller.current?.scrollTo({ x: Math.max(0, x + STOP_WIDTH / 2 - viewWidth / 2), animated: true });
-    }, [current, viewWidth]);
+        scroller.current?.scrollTo({ x: Math.max(0, x + COLUMN / 2 - viewWidth / 2), animated: true });
+    }, [current, viewWidth, contentWidth]);
 
-    const nameOf = (seat: Seat) => seat.seat === mySeat ? t('pubquizr.board.you') : seat.name;
+    const you = t('pubquizr.board.you');
+    const nameOf = (seat: Seat) => seat.seat === mySeat ? you : seat.name;
 
     if (pair !== undefined) {
         return (
@@ -88,7 +108,9 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
 
                     <PairEnd seat={pair.to} label={pair.toLabel} name={nameOf(pair.to)} styles={styles} />
 
-                    <AppText style={styles.count} numberOfLines={1}>{pair.count}</AppText>
+                    <View style={styles.push}>
+                        <QuestionCount number={pair.number} total={pair.total} />
+                    </View>
                 </View>
             </View>
         )
@@ -96,78 +118,153 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
 
     if (order === undefined) return null;
 
-    const missed = new Set(order.missed);
+    const leading = order.lead !== null && order.lead.seat === mySeat;
+    const leadName = order.lead === null ? null : leading ? you : order.lead.name;
+    const leadTemplate = order.lead === null
+        ? order.label
+        : t(leading ? 'pubquizr.board.turnOrder.youAreQuizmaster' : 'pubquizr.board.turnOrder.isQuizmaster', { name: NAME_MARK });
+    const leadLine = leadName === null ? leadTemplate : leadTemplate.replace(NAME_MARK, leadName);
+
+    const walking = order.path.length > 0;
+    const at = order.path.findIndex(seat => seat.seat === order.current);
+    const up = at < 0 ? null : order.path[at];
+
+    const status = up === null
+        ? order.count
+        : up.seat === mySeat
+            ? t('pubquizr.board.turnOrder.youAreUp')
+            : t('pubquizr.board.turnOrder.isUp', { name: up.name });
+
+    const after = at < 0 ? [] : order.path.slice(at + 1).map(nameOf);
+    const spoken = [
+        t('pubquizr.play.questionNumber', { number: order.number })
+        + t('pubquizr.play.questionTotal', { total: order.total }),
+        leadLine,
+        after.length > 0
+            ? `${status}, ${t('pubquizr.board.turnOrder.then', { names: listOf(after, t('pubquizr.board.turnOrder.and')) })}`
+            : status
+    ].join('. ') + '.';
+
+    const overflowing = contentWidth > viewWidth + 1;
+    const lift = `${ShadowReach.hardSmall}px ${ShadowReach.hardSmall}px 0 0 ${theme.colors.shadow}`;
+    const ring = `0 0 0 ${RING}px ${Brand.lemon}`;
 
     return (
-        <View style={styles.card}>
+        <View style={styles.card} accessible accessibilityRole="text" accessibilityLabel={spoken}>
             <View style={styles.row}>
-                <AppText style={styles.label} numberOfLines={1}>{order.label}</AppText>
+                {order.lead !== null && <SeatAvatar seat={order.lead} size={QUIZMASTER_AVATAR} />}
 
-                {order.lead !== null && (
-                    <View style={styles.leadRing}>
-                        <AppText style={styles.leadInitials}>{order.lead.initials}</AppText>
-                    </View>
-                )}
+                <LeadLine line={leadTemplate} name={leadName} styles={styles} />
 
-                <AppText style={styles.leadName} numberOfLines={1}>
-                    {order.lead !== null ? nameOf(order.lead) : order.leadNote ?? ''}
-                </AppText>
-
-                <AppText style={styles.count} numberOfLines={1}>{order.count}</AppText>
+                <View style={styles.push}>
+                    <QuestionCount number={order.number} total={order.total} />
+                </View>
             </View>
 
-            {order.path.length > 0 && (
-                // One row whatever the table's size: centred while it fits, and scrolled sideways once it does not.
-                <ScrollView
-                    ref={scroller}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.path}
-                    onLayout={event => setViewWidth(event.nativeEvent.layout.width)}
-                >
-                    {order.path.map((seat, index) => {
-                        const now = seat.seat === order.current;
-                        const out = missed.has(seat.seat);
+            <View style={styles.hairline} />
 
-                        return (
-                            <Fragment key={seat.seat}>
-                                {index > 0 && (
-                                    <View style={[styles.arrow, out && styles.faded]}>
-                                        <Feather name="arrow-right" size={ARROW} color={theme.colors.textMuted} />
-                                    </View>
-                                )}
+            <View style={styles.row}>
+                {walking && <AppText style={styles.title}>{t('pubquizr.board.turnOrder.title')}</AppText>}
 
-                                <View onLayout={event => stops.current.set(seat.seat, event.nativeEvent.layout.x)}>
-                                    {/* Keyed on the seat's `now` status, so the marker visibly lifts as the turn walks onto it. */}
-                                    <SlideFadeIn
-                                        style={styles.stop}
-                                        offsetY={-6}
-                                        durationMs={220}
-                                        replayKey={`${seat.seat}-${now}`}
-                                    >
-                                        <View style={out && styles.faded}>
-                                            <SeatAvatar seat={seat} size={PATH_AVATAR} raised={now} />
+                <AppText style={styles.status} numberOfLines={1}>{status}</AppText>
 
-                                            <View style={[styles.badge, now && styles.badgeNow]}>
-                                                {out
-                                                    ? <Feather name="x" size={10} color={Brand.ink} />
-                                                    : <AppText style={styles.badgeText}>{index + 1}</AppText>}
-                                            </View>
+                {walking && leading && <Chip text={order.count} styles={styles} />}
+            </View>
+
+            {walking && (
+                <View style={styles.bleed}>
+                    {/* Centred while it fits, and scrolled sideways once it does not. */}
+                    <ScrollView
+                        ref={scroller}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.path}
+                        onLayout={event => setViewWidth(event.nativeEvent.layout.width)}
+                        onContentSizeChange={width => setContentWidth(width)}
+                    >
+                        {order.path.map((seat, index) => {
+                            const now = seat.seat === order.current;
+                            const mine = seat.seat === mySeat;
+                            const shadows = [now && lift, mine && ring].filter(Boolean).join(', ');
+
+                            return (
+                                <Fragment key={seat.seat}>
+                                    {index > 0 && (
+                                        <View style={styles.chevron}>
+                                            <Feather name="chevron-right" size={CHEVRON} color={theme.colors.textFaint} />
                                         </View>
+                                    )}
 
-                                        <AppText
-                                            style={[styles.stopName, (now || seat.seat === mySeat) && styles.stopNameStrong, out && styles.faded]}
-                                            numberOfLines={1}
+                                    <View onLayout={event => stops.current.set(seat.seat, event.nativeEvent.layout.x)}>
+                                        {/* Keyed on the seat's `now` status, so the marker visibly lifts as the turn walks onto it. */}
+                                        <SlideFadeIn
+                                            style={styles.column}
+                                            offsetY={-6}
+                                            durationMs={220}
+                                            replayKey={`${seat.seat}-${now}`}
                                         >
-                                            {nameOf(seat)}
-                                        </AppText>
-                                    </SlideFadeIn>
-                                </View>
-                            </Fragment>
-                        )
-                    })}
-                </ScrollView>
+                                            <View style={styles.slot}>
+                                                <SeatAvatar
+                                                    seat={seat}
+                                                    size={now ? CURRENT_AVATAR : SEAT_AVATAR}
+                                                    style={{
+                                                        ...(now && { borderWidth: CURRENT_BORDER }),
+                                                        ...(shadows !== '' && { boxShadow: shadows })
+                                                    }}
+                                                />
+                                            </View>
+
+                                            <AppText
+                                                style={[styles.name, (now || mine) && styles.nameStrong]}
+                                                numberOfLines={1}
+                                            >
+                                                {nameOf(seat)}
+                                            </AppText>
+                                        </SlideFadeIn>
+                                    </View>
+                                </Fragment>
+                            )
+                        })}
+                    </ScrollView>
+
+                    {overflowing && (
+                        <View style={[styles.fade, washToRight(theme.colors.backgroundSecondary)]} pointerEvents="none" />
+                    )}
+                </View>
             )}
+        </View>
+    )
+}
+
+// "Joep, Tess and Fleur", without leaning on `Intl.ListFormat`.
+function listOf(names: string[], and: string): string {
+    if (names.length < 2) return names.join('');
+
+    return `${names.slice(0, -1).join(', ')} ${and} ${names[names.length - 1]}`;
+}
+
+interface LeadLineProps {
+    line: string
+    name: string | null
+    styles: ReturnType<typeof useStyles>
+}
+
+function LeadLine({ line, name, styles }: LeadLineProps) {
+    const [before, rest] = name === null ? [line, undefined] : line.split(NAME_MARK);
+
+    return (
+        <AppText style={styles.lead} numberOfLines={1}>
+            {before}
+            {name !== null && rest !== undefined && <AppText style={styles.leadName}>{name}</AppText>}
+            {rest}
+        </AppText>
+    )
+}
+
+function Chip({ text, styles }: { text: string, styles: ReturnType<typeof useStyles> }) {
+    return (
+        <View style={styles.chip}>
+            <AppText style={styles.chipText} numberOfLines={1}>{text}</AppText>
         </View>
     )
 }
@@ -202,7 +299,7 @@ const useStyles = createThemedStyles(theme => ({
         borderWidth: theme.borderWidth,
         borderColor: theme.colors.border,
         backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hard
+        ...theme.shadows.hardSmall
     },
 
     row: {
@@ -211,110 +308,108 @@ const useStyles = createThemedStyles(theme => ({
         gap: Spacing.two
     },
 
-    label: {
-        flexShrink: 0,
-        fontSize: CAPS_SIZE,
-        fontWeight: 900,
-        letterSpacing: 1.8,
-        textTransform: 'uppercase',
-        color: theme.colors.textMuted
-    },
-
-    // Lemon in both schemes: the quizmaster is a marker on the strip, the same one the host screen uses.
-    leadRing: {
-        width: LEAD_AVATAR,
-        height: LEAD_AVATAR,
-        borderRadius: Radii.full,
-        borderWidth: RING_WIDTH,
-        borderColor: Brand.ink,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: Brand.lemon
-    },
-
-    leadInitials: {
-        fontSize: CAPS_SIZE - 2,
-        fontWeight: 900,
-        color: Brand.ink
+    lead: {
+        flexShrink: 1,
+        fontSize: FontSizes.xs,
+        fontWeight: 800,
+        color: theme.colors.textSecondary
     },
 
     leadName: {
-        flexShrink: 1,
+        fontWeight: 900,
+        color: theme.colors.text
+    },
+
+    hairline: {
+        height: HAIRLINE,
+        backgroundColor: theme.colors.borderMuted
+    },
+
+    title: {
+        flexShrink: 0,
         fontSize: FontSizes.xs,
         fontWeight: 900,
         color: theme.colors.text
     },
 
-    count: {
-        marginLeft: 'auto',
-        flexShrink: 0,
-        fontSize: SMALL_SIZE,
-        fontWeight: 900,
-        letterSpacing: 1.2,
-        textTransform: 'uppercase',
+    status: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: NAME_SIZE,
+        fontWeight: 700,
         color: theme.colors.textMuted
     },
 
-    // The top padding keeps the badge, which sits above the avatar, inside what the scroller clips.
+    push: {
+        flexShrink: 0,
+        marginLeft: 'auto'
+    },
+
+    chip: {
+        flexShrink: 0,
+        marginLeft: 'auto',
+        paddingHorizontal: Spacing.two,
+        paddingVertical: Spacing.half,
+        borderRadius: Radii.full,
+        borderWidth: HAIRLINE,
+        borderColor: theme.colors.borderMuted
+    },
+
+    chipText: {
+        fontSize: CHIP_SIZE,
+        fontWeight: 900,
+        color: theme.colors.textMuted
+    },
+
+    // Out to the card's inner edge, so the row scrolls under the border rather than stopping short of it.
+    bleed: {
+        marginHorizontal: -Spacing.two
+    },
+
     path: {
         flexGrow: 1,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        gap: Spacing.one,
-        paddingTop: Spacing.two,
-        paddingHorizontal: Spacing.one
+        gap: Spacing.half,
+        paddingHorizontal: Spacing.two
     },
 
-    // As tall as an avatar, so the arrow points from centre to centre rather than at the names.
-    arrow: {
-        height: PATH_AVATAR,
+    column: {
+        width: COLUMN,
+        alignItems: 'center',
+        gap: Spacing.one
+    },
+
+    slot: {
+        height: AVATAR_SLOT,
         justifyContent: 'center'
     },
 
-    stop: {
-        width: STOP_WIDTH,
-        alignItems: 'center',
-        gap: 5
+    // As tall as the avatar slot, so the chevron points from centre to centre rather than at the names.
+    chevron: {
+        height: AVATAR_SLOT,
+        justifyContent: 'center'
     },
 
-    faded: {
-        opacity: 0.45
-    },
-
-    badge: {
-        position: 'absolute',
-        top: -5,
-        right: -6,
-        width: BADGE,
-        height: BADGE,
-        borderRadius: Radii.full,
-        borderWidth: RING_WIDTH,
-        borderColor: Brand.ink,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: Brand.textOnAccent
-    },
-
-    badgeNow: {
-        backgroundColor: Brand.lemon
-    },
-
-    badgeText: {
-        fontSize: CAPS_SIZE,
-        fontWeight: 900,
-        color: Brand.ink
-    },
-
-    stopName: {
-        fontSize: SMALL_SIZE,
+    name: {
+        maxWidth: COLUMN,
+        fontSize: NAME_SIZE,
         fontWeight: 800,
         color: theme.colors.textSecondary
     },
 
-    stopNameStrong: {
+    nameStrong: {
         fontWeight: 900,
         color: theme.colors.text
+    },
+
+    fade: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        width: FADE
     },
 
     pairEnd: {
@@ -330,7 +425,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     pairLabel: {
-        fontSize: CAPS_SIZE,
+        fontSize: CHIP_SIZE,
         fontWeight: 900,
         letterSpacing: 1.4,
         textTransform: 'uppercase',

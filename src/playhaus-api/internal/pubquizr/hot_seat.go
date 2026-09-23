@@ -9,11 +9,21 @@ func (s *Session) HotSeatOrFirst() int {
 		return -1
 	}
 
-	if s.HotSeat < 0 || s.HotSeat >= players || s.HotSeat == s.QuizMasterSeat {
-		return wrap(s.QuizMasterSeat+1, players)
+	reader := s.PassLineReader()
+	if s.HotSeat < 0 || s.HotSeat >= players || s.HotSeat == reader {
+		return wrap(reader+1, players)
 	}
 
 	return s.HotSeat
+}
+
+// PassLineReader is the seat a hot seat question skips, and -1 in round 2 on phones with no shared screen, where nobody reads it out.
+func (s *Session) PassLineReader() int {
+	if s.CurrentRound == RoundChoice && s.Seated() && !s.HostScreen {
+		return -1
+	}
+
+	return s.QuizMasterSeat
 }
 
 // CurrentAnsweringSeat is whose turn it is to answer right now, or -1 when nobody is being asked anything.
@@ -30,7 +40,7 @@ func (s *Session) CurrentAnsweringSeat(attempts int) int {
 		return -1
 	}
 
-	return AnsweringSeat(s.QuizMasterSeat, s.HotSeatOrFirst(), attempts, len(s.Players))
+	return AnsweringSeat(s.PassLineReader(), s.HotSeatOrFirst(), attempts, len(s.Players))
 }
 
 // ReaderFor is who reads to one seat: the player on their right, which is the seat before them in table order.

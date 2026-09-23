@@ -169,6 +169,53 @@ func TestCurrentAnsweringSeatFollowsTheHotSeatRounds(t *testing.T) {
 	}
 }
 
+func TestAnsweringSeatWithNobodyReadingAsksEverySeat(t *testing.T) {
+	want := []int{2, 0, 1, -1}
+
+	for attempts, expected := range want {
+		if got := AnsweringSeat(-1, 2, attempts, 3); got != expected {
+			t.Errorf("AnsweringSeat(-1, 2, %d, 3) = %d, want %d", attempts, got, expected)
+		}
+	}
+}
+
+func TestRoundTwoOnPhonesWithoutAScreenPassesToTheWholeTable(t *testing.T) {
+	phone := "someone"
+	seated := []SessionPlayer{{Seat: 0, UserID: &phone}, {Seat: 1}, {Seat: 2}}
+	shared := []SessionPlayer{{Seat: 0}, {Seat: 1}, {Seat: 2}}
+
+	table := []struct {
+		name       string
+		round      int
+		players    []SessionPlayer
+		hostScreen bool
+		want       int
+	}{
+		{"round 2 on phones alone asks everybody", RoundChoice, seated, false, 3},
+		{"round 2 with a shared screen keeps its quizmaster", RoundChoice, seated, true, 2},
+		{"round 2 on one phone keeps its quizmaster", RoundChoice, shared, false, 2},
+		{"round 1 on phones alone keeps its quizmaster", RoundOpen, seated, false, 2},
+	}
+
+	for _, row := range table {
+		t.Run(row.name, func(t *testing.T) {
+			session := &Session{
+				Status:         SessionInProgress,
+				CurrentRound:   row.round,
+				HotSeat:        1,
+				QuizMasterSeat: 0,
+				HostScreen:     row.hostScreen,
+				Players:        row.players,
+			}
+
+			line := PassLine(session.PassLineReader(), session.HotSeatOrFirst(), 0, len(session.Players))
+			if len(line) != row.want {
+				t.Errorf("pass line = %v, want %d seats", line, row.want)
+			}
+		})
+	}
+}
+
 func TestCurrentAnsweringSeatIsNobodyOnceTheSessionIsOver(t *testing.T) {
 	session := &Session{
 		Status:       SessionCompleted,

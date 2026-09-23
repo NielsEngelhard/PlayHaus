@@ -4,7 +4,8 @@ import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import BoardNote from "@/features/pubquizr/components/board/BoardNote";
 import BoardQuestionCard from "@/features/pubquizr/components/board/BoardQuestionCard";
-import type { HotSeatTurn } from "@/features/pubquizr/hot-seat";
+import PreviousQuestion from "@/features/pubquizr/components/board/PreviousQuestion";
+import type { HotSeatTurn, PreviousRuling } from "@/features/pubquizr/hot-seat";
 import type { PQPick } from "@/features/pubquizr/multi-device/control";
 import { seatAt, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -15,6 +16,9 @@ const PICKER_AVATAR = 22;
 
 interface Props {
     answering: Seat
+    mySeat: number | null
+    /** How the question before this one ended, and null on the round's first. */
+    previous: PreviousRuling | null
     /** Every pick already spent on this question. */
     picks: PQPick[]
     seats: Seat[]
@@ -22,7 +26,7 @@ interface Props {
 }
 
 // Round 2 on every phone but the one choosing: the whole card, nothing to tap, and the options already thrown away.
-export default function ChoiceWatchBoard({ answering, picks, seats, turn }: Props) {
+export default function ChoiceWatchBoard({ answering, mySeat, picks, previous, seats, turn }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -44,14 +48,16 @@ export default function ChoiceWatchBoard({ answering, picks, seats, turn }: Prop
                 {turn.options.map(option => {
                     const by = spentBy.get(option.id);
                     const picker = by === undefined ? null : seatAt(seats, by);
+                    const right = picker !== null && option.correct;
+                    const wrong = picker !== null && !option.correct;
 
                     return (
-                        <View key={option.id} style={[styles.option, picker !== null && styles.optionSpent]}>
+                        <View key={option.id} style={[styles.option, wrong && styles.optionSpent, right && styles.optionRight]}>
                             <View style={styles.letter}>
                                 <AppText style={styles.letterText}>{option.letter}</AppText>
                             </View>
 
-                            <AppText style={[styles.optionText, picker !== null && styles.optionTextSpent]} numberOfLines={2}>
+                            <AppText style={[styles.optionText, picker !== null && styles.optionTextOnFill, wrong && styles.optionTextSpent]} numberOfLines={2}>
                                 {option.text}
                             </AppText>
 
@@ -60,6 +66,8 @@ export default function ChoiceWatchBoard({ answering, picks, seats, turn }: Prop
                     )
                 })}
             </ScrollView>
+
+            {previous !== null && <PreviousQuestion mySeat={mySeat} previous={previous} />}
         </View>
     )
 }
@@ -93,7 +101,13 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     optionSpent: {
-        opacity: 0.55
+        opacity: 0.55,
+        backgroundColor: theme.colors.blush
+    },
+
+    optionRight: {
+        borderColor: Brand.ink,
+        backgroundColor: theme.colors.mint
     },
 
     letter: {
@@ -119,6 +133,10 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.md,
         fontWeight: 800,
         color: theme.colors.textSecondary
+    },
+
+    optionTextOnFill: {
+        color: Brand.ink
     },
 
     optionTextSpent: {

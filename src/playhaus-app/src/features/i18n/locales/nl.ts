@@ -794,8 +794,17 @@ export const nl: Catalog = {
             readyCount: '{{done}} van de {{total}} spelers is klaar',
             readyToStart: 'Klaar om te beginnen',
             readyWaiting: 'Klaar. {{name}} start de klok',
-            tapYourself: 'je tikt zelf',
             turnOf: 'Beurt {{number}} / {{total}}',
+            turnOrder: {
+                and: 'en',
+                isQuizmaster: '{{name}} is quizmaster',
+                isUp: '{{name}} is aan de beurt',
+                position: '{{number}} / {{total}}',
+                then: 'daarna {{names}}',
+                title: 'Beurtvolgorde',
+                youAreQuizmaster: '{{name}} bent quizmaster',
+                youAreUp: 'Jij bent aan de beurt'
+            },
             wordsGuessed: '{{done}} van de {{total}} geraden',
             wordsSecret: 'De woorden staan alleen op de telefoon van {{name}}',
             you: 'Jij',

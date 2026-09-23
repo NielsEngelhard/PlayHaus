@@ -832,8 +832,17 @@ export const en = {
             readyCount: '{{done}} of {{total}} players are ready',
             readyToStart: 'Ready to start',
             readyWaiting: 'Ready. {{name}} starts the clock',
-            tapYourself: 'you tap it yourself',
             turnOf: 'Turn {{number}} / {{total}}',
+            turnOrder: {
+                and: 'and',
+                isQuizmaster: '{{name}} is quizmaster',
+                isUp: '{{name}} is up',
+                position: '{{number}} / {{total}}',
+                then: 'then {{names}}',
+                title: 'Turn order',
+                youAreQuizmaster: '{{name}} are quizmaster',
+                youAreUp: 'You are up'
+            },
             wordsGuessed: '{{done}} of {{total}} guessed',
             wordsSecret: "The words are only on {{name}}'s phone",
             you: 'You',

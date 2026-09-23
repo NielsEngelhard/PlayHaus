@@ -139,6 +139,11 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
     };
 }
 
+// Round 2 on phones with no shared screen, where nobody reads and every seat gets a go; mirrors `PassLineReader` in `hot_seat.go`.
+export function hasNoReader(session: QuizSession): boolean {
+    return session.mode === 'multi_device' && !session.hostScreen && session.currentRound === ROUND_CHOICE;
+}
+
 // Everybody the current question has still to be put to, in the order it will reach them, starting with whoever is being asked right now.
 export function remainingSeatsOf(session: QuizSession, seats: Seat[]): Seat[] {
     if (session.answeringSeat === null) return [];
@@ -154,7 +159,7 @@ export function remainingSeatsOf(session: QuizSession, seats: Seat[]): Seat[] {
         line.push(seat);
 
         next = (next + 1) % seats.length;
-        if (next === session.quizMasterSeat) {
+        if (next === session.quizMasterSeat && !hasNoReader(session)) {
             next = (next + 1) % seats.length;
         }
         // Round to where it started: everybody else has already said no. The length guard is belt and braces against a session whose seats cannot be walked.

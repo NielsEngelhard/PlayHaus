@@ -2,6 +2,7 @@ import AppText from "@/components/text/AppText";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import QuestionCount from "@/features/pubquizr/components/play/QuestionCount";
 import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -46,21 +47,7 @@ export default function TurnStrip({
     const rhythmic = round === ROUND_OPEN;
     const scoring = worth > 0;
 
-    // "3/8" on screen and "Question 3 of 8" to a screen reader.
-    const count = (
-        <AppText
-            style={styles.count}
-            accessibilityLabel={
-                t('pubquizr.play.questionNumber', { number })
-                + t('pubquizr.play.questionTotal', { total })
-            }
-        >
-            {number}
-            <AppText style={styles.countTotal}>
-                {t('pubquizr.play.questionOutOf', { total })}
-            </AppText>
-        </AppText>
-    );
+    const count = <QuestionCount number={number} total={total} />;
 
     if (answering === null) {
         return (
@@ -349,16 +336,5 @@ const useStyles = createThemedStyles(theme => ({
     // The scheme's own "this is done" accent.
     pipDone: {
         backgroundColor: theme.colors.focus
-    },
-
-    count: {
-        flexShrink: 0,
-        fontSize: 11.5,
-        fontWeight: 800,
-        color: theme.colors.text
-    },
-
-    countTotal: {
-        color: theme.colors.textMuted
     }
 }))

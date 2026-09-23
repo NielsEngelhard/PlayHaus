@@ -1,11 +1,15 @@
 import AppText from "@/components/text/AppText";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { PreviousRuling } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 const CAPS_SIZE = 10;
+
+// Ink at reduced strength, for the quieter lines on the lemon card.
+const SOFT_INK = `${Brand.ink}CC`;
+const MUTED_INK = `${Brand.ink}99`;
 
 interface Props {
     mySeat: number | null
@@ -42,9 +46,12 @@ const useStyles = createThemedStyles(theme => ({
     foot: {
         flexShrink: 0,
         gap: Spacing.half,
-        paddingTop: Spacing.two,
-        borderTopWidth: StyleSheet.hairlineWidth,
-        borderTopColor: theme.colors.borderMuted
+        paddingVertical: Spacing.two,
+        paddingHorizontal: Spacing.three,
+        borderRadius: Radii.lg,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
     },
 
     label: {
@@ -52,23 +59,23 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 800,
         letterSpacing: 1,
         textTransform: 'uppercase',
-        color: theme.colors.textMuted
+        color: MUTED_INK
     },
 
     prompt: {
         fontSize: FontSizes.xs,
         fontWeight: 600,
-        color: theme.colors.textSecondary
+        color: SOFT_INK
     },
 
     ruling: {
         fontSize: FontSizes.xs,
         fontWeight: 600,
-        color: theme.colors.textMuted
+        color: MUTED_INK
     },
 
     answer: {
         fontWeight: 800,
-        color: theme.colors.textSecondary
+        color: Brand.ink
     }
 }))

@@ -6,13 +6,29 @@ import (
 	"testing"
 
 	"playhaus-api/internal/pubquizr"
+
+	"gorm.io/gorm"
 )
 
 // startedPQWalk deals a room of two and hands back the evening, its code, and the token of whoever reads.
 func startedPQWalk(t *testing.T) (http.Handler, string, string, quizSessionResponse) {
 	t.Helper()
 
-	h, _ := newQuizServer(t)
+	h, _, code, host, guest, session := startedPQPair(t)
+
+	reader := guest.Token
+	if session.Players[session.QuizMasterSeat].UserID == host.User.ID {
+		reader = host.Token
+	}
+
+	return h, code, reader, session
+}
+
+// startedPQPair deals a room of two and hands back the database and both players as well.
+func startedPQPair(t *testing.T) (http.Handler, *gorm.DB, string, sessionResponse, sessionResponse, quizSessionResponse) {
+	t.Helper()
+
+	h, db := newQuizServer(t)
 	host := newGuestSession(t, h)
 	guest := newGuestSession(t, h)
 	quiz := aQuiz(t, h, host.Token, "locale=nl")
@@ -40,12 +56,7 @@ func startedPQWalk(t *testing.T) (http.Handler, string, string, quizSessionRespo
 		t.Fatalf("current round = %d, want round %d to open the evening", session.CurrentRound, pubquizr.RoundOpen)
 	}
 
-	reader := guest.Token
-	if session.Players[session.QuizMasterSeat].UserID == host.User.ID {
-		reader = host.Token
-	}
-
-	return h, code, reader, session
+	return h, db, code, host, guest, session
 }
 
 func readPQSession(t *testing.T, h http.Handler, code, token string) quizSessionResponse {
@@ -109,5 +120,65 @@ func TestPQSessionSaysNobodyTookAQuestionThatBeatTheTable(t *testing.T) {
 	}
 	if settled.Previous.CorrectSeat != nil {
 		t.Errorf("previous correctSeat = %d, want nobody", *settled.Previous.CorrectSeat)
+	}
+}
+
+func TestPQSessionNamesWhoTookThePreviousQuestionInRoundTwo(t *testing.T) {
+	h, db, code, host, guest, session := startedPQPair(t)
+
+	err := db.Model(&pubquizr.Session{}).Where("id = ?", session.ID).
+		Updates(map[string]any{"current_round": pubquizr.RoundChoice, "current_position": 0}).Error
+	if err != nil {
+		t.Fatalf("move to round 2: %v", err)
+	}
+
+	session = readPQSession(t, h, code, host.Token)
+	if session.Previous != nil {
+		t.Errorf("previous = %+v, want none on the round's first question", session.Previous)
+	}
+
+	// Round 2 is settled on the answerer's own phone.
+	asked := *session.AnsweringSeat
+	answerer := guest.Token
+	if session.Players[asked].UserID == host.User.ID {
+		answerer = host.Token
+	}
+
+	settled := settlePQOpen(t, h, code, answerer, session, fmt.Sprintf(`"missedSeats":[],"correctSeat":%d`, asked))
+
+	if settled.Previous == nil {
+		t.Fatal("previous = nil, want the question just settled")
+	}
+	if settled.Previous.SessionQuestionID != session.TurnQuestionIDs[0] {
+		t.Errorf("previous question = %s, want %s", settled.Previous.SessionQuestionID, session.TurnQuestionIDs[0])
+	}
+	if settled.Previous.CorrectSeat == nil || *settled.Previous.CorrectSeat != asked {
+		t.Errorf("previous correctSeat = %v, want %d", settled.Previous.CorrectSeat, asked)
+	}
+}
+
+func TestPQRoundTwoWithoutAScreenPassesToEveryPlayer(t *testing.T) {
+	h, db, code, host, guest, session := startedPQPair(t)
+
+	err := db.Model(&pubquizr.Session{}).Where("id = ?", session.ID).
+		Updates(map[string]any{"current_round": pubquizr.RoundChoice, "current_position": 0}).Error
+	if err != nil {
+		t.Fatalf("move to round 2: %v", err)
+	}
+
+	session = readPQSession(t, h, code, host.Token)
+	first := *session.AnsweringSeat
+	last := 1 - first
+
+	// Nobody reads round 2 on phones alone, so the question beats the table only once both players have missed it.
+	answerer := guest.Token
+	if session.Players[last].UserID == host.User.ID {
+		answerer = host.Token
+	}
+
+	settled := settlePQOpen(t, h, code, answerer, session, fmt.Sprintf(`"missedSeats":[%d,%d],"correctSeat":null`, first, last))
+
+	if settled.Previous == nil || settled.Previous.CorrectSeat != nil {
+		t.Errorf("previous = %+v, want the question to have beaten the table", settled.Previous)
 	}
 }

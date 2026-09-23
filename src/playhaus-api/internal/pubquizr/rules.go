@@ -339,6 +339,15 @@ func AnsweringSeat(quizMasterSeat, hotSeat, attempts, players int) int {
 		return -1
 	}
 
+	// A negative quizmaster is nobody reading, so the question goes to every seat once.
+	if quizMasterSeat < 0 {
+		if attempts >= players {
+			return -1
+		}
+
+		return wrap(hotSeat+attempts, players)
+	}
+
 	if attempts >= players-1 {
 		return -1
 	}
