@@ -145,6 +145,12 @@ services:
             # hand with ./set-env.sh BESZEL_TOKEN. Not a GitHub secret: nobody but the
             # hub can produce it.
             TOKEN: ${BESZEL_TOKEN}
+            # The hub's own ed25519 public key, and required even in token mode -- the
+            # agent refuses to start without it ("Failed to load public keys"). The token
+            # is how the hub knows the agent; this is how the agent knows the hub, so that
+            # anything else reaching the listener cannot drive it. Both come from the same
+            # Add System dialog; also at GET /api/beszel/getkey when logged in.
+            KEY: ${BESZEL_KEY}
         volumes:
             - beszel-agent-data:/var/lib/beszel-agent
             # :ro stops the socket file being replaced and nothing else -- a unix socket

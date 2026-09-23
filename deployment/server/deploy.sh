@@ -63,18 +63,22 @@ docker compose up -d --no-deps caddy
 # way. Both lines swallow their failure on purpose: the dashboard watching the deploy must
 # never be the thing that fails one.
 #
-# The hub goes up unconditionally, because its first run is where the agent's token comes
-# from. The agent waits for that token to exist -- started without one it would only
-# restart-loop, and the reason would be three levels down in a log nobody is reading.
+# The hub goes up unconditionally, because its first run is where the agent's credentials
+# come from. The agent waits for both of them to exist -- started without them it would
+# only restart-loop, and the reason would be three levels down in a log nobody is reading.
+# It needs both: TOKEN identifies the agent to the hub, KEY identifies the hub to the
+# agent, and missing either is the same restart loop.
 docker compose up -d --no-deps beszel ||
 	echo "warning: beszel hub did not start -- check 'docker compose logs beszel'" >&2
 
-if grep -q "^BESZEL_TOKEN=" .env; then
+if grep -q "^BESZEL_TOKEN=" .env && grep -q "^BESZEL_KEY=" .env; then
 	docker compose up -d --no-deps beszel-agent ||
 		echo "warning: beszel agent did not start -- check 'docker compose logs beszel-agent'" >&2
 else
-	echo "note: no BESZEL_TOKEN in .env, so beszel-agent is not started. Add the system at" >&2
-	echo "      https://stats.\${DOMAIN}, then: printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN" >&2
+	echo "note: beszel-agent is not started -- .env needs both BESZEL_TOKEN and BESZEL_KEY." >&2
+	echo "      Add the system at https://stats.\${DOMAIN}; the dialog shows both. Then:" >&2
+	echo "        printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN" >&2
+	echo "        printf '%s' 'ssh-ed25519 <key>' | ./set-env.sh BESZEL_KEY" >&2
 fi
 
 # And then make it re-read its config, which the line above does not do. The Caddyfile is

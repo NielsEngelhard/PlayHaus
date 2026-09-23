@@ -378,8 +378,18 @@ First run, once:
    you do, the setup wizard belongs to whoever reaches it first, and there is nothing in
    front of it. This is the one genuinely exposed minute in the whole setup; do not deploy
    the `stats` block and then go to lunch.
-3. Add a system: name it, host `127.0.0.1`, port `45876`. Copy the token it generates.
-4. On the droplet: `printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN`
+3. Add a system: name it, host `127.0.0.1`, port `45876`. The dialog shows a compose
+   snippet containing **two** values you need — `TOKEN` and `KEY`. Copy both. The agent
+   refuses to start without the key (`Failed to load public keys`) even though the token
+   is what registers it: the token proves the agent to the hub, the key proves the hub to
+   the agent. The key is also at `GET /api/beszel/getkey` while logged in.
+4. On the droplet, both of them:
+
+   ```sh
+   printf '%s' '<token>'          | ./set-env.sh BESZEL_TOKEN
+   printf '%s' 'ssh-ed25519 <key>' | ./set-env.sh BESZEL_KEY
+   ```
+
 5. `docker compose up -d --no-deps beszel-agent`, then
    `docker compose logs beszel-agent` for a clean registration.
 
