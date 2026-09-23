@@ -55,7 +55,6 @@ export default function ControlWatch({ message, place, seat }: Props) {
 
 const useStyles = createThemedStyles(theme => ({
     stage: {
-        marginTop: Spacing.three,
         flex: 1,
         minHeight: 0,
         alignItems: 'center',

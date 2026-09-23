@@ -88,9 +88,9 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
     const [opening] = session.turnQuestionIds;
     const master = seatAt(seats, session.quizMasterSeat);
 
-    function frame(key: string, strip: ReactNode | null, board: ReactNode) {
+    function frame(key: string, strip: ReactNode | null, board: ReactNode, centered = false) {
         return fade(key, (
-            <BoardFrame label={label} onClose={onLeave} segments={segments} strip={strip}>
+            <BoardFrame centered={centered} label={label} onClose={onLeave} segments={segments} strip={strip}>
                 {board}
             </BoardFrame>
         ))
@@ -98,7 +98,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
     function fade(key: string, node: ReactNode) {
         return (
-            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key}>
+            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key} style={styles.fill}>
                 {node}
             </SlideFadeIn>
         )
@@ -193,7 +193,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                 title={kind}
                 message={t('pubquizr.control.roundStarting', { name: master.name })}
             />
-        ))
+        ), true)
     }
 
     // Rounds 1, 2 and 7 are the same question down a different line.
@@ -455,16 +455,22 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(`doubledown-watch:${session.currentPosition}`, strip, <DoubleDownWatchBoard answering={asking.answering} />);
+        return frame(`doubledown-watch:${session.currentPosition}`, strip, <DoubleDownWatchBoard answering={asking.answering} />, true);
     }
 
     // A round this build cannot draw a board for: say whose it is rather than nothing.
     return frame(`spotlight:${round}`, null, (
         <BoardSpotlight seat={master} title={kind} message={brief} />
-    ))
+    ), true)
 }
 
 const useStyles = createThemedStyles(() => ({
+    // `SlideFadeIn` only animates, so without this every screen here is only as tall as its content.
+    fill: {
+        flex: 1,
+        width: '100%'
+    },
+
     // The band gets gutters of its own here, because `RoundStandings` lays its own down.
     band: {
         width: '100%',

@@ -115,7 +115,7 @@ export default function OneDeviceQuizPage() {
 
     function fade(key: string, node: ReactNode) {
         return (
-            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key}>
+            <SlideFadeIn offsetY={14} durationMs={240} replayKey={key} style={styles.fill}>
                 {node}
             </SlideFadeIn>
         )
@@ -481,6 +481,12 @@ export default function OneDeviceQuizPage() {
 }
 
 const useStyles = createThemedStyles(theme => ({
+    // `SlideFadeIn` only animates, so without this every screen here is only as tall as its content.
+    fill: {
+        flex: 1,
+        width: '100%'
+    },
+
     // The gap is the header's: its band ends on a hard line rather than in the slack the old 58pt row carried inside itself.
     board: {
         flex: 1,

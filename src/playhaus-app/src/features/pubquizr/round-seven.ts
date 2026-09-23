@@ -101,6 +101,7 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         alwaysNextUp: null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
+        twoPlayer: seats.length === 2,
         worth: finalePointsFor(seats.length)
     };
 }

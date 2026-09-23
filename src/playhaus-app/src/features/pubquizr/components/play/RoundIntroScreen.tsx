@@ -15,6 +15,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const FINALIST_STAGGER_MS = 140;
 const FINALIST_ENTER_MS = 320;
 
+const BUTTON_HEIGHT = 64;
+const BOTTOM_PADDING = 26;
+
 interface Props {
     round: number
     /** How many rounds the evening has in it, for "of 6" under the number. */
@@ -59,7 +62,8 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
 
     return (
         <View style={[styles.screen, { backgroundColor: tone.fill, paddingTop: insets.top }]}>
-            <View style={styles.header} />
+            {/* As tall as everything under the body, notch included, so the body sits in the middle of the phone. */}
+            <View style={[styles.header, { height: Math.max(0, BUTTON_HEIGHT + BOTTOM_PADDING - insets.top) }]} />
 
             <View style={styles.body}>
                 {/* The number is the headline. */}
@@ -178,12 +182,10 @@ const useStyles = createThemedStyles(() => ({
         flex: 1,
         alignItems: 'center',
         paddingHorizontal: Spacing.four + 4,
-        paddingBottom: 26
+        paddingBottom: BOTTOM_PADDING
     },
 
-    // Stands in for the band the play screen has.
     header: {
-        height: 58,
         flexShrink: 0
     },
 
@@ -318,7 +320,7 @@ const useStyles = createThemedStyles(() => ({
     // Ink fill in every tone, the same as the hand-off's.
     button: {
         width: '100%',
-        height: 64,
+        height: BUTTON_HEIGHT,
         flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',

@@ -88,6 +88,7 @@ export function doubleDownTurnOf(
         alwaysNextUp: null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
+        twoPlayer: seats.length === 2,
         worth: doubleDownPointsFor(question.difficulty)
     };
 }

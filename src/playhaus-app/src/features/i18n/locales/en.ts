@@ -937,7 +937,6 @@ export const en = {
             },
             /** The gate in front of the verdict. */
             validate: 'Assess',
-            validateHint: 'Then mark it right or wrong',
             validateLocked: 'Show the answer first',
             wrong: 'Wrong',
             correct: 'Correct',
@@ -947,12 +946,6 @@ export const en = {
             wrongPassesTo: 'Wrong passes the turn to {{name}}',
             /** Nobody left to ask: the question dies here rather than passing on. */
             wrongEndsQuestion: 'Nobody else to ask, wrong ends this question',
-            // `PassOnPrompt`, rounds 1 and 6 only: the one thing on screen after a wrong answer that still has somebody left to ask.
-            passOn: 'Now {{name}} can guess',
-            /** The line underneath, saying why the button says what it says. */
-            passOnHint: '{{name}} had it wrong · tap to continue',
-            /** The button's accessibility label, said whole rather than split in two. */
-            passOnSpoken: 'Now {{to}} can guess the same question, because {{from}} had it wrong. Tap to continue.',
             // `HotSeatBoard`'s band, card and `SeatPickRow`: the question is put to the table and ruled once.
             tableRound: 'The table has gone round',
             whoGotIt: 'Ask {{name}} first',

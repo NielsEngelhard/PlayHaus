@@ -7,7 +7,8 @@ import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { ScrollView, View } from "react-native";
 
 const LEAD_AVATAR = 20;
 const PATH_AVATAR = 34;
@@ -19,6 +20,7 @@ const STOP_WIDTH = 52;
 const CAPS_SIZE = 9;
 const SMALL_SIZE = 10;
 const RING_WIDTH = 1.5;
+const ARROW = 14;
 
 /** The turn as one line of people: who asks, and the order the question walks the table in. */
 export interface TurnOrder {
@@ -59,6 +61,20 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
     const t = useT();
     const theme = useTheme();
     const styles = useStyles();
+
+    const scroller = useRef<ScrollView>(null);
+    const stops = useRef(new Map<number, number>());
+    const [viewWidth, setViewWidth] = useState(0);
+
+    const current = order?.current ?? null;
+
+    // Brings whoever has the question into view on a table too long for one row; a row that fits has nowhere to scroll.
+    useEffect(() => {
+        const x = current === null ? undefined : stops.current.get(current);
+        if (x === undefined || viewWidth === 0) return;
+
+        scroller.current?.scrollTo({ x: Math.max(0, x + STOP_WIDTH / 2 - viewWidth / 2), animated: true });
+    }, [current, viewWidth]);
 
     const nameOf = (seat: Seat) => seat.seat === mySeat ? t('pubquizr.board.you') : seat.name;
 
@@ -101,42 +117,56 @@ export default function TurnOrderStrip({ mySeat, order, pair }: Props) {
             </View>
 
             {order.path.length > 0 && (
-                <View style={styles.path}>
-                    <View pointerEvents="none" style={styles.line} />
-
+                // One row whatever the table's size: centred while it fits, and scrolled sideways once it does not.
+                <ScrollView
+                    ref={scroller}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.path}
+                    onLayout={event => setViewWidth(event.nativeEvent.layout.width)}
+                >
                     {order.path.map((seat, index) => {
                         const now = seat.seat === order.current;
                         const out = missed.has(seat.seat);
 
                         return (
-                            // Keyed on the seat's `now` status, so the marker visibly lifts as the turn walks onto it.
-                            <SlideFadeIn
-                                key={seat.seat}
-                                style={styles.stop}
-                                offsetY={-6}
-                                durationMs={220}
-                                replayKey={`${seat.seat}-${now}`}
-                            >
-                                <View style={out && styles.faded}>
-                                    <SeatAvatar seat={seat} size={PATH_AVATAR} raised={now} />
-
-                                    <View style={[styles.badge, now && styles.badgeNow]}>
-                                        {out
-                                            ? <Feather name="x" size={10} color={Brand.ink} />
-                                            : <AppText style={styles.badgeText}>{index + 1}</AppText>}
+                            <Fragment key={seat.seat}>
+                                {index > 0 && (
+                                    <View style={[styles.arrow, out && styles.faded]}>
+                                        <Feather name="arrow-right" size={ARROW} color={theme.colors.textMuted} />
                                     </View>
-                                </View>
+                                )}
 
-                                <AppText
-                                    style={[styles.stopName, (now || seat.seat === mySeat) && styles.stopNameStrong, out && styles.faded]}
-                                    numberOfLines={1}
-                                >
-                                    {nameOf(seat)}
-                                </AppText>
-                            </SlideFadeIn>
+                                <View onLayout={event => stops.current.set(seat.seat, event.nativeEvent.layout.x)}>
+                                    {/* Keyed on the seat's `now` status, so the marker visibly lifts as the turn walks onto it. */}
+                                    <SlideFadeIn
+                                        style={styles.stop}
+                                        offsetY={-6}
+                                        durationMs={220}
+                                        replayKey={`${seat.seat}-${now}`}
+                                    >
+                                        <View style={out && styles.faded}>
+                                            <SeatAvatar seat={seat} size={PATH_AVATAR} raised={now} />
+
+                                            <View style={[styles.badge, now && styles.badgeNow]}>
+                                                {out
+                                                    ? <Feather name="x" size={10} color={Brand.ink} />
+                                                    : <AppText style={styles.badgeText}>{index + 1}</AppText>}
+                                            </View>
+                                        </View>
+
+                                        <AppText
+                                            style={[styles.stopName, (now || seat.seat === mySeat) && styles.stopNameStrong, out && styles.faded]}
+                                            numberOfLines={1}
+                                        >
+                                            {nameOf(seat)}
+                                        </AppText>
+                                    </SlideFadeIn>
+                                </View>
+                            </Fragment>
                         )
                     })}
-                </View>
+                </ScrollView>
             )}
         </View>
     )
@@ -225,20 +255,21 @@ const useStyles = createThemedStyles(theme => ({
         color: theme.colors.textMuted
     },
 
+    // The top padding keeps the badge, which sits above the avatar, inside what the scroller clips.
     path: {
+        flexGrow: 1,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'space-between'
+        justifyContent: 'center',
+        gap: Spacing.one,
+        paddingTop: Spacing.two,
+        paddingHorizontal: Spacing.one
     },
 
-    // Runs between the first and last avatar's centres, behind them.
-    line: {
-        position: 'absolute',
-        left: STOP_WIDTH / 2,
-        right: STOP_WIDTH / 2,
-        top: PATH_AVATAR / 2,
-        height: 2,
-        backgroundColor: theme.colors.borderMuted
+    // As tall as an avatar, so the arrow points from centre to centre rather than at the names.
+    arrow: {
+        height: PATH_AVATAR,
+        justifyContent: 'center'
     },
 
     stop: {

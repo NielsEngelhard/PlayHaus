@@ -206,7 +206,7 @@ export default function QuizControlView({ code }: Props) {
         }
 
         return (
-            <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
+            <ControlFrame centered chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={null}>
                 <ControlWatch
                     message={t('pubquizr.control.roundStarting', { name: master.name })}
                     place={null}
@@ -416,7 +416,7 @@ export default function QuizControlView({ code }: Props) {
     }
 
     return (
-        <ControlFrame chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={turn}>
+        <ControlFrame centered chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={turn}>
             <ControlWatch
                 message={waitingMessage(t, answering, table.mySeat)}
                 place={placeIn(t, walking, table.mySeat)}

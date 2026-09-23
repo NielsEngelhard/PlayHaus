@@ -5,7 +5,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { View } from "react-native";
 
 /** Everything the strip says about the turn, which is everything about it that is not the question. */
@@ -24,6 +24,8 @@ export interface ControlTurn {
 }
 
 interface Props {
+    /** Centres the children on the whole phone rather than on the room left under the band. */
+    centered?: boolean
     children: ReactNode
     /** The band's right-hand slot: the screen pill, when the table has a screen. */
     chip?: ReactNode
@@ -37,28 +39,35 @@ interface Props {
 }
 
 // The top of every controller: the way out, where the evening has got to, and the turn.
-export default function ControlFrame({ children, chip, label, note, onClose, segments, turn }: Props) {
+export default function ControlFrame({ centered, children, chip, label, note, onClose, segments, turn }: Props) {
     const styles = useStyles();
     const t = useT();
 
+    const [top, setTop] = useState(0);
+
     return (
         <View style={styles.board}>
-            <InGameHeader
-                onClose={onClose}
-                closeLabel={t('pubquizr.play.close')}
-                label={label}
-                // A note reads right under the band, which the fill would otherwise run across.
-                overlap={note === undefined ? undefined : 0}
-                segments={segments}
-            >
-                {chip}
-            </InGameHeader>
+            <View style={styles.top} onLayout={event => setTop(event.nativeEvent.layout.height)}>
+                <InGameHeader
+                    onClose={onClose}
+                    closeLabel={t('pubquizr.play.close')}
+                    label={label}
+                    // A note reads right under the band, which the fill would otherwise run across.
+                    overlap={note === undefined ? undefined : 0}
+                    segments={segments}
+                >
+                    {chip}
+                </InGameHeader>
 
-            {note !== undefined && <TextHint text={note} />}
+                {note !== undefined && <TextHint text={note} />}
 
-            {turn !== null && <TurnStrip {...turn} />}
+                {turn !== null && <TurnStrip {...turn} />}
+            </View>
 
             {children}
+
+            {/* Mirrors the band so the children's middle is the phone's middle, and gives way first when the phone is short. */}
+            {centered && <View style={[styles.balance, { height: top }]} />}
         </View>
     )
 }
@@ -70,5 +79,13 @@ const useStyles = createThemedStyles(() => ({
         gap: Spacing.three - 4,
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.four
+    },
+
+    top: {
+        gap: Spacing.three - 4
+    },
+
+    balance: {
+        flexShrink: 1
     }
 }))

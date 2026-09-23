@@ -71,6 +71,8 @@ export interface HotSeatTurn {
     /** 1-based, for "question 3 of 20". */
     number: number
     total: number
+    // Only a two-player table rules with Wrong / Correct; every other table picks the seat that got it.
+    twoPlayer: boolean
     /** What taking this one pays, which may be nothing but the seat. */
     worth: number
 }
@@ -133,6 +135,7 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
             : null,
         number: session.currentPosition + 1,
         total: session.turnsInRound,
+        twoPlayer: seats.length === 2,
         worth: worthOf(session.currentRound, session.currentPosition + 1)
     };
 }
