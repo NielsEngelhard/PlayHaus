@@ -7,6 +7,8 @@ import {
 import { useAuth } from "@/features/auth/useAuth";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
+import { applyVoteResult, isLocalGameId, voteOutOffline } from "@/features/one-of-us/offline-game";
+import { readOfflineGame, writeOfflineGame } from "@/features/one-of-us/offline-store";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface PlayableOneOfUsGame {
@@ -23,7 +25,7 @@ export interface PlayableOneOfUsGame {
     reload: () => void
 }
 
-// One game of One of Us, played off one phone.
+// One game of One of Us, played off one phone. A `local-` id means this phone dealt it itself, and then nothing here touches the network.
 export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame {
     const { status: auth } = useAuth();
 
@@ -40,17 +42,19 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
         return () => { mounted.current = false; };
     }, []);
 
-    // Only a signed-in session may ask for this one: the endpoint is behind auth.
+    const local = isLocalGameId(gameId);
+
+    // Only a signed-in session may ask for a server game: that endpoint is behind auth. A local one answers to nobody.
     const signedIn = auth === 'signedIn';
 
     useEffect(() => {
-        if (!signedIn) return;
+        if (!local && !signedIn) return;
 
         let current = true;
 
         void (async () => {
             try {
-                const loaded = await getSingleDeviceOneOfUsGame(gameId);
+                const loaded = local ? await loadOffline(gameId) : await getSingleDeviceOneOfUsGame(gameId);
                 if (!current || !mounted.current) return;
 
                 setGame(loaded);
@@ -64,7 +68,7 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
 
         // Nothing to abort — `request` has no signal — so dropping the answer is the whole of the tidy-up.
         return () => { current = false; };
-    }, [gameId, attempt, signedIn]);
+    }, [gameId, attempt, signedIn, local]);
 
     const voteOut = useCallback(async (playerId: string): Promise<VoteOutResult | null> => {
         if (voting || game === null) return null;
@@ -73,7 +77,10 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
         setVoteError(null);
 
         try {
-            const result = await voteOutPlayerSingleDeviceOneOfUsGame(playerId, game.id);
+            const result = local
+                ? voteOutOffline(game, playerId)
+                : await voteOutPlayerSingleDeviceOneOfUsGame(playerId, game.id);
+
             if (!mounted.current) return null;
 
             if (result === null) {
@@ -82,16 +89,11 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
             }
 
             // Marked here rather than refetched.
-            setGame(current => current === null ? current : {
-                ...current,
-                finishedAt: result.gameEnded ? new Date().toISOString() : current.finishedAt,
-                civiliansWon: result.gameEnded ? result.civiliansWon : current.civiliansWon,
-                players: current.players.map(player => ({
-                    ...player,
-                    isVotedOut: player.isVotedOut || player.playerId === result.playerId,
-                    isMayor: player.playerId === result.mayorPlayerId
-                }))
-            });
+            const next = applyVoteResult(game, result);
+            setGame(next);
+
+            // The store is the only record a local game has, so it has to keep up with the board.
+            if (local) void writeOfflineGame(next);
 
             return result;
         } catch (failure) {
@@ -102,7 +104,7 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
         } finally {
             if (mounted.current) setVoting(false);
         }
-    }, [voting, game]);
+    }, [voting, game, local]);
 
     const reload = useCallback(() => {
         setError(null);
@@ -112,4 +114,11 @@ export function useSingleDeviceOneOfUsGame(gameId: string): PlayableOneOfUsGame 
     const status = game !== null ? 'ready' : error !== null ? 'failed' : 'loading';
 
     return { game, status, error, voting, voteError, voteOut, reload };
+}
+
+// A stored game answers to its own id only, so a link to one this phone has since replaced says the game is gone.
+async function loadOffline(gameId: string): Promise<OneOfUsSingleDeviceGame | null> {
+    const stored = await readOfflineGame();
+
+    return stored !== null && stored.id === gameId ? stored : null;
 }

@@ -59,6 +59,11 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   return body as T;
 }
 
+/** Whether the request never reached the API. `fetch` rejects with a `TypeError` when the host is unreachable, so anything that is not an `ApiError` got no answer at all. */
+export function isNetworkError(error: unknown): boolean {
+  return !(error instanceof ApiError);
+}
+
 // The machine-readable tag on a refusal, when the API attached one.
 export function apiErrorCode(error: unknown): string | undefined {
   if (!(error instanceof ApiError)) return undefined;

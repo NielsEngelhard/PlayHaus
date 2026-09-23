@@ -1,4 +1,6 @@
+import { promptModeFor } from "@/api/calls/one-of-us-prompts";
 import { createSingleDeviceOneOfUsGame } from "@/api/calls/one-of-us-single-device";
+import { isNetworkError } from "@/api/client";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
@@ -14,6 +16,7 @@ import RolesSettingRow from "@/features/one-of-us/components/RolesSettingRow";
 import TableRingPreview from "@/features/one-of-us/components/TableRingPreview";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import type { OneOfUsRole } from "@/features/one-of-us/models";
+import { cachePrompts, ensurePrompts, startOfflineGame } from "@/features/one-of-us/offline-play";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
 import { DEFAULT_ENABLED_ROLES, MAX_PLAYERS, MIN_PLAYERS, toggleRole } from "@/features/one-of-us/oou-settings";
 import { readTable, writeTable } from "@/features/one-of-us/table-store";
@@ -58,6 +61,8 @@ export default function OneOfUsSingleDeviceIndexPage() {
         const seated = seatedNames(names);
         void writeTable(seated);
 
+        const mode = promptModeFor(wordsOnly);
+
         try {
             const gameId = await createSingleDeviceOneOfUsGame({
                 locale: language,
@@ -72,14 +77,41 @@ export default function OneOfUsSingleDeviceIndexPage() {
                 return;
             }
 
+            // Restock while there is a network to restock from, so the next table can be dealt without one.
+            void cachePrompts(language, mode);
+
             // `push`, so the back gesture returns to this form.
             router.push(ROUTES.oneOfUsPlaySingleDeviceGame(gameId) as RelativePathString)
         } catch (failure) {
+            // Nothing about this game is the server's to decide, so an unreachable one only costs the prompt it would have drawn.
+            if (isNetworkError(failure)) {
+                const offline = await startOfflineGame({
+                    enabledRoles: roles,
+                    locale: language,
+                    mode,
+                    ownerId: auth.user?.id ?? '',
+                    playerNames: seated
+                });
+
+                if (offline !== null) {
+                    router.push(ROUTES.oneOfUsPlaySingleDeviceGame(offline.id) as RelativePathString)
+                    return;
+                }
+
+                setError('oneOfUs.errors.offlineUnavailable');
+                return;
+            }
+
             setError(oneOfUsErrorMessage(failure));
         } finally {
             setStarting(false)
         }
     }
+
+    // Stocked on arrival rather than on the first game that needs it, which is by definition one being started with no network.
+    useEffect(() => {
+        void ensurePrompts(language, promptModeFor(wordsOnly));
+    }, [language, wordsOnly]);
 
     // Last week's table, if this phone remembers one.
     const seeded = useRef(false);

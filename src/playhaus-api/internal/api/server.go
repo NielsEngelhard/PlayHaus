@@ -121,6 +121,9 @@ func (s *Server) AddLeagueOfLettersHandlers() {
 	s.mux.HandleFunc("DELETE /api/v1/league-of-letters/solo/{gameID}", s.requireAuth(s.handleDeleteSoloGame))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/solo/{gameID}/guesses", s.requireAuth(s.handleSubmitGuess))
 
+	// The guessable list, so the app can refuse a non-word without a round trip. Registered before {gameID} patterns would ever see it.
+	s.mux.HandleFunc("GET /api/v1/league-of-letters/dictionary/{locale}/{length}", s.requireAuth(s.handleGetDictionary))
+
 	// Word of the day -- one word, one attempt, and the server resolves both from the session and the date.
 	s.mux.HandleFunc("GET /api/v1/league-of-letters/word-of-the-day", s.requireAuth(s.handleGetWordOfTheDay))
 	s.mux.HandleFunc("POST /api/v1/league-of-letters/word-of-the-day", s.requireAuth(s.handleStartWordOfTheDay))
@@ -178,6 +181,9 @@ func (s *Server) AddPubquizRHandlers() {
 }
 
 func (s *Server) AddOneOfUsHandlers() {
+	// A pack of prompts to keep, so a table can be dealt while the phone is offline.
+	s.mux.HandleFunc("GET /api/v1/one-of-us/prompts/{locale}/{mode}", s.requireAuth(s.handleGetOneOfUsPrompts))
+
 	// Single device game
 	s.mux.HandleFunc("POST /api/v1/one-of-us/single-device", s.requireAuth(s.handleCreateOneOfUsOneDeviceGame))
 	s.mux.HandleFunc("GET /api/v1/one-of-us/single-device/{gameID}", s.requireAuth(s.handleGetSingleDeviceOneOfUsGame))

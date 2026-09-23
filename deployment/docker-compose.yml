@@ -32,6 +32,7 @@ services:
             - '8080'
         environment:
             DATABASE_URL: postgres://playhaus:playhaus@db:5432/playhausdb?sslmode=disable
+            DB_MAX_CONNS: '10'
             LOL_DEV_MODE: 'false'
             ALLOWED_ORIGINS: ''
         depends_on:

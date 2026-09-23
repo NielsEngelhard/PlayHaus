@@ -1368,7 +1368,8 @@ export const nl: Catalog = {
             gameGone: 'Dat spel bestaat niet meer.',
             badTable: 'Die tafel kan niet gedeeld worden. Check de namen en probeer opnieuw.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je internet.'
+            network: 'Geen verbinding met de server. Check je internet.',
+            offlineUnavailable: 'Geen verbinding, en deze telefoon heeft geen opdrachten bewaard voor die taal. Speel één spel online, dan werkt het daarna overal.'
         }
     },
     fakeFiller: {

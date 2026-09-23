@@ -171,6 +171,17 @@ export async function abandonGame(gameId: string): Promise<void> {
     await request<void>(`/api/v1/league-of-letters/solo/${gameId}`, { method: 'DELETE' });
 }
 
+// The guessable list for one language and length. Not the answers -- this is what the server validates a guess against.
+export interface Dictionary {
+    locale: LanguageCode
+    wordLength: number
+    words: string[]
+}
+
+export function getDictionary(locale: LanguageCode, wordLength: number): Promise<Dictionary> {
+    return request<Dictionary>(`/api/v1/league-of-letters/dictionary/${locale}/${wordLength}`);
+}
+
 // Submits a guess against the game's current round.
 export function submitGuess(gameId: string, word: string): Promise<GuessResult> {
     return request<GuessResult>(`/api/v1/league-of-letters/solo/${gameId}/guesses`, {

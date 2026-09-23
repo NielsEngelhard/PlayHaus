@@ -1,8 +1,8 @@
 import * as authApi from '@/api/calls/auth';
 import type { AuthSession, User } from '@/api/calls/auth';
-import { setTokenGetter } from '@/api/client';
+import { isNetworkError, setTokenGetter } from '@/api/client';
 import type { LanguageCode } from '@/constants/languages';
-import { clearToken, readToken, writeToken } from '@/features/auth/token-store';
+import { clearCachedUser, clearToken, readCachedUser, readToken, writeCachedUser, writeToken } from '@/features/auth/token-store';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
 // `restoring` is its own state rather than a flavour of signed-out.
@@ -70,10 +70,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                 setUser(account);
                 setStatus('signedIn');
-            } catch {
+            } catch (error) {
+                // An unreachable API says nothing about the session, so the token outlives the failure and the last known user stands in for the answer `me` could not give.
+                if (isNetworkError(error)) {
+                    const cached = await readCachedUser();
+                    if (cancelled) return;
+
+                    if (cached !== null) {
+                        setUser(cached);
+                        setStatus('signedIn');
+                        return;
+                    }
+
+                    setStatus('signedOut');
+                    return;
+                }
+
                 // Expired, revoked, or the account is gone.
                 currentToken = null;
                 await clearToken();
+                await clearCachedUser();
 
                 if (cancelled) return;
                 setStatus('signedOut');
@@ -82,6 +98,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         return () => { cancelled = true; };
     }, []);
+
+    // The cache trails whoever is signed in, so an offline launch has a name to restore. Clearing it belongs to the two paths that end a session, not here.
+    useEffect(() => {
+        if (user === null) return;
+        void writeCachedUser(user);
+    }, [user]);
 
     /** Everything that starts a session ends here, so persistence can't be forgotten. */
     const adopt = useCallback(async (session: AuthSession) => {
@@ -128,6 +150,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         currentToken = null;
         await clearToken();
+        await clearCachedUser();
 
         setUser(null);
         setStatus('signedOut');

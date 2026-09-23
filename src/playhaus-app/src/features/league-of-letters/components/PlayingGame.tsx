@@ -23,6 +23,7 @@ import SoloStatusRow from "@/features/league-of-letters/components/SoloStatusRow
 import WordLengthChip from "@/features/league-of-letters/components/WordLengthChip";
 import { guessErrorMessage } from "@/features/league-of-letters/game-errors";
 import { keyboardMarks } from "@/features/league-of-letters/marks";
+import { isKnownWord, useDictionary } from "@/features/league-of-letters/useDictionary";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { playYourTurn } from "@/utils/your-turn-sound";
@@ -107,6 +108,9 @@ export default function PlayingGame({
 
     // The letter the round opens with.
     const firstLetter = round.firstLetter.toUpperCase();
+
+    // Fetched once per language and length, so a non-word is refused on the spot instead of by a 400.
+    const dictionary = useDictionary(game.locale, game.wordLength);
 
     /** Empty until the player types. The hint is theirs to put down, not ours. */
     const [draft, setDraft] = useState('');
@@ -289,6 +293,12 @@ export default function PlayingGame({
         const played = rows.find(guess => !guess.skipped && guess.word.toUpperCase() === draft);
         if (played !== undefined) {
             setNotice({ key: played.userId === userId ? 'lol.game.alreadyGuessedYou' : 'lol.game.alreadyGuessed' });
+            return;
+        }
+
+        // The same list the server checks against, so a non-word costs no round trip. An unloaded list says yes and lets the server rule.
+        if (!isKnownWord(dictionary, draft)) {
+            setNotice({ key: 'lol.errors.invalidWord' });
             return;
         }
 

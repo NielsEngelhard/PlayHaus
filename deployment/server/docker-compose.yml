@@ -42,6 +42,14 @@ services:
             # never migrates: deploy.sh runs ph-migrate from the same image first, and the
             # API refuses to start on a schema that is behind.
             DATABASE_URL: ${DATABASE_URL}
+
+            # config.go defaults this to 1, which serialises every request in the whole
+            # API behind a single Postgres connection -- one slow query blocks every other
+            # player. Ten is well under a managed database's connection cap and there is
+            # only ever one api container. SetMaxIdleConns matches it, so these are held
+            # open rather than reopened per request.
+            DB_MAX_CONNS: '10'
+
             DEBUG: 'false'
 
             # config.go defaults this to true, and true means every League of Letters

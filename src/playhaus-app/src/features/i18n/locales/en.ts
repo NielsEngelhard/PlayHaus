@@ -1497,7 +1497,8 @@ export const en = {
             gameGone: 'That game is no longer there.',
             badTable: 'That table cannot be dealt. Check the names and try again.',
             generic: 'Something went wrong. Try again.',
-            network: 'No connection to the server. Check your internet.'
+            network: 'No connection to the server. Check your internet.',
+            offlineUnavailable: 'No connection, and this phone has no prompts saved for that language. Start one game online and the next will work anywhere.'
         }
     },
     fakeFiller: {

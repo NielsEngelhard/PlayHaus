@@ -23,6 +23,9 @@ var wordFiles embed.FS
 // allowedLists caches each parsed guessable list.
 var allowedLists sync.Map // string -> map[string]struct{}
 
+// allowedSlices caches the same lists in file order, for handing to a client.
+var allowedSlices sync.Map // string -> []string
+
 // IsAllowedWord reports whether a word appears in the word list for that language
 func IsAllowedWord(lang i18n.Locale, size int, word string) bool {
 	allowed := allowedWords(lang, size)
@@ -52,6 +55,34 @@ func allowedWords(lang i18n.Locale, size int) map[string]struct{} {
 	}
 
 	allowedLists.Store(key, words)
+	return words
+}
+
+// AllowedWordList answers the guessable list in file order, lowercased and deduplicated. Empty when there is no list for that pair.
+func AllowedWordList(lang i18n.Locale, size int) []string {
+	key := buildWordFilePath(lang, size, All)
+
+	if cached, ok := allowedSlices.Load(key); ok {
+		return cached.([]string)
+	}
+
+	lines, err := readFileAndGetLines(lang, size, All)
+	if err != nil {
+		lines = nil
+	}
+
+	seen := make(map[string]struct{}, len(lines))
+	words := make([]string, 0, len(lines))
+	for _, line := range lines {
+		line = strings.ToLower(line)
+		if _, dup := seen[line]; dup {
+			continue
+		}
+		seen[line] = struct{}{}
+		words = append(words, line)
+	}
+
+	allowedSlices.Store(key, words)
 	return words
 }
 
