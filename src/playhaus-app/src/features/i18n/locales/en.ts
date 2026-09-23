@@ -505,17 +505,20 @@ export const en = {
             },
             // The bar along the top of the bracket.
             title: 'Tournament · {{players}} players',
-            schedule: 'Schedule',
+            bracketKicker: 'Bracket · double elimination',
             nextRoundReady: 'Round {{stage}} can start',
             stageDrawn: 'Round {{stage}} is drawn',
             matchesLeft: '{{done}} of {{total}} matches done · {{left}} still open',
-            winners: 'Winners {{players}}',
-            losers: 'Losers {{players}}',
+            // The bands the bracket is stacked from.
+            winnersRound: 'Winners · round {{stage}}',
+            losersRound: 'Losers · round {{stage}}',
             final: 'Final',
-            stageOne: 'Round {{stage}} · 1 match',
-            stageMany: 'Round {{stage}} · {{matches}} matches',
-            nothingHere: 'Nothing here yet',
-            // One match in a column.
+            settled: 'done',
+            advancing: '{{players}} through',
+            feedsEmpty: 'still empty',
+            yourSide: 'your side',
+            dropsHere: 'Lose round {{stage}} and you drop down here — only a second loss ends it',
+            // One match in the bracket.
             playing: 'Playing',
             upNext: 'Up next',
             bye: 'Free pass to the next round',
@@ -525,9 +528,6 @@ export const en = {
                 message: 'You finished {{place}}. Stay and watch the rest of the bracket play out.'
             },
             // The gate between the draw and the matches.
-            matchup: {
-                title: 'Your round {{stage}} match'
-            },
             startMatches: 'Start the matches',
             waitingForStart: 'Waiting for {{name}} to start',
             startGateOne: '1 match is drawn and starts when the host says so',
@@ -791,6 +791,7 @@ export const en = {
             choosing: '{{name}} is choosing an easy or a hard question',
             clockSoon: 'The clock starts in a moment',
             closestHint: 'Doubles are fine · {{name}} has the answer',
+            currentQuizmaster: '{{name}} is the current quiz master',
             describes: 'Describes',
             describing: '{{describer}} describes, {{guesser}} guesses',
             easy: 'Easy',
@@ -874,6 +875,7 @@ export const en = {
             loading: 'Setting up the table…',
             close: 'Leave the quiz',
             roundLabel: 'Round {{round}} · {{kind}}',
+            roundTitle: 'Round {{round}}: {{kind}}',
             // The one sentence under the shared screen's stage, which says what this round asks of the table.
             rules: {
                 open: 'The quizmaster reads the question out and decides on their phone who had it. Wrong? It passes to the next player.',

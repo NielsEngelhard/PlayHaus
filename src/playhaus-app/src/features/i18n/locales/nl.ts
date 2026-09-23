@@ -483,17 +483,20 @@ export const nl: Catalog = {
             },
             // De balk bovenaan het schema.
             title: 'Toernooi · {{players}} spelers',
-            schedule: 'Schema',
+            bracketKicker: 'Schema · dubbele eliminatie',
             nextRoundReady: 'Ronde {{stage}} kan starten',
             stageDrawn: 'Ronde {{stage}} is geloot',
             matchesLeft: '{{done}} van {{total}} potjes klaar · {{left}} nog onbeslist',
-            winners: 'Winnaars {{players}}',
-            losers: 'Verliezers {{players}}',
+            // De banden waaruit het schema is opgebouwd.
+            winnersRound: 'Winnaars · ronde {{stage}}',
+            losersRound: 'Verliezers · ronde {{stage}}',
             final: 'Finale',
-            stageOne: 'Ronde {{stage}} · 1 potje',
-            stageMany: 'Ronde {{stage}} · {{matches}} potjes',
-            nothingHere: 'Hier nog niets',
-            // Eén potje in een kolom.
+            settled: 'klaar',
+            advancing: '{{players}} door',
+            feedsEmpty: 'nog leeg',
+            yourSide: 'jouw kant',
+            dropsHere: 'Wie ronde {{stage}} verliest zakt hierheen — pas de tweede nederlaag is het einde',
+            // Eén potje in het schema.
             playing: 'Bezig',
             upNext: 'Straks',
             bye: 'Vrije doorgang naar de volgende ronde',
@@ -503,9 +506,6 @@ export const nl: Catalog = {
                 message: 'Je bent {{place}}e geworden. Blijf kijken hoe de rest van het schema afloopt.'
             },
             // De poort tussen de loting en de potjes.
-            matchup: {
-                title: 'Jouw potje in ronde {{stage}}'
-            },
             startMatches: 'Start de potjes',
             waitingForStart: 'Wachten tot {{name}} start',
             startGateOne: '1 potje is geloot en begint als de host dat zegt',
@@ -753,6 +753,7 @@ export const nl: Catalog = {
             choosing: '{{name}} kiest een makkelijke of moeilijke vraag',
             clockSoon: 'De klok start zo',
             closestHint: 'Dubbele getallen mogen · {{name}} heeft het antwoord',
+            currentQuizmaster: '{{name}} is nu de quizmaster',
             describes: 'Omschrijft',
             describing: '{{describer}} omschrijft, {{guesser}} raadt',
             easy: 'Makkelijk',
@@ -836,6 +837,7 @@ export const nl: Catalog = {
             loading: 'De tafel klaarzetten…',
             close: 'Quiz verlaten',
             roundLabel: 'Ronde {{round}} · {{kind}}',
+            roundTitle: 'Ronde {{round}}: {{kind}}',
             rules: {
                 open: 'De quizmaster leest voor en bepaalt op de telefoon wie het goed had. Fout? De vraag schuift door naar de volgende speler.',
                 choice: 'Geen quizmaster deze ronde. Wie aan de beurt is tikt zelf een letter op de telefoon. Fout? De vraag schuift door, de vergooide optie blijft weg.',

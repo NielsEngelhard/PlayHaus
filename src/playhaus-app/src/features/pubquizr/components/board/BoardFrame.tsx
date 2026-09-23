@@ -9,6 +9,8 @@ interface Props {
     /** Centres the children on the whole phone rather than on the room left under the band. */
     centered?: boolean
     children: ReactNode
+    /** Pinned to the bottom of the phone, under everything else. */
+    footer?: ReactNode
     label: string
     onClose: () => void
     segments: SegmentState[]
@@ -17,7 +19,7 @@ interface Props {
 }
 
 // The phone shell when there is no shared screen: band, turn order, and a board underneath that each round fills in.
-export default function BoardFrame({ centered, children, label, onClose, segments, strip }: Props) {
+export default function BoardFrame({ centered, children, footer, label, onClose, segments, strip }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -42,6 +44,8 @@ export default function BoardFrame({ centered, children, label, onClose, segment
 
             {/* Mirrors the band so the children's middle is the phone's middle, and gives way first when the phone is short. */}
             {centered && <View style={[styles.balance, { height: top }]} />}
+
+            {footer}
         </View>
     )
 }

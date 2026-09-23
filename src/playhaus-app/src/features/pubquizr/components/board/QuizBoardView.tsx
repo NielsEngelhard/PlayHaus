@@ -10,6 +10,7 @@ import ChoiceWatchBoard from "@/features/pubquizr/components/board/ChoiceWatchBo
 import DescribeWatchBoard from "@/features/pubquizr/components/board/DescribeWatchBoard";
 import DoubleDownWatchBoard from "@/features/pubquizr/components/board/DoubleDownWatchBoard";
 import ListWatchBoard from "@/features/pubquizr/components/board/ListWatchBoard";
+import QuizmasterNote from "@/features/pubquizr/components/board/QuizmasterNote";
 import TurnOrderStrip, { type TurnOrder, type TurnPair } from "@/features/pubquizr/components/board/TurnOrderStrip";
 import WalkWatchBoard from "@/features/pubquizr/components/board/WalkWatchBoard";
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
@@ -33,6 +34,7 @@ import {
     readySeatsOn,
     roundOpenOn
 } from "@/features/pubquizr/multi-device/control";
+import { currentQuizmasterOf } from "@/features/pubquizr/multi-device/quizmaster";
 import type { PQTableState } from "@/features/pubquizr/multi-device/useQuizTable";
 import type { QuizDetail } from "@/features/pubquizr/pubquizr-quizzes";
 import type { QuizSession } from "@/features/pubquizr/pubquizr-sessions";
@@ -90,7 +92,14 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
     function frame(key: string, strip: ReactNode | null, board: ReactNode, centered = false) {
         return fade(key, (
-            <BoardFrame centered={centered} label={label} onClose={onLeave} segments={segments} strip={strip}>
+            <BoardFrame
+                centered={centered}
+                footer={<QuizmasterNote mySeat={me} quizmaster={currentQuizmasterOf(session)} />}
+                label={label}
+                onClose={onLeave}
+                segments={segments}
+                strip={strip}
+            >
                 {board}
             </BoardFrame>
         ))
@@ -190,7 +199,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         return frame(`waiting:${round}`, null, (
             <BoardSpotlight
                 seat={master}
-                title={kind}
+                title={t('pubquizr.play.roundTitle', { round: ordinal, kind })}
                 message={t('pubquizr.control.roundStarting', { name: master.name })}
             />
         ), true)

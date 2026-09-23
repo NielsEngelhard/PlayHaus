@@ -2,7 +2,6 @@ import {
     getTournament,
     myEntry,
     myLiveMatch,
-    myStageMatch,
     readyUp,
     startStage,
     type Tournament,
@@ -32,8 +31,6 @@ export interface TournamentState {
     online: Set<string>
     /** The match this player still has to go and play, or null when there is nothing to return to. */
     myMatch: TournamentMatch | null
-    /** The match this player is drawn into this round, played or not, so a pending one shows too. */
-    myDraw: TournamentMatch | null
     /** This player's record in the bracket, absent for somebody who only ever watched. */
     me: TournamentPlayer | null
     /** Whether this device belongs to the host, who opens each round's rooms. */
@@ -169,7 +166,6 @@ export function useTournament(code: string | undefined): TournamentState {
         connection,
         online,
         myMatch: tournament === null ? null : myLiveMatch(tournament, userId),
-        myDraw: tournament === null ? null : myStageMatch(tournament, userId),
         me,
         isHost: tournament !== null && tournament.hostId === userId,
         ready: me?.ready ?? false,

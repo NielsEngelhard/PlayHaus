@@ -29,6 +29,8 @@ interface Props {
     children: ReactNode
     /** The band's right-hand slot: the screen pill, when the table has a screen. */
     chip?: ReactNode
+    /** Pinned to the bottom of the phone, under everything else. */
+    footer?: ReactNode
     label: string
     /** One line under the band, for a phone whose job the screen has taken over. */
     note?: string
@@ -39,7 +41,7 @@ interface Props {
 }
 
 // The top of every controller: the way out, where the evening has got to, and the turn.
-export default function ControlFrame({ centered, children, chip, label, note, onClose, segments, turn }: Props) {
+export default function ControlFrame({ centered, children, chip, footer, label, note, onClose, segments, turn }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -68,6 +70,8 @@ export default function ControlFrame({ centered, children, chip, label, note, on
 
             {/* Mirrors the band so the children's middle is the phone's middle, and gives way first when the phone is short. */}
             {centered && <View style={[styles.balance, { height: top }]} />}
+
+            {footer}
         </View>
     )
 }

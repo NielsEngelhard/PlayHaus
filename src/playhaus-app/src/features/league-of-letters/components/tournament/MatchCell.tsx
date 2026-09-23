@@ -1,7 +1,7 @@
 import type { TournamentMatch, TournamentMatchPlayer } from "@/api/calls/league-of-letters-tournament";
 import AppText from "@/components/text/AppText";
 import { initialsFor } from "@/components/ui/lobby-seat";
-import { Brand, withAlpha } from "@/constants/theme";
+import { Brand, FontSizes, Radii, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { avatarColorById } from "@/utils/color-utils";
@@ -9,11 +9,15 @@ import { View } from "react-native";
 
 interface Props {
     match: TournamentMatch,
-    /** Whose screen this is, so their own match is picked out of the column. */
+    /** Whose screen this is, so their own match is picked out of the bracket. */
     userId: string | undefined
 }
 
 const AVATAR_SIZE = 22;
+const BADGE_SIZE = 16;
+const MINE_BORDER = 3;
+const CELL_BORDER = 1.5;
+const LABEL_SIZE = 9;
 
 // One match of the bracket: who is in it, and how it went.
 export default function MatchCell({ match, userId }: Props) {
@@ -27,12 +31,26 @@ export default function MatchCell({ match, userId }: Props) {
     return (
         <View style={[styles.cell, live && styles.cellLive, mine && styles.cellMine]}>
             {(live || pending) && (
-                <View style={styles.badge}>
-                    <View style={[styles.dot, pending && styles.dotPending]} />
+                <View style={styles.header}>
+                    <View style={styles.position}>
+                        <AppText style={styles.positionText}>{match.position + 1}</AppText>
+                    </View>
 
-                    <AppText style={styles.badgeText}>
-                        {pending ? t('lol.tournament.upNext') : t('lol.tournament.playing')}
-                    </AppText>
+                    <View style={styles.spacer} />
+
+                    {mine ? (
+                        <View style={styles.youTag}>
+                            <AppText style={styles.youTagText}>{t('lol.tournament.you')}</AppText>
+                        </View>
+                    ) : (
+                        <View style={styles.badge}>
+                            {live && <View style={styles.dot} />}
+
+                            <AppText style={styles.badgeText} numberOfLines={1}>
+                                {pending ? t('lol.tournament.upNext') : t('lol.tournament.playing')}
+                            </AppText>
+                        </View>
+                    )}
                 </View>
             )}
 
@@ -44,7 +62,7 @@ export default function MatchCell({ match, userId }: Props) {
                     // Nobody is dimmed while it is still anybody's match.
                     beaten={match.status === 'done' && player.userId !== match.winnerId}
                     // A score means nothing until the match has one.
-                    score={match.status === 'done' ? String(player.score) : '·'}
+                    score={match.status === 'done' ? String(player.score) : null}
                 />
             ))}
 
@@ -59,7 +77,7 @@ interface PlayerLineProps {
     player: TournamentMatchPlayer,
     you: boolean,
     beaten: boolean,
-    score: string
+    score: string | null
 }
 
 function PlayerLine({ player, you, beaten, score }: PlayerLineProps) {
@@ -76,22 +94,25 @@ function PlayerLine({ player, you, beaten, score }: PlayerLineProps) {
                 </AppText>
             </View>
 
-            <AppText style={styles.name} numberOfLines={1}>
+            <AppText style={[styles.name, you && styles.nameYou]} numberOfLines={1}>
                 {you ? t('lol.tournament.you') : player.name}
             </AppText>
 
-            <AppText style={styles.score}>{score}</AppText>
+            {score !== null && (
+                <AppText style={[styles.score, !beaten && styles.scoreWon]}>{score}</AppText>
+            )}
         </View>
     )
 }
 
 const useStyles = createThemedStyles(theme => ({
     cell: {
-        gap: 6,
-        padding: 10,
-        borderRadius: 14,
-        borderWidth: 1.5,
-        borderColor: theme.scheme === 'dark' ? theme.colors.borderSubtle : 'rgba(15, 13, 18, 0.12)',
+        flex: 1,
+        gap: Spacing.one,
+        padding: Spacing.two - CELL_BORDER,
+        borderRadius: Radii.md,
+        borderWidth: CELL_BORDER,
+        borderColor: theme.scheme === 'dark' ? theme.colors.borderSubtle : 'rgba(15, 13, 18, 0.14)',
         backgroundColor: theme.colors.backgroundSecondary
     },
     // A match still being played reads as warm rather than as finished.
@@ -99,39 +120,73 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: withAlpha(Brand.mint, 0.8),
         backgroundColor: withAlpha(Brand.mint, theme.scheme === 'dark' ? 0.14 : 0.22)
     },
-    // Your own match, picked out of the column at a glance.
+    // Your own match, picked out of the bracket at a glance; the thicker border eats into the padding so the cell keeps its size.
     cellMine: {
-        borderWidth: 3,
-        borderColor: theme.colors.text
+        padding: Spacing.two - MINE_BORDER,
+        borderWidth: MINE_BORDER,
+        borderColor: theme.colors.text,
+        ...theme.shadows.hardSmall
     },
 
-    badge: {
+    header: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 5
+        gap: Spacing.one
+    },
+    position: {
+        width: BADGE_SIZE,
+        height: BADGE_SIZE,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: Radii.sm / 2,
+        backgroundColor: theme.colors.muted
+    },
+    positionText: {
+        fontSize: LABEL_SIZE,
+        fontWeight: 900,
+        color: theme.colors.textSecondary
+    },
+    spacer: {
+        flex: 1
+    },
+    badge: {
+        flexShrink: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.one
     },
     dot: {
         width: 6,
         height: 6,
-        borderRadius: 999,
+        borderRadius: Radii.full,
         backgroundColor: theme.colors.available
     },
-    // A drawn match is not running yet, so its dot does not read as live.
-    dotPending: {
-        backgroundColor: theme.colors.textFaint
-    },
     badgeText: {
-        fontSize: 9.5,
+        flexShrink: 1,
+        fontSize: LABEL_SIZE,
         fontWeight: 900,
         textTransform: 'uppercase',
-        letterSpacing: 0.8,
-        color: theme.colors.textSecondary
+        letterSpacing: 0.6,
+        color: theme.colors.textMuted
+    },
+    youTag: {
+        paddingHorizontal: Spacing.one + Spacing.half,
+        paddingVertical: 1,
+        borderRadius: Radii.full,
+        backgroundColor: Brand.lemon
+    },
+    youTagText: {
+        fontSize: LABEL_SIZE,
+        fontWeight: 900,
+        textTransform: 'uppercase',
+        letterSpacing: 0.6,
+        color: Brand.ink
     },
 
     line: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8
+        gap: Spacing.one + Spacing.half
     },
     // Whoever did not come first, once the match has an answer.
     lineBeaten: {
@@ -143,8 +198,8 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 999,
-        borderWidth: 1.5,
+        borderRadius: Radii.full,
+        borderWidth: CELL_BORDER,
         borderColor: theme.scheme === 'dark' ? theme.colors.borderStrong : Brand.ink
     },
     initials: {
@@ -154,24 +209,30 @@ const useStyles = createThemedStyles(theme => ({
     name: {
         flex: 1,
         minWidth: 0,
-        fontSize: 12,
+        fontSize: FontSizes.xs,
         fontWeight: 800,
         color: theme.colors.text
     },
+    nameYou: {
+        fontWeight: 900
+    },
     score: {
         flexShrink: 0,
-        fontSize: 12,
+        fontSize: FontSizes.xs,
         fontWeight: 900,
         // The column of digits holds still as the matches settle.
         fontVariant: ['tabular-nums'],
         color: theme.colors.textSecondary
     },
+    scoreWon: {
+        color: theme.colors.text
+    },
 
     bye: {
-        fontSize: 10,
+        fontSize: LABEL_SIZE,
         fontWeight: 800,
         textTransform: 'uppercase',
-        letterSpacing: 0.8,
+        letterSpacing: 0.6,
         color: theme.colors.textFaint
     }
 }))

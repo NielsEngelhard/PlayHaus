@@ -111,17 +111,6 @@ export function myLiveMatch(tournament: Tournament, userId: string | undefined):
     return mine ?? null;
 }
 
-/** The match this player is drawn into this round, played or not, or null when they sit it out. */
-export function myStageMatch(tournament: Tournament, userId: string | undefined): TournamentMatch | null {
-    if (userId === undefined) return null;
-
-    const mine = matchesInStage(tournament, tournament.stage).find(
-        match => match.players.some(player => player.userId === userId)
-    );
-
-    return mine ?? null;
-}
-
 // This player's record in the bracket, absent for a spectator who never entered.
 export function myEntry(tournament: Tournament, userId: string | undefined): TournamentPlayer | null {
     if (userId === undefined) return null;

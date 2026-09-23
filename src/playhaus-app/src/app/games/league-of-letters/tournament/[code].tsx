@@ -11,7 +11,6 @@ import { useT } from "@/features/i18n/LanguageContext";
 import LobbyView from "@/features/league-of-letters/components/LobbyView";
 import BracketView from "@/features/league-of-letters/components/tournament/BracketView";
 import ReadyFooter from "@/features/league-of-letters/components/tournament/ReadyFooter";
-import StagePreview from "@/features/league-of-letters/components/tournament/StagePreview";
 import StageStartFooter from "@/features/league-of-letters/components/tournament/StageStartFooter";
 import TournamentChampion from "@/features/league-of-letters/components/tournament/TournamentChampion";
 import { useLobby } from "@/features/league-of-letters/useLobby";
@@ -102,13 +101,6 @@ export default function LeagueOfLettersTournamentRoomPage() {
                 userId={user?.id}
                 live={bracket.connection === 'open'}
                 onBack={() => setLeaving(true)}
-                notice={tournament.stagePending && bracket.myDraw !== null && (
-                    <StagePreview
-                        match={bracket.myDraw}
-                        userId={user?.id}
-                        stage={tournament.stage}
-                    />
-                )}
                 footer={tournament.stagePending ? (
                     <StageStartFooter
                         isHost={bracket.isHost}
