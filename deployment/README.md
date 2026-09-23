@@ -358,7 +358,7 @@ console rather than beside the droplet. Expected.
 
 ### Beszel — the per-container dashboard
 
-`https://stats.playhaus.site`, basic auth first and then Beszel's own login. One system,
+`https://stats.playhaus.site`, behind Beszel's own login. One system,
 with `playhaus-api-1`, `playhaus-app-1`, `playhaus-caddy-1` and the two Beszel containers
 charted individually. Retention is fixed at about 30 days, averaged as it ages.
 
@@ -374,9 +374,10 @@ running either workflow.** Rollback is the same edit in reverse.
 First run, once:
 
 1. Deploy. The hub starts; the agent does not, and says so, because there is no token yet.
-2. Open `https://stats.playhaus.site`, get past basic auth, create the admin account
-   **immediately** — the setup wizard belongs to whoever reaches it first, which is the
-   main thing the basic auth in front of it is buying.
+2. Open `https://stats.playhaus.site` and create the admin account **immediately** — until
+   you do, the setup wizard belongs to whoever reaches it first, and there is nothing in
+   front of it. This is the one genuinely exposed minute in the whole setup; do not deploy
+   the `stats` block and then go to lunch.
 3. Add a system: name it, host `127.0.0.1`, port `45876`. Copy the token it generates.
 4. On the droplet: `printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN`
 5. `docker compose up -d --no-deps beszel-agent`, then
@@ -384,6 +385,12 @@ First run, once:
 
 The agent registers by dialing *out* to the hub over a websocket, so port 45876 is never
 opened in the firewall and nothing new is reachable from the internet.
+
+**Do not put `basic_auth` in front of the hub.** It looks like free defence in depth and it
+is not: Caddy's `basic_auth` 401s any `Authorization` header that is not valid Basic, and
+Beszel's frontend sends its PocketBase token in that same header once you are logged in.
+The symptom is a login that succeeds and then instantly redirects back to the login page,
+forever. The Caddyfile says the same thing at the `stats` block.
 
 Worth knowing: the agent mounts the Docker socket, and `:ro` on a unix socket stops the
 file being replaced and nothing else. That is full Docker API access, which is root on the
