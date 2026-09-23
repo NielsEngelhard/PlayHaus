@@ -416,24 +416,36 @@ func (s *Server) pqSessionBody(ctx context.Context, id uuid.UUID) (quizSessionRe
 		return quizSessionResponse{}, err
 	}
 
+	return s.pqBodyOf(ctx, session)
+}
+
+// pqBodyOf draws a session that is already loaded, with what only multi device carries: the last ruling, for phones that never saw the question.
+func (s *Server) pqBodyOf(ctx context.Context, session *pubquizr.Session) (quizSessionResponse, error) {
 	answering, err := s.pubquizr.AnsweringSeatFor(ctx, session)
 	if err != nil {
 		return quizSessionResponse{}, err
 	}
 
-	return newQuizSessionResponse(session, answering), nil
+	previous, err := s.pubquizr.PreviousRuling(ctx, session)
+	if err != nil {
+		return quizSessionResponse{}, err
+	}
+
+	body := newQuizSessionResponse(session, answering)
+	body.Previous = newPQRulingResponse(previous)
+
+	return body, nil
 }
 
 // settlePQTurn answers the phone that settled and tells the room the same thing, so nobody at the table sees a different evening.
 func (s *Server) settlePQTurn(w http.ResponseWriter, r *http.Request, session *pubquizr.Session) {
-	answering, err := s.pubquizr.AnsweringSeatFor(r.Context(), session)
+	body, err := s.pqBodyOf(r.Context(), session)
 	if err != nil {
-		s.log.Error("answering seat", "err", err)
+		s.log.Error("session body", "err", err)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}
 
-	body := newQuizSessionResponse(session, answering)
 	s.publishPQSession(lobbyCode(r), body)
 
 	writeJSON(w, http.StatusOK, body)

@@ -7,7 +7,6 @@ import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
-import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuizBoardView from "@/features/pubquizr/components/board/QuizBoardView";
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
@@ -23,7 +22,7 @@ import HotSeatControl from "@/features/pubquizr/components/control/HotSeatContro
 import ListControl from "@/features/pubquizr/components/control/ListControl";
 import FinaleTieBreakScreen from "@/features/pubquizr/components/play/FinaleTieBreakScreen";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
-import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE, type HotSeatTurn } from "@/features/pubquizr/hot-seat";
+import { hotSeatTurnOf, isHotSeatRound, placeKeyOf, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
 import { missedSeatsOf, picksOf, roundOpenOn } from "@/features/pubquizr/multi-device/control";
 import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
@@ -64,27 +63,6 @@ function stripOf(
         total: turn.total,
         worth: turn.worth
     };
-}
-
-/** Where this phone comes in the walk, as a word rather than a number, which keeps i18next out of plural mode. */
-function placeIn(t: ReturnType<typeof useT>, walking: HotSeatTurn | null, mySeat: number | null): string | null {
-    if (walking === null || mySeat === null) return null;
-
-    const place = walking.remaining.findIndex(seat => seat.seat === mySeat);
-    const words: TranslationKey[] = [
-        'pubquizr.control.ordinal.first',
-        'pubquizr.control.ordinal.second',
-        'pubquizr.control.ordinal.third',
-        'pubquizr.control.ordinal.fourth',
-        'pubquizr.control.ordinal.fifth',
-        'pubquizr.control.ordinal.sixth',
-        'pubquizr.control.ordinal.seventh',
-        'pubquizr.control.ordinal.eighth'
-    ];
-
-    const word = words[place];
-
-    return word === undefined ? null : t(word);
 }
 
 // What a phone with nothing to press is waiting for.
@@ -153,7 +131,7 @@ export default function QuizControlView({ code }: Props) {
         )
     }
 
-    // Without a shared screen the question has to be on every phone, so each one is a whole board rather than a controller.
+    // Without a shared screen each phone is a whole board rather than a controller, because there is nothing else to look at.
     if (!session.hostScreen) {
         return <QuizBoardView onLeave={leave} quiz={quiz} session={session} table={table} />;
     }
@@ -415,11 +393,13 @@ export default function QuizControlView({ code }: Props) {
         turn = stripOf(list.guesser, list.quizmaster, round, 0, list);
     }
 
+    const place = walking === null ? null : placeKeyOf(walking.remaining, table.mySeat);
+
     return (
         <ControlFrame centered chip={<ScreenChip />} label={label} onClose={leave} segments={segments} turn={turn}>
             <ControlWatch
                 message={waitingMessage(t, answering, table.mySeat)}
-                place={placeIn(t, walking, table.mySeat)}
+                place={place === null ? null : t(place)}
                 seat={answering}
             />
         </ControlFrame>

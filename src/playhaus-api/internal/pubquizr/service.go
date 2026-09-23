@@ -58,6 +58,7 @@ type Store interface {
 	DeleteSessionsOlderThan(ctx context.Context, before time.Time) (int64, error)
 	// AttemptsOn counts answer rows, which is a count of seats that have had a go only in the hot seat rounds.
 	AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID) (int, error)
+	LastRulingIn(ctx context.Context, sessionID uuid.UUID, round int) (uuid.UUID, int, bool, error)
 	// SaveGuess keeps one seat's number until the quizmaster closes the question, and a seat may change its mind.
 	SaveGuess(ctx context.Context, guess *SessionGuess) error
 	GuessesOn(ctx context.Context, sessionQuestionID uuid.UUID) ([]SessionGuess, error)
@@ -1822,6 +1823,20 @@ func (s *Service) advance(session *Session) {
 
 	// Every round but the first opens on whoever is furthest behind.
 	session.OpenRoundOn(session.CurrentRound, session.LowestScoringSeat())
+}
+
+// PreviousRuling is the walk round's last settled question and who took it, and nil outside a walk round or before its first settle.
+func (s *Service) PreviousRuling(ctx context.Context, session *Session) (*Ruling, error) {
+	if session.Status != SessionInProgress || !IsWalkRound(session.CurrentRound) {
+		return nil, nil
+	}
+
+	questionID, seat, found, err := s.store.LastRulingIn(ctx, session.ID, session.CurrentRound)
+	if err != nil || !found {
+		return nil, err
+	}
+
+	return &Ruling{SessionQuestionID: questionID, CorrectSeat: seat}, nil
 }
 
 // AnsweringSeatFor is whose turn it is to answer in this session right now, or -1 when nobody is being asked anything.

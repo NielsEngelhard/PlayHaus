@@ -749,7 +749,6 @@ export const nl: Catalog = {
         // De telefoon, die in deze modus vooral een controller is.
         // Zonder gedeeld scherm: elke telefoon is een heel bord, en dit zijn de woorden die alleen een bord nodig heeft.
         board: {
-            answerNow: '{{name}} antwoordt hardop',
             choiceAppears: 'Zodra er gekozen is verschijnt de vraag op elke telefoon',
             choosing: '{{name}} kiest een makkelijke of moeilijke vraag',
             clockSoon: 'De klok start zo',
@@ -763,11 +762,8 @@ export const nl: Catalog = {
             hard: 'Moeilijk',
             imReady: 'Ik ben er klaar voor',
             isUp: '{{name}} is aan zet',
-            judges: '{{master}} bepaalt of het goed was.',
-            judgesThenNext: '{{master}} bepaalt of het goed was. Fout? Dan gaat de vraag door naar {{next}}.',
             listFooter: '{{guesser}} noemt op · {{master}} vinkt af',
             listRules: 'Eén speler krijgt een vraag met vier antwoorden en {{seconds}} seconden. De quizmaster vinkt af wat goed is. Daarna krijgt elke andere speler één bonusgok op wat er over is.',
-            masterHasIt: '{{name}} is quiz master en bepaalt wie het goed had',
             missed: '{{name}} zat ernaast · de vraag is nu van {{next}}',
             missedToYou: '{{name}} zat ernaast · de vraag is nu van jou',
             mustGuess: 'Jij moet raden',
@@ -784,19 +780,25 @@ export const nl: Catalog = {
             pointsWorth: '{{points}} punten',
             questionOf: 'Vraag {{number}} / {{total}}',
             quizmaster: 'Quizmaster',
+            readsAloud: '{{name}} leest de vraag voor',
+            queuePlace: 'Jij bent {{place}} in de rij om te antwoorden',
+            queuePlaceNow: 'Jij bent {{place}} in de rij · jij mag nu antwoorden',
+            previous: {
+                label: 'Vorige vraag',
+                gotIt: '{{name}} had het goed',
+                youGotIt: 'Jij had het goed',
+                nobody: 'Niemand had het goed'
+            },
             readAhead: 'Lees de vraag alvast: {{seconds}} seconden zodra de klok loopt',
             readyCount: '{{done}} van de {{total}} spelers is klaar',
             readyToStart: 'Klaar om te beginnen',
             readyWaiting: 'Klaar. {{name}} start de klok',
-            sayIt: 'Zeg het hardop',
             tapYourself: 'je tikt zelf',
-            theirTurn: '{{name}} is aan de beurt',
             turnOf: 'Beurt {{number}} / {{total}}',
             wordsGuessed: '{{done}} van de {{total}} geraden',
             wordsSecret: 'De woorden staan alleen op de telefoon van {{name}}',
             you: 'Jij',
             yourChoiceCue: 'Kies, en je vraag staat op elke telefoon',
-            yourTurn: 'Jouw beurt'
         },
         control: {
             alsoOnScreen: 'Staat ook op het scherm — jij hoeft alleen te beoordelen',

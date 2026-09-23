@@ -787,7 +787,6 @@ export const en = {
         // The phone, which in this mode is a controller and not much else.
         // Without a shared screen: every phone is a whole board, and these are the words only a board needs.
         board: {
-            answerNow: '{{name}} answers out loud',
             choiceAppears: 'As soon as they choose, the question is on every phone',
             choosing: '{{name}} is choosing an easy or a hard question',
             clockSoon: 'The clock starts in a moment',
@@ -801,11 +800,8 @@ export const en = {
             hard: 'Hard',
             imReady: 'I am ready',
             isUp: '{{name}} is up',
-            judges: '{{master}} decides whether it was right.',
-            judgesThenNext: '{{master}} decides whether it was right. Wrong? Then the question goes to {{next}}.',
             listFooter: '{{guesser}} names them · {{master}} ticks them off',
             listRules: 'One player gets a question with four answers and {{seconds}} seconds. The quizmaster ticks off what is right. Then every other player gets one bonus guess at whatever is left.',
-            masterHasIt: '{{name}} has the question and the answer',
             missed: '{{name}} missed it · the question is with {{next}} now',
             missedToYou: '{{name}} missed it · the question is yours now',
             mustGuess: 'You have to guess',
@@ -822,19 +818,25 @@ export const en = {
             pointsWorth: '{{points}} points',
             questionOf: 'Question {{number}} / {{total}}',
             quizmaster: 'Quizmaster',
+            readsAloud: '{{name}} reads the question out loud',
+            queuePlace: 'You are {{place}} in line to answer',
+            queuePlaceNow: 'You are {{place}} in line · your turn to answer',
+            previous: {
+                label: 'Previous question',
+                gotIt: '{{name}} had it',
+                youGotIt: 'You had it',
+                nobody: 'Nobody had it'
+            },
             readAhead: 'Read the question now: {{seconds}} seconds once the clock runs',
             readyCount: '{{done}} of {{total}} players are ready',
             readyToStart: 'Ready to start',
             readyWaiting: 'Ready. {{name}} starts the clock',
-            sayIt: 'Say it out loud',
             tapYourself: 'you tap it yourself',
-            theirTurn: '{{name}} is up',
             turnOf: 'Turn {{number}} / {{total}}',
             wordsGuessed: '{{done}} of {{total}} guessed',
             wordsSecret: "The words are only on {{name}}'s phone",
             you: 'You',
             yourChoiceCue: 'Pick one and your question is on every phone',
-            yourTurn: 'Your turn'
         },
         control: {
             alsoOnScreen: 'It is on the screen as well — you only have to judge it',

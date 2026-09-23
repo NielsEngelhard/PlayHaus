@@ -404,6 +404,12 @@ type SessionAnswer struct {
 
 func (SessionAnswer) TableName() string { return "pq_session_answers" }
 
+// Ruling is how one settled question ended: which dealt question, and the seat that took it, -1 for nobody.
+type Ruling struct {
+	SessionQuestionID uuid.UUID
+	CorrectSeat       int
+}
+
 // SessionGuess is one seat's number in round 3, held until the quizmaster closes the question.
 // The composite key is the rule it exists for: one number per seat, changeable right up to the settle.
 type SessionGuess struct {

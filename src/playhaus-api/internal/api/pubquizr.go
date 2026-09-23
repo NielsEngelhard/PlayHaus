@@ -204,11 +204,32 @@ type quizSessionResponse struct {
 	LobbyCode string `json:"lobbyCode,omitempty"`
 	// ActiveQuestionID is the question a player has pinned by asking for its difficulty, and is absent until they have.
 	ActiveQuestionID string `json:"activeQuestionId,omitempty"`
+	// Previous is how the walk round's last question ended, for the phones that never saw it; multi device only.
+	Previous *pqRulingResponse `json:"previous,omitempty"`
 
 	Players   []quizSessionPlayerResponse   `json:"players"`
 	Questions []quizSessionQuestionResponse `json:"questions"`
 
 	CreatedAt string `json:"createdAt"`
+}
+
+// pqRulingResponse is one settled question and the seat that took it, null when nobody did.
+type pqRulingResponse struct {
+	SessionQuestionID string `json:"sessionQuestionId"`
+	CorrectSeat       *int   `json:"correctSeat"`
+}
+
+func newPQRulingResponse(ruling *pubquizr.Ruling) *pqRulingResponse {
+	if ruling == nil {
+		return nil
+	}
+
+	var seat *int
+	if ruling.CorrectSeat >= 0 {
+		seat = &ruling.CorrectSeat
+	}
+
+	return &pqRulingResponse{SessionQuestionID: ruling.SessionQuestionID.String(), CorrectSeat: seat}
 }
 
 // finaleTieResponse is who is level for a place in the finale, and how many of them go.

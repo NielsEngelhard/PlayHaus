@@ -474,6 +474,34 @@ func (s *GormStore) AttemptsOn(ctx context.Context, sessionQuestionID uuid.UUID)
 	return int(count), nil
 }
 
+// LastRulingIn is the round's most recently settled question and the seat that took it, -1 when nobody did; found is false before the round has settled one.
+func (s *GormStore) LastRulingIn(ctx context.Context, sessionID uuid.UUID, round int) (uuid.UUID, int, bool, error) {
+	var rows []SessionAnswer
+
+	// Ordered by when the answer was written, because round 6 is not played in position order.
+	err := s.db.WithContext(ctx).
+		Joins("JOIN pq_session_questions ON pq_session_questions.id = pq_session_answers.session_question_id").
+		Where("pq_session_answers.session_id = ? AND pq_session_questions.round = ? AND pq_session_questions.status = ?",
+			sessionID, round, QuestionDone).
+		Order("pq_session_answers.created_at DESC").
+		Find(&rows).Error
+	if err != nil {
+		return uuid.Nil, -1, false, fmt.Errorf("select last ruling: %w", err)
+	}
+	if len(rows) == 0 {
+		return uuid.Nil, -1, false, nil
+	}
+
+	last := rows[0].SessionQuestionID
+	for _, row := range rows {
+		if row.SessionQuestionID == last && row.Correct && row.Seat != nil {
+			return last, *row.Seat, true, nil
+		}
+	}
+
+	return last, -1, true, nil
+}
+
 // SaveGuess keeps one seat's number, replacing whatever that seat said before.
 func (s *GormStore) SaveGuess(ctx context.Context, guess *SessionGuess) error {
 	err := s.db.WithContext(ctx).

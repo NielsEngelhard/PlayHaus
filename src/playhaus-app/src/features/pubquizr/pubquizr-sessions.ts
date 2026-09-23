@@ -25,6 +25,12 @@ export interface QuizSessionQuestion {
     points: number
 }
 
+export interface QuizRuling {
+    sessionQuestionId: string
+    /** Who took it, and null when it beat the table. */
+    correctSeat: number | null
+}
+
 export interface QuizSession {
     id: string
     quizId: string
@@ -68,6 +74,8 @@ export interface QuizSession {
     lobbyCode?: string
     // The one round 6 question a player has pinned by asking for its difficulty, and absent until they have.
     activeQuestionId?: string
+    // Multi device only: how the walk round's last question ended, and absent before the round has settled one.
+    previous?: QuizRuling
 
     players: QuizSessionPlayer[]
     questions: QuizSessionQuestion[]

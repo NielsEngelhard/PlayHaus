@@ -124,6 +124,11 @@ func PassesRoundTheTable(round int) bool {
 	return IsHotSeatRound(round) || round == RoundDoubleDown
 }
 
+// IsWalkRound is whether a round reads one question out and walks it down a line of seats until somebody takes it.
+func IsWalkRound(round int) bool {
+	return round == RoundOpen || round == RoundDoubleDown || round == RoundFinale
+}
+
 // DoubleDownPointsFor is what round 6 pays for the difficulty the player asked for.
 func DoubleDownPointsFor(difficulty Difficulty) int {
 	switch difficulty {

@@ -23,7 +23,7 @@ import ClosestResultScreen from "@/features/pubquizr/components/play/ClosestResu
 import FinaleTieBreakScreen from "@/features/pubquizr/components/play/FinaleTieBreakScreen";
 import RoundIntroScreen from "@/features/pubquizr/components/play/RoundIntroScreen";
 import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
-import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
+import { hotSeatTurnOf, isHotSeatRound, previousRulingOf, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
 import {
     awardedIdsOn,
     awardedOn,
@@ -60,7 +60,7 @@ interface Props {
     table: PQTableState
 }
 
-// Multi device without a shared screen: every phone is a whole board, with the question on it and the turn order above it.
+// Multi device without a shared screen: every phone is a whole board with the turn order above it, and the walk rounds' question only on the reader's.
 export default function QuizBoardView({ onLeave, quiz, session, table }: Props) {
     const t = useT();
     const styles = useStyles();
@@ -285,7 +285,9 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
             ))
         }
 
-        return frame(`walk-watch:${walking.dealt.id}`, strip, <WalkWatchBoard mySeat={me} turn={walking} walked={walked} />);
+        return frame(`walk-watch:${walking.dealt.id}`, strip, (
+            <WalkWatchBoard mySeat={me} previous={previousRulingOf(session, quiz)} turn={walking} walked={walked} />
+        ))
     }
 
     if (closest !== null) {

@@ -58,6 +58,10 @@ func (s *verdictStore) AttemptsOn(context.Context, uuid.UUID) (int, error) {
 	return s.attempts, nil
 }
 
+func (s *verdictStore) LastRulingIn(context.Context, uuid.UUID, int) (uuid.UUID, int, bool, error) {
+	return uuid.Nil, -1, false, nil
+}
+
 func (s *verdictStore) RecordTurn(_ context.Context, _ *Session, out TurnOutcome) error {
 	s.recorded = out
 

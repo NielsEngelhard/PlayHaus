@@ -1,3 +1,4 @@
+import type { TranslationKey } from "@/features/i18n/keys";
 import type { QuizDetail, QuizQuestion } from "./pubquizr-quizzes";
 import type { QuizSession, QuizSessionQuestion } from "./pubquizr-sessions";
 import { seatAt, seatsOf, type Seat } from "./seats";
@@ -99,8 +100,6 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
     const answering = seatAt(seats, session.answeringSeat);
     if (quizmaster === null || answering === null) return null;
 
-    // An open question carries one real answer and any number of aliases behind it.
-    const answers = question.answers.filter(answer => answer.alias !== true);
     const aliases = question.answers.filter(answer => answer.alias === true);
 
     const options = session.currentRound === ROUND_CHOICE
@@ -120,7 +119,7 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
         dealt,
         question,
         // In round 2 the answer is whichever option is the right one, which reads better on the covered panel than the letter does.
-        answer: answers.filter(answer => answer.correct).map(answer => answer.text).join(' / '),
+        answer: answerTextOf(question),
         aliases: aliases.map(answer => answer.text),
         options,
         quizmaster,
@@ -162,4 +161,57 @@ export function remainingSeatsOf(session: QuizSession, seats: Seat[]): Seat[] {
     } while (next !== session.hotSeat && line.length < seats.length);
 
     return line;
+}
+
+// An open question carries one real answer and any number of aliases behind it; this is the real one, as read off the card.
+export function answerTextOf(question: QuizQuestion): string {
+    return question.answers
+        .filter(answer => answer.alias !== true && answer.correct)
+        .map(answer => answer.text)
+        .join(' / ');
+}
+
+/** The walk round's last settled question, for the phones that only heard it read out. */
+export interface PreviousRuling {
+    prompt: string
+    answer: string
+    /** Who took it, and null when it beat the table. */
+    winner: Seat | null
+}
+
+export function previousRulingOf(session: QuizSession, quiz: QuizDetail): PreviousRuling | null {
+    const previous = session.previous;
+    if (previous === undefined) return null;
+
+    const dealt = session.questions.find(question => question.id === previous.sessionQuestionId);
+    if (dealt === undefined) return null;
+
+    const question = quiz.rounds
+        .flatMap(round => round.questions)
+        .find(candidate => candidate.id === dealt.questionId);
+    if (question === undefined) return null;
+
+    return {
+        prompt: question.prompt,
+        answer: answerTextOf(question),
+        winner: previous.correctSeat === null ? null : seatAt(seatsOf(session), previous.correctSeat)
+    };
+}
+
+const PLACE_WORDS: TranslationKey[] = [
+    'pubquizr.control.ordinal.first',
+    'pubquizr.control.ordinal.second',
+    'pubquizr.control.ordinal.third',
+    'pubquizr.control.ordinal.fourth',
+    'pubquizr.control.ordinal.fifth',
+    'pubquizr.control.ordinal.sixth',
+    'pubquizr.control.ordinal.seventh',
+    'pubquizr.control.ordinal.eighth'
+];
+
+// Where a seat comes in the walk, as a word rather than a number, which keeps i18next out of plural mode; null when it is not in the line.
+export function placeKeyOf(line: Seat[], mySeat: number | null): TranslationKey | null {
+    if (mySeat === null) return null;
+
+    return PLACE_WORDS[line.findIndex(seat => seat.seat === mySeat)] ?? null;
 }
