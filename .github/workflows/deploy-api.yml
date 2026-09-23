@@ -56,6 +56,8 @@ jobs:
                   DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
                   DATABASE_URL: ${{ secrets.DATABASE_URL }}
                   STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
+                  BESZEL_USER_EMAIL: ${{ secrets.BESZEL_USER_EMAIL }}
+                  BESZEL_USER_PASSWORD: ${{ secrets.BESZEL_USER_PASSWORD }}
               run: |
                   set -euo pipefail
 
@@ -76,7 +78,12 @@ jobs:
                       deployment/server/deploy.sh \
                       deployment/server/set-env.sh \
                       "deploy@$DEPLOY_HOST:/opt/playhaus/"
-                  ssh "deploy@$DEPLOY_HOST" "chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh"
+                  # The chown is a repair, not setup: cloud-init already leaves the
+                  # directory deploy-owned. Running set-env.sh as root on the box replaces
+                  # .env with a root-owned copy, and every later deploy then dies on
+                  # "touch: cannot touch '.env': Permission denied" -- an error that names
+                  # neither root nor the file's owner. Idempotent, so it costs nothing.
+                  ssh "deploy@$DEPLOY_HOST" "sudo chown -R deploy:deploy /opt/playhaus && chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh"
 
                   # The connection string goes over stdin, never on a command line: an
                   # argument would show in `ps` on the droplet and in this job's log. It is
@@ -97,6 +104,15 @@ jobs:
                   # removes a key it did not write.
                   if [ -n "$STATS_TOKEN" ]; then
                       printf '%s' "$STATS_TOKEN" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh STATS_TOKEN"
+                  fi
+
+                  # The Beszel dashboard account. Only read on the hub's very first start,
+                  # but written every deploy so that a rebuilt beszel-data volume comes
+                  # back with the same login rather than an open setup wizard. Optional in
+                  # the same way STATS_TOKEN is: without them the hub shows the wizard.
+                  if [ -n "$BESZEL_USER_EMAIL" ] && [ -n "$BESZEL_USER_PASSWORD" ]; then
+                      printf '%s' "$BESZEL_USER_EMAIL" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh BESZEL_USER_EMAIL"
+                      printf '%s' "$BESZEL_USER_PASSWORD" | ssh "deploy@$DEPLOY_HOST" "/opt/playhaus/set-env.sh BESZEL_USER_PASSWORD"
                   fi
 
                   # Migrates and seeds before replacing the container; see deploy.sh.

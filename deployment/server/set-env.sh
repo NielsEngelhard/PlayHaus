@@ -41,8 +41,19 @@ cd /opt/playhaus
 # first-deploy case -- and because the values contain slashes and colons that would have
 # to be escaped.
 touch .env
+# Captured before the mv below replaces the file. Run this by hand as root and the new
+# .env comes out root-owned 600, the deploy user can no longer write it, and the next CI
+# run fails on `touch: cannot touch '.env': Permission denied` -- an error that names
+# neither root nor this script. Restoring the owner is only possible as root, hence the
+# guard: an unprivileged chown of a file to its existing owner is not portable.
+owner=$(stat -c '%u:%g' .env)
+
 grep -v "^${var}=" .env > .env.tmp || true
 printf "%s='%s'\n" "$var" "$value" >> .env.tmp
 # 600: the file holds the database password now, not just image tags.
 chmod 600 .env.tmp
 mv .env.tmp .env
+
+if [ "$(id -u)" = 0 ]; then
+	chown "$owner" .env
+fi

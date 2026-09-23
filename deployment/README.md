@@ -120,6 +120,8 @@ Settings → Secrets and variables → Actions.
 | Secret | `DEPLOY_SSH_KEY` | the **private** key — the whole file, `BEGIN`/`END` lines included (see below) |
 | Secret | `DATABASE_URL` | the Postgres connection string, e.g. `postgres://user:pass@host:25060/playhausdb?sslmode=require` |
 | Secret | `STATS_TOKEN` | **optional** — a long random string guarding `GET /api/v1/admin/stats`. Leave it unset and the route does not exist. |
+| Secret | `BESZEL_USER_EMAIL` | **optional** — the stats dashboard login. Set it and the hub creates the account on its first start; leave it unset and the hub shows an open setup wizard instead. |
+| Secret | `BESZEL_USER_PASSWORD` | **optional** — its password. Only read on the hub's first start, but rewritten every deploy so a rebuilt volume comes back with the same login. |
 | Variable | `PUBLIC_ORIGIN` | `https://playhaus.site` |
 
 `DATABASE_URL` is written into `/opt/playhaus/.env` (mode 600) on every API deploy, sent
@@ -373,25 +375,29 @@ running either workflow.** Rollback is the same edit in reverse.
 
 First run, once:
 
-1. Deploy. The hub starts; the agent does not, and says so, because there is no token yet.
-2. Open `https://stats.playhaus.site` and create the admin account **immediately** — until
-   you do, the setup wizard belongs to whoever reaches it first, and there is nothing in
-   front of it. This is the one genuinely exposed minute in the whole setup; do not deploy
-   the `stats` block and then go to lunch.
-3. Add a system: name it, host `127.0.0.1`, port `45876`. The dialog shows a compose
-   snippet containing **two** values you need — `TOKEN` and `KEY`. Copy both. The agent
-   refuses to start without the key (`Failed to load public keys`) even though the token
-   is what registers it: the token proves the agent to the hub, the key proves the hub to
-   the agent. The key is also at `GET /api/beszel/getkey` while logged in.
-4. On the droplet, both of them:
+1. Set `BESZEL_USER_EMAIL` and `BESZEL_USER_PASSWORD` as repository secrets, then deploy.
+   The hub starts and creates that account itself, so the setup wizard is never reachable
+   by anyone else. The agent does not start, and says so, because there is no token yet.
+2. Log in at `https://stats.playhaus.site` and add a system: name it, host `127.0.0.1`,
+   port `45876`. Copy the **token**. The dialog also shows a `KEY` — ignore it, `deploy.sh`
+   derives that itself (see below).
+3. On the droplet, **as `deploy`, not as root**:
+   `printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN`
+4. Run either deploy workflow. `deploy.sh` sees the token, and starts the agent.
 
-   ```sh
-   printf '%s' '<token>'          | ./set-env.sh BESZEL_TOKEN
-   printf '%s' 'ssh-ed25519 <key>' | ./set-env.sh BESZEL_KEY
-   ```
+The token is the only value anyone types. The agent also needs the hub's public key, and
+`deploy.sh` derives it from `id_ed25519` in the `beszel-data` volume with `ssh-keygen -y`
+rather than asking for it: it is not secret, nobody chooses it, and deriving it means the
+agent is still correct after the volume is recreated — which mints a *new* key and would
+otherwise leave the agent refusing to connect with nothing saying why. Missing the key is
+a bare `Failed to load public keys` in the agent log.
 
-5. `docker compose up -d --no-deps beszel-agent`, then
-   `docker compose logs beszel-agent` for a clean registration.
+`set-env.sh` rewrites `.env` by replacing it, so running it under `sudo` leaves a
+root-owned file the deploy user can no longer write, and the next CI run dies on
+`touch: cannot touch '.env': Permission denied`. The script restores the owner when it
+is root, and both workflows `chown -R deploy:deploy /opt/playhaus` before touching
+anything, so an older file repairs itself on the next deploy — but the habit is worth
+keeping.
 
 The agent registers by dialing *out* to the hub over a websocket, so port 45876 is never
 opened in the firewall and nothing new is reachable from the internet.
@@ -400,7 +406,8 @@ opened in the firewall and nothing new is reachable from the internet.
 is not: Caddy's `basic_auth` 401s any `Authorization` header that is not valid Basic, and
 Beszel's frontend sends its PocketBase token in that same header once you are logged in.
 The symptom is a login that succeeds and then instantly redirects back to the login page,
-forever. The Caddyfile says the same thing at the `stats` block.
+forever. The `stats` block in the Caddyfile keeps a commented-out `basic_auth` for the
+record; leave it commented.
 
 Worth knowing: the agent mounts the Docker socket, and `:ro` on a unix socket stops the
 file being replaced and nothing else. That is full Docker API access, which is root on the

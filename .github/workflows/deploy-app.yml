@@ -91,4 +91,4 @@ jobs:
                       "deploy@$DEPLOY_HOST:/opt/playhaus/"
 
                   ssh "deploy@$DEPLOY_HOST" \
-                      "chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"
+                      "sudo chown -R deploy:deploy /opt/playhaus && chmod +x /opt/playhaus/deploy.sh /opt/playhaus/set-env.sh && /opt/playhaus/deploy.sh APP_IMAGE '$IMAGE:$TAG' app"

@@ -121,6 +121,13 @@ services:
         image: henrygd/beszel:0.20.0
         environment:
             APP_URL: https://stats.${DOMAIN}
+            # Creates the dashboard account on the hub's first start, which is the only
+            # thing that closes the setup wizard -- until an account exists the wizard
+            # belongs to whoever reaches the page first. Written into .env by the Deploy
+            # API workflow from repository secrets; leave them unset and the hub falls
+            # back to the wizard, which is the old behaviour rather than a broken one.
+            USER_EMAIL: ${BESZEL_USER_EMAIL:-}
+            USER_PASSWORD: ${BESZEL_USER_PASSWORD:-}
         ports:
             # Loopback only, and only for the agent. Caddy reaches the hub as `beszel:8090`
             # over the compose network; the agent cannot, because network_mode: host takes
@@ -148,8 +155,9 @@ services:
             # The hub's own ed25519 public key, and required even in token mode -- the
             # agent refuses to start without it ("Failed to load public keys"). The token
             # is how the hub knows the agent; this is how the agent knows the hub, so that
-            # anything else reaching the listener cannot drive it. Both come from the same
-            # Add System dialog; also at GET /api/beszel/getkey when logged in.
+            # anything else reaching the listener cannot drive it. Nobody types this one:
+            # deploy.sh derives it from the key in the hub's data volume, so it survives
+            # that volume being recreated with a new key.
             KEY: ${BESZEL_KEY}
         volumes:
             - beszel-agent-data:/var/lib/beszel-agent

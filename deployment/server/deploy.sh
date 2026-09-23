@@ -71,14 +71,28 @@ docker compose up -d --no-deps caddy
 docker compose up -d --no-deps beszel ||
 	echo "warning: beszel hub did not start -- check 'docker compose logs beszel'" >&2
 
+# The hub writes an ed25519 key into its data volume on first start. Derive the public
+# half here rather than having someone paste it in: it is not a secret, it is not chosen
+# by anyone, and deriving it means the agent is still correct by itself after the
+# beszel-data volume is recreated -- which mints a new key and would otherwise leave the
+# agent refusing to connect, with nothing in the deploy saying why. No wait loop is
+# needed: the key exists long before a token does, and the agent needs both.
+if key_dir=$(docker volume inspect playhaus_beszel-data --format '{{.Mountpoint}}' 2>/dev/null) &&
+	sudo test -f "$key_dir/id_ed25519"; then
+	hub_key=$(sudo ssh-keygen -y -f "$key_dir/id_ed25519" 2>/dev/null || true)
+	if [ -n "$hub_key" ] && ! grep -qF "BESZEL_KEY='$hub_key'" .env; then
+		printf '%s' "$hub_key" | ./set-env.sh BESZEL_KEY
+	fi
+fi
+
 if grep -q "^BESZEL_TOKEN=" .env && grep -q "^BESZEL_KEY=" .env; then
 	docker compose up -d --no-deps beszel-agent ||
 		echo "warning: beszel agent did not start -- check 'docker compose logs beszel-agent'" >&2
 else
-	echo "note: beszel-agent is not started -- .env needs both BESZEL_TOKEN and BESZEL_KEY." >&2
-	echo "      Add the system at https://stats.\${DOMAIN}; the dialog shows both. Then:" >&2
+	echo "note: beszel-agent is not started -- .env has no BESZEL_TOKEN yet. The key above" >&2
+	echo "      is derived automatically; only the token is yours to supply. Add a system" >&2
+	echo "      at https://stats.\${DOMAIN}, then:" >&2
 	echo "        printf '%s' '<token>' | ./set-env.sh BESZEL_TOKEN" >&2
-	echo "        printf '%s' 'ssh-ed25519 <key>' | ./set-env.sh BESZEL_KEY" >&2
 fi
 
 # And then make it re-read its config, which the line above does not do. The Caddyfile is
