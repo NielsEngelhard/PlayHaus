@@ -37,7 +37,7 @@ stats.{$DOMAIN} {
 	# before that login exists: the hub's first-run wizard hands the admin account to
 	# whoever reaches it first. Hash with `caddy hash-password`.
 	basic_auth {
-		niels $2a$14$2a$14$ni12RCyH8RDkqMexKh.3reQiCatnU27.3XXZ0FzmDbzu5bhbGk7BO
+		niels $2a$14$ni12RCyH8RDkqMexKh.3reQiCatnU27.3XXZ0FzmDbzu5bhbGk7BO
 	}
 
 	request_body {
