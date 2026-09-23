@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w36",
+  "title": "Weekquiz 36 2026",
+  "description": "De wekelijkse quiz van woensdag 2 september 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe noem je een jonge kikker die nog een staart heeft?", "category": "Natuur", "answers": [{ "text": "Een kikkervisje", "aliases": ["Kikkervisje", "Dikkopje"] }] },
+        { "prompt": "Welke rivier stroomt door Rome?", "category": "Aardrijkskunde", "answers": [{ "text": "De Tiber", "aliases": ["Tiber"] }] },
+        { "prompt": "Welke groente is de basis van zuurkool?", "category": "Eten", "answers": [{ "text": "Witte kool", "aliases": ["Kool"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft Middelburg als hoofdstad?", "category": "Nederland", "answers": [{ "text": "Zeeland" }] },
+        { "prompt": "Welk element heeft het symbool O?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof" }] },
+        { "prompt": "Hoeveel spelers staan er bij volleybal per team in het veld?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welke film gaat over een speelgoedcowboy die Woody heet?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
+        { "prompt": "Wie componeerde Eine kleine Nachtmusik?", "category": "Muziek", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
+        { "prompt": "In welk jaar eindigde de Tweede Wereldoorlog in Europa?", "category": "Geschiedenis", "answers": [{ "text": "1945" }] },
+        { "prompt": "Welk woord is het tegenovergestelde van breedte?", "category": "Taal", "answers": [{ "text": "Lengte" }] },
+        { "prompt": "Welk bouwwerk in Parijs herbergt de Mona Lisa?", "category": "Kunst", "answers": [{ "text": "Het Louvre", "aliases": ["Louvre"] }] },
+        { "prompt": "Welk apparaat zet geluid om in een elektrisch signaal?", "category": "Techniek", "answers": [{ "text": "De microfoon", "aliases": ["Microfoon"] }] },
+        { "prompt": "Welke zee ligt tussen Italie en Kroatie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee", "Adriatische zee"] }] },
+        { "prompt": "Hoe heet de grootste woestijn van de wereld als je Antarctica meetelt?", "category": "Natuur", "answers": [{ "text": "Antarctica", "aliases": ["Antarctische woestijn", "Zuidpool"] }] },
+        { "prompt": "Welke Nederlandse voetbalclub speelt in de Johan Cruijff Arena?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
+        { "prompt": "Welke keizer stak volgens de overlevering Rome in brand?", "category": "Geschiedenis", "answers": [{ "text": "Nero" }] },
+        { "prompt": "Welke saus maak je van basilicum, pijnboompitten en olijfolie?", "category": "Eten", "answers": [{ "text": "Pesto" }] },
+        { "prompt": "Hoeveel graden Celsius is het kookpunt van water op zeeniveau?", "category": "Wetenschap", "answers": [{ "text": "Honderd", "aliases": ["100"] }] },
+        { "prompt": "Welke Nederlandse stad staat bekend om de Martinitoren?", "category": "Nederland", "answers": [{ "text": "Groningen" }] },
+        { "prompt": "Welke band zong Bohemian Rhapsody?", "category": "Muziek", "answers": [{ "text": "Queen" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft de langste kustlijn ter wereld?", "options": [{ "text": "Rusland" }, { "text": "Canada", "correct": true }, { "text": "Australie" }, { "text": "Indonesie" }] },
+        { "prompt": "Hoe heet het proces waarbij een vaste stof direct gas wordt?", "options": [{ "text": "Condensatie" }, { "text": "Sublimatie", "correct": true }, { "text": "Verdamping" }, { "text": "Stolling" }] },
+        { "prompt": "Welke stad ligt op twee continenten tegelijk?", "options": [{ "text": "Cairo" }, { "text": "Athene" }, { "text": "Istanboel", "correct": true }, { "text": "Jeruzalem" }] },
+        { "prompt": "Welke Nederlandse schilder maakte in de zeventiende eeuw vooral kerkinterieurs?", "options": [{ "text": "Jan Steen" }, { "text": "Pieter Saenredam", "correct": true }, { "text": "Jacob van Ruisdael" }, { "text": "Gerard Dou" }] },
+        { "prompt": "Welk dier heeft drie harten?", "options": [{ "text": "De octopus", "correct": true }, { "text": "De haai" }, { "text": "De paling" }, { "text": "De zeester" }] },
+        { "prompt": "In welk jaar opende de Deltawerken hun laatste grote onderdeel, de Oosterscheldekering?", "options": [{ "text": "1976" }, { "text": "1986", "correct": true }, { "text": "1996" }, { "text": "1966" }] },
+        { "prompt": "Hoeveel letters telt het Griekse alfabet?", "options": [{ "text": "Eenentwintig" }, { "text": "Vierentwintig", "correct": true }, { "text": "Zesentwintig" }, { "text": "Achtentwintig" }] },
+        { "prompt": "Welk orgaan van het lichaam kan zichzelf voor een groot deel opnieuw aanmaken?", "options": [{ "text": "De lever", "correct": true }, { "text": "Het hart" }, { "text": "De longen" }, { "text": "De hersenen" }] },
+        { "prompt": "Welke ontdekkingsreiziger gaf Nieuw-Zeeland zijn naam?", "options": [{ "text": "James Cook" }, { "text": "Abel Tasman", "correct": true }, { "text": "Willem Barentsz" }, { "text": "Ferdinand Magellaan" }] },
+        { "prompt": "Hoeveel snaren heeft een standaard viool?", "options": [{ "text": "Zes" }, { "text": "Vier", "correct": true }, { "text": "Vijf" }, { "text": "Drie" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer is de evenaar lang?", "answer": 40075, "unit": "kilometer" },
+        { "prompt": "Hoeveel meter hoog is de Elbroes, de hoogste berg van Europa?", "answer": 5642, "unit": "meter" },
+        { "prompt": "In welk jaar werd de eerste Nederlandse spoorlijn tussen Amsterdam en Haarlem geopend?", "answer": 1839 },
+        { "prompt": "Hoeveel vierkante kilometer groot is Nederland ongeveer, inclusief water?", "answer": 41500, "unit": "vierkante kilometer" },
+        { "prompt": "Hoeveel seconden duurt een voetbalwedstrijd zonder blessuretijd?", "answer": 5400, "unit": "seconden", "explanation": "Twee helften van 45 minuten." },
+        { "prompt": "Hoeveel treden heeft de Eiffeltoren tot de tweede verdieping?", "answer": 674, "unit": "treden" },
+        { "prompt": "Hoeveel graden Celsius is het absolute nulpunt?", "answer": -273, "unit": "graden Celsius" },
+        { "prompt": "Hoeveel eilanden telt de Waddenzee aan Nederlandse kant die bewoond zijn?", "answer": 5, "unit": "eilanden" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Regenboog",
+        "Schaatsbaan",
+        "Tovenaar",
+        "Waterval",
+        "Kruiwagen",
+        "Octopus",
+        "Zwaardvis",
+        "Trekharmonica",
+        "Postbode",
+        "Bergbeklimmer",
+        "Zeppelin",
+        "Stofzuiger",
+        "Bosbrand",
+        "Napoleon",
+        "Carnaval",
+        "IJsbeer",
+        "Draaideur",
+        "Trompet",
+        "Voetbalkeeper",
+        "Boemerang",
+        "Kastanje",
+        "Vlinderslag",
+        "Poppenkast",
+        "Sneeuwstorm",
+        "Hoefijzer",
+        "Marmot",
+        "Pizzabezorger",
+        "Telescoop",
+        "Hinkelen",
+        "De Chinese Muur"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van Amsterdam?", "answers": [{ "text": "Grachten" }, { "text": "Fietsen" }, { "text": "Het Rijksmuseum" }, { "text": "Hoofdstad" }] },
+        { "prompt": "Wat weet je van de maan?", "answers": [{ "text": "Kraters" }, { "text": "Eb en vloed" }, { "text": "Armstrong" }, { "text": "Vol en nieuw" }] },
+        { "prompt": "Wat weet je van Frankrijk?", "answers": [{ "text": "Parijs" }, { "text": "Wijn" }, { "text": "Stokbrood" }, { "text": "De Eiffeltoren" }] },
+        { "prompt": "Wat weet je van honden?", "answers": [{ "text": "Blaffen" }, { "text": "Uitlaten" }, { "text": "Kwispelen" }, { "text": "Botten" }] },
+        { "prompt": "Wat weet je van de Vikingen?", "answers": [{ "text": "Scandinavie" }, { "text": "Langschepen" }, { "text": "Plunderen" }, { "text": "Helmen" }] },
+        { "prompt": "Wat weet je van het weer in Nederland?", "answers": [{ "text": "Regen" }, { "text": "Wind" }, { "text": "Wisselvallig" }, { "text": "Het KNMI" }] },
+        { "prompt": "Wat weet je van een ziekenhuis?", "answers": [{ "text": "Dokters" }, { "text": "Ambulance" }, { "text": "Operatie" }, { "text": "Wachtkamer" }] },
+        { "prompt": "Wat weet je van de ruimte?", "answers": [{ "text": "Sterren" }, { "text": "Planeten" }, { "text": "Zwaartekracht" }, { "text": "Raketten" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft een banaan als hij rijp is?", "difficulty": "easy", "answers": [{ "text": "Geel" }] },
+        { "prompt": "Hoeveel maanden heeft een jaar?", "difficulty": "easy", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "In welk land staat de scheve toren van Pisa?", "difficulty": "easy", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welk dier wordt ook wel het schip van de woestijn genoemd?", "difficulty": "easy", "answers": [{ "text": "De kameel", "aliases": ["Kameel", "Dromedaris"] }] },
+        { "prompt": "Welke sport speel je op Wimbledon?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Welke wiskundige constante begint met 3,14?", "difficulty": "hard", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Welke Nederlandse dichter schreef het gedicht Herinnering aan Holland met de regel over brede rivieren?", "difficulty": "hard", "answers": [{ "text": "Hendrik Marsman", "aliases": ["Marsman"] }] },
+        { "prompt": "Hoe heet de grootste maan van Saturnus?", "difficulty": "hard", "answers": [{ "text": "Titan" }] },
+        { "prompt": "Welk verdrag verdeelde in 1494 de nieuwe wereld tussen Spanje en Portugal?", "difficulty": "hard", "answers": [{ "text": "Het Verdrag van Tordesillas", "aliases": ["Verdrag van Tordesillas", "Tordesillas"] }] },
+        { "prompt": "Welke Franse koning werd de Zonnekoning genoemd?", "difficulty": "hard", "answers": [{ "text": "Lodewijk XIV", "aliases": ["Lodewijk de Veertiende", "Louis XIV"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk dier is het snelste landdier ter wereld?", "answers": [{ "text": "De jachtluipaard", "aliases": ["Jachtluipaard", "Cheeta", "Cheetah"] }] },
+        { "prompt": "Hoe heet de hoofdstad van Portugal?", "answers": [{ "text": "Lissabon" }] },
+        { "prompt": "Welke planeet staat het dichtst bij de zon?", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Wie schreef het boek Oorlog en Vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
+        { "prompt": "Welk orgaan filtert het bloed en maakt urine?", "answers": [{ "text": "De nier", "aliases": ["Nier", "Nieren", "De nieren"] }] },
+        { "prompt": "Welke Nederlandse voetballer was in 1988 aanvoerder van het elftal dat Europees kampioen werd?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
+        { "prompt": "Welke stof geeft bladeren hun groene kleur?", "answers": [{ "text": "Bladgroen", "aliases": ["Chlorofyl"] }] }
+      ]
+    }
+  ]
+}

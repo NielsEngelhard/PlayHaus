@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w37",
+  "title": "Weekly quiz 37 2026",
+  "description": "The weekly quiz of Wednesday 9 September 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What colour is the top band of the Dutch flag?", "category": "The Netherlands", "answers": [{ "text": "Red" }] },
+        { "prompt": "How many minutes does a half of football last?", "category": "Sport", "answers": [{ "text": "Forty-five", "aliases": ["45"] }] },
+        { "prompt": "Which animal lays the largest egg in the world?", "category": "Nature", "answers": [{ "text": "The ostrich", "aliases": ["Ostrich"] }] },
+        { "prompt": "In which country was pizza invented?", "category": "Food", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which mountain range separates Spain from France?", "category": "Geography", "answers": [{ "text": "The Pyrenees", "aliases": ["Pyrenees"] }] },
+        { "prompt": "Which sense do you use to smell?", "category": "Science", "answers": [{ "text": "Smell", "aliases": ["The nose", "Nose"] }] },
+        { "prompt": "Which film is set on a ship that hits an iceberg in 1912?", "category": "Film", "answers": [{ "text": "Titanic" }] },
+        { "prompt": "How many keys make up one octave on a piano, white and black together?", "category": "Music", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "Who was the first king of the Netherlands?", "category": "History", "answers": [{ "text": "William I", "aliases": ["Willem I", "King William I"] }] },
+        { "prompt": "What is the plural of the word child?", "category": "Language", "answers": [{ "text": "Children" }] },
+        { "prompt": "Which painter made the Sunflowers series?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Which part of a bicycle makes you stop?", "category": "Technology", "answers": [{ "text": "The brake", "aliases": ["Brake", "Brakes"] }] },
+        { "prompt": "Which continent is the largest by surface area?", "category": "Geography", "answers": [{ "text": "Asia" }] },
+        { "prompt": "Which bird is the symbol of peace?", "category": "Nature", "answers": [{ "text": "The dove", "aliases": ["Dove", "White dove"] }] },
+        { "prompt": "Which Dutch cyclist won the Tour de France in 1980?", "category": "Sport", "answers": [{ "text": "Joop Zoetemelk", "aliases": ["Zoetemelk"] }] },
+        { "prompt": "Which war ended with the Peace of Munster in 1648?", "category": "History", "answers": [{ "text": "The Eighty Years War", "aliases": ["Eighty Years War"] }] },
+        { "prompt": "Which drink is made by fermenting grapes?", "category": "Food", "answers": [{ "text": "Wine" }] },
+        { "prompt": "How many chromosomes does a human normally have?", "category": "Science", "answers": [{ "text": "Forty-six", "aliases": ["46", "23 pairs"] }] },
+        { "prompt": "Which Dutch city is split by the Meuse and has a Sint-Servaasbrug?", "category": "The Netherlands", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "Which singer was known as the King of Pop?", "category": "Music", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country is the only one in the world with a flag that is not rectangular?", "options": [{ "text": "Switzerland" }, { "text": "Nepal", "correct": true }, { "text": "Bhutan" }, { "text": "Vatican City" }] },
+        { "prompt": "What is the study of earthquakes called?", "options": [{ "text": "Volcanology" }, { "text": "Seismology", "correct": true }, { "text": "Geodesy" }, { "text": "Meteorology" }] },
+        { "prompt": "Which sea is really a lake?", "options": [{ "text": "The Red Sea" }, { "text": "The Caspian Sea", "correct": true }, { "text": "The Black Sea" }, { "text": "The Aegean Sea" }] },
+        { "prompt": "Which instrument did Jimi Hendrix play?", "options": [{ "text": "The bass guitar" }, { "text": "The electric guitar", "correct": true }, { "text": "The drum kit" }, { "text": "The piano" }] },
+        { "prompt": "In which year was the Dutch East India Company founded?", "options": [{ "text": "1602", "correct": true }, { "text": "1621" }, { "text": "1580" }, { "text": "1648" }] },
+        { "prompt": "Which part of the eye determines eye colour?", "options": [{ "text": "The pupil" }, { "text": "The iris", "correct": true }, { "text": "The cornea" }, { "text": "The retina" }] },
+        { "prompt": "Which writer invented the detective Miss Marple?", "options": [{ "text": "Dorothy Sayers" }, { "text": "Agatha Christie", "correct": true }, { "text": "Arthur Conan Doyle" }, { "text": "Georges Simenon" }] },
+        { "prompt": "How many faces does a dodecahedron have?", "options": [{ "text": "Ten" }, { "text": "Twelve", "correct": true }, { "text": "Twenty" }, { "text": "Eight" }] },
+        { "prompt": "Which country was the first to give women the general right to vote?", "options": [{ "text": "Finland" }, { "text": "New Zealand", "correct": true }, { "text": "Norway" }, { "text": "Australia" }] },
+        { "prompt": "Which ingredient makes bread rise?", "options": [{ "text": "Salt" }, { "text": "Yeast", "correct": true }, { "text": "Sugar" }, { "text": "Butter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the Rhine from source to mouth?", "answer": 1230, "unit": "kilometres" },
+        { "prompt": "Roughly how many litres of blood does an adult human have?", "answer": 5, "unit": "litres" },
+        { "prompt": "In which year were the first Olympic Games of the modern era held?", "answer": 1896 },
+        { "prompt": "How many metres tall is the Domtoren in Utrecht?", "answer": 112, "unit": "metres" },
+        { "prompt": "Roughly how many languages are spoken worldwide?", "answer": 7000, "unit": "languages" },
+        { "prompt": "How many times a minute does an adult heart beat on average at rest?", "answer": 70, "unit": "beats" },
+        { "prompt": "How many kilometres does light travel in one second?", "answer": 300000, "unit": "kilometres" },
+        { "prompt": "In which year was Thorbecke's Dutch constitution adopted?", "answer": 1848 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Fireworks",
+        "Windmill",
+        "Hairdresser",
+        "Crocodile",
+        "Swing",
+        "Corkscrew",
+        "Snowflake",
+        "Knight",
+        "Torch",
+        "Water polo",
+        "Whistling kettle",
+        "Ostrich",
+        "Ski jump",
+        "Elvis Presley",
+        "Wheelchair",
+        "Oven glove",
+        "Cowboy",
+        "Diving mask",
+        "Solar eclipse",
+        "Farm",
+        "Accordion",
+        "Playing cards",
+        "Bin man",
+        "Hedgehog",
+        "Clock tower",
+        "Gravity",
+        "Fairy tale",
+        "Peanut butter",
+        "Circus tent",
+        "The Statue of Liberty"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Spain?", "answers": [{ "text": "Madrid" }, { "text": "Paella" }, { "text": "Flamenco" }, { "text": "Bullfighting" }] },
+        { "prompt": "What do you know about the dinosaurs?", "answers": [{ "text": "Extinct" }, { "text": "T-rex" }, { "text": "Fossils" }, { "text": "Meteorite" }] },
+        { "prompt": "What do you know about a wedding?", "answers": [{ "text": "Dress" }, { "text": "Rings" }, { "text": "Cake" }, { "text": "I do" }] },
+        { "prompt": "What do you know about the Alps?", "answers": [{ "text": "Mountains" }, { "text": "Skiing" }, { "text": "Switzerland" }, { "text": "Snow" }] },
+        { "prompt": "What do you know about coffee?", "answers": [{ "text": "Beans" }, { "text": "Black" }, { "text": "Caffeine" }, { "text": "Milk" }] },
+        { "prompt": "What do you know about the ancient Greeks?", "answers": [{ "text": "Athens" }, { "text": "Gods" }, { "text": "Philosophers" }, { "text": "Olympic Games" }] },
+        { "prompt": "What do you know about horses?", "answers": [{ "text": "Horseshoes" }, { "text": "Mane" }, { "text": "Gallop" }, { "text": "Stable" }] },
+        { "prompt": "What do you know about the internet?", "answers": [{ "text": "Wifi" }, { "text": "Google" }, { "text": "Email" }, { "text": "Websites" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "How many wheels does an ordinary bicycle have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
+        { "prompt": "Which animal barks?", "difficulty": "easy", "answers": [{ "text": "The dog", "aliases": ["Dog"] }] },
+        { "prompt": "In which month is Koningsdag?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "Which colour do you get when you mix red and white?", "difficulty": "easy", "answers": [{ "text": "Pink" }] },
+        { "prompt": "Which continent lies south of Europe?", "difficulty": "easy", "answers": [{ "text": "Africa" }] },
+        { "prompt": "Which bone of the human skull is the only one that can move?", "difficulty": "hard", "answers": [{ "text": "The lower jaw", "aliases": ["Lower jaw", "Jawbone", "Mandible"] }] },
+        { "prompt": "Which Dutch philosopher wrote the Ethics?", "difficulty": "hard", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza", "Benedictus de Spinoza"] }] },
+        { "prompt": "Which country has the most active volcanoes?", "difficulty": "hard", "answers": [{ "text": "Indonesia" }] },
+        { "prompt": "Who discovered penicillin?", "difficulty": "hard", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Which strait separates Spain from Morocco?", "difficulty": "hard", "answers": [{ "text": "The Strait of Gibraltar", "aliases": ["Strait of Gibraltar", "Gibraltar"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the capital of Norway?", "answers": [{ "text": "Oslo" }] },
+        { "prompt": "Which element has atomic number 1?", "answers": [{ "text": "Hydrogen" }] },
+        { "prompt": "Who wrote the fairy tale The Little Mermaid?", "answers": [{ "text": "Hans Christian Andersen", "aliases": ["Andersen"] }] },
+        { "prompt": "Which animal has the longest neck?", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
+        { "prompt": "Which Dutch city has the oldest university in the country?", "answers": [{ "text": "Leiden" }] },
+        { "prompt": "Which substance has the chemical formula NaCl?", "answers": [{ "text": "Table salt", "aliases": ["Salt", "Sodium chloride"] }] },
+        { "prompt": "Which painter invented cubism together with Georges Braque?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
+      ]
+    }
+  ]
+}

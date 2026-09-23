@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w39",
+  "title": "Weekquiz 39 2026",
+  "description": "De wekelijkse quiz van woensdag 23 september 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoeveel seconden zitten er in een minuut?", "category": "Wetenschap", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
+        { "prompt": "Welke Nederlandse stad heeft het Mauritshuis?", "category": "Nederland", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] },
+        { "prompt": "Welk dier draagt zijn huis op zijn rug?", "category": "Natuur", "answers": [{ "text": "De slak", "aliases": ["Slak"] }] },
+        { "prompt": "Hoeveel spelers heeft een basketbalteam op het veld?", "category": "Sport", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welk land ligt tussen Frankrijk en Nederland?", "category": "Aardrijkskunde", "answers": [{ "text": "Belgie" }] },
+        { "prompt": "Welke film gaat over een jonge tovenaar op Zweinstein?", "category": "Film", "answers": [{ "text": "Harry Potter" }] },
+        { "prompt": "Welk instrument bespeel je met een strijkstok en houd je onder je kin?", "category": "Muziek", "answers": [{ "text": "De viool", "aliases": ["Viool"] }] },
+        { "prompt": "Welke muur verdeelde Berlijn tot 1989?", "category": "Geschiedenis", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
+        { "prompt": "Wat is het tegenovergestelde van een synoniem?", "category": "Taal", "answers": [{ "text": "Een antoniem", "aliases": ["Antoniem"] }] },
+        { "prompt": "Welke Nederlandse schilder maakte De Aardappeleters?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Welke uitvinding van Alexander Graham Bell veranderde het contact op afstand?", "category": "Techniek", "answers": [{ "text": "De telefoon", "aliases": ["Telefoon"] }] },
+        { "prompt": "Welke animatiefilm gaat over een klein visje dat zijn zoon Nemo zoekt?", "category": "Film", "answers": [{ "text": "Finding Nemo" }] },
+        { "prompt": "Welk zeezoogdier staat bekend om zijn slagtanden en leeft op het noordpoolijs?", "category": "Natuur", "answers": [{ "text": "De walrus", "aliases": ["Walrus"] }] },
+        { "prompt": "Welke stad is de hoofdstad van Zweden?", "category": "Aardrijkskunde", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Welke Nederlandse voetballer kreeg de bijnaam de Zwarte Tulp?", "category": "Sport", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
+        { "prompt": "Welk Romeins bouwwerk bracht water over grote afstand naar de stad?", "category": "Geschiedenis", "answers": [{ "text": "Het aquaduct", "aliases": ["Aquaduct"] }] },
+        { "prompt": "Welke Italiaanse rijstschotel wordt langzaam geroerd met bouillon erbij?", "category": "Eten", "answers": [{ "text": "Risotto" }] },
+        { "prompt": "Welke kracht houdt ons op de grond?", "category": "Wetenschap", "answers": [{ "text": "De zwaartekracht", "aliases": ["Zwaartekracht"] }] },
+        { "prompt": "Hoe heet de dijk die het IJsselmeer van de Waddenzee scheidt?", "category": "Nederland", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Welke Zweedse popgroep zong Dancing Queen?", "category": "Muziek", "answers": [{ "text": "ABBA" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft de meeste meren ter wereld?", "options": [{ "text": "Finland" }, { "text": "Canada", "correct": true }, { "text": "Rusland" }, { "text": "Zweden" }] },
+        { "prompt": "Hoe heet het langste bot van de arm?", "options": [{ "text": "De ellepijp" }, { "text": "Het opperarmbeen", "correct": true }, { "text": "Het spaakbeen" }, { "text": "Het sleutelbeen" }] },
+        { "prompt": "Welke stad staat bekend als de stad van de duizend minaretten?", "options": [{ "text": "Istanboel" }, { "text": "Cairo", "correct": true }, { "text": "Marrakesh" }, { "text": "Damascus" }] },
+        { "prompt": "Welk dier draagt het langst een jong voor het geboren wordt?", "options": [{ "text": "De blauwe vinvis" }, { "text": "De olifant", "correct": true }, { "text": "De giraffe" }, { "text": "De neushoorn" }] },
+        { "prompt": "Wie schreef de opera De Toverfluit?", "options": [{ "text": "Verdi" }, { "text": "Mozart", "correct": true }, { "text": "Wagner" }, { "text": "Puccini" }] },
+        { "prompt": "In welk jaar werd de Nederlandse Grondwet zo gewijzigd dat vrouwen actief kiesrecht kregen?", "options": [{ "text": "1917" }, { "text": "1919", "correct": true }, { "text": "1922" }, { "text": "1948" }] },
+        { "prompt": "Welke rivier is de langste van Azie?", "options": [{ "text": "De Ganges" }, { "text": "De Jangtsekiang", "correct": true }, { "text": "De Mekong" }, { "text": "De Indus" }] },
+        { "prompt": "Welk woord beschrijft het vermogen van een dier om verloren lichaamsdelen opnieuw te laten groeien?", "options": [{ "text": "Mutatie" }, { "text": "Regeneratie", "correct": true }, { "text": "Metamorfose" }, { "text": "Adaptatie" }] },
+        { "prompt": "Welke Nederlandse provincie heeft de meeste inwoners?", "options": [{ "text": "Noord-Brabant" }, { "text": "Zuid-Holland", "correct": true }, { "text": "Noord-Holland" }, { "text": "Gelderland" }] },
+        { "prompt": "Welk materiaal wordt gemaakt door zand te verhitten tot het smelt?", "options": [{ "text": "Porselein" }, { "text": "Glas", "correct": true }, { "text": "Beton" }, { "text": "Keramiek" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Euromast in Rotterdam?", "answer": 185, "unit": "meter" },
+        { "prompt": "Hoeveel dagen doet de aarde over een rondje om de zon, afgerond op hele dagen?", "answer": 365, "unit": "dagen" },
+        { "prompt": "In welk jaar werd de eerste Nederlandse Elfstedentocht verreden?", "answer": 1909 },
+        { "prompt": "Hoeveel kilometer is de kustlijn van Nederland ongeveer lang?", "answer": 450, "unit": "kilometer" },
+        { "prompt": "Hoeveel gram weegt een gemiddeld menselijk hart?", "answer": 300, "unit": "gram" },
+        { "prompt": "Hoeveel jaar oud werd de oudste bekende boom ter wereld ongeveer?", "answer": 4800, "unit": "jaar" },
+        { "prompt": "Hoeveel liter water gebruikt een Nederlander gemiddeld per dag thuis?", "answer": 130, "unit": "liter" },
+        { "prompt": "In welk jaar werd het eerste boek in Europa met losse letters gedrukt door Gutenberg?", "answer": 1455 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Paraplubak",
+        "Nachtwacht",
+        "Zeilboot",
+        "Stekelvarken",
+        "Duikplank",
+        "Bakkerij",
+        "Sneeuwkanon",
+        "Wasmachine",
+        "Eekhoorn",
+        "Reuzenrad",
+        "Trekvogel",
+        "Paardenstaart",
+        "Marie Curie",
+        "Tandwiel",
+        "Moeras",
+        "Kleurpotlood",
+        "Bergketen",
+        "Fluitje",
+        "Zonsopgang",
+        "Slagroom",
+        "Wandelstok",
+        "Papegaai",
+        "Hoepel",
+        "Klimop",
+        "Mijnwerker",
+        "Sleutelbos",
+        "Ganzenbord",
+        "Wafel",
+        "Regenton",
+        "De Noordpool"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van Japan?", "answers": [{ "text": "Sushi" }, { "text": "Tokio" }, { "text": "Kersenbloesem" }, { "text": "Samoerai" }] },
+        { "prompt": "Wat weet je van de Sinterklaasviering?", "answers": [{ "text": "Pakjesavond" }, { "text": "Pepernoten" }, { "text": "De stoomboot" }, { "text": "Gedichten" }] },
+        { "prompt": "Wat weet je van het menselijk lichaam?", "answers": [{ "text": "Botten" }, { "text": "Bloed" }, { "text": "Hart" }, { "text": "Spieren" }] },
+        { "prompt": "Wat weet je van de woestijn?", "answers": [{ "text": "Zand" }, { "text": "Heet" }, { "text": "Kamelen" }, { "text": "Oase" }] },
+        { "prompt": "Wat weet je van een voetbalwedstrijd?", "answers": [{ "text": "Scheidsrechter" }, { "text": "Doelpunt" }, { "text": "Rode kaart" }, { "text": "Publiek" }] },
+        { "prompt": "Wat weet je van de Middeleeuwen?", "answers": [{ "text": "Ridders" }, { "text": "Kastelen" }, { "text": "De pest" }, { "text": "Monniken" }] },
+        { "prompt": "Wat weet je van een supermarkt?", "answers": [{ "text": "Karretje" }, { "text": "Kassa" }, { "text": "Schappen" }, { "text": "Boodschappen" }] },
+        { "prompt": "Wat weet je van de Noordzeekust?", "answers": [{ "text": "Duinen" }, { "text": "Strand" }, { "text": "Schelpen" }, { "text": "Wind" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft gras?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Hoeveel vingers heeft een mens aan twee handen?", "difficulty": "easy", "answers": [{ "text": "Tien", "aliases": ["10"] }] },
+        { "prompt": "Welk dier geeft ons wol?", "difficulty": "easy", "answers": [{ "text": "Het schaap", "aliases": ["Schaap"] }] },
+        { "prompt": "In welk land staat de Eiffeltoren?", "difficulty": "easy", "answers": [{ "text": "Frankrijk" }] },
+        { "prompt": "In welke kamer van het huis kook je?", "difficulty": "easy", "answers": [{ "text": "De keuken", "aliases": ["Keuken"] }] },
+        { "prompt": "Welke wetenschapper formuleerde de relativiteitstheorie?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Hoe heet de zeestraat tussen Denemarken en Zweden?", "difficulty": "hard", "answers": [{ "text": "De Sont", "aliases": ["Sont", "Oresund"] }] },
+        { "prompt": "Welke Nederlandse ontdekkingsreiziger overwinterde op Nova Zembla?", "difficulty": "hard", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents"] }] },
+        { "prompt": "Welk deel van de plant neemt water op uit de grond?", "difficulty": "hard", "answers": [{ "text": "De wortels", "aliases": ["Wortels", "Wortelharen"] }] },
+        { "prompt": "Welke Italiaanse dichter schreef De Goddelijke Komedie?", "difficulty": "hard", "answers": [{ "text": "Dante", "aliases": ["Dante Alighieri"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de hoofdstad van Oostenrijk?", "answers": [{ "text": "Wenen" }] },
+        { "prompt": "Welk dier is het grootste landdier ter wereld?", "answers": [{ "text": "De Afrikaanse olifant", "aliases": ["Olifant", "Afrikaanse olifant"] }] },
+        { "prompt": "Welke wetenschapper stelde de evolutietheorie op?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Welk edelgas laat reclameborden rood oplichten?", "answers": [{ "text": "Neon" }] },
+        { "prompt": "Welke rivier stroomt door Rotterdam naar zee?", "answers": [{ "text": "De Nieuwe Maas", "aliases": ["Nieuwe Maas", "De Maas", "Maas"] }] },
+        { "prompt": "Wie schilderde De Sterrennacht?", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Welk woord gebruiken zeelieden voor de linkerkant van een schip?", "answers": [{ "text": "Bakboord" }] }
+      ]
+    }
+  ]
+}

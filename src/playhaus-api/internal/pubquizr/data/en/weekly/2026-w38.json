@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w38",
+  "title": "Weekly quiz 38 2026",
+  "description": "The weekly quiz of Wednesday 16 September 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "How many days does February have in an ordinary year?", "category": "Science", "answers": [{ "text": "Twenty-eight", "aliases": ["28"] }] },
+        { "prompt": "Which Dutch city is nicknamed Lichtstad?", "category": "The Netherlands", "answers": [{ "text": "Eindhoven" }] },
+        { "prompt": "Which animal lives in a hive and makes honey?", "category": "Nature", "answers": [{ "text": "The bee", "aliases": ["Bee", "Honeybee"] }] },
+        { "prompt": "In which sport do you use a shuttlecock?", "category": "Sport", "answers": [{ "text": "Badminton" }] },
+        { "prompt": "Which river flows through Egypt?", "category": "Geography", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "Which film is about a little elephant with big ears who can fly?", "category": "Film", "answers": [{ "text": "Dumbo" }] },
+        { "prompt": "Which instrument has pedals, a keyboard and pipes and often stands in a church?", "category": "Music", "answers": [{ "text": "The organ", "aliases": ["Organ", "Church organ"] }] },
+        { "prompt": "In which year was the Netherlands liberated from the German occupation?", "category": "History", "answers": [{ "text": "1945" }] },
+        { "prompt": "What do you call a word that sounds the same but is spelled differently?", "category": "Language", "answers": [{ "text": "A homophone", "aliases": ["Homophone"] }] },
+        { "prompt": "Which museum in Amsterdam holds the largest collection by a Dutch painter who died in 1890?", "category": "Art", "answers": [{ "text": "The Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
+        { "prompt": "Which part of a computer stores data permanently?", "category": "Technology", "answers": [{ "text": "The hard disk", "aliases": ["Hard disk", "SSD", "Drive"] }] },
+        { "prompt": "Which vegetable grows as a red bulb underground and is often eaten pickled?", "category": "Food", "answers": [{ "text": "Beetroot", "aliases": ["Beet", "Beets"] }] },
+        { "prompt": "Which country is shaped like a boot?", "category": "Geography", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which mammal can really fly?", "category": "Nature", "answers": [{ "text": "The bat", "aliases": ["Bat"] }] },
+        { "prompt": "How many points do you get for a win in a football league?", "category": "Sport", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "Which Greek hero defeated the Minotaur?", "category": "History", "answers": [{ "text": "Theseus" }] },
+        { "prompt": "Which Dutch city is known for its cheese market on Friday mornings?", "category": "The Netherlands", "answers": [{ "text": "Alkmaar" }] },
+        { "prompt": "Which gas do we use to make balloons float?", "category": "Science", "answers": [{ "text": "Helium" }] },
+        { "prompt": "Which band released the song Hotel California?", "category": "Music", "answers": [{ "text": "The Eagles", "aliases": ["Eagles"] }] },
+        { "prompt": "Which painter is known for his melting clocks?", "category": "Art", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country lies closest to the North Pole?", "options": [{ "text": "Norway" }, { "text": "Canada", "correct": true }, { "text": "Russia" }, { "text": "Iceland" }] },
+        { "prompt": "What is the largest artery in the body called?", "options": [{ "text": "The carotid artery" }, { "text": "The aorta", "correct": true }, { "text": "The pulmonary artery" }, { "text": "The femoral artery" }] },
+        { "prompt": "Which city was the first to be hit by an atomic bomb?", "options": [{ "text": "Nagasaki" }, { "text": "Hiroshima", "correct": true }, { "text": "Tokyo" }, { "text": "Kyoto" }] },
+        { "prompt": "Which animal changes colour to communicate, not only to camouflage?", "options": [{ "text": "The squid" }, { "text": "The chameleon", "correct": true }, { "text": "The gecko" }, { "text": "The seahorse" }] },
+        { "prompt": "Which composer wrote The Four Seasons?", "options": [{ "text": "Bach" }, { "text": "Vivaldi", "correct": true }, { "text": "Handel" }, { "text": "Corelli" }] },
+        { "prompt": "How many ribs does a human normally have?", "options": [{ "text": "Twenty" }, { "text": "Twenty-four", "correct": true }, { "text": "Twenty-six" }, { "text": "Eighteen" }] },
+        { "prompt": "In which Dutch province is the Hoge Veluwe?", "options": [{ "text": "Overijssel" }, { "text": "Gelderland", "correct": true }, { "text": "Utrecht" }, { "text": "Drenthe" }] },
+        { "prompt": "Which planet is called the red planet?", "options": [{ "text": "Jupiter" }, { "text": "Mars", "correct": true }, { "text": "Venus" }, { "text": "Mercury" }] },
+        { "prompt": "Which word literally means lover of books?", "options": [{ "text": "Bibliographer" }, { "text": "Bibliophile", "correct": true }, { "text": "Librarian" }, { "text": "Library" }] },
+        { "prompt": "Which invention is credited to Johannes Gutenberg?", "options": [{ "text": "The telescope" }, { "text": "Printing with movable type", "correct": true }, { "text": "The compass" }, { "text": "Spectacles" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres is it from Amsterdam to Paris as the crow flies?", "answer": 430, "unit": "kilometres" },
+        { "prompt": "How many years has the Sagrada Familia been under construction, counting from 1882 to 2026?", "answer": 144, "unit": "years" },
+        { "prompt": "How many litres of milk does a Dutch dairy cow give on average per year?", "answer": 9000, "unit": "litres" },
+        { "prompt": "In which year was Nederlandse Spoorwegen formed as a company through a merger?", "answer": 1937 },
+        { "prompt": "How many metres deep is the deepest point of the Mariana Trench?", "answer": 10935, "unit": "metres" },
+        { "prompt": "Roughly how many muscles does a person use to smile?", "answer": 12, "unit": "muscles" },
+        { "prompt": "Roughly how many kilometres of cycle path are there in the Netherlands?", "answer": 35000, "unit": "kilometres" },
+        { "prompt": "In which year did Napoleon Bonaparte die?", "answer": 1821 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Firefly",
+        "Cargo bike",
+        "Snow plough",
+        "Stork",
+        "Slide",
+        "Sewing machine",
+        "Chestnut tree",
+        "Ambulance",
+        "Sea lion",
+        "Dartboard",
+        "Candlestick",
+        "Mountain stream",
+        "Stinging nettle",
+        "Leonardo da Vinci",
+        "Water pistol",
+        "Turntable",
+        "Haystack",
+        "Snowdrop",
+        "Grocer",
+        "Suspension bridge",
+        "Chessboard",
+        "Seal",
+        "Handheld vacuum",
+        "Tulip field",
+        "Airport",
+        "Magic wand",
+        "Toaster",
+        "Seagull",
+        "Mountain pass",
+        "The Sphinx"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about the sea?", "answers": [{ "text": "Salt" }, { "text": "Waves" }, { "text": "Fish" }, { "text": "Ships" }] },
+        { "prompt": "What do you know about England?", "answers": [{ "text": "London" }, { "text": "Tea" }, { "text": "The king" }, { "text": "Rain" }] },
+        { "prompt": "What do you know about autumn?", "answers": [{ "text": "Leaves" }, { "text": "Wind" }, { "text": "Mushrooms" }, { "text": "Rain" }] },
+        { "prompt": "What do you know about a library?", "answers": [{ "text": "Books" }, { "text": "Quiet" }, { "text": "Borrowing" }, { "text": "Membership card" }] },
+        { "prompt": "What do you know about the Tour de France?", "answers": [{ "text": "Cycling" }, { "text": "Yellow jersey" }, { "text": "Mountains" }, { "text": "France" }] },
+        { "prompt": "What do you know about China?", "answers": [{ "text": "The Great Wall" }, { "text": "Rice" }, { "text": "Panda" }, { "text": "Beijing" }] },
+        { "prompt": "What do you know about a birthday?", "answers": [{ "text": "Cake" }, { "text": "Presents" }, { "text": "Candles" }, { "text": "Singing" }] },
+        { "prompt": "What do you know about the fire brigade?", "answers": [{ "text": "Red engine" }, { "text": "Hose" }, { "text": "Ladder" }, { "text": "Siren" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which animal says meow?", "difficulty": "easy", "answers": [{ "text": "The cat", "aliases": ["Cat"] }] },
+        { "prompt": "How many hours are there in a day?", "difficulty": "easy", "answers": [{ "text": "Twenty-four", "aliases": ["24"] }] },
+        { "prompt": "What colour is snow?", "difficulty": "easy", "answers": [{ "text": "White" }] },
+        { "prompt": "In which city is the Colosseum?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
+        { "prompt": "Which fruit has a yellow skin and is curved?", "difficulty": "easy", "answers": [{ "text": "The banana", "aliases": ["Banana"] }] },
+        { "prompt": "What is the largest sand desert in the world called?", "difficulty": "hard", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Which Dutch architect designed the Rietveld Schroder House?", "difficulty": "hard", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "What is the law called that says action and reaction are equal?", "difficulty": "hard", "answers": [{ "text": "Newton's third law", "aliases": ["Third law of Newton", "Newton"] }] },
+        { "prompt": "Which city was the capital of the Inca empire?", "difficulty": "hard", "answers": [{ "text": "Cusco", "aliases": ["Cuzco"] }] },
+        { "prompt": "Which Russian composer wrote the ballet Swan Lake?", "difficulty": "hard", "answers": [{ "text": "Tchaikovsky", "aliases": ["Tsjaikovski"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which sea borders the north coast of the Netherlands?", "answers": [{ "text": "The Wadden Sea", "aliases": ["Wadden Sea", "Waddenzee"] }] },
+        { "prompt": "Who was the Greek goddess of wisdom?", "answers": [{ "text": "Athena", "aliases": ["Athene"] }] },
+        { "prompt": "Which metal does not rust because it forms an oxide layer, and is used for cans and foil?", "answers": [{ "text": "Aluminium", "aliases": ["Aluminum"] }] },
+        { "prompt": "Which writer invented Pippi Longstocking?", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
+        { "prompt": "What is the largest ocean in the world called?", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific Ocean", "Pacific"] }] },
+        { "prompt": "Which Dutch graphic artist drew impossible staircases and waterways?", "answers": [{ "text": "Escher", "aliases": ["M.C. Escher", "Maurits Escher"] }] },
+        { "prompt": "Which organ stores bile?", "answers": [{ "text": "The gall bladder", "aliases": ["Gall bladder", "Gallbladder"] }] }
+      ]
+    }
+  ]
+}

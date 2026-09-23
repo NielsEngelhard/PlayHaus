@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w37",
+  "title": "Weekquiz 37 2026",
+  "description": "De wekelijkse quiz van woensdag 9 september 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke kleur heeft de bovenste baan van de Nederlandse vlag?", "category": "Nederland", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Hoeveel minuten duurt een helft bij voetbal?", "category": "Sport", "answers": [{ "text": "Vijfenveertig", "aliases": ["45"] }] },
+        { "prompt": "Welk dier legt het grootste ei ter wereld?", "category": "Natuur", "answers": [{ "text": "De struisvogel", "aliases": ["Struisvogel"] }] },
+        { "prompt": "In welk land werd de pizza uitgevonden?", "category": "Eten", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welk gebergte scheidt Spanje van Frankrijk?", "category": "Aardrijkskunde", "answers": [{ "text": "De Pyreneeen", "aliases": ["Pyreneeen"] }] },
+        { "prompt": "Welk zintuig gebruik je om te ruiken?", "category": "Wetenschap", "answers": [{ "text": "De reuk", "aliases": ["Reuk", "Neus"] }] },
+        { "prompt": "Welke film speelt zich af op een schip dat op een ijsberg vaart in 1912?", "category": "Film", "answers": [{ "text": "Titanic" }] },
+        { "prompt": "Hoeveel toetsen heeft een octaaf op de piano, wit en zwart samen?", "category": "Muziek", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "Wie was de eerste koning van Nederland?", "category": "Geschiedenis", "answers": [{ "text": "Willem I", "aliases": ["Willem de Eerste", "Koning Willem I"] }] },
+        { "prompt": "Wat is het meervoud van het woord kind?", "category": "Taal", "answers": [{ "text": "Kinderen" }] },
+        { "prompt": "Welke schilder maakte de Zonnebloemen-serie?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Welk onderdeel van de fiets zorgt ervoor dat je stopt?", "category": "Techniek", "answers": [{ "text": "De rem", "aliases": ["Rem", "Remmen"] }] },
+        { "prompt": "Welk werelddeel is het grootst in oppervlakte?", "category": "Aardrijkskunde", "answers": [{ "text": "Azie" }] },
+        { "prompt": "Welke vogel staat symbool voor vrede?", "category": "Natuur", "answers": [{ "text": "De duif", "aliases": ["Duif", "Witte duif"] }] },
+        { "prompt": "Welke Nederlandse wielrenner won in 1980 de Tour de France?", "category": "Sport", "answers": [{ "text": "Joop Zoetemelk", "aliases": ["Zoetemelk"] }] },
+        { "prompt": "Welke oorlog eindigde met de Vrede van Munster in 1648?", "category": "Geschiedenis", "answers": [{ "text": "De Tachtigjarige Oorlog", "aliases": ["Tachtigjarige Oorlog", "De Tachtigjarige oorlog"] }] },
+        { "prompt": "Welke drank wordt gemaakt door druiven te laten gisten?", "category": "Eten", "answers": [{ "text": "Wijn" }] },
+        { "prompt": "Hoeveel chromosomen heeft een mens normaal gesproken?", "category": "Wetenschap", "answers": [{ "text": "Zesenveertig", "aliases": ["46", "23 paar"] }] },
+        { "prompt": "Welke Nederlandse stad wordt doorsneden door de Maas en heeft een Sint-Servaasbrug?", "category": "Nederland", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "Welke zanger stond bekend als de King of Pop?", "category": "Muziek", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft als enige ter wereld een vlag die niet rechthoekig is?", "options": [{ "text": "Zwitserland" }, { "text": "Nepal", "correct": true }, { "text": "Bhutan" }, { "text": "Vaticaanstad" }] },
+        { "prompt": "Hoe heet de studie van aardbevingen?", "options": [{ "text": "Vulkanologie" }, { "text": "Seismologie", "correct": true }, { "text": "Geodesie" }, { "text": "Meteorologie" }] },
+        { "prompt": "Welke zee is eigenlijk een meer?", "options": [{ "text": "De Rode Zee" }, { "text": "De Kaspische Zee", "correct": true }, { "text": "De Zwarte Zee" }, { "text": "De Egeische Zee" }] },
+        { "prompt": "Welk instrument bespeelde Jimi Hendrix?", "options": [{ "text": "De basgitaar" }, { "text": "De elektrische gitaar", "correct": true }, { "text": "Het drumstel" }, { "text": "De piano" }] },
+        { "prompt": "In welk jaar werd de Verenigde Oost-Indische Compagnie opgericht?", "options": [{ "text": "1602", "correct": true }, { "text": "1621" }, { "text": "1580" }, { "text": "1648" }] },
+        { "prompt": "Welk deel van het oog bepaalt de oogkleur?", "options": [{ "text": "De pupil" }, { "text": "De iris", "correct": true }, { "text": "Het hoornvlies" }, { "text": "Het netvlies" }] },
+        { "prompt": "Welke schrijver bedacht de detective Miss Marple?", "options": [{ "text": "Dorothy Sayers" }, { "text": "Agatha Christie", "correct": true }, { "text": "Arthur Conan Doyle" }, { "text": "Georges Simenon" }] },
+        { "prompt": "Hoeveel zijden heeft een dodecaeder?", "options": [{ "text": "Tien" }, { "text": "Twaalf", "correct": true }, { "text": "Twintig" }, { "text": "Acht" }] },
+        { "prompt": "Welk land was het eerste dat vrouwen algemeen kiesrecht gaf?", "options": [{ "text": "Finland" }, { "text": "Nieuw-Zeeland", "correct": true }, { "text": "Noorwegen" }, { "text": "Australie" }] },
+        { "prompt": "Welke stof zorgt ervoor dat brood rijst?", "options": [{ "text": "Zout" }, { "text": "Gist", "correct": true }, { "text": "Suiker" }, { "text": "Boter" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is de Rijn van bron tot monding?", "answer": 1230, "unit": "kilometer" },
+        { "prompt": "Hoeveel liter bloed heeft een volwassen mens ongeveer?", "answer": 5, "unit": "liter" },
+        { "prompt": "In welk jaar werd de eerste Olympische Spelen van de moderne tijd gehouden?", "answer": 1896 },
+        { "prompt": "Hoeveel meter hoog is de Domtoren in Utrecht?", "answer": 112, "unit": "meter" },
+        { "prompt": "Hoeveel talen worden er wereldwijd ongeveer gesproken?", "answer": 7000, "unit": "talen" },
+        { "prompt": "Hoeveel keer klopt het hart van een volwassene gemiddeld per minuut in rust?", "answer": 70, "unit": "slagen" },
+        { "prompt": "Hoeveel kilometer legt licht per seconde af?", "answer": 300000, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de Nederlandse grondwet van Thorbecke aangenomen?", "answer": 1848 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Vuurwerk",
+        "Windmolen",
+        "Kapper",
+        "Krokodil",
+        "Schommel",
+        "Kurkentrekker",
+        "Sneeuwvlok",
+        "Ridder",
+        "Zaklamp",
+        "Waterpolo",
+        "Fluitketel",
+        "Struisvogel",
+        "Skischans",
+        "Elvis Presley",
+        "Rolstoel",
+        "Pannenlap",
+        "Cowboy",
+        "Duikbril",
+        "Zonsverduistering",
+        "Boerderij",
+        "Accordeon",
+        "Speelkaarten",
+        "Vuilnisman",
+        "Egel",
+        "Klokkentoren",
+        "Zwaartekracht",
+        "Sprookje",
+        "Pindakaas",
+        "Circustent",
+        "Het Vrijheidsbeeld"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van Spanje?", "answers": [{ "text": "Madrid" }, { "text": "Paella" }, { "text": "Flamenco" }, { "text": "Stierenvechten" }] },
+        { "prompt": "Wat weet je van de dinosaurussen?", "answers": [{ "text": "Uitgestorven" }, { "text": "T-rex" }, { "text": "Fossielen" }, { "text": "Meteoriet" }] },
+        { "prompt": "Wat weet je van een bruiloft?", "answers": [{ "text": "Jurk" }, { "text": "Ringen" }, { "text": "Taart" }, { "text": "Ja-woord" }] },
+        { "prompt": "Wat weet je van de Alpen?", "answers": [{ "text": "Bergen" }, { "text": "Skien" }, { "text": "Zwitserland" }, { "text": "Sneeuw" }] },
+        { "prompt": "Wat weet je van koffie?", "answers": [{ "text": "Bonen" }, { "text": "Zwart" }, { "text": "Cafeine" }, { "text": "Melk" }] },
+        { "prompt": "Wat weet je van de oude Grieken?", "answers": [{ "text": "Athene" }, { "text": "Goden" }, { "text": "Filosofen" }, { "text": "Olympische Spelen" }] },
+        { "prompt": "Wat weet je van paarden?", "answers": [{ "text": "Hoefijzers" }, { "text": "Manen" }, { "text": "Galop" }, { "text": "Stal" }] },
+        { "prompt": "Wat weet je van het internet?", "answers": [{ "text": "Wifi" }, { "text": "Google" }, { "text": "E-mail" }, { "text": "Websites" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel wielen heeft een gewone fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Welk dier blaft?", "difficulty": "easy", "answers": [{ "text": "De hond", "aliases": ["Hond"] }] },
+        { "prompt": "In welke maand valt Koningsdag?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "Welke kleur ontstaat er als je rood en wit mengt?", "difficulty": "easy", "answers": [{ "text": "Roze" }] },
+        { "prompt": "Welk continent ligt ten zuiden van Europa?", "difficulty": "easy", "answers": [{ "text": "Afrika" }] },
+        { "prompt": "Welk bot van de menselijke schedel is het enige dat kan bewegen?", "difficulty": "hard", "answers": [{ "text": "De onderkaak", "aliases": ["Onderkaak", "Kaak"] }] },
+        { "prompt": "Welke Nederlandse filosoof schreef de Ethica?", "difficulty": "hard", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza", "Benedictus de Spinoza"] }] },
+        { "prompt": "Welk land heeft de meeste actieve vulkanen?", "difficulty": "hard", "answers": [{ "text": "Indonesie" }] },
+        { "prompt": "Wie ontdekte penicilline?", "difficulty": "hard", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Welke zeeengte scheidt Spanje van Marokko?", "difficulty": "hard", "answers": [{ "text": "De Straat van Gibraltar", "aliases": ["Straat van Gibraltar", "Gibraltar"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de hoofdstad van Noorwegen?", "answers": [{ "text": "Oslo" }] },
+        { "prompt": "Welk element heeft atoomnummer 1?", "answers": [{ "text": "Waterstof" }] },
+        { "prompt": "Wie schreef het sprookje De kleine zeemeermin?", "answers": [{ "text": "Hans Christian Andersen", "aliases": ["Andersen"] }] },
+        { "prompt": "Welk dier heeft de langste nek?", "answers": [{ "text": "De giraffe", "aliases": ["Giraffe", "Giraf"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de oudste universiteit van het land?", "answers": [{ "text": "Leiden" }] },
+        { "prompt": "Welke stof heeft de scheikundige formule NaCl?", "answers": [{ "text": "Keukenzout", "aliases": ["Zout", "Natriumchloride"] }] },
+        { "prompt": "Welke schilder bedacht samen met Georges Braque het kubisme?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
+      ]
+    }
+  ]
+}

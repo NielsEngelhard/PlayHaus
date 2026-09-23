@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w38",
+  "title": "Weekquiz 38 2026",
+  "description": "De wekelijkse quiz van woensdag 16 september 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoeveel dagen heeft de maand februari in een gewoon jaar?", "category": "Wetenschap", "answers": [{ "text": "Achtentwintig", "aliases": ["28"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de bijnaam Lichtstad?", "category": "Nederland", "answers": [{ "text": "Eindhoven" }] },
+        { "prompt": "Welk dier leeft in een korf en maakt honing?", "category": "Natuur", "answers": [{ "text": "De bij", "aliases": ["Bij", "Honingbij"] }] },
+        { "prompt": "In welke sport gebruik je een shuttle?", "category": "Sport", "answers": [{ "text": "Badminton" }] },
+        { "prompt": "Welke rivier stroomt door Egypte?", "category": "Aardrijkskunde", "answers": [{ "text": "De Nijl", "aliases": ["Nijl"] }] },
+        { "prompt": "Welke film gaat over een olifantje met grote oren dat kan vliegen?", "category": "Film", "answers": [{ "text": "Dumbo" }] },
+        { "prompt": "Welk instrument heeft pedalen, een klavier en pijpen en staat vaak in een kerk?", "category": "Muziek", "answers": [{ "text": "Het orgel", "aliases": ["Orgel", "Kerkorgel"] }] },
+        { "prompt": "In welk jaar werd Nederland bevrijd van de Duitse bezetting?", "category": "Geschiedenis", "answers": [{ "text": "1945" }] },
+        { "prompt": "Hoe noem je een woord dat hetzelfde klinkt maar anders wordt geschreven?", "category": "Taal", "answers": [{ "text": "Homofoon", "aliases": ["Een homofoon"] }] },
+        { "prompt": "Welk museum in Amsterdam toont de grootste verzameling werk van een Nederlandse schilder die in 1890 overleed?", "category": "Kunst", "answers": [{ "text": "Het Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
+        { "prompt": "Welk deel van de computer slaat gegevens blijvend op?", "category": "Techniek", "answers": [{ "text": "De harde schijf", "aliases": ["Harde schijf", "SSD", "Schijf"] }] },
+        { "prompt": "Welke groente heeft rode bollen die je in de grond laat groeien en die je vaak zoetzuur eet?", "category": "Eten", "answers": [{ "text": "Rode biet", "aliases": ["Biet", "Bieten"] }] },
+        { "prompt": "Welk land heeft de vorm van een laars?", "category": "Aardrijkskunde", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welk zoogdier kan echt vliegen?", "category": "Natuur", "answers": [{ "text": "De vleermuis", "aliases": ["Vleermuis"] }] },
+        { "prompt": "Hoeveel punten krijg je in het voetbal voor een gewonnen wedstrijd in de competitie?", "category": "Sport", "answers": [{ "text": "Drie", "aliases": ["3"] }] },
+        { "prompt": "Welke Griekse held versloeg de Minotaurus?", "category": "Geschiedenis", "answers": [{ "text": "Theseus" }] },
+        { "prompt": "Welke Nederlandse stad staat bekend om zijn kaasmarkt op vrijdagochtend?", "category": "Nederland", "answers": [{ "text": "Alkmaar" }] },
+        { "prompt": "Welk gas gebruiken we om ballonnen te laten zweven?", "category": "Wetenschap", "answers": [{ "text": "Helium" }] },
+        { "prompt": "Welke band bracht het nummer Hotel California uit?", "category": "Muziek", "answers": [{ "text": "The Eagles", "aliases": ["Eagles"] }] },
+        { "prompt": "Welke schilder staat bekend om zijn smeltende klokken?", "category": "Kunst", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land ligt het dichtst bij de Noordpool?", "options": [{ "text": "Noorwegen" }, { "text": "Canada", "correct": true }, { "text": "Rusland" }, { "text": "IJsland" }] },
+        { "prompt": "Hoe heet de grootste slagader van het lichaam?", "options": [{ "text": "De halsslagader" }, { "text": "De aorta", "correct": true }, { "text": "De longslagader" }, { "text": "De liesslagader" }] },
+        { "prompt": "Welke stad was de eerste die door een atoombom werd getroffen?", "options": [{ "text": "Nagasaki" }, { "text": "Hiroshima", "correct": true }, { "text": "Tokio" }, { "text": "Kyoto" }] },
+        { "prompt": "Welk dier verandert van kleur om te communiceren, niet alleen om te camoufleren?", "options": [{ "text": "De inktvis" }, { "text": "De kameleon", "correct": true }, { "text": "De gekko" }, { "text": "Het zeepaardje" }] },
+        { "prompt": "Welke componist schreef De Vier Jaargetijden?", "options": [{ "text": "Bach" }, { "text": "Vivaldi", "correct": true }, { "text": "Handel" }, { "text": "Corelli" }] },
+        { "prompt": "Hoeveel ribben heeft een mens normaal gesproken?", "options": [{ "text": "Twintig" }, { "text": "Vierentwintig", "correct": true }, { "text": "Zesentwintig" }, { "text": "Achttien" }] },
+        { "prompt": "In welke Nederlandse provincie ligt de Hoge Veluwe?", "options": [{ "text": "Overijssel" }, { "text": "Gelderland", "correct": true }, { "text": "Utrecht" }, { "text": "Drenthe" }] },
+        { "prompt": "Welke planeet wordt de rode planeet genoemd?", "options": [{ "text": "Jupiter" }, { "text": "Mars", "correct": true }, { "text": "Venus" }, { "text": "Mercurius" }] },
+        { "prompt": "Welk woord betekent letterlijk boekenliefhebber?", "options": [{ "text": "Bibliograaf" }, { "text": "Bibliofiel", "correct": true }, { "text": "Bibliothecaris" }, { "text": "Bibliotheek" }] },
+        { "prompt": "Welke uitvinding wordt toegeschreven aan Johannes Gutenberg?", "options": [{ "text": "De telescoop" }, { "text": "De boekdrukkunst met losse letters", "correct": true }, { "text": "Het kompas" }, { "text": "De bril" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer is de afstand van Amsterdam naar Parijs in vogelvlucht?", "answer": 430, "unit": "kilometer" },
+        { "prompt": "Hoeveel jaar duurde de bouw van de Sagrada Familia tot nu toe, gerekend vanaf 1882 tot 2026?", "answer": 144, "unit": "jaar" },
+        { "prompt": "Hoeveel liter melk geeft een Nederlandse melkkoe gemiddeld per jaar?", "answer": 9000, "unit": "liter" },
+        { "prompt": "In welk jaar werd de Nederlandse Spoorwegen als bedrijf gevormd uit een fusie?", "answer": 1937 },
+        { "prompt": "Hoeveel meter diep is het diepste punt van de Marianentrog?", "answer": 10935, "unit": "meter" },
+        { "prompt": "Hoeveel spieren gebruikt een mens ongeveer om te glimlachen?", "answer": 12, "unit": "spieren" },
+        { "prompt": "Hoeveel kilometer fietspad ligt er ongeveer in Nederland?", "answer": 35000, "unit": "kilometer" },
+        { "prompt": "In welk jaar stierf Napoleon Bonaparte?", "answer": 1821 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Vuurvliegje",
+        "Bakfiets",
+        "Sneeuwschuiver",
+        "Ooievaar",
+        "Glijbaan",
+        "Naaimachine",
+        "Kastanjeboom",
+        "Ambulance",
+        "Zeeleeuw",
+        "Dartbord",
+        "Kandelaar",
+        "Bergbeek",
+        "Brandnetel",
+        "Leonardo da Vinci",
+        "Waterpistool",
+        "Draaitafel",
+        "Hooiberg",
+        "Sneeuwklokje",
+        "Kruidenier",
+        "Hangbrug",
+        "Schaakbord",
+        "Zeehond",
+        "Kruimeldief",
+        "Tulpenveld",
+        "Luchthaven",
+        "Toverstok",
+        "Broodrooster",
+        "Meeuw",
+        "Bergpas",
+        "De Sfinx"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van de zee?", "answers": [{ "text": "Zout" }, { "text": "Golven" }, { "text": "Vissen" }, { "text": "Schepen" }] },
+        { "prompt": "Wat weet je van Engeland?", "answers": [{ "text": "Londen" }, { "text": "Thee" }, { "text": "De koning" }, { "text": "Regen" }] },
+        { "prompt": "Wat weet je van de herfst?", "answers": [{ "text": "Bladeren" }, { "text": "Wind" }, { "text": "Paddenstoelen" }, { "text": "Regen" }] },
+        { "prompt": "Wat weet je van een bibliotheek?", "answers": [{ "text": "Boeken" }, { "text": "Stil" }, { "text": "Lenen" }, { "text": "Kaart" }] },
+        { "prompt": "Wat weet je van de Tour de France?", "answers": [{ "text": "Wielrennen" }, { "text": "Gele trui" }, { "text": "Bergen" }, { "text": "Frankrijk" }] },
+        { "prompt": "Wat weet je van China?", "answers": [{ "text": "De Chinese Muur" }, { "text": "Rijst" }, { "text": "Panda" }, { "text": "Peking" }] },
+        { "prompt": "Wat weet je van een verjaardag?", "answers": [{ "text": "Taart" }, { "text": "Cadeaus" }, { "text": "Kaarsjes" }, { "text": "Zingen" }] },
+        { "prompt": "Wat weet je van de brandweer?", "answers": [{ "text": "Rode wagen" }, { "text": "Slang" }, { "text": "Ladder" }, { "text": "Sirene" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk dier zegt miauw?", "difficulty": "easy", "answers": [{ "text": "De kat", "aliases": ["Kat", "Poes"] }] },
+        { "prompt": "Hoeveel uur zitten er in een dag?", "difficulty": "easy", "answers": [{ "text": "Vierentwintig", "aliases": ["24"] }] },
+        { "prompt": "Welke kleur heeft sneeuw?", "difficulty": "easy", "answers": [{ "text": "Wit" }] },
+        { "prompt": "In welke stad staat het Colosseum?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
+        { "prompt": "Welk fruit heeft een gele schil en is krom?", "difficulty": "easy", "answers": [{ "text": "De banaan", "aliases": ["Banaan"] }] },
+        { "prompt": "Hoe heet de grootste zandwoestijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
+        { "prompt": "Welke Nederlandse architect ontwierp het Rietveld Schroderhuis?", "difficulty": "hard", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
+        { "prompt": "Hoe heet de wet die zegt dat actie en reactie even groot zijn?", "difficulty": "hard", "answers": [{ "text": "De derde wet van Newton", "aliases": ["Derde wet van Newton", "Newton"] }] },
+        { "prompt": "Welke stad was de hoofdstad van het Inca-rijk?", "difficulty": "hard", "answers": [{ "text": "Cuzco", "aliases": ["Cusco"] }] },
+        { "prompt": "Welke Russische componist schreef het ballet Het Zwanenmeer?", "difficulty": "hard", "answers": [{ "text": "Tsjaikovski", "aliases": ["Tsjaikovsky", "Tchaikovsky"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke zee grenst aan de noordkust van Nederland?", "answers": [{ "text": "De Waddenzee", "aliases": ["Waddenzee"] }] },
+        { "prompt": "Wie was de Griekse godin van de wijsheid?", "answers": [{ "text": "Athena", "aliases": ["Athene"] }] },
+        { "prompt": "Welk metaal roest niet omdat het een laagje oxide vormt en wordt gebruikt voor blikjes en folie?", "answers": [{ "text": "Aluminium" }] },
+        { "prompt": "Welke schrijver bedacht Pippi Langkous?", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
+        { "prompt": "Hoe heet de grootste oceaan ter wereld?", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Pacific"] }] },
+        { "prompt": "Welke Nederlandse graficus maakte onmogelijke trappen en waterlopen?", "answers": [{ "text": "Escher", "aliases": ["M.C. Escher", "Maurits Escher"] }] },
+        { "prompt": "Welk orgaan slaat gal op?", "answers": [{ "text": "De galblaas", "aliases": ["Galblaas"] }] }
+      ]
+    }
+  ]
+}

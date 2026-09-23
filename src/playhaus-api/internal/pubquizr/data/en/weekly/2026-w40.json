@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w40",
+  "title": "Weekly quiz 40 2026",
+  "description": "The weekly quiz of Wednesday 30 September 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What colour do you get when you mix red and yellow?", "category": "Art", "answers": [{ "text": "Orange" }] },
+        { "prompt": "How many weeks are there in a year?", "category": "Science", "answers": [{ "text": "Fifty-two", "aliases": ["52"] }] },
+        { "prompt": "Which Dutch city has the Erasmus Bridge?", "category": "The Netherlands", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Which animal is the symbol of the World Wide Fund for Nature?", "category": "Nature", "answers": [{ "text": "The giant panda", "aliases": ["Panda", "Giant panda"] }] },
+        { "prompt": "In which sport does a match consist of nine innings?", "category": "Sport", "answers": [{ "text": "Baseball" }] },
+        { "prompt": "Which island is the largest in Greece?", "category": "Geography", "answers": [{ "text": "Crete" }] },
+        { "prompt": "Which film is about a lion cub called Simba?", "category": "Film", "answers": [{ "text": "The Lion King" }] },
+        { "prompt": "Which instrument has brass plates that you clash together?", "category": "Music", "answers": [{ "text": "The cymbals", "aliases": ["Cymbals"] }] },
+        { "prompt": "Which French prison was stormed in 1789?", "category": "History", "answers": [{ "text": "The Bastille", "aliases": ["Bastille"] }] },
+        { "prompt": "What do you call a sentence that reads the same forwards and backwards?", "category": "Language", "answers": [{ "text": "A palindrome", "aliases": ["Palindrome"] }] },
+        { "prompt": "Which Italian artist sculpted David?", "category": "Art", "answers": [{ "text": "Michelangelo", "aliases": ["Michelangelo Buonarroti"] }] },
+        { "prompt": "Which part of a car turns fuel into movement?", "category": "Technology", "answers": [{ "text": "The engine", "aliases": ["Engine", "Motor"] }] },
+        { "prompt": "Which ocean lies between Europe and America?", "category": "Geography", "answers": [{ "text": "The Atlantic Ocean", "aliases": ["Atlantic Ocean", "Atlantic"] }] },
+        { "prompt": "Which tree drops its needles in autumn, unlike most conifers?", "category": "Nature", "answers": [{ "text": "The larch", "aliases": ["Larch"] }] },
+        { "prompt": "In which sport do countries compete for the Davis Cup?", "category": "Sport", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Which Egyptian queen had a relationship with Julius Caesar?", "category": "History", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "Which Dutch treat is two thin biscuits with syrup in between?", "category": "Food", "answers": [{ "text": "The stroopwafel", "aliases": ["Stroopwafel", "Syrup waffle"] }] },
+        { "prompt": "Which particle in an atom has a negative charge?", "category": "Science", "answers": [{ "text": "The electron", "aliases": ["Electron"] }] },
+        { "prompt": "Which Dutch province is the only one that borders neither another country nor the sea?", "category": "The Netherlands", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Which British band was made up of John, Paul, George and Ringo?", "category": "Music", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has the largest number of official languages?", "options": [{ "text": "India" }, { "text": "South Africa" }, { "text": "Zimbabwe", "correct": true }, { "text": "Switzerland" }] },
+        { "prompt": "Which organ uses the most of the body's energy for its size?", "options": [{ "text": "The heart" }, { "text": "The brain", "correct": true }, { "text": "The liver" }, { "text": "The muscles" }] },
+        { "prompt": "Which city lies furthest north?", "options": [{ "text": "Helsinki" }, { "text": "Oslo" }, { "text": "Reykjavik", "correct": true }, { "text": "Stockholm" }] },
+        { "prompt": "Which animal has the largest eyes in the world?", "options": [{ "text": "The blue whale" }, { "text": "The giant squid", "correct": true }, { "text": "The ostrich" }, { "text": "The elephant" }] },
+        { "prompt": "Which Dutch writer wrote The Discovery of Heaven?", "options": [{ "text": "Cees Nooteboom" }, { "text": "Harry Mulisch", "correct": true }, { "text": "Gerard Reve" }, { "text": "Willem Frederik Hermans" }] },
+        { "prompt": "In which year were the United Nations founded?", "options": [{ "text": "1919" }, { "text": "1945", "correct": true }, { "text": "1948" }, { "text": "1950" }] },
+        { "prompt": "Which element is the lightest metal?", "options": [{ "text": "Aluminium" }, { "text": "Lithium", "correct": true }, { "text": "Sodium" }, { "text": "Magnesium" }] },
+        { "prompt": "Which river flows through Paris?", "options": [{ "text": "The Loire" }, { "text": "The Seine", "correct": true }, { "text": "The Rhone" }, { "text": "The Garonne" }] },
+        { "prompt": "What is the art of folding paper into figures called?", "options": [{ "text": "Ikebana" }, { "text": "Origami", "correct": true }, { "text": "Kirigami" }, { "text": "Calligraphy" }] },
+        { "prompt": "Which planet has the most confirmed moons?", "options": [{ "text": "Jupiter" }, { "text": "Saturn", "correct": true }, { "text": "Uranus" }, { "text": "Neptune" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is Cologne Cathedral?", "answer": 157, "unit": "metres" },
+        { "prompt": "How many kilometres does the earth travel each hour on its orbit round the sun?", "answer": 107000, "unit": "kilometres" },
+        { "prompt": "In which year was the euro introduced in the Netherlands as an electronic currency, before the cash arrived?", "answer": 1999 },
+        { "prompt": "Roughly how many teeth does an adult dog have?", "answer": 42, "unit": "teeth" },
+        { "prompt": "How many metres long is a football pitch under the FIFA standard for internationals?", "answer": 105, "unit": "metres" },
+        { "prompt": "How many inhabitants did the Netherlands have at the census of 1900, in millions to one decimal?", "answer": 5.1, "unit": "million" },
+        { "prompt": "How many degrees does the minute hand of a clock turn in a quarter of an hour?", "answer": 90, "unit": "degrees" },
+        { "prompt": "In which year was the first human sent into space?", "answer": 1961 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Autumn leaf",
+        "Doormat",
+        "Air bed",
+        "Lighthouse keeper",
+        "Sea eagle",
+        "Cork floor",
+        "Church bell",
+        "Skipping rope",
+        "Camel race",
+        "Wall clock",
+        "Mountain snow",
+        "Motorcycle helmet",
+        "Tawny owl",
+        "Ice floe",
+        "Ironing board",
+        "Earring",
+        "Canoeing",
+        "Solar panel",
+        "Scarecrow",
+        "Nelson Mandela",
+        "Maze",
+        "Pram",
+        "Chandelier",
+        "Otter",
+        "Candy floss",
+        "Chimney",
+        "Sack race",
+        "Flower stall",
+        "Lumberjack",
+        "The Taj Mahal"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about the United States?", "answers": [{ "text": "Washington" }, { "text": "The flag with stars" }, { "text": "Hamburgers" }, { "text": "Hollywood" }] },
+        { "prompt": "What do you know about a train?", "answers": [{ "text": "Rails" }, { "text": "Station" }, { "text": "Conductor" }, { "text": "Ticket" }] },
+        { "prompt": "What do you know about spring?", "answers": [{ "text": "Flowers" }, { "text": "Lambs" }, { "text": "Green" }, { "text": "Easter" }] },
+        { "prompt": "What do you know about German cars?", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Mercedes" }, { "text": "Audi" }] },
+        { "prompt": "What do you know about school?", "answers": [{ "text": "Teacher" }, { "text": "Break" }, { "text": "Homework" }, { "text": "Report card" }] },
+        { "prompt": "What do you know about pirates?", "answers": [{ "text": "Eye patch" }, { "text": "Treasure" }, { "text": "Parrot" }, { "text": "Skull flag" }] },
+        { "prompt": "What do you know about the Rhine?", "answers": [{ "text": "River" }, { "text": "Germany" }, { "text": "Ships" }, { "text": "Rotterdam" }] },
+        { "prompt": "What do you know about photography?", "answers": [{ "text": "Camera" }, { "text": "Lens" }, { "text": "Flash" }, { "text": "Photos" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is the sun when you draw it?", "difficulty": "easy", "answers": [{ "text": "Yellow" }] },
+        { "prompt": "How many legs does a cat have?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "Where do you buy bread?", "difficulty": "easy", "answers": [{ "text": "At the baker's", "aliases": ["The baker", "Baker", "Bakery"] }] },
+        { "prompt": "Which animal makes the sound moo?", "difficulty": "easy", "answers": [{ "text": "The cow", "aliases": ["Cow"] }] },
+        { "prompt": "Which drink do you make from oranges?", "difficulty": "easy", "answers": [{ "text": "Orange juice", "aliases": ["Juice"] }] },
+        { "prompt": "Which Dutch mathematician and astronomer invented the pendulum clock?", "difficulty": "hard", "answers": [{ "text": "Christiaan Huygens", "aliases": ["Huygens"] }] },
+        { "prompt": "What is the largest volcano in the solar system called?", "difficulty": "hard", "answers": [{ "text": "Olympus Mons", "aliases": ["Olympus Mons on Mars"] }] },
+        { "prompt": "Which English king had six wives?", "difficulty": "hard", "answers": [{ "text": "Henry VIII", "aliases": ["Henry the Eighth", "Hendrik VIII"] }] },
+        { "prompt": "Which process turns sunlight into sugars in a plant?", "difficulty": "hard", "answers": [{ "text": "Photosynthesis" }] },
+        { "prompt": "What is the longest river in South America called?", "difficulty": "hard", "answers": [{ "text": "The Amazon", "aliases": ["Amazon"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which country is known for its fjords?", "answers": [{ "text": "Norway" }] },
+        { "prompt": "Which Greek hero had a vulnerable heel?", "answers": [{ "text": "Achilles" }] },
+        { "prompt": "Which precious metal has the symbol Ag?", "answers": [{ "text": "Silver" }] },
+        { "prompt": "Who wrote the book The Hobbit?", "answers": [{ "text": "Tolkien", "aliases": ["J.R.R. Tolkien"] }] },
+        { "prompt": "What is the largest city in Australia by population?", "answers": [{ "text": "Sydney" }] },
+        { "prompt": "Which Dutch king has reigned since 2013?", "answers": [{ "text": "Willem-Alexander", "aliases": ["King Willem-Alexander"] }] },
+        { "prompt": "Which muscle in the body is the strongest for its size?", "answers": [{ "text": "The jaw muscle", "aliases": ["Jaw muscle", "Masseter"] }] }
+      ]
+    }
+  ]
+}

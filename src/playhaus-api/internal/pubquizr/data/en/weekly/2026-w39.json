@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w39",
+  "title": "Weekly quiz 39 2026",
+  "description": "The weekly quiz of Wednesday 23 September 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "How many seconds are there in a minute?", "category": "Science", "answers": [{ "text": "Sixty", "aliases": ["60"] }] },
+        { "prompt": "Which Dutch city has the Mauritshuis?", "category": "The Netherlands", "answers": [{ "text": "The Hague", "aliases": ["Den Haag"] }] },
+        { "prompt": "Which animal carries its house on its back?", "category": "Nature", "answers": [{ "text": "The snail", "aliases": ["Snail"] }] },
+        { "prompt": "How many players does a basketball team have on court?", "category": "Sport", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "Which country lies between France and the Netherlands?", "category": "Geography", "answers": [{ "text": "Belgium" }] },
+        { "prompt": "Which film is about a young wizard at Hogwarts?", "category": "Film", "answers": [{ "text": "Harry Potter" }] },
+        { "prompt": "Which instrument do you play with a bow and hold under your chin?", "category": "Music", "answers": [{ "text": "The violin", "aliases": ["Violin"] }] },
+        { "prompt": "Which wall divided Berlin until 1989?", "category": "History", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
+        { "prompt": "What is the opposite of a synonym?", "category": "Language", "answers": [{ "text": "An antonym", "aliases": ["Antonym"] }] },
+        { "prompt": "Which Dutch painter made The Potato Eaters?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Which invention by Alexander Graham Bell changed contact at a distance?", "category": "Technology", "answers": [{ "text": "The telephone", "aliases": ["Telephone"] }] },
+        { "prompt": "Which animated film is about a little fish searching for his son Nemo?", "category": "Film", "answers": [{ "text": "Finding Nemo" }] },
+        { "prompt": "Which sea mammal is known for its tusks and lives on the Arctic ice?", "category": "Nature", "answers": [{ "text": "The walrus", "aliases": ["Walrus"] }] },
+        { "prompt": "Which city is the capital of Sweden?", "category": "Geography", "answers": [{ "text": "Stockholm" }] },
+        { "prompt": "Which Dutch footballer was nicknamed the Black Tulip?", "category": "Sport", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
+        { "prompt": "Which Roman structure carried water over long distances to the city?", "category": "History", "answers": [{ "text": "The aqueduct", "aliases": ["Aqueduct"] }] },
+        { "prompt": "Which Italian rice dish is stirred slowly with stock added bit by bit?", "category": "Food", "answers": [{ "text": "Risotto" }] },
+        { "prompt": "Which force keeps us on the ground?", "category": "Science", "answers": [{ "text": "Gravity", "aliases": ["The force of gravity"] }] },
+        { "prompt": "What is the dyke that separates the IJsselmeer from the Wadden Sea called?", "category": "The Netherlands", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Which Swedish pop group sang Dancing Queen?", "category": "Music", "answers": [{ "text": "ABBA" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has the most lakes in the world?", "options": [{ "text": "Finland" }, { "text": "Canada", "correct": true }, { "text": "Russia" }, { "text": "Sweden" }] },
+        { "prompt": "What is the longest bone in the arm called?", "options": [{ "text": "The ulna" }, { "text": "The humerus", "correct": true }, { "text": "The radius" }, { "text": "The collarbone" }] },
+        { "prompt": "Which city is known as the city of a thousand minarets?", "options": [{ "text": "Istanbul" }, { "text": "Cairo", "correct": true }, { "text": "Marrakesh" }, { "text": "Damascus" }] },
+        { "prompt": "Which animal carries its young the longest before birth?", "options": [{ "text": "The blue whale" }, { "text": "The elephant", "correct": true }, { "text": "The giraffe" }, { "text": "The rhinoceros" }] },
+        { "prompt": "Who wrote the opera The Magic Flute?", "options": [{ "text": "Verdi" }, { "text": "Mozart", "correct": true }, { "text": "Wagner" }, { "text": "Puccini" }] },
+        { "prompt": "In which year was the Dutch constitution changed so that women got the right to vote?", "options": [{ "text": "1917" }, { "text": "1919", "correct": true }, { "text": "1922" }, { "text": "1948" }] },
+        { "prompt": "Which river is the longest in Asia?", "options": [{ "text": "The Ganges" }, { "text": "The Yangtze", "correct": true }, { "text": "The Mekong" }, { "text": "The Indus" }] },
+        { "prompt": "Which word describes an animal's ability to grow lost body parts back?", "options": [{ "text": "Mutation" }, { "text": "Regeneration", "correct": true }, { "text": "Metamorphosis" }, { "text": "Adaptation" }] },
+        { "prompt": "Which Dutch province has the most inhabitants?", "options": [{ "text": "Noord-Brabant" }, { "text": "Zuid-Holland", "correct": true }, { "text": "Noord-Holland" }, { "text": "Gelderland" }] },
+        { "prompt": "Which material is made by heating sand until it melts?", "options": [{ "text": "Porcelain" }, { "text": "Glass", "correct": true }, { "text": "Concrete" }, { "text": "Ceramics" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Euromast in Rotterdam?", "answer": 185, "unit": "metres" },
+        { "prompt": "How many days does the earth take to go round the sun, rounded to whole days?", "answer": 365, "unit": "days" },
+        { "prompt": "In which year was the first Dutch Elfstedentocht skated?", "answer": 1909 },
+        { "prompt": "Roughly how many kilometres long is the coastline of the Netherlands?", "answer": 450, "unit": "kilometres" },
+        { "prompt": "How many grams does an average human heart weigh?", "answer": 300, "unit": "grams" },
+        { "prompt": "Roughly how many years old was the oldest known tree in the world?", "answer": 4800, "unit": "years" },
+        { "prompt": "How many litres of water does a Dutch person use at home on an average day?", "answer": 130, "unit": "litres" },
+        { "prompt": "In which year did Gutenberg print the first book in Europe with movable type?", "answer": 1455 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Umbrella stand",
+        "Night watch",
+        "Sailing boat",
+        "Porcupine",
+        "Diving board",
+        "Bakery",
+        "Snow cannon",
+        "Washing machine",
+        "Squirrel",
+        "Ferris wheel",
+        "Migrating bird",
+        "Ponytail",
+        "Marie Curie",
+        "Cogwheel",
+        "Swamp",
+        "Coloured pencil",
+        "Mountain range",
+        "Whistle",
+        "Sunrise",
+        "Whipped cream",
+        "Walking stick",
+        "Parrot",
+        "Hula hoop",
+        "Ivy",
+        "Miner",
+        "Bunch of keys",
+        "Snakes and ladders",
+        "Waffle",
+        "Rain barrel",
+        "The North Pole"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Japan?", "answers": [{ "text": "Sushi" }, { "text": "Tokyo" }, { "text": "Cherry blossom" }, { "text": "Samurai" }] },
+        { "prompt": "What do you know about the Sinterklaas celebration?", "answers": [{ "text": "Pakjesavond" }, { "text": "Pepernoten" }, { "text": "The steamboat" }, { "text": "Poems" }] },
+        { "prompt": "What do you know about the human body?", "answers": [{ "text": "Bones" }, { "text": "Blood" }, { "text": "Heart" }, { "text": "Muscles" }] },
+        { "prompt": "What do you know about the desert?", "answers": [{ "text": "Sand" }, { "text": "Hot" }, { "text": "Camels" }, { "text": "Oasis" }] },
+        { "prompt": "What do you know about a football match?", "answers": [{ "text": "Referee" }, { "text": "Goal" }, { "text": "Red card" }, { "text": "Crowd" }] },
+        { "prompt": "What do you know about the Middle Ages?", "answers": [{ "text": "Knights" }, { "text": "Castles" }, { "text": "The plague" }, { "text": "Monks" }] },
+        { "prompt": "What do you know about a supermarket?", "answers": [{ "text": "Trolley" }, { "text": "Checkout" }, { "text": "Shelves" }, { "text": "Groceries" }] },
+        { "prompt": "What do you know about the North Sea coast?", "answers": [{ "text": "Dunes" }, { "text": "Beach" }, { "text": "Shells" }, { "text": "Wind" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is grass?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "How many fingers does a person have on two hands?", "difficulty": "easy", "answers": [{ "text": "Ten", "aliases": ["10"] }] },
+        { "prompt": "Which animal gives us wool?", "difficulty": "easy", "answers": [{ "text": "The sheep", "aliases": ["Sheep"] }] },
+        { "prompt": "In which country is the Eiffel Tower?", "difficulty": "easy", "answers": [{ "text": "France" }] },
+        { "prompt": "In which room of the house do you cook?", "difficulty": "easy", "answers": [{ "text": "The kitchen", "aliases": ["Kitchen"] }] },
+        { "prompt": "Which scientist set out the theory of relativity?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "What is the strait between Denmark and Sweden called?", "difficulty": "hard", "answers": [{ "text": "The Oresund", "aliases": ["Oresund", "The Sound"] }] },
+        { "prompt": "Which Dutch explorer spent a winter on Nova Zembla?", "difficulty": "hard", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents"] }] },
+        { "prompt": "Which part of a plant takes up water from the ground?", "difficulty": "hard", "answers": [{ "text": "The roots", "aliases": ["Roots", "Root hairs"] }] },
+        { "prompt": "Which Italian poet wrote The Divine Comedy?", "difficulty": "hard", "answers": [{ "text": "Dante", "aliases": ["Dante Alighieri"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the capital of Austria?", "answers": [{ "text": "Vienna" }] },
+        { "prompt": "Which animal is the largest land animal in the world?", "answers": [{ "text": "The African elephant", "aliases": ["Elephant", "African elephant"] }] },
+        { "prompt": "Which scientist set out the theory of evolution?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Which noble gas makes advertising signs glow red?", "answers": [{ "text": "Neon" }] },
+        { "prompt": "Which river flows through Rotterdam to the sea?", "answers": [{ "text": "The Nieuwe Maas", "aliases": ["Nieuwe Maas", "The Meuse", "Meuse"] }] },
+        { "prompt": "Who painted The Starry Night?", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Which word do sailors use for the left side of a ship?", "answers": [{ "text": "Port", "aliases": ["Portside", "Port side"] }] }
+      ]
+    }
+  ]
+}

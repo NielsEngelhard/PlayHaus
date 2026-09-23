@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w40",
+  "title": "Weekquiz 40 2026",
+  "description": "De wekelijkse quiz van woensdag 30 september 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke kleur krijg je als je rood en geel mengt?", "category": "Kunst", "answers": [{ "text": "Oranje" }] },
+        { "prompt": "Hoeveel weken zitten er in een jaar?", "category": "Wetenschap", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de Erasmusbrug?", "category": "Nederland", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Welk dier is het symbool van het wereldnatuurfonds?", "category": "Natuur", "answers": [{ "text": "De reuzenpanda", "aliases": ["Panda", "Reuzenpanda"] }] },
+        { "prompt": "In welke sport bestaat een wedstrijd uit negen innings?", "category": "Sport", "answers": [{ "text": "Honkbal", "aliases": ["Baseball"] }] },
+        { "prompt": "Welk eiland is het grootste van Griekenland?", "category": "Aardrijkskunde", "answers": [{ "text": "Kreta" }] },
+        { "prompt": "Welke film gaat over een leeuwenwelp die Simba heet?", "category": "Film", "answers": [{ "text": "De Leeuwenkoning", "aliases": ["The Lion King", "Leeuwenkoning"] }] },
+        { "prompt": "Welk instrument heeft koperen platen die je tegen elkaar slaat?", "category": "Muziek", "answers": [{ "text": "De bekkens", "aliases": ["Bekkens", "Cimbalen"] }] },
+        { "prompt": "Welke Franse gevangenis werd in 1789 bestormd?", "category": "Geschiedenis", "answers": [{ "text": "De Bastille", "aliases": ["Bastille"] }] },
+        { "prompt": "Hoe noem je een zin die van voor naar achter hetzelfde leest?", "category": "Taal", "answers": [{ "text": "Een palindroom", "aliases": ["Palindroom"] }] },
+        { "prompt": "Welke Italiaanse kunstenaar beeldhouwde David?", "category": "Kunst", "answers": [{ "text": "Michelangelo", "aliases": ["Michelangelo Buonarroti"] }] },
+        { "prompt": "Welk onderdeel van een auto zet brandstof om in beweging?", "category": "Techniek", "answers": [{ "text": "De motor", "aliases": ["Motor"] }] },
+        { "prompt": "Welke oceaan ligt tussen Europa en Amerika?", "category": "Aardrijkskunde", "answers": [{ "text": "De Atlantische Oceaan", "aliases": ["Atlantische Oceaan", "Atlantische oceaan"] }] },
+        { "prompt": "Welke boom verliest in de herfst zijn naalden, anders dan de meeste naaldbomen?", "category": "Natuur", "answers": [{ "text": "De lariks", "aliases": ["Lariks", "Larix"] }] },
+        { "prompt": "In welke sport strijden landen om de Davis Cup?", "category": "Sport", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Welke Egyptische koningin had een relatie met Julius Caesar?", "category": "Geschiedenis", "answers": [{ "text": "Cleopatra" }] },
+        { "prompt": "Welke Nederlandse lekkernij bestaat uit twee dunne koekjes met stroop ertussen?", "category": "Eten", "answers": [{ "text": "De stroopwafel", "aliases": ["Stroopwafel"] }] },
+        { "prompt": "Welk deeltje in een atoom heeft een negatieve lading?", "category": "Wetenschap", "answers": [{ "text": "Het elektron", "aliases": ["Elektron"] }] },
+        { "prompt": "Welke Nederlandse provincie grenst als enige niet aan het buitenland of aan zee?", "category": "Nederland", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Welke Britse band bestond uit John, Paul, George en Ringo?", "category": "Muziek", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land heeft het grootste aantal officiele talen?", "options": [{ "text": "India" }, { "text": "Zuid-Afrika" }, { "text": "Zimbabwe", "correct": true }, { "text": "Zwitserland" }] },
+        { "prompt": "Welk orgaan verbruikt naar verhouding de meeste energie van het lichaam?", "options": [{ "text": "Het hart" }, { "text": "De hersenen", "correct": true }, { "text": "De lever" }, { "text": "De spieren" }] },
+        { "prompt": "Welke stad ligt het verst naar het noorden?", "options": [{ "text": "Helsinki" }, { "text": "Oslo" }, { "text": "Reykjavik", "correct": true }, { "text": "Stockholm" }] },
+        { "prompt": "Welk dier heeft de grootste ogen ter wereld?", "options": [{ "text": "De blauwe vinvis" }, { "text": "De reuzeninktvis", "correct": true }, { "text": "De struisvogel" }, { "text": "De olifant" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef De ontdekking van de hemel?", "options": [{ "text": "Cees Nooteboom" }, { "text": "Harry Mulisch", "correct": true }, { "text": "Gerard Reve" }, { "text": "Willem Frederik Hermans" }] },
+        { "prompt": "In welk jaar werd de Verenigde Naties opgericht?", "options": [{ "text": "1919" }, { "text": "1945", "correct": true }, { "text": "1948" }, { "text": "1950" }] },
+        { "prompt": "Welk element is het lichtste metaal?", "options": [{ "text": "Aluminium" }, { "text": "Lithium", "correct": true }, { "text": "Natrium" }, { "text": "Magnesium" }] },
+        { "prompt": "Welke rivier stroomt door Parijs?", "options": [{ "text": "De Loire" }, { "text": "De Seine", "correct": true }, { "text": "De Rhone" }, { "text": "De Garonne" }] },
+        { "prompt": "Hoe heet de kunstvorm waarbij je papier vouwt tot figuren?", "options": [{ "text": "Ikebana" }, { "text": "Origami", "correct": true }, { "text": "Kirigami" }, { "text": "Calligrafie" }] },
+        { "prompt": "Welke planeet heeft de meeste manen die we hebben bevestigd?", "options": [{ "text": "Jupiter" }, { "text": "Saturnus", "correct": true }, { "text": "Uranus" }, { "text": "Neptunus" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Dom van Keulen?", "answer": 157, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer legt de aarde per uur af in haar baan om de zon?", "answer": 107000, "unit": "kilometer" },
+        { "prompt": "In welk jaar werd de Nederlandse euro ingevoerd als girale munt, dus nog niet als contant geld?", "answer": 1999 },
+        { "prompt": "Hoeveel tanden heeft een volwassen hond ongeveer?", "answer": 42, "unit": "tanden" },
+        { "prompt": "Hoeveel meter lang is een voetbalveld volgens de FIFA-norm voor interlands?", "answer": 105, "unit": "meter" },
+        { "prompt": "Hoeveel inwoners telde Nederland bij de volkstelling van 1900, in miljoenen afgerond op een decimaal?", "answer": 5.1, "unit": "miljoen" },
+        { "prompt": "Hoeveel graden draait de minutenwijzer van een klok in een kwartier?", "answer": 90, "unit": "graden" },
+        { "prompt": "In welk jaar werd de eerste mens de ruimte in gestuurd?", "answer": 1961 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Herfstblad",
+        "Deurmat",
+        "Luchtbed",
+        "Vuurtorenwachter",
+        "Zeearend",
+        "Kurken vloer",
+        "Kerkklok",
+        "Springtouw",
+        "Kameelrace",
+        "Wandklok",
+        "Bergsneeuw",
+        "Motorhelm",
+        "Bosuil",
+        "IJsschots",
+        "Strijkplank",
+        "Oorbel",
+        "Kanovaren",
+        "Zonnepaneel",
+        "Vogelverschrikker",
+        "Nelson Mandela",
+        "Doolhof",
+        "Kinderwagen",
+        "Kroonluchter",
+        "Otter",
+        "Suikerspin",
+        "Schoorsteen",
+        "Zaklopen",
+        "Bloemenkraam",
+        "Houthakker",
+        "De Taj Mahal"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van de Verenigde Staten?", "answers": [{ "text": "Washington" }, { "text": "De vlag met sterren" }, { "text": "Hamburgers" }, { "text": "Hollywood" }] },
+        { "prompt": "Wat weet je van een trein?", "answers": [{ "text": "Rails" }, { "text": "Station" }, { "text": "Conducteur" }, { "text": "Kaartje" }] },
+        { "prompt": "Wat weet je van de lente?", "answers": [{ "text": "Bloemen" }, { "text": "Lammetjes" }, { "text": "Groen" }, { "text": "Pasen" }] },
+        { "prompt": "Wat weet je van Duitse auto's?", "answers": [{ "text": "Volkswagen" }, { "text": "BMW" }, { "text": "Mercedes" }, { "text": "Audi" }] },
+        { "prompt": "Wat weet je van de school?", "answers": [{ "text": "Juf" }, { "text": "Pauze" }, { "text": "Huiswerk" }, { "text": "Rapport" }] },
+        { "prompt": "Wat weet je van piraten?", "answers": [{ "text": "Ooglapje" }, { "text": "Schat" }, { "text": "Papegaai" }, { "text": "Doodshoofdvlag" }] },
+        { "prompt": "Wat weet je van de Rijn?", "answers": [{ "text": "Rivier" }, { "text": "Duitsland" }, { "text": "Schepen" }, { "text": "Rotterdam" }] },
+        { "prompt": "Wat weet je van fotografie?", "answers": [{ "text": "Camera" }, { "text": "Lens" }, { "text": "Flits" }, { "text": "Foto's" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke kleur heeft de zon als je hem tekent?", "difficulty": "easy", "answers": [{ "text": "Geel" }] },
+        { "prompt": "Hoeveel poten heeft een kat?", "difficulty": "easy", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Waar koop je brood?", "difficulty": "easy", "answers": [{ "text": "Bij de bakker", "aliases": ["De bakker", "Bakker", "Bakkerij"] }] },
+        { "prompt": "Welk dier maakt het geluid boe?", "difficulty": "easy", "answers": [{ "text": "De koe", "aliases": ["Koe"] }] },
+        { "prompt": "Welke drank maak je van sinaasappels?", "difficulty": "easy", "answers": [{ "text": "Sinaasappelsap", "aliases": ["Jus d'orange", "Sap"] }] },
+        { "prompt": "Welke Nederlandse wiskundige en astronoom vond de slingerklok uit?", "difficulty": "hard", "answers": [{ "text": "Christiaan Huygens", "aliases": ["Huygens"] }] },
+        { "prompt": "Hoe heet de grootste vulkaan van het zonnestelsel?", "difficulty": "hard", "answers": [{ "text": "Olympus Mons", "aliases": ["Olympus Mons op Mars"] }] },
+        { "prompt": "Welke Engelse koning had zes echtgenotes?", "difficulty": "hard", "answers": [{ "text": "Hendrik VIII", "aliases": ["Henry VIII", "Hendrik de Achtste"] }] },
+        { "prompt": "Welk proces zet zonlicht om in suikers in een plant?", "difficulty": "hard", "answers": [{ "text": "Fotosynthese" }] },
+        { "prompt": "Hoe heet de langste rivier van Zuid-Amerika?", "difficulty": "hard", "answers": [{ "text": "De Amazone", "aliases": ["Amazone"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk land staat bekend om de fjorden?", "answers": [{ "text": "Noorwegen" }] },
+        { "prompt": "Welke Griekse held had een kwetsbare hiel?", "answers": [{ "text": "Achilles" }] },
+        { "prompt": "Welk edelmetaal heeft het symbool Ag?", "answers": [{ "text": "Zilver" }] },
+        { "prompt": "Wie schreef het boek De Hobbit?", "answers": [{ "text": "Tolkien", "aliases": ["J.R.R. Tolkien"] }] },
+        { "prompt": "Hoe heet de grootste stad van Australie qua inwoners?", "answers": [{ "text": "Sydney" }] },
+        { "prompt": "Welke Nederlandse koning regeert sinds 2013?", "answers": [{ "text": "Willem-Alexander", "aliases": ["Koning Willem-Alexander"] }] },
+        { "prompt": "Welke spier in het lichaam is het sterkst naar verhouding tot zijn grootte?", "answers": [{ "text": "De kauwspier", "aliases": ["Kauwspier", "Masseter"] }] }
+      ]
+    }
+  ]
+}

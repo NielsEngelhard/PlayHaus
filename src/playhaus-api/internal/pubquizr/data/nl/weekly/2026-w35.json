@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w35",
+  "title": "Weekquiz 35 2026",
+  "description": "De wekelijkse quiz van woensdag 26 augustus 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "category": "Kunst", "answers": [{ "text": "Groen" }] },
+        { "prompt": "In welke stad staat de Eiffeltoren?", "category": "Aardrijkskunde", "answers": [{ "text": "Parijs" }] },
+        { "prompt": "Hoeveel snaren heeft een gewone gitaar?", "category": "Muziek", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Welk dier staat bekend als de koning van de jungle?", "category": "Natuur", "answers": [{ "text": "De leeuw", "aliases": ["Leeuw"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de bijnaam Domstad?", "category": "Nederland", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Welk gas ademen planten overdag uit?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof" }] },
+        { "prompt": "Hoeveel ringen staan er in het olympisch logo?", "category": "Sport", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Welke Italiaanse stad is gebouwd op water en heeft grachten in plaats van straten?", "category": "Aardrijkskunde", "answers": [{ "text": "Venetie", "aliases": ["Venezia", "Venice"] }] },
+        { "prompt": "Welke filmreeks gaat over een archeoloog met een zweep die Indiana heet?", "category": "Film", "answers": [{ "text": "Indiana Jones" }] },
+        { "prompt": "Welk Nederlands gerecht bestaat uit aardappel, groente en worst door elkaar geprakt?", "category": "Eten", "answers": [{ "text": "Stamppot" }] },
+        { "prompt": "Wie was de eerste mens op de maan?", "category": "Geschiedenis", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Hoe noem je een woord dat in de plaats komt van een zelfstandig naamwoord, zoals hij of zij?", "category": "Taal", "answers": [{ "text": "Een voornaamwoord", "aliases": ["Voornaamwoord", "Persoonlijk voornaamwoord"] }] },
+        { "prompt": "Welk apparaat gebruik je om de tijd op te nemen bij een wedstrijd?", "category": "Techniek", "answers": [{ "text": "Stopwatch", "aliases": ["Chronometer"] }] },
+        { "prompt": "Welke band maakte het album Dark Side of the Moon?", "category": "Muziek", "answers": [{ "text": "Pink Floyd" }] },
+        { "prompt": "Welke boom levert eikels?", "category": "Natuur", "answers": [{ "text": "De eik", "aliases": ["Eik", "Eikenboom"] }] },
+        { "prompt": "Welk land ligt direct ten oosten van Nederland?", "category": "Aardrijkskunde", "answers": [{ "text": "Duitsland" }] },
+        { "prompt": "Welke Nederlandse schilder sneed een stuk van zijn oor af?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Hoe heet het hardste natuurlijke materiaal dat we kennen?", "category": "Wetenschap", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Welk voetbalstadion is de thuisbasis van Feyenoord?", "category": "Sport", "answers": [{ "text": "De Kuip", "aliases": ["Kuip", "Stadion Feijenoord"] }] },
+        { "prompt": "In welke eeuw leefde Willem van Oranje?", "category": "Geschiedenis", "answers": [{ "text": "De zestiende eeuw", "aliases": ["16e eeuw", "zestiende eeuw", "1500s"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk land verbruikt per hoofd van de bevolking de meeste koffie?", "options": [{ "text": "Italie" }, { "text": "Finland", "correct": true }, { "text": "Brazilie" }, { "text": "Nederland" }] },
+        { "prompt": "Uit welke taal komt het woord pyjama oorspronkelijk?", "options": [{ "text": "Japans" }, { "text": "Perzisch", "correct": true }, { "text": "Maleis" }, { "text": "Turks" }] },
+        { "prompt": "Welke stad is de hoofdstad van Canada?", "options": [{ "text": "Toronto" }, { "text": "Montreal" }, { "text": "Ottawa", "correct": true }, { "text": "Vancouver" }] },
+        { "prompt": "Welk orgaan produceert insuline?", "options": [{ "text": "De lever" }, { "text": "De alvleesklier", "correct": true }, { "text": "De nier" }, { "text": "De milt" }] },
+        { "prompt": "Welke componist werd doof en schreef daarna nog zijn negende symfonie?", "options": [{ "text": "Mozart" }, { "text": "Beethoven", "correct": true }, { "text": "Schubert" }, { "text": "Brahms" }] },
+        { "prompt": "Welk Nederlands eiland ligt het verst naar het oosten in de Waddenzee?", "options": [{ "text": "Texel" }, { "text": "Ameland" }, { "text": "Schiermonnikoog", "correct": true }, { "text": "Terschelling" }] },
+        { "prompt": "Welke planeet draait als enige op zijn kant om de zon?", "options": [{ "text": "Neptunus" }, { "text": "Uranus", "correct": true }, { "text": "Saturnus" }, { "text": "Mars" }] },
+        { "prompt": "In welk jaar begon de Tachtigjarige Oorlog?", "options": [{ "text": "1568", "correct": true }, { "text": "1588" }, { "text": "1548" }, { "text": "1618" }] },
+        { "prompt": "Welk metaal is bij kamertemperatuur vloeibaar?", "options": [{ "text": "Lood" }, { "text": "Kwik", "correct": true }, { "text": "Tin" }, { "text": "Zink" }] },
+        { "prompt": "Welke film won als eerste animatiefilm een Oscarnominatie voor beste film?", "options": [{ "text": "Belle en het Beest", "correct": true }, { "text": "De Leeuwenkoning" }, { "text": "Toy Story" }, { "text": "Sneeuwwitje" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel toetsen heeft een standaard piano?", "answer": 88, "unit": "toetsen" },
+        { "prompt": "Hoeveel meter hoog is de Eiffeltoren tot de top van de antenne?", "answer": 330, "unit": "meter" },
+        { "prompt": "Hoeveel liter water past er ongeveer in een gemiddeld bad?", "answer": 150, "unit": "liter" },
+        { "prompt": "In welk jaar werd de eerste Tour de France gereden?", "answer": 1903 },
+        { "prompt": "Hoeveel kilometer lang is het Kanaal op zijn smalste punt tussen Engeland en Frankrijk?", "answer": 34, "unit": "kilometer" },
+        { "prompt": "Hoeveel tanden heeft een volwassen mens inclusief verstandskiezen?", "answer": 32, "unit": "tanden" },
+        { "prompt": "Hoeveel meter hoog is de Sint-Pietersbasiliek in Rome?", "answer": 136, "unit": "meter" },
+        { "prompt": "Hoeveel treinstations telt Nederland ongeveer?", "answer": 400, "unit": "stations" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Zonnebloem",
+        "Hangmat",
+        "Brandweerman",
+        "Sneeuwpop",
+        "Kameleon",
+        "Achtbaan",
+        "Metselaar",
+        "Wasknijper",
+        "Bliksemschicht",
+        "Pannenkoek",
+        "Zeemeermin",
+        "Vuurtoren",
+        "Nijlpaard",
+        "Klimmuur",
+        "Marathon",
+        "Kerstboom",
+        "Harmonica",
+        "Skelter",
+        "Albert Einstein",
+        "De Efteling",
+        "Kangoeroe",
+        "Strandbal",
+        "Molen",
+        "Wafelijzer",
+        "Astronaut",
+        "Bibliotheek",
+        "Mona Lisa",
+        "Rollerskates",
+        "Oerwoud",
+        "Kompas"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je van de Sahara?", "answers": [{ "text": "Woestijn" }, { "text": "Zand" }, { "text": "Afrika" }, { "text": "Kamelen" }] },
+        { "prompt": "Wat weet je van Italie?", "answers": [{ "text": "Pizza" }, { "text": "Rome" }, { "text": "Pasta" }, { "text": "De laars" }] },
+        { "prompt": "Wat weet je van de Olympische Spelen?", "answers": [{ "text": "Vijf ringen" }, { "text": "Medailles" }, { "text": "Elke vier jaar" }, { "text": "De vlam" }] },
+        { "prompt": "Wat weet je van bijen?", "answers": [{ "text": "Honing" }, { "text": "Steken" }, { "text": "Koningin" }, { "text": "Bestuiven" }] },
+        { "prompt": "Wat weet je van het Wilhelmus?", "answers": [{ "text": "Volkslied" }, { "text": "Willem van Nassov" }, { "text": "Voetbal" }, { "text": "Oudste volkslied" }] },
+        { "prompt": "Wat weet je van de Titanic?", "answers": [{ "text": "IJsberg" }, { "text": "Gezonken" }, { "text": "1912" }, { "text": "De film" }] },
+        { "prompt": "Wat weet je van de winter?", "answers": [{ "text": "Sneeuw" }, { "text": "Kou" }, { "text": "Schaatsen" }, { "text": "Kerst" }] },
+        { "prompt": "Wat weet je van Egypte?", "answers": [{ "text": "Piramides" }, { "text": "De Nijl" }, { "text": "Farao" }, { "text": "De sfinx" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoeveel wielen heeft een fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Welke kleur heeft een klassieke Londense dubbeldekkerbus?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Welk dier legt eieren en geeft toch melk?", "difficulty": "easy", "answers": [{ "text": "Het vogelbekdier", "aliases": ["Vogelbekdier"] }] },
+        { "prompt": "In welk werelddeel ligt Brazilie?", "difficulty": "easy", "answers": [{ "text": "Zuid-Amerika" }] },
+        { "prompt": "Welk zintuig gebruikt een vleermuis om in het donker te navigeren?", "difficulty": "easy", "answers": [{ "text": "Gehoor", "aliases": ["Echolocatie", "Het gehoor"] }] },
+        { "prompt": "Welke Nederlandse natuurkundige ontdekte de supergeleiding?", "difficulty": "hard", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
+        { "prompt": "Welke rivier mondt uit in de Zwarte Zee bij een grote delta in Roemenie?", "difficulty": "hard", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
+        { "prompt": "Hoe heet de kleinste botje in het menselijk lichaam?", "difficulty": "hard", "answers": [{ "text": "De stijgbeugel", "aliases": ["Stijgbeugel", "Stapes"] }] },
+        { "prompt": "Welke schrijver bedacht de figuur Sherlock Holmes?", "difficulty": "hard", "answers": [{ "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle", "Doyle"] }] },
+        { "prompt": "Welke stad was de hoofdstad van het Byzantijnse Rijk?", "difficulty": "hard", "answers": [{ "text": "Constantinopel", "aliases": ["Istanboel", "Byzantium"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk land heeft de meeste inwoners van Europa?", "answers": [{ "text": "Rusland" }] },
+        { "prompt": "Welke Griekse god was de god van de zee?", "answers": [{ "text": "Poseidon" }] },
+        { "prompt": "Welk instrument heeft zwarte en witte toetsen en pedalen?", "answers": [{ "text": "De piano", "aliases": ["Piano", "Vleugel"] }] },
+        { "prompt": "Wie schreef het toneelstuk Romeo en Julia?", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Welk zuur zit er in azijn?", "answers": [{ "text": "Azijnzuur", "aliases": ["Ethaanzuur"] }] },
+        { "prompt": "Welke Nederlandse stad heeft de grootste haven van Europa?", "answers": [{ "text": "Rotterdam" }] },
+        { "prompt": "Welke vogel kan achteruit vliegen?", "answers": [{ "text": "De kolibrie", "aliases": ["Kolibrie"] }] }
+      ]
+    }
+  ]
+}

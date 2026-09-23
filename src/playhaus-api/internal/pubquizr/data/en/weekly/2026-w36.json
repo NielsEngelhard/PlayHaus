@@ -1,0 +1,135 @@
+{
+  "slug": "2026-w36",
+  "title": "Weekly quiz 36 2026",
+  "description": "The weekly quiz of Wednesday 2 September 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What do you call a young frog that still has a tail?", "category": "Nature", "answers": [{ "text": "A tadpole", "aliases": ["Tadpole"] }] },
+        { "prompt": "Which river flows through Rome?", "category": "Geography", "answers": [{ "text": "The Tiber", "aliases": ["Tiber"] }] },
+        { "prompt": "Which vegetable is sauerkraut made from?", "category": "Food", "answers": [{ "text": "White cabbage", "aliases": ["Cabbage"] }] },
+        { "prompt": "Which Dutch province has Middelburg as its capital?", "category": "The Netherlands", "answers": [{ "text": "Zeeland" }] },
+        { "prompt": "Which element has the symbol O?", "category": "Science", "answers": [{ "text": "Oxygen" }] },
+        { "prompt": "How many players from each team are on court in volleyball?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "Which film is about a toy cowboy called Woody?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
+        { "prompt": "Who composed Eine kleine Nachtmusik?", "category": "Music", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
+        { "prompt": "In which year did the Second World War end in Europe?", "category": "History", "answers": [{ "text": "1945" }] },
+        { "prompt": "Which word is the opposite of width?", "category": "Language", "answers": [{ "text": "Length" }] },
+        { "prompt": "Which building in Paris houses the Mona Lisa?", "category": "Art", "answers": [{ "text": "The Louvre", "aliases": ["Louvre"] }] },
+        { "prompt": "Which device turns sound into an electrical signal?", "category": "Technology", "answers": [{ "text": "The microphone", "aliases": ["Microphone"] }] },
+        { "prompt": "Which sea lies between Italy and Croatia?", "category": "Geography", "answers": [{ "text": "The Adriatic Sea", "aliases": ["Adriatic Sea", "Adriatic"] }] },
+        { "prompt": "What is the largest desert in the world if you count Antarctica?", "category": "Nature", "answers": [{ "text": "Antarctica", "aliases": ["The Antarctic desert", "The South Pole"] }] },
+        { "prompt": "Which Dutch football club plays in the Johan Cruijff Arena?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
+        { "prompt": "Which emperor is said to have set Rome on fire?", "category": "History", "answers": [{ "text": "Nero" }] },
+        { "prompt": "Which sauce is made from basil, pine nuts and olive oil?", "category": "Food", "answers": [{ "text": "Pesto" }] },
+        { "prompt": "How many degrees Celsius is the boiling point of water at sea level?", "category": "Science", "answers": [{ "text": "A hundred", "aliases": ["100", "One hundred"] }] },
+        { "prompt": "Which Dutch city is known for the Martinitoren?", "category": "The Netherlands", "answers": [{ "text": "Groningen" }] },
+        { "prompt": "Which band sang Bohemian Rhapsody?", "category": "Music", "answers": [{ "text": "Queen" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which country has the longest coastline in the world?", "options": [{ "text": "Russia" }, { "text": "Canada", "correct": true }, { "text": "Australia" }, { "text": "Indonesia" }] },
+        { "prompt": "What is the process called when a solid turns straight into a gas?", "options": [{ "text": "Condensation" }, { "text": "Sublimation", "correct": true }, { "text": "Evaporation" }, { "text": "Solidification" }] },
+        { "prompt": "Which city lies on two continents at once?", "options": [{ "text": "Cairo" }, { "text": "Athens" }, { "text": "Istanbul", "correct": true }, { "text": "Jerusalem" }] },
+        { "prompt": "Which Dutch painter mostly painted church interiors in the seventeenth century?", "options": [{ "text": "Jan Steen" }, { "text": "Pieter Saenredam", "correct": true }, { "text": "Jacob van Ruisdael" }, { "text": "Gerard Dou" }] },
+        { "prompt": "Which animal has three hearts?", "options": [{ "text": "The octopus", "correct": true }, { "text": "The shark" }, { "text": "The eel" }, { "text": "The starfish" }] },
+        { "prompt": "In which year did the last great part of the Delta Works, the Eastern Scheldt barrier, open?", "options": [{ "text": "1976" }, { "text": "1986", "correct": true }, { "text": "1996" }, { "text": "1966" }] },
+        { "prompt": "How many letters does the Greek alphabet have?", "options": [{ "text": "Twenty-one" }, { "text": "Twenty-four", "correct": true }, { "text": "Twenty-six" }, { "text": "Twenty-eight" }] },
+        { "prompt": "Which organ of the body can largely grow itself back?", "options": [{ "text": "The liver", "correct": true }, { "text": "The heart" }, { "text": "The lungs" }, { "text": "The brain" }] },
+        { "prompt": "Which explorer gave New Zealand its name?", "options": [{ "text": "James Cook" }, { "text": "Abel Tasman", "correct": true }, { "text": "Willem Barentsz" }, { "text": "Ferdinand Magellan" }] },
+        { "prompt": "How many strings does a standard violin have?", "options": [{ "text": "Six" }, { "text": "Four", "correct": true }, { "text": "Five" }, { "text": "Three" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the equator?", "answer": 40075, "unit": "kilometres" },
+        { "prompt": "How many metres tall is Mount Elbrus, the highest mountain in Europe?", "answer": 5642, "unit": "metres" },
+        { "prompt": "In which year did the first Dutch railway between Amsterdam and Haarlem open?", "answer": 1839 },
+        { "prompt": "Roughly how many square kilometres is the Netherlands, water included?", "answer": 41500, "unit": "square kilometres" },
+        { "prompt": "How many seconds does a football match last without stoppage time?", "answer": 5400, "unit": "seconds", "explanation": "Two halves of 45 minutes." },
+        { "prompt": "How many steps does the Eiffel Tower have up to the second floor?", "answer": 674, "unit": "steps" },
+        { "prompt": "How many degrees Celsius is absolute zero?", "answer": -273, "unit": "degrees Celsius" },
+        { "prompt": "How many inhabited islands does the Dutch side of the Wadden Sea have?", "answer": 5, "unit": "islands" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Rainbow",
+        "Ice rink",
+        "Wizard",
+        "Waterfall",
+        "Wheelbarrow",
+        "Octopus",
+        "Swordfish",
+        "Accordion",
+        "Postman",
+        "Mountaineer",
+        "Zeppelin",
+        "Vacuum cleaner",
+        "Forest fire",
+        "Napoleon",
+        "Carnival",
+        "Polar bear",
+        "Revolving door",
+        "Trumpet",
+        "Goalkeeper",
+        "Boomerang",
+        "Chestnut",
+        "Butterfly stroke",
+        "Puppet theatre",
+        "Snowstorm",
+        "Horseshoe",
+        "Marmot",
+        "Pizza delivery rider",
+        "Telescope",
+        "Hopscotch",
+        "The Great Wall of China"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Amsterdam?", "answers": [{ "text": "Canals" }, { "text": "Bicycles" }, { "text": "The Rijksmuseum" }, { "text": "Capital city" }] },
+        { "prompt": "What do you know about the moon?", "answers": [{ "text": "Craters" }, { "text": "The tides" }, { "text": "Armstrong" }, { "text": "Full and new" }] },
+        { "prompt": "What do you know about France?", "answers": [{ "text": "Paris" }, { "text": "Wine" }, { "text": "Baguette" }, { "text": "The Eiffel Tower" }] },
+        { "prompt": "What do you know about dogs?", "answers": [{ "text": "Barking" }, { "text": "Walkies" }, { "text": "Wagging tails" }, { "text": "Bones" }] },
+        { "prompt": "What do you know about the Vikings?", "answers": [{ "text": "Scandinavia" }, { "text": "Longships" }, { "text": "Raiding" }, { "text": "Helmets" }] },
+        { "prompt": "What do you know about the weather in the Netherlands?", "answers": [{ "text": "Rain" }, { "text": "Wind" }, { "text": "Changeable" }, { "text": "The KNMI" }] },
+        { "prompt": "What do you know about a hospital?", "answers": [{ "text": "Doctors" }, { "text": "Ambulance" }, { "text": "Surgery" }, { "text": "Waiting room" }] },
+        { "prompt": "What do you know about space?", "answers": [{ "text": "Stars" }, { "text": "Planets" }, { "text": "Gravity" }, { "text": "Rockets" }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What colour is a banana when it is ripe?", "difficulty": "easy", "answers": [{ "text": "Yellow" }] },
+        { "prompt": "How many months does a year have?", "difficulty": "easy", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "In which country is the leaning tower of Pisa?", "difficulty": "easy", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which animal is known as the ship of the desert?", "difficulty": "easy", "answers": [{ "text": "The camel", "aliases": ["Camel", "Dromedary"] }] },
+        { "prompt": "Which sport is played at Wimbledon?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
+        { "prompt": "Which mathematical constant starts with 3.14?", "difficulty": "hard", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Which Dutch poet wrote the poem Herinnering aan Holland with the line about broad rivers?", "difficulty": "hard", "answers": [{ "text": "Hendrik Marsman", "aliases": ["Marsman"] }] },
+        { "prompt": "What is the largest moon of Saturn called?", "difficulty": "hard", "answers": [{ "text": "Titan" }] },
+        { "prompt": "Which treaty divided the new world between Spain and Portugal in 1494?", "difficulty": "hard", "answers": [{ "text": "The Treaty of Tordesillas", "aliases": ["Treaty of Tordesillas", "Tordesillas"] }] },
+        { "prompt": "Which French king was called the Sun King?", "difficulty": "hard", "answers": [{ "text": "Louis XIV", "aliases": ["Louis the Fourteenth"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which animal is the fastest land animal in the world?", "answers": [{ "text": "The cheetah", "aliases": ["Cheetah"] }] },
+        { "prompt": "What is the capital of Portugal?", "answers": [{ "text": "Lisbon" }] },
+        { "prompt": "Which planet is closest to the sun?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "Who wrote the book War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy", "Tolstoj"] }] },
+        { "prompt": "Which organ filters the blood and makes urine?", "answers": [{ "text": "The kidney", "aliases": ["Kidney", "Kidneys", "The kidneys"] }] },
+        { "prompt": "Which Dutch footballer captained the team that became European champions in 1988?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
+        { "prompt": "Which substance gives leaves their green colour?", "answers": [{ "text": "Chlorophyll" }] }
+      ]
+    }
+  ]
+}
