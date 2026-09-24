@@ -47,13 +47,6 @@
       "expo-audio",
       "expo-localization",
       [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to scan a host's QR code so you can join their lobby.",
-          "barcodeScannerEnabled": true
-        }
-      ],
-      [
         "react-native-google-cast",
         {
           "receiverAppId": "1AE332C1",

@@ -69,9 +69,9 @@ Lint and TypeScript are the only gates on that side.
 `npx tsc --noEmit` does not currently come back clean, and most of the noise is not real. The
 typed-route union lives in `.expo/types`, which only `expo start` regenerates, so on a cold
 checkout every `router.push('/games/quizzer/one-device')` is reported as not assignable. Run the
-dev server once before trusting those. A handful of genuine errors do sit underneath
-(`ImageSource | undefined` in the game index pages, an implicit `any` in `ScanToJoin`) — they
-predate this file, so treat a *new* error as yours and an existing one as inherited.
+dev server once before trusting those. A genuine error does sit underneath
+(`ImageSource | undefined` in the game index pages) — it predates this file, so treat a *new*
+error as yours and an existing one as inherited.
 
 ## API architecture
 

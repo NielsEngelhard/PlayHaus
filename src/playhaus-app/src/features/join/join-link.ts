@@ -1,4 +1,4 @@
-// The link that joins a room, and the way back out of one a camera has just read.
+// The link that joins a room, and the way back out of one that was pasted in.
 
 import type { Game } from "@/constants/games";
 import { gameForJoinCode } from "@/constants/games";
@@ -22,8 +22,8 @@ const GAMES_SEGMENT = '/games/';
 /** A code and nothing else. Built from the length so the two cannot drift apart. */
 const EXACTLY_A_CODE = new RegExp(`^[A-Za-z0-9]{${JOIN_CODE_LENGTH}}$`);
 
-// The code inside something a camera just read, or null when there isn't one.
-export function codeFromScan(payload: string): string | null {
+// The code inside a pasted link, or null when there isn't one.
+export function codeFromLink(payload: string): string | null {
     const trimmed = payload.trim();
 
     // Anything with a scheme is a link, and a link has to be one of ours.

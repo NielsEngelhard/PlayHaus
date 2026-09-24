@@ -692,8 +692,8 @@ func TestLobbyRoutesRefuseAnotherGamesCode(t *testing.T) {
 			t.Errorf("GET %s: code = %q, want lobby_not_found", code, got)
 		}
 
-		// Joining too, because that is the route a scanned QR walks into and the one
-		// place a stranger's code arrives without anybody having typed it.
+		// Joining too, because that is the route a pasted join link walks into and the
+		// one place a stranger's code arrives without anybody having typed it.
 		if rec := joinLobby(t, srv, token, code); rec.Code != http.StatusNotFound {
 			t.Errorf("POST %s/players: status = %d, want %d (body: %s)", code, rec.Code, http.StatusNotFound, rec.Body)
 		}

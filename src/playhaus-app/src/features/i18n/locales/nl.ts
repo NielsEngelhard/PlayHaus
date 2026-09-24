@@ -118,26 +118,13 @@ export const nl: Catalog = {
     // De joinkaart, die van geen enkel spel in het bijzonder is.
     join: {
         label: 'JOIN EEN GAME',
-        // Dezelfde kaart, op een breed scherm in tweeën.
-        labelWide: 'TYP DE CODE',
         paste: 'Plakken',
         pasteLabel: 'Code plakken',
         codeLabel: 'Joincode',
         // Het chipje naast de vakjes, zodra het eerste teken erin staat.
         gameHint: 'Je joint {{game}}',
         // Een complete code die niets opent.
-        rejected: 'Dit is geen code die we kunnen openen. Check hem en probeer opnieuw.',
-        scanRowTitle: 'Of scan zijn scherm',
-        scanRowHint: 'Je zit er meteen in',
-        scanAction: 'Scan liever',
-        scanCopy: 'Richt je telefoon op de code van de host',
-        scanTitle: 'Scannen om te joinen',
-        scanLabel: 'Scan een QR-code om een game te joinen',
-        scanCancel: 'Annuleren',
-        permissionAsk: 'De camera is nodig om de code van de host te lezen. Er wordt niets opgenomen of verstuurd.',
-        permissionGrant: 'Camera toestaan',
-        // Hier geen knop onder: dit antwoord verander je in de instellingen.
-        permissionDenied: 'De camera is geblokkeerd voor deze app. Sta hem toe in je instellingen, of typ de code gewoon in.'
+        rejected: 'Dit is geen code die we kunnen openen. Check hem en probeer opnieuw.'
     },
     languages: {
         nl: { description: 'Spellen in het Nederlands' },
@@ -279,9 +266,6 @@ export const nl: Catalog = {
         shareLinkLabel: 'Deel de link naar deze lobby',
         linkCopied: 'Link gekopieerd',
         shareFailed: 'Delen lukte niet',
-        qrLabel: 'Toon een QR-code om deze lobby te joinen',
-        qrTitle: 'Scannen om te joinen',
-        qrCopy: 'Houd er een andere telefoon voor en die komt meteen in de lobby.',
         players: 'Spelers',
         playerCount: '{{taken}} van {{max}}',
         minPlayers: 'Min. {{min}}',
@@ -687,7 +671,7 @@ export const nl: Catalog = {
         },
         // Het gedeelde scherm waar de hele tafel naar kijkt. Het kijkt alleen mee, dus er valt niets op te tikken.
         table: {
-            // De weg naar binnen voor de laptop, want een scherm kan de QR van zichzelf niet scannen.
+            // De weg naar binnen voor de laptop: de code staat op de telefoon van de host, niet op dit scherm.
             door: {
                 title: 'Zet de quiz op een scherm',
                 message: 'Typ de code die de host op zijn telefoon heeft. Dit scherm kijkt alleen mee — iedereen speelt nog steeds op zijn eigen telefoon.',
@@ -733,7 +717,7 @@ export const nl: Catalog = {
             closed: 'De host heeft de kamer gesloten, dus dit scherm is klaar.',
             dealt: 'De quiz is begonnen.',
             joinAt: 'Doe mee met',
-            scanHint: 'Scan dit met je telefoon om mee te doen.',
+            typeHint: 'Typ deze code op je telefoon om mee te doen.',
             waitingForHost: 'Wachten tot de host de quiz start…',
             needPlayers: 'Nog {{needed}} te gaan voordat de quiz kan starten.',
             scores: 'Scores',
