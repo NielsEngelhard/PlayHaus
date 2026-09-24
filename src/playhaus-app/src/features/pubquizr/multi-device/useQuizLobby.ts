@@ -35,6 +35,8 @@ export interface PQLobbyState {
     mySeat: number | null
     /** Who is connected right now, by user id. What the live dots are drawn from. */
     online: Set<string>
+    /** A shared screen is connected. Null until the room has said, which is not the same as no screen. */
+    screenOnline: boolean | null
     /** Whether this device is live. Your own dot. */
     connection: SocketStatus
     /** The host closed the room while you were in it. The code no longer works. */
@@ -49,16 +51,17 @@ export interface PQLobbyState {
     // Leave for good: the host's room is deleted, a guest's seat is given back.
     close: () => Promise<void>
     reload: () => void
-    // Host only.
-    updateSetup: (setup: Partial<PQLobbySetup>) => void
+    // Host only. Not hostScreen: the mode was settled when the room opened.
+    updateSetup: (setup: Partial<Omit<PQLobbySetup, 'hostScreen'>>) => void
 }
 
-export function useQuizLobby(code?: string): PQLobbyState {
+export function useQuizLobby(code?: string, hostScreen?: boolean): PQLobbyState {
     const { user, status } = useAuth();
     const [lobby, setLobby] = useState<PQLobby | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [actionError, setActionError] = useState<TranslationKey | null>(null);
     const [closed, setClosed] = useState(false);
+    const [screenOnline, setScreenOnline] = useState<boolean | null>(null);
     const [saving, setSaving] = useState(false);
     const [starting, setStarting] = useState(false);
     const [closing, setClosing] = useState(false);
@@ -117,7 +120,7 @@ export function useQuizLobby(code?: string): PQLobbyState {
 
         try {
             const opened = code === undefined
-                ? await createPQLobby(locale.current)
+                ? await createPQLobby(locale.current, hostScreen)
                 : await joinPQLobby(code);
 
             if (held.current === null) {
@@ -146,7 +149,7 @@ export function useQuizLobby(code?: string): PQLobbyState {
 
             setError(pqLobbyErrorMessage(failure));
         }
-    }, [signedIn, userId, code, letGo]);
+    }, [signedIn, userId, code, hostScreen, letGo]);
 
     useEffect(() => {
         if (!signedIn) return;
@@ -161,6 +164,11 @@ export function useQuizLobby(code?: string): PQLobbyState {
 
     const onEvent = useCallback((event: PQServerEvent) => {
         if (!mounted.current) return;
+
+        // Read before the write guard below: what the television is doing has nothing to do with what is being saved.
+        if (event.type === 'state' || event.type === 'presence') {
+            setScreenOnline(event.data.screenOnline);
+        }
 
         switch (event.type) {
             case 'state':
@@ -239,7 +247,7 @@ export function useQuizLobby(code?: string): PQLobbyState {
     }, [lobby, isHost, starting]);
 
     // Moves part of the room's setup, and saves it.
-    const updateSetup = useCallback(async (next: Partial<PQLobbySetup>) => {
+    const updateSetup = useCallback(async (next: Partial<Omit<PQLobbySetup, 'hostScreen'>>) => {
         if (lobby === null) return;
 
         const lobbyCode = lobby.code;
@@ -312,6 +320,7 @@ export function useQuizLobby(code?: string): PQLobbyState {
         isHost,
         mySeat,
         online,
+        screenOnline,
         connection,
         closed,
         saving,

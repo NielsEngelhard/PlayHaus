@@ -5,6 +5,11 @@ import { Share } from 'react-native';
 // What actually happened, because the screen says something different about each.
 export type ShareOutcome = 'copied' | 'shared' | 'dismissed' | 'failed';
 
+/** Native always has a system share sheet to fall back on. */
+export function canShareLink(): boolean {
+    return true;
+}
+
 /** Offer a join link through the platform's own share sheet. */
 export async function shareLink(url: string, title: string): Promise<ShareOutcome> {
     try {

@@ -256,16 +256,16 @@ export const nl: Catalog = {
         disconnected: 'Verbinding met de lobby kwijt',
         close: 'Lobby sluiten',
         leave: 'Lobby verlaten',
-        joinCode: 'Toegangscode',
+        shareCodeInvite: 'Deel deze code met je vrienden',
         code: 'Lobbycode',
         codeSpoken: 'Lobbycode: {{characters}}',
         copyCode: 'Lobbycode {{characters}} kopiëren',
         copied: 'Gekopieerd',
         shareTitle: 'Kom in mijn lobby',
-        shareLink: 'Deel de link',
+        copyLink: 'Kopieer link',
+        copyLinkLabel: 'Kopieer de link naar deze lobby',
+        shareLink: 'Delen',
         shareLinkLabel: 'Deel de link naar deze lobby',
-        linkCopied: 'Link gekopieerd',
-        shareFailed: 'Delen lukte niet',
         players: 'Spelers',
         playerCount: '{{taken}} van {{max}}',
         minPlayers: 'Min. {{min}}',
@@ -535,6 +535,21 @@ export const nl: Catalog = {
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
             multiDevice: { title: 'Per speler', description: '1 telefoon per speler', action: 'Kamer openen' },
             centralScreen: { title: 'Centraal scherm', description: 'Stream de quiz naar je tv. Iedereen gebruikt een telefoon als controller.', action: 'Opzetten'},
+            playMode: {
+                title: 'Hoe spelen jullie?',
+                message: 'Iedereen speelt op zijn eigen telefoon. Kies of er ook een groot scherm meedoet.',
+                phonesOnly: {
+                    title: 'Alleen telefoons',
+                    description: 'De vraag staat op ieders telefoon.',
+                    need: 'Nodig: een telefoon per speler'
+                },
+                withScreen: {
+                    title: 'Met centraal scherm',
+                    description: 'De vraag staat groot op de tv, telefoons zijn de knoppen.',
+                    need: 'Nodig: een tv of laptop met browser'
+                },
+                locked: 'Je keuze staat vast zodra de kamer open is'
+            },
             tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
             allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
             library: {
@@ -629,14 +644,24 @@ export const nl: Catalog = {
             hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
             hostStoppedQuiz: 'De host heeft de quiz gestopt. Vraag om een nieuwe code voor een volgende.',
             dealt: 'De quiz begint…',
-            hostScreen: {
-                label: 'Hostscherm',
-                description: 'Zet de vraag op een tv of laptop en speel met de telefoons als controller. Uit, dan toont elke telefoon het hele bord.'
+            // De verplichte stap voor de kamer in een centraal-scherm kamer: er moet eerst een tv meekijken.
+            pairing: {
+                title: 'Scherm koppelen',
+                stepScreen: 'Scherm',
+                stepRoom: 'Kamer',
+                cardTitle: 'Koppel eerst het scherm',
+                openOn: 'Open op de tv of laptop',
+                openOnNoUrl: 'Open de kamer op de tv of laptop en vul de code in',
+                fillIn: 'EN VUL IN',
+                waiting: 'Wachten op het scherm…',
+                onePlayerWaiting: '1 speler wacht al met code {{code}}',
+                playersWaiting: '{{count}} spelers wachten al met code {{code}}',
+                blocked: 'Doorgaan zonder scherm kan niet',
+                auto: 'Zodra het scherm verbindt ga je vanzelf verder'
             },
-            screenHint: {
-                title: 'Zet eerst een scherm klaar',
-                message: 'Open de kamer op een laptop of tv — HDMI, Chromecast of AirPlay werkt allemaal — en iedereen speelt mee vanaf zijn eigen telefoon.',
-                messageUrl: 'Open op de tv {{url}} en typ {{code}}. Een laptop op HDMI, een gecast tabblad of schermspiegelen kan ook — iedereen speelt mee vanaf zijn eigen telefoon.'
+            screenConnected: {
+                title: 'Centraal scherm verbonden',
+                message: 'De quiz verschijnt op het scherm zodra je start.'
             },
             cast: {
                 action: 'Cast naar tv',
@@ -664,7 +689,8 @@ export const nl: Catalog = {
             },
             stay: 'Hier blijven',
             start: 'Quiz starten',
-            startNote: 'Zodra je start kan er niemand meer bij.',
+            startNoteScreen: 'Iedereen kijkt naar het scherm',
+            startNotePhones: 'De vraag verschijnt op ieders telefoon',
             needPlayers: 'Je hebt minstens {{min}} telefoons aan tafel nodig.',
             needQuiz: 'Kies eerst een quiz.',
             hostFallback: 'De host'

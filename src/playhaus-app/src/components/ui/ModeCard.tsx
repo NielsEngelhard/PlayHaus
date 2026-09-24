@@ -25,6 +25,8 @@ interface Props {
     action: string,
     /** Where tapping this navigates. Optional when the card is not navigable. */
     navigationUrl?: Href,
+    /** What tapping this does instead of navigating, for a card that opens something in place. */
+    onPress?: () => void,
     /** Whether the card is disabled. Defaults to false. */
     isDisabled?: boolean,
     // Draw the loud design instead of the quiet one.
@@ -65,6 +67,7 @@ export default function ModeCard({
     description,
     action,
     navigationUrl,
+    onPress,
     isDisabled = false,
     solid = false,
     watermark,
@@ -80,6 +83,8 @@ export default function ModeCard({
     const card = (
         <AnimatedPressable
             disabled={isDisabled}
+            // Left off when there is an href: `Link asChild` puts its own handler on the clone.
+            onPress={navigationUrl === undefined ? onPress : undefined}
             onPressIn={pop.onPressIn}
             onPressOut={pop.onPressOut}
             onHoverIn={pop.onHoverIn}

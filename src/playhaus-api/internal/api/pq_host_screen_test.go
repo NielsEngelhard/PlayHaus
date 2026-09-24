@@ -8,8 +8,8 @@ import (
 
 const pqLobbiesPath = "/api/v1/pubquizr/multi-device/lobby"
 
-// startedPQRoom opens a room of two with the host's setup applied, deals it, and reads the evening back.
-func startedPQRoom(t *testing.T, setup string) (pqLobbyResponse, quizSessionResponse) {
+// startedPQRoom opens a room of two in the play mode asked for, deals it, and reads the evening back.
+func startedPQRoom(t *testing.T, hostScreen bool) (pqLobbyResponse, quizSessionResponse) {
 	t.Helper()
 
 	h, _ := newQuizServer(t)
@@ -17,14 +17,15 @@ func startedPQRoom(t *testing.T, setup string) (pqLobbyResponse, quizSessionResp
 	guest := newGuestSession(t, h)
 	quiz := aQuiz(t, h, host.Token, "locale=nl")
 
-	rec := do(t, h, http.MethodPost, pqLobbiesPath, `{"locale":"nl"}`, host.Token)
+	opening := fmt.Sprintf(`{"locale":"nl","hostScreen":%t}`, hostScreen)
+	rec := do(t, h, http.MethodPost, pqLobbiesPath, opening, host.Token)
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("create lobby: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
 	}
 	lobby := decodeBody[pqLobbyResponse](t, rec)
 	room := pqLobbiesPath + "/" + lobby.Code
 
-	body := fmt.Sprintf(`{"quizId":%q%s}`, quiz.ID, setup)
+	body := fmt.Sprintf(`{"quizId":%q}`, quiz.ID)
 	rec = do(t, h, http.MethodPatch, room, body, host.Token)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("update setup: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
@@ -50,7 +51,7 @@ func startedPQRoom(t *testing.T, setup string) (pqLobbyResponse, quizSessionResp
 }
 
 func TestPQRoomPlaysWithoutAHostScreenByDefault(t *testing.T) {
-	lobby, session := startedPQRoom(t, "")
+	lobby, session := startedPQRoom(t, false)
 
 	if lobby.Setup.HostScreen {
 		t.Error("lobby setup hostScreen = true, want false")
@@ -61,12 +62,51 @@ func TestPQRoomPlaysWithoutAHostScreenByDefault(t *testing.T) {
 }
 
 func TestPQRoomFreezesTheHostScreenOntoTheEvening(t *testing.T) {
-	lobby, session := startedPQRoom(t, `,"hostScreen":true`)
+	lobby, session := startedPQRoom(t, true)
 
 	if !lobby.Setup.HostScreen {
 		t.Error("lobby setup hostScreen = false, want true")
 	}
 	if !session.HostScreen {
 		t.Error("session hostScreen = false, want true")
+	}
+}
+
+func TestPQRoomOpensWithTheScreenTheHostAskedFor(t *testing.T) {
+	h := newTestServer(t)
+	host := newGuestSession(t, h)
+
+	rec := do(t, h, http.MethodPost, pqLobbiesPath, `{"locale":"nl","hostScreen":true}`, host.Token)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create lobby: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
+	}
+
+	if !decodeBody[pqLobbyResponse](t, rec).Setup.HostScreen {
+		t.Error("lobby setup hostScreen = false, want true")
+	}
+}
+
+func TestPQRoomModeCannotChangeOnceOpen(t *testing.T) {
+	h := newTestServer(t)
+	host := newGuestSession(t, h)
+
+	rec := do(t, h, http.MethodPost, pqLobbiesPath, `{"locale":"nl","hostScreen":true}`, host.Token)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create lobby: status = %d, want %d (body: %s)", rec.Code, http.StatusCreated, rec.Body)
+	}
+	room := pqLobbiesPath + "/" + decodeBody[pqLobbyResponse](t, rec).Code
+
+	rec = do(t, h, http.MethodPatch, room, `{"hostScreen":false}`, host.Token)
+	if rec.Code != http.StatusBadRequest {
+		t.Fatalf("update setup: status = %d, want %d (body: %s)", rec.Code, http.StatusBadRequest, rec.Body)
+	}
+
+	rec = do(t, h, http.MethodPatch, room, `{"zenMode":true}`, host.Token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("update setup: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	}
+
+	if !decodeBody[pqLobbyResponse](t, rec).Setup.HostScreen {
+		t.Error("lobby setup hostScreen = false after an unrelated change, want true")
 	}
 }

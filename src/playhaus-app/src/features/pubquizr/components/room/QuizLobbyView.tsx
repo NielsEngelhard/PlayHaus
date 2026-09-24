@@ -10,6 +10,7 @@ import { ROUTES } from "@/constants/routes";
 import { useT } from "@/features/i18n/LanguageContext";
 import GuestRoom from "@/features/pubquizr/components/room/GuestRoom";
 import HostRoom from "@/features/pubquizr/components/room/HostRoom";
+import ScreenPairing from "@/features/pubquizr/components/room/ScreenPairing";
 import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -92,9 +93,19 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
         if (started !== null) onStarted(started);
     }
 
+    // A central-screen room is not a room until a television is watching, and it becomes one again if that television goes.
+    // Not yet knowing counts as no screen, so the lobby never flashes past on the way in.
+    const pairing = lobby.setup.hostScreen && lobby.status === 'waiting' && state.screenOnline !== true;
+
     return (
         <View style={styles.screen}>
-            {isHost ? (
+            {isHost && pairing ? (
+                <ScreenPairing
+                    state={state}
+                    lobby={lobby}
+                    onBack={() => setLeaving(true)}
+                />
+            ) : isHost ? (
                 <HostRoom
                     state={state}
                     lobby={lobby}

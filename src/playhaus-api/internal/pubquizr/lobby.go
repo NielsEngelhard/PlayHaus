@@ -21,8 +21,8 @@ func (in LobbySetup) normalised() LobbySetup {
 	return in
 }
 
-// CreateLobby opens a room and puts the caller in it as the host.
-func (s *Service) CreateLobby(ctx context.Context, ownerID, name string, locale i18n.Locale) (*PQLobby, error) {
+// CreateLobby opens a room and puts the caller in it as the host. hostScreen is settled here because the room is what the players who join are told.
+func (s *Service) CreateLobby(ctx context.Context, ownerID, name string, locale i18n.Locale, hostScreen bool) (*PQLobby, error) {
 	if ownerID == "" {
 		return nil, fmt.Errorf("create lobby: %w: missing owner", ErrInvalidInput)
 	}
@@ -37,10 +37,11 @@ func (s *Service) CreateLobby(ctx context.Context, ownerID, name string, locale 
 
 	now := time.Now().UTC()
 	lobby := &PQLobby{
-		ID:      code,
-		OwnerID: ownerID,
-		Locale:  locale,
-		Status:  LobbyWaiting,
+		ID:         code,
+		OwnerID:    ownerID,
+		Locale:     locale,
+		Status:     LobbyWaiting,
+		HostScreen: hostScreen,
 		// The host is a phone like any other, and the first one.
 		Players:   []PQLobbyPlayer{{LobbyID: code, UserID: ownerID, Seat: 0, Name: playerName(name), JoinedAt: now}},
 		CreatedAt: now,

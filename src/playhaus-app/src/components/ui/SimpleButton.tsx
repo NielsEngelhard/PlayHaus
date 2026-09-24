@@ -7,15 +7,20 @@ import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
 interface Props {
-    action: string
+    /** The words next to the arrow. Left out, only the arrow shows. */
+    action?: string
     description: string
     icon: keyof typeof Feather.glyphMap
+    /** A line under the description, for what the choice asks of the room. */
+    note?: string
     onPress: () => void
+    /** Paints the icon tile, for rows that carry a colour of their own. */
+    tileColor?: string
     title: string
 }
 
 // A full-width row for a mode that doesn't fit ModeCard's shape: icon, then copy, then the action it leads to.
-export default function SimpleButton({ action, description, icon, onPress, title }: Props) {
+export default function SimpleButton({ action, description, icon, note, onPress, tileColor, title }: Props) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -26,7 +31,7 @@ export default function SimpleButton({ action, description, icon, onPress, title
             onPress={onPress}
             style={styles.button}
         >
-            <View style={styles.tile}>
+            <View style={[styles.tile, tileColor === undefined ? null : { backgroundColor: tileColor }]}>
                 <Feather name={icon} size={17} color={theme.colors.text} />
             </View>
 
@@ -38,12 +43,20 @@ export default function SimpleButton({ action, description, icon, onPress, title
                 <AppText style={styles.description} numberOfLines={2}>
                     {description}
                 </AppText>
+
+                {note !== undefined && (
+                    <AppText style={styles.note} numberOfLines={1}>
+                        {note}
+                    </AppText>
+                )}
             </View>
 
             <View style={styles.actionRow}>
-                <AppText style={styles.action} numberOfLines={1}>
-                    {action}
-                </AppText>
+                {action !== undefined && (
+                    <AppText style={styles.action} numberOfLines={1}>
+                        {action}
+                    </AppText>
+                )}
 
                 <Feather name="arrow-right" size={14} color={theme.colors.text} />
             </View>
@@ -93,6 +106,13 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.35,
         color: theme.colors.textMuted
+    },
+
+    note: {
+        marginTop: 3,
+        fontSize: FontSizes.xs,
+        fontWeight: 700,
+        color: theme.colors.textSecondary
     },
 
     actionRow: {
