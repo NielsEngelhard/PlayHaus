@@ -537,6 +537,46 @@ func TestAPlayerSittingTheNextStageOutDoesNotHoldUpTheReadyGate(t *testing.T) {
 	}
 }
 
+func TestEveryoneInAFivePlayerFieldPlaysTheSecondStage(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, players := seatTournament(t, service, 5)
+
+	tournament := drawAndStart(t, service, lobby.ID)
+	tournament = playOutStage(t, service, tournament)
+
+	// Two unbeaten make a pair and three with a loss make a three-way, so nobody sits stage 2 out.
+	for _, userID := range players {
+		if !tournament.PlaysNextStage(userID) {
+			t.Fatalf("%s is not drawn into stage 2", userID)
+		}
+	}
+
+	var err error
+	for _, userID := range players {
+		tournament, err = service.ReadyUp(ctx, lobby.ID, userID)
+		if err != nil {
+			t.Fatalf("ready up as %s: %v", userID, err)
+		}
+	}
+	if tournament.Stage != 2 {
+		t.Fatalf("the bracket sits on stage %d, want 2", tournament.Stage)
+	}
+
+	sizes := map[int]int{}
+	for _, match := range tournament.MatchesInStage(2) {
+		if match.Status != MatchLive {
+			t.Fatalf("stage 2 match %s is %s, want live", match.ID, match.Status)
+		}
+		sizes[len(match.Players)]++
+	}
+	if sizes[2] != 1 || sizes[3] != 1 {
+		t.Fatalf("stage 2 drew matches of sizes %v, want one pair and one three-way", sizes)
+	}
+}
+
 func TestAMatchRoomIsNotThePlayersToClose(t *testing.T) {
 	store, _ := newTestStore(t)
 	service := NewService(store, Options{DevMode: true})

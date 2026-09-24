@@ -17,8 +17,8 @@ export interface TournamentPlayer {
     eliminated: boolean
     // Whether they have readied for the stage on the table right now.
     ready: boolean
-    // Whether they are drawn into the next stage, which is who the ready gate waits on.
-    playsNext: boolean
+    // Whether they are drawn into the next stage, which is who the ready gate waits on. An older API omits it.
+    playsNext?: boolean
     // The finishing position, set the moment they are out.
     placement?: number
 }

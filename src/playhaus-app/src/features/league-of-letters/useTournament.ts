@@ -171,7 +171,8 @@ export function useTournament(code: string | undefined): TournamentState {
         me,
         isHost: tournament !== null && tournament.hostId === userId,
         ready: me?.ready ?? false,
-        playsNext: me?.playsNext ?? false,
+        // An API without the field gates on elimination alone, so falling back to false would lock everybody out.
+        playsNext: me === null ? false : me.playsNext ?? !me.eliminated,
         readying,
         readyUp: send,
         starting,
