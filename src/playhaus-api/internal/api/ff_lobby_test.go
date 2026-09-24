@@ -429,7 +429,7 @@ func TestFFATableOfTwoCannotPlayTheModeWithNoTruth(t *testing.T) {
 
 // Each player holds exactly two prompts, whatever the table size. Asserted over every one
 // the game allows, because the pairing is the one piece of this game that has to hold for
-// all of them at once -- including the small tables, where a prompt has a single author and
+// all of them at once -- including facts mode, where a prompt has a single author and
 // so a game has twice as many rounds.
 func TestFFEveryPlayerIsDealtExactlyTwoPrompts(t *testing.T) {
 	for count := fakefiller.MinLobbyPlayers; count <= fakefiller.MaxLobbyPlayers; count++ {
