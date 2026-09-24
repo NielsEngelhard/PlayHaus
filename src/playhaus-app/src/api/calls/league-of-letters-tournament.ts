@@ -17,6 +17,8 @@ export interface TournamentPlayer {
     eliminated: boolean
     // Whether they have readied for the stage on the table right now.
     ready: boolean
+    // Whether they are drawn into the next stage, which is who the ready gate waits on.
+    playsNext: boolean
     // The finishing position, set the moment they are out.
     placement?: number
 }
@@ -60,7 +62,7 @@ export interface Tournament {
     players: TournamentPlayer[]
     matches: TournamentMatch[]
     readyCount: number
-    // How many players the next stage is waiting on, knocked-out ones excluded.
+    // How many players are drawn into the next stage, which is who the ready gate waits on.
     readyNeeded: number
     createdAt: string
 }

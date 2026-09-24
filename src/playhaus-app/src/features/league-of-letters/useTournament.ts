@@ -37,6 +37,8 @@ export interface TournamentState {
     isHost: boolean
     /** Whether this player has already readied for the stage on the table. */
     ready: boolean
+    /** Whether this player is drawn into the next stage. Anyone else has nothing to ready for. */
+    playsNext: boolean
     readying: boolean
     readyUp: () => Promise<void>
     starting: boolean
@@ -169,6 +171,7 @@ export function useTournament(code: string | undefined): TournamentState {
         me,
         isHost: tournament !== null && tournament.hostId === userId,
         ready: me?.ready ?? false,
+        playsNext: me?.playsNext ?? false,
         readying,
         readyUp: send,
         starting,

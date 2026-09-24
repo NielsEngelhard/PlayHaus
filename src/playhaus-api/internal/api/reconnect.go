@@ -32,12 +32,20 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		allGames = append(allGames, mapSoloGamesToReconnectableGame(soloGames)...)
 	}
 
+	// GET tournaments
+	tournaments, err := s.leagueOfLetters.TournamentsByUserID(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get tournaments to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapTournamentsToReconnectableGame(tournaments)...)
+	}
+
 	// GET multiplayer games
 	multiplayerGames, err := s.leagueOfLetters.MultiplayerGamesByUserID(r.Context(), userID)
 	if err != nil {
 		s.log.Error("get multiplayer games to reconnect to", "err", err)
 	} else {
-		allGames = append(allGames, mapMultiplayerGamesToReconnectableGame(multiplayerGames)...)
+		allGames = append(allGames, mapMultiplayerGamesToReconnectableGame(withoutMatchRooms(multiplayerGames, tournaments))...)
 	}
 
 	// GET pub quizzes
@@ -171,6 +179,43 @@ func mapMultiplayerGamesToReconnectableGame(games []*lol.MultiplayerLeagueOfLett
 	}
 
 	return mappedGames
+}
+
+func mapTournamentsToReconnectableGame(tournaments []*lol.Tournament) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(tournaments))
+
+	for i := range tournaments {
+		tournament := tournaments[i]
+
+		mappedGames[i] = ReconnectableGame{
+			// The tournament lobby's code: the bracket screen forwards a player on to a live match itself.
+			ID:        tournament.LobbyID,
+			Type:      LeagueOfLettersTournament,
+			CreatedAt: tournament.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
+}
+
+// withoutMatchRooms drops the games played in these tournaments' match rooms, which the tournament's own row already leads back to.
+func withoutMatchRooms(games []*lol.MultiplayerLeagueOfLettersGame, tournaments []*lol.Tournament) []*lol.MultiplayerLeagueOfLettersGame {
+	matchRooms := map[string]bool{}
+	for _, tournament := range tournaments {
+		for _, match := range tournament.Matches {
+			if match.LobbyID != nil {
+				matchRooms[*match.LobbyID] = true
+			}
+		}
+	}
+
+	kept := make([]*lol.MultiplayerLeagueOfLettersGame, 0, len(games))
+	for _, game := range games {
+		if !matchRooms[game.LobbyID] {
+			kept = append(kept, game)
+		}
+	}
+	return kept
 }
 
 func mapSoloGamesToReconnectableGame(soloGames []*lol.SoloLeagueOfLettersGame) []ReconnectableGame {

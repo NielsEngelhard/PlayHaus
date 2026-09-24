@@ -421,4 +421,63 @@ func TestAFourPlayerTournamentPlaysToAChampion(t *testing.T) {
 	if code := errorCode(t, rec); code != "tournament_over" {
 		t.Fatalf("code = %q, want tournament_over", code)
 	}
+
+	for _, listed := range reconnectList(t, srv, host.Token) {
+		if listed.Type == LeagueOfLettersTournament {
+			t.Fatalf("a finished bracket is still in the reconnect list: %+v", listed)
+		}
+	}
+}
+
+// reconnectList is what the "still running" card reads for this session.
+func reconnectList(t *testing.T, srv http.Handler, token string) []ReconnectableGame {
+	t.Helper()
+
+	rec := do(t, srv, http.MethodGet, reconnectPath, "", token)
+	if rec.Code != http.StatusOK {
+		t.Fatalf("reconnect list: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	return decodeBody[[]ReconnectableGame](t, rec)
+}
+
+func TestADrawnTournamentIsInTheReconnectList(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+
+	host, guests, lobby := seatTournamentRoom(t, srv, 4)
+	drawBracket(t, srv, host.Token, lobby.Code)
+
+	// Between matches there is no game to come back to, only the bracket.
+	var found bool
+	for _, listed := range reconnectList(t, srv, guests[0].Token) {
+		if listed.Type != LeagueOfLettersTournament {
+			continue
+		}
+		found = true
+		if listed.ID != lobby.Code {
+			t.Errorf("listed id = %q, want the tournament's code %q", listed.ID, lobby.Code)
+		}
+	}
+	if !found {
+		t.Fatal("a drawn tournament is not in the reconnect list")
+	}
+}
+
+func TestALiveMatchIsListedOnceAsItsTournament(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+
+	host, guests, lobby := seatTournamentRoom(t, srv, 4)
+	startTournament(t, srv, host.Token, lobby.Code)
+
+	var tournaments int
+	for _, listed := range reconnectList(t, srv, guests[0].Token) {
+		switch listed.Type {
+		case LeagueOfLettersTournament:
+			tournaments++
+		case LeagueOfLettersMultiplayer:
+			t.Errorf("a match room is listed as a game of its own: %+v", listed)
+		}
+	}
+	if tournaments != 1 {
+		t.Fatalf("listed %d tournaments, want 1", tournaments)
+	}
 }

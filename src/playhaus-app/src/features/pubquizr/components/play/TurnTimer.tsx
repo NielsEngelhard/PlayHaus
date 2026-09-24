@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import { FontSizes } from "@/constants/theme";
+import { FontSizes, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { haptic } from "@/utils/haptics";
@@ -8,6 +8,8 @@ import { AccessibilityInfo, Animated, Easing, LayoutChangeEvent, Platform, View 
 
 // The digits' hurry pulse, one way.
 const PULSE_MS = 500;
+// Wide enough for two tabular digits at `FontSizes.lg`.
+const DIGITS_WIDTH = 28;
 
 interface Props {
     /** How long the turn is. */
@@ -104,16 +106,6 @@ export default function TurnTimer({ seconds, onDone }: Props) {
 
     return (
         <View style={styles.timer}>
-            <Animated.View style={{ transform: [{ scale: pulse }] }}>
-                <AppText
-                    style={[styles.digits, { color: ink }]}
-                    // Read out as a whole, and only as it changes.
-                    accessibilityLiveRegion="polite"
-                >
-                    {left}
-                </AppText>
-            </Animated.View>
-
             <View style={styles.track} onLayout={measure}>
                 <Animated.View
                     style={[
@@ -130,6 +122,16 @@ export default function TurnTimer({ seconds, onDone }: Props) {
                     ]}
                 />
             </View>
+
+            <Animated.View style={{ transform: [{ scale: pulse }] }}>
+                <AppText
+                    style={[styles.digits, { color: ink }]}
+                    // Read out as a whole, and only as it changes.
+                    accessibilityLiveRegion="polite"
+                >
+                    {left}
+                </AppText>
+            </Animated.View>
         </View>
     )
 
@@ -142,20 +144,22 @@ export default function TurnTimer({ seconds, onDone }: Props) {
 const useStyles = createThemedStyles(theme => ({
     timer: {
         flexShrink: 0,
+        flexDirection: 'row',
         alignItems: 'center',
-        gap: 10
+        gap: Spacing.two
     },
 
-    // Tabular figures, so the number does not jitter sideways as it counts down.
+    // Tabular figures and a fixed width, so neither the number nor the bar shifts as it counts down.
     digits: {
-        fontSize: FontSizes.huge,
+        minWidth: DIGITS_WIDTH,
+        textAlign: 'right',
+        fontSize: FontSizes.lg,
         fontWeight: 900,
-        letterSpacing: -2,
         fontVariant: ['tabular-nums']
     },
 
     track: {
-        width: '100%',
+        flex: 1,
         height: 12,
         overflow: 'hidden',
         borderRadius: 999,

@@ -118,6 +118,8 @@ export default function LeagueOfLettersTournamentRoomPage() {
                         readyCount={tournament.readyCount}
                         readyNeeded={tournament.readyNeeded}
                         ready={bracket.ready}
+                        playsNext={bracket.playsNext}
+                        eliminated={bracket.me?.eliminated ?? false}
                         readying={bracket.readying}
                         onReady={() => void bracket.readyUp()}
                         error={bracket.actionError}

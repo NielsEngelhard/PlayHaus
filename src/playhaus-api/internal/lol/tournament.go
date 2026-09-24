@@ -18,6 +18,7 @@ type TournamentStore interface {
 	TournamentByID(ctx context.Context, id uuid.UUID) (*Tournament, error)
 	TournamentByLobbyCode(ctx context.Context, code string) (*Tournament, error)
 	TournamentLobbyCode(ctx context.Context, id uuid.UUID) (string, error)
+	TournamentsByUserID(ctx context.Context, userID string) ([]*Tournament, error)
 	TournamentMatchByGameID(ctx context.Context, gameID uuid.UUID) (*TournamentMatch, error)
 	SettleTournamentMatch(ctx context.Context, in SettleMatchInput) error
 	SetReadyStage(ctx context.Context, tournamentID uuid.UUID, userID string, stage int) error
@@ -118,6 +119,23 @@ func (s *Service) TournamentCode(ctx context.Context, id uuid.UUID) (string, err
 	return s.store.TournamentLobbyCode(ctx, id)
 }
 
+// TournamentsByUserID is every unfinished bracket this player is still in the running for.
+func (s *Service) TournamentsByUserID(ctx context.Context, userID string) ([]*Tournament, error) {
+	tournaments, err := s.store.TournamentsByUserID(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	// A knocked-out player has nothing left to come back for.
+	standing := make([]*Tournament, 0, len(tournaments))
+	for _, tournament := range tournaments {
+		if player := tournament.Player(userID); player != nil && !player.Eliminated() {
+			standing = append(standing, tournament)
+		}
+	}
+	return standing, nil
+}
+
 // StartStage opens a room for every match this round has drawn, and sets them running.
 func (s *Service) StartStage(ctx context.Context, code, userID string) (*Tournament, error) {
 	tournament, err := s.store.TournamentByLobbyCode(ctx, code)
@@ -174,6 +192,10 @@ func (s *Service) ReadyUp(ctx context.Context, code, userID string) (*Tournament
 	if !tournament.StageOver() {
 		return nil, ErrStageNotOver
 	}
+	// Sitting the next stage out is the same: there is nothing to be ready for.
+	if !tournament.PlaysNextStage(userID) {
+		return tournament, nil
+	}
 
 	if err := s.store.SetReadyStage(ctx, tournament.ID, userID, tournament.Stage); err != nil {
 		return nil, err
@@ -202,10 +224,10 @@ func (s *Service) ReadyUp(ctx context.Context, code, userID string) (*Tournament
 	return s.store.TournamentByID(ctx, tournament.ID)
 }
 
-// everyoneReady reports whether every player still in the bracket has readied for the stage on the table.
+// everyoneReady reports whether every player drawn into the next stage has readied for it.
 func everyoneReady(tournament *Tournament) bool {
 	for _, player := range tournament.Players {
-		if player.Eliminated() {
+		if !tournament.PlaysNextStage(player.UserID) {
 			continue
 		}
 		if player.ReadyStage < tournament.Stage {
@@ -407,7 +429,7 @@ func (s *Service) openMatchRoom(tournament *Tournament, match TournamentMatch, c
 		game.Players[i] = MultiplayerGamePlayer{GameID: game.ID, UserID: player.UserID, TurnOrder: i}
 	}
 
-	rounds, err := s.generateRounds(game.ID, TournamentRoundsPerMatch, game.WordLength, game.Locale, multiplayerCommonWordsOnly)
+	rounds, err := s.generateRounds(game.ID, RoundsFor(len(match.Players)), game.WordLength, game.Locale, multiplayerCommonWordsOnly)
 	if err != nil {
 		return nil, err
 	}

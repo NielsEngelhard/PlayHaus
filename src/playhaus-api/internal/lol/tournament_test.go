@@ -83,14 +83,14 @@ func playOutStage(t *testing.T, service *Service, tournament *Tournament) *Tourn
 	return tournament
 }
 
-// readyEveryone presses READY for every player still in the bracket.
+// readyEveryone presses READY for every player drawn into the next stage.
 func readyEveryone(t *testing.T, service *Service, tournament *Tournament) *Tournament {
 	t.Helper()
 
 	ctx := context.Background()
 	var latest *Tournament
 	for _, player := range tournament.Players {
-		if player.Eliminated() {
+		if !tournament.PlaysNextStage(player.UserID) {
 			continue
 		}
 
@@ -128,6 +128,38 @@ func TestATournamentNeedsFourPlayers(t *testing.T) {
 	_, err := service.CreateTournament(context.Background(), lobby.ID, "host")
 	if !errors.Is(err, ErrNotEnoughPlayers) {
 		t.Fatalf("three players got %v, want %v", err, ErrNotEnoughPlayers)
+	}
+}
+
+// Every seat must open the same number of rounds, so a table of three plays three, not four.
+func TestATournamentMatchDealsOneRoundPerPlayer(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, _ := seatTournament(t, service, 5)
+	tournament := drawAndStart(t, service, lobby.ID)
+
+	seen := map[int]bool{}
+	for _, match := range tournament.MatchesInStage(tournament.Stage) {
+		if match.GameID == nil {
+			continue
+		}
+
+		game, err := service.MultiplayerGame(ctx, *match.GameID, match.Players[0].UserID)
+		if err != nil {
+			t.Fatalf("read match %s: %v", match.ID, err)
+		}
+
+		want := RoundsFor(len(match.Players))
+		if len(game.Rounds) != want {
+			t.Errorf("a match of %d dealt %d rounds, want %d", len(match.Players), len(game.Rounds), want)
+		}
+		seen[len(match.Players)] = true
+	}
+
+	if !seen[2] || !seen[3] {
+		t.Fatalf("five players drew match sizes %v, want a 2 and a 3", seen)
 	}
 }
 
@@ -461,6 +493,47 @@ func TestAnEliminatedPlayerDoesNotHoldUpTheReadyGate(t *testing.T) {
 	}
 	if watching.Stage != 3 {
 		t.Fatalf("an eliminated player moved the bracket to stage %d", watching.Stage)
+	}
+}
+
+func TestAPlayerSittingTheNextStageOutDoesNotHoldUpTheReadyGate(t *testing.T) {
+	store, _ := newTestStore(t)
+	service := NewService(store, Options{DevMode: true})
+
+	ctx := context.Background()
+	lobby, _ := seatTournament(t, service, 5)
+
+	tournament := drawAndStart(t, service, lobby.ID)
+
+	// Five players leave a lone unbeaten player after two stages, with nobody to be drawn against.
+	tournament = playOutStage(t, service, tournament)
+	tournament = readyEveryone(t, service, tournament)
+	tournament = playOutStage(t, service, tournament)
+
+	var idle *TournamentPlayer
+	for i := range tournament.Players {
+		player := &tournament.Players[i]
+		if !player.Eliminated() && !tournament.PlaysNextStage(player.UserID) {
+			idle = player
+			break
+		}
+	}
+	if idle == nil {
+		t.Fatal("nobody sits stage 3 out")
+	}
+
+	// Their press is answered with the bracket and counts for nothing.
+	watching, err := service.ReadyUp(ctx, lobby.ID, idle.UserID)
+	if err != nil {
+		t.Fatalf("a player sitting out readying got %v", err)
+	}
+	if watching.Player(idle.UserID).ReadyStage >= watching.Stage {
+		t.Fatal("a player sitting out was marked ready")
+	}
+
+	tournament = readyEveryone(t, service, tournament)
+	if tournament.Stage != 3 {
+		t.Fatalf("the bracket sits on stage %d, want 3", tournament.Stage)
 	}
 }
 

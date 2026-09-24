@@ -392,6 +392,18 @@ func (t Tournament) StageOver() bool {
 	return true
 }
 
+// PlaysNextStage reports whether a player is drawn into the stage after the one on the table, which is who the ready gate waits on.
+func (t Tournament) PlaysNextStage(userID string) bool {
+	for _, draw := range NextStage(t.Stand()) {
+		for _, player := range draw.Players {
+			if player == userID {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // StagePending reports whether the stage on the table is drawn but waiting on the host to open it.
 func (t Tournament) StagePending() bool {
 	for _, match := range t.MatchesInStage(t.Stage) {

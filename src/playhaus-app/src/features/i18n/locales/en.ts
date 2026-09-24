@@ -249,7 +249,7 @@ export const en = {
             title: 'No games left running',
             message: 'Anything you walk out of halfway shows up here, ready to walk back into.'
         },
-        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: 'One device' },
+        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: 'One device', tournament: 'Tournament' },
         errors: {
             expired: 'Your session has expired. Log in again.',
             generic: 'Something went wrong while fetching your games. Please try again.',
@@ -520,6 +520,8 @@ export const en = {
             waitingOnOne: 'Waiting on 1 match',
             waitingOnMany: 'Waiting on {{matches}} matches',
             readyWaiting: 'Waiting for the others',
+            readyNotNeededOut: 'You are out · no need to ready',
+            readyNotNeededBye: 'You sit the next round out',
             ready: 'I am ready',
             readyCount: '{{ready}} of {{total}} are ready · starts as soon as everyone is',
             readyGate: 'Ready opens once all {{matches}} matches are done',
@@ -1501,14 +1503,12 @@ export const en = {
                 imposters: 'The imposters win',
                 civiliansWhy: 'Every imposter has been voted out.',
                 impostersWhy: 'The imposters are no longer outnumbered.',
-                /** The reveal at the end: who was what, all of it at once. */
-                rolesTitle: 'Everybody',
-                civilianTag: 'Civilian',
-                imposterTag: 'Imposter',
-                nitwitTag: 'Nitwit',
-                votedOut: 'Voted out',
-                civilianWord: 'The word was',
-                imposterWord: 'The imposters had',
+                // The reveal at the end: who was what, grouped by side.
+                rolesTitle: 'Players',
+                civiliansCamp: 'Civilians',
+                impostersCamp: 'Against the civilians',
+                imposterWordLabel: 'Imposters',
+                winner: 'Winner',
                 again: 'Play again'
             }
         },

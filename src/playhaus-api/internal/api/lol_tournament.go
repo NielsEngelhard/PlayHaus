@@ -20,6 +20,8 @@ type tournamentPlayerResponse struct {
 	Eliminated    bool   `json:"eliminated"`
 	// Ready is this player having readied for the stage on the table right now.
 	Ready bool `json:"ready"`
+	// PlaysNext is this player being drawn into the next stage, so the ready gate waits on them.
+	PlaysNext bool `json:"playsNext"`
 	// Placement is the finishing position, set the moment they are out.
 	Placement int `json:"placement,omitempty"`
 }
@@ -63,7 +65,7 @@ type tournamentResponse struct {
 	Players      []tournamentPlayerResponse `json:"players"`
 	Matches      []tournamentMatchResponse  `json:"matches"`
 	ReadyCount   int                        `json:"readyCount"`
-	// ReadyNeeded is how many players the next stage is waiting on, knocked-out ones excluded.
+	// ReadyNeeded is how many players are drawn into the next stage, which is who the gate waits on.
 	ReadyNeeded int    `json:"readyNeeded"`
 	CreatedAt   string `json:"createdAt"`
 }
@@ -80,8 +82,9 @@ func (s *Server) newTournamentResponse(ctx context.Context, tournament *lol.Tour
 	for _, player := range tournament.Players {
 		name, color := nameAndColor(users, player.UserID)
 		ready := player.ReadyStage >= tournament.Stage
+		playsNext := tournament.PlaysNextStage(player.UserID)
 
-		if !player.Eliminated() {
+		if playsNext {
 			readyNeeded++
 			if ready {
 				readyCount++
@@ -95,7 +98,8 @@ func (s *Server) newTournamentResponse(ctx context.Context, tournament *lol.Tour
 			Seed:          player.Seed,
 			Losses:        player.Losses,
 			Eliminated:    player.Eliminated(),
-			Ready:         ready && !player.Eliminated(),
+			Ready:         ready && playsNext,
+			PlaysNext:     playsNext,
 		}
 		if player.Placement != nil {
 			row.Placement = *player.Placement

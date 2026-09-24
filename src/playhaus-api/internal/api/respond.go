@@ -14,6 +14,7 @@ type GameType string
 const (
 	LeagueOfLettersSolo        GameType = "lol_solo"
 	LeagueOfLettersMultiplayer GameType = "lol_multiplayer"
+	LeagueOfLettersTournament  GameType = "lol_tournament"
 	PubquizRSingleDevice       GameType = "pq_single_device"
 	PubquizRMultiDevice        GameType = "pq_multi_device"
 	OneOfUsSingleDevice        GameType = "oou_single_device"

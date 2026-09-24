@@ -27,6 +27,14 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         code: game => game.id,
         href: game => ROUTES.leagueOfLettersRoom(game.id) as Href,
     },
+    // The bracket, not a match: it forwards a player on to their live match itself.
+    lol_tournament: {
+        title: LEAGUE_OF_LETTERS_NAME,
+        modeKey: 'reconnect.mode.tournament',
+        slug: 'league-of-letters',
+        code: game => game.id,
+        href: game => ROUTES.leagueOfLettersTournamentRoom(game.id) as Href,
+    },
     pq_single_device: {
         title: PUBQUIZR_NAME,
         modeKey: 'reconnect.mode.oneDevice',

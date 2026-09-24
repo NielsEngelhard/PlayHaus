@@ -15,9 +15,6 @@ const (
 	MaxTournamentPlayers = 12
 )
 
-// TournamentRoundsPerMatch is fixed so a 1v1 and a 1v1v1 in the same stage finish together.
-const TournamentRoundsPerMatch = 4
-
 // TournamentLossesAllowed is what makes the bracket double elimination.
 const TournamentLossesAllowed = 2
 

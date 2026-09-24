@@ -241,7 +241,7 @@ export const nl: Catalog = {
             title: 'Geen spellen meer bezig',
             message: 'Alles wat je halverwege laat liggen staat hier weer klaar om verder te spelen.'
         },
-        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: '1 telefoon' },
+        mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: '1 telefoon', tournament: 'Toernooi' },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             generic: 'Er ging iets mis bij het ophalen van je spellen. Probeer het opnieuw.',
@@ -479,8 +479,7 @@ export const nl: Catalog = {
             advancing: '{{players}} door',
             feedsEmpty: 'nog leeg',
             yourSide: 'jouw kant',
-            dropsHere: 'Wie ronde {{stage}} verliest zakt hierheen — pas de tweede nederlaag is het einde',
-            // Eén potje in het schema.
+            dropsHere: 'Wie ronde {{stage}} verliest zakt naar de loser-bracket',
             playing: 'Bezig',
             upNext: 'Straks',
             bye: 'Vrije doorgang naar de volgende ronde',
@@ -498,6 +497,8 @@ export const nl: Catalog = {
             waitingOnOne: 'Wachten op 1 potje',
             waitingOnMany: 'Wachten op {{matches}} potjes',
             readyWaiting: 'Wachten op de anderen',
+            readyNotNeededOut: 'Je ligt eruit · klaarmelden hoeft niet',
+            readyNotNeededBye: 'Je slaat de volgende ronde over',
             ready: 'Ik ben er klaar voor',
             readyCount: '{{ready}} van de {{total}} staan klaar · start zodra iedereen er is',
             readyGate: 'Ready wordt actief als alle {{matches}} potjes klaar zijn',
@@ -1376,13 +1377,11 @@ export const nl: Catalog = {
                 imposters: 'De imposters winnen',
                 civiliansWhy: 'Alle imposters zijn weggestemd.',
                 impostersWhy: 'De imposters zijn niet langer in de minderheid.',
-                rolesTitle: 'Iedereen',
-                civilianTag: 'Burger',
-                imposterTag: 'Imposter',
-                nitwitTag: 'Onnozele',
-                votedOut: 'Weggestemd',
-                civilianWord: 'Het woord was',
-                imposterWord: 'De imposters hadden',
+                rolesTitle: 'Spelers',
+                civiliansCamp: 'Burgers',
+                impostersCamp: 'Tegen de burgers',
+                imposterWordLabel: 'Imposters',
+                winner: 'Winnaar',
                 again: 'Opnieuw spelen'
             }
         },

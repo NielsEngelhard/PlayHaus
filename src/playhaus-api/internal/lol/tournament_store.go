@@ -119,6 +119,20 @@ func (s *GormStore) TournamentByLobbyCode(ctx context.Context, code string) (*To
 	return &tournament, nil
 }
 
+// TournamentsByUserID is every unfinished bracket this player was drawn into, newest first.
+func (s *GormStore) TournamentsByUserID(ctx context.Context, userID string) ([]*Tournament, error) {
+	var tournaments []*Tournament
+	err := withBracket(s.db.WithContext(ctx)).
+		Joins("JOIN tn_lol_tournament_players ON tn_lol_tournament_players.tournament_id = tn_lol_tournaments.id").
+		Where("tn_lol_tournament_players.user_id = ? AND tn_lol_tournaments.status = ?", userID, TournamentInProgress).
+		Order("tn_lol_tournaments.created_at DESC").
+		Find(&tournaments).Error
+	if err != nil {
+		return nil, fmt.Errorf("select tournaments for user: %w", err)
+	}
+	return tournaments, nil
+}
+
 // TournamentLobbyCode is one column, because a match room's response only needs the code.
 func (s *GormStore) TournamentLobbyCode(ctx context.Context, id uuid.UUID) (string, error) {
 	var code string

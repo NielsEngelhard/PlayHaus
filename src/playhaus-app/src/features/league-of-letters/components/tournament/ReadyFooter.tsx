@@ -16,6 +16,10 @@ interface Props {
     readyNeeded: number,
     /** This player has already said they are ready, and is waiting on the rest. */
     ready: boolean,
+    /** This player is drawn into the next stage. Knocked out or sitting it out, there is nothing to press. */
+    playsNext: boolean,
+    /** This player is out of the tournament, which is said differently from sitting one stage out. */
+    eliminated: boolean,
     readying: boolean,
     onReady: () => void,
     /** The ready press was refused. Said under the button, which stays pressable. */
@@ -30,6 +34,8 @@ export default function ReadyFooter({
     readyCount,
     readyNeeded,
     ready,
+    playsNext,
+    eliminated,
     readying,
     onReady,
     error
@@ -41,18 +47,22 @@ export default function ReadyFooter({
         ? outstanding === 1
             ? t('lol.tournament.waitingOnOne')
             : t('lol.tournament.waitingOnMany', { matches: outstanding })
-        : ready
-            ? t('lol.tournament.readyWaiting')
-            : readying
-                ? t('common.busy')
-                : t('lol.tournament.ready');
+        : !playsNext
+            ? eliminated
+                ? t('lol.tournament.readyNotNeededOut')
+                : t('lol.tournament.readyNotNeededBye')
+            : ready
+                ? t('lol.tournament.readyWaiting')
+                : readying
+                    ? t('common.busy')
+                    : t('lol.tournament.ready');
 
     return (
         <View>
             <StartGameButton
                 text={label}
                 onPress={onReady}
-                disabled={!stageOver || ready || readying}
+                disabled={!stageOver || !playsNext || ready || readying}
             />
 
             {error !== null && (
