@@ -654,6 +654,10 @@ export const nl: Catalog = {
                 message: 'Open de kamer op een laptop of tv — HDMI, Chromecast of AirPlay werkt allemaal — en iedereen speelt mee vanaf zijn eigen telefoon.',
                 messageUrl: 'Open op de tv {{url}} en typ {{code}}. Een laptop op HDMI, een gecast tabblad of schermspiegelen kan ook — iedereen speelt mee vanaf zijn eigen telefoon.'
             },
+            cast: {
+                action: 'Cast naar tv',
+                connected: 'Aan het casten — tik om te wisselen'
+            },
             running: {
                 quizTitle: 'Je bent al aan het spelen',
                 lobbyTitle: 'Er staat nog een kamer open',

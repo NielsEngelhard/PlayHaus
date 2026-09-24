@@ -692,6 +692,10 @@ export const en = {
                 message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.',
                 messageUrl: 'On the tv, open {{url}} and type {{code}}. A laptop on HDMI, a cast tab or screen mirroring all work too — everybody still plays from their own phone.'
             },
+            cast: {
+                action: 'Cast to TV',
+                connected: 'Casting — tap to change'
+            },
             running: {
                 quizTitle: 'You are already playing',
                 lobbyTitle: 'You still have a room open',

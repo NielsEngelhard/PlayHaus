@@ -77,6 +77,9 @@ func (r Round) check(corpus *Corpus) error {
 	}
 
 	if corpus != nil {
+		if trivial := r.tooEasy(); trivial != "" {
+			return fmt.Errorf("everybody answers %q without thinking, so it is not a question; ask something at least one player at a table of eight has to think about", trivial)
+		}
 		if repeats := corpus.Repeats(r); len(repeats) > 0 {
 			return fmt.Errorf("asked before: %s", strings.Join(repeats, "; "))
 		}

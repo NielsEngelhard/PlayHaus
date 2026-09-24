@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlayHaus</title>
+
+    <!-- The receiver framework has to come from gstatic; a self-hosted copy is not supported. -->
+    <script src="https://www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+
+    <style>
+        :root {
+            --overscan: 2.5%;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0b0b0c;
+            color: #fbf7f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        #idle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        #table {
+            display: none;
+            position: absolute;
+            top: var(--overscan);
+            left: var(--overscan);
+            width: calc(100% - 2 * var(--overscan));
+            height: calc(100% - 2 * var(--overscan));
+            border: 0;
+        }
+
+        body.playing #idle {
+            display: none;
+        }
+
+        body.playing #table {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="idle">PlayHaus</div>
+
+    <!-- Same origin as this page, so the board keeps its guest session and its websocket. -->
+    <iframe id="table" allow="autoplay" title="PlayHaus"></iframe>
+
+    <script>
+        var NAMESPACE = 'urn:x-cast:com.playhaus.quiz';
+        var JOIN_CODE = /^[A-Z0-9]{5}$/;
+
+        function show(code) {
+            var normalized = String(code == null ? '' : code).trim().toUpperCase();
+            if (!JOIN_CODE.test(normalized)) return;
+
+            var frame = document.getElementById('table');
+            var next = '/tv/' + normalized;
+            // Re-assigning the same src would reload the board and lose the round in progress.
+            if (frame.getAttribute('src') === next) return;
+
+            frame.setAttribute('src', next);
+            document.body.classList.add('playing');
+        }
+
+        // Debug entry: a laptop can open this page with ?code=PQXXX and skip the sender entirely.
+        show(new URLSearchParams(window.location.search).get('code'));
+
+        function start() {
+            if (typeof cast === 'undefined' || !cast.framework) return;
+
+            var context = cast.framework.CastReceiverContext.getInstance();
+
+            context.addCustomMessageListener(NAMESPACE, function (event) {
+                show(event.data && event.data.code);
+            });
+
+            // The sender may connect before it has a code, so ask rather than wait.
+            context.addEventListener(cast.framework.system.EventType.SENDER_CONNECTED, function (event) {
+                context.sendCustomMessage(NAMESPACE, event.senderId, { type: 'hello' });
+            });
+
+            var options = new cast.framework.CastReceiverOptions();
+            options.customNamespaces = {};
+            options.customNamespaces[NAMESPACE] = cast.framework.system.MessageType.JSON;
+            // The board plays no media, so the default idle timeout would close the session mid-quiz.
+            options.disableIdleTimeout = true;
+            options.maxInactivity = 3600;
+
+            context.start(options);
+        }
+
+        try {
+            start();
+        } catch (err) {
+            // Opened in an ordinary browser rather than on a cast device; the ?code= path still works.
+            console.warn('cast receiver not started', err);
+        }
+    </script>
+</body>
+
+</html>
