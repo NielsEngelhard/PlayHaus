@@ -28,7 +28,15 @@ export default function LobbySettingsCard({ onChange, settings }: Props) {
             // The language is the only half not translated.
             summary={`${roles} · ${languageByCode(settings.locale).label}`}
         >
-            {/* One child per ruled section, the same shape SettingsPageBase uses. */}
+            <RolesSettingRow
+                enabled={settings.enabledRoles}
+                roles={MULTI_DEVICE_TOGGLEABLE_ROLES}
+                onToggle={role => onChange({
+                    ...settings,
+                    enabledRoles: toggleRole(settings.enabledRoles, role)
+                })}
+            />
+
             <View>
                 <ToggleRow
                     flush
@@ -38,15 +46,6 @@ export default function LobbySettingsCard({ onChange, settings }: Props) {
                     onChange={wordOnly => onChange({ ...settings, wordOnly })}
                 />
             </View>
-
-            <RolesSettingRow
-                enabled={settings.enabledRoles}
-                roles={MULTI_DEVICE_TOGGLEABLE_ROLES}
-                onToggle={role => onChange({
-                    ...settings,
-                    enabledRoles: toggleRole(settings.enabledRoles, role)
-                })}
-            />
 
             <LanguageSelect
                 variant='row'

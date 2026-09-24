@@ -154,6 +154,12 @@ export default function OneOfUsSingleDeviceIndexPage() {
                     disabled={starting}
                 />
 
+                <RolesSettingRow
+                    enabled={roles}
+                    onToggle={role => setRoles(current => toggleRole(current, role))}
+                    disabled={starting}
+                />                
+
                 <LanguageSelect
                     variant='row'
                     value={language}
@@ -166,12 +172,6 @@ export default function OneOfUsSingleDeviceIndexPage() {
                     onChange={value => setWordsOnly(value)}
                     label={t('oneOfUs.settings.wordsOnly.title')}
                     description={t('oneOfUs.settings.wordsOnly.description')}
-                />
-
-                <RolesSettingRow
-                    enabled={roles}
-                    onToggle={role => setRoles(current => toggleRole(current, role))}
-                    disabled={starting}
                 />
             </SettingsPageBase>
         </View>
