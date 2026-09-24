@@ -2,6 +2,7 @@ import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import CardDeal from "@/components/ui/CardDeal";
 import HandoffScreen from "@/components/ui/HandoffScreen";
 import InGameHeader, { type SegmentState } from "@/components/ui/InGameHeader";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -330,7 +331,8 @@ export default function OneDeviceQuizPage() {
         ))
     }
 
-    return fade(`board:${holder.seat}:${number}`, (
+    // Keyed by round so the band stays put; each question is dealt in underneath it.
+    return fade(`board:${round}`, (
         <View style={styles.board}>
             <InGameHeader
                 onClose={leave}
@@ -350,132 +352,134 @@ export default function OneDeviceQuizPage() {
                 )}
             />
 
-            {hotSeat !== null && (
-                <HotSeatBoard
-                    turn={hotSeat}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={(missedSeats, correctSeat, from) => {
-                        // Remembered before the ruling goes out, because the session that comes back may well have moved the phone on.
-                        setHandedFrom(from);
-                        game.settleTurn(missedSeats, correctSeat);
-                    }}
-                />
-            )}
-
-            {closest !== null && (
-                <ClosestBoard
-                    turn={closest}
-                    round={round}
-                    lead={copy.lead}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={(settled, winners) => {
-                        setHandedFrom(closest.quizmaster.seat);
-                        setClosestResult(closestResultOf(closest, settled, winners));
-                        game.settleClosest(settled);
-                    }}
-                />
-            )}
-
-            {describe !== null && (
-                <DescribeBoard
-                    turn={describe}
-                    round={round}
-                    lead={copy.lead}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={awards => {
-                        setHandedFrom(describe.describer.seat);
-                        game.settleDescribe(awards);
-                    }}
-                />
-            )}
-
-            {list !== null && (
-                <ListBoard
-                    turn={list}
-                    round={round}
-                    lead={copy.lead}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={awards => {
-                        setHandedFrom(list.quizmaster.seat);
-                        game.settleList(awards);
-                    }}
-                />
-            )}
-
-            {asking !== null && asking.answering !== null && doubleDown === null && (
-                <View style={styles.choosing}>
-                    <TurnStrip
-                        quizmaster={holder}
-                        answering={asking.answering}
-                        lead={copy.lead}
-                        run={0}
-                        round={round}
-                        number={asking.number}
-                        total={session.turnsInRound}
-                        // Nothing is decided yet: what it pays is the question being asked.
-                        worth={0}
+            <CardDeal dealKey={`${holder.seat}:${number}:${picked ?? ''}`}>
+                {hotSeat !== null && (
+                    <HotSeatBoard
+                        turn={hotSeat}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={(missedSeats, correctSeat, from) => {
+                            // Remembered before the ruling goes out, because the session that comes back may well have moved the phone on.
+                            setHandedFrom(from);
+                            game.settleTurn(missedSeats, correctSeat);
+                        }}
                     />
+                )}
 
-                    <View style={styles.choiceBody}>
-                        <AppText style={styles.choiceTitle} accessibilityRole="header">
-                            {t('pubquizr.play.doubleDown.ask', { name: asking.answering.name })}
-                        </AppText>
+                {closest !== null && (
+                    <ClosestBoard
+                        turn={closest}
+                        round={round}
+                        lead={copy.lead}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={(settled, winners) => {
+                            setHandedFrom(closest.quizmaster.seat);
+                            setClosestResult(closestResultOf(closest, settled, winners));
+                            game.settleClosest(settled);
+                        }}
+                    />
+                )}
 
-                        {/* A side the table has spent is a button that will not press. */}
-                        <View style={styles.choice}>
-                            <ActionButton
-                                text={t('pubquizr.play.doubleDown.easy', { points: EASY_POINTS })}
-                                icon="feather"
-                                size="large"
-                                disabled={asking.pool.easy.length === 0}
-                                onPress={() => setPick({
-                                    turn: session.currentPosition,
-                                    questionId: asking.pool.easy[0] ?? null
-                                })}
-                            />
+                {describe !== null && (
+                    <DescribeBoard
+                        turn={describe}
+                        round={round}
+                        lead={copy.lead}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={awards => {
+                            setHandedFrom(describe.describer.seat);
+                            game.settleDescribe(awards);
+                        }}
+                    />
+                )}
 
-                            <ActionButton
-                                text={t('pubquizr.play.doubleDown.hard', { points: HARD_POINTS })}
-                                icon="zap"
-                                size="large"
-                                disabled={asking.pool.hard.length === 0}
-                                onPress={() => setPick({
-                                    turn: session.currentPosition,
-                                    questionId: asking.pool.hard[0] ?? null
-                                })}
-                            />
+                {list !== null && (
+                    <ListBoard
+                        turn={list}
+                        round={round}
+                        lead={copy.lead}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={awards => {
+                            setHandedFrom(list.quizmaster.seat);
+                            game.settleList(awards);
+                        }}
+                    />
+                )}
+
+                {asking !== null && asking.answering !== null && doubleDown === null && (
+                    <View style={styles.choosing}>
+                        <TurnStrip
+                            quizmaster={holder}
+                            answering={asking.answering}
+                            lead={copy.lead}
+                            run={0}
+                            round={round}
+                            number={asking.number}
+                            total={session.turnsInRound}
+                            // Nothing is decided yet: what it pays is the question being asked.
+                            worth={0}
+                        />
+
+                        <View style={styles.choiceBody}>
+                            <AppText style={styles.choiceTitle} accessibilityRole="header">
+                                {t('pubquizr.play.doubleDown.ask', { name: asking.answering.name })}
+                            </AppText>
+
+                            {/* A side the table has spent is a button that will not press. */}
+                            <View style={styles.choice}>
+                                <ActionButton
+                                    text={t('pubquizr.play.doubleDown.easy', { points: EASY_POINTS })}
+                                    icon="feather"
+                                    size="large"
+                                    disabled={asking.pool.easy.length === 0}
+                                    onPress={() => setPick({
+                                        turn: session.currentPosition,
+                                        questionId: asking.pool.easy[0] ?? null
+                                    })}
+                                />
+
+                                <ActionButton
+                                    text={t('pubquizr.play.doubleDown.hard', { points: HARD_POINTS })}
+                                    icon="zap"
+                                    size="large"
+                                    disabled={asking.pool.hard.length === 0}
+                                    onPress={() => setPick({
+                                        turn: session.currentPosition,
+                                        questionId: asking.pool.hard[0] ?? null
+                                    })}
+                                />
+                            </View>
                         </View>
                     </View>
-                </View>
-            )}
+                )}
 
-            {doubleDown !== null && (
-                <HotSeatBoard
-                    turn={doubleDown}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={(missedSeats, correctSeat, from) => {
-                        setHandedFrom(from);
-                        game.settleDoubleDown(doubleDown.dealt.id, missedSeats, correctSeat);
-                    }}
-                />
-            )}
+                {doubleDown !== null && (
+                    <HotSeatBoard
+                        turn={doubleDown}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={(missedSeats, correctSeat, from) => {
+                            setHandedFrom(from);
+                            game.settleDoubleDown(doubleDown.dealt.id, missedSeats, correctSeat);
+                        }}
+                    />
+                )}
 
-            {finale !== null && (
-                <HotSeatBoard
-                    turn={finale}
-                    busy={game.ruling}
-                    error={game.rulingError}
-                    onSettle={(missedSeats, correctSeat, from) => {
-                        setHandedFrom(from);
-                        game.settleFinale(missedSeats, correctSeat);
-                    }}
-                />
-            )}
+                {finale !== null && (
+                    <HotSeatBoard
+                        turn={finale}
+                        busy={game.ruling}
+                        error={game.rulingError}
+                        onSettle={(missedSeats, correctSeat, from) => {
+                            setHandedFrom(from);
+                            game.settleFinale(missedSeats, correctSeat);
+                        }}
+                    />
+                )}
+            </CardDeal>
         </View>
     ))
 }

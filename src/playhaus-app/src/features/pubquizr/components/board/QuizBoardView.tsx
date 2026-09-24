@@ -1,3 +1,4 @@
+import CardDeal from "@/components/ui/CardDeal";
 import type { SegmentState } from "@/components/ui/InGameHeader";
 import InGameHeader from "@/components/ui/InGameHeader";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
@@ -91,7 +92,8 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
     const master = seatAt(seats, session.quizMasterSeat);
 
     function frame(key: string, strip: ReactNode | null, board: ReactNode, centered = false) {
-        return fade(key, (
+        // The frame only fades in once a round; each board after that is dealt in under the band.
+        return fade(`frame:${round}`, (
             <BoardFrame
                 centered={centered}
                 footer={<QuizmasterNote mySeat={me} quizmaster={currentQuizmasterOf(session)} />}
@@ -100,7 +102,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                 segments={segments}
                 strip={strip}
             >
-                {board}
+                <CardDeal dealKey={key}>{board}</CardDeal>
             </BoardFrame>
         ))
     }
