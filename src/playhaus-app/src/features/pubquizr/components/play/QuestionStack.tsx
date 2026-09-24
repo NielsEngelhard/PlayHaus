@@ -1,5 +1,5 @@
 import AppText from "@/components/text/AppText";
-import FlipOver from "@/components/ui/FlipOver";
+import CrossFade from "@/components/ui/CrossFade";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -85,7 +85,7 @@ export default function QuestionStack({
                 </ScrollView>
 
                 {/* Kept on screen once revealed when there is no answer row to take its place, so the card does not jump. */}
-                <FlipOver
+                <CrossFade
                     turned={revealed && showAnswerRow}
                     front={(
                         <PopPressable
