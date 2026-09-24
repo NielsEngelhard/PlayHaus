@@ -8,7 +8,7 @@
       "round": 1,
       "questions": [
         { "prompt": "Hoeveel provincies heeft Nederland?", "category": "Provincies", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
-        { "prompt": "Wat is de hoofdstad van Nederland?", "category": "Steden", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Welke Nederlandse stad is de hoofdstad van de provincie Limburg?", "category": "Steden", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "In welke stad zit de Nederlandse regering?", "category": "Bestuur", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] },
         { "prompt": "Welke dijk sluit het IJsselmeer af van de Waddenzee?", "category": "Water", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Welke Nederlandse schilder maakte De Nachtwacht?", "category": "Kunst", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Wat is de hoofdstad van Nederland?", "difficulty": "easy", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Welk kanaal verbindt de haven van Amsterdam met de zee bij IJmuiden?", "difficulty": "easy", "answers": [{ "text": "Het Noordzeekanaal", "aliases": ["Noordzeekanaal"] }] },
         { "prompt": "In welke Nederlandse stad zetelt de regering en woont de koning officieel?", "difficulty": "easy", "answers": [{ "text": "Den Haag" }] },
         { "prompt": "Hoe heet laaggelegen, drooggelegd land dat door dijken wordt beschermd?", "difficulty": "easy", "answers": [{ "text": "Een polder", "aliases": ["Polder"] }] },
         { "prompt": "Welke Nederlandse kaas, genoemd naar een marktstad, is een van de bekendste exportproducten?", "difficulty": "easy", "answers": [{ "text": "Goudse kaas", "aliases": ["Gouda"] }] },

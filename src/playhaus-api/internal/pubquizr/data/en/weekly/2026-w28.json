@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "What is the capital of Norway?", "category": "Geography", "answers": [{ "text": "Oslo" }] },
-        { "prompt": "Which organs does a human use to breathe?", "category": "Science", "answers": [{ "text": "The lungs", "aliases": ["lungs"] }] },
+        { "prompt": "Which chemical element has the symbol He?", "category": "Science", "answers": [{ "text": "Helium" }] },
         { "prompt": "Which wall divided Berlin from 1961 to 1989?", "category": "History", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
         { "prompt": "Which cycling race traditionally finishes in Paris?", "category": "Sport", "answers": [{ "text": "The Tour de France", "aliases": ["Tour de France"] }] },
         { "prompt": "Which American singer is called the King of Rock and Roll?", "category": "Music", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
@@ -19,8 +19,8 @@
         { "prompt": "What is the lightest element in the periodic table?", "category": "Science", "answers": [{ "text": "Hydrogen", "aliases": ["H"] }] },
         { "prompt": "Which South American desert is the driest in the world?", "category": "Geography", "answers": [{ "text": "The Atacama", "aliases": ["Atacama"] }] },
         { "prompt": "Which Greek commander conquered the Persian Empire?", "category": "History", "answers": [{ "text": "Alexander the Great", "aliases": ["Alexander"] }] },
-        { "prompt": "From which plant does rice come?", "category": "Food", "answers": [{ "text": "The rice plant", "aliases": ["rice", "Oryza sativa"] }] },
-        { "prompt": "How many minutes does a regular football match last?", "category": "Sport", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
+        { "prompt": "Which plant is sugar mostly made from in the Netherlands?", "category": "Food", "answers": [{ "text": "The sugar beet", "aliases": ["Sugar beet", "Beet"] }] },
+        { "prompt": "Which city is the Camp Nou stadium in?", "category": "Sport", "answers": [{ "text": "Barcelona" }] },
         { "prompt": "Which tree has long hanging branches and is often planted by water?", "category": "Nature", "answers": [{ "text": "The willow", "aliases": ["willow", "weeping willow"] }] },
         { "prompt": "Which Dutch village is famous for its spring tulip gardens?", "category": "The Netherlands", "answers": [{ "text": "Lisse", "aliases": ["Keukenhof"] }] },
         { "prompt": "How many teeth does an adult human usually have?", "category": "Science", "answers": [{ "text": "Thirty-two", "aliases": ["32"] }] },
@@ -112,10 +112,10 @@
         { "prompt": "What is the term for a score of zero in tennis?", "difficulty": "easy", "answers": [{ "text": "Love" }] },
         { "prompt": "How many rings are on the Olympic flag?", "difficulty": "easy", "answers": [{ "text": "Five" }] },
         { "prompt": "In which city were the first modern Olympic Games held, in 1896?", "difficulty": "easy", "answers": [{ "text": "Athens" }] },
-        { "prompt": "Which desert is the largest hot desert in the world?", "difficulty": "hard", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
-        { "prompt": "Who developed the theory of general relativity?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Which Colombian artist deliberately sculpts fat, rounded figures?", "difficulty": "hard", "answers": [{ "text": "Fernando Botero", "aliases": ["Botero"] }] },
+        { "prompt": "Which city lies further from any sea than any other?", "difficulty": "hard", "answers": [{ "text": "Urumqi" }] },
         { "prompt": "Which city hosted the first modern Olympic Games in 1896?", "difficulty": "hard", "answers": [{ "text": "Athens" }] },
-        { "prompt": "What is the chemical symbol for gold?", "difficulty": "hard", "answers": [{ "text": "Au" }] },
+        { "prompt": "Which kingdom joined with England in 1707 to form Great Britain?", "difficulty": "hard", "answers": [{ "text": "Scotland" }] },
         { "prompt": "Which Dutch city is the seat of the International Court of Justice?", "difficulty": "hard", "answers": [{ "text": "The Hague", "aliases": ["Den Haag", "Hague"] }] }
       ]
     },

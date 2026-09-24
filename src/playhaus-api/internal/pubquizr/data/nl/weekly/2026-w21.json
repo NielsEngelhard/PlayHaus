@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je twaalf uur midden op de dag?", "difficulty": "easy", "answers": [{ "text": "Middag", "aliases": ["twaalf uur 's middags"] }] },
-        { "prompt": "Welke taart eet je een keer per jaar met kaarsjes erop?", "difficulty": "easy", "answers": [{ "text": "Een verjaardagstaart", "aliases": ["verjaardagstaart"] }] },
-        { "prompt": "Hoe noem je een klein riviertje?", "difficulty": "easy", "answers": [{ "text": "Een beek", "aliases": ["beek", "stroompje"] }] },
-        { "prompt": "Welk groot voertuig vervoert veel passagiers over de weg?", "difficulty": "easy", "answers": [{ "text": "Een bus", "aliases": ["bus"] }] },
-        { "prompt": "Welk deel van de dag komt direct na de ochtend?", "difficulty": "easy", "answers": [{ "text": "De middag", "aliases": ["middag"] }] },
+        { "prompt": "Welk land heeft Jakarta als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Indonesie" }] },
+        { "prompt": "Hoeveel toetsen heeft een volledige piano?", "difficulty": "easy", "answers": [{ "text": "Achtentachtig", "aliases": ["88"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft Haarlem als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Noord-Holland" }] },
+        { "prompt": "Wat is het getal pi afgerond op twee decimalen?", "difficulty": "easy", "answers": [{ "text": "Drie komma veertien", "aliases": ["3,14"] }] },
+        { "prompt": "Welk element heeft het symbool Pt?", "difficulty": "easy", "answers": [{ "text": "Platina" }] },
         { "prompt": "Wat is de hoofdstad van Azerbeidzjan?", "difficulty": "hard", "answers": [{ "text": "Bakoe", "aliases": ["Baku"] }] },
         { "prompt": "Welke Italiaanse schrijver schreef de Decamerone?", "difficulty": "hard", "answers": [{ "text": "Giovanni Boccaccio", "aliases": ["Boccaccio"] }] },
         { "prompt": "Welke slang heeft het giftigste gif ter wereld?", "difficulty": "hard", "answers": [{ "text": "De binnenlandse taipan", "aliases": ["taipan", "inlandtaipan"] }] },

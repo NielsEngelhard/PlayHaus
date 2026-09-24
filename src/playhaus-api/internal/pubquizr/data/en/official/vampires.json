@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What does a vampire drink?", "difficulty": "easy", "answers": [{ "text": "Blood" }] },
-        { "prompt": "In what kind of box does a vampire traditionally sleep?", "difficulty": "easy", "answers": [{ "text": "A coffin", "aliases": ["Coffin"] }] },
-        { "prompt": "What destroys a vampire when it comes up over the horizon in the morning?", "difficulty": "easy", "answers": [{ "text": "Sunlight", "aliases": ["The sun", "Daylight"] }] },
+        { "prompt": "What is the water creature that attaches itself to drink blood and is used in medicine called?", "difficulty": "easy", "answers": [{ "text": "The leech", "aliases": ["Leech"] }] },
+        { "prompt": "In which Romanian castle is Dracula said to have lived?", "difficulty": "easy", "answers": [{ "text": "Bran Castle", "aliases": ["Bran"] }] },
+        { "prompt": "Which bat species in Central and South America really does drink blood?", "difficulty": "easy", "answers": [{ "text": "The vampire bat", "aliases": ["Vampire bat"] }] },
         { "prompt": "In which country does the region of Transylvania lie?", "difficulty": "easy", "answers": [{ "text": "Romania" }] },
-        { "prompt": "Which religious symbol is held up to drive a vampire back?", "difficulty": "easy", "answers": [{ "text": "A cross", "aliases": ["Cross", "A crucifix", "Crucifix"] }] },
+        { "prompt": "On which evening in October do children dress up and go from door to door?", "difficulty": "easy", "answers": [{ "text": "Halloween" }] },
         { "prompt": "Through which pass in the Carpathians does Jonathan Harker travel to reach Dracula's castle?", "difficulty": "hard", "answers": [{ "text": "The Borgo Pass", "aliases": ["Borgo Pass", "Borgo"] }] },
         { "prompt": "What is the surname of Lucy, Dracula's first English victim?", "difficulty": "hard", "answers": [{ "text": "Westenra" }] },
         { "prompt": "In Buffy the Vampire Slayer, what is the name of the vampire with a soul played by David Boreanaz?", "difficulty": "hard", "answers": [{ "text": "Angel" }] },

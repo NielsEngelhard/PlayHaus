@@ -108,9 +108,9 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Wat is de hoofdstad van het Verenigd Koninkrijk?", "difficulty": "easy", "answers": [{ "text": "Londen" }] },
-        { "prompt": "Welke drie kleuren staan er op de Union Jack?", "difficulty": "easy", "answers": [{ "text": "Rood, wit en blauw", "aliases": ["Rood wit blauw"] }] },
-        { "prompt": "Aan welke kant van de weg rijden de Britten?", "difficulty": "easy", "answers": [{ "text": "Links", "aliases": ["De linkerkant", "Linkerkant"] }] },
+        { "prompt": "Op welk adres woont en werkt de Britse premier in Londen?", "difficulty": "easy", "answers": [{ "text": "Downing Street 10", "aliases": ["Tien Downing Street"] }] },
+        { "prompt": "Welke Britse stad staat bekend om haar warmwaterbronnen uit de Romeinse tijd?", "difficulty": "easy", "answers": [{ "text": "Bath" }] },
+        { "prompt": "Hoe heet het beroemde luxewarenhuis in de Londense wijk Knightsbridge?", "difficulty": "easy", "answers": [{ "text": "Harrods" }] },
         { "prompt": "Welke sport wordt gespeeld op Lord's in Londen?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
         { "prompt": "Welke beer uit Peru komt in Londen bij de familie Brown wonen?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Beertje Paddington"] }] },
         { "prompt": "Wat is het grootste eiland van Schotland?", "difficulty": "hard", "answers": [{ "text": "Lewis and Harris", "aliases": ["Lewis", "Harris"] }] },

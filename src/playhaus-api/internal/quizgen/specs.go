@@ -41,6 +41,13 @@ func textList(description string) map[string]any {
 	return map[string]any{"type": "array", "items": map[string]any{"type": "string"}, "description": description}
 }
 
+// describe hangs a sentence on a node that already has its shape, such as one of round 6's two arrays.
+func describe(schema map[string]any, description string) map[string]any {
+	schema["description"] = description
+
+	return schema
+}
+
 // answerSchema is one right answer plus the other wordings that also count.
 var answerSchema = object(map[string]any{
 	"text":    text("the answer as the quizmaster reads it out"),
@@ -132,7 +139,7 @@ var specs = []Spec{
 		Round: pubquizr.RoundOpen,
 		Count: pubquizr.OpenQuestions,
 		Name:  "round 1, the opening round",
-		Brief: "Plain trivia, read out loud and answered out loud, one right answer each. Spread them over the categories and keep each one short enough to read in a single breath. Mix the difficulty: the first few warm the table up, the later ones separate it.",
+		Brief: "Plain trivia, read out loud and answered out loud, one right answer each. Spread them over the categories and keep each one short enough to read in a single breath. Mix the difficulty: the first few warm the table up, the later ones separate it. Even the first one has to be a question somebody at the table could miss.",
 		schema: object(map[string]any{
 			"questions": exactly(pubquizr.OpenQuestions, object(map[string]any{
 				"prompt":   text("the question, one sentence"),
@@ -198,16 +205,16 @@ var specs = []Spec{
 		Round: pubquizr.RoundDoubleDown,
 		Count: pubquizr.DoubleDownQuestions,
 		Name:  "round 6, the double down round",
-		Brief: "The player picks easy for one point or hard for three before hearing the question, so the two sides have to feel like what was asked for. An easy one is something almost everybody at the table knows. A hard one is something almost nobody does, and still has a single short answer.",
+		Brief: "The player picks easy for one point or hard for four before hearing the question, so the two sides have to feel like what was asked for. An easy one is something most of the table gets and one or two miss: a capital city, an element, the author of a book everybody has heard of. A hard one is something almost nobody gets, and still has a single short answer. A fact every adult answers without thinking is worse than a hard one nobody gets, so never ask for the colour of grass, the legs on a cat, the sound a cow makes, the room you cook in, where bread is sold or the minutes in an hour.",
 		schema: object(map[string]any{
-			"easy": exactly(pubquizr.DoubleDownPerDifficulty, object(map[string]any{
+			"easy": describe(exactly(pubquizr.DoubleDownPerDifficulty, object(map[string]any{
 				"prompt": text("the question, one sentence"),
 				"answer": answerSchema,
-			}, "prompt", "answer")),
-			"hard": exactly(pubquizr.DoubleDownPerDifficulty, object(map[string]any{
+			}, "prompt", "answer")), "the one-point questions: most of the table gets one and one or two miss it, and not one of them is a fact every adult knows without thinking"),
+			"hard": describe(exactly(pubquizr.DoubleDownPerDifficulty, object(map[string]any{
 				"prompt": text("the question, one sentence"),
 				"answer": answerSchema,
-			}, "prompt", "answer")),
+			}, "prompt", "answer")), "the four-point questions: almost nobody at the table gets one, and each still has a single short answer"),
 		}, "easy", "hard"),
 		decode: decodeDoubleDown,
 	},
@@ -215,7 +222,7 @@ var specs = []Spec{
 		Round: pubquizr.RoundFinale,
 		Count: pubquizr.FinaleQuestions,
 		Name:  "round 7, the finale",
-		Brief: "Head to head between the two highest scores, read out by a third player. Each question can decide the game, so every one has to be unambiguous, short, and answerable in a single word or name. Pitch them hard but fair: a good pub team should get most of them.",
+		Brief: "Head to head between the two highest scores, read out by a third player. Each question can decide the game, so every one has to be unambiguous, short, and answerable in a single word or name. Pitch them hard but fair: a good pub team should get most of them. None of the seven is a warm-up, and every one of them is harder than the hardest question in round 1.",
 		schema: object(map[string]any{
 			"questions": exactly(pubquizr.FinaleQuestions, object(map[string]any{
 				"prompt": text("the question, one sentence"),

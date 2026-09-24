@@ -19,7 +19,7 @@ interface Props {
     backHref: Href
 }
 
-// The shared screen's way in. It types the code because a laptop cannot scan the QR off its own display.
+// The shared screen's way in: the code lives on the host's phone, so this screen asks for it.
 export default function TableDoor({ backHref }: Props) {
     const router = useRouter();
     const styles = useStyles();

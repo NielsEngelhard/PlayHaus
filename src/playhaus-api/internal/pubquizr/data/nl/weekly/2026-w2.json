@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
-        { "prompt": "Hoeveel minuten zitten er in een uur?", "difficulty": "easy", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
-        { "prompt": "Welk zeedier heeft acht armen?", "difficulty": "easy", "answers": [{ "text": "De octopus", "aliases": ["octopus", "inktvis"] }] },
+        { "prompt": "Welk beeld zonder armen staat in het Louvre?", "difficulty": "easy", "answers": [{ "text": "De Venus van Milo", "aliases": ["Venus van Milo"] }] },
+        { "prompt": "Welke smaak ervaart de tong naast zout, zoet, zuur en bitter?", "difficulty": "easy", "answers": [{ "text": "Umami" }] },
+        { "prompt": "Wie schreef de avonturen van Sherlock Holmes?", "difficulty": "easy", "answers": [{ "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle"] }] },
         { "prompt": "Hoe heet de speelgoedcowboy in Toy Story?", "difficulty": "easy", "answers": [{ "text": "Woody" }] },
-        { "prompt": "Hoe noem je een jonge kat?", "difficulty": "easy", "answers": [{ "text": "Een kitten", "aliases": ["kitten", "katje"] }] },
+        { "prompt": "Welk automerk heeft vier ringen in zijn logo?", "difficulty": "easy", "answers": [{ "text": "Audi" }] },
         { "prompt": "Welke Griekse wiskundige schreef de Elementen?", "difficulty": "hard", "answers": [{ "text": "Euclides" }] },
         { "prompt": "Welke rivier stroomt door Bagdad?", "difficulty": "hard", "answers": [{ "text": "De Tigris", "aliases": ["Tigris"] }] },
         { "prompt": "Hoe heet de wetenschap die paddenstoelen bestudeert?", "difficulty": "hard", "answers": [{ "text": "Mycologie" }] },

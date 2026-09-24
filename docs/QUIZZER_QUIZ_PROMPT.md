@@ -79,10 +79,14 @@ Round by round:
   Pick concrete, describable things, never abstractions. One word or a short noun phrase.
 - **Round 5** prompts are always "Name the four ..." / "Noem de vier ...", with exactly four answers
   a table could plausibly get between them.
-- **Round 6** must be exactly five `easy` and five `hard`. The easy five should be gettable by
-  anyone; the hard five should be genuinely hard, because they pay triple.
+- **Round 6** must be exactly five `easy` and five `hard`, paying one point and four. An easy one
+  is still a question: most of the table gets it and one or two miss it -- a capital city, an
+  element, the author of a book everybody has heard of. A fact every adult answers without thinking
+  is not an easy question, it is a non-question, so never ask for the colour of grass, the legs on a
+  cat, the sound a cow makes, the room you cook in, where bread is sold or the minutes in an hour.
+  The hard five should be genuinely hard, because they pay four times as much.
 - **Round 7** is the finale between the two highest scores. These are the seven hardest questions in
-  the file.
+  the file, and not one of them is a warm-up.
 
 `difficulty` may only appear in round 6. Anywhere else it is a validation error.
 

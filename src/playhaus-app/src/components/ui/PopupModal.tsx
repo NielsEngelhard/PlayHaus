@@ -31,7 +31,7 @@ interface Props {
     title: string
     /** The sentence under the title. Optional for a panel whose body says it all. */
     message?: string
-    /** What sits above the dashed line — a list, a QR code, an error. */
+    /** What sits above the dashed line — a list, a form, an error. */
     children?: ReactNode
     /** The buttons, below the dashed line. */
     actions: ReactNode

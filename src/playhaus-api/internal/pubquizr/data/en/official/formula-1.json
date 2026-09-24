@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many wheels does a Formula 1 car have?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "In which principality does Formula 1 race through the streets of Monte Carlo?", "difficulty": "easy", "answers": [{ "text": "Monaco" }] },
         { "prompt": "What is the flag waved at the winner of a Grand Prix called?", "difficulty": "easy", "answers": [{ "text": "The chequered flag", "aliases": ["Chequered flag", "Checkered flag", "Black and white flag"] }] },
         { "prompt": "Which country does the Ferrari team come from?", "difficulty": "easy", "answers": [{ "text": "Italy" }] },
         { "prompt": "What do the drivers traditionally spray over each other on the podium?", "difficulty": "easy", "answers": [{ "text": "Champagne" }] },

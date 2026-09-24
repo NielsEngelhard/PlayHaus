@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe heet het zoete broodbeleg dat je maakt door fruit met suiker in te koken?", "difficulty": "easy", "answers": [{ "text": "Jam", "aliases": ["Confituur"] }] },
-        { "prompt": "Hoe heet het harde deel in het midden van een perzik?", "difficulty": "easy", "answers": [{ "text": "De pit", "aliases": ["Pit", "Steen"] }] },
+        { "prompt": "Welke vrucht is een perzik met een gladde schil zonder haartjes?", "difficulty": "easy", "answers": [{ "text": "De nectarine", "aliases": ["Nectarine"] }] },
+        { "prompt": "Welk deel van de rabarber is giftig en gooi je weg?", "difficulty": "easy", "answers": [{ "text": "De bladeren", "aliases": ["Bladeren"] }] },
         { "prompt": "Om welke vitamine staat citrusfruit het meest bekend?", "difficulty": "easy", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
-        { "prompt": "Hoe heet de vloeistof die je uit een vrucht perst?", "difficulty": "easy", "answers": [{ "text": "Sap", "aliases": ["Vruchtensap"] }] },
-        { "prompt": "Welke kleur heeft het vruchtvlees van een rijpe kiwi?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Hoe heet het heldere vocht dat in een verse kokosnoot zit?", "difficulty": "easy", "answers": [{ "text": "Kokoswater" }] },
+        { "prompt": "Welke vrucht met roze schil en wit vruchtvlees met zwarte zaadjes groeit aan een cactus?", "difficulty": "easy", "answers": [{ "text": "De drakenvrucht", "aliases": ["Drakenvrucht"] }] },
         { "prompt": "Hoe heet de kennis en teelt van fruitbomen?", "difficulty": "hard", "answers": [{ "text": "Pomologie" }] },
         { "prompt": "Welk gas geven rijpende vruchten af waardoor het fruit eromheen sneller rijpt?", "difficulty": "hard", "answers": [{ "text": "Etheen", "aliases": ["Ethyleen"] }] },
         { "prompt": "Wat is de botanische term voor een vrucht als de framboos, die uit veel kleine steenvruchtjes bestaat?", "difficulty": "hard", "answers": [{ "text": "Een verzamelvrucht", "aliases": ["Verzamelvrucht"] }] },

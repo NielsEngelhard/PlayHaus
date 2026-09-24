@@ -7,16 +7,16 @@
       "round": 1,
       "questions": [
         { "prompt": "Wat is de hoofdstad van Denemarken?", "category": "Aardrijkskunde", "answers": [{ "text": "Kopenhagen" }] },
-        { "prompt": "Welk gas hebben mensen nodig om te kunnen ademen?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof", "aliases": ["O2"] }] },
+        { "prompt": "Welk scheikundig element heeft het symbool Ca?", "category": "Wetenschap", "answers": [{ "text": "Calcium" }] },
         { "prompt": "Welk rijk werd geregeerd vanuit Rome en viel in het westen in 476?", "category": "Geschiedenis", "answers": [{ "text": "Het Romeinse Rijk", "aliases": ["Romeinse Rijk"] }] },
-        { "prompt": "Hoeveel spelers heeft een voetbalteam in het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "In welke sport gebruik je een puck?", "category": "Sport", "answers": [{ "text": "IJshockey" }] },
         { "prompt": "Welke Ierse band bracht het album The Joshua Tree uit?", "category": "Muziek", "answers": [{ "text": "U2" }] },
         { "prompt": "Welke regisseur maakte de film Schindler's List?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
-        { "prompt": "Welk dier is het grootste landdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De olifant", "aliases": ["Afrikaanse olifant"] }] },
+        { "prompt": "Hoe noem je een grote groep vogels in de lucht?", "category": "Natuur", "answers": [{ "text": "Een zwerm", "aliases": ["Zwerm"] }] },
         { "prompt": "Welke Nederlandse stad ligt het zuidelijkst van het land?", "category": "Nederland", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "Welke taal wordt in Egypte als officiele taal gesproken?", "category": "Taal", "answers": [{ "text": "Arabisch" }] },
         { "prompt": "Welke Franse beeldhouwer maakte De denker?", "category": "Kunst", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
-        { "prompt": "Hoeveel zijden heeft een kubus?", "category": "Wetenschap", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
+        { "prompt": "Hoeveel manen heeft Mars?", "category": "Wetenschap", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
         { "prompt": "Welk werelddeel is het kleinste?", "category": "Aardrijkskunde", "answers": [{ "text": "Oceanie", "aliases": ["Australie"] }] },
         { "prompt": "Welke Britse premier leidde het land door de Tweede Wereldoorlog?", "category": "Geschiedenis", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
         { "prompt": "Welke Japanse gerecht bestaat uit rijst met rauwe vis?", "category": "Eten", "answers": [{ "text": "Sushi" }] },
@@ -113,10 +113,10 @@
         { "prompt": "Welke vogel is de snelste ter wereld tijdens een duikvlucht?", "difficulty": "easy", "answers": [{ "text": "De slechtvalk", "aliases": ["Slechtvalk"] }] },
         { "prompt": "Hoeveel spelers staan er bij rugby league aan elke kant op het veld?", "difficulty": "easy", "answers": [{ "text": "Dertien" }] },
         { "prompt": "Welk land heeft de langste kustlijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "Canada" }] },
-        { "prompt": "Hoe heet het proces waarmee planten uit zonlicht suiker maken?", "difficulty": "hard", "answers": [{ "text": "Fotosynthese" }] },
+        { "prompt": "Welke Italiaanse schilder werkte met scherp licht en donker en vluchtte na een doodslag?", "difficulty": "hard", "answers": [{ "text": "Caravaggio" }] },
         { "prompt": "Welke muur liet keizer Hadrianus door Noord-Brittannie aanleggen?", "difficulty": "hard", "answers": [{ "text": "De Muur van Hadrianus", "aliases": ["Muur van Hadrianus", "Hadrian's Wall"] }] },
         { "prompt": "Welke letter komt in geen enkele naam van een Amerikaanse staat voor?", "difficulty": "hard", "answers": [{ "text": "Q" }] },
-        { "prompt": "Met welke Nederlandse club won Johan Cruijff drie Europacups?", "difficulty": "hard", "answers": [{ "text": "Ajax" }] }
+        { "prompt": "Welke hoofdstad ligt het hoogst boven zeeniveau van alle hoofdsteden?", "difficulty": "hard", "answers": [{ "text": "La Paz" }] }
       ]
     },
     {

@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which colour do you get when you mix blue and yellow?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
-        { "prompt": "How many minutes are there in an hour?", "difficulty": "easy", "answers": [{ "text": "Sixty", "aliases": ["60"] }] },
-        { "prompt": "Which sea creature has eight arms?", "difficulty": "easy", "answers": [{ "text": "The octopus", "aliases": ["octopus"] }] },
+        { "prompt": "Which armless statue stands in the Louvre?", "difficulty": "easy", "answers": [{ "text": "The Venus de Milo", "aliases": ["Venus de Milo"] }] },
+        { "prompt": "Which taste does the tongue sense besides salty, sweet, sour and bitter?", "difficulty": "easy", "answers": [{ "text": "Umami" }] },
+        { "prompt": "Who wrote the adventures of Sherlock Holmes?", "difficulty": "easy", "answers": [{ "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle"] }] },
         { "prompt": "What is the name of the toy cowboy in Toy Story?", "difficulty": "easy", "answers": [{ "text": "Woody" }] },
-        { "prompt": "What do you call a baby cat?", "difficulty": "easy", "answers": [{ "text": "A kitten", "aliases": ["kitten"] }] },
+        { "prompt": "Which car brand has four rings in its logo?", "difficulty": "easy", "answers": [{ "text": "Audi" }] },
         { "prompt": "Which Greek mathematician wrote the Elements?", "difficulty": "hard", "answers": [{ "text": "Euclid" }] },
         { "prompt": "Which river flows through Baghdad?", "difficulty": "hard", "answers": [{ "text": "The Tigris", "aliases": ["Tigris"] }] },
         { "prompt": "What is the study of fungi called?", "difficulty": "hard", "answers": [{ "text": "Mycology" }] },

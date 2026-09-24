@@ -6,19 +6,19 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "What colour do you get when you mix red and yellow?", "category": "Art", "answers": [{ "text": "Orange" }] },
-        { "prompt": "How many weeks are there in a year?", "category": "Science", "answers": [{ "text": "Fifty-two", "aliases": ["52"] }] },
+        { "prompt": "In which Amsterdam museum does The Night Watch hang?", "category": "Art", "answers": [{ "text": "The Rijksmuseum", "aliases": ["Rijksmuseum"] }] },
+        { "prompt": "Which element has the symbol S?", "category": "Science", "answers": [{ "text": "Sulphur", "aliases": ["Sulfur"] }] },
         { "prompt": "Which Dutch city has the Erasmus Bridge?", "category": "The Netherlands", "answers": [{ "text": "Rotterdam" }] },
         { "prompt": "Which animal is the symbol of the World Wide Fund for Nature?", "category": "Nature", "answers": [{ "text": "The giant panda", "aliases": ["Panda", "Giant panda"] }] },
         { "prompt": "In which sport does a match consist of nine innings?", "category": "Sport", "answers": [{ "text": "Baseball" }] },
         { "prompt": "Which island is the largest in Greece?", "category": "Geography", "answers": [{ "text": "Crete" }] },
-        { "prompt": "Which film is about a lion cub called Simba?", "category": "Film", "answers": [{ "text": "The Lion King" }] },
+        { "prompt": "Which city is the series Friends set in?", "category": "Film", "answers": [{ "text": "New York", "aliases": ["New York City"] }] },
         { "prompt": "Which instrument has brass plates that you clash together?", "category": "Music", "answers": [{ "text": "The cymbals", "aliases": ["Cymbals"] }] },
         { "prompt": "Which French prison was stormed in 1789?", "category": "History", "answers": [{ "text": "The Bastille", "aliases": ["Bastille"] }] },
         { "prompt": "What do you call a sentence that reads the same forwards and backwards?", "category": "Language", "answers": [{ "text": "A palindrome", "aliases": ["Palindrome"] }] },
         { "prompt": "Which Italian artist sculpted David?", "category": "Art", "answers": [{ "text": "Michelangelo", "aliases": ["Michelangelo Buonarroti"] }] },
-        { "prompt": "Which part of a car turns fuel into movement?", "category": "Technology", "answers": [{ "text": "The engine", "aliases": ["Engine", "Motor"] }] },
-        { "prompt": "Which ocean lies between Europe and America?", "category": "Geography", "answers": [{ "text": "The Atlantic Ocean", "aliases": ["Atlantic Ocean", "Atlantic"] }] },
+        { "prompt": "Which country does the car brand Skoda come from?", "category": "Technology", "answers": [{ "text": "Czechia", "aliases": ["The Czech Republic"] }] },
+        { "prompt": "How many countries are on the island of Ireland?", "category": "Geography", "answers": [{ "text": "Two", "aliases": ["2"] }] },
         { "prompt": "Which tree drops its needles in autumn, unlike most conifers?", "category": "Nature", "answers": [{ "text": "The larch", "aliases": ["Larch"] }] },
         { "prompt": "In which sport do countries compete for the Davis Cup?", "category": "Sport", "answers": [{ "text": "Tennis" }] },
         { "prompt": "Which Egyptian queen had a relationship with Julius Caesar?", "category": "History", "answers": [{ "text": "Cleopatra" }] },
@@ -107,27 +107,27 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is the sun when you draw it?", "difficulty": "easy", "answers": [{ "text": "Yellow" }] },
-        { "prompt": "How many legs does a cat have?", "difficulty": "easy", "answers": [{ "text": "Four", "aliases": ["4"] }] },
-        { "prompt": "Where do you buy bread?", "difficulty": "easy", "answers": [{ "text": "At the baker's", "aliases": ["The baker", "Baker", "Bakery"] }] },
-        { "prompt": "Which animal makes the sound moo?", "difficulty": "easy", "answers": [{ "text": "The cow", "aliases": ["Cow"] }] },
-        { "prompt": "Which drink do you make from oranges?", "difficulty": "easy", "answers": [{ "text": "Orange juice", "aliases": ["Juice"] }] },
+        { "prompt": "What is the top football league in the Netherlands called?", "difficulty": "easy", "answers": [{ "text": "The Eredivisie", "aliases": ["Eredivisie"] }] },
+        { "prompt": "Which body of water lies between Iran and Saudi Arabia?", "difficulty": "easy", "answers": [{ "text": "The Persian Gulf", "aliases": ["Persian Gulf"] }] },
+        { "prompt": "Which element has the symbol Si?", "difficulty": "easy", "answers": [{ "text": "Silicon" }] },
+        { "prompt": "What is the unit of frequency?", "difficulty": "easy", "answers": [{ "text": "The hertz", "aliases": ["Hertz"] }] },
+        { "prompt": "What is the unit of electrical resistance?", "difficulty": "easy", "answers": [{ "text": "The ohm", "aliases": ["Ohm"] }] },
         { "prompt": "Which Dutch mathematician and astronomer invented the pendulum clock?", "difficulty": "hard", "answers": [{ "text": "Christiaan Huygens", "aliases": ["Huygens"] }] },
         { "prompt": "What is the largest volcano in the solar system called?", "difficulty": "hard", "answers": [{ "text": "Olympus Mons", "aliases": ["Olympus Mons on Mars"] }] },
         { "prompt": "Which English king had six wives?", "difficulty": "hard", "answers": [{ "text": "Henry VIII", "aliases": ["Henry the Eighth", "Hendrik VIII"] }] },
-        { "prompt": "Which process turns sunlight into sugars in a plant?", "difficulty": "hard", "answers": [{ "text": "Photosynthesis" }] },
+        { "prompt": "Which ancient script was deciphered with the help of the Rosetta Stone?", "difficulty": "hard", "answers": [{ "text": "Hieroglyphics", "aliases": ["Hieroglyphs"] }] },
         { "prompt": "What is the longest river in South America called?", "difficulty": "hard", "answers": [{ "text": "The Amazon", "aliases": ["Amazon"] }] }
       ]
     },
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which country is known for its fjords?", "answers": [{ "text": "Norway" }] },
-        { "prompt": "Which Greek hero had a vulnerable heel?", "answers": [{ "text": "Achilles" }] },
-        { "prompt": "Which precious metal has the symbol Ag?", "answers": [{ "text": "Silver" }] },
+        { "prompt": "Which is the largest asteroid a spacecraft has orbited?", "answers": [{ "text": "Vesta" }] },
+        { "prompt": "What is the unit in which air pressure is given on a weather map called?", "answers": [{ "text": "The hectopascal", "aliases": ["Hectopascal"] }] },
+        { "prompt": "Which element makes steel stainless when it is added?", "answers": [{ "text": "Chromium" }] },
         { "prompt": "Who wrote the book The Hobbit?", "answers": [{ "text": "Tolkien", "aliases": ["J.R.R. Tolkien"] }] },
         { "prompt": "What is the largest city in Australia by population?", "answers": [{ "text": "Sydney" }] },
-        { "prompt": "Which Dutch king has reigned since 2013?", "answers": [{ "text": "Willem-Alexander", "aliases": ["King Willem-Alexander"] }] },
+        { "prompt": "What is the fluid that carries heat away in a refrigerator called?", "answers": [{ "text": "The refrigerant", "aliases": ["Refrigerant"] }] },
         { "prompt": "Which muscle in the body is the strongest for its size?", "answers": [{ "text": "The jaw muscle", "aliases": ["Jaw muscle", "Masseter"] }] }
       ]
     }

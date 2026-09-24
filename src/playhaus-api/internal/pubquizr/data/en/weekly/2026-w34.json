@@ -8,24 +8,24 @@
       "questions": [
         { "prompt": "What is the capital of Australia?", "category": "Geography", "answers": [{ "text": "Canberra" }] },
         { "prompt": "How many provinces does the Netherlands have?", "category": "The Netherlands", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
-        { "prompt": "Which animal is the largest mammal in the world?", "category": "Nature", "answers": [{ "text": "The blue whale", "aliases": ["blue whale"] }] },
+        { "prompt": "Which bee in a colony lays the eggs?", "category": "Nature", "answers": [{ "text": "The queen", "aliases": ["Queen"] }] },
         { "prompt": "Who painted The Night Watch?", "category": "Art", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "How many players does each football team have on the pitch?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "Which city hosted the 2016 Summer Olympics?", "category": "Sport", "answers": [{ "text": "Rio de Janeiro", "aliases": ["Rio"] }] },
         { "prompt": "Which chemical element has the symbol Au?", "category": "Science", "answers": [{ "text": "Gold" }] },
-        { "prompt": "In what year did the Berlin Wall fall?", "category": "History", "answers": [{ "text": "1989" }] },
+        { "prompt": "What was the ship that sank on its maiden voyage in 1912 called?", "category": "History", "answers": [{ "text": "The Titanic", "aliases": ["Titanic"] }] },
         { "prompt": "Which is the longest river in Europe?", "category": "Geography", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
         { "prompt": "Which is the largest planet in our solar system?", "category": "Space", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Which Dutch city has a central station built in Cuypers' style?", "category": "The Netherlands", "answers": [{ "text": "Amsterdam" }] },
-        { "prompt": "How many degrees are there in a right angle?", "category": "Mathematics", "answers": [{ "text": "Ninety", "aliases": ["90"] }] },
+        { "prompt": "Which is the only month with fewer than thirty days?", "category": "Mathematics", "answers": [{ "text": "February" }] },
         { "prompt": "Who wrote the diary published as The Secret Annex?", "category": "Literature", "answers": [{ "text": "Anne Frank" }] },
         { "prompt": "Which country won the football World Cup of 2010?", "category": "Sport", "answers": [{ "text": "Spain" }] },
         { "prompt": "Which is the smallest independent state in the world?", "category": "Geography", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
-        { "prompt": "How many bones does an adult human have, roughly?", "category": "Biology", "answers": [{ "text": "206" }] },
+        { "prompt": "Which organ produces bile?", "category": "Biology", "answers": [{ "text": "The liver", "aliases": ["Liver"] }] },
         { "prompt": "Which sea lies between the Netherlands and England?", "category": "Geography", "answers": [{ "text": "The North Sea", "aliases": ["North Sea"] }] },
         { "prompt": "What is the currency of Japan called?", "category": "Economics", "answers": [{ "text": "The yen", "aliases": ["yen"] }] },
-        { "prompt": "Which organ pumps blood around the body?", "category": "Biology", "answers": [{ "text": "The heart", "aliases": ["heart"] }] },
+        { "prompt": "What is the bone that protects your brain called?", "category": "Biology", "answers": [{ "text": "The skull", "aliases": ["Skull"] }] },
         { "prompt": "In which country is Machu Picchu?", "category": "Geography", "answers": [{ "text": "Peru" }] },
-        { "prompt": "How many colours does a rainbow have in the classic list?", "category": "Nature", "answers": [{ "text": "Seven", "aliases": ["7"] }] }
+        { "prompt": "Which chemical element has the symbol Zn?", "category": "Nature", "answers": [{ "text": "Zinc" }] }
       ]
     },
     {
@@ -112,10 +112,10 @@
         { "prompt": "Which currency is used in Switzerland?", "difficulty": "easy", "answers": [{ "text": "The Swiss franc", "aliases": ["Swiss franc"] }] },
         { "prompt": "How many planets does our solar system have since Pluto was demoted in 2006?", "difficulty": "easy", "answers": [{ "text": "Eight" }] },
         { "prompt": "Which city is known as the Eternal City?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
-        { "prompt": "Which instrument measures air pressure?", "difficulty": "hard", "answers": [{ "text": "The barometer", "aliases": ["barometer"] }] },
-        { "prompt": "Which city is the capital of New Zealand?", "difficulty": "hard", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Which Czech writer wrote The Metamorphosis, about a man who becomes an insect?", "difficulty": "hard", "answers": [{ "text": "Franz Kafka", "aliases": ["Kafka"] }] },
+        { "prompt": "What is the largest freshwater fish of Europe called?", "difficulty": "hard", "answers": [{ "text": "The catfish", "aliases": ["Wels catfish"] }] },
         { "prompt": "Which sailor was the first to complete a voyage all the way round the world?", "difficulty": "hard", "answers": [{ "text": "Juan Sebastian Elcano", "aliases": ["Elcano", "Del Cano"] }] },
-        { "prompt": "How many degrees do the angles of a triangle add up to?", "difficulty": "hard", "answers": [{ "text": "One hundred and eighty", "aliases": ["180"] }] },
+        { "prompt": "Which language is official in Switzerland alongside German, French and Italian?", "difficulty": "hard", "answers": [{ "text": "Romansh", "aliases": ["Rhaeto-Romance"] }] },
         { "prompt": "Which organ did Johann Sebastian Bach play for years in Leipzig?", "difficulty": "hard", "answers": [{ "text": "The organ of the Thomaskirche", "aliases": ["Thomaskirche", "St Thomas Church"] }] }
       ]
     },

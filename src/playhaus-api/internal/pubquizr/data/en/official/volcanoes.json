@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is molten rock called once it has flowed out onto the surface?", "difficulty": "easy", "answers": [{ "text": "Lava" }] },
+        { "prompt": "On which Pacific island group are the volcanoes Mauna Loa and Kilauea?", "difficulty": "easy", "answers": [{ "text": "Hawaii" }] },
         { "prompt": "Which Italian city lies at the foot of Mount Vesuvius?", "difficulty": "easy", "answers": [{ "text": "Naples", "aliases": ["Napoli"] }] },
         { "prompt": "Which ocean is ringed by the Ring of Fire?", "difficulty": "easy", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific", "Pacific Ocean"] }] },
         { "prompt": "What word describes a volcano that will never erupt again?", "difficulty": "easy", "answers": [{ "text": "Extinct", "aliases": ["Dead"] }] },

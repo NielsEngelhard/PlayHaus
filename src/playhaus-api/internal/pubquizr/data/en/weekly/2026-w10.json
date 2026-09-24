@@ -108,10 +108,10 @@
       "round": 6,
       "questions": [
         { "prompt": "What do bees collect from flowers to make honey?", "difficulty": "easy", "answers": [{ "text": "Nectar" }] },
-        { "prompt": "Which animal has long ears and hops on its back legs?", "difficulty": "easy", "answers": [{ "text": "The rabbit", "aliases": ["rabbit", "hare"] }] },
-        { "prompt": "What do you call the meal you eat in the middle of the day?", "difficulty": "easy", "answers": [{ "text": "Lunch" }] },
+        { "prompt": "Who wrote the Dutch novel Turkish Delight?", "difficulty": "easy", "answers": [{ "text": "Jan Wolkers", "aliases": ["Wolkers"] }] },
+        { "prompt": "Which Star Wars character says he is Luke's father?", "difficulty": "easy", "answers": [{ "text": "Darth Vader", "aliases": ["Vader"] }] },
         { "prompt": "What is the clear part of an egg around the yolk called?", "difficulty": "easy", "answers": [{ "text": "The egg white", "aliases": ["egg white", "white"] }] },
-        { "prompt": "Which colour light tells you to stop at a traffic light?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
+        { "prompt": "Which drink is distilled from fermented grain and aged in oak casks in Scotland?", "difficulty": "easy", "answers": [{ "text": "Whisky", "aliases": ["Scotch"] }] },
         { "prompt": "What is the capital of Malta?", "difficulty": "hard", "answers": [{ "text": "Valletta" }] },
         { "prompt": "Which Florentine wrote the political handbook The Prince?", "difficulty": "hard", "answers": [{ "text": "Niccolo Machiavelli", "aliases": ["Machiavelli"] }] },
         { "prompt": "Which bird has its nostrils at the very tip of its beak?", "difficulty": "hard", "answers": [{ "text": "The kiwi", "aliases": ["kiwi"] }] },

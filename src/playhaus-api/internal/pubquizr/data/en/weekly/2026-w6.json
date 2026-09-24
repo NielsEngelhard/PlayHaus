@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which vegetable makes you cry when you cut it?", "difficulty": "easy", "answers": [{ "text": "The onion", "aliases": ["onion"] }] },
-        { "prompt": "How many days are there in a fortnight?", "difficulty": "easy", "answers": [{ "text": "Fourteen", "aliases": ["14"] }] },
+        { "prompt": "Who is said to have written the Iliad and the Odyssey?", "difficulty": "easy", "answers": [{ "text": "Homer" }] },
+        { "prompt": "Which Dutch company from Eindhoven makes lamps and shavers?", "difficulty": "easy", "answers": [{ "text": "Philips" }] },
         { "prompt": "What is the capital of Belgium?", "difficulty": "easy", "answers": [{ "text": "Brussels" }] },
-        { "prompt": "What do you call a young sheep?", "difficulty": "easy", "answers": [{ "text": "A lamb", "aliases": ["lamb"] }] },
-        { "prompt": "Which sport is played with small bats and a net across a table?", "difficulty": "easy", "answers": [{ "text": "Table tennis", "aliases": ["ping pong"] }] },
+        { "prompt": "Which actress played Katniss Everdeen in the films?", "difficulty": "easy", "answers": [{ "text": "Jennifer Lawrence", "aliases": ["Lawrence"] }] },
+        { "prompt": "Which raw beef dish is named after an Italian painter?", "difficulty": "easy", "answers": [{ "text": "Carpaccio" }] },
         { "prompt": "Which Italian traveller served the Mongol emperor Kublai Khan?", "difficulty": "hard", "answers": [{ "text": "Marco Polo" }] },
         { "prompt": "What is the collective noun for a group of owls?", "difficulty": "hard", "answers": [{ "text": "A parliament", "aliases": ["parliament"] }] },
         { "prompt": "Which country of the United Kingdom has the most castles for its size?", "difficulty": "hard", "answers": [{ "text": "Wales" }] },

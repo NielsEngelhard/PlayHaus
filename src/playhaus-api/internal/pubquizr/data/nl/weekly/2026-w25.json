@@ -16,11 +16,11 @@
         { "prompt": "Welke rivier stroomt langs Rotterdam naar de zee?", "category": "Nederland", "answers": [{ "text": "De Maas", "aliases": ["Maas", "Nieuwe Maas"] }] },
         { "prompt": "Wat betekent het Latijnse woord aqua?", "category": "Taal", "answers": [{ "text": "Water" }] },
         { "prompt": "In welk New Yorks museum hangt De sterrennacht van Van Gogh?", "category": "Kunst", "answers": [{ "text": "Museum of Modern Art", "aliases": ["MoMA"] }] },
-        { "prompt": "Welk orgaan pompt het bloed door het lichaam?", "category": "Wetenschap", "answers": [{ "text": "Het hart", "aliases": ["hart"] }] },
+        { "prompt": "Welk scheikundig element heeft het symbool H?", "category": "Wetenschap", "answers": [{ "text": "Waterstof" }] },
         { "prompt": "Wat is de hoogste berg van Afrika?", "category": "Aardrijkskunde", "answers": [{ "text": "De Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
         { "prompt": "Welke Egyptische koningin had een verhouding met Julius Caesar?", "category": "Geschiedenis", "answers": [{ "text": "Cleopatra" }] },
         { "prompt": "Welke specerij is per gram de duurste ter wereld?", "category": "Eten", "answers": [{ "text": "Saffraan" }] },
-        { "prompt": "Om de hoeveel jaar worden de Olympische Zomerspelen gehouden?", "category": "Sport", "answers": [{ "text": "Vier jaar", "aliases": ["4"] }] },
+        { "prompt": "Hoe vaak wordt het wereldkampioenschap voetbal gehouden?", "category": "Sport", "answers": [{ "text": "Elke vier jaar", "aliases": ["Vier jaar", "Iedere vier jaar"] }] },
         { "prompt": "Hoeveel harten heeft een octopus?", "category": "Natuur", "answers": [{ "text": "Drie", "aliases": ["3"] }] },
         { "prompt": "Welke koning zit sinds 2013 op de Nederlandse troon?", "category": "Nederland", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
         { "prompt": "Wat is het hardste natuurlijke materiaal op aarde?", "category": "Wetenschap", "answers": [{ "text": "Diamant" }] },
@@ -113,10 +113,10 @@
         { "prompt": "Wat is de hardste natuurlijke stof op aarde?", "difficulty": "easy", "answers": [{ "text": "Diamant" }] },
         { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "difficulty": "easy", "answers": [{ "text": "Kwik" }] },
         { "prompt": "Welk gebergte scheidt Europa van Azie?", "difficulty": "hard", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
-        { "prompt": "Wie schilderde De Nachtwacht?", "difficulty": "hard", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "Wat is de hardste stof die in de natuur voorkomt?", "difficulty": "hard", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Hoe heet de vloeistof in het binnenoor die het evenwicht doorgeeft?", "difficulty": "hard", "answers": [{ "text": "De endolymfe", "aliases": ["Endolymfe"] }] },
+        { "prompt": "Welk schilderij van Claude Monet gaf het impressionisme zijn naam?", "difficulty": "hard", "answers": [{ "text": "Impression, soleil levant", "aliases": ["Impressie, zonsopgang"] }] },
         { "prompt": "Welk verdrag uit 1648 maakte een einde aan de Dertigjarige Oorlog?", "difficulty": "hard", "answers": [{ "text": "De Vrede van Westfalen", "aliases": ["Vrede van Westfalen", "Westfalen"] }] },
-        { "prompt": "Welke componist werd doof en schreef daarna nog zijn negende symfonie?", "difficulty": "hard", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] }
+        { "prompt": "Wat is na de Nijl de langste rivier van Afrika?", "difficulty": "hard", "answers": [{ "text": "De Kongo", "aliases": ["Congo"] }] }
       ]
     },
     {

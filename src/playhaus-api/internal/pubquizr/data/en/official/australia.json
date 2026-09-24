@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which hopping animal is the best-known symbol of Australia?", "difficulty": "easy", "answers": [{ "text": "The kangaroo", "aliases": ["kangaroo"] }] },
+        { "prompt": "Which sport do Australia and England play against each other for the Ashes?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
         { "prompt": "Which two colours do Australia's national sports teams wear?", "difficulty": "easy", "answers": [{ "text": "Green and gold", "aliases": ["Green and yellow", "Gold and green"] }] },
         { "prompt": "Which ocean lies off the east coast of Australia?", "difficulty": "easy", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific Ocean", "Pacific"] }] },
         { "prompt": "Which country's flag appears in the corner of the Australian flag?", "difficulty": "easy", "answers": [{ "text": "The United Kingdom", "aliases": ["Britain", "Great Britain", "The Union Jack"] }] },
-        { "prompt": "In which hemisphere does Australia lie?", "difficulty": "easy", "answers": [{ "text": "The southern hemisphere", "aliases": ["southern hemisphere", "south"] }] },
+        { "prompt": "What is the tennis grand slam tournament played in Melbourne in January called?", "difficulty": "easy", "answers": [{ "text": "The Australian Open", "aliases": ["Australian Open"] }] },
         { "prompt": "What is the Aboriginal term for the spiritual world of the creation stories?", "difficulty": "hard", "answers": [{ "text": "The Dreamtime", "aliases": ["Dreamtime", "The Dreaming"] }] },
         { "prompt": "Which treeless plain, whose name means no trees, is crossed by the world's longest straight stretch of railway?", "difficulty": "hard", "answers": [{ "text": "The Nullarbor Plain", "aliases": ["Nullarbor", "Nullarbor Plain"] }] },
         { "prompt": "Which Australian prime minister vanished while swimming in the sea in 1967?", "difficulty": "hard", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] },

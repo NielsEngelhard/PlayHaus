@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft de Hulk?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Welke Marvel-held is meester van de mystieke kunsten en draagt een rode mantel?", "difficulty": "easy", "answers": [{ "text": "Doctor Strange" }] },
         { "prompt": "Welke Marvel-held draagt een rood met goud pantserpak?", "difficulty": "easy", "answers": [{ "text": "Iron Man" }] },
         { "prompt": "Welk familielid voedt Peter Parker samen met zijn oom op?", "difficulty": "easy", "answers": [{ "text": "Tante May", "aliases": ["May", "May Parker"] }] },
         { "prompt": "Welke Marvel-held vecht met een rond schild?", "difficulty": "easy", "answers": [{ "text": "Captain America", "aliases": ["Cap"] }] },

@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is the Hulk?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "Which Marvel hero is master of the mystic arts and wears a red cloak?", "difficulty": "easy", "answers": [{ "text": "Doctor Strange" }] },
         { "prompt": "Which Marvel hero wears a suit of red and gold armour?", "difficulty": "easy", "answers": [{ "text": "Iron Man" }] },
         { "prompt": "Which relative raises Peter Parker together with his uncle?", "difficulty": "easy", "answers": [{ "text": "Aunt May", "aliases": ["May", "May Parker"] }] },
         { "prompt": "Which Marvel hero fights with a round shield?", "difficulty": "easy", "answers": [{ "text": "Captain America", "aliases": ["Cap"] }] },

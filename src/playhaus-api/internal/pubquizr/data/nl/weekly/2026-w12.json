@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je een jonge koe?", "difficulty": "easy", "answers": [{ "text": "Een kalf", "aliases": ["kalf"] }] },
-        { "prompt": "Welke kleur krijg je als je rood en blauw mengt?", "difficulty": "easy", "answers": [{ "text": "Paars" }] },
-        { "prompt": "Hoe noem je het midden van een appel waar de pitjes zitten?", "difficulty": "easy", "answers": [{ "text": "Het klokhuis", "aliases": ["klokhuis"] }] },
-        { "prompt": "Hoe noem je de dag na vandaag?", "difficulty": "easy", "answers": [{ "text": "Morgen" }] },
-        { "prompt": "Welke vorm heeft een voetbal?", "difficulty": "easy", "answers": [{ "text": "Een bol", "aliases": ["bol", "rond"] }] },
+        { "prompt": "Hoe heet het schip van Han Solo in Star Wars?", "difficulty": "easy", "answers": [{ "text": "De Millennium Falcon", "aliases": ["Millennium Falcon"] }] },
+        { "prompt": "Hoe heet de Italiaanse koffie met veel opgeschuimde melk?", "difficulty": "easy", "answers": [{ "text": "De cappuccino", "aliases": ["Cappuccino"] }] },
+        { "prompt": "Welk land heeft Nairobi als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Kenia" }] },
+        { "prompt": "Wie bedacht de evolutietheorie?", "difficulty": "easy", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Uit welke taal komt het woord tsunami?", "difficulty": "easy", "answers": [{ "text": "Japans", "aliases": ["Het Japans"] }] },
         { "prompt": "Welk Afrikaans land heeft Kampala als hoofdstad?", "difficulty": "hard", "answers": [{ "text": "Oeganda" }] },
         { "prompt": "Welke Engelse schilder maakte The Hay Wain?", "difficulty": "hard", "answers": [{ "text": "John Constable", "aliases": ["Constable"] }] },
         { "prompt": "Welke Deense astronoom toonde als eerste aan dat licht een eindige snelheid heeft?", "difficulty": "hard", "answers": [{ "text": "Ole Romer", "aliases": ["Romer"] }] },

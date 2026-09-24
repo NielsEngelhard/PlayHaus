@@ -6,13 +6,13 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "How many seconds are there in a minute?", "category": "Science", "answers": [{ "text": "Sixty", "aliases": ["60"] }] },
+        { "prompt": "Which element has the symbol Mg?", "category": "Science", "answers": [{ "text": "Magnesium" }] },
         { "prompt": "Which Dutch city has the Mauritshuis?", "category": "The Netherlands", "answers": [{ "text": "The Hague", "aliases": ["Den Haag"] }] },
-        { "prompt": "Which animal carries its house on its back?", "category": "Nature", "answers": [{ "text": "The snail", "aliases": ["Snail"] }] },
+        { "prompt": "Which tree has its leaf on the Canadian flag?", "category": "Nature", "answers": [{ "text": "The maple", "aliases": ["Maple"] }] },
         { "prompt": "How many players does a basketball team have on court?", "category": "Sport", "answers": [{ "text": "Five", "aliases": ["5"] }] },
-        { "prompt": "Which country lies between France and the Netherlands?", "category": "Geography", "answers": [{ "text": "Belgium" }] },
-        { "prompt": "Which film is about a young wizard at Hogwarts?", "category": "Film", "answers": [{ "text": "Harry Potter" }] },
-        { "prompt": "Which instrument do you play with a bow and hold under your chin?", "category": "Music", "answers": [{ "text": "The violin", "aliases": ["Violin"] }] },
+        { "prompt": "Which continent has no permanent population?", "category": "Geography", "answers": [{ "text": "Antarctica" }] },
+        { "prompt": "In which film does a character make an offer you cannot refuse?", "category": "Film", "answers": [{ "text": "The Godfather" }] },
+        { "prompt": "Which composer went deaf later in life?", "category": "Music", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] },
         { "prompt": "Which wall divided Berlin until 1989?", "category": "History", "answers": [{ "text": "The Berlin Wall", "aliases": ["Berlin Wall"] }] },
         { "prompt": "What is the opposite of a synonym?", "category": "Language", "answers": [{ "text": "An antonym", "aliases": ["Antonym"] }] },
         { "prompt": "Which Dutch painter made The Potato Eaters?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
@@ -23,7 +23,7 @@
         { "prompt": "Which Dutch footballer was nicknamed the Black Tulip?", "category": "Sport", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
         { "prompt": "Which Roman structure carried water over long distances to the city?", "category": "History", "answers": [{ "text": "The aqueduct", "aliases": ["Aqueduct"] }] },
         { "prompt": "Which Italian rice dish is stirred slowly with stock added bit by bit?", "category": "Food", "answers": [{ "text": "Risotto" }] },
-        { "prompt": "Which force keeps us on the ground?", "category": "Science", "answers": [{ "text": "Gravity", "aliases": ["The force of gravity"] }] },
+        { "prompt": "What is the space station continuously inhabited since 2000 called?", "category": "Science", "answers": [{ "text": "The ISS", "aliases": ["International Space Station"] }] },
         { "prompt": "What is the dyke that separates the IJsselmeer from the Wadden Sea called?", "category": "The Netherlands", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Which Swedish pop group sang Dancing Queen?", "category": "Music", "answers": [{ "text": "ABBA" }] }
       ]
@@ -107,27 +107,27 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is grass?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
-        { "prompt": "How many fingers does a person have on two hands?", "difficulty": "easy", "answers": [{ "text": "Ten", "aliases": ["10"] }] },
-        { "prompt": "Which animal gives us wool?", "difficulty": "easy", "answers": [{ "text": "The sheep", "aliases": ["Sheep"] }] },
-        { "prompt": "In which country is the Eiffel Tower?", "difficulty": "easy", "answers": [{ "text": "France" }] },
-        { "prompt": "In which room of the house do you cook?", "difficulty": "easy", "answers": [{ "text": "The kitchen", "aliases": ["Kitchen"] }] },
-        { "prompt": "Which scientist set out the theory of relativity?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "How many rounds does a professional world title boxing bout last at most?", "difficulty": "easy", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
+        { "prompt": "In which city is the Statue of Liberty?", "difficulty": "easy", "answers": [{ "text": "New York" }] },
+        { "prompt": "In which country is the figure of Christ above Rio de Janeiro?", "difficulty": "easy", "answers": [{ "text": "Brazil" }] },
+        { "prompt": "Which mountain range lies between Chile and Argentina?", "difficulty": "easy", "answers": [{ "text": "The Andes", "aliases": ["Andes"] }] },
+        { "prompt": "Which two countries share the island of Hispaniola?", "difficulty": "easy", "answers": [{ "text": "Haiti and the Dominican Republic" }] },
+        { "prompt": "Which Roman emperor had a wall built even further north than Hadrian's?", "difficulty": "hard", "answers": [{ "text": "Antoninus Pius" }] },
         { "prompt": "What is the strait between Denmark and Sweden called?", "difficulty": "hard", "answers": [{ "text": "The Oresund", "aliases": ["Oresund", "The Sound"] }] },
         { "prompt": "Which Dutch explorer spent a winter on Nova Zembla?", "difficulty": "hard", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents"] }] },
-        { "prompt": "Which part of a plant takes up water from the ground?", "difficulty": "hard", "answers": [{ "text": "The roots", "aliases": ["Roots", "Root hairs"] }] },
+        { "prompt": "Which river separates Texas from Mexico?", "difficulty": "hard", "answers": [{ "text": "The Rio Grande", "aliases": ["Rio Grande"] }] },
         { "prompt": "Which Italian poet wrote The Divine Comedy?", "difficulty": "hard", "answers": [{ "text": "Dante", "aliases": ["Dante Alighieri"] }] }
       ]
     },
     {
       "round": 7,
       "questions": [
-        { "prompt": "What is the capital of Austria?", "answers": [{ "text": "Vienna" }] },
-        { "prompt": "Which animal is the largest land animal in the world?", "answers": [{ "text": "The African elephant", "aliases": ["Elephant", "African elephant"] }] },
-        { "prompt": "Which scientist set out the theory of evolution?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Which metal conducts electricity better than any other metal?", "answers": [{ "text": "Silver" }] },
+        { "prompt": "Which scientist gave his name to the laws of inheritance found in peas?", "answers": [{ "text": "Gregor Mendel", "aliases": ["Mendel"] }] },
+        { "prompt": "What is the effect by which a liquid creeps up a narrow tube against gravity called?", "answers": [{ "text": "Capillary action" }] },
         { "prompt": "Which noble gas makes advertising signs glow red?", "answers": [{ "text": "Neon" }] },
-        { "prompt": "Which river flows through Rotterdam to the sea?", "answers": [{ "text": "The Nieuwe Maas", "aliases": ["Nieuwe Maas", "The Meuse", "Meuse"] }] },
-        { "prompt": "Who painted The Starry Night?", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Which gas was named after the sun before it was found on earth?", "answers": [{ "text": "Helium" }] },
+        { "prompt": "What are the smallest bones of the human body, found in the ear, called?", "answers": [{ "text": "The ossicles", "aliases": ["Ossicles"] }] },
         { "prompt": "Which word do sailors use for the left side of a ship?", "answers": [{ "text": "Port", "aliases": ["Portside", "Port side"] }] }
       ]
     }

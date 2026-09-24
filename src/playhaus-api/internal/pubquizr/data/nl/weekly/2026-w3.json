@@ -107,8 +107,8 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Op welke planeet leven wij?", "difficulty": "easy", "answers": [{ "text": "De aarde", "aliases": ["aarde"] }] },
-        { "prompt": "Hoe heet bevroren water?", "difficulty": "easy", "answers": [{ "text": "IJs", "aliases": ["ijs"] }] },
+        { "prompt": "Welke kunstenaar maakte de zeefdrukken van Campbell-soepblikken?", "difficulty": "easy", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] },
+        { "prompt": "Welk deel van de tand is het hardste materiaal van het lichaam?", "difficulty": "easy", "answers": [{ "text": "Het tandemail", "aliases": ["Tandemail"] }] },
         { "prompt": "Hoe heet de hond van Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Pluto" }] },
         { "prompt": "Welk gemalen graanproduct is het hoofdbestanddeel van brood?", "difficulty": "easy", "answers": [{ "text": "Bloem", "aliases": ["meel"] }] },
         { "prompt": "Hoe heet de grote klok in de toren bij Westminster?", "difficulty": "easy", "answers": [{ "text": "Big Ben" }] },

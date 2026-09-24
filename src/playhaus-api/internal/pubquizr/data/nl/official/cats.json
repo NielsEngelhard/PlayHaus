@@ -109,10 +109,10 @@
       "round": 6,
       "questions": [
         { "prompt": "Hoeveel levens heeft een kat volgens het Nederlandse gezegde?", "difficulty": "easy", "answers": [{ "text": "Zeven", "aliases": ["7"] }] },
-        { "prompt": "Wat is het gewone Nederlandse woord voor het geluid dat een kat maakt?", "difficulty": "easy", "answers": [{ "text": "Miauw", "aliases": ["Miauwen"] }] },
-        { "prompt": "Een kat van welke kleur brengt volgens het bijgeloof ongeluk als ze je pad kruist?", "difficulty": "easy", "answers": [{ "text": "Zwart", "aliases": ["Een zwarte kat"] }] },
+        { "prompt": "Welke kleur ogen hebben vrijwel alle kittens als ze geboren worden?", "difficulty": "easy", "answers": [{ "text": "Blauw" }] },
+        { "prompt": "Welke katachtige is de grootste van de hele kattenfamilie?", "difficulty": "easy", "answers": [{ "text": "De tijger", "aliases": ["Tijger"] }] },
         { "prompt": "Welke tekenfilmmuis wordt eeuwig achtervolgd door de kat Tom?", "difficulty": "easy", "answers": [{ "text": "Jerry" }] },
-        { "prompt": "Waarmee wast een kat haar eigen vacht?", "difficulty": "easy", "answers": [{ "text": "Met haar tong", "aliases": ["Tong", "De tong"] }] },
+        { "prompt": "Welke populaire boeketbloem is giftig voor katten?", "difficulty": "easy", "answers": [{ "text": "De lelie", "aliases": ["Lelie"] }] },
         { "prompt": "Hoe heet een kat die met meer tenen dan normaal geboren wordt?", "difficulty": "hard", "answers": [{ "text": "Polydactyl", "aliases": ["Polydactylie", "Polydactyle kat"] }] },
         { "prompt": "Hoe heet de weerkaatsende laag achter het netvlies waardoor kattenogen oplichten in het donker?", "difficulty": "hard", "answers": [{ "text": "Het tapetum lucidum", "aliases": ["Tapetum lucidum", "Tapetum"] }] },
         { "prompt": "Welke stof in kattenkruid veroorzaakt de reactie bij katten?", "difficulty": "hard", "answers": [{ "text": "Nepetalacton", "aliases": ["Nepetalactone"] }] },

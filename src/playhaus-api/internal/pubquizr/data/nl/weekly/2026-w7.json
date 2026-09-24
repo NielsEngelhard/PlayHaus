@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je jonge kikkers voordat ze pootjes krijgen?", "difficulty": "easy", "answers": [{ "text": "Kikkervisjes", "aliases": ["kikkervisje", "dikkopjes"] }] },
-        { "prompt": "Welke gele vrucht groeit in trossen en wordt gepeld voor je hem eet?", "difficulty": "easy", "answers": [{ "text": "De banaan", "aliases": ["banaan"] }] },
-        { "prompt": "Wat is de eerste maand van het jaar?", "difficulty": "easy", "answers": [{ "text": "Januari" }] },
-        { "prompt": "Wat voor dier is Winnie de Poeh?", "difficulty": "easy", "answers": [{ "text": "Een beer", "aliases": ["beer"] }] },
-        { "prompt": "Hoe noem je het geluid dat een hond maakt?", "difficulty": "easy", "answers": [{ "text": "Blaffen", "aliases": ["geblaf", "blaf"] }] },
+        { "prompt": "Welke Nederlandse schrijver bedacht Jip en Janneke?", "difficulty": "easy", "answers": [{ "text": "Annie M.G. Schmidt", "aliases": ["Annie Schmidt"] }] },
+        { "prompt": "Welk Duits automerk heeft een drietand in een cirkel als logo?", "difficulty": "easy", "answers": [{ "text": "Mercedes-Benz", "aliases": ["Mercedes"] }] },
+        { "prompt": "Welke regisseur maakte zowel Avatar als Aliens?", "difficulty": "easy", "answers": [{ "text": "James Cameron", "aliases": ["Cameron"] }] },
+        { "prompt": "Uit welk land komt het gerecht moussaka?", "difficulty": "easy", "answers": [{ "text": "Griekenland" }] },
+        { "prompt": "Welk land heeft Boedapest als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Hongarije" }] },
         { "prompt": "Welk land heeft meer eilanden dan welk ander land ook?", "difficulty": "hard", "answers": [{ "text": "Zweden" }] },
         { "prompt": "Welke Noorse god draagt een hamer die Mjolnir heet?", "difficulty": "hard", "answers": [{ "text": "Thor" }] },
         { "prompt": "Welk land heeft een parlement dat de Knesset heet?", "difficulty": "hard", "answers": [{ "text": "Israel" }] },

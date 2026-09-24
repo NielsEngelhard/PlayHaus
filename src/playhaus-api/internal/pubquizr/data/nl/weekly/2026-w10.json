@@ -108,10 +108,10 @@
       "round": 6,
       "questions": [
         { "prompt": "Wat halen bijen uit bloemen om honing te maken?", "difficulty": "easy", "answers": [{ "text": "Nectar" }] },
-        { "prompt": "Welk dier heeft lange oren en hipt op zijn achterpoten?", "difficulty": "easy", "answers": [{ "text": "Het konijn", "aliases": ["konijn", "haas"] }] },
-        { "prompt": "Hoe noem je de maaltijd die je midden op de dag eet?", "difficulty": "easy", "answers": [{ "text": "De lunch", "aliases": ["lunch", "middageten"] }] },
+        { "prompt": "Wie schreef Turks fruit?", "difficulty": "easy", "answers": [{ "text": "Jan Wolkers", "aliases": ["Wolkers"] }] },
+        { "prompt": "Welk personage zegt in Star Wars dat hij de vader van Luke is?", "difficulty": "easy", "answers": [{ "text": "Darth Vader", "aliases": ["Vader"] }] },
         { "prompt": "Hoe heet het doorzichtige deel van een ei rond de dooier?", "difficulty": "easy", "answers": [{ "text": "Het eiwit", "aliases": ["eiwit"] }] },
-        { "prompt": "Welke kleur licht zegt je te stoppen bij een stoplicht?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Welke drank wordt gestookt uit gegist graan en in eiken vaten gelagerd in Schotland?", "difficulty": "easy", "answers": [{ "text": "Whisky" }] },
         { "prompt": "Wat is de hoofdstad van Malta?", "difficulty": "hard", "answers": [{ "text": "Valletta" }] },
         { "prompt": "Welke Florentijn schreef het politieke handboek De heerser?", "difficulty": "hard", "answers": [{ "text": "Niccolo Machiavelli", "aliases": ["Machiavelli"] }] },
         { "prompt": "Welke vogel heeft zijn neusgaten helemaal aan de punt van zijn snavel?", "difficulty": "hard", "answers": [{ "text": "De kiwi", "aliases": ["kiwi"] }] },

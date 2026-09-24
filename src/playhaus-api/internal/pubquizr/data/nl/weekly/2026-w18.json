@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel tenen heeft een mens in totaal?", "difficulty": "easy", "answers": [{ "text": "Tien", "aliases": ["10"] }] },
-        { "prompt": "Welke kleur heeft steenkool?", "difficulty": "easy", "answers": [{ "text": "Zwart" }] },
-        { "prompt": "Hoeveel dagen telt januari?", "difficulty": "easy", "answers": [{ "text": "Eenendertig", "aliases": ["31"] }] },
-        { "prompt": "Hoe noem je iemand die voor zijn beroep schilderijen maakt?", "difficulty": "easy", "answers": [{ "text": "Een kunstenaar", "aliases": ["kunstenaar", "schilder"] }] },
-        { "prompt": "Hoe noem je een bundel bedrukte bladzijden die je van kaft tot kaft leest?", "difficulty": "easy", "answers": [{ "text": "Een boek", "aliases": ["boek"] }] },
+        { "prompt": "Welk land heeft Seoel als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Zuid-Korea" }] },
+        { "prompt": "Wat is de munteenheid van Zuid-Korea?", "difficulty": "easy", "answers": [{ "text": "De won", "aliases": ["Won"] }] },
+        { "prompt": "Welke band bracht het nummer Smells Like Teen Spirit uit?", "difficulty": "easy", "answers": [{ "text": "Nirvana" }] },
+        { "prompt": "Welk Nederlands waterbouwproject beschermt Zeeland tegen de zee?", "difficulty": "easy", "answers": [{ "text": "De Deltawerken", "aliases": ["Deltawerken"] }] },
+        { "prompt": "Hoeveel vakjes heeft een schaakbord?", "difficulty": "easy", "answers": [{ "text": "Vierenzestig", "aliases": ["64"] }] },
         { "prompt": "Wat is de hoofdstad van Slowakije?", "difficulty": "hard", "answers": [{ "text": "Bratislava" }] },
         { "prompt": "Welke Amerikaanse schrijver schreef de roman Catch-22?", "difficulty": "hard", "answers": [{ "text": "Joseph Heller", "aliases": ["Heller"] }] },
         { "prompt": "Welke ster is qua volume de grootste die we kennen?", "difficulty": "hard", "answers": [{ "text": "UY Scuti" }] },

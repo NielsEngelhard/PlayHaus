@@ -6,23 +6,23 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "What colour is the top band of the Dutch flag?", "category": "The Netherlands", "answers": [{ "text": "Red" }] },
-        { "prompt": "How many minutes does a half of football last?", "category": "Sport", "answers": [{ "text": "Forty-five", "aliases": ["45"] }] },
+        { "prompt": "Which Dutch province has Leeuwarden as its capital?", "category": "The Netherlands", "answers": [{ "text": "Friesland" }] },
+        { "prompt": "Which American swimmer won the most Olympic medals ever?", "category": "Sport", "answers": [{ "text": "Michael Phelps", "aliases": ["Phelps"] }] },
         { "prompt": "Which animal lays the largest egg in the world?", "category": "Nature", "answers": [{ "text": "The ostrich", "aliases": ["Ostrich"] }] },
-        { "prompt": "In which country was pizza invented?", "category": "Food", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which country does goulash come from?", "category": "Food", "answers": [{ "text": "Hungary" }] },
         { "prompt": "Which mountain range separates Spain from France?", "category": "Geography", "answers": [{ "text": "The Pyrenees", "aliases": ["Pyrenees"] }] },
-        { "prompt": "Which sense do you use to smell?", "category": "Science", "answers": [{ "text": "Smell", "aliases": ["The nose", "Nose"] }] },
+        { "prompt": "What is the process of water turning into vapour called?", "category": "Science", "answers": [{ "text": "Evaporation", "aliases": ["Evaporating"] }] },
         { "prompt": "Which film is set on a ship that hits an iceberg in 1912?", "category": "Film", "answers": [{ "text": "Titanic" }] },
         { "prompt": "How many keys make up one octave on a piano, white and black together?", "category": "Music", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
         { "prompt": "Who was the first king of the Netherlands?", "category": "History", "answers": [{ "text": "William I", "aliases": ["Willem I", "King William I"] }] },
-        { "prompt": "What is the plural of the word child?", "category": "Language", "answers": [{ "text": "Children" }] },
+        { "prompt": "What does the French word merci mean?", "category": "Language", "answers": [{ "text": "Thank you", "aliases": ["Thanks"] }] },
         { "prompt": "Which painter made the Sunflowers series?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
-        { "prompt": "Which part of a bicycle makes you stop?", "category": "Technology", "answers": [{ "text": "The brake", "aliases": ["Brake", "Brakes"] }] },
-        { "prompt": "Which continent is the largest by surface area?", "category": "Geography", "answers": [{ "text": "Asia" }] },
-        { "prompt": "Which bird is the symbol of peace?", "category": "Nature", "answers": [{ "text": "The dove", "aliases": ["Dove", "White dove"] }] },
+        { "prompt": "Which country does the car brand Volvo come from?", "category": "Technology", "answers": [{ "text": "Sweden" }] },
+        { "prompt": "What is the largest lake in North America?", "category": "Geography", "answers": [{ "text": "Lake Superior", "aliases": ["Superior"] }] },
+        { "prompt": "Which animal builds a dam in a stream?", "category": "Nature", "answers": [{ "text": "The beaver", "aliases": ["Beaver"] }] },
         { "prompt": "Which Dutch cyclist won the Tour de France in 1980?", "category": "Sport", "answers": [{ "text": "Joop Zoetemelk", "aliases": ["Zoetemelk"] }] },
         { "prompt": "Which war ended with the Peace of Munster in 1648?", "category": "History", "answers": [{ "text": "The Eighty Years War", "aliases": ["Eighty Years War"] }] },
-        { "prompt": "Which drink is made by fermenting grapes?", "category": "Food", "answers": [{ "text": "Wine" }] },
+        { "prompt": "Which plant is tequila made from?", "category": "Food", "answers": [{ "text": "The agave", "aliases": ["Agave"] }] },
         { "prompt": "How many chromosomes does a human normally have?", "category": "Science", "answers": [{ "text": "Forty-six", "aliases": ["46", "23 pairs"] }] },
         { "prompt": "Which Dutch city is split by the Meuse and has a Sint-Servaasbrug?", "category": "The Netherlands", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "Which singer was known as the King of Pop?", "category": "Music", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] }
@@ -107,27 +107,27 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many wheels does an ordinary bicycle have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
-        { "prompt": "Which animal barks?", "difficulty": "easy", "answers": [{ "text": "The dog", "aliases": ["Dog"] }] },
-        { "prompt": "In which month is Koningsdag?", "difficulty": "easy", "answers": [{ "text": "April" }] },
-        { "prompt": "Which colour do you get when you mix red and white?", "difficulty": "easy", "answers": [{ "text": "Pink" }] },
-        { "prompt": "Which continent lies south of Europe?", "difficulty": "easy", "answers": [{ "text": "Africa" }] },
+        { "prompt": "How many tiles does a double-six domino set have?", "difficulty": "easy", "answers": [{ "text": "Twenty-eight", "aliases": ["28"] }] },
+        { "prompt": "Which country has Rabat as its capital?", "difficulty": "easy", "answers": [{ "text": "Morocco" }] },
+        { "prompt": "Which country has Accra as its capital?", "difficulty": "easy", "answers": [{ "text": "Ghana" }] },
+        { "prompt": "Which country has Abuja as its capital?", "difficulty": "easy", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Which country has Addis Ababa as its capital?", "difficulty": "easy", "answers": [{ "text": "Ethiopia" }] },
         { "prompt": "Which bone of the human skull is the only one that can move?", "difficulty": "hard", "answers": [{ "text": "The lower jaw", "aliases": ["Lower jaw", "Jawbone", "Mandible"] }] },
         { "prompt": "Which Dutch philosopher wrote the Ethics?", "difficulty": "hard", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza", "Benedictus de Spinoza"] }] },
         { "prompt": "Which country has the most active volcanoes?", "difficulty": "hard", "answers": [{ "text": "Indonesia" }] },
-        { "prompt": "Who discovered penicillin?", "difficulty": "hard", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Which battle put William the Conqueror on the English throne in 1066?", "difficulty": "hard", "answers": [{ "text": "Hastings", "aliases": ["The Battle of Hastings"] }] },
         { "prompt": "Which strait separates Spain from Morocco?", "difficulty": "hard", "answers": [{ "text": "The Strait of Gibraltar", "aliases": ["Strait of Gibraltar", "Gibraltar"] }] }
       ]
     },
     {
       "round": 7,
       "questions": [
-        { "prompt": "What is the capital of Norway?", "answers": [{ "text": "Oslo" }] },
-        { "prompt": "Which element has atomic number 1?", "answers": [{ "text": "Hydrogen" }] },
+        { "prompt": "Which planet turns so slowly that a day there lasts longer than a year?", "answers": [{ "text": "Venus" }] },
+        { "prompt": "What is the unit of luminous intensity in the international system?", "answers": [{ "text": "The candela", "aliases": ["Candela"] }] },
         { "prompt": "Who wrote the fairy tale The Little Mermaid?", "answers": [{ "text": "Hans Christian Andersen", "aliases": ["Andersen"] }] },
-        { "prompt": "Which animal has the longest neck?", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
-        { "prompt": "Which Dutch city has the oldest university in the country?", "answers": [{ "text": "Leiden" }] },
-        { "prompt": "Which substance has the chemical formula NaCl?", "answers": [{ "text": "Table salt", "aliases": ["Salt", "Sodium chloride"] }] },
+        { "prompt": "Which element did the Curies discover first, in 1898?", "answers": [{ "text": "Polonium" }] },
+        { "prompt": "Which metal has the highest melting point of all metals?", "answers": [{ "text": "Tungsten", "aliases": ["Wolfram"] }] },
+        { "prompt": "Which Russian chemist arranged the elements into a table by their properties?", "answers": [{ "text": "Dmitri Mendeleev", "aliases": ["Mendeleev"] }] },
         { "prompt": "Which painter invented cubism together with Georges Braque?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
       ]
     }

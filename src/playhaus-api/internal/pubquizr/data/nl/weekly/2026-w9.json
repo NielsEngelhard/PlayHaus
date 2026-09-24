@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je water dat uit de wolken valt?", "difficulty": "easy", "answers": [{ "text": "Regen" }] },
-        { "prompt": "Hoe noem je een jong paard?", "difficulty": "easy", "answers": [{ "text": "Een veulen", "aliases": ["veulen"] }] },
-        { "prompt": "Welk dier draagt zijn huis op zijn rug en loopt langzaam?", "difficulty": "easy", "answers": [{ "text": "De schildpad", "aliases": ["schildpad"] }] },
-        { "prompt": "Welk seizoen is het koudste van het jaar?", "difficulty": "easy", "answers": [{ "text": "De winter", "aliases": ["winter"] }] },
-        { "prompt": "Wat is het tegenovergestelde van dag?", "difficulty": "easy", "answers": [{ "text": "Nacht" }] },
+        { "prompt": "Wie schreef Kruistocht in spijkerbroek?", "difficulty": "easy", "answers": [{ "text": "Thea Beckman", "aliases": ["Beckman"] }] },
+        { "prompt": "In welke serie werken de personages bij een papierbedrijf in Scranton?", "difficulty": "easy", "answers": [{ "text": "The Office" }] },
+        { "prompt": "Welke Franse kaas is blauw geschimmeld en komt uit een dorp met dezelfde naam?", "difficulty": "easy", "answers": [{ "text": "Roquefort" }] },
+        { "prompt": "Welk land heeft Praag als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Tsjechie", "aliases": ["Tsjechische Republiek"] }] },
+        { "prompt": "Welke Indiase leider streed met geweldloos protest voor onafhankelijkheid?", "difficulty": "easy", "answers": [{ "text": "Mahatma Gandhi", "aliases": ["Gandhi"] }] },
         { "prompt": "Wat is de munteenheid van Zweden?", "difficulty": "hard", "answers": [{ "text": "De kroon", "aliases": ["kroon", "Zweedse kroon"] }] },
         { "prompt": "Welke Griekse arts wordt de vader van de geneeskunde genoemd?", "difficulty": "hard", "answers": [{ "text": "Hippocrates" }] },
         { "prompt": "In welk land liggen de Angelwatervallen?", "difficulty": "hard", "answers": [{ "text": "Venezuela" }] },

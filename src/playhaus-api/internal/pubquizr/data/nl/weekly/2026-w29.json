@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "Wat is de hoofdstad van Griekenland?", "category": "Aardrijkskunde", "answers": [{ "text": "Athene" }] },
-        { "prompt": "Welke ster staat het dichtst bij de aarde?", "category": "Wetenschap", "answers": [{ "text": "De zon", "aliases": ["zon"] }] },
+        { "prompt": "Welk scheikundig element heeft het symbool Cu?", "category": "Wetenschap", "answers": [{ "text": "Koper" }] },
         { "prompt": "Welke Engelse koning had zes vrouwen?", "category": "Geschiedenis", "answers": [{ "text": "Hendrik VIII", "aliases": ["Hendrik de achtste"] }] },
         { "prompt": "Hoeveel stukken heeft elke kleur bij het begin van een schaakpartij?", "category": "Sport", "answers": [{ "text": "Zestien", "aliases": ["16"] }] },
         { "prompt": "Welk instrument heeft zwarte en witte toetsen en pedalen?", "category": "Muziek", "answers": [{ "text": "De piano", "aliases": ["piano", "vleugel"] }] },
@@ -21,7 +21,7 @@
         { "prompt": "Welke Franse keizer verloor in 1815 de slag bij Waterloo?", "category": "Geschiedenis", "answers": [{ "text": "Napoleon", "aliases": ["Napoleon Bonaparte"] }] },
         { "prompt": "Welk zuivelproduct wordt gemaakt door melk te laten stremmen en te persen?", "category": "Eten", "answers": [{ "text": "Kaas" }] },
         { "prompt": "Hoeveel punten is een touchdown in American football waard?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
-        { "prompt": "Welk dier heeft strepen en leeft in de Afrikaanse savanne?", "category": "Natuur", "answers": [{ "text": "De zebra", "aliases": ["zebra"] }] },
+        { "prompt": "Hoe noem je de jaarlijkse ringen in een boomstam?", "category": "Natuur", "answers": [{ "text": "Jaarringen", "aliases": ["Jaarring"] }] },
         { "prompt": "Welk Nederlands bouwwerk sluit de Zuiderzee af van de Waddenzee?", "category": "Nederland", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Welk apparaat meet de luchtdruk?", "category": "Wetenschap", "answers": [{ "text": "De barometer", "aliases": ["barometer"] }] },
         { "prompt": "Welke acteur speelde Vito Corleone in The Godfather uit 1972?", "category": "Film", "answers": [{ "text": "Marlon Brando", "aliases": ["Brando"] }] },
@@ -108,15 +108,15 @@
       "round": 6,
       "questions": [
         { "prompt": "Welk zoogdier is het enige dat echt kan vliegen?", "difficulty": "easy", "answers": [{ "text": "De vleermuis", "aliases": ["Vleermuis"] }] },
-        { "prompt": "Wat is het langste landdier ter wereld?", "difficulty": "easy", "answers": [{ "text": "De giraf", "aliases": ["Giraf"] }] },
+        { "prompt": "Welk land heeft Boekarest als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Roemenie" }] },
         { "prompt": "Welke planeet heeft de meeste manen in ons zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "Saturnus" }] },
         { "prompt": "Hoe noem je een baby kangoeroe?", "difficulty": "easy", "answers": [{ "text": "Een joey", "aliases": ["Joey"] }] },
         { "prompt": "Welk land drinkt per hoofd van de bevolking de meeste koffie ter wereld?", "difficulty": "easy", "answers": [{ "text": "Finland" }] },
-        { "prompt": "In welk water kun je zwemmen dat het zoutst van de wereld is?", "difficulty": "hard", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
-        { "prompt": "Wie schreef het toneelstuk Hamlet?", "difficulty": "hard", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Welke Vlaamse schilder maakte De boerenbruiloft?", "difficulty": "hard", "answers": [{ "text": "Pieter Bruegel de Oude", "aliases": ["Bruegel"] }] },
+        { "prompt": "In welke voorstad van Berlijn verdeelden de geallieerden in 1945 Duitsland?", "difficulty": "hard", "answers": [{ "text": "Potsdam" }] },
         { "prompt": "Welk gas vormt ongeveer achtenzeventig procent van de lucht?", "difficulty": "hard", "answers": [{ "text": "Stikstof" }] },
         { "prompt": "Welk rijk werd tot 1453 vanuit Constantinopel bestuurd?", "difficulty": "hard", "answers": [{ "text": "Het Byzantijnse Rijk", "aliases": ["Byzantijnse Rijk", "Byzantium"] }] },
-        { "prompt": "Welk tennistoernooi wordt op gras gespeeld?", "difficulty": "hard", "answers": [{ "text": "Wimbledon" }] }
+        { "prompt": "Welke taal in de Pyreneeen is aan geen enkele andere taal in Europa verwant?", "difficulty": "hard", "answers": [{ "text": "Baskisch", "aliases": ["Het Baskisch"] }] }
       ]
     },
     {

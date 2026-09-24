@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "What is the capital of Sweden?", "category": "Geography", "answers": [{ "text": "Stockholm" }] },
-        { "prompt": "At how many degrees Celsius does ice melt?", "category": "Science", "answers": [{ "text": "Zero", "aliases": ["0"] }] },
+        { "prompt": "Which chemical element has the symbol N?", "category": "Science", "answers": [{ "text": "Nitrogen" }] },
         { "prompt": "Which city was buried by Vesuvius in the year 79?", "category": "History", "answers": [{ "text": "Pompeii", "aliases": ["Pompeii"] }] },
         { "prompt": "How many players does a cricket team have on the field?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
         { "prompt": "Which American singer was known as the King of Pop?", "category": "Music", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] },
@@ -19,7 +19,7 @@
         { "prompt": "What is the unit of force in the international system?", "category": "Science", "answers": [{ "text": "The newton", "aliases": ["newton", "N"] }] },
         { "prompt": "Which country has Vienna as its capital?", "category": "Geography", "answers": [{ "text": "Austria" }] },
         { "prompt": "Which South African president spent twenty-seven years in prison?", "category": "History", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }] },
-        { "prompt": "Which plant provides the leaves for tea?", "category": "Food", "answers": [{ "text": "The tea plant", "aliases": ["tea", "Camellia sinensis"] }] },
+        { "prompt": "Which nut goes into a classic pesto?", "category": "Food", "answers": [{ "text": "The pine nut", "aliases": ["Pine nut"] }] },
         { "prompt": "How many kilometres long is a marathon?", "category": "Sport", "answers": [{ "text": "Just over forty-two kilometres", "aliases": ["42", "42.195"] }] },
         { "prompt": "Which mammal is the slowest in the world?", "category": "Nature", "answers": [{ "text": "The sloth", "aliases": ["sloth"] }] },
         { "prompt": "Which Dutch museum is devoted to the work of Vincent van Gogh?", "category": "The Netherlands", "answers": [{ "text": "The Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
@@ -112,11 +112,11 @@
         { "prompt": "How many strings does a standard violin have?", "difficulty": "easy", "answers": [{ "text": "Four" }] },
         { "prompt": "Which planet is known for its prominent ring system?", "difficulty": "easy", "answers": [{ "text": "Saturn" }] },
         { "prompt": "What is the world's largest desert overall, including cold deserts?", "difficulty": "easy", "answers": [{ "text": "Antarctica" }] },
-        { "prompt": "Which country was formerly known as Persia?", "difficulty": "hard", "answers": [{ "text": "Iran" }] },
+        { "prompt": "Which Polish-born writer wrote Heart of Darkness in English?", "difficulty": "hard", "answers": [{ "text": "Joseph Conrad", "aliases": ["Conrad"] }] },
         { "prompt": "How many bones are in the human hand?", "difficulty": "hard", "answers": [{ "text": "27" }] },
         { "prompt": "Which battle of 1815 ended Napoleon's rule?", "difficulty": "hard", "answers": [{ "text": "Waterloo", "aliases": ["The Battle of Waterloo"] }] },
-        { "prompt": "Which band recorded the album Abbey Road?", "difficulty": "hard", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
-        { "prompt": "What is the only mammal capable of true flight?", "difficulty": "hard", "answers": [{ "text": "The bat", "aliases": ["Bat", "Bats"] }] }
+        { "prompt": "Which large freshwater lake in Africa has nearly dried up?", "difficulty": "hard", "answers": [{ "text": "Lake Chad", "aliases": ["Chad"] }] },
+        { "prompt": "Which people sacked Rome in 455 and gave their name to senseless destruction?", "difficulty": "hard", "answers": [{ "text": "The Vandals", "aliases": ["Vandals"] }] }
       ]
     },
     {

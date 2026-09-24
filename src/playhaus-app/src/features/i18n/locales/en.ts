@@ -126,26 +126,13 @@ export const en = {
     // The join card, which is not any one game's.
     join: {
         label: 'JOIN A GAME',
-        // The same card, split in two on a wide screen.
-        labelWide: 'TYPE THE CODE',
         paste: 'Paste',
         pasteLabel: 'Paste code',
         codeLabel: 'Join code',
         // The chip beside the boxes, as soon as the first character is in.
         gameHint: 'Joining {{game}}',
         // A whole code that opens nothing.
-        rejected: "That isn't a code we can open. Check it and try again.",
-        scanRowTitle: 'Or scan their screen',
-        scanRowHint: 'Joins instantly',
-        scanAction: 'Scan instead',
-        scanCopy: "Point your phone at the host's code",
-        scanTitle: 'Scan to join',
-        scanLabel: 'Scan a QR code to join a game',
-        scanCancel: 'Cancel',
-        permissionAsk: 'The camera is needed to read the host’s code. Nothing is recorded or sent anywhere.',
-        permissionGrant: 'Allow the camera',
-        // No button under this one: the answer has to be changed in settings.
-        permissionDenied: 'The camera is blocked for this app. Allow it in your settings, or type the code instead.'
+        rejected: "That isn't a code we can open. Check it and try again."
     },
     languages: {
         nl: { description: 'Games in Dutch' },
@@ -288,9 +275,6 @@ export const en = {
         shareLinkLabel: 'Share the link to this lobby',
         linkCopied: 'Link copied',
         shareFailed: 'Sharing did not work',
-        qrLabel: 'Show a QR code to join this lobby',
-        qrTitle: 'Scan to join',
-        qrCopy: 'Hold another phone up to this and it lands straight in the lobby.',
         players: 'Players',
         playerCount: '{{taken}} of {{max}}',
         minPlayers: 'Min {{min}}',
@@ -692,6 +676,10 @@ export const en = {
                 message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.',
                 messageUrl: 'On the tv, open {{url}} and type {{code}}. A laptop on HDMI, a cast tab or screen mirroring all work too — everybody still plays from their own phone.'
             },
+            cast: {
+                action: 'Cast to TV',
+                connected: 'Casting — tap to change'
+            },
             running: {
                 quizTitle: 'You are already playing',
                 lobbyTitle: 'You still have a room open',
@@ -721,7 +709,7 @@ export const en = {
         },
         // The shared screen everybody at the table looks at. It only ever watches, so nothing on it is pressable.
         table: {
-            // The laptop's way in, since a screen cannot scan the QR off its own display.
+            // The laptop's way in: the code is on the host's phone, not on this screen.
             door: {
                 title: 'Put the quiz on a screen',
                 message: 'Type the code the host has on their phone. This screen only watches — everybody still plays from their own phone.',
@@ -767,7 +755,7 @@ export const en = {
             closed: 'The host closed the room, so this screen is done.',
             dealt: 'The quiz has started.',
             joinAt: 'Join with',
-            scanHint: 'Scan this with your phone to join.',
+            typeHint: 'Type this code on your phone to join.',
             waitingForHost: 'Waiting for the host to start the quiz…',
             needPlayers: 'Waiting for {{needed}} more before the quiz can start.',
             scores: 'Scores',

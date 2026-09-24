@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many weeks are there in a year?", "difficulty": "easy", "answers": [{ "text": "Fifty-two", "aliases": ["52"] }] },
-        { "prompt": "Which frozen dessert do you eat from a cone on a hot day?", "difficulty": "easy", "answers": [{ "text": "Ice cream" }] },
-        { "prompt": "Which pet is often kept swimming in a bowl?", "difficulty": "easy", "answers": [{ "text": "A goldfish", "aliases": ["goldfish"] }] },
-        { "prompt": "How many hours are there in two days?", "difficulty": "easy", "answers": [{ "text": "Forty-eight", "aliases": ["48"] }] },
-        { "prompt": "What do you call the hair that grows on a man's chin?", "difficulty": "easy", "answers": [{ "text": "A beard", "aliases": ["beard"] }] },
+        { "prompt": "Which country has Ankara as its capital?", "difficulty": "easy", "answers": [{ "text": "Turkey" }] },
+        { "prompt": "Who was the mother of King Willem-Alexander?", "difficulty": "easy", "answers": [{ "text": "Beatrix", "aliases": ["Queen Beatrix"] }] },
+        { "prompt": "How many stripes does the flag of the United States have?", "difficulty": "easy", "answers": [{ "text": "Thirteen", "aliases": ["13"] }] },
+        { "prompt": "Which element has the symbol U?", "difficulty": "easy", "answers": [{ "text": "Uranium" }] },
+        { "prompt": "What is the belt of ice and rock between Mars and Jupiter called?", "difficulty": "easy", "answers": [{ "text": "The asteroid belt", "aliases": ["Asteroid belt"] }] },
         { "prompt": "What is the capital of Tanzania?", "difficulty": "hard", "answers": [{ "text": "Dodoma" }] },
         { "prompt": "Which Chilean poet won the Nobel Prize for literature in 1971?", "difficulty": "hard", "answers": [{ "text": "Pablo Neruda", "aliases": ["Neruda"] }] },
         { "prompt": "Which is the smallest mammal in the world by length?", "difficulty": "hard", "answers": [{ "text": "The Etruscan shrew", "aliases": ["Etruscan shrew"] }] },

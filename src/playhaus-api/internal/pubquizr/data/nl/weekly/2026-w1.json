@@ -108,8 +108,8 @@
       "round": 6,
       "questions": [
         { "prompt": "Hoeveel dagen telt een schrikkeljaar?", "difficulty": "easy", "answers": [{ "text": "Driehonderdzesenzestig", "aliases": ["366"] }] },
-        { "prompt": "Welk dier wordt traditioneel de beste vriend van de mens genoemd?", "difficulty": "easy", "answers": [{ "text": "De hond", "aliases": ["hond"] }] },
-        { "prompt": "Wat maken bijen in hun korf?", "difficulty": "easy", "answers": [{ "text": "Honing" }] },
+        { "prompt": "Welke kunststroming hoort bij Piet Mondriaan en zijn vlakken en lijnen?", "difficulty": "easy", "answers": [{ "text": "De Stijl" }] },
+        { "prompt": "Hoe heet de buis die eten van de mond naar de maag brengt?", "difficulty": "easy", "answers": [{ "text": "De slokdarm", "aliases": ["Slokdarm"] }] },
         { "prompt": "Welke sport wordt gespeeld tijdens de Super Bowl?", "difficulty": "easy", "answers": [{ "text": "American football", "aliases": ["Amerikaans voetbal"] }] },
         { "prompt": "Hoe heet het elfje in Peter Pan?", "difficulty": "easy", "answers": [{ "text": "Tinkelbel", "aliases": ["Tinker Bell", "Tinkerbell"] }] },
         { "prompt": "Wat is de munteenheid van Polen?", "difficulty": "hard", "answers": [{ "text": "De zloty", "aliases": ["zloty"] }] },

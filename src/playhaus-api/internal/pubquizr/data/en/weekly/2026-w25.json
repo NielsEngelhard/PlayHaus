@@ -16,11 +16,11 @@
         { "prompt": "Which river flows past Rotterdam to the sea?", "category": "The Netherlands", "answers": [{ "text": "The Meuse", "aliases": ["Maas", "Meuse"] }] },
         { "prompt": "What does the Latin word aqua mean?", "category": "Language", "answers": [{ "text": "Water" }] },
         { "prompt": "In which New York museum hangs Van Gogh's The Starry Night?", "category": "Art", "answers": [{ "text": "Museum of Modern Art", "aliases": ["MoMA"] }] },
-        { "prompt": "Which organ pumps blood around the body?", "category": "Science", "answers": [{ "text": "The heart", "aliases": ["heart"] }] },
+        { "prompt": "Which chemical element has the symbol H?", "category": "Science", "answers": [{ "text": "Hydrogen" }] },
         { "prompt": "What is the highest mountain in Africa?", "category": "Geography", "answers": [{ "text": "Mount Kilimanjaro", "aliases": ["Kilimanjaro"] }] },
         { "prompt": "Which Egyptian queen had an affair with Julius Caesar?", "category": "History", "answers": [{ "text": "Cleopatra" }] },
         { "prompt": "Which spice is the most expensive in the world per gram?", "category": "Food", "answers": [{ "text": "Saffron" }] },
-        { "prompt": "How many years apart are the summer Olympic Games held?", "category": "Sport", "answers": [{ "text": "Four years", "aliases": ["4"] }] },
+        { "prompt": "How often is the football World Cup held?", "category": "Sport", "answers": [{ "text": "Every four years", "aliases": ["Four years"] }] },
         { "prompt": "How many hearts does an octopus have?", "category": "Nature", "answers": [{ "text": "Three", "aliases": ["3"] }] },
         { "prompt": "Which king has been on the Dutch throne since 2013?", "category": "The Netherlands", "answers": [{ "text": "Willem-Alexander", "aliases": ["Willem Alexander"] }] },
         { "prompt": "What is the hardest natural material on earth?", "category": "Science", "answers": [{ "text": "Diamond" }] },
@@ -113,10 +113,10 @@
         { "prompt": "What is the hardest natural substance on Earth?", "difficulty": "easy", "answers": [{ "text": "Diamond" }] },
         { "prompt": "Which metal is liquid at room temperature?", "difficulty": "easy", "answers": [{ "text": "Mercury" }] },
         { "prompt": "Which mountain range separates Europe from Asia?", "difficulty": "hard", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] },
-        { "prompt": "Who painted The Night Watch?", "difficulty": "hard", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "What is the hardest naturally occurring substance?", "difficulty": "hard", "answers": [{ "text": "Diamond" }] },
+        { "prompt": "What is the fluid in the inner ear that carries balance called?", "difficulty": "hard", "answers": [{ "text": "The endolymph", "aliases": ["Endolymph"] }] },
+        { "prompt": "Which painting by Claude Monet gave impressionism its name?", "difficulty": "hard", "answers": [{ "text": "Impression, soleil levant", "aliases": ["Impression, Sunrise"] }] },
         { "prompt": "Which treaty of 1648 ended the Thirty Years' War?", "difficulty": "hard", "answers": [{ "text": "The Peace of Westphalia", "aliases": ["Peace of Westphalia", "Westphalia"] }] },
-        { "prompt": "Which composer went deaf and still wrote his ninth symphony?", "difficulty": "hard", "answers": [{ "text": "Beethoven", "aliases": ["Ludwig van Beethoven"] }] }
+        { "prompt": "Which is the longest river in Africa after the Nile?", "difficulty": "hard", "answers": [{ "text": "The Congo", "aliases": ["Congo"] }] }
       ]
     },
     {

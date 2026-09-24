@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which farm bird lays eggs and says quack?", "difficulty": "easy", "answers": [{ "text": "The duck", "aliases": ["duck"] }] },
-        { "prompt": "Which day of the week comes before Saturday?", "difficulty": "easy", "answers": [{ "text": "Friday" }] },
-        { "prompt": "What do you call a large area covered in trees?", "difficulty": "easy", "answers": [{ "text": "A forest", "aliases": ["forest", "wood"] }] },
-        { "prompt": "Which sweet food is made from cocoa beans?", "difficulty": "easy", "answers": [{ "text": "Chocolate" }] },
-        { "prompt": "What do you call the person in charge of a school?", "difficulty": "easy", "answers": [{ "text": "The headteacher", "aliases": ["headteacher", "head", "principal"] }] },
+        { "prompt": "Which country has Hanoi as its capital?", "difficulty": "easy", "answers": [{ "text": "Vietnam" }] },
+        { "prompt": "What is the currency of Hungary?", "difficulty": "easy", "answers": [{ "text": "The forint", "aliases": ["Forint"] }] },
+        { "prompt": "Which black wooden instrument has a mouthpiece with a single reed?", "difficulty": "easy", "answers": [{ "text": "The clarinet", "aliases": ["Clarinet"] }] },
+        { "prompt": "Which Dutch footballer was named European Footballer of the Year three times in the seventies?", "difficulty": "easy", "answers": [{ "text": "Johan Cruyff", "aliases": ["Cruyff"] }] },
+        { "prompt": "How many cards are in a deck without jokers?", "difficulty": "easy", "answers": [{ "text": "Fifty-two", "aliases": ["52"] }] },
         { "prompt": "What is the capital of Serbia?", "difficulty": "hard", "answers": [{ "text": "Belgrade" }] },
         { "prompt": "Which German author wrote All Quiet on the Western Front?", "difficulty": "hard", "answers": [{ "text": "Erich Maria Remarque", "aliases": ["Remarque"] }] },
         { "prompt": "Which is the largest species of jellyfish in the world?", "difficulty": "hard", "answers": [{ "text": "The lion's mane jellyfish", "aliases": ["lion's mane"] }] },

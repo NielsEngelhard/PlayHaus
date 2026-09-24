@@ -23,7 +23,7 @@
         { "prompt": "Hoeveel tanden en kiezen heeft een volwassene met verstandskiezen?", "category": "Tanden", "answers": [{ "text": "Tweeendertig", "aliases": ["32"] }] },
         { "prompt": "Welk gekleurde deel van het oog regelt de grootte van de pupil?", "category": "Zintuigen", "answers": [{ "text": "De iris", "aliases": ["iris", "regenboogvlies"] }] },
         { "prompt": "Hoeveel chromosomen heeft een menselijke lichaamscel?", "category": "Cellen", "answers": [{ "text": "Zesenveertig", "aliases": ["46"] }] },
-        { "prompt": "Hoeveel holtes heeft het menselijk hart?", "category": "Bloed", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "Hoe heten de cellen in het bloed die een wond laten stoppen met bloeden?", "category": "Bloed", "answers": [{ "text": "De bloedplaatjes", "aliases": ["Bloedplaatjes"] }] },
         { "prompt": "Hoe heet de zenuwstreng die door de wervelkolom loopt?", "category": "Zenuwstelsel", "answers": [{ "text": "Het ruggenmerg", "aliases": ["ruggenmerg"] }] },
         { "prompt": "Welke klier in de hals regelt de stofwisseling?", "category": "Klieren", "answers": [{ "text": "De schildklier", "aliases": ["schildklier"] }] },
         { "prompt": "Welk orgaan maakt insuline aan?", "category": "Spijsvertering", "answers": [{ "text": "De alvleesklier", "aliases": ["alvleesklier", "pancreas"] }] }

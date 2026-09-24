@@ -69,9 +69,9 @@ Lint and TypeScript are the only gates on that side.
 `npx tsc --noEmit` does not currently come back clean, and most of the noise is not real. The
 typed-route union lives in `.expo/types`, which only `expo start` regenerates, so on a cold
 checkout every `router.push('/games/quizzer/one-device')` is reported as not assignable. Run the
-dev server once before trusting those. A handful of genuine errors do sit underneath
-(`ImageSource | undefined` in the game index pages, an implicit `any` in `ScanToJoin`) — they
-predate this file, so treat a *new* error as yours and an existing one as inherited.
+dev server once before trusting those. A genuine error does sit underneath
+(`ImageSource | undefined` in the game index pages) — it predates this file, so treat a *new*
+error as yours and an existing one as inherited.
 
 ## API architecture
 
@@ -155,7 +155,7 @@ longer matches `words.go` or the files on disk.
 round at a time, and never touches a database. `specs.go` holds one strict tool schema per round;
 `prompt.go` the system and per-round prompts; `corpus.go` the dedupe that reads the shipped files
 back through `pubquizr.ShippedFiles()`; `writer.go` an encoder that reproduces the corpus's
-one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 99 files).
+one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 172 files).
 `pubquizr.QuestionsIn` is the single definition of the exact per-round counts,
 `docs/WEEKLY_QUIZ_FALLBACK.md` is the runbook for doing a week by hand when the schedule misses
 one, and `docs/QUIZZER_QUIZ_PROMPT.md` now covers only hand-written **official** quizzes. `nl` is generated

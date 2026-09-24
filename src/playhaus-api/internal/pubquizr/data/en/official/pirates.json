@@ -108,9 +108,9 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is the classic pirate flag?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "Which pirate is played by Johnny Depp in the Pirates of the Caribbean films?", "difficulty": "easy", "answers": [{ "text": "Jack Sparrow" }] },
         { "prompt": "Which sea gives the Pirates of the Caribbean films their name?", "difficulty": "easy", "answers": [{ "text": "The Caribbean", "aliases": ["Caribbean", "The Caribbean Sea"] }] },
-        { "prompt": "Which precious metal did pirates want above all others?", "difficulty": "easy", "answers": [{ "text": "Gold" }] },
+        { "prompt": "What is the set of rules in which a crew fixed the sharing of loot and punishments called?", "difficulty": "easy", "answers": [{ "text": "The pirate code", "aliases": ["Pirate code"] }] },
         { "prompt": "Which greeting do storybook pirates shout when they hail another ship?", "difficulty": "easy", "answers": [{ "text": "Ahoy" }] },
         { "prompt": "In Peter Pan, what does the crocodile swallow that makes it tick?", "difficulty": "easy", "answers": [{ "text": "A clock", "aliases": ["Clock", "Alarm clock", "An alarm clock"] }] },
         { "prompt": "Which strait between Malaysia and Indonesia is the busiest waterway for modern piracy?", "difficulty": "hard", "answers": [{ "text": "The Strait of Malacca", "aliases": ["Strait of Malacca", "Malacca"] }] },

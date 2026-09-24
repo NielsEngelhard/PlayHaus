@@ -6,13 +6,13 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "Hoeveel seconden zitten er in een minuut?", "category": "Wetenschap", "answers": [{ "text": "Zestig", "aliases": ["60"] }] },
+        { "prompt": "Welk element heeft het symbool Mg?", "category": "Wetenschap", "answers": [{ "text": "Magnesium" }] },
         { "prompt": "Welke Nederlandse stad heeft het Mauritshuis?", "category": "Nederland", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] },
-        { "prompt": "Welk dier draagt zijn huis op zijn rug?", "category": "Natuur", "answers": [{ "text": "De slak", "aliases": ["Slak"] }] },
+        { "prompt": "Van welke boom staat het blad op de Canadese vlag?", "category": "Natuur", "answers": [{ "text": "De esdoorn", "aliases": ["Esdoorn"] }] },
         { "prompt": "Hoeveel spelers heeft een basketbalteam op het veld?", "category": "Sport", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
-        { "prompt": "Welk land ligt tussen Frankrijk en Nederland?", "category": "Aardrijkskunde", "answers": [{ "text": "Belgie" }] },
-        { "prompt": "Welke film gaat over een jonge tovenaar op Zweinstein?", "category": "Film", "answers": [{ "text": "Harry Potter" }] },
-        { "prompt": "Welk instrument bespeel je met een strijkstok en houd je onder je kin?", "category": "Muziek", "answers": [{ "text": "De viool", "aliases": ["Viool"] }] },
+        { "prompt": "Welk continent heeft geen vaste bevolking?", "category": "Aardrijkskunde", "answers": [{ "text": "Antarctica" }] },
+        { "prompt": "In welke film zegt een personage dat hij een aanbod doet dat je niet kunt afwijzen?", "category": "Film", "answers": [{ "text": "The Godfather", "aliases": ["De Peetvader"] }] },
+        { "prompt": "Welke componist werd op latere leeftijd doof?", "category": "Muziek", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] },
         { "prompt": "Welke muur verdeelde Berlijn tot 1989?", "category": "Geschiedenis", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
         { "prompt": "Wat is het tegenovergestelde van een synoniem?", "category": "Taal", "answers": [{ "text": "Een antoniem", "aliases": ["Antoniem"] }] },
         { "prompt": "Welke Nederlandse schilder maakte De Aardappeleters?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
@@ -23,7 +23,7 @@
         { "prompt": "Welke Nederlandse voetballer kreeg de bijnaam de Zwarte Tulp?", "category": "Sport", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
         { "prompt": "Welk Romeins bouwwerk bracht water over grote afstand naar de stad?", "category": "Geschiedenis", "answers": [{ "text": "Het aquaduct", "aliases": ["Aquaduct"] }] },
         { "prompt": "Welke Italiaanse rijstschotel wordt langzaam geroerd met bouillon erbij?", "category": "Eten", "answers": [{ "text": "Risotto" }] },
-        { "prompt": "Welke kracht houdt ons op de grond?", "category": "Wetenschap", "answers": [{ "text": "De zwaartekracht", "aliases": ["Zwaartekracht"] }] },
+        { "prompt": "Hoe heet het ruimtestation waar sinds 2000 onafgebroken mensen wonen?", "category": "Wetenschap", "answers": [{ "text": "Het ISS", "aliases": ["Internationaal ruimtestation"] }] },
         { "prompt": "Hoe heet de dijk die het IJsselmeer van de Waddenzee scheidt?", "category": "Nederland", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Welke Zweedse popgroep zong Dancing Queen?", "category": "Muziek", "answers": [{ "text": "ABBA" }] }
       ]
@@ -107,27 +107,27 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft gras?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
-        { "prompt": "Hoeveel vingers heeft een mens aan twee handen?", "difficulty": "easy", "answers": [{ "text": "Tien", "aliases": ["10"] }] },
-        { "prompt": "Welk dier geeft ons wol?", "difficulty": "easy", "answers": [{ "text": "Het schaap", "aliases": ["Schaap"] }] },
-        { "prompt": "In welk land staat de Eiffeltoren?", "difficulty": "easy", "answers": [{ "text": "Frankrijk" }] },
-        { "prompt": "In welke kamer van het huis kook je?", "difficulty": "easy", "answers": [{ "text": "De keuken", "aliases": ["Keuken"] }] },
-        { "prompt": "Welke wetenschapper formuleerde de relativiteitstheorie?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Hoeveel ronden duurt een profkamp om een wereldtitel bij het boksen maximaal?", "difficulty": "easy", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
+        { "prompt": "In welke stad staat het Vrijheidsbeeld?", "difficulty": "easy", "answers": [{ "text": "New York" }] },
+        { "prompt": "In welk land staat de Christusfiguur boven de stad Rio de Janeiro?", "difficulty": "easy", "answers": [{ "text": "Brazilie" }] },
+        { "prompt": "Welk gebergte ligt tussen Chili en Argentinie?", "difficulty": "easy", "answers": [{ "text": "De Andes", "aliases": ["Andes"] }] },
+        { "prompt": "Welke twee landen delen het eiland Hispaniola?", "difficulty": "easy", "answers": [{ "text": "Haiti en de Dominicaanse Republiek" }] },
+        { "prompt": "Welke Romeinse keizer liet een muur bouwen nog noordelijker dan die van Hadrianus?", "difficulty": "hard", "answers": [{ "text": "Antoninus Pius" }] },
         { "prompt": "Hoe heet de zeestraat tussen Denemarken en Zweden?", "difficulty": "hard", "answers": [{ "text": "De Sont", "aliases": ["Sont", "Oresund"] }] },
         { "prompt": "Welke Nederlandse ontdekkingsreiziger overwinterde op Nova Zembla?", "difficulty": "hard", "answers": [{ "text": "Willem Barentsz", "aliases": ["Barentsz", "Barents"] }] },
-        { "prompt": "Welk deel van de plant neemt water op uit de grond?", "difficulty": "hard", "answers": [{ "text": "De wortels", "aliases": ["Wortels", "Wortelharen"] }] },
+        { "prompt": "Welke rivier scheidt Texas van Mexico?", "difficulty": "hard", "answers": [{ "text": "De Rio Grande", "aliases": ["Rio Grande"] }] },
         { "prompt": "Welke Italiaanse dichter schreef De Goddelijke Komedie?", "difficulty": "hard", "answers": [{ "text": "Dante", "aliases": ["Dante Alighieri"] }] }
       ]
     },
     {
       "round": 7,
       "questions": [
-        { "prompt": "Hoe heet de hoofdstad van Oostenrijk?", "answers": [{ "text": "Wenen" }] },
-        { "prompt": "Welk dier is het grootste landdier ter wereld?", "answers": [{ "text": "De Afrikaanse olifant", "aliases": ["Olifant", "Afrikaanse olifant"] }] },
-        { "prompt": "Welke wetenschapper stelde de evolutietheorie op?", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Welk metaal geleidt elektriciteit beter dan alle andere metalen?", "answers": [{ "text": "Zilver" }] },
+        { "prompt": "Welke wetenschapper gaf zijn naam aan de wetten van de erfelijkheid bij erwten?", "answers": [{ "text": "Gregor Mendel", "aliases": ["Mendel"] }] },
+        { "prompt": "Hoe heet het verschijnsel waarbij een vloeistof tegen de zwaartekracht in een dunne buis omhoog kruipt?", "answers": [{ "text": "Capillaire werking", "aliases": ["Haarvatwerking"] }] },
         { "prompt": "Welk edelgas laat reclameborden rood oplichten?", "answers": [{ "text": "Neon" }] },
-        { "prompt": "Welke rivier stroomt door Rotterdam naar zee?", "answers": [{ "text": "De Nieuwe Maas", "aliases": ["Nieuwe Maas", "De Maas", "Maas"] }] },
-        { "prompt": "Wie schilderde De Sterrennacht?", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
+        { "prompt": "Welk gas werd naar de zon genoemd voordat het op aarde werd gevonden?", "answers": [{ "text": "Helium" }] },
+        { "prompt": "Hoe heet de kleinste botjes van het menselijk lichaam, die in het oor zitten?", "answers": [{ "text": "De gehoorbeentjes", "aliases": ["Gehoorbeentjes"] }] },
         { "prompt": "Welk woord gebruiken zeelieden voor de linkerkant van een schip?", "answers": [{ "text": "Bakboord" }] }
       ]
     }

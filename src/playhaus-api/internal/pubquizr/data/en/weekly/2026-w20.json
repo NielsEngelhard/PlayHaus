@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which drink do you get by squeezing oranges?", "difficulty": "easy", "answers": [{ "text": "Orange juice", "aliases": ["juice"] }] },
-        { "prompt": "What do you call the person who cooks in a restaurant?", "difficulty": "easy", "answers": [{ "text": "A chef", "aliases": ["chef", "cook"] }] },
-        { "prompt": "Which sour yellow fruit is squeezed to make lemonade?", "difficulty": "easy", "answers": [{ "text": "The lemon", "aliases": ["lemon"] }] },
-        { "prompt": "What do you call a building full of shops under one roof?", "difficulty": "easy", "answers": [{ "text": "A shopping centre", "aliases": ["shopping centre", "mall"] }] },
-        { "prompt": "How many minutes are there in a quarter of an hour?", "difficulty": "easy", "answers": [{ "text": "Fifteen", "aliases": ["15"] }] },
+        { "prompt": "Which country has Bangkok as its capital?", "difficulty": "easy", "answers": [{ "text": "Thailand" }] },
+        { "prompt": "What is the currency of Vietnam?", "difficulty": "easy", "answers": [{ "text": "The dong", "aliases": ["Dong"] }] },
+        { "prompt": "What do you call the person who leads an orchestra?", "difficulty": "easy", "answers": [{ "text": "The conductor", "aliases": ["Conductor"] }] },
+        { "prompt": "Which Dutch province has Zwolle as its capital?", "difficulty": "easy", "answers": [{ "text": "Overijssel" }] },
+        { "prompt": "How many pips does a die have in total?", "difficulty": "easy", "answers": [{ "text": "Twenty-one", "aliases": ["21"] }] },
         { "prompt": "What is the capital of Cyprus?", "difficulty": "hard", "answers": [{ "text": "Nicosia" }] },
         { "prompt": "Which English poet wrote Ozymandias?", "difficulty": "hard", "answers": [{ "text": "Percy Bysshe Shelley", "aliases": ["Shelley"] }] },
         { "prompt": "Which is the largest salt flat in the world?", "difficulty": "hard", "answers": [{ "text": "The Salar de Uyuni", "aliases": ["Uyuni", "Salar de Uyuni"] }] },

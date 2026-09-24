@@ -7,16 +7,16 @@
       "round": 1,
       "questions": [
         { "prompt": "What is the capital of Denmark?", "category": "Geography", "answers": [{ "text": "Copenhagen" }] },
-        { "prompt": "Which gas do people need in order to breathe?", "category": "Science", "answers": [{ "text": "Oxygen", "aliases": ["O2"] }] },
+        { "prompt": "Which chemical element has the symbol Ca?", "category": "Science", "answers": [{ "text": "Calcium" }] },
         { "prompt": "Which empire was ruled from Rome and fell in the west in 476?", "category": "History", "answers": [{ "text": "The Roman Empire", "aliases": ["Roman Empire"] }] },
-        { "prompt": "How many players does a football team have on the pitch?", "category": "Sport", "answers": [{ "text": "Eleven", "aliases": ["11"] }] },
+        { "prompt": "In which sport do you use a puck?", "category": "Sport", "answers": [{ "text": "Ice hockey" }] },
         { "prompt": "Which Irish band released the album The Joshua Tree?", "category": "Music", "answers": [{ "text": "U2" }] },
         { "prompt": "Which director made the film Schindler's List?", "category": "Film", "answers": [{ "text": "Steven Spielberg", "aliases": ["Spielberg"] }] },
-        { "prompt": "Which animal is the largest land animal in the world?", "category": "Nature", "answers": [{ "text": "The elephant", "aliases": ["African elephant"] }] },
+        { "prompt": "What do you call a large group of birds in the air?", "category": "Nature", "answers": [{ "text": "A flock", "aliases": ["Flock"] }] },
         { "prompt": "Which Dutch city is the southernmost in the country?", "category": "The Netherlands", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "Which language is the official language of Egypt?", "category": "Language", "answers": [{ "text": "Arabic" }] },
         { "prompt": "Which French sculptor made The Thinker?", "category": "Art", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
-        { "prompt": "How many faces does a cube have?", "category": "Science", "answers": [{ "text": "Six", "aliases": ["6"] }] },
+        { "prompt": "How many moons does Mars have?", "category": "Science", "answers": [{ "text": "Two", "aliases": ["2"] }] },
         { "prompt": "Which continent is the smallest?", "category": "Geography", "answers": [{ "text": "Oceania", "aliases": ["Australia"] }] },
         { "prompt": "Which British prime minister led the country through the Second World War?", "category": "History", "answers": [{ "text": "Winston Churchill", "aliases": ["Churchill"] }] },
         { "prompt": "Which Japanese dish is rice with raw fish?", "category": "Food", "answers": [{ "text": "Sushi" }] },
@@ -113,10 +113,10 @@
         { "prompt": "What is the fastest bird in the world, in a dive?", "difficulty": "easy", "answers": [{ "text": "The peregrine falcon", "aliases": ["Peregrine falcon"] }] },
         { "prompt": "How many players are on a rugby league team on the field?", "difficulty": "easy", "answers": [{ "text": "Thirteen" }] },
         { "prompt": "Which country has the longest coastline in the world?", "difficulty": "hard", "answers": [{ "text": "Canada" }] },
-        { "prompt": "What is the name of the process plants use to make sugar from sunlight?", "difficulty": "hard", "answers": [{ "text": "Photosynthesis" }] },
+        { "prompt": "Which Italian painter worked in sharp light and dark and fled after a killing?", "difficulty": "hard", "answers": [{ "text": "Caravaggio" }] },
         { "prompt": "Which wall did the Roman emperor Hadrian build across northern Britain?", "difficulty": "hard", "answers": [{ "text": "Hadrian's Wall", "aliases": ["Hadrians Wall"] }] },
         { "prompt": "Which is the only letter that does not appear in any US state name?", "difficulty": "hard", "answers": [{ "text": "Q" }] },
-        { "prompt": "Which Dutch football club did Johan Cruyff win three European Cups with?", "difficulty": "hard", "answers": [{ "text": "Ajax" }] }
+        { "prompt": "Which capital city lies highest above sea level of all capitals?", "difficulty": "hard", "answers": [{ "text": "La Paz" }] }
       ]
     },
     {

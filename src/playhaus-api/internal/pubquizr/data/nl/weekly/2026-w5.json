@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel dagen telt februari in een gewoon jaar?", "difficulty": "easy", "answers": [{ "text": "Achtentwintig", "aliases": ["28"] }] },
-        { "prompt": "Hoe noem je een jonge hond?", "difficulty": "easy", "answers": [{ "text": "Een puppy", "aliases": ["puppy", "pup"] }] },
-        { "prompt": "Welke vorm heeft vier even lange zijden en vier rechte hoeken?", "difficulty": "easy", "answers": [{ "text": "Een vierkant", "aliases": ["vierkant"] }] },
-        { "prompt": "Welk speelgoed gaat op en neer aan een touwtje?", "difficulty": "easy", "answers": [{ "text": "Een jojo", "aliases": ["jojo"] }] },
-        { "prompt": "Welke drank wordt gemaakt van geperste druiven?", "difficulty": "easy", "answers": [{ "text": "Wijn" }] },
+        { "prompt": "Wie schreef de kinderboeken over Pippi Langkous?", "difficulty": "easy", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
+        { "prompt": "Welk koffiebedrijf heeft een zeemeermin in zijn logo?", "difficulty": "easy", "answers": [{ "text": "Starbucks" }] },
+        { "prompt": "In welke stad speelt de serie Peaky Blinders?", "difficulty": "easy", "answers": [{ "text": "Birmingham" }] },
+        { "prompt": "Welke specerij geeft kerrie zijn gele kleur?", "difficulty": "easy", "answers": [{ "text": "Kurkuma", "aliases": ["Geelwortel"] }] },
+        { "prompt": "Welk land is de grootste eilandstaat ter wereld?", "difficulty": "easy", "answers": [{ "text": "Indonesie" }] },
         { "prompt": "Onder welke naam stond Thailand tot 1939 bekend?", "difficulty": "hard", "answers": [{ "text": "Siam" }] },
         { "prompt": "Wie schilderde De geboorte van Venus?", "difficulty": "hard", "answers": [{ "text": "Sandro Botticelli", "aliases": ["Botticelli"] }] },
         { "prompt": "Wat is de hoofdstad van Irak?", "difficulty": "hard", "answers": [{ "text": "Bagdad" }] },

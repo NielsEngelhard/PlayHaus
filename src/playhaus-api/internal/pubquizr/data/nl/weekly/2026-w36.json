@@ -10,12 +10,12 @@
         { "prompt": "Welke rivier stroomt door Rome?", "category": "Aardrijkskunde", "answers": [{ "text": "De Tiber", "aliases": ["Tiber"] }] },
         { "prompt": "Welke groente is de basis van zuurkool?", "category": "Eten", "answers": [{ "text": "Witte kool", "aliases": ["Kool"] }] },
         { "prompt": "Welke Nederlandse provincie heeft Middelburg als hoofdstad?", "category": "Nederland", "answers": [{ "text": "Zeeland" }] },
-        { "prompt": "Welk element heeft het symbool O?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof" }] },
+        { "prompt": "Welke natuurkundige bedacht de wetten van de beweging na het zien van een vallende appel?", "category": "Wetenschap", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
         { "prompt": "Hoeveel spelers staan er bij volleybal per team in het veld?", "category": "Sport", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
         { "prompt": "Welke film gaat over een speelgoedcowboy die Woody heet?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
         { "prompt": "Wie componeerde Eine kleine Nachtmusik?", "category": "Muziek", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
         { "prompt": "In welk jaar eindigde de Tweede Wereldoorlog in Europa?", "category": "Geschiedenis", "answers": [{ "text": "1945" }] },
-        { "prompt": "Welk woord is het tegenovergestelde van breedte?", "category": "Taal", "answers": [{ "text": "Lengte" }] },
+        { "prompt": "Wat betekent het Latijnse woord terra?", "category": "Taal", "answers": [{ "text": "Aarde", "aliases": ["Land"] }] },
         { "prompt": "Welk bouwwerk in Parijs herbergt de Mona Lisa?", "category": "Kunst", "answers": [{ "text": "Het Louvre", "aliases": ["Louvre"] }] },
         { "prompt": "Welk apparaat zet geluid om in een elektrisch signaal?", "category": "Techniek", "answers": [{ "text": "De microfoon", "aliases": ["Microfoon"] }] },
         { "prompt": "Welke zee ligt tussen Italie en Kroatie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Adriatische Zee", "aliases": ["Adriatische Zee", "Adriatische zee"] }] },
@@ -23,7 +23,7 @@
         { "prompt": "Welke Nederlandse voetbalclub speelt in de Johan Cruijff Arena?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
         { "prompt": "Welke keizer stak volgens de overlevering Rome in brand?", "category": "Geschiedenis", "answers": [{ "text": "Nero" }] },
         { "prompt": "Welke saus maak je van basilicum, pijnboompitten en olijfolie?", "category": "Eten", "answers": [{ "text": "Pesto" }] },
-        { "prompt": "Hoeveel graden Celsius is het kookpunt van water op zeeniveau?", "category": "Wetenschap", "answers": [{ "text": "Honderd", "aliases": ["100"] }] },
+        { "prompt": "Welke planeet ligt tussen de aarde en Jupiter?", "category": "Wetenschap", "answers": [{ "text": "Mars" }] },
         { "prompt": "Welke Nederlandse stad staat bekend om de Martinitoren?", "category": "Nederland", "answers": [{ "text": "Groningen" }] },
         { "prompt": "Welke band zong Bohemian Rhapsody?", "category": "Muziek", "answers": [{ "text": "Queen" }] }
       ]
@@ -107,12 +107,12 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft een banaan als hij rijp is?", "difficulty": "easy", "answers": [{ "text": "Geel" }] },
-        { "prompt": "Hoeveel maanden heeft een jaar?", "difficulty": "easy", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
-        { "prompt": "In welk land staat de scheve toren van Pisa?", "difficulty": "easy", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welk land heeft Riga als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Letland" }] },
+        { "prompt": "Hoe heet de dijk die Noord-Holland met Friesland verbindt?", "difficulty": "easy", "answers": [{ "text": "De Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "Hoeveel nullen staan er in een miljard?", "difficulty": "easy", "answers": [{ "text": "Negen", "aliases": ["9"] }] },
         { "prompt": "Welk dier wordt ook wel het schip van de woestijn genoemd?", "difficulty": "easy", "answers": [{ "text": "De kameel", "aliases": ["Kameel", "Dromedaris"] }] },
         { "prompt": "Welke sport speel je op Wimbledon?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
-        { "prompt": "Welke wiskundige constante begint met 3,14?", "difficulty": "hard", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Welke Nederlandse schilder maakte de Vrolijke drinker en veel lachende portretten?", "difficulty": "hard", "answers": [{ "text": "Frans Hals", "aliases": ["Hals"] }] },
         { "prompt": "Welke Nederlandse dichter schreef het gedicht Herinnering aan Holland met de regel over brede rivieren?", "difficulty": "hard", "answers": [{ "text": "Hendrik Marsman", "aliases": ["Marsman"] }] },
         { "prompt": "Hoe heet de grootste maan van Saturnus?", "difficulty": "hard", "answers": [{ "text": "Titan" }] },
         { "prompt": "Welk verdrag verdeelde in 1494 de nieuwe wereld tussen Spanje en Portugal?", "difficulty": "hard", "answers": [{ "text": "Het Verdrag van Tordesillas", "aliases": ["Verdrag van Tordesillas", "Tordesillas"] }] },
@@ -122,13 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Welk dier is het snelste landdier ter wereld?", "answers": [{ "text": "De jachtluipaard", "aliases": ["Jachtluipaard", "Cheeta", "Cheetah"] }] },
-        { "prompt": "Hoe heet de hoofdstad van Portugal?", "answers": [{ "text": "Lissabon" }] },
-        { "prompt": "Welke planeet staat het dichtst bij de zon?", "answers": [{ "text": "Mercurius" }] },
+        { "prompt": "Hoe heet de boom die het oudste bekende levende exemplaar ter wereld is?", "answers": [{ "text": "De grovepijn", "aliases": ["Bristlecone pine"] }] },
+        { "prompt": "Welke Nederlandse club won in 1970 als eerste de Europacup voor landskampioenen?", "answers": [{ "text": "Feyenoord" }] },
+        { "prompt": "Welke eenheid meet de radioactieve activiteit van een stof?", "answers": [{ "text": "De becquerel", "aliases": ["Becquerel"] }] },
         { "prompt": "Wie schreef het boek Oorlog en Vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
-        { "prompt": "Welk orgaan filtert het bloed en maakt urine?", "answers": [{ "text": "De nier", "aliases": ["Nier", "Nieren", "De nieren"] }] },
+        { "prompt": "Welk deeltje draagt de sterke kernkracht over?", "answers": [{ "text": "Het gluon", "aliases": ["Gluon"] }] },
         { "prompt": "Welke Nederlandse voetballer was in 1988 aanvoerder van het elftal dat Europees kampioen werd?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
-        { "prompt": "Welke stof geeft bladeren hun groene kleur?", "answers": [{ "text": "Bladgroen", "aliases": ["Chlorofyl"] }] }
+        { "prompt": "Welke Britse natuurkundige voorspelde het deeltje dat in 2012 bij Geneve werd aangetoond?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] }
       ]
     }
   ]

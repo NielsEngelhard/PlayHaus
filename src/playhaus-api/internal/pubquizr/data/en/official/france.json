@@ -11,7 +11,7 @@
         { "prompt": "Which river flows through the centre of Paris?", "category": "Rivers", "answers": [{ "text": "The Seine", "aliases": ["Seine"] }] },
         { "prompt": "What is the French national anthem called?", "category": "Symbols", "answers": [{ "text": "La Marseillaise", "aliases": ["Marseillaise"] }] },
         { "prompt": "Which iron tower is the symbol of Paris?", "category": "Landmarks", "answers": [{ "text": "The Eiffel Tower", "aliases": ["Eiffel Tower"] }] },
-        { "prompt": "Which three colours make up the French flag?", "category": "Symbols", "answers": [{ "text": "Blue, white and red", "aliases": ["Red, white and blue", "Blue white red"] }] },
+        { "prompt": "Which animal is France's sporting symbol and appears on the national teams' shirts?", "category": "Symbols", "answers": [{ "text": "The rooster", "aliases": ["Rooster"] }] },
         { "prompt": "In which Paris museum does the Mona Lisa hang?", "category": "Museums", "answers": [{ "text": "The Louvre", "aliases": ["Louvre", "Musee du Louvre"] }] },
         { "prompt": "What is the three-word motto of the French Republic?", "category": "Symbols", "answers": [{ "text": "Liberty, equality, fraternity", "aliases": ["Liberte, egalite, fraternite", "Freedom, equality, brotherhood"] }] },
         { "prompt": "Which mountain range forms the border between France and Spain?", "category": "Geography", "answers": [{ "text": "The Pyrenees", "aliases": ["Pyrenees"] }] },
@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the French word for yes?", "difficulty": "easy", "answers": [{ "text": "Oui" }] },
+        { "prompt": "Which French city is known for its mustard?", "difficulty": "easy", "answers": [{ "text": "Dijon" }] },
         { "prompt": "Which sport is played at Roland Garros in Paris?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
         { "prompt": "Which city is the largest port in France?", "difficulty": "easy", "answers": [{ "text": "Marseille", "aliases": ["Marseilles"] }] },
         { "prompt": "By which one-word nickname is the French flag known?", "difficulty": "easy", "answers": [{ "text": "The Tricolore", "aliases": ["Tricolore", "Tricolour"] }] },

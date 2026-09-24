@@ -6,11 +6,11 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "How many days does February have in an ordinary year?", "category": "Science", "answers": [{ "text": "Twenty-eight", "aliases": ["28"] }] },
+        { "prompt": "Which element has the symbol Cl?", "category": "Science", "answers": [{ "text": "Chlorine" }] },
         { "prompt": "Which Dutch city is nicknamed Lichtstad?", "category": "The Netherlands", "answers": [{ "text": "Eindhoven" }] },
-        { "prompt": "Which animal lives in a hive and makes honey?", "category": "Nature", "answers": [{ "text": "The bee", "aliases": ["Bee", "Honeybee"] }] },
-        { "prompt": "In which sport do you use a shuttlecock?", "category": "Sport", "answers": [{ "text": "Badminton" }] },
-        { "prompt": "Which river flows through Egypt?", "category": "Geography", "answers": [{ "text": "The Nile", "aliases": ["Nile"] }] },
+        { "prompt": "Which bird is taken as a symbol of wisdom?", "category": "Nature", "answers": [{ "text": "The owl", "aliases": ["Owl"] }] },
+        { "prompt": "What is the jersey for the best climber in the Tour de France called?", "category": "Sport", "answers": [{ "text": "The polka dot jersey", "aliases": ["Polka dot jersey"] }] },
+        { "prompt": "Which river forms much of the border between Germany and France?", "category": "Geography", "answers": [{ "text": "The Rhine", "aliases": ["Rhine"] }] },
         { "prompt": "Which film is about a little elephant with big ears who can fly?", "category": "Film", "answers": [{ "text": "Dumbo" }] },
         { "prompt": "Which instrument has pedals, a keyboard and pipes and often stands in a church?", "category": "Music", "answers": [{ "text": "The organ", "aliases": ["Organ", "Church organ"] }] },
         { "prompt": "In which year was the Netherlands liberated from the German occupation?", "category": "History", "answers": [{ "text": "1945" }] },
@@ -18,9 +18,9 @@
         { "prompt": "Which museum in Amsterdam holds the largest collection by a Dutch painter who died in 1890?", "category": "Art", "answers": [{ "text": "The Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
         { "prompt": "Which part of a computer stores data permanently?", "category": "Technology", "answers": [{ "text": "The hard disk", "aliases": ["Hard disk", "SSD", "Drive"] }] },
         { "prompt": "Which vegetable grows as a red bulb underground and is often eaten pickled?", "category": "Food", "answers": [{ "text": "Beetroot", "aliases": ["Beet", "Beets"] }] },
-        { "prompt": "Which country is shaped like a boot?", "category": "Geography", "answers": [{ "text": "Italy" }] },
-        { "prompt": "Which mammal can really fly?", "category": "Nature", "answers": [{ "text": "The bat", "aliases": ["Bat"] }] },
-        { "prompt": "How many points do you get for a win in a football league?", "category": "Sport", "answers": [{ "text": "Three", "aliases": ["3"] }] },
+        { "prompt": "What is the currency of India?", "category": "Geography", "answers": [{ "text": "The rupee", "aliases": ["Rupee", "Indian rupee"] }] },
+        { "prompt": "What do you call a male duck?", "category": "Nature", "answers": [{ "text": "A drake", "aliases": ["Drake"] }] },
+        { "prompt": "Which two countries jointly hosted the 2000 European football championship?", "category": "Sport", "answers": [{ "text": "The Netherlands and Belgium" }] },
         { "prompt": "Which Greek hero defeated the Minotaur?", "category": "History", "answers": [{ "text": "Theseus" }] },
         { "prompt": "Which Dutch city is known for its cheese market on Friday mornings?", "category": "The Netherlands", "answers": [{ "text": "Alkmaar" }] },
         { "prompt": "Which gas do we use to make balloons float?", "category": "Science", "answers": [{ "text": "Helium" }] },
@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which animal says meow?", "difficulty": "easy", "answers": [{ "text": "The cat", "aliases": ["Cat"] }] },
-        { "prompt": "How many hours are there in a day?", "difficulty": "easy", "answers": [{ "text": "Twenty-four", "aliases": ["24"] }] },
-        { "prompt": "What colour is snow?", "difficulty": "easy", "answers": [{ "text": "White" }] },
+        { "prompt": "In which country is the Taj Mahal?", "difficulty": "easy", "answers": [{ "text": "India" }] },
+        { "prompt": "In which country is Stonehenge?", "difficulty": "easy", "answers": [{ "text": "England", "aliases": ["Great Britain"] }] },
+        { "prompt": "In which city is the Sagrada Familia?", "difficulty": "easy", "answers": [{ "text": "Barcelona" }] },
         { "prompt": "In which city is the Colosseum?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
-        { "prompt": "Which fruit has a yellow skin and is curved?", "difficulty": "easy", "answers": [{ "text": "The banana", "aliases": ["Banana"] }] },
+        { "prompt": "In which city is the Blue Mosque?", "difficulty": "easy", "answers": [{ "text": "Istanbul" }] },
         { "prompt": "What is the largest sand desert in the world called?", "difficulty": "hard", "answers": [{ "text": "The Sahara", "aliases": ["Sahara"] }] },
         { "prompt": "Which Dutch architect designed the Rietveld Schroder House?", "difficulty": "hard", "answers": [{ "text": "Gerrit Rietveld", "aliases": ["Rietveld"] }] },
         { "prompt": "What is the law called that says action and reaction are equal?", "difficulty": "hard", "answers": [{ "text": "Newton's third law", "aliases": ["Third law of Newton", "Newton"] }] },
@@ -123,11 +123,11 @@
       "round": 7,
       "questions": [
         { "prompt": "Which sea borders the north coast of the Netherlands?", "answers": [{ "text": "The Wadden Sea", "aliases": ["Wadden Sea", "Waddenzee"] }] },
-        { "prompt": "Who was the Greek goddess of wisdom?", "answers": [{ "text": "Athena", "aliases": ["Athene"] }] },
+        { "prompt": "What is the cloud of icy objects at the outer edge of our solar system called?", "answers": [{ "text": "The Oort cloud", "aliases": ["Oort cloud"] }] },
         { "prompt": "Which metal does not rust because it forms an oxide layer, and is used for cans and foil?", "answers": [{ "text": "Aluminium", "aliases": ["Aluminum"] }] },
         { "prompt": "Which writer invented Pippi Longstocking?", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
-        { "prompt": "What is the largest ocean in the world called?", "answers": [{ "text": "The Pacific Ocean", "aliases": ["Pacific Ocean", "Pacific"] }] },
-        { "prompt": "Which Dutch graphic artist drew impossible staircases and waterways?", "answers": [{ "text": "Escher", "aliases": ["M.C. Escher", "Maurits Escher"] }] },
+        { "prompt": "Which three smaller particles make up a proton?", "answers": [{ "text": "Quarks", "aliases": ["Three quarks"] }] },
+        { "prompt": "What is the scale on which zero is absolute zero called?", "answers": [{ "text": "The Kelvin scale", "aliases": ["Kelvin"] }] },
         { "prompt": "Which organ stores bile?", "answers": [{ "text": "The gall bladder", "aliases": ["Gall bladder", "Gallbladder"] }] }
       ]
     }

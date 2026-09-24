@@ -108,8 +108,8 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is Superman's cape?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
-        { "prompt": "Which animal is shown in the emblem on Batman's chest?", "difficulty": "easy", "answers": [{ "text": "A bat", "aliases": ["Bat"] }] },
+        { "prompt": "What is Batman's young partner in the red and green costume called?", "difficulty": "easy", "answers": [{ "text": "Robin" }] },
+        { "prompt": "Which DC hero comes from Atlantis and talks to sea creatures?", "difficulty": "easy", "answers": [{ "text": "Aquaman" }] },
         { "prompt": "Which enemy of Batman looks like a bird and walks with an umbrella?", "difficulty": "easy", "answers": [{ "text": "The Penguin", "aliases": ["Penguin"] }] },
         { "prompt": "Which company does Bruce Wayne own?", "difficulty": "easy", "answers": [{ "text": "Wayne Enterprises", "aliases": ["Wayne Industries"] }] },
         { "prompt": "Which DC heroine is Superman's cousin from Krypton?", "difficulty": "easy", "answers": [{ "text": "Supergirl" }] },

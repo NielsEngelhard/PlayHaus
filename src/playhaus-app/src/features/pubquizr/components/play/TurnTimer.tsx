@@ -1,3 +1,5 @@
+import AppText from "@/components/text/AppText";
+import { FontSizes } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { haptic } from "@/utils/haptics";
@@ -142,6 +144,14 @@ const useStyles = createThemedStyles(theme => ({
         flexShrink: 0,
         alignItems: 'center',
         gap: 10
+    },
+
+    // Tabular figures, so the number does not jitter sideways as it counts down.
+    digits: {
+        fontSize: FontSizes.huge,
+        fontWeight: 900,
+        letterSpacing: -2,
+        fontVariant: ['tabular-nums']
     },
 
     track: {

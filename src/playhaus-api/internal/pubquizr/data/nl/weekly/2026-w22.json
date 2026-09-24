@@ -109,9 +109,9 @@
       "questions": [
         { "prompt": "Hoe noem je een heel jong boompje?", "difficulty": "easy", "answers": [{ "text": "Een zaailing", "aliases": ["zaailing", "jong boompje"] }] },
         { "prompt": "Welk insect fladdert 's nachts rond een lamp?", "difficulty": "easy", "answers": [{ "text": "De mot", "aliases": ["mot", "nachtvlinder"] }] },
-        { "prompt": "Wat is het tegenovergestelde van nat?", "difficulty": "easy", "answers": [{ "text": "Droog" }] },
-        { "prompt": "Hoe noem je de persoon die je eten brengt in een restaurant?", "difficulty": "easy", "answers": [{ "text": "Een ober", "aliases": ["ober", "serveerster"] }] },
-        { "prompt": "Welke maand heeft de minste dagen?", "difficulty": "easy", "answers": [{ "text": "Februari" }] },
+        { "prompt": "Welk land heeft Teheran als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Iran" }] },
+        { "prompt": "In welke Nederlandse stad staat de Sint-Jan, de grootste kathedraal van het land?", "difficulty": "easy", "answers": [{ "text": "Den Bosch", "aliases": ["'s-Hertogenbosch"] }] },
+        { "prompt": "Wat is de vierkantswortel van honderdvierenveertig?", "difficulty": "easy", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
         { "prompt": "Wat is de hoofdstad van Turkmenistan?", "difficulty": "hard", "answers": [{ "text": "Asjchabad", "aliases": ["Ashgabat"] }] },
         { "prompt": "Welke Russische schrijver schreef Vaders en zonen?", "difficulty": "hard", "answers": [{ "text": "Ivan Toergenjev", "aliases": ["Toergenjev", "Turgenev"] }] },
         { "prompt": "Welke theorie beschrijft zwaartekracht als een kromming van ruimte en tijd?", "difficulty": "hard", "answers": [{ "text": "De algemene relativiteitstheorie", "aliases": ["relativiteitstheorie"] }] },

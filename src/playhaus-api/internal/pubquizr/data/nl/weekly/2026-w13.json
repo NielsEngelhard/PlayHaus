@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je de zoete gang aan het eind van een maaltijd?", "difficulty": "easy", "answers": [{ "text": "Het toetje", "aliases": ["toetje", "dessert", "nagerecht"] }] },
-        { "prompt": "Wat valt er in de winter uit de lucht en maakt alles wit?", "difficulty": "easy", "answers": [{ "text": "Sneeuw" }] },
-        { "prompt": "Hoe noem je een vogeltje dat net uit het ei komt?", "difficulty": "easy", "answers": [{ "text": "Een kuiken", "aliases": ["kuiken"] }] },
-        { "prompt": "Waarmee droog je je af na het douchen?", "difficulty": "easy", "answers": [{ "text": "Een handdoek", "aliases": ["handdoek"] }] },
-        { "prompt": "Met welk deel van je gezicht ruik je?", "difficulty": "easy", "answers": [{ "text": "De neus", "aliases": ["neus"] }] },
+        { "prompt": "In welke film opent een park met gekloonde dinosaurussen op een eiland?", "difficulty": "easy", "answers": [{ "text": "Jurassic Park" }] },
+        { "prompt": "Welke vis eten Nederlanders traditioneel rauw met uitjes?", "difficulty": "easy", "answers": [{ "text": "De haring", "aliases": ["Haring"] }] },
+        { "prompt": "Welk land heeft Ottawa als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Canada" }] },
+        { "prompt": "Welk verdrag uit 1992 gaf de Europese Unie haar naam en is naar een Nederlandse stad genoemd?", "difficulty": "easy", "answers": [{ "text": "Het Verdrag van Maastricht", "aliases": ["Verdrag van Maastricht"] }] },
+        { "prompt": "Waar staat de afkorting o.a. voor?", "difficulty": "easy", "answers": [{ "text": "Onder andere" }] },
         { "prompt": "Welk land heeft Vientiane als hoofdstad?", "difficulty": "hard", "answers": [{ "text": "Laos" }] },
         { "prompt": "Welke Oostenrijkse natuurkundige is beroemd om een gedachte-experiment met een kat?", "difficulty": "hard", "answers": [{ "text": "Erwin Schrodinger", "aliases": ["Schrodinger"] }] },
         { "prompt": "Welke groene edelsteen is een variant van beril?", "difficulty": "hard", "answers": [{ "text": "De smaragd", "aliases": ["smaragd"] }] },

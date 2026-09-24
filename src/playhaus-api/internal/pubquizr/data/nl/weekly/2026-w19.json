@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke boerderijvogel legt eieren en zegt kwak?", "difficulty": "easy", "answers": [{ "text": "De eend", "aliases": ["eend"] }] },
-        { "prompt": "Welke dag van de week komt voor zaterdag?", "difficulty": "easy", "answers": [{ "text": "Vrijdag" }] },
-        { "prompt": "Hoe noem je een groot gebied vol bomen?", "difficulty": "easy", "answers": [{ "text": "Een bos", "aliases": ["bos", "woud"] }] },
-        { "prompt": "Welke zoete lekkernij wordt van cacaobonen gemaakt?", "difficulty": "easy", "answers": [{ "text": "Chocolade" }] },
-        { "prompt": "Hoe noem je de persoon die de leiding heeft over een school?", "difficulty": "easy", "answers": [{ "text": "De directeur", "aliases": ["directeur", "schoolhoofd"] }] },
+        { "prompt": "Welk land heeft Hanoi als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Vietnam" }] },
+        { "prompt": "Wat is de munteenheid van Hongarije?", "difficulty": "easy", "answers": [{ "text": "De forint", "aliases": ["Forint"] }] },
+        { "prompt": "Welk zwart houten instrument heeft een mondstuk met een enkel riet?", "difficulty": "easy", "answers": [{ "text": "De klarinet", "aliases": ["Klarinet"] }] },
+        { "prompt": "Welke Nederlandse voetballer werd drie keer Europees voetballer van het jaar in de jaren zeventig?", "difficulty": "easy", "answers": [{ "text": "Johan Cruijff", "aliases": ["Cruijff", "Johan Cruyff"] }] },
+        { "prompt": "Hoeveel kaarten zitten er in een kaartspel zonder jokers?", "difficulty": "easy", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
         { "prompt": "Wat is de hoofdstad van Servie?", "difficulty": "hard", "answers": [{ "text": "Belgrado" }] },
         { "prompt": "Welke Duitse schrijver schreef Van het westelijk front geen nieuws?", "difficulty": "hard", "answers": [{ "text": "Erich Maria Remarque", "aliases": ["Remarque"] }] },
         { "prompt": "Wat is de grootste kwallensoort ter wereld?", "difficulty": "hard", "answers": [{ "text": "De haarkwal", "aliases": ["haarkwal", "lion's mane"] }] },

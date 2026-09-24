@@ -15,7 +15,8 @@
       },
       "bundleIdentifier": "com.nielsengelhard.playhausapp",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocalNetworkUsageDescription": "Allow $(PRODUCT_NAME) to find Chromecasts on your network so you can put the quiz on a television."
       }
     },
     "android": {
@@ -46,10 +47,10 @@
       "expo-audio",
       "expo-localization",
       [
-        "expo-camera",
+        "react-native-google-cast",
         {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to scan a host's QR code so you can join their lobby.",
-          "barcodeScannerEnabled": true
+          "receiverAppId": "1AE332C1",
+          "iosStartDiscoveryAfterFirstTapOnCastButton": false
         }
       ]
     ],

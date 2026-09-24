@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is the middle stripe of the Dutch flag?", "difficulty": "easy", "answers": [{ "text": "White" }] },
-        { "prompt": "Which farm animal says moo?", "difficulty": "easy", "answers": [{ "text": "The cow", "aliases": ["cow"] }] },
-        { "prompt": "Which meal do you eat in the morning?", "difficulty": "easy", "answers": [{ "text": "Breakfast" }] },
-        { "prompt": "What do you use to cut paper?", "difficulty": "easy", "answers": [{ "text": "Scissors" }] },
-        { "prompt": "What do you call the person who flies an aeroplane?", "difficulty": "easy", "answers": [{ "text": "A pilot", "aliases": ["pilot"] }] },
+        { "prompt": "Who wrote the novel Moby Dick?", "difficulty": "easy", "answers": [{ "text": "Herman Melville", "aliases": ["Melville"] }] },
+        { "prompt": "Which Swedish company sells furniture you assemble yourself?", "difficulty": "easy", "answers": [{ "text": "IKEA" }] },
+        { "prompt": "What is the name of the bar where Homer Simpson drinks his beer?", "difficulty": "easy", "answers": [{ "text": "Moe's", "aliases": ["Moes Tavern"] }] },
+        { "prompt": "Which animal does prosciutto come from?", "difficulty": "easy", "answers": [{ "text": "The pig", "aliases": ["Pig"] }] },
+        { "prompt": "Which country besides Vatican City is completely surrounded by Italy?", "difficulty": "easy", "answers": [{ "text": "San Marino" }] },
         { "prompt": "Which language is spoken by the most people across East Africa?", "difficulty": "hard", "answers": [{ "text": "Swahili" }] },
         { "prompt": "Who wrote the Communist Manifesto together with Friedrich Engels?", "difficulty": "hard", "answers": [{ "text": "Karl Marx", "aliases": ["Marx"] }] },
         { "prompt": "Which acid does the stomach use to digest food?", "difficulty": "hard", "answers": [{ "text": "Hydrochloric acid", "aliases": ["hydrochloric"] }] },

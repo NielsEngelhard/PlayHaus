@@ -19,9 +19,9 @@
         { "prompt": "How many degrees are in a full circle?", "category": "Science", "answers": [{ "text": "Three hundred and sixty", "aliases": ["360"] }] },
         { "prompt": "Which state is entirely surrounded by the city of Rome?", "category": "Geography", "answers": [{ "text": "Vatican City", "aliases": ["the Vatican"] }] },
         { "prompt": "In what year did the Second World War begin in Europe?", "category": "History", "answers": [{ "text": "1939" }] },
-        { "prompt": "Which Italian dish is dough with tomato sauce and cheese baked in an oven?", "category": "Food", "answers": [{ "text": "Pizza" }] },
+        { "prompt": "Which country does feta cheese come from?", "category": "Food", "answers": [{ "text": "Greece" }] },
         { "prompt": "In which country was the sport of judo invented?", "category": "Sport", "answers": [{ "text": "Japan" }] },
-        { "prompt": "Which creature changes from caterpillar into butterfly?", "category": "Nature", "answers": [{ "text": "The butterfly", "aliases": ["butterfly"] }] },
+        { "prompt": "Which animal changes colour to blend into its surroundings?", "category": "Nature", "answers": [{ "text": "The chameleon", "aliases": ["Chameleon"] }] },
         { "prompt": "What is the name of the highest point of the Netherlands, in Limburg?", "category": "The Netherlands", "answers": [{ "text": "The Vaalserberg", "aliases": ["Vaalserberg"] }] },
         { "prompt": "Which force keeps the planets in orbit around the sun?", "category": "Science", "answers": [{ "text": "Gravity", "aliases": ["gravitation"] }] },
         { "prompt": "Which actor played the lead in Forrest Gump?", "category": "Film", "answers": [{ "text": "Tom Hanks", "aliases": ["Hanks"] }] },
@@ -116,7 +116,7 @@
         { "prompt": "What does the Richter scale measure?", "difficulty": "hard", "answers": [{ "text": "Earthquake magnitude", "aliases": ["Earthquakes", "The strength of earthquakes"] }] },
         { "prompt": "Which Russian author wrote War and Peace?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },
         { "prompt": "Which strait separates Europe from Africa at its narrowest point?", "difficulty": "hard", "answers": [{ "text": "The Strait of Gibraltar", "aliases": ["Strait of Gibraltar", "Gibraltar"] }] },
-        { "prompt": "Which vitamin does the body make from sunlight?", "difficulty": "hard", "answers": [{ "text": "Vitamin D" }] }
+        { "prompt": "Which Dutch writer wrote The Darkroom of Damocles?", "difficulty": "hard", "answers": [{ "text": "Willem Frederik Hermans", "aliases": ["Hermans"] }] }
       ]
     },
     {

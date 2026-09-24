@@ -108,10 +108,10 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which chess piece is shaped like a castle tower?", "difficulty": "easy", "answers": [{ "text": "The rook", "aliases": ["rook", "castle"] }] },
+        { "prompt": "In which French palace with the Hall of Mirrors did Louis the Fourteenth hold court?", "difficulty": "easy", "answers": [{ "text": "Versailles" }] },
         { "prompt": "Which black birds are kept at the Tower of London by tradition?", "difficulty": "easy", "answers": [{ "text": "Ravens", "aliases": ["raven"] }] },
         { "prompt": "Which fairy-tale princess pricked her finger on a spindle and slept for a hundred years?", "difficulty": "easy", "answers": [{ "text": "Sleeping Beauty", "aliases": ["Briar Rose"] }] },
-        { "prompt": "What do we call an armoured warrior on horseback who served a lord?", "difficulty": "easy", "answers": [{ "text": "A knight", "aliases": ["knight"] }] },
+        { "prompt": "What do we call the young helper who was apprenticed to a knight?", "difficulty": "easy", "answers": [{ "text": "A squire", "aliases": ["Squire"] }] },
         { "prompt": "Which legendary king held court with his round table at Camelot?", "difficulty": "easy", "answers": [{ "text": "King Arthur", "aliases": ["Arthur"] }] },
         { "prompt": "What is the medieval castle toilet, a shaft built into the thickness of the wall, called?", "difficulty": "hard", "answers": [{ "text": "A garderobe", "aliases": ["garderobe", "privy"] }] },
         { "prompt": "What are the openings in the floor above a gateway through which defenders dropped stones called?", "difficulty": "hard", "answers": [{ "text": "Murder holes", "aliases": ["machicolations", "murder hole"] }] },
