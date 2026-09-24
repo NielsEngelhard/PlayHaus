@@ -5,6 +5,7 @@ import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import PlayModeSheet, { type PlayMode } from "@/features/pubquizr/components/PlayModeSheet";
 import QuizLibraryStack from "@/features/pubquizr/components/QuizLibraryStack";
 import QuizSheet from "@/features/pubquizr/components/QuizSheet";
 import WeeklyStamp from "@/features/pubquizr/components/WeeklyStamp";
@@ -19,6 +20,13 @@ export default function QuizzerIndexPage() {
     const router = useRouter();
 
     const [browsing, setBrowsing] = useState(false);
+    const [choosing, setChoosing] = useState(false);
+
+    // The mode is fixed when the room opens, so it is asked before there is a room.
+    function open(mode: PlayMode) {
+        setChoosing(false);
+        router.push((mode === 'screen' ? ROUTES.quizzerScreenRoom : ROUTES.quizzerMultiDeviceGameSettings) as RelativePathString);
+    }
 
     return (
         <GameIndexPage
@@ -65,7 +73,7 @@ export default function QuizzerIndexPage() {
                         title={t('pubquizr.index.multiDevice.title')}
                         description={t('pubquizr.index.multiDevice.description')}
                         action={t('pubquizr.index.multiDevice.action')}
-                        navigationUrl={ROUTES.quizzerMultiDeviceGameSettings}
+                        onPress={() => setChoosing(true)}
                     />
                 </View>
 
@@ -78,6 +86,8 @@ export default function QuizzerIndexPage() {
                     title={t('pubquizr.index.centralScreen.title')}
                 />
             </View>
+
+            <PlayModeSheet onClose={() => setChoosing(false)} onPick={open} visible={choosing} />
 
             {/* The rows in here go where the rows on the page go, but by hand. */}
             <QuizSheet

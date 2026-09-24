@@ -166,19 +166,8 @@ export default function CreateQuizRoom({ wantsScreen }: Props) {
 function OpenRoom({ wantsScreen }: { wantsScreen: boolean }) {
     const router = useRouter();
 
-    // No code: this player is opening a room rather than joining one, which makes them its host.
-    const state = useQuizLobby();
-
-    // Asked for once, on the room this screen just opened.
-    const asked = useRef(false);
-    const { lobby, updateSetup } = state;
-
-    useEffect(() => {
-        if (!wantsScreen || asked.current || lobby === null || lobby.setup.hostScreen) return;
-
-        asked.current = true;
-        updateSetup({ hostScreen: true });
-    }, [wantsScreen, lobby, updateSetup]);
+    // No code: this player is opening a room rather than joining one, which makes them its host. The mode is part of opening it.
+    const state = useQuizLobby(undefined, wantsScreen);
 
     return (
         <QuizLobbyView

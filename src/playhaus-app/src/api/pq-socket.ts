@@ -23,6 +23,8 @@ export type PQServerEvent =
             /** Which seat the recipient holds, and -1 for the shared screen, which holds none. */
             seat: number
             online: string[]
+            /** A device with no seat is in the room: the shared screen. Said by the room, not guessed from the roster. */
+            screenOnline: boolean
             // Every frame the room kept, so a device that arrives mid-question sees the question the room is on.
             control?: PQControlFrame[]
             /** How many of round 3's numbers are in, so a screen reloading mid-question learns the count without learning one. */
@@ -32,7 +34,7 @@ export type PQServerEvent =
         }
     }
     /** Who is connected. This is the live dot. */
-    | { type: 'presence', data: { online: string[] } }
+    | { type: 'presence', data: { online: string[], screenOnline: boolean } }
     /** The room changed: a phone in or out, or something the host picked. */
     | { type: 'lobby', data: { lobby: PQLobby } }
     /** The host shut the room. The code is dead and there is nothing to go back to. */

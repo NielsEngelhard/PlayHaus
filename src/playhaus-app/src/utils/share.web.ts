@@ -11,6 +11,10 @@ function canCopy(): boolean {
     return typeof navigator !== 'undefined' && navigator.clipboard !== undefined;
 }
 
+export function canShareLink(): boolean {
+    return canShare();
+}
+
 export async function shareLink(url: string, title: string): Promise<ShareOutcome> {
     if (canShare()) {
         try {

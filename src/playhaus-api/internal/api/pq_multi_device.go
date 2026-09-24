@@ -16,9 +16,10 @@ import (
 
 // PubquizR on more than one device: one shared screen everybody looks at, and a phone per player. The screen holds no seat.
 
-// pqNewLobbyRequest is what opens a room.
+// pqNewLobbyRequest is what opens a room. The play mode is settled here and nowhere else: a room that changed it would lie to whoever already joined.
 type pqNewLobbyRequest struct {
-	Locale *string `json:"locale"`
+	Locale     *string `json:"locale"`
+	HostScreen *bool   `json:"hostScreen"`
 }
 
 func (pqNewLobbyRequest) Validate() map[string]string { return nil }
@@ -29,7 +30,6 @@ type pqLobbySetupRequest struct {
 	Locale     *string `json:"locale"`
 	ZenMode    *bool   `json:"zenMode"`
 	TriviaMode *bool   `json:"triviaMode"`
-	HostScreen *bool   `json:"hostScreen"`
 }
 
 func (req pqLobbySetupRequest) Validate() map[string]string {
@@ -170,7 +170,7 @@ func (s *Server) handleCreatePQLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	lobby, err := s.pubquizr.CreateLobby(r.Context(), userID, s.accountName(r, userID), localeFrom(Deref(req.Locale, ""), r))
+	lobby, err := s.pubquizr.CreateLobby(r.Context(), userID, s.accountName(r, userID), localeFrom(Deref(req.Locale, ""), r), Deref(req.HostScreen, false))
 	if err != nil {
 		s.writePubquizRError(w, err)
 		return
@@ -275,7 +275,8 @@ func (s *Server) handleUpdatePQLobbySetup(w http.ResponseWriter, r *http.Request
 		Locale:     localeFrom(Deref(req.Locale, current.Locale.String()), r),
 		ZenMode:    Deref(req.ZenMode, current.ZenMode),
 		TriviaMode: Deref(req.TriviaMode, current.TriviaMode),
-		HostScreen: Deref(req.HostScreen, current.HostScreen),
+		// Not the host's to move any more: the mode was fixed when the room opened.
+		HostScreen: current.HostScreen,
 	}
 	if req.QuizID != nil {
 		// An explicit empty string is how the host puts the quiz back.

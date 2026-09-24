@@ -1,7 +1,6 @@
 import type { PQLobby } from "@/api/calls/pubquizr-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import AppText from "@/components/text/AppText";
-import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
 import LobbySeatGrid from "@/components/ui/LobbySeatGrid";
 import StartGameButton from "@/components/ui/StartGameButton";
@@ -13,8 +12,6 @@ import { useT } from "@/features/i18n/LanguageContext";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
 import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
-import { useCastTable } from "@/features/screen/cast";
-import { screenUrl } from "@/features/screen/screen-url";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
@@ -38,12 +35,6 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
     const { user } = useAuth();
 
     const [inviting, setInviting] = useState(false);
-
-    // What to read out to whoever is holding the television remote, and null on a build that knows no address.
-    const screen = screenUrl();
-
-    // Only a Chromecast build has anything to offer here; the browser fork always says no.
-    const cast = useCastTable(lobby.code);
 
     // Seeded from the room, so a host coming back to it sees what they already picked.
     const selected = useSelectedQuiz(lobby.setup.quizId);
@@ -76,29 +67,20 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                             ? t('pubquizr.lobby.needPlayers', { min: lobby.minPlayers })
                             : !picked
                                 ? t('pubquizr.lobby.needQuiz')
-                                : t('pubquizr.lobby.startNote')}
+                                : lobby.setup.hostScreen
+                                    ? t('pubquizr.lobby.startNoteScreen')
+                                    : t('pubquizr.lobby.startNotePhones')}
                     </AppText>
                 </View>
             }
         >
-            {/* Only worth saying when there is going to be a screen to put up. */}
+            {/* This screen is only reached once a television is watching, so it reports rather than instructs. */}
             {lobby.setup.hostScreen && (
                 <InlineNotification
                     icon='airplay'
                     color={theme.colors.mint}
-                    title={t('pubquizr.lobby.screenHint.title')}
-                    message={screen === null
-                        ? t('pubquizr.lobby.screenHint.message')
-                        : t('pubquizr.lobby.screenHint.messageUrl', { code: lobby.code, url: screen })}
-                />
-            )}
-
-            {/* The picker is also where a running session is ended, so it stays pressable once connected. */}
-            {lobby.setup.hostScreen && cast.available && (
-                <ActionButton
-                    icon='cast'
-                    text={cast.connected ? t('pubquizr.lobby.cast.connected') : t('pubquizr.lobby.cast.action')}
-                    onPress={cast.show}
+                    title={t('pubquizr.lobby.screenConnected.title')}
+                    message={t('pubquizr.lobby.screenConnected.message')}
                 />
             )}
 
@@ -142,14 +124,6 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                     description={t('pubquizr.oneDevice.zenMode.description')}
                 />
             )}
-
-            <ToggleRow
-                flush
-                value={lobby.setup.hostScreen}
-                onChange={hostScreen => state.updateSetup({ hostScreen })}
-                label={t('pubquizr.lobby.hostScreen.label')}
-                description={t('pubquizr.lobby.hostScreen.description')}
-            />
 
             {state.actionError !== null && (
                 <InlineNotification

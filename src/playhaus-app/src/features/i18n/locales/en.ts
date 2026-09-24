@@ -265,16 +265,16 @@ export const en = {
         disconnected: 'Lost the connection to the lobby',
         close: 'Close the lobby',
         leave: 'Leave the lobby',
-        joinCode: 'Access code',
+        shareCodeInvite: 'Share this code with your friends',
         code: 'Lobby code',
         codeSpoken: 'Lobby code: {{characters}}',
         copyCode: 'Copy lobby code {{characters}}',
         copied: 'Copied',
         shareTitle: 'Join my lobby',
-        shareLink: 'Share link',
+        copyLink: 'Copy link',
+        copyLinkLabel: 'Copy the link to this lobby',
+        shareLink: 'Share',
         shareLinkLabel: 'Share the link to this lobby',
-        linkCopied: 'Link copied',
-        shareFailed: 'Sharing did not work',
         players: 'Players',
         playerCount: '{{taken}} of {{max}}',
         minPlayers: 'Min {{min}}',
@@ -557,6 +557,21 @@ export const en = {
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
             centralScreen: { title: 'Central screen', description: 'Stream the quiz to your tv. Everyone uses their phone as controller', action: 'Set up'},
+            playMode: {
+                title: 'How are you playing?',
+                message: 'Everybody plays on their own phone. Choose whether a big screen joins in too.',
+                phonesOnly: {
+                    title: 'Phones only',
+                    description: 'The question is on every phone.',
+                    need: 'Needed: a phone each'
+                },
+                withScreen: {
+                    title: 'With a central screen',
+                    description: 'The question goes up on the TV, the phones are the buttons.',
+                    need: 'Needed: a TV or laptop with a browser'
+                },
+                locked: 'Your choice is fixed once the room is open'
+            },
             tableScreen: { title: 'Table screen', subtitle: 'On the TV' },
             allQuizzes: { title: 'All quizzes', subtitle: 'Browse the list' },
             // The stack of slips at the foot of the page.
@@ -667,14 +682,24 @@ export const en = {
             hostStoppedQuiz: 'The host stopped the quiz. Ask for a new code for another one.',
             // The phone, for the moment between the deal and the controller.
             dealt: 'The quiz is starting…',
-            hostScreen: {
-                label: 'Host screen',
-                description: 'Put the question on a TV or laptop and play the phones as controllers. Off, every phone shows the whole board.'
+            // The step in front of the room in a central-screen room: a TV has to be watching first.
+            pairing: {
+                title: 'Connect the screen',
+                stepScreen: 'Screen',
+                stepRoom: 'Room',
+                cardTitle: 'Connect the screen first',
+                openOn: 'Open on the TV or laptop',
+                openOnNoUrl: 'Open the room on the TV or laptop and type the code in',
+                fillIn: 'AND TYPE IN',
+                waiting: 'Waiting for the screen…',
+                onePlayerWaiting: '1 player is already waiting with code {{code}}',
+                playersWaiting: '{{count}} players are already waiting with code {{code}}',
+                blocked: 'You cannot carry on without a screen',
+                auto: 'The moment the screen connects you go on by yourself'
             },
-            screenHint: {
-                title: 'Put a screen up first',
-                message: 'Open the room on a laptop or a TV — HDMI, Chromecast or AirPlay all work — and everybody plays from their own phone.',
-                messageUrl: 'On the tv, open {{url}} and type {{code}}. A laptop on HDMI, a cast tab or screen mirroring all work too — everybody still plays from their own phone.'
+            screenConnected: {
+                title: 'Central screen connected',
+                message: 'The quiz appears on the screen as soon as you start.'
             },
             cast: {
                 action: 'Cast to TV',
@@ -702,7 +727,8 @@ export const en = {
             },
             stay: 'Stay here',
             start: 'Start the quiz',
-            startNote: 'Once you start, nobody else can join.',
+            startNoteScreen: 'Everybody looks at the screen',
+            startNotePhones: 'The question appears on every phone',
             needPlayers: 'You need at least {{min}} phones at the table.',
             needQuiz: 'Pick a quiz first.',
             hostFallback: 'The host'

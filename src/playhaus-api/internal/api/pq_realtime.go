@@ -41,6 +41,8 @@ type pqStatePayload struct {
 	// Seat is who the recipient is at this table, and -1 for the shared screen, which holds none.
 	Seat   int      `json:"seat"`
 	Online []string `json:"online"`
+	// ScreenOnline is a device in this room holding no seat: the shared screen, which the host lobby waits on.
+	ScreenOnline bool `json:"screenOnline"`
 	// Control is every retained frame, so a device that arrives mid-question sees the question the room is on.
 	Control []json.RawMessage `json:"control,omitempty"`
 	// Closest is round 3's typing, so a screen reloading mid-question learns how many numbers are in without learning one.
@@ -71,7 +73,8 @@ type pqClosestRevealPayload struct {
 }
 
 type pqPresencePayload struct {
-	Online []string `json:"online"`
+	Online       []string `json:"online"`
+	ScreenOnline bool     `json:"screenOnline"`
 }
 
 type pqLobbyPayload struct {
@@ -128,6 +131,16 @@ func (st *pqRoomState) retained() []json.RawMessage {
 	return frames
 }
 
+// screenOnline is somebody in the room holding no seat, which is what a shared screen is. Cached seats only: a connection whose lobby read failed is nobody.
+func (st *pqRoomState) screenOnline(room *realtime.Room) bool {
+	for userID, seat := range st.seats {
+		if seat < 0 && room.IsOnline(userID) {
+			return true
+		}
+	}
+	return false
+}
+
 // OnJoin sends the arriving connection everything it needs and tells the room it is there.
 func (h pqRealtime) OnJoin(ctx context.Context, room *realtime.Room, client *realtime.Client) {
 	s := h.server
@@ -159,22 +172,32 @@ func (h pqRealtime) OnJoin(ctx context.Context, room *realtime.Room, client *rea
 
 	// Built for this client and no other: the seat is per-recipient.
 	client.Send(realtime.Message(typeState, pqStatePayload{
-		Lobby:   newPQLobbyResponse(lobby),
-		Session: session,
-		Seat:    seat,
-		Online:  room.Online(),
-		Control: st.retained(),
-		Closest: st.closest,
-		Reveal:  st.reveal,
+		Lobby:        newPQLobbyResponse(lobby),
+		Session:      session,
+		Seat:         seat,
+		Online:       room.Online(),
+		ScreenOnline: st.screenOnline(room),
+		Control:      st.retained(),
+		Closest:      st.closest,
+		Reveal:       st.reveal,
 	}))
 
-	// Everybody else finds out somebody is here.
-	room.BroadcastExcept(client.UserID, realtime.Message(typePresence, pqPresencePayload{Online: room.Online()}))
+	// Everybody else finds out somebody is here, and whether that somebody was the screen the room waits on.
+	room.BroadcastExcept(client.UserID, realtime.Message(typePresence, pqPresencePayload{
+		Online:       room.Online(),
+		ScreenOnline: st.screenOnline(room),
+	}))
 }
 
 // OnLeave puts somebody's light out. A phone dropping mid-round forfeits nothing -- the quizmaster can always settle for it.
 func (h pqRealtime) OnLeave(ctx context.Context, room *realtime.Room, client *realtime.Client) {
-	room.Broadcast(realtime.Message(typePresence, pqPresencePayload{Online: room.Online()}))
+	// The room has already stopped counting this connection, so a television unplugged reads as gone here.
+	st := pqStateOf(room)
+
+	room.Broadcast(realtime.Message(typePresence, pqPresencePayload{
+		Online:       room.Online(),
+		ScreenOnline: st.screenOnline(room),
+	}))
 }
 
 // OnMessage relays one control frame, and does no I/O: the seat comes out of the room's own map.

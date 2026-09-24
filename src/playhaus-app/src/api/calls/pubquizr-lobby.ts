@@ -52,10 +52,11 @@ export class PQLobbyFullError extends Error {
 
 const lobbyPath = (code: string) => `/api/v1/pubquizr/multi-device/lobby/${encodeURIComponent(code)}`;
 
-export async function createPQLobby(locale?: LanguageCode): Promise<PQLobby> {
+// hostScreen is settled here and nowhere else: the room cannot change the mode the players who join were told.
+export async function createPQLobby(locale?: LanguageCode, hostScreen?: boolean): Promise<PQLobby> {
     return request<PQLobby>('/api/v1/pubquizr/multi-device/lobby', {
         method: 'POST',
-        body: JSON.stringify({ locale })
+        body: JSON.stringify({ hostScreen, locale })
     });
 }
 
@@ -81,8 +82,8 @@ export async function joinPQLobby(code: string, name?: string): Promise<PQLobby>
     }
 }
 
-// Saves what the host has picked. A field left out keeps whatever the room is already set to.
-export async function updatePQLobbySetup(code: string, setup: Partial<PQLobbySetup>): Promise<PQLobby> {
+// Saves what the host has picked. A field left out keeps whatever the room is already set to, and hostScreen is not the host's to move any more.
+export async function updatePQLobbySetup(code: string, setup: Partial<Omit<PQLobbySetup, 'hostScreen'>>): Promise<PQLobby> {
     return request<PQLobby>(lobbyPath(code), {
         method: 'PATCH',
         body: JSON.stringify(setup)
