@@ -32,12 +32,9 @@ const (
 	FooledPoints = 1
 )
 
-// MaxPlayersWithOneFake is the biggest table that is still shown a single fake beside the truth; above it a round carries two.
-const MaxPlayersWithOneFake = 4
-
-// AuthorsPerRound is how many players write for one prompt: one at a small table in the mode that supplies a truth, two everywhere else.
+// AuthorsPerRound is how many players write for one prompt: one in the mode that supplies a truth, so a voter only ever picks between two.
 func AuthorsPerRound(mode FFGameMode, players int) int {
-	if mode.HasTruth() && players <= MaxPlayersWithOneFake {
+	if mode.HasTruth() {
 		return 1
 	}
 	return 2

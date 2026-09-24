@@ -20,24 +20,15 @@ func TestAGameHasAsManyRoundsAsPlayers(t *testing.T) {
 	}
 }
 
-// A small table in the mode with a truth is shown one fake beside the real answer, so every
+// The mode with a truth is shown one fake beside the real answer at every table size, so every
 // prompt takes one writer and the game deals twice as many of them.
-func TestASmallTableDealsAPromptPerAnswer(t *testing.T) {
-	for players := MinLobbyPlayers; players <= MaxPlayersWithOneFake; players++ {
+func TestTheModeWithATruthDealsAPromptPerAnswer(t *testing.T) {
+	for players := MinLobbyPlayers; players <= MaxLobbyPlayers; players++ {
 		if got := AuthorsPerRound(GameModeFacts, players); got != 1 {
 			t.Errorf("AuthorsPerRound(facts, %d) = %d, want 1", players, got)
 		}
 		if got := RoundsFor(GameModeFacts, players, DefaultAnswersPerPlayer); got != players*DefaultAnswersPerPlayer {
 			t.Errorf("RoundsFor(facts, %d, DefaultAnswersPerPlayer) = %d, want %d", players, got, players*DefaultAnswersPerPlayer)
-		}
-	}
-}
-
-// Above that the line-up goes back to two fakes and a truth.
-func TestABigTableIsShownTwoFakes(t *testing.T) {
-	for players := MaxPlayersWithOneFake + 1; players <= MaxLobbyPlayers; players++ {
-		if got := AuthorsPerRound(GameModeFacts, players); got != 2 {
-			t.Errorf("AuthorsPerRound(facts, %d) = %d, want 2", players, got)
 		}
 	}
 }
@@ -115,7 +106,7 @@ func TestNoRoundIsDealtToTheSamePlayerTwice(t *testing.T) {
 }
 
 // No two rounds may have the same pair of authors, or two prompts would be answered by the
-// same two people and voted on by exactly the same voters. A one-fake table is exempt:
+// same two people and voted on by exactly the same voters. A one-fake mode is exempt:
 // there is only one writer per prompt, so there is no pair to repeat.
 func TestNoTwoRoundsAreDealtToTheSamePair(t *testing.T) {
 	for _, mode := range allModes {
@@ -144,7 +135,7 @@ func TestNoTwoRoundsAreDealtToTheSamePair(t *testing.T) {
 }
 
 // Somebody is left to vote on every round at every table size the game allows, which is the
-// whole reason a small table writes one fake per prompt rather than two.
+// whole reason the mode with a truth writes one fake per prompt rather than two.
 func TestEveryAllowedTableSizeLeavesSomebodyToVote(t *testing.T) {
 	for _, mode := range allModes {
 		for players := MinPlayersFor(mode); players <= MaxLobbyPlayers; players++ {
@@ -155,29 +146,23 @@ func TestEveryAllowedTableSizeLeavesSomebodyToVote(t *testing.T) {
 	}
 }
 
-// A voter is never shown fewer than two things to pick between, in either mode.
-func TestAVoterAlwaysHasSomethingToChooseBetween(t *testing.T) {
+// A voter is always shown exactly two things to pick between, in either mode and at any table size.
+func TestAVoterAlwaysChoosesBetweenTwo(t *testing.T) {
 	for _, mode := range allModes {
 		for players := MinPlayersFor(mode); players <= MaxLobbyPlayers; players++ {
-			if got := OptionsPerRound(mode, players); got < 2 {
-				t.Errorf("OptionsPerRound(%s, %d) = %d, want at least 2", mode, players, got)
+			if got := OptionsPerRound(mode, players); got != 2 {
+				t.Errorf("OptionsPerRound(%s, %d) = %d, want 2", mode, players, got)
 			}
 		}
 	}
 }
 
 func TestOptionsPerRoundCountsTheTruthOnlyWhereThereIsOne(t *testing.T) {
-	if got := OptionsPerRound(GameModeFacts, 5); got != 3 {
-		t.Errorf("OptionsPerRound(facts, 5) = %d, want 3", got)
+	if got := OptionsPerRound(GameModeFacts, 5); got != 2 {
+		t.Errorf("OptionsPerRound(facts, 5) = %d, want 2", got)
 	}
 	if got := OptionsPerRound(GameModeCreative, 3); got != 2 {
 		t.Errorf("OptionsPerRound(creative, 3) = %d, want 2", got)
-	}
-	// The two a small table is shown: the real answer, and one other player's fake.
-	for players := MinLobbyPlayers; players <= MaxPlayersWithOneFake; players++ {
-		if got := OptionsPerRound(GameModeFacts, players); got != 2 {
-			t.Errorf("OptionsPerRound(facts, %d) = %d, want 2", players, got)
-		}
 	}
 }
 
